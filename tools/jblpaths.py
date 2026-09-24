@@ -1,0 +1,34 @@
+"""저장소 기준 경로 — 모든 과목 파이프라인 공통.
+과목 작업 폴더 = work/<SID>/ · JB 추출 = work/jb/<SID>_20xx/ (tools/jbx.py) · 출력 = docs/ (허브 docs/index.html, 팩 docs/packs/)"""
+import os, re, json
+TOOLS = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(TOOLS)
+WORK = os.path.join(ROOT, 'work')
+DOCS = os.path.join(ROOT, 'docs')
+JBX = os.path.join(WORK, 'jb') + '/'          # f'{JBX}{SID}_20{ed}/{i}.txt'
+def work(sid, *p):
+    d = os.path.join(WORK, sid); os.makedirs(d, exist_ok=True)
+    return os.path.join(d, *p)
+def _load_js(path):
+    t = open(path, encoding='utf-8').read()
+    return json.loads(t[t.index('{'):t.rindex('}') + 1])
+def prev_images(sid):
+    """지금 docs/packs/에 올라가 있는 <SID>.img.*.js의 강의 이미지 {키-쪽: dataURI}.
+    강의자료 원본(materials/, work/)이 없는 환경에서 재빌드해도 이미지가 빠지지 않게 하는 대체용."""
+    out = {}; d = os.path.join(DOCS, 'packs')
+    if not os.path.isdir(d): return out
+    for f in os.listdir(d):
+        if f.startswith(sid + '.img.') and f.endswith('.js') and f != sid + '.img.jb.js':
+            out.update(_load_js(os.path.join(d, f)).get('lec', {}))
+    return out
+def prev_crops(sid, crops):
+    """지금 docs/packs/<SID>.js 문항 카드에 박힌 JB 그림 조각 {조각키: dataURI} (crops 폴더가 없을 때 대체용)."""
+    p = os.path.join(DOCS, 'packs', sid + '.js')
+    if not os.path.exists(p): return {}
+    cards = _load_js(p).get('cards', {}); out = {}
+    for cid, kinds in crops.items():
+        h = cards.get(cid, '')
+        for kind, alt in (('q', 'JB 그림'), ('a', 'JB 그림(답)')):
+            srcs = re.findall(r'<img class="fig" loading="lazy" src="([^"]+)" alt="%s">' % re.escape(alt), h)
+            for k, s in zip(kinds.get(kind, []), srcs): out[k] = s
+    return out
