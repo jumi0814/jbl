@@ -1,0 +1,127 @@
+#TBL External vs Internal connection | k=HIS | src=[[HIS:24]] [[HIS:25]]
+H: 항목 | External connection | Internal connection
+R: 연결 | 지대주 외부 연결, {r:Hexagon} 주류, 보철물이 fixture를 감쌈 | 지대주 내부 연결, fixture가 보철물을 감쌈
+R: 특징 | 다양한 보철 가능 / {r:Joint stability 문제} | {r:No gap & movement} {jb:Q10}
+R: Abutment sinking | {r:없음} → 보철 안정성 | {r:발생} → cold welding으로 abut 분리 어려움
+R: 교합 응력 전달 | connection, screw → {r:screw 풀림} 많음 | screw, abut, fixture → 응력분산에 유리하나 {r:fixture 찢어짐} 가능
+R: Platform 주변 골소실 | {r:많음}(1-2 thread는 정상으로 간주) | {r:적음}
+R: 추세 | 과거 주류(Branemark) | 최근 더 많이 사용(구치부에도) {jb:R02}
+
+#TBL One-stage vs Two-stage surgery | k=HIS | src=[[HIS:21]] [[HIS:22]] [[HIS:23]]
+H: 항목 | One-stage | Two-stage
+R: 방식 | 식립 시 바로 {r:healing abutment} 연결(또는 매식체 일부 노출) → 2차 수술 불필요 | {r:cover screw} + soft tissue로 덮음 → 골유착(상악 6개월·하악 3개월) 후 flap 열어 healing abutment {jb:Q14}
+R: 장점 | 수술 횟수 감소 / 연조직 이차 감염 예방 / fixture 예후 인지 용이 / 실패 시 조기진단으로 골손실 적음 | flap을 덮어 {r:초기고정}에 도움
+R: 단점 | {r:loading 부하} 가능성 / abutment looseness로 인한 infection | 2회 수술 불편 / 조직 손상 / 치료기간 김 / 실패 시 골손상 클 수 있음
+R: 부품 역할 | Healing abutment = 최종 abutment 전까지 치은 개방 유지·연조직 치유 {jb:Q13} | Cover screw = fixture 내부로 연조직·치조골 성장 방지
+
+#TBL Lekholm & Zarb vs Misch 골질 분류 | k=OSS | src=[[OSS:29]] [[OSS:30]] [[HIS:35]] [[ONJ5:33]]
+H: 등급 | Lekholm & Zarb (1985, 전치부) | Misch (무치악) | 임플란트 |
+R: 1 / D1 | 균등한 치밀골 | dense cortical(oak, 전방 하악) | {r:가장 안 좋음} — 열 발생·혈관 부족, 드릴링 어려움 {jb:Q13}
+R: 2 / D2 | 치밀한 망상골을 둘러싼 두꺼운 치밀골 | porous cortical + coarse trabecular(pine, 후방 하악·전방 상악) | {r:가장 좋음} — 골치유·혈액 공급 우수, 식립 기준 골질
+R: 3 / D3 | 강도 좋은 치밀한 망상골을 둘러싼 얇은 치밀골 | porous cortical + fine trabecular(balsa, 상악) | 적절 — 식립부 형성 쉬움, 굵은 직경
+R: 4 / D4 | 밀도 낮은 망상골을 둘러싼 얇은 치밀골 | fine trabecular(styrofoam, 후방 상악) | {r:초기 고정 어려움} → undersized drilling, 굵은 직경, 충분한 치유 {jb:R14}
+N: 성공률: 1·2·3 ≈ 95%, 4는 낮음. 골밀도 자체가 성공을 크게 좌우하지는 않는다(명훈). [[OSS:28]] [[ONJ5:36]]
+
+#TBL Lamellar bone vs Woven bone | k=OSS | src=[[OSS:13]] [[OSS:15]]
+H: 항목 | Lamellar (층판골) | Woven (망상골)
+R: 성숙도 | 성숙, normal adult bone, 성인 골격 {r:99%} | 미성숙 — 골절 치유 초기·건 부착부·pathologic
+R: 구조·강도 | 나이테 층판, {r:강하고 잘 광화}, 강도 = {r:무기질}과 직접 관련 {jb:Q15} | 무층골, {r:약하고 거의 광화 안 됨}, 비조직적
+R: 역할 | 임플란트 지지 — 술 후 {r:1년}까지 최대 미도달 | {r:창상치유 시 처음 생성}, 골절·임플란트에 {r:초기 연속성}, 빠르게 병소 채움
+R: 운명 | — | 층판골로 개조되거나, 성숙 전 하중 시 {r:빠르게 흡수} {jb:R06}
+
+#TBL 골유착 3단계 | k=OSS | src=[[OSS:25]] [[OSS:26]]
+H: 단계 | 시기 | 내용 | 안정성
+R: {r:골친화기} {jb:R07} | ~1달(woven 4-6주 dominant) | 혈병 → fibrin → 1주 내 골아세포 이주·골화 → 압축골 흡수·BMP 유리 → osteoid → woven bone 침착 | {r:mechanical}만, biological 없음 {jb:Q16}
+R: {r:골전도기} | {r:2~3개월} | woven → {r:lamellar}로 치환, 임플란트 표면에 골이 더해짐(접촉↑) | 3-4주 remodeling으로 안정성 저하 → early loading 주의
+R: {r:골적응기} | {r:3~4개월 이후} | 골 접촉량 불변, 부하에 반응해 {r:remodeling} 평생 | —
+
+#TBL 병적 골과 임플란트 — 가능/불가 | k=PATH | src=[[PATH:8]] [[PATH:12]] [[PATH:14]] [[PATH:35]] [[PATH:39]] [[ONJ5:38]]
+H: 상태 | 임플란트 | 근거
+R: {r:Osteoradionecrosis} {jb:R13} | {r:절대 금기} | 방사선 → hypoxia·hypocellularity·hypovascularity → healing 불가
+R: Osteomyelitis — suppurative | 불가 | 하염없이 파괴, 식립 순간 망가짐
+R: Osteomyelitis — sclerosing(Garré) | 젊은 사람은 가능 | responsive bone으로 저항
+R: BRONJ / MRONJ | 확실히 불가 | osteoclast 억제 → remodeling 정지, 낫지 않음
+R: Osteogenesis imperfecta | 상대적 — site-specific(상악 위주) | 병 자체는 금기 아님
+R: Paget's disease | 가능(challenging) | remodeling은 일어남
+R: Fibrous dysplasia | 섬유조직 양에 따라(5케이스 중 1 실패) | 동의 구하면 진행 가능
+R: COD·PCD·cemental tear·dysplasia | 상대적 금기 / 식립 부위 아님 | idiopathic, 확신 불가 — cyst는 긁어내면 가능
+R: 우식·치주·파절 발치와 | {r:금기 아님} — immediate 가능 | bone만 남아 있으면, clear한 prep이 관건
+
+#TBL Bisphosphonate 상대 역가 | k=PATH | src=[[ONJ5:14]] [[ONJ5:17]]
+H: 약물 | 상품명 | Relative potency | 비고
+R: Etidronate | Didronel | {r:1} | 기준
+R: Tiludronate | Skelid | 10 |
+R: Pamidronate | Aredia | {r:100} |
+R: Alendronate | {r:Fosamax} | 1,000 | 가장 많이 처방(경구)
+R: Risedronate | Actonel | {r:10,000} |
+R: Ibandronate | Boniva | — | 경구·IV
+R: Zoledronate {jb:R12} | {r:Zometa} | {r:>100,000} | 가장 강함, IV
+N: IV일수록 potency·BRONJ 위험↑. Oral BP는 implant 성공에 별 영향 없음(99.6%). ONJ prevalence는 4년 이상 복용 시↑. [[ONJ5:13]]
+
+#TBL 부하 시 자연치 vs 임플란트 특성 비교 | k=BIO | src=[[BIO:26]]
+H: 기준 | 자연치아 | 임플란트
+R: 충격력 {jb:R03} | {r:감소} | {r:증가}
+R: 동요도 / 직경 / 횡단면 | 다양(전치>구치) / 넓음 / 둥글지 않다 | 없음 / 좁음 / 둥글다
+R: 탄성률 | {r:±피질골} | {r:골 소주의 5~10배}
+R: 충혈 / 교정적 이동 / Fremitus | + / + / + | 0 / 0 / 0
+R: 마모 | 법랑질 마모면, 국소적 피로·파절, 치경부 abfraction, 교두 pitting | 최소한의 보철물·고정체 마모 및 파절
+R: 교합지각 | 조기접촉을 민감하게 인지 | 낮음 — 인지하려면 과부하 필요
+R: 이동 / 하방 / 측방 | PDL 충격감소 / 즉시 {r:28 μm} / {r:50~108 μm} | 치조정 응력집중 / 초기운동 없음 / {r:10~50 μm}
+
+#TBL 상악 무치악 임플란트 개수 — arch form | k=BIO | src=[[BIO:46]] [[BIO:47]] [[BIO:48]] [[BIO:49]] [[BIO:50]]
+H: Arch form | Premaxilla | 구치부 | 합계
+R: {r:Square} {jb:T02} | 2 canines | 각 2개 | {r:6}(12치 수복 가능, 최소)
+R: {r:Ovoid} | 2 canines + 뼈 많은 incisor 1 | 각 2개 | {r:7}
+R: {r:Tapering} | 2 canines + 2 incisors(cantilever 길어짐) | 각 2개 | {r:8}
+R: 이상적 | premaxilla 3 | 각 3개 | {r:9}(범위 6~10)
+N: 하악: flexure 때문에 1 piece 금지 — 2·3 piece 또는 한쪽만 후방 식립 + cantilever. [[BIO:42]] [[BIO:44]]
+
+#TBL ITI 2013 loading 정의 vs 골유착 단계 | k=PRO | src=[[PRO:17]] [[PRO:18]] [[OSS:25]] [[OSS:26]]
+H: 구분 | 시기 | 비고
+R: {r:Immediate loading} {jb:R09} | 식립 후 {r:1주 이내} | CO에서 대합치와 교합(거의 안 함) — immediate restoration(교합 ×)과 구별
+R: {r:Early loading} | {r:1주 ~ 2달} | 골친화기(~1달)·골전도기 초반 — 3-4주 안정성 저하 구간 주의
+R: {r:Conventional loading} | {r:2달 이후} | 전통 3~6개월(상악 6·하악 3)이 gold standard였음 {jb:U10}
+N: Micromotion 역치 50~150 μm(immediate loading ≈100 μm). 즉시 부하 조건: insertion torque 30-35 Ncm, ISQ 70. [[PRO:11]] [[PRO:23]]
+
+#TBL 임플란트 교합 — 과하중 요인 7과 기본 원칙 6 | k=PRO | src=[[PRO:31]] [[PRO:33]]
+H: 과하중 요인 7 {jb:S03} | 교합 기본 원칙 6 {jb:R10}
+R: ① Overextended cantilever(Mn {r:>15 mm}, Mx {r:>10-12 mm}) | ① Bilateral stability in centric(habitual) occlusion — Beyron 1969
+R: ② Parafunctional habit / heavy bite force | ② Evenly distributed occlusal contacts and force
+R: ③ Excessive premature contacts(monkey >180 μm, human {r:>100 μm}) | ③ No interference between retruded and centric position
+R: ④ Large occlusal table | ④ Wide freedom in centric — Weinberg 1998
+R: ⑤ Steep cusp inclination | ⑤ Anterior guidance whenever possible — Gibbs 1981, Quirynen 1992
+R: ⑥ Poor bone density/quality | ⑥ Smooth, even lateral excursion without working/non-working interference — Chapman 1989, Engelman 1996
+R: ⑦ Inadequate number of implants | (axial loading: flat centric area, cusp 낮게, 분포 조화, cross-bite)
+
+#TBL 인상 채득 — Pick-up vs Transfer vs Scan body | k=PART | src=[[PART:14]] [[PART:15]] [[PART:16]] [[PART:17]]
+H: | Pick-up coping {jb:R11} | Transfer coping | Scan body {jb:Q08}
+R: 트레이 | {r:Open tray}(구멍 뚫린 개인 트레이) | {r:Closed tray} | 디지털 스캐너
+R: 코핑의 행방 | 나사 풀고 트레이 제거 → 인상체에 파묻혀 {r:딸려 나옴} | 입에 {r:남음} → 풀어서 인상체에 끼움 | fixture에 끼운 채 스캔 → 정합
+R: 주의 | 너무 세게 잠그면 인상체 내에서 돌아감 | 덜 끼우면 보철물이 높게 나옴 | 연결부가 PEEK면 뭉개짐
+R: 적응 | complicated case | simple case | hex / non-hex
+
+#TBL 골이식재 분류 3축과 종별 특성 | k=GRAFT | src=[[GRAFT:p.17]] [[GRAFT:p.18]] [[GRAFT:p.19]] [[GRAFT:p.20]] [[GRAFT:p.21]]
+H: 종류 | 출처 | 골형성 | 골유도 | 골전도 | 장점 | 단점
+R: {r:자가골} {jb:Q02} | 본인 구강 내·외 | {r:O} | {r:O} | {r:O} | 안전, 면역 거부 없음, 골재생·일체화 최고 | 공여부 수술, 채취량 한계
+R: {r:동종골} | 타인 골(FDBA·DFDBA·DBM) | X | {r:O}(DFDBA의 BMP) | O | 생체적합성 우수, 거부 적음, 추가 수술 불필요 | 감염 위험, 고가
+R: {r:이종골} | bovine·equine·porcine(Bio-Oss) | X | X | O | 공급 쉽고 저렴, {r:체적 유지} | 치유 능력↓, 면역거부 가능
+R: {r:합성골} | HA·β-TCP·BCP·calcium sulfate·bioglass | X | X | O | 감염 적음, 저렴 | 골생성 능력↓
+N: 물리적 형태: powder(0.5-2 mm, 최다) / chip / block(재수화·고정 필요) / putty·gel(재수화 불필요). 골치유 기전: 골형성 = 세포 자체 / 골유도 = BMP 신호 / 골전도 = 비계. [[GRAFT:p.19]]
+
+#TBL 차폐막 — 비흡수성 vs 흡수성 | k=GRAFT | src=[[GRAFT:p.69]] [[GRAFT:p.70]] [[GRAFT:p.73]] [[GRAFT:p.74]]
+H: 항목 | 비흡수성 (PTFE, Ti mesh) | 흡수성 (Collagen 등)
+R: 공간 유지 | {r:우수} | 떨어짐(재료가 단단하지 못함)
+R: 2차 수술 | {r:반드시 제거} | 불필요, {r:4~6개월} 유지 후 흡수
+R: 노출 시 | 감염 쉬움, 창상 잘 벌어짐 | 감염 위험 상대적으로 낮음, 창상 덜 벌어짐
+R: 조작 | 불편(Ti mesh는 고정 screw·과도한 절개) | 편리(봉합 시 찢어지기 쉬움)
+R: 시장 | 20% 미만 | {r:약 80%}
+
+#TBL 구강 내 자가골 공여부 6 | k=GRAFT | src=[[GRAFT:p.98]] [[GRAFT:p.100]] [[GRAFT:p.101]] [[GRAFT:p.102]] [[GRAFT:p.103]] [[GRAFT:p.104]] [[GRAFT:p.105]]
+H: 공여부 {jb:Q03} | 장점 | 주의·합병증
+R: {r:하악골 정중부} Symphysis | 채취 비교적 용이, intramembranous | mental·incisive nerve 손상, 치근 손상, 하악 하연 골절, 지혈
+R: {r:하악지} Ascending ramus | 합병증 적음, 수평 증강에 유리, buccal cortical 채취 쉬움 | 양 제한(폭·근돌기·대구치·하치조신경), 개구장애·TMJ
+R: {r:협골·관골} Zygoma | 작은 결손, 접근 쉬움, 국소마취 가능 | 안와하신경, 일시적 개구장애(교근)
+R: {r:상악결절} Tuberosity | 접근 쉬움, 해면골로 조작 용이 | 상악동 위치, 골질 불량 가능
+R: {r:하악 골체부} Body | 이공~제3대구치 협측 피질골, 합병증 거의 없음 | —
+R: {r:근돌기} Coronoid | 측두근건 박리 후 채취 | 출혈·종창·개구장애·TMJ, 과격
+N: 구강 외: iliac, fibula(microvascular), rib, tibia(성장기 금기, scar). [[GRAFT:p.98]] [[GRAFT:p.115]]

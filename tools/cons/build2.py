@@ -1,7 +1,7 @@
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 import re, json, html, sys, os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import jblpaths as J
-HERE = os.path.dirname(os.path.abspath(__file__))
+import os
+DIR = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, DIR)
 import assemble as A
 import subject as S
 esc = lambda s: html.escape(str(s), quote=True)
@@ -176,9 +176,9 @@ if __name__ == '__main__':
     nav = ''.join(f'<button data-t="{k}" class="{"on" if i == 0 else ""}">{n}<span class="kbd">{i+1}</span></button>' for i, (k, n, _) in enumerate(VIEWS))
     secs = ''.join(f'<section class="view{" on" if i == 0 else ""}" id="v-{k}">{f()}</section>' for i, (k, n, f) in enumerate(VIEWS))
     stats = f'<span class="hchip">기출 {len(Q)}문항</span><span class="hchip">2회 이상 {sum(1 for q in Q if q["tier"]!="C" and len(q["yrs"])>=2)}</span><span class="hchip">강의 {len(LECT)}개 정리</span><span class="hchip">비교표 {len(TABLES)}</span><span class="hchip">예상 {len(PRED)}</span>'
-    tpl = open(os.path.join(HERE, 'template2.html'), encoding='utf-8').read()
+    tpl = open(DIR + '/template2.html', encoding='utf-8').read()
     imgjs = 'const IMG=' + json.dumps({'jb': IMG['jb'], 'lec': IMG['lec']}, ensure_ascii=False).replace('</', '<\\/') + ';const LECNAME=' + json.dumps({k: v[1] for k, v in LECMAP.items()}, ensure_ascii=False) + ';const NPAGES={"25":16,"24":20,"23":28};'
     out = tpl.replace('<!--NAV-->', nav).replace('<!--STATS-->', stats).replace('<!--VIEWS-->', secs).replace('/*__IMG__*/', imgjs)
-    open(J.work(S.SID, 'build2_view.html'), 'w', encoding='utf-8').write(out)
+    open(J.work('CONS', 'build2_view.html'), 'w', encoding='utf-8').write(out)
     txt = re.sub(r'<script.*?</script>|<style.*?</style>|<[^>]+>', '', out, flags=re.S)
     print('size MB', round(len(out.encode()) / 1e6, 2), '| visible text chars', len(txt), '| cards', len(Q), '| tables', len(TABLES))

@@ -6,7 +6,7 @@ def inline(s, ctx):
     for tok in CITE.split(s):
         if tok.startswith('[['):
             k, p = tok[2:-2].split(':', 1)
-            if k == 'DD3': out.append(f'<button class="cite t" data-k="DD3" data-p="">{ctx["LECNAME"][k]} ‘{html.escape(p)}’</button>')
+            if not S.LECMAP.get(k, (None,))[0]: out.append(f'<button class="cite t" data-k="{k}" data-p="">{ctx["LECNAME"][k]} ‘{html.escape(p)}’</button>')
             else:
                 if p.isdigit(): ctx['cited'].add((k, int(p)))
                 out.append(f'<button class="cite" data-k="{k}" data-p="{p}">{ctx["LECNAME"][k]} p.{p}</button>')
@@ -52,8 +52,10 @@ def parse(path):
                 part = part.strip()
                 if not part: continue
                 pg, _, cap = part.partition('=')
-                fl.append((int(re.findall(r'\d+', pg)[0]), cap.strip()))
-            card['figs'] += [p_ for p_, _ in fl]; card['body'].append(('F', fl))
+                fk = None
+                if ':' in pg: fk, pg = pg.split(':', 1); fk = fk.strip()
+                fl.append((int(re.findall(r'\d+', pg)[0]), cap.strip(), fk))
+            card['figs'] += [(p_, fk_) for p_, _, fk_ in fl]; card['body'].append(('F', fl))
         elif line.startswith('E:'):
             ids, _, txt = line[2:].partition('|'); card['body'].append(('E', ([i.strip() for i in ids.split(',') if i.strip()], txt.strip())))
         elif line.startswith('M:'): card['recall'].append(line[2:].strip())
@@ -61,10 +63,11 @@ def parse(path):
         elif line.startswith('- '): card['body'].append(('b', line[2:].strip()))
         else: raise ValueError(f'{path}: unknown line: ' + line[:60])
     return lec
-HERE = os.path.dirname(os.path.abspath(__file__))
-ORDER = ['DD1', 'DD2', 'DD3', 'DX', 'EXT', 'LOAD', 'REP']
+import subject as S
+ORDER = S.LEC_ORDER
 def load_all():
-    return [parse(os.path.join(HERE, f'lec_{k}.txt')) for k in ORDER if os.path.exists(os.path.join(HERE, f'lec_{k}.txt'))]
+    DIR = os.path.dirname(os.path.abspath(__file__))
+    return [parse(f'{DIR}/lec_{k}.txt') for k in ORDER if os.path.exists(f'{DIR}/lec_{k}.txt')]
 if __name__ == '__main__':
     for L in load_all():
         print(L['k'], 'cards', len(L['cards']), 'items', sum(1 for c in L['cards'] for b in c['body'] if b[0] == 'b'), 'tables', sum(1 for c in L['cards'] for b in c['body'] if b[0] == 'T'),

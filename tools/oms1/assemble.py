@@ -1,16 +1,15 @@
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 import re, json, io, base64, os, html, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PIL import Image
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import jblpaths as J
-HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 import parse_jb
 
 BASE = J.JBX
 NPAGES = {'25': 16, '24': 20, '23': 28}
-LEC = J.work('OMS1', 'lec') + '/'     # 강의 쪽 이미지: work/OMS1/lec/<폴더>i/<쪽>.jpg
-LECMAP = {'DD1': ('L08', 'DD I(26)'), 'DD2': ('L09', 'DD II(26)'), 'DD3': (None, 'DD III(26·필기본)'),
-          'DX': ('L03', '진단·치료계획(25)'), 'EXT': ('L04', '발치와·식립시기(25)'),
-          'LOAD': ('L05', 'Loading(25)'), 'REP': ('L06', '재식론(25)'), 'REP2': ('L07', '보존과 ppt(25)')}
+LEC = J.work('OMS1', 'lec') + '/'
+import subject as _S
+LECMAP = _S.LECMAP
 
 # ---------- 1. JB blocks ----------
 blocks = {}
@@ -144,7 +143,7 @@ def collect(s):
 
 ANN = {}
 cur = None
-for line in open(os.path.join(HERE, 'annot.txt'), encoding='utf-8'):
+for line in open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'annot.txt'), encoding='utf-8'):
     line = line.rstrip('\n')
     if line.startswith('@'):
         parts = [p.strip() for p in line[1:].split('|')]
@@ -183,10 +182,10 @@ for q in Q:
 
 # ---------- 4. lectures ----------
 LECT = []
-for fn in ('lectures1.txt', 'lectures2.txt'):        # 옛 형식(build2 단일 파일판용) — 저장소에 없으면 건너뜀. 허브 정리본은 lec_<키>.txt
+for fn in ('lectures1.txt', 'lectures2.txt'):
     lec = None; sec = None
-    if not os.path.exists(os.path.join(HERE, fn)): continue
-    for line in open(os.path.join(HERE, fn), encoding='utf-8'):
+    if not _os.path.exists(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), fn)): continue
+    for line in open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), fn), encoding='utf-8'):
         line = line.rstrip('\n')
         if line.startswith('#LEC'):
             p = [x.strip() for x in line[4:].split('|')]
@@ -221,7 +220,7 @@ for lec in LECT:
 # ---------- 4b. tables ----------
 TABLES = []
 curt = None
-for line in open(os.path.join(HERE, 'tables.txt'), encoding='utf-8'):
+for line in open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'tables.txt'), encoding='utf-8'):
     line = line.rstrip('\n')
     if line.startswith('#TBL'):
         p = [x.strip() for x in line[4:].split('|')]
@@ -237,7 +236,7 @@ for line in open(os.path.join(HERE, 'tables.txt'), encoding='utf-8'):
 # ---------- 5. predicted ----------
 PRED = []
 cur = None
-for line in open(os.path.join(HERE, 'pred.txt'), encoding='utf-8'):
+for line in open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'pred.txt'), encoding='utf-8'):
     line = line.rstrip('\n')
     if line.startswith('@P'):
         p = [x.strip() for x in line[2:].split('|')]
@@ -271,9 +270,9 @@ for (k, p) in sorted(cited):
     im = Image.open(f).convert('RGB'); w, h = im.size
     im = im.resize((780, int(h * 780 / w)))
     IMG['lec'][f'{k}-{p}'] = b64(im, 40)
-CROP_DIR = J.work('OMS1', 'crops')                  # JB 그림 조각 <조각키>.jpg — 없으면 지금 docs/ 팩에 박힌 조각을 그대로 씀
-for f in (sorted(os.listdir(CROP_DIR)) if os.path.isdir(CROP_DIR) else []):
-    im = Image.open(os.path.join(CROP_DIR, f)).convert('RGB')
+CROP_DIR = J.work('OMS1', 'crops')
+for f in (sorted(_os.listdir(CROP_DIR)) if _os.path.isdir(CROP_DIR) else []):
+    im = Image.open(_os.path.join(CROP_DIR, f)).convert('RGB')
     if f.startswith('Q35'): im = im.crop((0, 0, im.size[0], im.size[1] - 8))
     IMG['crop'][f[:-4]] = b64(im, 85)
 for k, v in J.prev_crops('OMS1', CROPS).items(): IMG['crop'].setdefault(k, v)

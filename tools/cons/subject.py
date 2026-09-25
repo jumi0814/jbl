@@ -1,3 +1,4 @@
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 # 과목별 설정 — 새 과목은 이 파일과 assemble.py(JB·강의 매핑)만 바꾸면 된다
 SID, TITLE, EN, COLOR = 'CONS', '임상치과보존학', 'Clinical Conservative Dentistry', '#5B2A86'
 PROFS = '이인복 · 서덕규 · 김선영 · 이창하'
@@ -6,10 +7,7 @@ LECMAP = {'WHT': ('C01c', 'Tooth whitening(26·25)'), 'CRK': ('C09i', 'Cracked t
           'INL': (None, 'Inlay vs Fillings(25·필기본)'), 'ANT': (None, '전치부 레진 심미수복(25·필기본)'),
           'ADH': ('C06i', 'Dental adhesive(25)'), 'FRC': ('C07i', 'FRC post(25)')}
 LEC_ORDER = ['WHT', 'CRK', 'DHS', 'INL', 'ANT', 'ADH', 'FRC']
-import os, sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import jblpaths as J
-LEC_IMG_ROOT = J.work(SID, 'lec') + '/'     # 강의 쪽 이미지: work/CONS/lec/<폴더>/<쪽>.jpg
+LEC_IMG_ROOT = J.work('CONS', 'lec') + '/'     # 강의 쪽 이미지: work/CONS/lec/<폴더>/<쪽>.jpg
 def lec_img_path(k, p):
     d = LECMAP[k][0]
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None

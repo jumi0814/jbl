@@ -1,6 +1,7 @@
 # JBL 과목 팩 제작 스펙 (구강악안면외과학1 → 임상치과보존학에서 확정)
 
-## 폴더 구조 (과목당 한 폴더 — 보존학 `cons/`가 최신 템플릿)
+## 폴더 구조 (과목당 한 폴더 — 모든 과목이 같은 스크립트를 쓰고 `subject.py`·`assemble.py`·`parse_<과목>.py`만 다름)
+- claude.ai 대화에서 받은 `JBL_master.zip` 반영: `python tools/localize.py <zip>` (경로 변환 + guide/·.claude/commands/ 복사, CLAUDE.md·SPEC.md는 차이만 출력)
 - 공통: `tools/jblpaths.py`(저장소 기준 경로 — 스크립트는 여기서만 경로를 얻음) · `tools/jbx.py`(JB PDF → `work/jb/<SID>_20xx/`) · `tools/verify.py`(playwright 허브 검증)
 - 경로: 과목 작업 폴더 `work/<SID>/`(jb_blocks.json·강의 쪽 이미지 `lec/`·OCR) · JB 추출 `work/jb/<SID>_20xx/` · 출력 `docs/`(허브 `docs/index.html` + `docs/packs/`) · 단일 파일판 `work/<과목>_JBL.html`(커밋 안 함)
 - 파이썬은 3.12 이상(저장소 `.venv/`, f-string 문법 때문에 3.11 불가)
@@ -32,7 +33,7 @@
 | 표 머리 | ... |   | 행 | ... |
 E: Q01,Q02 | ⭐ 시험포인트 — 몇 년에 어떻게, 함정 (한 줄에 하나)
 P: 💬 교수님 강조      U: ✍ 이해(필기 한 줄)
-F: 19=캡션, 20=캡션, 21   (캡션 안에 쉼표 금지)
+F: 19=캡션, 20=캡션, 21   (캡션 안에 쉼표 금지; 보조 자료의 쪽은 `DH5:13=캡션`처럼 키를 앞에 — subject.py의 LECMAP에 보조 키와 IMG_ALIAS를 등록)
 M: ⚡ 암기 줄({r:} 포함)
 ```
 

@@ -179,6 +179,6 @@ if __name__ == '__main__':
     tpl = open(DIR + '/template2.html', encoding='utf-8').read()
     imgjs = 'const IMG=' + json.dumps({'jb': IMG['jb'], 'lec': IMG['lec']}, ensure_ascii=False).replace('</', '<\\/') + ';const LECNAME=' + json.dumps({k: v[1] for k, v in LECMAP.items()}, ensure_ascii=False) + ';const NPAGES={"25":16,"24":20,"23":28};'
     out = tpl.replace('<!--NAV-->', nav).replace('<!--STATS-->', stats).replace('<!--VIEWS-->', secs).replace('/*__IMG__*/', imgjs)
-    open(J.work('OMS1', 'build2_view.html'), 'w', encoding='utf-8').write(out)
+    open(J.work('IMPL', 'build2_view.html'), 'w', encoding='utf-8').write(out)
     txt = re.sub(r'<script.*?</script>|<style.*?</style>|<[^>]+>', '', out, flags=re.S)
     print('size MB', round(len(out.encode()) / 1e6, 2), '| visible text chars', len(txt), '| cards', len(Q), '| tables', len(TABLES))
