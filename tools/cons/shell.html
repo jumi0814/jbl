@@ -537,14 +537,15 @@ body.focus .modechip{left:auto;right:12px;transform:none;top:calc(var(--toph) + 
 <div id="kit" class="noann"><button id="k-min" title="도구 막대 펼치기">✎</button><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)"><span class="ic">↶<b class="ubn"></b></span><span class="lb2">되돌리기</span></button><button id="k-redo" title="다시 실행 (Ctrl/⌘ Shift Z)"><span class="ic">↷</span><span class="lb2">다시</span></button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기"><span class="ic">👁</span><span class="lb2">전체 보기</span></button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기"><span class="ic">🧹</span><span class="lb2">지우기</span></button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
 <button id="kitshow" class="noann">✎</button>
 <button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button><button id="fpill" class="noann" title="집중 모드 나가기 (V · Esc)">집중 · V로 나가기</button><button id="sideopen" class="noann" title="사이드바 펼치기 (\)">›</button><button id="modechip" class="modechip noann"></button>
-<div id="autopop" class="noann"><div class="small apt" style="margin-top:0">가리기 보기 — 저장하지 않고 떠올리기 (Q)</div><label><input type="radio" name="am" value="quiz" checked> 빨간 핵심어 가리기</label><div class="qzopt">범위 <select id="qzsc" aria-label="가리기 범위"><option value="card">이 카드</option><option value="mem">⚡ 암기 줄만</option><option value="all">강의 전체</option></select><label class="in"><input type="checkbox" id="qzfixc"> 빈칸 길이 숨기기</label></div><div class="small apt">자동 빈칸 — 지금 보이는 화면에 저장</div><label><input type="radio" name="am" value="red"> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button></div>
+<div id="autopop" class="noann"><div class="small apt" style="margin-top:0">가리기 보기 — 저장하지 않고 떠올리기 (Q)</div><label><input type="radio" name="am" value="quiz" checked> 빨간 핵심어 가리기</label><div class="qzopt">범위 <select id="qzsc" aria-label="가리기 범위"><option value="card">이 카드</option><option value="mem">⚡ 암기 줄만</option><option value="all">강의 전체</option></select><label class="in"><input type="checkbox" id="qzfixc"> 빈칸 길이 숨기기</label></div><div class="small apt">자동 빈칸 — 지금 보이는 화면에 저장</div><label><input type="radio" name="am" value="red"> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button><label class="pend" style="border-top:1px solid rgba(255,255,255,.15);margin-top:8px;padding-top:7px" title="모드를 켜지 않아도 애플펜슬로 끌면 지금 색 형광펜, 펜슬로 칠한 곳을 톡 치면 지움 · 손가락은 스크롤·빈칸 열기만"><input type="checkbox" id="pendir"> ✏️ 펜슬로 바로 칠하기 (모드 없이)</label></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
 <div id="tpop" class="pop noann"></div><div id="rpop" class="pop noann"></div><div id="lpop" class="pop noann"></div>
 <div id="help" class="noann"><div class="hbox"><div class="bt">도움말 · 단축키 <button class="btn" id="helpx" style="float:right">닫기</button></div>
 <div class="small hkey">⌨ 단축키는 <b>한/영 상관없이 동작</b>해요(한글 입력 상태여도 H·B·J… 그대로) · 글 입력칸(검색·메모)에 있을 때만 쉬고, Esc로 빠져나오면 다시 동작</div>
 <table><tbody>
-<tr><th>형광펜 H · 빈칸 B</th><td>켠 뒤 <b>누르면 어절 전체</b>, <b>누른 채 끌면</b> 끈 범위를 어절 단위로 넓혀 한 묶음. 손가락은 <b>0.3초 길게 누른 뒤</b> 끌기(그냥 끌면 스크롤), 애플펜슬은 바로 끌기. 칠한 곳을 다시 누르면 지움, 다른 색으로 누르면 색만 바뀜 · <b>Shift+H</b> = 형광펜 색 바꾸기(노랑→초록→분홍→파랑→주황) · A도 빈칸</td></tr>
+<tr><th>형광펜 H · 빈칸 B</th><td>켠 뒤 <b>누르면 어절 전체</b>, <b>누른 채 끌면</b> 끈 범위를 어절 단위로 넓혀 한 묶음. 손가락은 <b>0.3초 길게 누른 뒤</b> 끌기(그냥 끌면 스크롤), 애플펜슬은 바로 끌기. 칠한 곳을 다시 누르면 지움, 다른 색으로 누르면 색만 바뀜 · <b>Shift+H</b> = 형광펜 색 바꾸기(노랑→초록→분홍→파랑→주황) · A도 빈칸 · 길게 누른 뒤 그대로 떼면 한 번 누른 것과 같음(칠한 곳이면 지움) · 끄는 중 화면 위·아래 끝에 대면 저절로 스크롤 · 다른 카드까지 끌면 시작 카드 끝까지만 칠함</td></tr>
+<tr><th>애플펜슬</th><td><b>펜슬로 바로 칠하기</b>(⚡ 창 아래 설정 — 아이패드는 처음부터 켜짐): 형광펜 모드를 켜지 않아도 펜슬로 끌면 지금 색으로 칠하고, 펜슬로 칠한 곳을 톡 치면 지움 · 손가락은 그대로 스크롤·빈칸 열기</td></tr>
 <tr><th>빈칸 열기</th><td>도구를 끈 상태에서 빈칸을 누르면 그 묶음이 열리고 다시 누르면 닫힘 · <b>E</b>(👁) 전부 열기/가리기 · <b>N</b> 화면 위쪽부터 하나씩 열기 · <b>Shift+N</b> 이 카드 다시 가리기 · ⚡ 자동 빈칸(빨간 핵심어·표)</td></tr>
 <tr><th>가리기 보기 Q</th><td><b>저장하지 않는</b> 떠올리기 — <b>Q</b>(또는 탭 줄의 ‘가리기’, ⚡ 창의 첫 선택지)로 빨간 핵심어를 가림 · 범위 = 이 카드(기본)·⚡ 암기 줄만·강의 전체(⚡ 창에서 고름, ‘빈칸 길이 숨기기’도) · 누르면 그 칸만 열림 · <b>N</b> 하나씩 · <b>Shift+N</b> 다시 가리기 · <b>E</b> 전부 · 카드 머리 ‘▣ 3/12 열림’을 누르면 이 카드 전체 · 연 칸은 탭을 옮겨도 유지, 새로고침하면 꺼짐 · J/K나 ✓로 다음 카드로 가면 그 카드를 가림</td></tr>
 <tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 🧹 지금 화면의 표시 지우기</td></tr>
@@ -1162,27 +1163,48 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(mode)toast(mode==='h'?'형광펜 — 누르면 어절, 누른 채 끌면 범위 (손가락은 길게 누른 뒤 끌기)':'빈칸 — 누르면 어절, 끌면 한 묶음 빈칸');}
  function clearOverlap(B,a,b){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
   gs.forEach(g=>{(typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g]).forEach(unwrap);});}
- function apply(B,a,b){push();clearOverlap(B,a,b);wrap(B,a,b,mode,color,'n'+(++GID));commit(B);}
+ /* 칠할 종류: 모드가 켜져 있으면 그것, 모드 없이 애플펜슬로 끌면(펜슬로 바로 칠하기 — LS penDirect) 형광펜 */
+ const eff=d=>mode||(d&&d.pen?'h':null);
+ function apply(B,a,b,t){push();clearOverlap(B,a,b);wrap(B,a,b,t||mode,color,'n'+(++GID));commit(B);}
  function clearPre(B){(B?B:document).querySelectorAll('[data-pre]').forEach(unwrap);}
- function preview(B,a,b){clearPre(B);if(b>a)wrap(B,a,b,mode,color,null,true);}
+ function preview(B,a,b,t){clearPre(B);if(b>a)wrap(B,a,b,t||mode,color,null,true);}
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;return el.closest('[data-aid]');}
- function tapAt(B,x,y,target){const rk=target&&target.closest&&target.closest('[data-rk]');
-  if(rk&&B.contains(rk)){push();const els=group(rk);if(mode==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
-  const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;apply(B,w[0],w[1]);}
+ /* 누르기(마우스 클릭·손가락 톡·길게 누른 뒤 그대로 떼기·펜슬 톡): 칠한 곳이면 지우고, 형광펜으로 다른 색이면 색만 바꾸고, 빈 곳이면 어절을 칠함 */
+ function tapAt(B,x,y,target,t){t=t||mode;const rk=target&&target.closest&&target.closest('[data-rk]');
+  if(rk&&B.contains(rk)){push();const els=group(rk);if(t==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
+  if(!t)return;const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;apply(B,w[0],w[1],t);}
+ /* 끄는 범위(A08): 포인터가 시작 카드(표시 단위) 밖이면 — 아래로 벗어나면 시작 카드의 끝까지, 위로 벗어나면 처음까지(cross) */
+ function dragSpan(d,x,y){if(!d||d.p0==null)return null;const ix=index(d.B),R=d.B.getBoundingClientRect();let p=null,cross=false;
+  if(x>=R.left-1&&x<=R.right+1&&y>=R.top-1&&y<=R.bottom+1)p=posAt(ix,x,y);
+  if(p==null){if(y>R.bottom-2){p=ix.s.length-1;cross=true;}else if(y<R.top+2){p=0;cross=true;}else return null;}
+  const s=spanOf(ix,d.p0,p+1);return s?{a:s[0],b:s[1],cross}:null;}
+ /* 끄는 동안 화면 위·아래 60px 안이면 초당 400px 자동 스크롤(requestAnimationFrame) — 떼면 멈춤 */
+ let AS=null;function stopAS(){if(AS){cancelAnimationFrame(AS.raf);AS=null;}}
+ function autoScroll(y){const v=y<60?-1:y>innerHeight-60?1:0;if(!v){stopAS();return;}if(AS){AS.v=v;return;}AS={v,t:0};
+  const step=now=>{if(!AS)return;if(!drag){stopAS();return;}const dt=AS.t?Math.min(50,now-AS.t):16;AS.t=now;AS.acc=(AS.acc||0)+AS.v*400*dt/1000;const n=AS.acc|0;if(n){window.scrollBy(0,n);AS.acc-=n;}
+   if(drag.lx!=null){const s=dragSpan(drag,drag.lx,drag.ly);if(s)preview(drag.B,s.a,s.b,eff(drag));}AS.raf=requestAnimationFrame(step);};AS.raf=requestAnimationFrame(step);}
+ function dragMove(x,y){const d=drag;if(!d)return;d.lx=x;d.ly=y;const s=dragSpan(d,x,y);if(s)preview(d.B,s.a,s.b,eff(d));autoScroll(y);}
+ function dragEnd(d,x,y){stopAS();clearPre(d.B);const s=dragSpan(d,x,y);if(!s)return;apply(d.B,s.a,s.b,eff(d));if(s.cross)toast('카드 경계까지 칠했어요');}
+ function cancelDrag(){if(drag){clearTimeout(drag.tm);clearPre(drag.B);drag=null;}stopAS();}
  /* 마우스 */
  document.addEventListener('mousedown',e=>{if(!mode||e.button!==0)return;const B=targetOK(e.target);if(!B)return;e.preventDefault();const ix=index(B);drag={B,p0:posAt(ix,e.clientX,e.clientY),x:e.clientX,y:e.clientY,moved:false,target:e.target};});
- document.addEventListener('mousemove',e=>{if(!drag||drag.touch)return;if(Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>5)drag.moved=true;if(!drag.moved||drag.p0==null)return;const ix=index(drag.B);const p=posAt(ix,e.clientX,e.clientY);if(p==null)return;const r=spanOf(ix,drag.p0,p+1);if(r)preview(drag.B,r[0],r[1]);});
- document.addEventListener('mouseup',e=>{if(!drag||drag.touch)return;const d=drag;drag=null;clearPre(d.B);if(!d.moved){tapAt(d.B,e.clientX,e.clientY,d.target);return;}const ix=index(d.B);const p=posAt(ix,e.clientX,e.clientY);if(p==null||d.p0==null)return;const r=spanOf(ix,d.p0,p+1);if(r)apply(d.B,r[0],r[1]);});
- /* 손가락·펜 — 펜은 바로 끌기, 손가락은 0.28초 길게 누른 뒤 끌기(그냥 끌면 스크롤) */
- document.addEventListener('touchstart',e=>{if(!mode||e.touches.length>1){if(drag&&drag.touch){clearTimeout(drag.tm);clearPre(drag.B);drag=null;}return;}const t=e.touches[0];const B=targetOK(e.target);if(!B)return;const ix=index(B);const stylus=t.touchType==='stylus';
-  drag={touch:true,B,p0:posAt(ix,t.clientX,t.clientY),x:t.clientX,y:t.clientY,moved:false,active:stylus,t0:Date.now(),target:e.target};
+ document.addEventListener('mousemove',e=>{if(!drag||drag.touch)return;if(Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>5)drag.moved=true;if(drag.moved)dragMove(e.clientX,e.clientY);});
+ document.addEventListener('mouseup',e=>{if(!drag||drag.touch)return;const d=drag;drag=null;stopAS();clearPre(d.B);if(!d.moved){tapAt(d.B,e.clientX,e.clientY,d.target);return;}dragEnd(d,e.clientX,e.clientY);});
+ /* 손가락·펜 — 펜은 바로 끌기(움직임 6px↑ = 끌기), 손가락은 0.28초 길게 누른 뒤 끌기(그냥 끌면 스크롤). 길게 누른 뒤 그대로 떼면 누르기(tapAt — 칠한 곳이면 지움)
+    펜슬로 바로 칠하기(LS penDirect, pointer:coarse 기기는 기본 켬): 모드가 꺼져 있어도 펜슬로 끌면 지금 색 형광펜, 펜슬로 칠한 곳을 톡 치면 지움. 손가락은 스크롤·빈칸 열기만 */
+ const PEN=()=>!!LS.get('penDirect',!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches));
+ document.addEventListener('touchstart',e=>{if(e.touches.length>1){if(drag&&drag.touch)cancelDrag();return;}const t=e.touches[0],stylus=t.touchType==='stylus',pen=!mode&&stylus&&PEN();
+  if(!mode&&!pen){if(drag&&drag.touch)cancelDrag();return;}const B=targetOK(e.target);if(!B)return;const ix=index(B);
+  drag={touch:true,pen,stylus,B,p0:posAt(ix,t.clientX,t.clientY),x:t.clientX,y:t.clientY,moved:false,active:stylus,t0:Date.now(),target:e.target};
   if(!stylus)drag.tm=setTimeout(()=>{if(!drag||drag.moved)return;drag.active=true;const w=wordAt(index(drag.B),drag.p0);if(w)preview(drag.B,w[0],w[1]);if(navigator.vibrate)navigator.vibrate(8);},280);},{passive:true});
  document.addEventListener('touchmove',e=>{if(!drag||!drag.touch)return;const t=e.touches[0];const dist=Math.abs(t.clientX-drag.x)+Math.abs(t.clientY-drag.y);
-  if(!drag.active){if(dist>10){clearTimeout(drag.tm);drag=null;}return;}e.preventDefault();if(dist>4)drag.moved=true;const ix=index(drag.B);const p=posAt(ix,t.clientX,t.clientY);if(p==null||drag.p0==null)return;const r=spanOf(ix,drag.p0,p+1);if(r)preview(drag.B,r[0],r[1]);},{passive:false});
- document.addEventListener('touchend',e=>{if(!drag||!drag.touch)return;const d=drag;drag=null;clearTimeout(d.tm);const t=e.changedTouches[0];clearPre(d.B);
-  if(d.active){e.preventDefault();if(!d.moved){const w=wordAt(index(d.B),d.p0);if(w)apply(d.B,w[0],w[1]);return;}const ix=index(d.B);const p=posAt(ix,t.clientX,t.clientY);if(p==null||d.p0==null)return;const r=spanOf(ix,d.p0,p+1);if(r)apply(d.B,r[0],r[1]);return;}
+  if(!drag.active){if(dist>10){clearTimeout(drag.tm);drag=null;}return;}e.preventDefault();if(dist>(drag.stylus?6:4))drag.moved=true;if(drag.moved)dragMove(t.clientX,t.clientY);},{passive:false});
+ document.addEventListener('touchend',e=>{if(!drag||!drag.touch)return;const d=drag;drag=null;clearTimeout(d.tm);stopAS();const t=e.changedTouches[0];clearPre(d.B);
+  if(d.active){if(d.moved){e.preventDefault();dragEnd(d,t.clientX,t.clientY);return;}
+   if(d.pen){const rk=d.target&&d.target.closest&&d.target.closest('[data-rk="h"]');if(rk&&d.B.contains(rk)){e.preventDefault();push();group(rk).forEach(unwrap);commit(d.B);}return;}   /* 펜슬 톡(모드 없음): 칠한 곳이면 지우기, 아니면 보통 누르기(빈칸 열기 등) */
+   e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);return;}
   if(!d.moved&&Date.now()-d.t0<400){e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);}},{passive:false});
- document.addEventListener('touchcancel',()=>{if(drag&&drag.touch){clearTimeout(drag.tm);clearPre(drag.B);drag=null;}});
+ document.addEventListener('touchcancel',()=>{if(drag&&drag.touch)cancelDrag();});
  function handleClick(e){const rk=e.target.closest&&e.target.closest('[data-rk="b"]');
   if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));if(on)LASTOPEN=rk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return true;}
   if(!mode)return false;return !!targetOK(e.target);}
@@ -1200,7 +1222,8 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  document.addEventListener('click',e=>{if(!e.target.closest('#k-sw'))$('#k-sw').classList.remove('open');},true);
  $('#k-h').onclick=()=>setMode('h');$('#k-b').onclick=()=>setMode('b');$('#k-undo').onclick=undo;$('#k-redo').onclick=redo;$('#k-clear').onclick=clearView;
  $('#k-eye').onclick=()=>revealAll();
- $('#k-auto').onclick=()=>{const on=$('#autopop').classList.toggle('on');if(on){$('#qzsc').value=LS.get('qzscope','card');$('#qzfixc').checked=!!LS.get('qzfix',false);}};
+ $('#k-auto').onclick=()=>{const on=$('#autopop').classList.toggle('on');if(on){$('#qzsc').value=LS.get('qzscope','card');$('#qzfixc').checked=!!LS.get('qzfix',false);$('#pendir').checked=PEN();}};
+ $('#pendir').onchange=e=>{LS.set('penDirect',e.target.checked);toast(e.target.checked?'펜슬로 끌면 바로 형광펜 — 손가락은 스크롤':'펜슬도 형광펜 모드(H)를 켠 뒤에 칠해요');};
  $('#qzsc').onchange=e=>LS.set('qzscope',e.target.value);$('#qzfixc').onchange=e=>{LS.set('qzfix',e.target.checked);if(QZ.on)qzApply();};
  $('#ago').onclick=()=>{const v=$('input[name=am]:checked').value;$('#autopop').classList.remove('on');if(v==='quiz'){quizOn($('#qzsc').value);return;}auto(v,$('#aone').checked);};
  const hide=()=>{const B=document.body.classList;if(B.contains('focus')&&!B.contains('at-home')&&!B.contains('kit-off')){B.toggle('kitopen');measure();return;}B.toggle('kit-off');LS.set('kitoff',B.contains('kit-off'));measure();};$('#k-hide').onclick=hide;$('#kitshow').onclick=hide;
@@ -1212,7 +1235,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  /* 다른 탭(허브·단일 파일판을 함께 열었을 때)에서 바꾼 표시를 반영 — 덮어쓰기 방지 */
  addEventListener('storage',e=>{if(S&&e.key===NS+'ann.'+S){ANN=LS.get('ann.'+S,{});U=[];R=[];upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}});
  $('#k-lost').onclick=()=>{if(!CUR.s)return;openDoc(CUR.s,'_marks');const el=$('#mk-lost');if(el)goEl(el);};
- return{load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
+ return{load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,pen:PEN,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
   textOf(B){return index(B).s;},locate,resolve,enrich,needsLX,fnv,enriched(){return ENR;},setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN,
   drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push();L.splice(i,1);if(!L.length)delete ANN[aid];persist();}};})();
 const memoBase={v:''};

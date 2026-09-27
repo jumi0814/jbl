@@ -202,6 +202,25 @@ async def a06(pg, tag, vp):
         lb = await pg.evaluate("[...document.querySelectorAll('#kit .lb2')].map(e=>getComputedStyle(e).display+':'+e.textContent)")
         ok(all(x.startswith('block') for x in lb) and len(lb) == 4, f'860 이하 아이콘 아래 라벨 {lb}')
     await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1')")
+async def a08(pg, tag, vp):
+    """A08 드래그가 다른 카드에서 끝나면 시작 카드 끝까지(토스트) · 화면 가장자리 자동 스크롤(초당 400px)"""
+    await open_(pg, '#/OMS1/DD1/learn'); await pg.evaluate("['ann.OMS1','fold.OMS1.DD1','done.OMS1','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/OMS1/DD1/learn')
+    P = """(sel)=>{const L=[...document.querySelectorAll(sel)].filter(e=>e.offsetParent&&/[A-Za-z가-힣]{4}/.test(e.textContent));const e=L[Math.floor(L.length/2)]||L[0];return e?e:null}"""
+    await pg.evaluate("document.querySelector('#t-DD1-3 .tbody').scrollIntoView({block:'start'})"); await pg.evaluate("scrollBy(0,-160)"); await pg.wait_for_timeout(600)
+    p1 = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#t-DD1-3 .tbody li,#t-DD1-3 .tbody div.li')].filter(e=>e.offsetParent&&!e.closest('.noann')&&/[A-Za-z가-힣]{4}/.test(e.textContent));const e=L[L.length-1];e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return [r.left+30,r.top+r.height/2]})()""")
+    p2 = await pg.evaluate("""(()=>{const e=document.querySelector('#t-DD1-4 .thead');const r=e.getBoundingClientRect();return [r.left+140,r.top+14]})()""")
+    await pg.keyboard.press('h'); await pg.mouse.move(p1[0], p1[1]); await pg.mouse.down(); await pg.mouse.move(p2[0], p2[1], steps=8); await pg.mouse.up(); await pg.wait_for_timeout(150)
+    ann = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.ann.OMS1')") or '{}'); a3 = await pg.evaluate("document.querySelector('#t-DD1-3').dataset.aid"); a4 = await pg.evaluate("document.querySelector('#t-DD1-4').dataset.aid")
+    t = await pg.inner_text('#toast')
+    ok(len(ann.get(a3, [])) == 1 and not ann.get(a4) and not ann.get(a4 + '~h') and '카드 경계까지' in t, f'카드 3 → 카드 4로 끌기 = 카드 3 끝까지 표시 1 · 토스트 {t!r} ({[(k[-10:], len(v)) for k, v in ann.items()]})')
+    await pg.keyboard.press('Control+z')
+    # 자동 스크롤: 아래 가장자리 60px 안에 1초 머묾
+    await pg.evaluate("document.querySelector('#t-DD1-5').scrollIntoView({block:'start'})"); await pg.evaluate("scrollBy(0,-150)"); await pg.wait_for_timeout(500)
+    q = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#stage .tc.open .tbody li,#stage .tc.open .tbody div.li,#stage .tc.open .tbody td')].filter(e=>e.offsetParent&&!e.closest('.noann,.c-exam')&&/[A-Za-z가-힣]{4}/.test(e.textContent)&&e.getBoundingClientRect().top>150&&e.getBoundingClientRect().bottom<innerHeight-250);const r=L[0].getBoundingClientRect();return [r.left+30,r.top+Math.min(r.height/2,12)]})()""")
+    await pg.mouse.move(q[0], q[1]); await pg.mouse.down(); await pg.mouse.move(q[0] + 40, vp['height'] - 25, steps=6); y0 = await pg.evaluate('scrollY')
+    await pg.wait_for_timeout(1000); y1 = await pg.evaluate('scrollY'); await pg.mouse.up(); await pg.wait_for_timeout(200); y2 = await pg.evaluate('scrollY')
+    ok(300 <= y1 - y0 <= 520 and y2 - y1 < 40, f'아래 가장자리 1초 → 자동 스크롤 +{y1 - y0:.0f}px · 떼면 멈춤(+{y2 - y1:.0f})')
+    await pg.keyboard.press('Control+z'); await pg.keyboard.press('Escape'); await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1')")
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
@@ -211,6 +230,7 @@ async def run(b, vp, touch, tag):
     await a04(pg, tag, vp)
     await a05(pg, tag, vp)
     await a06(pg, tag, vp)
+    if not touch: await a08(pg, tag, vp)
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 async def main():
