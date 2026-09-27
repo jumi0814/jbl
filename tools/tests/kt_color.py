@@ -33,11 +33,11 @@ async def main():
         # 옛 기록 {t:'h',c:'b'} + 빈칸 {t:'b'} 넣고 새로고침
         aid = await pg.evaluate("document.querySelector('#stage .tc').dataset.aid")
         words = await pg.evaluate("[...document.querySelectorAll('#stage .tc')][0].querySelector('.tbody li').textContent.trim().split(/\\s+/).filter(w=>w.length>=4&&/^[A-Za-z]+$/.test(w)).slice(0,2)")
-        await pg.evaluate("([k,aid,w])=>{const a={};a[aid]=[{t:'h',x:w[0],i:0,c:'b'},{t:'b',x:w[1],i:0}];localStorage.setItem(k,JSON.stringify(a));localStorage.removeItem('jblhub.v1.autobak.i');for(let i=0;i<5;i++)localStorage.removeItem('jblhub.v1.autobak.'+i);}", [KEY, aid, words])
+        await pg.evaluate("([k,aid,w])=>{const a={};a[aid]=[{t:'h',x:w[0],i:0,c:'b'},{t:'b',x:w[1],i:0}];localStorage.setItem(k,JSON.stringify(a));localStorage.removeItem('jblhub.v1.autobak.i');localStorage.removeItem('jblhub.v1.autobak.pi');for(const i of ['p0','p1','p2',0,1,2,3,4])localStorage.removeItem('jblhub.v1.autobak.'+i);}", [KEY, aid, words])
         await open_(pg, '#/CONS/CRK/learn')
         a = json.loads(await pg.evaluate(f"localStorage.getItem('{KEY}')"))
         ok([o.get('c') for o in a[aid] if o['t'] == 'h'] == ['u'], f"옛 파랑 {{c:'b'}} → c:'u'로 이관 {a[aid]}")
-        bak = await pg.evaluate("(()=>{for(let i=0;i<5;i++){const v=localStorage.getItem('jblhub.v1.autobak.'+i);if(v){const j=JSON.parse(v);if(j.why)return j.why;}}return ''})()")
+        bak = await pg.evaluate("(()=>{for(const i of ['p0','p1','p2',0,1,2,3,4]){const v=localStorage.getItem('jblhub.v1.autobak.'+i);if(v){const j=JSON.parse(v);if(j.why)return j.why;}}return ''})()")
         ok(bak == '파랑 색 키 이관', f'이관 전 자동 백업 남김 ({bak})')
         c3, bg3 = await pg.locator('#stage .rk-h.rk-u').first.evaluate(STYLE)
         ok(bg3 == 'rgb(201, 221, 247)' and c3 != 'rgba(0, 0, 0, 0)', f'옛 파랑 기록이 파랑으로 보임 ({c3}, {bg3})')

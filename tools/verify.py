@@ -9,7 +9,7 @@ def ok(c, msg):
     if not c: fail.append(msg)
 # ---- 1. 이미지 청크 데이터 자체가 전부 디코드되는지
 for f in sorted(os.listdir(DOCS + '/packs')):
-    if '.img.' not in f: continue
+    if '.img.' not in f or f.endswith('.img.jb.js'): continue   # .img.jb.js = 옛 index 호환 심(데이터 없음)
     t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); o = json.loads(t[t.index('{'):t.rindex('}') + 1]); n = bad = 0
     for sect in o.values():
         for k, v in sect.items():
@@ -20,8 +20,10 @@ for f in sorted(os.listdir(DOCS + '/packs')):
 # ---- 1b. JB 분해 검사: 답안 안에 다음 문항이 삼켜졌는지 (번호 n 줄이 문항형으로 끝나는데 바로 앞 번호 n-1 줄이 답안에 없음)
 import re as _re, html as _html
 for f in sorted(os.listdir(DOCS + '/packs')):
-    if '.img.' in f or not f.endswith('.js'): continue
+    if '.img.' in f or not f.endswith('.js') or f.endswith('.lx.js'): continue
     t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1]); hits = []
+    _hb = _re.search(r"const HUB_BUILD=\"([^\"]+)\"", open(f'{DOCS}/index.html', encoding='utf-8').read())
+    ok(_hb and pk.get('build') == _hb.group(1), f"{f}: 팩 판 {pk.get('build')} = 허브 판 {_hb and _hb.group(1)} (다르면 6과목 모두 다시 빌드)")
     for cid, h in pk.get('cards', {}).items():
         m = _re.search(r'<section class="ab jbans">(.*?)</section>', h)
         if not m: continue

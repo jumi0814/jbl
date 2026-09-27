@@ -2,6 +2,8 @@ import re, html, unicodedata
 STARTER = re.compile(r'^\s*(?:\d{1,2}\s?[\).]\s?\S|\d{1,2}-\d\.|\(\s?\d{1,2}\s?\)|[①-⑳㉠-㉭]|[-•·▶▷→※*✓◆■□○●]\s?\S?|[가-하]\.\s|[a-zA-Z][\).]\s|\[답\]|답\s*[:：)]|답\s*$|해설\s*[:：)]|해설\s*$|참고\s*[:：)]|참고\s*$|유사복원|추가복원|복원 원문|\*?\s?비슷한 복원|<[^>]+>|\(T/F\)|장점\s*[:：]?\s*$|단점\s*[:：]?\s*$|cf[\.\)]|ex[\.\)]|Q\d|\[[^\]]+\]\s*$|\[[^\]]+\]\s)')
 LABEL = re.compile(r'^\s*(\[답\]|답\s*[:：)]?|해설\s*[:：)]?|참고\s*[:：)]?)(.*)$')
 LISTM = re.compile(r'^\s*(?:\d{1,2}\s?[\).]|\(\s?\d{1,2}\s?\)|[①-⑳㉠-㉭]|[-•·▶▷→※*✓◆■□○●]|[가-하]\.|[a-zA-Z][\).])\s?')
+NUMM = re.compile(r'^\s*(?:\d{1,2}\s?[\).]|\(\s?\d{1,2}\s?\)|[①-⑳]|[가-하]\.)')   # 번호 단계
+BULM = re.compile(r'^\s*[-•·▶▷→※*✓◆■□○●]')                                         # 그 아래 세부 항목
 def width(s): return sum(2 if unicodedata.east_asian_width(c) in 'WF' else 1 for c in s)
 def reflow(text):
     raw = [l.rstrip() for l in text.split('\n')]
@@ -29,7 +31,7 @@ def render(text, first_bold=False, ans=False):
     ans=True(JB 답안 칸): 첫 '답' 라벨 줄에 .ans0(크게·흰 칸), 첫 '해설' 라벨부터 끝까지를 .exw로 감싸고
     해설이 6줄 또는 400자를 넘으면 .exw.clamp(허브가 높이를 줄이고 '해설 전체 보기'를 붙임)"""
     L = reflow(text); assert same_chars(text, '\n'.join(L)), 'reflow changed characters'
-    h = []; a0 = None; ex_at = None
+    h = []; a0 = None; ex_at = None; innum = False   # 번호 단계 아래 '-'·'·' 줄은 .sub(들여쓰기) — 클래스만, 글자 불변(V04)
     for i, s in enumerate(L):
         m = LABEL.match(s)
         if first_bold and i == 0:
@@ -38,10 +40,14 @@ def render(text, first_bold=False, ans=False):
             lab, rest = m.group(1), m.group(2)
             kind = 'a' if '답' in lab else ('e' if '해설' in lab else 'r')
             extra = ''
-            if ans and kind == 'a' and a0 is None: a0 = i; extra = ' ans0'
+            if ans and kind == 'a' and a0 is None: a0 = i; extra = ' ans0' if rest.strip() else ' lab0'   # 값 없는 '답:'은 빈 흰 칸 대신 라벨만
             if ans and kind == 'e' and ex_at is None: ex_at = i
-            h.append(f'<div class="ln lab lab-{kind}{extra}"><b>{html.escape(lab)}</b>{html.escape(rest)}</div>')
-        elif LISTM.match(s): h.append(f'<div class="ln li">{html.escape(s)}</div>')
+            h.append(f'<div class="ln lab lab-{kind}{extra}"><b>{html.escape(lab)}</b>{html.escape(rest)}</div>'); innum = False
+        elif LISTM.match(s):
+            if NUMM.match(s): cls = ' num'; innum = True
+            elif innum and BULM.match(s): cls = ' sub'
+            else: cls = ''; innum = False
+            h.append(f'<div class="ln li{cls}">{html.escape(s)}</div>')
         elif re.match(r'^(장점|단점)\s*[:：]?\s*$|^<[^>]+>$|^\[[^\]]+\]\s*$', s): h.append(f'<div class="ln hd">{html.escape(s)}</div>')
         else: h.append(f'<div class="ln{" q1" if (first_bold and i == 0) else ""}">{html.escape(s)}</div>')
     if ans and ex_at is not None and (a0 is None or ex_at > a0):

@@ -16,10 +16,10 @@ U = f'http://127.0.0.1:{srv.server_address[1]}/index.html'
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(); ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); pg = await ctx.new_page(); errs = []; got = []
-        pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('request', lambda r: got.append(r.url.rsplit('/', 1)[-1]))
+        pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('request', lambda r: got.append(r.url.rsplit('/', 1)[-1].split('?')[0]))   # ?v= 캐시 무효화 꼬리 뗌(F5)
         async def slow(route):
             await asyncio.sleep(0.8); await route.continue_()
-        await pg.route(re.compile(r'.*\.img\.jb\d\d\.js$'), slow)
+        await pg.route(re.compile(r'.*\.img\.jb\d\d\.js(\?.*)?$'), slow)
         await pg.goto(U + '#/OMS1/DD1/learn'); await pg.wait_for_timeout(1500)
         fig = await pg.evaluate("(()=>{const t=[...document.querySelectorAll('#stage .tc')].find(c=>c.querySelectorAll('figure[data-fig]').length>=2);const f=t.querySelector('figure[data-fig]');f.scrollIntoView({block:'center'});return [t.id,t.querySelectorAll('figure[data-fig]').length,f.querySelector('figcaption').textContent]})()")
         await pg.click(f'#{fig[0]} figure[data-fig]'); await pg.wait_for_timeout(600)
@@ -44,10 +44,10 @@ async def main():
         ok(jb == [f'PHARM.img.jb{key.split("-")[0]}.js'], f'JB 원본 {key} → 받은 청크 {jb}')
         ok(spin, '300ms 넘으면 스피너 먼저')
         ok(await pg.evaluate("(async()=>{const i=document.querySelector('#mimg');try{await i.decode()}catch(e){};return i.naturalWidth>0})()"), '불러온 뒤 원본 쪽 표시')
-        await pg.click('#mclose'); await pg.unroute(re.compile(r'.*\.img\.jb\d\d\.js$'))
+        await pg.click('#mclose'); await pg.unroute(re.compile(r'.*\.img\.jb\d\d\.js(\?.*)?$'))
         # 6과목 모든 data-jb
         for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
-            P = json.loads(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read()[len('JBLHUB.register('):-2])
+            P = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read())
             keys = set(re.findall(r'data-jb="([0-9]+-[0-9]+)"', json.dumps(P, ensure_ascii=False).replace('\\"', '"')))
             # 이미지 디코드: 청크 파일 내용으로 직접 확인
             bad = 0; tot = 0

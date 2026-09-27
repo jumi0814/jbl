@@ -44,10 +44,10 @@ async def run(b, vp, touch, tag):
     ok((await pg.evaluate('location.hash')).startswith('#/?q=') and '&s=CONS' in await pg.evaluate('location.hash') and await pg.evaluate("!document.querySelector('#home').hidden"), '[이 과목에서 찾기] → 과목 한정 검색')
     await pg.go_back(); await pg.wait_for_timeout(700)
     # [버리기] — 자동 백업 한 건 뒤 삭제
-    nb0 = await pg.evaluate("Object.keys(localStorage).filter(k=>/^jblhub\\.v1\\.autobak\\.\\d$/.test(k)).length")
+    nb0 = await pg.evaluate("Object.keys(localStorage).filter(k=>/^jblhub\\.v1\\.autobak\\.p?\\d$/.test(k)).length")
     await pg.evaluate("document.querySelector('#mk-lost [data-lostdrop]').click()"); await pg.wait_for_timeout(500)
-    nb1 = await pg.evaluate("Object.keys(localStorage).filter(k=>/^jblhub\\.v1\\.autobak\\.\\d$/.test(k)).length")
-    why = await pg.evaluate("(()=>{const i=JSON.parse(localStorage.getItem('jblhub.v1.autobak.i'));return JSON.parse(localStorage.getItem('jblhub.v1.autobak.'+i)).why})()")
+    nb1 = await pg.evaluate("Object.keys(localStorage).filter(k=>/^jblhub\\.v1\\.autobak\\.p?\\d$/.test(k)).length")
+    why = await pg.evaluate("(()=>{let b=null;for(const i of ['p0','p1','p2',0,1,2,3,4]){const v=JSON.parse(localStorage.getItem('jblhub.v1.autobak.'+i)||'null');if(v&&(!b||v.at>=b.at))b=v;}return b&&b.why})()")   # 버리기 전 백업은 보호 칸(p0~2 — F3)
     ann = json.loads(await pg.evaluate(f"localStorage.getItem('{KEY}')"))
     ok(nb1 == nb0 + 1 and why == '위치 잃은 표시 버리기' and 'CONS:CRK:oldcardtitle_abcdef' not in ann and len(ann) == 2, f'[버리기] 자동 백업 {nb0}→{nb1} ({why}) 후 삭제')
     ok(await pg.evaluate("!document.querySelector('#mk-lost')") and '위치 잃음 0' in (await pg.inner_text('#stage .mk-sum')).replace('\n', ' '), '버린 뒤 위치 잃음 0')

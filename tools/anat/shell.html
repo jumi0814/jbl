@@ -2,10 +2,10 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JBL 허브 · 3학년 3쿼터</title>
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:'dev'/*BUILD*/,register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 <!--INLINE_PACKS-->
 <style>
-:root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:#0A3332;--acc:#0F5C5A;--accbg:#E1EEEB;
+:root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
 --k:#B3261E;--head:#5E1A15;--mark:#FFE98A;--sky:#EAF4FA;--skyb:#BBDCEC;--peach:#FDEFE3;--peachb:#F1C9A8;--purp:#F0EBFB;--purpb:#D2C6F1;--mint:#E6F3E8;--mintb:#B7DBBE;--grey:#EFEAE0;--r3:#8E1B14;--r2:#C4473C;--r1:#E9C46A;--note:#F3F6FA;--noteb:#CBD6E6}
 *{box-sizing:border-box}:root{--toph:44px;--tabh:0px;--kith:62px}/* scroll-padding-top은 쓰지 않음 — 위에 붙은 막대 안의 입력칸(전체 검색·JB 검색)을 누르면 브라우저가 그 칸을 '가려진 것'으로 보고 페이지를 끌어올렸음. 화면 안 이동은 goEl이 맞춤 */
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 "Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
@@ -33,7 +33,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 "Pretendar
 .chip{display:inline-block;font-size:12.5px;line-height:1.45;padding:2px 10px;border-radius:999px;background:var(--grey);color:#443C33;white-space:nowrap;border:1px solid transparent}
 .chip.yr{font-weight:800}.chip.n3{background:var(--r3);color:#fff}.chip.n2{background:var(--r2);color:#fff}.chip.n1{background:var(--r1);color:#4A3500}
 .chip.jb{background:#fff;border-color:#CDB0AC;color:var(--head)}.chip.jbn{background:#fff;border:1px dashed #B8AE9F;color:var(--sub)}.chip.cmp{background:#DDE7F5;color:#1E4E8C}.chip.ol{background:#fff;border-color:var(--line)}.chip.src{background:transparent;border-color:var(--line);color:var(--sub);font-size:12px}
-.chip.emc{background:var(--purp);color:#4B3A8C}.chip.pf{background:#fff;border-color:var(--line)}button.chip.lec{background:var(--accbg);color:#0E4846;border-color:#BAD7D2;font-weight:700}
+.chip.emc{background:var(--purp);color:#4B3A8C}.chip.pf{background:#fff;border-color:var(--line)}button.chip.lec{background:var(--accbg);color:var(--acct);border-color:var(--accb);font-weight:700}
 .chip.v-ok{background:var(--mint);color:#1C5B33}.chip.v-part{background:#FBEFCB;color:#5A3B00}.chip.v-diff{background:#7A1712;color:#fff}.chip.v-none,.chip.v-na{background:var(--grey);color:var(--sub)}
 /* 문제 카드 */
 .cards{display:flex;flex-direction:column}
@@ -60,7 +60,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 "Pretendar
 details.oth{margin-top:12px}details>summary{cursor:pointer;font-size:13.5px;color:var(--sub)}.oh{font-size:13px;color:var(--sub);margin:10px 0 4px;font-weight:700}
 .onebar{display:none;gap:10px;align-items:center;justify-content:center;margin-bottom:12px}.single .onebar{display:flex}.single .qc{display:none}.single .qc.cur{display:block}
 /* 강의 정리본 */
-.lhead{background:var(--accbg);border:1px solid #C3DAD5;border-radius:14px;padding:12px 18px;margin-bottom:12px}.lhead p{margin:4px 0;font-size:13.5px;color:#34423F}
+.lhead{background:var(--accbg);border:1px solid var(--accb);border-radius:14px;padding:12px 18px;margin-bottom:12px}.lhead p{margin:4px 0;font-size:13.5px;color:#34423F}
 .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;font-size:12.5px;color:#34423F}.lg.tested{border-left:4px solid #E39A5B;padding-left:7px}.lg.near{border-left:4px dotted #9AA9B8;padding-left:7px}
 .toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}.tocb{border:1px solid var(--line);background:#fff;border-radius:9px;padding:3px 10px;font-size:12.5px;color:#443C33;border-left:4px solid #BDB3A3}.tocb.h2{border-left-color:var(--r3)}.tocb.h1{border-left-color:#D9A62E}.tocb b{color:var(--sub);margin-right:3px}
 .thead{display:flex;gap:14px;align-items:flex-start;cursor:pointer}.badge{flex:none;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--acc);color:#fff;border-radius:11px;font-weight:800;font-size:16px}
@@ -77,7 +77,7 @@ h4.sh{font-size:15px;font-weight:800;color:var(--head);margin:16px 0 6px;padding
 .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}.thumbs figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;cursor:zoom-in}.thumbs img{display:block;width:100%;height:auto;min-height:60px;background:#F1ECE1}.thumbs figcaption{font-size:12px;color:var(--sub);padding:3px 8px}
 /* 표 */
 .tblwrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:18px}.tbt{font-size:18px;font-weight:700;margin-bottom:10px}summary.tbt{cursor:pointer}.tscroll{overflow-x:auto}
-table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}tr>*:first-child{border-left:1px solid var(--line)}thead th{border-top:1px solid var(--line);background:var(--accbg);color:#173F3D;font-size:13px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}tr>*:first-child{border-left:1px solid var(--line)}thead th{border-top:1px solid var(--line);background:var(--accbg);color:var(--acct);font-size:13px}
 tbody th{background:#FAF6EC;font-weight:700;min-width:104px}tbody tr:nth-child(even) td{background:#FDFBF6}.ci{position:relative;padding-left:11px;margin:2px 0}.ci::before{content:"";position:absolute;left:1px;top:.72em;width:4px;height:4px;border-radius:50%;background:#A89F91}
 table.sum tr.h2 th{background:#F9E3DF}table.sum tr.h1 th{background:#FBF1D2}td.qs{font-weight:600}.only-rep tr:not(.rep){display:none}.only-rep thead tr{display:table-row}
 
@@ -89,7 +89,7 @@ h3.gdiv{margin:30px 0 14px;font-size:15px;letter-spacing:.02em;color:#fff}h3.gdi
 .fb{position:absolute;left:8px;top:8px;background:rgba(15,75,74,.9);color:#fff;font-size:10.5px;font-weight:800;border-radius:6px;padding:1px 7px}
 .tbody .li.tested .k{background:linear-gradient(transparent 58%,var(--mark) 58%)}.mk2{background:linear-gradient(transparent 58%,var(--mark) 58%)}
 table.mtx{font-size:13.5px;table-layout:fixed}table.mtx thead th{background:var(--hero1);color:#fff;border-color:rgba(255,255,255,.18);position:sticky;top:0;z-index:2}table.cmp thead th{background:var(--hero1);color:#fff;border-color:rgba(255,255,255,.18)}
-tr.grow td{background:var(--accbg);color:#0E4846;font-weight:800;font-size:13.5px}table.mtx tbody th{background:#FFFDF8;min-width:0}.mn{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:7px;background:var(--acc);color:#fff;font-size:12px;font-weight:800;text-decoration:none}
+tr.grow td{background:var(--accbg);color:var(--acct);font-weight:800;font-size:13.5px}table.mtx tbody th{background:#FFFDF8;min-width:0}.mn{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:7px;background:var(--acc);color:#fff;font-size:12px;font-weight:800;text-decoration:none}
 tr.h2 .mn{background:var(--r3)}tr.h1 .mn{background:#B5851A}.men{font-size:15px;font-weight:700}.mko{font-size:12.5px;color:#4A423A;font-weight:600;margin-top:2px}.mg{font-weight:700;margin-bottom:4px}
 .mth{margin:7px 0 0;width:118px;border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:zoom-in}.mth img{display:block;width:100%;height:auto;min-height:40px;background:#F1ECE1}
 td.mt{background:#FFF8F1!important}td.mnote{background:#F7F9FC!important;color:#2B3440}td.mx ul{margin:0;padding-left:0;list-style:none}td.mx li{margin:0 0 6px;font-size:12.5px}
@@ -105,7 +105,7 @@ button.chip.lec{}.chip.pk{background:#FFF1B8;color:#6B4A00;border-color:#E5C766;
 table.mini{font-size:14px;margin:8px 0 10px}table.mini thead th{background:#EFE9DC;color:#3D362E;font-size:13px}table.mini tbody th{min-width:84px;background:#FAF6EC;font-weight:500}table.mini tbody th .k{font-weight:700}
 .tbody .li{font-size:15.5px}
 .frame{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:14px}.frt{font:700 18px Georgia,"Noto Serif KR",serif;margin-bottom:8px}
-.flow{display:flex;flex-wrap:wrap;gap:6px 0;margin-bottom:12px}.fl{background:var(--accbg);color:#0E4846;border-radius:9px;padding:3px 11px;font-size:13px;font-weight:700;margin-right:20px;position:relative}.fl:not(:last-child)::after{content:"→";position:absolute;right:-16px;color:#8A8174;font-weight:400}
+.flow{display:flex;flex-wrap:wrap;gap:6px 0;margin-bottom:12px}.fl{background:var(--accbg);color:var(--acct);border-radius:9px;padding:3px 11px;font-size:13px;font-weight:700;margin-right:20px;position:relative}.fl:not(:last-child)::after{content:"→";position:absolute;right:-16px;color:#8A8174;font-weight:400}
 .fcols{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px}.og{font-size:12.5px;font-weight:800;color:var(--acc);margin:10px 0 3px}.og:first-child{margin-top:0}
 .ol{display:flex;gap:8px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-left:4px solid #BDB3A3;padding:3px 8px;margin:2px 0;font-size:13.5px;border-radius:0 6px 6px 0}.ol:hover{background:#F4EFE4}.ol.h2{border-left-color:var(--r3)}.ol.h1{border-left-color:#D9A62E}
 .ol b{color:var(--sub);min-width:18px}.ot{font-weight:700;white-space:nowrap}.og2{color:var(--sub);font-size:12.5px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.og2 .k{color:inherit;font-weight:500}.oy{font-size:11.5px;font-weight:800;color:var(--head);white-space:nowrap}
@@ -115,7 +115,7 @@ table.mini{font-size:14px;margin:8px 0 10px}table.mini thead th{background:#EFE9
 .fcard.cloze .k{color:transparent;background:#D9CBA3;border-radius:4px}.fcard .fct{font:700 15px Georgia,serif;color:var(--acc);margin-bottom:8px}
 @media (max-width:860px){.fcols{grid-template-columns:1fr}.ol{min-width:0;flex-wrap:wrap}.og2{min-width:0;flex:1 1 100%;white-space:normal}.ot{white-space:normal}}
 
-.guide{background:linear-gradient(120deg,var(--accbg),#F3F0E6);border:1px solid #C3DAD5;border-radius:16px;padding:14px 18px;margin-bottom:14px}.gt{font:700 17px Georgia,"Noto Serif KR",serif;margin-bottom:6px}.steps{margin:0;padding-left:22px}.steps li{margin:6px 0;font-size:14.5px}
+.guide{background:linear-gradient(120deg,var(--accbg),#F3F0E6);border:1px solid var(--accb);border-radius:16px;padding:14px 18px;margin-bottom:14px}.gt{font:700 17px Georgia,"Noto Serif KR",serif;margin-bottom:6px}.steps{margin:0;padding-left:22px}.steps li{margin:6px 0;font-size:14.5px}
 .pline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}.pline .sp{flex:1}.cok{color:#1C5B33}.cng{color:#A3231B}
 .pbar{height:8px;background:#EDE7DA;border-radius:999px;overflow:hidden;display:flex;margin-top:6px}.pbar i{display:block;height:100%;background:var(--acc)}.pbar i.ok{background:#2E8B57}.pbar i.ng{background:#C4473C}.pbar.big{height:12px}
 .lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:16px}.lcard{text-align:left;background:var(--card);border:1px solid var(--line);border-left:6px solid #BDB3A3;border-radius:14px;padding:12px 14px;cursor:pointer}.lcard:hover{background:#FBF7EE}.lcard.h2{border-left-color:var(--r3)}.lcard.h1{border-left-color:#D9A62E}
@@ -141,6 +141,7 @@ table.mini{font-size:14px;margin:8px 0 10px}table.mini thead th{background:#EFE9
 /* 도구 */
 .rk-h{border-radius:3px;padding:0 1px}
 .mode-h [data-aid],.mode-b [data-aid]{cursor:crosshair}
+#stalebar{position:fixed;top:0;left:0;right:0;z-index:200;background:#3D362E;color:#fff;padding:8px 16px;font-size:14px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}#stalebar .btn{min-height:32px}
 #kit{position:fixed;left:0;right:0;margin:0 auto;width:max-content;max-width:calc(100vw - 20px);bottom:14px;transform:none;flex-wrap:nowrap;z-index:70;display:flex;gap:3px;align-items:center;background:rgba(35,35,31,.96);color:#EEE8DA;padding:6px 8px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);font-size:13.5px}
 #kit button{background:none;border:0;color:#EEE8DA;border-radius:9px;padding:6px 9px;white-space:nowrap}#kit button.on{background:#BF9A4A;color:#201A10}#kit button:disabled{opacity:.35}#kit .sep{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 3px}
 #kit .sw{width:17px;height:17px;border-radius:50%;display:inline-block;margin:0 2px;cursor:pointer;border:2px solid transparent}#kit .sw.sel{border-color:#fff}#kitshow{position:fixed;right:14px;bottom:14px;z-index:70;width:42px;height:42px;border-radius:50%;border:0;background:#26221D;color:#fff;font-size:18px;display:none}.kit-off #kit{display:none}.kit-off #kitshow{display:block}
@@ -346,7 +347,7 @@ details.ab.lk .lkt{font-weight:800}details.ab.lk .lkm{flex:1 1 220px;min-width:0
 #lpop{right:12px;width:min(420px,calc(100vw - 24px));padding:10px 8px 10px 12px}#lpop .bt{margin:0 4px 6px}.lpl{display:flex;flex-direction:column}
 .lpi,.scard2{display:flex;gap:8px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:6px 8px;font-size:13.5px;line-height:1.4;color:#35322D}.lpi:hover,.scard2:hover{background:#F4EFE4}
 .lpi b,.scard2 b{flex:none;min-width:1.6em;color:var(--acc);font-variant-numeric:tabular-nums}.lpi span,.scard2 span{flex:1;min-width:0}.lpi i,.scard2 i{flex:none;font-style:normal;font-size:11.5px;color:#7C5E0E;font-weight:700}.lpi em{flex:none;font-style:normal;color:#2E8B57;font-weight:800}
-.lpi.on,.scard2.on{background:var(--accbg,#E1EEEB);font-weight:800}.lpi.done span,.scard2.done span{color:var(--sub)}
+.lpi.on,.scard2.on{background:var(--accbg);font-weight:800}.lpi.done span,.scard2.done span{color:var(--sub)}
 details.scards{margin:2px 0 8px 14px;border-left:2px solid var(--line);padding-left:4px}details.scards>summary{font-size:12px;color:var(--sub);font-weight:700;padding:3px 6px;cursor:pointer}.scard2{font-size:12.5px;padding:4px 6px}.scard2 span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:860px){details.scards{display:none}#lmini button{padding:5px 8px!important}}
 @media (pointer:coarse){#lmini button{min-height:40px}.lpi{min-height:44px;align-items:center}}
@@ -439,8 +440,49 @@ tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
 /* 다음 할 일(U31) */
 .nextp{margin-top:22px;border-left:4px solid var(--acc)}.nextp .nrow{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.nextp .nx{min-height:44px;font-weight:700;border-radius:10px}.nextp .nx small{font-weight:600;color:inherit;opacity:.9}.nextp .nxun{font-weight:700;color:var(--acc)}
 .nextl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 6px}.nextl .nx{min-height:40px}
+
+/* ── 검증 수정(F6·V01~V10) ── */
+@supports (color:color-mix(in srgb,red 50%,blue)){:root,.scard{--hero2:color-mix(in srgb,var(--hero1) 62%,#000);--accbg:color-mix(in srgb,var(--acc) 8%,#fff);--accb:color-mix(in srgb,var(--acc) 28%,#fff);--acct:color-mix(in srgb,var(--acc) 82%,#000)}}
+/* V01 JB 문항·답 줄: 학습 카드 점(.li::before)이 첫 글자 위에 찍히던 것 없앰 · 줄 간격 줄임 · V04 번호 단계와 그 아래 세부 */
+.ln.li::before,.ln.li:before{display:none!important}.ln.li{padding-top:0;padding-bottom:0;line-height:1.55;margin:1px 0}
+.ln.li.num{margin-top:7px}.ln.li.num:first-child,.ln.lab+.ln.li.num{margin-top:2px}.ln.li.sub{margin-left:1.4em;color:#3A342D}.ln{line-height:1.55}
+.ln.lab0{margin-bottom:3px}
+/* V03 정리표 세부 칸 점이 첫 글자를 가리던 것 */
+.mtx .ci{padding:2px 0 2px 11px;line-height:1.55}
+/* V08 한눈표 출제 칸: 분홍·노랑 채움 대신 과목색 왼쪽 선 */
+table.sum tr.h2 th,table.sum tr.h1 th{background:#FAF6EC}table.sum tr.h2 th{box-shadow:inset 3px 0 0 var(--acc)}table.sum tr.h1 th{box-shadow:inset 3px 0 0 var(--accb)}
+/* V02 색: 파랑·민트 제거 — 과목색 파생값(--accbg·--accb·--acct)과 회색만 */
+.chip.cmp{background:#fff;border-color:var(--line);color:var(--sub)}.note{color:var(--sub);background:#F4F1EA}.ln.lab-e b{background:#6A6257}
+.chip.jj{background:#fff;border-color:var(--accb);color:var(--acc);font-weight:700}.chip.tt{background:#fff;color:#8E1B14;border-color:#D9A39D}
+button.chip.lec{background:var(--accbg);color:var(--acct);border-color:var(--accb)}
+details.ab.lk>summary{color:var(--acct)}details.ab.lk>summary::before{color:var(--sub)}
+/* V06 JB 카드 머리 칩: 한 모양(가운데 정렬·24px) · 출처는 흐린 한 줄 */
+.qhead .chip,.qsub .chip{display:inline-flex;align-items:center;min-height:24px;line-height:1.25;padding:2px 9px;vertical-align:middle;border-radius:999px}
+.qhead .ybadge{display:inline-flex;align-items:center;min-height:24px;line-height:1.25;vertical-align:middle}
+.qsub{align-items:center;gap:6px}.qsub .prov{font-size:12.5px;color:var(--sub);line-height:1.5}
+/* V05 📌 공부 전략 = 한 줄에 하나 */
+.tsl2{margin:2px 0 0;padding-left:18px}.tsl2 li{font-size:14px;color:var(--ink);margin:0;line-height:1.5}.tsl2 li i{font-style:normal;font-size:12px;color:var(--sub);margin-left:6px;white-space:nowrap}
+details.smore>summary{cursor:pointer;font-size:12.5px;color:var(--acc);margin:0 0 0 18px;line-height:1.5;list-style:none}details.smore>summary::-webkit-details-marker{display:none}
+.tstr .tsh{margin-bottom:0}.tstrat{font-size:14px;padding-top:4px;padding-bottom:4px}
+/* V07 한 장씩 풀기: 아래 막대 두 개에 답이 가리지 않게 여백 · 필터는 한 줄 */
+body.jbone #stage{padding-bottom:calc(var(--kith) + var(--oneh) + 40px)}
+body.jbone #jbbar .b2{display:none}body.jbone #jbbar .b1{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}body.jbone #jbbar .b1::-webkit-scrollbar{display:none}
+@media (max-width:1024px){body.jbone #kit .lbl{display:none}body.jbone #kit{padding:4px 6px}}
+/* V09 강의 틀 목차: 좁은 화면은 한 단(요지가 잘리지 않게) · 보기 설정은 ⋯ 안에 */
+@media (max-width:900px){.frame .outline{column-count:1}}
+details.pmore{position:relative;display:inline-block}details.pmore>summary{list-style:none;cursor:pointer;min-width:40px;text-align:center}details.pmore>summary::-webkit-details-marker{display:none}
+details.pmore .pmenu{position:absolute;right:0;top:calc(100% + 4px);z-index:30;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(40,30,10,.14);padding:8px;display:flex;flex-direction:column;gap:6px;min-width:150px}
+/* V10 허브·과목 홈 잔손질 */
+.scard .sacts{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}.scard .sacts .btn{display:block;width:100%}
+.ljc .pdot[style*="--p:0%"]{display:none}
+.dot{display:none}.dot.hot{display:inline-block;background:var(--acc)}
+body.d-home #kit,body.d-home #kitshow{display:none}
+#fsort{min-width:8.5em}
+@media (max-width:860px){#hprog .pline{flex-wrap:wrap}#hprog .pline .sp{flex:1 0 100%;height:0}}
+/* V11 강의 틀 출처: 짧은 한 줄 · 누르면 전체 */
+.frame .fsrc .fs1{display:none}.frame .fsrc.all .fs1{display:inline}
 </style></head><body>
-<div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
+<div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
 <div id="home"></div>
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
@@ -468,21 +510,26 @@ tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
 (function(){
 const $=(s,e)=>(e||document).querySelector(s),$$=(s,e)=>[...(e||document).querySelectorAll(s)];
 const NS='jblhub.v1.';const LS={get(k,d){try{const v=localStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(NS+k,JSON.stringify(v));}catch(e){toast('저장 공간 오류 — 백업을 받아두세요');}}};
-function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',2200);}
+function toast(t,ms){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',ms||2200);}
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=null/*READY*/;
+/* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
+const HUB_BUILD='dev'/*BUILD*/,PV=null/*PV*/;let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1'],['CONS','임상치과보존학'],['IMPL','치과임플란트학'],['ANAT','임상두경부해부학'],['GERI','노인치과학'],['PHARM','임상치과약물치료학'],['ESTH','심미치과학']];
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
 const mkObj=v=>(v&&typeof v==='object'&&!Array.isArray(v))?v:{};
-function getMK(s){const m=Object.assign({ok:{},ng:{},bm:{}},mkObj(LS.get('mk.'+s,{})));['ok','ng','bm','log'].forEach(k=>m[k]=mkObj(m[k]));return m;}
+/* 맞음·틀림이 한 문항에 같이 있으면(백업 합치기 등) 채점 기록(log)의 마지막 것 하나만 — 없으면 pref(기본 맞음). 모든 셈은 getMK를 거치므로 화면마다 수가 같음(F4) */
+function lastGrade(m,id){const L=Array.isArray(m.log&&m.log[id])?m.log[id]:[];let r=null,t=-1;L.forEach(x=>{if(x&&(x.r==='ok'||x.r==='ng')&&(+x.t||0)>=t){t=+x.t||0;r=x.r;}});return r;}
+function fixGrades(m,pref){for(const id in m.ok)if(m.ng[id]){const g=lastGrade(m,id)||(pref&&pref[id])||'ok';if(g==='ng')delete m.ok[id];else delete m.ng[id];}return m;}
+function getMK(s){const m=Object.assign({ok:{},ng:{},bm:{}},mkObj(LS.get('mk.'+s,{})));['ok','ng','bm','log'].forEach(k=>m[k]=mkObj(m[k]));return fixGrades(m);}
 /* 진행률 분모 = 현 교수 기출(stats.main = tier A+B). 참고(tier C, refids)는 따로 셈 — 옛 팩(main 없음)은 전체 */
 function jbCount(p,mk){mk=mk||getMK(p.id);const ref=new Set(p.refids||[]),main=p.stats.main!=null?p.stats.main:p.stats.cards,o={main,ref:p.stats.ref||0,ok:0,ng:0,bm:0,rok:0,rng:0};
  ['ok','ng','bm'].forEach(k=>{for(const id in mk[k]){if(!p.cards[id])continue;if(ref.has(id)){if(k!=='bm')o['r'+k]++;}else o[k]++;}});o.todo=Math.max(0,main-o.ok-o.ng);return o;}
 const refChip=(c,shown)=>c.ref?`<span class="chip refc" title="참고용 기출(현 교수 파트가 아님) — 진행률 분모에서 뺌">참고 ${c.ref} ${shown?'보이는 중':'숨김'}${(c.rok||c.rng)?` · 맞음 ${c.rok} · 틀림 ${c.rng}`:''} <button class="link" data-reftog="1">${shown?'숨기기':'보이기'}</button></span>`:'';
-const Q0=window.__JBLQ||[];window.JBLHUB={register(p){PACKS[p.id]=p;},images(id,o,c){IMGS[id]=IMGS[id]||{jb:{},lec:{}};Object.assign(IMGS[id].jb,o.jb||{});Object.assign(IMGS[id].lec,o.lec||{});const key=id+':'+c;LOADED[key]=1;(imgWait[key]||[]).forEach(f=>f());imgWait[key]=[];}};Q0.forEach(x=>x[0]==='p'?JBLHUB.register(x[1]):JBLHUB.images(x[1],x[2],x[3]));
+const Q0=window.__JBLQ||[];window.JBLHUB={build:HUB_BUILD,legacy(id,o){LXT[id]=o;},register(p){PACKS[p.id]=p;},images(id,o,c){IMGS[id]=IMGS[id]||{jb:{},lec:{}};Object.assign(IMGS[id].jb,o.jb||{});Object.assign(IMGS[id].lec,o.lec||{});const key=id+':'+c;LOADED[key]=1;(imgWait[key]||[]).forEach(f=>f());imgWait[key]=[];}};Q0.forEach(x=>x[0]==='p'?JBLHUB.register(x[1]):x[0]==='l'?JBLHUB.legacy(x[1],x[2]):JBLHUB.images(x[1],x[2],x[3]));
 const chunkOf=key=>{const k=key.split('-')[0];const al=(PACKS[CUR.s]&&PACKS[CUR.s].imgalias)||{};return al[k]||k;};
-function needImages(id,c,cb){const key=id+':'+c;if(LOADED[key])return cb();(imgWait[key]=imgWait[key]||[]).push(cb);if(imgWait[key].length>1)return;const s=document.createElement('script');s.src='packs/'+id+'.img.'+c+'.js';s.onerror=()=>toast('이미지 파일(packs/'+id+'.img.'+c+'.js)을 찾지 못했어요');document.head.appendChild(s);}
+function needImages(id,c,cb){const key=id+':'+c;if(LOADED[key])return cb();(imgWait[key]=imgWait[key]||[]).push(cb);if(imgWait[key].length>1)return;const s=document.createElement('script');const iv=PACKS[id]&&PACKS[id].imgv&&PACKS[id].imgv[c];s.src='packs/'+id+'.img.'+c+'.js'+(iv?'?v='+iv:'');s.onerror=()=>toast('이미지 파일(packs/'+id+'.img.'+c+'.js)을 찾지 못했어요');document.head.appendChild(s);}
 /* ---------- 공부 시간 v2 — 자동 측정(설정)·8분 무활동/다른 창이면 멈춤·과목·강의별 기록 ---------- */
 const T={run:false,t0:0,log:LS.get('time',{}),dlog:LS.get('timed',{}),auto:LS.get('tauto',true),last:Date.now(),IDLE:8*60*1000,manualPause:false,hiddenStop:false};
 const day=(dd)=>{const d=dd||new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);};
@@ -520,7 +567,7 @@ function home(opt){opt=opt||{};leaveView();const push=opt.push!==false&&VIEW!=='
     +`<div class="spb"><span>정리본 읽음 <b>${rp}%</b> <i>${dn}/${nc}</i></span><div class="pbar"><i class="rd" style="width:${rp}%;background:${p.color}"></i></div></div>`
     +`<div class="spb"><span>${C.ref?'현 교수 ':''}기출 맞음 <b class="cok">${ok}</b> · 틀림 <b class="cng">${ng}</b> <i>/ ${C.main}</i></span><div class="pbar"><i class="ok" style="width:${C.main?ok/C.main*100:0}%"></i><i class="ng" style="width:${C.main?ng/C.main*100:0}%"></i></div></div>`
     +`<div class="sacts">${r?`<button class="btn sm res go-resume" data-s="${id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'↪ 이어서':'▶ 시작'}: ${EH(sname(p,r.d))} · ${tl}</button>`:''}<button class="btn sm" data-sjbf="${C.todo?'todo':'ng'}">📝 ${C.todo?'안 푼 기출 '+C.todo:'틀린 기출 '+C.ng}</button></div><div class="small" style="margin-top:6px">갱신 ${p.built}</div></div>`;}
-  else g+=`<div class="scard off"><div class="en serif">${ko}</div><div class="ko">자료 대기 — packs/${id}.js 를 넣으면 열립니다</div></div>`;});
+  else g+=`<div class="scard off"><div class="en serif">${ko}</div><div class="ko">자료 준비 중</div></div>`;});
  const days=Object.keys(T.log).sort().slice(-7);let tt='';days.forEach(d=>{const o=T.log[d];let s=0;for(const k in o)s+=o[k];tt+=`<tr><th>${d}</th><td>${fmtS(s)}</td><td>${Object.keys(o).map(k=>(PACKS[k]?PACKS[k].title:k)+' '+fmtS(o[k])).join(' · ')}</td></tr>`;});
  h.innerHTML=`<h2>JBL 허브</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div><div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}
  <div class="panel"><div class="bt">최근 공부 시간</div>${tt?`<table><thead><tr><th>날짜</th><th>합계</th><th>과목별</th></tr></thead><tbody>${tt}</tbody></table>`:'<div class="small">아직 기록이 없습니다. 과목을 열어 공부하면 자동으로 재요(위 시계를 누르면 설정).</div>'}</div>
@@ -600,18 +647,18 @@ const SUBJDOCS=[['_home','🏠 과목 홈','공부 순서 · 진행률 · 강의
 function docTabs(p,d){if(d[0]==='_')return [[d,'']];const L=p.lect.find(x=>x.k===d);return [['learn','📖 학습'],['sum','🗂 정리표'],['tbl','📊 비교표 '+L.tbl.length],['jb','📝 기출 '+L.jb.length],['pred','✍️ 예상 '+L.pred.length],['flash','🃏 플래시카드']].filter(t=>!(t[0]==='tbl'&&!L.tbl.length));}
 function openSubj(s){openDoc(s,'_home');}
 function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
- $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}"></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
+ $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
-function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);MK=getMK(s);}
+function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);MK=getMK(s);}
  const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];
  const same=VIEW==='doc'&&CUR.s===s&&CUR.d===d&&CUR.t===t,push=opt.push!==false&&!same&&VIEW!=='none';if(push)stampHist();
  /* 돌아가기 알약: 칩으로 다른 화면에 가면 출발점 기억 · 도착 문서를 벗어나거나 출발점으로 돌아오면 지움 */
  let newRet=false;if(pend&&!(pend.s===s&&pend.d===d&&pend.t===t)){RET=Object.assign(pend,{id:(++RETN)+'.'+Date.now(),arr:s+'/'+d});newRet=true;}
  else if(RET&&(s+'/'+d!==RET.arr||(RET.s===s&&RET.d===d&&RET.t===t)))RET=null;
  const tgt=aid||opt.qid||opt.id;
- CUR={s,d,t};VIEW='doc';$('#home').hidden=true;$('#subj').hidden=false;document.body.classList.remove('at-home');
+ CUR={s,d,t};VIEW='doc';$('#home').hidden=true;$('#subj').hidden=false;document.body.classList.remove('at-home');document.body.classList.toggle('d-home',d==='_home');
  document.documentElement.style.setProperty('--hero1',p.color);document.documentElement.style.setProperty('--acc',p.color);
  sideRender();
  const L=p.lect.find(x=>x.k===d);
@@ -654,7 +701,7 @@ const GUIDE0=[{b:'강의 정리본 → 학습',t:'‘이 강의의 틀’로 흐
 function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const MKh=getMK(p.id);
  const guide=(p.guide&&p.guide.length?p.guide:GUIDE0).map(g=>`<li><b>${EH(g.b)}</b> ${EH(g.t)}${g.act?' '+actBtn(p,g.act,C):''}</li>`).join('');
  const jump=p.lect.map(L=>{const pr=lecProg(p,L),pc=Math.round(pr.done/Math.max(1,L.nsec)*100);return `<button class="chip ljc" data-d="${L.k}" title="${EH(L.title)} — 읽음 ${pr.done}/${L.nsec}"><i class="pdot${pc>=100?' full':''}" style="--p:${pc}%"></i><span>${EH(sname(p,L.k))}</span></button>`;}).join('');
- const lecs=p.lect.map(L=>{const pr=lecProg(p,L);const pc=Math.round(pr.done/L.nsec*100);return `<button class="lcard ${L.heat}" data-d="${L.k}"><div class="lt"><span class="dot ${L.heat}"></span><b>${L.title}</b><span class="small">${L.prof} · ${L.yr}년도 자료</span></div><div class="lm"><span>카드 ${L.nsec}</span><span>기출 ${L.jb.length}</span><span>예상 ${L.pred.length}</span></div><div class="pbar"><i style="width:${pc}%"></i></div><div class="lm small">읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok} · 틀림 ${pr.ng}</div><div class="tl">${L.tline||''}</div>${L.hint?`<div class="lh">💬 ${L.hint}</div>`:''}</button>`;}).join('');
+ const lecs=p.lect.map(L=>{const pr=lecProg(p,L);const pc=Math.round(pr.done/L.nsec*100);return `<button class="lcard ${L.heat}" data-d="${L.k}"><div class="lt"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span><b>${L.title}</b><span class="small">${L.prof} · ${L.yr}년도 자료</span></div><div class="lm"><span>카드 ${L.nsec}</span><span>기출 ${L.jb.length}</span><span>예상 ${L.pred.length}</span></div><div class="pbar"><i style="width:${pc}%"></i></div><div class="lm small">읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok} · 틀림 ${pr.ng}</div><div class="tl">${L.tline||''}</div>${L.hint?`<div class="lh">💬 ${L.hint}</div>`:''}</button>`;}).join('');
  /* ⭐ 2회 이상: 출제 횟수별 묶음 — 3회↑ 펼침, 2회는 접힘. 항목마다 맞음·틀림 점 */
  const T=p.top||[],byN={};T.forEach(t=>{(byN[t.yrs.length]=byN[t.yrs.length]||[]).push(t);});
  const item=t=>{const st=MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'';return `<li><i class="mdot ${st}" title="${st==='ok'?'맞음':st==='ng'?'틀림':'안 푼 것'}"></i><button class="jbchip rep" data-go="${t.id}">${yrsLab(t.yrs)}</button> ${EH(t.short)}<span class="small"> · ${EH(t.prof)}</span></li>`;};
@@ -752,7 +799,7 @@ function lnav(d){const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null);if(!
  goCard(+cs[i].id.split('-').pop());}
 /* 채점: how='toggle'(카드 버튼) | 'set'(풀이 막대·O/X — 누르면 항상 그 상태). 맞음/틀림을 매길 때마다 MK.log[id]에 {r,t} (최근 10개)
    — mk.<S>의 ok·ng·bm 형식은 그대로(옛 기록·옛 허브와 호환), log만 더함. 쓰기 직전에 다시 읽음(다른 창과 합침) */
-function mark(id,k,how){MK=getMK(CUR.s);const was=!!MK[k][id];
+function mark(id,k,how){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}MK=getMK(CUR.s);const was=!!MK[k][id];
  if(how==='toggle'&&was)delete MK[k][id];
  else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];L.push({r:k,t:Date.now()});MK.log[id]=L.slice(-10);}}
  LS.set('mk.'+CUR.s,MK);$$('#stage .qc[data-id="'+id+'"]').forEach(paintQ);if(JB.F)JB.prog();JB.bar&&JB.bar();sideRender();hstat();}
@@ -903,7 +950,7 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.go||d.golec||d.scroll2||(t.classList.contains('cite')&&d.p==='')){PENDRET=retFrom();queueMicrotask(()=>{PENDRET=null;});}
  if(d.mkgo){marksGo(d.mkgo,+d.mki);return;}if(d.lostfind!==undefined){const x=d.lostfind;if(x.trim().length<2){toast('글자가 너무 짧아 찾을 수 없어요');return;}search(x,{s:CUR.s});return;}
  if(d.lostdrop){marksDrop(d.lostdrop,+d.mki);return;}if(d.memoopen){openDoc(CUR.s,d.memoopen);$('#memo').classList.add('on');return;}
- if(d.done){const c=t.closest('.tc');c.classList.toggle('done');const DN=mkObj(LS.get('done.'+CUR.s,{}));if(c.classList.contains('done'))DN[c.dataset.aid]=1;else delete DN[c.dataset.aid];LS.set('done.'+CUR.s,DN);const ob=$('#stage .ol[data-scroll="'+c.id+'"]');if(ob)ob.classList.toggle('done',c.classList.contains('done'));sideRender();hstat();{const np=$('#nextp'),P_=PACKS[CUR.s],L_=P_.lect.find(x=>x.k===CUR.d);if(np&&L_)np.outerHTML=nextHTML(P_,L_);}
+ if(d.done){if(STALE){toast('새로고침 후에 표시할 수 있어요 (새 버전)');return;}const c=t.closest('.tc');c.classList.toggle('done');const DN=mkObj(LS.get('done.'+CUR.s,{}));if(c.classList.contains('done'))DN[c.dataset.aid]=1;else delete DN[c.dataset.aid];LS.set('done.'+CUR.s,DN);const ob=$('#stage .ol[data-scroll="'+c.id+'"]');if(ob)ob.classList.toggle('done',c.classList.contains('done'));sideRender();hstat();{const np=$('#nextp'),P_=PACKS[CUR.s],L_=P_.lect.find(x=>x.k===CUR.d);if(np&&L_)np.outerHTML=nextHTML(P_,L_);}
   /* 읽은 카드 자동 접기(LS autofold, 기본 켬): 접고 다음 카드 머리를 탭 아래로 */
   if(c.classList.contains('done')&&LS.get('autofold',true)){c.classList.remove('open');foldSave();const cs=$$('#stage .tc').filter(x=>x.offsetParent!==null);const nx=cs[cs.indexOf(c)+1];const tg=nx||c;LHOLD=Date.now()+900;window.scrollTo({top:Math.max(0,tg.getBoundingClientRect().top+scrollY-topOff()),behavior:'smooth'});if(nx)setLCur(+nx.id.split('-').pop());}return;}
  if(d.exmore){const sec=t.closest('.jbans');const on=!sec.classList.contains('full');sec.classList.toggle('full',on);t.textContent=on?'해설 접기 ▴':'해설 전체 보기 ▾';if(!on){const c=t.closest('.qc');if(c&&c.getBoundingClientRect().top<topOff())goEl(sec);}return;}
@@ -958,11 +1005,12 @@ $('#stage').addEventListener('focusin',e=>{if(e.target.id==='fq')jbMini();});$('
    · 누르면 어절 전체, 누른 채 끌면 끈 범위를 어절 단위로 넓혀 '한 묶음'으로 (마우스·펜·손가락 길게 누르기)
    · 묶음은 여러 조각(span)이어도 data-g로 하나 — 빈칸은 한 번에 열리고, 지울 때도 한 번에
    · 복원: 정확히 일치 → 공백·구분기호를 무시한 느슨한 일치(레이아웃이 바뀌어도 살아남음) */
-const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag=null;
+const LXT={};   /* 옛 허브 기준선 글자 {SID:{aid:글자}} — packs/<SID>.lx.js (옛 표시가 남은 과목만 받음) */
+const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag=null,ENR=0;const CTX=12;
  const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog]';
  const BND=/[\s\/()\[\]{},;:·•→"'“”‘’<>=|—–]/;
  const COLORS=[['y','#FFE58A'],['g','#BDEBC4'],['p','#FFCFDF'],['u','#C9DDF7'],['o','#FFC98C']];   /* 파랑 = 'u' ('b'는 빈칸 클래스 .rk-b와 겹쳐 글자가 사라졌음 — 옛 기록은 load에서 이관) */
- function load(s){if(S&&S!==s)persist();migBlue();S=s;ANN=LS.get('ann.'+s,{});if(!ANN||typeof ANN!=='object'||Array.isArray(ANN))ANN={};U=[];R=[];upd();updLost();}
+ function load(s){if(S&&S!==s)persist();migBlue();S=s;ANN=LS.get('ann.'+s,{});if(!ANN||typeof ANN!=='object'||Array.isArray(ANN))ANN={};U=[];R=[];ENR=enrich(s);upd();updLost();}
  /* 옛 파랑 형광펜 {t:'h',c:'b'} → c:'u' (전 과목, 바꾸기 전 자동 백업) */
  function migBlue(){const ks=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf(NS+'ann.')===0)ks.push(k);}const todo=[];
   ks.forEach(k=>{try{const a=JSON.parse(localStorage.getItem(k));let hit=false;for(const id in a)(a[id]||[]).forEach(o=>{if(o&&o.t==='h'&&o.c==='b'){o.c='u';hit=true;}});if(hit)todo.push([k,a]);}catch(e){}});
@@ -995,23 +1043,62 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(made.length){made[0].classList.add('rk-first');made[made.length-1].classList.add('rk-last');}return made;}
  function unwrap(el){const p=el.parentNode;if(!p)return;while(el.firstChild)p.insertBefore(el.firstChild,el);p.removeChild(el);p.normalize();}
  function group(el){const g=el.getAttribute('data-g');const B=el.closest('[data-aid]');return g&&B?[...B.querySelectorAll('[data-g="'+g+'"]')]:[el];}
- function snap(B){const ix=index(B),seen={},out=[];B.querySelectorAll('[data-rk]').forEach(el=>{const g=el.getAttribute('data-g')||('x'+(++GID));if(seen[g])return;seen[g]=1;const els=el.getAttribute('data-g')?group(el):[el];let a=1e9,b=-1;
+ function snap(B){const ix=index(B),seen={},out=[];let hv=null;B.querySelectorAll('[data-rk]').forEach(el=>{const g=el.getAttribute('data-g')||('x'+(++GID));if(seen[g])return;seen[g]=1;const els=el.getAttribute('data-g')?group(el):[el];let a=1e9,b=-1;
    els.forEach(e=>{const w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m){a=Math.min(a,m.start);b=Math.max(b,m.start+m.len);}}});
-   if(b<=a)return;const x=ix.s.slice(a,b);let i=0,p=-1;while((p=ix.s.indexOf(x,p+1))>=0&&p<a)i++;const o={t:el.getAttribute('data-rk'),x,i};if(o.t==='h')o.c=el.getAttribute('data-c')||'y';out.push(o);});return out;}
+   if(b<=a)return;const x=ix.s.slice(a,b);let i=0,p=-1;while((p=ix.s.indexOf(x,p+1))>=0&&p<a)i++;const o={t:el.getAttribute('data-rk'),x,i,p:ix.s.slice(Math.max(0,a-CTX),a),s:ix.s.slice(b,b+CTX),v:hv||(hv=fnv(ix.s))};if(o.t==='h')o.c=el.getAttribute('data-c')||'y';out.push(o);});return out;}
  function norm(s){let t='',m=[];for(let i=0;i<s.length;i++){const ch=s[i];if(/[\s\/·•→;,|]/.test(ch))continue;t+=ch.toLowerCase();m.push(i);}return{t,m};}
- function locate(s,x,i){let p=-1,last=-1;for(let k=0;k<=(i||0);k++){const q=s.indexOf(x,p+1);if(q<0)break;p=q;last=q;}if(last>=0)return[last,last+x.length];
+ /* 옛 허브의 찾기(같은 글자 i번째, 모자라면 마지막) — 옛 기준선(legacy_txt)에서 옛 표시가 '보이던 자리'를 되짚을 때만 씀 */
+ function oldLocate(s,x,i){let p=-1,last=-1;for(let k=0;k<=(i||0);k++){const q=s.indexOf(x,p+1);if(q<0)break;p=q;last=q;}if(last>=0)return[last,last+x.length];
   const N=norm(s),nx=norm(x).t;if(!nx)return null;let q=-1,at=-1;for(let k=0;k<=(i||0);k++){const r=N.t.indexOf(nx,q+1);if(r<0)break;q=r;at=r;}if(at<0)return null;return[N.m[at],N.m[at+nx.length-1]+1];}
+ /* 표시 찾기 v3 (F1·F2) — 표시 = {x, i, p(앞 12자), s(뒤 12자), v(저장 때 블록 글자 지문)}
+    ① 블록 글자가 저장 때와 같으면(v 일치) i번째 그대로 ② 아니면 같은 글자 후보 중 앞뒤 문맥이 가장 잘 맞는 것
+    ③ 문맥이 없는(옛) 표시는 후보가 딱 하나일 때만 — 여럿이면 '위치 잃음'으로 보관(다른 자리에 몰래 붙이지 않음)
+    단계: 정확히 → 공백·구분기호 무시 → 글자·숫자만(라벨·이모지·기호·옛 ⚡ 안내문 무시). i가 모자랄 때 '마지막 것'으로 가지 않음 */
+ function fnv(t){let h=0x811c9dc5;for(let k=0;k<t.length;k++){h^=t.charCodeAt(k);h=Math.imul(h,0x01000193);}return (h>>>0).toString(36);}
+ function occ(t,x){const r=[];if(!x)return r;let q=-1;while((q=t.indexOf(x,q+1))>=0)r.push(q);return r;}
+ const sq=t=>String(t==null?'':t).replace(/\s+/g,'');
+ function ctxScore(t,a,b,o){const P=sq(o.p),Q=sq(o.s),bf=sq(t.slice(Math.max(0,a-CTX*3),a)),af=sq(t.slice(b,b+CTX*3));let k=0,j=0;
+  while(k<P.length&&k<bf.length&&P[P.length-1-k]===bf[bf.length-1-k])k++;while(j<Q.length&&j<af.length&&Q[j]===af[j])j++;
+  return k+j+((!P.length&&!bf.length)?2:0)+((!Q.length&&!af.length)?2:0);}   /* 블록 처음·끝에 붙은 표시는 그 자체가 문맥 */
+ function pick(t,L,o){if(!L.length)return null;if(o.p==null&&o.s==null)return L.length===1?L[0]:null;   /* 문맥 없는 옛 표시: 후보가 하나일 때만 */
+  const need=Math.min(6,Math.max(3,Math.round(.3*(sq(o.p).length+sq(o.s).length))));
+  if(L.length===1)return (fz(String(o.x)).t.length>=4||ctxScore(t,L[0][0],L[0][1],o)>=need)?L[0]:null;   /* 🔑·'수치'처럼 짧고 흔한 글자는 문맥이 맞아야 */
+  let best=-1,bi=[];L.forEach((r,k)=>{const sc=ctxScore(t,r[0],r[1],o);if(sc>best){best=sc;bi=[k];}else if(sc===best)bi.push(k);});
+  if(best<need)return null;const i=o.i||0;bi.sort((u,v)=>Math.abs(u-i)-Math.abs(v-i));return L[bi[0]];}
+ const HINT='빨간글씨를자동빈칸으로가리고떠올리기';
+ function fz(t){let u='',m=[];for(let k=0;k<t.length;k++){const ch=t[k];if(!/[\p{L}\p{N}]/u.test(ch))continue;u+=ch.toLowerCase();m.push(k);}return{t:u,m};}
+ function resolve(t,o,hv){if(!o||!o.x||t==null)return null;const x=String(o.x),i=o.i||0;
+  const ex=occ(t,x).map(a=>[a,a+x.length]);
+  if(o.v&&ex.length>i&&(hv||fnv(t))===o.v)return ex[i];
+  if(ex.length)return pick(t,ex,o);
+  const N=norm(t),nx=norm(x).t;if(nx){const L=occ(N.t,nx).map(q=>[N.m[q],N.m[q+nx.length-1]+1]);if(L.length)return pick(t,L,o);}
+  const F=fz(t);let fx=fz(x).t;if(fx.indexOf(HINT)>=0&&fx.length>HINT.length)fx=fx.split(HINT).join('');
+  for(let k=HINT.length-1;k>=2;k--){if(fx.length>k+1&&fx.startsWith(HINT.slice(-k))){fx=fx.slice(k);break;}}   /* 지워진 ⚡ 안내문 조각이 앞·뒤에 걸친 표시 */
+  for(let k=HINT.length-1;k>=2;k--){if(fx.length>k+1&&fx.endsWith(HINT.slice(0,k))){fx=fx.slice(0,-k);break;}}
+  if(fx.length>=2){const L=occ(F.t,fx).map(q=>[F.m[q],F.m[q+fx.length-1]+1]);if(L.length)return pick(t,L,o);}
+  return null;}
+ function locate(t,x,i){return resolve(t,{x,i});}   /* 옛 호출 호환(문맥 없는 표시와 같은 규칙) */
+ /* 옛 표시(v 없음)에 옛 기준선 글자로 문맥 붙이기 — 과목마다 한 번(바꾸기 전 자동 백업) */
+ function needsLX(s){const A=LS.get('ann.'+s,{});if(!A||typeof A!=='object')return false;for(const k in A)if(Array.isArray(A[k])&&A[k].some(o=>o&&typeof o==='object'&&o.x&&!o.v&&!o.lx))return true;return false;}
+ function enrich(s){const X=LXT[s];if(!X||S!==s)return 0;let n=0,todo=0;for(const k in ANN)(ANN[k]||[]).forEach(o=>{if(o&&typeof o==='object'&&o.x&&!o.v&&!o.lx)todo++;});if(!todo)return 0;
+  autoBak(true,'표시 위치 보강 전');
+  for(const k in ANN)(ANN[k]||[]).forEach(o=>{if(!o||typeof o!=='object'||!o.x||o.v||o.lx)return;const T0=X[k];const r=T0!=null?oldLocate(T0,o.x,o.i):null;
+   if(!r){o.lx=1;return;}o.p=T0.slice(Math.max(0,r[0]-CTX),r[0]);o.s=T0.slice(r[1],r[1]+CTX);o.v=fnv(T0);n++;});
+  persist();return n;}
  /* 복원 — 찾지 못한 표시는 버리지 않고 B._lost에 모아 lost:1로 계속 저장(commit이 함께 씀). 다음에 찾으면 lost를 뗌 */
  function blocks(root){return $$('[data-aid]',root).filter(B=>!B.closest(SKIP)&&!B.classList.contains('res'));}
  function restore(root){let ch=false;blocks(root).forEach(B=>{B._lost=[];const list=ANN[B.dataset.aid];if(!list||!list.length)return;
-   list.forEach(a=>{if(!a||typeof a!=='object')return;const r=a.x?locate(index(B).s,a.x,a.i):null;if(r){wrap(B,r[0],r[1],a.t,a.c||'y','r'+(++GID));if(a.lost){delete a.lost;ch=true;}}else{if(!a.lost){a.lost=1;ch=true;}B._lost.push(a);}});});if(ch)persist();else updLost();}
+   const TX=index(B).s,hv=fnv(TX);list.forEach(a=>{if(!a||typeof a!=='object')return;const r=a.x?resolve(TX,a,hv):null;
+    if(r){wrap(B,r[0],r[1],a.t,a.c||'y','r'+(++GID));if(a.lost){delete a.lost;ch=true;}
+     if(a.v!==hv){const x=TX.slice(r[0],r[1]);let i=0,q=-1;while((q=TX.indexOf(x,q+1))>=0&&q<r[0])i++;a.x=x;a.i=i;a.p=TX.slice(Math.max(0,r[0]-CTX),r[0]);a.s=TX.slice(r[1],r[1]+CTX);a.v=hv;delete a.lx;ch=true;}}   /* 찾은 자리로 다시 닻 내림 — 다음부터는 i 그대로 */
+    else{if(!a.lost){a.lost=1;ch=true;}B._lost.push(a);}});});if(ch)persist();else updLost();}
  function redraw(){const st=$('#stage');$$('[data-rk],[data-pre]',st).forEach(unwrap);restore(st);}
  function push(){U.push(JSON.stringify(ANN));if(U.length>80)U.shift();R=[];upd();}
  function commit(B){const l=snap(B).concat((B._lost||[]).map(o=>Object.assign({},o,{lost:1})));if(l.length)ANN[B.dataset.aid]=l;else delete ANN[B.dataset.aid];persist();}
  function upd(){const u=$('#k-undo'),r=$('#k-redo');if(u)u.disabled=!U.length;if(r)r.disabled=!R.length;}
  function undo(){if(!U.length)return toast('되돌릴 표시가 없어요');R.push(JSON.stringify(ANN));ANN=JSON.parse(U.pop());persist();redraw();upd();}
  function redo(){if(!R.length)return;U.push(JSON.stringify(ANN));ANN=JSON.parse(R.pop());persist();redraw();upd();}
- function setMode(m){mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');
+ function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');
   if(mode)toast(mode==='h'?'형광펜 — 누르면 어절, 누른 채 끌면 범위 (손가락은 길게 누른 뒤 끌기)':'빈칸 — 누르면 어절, 끌면 한 묶음 빈칸');}
  function clearOverlap(B,a,b){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
   gs.forEach(g=>{(typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g]).forEach(unwrap);});}
@@ -1062,7 +1149,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  addEventListener('storage',e=>{if(S&&e.key===NS+'ann.'+S){ANN=LS.get('ann.'+S,{});U=[];R=[];upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}});
  $('#k-lost').onclick=()=>{if(!CUR.s)return;openDoc(CUR.s,'_marks');const el=$('#mk-lost');if(el)goEl(el);};
  return{load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
-  textOf(B){return index(B).s;},locate,setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN,
+  textOf(B){return index(B).s;},locate,resolve,enrich,needsLX,fnv,enriched(){return ENR;},setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN,
   drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push();L.splice(i,1);if(!L.length)delete ANN[aid];persist();}};})();
 const memoBase={v:''};
 /* 다른 창(같은 브라우저)에서 바꾼 채점·이해함·메모를 반영 */
@@ -1125,17 +1212,29 @@ $('#bkup').onclick=()=>{tFlush();dl('JBL허브_백업_'+day()+'.json',{app:'jblh
 function mergeInto(data){const J=v=>{try{return JSON.parse(v);}catch(e){return null;}};let n=0;
  for(const k in data){const cur=localStorage.getItem(k),inc=data[k];if(cur==null){localStorage.setItem(k,inc);n++;continue;}if(cur===inc)continue;const a=J(cur),b=J(inc);if(a==null||b==null)continue;const key=k.slice(NS.length);
   if(key.indexOf('ann.')===0){for(const aid in b){const L=a[aid]||[];const sig=o=>o.t+'|'+o.x+'|'+(o.i||0);const have=new Set(L.map(sig));b[aid].forEach(o=>{if(!have.has(sig(o))){L.push(o);n++;}});a[aid]=L;}localStorage.setItem(k,JSON.stringify(a));}
-  else if(key.indexOf('mk.')===0){['ok','ng','bm'].forEach(t=>{a[t]=Object.assign({},mkObj(b[t]),mkObj(a[t]));});const la=mkObj(a.log),lb=mkObj(b.log);for(const id in lb){const u={};[].concat(Array.isArray(la[id])?la[id]:[],Array.isArray(lb[id])?lb[id]:[]).forEach(x=>{if(x&&x.t)u[x.t+x.r]=x;});la[id]=Object.values(u).sort((p,q)=>p.t-q.t).slice(-10);}if(Object.keys(la).length)a.log=la;localStorage.setItem(k,JSON.stringify(a));n++;}
+  else if(key.indexOf('mk.')===0){const pref={};for(const id in mkObj(a.ok))pref[id]='ok';for(const id in mkObj(a.ng))pref[id]=pref[id]?pref[id]:'ng';   /* 기록이 없으면 지금 기기의 채점을 따름 */
+   ['ok','ng','bm'].forEach(t=>{a[t]=Object.assign({},mkObj(b[t]),mkObj(a[t]));});const la=mkObj(a.log),lb=mkObj(b.log);for(const id in lb){const u={};[].concat(Array.isArray(la[id])?la[id]:[],Array.isArray(lb[id])?lb[id]:[]).forEach(x=>{if(x&&x.t)u[x.t+x.r]=x;});la[id]=Object.values(u).sort((p,q)=>p.t-q.t).slice(-10);}if(Object.keys(la).length)a.log=la;fixGrades(a,pref);localStorage.setItem(k,JSON.stringify(a));n++;}
   else if(key.indexOf('done.')===0){localStorage.setItem(k,JSON.stringify(Object.assign({},b,a)));n++;}
   else if(key==='time'||key==='timed'){for(const d in b){a[d]=a[d]||{};for(const s in b[d])a[d][s]=Math.max(a[d][s]||0,b[d][s]);}localStorage.setItem(k,JSON.stringify(a));n++;}
   else if(key.indexOf('memo.')===0){if(typeof a==='string'&&typeof b==='string'&&a.indexOf(b)<0){localStorage.setItem(k,JSON.stringify(a+(a?'\n\n— 백업에서 합침 —\n':'')+b));n++;}}}
  return n;}
-function autoBak(force,why){try{const data=dumpAll();const s=JSON.stringify(data);if(!force&&s===autoBak.last)return;autoBak.last=s;const idx=(LS.get('autobak.i',0)+1)%5;localStorage.setItem(NS+'autobak.'+idx,JSON.stringify(why?{at:Date.now(),why,data}:{at:Date.now(),data}));LS.set('autobak.i',idx);}catch(e){}}
+/* 자동 백업 v3 (F3) — 5분마다·시작 15초 뒤 '바뀐 경우만'(마지막 저장본의 데이터와 비교 — 새로고침해도 같은 것을 또 쓰지 않음).
+   원고 갱신·이관 직전 백업(why)은 따로 3칸(autobak.p0~2)에 두어 주기 백업이 밀어내지 못함 · 복원 창 맨 위 */
+/* 비교는 공부 기록(표시·채점·이해함·메모·플래시카드)만 — 읽던 위치·시간처럼 늘 바뀌는 값 때문에 같은 백업을 또 쓰지 않게 */
+const bakSig=d=>JSON.stringify(Object.keys(d).filter(k=>/^jblhub\.v1\.(ann|mk|done|memo|fc)\./.test(k)).sort().map(k=>[k,d[k]]));
+function autoBak(force,why){try{const data=dumpAll();const s=bakSig(data);
+  if(why){const pi=(LS.get('autobak.pi',-1)+1)%3;localStorage.setItem(NS+'autobak.p'+pi,JSON.stringify({at:Date.now(),why,data}));LS.set('autobak.pi',pi);autoBak.last=s;return;}
+  if(s===autoBak.last)return;const li=LS.get('autobak.i',null);if(li!=null){try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+li)||'null');if(j&&j.data&&bakSig(j.data)===s){autoBak.last=s;return;}}catch(e){}}
+  autoBak.last=s;const idx=((li==null?-1:li)+1)%5;localStorage.setItem(NS+'autobak.'+idx,JSON.stringify(force?{at:Date.now(),why:'바꾸기 전',data}:{at:Date.now(),data}));LS.set('autobak.i',idx);}catch(e){}}
 setInterval(()=>autoBak(false),5*60*1000);setTimeout(()=>autoBak(false),15000);
-function openRestore(){const p=$('#rpop');if(p.classList.contains('on')){p.classList.remove('on');return;}const snaps=[];for(let i=0;i<5;i++){const v=localStorage.getItem(NS+'autobak.'+i);if(v){try{const j=JSON.parse(v);snaps.push([i,j.at,j.why||'']);}catch(e){}}}snaps.sort((a,b)=>b[1]-a[1]);
+function openRestore(){const p=$('#rpop');if(p.classList.contains('on')){p.classList.remove('on');return;}const snaps=[],pre=[];for(let i=0;i<5;i++){const v=localStorage.getItem(NS+'autobak.'+i);if(v){try{const j=JSON.parse(v);snaps.push([String(i),j.at,j.why||'']);}catch(e){}}}
+ for(let i=0;i<3;i++){const v=localStorage.getItem(NS+'autobak.p'+i);if(v){try{const j=JSON.parse(v);pre.push(['p'+i,j.at,j.why||'원고 갱신 전']);}catch(e){}}}snaps.sort((a,b)=>b[1]-a[1]);pre.sort((a,b)=>b[1]-a[1]);
+ const tm=at=>new Date(at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
  p.innerHTML=`<div class="bt">복원</div><div class="small">백업 파일(.json)에서 가져오기</div><div class="row"><button class="btn pri" id="rmerge">합치기 (권장)</button><button class="btn" id="rover">덮어쓰기</button></div><div class="small">합치기 = 지금 표시·채점·메모는 그대로 두고 백업의 것을 더함 · 덮어쓰기 = 백업 상태로 교체</div>
- <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(5분마다, 최근 5개 — 이 브라우저 안)</span></div><div class="row">${snaps.map(([i,at,why])=>`<button class="btn" data-snap="${i}"${why?` title="${why}"`:''}>${new Date(at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}${why?' · '+why:''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div><button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;p.classList.add('on');
+ ${pre.length?`<div class="small" style="margin-top:10px">원고 갱신·표시 이관 직전 상태 <span class="small">(따로 보관 — 주기 백업이 밀어내지 않음)</span></div><div class="row">${pre.map(([i,at,why])=>`<button class="btn" data-snap="${i}">${tm(at)} · ${why}</button><button class="btn sm" data-snapdl="${i}" title="이 시점을 백업 파일로 받기">⬇ 파일</button>`).join('')}</div>`:''}
+ <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(바뀌었을 때만 5분마다, 최근 5개 — 이 브라우저 안)</span></div><div class="row">${snaps.map(([i,at,why])=>`<button class="btn" data-snap="${i}"${why?` title="${why}"`:''}>${tm(at)}${why?' · '+why:''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div><button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;p.classList.add('on');
  $('#rmerge').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#rover').onclick=()=>{$('#rfile').dataset.how='over';$('#rfile').click();};$('#rclose').onclick=()=>p.classList.remove('on');
+ $$('[data-snapdl]',p).forEach(b=>b.onclick=()=>{try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+b.dataset.snapdl));dl('JBL허브_백업_'+(j.why||'자동').replace(/\s+/g,'')+'_'+day(new Date(j.at))+'.json',{app:'jblhub',v:2,at:new Date(j.at).toISOString(),data:j.data});}catch(e){toast('백업을 읽지 못했어요');}});
  $$('[data-snap]',p).forEach(b=>b.onclick=()=>{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+b.dataset.snap));if(!confirm(new Date(j.at).toLocaleString('ko-KR')+' 상태로 되돌릴까요? (지금 상태는 먼저 자동 백업해 둡니다)'))return;autoBak(true);for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)localStorage.removeItem(k);}for(const k in j.data)localStorage.setItem(k,j.data[k]);location.reload();});}
 $('#rstr').onclick=openRestore;
 $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const how=e.target.dataset.how||'merge';const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(j.app!=='jblhub')throw 0;tFlush();autoBak(true);
@@ -1170,8 +1269,8 @@ function migrateAids(s){if(AMIG[s])return;AMIG[s]=1;const X=aidIdx(s),A0=Kit.all
  const put=(a,o)=>{const L=A[a]=A[a]||[];if(!L.some(x=>sig(x)===sig(o)))L.push(o);};
  keys.forEach(k=>{const isAid=X.aids.has(k),cands=(isAid?[k]:[]).concat(X.alt[k]||[]),lm=/^([^:]+):([^:]+):/.exec(k),keep=[];
   A[k].forEach(o=>{if(!o||typeof o!=='object')return;let tgt=null;
-   if(o.x){tgt=cands.find(c=>T[c]!=null&&Kit.locate(T[c],o.x,o.i))||null;
-    if(!tgt&&lm){const pre=lm[1]+':'+lm[2]+':';const hits=Object.keys(T).filter(a=>a.indexOf(pre)===0&&a!==pre+'sum'&&a!==pre+'frame'&&Kit.locate(T[a],o.x,0));if(hits.length===1)tgt=hits[0];}}
+   if(o.x){tgt=cands.find(c=>T[c]!=null&&Kit.resolve(T[c],o))||null;
+    if(!tgt&&lm){const pre=lm[1]+':'+lm[2]+':';const hits=Object.keys(T).filter(a=>a.indexOf(pre)===0&&a!==pre+'sum'&&a!==pre+'frame'&&Kit.resolve(T[a],o));if(hits.length===1)tgt=hits[0];}}
    if(tgt===k){keep.push(o);return;}tot++;
    if(tgt){const c=Object.assign({},o);delete c.lost;put(tgt,c);mv++;}
    else if(isAid)keep.push(o);
@@ -1182,6 +1281,10 @@ function migrateAids(s){if(AMIG[s])return;AMIG[s]=1;const X=aidIdx(s),A0=Kit.all
  if(JSON.stringify(A)===JSON.stringify(A0)&&!dmv)return;
  autoBak(true,'원고 갱신 전');Kit.setAll(A);if(dmv)LS.set('done.'+s,DN);
  if(mv||lost||dmv)toast('원고가 바뀌어 표시 '+tot+'개 중 '+mv+'개를 옮겼어요'+(lost?' · 못 찾은 '+lost+'개는 🖍 내 표시 모아보기에':'')+(dmv?' · 이해함 ✓ '+dmv+'개 이관':''));}
+/* 옛 표시 문맥 보강(Kit.enrich)을 한 과목 — 지금 원고에서 찾을 수 없는 것은 lost로 두고 한 번만 알림(F2) */
+function legacyNote(s){if(!Kit.enriched()||LS.get('lxnote.'+s,0))return;const T=aidText(s),A=JSON.parse(JSON.stringify(Kit.all()));let n=0,lost=0;
+ for(const k in A)(A[k]||[]).forEach(o=>{if(!o||typeof o!=='object'||!o.x)return;n++;if(T[k]==null||!Kit.resolve(T[k],o)){o.lost=1;lost++;}});
+ LS.set('lxnote.'+s,1);if(!lost)return;Kit.setAll(A);toast('화면 구조가 바뀌어 표시 '+n+'개 중 '+lost+'개는 ⚠ 위치 잃은 표시로 보관했어요 — 🖍 내 표시 모아보기에서 확인',6000);}
 /* 🖍 내 표시 모아보기 — ⚠ 위치를 잃은 표시(aidMap에 없는 키·lost)를 맨 위에 강의별로(옛 제목·[이 과목에서 찾기]·[버리기]),
    그다음 강의별 표시(칩을 누르면 그 표시 묶음을 화면 가운데로·깜빡임), 끝에 📝 메모(문서별 앞 120자·[열기]) */
 function marksHTML(p){const ANN=Kit.all(),m=aidMap(p.id),S=p.id;const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
@@ -1215,7 +1318,13 @@ document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
 /* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */
 function boot(){const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;}
-let pend=0;SUBJECTS.forEach(([id])=>{if(PACKS[id]||(Array.isArray(READY)&&READY.indexOf(id)<0))return;pend++;const s=document.createElement('script');s.src='packs/'+id+'.js';s.onload=s.onerror=()=>{if(--pend===0)boot();};document.head.appendChild(s);});if(!pend)boot();
+/* 팩 → (옛 표시가 남은 과목만) 옛 기준선 → 시작. 팩 판이 허브 판과 다르면(배포 중 캐시 섞임) 새로고침 안내 + 표시·채점 잠금 */
+function staleCheck(){if(HUB_BUILD==='dev')return;const bad=Object.keys(PACKS).filter(id=>PACKS[id].build&&PACKS[id].build!==HUB_BUILD);if(!bad.length&&!Object.keys(PACKS).some(id=>!PACKS[id].build))return;
+ STALE=true;document.body.classList.add('stale');const b=document.createElement('div');b.id='stalebar';b.className='noann';b.innerHTML='새 버전이 있어요 — 새로고침해야 형광펜·채점이 저장돼요 <button class="btn pri" id="stalego">새로고침</button>';document.body.prepend(b);
+ $('#stalego').onclick=()=>{const u=location.pathname+'?v='+HUB_BUILD+'.'+Date.now().toString(36)+location.hash;location.replace(u);};}
+function loadLX(){let n=0;const go=()=>{staleCheck();boot();};Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();}
+let pend=0;SUBJECTS.forEach(([id])=>{if(PACKS[id]||(Array.isArray(READY)&&READY.indexOf(id)<0))return;pend++;const s=document.createElement('script');s.src='packs/'+id+'.js'+(PV&&PV[id]?'?v='+PV[id]:'');s.onload=s.onerror=()=>{if(--pend===0)loadLX();};document.head.appendChild(s);});if(!pend)loadLX();
+window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 })();
 </script>
 </body></html>

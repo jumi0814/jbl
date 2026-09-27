@@ -12,7 +12,7 @@ async def open_(pg, h, w=800):
 WORD = """(w)=>{const out=[];const tw=document.createTreeWalker(document.querySelector('#stage'),NodeFilter.SHOW_TEXT);let n;while(n=tw.nextNode()){let i=n.nodeValue.indexOf(w);while(i>=0){if(n.parentElement.offsetParent){const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+w.length);const rs=[...r.getClientRects()].filter(x=>x.width>0);const tops=new Set(rs.map(x=>Math.round(x.top)));out.push(tops.size);}i=n.nodeValue.indexOf(w,i+1);}}return out;}"""
 async def main():
     for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
-        P = json.loads(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read()[len('JBLHUB.register('):-2])
+        P = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read())
         bad = sum(1 for L in P['lect'] for blk in re.findall(r'<div class="mblk">(.*?)</div>(?=<div class="mblk">|</td>)', L['sum'], flags=re.S) if blk.count('<div class=ci>') > 6)
         n2 = sum(L['sum'].count('more2') for L in P['lect'])
         ok(bad == 0, f'{s} 정리표 세부 칸 7개↑ 그대로 둔 블록 0 · 더 보기 버튼 {n2}')
