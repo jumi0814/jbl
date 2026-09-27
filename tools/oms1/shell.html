@@ -432,6 +432,10 @@ tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
 /* 그림 확대창 v3(U29) — 캡션·넘기기 범위·44px 버튼·불러오는 중 */
 #mbar .btn{min-width:44px;min-height:44px}#mcap{color:#EDE6D8;font-size:14px;line-height:1.5;padding:0 16px 8px;max-width:980px}#mcap[hidden]{display:none}
 #mspin{color:#fff;text-align:center;padding:40px 0;font-size:15px}#mspin::before{content:"";display:block;width:34px;height:34px;margin:0 auto 12px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:mspin .8s linear infinite}@keyframes mspin{to{transform:rotate(360deg)}}
+/* 검색 v2(U30) */
+.shead{display:flex;align-items:center;gap:12px}.shead h2{flex:1}.sgrp{margin:14px 0}.sgt{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.sres{display:flex!important;flex-direction:column;gap:3px}.sres .stl{display:flex;align-items:center;gap:8px}.sres .stl b{color:#35322D}.sres .ssn{font-size:13.5px;color:#4A453E;line-height:1.55}.sres mark{background:var(--mark);color:inherit;padding:0 1px;border-radius:2px}
+.sgrp .smore{display:none!important}.sgrp.all .smore{display:flex!important}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -1059,18 +1063,42 @@ document.addEventListener('keydown',e=>{const tg=e.target;if(tg&&(/INPUT|SELECT|
  if(JB.one&&isJBv()&&$('#cards')){const c=JB.vis[JB.cur];if(e.key==='ArrowLeft'){JB.go(-1);return;}if(e.key==='ArrowRight'||e.key==='Enter'){JB.go(1);return;}
   if(e.key===' '){e.preventDefault();if(c){c.classList.toggle('open');togLabel(c);}return;}if(c&&(k==='o'||k==='x')){JB.grade(k==='o'?'ok':'ng');return;}if(c&&k==='b'){mark(c.dataset.id,'bm','toggle');return;}}});
 /* ---------- 검색 ---------- */
-let SIDX=null;function buildSearch(){SIDX=[];const tmp=document.createElement('div');for(const s in PACKS){const p=PACKS[s];const add=(d,t,html,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).forEach(b=>SIDX.push({s,d,t,aid:b.dataset.aid,label,txt:b.textContent.replace(/\s+/g,' ')}));};
-  p.lect.forEach(L=>add(L.k,'learn',L.learn,L.title+' · 학습'));add('_jb','',cardsHTML(p,p.order),'JB 문제');add('_tbl','',p.tables.map(x=>x.html).join(''),'비교표');add('_pred','',p.preds.map(x=>x.html).join(''),'예상문제');}}
-/* 검색 화면 = '#/?q=…'(과목 한정이면 &s=SID) — 처음 들어갈 때 push, 입력을 고치는 동안은 replace. 뒤로가기로 결과 화면·스크롤 복원 */
-let SQ={q:'',s:''};
+/* ---------- 검색 v2(U30) — 색인: 블록 사이 ' · '·버튼·채점 줄·머리 칩 줄 제외 · 결과: 과목색 점 + '과목 · 강의 · 카드 n 제목'/'JB 12번 (24·23)' + <mark> 스니펫
+   · 지금 과목 먼저·과목별 20건 + 더 보기 · 검색 전 화면을 기억(SQ.from) — 검색창을 비우거나 Esc·'✕ 닫기'면 그 화면·위치로 ---------- */
+let SIDX=null;
+function sText(el){el.querySelectorAll('.acts,.acts2,.qhead,.qsub,button,.noann,.ansnow,figure,img,.badge,.car').forEach(x=>x.remove());el.querySelectorAll('div,li,p,h3,h4,h5,td,th,tr,section,ul,ol,figcaption,summary,.fl,.chip,.ycell,.tq').forEach(x=>x.append(' · '));
+ return el.textContent.replace(/\s+/g,' ').replace(/(\s*·\s*){2,}/g,' · ').replace(/^\s*·\s*|\s*·\s*$/g,'').trim();}
+function buildSearch(){SIDX=[];const tmp=document.createElement('div');for(const s in PACKS){const p=PACKS[s];
+  const add=(d,t,html,kind,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).filter(b=>!/~h$/.test(b.dataset.aid)).forEach(b=>{const c=b.cloneNode(true);let ti='';
+   if(kind==='learn'){const bd=b.querySelector('.thead .badge'),en=b.querySelector('.thead .en');ti=bd&&en?'카드 '+bd.textContent.trim()+' '+en.textContent.trim():(b.classList.contains('frame')?'이 강의의 틀':'');}
+   else if(kind==='jb'){const id=b.dataset.id||'',m=/^Q0*(\d+)$/.exec(id),ys=(b.dataset.yrs||'').split(' ').filter(Boolean);ti='JB '+(m?m[1]+'번':id)+(ys.length?' ('+ys.join('·')+')':'');}
+   else if(kind==='tbl'){const t_=b.querySelector('.tbt');ti='비교표 '+(t_?t_.textContent.trim():'');}
+   else if(kind==='pred'){const q_=b.querySelector('.pq');ti='예상 '+(q_?q_.textContent.trim().slice(0,40):'');}
+   SIDX.push({s,d,t,aid:b.dataset.aid,label,ti,txt:sText(c)});});};
+  p.lect.forEach(L=>add(L.k,'learn',L.head+L.learn,'learn',sname(p,L.k)));add('_jb','',cardsHTML(p,p.order),'jb','');add('_tbl','',p.tables.map(x=>x.html).join(''),'tbl','');add('_pred','',p.preds.map(x=>x.html).join(''),'pred','');}}
+let SQ={q:'',s:'',from:null};
+function searchFrom(){if(VIEW!=='doc'||!CUR.s)return VIEW==='home'?{home:1,y:Math.round(scrollY)}:null;const P=probePos();return {s:CUR.s,d:CUR.d,t:CUR.t,pos:P?{aid:P.aid,off:P.off}:null,y:Math.round(scrollY)};}
 function search(q,o){o=o||{};q=String(q||'').trim();const ql=q.toLowerCase();if(ql.length<2)return;if(!SIDX)buildSearch();const only=(o.s&&PACKS[o.s])?o.s:'';
+ const VIEW_WAS_SEARCH=VIEW==='search',from=VIEW==='search'?SQ.from:(o.from!==undefined?o.from:searchFrom());
  leaveView();const push=o.push!==false&&VIEW!=='search'&&VIEW!=='none';if(push)stampHist();
- const out=[];for(const r of SIDX){if(only&&r.s!==only)continue;const i=r.txt.toLowerCase().indexOf(ql);if(i<0)continue;out.push(r,i);if(out.length>=80)break;}
- let h=`<h2>검색: ${q.replace(/[<&]/g,'')}${only?' <span class="small">— '+PACKS[only].title+'에서</span>':''}</h2><div class="lead">${out.length/2}건${out.length>=80?' 이상':''} — 누르면 해당 위치로 이동</div>`;for(let k=0;k<out.length;k+=2){const r=out[k],i=out[k+1];const sn=r.txt.slice(Math.max(0,i-40),i+ql.length+70).replace(/[<&]/g,'');h+=`<button class="res" data-s="${r.s}" data-d="${r.d}" data-t="${r.t}" data-aid="${r.aid}"><b>${PACKS[r.s].title} · ${r.label}</b><div class="small">…${sn}…</div></button>`;}
- VIEW='search';SQ={q,s:only};document.title='검색: '+q+' — JBL 허브';RET=null;retPill();if($('#gsearch').value.trim()!==q)$('#gsearch').value=q;
+ const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const by={};let tot=0;
+ for(const r of SIDX){if(only&&r.s!==only)continue;const i=r.txt.toLowerCase().indexOf(ql);if(i<0)continue;(by[r.s]=by[r.s]||[]).push([r,i]);tot++;}
+ const first=(from&&from.s)||CUR.s||'';const order=Object.keys(by).sort((a,b)=>(b===first)-(a===first)||SUBJECTS.findIndex(x=>x[0]===a)-SUBJECTS.findIndex(x=>x[0]===b));
+ const sur=(t,k)=>k>0&&k<t.length&&/[\uDC00-\uDFFF]/.test(t[k])?k-1:k;const snip=(txt,i)=>{const a=sur(txt,Math.max(0,i-50)),b=sur(txt,Math.min(txt.length,i+ql.length+80));return (a?'…':'')+E(txt.slice(a,i))+'<mark>'+E(txt.slice(i,i+ql.length))+'</mark>'+E(txt.slice(i+ql.length,b))+(b<txt.length?'…':'');};
+ let h=`<div class="shead"><h2>검색: ${E(q)}${only?' <span class="small">— '+PACKS[only].title+'에서</span>':''}</h2><button class="btn" id="sclose" title="검색 전 화면으로 (Esc)">✕ 닫기</button></div><div class="lead">${tot}건 — 누르면 그 자리로 이동${order.length>1?' · 지금 과목 먼저':''}</div>`;
+ order.forEach(s=>{const P=PACKS[s],L=by[s];h+=`<div class="sgrp"><div class="sgt"><i class="sjdot" style="background:${P.color}"></i>${E(P.title)} <span class="small">${L.length}건</span></div>`+L.map(([r,i],n)=>{const where=r.d==='_jb'?'':r.d==='_tbl'||r.d==='_pred'?'':E(r.label)+' · ';
+   return `<button class="res sres${n>=20?' smore':''}" data-s="${r.s}" data-d="${E(r.d)}" data-t="${E(r.t)}" data-aid="${E(r.aid)}"><span class="stl"><i class="sjdot" style="background:${P.color}"></i><b>${s} · ${where}${E(r.ti||'')}</b></span><span class="ssn">${snip(r.txt,i)}</span></button>`;}).join('')+(L.length>20?`<button class="btn sm" data-smore="1">더 보기 (${L.length-20})</button>`:'')+'</div>';});
+ if(!tot)h+='<div class="panel">찾는 글자가 없어요.</div>';
+ const pushed=push||(VIEW_WAS_SEARCH&&SQ.pushed);VIEW='search';SQ={q,s:only,from,pushed};document.title='검색: '+q+' — JBL 허브';RET=null;retPill();if($('#gsearch').value.trim()!==q)$('#gsearch').value=q;
  $('#subj').hidden=true;document.body.classList.add('at-home');$('#home').hidden=false;$('#home').innerHTML=h;measure();
  histSet(only?{q,sj:only}:{q},'#/?q='+encodeURIComponent(q)+(only?'&s='+only:''),push);window.scrollTo(0,o.y||0);}
-let st_;$('#gsearch').addEventListener('input',e=>{clearTimeout(st_);st_=setTimeout(()=>search(e.target.value,{s:VIEW==='search'?SQ.s:''}),250);});
+/* 검색 닫기 — 검색에 들어오며 쌓은 기록이면 뒤로(그 화면의 위치까지), 아니면 기억해 둔 화면을 직접 엶 */
+function closeSearch(){if(VIEW!=='search')return;const f=SQ.from;$('#gsearch').value='';$('#gsearch').blur();
+ if(history.state&&history.state.q!=null&&f&&history.length>1&&SQ.pushed){history.back();return;}
+ if(f&&f.s)openDoc(f.s,f.d,f.t,null,{pos:f.pos,y:f.y});else home({y:f&&f.y});}
+$('#home').addEventListener('click',e=>{if(e.target.closest('#sclose')){closeSearch();return;}const m=e.target.closest('[data-smore]');if(m){m.parentElement.classList.add('all');m.remove();}});
+let st_;$('#gsearch').addEventListener('input',e=>{clearTimeout(st_);const v=e.target.value;if(!v.trim()){if(VIEW==='search')closeSearch();return;}st_=setTimeout(()=>search(v,{s:VIEW==='search'?SQ.s:''}),250);});
+$('#gsearch').addEventListener('keydown',e=>{if(e.key==='Escape'&&VIEW==='search'){e.preventDefault();closeSearch();}});
 /* ---------- 백업·복원 v2 — 합치기(기본)·덮어쓰기·자동 백업 시점으로 되돌리기 ---------- */
 function dumpAll(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)o[k]=localStorage.getItem(k);}return o;}
 function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
