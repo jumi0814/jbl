@@ -302,7 +302,13 @@ def lec_card(L, j, c):
         exbuf.clear()
     for t, v in c['body']:
         if t != 'E': flush_ex()
-        if t == 'K': key = v; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_key(v, ctx)}</div>')
+        if t == 'K':
+            ks = lecparse.key_split(v)
+            if len(v) > 180: KEYLONG[k] = KEYLONG.get(k, 0) + 1
+            if ks:   # 🔑이 길면 첫 조각만 상자에 — 나머지는 상자 밖 본문·정리표 세부 칸으로
+                key = ks[0]; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_key(ks[0], ctx)}</div>' + lecparse.render_key_rest(ks[1], ctx))
+                curb = {'h': '', 'items': list(ks[1])}; blocks.append(curb)
+            else: key = v; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_key(v, ctx)}</div>')
         elif t == 'h': h.append(f'<h4 class="sh">{lecparse.inline(v, ctx)}</h4>'); curb = {'h': v, 'items': []}; blocks.append(curb)
         elif t == 'b':
             h.append(lecparse.render_item(v, ctx))
@@ -331,7 +337,7 @@ def lec_card(L, j, c):
            f'<td><div class="mg">{lecparse.inline(c["gist"], ctx)}</div>{("<div class=mkey><b>🔑</b> " + lecparse.render_block(key, ctx) + "</div>") if key else ""}</td><td>{det}</td><td class="mt">{ex}</td><td class="mnote">{mem}</td></tr>')
     return ''.join(h), mx, ids, lab, row
 
-lect = []
+lect = []; KEYLONG = {}
 for L in LEC:
     k = L['k']; cards = []; rows = []; grps = []; curg = None; outline = []
     for j, c in enumerate(L['cards']):
@@ -365,6 +371,7 @@ for L in LEC:
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
                  'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(next((n for n in L['notes'] if re.search(r'시험|강조|예고|공개|QUIZ|퀴즈|별표', n)), ''))})
 
+print('🔑 180자 초과 카드(상자 밖으로 나눔 대상):', ' · '.join(f'{L_["k"]} {KEYLONG.get(L_["k"], 0)}' for L_ in LEC))
 # ---- 비교표(칸 안의 ' / ' 나열을 줄 단위로)
 tables = []; cur = None
 for line in open(DIR + '/tables.txt', encoding='utf-8'):

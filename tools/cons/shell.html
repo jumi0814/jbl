@@ -369,6 +369,11 @@ details.scards{margin:2px 0 8px 14px;border-left:2px solid var(--line);padding-l
 .sjsw{display:flex;align-items:center;gap:8px;margin:0 0 10px;padding:0 4px}.sjdot{width:12px;height:12px;border-radius:50%;flex:none}#sjsel{flex:1;min-width:0;font:inherit;font-size:14px;font-weight:700;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);min-height:38px}
 .frame .fsrc{font-size:12.5px;color:var(--sub);margin:-2px 0 6px}
 .hero.cmp{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;padding:8px 20px 9px}#dtabs{padding-top:5px;padding-bottom:5px}#stage{padding-top:12px}.hero.cmp .kick{flex-basis:100%;font-size:11.5px;letter-spacing:.1em;line-height:1.35}.hero.cmp h1{font-size:20px;margin:1px 0 0;line-height:1.25}.hero.cmp .sub{display:none}.hero.cmp .hchips{margin:0}.hero.cmp .hchip:not(#hstat){display:none}
+/* 정리본 렌더 v7(U23) — 짧은 나열 가로 흐름 · 여러 조각에 걸친 기출 문장 블록 · 목록만 든 li 점 숨김(안전망) */
+ul.kflow{list-style:none;margin:2px 0;padding:0;line-height:1.66}ul.kflow>li{display:inline;padding:0}ul.kflow>li+li::before{content:" · ";color:var(--faint);font-weight:700}ul.kflow.lab b.lbl{margin-right:2px}
+.hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
+li.hlb{box-shadow:inset 3px 0 0 #F2C94C}li.hlb0::after{content:"기출 문장";position:absolute;right:0;top:4px;font-size:11px;font-weight:800;color:#7C5E0E}.klist>li.hlb{padding-left:16px}
+.klist>li:has(>ul:first-child,>ol:first-child)::before{display:none}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
