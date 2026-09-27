@@ -355,7 +355,7 @@ for L in LEC:
     top_ids = sorted(jb_ids, key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
     top = ''.join(f'<li>{ychips([i])} {esc(QMAP[i]["short"][:46])}{"…" if len(QMAP[i]["short"]) > 46 else ""}</li>' for i in top_ids)
     gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button></div>'
-    head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div>{("<div class=flow>" + flow + "</div>") if flow else ""}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
+    head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div><div class="fsrc">출처 {esc(L["file"])}</div>{("<div class=flow>" + flow + "</div>") if flow else ""}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
             f'<div class="ftop"><div class="ct">⭐ 많이 나온 순</div><ol>{top}</ol></div></div>{"".join(f"<p class=fnote>{lecparse.inline(n, ctx)}</p>" for n in L["notes"])}</section>{gp}')
     summ = f'<div class="pills noann"><span class="small">강의 전체를 한 표로 — 주제를 누르면 학습 탭의 그 카드로, 연도를 누르면 문제로 이동합니다. ⚡자동 빈칸(빨간 글씨)으로 가리고 복습할 수 있습니다.</span></div><div class="tblwrap wide" data-aid="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><thead><tr><th style="width:15%">주제</th><th style="width:20%">한 줄 요지 · 🔑 핵심</th><th style="width:30%">세부 내용</th><th style="width:17%">⭐ 기출 — 이렇게 나왔다</th><th style="width:18%">⚡ 암기 줄</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>'
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
@@ -554,13 +554,15 @@ for key, v in lecimg.items():
 img_files = {c: "JBLHUB.images('%s',%s,'%s');" % (SID, js(o), c) for c, o in CH.items()}
 shell = open(DIR + '/shell.html', encoding='utf-8').read()
 OUT = J.DOCS; os.makedirs(OUT + '/packs', exist_ok=True)
-open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', ''))
 open(OUT + f'/packs/{SID}.js', 'w', encoding='utf-8').write(pack_js)
+# 허브가 불러올 팩 = docs/packs에 실제로 있는 <SID>.js (없는 과목은 '자료 대기' 카드 — 404 방지)
+READY = [x for x in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'] if os.path.exists(OUT + f'/packs/{x}.js')]
+open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)))
 for f_ in os.listdir(OUT + '/packs'):
     if f_.startswith(SID + '.img'): os.remove(OUT + '/packs/' + f_)
 for c, t in img_files.items(): open(OUT + f'/packs/{SID}.img.{c}.js', 'w', encoding='utf-8').write(t)
 SINGLE = _os.path.join(J.WORK, f'{S.TITLE.replace(" ", "")}_JBL.html')   # 단일 파일판 — work/에만, 커밋 안 함
-open(SINGLE, 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '<script>' + pack_js + '</script>\n' + ''.join('<script>' + t + '</script>\n' for t in img_files.values())))
+open(SINGLE, 'w', encoding='utf-8').write(shell.replace('null/*READY*/', '[]').replace('<!--INLINE_PACKS-->', '<script>' + pack_js + '</script>\n' + ''.join('<script>' + t + '</script>\n' for t in img_files.values())))
 # ---- 검증
 inlec = {i for L in LEC for c in L['cards'] for i in (list(c['jb']) + [i_ for b in c['body'] if b[0] == 'E' for i_ in b[1][0]])}
 print('⭐ 시험포인트로 다뤄지지 않은 연결 기출:', sorted({i for L in LEC for c in L['cards'] for i in c['jb']} - {i_ for L in LEC for c in L['cards'] for b in c['body'] if b[0] == 'E' for i_ in b[1][0]}))
