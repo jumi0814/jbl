@@ -345,7 +345,7 @@ HINTS = []
 for L in LEC:
     for n in L['notes']:
         if re.search(r'시험|예고|강조|공개|keyword|키워드|별표|QUIZ|퀴즈', n): HINTS.append({'k': L['k'], 't': L['title'], 'h': lecparse.inline(n, ctx)})
-pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)},
+pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
         'tiers': TIERS, 'top': top, 'trends': trends_html, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbbar': jbbar, 'sumall': ''.join(sumall), 'ledger': ledger}
 js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 pack_js = 'JBLHUB.register(' + js(pack) + ');'
