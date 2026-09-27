@@ -374,6 +374,23 @@ ul.kflow{list-style:none;margin:2px 0;padding:0;line-height:1.66}ul.kflow>li{dis
 .hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
 li.hlb{box-shadow:inset 3px 0 0 #F2C94C}li.hlb0::after{content:"기출 문장";position:absolute;right:0;top:4px;font-size:11px;font-weight:800;color:#7C5E0E}.klist>li.hlb{padding-left:16px}
 .klist>li:has(>ul:first-child,>ol:first-child)::before{display:none}
+/* 이 강의의 틀 v7(U24) — 출처 줄·📣 교수님 예고·강조·출제 경향 접기·📌 한 줄·목차 두 단·⭐ 상위 5 */
+.frame{padding:12px 16px}.frame .frt{margin-bottom:0}.frame .fsrc{font-size:12.5px;color:var(--sub);margin:0 0 8px;line-height:1.5}
+.frame .flow{margin-bottom:8px}.frame .fhint{margin:6px 0 8px;padding:6px 0 6px 14px}.fhint .fh{font-size:14.5px;color:var(--ink);line-height:1.6}.fhint .fh+.fh{margin-top:3px}
+details.trend{margin:8px 0 0;padding:6px 12px}details.trend>summary{cursor:pointer;font-size:13.5px;list-style:none;display:flex;gap:8px;align-items:baseline}details.trend>summary::-webkit-details-marker{display:none}
+details.trend>summary::before{content:"▸";color:var(--acc);font-size:12px;transition:transform .15s}details.trend[open]>summary::before{transform:rotate(90deg)}details.trend>summary b{color:var(--acc);white-space:nowrap}details.trend .tsl{color:#4A453E;min-width:0}
+details.trend[open]>summary{margin-bottom:6px}details.trend .tnote{margin-bottom:6px}
+.frame .tstr{margin:4px 0 8px;font-size:13.5px;line-height:1.5;padding:3px 10px}
+.frame .fcols{display:block}.frame .outline{column-count:2;column-gap:20px}.frame .outline .og{break-after:avoid;margin-top:4px}.frame .outline .og:first-child{margin-top:0}
+.frame .ol{display:grid;grid-template-columns:1.6em minmax(0,1fr) auto;column-gap:6px;row-gap:0;align-items:baseline;break-inside:avoid;padding:2px 8px 2px 6px;margin:1px 0;font-size:13.5px;line-height:1.45}
+.frame .ol b{grid-row:1;grid-column:1}.frame .ol .ot{grid-row:1;grid-column:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.frame .ol .oy{grid-row:1;grid-column:3}.frame .ol .og2{grid-row:2;grid-column:2/4;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;line-height:1.4}
+.oy i{font-style:normal;font-weight:600;color:var(--faint);margin-right:2px}
+.frame .ftop{margin-top:10px;padding:8px 14px}.frame .ftop ol{list-style:none;padding:0;margin:0}.frame .ftop li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:start;margin:5px 0;line-height:1.45}.ftop li .jbchip{white-space:nowrap}.ftop li .tq{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13.5px}.frame .ftop li.tmore{display:none}.frame .ftop.all li.tmore{display:grid}
+.frame .flow{display:block;line-height:1.9;font-size:13.5px}.frame .flow .fl{display:inline-block;margin:2px 22px 2px 0;background:var(--tint);border:0;border-radius:5px;padding:1px 7px;font-weight:600;line-height:1.5}.frame .flow .fl:last-child{margin-right:0}
+.frame .fsrc{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}.frame .fsrc.all{display:block}.ftop .tmorebtn{margin-left:8px;font-size:12px;padding:1px 10px;min-height:0;vertical-align:1px}@media (min-width:700px){.frame .ftop ol{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}}
+@media (max-width:860px){.frame .ol{display:flex;flex-wrap:nowrap;gap:6px}.frame .ol b{flex:none;min-width:1.4em}.frame .ol .ot{flex:0 1 auto;max-width:58%}.frame .ol .og2{flex:1 1 0;min-width:0;white-space:nowrap;display:block}.frame .ol .oy{flex:none}
+ details.trend .tsl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media (max-width:600px){.frame .outline{column-count:1}}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -770,7 +787,7 @@ function fillThumbs(root){const im=$$('img[data-img]:not([src])',root);if(!im.le
 function go(id,o){o=Object.assign({qid:id},o||{});const p=PACKS[CUR.s];const L=p.lect.find(x=>x.k===CUR.d);if(L&&L.jb.indexOf(id)>=0)openDoc(CUR.s,CUR.d,'jb',null,o);else openDoc(CUR.s,'_jb',null,null,o);}
 $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e.target.closest('.res');if(rs){resClick(rs);return;}
  /* 📖 정리본 절 펼침 선호(lkopen) — 사용자가 머리를 눌렀을 때만 저장 · 머리 안의 '카드로 이동' 버튼은 펼치지 않음 */
- const sm=e.target.closest('details.ab.lk>summary');if(sm){if(e.target.closest('button'))e.preventDefault();else{const dt=sm.parentElement;setTimeout(()=>{LS.set('lkopen',dt.open);},0);}}const t=e.target.closest('button,[data-ttog],figure[data-fig],#fcard');if(!t)return;const d=t.dataset;
+ const sm=e.target.closest('details.ab.lk>summary');if(sm){if(e.target.closest('button'))e.preventDefault();else{const dt=sm.parentElement;setTimeout(()=>{LS.set('lkopen',dt.open);},0);}}const t=e.target.closest('button,[data-ttog],[data-fsrc],figure[data-fig],#fcard');if(!t)return;const d=t.dataset;
  /* 다른 화면으로 뛰는 칩이면 출발점을 기억(↩ 알약) — openDoc이 쓰고 비움 */
  if(d.go||d.golec||d.scroll2||(t.classList.contains('cite')&&d.p==='')){PENDRET=retFrom();queueMicrotask(()=>{PENDRET=null;});}
  if(d.mkgo){marksGo(d.mkgo,+d.mki);return;}if(d.lostfind!==undefined){const x=d.lostfind;if(x.trim().length<2){toast('글자가 너무 짧아 찾을 수 없어요');return;}search(x,{s:CUR.s});return;}
@@ -788,6 +805,8 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.jbn){openDoc(CUR.s,'_jb');const F=JB.F;if(F){F.n=+d.jbn;F.mine='';F.sort='n';JB.sync();JB.apply(true);if(d.one&&!JB.one)$('#fone').click();else{JB.cur=0;JB.show();}window.scrollTo(0,0);}return;}   /* 2회 이상만(+한 장씩) */
  if(d.sumrep){openDoc(CUR.s,'_sum');const b=$('#stage [data-filt="rep"]');if(b&&!b.classList.contains('on'))b.click();return;}
  if(d.hmore){t.closest('.hints').classList.add('all');t.remove();return;}
+ if(d.tmore){t.closest('.ftop').classList.add('all');t.remove();return;}
+ if(d.fsrc){t.classList.toggle('all');return;}
  if(d.d&&(t.classList.contains('lcard')||t.classList.contains('ljc'))){openDoc(CUR.s,d.d,'learn');return;}
  if(d.thumbs){const b=t.closest('.tbody').querySelector('.thumbs');b.hidden=!b.hidden;if(!b.hidden)fillThumbs(b);return;}
  if(d.scroll){const el=document.getElementById(d.scroll);if(el)revealCard(el);return;}

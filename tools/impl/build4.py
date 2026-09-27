@@ -272,8 +272,15 @@ def yl(yrs, full=False):
     ys = ['%02d' % y for y in yrs]
     if full or len(ys) <= 5: return '·'.join(ys)
     return '·'.join(ys[:4]) + f' +{len(ys) - 4}'
+def ylab(yrs):
+    """연도 표기 통일(U24): '24·23·21 (3회)' — 4개 초과는 앞 4개 + '+n'"""
+    ys = ['%02d' % y for y in yrs]
+    return ('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) + (f' ({len(ys)}회)' if len(ys) >= 2 else '')
 def ychips(ids):
-    return ''.join(f'<button class="jbchip{" rep" if len(QMAP[i]["yrs"]) >= 2 else ""}" data-go="{i}" title="{"·".join(YR(y) for y in QMAP[i]["yrs"])}">{("·".join(YR(y) for y in QMAP[i]["yrs"]) if len(QMAP[i]["yrs"]) <= 4 else "·".join(YR(y) for y in QMAP[i]["yrs"][:3]) + "…")}년{(" · " + str(len(QMAP[i]["yrs"])) + "회") if len(QMAP[i]["yrs"]) >= 2 else ""}</button>' for i in ids if i in QMAP)
+    return ''.join(f'<button class="jbchip{" rep" if len(QMAP[i]["yrs"]) >= 2 else ""}" data-go="{i}" title="{"·".join(YR(y) for y in QMAP[i]["yrs"])}년">{ylab(QMAP[i]["yrs"])}</button>' for i in ids if i in QMAP)
+def short_clean(t):
+    """문항 요약 끝의 JB 괄호 연도 '(21,22,24)'·'(24, 탈)' 떼기 — 연도는 칩에 있음"""
+    return re.sub(r'\s*\([^()]*\b\d{2}\b[^()]*\)\s*\.?\s*$', '', t).strip() or t
 def mini_table(rows):
     head = ''.join(f'<th>{lecparse.inline(c, ctx)}</th>' for c in rows[0])
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
@@ -287,7 +294,7 @@ def lec_card(L, j, c):
         lab = '별도 파일' if a > 100 else ('필기본' if a == 0 else ('%s%d' % (pl_, a) if a == b else '%s%d–%d' % (pl_, a, b)))
     kk = getattr(S, 'ALT_KEY', {}).get(k, k) if (m and int(m.group(1)) > 100) else k
     ys = sorted({y for x in ids for y in QMAP[x]['yrs']}, reverse=True)
-    ych = f'<span class="chip yr n{min(mx,3)}" title="{"·".join(YR(y) for y in ys)}">기출 {yl(ys)}</span>' if ids else ''
+    ych = f'<span class="chip yr n{min(mx,3)}" title="{"·".join(YR(y) for y in ys)}">기출 {ylab(ys)}</span>' if ids else ''
     prof = any(b[0] == 'P' for b in c['body'])
     tg = ' · '.join(x for x in c['tag'].split(' · ') if not x.strip().startswith('기출'))
     tagc = f'<span class="chip tagc">{esc(tg)}</span>' if tg else ''
@@ -337,6 +344,45 @@ def lec_card(L, j, c):
            f'<td><div class="mg">{lecparse.inline(c["gist"], ctx)}</div>{("<div class=mkey><b>🔑</b> " + lecparse.render_block(key, ctx) + "</div>") if key else ""}</td><td>{det}</td><td class="mt">{ex}</td><td class="mnote">{mem}</td></tr>')
     return ''.join(h), mx, ids, lab, row
 
+profS = {}
+for q in Q:
+    if q['tier'] == 'C' or not q.get('st') or not (q['prof'] or '').strip(): continue
+    profS.setdefault((q['prof'] or '').split('(')[0], []).append(q)
+# 교수별 요약(U21): 한 줄 요약 · 📌 전략(여러 교수에 공통인 항목은 '공통:'으로 한 번만, 교수별로는 다른 부분만) · 연도별 칸은 접힘
+PSM = {p_: trend.summarize(qs) for p_, qs in profS.items()}
+PPARTS = {p_: trend.tendency_parts(PSM[p_], p_, MENT_PROF.get(p_, '')) for p_ in profS}
+# 최근 2개 시험 해에 한 문항도 없는 교수(예전 담당)는 요약·전략에서 빼고 세부(접힘)에만
+_ymax = max((y for q in Q for y in q['yrs']), default=0)
+PCUR = [p_ for p_ in profS if max((y for q in profS[p_] for y in q['yrs']), default=0) >= _ymax - 1] or list(profS)
+POLD = [p_ for p_ in profS if p_ not in PCUR]
+_sl = [PPARTS[p_][1] for p_ in PCUR]
+SCOMMON = [x for x in _sl[0] if all(x in l_ for l_ in _sl[1:])] if len(_sl) >= 2 else []
+PSTRAT = {p_: ' · '.join(PPARTS[p_][1]) for p_ in profS}   # 강의 틀의 📌 한 줄(그 강의 교수 것 전체)
+def strat_tag(x):
+    """전략 항목 → 교수 줄의 짧은 꼬리표(형식·탈 성격) — 판정(완짤형 등)은 요약 줄에 이미 있음"""
+    if x.startswith('기출이 걸린 카드'): return '탈=변형'
+    if x.startswith('아직 안 나온 카드'): return '탈=새 영역'
+    if x.startswith('💬'): return '💬 강조 카드'
+    m = re.match(r'^(서술형|객관식|빈칸|T/F|단답형):', x)
+    return m.group(1) if m else ''
+prow = ''; psum = ''; SUSE = {}
+for p_, qs in profS.items():
+    SM = PSM[p_]; t_ = ' / '.join(PPARTS[p_][0])
+    lecs = sorted({LECNAME.get(q['lk'], '') for q in qs if q['lk']})
+    note = S.PROF_NOTE.get(p_, '')
+    prow += f'<tr><th>{esc(p_)}<div class="small">{esc(" · ".join(lecs))}{("<br>" + esc(note)) if note else ""}</div></th><td><div class="yrow">{trend.years_html(SM)}</div></td><td><div class="tlines">{"".join(f"<div>{x}</div>" for x in t_.split(" / "))}</div></td></tr>'
+    if p_ not in PCUR: continue
+    tags = [t for t in (strat_tag(x) for x in PPARTS[p_][1] if x not in SCOMMON) if t]
+    for x in PPARTS[p_][1]:
+        if x not in SCOMMON: SUSE.setdefault(x, []).append(p_)
+    psum += f'<li title="{esc(t_)}"><span class="tsl">{esc(trend.prof_line(p_, SM))}</span>{(" <span class=tk>· " + esc(" · ".join(tags)) + "</span>") if tags else ""}</li>'
+# 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
+strat_html = (f'<div class="tc0"><b>공통:</b> {" · ".join(SCOMMON)}</div>' if SCOMMON else '') + (('<div class="tsx">' + ''.join(f'<span>{esc(x)} <i>{esc("·".join(ps))}</i></span>' for x, ps in SUSE.items()) + '</div>') if SUSE else '')
+PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not None]
+trends_html = (f'<div class="panel ptrend"><div class="bt">교수별 출제 경향 · 📌 공부 전략 <span class="small">— JB 자료에서 산출(짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음)</span></div><ul class="tsum">{psum}</ul>'
+               + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
+               + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></div>')
+top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_clean(q['short']), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 lect = []; KEYLONG = {}
 for L in LEC:
     k = L['k']; cards = []; rows = []; grps = []; curg = None; outline = []
@@ -348,7 +394,7 @@ for L in LEC:
             rows.append(f'<tr class="grow"><td colspan="5">{esc(curg)}</td></tr>')
         cards.append(ch); rows.append(row)
         ys = sorted({y for x in ids for y in QMAP[x]['yrs']}, reverse=True)
-        outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}"><b>{j+1}</b><span class="ot">{esc(c["ko"])}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy>" + yl(ys) + "</span>") if ys else ""}</button>')
+        outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}" title="{esc(c["gist"])}"><b>{j+1}</b><span class="ot">{esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c["ko"]) or c["ko"])}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy><i>기출</i> " + ylab(ys) + "</span>") if ys else ""}</button>')
     jb_ids = sorted([q['id'] for q in Q if q['tier'] != 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
     flow = ''.join(f'<span class="fl">{lecparse.inline(x.strip(), ctx)}</span>' for x in L['map'].split('→')) if L['map'] else ''
     LQ = [q for q in Q if q['tier'] != 'C' and q['lk'] == k and q.get('st')]
@@ -357,19 +403,24 @@ for L in LEC:
     for q in sorted(LQ, key=lambda q: -q['st']['latest']['y']):
         a = q['st']['latest']
         if a['kind'] == '탈': tal_list += f'<li><button class="jbchip" data-go="{q["id"]}">{YR(a["y"])}</button> {esc(q["short"][:44])} <span class="small">— {a["tal"]}{" · 교수 강조" if a.get("emph") else ""} · {esc(q["st"]["fmt"])}</span></li>'
-    trend_html = f'<div class="trend"><div class="frt2">출제 경향 <span class="small">— JB 자료에서 산출(짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음)</span></div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}<div class="tstr">📌 공부 전략: {tstrat}</div></div>'
+    pk_ = re.split(r'[(·,/]', L['prof'])[0].strip()
+    strat_ = PSTRAT.get(pk_) or tstrat
+    trend_html = (f'<details class="trend"><summary><b>출제 경향</b> <span class="tsl">{esc(trend.short_line(SM))}</span></summary><div class="small tnote">JB 자료에서 산출 — 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음</div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}'
+                  + (f'<div class="small">이 강의 기출만으로 본 전략: {tstrat}</div>' if strat_ != tstrat else '') + f'</details><div class="tstr">📌 공부 전략{(" (" + esc(pk_) + ")") if strat_ != tstrat else ""}: {strat_}</div>')
     top_ids = sorted(jb_ids, key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
-    top = ''.join(f'<li>{ychips([i])} {esc(QMAP[i]["short"][:46])}{"…" if len(QMAP[i]["short"]) > 46 else ""}</li>' for i in top_ids)
+    ltop = ''.join(f'<li{" class=tmore" if n_ >= 5 else ""}>{ychips([i])} <span class="tq">{esc(short_clean(QMAP[i]["short"]))}</span></li>' for n_, i in enumerate(top_ids))
+    NH = [x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)]; NO = [x for n in L['notes'] for x in split_note(n) if not HINT_RE.search(x)]
+    hint_html = f'<div class="co c-prof fhint"><div class="ct">📣 교수님 예고·강조</div>{"".join(f"<div class=fh>{lecparse.inline(x, ctx)}</div>" for x in NH)}</div>' if NH else ''
     gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button></div>'
-    head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div><div class="fsrc">출처 {esc(L["file"])}</div>{("<div class=flow>" + flow + "</div>") if flow else ""}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
-            f'<div class="ftop"><div class="ct">⭐ 많이 나온 순</div><ol>{top}</ol></div></div>{"".join(f"<p class=fnote>{lecparse.inline(n, ctx)}</p>" for n in L["notes"])}</section>{gp}')
+    head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div><div class="fsrc" data-fsrc="1" title="눌러서 전체 보기">출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
+            f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div></div></section>{gp}')
     summ = f'<div class="pills noann"><span class="small">강의 전체를 한 표로 — 주제를 누르면 학습 탭의 그 카드로, 연도를 누르면 문제로 이동합니다. ⚡자동 빈칸(빨간 글씨)으로 가리고 복습할 수 있습니다.</span></div><div class="tblwrap wide" data-aid="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><thead><tr><th style="width:15%">주제</th><th style="width:20%">한 줄 요지 · 🔑 핵심</th><th style="width:30%">세부 내용</th><th style="width:17%">⭐ 기출 — 이렇게 나왔다</th><th style="width:18%">⚡ 암기 줄</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>'
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.inline(x, ctx)} for c in L['cards'] for x in c['recall']]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
-                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(next((n for n in L['notes'] if re.search(r'시험|강조|예고|공개|QUIZ|퀴즈|별표', n)), ''))})
+                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
 print('🔑 180자 초과 카드(상자 밖으로 나눔 대상):', ' · '.join(f'{L_["k"]} {KEYLONG.get(L_["k"], 0)}' for L_ in LEC))
 # ---- 비교표(칸 안의 ' / ' 나열을 줄 단위로)
@@ -481,45 +532,6 @@ for q in Q:
     p_ = (q['prof'] or '').split('(')[0]
     if p_ and p_ not in profs: profs.append(p_)
 # JB 필터 막대는 허브(shell.html jbBar)가 pack.jbprofs·jbyears·tcount로 그림 — 과목 JB 문제와 강의 기출 탭이 같이 씀
-profS = {}
-for q in Q:
-    if q['tier'] == 'C' or not q.get('st') or not (q['prof'] or '').strip(): continue
-    profS.setdefault((q['prof'] or '').split('(')[0], []).append(q)
-# 교수별 요약(U21): 한 줄 요약 · 📌 전략(여러 교수에 공통인 항목은 '공통:'으로 한 번만, 교수별로는 다른 부분만) · 연도별 칸은 접힘
-PSM = {p_: trend.summarize(qs) for p_, qs in profS.items()}
-PPARTS = {p_: trend.tendency_parts(PSM[p_], p_, MENT_PROF.get(p_, '')) for p_ in profS}
-# 최근 2개 시험 해에 한 문항도 없는 교수(예전 담당)는 요약·전략에서 빼고 세부(접힘)에만
-_ymax = max((y for q in Q for y in q['yrs']), default=0)
-PCUR = [p_ for p_ in profS if max((y for q in profS[p_] for y in q['yrs']), default=0) >= _ymax - 1] or list(profS)
-POLD = [p_ for p_ in profS if p_ not in PCUR]
-_sl = [PPARTS[p_][1] for p_ in PCUR]
-SCOMMON = [x for x in _sl[0] if all(x in l_ for l_ in _sl[1:])] if len(_sl) >= 2 else []
-PSTRAT = {p_: ' · '.join(PPARTS[p_][1]) for p_ in profS}   # 강의 틀의 📌 한 줄(그 강의 교수 것 전체)
-def strat_tag(x):
-    """전략 항목 → 교수 줄의 짧은 꼬리표(형식·탈 성격) — 판정(완짤형 등)은 요약 줄에 이미 있음"""
-    if x.startswith('기출이 걸린 카드'): return '탈=변형'
-    if x.startswith('아직 안 나온 카드'): return '탈=새 영역'
-    if x.startswith('💬'): return '💬 강조 카드'
-    m = re.match(r'^(서술형|객관식|빈칸|T/F|단답형):', x)
-    return m.group(1) if m else ''
-prow = ''; psum = ''; SUSE = {}
-for p_, qs in profS.items():
-    SM = PSM[p_]; t_ = ' / '.join(PPARTS[p_][0])
-    lecs = sorted({LECNAME.get(q['lk'], '') for q in qs if q['lk']})
-    note = S.PROF_NOTE.get(p_, '')
-    prow += f'<tr><th>{esc(p_)}<div class="small">{esc(" · ".join(lecs))}{("<br>" + esc(note)) if note else ""}</div></th><td><div class="yrow">{trend.years_html(SM)}</div></td><td><div class="tlines">{"".join(f"<div>{x}</div>" for x in t_.split(" / "))}</div></td></tr>'
-    if p_ not in PCUR: continue
-    tags = [t for t in (strat_tag(x) for x in PPARTS[p_][1] if x not in SCOMMON) if t]
-    for x in PPARTS[p_][1]:
-        if x not in SCOMMON: SUSE.setdefault(x, []).append(p_)
-    psum += f'<li title="{esc(t_)}"><span class="tsl">{esc(trend.prof_line(p_, SM))}</span>{(" <span class=tk>· " + esc(" · ".join(tags)) + "</span>") if tags else ""}</li>'
-# 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
-strat_html = (f'<div class="tc0"><b>공통:</b> {" · ".join(SCOMMON)}</div>' if SCOMMON else '') + (('<div class="tsx">' + ''.join(f'<span>{esc(x)} <i>{esc("·".join(ps))}</i></span>' for x, ps in SUSE.items()) + '</div>') if SUSE else '')
-PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not None]
-trends_html = (f'<div class="panel ptrend"><div class="bt">교수별 출제 경향 · 📌 공부 전략 <span class="small">— JB 자료에서 산출(짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음)</span></div><ul class="tsum">{psum}</ul>'
-               + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
-               + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></div>')
-top = [{'id': q['id'], 'yrs': q['yrs'], 'short': q['short'], 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 ledger = B.view_led()
 # 과목 홈 공부 순서(U21): subject.py의 GUIDE(선택) — [(굵은 제목, 설명, 실행 버튼 키)]. 없으면 자동 규칙(JB 통계만):
 #   교수별 최근 해 짤 비율 평균 ≥ 60%면 1단계 = '⭐ 2회 이상 n문항 · 한눈표로 답부터'. 실행 키: resume(이어서 학습)·todo(안 푼 것)·rep(2회 이상만 풀기)·sumrep(한눈표 2회 이상)
