@@ -303,6 +303,14 @@ body.at-home #kit,body.at-home #kitshow,body.at-home #autopop,body.at-home #memo
 @media (pointer:coarse){button.chip.lec,.jbchip,.xjb,.cite{min-height:32px}.dn{width:40px;height:40px}.tg,.btn{min-height:38px}
  #kit .sw{width:28px;height:28px}#kit button{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;padding:4px 8px}
  .tchips,.qsub,.qhead,.acts,.pills,.hchips{gap:8px}}
+/* ===== 이동 v3: ↩ 돌아가기 알약 · 답 바로 보기 · 표시 깜빡임 · 내 표시 모아보기 ===== */
+#retpill{position:fixed;right:16px;bottom:calc(var(--kith) + 16px);z-index:69;height:44px;padding:0 18px;border-radius:22px;border:0;background:var(--acc);color:#fff;font-weight:700;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.25);display:none;max-width:calc(100vw - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+#retpill.on{display:block}body.at-home #retpill{display:none!important}
+.qc .ansnow{margin-left:auto;font-size:12.5px}.qc.open .ansnow{display:none}.qc .ansnow.hl{background:var(--acc);color:#fff;border-color:var(--acc);box-shadow:0 0 0 3px rgba(191,154,74,.45)}
+@keyframes mkf{0%,100%{box-shadow:0 0 0 0 rgba(179,38,30,0)}50%{box-shadow:0 0 0 4px rgba(179,38,30,.55)}}.mkflash{animation:mkf .65s ease-in-out 4;border-radius:3px}
+button.mk{border:0;font:inherit;font-size:13.5px;color:inherit;cursor:pointer;text-align:left}button.mk:hover{filter:brightness(.95);text-decoration:underline}
+.mk-where{font-size:13.5px;color:var(--sub);margin:2px 0}.mk-where b{color:var(--ink)}.mk-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.mk-memo{white-space:pre-wrap;margin:4px 0;color:var(--ink)}
+.mk-sum{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;margin-top:6px}.mk-sum b{color:var(--acc)}.mk-sum .lostn b{color:#B3261E}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -310,6 +318,7 @@ body.at-home #kit,body.at-home #kitshow,body.at-home #autopop,body.at-home #memo
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
 <div id="kit" class="noann"><button id="k-h" title="형광펜 (H): 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (A): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)">↶</button><button id="k-redo" title="다시 실행">↷</button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="빈칸 전체 보이기/가리기">👁</button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기">🧹</button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 숨기기 (V)">✕</button></div>
 <button id="kitshow" class="noann">✎</button>
+<button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button>
 <div id="autopop" class="noann"><div class="small" style="color:#B9B2A2">자동 빈칸 — 지금 보이는 화면에 적용</div><label><input type="radio" name="am" value="red" checked> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mprev">◀</button><button class="btn" id="mnext">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mwrap"><img id="mimg" alt=""></div></div>
@@ -368,7 +377,7 @@ function tPop(){const p=$('#tpop');if(p.classList.contains('on')){p.classList.re
 $('#clock').onclick=tPop;tBtn();
 
 /* ---------- 홈 ---------- */
-function home(){tFlush();if(T.run&&T.autoRun)tStop();CUR={s:null,d:null,t:null};$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
+function home(opt){opt=opt||{};leaveView();const push=opt.push!==false&&VIEW!=='home'&&VIEW!=='none';if(push)stampHist();tFlush();if(T.run&&T.autoRun)tStop();CUR={s:null,d:null,t:null};VIEW='home';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
  let g='';SUBJECTS.forEach(([id,ko])=>{const p=PACKS[id];if(p){const mk=getMK(id),ok=Object.keys(mk.ok).length,ng=Object.keys(mk.ng).length,dn=Object.keys(LS.get('done.'+id,{})).length,nc=p.lect.reduce((a,L)=>a+L.nsec,0);
    g+=`<div class="scard" data-s="${id}" style="border-top-color:${p.color}"><div class="en serif">${p.en}</div><div class="ko">${p.title} · ${p.profs}</div><div class="st"><span class="chip n2">기출 ${p.stats.cards}문항</span><span class="chip n1">2회 이상 ${p.stats.rep}</span><span class="chip">강의 정리본 ${p.lect.length}</span><span class="chip">비교표 ${p.tables.length}</span><span class="chip">예상 ${p.preds.length}</span></div><div class="pbar" style="margin-top:10px"><i class="ok" style="width:${ok/p.stats.cards*100}%"></i><i class="ng" style="width:${ng/p.stats.cards*100}%"></i></div><div class="small" style="margin-top:5px">기출 맞음 ${ok} · 틀림 ${ng} · 정리본 읽음 ${dn}/${nc} · 갱신 ${p.built}</div></div>`;}
   else g+=`<div class="scard off"><div class="en serif">${ko}</div><div class="ko">자료 대기 — packs/${id}.js 를 넣으면 열립니다</div></div>`;});
@@ -376,9 +385,9 @@ function home(){tFlush();if(T.run&&T.autoRun)tStop();CUR={s:null,d:null,t:null};
  h.innerHTML=`<h2>JBL 허브</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div><div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}
  <div class="panel"><div class="bt">최근 공부 시간</div>${tt?`<table><thead><tr><th>날짜</th><th>합계</th><th>과목별</th></tr></thead><tbody>${tt}</tbody></table>`:'<div class="small">아직 기록이 없습니다. 과목을 열어 공부하면 자동으로 재요(위 시계를 누르면 설정).</div>'}</div>
  <div class="panel"><div class="bt">도움말</div><div class="small">형광펜·빈칸 쓰는 법, 그림 보기, 공부 시간, 백업·복원, 단축키는 오른쪽 위 <b>?</b> 버튼(또는 ? 키)에 모아 두었어요.</div></div>`;
- location.hash='';}
-$('#home').addEventListener('click',e=>{const c=e.target.closest('.scard[data-s]');if(c)openSubj(c.dataset.s);const r=e.target.closest('.res');if(r){openDoc(r.dataset.s,r.dataset.d,r.dataset.t,r.dataset.aid);}});
-$('#gohome').onclick=()=>home();
+ histSet({home:1},'#/',push);measure();window.scrollTo(0,opt.y||0);}
+$('#home').addEventListener('click',e=>{const c=e.target.closest('.scard[data-s]');if(c)openSubj(c.dataset.s);const r=e.target.closest('.res');if(r)resClick(r);});
+$('#gohome').onclick=()=>home();$('#retpill').onclick=()=>goRet();
 /* ---------- 화면 골격: 상단 막대·탭 높이(--toph·--tabh) · 이동 헬퍼 goEl · ☰ 서랍 ---------- */
 const LAY={toph:44,tabh:0,kith:62};
 function measure(){const t=$('#top'),d=$('#dtabs'),k=$('#kit');const th=t?t.offsetHeight:44,bh=(d&&!d.hidden&&d.offsetParent)?d.offsetHeight:0;
@@ -387,28 +396,95 @@ function measure(){const t=$('#top'),d=$('#dtabs'),k=$('#kit');const th=t?t.offs
 if(window.ResizeObserver){const ro=new ResizeObserver(measure);ro.observe($('#top'));ro.observe($('#dtabs'));ro.observe($('#kit'));}addEventListener('resize',measure);measure();
 const topOff=()=>{measure();return LAY.toph+LAY.tabh+12;};
 /* el의 윗변을 상단 막대+탭 바로 아래에 둠(off = 그 요소 안에서 더 내려갈 거리) */
-function goEl(el,off){if(!el)return;window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+scrollY-topOff()+(off||0)));}
+function goEl(el,off){if(!el||!el.isConnected)return;window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+scrollY-topOff()+(off||0)));}
 function navOpen(on){document.body.classList.toggle('navopen',on==null?!document.body.classList.contains('navopen'):!!on);}
 $('#navbtn').onclick=()=>navOpen();$('#navbg').onclick=()=>navOpen(false);
+/* ---------- 주소·뒤로가기(history) · 읽던 위치 · 돌아가기 알약 ----------
+   화면 = VIEW('home'|'search'|'doc') · 문서·탭이 바뀌면 pushState({s,d,t,aid}), 같은 화면이면 replaceState.
+   떠나는 항목에는 {y, pos:{aid,off}}를 적어 두고(stampHist) 뒤로가기(popstate)·해시 직접 수정(hashchange)은 route()가 복원 */
+let VIEW='none',LASTH='',RET=null,PENDRET=null,RETN=0,STL=null;
+try{history.scrollRestoration='manual';}catch(e){}
+const SS={get(k,d){try{const v=sessionStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{sessionStorage.setItem(NS+k,JSON.stringify(v));}catch(e){}}};
+const isJBv=()=>VIEW==='doc'&&(CUR.d==='_jb'||CUR.t==='jb');
+const sname=(p,k)=>{const L=p.lect.find(x=>x.k===k);return String((p.lecname&&p.lecname[k])||(L?L.title:k)).replace(/\s*\([^)]*\)\s*$/,'');};
+function curState(){return VIEW==='doc'?{s:CUR.s,d:CUR.d,t:CUR.t}:VIEW==='search'?Object.assign({q:SQ.q},SQ.s?{sj:SQ.s}:{}):{home:1};}
+function histSet(st,url,push){try{if(push)history.pushState(st,'',url);else history.replaceState(st,'',url);}catch(e){}LASTH=location.hash;}
+/* 떠나기 직전: 지금 항목에 스크롤 위치를 적어 둠(뒤로가기 복원용) */
+function stampHist(){try{const hs=history.state;const o=Object.assign(curState(),hs&&hs.ret?{ret:hs.ret}:{},{y:Math.round(scrollY)});if(VIEW==='doc'){const P=probePos();if(P)o.pos={aid:P.aid,off:P.off};}history.replaceState(o,'',location.href);}catch(e){}}
+function leaveView(){if(STL)STL();if(VIEW==='doc'&&CUR.s){clearTimeout(spT);savePos();if(isJBv())JB.save();}}
+function parseHash(){const h=location.hash||'';let m=/^#\/\?q=([^&]*)(?:&s=([A-Z0-9]+))?/.exec(h);if(m){let q='';try{q=decodeURIComponent(m[1]);}catch(e){q=m[1];}return m[2]?{q,sj:m[2]}:{q};}
+ m=/^#\/([^\/?]+)\/([^\/]+)\/?([^\/]*)/.exec(h);if(m){let d=m[2];try{d=decodeURIComponent(d);}catch(e){}return {s:m[1],d,t:m[3]};}return {home:1};}
+function route(st){st=st||parseHash();if(st.q!=null&&String(st.q).trim().length>=2){search(st.q,{push:false,y:st.y,s:st.sj});return;}
+ if(st.s&&PACKS[st.s]){openDoc(st.s,st.d,st.t,(st.y==null&&!st.pos)?st.aid:null,{push:false,y:st.y,pos:st.pos});return;}home({push:false,y:st.y});}
+addEventListener('popstate',e=>{route(e.state||parseHash());LASTH=location.hash;});
+addEventListener('hashchange',()=>{if(location.hash===LASTH)return;route(parseHash());LASTH=location.hash;});
+/* 위치 맞춤 뒤 그림이 늦게 뜨며 밀리는 것을 1.4초 동안 다시 맞춤 — 사용자가 스크롤·터치·키를 쓰거나 다른 곳에서 스크롤이 바뀌면 즉시 멈춤 */
+function settle(fn){if(STL)STL();let dead=false;const evs=['wheel','touchstart','keydown','mousedown'],de=document.documentElement;de.style.overflowAnchor='none';   /* 맞추는 동안 브라우저 스크롤 고정(anchoring)은 끔 */
+ const stop=()=>{if(dead)return;dead=true;de.style.overflowAnchor='';evs.forEach(ev=>removeEventListener(ev,stop,true));if(STL===stop)STL=null;};
+ evs.forEach(ev=>addEventListener(ev,stop,{capture:true,passive:true}));STL=stop;let y0;const run=()=>{if(dead)return;if(y0!=null&&Math.abs(scrollY-y0)>2){stop();return;}fn();y0=scrollY;};run();[80,300,700,1300].forEach(ms=>setTimeout(run,ms));setTimeout(stop,1400);}
+function findAid(aid){if(!aid)return null;const L=$$('#stage [data-aid]').filter(b=>!b.classList.contains('res'));return L.find(b=>b.dataset.aid===aid)||L.find(b=>b.dataset.alt&&b.dataset.alt.split(' ').indexOf(aid)>=0)||null;}
+/* 지금 화면의 기준 카드 = 상단 막대+탭 아래 첫 [data-aid] · off = 그 카드 윗변이 기준선(topOff)에서 올라간 거리 */
+function probePos(){const line=topOff(),line0=line-12;for(const b of $$('#stage [data-aid]')){if(b.classList.contains('res')||b.offsetParent===null)continue;const r=b.getBoundingClientRect();if(r.height>0&&r.bottom>line0+4){
+  const o={aid:b.dataset.aid,off:Math.round(line-r.top)};const bd=b.querySelector('.thead .badge'),h=b.querySelector('.thead .en,.tbt,.frt,.pq');if(b.classList.contains('qc'))o.ti=b.dataset.id;else if(h)o.ti=((bd?bd.textContent.trim()+'. ':'')+h.textContent.trim()).slice(0,60);if(bd)o.n=bd.textContent.trim();return o;}}return null;}
+function restoreAt(pos,y){const el=pos&&pos.aid?findAid(pos.aid):null;if(el&&el.offsetParent!==null){settle(()=>goEl(el,pos.off||0));return true;}if(y!=null&&!isNaN(+y)){settle(()=>window.scrollTo(0,+y));return true;}return false;}
+/* 숨은 카드로 갈 때 드러내기: JB = tier 켜기·내 필터/검색어 풀기(가린 것만)·한 장씩이면 그 카드로 / 정리본 = 그룹·압축·only- 필터 해제 후 펼침. 답은 opt.open일 때만 */
+function revealCard(el,o){o=o||{};if(!el)return;const st=$('#stage');const c=el.closest('.qc,.tc,.pc,.tblwrap,[data-aid]')||el;
+ if(c.classList.contains('qc')&&JB.F&&$('#cards')){const F=JB.F;if(!F.tiers[c.dataset.tier]){F.tiers[c.dataset.tier]=true;JB.apply(true);}
+  if(c.classList.contains('hid')){F.mine='';F.q='';JB.apply(true);}if(c.classList.contains('hid')){F.prof='';F.lec='';F.n=0;F.ver='';JB.apply(true);}
+  JB.sync();if(JB.one){const i=JB.vis.indexOf(c);if(i>=0){JB.cur=i;JB.show(true);}}}
+ if(c.classList.contains('tc')){if(c.classList.contains('hid')||$$('#stage .gdiv.hid').length){$$('#grppills [data-grp]').forEach(b=>b.classList.toggle('on',b.dataset.grp===''));$$('#stage .tc,#stage .gdiv').forEach(x=>x.classList.remove('hid'));}
+  if(st.classList.contains('cond')){st.classList.remove('cond');const lc=$('#lcond');if(lc)lc.classList.remove('on');}c.classList.add('open');}
+ if(c.classList.contains('pc')&&c.classList.contains('hid')){$$('#ppills [data-ptype]').forEach(b=>b.classList.toggle('on',b.dataset.ptype===''));$$('#stage .pc').forEach(x=>x.classList.remove('hid'));}
+ [...st.classList].filter(x=>x.indexOf('only-')===0).forEach(x=>{if(c.closest('.hid')||getComputedStyle(c).display==='none'){st.classList.remove(x);$$('#stage [data-filt="'+x.slice(5)+'"]').forEach(b=>b.classList.remove('on'));}});
+ let mk=null;if(o.mark){mk=findMark(c,o.mark);if(mk){if(mk[0].closest('.ans'))c.classList.add('open');const dt=mk[0].closest('details');if(dt)dt.open=true;}}
+ if(c.classList.contains('qc')&&!mk){if(o.open)c.classList.add('open');else if(!c.classList.contains('open'))ansHint(c);}
+ settle(()=>{if(mk&&mk[0].isConnected)mk[0].scrollIntoView({block:'center'});else goEl(c);});
+ if(mk){mk.forEach(x=>x.classList.add('mkflash'));setTimeout(()=>mk.forEach(x=>x.classList.remove('mkflash')),2600);}
+ else{c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),1800);}}
+/* 정리본·홈·검색에서 문제로 왔을 때 답은 가린 채, 카드 머리에 '답 바로 보기'를 3초간 강조 */
+function ansHint(c){let b=c.querySelector('.ansnow');if(!b){const h=c.querySelector('.qhead');if(!h)return;b=document.createElement('button');b.className='btn sm ansnow noann';b.dataset.tog='1';b.textContent='답 바로 보기';h.appendChild(b);}b.classList.add('hl');setTimeout(()=>b.classList.remove('hl'),3000);}
+/* 표시 묶음(data-g) 찾기: 글자(공백 무시)가 같은 묶음, 같은 종류 우선 */
+function findMark(c,o){const nz=x=>String(x||'').replace(/\s+/g,'');const want=nz(o.x);if(!want)return null;const gs={},order=[];$$('[data-rk]',c).forEach(e=>{const g=e.getAttribute('data-g')||('_'+order.length);if(!gs[g]){gs[g]=[];order.push(g);}gs[g].push(e);});
+ const cands=order.map(g=>gs[g]).filter(L=>nz(L.map(e=>e.textContent).join(''))===want);if(!cands.length)return null;return cands.find(L=>L[0].getAttribute('data-rk')===o.t)||cands[0];}
+/* 돌아가기 알약 — 📖 칩·기출 칩·인용·go로 다른 화면에 갔을 때 출발점을 기억 */
+function retFrom(){if(VIEW!=='doc'||!CUR.s)return null;const p=PACKS[CUR.s],L=p.lect.find(x=>x.k===CUR.d);const r={s:CUR.s,d:CUR.d,t:CUR.t};
+ if(isJBv()&&JB.F){JB.save();const sv=JB.saved||{};const pre=L?sname(p,CUR.d)+' 기출':'JB';r.label=(JB.one&&JB.vis.length)?pre+' '+(JB.cur+1)+'/'+JB.vis.length:pre+(sv.curId?' '+sv.curId:'');r.curId=sv.curId||null;r.pos=sv.pos||null;return r;}
+ const P=probePos();r.pos=P?{aid:P.aid,off:P.off}:null;const base=L?sname(p,CUR.d):((SUBJDOCS.find(x=>x[0]===CUR.d)||['',CUR.d])[1]).replace(/^\S+\s/,'');r.label=base+(P&&P.n&&CUR.t==='learn'?' 카드 '+P.n:'');return r;}
+function retPill(){const b=$('#retpill');if(!b)return;const on=!!RET&&VIEW==='doc';b.classList.toggle('on',on);if(on)b.textContent='↩ '+RET.label+'로 돌아가기';}
+function goRet(){const r=RET;if(!r)return;RET=null;retPill();if(history.state&&history.state.ret===r.id){history.back();return;}openDoc(r.s,r.d,r.t,null,{pos:r.pos});}
+function resClick(r){const d=r.dataset;if(r.classList.contains('go-resume'))openDoc(d.s,d.d,d.t||undefined,null,{pos:d.aid?{aid:d.aid,off:+d.off||0}:null});else openDoc(d.s,d.d,d.t||undefined,d.aid||undefined);}
 /* ---------- 과목·문서 ---------- */
 const SUBJDOCS=[['_home','🏠 과목 홈','공부 순서 · 진행률 · 강의 목록'],['_jb','📝 JB 문제','전 문항 · 필터·정렬·한 장씩 풀기'],['_sum','🗂 기출 한눈표','강의 순서대로 문제–답 핵심'],['_tbl','📊 비교표','전체'],['_pred','✍️ 예상문제','강의자료 문장으로만 구성'],['_led','📚 기출 대장·JB 원본','수록 대조표·연도 규칙·원본 쪽'],['_marks','🖍 내 표시 모아보기','형광펜·빈칸을 강의별로']];
 function docTabs(p,d){if(d[0]==='_')return [[d,'']];const L=p.lect.find(x=>x.k===d);return [['learn','📖 학습'],['sum','🗂 정리표'],['tbl','📊 비교표 '+L.tbl.length],['jb','📝 기출 '+L.jb.length],['pred','✍️ 예상 '+L.pred.length],['flash','🃏 플래시카드']].filter(t=>!(t[0]==='tbl'&&!L.tbl.length));}
 function openSubj(s){openDoc(s,'_home');}
 function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
  $('#side').innerHTML=`<div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}"></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`;}).join('');}
-function openDoc(s,d,t,aid){const p=PACKS[s];if(!p)return;tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);MK=getMK(s);}
- const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];CUR={s,d,t};$('#home').hidden=true;$('#subj').hidden=false;document.body.classList.remove('at-home');
+function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);MK=getMK(s);}
+ const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];
+ const same=VIEW==='doc'&&CUR.s===s&&CUR.d===d&&CUR.t===t,push=opt.push!==false&&!same&&VIEW!=='none';if(push)stampHist();
+ /* 돌아가기 알약: 칩으로 다른 화면에 가면 출발점 기억 · 도착 문서를 벗어나거나 출발점으로 돌아오면 지움 */
+ let newRet=false;if(pend&&!(pend.s===s&&pend.d===d&&pend.t===t)){RET=Object.assign(pend,{id:(++RETN)+'.'+Date.now(),arr:s+'/'+d});newRet=true;}
+ else if(RET&&(s+'/'+d!==RET.arr||(RET.s===s&&RET.d===d&&RET.t===t)))RET=null;
+ const tgt=aid||opt.qid||opt.id;
+ CUR={s,d,t};VIEW='doc';$('#home').hidden=true;$('#subj').hidden=false;document.body.classList.remove('at-home');
  document.documentElement.style.setProperty('--hero1',p.color);document.documentElement.style.setProperty('--acc',p.color);
  sideRender();
  const L=p.lect.find(x=>x.k===d);
  $('#hero').innerHTML=L?`<div class="kick">${p.title} · ${L.prof} 교수님</div><h1>${L.title}</h1><div class="sub">출처 ${L.file}</div><div class="hchips"><span class="hchip">기출 ${L.jb.length}문항</span><span class="hchip">카드 ${L.nsec}</span><span class="hchip">비교표 ${L.tbl.length}</span><span class="hchip">예상 ${L.pred.length}</span></div>`
    :`<div class="kick">${p.title}</div><h1>${p.en}</h1><div class="sub">JB 기출 전 문항 × 강의자료(26년도 우선, 없으면 25년도) — ${p.profs}</div><div class="hchips"><span class="hchip">기출 ${p.stats.cards}문항</span><span class="hchip">2회 이상 ${p.stats.rep}</span><span class="hchip">강의 정리본 ${p.lect.length}</span><span class="hchip">비교표 ${p.tables.length}</span><span class="hchip">예상 ${p.preds.length}</span></div>`;
  $('#dtabs').innerHTML=tabs.length>1?tabs.map((x,i)=>`<button data-t="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}<span class="kbd">${i+1}</span></button>`).join('')+'<span class="dtname">'+(L?L.title:'')+'</span>':'';$('#dtabs').hidden=tabs.length<2;navOpen(false);measure();
- mount(p,d,t);try{history.replaceState(null,'','#/'+s+'/'+d+'/'+t);}catch(e){}
- if(aid){const el=$('[data-aid="'+aid+'"]',$('#stage'));if(el){el.classList.add('open','flash');goEl(el);setTimeout(()=>el.classList.remove('flash'),1800);}}else window.scrollTo(0,0);
- setTimeout(savePos,300);$('#memot').textContent='메모 — '+(L?L.title:(SUBJDOCS.find(x=>x[0]===d)||['',''])[1]);$('#memota').value=LS.get('memo.'+s+'.'+d,'');memoBase.v=$('#memota').value;}
+ if(!(same&&tgt))mount(p,d,t);   /* 같은 화면 안의 카드로 가는 것이면 다시 그리지 않음 */
+ const st={s,d,t};if(aid)st.aid=aid;if(newRet)st.ret=RET.id;histSet(st,'#/'+s+'/'+d+'/'+t,push);retPill();
+ /* 위치: 목표 카드 → 뒤로가기·이어서 보기의 위치 → JB 풀이 상태 → 탭별 읽던 위치 → 맨 위 */
+ let el=null;if(aid)el=findAid(aid);else if(opt.qid)el=$('#c-'+CSS.escape(opt.qid));else if(opt.id)el=document.getElementById(opt.id);
+ if(el)revealCard(el,{open:opt.open,mark:opt.mark});
+ else if(restoreAt(opt.pos,opt.y)){}
+ else if(isJBv()&&JB.saved&&restoreAt(JB.saved.pos,JB.saved.y)){}
+ else if(!isJBv()&&restoreAt(mkObj(LS.get('pos.'+s,{}))[d+'/'+t],null)){}
+ else window.scrollTo(0,0);
+ setTimeout(savePos,1500);$('#memot').textContent='메모 — '+(L?L.title:(SUBJDOCS.find(x=>x[0]===d)||['',''])[1]);$('#memota').value=LS.get('memo.'+s+'.'+d,'');memoBase.v=$('#memota').value;}
 $('#side').addEventListener('click',e=>{if(e.target.closest('.dbtn'))navOpen(false);const b=e.target.closest('.dbtn');if(b)openDoc(CUR.s,b.dataset.d);});
-$('#dtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)openDoc(CUR.s,CUR.d,b.dataset.t);});
+$('#dtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.t===CUR.t){if(STL)STL();window.scrollTo(0,0);return;}openDoc(CUR.s,CUR.d,b.dataset.t);});   /* 이미 선택된 탭을 한 번 더 누르면 맨 위로 */
 const cardsHTML=(p,ids)=>ids.map(i=>p.cards[i]).join('');
 function lecProg(p,L){const dn=mkObj(LS.get('done.'+p.id,{}));let done=0;(L.aids||[]).forEach(a=>{if(a.some(x=>dn[x]))done++;});const mk=getMK(p.id);let ok=0,ng=0;L.jb.forEach(i=>{if(mk.ok[i])ok++;if(mk.ng[i])ng++;});return {done,ok,ng};}
 function subjHome(p){const mk=getMK(p.id);const nOk=Object.keys(mk.ok).length,nNg=Object.keys(mk.ng).length,nBm=Object.keys(mk.bm).length;const total=p.order.length;const _res=resumeHTML(p.id);
@@ -441,17 +517,28 @@ function paintMarks(st){st=st||$('#stage');$$('.qc',st).forEach(c=>['ok','ng','b
  const DN=mkObj(LS.get('done.'+CUR.s,{}));$$('.tc',st).forEach(c=>c.classList.toggle('done',!!DN[c.dataset.aid]));$$('.ol[data-scroll]',st).forEach(b=>{const c=document.getElementById(b.dataset.scroll);b.classList.toggle('done',!!(c&&c.classList.contains('done')));});}
 const predBar=()=>'<div class="pills noann" id="ppills"><button class="tg on" data-ptype="">전체</button><button class="tg" data-ptype="v">짤 변형</button><button class="tg" data-ptype="n">미출제·교수 강조</button><button class="tg" id="frev">답 모두 펼치기</button><span class="small">실제 기출이 아닙니다 — 문제·답 모두 강의자료 문장으로만 구성</span></div>';
 /* ---------- JB 필터 ---------- */
-const JB={F:null,one:false,cur:0,vis:[],init(){this.F={tiers:{A:true,B:true,C:false},prof:'',lec:'',n:0,ver:'',mine:'',sort:'',q:''};this.one=false;this.apply();},
- apply(){const F=this.F,s=F.q.toLowerCase(),cs=$$('#cards .qc');this.vis=[];
+/* 풀이 상태 {F, one, curId, shuf, y, pos}는 sessionStorage 'jbst.<S>.<문서>'에 — 다른 화면에 다녀와도(사이드바·뒤로가기·↩ 알약) 필터·한 장씩·그 카드 그대로 */
+const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.'+CUR.s+'.'+CUR.d;},
+ init(){const sv=SS.get(this.key(),null);this.F={tiers:{A:true,B:true,C:false},prof:'',lec:'',n:0,ver:'',mine:'',sort:'',q:''};this.one=false;this.shuf=null;this.saved=null;
+  if(sv&&sv.F&&typeof sv.F==='object'){const f=sv.F;Object.keys(this.F).forEach(k=>{if(k==='tiers')Object.assign(this.F.tiers,mkObj(f.tiers));else if(f[k]!=null&&typeof f[k]===typeof this.F[k])this.F[k]=f[k];});this.one=!!sv.one;this.shuf=(sv.shuf&&typeof sv.shuf==='object')?sv.shuf:null;this.saved=sv;}
+  this.sync();this.apply(true);if(sv&&sv.curId){const i=this.vis.findIndex(c=>c.dataset.id===sv.curId);if(i>=0){this.cur=i;this.show(true);}}},
+ /* 필터 버튼 on·select 값·검색어·한 장씩 표시를 F에 맞춤 */
+ sync(){const F=this.F;if(!F)return;$$('#jbbar [data-tier]').forEach(b=>b.classList.toggle('on',!!F.tiers[b.dataset.tier]));$$('#jbbar [data-qf]').forEach(b=>b.classList.toggle('on',b.dataset.qf===F.mine));
+  [['fprof','prof'],['flec','lec'],['fn','n'],['fver','ver'],['fmine','mine'],['fsort','sort']].forEach(([id,k])=>{const e=document.getElementById(id);if(e)e.value=String(F[k]);});const q=$('#fq');if(q)q.value=F.q;
+  const fo=$('#fone');if(fo)fo.classList.toggle('on',this.one);$('#stage').classList.toggle('single',this.one);
+  const more=$('#jbmore');if(more&&more.hidden&&(F.prof||F.lec||F.ver||F.tiers.C||F.tiers.A===false||F.tiers.B===false)){more.hidden=false;const fm=$('#fmore');if(fm)fm.textContent='상세 필터 ▴';}},
+ save(){if(!this.F||!isJBv()||!$('#cards'))return;const P=this.one?null:probePos();const c=this.one?this.vis[this.cur]:(P?findAid(P.aid):null);
+  const o={F:this.F,one:this.one,curId:(c&&c.dataset.id)||null,y:Math.round(scrollY)};if(P)o.pos={aid:P.aid,off:P.off};if(this.F.sort==='r'&&this.shuf)o.shuf=this.shuf;SS.set(this.key(),o);this.saved=o;},
+ apply(ns){const F=this.F,s=F.q.toLowerCase(),cs=$$('#cards .qc');this.vis=[];
   cs.forEach(c=>{const d=c.dataset;let ok=F.tiers[d.tier]&&(!F.prof||d.prof===F.prof)&&(!F.lec||d.lec===F.lec)&&(+d.n>=F.n);
    if(ok&&F.ver==='flag')ok=(d.v==='diff'||d.v==='part');if(ok&&F.ver==='none')ok=d.v==='none';
    if(ok&&F.mine==='bm')ok=!!MK.bm[d.id];if(ok&&F.mine==='ng')ok=!!MK.ng[d.id];if(ok&&F.mine==='todo')ok=!MK.ok[d.id]&&!MK.ng[d.id];
    if(ok&&s)ok=c.textContent.toLowerCase().includes(s);c.classList.toggle('hid',!ok);
-   let o=+d.idx;if(F.sort==='n')o=(9-+d.n)*1e5+(99-+d.y0)*1e3+ +d.idx;else if(F.sort==='y')o=(99-+d.y0)*1e5+(9-+d.n)*1e3+ +d.idx;else if(F.sort==='r')o=Math.floor(Math.random()*1e6);c.style.order=o;c._o=o;if(ok)this.vis.push(c);});
+   let o=+d.idx;if(F.sort==='n')o=(9-+d.n)*1e5+(99-+d.y0)*1e3+ +d.idx;else if(F.sort==='y')o=(99-+d.y0)*1e5+(9-+d.n)*1e3+ +d.idx;else if(F.sort==='r'){if(!this.shuf)this.shuf={};if(this.shuf[d.id]==null)this.shuf[d.id]=Math.floor(Math.random()*1e6);o=this.shuf[d.id];}c.style.order=o;c._o=o;if(ok)this.vis.push(c);});
   this.vis.sort((a,b)=>a._o-b._o);this.prog();
-  const em=$('#jbempty');if(em)em.hidden=!!this.vis.length;this.cur=0;this.show();},
+  const em=$('#jbempty');if(em)em.hidden=!!this.vis.length;this.cur=0;this.show(ns);},
  prog(){const e=$('#jbprog');if(!e||!this.vis)return;let ok=0,ng=0;this.vis.forEach(c=>{if(MK.ok[c.dataset.id])ok++;else if(MK.ng[c.dataset.id])ng++;});const n=this.vis.length,td=n-ok-ng,all=$$('#cards .qc').length;e.innerHTML='<div class="pline"><span>표시 <b>'+n+'</b> / 전체 '+all+'문항 — 맞음 <b class="cok">'+ok+'</b> · 틀림 <b class="cng">'+ng+'</b> · 안 푼 것 '+td+'</span></div><div class="pbar"><i class="ok" style="width:'+(n?ok/n*100:0)+'%"></i><i class="ng" style="width:'+(n?ng/n*100:0)+'%"></i></div>';},
- show(){$$('#cards .qc.cur').forEach(c=>c.classList.remove('cur'));if(this.one&&this.vis.length){this.cur=(this.cur+this.vis.length)%this.vis.length;this.vis[this.cur].classList.add('cur');$('#opos').textContent=(this.cur+1)+' / '+this.vis.length;}}};
+ show(ns){$$('#cards .qc.cur').forEach(c=>c.classList.remove('cur'));if(this.one&&this.vis.length){this.cur=(this.cur+this.vis.length)%this.vis.length;this.vis[this.cur].classList.add('cur');$('#opos').textContent=(this.cur+1)+' / '+this.vis.length;}if(!ns)this.save();}};
 /* ---------- 플래시카드 ---------- */
 const Flash={deck:[],all:[],i:0,back:false,kind:'',init(p,L){const tmp=document.createElement('div');this.deck=[];const E=x=>x.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
   (L.recall||[]).forEach(r=>this.deck.push({tag:'암기 · 빈칸',cloze:true,q:'<div class="fct">'+E(r.t)+'</div>'+r.h,a:'<div class="fct">'+E(r.t)+'</div>'+r.h}));
@@ -485,8 +572,13 @@ function openImg(kind,key){const s=CUR.s;needImages(s,kind==='jb'?'jb':chunkOf(k
 
 function fillThumbs(root){const im=$$('img[data-img]:not([src])',root);if(!im.length)return;const by={};im.forEach(i=>{const c=chunkOf(i.dataset.img);(by[c]=by[c]||[]).push(i);});Object.keys(by).forEach(c=>needImages(CUR.s,c,()=>by[c].forEach(i=>{const v=IMGS[CUR.s].lec[i.dataset.img];if(v)i.src=v;else{const f=i.closest('figure');if(f)f.remove();}})));}
 /* ---------- 스테이지 클릭 ---------- */
-function go(id){const p=PACKS[CUR.s];const L=p.lect.find(x=>x.k===CUR.d);if(L&&L.jb.indexOf(id)>=0)openDoc(CUR.s,CUR.d,'jb',CUR.s+':'+id);else{openDoc(CUR.s,'_jb');const c=$('#c-'+CSS.escape(id));if(c){JB.F.tiers[c.dataset.tier]=true;$$('#jbbar [data-tier]').forEach(b=>b.classList.toggle('on',JB.F.tiers[b.dataset.tier]));JB.F.mine='';$$('#jbbar [data-qf]').forEach(b=>b.classList.toggle('on',b.dataset.qf===''));JB.apply();c.classList.add('open','flash');goEl(c);setTimeout(()=>c.classList.remove('flash'),1800);}}}
-$('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e.target.closest('.res');if(rs){openDoc(rs.dataset.s,rs.dataset.d,rs.dataset.t||undefined,rs.dataset.aid||undefined);return;}const t=e.target.closest('button,[data-ttog],figure[data-fig],#fcard');if(!t)return;const d=t.dataset;
+/* 문제로 이동 — 이 강의의 기출이면 강의의 기출 탭, 아니면 JB 문제. 답은 가린 채(한눈표에서 온 것만 open) */
+function go(id,o){o=Object.assign({qid:id},o||{});const p=PACKS[CUR.s];const L=p.lect.find(x=>x.k===CUR.d);if(L&&L.jb.indexOf(id)>=0)openDoc(CUR.s,CUR.d,'jb',null,o);else openDoc(CUR.s,'_jb',null,null,o);}
+$('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e.target.closest('.res');if(rs){resClick(rs);return;}const t=e.target.closest('button,[data-ttog],figure[data-fig],#fcard');if(!t)return;const d=t.dataset;
+ /* 다른 화면으로 뛰는 칩이면 출발점을 기억(↩ 알약) — openDoc이 쓰고 비움 */
+ if(d.go||d.golec||d.scroll2||(t.classList.contains('cite')&&d.p==='')){PENDRET=retFrom();queueMicrotask(()=>{PENDRET=null;});}
+ if(d.mkgo){marksGo(d.mkgo,+d.mki);return;}if(d.lostfind!==undefined){const x=d.lostfind;if(x.trim().length<2){toast('글자가 너무 짧아 찾을 수 없어요');return;}search(x,{s:CUR.s});return;}
+ if(d.lostdrop){marksDrop(d.lostdrop,+d.mki);return;}if(d.memoopen){openDoc(CUR.s,d.memoopen);$('#memo').classList.add('on');return;}
  if(d.done){const c=t.closest('.tc');c.classList.toggle('done');const DN=mkObj(LS.get('done.'+CUR.s,{}));if(c.classList.contains('done'))DN[c.dataset.aid]=1;else delete DN[c.dataset.aid];LS.set('done.'+CUR.s,DN);const ob=$('#stage .ol[data-scroll="'+c.id+'"]');if(ob)ob.classList.toggle('done',c.classList.contains('done'));sideRender();return;}
  if(t.id==='lcond'){t.classList.toggle('on');$('#stage').classList.toggle('cond');return;}
  if(d.qf!==undefined){$$('#jbbar [data-qf]').forEach(b=>b.classList.toggle('on',b===t));JB.F.mine=d.qf;JB.apply();return;}
@@ -494,8 +586,8 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.jbf!==undefined){openDoc(CUR.s,'_jb');const b=$('#jbbar [data-qf="'+d.jbf+'"]');if(b)b.click();return;}
  if(d.d&&t.classList.contains('lcard')){openDoc(CUR.s,d.d,'learn');return;}
  if(d.thumbs){const b=t.closest('.tbody').querySelector('.thumbs');b.hidden=!b.hidden;if(!b.hidden)fillThumbs(b);return;}
- if(d.scroll){const el=document.getElementById(d.scroll);if(el){el.classList.add('open');goEl(el);}return;}
- if(d.scroll2||d.golec){const v=(d.scroll2||d.golec).split(':');openDoc(CUR.s,v[0],'learn');const el=document.getElementById('t-'+v[0]+'-'+v[1]);if(el){el.classList.add('open','flash');goEl(el);setTimeout(()=>el.classList.remove('flash'),1800);}return;}
+ if(d.scroll){const el=document.getElementById(d.scroll);if(el)revealCard(el);return;}
+ if(d.scroll2||d.golec){const v=(d.scroll2||d.golec).split(':');openDoc(CUR.s,v[0],'learn',null,{id:'t-'+v[0]+'-'+v[1]});return;}
  if(d.filt){t.classList.toggle('on');$('#stage').classList.toggle('only-'+d.filt);return;}
  if(d.grp!==undefined&&t.closest('#grppills')){$$('#grppills [data-grp]').forEach(b=>b.classList.toggle('on',b===t));$$('#stage .tc,#stage .gdiv').forEach(c=>c.classList.toggle('hid',!!d.grp&&c.dataset.grp!==d.grp));return;}
  if(d.ptype!==undefined&&t.closest('#ppills')){$$('#ppills [data-ptype]').forEach(b=>b.classList.toggle('on',b===t));$$('#stage .pc').forEach(c=>c.classList.toggle('hid',!!d.ptype&&c.dataset.ptype!==d.ptype));return;}
@@ -507,13 +599,13 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.mk){const c=t.closest('.qc'),id=c.dataset.id,k=d.mk;MK=getMK(CUR.s);if(MK[k][id])delete MK[k][id];else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];}LS.set('mk.'+CUR.s,MK);['ok','ng','bm'].forEach(x=>c.classList.toggle('mk-'+x,!!MK[x][id]));JB.prog();sideRender();return;}
  if(d.jb){openImg('jb',d.jb);return;}
  if(t.classList.contains('cite')){const p=PACKS[CUR.s];if(d.p==='')openDoc(CUR.s,d.k,'learn');else openImg('lec',d.k+'-'+d.p);return;}
- if(d.go){go(d.go);return;}
+ if(d.go){go(d.go,{open:d.src==='sum'});return;}
  if(t.id==='lopen'||t.id==='lclose'){$$('#stage .tc').forEach(c=>c.classList.toggle('open',t.id==='lopen'));return;}
  if(t.id==='frev'){t.classList.toggle('on');$('#stage').classList.toggle('revall');return;}
  if(d.tier){JB.F.tiers[d.tier]=!JB.F.tiers[d.tier];t.classList.toggle('on');JB.apply();return;}
  if(t.id==='fone'){JB.one=!JB.one;t.classList.toggle('on',JB.one);$('#stage').classList.toggle('single',JB.one);JB.show();return;}
  if(t.id==='oprev'){JB.cur--;JB.show();window.scrollTo(0,0);return;}if(t.id==='onext'){JB.cur++;JB.show();window.scrollTo(0,0);return;}});
-$('#stage').addEventListener('change',e=>{const t=e.target,F=JB.F;if(!F)return;if(t.id==='fprof')F.prof=t.value;else if(t.id==='flec')F.lec=t.value;else if(t.id==='fn')F.n=+t.value;else if(t.id==='fver')F.ver=t.value;else if(t.id==='fmine')F.mine=t.value;else if(t.id==='fsort')F.sort=t.value;else return;JB.apply();});
+$('#stage').addEventListener('change',e=>{const t=e.target,F=JB.F;if(!F)return;if(t.id==='fprof')F.prof=t.value;else if(t.id==='flec')F.lec=t.value;else if(t.id==='fn')F.n=+t.value;else if(t.id==='fver')F.ver=t.value;else if(t.id==='fmine')F.mine=t.value;else if(t.id==='fsort'){F.sort=t.value;if(t.value==='r')JB.shuf=null;}else return;JB.apply();});
 $('#stage').addEventListener('input',e=>{if(e.target.id==='fq'){JB.F.q=e.target.value;JB.apply();}});
 /* ---------- 형광펜·빈칸 도구 v2 ----------
    · 카드(data-aid) 단위 저장: {t:'h'|'b', x:표시된 글자, i:같은 글자 몇 번째, c:색}
@@ -624,7 +716,8 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  addEventListener('storage',e=>{if(S&&e.key===NS+'ann.'+S){ANN=LS.get('ann.'+S,{});U=[];R=[];upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}});
  $('#k-lost').onclick=()=>{if(!CUR.s)return;openDoc(CUR.s,'_marks');const el=$('#mk-lost');if(el)goEl(el);};
  return{load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
-  textOf(B){return index(B).s;},locate,setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN};})();
+  textOf(B){return index(B).s;},locate,setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN,
+  drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push();L.splice(i,1);if(!L.length)delete ANN[aid];persist();}};})();
 const memoBase={v:''};
 /* 다른 창(같은 브라우저)에서 바꾼 채점·이해함·메모를 반영 */
 addEventListener('storage',e=>{if(!CUR.s||!e.key||e.key.indexOf(NS)!==0)return;const k=e.key.slice(NS.length);
@@ -643,9 +736,16 @@ document.addEventListener('keydown',e=>{const tg=e.target;if(tg&&(/INPUT|SELECT|
 /* ---------- 검색 ---------- */
 let SIDX=null;function buildSearch(){SIDX=[];const tmp=document.createElement('div');for(const s in PACKS){const p=PACKS[s];const add=(d,t,html,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).forEach(b=>SIDX.push({s,d,t,aid:b.dataset.aid,label,txt:b.textContent.replace(/\s+/g,' ')}));};
   p.lect.forEach(L=>add(L.k,'learn',L.learn,L.title+' · 학습'));add('_jb','',cardsHTML(p,p.order),'JB 문제');add('_tbl','',p.tables.map(x=>x.html).join(''),'비교표');add('_pred','',p.preds.map(x=>x.html).join(''),'예상문제');}}
-let st_;$('#gsearch').addEventListener('input',e=>{clearTimeout(st_);st_=setTimeout(()=>{const q=e.target.value.trim().toLowerCase();if(q.length<2)return;if(!SIDX)buildSearch();const out=[];for(const r of SIDX){const i=r.txt.toLowerCase().indexOf(q);if(i<0)continue;out.push(r,i);if(out.length>=80)break;}
-  let h=`<h2>검색: ${q.replace(/[<&]/g,'')}</h2><div class="lead">${out.length/2}건${out.length>=80?' 이상':''} — 누르면 해당 위치로 이동</div>`;for(let k=0;k<out.length;k+=2){const r=out[k],i=out[k+1];const sn=r.txt.slice(Math.max(0,i-40),i+q.length+70).replace(/[<&]/g,'');h+=`<button class="res" data-s="${r.s}" data-d="${r.d}" data-t="${r.t}" data-aid="${r.aid}"><b>${PACKS[r.s].title} · ${r.label}</b><div class="small">…${sn}…</div></button>`;}
-  $('#subj').hidden=true;document.body.classList.add('at-home');$('#home').hidden=false;$('#home').innerHTML=h;},250);});
+/* 검색 화면 = '#/?q=…'(과목 한정이면 &s=SID) — 처음 들어갈 때 push, 입력을 고치는 동안은 replace. 뒤로가기로 결과 화면·스크롤 복원 */
+let SQ={q:'',s:''};
+function search(q,o){o=o||{};q=String(q||'').trim();const ql=q.toLowerCase();if(ql.length<2)return;if(!SIDX)buildSearch();const only=(o.s&&PACKS[o.s])?o.s:'';
+ leaveView();const push=o.push!==false&&VIEW!=='search'&&VIEW!=='none';if(push)stampHist();
+ const out=[];for(const r of SIDX){if(only&&r.s!==only)continue;const i=r.txt.toLowerCase().indexOf(ql);if(i<0)continue;out.push(r,i);if(out.length>=80)break;}
+ let h=`<h2>검색: ${q.replace(/[<&]/g,'')}${only?' <span class="small">— '+PACKS[only].title+'에서</span>':''}</h2><div class="lead">${out.length/2}건${out.length>=80?' 이상':''} — 누르면 해당 위치로 이동</div>`;for(let k=0;k<out.length;k+=2){const r=out[k],i=out[k+1];const sn=r.txt.slice(Math.max(0,i-40),i+ql.length+70).replace(/[<&]/g,'');h+=`<button class="res" data-s="${r.s}" data-d="${r.d}" data-t="${r.t}" data-aid="${r.aid}"><b>${PACKS[r.s].title} · ${r.label}</b><div class="small">…${sn}…</div></button>`;}
+ VIEW='search';SQ={q,s:only};RET=null;retPill();if($('#gsearch').value.trim()!==q)$('#gsearch').value=q;
+ $('#subj').hidden=true;document.body.classList.add('at-home');$('#home').hidden=false;$('#home').innerHTML=h;measure();
+ histSet(only?{q,sj:only}:{q},'#/?q='+encodeURIComponent(q)+(only?'&s='+only:''),push);window.scrollTo(0,o.y||0);}
+let st_;$('#gsearch').addEventListener('input',e=>{clearTimeout(st_);st_=setTimeout(()=>search(e.target.value,{s:VIEW==='search'?SQ.s:''}),250);});
 /* ---------- 백업·복원 v2 — 합치기(기본)·덮어쓰기·자동 백업 시점으로 되돌리기 ---------- */
 function dumpAll(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)o[k]=localStorage.getItem(k);}return o;}
 function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
@@ -671,13 +771,19 @@ $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const how=e.targ
   setTimeout(()=>location.reload(),600);}catch(_){toast('백업 파일을 읽지 못했어요');}e.target.value='';};r.readAsText(f);};
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 /* ---------- 이어서 보기 ---------- */
-function savePos(){if(!CUR.s||!CUR.d)return;const st=$('#stage');let aid='';const bs=$$('[data-aid]',st);for(const b of bs){const r=b.getBoundingClientRect();if(r.bottom>120){aid=b.dataset.aid;break;}}const o={s:CUR.s,d:CUR.d,t:CUR.t,aid,at:Date.now()};LS.set('last',o);const all=LS.get('lastBy',{});all[CUR.s]=o;LS.set('lastBy',all);}
-let spT;addEventListener('scroll',()=>{clearTimeout(spT);spT=setTimeout(savePos,800);},{passive:true});
-function resumeHTML(only){const all=LS.get('lastBy',{});const L=Object.values(all).filter(o=>PACKS[o.s]&&(!only||o.s===only)).sort((a,b)=>b.at-a.at);if(!L.length)return '';
- return `<div class="panel resume"><div class="bt">↪ 이어서 보기</div>${L.map(o=>{const P=PACKS[o.s];const Lc=P.lect.find(x=>x.k===o.d);const nm=Lc?Lc.title:((SUBJDOCS.find(x=>x[0]===o.d)||['',o.d])[1]);const tl=({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[o.t]||'';
-  return `<button class="res go-resume" data-s="${o.s}" data-d="${o.d}" data-t="${o.t||''}" data-aid="${o.aid||''}"><b>${only?'':P.title+' · '}${nm}${tl?' · '+tl:''}</b><span class="small"> ${new Date(o.at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span></button>`;}).join('')}</div>`;}
+/* 탭별 읽던 위치 pos.<S> = {'문서/탭': {aid, off}} · 이어서 보기 lastBy(과목별 1개, 옛 형식 + off·ti) · lastList.<S>(과목별 최근 3곳)
+   과목 홈·내 표시·기출 대장·검색 화면에서는 저장하지 않음(읽던 곳을 덮어쓰지 않게) */
+function savePos(){if(VIEW!=='doc'||!CUR.s||!CUR.d||$('#subj').hidden||/^_(home|marks|led)$/.test(CUR.d))return;const P=probePos();if(!P||!P.aid)return;
+ const o={s:CUR.s,d:CUR.d,t:CUR.t,aid:P.aid,off:P.off,at:Date.now()};if(P.ti)o.ti=P.ti;LS.set('last',o);const all=mkObj(LS.get('lastBy',{}));all[CUR.s]=o;LS.set('lastBy',all);
+ const POS=mkObj(LS.get('pos.'+CUR.s,{}));POS[CUR.d+'/'+CUR.t]={aid:P.aid,off:P.off};LS.set('pos.'+CUR.s,POS);
+ let ll=LS.get('lastList.'+CUR.s,[]);if(!Array.isArray(ll))ll=[];ll=[o].concat(ll.filter(x=>x&&typeof x==='object'&&!(x.d===o.d&&x.t===o.t))).slice(0,3);LS.set('lastList.'+CUR.s,ll);}
+let spT;addEventListener('scroll',()=>{clearTimeout(spT);spT=setTimeout(()=>{savePos();if(isJBv())JB.save();},800);},{passive:true});
+function resumeHTML(only){const all=mkObj(LS.get('lastBy',{}));let L;if(only){L=LS.get('lastList.'+only,[]);if(!Array.isArray(L)||!L.length)L=all[only]?[all[only]]:[];L=L.filter(o=>o&&typeof o==='object').map(o=>Object.assign({},o,{s:only}));}else L=Object.values(all);
+ L=L.filter(o=>o&&typeof o==='object'&&PACKS[o.s]&&o.d).sort((a,b)=>(b.at||0)-(a.at||0));if(!L.length)return '';const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
+ return `<div class="panel resume"><div class="bt">↪ 이어서 보기${only?' <span class="small">— 최근 읽던 곳 '+L.length+'</span>':''}</div>${L.map(o=>{const P=PACKS[o.s];const Lc=P.lect.find(x=>x.k===o.d);const nm=Lc?sname(P,o.d):((SUBJDOCS.find(x=>x[0]===o.d)||['',o.d])[1]);const tl=({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[o.t]||'';
+  return `<button class="res go-resume" data-s="${o.s}" data-d="${E(o.d)}" data-t="${E(o.t||'')}" data-aid="${E(o.aid||'')}" data-off="${+o.off||0}"><b>↪ ${only?'':E(P.title)+' · '}${E(nm)}${tl?' · '+tl:''}${o.ti?' · '+E(o.ti):''}</b><span class="small"> (${o.at?new Date(o.at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):''})</span></button>`;}).join('')}</div>`;}
 /* ---------- 내 표시 모아보기 ---------- */
-const AMAP={};function aidMap(s){if(AMAP[s])return AMAP[s];const p=PACKS[s],m={},tmp=document.createElement('div');const add=(d,t,html,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).forEach(b=>{const h=b.querySelector('.thead .en,.qtitle,.tbt,.pq');m[b.dataset.aid]={d,t,label,title:h?h.textContent.trim().slice(0,60):''};if(b.dataset.alt)b.dataset.alt.split(' ').forEach(a=>{if(a&&!m[a])m[a]=m[b.dataset.aid];});});};
+const AMAP={};function aidMap(s){if(AMAP[s])return AMAP[s];const p=PACKS[s],m={},tmp=document.createElement('div');const add=(d,t,html,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).forEach(b=>{const h=b.querySelector('.thead .en,.qtitle,.tbt,.pq,.qtext');const ti=h?h.textContent.replace(/\s+/g,' ').trim():'';m[b.dataset.aid]={d,t,label,title:(b.classList.contains('qc')&&b.dataset.id?b.dataset.id+' · ':'')+ti.slice(0,60)};if(b.dataset.alt)b.dataset.alt.split(' ').forEach(a=>{if(a&&!m[a])m[a]=m[b.dataset.aid];});});};
  p.lect.forEach(L=>{add(L.k,'learn',L.head+L.learn,L.title);add(L.k,'sum',L.sum,L.title+' · 정리표');});add('_jb','',cardsHTML(p,p.order),'JB 문제');add('_tbl','',p.tables.map(x=>x.html).join(''),'비교표');add('_pred','',p.preds.map(x=>x.html).join(''),'예상문제');add('_sum','',p.sumall,'기출 한눈표');return AMAP[s]=m;}
 /* ---------- 원고 갱신 이관: 옛 aid(data-alt·잠금 밖 키)의 표시·✓를 새 카드로 — 과목을 열 때 한 번 ---------- */
 const AIDX={},ATXT={},AMIG={};
@@ -704,20 +810,39 @@ function migrateAids(s){if(AMIG[s])return;AMIG[s]=1;const X=aidIdx(s),A0=Kit.all
  if(JSON.stringify(A)===JSON.stringify(A0)&&!dmv)return;
  autoBak(true,'원고 갱신 전');Kit.setAll(A);if(dmv)LS.set('done.'+s,DN);
  if(mv||lost||dmv)toast('원고가 바뀌어 표시 '+tot+'개 중 '+mv+'개를 옮겼어요'+(lost?' · 못 찾은 '+lost+'개는 🖍 내 표시 모아보기에':'')+(dmv?' · 이해함 ✓ '+dmv+'개 이관':''));}
-function marksHTML(p){const ANN=Kit.all(),m=aidMap(p.id);const groups={},lost=[];let n=0;for(const aid in ANN){const list=(ANN[aid]||[]).filter(o=>o&&typeof o==='object');const loc=m[aid];list.forEach(o=>{if(o.lost)lost.push([aid,loc,o]);});n+=list.length;if(!loc)continue;(groups[loc.label]=groups[loc.label]||[]).push([aid,loc,list]);}
- const cols={b:'#C9DDF7',n:'#FFC98C'};Kit.colors.forEach(c=>cols[c[0]]=c[1]);const E=x=>String(x||'').replace(/[<&]/g,'');const chip=o=>o.t==='b'?`<span class="mk b${o.lost?' lost':''}">▣ ${E(o.x)}</span>`:`<span class="mk${o.lost?' lost':''}" style="background:${cols[o.c||'y']||'#FFE58A'}">${E(o.x)}</span>`;
- let h=`<div class="panel noann"><div class="bt">🖍 내 표시 모아보기 <span class="small">— 이 과목에서 칠한 형광펜·빈칸 ${n}개. 누르면 그 자리로 갑니다. 빈칸은 ▣, 형광펜은 색으로 표시</span></div></div>`;
- if(!n)return h+'<div class="panel noann small">아직 표시가 없어요. 아래 도구 막대의 🖍 형광펜 또는 ▣ 빈칸을 켜고 단어를 누르거나 끌어 보세요.</div>';
- if(lost.length)h+=`<div class="panel noann mk-grp mk-lost" id="mk-lost"><div class="bt">⚠ 위치를 잃은 표시 ${lost.length}개 <span class="small">— 원고가 바뀌어 원래 글자를 찾지 못했어요. 지우지 않고 보관 중이며, 같은 글자가 다시 생기면 저절로 돌아갑니다</span></div>`+lost.map(([aid,loc,o])=>`<div class="mk-row">${loc?`<button class="res" data-s="${p.id}" data-d="${loc.d}" data-t="${loc.t}" data-aid="${aid}">${E(loc.label)} · ${E(loc.title)||'(카드)'}</button>`:`<span class="small">옛 카드 ${E(aid.split(':').slice(1).join(':'))}</span>`}<div class="mk-items">${chip(o)}</div></div>`).join('')+'</div>';
- for(const lb in groups){h+=`<div class="panel noann mk-grp"><div class="bt">${lb}</div>`+groups[lb].map(([aid,loc,list])=>`<div class="mk-row"><button class="res" data-s="${p.id}" data-d="${loc.d}" data-t="${loc.t}" data-aid="${aid}">${loc.title||'(카드)'}</button><div class="mk-items">${list.map(chip).join('')}</div></div>`).join('')+'</div>';}
+/* 🖍 내 표시 모아보기 — ⚠ 위치를 잃은 표시(aidMap에 없는 키·lost)를 맨 위에 강의별로(옛 제목·[이 과목에서 찾기]·[버리기]),
+   그다음 강의별 표시(칩을 누르면 그 표시 묶음을 화면 가운데로·깜빡임), 끝에 📝 메모(문서별 앞 120자·[열기]) */
+function marksHTML(p){const ANN=Kit.all(),m=aidMap(p.id),S=p.id;const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
+ const OT={};p.lect.forEach(L=>Object.assign(OT,L.oldTitles||{}));const KIND={P:'예상문제',T:'비교표',SUM:'기출 한눈표'};
+ const lecOf=aid=>{const k=String(aid).split(':')[1]||'';const L=p.lect.find(x=>x.k===k);return L?L.title:(KIND[k]||(/^[A-Za-z]*\d/.test(k)?'JB 문제':'기타'));};
+ const groups={},lostG={};let n=0,nl=0;
+ for(const aid in ANN){const list=Array.isArray(ANN[aid])?ANN[aid]:[];const loc=m[aid];const ok=[];
+  list.forEach((o,i)=>{if(!o||typeof o!=='object')return;n++;if(!loc||o.lost){nl++;const lb=loc?loc.label.split(' · ')[0]:lecOf(aid);(lostG[lb]=lostG[lb]||[]).push([aid,loc,o,i]);}else ok.push([o,i]);});
+  if(ok.length)(groups[loc.label]=groups[loc.label]||[]).push([aid,loc,ok]);}
+ const memos=[],mp=NS+'memo.'+S+'.';for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k||k.indexOf(mp)!==0)continue;let v='';try{v=JSON.parse(localStorage.getItem(k));}catch(e){}if(typeof v==='string'&&v.trim())memos.push([k.slice(mp.length),v]);}
+ const dname=d=>{const L=p.lect.find(x=>x.k===d);return L?L.title:((SUBJDOCS.find(x=>x[0]===d)||['',d])[1]);};
+ const cols={b:'#C9DDF7',n:'#FFC98C'};Kit.colors.forEach(c=>cols[c[0]]=c[1]);
+ const chip=(o,aid,i,go)=>{const tag=go?'button':'span',at=go?` data-mkgo="${E(aid)}" data-mki="${i}" title="그 자리로"`:'';return o.t==='b'?`<${tag} class="mk b${o.lost?' lost':''}"${at}>▣ ${E(o.x)}</${tag}>`:`<${tag} class="mk${o.lost?' lost':''}"${at} style="background:${cols[o.c||'y']||'#FFE58A'}">${E(o.x)}</${tag}>`;};
+ let h=`<div class="panel noann"><div class="bt">🖍 내 표시 모아보기 <span class="small">— 칩을 누르면 그 표시가 있는 자리로 가서 깜빡입니다. 빈칸은 ▣, 형광펜은 색</span></div><div class="mk-sum"><span>표시 <b>${n}</b></span><span class="lostn">위치 잃음 <b>${nl}</b></span><span>메모 <b>${memos.length}</b></span></div></div>`;
+ if(!n&&!memos.length)return h+'<div class="panel noann small">아직 표시가 없어요. 아래 도구 막대의 🖍 형광펜 또는 ▣ 빈칸을 켜고 단어를 누르거나 끌어 보세요.</div>';
+ if(nl){h+=`<div class="panel noann mk-grp mk-lost" id="mk-lost"><div class="bt">⚠ 위치를 잃은 표시 ${nl}개 <span class="small">— 원고가 바뀌어 원래 글자를 찾지 못했어요. 지우지 않고 보관 중이며, 같은 글자가 다시 생기면 저절로 돌아갑니다</span></div>`;
+  for(const lb in lostG){h+=`<div class="small" style="margin-top:8px;font-weight:700">${E(lb)}</div>`+lostG[lb].map(([aid,loc,o,i])=>{const old=OT[aid]||'';
+   const where=loc?`<button class="res" data-s="${S}" data-d="${E(loc.d)}" data-t="${E(loc.t)}" data-aid="${E(aid)}">${E(loc.label)} · ${E(loc.title)||'(카드)'}</button>`:`<div class="mk-where">옛 카드 <b>${old?'«'+E(old)+'»':E(String(aid).split(':').slice(2).join(':')||aid)}</b> — 지금 원고에는 없는 카드</div>`;
+   return `<div class="mk-row">${where}<div class="mk-items">${chip(o,aid,i,false)}</div><div class="mk-acts"><button class="btn sm" data-lostfind="${E(o.x)}">이 과목에서 찾기</button><button class="btn sm" data-lostdrop="${E(aid)}" data-mki="${i}">버리기</button></div></div>`;}).join('');}
+  h+='</div>';}
+ for(const lb in groups){h+=`<div class="panel noann mk-grp"><div class="bt">${E(lb)}</div>`+groups[lb].map(([aid,loc,list])=>`<div class="mk-row"><button class="res" data-s="${S}" data-d="${E(loc.d)}" data-t="${E(loc.t)}" data-aid="${E(aid)}">${E(loc.title)||'(카드)'}</button><div class="mk-items">${list.map(([o,i])=>chip(o,aid,i,true)).join('')}</div></div>`).join('')+'</div>';}
+ if(memos.length)h+=`<div class="panel noann mk-grp" id="mk-memo"><div class="bt">📝 메모 ${memos.length}개</div>`+memos.map(([d,v])=>`<div class="mk-row"><b>${E(dname(d))}</b><div class="small mk-memo">${E(v.slice(0,120))}${v.length>120?'…':''}</div><div class="mk-acts"><button class="btn sm" data-memoopen="${E(d)}">열기</button></div></div>`).join('')+'</div>';
  return h;}
+function marksGo(aid,i){const o=(Kit.all()[aid]||[])[i];const loc=aidMap(CUR.s)[aid];if(!o||!loc)return;openDoc(CUR.s,loc.d,loc.t,aid,{mark:o});}
+function marksDrop(aid,i){const o=(Kit.all()[aid]||[])[i];if(!o)return;if(!confirm('이 표시를 버릴까요?\n\n“'+String(o.x||'').slice(0,60)+'”\n\n(버리기 전에 자동 백업을 남겨 [복원]에서 되살릴 수 있어요)'))return;autoBak(true,'위치 잃은 표시 버리기');Kit.drop(aid,i);const y=scrollY;mount(PACKS[CUR.s],CUR.d,CUR.t);window.scrollTo(0,y);toast('표시를 버렸어요 — [복원]의 자동 백업에서 되살릴 수 있어요');}
 /* ---------- 도움말 ---------- */
 function helpToggle(){$('#help').classList.toggle('on');}
 $('#helpb').onclick=helpToggle;$('#helpx').onclick=helpToggle;$('#help').addEventListener('click',e=>{if(e.target.id==='help')helpToggle();});
 document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e.target)&&!e.target.closest('#clock,#rstr,#rfile'))p.classList.remove('on');});},true);
 
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
-function boot(){const m=/^#\/([^\/]+)\/([^\/]+)\/?([^\/]*)/.exec(location.hash);if(m&&PACKS[m[1]])openDoc(m[1],m[2],m[3]);else home();}
+/* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */
+function boot(){const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;}
 let pend=0;SUBJECTS.forEach(([id])=>{if(PACKS[id])return;pend++;const s=document.createElement('script');s.src='packs/'+id+'.js';s.onload=s.onerror=()=>{if(--pend===0)boot();};document.head.appendChild(s);});if(!pend)boot();
 })();
 </script>

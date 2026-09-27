@@ -82,7 +82,7 @@ def yr_badge(q, big=True):
     if not n: return '<span class="ybadge n0">연도 표기 없음</span>'
     lab_ = " · ".join(YR(y) for y in ys) if (big and n <= 6) else (" · ".join(YR(y) for y in ys[:4]) + (f" … {YR(ys[-1])}" if n > 4 else ""))
     return f'<span class="ybadge n{min(n,3)}" title="{" · ".join(YR(y) for y in ys)}"><b>{lab_}</b><i>{n}회 출제</i></span>'
-def go(i, txt, cls='link'): return f'<button class="{cls}" data-go="{i}">{txt}</button>'
+def go(i, txt, cls='link', src=''): return f'<button class="{cls}" data-go="{i}"{f" data-src=\"{src}\"" if src else ""}>{txt}</button>'
 
 def qcard(q, idx):
     qt, at = split_qa(q); n = len(q['yrs'])
@@ -240,6 +240,7 @@ for L in LEC:
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.inline(x, ctx)} for c in L['cards'] for x in c['recall']]
     lect.append({'k': k, 'title': L['title'], 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'head': head, 'learn': ''.join(cards), 'sum': summ,
+                 'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
                  'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(next((n for n in L['notes'] if re.search(r'시험|강조|예고|공개|QUIZ|퀴즈|별표', n)), ''))})
 
 # ---- 비교표(칸 안의 ' / ' 나열을 줄 단위로)
@@ -292,7 +293,7 @@ for n_, L in enumerate(LEC + [None]):
     rows = [q for q in Q if q['tier'] != 'C' and q['lk'] == k]
     if not rows: continue
     rows.sort(key=lambda q: (-len(q['yrs']), -(q['yrs'][0] if q['yrs'] else 0)))
-    tr = ''.join(f'<tr class="{heat(len(q["yrs"]))}{" rep" if len(q["yrs"]) >= 2 else ""}"><th><span class="ybadge sm n{min(len(q["yrs"]),3)}"><b>{"·".join("%02d" % y for y in q["yrs"])}</b></span><div class="small">{esc(q["prof"])}</div></th><td class="qs">{go(q["id"], esc(q["short"]))}{("<div><span class='chip v-" + q["v"] + "'>" + VNAME[q["v"]] + "</span></div>") if q["v"] in ("diff", "part", "none") else ""}</td><td>{("<div class='note'>⚠ 아래 JB 답은 강의자료와 어긋납니다 — 문제를 눌러 ‘강의자료 대조’를 확인하세요.</div>") if q["v"] == "diff" else ""}<div class="lines">{ans_core(q)}</div></td></tr>' for q in rows)
+    tr = ''.join(f'<tr class="{heat(len(q["yrs"]))}{" rep" if len(q["yrs"]) >= 2 else ""}"><th><span class="ybadge sm n{min(len(q["yrs"]),3)}"><b>{"·".join("%02d" % y for y in q["yrs"])}</b></span><div class="small">{esc(q["prof"])}</div></th><td class="qs">{go(q["id"], esc(q["short"]), src="sum")}{("<div><span class='chip v-" + q["v"] + "'>" + VNAME[q["v"]] + "</span></div>") if q["v"] in ("diff", "part", "none") else ""}</td><td>{("<div class='note'>⚠ 아래 JB 답은 강의자료와 어긋납니다 — 문제를 눌러 ‘강의자료 대조’를 확인하세요.</div>") if q["v"] == "diff" else ""}<div class="lines">{ans_core(q)}</div></td></tr>' for q in rows)
     sumall.append(f'<div class="tblwrap" data-aid="{aid("SUM:" + (k if k else "none"))}" data-alt="{aid("SUM%d" % n_)}"><div class="tbt serif">{esc(L["title"] if L else "강의자료에 대응 쪽 없음")} <small>{len(rows)}문항</small></div><div class="tscroll"><table class="sum"><thead><tr><th style="width:86px">출제</th><th style="width:32%">문제</th><th>답 핵심 (JB 원문)</th></tr></thead><tbody>{tr}</tbody></table></div></div>')
 
 # ---- JB 필터 막대 / 대장
