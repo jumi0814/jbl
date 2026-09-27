@@ -46,7 +46,7 @@ U: ✍ p.9 exceptions의 머리글자 B·A·S·K에 밑줄 — 교감만 받는 
 # 효과기별 교감 vs 부교감
 | 효과기 | Sympathetic | Parasympathetic |
 | {r:Salivary glands} | {r:Thick, viscous} secretion | {r:Copious, watery} secretion |
-| Lacrimal glands | — | Stimulation of tears |
+| Lacrimal glands | 해당 없음(부교감만 — p.9) | Stimulation of tears |
 | Eye | iris radial muscle 수축(pupil dilates) | iris sphincter 수축(pupil contracts), ciliary muscle 수축(near vision) |
 | Trachea·bronchioles | Dilation | {r:Constriction}, increased secretions |
 | Heart | Increased rate·contractility | Decreased rate·contractility |
@@ -67,10 +67,7 @@ M: generalized 땀샘 = 교감인데 {r:ACh → M} → muscarinic agonist의 부
 > 니코틴 수용체는 빠른 이온 채널(항상 흥분), 무스카린 수용체는 느린 GPCR(홀수 흥분·짝수 억제)
 = 교감 절후만 {r:adrenergic} · Nicotinic = {r:cation channel}(항상 흥분) · Muscarinic = {r:GPCR}(홀수 흥분 · 짝수 억제)
 # Autonomic neurotransmitters
-- ① All ANS neurons are {r:cholinergic} except post-ganglionic sympathetic, which is {r:adrenergic}.
-- ② Cholinergic neurons release {r:ACh} ③ Adrenergic neurons release {r:NE}.
-- ④ Cholinergic receptors: {r:Nicotinic}·{r:Muscarinic} ⑤ Adrenergic receptors: {r:Alpha}·{r:Beta}.
-- ⑥ All parasympathetic responses are mediated by activation of {r:muscarinic receptors}.
+- ① All ANS neurons are {r:cholinergic} except post-ganglionic sympathetic, which is {r:adrenergic} ② Cholinergic neurons release {r:ACh} ③ Adrenergic neurons release {r:NE} ④ Cholinergic receptors: {r:Nicotinic}·{r:Muscarinic} ⑤ Adrenergic receptors: {r:Alpha}·{r:Beta} ⑥ All parasympathetic responses are mediated by activation of {r:muscarinic receptors}.
 # Channel vs GPCR
 | 구분 | Nicotinic receptors | Adrenergic·Muscarinic receptors |
 | 구조 | Ligand-gated non-selective {r:cation channel} — ACh {r:두 분자}가 결합해야 열림 | {r:G-Protein Coupled Receptors} |
@@ -101,7 +98,7 @@ M: 모든 부교감 반응 = {r:muscarinic} 매개
 | {r:M3} | {r:타액선}, {r:평활근} | ACh, Carbachol, Bethanechol, {r:Pilocarpine}, {r:Cevimeline} | Atropine, Scopolamine, Ipratropium, Oxybutynin, Trospium, Darifenacin, {r:Solifenacin}, Tolterodine, Propiverine(비뇨기질환 치료제: 과민성 방광) |
 | M4 | 뇌(전체적으로) | ACh, Carbachol | Atropine, Scopolamine, Benzquiamide, Doxepin, Dosulepin |
 | {r:M5} | 뇌(substantia nigra), 눈 | ACh, Carbachol, {r:Pilocarpine} | Atropine, Scopolamine, Benzquiamide, Doxepin, Dosulepin |
-E: XE12 | 21년 복원 "Pilocarpine은 nonselective muscarinic agonist로, M1-5 중 …" → {r:M1,3,5}(M2·M4 ✗) — p.19 표와 p.43 "M1, M3, M5".
+E: XE12 | 21년 빈칸(복원) "Pilocarpine은 nonselective muscarinic agonist로, M1-5 중 …" → {r:M1,3,5} — p.19 표·p.43 "M1, M3, M5" ⚠ 함정: M2·M4 ✗
 P: 💬 "M3의 antagonist인 {r:solifenacin}은 기억해두세요"(p.19 필기) — p.52 증례의 과민성 방광 약.
 U: ✍ pilocarpine은 M1·3·5, cevimeline은 M1·3 → cevimeline이 {r:selectivity}가 높아 더 자주 씀(필기; 25 필기: M5에 작용하지 않아서).
 # 반응·기전·prototype
@@ -109,7 +106,7 @@ U: ✍ pilocarpine은 M1·3·5, cevimeline은 M1·3 → cevimeline이 {r:selecti
 | M1 | Autonomic ganglia, CNS | Late EPSP; arousal·attention·analgesia | Gq/11 → PLC → ↑IP3 + ↑DAG → ↑Ca2+ + ↑PKC | Pirenzepine |
 | M2 | Heart: SA node·AV node·atrium·ventricle | Slowed depolarization; ↓conduction velocity; ↓contractile force | βγ of G protein → inhibit AC, ↑K+ channel opening | AF-DX 117 |
 | M3 | {r:Smooth muscle} | Contraction | As M1 | Hexahydrosiladifenidol |
-| M4 / M5 | CNS | — | As M2 / As M1 | Himbacine(M4) |
+| M4 / M5 | CNS | (자료 없음) | As M2 / As M1 | Himbacine(M4) |
 | Nicotinic N_M | Skeletal muscle NMJ | End-plate depolarization | Opening of Na+/K+ channels | Tubocurare |
 | Nicotinic N_N | Autonomic ganglia, adrenal medulla, CNS | Postganglionic neuron firing, catecholamine secretion | Opening of Na+/K+ channels | Trimethaphan |
 - Nonselective mAChR antagonists: {r:Atropine}, {r:Scopolamine}(CNS), Homatropine.
@@ -134,7 +131,7 @@ U: ✍ 요실금 약(부교감 antagonist)은 먹으면 침이 더 안 나올 �
 | Indirect-acting({r:reversible}) | Ambenomium, Donepezil, Edrophonium, Galantamine, Neostigmine, {r:Physostigmine}, Pyridostigmine, Rivastigmine, Tacrine | {r:Acetylcholinesterase(AChE)} → ↑ACh |
 | Indirect-acting(irreversible) | Echothiophate, Isoflurophate | AChE |
 P: 💬 "오늘 배울 것은 direct acting cholinergic agonists입니다"(p.24 필기).
-E: XE01 | 24·22년 "xerostomia inducing drug이 아닌 것" → {r:Physostigmine} — 이 표의 indirect-acting(reversible) AChE 억제제라 ACh↑ → 오히려 침↑(유발 약물 목록은 ④ 카드).
+E: XE01 | 24·22년 객관식 "xerostomia inducing drug이 아닌 것" → {r:Physostigmine} — indirect-acting(reversible) AChE 억제제라 ACh↑ → 오히려 침↑(유발 약물 목록은 ④ 카드)
 F: 16=콜린성 약물의 치료 용도, 24=오늘 배울 것은 direct acting
 M: 콜린성 약물 용도 ①② = {r:Xerostomia · Glaucoma}
 M: Direct = {r:수용체 직접 결합}(pilocarpine·cevimeline) / Indirect = {r:AChE 억제}(physostigmine·neostigmine)
@@ -148,13 +145,13 @@ M: {r:Physostigmine} = reversible AChE 억제 → 침 {r:증가} → 유발 약�
 - Adverse effects: muscarinic overstimulation typically manifest within {r:15–30 minutes} — ① {r:nausea} ② {r:vomiting} ③ {r:diarrhea} ④ {r:sweating} ⑤ {r:hypersalivation} ⑥ {r:cutaneous flushing} ⑦ {r:reflex tachycardia}(sometimes {r:bradycardia}) ⑧ {r:bronchoconstriction}.
 - Intoxication with these agents can be treated by {r:competitive blockade using Atropine}.
 P: 💬 pilocarpine은 {r:bronchoconstriction} 효과 → {r:조절되지 않는 천식}에 쓰면 안 됩니다!(p.20 필기; 25 필기 "가장 중요한 부작용").
-E: XE09,XE19 | 22년(백정화) "Oral secretagogues(침 나오게 하는 약)의 부작용이 아닌 것" → {r:urinary retention} ✗ — diarrhea·sweating·bradycardia·hypotension은 ○. 부교감은 배뇨 촉진(p.9 detrusor 수축, p.31 increased frequency of urination), hypotension은 p.32 "혈압저하".
+E: XE09,XE19 | 22년 객관식(백정화) "Oral secretagogues(침 나오게 하는 약)의 부작용이 아닌 것" → {r:urinary retention} — diarrhea·sweating·bradycardia·hypotension ○ ⚠ 함정: 부교감은 배뇨 촉진(p.9·31)
 # Atropine
 - The prototypical {r:muscarinic receptor antagonist} — 천연 alkaloid(*Atropa belladonna*, deadly nightshade).
 - Belladonna = "beautiful woman" — 르네상스 이탈리아 여성들이 {r:dilation of the pupils}(산동)를 위해 사용.
 - Clinical uses: ① {r:mydriasis}(안과 검사) ② symptomatic {r:sinus bradycardia} 역전 ③ 수술 중 {r:excessive salivation}·mucus secretion 억제 ④ {r:vagal reflexes} 예방 ⑤ {r:muscarine poisoning}(독버섯) 해독.
 - NMJ·autonomic ganglia에 효과를 보려면 {r:extremely high doses} 필요 · 슬라이드 구조식: Atropine·Scopolamine·Homatropine.
-E: XE16 | 21년 빈칸 "Pilocarpine 과다복용 시 경쟁적 길항제인 ( )을 피하 혹은 정맥주사" → {r:Atropine}(p.45 0.5-1.0 mg, p.56 2017 문제).
+E: XE16 | 21년 빈칸 "Pilocarpine 과다복용 시 경쟁적 길항제인 ( )을 피하 혹은 정맥주사" → {r:Atropine} — p.45 0.5-1.0 mg · p.56 2017 문제 그대로
 U: ✍ 멀미약 scopolamine은 주로 CNS에 작용 → 침 분비 억제·intoxication에는 CNS 효과가 적은 atropine(25 필기, "아트로핀은 시험에 매우 잘 나옵니다").
 F: 20=조절되지 않는 천식에 쓰면 안 됨, 21=Atropine
 M: muscarinic 부작용: {r:구역 · 구토 · 설사 · 발한 · 타액과다 · 홍조 · 반사성 빈맥(때로 서맥) · 기관지 수축}
@@ -165,21 +162,17 @@ M: Atropine 용도: {r:산동 · 서맥 역전 · 수술 중 침 억제 · 미�
 > choline 흡수 → 합성 → 소포 저장 → Ca2+로 유리 → AChE 분해 — 단계마다 막는 약이 있다
 = Hemicholinium(흡수) · Vesamicol(저장) · LEMS(Ca2+ 채널 항체) · {r:Botulinum toxin}(exocytosis 차단 → {r:ACh 유리↓}) · {r:AChE inhibitors}
 # ACh의 일생 6단계
-- ① Choline is transported into the presynaptic terminal by a high-affinity {r:Na+-choline co-transporter}.
-- ② {r:Choline acetyltransferase}: acetyl coenzyme A(AcCoA) + choline → ACh → {r:H+-ACh antiporter}로 소포에 저장.
-- ③ presynaptic action potential → 세포 내 {r:Ca2+} 증가 → 소포가 plasma membrane과 융합 → 유리.
-- ④ 시냅스 틈으로 확산해 post·presynaptic receptors에 결합 ⑤ presynaptic nicotinic은 유리↑, presynaptic {r:M2·M4}는 유리↓.
-- ⑥ membrane-bound {r:acetylcholinesterase(AChE)}가 choline + acetate로 분해.
+- ① Choline is transported into the presynaptic terminal by a high-affinity {r:Na+-choline co-transporter} ② {r:Choline acetyltransferase}: acetyl coenzyme A(AcCoA) + choline → ACh → {r:H+-ACh antiporter}로 소포에 저장 ③ presynaptic action potential → 세포 내 {r:Ca2+} 증가 → 소포가 plasma membrane과 융합 → 유리 ④ 시냅스 틈으로 확산해 post·presynaptic receptors에 결합 ⑤ presynaptic nicotinic은 유리↑, presynaptic {r:M2·M4}는 유리↓ ⑥ membrane-bound {r:acetylcholinesterase(AChE)}가 choline + acetate로 분해.
 # 각 단계를 막는 약
 | 단계 | 과정 | 막는 것 |
 | ① Choline uptake | high-affinity {r:Na+-choline co-transporter} | {r:Hemicholinium} |
 | ② Synthesis·storage | choline acetyltransferase: AcCoA + choline → ACh → {r:H+-ACh antiporter}로 소포에 저장(ATP·proteoglycan과 함께) | {r:Vesamicol} |
 | ③ Release | presynaptic action potential → 세포 내 Ca2+ 증가 → 소포가 막과 융합 | LEMS: presynaptic {r:Ca2+ channel}을 막는 autoantibody / {r:Botulinum toxin}: exocytosis 차단 |
-| ④ Binding | 시냅스 틈 확산 → post·presynaptic 수용체 결합 | — |
-| ⑤ Presynaptic feedback | nicotinic → Ca2+ 유입↑ → 유리↑ / {r:M2·M4} → Ca2+ 유입↓ → 유리↓ | — |
+| ④ Binding | 시냅스 틈 확산 → post·presynaptic 수용체 결합 | (자료 없음) |
+| ⑤ Presynaptic feedback | nicotinic → Ca2+ 유입↑ → 유리↑ / {r:M2·M4} → Ca2+ 유입↓ → 유리↓ | (자료 없음) |
 | ⑥ Degradation | membrane-bound {r:AChE} → choline + acetate | {r:AChE inhibitors}(대부분 competitive) |
 U: ✍ ACh의 acetyl은 acetyl-CoA에서, choline은 밖에서 흡수 — ACh은 AChE에 분해되어 재활용(필기).
-E: XE14 | 21년 T/F "보톡스를 주사할 때 이하선에 들어가면 침 분비량이 많아진다" → {r:F} — Botulinum toxin prevents the exocytosis of presynaptic vesicles, thereby {r:blocking ACh release} → 부교감만 받는 이하선의 타액↓(보톡스 강의와 겹침).
+E: XE14 | 21년 T/F "보톡스를 주사할 때 이하선에 들어가면 침 분비량이 많아진다" → {r:F} — exocytosis 차단 → {r:ACh 유리↓} → 부교감만 받는 이하선의 타액↓(보톡스 강의와 겹침)
 F: 22=ACh 경로와 수용체, 23=각 단계에 작용하는 약물
 M: 보톡스 = {r:exocytosis 차단} → {r:ACh 유리↓} → 이하선에 들어가면 침 {r:감소}
 M: Hemicholinium = {r:choline 흡수} / Vesamicol = {r:소포 저장} / LEMS = {r:Ca2+ 채널 항체}
@@ -226,9 +219,9 @@ M: Atropine = {r:M1-M5} {r:competitive antagonist}
 | {r:Cevimeline} | {r:Muscarinic} | No | Oral | {r:Xerostomia} |
 | Varenicline | Nicotinic | No | Oral | Smoking cessation |
 P: 💬 "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) → 이 둘은 꼭 기억하세요!"(p.30 필기)
-E: XE03 | 24·23·21년 빈칸(3회) "Pilocarpine은 … ==전신적인 부작용때문에, 주로 ( )과 ( ) 치료용으로만 사용한다==" → {r:구강건조증(Xerostomia)}·{r:녹내장(glaucoma)} — p.56 2017년 시험문제 그대로.
-E: XE18 | 21년 T/F "Pilocarpine은 구강건조증 치료에 사용한다" → {r:T}.
-E: XE17 | 21년 "Pilocarpine과 유사하게 사용할 수 있는 구강건조증 치료제" → {r:Cevimeline}.
+E: XE03 | 24·23·21년 빈칸(3회) "Pilocarpine은 … ==전신적인 부작용때문에, 주로 ( )과 ( ) 치료용으로만 사용한다==" → {r:구강건조증(Xerostomia)}·{r:녹내장(glaucoma)} — p.56 2017년 시험문제 그대로
+E: XE18 | 21년 T/F "Pilocarpine은 구강건조증 치료에 사용한다" → {r:T} — 경구 → xerostomia(p.30)
+E: XE17 | 21년 단답 "Pilocarpine과 유사하게 사용할 수 있는 구강건조증 치료제" → {r:Cevimeline} — M1·M3 agonist, 적응증 xerostomia(p.30)
 # Muscarinic receptor agonists — 적응·부작용·금기
 | Drug | Clinical applications | Adverse effects | Contraindications |
 | Methacholine | Diagnosis of asthma | Dyspnea, lightheadedness, headache, pruritus, throat irritation | Recent heart attack or stroke, aortic aneurysm, uncontrolled hypertension |
@@ -254,8 +247,8 @@ M: "전신적인 부작용 때문에 주로 ( {r:구강건조증} )과 ( {r:녹�
 | {r:조절되지 않는 천식} | {r:금기} | M3 수용체 자극 → {r:기관지 수축} → 기도 폐쇄 / 발작 악화 위험 |
 | {r:COPD} | {r:주의} | (같은 기전) |
 | 심혈관 질환(협심증, 심부전 등) | 주의 | 미주신경(vagus) 흥분 → {r:서맥, 부정맥, 혈압저하} 가능 |
-| 위장관 질환(소화성 궤양, 장폐색 등) | — | 위산 분비 및 장운동 촉진 → 증상 악화 |
-| 비뇨기계 질환(방광폐색, 전립선비대증) | — | 방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화 |
+| 위장관 질환(소화성 궤양, 장폐색 등) | (자료 없음) | 위산 분비 및 장운동 촉진 → 증상 악화 |
+| 비뇨기계 질환(방광폐색, 전립선비대증) | (자료 없음) | 방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화 |
 | {r:축동으로 악화되는 안과 질환}(급성 홍채염 등) | {r:금기} | {r:동공수축} 유발 → 안과적 상태 악화 |
 P: 💬 교수님이 한 번 더 강조 — "금기와 주의를 구분하세요!" 금기: 조절되지 않는 천식, 축동 / 주의: COPD. 시험 예) "pilocarpine은 COPD에 절대 금기다"(X) · "조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다"(X).
 U: ✍ 25 자료는 금기/주의 구분 없이 '금기 환자군'으로, 안과 질환에 망막박리까지 넣음(XE5 p.33 그림: Asthma·COPD / Cardiovascular / Peptic ulcer·GI obstruction / Urinary tract obstruction / Acute iritis·retinal detachment).
@@ -272,8 +265,8 @@ U: ✍ 25 자료는 금기/주의 구분 없이 '금기 환자군'으로, 안과
 | 과량투여 처치 | {r:100 mg 이상} 투여 시 치명적 | {r:Atropine 0.5 mg ~ 1.0 mg} 피하 또는 정맥투여, 호흡·순환 유지 |
 | 과량투여 처치 | 심한 심혈관기능 저하 or 기관지 수축 | {r:Epinephrine 0.3 mg ~ 1.0 mg} 피하 또는 정맥투여 |
 U: ✍ ⚠ 천식 금기 이유를 p.45는 'Beta2 receptor 활성', p.32(교수님 강조)·p.42는 'M3 → 기관지 평활근 수축'으로 적음.
-E: XE16 | 21년 빈칸 "과다복용 시 경쟁적 길항제 ( )를 피하 혹은 정맥주사" → {r:Atropine} — 0.5-1.0 mg 피하·정맥(이 표).
-E: XE05 | 23년 "cevimeline 약물 효과에 부작용 없을 사람" → JB 답 ④ {r:CYP2D6 활성 낮은 사람} — ⚠ CYP 대사는 강의자료에 없음(JB 해설도 "강의자료에 없는 내용"). 자료로 확인되는 것은 천식·만성기관지염(경고·M3 기관지 수축)과 협심증(심혈관 주의)이 위험군이라는 점.
+E: XE16 | 21년 빈칸 "과다복용 시 경쟁적 길항제 ( )를 피하 혹은 정맥주사" → {r:Atropine} — 0.5-1.0 mg 피하·정맥(이 표)
+E: XE05 | 23년 객관식 "cevimeline 약물 효과에 부작용 없을 사람" → JB 답 ④ {r:CYP2D6 활성 낮은 사람} — ⚠ CYP 대사는 강의자료에 없음(JB도 명시) · 자료상 위험군 = 천식·만성기관지염·협심증
 F: 32=금기와 주의를 구분하세요, 45=Pilocarpine 주의사항, XE5:33=25 자료 금기 그림
 M: 금기 = {r:조절 안 되는 천식 · 축동(급성 홍채염·angle-closure)} / 주의 = {r:COPD · 심혈관}
 M: 과량(100 mg↑) → {r:Atropine 0.5-1.0 mg} 피하·정맥 / 심혈관 저하·기관지 수축 → {r:Epinephrine 0.3-1.0 mg}
@@ -323,7 +316,7 @@ P: 💬 "1,2번 시험 잘 나옵니다!"(p.36 필기) — NSAIDs, 요실금 치
 | 그 외 | Antidiarrhea, Bronchodilators, Alcohol |
 - 오른쪽 TABLE 1(may cause or exacerbate xerostomia) ①: antihistamines, anticholinergics, antidepressants, antiemetics, antihypertensives, anti-inflammatory agents, antipsychotics, anti-Parkinson agents, anticonvulsants.
 - TABLE 1 ②: antihyperlipidemics, antitussives, antivirals, bronchodilators, chemotherapy agents, decongestants, {r:diuretics}, narcotic analgesics, proton pump inhibitors.
-E: XE01 | 24·22년 5지선다 "xerostomia inducing drug이 아닌 것" → {r:Physostigmine}(indirect-acting reversible AChE 억제제 → ACh↑ → 침↑) — 선지 Codeine·Diazepam·Diphenhydramine·Ibuprofen은 모두 이 목록.
+E: XE01 | 24·22년 객관식(5지선다) "xerostomia inducing drug이 아닌 것" → {r:Physostigmine}(AChE 억제 → ACh↑ → 침↑) — 선지 Codeine·Diazepam·Diphenhydramine·Ibuprofen은 모두 이 목록
 U: ✍ TCA는 만성통증 치료에 쓸 때 용량이 적어 부작용이 적긴 하지만 요주의 약물 — 요실금 치료제나 아트로핀도 구강건조증을 일으킴(25 필기).
 F: 36=원인 1 2번 시험 잘 나옴, 37=구강건조증 유발 약물
 M: 원인 1·2 = {r:약물복용 · Sjögren's syndrome}(+ 방사선치료·신경손상·노화·구강호흡·알코올·흡연·스트레스)
@@ -349,7 +342,7 @@ U: ✍ major gland는 중요해서 떼기 어려워 {r:minor gland}를 떼어 �
 | Objective — Autoimmunity | 6. Autoantibodies(serology) | {r:Anti-Ro/SSA}(SSA: Sjögren's-syndrome-related antigen A), {r:Anti-La/SSB} |
 - 진단: ① {r:≥4 of the 6} items with histopathology or serology ② {r:≥3 of the 4} objective criteria items.
 P: 💬 "큰 별표! 이 표는 시험에 나옵니다!!"(p.39 필기) · "항체 이름이 시험에 나올 수 있습니다"(p.38 필기).
-E: XE04 | 23년 빈칸 "( )는 자가면역 병으로 … autoantibody Ro SSA, SSB" → {r:쇼그렌 증후군}.
+E: XE04 | 23년 빈칸 "( )는 자가면역 병으로 … autoantibody Ro SSA, SSB" → {r:쇼그렌 증후군} — p.39 진단표의 Anti-Ro/SSA·Anti-La/SSB
 U: ✍ 조직검사 말고 임상 증상으로 진단하는 방법(25 필기) — 50대 이상 여성에서 호발, 유병률이 상당히 높음(26 필기).
 F: 38=자가면역질환 중년 여성 호발, 39=큰 별표 진단표
 M: Sjögren 항체 = {r:Anti-Ro/SSA · Anti-La/SSB}
@@ -370,9 +363,9 @@ M: Schirmer {r:≤5 mm/5 min} · 비자극 whole {r:≤0.1 mL/min} · 증상 {r:
 - 진단 기준: ① Unstimulated {r:< 0.1 ml/min} ② Stimulated {r:< 0.5 – 0.7 ml/min} — 주로 **Unstimulated** 타액분비율 기준으로 진단.
 - 비자극 = 가만히 있는 상태 / 자극 = 껌 같은 것을 씹으며 나오는 분비율(25 필기).
 P: 💬 "큰 별표! 이 표의 수치를 외우세요 — 특히 dry mouth whole saliva unstimulated < 0.1 ml/min 아주 중요합니다!"(p.40) · "이 숫자가 굉장히 중요하고 주관식으로 나올 수 있습니다"(p.1).
-E: XE02 | 24년 "진단 기준에 대해 옳지 않은 것" → JB 답 ③ "비자극 전체 0.2 ml/min이면 정상" ✗(정상 {r:0.3-0.5}) — ⚠ 0.2는 dry mouth 기준(< 0.1)엔 안 걸리고, 이하선·악하선 선지 값(0.8·0.05·0.2)도 표와 정확히 같지 않음(JB도 "정상 수치에서 벗어나는 선지는 3번뿐").
-E: XE08,XE20 | 22년(백정화) "타액분비율 표 — A 0.1 이하, B 0.7 이하" → A = {r:비자극}, B = {r:자극} dry mouth 기준(0.1·0.7 짝 보기).
-E: XE15 | 21년 "타액분비율 표 빈칸" — 복원 답 없음, 이 표 또는 p.55(2017 시험문제: 정상·구강건조 whole saliva 4칸, 소수점 첫째자리) 중 어느 표인지 불명.
+E: XE02 | 24년 객관식 "진단 기준에 대해 옳지 않은 것" → JB 답 ③ "비자극 전체 0.2 ml/min이면 정상" ✗(정상 {r:0.3-0.5}) — ⚠ 다른 선지 값(0.8·0.05·0.2)도 표와 정확히 같지 않음(JB 동의)
+E: XE08,XE20 | 22년 빈칸(백정화) "타액분비율 표 — A 0.1 이하, B 0.7 이하" → A = {r:비자극}, B = {r:자극} — dry mouth 기준(0.1·0.7 짝 보기)
+E: XE15 | 21년 빈칸 "타액분비율 표 빈칸" → 복원 답 없음 — 이 표(p.40) 또는 p.55(2017 시험문제: 정상·구강건조 whole saliva 4칸, 소수점 첫째자리) 중 어느 표인지 불명
 F: 40=큰 별표 수치를 외우세요, 55=2017년 시험문제 빈칸 표
 M: Dry mouth: 비자극 {r:< 0.1} · 자극 {r:< 0.5-0.7} mL/min — 주로 {r:비자극}으로 진단
 M: 정상 whole: 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0}
@@ -387,11 +380,11 @@ M: Parotid {r:0.04 / 0.70} · Submandibular/Sublingual {r:0.15 / 0.60}(비자극
 - Effect depends on {r:residual salivary gland function} — 침샘이 없으면 두 약 모두 효과가 없음(25 필기).
 - Usually taken {r:orally}, {r:three times a day}, {r:30 min before each meal}.
 U: ✍ 최근에는 cevimeline이 pilocarpine보다 더 많이 쓰임 — selectivity가 높고 부작용이 적어서(p.1 필기).
-E: XE10 | 22년(백정화) "구강건조증 치료제 2개 쓰시오" → {r:pilocarpine, cevimeline}(JB 답은 보조치료제까지 나열).
+E: XE10 | 22년 단답(백정화) "구강건조증 치료제 2개 쓰시오" → {r:pilocarpine, cevimeline} — JB 답은 보조치료제까지 나열
 # 인공타액으로 바꿔야 할 때 3
 - Saliva substitute solution should be substituted for pilocarpine if ==the drug is not well tolerated, in patients with uncontrolled asthma== (M3: Broncholar smooth muscle contration), ==and where there is a complete loss of salivary function==.
 - ① {r:not well tolerated}(불내성) ② {r:uncontrolled asthma}(M3 → 기관지 평활근 수축) ③ {r:complete loss of salivary function}(타액 기능 완전 소실).
-E: XE11 | 22년(백정화) "salivary substitute solution should be substituded oral secretagogues if?" → 위 문장 그대로(3조건).
+E: XE11 | 22년 서술(백정화) "salivary substitute solution should be substituded oral secretagogues if?" → 위 문장 그대로(3조건: 불내성·조절 안 되는 천식·타액 기능 완전 소실)
 # 치과에서의 적응증 — pilocarpine 용법·용량
 | Case | 용법 및 용량 |
 | Moderate hepatic impairment(regardless of indication) | 초기 1회 1정(5mg)씩 {r:2회}/day |
@@ -404,7 +397,7 @@ U: ✍ ⚠ p.42 필기 "salagen은 5mg tablet인데 하루에 10mg이 복용 최
 # 처음 쓸 때 — 저용량에서 증량
 - 허가 용법 = {r:5mg 하루 4회} 경구(최종 {r:20mg/day}) — 처음부터 이 용량이면 땀·심계항진·구역을 흔히 호소.
 - 소량으로 시작(예: {r:2.5mg 1일 2-3회}, 또는 5mg 하루 1-2회) → 부작용이 없으면 증량(p.54 2016 시험문제 답).
-E: XE06 | 23년 증례(평상시·식사 시 구강건조, 비자극 0.05·자극 0.1) → {r:구강건조증} / {r:Pilocarpine} / 기전(무스카린 수용체 직접 결합 → 부교감 자극 효과 → 잔존 선포 분비 촉진) / 저용량 시작 → {r:20 mg/day} — p.54 2016년 답 그대로.
+E: XE06 | 23년 서술(증례) "비자극 0.05·자극 0.1 — 진단·약물·기전·복용법" → {r:구강건조증} / {r:Pilocarpine} / 무스카린 수용체 직접 결합 → 잔존 선포 분비 / 저용량 시작 → {r:20 mg/day} — p.54 2016년 답 그대로
 F: 41=구강건조증 치료제, 42=인공타액으로 대체하는 3경우, 44=치과에서의 적응증 용법
 M: 치료제 = {r:Pilocarpine}(Salagen {r:5 mg}) · {r:Cevimeline}(Evoxac {r:30 mg}) — 식전 {r:30분} 하루 {r:3번}
 M: 인공타액 대체 3 = {r:불내성 · 조절 안 되는 천식 · 타액 기능 완전 소실}
@@ -417,7 +410,7 @@ M: 방사선 두경부암 {r:5 mg × 3회}(12주↑) / Sjögren {r:5 mg × 4회}
 - ① 일시적 증상완화: {r:무설탕 껌/캔디}, {r:얼음조각}, {r:인공타액} ② 타액분비이상을 동반한 통증 치료: {r:Benzodiazepines} ③ {r:ZnCl2 solution}?(suggested by Se-Young Choi in 2019).
 P: 💬 "인공타액은 성분을 주의해서 봐라"(p.46 필기).
 U: ✍ 구강건조증이 있으면 BMS가 동반되는 경우가 많아 통증 완화에 benzodiazepine을 씀(p.1 필기).
-E: XE10 | 22년 "치료제 2개" JB 답에 무설탕 껌/캔디·얼음조각·인공타액·benzodiazepine·ZnCl2 solution까지 함께 나열(25 자료는 p.42 한 장에 치료제와 보조치료를 같이 적음).
+E: XE10 | 22년 단답 "치료제 2개" → JB 답에 무설탕 껌/캔디·얼음조각·인공타액·benzodiazepine·ZnCl2 solution까지 나열 — 25 자료는 p.42 한 장에 치료제와 보조치료를 함께 적음
 # Artificial saliva products
 - Formulations: {r:rinses}, {r:sprays}, toothpastes, gels, lozenges, and gum.
 - Mimic the chemical and physical properties of natural saliva, but do not contain the {r:protective measures}(ex. {r:Immunoglobulin A}).
@@ -447,7 +440,7 @@ M: 보조치료 3 = {r:증상완화(껌·얼음·인공타액) · BZD(통증) ·
 - 추가약물: {r:Alpha-lipoic acid(ALA)} — natural heavy metal chelator(reduction of drug toxicity), 세포 내 glutathione 증가 → 활성산소 제거(항산화) → 면역·세포활성도 증가, 신경손상 회복.
 - 대체약물: {r:Gabapentin}, Steroid gargle(Dexamethasone 참조).
 U: ✍ 구강건조증이 너무 장기화되면 통증이 동반 → 만성 통증 완화를 위해 BZD를 쓰기도 함(p.49 필기).
-E: XE07,XE21 | 23·21년 BMS 증례 서술(병명·약물·작용기전·처방) → {r:burning mouth syndrome} / {r:clonazepam} / 기전 "Increases opening frequency of gaba channel"(JB 답) / 처방 = 위 두 문장 그대로 — ⚠ 작용기전(GABA)은 슬라이드에 없음.
+E: XE07,XE21 | 23·21년 서술(BMS 증례) "병명·약물·작용기전·처방" → {r:burning mouth syndrome} / {r:clonazepam} / "Increases opening frequency of gaba channel"(JB 답) / 처방 = 위 두 문장 — ⚠ 기전(GABA)은 슬라이드에 없음
 F: 49=Clonazepam 선배 발표
 M: BMS = 점막 정상 + {r:타는 통증 6개월↑}(감각·미각 변화·타액 분비 이상 동반)
 M: Clonazepam {r:0.5 mg} {r:qd hs × 30일} or {r:bid}(아침·저녁 식후) · {r:3-5분} 물고 삼키기
@@ -465,7 +458,7 @@ M: 간기능 저하 노인 = {r:Oxazepam · temazepam · lorazepam} / 추가 {r:
 - 결론: salivary secretion을 {r:independent of muscarinic or histamine receptor signaling}으로 조절할 수 있음 · 슬라이드 사진: Zinc Chloride Mouthwash(Fresh-M).
 U: ✍ ZnCl2의 수용체도 GPCR로 악하선에 있음 — 논문에 의하면 악하선에 작용해 구강건조 완화에 도움(필기).
 P: 💬 "ZnCl2를 구강건조증에 쓸 수 있다는 연구가 있는데 상당히 흥미롭습니다"(p.46 필기).
-E: XE13 | 21년 T/F "ZnCl2가 침분비를 촉진한다는 연구결과가 최근에 보고된 바 있다" → {r:T}.
+E: XE13 | 21년 T/F "ZnCl2가 침분비를 촉진한다는 연구결과가 최근에 보고된 바 있다" → {r:T} — ZnR/GPR39 경로(Scientific Reports 2019)
 F: 50=ZnCl2 논문과 가글 제품
 M: ZnCl2 → {r:ZnR/GPR39}(GPCR) → {r:악하선} 타액↑ — muscarinic·histamine과 {r:무관}
 M: {r:0.25%} ZnCl2 → 비자극·자극 whole saliva 모두↑ (Se-Young Choi {r:2019})
@@ -498,15 +491,15 @@ M: 항무스카린제 복용 중 → pilocarpine·cevimeline {r:피함} → {r:�
 - 기전: 무스카린성 수용체는 부교감신경이 분포하는 표적장기에 있어 부교감 자극과 비슷한 반응 — ==타액선 선포의 기능이 일부 잔존한 환자들에서 타액분비를 촉진하는데 효과적==.
 - ③ 복용법: ==낮은 용량(5mg을 하루 한 번 혹은 두 번)을 복용하기 시작하여 용량을 증량== → 최종 {r:20mg/day}(5mg을 하루 네 번).
 - 허가 용법(5mg 하루 4회)을 처음부터 쓰면 땀·심계항진·구역 → 처음엔 {r:2.5mg 1일 2-3회}로 시작해 부작용이 없으면 증량.
-E: XE06 | 23년 — 같은 증례(비자극 0.05·자극 0.1)로 재출제, JB 답 = 이 슬라이드 답 그대로.
+E: XE06 | 23년 서술(증례) "같은 증례(비자극 0.05·자극 0.1) 재출제" → JB 답 = 이 슬라이드 답 그대로 — 2016년 증례의 수치만 바뀜
 # 2017년 시험문제
 - 분비율 표 빈칸(0.5 point × 4, 소수점 첫째자리): Normal whole 비자극 {r:0.3 – 0.5} · 자극 {r:1.0 – 3.0} / Dry mouth 비자극 {r:< 0.1} · 자극 {r:< 0.5 – 0.7}.
 - 적정 용량: 1회 복용량 ( {r:10 mg} ) 초과 금지 · 방사선치료 두경부암 초기 1정(5㎎) 1일 ( {r:3} )회 · Sjögren 1정(5㎎) 1일 ( {r:4} )회 수 주간.
 - 과량 투여: ==( Atropine )을 피하 또는 정맥투여==.
 - 적응증: ==전신적인 부작용때문에, 주로 ( 구강건조증 (Xerostomia) )과 ( 녹내장(glaucoma) ) 치료용으로만 사용한다==.
-E: XE03 | 24·23·21년 3회 — 마지막 빈칸 문장이 그대로 출제.
-E: XE16 | 21년 — 과량 투여 시 ( Atropine ) 빈칸이 거의 그대로.
-E: XE15 | 21년 "타액분비율 표 빈칸" — 이 표 형식(p.55)일 수도, p.40 표일 수도(JB도 불명확).
+E: XE03 | 24·23·21년 빈칸(3회) "주로 ( )과 ( ) 치료용으로만 사용한다" → 구강건조증·녹내장 — 2017년 시험문제의 마지막 빈칸 문장이 그대로 출제
+E: XE16 | 21년 빈칸 "과량 투여 시 ( )을 피하 또는 정맥투여" → {r:Atropine} — 2017년 문제 빈칸이 거의 그대로
+E: XE15 | 21년 빈칸 "타액분비율 표 빈칸" → 복원 답 없음 — 이 표 형식(p.55)일 수도, p.40 표일 수도(JB도 불명확)
 P: 💬 "예전 시험문제입니다. 한번 보세요~"(25 필기).
 F: 54=2016년 시험문제, 55=2017년 분비율 표 빈칸, 56=2017년 pilocarpine 빈칸
 M: 2017 빈칸: 1회 {r:10 mg} 초과 ✗ · 방사선 두경부암 {r:3회} · Sjögren {r:4회} · 과량 {r:Atropine} · 적응증 {r:구강건조증·녹내장}
