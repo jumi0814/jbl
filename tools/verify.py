@@ -53,7 +53,7 @@ with sync_playwright() as p:
         docs = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d)'); nt = 0
         for d in docs:
             pg.click(f'#side .dbtn[data-d="{d}"]'); pg.wait_for_timeout(80)
-            for t in pg.eval_on_selector_all('#dtabs button', 'es=>es.map(e=>e.dataset.t)'):
+            for t in pg.eval_on_selector_all('#dtabs button[data-t]', 'es=>es.map(e=>e.dataset.t)'):
                 pg.click(f'#dtabs button[data-t="{t}"]'); pg.wait_for_timeout(40); nt += 1
         ok(True, f'{s}: 문서 {len(docs)}개 · 탭 {nt}개 열어봄')
         # 강의 정리본 본문 그림(강의 이미지 청크에서 로딩)
