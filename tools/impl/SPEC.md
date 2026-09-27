@@ -75,3 +75,7 @@ M: ⚡ 암기 줄({r:} 포함)
 - 안전: 5분마다 자동 백업(최근 5개, autobak.* = {at, why?, data} — 이관 직전 백업은 why가 붙어 복원 창에 표시) · 복원 = 합치기(기본)/덮어쓰기/자동 백업 시점 · navigator.storage.persist · 홈에 백업 경과일 알림
 - 편의: 이어서 보기(과목별 마지막 위치), 🖍 내 표시 모아보기(_marks), ? 도움말
 - 테스트: tools/tests/kt*.py(도구 — kt_orphan 위치 잃음 보존 · kt_sync 두 창·옛 mk·무활동 · kt_color 파랑/주황 · kt_migrate 원고 갱신 이관), aidlock_test.py(카드 aid 잠금), reg.py·ct.py·gt.py(회귀), audit_design.py(디자인) — 모두 docs/index.html(J.HUB_URL)을 열고 스크린샷은 work/_tmp/
+
+## 허브 화면 골격·이동 v3 (2026-09-27, shell.html)
+- 상단 오프셋: ResizeObserver가 #top·#dtabs 높이를 재어 `--toph`·`--tabh`에 넣음 → #side·#dtabs는 `top:var(--toph)`로 고정, `html{scroll-padding-top:calc(var(--toph)+var(--tabh)+12px)}`. 화면 안 이동은 모두 `goEl(el, off)`(요소 윗변을 상단 막대+탭 바로 아래 12px에 둠, off = 요소 안에서 더 내려갈 거리) — openDoc aid·목차(data-scroll)·정리표(data-scroll2)·📖 칩(data-golec)·go()·⚠ 배지
+- 아이패드 세로(≤860px): 사이드바 = ☰ 서랍(#side fixed, top:var(--toph)~bottom:0, 폭 min(320px,86vw), translateX 슬라이드) + 반투명 배경 #navbg. 배경·항목 선택·Esc·문서 이동이면 닫힘. 서랍 안은 데스크톱과 같은 세로 목록(읽음·기출 small 유지, .dbtn 44px↑). ☰(#navbtn)는 어두운 바탕(#3F3830)·밝은 글자, 44×40↑, 허브 홈·검색(body.at-home)에서는 숨김. #dtabs는 sticky 유지(탭 글자 13px) + 오른쪽 강의명(.dtname, 최대 30vw 줄임표). 터치 기기(pointer:coarse)는 탭의 숫자키 배지(.kbd) 숨김
