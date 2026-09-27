@@ -16,12 +16,17 @@ document.querySelectorAll('#stage *, #hub *, #subj *').forEach(el=>{
  const bg=bgOf(el); if(!bg)return; const L1=lum(fg),L2=lum(bg); const cr=(Math.max(L1,L2)+0.05)/(Math.min(L1,L2)+0.05);
  if(cr<3.0){const k=el.tagName+'.'+el.className; if(!seen.has(k)){seen.add(k);bad.push([k.slice(0,50),own.slice(0,40),cr.toFixed(2)]);}}
 });
+/* U27: 채운 빨강 배경(글자 있는 요소) · 13px 미만 글자 대비 4.5 미만 */
+const redfill=[],small=[];const seenR=new Set(),seenS=new Set();
+document.querySelectorAll('#stage *, #home *, #side *, #hero *').forEach(el=>{if(!el.offsetParent)return;const own=[...el.childNodes].filter(n=>n.nodeType===3&&n.textContent.trim()).length;if(!own)return;const cs=getComputedStyle(el);
+ const c=rgb(cs.backgroundColor);if(c&&c.a>0.5&&c.r>=150&&c.g<=90&&c.b<=90){const k=el.tagName+'.'+el.className;if(!seenR.has(k)){seenR.add(k);redfill.push(k.slice(0,50));}}
+ if(parseFloat(cs.fontSize)<13){const fg=rgb(cs.color),bg=bgOf(el);if(fg&&bg&&fg.a>0.3){const L1=lum(fg),L2=lum(bg),cr=(Math.max(L1,L2)+0.05)/(Math.min(L1,L2)+0.05);if(cr<4.5){const k=el.tagName+'.'+el.className;if(!seenS.has(k)){seenS.add(k);small.push([k.slice(0,50),el.textContent.trim().slice(0,30),cr.toFixed(2)]);}}}}});
 const longs=[];
 document.querySelectorAll('#stage .li, #stage .klist li, #stage .co > div, #stage .exlist li, #stage ol.circ li, #stage .ab li, #stage td').forEach(el=>{
  if(!el.offsetParent)return; const t=el.innerText.trim(); if(t.length>230 && !el.querySelector('li')) longs.push(t.slice(0,90)+' …['+t.length+']');
 });
 const ov=document.documentElement.scrollWidth>document.documentElement.clientWidth;
-return {bad,longs:longs.slice(0,40),nlong:longs.length,ov};
+return {bad,longs:longs.slice(0,40),nlong:longs.length,ov,redfill,small};
 }"""
 CHK=r"""()=>{const cs=[...document.querySelectorAll('#cards .qc')];const was=cs.map(c=>c.classList.contains('open'));cs.forEach(c=>c.classList.add('open'));const longs=[];let all=0;
  /* 덩어리 = 그 요소가 직접 가진 글(안의 목록·블록·인용 칩 줄은 따로 셈) */
@@ -32,9 +37,12 @@ async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
         pg.on('pageerror',lambda e:errs.append(str(e)[:150]))
-        allbad={}; totlong=0; longs=[]
+        allbad={}; totlong=0; longs=[]; RED={}; SMALL={}
+        def acc(r, where):
+            for x in r.get('redfill', []): RED.setdefault(x, where)
+            for x in r.get('small', []): SMALL.setdefault(x[0], (x[1], x[2], where))
         await pg.goto(U); await pg.wait_for_timeout(2000)
-        r=await pg.evaluate(JS); 
+        r=await pg.evaluate(JS); acc(r,'hub')
         for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],'hub'))
         for s,ls in SUBJ.items():
             await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/_home'); await pg.wait_for_timeout(2400)
@@ -44,7 +52,7 @@ async def main():
                     # 대조·주변부 덩어리 검사 — 모든 카드의 답을 펼쳐 .ab.chk li·.ab.chk .note·.ab.more li
                     rc=await pg.evaluate(CHK); totlong+=rc['n']; longs+=[s+'/_jb/chk: '+t for t in rc['longs']]; print('  CHUNK',s,'.ab.chk/.ab.more 230자 넘는 덩어리',rc['n'],'/',rc['all'])
                     await pg.evaluate("document.querySelectorAll('#cards [data-tog]').forEach((b,i)=>{if(i<8)b.click()})"); await pg.wait_for_timeout(300)
-                r=await pg.evaluate(JS)
+                r=await pg.evaluate(JS); acc(r, s+view)
                 for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],s+view))
                 totlong+=r['nlong']; longs+= [s+view+': '+t for t in r['longs'][:3]]
                 if r['ov']: print('OVERFLOW',s,view)
@@ -52,10 +60,14 @@ async def main():
                 await pg.evaluate('d=>document.querySelector(`#side .dbtn[data-d="${d}"]`)?.click()', k); await pg.wait_for_timeout(900)
                 for t in ['learn','sum','tbl','jb','pred','flash']:
                     await pg.evaluate('d=>document.querySelector(`#dtabs button[data-t="${d}"]`)?.click()', t); await pg.wait_for_timeout(350)
-                    r=await pg.evaluate(JS)
+                    r=await pg.evaluate(JS); acc(r, f'{s}/{k}/{t}')
                     for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],f'{s}/{k}/{t}'))
                     totlong+=r['nlong']; longs+= [f'{s}/{k}/{t}: '+x for x in r['longs']]
                     if r['ov']: print('OVERFLOW',s,k,t)
+        print('RED FILL', len(RED))
+        for k,v in RED.items(): print(' ',k,'|',v)
+        print('SMALL LOW CONTRAST(<13px, <4.5)', len(SMALL))
+        for k,v in SMALL.items(): print(' ',k,'|',v)
         print('LOW CONTRAST', len(allbad))
         for k,v in allbad.items(): print(' ',k,'|',v)
         print('LONG', totlong)

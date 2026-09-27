@@ -409,6 +409,19 @@ button.car{flex:none;width:32px;height:32px;border:0;background:none;padding:0;m
 .only-unread .tc.done{display:none}
 .cond .c-key .kb>ul>li:nth-child(n+2),.cond .c-key .kb>ol>li:nth-child(n+2),.cond .tchips{display:none}
 @media (pointer:coarse){button.car{width:40px;height:40px}}
+/* 색 체계 v7(U27) — 채움은 과목색(번호 배지)만 · 칩은 흰 바탕 + 테두리 · 작은 글자 대비 4.5↑ */
+:root{--faint:#756E63}
+.jbchip{background:#fff;color:#4A453E;border:1px solid var(--line);font-weight:700}.jbchip.rep{background:#fff;color:var(--acc);border:1.5px solid var(--acc);font-weight:800}
+.tc.h1 .badge,.tc.h2 .badge{background:var(--acc);color:#fff}
+.xjb,.xjb.rep{background:#fff;color:var(--acc);border:1px solid var(--line)}.xjb.rep{border-color:var(--acc)}
+.chip.emc{border:1px solid var(--line);border-style:solid;color:#5B4B9A;background:#fff}
+.chip.yr,.chip.yr.n1{background:#fff;color:#4A453E;border:1px solid var(--line)}.chip.yr.n2,.chip.yr.n3{background:#fff;color:var(--acc);border:1.5px solid var(--acc);font-weight:800}
+.og2{font-size:13px}.co .ct{font-size:12px;letter-spacing:.04em}
+.ybadge,.ybadge.n1{background:#fff;color:#35322D;border:1px solid var(--line)}.ybadge.n2,.ybadge.n3{background:#fff;color:var(--acc);border:1.5px solid var(--acc)}.ybadge i{color:var(--sub)}.ybadge.pr{background:#fff;color:#4A453E}
+.chip.tt{background:#fff;color:#8E1B14;border-color:#D9A39D}.chip.jj{background:#fff}
+.figs .fb{display:none}
+.small,.co .ct small{color:#6A645B}
+tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>

@@ -265,7 +265,7 @@ def figgrid(kk, fl):
     for p, cap, fk in fl:
         k2 = fk or kk; ctx['cited'].add((k2, p)); lab_ = getattr(S, 'PAGE_LABEL', {}).get(k2, 'p.')
         nm = (' <i>' + esc(LECNAME.get(k2, k2).split('(')[-1].rstrip(')')) + '</i>') if fk else ''
-        out.append(f'<figure data-fig="{k2}-{p}"><span class="fb">슬라이드</span><img data-img="{k2}-{p}" alt=""><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}</figcaption></figure>')
+        out.append(f'<figure data-fig="{k2}-{p}"><img data-img="{k2}-{p}" alt=""><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}</figcaption></figure>')
     return '<div class="figs noann">' + ''.join(out) + '</div>'
 def yl(yrs, full=False):
     """연도 라벨: 5개 초과면 앞 4개 + 나머지 수"""
@@ -338,7 +338,9 @@ def lec_card(L, j, c):
         elif t == 'P': h.append(f'<div class="co c-prof"><div class="ct">💬 교수님 강조</div>{lecparse.render_key(v, ctx)}</div>')
         elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if len(v) > 150 else lecparse.inline(v, ctx)}</div>')
     flush_ex()
-    if c['recall']: h.append(f'<div class="co c-mem"><div class="ct">⚡ 암기 <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small></div><ul>{"".join(lecparse.render_recall(x, ctx) for x in c["recall"])}</ul></div>')
+    if c['recall']:   # 안내문은 강의의 첫 ⚡ 블록에만(U27 — 카드마다 반복하지 않음)
+        tip = '' if MEMTIP.get(k) else ' <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small>'; MEMTIP[k] = 1
+        h.append(f'<div class="co c-mem"><div class="ct">⚡ 암기{tip}</div><ul>{"".join(lecparse.render_recall(x, ctx) for x in c["recall"])}</ul></div>')
     h.append('</div></article>')
     thumb = ''
     if c['figs']:
@@ -391,7 +393,7 @@ trends_html = (f'<div class="panel ptrend"><div class="bt">교수별 출제 경�
                + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
                + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></div>')
 top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_clean(q['short']), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
-lect = []; KEYLONG = {}
+lect = []; KEYLONG = {}; MEMTIP = {}
 for L in LEC:
     k = L['k']; cards = []; rows = []; grps = []; curg = None; outline = []
     for j, c in enumerate(L['cards']):
