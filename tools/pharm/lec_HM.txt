@@ -1,51 +1,670 @@
 #LEC HM | 지혈제와 수렴제 — 출혈 경향 환자·항응고제·국소 지혈제 | 우경미 | 25 | 251016_우경미_지혈수렴제 (25년도, 59쪽) | 59
-! 26년도 파일 없음 → 25년도(25 JB "아직 진도 전 — 이전 해설·레퍼런스 그대로", JB 참고 쪽수는 22·23 자료 기준 p.11·13·15·21-22·31-34·38·42·55·58·70·72 → 25에서는 p.6-14(출혈 환자·검사), p.15-21(항응고·항혈소판), p.22-27(치과 시술 관리), p.28-54(국소 지혈제·수렴제·항섬유소용해), p.55-57(vitamin K), p.58-59(증례 Mr. J)). 교수님: "지난 학기 thrombosis와 같은 내용, 논문(ADA guide)을 직접 확인".
-@MAP 출혈 문제 환자(선천·후천 원인)·병력 청취 → 선별 검사(CBC·PT/INR·aPTT·BT) → ★ 항응고제(warfarin VKA vs DOAC dabigatran·Xa 억제제, heparin·LMWH)·★ 항혈소판제(aspirin·P2Y12·GPIIb/IIIa) → 치과 시술 관리(중단 ×, 국소 지혈) → 국소 지혈 — 기계적·수렴제·혈관수축제·★ 흡수성 제제(gelatin·cellulose·collagen)·thrombin·항섬유소용해(aminocaproic acid·tranexamic) → ★ vitamin K(γ-carboxylation, 항생제) → 생리적 항응고제(thrombin이 활성화) → 증례 Mr. J(dabigatran + aspirin)
+! 26년도 파일 없음 → 25년도 자료(251016, 59쪽 — 슬라이드 + PDF 주석 필기). JB 해설의 참고 쪽수는 21·22·23년 자료 기준 — 22 자료의 생리적 항응고제(p.13)·GP Ib(p.4)·γ-carboxyglutamate 9-12개(p.69) 슬라이드는 25 자료에서 빠졌으므로 그 부분은 JB 답으로 외운다.
+! 교수님 예고(p.1 필기): "지난 학기 Thrombosis와 개념적으로 같은 내용 — 이번 수업은 약을 언제 어떻게 사용할 것인지에 집중, 기전은 지난 학기 수업을 확인" · 수업의 네 질문(p.2): 어떤 환자가 · 어떤 lab test · 항응고·항혈소판제 환자의 치과치료 · 국소 지혈 방법.
+! 교수님 강조: p.13 INR(정상 0.8-1.2 · warfarin 2.0-3.0) "이 숫자를 기억해주시면 좋겠습니다" · p.26 약을 끊기 어려운 환자에게 쓰는 anti-fibrinolytic medication "또 기억해야 할 것" · p.47 thrombin의 smooth muscle contraction "기억해주시면" · p.4 ADA 문헌 "스스로를 보호하기 위해서 잘 숙지".
+! 수업 진행(필기): p.30-47(수렴제·혈관수축제·국소 지혈제 상품)은 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인해주세요"라며 넘어가심 · p.49 thrombin 사용법 "넘어갔습니다" · p.58 "시간이 부족해 건너뛴 부분은 직접 꼭 확인, case study도 확인" · p.21 drug interaction(빨간 박스)은 직접 찾아보기.
+! JB 경향(강조): 우경미 지혈은 23·24년 출제가 전부 짤 — aspirin 기전 5회(24·23·22·21·20) · thrombin 빈칸 4회(24·22·21·20) · warfarin vs dabigatran 기전·장점(24·23·22 / 22·20) · target 표(aminocaproic·clopidogrel·LMWH·tirofiban) · 병력 청취 질환·항생제와 vit K(22·21·20). 25 JB는 "진도 전 — 이전 해설 그대로". 기출 줄을 그대로 외우고, 국소 지혈제·INR 표·vitamin K 투여처럼 기출 없는 부분은 변형 대비로.
+! ⚠ JB 분해 누락: 2021년 14번 "수술하기 전에 해야하는 검사의 종류, 기준, 산출방법"(답 INR(PT)·aPTT)이 HM04 다른 판본 원문 뒤에 붙어 있음 → PT·aPTT·INR 카드(p.10-13)에서 공부.
+@MAP 대원칙(출혈 vs 혈전 시소 → local measure 우선) → 출혈 질환·병력·진찰 → 선별 검사(★PT/INR·aPTT·Table 9.4) → ★항응고제(warfarin vs DOAC · heparin/LMWH)·★항혈소판제(aspirin·P2Y12·GPIIb/IIIa) → 치과 시술 결정(알고리즘·INR 구간표) → 국소 지혈(수렴제·epinephrine·gelatin·cellulose·collagen·thrombin·★항섬유소용해) → ★vitamin K → 증례 Mr. J
 
-## Bleeders — Causes · History · Screening Tests ★ | 출혈 경향 환자 — 원인·병력·선별 검사 (22·21·20) | 6-14 | 기출 20~22 | jb=HM08,HM09,HM24,HM13,HM19,HM23,HM20
-> 선천(혈우병·Christmas)·후천(간·vit K·항응고제·DIC) — 병력이 먼저, 검사는 PT/INR·aPTT
-= 선천: {r:hemophilia A(VIII)} · {r:Christmas disease(IX)} · vWD / 후천: {r:liver disease}(응고인자 생산) · {r:vitamin K 결핍}(담도 폐쇄·흡수 장애·{r:광범위 항생제 장기 복용} → 장내 세균의 vit K 합성↓) · {r:항응고제}(heparin·coumarin·aspirin/NSAID) · DIC · 1차 섬유소용해 / 병력 청취 질환: {r:leukemia}(혈소판) · {r:liver disease}(응고인자) · {r:hemophilia}(VIII/IX) · {r:congenital heart disease}(수술 후 항응고제) / 검사: CBC(혈소판) · {r:PT/INR}(외인계·warfarin: INR 치료 범위 2-3, 발치는 ≤3.5) · {r:aPTT}(내인계·heparin) · bleeding time(혈소판 기능) · clotting factor / 혈소판: {r:GP Ib}(vWF와 결합 — 손상 내피 부착), {r:GP IIb/IIIa}(fibrinogen·vWF와 결합 → 응집) / 보스민(epinephrine) gingival cord: 혈관수축, 전신 흡수 시 심혈관 유해
-E: HM08 | "출혈 경향 확인을 위한 병력 청취 질환과 이유"(22·21·20년).
-E: HM09 | "장기간 항생제 복용 시 지혈문제 이유"(22·21·20년) → 장내 세균 vit K 합성↓.
-E: HM24,HM13 | warfarin 환자 처치·상황 판단(21·20년).
-E: HM19,HM23 | 20년 GP IIb/IIIa(vWF·fibrinogen 결합) / GP Ib.
-E: HM20 | 20년 보스민 gingival cord 성분·유해작용.
-F: 6=Patients who can have bleeding problems, 7=후천 응고 이상, 8=Detection — 병력 질문, 11=Screening tests — CBC·PT·aPTT, 13=PT — factor II time, 14=ADA guide 검사 기준
-M: 후천 원인: {r:간질환 · vit K 결핍(항생제) · 항응고제 · DIC} / 검사 {r:PT/INR(warfarin) · aPTT(heparin)} / {r:GP Ib = vWF}, {r:GP IIb/IIIa = fibrinogen}
+@G ① 출혈 위험 환자와 검사
+## Perioperative Anticoagulation Management | 항응고 환자 관리의 대원칙 — 약 중단보다 local measure | 1-5 | 개요 · ADA
+> 약을 끊으면 혈전, 계속 먹으면 출혈 — 이 시소의 균형을 local measure로 맞춘다
+= 치과의사의 선택지 3 = {r:stop} / {r:continue} / {r:bridge with heparin (LMWH)} → typical dental procedure = {r:중단 불필요 + local measures}
+# 왜 어려운가 — 두 위험의 저울질
+- Patients on chronic anti-coagulation often need to undergo procedures that pose risk of bleeding — providing optimal anticoagulation treatment is {r:challenging}.
+- The risk of {r:thromboembolic events} must be weighed against the risk of {r:surgical bleeding} — patient preferences도 고려.
+- 수술 전후 thromboembolism 위험은 평소 연간 발생률로 예상한 것보다 큼 — ① {r:rebound hypercoagulable state} from cessation of anticoagulants(약 중단 후 반동) ② hypercoagulability due to {r:surgical trauma}(수술로 몸이 지혈 쪽으로 바뀜).
+# 치과의사의 선택 (ADA)
+- A dentist has three options: ① {r:stop} anticoagulation ② {r:continue} it ③ {r:bridge with heparin (LMWH)}.
+- **Patients of Typical Dental Procedures**: No need to discontinue medication; use local measures to control bleeding.
+- **Patients with Higher Risk of Bleeding**: 약 변경은 in consultation with and on advice of the {r:patient's physician}(주치의와 상의해서만).
+- The serious risks of stopping or reducing the anti-thromboembolic medication vs prolonged bleeding(= local measures로 조절 가능)의 균형.
+| 환자 | ADA 권고 |
+| Typical dental procedures | 약 {r:중단 불필요} · {r:local measures}로 지혈 |
+| Higher risk of bleeding | {r:주치의 consultation} 후 조정 · 중단 위험 vs 출혈 위험 균형 |
+U: 시소 그림 — Bleeding Risk 쪽에 Local Measures를 올려 Thromboembolic Risk(stroke·pulmonary embolus·myocardial infarction)와 균형을 맞춤 = 약을 끊기보다 국소 처치를 우선 고려(필기).
+P: 💬 "미국치과의사협회 문헌으로 나와 있는 내용 — 여러분이 스스로를 보호하기 위해서 잘 숙지"(p.4) · 교과서·JADA 2019 논문·ADA 가이드라인을 "직접 확인하고 숙지, 최근 업데이트 확인"(p.5).
+F: 4=시소 — local measure로 균형, 3, 5=교과서와 ADA 가이드라인
+M: 선택지 3: {r:stop} · {r:continue} · {r:bridge with heparin(LMWH)} → typical procedure는 {r:중단 없이 local measures}
+M: 수술 전후 혈전↑ 이유 2: 약 중단 후 {r:rebound hypercoagulable} + {r:surgical trauma}
 
-## Anticoagulants · Antiplatelets ★ | 항응고제 vs 항혈소판제 — warfarin·dabigatran·aspirin·target 표 (24·23·22·21·20) | 15-21 | 기출 20~24 | jb=HM03,HM11,HM04,HM02,HM14,HM15,HM16,HM17,HM21,HM18,HM10
-> Warfarin은 vit K 길항으로 II·VII·IX·X 생성 억제, dabigatran은 thrombin 직접 억제 — 예측 가능·모니터링 불필요
-| 약물 | Target | 요점 |
-| {r:Warfarin}(VKA) | vit K epoxide reductase → {r:II·VII·IX·X}의 γ-carboxylation 억제 | 작용 개시 느림·예측 어려움 → {r:INR 모니터링}, sulfonamide 등과 상호작용(CYP2C9 억제·단백결합 치환 → 출혈↑) |
-| {r:Dabigatran}(DOAC) | {r:direct thrombin(factor II) inhibitor} | 예측 가능·고정 용량·{r:반감기 짧음}·모니터링 불필요 |
-| Apixaban·edoxaban·rivaroxaban(DOAC) | {r:factor Xa} 직접 억제 | |
-| Heparin / {r:LMWH} | {r:antithrombin III} 활성화(→ IIa·Xa) / LMWH는 Xa 위주 | 주사, aPTT(heparin) |
-| {r:Aspirin} | {r:COX 비가역 억제 → thromboxane A2↓} → 혈소판 응집 억제 | 저용량, 항혈소판 |
-| {r:Clopidogrel}(ticlopidine·prasugrel·ticagrelor) | {r:ADP receptor(P2Y12)} | |
-| {r:Tirofiban}(abciximab) | {r:GP IIb/IIIa receptor} | |
-| {r:ε-Aminocaproic acid}(tranexamic acid) | {r:t-PA·plasminogen·plasmin}의 lysine binding site → plasmin 생성·작용 억제 = 항섬유소용해(지혈) | |
-= 항응고제 + 항혈소판제는 심한 경우 병용 가능, 서로 다른 항응고제 동시 사용은 × → 증례 Mr. J: A = {r:dabigatran}(warfarin 대체 DOAC), B = {r:aspirin}
-E: HM03,HM11,HM10 | "warfarin vs dabigatran 기전 차이·dabigatran 장점"(24·23·22년) + Mr. J A·B 약물 조합(22년).
-E: HM04 | "저용량 aspirin 기전·기대효과"(24·23·22·21·20년).
-E: HM02,HM14,HM15,HM16,HM17,HM21 | target 표 빈칸(24·22·21·20년) — aminocaproic acid·clopidogrel·LMWH·tirofiban.
-E: HM18 | warfarin + sulfonamide 병용 시(21·20년) → 출혈 위험↑.
-F: 15=Anticoagulant and antiplatelet agents, 16=VKA vs DOAC ★, 18=Heparin·LMWH, 19=Anti-platelet drugs — aspirin·P2Y12·GPIIb/IIIa ★, 21=Common anticoagulants·interactions
-M: {r:warfarin = vit K 길항(II·VII·IX·X)}, {r:dabigatran = thrombin 직접}, Xa = {r:-xaban} / {r:aspirin = COX → TXA2↓}, {r:clopidogrel = P2Y12}, {r:tirofiban = GPIIb/IIIa}, {r:aminocaproic = plasmin(ogen)}
+## Bleeding Disorders — Platelet vs Coagulation | 출혈 질환의 두 축 — 혈소판 이상 vs 응고 이상 | 6-7 | 분류 · 기출 20~23 | jb=HM09,HM06
+> 지혈 = 혈소판 + 응고인자 — 어느 쪽이 무너졌는지로 출혈 질환을 나눈다
+= 지혈 = {r:Platelet} + {r:Coagulation factor} / 후천 응고 이상 = {r:Liver disease} · {r:Vit K 결핍} · {r:항응고제} · DIC · fibrinogenolysis
+# Table 9.1 — 출혈 질환의 정의
+| 분류 | 질환 | 정의 |
+| Platelet disorders | {r:Thrombocytopenia} | decreased number of functioning platelets — 생산↓ 또는 파괴·제거↑ |
+| Platelet disorders | Immune thrombocytopenic purpura (ITP) | autoimmune — 자기 혈소판에 대한 항체로 파괴 |
+| Platelet disorders | Drug-induced platelet disorders | 약이 reversibly or irreversibly 혈소판 기능 억제 |
+| Coagulation disorders | {r:Von Willebrand disease (vWD)} | {r:autosomal dominant} — deficient or defective plasma {r:vWF} |
+| Coagulation disorders | {r:Hemophilia A} | {r:X-linked} — clotting factor {r:VIII} 결핍·결함 |
+| Coagulation disorders | {r:Hemophilia B} | {r:X-linked} — clotting factor {r:IX} 결핍·결함 |
+| Coagulation disorders | Disseminated intravascular coagulation | acquired — uncontrolled thrombin activation and release → severe thrombosis(fatal 가능) |
+| Coagulation disorders | Drug-induced coagulation disorders | 응고인자 합성 방해 → prolonged bleeding |
+U: 지혈은 platelet과 blood clotting 두 요소로 조절 — hemophilia는 환자가 스스로 알지만 drug induced coagulation disease는 병력 청취로 꼭 확인(필기).
+F: 6=Table 9.1 출혈 질환
+# Disorders of coagulation — 선천 vs 후천
+- **a. Inherited**: ① {r:Hemophilia}(deficiency of Factor {r:VIII}) ② {r:Christmas disease}(deficiency of Factor {r:IX}) ③ Others.
+- **b. Acquired**: ① {r:Liver disease} ② {r:Vitamin deficiency} ③ {r:Anticoagulation drugs} ④ {r:Disseminated intravascular coagulation (DIC)} ⑤ {r:Primary fibrinogenolysis}.
+- Vitamin deficiency 원인: (a) {r:Biliary tract obstruction} (b) {r:Malabsorption} (c) {r:Excessive use of broad-spectrum antibiotics}.
+- Anticoagulation drugs: (a) {r:Heparin} (b) {r:Coumarin} (c) {r:Aspirin and NSAIDs}.
+- 슬라이드 빨간 박스 = Acquired ①②③(liver disease · vitamin deficiency · anticoagulation drugs).
+U: 간 질환 → 혈액응고인자들이 간에서 만들어지기 때문 / broad spectrum antibiotics를 과도하게 써도 vit K 부족 / vit K는 일부 응고인자 N terminal의 gamma carboxylation을 도움 → 부족하면 cascade에 문제(필기).
+E: HM09 | 22·21·20·19·18·17년 6회(17’이전 포함) 서술형 "장기간 항생제 복용 시 지혈문제가 생기는 이유" → ==장내 세균에 의해 합성되는 Vitamin K의 양이 줄어들기 때문== — 슬라이드 근거 (c) Excessive use of broad-spectrum antibiotics + p.56 "reduced synthesis of vitamin K in intestinal bacteria". 함정: 항생제 → 혈소판이 아니라 {r:vit K 의존 응고인자} 문제.
+- 병력 청취 질환 문항(HM08)의 JB 20학번 해설은 이 쪽 a) Inherited / b) Acquired 목록을 그대로 옮긴 것 → 다음 카드 p.8 목록과 함께 외울 것.
+# 응고인자 표 — 결핍의 원인
+| Factor | 이름 | Cause or description of deficiency |
+| I | Fibrinogen | Liver disease |
+| II | Prothrombin | Liver disease or {r:vitamin K deficiency} |
+| III · IV | TF, thromboplastin · Ca2+ | Ca2+: Never deficient without tetany |
+| V | Proaccelerin | Parahemophilia, rare |
+| VII | Proconvertin | Liver disease or {r:vitamin K deficiency} |
+| VIII | Antihemophilic factor A | {r:Hemophilia A}, 80% of hemophiliacs |
+| IX | Christmas factor, AHF B | {r:Hemophilia B}(Christmas disease), depressed with vitamin K deficiency |
+| X | Stuart-Prower factor | Liver disease or {r:vitamin K deficiency} |
+| XI | Plasma thromboplastin antecedent, AHF C | Factor XI hemophilia (hemophilia C) |
+| XII | Hageman factor | Generally no clinical symptoms but may have thromboses, rare |
+| XIII | Fibrin-stabilizing factor | Delayed bleeding, defective healing, rare |
+| PF3 | Platelet factor 3 | Thrombocytopenia |
+| Protein C · Protein S | — | Liver disease or {r:vitamin K deficiency} |
+E: HM06 | 23·22·21년 3회 빈칸 "간에서 생성되는 Vit K 의존성 항응고인자는 factor 2, 7, 9, 10이고, 항응고조절인자는 ( )" → JB 답 ==protein C, protein S, antithrombin III, tissue factor pathway inhibitor== — ⚠ 25 자료에서 확인되는 것은 이 표의 {r:Protein C·Protein S}(liver disease or vitamin K deficiency)와 heparin 표적 AT III(p.18)뿐, TFPI·thrombomodulin은 없음. JB 해설도 "항응고조절인자라는 워딩은 수업에 없음"(복원 문구 불확실).
+F: 7=후천 응고 이상과 응고인자 표
+M: 선천: {r:Hemophilia(VIII)} · {r:Christmas disease(IX)} / 후천: {r:Liver} · {r:Vit K 결핍} · {r:항응고제} · {r:DIC} · {r:primary fibrinogenolysis}
+M: Vit K 결핍 3: {r:biliary tract obstruction} · {r:malabsorption} · {r:broad-spectrum antibiotics 과다}
+M: vWD = {r:autosomal dominant} · vWF / Hemophilia A·B = {r:X-linked} · {r:VIII}·{r:IX} / vit K 결핍으로 ↓: {r:II·VII·IX·X · protein C·S}
 
-## Dental Management · Local Hemostasis ★ | 항응고 환자의 치과 시술과 국소 지혈 (22·21·20) | 22-54 | 기출 20~22 | jb=HM07,HM12
-> 약을 끊지 말고 국소 지혈 — 압박·봉합·Gelfoam·Oxycel·Surgicel·collagen·thrombin·tranexamic
-= 원칙: 단순 발치는 항응고제 중단 없이(INR ≤3.5), {r:local measure}로 지혈 / 기계적: 압박(gauze)·hemostat·봉합(primary suture)·modeling compound / 수렴제(astringent): aluminum chloride 5-25%·zinc salts·tannic acid — 단백 침전으로 모세혈관 지혈, gingival retraction cord / 혈관수축제: epinephrine(cord — 전신 흡수 주의) / 흡수성 국소 지혈제: {r:Gelfoam}(젤라틴 스펀지, 물리적 matrix·혈소판 접촉, 4-6주 흡수), {r:FloSeal}(gelatin-thrombin matrix), {r:Oxycel·Surgicel}(oxidized cellulose — 산성으로 hemoglobin과 결합, 신경 주변 ×, thrombin과 병용 ×), {r:collagen}(Collaplug·Helistat — 혈소판 활성, autoclave ×), {r:thrombin}(topical — fibrinogen → fibrin, 정맥 주사 ×), fibrin sealant / 항섬유소용해: {r:aminocaproic acid·tranexamic acid}(mouthwash 4.8%)
-E: HM07 | 22년 warfarin 환자 단순 발치 국소 출혈 처치 → 압박·Oxycel·Surgicel·봉합 등 local measure.
-E: HM12 | 21년 t-PA 관련(aminocaproic acid가 t-PA·plasminogen의 lysine site 점유).
-F: 22=Anticoagulant medications and dental procedures, 26=Oozing 대처, 28=Mechanical aids, 30=Astringents, 32=Vasoconstrictor, 33=Topical hemostatic agents 표, 34=Gelfoam, 37=FloSeal, 40=Oxidized cellulose, 45=Collagen, 47=Thrombin, 50=Anti-fibrinolysis agents
-M: 항응고제 {r:중단 없이 국소 지혈}: 압박·봉합 → {r:Gelfoam · Oxycel/Surgicel · collagen · thrombin · tranexamic}
+## Detecting the "Bleeder" — History · Examination | 병력 청취와 진찰 소견 | 8-9 | 기출 20~22 · 3회 | jb=HM08
+> 출혈 경향은 먼저 물어서 찾는다 — 가족력·수술 후 출혈·약·질환, 그리고 입안의 신호
+= History 핵심 = {r:약 3}(aspirin·anticoagulants·long-term antibiotic) + {r:질환 4}(leukemia·liver·hemophilia·congenital heart)
+# 1. History — 무엇을 물을까
+- a. Bleeding problems in {r:relatives}(가족력).
+- b. Bleeding problems following {r:operations and tooth extractions}.
+- c. Bleeding problems following {r:trauma}(cuts, etc.).
+- d. Medications that may cause bleeding problems: ① {r:Aspirin} ② {r:Anticoagulants} ③ {r:Long-term antibiotic therapy}.
+- e. ==Presence of illnesses that may have associated bleeding problems==: ① {r:Leukemia} ② {r:Liver disease} ③ {r:Hemophilia} ④ {r:Congenital heart disease}.
+- f. {r:Spontaneous bleeding} from nose, mouth, ears, etc.
+U: 요즘은 heparin·coumarin(warfarin)보다 factor II나 X를 직접 표적하는 DOAC을 더 많이 씀(monitoring하기 편하고 예측 가능성이 높음) — 이런 약·aspirin·장기 항생제 복용 여부를 확인(필기).
+E: HM08 | 22·21·20년 3회 서술형 "출혈 경향을 보일 수 있는 환자를 알아내기 위해 병력 청취 시 확인해야 하는 질병과 그 이유" → ==Leukemia, Liver disease, Hemophilia, Congenital heart disease== = 슬라이드 e.의 4개 그대로. 이유(JB): leukemia 혈소판 생성 이상 / 간질환 응고인자 생산 이상 / 혈우병 factor 8·9 이상 / 선천성 심장질환 = 심장수술 후 항응고제 복용 가능성. 함정: d.(약 3)와 e.(질환 4)를 섞지 말 것 — 20학번 해설은 p.7 Inherited/Acquired 목록으로 답함.
+# Blood clots — 누가 blood thinner를 먹나
+- Blood clots can cut off circulation to lungs({r:pulmonary embolism}), brain({r:stroke}), and heart({r:heart attack}).
+- Who needs blood thinners: ① had a heart attack or a stroke ② heart or blood vessel disease ③ {r:Deep vein thrombosis}(DVT — 다리에 잘 생기는 위험한 혈전) ④ {r:artificial heart valve} ⑤ an irregular heart rhythm ⑥ Lupus.
+U: 조절되지 않은 blood clot이 혈류를 타고 가다 좁은 곳을 막으면 thromboembolism — 폐·뇌·심장이면 특히 위험 → 예방적으로 blood thinner 복용, 병력 청취를 잘 하자(필기).
+F: 8=병력 청취 항목과 blood thinner 복용 대상
+# 2. Examination findings — 진찰에서 보이는 신호
+- ① Jaundice, pallor(황달·창백) ② {r:Spider angiomas} ③ {r:Ecchymoses}(반상출혈) ④ {r:Petechiae}(점상출혈) ⑤ Oral ulcers ⑥ {r:Hyperplastic gingival tissues} ⑦ Hemarthrosis(관절 출혈).
+- Figure 9.1·9.2: {r:Spontaneous gingival oozing} — severe thrombocytopenia / leukemia and severe thrombocytopenia.
+- Figure 9.6: Ecchymosis after prophylaxis treatment in a thrombocytopenic patient with acute leukemia.
+U: 사진처럼 굉장히 edematous하고 자극 없이 spontaneous oozing / spider angioma = 누르면 쭉 퍼져 나가는 형태 → 간 질환에서 자주 생김(필기).
+F: 9=진찰 소견 — spontaneous oozing과 spider angioma
+M: 병력 — 약 3: {r:Aspirin} · {r:Anticoagulants} · {r:Long-term antibiotic therapy}
+M: 병력 — 질환 4: {r:Leukemia} · {r:Liver disease} · {r:Hemophilia} · {r:Congenital heart disease}
+M: 진찰 7: jaundice·pallor · {r:spider angiomas}(간) · {r:ecchymoses} · {r:petechiae} · oral ulcers · hyperplastic gingiva · hemarthrosis
 
-## Vitamin K · Physiologic Anticoagulants ★ | Vitamin K와 생리적 항응고제 — thrombin이 활성화한다 (24·23·22·21·20) | 55-57 | 기출 20~24 | jb=HM01,HM05,HM06,HM22
-> II·VII·IX·X는 vit K 의존 γ-carboxyglutamate — protein C·S·antithrombin은 간에서, thrombin을 인지해 활성
-= Vitamin K: {r:II·VII·IX·X}(+ protein C·S)의 {r:γ-carboxylation} cofactor — N-terminal에 {r:9-12개 γ-carboxyglutamate(Gla)} 잔기 domain → Ca2+ 매개로 인지질막 결합 / 결핍: 흡수 장애·{r:장내 세균 합성↓(항생제)} → vit K 투여(prodrug, 부작용 보고) / 생리적 항응고제: {r:thrombomodulin·protein C·protein S·antithrombin III·TFPI} — thrombomodulin 외엔 {r:간에서 합성}; ==이들 모두는 활성화되기 위해 상처 근처에서 유출되는 thrombin을 인지하는 것이 필요==
-E: HM01 | "생리적 항응고제는 ( )를 인지해 활성화"(24·22·21·20년) → thrombin.
-E: HM05 | "vit K 의존 인자 N-terminal 9-12개 ( ) 잔기"(23·20년) → γ-carboxyglutamate.
-E: HM06 | "간에서 생성되는 vit K 의존 인자는 II·VII·IX·X, 항응고조절인자는 ( )"(23·22·21년) → protein C·S·antithrombin III·TFPI.
-E: HM22 | 20년 vit K 의존적 응고인자 → II·VII·IX·X.
-F: 55=Role of vitamin K, 56=γ-carboxylation cofactor — II·VII·IX·X ★, 57=Vitamin K prodrug, 58=Case — Mr. J, 59=Case discussion
-M: vit K 의존 {r:II·VII·IX·X}, {r:Gla 9-12개} / 생리적 항응고제 {r:protein C·S·AT III·TFPI}(간), {r:thrombin이 활성화}
+## Screening Tests — PT vs aPTT | 선별 검사 — 외인계 PT vs 내인계 aPTT | 10-12 | 검사 ★
+> tissue factor를 넣으면 PT(외인계·warfarin), partial thromboplastin을 넣으면 aPTT(내인계·heparin·혈우병)
+= {r:PT} = tissue factor · extrinsic · {r:10-14 s} · warfarin↑ / {r:aPTT} = partial thromboplastin · intrinsic · {r:30-40 s} · heparin·혈우병↑
+# 3. Screening laboratory tests
+- a. {r:PT}(Prothrombin time) b. {r:APTT}(activated partial thromboplastin time) c. {r:TT}(thrombin time) d. {r:BT}(bleeding time (Ivy)) e. Platelet count.
+- 4. Surgical procedure — {r:excessive bleeding following surgery} may be first clue to underlying bleeding problem(수술 후 과다 출혈이 첫 단서).
+- Tissue Factor is used to assay prothrombin times (PT), the extrinsic coagulation pathway.
+- Partial thromboplastin is used to measure the intrinsic pathway, which is called the activated partial thromboplastin time (aPTT).
+- 경로 그림: Intrinsic(aPTT — surface contact: XII→XI→IX, VIII) + Extrinsic(PT — tissue damage → TF:VIIa) → {r:Common pathway}(TT — X→Xa → prothrombin→thrombin → fibrinogen→fibrin→stable fibrin clot).
+U: intrinsic = 채혈한 혈액 안에 있는 component로 test 가능 / extrinsic = in vivo에서 일어나 무언가를 추가해야 함 → 두 경로는 factor X activation부터 common pathway로 연결(필기).
+F: 10=Intrinsic·Extrinsic·Common pathway와 검사
+# 검사별 정상치·측정 인자
+| 검사 | 정상(WNL) | 측정하는 인자 | 늘어나는 경우 |
+| 1. Complete Blood Count (CBC) | — | 혈구 | hemophilia는 정상, 심하거나 오래 출혈하면 hemoglobin·RBC count↓ |
+| 2. {r:aPTT} | {r:30-40 seconds} | factors {r:VIII · IX · XI · XII} | {r:heparin therapy} · {r:hemophilia A or B} |
+| 3. {r:PT} | {r:10-14 seconds} | factors {r:I · II · V · VII · X} | {r:Warfarin}(vitamin K antagonist) — hemophilia A·B는 대부분 정상 |
+| 4. Fibrinogen (factor I) test | — | fibrinogen | PT·aPTT 이상일 때 함께 order |
+U: 임상적으로 가장 많이 쓰는 것이 PT — warfarin 복용 환자에서 늘어남 / heparin 투여 환자·혈우병 환자에서 aPTT 증가(필기).
+F: 11=CBC·aPTT·PT·fibrinogen
+# 5. Clotting factor tests — 혈우병 중증도
+| Severity | Levels of Factor VIII or IX in the blood |
+| Normal | 50% to 100% |
+| {r:Mild} hemophilia | {r:5% to 50%} |
+| {r:Moderate} hemophilia | {r:1% to 5%} |
+| {r:Severe} hemophilia | {r:Less than 1%} |
+F: 12=혈우병 중증도 표
+- ⚠ JB 분해 누락 문항 — 2021년 14번 "수술하기 전에 해야하는 검사의 종류, 기준, 산출방법"(JB 답: 검사 – INR(PT), aPTT tests / PT factor 1,2,5,7,10 정상 10-14초 · aPTT factor 8,9,11,12 정상 30-40초 · INR 공식)은 HM04 원문 뒤에 붙어 있음 → 이 카드 표 + 다음 카드 INR이 답.
+M: {r:PT} = tissue factor · {r:extrinsic} · {r:10-14초} · {r:I·II·V·VII·X} · {r:warfarin}↑
+M: {r:aPTT} = partial thromboplastin · {r:intrinsic} · {r:30-40초} · {r:VIII·IX·XI·XII} · {r:heparin·혈우병}↑
+M: 혈우병(VIII·IX 농도): mild {r:5-50%} · moderate {r:1-5%} · severe {r:<1%}
+
+## PT Measurement · INR | PT 측정 절차와 INR — 0.8-1.2 vs 2.0-3.0 | 13 | 교수 강조 · 수치
+> 제조사마다 다른 tissue factor 차이(ISI)를 보정해 PT를 국제 표준 숫자로 만든 것이 INR
+= PT = tissue factor를 넣고 응고까지 걸린 시간({r:10-14 s}) / {r:INR} = (PT환자 / PT정상)의 {r:ISI} 제곱 · 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0}
+# Prothrombin (factor II) time 측정 — 5단계
+- ① Blood is drawn into a test tube containing liquid {r:sodium citrate} — Ca2+를 결합해 anticoagulant로 작용.
+- ② {r:Centrifuge} to separate out blood cells from plasma.
+- ③ Add {r:Ca2+} into the collected plasma to reverse sodium citrate action.
+- ④ Add {r:tissue factor (factor III)} to activate the extrinsic clotting cascade pathway at {r:37°C}.
+- ⑤ Measure the clotting time (PT, usually {r:10 – 14 sec}).
+# INR (International Normalized Ratio)
+- Typically used to monitor pts on {r:warfarin} or other anticoagulants.
+- ① Get the ratio of a patient's PT to a normal sample's PT ② The ratio raised to the power of the {r:ISI} value(assigned by tissue factor's manufacturer).
+| 대상 | INR |
+| Healthy person not using warfarin | {r:0.8–1.2} |
+| People on warfarin therapy | {r:2.0–3.0} |
+P: 💬 "Warfarin therapy를 받는 환자는 2-3 정도이고, 이보다 높을 수도 있다. 이 숫자를 기억해주시면 좋겠습니다"(p.13 필기).
+U: PT는 보통 INR이라는 숫자로 표현 — ISI는 제조 회사에 따라 달라지는 숫자(필기).
+F: 13=PT 측정과 INR
+M: PT 측정: {r:sodium citrate} → {r:centrifuge} → {r:Ca2+} → {r:tissue factor(III)} 37°C → {r:10-14초}
+M: INR = (PT환자/PT정상)^{r:ISI} / 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0}
+
+## Lab Results by Condition — Table 9.4 | 치료·질환별 선별 검사 변화 | 14 | 표
+> 어디가 늘어나는지 보면 무슨 약·병인지 보인다 — aspirin은 BT, coumarin은 PT, heparin은 aPTT
+= Aspirin → {r:BT↑}(PT·aPTT 정상) / Coumarin → {r:PT/INR↑↑} / Heparin → {r:aPTT↑↑} / Hemophilia → {r:aPTT↑↑} / DIC → {r:전부 이상}
+# Table 9.4 — Relative levels of screening tests
+| Condition | Platelet count | BT/PFA-100 | PT/INR | aPTT | TT | Antifactor Xa |
+| {r:Aspirin} therapy | ↓ or ↔ | {r:↑} | ↔ | ↔ | ↔ | ↔ |
+| {r:Coumarin} therapy | ↔ | ↔ | {r:↑↑} | ↑ | ↔ | ↓↓ |
+| {r:Heparin} therapy | ↔ | ↔ | ↔ | {r:↑↑} | ↑ | ↓↓ |
+| LMWH therapy | ↔ | ↔ | ↔ | ↔ | ↑ | ↓↓ |
+| DTI therapy | ↔ | ↔ | ↑ | ↑↑ | ↑↑ | ↔ |
+| Factor Xa therapy | ↔ | ↔ | ↑ | ↑ | ↔ | ↓↓ |
+| {r:Hemophilia A or B} | ↔ | ↔ | ↔ | {r:↑↑} | ↔ | ↔ |
+| {r:Thrombocytopenia} | {r:↓↓} | {r:↑↑} | ↔ | ↔ | ↔ | ↔ |
+| Severe liver disease | ↓ | ↑ | ↑↑ | ↑↑ | ↑↑ | ↓↓ |
+| Renal hemodialysis | ↓ | ↔ | ↔ | ↑ | ↔ | ↑ |
+| Leukemia | ↓ | ↑ | ↔ | ↔ | ↔ | ↔ |
+| Vessel wall defect | ↔ | ↑ | ↔ | ↔ | ↔ | ↔ |
+| Fibrinogenolysis | ↔ | ↔ | ↑ | ↑ | ↑↑ | ↔ |
+| {r:DIC} | ↓↓ | ↑↑ | ↑↑ | ↑↑ | ↑↑ | ↓↓ |
+- 약어(표 아래): PFA-100 = platelet function analyzer 100 · DTI = direct thrombin inhibitor · DIC = disseminated intravascular coagulation.
+# 읽는 법 — 혈소판 쪽 vs 응고 쪽
+- 혈소판 문제(aspirin·thrombocytopenia·leukemia·vessel wall defect) → {r:bleeding time↑}, PT·aPTT는 정상.
+- 응고인자 문제(coumarin·heparin·hemophilia) → {r:PT 또는 aPTT↑}, bleeding time은 정상.
+- 둘 다 무너짐 → {r:severe liver disease}·{r:DIC}.
+U: aspirin therapy는 antiplatelet 작용 → blood clotting time에는 큰 변화가 없지만 bleeding time은 증가 / coumarin therapy는 PT가 증가 — 다른 것들도 확인(필기).
+F: 14=Table 9.4
+M: aspirin {r:BT↑} · coumarin {r:PT/INR↑↑} · heparin {r:aPTT↑↑} · hemophilia {r:aPTT↑↑}
+M: 혈소판 쪽 이상 = {r:BT↑} / 응고 쪽 이상 = {r:PT·aPTT↑} / 둘 다 = {r:liver disease·DIC}
+
+@G ② 항응고제·항혈소판제
+## Anticoagulant Drugs — VKA · DOAC · LMWH | 항응고제 분류와 작용 부위 — warfarin vs dabigatran | 15-17 | 기출 20~24 ★ | jb=HM03,HM11
+> 옛 약 warfarin은 인자를 '만드는' 단계를 막아 느리고, 새 약 DOAC은 Xa·IIa를 '직접' 막아 예측 가능하다
+= VKA = {r:Warfarin} / DOAC = {r:Dabigatran}(IIa) · {r:Apixaban·Edoxaban·Rivaroxaban}(Xa) / {r:LMWH}(+AT III)
+# 누가 먹나 — 적응증과 부작용
+- Prescribed for individuals who are at high risk for or who have had {r:thromboembolic events}(e.g., blood clots): ① {r:DVT} ② {r:PE} ③ {r:NVAF}(non-valvular atrial fibrillation) ④ stroke ⑤ myocardial infarction.
+- Adverse effects: {r:prolonged bleeding}.
+U: 이런 환자들이 antiplatelet·anticoagulant drug을 예방적으로 복용하는 경우가 많으므로 병력 청취를 꼭 하자(필기).
+# 분류와 작용 부위 (응고 cascade 그림)
+| 분류 | 약 | 작용 부위(그림) |
+| {r:VKA}(Vit. K. Antagonist) | {r:Warfarin} | II(prothrombin) · VII · IX · X의 {r:γ-carboxylation} 차단(초록 박스) |
+| {r:DOAC}(Direct Acting Oral Anti Coagulant) | {r:Apixaban · Edoxaban · Rivaroxaban} | factor {r:Xa} |
+| DOAC | {r:Dabigatran}(+ Hirudin) | factor {r:IIa (thrombin)} |
+| Heparin · {r:LMWH}(Low molecular weight heparin) | — | Heparin + {r:ATIII} → XIIa · XIa · IXa · Xa · IIa 억제 |
+P: 💬 "각각의 약이 어디에 작용하는지 살펴보시면 좋겠습니다. 자세한 기전은 지난 학기 수업을 참고"(p.16 필기).
+F: 16=VKA·DOAC·LMWH 작용 부위, 17
+# Warfarin — 왜 느리고 왜 모니터링?
+- 효과가 나타날 때까지 시간이 오래 걸림 — vit K로 이미 γ-carboxylation된 clotting factor들이 {r:degradation된 이후부터} 작용 개시(필기).
+- 와파린은 {r:protein C와 S}에 더 빠르게 효과 → 복용 초기 {r:pro-coagulation state} → {r:모니터링 필수}(필기).
+# DOAC — 그래서 새로 개발됨
+- common pathway를 target — {r:-xaban} 계열은 factor {r:Xa}, {r:Dabigatran}과 hirudin은 factor {r:IIa (thrombin)}(필기).
+- 요즘 DOAC 계열을 많이 사용 — {r:모니터링을 더 적게} 해도 된다는 장점(필기) · p.8 필기: {r:monitoring하기 편하고 예측 가능성이 더 높기} 때문.
+| 비교 | Warfarin (VKA) | Dabigatran (DOAC) |
+| 기전 | vit K 의존 인자(II·VII·IX·X)의 γ-carboxylation 억제 → {r:새 응고인자 생성 방해} | factor {r:IIa(thrombin)}를 {r:직접} 억제 |
+| 작용 개시 | {r:느림} — 기존 인자 degradation 후 | — |
+| 복용 초기 | protein C·S 먼저 → pro-coagulation | — |
+| 모니터링 | {r:필수}(INR) | {r:적게} · 예측 가능성↑ |
+E: HM03,HM11 | 24·23·22년(HM03) · 22·20년(HM11) 같은 서술형 "(1) Warfarin과 dabigatran의 작용기전 차이 (2) Warfarin과 비교 시 dabigatran의 장점" → JB: warfarin = Vit K antagonist, factor II·VII·IX·X의 gamma carboxylation 억제 / dabigatran = DOAC, 직접 factor II 활성 저해 / 장점 ==예측 가능하고 용량이 정해져 있으며, 반감기가 짧은 장점== — ⚠ 25 자료 근거는 "모니터링 적게·예측 가능성↑"까지, '용량 고정·반감기 짧음'은 25 슬라이드·필기에 없음(JB 참고 22 자료 p.32).
+- 증례 Mr. J(p.58)의 "warfarin → dabigatran" 전환이 이 비교의 출처 — 22년 증례 문항은 마지막 카드.
+M: VKA {r:warfarin} / DOAC {r:dabigatran = IIa} · {r:-xaban = Xa} / heparin + {r:AT III}
+M: Warfarin 느린 이유: 기존 인자 {r:degradation 후} 개시 · 초기 {r:protein C·S} 먼저 → {r:pro-coagulation} → 모니터링 필수
+M: DOAC 장점: {r:모니터링 적게} · {r:예측 가능성↑} (JB: 용량 고정 · 반감기 짧음)
+
+## Heparin·LMWH vs Warfarin | 주사 heparin vs 경구 warfarin — AT III vs vitamin K 순환 | 18 | 기출 20·21 · target | jb=HM16,HM21
+> heparin은 AT III를 켜서 바로·짧게, warfarin은 vitamin K 재활용을 막아 천천히·오래
+= Heparin·LMWH = {r:주사} · {r:AT III 활성화} · 급성 단기 / Warfarin = {r:경구} · {r:γ-glutamylcarboxylase} 억제 · 장기
+# 두 약의 비교
+| 구분 | Heparin, LMWH | Warfarin (Coumarin) |
+| 투여 | {r:Injectable anticoagulant} | {r:Oral anticoagulant} |
+| 기전(슬라이드) | {r:Activation of anti-thrombin III (AT III)} | {r:Inhibition of γ-glutamylcarboxylase} |
+| 사용 | {r:Acutely for short-term action} | {r:Prolonged therapy} |
+| 그림 | Heparin: AT III + IIa / AT III + Xa · LMW Hep: AT III + Xa | Vitamin K Epoxide Reductase를 Coumarins·Indanediones가 차단 |
+# Heparin vs LMWH
+- 그림: Heparin은 AT III와 함께 {r:IIa}·{r:Xa} 모두에 결합 / {r:LMW Hep}은 AT III + {r:Xa}.
+- LMWH = heparin에서 function을 하는 부분을 잘라서 사용 → {r:더 예측가능}하고 {r:long lasting}이라는 장점(필기).
+E: HM16,HM21 | 21년(HM16)·20년(HM21) "LMWH의 target 분자와 그 효과" → ==Anti-thrombin III== / 효과 "AT-III의 활성화를 통해 factor Xa를 억제" = 그림의 LMW Hep–AT III–Xa. 함정: target은 Xa가 아니라 {r:AT III}. 24·22년 표 빈칸 (3) LMWH도 같은 답(HM02).
+# Warfarin — vitamin K 순환 차단
+- Glutamic acid → {r:γ-Carboxyglutamic acid}: γ-Glutamylcarboxylase가 vitamin K hydroquinone을 vitamin K epoxide로 바꾸며 carboxylation(O2·CO2).
+- Vitamin K epoxide를 다시 되돌리는 {r:Vitamin K Epoxide Reductase}를 {r:Coumarins·Indanediones}가 막음.
+- 필기: 와파린이 이 효소에 irreversible하게 결합 → 기존에 생성된 것을 파괴하는 기전이 아니므로 {r:작용까지 시간이 소요}.
+- ⚠ 필기의 "Factor 2,7,10,11"은 p.55 슬라이드·JB의 {r:II·VII·IX·X}와 다름 — 시험 답은 II·VII·IX·X.
+F: 18=Heparin·LMWH의 AT III 결합과 warfarin의 vitamin K 순환 차단
+M: Heparin·LMWH = {r:주사} · {r:AT III 활성화} · 급성 단기 / Warfarin = {r:경구} · {r:vit K epoxide reductase} 차단 · 장기
+M: Heparin: AT III + {r:IIa·Xa} / LMWH: AT III + {r:Xa} · {r:예측 가능 · long lasting}
+M: LMWH target = {r:Anti-thrombin III} (Xa 아님)
+
+## Antiplatelet Drugs — Aspirin · P2Y12 · GPIIb/IIIa | 항혈소판제 — 혈소판 응집의 세 스위치 | 19-20 | 최다 출제 ★ | jb=HM04,HM15,HM17,HM02,HM19,HM23
+> 혈소판을 뭉치게 하는 세 스위치 — thromboxane(aspirin), ADP(clopidogrel), GP IIb/IIIa(tirofiban)
+= {r:Aspirin} → {r:COX}·{r:thromboxane}↓ / {r:Clopidogrel} → {r:P2Y12}(ADP) / {r:Tirofiban}·abciximab → {r:GPIIb/IIIa}
+# 혈소판 응집의 흐름
+- 지혈 작용은 크게 2가지 — ① Blood clotting factor ② Platelet(필기).
+- 혈관의 연속성이 떨어지면 하부 결합조직에 platelet이 aggregation — 이 중 {r:thromboxane}의 작용이 가장 중요, 더불어 {r:ADP}와 {r:thrombin}의 작용(필기).
+- 그림: Ruptured atherosclerotic plaque → adhesion of platelets → activation → AA generation → cyclic endoperoxides → TXA2 / 오른쪽 Direct thrombin inhibitors(e.g. hirudin) = {r:dabigatran} · Epoprostenol, NO.
+# 세 계열
+| 분류 | 약물 | 표적·기전(필기) |
+| {r:Aspirin} | Aspirin — 용량이 적은 {r:baby aspirin} | {r:COX enzyme} 저해 → {r:thromboxane} 생성 저해 |
+| ADP receptor ({r:P2Y12}) antagonists | Ticlopidine · {r:Clopidogrel} · Prasugrel · Ticagrelor | release된 ADP의 여러 modulation 작용을 막음 |
+| {r:GPIIb/IIIa} antagonists | {r:Tirofiban} · {r:Abciximab}(-mab = monoclonal antibody) | platelet이 결합조직에 adhesion될 때의 주요 receptor {r:GPIIb/IIIa} 억제 |
+| TXA2 synthesis inhibitors · receptor antagonists | — | 개발되고는 있지만 {r:시판되지 않음} |
+E: HM04 | 24·23·22·21·20년 5회 서술형(최다) "저용량 아스피린의 작용기전과 기대효과" → ==COX enzyme을 비가역적으로 저해하여 thromboxane의 합성을 차단, 혈소판 응집을 억제== — 25 필기는 "COX enzyme 저해 → thromboxane 생성 저해, baby aspirin"('비가역적'은 25 자료에 없음 — JB 답대로 쓸 것).
+E: HM15 | 21·20년 "Clopidogrel의 target 분자와 그 효과" → ==ADP receptor (P2Y12)== — ADP에 의한 GP IIb/IIIa 발현을 막아 anti-platelet(JB).
+E: HM17 | 21년 "Tirofiban의 target 분자와 그 효과" → ==GP IIb/IIIa receptor== — fibrinogen 및 vWF와의 부착 방해 → 혈소판 응집 저해(JB).
+E: HM02 | 24·22년 표 빈칸 4칸 — (1) E-aminocaproic acid → t-PA, plasminogen, plasmin (2) Clopidogrel → {r:ADP receptor (P2Y12)} (3) LMWH → {r:Anti-thrombin III} (4) Tirofiban → {r:GP IIb/IIIa receptor}.
+E: HM19 | 20·16년 2회(괄호 20’, 16’) "혈소판 수용체로 vWF·fibrinogen과 결합해 blood clot 형성" → ==glycoprotein IIb/IIIa== — 25 자료는 "adhesion 때 주요 receptor GPIIb/IIIa"(p.19)·p.50 그림의 GP IIb/IIIa까지, vWF·fibrinogen 결합은 JB(22 자료 p.4).
+E: HM23 | 20년 "GP Ib는 내피 손상 시 ( )를 매개로 교원섬유와 결합" → ==vWF (von Willebrand Factor)== — ⚠ GP Ib는 25 자료에 없음, 25에서는 vWD 정의(p.6)의 vWF까지만.
+F: 19=항혈소판제 3계열과 작용 지점, 20
+M: {r:Aspirin} = {r:COX} 비가역 저해 → {r:thromboxane}↓ → 응집 억제 (baby aspirin)
+M: {r:Clopidogrel} = {r:P2Y12}(ADP receptor) / {r:Tirofiban·Abciximab} = {r:GP IIb/IIIa}
+M: GP IIb/IIIa ↔ {r:fibrinogen·vWF} / GP Ib ↔ {r:vWF} (JB)
+
+## Anticoagulants — Indications · Monitoring · Dental Drug Interactions | 항응고제별 적응증·모니터링·치과 약물 상호작용 | 21 | 기출 16~21 | jb=HM18
+> INR 모니터링이 필요한 것은 warfarin뿐 — 그리고 치과에서 주는 항생제·진통제와 부딪힌다
+= VKA = 모니터링 {r:Yes (INR)} · 상호작용 {r:antibiotics · azole antifungals · analgesics} / DOAC·LMWH = 모니터링 {r:No}
+# 세 계열 비교 (JADA 2019)
+| Drug class | Usual indication | Routine monitoring | Interactions with common dental medications |
+| {r:Vitamin K Antagonists} — Warfarin (Coumadin), Acenocoumarol (Sintrom) | Rheumatic atrial fibrillation · {r:Mechanical heart valve} · Thrombosis with anti-phospholipid antibodies · Contraindication to alternative agents | {r:Yes (INR)} | {r:Antibiotics}(clindamycin·amoxicillin·amoxicillin clavulanate·cephalexin·doxycycline·metronidazole·macrolides) · {r:Azole antifungals} · Analgesics(carbamazepine·oxcarbazepine·{r:NSAIDs}) |
+| {r:Direct Oral Anticoagulants} — Apixaban (Eliquis), Rivaroxaban (Xarelto), Dabigatran (Pradaxa), Edoxaban (Savaysa, Lixiana) | {r:Nonvalvular atrial fibrillation} · Venous thrombosis without cancer or severe thrombophilia | {r:No} | Antibiotics(clarithromycin·erythromycin) · Azole antifungals · Analgesics(carbamazepine·NSAIDs) |
+| {r:Low-Molecular-Weight Heparins} — Tinzaparin, Dalteparin, Enoxaparin | Thrombosis or prophylaxis in {r:pregnancy} · Thrombosis in cancer | {r:No} | Analgesics(NSAIDs) |
+P: 💬 "빨간색으로 색칠해 둔 곳(drug interactions)은 여러분이 찾아봐서 확인하면 좋을 것들 — 여러가지 drug interaction에 대해 찾아보면 좋겠습니다"(p.21 필기).
+# 치과 약물 상호작용 — 무엇을 조심할까
+- 세 계열 모두 {r:NSAIDs}와 상호작용 → 진통제 처방 시 확인.
+- VKA는 치과에서 쓰는 항생제 다수(amoxicillin·clindamycin·metronidazole 등)와 상호작용 → 처방 후 {r:INR monitoring}(다음 카드 알고리즘: within 2-4 days).
+E: HM18 | 21·20·17·16년 4회 "Warfarin과 sulfonamide를 함께 사용할 때 출혈성 경향이 높아지는 이유" → JB 내려오는 답: sulfonamide가 folate 합성 저해 → Vit K를 합성하는 장내 박테리아 억제 → warfarin 작용 potentiation(+ 16 학습부: albumin 결합 warfarin을 유리시켜 혈중 warfarin↑). ⚠ sulfonamide는 이 표에 없음 — 25 근거는 VKA의 Antibiotics 상호작용 목록 + p.7 broad-spectrum antibiotics → vit K 결핍까지(JB도 "강의에서 다뤄지지 않았다").
+F: 21=JADA 2019 항응고제 적응증·상호작용 표
+M: 모니터링: VKA {r:Yes(INR)} / DOAC·LMWH {r:No}
+M: 적응증: VKA {r:mechanical heart valve}·rheumatic atrial fibrillation / DOAC {r:nonvalvular atrial fibrillation} / LMWH {r:pregnancy}·cancer
+M: VKA 상호작용: {r:antibiotics} · {r:azole antifungals} · {r:NSAIDs}·carbamazepine → warfarin + 항생제 = {r:출혈↑}
+
+@G ③ 치과 시술 결정
+## Dental Procedure Algorithm · Low-risk Procedures | 항응고 환자의 치과 시술 알고리즘과 저위험 시술 | 22-23 | 기출 21·22 | jb=HM07,HM13
+> 약 종류 확인 → 저위험이면 그대로 진행하며 국소 지혈 → 새 전신 약을 주면 VKA는 INR, DOAC은 상호작용 확인
+= class 확인 → low risk면 {r:계속 + local hemostatic measures} → 새 약: VKA {r:INR 2-4일} · DOAC·LMWH {r:상호작용만}
+# 알고리즘 (JADA 2019)
+- ① Determine the class of anticoagulant (DOAC, VKA, LMWH).
+- ② Is the dental procedure low risk? — No → {r:Refer to anticoagulation specialist}(→ continue with procedure) / Yes → {r:Continue with procedure}.
+- ③ Use local hemostatic measures (pressure, suturing, oxidized cellulose, tranexamic acid).
+- ④ Are any new systemic medications prescribed? — No → Routine follow-up / VKA therapy → {r:INR monitoring within 2-4 days} / DOAC, LMWH therapy → {r:Ensure no drug-drug interaction; no laboratory monitoring}.
+U: Flow chart에 따라 어떤 약을 복용하고 있는지 확인하고 어떤 처치를 해야 하는지 살펴보면 됨(필기).
+F: 22=치과 시술 알고리즘
+# Low-risk dental procedures — 항응고 중단 불필요
+- ① {r:Dental scaling} ② Dental restorations that involve {r:soft-tissue manipulation} ③ Dental extractions that are not surgically complex — {r:Fewer than 3 teeth} ④ {r:Soft-tissue biopsy} ⑤ {r:Endodontic procedures} ⑥ {r:Implant placement} ⑦ {r:Prosthodontic procedures}(fixed and removable dentures·crowns·bridges).
+- 단서(*): If a vitamin K antagonist is used, INR values should be within the {r:therapeutic range} whenever possible.
+U: 단순 스케일링·보존 치료·1~2개 발치·endo·implant placement(교과서마다 견해가 다르기는 함)·일반 보철 = 출혈 위험이 적은 치료(필기).
+F: 23=Low-risk dental procedures
+E: HM07 | 22년 첫 출제 "Warfarin 투약 중 simple extraction에서 국소 출혈 시 가능한 처치" → ==Local measure를 통한 지혈. (ex_gauze를 통한 압박 지혈, Oxycel, Surgicel, primary suture 등)== — 알고리즘 ③의 pressure·suturing·oxidized cellulose·tranexamic acid와 일치. 함정: 약을 끊는다는 답은 ✗(3개 미만 단순 발치는 low risk).
+E: HM13 | 21년 복원 "상황 주고 이때 쓸 수 있는 방법" — JB도 상황 미복원. 항응고 환자 출혈 상황이면 이 알고리즘 + local measure(국소 지혈 카드)가 답의 틀.
+M: 알고리즘: class 확인 → {r:low risk면 계속 + local measures} → 새 약: VKA {r:INR 2-4일} / DOAC·LMWH {r:상호작용만}
+M: low-risk: {r:scaling} · 연조직 수복 · {r:3개 미만 단순 발치} · {r:biopsy} · {r:endo} · {r:implant placement} · {r:보철}
+M: local hemostatic measures = {r:pressure · suturing · oxidized cellulose · tranexamic acid}
+
+## INR-based Safety of Dental Procedures | INR 구간별 시술 안전성 — 3.5와 4.0의 선 | 24-25·27 | 기출 20 · 표 | jb=HM24
+> INR이 높을수록 할 수 있는 시술이 줄어든다 — 3.5를 넘으면 검사·인상 정도만, 4.0을 넘으면 수술 금지
+= INR {r:>4.0} = {r:No surgical treatment} / INR {r:>3.5}: examination·impression만(주의) / 출혈 큰 수술 = {r:INR <3.0}로 조정 / 모든 경우 {r:local measures}
+# Safety of outpatient dental procedures for patients on Coumadin (ADA)
+| Dental procedure | <1.5 | 1.5–<2.0 | 2.0–<2.5 | 2.5–3.0 | >3.0–3.5 | >3.5 |
+| Examination, radiographs, impressions, orthodontics | ○ | ○ | ○ | ○ | ○ | △ |
+| Simple restorative dentistry, supragingival prophylaxis | ○ | ○ | ○ | ○ | ○ | × |
+| Complex restorative dentistry, scaling & root planing, endodontics | ○ | ○ | ○ | ○ | △ probably safe | × |
+| {r:Simple extraction}, curettage, gingivoplasty, biopsy | ○ | ○ | ○ | △ {r:local measures} | △ {r:local measures} | × |
+| Multiple extractions, single bony impaction extraction | ○ | ○ | △ local measures | △ local measures | △ local measures | × |
+| Gingivectomy, minor periodontal flap surgery, apicoectomy, single implant placement | ○ probably safe | △ probably safe | △ probably safe | × | × | × |
+| Full mouth or full arch extractions | △ probably safe | △ local measures | × | × | × | × |
+| Extensive flap surgery, extraction of multiple bony impactions, multiple implant placement | △ probably safe | × | × | × | × | × |
+- 열: <1.5·1.5–<2.0 = Suboptimal INR range / 2.0–3.5 = {r:Normal target INR range}(2.0–3.0: atrial fibrillation·venous thrombosis·pulmonary or systemic embolism·acute MI · 2.5–3.5: {r:mechanical prosthetic heart valves}) / >3.5 = {r:Out of range}.
+- 범례: ○ Green = safe to proceed in a routine manner / △ Yellow = use caution — local measures로 대부분 가능 / × Red = not advised at current INR level → {r:refer to physician for Coumadin adjustment}.
+- § local measures = sutures, oxidized cellulose, microfibrillar collagen hemostat, topical thrombin and/or epsilon aminocaproic acid or tranexamic acid.
+U: 정상 INR은 0.8~1.2 — 초록은 큰 문제 없이 가능, 노랑은 국소 처치로 지혈해야 하는 경우, 빨강은 치료하지 말아야 하는 것(필기).
+F: 24=INR 구간별 시술 안전성표
+# INR 흐름도 (Pharmacology & Therapeutics for Dentistry)
+- INR {r:>4.0} → No surgical treatment until INR is reduced.
+- INR {r:<4.0} → Extent of surgery?
+- ① Minimal bleeding expected(minor surgical procedure) → ==No modifications required; use local measures==.
+- ② Moderate bleeding expected(multiple extractions, third molars) → Consider reducing INR; use local measures.
+- ③ Significant bleeding expected(full mouth clearance) → Modify anticoagulation to achieve an INR of <3.0; use local measures.
+U: INR 4.0 이상이면 관혈적 치료는 안 하는 것이 좋고, bleeding이 많을 procedure는 INR 3.0 이하가 되도록 — 이를 위해 처방한 내과의에게 consult하는 것이 가장 좋다(필기).
+- p.27 복습 그림: 세 가지 끝 모두 {r:use local measures}(파란 박스), significant bleeding만 {r:INR of <3.0}(빨간 박스).
+F: 25=INR 흐름도, 27=모든 가지의 공통 = local measures
+E: HM24 | 20년 "Warfarin 투약 환자가 simple restorative dentistry 같은 치료를 받을 때 복약 조절" → JB 답 ==INR 수치를 2.0-3.0으로 조절한다. Modification 없이 local measure로 조절한다.== — 표에서 simple restorative dentistry는 INR {r:3.5 이하 전 구간 ○}, 흐름도 minimal bleeding = "No modifications required; use local measures". ⚠ '2.0-3.0'은 p.13의 warfarin 치료 범위 — 자료에 치과 시술을 위해 INR을 2.0-3.0으로 조절하라는 문장은 없음. 같은 문항의 15-1(국소 출혈 처치)은 HM07.
+M: INR {r:>4.0} = 수술 × / 출혈 큰 수술 = {r:INR <3.0}로 조정 / 모든 경우 {r:local measures}
+M: INR {r:>3.5}: examination·radiographs·impressions만 △, 나머지 ×
+M: 단순 발치 {r:2.5–3.5 = local measures} · 단순 수복 {r:3.5까지 ○} · full mouth extraction {r:2.0 이상 ×}
+
+@G ④ 국소 지혈
+## Local Measures · Bleeding Control Measures | 국소 지혈법 총정리 — 기계적 vs 국소 지혈제 | 26·28-29·52 | 기출 22 · 교수 강조 | jb=HM07
+> 큰 혈관에서 콸콸은 누르고 묶고(mechanical), 작은 혈관에서 스며 나오는 oozing은 약·재료로(local hemostatics)
+= Local measures 6 = {r:gauze 압박} · suture · electro-cauterization · {r:mechanical matrix} · thrombin·epinephrine · {r:anti-fibrinolytic}
+# Local measures — 6가지
+- Used for continued, slow oozing of blood from small arterioles, veins, and capillaries.
+- Surgical and pharmacologic local measures: ① {r:local pressure with gauze compression} ② {r:suture} ③ {r:electro-cauterization} ④ {r:mechanical matrix} such as oxidized regenerative cellulose ({r:Surgicel}), absorbable sponges ({r:Gelfoam}), microfibrillar collagen ({r:Avitene}), and fibrin glue ⑤ {r:thrombin}, vasoconstrictor ({r:epinephrine}) ⑥ {r:anti-fibrinolytic medications} such as tranexamic acid and ε-aminocaproic acid in both prevention and treatment.
+U: 시소 그림에서 가장 먼저 고려할 것이 local measure — 가장 좋은 local measure는 {r:거즈로 누르는 것}, mechanical matrix는 gelatin·cellulose 같은 성분 재료, thrombin·epinephrine은 indication이 될 때 소량(필기).
+P: 💬 "또 기억해야 할 것이 — 내과적 상황 때문에 약을 중단하기 어려운 환자들의 치과 치료 시 사용할 수 있는 medication이 {r:anti-fibrinolytic medication}: thrombin으로 생긴 fibrin clot을 제거하는 plasmin의 작용을 저해"(p.26 필기).
+# Bleeding control measures — 두 갈래
+| 구분 | 1. Mechanical Aids | 2. Local Hemostatics |
+| 예 | {r:compression}, hemostat, modeling compound splint, bone wax or ligature | {r:absorbable hemostatic agents}, coagulation-modifying agents, topical vasoconstrictor, anti-fibrinolysis agents |
+| 원리 | 물리적 압박·결찰 | formation of an artificial clot 또는 providing a mechanical matrix that facilitates clotting — applied directly to the bleeding surface |
+| 효과적인 출혈 | rapid and profuse loss of blood from a large vessel | continued, slow bleeding (oozing) |
+- * **Astringents**: chemicals that {r:shrinks or constricts} body tissues to reduce bleeding from minor abrasions.
+U: astringent는 protein을 denaturation시켜 그 부위에 clot을 형성 → 유해한 작용들이 있어 많이 사용되지는 않음(필기).
+# 분류별 generic·상품명
+| 분류 | Generic name | Trade name |
+| Astringents-Styptics | Aluminum chloride / Tannic acid | Hemodent / In tea bags |
+| Vasoconstrictor | Epinephrine | Adrenalin |
+| Topical procoagulants | Absorbable gelatin film / powder / sponge | Gelfilm / Gelfoam / {r:Gelfoam, Surgifoam} |
+| Topical procoagulants | Absorbable gelatin sponge with thrombin (human) | Gelfoam Plus |
+| Topical procoagulants | Fibrin sealant (human) | Artiss, Tisseel |
+| Topical procoagulants | Gelatin matrix with thrombin (human) | {r:FloSeal} |
+| Topical procoagulants | Microfibrillar collagen | {r:Avitene} |
+| Topical procoagulants | Oxidized cellulose / Oxidized regenerated cellulose | {r:Oxycel} / {r:Surgicel} |
+| Topical procoagulants | Thrombin (bovine) / Thrombin (recombinant) | Thrombin-JMI / RECOTHROM |
+U: epinephrine은 lidocaine 같은 국소마취제와 섞어 쓰고 gingival cord와 함께 쓰이기도 함 — topical procoagulant는 상품명이 여럿이니 확인(필기).
+E: HM07 | 22년 warfarin 환자 단순 발치 국소 출혈 처치 — JB 예시(gauze 압박·Oxycel·Surgicel·primary suture) 모두 이 목록(gauze compression·suture·oxidized cellulose)에 있음. 변형 대비: 목록 6개를 순서대로.
+F: 26=Local measures, 28=Mechanical aids vs Local hemostatics, 29=분류별 상품명
+M: Local measures 6: {r:gauze 압박} · {r:suture} · {r:electro-cauterization} · {r:mechanical matrix}(Surgicel·Gelfoam·Avitene·fibrin glue) · {r:thrombin·epinephrine} · {r:anti-fibrinolytic}
+M: Mechanical aids = {r:large vessel}의 rapid·profuse / Local hemostatics = {r:oozing} — {r:artificial clot} 또는 {r:mechanical matrix}
+M: 상품명: gelatin sponge {r:Gelfoam} · gelatin+thrombin {r:FloSeal} · collagen {r:Avitene} · cellulose {r:Oxycel}/{r:Surgicel}
+
+## Astringents | 수렴제 — 단백을 침전시켜 오므린다 | 30-31 | 미출제 · 넘어간 쪽
+> 단백질을 침전시켜 조직을 오므리는 금속염 — 모세혈관 출혈·치은 압배에 쓰지만 진하면 부식
+= 단백 {r:precipitating} → 조직 수축 · {r:mild antiseptic} · {r:metallic salts} · 진하면 {r:caustic} / 용도 = 모세혈관 출혈 · {r:gingival retraction}
+# 1) General features
+- broadly implicate locally acting agents that contract tissue by {r:precipitating the proteins} and form protective layers.
+- have {r:mild antiseptic action}.
+- various {r:metallic salts} are included.
+- can act as the {r:irritant and caustic} if concentration is increased.
+# 2) Clinical uses
+- ① control of {r:capillary bleeding} ② reducing the inflammation of mucous membrane by {r:decreased permeability} ③ gingival retraction for impression taking ④ to treat {r:hypersensitive dentin}.
+# 3) Preparations · 4) Precautions
+- Preparations: ① {r:Aluminum chloride, 5-25%} ② {r:Zinc salts} ③ Copper and ferric compounds ④ {r:Tannic acid}.
+- Precautions: ① May induce the {r:necrotic change and permanent deformation} of tissues by caustic action ② {r:Discoloration} of tissues.
+P: 💬 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인해주세요" — p.30부터 p.47까지(수렴제·국소 지혈제 상품 설명) 수업에서 넘어가심(필기) → 미출제 부분이지만 직접 확인하라는 당부.
+F: 30=수렴제 특징과 용도, 31
+M: 수렴제 = {r:단백 침전} → 조직 수축 · {r:mild antiseptic} · {r:metallic salts} · 진하면 {r:caustic}
+M: 용도 4: {r:capillary bleeding} · 점막 염증↓ · {r:gingival retraction} · {r:hypersensitive dentin}
+M: 제제: {r:Aluminum chloride 5-25%} · zinc salts · copper·ferric · {r:tannic acid} / 주의: {r:괴사·영구 변형} · {r:변색}
+
+## Topical Vasoconstrictor — Epinephrine (Bosmin) | 혈관수축제 — 보스민 retraction cord | 32 | 기출 20·18 | jb=HM20
+> 보스민 = 1:1000 epinephrine — 모세혈관·세동맥 출혈만 멈추고, 몸으로 퍼지면 심혈관 반응
+= 보스민 = {r:1:1000 racemic epinephrine} → {r:retraction cord} · {r:capillaries·arterioles}만 / 주의 = {r:심혈관 반응}·치유 지연·{r:괴사}
+# 1) General features
+- {r:potent vasoactive agent}.
+- effective {r:topical hemostatic agent} for control of bleeding from {r:capillaries and arterioles}.
+- {r:can not control venous oozing} or bleeding from larger vessels.
+- clinical use is limited to {r:superficial bleeding}.
+- {r:levorotatory} form is {r:15 times} more potent than dextrorotatory isomer.
+# 2) Clinical use · 3) Preparation
+- Clinical use: {r:Impregnated retraction cord}.
+- Preparation: ==1:1000 racemic epinephrine solution (bosmin)==.
+# 4) Precautions — 3가지
+- ① ==serious cardiovascular reactions can be induced==.
+- ② ==can retard wound healing==.
+- ③ ==can provoke local tissue damage from ischemia and even tissue necrosis==.
+E: HM20 | 20·18년 2회(괄호 20’, 18’) "치아 인상 채득 시 보스민 gingival cord — 보스민의 성분과 유해작용" → 성분 {r:1:1000 racemic epinephrine} / 유해작용 3개(serious cardiovascular reaction · retarded wound healing · local tissue damage from ischemia and even tissue necrosis) = 슬라이드 Precautions 그대로.
+F: 32=보스민
+M: 보스민 = {r:1:1000 racemic epinephrine} → {r:impregnated retraction cord}
+M: 주의 3: {r:serious cardiovascular reactions} · {r:retard wound healing} · {r:ischemia → tissue necrosis}
+M: {r:capillaries·arterioles}만 · {r:venous oozing ×} · superficial만 · levorotatory {r:15배}
+
+## Absorbable Gelatin Sponge — Gelfoam | 젤라틴 스펀지 — 물리적 뼈대 | 33-36 | 미출제 · 국소 지혈제
+> 피를 머금는 젤라틴 스펀지 — 응고 기전을 바꾸기보다 물리적 뼈대이고, thrombin을 적시면 더 강해진다
+= Gelfoam = {r:gelatin} sponge · {r:more physical} · {r:platelet 파괴 + fibrin 뼈대} · {r:4-6 weeks} 흡수 · {r:thrombin}으로 강화
+# Topical hemostatic agents — 7가지
+- ① {r:Gelatin} ② {r:Cellulose} ③ {r:Collagen} ④ {r:Fibrin} ⑤ {r:Thrombin} ⑥ {r:Tranexamic acid} ⑦ {r:ε-Aminocaproic acid}.
+- 표의 파란 박스(다음 카드들): Absorbable gelatin sponge(Gelfoam, Surgifoam) · Gelatin matrix with thrombin(FloSeal) · Microfibrillar collagen(Avitene) · Oxidized cellulose(Oxycel) · Oxidized regenerated cellulose(Surgicel).
+F: 33=Topical hemostatic agents
+# 1) General features
+- {r:absorbable}, {r:water-insoluble} gelatin-base sponge.
+- able to absorb and hold blood and other fluids within its interstices.
+- not disintegrated by relatively rough handling.
+- withstand dry heat at {r:149°C for 4 hrs}.
+- completely absorbed by the {r:4 to 6 weeks} without excessive cellular reactions.
+# 2) Mode of action
+- {r:more physical} than the result of altering the blood clotting mechanism.
+- {r:promote disruption of platelets} and act as the {r:framework for fibrin strands}.
+- hemostatic action is augmented by impregnation with {r:thrombin}.
+# 3) Clinical use · 4) Preparations
+- applied to bleeding surfaces to control {r:capillary, venous, and arteriolar} bleeding.
+- use only the {r:minimum amount}(cut to appropriate size).
+- use {r:dry or saturated with sterile sodium chloride} solution.
+- can be used either {r:with or without thrombin}.
+F: 34=Gelfoam 특징과 작용, 35
+# 5) Precautions — 다섯 가지 금지·주의
+- ① should not be used in {r:closure of skin incisions} — interfere with the healing of skin edges(mechanical interposition 때문, intrinsic interference가 아님).
+- ② should not be placed in {r:intravascular compartments} — risk of {r:embolization}.
+- ③ do not use in patients with known {r:allergies to porcine collagen}.
+- ④ use sterile product — {r:cannot be re-sterilized}.
+- ⑤ {r:giant-cell granuloma} has been reported at the implantation site in closed space.
+F: 36=Gelfoam 주의사항
+M: Gelfoam = {r:gelatin} · 물리적 · {r:platelet 파괴 + fibrin 뼈대} · {r:4-6주} 흡수 · {r:149°C 4시간}
+M: 금지: {r:skin incision 봉합} · {r:intravascular}(embolization) · {r:porcine collagen 알레르기} · {r:재멸균 ×} · closed space {r:giant-cell granuloma}
+
+## Gelatin-Thrombin Matrix — FloSeal | 젤라틴 과립 + thrombin — 기존 방법 실패 시에만 | 37-39 | 미출제
+> 젤라틴 과립이 부풀어 막고(mechanical) thrombin이 fibrin을 만든다(active) — 안전성·비용 때문에 권장되지 않음
+= FloSeal = bovine {r:gelatin} + human {r:thrombin} · 팽윤 {r:10-20%/10분} · {r:6-8 weeks} 흡수 / {r:not recommended}
+# 1) General features
+- combination of the gelatin granule matrix and the thrombin: {r:bovine-derived Gelatin Matrix} + {r:human-derived Thrombin}(extracted from pooled human plasma).
+- {r:not recommended} due to concerns about its {r:safety, cost, and availability}.
+- may prove useful when conventional hemostatic methods ({r:suturing and electrocauterization}) fail or are not appropriate.
+- absorbed without any residue over the course of {r:6-8 weeks}.
+# 2) Mode of action — 과립이 막고 thrombin이 굳힌다
+- has both {r:mechanical and active} ingredients to achieve hemostasis.
+- 먼저 gelatin matrix가 과립으로 채우고 부풀어 stable clot → spontaneously forming clot이 platelets의 {r:contact activation} 유발 → 이어 thrombin이 {r:fibrinogen을 fibrin polymer}로.
+- ① Applied precisely at the source of bleeding — granules conform to irregular wound shapes.
+- ② The granules {r:swell by 10-20% within 10 minutes} and physically restrict the flow of blood.
+- ③ High concentrations of thrombin → rapid formation of a {r:reinforced clot} around the stable matrix.
+- ④ Granules not enmeshed in the clot can be removed with gentle irrigation or suction.
+- ⑤ Granules remaining in the clot are resorbed by the body in {r:6 to 8 week}.
+F: 37=FloSeal 특징, 38=FloSeal 작용 5단계
+# 3) Clinical uses · 4) Precautions
+- Clinical use: conventional hemostatic methods가 fail or not appropriate일 때.
+- ① Do not inject or compress GTM {r:into blood vessels} ② Do not apply GTM in the {r:absence of active blood flow} ③ rare but serious — fatal or near-fatal {r:thromboembolism} and small bowel obstruction.
+F: 39
+M: FloSeal = {r:bovine gelatin + human thrombin} · {r:mechanical + active} · 팽윤 {r:10-20%/10분} · 흡수 {r:6-8주}
+M: {r:not recommended}(safety·cost·availability) — {r:suturing·electrocauterization 실패 시}
+M: 주의: {r:혈관 내 주입 ×} · {r:active blood flow 없으면 ×} · {r:thromboembolism}
+
+## Oxidized Cellulose — Oxycel vs Surgicel | 산화 셀룰로오스 두 가지 — 상피화와 thrombin | 40-44 | 기출 22 · 비교 ★ | jb=HM07
+> 둘 다 산성 셀룰로오스라 thrombin을 망가뜨린다 — Oxycel은 잘 부서지고 상피화를 막고, Surgicel은 덜 붙고 상피화를 막지 않는다
+= 산성 셀룰로오스 → {r:thrombin 불활성} · {r:antimicrobial} / Oxycel = {r:dry로}·{r:상피화 억제} / Surgicel = {r:surface dressing ○}
+# Oxidized cellulose (Novocell, Oxycel) — 특징
+- formed from plant material (polyhydroglucuronic acid) that undergoes {r:oxidization by nitrogen dioxide} to create {r:cellulosic acid}.
+- soluble in {r:alkali}, but insoluble in water or acid solutions.
+- absorption begins {r:2-7 days} after implantation and completed at {r:6 weeks} or longer.
+- removal before complete dissolution: irrigation with saline or mildly alkaline solution.
+- {r:antimicrobial properties} against a number of pathogenic bacteria.
+- creates the low pH environment and deactivates other biologic agents (e.g. thrombin) — increased inflammation and delayed healing.
+# Oxycel — 작용·용도·주의
+- Mode of action: acts as a platform for platelet aggregation — artificial clot by cellulosic acid that has a marked {r:affinity to hemoglobin}.
+- Clinical uses: ① suturing or ligation이 technically impractical할 때 ② {r:temporary packing} for the control of alveolar bleeding following tooth extraction.
+- Preparation: {r:applied as dry}.
+- Precautions ①: tend to {r:stick and extremely friable} in contact with instruments, gloves and bloods.
+- Precautions ②: hemostatic effect is greater when dry → {r:moistening with the saline or water is not recommended}.
+- Precautions ③: thrombin and physiology agents would be destroyed by high acidity of the material.
+- Precautions ④: {r:not for the permanent packing in fractures} — interference with regeneration of bone.
+- Precautions ⑤: {r:not as a surface dressing} — cellulosic acid {r:inhibits epithelialization}(except immediate control of hemorrhage).
+F: 40=Oxycel 특징, 41, 42=Oxycel 주의사항
+# Oxidized regenerated cellulose (Surgicel)
+- prepared from {r:alpha-cellulose} by reaction with alkali to form viscose then spun and oxidized.
+- {r:less friable} and has less tendency to stick to instruments and gloves than oxidized cellulose.
+- {r:used extensively} in oral and maxillofacial surgery to control intrabony arterial bleedings from the {r:inferior alveolar artery}.
+- {r:do not retard epithelialization} — 그 외 특징(antimicrobial 등)은 oxidized cellulose와 거의 같음.
+- Mode: formation of a {r:gelatinous mass} upon saturation with blood → stable clot.
+- Uses: oxidized cellulose와 같음 + {r:useful as a surface dressing} unlike oxidized cellulose / delayed healing may result if placed {r:deep into the socket}.
+- Preparations: can be shredded, compacted, or moistened & molded to various shapes.
+- Precautions: ① not for {r:implantation in bone defects, such as fractures} — callus formation 방해·cyst formation 가능성 ② mandibular canal에서 {r:inferior alveolar nerve exposed} 시 neurotoxic effects 보고.
+F: 43=Surgicel 특징, 44=Surgicel 용도와 주의
+# Oxycel vs Surgicel
+| 비교 | Oxycel (oxidized cellulose) | Surgicel (oxidized regenerated cellulose) |
+| 원료 | plant material, nitrogen dioxide로 산화 | alpha-cellulose → viscose → spun·oxidized |
+| 다루기 | {r:stick · extremely friable} | {r:less friable · less stick} |
+| 상피화 | {r:inhibits epithelialization} → surface dressing × | {r:do not retard} → surface dressing ○ |
+| 적셔 쓰기 | × — dry로(효과↑) | moistened & molded 가능 |
+| 주의 | 골절 permanent packing × | 골 결손·골절 ×, inferior alveolar nerve 노출 부위 ×, socket 깊숙이 넣으면 치유 지연 |
+| 공통 | cellulosic acid · {r:low pH → thrombin 불활성} · antimicrobial | 좌동 |
+E: HM07 | 22년 JB 답 예시 "Oxycel, Surgicel"(HM24 15-1 해설은 "ex_Oxycel") — 알고리즘의 oxidized cellulose. 변형 대비 함정: 산성이라 {r:thrombin과 함께 쓰면 무효}(p.53 표도 "thrombin ineffective").
+M: Oxycel·Surgicel = {r:cellulosic acid} · {r:low pH} → {r:thrombin 불활성} · {r:antimicrobial}
+M: Oxycel: {r:dry로} · friable · {r:상피화 억제} → surface dressing × · 발치와 {r:temporary packing}
+M: Surgicel: {r:상피화 방해 ×} → surface dressing ○ · {r:inferior alveolar artery} 출혈 · {r:inferior alveolar nerve 노출 ×}
+
+## Microfibrillar Collagen Hemostat — Avitene | 콜라겐 지혈제 — 혈소판을 끌어당긴다 | 45-46 | 미출제
+> 혈소판을 붙여 뭉치게 하는 active 콜라겐 — autoclave 하면 망가지고, 발치와에 넣으면 dry socket이 늘어난다
+= Avitene = {r:active collagen} → 혈소판 {r:adhere·aggregation} · {r:dry로} / 주의 = {r:No autoclave} · {r:감염↑} · {r:dry socket↑}
+# 1) General features · 2) Mode of action
+- {r:active absorbable collagen hemostat} — used for {r:accelerating clot formation}.
+- Mode: attract platelets that adhere to the fibril and undergo release phenomenon to trigger the aggregation of platelets.
+# 3) Clinical uses · 4) Preparations
+- {r:should be used dry} · used in all surgical applications · {r:not for injection, intraocular or intravascular use}.
+- Preparations: {r:sheets} · {r:flour}(preloaded syringe) · sponge.
+- sheets for flat surfaces or to wrap vessels and anastomosis sites / flour for controlling {r:arterial bleeding}.
+F: 45=Avitene 특징과 작용
+# 5) Precautions
+- ① inactivated by autoclaving → {r:No autoclave for sterilization!}
+- ② not in the {r:closure of skin incisions} — healing of skin edges 방해.
+- ③ significantly {r:reduce the bond strength of methylmethacrylate adhesives} by filling porosities of cancellous bone.
+- ④ {r:potentiation of infection} — abscess formation, hematoma, wound dehiscence, mediastinitis.
+- ⑤ possible adverse reactions: adhesion formation, allergic reaction, foreign body reaction, subgaleal seroma(single case), {r:increased incidence of alveolalgia (dry socket)} when used for packing of dental extraction sockets.
+F: 46=Avitene 주의사항
+M: Avitene = {r:active collagen} → 혈소판 {r:adhere·release·aggregation} → clot 촉진 · {r:dry로} · 주사·혈관 내 ×
+M: 주의: {r:No autoclave} · skin 봉합 × · {r:methylmethacrylate 접착력↓} · {r:감염 potentiation} · 발치와 {r:dry socket↑}
+
+## Thrombin | thrombin — 응고·혈소판·평활근, 국소 전용 | 47-49 | 기출 20~24 · 교수 강조 | jb=HM01
+> 응고의 마지막 효소 — 국소로 뿌리면 fibrinogen을 바로 fibrin으로 만들지만, 혈관에 들어가면 색전
+= Thrombin = {r:IIa} · {r:fibrinogen → fibrin} · 혈소판 응집 · {r:smooth muscle contraction} · 수용체 {r:PAR} / {r:topically only}
+# Role of thrombin
+- Clotting factor: {r:activated factor II}.
+- ① {r:coagulation}: conversion of fibrinogen to fibrin / activation of factor XIII, {r:strengthening fibrin-to-fibrin linkage}.
+- ② {r:platelet aggregation}.
+- ③ {r:smooth muscle contraction}.
+P: 💬 "Thrombin도 사용될 수 있는데, smooth muscle contraction을 일으키는 작용 또한 있다는 것을 기억해주시면 좋겠습니다"(p.47 필기).
+# Protease-activated receptors (PAR)
+- Interaction with specific {r:protease-activated receptors (PAR)} — {r:G-protein coupled receptor}.
+- receptor activation requires {r:proteolysis by thrombin of the extracellular N-terminal domain}; {r:'tethered agonist'}.
+- contribution to {r:hemostasis, inflammation, and angiogenesis}.
+F: 47=thrombin의 역할과 PAR
+# fibrin clot의 생성과 분해 (그림)
+- Fibrinogen →(thrombin: fibrinopeptides A & B 떨어짐)→ fibrin monomer → dimer → fibrin polymer →(thrombin → {r:Factor XIIIa})→ {r:cross-linked fibrin polymer}.
+- {r:Plasmin}이 분해 → D fragments·E fragment / cross-linked polymer는 {r:D dimer}.
+U: thrombin의 작용으로 fibrin clot이 만들어지고 plasmin이 clot을 degradation시키는 역할(필기).
+F: 48=fibrin 생성과 plasmin 분해
+# Topical thrombin — 사용법 (수업에서 넘어감)
+- useful for oozing of bloods from the {r:accessible capillaries and small venules}.
+- often used concurrently with {r:Gelfoam}.
+- should use {r:topically only, not systemically} — can cause serious {r:embolism if forced into vein}.
+- can be applied to bleeding surface as the powder or dissolved in saline.
+- purified human thrombin from plasma donors carries some {r:infectious risk}.
+F: 49=topical thrombin 사용
+E: HM01 | 24·22·21·20년 4회 빈칸 "혈액응고는 생리적인 항응고제로 작용하는 단백질들에 의해 조절되는데, 이들 단백질은 상처 근처에서 분비되는 ( )를 인지함으로써 활성화된다" → ==thrombin== (이전 답안 t-PA는 정정됨). ⚠ 25 자료에는 생리적 항응고제 문장이 없음 — JB 근거는 22 자료 p.13 필기 "이들 모두는 활성화되기 위해서 상처 근처에서 유출되는 thrombin을 인지하는 것이 필요".
+M: thrombin = {r:IIa} → {r:fibrinogen → fibrin} · {r:XIII 활성} · {r:platelet aggregation} · {r:smooth muscle contraction}
+M: 수용체 {r:PAR} = GPCR · N-terminal 절단 → {r:tethered agonist} · 지혈·염증·혈관신생
+M: topical only — 정맥에 들어가면 {r:embolism} · {r:Gelfoam}과 병용 / 생리적 항응고제를 켜는 신호도 {r:thrombin}(JB)
+
+## Anti-fibrinolysis Agents — Aminocaproic · Tranexamic Acid | 항섬유소용해제와 지혈 가글 | 50-51 | 기출 20~24 · 교수 강조 | jb=HM14,HM12,HM02
+> clot을 녹이는 plasmin을 lysine 자리에서 막아 clot을 오래 유지 — warfarin을 끊을 수 없는 환자에게 가글로
+= Aminocaproic·tranexamic = {r:competitive inhibitor of plasminogen activation} → clot 유지 / 가글 = {r:tranexamic acid 5%}, 전 5 mL·후 5~10 mL
+# 섬유소용해와 그 억제 (그림)
+- Plasminogen →(t-PA · u-PA · streptokinase)→ {r:Plasmin} → cross-linked fibrin polymer 분해 → D-dimer·FDPs.
+- Inhibitors: {r:α2-AP} vs. Plasmin / {r:PAI-1} vs. t-PA / PAI-2 vs. u-PA.
+- {r:Lysine}과 {r:Aminocaproic acid}의 구조가 비슷(그림).
+U: plasmin이 lysine residue 앞쪽을 자르는데, analog인 aminocaproic acid가 이 위치에 결합하면 plasmin의 작용이 저해 → blood clot의 유지가 오랫동안(필기).
+F: 50=Plasmin과 aminocaproic acid
+E: HM14 | 21·20년 "E-aminocaproic acid의 target 분자와 그 효과" → ==t-PA, plasminogen, plasmin== (이전 답안 plasmin) — t-PA와 plasminogen의 lysine binding site를 점유 → plasminogen의 plasmin 전환 방해 → anti-fibrinolytic 지혈(JB 필기). 25 근거: p.50 필기 + p.51·54 "competitive inhibitor of plasminogen activation".
+E: HM02 | 24·22년 표 빈칸 (1) E-aminocaproic acid → t-PA, plasminogen, plasmin.
+E: HM12 | 21년 복원 "t-PA 짤 문제" → JB: t-PA는 단백질 분해작용으로 상처 부위에서 {r:plasminogen을 plasmin으로 전환} — 그림의 t-PA → plasmin, PAI-1 vs t-PA.
+# Hemostatic mouthwash — 처방
+- A compounded hemostatic mouthwash (tranexamic acid or aminocaproic acid) can be used if the patient is unable to hold warfarin.
+- Written prescription should be for {r:tranexamic acid 5% solution, 100mL}.
+- Before dental procedure: hold {r:5 mL} in the mouth for {r:5-10 minutes}.
+- Following dental procedure: hold {r:5~10 mL} in the mouth for {r:1-2 minutes}, then spit — may repeat {r:every 2 hours}.
+- Solution is good for {r:5 days} after compounding — {r:Must be refrigerated}.
+- Cyklokapron(tranexamic acid) · Amicar(ε-aminocaproic acid): works as a {r:competitive inhibitor of plasminogen activation}; used as a {r:rinse}.
+U: 처음에는 낮은 concentration을 사용하여 시작하자(필기).
+F: 51=지혈 가글 처방
+M: aminocaproic = {r:lysine}과 닮은 구조(그림) → plasmin 작용↓ / aminocaproic·tranexamic = {r:plasminogen activation 경쟁 억제} → clot 유지
+M: 가글: {r:tranexamic acid 5% 100mL} · 전 {r:5 mL 5-10분} · 후 {r:5~10 mL 1-2분} {r:2시간마다} · {r:5일 냉장}
+M: aminocaproic target = {r:t-PA · plasminogen · plasmin} / t-PA = {r:plasminogen → plasmin}
+
+## Topical Hemostatic Agents — TABLE 25-6 | 국소 지혈제 제품 요약표 | 53-54 | 표 · 정리
+> 제품 이름으로 물어도 답할 수 있게 — gauze부터 fibrin glue까지 한 장
+= {r:Gelfoam}(대부분 환자·thrombin 올려) · {r:Surgicel·Oxycel·Avitene}(thrombin 무효) · Colla-Cote·Plug · {r:Cyklokapron·Amicar}(rinse)
+# TABLE 25-6 — Topical hemostatic agents used to control bleeding
+| Product | Description | Indications and features |
+| Gauze | 2” x 2” sterile gauze pads — 상처 위에 두고 다물거나 손가락으로 압박 | Bleeding immediately following extractions or minor surgical procedures |
+| {r:Gelfoam} | Absorbable gelatin sponge from purified gelatin solution; absorbs for 3-5 days | {r:Useful for most patients taking an antithrombotic agent}; helpful to place topical thrombin on Gelfoam; extensive surgery면 splint 안에 |
+| Instat | Absorbable collagen from purified and lyophilized bovine dermal collagen; 젖으면 출혈면에 붙지만 기구·장갑·거즈엔 안 붙음 | Mild to moderate bleeding usually controlled in {r:2-5 minutes}; more expensive than Gelfoam |
+| {r:Surgicel · Oxycel} | Oxidized regenerated cellulose; physical effect rather than physiologic; swells upon contact with blood; {r:thrombin ineffective}(pH로 불활성) | After 24-48 hours becomes gelatinous; 남겨 두거나 제거; 다른 agent가 안 들을 때 |
+| Avitene · Helistat | Microfibrillar collagen hemostat(HCl acid salt) · purified bovine corium collagen — {r:attracts platelets and triggers aggregation} | Thrombin ineffective(pH); moderate to severe bleeding |
+| Colla-Cote · Tape · Plug | Absorbable collagen dressings from bovine; sutured into place, under stents·dentures; {r:fully resorbed in 10-14 days} | superior hemostats for moderate to severe bleeding |
+| Thrombostat · Thrombinar · Thrombogen | Topical thrombin; {r:directly converts fibrinogen to fibrin}; bovine | 5000-U vial in 5 mL saline — clot equal amount of blood in {r:less than 1 second}; severe bleeding |
+| {r:Cyklokapron} | Tranexamic acid; {r:competitive inhibitor of plasminogen activation}; used as a rinse | Useful over short term for preventing hemorrhage after dental extractions |
+| {r:Amicar} | ε-Aminocaproic acid; competitive inhibitor of plasminogen activation; used as a rinse | Useful over short term to prevent bleeding |
+| Beriplast | Fibrin/tissue glue | 미국에서 사용 불가(당시) |
+- ⚠ 수치 차이: Gelfoam 흡수 — 이 표 "absorbs for 3-5 days" vs p.34 "completely absorbed by the 4 to 6 weeks"(출처가 다른 표) → 두 출처의 수치를 구분해서 기억.
+F: 53=TABLE 25-6 앞쪽, 54=TABLE 25-6 뒤쪽
+M: thrombin과 같이 쓰면 무효 = {r:Surgicel·Oxycel} · {r:Avitene·Helistat}(pH) / Gelfoam은 thrombin을 {r:올려서} 사용
+M: Colla-Cote·Tape·Plug {r:10-14일} 흡수 · Instat {r:2-5분} · Thrombostat {r:1초 미만}
+M: 가글 제품: {r:Cyklokapron}(tranexamic) · {r:Amicar}(aminocaproic) — {r:plasminogen activation 경쟁 억제}
+
+@G ⑤ Vitamin K와 증례
+## Vitamin K — γ-Carboxylation · Administration · Antidote | 비타민 K — II·VII·IX·X에 Ca 손잡이를 단다 | 55-57 | 기출 20~23 ★ | jb=HM05,HM22,HM09
+> 간에서 II·VII·IX·X에 γ-carboxyglutamate(Ca 손잡이)를 달아 주는 보조인자 — 없으면 인자가 혈소판 막에 못 붙는다
+= Vit K = {r:II·VII·IX·X}의 {r:γ-carboxylation} cofactor(간) / 투여 {r:수술 4-7일 전} · {r:warfarin 해독제}(Phytonadione·Kcentra)
+# Role of vitamin K in blood coagulation
+- essential for the formation of functional clotting factors II, VII, IX, and X.
+- {r:post-translational γ-carboxylation} of a cluster of {r:glutamic acid residues}.
+- {r:cofactor of the carboxylase enzymes}.
+- 그림: LIVER에서 Precursors of II·VII·IX·X →(CO2 + Vitamin K)→ {r:γ-Carboxyglutamate} II·VII·IX·X → BLOOD에서 {r:Calcium bridge}(Ca2+)로 {r:membrane phospholipids of platelets}에 결합 → Mature II·VII·IX·X.
+- 구조 그림: Vitamin K(natural vitamin) vs Warfarin(vitamin K antagonist) — 비슷한 고리.
+U: Vit K는 출혈 소인이 높은 환자의 수술 전처리로 며칠 전에 투약 — 와파린처럼 효과가 나타나기까지 시간이 걸림(p.55 필기).
+E: HM05 | 23·20년 빈칸 "Vitamin K dependent coagulation factor의 N terminal에 9-12개의 ( ) 잔기가 있는 domain — 혈액 응고 인자들이 세포막 인지질 층에 자리 잡는 데 결정적" → ==Gamma-carboxyglutamate== (20년 23판 첫 답 Glutamic acid → 21학번 수정). 25 근거: 그림의 γ-Carboxyglutamate · Calcium bridge · membrane phospholipids — '9-12개' 숫자는 25 자료에 없음(JB 참고 22 자료 p.69).
+E: HM22 | 20년 빈칸 "Vitamin K 의존적 혈액응고조절 인자 factor ( )( )( )( )" → ⚠ JB 첫 답 "II, V, VII, X"는 슬라이드와 다름, 21학번 수정 답 ==II, VII, IX, X== = 슬라이드 "clotting factors II, VII, IX, and X". 함정: {r:V가 아니라 IX}.
+- 간에서 만드는 vit K 의존 인자 + 빈칸 '항응고조절인자'(HM06)는 응고인자 표 카드의 {r:Protein C·Protein S}(vitamin K deficiency로 감소).
+F: 55=γ-carboxylation과 Ca2+ bridge
+# 투여와 해독제
+- act as an essential cofactor of factor II, VII, IX, and X synthesis {r:in liver}.
+- ==used only to control of the bleeding problem caused either by inadequate absorption or reduced synthesis of vitamin K in intestinal bacteria==.
+- can be administered by {r:oral or parenteral} route, but should be taken for {r:4 to 7 days} prior to surgery.
+- diet: Liver, broccoli, brussel sprouts, spinach, Swiss chard, collards, and other {r:green leafy vegetables}.
+- {r:antidote for warfarin toxicity}: Vitamin K ({r:Phytonadione} for K1) administered parenterally ({r:SC or IM}).
+- {r:Kcentra} — contains {r:factors II, VII, IX, and X}, recently introduced to more quickly control major bleeding due to VKA therapy.
+U: 4-7일 전 투약이 알려져 있지만 환자바이환자 — 각 환자를 고려 / 와파린이 너무 과량일 때 antidote로 vit K(필기).
+E: HM09 | 22·21·20·19·18·17년 "장기간 항생제 복용 시 지혈 문제" → 장내 세균의 vit K 합성↓ — JB 해설 인용문이 바로 이 슬라이드 "reduced synthesis of vitamin K in intestinal bacteria".
+F: 56=Vitamin K 투여와 해독제
+# Vitamin K의 종류
+| 종류 | 이름 | 출처·특징 |
+| K1 | {r:Phylloquinone} | Synthesized by {r:plants}, found in foods(naturally occurring) |
+| K2 | {r:Menaquinone}-4 | Primarily produced by {r:bacteria in the gut and the intestines}(naturally occurring) |
+| K3 | {r:Menadione} | {r:prodrug} — adverse reactions including {r:hemolytic anemia} |
+U: 식물성·박테리아에서 만들어지는 vit K와 synthetic한 종류 — synthetic vit K는 hemolytic anemia가 일어날 수 있어 주의(필기).
+F: 57=K1·K2·K3
+M: Vit K 의존 {r:II·VII·IX·X} — {r:γ-carboxylation} → {r:Ca2+ bridge}로 혈소판 인지질막 결합 (γ-carboxyglutamate {r:9-12개}: JB)
+M: 투여: {r:수술 4-7일 전} · 흡수 장애·{r:장내 세균 합성↓}에만 / 해독: {r:Phytonadione(K1) SC·IM} · {r:Kcentra}(II·VII·IX·X)
+M: K1 {r:plants} · K2 {r:gut bacteria} · K3 {r:Menadione} prodrug → {r:hemolytic anemia}
+
+## Case Study — Mr. J on Dabigatran + Baby Aspirin | 증례 — 항응고 환자의 전악 발치 계획 | 58-59 | 기출 22~24 · 증례 | jb=HM10,HM03
+> 심장 병력 72세, warfarin에서 dabigatran으로 바꾸고 baby aspirin 복용 — 주치의 상의 → INR·aPTT → 나눠 뽑기 → 봉합·collagen plug·압박
+= {r:MD consult} → {r:INR <3.0·aPTT normal} → {r:phased extractions} → 출혈 시 {r:primary closure}·{r:collagen plug}·{r:gauze 압박}
+# 증례
+- Mr. J, a {r:72}-year-old gentleman — wants his remaining teeth removed and replaced with {r:implant-supported removable dentures}.
+- {r:24 remaining teeth}, all very carious and effectively non-salvageable.
+- Cardiac history: {r:two-vessel coronary artery bypass graft} 15 years ago + {r:balloon angioplasty} 2 years ago.
+- ==He used to take warfarin on a daily basis, but he has recently been switched to dabigatran. He also takes a baby aspirin every day.==
+- 질문: anticoagulant drugs에 대해 수술 준비로 무엇을 고려? intraoperative bleed 시 선택지는?
+P: 💬 "시간이 부족해 건너뛴 부분은 직접 꼭 확인해주시고, case study도 확인해주세요"(p.58 필기).
+F: 58=증례 Mr. J
+E: HM10 | 22년 첫 출제 증례 빈칸 "He used to take warfarin … switched to A. He also takes B every day" + 복원 "A·B 조합 한 가지, 각 기전과 조합이 가능한 이유" → ==A. Dabigatran, B. aspirin== = 슬라이드 원문. JB 해설: A는 DOAC(dabigatran = factor II, -xaban = factor X), B는 항혈소판제 — 항응고제와 항혈소판제는 심한 경우 같이 쓰지만 다른 기전의 항응고제를 동시에 쓰지는 않음.
+E: HM03 | 24·23·22년 같은 증례를 "홍길동 씨"로 복원 — "(1) warfarin vs dabigatran 기전 차이 (2) dabigatran 장점" → 항응고제 카드의 비교표.
+# 해설 — 단계별 관리
+- ① consult with his medical doctor — 외래에서 다수 발치 stress를 감당할 수 있는지 확인, 안 되면 cardiac anesthesiologist가 있는 operating room(oral surgeon·hospital dentist)으로 referral.
+- ② conservatively 관리 가능하면 {r:INR and aPTT tests} — If both of these tests come back within therapeutic limits (INR < 3.0 and aPTT normal), then no alteration to his anticoagulation may be necessary.
+- ③ 주치의가 괜찮다면 {r:dabigatran을 2 to 3 days} 중단 → extra margin of safety / 아니면 약을 유지하고 {r:controlled hospital setting}에서.
+- ④ {r:phased extractions}(a few teeth at a time) — 한 번에 모두 뽑지 않기.
+- ⑤ 출혈이 예상보다 크면 {r:suturing (ideally primary closure)} + {r:collagen plugs (+/− reconstituted thrombin)} — direct firm sustained gauze pressure is always required.
+- ⑥ 그래도 안 되면 {r:stop the procedure} → local hospital로 transport.
+F: 59=증례 해설
+M: Mr. J = warfarin → {r:dabigatran}(DOAC) + {r:baby aspirin}(항혈소판)
+M: 관리: {r:MD consult} → {r:INR <3.0 · aPTT normal} → dabigatran {r:2-3일} 중단(주치의 OK 시) → {r:phased extractions}
+M: 출혈 시: {r:primary closure} · {r:collagen plugs ± thrombin} · {r:gauze pressure} → 안 되면 {r:hospital}

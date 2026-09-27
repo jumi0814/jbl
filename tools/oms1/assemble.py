@@ -43,9 +43,10 @@ def tag_years(text):
     ys, raw = set(), []
     for m in re.finditer(r'\(([^()]*)\)', stem_of(text)):
         g = m.group(1)
-        if not re.fullmatch(r'\s*(20\d\d|\d\d)(\s*[,、]\s*(20\d\d|\d\d))*\s*', g): continue
-        vs = [int(v) % 100 for v in re.findall(r'20\d\d|\d\d', g)]
-        if not all(11 <= v <= 25 for v in vs): continue
+        g2 = re.sub(r'(반짤반탈|짤 변형|짤|탈|년|NEW|’|\'|~|\.)', ' ', g).replace('，', ',')   # (2019, 탈)·(24. 23) 같은 변형도 읽음
+        if not re.fullmatch(r'\s*(20\d\d|\d\d)(\s*[,、\s]\s*(20\d\d|\d\d)?)*\s*', g2): continue
+        vs = [int(v) % 100 for v in re.findall(r'20\d\d|\d\d', g2)]
+        if not vs or not all(8 <= v <= 26 for v in vs): continue
         ys |= set(vs); raw.append('(' + g.strip() + ')')
     return ys, raw
 

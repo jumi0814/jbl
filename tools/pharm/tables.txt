@@ -1,74 +1,404 @@
-#TBL 처방전 — 법 조항별 요점 | k=RX | src=[[RX:3]] [[RX:6]] [[RX:9]] [[RX:12]] [[RX:13]]
-H: 조항 | 내용 | 기출
-R: 의료법 17조의2 | 직접 진찰한 의사·치과의사·한의사만 처방전 작성·교부(전자처방전 포함) | 발급 주체 T/F {jb:RX18}
-R: 의료법 18조 | 의약품 투여 필요 시 처방전 작성·교부 의무, 서식·기재·보존은 복지부령 | 18조 빈칸 {jb:RX14}
-R: 시행규칙 12조 | 기재사항(성명·주민번호 / 기관 / 질병분류기호 — 환자 요구 시 생략 / 의료인 면허 / 약품 명칭·분량·용법·용량 / 발급일·사용기간) · 2부 발급 · 2년 보존 · 다음 내원일 약 미리 처방 가능 | {jb:RX01} {jb:RX07} {jb:RX20}
-R: 약사법 23조의2 | 대체조제는 처방의 사전 동의, 식약처장 생물학적 동등성 인정 품목은 예외(사후 통보) | {jb:RX22}
-R: 의료법 18조의2 + 시행규칙 13조의2 | 확인 4: 동일 성분 / 금기 성분 / 회수·폐기 / 안전성 속보·서한 — 알러지는 조항 × | {jb:RX02}
+#TBL 처방전 — 법 조항별 요점 | k=RX | src=[[RX:3]] [[RX:4]] [[RX:5]] [[RX:6]] [[RX:9]] [[RX:12]] [[RX:13]] [[RX:18]]
+H: 조항 | 핵심 내용 | 함정·기출
+R: 정의(p.3) | 면허가 있는 의사·치과의사가 {r:약사에게} 약물의 조제·투여방법을 쓴 지시 · legal document · 책임 = 처방의사와 약사 모두 | '환자에게' ✗ {jb:RX01} · '의사에게만' ✗ {jb:RX19}
+R: 의료법 17조의2 | 의료업 종사 + {r:직접 진찰}한 의사·치과의사·한의사만 작성·교부 · 예외 = 대리수령자(의식 없음·거동 곤란 + 장기 동일 처방) | ⚠ JB는 발급 주체 '의사·치과의사에 한함' F {jb:RX18}
+R: 의료법 18조 | 투여 필요 시 처방전 작성·교부 · 서식·기재사항·{r:보존}은 복지부령 · 약사 문의에 즉시 응답 | '18조 기재사항' 빈칸 {jb:RX14}
+R: 시행규칙 12조 | 기재 9호(성명·주민번호 / 기관 / {r:질병분류기호} / 면허종류·번호 / 명칭·분량·용법·용량 / 발급일·사용기간 / 조제 참고 / 본인부담 기호) · {r:2부} 발급 · {r:다음 내원일} 약 미리 발급 | 질병분류기호 = 환자 요구 시 생략 {jb:RX07} {jb:RX21} · 보존 {r:2년}(JB) {jb:RX20}
+R: 약사법 23조의2 | 대체조제 = 성분·함량·제형 동일 · 원칙 사전 동의 · 예외 = {r:생물학적 동등성} 인정 품목 등 · 사전동의 없는 대체조제 사고 → 처방자 책임 없음 | {jb:RX22} · 선지 ⑤ {jb:RX01}
+R: 의료법 18조의2 + 시행규칙 13조의2 | 확인 4 = 동일 성분 · 병용·연령·임부 금기 · 회수·폐기 · 안전성 속보·서한 · 수단 = {r:의약품안전사용정보시스템} · 응급·재해 시 생략 | 알러지 ✗ {jb:RX02} · 빈칸 {jb:RX33}
+R: 수기처방전(p.18) | Superscription(Rx) · Inscription · Subscription · Transcription · {r:재조제 불가} | {jb:RX10} {jb:RX17} {jb:RX23}
+N: 26 슬라이드엔 처방전 보존 '기간' 수치가 없음(18조 ② "보존은 복지부령") — 2년은 JB 답 기준.
 
-#TBL 금연 약물 3 비교 | k=RX | src=[[RX:64]] [[RX:70]] [[RX:71]] [[RX:73]] [[RX:78]]
-H: 약물 | 기전 | 금기·주의 | 요점
-R: {r:NRT}(껌·패치) | 니코틴 대체(껌 20분·패치 2-4 h 최고) | 중증 심혈관·부정맥·MI/뇌졸중 2주·활동성 궤양·과민(청소년·임산부) {jb:RX04} | 30개비↑ 2 mg, 청소년 필요 시 주의 깊게 {jb:RX05}
-R: {r:Bupropion} | DA·NE 재흡수 억제 {jb:RX12} | 18세 이하 금기, 경련 역치↓, BP↑ | 서방형이 금연용, 1-2주 전 시작
-R: {r:Varenicline} | α4β2 nAChR partial agonist {jb:RX31} | 18세 이하 안전성 미확립 | 가장 우수, 1주 전 시작, 금연치료 유일 용도 {jb:RX26}
-R: 지원사업 | 바레니클린·부프로피온 약값 + NRT 보조제 지원 {jb:RX09} | 1인 1년 3차 · 12회 | 상담 = 의사·치과의사·한의사 {jb:RX24}
+#TBL 처방전 약어 — 헷갈리는 짝 | k=RX | src=[[RX:19]]
+H: 약어 | 라틴어 | 뜻 | 헷갈리는 짝
+R: {r:q.d.} | quaque die | {r:once a day, daily} | q.h. = every hour · q.i.d. = four times a day {jb:RX03}
+R: b.i.d. / t.i.d. / q.i.d. | bis / ter / quater in die | twice / three times / four times a day | 25 필기에서 언급
+R: q.h. / q.4h. | quaque hora / quaque quarta hora | every hour / every 4 hours |
+R: {r:p.r.n.} | pro re nata | {r:as needed} | {jb:RX16}
+R: {r:stat.} | statim | {r:immediately} |
+R: a.c. / p.c. | ante cibum / post cibum | before meals / after meals |
+R: ad lib. | ad libitum | at pleasure |
+R: h.s. | hora somni | at bedtime |
+R: Sig. | signa | let it be labeled, label | Transcription = Signa/Label
+R: non rep. | non repetatur | do not repeat (or refill) |
+N: 박스 예문 — Label "Take two tablets immediately. Take one or two tablets every 4 hours as needed for relief of pain." = Sig: Tab 2 stat. Tab 1 or 2 q.4h. p.r.n. for relief of pain.
 
-#TBL 타액 분비율과 구강건조증 약물 | k=XE | src=[[XE:40]] [[XE:41]] [[XE:32]] [[XE:49]] [[XE:55]]
+#TBL 니코틴 중독·금단·의존도 — 숫자 모음 | k=RX | src=[[RX:47]] [[RX:49]] [[RX:53]] [[RX:54]] [[RX:55]] [[RX:56]]
+H: 항목 | 기준·수치 | 기출
+R: 보상 경로 | BBB → VTA {r:α4β2 nAChR} → {r:mesocorticolimbic dopaminergic system} → nucleus accumbens 도파민 | {jb:RX08} {jb:RX36}
+R: 약동학 | 뇌 도달 10~20초 · 흡연 후 {r:10분} 최고 · 반감기 {r:2시간} · CYP2A6 → {r:코티닌}(약 20시간, 소변·침) | {jb:RX32}
+R: 담배 사용장애 | 지난 12개월 · 11개 항목 중 {r:2개 이상} → 경도 2-3 · 중등도 4-5 · 중증 6+ |
+R: 담배금단 | 중단·감량 후 {r:24시간 이내} 7개 중 {r:4개 이상}: 짜증·욕구불만·분노 / 불안 / 집중곤란 / {r:식욕증가} / 안절부절 / 우울 / 불면 | {jb:RX06} {jb:RX34}
+R: 금단 경과 | 24시간 이내 시작 → 2~3일 후 절정 → 2~3주 지속 · 흔함 = 불안·짜증·집중 · 드묾 = 우울·불면 · 이틀 이상 금연자의 50% |
+R: FTND | 6문항 10점: 1~3 낮음 · 4~6 중간 · {r:7~10 높음} |
+R: HSI | FTND 항목 {r:1 + 4} ≥ {r:4점} → 의존도 높음 · 간편하고 금연성공 예측도↑ |
+N: 금단은 식욕 '증가' — 식욕감소를 넣은 선지가 두 번(23·21, 19) 출제.
+
+#TBL 금연 약물 3 비교 | k=RX | src=[[RX:63]] [[RX:64]] [[RX:70]] [[RX:71]] [[RX:73]] [[RX:78]] [[RX:79]] [[RX:80]]
+H: 항목 | NRT | 부프로피온(서방정) | 바레니클린
+R: 기전 | 니코틴을 느리고 낮은 농도로 대체(껌 20분·패치 2-4시간 최고) | {r:dopamine 재흡수 억제} + nAChR 비경쟁적 길항 {jb:RX12} | mesolimbic {r:α4β2 nAChR partial agonist} {jb:RX31}
+R: 시작 | {r:금연 시작일부터} | 금연 {r:1~2주 전} · 7주 이상 | 금연 {r:1주 전} · 유지 6개월~1년 {jb:RX30}
+R: 부작용 | 수면장애·오심·두통·혈압상승·심계항진·흉통 | {r:불면(35~40%)}·{r:구강건조(10%)}·간질(1/1,000) {jb:RX25} | {r:메스꺼움}·수면장애·변비·생생한 꿈·두통 {jb:RX26}
+R: 금기·주의 | 중증 심혈관·중증 부정맥·심근경색·뇌졸중(최근 2주)·활동성 소화성 궤양·니코틴 과민·청소년 · 임산부 위험-이득 {jb:RX04} | 간질·심한 뇌 손상·중추신경계 종양·거식증·폭식증 병력·알코올이나 BZDs 급중단·2주 이내 MAO-I·{r:18세 이하}·임신·수유 | 18세 이하 비권장·임신 C·GFR ≤30 감량
+R: 청소년 | 꼭 필요하면 {r:주의 깊게 사용}(p.79) — 단 p.70은 금기 {jb:RX13} {jb:RX05} | 처방금기 | 권장되지 않음
+R: 심혈관 부작용 | 교감신경 자극 → HR·BP↑·관상동맥 수축 | NE 재흡수 억제 → BP↑ | CNS nAChR → HR·BP↑·심근수축
+R: 특징 | 흡연보다 유해성↓ · 부프로피온과 병용 가능 | 우울증·조현병 병력이면 권고 · 금연용은 서방형 | {r:금연치료 유일 용도} · 효과 최고(OR 2.33) {jb:RX35}
+N: 1차 약제 = NRT·부프로피온 서방정·바레니클린 / 2차 = 노르트립틸린·클로니딘. 지원사업은 바레니클린 84일·부프로피온 56일 + 금연보조제 구입비 {jb:RX09}.
+
+#TBL NRT 제형별 비교 | k=RX | src=[[RX:66]] [[RX:67]] [[RX:68]] [[RX:69]]
+H: 제형 | 용량 기준 | 사용 기간 | 부작용 | 주의
+R: 니코틴 껌(2·4 mg) | 하루 {r:25개피 이상 4 mg} · 미만 2 mg · 하루 최고 24개 | {r:12주}까지 | 구강 작열감·딸꾹질·소화불량·턱관절 불편(구강건조·속쓰림) | 급하게 씹으면 삼켜져 흡수↓ · 산성 음료는 {r:15분 전}부터 금지
+R: 니코틴 로젠즈(1·2 mg) | 하루 {r:30개피 이상 2 mg} · 미만 1 mg | {r:3~6개월} | 구역·딸꾹질·가슴 쓰림·두통·기침 | 산성 음료가 구강 점막 흡수 방해
+R: 니코틴 패치(16h·24h, 시간당 1 mg) | 하루 {r:10개피 이상}: 21 mg 4주 → 14 mg 2-4주 → 7 mg 2-4주 / 미만·45 kg 미만: 14 mg 6주 → 7 mg 2주 | {r:8~12주} | 피부발진·피부자극·이상한 꿈·불면증·구역 | 24h형 = 기상 직후 갈망↓ / 16h형 = 불면 시 대체
+N: 처음에는 매 1~2시간마다 1개씩 사용하고 점차 줄여 감(껌·로젠즈·패치 공통 표 문구). NRT는 일반적으로 금연 시작일부터 시작.
+
+#TBL 금연 지원사업 한눈에 | k=RX | src=[[RX:41]] [[RX:42]] [[RX:43]] [[RX:37]] [[RX:38]] [[RX:39]]
+H: 항목 | 내용 | 기출
+R: 근거 | WHO FCTC(보건분야 최초 국제협약, 한국 2003 서명·2005 비준) {r:14조} — 국가가 금연 진단·상담·예방·치료 프로그램 제공 |
+R: 국가 지원 시작 | {r:2015년} 담뱃값 인상과 함께 금연치료 국가 지원 실시 · 2005 보건소 금연클리닉 |
+R: 금연치료 지원사업 | 국민건강보험공단 → 병의원 · {r:1년 3차} · 차시당 {r:12회} · 8~12주 동안 6회 이내 진료상담 |
+R: 지원 약 | 금연치료제 {r:바레니클린 84일}·{r:부프로피온 56일} + 금연보조제 구입비 | {jb:RX09}
+R: 본인부담 | 1회 최대 4주 이내 처방 · 1~2회 본인부담 20% · 3~6회 없음 · 이수 시 인센티브 |
+R: 역할 | 의사 = 금연진료상담 + 의약품 처방 or 보조제 상담 / 약사 = 조제·판매 | {jb:RX24} {jb:RX11} {jb:RX29}
+N: 상담 가능·참여 가능 의료인·처방 주체(한의사·간호사·군의관)는 26 자료에 목록이 없음 — JB(20·23 자료) 기준으로 암기.
+
+#TBL 교감 vs 부교감 — 타액 분비와 수용체 | k=XE | src=[[XE:4]] [[XE:5]] [[XE:6]] [[XE:7]] [[XE:8]] [[XE:9]]
+H: 항목 | 교감(Sympathetic) | 부교감(Parasympathetic)
+R: Preganglionic cell body | intermediolateral columns, T1 to L2/3 | nuclei of cranial nerves 3·7·9·10 + sacral 2nd–4th
+R: Ganglion | Paravertebral(22 pairs, sympathetic chain)·Prevertebral(celiac·mesenteric) | Terminal ganglia(장기 근처·안)
+R: 절전 → 절후 | ACh → Nicotinic | ACh → Nicotinic
+R: 절후 → 효과기 | NE → Adrenergic(α·β) — 예외: generalized sweat gland는 ACh → M | ACh → Muscarinic
+R: 침샘 | Thick, viscous secretion | Copious, watery secretion
+R: 한쪽만 받는 기관 | Most peripheral blood vessels·Adrenal medulla·Sweat gl.·pilomotor muscle(p.7) + Kidney(p.9) | Parotid gl.·Lacrimal gl.·Nasopharyngeal gl. {jb:XE14}
+N: 필기 — parasympathetic의 effector organ rec.만 muscarinic rec.(여러 번 강조). 구강건조증 약은 이 M 수용체를 자극 → 같은 M을 쓰는 generalized sweat gland에서 발한.
+
+#TBL 무스카린 수용체 아형과 약물 | k=XE | src=[[XE:12]] [[XE:18]] [[XE:19]]
+H: Type | 위치 | 신호 | 주요 agonist | 주요 antagonist
+R: M1 | 타액선·장(enteric) 신경 | Gq(흥분) | Pilocarpine·Cevimeline·Muscarine {jb:XE12} | Atropine·Scopolamine·Pirenzepine(궤양 치료제)
+R: M2 | 심장·평활근 | Gi(억제) | Methacholine | Atropine·Scopolamine·Ipratropium(기관지 확장제)
+R: M3 | 타액선·평활근 | Gq(흥분) | Bethanechol·Pilocarpine·Cevimeline | Atropine·Ipratropium·Solifenacin 등(과민성 방광)
+R: M4 | 뇌(전체적으로) | Gi(억제) | ACh·Carbachol | Atropine·Scopolamine·Doxepin
+R: M5 | 뇌(substantia nigra)·눈 | Gq(흥분) | Pilocarpine | Atropine·Scopolamine·Doxepin
+N: Pilocarpine = M1·3·5, Cevimeline = M1·3(선택성↑, 더 자주 씀). Atropine = M1–M5 competitive antagonist, 극성이라 말초에서만 — 필기 "주관식으로 잘 나옴", "M3의 antagonist인 solifenacin은 기억해두세요".
+
+#TBL 직접 작용 콜린성 작용제 비교 | k=XE | src=[[XE:25]] [[XE:27]] [[XE:29]] [[XE:30]] [[XE:31]]
+H: 약물 | 분류 | 수용체 | AChE 분해 | 투여 | 임상 용도
+R: Acetylcholine | Choline ester | Muscarinic & Nicotinic | Yes | Intraocular·intracoronary | 안과 수술 중 miosis·coronary angiography
+R: Methacholine | Choline ester(β-methyl) | 심혈관 muscarinic에 비교적 선택 | 약하게(+) | — | Diagnosis of asthma
+R: Bethanechol | Choline ester(carbamate) | Muscarinic | No | Oral·subcutaneous | GI and urinary stimulation
+R: Carbachol | Choline ester(carbamate) | Muscarinic & Nicotinic | No | Topical ocular·intraocular | Glaucoma·miosis during ophthalmic surgery
+R: Pilocarpine | Natural alkaloid(tertiary) | Muscarinic(M1·3·5) | No | Topical ocular / Oral | Glaucoma / Xerostomia {jb:XE03} {jb:XE18}
+R: Cevimeline | Synthetic | Muscarinic(M1·3) | No | Oral | Xerostomia {jb:XE17}
+R: Nicotine / Varenicline | Alkaloid / Synthetic | Nicotinic | No | Oral·transdermal / Oral | Smoking cessation
+N: 필기 "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) -> 이 둘은 꼭 기억하세요!" · 부작용(Sweating, shivering, nausea, dizziness, increased frequency of urination, rhinitis).
+
+#TBL Pilocarpine 금기·주의와 과량 처치 | k=XE | src=[[XE:32]] [[XE:45]] [[XE:42]]
+H: 환자군 | 구분 | 이유
+R: 조절되지 않는 천식 | 금기 | M3 수용체 자극 → 기관지 수축 → 기도 폐쇄·발작 악화 — 인공타액으로 대체 {jb:XE11}
+R: COPD·만성기관지염 | 주의(경고) | 기도의 저항력·기관지 평활근 긴장·기관지 분비 증가 {jb:XE05}
+R: 심혈관 질환(협심증·심부전) | 주의(경고) | 미주신경 흥분 → 서맥·부정맥·혈압저하, 박동이상 보정 불가
+R: 위장관 질환(소화성 궤양·장폐색) | — | 위산 분비·장운동 촉진 → 증상 악화
+R: 비뇨기계 질환(방광폐색·전립선비대증) | — | 방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화
+R: 축동으로 악화되는 안과 질환(급성 홍채염·angle-closure glaucoma) | 금기 | 동공수축 유발
+R: 과민증 / 갈락토오스 불내성 등 | 금기 | anaphylaxis / 약물 내 유당
+R: 과량(100 mg 이상 치명적) | 처치 | Atropine 0.5–1.0 mg 피하·정맥 {jb:XE16} / 심혈관 저하·기관지 수축엔 Epinephrine 0.3–1.0 mg
+N: 교수님 강조(p.32) — 금기: 조절되지 않는 천식·축동 / 주의: COPD. 시험 예) "pilocarpine은 COPD에 절대 금기다 (X)", "조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다 (X)".
+
+#TBL 타액 분비율과 구강건조증 약물 | k=XE | src=[[XE:40]] [[XE:41]] [[XE:42]] [[XE:44]] [[XE:46]] [[XE:49]]
 H: 항목 | 내용
-R: 정상 whole saliva {jb:XE02} | 비자극 0.3-0.5 / 자극 1.0-3.0 mL/min (parotid 0.04/0.70, SM·SL 0.15/0.60)
-R: Dry mouth 기준 {jb:XE08} | 비자극 < 0.1 / 자극 < 0.5-0.7
-R: {r:Pilocarpine} {jb:XE03} | M1·3·5 agonist, 구강건조증·녹내장에만; 5 mg qid 허가 → 2.5 mg bid-tid 시작해 20 mg/day; 과량 → atropine {jb:XE16}
-R: {r:Cevimeline} {jb:XE17} | M1·M3 선택, CYP3A4 대사(CYP2D6 영향 적음) {jb:XE05}
-R: 부작용 {jb:XE09} | 발한·구역·구토·설사·타액과다·홍조·반사성 빈맥·기관지수축 — urinary retention ✗
-R: 인공타액으로 대체 {jb:XE11} | 약 불내성 / 조절 안 되는 천식 / 타액 기능 완전 소실
-R: 유발 약물 {jb:XE01} | TCA·항무스카린·항히스타민·이뇨제·opioid·BZD·항정신병 — physostigmine은 침↑
-R: BMS {jb:XE07} | clonazepam 0.5 mg qd hs 30일(또는 bid), GABA channel opening↑, 3-5분 물고 삼키기
+R: 진단 기준 {jb:XE08} | 비자극 whole < 0.1 / 자극 < 0.5–0.7 mL/min — 주로 비자극 기준
+R: 정상 whole saliva {jb:XE02} | 비자극 0.3–0.5 / 자극 1.0–3.0 (Parotid 0.04/0.70, SM·SL 0.15/0.60)
+R: 치료제 {jb:XE10} | Pilocarpine(Salagen tab 5 mg) · Cevimeline(Evoxac cap 30 mg) — 잔존 타액선 기능에 달림, 식전 30분 하루 3번
+R: Pilocarpine 용량 {jb:XE06} | 두경부암+방사선 5 mg×3/day(12주↑) · Sjögren 5 mg×4/day(6주) · 중등도 간장애 5 mg×2/day · 중증 간장애 권장 안 됨 · 1회 10 mg 초과 ✗ · 저용량 시작 → 20 mg/day
+R: 인공타액으로 대체 {jb:XE11} | 약 불내성 / 조절되지 않는 천식 / 타액 기능 완전 소실
+R: 보조치료 | 무설탕 껌/캔디·얼음조각·인공타액(carboxymethylcellulose + glycerin, IgA 없음) · Benzodiazepines · ZnCl2 {jb:XE13}
+R: 유발 약물 {jb:XE01} | TCA·Imipramine·Atropine·Diazepam·Diphenhydramine·Naproxen/Ibuprofen·Codeine·Clonidine — physostigmine(AChE 억제)은 ✗
+R: BMS {jb:XE07} | Clonazepam 0.5 mg qd hs 30일 or bid, 3-5분 topical 후 삼킴
 
-#TBL 보톡스 — 균·독소·임상·주의 한눈에 | k=BT | src=[[BT:4]] [[BT:5]] [[BT:11]] [[BT:19]] [[BT:22]] [[BT:23]] [[BT:33]]
-H: 항목 | 옳은 것 | 자주 나오는 틀린 선지
-R: 균 {jb:BT01} | Gram+ 간균, motile, 절대 혐기, Group I~IV(III는 동물), 독소는 sporulation기, gene은 plasmid/chromosome/phage | 운동성 없다 ✗ / 인간에게만 ✗ {jb:BT08}
-R: 보툴리즘 {jb:BT02} | 사체·부패 음식(BoNT), 꿀 → 영아(spore), 100℃ 15분 불활성화, BoNT는 소화효소 저항 | 대부분 소화된다 ✗
-R: 독소 구조 {jb:BT03} | light chain = catalytic(Zn metalloprotease), heavy chain = 결합·translocation, disulfide 연결, NTNHA·HA는 보호·안정화, 최초 안과(Scott) | protease가 분리해 독성 ✗ / 독성 약하다 ✗
-R: 기전 | SNARE(SNAP-25) 절단 → ACh 분비 억제 | 신경전달물질 파괴 ✗ {jb:BT16}
-R: 임상 {jb:BT04} | 치과: 저작근 + 안면 미용·TMD·gummy smile·보철/교정 보조, 4-6개월, 2주 시작·6주 최대 | 저작근 외 불법 ✗
-R: 주의 {jb:BT05} | 1 U = 마우스 LD50, 회사별 희석, 혈관 유입 위험; 부작용 과민·원거리 확산·내성; 금기 감염 부위·NMJ 질환·임신 C; 항콜린제 증폭 | 감염 부위 소독 후 진행 ✗ / 용량 회사마다 동일 ✗ / 우울·탈모 ✗ {jb:BT06}
-R: 교근 {jb:BT07} | 20-50 U/side, 0.5-1 cm 2-3점, aspiration, 수직 자입 | submandibular gland 주의 ✗(parotid·facial a.)
+#TBL 보톡스 — 균·독소·임상·주의 한눈에 | k=BT | src=[[BT:4]] [[BT:5]] [[BT:7]] [[BT:9]] [[BT:10]] [[BT:14]] [[BT:18]] [[BT:21]] [[BT:22]] [[BT:23]] [[BT:33]]
+H: 주제 | 강의자료의 옳은 문장 | JB에서 틀린 선지로 나온 것
+R: 균 특성 {jb:BT01} | Gram-positive · rod-shaped · anaerobic · spore-forming · motile bacterium → Neurotoxin (p.4) | "구균과 간균으로 운동성이 없다"
+R: 4 그룹 {jb:BT08} {jb:BT14} | Disease host I·II = Human, III = Animal, IV = – · Toxin Gene Chromosome/Plasmid·Bacteriophage·Plasmid (p.5) | "인간에게만 감염된다" / "인간에서만 발생한다"
+R: 생활사 | 독소는 sporulation cycle 초기에 생성, 의료용은 균주 배양 (p.6) | —
+R: 보툴리즘 {jb:BT02} | BoNT 위장관계 효소에 저항 · 가열비활성화 100도씨 15분 · 꿀 → 영아 (p.7) | "단백질이라 대부분 소화되나 소량 흡수 시 위험" (⚠ 26 필기는 '대부분 소화'라고 말함)
+R: 독성 {jb:BT15} | 평균치사량 0.0003 ㎍/kg — 독성 순위 1위 (p.9) | "보툴리눔은 비교적 독성이 약하다"
+R: 독소 구조 {jb:BT03} | bont = LC(Catalytic · Zn protease) + HC(Translocation · Binding), S-S 연결 · NTNHA = 독소 안정화 및 보호 (p.10-11) | "Heavy와 light를 분리하는 protease에 의해 독성을 가진다"
+R: 기전 {jb:BT16} | 타깃 = 신경말단의 SNARE complex, Zn-의존적 단백분해 → ACh 분비 억제 (p.13-14) | "신경전달물질을 파괴하여 직접적으로 차단"
+R: 치과 진료 범위 {jb:BT04} {jb:BT12} {jb:BT18} | 대법원 판결 — 두경부(목 위 모든 부위) 시술 합법 · 교정·임플란트·골절 수술 보조 (p.18-19) | "저작근 외에는 불법" / "활성화 기간 보통 4-6개월"(JB 기준 ✗)
+R: 침샘 {jb:BT19} | 치과 허용 영역·FDA 적응증에 Sialorrhea (p.16·19) | "악하선·이하선 주변 고농도 투여 → 타액량 증가"
+R: 용량 단위 {jb:BT09} | 1 U = 마우스 복강 LD50, 공장마다 약효가 달라 '효과'로 표준화 (p.21) | "용량은 회사마다 동일하므로 동일하게 희석"
+R: 부작용 {jb:BT06} {jb:BT10} | 과민반응 · 원거리 확산 · 말초신경증 · 심혈관 장애 · 의인성 장애 · 신경 저하 · 내성 (p.22) | 우울증 등 정신질환 · 탈모증
+R: 금기 {jb:BT05} | 과민증 · 전신성 신경근접합부 장애 · 중증 호흡기능장애 · 임신·수유(Class C) · 주사부위 감염 · 근이완제 (p.23) | "감염부위에도 소독하고 진행할 수 있다"
+R: 교근 비대증 {jb:BT07} {jb:BT13} {jb:BT17} | 주의 = Parotid gland · Facial a. · 25~50 U/side · 2~3 point · 0.5~1cm · Aspiration (p.33) | "submandibular gland를 주의"
+N: 김우진 교수님 객관식은 슬라이드의 한 단어를 뒤집어 틀린 선지를 만듦 — 오른쪽 열의 단어(운동성 없다·인간에게만·소화된다·약하다·분리하는 protease·파괴·불법·동일·submandibular)를 보면 바로 ✗.
 
-#TBL 통증 약물 — 작용점과 시험 문장 | k=CHR | src=[[ACU:10]] [[ACU:25]] [[ACU:26]] [[CHR:10]] [[CHR:18]] [[CHR:24]]
-H: 약물·개념 | 핵심 | 기출
-R: Sensitization | PG가 nociceptor threshold를 낮춤(중추·말초) | {jb:PN02}
-R: Capsaicin | nociceptor 활성 → substance P 유리 → CNS 고갈 | {jb:PN10}
-R: NSAIDs vs opioid | 치성 통증 = 염증 → 항염 있는 NSAIDs 1차, opioid는 항염 × | {jb:PN04}
-R: Acetaminophen | 항염 ×, 과량 간독성(황달·AST/ALT↑); 투석 환자 권장 진통제 | {jb:PN08} {jb:PN05}
-R: Aspirin | 최저 용량 = 항혈소판(COX 비가역 → TXA2↓); 항혈소판 필요 시 celecoxib 대신 | {jb:PN16} {jb:PN18}
-R: Codeine | prodrug, CYP2D6 poor metabolizer → 효과 ↓ | {jb:PN11}
-R: Carbamazepine | Na 채널 차단, TN first-line, 막전위 안정화 | {jb:PN01}
-R: Gabapentin·pregabalin | voltage-dependent Ca 채널, diabetic neuropathy·TN | {jb:PN03}
-R: Opioid | pre(Ca↓)·post(K↑) synaptic 억제; 과량 naloxone; 금단 methadone·clonidine; CKD 축적 → 호흡억제 | {jb:PN15} {jb:PN22} {jb:PN07}
-R: 신경병성 통증 예 | TN · postherpetic neuralgia · diabetic neuropathy → anticonvulsant·TCA·SNRI | {jb:PN12} {jb:PN13}
+#TBL BoNT 구조 → 작용 단계 연결 | k=BT | src=[[BT:10]] [[BT:11]] [[BT:13]] [[BT:14]]
+H: 부분 | 도메인 | 크기 | 하는 일 | 작용 단계
+R: Heavy chain C-terminal(HC) | Binding Domain | HC 전체 100 kDa | presynaptic nerve terminal 수용체(PSG → SV2·Syt)에 결합 | 1단계 Docking
+R: Heavy chain N-terminal(HN) | Translocation Domain | (HC에 포함) | 이름만 제시(역할 설명 없음) | 2단계 Endocytosis and fusion — Thioredoxin reductase에 의해 S-S결합이 깨지고 catalytic domain이 세포질로 이동
+R: Light chain(LC) | Catalytic Domain(Zn) | 50 kDa | Zn-의존적 단백분해효소 → SNARE 단백질 분해 {jb:BT16} | 3단계 Proteolysis — B·D·F·G → VAMP / A·C·E → SNAP25 / C → SNAP25·syntaxin
+R: NTNHA | Non-Toxic Non-hemagglutinating protein | BoNT + NTNHA = M-PTC 290 kDa | 독소 안정화 및 보호 {jb:BT03} | 25 필기: 독소가 활성화되기 전에 보호하는 안전장치
+R: HAP(HA70·HA17·HA33) | Haemagglutinating protein | M-PTC + HA = L-PTC 760 kDa | 응집소 및 장에서 장벽을 통과 | —
+R: 부형제(Excipients) | — | — | 독소 안정화 | —
+N: 두 chain은 disulfide(S-S)로 연결 — Progenitor toxin(inactive)은 Bacterial or Gastric protease로 Active toxin이 됨(p.10 그림). 필기: 산성화로 오히려 활성화, 세포질의 중성 pH에서 light chain이 heavy chain에서 떨어져 독소로 작용. {jb:BT15}
 
-#TBL 항응고·항혈소판·지혈 target 표 | k=HM | src=[[HM:16]] [[HM:18]] [[HM:19]] [[HM:50]] [[HM:56]]
-H: 약물 | Target | 효과
-R: Warfarin | vit K 길항 → II·VII·IX·X γ-carboxylation 억제 | 개시 느림·INR 모니터링 {jb:HM03}
-R: Dabigatran | direct thrombin(II) inhibitor | 예측 가능·고정 용량·짧은 반감기
-R: Apixaban·rivaroxaban·edoxaban | factor Xa 직접 억제 | DOAC
-R: Heparin / LMWH {jb:HM16} | antithrombin III 활성화(LMWH는 Xa 위주) | 주사
-R: Aspirin {jb:HM04} | COX 비가역 → thromboxane A2↓ | 혈소판 응집 억제
-R: Clopidogrel {jb:HM15} | ADP receptor(P2Y12) | 항혈소판
-R: Tirofiban·abciximab {jb:HM17} | GP IIb/IIIa receptor | 항혈소판
-R: ε-Aminocaproic·tranexamic acid {jb:HM14} | t-PA·plasminogen·plasmin(lysine site) | 항섬유소용해 → 지혈
-R: Vitamin K {jb:HM05} | II·VII·IX·X의 Gla(9-12개) 형성 cofactor | 결핍: 흡수 장애·항생제 {jb:HM09}
-R: 생리적 항응고제 {jb:HM06} | protein C·S·antithrombin III·TFPI(간), thrombomodulin | thrombin이 활성화 {jb:HM01}
+#TBL 주의점 — 부작용 7 · 금기 6 · 상호작용 8 | k=BT | src=[[BT:22]] [[BT:23]] [[BT:24]]
+H: 구분 | 항목 | 상세 · 필기
+R: 부작용 {jb:BT06} | 과민반응 | 아나필락시스·두드러기·연조직부종·호흡곤란 — 아나필락시스는 용제로 리도카인 사용 시 · 가장 흔함(주로 용제·보존제 탓)
+R: 부작용 | 원거리 확산 | 보톡스 중독 = 보툴리즘, 타액 — 근력쇠약·목쉼·언어장애·말더듬·호흡곤란·삼킴곤란·복시·눈꺼풀 처짐(혈관에 직접 주입 시)
+R: 부작용 | 말초신경증 / 심혈관 장애 / 의인성 장애 / 신경 저하 | 삼킴곤란·호흡곤란 / 부정맥·심근경색 / 관통·출혈 / 삼차신경통·눈깜박임 감소
+R: 부작용 {jb:BT10} | 보톡스 내성 | 보톡스 치료 효과 저하 — 우울증·탈모증은 부작용 아님
+R: 금기 {jb:BT05} | 과민증 · 전신성 신경근접합부 장애 | 약제·보존제·용제 / 중증근무력증·Lambert-Eaton 증후군·근위축성측색경화증
+R: 금기 | 중증의 호흡기능장애 · 임신·수유부 · 주사부위 감염 · 근이완제 투여 중 | 임신 = Class C
+R: 상호작용 — 상승 | 근이완제(Baclofen·Tizanidine) · 칼슘채널차단제(verapamil·diltiazem) | 보톡스와 같은 작용
+R: 상호작용 — 상쇄 | 콜린성 약물(pyridostigmine·neostigmine) | 보톡스와 반대 작용
+R: 상호작용 — 증폭 | 항콜린제 | 전신적 anticholinergic 효과를 증폭 {jb:BT05}
+R: 상호작용 — 대사 지연 | 항생제(polymyxin·tetracycline·lincomycin·spectinomycin) · 아미노글리코시드계(아미카신·겐타마이신·카나마이신·네오마이신·스트렙토마이신) | 25 필기: 보톡스가 항생제 대사를 지연, 특히 아미노글리코시드 · 26 필기(총론): 대사가 저해되어 체내 고농도 유지 위험
+R: 상호작용 — CNS 저하 | 마약성 진통제 및 마취제(morphine·pethidine·propofol) | 중추신경계 저하 효과 → 병용 다소 위험
+R: 상호작용 | 항경련제(gabapentin·pregabalin) | 표에만 있음(필기 설명 없음)
+N: 필기 이유는 26 PDF 주석(p.22-24) — 항경련제는 표에만 있고 필기 설명 없음.
+
+#TBL 치료 순서 6단계 — 단계별 원칙 | k=BT | src=[[BT:26]] [[BT:27]] [[BT:28]] [[BT:29]] [[BT:30]] [[BT:31]] [[BT:32]]
+H: 단계 | 원칙(슬라이드) | 필기
+R: 1. 정확한 진단 {jb:BT09} | 적응증 · Bad Habit · Medical History · 주사부위의 감염여부 · 복용하고 있는 약물 · 임신가능성 · 약물반응 | 7항목 읽어주심 · 25: 근육에 의한 것인지, 정확한 근육 부위는 어디인지
+R: 2. 시술 부위의 선택 | 촉진/시진 · 안전 지역 | 근육이 가장 풍융한 부위에 주사
+R: 3. 주입 용량의 결정 {jb:BT04} | 눈꺼풀 경련 0.5~2.5 U · 사시 교정 1.25~5.0 U · Gummy Smile 4~6 U · Popple Chin 4~12 U · Glabellar line 5~20 U · 교근비대증 25~50 U · 다한증 50~100 U · 편두통·방광기능장애 150~200 U | 일반적으로 15-20U로 3-6개월 효과
+R: 4. 약제의 준비 및 희석 | 미리 조제 금지 · 생리식염수 사용 · 거품금지 · 정확한 계량 | 단백질이라 활성 저하 → 요즘은 용액 형태
+R: 5. 주입 {jb:BT09} | 적정한 소독 · 수직 자입 · Intradermal · Intramuscular · Aspiration · 문지르지 말 것 | 문지르거나 사우나 등 확산 유발 행위 금지
+R: 6. F/U {jb:BT18} | 2주/6주 C/U · 4주 이내 재주사 금지 · Muscle tone C/U · Rebounding C/U | 수 개월 유지되므로 단기간 재주사 지양(25: 4-8주 내 재주사 권장 안 함 — 내성)
+N: 필기 "과다투여의 위험은 적지만, 어디에 주사할 것인가를 아는 것은 중요". JB의 '활성화 기간 4-6개월 ✗'(2주 시작·6주 최대)는 옛 자료 근거 — 26 자료에선 '2주/6주 C/U'만.
+
+#TBL 교근 비대증 vs Gummy smile 술식 | k=BT | src=[[BT:29]] [[BT:33]] [[BT:34]]
+H: 항목 | 저작근 비대증 | Gummy smile
+R: 적용 근육 | Masseter m. · Temporalis m. | Levator labii superioris m. · Zygomaticus minor m.
+R: 주의해야 할 부분 {jb:BT07} {jb:BT17} | Parotid gland · Facial a.(필기: facial artery & vein) | Orbicularis oris m. · Zygomaticus major m. · Hematoma
+R: 용량 | 25 ~50 U/side(p.29 표 25~50 U) | 2~6 U/side(p.29 표 4~6 U)
+R: 자입점 | 2~3 point/side · 0.5~1cm 간격 | 1~2 point/side · 0.2~0.5cm 간격
+R: 주입 | 수직 자입 후 bone touch 후 약간 후퇴 | Intramuscular injection
+R: 흡인 | Aspiration | No aspiration
+R: 위치 | Safety Margin — Earlobe-Mouth corner line · Mandibular border · Ant.·Post. border line of Masseter | 상악견치 부근에서 상방으로 ala line과 교차하는 부분
+R: 희석 예 | 50 U 기준 1.1 ml 생리식염수 → 0.5 ml/side | —
+N: JB 선지 "20-50U 양쪽"·"20-60 U"는 슬라이드 수치(25~50 U/side)와 다르지만 JB는 틀린 선지로 보지 않음 — 확실한 오답은 'submandibular gland'.
+
+#TBL 주요 opioid 약물 한눈에 — 제형·특징·주의 | k=CHR | src=[[CHR:6]] [[CHR:7]] [[CHR:8]] [[CHR:9]] [[CHR:16]] [[CHR:24]]
+H: 약물 | WHO ladder | 특징 | 주의·함정
+R: Codeine | Step 2(moderate) · 치과 opioid | aspirin 또는 acetaminophen과 복합 · cough suppressant(10 to 15 mg PO q4-6h) · IM 120 mg = morphine 10 mg | CYP2D6 변이에 가장 민감 → poor·intermediate metabolizer는 효과↓ {jb:PN11} · 복합제 acetaminophen overdose
+R: Hydrocodone · Oxycodone | Step 2(oxycodone은 Step 3에도) · 치과 opioid | acetaminophen과 복합(oxycodone은 단독 제제도 → 고용량 필요 시) | acetaminophen overdose · hydrocodone도 CYP2D6 영향
+R: Tramadol | Step 2 · 신경병성 2nd line | weak agonist for MOR + SNRI · Tridol / Ultracet(+ acetaminophen) | 활성 대사체 O-desmethyltramadol ← CYP2D6 · ultrarapid → 과한 효과
+R: Morphine | Step 3 | short half-life 약물로 권장 · tolerance 시 larger doses · IM 10 mg(기준) | renal insufficiency 주의 {jb:PN07}
+R: Meperidine | Step 3 목록 | limited efficacy · very short duration · significant euphoria | no longer recommended(필기: metabolite가 κ에 작용)
+R: Methadone | — | orally very effective · extended half-life → 다른 opioid의 withdrawal 억제 | 반감기는 길지만 analgesic duration은 훨씬 짧음 · 금단 해소 {jb:PN25}
+R: Fentanyl | Step 3 | transdermal patch · sustained release over 72 hours · IM 0.1 mg(가장 potent) {jb:PN19} | onset delayed · respiratory depression 더 잦음 · overdose crisis(heroin과 함께)
+R: Hydromorphone | Step 3 | potent morphine derivative · rectal suppository | —
+R: Mixed agonist-antagonist | — | butorphanol · nalbuphine · oxymorphone · pentazocine | few advantages · more adverse effects
+N: 등가 용량(Table 1-1, IM/IV/SC): fentanyl 0.1 · levorphanol 2 · hydromorphone 1.5-2.0 · methadone 10 · morphine 10 · codeine 120 mg — 필기 "펜타닐이 매우 potent". 필기: 최근 금단 해소 용도로 buprenorphine이 더 많이 쓰임.
+
+#TBL Opioid 문제 상황별 대처 — 금단·과량·부작용 | k=CHR | src=[[CHR:4]] [[CHR:11]] [[CHR:12]] [[CHR:13]] [[CHR:7]]
+H: 상황 | 슬라이드 내용 | 대처
+R: Physical dependence · withdrawal | anxiety, irritability, diaphoresis, tachycardia, GI distress, and temperature instability {jb:PN23} · 2 weeks만에도 생김 | tapering the medication slowly over several days · 다른 opioid 금단엔 methadone {jb:PN25}
+R: Overdose(intoxication) | accidental or intentional overdose · 가장 중요한 부작용 respiratory depression | Naloxone(opioid antagonist) {jb:PN22} — side effects: seizure activity·cardiac arrhythmias·hypertension or hypotension 등
+R: Antagonist 투여 | 3 days of therapy 뒤에도 withdrawal을 유발할 수 있음 | 금단 유발 가능성 고려
+R: Tolerance | chronic use → physical dependence와 함께 · 진통 tolerance가 부작용 tolerance보다 빠름(필기) | morphine은 larger doses 필요할 수 있음
+R: GI effects | constipation · nausea and vomiting | stool softeners and laxatives / anti-emetics = benzodiazepines · prochlorperazine · metoclopramide · ondansetron
+R: 부작용 상승 약물 | phenothiazines · antidepressants · benzodiazepines · alcohol | 병용 주의(CNS depressants: additive effect)
+R: 주의 환자 | hypothyroidism · Addison disease · hypopituitarism · anemia · respiratory disease(COPD·asthma·kyphoscoliosis·severe obesity) · malnutrition | impaired hepatic function → dosage adjusted · 신장 저하(필기) {jb:PN07}
+N: 필기 강조 — "Antidote로는 naloxone이 사용됨을 기억하세요"(p.13), "Physical dependence는 금단 증상과 함께 … 어떻게 치료를 하는지 알아둡시다(Tapering)"(p.11). 금단 = methadone·tapering, 과량 = naloxone 을 섞지 말 것.
+
+#TBL 신경병성 통증 약물 — 기전과 적응증 | k=CHR | src=[[CHR:4]] [[CHR:17]] [[CHR:18]] [[CHR:19]] [[CHR:23]] [[CHR:25]]
+H: 약물군 | 대표 약 | 기전 | 적응증·특징
+R: Anticonvulsants | gabapentin · pregabalin · carbamazepine · lamotrigine · valproic acid · clonazepam | membrane stabilizing properties {jb:PN24} | chronic neuropathic pain · intermittent lancinating(trigeminal neuralgia·post-herpetic neuralgia) · continuous burning
+R: Gabapentin(pregabalin) | IASP 1st line | voltage-dependent calcium channels {jb:PN03} | diabetic neuropathy · trigeminal neuralgia
+R: Carbamazepine(Tegretol) | trigeminal neuralgia first-line {jb:PN20} | blocks sodium channels {jb:PN01} | trigeminal neuralgia · agranulocytosis → periodic CBC
+R: Clonazepam | — | (기전 슬라이드에 없음) | burning mouth syndrome (BMS)
+R: Antidepressants(TCA·SNRI) | amitriptyline · nortriptyline · imipramine · duloxetine(SNRI first choice) | noradrenergic·serotonergic 하행 투사↑ + sodium channel block · 항우울 효과와 독립(더 빠르고 저용량) | post-herpetic · diabetic neuropathy · migraine · tension-type headache · facial pain · TCA > duloxetine
+R: NMDA antagonists | ketamine(anesthetic) · dextromethorphan(antitussive) | central sensitization의 NMDA 차단 | chronic·postoperative pain↓ · psychomimetic effects로 사용 제한
+R: Opioids | tramadol(2nd line) · strong opioids(3rd line) | μ 수용체 | 효과는 비슷하지만 abuse·long-term tolerance 위험 → 뒤로
+N: IASP 권고 — First: gabapentin(ER·enacarbil 포함)·pregabalin·SNRI·TCA / Second: capsaicin 8% patches·lidocaine patches·tramadol / Third: botulinum toxin A·strong opioids. 24년 PN03 복원의 '편두통'은 antidepressant 쪽(p.19)이지만 Ca 채널은 gabapentin뿐(p.18).
+
+#TBL CYP 효소와 통증약 — 누가 켜고 누가 끄나 | k=CHR | src=[[CHR:9]] [[CHR:10]] [[CHR:20]] [[CHR:21]] [[CHR:22]]
+H: 약물 | 효소의 역할 | 효소가 빠르면(ultrarapid) | 효소가 느리면(poor·intermediate)
+R: Codeine | CYP2D6 변이에 가장 민감(tramadol·hydrocodone도 영향) | 기대보다 큰 효과 주의(필기) | lower analgesic response — 발목 골절 codeine 무효 {jb:PN11} · 아시아 intermediate 51% · 한국인 PM 약 0.2%
+R: Tramadol | CYP2D6 → O-desmethyltramadol(활성, 몇 배 active) / CYP3A4·2B6 → N-desmethyltramadol | 기대보다 매우 큰 효과(필기) | 활성 대사체↓
+R: TCA — CYP2C19 | tertiary amines(amitriptyline·imipramine) → active secondary amines(nortriptyline·desipramine) | avoid tertiary amine(sub-optimal response) → nortriptyline·desipramine | poor: avoid tertiary · 쓰면 50% reduction
+R: TCA — CYP2D6 | tertiary·secondary 모두 → less active metabolites | avoid tricyclic(lack of efficacy) · higher target dose | intermediate: 25% reduction · poor: avoid(side effects) · 50% reduction
+N: 같은 CYP2D6라도 codeine·tramadol에선 활성 대사체를 만들고, TCA에선 덜 활성인 대사체로 만듦 — 필기 "CYP2D6 rapid metabolizer일 경우 antidepressant의 효과는 기대보다 떨어질 것". CYP2D6 빈도(p.9): ultrarapid ~1–2% · extensive ~77–92% · intermediate ~2–11% · poor ~5–10%.
+
+#TBL 치과 통증에서의 진통제 선택 — 슬라이드와 논문 | k=CHR | src=[[CHR:4]] [[CHR:24]] [[CHR:25]] [[CHR:27]] [[CHR:29]] [[ACU:27]]
+H: 상황 | 선택 | 근거 문장
+R: 일반 치성 통증(염증성: pulpitis·periodontitis) | NSAIDs first choice {jb:PN04} | Pain of dental origin frequently arises from INFLAMMATION · Opioids do not have anti-inflammatory properties
+R: NSAID만으로 부족(ceiling effect) | NSAIDs + weak opioid(codeine·hydrocodone·oxycodone) {jb:PN26} | different complementary central and peripheral mechanisms of pain relief
+R: 주사가 필요한 강한 통증 | Ketorolac(IM·IV NSAID) {jb:PN17} | 급성통증 강의 — often used postoperatively · parenteral therapy should not exceed 5 days due to nephrotoxicity
+R: Acute pulpitis 환자가 narcotic 요구 | local anesthesia + pulpectomy/extraction → ibuprofen 400-600 mg q4-6h 또는 aspirin 650 mg q4h → breakthrough엔 oxycodone 5 mg | NSAIDs primary · narcotics backup(증례 2)
+R: 근관치료 후 통증(골·연조직 침범) | hydrocodone 5 mg + acetaminophen 325 mg → ibuprofen으로 충분하면 계속 | 증례 1
+R: Trigeminal neuralgia | Carbamazepine(Tegretol) first-line {jb:PN20} | agranulocytosis → periodic CBC
+R: 투석(CKD) 환자 — 임플란트 후 | Paracetamol(acetaminophen) {jb:PN05} | most frequently recommended analgesic for pain in dialyzed patients(논문)
+R: 투석 환자 — NSAIDs | controversial · nephrologist 평가 · dose adjustment {jb:PN06} | inhibit prostaglandin and generate a hypertensive effect(논문)
+R: 투석 환자 — opioids | meperidine·dextropropoxyphene·morphine·tramadol·codeine 축적 {jb:PN07} | CNS hypofunction · respiratory effects due to accumulation(논문)
+N: 투석 3행은 슬라이드가 아닌 교수님 지정 논문(Dental implant treatment for renal failure patients on dialysis: a clinical guideline, p.129) — 24년 JB 해설의 인용 문장.
+
+#TBL 항응고·항혈소판·항섬유소용해 — 약물별 target 표 | k=HM | src=[[HM:16]] [[HM:18]] [[HM:19]] [[HM:50]] [[HM:51]] [[HM:55]]
+H: 분류 | 약물 | Target · 기전 | 특징
+R: VKA(경구) | Warfarin (Coumarin) {jb:HM03} | vit K epoxide reductase 차단 → II·VII·IX·X의 γ-carboxylation 억제(슬라이드: Inhibition of γ-glutamylcarboxylase) | 개시 느림(기존 인자 degradation 후) · 초기 protein C·S 먼저 → pro-coagulation · INR 모니터링 필수 · prolonged therapy
+R: DOAC(경구) | Dabigatran (+ hirudin) {jb:HM11} | factor IIa (thrombin) 직접 억제 | 모니터링 적게 · 예측 가능성↑ (JB: 용량 고정 · 반감기 짧음) · 증례 Mr. J의 A {jb:HM10}
+R: DOAC(경구) | Apixaban · Edoxaban · Rivaroxaban (-xaban) | factor Xa 직접 억제 | JADA: routine monitoring No
+R: 주사 | Heparin | Activation of anti-thrombin III (AT III) → IIa · Xa (그림: XIIa·XIa·IXa도) | Injectable · acutely for short-term action · aPTT↑↑
+R: 주사 | LMWH {jb:HM16} {jb:HM21} | Anti-thrombin III → Xa 위주 | heparin의 기능 부분만 잘라 사용 → 더 예측가능·long lasting · aPTT ↔
+R: 항혈소판 | Aspirin (baby aspirin) {jb:HM04} | COX enzyme 저해 → thromboxane 생성 저해 | JB: 비가역적 · bleeding time↑(PT·aPTT ↔) · Mr. J의 B
+R: 항혈소판 | Ticlopidine · Clopidogrel · Prasugrel · Ticagrelor {jb:HM15} | ADP receptor (P2Y12) antagonist | release된 ADP의 modulation 차단
+R: 항혈소판 | Tirofiban · Abciximab {jb:HM17} {jb:HM02} | GP IIb/IIIa receptor antagonist | adhesion 때 주요 receptor · -mab = monoclonal antibody · JB: fibrinogen·vWF 결합 방해 {jb:HM19}
+R: 항섬유소용해 | ε-Aminocaproic acid (Amicar) · Tranexamic acid (Cyklokapron) {jb:HM14} | competitive inhibitor of plasminogen activation · aminocaproic은 lysine과 닮은 구조(그림) (JB: t-PA · plasminogen · plasmin) | 지혈 가글 tranexamic acid 5% 100mL — warfarin을 끊을 수 없을 때
+R: 비타민 | Vitamin K (Phytonadione K1) {jb:HM22} | II·VII·IX·X의 γ-carboxylation cofactor(간) {jb:HM05} | 수술 4-7일 전 · warfarin 해독제(SC·IM) · Kcentra(II·VII·IX·X)
+N: 24·22년 표 빈칸(HM02)은 aminocaproic → t-PA·plasminogen·plasmin / clopidogrel → P2Y12 / LMWH → AT III / tirofiban → GP IIb/IIIa. 함정: LMWH의 target은 Xa가 아니라 AT III.
+
+#TBL 선별 검사 — PT vs aPTT vs BT | k=HM | src=[[HM:10]] [[HM:11]] [[HM:13]] [[HM:14]]
+H: 항목 | PT (INR) | aPTT | Bleeding time
+R: 넣는 시약 | Tissue factor (factor III) — extrinsic | Partial thromboplastin — intrinsic | — (혈소판 기능)
+R: 정상 | 10-14 seconds · INR 0.8-1.2 | 30-40 seconds | —
+R: 측정 인자 | I · II · V · VII · X | VIII · IX · XI · XII | platelet
+R: 늘어나는 경우 | Warfarin(coumarin ↑↑) · DTI·Xa therapy ↑ · severe liver disease · DIC | Heparin ↑↑ · Hemophilia A or B ↑↑ · DTI ↑↑ · coumarin ↑ | Aspirin ↑ · thrombocytopenia ↑↑ · leukemia ↑ · vessel wall defect ↑
+R: 정상으로 남는 경우 | hemophilia A·B · heparin · aspirin | aspirin · LMWH | coumarin · heparin · hemophilia
+R: 임상 | 가장 많이 사용 — warfarin 모니터링(INR = (PT환자/PT정상)^ISI · warfarin 2.0-3.0) | heparin 투여·혈우병 | antiplatelet 작용 확인
+N: 필기 — "Aspirin therapy를 받으면 blood clotting time에는 크게 변화가 없지만, bleeding time은 증가한다. Coumarin therapy를 받으면 PT가 증가한다." 혈우병 중증도(factor VIII·IX): mild 5-50% · moderate 1-5% · severe <1%. 2021년 14번(검사 종류·기준·산출방법, HM04 원문에 붙어 있음)의 답.
+
+#TBL INR 구간별 치과 시술 — 할 수 있는 것 | k=HM | src=[[HM:24]] [[HM:25]]
+H: 시술 | ≤3.0 | >3.0–3.5 | >3.5
+R: Examination · radiographs · impressions · orthodontics | 가능 | 가능 | 주의
+R: Simple restorative dentistry · supragingival prophylaxis {jb:HM24} | 가능 | 가능 | 금지
+R: Complex restorative · scaling & root planing · endodontics | 가능 | probably safe | 금지
+R: Simple extraction · curettage · gingivoplasty · biopsy {jb:HM07} | 2.5 이상 local measures | local measures | 금지
+R: Multiple extractions · single bony impaction | 2.0 이상 local measures | local measures | 금지
+R: Gingivectomy · minor flap · apicoectomy · single implant | 2.5 미만만 probably safe | 금지 | 금지
+R: Full mouth · full arch extractions | 2.0 미만만(1.5–<2.0 local measures) | 금지 | 금지
+R: Extensive flap · multiple bony impactions · multiple implants | 1.5 미만만 probably safe | 금지 | 금지
+N: INR >4.0 → No surgical treatment until INR is reduced. 흐름도(INR <4.0): minimal bleeding → No modifications, local measures / moderate(multiple extractions·third molars) → consider reducing INR / significant(full mouth clearance) → INR <3.0으로 modify. 모든 경우 local measures(§ sutures·oxidized cellulose·microfibrillar collagen·topical thrombin·aminocaproic·tranexamic acid). 치료 목표 INR 2.0–3.0(atrial fibrillation·venous thrombosis·pulmonary or systemic embolism·acute MI), 2.5–3.5(mechanical prosthetic heart valves).
+
+#TBL 국소 지혈제 비교 — 원료·기전·흡수·주의 | k=HM | src=[[HM:32]] [[HM:34]] [[HM:36]] [[HM:37]] [[HM:40]] [[HM:42]] [[HM:43]] [[HM:45]] [[HM:46]] [[HM:47]] [[HM:49]]
+H: 제제(상품명) | 원료·성질 | 기전 | 흡수·사용 | 주의(금지)
+R: Epinephrine (bosmin) {jb:HM20} | 1:1000 racemic · potent vasoactive · levorotatory 15배 | 혈관수축 — capillaries·arterioles만 | impregnated retraction cord · superficial bleeding만 | serious cardiovascular reactions · retard wound healing · ischemia → tissue necrosis
+R: Gelatin sponge (Gelfoam) | absorbable · water-insoluble gelatin · 149°C 4 hrs 견딤 | more physical — platelet 파괴 + fibrin framework · thrombin으로 강화 | 4-6 weeks 흡수 · dry 또는 saline · minimum amount | skin incision 봉합 × · intravascular ×(embolization) · porcine collagen 알레르기 × · 재멸균 × · giant-cell granuloma
+R: Gelatin-thrombin matrix (FloSeal) | bovine gelatin + human thrombin | mechanical + active — 과립 10-20% 팽윤/10분 + fibrinogen → fibrin | 6-8 weeks 흡수 · suturing·electrocauterization 실패 시 | not recommended(safety·cost·availability) · 혈관 내 × · active blood flow 없으면 × · thromboembolism
+R: Oxidized cellulose (Oxycel, Novocell) {jb:HM07} | plant material, nitrogen dioxide로 산화 → cellulosic acid · alkali에만 녹음 · antimicrobial | hemoglobin 친화 → artificial clot · platelet aggregation platform | 2-7일 흡수 시작 · 6주 완료 · dry로 · 발치와 temporary packing | stick·extremely friable · 적시지 말 것 · thrombin 파괴(산성) · 골절 permanent packing × · surface dressing ×(상피화 억제)
+R: Oxidized regenerated cellulose (Surgicel) {jb:HM07} | alpha-cellulose → viscose → spun·oxidized · less friable · less stick | 혈액 포화 → gelatinous mass → stable clot | 하치조동맥 골내 출혈 · surface dressing ○(상피화 방해 ×) · 성형 가능 | socket 깊숙이 → 치유 지연 · 골결손·골절 ×(callus·cyst) · inferior alveolar nerve 노출 시 neurotoxic
+R: Microfibrillar collagen (Avitene) | active absorbable collagen | platelets adhere → release → aggregation | dry로 · sheets·flour(arterial bleeding)·sponge | No autoclave · skin 봉합 × · methylmethacrylate 접착력↓ · 감염 potentiation · dry socket↑
+R: Topical thrombin {jb:HM01} | activated factor II (bovine·human·recombinant) | fibrinogen → fibrin · XIII 활성 · 혈소판 응집 · 평활근 수축(PAR) | capillaries·small venules oozing · Gelfoam과 병용 · powder/saline | topically only — 정맥 내 embolism · human plasma 유래 infectious risk · Oxycel·Surgicel·Avitene과는 무효(pH)
+N: 필기 — p.30-47은 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인" 하며 넘어간 부분(기출은 epinephrine·Oxycel/Surgicel 정도) → 변형·미출제 대비. TABLE 25-6: Gelfoam "useful for most patients taking an antithrombotic agent", Colla-Cote·Tape·Plug 10-14일 흡수, Instat 2-5분.
 
 #TBL 살균·소독제 10 — general features 한 줄 | k=DS | src=[[DS:5]] [[DS:7]] [[DS:9]] [[DS:18]] [[DS:22]] [[DS:25]] [[DS:28]] [[DS:31]] [[DS:34]] [[DS:37]]
-H: 제제 | 옳은 특징 | 틀린 선지·주의
-R: Alcohol {jb:DS07} | vegetative에 살균, 단백 변성, 70%, non-staining, 단기 보존 | spore·fungus ✗, staining ✗
-R: Iodine {jb:DS03} | most valuable·powerful, sporicidal·fungicidal·virucidal, low toxicity, rapid·penetrating, 유기물 영향 ×, alkali 비호환, disclosing | high toxicity ✗, slow ✗, water에 잘 녹음 ✗, 착색 없다 ✗
-R: Bis-biguanide(CHX) {jb:DS02} | G+·G-, 결핵·spore·virus ✗, cationic, 유기물 영향 ×, 빛에 민감, 술전 4%·구강 0.12% | 빛에 강함 ✗, 유기물에 약함 ✗ / antiplaque 3 {jb:DS05}
-R: Oxygenating(H2O2) {jb:DS01} | 산소 유리, 구강 살균 미미, 기계적 세정, 고농도 표백(30%), 1.5% mouthwash, ANUG | 새 조직 금기, black hairy tongue {jb:DS15}
-R: Hypochlorite {jb:DS04} | potent germicidal, 유기물과 강반응, alkali 안정, 고온↑, 고농도 용해, 근관 세척·농양 | 빛·방치에 변성, 냄새, 유기물이 효과↓
-R: Phenol {jb:DS17} | bacteriostatic/cidal·fungicidal, cavity sanitizer·root canal | 저온·유기물에 효과↓, resin 중합 방해, candida
-R: ZOE {jb:DS12} | eugenol 진통·마취(치수 진정), 열전도↓, 습기 가속, astringent | 압축강도 ×, 영구 수복 ✗
-R: Aldehyde {jb:DS13} | bacteria·fungus·virus·spore(broadest), 금속 비부식, 렌즈·고무 손상 ×, 30일 내 사용 | 휘발·자극·알레르기, 산화제·알칼리 비호환, irreversible alkylation
-R: Mercury {jb:DS26} | bacteriostatic, 주사 전 구강 소독, thimerosal 보존제 | sunlight 불안정, TI 낮음
-R: QAC(Zephiran) {jb:DS25} | cationic surfactant, G+ 효과, 표면 소독·구강용 | G– 약함, sporicidal ✗, soap 비호환, 금속 흡착
+H: 제제 | 옳은 특징(슬라이드 문장) | 기출 오답·주의
+R: 1. Alcohol {jb:DS07} {jb:DS16} | Bactericidal against {r:vegetative form} · Denaturation of bacterial proteins · {r:60-70%} · Colorless and {r:non-staining} · presterilized items 단기 보존 | staining ✗ · spore bactericidal ✗ · 100% ✗ / Neither sporicidal, fungicidal nor virucidal(non-envelope) · coagulum → open wound ✗ · flammability
+R: 2. Iodine {jb:DS03} {jb:DS08} {jb:DS21} | {r:Most valuable, powerful} · bactericidal·sporicidal·fungicidal·virucidal · relative {r:low toxicity} · {r:rapid} · slightly soluble in water / moderately in alcohol · {r:not affected} by organic matters · incompatible with alkali · disclosing | high toxicity ✗ · slow ✗ · highly soluble in water ✗ · affected by organic ✗ · 착색 없다 ✗ / allergenic · dermatitis·corrosive · staining
+R: 3. Bis-biguanide(CHX) {jb:DS02} {jb:DS09} {jb:DS22} | {r:G(+) and G(-)} · ineffective against tubercle bacilli·spore·viruses · cationic detergent · {r:not reduced} by organic matters · dental plaque · {r:Sensitive to light} · 술전 4% · 구강 0.12% | light에 강함 ✗ · organic에 약함 ✗ · spore ✗ · 술전 0.12% ✗ / antiplaque 3 {jb:DS05} · free radical ✗ {jb:DS14}
+R: 4. Oxygenating(H2O2) {jb:DS01} {jb:DS10} {jb:DS18} | molecular {r:oxygen} by peroxidase · 구강 살균 {r:negligible} · organic matters {r:reduce} · {r:mechanical cleanser} rather than antiseptics · 고농도 unstable·explosive · 고농도 {r:bleaching}(30%) · ANUG | strong germicidal ✗ · antiseptics rather than cleansing ✗ · molecular hydrogen ✗ · bleaching 3% ✗ / newly regenerating tissues 금기 · black hairy tongue {jb:DS15}
+R: 5. Hypochlorite(NaOCl) {jb:DS04} {jb:DS11} {jb:DS23} | {r:Potent germicidal} · {r:highly reactive} with organic matters · {r:stable in alkali} · {r:high temperature}↑ · 고농도 {r:solvent} · root canal irrigation · wet dressing of infected wounds | favorable smell ✗ · low conc. solvent ✗ · unstable in alkali ✗ · low temp ✗ · stable in light ✗ / light·standing에 변성 · fresh daily · corrode metals · offensive odor
+R: 6. Phenol {jb:DS17} {jb:DS24} | Bacteriostatic/bactericidal and fungicidal · local anesthetic · diffusible, onset delayed · root canal disinfection · cavity sanitizer | 효과↓ = organic · alkali · {r:low temp.} / {r:candida}(장기 mouthwash) · {r:resin 중합 방해} · caustics
+R: 7. ZOE {jb:DS12} {jb:DS19} | eugenol의 sedative·analgesic·local anesthetic · Zinc oxide astringent·antiseptic · {r:low thermal conductivity} · reaction accelerated by heat·moist · sedative {r:temporary} filling | high thermal conductance ✗ · high compression strength ✗ · permanent restorative ✗ / prolonged contact → tissue damage without pain · asbestos
+R: 8. Aldehyde {jb:DS13} {jb:DS20} | bacteria·fungus·virus · {r:Noncorrosive to metal} · lensed instruments·rubber·plastics 손상 × · self-polymerized → 30 days · cold sterilization · broadest range {jb:DS28} | compatible with oxidizing agents·alkali ✗ · non-allergenic ✗ · slow onset(= mercury) ✗ · reversible(= mercury) ✗ / volatile·powerful irritants · allergenic
+R: 9. Mercury {jb:DS26} {jb:DS27} | {r:Bacteriostatic} rather than bactericidal · slow onset, prolonged · {r:Reversible} interaction with sulfhydryl · preoperative · {r:Thimerosal} vaccine 보존제 | stable to sunlight ✗ · therapeutic index high ✗ / vegetative form만 · sensitization · mercurial stomatitis
+R: 10. Quaternary Ammonium(Zephiran) {jb:DS25} {jb:DS29} | Cationic surface-active · preference to {r:G(+)} · organic matters reduce · {r:cotton·gauze·rubber}에 흡착 · toothpaste·mouth rinse · noncritical surfaces | G(-)에 효과 ✗ · 금속에 흡수 ✗ · compatible with soap ✗ · sporicidal ✗ / hard water에 효과↓ · allergic contact dermatitis
+N: 23·24년은 1~5번에서만 출제, 20~22년은 6~10번도 — 각 제제의 General features 문장이 거의 그대로 선지. 오답은 반대말이거나 다른 제제의 문장.
+
+#TBL 선지 함정 축 — 유기물·빛·온도·alkali | k=DS | src=[[DS:7]] [[DS:9]] [[DS:18]] [[DS:22]] [[DS:24]] [[DS:25]] [[DS:28]] [[DS:31]] [[DS:33]] [[DS:36]] [[DS:37]] [[DS:39]]
+H: 제제 | 유기물(organic matters) | 빛·방치 | 온도 | alkali
+R: Iodine | {r:Not affected} {jb:DS03} | — | — | {r:incompatible}
+R: CHX | {r:not reduced} {jb:DS09} | {r:Sensitive to light} {jb:DS22} | — | —
+R: H2O2 | {r:reduce} | 고농도 unstable·explosive | — | —
+R: NaOCl | {r:Highly reactive} {jb:DS04} · decrease effect {jb:DS11} | {r:Deteriorate on standing and by the light} → fresh daily | {r:high temperature}에서 효과↑ | {r:Fairly stable}
+R: Phenol | {r:decreased} {jb:DS17} | — | {r:low temp.}에서 효과↓ | {r:decreased}
+R: ZOE | — | — | reaction accelerated by heat(+ moist) {jb:DS19} | —
+R: Aldehyde | Reduced effect — {r:still active} | Self-polymerized by standing → 30 days | — | {r:Incompatible}(+ oxidizing agents) {jb:DS20}
+R: Mercury | — | {r:Thimerosal is unstable to sunlight} {jb:DS26} | — | —
+R: Quaternary ammonium | {r:reduce} {jb:DS25} · hard water | — | — | soap·anionic detergents 비호환
+N: '—'는 슬라이드에 해당 문장이 없음. 유기물에 강한 것은 iodine·CHX 둘뿐(aldehyde는 reduced지만 still active).
+
+#TBL 농도 = 용도 | k=DS | src=[[DS:6]] [[DS:16]] [[DS:21]] [[DS:23]] [[DS:30]] [[DS:33]] [[DS:45]]
+H: 제제 | 농도 | 용도
+R: Ethanol / Isopropanol | {r:60-80%} / {r:70%} (60-70% prep commonly used) | skin degermination · 100%보다 물 섞은 것이 효과적 {jb:DS07}
+R: Chlorhexidine | {r:4%} | Preoperative preparation · hand wash and scrubbing (Hibitane · 히비탄 볼) {jb:DS02}
+R: Chlorhexidine | {r:1%} | superficial infection · aphthous ulcer
+R: Chlorhexidine | {r:0.12%} (과거 0.1% · 해외 0.2%) | Mouthwash (헥사메딘 · PerioGard · Peridex)
+R: Hydrogen peroxide | {r:30%} | Tooth bleaching {jb:DS18}
+R: Diluted hydrogen peroxide | {r:3%} | Wound cleaning {jb:DS10}
+R: Diluted hydrogen peroxide | {r:1.5%} | Mouth wash (가장 낮은 농도)
+R: Sodium hypochlorite | {r:5%} / 0.5% (diluted) | Root canal irrigation {jb:DS23}
+R: Oil of cloves (ZOE) | {r:70% to 85%} Eugenol | sedative temporary filling
+R: Formocresol | 48.5% formaldehyde · 48.5% cresol · 3% glycerine | vital pulpotomy of primary teeth
+R: Glutaraldehyde | {r:2 - 2.5%} (p.44 표 2.0-3.2%) | Cold sterilant — immersion {r:6-10 hrs}
+N: 2023 시험예시(p.16 필기) "수술 scrub에 사용하는 것은 0.12%이다 (x)" · "mouthwash로 쓰는 CHX는 4%이다 (X)".
+
+#TBL 항균 범위 — 누가 무엇을 못 죽이나 | k=DS | src=[[DS:5]] [[DS:6]] [[DS:7]] [[DS:9]] [[DS:18]] [[DS:31]] [[DS:34]] [[DS:36]] [[DS:39]] [[DS:42]] [[DS:43]]
+H: 제제 | 슬라이드 General features | 못 죽이는 것(Precautions 등) | p.43 표(G+ · G− · spore · TB · HBV · HIV · fungi)
+R: Alcohol {jb:DS16} | Bactericidal against {r:vegetative form} | spore · fungi · {r:non-envelope virus}(adenovirus) | + · + · − · + · ± · + · ±
+R: Iodine(Halogens) {jb:DS21} | {r:bactericidal, sporicidal, fungicidal and virucidal} — most powerful | — | + · + · ± · ± · + · + · +
+R: CHX {jb:DS02} | Bactericidal against {r:G(+) and G(-)} | {r:tubercle bacilli · spore · viruses} | + · + · − · − · − · + · ±
+R: H2O2 {jb:DS01} | some bactericidal — 구강에서 negligible | — | 표에 Oxygenating 행 없음(Oxidizing agents 행은 모두 +)
+R: Aldehyde {jb:DS28} | bacteria, fungus and virus — {r:Broadest Range} | — | 모두 +
+R: Mercury {jb:DS26} | {r:Bacteriostatic} rather than bactericidal | endospore(vegetative form만) | 표에 Mercury 행 없음
+R: Quaternary Ammonium(cationic) {jb:DS29} | preference to {r:G(+)} | {r:G(-) · spores · bacilli · fungi · viruses} | + · ± · − · − · − · 빈칸 · +
+N: p.43은 FYI 교과서 표라 슬라이드 본문과 다른 칸이 있음(CHX HIV +, Quaternary ammonium fungi +). 시험 답은 본문 슬라이드 문장 기준. '가장 강력' = iodine, 'broadest range' = aldehyde(25학습부).
+
+#TBL 용도 정리표 (Summary of Chemical Usages) | k=DS | src=[[DS:41]]
+H: 제제 | Disinfection | Antisepsis | Preservation | Cleaning | Antiplaque
+R: 1. Alcohols | O | O | O | O | —
+R: 2. Iodine compounds | O | O | — | O | —
+R: 3. Bis-biguanides | O | O | O | — | {r:O}
+R: 4. Oxygenating agents | O | O? | — | O | —
+R: 5. Hypochlorite substances | O | O | — | O | —
+R: 6. Phenolic compounds | O | O | O | — | {r:O}
+R: 7. Zinc oxide-Eugenol | — | {r:O} | — | — | —
+R: 8. Aldehydes | O | — | O | — | —
+R: 9. Mercury preparations | O? | O? | O? | — | —
+R: 10. Quaternary Ammonium | O? | O? | O | O | —
+N: 슬라이드 41 표 그대로(O? 포함) — 필기 "5번까지는 진료에서 많이 쓰는 중요성이 높은거에요", "뒤로갈수록 기구닦는 용도".
+
+#TBL 헷갈리는 짝 비교 | k=DS | src=[[DS:7]] [[DS:8]] [[DS:9]] [[DS:18]] [[DS:22]] [[DS:31]] [[DS:34]] [[DS:37]] [[DS:39]]
+H: 짝 | 앞 | 뒤 | 구별 포인트
+R: Iodine vs CHX (포타딘 볼 vs 히비탄 볼) | sporicidal·fungicidal·virucidal · staining · allergenic | G(+)·G(-)만 · light sensitive · 4%/0.12% | 둘 다 유기물 영향 없음 — 범위와 착색·알레르기로 구별
+R: CHX vs Quaternary ammonium (둘 다 양이온) | {r:G(+) and G(-)} · organic {r:not reduced} · mouthwash | {r:preference to G(+)} · organic {r:reduce} · soap 비호환 · 표면 소독 {jb:DS25} | 필기 "앞에서 배운 Bis-guanides와 헷갈릴 수 있겠죠?"
+R: H2O2 vs NaOCl | negligible · mechanical cleanser · 고농도 {r:bleaching} · 수술 시 | potent germicidal · 고농도 {r:solvent} · alkali 안정·고온↑ · 엔도 | 둘 다 유기물이 효과↓
+R: Aldehyde vs Mercury | noncorrosive to metal · alkylation(cross-linking) · 30 days | bacteriostatic · {r:reversible} -SH · {r:slow onset, prolonged} {jb:DS20} | aldehyde 문항의 오답은 mercury 문장
+R: CHX vs H2O2 기전 | disruption of bacterial plasma membrane · antiplaque 3 {jb:DS05} | {r:Hydroxyl free radicals} attack membrane lipids {jb:DS14} | CHX 문항의 오답 'free radical'은 H2O2
+N: JB 오답의 절반은 '다른 제제의 문장' — 짝으로 묶어 외우면 선지에서 바로 걸러짐.
+
+#TBL COX 억제제 4종 한눈에 — 작용·용량·부작용 | k=ACU | src=[[ACU:25]] [[ACU:26]] [[ACU:27]] [[ACU:28]] [[ACU:29]]
+H: 약 | 진통·해열 | 항염 | 항혈소판 | 용량 | 장점 | 주요 부작용·주의
+R: Acetaminophen | O | X | X | 325 to 1,000 mg q4-6h (max 4 g/d) · liver disease less than 2 g/d | lack of gastric toxicity | Hepatic toxicity — acute overdose 10 to 15 g → fatal hepatic necrosis {jb:PN08} · 필기: NAPQI ↔ glutathione 고갈 · codeine 병용 주의
+R: Aspirin | O | O | O — up to 1 week after a single dose {jb:PN16} | 325 to 650 mg PO q4h PRN (max 4 g/d) | enteric-coated tablets → gastric mucosa 손상 적음 | Dyspepsia and GI bleeding · asthma and nasal polyps → bronchospasm·laryngeal edema·urticaria · interstitial nephritis and papillary necrosis · 간·신장 질환·bleeding disorders·pregnancy·anticoagulation 주의
+R: NSAIDs (ketorolac) | O | O | 필기상 있음(COX-2와 대비) · aspirin의 cardio-protective effects를 blunt | ketorolac IM or IV · parenteral therapy should not exceed 5 days | all NSAIDs similar efficacy · 술후 주사 {jb:PN17} | nephrotoxicity · impaired renal or hepatic function 주의 · FDA boxed warning(MI·stroke) · coronary artery bypass surgery 직후 금기
+R: COX-2 inhibitor (celecoxib) | 진통 O — no analgesic advantage over other NSAIDs(해열은 슬라이드에 없음) | COX-2 = an important mediator of pain and inflammation | 없음(필기) | — | little significant effect on the gastric mucosa | adverse cardiovascular events · cardiac stenting 후 thrombotic risk {jb:PN18} · aspirin·NSAIDs에 allergic or bronchospastic → 금지
+N: 네 약 모두 target = COX enzyme → ceiling effect(용량을 늘려도 최대 효과가 정해짐) — codeine 같은 opioid는 ceiling effect가 없어 병용 시 pain relief가 더 높음(p.29 필기). 함정: 항염 X = acetaminophen / 항혈소판 X = acetaminophen·COX-2 inhibitor.
+
+#TBL 통증의 분류 — 시기(급성·만성)와 원인(침해성·신경병성) | k=ACU | src=[[ACU:13]] [[ACU:17]] [[ACU:18]]
+H: 기준 | 분류 | 정의·특징 | 예
+R: 시기 | Acute pain | results from injury or inflammation · has survival value · may play a role in healing by promoting behaviors that minimize re-injury | 술후·외상 통증, MI(p.19)
+R: 시기 | Chronic pain | best construed as a "disease" that serves no useful purpose · persists beyond the expected healing period(most cases between 3 and 6 months) | 자극·손상 없이도 지속(필기)
+R: 원인 | Nociceptive pain | injury or disease affecting somatic structures such as skin, muscle, tendons, bone, and joints | 명백한 손상이 있는 TMJ pain(필기)
+R: 원인 | Neuropathic pain {jb:PN12} | lesion or disease affecting the somatosensory system — peripheral · central | peripheral: diabetic neuropathy · radicular pain / central: central post-stroke pain / 필기: trigeminal neuralgia
+R: 원인 | Nociplastic · Mixed {jb:PN09} | etiological classification 4가지 중 나머지 둘(neuropathic, nociceptive, nociplastic, or mixed) | 명확한 손상 증거 없이 계속 아픈 TMJ pain = neuroplastic(=nociplastic)(필기)
+N: 세기 분류: mild (1-3), moderate (4-7) or severe (≥7 on a 0-10 scale). JB PN09의 "침해성 (2) = somatic, visceral"에서 visceral은 p.17 정의에 없음(p.3 "somatic or visceral sensory stimuli").
+
+#TBL Neuropathic vs Nociceptive pain — 임상 양상 (Goldman-Cecil) | k=ACU | src=[[ACU:18]]
+H: Clinical characteristic | Neuropathic pain | Nociceptive pain
+R: Etiology | Nerve injury {jb:PN21} | Tissue or potential tissue damage
+R: Descriptors | Lancinating, shooting, electrical-like {jb:PN21} | Throbbing, aching, pressure-like
+R: Sensory deficits | Frequent (e.g., numbness, tingling, pricking) | Infrequent and in nondermatomal or non-nerve distribution
+R: Motor deficits | Neurologic weakness may be present | May have pain-induced weakness
+R: Hypersensitivity | Pain frequently evoked with nonpainful (allodynia) or painful (exaggerated response) stimuli | Uncommon except for hypersensitivity in the immediate area of an acute injury
+R: Character | Distal radiation common | Distal radiation less common; proximal radiation frequent
+R: Paroxysms | Exacerbations common and unpredictable | Exacerbations less common and associated with activity
+R: Autonomic signs | Can occur in 1/3 to 1/2 of patients | Uncommon
+N: 필기: "어떻게 아프세요?"라고 물어볼 때 description 양상이 많이 다름 · autonomic sign은 nociceptive에선 흔치 않음. 20년 표 빈칸(PN21)은 Etiology·Descriptors 4칸.
+
+#TBL Sensitization — 말초 vs 중추(급성기·후기·신경 손상) | k=ACU | src=[[ACU:7]] [[ACU:10]] [[ACU:12]] [[ACU:15]] [[ACU:24]]
+H: 구분 | 부위 | 기전 | 결과
+R: Peripheral sensitization {jb:PN02} | nociceptors | PGs — lowering the threshold for activation of nociceptors(필기: voltage-gated sodium ch.의 역치↓) · sensitizing agents → PKC·PKA activation | Primary Hyperalgesia → increased wound sensitivity, prolonged discomfort
+R: Central — acute phase | DH of spinal cord | activity-dependent plasticity · Glutamate-activated NMDA receptor plays a key role("wind-up") | Secondary Hyperalgesia → increased incident pain, splinting, prolonged disability
+R: Central — late phase | neurons in many areas of CNS | COX-2 begins to be expressed(필기: IL-1 → COX-2 transcription↑ → PG↑) | generalized aches, loss of appetite, changes in mood and sleep cycle
+R: After nerve injury | inhibitory interneuron(그림 D) | GABAergic interneuron begin to undergo apoptosis | disinhibition → hypersensitivity
+N: 공통 결과 현상 = allodynia(통증이 아닌 감각에 통증) · hyperalgesia(더 크게 느낌). Sensitizing mediators: prostaglandins, histamine, bradykinin, protons, nerve growth factor. NSAID는 COX를 저해해 peripheral과 central sensitization을 모두 저해(p.24 필기). 잘 조절 안 된 급성통증 → neural and glial remodeling → chronic pain(p.15).
+
+#TBL 통증 약물 치료 원칙 — 급성 vs 만성 vs 만성 신경병성 | k=ACU | src=[[ACU:19]] [[ACU:20]] [[ACU:21]]
+H: 구분 | 원칙 | 주로 쓰는 약 | 비고
+R: Acute pain | only temporary therapy · postoperatively or from trauma → powerful analgesic 먼저, 호전되면 less powerful | 염증 성분 → NSAID / very severe(MI) → powerful opioid such as morphine, given parenterally | 필기: 원인을 정확히 알면 처음 큰 용량 → 줄여감
+R: Chronic pain | basal pain medication + bolus as needed doses · largely unresponsive to NSAIDs · only occasionally respond to opioids | anticonvulsants (gabapentin) {jb:PN13} · antidepressants (TCA, SSRI) · tramadol · transcutaneous nerve stimulation · local anesthetic · capsaicin {jb:PN10} | 필기: opioid 장기 사용 부작용 — respiratory depression은 진통 작용보다 내성이 잘 안 생김 {jb:PN14}
+R: Chronic neuropathic (IASP) | First line 우선(strong) → Second·Third(weak) | 1st gabapentin · pregabalin · SNRI(duloxetine or venlafaxine) · TCA / 2nd capsaicin 8% patches · lidocaine patches · tramadol / 3rd botulinum toxin A · strong opioids | Duloxetine is the most studied among the SNRIs → first choice
+N: capsaicin = activates peripheral nociceptors → increased release of substance P → eventual depletion of substance P in the CNS(p.20). Tramadol = opioid이면서 norepinephrine, serotonin reuptake inhibitor(필기).

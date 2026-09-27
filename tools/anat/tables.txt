@@ -1,107 +1,377 @@
-#TBL 경부 림프절 level 경계 — 공개 시험문제 | k=NECK | src=[[NECK:4]] [[NECK:5]] [[NECK:6]] [[NECK:23]]
-H: Level | Superior | Inferior | Anterior | Posterior | 원발 부위
-R: {r:IA} Submental {jb:M04} | symphysis of mandible | body of hyoid | ant. belly of contralateral digastric | ant. belly of ipsilateral digastric | 구강저·전방 혀·하악 전치 치조·하순
-R: {r:IB} Submandibular | body of mandible | posterior belly of digastric | ant. belly of digastric | stylohyoid m. | 구강·전비강·submandibular gl.
-R: {r:IIA} Upper jugular {jb:M01} | skull base | inferior body of hyoid | stylohyoid m. | spinal accessory n. | 구강·비강·인두·후두·parotid
-R: {r:IIB} | skull base | inferior body of hyoid | spinal accessory n. | lateral border of SCM |
-R: {r:III} Middle jugular | inferior border of hyoid | inferior border of cricoid | lateral border of sternohyoid | lateral border of SCM, cervical plexus br. | 구강·인두·후두
-R: {r:IV} Lower jugular | inferior border of cricoid | clavicle | lateral border of sternohyoid | lateral border of SCM, cervical plexus br. | 하인두·경부 식도·후두·갑상선
-R: {r:VA} Posterior triangle | apex of SCM–trapezius | cricoid | posterior border of SCM | anterior border of trapezius | 비인두·구인두·후경부 피부
-R: {r:VB} | lower border of cricoid | clavicle | posterior border of SCM | anterior border of trapezius |
-R: {r:VI} Anterior compartment | hyoid | suprasternal | common carotid a. | common carotid a. | 갑상선·성문·subglottic·경부 식도
-N: 큰 경계: SCM(1 | 234 | 5) · digastric ant. belly(IA/IB) · accessory n.(IIA/IIB) · hyoid(II/III) · cricoid(III/IV) · omohyoid(VA/VB). [[NECK:23]]
+#TBL 경부 림프절 level 경계 — 공개 시험문제 | k=NECK | src=[[NECK:4]] [[NECK:5]] [[NECK:24]] [[NECK:25]] [[NECK:27]] [[NECK:28]] [[NECK:29]] [[NECK:30]] [[NECK:31]]
+H: Level | Superior | Inferior | Anterior | Posterior | Metastases from (원발 부위)
+R: {r:IA} Submental {jb:M04} | Symphysis of mandible | Body of hyoid | Anterior belly of {r:contralateral} digastric m. | Anterior belly of {r:ipsilateral} digastric m. | floor of mouth, anterior oral tongue, anterior mandibular alveolar ridge, lower lip
+R: {r:IB} Submandibular | Body of mandible | Posterior belly of (digastric) muscle | Anterior belly of digastric m. | {r:Stylohyoid m.} | oral cavity, anterior nasal cavity, soft tissue structures of the midface, submandibular gland
+R: {r:IIA} Upper jugular {jb:M01} | {r:Skull base} | Inferior body of hyoid bone | {r:Stylohyoid m.} | {r:Spinal accessory n.} | oral cavity, nasal cavity, nasopharynx, oropharynx, hypopharynx, larynx, {r:parotid gland}
+R: {r:IIB} Upper jugular {jb:M01} | Skull base | Inferior body of hyoid bone | {r:Spinal accessory n.} | Lateral border of {r:SCM} | (IIA와 같음)
+R: {r:III} Middle jugular | Inferior border of hyoid bone | Inferior border of {r:cricoid} cartilage | Lateral border of {r:sternohyoid} m. | Lateral border of SCM, branches of cervical plexus | oral cavity, nasopharynx, oropharynx, hypopharynx, larynx
+R: {r:IV} Lower jugular | Inferior border of cricoid cartilage | {r:Clavicle} | Lateral border of sternohyoid m. | Lateral border of SCM, branches of cervical plexus | hypopharynx, cervical esophagus, larynx, {r:thyroid}
+R: {r:VA} Posterior triangular | {r:Apex of the convergence} of SCM and trapezius | Cricoid cartilage | Posterior border of SCM, sensory branches of cervical plexus | Anterior border of {r:trapezius} | nasopharynx, oropharynx, cutaneous structures of the posterior scalp and neck
+R: {r:VB} Posterior triangular | Lower border of cricoid cartilage | Clavicle | Posterior border of SCM, sensory branches of cervical plexus | Anterior border of trapezius | (VA와 같음)
+R: {r:VI} Anterior compartment | {r:Hyoid bone} | {r:Suprasternal} | {r:Common carotid artery} | Common carotid artery | thyroid gland, glottic and subglottic larynx, apex of the piriform sinus, cervical esophagus
+N: 26 p.4 필기 "이게 시험 문제다" — 문제: "경부림프절(Neck lymph nodes)의 level을 구분하는 해부학적 구조물을 그림상에 표시하고, 명명할 것(영어, 한글, 혼용무방)". [[NECK:4]]
+N: 필기의 큰 경계: SCM(1 | 234 | 5) · digastric anterior belly(IA/IB) · CN XI accessory n.(IIA/IIB) · hyoid(carotid 분지부 landmark) · cricoid · omohyoid(VA/VB, III·IV 가로지름). ⚠ 표는 III/IV·VA/VB를 cricoid 높이로 적음. [[NECK:23]]
 
-#TBL Neck dissection 4분류 | k=NECK | src=[[NECK:32]] [[NECK:34]] [[NECK:35]] [[NECK:37]]
-H: 종류 | Level | SAN·IJV·SCM | 비고
-R: {r:Radical ND} | I~V 전부 | 셋 다 {r:제거} | Crile. suboccipital·periparotid·buccinator·retropharyngeal·midline visceral node는 포함 안 됨 {jb:M04}
-R: {r:Modified RND} Type 1 / 2 / 3 | I~V 전부 | Type 1 SAN 보존 / Type 2 SAN+SCM 보존(IJV 제거) / {r:Type 3 = functional: 셋 다 보존} {jb:M02} | 요즘 주류
-R: {r:Selective ND} | 한 개 이상 level 보존 — 구강암 {r:I-III}(supraomohyoid), 구인두·하인두·후두 II-IV, 갑상선 VI | 보존 | 
-R: {r:Extended ND} | I~V + 추가 림프절군·비림프 구조물 | 제거 | 가장 광범위
-N: SAN 제거 → shoulder syndrome(팔 거상 불가) / IJV 제거 → 얼굴 부종 / SCM 제거 → 목 못 가눔. [[NECK:40]]
+#TBL Neck dissection 4분류 | k=NECK | src=[[NECK:32]] [[NECK:33]] [[NECK:34]] [[NECK:35]] [[NECK:37]] [[NECK:40]]
+H: 분류 | 슬라이드 정의 | Level | SAN · IJV · SCM | 필기 · 비고
+R: {r:Radical ND} {jb:M04} | standard basic procedure for cervical lymphadenectomy | ipsilateral {r:I–V} 전부 | 셋 다 {r:제거} | Crile 1906. suboccipital·periparotid·buccinator·retropharyngeal·midline visceral node는 포함 안 함
+R: {r:Modified radical ND} {jb:M02} | preservation of 1 or more {r:nonlymphatic structures} | I–V 전부 | Type 1 SAN / Type 2 SAN+SCM / Type 3 SAN+SCM+IJV 보존 | Jatin P Shah 1996. 한두 가지는 살려두는 약간 마일드한 RND — 요즘 추세
+R: {r:Selective ND} | preservation of 1 or more {r:lymph node groups/levels} | 구강 {r:I–III} · 구인두·하인두·후두 {r:II–IV} · 갑상선 {r:VI} | — (슬라이드 언급 없음) | 구강암 SND(I–III) = supraomohyoid ND
+R: {r:Extended ND} | removal of {r:additional} lymph node groups or nonlymphatic structures | I–V + retropharyngeal·superior mediastinal·buccinator·paratracheal | 제거 + carotid a.·hypoglossal n.·vagus n.·paraspinal m. | 제일 빡센 박리
+N: p.32 필기 "이거 구분 정도는 할 줄 알아야 한다". 25 필기: RND가 과하다고 생각해서 하는 처치가 MRND, 오히려 더 강하게 하는 경우가 Extended. [[NECK:32]] [[NK5:35]]
 
-#TBL 삼차신경 3분지와 foramen · 주요 가지 | k=NV | src=[[NV:18]] [[NV:19]] [[NV:23]] [[NV:26]] [[MAND:29]]
-H: 분지 | Foramen | 주요 가지 | 임상
-R: {r:V1 Ophthalmic} {jb:R11} | {r:Superior orbital fissure} | frontal(supraorbital·supratrochlear), nasociliary, lacrimal | 상안면 감각
-R: {r:V2 Maxillary} {jb:S08} | {r:Foramen rotundum} → pterygopalatine fossa | infraorbital(upper lip·cheek·nose·lower eyelid), PSA·MSA·ASA, greater·lesser palatine, nasopalatine | 상악 block 타겟(pterygopalatine fossa)
-R: {r:V3 Mandibular} {jb:T23} | {r:Foramen ovale} | lingual(혀, chorda tympani 동반), inferior alveolar(→ mental, mylohyoid br.), long buccal(협점막), auriculotemporal(귀 앞, TMJ 감각) | IAN block, 사랑니 LN·IAN, TMJ triad
+#TBL SAN · IJV · SCM — RND·MRND별 제거/보존과 결과 | k=NECK | src=[[NECK:34]] [[NECK:35]] [[NECK:40]] [[NK5:67]]
+H: 구조물 | RND | MRND-1 | MRND-2 | MRND-3 (functional) | 제거하면 | 살리는 우선순위
+R: {r:Spinal accessory n.} | 제거 | {r:보존} | {r:보존} | {r:보존} {jb:M02} | 팔도 잘 못 움직임 = shoulder syndrome(trapezius 위축) {jb:M03} | {r:1순위} — 후유증이 가장 큼
+R: {r:SCM} | 제거 | 제거 | {r:보존} | {r:보존} | 목도 잘 못 가눔 | 3순위 — 가장 희생 가능
+R: {r:Internal jugular v.} | 제거 | 제거 | 제거 | {r:보존} | 얼굴이 팅팅 부음 | 2순위
+N: 25 필기 2024 강조 "Modified neck dissection에서 제거하는 3가지(순서: SCM → internal jugular v. → spinal accessory n.)". MRND-1의 SCM·IJV '제거'는 "accessory nerve 보존"만 적힌 슬라이드 정의에서 나머지를 뜻함. [[NK5:1]] [[NECK:35]]
 
-#TBL 외경동맥 분지 — 권익재 5 vs 이종호 8 | k=NV | src=[[NV:5]] [[NV:6]] [[NV:8]]
-H: 분지 | 권익재(26) | 이종호(21·20) | 임상
-R: Superior thyroid a. | ○ | ○ | 
-R: Ascending pharyngeal a. | — | ○ | Le Fort I 후 상악 혈행(anterior br.) {jb:Q09}
-R: {r:Lingual a.} {jb:R10} | ○ (glossectomy) | ○ | 하악 전치 임플란트 lingual cortex 천공 → tongue elevation·airway obstruction
-R: {r:Facial a.} | ○ (mandibular notch 촉진) | ○ | ascending palatine br. → Le Fort I 혈행 / 필러 → ophthalmic a. 실명 {jb:Q18}
-R: Occipital a. | — | ○ | 
-R: Posterior auricular a. | (언급) | ○ | parotidectomy 시 main trunk 옆에서 결찰
-R: Superficial temporal a. | ○ (귀 앞 촉진) | ○ | TMJ preauricular 접근 triad {jb:Q13}
-R: {r:Maxillary a.} {jb:Q19} | ○ | ○ (1st·2nd·3rd part) | PSAA(상악 구치)·IAA(하악)·sphenopalatine(코피)
+#TBL Clinical N staging (AJCC & UICC) | k=NECK | src=[[NECK:11]] [[NECK:12]] [[NK5:13]]
+H: N | 개수·위치 | 크기 (greatest dimension)
+R: Nx | Regional lymph nodes cannot be assessed | —
+R: N0 | No regional lymph node metastasis | —
+R: {r:N1} | single {r:ipsilateral} | {r:<3 cm}
+R: {r:N2a} | single ipsilateral | {r:>3 cm but <6 cm}
+R: {r:N2b} | {r:multiple ipsilateral} | none >6 cm
+R: {r:N2c} | {r:bilateral or contralateral} | none >6 cm
+R: {r:N3} | a lymph node | {r:>6 cm}
+N: "The N staging system simply reflects the volume of tumor burden in regional lymphatics which is directly linked to prognosis" / "The prognosis worsens with increasing N stage". 26 필기 "전혀 외울 필요가 없다 … 크기 주면서 stage 맞추라는 문제를 내기도 한다", 25 필기 "기말고사에서 이걸 단순하게 물어보는 문항이 있을 수 있습니다!" [[NECK:11]] [[NECK:12]] [[NK5:13]]
 
-#TBL Unilateral vs Bilateral cleft lip | k=LIP | src=[[LIP:12]] [[LIP:13]] [[LIP:14]] [[LP5:14]] [[LP5:19]]
-H: 항목 | Unilateral (25 슬라이드 + 26 표) | Bilateral
-R: 구륜근 | marginal part hypoplasia, 파열연에서 비스듬히 상방 → alar base 정지, 내방은 columella base 골막 {jb:Q02} | 외측 분절은 편측성과 비슷 / {r:prolabium은 근육 전무·결합조직만} {jb:S05}
-R: 입술 폭 | medial segment red lip 감소, lateral 정상·약간 증가 | prolabium 홍순 저형성, everted
-R: Premaxilla·중격 | premaxilla 바깥쪽 회전·돌출, septum 하연 정상쪽 dislocation, ANS 정상쪽 | premaxilla·전순 전방 돌출, free하게 움직임
-R: Columella | 환측 짧고 변형·사선, 비주기저부 비이환측 편위 | {r:짧다·없는 듯}(prolabium이 비첨에 부착된 듯), posterior septal a.만 공급·collateral 없음
-R: 비익연골 | alar dome 후방, medial crus 낮음, lateral crus 편평·둔각, alar base 외방 | medial crus 짧음, lateral crus 길고 편평, dome 둔각, 비익 S자
-R: 비공·비강저 | 비공 수평, 환측 비강저 결손, 환측 상악 열성장 | 두 비공 수평, 비강저 양측 결손, 양측 상악 열성장
-R: Non-cleft side | 인중·비주 짧다, cupid bow 2/3·philtral column·dimple 보존, 정중선–cleft 사이 근육 hypoplasia | —
+#TBL 원발 부위별 first echelon lymph nodes | k=NECK | src=[[NECK:7]] [[NECK:9]] [[NECK:10]]
+H: Primary site | First echelon lymph nodes | 필기
+R: {r:Oral cavity} | {r:Level I · II · III} | 레벨 1 > 2 > 3 순서대로 전이 — sentinel node(first echelon) 개념
+R: {r:Parotid} | {r:Preauricular} · Periparotid & intraparotid · Level II · Level III · {r:Upper accessory chain} | 이하선 안으로 먼저 → 중력 방향 따라 아래로
+R: {r:Larynx · Pharynx} | {r:Level II · III · IV} | 2 > 3 순서, 반대로 역류하지 않음
+N: p.7·9 "이런 개념은 외울 필요가 없다" — 흐름만. 25 필기: 이하선암은 level I로 잘 안 감. [[NECK:7]] [[NK5:10]]
 
-#TBL 정상 구개 vs 구개열의 근육 | k=LIP | src=[[LP5:29]] [[LIP:25]] [[LIP:26]] [[LIP:27]]
-H: 근육 | 정상 | 구개열
-R: {r:Levator veli palatini} {jb:Q04} | 양측이 연구개에서 만나 {r:levator sling}, 연구개 상방·후방 거상 | {r:주행·부착이 다름} — cleft margin 따라 전후방 주행, posterior hard palate에 부착, sling 소실
-R: {r:Tensor veli palatini} | hamulus를 돌아 palatal aponeurosis | {r:cleft 틈새로 갈수록 소실}, aponeurosis 결여
-R: {r:Palatopharyngeus·uvular m.} | posterior pillar·midline bulk | {r:palatine bone 후연에 직접 부착}(Veau's cleft muscle)
-R: {r:Superior constrictor·pterygopharyngeal part} | lateral wall medialization | 상부가 {r:과도하게 작용}, Passavant ridge 보상
-R: 경구개·대구개공 | — | 경구개 발육저하·중앙 결손, 대구개공은 cleft가 클수록 전방
-N: 수술 = 앞으로 간 근육을 떼어 뒤로 밀어 sling으로(push back), hamulus를 부러뜨리기도. [[LIP:25]]
+#TBL 합병증 — 수술 중 vs 수술 후 | k=NECK | src=[[NECK:53]] [[NECK:54]] [[NECK:56]]
+H: Intraoperative | Postoperative
+R: Bleeding; {r:vascular injury} | Postoperative {r:infection}
+R: Slipping of a ligature on the {r:internal jugular vein} | {r:Nerve injury} — facial n. / {r:11th nerve(="shoulder syndrome")} {jb:M03} / vagus n. / glossopharyngeal n. / phrenic n. / laryngeal n. / lingual n. / hypoglossal n.
+R: {r:Major chyle leak}(injury to the thoracic duct in the neck) | {r:Chylous fistula}
+R: Cardiac arrhythmia({r:carotid sinus syndrome}) | {r:Stroke} ← carotid artery stenosis
+R: — | {r:Pain} ← musculoskeletal imbalance / {r:Neuroma}
+N: 분류는 Intra-operative · Post-operative · Late(Late 세부 슬라이드는 26 자료에 없음). 26 수업은 p.52 "여기까지 끝!"으로 합병증을 다루지 않음. [[NECK:53]] [[NECK:52]]
 
-#TBL 하악 접근법 비교 | k=MAND | src=[[MAND:37]] [[MAND:53]] [[MAND:55]] [[MAND:63]] [[MAND:73]] [[MAND:74]]
+#TBL 삼차신경 3분지 — 나오는 구멍 · 담당 · 주요 가지 | k=NV | src=[[NV:18]] [[NV:19]] [[NV:22]] [[NV:23]] [[NV:26]] [[NV5:19]] [[NV5:20]]
+H: 분지 | 나오는 구멍 | 담당 부위(25 필기) | 주요 가지(슬라이드) | 임상 포인트
+R: {r:V1 Ophthalmic} {jb:R11} | {r:Superior orbital fissure} | 상안모(눈 주변) | 그림 표지: frontal · supraorbital · supratrochlear · nasociliary · lacrimal n. | 상안면부 감각
+R: {r:V2 Maxillary} {jb:S08} {jb:T17} | {r:Foramen rotundum} → pterygopalatine fossa | 중안모(maxilla 주변) | infraorbital n.(upper lip · cheek · nose · lower eyelid) · (ant · mid · post) sup. alveolar n. · greater and lesser palatine n. · nasopalatine n. | pterygopalatine fossa = 상악 block anesthesia의 타겟
+R: {r:V3 Mandibular} | {r:Foramen ovale} | 하안모(mandible 주변)와 혀 + 일부 저작근 | lingual n.(혀) · inferior alveolar n.(하악 치아 · 하순 = mental n.) · long buccal n.(협점막) | motor root가 mandibular n.와 동행 · IAN block · 사랑니 LN
+N: Trigeminal = the largest cranial n., two roots(sensory and motor), skull base 안 trigeminal ganglion에서 세 갈래 · 갈라지는 부위는 infratemporal fossa 부근(maxilla 뒤 · temporal bone 바깥 · zygomatic bone 안쪽).
+
+#TBL 외경동맥 분지 — 권익재 5 vs 이종호 8 | k=NV | src=[[NV:4]] [[NV:5]] [[NV:6]] [[NV:7]] [[NV5:5]]
+H: 분지 | 권익재(26 슬라이드) | 이종호(21·20·19 JB 답) | 주행 · 촉진 · 임상(권익재 필기)
+R: Superior thyroid a. | ○ | ○ | —
+R: Ascending pharyngeal a. | — | ○ | —
+R: {r:Lingual a.} {jb:R13} {jb:R10} | ○ | ○ | glossectomy 때 중요 · 하악 전치 lingual cortex 천공 → tongue elevation · airway obstruction
+R: {r:Facial a.} {jb:R13} | ○ | ○ | lingual a.보다 위에서 분지 → 주행하며 아래로 내려와 mandibular notch에서 촉진 · 필러 → ophthalmic a. 실명 {jb:Q18}
+R: Occipital a. | p.5 그림 표지만(25 필기: 뒤로 가는 occipital 쪽 artery들) | ○ | —
+R: Posterior auricular a. | 필기 추가(귀 부근에서 뒤쪽으로) | ○ | —
+R: {r:Superficial temporal a.} | ○ | ○ | ECA의 제일 말단 · 귀 바로 앞에서 촉진
+R: {r:Maxillary a.} {jb:R13} {jb:Q19} | ○ | ○ | 상하악 뼈·치아 — 상악 posterior superior alveolar a. · 하악 inferior alveolar a. · sphenopalatine a.(massive epistaxis)
+N: JB T01(이종호)은 8개 서술, 권익재 출제(R13)는 p.5 그림의 maxillary · facial · lingual 빈칸. Common carotid 분지부(carotid sinus)는 문지르면 baroreceptor 반사로 서맥 · 막히면 뇌졸중.
+
+#TBL 상악동맥 분지 도식 — 빈칸 대비 | k=NV | src=[[NV:7]] [[NV:8]]
+H: Maxillary artery의 분지 | 더 나뉘는 가지 | 담당 · 필기
+R: Middle meningeal and accessory middle meningeal arteries | — | —
+R: {r:Posterior superior alveolar artery} {jb:Q19} | — | 상악 치아·뼈(+ middle/anterior superior alveolar a.)
+R: {r:Infraorbital artery} | → {r:Anterior superior alveolar artery} | —
+R: Descending, greater, and lesser palatine arteries | — | —
+R: {r:Sphenopalatine artery} | — | 굉장히 massive한 epistaxis 유발
+R: {r:Inferior alveolar artery} {jb:Q19} | → {r:Incisive} · {r:Mental} · {r:Mylohyoid} artery | 하악 치아·뼈
+R: Muscle branches | — | —
+N: Q19(24·22)는 이 도식에서 빈칸 2개(posterior superior alveolar a. · inferior alveolar a.), 나머지 이름은 모두 제시. p.7 그림 빨간 상자 = posterior superior alveolar a. · Maxillary a. · inferior alveolar a. · sphenopalatine a. · dental and alveolar branches.
+
+#TBL 설신경 vs 하치조신경 — 주행과 손상 | k=NV | src=[[NV:26]] [[NV:28]] [[NV:29]] [[NV:30]] [[NV:35]] [[NV5:37]]
+H: 항목 | Lingual n.(LN) | Inferior alveolar n.(IAN)
+R: 담당 | lingual periodontium and gingiva of mandibular teeth, body of tongue · chorda tympani 동반(혀 앞 2/3 미각) | 하악 치아와 하순 부위 감각(mental n.) · dual motor and sensory(mylohyoid · anterior belly of digastric)
+R: 주행 | lateral surface of tongue → medial to lateral side of submandibular gl. duct → medial pterygoid m.와 mandible 사이 상행(사랑니의 medial) | mandibular foramen → canal 속 골내 주행 · 가끔 bifid IAN
+R: 사랑니 발치 {jb:Q20} | lies within soft tissue · close to the lingual cortical plate · compression or scratching can occur more easily | intraosseous course · stiffness of the canal can foster nerve damage in case of swelling or bleeding
+R: 예방 | Cautions: Incision(buccal로) · Protection · Lingual plate · Suture(얇게) | IAN block 4원칙(27G · 방향 안 바꿈 · 뼈 닿은 needle 재사용 금지 · 왼손) · anterior loop 4-5 mm
+R: 손상 증례 | #38 사랑니 blade 손상 → Tinel sign + → sural n. graft | #47 임플란트 → nerve sliding technique / #36 calcipex chemical burn → 제거
+N: 25 필기: LN은 연조직, IAN은 뼈를 통과하는 신경 · LN 손상은 blade에 의한 것이 제일 많음.
+
+#TBL 신경 손상 — 임플란트 원인 5와 증례 3 | k=NV | src=[[NV:33]] [[NV:34]] [[NV:36]] [[NV:38]] [[NV:40]] [[NV:41]] [[NV:42]] [[NV5:34]]
+H: 구분 | 내용 | 설명 · 치료(필기)
+R: 원인 ① | Preoperative errors | 영상을 잘못 봄(25)
+R: 원인 ② | Local anesthetic injection | needle damage — 대부분 회복률 높음(25)
+R: 원인 ③ | Excessive implant osteotomy preparation (overheating) | 근처만 가도 증상(25)
+R: 원인 ④ | Impingement of the implant on the IAN | 빨리 임플란트 제거(25)
+R: 원인 ⑤ | Inadvertent transection | vertical incision · releasing 중 mental n. 손상(25)
+R: 증례 ① | IAN injury during implant surgery(꽤나 빈번) | nerve sliding technique — tension을 죽인 뒤 봉합, mental foramen 재형성 · neuroma 제거 후 현미경 봉합
+R: 증례 ② | LN damage during 3rd molar extraction(blade) | Tinel sign + · 길이 부족 → sural n. graft
+R: 증례 ③ | IAN damage d/t Calcipex(endo) | chemical burn → 뼈 열고 calcipex 제거 · window plate 고정 · 치아 발치
+N: 신경은 이어도 감각 최대 50% · 평균 20~30% 회복(25) → 수술 목적은 통증·이질통 제거, 최선은 예방. Mental foramen anterior loop 평균 4-5 mm(1~9 mm).
+
+#TBL Unilateral vs Bilateral cleft lip | k=LIP | src=[[LIP:12]] [[LIP:13]] [[LIP:14]] [[LIP:15]] [[LP5:14]] [[LP5:15]] [[LP5:17]] [[LP5:18]] [[LP5:19]] [[LP5:20]]
+H: 항목 | Unilateral (25 슬라이드 + 26 p.12·14·15) | Bilateral (25 p.19-20 + 26 p.13·14)
+R: 구륜근 | {r:Hypoplasia of marginal part of orbicularis oris} · 파열연에서 비스듬히 상방 → {r:alar base}에 정지, 내방은 {r:columella base의 상악 골막부}에 정지 {jb:Q02} | 외측 분절은 편측성과 비슷 · {r:prolabium은 구륜근 성분 전무·결합조직만} = No muscular tissue {jb:S05}
+R: 입술 | medial lip segment red lip width {r:감소} · lateral {r:정상 또는 약간 증가} | {r:Everted} medial part of the upper lip(prolabium) · 홍순 저형성
+R: Premaxilla·중격·ANS | premaxilla {r:바깥쪽 회전·돌출} · 코중격 하연이 vomer groove에서 {r:정상쪽 dislocation} · ANS 정상쪽 nasal floor로(26: 전비극 비이환측 편위) · 환측 이상공 하연까지 골결손 | premaxilla가 거의 free · {r:전악골의 돌출}(심하면 전상악·전순이 상당히 전방 돌출)
+R: Columella(비주) | cleft side가 {r:짧고 변형} · 사선 · 비주기저부 비이환측 편위 | {r:Clinically absent columella}(비주의 소실) · 26: 비주가 짧고 때로는 없는 것처럼, 전순이 비첨부에 부착된 듯
+R: 비익연골 | alar cartilage 작음 · medial crus {r:낮게}, dome 멀어짐 · lateral crus {r:편평·둔각} · 26: alar dome 후방 변위 | medial crura: normal position, protruding alveolar process에 가려짐 · 26: 내측각 짧고 외측각 길고 편평, dome 둔각
+R: 비익·비공 | alar base {r:외방} · 26: 비익 편평, {r:비공 수평}, 비익기저부 외측·후하방, 환측 코둘레 큼 | 비첨부 {r:넓고 편평} · 비익 편평·{r:S자} · {r:두 비공 수평} · 비익기저부 외측·후하방
+R: 비강저·상악 | 환측 비강저 결손·낮음 · {r:환측 상악 열성장} | 비강저 {r:양측} 결손 · {r:양측 상악열성장}
+R: 혈관 | — | prolabium: {r:posterior septal artery}만 · {r:No collateral artery} {jb:S05}
+R: Non-cleft side | {r:인중이 짧다} · {r:코기둥이 짧다} · {r:Cupid bow의 2/3}·philtral column·dimple 보존 · 정중선–cleft 사이 근육 hypoplasia | —
+N: 25 슬라이드 문장이 JB 답(Q02 10+4, S05 보기). 26 양훈주는 코 변형을 표(일측 14 · 양측 9)로 정리 — 26년엔 이 표현으로도 나올 수 있음. JB 해설: cleft가 있는 쪽 = lateral, 없는 쪽 = medial. [[LP5:14]] [[LIP:12]]
+
+#TBL 정상 구개 vs 구개열의 근육 | k=LIP | src=[[LP5:29]] [[LIP:18]] [[LIP:25]] [[LIP:26]] [[LIP:27]]
+H: 근육·구조 | 정상 | 구개열 — 25 p.29(기출 답) | 구개열 — 26 p.18·27
+R: {r:Levator veli palatini} {jb:Q04} {jb:U07} | 양측이 연구개에서 만나 {r:levator sling} · 연구개 상방·후방 거상 | {r:주행 방향과 부착이 틀리다} | transverse levator sling 소실 · cleft margin 따라 {r:전후방 주행} · {r:posterior hard palate}에 부착 · {r:현저한 발육부전}
+R: {r:Tensor veli palatini}·구개건막 | tendon이 pterygoid hamulus를 돌아 {r:palatal aponeurosis} 형성 | {r:cleft 틈새로 갈수록 차츰 없어진다} | {r:구개건막(aponeurosis) 결여}
+R: {r:Palatopharyngeus · uvular m.} | 연구개 전방 1/4엔 근육 없이 구개건막만 | {r:palatine bone 후연에 부착} | 구개인두근 대부분·구개범거근 일부·구개수근이 {r:구개골 후연에 직접 부착} = {r:Veau's cleft muscle}
+R: {r:Pterygopharyngeal part · sup. pharyngeal constrictor} | lateral wall medialization(보조) | 상부가 {r:과도하게 작용} | —(25 p.28: CP 환자는 보상성으로 Passavant ridge)
+R: 경구개·대구개공 | — | — | 경구개 발육저하·중앙부 기질적 결손 · 대구개공은 구개열이 클수록 {r:전방}
+R: 기시 | — | — | 구개수근 이외의 근육은 {r:정상과 같은 형태로 기시}, 주행과 부착만 현저히 다름
+N: 수술 = 앞으로 간 근육을 잘라 뒤로 밀어 넣고 꿰맴(push back) → levator sling · LVP·TVP 섬유가 얽혀 hamulus에 걸리면 hamulus를 부러뜨리며 sling. 26 필기 p.28 "정상과 비정상이 어떻게 다른지 차이점을 잘 알고 있자". [[LIP:25]] [[LIP:26]] [[LIP:28]]
+
+#TBL 구개인두 근육 6 — 기시·정지·기능·비인강폐쇄 역할 | k=LIP | src=[[LIP:18]] [[LIP:19]] [[LIP:20]] [[LIP:21]] [[LIP:22]] [[LIP:23]] [[LIP:24]] [[LP5:24]] [[LP5:26]]
+H: 근육 | Origin | Insertion | 기능(Key) | VP closure 역할(26 p.24)
+R: {r:Levator veli palatini} {jb:U07} {jb:S06} | petrous temporal bone · medial cartilaginous auditory tube | nasal surface of palatal aponeurosis · 양측이 만나 levator sling | 연구개 상방·후방 거상 · {r:Primary muscle for velar elevation} · 25: {r:40% of soft palate}, VP valve에 가장 중요, Eustachian tube 기능과 무관, {r:vagus N.} | {r:주된 근육}
+R: {r:Tensor veli palatini} {jb:S06} | sphenoid bone · lateral cartilaginous auditory tube (25: scaphoid fossa · spine of sphenoid) | tendon이 {r:pterygoid hamulus}를 돌아 palatal aponeurosis (25: + transverse ridge of palatine bone) | 연구개 {r:긴장} · {r:auditory tube opening} · 25: {r:mandibular N.}, CP 시 eustachian tube 기능 저하 | 보조 + auditory tube opening
+R: {r:Palatopharyngeus} {jb:S06} | palatal aponeurosis & posterior hard palate | pharyngeal wall → thyroid cartilage | {r:posterior faucial pillar} · 연구개 후방 이동 · 인두 거상·단축 | 보조
+R: {r:Palatoglossus} {jb:S06} | inferior surface of palatal aponeurosis | lateral tongue | {r:anterior faucial pillar} · 혀 후방 거상 · oropharyngeal isthmus 좁힘 | Oropharyngeal isthmus 조절
+R: {r:Musculus uvulae} | posterior nasal spine & palatal aponeurosis | uvula | uvula를 짧고 두껍게 · 중앙부 {r:bulk} 증가 | Posterior seal 보조
+R: {r:Superior pharyngeal constrictor} {jb:S06} | pterygoid region 등 | posterior pharyngeal raphe | {r:lateral pharyngeal wall의 medial movement} · 25: CP에서 {r:Passavant ridge} | Lateral wall medialization
+N: 기시·정지는 26 슬라이드 기준(25는 괄호). 25 palatoglossus는 origin transverse lingual M. → palatal aponeurosis로 방향이 반대로 적혀 있음. JB S06 답은 25 슬라이드 제목 5개(musculus uvulae 제외). [[LP5:27]]
+
+#TBL 발생 — 돌기가 무엇이 되나 | k=LIP | src=[[LIP:4]] [[LIP:5]] [[LIP:6]] [[LIP:7]]
+H: 시기 | 돌기·구조 | 되는 것
+R: {r:4주} | 제1인두궁 → 상악돌기 · 하악돌기 / 전두돌기 | stomodeum(전두돌기·상악돌기·하악돌기가 둘러쌈) · 전두돌기 양측 {r:nasal placode}(→ nostril)
+R: {r:6주} | 내측 전두돌기 → {r:내측 비돌기} → 말단 {r:구상돌기} | {r:인중} · {r:비중격 전방부} · {r:일차구개}
+R: {r:6주} | 외측 전두돌기 → {r:외측 비돌기} | {r:비익}(ala nasi) · nasal pit를 둘러쌈
+R: {r:6주 말} | maxillary process 내측 | {r:lateral palatal process} 발생
+R: {r:7주} | 상악돌기 정중 성장(내상방 외측 비돌기 · 내하방 구상돌기와 융합) | {r:상악간 분절}: lip(상순·인중) · maxillary(전치부 상악골·치아·치은) · palatal(일차구개)
+R: {r:8주} | palatal shelves 상승 → 수평 → 정중 fusion · 전방 primary palate · 상방 nasal septum과 융합 | {r:secondary palate} · 만나는 곳 = midpalatal suture(문제 시 cleft lip and palate)
+N: 26 필기: 이 시기 ultrasonography로 구개구순열 조기 검진, 단 cleft palate만 있으면 확인 어려움. 구개의 뼈 구분(25 p.21): premaxilla = primary palate · palatine bone = secondary palate. [[LIP:7]] [[LP5:21]]
+
+#TBL 코의 골·연골 framework와 keystone·valve | k=LIP | src=[[LP5:43]] [[LP5:44]] [[LP5:46]] [[LP5:48]] [[LP5:53]]
+H: 구조 | 무엇으로 이루어지나 | 슬라이드 포인트
+R: {r:Bone cartilage framework} {jb:Q03} | {r:Nasal bone} · {r:Upper lateral cartilage} · {r:Lower lateral cartilage} · {r:Septal cartilage} | LLC가 양쪽, 그 사이 septal cartilage · JB 그림 기호 A nasal bone · B ULC · C septal · D LLC
+R: 코를 구성하는 골 {jb:R01} | nasal bone · perpendicular plate of ethmoid bone · vomer(JB 복원 답) | paired nasal bone(p.44) · ethmoid perpendicular plate(p.46) · 그림 표지 Nasal bone·Ethmoid·Vomer(p.48)
+R: {r:Keystone area} {jb:Q01} | nasal bone의 bony spine + perpendicular plate of ethmoid bone 하연전방부 + septal cartilage 콧등쪽 상부 (major component 4 = nasal bone · ethmoid · ULC · septal cartilage) | nasal bone·ULC 중첩된 곳 {r:바로 상부} · caudal margin에서 머리쪽 {r:1 cm} · 콧등 {r:1/3} 지탱 · at rhinion
+R: {r:Internal valve} | caudal end of ULCs + septal cartilage | {r:10~15°} · air flow regulation
+R: {r:External valve} | lower lateral cartilage — mesial crus와 lateral crus가 이루는 각도(필기) · lateral crus | 코성형 관련이라 넘어가심
+R: Alar cartilage(LLC) | medial · middle · lateral crura | tip as a {r:tripod} · middle crus domal segment = 가장 얇고 연약·좁은 부위
+R: Nasal bone | pyramidal external structure — paired nasal bone | nasion = intercanthal line 상방 {r:10.7 mm} · nasal osteotome 시 {r:lacrimal groove} 주의
+N: 26 양훈주 자료에는 코 슬라이드가 없고 p.15 정상 비부의 골/연골 그림(nasal bone · septal · lateral nasal · sesamoid cartilage · alar cartilage)만 있음 — 코 기출(Q01·Q03·R01)은 25 한정준 슬라이드로 대비. [[LIP:15]]
+
+#TBL 하악지(Ramus) vs 하악체(Body) — 슬라이드 목록 그대로 | k=MAND | src=[[MAND:5]] [[MAND:17]] [[MAND:12]] [[MAND:13]] [[MAND:15]] [[MAND:23]]
+H: 구분 | Ramus (p.5) {jb:Q05} | Body of mandible (p.17) {jb:Q06}
+R: 범위 | Ascending portion, {r:including angle} | 치아를 포함하는 부분 — masseter 전방을 body portion이라 함(p.11 필기)
+R: 바깥을 덮는 것 · 지나는 것 | Covered by {r:masseter m, parotid gl., facial n., and parotid duct} | Anterior to masseter m, {r:facial a.&v.} cross inf. border(antegonial notch)
+R: 내측 | Medially, the {r:IAN, lingual N} btw ramus and {r:medial pterygoid m.} | Lateral boundary of {r:submandibular gl.}; posterior part and angle / Anterior portion; {r:sublingual gl.}, nerve vessels, and muscles of tongue
+R: 혈관 | Within the parotid gl. {r:external carotid a.} parallel runs - Internal maxillary br. deep to ramus | facial a.&v.(antegonial notch — 압박 지혈)
+R: 위·앞 구조 | Superiorly {r:condyle, coronoid process, mandibular notch} / In the front of neck, {r:pterygoid fovea} | {r:Mental foramen}; interspace btw two premolars {jb:S02} / Mental protuberance surrounded by smaller mental tubercles
+R: 내면(inner surface) — JB 답 | ==Mandibular foramen, inner surface, inferior alveolar n. enters mandibular canal== / ==Lingula; landmark to localize the mandibular canal, IAN== {jb:U11} | ==mental spines on genial tubercles … genioglossus and geniohyoid ms.== / ==sublingual fovea; sublingual gl.==
+R: 내면 더 쓸 것(주변부) | mylohyoid groove(mylohyoid n. 통로, p.15) · pterygoid tuberosity(medial pterygoid 부착, p.13) | sublingual fossa · submandibular fossa · digastric fossa · genial tubercle/mental spine · mylohyoid line (p.23)
+N: 두 슬라이드 모두 교수님이 "전부/모두 읽으심" — 24년에 각각의 '내면'만 물었고(Q05·Q06) JB 해설은 나머지 줄 전부. 뒤집어 '외면·덮는 구조'로 나올 수 있음.
+
+#TBL 저작근 — 개구근 vs 폐구근 | k=MAND | src=[[MAND:32]] [[MAND:12]] [[MAND:13]]
+H: 근육 | 개구/폐구 | 붙는 곳(필기) | 필기 메모
+R: {r:Masseter m.} | 폐구 | ramus·angle 바깥쪽 | "바깥쪽으로 Masseter muscle"
+R: {r:Temporalis m.} | 폐구 | coronoid process | "temporal m.도 강력한 폐구근"
+R: {r:Medial(mesial) pterygoid m.} | 폐구 | mandibular angle의 inner surface({r:pterygoid tuberosity}) | "가장 강력한 폐구를 담당하는 m." · 악교정 수술 relapse와 관련된 강한 attachment
+R: {r:Lateral(external) pterygoid m.} {jb:T21} {jb:S01} | 개구 | origin pterygoid plate → {r:pterygoid fovea}(condylar neck) + superior head 일부는 {r:articular disc} | condyle을 끌어당김 · disc가 앞으로 같이 딸려나오는 이유
+R: Suprahyoid m. · {r:ant. digastric m.} | 개구(부가) | digastric fossa(ant. belly, p.23) | "부가적으로 개구를 담당"
+N: p.32 교수 강조 "**중요합니다!! 폐구근 개구근을 잘 알아두자" + 필기 별표. medial·lateral 이름은 부착 위치 — 몸 중앙에 가까운 것이 medial.
+
+#TBL 하악지 안쪽 세 신경과 구강저의 신경·관 | k=MAND | src=[[MAND:8]] [[MAND:16]] [[MAND:19]] [[MAND:21]] [[MAND:22]] [[MAND:40]]
+H: 구조 | 분지·주행(필기) | 위험한 상황 | 마취·보호
+R: {r:IAN} {jb:U12} | ramus와 medial pterygoid 사이 → {r:mandibular foramen}으로 canal 안 → mental foramen으로 나오면 mental n. | SSRO(notch–lingula 중간 osteotomy) 시 가장 손상받기 쉬움 · 3대구치 root와 겹침 | IAN block: 반대편 소구치에서 · 엄지 2/3 높이 · occlusal plane에 parallel
+R: {r:Lingual n.} {jb:U12} {jb:T20} | IAN이 들어가기 전 {r:IAN 위쪽에서 분지} → 설측(뼈로 안 들어감) · chorda tympani 동행 · 구치부 lingual 1 mm·하방 2 mm | flap이 설측으로 치우침 · fissure(tapered) bur · disc 사고 {jb:T22} | 사랑니 설측 1-2 mm 내측에서 따로 block · central fossa보다 lingual로 절개 X
+R: {r:(Long) buccal n.} {jb:U12} | 더 위에서 분지 → {r:coronoid notch} level에서 ramus 전연을 넘어 buccal 쪽 | posterior vestibular incision을 bony rim 따라 sharply → transsection(buccal 점막 numbness) | 추가 침윤마취 · 후방 박리는 bluntly
+R: Submandibular duct(Wharton's) {jb:T22} | deep part에서 나와 {r:내측 → 상방 → 외측} | disc가 구강저로 미끄러짐 | rotary instrument가 caruncle 쪽으로 가지 않게
+R: Lingual n. vs duct 교차 | lingual n. {r:외측 → 내측} — 구치부에서는 duct보다 lateral, 앞쪽에서는 duct 외측·nerve 내측 | {r:8번 부위}에서 치아와 매우 근접 | lingual incision 시 주의
+N: p.16 단면 모식도 바깥→안: masseter · lateral pterygoid · medial pterygoid · IAN · lingual n. · mylohyoid n.(실제로는 IAN이 더 굵음). 이론상 IAN block으로 셋이 다 마취된다지만 따로 세 군데 자입 권장.
+
+#TBL 절개·절골의 숫자 — 헷갈리는 수치 모음 | k=MAND | src=[[MAND:38]] [[MAND:39]] [[MAND:45]] [[MAND:24]] [[MAND:57]] [[MAND:58]] [[MAND:53]] [[MAND:21]]
+H: 상황 | 수치 | 슬라이드·필기
+R: Mucosal incision — 견치 사이 {jb:Q08} | {r:10–15 mm} away from the attached gingiva | ==Between the canines the incision is made 10–15 mm away from the attached gingiva in a curvilinear fashion== (apron 형태)
+R: Mucosal incision — 견치 후방 | {r:5 mm} | only 5 mm away from the attached gingiva, staying superior to the mental nerve
+R: Extended vestibular incision(ramus) | approximately {r:5 mm} | 5 mm away from the attached gingiva, extended posteriorly along the anterior border of the ascending ramus
+R: Vasoconstrictor 주입 후 절개까지 | {r:5-10분} | 바로 절개하면 지혈 효과가 좋지 않다(필기)
+R: Mandibular osteotomy | {r:7.5 mm} below mandibular notch | notch–lingula 중간, lingula 상방 — IAN 보호
+R: Submandibular skin incision | {r:2-3 cm} below the inferior border | 실제로는 수술 범위에 따라 3-4 cm도(필기) · 절개선을 2~3 cm 하방에(facial n.)
+R: Platysma 절개 | {r:2-3 cm} below the mandibular border | not necessarily at the same level of the skin incision
+R: Lingual n. 위치(3대구치) | lingual {r:1 mm} · 하방 {r:2 mm} | 구치부보다 lingual 1 mm, 하방 2 mm level(필기)
+R: IAN block 자입 높이 | 엄지 {r:2/3} 높이 · bone touch 후 {r:1-2 mm} 뺌 | 교합면에서 엄지손가락 2/3 · occlusal plane에 parallel
+N: 24년 Q08은 10-15 mm를 단답으로 — 같은 쪽의 5 mm(견치 후방)와 p.39의 5 mm, submandibular의 2-3 cm가 바꿔 나오기 좋은 수치.
+
+#TBL 하악 접근법 비교 | k=MAND | src=[[MAND:30]] [[MAND:37]] [[MAND:51]] [[MAND:53]] [[MAND:55]] [[MAND:63]] [[MAND:73]] [[MAND:74]]
 H: 접근법 | 적용 부위 | 주의 구조물 | 요점
-R: {r:Vestibular}(구강 내) {jb:Q12} | condyle~symphysis(condyle은 잘 안 보임), body·angle·ramus | {r:mental n.}, mentalis, buccal n., BFP | 흉터 숨김 / canine 사이 10-15 mm·후방 5 mm / skeletonization {jb:Q08}
-R: {r:Submandibular} {jb:R05} | body·angle(condyle 제외) | {r:marginal mandibular br.}, facial a.·v. | 하연 2-3 cm 아래, A(하연 평행) vs B(skin crease·RSTL), platysma undermining
-R: {r:Retromandibular} | ramus 전체(posterior border 뒤) | facial n.(marginal·cervical br.), retromandibular v. | transparotid·facelift, capsule 밀봉(salivary fistula)
-R: {r:Preauricular} {jb:S03} | condyle head·neck, TMJ, condyle 상부 | {r:facial n.(frontal br.)}, superficial temporal a.·v. | preauricular crease, temporalis fascia 사선 절개
-R: Endaural · Postauricular · Coronal | condyle / 광범위 노출 | facial n. | 최근 잘 안 씀 / 광범위 {jb:U15}
+R: {r:Vestibular}(구강 내·가장 흔함) {jb:Q12} | condyle to symphysis(condyle은 잘 안 보임) · body·angle·ramus | {r:mental n.} · mentalis · buccal n. · buccal fat pad | 장점 3(wide variety · condyle to symphysis · hidden scar) · 합병증 2(mental N damage · lip malposition) · 견치 사이 10-15 mm {jb:Q08} · skeletonization {jb:R04}
+R: {r:Submandibular} {jb:R05} | body·angle regions unsuitable for intraoral treatment(condyle 제외) | {r:marginal mandibular br.} · facial a.·v. | 하연 2-3 cm 아래 · A(하연 평행) vs B(skin crease·RSTL) · platysma undermining · vessel 결찰
+R: {r:Retromandibular} | entire ramus from behind the posterior border · condylar neck fracture | facial n.(marginal·cervical br.) · retromandibular v. | transparotid · facelift · parotid capsule 밀봉(salivary fistula) · anticholinergic patch
+R: {r:Preauricular} {jb:S03} | condyle head and neck · TMJ surgery · superior portion of condyle | {r:facial n.(frontal·temporal br.)} · superficial temporal a.&v. · greater auricular n. | preauricular skin crease · temporalis fascia 표층을 frontal br.에 평행한 사선 절개 · condylar neck은 제한적
+R: Endaural · Postauricular | — | — | endaural = scar 안 보이게 · postauricular = external auditory canal 쪽으로 자르며 뒤에서 들어옴 — 둘 다 preauricular incision보다 접근이 어려워 잘 사용되지 않음
+R: Coronal | 광범위 노출 | — | 좀 더 광범위한 노출이 필요한 경우
+N: Transfacial 6 = submandibular · retromandibular · preauricular · endaural · postauricular · coronal {jb:U15} — "위에 세 개는 자주, 아래 세 개는 덜 씁니다". vestibular는 transfacial이 아님.
 
-#TBL 저작근 4 + 개구·폐구 | k=PAR | src=[[PAR:6]] [[PAR:7]] [[PAR:8]] [[PAR:9]] [[MAND:32]]
-H: 근육 | Origin | Insertion | Function | 개구/폐구
-R: {r:Masseter} {jb:R09} | zygomatic arch, maxillary process of zygoma | angle·ramus 외면 | mouth closing(most powerful), protrusion | 폐구(가장 강력)
-R: {r:Temporalis} | temporal fossa | coronoid process | 폐구·retrusion | 폐구
-R: {r:Medial pterygoid} {jb:U09} | deep: lateral pterygoid plate 내면 / superficial: pyramidal process·tuberosity | angle 내면(pterygoid tuberosity) | elevates·closes, 측방 | 폐구
-R: {r:Lateral pterygoid} {jb:T21} | superior: sphenoid infratemporal surface / inferior: lateral pterygoid plate | superior: condyle 전면·disc / inferior: pterygoid fovea | depresses·protrudes, 측방 | {r:개구}(+ ant. digastric·suprahyoid)
-R: {r:Buccinator} | alveolar processes of maxilla·mandible, pterygomandibular raphe | orbicularis oris | 뺨을 치아에 압박, blowing, 저작 보조, suckle | 표정근(협점막)
+#TBL 저작근 4 + 개구·폐구 | k=PAR | src=[[PAR:6]] [[PAR:7]] [[PAR:8]] [[PAR:9]] [[MAND:13]] [[MAND:32]]
+H: 근육 | Origin | Insertion | Function(슬라이드 원문) | 개구/폐구(필기)
+R: {r:Masseter} {jb:R09} | Zygomatic arch and maxillary process of the zygomatic bone | {r:Angle and the lateral surface of ramus} of mandible | Mouth closing ; {r:most powerful} · Protrusion of the mandible | 폐구 — 가장 강력(angle이 전상방으로)
+R: {r:Medial pterygoid} {jb:R09} {jb:U09} | Deep head: medial side of lateral pterygoid plate behind the upper teeth · Superficial head: pyramidal process of palatine bone and maxillary tuberosity | {r:Medial angle of the mandible} | Elevates mandible, closes jaw, helps lateral pterygoids in moving the jaw from side to side | 폐구 + 측방운동 보조
+R: {r:Lateral pterygoid} {jb:R09} {jb:U09} | Superior head: infratemporal surface of sphenoid bone · Inferior head: lateral pterygoid plate | Superior head: {r:anterior side of the condyle} · Inferior head: {r:pterygoid fovea} | Depresses and Protrude mandible, side to side movement of mandible | {r:개구} — condyle을 앞으로
+R: {r:Buccinator} {jb:R09} | alveolar processes of maxilla and mandible, buccinator crest and temporomandibular joint | fibers of the orbicularis oris | compresses the cheeks against the teeth, blowing · assistant muscle of mastication · in neonates to suckle | 저작 보조(교근 보조)
+R: Temporalis(이 강의 패스) | — | coronoid process(서병무 p.32) | — | 강력한 폐구근(서병무 p.32)
+N: 폐구 = masseter · temporalis · medial pterygoid / 개구 = lateral pterygoid(+ suprahyoid · ant. digastric, 서병무 p.32). protrusion은 masseter와 lateral pterygoid 둘 다, 측방운동은 medial·lateral pterygoid가 함께. [[PAR:8]] [[MAND:32]]
 
 #TBL 안면신경 main trunk 4 landmark | k=PAR | src=[[PAR:17]] [[PAR:18]] [[PAR:22]]
-H: Landmark {jb:S09} | 위치 | FN trunk와의 관계 | 주의
-R: {r:Tragal pointer} | 외이도 연골부–두개골 접합, stylomastoid foramen에서 5-6 mm | {r:1 cm inferior·anterior·medial} | blunt·variable tip, 80%에서 방향 부정확
-R: {r:Posterior belly of digastric} | SCM 하방 | 근육 {r:upper border 바로 위, 같은 깊이} | 가장 많이 쓰는 방법
-R: {r:Tympanomastoid suture} | posterior bony auditory canal–mastoid 접합 | 하단에서 {r:2-4 mm deep} | 보이지 않고 촉진으로만
-R: {r:Styloid process} | 신경 바로 깊숙이 | trunk는 {r:inferior·superficial} soft tissue | 주의해서 사용
-N: FN은 stylomastoid foramen에서 mastoid process 1 cm 상방·1 cm 깊이로 나옴. [[PAR:17]]
+H: Landmark {jb:S09} | 정의·위치(슬라이드) | FN trunk와의 관계 | 주의·임상(필기)
+R: {r:Tragal pointer} | Junction of cartilaginous portion of external auditory meatus with skull · {r:5-6 mm} from stylomastoid foramen · tragus 연골의 inferior end | {r:1 cm inferior, anterior, and medial} to the pointer | blunt and variable tip · {r:80%}에서 방향 부정확 · 위에서부터 찾음
+R: {r:Posterior belly of digastric} | SCM 하방의 근육 | {r:immediately superior to the upper border} · {r:same depth} | 임상적으로 더 많이 씀 · 밑에서부터 찾아 올라감
+R: {r:Tympanomastoid suture} | Junction of posterior bony auditory canal and mastoid portion of temporal bone · 촉진으로만 | inferior end에서 {r:2-4 mm deep} | 교과서적 · 훨씬 심부 · suture 내측에 stylomastoid foramen
+R: {r:Styloid process} | foramen보다 더 내측 | trunk는 {r:inferior and superficial} soft tissue | situated immediately deep to the nerve → caution · 만났는데 nerve를 못 만났다면 큰일
+N: FN: Exit stylomastoid foramen {r:1cm superior to mastoid process} and {r:1cm deep to lateral surface}. 술식에선 pointer의 1 cm 전내방을 dissection하면 밑으로 digastric이 보이고 그 level에서 trunk(p.22 필기). [[PAR:17]] [[PAR:22]]
 
-#TBL Le Fort I 혈행 — 잘리는 혈관·살리는 혈관·수치 | k=MAX | src=[[MAX:55]] [[MAX:89]] [[MAX:90]] [[MAX:95]] [[MAX:96]]
-H: 항목 | 내용
-R: Blood supply 8 | descending palatine · nasopalatine · sphenopalatine · infraorbital · ascending pharyngeal · ascending palatine · facial · pterygoid venous plexus
-R: 절단되는 혈관 {jb:T16} | {r:nasopalatine a.}(반드시), descending palatine a.(손상 가능)
-R: 대신 공급 {jb:Q09} | {r:ascending palatine br. of facial a.} + {r:anterior br. of ascending pharyngeal a.}(Siebert 1997) — DPA 양측 결찰해도 gingival flow 차이 없음(Dodson 1994)
-R: 치아 생활력 {jb:Q07} | 치근단에서 {r:5-6 mm}(Pepersack 1973)
-R: DPA 위치(Li 1996) | piriform rim–DPA {r:35.4 mm}, greater palatine canal {r:10 mm}, pterygomaxillary fissure–greater palatine foramen 6.6 mm → medial wall osteotomy 30 mm(여)·35 mm(남)
-R: 괴사 원인 5 | improper incision design · palatal pedicle 과신장 · segmentalization · extensive hypotension · DPA severance
-R: 봉합 | {r:cinch suture}(alar base 폭 유지) {jb:Q11} · {r:V-Y closure}(상순 얇아짐 방지) {jb:R06}
+#TBL 안면신경 5 branch — 기능·주행·회복 | k=PAR | src=[[PAR:11]] [[PAR:12]] [[PAR:14]] [[PAR:15]]
+H: Branch | 기능(필기) | 주행(슬라이드 p.15) | anastomosis·손상(필기)
+R: {r:Temporal} | 이마를 찡그릴 때 · 눈썹을 올릴 때 | most consistent | 외길 — TMD 수술에서 가장 다치기 쉬움 · 잘 안 돌아옴
+R: {r:Zygomatic} | 눈을 감을 때 | — | buccal과 연결 많음 · 손상 시 눈이 안 감김(안대)
+R: {r:Buccal} | 입술로 감 | Lies along line joining {r:tragus to middle upper lip} · buccal fat pad에서 zygomatic과 many connections | 회복 쉬움
+R: {r:Marginal mandibular} | 구각부를 들어올릴 때 | {r:superficial to facial vessels} · inferior border에서 {r:2.5 cm} 이내 · most consistent | 외길 — neck dissection·submandibular 접근 시 손상 · 절개는 border에서 2 cm 띄움
+R: {r:Cervical} | — | anterior division이 marginal mandibular와 parallel · {r:1 cm} inferior | 크게 신경 안 씀
+N: Trunk는 골성외이도 직하방에서 temporofacial(위)·cervicofacial(아래) division으로 → 술식의 pes anserinus. Davis type III(temporofacial–cervicofacial 사이 single anastomosis)가 제일 많음, type I = No anastomosis — "외울 필요 없음, 다양한 부위에 anastomosis". [[PAR:10]] [[PAR:13]] [[PAR:14]]
 
-#TBL Aponeurosis · Fascia · Ligament · Tendon · SMAS | k=TMJ | src=[[TMJ:27]] [[TMJ:28]] [[TMJ:29]] [[TMJ:30]] [[TMJ:31]]
-H: 용어 {jb:Q14} | 연결 | 형태 | 예
-R: {r:Aponeurosis}(건막) | 근육 → 뼈 | 넓은 판(strong sheet) | galea aponeurotica, SMAS(aponeurotica)
-R: {r:Tendon}(힘줄) | 근육 → 뼈 | stem·spindle 띠 | 
-R: {r:Ligament}(인대) | 뼈 → 뼈(연골) | 유연하고 질긴 섬유조직 | temporomandibular lig., stylomandibular lig.
-R: {r:Fascia}(근막) | 근육 덩어리를 고정·칸막이(compartment) | 결합조직 막 | deep temporal fascia, parotidomasseteric fascia
-R: {r:SMAS} {jb:Q15} | 표정근 ↔ 뼈(zygoma·temporal) suspension | continuous fibromuscular layer(근육+섬유) | = superficial temporal(temporoparietal) fascia, parotideomasseteric fascia; Mitz & Peyronie 1976
+#TBL Parotidectomy 단계별 — 그림에서 보이는 구조물 | k=PAR | src=[[PAR:19]] [[PAR:20]] [[PAR:21]] [[PAR:22]] [[PAR:23]] [[PAR:24]] [[PAR:25]] [[PAR:26]] [[PAR:27]] [[PAR:30]]
+H: 단계 | 슬라이드 | 그림 표지(빈칸 후보) | 처리·요점(필기)
+R: ① 절개·flap | Modified Blair incision · Parotid flaps raised to the anterior edge of the gland | Masseter muscle fascia · Peripheral branches of facial nerve · Angle of mandible | preauricular → 귀 뒤 → cervical · blunt, cutting 안 함
+R: ② 후하방 분리 {jb:Q17} {jb:R08} | Separate the posteroinferior aspect of the parotid gland from the SCM anterior border | {r:Great auricular nerve} · {r:SCM} · {r:External jugular vein} | great auricular n.는 시야 방해 시 절단하기도(귓바퀴 감각) · external jugular v.는 cutting
+R: ③ 연골 분리 {jb:R08} | cartilaginous ear canal 분리 → cartilaginous pointer 확인 | Cartilaginous ear canal · {r:Cartilaginous pointer} · SCM | 연골과 gland 사이는 잘 떨어짐
+R: ④ digastric | posterior belly of the digastric muscle 확인 | Anterior border of posterior belly of digastric muscle · Mastoid tip | 가장 많이 확인하는 방법 · 같은 level 조금 상방에 trunk
+R: ⑤ trunk {jb:R08} | Main trunk of the facial nerve & post. auricular artery의 확인 | {r:Facial nerve} · Posterior auricular artery | 통통 — 무조건 보존 · 여기까지 시간이 오래 걸림
+R: ⑥ 넓게 노출 | Pre-tragal space dissection — prevent "working in a hole" | Parotid bridge · Fascial attachment · Hemostat in tunnel · Tragal cartilage · Styloid process · Cranial nerve VII | trunk에서 벌리면서 위를 절단
+R: ⑦ 분기 | Identification of the pes anserinus · posterior auricular artery ligated | {r:Pes anserinus} · Ligated posterior auricular artery | 여기서부터 branch가 가늘어짐
+R: ⑧ 박리 | temporal·zygomatic → sup. to inf. → marginal mandibular·cervical → duct에만 달림 | Parotid duct · Temporal·Zygomatic·Marginal mandibular·Buccal branches | Stensen's duct ligation → superficial lobe 적출
+R: ⑧' 적출 후 | Facial nerve branches all intact — relationship to the deep lobe | Divided parotid duct · Deep portion of parotid gland · facial nerve · Masseter muscle · Posterior belly of digastric muscle · External jugular vein · SCM | 노랑 gland · 하양 nerve · 붉은 근육
+R: ⑨ 봉합 | Final closure with hemovac drain in place | — | dead space 방지 · facial nerve를 피해서 위치
+N: 23년 R08 빈칸 = Great auricular nerve / Cartilaginous pointer / Facial nerve · 24년 Q17 JB 복원 = Great auricular nerve / SCM / External jugular vein(복원 불명 — ⑧' 그림일 가능성도). [[PAR:20]] [[PAR:21]] [[PAR:23]] [[PAR:27]]
 
-#TBL TMJ 접근 — 절개·층·신경혈관 | k=TMJ | src=[[TMJ:16]] [[TMJ:21]] [[TMJ:33]] [[TMJ:41]] [[TMJ:46]]
-H: 항목 | 내용
-R: 기본 절개 {jb:Q13} | {r:Preauricular incision}(tragal cartilage 7 mm 앞 skin crease) — 변형: endaural(흉터 숨김), inverted hockey stick(재건), postauricular, retromandibular {jb:U23}
-R: 층(중부) | skin → 피하 → {r:SMAS} → deep temporal / parotidomasseteric fascia → TMJ
-R: 운동신경 | {r:V3(mandibular br.)} — 하악을 움직임
-R: 감각신경 | {r:auriculotemporal n.}(V3의 가지) — 귀 앞 피부·TMJ
-R: 피할 신경 | {r:facial n. temporal branch} — 손상 시 눈 못 감고·눈썹 못 올림; safe zone ear canal 0.8-3.5 cm {jb:T13}
-R: 혈관 | {r:superficial temporal a.&v.} — SMAS 직하 triad → TMJ capsule
+#TBL 절제 범위와 biopsy — 무엇을 얼마나 떼나 | k=PAR | src=[[PAR:3]] [[PAR:17]] [[PAR:19]] [[PAR:29]] [[PAR:31]] [[PAR:32]] [[PAR:33]] [[PAR:34]]
+H: 항목 | 언제(필기) | 무엇을 | 증례
+R: {r:Total parotidectomy} | 악성 종양이 facial n.를 포함할 때 | 이하선 전체(deep lobe까지) — deep lobe 악성이면 nerve sacrifice 또는 intentional cutting 후 anastomosis | p.29 Malignant deep lobe cancer underneath facial nerve branch
+R: {r:Superficial parotidectomy} | 종양이 facial n. 바깥쪽 — 빈도상 훨씬 많음 | facial n. 보존 + mass와 superficial lobe | p.34 superficial lobe의 큰 pleomorphic adenoma
+R: {r:Extracapsular dissection} | mass가 작고 superficial(앞쪽)일 때 | mass만 + {r:2 mm} margin — parotidectomy라 잘 안 부름 | p.32-33 accessory parotid 부위 pleomorphic adenoma · buccal branch가 mass 위
+R: Biopsy — {r:FNAB} | 영상에서 benign과 low grade malignancy가 애매할 때 먼저 | 가는 바늘로 세포 — 타겟에 따라 차이 | p.31 판독 benign salivary gland tumor r/o low grade malignancy
+R: Biopsy — {r:core needle} | 〃 | 총처럼 쏘아 조직 채취 · 초음파 유도 | p.34 core biopsy → pleomorphic adenoma
+R: Biopsy — {r:open} | 정말 진단이 안 될 때만 · 잘 안 함 | — | —
+N: 이하선 종양은 facial n. 바깥쪽에 생기는 경우가 많아 먼저 facial n.를 찾고 그 바깥쪽을 제거(p.3 필기). 합병증 Frey syndrome(밥 먹을 때 땀) — 후방 muscle을 돌려 덮어 예방(p.16·35 필기). [[PAR:3]] [[PAR:16]] [[PAR:35]]
+
+#TBL Le Fort I 혈행 — 잘리는 혈관·살리는 혈관·수치 | k=MAX | src=[[MAX:12]] [[MAX:61]] [[MAX:62]] [[MAX:77]] [[MAX:86]] [[MAX:102]]
+H: 혈관 | 위치·유래 | Le Fort I에서 | 근거
+R: {r:Nasopalatine a.} {jb:T16} | 앞 — incisive canal(piriform rim 높이) | {r:끊어짐}(p.61 "거의 끊어지고") | p.12·61·62 필기·그림
+R: {r:Descending palatine a.} | 뒤 — pterygomaxillary fissure에서 내려와 greater palatine canal로 | 보존 노력, {r:끊어지는 경우 꽤} — 특히 뒤쪽 bony interference trimming 때 | p.12·23·86 필기
+R: {r:Ascending palatine a.} {jb:Q09} | facial a.의 branch | soft tissue를 통해 {r:대신 공급} | p.12 빨간 원 · p.102 Siebert 1997
+R: {r:Ascending pharyngeal a.} {jb:Q09} | external carotid a.에서 바로 → pharynx 쪽 | soft tissue를 통해 {r:대신 공급} | p.12 빨간 원 · p.102 Siebert 1997
+R: 나머지(Blood supply 8) | sphenopalatine · infraorbital · facial A. · pterygoid venous plexus | — | p.61
+R: DPA를 지키는 깊이 | lateral nasal osteotomy(p.77) · medial wall of the maxillary sinus osteotomy(p.109) | 남 {r:35 mm} · 여 {r:30 mm}까지 | p.77 필기 · p.109 Li 1996
+N: 두 혈관이 끊겨도 maxilla가 total necrosis가 되지 않는 이유 = 아래 두 혈관 + palatal soft tissue pedicle·labial buccal gingiva(Bell 1969), 양측 DPA 결찰해도 gingival blood flow 차이 없음(Dodson 1994) [[MAX:100]] [[MAX:101]]
+
+#TBL Le Fort I 수치와 근거 논문 | k=MAX | src=[[MAX:103]] [[MAX:104]] [[MAX:105]] [[MAX:106]] [[MAX:107]] [[MAX:108]] [[MAX:109]] [[MAX:100]] [[MAX:101]]
+H: 주제 | 수치·결론 | 논문
+R: Tooth vitality {jb:Q07} | 골절단선은 치근단에서 {r:5 to 6 mm} — 특히 canine area | Pepersack 1973
+R: DPA 위치 | piriform rim → DPA {r:35.4 mm} · greater palatine canal {r:10 mm} · pterygomaxillary fissure ↔ greater palatine foramen {r:6.6 mm} | Li 1996(30 human skulls)
+R: Medial sinus wall osteotomy | piriform rim 후방 여 {r:30 mm} · 남 {r:35 mm}까지 | Li 1996
+R: Maxillary sinus 1 | 6개월 후 {r:30%}에서 radiologically latent mucosal borderline swelling | Kahnberg 1987
+R: Maxillary sinus 2 | sinusitis 발생 {r:증가 없음}(20 pts) | Bell 1986
+R: Obstructive nasal breathing | {r:43 patients} — septoplasty·inferior turbinate reduction 후 significant improvement | Posnick 2007
+R: Revascularization | early osseous union — palatal soft tissue pedicle + labial buccal gingiva = adequate nutrient pedicle | Bell 1969(rhesus monkeys)
+R: Gingival blood flow | 양측 DPA 결찰 후 laser Doppler — {r:no significant differences} | Dodson 1994
+R: Vascular supply | ascending palatine br. of facial a. + anterior br. of ascending pharyngeal a. | Siebert 1997
+N: 수술 수치: vestibular incision은 mucogingival junction {r:3-5 mm} 위(Fig 7.5), Le Fort I mucosal incision은 {r:1st molar}를 넘지 않음, V-Y closure "Y" 부분 약 {r:1 cm} [[MAX:29]] [[MAX:65]] [[MAX:41]]
+
+#TBL 상악 접근법 3 비교 | k=MAX | src=[[MAX:25]] [[MAX:27]] [[MAX:44]] [[MAX:53]] [[MAX:54]]
+H: 항목 | Vestibular | Midfacial degloving | Weber-Fergusson
+R: 언제(필기) | {r:가장 많이} 씀 | 교수님 "한 번도 안 해봤어요" — 수업 생략 | {r:maxilla tumor surgery}·maxillectomy
+R: 단계 | vasoconstrictor → incision → subperiosteal dissection of ant maxilla and zygoma → submucous dissection of nasal cavity → closure | vasoconstriction → {r:intranasal incisions} → nasal dorsum·root 노출 → vestibular incision·subperiosteal exposure → midfacial osteotomies → closure | vasoconstrictor → incision({r:upper eyelid 연장}) → dissection of flap from maxilla → closure
+R: 절개 | mucogingival junction {r:3-5 mm} 위 · mucosa는 blade, muscle은 monopolar | IC · transfixion · piriform aperture(코 안 3개) | {r:lip splitting}(philtral columns 사이 정중앙) + 코 옆 + 눈 밑
+R: 장점(필기) | 가장 흔히 쓰는 기본 접근 | {r:root tip까지 노출} | maxilla {r:완전 노출}·maxillectomy 시야 확보
+R: 주의·단점 | infraorbital n.(상순 numbness) · BFP 탈출 · pterygoid plexus 출혈 | {r:코 안쪽도 절개} | {r:defect 많음} → 심미 수술엔 × · {r:infraorbital n. preservation}
+N: Degloving은 수업에서 넘어간 부분(p.44 "이건 넘어가죠") — 미출제. Weber-Fergusson은 defect가 많이 남아 일반적으로 심미적인 결과를 원하는 수술엔 사용할 수 없음(p.54 필기).
+
+#TBL 봉합 — cinch · V-Y · continuous | k=MAX | src=[[MAX:38]] [[MAX:39]] [[MAX:41]] [[MAX:42]] [[MAX:97]] [[MAX:98]]
+H: 봉합 | 무엇을 막나 | 왜 생기나(필기) | 방법
+R: {r:Alar cinch suture} {jb:Q11} | {r:alar base width} 증가 | piriform aperture 주변 박리 → alar base 잡아주던 {r:periosteum release} | alar base 쪽 periosteum을 {r:양쪽으로 꼬매 당김} · 손가락으로 lip·nasal base evert
+R: {r:V-Y closure} {jb:R06} | 입술이 {r:얇아지고 옆으로 퍼짐} | vestibular incision 후 박리 — alar base와 비슷하게 | midline {r:skin hook} · slowly resorbing suture로 양쪽 mucosa·submucosa·muscle · "Y" 약 {r:1 cm} → lip everted·elevated
+R: Vestibular continuous suture | — | — | 나머지 절개 — {r:superior edge가 anteriorly} 당겨지도록
+N: 24·22년 cinch(그림 주고 술식과 이유), 23년 V-Y(이유·목적) — 이유 문장은 25 필기 p.38·41과 같다.
+
+#TBL 상악골과 맞닿는 뼈 | k=MAX | src=[[MAX:2]] [[MAX:3]] [[MAX:4]] [[MAX:6]]
+H: 뼈 | 자료 근거 | JB 답(T14) 분류
+R: Frontal | 슬라이드 p.2 — frontal process articulates | Cranial {jb:T14}
+R: Ethmoid | 필기 p.2 · p.4 그림 | Cranial
+R: Nasal | 슬라이드 p.2 · p.4 그림 | Facial
+R: Lacrimal | 슬라이드 p.2 | Facial
+R: Zygomatic | 필기 p.2 | Facial
+R: Inferior nasal concha | 필기 p.2 "inferior concha bone" · p.6 필기(떼어낸 구조) | Facial
+R: Palatine | 필기 p.2 · p.3 그림(분홍) · p.6 palatine process와 연접 | Facial
+R: Vomer | 자료에 이름 없음(필기 "septal bone") | Facial
+R: Sphenoid | 필기 p.2 · p.3 그림(연두) · p.4 그림 | JB 답에 없음
+N: p.6 Right maxilla (medial view) 명칭 6 = orbital surface · frontal process · maxillary sinus · anterior nasal spine · palatine process · alveolar process {jb:U13} {jb:S04}
+
+#TBL Le Fort I 술식 단계와 기구 | k=MAX | src=[[MAX:65]] [[MAX:66]] [[MAX:67]] [[MAX:70]] [[MAX:74]] [[MAX:76]] [[MAX:77]] [[MAX:78]] [[MAX:82]] [[MAX:84]]
+H: 단계 | 기구·요점
+R: 준비 | {r:nasal intubation} · local anesthetics infiltrated
+R: 절개 | sulcus mucosal incision {r:sparing frenum} · {r:not extend beyond 1st molar}
+R: 박리 | subperiosteal — infraorbital N · piriform aperture · {r:mucoperiosteal tunnel to pterygomaxillary space} · nasal mucoperiosteum
+R: 계측 | 수술 후 변화량의 {r:reference point} — 전후방 길이·캘리퍼스
+R: Lateral maxillary osteotomy | {r:reciprocating saw} → piriform aperture까지(protection하며 saw)
+R: Septal osteotomy | {r:guarded osteotome}(septal chisel)
+R: Lateral nasal osteotomy | 남 {r:35 mm} · 여 {r:30 mm}까지 → DPA 보존
+R: Pterygoid plate | {r:curved osteotome} · 손가락을 tuberosity 아래에
+R: Down fracture | {r:finger pressure}(엄지 2개) 또는 Rowe disimpaction forceps(치아 손상 우려로 잘 안 씀)
+R: Mobilization | {r:Tessier retractor}
+R: Trimming | 뒤쪽 bony interference를 {r:vulcanite bur}로 — 이때 DPA 끊김 주의
+R: 고정 | wire(부족 → bone graft 필수였음) → {r:semi-rigid plate}
+
+#TBL Aponeurosis · Fascia · Ligament · Tendon · SMAS | k=TMJ | src=[[TMJ:27]] [[TMJ:28]] [[TMJ:29]] [[TMJ:30]] [[TMJ:31]] [[TMJ:25]]
+H: 용어 {jb:Q14} | 무엇과 무엇을 | 모양·성질(슬라이드) | 예·필기 | 선지 함정
+R: {r:Aponeurosis}(널힘줄·건막) | 근육 → 뼈 | 조직의 강한 판(strong sheet of tissue), {r:넓은 판 형태} | Galea aponeurotica · "SMAS가 aponeurotica"(요새 컨셉) | "동글동글한 stem 모양" ✗
+R: {r:Tendon}(힘줄·건) | 근육 → 뼈 | 조직 띠(band of tissue), 대부분 {r:stem} 모양 | 납작하게 퍼진 힘줄 = aponeurosis | "여러 근육을 고정·갈라놓는 막" ✗
+R: {r:Ligament}(인대) | 뼈 → 뼈(연골) | 유연하고 질긴 섬유조직(flexible and tough band of fibrous tissue) | TMJ: temporal mandibular lig. · Styloid mandibular lig. | "칸막이 역할의 결합조직 막" ✗
+R: {r:Fascia}(근막) | 근육 덩어리를 고정·이웃 근육 덩어리 사이 {r:칸막이} | 결합조직의 막(compartment) | deep temporal fascia · parotidmasseteric fascia · "SMAS는 fascia가 아님" | "뼈와 뼈(연골) 연결" ✗
+R: {r:SMAS} {jb:Q15} | 표정근 ↔ zygomatic·temporal bone (tendon 역할) · 피부/피하층 ↔ 하방 근육 | organized fibrous network · {r:continuous fibromuscular layer}(근육 + fibrous) | 동의어: temporoparietal·superficial temporal fascia · parotideomasseteric fascia | "deep temporal fascia와 동의어" ✗
+R: Membrane {jb:Q14} | — | 정의 문장은 강의자료에 없음 | 예: synovial membrane(joint capsule 내면 lining, 2층) | Q14 정답 선지
+N: Q14는 24·23·22·21·20년 같은 선지 — 1)~4)는 위 정의가 서로 뒤바뀐 문장, 정답 5) Membrane. membrane 근거는 p.10·11 synovial membrane. [[TMJ:11]]
+
+#TBL 피부 절개법 — 5 approaches와 절개선 그림 | k=TMJ | src=[[TMJ:13]] [[TMJ:15]] [[TMJ:16]] [[TMJ:17]] [[TMJ:18]]
+H: 절개 | 위치·방법(슬라이드·필기) | 장점·용도 | 단점·주의
+R: {r:P1 Preauricular} {jb:Q13} {jb:T13} | 귀 앞 세로 주름(skin crease line), tragal cartilage 약 {r:7 mm} 앞 직선 | 가장 쉽고 기본적 · zygomatic arch·TMJ·condylar head·temporal area | 흉터 · {r:주요 신경(facial n.)과 가까움} · STA/STV가 incision line 바로 옆
+R: P2 Preauricular | 수평절개 — zygoma 앞쪽으로 직각으로 꺾음 | nerve 손상을 피하려고 | 직각이라 흉터가 훨씬 눈에 띔
+R: {r:PA Postauricular} {jb:U23} | 귓구멍 뒤쪽·귓바퀴 안쪽 연골 부위(귀 뒤쪽), Mastoid proc. 뒤로 | 이비인후과·와우 이식 | —
+R: {r:I Inverted hockey stick} {jb:U23} | P1처럼 가다가 hockey stick처럼 꺾여 앞으로 | 주변 근막·근육을 쓰는 재건 · eminectomy·eminoplasty·gap arthroplasty | —
+R: {r:E Endaural} {jb:T13} | P1보다 ear cartilage에 가까움 — tragal cartilage 안쪽(뒤)으로 숨김 | 교수님이 가장 많이 씀 · ==흉터를 귀안으로 숨겨서 심미적== · 비교적 어렵지 않은 술식 | ==Preauricular incision과 비교하여 신경 및 혈관 손상의 위험에 차이 없음==
+R: {r:R Retromandibular} | 하악골 아래에서 — Angle, posterior mandibular ramus | preauricular·endaural과 동시에 → mandible 전체 | (R 옆 필기) 뒤쪽에 신경·혈관이 없어 안전하지만 TMJ와 너무 멀어 접근이 어려움
+R: 기본 preauricular 3(p.17 그림) | {r:Blair's Inverted Hockey Stick} · {r:Thoma's Angulated}(135도 앞으로 연장) · {r:Dingman's}(가장 흔한) | "이 3가지가 가장 기본 preauricular incision" | 그림 보고 이름 맞히기 출제 예고
+N: QUIZ 1) "TMJ로의 접근으로 사용할 수 있는 피부 절개방법 2가지" 답 = 전이개 방법 · 내이접근법. 필기 p.16 "다음 중에서 TMJ approach가 아닌 것은?"도 대비. [[TMJ:46]] [[TMJ:16]]
+
+#TBL 상부·중부·하부 조직층 | k=TMJ | src=[[TMJ:19]] [[TMJ:20]] [[TMJ:21]] [[TMJ:22]] [[TMJ:31]]
+H: 층 순서 | 상부(전두부) | 중부(측두부·TMJ) ★ | 하부(하악골)
+R: 1 | 피부(skin) | 피부(skin) | 피부(skin)
+R: 2 | 피하층(subcutaneous layer) | 피하층(subcutaneous layer) | 피하층(subcutaneous layer)
+R: 3 — 같은 층의 세 이름 | {r:Temporoparietal fascia} | {r:SMAS} {jb:Q15} | {r:Platysma}(광견근)
+R: 4 | Deep temporal fascia | {r:Deep temporal fascia 혹은 Parotidmasseteric fascia} | Masseter muscle(교근)
+R: 5 이하 | Temporalis muscle(측두근) → cranial periosteum(두개뼈 골막) → 두개골 | zygoma · TMJ · parotid gland(두개골 없음) | Mandibular periosteum → 하악골
+R: 필기 포인트 | 신경이 거의 없어 bicoronal incision이 쉬움("외우지 X") | "이 부분의 순서가 중요하다!!" · SMAS 직하방 facial n. | sub-platysma level로 들어가야 close가 쉬움
+N: 세 층(temporoparietal fascia · SMAS · platysma)은 경계 없이 이어짐 — platysma가 진화하며 변질되어 SMAS가 되었다는 이론(필기). Q15 정답 5) "피하랑 deep temporal fascia 사이" = 중부 3·4번째. [[TMJ:22]]
+
+#TBL TMJ 접근에서 만나는 신경·혈관 — 운동 vs 감각 | k=TMJ | src=[[TMJ:33]] [[TMJ:34]] [[TMJ:35]] [[TMJ:38]] [[TMJ:39]] [[TMJ:40]] [[TMJ:41]] [[TMJ:46]]
+H: 구조 | 정체 | 위치 | 손상·임상(슬라이드·필기)
+R: {r:Temporal branch of facial n.} {jb:T13} {jb:Q13} | CN7 운동신경 — 5 branch 중 TMJ에 {r:가장 근접} | temporoparietal fascia 안·밑면(Stuzin 1988) = SMAS 직하방 · ear canal에서 0.8-3.5 cm(mean 2.0 cm) | ① {r:눈썹을 들어올리지 못함} ② {r:윗 눈꺼풀을 감지 못함} · intact면 6개월 후 회복
+R: {r:Superficial temporal a.·v.} {jb:Q13} | 동맥·정맥(STA, STV) | 귀 앞으로 수직 · incision line 바로 옆 · SMAS 밑 | preauricular incision 때 주의 — 출혈되면 막기 어려움
+R: {r:Auriculotemporal n.} {jb:U24} | CN5 mandibular br.의 가지 — {r:감각신경} | STV 앞 · TMJ capsule 바로 옆 | 귀 앞 부위 피부 감각 · 수술 후 귀 앞 멍함 · 세정술 피부 마취
+R: 하악을 움직이는 신경 | Trigeminal n.(CN5)의 {r:mandibular branch} | — | facial n.는 mandible을 움직이는 nerve가 아님
+R: TMJ capsule | Triad 밑 | TMJ ligament and capsule — 이 안에 joint | "뒤로 들어가야 안 다침"
+N: 접근 순서 = preauricular incision → SMAS → Triad(STA·STV·auriculotemporal n.) → TMJ capsule → joint. QUIZ 2) 답 "facial nerve의 temporal branch(운동), Auriculotemporal nerve(감각), superficial temporal artery&vein". [[TMJ:41]] [[TMJ:46]]
+
+#TBL 교수님 QUIZ 4문항 — 답과 기출 | k=TMJ | src=[[TMJ:46]] [[TMJ:47]]
+H: QUIZ | 답(p.46 필기) | 이어진 기출
+R: 1) TMJ로의 접근으로 사용할 수 있는 피부 절개방법 2가지 | {r:전이개 방법}(preauricular incision) · {r:내이접근법}(endaural incision) 등 — "그림 그릴 줄 알아요?" | {jb:Q13} {jb:T13} {jb:U23}
+R: 2) 전이개 절개법으로 TMJ 수술 시 만날 수 있는 운동신경/감각신경 및 혈관구조 | 운동 {r:temporal br. of facial nerve} / 감각 {r:auriculotemporal nerve} / 혈관 {r:superficial temporal artery & vein} | {jb:Q13} {jb:U24}
+R: 3) 안면신경의 어떤 가지가 TMJ temporal approach 시에 가까운가? | {r:temporal branch} + 마비 시 (1) 눈꺼풀을 감지 못하고 (2) 눈썹 들어올리지 못함 | {jb:T13} {jb:Q13}
+R: 4) SMAS에 대해 간단히 설명 | Full name, 기능, 역할 — {r:Superficial Musculo Aponeurotic System}, 안면의 피부/피하층과 하방의 근육(측두근, 광견근)을 이어줌 | {jb:Q15}
+N: 교수님 "이 부분은 시험문제에 날 수 있으니 남겨놓도록 하겠습니다" · p.47 "비디오에서 시험문제 낼 예정이니 한 번 보세요". 용어 객관식(Q14)만 QUIZ 밖 — p.27-30 정의 4개.

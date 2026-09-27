@@ -1,112 +1,345 @@
-#TBL 노쇠·노인병·노인증후군 — 용어 한눈에 | k=SAL | src=[[SAL:1]] [[SAL:3]] [[SAL:7]]
-H: 용어 | 정의·기준 | 시험 포인트
-R: {r:Frailty}(노쇠) {jb:G11} | 노화에 따른 전반적 기능저하 → 생리적 예비능력↓ → 외부 자극 반응↓ → 항상성 유지 능력 감퇴 → 이환·기능의존·입원 가능성↑ | 빈칸 정답(20·19·18)
-R: Fried 5기준 {jb:G01} | {r:체중감소 · 활력감소 · 허약 · 보행속도감소 · 신체활동감소} | 매년 빈칸 — 어느 칸이 비어도
-R: 노쇠의 종류 {jb:G07} | {r:physical}(기본) · cognitive · social · (systemic) · {r:oral} | "우리가 생각하는 노쇠는 ( )" = 신체적
-R: {r:Multimorbidity} | 만성질환 공존, 노인 55-98%; 90% 1개↑·50% 3개↑ | 최다 = 고혈압·관절염(50%↑) {jb:G06}
-R: {r:Polypharmacy} {jb:G10} | 임상 적응보다 많은 약 — 부적절 사용·상호작용·부작용↑; 5종류↑(super 10↑) | 빈칸 정답(21)
-R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 모호·복잡 — 질환–질환·질환–약물·약물–약물 상호작용 | A 질환 / B 약물
-R: {r:Geriatric syndrome} {jb:G05} | 실금·우울·섬망·낙상·골다공증·감각변화·거동·압창·수면·치매 — 여러 병인이 증상으로 모임(unified manifestation) | 낙상 diagram(당뇨·약물·백내장·관절염)
-R: {r:Sarcopenia} | 근육량↓ + 근육 활동↓ 동시 | 체중감소 → 근육 소실
-R: 노인 3분류 {jb:G02} | functionally independent / frail / functionally dependent — 접근성 다름 | 못 오는 노인 → 방문진료
+#TBL 노쇠·다중이환·노인병·노인증후군 — 용어 한눈에 | k=SAL | src=[[SAL:1]] [[SAL:3]] [[SAL:7]] [[SAL:21]]
+H: 용어 | 정의·기준(슬라이드) | 시험 포인트
+R: {r:Frailty}(노쇠) {jb:G11} | 노화에 따른 전반적인 기능저하로 생리적인 {r:예비능력}이 감소 → 외부 자극에 대한 반응이 저하 → {r:항상성} 유지 능력 감퇴 → 여러 질환 이환 위험·{r:기능의존이나 입원} 가능성↑ | 20·19·18 빈칸 = frailty — '예비능력'·'항상성'도 빈칸 후보
+R: Fried 5기준 {jb:G01} | {r:체중 감소} · {r:활력감소} · {r:허약} · {r:보행속도 감소} · {r:신체활동 감소} (한국형 노쇠측정 도구) | 24~20 매년 빈칸 — 24 신체활동 · 23 활력 · 22 보행속도 · 21 체중
+R: 노쇠의 종류 {jb:G07} | {r:Physical}(보통 노쇠) · {r:Cognitive} · {r:Social} / Systemic · General ? / {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠
+R: {r:Multimorbidity}(다중이환) | The coexistence of multiple chronic diseases · Prevalence {r:55 – 98%} · 결과 = disability and functional decline, poor quality of life, high health care cost | 노인 {r:90%} 1개↑ · 22% 2개 · {r:50%} 3개↑ · 최다 {r:고혈압·관절염} {jb:G06}
+R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} · 약물 부작용 = 입원·사망의 주요 원인 | 21 빈칸 · 필기 {r:5종류↑}(super {r:10종류↑}) · 노인 37% 5개↑ 처방약
+R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 {r:모호·복잡} — 질병 다발성 + 다약제 복용 → 질환–질환 · 질환–약물 · 약물–약물 상호작용 | 20·19 "A와 B" = {r:질환 · 약물}
+R: {r:Geriatric syndrome}(노인증후군) {jb:G05} | 실금·우울·섬망·낙상·골다공증·감각변화·거동/보행장애·압창·수면장애·치매 — 여러 etiology/pathogenesis → {r:unified manifestation} | 24 서술(낙상 모식도 예) · 20 나열
+R: {r:Sarcopenia}(근감소증) | 근육량 일정 이하 감소 + 근육 활동 일정 이하 감소가 {r:동시에}(필기) | 체중 감소 → 근육 소실 → sarcopenia(Fried 모식도)
+R: Dependent · 노인 3분류 {jb:G02} | 자기 일상을 남에게 의존 · Functionally Independent / {r:Frail} / {r:Functionally Dependent} → 병원에 내원할 수 없는 환자의 증가 | 24·23·22 "한 집단으로 보면 안 되는 이유" = 치과 접근성이 다름
+N: 노쇠 · 동반질환 · 장애는 원래 각각 별개지만 겹친다(질환이 잦으면 노쇠 가능성↑, 노쇠가 심하면 장애 확률↑ — p.1 필기).
 
-#TBL 노화에 따른 구강 조직 변화 | k=SAL | src=[[SAL:16]] [[SAL:17]]
-H: 조직 | 항목 | 변화
-R: {r:결합조직} {jb:G03} | cellular elements · fibers · mitotic activity · collagen synthesis · acid MPS | {r:모두 Decreased}
-R: 결합조직 | width of PDL | Increased / Decreased
-R: 결합조직 | gingival recession | Increased / Stable
-R: 상피 | width / keratinization / rete pegs / mitotic activity | thinned / ↓·= / ↑·=·↓ / ↑·=·↓ — 개인차
-R: 피부 dermis | fibroblasts·mast cells·blood vessels, capillary loops | 감소(비교적 일관)
-R: 결론 | 노화 자체의 점막 영향 | mild·의의 의문 — 원인은 질환·영양·약물·의치
-R: 감각 | 미각 / 후각 | 짠·신·쓴 역치↑, 단맛 유지, 미뢰 수 유지 / 후각 감퇴
+#TBL 타액선 — 노화 vs 질환·약물 | k=SAL | src=[[SAL:8]] [[SAL:9]] [[SAL:10]] [[SAL:11]] [[SAL:12]] [[SAL:13]] [[SAL:15]]
+H: 관점 | 슬라이드 내용 | 결론
+R: 구조 | 실질(선포)의 위축 · 결합조직의 상대적 증가 · 섬유화 증가 · 지방화 증가 · 만성 염증 소견 · 혈관의 퇴행성 변화 · 도관 내 분비물질의 축적 / 악하선 acini {r:62.0 → 49.8 → 38.5%} · 이하선 48.1 → 44.2 → 32.5% · 구순 소타액선 56.6 → 40.8 → 32.1% | 나이에 따라 {r:실질이 감소}
+R: 기능(분비율) | Whole 비자극 independent / decrease · 자극 independent / {r:increase} / Parotid 비자극·자극 모두 {r:independent} / Submandibular independent / decrease / Minor gland independent / decrease | 일관된 변화 없음(subject bias)
+R: 성분 | 단백질·당단백질(total protein · proline-rich proteins · lactoferrin · sIgA · amylase / mucins) · 전해질 | 논문이 많지 않고 일관된 변화 없음
+R: 구조↓ 기능≈ 설명 | ① Hypertrophy or Hyperplasia for Compensation ② {r:High Reserve Capacity} | ②가 더 과학적인 신뢰
+R: 여유(redundancy) | 정상 비자극 0.40 → 양측 이하선 비기능 {r:0.32} · 양측 악하선/설하선 비기능 {r:0.10} · 75% 감소 {r:0.10} / Biological backup · Overlapping functions · Multifunctionality | 비자극은 {r:75%} 줄어야 문제
+R: 질환·약물 | 건조 유발 약물 9 · 위험군 = {r:those with systemic disease and taking medications} | {r:Medications and diseases} affect salivary function {r:more than aging itself}
+R: 임상 | 마르다고 올 때는 이미 {r:severely compromised} · 불편감 VAS {r:7.31} · CMC 인공타액 7.30 → 6.63 | 효과적 치료 없음 → {r:Motivation of patient}
+N: 정상 분비율(ml/min): Whole 비자극 {r:0.3 - 0.5} · 자극 {r:1.0 - 3.0} / Parotid 0.04 · 0.70 / SM/SL 0.15 · 0.60 — 분비율 감소 기준 Resting {r:< 0.1} · Stimulated {r:< 0.5 - 0.7}.
 
-#TBL 석회화 근관 — 방사선 vs 조직학 · 예후 수치 | k=ENDO | src=[[ENDO:25]] [[ENDO:26]] [[ENDO:27]] [[ENDO:69]] [[ENDO:70]]
-H: 상황 | 원인 | 수치·근거
-R: 원칙 | radiographic = histologic canal diameter | Kuyk 1990(0.48 / 0.52 mm)
-R: {r:보이는데 file 안 들어감} {jb:E08} | 근관 내 3차 상아질 — radiodensity tertiary < primary → radiographic > histologic | 0.72 / 0.36 mm
-R: {r:안 보이는데 잘 들어감} {jb:E11} | 근관 주위 상아질의 radiodensity↑(투과성↓) → 근관이 없는 것처럼 | 24년 필기 '낮으면' → '높으면'
-R: 치료 안 함(7-22년 f/u) {jb:E03} | 51% EPT normal / {r:40% EPT(–) but no PAR} / {r:8.5% PAR} | 병소 이행 10% 미만
-R: 치료(Akerblom 1988) {jb:E03} | 64 obliterated roots, 2-12년 | lesion 62.5% / no lesion 97.9% / total {r:89%}
-R: 치료하지 않는 경우 | 증상·PAR·deep decay·severe perio·pulp exposure 없음 | discoloration·환자 요구·deep caries·PA lesion이면 치료
+#TBL 노화에 따른 피부·구강 조직 변화 | k=SAL | src=[[SAL:16]] [[SAL:17]]
+H: 조직 | 항목 → 변화 | 일관성(필기)
+R: {r:결합조직}(lamina propria) {jb:G03} | Cellular elements · Fibers · Mitotic activity · Collagen synthesis · Acid mucopolysaccharides → {r:모두 Decreased} / Width of periodontal ligament → {r:Increased / Decreased} / Gingival recession → {r:Increased / Stable} | {r:비교적 일관적} — 주로 여기에 변화
+R: 상피(epithelium) | Width → {r:Thinned} / Keratinization → Decreased / Unchanged / Rete pegs → Heightened / Constant / Shortened / Mitotic activity → Increased / Constant / Decreased | 사람마다 차이 많음
+R: 피부 dermis | Atrophy · {r:Fewer} fibroblasts · mast cells · blood vessels · Shortened capillary loops · Abnormal nerve endings | 비교적 일관적
+R: 피부 epidermis | Flattened dermo-epidermal junction · Variable thickness · Variable cell size and shape · Occasional nuclear atypia · Fewer melanocytes · Fewer Langerhans cells | 매우 애매 = 개인별 차이
+R: 피부 appendages | Depigmented hair · Loss of hair · Conversion of terminal to vellus hair · Abnormal nail plates · Fewer glands | —
+R: 구강점막 전체 | Aging itself has {r:no substantial effect} — 변화는 mild, 임상 의의 questionable | 원인 = {r:disease · malnutrition · drug usage · ill-fitting dentures}
+R: 운동(저작·삼킴·발음) | does {r:not uniformly} alter · Not as a simple gradual diminution | 질환과 약물에 크게 영향
+R: 미각 / 후각 | Taste only a moderate effects(taste bud 수 유지 · {r:salty, sour, bitter} 역치↑ · {r:sweet} 변화 없음) / Olfaction declines — {r:hyposmic} | 미각은 개인차 > 노화 / 후각은 일관되게 감소
+N: 함정 — Mitotic activity는 결합조직이면 Decreased 하나, 상피면 Increased / Constant / Decreased 셋.
 
-#TBL 석회화 근관 입구 찾기 → 형성 — 순서와 도구 | k=ENDO | src=[[ENDO:29]] [[ENDO:33]] [[ENDO:39]] [[ENDO:40]] [[ENDO:42]] [[ENDO:45]] [[ENDO:56]] [[ENDO:60]]
-H: 단계 | 방법 | 요점
-R: 0 사고 예방 {jb:E03} | procedural accidents 4 | 과도한 삭제 · 천공(furcation·lateral wall) · ledge · file 파절
-R: 1 {r:Dentin shelf 제거} {jb:E13} | 밝은 부분 = shelf → 제거, 어두운 darker dentin = 바닥 | remove overhang
-R: 2 염료 | 메틸렌블루(수세·건조 후 어둡게 염색된 곳), 형광 염료·canal seeker | 
-R: 2 {r:NaOCl} {jb:E01} | 잔류 치수 조직이 반응해 거품 → 현미경으로 확인 | 입구라서가 아니라 조직이 반응
-R: 2 Endo Tracer·Endo-Guide | long-neck bur | 
-R: 2 초음파 | ultrasonic CPR tip, microprojection tip | 
-R: 3 형성 | {r:short file with straight tip}, {r:feel the binding} | file을 빼지 말고 파고들기
-R: 3 안 뚫릴 때 {jb:E05} | {r:Buckling resistance activation} — access dimple → 수직 압력을 tip 끝에 | 입구 없으면 전진 ×
-R: 4 Negotiation {jb:E02} | 100 strokes, K-file 8·10(watch-winding + vertical), C+ file, apical precurve 1-2 mm 60-90° → short up-down | 목적 = {r:glide path}(orifice → physiologic terminus), 8·10번으로 만든 뒤 NiTi
+#TBL 노인 구강점막질환과 구강점막 통증 | k=SAL | src=[[SAL:17]] [[SAL:18]] [[SAL:19]] [[SAL:20]]
+H: 질환 | 슬라이드 부연 | 필기·포인트
+R: ① {r:Herpes zoster} {jb:G04} | Postherpetic Neuralgia | 구강점막 zoster는 적음(thoracic·lumbar가 흔함)
+R: ② {r:Candidiasis} {jb:G04} | Loss of immune vigor because of age | 진료실 최다 · 노인은 {r:chronic atrophic type}이 압도적 · denture stomatitis — partly plaque-associated?
+R: ③ {r:Inflammatory fibrous hyperplasia} {jb:G04} | (Epulis fissuratum) - Denture | —
+R: ④ {r:Actinic elastosis} {jb:G04} | (solar elastosis) | 18-2부터가 교수님이 말한 '이 page'
+R: ⑤ {r:Leukoplakia / Erythroplakia} {jb:G04} | — | —
+R: ⑥ {r:OLP / OLL} {jb:G04} | — | —
+R: ⑦ {r:Pemphigoid / Pemphigus} {jb:G04} | — | —
+R: ⑧ {r:Basal cell carcinoma} {jb:G04} | — | 얼굴 주위 피부 carcinoma 중 최다
+R: ⑨ {r:Epidermoid carcinoma (SCC)} {jb:G04} | — | 입 안 cancer 중 최다 · 다음 verrucous carcinoma
+R: (점막 통증) {r:Burning mouth syndrome} | Female at peri- or post-menopausal · Tongue or Mucosal Pain · Burning or dysesthesia · {r:No abnormality} · Cancerphobia · Depression / Anxiety / Sleeping Disorder | 점막질환이 아니라 점막에 일어나는 통증 → JB 답 9개에서 제외(20년 판본만 +BMS)
+R: BMS 특징 5 | {r:Resting > Functional} · {r:Afternoon > Morning} · depends on sleep quality and behavior · {r:Seldom disturb sleeping} · comparable to {r:Toothache} | 통증 약 6 = 하루 종일 치통
+N: 전제 — No oral disease occurs exclusively in the elderly. 교수님: "노인에서 발생하는 점막질환을 적으세요 하면 이 page(18-2) 질환들 + candidiasis"(필기).
 
-#TBL 미백 — Splotchy vs Dingy · 종료 · 재발 | k=BLE | src=[[BLE:32]] [[BLE:36]] [[BLE:44]] [[BLE:45]]
-H: 항목 | 내용
-R: {r:Splotchy} {jb:K01} | 미백 중: incisal(상아질 얇음) → middle → cervical(두꺼움) 순으로 진행 → 표면이 균일하게 밝아지지 않고 얼룩덜룩
-R: {r:Dingy} | 재변색(relapse, 환원) 중: 한꺼번에가 아니라 부분적으로 착색 → 얼룩덜룩
-R: 종료 시점 3 {jb:K01} | ① no splotchy & no improvement for 2 weeks ② mutual communication(saturation point, 환자 vs 술자 기대) ③ shade shift 4-6 grades
-R: Relapse 대처 {jb:K02} | 1-2주 touch-up bleaching(재산화); initial relapse 2주 내 slightly, annual touch-up, 1~3년 지속
-R: 미백의 화학 | 산화 — free radical이 double bond를 single로; 10% CP → 3% H2O2(urea:H2O2 = 7:3)
-R: 예후 좋은 색 | brown-orange-yellow(A·B 계열, initial a* 높음) / 나쁜 색 blue-gray(C·D, TC class III banding)
-R: Home bleaching | 10-15% CP, 2회/일 1-1.5시간, 4-8주, tray는 소구치까지·labial scalloped·lingual horizontal, 쌀알 크기
-R: 미백 후 | 레진은 2주 뒤(oxygen radical) / 시림 → 불소·5% potassium nitrate / 탈수로 다음날 약간 어두워짐
+#TBL 구강 문제가 전신 노쇠로 가는 5갈래 | k=SAL | src=[[SAL:15]] [[SAL:21]]
+H: 구강 문제 | 경로 | 결과
+R: 구강 위생 불량 · 구강 건조 | 흡인 (Low salivary flow → {r:dysphagia} {jb:G09}) | {r:흡인성 폐렴} {jb:G08} — 틀니 끼고 취침 Hazard ratio {r:2.38}
+R: 구강 기능 저하(저작/삼킴) | {r:구강 노쇠} → 영양 저하 → {r:근감소증} | {r:신체 노쇠} → 낙상 · 장애 · 사망
+R: 구강 만성 염증(치주염/점막염) | 반복적이고 지속적인 염증 | {r:당뇨 · 심장질환}
+R: 저작 기능 저하 | {r:뇌혈류량 만성적 감소} | 알츠하이머 · {r:인지적 노쇠}
+R: 구강 기능 저하(저작/발음/심미) | {r:사회적 고립} | {r:사회적 노쇠}
+N: 필기 — 턱을 적게 쓰면 뇌혈류량이 감소한다는 보고는 충분하지만, 장기간 감소 시 뇌 기능이 어떻게 되는지는 충분한 보고가 없다. 노쇠 3종(신체·인지·사회 {jb:G07})이 모두 구강에서 이어진다.
 
-#TBL 치근우식 관리 — 4단계와 수복 3방법 | k=HARD | src=[[HARD:26]] [[HARD:27]] [[HARD:28]] [[HARD:31]] [[HARD:33]]
-H: 단계·방법 | 내용 | 적응
-R: ① Prevention {jb:Y05} | oral hygiene(치주·퇴축 예방, plaque 제거) · dietary counselling(정제 탄수화물 빈도·양↓) · saliva stimulation(sugar free gum) | 모두
-R: ② Chemomechanical {jb:Y04} | fluoride(우식 dynamics 변화, systemic·topical) · chlorhexidine(항균) · SDF(biofilm 항균, FDA 미승인, 흑색 변색) · delivery(rinse·toothpaste·gum·varnish) | 환자 특성에 따라
-R: ③ Debridement & recontour | polishing bur로 매끈·청소 가능하게 | leathery·shallow·plaque-free 유지 가능
-R: ④ Removed & restored | 우식 제거 후 수복 | soft·large cavitated leathery·plaque-free 유지 어려움
-R: ④-1 {r:ART} {jb:Y03} | hand instrument 제거 + GI/RMGI 수복 | final 치료로도, 예방효과
-R: ④-2 Carisolv | 0.5% NaOCl + 0.1 M 아미노산(glutamine·leucine·lysine), 10.62분(conventional 4.42분) | 
-R: ④-3 Conventional | proximal은 buccal access, lingual은 lingual access; amalgam·composite·GI | 
+#TBL 석회화 근관 — 방사선 직경 vs 조직학 직경 | k=ENDO | src=[[ENDO:25]] [[ENDO:26]] [[ENDO:27]]
+H: 경우 | 방사선 vs 조직 | 수치 (Kuyk 1990) | 원인 · 필기 | 기출
+R: 원칙 | {r:Radiographic = histologic} canal diameter | 0.48 / 0.52 mm | 방사선상 근관 지름이 원래 근관 지름이어야 하지만 내부 변화로 그렇지 않을 때도 | —
+R: {r:안 보이는데 실제로는 있음} | {r:Radiographic < histologic} | {r:0} / 0.24 mm | 100% 막혀 있는 경우는 없어 들어가보면 근관이 있기도 · JB 답: 근관 주위 상아질의 방사선투과성이 낮으면(26 자료엔 없음) | {jb:E11}
+R: {r:보이는데 file은 안 들어감} | {r:Radiographic > histologic} | {r:0.72} / 0.36 mm | 근관 내 생긴 {r:3차 상아질}의 방사선 투과상이 1차(치근) 상아질보다 높음 = {r:Radiodensity tertiary < primary dentin} | {jb:E08}
+N: 두 기출은 방향만 반대인 짝 — '보이는데 안 들어감 = 3차 상아질·>' / '안 보이는데 들어감 = <'. 26 필기의 'radiopaque하게 보이기 때문에'는 슬라이드와 반대 방향이니 슬라이드 문장으로 외울 것.
 
-#TBL 노인 통증 평가 — 어려움 7 · 장벽 3 · 비언어 지표 6 | k=PAIN | src=[[PAIN:16]] [[PAIN:31]] [[PAIN:32]] [[PAIN:93]]
-H: 묶음 | 항목
-R: 평가의 어려움 7 {jb:J09} | myths("natural" with aging) · fears about addiction · sensory and cognitive impairments · under-reporting · co-morbidities/caregivers' beliefs · patient–caregiver 인식 불일치 · caregiver의 오해
-R: 그중 보호자 3 {jb:J03} | co-morbidities complicating & caregivers' beliefs · lack of congruence · caregiver may misinterpret
-R: 환자 관련 장벽 3 {jb:J02} | {r:Communication}(의사소통 문제 → 통증 조절 나쁨) · {r:Psychological}(불안·distress·우울·분노·치매 — 증상 masking) · {r:Attitudinal}(중독·내성·부작용 두려움, 통증은 불가피하다는 믿음)
-R: Nonverbal indicator 6 {jb:J01} | {r:facial expressions}(grimacing) · {r:vocalizations}(moaning) · {r:body movements}(guarding) · {r:changes in interpersonal interactions}(combative·withdrawn) · {r:changes in mental status}(confusion·irritability) · {r:changes in usual activity}(refusing food·wandering)
-R: PAINAD | breathing · negative vocalization · facial expression · body language · consolability — 0-2점 × 5 = 0-10(1-3 mild / 4-6 moderate / 7-10 severe)
+#TBL 석회화 근관 치료 방법 — 입구 찾기에서 glide path까지 | k=ENDO | src=[[ENDO:29]] [[ENDO:30]] [[ENDO:31]] [[ENDO:33]] [[ENDO:37]] [[ENDO:39]] [[ENDO:40]] [[ENDO:41]] [[ENDO:42]] [[ENDO:45]] [[ENDO:56]] [[ENDO:57]] [[ENDO:59]] [[ENDO:60]]
+H: 단계 | 슬라이드 | 요점 · 필기 | 기출
+R: 순서 4 | Access cavity → Location of canals → Negotiation to WL → Canal preparation | 필기: Patency · C&S canal enlargement | {jb:E12}
+R: Access cavity | {r:Depth Control}이 중요! | Sinking에 집착하지 말 것 · 천정이 내려오고 바닥에 치수석(2차·3차 상아질) · 버 길이 조정 | —
+R: Canal location | {r:Control angulation} | bur를 넣어 방향 확인 — 틀어지는 순간 perforation | —
+R: 사고 4 | 과도한 삭제 · furcation이나 lateral wall의 {r:천공} · {r:ledge} · {r:file 파절} | 이것을 줄여야 해서 노인 근관치료가 힘들다 | {jb:E04}
+R: ① {r:Dentin Shelf 제거} | 석회화 근관 입구를 찾기 위해서는 Dentin Shelf를 제거하라! · Remove overhang | Dentin shelf는 {r:밝게} — 바닥은 어두운 {r:Darker Dentin} | {jb:E13} {jb:E12}
+R: ② 진단 염료 | {r:메틸렌 블루} — 와동에 떨어뜨린 뒤 수세·건조 → 어둡게 염색된 부위 · 형광 염료 | Canal seeker | {jb:E13}
+R: ② {r:NaOCl} | 잔류 치수 조직이 포함된 석회화 근관 위 치수실에 적용 → 조직과 반응해 {r:거품} | 잔존 치수조직 반응(입구라서 ×) · {r:현미경}으로 | {jb:E01}
+R: ② Endo Tracer · Endo-Guide | long-neck bur | 전문의 영역 · 추천하지 않음 | —
+R: ② {r:Ultrasonic CPR tip} | microprojections tip | 살짝씩 긁어냄 · 버 없이 안전하게 도달 | {jb:E13}
+R: ③ 형성 2원칙 | {r:Use short file with straight tip} · {r:Feel the binding} | binding = 전진 후 뺄 때 잡아채는 느낌 → 빼지 말고 파고들어 up-down | {jb:E12}
+R: ③ NiTi | NiTi files specifically designed for managing calcified canals and creating a glide path | Trunatomy Glider(500 RPM) — 있는 입구만 따라감 | —
+R: ③ 안 뚫릴 때 | {r:Buckling Resistance Activation} — access dimple → file tip → 수직 압력을 tip 끝으로(activation) | Buckling = 압축력이 저항을 초과할 때 기구가 갑자기 옆으로 휨 | {jb:E05}
+R: ④ Negotiation | {r:Do 100 strokes} · small files로 canal morphology·{r:initial patency} | Small K-file(8·10) · C+ files · apical abrupt precurvature(1-2mm 60-90°) | —
+R: ④ 목적 | {r:Glide Path} — smooth radicular tunnel from canal orifice to physiologic terminus | {r:8·10번}으로 만들어야 NiTi · 10번 안 되면 8번, 8번도 안 되면 포기 | {jb:E02}
+N: 22년 E12의 (2) 해결 방법 답이 이 표의 ①→④ 흐름 그대로(dentin shelf → 염색·NaOCl → CPR tip → 짧은 직선 파일·binding → buckling → negotiation·patency).
 
-#TBL 노인의 수면 — 증가 vs 감소 | k=PAIN | src=[[PAIN:55]] [[PAIN:57]] [[PAIN:58]]
-H: 구분 | 증가 | 감소
-R: 수면 단계 {jb:J04} | sleep latency · stage N1 · wake after sleep onset | slow wave sleep(깊은 수면) · REM sleep
-R: 노인의 수면 {jb:J08} | time in bed · number of awakenings · time to fall asleep · dissatisfaction · tiredness during day · napping | total sleep time at night · time of deep sleep · time of REM sleep
-R: 결과 | 수면 방해 → 통증 역치↓ → 통증 빈도↑ | 
-R: 수면 문제 5 {jb:J13} | circadian rhythm disorder · primary sleep disorder · medical illness · medication/polypharmacy · dementia | 
-R: OSA | 60세↑ 남성 37%, 85% 미진단, Epworth >10, PSG gold standard(first night effect), 고령·인지장애는 표준 PSG | 
+#TBL 치료할까 말까 — 기준과 예후 수치 | k=ENDO | src=[[ENDO:68]] [[ENDO:69]] [[ENDO:70]] [[ENDO:71]]
+H: 구분 | 슬라이드 | 수치 · 필기 | 기출
+R: When {r:not} to treat | calcification cases without — Symptoms · PAR · Deep decay · Severe periodontal disease · Pulp exposure | 26 수업에선 넘어감 · 아프지 않은데 굳이? | —
+R: When to treat | Discoloration and patient's demand · Longstanding deep caries · Pulp exposure · PA lesion · Signs & Symptoms | 증상이 없는 경우에는 굳이 치료하지 않아도 된다 | —
+R: 치료하지 않은 석회화 근관 | 881명의 선원 · 7-22 years follow up | {r:51%} EPT normal · {r:40%} EPT negative but no PAR · {r:8.5%} PAR — 절반 정도 necrosis, 병소는 10% 미만 | {jb:E03}(40%, 8.5%)
+R: Prognosis (Akerblom 1988) | 64 obliterated roots(X-ray에서 root 1/3 이상 canal 안 보임) · non-surgical endo · 2-12 yrs | Lesion {r:62.5%} · No lesion {r:97.9%} · Total {r:89%} | {jb:E03}(89%)
+N: '병소 유무에 상관없이' = Total 89% · '병소가 없으면' ≈ 98% · 괴사는 40%(EPT negative but no PAR), 51%(EPT normal)와 혼동 금지.
 
-#TBL 노인 약물 — 부작용과 구강 영향 | k=PAIN | src=[[PAIN:81]] [[PAIN:82]] [[PAIN:83]] [[PAIN:84]] [[PAIN:85]]
-H: 약물 | 특징 | 부작용·구강
-R: Acetaminophen | OA treatment of choice, ceiling, max 4 g/day | 간·pancytopenia — 처방 전 혈액검사
-R: {r:Nonselective NSAIDs} {jb:J10} | PG 합성 억제, 단기, ceiling | {r:GI bleed · renal impairment · platelet dysfunction} {jb:J07}
-R: Selective COX-2 | GI·platelet 부작용↓ | cardiovascular accident
-R: {r:TCA}(amitriptyline·desipramine) | neuropathic·우울·수면, 부작용으로 잘 안 씀 | {r:xerostomia · pressor effect 증강}
-R: SSRI(first line) | fluoxetine·paroxetine·sertraline·citalopram | <18% dry mouth, GI, insomnia, {r:bleeding time↑}; dysgeusia·stomatitis·glossitis·bruxism
-R: Duloxetine / anticonvulsants | FDA neuropathic / gabapentin·pregabalin·carbamazepine(TN) | 
-R: Lithium / 상호작용 | xerostomia·lichenoid stomatitis·metallic taste / erythromycin + NSAID → toxicity | 증상 onset과 약 변경 시점이 겹치면 약 의심
+#TBL 증례로 보는 치료계획 — 발치·근관치료·경과 관찰 | k=ENDO | src=[[ENDO:7]] [[ENDO:9]] [[ENDO:11]] [[ENDO:14]] [[ENDO:19]] [[ENDO:61]] [[ENDO:65]] [[ENDO:72]] [[ENDO:75]]
+H: 증례 | 상황 | 판단 · 결과 | 교훈
+R: 64세 여 #22 (p.7-8) | 파절 · cervical 약함 · 교합 깊음 · 근관 안 보임(외상 후 석회화) | ferrule 가능? → 차라리 implant가 나을 수도 | 파절 원인 파악 · 신경치료 + 보철 지식 {jb:E10}
+R: 77세 남 #12 (p.10-13) | {r:equi-gingival line} 치관부 파절 · {r:deep bite} | 교수님: 근관치료 No | 자연치가 부러질 교합이면 {r:post·core는 못 버팀}
+R: 69세 남 #22 (p.14-19) | 통증 없음 · {r:ferrule 애매} · 대합치도 파절 | endo → post → core → {r:1년 후 implant} | 교합이 깊어 post가 버티지 못함
+R: 80세 남 #47 (p.61-63) | {r:마모 아주 심함} · 시큰거림 | 10번 patency × → {r:8번}으로 negotiation 성공 | 8번도 안 되면 포기 {jb:E09} {jb:E12}
+R: 20/F #21 (p.65-67) | 외상 · 변색 · 석회화 · 치근 짧음 | 막혔다고 보고 미백 → 통증·병소 → 근관치료 | 막혀 있다고 무조건 괜찮은 게 아님
+R: 김치 환자 #15·#16 (p.72-75) | #15 만곡+석회화(안 아픔) · #16 percussion 통증 | 1주 약 → 입구 못 찾아 근관충전 → 증상 없어 중단 → 2년 양호 | 바로 endo × · 증상 없으면 더 치료 ×
+N: 치료계획 사진 문제(E10: CEJ까지 파절·석회화·무증상)의 답은 '발치 후 Implant / endo + post + core + Cr' 두 줄 + ferrule·deep bite 판단.
 
-#TBL 지능·인지·기억 — 나이에 따라 무엇이 남고 무엇이 줄까 | k=PSY | src=[[PSY:8]] [[PSY:9]] [[PSY:11]] [[PSY:12]] [[PSY:13]]
-H: 구분 | 안정·증가 | 감소
-R: 지능 1 {jb:B01} | {r:언어성}(어휘·이해·상식) | {r:동작성}(시각·운동, 속도)
-R: 지능 2 | {r:결정지능}(경험·지식 판단 — 증가) | {r:유동지능}(새 정보 추론·순발력)
-R: 인지기능 {jb:B02} | — | {r:정보처리속도} · {r:선택·분할주의력} · {r:실행기능}
-R: 기억 | {r:의미기억}(에베레스트) · {r:절차기억}(자전거) | {r:삽화기억}(최근 사건·시간·공간)
-R: 언어 | 저장된 어휘 | {r:이름대기}(word finding — 떠올리는 과정)
-R: 진료 시사점 | 반복 설명 · 큰 글씨 유인물 · 천천히 말하고 기다리기 | 
+#TBL 미백 — Splotchy vs Dingy · 종료 · 재발 | k=BLE | src=[[BLE:32]] [[BLE:33]] [[BLE:36]] [[BLE:43]] [[BLE:44]] [[BLE:45]] [[BLE:58]]
+H: 항목 | 미백 중(산화) | 재변색 중(환원)
+R: 이름 | {r:Splotchy} {jb:K01} | {r:Dingy} (stage) {jb:K01}
+R: 무엇 | 치아 표면이 균일하게 밝아지지 않고 얼룩덜룩한 상태로 남아있는 것 | 재발도 radial surface가 한꺼번에가 아니라 부분적으로 staining
+R: 기전 | incisal(dentin 가장 얇음) → middle → cervical(가장 두꺼움) 순으로 미백 진행(M. Lenhard 1996) | relapse(rebound) = 표면에 착색 물질이 다시 붙음 = {r:환원 과정}
+R: 대처 | 종료하지 말고 {r:continue bleaching}(p.58 item 9) · 4주에도 얼룩덜룩 → need more bleaching | {r:touch-up bleaching}으로 다시 산화 — 10년 후 재방문 증례 {r:1 week} touch-up {jb:K02}
+R: 끝·지속 | 종료 3 {jb:K01}: ① {r:No splotchy & no improvement of color for 2 weeks} ② {r:Mutual communication}(understanding of saturation point · Pt's vs Dr's expectation) ③ Shade shift {r:4-6 grades} more lighter than pre-Op | initial color relapse {r:within 2 weeks} slightly · longevity {r:1~3 years} or permanent · {r:touch-up annual bleach}
+R: 교수 강조 | p.32 "굉장히 중요한 용어!" | p.44 "Splotchy, Dingy 둘 다 중요한 단어!!"
+N: 20·19년 변형(괄호 (20,19))은 두 단어의 설명을 주고 명칭·기전·종료시점을 물었다(K01). K02(23) JB 답의 '1-2주'는 JB 표현 — 슬라이드 증례는 1 week.
 
-#TBL 치매 vs 우울증 vs 심리적 변화 | k=PSY | src=[[PSY:17]] [[PSY:18]] [[PSY:24]] [[PSY:33]] [[PSY:38]] [[PSY:41]]
-H: 항목 | 치매 {jb:B03} | 노인 우울증 {jb:B04} | 심리적 변화 {jb:P02}
-R: 정의·특징 | 이전 대비 기억력 포함 여러 인지기능 저하 → ADL 지장, 의식장애 × | 우울하다기보다 {r:신체불편감·기억력↓·불안/초조·의욕/흥미 상실·식욕↓/불면} | {r:경직성·조심성·내향성·의존성·우울 경향} 증가(개인차 큼)
-R: 유병률 | 65세↑ 9-10%, 5세마다 2배 | 지역사회 10-25%(주요 1-4%), 요양시설 30-45% — 치매보다 흔함 | —
-R: 원인 | AD 70%↑ > 혈관성; 가역적(갑상선·B12·영양) | 생물학적(유전·신경전달물질·신체·뇌) + 심리사회(성격·상실·경제·역할) | 신체 노화 + 사회경제 변화(상실·loneliness)
-R: 경과·시사점 | 초기 최근기억 / 중기 먼 과거 부분·실행증 / 말기 신체 문제; 섬망 상태에선 진단 × | 설명 안 되는 증상 → 우울, 순응도, 방문환자에 흔함, 잘 치료됨 | 서서히 적응, 소통 후 결정, 경청·맞장구, 자신감
+#TBL 변색의 원인·색과 미백 반응 — 잘 되는 것 vs 안 되는 것 | k=BLE | src=[[BLE:3]] [[BLE:6]] [[BLE:10]] [[BLE:12]] [[BLE:14]] [[BLE:17]] [[BLE:18]] [[BLE:20]] [[BLE:25]] [[BLE:28]] [[BLE:47]] [[BLE:57]]
+H: 원인·색 | 미백 반응 | 처치·비고
+R: Exogenous(plaque·pellicle · 음식·음료·담배·차·chromogenic bacteria · 교정 후 탈회) | {r:Mostly positive} to vital bleaching | coffee/tea는 whitening effect 비슷하나 {r:different maintenance plan}
+R: Endogenous(TC·erythroblastosis fetalis·porphyria·sickle cell anemia·thalassemia) | vital bleaching 반응↓ | non-vital bleaching · 라미네이트·resin veneer
+R: TC Class I(light yellow·brown·gray · incisal 3/4 · no banding) | {r:good prognosis} | mild TC = ideal case
+R: TC Class II(deep yellow~brown·gray · no banding) | {r:variable prognosis} | banding이 없어 비교적 반응 잘함(필기) — TC 변색 전반은 vital bleaching 6개월·15-20%(필기) · combination 각광
+R: TC Class III(dark gray or blue · {r:marked banding}) | {r:not response} | {r:laminate or walking bleaching}(단 1년 미백 C4→B3 성공 증례 p.41)
+R: Simple fluorosis(갈색) · brown fluorosis | 미백으로 어느 정도 해결 · fluorosis {r:about 80% response} | ideal case
+R: Opaque white(enamel dysmineralization) · white spots | {r:반응 ×} · white spots {r:not removed} | home bleaching + {r:microabrasion}(HCl + abrasive) + 레진
+R: Traumatic pulp necrosis | {r:walking bleaching} 효과 좋음 | 교정적 정출 후 보철도 가능
+R: Secondary dentin by trauma(석회화 근관) | vital bleaching 적응증 | 변색된 한 치아만 home bleaching(single tooth · horizontal margin)
+R: Shade A(red-brown)·B(red-yellow) | 잘 반응 | Shade guide 최명 {r:B1} · 최암 {r:C4}
+R: Shade C(gray brown)·D(red-gray) · blue-gray | 반응 잘 안 함 | 전신질환 gray-blue → 전치부만 라미네이트 등
+R: 나이·초기색 | {r:young & yellow > old with less yellow} · gender {r:similar} | 젊은이는 dentin tubule 직경이 커 미백제 침투 좋음 · 초기 a*(red)↑ → total color change↑
+N: 예후 한 줄 = Brown-orange-yellow than Blue-gray → Better prognosis(p.28). Ideal case = good dentition & OH · 2-5 shade shift · aging·smoking·food·mild TC·brown trauma·brown fluorosis(p.47).
 
-#TBL OHRQoL 측정 도구 3 | k=OHQ | src=[[OHQ:13]] [[OHQ:14]]
-H: 도구 | 문항 | 영역 | 개발 | 대상
-R: {r:GOHAI} | 12 | 신체기능·통증/불편·심리사회(3) | Atchison & Dolan | 노년층 특화
-R: {r:OHIP-14} {jb:C04} | 14(OHIP-49 축약) | 기능제한·신체통증·정신불편·신체/정신/사회적 능력저하·handicap(7) | Slade & Spencer 1994 {jb:C14} | 일반 성인
-R: {r:OIDP} | 일상수행 | 식사·대화·수면 등 일상 수행 영향 | | 
-R: 개념 | OHRQoL = 임상 지표(DMFT·치주낭)로 포착되지 않는 환자 경험, patient-centered; 측정 3 = 기능 제한·통증/불편·심리사회 {jb:C07} | | | 
+#TBL 미백의 종류 — home · office · combination · walking · microabrasion | k=BLE | src=[[BLE:40]] [[BLE:46]] [[BLE:48]] [[BLE:52]] [[BLE:54]] [[BLE:62]] [[BLE:73]] [[BLE:84]] [[BLE:85]] [[BLE:90]] [[BLE:96]]
+H: 종류 | 약제·농도 | 방법·시간 | 핵심 주의
+R: Home bleaching(NGVB) | {r:10-15% carbamide peroxide} gel(safe & effective) | matrix(block-out reservoir · 소구치까지 · labial scalloped/lingual horizontal) · {r:1.5~2 hours / 2 times per day}(필기 2회/일 1-1.5시간) · 1주 간격 {r:4~8 weeks} | overfilling·biting·양악 동시 × · overnight와 2 h/day 차이 없음 · 상악 먼저
+R: In-office(power) bleaching | 35% H2O2 · {r:pre-mixed gels in syringe} | {r:light-cured dental dam}(1.5-2 mm · 4-6 mm · enamel 0.5 mm · 30초) + light·laser 촉매 | 35% H2O2 누출 시 gum toxicity → saline irrigation · 열원으로 통증
+R: Combination approach | {r:35% H2O2 gel 30분}(power) + matrix | power = rapid initial change → matrix {r:2-4 weeks} = maintenance | decreased time · increased control·safety·compliance — TC 변색에 각광
+R: Laser bleaching | bleaching agents + laser energy | 보통 1시간 · oxygen radicals fast & more | {r:Laser on their own don't bleach}, merely catalyze oxidation
+R: OTC | 마트 미백제 | 환자가 사서 낌 | control이 안 돼 시림 → 요즘 추천 ×
+R: Non-vital(walking) bleaching | 30% H2O2 + sodium perborate(2:1) → pH {r:7-8.7} | barrier {r:1-2 mm}(bobsled tunnel · sky slope) | barrier 없으면 {r:cervical root resorption}
+R: Microabrasion(Opalustre) | {r:6.6% HCl} + silicon carbide | coat 1 mm → OpalCup → burnishing | 깊이 {r:0.2 mm} 이하 · 흰·갈색 탈회반점·fluorosis
+N: Vital bleaching = in-office(power) · home(NGVB) · combination/laser · OTC / Non-vital = walking / Microabrasion (p.46).
+
+#TBL Walking bleaching — 약제 pH · barrier · 후처치 | k=BLE | src=[[BLE:90]] [[BLE:96]] [[BLE:97]] [[BLE:98]] [[BLE:99]] [[BLE:100]] [[BLE:101]] [[BLE:102]] [[BLE:103]]
+H: 단계 | 슬라이드 | 포인트
+R: 약제 pH | 30% H2O2 {r:2-3} · 30% H2O2 + S.P(2:1) {r:7-8.7} · Water + S.P {r:9-11} · 10% C.P(6-8) ± S.P alkaline | {r:Buffered alkaline pH of H2O2} has more significantly whitening effect
+R: Barrier 모양 | Labial view {r:"Bobsled tunnel"} outline · Proximal view {r:"Sky slope"} | Proximal tubules must be protected
+R: Barrier 두께·재료 | {r:1-2 mm thick}(p.97 2 mm) by transfer barrier probing · G-Ionomer·IRM·ZPC·Cavit(p.97 GI·resin·ZPC) | 그림: 밖 x · 근관 안 x + 2-3 mm → x + 1 mm
+R: 합병증·예방 | {r:cervical root resorption} due to lacking of barrier | 예방 5: low concentration · not too moist · good sealing · not too excess · check occlusion
+R: 후처치 | light cured G-I layer toward labial wall(dentin shade) → minimal bulk of resin · opaque/light color resin | 변색 dentin 과삭제 → {r:high translucency after WB}
+R: Clinical tips | 잔존 치질이 reasonable → {r:non-posted acid-etching composite} (ant. tooth) | re-discoloration은 {r:externally} Power or Home bleach
+N: p.78 이후는 25년 수업에서 따로 다루지 않은 쪽(필기) — 미출제 대비.
+
+#TBL 미백의 부작용과 대처 | k=BLE | src=[[BLE:39]] [[BLE:56]] [[BLE:75]] [[BLE:77]] [[BLE:79]] [[BLE:80]]
+H: 부작용 | 원인·설명 | 대처
+R: Color relapse {jb:K02} | 착색 재부착 = 환원(dingy) | {r:touch up bleaching}
+R: Gum & Lip irritation | 35% H2O2 누출 시 high toxicity to gum | immediate saline irrigation · analgesics · daily iodine dressing · vaseline coating
+R: Reduced bond strength | {r:oxygen radical}이 dentin에 남아 polymerization 방해 | 미백 후 레진은 {r:2주 뒤}
+R: Thermal sensitivity | 고농도 미백제 → fluid inward movement(hydrodynamic) · {r:dentin hypersensitivity is inevitable} · lamp 열원 | passive: 농도·양·시간·빈도↓ / active severe: fluoride·5% potassium nitrate tray 10-30 min · 진통제 / mild: desensitizing tooth paste
+R: Tooth dehydration | 물이 빠져 chalky | 내일 아침 조금 어두워질 수 있음을 미리 설명
+N: 미백 후 주의사항(p.56): 시릴 수 있음(불소 도포) · 당분간 착색음료·담배 피할 것 · 탈수로 지금이 더 하얗게 보임. Light 자체는 pulp·gingiva에 추가 해 없음(p.76).
+
+#TBL 노화에 따른 치아 경조직 변화 — 조직별 한눈에 | k=HARD | src=[[HARD:6]] [[HARD:7]] [[HARD:8]] [[HARD:9]] [[HARD:10]] [[HARD:11]] [[HARD:12]] [[HARD:13]] [[HARD:42]]
+H: 조직 | 노화에 따른 변화(슬라이드·필기) | 임상에서 보이는 것
+R: 법랑질 | 가장 큰 변화 = {r:색조}·{r:투과도} · {r:교모}·{r:마모}·{r:파절}("닳았다") | 교모면이 어두우면 오래되어 {r:경화상아질} → 시리지 않음 · bevel 흔적이 있는 치경부 마모 = 수복물 탈락 후 · 교합면만 닳는 것이 아니다
+R: 상아질 | 근관 {r:석회화} → 좁아짐 · {r:반응성 상아질}(세관 구조 연결 × · 방향의 변화 · 세관 없음) | 하악 전치 신경관이 안 보임 · 20년 후 치조골 level↓·신경관 불투명·동요 예측
+R: 백악질 {jb:Y02} | 시간이 지날수록 {r:침착} → 병적 조건이 아니면 {r:hypercementosis처럼 두꺼워짐} · 불룩해도 배열은 {r:층상} · cementoblast가 기질 안에 갇힘 | age estimation(Kasetty 2010) · JB 답: tertiary dentin과 달리 새 cementum은 기존 것과 {r:방향성 동일}
+R: 치수 | 치수강이 좁아짐 · 양쪽 벽 석회화 · {r:치수석} 랜덤 | 근관치료 시 치수석이 똑 떨어져 나오거나 아래에 막힘 → {r:patency} 확보 후 꺼냄
+R: 종합(p.42) | Abrasion · Abfraction · Attrition · Cracked tooth · Erosion {jb:Y06} · Dental caries · Hypersensitivity | 연령 증가 → 치아의 소모 → {r:세월의 흔적} — 새것으로 되돌릴 수 없음
+N: p.6 슬라이드의 변화 대상은 법랑질·상아질·백악질·치수·치조골·연조직 6개 — 강의는 경조직 4개를 차례로 다룸. Y02의 '방향성 동일'은 JB 답 문장이고 25 자료에는 "배열의 구조는 층상"으로만 있음. Y06(erosion intrinsic source)은 25 자료에 목록이 없음.
+
+#TBL 노인 치근우식 — 위험요인 7 · 특징 3 · active vs inactive | k=HARD | src=[[HARD:15]] [[HARD:16]] [[HARD:17]]
+H: 묶음 | 슬라이드 | 필기 풀이
+R: 위험요인 7 | 1. {r:Gingival recession} 2. {r:Poor oral hygiene} 3. {r:Cariogenic diet} 4. Presence of multiple restorations or multiple missing teeth 5. {r:Existing caries} 6. {r:Xerogenic medications} 7. {r:Compromised salivary flow rate} | 치은퇴축 진행 · 관리 습관 변화·동작 어려움 · 식사 변화 · 수복물·상실치 주변 관리 어려움 · 원래 있던 우식 악화 · 전신건강 변화로 타액선 문제 → 치아가 교모되고 치근이 노출되어 {r:치근우식 호발}
+R: 특징 3 {jb:Y01} | 1. {r:Involves new surfaces}: buccal or lingual smooth surface, interproximal area 2. {r:Recurrent caries} 3. {r:Especially, interproximal area} | 원래 호발 부위가 아닌 협설 평활부에도 이환 · 치료받은 부위가 재발(잘 안 닦이는 자리) · 치간부는 당연히 호발
+R: Active lesion | Visual: Yellowish or light brownish · {r:Dull/matte} · Typically {r:covered by biofilm} / Tactile: Feels {r:soft, sticky/leathery} on gentle probing · With/without localized/manifest cavitation · Margins of cavity are {r:sharply demarcated} | spoon excavator를 대면 inactive의 반대
+R: Inactive lesion | Visual: Yellowish, brownish or black · {r:Shiny smooth} · Often {r:not covered by biofilm} / Tactile: Feels {r:hard} on gentle probing · Cavity formation may be rough/uneven · Margins of cavity are {r:smooth} | shiny하고 경화된 느낌
+N: 필기 p.17 — 치근우식을 만나면 치료할지 일단 지켜볼지를 정해야 하고, 그 기준이 active lesion 여부의 판별. Y01 JB 답(24 유연지 판)은 특징 1~3번 문장 그대로, JB 해설은 4번 active/inactive 표도 참고하라고 함.
+
+#TBL 치근우식 관리 — 4단계와 수복 3방법 | k=HARD | src=[[HARD:26]] [[HARD:27]] [[HARD:28]] [[HARD:29]] [[HARD:30]] [[HARD:31]] [[HARD:32]] [[HARD:33]] [[HARD:34]]
+H: 단계·방법 | 병소·적응 | 내용(슬라이드 문장)
+R: ① Prevention {jb:Y05} | initial하게 발견된 치근우식(필기) | Oral hygiene: prevention of periodontal disease and recession, removal of plaque · Dietary counselling: reduction in the frequency and amount of {r:refined carbohydrate} intake · Saliva stimulation: mastication such as chewing {r:sugar free gum}
+R: ② Chemomechanical {jb:Y04} | 예방적인 방법에 가까움(필기) | {r:Fluoride}: by modifying the dynamics of the carious process, delivered systemically or topically · {r:Chlorhexidine}: Antimicrobial action · {r:Silver diamine fluoride}: Antimicrobial action against a cariogenic biofilm, {r:FDA not approval} · {r:Delivery}: mouth rinse, toothpaste, chewing gum, varnishes
+R: ③ Caries debridement & lesion recontour | Lesion: {r:leathery, shallow} · {r:readily maintained plaque-free} | Recontoured using {r:polishing burs} until the surface is smooth and easily cleansable by the patient — 필기: 자정이 잘 되도록 bevel 주듯 열어줌
+R: ④ Caries dentin to be removed & lesion restored | Lesion: {r:soft} · difficult to maintain plaque-free · {r:large, cavitated leathery} | Difficult restorative management: visibility, moisture control, access, proximity of pulp, proximity to gingival margin and the high organic content of the dentin
+R: ④-1 Atraumatic restorative treatment {jb:Y03} | 드릴 말고 spoon excavator 등 수용기구로 정리(필기) | The removal of carious lesion using {r:hand instruments} · Cavity restoration with {r:glass ionomer cement or RMGI cement} — 필기: 예방효과·recontour 효과, {r:final 치료방법}으로도
+R: ④-2 Chemomechanical caries removal {jb:Y04} | 너무 광범위해 수용기구로만 제거가 힘들 때(필기) | Carisolv(Medi-Team, Sweden): {r:0.5% sodium hypochlorite}, {r:0.1 M amino acids}, glutamine, leucine, lysine · The hypochlorite dissolves the decay matter · Caries removal time: Carisolv {r:10.62 min} / Conventional {r:4.42min}
+R: ④-3 Conventional caries removal | proximal and lingual lesions | Proximal: {r:buccal access} · Lingual: lingual access · Material: Amalgam, Composite resin, Glass-ionomer cement — 필기: 인접면은 대부분 직접수복
+N: ④의 세 방법은 아래로 내려갈수록 침습적(필기 p.31). 'chemomechanical management'(②, p.28)와 'chemomechanical caries removal'(④-2, p.33)은 다른 슬라이드 — Y04는 22년에 'caries removal', 21·20년에 'management 4가지'로 출제되어 JB 답이 판마다 다름. 필기 p.26 "굳이 외우지 않아도" — 그러나 ①·②는 JB 서술형으로 반복 출제.
+
+#TBL Caries control restoration — 3단계 | k=HARD | src=[[HARD:38]] [[HARD:39]] [[HARD:40]] [[HARD:41]]
+H: 단계 | 항목(슬라이드) | 목적
+R: {r:Initial treatment} | Caries risk assessment · Education and motivation · Thorough evaluation and documentation of lesions · {r:Temporization of all large cavitated lesions} · Specific nonrestorative, therapeutic treatment · Plaque control · Dietary control | 위험 평가·교육과 큰 병소의 임시 처치
+R: {r:Preliminary assessment} | {r:Gingival response} as a marker of plaque biofilm control effectiveness · Arrest of cavitated lesions with {r:SDF} as indicated · {r:Pulpal response} of teeth with selective caries-excavation and restoration · Assessment of {r:patient compliance} with medications, oral hygiene, and dietary control measures | 이후 평가할 때 보는 항목 4가지(필기)
+R: {r:Follow up care} | Careful clinical evaluation of teeth · Replacement of caries-control restorations with {r:permanent restorations} · Monitoring of plaque biofilm and {r:mutans streptococci (MS) levels} · Further antimicrobial treatment and dietary reassessment as indicated by new cavitations, noncavitated lesions, or high MS levels | 우식이 재발하지 않도록 장기적인 관점에서 관리(필기)
+N: 필기 — 노인 환자의 치근우식 처치에서 굉장히 중요한 접근법 중 하나 · "다 외워서 쓰라는 게 아니라, 크게 어떻게 처치하고 세부사항이 어떻게 구성되어 있는지를 이해하고 임상에서 적용할 수 있으면 된다". 미출제.
+
+#TBL 헷갈리는 '어려움' 문항 4종 — 무엇을 물으면 어떤 목록인가 | k=PAIN | src=[[PAIN:16]] [[PAIN:18]] [[PAIN:93]] [[PAIN:92]] [[PAIN:94]]
+H: 문항 문구 | 답이 되는 슬라이드 | 목록
+R: 통증 평가(assessment)를 어렵게 하는 이유 3가지↑ {jb:J09} | p.16 Challenges of pain assessment | {r:Myths("natural" with aging)} · {r:Fears about addiction} · {r:Sensory and cognitive impairments} · {r:Under-reporting} · Co-morbidities·caregivers' beliefs · Lack of congruence · Caregiver misinterpret
+R: 환자와 보호자(caregiver) 간 어려운 점 3 {jb:J03} | p.16의 뒤 3항목 | {r:Co-morbidities complicating the clinical picture and caregivers' beliefs} · {r:Lack of congruence between patients' and caregivers' perceptions} · {r:Caregiver may misinterpret pain perception}
+R: 평가의 어려운 점을 3가지 분류로 {jb:J02} | p.93 Patient related barriers | {r:Communication} · {r:Psychological}(anxiety·distress·depression·anger·dementia — masking symptoms) · {r:Attitudinal issues}(fear of addiction·tolerance·side effects · pain was inevitable)
+R: 평가 시 고려할 점 · 안면통증을 지속·심화시키는 요인 {jb:J11} | p.18 도넛 4칸 | {r:Pain perception} · {r:Depression} · {r:Sleep problems} · {r:Organ deterioration}
+R: (미출제) 효과적 통증 관리의 장벽 — 의사·체계 | p.92 · p.94 | 의사: willingness to treat aggressively · take pain seriously · knowledge 부족(805명 중 >50%가 의사를 바꿈) / 체계: pharmacy · transportation · high-dose opioids · home caregiver 부재
+N: 20년 판본 "통증치료 및 관리를 어렵게 하는 요인"(J09와 연결)은 JB 답이 p.16 7개 — 다만 p.92~94 barriers로도 답할 수 있게 둘 다 준비.
+
+#TBL 인지장애 환자의 통증 평가 — 순서 · 비언어 지표 6 · PAINAD | k=PAIN | src=[[PAIN:17]] [[PAIN:27]] [[PAIN:31]] [[PAIN:32]] [[PAIN:33]] [[PAIN:34]]
+H: 도구 | 내용 | 포인트
+R: 평가 순서(26) | {r:Self-report}(직접 묻기) → {r:Simple scale}(NRS·Faces) → {r:Behavioral observation} | 생리적 지표(혈압·맥박)만으로 판단 ×
+R: Nonverbal 앞 3 {jb:J01} | {r:Facial expressions}(grimacing) · {r:Vocalizations}(crying·moaning·groaning) · {r:Body movements}(guarding) | 23년 vocalization 빈칸
+R: Nonverbal 뒤 3 {jb:J01} | Changes in {r:interpersonal interactions}(combative·disruptive·resisting care·decreased social interactions·withdrawn) · {r:mental status}(confusion·irritability·agitation·crying) · {r:usual activity}(refusing food·increased wandering·change in sleep habits) | 24년 빈칸 · 21년 예시
+R: PAINAD(advanced dementia) | Breathing · Negative vocalization · Facial expression · Body language · Consolability — 각 {r:0-2} | 총 {r:0-10}: 1-3 mild · 4-6 moderate · 7-10 severe
+R: 1차원 척도 | Simple descriptive · 0-10 Numeric · VAS · IOWA pain thermometer · Faces(Wong-Baker) | self-report가 어려울 때(p.28 필기 "그럴 때에는 pain scale이나")
+N: 치매가 진행하면 통증 강도와 진통제 투여는 역상관, self-report가 불가능해져 pain behaviors·facial expressions에 의존 — abrupt changes in behavior and function이 최선의 지표.
+
+#TBL 노인의 수면 — 증가 vs 감소 | k=PAIN | src=[[PAIN:55]] [[PAIN:56]] [[PAIN:57]] [[PAIN:58]] [[PAIN:63]]
+H: 구분 | 증가 ↑ | 감소 ↓
+R: 수면 단계 {jb:J04} | {r:Sleep latency} · {r:Stage N1 sleep} · {r:Wake after sleep onset} | {r:Slow wave sleep}(깊은 수면) · {r:REM sleep}
+R: 노인의 수면 {jb:J08} | {r:Time in bed} · Number of awakenings · Time to fall asleep · Dissatisfaction with sleep · Tiredness during day · {r:Napping} | {r:Total sleep time at night} · Time of deep sleep · Time of REM sleep
+R: PSG first night effect | awakenings and arousals · sleep and REM latency · light sleep | sleep efficiency · REM · slow wave sleep
+R: 결과 | 수면 방해 → 통증 빈도 · 낮 기능 저하(피로·우울·활동 감소) | {r:pain threshold}(disturbed sleep lowers pain thresholds)
+R: 수면 문제 5 {jb:J13} | Circadian rhythm disorder · Primary sleep disorder · Medical illness · Medication/polypharmacy · Dementia | 26: + insomnia · sleep-disordered breathing · restless legs syndrome
+N: ⚠ JB의 'NREM stage 증가'는 Stage N1(얕은 수면)↑ — slow wave sleep도 NREM이지만 ↓. J08 다른 판본 한국어 답의 '수면 시간 증가'는 time in bed(침대에 있는 시간)로 보임 — total sleep time은 ↓.
+
+#TBL 노인 약물 — 부작용과 구강 영향 | k=PAIN | src=[[PAIN:51]] [[PAIN:81]] [[PAIN:82]] [[PAIN:83]] [[PAIN:84]] [[PAIN:85]] [[PAIN:86]] [[PAIN:87]]
+H: 약물 | 특징 | 부작용·주의 | 구강
+R: Acetaminophen | osteoarthritis의 treatment of choice · analgesic ceiling | max {r:4 gm/day} · 간수치·pancytopenia → 처방 전 혈액검사 |
+R: {r:Nonselective NSAIDs} {jb:J10} | inhibit prostaglandin synthesis · short term · ceiling effect | {r:GI bleed · renal impairment · platelet dysfunction} {jb:J07} · (26) BP/CV risk — 단기간·신기능 확인 | erythromycin · NSAID → toxicity(슬라이드 그대로)
+R: Selective COX-2 inhibitors | GI 부작용·platelet inhibition 감소 | {r:cardiovascular accident} |
+R: {r:TCA}(amitriptyline·desipramine) | neuropathic·depression·sleep disturbance, 부작용으로 잘 안 씀 | (26) 항콜린성·기립성 저혈압 · 인지저하 · 낙상 | {r:xerostomia · potentiation of pressor effect} {jb:J07}
+R: Duloxetine | FDA approved for neuropathic pain | |
+R: Gabapentin / pregabalin | neuropathic pain | 졸림·어지럼·부종 → 신기능에 따른 용량 조절 |
+R: {r:Carbamazepine} / oxcarbazepine | trigeminal neuralgia | pancytopenia · 어지럼·저나트륨혈증·상호작용 → CBC/Na 모니터링 |
+R: SSRI(first line) | fluoxetine · paroxetine · sertraline · citalopram | GI trouble · insomnia · {r:bleeding time↑} | <18% dry mouth · dysgeusia · stomatitis · glossitis · bruxism
+R: Lithium | | | xerostomia · lichenoid stomatitis · metallic taste
+R: Bisphosphonates / antiresorptives | | | {r:MRONJ}(26 강조)
+R: Antihypertensives · anticholinergic · polypharmacy | | | xerostomia · gingival enlargement(일부 강압제) · caries·삼킴 곤란(anticholinergic) · 상호작용
+R: Opioid | | 진정·변비·의존 — 만성 비암성 안면통에서는 제한적 |
+N: 원칙 = start low, go slow · 신기능·낙상·구강건조·출혈·인지 확인. 26 필기: 낙상과 구강건조증은 여러 차례 언급, bisphosphonate 강조.
+
+#TBL 노인 구강안면통증 4 — 위치·유발·소견·치료 | k=PAIN | src=[[PAIN:75]]
+H: 구분 | Localization · Location | Evoking stimulus · Findings | Treatment | 필기
+R: Temporomandibular disorders | Fair-poor · usually unilateral | Chewing · limited opening·TMJ clicking/popping/crepitation·TMJ·저작근 압통 | NSAIDs · tranquilizers · physiotherapy · behavioral therapy · TMJ surgery |
+R: {r:Trigeminal neuralgia} | {r:Good} · unilateral | Ipsilateral nonpainful stimulus · findings none | {r:Carbamazepine} · phenytoin · baclofen · nerve block · neurosurgery | 삼차신경 영역 · 날카로움 · 수 초~수 분 8-10점 · 갑자기 안 아파지기도
+R: {r:Postherpetic neuralgia} | {r:Good} · unilateral | Ipsilateral nonpainful stimulus · scarring·history of herpes zoster(varicella) | Tricyclic antidepressants and neuroleptics · topical capsaicin | 신경절 따라 · "반짝" 느낌이 잘 없음 · 초기엔 치수염과 구분 어려움
+R: {r:Atypical facial pain} | {r:Poor} · unilateral or bilateral | none · none | Tricyclic antidepressants · behavioral therapy | broad · 올 때마다 위치가 바뀜 · NRS 최대 5-6
+N: 진료실에서 가장 많은 4가지 — 위치·quality·강도를 기록하면 어떤 약을 줄지가 달라진다. 노인에서는 soft tissue lesion과 BMS 구분이 특히 중요(p.78).
+
+#TBL 지능·인지·기억 — 나이에 따라 무엇이 남고 무엇이 줄까 | k=PSY | src=[[PSY:7]] [[PSY:8]] [[PSY:9]] [[PSY:10]] [[PSY:11]] [[PSY:12]] [[PSY:13]] [[PSY:14]]
+H: 구분 | 유지·증가 | 감소 | 기억 요령(필기)
+R: 지능 1 {jb:B01} | {r:언어성 지능} — 어휘, 이해능력, 일반상식 — ==연령 증가에도 비교적 안정적== | {r:동작성 지능} — 시각 및 운동기술에 의존 — ==연령 증가에 따라 감소하는 경향== | 오히려 어휘 등은 증가 · 감소하는 쪽은 주로 '속도'
+R: 지능 2 {jb:B01} | {r:결정지능} — 경험과 지식에 기반한 판단 및 문제해결 — 연령 증가에 따라 {r:증가}하는 경향 | {r:유동지능} — 새로운 정보를 파악하여 추론하고 상황에 대처 — 연령 증가에 따라 {r:감소}하는 경향 | 유동 = 순발력·임기응변 = speed(동작성처럼)
+R: 그래프(Salthous TA. 2009) | World Knowledge(Shipley·Antonym·Synonym Vocabulary) — {r:preserved} | Speed of Processing · Working Memory · Long-Term Memory — {r:declines} | 우상방 = 경험 기반 사전지식 / 우하방 = 처리속도·기억력
+R: 처리속도·주의 {jb:B02} | — | ==정보처리속도의 감소== · ==선택주의력 저하==(시끄러운 식당 대화) · ==분할주의력 저하==(멀티태스킹) · 지속주의력(자극이 복잡·많아질수록) | 천천히 입력 · 대답을 충분히 기다리기
+R: 기억 {jb:B02} | {r:의미기억}(Semantic — 에베레스트) · {r:절차기억}(Procedural — 자전거 타기·양치, 소뇌) | {r:삽화기억}(Episodic — 연령 증가에 민감, {r:최근 기억} 중심 사건과 일화) | "기억의 모든 측면이 노화에 영향을 받는 것은 아님" — 주로 삽화기억!
+R: 언어 | 어휘능력(저장된 어휘 자체는 손상 ×) | {r:이름대기 어려움}(Word finding / Naming difficulty) | 떠올리는 과정이 손상
+R: 실행기능 {jb:B02} | — | ==실행기능 저하== — 계획·구성·효율적 실행, 추상적 개념·판단·문제해결 — {r:노화에 민감} | 복잡한 기능 + speed 관련
+R: 개인차 {jb:B01} | 어느 정도 유지되는 분들 | 확연하게 떨어지는 그룹(병적 노화) | "노인이 되면 모든 지적 능력이 떨어진다?" → (2) 아니다
+N: 진료 시사점(p.14) = 유동지능의 저하 → 새로운 정보를 단시간 내에 습득하는 데 어려움 · 교육이 필요한 경우 {r:반복 설명} · {r:큰 글씨}로 된 유인물(필기 "유인물의 글씨는 커야 한다!").
+N: 23·24년 객관식은 이 표의 한 칸을 반대로 바꾼 '옳지 않은 것' — 결정지능 '감소'(B01) · 의미기억 '저하'(B02).
+
+#TBL 치매 vs 우울증 vs 심리적 변화 | k=PSY | src=[[PSY:17]] [[PSY:18]] [[PSY:22]] [[PSY:24]] [[PSY:32]] [[PSY:33]] [[PSY:34]] [[PSY:35]] [[PSY:37]] [[PSY:38]] [[PSY:40]] [[PSY:41]] [[PSY:42]]
+H: 항목 | 치매 {jb:B03} {jb:P03} | 노인 우울증 {jb:B04} {jb:P01} {jb:P04} | 노인의 심리적 변화 {jb:P02}
+R: 정의·특징 | 이전에 비해 · {r:기억력을 포함한 여러 인지기능 저하} · {r:일상생활수행에 지장} · {r:의식장애에 기인되지 않음} = Dementia syndrome | 기분이 우울하다고 호소하기보다는 {r:신체불편감} · 기억력 저하 · 불안, 초조 · 의욕, 흥미 상실 · 식욕감퇴, 불면 | {r:경직성} · {r:조심성} · {r:내향성} · {r:의존성} · {r:우울 경향} 증가
+R: 무엇과 구분 | ≠ Intellectual disability(stable) · ≠ Delirium, Coma — 섬망 상태에선 진단 × | 정상적 우울감(1주 이내 · 기능 유지 · 경함) vs 우울증({r:2주 이상} · 기능 지장 · 수면·식욕·의욕·자신감·죄책감·자살사고) | 우울 경향 ≠ {r:임상적인 우울증}(허무적인 사고 "이러면 뭐하냐~")
+R: 얼마나 흔한가 | 65세 이상 {r:약 9~10%} · 65세 이후 매 5세마다 약 {r:2배} · 85세 이상 30-40%(필기) | 지역사회 {r:10~25%}(주요우울증 1~4%) · 일차진료 17~30% · 입원 10~45% · 요양시설 {r:30~45%} — {r:치매보다 흔함} | 신체 및 사회적 변화 정도, 원래 성격에 따라 {r:개인차가 매우 큼}
+R: 원인 | 1위 {r:알츠하이머 71.3%} > 2위 {r:혈관성 16.9%} > 루이체 파킨슨병 3.4% · 가역적(갑상선기능저하증 · 비타민B12 결핍 · Malnutrition) | 생물학적(유전적 취약성 · 신경전달물질 이상 · 신체건강 이상 · 뇌 변화) + 심리사회적(성격적 취약성 · 다양한 상실 경험 · 경제적 어려움 · 역할 갈등) | 신체적 노화(청력·시력 저하 · 공존 신체질환) + 사회경제적 변화(경제적 문제 · 사별·애도·상실 · Loneliness) = "Object Loss"
+R: 경과·치료 | 초기 최근기억 → 중기 먼 과거기억 부분상실·실행증·정신행동증상 → 말기 사람 지남력·신체적 문제 / 약물 원칙 Start low, go slow | 비교적 잘 치료됨 — 약물(소량)·ECT·TMS / 개인·집단·인지행동치료 / 운동·대인관계·사회활동(social isolation 해결) | —
+R: 진료 시사점 | 초기 보호자 협조 · 중기 충분한 국소마취·소음 장비 제한 · 말기 전신마취 ▶ 담당 physician 상의 | 설명되지 않는 증상 호소 → 우울증 의심 · 치료 순응도 영향 · 의료기관 방문환자에서 매우 흔함 · 잘 치료됨 | 경직·조심 → 서서히 적응 시간·충분한 의사소통 후 결정 / 의존·우울·내향 → 경청·맞장구·가벼운 스킨십·자신감 있는 태도
+N: 우울증 기억력 저하는 우울증이 좋아지면 기억력도 좋아진다(p.33 필기) · "기억력이 떨어졌다고 말할 때, 나중에 보면 치매가 아니라 우울증일 수도 있다"(p.32 필기).
+N: 박지은 11~21년 · 변민수 22~24년 기출이 모두 이 세 열 안에서 나옴 — 서술은 목록(특징 5 · 심리적 변화 5), 객관식은 수치·단계 한 단어 바꾸기.
+
+#TBL 치매 진행단계 — 증상과 치과 진료 | k=PSY | src=[[PSY:19]] [[PSY:24]] [[PSY:28]] [[PSY:29]] [[PSY:31]]
+H: 단계 | 기억·지남력 | 언어·판단·행동 | 치과 진료 시 고려할 점
+R: 초기 | {r:최근기억 저하}(알츠하이머의 가장 대표적인 초기증상) · {r:시간} 지남력장애 {jb:B03} | 단어찾기 곤란 · 주의력 및 계산능력 저하 · 약간의 성격변화나 우울증 · 의심 | {r:대부분의 치과치료 문제없음} · 지시를 기억하기는 어려움 → {r:보호자 협조} 필요
+R: 중기 | 최근기억소실/{r:먼 과거기억 부분상실} · 시간 및 {r:장소} 지남력장애 | 언어이해 및 표현장애 · {r:실행증} · 판단력 및 실행기능 저하 · 각종 {r:정신행동증상 빈발}(우울증·환각 — 필기) | 의사소통·문제 호소 지장 · 치료 협조 다소 지장 → {r:충분한 국소마취} · {r:소음이 심한 장비는 제한적으로}(행동 악화 요인)
+R: 말기 | {r:대부분의 기억} 상실 · {r:사람} 지남력장애(가족 이름도 — 필기) | 언어능력 상실 · 판단력 및 실행기능 상실 · {r:경직, 보행이상, 실금, 감염, 욕창} 등 신체적 문제 {jb:B03} {jb:P03} | 의사소통 매우 어려움(행동변화로 문제 추정) · 장시간 많은 치료 → {r:전신마취}
+N: 모든 단계 ▶ {r:담당 physician}과 충분히 상의(p.31). 치매는 서서히 발병·서서히 진행 — 초기 전 gray zone = 경도인지장애(p.19).
+N: 중기 행동 악화와 연결되는 BPSD 원인(p.29): Pain · Excessive noise · Fear of medical treatment · Unfamiliar surroundings/persons → 원인교정 + 비약물적 접근 우선 ± 소량 약물.
+
+#TBL 정상 노화 · 경도인지장애 · 치매 | k=PSY | src=[[PSY:6]] [[PSY:16]] [[PSY:17]] [[PSY:19]] [[PSY:20]] [[PSY:21]]
+H: 항목 | 정상 노화 | 경도인지장애(MCI) | 치매
+R: 인지 | 젊을 때보다 떨어지나 또래 {r:평균}(normal distribution의 mean) 수준 | {r:Objective evidence of Impairment} in one or more cognitive domains — Norm-adjusted(age · education · cultural variation) | {r:기억력을 포함한 여러 인지기능} 저하(이전에 비해)
+R: 일상생활 | 유지 | {r:Preservation of independence} in functional abilities | {r:일상생활수행에 지장}
+R: 호소 | — | {r:Cognitive concern} — reported by patient or informant or clinician | —
+R: 진단명 | — | "MCI syndrome"(임상증후군) · Not demented | 치매 = 치매증후군 = Dementia syndrome
+R: 주시·감별 | — | {r:10-12%} vs 1-2% — 다음 해 치매 발병률 약 10배(필기) → 주시 | 원인 감별(Two-step: Syndromal → Causal)
+N: 병적 노화 = 또래의 평균에 비해서도 확연히 저하(p.6) · 치매는 서서히 발병, 서서히 진행하는 점진적 경과(p.19). MCI 원인 판단에는 아밀로이드 PET이 제일 도움(p.26 필기).
+
+#TBL 노인의 변화 → 진료 시사점 | k=PSY | src=[[PSY:11]] [[PSY:14]] [[PSY:30]] [[PSY:31]] [[PSY:38]] [[PSY:42]] [[PSY:43]]
+H: 변화 | 환자에게 일어나는 일 | 진료실에서 이렇게
+R: 유동지능 저하(p.14) {jb:B01} | 새로운 정보를 단시간 내에 습득하는 데 어려움 · 듣고 이해하는 속도가 느려짐 | {r:반복 설명} · {r:큰 글씨} 유인물·적어주기 · 천천히 말하고 대답을 충분히 기다리기
+R: 치매(p.31) | 단계가 진행할수록 협조 정도가 달라짐 | 초기 보호자 협조 · 중기 충분한 국소마취·소음 장비 제한 · 말기 전신마취 ▶ 담당 physician 상의
+R: 치매 돌봄(p.30) | 이가 없어서 씹지 못하는 경우가 많음 | {r:Nutritional support} — 치과의사의 역할!
+R: 우울증(p.38) {jb:P01} | 신체적 손상 정도로 설명되지 않는 증상 호소 · 치료 순응도에도 우울증이 영향 | 설명되지 않는 통증은 우울증 의심 · 의료기관 방문환자에서 매우 흔함 · 비교적 잘 치료됨
+R: 경직성·조심성 증가(p.42) {jb:P02} | 평생 지녀온 고정된 습관을 지속시키려는 경향 · 삶의 변화를 주기 어려움 | 서서히 적응의 시간을 주며 행동변화 · 일방적 설명보다 {r:충분한 의사소통 후 결정}
+R: 의존성·우울·내향성 증가(p.42) {jb:P02} | 인정과 관심을 받고 싶어함 | 경청·끄덕임·맞장구 · 가벼운 스킨십 · 잘 듣되 {r:자신감 있는 태도}
+R: 주의할 태도(p.43) | "노인이니까 여기저기 아프다 · 재미없고 우울할 수 있다" | 다양성을 무시한 획일적 규정 × · 신체적 나이·감퇴 개념에 지나친 의존 × — 개인차는 나이가 들 때까지 존재
+N: 학습목표 ③ "노인환자의 치과치료 시 고려하여야 할 행동심리학적 측면"(p.2)을 한 표로 — 강의가 '변화 → 시사점' 짝으로 반복된다.
+
+#TBL OHRQoL 측정도구 3 — GOHAI · OHIP-14 · OIDP | k=OHQ | src=[[OHQ:13]] [[OHQ:14]]
+H: 도구 | 문항 | 영역 | 개발·특징 | 주 대상(필기)
+R: {r:GOHAI} Geriatric Oral Health Assessment Index | {r:12} | 신체기능 · 통증/불편 · 심리사회적 기능({r:3개 영역}) | {r:Atchison & Dolan} · 노년층 특화 · 한국어판 타당도 검증 | {r:노인}
+R: {r:OHIP-14} Oral Health Impact Profile {jb:C04} | {r:14}({r:OHIP-49의 축약판}) {jb:C12} | 기능제한 · 신체통증 · 정신불편 · 신체/정신/사회적 능력저하 · handicap({r:7개 차원}) | {r:Slade & Spencer} {jb:C14} · 심리·행동 결과에 비중 | {r:일반 성인}
+R: {r:OIDP} Oral Impacts on Daily Performance | 일상수행 중심 | 식사 · 대화 · 수면 등 일상 수행에 미치는 실질적 영향 | 기능적 영향의 실생활 반영 | —
+R: 개념(도구 아님) {jb:C07} | — | OHRQoL = 임상 지표(DMFT·치주낭 깊이)로 포착되지 않는 환자 경험 · patient-centered · 측정 범위 = 기능적 제한 · 통증과 불편감 · 심리사회적 영향 | QoL → HRQoL → OHRQoL | —
+N: 2025 메타연구 — 세 도구 모두 양호한 측정 성능, GOHAI–OHIP-14 강한 상관이나 동시 시행 시 피로효과 → 무작위 순서 배치 권장. 함정: 12는 GOHAI, 14는 OHIP-14, 49는 원판 OHIP. DMFT는 임상 지표(슬라이드 13).
+
+#TBL 노인 구강건강을 악화시킨 4층위 | k=OHQ | src=[[OHQ:9]] [[OHQ:10]] [[OHQ:11]]
+H: 층위 | 내용 | 결과·키워드 | 근거 수치·예
+R: {r:접근성 문제} {jb:H02} | 경제적 부담 · 낮은 건강보험 보장률 · 높은 본인부담률 | 유럽 평균의 {r:수배} 수준 | 저작불편+저소득 노인 미충족 치과의료 {r:2배 이상} · 인지저하 노인 유의하게 높음 · 여성 노인 빈곤율 {r:60.3%} · 농어촌 80세↑ {r:67.5%}
+R: {r:임상적 문제} | 전신질환 동반 · 협조도 저하 · 구강건조증(다약제 복용) | {r:치료 난이도} 상승 | 다약제 → 항콜린 부담 누적 → 타액 분비↓ → xerostomia → 우식·칸디다증·의치 유지 곤란
+R: {r:인식 문제} | 구강문제를 {r:노화의 자연스러운 현상으로 정상화} · 치료 지연 | 관심도 저하 | 통증이 심해질 때까지 치료 지연
+R: {r:제도 문제} | 지역별 사업 편차 · {r:예방 중심 급여 항목 부족} | {r:사각지대} 존재 | 방문 구강관리 서비스 지역 편차(슬라이드 17)
+N: 4개 층위가 복합적으로 작용하는 다층적 구조. 26 필기: 첫째가 '경제적 접근성'. 빈곤율 = 중위소득 50% 이하 비율(사회보장 행정데이터 2020).
+
+#TBL 노인 구강보건체계 한눈표 — 국가·지역사회·인력·통합돌봄 | k=OHQ | src=[[OHQ:16]] [[OHQ:17]] [[OHQ:18]] [[OHQ:19]]
+H: 차원 | 내용 | 숫자·키워드
+R: 국가 — 틀니 급여화 {jb:C08} | 완전·부분틀니, 진료단계별 부분 포괄수가 | 재제작 주기 {r:7년}
+R: 국가 — 임플란트 급여화 | 만 {r:65세 이상} {r:부분 무치악} | 평생 {r:2개} · 본인부담 {r:30%} · 최근 재질 {r:지르코니아} 확대 · {r:완전 무치악} 포함 검토(확정 전)
+R: 국가 — 스케일링 급여화 {jb:C08} | 치주질환 예방 접근성 개선 | {r:2013년} 시행
+R: 지역사회(보건소) {jb:C08} | 노인·취약계층 구강검진 · 스케일링 · 불소도포 · 의치 보급 | 방문 구강관리는 지역 편차·{r:사각지대} → 돌봄통합지원법 계기 정비
+R: 전문인력 | 치과의사: 전신질환·복용약물 고려 종합 치료계획 / 치과위생사: 구강보건교육·예방처치·방문구강관리 / 다학제 협력 | 요양시설·재가노인 서비스
+R: 향후 과제 | ① 치료 → {r:예방 중심} ② {r:급여 사각지대}(완전 무치악·방문) ③ {r:인지저하·거동불편} 접근성 | 3
+R: 노인주치의·ICOPE | 2023 국회토론회 → 노인복지법 개정안 · 고양시 시범 / WHO {r:ICOPE}(Integrated Care for Older People) | 인지·이동성·영양·시청각·심리 통합 관리
+R: 통합돌봄 {jb:H03} {jb:H04} | 2023.01 추진단 → 2023.07 시범사업 → {r:2024.03 법 제정} → 2024.12 추진단 → 2025.08 추진본부 → {r:2026.03 전국 시행} | 신청 → 판정 → 계획 → 연계 · 시군구(전담조직)
+N: 25 필기: 레진상 완전 틀니는 천만 명 중 0.5%, 임플란트 매년 5.5~5.8%(2016년 11월부터 65세 이상 보험). C08 답 1·4 — 오답 선지 '노인 구강암 예방 사업'·'노인 치아우식증 예방 사업'은 자료에 없음.
+
+#TBL 전기노인 vs 후기노인 — 삶의 질 요인과 취약계층 사례 | k=OHQ | src=[[OHQ:15]] [[OHQ:22]] [[OHQ5:12]] [[OHQ5:14]]
+H: 구분 | 전기노인(65~74세) | 후기노인(75세 이상)
+R: 삶의 질(EQ-5D) 특이 영향요인 {jb:H07} {jb:H08} | 결혼상태 · 가구소득 · 전신질환 수 · 수면 · {r:저작불편} | {r:비만} · {r:음주}
+R: 공통 영향요인 | 교육수준 · 경제활동 여부 · 우울증 · 스트레스 · {r:주기적 걷기} · 자기평가 구강건강 · {r:발음문제} · {r:미충족 치과치료 경험} | (같음)
+R: 기초생활수급자 구강건강(2020 연구) | 구강위생관리 실천·검진 수검의 기여가 상대적으로 작음 | {r:이닦이 실천}·{r:구강검진 수검}이 구강건강 차이에 더 크게 기여 → 사업 {r:우선순위}
+R: 제안(25 p.14) | 저작 불편 해소 사업은 {r:전기노인이 되기 전에 선제적으로}? | —
+N: 전기노인 = 65-69세·70-74세, 후기노인 = 75-79세·80세 이상(25 p.12). 기대수명-건강수명 격차 15.17년(2012) → 16.6년(2016). 연구 자료: 제6기 국민건강영양조사(2013~2015, EQ-5D) · 제7기(2016~2018, 기초수급자).
+
+#TBL 이 강의의 숫자 모음 — 수치형 객관식 대비 | k=OHQ | src=[[OHQ:3]] [[OHQ:6]] [[OHQ:7]] [[OHQ:8]] [[OHQ:10]] [[OHQ:11]] [[OHQ:15]] [[OHQ:16]]
+H: 주제 | 숫자 | 슬라이드
+R: 초고령사회 | 2025 진입 · 65세 이상 {r:20%↑} · OECD 최고 속도(25: 2024.12.23 진입, 994만 명) | 3
+R: 외래 다빈도 {jb:C10} | 1위 치은염·치주질환 {r:194만}(> 고혈압 142만 · 급성기관지염 107만) · 7위 치아·지지구조 기타장애 {r:60만}(2023) | 6
+R: 치과 진료비(65세↑) | {r:2조 764억(2019) → 2조 5,406억(2023)} · 약 {r:22%↑} · 임플란트 수도권(경기 북부) 편중 | 7
+R: 구강관리용품 미사용 | 치주질환 위험 {r:2배 이상} | 8
+R: 미충족 치과의료 | 저작불편+저소득 노인 전체 평균의 {r:2배 이상} | 10
+R: 노인 빈곤(2020) | 여성 {r:60.3%} · 남성 39.7% · 가처분소득 804만 vs 1,797만 · 농어촌 80세↑ {r:67.5%} vs 대도시 65~69세 32.4% | 11
+R: 건강수명 격차 | {r:15.17년(2012) → 16.6년(2016)} | 15
+R: 급여 {jb:C08} | 틀니 재제작 {r:7년} · 임플란트 {r:2개}·{r:30%} · 스케일링 {r:2013} | 16
+R: 25 그래프(국건영) {jb:C11} | 20개 이상 치아보유율 {r:58.6%}(2023) · 의치필요자율 12.9% · 무치악자율 7.6% · 저작불편 호소율 {r:27.7%}(2024) | 25 p.8·10
+N: 2012년 수치(치주질환 유병률 42.4%, 구강검진율 12.9%, 20개 이상 치아보유율 46.6%, 저작불편 호소율 46.6%)는 JB 해설(공중구강보건학)에만 있음 — 자료의 최신 수치와 헷갈리지 말 것.
