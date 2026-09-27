@@ -17,6 +17,20 @@ for f in sorted(os.listdir(DOCS + '/packs')):
             try: Image.open(io.BytesIO(base64.b64decode(v.split(',', 1)[1]))).load()
             except Exception: bad += 1
     ok(bad == 0, f'{f}: 이미지 {n}개 디코드' + (f' — 실패 {bad}' if bad else ''))
+# ---- 1b. JB 분해 검사: 답안 안에 다음 문항이 삼켜졌는지 (번호 n 줄이 문항형으로 끝나는데 바로 앞 번호 n-1 줄이 답안에 없음)
+import re as _re, html as _html
+for f in sorted(os.listdir(DOCS + '/packs')):
+    if '.img.' in f or not f.endswith('.js'): continue
+    t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1]); hits = []
+    for cid, h in pk.get('cards', {}).items():
+        m = _re.search(r'<section class="ab jbans">(.*?)</section>', h)
+        if not m: continue
+        lines = [_html.unescape(_re.sub('<[^>]+>', '', x)) for x in _re.findall(r'<div class="ln[^"]*">(.*?)</div>', m.group(1))]
+        nums = [int(mm.group(1)) for mm in (_re.match(r'^\s*(\d{1,2})\s*[.．]', l) for l in lines) if mm]
+        for i, l in enumerate(lines):
+            mm = _re.match(r'^\s*(\d{1,2})\s*[.．]\s+\S', l)
+            if mm and _re.search(r'(\?|？|것은|시오)\s*\.?\s*$', l) and (int(mm.group(1)) - 1) not in nums: hits.append(f'{cid}: {l[:40]}')
+    ok(not hits, f'{f}: 답안에 삼켜진 문항 {len(hits)}건 {hits[:3]}')
 # ---- 2. 브라우저
 class Q(http.server.SimpleHTTPRequestHandler):
     def __init__(s, *a, **k): super().__init__(*a, directory=DOCS, **k)
