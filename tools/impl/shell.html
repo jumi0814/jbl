@@ -521,14 +521,22 @@ body.focus.jbone #jbbar,body.focus.jbone #kit,body.focus.jbone #kitshow{display:
 button.qzchip{cursor:pointer;font:inherit;font-size:12px!important;font-weight:700;background:#fff!important;border:1px dashed #8C857A!important;color:#4A453E!important;flex:none;align-self:center}button.qzchip.all{border-style:solid!important;color:var(--sub)!important}
 .thead>.qzchip{margin-top:6px}#lmini #lmqz.on{background:#443C33!important;color:#fff!important;border-color:#443C33!important}
 #autopop .qzopt{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 4px 22px;font-size:12.5px;color:#D8D0C0}#autopop .qzopt select{font:inherit;font-size:12.5px;border-radius:6px;padding:1px 4px;border:0}#autopop label.in{display:inline-flex;padding:0}#autopop .apt{color:#B9B2A2;margin-top:6px}
+/* A06 모드 칩(형광펜·빈칸 모드 중 — 탭 줄 아래 가운데, 집중 모드는 오른쪽 위) · 모드 중 카드 점선 · 스크롤하는 동안 도구 막대 ✎ 하나 · ↶ 개수 배지 · 860 이하 아이콘 아래 라벨 */
+.modechip{position:fixed;top:calc(var(--toph) + var(--tabh) + 6px);left:50%;transform:translateX(-50%);z-index:72;display:none;max-width:calc(100vw - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:0;border-radius:999px;background:#26221D;color:#FFF3C8;font-size:13px;font-weight:700;padding:6px 14px;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer}
+.modechip.on{display:block}body.at-home .modechip{display:none!important}.modechip i{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin:0 3px 0 1px;border:1px solid rgba(255,255,255,.6)}
+body.focus .modechip{left:auto;right:12px;transform:none;top:calc(var(--toph) + var(--tabh) + 36px)!important}
+#stage.modeon .tc,#stage.modeon .qc,#stage.modeon .pc,#stage.modeon .tblwrap{outline:1px dashed var(--acc);outline-offset:3px}
+#kit #k-min{display:none}#kit.min>*:not(#k-min){display:none!important}#kit.min #k-min{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;font-size:17px}#kit.min{padding:2px}
+#kit #k-undo:disabled,#kit #k-redo:disabled{opacity:.6}#kit .ubn{font-size:10.5px;font-weight:800;margin-left:1px;vertical-align:super;line-height:1;color:#FFD980}#kit .ubn:empty{display:none}
+#kit .lb2{display:none}@media (max-width:860px){#kit .lb2{display:block;font-size:10px;line-height:1;margin-top:1px;opacity:.85}#kit #k-undo,#kit #k-redo,#kit #k-eye,#kit #k-clear{flex-direction:column;line-height:1.2}#kit .ic{line-height:1.2}}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
 <div id="home"></div>
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
-<div id="kit" class="noann"><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)">↶</button><button id="k-redo" title="다시 실행">↷</button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기">👁</button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기">🧹</button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
+<div id="kit" class="noann"><button id="k-min" title="도구 막대 펼치기">✎</button><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)"><span class="ic">↶<b class="ubn"></b></span><span class="lb2">되돌리기</span></button><button id="k-redo" title="다시 실행 (Ctrl/⌘ Shift Z)"><span class="ic">↷</span><span class="lb2">다시</span></button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기"><span class="ic">👁</span><span class="lb2">전체 보기</span></button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기"><span class="ic">🧹</span><span class="lb2">지우기</span></button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
 <button id="kitshow" class="noann">✎</button>
-<button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button><button id="fpill" class="noann" title="집중 모드 나가기 (V · Esc)">집중 · V로 나가기</button><button id="sideopen" class="noann" title="사이드바 펼치기 (\)">›</button>
+<button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button><button id="fpill" class="noann" title="집중 모드 나가기 (V · Esc)">집중 · V로 나가기</button><button id="sideopen" class="noann" title="사이드바 펼치기 (\)">›</button><button id="modechip" class="modechip noann"></button>
 <div id="autopop" class="noann"><div class="small apt" style="margin-top:0">가리기 보기 — 저장하지 않고 떠올리기 (Q)</div><label><input type="radio" name="am" value="quiz" checked> 빨간 핵심어 가리기</label><div class="qzopt">범위 <select id="qzsc" aria-label="가리기 범위"><option value="card">이 카드</option><option value="mem">⚡ 암기 줄만</option><option value="all">강의 전체</option></select><label class="in"><input type="checkbox" id="qzfixc"> 빈칸 길이 숨기기</label></div><div class="small apt">자동 빈칸 — 지금 보이는 화면에 저장</div><label><input type="radio" name="am" value="red"> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
@@ -539,7 +547,8 @@ button.qzchip{cursor:pointer;font:inherit;font-size:12px!important;font-weight:7
 <tr><th>형광펜 H · 빈칸 B</th><td>켠 뒤 <b>누르면 어절 전체</b>, <b>누른 채 끌면</b> 끈 범위를 어절 단위로 넓혀 한 묶음. 손가락은 <b>0.3초 길게 누른 뒤</b> 끌기(그냥 끌면 스크롤), 애플펜슬은 바로 끌기. 칠한 곳을 다시 누르면 지움, 다른 색으로 누르면 색만 바뀜 · <b>Shift+H</b> = 형광펜 색 바꾸기(노랑→초록→분홍→파랑→주황) · A도 빈칸</td></tr>
 <tr><th>빈칸 열기</th><td>도구를 끈 상태에서 빈칸을 누르면 그 묶음이 열리고 다시 누르면 닫힘 · <b>E</b>(👁) 전부 열기/가리기 · <b>N</b> 화면 위쪽부터 하나씩 열기 · <b>Shift+N</b> 이 카드 다시 가리기 · ⚡ 자동 빈칸(빨간 핵심어·표)</td></tr>
 <tr><th>가리기 보기 Q</th><td><b>저장하지 않는</b> 떠올리기 — <b>Q</b>(또는 탭 줄의 ‘가리기’, ⚡ 창의 첫 선택지)로 빨간 핵심어를 가림 · 범위 = 이 카드(기본)·⚡ 암기 줄만·강의 전체(⚡ 창에서 고름, ‘빈칸 길이 숨기기’도) · 누르면 그 칸만 열림 · <b>N</b> 하나씩 · <b>Shift+N</b> 다시 가리기 · <b>E</b> 전부 · 카드 머리 ‘▣ 3/12 열림’을 누르면 이 카드 전체 · 연 칸은 탭을 옮겨도 유지, 새로고침하면 꺼짐 · J/K나 ✓로 다음 카드로 가면 그 카드를 가림</td></tr>
-<tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 🧹 지금 화면의 표시 지우기</td></tr>
+<tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 🧹 지금 화면의 표시 지우기</td></tr>
+<tr><th>도구 막대</th><td>형광펜·빈칸 모드가 켜진 동안은 탭 줄 아래에 ‘🖍 형광펜 켜짐 · 노랑 — 누르면 끄기’ 칩이 뜨고 카드에 점선 테두리 · 아래로 스크롤하는 동안 도구 막대는 ✎ 하나로 줄었다가 멈추면(1.2초)·위로 스크롤하면·✎를 누르면 다시 펼침 · <b>T</b>로 숨긴 상태는 새로고침 뒤에도 유지</td></tr>
 <tr><th>그림</th><td>그림을 누르면 크게 · 크게 본 그림을 누르면 그 자리 확대/맞추기 · 확대 중엔 끌어서 이동 · Ctrl/⌘+휠 확대 · 바깥을 누르거나 Esc로 닫기 · ←/→(스와이프)로 넘기기 · 아래로 쓸면 닫기</td></tr>
 <tr><th>공부 시간</th><td>시계를 누르면 오늘 과목·강의별 시간과 최근 7일 · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고 8분 무활동·다른 창이면 멈춤 · [쉬기]로 수동 정지</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
@@ -625,7 +634,7 @@ const LAY={toph:44,tabh:0,kith:62,jbh:0};
 function measure(){const t=$('#top'),d=$('#dtabs'),k=$('#kit'),BC=document.body.classList;const th=t?t.offsetHeight:44,bh=(d&&!d.hidden&&d.offsetParent&&!(BC.contains('focus')&&BC.contains('tabsoff')&&!BC.contains('at-home')))?d.offsetHeight:0;
  /* JB 필터 막대가 위에 붙었을 때(.mini)의 높이 = 첫 줄 + 안쪽 여백·3px 진행 막대 — 카드로 이동할 때 막대 아래로 */
  const jb=$('#stage #jbbar .b1'),jh=(jb&&jb.offsetParent)?jb.offsetHeight+34:0;if(jh!==LAY.jbh){LAY.jbh=jh;document.documentElement.style.setProperty('--jbh',jh+'px');}
- const ks=$('#kitshow'),kh=(k&&k.offsetHeight>0&&getComputedStyle(k).visibility!=='hidden')?k.offsetHeight+14:((ks&&getComputedStyle(ks).display!=='none')?56:0);
+ const ks=$('#kitshow'),kh=(k&&k.classList.contains('min'))?LAY.kith:(k&&k.offsetHeight>0&&getComputedStyle(k).visibility!=='hidden')?k.offsetHeight+14:((ks&&getComputedStyle(ks).display!=='none')?56:0);
  if(th!==LAY.toph||bh!==LAY.tabh||kh!==LAY.kith){LAY.toph=th;LAY.tabh=bh;LAY.kith=kh;const r=document.documentElement.style;r.setProperty('--toph',th+'px');r.setProperty('--tabh',bh+'px');r.setProperty('--kith',kh+'px');}}
 if(window.ResizeObserver){const ro=new ResizeObserver(measure);ro.observe($('#top'));ro.observe($('#dtabs'));ro.observe($('#kit'));}addEventListener('resize',measure);measure();
 const topOff=()=>{measure();return LAY.toph+LAY.tabh+LAY.jbh+12;};
@@ -790,7 +799,7 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  st.innerHTML=h;
  paintMarks(st);
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
- if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();
+ if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();st.classList.toggle('modeon',!!Kit.mode());
  if(QZ.on&&QZ.doc!==CUR.s+'/'+d)QZ.on=false;if(QZ.on&&QZ.scope==='card')QZ.card=QZ.cardAid?findAid(QZ.cardAid):null;qzApply();rbRestore();coverChips();}
 /* 과목 홈 교수별 세부(연도별 칸)는 접어 둠 — 펼치면 그 상태를 기억(LS homeTrendOpen.<S>). 처음부터 펼치면 강의 카드가 1200px 아래로 밀려 기본은 접힘 */
 function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='homeTrendOpen.'+p.id;dt.open=!!LS.get(k,false);dt.addEventListener('toggle',()=>LS.set(k,dt.open));}
@@ -1146,10 +1155,10 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  function redraw(){const st=$('#stage');$$('[data-rk],[data-pre]',st).forEach(unwrap);restore(st);rbRestore();coverChips();}
  function push(){U.push(JSON.stringify(ANN));if(U.length>80)U.shift();R=[];upd();}
  function commit(B){const l=snap(B).concat((B._lost||[]).map(o=>Object.assign({},o,{lost:1})));if(l.length)ANN[B.dataset.aid]=l;else delete ANN[B.dataset.aid];persist();}
- function upd(){const u=$('#k-undo'),r=$('#k-redo');if(u)u.disabled=!U.length;if(r)r.disabled=!R.length;}
+ function upd(){const u=$('#k-undo'),r=$('#k-redo');if(u){u.disabled=!U.length;const b=u.querySelector('.ubn');if(b)b.textContent=U.length||'';u.title='실행 취소 (Ctrl/⌘ Z)'+(U.length?' — '+U.length+'번 되돌릴 수 있어요':'');}if(r)r.disabled=!R.length;}
  function undo(){if(!U.length)return toast('되돌릴 표시가 없어요');R.push(JSON.stringify(ANN));ANN=JSON.parse(U.pop());persist();redraw();upd();}
  function redo(){if(!R.length)return;U.push(JSON.stringify(ANN));ANN=JSON.parse(R.pop());persist();redraw();upd();}
- function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');coverChips();
+ function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');coverChips();modeChip();
   if(mode)toast(mode==='h'?'형광펜 — 누르면 어절, 누른 채 끌면 범위 (손가락은 길게 누른 뒤 끌기)':'빈칸 — 누르면 어절, 끌면 한 묶음 빈칸');}
  function clearOverlap(B,a,b){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
   gs.forEach(g=>{(typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g]).forEach(unwrap);});}
@@ -1185,7 +1194,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  function hideAll(){$$('#stage .rk-b.show').forEach(x=>x.classList.remove('show'));document.body.classList.remove('rk-reveal');$('#k-eye').classList.remove('on');}
  /* 색 견본: 넓은 화면은 5개 나란히, 860px 이하는 '지금 색 1개 + ▾' 팝오버 */
  $('#k-sw').innerHTML=`<button class="swc" id="k-swc" title="형광펜 색 고르기"><span class="sw swcur" style="background:${COLORS[0][1]}"></span>▾</button><span id="k-swl">`+COLORS.map((c,i)=>`<span class="sw ${i?'':'sel'}" data-c="${c[0]}" style="background:${c[1]}" title="형광펜 색"></span>`).join('')+'</span>';
- function setColor(c){const s=$('#k-swl .sw[data-c="'+c+'"]');if(!s)return;color=c;$$('#k-swl .sw').forEach(x=>x.classList.toggle('sel',x===s));$('#k-swc .swcur').style.background=s.style.background;}
+ function setColor(c){const s=$('#k-swl .sw[data-c="'+c+'"]');if(!s)return;color=c;$$('#k-swl .sw').forEach(x=>x.classList.toggle('sel',x===s));$('#k-swc .swcur').style.background=s.style.background;modeChip();}
  function cycleColor(){const i=COLORS.findIndex(x=>x[0]===color);setColor(COLORS[(i+1)%COLORS.length][0]);toast('형광펜 색: '+CNAME[color]);}
  $('#k-sw').onclick=e=>{if(e.target.closest('#k-swc')){$('#k-sw').classList.toggle('open');return;}const s=e.target.closest('#k-swl .sw');if(!s)return;setColor(s.dataset.c);$('#k-sw').classList.remove('open');if(mode!=='h')setMode('h');};
  document.addEventListener('click',e=>{if(!e.target.closest('#k-sw'))$('#k-sw').classList.remove('open');},true);
@@ -1313,6 +1322,19 @@ function sideApply(){const wide=VIEW==='doc'&&/^_?(sum|tbl)$/.test(CUR.t||'');co
  document.body.classList.toggle('sidefold',pref||SIDEAUTO);document.body.classList.toggle('notabs',!!$('#dtabs').hidden);}
 function sideToggle(){if(innerWidth<=860){navOpen();return;}const on=!document.body.classList.contains('sidefold');if(!on&&SIDEAUTO)LS.set('wideSide',1);SIDEAUTO=false;LS.set('sidefold',on);document.body.classList.toggle('sidefold',on);measure();toast(on?'사이드바를 접었어요 — \\ 또는 › 로 펼치기':'사이드바를 펼쳤어요');}
 $('#sideopen').onclick=sideToggle;
+/* ---------- 모드 칩(A06) — 형광펜·빈칸 모드가 켜진 동안 '지금 무엇이 켜졌는지'와 끄는 법. 누르면 끄기 ---------- */
+function modeChip(){const c=$('#modechip'),m=Kit.mode(),st=$('#stage');if(st)st.classList.toggle('modeon',!!m);if(!c)return;c.classList.toggle('on',!!m);if(!m)return;
+ chipPos();const col=Kit.colors.find(x=>x[0]===Kit.color());c.innerHTML=m==='h'?'🖍 형광펜 켜짐 · <i style="background:'+(col?col[1]:'#FFE58A')+'"></i>'+Kit.cname[Kit.color()]+' — 누르면 끄기 (H·Esc)':'▣ 빈칸 만들기 켜짐 — 빈칸을 누르면 지워져요 (B·Esc)';}
+$('#modechip').onclick=()=>Kit.off();
+/* 칩 자리 = 지금 보이는 상단 막대·탭 줄·붙은 JB 막대의 아래(맨 위에서는 hero 아래의 탭 줄 밑) */
+function chipPos(){const c=$('#modechip');if(!c||!c.classList.contains('on')||document.body.classList.contains('focus'))return;let b=LAY.toph;const dt=$('#dtabs');if(dt&&!dt.hidden&&dt.offsetParent){const r=dt.getBoundingClientRect();if(r.bottom>b&&r.top<innerHeight*.4)b=r.bottom;}const jb=$('#jbbar');if(jb&&jb.offsetParent){const r=jb.getBoundingClientRect();if(r.top<=b+2&&r.bottom>b)b=r.bottom;}c.style.top=Math.round(b+6)+'px';}
+let CPQ=0;addEventListener('scroll',()=>{if(!CPQ&&$('#modechip').classList.contains('on'))CPQ=requestAnimationFrame(()=>{CPQ=0;chipPos();});},{passive:true});
+/* 도구 막대 접기(A06): 사용자가 아래로 스크롤하는 동안(휠·터치·키 0.7초 안) ✎ 하나(#kit.min) — 멈춘 지 1.2초 뒤·위로 스크롤·✎를 누르면 펼침. 모드 중에는 접지 않음 */
+let UIN=0,KMT=0;['wheel','touchmove'].forEach(ev=>addEventListener(ev,()=>{UIN=Date.now();},{passive:true,capture:true}));addEventListener('keydown',e=>{if(/^(ArrowDown|ArrowUp|PageDown|PageUp|End|Home| )$/.test(e.key))UIN=Date.now();},true);
+function kitUnmin(){clearTimeout(KMT);const k=$('#kit');if(k&&k.classList.contains('min')){k.classList.remove('min');}}
+let KSY=0;addEventListener('scroll',()=>{const y=scrollY,dy=y-KSY;KSY=y;const k=$('#kit');if(!k)return;if(Kit.mode()||VIEW!=='doc'){kitUnmin();return;}
+ if(dy<-3){kitUnmin();return;}if(dy>3&&(Date.now()-UIN<700||k.classList.contains('min'))){k.classList.add('min');clearTimeout(KMT);KMT=setTimeout(kitUnmin,1200);}},{passive:true});
+$('#k-min').onclick=kitUnmin;
 /* 글자 크기 — LS fontScale(0.9~1.2, 0.05 단위) → :root --fs */
 const fsGet=()=>{const v=+LS.get('fontScale',1);return (v>=0.9&&v<=1.2)?v:1;};
 function fsApply(){const v=fsGet();document.documentElement.style.setProperty('--fs',String(v));const e=$('#fsv');if(e)e.textContent=Math.round(v*100)+'%';}

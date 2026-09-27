@@ -168,6 +168,40 @@ async def a05(pg, tag, vp):
     await pg.click('#dtabs button[data-t="jb"]'); await pg.wait_for_timeout(500); await pg.click('#dtabs button[data-t="learn"]'); await pg.wait_for_timeout(1200)
     ok(await pg.evaluate("document.querySelector('#stage .tc [data-rk=b]').classList.contains('show')") and await pg.evaluate("document.querySelector('#stage .tc .qzchip')?.textContent") == '▣ 1/2 열림', '연 저장형 빈칸도 탭을 옮겼다 와도 열림 · 칩 1/2')
     await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1')")
+async def a06(pg, tag, vp):
+    """A06 모드 칩·모드 중 카드 점선·스크롤하는 동안 도구 막대 ✎·↶ 배지·kit-off 저장"""
+    await open_(pg, '#/OMS1/DD2/learn'); await pg.evaluate("['kitoff','focus','sidefold'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/OMS1/DD2/learn')
+    await pg.keyboard.press('h'); await pg.wait_for_timeout(100)
+    c = await pg.evaluate("(()=>{const c=document.querySelector('.modechip');return [getComputedStyle(c).display,c.textContent,document.querySelector('#stage').classList.contains('modeon'),getComputedStyle(document.querySelector('#stage .tc')).outlineStyle]})()")
+    ok(c[0] != 'none' and c[1] == '🖍 형광펜 켜짐 · 노랑 — 누르면 끄기 (H·Esc)' and c[2] and c[3] == 'dashed', f'H → 모드 칩·카드 점선 {c}')
+    await pg.screenshot(path=J.TMP + f'/ux2_keys_modechip_{tag}.png')
+    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(100)
+    ok(await pg.evaluate("getComputedStyle(document.querySelector('.modechip')).display") == 'none' and not await pg.evaluate("document.querySelector('#stage').classList.contains('modeon')"), 'Esc → 모드 칩 사라짐')
+    await pg.keyboard.press('b'); t = await pg.inner_text('.modechip'); await pg.click('.modechip')
+    ok(t == '▣ 빈칸 만들기 켜짐 — 빈칸을 누르면 지워져요 (B·Esc)' and not await pg.evaluate("document.body.classList.contains('mode-b')"), f'B → 빈칸 칩 문구 · 칩 누르면 끄기 ({t})')
+    # ↶ 배지 = 되돌리기 스택 길이
+    await pg.keyboard.press('h')
+    for k in (1, 2):
+        xy = await pg.evaluate(f"""(()=>{{const li=[...document.querySelectorAll('#t-DD2-{k} .tbody li, #t-DD2-{k} .tbody div.li')].find(e=>e.offsetParent&&/[A-Za-z가-힣]{{4}}/.test(e.textContent));li.scrollIntoView({{block:'center'}});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){{const m=/[A-Za-z가-힣]{{4,}}/.exec(t.nodeValue);if(m&&!t.parentElement.closest('button,.noann')){{const r=document.createRange();r.setStart(t,m.index+1);r.setEnd(t,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2];}}}}}})()""")
+        await pg.mouse.click(xy[0], xy[1]); await pg.wait_for_timeout(120)
+    u = await pg.evaluate("[document.querySelector('#k-undo .ubn').textContent,__h.Kit.undoN()]"); await pg.keyboard.press('Escape')
+    ok(u[0] == str(u[1]) and u[1] == 2, f'↶ 배지 = 되돌리기 스택 길이 {u}')
+    await pg.keyboard.press('Control+z'); await pg.keyboard.press('Control+z')
+    ok(await pg.evaluate("document.querySelector('#k-undo .ubn').textContent") == '' and await pg.evaluate("document.querySelector('#k-undo').disabled"), '되돌릴 것 없으면 배지 숨김·비활성')
+    # 스크롤하는 동안 ✎ 하나
+    await pg.evaluate("scrollTo(0,0)"); await pg.wait_for_timeout(300); h0 = await pg.evaluate("document.querySelector('#kit').offsetHeight")
+    await pg.mouse.move(vp['width'] / 2, vp['height'] / 2)
+    for _ in range(4): await pg.mouse.wheel(0, 250); await pg.wait_for_timeout(90)
+    h1 = await pg.evaluate("document.querySelector('#kit').offsetHeight"); await pg.screenshot(path=J.TMP + f'/ux2_keys_kitmin_{tag}.png')
+    await pg.wait_for_timeout(1500); h2 = await pg.evaluate("document.querySelector('#kit').offsetHeight")
+    ok(h1 <= 48 and h2 == h0, f'스크롤하는 동안 도구 막대 {h0}→{h1}px(≤48) · 1.5초 뒤 {h2}')
+    await pg.keyboard.press('t'); await pg.reload(); await pg.wait_for_timeout(1300)
+    ok(await pg.evaluate("document.body.classList.contains('kit-off')"), 'T → 새로고침 뒤에도 도구 막대 숨김 유지(LS kitoff)')
+    await pg.keyboard.press('t'); ok(not await pg.evaluate("document.body.classList.contains('kit-off')"), 'T → 다시 보임')
+    if vp['width'] <= 860:
+        lb = await pg.evaluate("[...document.querySelectorAll('#kit .lb2')].map(e=>getComputedStyle(e).display+':'+e.textContent)")
+        ok(all(x.startswith('block') for x in lb) and len(lb) == 4, f'860 이하 아이콘 아래 라벨 {lb}')
+    await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1')")
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
@@ -176,6 +210,7 @@ async def run(b, vp, touch, tag):
     await a03(pg, tag, vp)
     await a04(pg, tag, vp)
     await a05(pg, tag, vp)
+    await a06(pg, tag, vp)
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 async def main():

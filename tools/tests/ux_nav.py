@@ -94,7 +94,7 @@ async def run(b, vp, touch, tag):
     ok(lb2.get('CONS', {}).get('d') == 'WHT', '과목 홈에 가도 lastBy.CONS.d = WHT')
     await click(pg, '#gohome', touch); await pg.wait_for_timeout(600)
     rs = await pg.inner_text('#home .resume'); ok(lb['CONS']['ti'][:10] in rs, f'허브 이어서 보기에 강의·카드 제목 ({rs[:80]!r})')
-    await click(pg, '#home .resume .go-resume', touch)   # U22: 과목 카드에도 .go-resume가 생김 — 이어서 보기 패널의 것; await pg.wait_for_timeout(1600)
+    await click(pg, '#home .resume .go-resume', touch); await pg.wait_for_timeout(1600)   # U22: 과목 카드에도 .go-resume가 생김 — 이어서 보기 패널의 것 (기다림이 주석 안에 들어가 있어 위치 맞춤(settle) 전에 재던 것 바로잡음)
     r = await pg.evaluate("(aid)=>{const e=[...document.querySelectorAll('#stage [data-aid]')].find(x=>x.dataset.aid===aid);return e?Math.round(e.getBoundingClientRect().top+(%s)-document.querySelector('#dtabs').getBoundingClientRect().bottom-12):null}" % lb['CONS']['off'], lb['CONS']['aid'])
     ok(r is not None and abs(r) <= 60, f'이어서 보기 → 같은 자리 ({r})')
     await open_(pg, '#/OMS1/DD1/learn')
