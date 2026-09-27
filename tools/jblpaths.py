@@ -20,7 +20,7 @@ def prev_images(sid):
     out = {}; d = os.path.join(DOCS, 'packs')
     if not os.path.isdir(d): return out
     for f in os.listdir(d):
-        if f.startswith(sid + '.img.') and f.endswith('.js') and f != sid + '.img.jb.js':
+        if f.startswith(sid + '.img.') and f.endswith('.js') and not f.startswith(sid + '.img.jb'):   # JB 원본 청크(jb·jb23·jb24·jb25)는 제외
             out.update(_load_js(os.path.join(d, f)).get('lec', {}))
     return out
 def prev_crops(sid, crops):

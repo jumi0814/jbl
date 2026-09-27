@@ -586,7 +586,8 @@ pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'pr
         'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
 js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 pack_js = 'JBLHUB.register(' + js(pack) + ');'
-CH = {'jb': {'jb': IMG['jb']}}
+CH = {}   # JB 원본 쪽 이미지는 판본별 청크(<SID>.img.jb23/jb24/jb25.js) — 누른 판본 것만 받음(U29, 재압축 없음)
+for key_, v_ in IMG['jb'].items(): CH.setdefault('jb' + key_.split('-')[0], {'jb': {}})['jb'][key_] = v_
 for key, v in lecimg.items():
     ck = key.split('-')[0]; ck = getattr(S, 'IMG_ALIAS', {}).get(ck, ck)
     CH.setdefault(ck, {'lec': {}})['lec'][key] = v
