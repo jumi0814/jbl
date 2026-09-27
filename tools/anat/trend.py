@@ -75,10 +75,30 @@ def years_html(S, limit=6):
         cells.append(f'<span class="ycell base"><b>{rng_}</b> {on}문항 · 짤 {oj} / 탈 {ot}{" (기준선 포함)" if any(d["base"] for _, d in older) else ""}</span>')
     return ''.join(cells)
 def tendency_text(S, name, ment='', short=False):
-    """데이터에서 규칙으로 뽑는 경향 문장 + 공부 전략. 최근 연도 비율을 기준으로 판정하고 연도별 추이를 함께 보여줌"""
+    """데이터에서 규칙으로 뽑는 경향 문장 + 공부 전략(' · '로 이은 문자열). 항목 목록이 필요하면 tendency_parts"""
+    parts, strat = tendency_parts(S, name, ment)
+    return (' / '.join(parts), ' · '.join(strat))
+def latest_ratio(S):
+    """최근 판정 가능한 해의 짤 비율(표본 3 미만이면 판정 가능한 해 합산) — 판정 불가면 None"""
+    ys = [y for y, d in S.items() if not d['base']]
+    if not ys: return None
+    L = S[ys[0]]; nL = L['jjal'] + L['tal']
+    if nL >= 3 or len(ys) == 1: return L['jjal'] / nL if nL else None
+    n = sum(S[y]['jjal'] + S[y]['tal'] for y in ys)
+    return sum(S[y]['jjal'] for y in ys) / n if n else None
+def prof_line(name, S):
+    """과목 홈 교수별 요약 한 줄: '서병무 · 최근 2024 16문항 짤 11/탈 5 → 완짤형 · 짤 비율 69%' (JB 통계만)"""
+    ys = [y for y, d in S.items() if not d['base']]
+    if not S: return f'{name} · 기출 없음'
+    if not ys:
+        y = next(iter(S)); return f'{name} · {YR(y)} {S[y]["n"]}문항 (기준선 — 짤/탈 판정 불가)'
+    y = ys[0]; d = S[y]; r = latest_ratio(S)
+    return f'{name} · 최근 {YR(y)} {d["n"]}문항 짤 {d["jjal"]}/탈 {d["tal"]} → {ratio_word(r)}' + (f' · 짤 비율 {round(r * 100)}%' if r is not None else '')
+def tendency_parts(S, name, ment=''):
+    """(경향 문장 목록, 공부 전략 항목 목록)"""
     ys = [y for y, d in S.items() if not d['base']]
     if not ys:
-        return ('자료가 커버하는 첫 해의 기출만 있어 짤/탈을 판정할 수 없음(그 해 문항은 "기준선")', '기출은 전부 풀되 정리본 전체를 훑을 것 — 이 문항들이 다음 해의 짤 후보')
+        return (['자료가 커버하는 첫 해의 기출만 있어 짤/탈을 판정할 수 없음(그 해 문항은 "기준선")'], ['기출은 전부 풀되 정리본 전체를 훑을 것 — 이 문항들이 다음 해의 짤 후보'])
     latest = ys[0]; L = S[latest]; nL = L['jjal'] + L['tal']
     rL = L['jjal'] / nL if nL else None
     tot_j = sum(S[y]['jjal'] for y in ys); tot_t = sum(S[y]['tal'] for y in ys); n = tot_j + tot_t
@@ -118,7 +138,7 @@ def tendency_text(S, name, ment='', short=False):
         top = max(fm, key=fm.get)
         strat.append({'서술형': '서술형: 항목 수와 번호(①②③)를 정확히 — 암기 줄을 소리 내어 나열', '객관식': '객관식: 절대/상대·이상/이하 같은 대비 쌍이 함정 — 비교표로', '빈칸': '빈칸: 정의 문장을 통째로 — 용어↔정의 양방향', 'T/F': 'T/F: 한 문제에 여러 카드가 섞임 — 수치·조건(mm, 주, %)을 정확히', '단답형': '단답형: 수치·시기·이름을 즉답 — ⚡ 암기 줄 반복'}[top])
     if ment: parts.append('학습부 멘트 — ' + ment)
-    return (' / '.join(parts), ' · '.join(strat))
+    return (parts, strat)
 def short_line(S):
     ys = [y for y, d in S.items() if not d['base']]
     if not S: return '기출 없음'

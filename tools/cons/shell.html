@@ -352,6 +352,17 @@ details.scards{margin:2px 0 8px 14px;border-left:2px solid var(--line);padding-l
 @media (pointer:coarse){#lmini button{min-height:40px}.lpi{min-height:44px;align-items:center}}
 .chip.refc{background:#fff;border:1px dashed #A9A196;color:#6A645B;font-weight:600}.chip.refc .link{font-size:12px;margin-left:2px;color:#4A453E}
 .mk-sum{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;margin-top:6px}.mk-sum b{color:var(--acc)}.mk-sum .lostn b{color:#B3261E}
+/* 과목 홈 v4(U21) — 실행 버튼·강의 바로가기·교수별 요약·2회 이상 묶음 */
+.guide{padding:10px 18px 12px}.guide .gt{margin-bottom:2px}.guide ol.steps>li{margin:0;padding-top:3px;padding-bottom:3px;line-height:1.5;font-size:14px}.guide ol.steps>li:before{top:5px}.guide .btn.act{display:inline-block;margin:3px 0 0 4px;padding:2px 12px;font-size:13px;font-weight:700;background:#fff;border:1.5px solid var(--acc);color:var(--acc);border-radius:999px;vertical-align:baseline;width:auto;text-align:left}.guide .btn.act:hover{background:var(--acc);color:#fff}
+.ljump{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:-4px 0 10px}.ljump>.small{margin-right:2px}.chip.ljc{background:#fff;border-color:var(--line);color:#35322D;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:1px 9px;max-width:15em}.chip.ljc span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hero.home .sub{display:none}.hero.home{padding:14px 24px 12px}.hero.home .hchips{margin-top:6px}.hpt{color:var(--acc);margin-right:4px}.chip.ljc:hover{border-color:var(--acc)}
+.pdot{display:inline-block;width:11px;height:11px;border-radius:50%;background:conic-gradient(var(--acc) var(--p),#E4DFD5 0);flex:none}.pdot.full{background:var(--acc)}
+#hprog .resume.inl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}#hprog .resume.inl .res{display:inline-block;width:auto;margin:0;padding:3px 10px;font-size:13px;border-radius:999px}#hprog .resume.inl .res b{font-weight:600}
+.ptrend .tsum{list-style:none;margin:6px 0 0;padding:0}.ptrend .tsum li{padding:2px 0;border-bottom:1px dashed var(--line2);font-size:14px;line-height:1.5}.ptrend .tsum li:last-child{border-bottom:0}.ptrend .tsl{font-weight:700}.ptrend .tk{color:var(--sub);font-size:13px}
+.ptrend .tstrat{margin-top:6px;padding:5px 12px;background:var(--tint);border-radius:8px;font-size:13px;line-height:1.45}.ptrend .tsh{font-weight:800;font-size:13px;color:var(--acc)}.ptrend .tc0{margin:2px 0}.ptrend .tsx span{display:inline}.ptrend .tsx span+span::before{content:' · ';color:var(--faint)}.ptrend .tsx i{font-style:normal;font-size:12px;color:var(--sub)}.ptrend .tsx i::before{content:'('}.ptrend .tsx i::after{content:')'}
+.ptrend .tcommon{margin-top:8px;padding:6px 10px;background:var(--tint);border-radius:8px;font-size:13.5px}.ptrend details.trd{margin-top:8px}.ptrend details.trd>summary{font-size:13px;color:var(--acc);font-weight:700;cursor:pointer}.ptrend details.trd[open]>summary{margin-bottom:6px}
+.hints .hlist li.hmore{display:none}.hints.all .hlist li.hmore{display:block}.hints:not(.all) .hlist li:not(.hmore){display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;padding:4px 0}
+#htop .tgrp{margin:8px 0}#htop .tgt{font-weight:800;font-size:14px;color:var(--acc)}#htop details.tgrp>summary{cursor:pointer}#htop .trow{margin-top:10px}
+.mdot{display:inline-block;width:8px;height:8px;border-radius:50%;border:1.5px solid #B8B1A3;margin-right:6px;vertical-align:1px}.mdot.ok{background:#2E8B57;border-color:#2E8B57}.mdot.ng{background:#B3261E;border-color:#B3261E}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -523,6 +534,7 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  const L=p.lect.find(x=>x.k===d);
  $('#hero').innerHTML=L?`<div class="kick">${p.title} · ${L.prof} 교수님</div><h1>${L.title}</h1><div class="sub">출처 ${L.file}</div><div class="hchips"><span class="hchip">기출 ${L.jb.length}문항</span><span class="hchip" id="hstat"></span><span class="hchip">카드 ${L.nsec}</span><span class="hchip">비교표 ${L.tbl.length}</span><span class="hchip">예상 ${L.pred.length}</span></div>`
    :`<div class="kick">${p.title}</div><h1>${p.en}</h1><div class="sub">JB 기출 전 문항 × 강의자료(26년도 우선, 없으면 25년도) — ${p.profs}</div><div class="hchips"><span class="hchip">${p.stats.ref?'현 교수 ':''}기출 ${p.stats.main!=null?p.stats.main:p.stats.cards}문항${p.stats.ref?' (+참고 '+p.stats.ref+')':''}</span><span class="hchip">2회 이상 ${p.stats.rep}</span><span class="hchip">강의 정리본 ${p.lect.length}</span><span class="hchip">비교표 ${p.tables.length}</span><span class="hchip">예상 ${p.preds.length}</span></div>`;
+ $('#hero').classList.toggle('home',d==='_home');
  const lm=L&&t==='learn'&&(L.cards||[]).length;
  $('#dtabs').innerHTML=tabs.length>1?tabs.map((x,i)=>`<button data-t="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}<span class="kbd">${i+1}</span></button>`).join('')+'<span class="dtname">'+(L?L.title:'')+'</span>'
   +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)">카드 <b id="lmn">–</b>/${L.cards.length} ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button></span>`:''):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);hstat();measure();
@@ -543,15 +555,35 @@ const cardsHTML=(p,ids)=>ids.map(i=>p.cards[i]).join('');
 /* 강의 헤더의 기출 채점 '✓12 ✗4' */
 function hstat(){const e=$('#hstat');if(!e)return;const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L){e.textContent='';return;}const pr=lecProg(p,L);e.textContent='✓'+pr.ok+' ✗'+pr.ng;e.title='이 강의 기출 '+L.jb.length+'문항 중 맞음 '+pr.ok+' · 틀림 '+pr.ng;}
 function lecProg(p,L){const dn=mkObj(LS.get('done.'+p.id,{}));let done=0;(L.aids||[]).forEach(a=>{if(a.some(x=>dn[x]))done++;});const mk=getMK(p.id);let ok=0,ng=0;L.jb.forEach(i=>{if(mk.ok[i])ok++;if(mk.ng[i])ng++;});return {done,ok,ng};}
-function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const _res=resumeHTML(p.id);
+/* 과목 홈(U21) — 순서 유지: 공부 순서(+실행 버튼) → 강의 바로가기 → 진행률 → 교수별 경향·📌 전략(세부는 접힘) → 📣 → 강의 카드 → 2회 이상(횟수별) */
+const EH=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
+const yrsLab=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return (a.length>4?a.slice(0,4).join('·')+' +'+(a.length-4):a.join('·'))+(a.length>=2?' ('+a.length+'회)':'');};
+/* 이어서 학습할 곳: 이 과목 lastBy가 강의면 그곳, 아니면 읽음이 덜 된 첫 강의 */
+function resumeTarget(p){const o=mkObj(LS.get('lastBy',{}))[p.id];if(o&&typeof o==='object'&&p.lect.find(x=>x.k===o.d))return {d:o.d,t:o.t||'learn',aid:o.aid||'',off:+o.off||0,cont:1};
+ const L=p.lect.find(L=>lecProg(p,L).done<L.nsec)||p.lect[0];return L?{d:L.k,t:'learn',aid:'',off:0,cont:0}:null;}
+function actBtn(p,a,C){if(a==='resume'){const r=resumeTarget(p);if(!r)return '';const L=p.lect.find(x=>x.k===r.d),pr=lecProg(p,L);const tl=({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[r.t]||'학습';
+  return `<button class="btn act res go-resume" data-s="${p.id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">▶ ${r.cont?'이어서':'시작'}: ${EH(sname(p,r.d))} ${tl}(읽음 ${pr.done}/${L.nsec})</button>`;}
+ if(a==='todo')return C.todo?`<button class="btn act" data-jbf="todo">▶ 안 푼 것 ${C.todo}문항</button>`:`<button class="btn act" data-jbf="ng">▶ 틀린 것 다시 ${C.ng}문항</button>`;
+ if(a==='rep')return p.stats.rep?`<button class="btn act" data-jbn="2">▶ 2회 이상만 풀기 (${p.stats.rep})</button>`:'';
+ if(a==='sumrep')return p.stats.rep?`<button class="btn act" data-sumrep="1">▶ 한눈표 2회 이상 ${p.stats.rep}문항</button>`:'';return '';}
+const GUIDE0=[{b:'강의 정리본 → 학습',t:'‘이 강의의 틀’로 흐름 → 카드마다 🔑 → 세부 → ⭐ 시험포인트',act:'resume'},{b:'강의 → 기출',t:'그 강의 기출을 한 장씩 풀고 맞음/틀림 — 📖 칩으로 정리본과 오가기',act:'todo'},{b:'강의 → 플래시카드·⚡자동 빈칸',t:'암기 줄을 가리고 떠올리기',act:''},{b:'과목 → JB 문제',t:'출제 횟수 순으로 풀고 틀린 것만 다시 · 비교표 · 예상문제로 마무리',act:'rep'}];
+function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const MKh=getMK(p.id);
+ const guide=(p.guide&&p.guide.length?p.guide:GUIDE0).map(g=>`<li><b>${EH(g.b)}</b> ${EH(g.t)}${g.act?' '+actBtn(p,g.act,C):''}</li>`).join('');
+ const jump=p.lect.map(L=>{const pr=lecProg(p,L),pc=Math.round(pr.done/Math.max(1,L.nsec)*100);return `<button class="chip ljc" data-d="${L.k}" title="${EH(L.title)} — 읽음 ${pr.done}/${L.nsec}"><i class="pdot${pc>=100?' full':''}" style="--p:${pc}%"></i><span>${EH(sname(p,L.k))}</span></button>`;}).join('');
  const lecs=p.lect.map(L=>{const pr=lecProg(p,L);const pc=Math.round(pr.done/L.nsec*100);return `<button class="lcard ${L.heat}" data-d="${L.k}"><div class="lt"><span class="dot ${L.heat}"></span><b>${L.title}</b><span class="small">${L.prof} · ${L.yr}년도 자료</span></div><div class="lm"><span>카드 ${L.nsec}</span><span>기출 ${L.jb.length}</span><span>예상 ${L.pred.length}</span></div><div class="pbar"><i style="width:${pc}%"></i></div><div class="lm small">읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok} · 틀림 ${pr.ng}</div><div class="tl">${L.tline||''}</div>${L.hint?`<div class="lh">💬 ${L.hint}</div>`:''}</button>`;}).join('');
- const top=(p.top||[]).slice(0,12).map(t=>`<li><button class="jbchip rep" data-go="${t.id}">${t.yrs.map(y=>'20'+('0'+y).slice(-2)).join('·')} · ${t.yrs.length}회</button> ${t.short}<span class="small"> · ${t.prof}</span></li>`).join('');
- return `<div class="guide"><div class="gt">공부 순서</div><ol class="steps"><li><b>강의 정리본 → 학습</b> 첫 화면 ‘이 강의의 틀’로 흐름을 잡고, 카드를 스크롤하며 🔑 핵심 → 세부 → ⭐ 시험포인트 순으로 읽기 (압축 보기로 빠르게 복습)</li><li><b>강의 → 기출</b> 그 강의에서 나온 기출을 한 장씩 풀고 맞음/틀림 표시 — 카드의 📖 칩으로 정리본과 오가기</li><li><b>강의 → 플래시카드·⚡자동 빈칸</b> 암기 줄을 가리고 떠올리기</li><li><b>과목 → JB 문제</b> 전 문항을 출제 횟수 순으로 풀고, ‘틀린 것’·‘안 푼 것’만 다시 · 비교표로 헷갈리는 것 정리 · 예상문제로 마무리</li></ol></div>
- <div class="panel"><div class="bt">진행률</div><div class="pline"><span>${C.ref?'현 교수 ':''}기출 <b>${total}</b>문항 — <b class="cok">맞음 ${nOk}</b> · <b class="cng">틀림 ${nNg}</b> · 안 푼 것 ${C.todo} · ★ ${nBm}</span>${refChip(C,false)}<span class="sp"></span><button class="btn" data-jbf="todo">안 푼 것 풀기</button><button class="btn" data-jbf="ng">틀린 것 다시</button><button class="btn" data-jbf="bm">★ 북마크</button></div><div class="pbar big"><i class="ok" style="width:${total?nOk/total*100:0}%"></i><i class="ng" style="width:${total?nNg/total*100:0}%"></i></div></div>
- ${_res}${p.trends||''}
- ${(p.hints&&p.hints.length)?`<div class="panel hints"><div class="bt">📣 교수님이 예고·강조한 것 <span class="small">— 강의자료 필기·학습부 멘트에서 모음. 누르면 그 강의로</span></div><ul class="hlist">${p.hints.map(x=>`<li><button class="chip lec" data-golec="${x.k}:0">${x.t.length>28?x.t.slice(0,28)+'…':x.t}</button> ${x.h}</li>`).join('')}</ul></div>`:''}
- <div class="bt" style="margin:14px 0 8px">강의별 정리본 <span class="small">— 왼쪽 띠: 진한 빨강 = 2회 이상 출제된 내용이 있는 강의 · 아래 줄: 최근 해의 짤/탈</span></div><div class="lgrid">${lecs}</div>
- <div class="panel"><div class="bt">⭐ 2회 이상 출제 — 완짤 후보 ${(p.top||[]).length}문항</div><ol class="toplist">${top}</ol></div>`;}
+ /* ⭐ 2회 이상: 출제 횟수별 묶음 — 3회↑ 펼침, 2회는 접힘. 항목마다 맞음·틀림 점 */
+ const T=p.top||[],byN={};T.forEach(t=>{(byN[t.yrs.length]=byN[t.yrs.length]||[]).push(t);});
+ const item=t=>{const st=MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'';return `<li><i class="mdot ${st}" title="${st==='ok'?'맞음':st==='ng'?'틀림':'안 푼 것'}"></i><button class="jbchip rep" data-go="${t.id}">${yrsLab(t.yrs)}</button> ${EH(t.short)}<span class="small"> · ${EH(t.prof)}</span></li>`;};
+ const top=Object.keys(byN).map(Number).sort((a,b)=>b-a).map(n=>{const L=byN[n],ok=L.filter(t=>MKh.ok[t.id]).length,ng=L.filter(t=>MKh.ng[t.id]).length,h=`${n}회 출제 ${L.length}문항 <span class="small">— 맞음 ${ok} · 틀림 ${ng}</span>`;
+  return n>=3?`<div class="tgrp"><div class="tgt">${h}</div><ol class="toplist">${L.map(item).join('')}</ol></div>`:`<details class="tgrp"><summary class="tgt">${h}</summary><ol class="toplist">${L.map(item).join('')}</ol></details>`;}).join('');
+ const hints=(p.hints&&p.hints.length)?`<div class="panel hints"><div class="bt">📣 교수님이 예고·강조한 것 <span class="small">— 강의자료 필기·학습부 멘트에서 모음. 누르면 그 강의로</span>${p.hints.length>3?` <button class="btn sm" data-hmore="1">모두 보기 (+${p.hints.length-3})</button>`:''}</div><ul class="hlist">${p.hints.map((x,i)=>`<li${i>=3?' class="hmore"':''}><button class="chip lec" data-golec="${x.k}:0">${x.t.length>28?x.t.slice(0,28)+'…':x.t}</button> ${x.h}</li>`).join('')}</ul></div>`:'';
+ return `<div class="guide" id="hguide"><div class="gt">공부 순서</div><ol class="steps">${guide}</ol></div>
+ <div class="ljump noann"><span class="small">강의 바로가기</span>${jump}</div>
+ <div class="panel" id="hprog"><div class="pline"><span><b class="hpt">진행률</b> ${C.ref?'현 교수 ':''}기출 <b>${total}</b>문항 — <b class="cok">맞음 ${nOk}</b> · <b class="cng">틀림 ${nNg}</b> · 안 푼 것 ${C.todo} · ★ ${nBm}</span>${refChip(C,false)}<span class="sp"></span><button class="btn" data-jbf="todo">안 푼 것 풀기</button><button class="btn" data-jbf="ng">틀린 것 다시</button><button class="btn" data-jbf="bm">★ 북마크</button></div><div class="pbar big"><i class="ok" style="width:${total?nOk/total*100:0}%"></i><i class="ng" style="width:${total?nNg/total*100:0}%"></i></div>${resumeHTML(p.id,true)}</div>
+ ${p.trends||''}
+ ${hints}
+ <div class="bt" id="hlec" style="margin:10px 0 8px">강의별 정리본 <span class="small">— 왼쪽 띠: 진한 색 = 2회 이상 출제된 내용이 있는 강의 · 아래 줄: 최근 해의 짤/탈</span></div><div class="lgrid">${lecs}</div>
+ <div class="panel" id="htop"><div class="bt">⭐ 2회 이상 출제 — 완짤 후보 ${T.length}문항</div>${top}${T.length?`<div class="trow"><button class="btn pri" data-jbn="2" data-one="1">▶ ${T.length}문항 한 장씩 풀기</button></div>`:''}</div>`;}
 function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'||t==='sum'||t==='tbl')?'wide':'';let h='';
  if(d==='_home')h=subjHome(p);else
  if(d==='_jb')h=jbBar(p,{})+'<div class="cards" id="cards">'+cardsHTML(p,p.order)+'</div><div class="panel" id="jbempty" hidden>조건에 맞는 문항이 없습니다.</div>';
@@ -567,7 +599,9 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  st.innerHTML=h;
  paintMarks(st);
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
- Kit.restore(st);learnSpy();}
+ if(d==='_home')homeTrend(p);Kit.restore(st);learnSpy();}
+/* 과목 홈 교수별 세부(연도별 칸)는 접어 둠 — 펼치면 그 상태를 기억(LS homeTrendOpen.<S>). 처음부터 펼치면 강의 카드가 1200px 아래로 밀려 기본은 접힘 */
+function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='homeTrendOpen.'+p.id;dt.open=!!LS.get(k,false);dt.addEventListener('toggle',()=>LS.set(k,dt.open));}
 /* 채점·이해함 표시를 지금 화면에 다시 칠함(다른 창에서 바뀌었을 때도) */
 function paintMarks(st){st=st||$('#stage');$$('.qc',st).forEach(paintQ);
  const DN=mkObj(LS.get('done.'+CUR.s,{}));$$('.tc',st).forEach(c=>c.classList.toggle('done',!!DN[c.dataset.aid]));$$('.ol[data-scroll]',st).forEach(b=>{const c=document.getElementById(b.dataset.scroll);b.classList.toggle('done',!!(c&&c.classList.contains('done')));});}
@@ -733,7 +767,10 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.qs!==undefined&&JB.F){JB.F.qs=d.qs;JB.sync();JB.apply();return;}
  if(t.id==='fmore'){const m=$('#jbmore');m.hidden=!m.hidden;t.textContent=m.hidden?'상세 필터 ▾':'상세 필터 ▴';return;}
  if(d.jbf!==undefined){openDoc(CUR.s,'_jb');const b=$('#jbbar [data-qf="'+d.jbf+'"]');if(b)b.click();return;}
- if(d.d&&t.classList.contains('lcard')){openDoc(CUR.s,d.d,'learn');return;}
+ if(d.jbn){openDoc(CUR.s,'_jb');const F=JB.F;if(F){F.n=+d.jbn;F.mine='';F.sort='n';JB.sync();JB.apply(true);if(d.one&&!JB.one)$('#fone').click();else{JB.cur=0;JB.show();}window.scrollTo(0,0);}return;}   /* 2회 이상만(+한 장씩) */
+ if(d.sumrep){openDoc(CUR.s,'_sum');const b=$('#stage [data-filt="rep"]');if(b&&!b.classList.contains('on'))b.click();return;}
+ if(d.hmore){t.closest('.hints').classList.add('all');t.remove();return;}
+ if(d.d&&(t.classList.contains('lcard')||t.classList.contains('ljc'))){openDoc(CUR.s,d.d,'learn');return;}
  if(d.thumbs){const b=t.closest('.tbody').querySelector('.thumbs');b.hidden=!b.hidden;if(!b.hidden)fillThumbs(b);return;}
  if(d.scroll){const el=document.getElementById(d.scroll);if(el)revealCard(el);return;}
  if(d.scroll2||d.golec){const v=(d.scroll2||d.golec).split(':');openDoc(CUR.s,v[0],'learn',null,{id:'t-'+v[0]+'-'+v[1]});return;}
@@ -937,9 +974,9 @@ function savePos(){if(VIEW!=='doc'||!CUR.s||!CUR.d||$('#subj').hidden||/^_(home|
  const POS=mkObj(LS.get('pos.'+CUR.s,{}));POS[CUR.d+'/'+CUR.t]={aid:P.aid,off:P.off};LS.set('pos.'+CUR.s,POS);
  let ll=LS.get('lastList.'+CUR.s,[]);if(!Array.isArray(ll))ll=[];ll=[o].concat(ll.filter(x=>x&&typeof x==='object'&&!(x.d===o.d&&x.t===o.t))).slice(0,3);LS.set('lastList.'+CUR.s,ll);}
 let spT;addEventListener('scroll',()=>{clearTimeout(spT);spT=setTimeout(()=>{savePos();if(isJBv())JB.save();},800);},{passive:true});
-function resumeHTML(only){const all=mkObj(LS.get('lastBy',{}));let L;if(only){L=LS.get('lastList.'+only,[]);if(!Array.isArray(L)||!L.length)L=all[only]?[all[only]]:[];L=L.filter(o=>o&&typeof o==='object').map(o=>Object.assign({},o,{s:only}));}else L=Object.values(all);
+function resumeHTML(only,inl){const all=mkObj(LS.get('lastBy',{}));let L;if(only){L=LS.get('lastList.'+only,[]);if(!Array.isArray(L)||!L.length)L=all[only]?[all[only]]:[];L=L.filter(o=>o&&typeof o==='object').map(o=>Object.assign({},o,{s:only}));}else L=Object.values(all);
  L=L.filter(o=>o&&typeof o==='object'&&PACKS[o.s]&&o.d).sort((a,b)=>(b.at||0)-(a.at||0));if(!L.length)return '';const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
- return `<div class="panel resume"><div class="bt">↪ 이어서 보기${only?' <span class="small">— 최근 읽던 곳 '+L.length+'</span>':''}</div>${L.map(o=>{const P=PACKS[o.s];const Lc=P.lect.find(x=>x.k===o.d);const nm=Lc?sname(P,o.d):((SUBJDOCS.find(x=>x[0]===o.d)||['',o.d])[1]);const tl=({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[o.t]||'';
+ return `<div class="${inl?'resume inl':'panel resume'}">${inl?'<span class="small">↪ 최근 읽던 곳</span>':'<div class="bt">↪ 이어서 보기'+(only?' <span class="small">— 최근 읽던 곳 '+L.length+'</span>':'')+'</div>'}${L.map(o=>{const P=PACKS[o.s];const Lc=P.lect.find(x=>x.k===o.d);const nm=Lc?sname(P,o.d):((SUBJDOCS.find(x=>x[0]===o.d)||['',o.d])[1]);const tl=({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[o.t]||'';
   return `<button class="res go-resume" data-s="${o.s}" data-d="${E(o.d)}" data-t="${E(o.t||'')}" data-aid="${E(o.aid||'')}" data-off="${+o.off||0}"><b>↪ ${only?'':E(P.title)+' · '}${E(nm)}${tl?' · '+tl:''}${o.ti?' · '+E(o.ti):''}</b><span class="small"> (${o.at?new Date(o.at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):''})</span></button>`;}).join('')}</div>`;}
 /* ---------- 내 표시 모아보기 ---------- */
 const AMAP={};function aidMap(s){if(AMAP[s])return AMAP[s];const p=PACKS[s],m={},tmp=document.createElement('div');const add=(d,t,html,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).forEach(b=>{const h=b.querySelector('.thead .en,.qtitle,.tbt,.pq,.qtext');const ti=h?h.textContent.replace(/\s+/g,' ').trim():'';m[b.dataset.aid]={d,t,label,title:(b.classList.contains('qc')&&b.dataset.id?b.dataset.id+' · ':'')+ti.slice(0,60)};if(b.dataset.alt)b.dataset.alt.split(' ').forEach(a=>{if(a&&!m[a])m[a]=m[b.dataset.aid];});});};
