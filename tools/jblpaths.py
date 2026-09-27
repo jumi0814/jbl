@@ -34,3 +34,7 @@ def prev_crops(sid, crops):
             srcs = re.findall(r'<img class="fig" loading="lazy" src="([^"]+)" alt="%s">' % re.escape(alt), h)
             for k, s in zip(kinds.get(kind, []), srcs): out[k] = s
     return out
+def prev_jb(sid):
+    """지금 docs/packs/<SID>.img.jb.js의 JB 원본 쪽 이미지 {판-쪽: dataURI} — 같은 JB PDF를 다시 렌더해 파일만 바뀌는 것을 막는 용도."""
+    p = os.path.join(DOCS, 'packs', sid + '.img.jb.js')
+    return _load_js(p).get('jb', {}) if os.path.exists(p) else {}

@@ -1,122 +1,384 @@
 #LEC LOAD | Loading protocol | 한정준 | 25 | 1013_한정준_Loading protocol (25년도, 30쪽) | 30
-! 25년도 슬라이드 기준(26년도 없음). 💡 교수님 강조 쪽: 7, 9, 16, 18 (필기 p.1)
-@MAP 임플란트엔 치근막이 없다 → 전통 방식(3~6개월 무부하)의 한계 → 부하 시기 3분류(즉시·조기·전통) → 즉시부하의 장단점 → 성공 요소 4 → 전제조건 5 → 취약 시기·위험 줄이기
+! 25년도 슬라이드 기준(26년도 자료 없음). p.29는 "경청해 주셔서 감사합니다", p.30은 그 뒤에 붙은 부록(Misch 용어 정의 — 'Other Definitions' 카드에 포함).
+! 💡 교수님 강조 쪽: 7, 9, 16, 18 (필기 p.1) — p.7 "교과서 정의 외워두기!" · p.9 "immediate loading protocol의 장점 기억하셔야 합니다" · p.16 "JB에 있을수도" · p.18 "필수조건 5가지. JB에 있을 것".
+! 시험 범위 메모(필기): p.24~27 'factors that decrease risks' 목차는 "시험과 관련 없고, 참고사항" · p.11 Misch 정의는 "교과서랑 개념이 좀 다름(교과서로 외우기)" · p.12 Weber는 "보기만 하자" · p.14 식립 분류는 "하중과 헷갈리지 말기" · p.28은 "쭉 읽으심".
+! JB 경향(강조): 강조 쪽이 그대로 서술형으로 출제 — p.7 부하 시기 3분류(24) · p.9 즉시부하 장점 5(22) · p.18 전제조건 5(22·24 반복 = 짤). p.16·p.19·p.3 문장은 24년 T/F(47도·이공 사이·자연치 vs 임플란트)로. 22년 문제는 JB 멘트상 "올해 한정준 파트".
+@MAP 자연치 vs 임플란트(치근막 없음) → 전통 two-stage(3~6개월 무부하)의 한계 → 부하 시기 3분류(1주·8주)와 각 개념 → 즉시부하 장점 5·단점 3 → 다른 정의·식립 분류와 구별 → 성공 요소 4(초기 안정성) → 전제조건 5 → 취약 시기(3~6주)와 위험 줄이기
 
-@G ① 배경
-## Occlusion of Implant Prosthesis | 임플란트 보철의 교합 | 1-3 | 기출 24 T/F | jb=Q23
-> 자연치는 치근막이 충격을 흡수하지만 임플란트는 그렇지 못하다
-= 임플란트: 방어기전 거의 없음 · 힘이 {r:치조정에 집중}
-| | 자연치 | 골유착성 임플란트 |
+@G ① 배경 — 왜 하중 시기가 문제인가
+## Occlusion of Implant Prosthesis | 임플란트 보철의 교합 | 1-3 | 자연치 vs 임플란트 · T/F | jb=Q23
+> 자연치는 치근막이 충격을 흡수하지만 임플란트는 방어기전 없이 치조정이 다 받는다
+= 임플란트 = {r:치근막 없음} → {r:특정방어기전이 거의 없음} + 힘이 {r:치조정에 집중}
+# 학습목표
+- ① 여러 요소를 고려하여 다양한 방식의 {r:부하 적용}을 이해한다 ② 치료 계획 단계부터 {r:부하 시기}를 고려할 수 있다.
+U: 오늘의 주제 = 식립 후 언제부터 하중을 가할 것인가(식립 즉시 or 좀 기다렸다가).
+# 자연치 vs 골유착성 임플란트
+| 구분 | 자연치 | 골유착성 임플란트 |
 | 구조 | {r:치근막} 존재 | 치근막 없음 |
-| 교합압 | {r:충격 완화} + 치조골에 골고루 전달 | {r:특정방어기전이 거의 없음}, 힘이 {r:치조정에 집중} |
-- 과부하의 결과: 나사 풀림·파절, 지대주·보철물 파절, 골 소실.
-E: Q23 | 24년 T/F "자연치보다 임플란트가 교합압 분산·충격 완화에 유리하다" → F.
-F: 3=자연치 vs 임플란트
-M: 임플란트 = {r:치근막 없음} → 힘이 {r:치조정}에 집중
+| 교합압 처리 | 교합압에 대해 {r:충격 완화} 및 치조골에 {r:골고루 전달} | 교합압에 대한 {r:특정방어기전이 거의 없음}(민감도가 낮다) |
+| 힘이 가는 곳 | 치조골에 골고루 | 힘이 주로 {r:치조정에 집중} |
+| 조절 | 근신경 반사운동에 많은 요소가 관여 | — |
+E: Q23 | 24년 T/F 추가복원 "자연치보다 임플란트가 교합압을 치조골에 분산하여 전달하고 충격 완화에 유리하다" → {r:F}. 함정: 분산·충격 완화는 **자연치(치근막)** 쪽 설명.
+U: 치근막이 없어 힘이 넓게 분산되지 않고 치조정에 집중 → 임플란트 관련 component의 풀림이나 파절.
+# 과부하·나쁜 교합의 결과
+- **과부하**: ① 나사 풀림 ② 나사 파절 ③ 지대주 혹은 보철물의 파절 ④ {r:골 소실}.
+- **잘못 형성된 교합**: 임플란트의 지지골, 골-임플란트 계면 및 보철물에 해로운 영향.
+- 교합에 안 좋은 영향을 주는 요소: ① 비정상적인 {r:측방압}(이갈이) ② 과도한 부하 ③ 불량한 위생상태.
+# 임플란트 환자의 교합압 (연구)
+- **Jemt (1985)**: 임플란트에 의하여 지지되는 overdenture는 총의치보다 훨씬 강한 {r:교합압의 증가}.
+- **Haraldson (1977)**: 임플란트의 저작압과 최대 교합압은 자연치와 {r:큰 차이가 없음}.
+- 임플란트를 장착한 환자의 교합압도 저작근을 통한 {r:근신경계의 조절}을 보임.
+U: 교합압은 자연치만큼 센데 방어기전은 거의 없음 → 그래서 문제가 될 수 있다(필기).
+F: 3=자연치와 임플란트의 차이
+M: 임플란트 = {r:치근막 없음} → {r:방어기전 거의 없음} + 힘이 {r:치조정}에 집중
+M: 과부하 결과: {r:나사 풀림·파절} · {r:지대주·보철물 파절} · {r:골 소실}
+M: Haraldson(1977): 임플란트 저작압·최대 교합압 = 자연치와 {r:큰 차이 없음}
 
-## Progressive Loading · Traditional Approach | 전통적 방식과 그 한계 | 4-6 | Branemark
-> 3~6개월 묻어두고 기다리는 방식 — 너무 오래 걸린다
-= Branemark two-stage = crestal bone {r:아래} 식립 + soft tissue covering + {r:3 to 6 months} non-loaded
-- Two-stage protocol: ① crestal bone 약간 {r:아래}에 식립 ② soft tissue로 덮음 ③ {r:3 to 6 months} 무부하.
-- 단점(오래 걸림) 극복 → {r:조기 기능 부하} · {r:즉시 기능 부하}.
-- 주의: "발치 후 즉시 식립"과는 다른 개념 — 심은 뒤 바로 기능을 줄지의 문제.
-- 전문가 설문: immediate loading은 늘어날 것 — 단, {r:patient selection}이 중요.
-M: Branemark: {r:two-stage}, {r:3~6개월} 무부하
+## Progressive Loading · Traditional Approach | 전통적 방식과 그 한계 | 4 | Branemark two-stage
+> 묻어두고 3~6개월 기다리는 게 원칙이었지만, 치아 없이 지내는 기간이 너무 길다
+= Branemark {r:two-stage} = crestal bone {r:slightly below} 식립 + {r:soft tissue covering} + {r:3 to 6 months} non-loaded
+# Traditional approach (Branemark)
+- **Two-stage surgical protocol** for Osseointegration — Prerequisite for achieving {r:osseointegration} and {r:long-term success}.
+- ① Placing dental implants {r:slightly below crestal bone} ② maintaining a {r:soft tissue covering} over the implant ③ allowing for {r:non-loaded} implant environment for {r:3 to 6 months}.
+- 1st op.: 임플란트를 골에 식립 / 2nd op.: {r:transmucosal abutment} 체결(필기).
+U: cover screw 체결 → 완전히 submerged → loading 없는 상태로 3~6m 기다리고 re-entry — osseointegration 기간 동안 힘을 받지 않게 해서 long-term success를 노림.
+# 한계 → 극복 방안
+- For shorter treatment times and fewer surgical interventions? (traditional implant treatment의 단점 극복 방안)
+- ① {r:조기 기능 부하} ② {r:즉시 기능 부하} ③ 골유착 증진을 위한 임플란트 표면 및 형태에 대한 연구 발전 ④ {r:발치 후 즉시 임플란트}를 식립.
+U: 발치부터 임플란트까지 오래 걸림 → 치아 없는 상태 오래 지속 → 저작·사회생활 지장 → 치료 기간·내원·수술 횟수를 줄이는 방법들이 등장.
+U: 조기·즉시 기능 부하는 발치 후 즉시 식립 임플란트와는 다른 개념 — 식립한 후에 바로 기능을 줄 것인지에 대한 내용(필기).
+F: 4=Traditional approach와 단점 극복 방안
+M: Branemark traditional = {r:two-stage} · crestal bone {r:아래} 식립 · 연조직으로 덮고 {r:3~6개월} 무부하
+M: 극복 방안 4: {r:조기 부하} · {r:즉시 부하} · 표면·형태 연구 · {r:발치 후 즉시 식립}
+M: 즉시 '부하'(언제 힘을 주나) ≠ 즉시 '식립'(언제 심나)
 
-@G ② 부하 시기
-## Loading Timing — Definitions ★ | 부하 시기의 정의 (교수 강조) | 7 | 기출 24 | jb=Q21,Q20
-> 교과서 정의 그대로 — 1주, 8주
-= {r:즉시} = 1주 이내 · {r:조기} = 1주 이후~8주 이내 · {r:전통} = 8주 이후
-P: 💡 "교과서 정의 외워두기!"
+## EAO Delphi Study — Future Trends | 전문가 설문: 즉시식립·즉시부하는 늘어난다 | 5-6 | 추세 · 환자 선택
+> 전문가 52명에게 물었더니 즉시부하는 "더 많이 쓰일 것"으로 합의
+= Immediate loading: More frequently {r:65%} · Less {r:0%} → {r:consensus}(더 많이 쓰일 것) / 단 {r:patient selection}이 중요
+# 설문 (EAO Delphi Study – Horizon 2030)
+- Identifying and predicting future trends in implant dentistry in Europe — 전문가 그룹에 여러 유형에 대한 설문 시행.
+- 주제 8: ① Types of implant treatment demands ② Types of implants ③ Diagnosis and planning procedures ④ Surgical approaches ⑤ Prosthetic protocols ⑥ Peri-implant diseases ⑦ Professional practice in implant dentistry ⑧ Education and training in dental implants.
+# 결과
+| 질문 | More frequently | Similarly | Less frequently | 결론 |
+| immediate implant placement after tooth extraction | {r:61%} (32/52) | 31% (16/52) | 8% (4/52) | {r:No consensus} — more frequently or remain largely the same |
+| immediate loading protocols | {r:65%} (34/52) | 35% (18/52) | {r:0%} (0/52) | {r:Consensus}: used more frequently — moderate consensus in the second round |
+U: 결국 clinician들은 치료기간을 전체적으로 단축하는 방식을 생각 — 단 모든 환자에게 할 수는 없고 patient selection을 잘 해야 함(필기).
+F: 5, 6=즉시식립·즉시부하 전망 설문
+M: 즉시부하 전망: More frequently {r:65%} · Less {r:0%} → {r:consensus}
+M: 즉시식립 전망: 61% more frequently지만 {r:no consensus}
+M: 치료기간 단축의 전제 = {r:patient selection}
+
+@G ② 부하 시기 — 정의와 개념
+## Loading Timing — Definitions ★ | 부하 시기의 정의 (교수 강조) | 7 | 교수 강조 · 기출 | jb=Q21,Q20
+> 교과서 정의 그대로 — 1주와 8주가 경계
+= {r:즉시} = 수술 {r:1주 이내} · {r:조기} = 식립 {r:1주 이후 ~ 8주 이내} · {r:전통} = 식립 {r:8주 이후}
+P: 💬 "교과서 정의 외워두기!"(p.7 필기 — 강조 쪽)
+# 부하 적용 방법 (교과서 정의)
 | 분류 | 시기 |
-| {r:즉시부하} immediate loading | 수술 {r:1주 이내} |
-| {r:조기 부하} early loading | 식립 {r:1주 이후 ~ 8주 이내} |
-| {r:전통 부하} conventional loading | 식립 {r:8주 이후} |
-E: Q21 | 24년 "부하 적용 방법에 따른 분류".
-# 왜 기다리나
-- 이상적인 골조직 = {r:층판골}. 완전 성숙에 {r:1년}, {r:16주}에 약 {r:70%} 석회화.
-- 석회화 전에 {r:생리적 한계를 초과하는 큰 하중} → {r:골흡수}.
-- 한계 내의 부하는 오히려 밀도를 높임.
-E: Q20 | 24년 "과도한 수직력…" 문제의 JB 답이 위 둘째 줄 문장.
+| ① {r:즉시 부하} (immediate loading) | ==수술 1주 이내에== |
+| ② {r:조기 부하} (early loading) | ==식립 1주 이후 ~ 8주 이내에== |
+| ③ {r:전통 부하} (conventional loading) | ==식립 8주 이후에== |
+E: Q21 | 24년 탈(첫 출제) "임플란트 부하 적용 시기에 따른 분류" — 3분류 + 시기 그대로. 함정: 즉시는 '**수술** 1주 이내', 조기·전통은 '**식립** 후' 기준 / Misch(2주·3개월)와 섞지 말 것.
+- 결정 시 고려: ① 치주 ② 교합상태 ③ {r:식립부위} ④ 식립방법과 시기 ⑤ {r:초기 고정} 등.
+U: parafunctional habit이 많은데 즉시부하 → 해 / 상악 구치부는 bone quality·density가 나빠 즉시하중 시 osseointegration 실패 → quality가 좋지 않으면 더 미룰 수도(필기).
+# 왜 기다리나 — 뼈의 성숙
+- 이상적인 골조직은 {r:층판골}(성숙한 골).
+- 식립 후 골조직이 완전히 성숙하는 데에는 조직학적으로 {r:1년} 정도, {r:16주} 경과 후 약 {r:70%} 석회화.
+- 계면에 가장 먼저 생긴 신생골은 석회화가 불충분 → 기능 시 하중을 견디기 어려움.
+- ==완전한 석회화가 일어나기 전에 생리적 한계를 초과하는 큰 하중이 가해지면 골흡수를 일으킬 수 있음.==
+- 반대로 **생리적 한계 내에서** 가해지는 부하가 증가하면 그 {r:밀도가 증가}함.
+- 기능하에서 치밀골의 두께와 함께 {r:mineral component}의 농도가 증가된다는 보고도 있음.
+E: Q20 | 24년 탈 "임플란트에 수직력이 지속적으로 가해지면 발생하는 문제점" — JB 답이 위 형광 문장(끝에 "(?)"). ⚠ 복원 불확실: JB 해설은 '수평력'의 오복원 가능성(진단·치료계획 p.23 "수직력에 잘 견디어 내지만 … 수평력") — 이 쪽 문장은 하중 방향을 특정하지 않음.
+U: 1년 기다려야 하나? → 16주 기다리면 임상적으로 큰 차이 없음 → traditional은 16주 정도 기다렸다가 loading 시작(필기).
 F: 7=Loading timing (교수 강조 쪽)
-M: 즉시 {r:1주 이내} / 조기 {r:1~8주} / 전통 {r:8주 이후}
-M: {r:16주}에 석회화 약 {r:70%} · 완전 성숙 {r:1년}
+M: 즉시 {r:수술 1주 이내} / 조기 {r:식립 1주~8주} / 전통 {r:식립 8주 이후}
+M: 완전 성숙 {r:1년} · {r:16주}에 석회화 약 {r:70%}
+M: 석회화 전 {r:생리적 한계 초과} 하중 → {r:골흡수} / 한계 내 부하 → {r:밀도 증가}
 
-## Immediate Loading — Pros · Cons ★ | 즉시부하의 장단점 (p.9 교수 강조) | 8-10 | 기출 22 서술형 | jb=Q48
-> 환자는 편하고 빠르지만 술자에게는 어렵다
-= 장점 5 = {r:Less discomfort} · {r:Faster treatment} · {r:soft tissue drape} · {r:Immediate satisfaction} · {r:bone-implant contact}
-P: 💡 "immediate loading protocol의 장점 기억하셔야 합니다"
-# 개념
-- 초기 안정성을 얻은 임플란트에 즉시 임시보철물 → {r:48~72시간} 내 교합 적용. ({r:Non-submerged} first-stage surgery)
-# Advantages 5
-- ① {r:Less discomfort} — no second surgery, no removable prosthesis ② {r:Faster treatment}.
-- ③ More ideal {r:soft tissue drape} ④ {r:Immediate satisfaction} and patient acceptance ⑤ Greater {r:bone-implant contact}.
-E: Q48 | 22년 서술형 "Immediate occlusal loading의 장점을 나열하고 설명하시오".
-# Disadvantages 3
-- ① Increased {r:skill level} required ② Initial {r:longer appointment} ③ Possible increased implant {r:morbidity}(연구로 뒷받침되진 않음).
-F: 9=Advantages 5 (교수 강조 쪽), 10=Disadvantages 3
-M: 즉시부하 장점 5: {r:불편감↓} · {r:빠른 치료} · {r:연조직 형태} · {r:즉각적 만족} · {r:골-임플란트 접촉↑}
-M: 즉시부하 단점 3: {r:숙련도} · {r:긴 첫 내원} · {r:morbidity} 가능성
+## Loading Concepts — Immediate · Early · Conventional · Delayed | 즉시·조기·통상·지연 하중의 개념 | 8·11·13 | 개념 정의 · 48~72시간
+> 시기 숫자 말고 '무엇을 뜻하는가' — 즉시는 한 번에, 지연은 초기 고정이 없을 때
+= 즉시 = {r:48~72시간} 내 임시보철 교합 · 조기 = 대략 {r:3주} 후 · 통상 = {r:층판골} 개조 후 · 지연 = {r:초기 고정} 못 얻을 때
+# 네 가지 하중의 개념 (교과서 설명)
+| 하중 | 개념 | 핵심 |
+| **즉시 부하** (immediate occlusal loading) | 식립 시 {r:초기 안정성}을 확보한 임플란트에 식립한 후 즉시 {r:임시보철물}을 제작하여 기능을 부하 | {r:48~72 시간} 내에 교합 적용 |
+| **조기 부하** (early occlusal loading) | 어느 정도 치유과정이 지나서 {r:골형성이 시작된 후} 기능 | 대략 {r:3주} 정도 지난 후 기능 부여 |
+| **통상적인 하중** (conventional-loading) | 골유착을 위해 치유기간 중 {r:기능을 부여하지 않는} 개념 | 교직골(woven bone)이 압력에 견딜 수 있는 {r:층판골로의 골개조}에 필요한 시간 후의 하중 |
+| **지연 하중** (delayed-loading) | 일반적인 치유기간보다 {r:더 오랜 기간}이 지난 이후의 기능 부하 | {r:초기 고정}을 거의 얻지 못했을 경우 |
+# 즉시 부하 — 더 자세히
+- 하중 부하(loading): 식립 후 적어도 {r:수 시간 이내}에 — 초기 치유과정에서 중요한 {r:혈청의 파괴}를 막기 위해 즉각적으로.
+- It allows patients to combine the surgical and prosthetic procedures into a {r:single appointment}.
+- **Non-submerged first-stage surgery** + immediate loading of the implants with an {r:interim or final prosthesis}.
+U: 바로 최종 보철물을 만들지는 않음 — 임시보철로 불편감을 줄이고 안정된 후 최종보철물 장착 / 과한 하중이면 실패할 수 있음(필기).
+U: 수술을 1·2차로 나누지 않고 한 번에 — CAD/CAM 등 digital dentistry로 보철물 제작 시간이 줄어 가능해짐(필기).
+F: 8=즉시 부하의 개념
+# 조기 부하 — 근거
+- 초기 골형성과정에서 {r:기계적 자극}이 임플란트와 골간의 더욱 더 양호한 결과를 이끌어낸다는 사실에 입각.
+U: 교과서 조기 부하 = 1~8주 사이 / 식립하고 s/o하고 나면 3주 정도 지남(필기).
+F: 11=조기 부하 (1~8주 사이)
+# 지연 하중이 필요한 경우
+- ① 매우 {r:불량한 골질} ② {r:발치 후 즉시 식립}처럼 초기 임플란트와 골 표면간의 접촉을 거의 기대할 수 없는 경우 ③ {r:골이식술} 등이 거의 동시에 시행된 경우.
+F: 13
+M: 즉시 부하 = 초기 안정성 확보 + 즉시 {r:임시보철물} · {r:48~72시간} 내 교합 · {r:single appointment}
+M: 조기 = {r:골형성 시작 후}(대략 {r:3주}) — 기계적 자극이 결과를 더 좋게
+M: 통상 = woven bone → {r:층판골} 개조 후 / 지연 = {r:초기 고정} 못 얻음(불량 골질·발치 즉시 식립·동시 골이식)
 
-## Other Definitions · Placement vs Loading | 다른 정의들, 그리고 식립 분류와의 구별 | 11-15 | 헷갈림 주의 | jb=Q32
-> 교과서 말고 다른 숫자도 나온다 — 시험은 교과서 기준
-= 시험 기준 = {r:교과서 정의}(1주·8주) — Misch(2주·3개월)는 참고만
-| | 교과서 | Misch | Weber 2009 |
-| Immediate | {r:1주 이내} | within 2 weeks | < 1 week |
-| Early | 1~8주 | 2 weeks ~ 3 months | 1 week ~ 2 months |
-| Conventional / Delayed | 8주 이후 | > 3 months | > 2 months |
-- 필기: Misch는 "교과서랑 다름(교과서로 외우기)", Weber는 "보기만 하자".
-- **통상 하중**: woven bone이 층판골로 바뀐 뒤의 하중 / **지연 하중**: 초기 고정을 거의 못 얻은 경우(불량한 골질, 골이식 동시).
-# 식립 시기(Hammerle)와 헷갈리지 말기
-- Type 2 {r:4-8주} · Type 3 {r:12-16주} · Type 4 {r:16주 초과} — 이건 '언제 심나', 부하는 '언제 힘을 주나'.
-F: 11=Misch 정의, 14=Hammerle 식립 분류, 15=Gallucci 2018 표
-M: 부하 정의는 {r:교과서}(1주·8주)로 — Misch(2주·3개월)와 혼동 금지
+## Immediate Loading — Pros · Cons ★ | 즉시부하의 장단점 (p.9 교수 강조) | 9-10 | 교수 강조 · 기출 | jb=Q48
+> 환자는 편하고 빠르지만, 술자는 어렵고 실패하면 신뢰를 잃는다
+= 장점 5 = {r:Less discomfort} · {r:Faster} · {r:soft tissue drape} · {r:Immediate satisfaction} · {r:bone-implant contact} / 단점 3 = {r:skill} · {r:긴 첫 내원} · {r:morbidity}
+P: 💬 "immediate loading protocol의 장점 기억하셔야 합니다"(p.9 필기 — 강조 쪽)
+# Advantages of immediate load protocol 5
+- ① ==Less discomfort for patients== — Decreased in discomfort and morbidity / No second surgery → {r:fewer appointments} / {r:No removable prosthesis}.
+- ② ==Faster treatment==.
+- ③ ==More ideal soft tissue drape== (연조직 형태).
+- ④ ==Immediate satisfaction and patient acceptance== — Improvement in {r:esthetics} / Maintenance in {r:masticatory function and muscle mass}.
+- ⑤ ==Greater bone-implant contact==.
+E: Q48 | 22년(기준선 해 · 방강미 교수님 출제 — JB 멘트상 올해 한정준 파트) "Immediate occlusal loading의 장점을 쓰시오" — 5개 번호 그대로(굵은 제목 5줄). 함정: 1번의 세부(no second surgery·no removable prosthesis)를 별개 장점으로 세지 말 것.
+U: ① submerged + delayed loading이면 flipper 같은 보철물을 써야 함 ③ 발치 후 즉시식립의 장점과 상통 — 주변 papilla 보존 ⑤ 생리적 한계 내 하중으로 bone density가 높아질 수 있어서(필기).
+U: ④ 발치 후 상실감·자신감 결여, 대중 노출·대인 업무가 많은 환자에게 도움(필기).
+F: 9=Advantages 5 (교수 강조 쪽)
+# Disadvantages of immediate load protocol 3
+- ① Increased {r:skill level} required.
+- ② Initial {r:longer appointment duration}: surgical/prosthetic — Exceeding the patient's tolerance for appointment length / Increased possibility of {r:medical complications}.
+- ③ Possible increased {r:implant morbidity} — Implant bone loss or implant failure, but {r:not supported by clinical studies and research} / Patient's loss of confidence in the doctor, increased costs and treatment time, longer treatment period.
+U: 교합력을 측방압 없이 균일하게 control해야 해서 스킬이 중요 / initial chair time이 길어(impression·milling·design) 장시간 치료가 어려운 환자는 나눠서(필기).
+U: 논문상 즉시하중 때문에 bone loss·failure가 일어난다고 보기는 어렵지만 경험적으로는 꽤 있음 → 실패하면 신뢰도가 확 떨어지므로 환자 selection을 잘하기(필기).
+F: 10=Disadvantages 3
+M: 장점 5: {r:Less discomfort} · {r:Faster treatment} · {r:soft tissue drape} · {r:Immediate satisfaction} · {r:bone-implant contact}
+M: 단점 3: {r:skill level} · {r:longer appointment} · {r:implant morbidity}(단 임상연구로 뒷받침 안 됨)
+M: Less discomfort 세부: no {r:second surgery} · no {r:removable prosthesis}
 
-@G ③ 즉시부하의 조건
-## Factors for Immediate Loading ★ | 즉시하중 성공의 요소 (교수 강조) | 16-17 | 기출 24 T/F | jb=Q22,Q23
+## Other Definitions · Placement vs Loading | 다른 정의들, 그리고 식립 분류와의 구별 | 11-12·14·30 | 헷갈림 주의 | jb=Q32
+> 책마다 숫자가 다르다 — 시험은 교과서(1주·8주), 식립 Type은 '언제 심나'라서 별개
+= 시험 = {r:교과서}(1주·8주) / Misch {r:2주·3개월} · Weber {r:1주·2개월}은 참고 / 식립 Type(Hammerle)은 하중과 별개
+P: 💬 Misch는 "우리 교과서랑 개념이 좀 다름(교과서로 외우기)", Weber는 "보기만 하자"(필기).
+# 부하 정의 세 가지 비교
+| 부하 | 교과서 (p.7) | Misch 4th Ed. (p.11) | Weber et al. 2009 (p.12) |
+| Immediate | 수술 {r:1주 이내} | within {r:2 weeks} | Earlier than 1 week |
+| Early | 식립 1주 이후 ~ 8주 이내 | between {r:2 weeks and 3 months} | Between 1 week and 2 months |
+| Conventional / Delayed | 식립 8주 이후 | Delayed or staged: after more than {r:3 months} | Conventional: Greater than 2 months |
+- Misch의 delayed occlusal loading은 two-stage(연조직으로 덮음) 또는 one-stage(healing abutment로 노출) 모두 가능.
+# Misch 용어 정의 (부록)
+- **Nonfunctional immediate prosthesis**: no direct occlusal load within 2 weeks — primarily considered in {r:partially edentulous} patients.
+- **Nonfunctional early prosthesis**: delivered between 2 weeks and 3 months.
+- **Occlusal loading**: in contact with the opposing dentition in {r:centric occlusion} / **Nonocclusal loading**: not in contact in centric occlusion in the natural jaw position.
+- **Provisional prosthesis**: fixed or removable, to enhance esthetics, stabilization, and/or function for a {r:limited period} → replaced by a definitive prosthesis; helps determine therapeutic effectiveness.
+F: 11=Misch 정의 (교과서로 외우기), 12=Weber 2009 (보기만), 30
+# 식립 시기 분류 (Hammerle et al. 2004) — 하중과 헷갈리지 말기
+| 식립 Type | 뜻 | 시기 |
+| Type 1 | Implant placement {r:immediately following tooth extraction} and as part of the same surgical procedure | 발치 즉시 |
+| Type 2 | Complete {r:soft tissue coverage} of the socket | Typically {r:4 to 8 weeks} |
+| Type 3 | Substantial clinical and/or radiographic {r:bone fill} of the socket | Typically {r:12 to 16 weeks} |
+| Type 4 | {r:Healed site} | Typically {r:more than 16 weeks} |
+U: Type 2 조기 식립은 요즘 많이 시행 — 뼈이식하고 덮어줄 soft tissue가 부족하면 조금 기다렸다 식립 / bone fill = socket에 뼈 차는 것(필기).
+E: Q32 | 23년 서술형(서미현 파트) "식립 시기 4 Type 중 Type 1의 장단점" — 분류 자체는 여기와 같음. ⚠ Type 4 기간: 이 강의(Hammerle 2004)는 {r:more than 16 weeks}, 서미현 p.58은 6 months or longer — 문제의 강의 기준으로.
+F: 14=식립 분류 (하중과 헷갈리지 말기)
+M: 부하 정의는 {r:교과서}(1주·8주) — Misch({r:2주·3개월})·Weber({r:1주·2개월})와 혼동 금지
+M: Hammerle 식립: Type 2 {r:4-8주}(연조직 덮임) · Type 3 {r:12-16주}(bone fill) · Type 4 {r:16주 초과}(healed)
+M: Occlusal loading = {r:centric occlusion}에서 대합치와 접촉
+
+## Placement × Loading Summary | 식립·부하 조합의 근거 수준 (Gallucci 2018) | 15 | 조합표
+> 발치 즉시 심었다면 부하는 전통적으로 — 그것만 임상적으로 검증됨
+= 발치 즉시 식립(Type 1) → {r:conventional loading(1C) = SCV} / 조기 식립 + 즉시·조기 부하(2-3A·2-3B) = {r:CID}
+# 표 읽는 법
+- The relationships between the timing of implant placement and the timing of loading … in {r:partially dentate} patients (Gallucci et al, 2018).
+- **SCV**: clinically validated(초록 — 검증된 방법) / **CD**: clinically documented(노랑 — 문헌은 있지만 임상적으로 완전히 안전한 것은 아님) / **CID**: clinically insufficiently documented(빨강 — 보고된 report가 별로 없음).
+# 조합표
+| 식립 Type | Immediate restoration/loading (Type A) | Early loading (Type B) | Conventional loading (Type C) |
+| Immediate placement (Type 1) | 1A {r:CD} | 1B {r:CD} | 1C {r:SCV} |
+| Early placement (Type 2–3) | 2-3A {r:CID} | 2-3B {r:CID} | 2-3C {r:SCV} |
+| Late placement (Type 4) | 4A {r:CD} | 4B {r:SCV} | 4C {r:SCV} |
+U: loading과 식립을 합쳐서 생각 — 발치 즉시 임플란트는 conventional loading이 임상적으로 유효(필기).
+F: 15=식립과 부하 조합 (초록 검증 노랑 문헌 있음 빨강 미검증)
+M: SCV = {r:clinically validated} · CD = {r:clinically documented} · CID = {r:insufficiently documented}
+M: 발치 즉시 식립 → {r:conventional loading}(1C SCV) / 조기 식립 + 즉시·조기 부하 = {r:CID}
+M: Conventional loading(C열)은 모든 식립 Type에서 {r:SCV}
+
+@G ③ 즉시부하의 성공 조건
+## Factors for Immediate Loading ★ | 즉시하중 성공의 요소 (교수 강조) | 16 | 교수 강조 · T/F | jb=Q22,Q23
 > 가장 중요한 건 초기 안정성 — 흔들리면 뼈 대신 섬유가 붙는다
-= 미세 동요 {r:100 μm↑} → 섬유성 유착 · {r:28 μm↓} 무영향 · 회전력 {r:32~40N/cm2} · {r:1분간 47도}
-P: 💡 교수님 강조 쪽 — 필기 "JB에 있을 수도"
-# 4요인
-- **외과적**: {r:초기 안정성}(가장 중요) + 술기(열 발생 최소화).
-- **임플란트**: {r:나사형} 우수, 거친 표면이 전단 저항 {r:5배}, 가능한 {r:길고 굵게}.
-- **환자**: 피질골·해면골의 양과 질, 치유 정도.
-- **보철**: 조절된 교합력, {r:수평력·측방력 제거}, {r:cross-arch splinting}.
-# 수치
-- {r:100 μm} 이상 미세 동요 → {r:섬유성 유착} / {r:28 μm} 이하 → 영향 없음 / {r:150 μm} 이상 → 연조직 개입.
-- 식립 시 회전력 최소 {r:32~40N/cm2} · 섬유성 결합을 피하려면 {r:1분간 47도} 이상의 열 회피.
-E: Q23 | 24년 T/F "1분간 47도 이상의 열발생을 피하는 것이 좋다" → T.
-F: 16=즉시하중의 요소 (교수 강조 쪽), 17
+= 4요인 = {r:외과적} · {r:환자} · {r:임플란트} · {r:보철적} / 외과적 = {r:초기 안정성}(가장 중요) + {r:술기}(1분간 47도)
+P: 💬 강조 쪽(p.16) — 필기 "JB에 있을수도"(술기의 열발생 요인 줄 옆)
+# 즉시하중을 위한 성공적인 골유착 및 초기 안정성을 위한 중요한 요소 4
+| 요인 | 내용 | 자세히 |
+| ① **외과적 요인** | {r:임플란트 초기 안정성} + {r:술기} | 이 카드 |
+| ② **환자요인** | 피질골과 해면골의 양과 질 · 치유 정도 | 다음 카드 |
+| ③ **임플란트 요인** | 형태(나사형) · 표면(거친 면) · 굵기와 길이 | 다음 카드 |
+| ④ **보철적 요인** | 교합력의 양상 및 형태 — 수평력·측방력 제거, cross-arch splinting | 다음 카드 |
+E: Q22 | 22·24년 서술형 짤 — 문제 문구 "즉시하중을 위한 성공적인 골유착 및 초기 안정성을 위한 중요한 요소"는 이 쪽(와 p.28) 제목. JB 답은 p.18 전제조건 5가지 → 아래 'Prerequisites' 카드. 함정: 24년은 괄호로 "전제조건 5가지"를 명시했지만 22년 문구엔 없음 — 이 4요인과 구별해서 기억.
+# 외과적 요인 ① — 임플란트 초기 안정성
+- 즉시기능 부하에 있어 {r:가장 중요한 요소}.
+- 동요가 없는 상태의 초기의 기능적인 부하는 임플란트와 골유착을 위한 필수적인 조건.
+| 미세 동요 | 결과 |
+| {r:100 μm} 이상 | 직접적인 골유착 방해 → {r:섬유성 유착} → 실패 |
+| {r:28 μm} 이하 | 골 유착에 {r:전혀 영향을 주지 않음} |
+| {r:150 μm} 이상 | {r:연조직의 개입}을 일으킨다고 보고 |
+- 초기 안정도를 위해 중요한 것: ① 발치와내의 임플란트의 정확한 {r:적합도} ② 임플란트 디자인에 의한 {r:마찰력} ③ 식립시의 회전력이 최소한 {r:32~40N/cm2}.
+U: 동요 수치는 생리적 하중과 관련(필기).
+# 외과적 요인 ② — 술기(열 발생)
+- 열발생을 최소화하는 것이 필요.
+- ==섬유성 결합을 피하기 위해 1분간 47도 이상의 열발생을 피해야함.==
+- 열발생에 영향: ① 식립부위 {r:골 형성 양과 정도} ② {r:Drill의 sharpness} ③ {r:골 제거의 깊이} 정도 ④ {r:피질골의 두께}.
+E: Q23 | 24년 T/F "(2) 1분간 47도 이상의 열발생을 피하는 것이 좋다" → {r:T}(JB 유사복원: 섬유성 결합을 피하기 위해). 같은 문장이 p.23에도 반복.
+U: 한번에 쭉 밀어넣지 말고 넣었다 빼며 주수 / 피질골이 두꺼우면 잘 안 들어감 → cortical drilling 등으로 열발생 줄이기(필기).
+F: 16=즉시하중의 요소 (교수 강조 쪽)
 M: 즉시하중에서 가장 중요한 것 = {r:초기 안정성}
-M: {r:100 μm} 이상 동요 → {r:섬유성 유착} / 열 한계 = {r:1분간 47도}
+M: 미세 동요: {r:100 μm}↑ {r:섬유성 유착} / {r:28 μm}↓ 무영향 / {r:150 μm}↑ 연조직 개입
+M: 열 한계 = {r:1분간 47도} · 식립 회전력 최소 {r:32~40N/cm2}
 
-## Prerequisites for Immediate Loading ★ | 즉시부하의 전제조건 5 (교수 강조) | 18-21 | 기출 22·24 | jb=Q22,Q23
-> "JB에 있을 것" — 실제로 22·24년에 나왔다
-= 5 = {r:bone density·dimensions} · {r:insertion torque} · {r:RFA} · {r:A-P spread} · {r:occlusal force control}
-P: 💡 "로딩을 즉시 가하기 위해 필수조건 5가지. JB에 있을 것"
-# Prerequisites 5
-- ① Adequate {r:bone density} and sufficient {r:bone dimensions} ② Ideal {r:insertion torque}.
-- ③ Ideal {r:resonance frequency analysis} readings ④ adequate {r:anteroposterior spread} ⑤ Control of {r:occlusal force}.
-E: Q22 | 22·24년 "즉시하중을 위한 … 중요한 요소(전제조건 5가지)".
-# 조건별 수치
+## Implant · Patient · Prosthetic Factors | 임플란트·환자·보철 요인 | 17 | 나사형 · 5배
+> 나사형·거친 표면·길고 굵게 — 단, 환자 뼈가 허락하는 만큼
+= 임플란트 = {r:나사형}·거친 표면 {r:5배}·{r:길고 굵게} / 환자 = 골 {r:양과 질}·치유 / 보철 = {r:수평·측방력 제거}·{r:cross-arch splinting}
+# 임플란트 요인 (굵기와 길이)
+- 식립 후 즉시기능을 위한 외형: {r:나사형(screw-type)} 임플란트가 다른 형태보다도 우수(필기: tapered).
+- {r:거친 표면}을 가진 임플란트가 평활한 면보다 {r:5배}나 높은 전단력에 대한 저항력과 초기 높은 골접촉.
+- type II, III의 골질에 식립될 시 표면 상태와 상관없이 강력한 초기 안정성과 {r:RFA}(Resonance Frequency Analysis) 안정도가 비슷 → 동시에 가능한 {r:길고 굵은} 임플란트가 필요하다는 주장이 설득력.
+- 즉시 식립시의 초기 안정도: {r:발치와와 임플란트의 적합도}가 중요 — 적절한 길이와 굵기의 임플란트를 사용하는 것이 매우 중요.
+U: 골질이 좋지 않으면 성능 좋은 임플란트가 중요 / 단 alveolar crest width 등을 무시하고 굵고 길게 심으면 bone loss·thread 노출·하치조신경 침범(필기).
+# 환자 요인
+- ① {r:피질골과 해면골의 양과 질} ② {r:치유 정도}.
+# 보철적 요인 — 교합력의 양상 및 형태
+- ① 조절된 교합력 ② 조절되지 않은 {r:수평력이나 측방력의 제거} ③ 임시보철물로 좌우를 연결하는 {r:cross-arch splinting} ④ 치유 기간 중에는 불필요한 임플란트의 {r:동요를 피함}.
+F: 17
+M: 임플란트 요인: {r:나사형} · 거친 표면 전단 저항 {r:5배} · {r:길고 굵게}(단 뼈 폭 고려)
+M: 환자 요인: 피질골·해면골의 {r:양과 질} · {r:치유 정도}
+M: 보철 요인: {r:수평·측방력 제거} · {r:cross-arch splinting} · 치유 중 동요 피함
+
+## Prerequisites for Immediate Loading ★ | 즉시부하의 전제조건 5 (교수 강조) | 18 | 교수 강조 · 짤(2회) | jb=Q22
+> "JB에 있을 것" — 실제로 22·24년 두 번 나왔다
+= 전제조건 5 = {r:bone density·dimensions} · {r:insertion torque} · {r:RFA readings} · {r:A-P spread} · {r:occlusal force control}
+P: 💬 "로딩을 즉시 가하기 위해 필수조건 5가지. JB에 있을 것"(p.18 필기 — 강조 쪽)
+# Prerequisites for immediate-loading protocol 5
+- ① ==Adequate bone density and sufficient bone dimensions==
+- ② ==Ideal insertion torque==
+- ③ ==Ideal resonance frequency analysis readings== (필기: RFA 측정값도 좋아야)
+- ④ ==Ability to achieve an adequate anteroposterior spread==
+- ⑤ ==Control of occlusal force==
+- For the success in the immediate loading, various treatment planning and patient factors need to be taken into consideration.
+E: Q22 | 22·24년 서술형 짤(2회 출제) "즉시하중을 위한 성공적인 골유착 및 초기 안정성을 위한 중요한 요소 (immediate loading protocol을 위한 전제조건 5가지)" — 영문 5줄 그대로. 함정: ④는 'Ability to achieve'로 시작, ③은 'readings'까지.
+# 조건별 한눈 요약 (자세히는 다음 두 카드)
 | 조건 | 기억할 것 |
-| ① 골밀도 | {r:상악 구치부} = 제일 불리 / 하악 {r:이공 사이} = 가장 유리 / 골다공증·당뇨·흡연·방사선 환자는 피함 |
-| ② insertion torque | {r:35 Ncm} 초과 — 부족하면 underpreparation·osseodensification |
-| ③ RFA(ISQ) | {r:70 이상}이 가장 좋음 |
-| ④ A-P spread | 클수록 force distribution 유리 — 긴 cantilever는 불리 |
-| ⑤ 교합력 | 수평력·측방력 제거, cross-arch splinting |
-E: Q23 | 24년 T/F "이공 사이 부위는 부하에 가장 불리하다" → F.
-F: 18=Prerequisites 5 (교수 강조 쪽), 19=① 골밀도·부위, 20=② torque ③ ISQ
-M: 전제조건 5: {r:골밀도·골량} · {r:insertion torque} · {r:RFA} · {r:A-P spread} · {r:교합력 조절}
-M: 즉시하중에 가장 불리 = {r:상악 구치부} / 가장 유리 = {r:하악 이공 사이}
-M: insertion torque {r:35 Ncm} 초과 · ISQ {r:70} 이상
+| ① 골밀도·골량 | {r:상악 구치부} = 제일 불리 / 하악 {r:이공 사이} = 가장 유리 |
+| ② insertion torque | greater than {r:35 Ncm} |
+| ③ RFA (ISQ) | {r:70} or greater가 제일 좋음 |
+| ④ A-P spread | 클수록 {r:force distribution} ↑ |
+| ⑤ 교합력 | 수평·측방력 제거 · cross-arch splinting |
+F: 18=Prerequisites 5 (교수 강조 쪽)
+M: 전제조건 5: {r:bone density}·dimensions · {r:insertion torque} · {r:RFA} · {r:A-P spread} · {r:occlusal force}
+M: 수치: torque {r:35 Ncm} 초과 · ISQ {r:70} 이상
 
-## Rationale · Risk Reduction | 취약 시기와 위험 줄이기 | 22-30 | 3~6주
-> 심은 날이 가장 단단하고, 3~6주에 가장 약하다
-= 과하중에 가장 취약한 시기 = 식립 후 {r:3 to 6 weeks}
-- 식립 당일의 bone interface가 3개월 뒤보다 강함 → 주변 골이 remodeling되며 {r:3 to 6 weeks}에 가장 취약.
-- 4개월에도 {r:60%}만 mineralized.
-- 위험 줄이기: 열 손상 최소화 · 과도한 torque 금지(pressure necrosis) · 임플란트 수·길이↑(길이 {r:3mm}↑ → 표면적 {r:20%}↑) · {r:axial load} · cantilever 제거 · cross-arch splint.
-- p.24~25 overload 기전은 "시험과 관련 없고 참고사항"(필기).
-F: 22=Rationale
-M: 즉시부하 실패가 몰리는 시기 = 식립 후 {r:3~6주}
+## Bone Density · Misch D1–D5 | ① 골밀도·골량 — 부위와 환자 | 19 | 이공 사이 · T/F | jb=Q23
+> 뼈가 치밀한 하악 전치부는 즉시부하에 유리, 무른 상악 구치부는 불리
+= 즉시하중 {r:제일 불리} = {r:상악 구치부}({r:D4}) / {r:가장 유리} = 하악 {r:이공 사이}
+# 부위
+- {r:상악 구치부}는 가장 불량한 골질로 조기 또는 즉시 하중에 {r:제일 불리}한 부위.
+- ==하악의 이공 사이 부위가 가장 유리== — 하악 전치부는 cortical bone(D1~3) 안에 들어옴(필기).
+E: Q23 | 24년 T/F "(3) 이공 사이 부위는 부하에 있어 가장 불리하다"(유사복원: 즉시 하중에 가장 불리한 부분) → {r:F}. 함정: 가장 불리한 곳은 {r:상악 구치부}.
+# 환자 — 즉시 기능 부하를 피할 대상
+- 대사성 질환자({r:골다공증}), 소모성 질환자({r:당뇨}) — 치유 더디고 bone quality 낮기 때문(필기).
+- → 기존의 {r:2단계} 임플란트-보철치료 개념 또는 더 연장된 치유 기간 후에 기능 부하(필기: 임플 수술도 2 staged로 고려).
+- {r:흡연자}나 구강암으로 {r:방사선 치료}를 받은 환자에게도 동일하게 적용.
+- Compromised bone quantity: higher risk for {r:bone loss or failure}.
+U: 구강암 방사선 환자는 안 하는 게 맞고, 흡연자에게는 금연을 말씀드려야 — 성공에 중요(필기).
+# Misch 골밀도 분류 (1988) — 위치와는 별개로 피질골·망상골 특성에 따라
+| 골밀도 | 설명 | 촉감 | 해부학적 위치 |
+| D1 | Dense cortical | Oak or maple wood | Anterior mandible |
+| D2 | Porous cortical and coarse trabecular | White pine or spruce wood | Anterior mandible · Posterior mandible · Anterior maxilla |
+| D3 | Porous cortical and fine trabecular | Balsa wood | Anterior maxilla · Posterior maxilla · Posterior mandible |
+| D4 | Fine trabecular | Styrofoam | {r:Posterior maxilla} · Anterior maxilla |
+| D5 | Osteoid | Soft Styrofoam | Poorly mineralized bone graft |
+F: 19=Misch 골밀도 D1~D4 (post.mx가 D4)
+M: 즉시하중 {r:제일 불리} = {r:상악 구치부}(D4) / {r:가장 유리} = 하악 {r:이공 사이}
+M: 피할 환자: {r:골다공증} · {r:당뇨} · {r:흡연자} · {r:방사선 치료} → 2단계·연장된 치유
+M: Misch: D1 {r:Dense cortical}(oak) … D4 {r:Fine trabecular}(styrofoam)
+
+## Insertion Torque · RFA · A-P Spread · Occlusal Force | ②~⑤ 토크·ISQ·A-P spread·교합력 | 20-21 | 35 Ncm · ISQ 70
+> 조이는 힘은 35 Ncm 넘게, 흔들림 측정은 70 이상, 임플란트는 앞뒤로 넓게
+= ② torque > {r:35 Ncm} · ③ ISQ {r:70 or greater} · ④ {r:A-P spread}↑ → 힘 분산↑ · ⑤ {r:수평·측방력 제거}
+# ② Ideal insertion torque
+- Immediate-loading concept is based on obtaining an insertion torque of {r:greater than 35 Ncm} to provide sufficient implant stability when the prosthesis is placed under loading situation.
+- Modified surgical drilling protocols in less dense bone: ① {r:underpreparation} ② use of {r:osteotomes} ③ {r:osseodensification}.
+U: insertion torque가 잘 안 나오면 protocol modification — osseodensification 드릴은 뼛가루를 옆으로 compaction해 density·torque를 높임(예: Densah bur)(필기).
+F: 20=osseodensification (뼛가루를 옆으로 compaction)
+# ③ Ideal Resonance Frequency Analysis Readings
+- {r:60 to 65} / {r:65 to 70} / {r:70 or greater} in {r:ISQ} — 필기: 70 이상이 제일 좋음.
+# ④ Ability to achieve an adequate anteroposterior spread
+- Ex. Distance between the middle of the {r:most anterior implant} and the {r:distal of the posterior implants}.
+- For increasing mechanical advantages and force distribution of the prosthesis.
+- Increase in A-P spread distance → {r:greater force distribution}.
+U: 캔틸레버가 너무 길어지면 AP 위치가 안 좋고 힘 분산 측면에서도 안 좋음(필기).
+# ⑤ Control of occlusal force
+- ① 조절된 교합력 ② 조절되지 않은 {r:수평력이나 측방력의 제거} ③ 임시 보철물로 좌우를 연결하는 {r:cross-arch splinting} ④ 치유기간 중에는 불필요한 임플란트의 동요를 피함.
+F: 21
+M: insertion torque {r:> 35 Ncm} / 부족 시 {r:underpreparation} · {r:osteotomes} · {r:osseodensification}
+M: ISQ 60–65 / 65–70 / {r:70 이상}(제일 좋음)
+M: A-P spread = 최전방 임플란트 {r:중앙} ~ 후방 임플란트 {r:distal} 거리 → 클수록 힘 분산↑
+
+@G ④ 취약 시기와 위험 줄이기
+## Rationale · Risk Reduction | 취약 시기와 위험 줄이기 | 22-23 | 3~6주 · 열·토크
+> 심은 날이 가장 단단하고, 뼈가 다시 만들어지는 3~6주에 가장 약하다
+= 가장 취약 = 식립 후 {r:3 to 6 weeks} · {r:4개월}에도 {r:60%} mineralized / 줄일 것 = {r:열 손상}·{r:과도한 torque}
+# Effect of surgical trauma on healing
+- The bone interface is {r:stronger on the day of implant placement} compared with {r:3 months later}.
+- {r:Regional acceleratory phenomenon} of bone repair around the implant interfaces: implant osteotomy preparation and implant insertion.
+- Around implant sites: organized, mineralized {r:lamellar bone} → unorganized, less mineralized, mainly {r:woven bone}.
+- **Weakest and most at risk for overload** at {r:3 to 6 weeks} after surgical insertion.
+- Failure in immediate implant loading: primarily between {r:3 and 6 weeks}.
+- At {r:4 months}: the bone is still only {r:60% mineralized}, organized lamella bone — but proved to be sufficient for two-stage healing and delayed implant loading.
+U: 식립 순간엔 stability가 좋지만 시간이 지나며 주변 bone remodeling → 식립 직후가 아니라 3~6주에 가장 취약 / 60% 정도만 되어도 충분 → 이때쯤 conventional loading 시작(필기).
+F: 22=Fig 33.3 식립 후 주변 골 remodeling
+# Decrease the surgical trauma and initial bone remodeling
+- 줄여야 할 것: ① {r:Thermal injury} ② {r:Microfracture} of bone ③ {r:Osteonecrosis} ④ {r:Fibrous encapsulation}.
+- 섬유성 결합을 피하기 위해 {r:1분간 47도} 이상의 열발생을 피해야함(p.16과 같은 문장).
+- {r:Self-tapping implant} → {r:greater bone remodeling}(woven bone) than with a bone tap.
+- Implant should be non-mobile, but {r:pressure necrosis} from increased torque may increase the risk for micro-damage at the interface → bone loss.
+- Excessive torque → strain↑ at the interface → bone remodeling↑ → {r:decreases the strength} of the bone-implant interface.
+- It is prudent to minimize factors related to {r:thermal injury and surgical trauma} when considering the immediate-loading protocol.
+U: tapping = 뼈에 나사선을 만드는 것 — 예전엔 tap drill로 따로 만들었지만 요새는 self-tapping implant / 식립토크가 강하다고 무조건 좋은 게 아님(필기).
+F: 23=tapping과 torque (식립토크가 강하다고 무조건 좋은 게 아님)
+M: 과하중에 가장 취약 = 식립 후 {r:3~6주} (식립 당일이 3개월 뒤보다 강함)
+M: {r:4개월}에도 {r:60%}만 mineralized — 그래도 two-stage·delayed loading엔 충분
+M: 과도한 torque → {r:pressure necrosis}·remodeling↑ → 계면 강도↓ / self-tapping → remodeling↑
+
+## Immediate Occlusal Loading — Factors That Decrease Risks | 위험을 줄이는 요인 3 (참고) | 24-27 | 시험 무관 · 참고
+> 과하중을 피하고, 표면적을 넓히고, 힘의 방향을 축으로
+= 3 = {r:occlusal overload}↓ · {r:functional surface area}↑ · {r:noxious forces}↓(axial load · cantilever 제거)
+P: 💬 "이 목차 내용은 시험과 관련 없고, 참고사항"(p.24 필기) — 틀만 잡고 넘어가기.
+# 1. Decrease the risk for occlusal overload (and remodeling rate)
+- Microstrain condition (100 times less than the ultimate strength of bone) may trigger a cellular response.
+- Bone fractures at {r:10,000 to 20,000 microstrain} (1~2% strain) / levels of 20% to 40% of this value: {r:pathologic overload zone}.
+- Ideal load-bearing zone / Intermediate level of strain: healing process to repair microfractures(fatigue) → {r:reactive woven bone} / Overload (rather than the surgical trauma).
+U: remodeling이 너무 많으면 하중을 견디기 어려움 → overload를 피해 rate를 줄여야 micromovement에 견딤(필기).
+F: 24
+# 2. Increase functional surface area
+- Implant {r:number} (mx > mn: bone density, increased directions of force) — 필기: cost·관리는 어렵지만 하중 측면에선 개수 많은 게 좋음.
+- Length: each {r:3 mm} increase → surface area support {r:more than 20%}↑.
+- Body design: wider → greater bone contact / Diameter: {r:posterior > anterior}(moderate to severe parafunction).
+- Body surface design: threaded / number of thread / thread depth / thread design — 실린더형보다 thread가 있을수록·많을수록·깊을수록 표면적↑(필기).
+F: 26
+# 3. Noxious effects of forces to the prosthesis
+- Patient factor: {r:bruxism, clenching}.
+- Occlusal load direction: an {r:axial load} → more lamellar bone with {r:lower remodeling rate} than an offset load / eliminate {r:posterior cantilevers} in immediate-load transitional restorations.
+- Implant position: cross-arch FPDs / elimination of cantilevers on two implants supporting three teeth / {r:cross-arch splint} = effective design to reduce stress.
+U: 측방압 없애고 axial로만 loading 가도록(필기).
+F: 27
+M: 위험 줄이기 3: {r:overload}↓ · {r:surface area}↑ · {r:noxious forces}↓
+M: 길이 {r:3 mm}↑ → 표면적 {r:20%}↑ / 구치부는 더 {r:굵게}
+M: {r:axial load} → remodeling rate↓ · {r:cantilever} 제거 · {r:cross-arch splint}
+
+## Conclusion — Patient Selection | 맺음: 관심 증가·세심한 환자 선택·표준 가이드라인 | 28-29 | 정리
+> 즉시하중은 점점 늘지만, 결국 환자를 잘 골라야 한다
+= 즉시하중 관심↑(치료기간 단축·불편감↓·임시보철 필요성↓) · {r:세심한 환자 선택} · {r:표준 guideline} 필요
+# 결론 — 수업에서 쭉 읽으심
+- 치료기간의 단축과 환자의 불편감 감소, 중간 단계의 임시보철물(국소의치, 총의치 등) 사용 필요성의 감소 등을 위해 식립 후 즉시하중에 대한 관심과 연구가 점차 발전.
+- {r:세심한 환자 선택}이 중요.
+- 실패를 막기 위한 {r:표준 guideline}이 필요.
+- p.28 제목 = "즉시하중을 위한 성공적인 골유착 및 초기 안정성을 위한 중요한 요소"(p.16과 같음 — JB Q22의 문제 문구).
+# 강의 전체 한눈 정리
+| 질문 | 답 | 쪽 |
+| 부하 시기 3분류? | 즉시 {r:1주 이내} · 조기 {r:1~8주} · 전통 {r:8주 이후} | 7 |
+| 즉시부하 장점? | Less discomfort · Faster · soft tissue drape · Immediate satisfaction · bone-implant contact | 9 |
+| 가장 중요한 요소? | {r:초기 안정성} (100 μm↑ 동요 → 섬유성 유착) | 16 |
+| 전제조건 5? | bone density·dimensions · insertion torque · RFA · A-P spread · occlusal force | 18 |
+| 가장 취약한 시기? | 식립 후 {r:3~6주} | 22 |
+M: 즉시하중의 결론 = {r:세심한 환자 선택} + {r:표준 guideline}
+M: 강조 쪽 4곳 = {r:7}(시기) · {r:9}(장점) · {r:16}(요소) · {r:18}(전제조건)

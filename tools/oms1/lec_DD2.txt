@@ -1,167 +1,456 @@
 #LEC DD2 | Dentofacial deformity II | 서병무 | 26 | 260907_서병무_Dentofacial_deformity_II (26년도, 52쪽) | 52
-! 26년도 슬라이드 기준(25년도 파일은 받지 않음). 쪽 번호는 JB 참고 쪽수와 일치.
-@MAP 얼굴 평가의 틀(임상이 최우선) → 계측점·3등분·측모 → 부위별 평가(perioral: U1 노출) → 나이에 따른 변화(피부 5층·골) → 영상 6종·ceph 촬영 조건 → ceph 수치 → 교합 평가
+! 26년도 슬라이드(52쪽) + 26 필기 기준(25년도 파일은 받지 않음). 쪽 번호는 JB '참고' 쪽수와 거의 일치. 주제 = "Dentofacial deformity를 가진 환자를 평가하는 방법"(p.1 필기) — 교재 Maxillofacial Surgery 3rd ed.(2017).
+! 교수님 강조: "가장 중요한 건 임상적 측면"(p.3) · "cephalometric evaluation이 아직까지 가장 중요한 gold standard" · "결국 임상적인 평가가 가장 중요, cephalometric norm에 맞추기 위한 수술은 하지 않음"(p.26) → 23·24년 연속 출제(ceph vs 임상).
+! 슬라이드 별표(★): p.40 "Upper tooth to lip: 2.5 ±1.5 mm ★ important in establishing vertical dimensions of the face" = p.15 U1 노출량(22년 기출)과 같은 수치.
+! 출제 경향: 20~24년 매년 출제(14문항) — 거의 모두 슬라이드의 목록·수치를 그대로 쓰는 단답·서술형(영상 6종, 피부 노화 요소 5, epidermis 6, ceph 자세 4, 교합 평가 4, 기준 수치). 수업에서 넘어간 쪽: p.25·50 "쭉 읽으심", p.46 "대충 넘어가심", p.48 "패스".
+@MAP 평가의 틀(임상 > ceph) → 안면 비율·계측점(Tr-G-Sn-Gn) → 측모·부위별 평가(★ U1 노출 2.5 mm) → 나이에 따른 변화(피부 5부분·골·치아) → 영상 6종·gold standard → ceph 촬영(CO·FH ∥ floor) → ceph 분석(임상 우선·기준 수치·soft/skeletal/dental) → 교합·PA 평가
 
-@G ① 임상 평가
-## Evaluation of the Face — Overview | 얼굴 평가의 틀 | 1-5 | 임상 평가가 최우선
-> 연조직 · 골격/치아 · 동적인 부분 · 성장과 노화를 함께 본다
-= 가장 중요한 것 = {r:임상적 평가} — ceph는 그 아래 구조를 보는 도구
-# 무엇을 평가하나
-- ① Skeletal and dental structures ② static과 functioning position의 관계 ③ Growth and aging process ④ Cephalometric evaluation.
-# Clinical evaluation 4항목
-- ① Facial {r:skin type} ② Facial {r:skin health} ③ General facial {r:anthropometric proportions} ④ Detailed {r:regional} evaluations(periorbital, nose, perioral).
-# Frontal vs Profile
-- **정면**: 비대칭 여부, 상/중/하안모 비율.
-- **측면**: 상·중·하안모, 목과 하악이 이루는 각도.
-U: 사진·X-ray는 순간 포착이라 동적인 평가가 필요. 성장 중이거나 고령이면 앞으로의 변화까지 예측해야 해서 평가가 어려워짐.
-M: 임상 평가 4항목: {r:skin type} · {r:skin health} · {r:anthropometric proportions} · {r:regional} evaluation
+@G ① 평가의 틀
+## Evaluation of the Face — Overview | 얼굴 평가의 틀 | 1-5 | 총론 · 임상 평가 최우선
+> 겉(연조직) · 속(골격·치아) · 움직임 · 시간(성장·노화)을 함께 본다 — 그중 임상 평가가 먼저
+= 볼 것 4 = {r:Soft tissue} · {r:Skeletal and dental} · {r:static–functioning} · {r:Growth and aging} / 가장 중요 = {r:임상 평가}
+# 무엇을 보나
+- ① {r:Soft tissue}(겉에서 보이는 연조직) ② {r:Skeletal and dental structures}(영상으로 보는 기저 구조).
+- ③ {r:Interrelationship between static and functioning positions}(정지 위치와 기능 위치의 관계).
+- ④ {r:Growth and aging process}(성장기라면 어떻게 자랄지, 술후 나이 들면 어떻게 변할지).
+U: 사진·X-ray는 순간 포착인데 사람은 계속 움직이므로 동적인 평가가 필요 — 변수(성장 중·고령·고르지 않은 치열)가 많을수록 평가가 어려워짐.
+# 어떤 평가를 하나 — 4가지
+- ① {r:Clinical evaluation} ② {r:Cephalometric evaluation} ③ {r:Evaluation of occlusion} ④ {r:Evaluation of facial skeletal growth}.
+- underlying structure는 X-ray(cephalometric radiography — PA · Lateral ceph)로 — 입을 앙다물고(CO) 찍는지 CR에서 찍는지에 따라 달라 CO·CR 2장을 찍기도 함(필기).
+P: 💬 "가장 중요한 건 임상적 측면" — 환자를 보고 '이곳에 문제가 있어서 이런 외형을 가지고 있구나'를 파악(필기).
+F: 3
+# Clinical evaluation of the face 4항목
+- ① Facial {r:skin type} ② Facial {r:skin health}.
+- ③ General facial {r:anthropometric proportions}(인체계측학적 비율 분포).
+- ④ Detailed {r:regional} facial evaluations (periorbital, nose, and perioral areas).
+F: 4
+# General facial anthropometric proportions — 정면 vs 측면
+| 구분 | 슬라이드 항목 | 필기 |
+| Frontal face evaluation | general facial characteristics · {r:symmetry} · {r:balance} · {r:morphology} | 어느 부위에 비대칭이 있는지 · 상/중/하안모 비율이 적절한지 |
+| Profile evaluation | {r:Upper third} · {r:Middle third} · {r:Lower third} · {r:Cervicomental} | 상·중·하안모 + 목 주변 상태, 목과 하악이 이루는 각도 |
+F: 5
+M: 얼굴 평가 = {r:Soft tissue} + {r:Skeletal·dental} + {r:static·functioning} + {r:Growth·aging}
+M: Clinical evaluation 4: {r:skin type} · {r:skin health} · {r:anthropometric proportions} · {r:regional}(periorbital·nose·perioral)
+M: 정면 = {r:symmetry}·{r:balance}·{r:morphology} / 측면 = upper·middle·lower third + {r:cervicomental}
 
+@G ② 임상 평가 — 비율 · 측모 · 부위
 ## Landmarks · Facial Thirds | 계측점과 안면 3등분 | 6-9 | 기출 20·21 | jb=S21-4,S20-3
-> Tr – G – Sn – Gn 네 점으로 얼굴을 상·중·하로 나눈다
-= 상안면 {r:Tr~G} · 중안면 {r:G~Sn} · 하안면 {r:Sn~Gn} — 비율 {r:0.3 : 0.35 : 0.35}
-# 계측점
-- {r:Tr} trichion(이마와 머리카락이 만나는 점) · {r:G} glabella(미간) · {r:Sn} subnasale(코의 기저부) · {r:Gn} gnathion.
-- Prn pronasale(코끝) · Zy zygion · Go gonion · Ft frontotemporale · {r:Stm} stomion(상하순이 만나는 점).
-F: 6=정면 계측점
-# 안면 3등분
-- **상안면**: {r:Trichion ~ Glabella} / **중안면**: Glabella ~ Subnasale / **하안면**: Subnasale ~ Gnathion.
-- 비율 T-G : G-Sn : Sn-Gn = {r:0.3 : 0.35 : 0.35}(대략 1:1:1, 필기).
-E: S21-4,S20-3 | 21년 "상안면부를 구성하는 구조물" → Trichion~Glabella / 20년 "상·중·하로 나눌 때 구조물".
-F: 7=Tr-G-Sn-Gn 3등분, 8=Stomion
-# 머리형
-- Brachycephalic = 앞뒤로 짧음(동양인) / Dolichocephalic = 앞뒤로 긺(서양인). Class III는 입술이 overlap되어 하안모가 길어 보임.
-M: 안면 3등분 계측점: {r:Tr} – {r:G} – {r:Sn} – {r:Gn}
-M: 상안면 = {r:Trichion ~ Glabella}
+> 네 점 Tr–G–Sn–Gn이 얼굴을 위·가운데·아래 셋으로 자른다
+= 상 {r:Tr~G} · 중 {r:G~Sn} · 하 {r:Sn~Gn} = {r:0.30 : 0.35 : 0.35} (대략 1:1:1)
+# 정면 계측점 (Symmetry 슬라이드)
+| 약어 | 이름 | 위치(필기) |
+| {r:Tr} | trichion | 이마와 머리카락이 만나는 점 |
+| {r:G} | glabella | 미간 |
+| N | nasion | 코의 기저부가 되는(연조직) — 필기가 N 옆에 적힘 |
+| {r:Sn} | subnasale | — |
+| Prn | pronasale | 코가 가장 튀어나온 부위 |
+| Zy | zygion | zygoma의 최외측 두드러진 부위 |
+| Go | gonion | angle 부위 |
+| {r:Gn} | gnathion | 맨 아래 soft tissue |
+| Ft | frontotemporale | — |
+U: 계측점이 딱 떨어지지 않고 사람마다 달라 계측치를 선정하는 데 혼선이 있을 수 있음.
+F: 6=정면에서 본 계측점
+# 안면 3등분 — Balance
+- ==Tr-G-Sn-Gn: upper, middle, lower third of face== · Ratio = {r:0.30:0.35:0.35}.
+- 상안면 = {r:Trichion ~ Glabella} / 중안면 = {r:Glabella ~ Subnasale} / 하안면 = {r:Subnasale ~ Gnathion}.
+E: S21-4 | "안면부 연조직 분석에서 상안면부를 나누는 구조물" (21년) → Trichion~Glabella.
+E: S20-3 | "안면부 정면에서 상·중·하 나누는 해부학적 구조물" (20년) → Tr-G-Sn-Gn + 상(Tr-G)·중(G-Sn)·하(Sn-Gn) 세 구간까지.
+F: 7=측면을 3등분하는 기점 Tr-G-Sn-Gn
+# 하안면 안의 비율 — Stomion
+- Facial clinical exam 그림: 정면(A)·측면(B) 모두 상·중·하 {r:1/3}씩, 하안면은 입술선에서 위 {r:1/3} : 아래 {r:2/3}.
+- **Stomion(Stm)** = 상하순이 만나는 점.
+- 대략적 비율 — 실제로는 얼굴을 얼마나 기울였는지 등에 따라 변화.
+- Class III는 Stm에서 만나지 않고 overlap되는 경우가 많아 {r:하안모 길이가 길어짐}.
+F: 8=Stomion — 상하순이 만나는 점
+# Morphology — 머리형
+| 머리형 | 뜻(필기) |
+| {r:Brachycephalic} | 앞뒤로 짧음 — 동양인 |
+| {r:Dolichocephalic} | 앞뒤로 긺 — 서양인 |
+F: 9
+M: 3등분 = {r:Tr}–{r:G}–{r:Sn}–{r:Gn}, 비율 {r:0.30 : 0.35 : 0.35}
+M: 상안면 = {r:Trichion ~ Glabella} / 하안면 = {r:Subnasale ~ Gnathion}
+M: 하안면 = Stm 위 {r:1/3} : 아래 {r:2/3} / {r:Brachy}cephalic = 앞뒤로 짧음(동양인)
 
 ## Profile · Cervicomental Area | 측모와 턱밑 | 10-11 | 수술로 바뀌는 곳
-> 수술로 크게 바꿀 수 있는 건 주로 하안모
-= 상악 전방 이동은 {r:5mm}까지 · 하악 setback은 {r:10~15mm} 이상도 가능
-- 중안모는 Mx.의 {r:Le Fort I level}에서만 움직임 — 동양인은 코가 낮아 전방 {r:5mm} 이상은 바람직하지 않음(cleft 예외).
-- 하악이 profile 변경의 핵심 — setback {r:10~15mm} 이상 가능(특히 Class III).
-- chin point를 더 넣으려면 Maxillomandibular complex를 {r:clockwise} 회전.
-- setback 후 연조직이 처져 cervicomental angle이 obtuse해질 수 있음 → 턱밑 soft tissue 평가가 중요.
-F: 10, 11
-M: 중안모 이동 = {r:Le Fort I} level, 전방 이동 한계 {r:5mm} / chin을 더 넣으려면 {r:clockwise} rotation
+> 측모를 셋으로 나눠 보되 — 수술로 크게 바꿀 수 있는 건 하안모, 중안모는 Le Fort I까지
+= 변화 = 주로 {r:하안모}(Mn. setback {r:10~15mm}↑) · 중안모 = {r:Le Fort I} level, 전방 {r:5mm}↑는 바람직하지 않음
+# Profile evaluation — 삼등분별로 볼 것
+| 부위 | 슬라이드 평가 항목 |
+| Upper third | the shape of the forehead · supraorbital rims · frontal bossing |
+| Middle third | nose: normal, convex, concave dorsum, nasal tip-up, down rotation, supratip break, skeletal nasal base, nasolabial angle / eyes: lateral orbital rim, infraorbital rim / cheeks: normally convex, flat to concave-midface deficiency |
+| Lower third | lips: protrusion or retrusion / labiomental fold: definition to the lower half of lower third / chin projection: related entire profile / cervicomental area |
+# 수술로 바꿀 수 있는 곳
+- 움직임에 따라 변화가 나타나는 부위는 {r:하안모}에 국한 · 중안모는 Mx.의 {r:Le Fort I level}에서 움직임.
+- **Middle third**: 동양인은 코가 낮아 Mx를 많이 꺼내는 게 바람직하지 않은 경우가 대부분 → 전방 {r:5mm} 이상은 convexity를 바꿔 바람직하지 않음.
+- 예외: {r:cleft} 환자는 5mm 이상 움직이기도 · Mx가 많이 결여되어 infraorbital rim 쪽이 concave하면 앞으로 내어줘야 함.
+- **Lower third**: Mn.이 움직이므로 profile 변경의 가장 중요한 요소 — setback {r:10~15mm} 이상 가능(특히 {r:Class III}).
+- chin point 위치가 중요 — 단순히 집어넣거나 occlusal plane angle을 바꿈(Maxillomandibular complex를 {r:clockwise}로 → chin point를 더 뒤로).
+F: 10
+# Cervicomental area
+- 슬라이드: {r:Mandibular angle-inferior border definition} · {r:Neck-chin angle and length}.
+- Chin 아래 neck과 Mn. plane이 이루는 각도 고려 → Mn. setback 후 soft tissue가 처져 {r:obtuse}한 각이 될 수 있음 → 이 부위 soft tissue evaluation이 중요.
+F: 11
+M: 중안모 = {r:Le Fort I} level, 전방 {r:5mm} 이상 ✗(cleft 예외)
+M: 하안모 = profile 변경 핵심 · Mn. setback {r:10~15mm}↑ · chin 더 뒤로 = Maxillomandibular complex {r:clockwise}
+M: setback 후 cervicomental angle {r:obtuse} 위험 → 턱밑 연조직 평가
 
-## Regional Evaluation | 부위별 평가 | 12-17 | 기출 22 | jb=Q40
-> 핵심은 perioral — 힘 뺀 상태의 상악 전치 노출량
-= In repose U1 노출 = {r:to 3 mm} ({r:2.5 ±1.5 mm}) · interlabial separation {r:up to 3 mm}
-# Perioral area
-- In repose: U1 expose ==to 3 mm (2.5 ±1.5 mm)== · interlabial separation {r:up to 3 mm}.
-- 이 노출량이 {r:상악골 수직적 위치} 결정의 기준 — 너무 많으면 상악을 위로, 너무 올리면 나이 들어 보임.
-E: Q40 | "자연스러운 상태에서 U1 노출도" → 2.5 ±1.5 mm (22년 단답).
-U: Class III는 repose 유도 자체가 어려움 — 입술을 닫으려 Mentalis m.이 과활성. 술후에도 남으면 주름 → 미리 고지.
-F: 15=Perioral — U1 노출
-# 그 밖의 부위
-- **Periorbital**: 좌우 안구 높이는 코 방향·귀 높이와 함께 평가. 안구 주위 수술은 권장하지 않음.
-- **Nose**: 상악 advancement를 많이 하면 Prn이 올라가 nostril이 정면에서 보임 → 들창코는 이동량 조절.
-- **Cervicofacial**: cervicomental angle {r:~100도} · neck-chin {r:~50mm} · chin projection은 SN perpendicular의 {r:4mm 뒤}.
-F: 17=Cervicofacial
-M: In repose U1 노출 {r:2.5 ±1.5 mm}(to 3 mm), 입술 사이 {r:3 mm}까지
-M: U1 노출량 → {r:상악골 수직 위치} 결정
+## Regional Evaluation | 부위별 평가 | 12-14·16-17 | 눈 · 뺨 · 코 · 귀 · 목
+> 눈·뺨·코·귀·목 — 각각 무엇을 보고, 상악 수술로 어떻게 바뀌나
+= 눈 높이 비교 기준 = {r:코의 방향} · 상악 advancement↑ → {r:Prn↑}·nostril 노출 · chin = SN perp.의 {r:4 mm} 뒤
+# 부위별 평가 항목
+| 부위 | 슬라이드 항목 | 필기 포인트 |
+| Periorbital | Symmetry of the brow and eyes · Shape of the brows · Redundant skin · Upper and lower eyelid fat excesses · Lower eyelid laxity | 눈 주위 연조직·eyelid·노화에 따른 하안검 긴장도 저하·주름 |
+| Cheeks | cheek proper: {r:malar eminence} · Paranasal area · Buccal area | zygomatic bone projection의 영향 · 코 주변 돌출 · buccal fat |
+| Nose | Glabella · dorsum · tip · alar bases | 코의 각도·projection |
+| Ears | {r:Symmetry} · {r:Level} · {r:Projection} | 좌우 비대칭 · 수직·전후방 위치의 대칭 · 튀어나온 정도 |
+| Cervicofacial | Mandibular angle and inferior borders · Chin-neck angle and length · Chin projection | 수치는 사람마다 다름 |
+F: 13, 16
+# Periorbital — 눈이 틀어졌나, 코가 틀어졌나
+- 좌우 안구의 수직적 위치가 다른 경우가 적지 않음 → 비교할 때 {r:코의 방향}이 가장 중요한 요소, {r:귀의 높이}도 함께.
+- 실제로 눈이 틀어졌는지, 코의 각도가 변해 틀어져 보이는지 평가 — ex) {r:HFM}은 귀·안구를 비롯한 안모 좌우 차이가 커서 먼저 평가하고 계획.
+- 안구 주위 수술은 {r:권장하지 않음} — 합병증이 크고 위험에 비해 필요성이 높지 않음.
+F: 12
+# Nose — 상악을 내면 코끝이 들린다
+- 상악골 수술 시 {r:nasolabial angle}이 변화할 수 있음.
+- 상악골 advancement를 많이 하면 {r:Prn}이 위로 올라가 nostril이 정면에서 보임 → 들창코 환자는 {r:advancement 양 조절}.
+F: 14
+# Cervicofacial — 기준 수치
+- Mandibular angle and inferior borders less well defined — {r:laxity}, {r:lipomatosis}, {r:chin deficiency}, {r:lower hyoid bone}.
+- Chin-neck angle and length: cervicomental angle {r:100°}, neck-chin length {r:50 mm}.
+- Chin projection: {r:4 mm behind SN perpendicular to FH plane}(Sn을 지나 FH plane에 수직인 선의 4 mm 뒤).
+F: 17=사진 속 환자는 chin이 튀어나와 있음
+M: 좌우 눈 높이 비교 = {r:코의 방향}(+귀 높이) · 안구 주위 수술 {r:권장 안 함}
+M: 상악 advancement↑ → {r:Prn↑} → nostril 노출(들창코 주의) · nasolabial angle 변화
+M: Cervicofacial: cervicomental {r:100°} · neck-chin {r:50 mm} · chin = SN perp.의 {r:4 mm} 뒤
 
-@G ② 나이에 따른 변화
-## Age-related Changes of Facial Skin | 나이에 따른 피부 변화 | 18-23 | 기출 23·24 | jb=Q07,Q26
-> 영향 요소 5개 → 피부 5개 층이 각각 어떻게 변하나
-= 영향 요소 5 = {r:UV light} · {r:나이} · {r:담배} · {r:유전} · {r:식습관}
-# 영향 요소 5
-- ① {r:UV light} exposure ② {r:Chronologic aging}(나이) ③ {r:Smoking}(담배) ④ {r:Genetics}(유전적 소인) ⑤ {r:Diet}(식습관).
-E: Q07 | "나이 들면서 안면피부에 영향을 주는 요소 5가지" (23·24년) — JB 대안 답: 아래 5개 층 이름.
-F: 18=영향 요소
-# 층별 변화
-| 층 | 변화 |
-| {r:Epidermis} | 아래 6항목(기출) |
-| {r:Dermis} | UV·radiation = {r:primary determinant} / thinning, collagen·elastin density↓ / {r:Dermal elastosis} / 탄력↓, rhytide |
-| {r:Vasculature} | venules 수↓ / blood flow·clearance↓ → {r:Delayed healing} |
-| {r:Sebaceous apparatus} | sebaceous production↓, gland hypertrophy, pore size↑ → dry·coarse |
-| {r:Subcutaneous fat} | Loss: temples, brows, mouth / Redistribution: cheeks → {r:tear trough deformity}, nasolabial folds |
-# Epidermis 변화 6
-- ① {r:rete pegs} 소실·dermal-epidermal junction 평탄화 ② Abnormal {r:stratum corneum} ③ Loss of {r:vertical polarity}.
-- ④ Irreversible {r:UV-induced DNA damage} ⑤ keratinocyte의 {r:proliferative potential} 소실 ⑥ {r:Melanocytes} — dyschromia, brown spots.
-E: Q26 | "노화에 따른 epidermis의 변화" (23년).
-F: 19=Epidermis, 20=Dermis, 23=Subcutaneous fat
-M: 피부 노화 영향 요소: {r:UV} · {r:aging} · {r:smoking} · {r:genetics} · {r:diet}
-M: 피부 5층: {r:epidermis} · {r:dermis} · {r:vasculature} · {r:sebaceous apparatus} · {r:subcutaneous fat}
-M: Dermis 변화의 primary determinant = {r:UV light or radiation}
+## Perioral Area — U1 Exposure | 입 주위 — 상악 전치 노출량 | 15 | ★ 기출 22 | jb=Q40
+> 힘 뺀 입술 아래로 보이는 윗니 3 mm — 이 숫자가 상악을 위아래 어디에 둘지 정한다
+= In repose: U1 expose {r:to 3 mm (2.5 ±1.5 mm)} · interlabial separation {r:up to 3 mm} → 상악골 {r:수직 위치} 결정
+# Perioral area 3항목
+- ① **In repose**: ==U1 expose: to 3 mm (2.5 ±1.5 mm)== · interlabial separation {r:up to 3 mm}.
+- ② **During animation**.
+- ③ **Symmetry**: intrinsic lip deformity · cleft · facial nerve dysfunction · underlying dental and skeletal asymmetry.
+E: Q40 | "양악 수술 시 정상적으로 상악 중절치가 노출되는 정도" (22년) → to 3mm (2.5±1.5mm). JB 해설은 이 쪽 3항목을 통째로 적음 — In repose 두 줄까지 외우기.
+# 왜 중요한가 — 상악 수직 위치의 기준
+- 입술에 힘을 빼고 입을 벌렸을 때 상악 전치 노출 {r:3 mm} → {r:상악골 수직적 위치} 결정에 중요한 역할.
+- 노출이 너무 심하면 → 상악골을 {r:위로 올리는} 수술 계획 / 너무 올려 노출량이 적으면 → {r:나이 들어 보임}.
+- 같은 수치가 ceph 기준표 10번: Upper tooth to lip {r:2.5 ±1.5 mm} ★ important in establishing {r:vertical dimensions} of the face [[DD2:40]].
+P: 💬 슬라이드 별표(★) — "Upper tooth to lip 2.5 ±1.5 mm, important in establishing vertical dimensions of the face" [[DD2:40]].
+# Class III의 perioral 평가가 어려운 이유
+- repose(=rest) 상태 유도 자체가 어려움 — 턱이 나온 채 입술을 닫으려 {r:Mentalis m.}이 과도하게 작용 → Me·Pog 앞 연조직이 납작해짐.
+- 술후에도 Mentalis m. hyperactivity가 남으면 주름 → {r:환자에게 미리 고지}.
+- 입술 사이 간격 평가도 어려움 → 안 벌어지는 것부터 {r:3 mm}까지 interlabial distance 허용.
+F: 15
+M: In repose U1 노출 {r:to 3 mm}({r:2.5 ±1.5 mm}) · interlabial {r:up to 3 mm}
+M: U1 노출 → 상악골 {r:수직 위치}(vertical dimension) 결정 · 과다 → 상악 {r:위로} / 과소 → {r:나이 들어 보임}
+M: Class III repose 어려움 = {r:Mentalis m.} 과활성 → 술후 주름 미리 고지
+
+@G ③ 나이에 따른 변화
+## Age-related Changes of Facial Skin | 나이에 따른 피부 변화 | 18-19 | 기출 23·24 | jb=Q07,Q26
+> 무엇이 피부를 늙게 하나(요소 5) → 맨 겉 표피는 어떻게 변하나(6)
+= 영향 요소 5 = {r:UV light exposure} · {r:Chronologic aging} · {r:Smoking} · {r:Genetics} · {r:Diet}
+# Facial skin age-related changes — 영향 요소 5
+- ① {r:UV light exposure} ② {r:Chronologic aging}(나이) ③ {r:Smoking}(담배) ④ {r:Genetics}(유전적 소인) ⑤ {r:Diet}(식습관).
+E: Q07 | "나이에 따라서 달라지는 안면피부의 요소들" (23·24년 2회, 서술형) → 위 5개 그대로. 함정: JB 해설은 '변하는 피부 요소'로 읽으면 epidermis·dermis·vasculature·sebaceous apparatus·subcutaneous fat(다음 카드)라고 덧붙임 — 둘 다 준비.
+F: 18
+# Changes in epidermis 6
+- ① Retraction or loss of the {r:rete pegs} (flattening of the epidermal-dermal junction) — rete ridge가 짧아지고 편평해짐.
+- ② Abnormal {r:stratum corneum} — stratum corneum도 flat해짐.
+- ③ Loss of {r:vertical polarity} — 표층으로 올라와 탈락하기까지의 변화 과정을 잃음.
+- ④ Irreversible {r:UV-induced DNA damage}.
+- ⑤ Loss of {r:proliferative potential} of the keratinocytes.
+- ⑥ {r:Melanocytes} in the lower levels of epidermis: affected by UV-induced DNA damage → pigmentary change ({r:dyschromia}), brown spots.
+E: Q26 | "노화에 따른 epidermis 변화 결과" (23년 서술형) → 6항목 그대로.
+F: 19
+M: 피부 노화 요소 5: {r:UV} · {r:chronologic aging} · {r:smoking} · {r:genetics} · {r:diet}
+M: Epidermis 6: {r:rete pegs} 소실 · abnormal {r:stratum corneum} · {r:vertical polarity} 소실 / UV {r:DNA damage} · keratinocyte {r:proliferative potential}↓ · {r:melanocytes} → dyschromia
+M: 피부 변화 5부분(p.19~23): {r:epidermis} · {r:dermis} · {r:vasculature} · {r:sebaceous apparatus} · {r:subcutaneous fat}
+
+## Dermis · Vasculature · Sebaceous · Fat | 진피 · 혈관 · 피지선 · 지방의 노화 | 20-23 | 기출 대안 답
+> 진피는 얇아지고 탄력섬유는 뭉치며, 혈관은 줄어 늦게 낫고, 기름은 줄고, 지방은 빠지거나 내려앉는다
+= Dermis 변화의 primary determinant = {r:UV light or radiation} · Vasculature → {r:Delayed healing} · Fat → {r:tear trough deformity}
+# Dermis
+- Superficial {r:papillary dermis} / Deeper {r:reticular dermis} — rete ridge가 얕아지니 papillary dermis도 얕아지고 reticular dermis는 상대적으로 두꺼워짐.
+- UV light or radiation: {r:primary determinant} of dermal change attributing to aging (필기: 트럭 운전사의 얼굴).
+- Thinning of dermis, decreased {r:collagen} and {r:elastin fiber density}, with random orientation.
+- {r:Dermal elastosis}: excessive thickened bundles of elastic fibers — density는 줄지만 두께는 두꺼워져 울퉁불퉁한 주름.
+- Loss of skin elasticity, {r:rhytids}, wrinkles, and laxity of the skin.
+F: 20
+# Vasculature
+- Alteration in the thickness ({r:thickening and thinning}) · Reduction in the number of {r:venules} per unit area.
+- {r:Postcapillary venules} (most permeable) → Reduced blood flow · Reduced rate of clearance · {r:Delayed healing}.
+U: 모세혈관 바로 다음 소정맥이 permeability를 담당 → 흐름·clearance가 줄어 노폐물 배출이 안 되고 healing이 늦어짐.
+F: 21
+# Sebaceous apparatus
+- Pilosebaceous apparatus: secretion of oily-like substances → Moisturize, protect skin.
+- Aging: {r:dry skin}, {r:coarseness}.
+- Decreased sebaceous production · {r:sebaceous hypertrophy} · visibly {r:increased pore size}.
+F: 22
+# Subcutaneous fat
+- {r:Loss or redistribution} of fat.
+- Loss: {r:temples, brows, and mouth}.
+- Redistribution: cheeks, ptosis of the suborbicularis oris fat (soof) and malar fat → classic {r:tear trough deformity}, accentuates the {r:nasolabial folds}.
+U: tear trough deformity = 눈물이 흐르는 구조를 따라 생기는 눈고랑 변형 — fat redistribution과 soft tissue tension 변화 때문.
+F: 23
+# 다섯 부분 한눈에
+| 부분 | 노화 변화 한 줄 |
+| Epidermis | rete pegs 소실 · vertical polarity 소실 · dyschromia (앞 카드) |
+| Dermis | UV = primary determinant · thinning · dermal elastosis · rhytids |
+| Vasculature | venules↓ → blood flow·clearance↓ → delayed healing |
+| Sebaceous apparatus | production↓ · hypertrophy · pore size↑ → dry·coarse |
+| Subcutaneous fat | Loss(temples·brows·mouth) / Redistribution → tear trough · nasolabial folds |
+E: Q07 | JB 해설의 대안 답 = 이 다섯 부분 이름(epidermis · dermis · vasculature · sebaceous apparatus · subcutaneous fat) — 슬라이드 p.19~23 제목 순서.
+M: Dermis: primary determinant = {r:UV light or radiation} · {r:dermal elastosis}(두꺼워진 elastic fiber 다발)
+M: Vasculature: {r:venules}↓ → blood flow·clearance↓ → {r:delayed healing}
+M: Fat loss = {r:temples·brows·mouth} / redistribution → {r:tear trough deformity}·nasolabial folds
 
 ## Age-related Changes of Bone · Teeth | 나이에 따른 골 · 치아 변화 | 24-25 | 성숙 시기
-> 남 18 · 여 16에 성인 크기 — 그 뒤에도 하악은 전하방으로 변한다
-= skeletal maturity {r:M 18 ys} · {r:F 16 ys}
-- Cranium: skeletal maturity {r:M 18 ys, F 16 ys} · orbit 커짐 · maxilla 전방 projection 감소 · nose 골성 변화 적음.
-- Mandible: {r:anterior and downward} 증가 — 턱이 더 나오고 코가 길어 보일 수 있음.
-- Teeth: attrition, eruption, tooth mass to arch length change(쭉 읽으심).
+> 두개는 남 18·여 16세에 다 자라지만, 하악은 그 뒤로도 앞아래로 자란다
+= Cranium maturity {r:M 18 ys · F 16 ys} · Midface projection↓ · {r:Mandible}이 가장 많이 변함({r:anterior and downward})
+# Facial bones
+| 부위 | 슬라이드 | 필기 |
+| Cranium | skeletal maturity {r:M 18 ys, F 16 ys} · increase thickness with age | 두께와 크기가 성인 수준에 도달 |
+| Midface — orbits | enlarge · backward and downward movement of {r:infraorbital rims} | orbit이 커지고 infraorbital rim이 후하방으로 |
+| Midface — maxillae | anterior surface: modeling regressively · {r:decrease projection} · vertical elongation | Mx. 전방부 remodeling, projection 감소 |
+| Midface — nose | {r:no significant osseous change} | 골성 변화가 크지 않음 |
+| Mandible | more so than cranium or midface · {r:anterior and downward (vertical) increase} in mandible and chin | 나이 든 사람도 VD가 변해 턱이 더 튀어나오고 코가 길어 보일 수 있음 |
 F: 24
-M: 두개 성숙: 남 {r:18세} · 여 {r:16세}
+# Teeth — Changes with age
+- ① Tooth {r:attrition} ② Tooth {r:eruption} ③ {r:Tooth mass to arch length} change (필기: 쭉 읽으심).
+F: 25
+M: Skeletal maturity: 남 {r:18세} · 여 {r:16세}
+M: 나이 들며 가장 많이 변하는 뼈 = {r:Mandible} — {r:anterior and downward} / 코는 골성 변화 {r:적음}
+M: 치아 변화 3: {r:attrition} · {r:eruption} · tooth mass to {r:arch length}
 
-@G ③ 영상·세팔로 분석
-## Imaging of the Facial Skeleton | 골격 평가 영상 | 26-32 | 기출 20·22·23 | jb=Q27,Q41,S20-4
-> gold standard는 여전히 cephalometric evaluation — 영상은 6종
-= Gold standard = {r:Cephalometric evaluation} · 영상 6종 · 3D CT modeling = {r:VSP}의 key
-# Gold standard
-- {r:Cephalometric evaluation} = 아직까지 가장 중요한 {r:gold standard} / CT = 보조적 / MRI = soft tissue lesion(특히 {r:TMJ}) / 3D CT modeling = {r:virtual surgical planning}의 key.
-E: Q27 | "골격 평가의 Gold standard" → cephalometric evaluation (23년).
+@G ④ 영상 · 세팔로 촬영
+## Imaging of the Facial Skeleton | 골격 평가 영상 | 26-27·29-32 | 기출 20·22·23 | jb=Q27,Q41,S20-4
+> gold standard는 ceph — 영상 6종은 각각 한 줄 역할로 외운다
+= Gold standard = {r:Cephalometric evaluation} · 그 외 {r:CT, MRI, 3-D CT modeling} · 영상 6종
+# Evaluation of facial skeleton
+- ==Cephalometric evaluation: gold standard== — 아직까지 가장 중요한 gold standard(필기).
+- {r:CT} = 보조적 수단 — 최근엔 CT reformatted image로 CT-based cephalometric lateral·PA·panoramic view.
+- {r:MRI} = 제한된 정보, soft tissue 관련 lesion(특히 {r:TMJ} 문제)일 때 도움.
+- {r:3-D CT modeling} = {r:virtual surgical planning}의 key.
+E: Q27 | "골격 분석을 위한 Gold standard 영상" (23년 단답) → Cephalometric radiograph (다른 판본 답: Cephalometry — Lateral cephalometric radiograph). 슬라이드가 gold standard라 한 것은 'Cephalometric evaluation'.
+# 분석법은 많고 결정은 임상으로
+- Large number of different cephalometric analyses — {r:not correlated well} in orthognathic surgery with making decision.
+- {r:Best decided by the detailed systematic clinical esthetic evaluation}.
+- 필기: 분석법이 너무 많고(Downs · Steiner · Ricketts · McNamara · Tweed…) 결과가 임상 소견과 안 맞는 경우가 종종 → cephalometric norm에 맞추려는 수술은 하지 않음(unlike 프로크루스테스).
+E: Q08 | JB 답의 이유 "많은 종류의 cephalometric analyses는 상관관계를 잘 보이지 않기 때문" = 이 쪽 "not correlated well" 문장 (본 문항은 ⑤ 세팔로 분석 카드).
+P: 💬 "결국 임상적인 평가가 가장 중요" — 분석값에 환자를 끼워 맞추는 게 아님(필기).
+F: 26
 # Types of imaging techniques 6
-- ① {r:Cone beam technology} ② {r:Lateral cephalometric} radiograph — 1차 평가 도구 ③ {r:Panoramic} — 치아 주변 pathology.
-- ④ {r:Periapical} — 치아 단위 ⑤ {r:Posteroanterior cephalometric} — 좌우 대칭 ⑥ {r:Transcranial} — 요즘 안 씀.
-E: Q41,S20-4 | 22년 "골격 평가를 위한 방사선 검사 종류" / 20년 "골격을 평가하기 위한 방사선 사진".
-# Cephalometry의 용도
-- quantifying · classifying · communicating / 발치 여부·술전 교정 목표 / {r:Prediction tracing}.
-- {r:Primary objective = normal facial appearance} — ceph 수치를 정상으로 만드는 게 아님.
-F: 26=Evaluation of facial skeleton, 27=영상 6종
-M: 골격 평가 gold standard = {r:cephalometric evaluation}
-M: 영상 6: {r:CBCT} · {r:Lateral ceph} · {r:Panorama} · {r:Periapical} · {r:PA ceph} · {r:Transcranial}
+| 영상 | 슬라이드 · 필기 |
+| ① {r:Cone beam technology} | a 1:1 ratio of imaging with panoramic view, cephalometric, and tomographic imaging, 3-D imaging |
+| ② {r:Lateral cephalometric radiograph} | 가장 많이 사용되는 {r:1차 평가 도구} |
+| ③ {r:Panoramic radiograph} | 치아 주변 조직의 {r:pathology}를 쉽게 평가 |
+| ④ {r:Periapical radiograph} | 치아·잇몸 상태를 {r:치아 단위}로 세밀하게 |
+| ⑤ {r:Posteroanterior cephalometric radiograph} | {r:좌우 대칭성} 평가에 도움 |
+| ⑥ {r:Transcranial radiographs} | {r:요즘 안 씀} |
+F: 27, 29, 30, 31, 32
+E: Q41 | "악교정 수술 시 사용되는 방사선 검사의 종류" (22년) → 6종 그대로(순서도 슬라이드 순).
+E: S20-4 | "골격 평가를 위해 사용되는 방사선 사진 종류" (20년) → JB 답: Cephalometric evaluation(lateral·PA ceph) / CT, MRI, 3-D CT / 보조적으로 PA, transcranial, panorama. ⚠ 필기에서 '보조적 수단'이라 한 것은 CT — '보조적으로 PA·transcranial·panorama' 묶음은 JB 복원자의 정리.
+# Ceph X-ray의 한계 vs CT reconstruction
+- 현재 cephalometric X-ray는 {r:좌우 확대율이 다름} — 필름에 가까운 쪽은 확대율이 작고, 필름과 멀고 X선원에 가까운 쪽은 큼.
+- orientation을 바꾸기도 어려움 ↔ CT reconstruction은 좌우 확대율이 같고, cephalostat 없이 rotation하며 좌우가 겹친 영상을 만들 수 있음.
+M: 골격 평가 gold standard = {r:Cephalometric evaluation}
+M: 영상 6: {r:Cone beam} · {r:Lateral ceph} · {r:Panoramic} · {r:Periapical} · {r:PA ceph} · {r:Transcranial}(요즘 안 씀)
+M: MRI = {r:TMJ} 등 연조직 lesion · 3-D CT modeling = {r:virtual surgical planning}의 key
+
+## Cephalometry — Uses · Objective | 세팔로의 쓰임과 치료 목표 | 28 | 변형 대비
+> ceph는 수치로 기록·분류·소통하고 계획하는 도구 — 목표는 정상 수치가 아니라 정상 얼굴
+= 쓰임 = {r:quantifying · classifying · communicating} · 교정 계획 · {r:Prediction tracing} / 목표 = {r:normal facial appearance}
+# Cephalometry 4
+- ① Excellent tool for {r:quantifying, classifying, and communicating} patient data.
+- ② A treatment planning tool for {r:orthodontic phase}: tooth extraction or non-extraction, goals for presurgical orthodontics, objective index of effected orthodontic tooth changes.
+- ③ {r:Prediction tracing}: essential for determining specifics of orthognathic surgery.
+- ④ Primary objective of treatment: {r:normal facial appearance}, not to make the patient's cephalometric measurements more normal.
+U: 초기 ceph로 최종 안모를 다 알 순 없지만 대략적 이동 방향은 예측 가능 — 성장이 끝나지 않았고 술전이면 prediction tracing.
+E: S20-5 | 20년 "골격적 분석의 목적" — 다른 판본은 답을 이 쪽 4항목으로 복원(JB 해설: '목적'이라고 정확히 나오지 않아 세팔로가 필요한 이유를 적음). 본답은 p.45의 3개(⑤ 골격 분석 카드).
+F: 28
+M: Ceph 쓰임: {r:quantifying·classifying·communicating} · {r:orthodontic phase} 계획 · {r:prediction tracing}
+M: 치료 목표 = {r:normal facial appearance} — ceph 수치를 정상으로 만드는 것 ✗
 
 ## How to Take a Cephalogram | 세팔로 촬영 조건 | 33-35 | 기출 22 | jb=Q42
-> 기본은 CO, 입술은 힘 빼고 — lateral ceph 자세 4가지
-= Lateral ceph 자세 4 = {r:FH plane ∥ floor} · {r:Jaws in CR} · {r:Teeth lightly touching} · {r:Lips relaxed}
-# 촬영 조건
-- {r:Lip in repose} · {r:Centric occlusion (CO)} · CO-CR discrepancy가 크면 {r:CR} 추가 촬영(대개 class II).
-# Lateral ceph — Proper positioning the head
-- ① {r:FH plane parallel to the floor} ② {r:Jaws in CR} ③ {r:Teeth in lightly touching} ④ {r:Lips relaxed}.
-E: Q42 | "Lateral ceph 촬영 시 환자 head positioning 방법" (22년).
-F: 33=촬영 조건, 34=Lateral ceph 자세
-M: Lateral ceph 자세: {r:FH ∥ floor} · {r:Jaws in CR} · {r:lightly touching} · {r:lips relaxed}
-M: ceph는 기본 {r:CO}, discrepancy 크면 {r:CR} 추가
+> 기본은 CO에 입술 힘 빼고 — lateral ceph는 FH를 바닥과 평행하게, 턱은 CR
+= 기본 {r:CO} + {r:Lip in repose} / Lateral ceph 자세 = {r:FH ∥ floor} · {r:Jaws in CR} · {r:lightly touching} · {r:Lips relaxed}
+# Cephalometric radiographs be taken with
+- ① {r:Lip in repose} ② {r:Centric occlusion (CO)} — 대부분 CO로 찍음(필기).
+- Significant {r:CO-CR discrepancy}: additional {r:CR} cephalometric radiographs is made (대개 class II — 필기).
+- CR 추가 촬영 이유 4: to document CR · to study {r:freeway space} · to assess upper tooth to lip relations · to study true relations of the maxilla and mandible.
+F: 33
+# Lateral cephalometric radiograph
+- 목적: To analyse {r:skeletal, dentoalveolar, and soft tissue} relationships in the {r:AP and vertical} dimensions.
+- Proper positioning the head: ==FH plane parallel to the floor== · ==Jaws in CR== · ==Teeth in lightly touching== · ==Lips relaxed==.
+E: Q42 | "lateral cephalometric radiograph 촬영 시 head / tooth relation" (22년) → FH parallel to floor · Jaws in CR · Teeth in light touch · Lips relaxed. 함정: 앞 쪽 일반 조건은 'CO'인데 lateral ceph 자세 슬라이드는 'Jaws in CR'.
+U: FH plane이 floor와 평행하다는 가정하에 촬영 — 똑바로 세워 먼 곳을 보며 거울을 보게 하고 그에 맞춰 cephalostat 장착(natural head position).
+F: 34
+# 무엇을 분석하나 — 3 relations
+- Lateral ceph에서 봐야 할 것: ① {r:Soft tissue relations} ② {r:Skeletal relations} ③ {r:Dental relations} → ⑤ 세팔로 분석의 연조직·골격·치아 카드.
+F: 35
+M: Ceph 기본 = {r:Lip in repose} + {r:CO} / discrepancy 크면 {r:CR} 추가(대개 class II)
+M: Lateral ceph 자세: {r:FH ∥ floor} · {r:Jaws in CR} · {r:lightly touching} · {r:Lips relaxed}
+M: Lateral ceph 분석 3: {r:soft tissue} · {r:skeletal} · {r:dental} relations
 
-## Cephalometric Analysis — Norms | 세팔로 분석과 기준 수치 | 36-49 | 기출 20·22·23·24 | jb=Q08,Q09,Q43,S20-5
-> 수치는 참고 — 임상 평가가 더 중요하다
-= {r:Clinical evaluation is far more important} · ceph = {r:only an aid} · Maxillary depth {r:90 ±3} · Occlusal plane {r:8 ±4°}
-# Ceph vs clinical
-- ==Clinical evaluation is far more important== for treatment planning.
-- Cephalometric analysis = ==only an aid== to clinical assessment, ==Not be used as a sole diagnostic tool==.
-- 이유: 분석법이 너무 많고 orthognathic surgery에서 서로 {r:not correlated well}.
-E: Q08 | "Ceph analysis와 임상적 진단 중 무엇을 더 중요시? 이유" (23·24년) → 임상적 진단.
-# 기준 수치
-| 항목 | 정의 | 값 |
-| {r:Maxillary depth} | FH∠NA | {r:90 ±3} |
-| Mandibular depth | FH∠NB | 88 ±3° |
-| Frankfort mandibular plane angle | FH∠Me-Go | 25 ±5° |
-| {r:Occlusal plane angulation} | FH∠occlusal plane | {r:8 ±4°} |
-| U1 to FH (Esthetic line) | | ideally 90° |
-| U1 to NA / L1 to NB | | 22 ±2° / 20 ±2° |
-E: Q09,Q43 | 24년 "Maxillary depth의 정상 각도" → 90 ±3 / 22년 "FH plane과 교합평면의 정상 각도" → 8 ±4°.
-F: 36=Ceph vs clinical, 38=기준 수치
+@G ⑤ 세팔로 분석
+## Cephalometric Analysis vs Clinical Diagnosis | 세팔로 분석 vs 임상 진단 | 36-37 | 기출 23·24 | jb=Q08
+> 수치는 거들 뿐 — 기준선(FH)부터 사람마다 흔들리니, 치료 계획은 임상 평가가 정한다
+= ==Clinical evaluation is far more important== · Ceph = ==only an aid== — not a sole diagnostic tool
+# Cephalometric analysis vs clinical diagnosis
+- ① Numerous cephalometric analyses ② May be different from clinical evaluation.
+- ③ ==Clinical evaluation is far more important for treatment planning==.
+- ④ ==Cephalometric analysis: only an aid to clinical assessment== → ==Not be used as a sole diagnostic tool==.
+E: Q08 | "Cephalometric analysis와 임상적 진단 중 어떤 것을 더 중요시? 이유" (23·24년 2회, 서술형) → 임상적 진단. 이유 = 한 판본 답은 이 쪽 4줄, 다른 판본 답은 p.26 "not correlated well in orthognathic surgery with making decision" — 서술형이면 둘 다.
+U: 임상 소견과 다를 때 참고할 plane — SN plane(Steiner의 reference plane)은 natural position과 각도를 가짐 · FH plane도 floor와 평행하다고 받아들여지지만 사람마다 다름.
+F: 36
+# Corrected Frankfort horizontal plane
+- Ceph values does not correlate with the clinical impression → {r:adjust a reference line} of cranial structure.
+- Aberrant position of: ① Vertical malposition of {r:porion (Po)}, {r:orbitale (Or)} ② AP malposition of {r:nasion (Na)}.
+- Difficulty in identification of {r:Po, Or} — 잘 안 보이거나 좌우가 틀어짐(필기).
+U: A(Po)–Or 선과 B(reference plane)–Or 선의 각도가 다르면 수평 기준선이 달라져 모든 ceph 계측치가 달라짐 — 각 기준점의 한계를 알고 분석.
+F: 37=A는 Po 기준선 B는 reference plane
+M: Ceph vs 임상 → {r:임상 평가}가 더 중요 · ceph = {r:only an aid}(sole diagnostic tool ✗)
+M: 이유: 분석법이 너무 많고 orthognathic surgery 결정과 {r:not correlated well}
+M: Corrected FH: {r:Po}·{r:Or} 수직 위치 이상 · {r:Na} AP 위치 이상 → reference line 조정
+
+## Cephalometric Analysis — Norms | 세팔로 분석과 기준 수치 | 38-39 | 기출 22·24 | jb=Q09,Q43
+> 1~7번 기준 수치 — 외우되, 계획은 range 안에서
+= Maxillary depth FH∠NA {r:90 ±3°} · Occlusal plane angulation FH∠occlusal plane {r:8 ±4°}
+# Cephalometric analysis 1~7
+| 번호 | 항목 | 정의 | 기준값 |
+| 1 | {r:Maxillary depth} | angular measurement FH∠NA | {r:90 ±3°} |
+| 2 | Mandibular depth | FH∠NB | {r:88 ±3°} |
+| 3 | Frankfort mandibular plane angle | FH∠Me-Go | {r:25 ±5°} |
+| 4 | {r:Occlusal plane angulation} | FH∠occlusal plane | {r:8 ±4°} |
+| 5 | Esthetic line | tangent to the labial surface of U1 to FH | ideally {r:90°} |
+| 6 | Upper incisor angulation to NA line | 각도 + U1 tip: anterior to NA line(거리) | {r:22 ±2°} · tip 4 ±2 mm |
+| 7 | Lower incisor angulation to NB line | 각도 + L1 labial surface of incisor tip to NB line(거리) | {r:20 ±2°} · tip 4 ±2 mm |
+E: Q09 | "Maxillary depth angle(FH와 Na-A 사이 각)의 평균" (24년) → 90±3°. p.47 "Maxillary depth angle: FH∠Na-A 90 ±3°"에도 같은 수치.
+E: Q43 | "FH plane과 교합면이 이루는 각도" (22년) → 8 ±4°. 함정: FH∠Me-Go 25 ±5° · Mandibular plane angle 24 ±4°(p.46)와 헷갈리지 않기.
+P: 💬 구체적 수치는 하나의 레퍼런스 — 대략 어느 정도 각도인지 보고 {r:range 안}에 들어가는 수술 계획을 잡아야 함(넘어서면 문제 가능성).
+U: Occlusal plane angulation = chin point를 더 뒤로 넣고 싶을 때 얼마나 바꿀 수 있는지의 범주 — 급격히 바꾸면 구치·canine의 cusp 각도가 interference.
+F: 38
+# 상악 위치를 먼저 정한다 — 수술 계획 그림
+- Mx.의 {r:전후방 위치}를 어디에 둘지 = 수술의 첫 단계 → occlusal plane 각도의 범주 → 전치부 노출 정도.
+- 상악골 전방 이동 시 upper lip 약간↑ · nasal tip↑ · {r:nasolabial angle 감소}.
+- {r:posterior impaction} → occlusal plane 감소, A point는 앞으로 나오지만 전치부 tip은 많이 안 나옴.
+- Mx. {r:rotation axis}를 어디에 두느냐에 따라 전치부 각도·노출 정도 결정.
+F: 39
+M: Maxillary depth(FH∠NA) {r:90 ±3°} · Mandibular depth(FH∠NB) {r:88 ±3°}
+M: FH∠Me-Go {r:25 ±5°} · Occlusal plane(FH∠occlusal plane) {r:8 ±4°} · Esthetic line {r:90°}
+M: U1 to NA {r:22 ±2°} · L1 to NB {r:20 ±2°} (둘 다 tip 4 ±2 mm)
+
+## Cephalometric Norms — Lip · Chin · Nose | 기준 수치 ② 입술 · 턱 · 코 | 40-43 | ★ 슬라이드 별표
+> 8~15번 — 별표는 10번 윗니 노출 2.5 mm, 얼굴 수직 길이를 정하는 기준
+= ★ Upper tooth to lip {r:2.5 ±1.5 mm} = {r:vertical dimensions}의 기준 · Nasolabial angle {r:90-105°}
+# Cephalometric analysis 8~15
+| 번호 | 항목 | 기준값 |
+| 8 | Pogonion projection to NB line | {r:4 ±2 mm} |
+| 9 | Upper lip length: subnasale to upper lip stomion | male {r:22 ±2 mm} · female {r:20 ±2 mm} |
+| 10 ★ | Upper tooth to lip | {r:2.5 ±1.5 mm} — important in establishing vertical dimensions of the face |
+| 11 | Lower anterior dental height: L1 tip to Me | M {r:44 ±2 mm} · F {r:40 ±2 mm} |
+| 12 | soft tissue thickness of upper lip, lower lip, and chin | {r:1:1:1} · range 11-14 mm |
+| 13 | Soft tissue thickness of menton | {r:7 ±2 mm} |
+| 14 | Nasal projection angle: nasal dorsum to ⊥FH | F {r:34°} · M {r:36°} |
+| 15 | Nasolabial angle: columella subnasale upper lip | {r:90-105°} |
+E: Q40 | 22년 "상악 중절치 노출 정도" → to 3mm (2.5±1.5mm) — p.15와 같은 수치가 여기 ★. 변형 대비: "얼굴의 vertical dimension 결정에 중요한 계측치".
+F: 40
+# 필기로 이해하기
+- Pog projection to NB line은 {r:B point} 위치에 따라 변화.
+- upper lip length는 거의 안 바뀜 — 상악 전치·입술이 나온 경우 Mx. {r:clockwise rotation}하면 인중이 길어 보임.
+- Lower anterior dental height는 {r:genioplasty}로 변경 가능, 또는 interpositional bone graft로 길게.
+- Chin area soft tissue thickness는 촬영 때 긴장하면 얇아 보이고, 술후 입술 tension이 줄면 두꺼워질 수 있음 → X-ray prediction의 {r:장애 요소}.
+F: 41, 42, 43
+M: ★ Upper tooth to lip {r:2.5 ±1.5 mm} → face의 {r:vertical dimension} 결정
+M: Upper lip length 남 {r:22} · 여 {r:20} ±2 mm / L1 tip–Me 남 {r:44} · 여 {r:40} ±2 mm
+M: Nasolabial angle {r:90-105°} · Nasal projection 여 {r:34°} 남 {r:36°} · menton 연조직 {r:7 ±2 mm}
+
+## Soft Tissue Relations | 연조직 관계 | 44 | 수직 · 수평 비율
+> 연조직은 뼈를 90~100% 따라간다 — 수직은 FH에 수직으로, 수평은 Sn 수직선 기준
+= G-Sn/Sn-Me {r:1:1} · Sn-St/St-Me {r:1:2} · Interlabial {r:0-3 mm} · Sn perp.→ upper lip {r:0} · lower lip {r:-2} · chin {r:-4}
+# Soft tissue relations
+| 구분 | 항목 | 기준 |
+| Vertical (measured perpendicular to FH plane) | G-Sn/Sn-Me | {r:1:1} |
+| Vertical | Upper lip length (Sn-St) | M {r:22 ±2 mm} · F {r:20 ±2 mm} |
+| Vertical | Sn-St/St-Me | {r:1:2} |
+| Vertical | Sn-LLV/LLV-Me | {r:1:0.9} |
+| Vertical | Interlabial distance | {r:0-3 mm} |
+| Horizontal (subnasale perpendicular) | Subnasale perpendicular to upper lip | {r:0 ±2 mm} |
+| Horizontal | Subnasale perpendicular to lower lip | {r:-2 ±2 mm} |
+| Horizontal | Subnasale perpendicular to chin | {r:-4 ±2 mm} |
+# 앞 쪽과 연결
+- Sn-St : St-Me = {r:1:2} = p.8 그림의 하안면 Stm 위 1/3 · 아래 2/3와 같은 비율 [[DD2:8]].
+- Interlabial distance 0-3 mm = p.15 in repose interlabial separation {r:up to 3 mm} [[DD2:15]].
+U: soft tissue의 수직·수평 변화량은 1:1이 아니라 하부 skeletal factor 변화량의 {r:90~100%}를 따라감 — 기준선들은 참고사항.
+F: 44
+M: 수직: G-Sn/Sn-Me {r:1:1} · Sn-St/St-Me {r:1:2} · Sn-LLV/LLV-Me {r:1:0.9}
+M: 수평(Sn perpendicular): upper lip {r:0} · lower lip {r:-2} · chin {r:-4} (±2 mm)
+M: 연조직 변화 = 골 변화의 {r:90~100%}
+
+## Skeletal Relations — Objectives · Chin · Maxilla | 골격 분석의 목적과 턱 · 상악 위치 | 45-48 | 기출 20 | jb=S20-5
+> 목적은 셋 — 턱끝 위치, 상악 위치, 상하악 길이의 관계
+= 목적 3 = locate the {r:chin} · locate the {r:maxilla} (AP) · relate the {r:effective length} of the maxilla to the mandible
 # The objectives of the skeletal analysis 3
-- ① To locate the {r:chin}(vertically and AP) ② To locate the {r:maxilla}(AP) ③ To relate the {r:effective length} of the maxilla to the mandible.
-E: S20-5 | "골격적 분석의 목적" (20년).
-U: 상악 전치 위치·노출량 → 상악골 위치 → 최종 교합을 따라가면 chin point가 결정 → 많이 나오면 rotation, 수직 길이는 genioplasty. 연조직은 골 변화의 {r:90~100%}를 따라감.
-F: 45=Skeletal analysis의 목적
-M: ceph vs 임상: {r:임상 평가}가 더 중요, ceph는 {r:only an aid}
-M: Maxillary depth(FH∠NA) {r:90 ±3} · Occlusal plane(FH∠occlusal plane) {r:8 ±4°}
-M: Skeletal analysis 목적 3: {r:chin} 위치 · {r:maxilla} 위치 · 상하악 {r:effective length} 관계
+- ① ==To locate the chin: (vertically and AP), facial axis, facial depth, and mandibular plane==
+- ② ==To locate the maxilla (AP): maxillary and facial convexity==
+- ③ ==To relate the effective length of the maxilla to the mandible==
+E: S20-5 | "골격적 분석의 목적" (20년) → JB 답 = 위 3개 그대로. 다른 판본은 p.28 Cephalometry 4항목으로 복원한 다른 답 — 슬라이드 제목 'objectives of the skeletal analysis'와 맞는 것은 이 3개.
+F: 45
+# 수술 계획의 순서
+- 수술 때 안모에서 제일 잘 보이는 것 = {r:chin point} — 그만큼 중요한 것이 {r:상악골의 위치}.
+- 상악 전치의 위치·노출 정도 → 상악골 전후방·수직 위치 결정 → 최종 교합을 따라가면 chin point가 대략 결정.
+- 결정된 chin point가 많이 튀어나와 있으면 {r:rotation}으로 더 들어가게 · 하악 수직 길이가 길거나 짧으면 {r:genioplasty}로 보완.
+# 세 목적별 계측치
+| 목적 | 계측 | 기준 |
+| Location of chin | Facial axis angle: the posteroinferior angle Ba-Na∠facial axis (posterosuperior point of pterygoid fissure to gnathion) | {r:90 ±3°} |
+| Location of chin | Facial depth angle: the posteroinferior angle FH∠facial plane (Na-Pog) | {r:90 ±3°} |
+| Location of chin | Mandibular plane angle: FH∠mandibular plane | {r:24 ±4°} |
+| Location of maxilla A-P | Maxillary depth angle: FH∠Na-A | {r:90 ±3°} |
+| Location of maxilla A-P | Facial convexity: distance btw A to Na-Pog | {r:1 ±2 mm} |
+| Effective maxillary length : mandibular length | Co-A/Co-Gn (condylion to point A : to Gn) | {r:1:1.3} |
+- 수업: Location of chin은 "대충 넘어가심", Effective length는 "패스" — 수치는 표로만.
+U: Maxilla AP는 일반적으로 각도보다 {r:길이}를 측정 — FH plane으로 N-perp을 내렸을 때 Pog가 1~2 mm 후방, 각도는 89도 정도로 맞추기도.
+F: 46, 47, 48
+M: Skeletal analysis 목적 3: {r:chin} 위치 · {r:maxilla}(AP) 위치 · 상하악 {r:effective length} 관계
+M: Facial axis · Facial depth · Maxillary depth = 모두 {r:90 ±3°} / Mandibular plane angle {r:24 ±4°}
+M: Co-A : Co-Gn = {r:1:1.3} · Facial convexity {r:1 ±2 mm}
 
-@G ④ 교합·PA
+## Dental Relations | 치아 관계 | 49 | 기준 수치
+> 윗어금니의 앞뒤 위치, 아랫앞니의 돌출·경사, 앞니끼리의 각도
+= U6 position F {r:18} · M {r:21} ±3 mm · L1 to A-Pog {r:1 ±2 mm} · {r:22 ±4°} · Interincisal {r:130 ±6°}
+# Dental relations 4
+- Upper molar position: horizontal distance from {r:pterygoid vertical} to the distal surface of {r:U6} — F: {r:18 ±3 mm} · M: {r:21 ±3 mm}.
+- Lower incisal protrusion: L1 tip to A-Pog {r:1 ±2 mm}.
+- Lower incisal inclination: A-Pog∠L1 long axis {r:22 ±4°}.
+- Interincisal angle: {r:130 ±6°}.
+U: posterior를 띄우면 interincisal inclination을 크게 할 수 있음(필기).
+# 아랫앞니 — 기준선이 둘
+| 기준선 | 각도 | 거리 |
+| NB line (1~7번 표) | 20 ±2° | 4 ±2 mm |
+| A-Pog line (Dental relations) | 22 ±4° | 1 ±2 mm |
+F: 49
+M: U6 position(pterygoid vertical → U6 distal) 여 {r:18} · 남 {r:21} ±3 mm
+M: L1 to A-Pog {r:1 ±2 mm} · A-Pog∠L1 {r:22 ±4°} · Interincisal angle {r:130 ±6°}
+
+@G ⑥ 교합 · PA 평가
 ## Occlusion · PA Evaluation | 교합 · PA 평가 | 50-52 | 기출 24 | jb=Q10
-> 교합 평가 4항목 + static evaluation
-= 교합 평가 4 = {r:CO-CR} · {r:Tooth wear} · {r:Parafunctional habit} · {r:Postoperative stability}
-# Evaluation of the occlusion
+> 교합은 기능 4 + 정적 3으로, 비대칭은 PA ceph로
+= Functional 4 = {r:CO-CR} · {r:Tooth wear} · {r:Parafunctional habit} · {r:Postoperative stability}
+# Functional evaluation 4
 - ① {r:CO-CR} ② {r:Tooth wear} ③ {r:Parafunctional habit} ④ {r:Postoperative stability}.
-E: Q10 | "악교정수술 전 기능적 교합 평가를 위한 검사항목" (24년).
-# Static evaluation
-- **Intraarch**: midline, arch form, symmetry, missing·supraerupted teeth, occlusal plane, curve of Spee, crowding.
-- **Interarch**: AP Angle classification(molars and canines), overjet, overbite, midline. / Tooth mass evaluation.
-- 술후 최소 {r:3점}에서 만나게(필기).
-# PA cephalometric
-- Facial asymmetry, compensatory head posture 평가 — 최근엔 VSP로 3D 구현.
-F: 50=Evaluation of the occlusion
+E: Q10 | "악교정 환자의 기능적 교합 평가 방법" (24년) → 4항목 그대로. 함정: 아래 Static evaluation(intra·interarch)과 섞지 않기.
+U: Postoperative stability — 술후 최소 {r:3점}에서 만나게 해주는 게 좋음(필기, 쪽 전체는 "쭉 읽으심").
+# Static evaluation 3
+| 분석 | 항목 |
+| {r:Intraarch analysis} | midline, arch form, symmetry, missing, under erupted, supraerupted teeth, occlusal plane-steep, flat angle, canted, curve of Spee, crowding |
+| {r:Interarch analysis} | AP Angle classification (molars and canines), overjet, overbite, midline |
+| {r:Tooth mass evaluation} | 슬라이드 뒷부분은 가려져 판독 불가 |
+F: 50
+# PA cephalometric evaluation
+- ① {r:Facial asymmetry} ② {r:Compensatory head posture}.
+- PA view에서 비대칭이 해소되는 방향으로 계획 — 최근엔 {r:virtual surgical plan}으로 skeletal pattern을 3D로 구현해 정확한 PA 모습 → 환자 만족도가 예전보다 훨씬 높아짐.
+- 다음 강의 예고(p.52 Next): {r:Orthognathic surgery}.
+F: 51
 M: 기능적 교합 평가 4: {r:CO-CR} · {r:Tooth wear} · {r:Parafunctional habit} · {r:Postoperative stability}
+M: Static 3: {r:Intraarch} · {r:Interarch} · {r:Tooth mass}
+M: PA ceph = {r:Facial asymmetry} · {r:Compensatory head posture}

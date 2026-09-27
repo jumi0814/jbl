@@ -1,120 +1,397 @@
-#LEC DD3 | Dentofacial deformity III | 서병무 | 26 | 260914_서병무_Dentofacial_deformity_III (26년도 · 필기 텍스트만 수신) | 0
-! ⚠ 이 강의는 파일이 '필기 텍스트'로만 전달되어 슬라이드 영문 본문·그림이 없음. JB 답에만 있고 받은 자료에 없는 영문 문장은 "슬라이드 미수신"으로 표시.
-@MAP 악교정수술이 주는 것 → 전통적 계획(STO → model surgery → facebow → intermediate splint)과 그 오차 → 계획 기준선(상악 전치 → occlusal plane → chin) → CAS(VSP) 과정 → 정확도 → 장점·단점
+#LEC DD3 | Dentofacial deformity III | 서병무 | 26 | 260914_서병무_Dentofacial_deformity_III (26년도, 124쪽) | 124
+! 26년도 슬라이드 PDF 124쪽 기준(배경 필기 포함). p.22-104·p.120-124는 수업 화면 캡처라 슬라이드 글자는 쪽 이미지에서 확인했고, 한글 풀이는 26 필기.
+! 출제 경향: 기출 12문항 모두 슬라이드의 영문 bullet·문장에서 나옴 — Dental model surgery(p.4)·모형수술 목적(p.8), facebow 오류(p.5-6), Initial·Final STO(p.12-13), Three critical decision(p.14), CAS 정의·동의어(p.34), CAS 쓰임·구성(p.36·38), CAS 장단점(p.117-118). 영문 목록을 통째로 외우는 것이 핵심(Q11만 intermediate splint 제작 과정을 서술로 물음).
+! 강조 표시: p.122 수업 화면에서 CAS 장점의 'Precise prediction'에 빨간 밑줄. p.11 Diagnostic list는 "쭉 읽으셨습니다", p.20 연조직 변화 %는 "수치를 외우라는 게 아니라" 뼈 이동량과 연조직 변화량이 다르다는 점만(필기).
+@MAP 악교정수술이 주는 것·양악의 이유 → 전통적 준비(model surgery·intermediate splint·facebow 7° 오류) → 진단 목록·Initial/Final STO → paper surgery(Three critical decision·chin·연조직) → 증례로 본 2D 계획의 한계 → CAS 정의·구성·VSP·guide/wafer → CAS 수술 순서·정확도 연구 → 장점 6·단점 5·미래 4
 
-@G ① 전통적 계획 — model surgery·STO
-## What Orthognathic Surgery Provides | 악교정수술의 목적과 양악수술 | 0 | 기능·심미·안정
-> 경미해 보여도 상악을 같이 움직여야 대칭·안정·심미를 맞출 수 있다
-= Orthognathic sx. = {r:Optimal function} · {r:Esthetic results} · {r:Good stability}
-# 환자에게 제공하는 것
-- ① {r:기능적 개선}(Optimal function) ② {r:심미적 개선}(Esthetic results) ③ 오랫동안 변화된 상태 유지({r:Good stability}).
-# 왜 양악인가
-- 비대칭이 있거나 턱끝이 덜 들어가는 경우 {r:상악골 이동 없이는} 대칭성·안정성·심미 목표를 이루기 어려움.
-# 전통적 계획에 필요한 것
-- ① cephalometric tracing & {r:2D STO}(Surgical Treatment Objective) — 지금은 중요성이 떨어짐.
-- ② 수술 중간의 고정 장치: 상악 먼저 → 상악 고정용 splint / 하악 먼저 → {r:intermediate splint} → 만들려면 {r:model sx.} 필요.
-U: 과거엔 하악 위치 파악이 어려워 상악을 먼저 움직였지만, 지금은 VSP로 하악 먼저 수술이 가능.
-M: 악교정수술이 주는 3가지: {r:function} · {r:esthetics} · {r:stability}
+@G ① 전통적 양악수술 준비 — model surgery·facebow
+## What Orthognathic Surgery Provides | 악교정수술의 목적과 양악수술 | 1-3 | 개요
+> 턱끝만 넣는 게 아니라 상악 위치까지 같이 잡아야 대칭·안정·심미가 맞는다
+= Orthognathic surgery provides {r:Optimal function} · {r:Esthetic results} · {r:Good stability}
+# Orthognathic surgery가 제공하는 것
+- ① {r:Optimal function}(기능적 개선).
+- ② {r:Esthetic results}(심미적 개선).
+- ③ {r:Good stability}(오랫동안 변화된 상태를 유지).
+F: 2
+# 왜 양악(double jaw)인가
+- 눈에 잘 보이는 건 하악의 외연이지만, 비대칭이 있거나 턱끝이 예상보다 덜 들어가는 경우 {r:상악골 이동 없이는} 대칭성·안정성·심미 목표를 이루기 어려움.
+- → 경미해 보여도 상하악을 함께 수술하는 **양악수술**.
+U: 양악은 턱끝만 쏙 넣는 게 아니라 상악 위치까지 같이 잡아야 대칭·안정성·심미를 맞출 수 있다는 것(필기).
+# Traditional preparation in double jaw surgery
+- ① **Simulated model surgery based on 2D STO** — cephalometric tracing & {r:2D STO}(Surgical Treatment Objective)로 상악골의 큰 이동과 하악골의 상대적 변화를 예측(지금은 중요성이 상대적으로 떨어짐).
+- ② **Make intermediate and final splints** — 수술 중간에 필요한 고정 장치.
+| 먼저 움직이는 악골 | 수술 중간에 필요한 splint |
+| 상악골 먼저 | 계획대로 상악골을 고정하기 위한 splint |
+| 하악골 먼저 | 하악골은 최종 위치, 상악골은 이동하지 않은 상태에서 고정하는 {r:intermediate splint} |
+- intermediate splint를 만들려면 {r:model sx.}가 필요 → 다음 카드.
+U: 과거엔 하악골의 정확한 위치를 먼저 파악하기 어려워 상악을 먼저 움직였지만, 지금은 {r:virtual surgical planning}으로 하악 먼저 수술이 가능.
+F: 3=양악수술의 이유와 intermediate splint가 필요한 이유
+M: Orthognathic surgery provides {r:Optimal function} · {r:Esthetic results} · {r:Good stability}
+M: 전통적 준비 = {r:2D STO} 기반 simulated {r:model surgery} + {r:intermediate·final splints}
+M: 예전엔 {r:상악 먼저} → 지금은 {r:VSP}로 하악 먼저도 가능
 
-## Dental Model Surgery · Intermediate Splint | 모형수술과 intermediate splint | 0 | 기출 21·23·24 | jb=Q11,Q14
-> model surgery는 intermediate splint를 만들기 위한 중간 단계
-= Model sx. 목적 = {r:intermediate splint 제작} · 순서: 모델 → {r:facebow mounting} → 먼저 움직일 악골 simulation → 치아 관계 기록
-# 모델수술을 하는 이유
-- 양악수술에 필요한 ==intermediate splint를 만들기 위한 중간 단계==.
-E: Q14 | "전통적 양악수술에서 모델수술을 시행하는 이유" — 21·23·24년 3회. JB 답 영문(Transfer of prescribed 3D movements of the maxilla…)은 슬라이드 미수신.
-# intermediate splint 제작 과정
-- ① 모델 뜨기 → ② {r:facebow transfer}로 mounting → ③ {r:먼저 이동하는 악골}의 이동을 simulation.
-- → ④ 위아래 치아가 물리는 새 위치로 이동 → ⑤ 그 위치의 {r:상하악 치아 관계 기록}.
-- 상악 먼저일 때: ① 이동량만큼 Mx. model {r:grinding} ② 새 위치 positioning ③ splint 제작.
-E: Q11 | "하악 또는 상악 먼저 수술 시 intermediate splint 제작 과정" (24년).
-# 주의
-- 대개 {r:CR bite} 사용. Class II는 CO-CR discrepancy가 커서, CO로 계획하면 술후 턱이 기대보다 들어간 채 고정될 수 있음.
-- 오차는 mounting → grinding → splint 제작 → 구강 내 위치, 단계마다 {r:누적}.
-M: Model surgery = {r:intermediate splint}를 만들기 위한 중간 단계
-M: splint 제작: 모델 → {r:facebow} mounting → 먼저 움직일 악골 simulation → 새 위치의 치아 관계 기록
+## Dental Model Surgery · Intermediate Splint | 모형수술과 intermediate splint | 4·8-10 | 완짤 3회 | jb=Q14,Q11
+> model surgery = 계획한 상악의 3차원 이동을 환자에게 옮기는 중간 단계, 그 결과물이 intermediate splint
+= Purpose = prescribed {r:3-D movements of the maxilla}를 환자에게 직접 {r:transfer} · splint = {r:repositioned mandible or maxilla first}
+# Dental model surgery — 4가지 요소
+- ① Two-jaw surgery: {r:which jaw operated first}(어느 악골을 먼저 수술하나).
+- ② ==Intermediate splint: repositioned mandible or maxilla first==(먼저 재위치한 악골 기준의 splint).
+- ③ Mounting model on the {r:semi-adjustable articulator} with {r:face bow transfer}.
+- ④ {r:CR bite}.
+- Dental model sx. = 양악수술에 필요한 {r:intermediate splint}를 만들기 위한 중간 단계(필기).
+F: 4
+# Purpose of model surgery
+- ==Transfer of prescribed 3-dimentional movements of the maxilla directly to the patient during the correction of dentofacial deformities==(악안면기형을 교정하는 동안 계획한 상악의 3차원 이동을 환자에게 직접 옮김).
+- {r:reference line}을 긋고 어느 위치에서 얼마나 이동할지 계산해 {r:grinding}(필기).
+E: Q14 | "전통적 양악수술에서 모델수술을 시행하는 이유(모형 수술의 목적)" — 21·23·24년 3회 완짤(서술형). 슬라이드 영문 한 문장 그대로(JB는 "3D movements"로 표기).
+F: 8=reference line을 긋고 이동량을 계산해 grinding
+# Intermediate splint 제작 과정
+- 순서(필기): ① 모델 뜨기 → ② {r:facebow transfer}로 mounting(p.9 Mounting on the articulator) → ③ 먼저 이동하는 악골의 이동을 simulation.
+- → ④ 한쪽 악골만 수술한 상태에서 위아래 치아가 물리는 새 위치로 이동 → ⑤ 그 위치에서의 {r:상하악 치아 관계 기록}.
+- 상악골 먼저 이동하는 경우(p.10 Model surgery): ① 이동량만큼 {r:Mx. model grinding} ② 새 위치에 Mx. positioning ③ {r:intermediate splint} 제작.
+U: 모델 뜨고 mounting한 다음 먼저 움직일 악골을 계획대로 옮겨서 그 위치를 splint로 딱 기록하는 과정(필기).
+E: Q11 | 24년 탈(서술) "전통적인 방법으로 intermediate splint 만드는 방법" — JB 답 = "한 악골을 먼저 재위치"(p.4 ②) + 인상 → 석고모델 → 안궁이전으로 반조절성 교합기 mounting → 먼저 이동할 악골 모델 grinding → 새 위치에서 splint 제작.
+F: 9, 10=상악 먼저 — grinding 후 새 위치에서 splint 제작
+# CR bite와 오차
+- 대개 {r:CR bite}. CO-CR discrepancy가 많지 않으면 CO도 큰 문제 없음.
+- 단 {r:Class II}는 discrepancy가 큰 경우가 많음 → CO(턱을 내밀어 문 상태)로 계획하면 술후 턱이 기대보다 {r:들어간 상태}로 고정될 가능성↑.
+- 오차는 mounting → grinding 후 위치 재현 → splint 제작 → 수술 중 구강 내 위치, {r:단계마다 생겨 누적} — 당시엔 실제 오차를 확인하기도 어려웠음.
+M: Model surgery 목적 = prescribed {r:3-dimentional movements of the maxilla}를 환자에게 직접 {r:transfer}
+M: Intermediate splint = {r:repositioned mandible or maxilla first} / 제작: 모델 → {r:facebow} mounting → 먼저 움직일 악골 {r:grinding}·positioning → splint
+M: bite는 {r:CR} — Class II를 CO로 잡으면 술후 턱이 {r:들어간} 채 고정
 
-## Errors in Facebow Transfer | Facebow transfer의 오류 | 0 | 기출 22·24 | jb=Q12,Q44
-> 평행하다고 가정하지만 실제로는 7도 어긋난다
-= 가정: 교합기 윗면 ∥ {r:FH plane} / 실제: {r:7도} 차이 → occlusal plane이 {r:steep}하게 mounting
-- **가정**: 교합기 윗면과 {r:FH plane}은 평행.
-- **실제**: bow의 윗면과 FH plane이 이루는 각도 {r:7도} → 교합기에 옮기면 occlusal plane이 {r:steep}하게 mounting됨.
-E: Q12,Q44 | "Facebow transfer 단점"(22·24년) / "Axis-orbital plane"(22년) — 'orbitale와 hinge axis가 만드는 평면'이라는 정의 문장은 슬라이드 미수신.
-M: Facebow 오류: FH plane과 {r:7도} 차이 → 교합평면이 {r:steep}하게 mounting
+## Errors in Facebow Transfer | Facebow transfer의 오류 | 5-7 | 기출 2회 | jb=Q12,Q44
+> 교합기는 FH에 평행하다고 가정하지만, facebow는 hinge axis 기준이라 7° 틀어진 채 옮겨진다
+= facebow → {r:terminal hinge axis} 기준(FH 아님) → {r:Axis-Orbital Plane}은 FH에서 {r:7°} off → 교합평면이 {r:steep}하게 mounting
+# 원칙 — 무엇을 옮겨야 하나
+- The angle between the {r:maxillary occlusal plane} and {r:FHP} must be transferred to the articulator exactly during the mounting of the maxillary cast(상악 교합평면–FH 각도를 교합기에 그대로 옮겨야 함).
+- 가정: 교합기 윗면과 FH plane은 {r:평행}(필기).
+F: 5=가정 — 교합기 윗면과 FH plane은 평행
+# 실제 — 오류가 생기는 이유
+- ==The face-bow of the semiadjustable articulator was designed to transfer the relationship of the maxilla to the terminal hinge axis of the mandible not a FH plane==.
+- ==These points defined a plane called the 'Axis-Orbital Plane', which is 7° off FH== (그림 표지: Porion · F.H. · Orbitale · Hinge Axis · Ear Rod).
+- 실제: mounting은 bow 윗면이 교합기 윗면에 일치하도록 → bow 윗면과 FH plane 사이 {r:7도} → 교합기 윗면과 FH가 각도를 가진 채 transfer → occlusal plane이 {r:steep}하게 mounting(필기).
+- 출처: Gateno, JOMS 59:635-640, 2001.
+| 구분 | 가정 | 실제 |
+| 옮기는 기준면 | FH plane | {r:Axis-Orbital Plane}(hinge axis + orbitale) |
+| 교합기 윗면과 FH | 평행 | {r:7°} 기울어짐 |
+| 결과 | 교합평면–FH 각도 그대로 | occlusal plane이 실제보다 {r:steep} |
+E: Q12 | "Facebow transfer 시 오류가 생길 수 있는 부분"(22·24년, 서술) — Axis-Orbital plane이 FH와 7° → 교합면이 실제보다 steep. ⚠ 22년 칸의 다른 복원 답 "ear rod … external auditory meatus가 전하방으로"는 슬라이드·필기에 문장으로 없음(그림에 Ear Rod 표지만).
+E: Q44 | "Axis-orbital plane과 FH plane의 관계"(22년 탈) → 7°. JB 해설 'orbitale와 hinge axis가 만드는 평면'은 p.6 문장·그림 표지와 일치.
+F: 6=실제 — bow 윗면과 FH plane이 7도라 occlusal plane이 steep, 7=Frankfort horizontal plane vs axis-orbital plane
+M: Facebow는 {r:terminal hinge axis} 기준 → {r:Axis-Orbital Plane}(hinge axis + {r:orbitale})은 FH에서 {r:7°} off
+M: 가정: 교합기 윗면 ∥ FH / 실제: {r:7°} → 교합평면이 {r:steep}하게 mounting
 
-## STO — Initial vs Final | STO | 0 | 기출 20·21·23·24 | jb=Q13,Q15,Q28
-> Initial은 계획용, Final은 수술 직전 — 둘 다 2D라는 한계
-= Initial STO = {r:술전 교정 목표}·수술 이동량 계획 / Final STO = {r:술전교정 후, 수술 직전} · 한계 = {r:2D}
-| | Initial STO | Final STO |
-| 시기 | 치료 계획 단계 | {r:술전교정 후, 수술 직전} |
-| 용도 | 수술적 이동의 개선효과 예측 / {r:술전 교정의 목표} 설정 | 수술계획을 rough하게 잡음 |
-# Final STO의 한계
-- ① {r:2D}: 중첩된 양측성 구조물이 일치하지 않으면 어떤 선을 쓸지 문제.
-- ② {r:교합의 간섭}이 어디서 얼마나 나타날지 정확하지 않음.
-- ③ → 이를 토대로 model sx.를 하면 error가 커져 {r:3D VSP}와 일치하지 않는 경우가 많음.
-E: Q15,Q28 | "Final STO의 한계"(21·24년) / "Final STO 설명"(23년).
-E: Q13 | "initial STO 목적"(20·24년) — JB 답 영문 3항목(Establish orthodontic goals / Develop surgical objectives / Create the predicted facial profile)은 슬라이드 미수신.
-M: Final STO = {r:술전교정 후 수술 직전} / 한계: {r:2D} · {r:교합 간섭} 부정확
+@G ② 2D 계획 — STO·paper surgery
+## STO — Initial vs Final | STO | 11-13 | 완짤 · 기출 4회 | jb=Q13,Q15,Q28
+> 문제 목록 → Initial STO(교정·수술 목표 세우기) → Final STO(수술 직전 확정) — 둘 다 2D라 VSP만 못하다
+= Initial 목적 = {r:orthodontic goals} · {r:surgical objectives} · {r:predicted facial profile} / Final 한계 = {r:2D} · {r:occlusal interference} · {r:3D VSP만 못함}
+# Diagnostic list — 먼저 문제를 전부 나열
+- Listing all existing problems: {r:clinical, radiographic, dental model}.
+- Skeletal imbalances, occlusal problems, esthetic concerns, TMJ dysfunction, myofascial pain, missing teeth, crowns, bridges, endodontically treated teeth, dental implants, periodontal problems, or other functional problems.
+- Other medical factors → {r:Formulate the treatment plan}.
+U: p.11은 "쭉 읽으셨습니다"(필기) — 설명 없이 읽고 넘어감.
+# Initial STO (Surgical Treatment Objective)
+- {r:Prediction tracing (2D)}.
+- Purpose of STO: ① ==Establish orthodontic goals== ② ==Develop surgical objectives== ③ ==Create the predicted facial profile==.
+- 어느 정도의 수술적 이동을 했을 때 개선효과가 있을지, {r:술전 교정의 목표}를 어떻게 달성할지 등을 계획하는 데 사용(필기).
+E: Q13 | "initial STO의 목적"(20·24년) — 영문 3개 그대로. 20년 칸의 한 복원 답은 한글('술전 교정목표 설정 / 최종 목표 설정 / 술 후 안모 변화 예측').
+# Final STO
+- ① ==After active orthodontic treatment== ② ==Before surgery== ③ ==Determine the exact vertical and AP change==.
+- 술전교정 후 수술 직전에 시행 — 이 단계에서 수술계획을 {r:rough}하게 잡을 수 있음(필기).
+- 한계 ① =={r:2D}== — 중첩된 양측성 구조물이 일치하지 않거나 차이가 너무 크면 어떤 선을 쓸지가 논점.
+- 한계 ② ==Cannot detect occlusal interference== — 교합 간섭이 어느 부위에서 얼마나 나타날지 정확하지 않음.
+- 한계 ③ ==Not exact as 3D virtual surgical planning== — 부정확한 진단으로 계획하고 model sx.를 하면 error 범주가 넓어져 {r:3D VSP}와 일치하지 않는 경우가 많음.
+E: Q15 | "Final STO의 한계"(21·24년) — 2D / Cannot detect occlusal interference / Not exact as 3D VSP.
+E: Q28 | "Final STO 설명"(23년, 반짤반탈) — 시기·목적 3줄 + 한계 3개를 한 번에.
+| 구분 | Initial STO | Final STO |
+| 시기 | 치료계획 단계(술전 교정 목표를 세울 때) | {r:After active orthodontic treatment} · {r:Before surgery} |
+| 하는 일 | orthodontic goals · surgical objectives · predicted facial profile | {r:exact vertical and AP change} 결정 · 수술계획을 rough하게 |
+| 방법·한계 | Prediction tracing ({r:2D}) | 2D · occlusal interference 못 봄 · 3D VSP만 못함 |
+F: 11, 12=Initial STO — 수술적 이동의 개선효과와 술전 교정 목표 계획, 13=Final STO — 술전교정 후 수술 직전
+M: Initial STO 목적 3: {r:Establish orthodontic goals} · {r:Develop surgical objectives} · {r:Create the predicted facial profile}
+M: Final STO = {r:After active orthodontic treatment} · {r:Before surgery} · {r:Determine the exact vertical and AP change}
+M: Final STO 한계 3: {r:2D} · {r:Cannot detect occlusal interference} · {r:Not exact as 3D VSP}
 
-## Planning References for Double-jaw Surgery | 양악수술 계획의 기준 | 0 | 기출 20 | jb=S20-7
-> 순서: 상악 전치부 위치 → occlusal plane 각도 → chin point
-= 기준 3 = 상악전치부의 {r:수평(AP)} 위치 · {r:수직} 위치 · {r:occlusal plane 각도} → 마지막에 chin point
-# 계획 순서
-- ① {r:Natural head position}의 profile에서 출발.
-- ② {r:Mx 위치를 먼저}: 전치부와 상순의 관계를 보고 상악전치부의 {r:수직/수평} 위치 설정.
-- ③ 하악은 occlusal plane을 따라옴 → {r:occlusal plane의 각도} 결정.
-- ④ 마지막으로 {r:chin point} 위치 — paper sx.의 중요한 요소.
-E: S20-7 | "양악수술의 3가지 원칙" (20년) — JB 답: ap position / vertical position of maxillary incisor / occlusal plane angulation (영문은 슬라이드 미수신).
-# 기준 수치
-- A point: FH에 Na에서 내린 {r:N-perp} 부근(2-3mm 전후) / 수직은 전치 노출량으로.
-- chin point: NB line 전방 {r:4±2mm}에 Pog, 또는 FH–(N-Pog) 각도 {r:90±3도} — 안 되면 occlusal plane을 바꿔 조정.
-U: 뼈를 움직인 만큼 연조직이 1:1로 따라오지 않음 — chin setback은 90%가 안 되는 경우가 많음(수치를 외우라는 게 아님).
-M: 양악 계획 순서: {r:상악 전치부 위치} → {r:occlusal plane} → {r:chin point}
-M: Pog = NB line 전방 {r:4±2mm} 또는 FH∠N-Pog {r:90±3도}
+## Planning References for Double-jaw Surgery | 양악수술 계획의 기준 | 14-18 | 기출 20 | jb=S20-7
+> 상악 전치 위치 → 교합평면 각도 → 턱끝, 순서대로 정하는 paper surgery
+= Three critical decision = 상악 전치 {r:vertical} position · 상악 전치 {r:AP} position · {r:occlusal plane angulation} → 마지막 {r:chin point}
+# Double jaw surgery — 기준선과 3가지 결정
+- Surgical reference lines: {r:mimic the actual position of the surgical sites}(실제 수술 부위의 위치를 흉내 낸 기준선).
+- Three critical decision ① ==The vertical position of the maxillary incisor== ② ==The AP position of the maxillary incisor== ③ ==The occlusal plane angulation==.
+E: S20-7 | "양악수술의 3가지 원칙"(20년) → ap position / vertical position of maxillary incisor / occlusal plane angulation = 슬라이드의 'Three critical decision'(문제는 '원칙'이라고 물음).
+# 결정 순서(필기)
+- ① {r:Natural head position}에서 자세를 취했을 때의 profile을 보고 결정.
+- ② {r:Mx 위치를 먼저}: 전치부와 상순의 관계, occlusal plane 위치 등을 고려해 상악전치부의 수직/수평 위치 설정.
+- ③ 하악골은 occlusal plane을 따라오므로 {r:occlusal plane의 각도}.
+- ④ 최종적으로 {r:chin point}의 위치 — paper sx.의 중요한 요소.
+F: 14=Double jaw sx.의 reference line
+# Paper surgery — 순서대로 위치 잡기
+- ① Position of anterior maxillary segment: Place {r:point A in the normal NA line} · Place {r:incisor tip vertical and AP reference lines}.
+- 상악 전치부의 각도는 보통 {r:교정}으로 결정 — 바람직하지 않으면 {r:segmental osteotomy}하기도.
+- A point 전후방: FH plane에 Na에서 내린 perpendicular line({r:N-perp})이 보통 A point를 지남(2-3mm 전후방 차이) / 수직: 상악 전치 tip이 상순 아래로 얼마나 {r:노출}되는지.
+- ② Mandible position into the best fit in the reference to the maxillary incisors and the {r:occlusal plane angle reference line} — 하악 occlusal plane을 따라 상악 전치부가 닿는 점까지 하악 이동.
+- ③ Proximal segment is rotated until {r:buccal horizontal surgical reference lines} contact each other.
+- ④ Posterior segment of the maxilla is positioned — 상악골을 positioning하고 교합시키면 하악골도 positioning.
+F: 15=상악 전치부 위치 — A point와 N-perp, 16=occlusal plane을 따라 하악 이동, 17=상악을 positioning하고 교합시키면 하악도 positioning
+# Chin point
+- NB line: as a reference to the AP position of chin {r:4 ±2 mm}(Pog를 NB line 전방 4±2mm에).
+- Facial depth angle: {r:FH∠N-Pog 90 ±3°}(거의 터치되는 정도, 여성은 각도를 조금 작게 만들어주는 게 좋을 수 있음).
+- 이 위치가 달성되지 않으면 {r:occlusal plane을 바꿔} chin point의 전후방 위치를 바꿈 — Mx-Mn complex를 회전시켜 조정.
+| 결정 | 기준 |
+| 상악 전치 AP | A point: FH에 Na에서 내린 {r:N-perp} 부근(2-3mm 차이) · normal NA line |
+| 상악 전치 vertical | 상악 전치 tip이 상순 아래로 {r:노출}되는 정도 |
+| occlusal plane angulation | 하악이 따라옴 → chin 위치 조정 수단 |
+| chin point | NB line 전방 {r:4±2mm} · FH∠N-Pog {r:90±3°} |
+F: 18=chin point — NB line 4±2mm와 FH∠N-Pog 90±3도
+M: Three critical decision: 상악 전치 {r:vertical} · 상악 전치 {r:AP} · {r:occlusal plane angulation}
+M: 순서: {r:Natural head position} profile → {r:Mx 먼저} → occlusal plane → {r:chin point}
+M: Chin: NB line 전방 {r:4±2 mm} · FH∠N-Pog {r:90±3°} · 안 되면 {r:occlusal plane} 변경
 
-## Case · Limits of Conventional Planning | 증례와 기존 방식의 한계 | 0 | 증례
+## Predicted Soft Tissue Changes | 골 이동에 따른 연조직 변화 | 19-20 | 이해
+> 뼈를 옮긴 만큼 연조직이 1:1로 따라오지 않는다
+= 연조직 이동량 ≠ 골 이동량({r:1:1 아님}) · chin setback 시 연조직 변화는 setback 양의 {r:90%}가 안 되는 경우 많음
+# Paper surgery 마무리
+- Predicted soft tissues are drawn.
+- Dento-osseous changes are recorded.
+F: 19
+# Predicted soft tissue changes
+- 상/하악골을 화살표 방향으로 움직였을 때 연조직 지점이 {r:골 이동량의 몇 %}만큼 이동하는지 표현한 그림(A~I).
+- 여러 변수가 있음 — {r:chin setback} 시 연조직 변화가 setback 양의 {r:90%} 안 되는 경우 많음.
+- 상순과 하순이 접촉하는 점이 변하므로 {r:하순도 변위}.
+P: "수치를 외우라는 게 아니라 뼈 이동량과 soft tissue 변화량이 다르다는 점을 알아두기"(필기 — %는 읽기만 하심).
+F: 20=골 이동량 대비 연조직이 움직이는 비율
+M: 연조직 변화 ≠ 골 이동 — {r:1:1로 따라오지 않음}
+M: chin setback → 연조직 변화 setback 양의 {r:90%} 미만인 경우 많음 · 상하순 접촉점 변화 → {r:하순}도 변위
+
+## Case · Limits of Conventional Planning | 증례와 기존 방식의 한계 | 21-32 | 증례
 > mm 단위로 계획해도 그대로 됐는지 확인하기 어려웠다
-= 기존 방식의 한계 = {r:landmark identification error} — 안 바뀌어야 할 SN–FH도 술후에 달라짐
-- 계획 예: Le Fort I(후방부 3mm 상방, A point 2mm 전방, 전치 tip 고정) + IVSRO 7mm setback.
-- landmark로 분석하므로 {r:landmark identification error}가 많음 — 바뀌면 안 되는 SN to FH가 술후 달라짐.
-- 술전 교정 후에는 discrepancy가 더 심해 보여 환자 스트레스가 큼.
-M: conventional planning의 대표 오차 = {r:landmark identification} error
+= Le Fort I(post impaction {r:3 mm} · A {r:2 mm} 전방 · 1⊥1 고정) + IVSRO setback {r:7 mm} / 한계 = {r:landmark identification error}
+# 증례의 출발
+- Virtual Surgical Planning — CASS: {r:computer-aided surgical simulation}.
+- 술전 교정이 끝나고 온 환자: 술전 교정 후엔 discrepancy가 더 심하게 보여 {r:환자의 스트레스}가 큼.
+- 자료: Preop intraoral photos · Preop cephs · Computer based analysis · Analysis & prediction(측정표).
+- 프로그램으로 시뮬레이션한 모습은 실제와 {r:큰 차이}(필기).
+F: 21=술전 교정이 끝난 환자 — discrepancy가 더 심해 보임, 25=프로그램 시뮬레이션 — 실제와 큰 차이
+# Op plan — 3D CT model로 rough하게
+- Maxilla: {r:Le Fort I} — Post impaction {r:3 mm}(6⊥6, 6번 치아 후방부 3mm 위로) · Point A {r:2 mm advancement} · 1⊥1 {r:tip fixed}.
+- Mandible: {r:IVSRO} — Setback {r:7 mm}.
+- 계획은 mm 단위로 하지만 이 계획이 정확히 수행되었는지 {r:체크하기 어려움}.
+U: 계획은 mm 단위로 촘촘하게 짰는데, 실제로 그대로 됐는지 확인하기는 어려웠다는 것(필기).
+F: 26, 27=Op plan — 3D CT 모델로 rough하게 잡은 계획
+# 결과와 한계
+- Preop prediction vs real postop result · Maxilla: Le Fort I osteotomy with {r:posterior impaction}.
+- landmark로 분석하므로 {r:landmark identification} 관련 error가 많음 — 예: 술후에도 바뀌면 안 되는 {r:SN to FH} 값이 수술 1년 5개월 후 바뀜.
+- p.21 측정표의 SN to FH (deg): Mean±SD 10.3±2.4 · Pt. value 13.56 · prediction 13.56 · PO 1.5Y {r:11.65}.
+- Postop 1 year: 교합과 외모 모두 {r:안정적으로 유지} · Postop occlusion.
+F: 28=수술 전 prediction과 수술 후, 29, 30=SN to FH가 술후 바뀜 — landmark identification error, 31=술후 1년 — 교합과 외모 모두 안정, 32
+M: 증례 plan: Le Fort I post impaction {r:3 mm} · A point {r:2 mm} 전방 · 1⊥1 고정 + IVSRO setback {r:7 mm}
+M: 기존(2D) 계획의 한계 = {r:landmark identification error}(SN to FH도 바뀜) · 계획대로 됐는지 {r:확인 어려움}
 
-@G ② CAS(VSP)
-## Computer-Aided Surgery — Workflow | CAS(VSP) 과정 | 0 | 기출 20·21 | jb=S21-5,S20-8
-> CT + model scan으로 가상 수술 → splint까지 — model surgery가 필요 없어짐
-= CAS: {r:3D skull model}(CT + model scan) → {r:surgery simulation} → {r:intermediate splint} 제작 · model surgery {r:불필요}
-# 과정
-- ① 3차원 {r:skull model} — skull은 {r:CT data}, 상하악·치아는 {r:model scan data}.
-- ② surgery simulation → ③ 이를 토대로 intermediate splint 제작(3D printing).
-- {r:모델 surgery의 필요성을 없앰} · 술전/술후 CT 중첩 비교 가능 · 계획 단위 mm → {r:sub-mm}.
-# 수술 중 장치
-- {r:condylar positioning device}: intermediate guide와 final splint가 잡은 ramus 각도가 같으면 condyle이 안 움직인 것.
-- plate에 구멍을 미리 뚫어놓고 자르면 정밀도가 크게 올라감.
-- 순서: surgical template → 상악 절단 → intermediate splint 고정 → 하악 surgical guide·osteotomy → final splint(날개가 ramus 위치를 잡음).
-E: S21-5,S20-8 | "CAS에 대해 아는 대로"(21년) / "CAS 설명·다른 이름"(20년) — 다른 이름 목록은 슬라이드 미수신(JB: Computer aided surgery, computer assisted intervention, image guided surgery, surgical navigation).
-M: CAS skull model = {r:CT data} + {r:model scan data}
-M: CAS는 {r:model surgery}의 필요성을 없앰 · condyle 위치 확인 = {r:condylar positioning device}
+@G ③ CAS(VSP) — 정의·구성·장치
+## CAS — Definition · Synonyms · Uses | CAS의 정의·동의어·쓰임 | 33-36 | 기출 20·21 | jb=S20-8,S21-5
+> 컴퓨터로 수술 전 계획을 세우고 수술을 안내하는 것 — 이름도 여러 개, 쓰임도 여러 개
+= CAS = computer technology for {r:presurgical planning} + for {r:guiding or performing surgical interventions} · 동의어 {r:4} · 쓰임 {r:6}
+# Virtual Surgical Planning
+- CASS: {r:computer-aided surgical simulation}.
+# 정의와 동의어 — Computer simulation and planning
+- ==Computer assisted surgery (CAS): use computer technology for presurgical planning, and for guiding or performing surgical interventions==.
+- ==Synonyms: computer aided surgery, computer assisted intervention, image guided surgery, surgical navigation==.
+U: "여러 명칭으로 불리고 있다"(필기).
+E: S20-8 | "CAS에 대해 설명하고 다른 이름을 말하시오"(20년) → 정의 한 문장 + 동의어 4개 그대로.
+F: 33, 34=CAS 정의와 동의어 — 여러 명칭으로 불림
+# Surgical navigation — 시도했지만
+- 3차원적으로 Mx.의 위치를 컴퓨터에 시뮬레이션하는 도구 — 외부에서 {r:3포인트} 위치를 잡고 각도가 변함에 따라 실제 네비게이션처럼 사용 시도.
+- 불편하고 별로 정확하지도 않아 {r:사용되지는 않음}(필기). 문헌: Zinser MJ et al., Br J Oral Maxillofac Surg 2013 — waferless maxillary positioning.
+F: 35=Surgical navigation — 불편하고 부정확해 잘 안 씀
+# CAS in orthognathic surgery — 아래 과정에 CAS가 쓰임
+- ① ==Simulation surgery== ② ==Presurgical planning== ③ ==Surgical wafer/guide==(3D printing하기도 함).
+- ④ ==Pre-bended plates and screw hole markings== ⑤ ==Virtual surgical planning (VSP)== ⑥ ==Surgical navigation-guiding/manipulation==.
+E: S21-5 | "virtual computer surgery (CAS)"(21년, 아는 대로) — JB 답 = 정의 + 이 6개(CAS in orthognathic surgery) + 다음 카드의 CAS 구성 6개.
+F: 36=CAS in orthognathic surgery — 3D printing하기도 함
+M: CAS 정의: computer technology for {r:presurgical planning}, and for {r:guiding or performing surgical interventions}
+M: 동의어 4: {r:computer aided surgery} · {r:computer assisted intervention} · {r:image guided surgery} · {r:surgical navigation}
+M: 쓰임 6: {r:simulation surgery} · {r:presurgical planning} · {r:wafer/guide} · {r:pre-bended plates·screw hole} · {r:VSP} · {r:navigation}
 
-## Accuracy Study of CAS | CAS 정확도 연구 | 0 | 연구
-> condyle이 가장 정확, 하악 전치·B point가 가장 부정확
-= error: {r:condyle} 최소 → 상악 → {r:L1·B point} 최대, 특히 하악의 {r:수직(Y)} 방향
-- 수술 전후 1주 CT 비교 · landmark {r:12}개(Maxilla 5, Mandible 7).
-- error 순서: {r:condyle}(가장 작음) < 상악 landmark < {r:L1, B point}(가장 큼) — 특히 하악 {r:수직(Y)} error.
-- 수술 sequence를 바꿔도 비슷 → 상악 {r:impaction을 계획보다 조금 더} 하는 게 좋겠다는 결론.
-M: CAS error: {r:condyle} 최소, {r:L1·B point} 최대(수직 방향)
+## Computer-Aided Surgery — Workflow | CAS(VSP) 과정 | 37-47 | 기출 21 | jb=S21-5
+> 오차 지점이던 model surgery 대신 CT와 모델 스캔으로 가상 수술 → splint까지
+= CAS 구성 6 = {r:CBCT} · {r:cast model} · {r:photos} · {r:ceph} · {r:CPD} · {r:wafer·guide·plate} / VSP = skull model → simulation → splint
+# 왜 CAS인가
+- Model surgery for intermediate splint = a {r:possible error point} for maxilla & mandible relationship.
+- CAS는 {r:모델 surgery의 필요성을 없앰}(필기).
+F: 37=Model surgery는 상하악 관계의 error point — CAS로 필요성을 없앰
+# CAS — 무엇으로 하나(6)
+- ① ==CBCT data== ② ==Impression & dental cast model==(구강을 direct scan하거나 cast model을 scan) ③ ==Facial photos==.
+- ④ ==Cephalometric x-ray== ⑤ ==Condylar positioning device (CPD)== ⑥ ==Surgical wafers, surgical guides, prebended plates==.
+U: 같은 쪽 필기 메모: "Mx.를 어디로 움직일지 결정", "CAS가 이 장치를 대체할 수 있음".
+E: S21-5 | 21년 JB 답의 두 번째 목록 <CAS> = 이 6개(CBCT data · impression & dental cast model · facial photos · cephalometric x-ray · CPD · surgical wafers·guides·prebended plates).
+F: 38=CAS의 구성 6
+# Virtual Surgical Planning (VSP) 3단계
+- ① 3차원적인 {r:skull model}을 만듦(Preoperative position).
+- ② {r:surgery simulation}(Intermediate position → Final position).
+- ③ 이를 토대로 {r:intermediate splint} 제작.
+- skull은 {r:CT data}, 상하악 및 치아 주변은 {r:model scan data}로 구성 — 이 과정에도 error 여지가 있으나 그 정도가 작다고 판단.
+F: 39=1단계 3차원 skull model, 40=surgery simulation 후 intermediate splint 제작, 41=skull은 CT data 치아는 model scan data, 42
+# 결과 확인
+- Surgery Results: 술전/술후 {r:중첩}하여 비교 가능.
+- 술전/술후 CT를 {r:각 평면}에 대고 볼 수 있음.
+F: 43=술전 술후 중첩 비교, 44=술전 술후 CT를 각 평면에서 비교
+M: CAS 구성 6: {r:CBCT data} · {r:impression & dental cast model} · {r:facial photos} · {r:cephalometric x-ray} · {r:CPD} · {r:wafers·guides·prebended plates}
+M: VSP: {r:skull model}(skull {r:CT} + 치아 {r:model scan}) → {r:surgery simulation} → {r:intermediate splint}
+M: CAS는 error point였던 {r:model surgery}의 필요성을 없앰
 
-## Advantages · Disadvantages of CAS | CAS의 장점 · 단점 | 0 | 기출 22·23·24 서술형 | jb=Q16,Q29
-> 장점 6 · 단점 5 — 둘 다 서술형으로 나왔다
-= 장점 키워드: {r:Precise} · {r:asymmetric} · {r:maxilla positioning} · {r:proximal segments} · {r:TMJ} · {r:setback amount}
+## Surgical Guides · Wafers · Prebended Plates | CAS로 만드는 guide·wafer·plate | 48-54 | 장치
+> 자를 곳과 구멍 위치는 guide로 미리 정하고, condyle 위치는 wafer로 확인한다
+= Surgical guide = osteotomy + {r:pre-determined drill holes} · wafer = {r:condylar positioning device} · {r:prebended plate} → 정밀도↑
+# Surgical guides
+- Surgical guides for osteotomies and {r:pre-determined drill holes}.
+F: 48
+# Wafers
+- Intermediate and final surgical wafer functioning as {r:condylar positioning device} during the operation.
+- Mx.를 이동하고 고정할 때 intermediate guide가 잡은 {r:ramus의 각도}와 final splint가 잡은 ramus 각도가 같으면 {r:condyle이 움직이지 않았다}는 것을 확인(필기).
+- Final wafer for {r:occlusal guide after surgery}.
+F: 49=intermediate와 final의 ramus 각도가 같으면 condyle은 그대로, 50
+# Prebended plates · 고정
+- Prebended bone plate and final RP model · Prebended bone plate and final surgical template.
+- plate에 구멍을 미리 뚫어두고 거기에 맞춰 자르면 위치가 딱 잡힘 → 수술 정밀도가 {r:획기적으로} 높아짐(필기).
+- 최근에는 Mn. first를 하면서 큰 차이가 없지만, 좀 더 {r:예측 가능한 수술}을 할 수 있게 됨(필기).
+- Maxillary Le Fort I osteotomy and final fixation → Mandibular SSRO and plate fixation(필기: Le Fort I 먼저 하고 plate로 하악 고정).
+| 장치 | 역할 |
+| Surgical guide(template) | osteotomy 선 + {r:pre-determined drill holes} |
+| Intermediate wafer | 먼저 움직인 악골 위치 고정 + condylar positioning |
+| Final wafer | {r:occlusal guide after surgery} + condylar positioning |
+| Prebended plate | 미리 굽혀 둔 plate — 구멍 위치대로 고정 |
+F: 51, 52=plate 구멍을 미리 뚫고 자르면 정밀도 상승, 53=Le Fort I 먼저 하고 plate로 하악 고정, 54
+M: CPD 확인 = intermediate guide와 final splint의 {r:ramus 각도}가 같으면 condyle {r:안 움직임}
+M: {r:pre-determined drill holes} + {r:prebended plate} → 수술 정밀도 {r:획기적}으로 상승
+M: Final wafer = {r:occlusal guide after surgery}
+
+## CAS Strengths — 3D Planning · Sub-mm Data | CAS의 강점 — 3D 계획과 좌표 | 55-73 | 증례
+> CBCT와 모델 스캔을 합쳐 최종 교합·골편·condyle을 화면에서 맞추고, 이동량을 sub-mm 좌표로 기록한다
+= {r:CBCT + STL model data fusion} → precise planning · condylar position {r:preoperative와 동일} 확인 · 계획 단위 mm → {r:sub-mm}
+# CAS system: It's strengths
+- 3 dimensional prediction for preop planning · Cephalometric analysis with dental cast model.
+- Enable precise planning with computer simulation ({r:CBCT + STL model data fusion}) — CAS로 Mx-Mn complex, ramus를 바꿔주는 수술 계획(필기).
+- Accurate reflection of final occlusion · Relocate mandibular {r:proximal segment} with minimal interference.
+- Superimposition of plan & result: Ensure preserved {r:condylar position} same as preoperative status.
+F: 56, 59=CAS로 Mx-Mn complex와 ramus를 바꾸는 계획, 61, 72
+# Data set for surgical movement in 3 dimension
+- 과거에는 {r:mm} 단위 계획 → 요즘은 {r:sub-mm} 단위까지(error도 그 단위에서 측정 가능).
+- 각 landmark의 Cartesian coordinates → Expected Change → Postop Coordinates를 표로.
+| 축 | − 값 | + 값 |
+| X | Right | Left |
+| Z | {r:Advance} | {r:SetBack} |
+| Y | Downgraft | {r:Impaction} |
+F: 73=mm에서 sub-mm 단위 계획으로
+M: 강점: {r:CBCT + STL} fusion · final occlusion 반영 · {r:proximal segment} 재위치 · {r:condylar position} 보존 확인
+M: 계획 단위 {r:mm → sub-mm} · Z − {r:Advance} / + {r:SetBack} · Y + {r:Impaction}
+
+@G ④ CAS 수술과 정확도
+## Surgical Procedure with CAS | CAS 수술 순서 | 74-87 | 술식
+> template로 상악 자르기 → intermediate로 고정 → 하악 guide 구멍 → final로 ramus 잡기
+= {r:template} → 상악 절단 → {r:intermediate} 고정 → {r:boxing}(MMF) → 하악 {r:drill holes}·osteotomy → final template = {r:CPD}
+# 상악
+- 1) surgical template를 만들고 — Maxillary osteotomy with surgical guide.
+- 2) surgical template를 대고 상악을 자름 — Adaptation of maxillary surgical osteotomy guides.
+- 3) intermediate splint를 대고 고정 — {r:Intermediate wafer applied}.
+- 4) boxing하여 상악을 고정 — Boxing with wire for {r:MMF}.
+F: 75=1 surgical template, 76=2 template를 대고 상악 절단, 77=3 intermediate splint를 대고 고정, 78=4 boxing하여 상악 고정
+# 하악
+- 5) surgical guide가 잡아준 위치에 구멍 뚫고 osteotomy — Mandibular osteotomy with {r:pre-determined drill holes}.
+- Reciprocating saw into the surgical guide to make {r:vertical body osteotomy} → Drilling on the pre-determined hole position.
+- Complete mandibular osteotomy(Separation of mandible with chisel): {r:Medial horizontal cut} · {r:Connecting superior border cut} · {r:Buccal vertical cut} → Same procedure on the opposite side.
+- Final template as a {r:condylar positioning device} and application of prebended bone plate — final splint에 달린 {r:날개} 같은 부분이 ramus의 위치를 잡아줌.
+- Maxilla in the new position · Mandible in the new position.
+F: 79, 80=5 하악 guide 구멍 위치에 뚫고 osteotomy, 81, 83, 85=final splint의 날개가 ramus 위치를 잡음, 87
+M: 순서: {r:template} → 상악 절단 → {r:intermediate} 고정 → {r:boxing}(MMF) → 하악 {r:drill holes}·osteotomy → {r:final template}(CPD)
+M: 하악 cut 3: {r:Medial horizontal} · {r:Connecting superior border} · {r:Buccal vertical}
+M: final splint의 {r:날개}가 ramus 위치를 잡음 = {r:condylar positioning device}
+
+## Case — Facial Asymmetry with Prognathism | 비대칭 증례와 결과 수치 | 88-103 | 증례
+> 계획과 결과를 숫자로 비교 — 상악 전치는 1mm 내외, 하악은 오차가 더 크다
+= Case: {r:Facial asymmetry with mandibular prognathism} · 상악 전치부 오차 {r:1mm 내외} · 하악은 {r:상대적으로 큰 오차}
+# 증례
+- Case: {r:Facial asymmetry with mandibular prognathism}.
+- Preop occlusion → 3D 계획(정면·측면·하면) → 수술 → Postop superimposition → PO 9M.
+F: 88, 94, 103
+# Result in numbers — Plan vs Result
+- 12 landmarks의 Right-left (X) · Anterior-posterior (Z) · Up-down (Y) 각각 Plan · Result · Error.
+- 상악 전치부는 {r:1mm 내외}의 오차, 하악은 {r:상대적으로 큰 오차}(필기).
+| landmark | X error | Z error | Y error |
+| Mx #1 | 0.46 | 0.43 | −0.96 |
+| A-point | 0.46 | −0.21 | −0.76 |
+| Mn #1 | 0.39 | 0.53 | {r:−2.94} |
+| B-point | 0.06 | {r:2.16} | {r:−2.05} |
+| L condylion | −1.05 | 1.55 | −1.41 |
+| R condylion | 0.15 | 1.34 | −0.10 |
+F: 102=상악 전치부는 1mm 내외 하악은 큰 오차
+M: 증례 = {r:Facial asymmetry with mandibular prognathism} → 3D 계획 → 수술 → {r:Postop superimposition} → PO 9M
+M: 증례 결과: 상악 전치 오차 {r:1mm 내외} · 하악 오차 {r:더 큼}(Mn #1·B-point의 {r:Y} 수직)
+
+## Accuracy Study of CAS | CAS 정확도 연구 | 104-116·120-121 | 연구
+> condyle이 가장 정확, 하악 전치·B point가 가장 부정확 — 특히 수직 방향
+= {r:18}명 · {r:12} landmarks · MAE / error: {r:condyle} 최소 < 상악 < {r:L1·B point} 최대, 특히 하악 {r:Y(수직)} / 대책: 상악 {r:impaction 조금 더}
+# Study design
+- Patients: {r:18} patients(two jaw surgery with/without genioplasty) · M:F = 11:7 · Mean age 20.9 Y.
+- Methods: Superimposition pre- & postop ({r:1wk}) CT data(수술 전후 1주일에 찍은 CT로 평가) · Software In Vivo 5 & Magics 18.
+- Landmarks: {r:12} hard tissue points · {r:Mean absolute error (MAE)} in mm · Paired t-test.
+- Anatomical landmarks (12): Maxilla (5) — Mx #1 · Mx Lt#6 · Mx Rt#6 · Mx #6 mid · A-point / Mandible (7) — Mn #1 · Mn Lt#6 · Mn Rt#6 · Mn #6 mid · B-point · L condylion · R condylion.
+F: 104=수술 전후 1주일 CT로 평가, 105
+# 결과 — Distance difference (planned vs postop)
+- {r:condyle}의 위치 error가 제일 적음 → 그다음 상악 landmark → {r:L1, B point}가 가장 안 좋은 결과.
+- 특히 하악의 {r:수직적(Y-coordinate)} error가 컸음.
+- error 방향 plot: condyle은 frontal plane에서 {r:왼쪽}이 더 넓은 error 범주 · U6/L6는 axial plane에서 {r:하악}이 더 넓음.
+- 수업 화면: Linear Landmarks (Mx)의 absolute mean 0.51-0.83 mm.
+| Mean absolute error — 3D-distance (mm) | 값 |
+| Both Condyles | {r:1.03} |
+| All the maxillary landmarks | 1.25 |
+| All the mandibular distal landmarks | 2.24 |
+| L1 · Point B | 2.34 · {r:2.55} |
+F: 106=condyle 최소 L1과 B point 최대, 107=특히 하악의 수직 Y error, 110=왼쪽에서 더 넓은 error 범주, 111=하악에서 더 넓음, 120
+# 해석
+- 수술 sequence를 바꿔도 error 정도에 큰 변화가 없었음.
+- error를 줄이려면 상악의 {r:impaction 양을 계획보다 조금 더}하는 게 좋겠다는 결론.
+- splint가 잘 물리지 않거나 만드는 과정에서 생긴 error 등이 {r:하악골}에 반영되어 나타남.
+M: 연구: {r:18}명 · pre/postop {r:1wk} CT 중첩 · {r:12} landmarks · {r:MAE}
+M: error: {r:condyle} 최소 < 상악 < {r:L1·B point} 최대 · 특히 하악 {r:Y(수직)}
+M: 대책: 상악 {r:impaction}을 계획보다 조금 더 · splint error는 {r:하악}에 반영
+
+## Advantages · Disadvantages of CAS | CAS의 장점 · 단점 | 117-119·122-124 | 완짤 · 기출 4회 | jb=Q16,Q29
+> 장점 6 · 단점 5 · 미래 4 — 영문 bullet 그대로 서술형으로 나온다
+= 장점 {r:6}(Precise prediction …) · 단점 {r:5}(2~3 days · 3 weeks …) · Future {r:4}(Easy planning … Cost efficient)
+# Advantages of CAS system (6)
+- ① ==Precise prediction== — conventional한 방법에 비해 정확.
+- ② ==Excellent end results esp. in asymmetric cases== — 과거엔 asymmetric 환자의 정확한 correction이 어려웠으나 VSP로 만족할 만한 결과.
+- ③ ==Easy positioning of maxilla into predetermined location== — Mx. positioning이 쉽고, Mn.도 마찬가지.
+- ④ ==Less burden on the positioning of proximal segments==.
+- ⑤ ==Good for TMJ positioning== — TMJ의 술후 위치가 가장 정확하다는 연구결과가 뒷받침.
+- ⑥ ==Less time consuming on deciding the mandibular setback amount== — setback 시 얼마나 움직이고 어떻게 고정할지에 대한 고민이 줄어듦.
+P: 수업 화면(p.122)에서 'Precise prediction'에 빨간 밑줄.
+U: 특히 비대칭 환자에서 correction이 훨씬 예측 가능해졌다는 게 큼(필기).
+E: Q16 | "CAS의 장점"(22·24년, 서술) — 6개 그대로.
+F: 117, 122=Precise prediction에 밑줄
+# Disadvantages of CAS system (5)
+- ① ==Needs preoperative procedure 2 ~3 days== — 술전 준비에 {r:2-3일}.
+- ② ==Orthodontic surgical wire insertion in advance 3 weeks before surgery== — 최소 {r:3주} 전에 교정 와이어.
+- ③ ==Not suitable for mass production in current form== — 가내수공업적, 아직 대량으로 만들기 어려움.
+- ④ ==Needs high quality 3D CT images==.
+- ⑤ ==Needs precise surgical procedure, less room for modification== — 수술이 더욱 정밀해야 함.
+E: Q29 | "CAS의 단점"(22·23년, 서술 짤) — 5개 그대로.
 | Advantages 6 | Disadvantages 5 |
-| {r:Precise prediction} | preoperative procedure {r:2~3 days} 필요 |
-| Excellent end results esp. in {r:asymmetric} cases | surgical wire를 수술 {r:3 weeks} 전에 삽입 |
-| {r:Easy positioning of maxilla} into predetermined location | {r:Not suitable for mass production} (가내수공업적) |
-| Less burden on the positioning of {r:proximal segments} | {r:high quality 3D CT} images 필요 |
+| {r:Precise prediction} | preoperative procedure {r:2~3 days} |
+| Excellent end results esp. in {r:asymmetric} cases | surgical wire insertion {r:3 weeks} before surgery |
+| {r:Easy positioning of maxilla} into predetermined location | {r:Not suitable for mass production} |
+| Less burden on the positioning of {r:proximal segments} | {r:high quality 3D CT} images |
 | Good for {r:TMJ positioning} | {r:precise surgical procedure}, less room for modification |
-| {r:Less time consuming} on deciding the mandibular setback amount | |
-E: Q16,Q29 | "CAS의 장점"(22·24년) / "CAS의 단점"(22·23년).
-# Future development 4
-- Easy planning / Less time consuming / {r:Real time navigation} / Cost efficient.
-M: CAS 장점 6: {r:정확한 예측} · {r:비대칭}에 우수 · {r:상악 위치} 쉬움 · {r:근심 골편} 부담↓ · {r:TMJ} 위치 · {r:setback 양} 결정 빠름
-M: CAS 단점 5: 준비 {r:2~3일} · wire {r:3주 전} · {r:대량생산 불가} · {r:고화질 3D CT} · {r:정밀한 수술} 필요
+| Less time consuming on deciding the {r:mandibular setback amount} | — |
+F: 118, 123
+# Future development (4)
+- ① {r:Easy planning} — 계획 세우기가 쉬워져야.
+- ② {r:Less time consuming} — 시간이 덜 걸렸으면.
+- ③ {r:Real time navigation} — 수술과 동시에 위치를 confirm해주는 navigation system.
+- ④ {r:Cost efficient} — 비용 절감.
+U: 계획은 더 쉽고 빠르게, 수술 중에는 위치를 바로 confirm하고, 비용은 내려가는 방향(필기).
+F: 119, 124
+M: 장점 6: {r:Precise prediction} · {r:asymmetric} cases · {r:maxilla positioning} · {r:proximal segments} · {r:TMJ positioning} · {r:setback amount}
+M: 단점 5: {r:2~3 days} · wire {r:3 weeks} 전 · {r:mass production} 불가 · {r:high quality 3D CT} · {r:precise surgery}·수정 여지 적음
+M: Future 4: {r:Easy planning} · {r:Less time consuming} · {r:Real time navigation} · {r:Cost efficient}

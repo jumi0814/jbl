@@ -42,7 +42,7 @@ def check_part(kind, text, sid, key, qids):
             elif not re.match(r'^[HRN]:', l): errs.append(f'{i}: 알 수 없는 줄 {l[:40]}')
         elif kind == 'pred':
             if l.startswith('@'):
-                if l[1:].split('|')[0].strip() != key: errs.append(f'{i}: @{key} 아님')
+                if re.sub(r'^@P ', '@', l)[1:].split('|')[0].strip() != key: errs.append(f'{i}: @{key} 아님')
                 m = re.search(r'b=([^|\s]*)', l)
                 if m and m.group(1) and m.group(1) not in qids: errs.append(f'{i}: b={m.group(1)} 없는 문항')
             elif not re.match(r'^[QA]:', l): errs.append(f'{i}: 알 수 없는 줄 {l[:40]}')
@@ -74,12 +74,14 @@ def main(sid, only_check):
     open(ap, 'w', encoding='utf-8').write(join(pre, bl)); print(f'annot: {n}개 블록 반영')
     # tables / pred
     for kind, head, keyof in (('tables', r'^#TBL', lambda h: (re.search(r'k=\s*([A-Z0-9]+)', h) or [None, None])[1]),
-                              ('pred', r'^@', lambda h: h[1:].split('|')[0].strip())):
+                              ('pred', r'^@', lambda h: re.sub(r'^@P ', '@', h)[1:].split('|')[0].strip())):
         tp = os.path.join(d, kind + '.txt'); pre, bl = blocks(open(tp, encoding='utf-8').read(), head); n = 0
         for f in files:
             m = re.match(kind + r'_([A-Z0-9]+)\.txt$', f)
             if not m: continue
             key = m.group(1); _, nb = blocks(open(os.path.join(pd, f), encoding='utf-8').read(), head)
+            if kind == 'pred' and any(h.startswith('@P ') for h, _ in bl):   # 이 과목 pred.txt가 '@P 키' 형식이면 맞춤(OMS1 assemble은 '@P'만 읽음)
+                nb = [(re.sub(r'^@(?!P )', '@P ', h), ls) for h, ls in nb]
             idx = [i for i, (h, _) in enumerate(bl) if keyof(h) == key]
             at = idx[0] if idx else len(bl)
             bl = [b for i, b in enumerate(bl) if i not in set(idx)]

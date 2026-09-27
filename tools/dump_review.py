@@ -25,7 +25,7 @@ def run(sid):
     q = {}
     for cid, h in p['cards'].items():
         m = re.search(r'<article[^>]*>', h).group(0); a = dict(re.findall(r'data-([a-z0-9]+)="([^"]*)"', m))
-        yb = re.search(r'<span class="ybadge[^"]*"><b>([^<]*)</b>', h)
+        yb = re.search(r'<span class="ybadge[^"]*"[^>]*><b>([^<]*)</b>', h)
         q[cid] = {'tier': a.get('tier'), 'prof': html.unescape(a.get('prof', '')), 'lk': a.get('lec', ''), 'v': a.get('v', ''),
                   'yrs': [int(y) % 100 for y in re.findall(r'20\d\d', yb.group(1))] if yb else []}
     bylec = {L['k']: L['jb'] for L in p['lect']}
