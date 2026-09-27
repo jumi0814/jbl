@@ -496,6 +496,7 @@ body.d-home #kit,body.d-home #kitshow{display:none}
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
 <div id="tpop" class="pop noann"></div><div id="rpop" class="pop noann"></div><div id="lpop" class="pop noann"></div>
 <div id="help" class="noann"><div class="hbox"><div class="bt">도움말 · 단축키 <button class="btn" id="helpx" style="float:right">닫기</button></div>
+<div class="small hkey">⌨ 단축키는 <b>한/영 상관없이 동작</b>해요(한글 입력 상태여도 H·B·J… 그대로) · 글 입력칸(검색·메모)에 있을 때만 쉬고, Esc로 빠져나오면 다시 동작</div>
 <table><tbody>
 <tr><th>형광펜 H · 빈칸 A</th><td>켠 뒤 <b>누르면 어절 전체</b>, <b>누른 채 끌면</b> 끈 범위를 어절 단위로 넓혀 한 묶음. 손가락은 <b>0.3초 길게 누른 뒤</b> 끌기(그냥 끌면 스크롤), 애플펜슬은 바로 끌기. 칠한 곳을 다시 누르면 지움, 다른 색으로 누르면 색만 바뀜</td></tr>
 <tr><th>빈칸 열기</th><td>도구를 끈 상태에서 빈칸을 누르면 그 묶음이 열리고 다시 누르면 닫힘 · 👁 전체 보기/가리기 · ⚡ 자동 빈칸(빨간 핵심어·표)</td></tr>
@@ -858,7 +859,9 @@ const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.
   if(el){const r=el.getBoundingClientRect();if(r.top<topOff()-2||r.top>innerHeight*.5)goEl(el);}},
  /* ✓/✗ = 설정(누르면 항상 그 상태 · 해제는 카드 버튼으로) · 자동 넘김(jbauto, 기본 켬)이면 0.25초 뒤 다음 */
  grade(k){const c=this.vis[this.cur];if(!c)return;const id=c.dataset.id;mark(id,k,'set');this.sess=this.sess||{};this.sess[id]=k;this.bar();this.save();
-  if(LS.get('jbauto',true)){clearTimeout(this.gt);this.gt=setTimeout(()=>{if(this.one&&this.vis[this.cur]===c)this.go(1);},250);}},
+  if(LS.get('jbauto',true)){clearTimeout(this.gt);this.gtc=c;this.gt=setTimeout(()=>{this.gtc=null;if(this.one&&this.vis[this.cur]===c)this.go(1);},250);}},
+ /* 다음(→·Enter·▶): 채점 뒤 자동 넘김(0.25초)을 기다리는 중이면 그 넘김과 합쳐 한 번만 */
+ next1(){if(this.gtc){clearTimeout(this.gt);const c=this.gtc;this.gtc=null;if(this.one&&this.vis[this.cur]===c)this.go(1);return;}this.go(1);},
  sumHTML(){const S=this.sess||{};let ok=0,ng=0;this.vis.forEach(c=>{const r=S[c.dataset.id];if(r==='ok')ok++;else if(r==='ng')ng++;});const n=this.vis.length,td=n-ok-ng;
   return `<div class="bt">이번 회차 ${n}문항 — <span class="cok">✓ ${ok}</span> · <span class="cng">✗ ${ng}</span> · 안 채점 ${td}</div><div class="small">맞음·틀림은 과목 전체 기록(mk)에도 저장됐어요. 아래에서 다시 풀 범위를 고르세요.</div><div class="row"><button class="btn pri" data-onesum="ng">틀린 것만 다시</button><button class="btn" data-onesum="todo">안 채점만</button><button class="btn" data-onesum="all">처음부터</button></div>`;}};
 /* 한 장씩 풀기: 카드 영역 좌우 스와이프(|dx|>70·|dy|<50, 형광펜·빈칸 모드가 꺼져 있을 때만) */
@@ -996,8 +999,8 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.tier){JB.F.tiers[d.tier]=!JB.F.tiers[d.tier];t.classList.toggle('on');JB.apply();return;}
  if(d.reftog){if(JB.F&&$('#cards')){JB.F.tiers.C=!JB.F.tiers.C;JB.sync();JB.apply();}else{openDoc(CUR.s,'_jb');if(JB.F&&!JB.F.tiers.C){JB.F.tiers.C=true;JB.sync();JB.apply();}}return;}
  if(t.id==='fone'){JB.one=!JB.one;t.classList.toggle('on',JB.one);$('#stage').classList.toggle('single',JB.one);if(JB.one){JB.sess={};JB.cur=Math.min(JB.cur,Math.max(0,JB.vis.length-1));}JB.show();if(JB.one){const c=JB.vis[JB.cur];if(c)goEl(c);}measure();return;}
- if(t.id==='oprev'){JB.go(-1);return;}if(t.id==='onext'){JB.go(1);return;}});
-$('#stage').addEventListener('change',e=>{const t=e.target,F=JB.F;if(t.id==='oauto'){LS.set('jbauto',t.checked);return;}if(!F)return;if(t.id==='fprof')F.prof=t.value;else if(t.id==='flec')F.lec=t.value;else if(t.id==='fn')F.n=+t.value;else if(t.id==='fver')F.ver=t.value;else if(t.id==='fmine')F.mine=t.value;else if(t.id==='fsort'){F.sort=t.value;if(t.value==='r')JB.shuf=null;}
+ if(t.id==='oprev'){JB.go(-1);return;}if(t.id==='onext'){JB.next1();return;}});
+$('#stage').addEventListener('change',e=>{const t=e.target,F=JB.F;if(t.tagName==='SELECT')setTimeout(()=>t.blur(),0);   /* select는 고른 뒤 포커스를 뺌 — 곧이어 누른 ←/→가 값을 바꾸지 않고 카드를 넘기게(A01) */if(t.id==='oauto'){LS.set('jbauto',t.checked);return;}if(!F)return;if(t.id==='fprof')F.prof=t.value;else if(t.id==='flec')F.lec=t.value;else if(t.id==='fn')F.n=+t.value;else if(t.id==='fver')F.ver=t.value;else if(t.id==='fmine')F.mine=t.value;else if(t.id==='fsort'){F.sort=t.value;if(t.value==='r')JB.shuf=null;}
  else if(t.id==='fyr'){F.yr=t.value;if(F.yr&&F.sort!=='r'){F.sort='';const so=$('#fsort');if(so)so.value='';}}   /* 연도를 고르면 JB 수록 순서(그 해 시험 순서)로 */
  else return;JB.apply();});
 $('#stage').addEventListener('input',e=>{if(e.target.id==='fq'){JB.F.q=e.target.value;JB.apply();jbMini();}});
@@ -1161,16 +1164,35 @@ addEventListener('storage',e=>{if(!CUR.s||!e.key||e.key.indexOf(NS)!==0)return;c
  else if(k==='memo.'+CUR.s+'.'+CUR.d){const ta=$('#memota');if(document.activeElement!==ta){ta.value=LS.get(k,'');memoBase.v=ta.value;}}
  else if(k==='time'||k==='timed'){T.log=tObj(LS.get('time',{}));T.dlog=tObj(LS.get('timed',{}));}});
 
-/* ---------- 키보드 ---------- */
-document.addEventListener('keydown',e=>{const tg=e.target;if(tg&&(/INPUT|SELECT|TEXTAREA/.test(tg.tagName)||tg.isContentEditable))return;
- if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?Kit.redo():Kit.undo();return;}if(e.ctrlKey||e.metaKey||e.altKey)return;
+/* ---------- 키보드 v2(A01) — 키 이름은 e.code로(한글 입력 상태여도 'KeyH' → h): Key* → 소문자 한 글자, Digit·Numpad → 숫자.
+   e.key는 ?·/·Escape·Arrow·Space·Enter 판정에만. 단축키를 무시하는 곳은 글 입력칸(input text·search 등·textarea·contenteditable)뿐 —
+   select·checkbox·button에 포커스가 있어도 동작하고, Esc는 먼저 포커스를 뺌. 포커스 받은 버튼·링크·summary의 Enter·Space는 막고 단축키로만 ---------- */
+const keyOf=e=>{const c=e.code||'';if(/^Key[A-Z]$/.test(c))return c[3].toLowerCase();if(/^(Digit|Numpad)\d$/.test(c))return c.slice(-1);if(c==='Backslash')return '\\';const k=e.key||'';return k.length===1?k.toLowerCase():k;};
+const isTextField=t=>!!t&&(t.isContentEditable||t.tagName==='TEXTAREA'||(t.tagName==='INPUT'&&/^(text|search|email|url|number|password|tel)?$/i.test(t.getAttribute('type')||'')));
+document.addEventListener('keydown',e=>{const tg=e.target;if(isTextField(tg))return;const K=keyOf(e);
+ if((e.ctrlKey||e.metaKey)&&K==='z'){e.preventDefault();e.shiftKey?Kit.redo():Kit.undo();return;}if(e.ctrlKey||e.metaKey||e.altKey)return;
+ const isEnter=e.key==='Enter',isSpace=e.key===' '||e.code==='Space',onBtn=!!(tg&&tg.closest&&tg.closest('button,a,summary'));
+ if((isEnter||isSpace)&&onBtn)e.preventDefault();   /* 마우스로 누른 뒤 포커스가 남은 버튼을 Enter·Space가 다시 누르지 않게(한 장씩 ✓ 뒤 Enter = 보지 않은 문항 채점 오류) */
  if($('#imgmodal').classList.contains('on')){if(e.key==='+'||e.key==='=')mzoom(MZ*1.25);if(e.key==='-')mzoom(MZ/1.25);if(e.key==='Escape')$('#mclose').click();if(e.key==='ArrowLeft')$('#mprev').click();if(e.key==='ArrowRight')$('#mnext').click();return;}
- const k=e.key.toLowerCase();if(e.key==='?'){helpToggle();return;}if(k==='escape'){if($('#help').classList.contains('on')){helpToggle();return;}if(document.body.classList.contains('navopen')){navOpen(false);return;}$$('.pop.on').forEach(x=>x.classList.remove('on'));Kit.off();return;}if(k==='h'){Kit.setMode('h');return;}if(k==='a'){Kit.setMode('b');return;}if(k==='m'){Kit.memo();return;}if(k==='v'){Kit.hide();return;}
- if((k==='j'||k==='k')&&VIEW==='doc'&&CUR.t==='learn'&&$('#lmini')){lnav(k==='j'?1:-1);return;}
- const n=+e.key,bs=$$('#dtabs button[data-t]');if(n>=1&&n<=bs.length){bs[n-1].click();return;}
- if($('#fc')){if(e.key===' '){e.preventDefault();Flash.flip();}if(e.key==='ArrowLeft')Flash.move(-1);if(e.key==='ArrowRight')Flash.move(1);if(k==='o')Flash.judge('o');if(k==='x')Flash.judge('x');return;}
- if(JB.one&&isJBv()&&$('#cards')){const c=JB.vis[JB.cur];if(e.key==='ArrowLeft'){JB.go(-1);return;}if(e.key==='ArrowRight'||e.key==='Enter'){JB.go(1);return;}
-  if(e.key===' '){e.preventDefault();if(c){c.classList.toggle('open');togLabel(c);}return;}if(c&&(k==='o'||k==='x')){JB.grade(k==='o'?'ok':'ng');return;}if(c&&k==='b'){mark(c.dataset.id,'bm','toggle');return;}}});
+ if(e.key==='Escape'){const ae=document.activeElement;if(ae&&ae!==document.body&&ae.blur)ae.blur();escStep();return;}
+ if(e.key==='?'||(e.code==='Slash'&&e.shiftKey)){helpToggle();return;}
+ /* 한 장씩 풀기: ←/→·Enter 이동, Space 답, O 맞음, X 틀림 — 모두 기본 동작(스크롤·체크박스·select 값 바꾸기) 막음 */
+ if(JB.one&&isJBv()&&$('#cards')){const c=JB.vis[JB.cur];
+  if(e.key==='ArrowLeft'){e.preventDefault();JB.go(-1);return;}if(e.key==='ArrowRight'||isEnter){e.preventDefault();JB.next1();return;}
+  if(isSpace){e.preventDefault();if(c){c.classList.toggle('open');togLabel(c);}return;}if(K==='o'||K==='x'){e.preventDefault();if(c)JB.grade(K==='o'?'ok':'ng');return;}
+  if(K==='b'){e.preventDefault();if(c)mark(c.dataset.id,'bm','toggle');return;}}
+ if($('#fc')){if(isSpace){e.preventDefault();Flash.flip();return;}if(e.key==='ArrowLeft'){e.preventDefault();Flash.move(-1);return;}if(e.key==='ArrowRight'){e.preventDefault();Flash.move(1);return;}if(K==='o'||K==='x'){Flash.judge(K);return;}}
+ if(K==='h'){Kit.setMode('h');return;}if(K==='a'){Kit.setMode('b');return;}if(K==='m'){Kit.memo();return;}if(K==='v'){Kit.hide();return;}
+ if((K==='j'||K==='k')&&VIEW==='doc'&&CUR.t==='learn'&&$('#lmini')){lnav(K==='j'?1:-1);return;}
+ const n=/^\d$/.test(K)?+K:0,bs=$$('#dtabs button[data-t]');if(n>=1&&n<=bs.length){bs[n-1].click();return;}
+ if(isSpace&&onBtn){tg.blur();window.scrollBy(0,(e.shiftKey?-1:1)*innerHeight*.8);}});   /* 버튼에 포커스가 남은 채 Space = 원래처럼 화면 넘기기 */
+/* Esc = 한 단계씩: 도움말 → 서랍 → 팝업 → 도구 모드 */
+function escStep(){if($('#help').classList.contains('on')){helpToggle();return;}if(document.body.classList.contains('navopen')){navOpen(false);return;}
+ const pops=$$('.pop.on,#autopop.on,#k-sw.open,details.pmore[open]');if(pops.length){pops.forEach(p=>{if(p.tagName==='DETAILS')p.open=false;else p.classList.remove('on','open');});return;}
+ if(Kit.mode()){Kit.off();return;}}
+/* 한 장씩 풀기 막대·플래시카드 판정 버튼은 눌러도 포커스를 받지 않음(키보드 단축키와 겹치지 않게) */
+['pointerdown','mousedown'].forEach(ev=>$('#stage').addEventListener(ev,e=>{if(e.target.closest&&e.target.closest('#onebar button,.fcjudge button,.fcctl button'))e.preventDefault();}));
+$('#stage').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#onebar button,.fcjudge button,.fcctl button');if(b)setTimeout(()=>b.blur(),0);});
 /* ---------- 검색 ---------- */
 /* ---------- 검색 v2(U30) — 색인: 블록 사이 ' · '·버튼·채점 줄·머리 칩 줄 제외 · 결과: 과목색 점 + '과목 · 강의 · 카드 n 제목'/'JB 12번 (24·23)' + <mark> 스니펫
    · 지금 과목 먼저·과목별 20건 + 더 보기 · 검색 전 화면을 기억(SQ.from) — 검색창을 비우거나 Esc·'✕ 닫기'면 그 화면·위치로 ---------- */

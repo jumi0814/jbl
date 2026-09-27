@@ -89,6 +89,21 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), '가로 넘침 없음')
     hint = await pg.evaluate("getComputedStyle(document.querySelector('.okeys')).display")
     ok((hint == 'none') == touch, f'키 안내 문구는 마우스 기기만 ({hint})')
+    # A01 키 처리: ✓를 마우스로 누른 뒤 곧바로 Enter → 한 번만 넘김(버튼 포커스 없음·보지 않은 문항 채점 0) · select를 바꾼 직후 → = 카드 넘김(값 그대로)
+    await open_(pg, '#/OMS1/_jb/_jb'); await pg.evaluate("localStorage.removeItem('jblhub.v1.mk.OMS1');localStorage.setItem('jblhub.v1.jbauto','true');sessionStorage.clear()")
+    await open_(pg, '#/OMS1/_jb/_jb'); await pg.click('#fone'); await pg.wait_for_timeout(300)
+    POS = "+document.querySelector('#opos').textContent.split('/')[0]"
+    p0 = await pg.evaluate(POS); await pg.click('#ook'); foc = await pg.evaluate("document.activeElement&&document.activeElement.id")
+    await pg.keyboard.press('Enter'); await pg.wait_for_timeout(700)
+    m = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.mk.OMS1')||'{}')"); p1 = await pg.evaluate(POS)
+    ok(len(m.get('ok', {})) == 1 and not m.get('ng') and p1 == p0 + 1 and foc != 'ook', f"✓ 클릭 → Enter: 맞음 {len(m.get('ok', {}))}건 · 위치 {p0}→{p1} · 포커스 {foc}")
+    sel = '#fprof' if await pg.evaluate("!!document.querySelector('#fprof')") else '#fyr'
+    await pg.focus(sel); await pg.select_option(sel, index=1); await pg.wait_for_timeout(300)
+    v0 = await pg.evaluate(f"document.querySelector('{sel}').value"); q0 = await pg.evaluate(POS)
+    await pg.keyboard.press('ArrowRight'); await pg.wait_for_timeout(300)
+    v1 = await pg.evaluate(f"document.querySelector('{sel}').value"); q1 = await pg.evaluate(POS)
+    ok(v0 == v1 and v0 != '' and q1 == q0 + 1, f"{sel} 바꾼 직후 → : 값 {v0!r}→{v1!r} 그대로 · 카드 {q0}→{q1}")
+    await pg.click('#fone')
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 async def main():

@@ -12,6 +12,10 @@ async def main():
         pg.on('pageerror',lambda e:errs.append(str(e)[:200]))
         await pg.goto(U+'#/ANAT/MAND/learn'); await pg.wait_for_timeout(2500)
         await pg.evaluate("localStorage.clear()"); await pg.reload(); await pg.wait_for_timeout(2500)
+        # 0) 한글 입력 상태의 키(e.key='ㅗ', e.code='KeyH') — 키 이름은 e.code로(A01)
+        r0=await pg.evaluate("""()=>{const k=(key,code)=>document.body.dispatchEvent(new KeyboardEvent('keydown',{key,code,bubbles:true,cancelable:true}));const B=document.body.classList;
+          k('ㅗ','KeyH');const h=B.contains('mode-h');k('ㅗ','KeyH');const h2=B.contains('mode-h');k('ㅁ','KeyA');const b=B.contains('mode-b');k('Escape','Escape');return [h,h2,b,B.contains('mode-b')];}""")
+        ok(r0==[True,False,True,False], f'0 한글 입력 상태 ㅗ(KeyH) 형광펜 켜기·끄기 · ㅁ(KeyA) 빈칸 · Esc 끄기 {r0}')
         card=pg.locator('#t-MAND-1'); await card.evaluate("e=>e.scrollIntoView({block:'start'})"); await pg.wait_for_timeout(200)
         # 1) 어절 클릭: 'including angle' 근처 빨간 글자 클릭
         k=pg.locator('#t-MAND-1 .c-key .k >> nth=0'); kb=await k.bounding_box(); print('target', await k.inner_text())
