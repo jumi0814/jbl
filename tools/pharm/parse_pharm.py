@@ -17,6 +17,7 @@ TKEY = {'금연': 'RX', '구강건조': 'XE', '보톡스': 'BT', '통증': 'PN',
 YEAR = re.compile(r'^\s*[\[<]\s*(20\d\d)\s*년\s*(?:도)?\s*(?:[-–]\s*Pf\.?\s*([가-힣]{2,3})|([가-힣]{2,3})\s*교수님)?\s*[\]>]\s*$')
 CUE = re.compile(r'[?？]|시오|하시오|하라|쓰기|쓰시|서술|설명|나열|비교|기술|채우|기입|빈칸|무엇|어떤|이유|차이|특징|기전|고르|골라|옳|맞는|틀린|아닌|중복|미복원|\(\s*\d\d|\(탈|\(짤|T/F|\(\s*\)|약은|약물|용어|효과|정의|경우|것은|것을|사용|치료|적응증|부작용|목적|복원|짤|표\s|보여주|이다\.|한다\.|should|because|used|rate|effect')
 STRONG = re.compile(r'[?？]|시오|하시오|하라|쓰시|쓰기|고르|골라|옳|맞는|틀린|아닌|서술|설명|나열|중복|미복원|\[서술|\[단답|\(탈|\(\s*\d\d\s*[,)\-’\']|\(짤|T/F|\(\s*\)')
+QEND = re.compile(r'[?？]|것은|시오')
 ANS = re.compile(r'^\s*\[?답\]?\s*[:：)]|^\s*답\s*$')
 def parse(ed, n):
     L = load(ed, n); blocks = []; cur = None; topic = None; sec = None; prof = ''; last = 0; inans = False
@@ -43,6 +44,15 @@ def parse(ed, n):
             can_start = cur is None or inans or re.search(r'중복', cur['lines'][0]) or nn == 1
             if nn > last and cue and can_start:
                 cur = {'ed': ed, 'topic': topic, 'sec': sec, 'prof': prof, 'num': num, 'pg': pg, 'pg2': pg, 'lines': [l]}; blocks.append(cur); inans = False; last = nn; continue
+            # 답안·해설 안에 삼켜진 다음 문항(직전 번호+1로 시작하고 문항형 문장으로 끝남) → 새 블록 (split=True: assemble이 기존 id 뒤에 번호를 붙임)
+            if cur is not None and nn == last + 1:
+                stem = [s]
+                for _pg, x_ in L[idx + 1:idx + 21]:
+                    xs = x_.strip()
+                    if ANS.match(xs) or re.match(r'^\s*해설\s*[:：]', xs) or re.match(r'^\s*\d{1,2}\s*[.．)]', xs): break
+                    stem.append(xs)
+                if QEND.search(' '.join(stem)):
+                    cur = {'ed': ed, 'topic': topic, 'sec': sec, 'prof': prof, 'num': num, 'pg': pg, 'pg2': pg, 'lines': [l], 'split': True}; blocks.append(cur); inans = False; last = nn; continue
         if cur is not None:
             cur['lines'].append(l); cur['pg2'] = pg
             if ANS.match(s): inans = True

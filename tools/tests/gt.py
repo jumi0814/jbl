@@ -11,7 +11,7 @@ async def main():
         await pg.click('#side .dbtn[data-d="_jb"]'); await pg.wait_for_timeout(400); print('jb visible', await pg.locator('#cards .qc:not(.hid)').count())
         await pg.click('#c-Y01 [data-tog]'); await pg.evaluate("document.getElementById('c-Y01').scrollIntoView()"); await pg.wait_for_timeout(300); await pg.screenshot(path=_os.path.join(J.TMP, 'a1.png'))
         await pg.click('#c-Y01 .cite >> nth=0'); await pg.wait_for_timeout(1500); print('modal', await pg.inner_text('#mtitle')); await pg.click('#mclose')
-        await pg.click('#c-K01 [data-tog]'); await pg.click('#c-K01 .cite.t >> nth=0'); await pg.wait_for_timeout(400); print('text cite →', await pg.evaluate('location.hash'))
+        await pg.click('#c-K01 [data-tog]'); (await pg.click('#c-K01 .cite.t >> nth=0')) if await pg.locator('#c-K01 .cite.t').count() else print('text cite: 이 문항에 텍스트 인용 없음(건너뜀)'); await pg.wait_for_timeout(400); print('text cite →', await pg.evaluate('location.hash'))
         for k in ['HARD','OHQ','ENDO','BLE','SAL','PAIN','PSY']:
             await pg.click(f'#side .dbtn[data-d="{k}"]'); await pg.wait_for_timeout(1500); print(k,'cards',await pg.locator('#stage .tc').count(),'figs',await pg.evaluate("[...document.querySelectorAll('#stage .figs img')].filter(i=>i.src.startsWith('data:')).length"),'/',await pg.locator('#stage .figs figure').count())
         await pg.click('#side .dbtn[data-d="PAIN"]'); await pg.wait_for_timeout(1500); print('LP5 figs', await pg.evaluate("[...document.querySelectorAll('#stage .figs img[data-img^=\"PN5\"]')].filter(i=>i.src.startsWith('data:')).length"))

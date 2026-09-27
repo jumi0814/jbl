@@ -18,7 +18,7 @@ async def main():
         await pg.evaluate("document.getElementById('t-WHT-4').scrollIntoView()"); await pg.wait_for_timeout(300); await pg.screenshot(path=_os.path.join(J.TMP, 'k2.png'))
         for k in ['CRK','DHS','INL','ANT','ADH','FRC']:
             await pg.click(f'#side .dbtn[data-d="{k}"]'); await pg.wait_for_timeout(1500); print(k,'cards',await pg.locator('#stage .tc').count(),'figs',await pg.evaluate("[...document.querySelectorAll('#stage .figs img')].filter(i=>i.src.startsWith('data:')).length"),'/',await pg.locator('#stage .figs figure').count())
-        await pg.click('#side .dbtn[data-d="_jb"]'); await pg.wait_for_timeout(300); await pg.click('#c-Q09 [data-tog]'); await pg.click('#c-Q09 .cite.t >> nth=0'); await pg.wait_for_timeout(300); print('text cite →', await pg.evaluate('location.hash')); await pg.click('#side .dbtn[data-d="INL"]'); await pg.wait_for_timeout(300)
+        await pg.click('#side .dbtn[data-d="_jb"]'); await pg.wait_for_timeout(300); await pg.click('#c-Q09 [data-tog]'); (await pg.click('#c-Q09 .cite.t >> nth=0')) if await pg.locator('#c-Q09 .cite.t').count() else print('text cite: 이 문항에 텍스트 인용 없음(건너뜀)'); await pg.wait_for_timeout(300); print('text cite →', await pg.evaluate('location.hash')); await pg.click('#side .dbtn[data-d="INL"]'); await pg.wait_for_timeout(300)
         for t in ['sum','tbl','jb','pred','flash']:
             await pg.click(f'#dtabs button[data-t="{t}"]'); await pg.wait_for_timeout(300); print(t, len(await pg.inner_text('#stage')))
         await pg.click('#side .dbtn[data-d="_tbl"]'); await pg.wait_for_timeout(300); print('tables', await pg.locator('#stage .tblwrap').count())

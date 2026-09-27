@@ -1,0 +1,142 @@
+"""U07~U10 회귀 (고정된 탭은 JS click — playwright의 click/tap은 sticky 요소를 보이게 하려고 페이지를 스크롤해 버림): 브라우저 뒤로가기·주소 동기화 / JB 풀이 상태·↩ 알약 / 탭별 읽던 위치·이어서 보기 / 숨은 카드 드러내기(답은 가린 채).
+맥 1280×900과 아이패드 세로 820×1180(터치)에서 돌림. 스크린샷 work/_tmp/ux_nav_*.png"""
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
+import asyncio, json
+from playwright.async_api import async_playwright
+U = J.HUB_URL; fails = []
+def ok(c, m):
+    print(('  OK   ' if c else '  FAIL ') + m)
+    if not c: fails.append(m)
+async def open_(pg, h, w=1100):
+    await pg.goto('about:blank'); await pg.goto(U + h); await pg.wait_for_timeout(w)
+H = lambda pg: pg.evaluate('location.hash')
+TOPREL = """(sel)=>{const e=document.querySelector(sel);if(!e)return null;const d=document.querySelector('#dtabs');const base=(d&&!d.hidden&&d.offsetParent)?d.getBoundingClientRect().bottom:document.querySelector('#top').getBoundingClientRect().bottom;return Math.round(e.getBoundingClientRect().top-base);}"""
+SCROLLTO = """(sel)=>{const e=document.querySelector(sel);const cs=getComputedStyle(document.documentElement);const off=parseFloat(cs.getPropertyValue('--toph'))+parseFloat(cs.getPropertyValue('--tabh'))+12;scrollTo(0,e.getBoundingClientRect().top+scrollY-off);}"""
+INVIEW = """(sel)=>{const e=document.querySelector(sel);if(!e||e.offsetParent===null)return false;const r=e.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight;}"""
+async def click(pg, sel, touch):
+    if touch: await pg.tap(sel)
+    else: await pg.click(sel)
+async def run(b, vp, touch, tag):
+    ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
+    pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('dialog', lambda d: asyncio.ensure_future(d.accept()))
+    print(f'== {tag}')
+    # ---- U07 뒤로가기
+    await pg.goto('about:blank'); await pg.goto(U); await pg.wait_for_timeout(1000); await pg.evaluate('localStorage.clear();sessionStorage.clear()')
+    await pg.goto('about:blank'); await pg.goto(U); await pg.wait_for_timeout(1000)
+    await click(pg, '.scard[data-s="OMS1"]', touch); await pg.wait_for_timeout(500)
+    await click(pg, '.lcard >> nth=0', touch); await pg.wait_for_timeout(500)
+    ok((await H(pg)).startswith('#/OMS1/DD1/learn'), f'강의 열면 주소 #/OMS1/DD1/learn ({await H(pg)})')
+    await pg.go_back(); await pg.wait_for_timeout(500)
+    ok(await H(pg) == '#/OMS1/_home/_home' and await pg.evaluate("!!document.querySelector('#stage .lgrid')"), '뒤로 1회 = 과목 홈(주소·화면 일치)')
+    await pg.go_back(); await pg.wait_for_timeout(500)
+    ok(await H(pg) == '#/' and await pg.evaluate("!document.querySelector('#home').hidden && !!document.querySelector('.scard')"), '뒤로 2회 = 허브(주소·화면 일치)')
+    await pg.go_back(); await pg.wait_for_timeout(500)
+    ok(pg.url == 'about:blank', f'뒤로 3회 = about:blank ({pg.url[:40]})')
+    await pg.go_forward(); await pg.wait_for_timeout(900); await pg.go_forward(); await pg.wait_for_timeout(600)
+    ok(await H(pg) == '#/OMS1/_home/_home' and await pg.evaluate("!document.querySelector('#subj').hidden"), '앞으로 가기 = 과목 홈')
+    await pg.evaluate("location.hash='#/CONS/WHT/learn'"); await pg.wait_for_timeout(700)
+    ok(await pg.evaluate("document.querySelector('#hero h1').textContent") and await pg.evaluate("location.hash==='#/CONS/WHT/learn' && !!document.querySelector('#stage .tc[id^=\"t-WHT-\"]')"), '해시를 직접 고치면 화면이 바뀜')
+    # 검색 → 결과 → 뒤로 = 검색 결과
+    await pg.fill('#gsearch', 'fontanel'); await pg.wait_for_timeout(700)
+    ok((await H(pg)).startswith('#/?q=fontanel'), f'검색 주소 #/?q= ({await H(pg)})')
+    await click(pg, '#home .res >> nth=0', touch); await pg.wait_for_timeout(700)
+    await pg.go_back(); await pg.wait_for_timeout(600)
+    ok(await pg.evaluate("!document.querySelector('#home').hidden && document.querySelectorAll('#home .res').length>0 && document.querySelector('#gsearch').value==='fontanel'"), '결과에서 뒤로 = 검색 결과 복원')
+    await pg.go_back(); await pg.wait_for_timeout(600)
+    ok(await H(pg) == '#/CONS/WHT/learn', f'한 번 더 뒤로 = 검색 전 화면 ({await H(pg)})')
+    # 뒤로가기 스크롤 복원: DD1 카드 10 → ⭐ 연도칩 → 뒤로
+    await open_(pg, '#/OMS1/DD1/learn')
+    await pg.evaluate(SCROLLTO, '#t-DD1-9'); await pg.wait_for_timeout(900)
+    await pg.evaluate("document.querySelector('#t-DD1-9 .jbchip, #t-DD1-9 .xjb').click()"); await pg.wait_for_timeout(700)
+    await pg.go_back(); await pg.wait_for_timeout(1600)
+    r = await pg.evaluate(TOPREL, '#t-DD1-9'); ok(r is not None and abs(r - 12) <= 40, f'뒤로가기 후 읽던 카드 위치 복원 (카드 10 top-탭 = {r})')
+    # ---- U08 JB 풀이 상태 + ↩ 알약
+    await open_(pg, '#/OMS1/_jb/_jb')
+    await click(pg, '#fone', touch)
+    for _ in range(4): await click(pg, '#onext', touch)
+    pos0 = await pg.inner_text('#opos'); id0 = await pg.evaluate("document.querySelector('.qc.cur').dataset.id")
+    await pg.evaluate("document.querySelector('.qc.cur button.chip.lec').click()"); await pg.wait_for_timeout(900)
+    pill = await pg.evaluate("(()=>{const b=document.querySelector('#retpill');return b.classList.contains('on')?b.textContent:''})()")
+    ok(pill.startswith('↩ JB 5/'), f'📖 칩 뒤 알약 ({pill})')
+    pb = await pg.evaluate("(()=>{const b=document.querySelector('#retpill').getBoundingClientRect(),k=document.querySelector('#kit').getBoundingClientRect();return [Math.round(b.height),Math.round(k.top-b.bottom)]})()")
+    ok(pb[0] >= 44 and pb[1] >= 8, f'알약 높이 44·도구 막대 위 ({pb})')
+    await pg.screenshot(path=J.TMP + f'/ux_nav_pill_{tag}.png')
+    await click(pg, '#retpill', touch); await pg.wait_for_timeout(900)
+    ok(await pg.evaluate("document.querySelector('#stage').classList.contains('single')") and await pg.inner_text('#opos') == pos0 and await pg.evaluate(INVIEW, '#c-' + id0), f'알약 → 한 장씩 {pos0} 그 카드')
+    ok(not await pg.evaluate("document.querySelector('#retpill').classList.contains('on')"), '돌아오면 알약 사라짐')
+    await pg.evaluate("document.querySelector('.qc.cur button.chip.lec').click()"); await pg.wait_for_timeout(700)
+    await pg.go_back(); await pg.wait_for_timeout(900)
+    ok(await pg.evaluate("document.querySelector('#stage').classList.contains('single')") and await pg.inner_text('#opos') == pos0, '브라우저 뒤로가기로도 한 장씩 5/N')
+    # 필터(틀린 것·출제 횟수 순) 유지 — 사이드바로 다른 문서 갔다 오기
+    await click(pg, '#fone', touch)
+    await pg.evaluate("document.querySelector('#jbbar [data-qf=\"ng\"]').click()"); await pg.select_option('#fsort', 'n'); await pg.wait_for_timeout(300)
+    await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"DD1\"]').click()"); await pg.wait_for_timeout(500)
+    ok(not await pg.evaluate("document.querySelector('#retpill').classList.contains('on')"), '사이드바 이동에는 알약 없음')
+    await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_jb\"]').click()"); await pg.wait_for_timeout(600)
+    ok(await pg.evaluate("document.querySelector('#jbbar [data-qf=\"ng\"]').classList.contains('on') && document.querySelector('#fsort').value==='n' && !document.querySelector('#stage').classList.contains('single')"), '사이드바로 다시 JB = 틀린 것·출제 횟수 순 유지')
+    await pg.evaluate("document.querySelector('#jbbar [data-qf=\"\"]').click()"); await pg.select_option('#fsort', ''); await pg.wait_for_timeout(200)
+    # 정리본 → 문제 → 알약 '↩ DD I 카드 N로'
+    await open_(pg, '#/OMS1/DD1/learn')
+    await pg.evaluate(SCROLLTO, '#t-DD1-6'); await pg.wait_for_timeout(900)
+    await pg.evaluate("document.querySelector('#t-DD1-6 .jbchip, #t-DD1-6 .xjb').click()"); await pg.wait_for_timeout(900)
+    pill = await pg.evaluate("document.querySelector('#retpill').textContent")
+    ok('카드 7' in pill and pill.startswith('↩ DD I'), f'정리본 → 문제 알약 ({pill})')
+    tgt = await pg.evaluate("(()=>{const e=document.querySelector('#stage .qc.flash');return e?[e.classList.contains('open'),!!e.querySelector('.ansnow.hl')]:null})()")
+    ok(tgt is not None and tgt[0] is False and tgt[1], f'정리본 ⭐ 칩 → 문제: 답 가림·답 바로 보기 강조 ({tgt})')
+    await click(pg, '#retpill', touch); await pg.wait_for_timeout(1600)
+    r = await pg.evaluate(TOPREL, '#t-DD1-6'); ok(r is not None and abs(r - 12) <= 40, f'알약 → 카드 7 자리 ({r})')
+    # ---- U09 탭별 위치·이어서 보기
+    await open_(pg, '#/CONS/WHT/learn'); await pg.mouse.wheel(0, 6000); await pg.wait_for_timeout(1500)
+    lb = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.lastBy')") or '{}')
+    ok(lb.get('CONS', {}).get('d') == 'WHT' and lb['CONS'].get('ti'), f"스크롤 뒤 lastBy.CONS = WHT·카드 제목 ({lb.get('CONS', {}).get('ti')})")
+    await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_home\"]').click()"); await pg.wait_for_timeout(1800)
+    lb2 = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.lastBy')") or '{}')
+    ok(lb2.get('CONS', {}).get('d') == 'WHT', '과목 홈에 가도 lastBy.CONS.d = WHT')
+    await click(pg, '#gohome', touch); await pg.wait_for_timeout(600)
+    rs = await pg.inner_text('#home .resume'); ok(lb['CONS']['ti'][:10] in rs, f'허브 이어서 보기에 강의·카드 제목 ({rs[:80]!r})')
+    await click(pg, '#home .resume .go-resume', touch)   # U22: 과목 카드에도 .go-resume가 생김 — 이어서 보기 패널의 것; await pg.wait_for_timeout(1600)
+    r = await pg.evaluate("(aid)=>{const e=[...document.querySelectorAll('#stage [data-aid]')].find(x=>x.dataset.aid===aid);return e?Math.round(e.getBoundingClientRect().top+(%s)-document.querySelector('#dtabs').getBoundingClientRect().bottom-12):null}" % lb['CONS']['off'], lb['CONS']['aid'])
+    ok(r is not None and abs(r) <= 60, f'이어서 보기 → 같은 자리 ({r})')
+    await open_(pg, '#/OMS1/DD1/learn')
+    await pg.evaluate(SCROLLTO, '#t-DD1-11'); await pg.wait_for_timeout(1000)
+    await pg.evaluate("document.querySelector('#dtabs button[data-t=\"jb\"]').click()"); await pg.wait_for_timeout(600)
+    await pg.evaluate("document.querySelector('#dtabs button[data-t=\"learn\"]').click()"); await pg.wait_for_timeout(1600)
+    r = await pg.evaluate(TOPREL, '#t-DD1-11'); ok(r is not None and -80 <= r <= 80, f'학습 → 기출 → 학습: 카드 12 위치 ({r})')
+    await pg.evaluate("document.querySelector('#dtabs button[data-t=\"learn\"]').click()"); await pg.wait_for_timeout(300)
+    ok(await pg.evaluate('scrollY') == 0, '선택된 탭을 한 번 더 누르면 맨 위')
+    await pg.wait_for_timeout(1000); lb3 = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.lastBy')"))['OMS1']['aid']
+    await pg.fill('#gsearch', 'fontanel'); await pg.wait_for_timeout(700); await pg.mouse.wheel(0, 500); await pg.wait_for_timeout(1300)
+    ok(json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.lastBy')"))['OMS1']['aid'] == lb3, '검색 화면 스크롤은 lastBy를 바꾸지 않음')
+    ll = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.lastList.OMS1')") or '[]'); ok(1 <= len(ll) <= 3, f'lastList.OMS1 {len(ll)}곳')
+    # ---- U10 숨은 카드 드러내기
+    await open_(pg, '#/OMS1/_jb/_jb')
+    t = await pg.evaluate("(()=>{const c=document.querySelector('#cards .qc.tC');return c?[c.id,c.querySelector('.qtext').textContent.replace(/\\s+/g,' ').trim().slice(3,25)]:null})()")
+    if t:
+        await pg.goto('about:blank'); await pg.goto(U); await pg.wait_for_timeout(900)
+        await pg.fill('#gsearch', t[1]); await pg.wait_for_timeout(700)
+        await pg.locator('#home .res[data-d="_jb"]').first.click()   # U30: 결과 제목이 'JB n번 (연도)'; await pg.wait_for_timeout(1000)
+        st = await pg.evaluate("(id)=>{const e=document.getElementById(id);return [e.offsetParent!==null,e.classList.contains('open')]}", t[0])
+        ok(st[0] and await pg.evaluate(INVIEW, '#' + t[0]) and not st[1], f'tier C 검색 → 보이고 화면 안·답 가림 ({st})')
+        await pg.screenshot(path=J.TMP + f'/ux_nav_tierC_{tag}.png')
+    await open_(pg, '#/OMS1/_sum/_sum')
+    qid = await pg.evaluate("document.querySelector('#stage table.sum [data-go][data-src=\"sum\"]').dataset.go")
+    await pg.evaluate("document.querySelector('#stage table.sum [data-go][data-src=\"sum\"]').click()"); await pg.wait_for_timeout(900)
+    ok(await pg.evaluate("(id)=>document.getElementById('c-'+id).classList.contains('open')", qid), '한눈표 → 문제: 답 열림')
+    # 그룹 필터·압축 보기 중 목차로 숨은 카드 → 드러남
+    await open_(pg, '#/OMS1/DD1/learn')
+    await pg.evaluate("(()=>{const b=[...document.querySelectorAll('#grppills [data-grp]')].find(x=>x.dataset.grp);b.click();document.querySelector('#lcond').click();})()")
+    hid = await pg.evaluate("(()=>{const c=document.querySelector('#stage .tc.hid');return c?c.id:null})()")
+    if hid:
+        await pg.evaluate("(id)=>document.querySelector('#stage .ol[data-scroll=\"'+id+'\"]').click()", hid); await pg.wait_for_timeout(700)
+        ok(await pg.evaluate(INVIEW, '#' + hid) and not await pg.evaluate("document.querySelector('#stage').classList.contains('cond')"), '그룹 필터·압축 보기로 숨은 카드 → 드러남')
+    ok(not errs, f'pageerror 0 ({errs[:2]})')
+    await ctx.close()
+async def main():
+    async with async_playwright() as p:
+        b = await p.chromium.launch()
+        await run(b, {'width': 1280, 'height': 900}, False, 'mac')
+        await run(b, {'width': 820, 'height': 1180}, True, 'ipp')
+        await b.close()
+    print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
+    _sys.exit(1 if fails else 0)
+asyncio.run(main())

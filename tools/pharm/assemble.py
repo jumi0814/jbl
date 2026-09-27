@@ -55,8 +55,9 @@ def find(ed, topic, sec, num):
     return None
 CANON, OTHER, ptr = [], {}, {}
 counter = {}
-for ed in ('25', '24', '23'):
-    for x in blocks[ed]:
+# 1차: 원래 블록 / 2차: 답안에서 분리된 블록(split) — 분리 블록의 새 id는 기존 번호 뒤에 붙어 기존 id(채점·표시 키)가 바뀌지 않음
+for ed, x in [(e, x) for e in ('25', '24', '23') for x in blocks[e] if not x.get('split')] + [(e, x) for e in ('25', '24', '23') for x in blocks[e] if x.get('split')]:
+    if True:
         key = (ed, x['topic'], x['sec'], x['num']); t = '\n'.join(x['lines'])
         m = DUP.search(t.split('\n')[0] + ' ' + (t.split('\n')[1] if '\n' in t else ''))
         if m:
@@ -74,6 +75,11 @@ for ed in ('25', '24', '23'):
             OTHER.setdefault(best[0], []).append((ed, x['topic'], x['sec'], x['num'])); ptr[key] = best[0]; continue
         n = counter.get(x['topic'], 0) + 1; counter[x['topic']] = n
         cid = f'{x["topic"]}{n:02d}'; CANON.append((cid, x['topic'], ed, x['sec'], x['num'], s)); ptr[key] = cid
+# 분리 블록 카드는 id는 뒤에 붙었지만 목록 순서는 삼켰던 문항(같은 판·칸의 직전 번호) 바로 뒤로
+for c in [c for c in CANON if (find(c[2], c[1], c[3], c[4]) or {}).get('split')]:
+    prev = ptr.get((c[2], c[1], c[3], str(int(c[4]) - 1)))
+    if prev and prev != c[0]:
+        CANON.remove(c); CANON.insert(next(i for i, c2 in enumerate(CANON) if c2[0] == prev) + 1, c)
 Q = []
 CROPS = {}
 for cid, topic, ed, sec, num, _s in CANON:

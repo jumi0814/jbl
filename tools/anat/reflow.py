@@ -24,10 +24,12 @@ def reflow(text):
         prev_raw = l
     return out
 def same_chars(a, b): return re.sub(r'\s+', '', a) == re.sub(r'\s+', '', b)
-def render(text, first_bold=False):
-    """논리 줄 단위 HTML. 글자는 원문 그대로, 라벨(답·해설·참고)만 굵게."""
+def render(text, first_bold=False, ans=False):
+    """논리 줄 단위 HTML. 글자는 원문 그대로, 라벨(답·해설·참고)만 굵게.
+    ans=True(JB 답안 칸): 첫 '답' 라벨 줄에 .ans0(크게·흰 칸), 첫 '해설' 라벨부터 끝까지를 .exw로 감싸고
+    해설이 6줄 또는 400자를 넘으면 .exw.clamp(허브가 높이를 줄이고 '해설 전체 보기'를 붙임)"""
     L = reflow(text); assert same_chars(text, '\n'.join(L)), 'reflow changed characters'
-    h = []
+    h = []; a0 = None; ex_at = None
     for i, s in enumerate(L):
         m = LABEL.match(s)
         if first_bold and i == 0:
@@ -35,10 +37,16 @@ def render(text, first_bold=False):
         elif m:
             lab, rest = m.group(1), m.group(2)
             kind = 'a' if '답' in lab else ('e' if '해설' in lab else 'r')
-            h.append(f'<div class="ln lab lab-{kind}"><b>{html.escape(lab)}</b>{html.escape(rest)}</div>')
+            extra = ''
+            if ans and kind == 'a' and a0 is None: a0 = i; extra = ' ans0'
+            if ans and kind == 'e' and ex_at is None: ex_at = i
+            h.append(f'<div class="ln lab lab-{kind}{extra}"><b>{html.escape(lab)}</b>{html.escape(rest)}</div>')
         elif LISTM.match(s): h.append(f'<div class="ln li">{html.escape(s)}</div>')
         elif re.match(r'^(장점|단점)\s*[:：]?\s*$|^<[^>]+>$|^\[[^\]]+\]\s*$', s): h.append(f'<div class="ln hd">{html.escape(s)}</div>')
         else: h.append(f'<div class="ln{" q1" if (first_bold and i == 0) else ""}">{html.escape(s)}</div>')
+    if ans and ex_at is not None and (a0 is None or ex_at > a0):
+        long_ = len(L) - ex_at > 6 or sum(len(x) for x in L[ex_at:]) > 400
+        h = h[:ex_at] + [f'<div class="exw{" clamp" if long_ else ""}">'] + h[ex_at:] + ['</div>']
     return ''.join(h)
 if __name__ == '__main__':
     import json

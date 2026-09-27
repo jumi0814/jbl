@@ -159,40 +159,137 @@ def _rebalance(parts, hl0=False):
         q = q + ('}' * rs)
         out.append(('==' + q + '==') if piece_hl and q else q)
     return out
+# ---- U23: 짧은 나열은 가로 흐름(ul.kflow) · 여러 조각에 걸친 ==기출 문장==은 형광 블록(hlblock) · 목록만 든 li 없애기
+LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
+def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|==|\*\*|\}', '', p)
+def _is_flow(parts):
+    if len(parts) < 4: return False
+    ls = sorted(len(_plain(p).strip()) for p in parts)
+    return ls[len(ls) // 2] < 24
+def _hl_flags(parts):
+    """조각마다 ==…== 로 통째 감싸였는지 → 연속 3조각↑ 또는 (2조각↑·합 120자 초과)인 구간은 형광 블록: == 를 떼고 flag"""
+    full = [p.startswith('==') and p.endswith('==') and p.count('==') == 2 and len(p) > 4 for p in parts]
+    flags = [False] * len(parts); i = 0
+    while i < len(parts):
+        if not full[i]: i += 1; continue
+        j = i
+        while j < len(parts) and full[j]: j += 1
+        if j - i >= 3 or (j - i >= 2 and sum(len(_plain(parts[k])) for k in range(i, j)) > 120):
+            for k in range(i, j): flags[k] = True
+        i = j
+    return [p[2:-2] if f else p for p, f in zip(parts, flags)], flags
+def _single_list(h):
+    """h가 목록 하나뿐(앞머리 없음)이면 (태그, 클래스, 안쪽 li들) — 아니면 None"""
+    m = re.fullmatch(r'<(ul|ol) class="([^"]*)">(.*)</\1>', h, flags=re.S)
+    if not m or len(re.findall(r'<(?:ul|ol)\b', h)) != 1: return None
+    return m.group(1), m.group(2), m.group(3)
+def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
+    """조각 목록 → 목록 HTML. fmt(p) = li 안 HTML(기본: 길면 한 단계 더 구조화). 안쪽이 목록 하나뿐인 조각은 li에 목록만 들지 않게:
+       klist·circ면 바깥 목록에 항목으로 풀어 넣고, steps·kflow면 바깥 목록을 잠시 닫고 그 블록을 둠"""
+    parts, flags = _hl_flags(parts)
+    if cls == 'klist' and _is_flow(parts): cls = 'kflow'
+    segs = []   # ('li', html, flag) | ('blk', html)
+    for p, f in zip(parts, flags):
+        if fmt: segs.append(('li', fmt(p), f)); continue
+        if depth == 0 and len(p) > 150:
+            inner = render_block(p, ctx, depth + 1); sl = _single_list(inner)
+            if sl:
+                t_, c_, body = sl
+                if c_.split()[0] in ('klist', 'circ') and 'kflow' not in c_:
+                    for li in re.findall(r'<li(?: class="[^"]*")?>(.*?)</li>', body, flags=re.S): segs.append(('li', li, f))
+                else: segs.append(('blk', inner))
+                continue
+            segs.append(('li', inner, f)); continue
+        segs.append(('li', inline(p, ctx), f))
+    out, run = [], []
+    def flush():
+        if not run: return
+        allf = all(f for _, f in run)
+        c2 = cls + (' hlblock' if allf else '')
+        lis = []
+        for k, (h, f) in enumerate(run):
+            lc = '' if (allf or not f) else (' class="hlb hlb0"' if (k == 0 or not run[k - 1][1]) else ' class="hlb"')
+            lis.append(f'<li{lc}>{h}</li>')
+        out.append(f'<{tag} class="{c2}">' + ''.join(lis) + f'</{tag}>'); run.clear()
+    for sg in segs:
+        if sg[0] == 'blk': flush(); out.append(sg[1])
+        else: run.append((sg[1], sg[2]))
+    flush()
+    return ''.join(out)
+def _lab_merge(top):
+    """라벨 목록: 라벨 없는 조각은 앞 라벨 항목에 ' / '로 합침"""
+    out = []
+    for p in top:
+        if out and not LBL.match(p) and LBL.match(out[-1]): out[-1] = out[-1] + ' / ' + p
+        else: out.append(p)
+    return out
 def render_block(v, ctx, depth=0):
     """본문 블록(🔑·⭐·💬·항목 공통): 앞머리 라벨 + 번호 목록/조각 목록"""
     e = split_enum(v)
     if e:
         lead, items, circ = e
         head = f'<div class="klead">{inline(lead, ctx)}</div>' if lead else ''
-        return head + '<ol class="circ">' + ''.join(f'<li>{render_block(x, ctx, depth+1) if (depth == 0 and len(x) > 150) else inline(x, ctx)}</li>' for x in items) + '</ol>'
+        return head + _list_html(items, ctx, depth, 'ol', 'circ')
     top = split_top(v)
-    if len(top) >= 2 and sum(1 for p in top if re.match(r'^[^:：/]{1,34}[:：]\s', p)) >= 2:
+    if len(top) >= 2 and sum(1 for p in top if LBL.match(p)) >= 2:
         def lab(p):
-            m = re.match(r'^([^:：/]{1,34})[:：]\s+(.*)$', p)
+            m = LBL.match(p)
             if not m: return inline(p, ctx)
             lb, rest = m.group(1), m.group(2)
             if lb.count('==') % 2 == 1: lb = lb.replace('==', ''); rest = '==' + rest
             if lb.count('{r:') > lb.count('}'): lb = lb + '}'; rest = '{r:' + rest
             return f'<b class="lbl">{inline(lb, ctx)}</b> ' + inline(rest, ctx)
-        return '<ul class="klist lab">' + ''.join(f'<li>{lab(p)}</li>' for p in _rebalance(top)) + '</ul>'
+        parts = _lab_merge(_rebalance(top))
+        return _list_html(parts, ctx, depth, 'ul', 'kflow lab' if _is_flow(parts) else 'klist lab', fmt=lab)
     if len(v) > 90:
         sp = split_lead(v)
-        if sp and depth == 0:
+        if sp and depth <= 1:
             lead, rest = sp; inner = segments(rest)
             if not inner:
                 pr = split_top(rest)
                 if len(pr) >= 4 and min(len(p) for p in pr) >= 4: inner = pr
             if inner:
-                return f'<div class="klead">{inline(lead, ctx)}</div>' + _seg_html(inner, ctx, depth)
+                return f'<div class="klead">{inline(lead, ctx)}</div>' + _seg_html(inner, ctx, depth, rest)
     parts = segments(v)
-    if parts: return _seg_html(parts, ctx, depth)
+    if parts: return _seg_html(parts, ctx, depth, v)
     return inline(v, ctx)
-def _seg_html(parts, ctx, depth):
+def _seg_html(parts, ctx, depth, raw=None):
     parts = _rebalance(parts)
     if parts[0] == '→':
         return '<ol class="steps">' + ''.join(f'<li>{inline(p, ctx)}</li>' for p in parts[1:]) + '</ol>'
-    return '<ul class="klist">' + ''.join(f'<li>{render_block(p, ctx, depth+1) if (depth == 0 and len(p) > 150) else inline(p, ctx)}</li>' for p in parts) + '</ul>'
+    if depth >= 1 and raw is not None and _is_flow(parts): return inline(raw, ctx)   # 안쪽 짧은 나열은 원문 줄 그대로(li 안에 목록만 들지 않게)
+    return _list_html(parts, ctx, depth)
+def key_split(v):
+    """🔑 핵심이 길면(최상위 항목 4개 초과 또는 180자 초과) 첫 조각만 상자에 두고 나머지는 상자 밖 본문으로 — (상자 원문, [나머지 원문…]) | None"""
+    e = split_enum(v); pieces = None
+    if e:
+        lead, items, _c = e
+        if len(items) >= 2: pieces = [((lead + ' ') if lead else '') + items[0]] + items[1:]
+    else:
+        top = split_top(v)
+        if len(top) >= 2 and sum(1 for p in top if LBL.match(p)) >= 2: pieces = _lab_merge(_rebalance(top))
+        elif len(v) > 90 and split_lead(v):
+            lead, rest = split_lead(v); inner = segments(rest)
+            if not inner:
+                pr = split_top(rest)
+                if len(pr) >= 4 and min(len(p) for p in pr) >= 4: inner = pr
+            if inner and inner[0] != '→':
+                inner = _rebalance(inner); pieces = [lead + ': ' + inner[0]] + inner[1:]
+        if pieces is None:
+            ps = segments(v)
+            if ps and ps[0] != '→': pieces = _rebalance(ps)
+    if not pieces or len(pieces) < 2: return None
+    if not (len(pieces) > 4 or len(v) > 180): return None
+    return pieces[0], pieces[1:]
+def render_key_rest(pieces, ctx):
+    """상자 밖으로 내린 🔑 조각: '라벨: 내용'은 소제목(h4.sh) + 항목, 나머지는 항목"""
+    out = []
+    for p in pieces:
+        m = LBL.match(p)
+        if m and not re.search(r'[(\[“"]', m.group(1)) and m.group(1).count('==') % 2 == 0 and m.group(1).count('{r:') == m.group(1).count('}'):
+            out.append(f'<h4 class="sh">{inline(m.group(1), ctx)}</h4>' + render_item(m.group(2), ctx))
+        else: out.append(render_item(p, ctx))
+    return ''.join(out)
 def render_key(v, ctx): return f'<div class="kb">{render_block(v, ctx)}</div>'
 def render_item(v, ctx):
     body = render_block(v, ctx) if len(v) > 110 else inline(v, ctx)
