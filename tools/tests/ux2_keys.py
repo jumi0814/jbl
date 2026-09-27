@@ -121,6 +121,53 @@ async def a04(pg, tag, vp):
     vis = await pg.evaluate("getComputedStyle(document.querySelector('#sideopen')).display")
     ok(await pg.evaluate("document.body.classList.contains('sidefold')") and vis == 'flex', f'사이드바 ‹ → 접힘 · 탭 줄 없는 화면은 왼쪽 가장자리 › ({vis})')
     await pg.click('#sideopen'); await pg.evaluate("['sidefold','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+async def a05(pg, tag, vp):
+    """A05 가리기 보기(Q — 저장 안 함)·N·Shift+N·카드 머리 칩·⚡ 창 첫 선택지·강의 전체 200ms"""
+    await open_(pg, '#/OMS1/EXT/learn'); await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1');sessionStorage.clear();['qzscope','qzfix','focus','sidefold'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+    await open_(pg, '#/OMS1/EXT/learn')
+    ANN = "(localStorage.getItem('jblhub.v1.ann.OMS1')||'').length"
+    a0 = await pg.evaluate(ANN)
+    # 빨간 핵심어가 4개 이상인 카드 머리를 탭 아래로(지금 카드)
+    j = await pg.evaluate("(()=>{const c=[...document.querySelectorAll('#stage .tc')].find(c=>c.querySelectorAll('.tbody .k').length>=5);c.scrollIntoView({block:'start'});scrollBy(0,-130);return c.id})()")
+    await pg.wait_for_timeout(1100)
+    await pg.keyboard.press('q'); await pg.wait_for_timeout(200)
+    r = await pg.evaluate(f"(()=>{{const c=document.querySelector('#{j}');const ks=[...c.querySelectorAll('.k.qzk')];return {{n:ks.length,col:ks.length?getComputedStyle(ks[0]).color:'',other:document.querySelectorAll('#stage .k.qzk').length}}}})()")
+    ok(r['n'] >= 4 and r['col'] == 'rgba(0, 0, 0, 0)' and r['other'] == r['n'] and await pg.evaluate(ANN) == a0, f'Q → 지금 카드({j}) 빨간 핵심어만 가림 · ann 변화 0 {r}')
+    await pg.screenshot(path=J.TMP + f'/ux2_keys_quiz_{tag}.png')
+    await pg.evaluate(f"document.querySelector('#{j} .k.qzk').click()")
+    sh = await pg.evaluate(f"[...document.querySelectorAll('#{j} .k.qzk')].map(k=>k.classList.contains('show'))")
+    ok(sh[0] and not any(sh[1:]), f'한 칸 누르면 그 칸만 {sh[:5]}')
+    chip = await pg.evaluate(f"document.querySelector('#{j} .thead .qzchip')?.textContent")
+    ok(chip == f'▣ 1/{len(sh)} 열림', f'카드 머리 칩 {chip}')
+    y0 = await pg.evaluate('scrollY')
+    for _ in range(3): await pg.keyboard.press('n'); await pg.wait_for_timeout(120)
+    n3 = await pg.evaluate(f"document.querySelectorAll('#{j} .k.qzk.show').length"); y1 = await pg.evaluate('scrollY')
+    ok(n3 == 4 and y1 != y0, f'N 세 번 → 3개 더 열림({n3}) · 스크롤 이동 {y0}→{y1}')
+    await pg.keyboard.press('Shift+N'); await pg.wait_for_timeout(100)
+    ok(await pg.evaluate(f"document.querySelectorAll('#{j} .k.qzk.show').length") == 0, 'Shift+N → 다시 가림')
+    await pg.evaluate(f"document.querySelector('#{j} .thead .qzchip').click()")
+    ok(await pg.evaluate(f"[...document.querySelectorAll('#{j} .k.qzk')].every(k=>k.classList.contains('show'))"), '카드 머리 칩 → 이 카드 전체 열기')
+    # 탭을 옮겼다 와도 연 칸 유지
+    await pg.click('#dtabs button[data-t="sum"]'); await pg.wait_for_timeout(500); await pg.click('#dtabs button[data-t="learn"]'); await pg.wait_for_timeout(1200)
+    ok(await pg.evaluate(f"document.querySelectorAll('#{j} .k.qzk.show').length") == r['n'], '탭을 옮겼다 와도 가리기·연 칸 유지(sessionStorage)')
+    await pg.keyboard.press('q')
+    # 강의 전체 — 200ms 이하·쓰기 없음
+    await pg.click('#k-auto'); v = await pg.evaluate("document.querySelector('input[name=am]:checked').value")
+    await pg.select_option('#qzsc', 'all')
+    t = await pg.evaluate("(()=>{const t0=performance.now();document.querySelector('#ago').click();return performance.now()-t0})()")
+    na = await pg.evaluate("[document.querySelectorAll('#stage .k.qzk').length,document.querySelectorAll('#stage .k').length]")
+    ok(v == 'quiz' and t <= 200 and na[0] > 20 and await pg.evaluate(ANN) == a0, f'⚡ 첫 선택지 = 가리기(기본) · 강의 전체 {na} {t:.0f}ms · ann 변화 0')
+    await pg.screenshot(path=J.TMP + f'/ux2_keys_quizall_{tag}.png')
+    await pg.reload(); await pg.wait_for_timeout(1500)
+    ok(not await pg.evaluate("document.querySelector('#stage').classList.contains('quiz')") and await pg.evaluate(ANN) == a0, '새로고침 → 가리기 보기 꺼짐 · ann 변화 0')
+    # 저장형 빈칸: 연 상태 세션 유지
+    await pg.evaluate("""()=>{const B=document.querySelector('#stage .tc');const T=__h.Kit.textOf(B);const ws=[...new Set((T.match(/[A-Za-z가-힣]{4,}/g)||[]))].filter(w=>T.split(w).length===2).slice(0,2);
+      localStorage.setItem('jblhub.v1.ann.OMS1',JSON.stringify({[B.dataset.aid]:ws.map(x=>({t:'b',x,i:0}))}));}""")
+    await pg.reload(); await pg.wait_for_timeout(1500)
+    await pg.evaluate("document.querySelector('#stage .tc [data-rk=b]').click()")
+    await pg.click('#dtabs button[data-t="jb"]'); await pg.wait_for_timeout(500); await pg.click('#dtabs button[data-t="learn"]'); await pg.wait_for_timeout(1200)
+    ok(await pg.evaluate("document.querySelector('#stage .tc [data-rk=b]').classList.contains('show')") and await pg.evaluate("document.querySelector('#stage .tc .qzchip')?.textContent") == '▣ 1/2 열림', '연 저장형 빈칸도 탭을 옮겼다 와도 열림 · 칩 1/2')
+    await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1')")
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
@@ -128,6 +175,7 @@ async def run(b, vp, touch, tag):
     await a02(pg, tag)
     await a03(pg, tag, vp)
     await a04(pg, tag, vp)
+    await a05(pg, tag, vp)
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 async def main():

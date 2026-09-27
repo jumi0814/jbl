@@ -514,6 +514,13 @@ body.focus.jbone #jbbar,body.focus.jbone #kit,body.focus.jbone #kitshow{display:
  #dtabs .sideopen{border:1px solid var(--line)!important;background:#fff!important;color:var(--acc)!important;padding:0!important;font-size:17px!important}
  body.sidefold:not(.focus) #dtabs .sideopen{display:inline-flex;flex:none;width:32px;min-height:32px;border-radius:9px;position:sticky;left:0;z-index:2;margin-right:4px}
  body.sidefold.notabs:not(.focus):not(.at-home) #sideopen{display:flex;position:fixed;left:0;top:calc(var(--toph) + 70px);z-index:25;width:20px;height:48px;border-left:0;border-radius:0 9px 9px 0;box-shadow:2px 2px 8px rgba(40,30,10,.12)}}
+/* A05 가리기 보기(Q — 저장 안 함): 범위 안의 빨간 핵심어(.k)를 CSS로만 가림 · 누르면 그 칸만 · 카드 머리 '▣ 3/12 열림' */
+#stage.quiz .k.qzk:not(.show){color:transparent!important;background:#E9DFC6;border-radius:4px;cursor:pointer;-webkit-box-decoration-break:clone;box-decoration-break:clone}#stage.quiz .k.qzk:not(.show) *{color:transparent!important}
+#stage.quiz .k.qzk.show{background:#FFF3C8;border-radius:4px;cursor:pointer}
+#stage.quiz.qzfix .k.qzk:not(.show){display:inline-block;width:3em;min-width:3em;height:1.25em;overflow:hidden;white-space:nowrap;vertical-align:-.2em}
+button.qzchip{cursor:pointer;font:inherit;font-size:12px!important;font-weight:700;background:#fff!important;border:1px dashed #8C857A!important;color:#4A453E!important;flex:none;align-self:center}button.qzchip.all{border-style:solid!important;color:var(--sub)!important}
+.thead>.qzchip{margin-top:6px}#lmini #lmqz.on{background:#443C33!important;color:#fff!important;border-color:#443C33!important}
+#autopop .qzopt{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 4px 22px;font-size:12.5px;color:#D8D0C0}#autopop .qzopt select{font:inherit;font-size:12.5px;border-radius:6px;padding:1px 4px;border:0}#autopop label.in{display:inline-flex;padding:0}#autopop .apt{color:#B9B2A2;margin-top:6px}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -522,7 +529,7 @@ body.focus.jbone #jbbar,body.focus.jbone #kit,body.focus.jbone #kitshow{display:
 <div id="kit" class="noann"><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)">↶</button><button id="k-redo" title="다시 실행">↷</button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기">👁</button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기">🧹</button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
 <button id="kitshow" class="noann">✎</button>
 <button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button><button id="fpill" class="noann" title="집중 모드 나가기 (V · Esc)">집중 · V로 나가기</button><button id="sideopen" class="noann" title="사이드바 펼치기 (\)">›</button>
-<div id="autopop" class="noann"><div class="small" style="color:#B9B2A2">자동 빈칸 — 지금 보이는 화면에 적용</div><label><input type="radio" name="am" value="red" checked> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button></div>
+<div id="autopop" class="noann"><div class="small apt" style="margin-top:0">가리기 보기 — 저장하지 않고 떠올리기 (Q)</div><label><input type="radio" name="am" value="quiz" checked> 빨간 핵심어 가리기</label><div class="qzopt">범위 <select id="qzsc" aria-label="가리기 범위"><option value="card">이 카드</option><option value="mem">⚡ 암기 줄만</option><option value="all">강의 전체</option></select><label class="in"><input type="checkbox" id="qzfixc"> 빈칸 길이 숨기기</label></div><div class="small apt">자동 빈칸 — 지금 보이는 화면에 저장</div><label><input type="radio" name="am" value="red"> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
 <div id="tpop" class="pop noann"></div><div id="rpop" class="pop noann"></div><div id="lpop" class="pop noann"></div>
@@ -531,6 +538,7 @@ body.focus.jbone #jbbar,body.focus.jbone #kit,body.focus.jbone #kitshow{display:
 <table><tbody>
 <tr><th>형광펜 H · 빈칸 B</th><td>켠 뒤 <b>누르면 어절 전체</b>, <b>누른 채 끌면</b> 끈 범위를 어절 단위로 넓혀 한 묶음. 손가락은 <b>0.3초 길게 누른 뒤</b> 끌기(그냥 끌면 스크롤), 애플펜슬은 바로 끌기. 칠한 곳을 다시 누르면 지움, 다른 색으로 누르면 색만 바뀜 · <b>Shift+H</b> = 형광펜 색 바꾸기(노랑→초록→분홍→파랑→주황) · A도 빈칸</td></tr>
 <tr><th>빈칸 열기</th><td>도구를 끈 상태에서 빈칸을 누르면 그 묶음이 열리고 다시 누르면 닫힘 · <b>E</b>(👁) 전부 열기/가리기 · <b>N</b> 화면 위쪽부터 하나씩 열기 · <b>Shift+N</b> 이 카드 다시 가리기 · ⚡ 자동 빈칸(빨간 핵심어·표)</td></tr>
+<tr><th>가리기 보기 Q</th><td><b>저장하지 않는</b> 떠올리기 — <b>Q</b>(또는 탭 줄의 ‘가리기’, ⚡ 창의 첫 선택지)로 빨간 핵심어를 가림 · 범위 = 이 카드(기본)·⚡ 암기 줄만·강의 전체(⚡ 창에서 고름, ‘빈칸 길이 숨기기’도) · 누르면 그 칸만 열림 · <b>N</b> 하나씩 · <b>Shift+N</b> 다시 가리기 · <b>E</b> 전부 · 카드 머리 ‘▣ 3/12 열림’을 누르면 이 카드 전체 · 연 칸은 탭을 옮겨도 유지, 새로고침하면 꺼짐 · J/K나 ✓로 다음 카드로 가면 그 카드를 가림</td></tr>
 <tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 🧹 지금 화면의 표시 지우기</td></tr>
 <tr><th>그림</th><td>그림을 누르면 크게 · 크게 본 그림을 누르면 그 자리 확대/맞추기 · 확대 중엔 끌어서 이동 · Ctrl/⌘+휠 확대 · 바깥을 누르거나 Esc로 닫기 · ←/→(스와이프)로 넘기기 · 아래로 쓸면 닫기</td></tr>
 <tr><th>공부 시간</th><td>시계를 누르면 오늘 과목·강의별 시간과 최근 7일 · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고 8분 무활동·다른 창이면 멈춤 · [쉬기]로 수동 정지</td></tr>
@@ -704,7 +712,7 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  $('#hero').classList.toggle('home',d==='_home');$('#hero').classList.toggle('cmp',d!=='_home');document.title=(L?L.title+' · ':'')+p.title+' — JBL';
  const lm=L&&t==='learn'&&(L.cards||[]).length;
  $('#dtabs').innerHTML=tabs.length>1?'<button class="sideopen" title="사이드바 펼치기 (\\)">›</button>'+tabs.map((x,i)=>`<button data-t="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}<span class="kbd">${i+1}</span></button>`).join('')+'<span class="dtname">'+(L?L.title:'')+'</span>'
-  +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)">카드 <b id="lmn">–</b>/${L.cards.length} ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button><button id="dfocus" class="dfoc" title="집중 모드 (V)">⤢</button></span>`:'<span class="lmini2"><button id="dfocus2" class="dfoc" title="집중 모드 (V)">⤢</button></span>'):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);sideApply();hstat();measure();
+  +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)">카드 <b id="lmn">–</b>/${L.cards.length} ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmqz" title="가리기 보기 (Q) — 빨간 핵심어를 가리고 떠올리기 · 저장 안 함">가리기</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button><button id="dfocus" class="dfoc" title="집중 모드 (V)">⤢</button></span>`:'<span class="lmini2"><button id="dfocus2" class="dfoc" title="집중 모드 (V)">⤢</button></span>'):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);sideApply();hstat();measure();
  if(!(same&&tgt))mount(p,d,t);   /* 같은 화면 안의 카드로 가는 것이면 다시 그리지 않음 */
  const st={s,d,t};if(aid)st.aid=aid;if(newRet)st.ret=RET.id;histSet(st,'#/'+s+'/'+d+'/'+t,push);retPill();fpill();
  /* 위치: 목표 카드 → 뒤로가기·이어서 보기의 위치 → JB 풀이 상태 → 탭별 읽던 위치 → 맨 위 */
@@ -782,7 +790,8 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  st.innerHTML=h;
  paintMarks(st);
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
- if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();}
+ if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();
+ if(QZ.on&&QZ.doc!==CUR.s+'/'+d)QZ.on=false;if(QZ.on&&QZ.scope==='card')QZ.card=QZ.cardAid?findAid(QZ.cardAid):null;qzApply();rbRestore();coverChips();}
 /* 과목 홈 교수별 세부(연도별 칸)는 접어 둠 — 펼치면 그 상태를 기억(LS homeTrendOpen.<S>). 처음부터 펼치면 강의 카드가 1200px 아래로 밀려 기본은 접힘 */
 function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='homeTrendOpen.'+p.id;dt.open=!!LS.get(k,false);dt.addEventListener('toggle',()=>LS.set(k,dt.open));}
 /* 채점·이해함 표시를 지금 화면에 다시 칠함(다른 창에서 바뀌었을 때도) */
@@ -823,14 +832,14 @@ function setLCur(j){LCUR=j;const n=$('#lmn');if(n)n.textContent=j>=0?j+1:'–';f
 /* 카드 j로: 학습 탭이면 드러내고(그룹 필터·압축 해제) 탭 아래로, 다른 탭이면 학습 탭을 열어서 */
 function goCard(j){const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L)return;const id='t-'+L.k+'-'+j;navOpen(false);$('#lpop').classList.remove('on');
  if(CUR.t!=='learn'){openDoc(CUR.s,CUR.d,'learn',null,{id});return;}const el=document.getElementById(id);if(!el)return;LHOLD=Date.now()+900;setLCur(j);
- if(el.classList.contains('hid'))revealCard(el);else{el.classList.add('open');settle(()=>goEl(el));}}
+ if(el.classList.contains('hid'))revealCard(el);else{el.classList.add('open');settle(()=>goEl(el));}qzFollow(el);}
 function lpopOpen(){const p=$('#lpop');if(p.classList.contains('on')){p.classList.remove('on');return;}const P=PACKS[CUR.s],L=P.lect.find(x=>x.k===CUR.d);if(!L)return;const DN=mkObj(LS.get('done.'+P.id,{}));const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
  p.innerHTML=`<div class="bt">${E(L.title)} <span class="small">카드 ${L.cards.length} · J/K 다음/이전</span></div><div class="lpl">`+L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="lpi${j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}"><b>${c[1]}</b><span>${E(c[2])}</span>${al.some(a=>DN[a])?'<em>✓</em>':''}${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')+'</div>';
  const m=$('#lmini').getBoundingClientRect();p.style.top=(m.bottom+6)+'px';p.classList.add('on');const on=p.querySelector('.lpi.on');if(on)on.scrollIntoView({block:'center'});}
 $('#lpop').addEventListener('click',e=>{const b=e.target.closest('[data-lj]');if(b)goCard(+b.dataset.lj);});
 /* 압축 보기 — LS 'cond'에 저장(강의를 옮겨도 유지) · 숨은 카드로 갈 때 잠시 끄는 것(save===false)은 저장 안 함 */
 function condSet(on,save){const st=$('#stage');st.classList.toggle('cond',on);if(save!==false)LS.set('cond',!!on);['#lcond','#lmcond'].forEach(x=>{const e=$(x);if(e)e.classList.toggle('on',on);});}
-function lminiClick(b){if(b.id==='lmcur'){lpopOpen();return;}if(b.id==='lmcond'){condSet(!$('#stage').classList.contains('cond'));return;}if(b.id==='lmup'){const f=$('#stage .frame');if(f)settle(()=>goEl(f));else window.scrollTo(0,0);}}
+function lminiClick(b){if(b.id==='lmcur'){lpopOpen();return;}if(b.id==='lmqz'){quizToggle();return;}if(b.id==='lmcond'){condSet(!$('#stage').classList.contains('cond'));return;}if(b.id==='lmup'){const f=$('#stage .frame');if(f)settle(()=>goEl(f));else window.scrollTo(0,0);}}
 function lnav(d){const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null);if(!cs.length)return;let i=cs.findIndex(c=>+c.id.split('-').pop()===LCUR);
  if(i<0){const line=topOff();i=cs.findIndex(c=>c.getBoundingClientRect().bottom>line);i=d>0?(i<0?cs.length-1:(cs[i].getBoundingClientRect().top>line+4?i:i+1)):(i<=0?0:i-1);}else i=Math.max(0,Math.min(cs.length-1,i+d));
  goCard(+cs[i].id.split('-').pop());}
@@ -982,7 +991,7 @@ function go(id,o){o=Object.assign({qid:id},o||{});const p=PACKS[CUR.s];const L=p
 /* 강의별 접힌 카드 LS 'fold.<S>.<강의>' = [aid…] — 사용자가 접고 편 것만 저장(이동으로 펼친 것은 저장 안 함) */
 function foldSave(){if(VIEW!=='doc'||CUR.t!=='learn'||!$('#stage .tc'))return;LS.set('fold.'+CUR.s+'.'+CUR.d,$$('#stage .tc:not(.open)').map(c=>c.dataset.aid));}
 function foldRestore(){const f=new Set(LS.get('fold.'+CUR.s+'.'+CUR.d,[])||[]);if(!f.size)return;$$('#stage .tc').forEach(c=>{if(f.has(c.dataset.aid))c.classList.remove('open');});}
-$('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e.target.closest('.res');if(rs){resClick(rs);return;}
+$('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const qk=!Kit.mode()&&e.target.closest&&e.target.closest('#stage.quiz .k.qzk');if(qk){const on=!qk.classList.contains('show');qk.classList.toggle('show',on);if(on)LASTOPEN=qk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return;}const rs=e.target.closest('.res');if(rs){resClick(rs);return;}
  /* 📖 정리본 절 펼침 선호(lkopen) — 사용자가 머리를 눌렀을 때만 저장 · 머리 안의 '카드로 이동' 버튼은 펼치지 않음 */
  const sm=e.target.closest('details.ab.lk>summary');if(sm){if(e.target.closest('button'))e.preventDefault();else{const dt=sm.parentElement;setTimeout(()=>{LS.set('lkopen',dt.open);},0);}}const t=e.target.closest('button,[data-ttog],[data-fsrc],figure[data-fig],#fcard');if(!t)return;const d=t.dataset;
  /* 다른 화면으로 뛰는 칩이면 출발점을 기억(↩ 알약) — openDoc이 쓰고 비움 */
@@ -991,7 +1000,8 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.lostdrop){marksDrop(d.lostdrop,+d.mki);return;}if(d.memoopen){openDoc(CUR.s,d.memoopen);$('#memo').classList.add('on');return;}
  if(d.done){if(STALE){toast('새로고침 후에 표시할 수 있어요 (새 버전)');return;}const c=t.closest('.tc');c.classList.toggle('done');const DN=mkObj(LS.get('done.'+CUR.s,{}));if(c.classList.contains('done'))DN[c.dataset.aid]=1;else delete DN[c.dataset.aid];LS.set('done.'+CUR.s,DN);const ob=$('#stage .ol[data-scroll="'+c.id+'"]');if(ob)ob.classList.toggle('done',c.classList.contains('done'));sideRender();hstat();{const np=$('#nextp'),P_=PACKS[CUR.s],L_=P_.lect.find(x=>x.k===CUR.d);if(np&&L_)np.outerHTML=nextHTML(P_,L_);}
   /* 읽은 카드 자동 접기(LS autofold, 기본 켬): 접고 다음 카드 머리를 탭 아래로 */
-  if(c.classList.contains('done')&&LS.get('autofold',true)){c.classList.remove('open');foldSave();const cs=$$('#stage .tc').filter(x=>x.offsetParent!==null);const nx=cs[cs.indexOf(c)+1];const tg=nx||c;LHOLD=Date.now()+900;window.scrollTo({top:Math.max(0,tg.getBoundingClientRect().top+scrollY-topOff()),behavior:'smooth'});if(nx)setLCur(+nx.id.split('-').pop());}return;}
+  if(c.classList.contains('done')&&LS.get('autofold',true)){c.classList.remove('open');foldSave();const cs=$$('#stage .tc').filter(x=>x.offsetParent!==null);const nx=cs[cs.indexOf(c)+1];const tg=nx||c;LHOLD=Date.now()+900;window.scrollTo({top:Math.max(0,tg.getBoundingClientRect().top+scrollY-topOff()),behavior:'smooth'});if(nx){setLCur(+nx.id.split('-').pop());qzFollow(nx);}}return;}
+ if(d.qzc){const c=t.closest('.tc,.qc,.pc');const L=[...$$('[data-rk="b"]',c),...$$('.k.qzk',c)];const all=L.every(x=>x.classList.contains('show'));L.forEach(x=>x.classList.toggle('show',!all));coverSaved();return;}
  if(d.exmore){const sec=t.closest('.jbans');const on=!sec.classList.contains('full');sec.classList.toggle('full',on);t.textContent=on?'해설 접기 ▴':'해설 전체 보기 ▾';if(!on){const c=t.closest('.qc');if(c&&c.getBoundingClientRect().top<topOff())goEl(sec);}return;}
  if(d.lkmore){const kb=t.parentElement;if(kb)kb.classList.remove('cut');t.remove();return;}
  if(t.id==='ffocus'){const on=!LS.get('jbfocus',false);LS.set('jbfocus',on);t.classList.toggle('on',on);$('#stage').classList.toggle('focus',on);return;}
@@ -1057,7 +1067,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(!todo.length)return;autoBak(true,'파랑 색 키 이관');todo.forEach(([k,a])=>{try{localStorage.setItem(k,JSON.stringify(a));}catch(e){}});}
  function lostN(){let n=0;for(const k in ANN)(ANN[k]||[]).forEach(o=>{if(o&&o.lost)n++;});return n;}
  function updLost(){const b=$('#k-lost');if(!b)return;const n=S?lostN():0;b.hidden=!n;b.querySelector('b').textContent=n;}
- function persist(){if(!S)return;LS.set('ann.'+S,ANN);LS.set('annAt.'+S,Date.now());updLost();}
+ function persist(){if(!S)return;LS.set('ann.'+S,ANN);LS.set('annAt.'+S,Date.now());updLost();coverChips();}
  function blockOf(n){let p=n.nodeType===1?n:n.parentElement;while(p&&!/^(P|LI|TD|TH|DIV|SECTION|ARTICLE|H1|H2|H3|H4|H5|TR|UL|OL|TABLE|FIGCAPTION|SUMMARY|DETAILS)$/.test(p.nodeName))p=p.parentElement;return p;}
  function index(B){const w=document.createTreeWalker(B,NodeFilter.SHOW_TEXT,null);let s='',map=[],bs={},prev=null,n;
   while(n=w.nextNode()){if(!n.nodeValue)continue;const p=n.parentElement;if(!p||p.closest(SKIP))continue;const ab=p.closest('[data-aid]');if(ab&&ab!==B)continue;   /* 안쪽 표시 단위(카드 머리 .tt 등)는 그 단위 것 */const bl=blockOf(n);if(bl!==prev){bs[s.length]=1;prev=bl;}map.push({n,start:s.length,len:n.nodeValue.length});s+=n.nodeValue;}return{s,map,bs};}
@@ -1133,13 +1143,13 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
     if(r){wrap(B,r[0],r[1],a.t,a.c||'y','r'+(++GID));if(a.lost){delete a.lost;ch=true;}
      if(a.v!==hv){const x=TX.slice(r[0],r[1]);let i=0,q=-1;while((q=TX.indexOf(x,q+1))>=0&&q<r[0])i++;a.x=x;a.i=i;a.p=TX.slice(Math.max(0,r[0]-CTX),r[0]);a.s=TX.slice(r[1],r[1]+CTX);a.v=hv;delete a.lx;ch=true;}}   /* 찾은 자리로 다시 닻 내림 — 다음부터는 i 그대로 */
     else{if(!a.lost){a.lost=1;ch=true;}B._lost.push(a);}});});if(ch)persist();else updLost();}
- function redraw(){const st=$('#stage');$$('[data-rk],[data-pre]',st).forEach(unwrap);restore(st);}
+ function redraw(){const st=$('#stage');$$('[data-rk],[data-pre]',st).forEach(unwrap);restore(st);rbRestore();coverChips();}
  function push(){U.push(JSON.stringify(ANN));if(U.length>80)U.shift();R=[];upd();}
  function commit(B){const l=snap(B).concat((B._lost||[]).map(o=>Object.assign({},o,{lost:1})));if(l.length)ANN[B.dataset.aid]=l;else delete ANN[B.dataset.aid];persist();}
  function upd(){const u=$('#k-undo'),r=$('#k-redo');if(u)u.disabled=!U.length;if(r)r.disabled=!R.length;}
  function undo(){if(!U.length)return toast('되돌릴 표시가 없어요');R.push(JSON.stringify(ANN));ANN=JSON.parse(U.pop());persist();redraw();upd();}
  function redo(){if(!R.length)return;U.push(JSON.stringify(ANN));ANN=JSON.parse(R.pop());persist();redraw();upd();}
- function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');
+ function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');coverChips();
   if(mode)toast(mode==='h'?'형광펜 — 누르면 어절, 누른 채 끌면 범위 (손가락은 길게 누른 뒤 끌기)':'빈칸 — 누르면 어절, 끌면 한 묶음 빈칸');}
  function clearOverlap(B,a,b){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
   gs.forEach(g=>{(typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g]).forEach(unwrap);});}
@@ -1165,7 +1175,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(!d.moved&&Date.now()-d.t0<400){e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);}},{passive:false});
  document.addEventListener('touchcancel',()=>{if(drag&&drag.touch){clearTimeout(drag.tm);clearPre(drag.B);drag=null;}});
  function handleClick(e){const rk=e.target.closest&&e.target.closest('[data-rk="b"]');
-  if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));return true;}
+  if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));if(on)LASTOPEN=rk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return true;}
   if(!mode)return false;return !!targetOK(e.target);}
  function auto(kind,one){const st=$('#stage');let sel=kind==='red'?'.k':kind==='term'?'tbody th':'tbody td';const els=$$(sel,st).filter(el=>el.offsetParent!==null||el.closest('.tbody,.ans'));if(!els.length){toast('이 화면에는 해당하는 대상이 없습니다');return;}
   push();const seen=new Set(),touched=new Set();let n=0;els.forEach(el=>{const B=el.closest('[data-aid]');if(!B||el.closest('[data-rk]')||el.closest(SKIP))return;if(one){const row=el.closest('li,tr,p')||B;if(seen.has(row))return;seen.add(row);}
@@ -1181,7 +1191,9 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  document.addEventListener('click',e=>{if(!e.target.closest('#k-sw'))$('#k-sw').classList.remove('open');},true);
  $('#k-h').onclick=()=>setMode('h');$('#k-b').onclick=()=>setMode('b');$('#k-undo').onclick=undo;$('#k-redo').onclick=redo;$('#k-clear').onclick=clearView;
  $('#k-eye').onclick=()=>revealAll();
- $('#k-auto').onclick=()=>$('#autopop').classList.toggle('on');$('#ago').onclick=()=>{auto($('input[name=am]:checked').value,$('#aone').checked);$('#autopop').classList.remove('on');};
+ $('#k-auto').onclick=()=>{const on=$('#autopop').classList.toggle('on');if(on){$('#qzsc').value=LS.get('qzscope','card');$('#qzfixc').checked=!!LS.get('qzfix',false);}};
+ $('#qzsc').onchange=e=>LS.set('qzscope',e.target.value);$('#qzfixc').onchange=e=>{LS.set('qzfix',e.target.checked);if(QZ.on)qzApply();};
+ $('#ago').onclick=()=>{const v=$('input[name=am]:checked').value;$('#autopop').classList.remove('on');if(v==='quiz'){quizOn($('#qzsc').value);return;}auto(v,$('#aone').checked);};
  const hide=()=>{const B=document.body.classList;if(B.contains('focus')&&!B.contains('at-home')&&!B.contains('kit-off')){B.toggle('kitopen');measure();return;}B.toggle('kit-off');LS.set('kitoff',B.contains('kit-off'));measure();};$('#k-hide').onclick=hide;$('#kitshow').onclick=hide;
  const memo=()=>{$('#memo').classList.toggle('on');if($('#memo').classList.contains('on'))setTimeout(()=>$('#memota').focus(),50);};$('#k-memo').onclick=memo;$('#memox').onclick=memo;let mt;
  /* 메모 — 쓰기 직전에 다시 읽고, 입력하는 사이 다른 창이 바꿨으면 구분선을 넣어 합침 */
@@ -1222,7 +1234,7 @@ document.addEventListener('keydown',e=>{const tg=e.target;if(isTextField(tg))ret
  if($('#fc')){if(isSpace){e.preventDefault();Flash.flip();return;}if(e.key==='ArrowLeft'){e.preventDefault();Flash.move(-1);return;}if(e.key==='ArrowRight'){e.preventDefault();Flash.move(1);return;}if(K==='o'||K==='x'){Flash.judge(K);return;}}
  /* 모든 화면 같은 키 표(A02): H 형광펜(Shift+H 색 순환) · B 빈칸(A 별칭) · E 전체 보기 · N 다음 가린 칸 열기(Shift+N 이 카드 다시 가리기) · T 도구 막대 숨기기 · M 메모 · / 검색 · G 과목 홈 · 1~6 탭 · J/K·D·F·C(학습 탭) */
  if(K==='h'){if(e.shiftKey)Kit.cycleColor();else Kit.setMode('h');return;}if(K==='b'||K==='a'){Kit.setMode('b');return;}
- if(K==='e'){revealAll();return;}if(K==='n'){if(e.shiftKey)rehideCard();else openNext();return;}
+ if(K==='e'){revealAll();return;}if(K==='q'&&VIEW==='doc'){quizToggle();return;}if(K==='n'){if(e.shiftKey)rehideCard();else openNext();return;}
  if(K==='\\'){sideToggle();return;}if(K==='t'||(K==='v'&&e.shiftKey)){Kit.hide();return;}if(K==='v'){focusSet(!document.body.classList.contains('focus'));return;}if(K==='m'){Kit.memo();return;}
  if(e.key==='/'||(e.code==='Slash'&&!e.shiftKey)){e.preventDefault();const g=$('#gsearch');g.focus();g.select();return;}
  if(K==='g'&&VIEW==='doc'&&CUR.s){openDoc(CUR.s,'_home');return;}
@@ -1247,13 +1259,41 @@ function openNext(){const L=hiddenItems();if(!L.length){toast('가린 칸이 없
  openOne(best);const r=best.getBoundingClientRect();window.scrollTo(0,Math.max(0,scrollY+r.top+r.height/2-innerHeight/2));best.classList.add('mkflash');setTimeout(()=>best.classList.remove('mkflash'),1300);}
 function rehideCard(){const lo=LASTOPEN&&LASTOPEN.isConnected&&LASTOPEN.offsetParent!==null?LASTOPEN.getBoundingClientRect():null;const c=(lo&&lo.bottom>topOff()&&lo.top<innerHeight)?LASTOPEN:curCard();if(!c){toast('다시 가릴 카드가 없어요');return;}if(document.body.classList.contains('rk-reveal'))revealAll();$$('[data-rk="b"].show,.k.qzk.show',c).forEach(x=>x.classList.remove('show'));coverSaved();toast('이 카드를 다시 가렸어요');}
 function revealAll(){const on=!document.body.classList.contains('rk-reveal');document.body.classList.toggle('rk-reveal',on);$('#k-eye').classList.toggle('on',on);if(!on)Kit.hideAll();if(QZ.on)$$('#stage .k.qzk').forEach(k=>k.classList.toggle('show',on));coverSaved();}
-/* 가린 칸 여닫은 뒤(묶음 1 A05에서 세션 저장·카드 머리 칩) */
-function coverSaved(){}
-const QZ={on:false,scope:'card',card:null};
+/* ---------- 가리기 보기(A05 — Q·미니바 '가리기'·⚡ 창 첫 선택지). 저장하지 않음: ann에는 아무것도 쓰지 않고 CSS 클래스(.qzk·.show)만.
+   범위 = 이 카드(기본)·⚡ 암기 줄만·강의 전체(LS qzscope) · 빈칸 길이 숨기기(LS qzfix) · 연 칸은 sessionStorage qzopen.<S>.<문서/탭>(칸 순번),
+   연 저장형 빈칸(.rk-b)도 sessionStorage rbopen.<S>.<문서/탭>(카드 aid|묶음 순번) — 탭을 옮겼다 와도 그대로. 새로고침하면 가리기 보기는 꺼짐 ---------- */
+const QZ={on:false,scope:'card',card:null,cardAid:null,doc:''};
+const QZN={card:'이 카드',mem:'⚡ 암기 줄',all:'강의 전체'};
+function qzAllK(){return $$('#stage .k').filter(k=>!k.closest('button,.noann,.frame,.fcard'));}
+const qzKey=()=>'qzopen.'+CUR.s+'.'+CUR.d+'/'+CUR.t,rbKey=()=>'rbopen.'+CUR.s+'.'+CUR.d+'/'+CUR.t;
+function qzScopeEls(all){if(QZ.scope==='all')return all;if(QZ.scope==='mem')return all.filter(k=>k.closest('.c-mem'));const c=QZ.card;return c&&c.isConnected?all.filter(k=>c.contains(k)):[];}
+function qzApply(){const st=$('#stage');if(!st)return;const all=qzAllK();all.forEach(k=>k.classList.remove('qzk','show'));st.classList.toggle('quiz',QZ.on);st.classList.toggle('qzfix',QZ.on&&!!LS.get('qzfix',false));
+ if(QZ.on){const ins=new Set(qzScopeEls(all)),op=new Set(SS.get(qzKey(),[]));all.forEach((k,i)=>{if(ins.has(k)){k.classList.add('qzk');if(op.has(i))k.classList.add('show');}});}
+ const b=$('#lmqz');if(b)b.classList.toggle('on',QZ.on);coverChips();}
+function quizOn(scope){if(VIEW!=='doc')return;QZ.scope=scope||LS.get('qzscope','card');if(!QZN[QZ.scope])QZ.scope='card';QZ.card=QZ.scope==='card'?curCard():null;QZ.cardAid=QZ.card?QZ.card.dataset.aid:null;QZ.doc=CUR.s+'/'+CUR.d;QZ.on=true;qzApply();
+ const n=$$('#stage .k.qzk').length;if(!n){QZ.on=false;qzApply();toast(QZ.scope==='card'?'이 카드에는 가릴 빨간 핵심어가 없어요 — ⚡에서 범위를 넓혀 보세요':'가릴 빨간 핵심어가 없어요');return;}
+ toast('가리기 보기 — '+QZN[QZ.scope]+' 빨간 핵심어 '+n+'개 · 누르면 열림 · N 하나씩 · Q 끄기 (저장 안 함)',3000);}
+function quizOff(){QZ.on=false;qzApply();}
+function quizToggle(){if(QZ.on)quizOff();else quizOn();}
+/* '이 카드' 범위: J/K·목록·✓ 다음 카드로 옮기면 그 카드를 가림 */
+function qzFollow(el){if(!QZ.on||QZ.scope!=='card'||!el||QZ.card===el)return;QZ.card=el;QZ.cardAid=el.dataset.aid;qzApply();}
+function qzSave(){if(!QZ.on)return;const all=qzAllK(),op=new Set(SS.get(qzKey(),[]));all.forEach((k,i)=>{if(!k.classList.contains('qzk'))return;if(k.classList.contains('show'))op.add(i);else op.delete(i);});SS.set(qzKey(),[...op]);}
+function rbGroups(){const out=[];$$('#stage [data-aid]').forEach(B=>{if(B.classList.contains('res'))return;const seen={};let n=0;B.querySelectorAll('[data-rk="b"]').forEach(el=>{if(el.closest('[data-aid]')!==B)return;const g=el.getAttribute('data-g')||'';if(g&&seen[g])return;seen[g]=1;out.push([B.dataset.aid+'|'+(n++),g?[...B.querySelectorAll('[data-g="'+g+'"]')]:[el]]);});});return out;}
+function rbSave(){if(VIEW!=='doc')return;SS.set(rbKey(),rbGroups().filter(x=>x[1][0].classList.contains('show')).map(x=>x[0]));}
+function rbRestore(){if(VIEW!=='doc')return;const op=new Set(SS.get(rbKey(),[]));if(!op.size)return;rbGroups().forEach(([k,els])=>{if(op.has(k))els.forEach(e=>e.classList.add('show'));});}
+/* 카드 머리 '▣ 3/12 열림' — 도구 모드가 꺼져 있고 가린 칸(저장형 빈칸 묶음 + 가린 핵심어)이 있을 때만. 누르면 이 카드 전체 열기/가리기 */
+function coverChips(){const st=$('#stage');if(!st||VIEW!=='doc')return;const on=!Kit.mode(),rv=document.body.classList.contains('rk-reveal');
+ $$('.tc,.qc,.pc',st).forEach(c=>{const head=c.querySelector(':scope>.thead,:scope>.qhead');if(!head)return;let ch=head.querySelector(':scope>.qzchip');let tot=0,op=0;const seen=new Set();
+  c.querySelectorAll('[data-rk="b"]').forEach(el=>{const B=el.closest('[data-aid]'),g=el.getAttribute('data-g');if(g){const k=(B?B.dataset.aid:'')+'|'+g;if(seen.has(k))return;seen.add(k);}tot++;if(rv||el.classList.contains('show'))op++;});
+  c.querySelectorAll('.k.qzk').forEach(k=>{tot++;if(k.classList.contains('show'))op++;});
+  if(!on||!tot){if(ch)ch.remove();return;}if(!ch){ch=document.createElement('button');ch.className='chip qzchip noann';ch.dataset.qzc='1';ch.title='이 카드의 가린 칸 모두 열기/가리기 (Shift+N 다시 가리기)';head.insertBefore(ch,head.querySelector(':scope>.dn'));}
+  ch.textContent='▣ '+op+'/'+tot+' 열림';ch.classList.toggle('all',op===tot);});}
+/* 가린 칸을 여닫은 뒤: 세션 저장 + 카드 머리 칩 */
+function coverSaved(){qzSave();rbSave();coverChips();}
 /* Esc = 한 단계씩: 도움말 → 서랍 → 팝업 → 도구 모드 */
 function escStep(){if($('#help').classList.contains('on')){helpToggle();return;}if(document.body.classList.contains('navopen')){navOpen(false);return;}
  const pops=$$('.pop.on,#autopop.on,#k-sw.open,details.pmore[open]');if(pops.length){pops.forEach(p=>{if(p.tagName==='DETAILS')p.open=false;else p.classList.remove('on','open');});return;}
- if(Kit.mode()){Kit.off();return;}
+ if(Kit.mode()){Kit.off();return;}if(QZ.on){quizOff();toast('가리기 보기를 껐어요');return;}
  if(document.body.classList.contains('focus')&&VIEW==='doc'){focusSet(false);return;}}
 /* ---------- 집중 모드(A03) — V · ⤢ · 알약. LS 'focus'(새로고침·강의 이동 뒤에도) ---------- */
 let NOBAR=0,SY=0,TOPM=0;

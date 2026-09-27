@@ -57,7 +57,7 @@ with sync_playwright() as p:
         pg.goto(URL); pg.wait_for_selector('.scard'); pg.click(f'.scard[data-s="{s}"]'); pg.wait_for_selector('#side .dbtn')
         docs = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d)'); nt = 0
         for d in docs:
-            pg.click(f'#side .dbtn[data-d="{d}"]'); pg.wait_for_timeout(80)
+            pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(80)
             for t in pg.eval_on_selector_all('#dtabs button[data-t]', 'es=>es.map(e=>e.dataset.t)'):
                 pg.click(f'#dtabs button[data-t="{t}"]'); pg.wait_for_timeout(40); nt += 1
                 lk_ = pg.evaluate(LEAK)
@@ -70,10 +70,10 @@ with sync_playwright() as p:
         # 강의 정리본 본문 그림(강의 이미지 청크에서 로딩)
         lk = [d for d in docs if not d.startswith('_')]
         for d in lk:
-            pg.click(f'#side .dbtn[data-d="{d}"]'); pg.wait_for_timeout(150)
+            pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(150)
             inl = pg.evaluate('(async()=>{const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
             ok(inl[0] == inl[1], f'{s}/{d}: 본문 그림 {inl[1]}/{inl[0]} 표시')
-        pg.click('#side .dbtn[data-d="_led"]'); pg.wait_for_timeout(200)
+        pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_led\"]').click()"); pg.wait_for_timeout(200)
         for ed in pg.evaluate('[...new Set([...document.querySelectorAll("#stage [data-jb]")].map(e=>e.dataset.jb.split("-")[0]))]'):
             pg.evaluate(f'document.querySelector("#stage [data-jb^=\'{ed}-\']").click()'); pg.wait_for_timeout(300)
             titles, good = set(), 0
@@ -84,7 +84,7 @@ with sync_playwright() as p:
             ok(good == len(titles) > 0, f'{s} JB {ed}판: 원본 쪽 {good}/{len(titles)} 표시'); pg.click('#mclose')
     # ---- 3. 도구 (첫 과목 첫 강의)
     s = built[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_selector('.scard'); pg.click(f'.scard[data-s="{s}"]'); pg.wait_for_selector('#side .dbtn')
-    d = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))')[0]; pg.click(f'#side .dbtn[data-d="{d}"]'); pg.wait_for_timeout(300)
+    d = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))')[0]; pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(300)
     PICK = '''(n=>{const lis=[...document.querySelectorAll('#stage [data-aid] li')].filter(l=>l.offsetParent&&!l.closest('details:not([open])')&&!l.querySelector('[data-rk]')&&/[A-Za-z가-힣]{3}/.test(l.textContent));const li=lis[n];li.scrollIntoView({block:'center'});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let x;while(x=w.nextNode()){const m=/[A-Za-z가-힣]{3,}/.exec(x.nodeValue);if(m&&!x.parentElement.closest('button,.chip,.noann,[data-rk]')){const r=document.createRange();r.setStart(x,m.index+1);r.setEnd(x,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2,m[0]];}}})'''
     cnt = lambda t: pg.eval_on_selector_all(f'#stage [data-rk={t}]', 'es=>es.length')
     pg.click('#k-h'); a = pg.evaluate(PICK + '(0)'); pg.mouse.click(a[0], a[1]); pg.wait_for_timeout(100); ok(cnt('h') == 1, f'형광펜 ("{a[2]}")')
@@ -93,7 +93,7 @@ with sync_playwright() as p:
     pg.reload(); pg.wait_for_selector('#stage [data-aid]'); pg.wait_for_timeout(500)
     ok(cnt('h') == 1 and cnt('b') == 1, '새로고침 후 형광펜·빈칸 복원')
     pg.evaluate('document.querySelector("#stage [data-rk=b]").click()'); ok(pg.evaluate('document.querySelector("#stage [data-rk=b]").classList.contains("show")'), '빈칸 누르면 열림')
-    pg.click('#k-auto'); pg.click('#ago'); pg.wait_for_timeout(200); n = pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length'); ok(n > 1, f'자동 빈칸 {n}개')
+    pg.click('#k-auto'); pg.check('input[value="red"]'); pg.click('#ago'); pg.wait_for_timeout(200); n = pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length'); ok(n > 1, f'자동 빈칸 {n}개')
     pg.click('#k-undo'); ok(pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length') == 1, '자동 빈칸 실행 취소')
     exp404 = {f'{x}.js' for x in ('OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH') if x not in built}
     ok(set(r404) <= exp404, f'404는 아직 없는 과목 팩뿐 {sorted(set(r404) - exp404)}')
