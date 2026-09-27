@@ -281,20 +281,67 @@ for i, p in enumerate(PRED):
     preds.append({'k': p['k'], 'html': f'<article class="pc" data-ptype="{"v" if "짤" in p["t"] else "n"}" data-aid="{aid("P:" + slug(p.get("q_raw") or p["q"]))}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>예상</b><i>{esc(p["t"])}</i></span><span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}</div><div class="pq">{p["q"]}</div><div class="acts"><button class="btn pri" data-tog="1">답 보기</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{lecparse.render_block(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'})
 
 # ---- 기출 한눈표
+CIRC_N = '①②③④⑤⑥⑦⑧⑨'
+WRONG_Q = re.compile(r'옳지\s*않은|틀린\s*것|잘못된|바르지\s*않은')
+ANS_NUM = re.compile(r'^\s*(?:\[답\]|답)\s*[:：)]?\s*((?:[1-9①-⑨]\s*(?:\)|번)?\s*(?:[,，·/]|및|와|과)?\s*)+)\.?\s*$')
+def pick_choices(q, core):
+    """한눈표: 답이 보기 번호뿐이면 문제 원문에서 그 번호의 보기 줄(글자 그대로)을 찾음 → (라벨, [줄…]) / 못 찾으면 (라벨, None) / 번호 답이 아니면 None"""
+    if not core: return None
+    m = ANS_NUM.match(core[0])
+    if not m: return None
+    nums = []
+    for x in re.findall(r'[1-9①-⑨]', m.group(1)):
+        n = CIRC_N.index(x) + 1 if x in CIRC_N else int(x)
+        if n not in nums: nums.append(n)
+    qt, _ = split_qa(q); L = reflow.reflow(qt)
+    stem, rest = (L[0] if L else ''), L[1:]
+    lab = '틀린 보기' if WRONG_Q.search(' '.join(L[:2])) else '정답 보기'
+    def mk(n):
+        c = CIRC_N[n - 1] if n <= len(CIRC_N) else '@'
+        return rf'(?:{n}\s?\)|\(\s?{n}\s?\)|{c})'
+    out = []
+    for n in nums:
+        hit = None
+        for l in rest:                                   # 줄 첫머리 보기
+            if re.match(r'^\s*' + mk(n), l): hit = l.strip(); break
+        if hit is None:                                  # 한 줄에 보기 여러 개
+            for l in [stem] + rest:
+                mm = re.search(r'(?:^|\s)(' + mk(n) + r'.*?)(?=\s' + mk(n + 1) + r'|$)', l)
+                if mm and (l is not stem or mm.start(1) > 0): hit = mm.group(1).strip(); break
+        if hit is None:
+            for l in rest:
+                if re.match(rf'^\s*{n}\s?\.\s', l): hit = l.strip(); break
+        if hit is None: return (lab, None)
+        nx = re.search(r'\s' + mk(n + 1) + r'\s?\S', hit)
+        if nx and nx.start() > 2: hit = hit[:nx.start()].strip()
+        out.append(hit)
+    return (lab, out)
 def ans_core(q):
     _, at = split_qa(q); L = reflow.reflow(at); out = []
     for s in L:
         if re.match(r'^\s*(참고|해설)\s*[:：)]?', s): break
         out.append(s)
-    return ''.join(f'<div class="ln{" li" if reflow.LISTM.match(s) else ""}">{esc(s)}</div>' for s in out[:14]) + ('<div class="ln small">… (이하 카드에서)</div>' if len(out) > 14 else '')
+    h = ''.join(f'<div class="ln{" li" if reflow.LISTM.match(s) else ""}">{esc(s)}</div>' for s in out[:14]) + ('<div class="ln small">… (이하 카드에서)</div>' if len(out) > 14 else '')
+    pk = pick_choices(q, out)
+    if pk:
+        lab, lines = pk
+        if lines: h += ''.join(f'<div class="ln pick"><b>{lab}</b> {esc(x)}</div>' for x in lines)
+        else:
+            qt, _ = split_qa(q); QL = reflow.reflow(qt)[1:]; ch = [x for x in QL if reflow.LISTM.match(x)] or QL
+            if ch: h += f'<details class="pickd noann"><summary>▸ 보기 펼치기</summary>{"".join(f"<div class=ln>{esc(x)}</div>" for x in ch)}</details>'
+    return h
+def ybadge_sum(q):
+    ys = ['%02d' % y for y in q['yrs']]
+    lab_ = '·'.join(ys) if len(ys) <= 4 else '·'.join(ys[:3]) + f' +{len(ys) - 3}'
+    return f'<span class="ybadge sm n{min(len(ys),3)}" title="{" · ".join(YR(y) for y in q["yrs"])}"><b>{lab_}</b></span>'
 sumall = ['<div class="pills noann"><button class="tg" data-filt="rep">2회 이상만</button><span class="small">강의 순서 · 출제 많은 순 — 문제를 누르면 카드로 이동. ⚡자동 빈칸 ‘표의 내용’으로 답 열을 가리고 복습할 수 있습니다.</span></div>']
 for n_, L in enumerate(LEC + [None]):
     k = L['k'] if L else ''
     rows = [q for q in Q if q['tier'] != 'C' and q['lk'] == k]
     if not rows: continue
     rows.sort(key=lambda q: (-len(q['yrs']), -(q['yrs'][0] if q['yrs'] else 0)))
-    tr = ''.join(f'<tr class="{heat(len(q["yrs"]))}{" rep" if len(q["yrs"]) >= 2 else ""}"><th><span class="ybadge sm n{min(len(q["yrs"]),3)}"><b>{"·".join("%02d" % y for y in q["yrs"])}</b></span><div class="small">{esc(q["prof"])}</div></th><td class="qs">{go(q["id"], esc(q["short"]), src="sum")}{("<div><span class='chip v-" + q["v"] + "'>" + VNAME[q["v"]] + "</span></div>") if q["v"] in ("diff", "part", "none") else ""}</td><td>{("<div class='note'>⚠ 아래 JB 답은 강의자료와 어긋납니다 — 문제를 눌러 ‘강의자료 대조’를 확인하세요.</div>") if q["v"] == "diff" else ""}<div class="lines">{ans_core(q)}</div></td></tr>' for q in rows)
-    sumall.append(f'<div class="tblwrap" data-aid="{aid("SUM:" + (k if k else "none"))}" data-alt="{aid("SUM%d" % n_)}"><div class="tbt serif">{esc(L["title"] if L else "강의자료에 대응 쪽 없음")} <small>{len(rows)}문항</small></div><div class="tscroll"><table class="sum"><thead><tr><th style="width:86px">출제</th><th style="width:32%">문제</th><th>답 핵심 (JB 원문)</th></tr></thead><tbody>{tr}</tbody></table></div></div>')
+    tr = ''.join(f'<tr class="{heat(len(q["yrs"]))}{" rep" if len(q["yrs"]) >= 2 else ""}"><th>{ybadge_sum(q)}<div class="small">{esc(q["prof"])}</div></th><td class="qs">{go(q["id"], esc(q["short"]), src="sum")}{("<div><span class='chip v-" + q["v"] + "'>" + VNAME[q["v"]] + "</span></div>") if q["v"] in ("diff", "part", "none") else ""}</td><td>{("<div class='note'>⚠ 아래 JB 답은 강의자료와 어긋납니다 — 문제를 눌러 ‘강의자료 대조’를 확인하세요.</div>") if q["v"] == "diff" else ""}<div class="lines">{ans_core(q)}</div></td></tr>' for q in rows)
+    sumall.append(f'<div class="tblwrap" data-aid="{aid("SUM:" + (k if k else "none"))}" data-alt="{aid("SUM%d" % n_)}"><div class="tbt serif">{esc(L["title"] if L else "강의자료에 대응 쪽 없음")} <small>{len(rows)}문항</small></div><div class="tscroll"><table class="sum"><thead><tr><th style="width:96px">출제</th><th style="width:32%">문제</th><th>답 핵심 (JB 원문)</th></tr></thead><tbody>{tr}</tbody></table></div></div>')
 
 # ---- JB 필터 막대 / 대장
 import build2 as B
