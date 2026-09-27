@@ -73,11 +73,61 @@ async def a02(pg, tag):
     await pg.screenshot(path=J.TMP + f'/ux2_keys_help_{tag}.png'); await pg.keyboard.press('Escape')
     titles = await pg.evaluate("['#k-h','#k-b','#k-eye'].map(x=>document.querySelector(x).title).join(' | ')")
     ok('(H)' in titles and '(B)' in titles and '(E)' in titles, f'도구 막대 제목 {titles[:80]}')
+async def a03(pg, tag, vp):
+    """A03 집중 모드(V)·글자 크기(A−/A+)"""
+    await open_(pg, '#/OMS1/DD1/learn'); await pg.evaluate("localStorage.removeItem('jblhub.v1.focus');localStorage.removeItem('jblhub.v1.fontScale')"); await open_(pg, '#/OMS1/DD1/learn')
+    await pg.keyboard.press('v'); await pg.wait_for_timeout(300)
+    r = await pg.evaluate("(()=>({f:document.body.classList.contains('focus'),side:getComputedStyle(document.querySelector('#side')).display,hero:getComputedStyle(document.querySelector('#hero')).display,w:Math.round(document.querySelector('#stage').getBoundingClientRect().width),top:document.querySelector('#top').offsetHeight}))()")
+    ok(r['f'] and r['hero'] == 'none' and (r['side'] == 'none' or vp['width'] <= 860) and (vp['width'] != 1180 or r['w'] >= 900) and r['top'] <= 26, f'V → 집중: 사이드바·hero 숨김·본문 폭·얇은 상단 {r}')
+    await pg.screenshot(path=J.TMP + f'/ux2_keys_focus_{tag}.png')
+    DT = "(()=>{const d=document.querySelector('#dtabs').getBoundingClientRect();return [Math.round(d.top),Math.round(d.bottom)]})()"
+    await pg.evaluate("scrollBy(0,600)"); await pg.wait_for_timeout(450); d1 = await pg.evaluate(DT)
+    await pg.evaluate("scrollBy(0,-60)"); await pg.wait_for_timeout(450); d2 = await pg.evaluate(DT)
+    ok(d1[1] <= 0 and d2[0] >= 0 and d2[1] > 20, f'아래로 600 → 탭 줄 화면 밖 {d1} · 위로 60 → 다시 보임 {d2}')
+    await pg.evaluate("document.querySelector('#t-DD1-3').scrollIntoView({block:'start'})"); await pg.evaluate("scrollBy(0,-40)"); await pg.wait_for_timeout(900)
+    pt = await pg.inner_text('#fpill'); ok('카드 ' in pt and '/20' in pt or '/' in pt and '카드' in pt, f'알약에 카드 n/N ({pt})')
+    await pg.reload(); await pg.wait_for_timeout(1500)
+    ok(await pg.evaluate("document.body.classList.contains('focus')"), '새로고침 뒤에도 집중 모드 유지')
+    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(200)
+    ok(not await pg.evaluate("document.body.classList.contains('focus')"), 'Esc → 집중 모드 나가기')
+    FS = "parseFloat(getComputedStyle(document.querySelector('#stage .tbody .li')).fontSize)"
+    f0 = await pg.evaluate(FS); await pg.evaluate("document.querySelector('details.pmore').open=true")
+    await pg.click('#fsup'); await pg.click('#fsup'); f1 = await pg.evaluate(FS); await pg.reload(); await pg.wait_for_timeout(1500); f2 = await pg.evaluate(FS)
+    ok(abs(f1 / f0 - 1.1) < 0.02 and f2 == f1, f'A+ 두 번 → 글자 {f0}→{f1} (새로고침 뒤 {f2})')
+    await pg.evaluate("localStorage.removeItem('jblhub.v1.fontScale')")
+    ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), '가로 넘침 없음')
+async def a04(pg, tag, vp):
+    """A04 사이드바 접기(\\ · ‹ ›) · 정리표·비교표·한눈표 1440 이하 자동 접기(wideSide)"""
+    await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','wideSide','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+    await open_(pg, '#/CONS/WHT/sum', 1500)
+    S = "(()=>({fold:document.body.classList.contains('sidefold'),tw:Math.round(document.querySelector('table.mtx,table.cmp').getBoundingClientRect().width),side:Math.round(document.querySelector('#side').getBoundingClientRect().width),over:document.documentElement.scrollWidth>innerWidth}))()"
+    r0 = await pg.evaluate(S)
+    if vp['width'] <= 860:
+        ok(not r0['fold'] and not r0['over'], f'세로 화면은 접기 없음(서랍) {r0}')
+        await pg.keyboard.press('Backslash'); ok(await pg.evaluate("document.body.classList.contains('navopen')"), '\\ → 좁은 화면은 서랍 열기'); await pg.keyboard.press('Escape'); return
+    ok(r0['fold'] and r0['side'] == 0 and (vp['width'] != 1280 or r0['tw'] >= 1180) and not r0['over'], f'정리표 들어가면 자동 접기 · 표 폭 {r0}')
+    await pg.screenshot(path=J.TMP + f'/ux2_keys_sidefold_{tag}.png')
+    await pg.keyboard.press('Backslash'); await pg.wait_for_timeout(200); r1 = await pg.evaluate(S)
+    ws = await pg.evaluate("localStorage.getItem('jblhub.v1.wideSide')")
+    await pg.keyboard.press('Backslash'); await pg.wait_for_timeout(200); r2 = await pg.evaluate(S)
+    ok(not r1['fold'] and r1['side'] > 200 and ws == '1' and r2['fold'], f'\\ → 펼침(wideSide={ws}) → 다시 접힘 {r1["side"]}/{r2["side"]}')
+    await pg.click('#dtabs button[data-t="learn"]'); await pg.wait_for_timeout(700)
+    ok(await pg.evaluate("document.body.classList.contains('sidefold')"), '학습 탭으로 돌아가도 접은 설정 그대로')
+    await pg.click('#dtabs .sideopen'); await pg.wait_for_timeout(200)
+    ok(not await pg.evaluate("document.body.classList.contains('sidefold')"), '탭 줄 왼쪽 › → 펼침')
+    await open_(pg, '#/CONS/_tbl/_tbl'); r3 = await pg.evaluate(S)
+    ok(not r3['fold'] and not r3['over'], f'펼친 뒤(wideSide)에는 비교표도 자동으로 안 접음 {r3}')
+    await pg.click('#sidefold'); await pg.wait_for_timeout(200)
+    vis = await pg.evaluate("getComputedStyle(document.querySelector('#sideopen')).display")
+    ok(await pg.evaluate("document.body.classList.contains('sidefold')") and vis == 'flex', f'사이드바 ‹ → 접힘 · 탭 줄 없는 화면은 왼쪽 가장자리 › ({vis})')
+    await pg.click('#sideopen'); await pg.evaluate("['sidefold','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     await a02(pg, tag)
+    await a03(pg, tag, vp)
+    await a04(pg, tag, vp)
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 async def main():

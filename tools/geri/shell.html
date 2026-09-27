@@ -483,14 +483,45 @@ body.d-home #kit,body.d-home #kitshow{display:none}
 @media (max-width:860px){#hprog .pline{flex-wrap:wrap}#hprog .pline .sp{flex:1 0 100%;height:0}}
 /* V11 강의 틀 출처: 짧은 한 줄 · 누르면 전체 */
 .frame .fsrc .fs1{display:none}.frame .fsrc.all .fs1{display:inline}
+/* ===== 2차 묶음 1 (A03~A09) — 집중 모드·글자 크기·사이드바 접기·가리기 보기·모드 칩·도구 막대 접기·내 표시 ===== */
+/* A03 글자 크기(⋯ 보기 설정 A−/A+ → LS fontScale 0.9~1.2 → --fs) — 읽는 글의 px 크기에 곱함 */
+:root{--fs:1}
+body{font-size:calc(15.5px*var(--fs))}@media (max-width:860px){body{font-size:calc(15px*var(--fs))}}
+.tbody .li{font-size:calc(15.5px*var(--fs))}.co{font-size:calc(15px*var(--fs))}.und{font-size:calc(14.5px*var(--fs))}.box li{font-size:calc(14.5px*var(--fs))}
+.thead .en{font-size:calc(18.5px*var(--fs))}@media (max-width:860px){.thead .en{font-size:calc(17px*var(--fs))}}.thead .ko,.thead .one,h4.sh{font-size:calc(14.5px*var(--fs))}
+.qtext,.qtitle{font-size:calc(16.5px*var(--fs))}.qtext .ln.q1{font-size:calc(17.5px*var(--fs))}.qbody,.ab li{font-size:calc(15px*var(--fs))}.ab.jbans,.pq{font-size:calc(15.5px*var(--fs))}
+.cmp,.mtx{font-size:calc(14px*var(--fs))}.fcard .fcbody{font-size:calc(16px*var(--fs))}
+.fsz{display:flex;align-items:center;gap:6px;justify-content:space-between;border-top:1px solid var(--line2);padding-top:6px}.fsz b{font-size:12.5px;color:var(--sub);font-variant-numeric:tabular-nums;min-width:3em;text-align:center}
+/* A03 집중 모드(V, LS focus) — 사이드바·hero 숨김 · 상단 막대는 시계만 든 얇은 띠(위 40px에 마우스·위로 스크롤하면 펼침) · 탭 줄은 아래로 스크롤하면 숨고 위로 조금만 올려도 다시 · 도구 막대는 ✎ 하나 */
+#fpill{position:fixed;top:2px;right:12px;z-index:35;display:none;height:20px;line-height:20px;padding:0 12px;border:0;border-radius:999px;background:rgba(255,255,255,.16);color:#F3EDE1;font-size:12px;font-weight:700;white-space:nowrap;transition:opacity .4s;cursor:pointer}
+body.focus:not(.at-home) #fpill{display:block}#fpill.dim{opacity:.25}#fpill:hover{opacity:1}
+body.focus.topshow #fpill{top:calc(var(--toph) + var(--tabh) + 8px);height:28px;line-height:28px;background:rgba(35,35,31,.86);color:#fff}
+body.focus:not(.at-home) #hero{display:none}
+@media (min-width:861px){body.focus:not(.at-home) #subj{grid-template-columns:minmax(0,1fr)}body.focus:not(.at-home) #side{display:none}body.focus #stage.single .onebar{left:0}}
+body.focus:not(.at-home){padding-top:24px}body.focus:not(.at-home) #top{position:fixed;left:0;right:0;top:0}   /* 얇은 띠 ↔ 펼침이 본문 흐름을 밀지 않게(스크롤 고정 보정이 방향 판정을 뒤집던 것) */
+body.focus:not(.at-home):not(.topshow) #top{height:24px;padding:0 14px;overflow:hidden;flex-wrap:nowrap}body.focus:not(.at-home):not(.topshow) #top>*:not(#clock){display:none}body.focus:not(.at-home):not(.topshow) #clock{font-size:12.5px;line-height:24px}
+body.focus #dtabs{transition:transform .2s}body.focus.tabsoff:not(.at-home) #dtabs{transform:translateY(calc(-100% - var(--toph)))}
+body.focus #stage:not(.wide){max-width:960px}
+body.focus:not(.at-home):not(.kitopen) #kit{display:none}body.focus:not(.at-home):not(.kitopen) #kitshow{display:block}
+body.focus.jbone #jbbar,body.focus.jbone #kit,body.focus.jbone #kitshow{display:none!important}
+#focusb{display:none}@media (pointer:coarse){body:not(.at-home) #focusb{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:30px;padding:0 10px;font-size:15px;line-height:1}}
+#dtabs .dfoc{flex:none;min-width:34px;font-size:15px!important;line-height:1;padding:5px 8px!important}#dtabs .lmini2{margin-left:auto;display:flex;align-items:center;position:sticky;right:0;background:#FFFCF6;padding-left:6px;flex:none}#dtabs.haslm .lmini2{display:none}
+/* A04 사이드바 접기(\ · ‹ › — LS sidefold) · 정리표·비교표·한눈표는 1440 이하에서 자동으로 접음(펼치면 LS wideSide=1로 다음부터 안 접음) */
+#sidefold,.sideopen,#sideopen{display:none}
+.sideopen,#sideopen{align-items:center;justify-content:center;border:1px solid var(--line);background:#fff;color:var(--acc);font-weight:800;font-size:17px;line-height:1;padding:0;cursor:pointer}
+@media (min-width:861px){.sjsw #sidefold{display:inline-flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--sub);font-size:17px;line-height:1;padding:0}.sjsw #sidefold:hover{color:var(--acc);border-color:var(--acc)}
+ body.sidefold:not(.focus) #subj{grid-template-columns:0 minmax(0,1fr)}body.sidefold:not(.focus) #side{visibility:hidden;padding:0;border:0;overflow:hidden;min-width:0}body.sidefold #stage.single .onebar{left:0}
+ #dtabs .sideopen{border:1px solid var(--line)!important;background:#fff!important;color:var(--acc)!important;padding:0!important;font-size:17px!important}
+ body.sidefold:not(.focus) #dtabs .sideopen{display:inline-flex;flex:none;width:32px;min-height:32px;border-radius:9px;position:sticky;left:0;z-index:2;margin-right:4px}
+ body.sidefold.notabs:not(.focus):not(.at-home) #sideopen{display:flex;position:fixed;left:0;top:calc(var(--toph) + 70px);z-index:25;width:20px;height:48px;border-left:0;border-radius:0 9px 9px 0;box-shadow:2px 2px 8px rgba(40,30,10,.12)}}
 </style></head><body>
-<div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
+<div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
 <div id="home"></div>
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
 <div id="kit" class="noann"><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)">↶</button><button id="k-redo" title="다시 실행">↷</button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기">👁</button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기">🧹</button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
 <button id="kitshow" class="noann">✎</button>
-<button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button>
+<button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button><button id="fpill" class="noann" title="집중 모드 나가기 (V · Esc)">집중 · V로 나가기</button><button id="sideopen" class="noann" title="사이드바 펼치기 (\)">›</button>
 <div id="autopop" class="noann"><div class="small" style="color:#B9B2A2">자동 빈칸 — 지금 보이는 화면에 적용</div><label><input type="radio" name="am" value="red" checked> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
@@ -505,6 +536,8 @@ body.d-home #kit,body.d-home #kitshow{display:none}
 <tr><th>공부 시간</th><td>시계를 누르면 오늘 과목·강의별 시간과 최근 7일 · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고 8분 무활동·다른 창이면 멈춤 · [쉬기]로 수동 정지</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
 <tr><th>이동·화면</th><td><b>1~6</b> 탭 · <b>G</b> 과목 홈 · <b>/</b> 검색창 · <b>M</b> 메모 · <b>T</b> 도구 막대 숨기기 · <b>Esc</b> 한 단계씩(팝업·도움말 닫기 → 모드 끄기) · <b>?</b> 도움말</td></tr>
+<tr><th>집중 모드 V</th><td><b>V</b>(아이패드는 ⤢)로 사이드바·과목 제목·메뉴를 숨기고 본문만 · 위 막대는 시계만 든 얇은 띠(위쪽 40px에 마우스를 대거나 위로 스크롤하면 펼침) · 탭 줄은 아래로 스크롤하면 숨고 위로 조금만 올리면 다시 · 도구 막대는 ✎ 하나 · 나가기 = V · Esc · 오른쪽 위 알약 · 새로고침·강의를 옮겨도 유지 · 글자 크기는 학습 탭 ⋯ 보기 설정의 A−/A+(90~120%, 모든 과목 공통)</td></tr>
+<tr><th>사이드바 접기 \</th><td>넓은 화면에서 <b>\</b> 또는 사이드바 머리 ‹ 로 접고, 탭 줄 왼쪽(탭 줄이 없으면 왼쪽 가장자리) › 로 펼침 · 정리표·비교표·기출 한눈표는 화면 폭 1440 이하면 저절로 접힘(그 화면에서 펼치면 다음부터는 안 접음)</td></tr>
 <tr><th>학습 탭</th><td><b>J/K</b> 다음/이전 카드 · <b>D</b> 지금 카드 ✓ 이해함 · <b>F</b> 지금 카드 접기/펼치기 · <b>C</b> 압축 보기(🔑·⭐·⚡만)</td></tr>
 <tr><th>한 장씩 풀기</th><td>아래 풀이 막대 [◀][답 보기][✗ 틀림][✓ 맞음][★][▶] · 키 ←/→(Enter = 다음), Space 답, O 맞음 · X 틀림(누르면 그 상태로 — 해제는 카드의 버튼), <b>S ★</b>(B는 빈칸) · 손가락 좌우 스와이프로 넘기기 · ‘자동 넘김’이 켜져 있으면 채점 0.25초 뒤 다음 문제 · 마지막 다음은 회차 요약(틀린 것만 다시·안 채점만·처음부터) · 카드 머리의 ‘✗2 ✓1’은 최근 채점 기록</td></tr>
 <tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억</td></tr>
@@ -581,15 +614,15 @@ $('#home').addEventListener('click',e=>{const r=e.target.closest('.res');if(r){r
 $('#gohome').onclick=()=>home();$('#retpill').onclick=()=>goRet();
 /* ---------- 화면 골격: 상단 막대·탭 높이(--toph·--tabh) · 이동 헬퍼 goEl · ☰ 서랍 ---------- */
 const LAY={toph:44,tabh:0,kith:62,jbh:0};
-function measure(){const t=$('#top'),d=$('#dtabs'),k=$('#kit');const th=t?t.offsetHeight:44,bh=(d&&!d.hidden&&d.offsetParent)?d.offsetHeight:0;
+function measure(){const t=$('#top'),d=$('#dtabs'),k=$('#kit'),BC=document.body.classList;const th=t?t.offsetHeight:44,bh=(d&&!d.hidden&&d.offsetParent&&!(BC.contains('focus')&&BC.contains('tabsoff')&&!BC.contains('at-home')))?d.offsetHeight:0;
  /* JB 필터 막대가 위에 붙었을 때(.mini)의 높이 = 첫 줄 + 안쪽 여백·3px 진행 막대 — 카드로 이동할 때 막대 아래로 */
  const jb=$('#stage #jbbar .b1'),jh=(jb&&jb.offsetParent)?jb.offsetHeight+34:0;if(jh!==LAY.jbh){LAY.jbh=jh;document.documentElement.style.setProperty('--jbh',jh+'px');}
- const kh=(k&&k.offsetHeight>0&&getComputedStyle(k).visibility!=='hidden')?k.offsetHeight+14:(document.body.classList.contains('kit-off')&&!document.body.classList.contains('at-home')?56:0);
+ const ks=$('#kitshow'),kh=(k&&k.offsetHeight>0&&getComputedStyle(k).visibility!=='hidden')?k.offsetHeight+14:((ks&&getComputedStyle(ks).display!=='none')?56:0);
  if(th!==LAY.toph||bh!==LAY.tabh||kh!==LAY.kith){LAY.toph=th;LAY.tabh=bh;LAY.kith=kh;const r=document.documentElement.style;r.setProperty('--toph',th+'px');r.setProperty('--tabh',bh+'px');r.setProperty('--kith',kh+'px');}}
 if(window.ResizeObserver){const ro=new ResizeObserver(measure);ro.observe($('#top'));ro.observe($('#dtabs'));ro.observe($('#kit'));}addEventListener('resize',measure);measure();
 const topOff=()=>{measure();return LAY.toph+LAY.tabh+LAY.jbh+12;};
 /* el의 윗변을 상단 막대+탭 바로 아래에 둠(off = 그 요소 안에서 더 내려갈 거리) */
-function goEl(el,off){if(!el||!el.isConnected)return;window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+scrollY-topOff()+(off||0)));}
+function goEl(el,off){if(!el||!el.isConnected)return;NOBAR=Date.now()+350;window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+scrollY-topOff()+(off||0)));}
 function navOpen(on){document.body.classList.toggle('navopen',on==null?!document.body.classList.contains('navopen'):!!on);}
 $('#navbtn').onclick=()=>navOpen();$('#navbg').onclick=()=>navOpen(false);
 /* ---------- 주소·뒤로가기(history) · 읽던 위치 · 돌아가기 알약 ----------
@@ -651,7 +684,7 @@ const SUBJDOCS=[['_home','🏠 과목 홈','공부 순서 · 진행률 · 강의
 function docTabs(p,d){if(d[0]==='_')return [[d,'']];const L=p.lect.find(x=>x.k===d);return [['learn','📖 학습'],['sum','🗂 정리표'],['tbl','📊 비교표 '+L.tbl.length],['jb','📝 기출 '+L.jb.length],['pred','✍️ 예상 '+L.pred.length],['flash','🃏 플래시카드']].filter(t=>!(t[0]==='tbl'&&!L.tbl.length));}
 function openSubj(s){openDoc(s,'_home');}
 function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
- $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
+ $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select><button id="sidefold" title="사이드바 접기 (\\) — 표를 넓게">‹</button></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
@@ -670,10 +703,10 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
    :`<div class="kick">${p.title}</div><h1>${p.en}</h1><div class="sub">JB 기출 전 문항 × 강의자료(26년도 우선, 없으면 25년도) — ${p.profs}</div><div class="hchips"><span class="hchip">${p.stats.ref?'현 교수 ':''}기출 ${p.stats.main!=null?p.stats.main:p.stats.cards}문항${p.stats.ref?' (+참고 '+p.stats.ref+')':''}</span><span class="hchip">2회 이상 ${p.stats.rep}</span><span class="hchip">강의 정리본 ${p.lect.length}</span><span class="hchip">비교표 ${p.tables.length}</span><span class="hchip">예상 ${p.preds.length}</span></div>`;
  $('#hero').classList.toggle('home',d==='_home');$('#hero').classList.toggle('cmp',d!=='_home');document.title=(L?L.title+' · ':'')+p.title+' — JBL';
  const lm=L&&t==='learn'&&(L.cards||[]).length;
- $('#dtabs').innerHTML=tabs.length>1?tabs.map((x,i)=>`<button data-t="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}<span class="kbd">${i+1}</span></button>`).join('')+'<span class="dtname">'+(L?L.title:'')+'</span>'
-  +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)">카드 <b id="lmn">–</b>/${L.cards.length} ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button></span>`:''):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);hstat();measure();
+ $('#dtabs').innerHTML=tabs.length>1?'<button class="sideopen" title="사이드바 펼치기 (\\)">›</button>'+tabs.map((x,i)=>`<button data-t="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}<span class="kbd">${i+1}</span></button>`).join('')+'<span class="dtname">'+(L?L.title:'')+'</span>'
+  +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)">카드 <b id="lmn">–</b>/${L.cards.length} ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button><button id="dfocus" class="dfoc" title="집중 모드 (V)">⤢</button></span>`:'<span class="lmini2"><button id="dfocus2" class="dfoc" title="집중 모드 (V)">⤢</button></span>'):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);sideApply();hstat();measure();
  if(!(same&&tgt))mount(p,d,t);   /* 같은 화면 안의 카드로 가는 것이면 다시 그리지 않음 */
- const st={s,d,t};if(aid)st.aid=aid;if(newRet)st.ret=RET.id;histSet(st,'#/'+s+'/'+d+'/'+t,push);retPill();
+ const st={s,d,t};if(aid)st.aid=aid;if(newRet)st.ret=RET.id;histSet(st,'#/'+s+'/'+d+'/'+t,push);retPill();fpill();
  /* 위치: 목표 카드 → 뒤로가기·이어서 보기의 위치 → JB 풀이 상태 → 탭별 읽던 위치 → 맨 위 */
  let el=null;if(aid)el=findAid(aid);else if(opt.qid)el=$('#c-'+CSS.escape(opt.qid));else if(opt.id)el=document.getElementById(opt.id);
  if(el)revealCard(el,{open:opt.open,mark:opt.mark});
@@ -682,10 +715,10 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  else if(!isJBv()&&restoreAt(mkObj(LS.get('pos.'+s,{}))[d+'/'+t],null)){}
  else window.scrollTo(0,0);
  setTimeout(savePos,1500);$('#memot').textContent='메모 — '+(L?L.title:(SUBJDOCS.find(x=>x[0]===d)||['',''])[1]);$('#memota').value=LS.get('memo.'+s+'.'+d,'');memoBase.v=$('#memota').value;}
-$('#side').addEventListener('click',e=>{const lj=e.target.closest('[data-lj]');if(lj){goCard(+lj.dataset.lj);return;}if(e.target.closest('.dbtn'))navOpen(false);const b=e.target.closest('.dbtn');if(b)openDoc(CUR.s,b.dataset.d);});
+$('#side').addEventListener('click',e=>{if(e.target.closest('#sidefold')){sideToggle();return;}const lj=e.target.closest('[data-lj]');if(lj){goCard(+lj.dataset.lj);return;}if(e.target.closest('.dbtn'))navOpen(false);const b=e.target.closest('.dbtn');if(b)openDoc(CUR.s,b.dataset.d);});
 $('#side').addEventListener('change',e=>{if(e.target.id==='sjsel'&&e.target.value!==CUR.s){navOpen(false);openSubj(e.target.value);}});
 $('#side').addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details.scards'))LS.set('sidecards',e.target.open);},true);
-$('#dtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.closest('#lmini')){lminiClick(b);return;}if(b.dataset.t===CUR.t){if(STL)STL();window.scrollTo(0,0);return;}openDoc(CUR.s,CUR.d,b.dataset.t);});   /* 이미 선택된 탭을 한 번 더 누르면 맨 위로 */
+$('#dtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.classList.contains('dfoc')){focusSet(!document.body.classList.contains('focus'));return;}if(b.classList.contains('sideopen')){sideToggle();return;}if(b.closest('#lmini')){lminiClick(b);return;}if(b.dataset.t===CUR.t){if(STL)STL();window.scrollTo(0,0);return;}openDoc(CUR.s,CUR.d,b.dataset.t);});   /* 이미 선택된 탭을 한 번 더 누르면 맨 위로 */
 const cardsHTML=(p,ids)=>ids.map(i=>p.cards[i]).join('');
 /* 강의 헤더의 기출 채점 '✓12 ✗4' */
 function hstat(){const e=$('#hstat');if(!e)return;const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L){e.textContent='';return;}const pr=lecProg(p,L);e.textContent='✓'+pr.ok+' ✗'+pr.ng;e.title='이 강의 기출 '+L.jb.length+'문항 중 맞음 '+pr.ok+' · 틀림 '+pr.ng;}
@@ -749,7 +782,7 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  st.innerHTML=h;
  paintMarks(st);
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
- if(d==='_home')homeTrend(p);if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();}
+ if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();}
 /* 과목 홈 교수별 세부(연도별 칸)는 접어 둠 — 펼치면 그 상태를 기억(LS homeTrendOpen.<S>). 처음부터 펼치면 강의 카드가 1200px 아래로 밀려 기본은 접힘 */
 function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='homeTrendOpen.'+p.id;dt.open=!!LS.get(k,false);dt.addEventListener('toggle',()=>LS.set(k,dt.open));}
 /* 채점·이해함 표시를 지금 화면에 다시 칠함(다른 창에서 바뀌었을 때도) */
@@ -785,7 +818,7 @@ addEventListener('scroll',()=>{if(!jbMiniQ)jbMiniQ=requestAnimationFrame(jbMini)
 let LIO=null,LCUR=-1,LHOLD=0;
 function learnSpy(){if(LIO){LIO.disconnect();LIO=null;}LCUR=-1;if(!$('#lmini')||!window.IntersectionObserver){setLCur(-1);return;}
  LIO=new IntersectionObserver(es=>{if(Date.now()<LHOLD)return;es.forEach(en=>{if(en.isIntersecting){const j=+en.target.id.split('-').pop();if(!isNaN(j))setLCur(j);}});},{rootMargin:'-30% 0px -70% 0px'});$$('#stage .tc').forEach(c=>LIO.observe(c));setLCur(-1);}
-function setLCur(j){LCUR=j;const n=$('#lmn');if(n)n.textContent=j>=0?j+1:'–';$$('#side .scard2').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));$$('#lpop .lpi').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));
+function setLCur(j){LCUR=j;const n=$('#lmn');if(n)n.textContent=j>=0?j+1:'–';fpill(true);$$('#side .scard2').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));$$('#lpop .lpi').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));
  const sb=$('#side .scard2.on'),sd=$('#side');if(sb&&sd&&sd.scrollHeight>sd.clientHeight){const r=sb.getBoundingClientRect(),q=sd.getBoundingClientRect();if(r.top<q.top+40||r.bottom>q.bottom-20)sd.scrollTop+=r.top-q.top-q.height/2;}}
 /* 카드 j로: 학습 탭이면 드러내고(그룹 필터·압축 해제) 탭 아래로, 다른 탭이면 학습 탭을 열어서 */
 function goCard(j){const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L)return;const id='t-'+L.k+'-'+j;navOpen(false);$('#lpop').classList.remove('on');
@@ -963,6 +996,7 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.lkmore){const kb=t.parentElement;if(kb)kb.classList.remove('cut');t.remove();return;}
  if(t.id==='ffocus'){const on=!LS.get('jbfocus',false);LS.set('jbfocus',on);t.classList.toggle('on',on);$('#stage').classList.toggle('focus',on);return;}
  if(t.id==='lcond'){condSet(!$('#stage').classList.contains('cond'));return;}
+ if(t.id==='fsup'||t.id==='fsdn'){fontStep(t.id==='fsup'?1:-1);return;}
  if(d.qf!==undefined){$$('#jbbar [data-qf]').forEach(b=>b.classList.toggle('on',b===t));JB.F.mine=d.qf;JB.apply();return;}
  if(d.stf!==undefined&&JB.F){JB.F.st=JB.F.st===d.stf?'':d.stf;JB.sync();JB.apply();return;}
  if(d.qs!==undefined&&JB.F){JB.F.qs=d.qs;JB.sync();JB.apply();return;}
@@ -1148,7 +1182,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  $('#k-h').onclick=()=>setMode('h');$('#k-b').onclick=()=>setMode('b');$('#k-undo').onclick=undo;$('#k-redo').onclick=redo;$('#k-clear').onclick=clearView;
  $('#k-eye').onclick=()=>revealAll();
  $('#k-auto').onclick=()=>$('#autopop').classList.toggle('on');$('#ago').onclick=()=>{auto($('input[name=am]:checked').value,$('#aone').checked);$('#autopop').classList.remove('on');};
- const hide=()=>{document.body.classList.toggle('kit-off');measure();};$('#k-hide').onclick=hide;$('#kitshow').onclick=hide;
+ const hide=()=>{const B=document.body.classList;if(B.contains('focus')&&!B.contains('at-home')&&!B.contains('kit-off')){B.toggle('kitopen');measure();return;}B.toggle('kit-off');LS.set('kitoff',B.contains('kit-off'));measure();};$('#k-hide').onclick=hide;$('#kitshow').onclick=hide;
  const memo=()=>{$('#memo').classList.toggle('on');if($('#memo').classList.contains('on'))setTimeout(()=>$('#memota').focus(),50);};$('#k-memo').onclick=memo;$('#memox').onclick=memo;let mt;
  /* 메모 — 쓰기 직전에 다시 읽고, 입력하는 사이 다른 창이 바꿨으면 구분선을 넣어 합침 */
  const saveMemo=()=>{if(!CUR.s)return;const key='memo.'+CUR.s+'.'+CUR.d,ta=$('#memota');let v=ta.value;const cur=LS.get(key,'');
@@ -1189,7 +1223,7 @@ document.addEventListener('keydown',e=>{const tg=e.target;if(isTextField(tg))ret
  /* 모든 화면 같은 키 표(A02): H 형광펜(Shift+H 색 순환) · B 빈칸(A 별칭) · E 전체 보기 · N 다음 가린 칸 열기(Shift+N 이 카드 다시 가리기) · T 도구 막대 숨기기 · M 메모 · / 검색 · G 과목 홈 · 1~6 탭 · J/K·D·F·C(학습 탭) */
  if(K==='h'){if(e.shiftKey)Kit.cycleColor();else Kit.setMode('h');return;}if(K==='b'||K==='a'){Kit.setMode('b');return;}
  if(K==='e'){revealAll();return;}if(K==='n'){if(e.shiftKey)rehideCard();else openNext();return;}
- if(K==='t'||K==='v'){Kit.hide();return;}if(K==='m'){Kit.memo();return;}
+ if(K==='\\'){sideToggle();return;}if(K==='t'||(K==='v'&&e.shiftKey)){Kit.hide();return;}if(K==='v'){focusSet(!document.body.classList.contains('focus'));return;}if(K==='m'){Kit.memo();return;}
  if(e.key==='/'||(e.code==='Slash'&&!e.shiftKey)){e.preventDefault();const g=$('#gsearch');g.focus();g.select();return;}
  if(K==='g'&&VIEW==='doc'&&CUR.s){openDoc(CUR.s,'_home');return;}
  if(VIEW==='doc'&&CUR.t==='learn'&&$('#lmini')){if(K==='j'||K==='k'){lnav(K==='j'?1:-1);return;}
@@ -1219,7 +1253,30 @@ const QZ={on:false,scope:'card',card:null};
 /* Esc = 한 단계씩: 도움말 → 서랍 → 팝업 → 도구 모드 */
 function escStep(){if($('#help').classList.contains('on')){helpToggle();return;}if(document.body.classList.contains('navopen')){navOpen(false);return;}
  const pops=$$('.pop.on,#autopop.on,#k-sw.open,details.pmore[open]');if(pops.length){pops.forEach(p=>{if(p.tagName==='DETAILS')p.open=false;else p.classList.remove('on','open');});return;}
- if(Kit.mode()){Kit.off();return;}}
+ if(Kit.mode()){Kit.off();return;}
+ if(document.body.classList.contains('focus')&&VIEW==='doc'){focusSet(false);return;}}
+/* ---------- 집중 모드(A03) — V · ⤢ · 알약. LS 'focus'(새로고침·강의 이동 뒤에도) ---------- */
+let NOBAR=0,SY=0,TOPM=0;
+function focusSet(on,save){const B=document.body.classList;B.toggle('focus',!!on);if(save!==false)LS.set('focus',!!on);B.remove('topshow','tabsoff','kitopen');TOPM=0;fpill();measure();if(save!==false)toast(on?'집중 모드 — V·Esc·오른쪽 위 알약으로 나가기':'집중 모드를 껐어요');}
+function fpill(quiet){const b=$('#fpill');if(!b||!document.body.classList.contains('focus'))return;const L=VIEW==='doc'&&CUR.t==='learn'&&$('#lmini')&&PACKS[CUR.s]&&PACKS[CUR.s].lect.find(x=>x.k===CUR.d);
+ b.textContent='집중 · V로 나가기'+(L&&LCUR>=0?' · 카드 '+(LCUR+1)+'/'+L.cards.length:'');if(quiet)return;b.classList.remove('dim');clearTimeout(fpill.t);fpill.t=setTimeout(()=>b.classList.add('dim'),3000);}
+$('#fpill').onclick=()=>focusSet(false);$('#focusb').onclick=()=>focusSet(!document.body.classList.contains('focus'));
+/* 스크롤 방향: 아래 = 탭 줄 숨김(상단 막대도 얇게), 위 = 둘 다 펼침. goEl 같은 화면 안 이동 직후 0.35초는 그대로(NOBAR) — 오프셋이 보이는 높이와 맞게 */
+addEventListener('scroll',()=>{const y=scrollY,dy=y-SY;SY=y;const B=document.body.classList;if(!B.contains('focus')||B.contains('at-home')||Date.now()<NOBAR)return;
+ if(dy>3&&y>60){if(!B.contains('tabsoff')||B.contains('topshow')){B.add('tabsoff');B.remove('topshow');TOPM=0;measure();}}
+ else if(dy<-3||y<=60){if(B.contains('tabsoff')||(dy<-3&&!B.contains('topshow'))){B.remove('tabsoff');if(dy<-3)B.add('topshow');measure();}}},{passive:true});
+addEventListener('mousemove',e=>{const B=document.body.classList;if(!B.contains('focus')||B.contains('at-home'))return;if(e.clientY<40){if(!B.contains('topshow')){B.add('topshow');TOPM=1;measure();}}else if(TOPM&&e.clientY>LAY.toph+LAY.tabh+60){B.remove('topshow');TOPM=0;measure();}},{passive:true});
+/* ---------- 사이드바 접기(A04) — 넓은 화면(>860): \ · 사이드바 머리 ‹ · 탭 줄 왼쪽 ›(탭 줄이 없는 화면은 왼쪽 가장자리 ›). LS 'sidefold' = 사용자 설정.
+   정리표·비교표·한눈표(sum·tbl·_sum·_tbl)는 폭 1440 이하에서 자동으로 접음(SIDEAUTO — 저장 안 함) · 그 화면에서 펼치면 LS 'wideSide'=1(다음부터 자동으로 안 접음) ---------- */
+let SIDEAUTO=false;
+function sideApply(){const wide=VIEW==='doc'&&/^_?(sum|tbl)$/.test(CUR.t||'');const pref=!!LS.get('sidefold',false);SIDEAUTO=wide&&!pref&&innerWidth>860&&innerWidth<=1440&&!LS.get('wideSide',0);
+ document.body.classList.toggle('sidefold',pref||SIDEAUTO);document.body.classList.toggle('notabs',!!$('#dtabs').hidden);}
+function sideToggle(){if(innerWidth<=860){navOpen();return;}const on=!document.body.classList.contains('sidefold');if(!on&&SIDEAUTO)LS.set('wideSide',1);SIDEAUTO=false;LS.set('sidefold',on);document.body.classList.toggle('sidefold',on);measure();toast(on?'사이드바를 접었어요 — \\ 또는 › 로 펼치기':'사이드바를 펼쳤어요');}
+$('#sideopen').onclick=sideToggle;
+/* 글자 크기 — LS fontScale(0.9~1.2, 0.05 단위) → :root --fs */
+const fsGet=()=>{const v=+LS.get('fontScale',1);return (v>=0.9&&v<=1.2)?v:1;};
+function fsApply(){const v=fsGet();document.documentElement.style.setProperty('--fs',String(v));const e=$('#fsv');if(e)e.textContent=Math.round(v*100)+'%';}
+function fontStep(d){const v=Math.round(Math.min(1.2,Math.max(0.9,fsGet()+0.05*d))*100)/100;LS.set('fontScale',v);fsApply();measure();toast('글자 크기 '+Math.round(v*100)+'%');}
 /* 한 장씩 풀기 막대·플래시카드 판정 버튼은 눌러도 포커스를 받지 않음(키보드 단축키와 겹치지 않게) */
 ['pointerdown','mousedown'].forEach(ev=>$('#stage').addEventListener(ev,e=>{if(e.target.closest&&e.target.closest('#onebar button,.fcjudge button,.fcctl button'))e.preventDefault();}));
 $('#stage').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#onebar button,.fcjudge button,.fcctl button');if(b)setTimeout(()=>b.blur(),0);});
@@ -1372,7 +1429,7 @@ document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e
 
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
 /* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */
-function boot(){const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;}
+function boot(){if(LS.get('focus',false))document.body.classList.add('focus');if(LS.get('kitoff',false))document.body.classList.add('kit-off');fsApply();const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;}
 /* 팩 → (옛 표시가 남은 과목만) 옛 기준선 → 시작. 팩 판이 허브 판과 다르면(배포 중 캐시 섞임) 새로고침 안내 + 표시·채점 잠금 */
 function staleCheck(){if(HUB_BUILD==='dev')return;const bad=Object.keys(PACKS).filter(id=>PACKS[id].build&&PACKS[id].build!==HUB_BUILD);if(!bad.length&&!Object.keys(PACKS).some(id=>!PACKS[id].build))return;
  STALE=true;document.body.classList.add('stale');const b=document.createElement('div');b.id='stalebar';b.className='noann';b.innerHTML='새 버전이 있어요 — 새로고침해야 형광펜·채점이 저장돼요 <button class="btn pri" id="stalego">새로고침</button>';document.body.prepend(b);
