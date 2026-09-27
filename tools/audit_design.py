@@ -23,6 +23,11 @@ document.querySelectorAll('#stage .li, #stage .klist li, #stage .co > div, #stag
 const ov=document.documentElement.scrollWidth>document.documentElement.clientWidth;
 return {bad,longs:longs.slice(0,40),nlong:longs.length,ov};
 }"""
+CHK=r"""()=>{const cs=[...document.querySelectorAll('#cards .qc')];const was=cs.map(c=>c.classList.contains('open'));cs.forEach(c=>c.classList.add('open'));const longs=[];let all=0;
+ /* 덩어리 = 그 요소가 직접 가진 글(안의 목록·블록·인용 칩 줄은 따로 셈) */
+ const leaf=el=>{const c=el.cloneNode(true);c.querySelectorAll('ul,ol,div,.cites,button').forEach(x=>x.remove());return c.textContent.replace(/\s+/g,' ').trim();};
+ document.querySelectorAll('#cards .ab.chk li, #cards .ab.chk div, #cards .ab.more li, #cards .ab.more div').forEach(el=>{if(!el.offsetParent)return;all++;const t=leaf(el);if(t.length>230)longs.push(el.closest('.qc').dataset.id+' '+t.slice(0,80)+' …['+t.length+']');});
+ cs.forEach((c,i)=>c.classList.toggle('open',was[i]));return {n:longs.length,all,longs:longs.slice(0,20)};}"""
 async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
@@ -35,7 +40,10 @@ async def main():
             await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/_home'); await pg.wait_for_timeout(2400)
             for view in ['_home','_jb','_sum','_tbl','_pred','_led']:
                 await pg.evaluate('d=>document.querySelector(`#side .dbtn[data-d="${d}"]`)?.click()', view); await pg.wait_for_timeout(700)
-                if view=='_jb': await pg.evaluate("document.querySelectorAll('#cards [data-tog]').forEach((b,i)=>{if(i<8)b.click()})"); await pg.wait_for_timeout(300)
+                if view=='_jb':
+                    # 대조·주변부 덩어리 검사 — 모든 카드의 답을 펼쳐 .ab.chk li·.ab.chk .note·.ab.more li
+                    rc=await pg.evaluate(CHK); totlong+=rc['n']; longs+=[s+'/_jb/chk: '+t for t in rc['longs']]; print('  CHUNK',s,'.ab.chk/.ab.more 230자 넘는 덩어리',rc['n'],'/',rc['all'])
+                    await pg.evaluate("document.querySelectorAll('#cards [data-tog]').forEach((b,i)=>{if(i<8)b.click()})"); await pg.wait_for_timeout(300)
                 r=await pg.evaluate(JS)
                 for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],s+view))
                 totlong+=r['nlong']; longs+= [s+view+': '+t for t in r['longs'][:3]]

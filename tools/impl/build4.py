@@ -56,7 +56,8 @@ for q in Q:
         etxt = next((t_ for kind_, v_ in c_['body'] if kind_ == 'E' for ids_, t_ in [v_] if q['id'] in ids_), '')
         pg_ = c_['figs'][0][0] if c_['figs'] else re.findall(r'\d+', c_.get('rng', '') or '0')[0]
         cites_ = ' '.join(f'[[{fk_ or k_}:{p_}]]' for p_, fk_ in c_['figs'][:3]) or f'[[{k_}:{pg_}]]'
-        q['A'] = [A.cite_html(f'정리본 «{c_["ko"]}» 카드의 슬라이드 내용과 일치 — {etxt} {cites_}')]; q['v'] = 'ok' if q['v'] in ('', 'na') else q['v']
+        q['A'] = [(c_['ko'], etxt, A.cite_html(cites_))]
+        q['auto'] = 1; q['v'] = 'ok' if q['v'] in ('', 'na') else q['v']
 
 import trend
 COVER = S.COVER
@@ -84,6 +85,104 @@ def yr_badge(q, big=True):
     return f'<span class="ybadge n{min(n,3)}" title="{" · ".join(YR(y) for y in ys)}"><b>{lab_}</b><i>{n}회 출제</i></span>'
 def go(i, txt, cls='link', src=''): return f'<button class="{cls}" data-go="{i}"{f" data-src=\"{src}\"" if src else ""}>{txt}</button>'
 
+CITE_BTN = re.compile(r'<button class="cite[^"]*" data-k="[^"]*" data-p="[^"]*">.*?</button>')
+# ---- 대조·주변부 자동 구조화(U18): 긴 줄을 문장 → ' — ' → 나열(' / '·' · '·'; ') → 괄호·따옴표 안 나열 → ', ' 순으로 나눔. 글자는 그대로(나눈 자리의 구분자만 빠짐)
+def _d0(s, sep):
+    """깊이 0(괄호·따옴표 밖)에서 sep이 시작하는 자리"""
+    return [i for i, ch, d in lecparse._depth_iter(s) if d == 0 and s.startswith(sep, i)]
+def _cut(s, pos, keep):
+    """pos 자리에서 자름 — keep='L'이면 구분자 첫 글자를 왼쪽에, 'R'이면 오른쪽 조각 첫머리에, ''이면 버림(길이 n)"""
+    out, last = [], 0
+    for i, n in pos:
+        if keep == 'L': out.append(s[last:i + 1]); last = i + 1
+        elif keep == 'R': out.append(s[last:i]); last = i + 1
+        else: out.append(s[last:i]); last = i + n
+    out.append(s[last:]); return [x.strip() for x in out if x.strip()]
+def _groups(s):
+    out, prev, a = [], 0, None
+    for i, ch, d in lecparse._depth_iter(s):
+        if prev == 0 and d > 0: a = i
+        if prev > 0 and d == 0 and a is not None: out.append((a, i)); a = None
+        prev = d
+    return out
+def _lbl(x):
+    m = re.match(r'^([^:：()"“”/]{2,40}[:：])\s+(.+)$', x)
+    return f'<b class="lbl">{lecparse.inline(m.group(1), ctx)}</b> {lecparse.inline(m.group(2), ctx)}' if m else None
+def _ul(items, cls='klist'): return f'<ul class="{cls}">' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>'
+def astruct(s, lvl=0):
+    s = s.strip()
+    if lvl > 5 or len(s) <= 190:
+        if len(s) > 150 and lvl == 0: return lecparse.render_block(s, ctx)
+        return _lbl(s) or lecparse.inline(s, ctx)
+    sub = lambda ps: _ul([astruct(x, lvl + 1) for x in lecparse._rebalance(ps)])
+    blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in lecparse._rebalance(ps))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
+    # 1) 문장('. ' — p. 같은 약어 제외)
+    pos = [(i, 1) for i in _d0(s, '. ') if not re.search(r'(?:\bp|\bvs|\be\.g|\bcf|\bFig|\bNo|\bex|\bi\.e)$', s[max(0, i - 4):i])]
+    ps = _cut(s, pos, 'L')
+    if len(ps) >= 2 and min(len(x) for x in ps) >= 8: return blk(ps)
+    # 2) ' — ' (대시는 뒤 조각 첫머리에)
+    ps = _cut(s, [(i + 1, 1) for i in _d0(s, ' — ')], 'R')
+    if len(ps) >= 2 and min(len(x) for x in ps) >= 10: return blk(ps)
+    # 3) 나열
+    e_ = lecparse.split_enum(s)
+    if e_:
+        ld, its, _c = e_
+        return (f'<div class="klead">{lecparse.inline(ld, ctx)}</div>' if ld else '') + _ul([astruct(x, lvl + 1) for x in its], 'circ' if _c else 'klist')
+    for sep, mn in ((' / ', 2), (' · ', 3), ('; ', 2), (' → ', 3)):
+        ps = lecparse.split_top(s, sep)
+        if len(ps) >= mn:
+            m = re.match(r'^(.{4,80}?[:：])\s+(.+)$', ps[0])
+            if m and not re.search(r'[()"“”]', m.group(1)): return f'<div class="klead">{lecparse.inline(m.group(1), ctx)}</div>' + sub([m.group(2)] + ps[1:])
+            return sub(ps)
+    # 4) 괄호·따옴표 안 나열 펼치기 — 가장 긴 묶음
+    best = None
+    for a_, b_ in _groups(s):
+        inner = s[a_ + 1:b_]
+        cand = []
+        e_ = lecparse.split_enum(inner)
+        if e_ and not e_[0]: cand.append(e_[1])
+        for sep, mn in ((' / ', 3), (' · ', 4), ('; ', 3), (', ', 5)):
+            its = lecparse.split_top(inner, sep)
+            if len(its) >= mn: cand.append(its); break
+        if cand and (best is None or b_ - a_ > best[1] - best[0]): best = (a_, b_, cand[0])
+    if best:
+        a_, b_, its = best; head = s[:a_ + 1].strip(); tail = s[b_ + 1:].strip()
+        m = re.match(r'^(.{3,80}? — )(.+)$', its[0])
+        if m: head += m.group(1).rstrip(); its = [m.group(2)] + its[1:]
+        its[-1] = its[-1] + s[b_]
+        pp = lecparse._rebalance([head] + its + ([tail] if tail else []))
+        h_ = f'<div class="klead">{astruct(pp[0], lvl + 1) if len(pp[0]) > 190 else lecparse.inline(pp[0], ctx)}</div>' + _ul([astruct(x, lvl + 1) for x in pp[1:1 + len(its)]])
+        return h_ + (f'<div class="ktail">{astruct(pp[-1], lvl + 1)}</div>' if tail else '')
+    # 4b) 가장 긴 괄호·따옴표 묶음 안으로 들어가 다시 나눔(앞머리·꼬리는 따로 줄)
+    gs = [g for g in _groups(s) if g[1] - g[0] > 80]
+    if gs:
+        a_, b_ = max(gs, key=lambda g: g[1] - g[0]); head = s[:a_ + 1].strip(); inner = s[a_ + 1:b_ + 1]; tail = s[b_ + 1:].strip()
+        return (f'<div class="klead">{astruct(head, lvl + 1)}</div>' if head else '') + f'<div class="kin">{astruct(inner, lvl + 1)}</div>' + (f'<div class="ktail">{astruct(tail, lvl + 1)}</div>' if tail else '')
+    # 5) ', ' 로 140자 안팎씩
+    ps = _cut(s, [(i, 1) for i in _d0(s, ', ')], 'L')
+    if len(ps) >= 2:
+        out, cur = [], ''
+        for x in ps:
+            if cur and len(cur) + len(x) > 140: out.append(cur); cur = x
+            else: cur = (cur + ' ' + x).strip()
+        out.append(cur)
+        if len(out) >= 2: return blk(out)
+    return lecparse.inline(s, ctx)
+def auto_item(ko, etxt, cites):
+    """annot가 없는 문항: '✓ 정리본 «카드» 일치' 한 줄 + ⭐ 시험포인트 원문(구조화) + 인용 칩 3개까지"""
+    return f'<div class="agree">✓ 정리본 «{esc(ko)}» 일치</div>' + (f'<div class="aex"><span class="ui">⭐</span><div class="kb">{astruct(etxt) if len(etxt) > 190 else lecparse.render_block(etxt, ctx)}</div></div>' if etxt else '') + f'<div class="cites">{cites}</div>'
+def struct_item(x):
+    """대조(A)·주변부(M)·메모(N) 항목(HTML): 150자를 넘거나 ' / '가 3개 이상이면 astruct로 점 목록화하고 인용 칩은 끝의 .cites 줄로 모음"""
+    plain = html.unescape(re.sub(r'<[^>]+>', '', CITE_BTN.sub('', x)))
+    if len(plain) <= 150 and plain.count(' / ') < 3: return x
+    cites = CITE_BTN.findall(x); body = CITE_BTN.sub(' ', x); keep = []
+    def ph(m): keep.append(m.group(0)); return f'\ue000{len(keep) - 1}\ue001'
+    body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
+    if '<' in body: return x
+    raw = re.sub(r'\s+', ' ', html.unescape(body)).strip()
+    r = astruct(raw) if len(raw) > 190 else lecparse.render_block(raw, ctx)
+    r = re.sub('\ue000(\\d+)\ue001', lambda m: keep[int(m.group(1))], r)
+    return r + (f'<div class="cites">{" ".join(cites)}</div>' if cites else '')
 def qcard(q, idx):
     qt, at = split_qa(q); n = len(q['yrs'])
     figq = ''.join(f'<img class="fig" loading="lazy" src="{IMG["crop"][k]}" alt="JB 그림">' for k in q['crops'].get('q', []))
@@ -108,11 +207,11 @@ def qcard(q, idx):
     jbb = ''.join(f'<button class="btn sm" data-jb="{q["ed"]}-{p}">JB 원본 {p}쪽</button>' for p in range(q['pg'], q['pg2'] + 1))
     h.append(f'<div class="acts"><button class="btn pri" data-tog="1">답·해설</button><button class="btn mk ok" data-mk="ok">맞음</button><button class="btn mk ng" data-mk="ng">틀림</button><button class="btn mk bm" data-mk="bm">★</button>{jbb}</div>')
     a = ['<div class="ans">', f'<section class="ab jbans"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{reflow.render(at) if at.strip() else "<div class=ln>(JB에 답 표기가 따로 없음 — 위 원문 참조)</div>"}</div>{figa}</section>']
-    if q['A']: a.append(f'<section class="ab chk v-{q["v"]}"><h5>🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small></h5><ul>{"".join(f"<li>{x}</li>" for x in q["A"])}</ul>{"".join(f"<div class=note>{x}</div>" for x in q["N"])}</section>')
+    if q['A']: a.append(f'<section class="ab chk v-{q["v"]}"><h5>🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small></h5><ul>{"".join((f"<li class=\"auto\">{auto_item(*x)}</li>" if q.get("auto") else f"<li>{struct_item(x)}</li>") for x in q["A"])}</ul>{"".join(f"<div class=note>{struct_item(x)}</div>" for x in q["N"])}</section>')
     elif q['tier'] == 'C':
         same = f' 같은 문제의 다른 수록본은 {go(q["same"], esc(QMAP[q["same"]]["short"]))}에서 강의자료와 대조했습니다.' if q.get('same') else ''
         a.append(f'<section class="ab chk v-na"><h5>🔎 강의자료 대조</h5><div class="small">받은 25·26년도 강의자료에는 이 교수님 파트에 대응하는 강의가 없어 대조하지 않았습니다(JB 원문만 수록).{same}</div></section>')
-    if q['M']: a.append(f'<section class="ab more"><h5>🧭 주변부 확장 <small>같은·인접 슬라이드 — 변형 출제 대비</small></h5><ul>{"".join(f"<li>{x}</li>" for x in q["M"])}</ul></section>')
+    if q['M']: a.append(f'<section class="ab more"><h5>🧭 주변부 확장 <small>같은·인접 슬라이드 — 변형 출제 대비</small></h5><ul>{"".join(f"<li>{struct_item(x)}</li>" for x in q["M"])}</ul></section>')
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
@@ -126,7 +225,7 @@ def qcard(q, idx):
 
 # ---- 주석(A/M/N) 안의 인용 쪽도 이미지 대상에 포함
 for q in Q:
-    for x in q['A'] + q['M'] + q['N']:
+    for x in [y if isinstance(y, str) else y[2] for y in q['A']] + q['M'] + q['N']:
         for m in re.finditer(r'data-k="([A-Z0-9]+)" data-p="(\d+)"', x): ctx['cited'].add((m.group(1), int(m.group(2))))
 
 def bullet(kind, text):
