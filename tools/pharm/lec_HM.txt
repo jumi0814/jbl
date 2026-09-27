@@ -4,7 +4,6 @@
 ! 교수님 강조: p.13 INR(정상 0.8-1.2 · warfarin 2.0-3.0) "이 숫자를 기억해주시면 좋겠습니다" · p.26 약을 끊기 어려운 환자에게 쓰는 anti-fibrinolytic medication "또 기억해야 할 것" · p.47 thrombin의 smooth muscle contraction "기억해주시면" · p.4 ADA 문헌 "스스로를 보호하기 위해서 잘 숙지".
 ! 수업 진행(필기): p.30-47(수렴제·혈관수축제·국소 지혈제 상품)은 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인해주세요"라며 넘어가심 · p.49 thrombin 사용법 "넘어갔습니다" · p.58 "시간이 부족해 건너뛴 부분은 직접 꼭 확인, case study도 확인" · p.21 drug interaction(빨간 박스)은 직접 찾아보기.
 ! JB 경향(강조): 우경미 지혈은 23·24년 출제가 전부 짤 — aspirin 기전 5회(24·23·22·21·20) · thrombin 빈칸 4회(24·22·21·20) · warfarin vs dabigatran 기전·장점(24·23·22 / 22·20) · target 표(aminocaproic·clopidogrel·LMWH·tirofiban) · 병력 청취 질환·항생제와 vit K(22·21·20). 25 JB는 "진도 전 — 이전 해설 그대로". 기출 줄을 그대로 외우고, 국소 지혈제·INR 표·vitamin K 투여처럼 기출 없는 부분은 변형 대비로.
-! ⚠ JB 분해 누락: 2021년 14번 "수술하기 전에 해야하는 검사의 종류, 기준, 산출방법"(답 INR(PT)·aPTT)이 HM04 다른 판본 원문 뒤에 붙어 있음 → PT·aPTT·INR 카드(p.10-13)에서 공부.
 @MAP 대원칙(출혈 vs 혈전 시소 → local measure 우선) → 출혈 질환·병력·진찰 → 선별 검사(★PT/INR·aPTT·Table 9.4) → ★항응고제(warfarin vs DOAC · heparin/LMWH)·★항혈소판제(aspirin·P2Y12·GPIIb/IIIa) → 치과 시술 결정(알고리즘·INR 구간표) → 국소 지혈(수렴제·epinephrine·gelatin·cellulose·collagen·thrombin·★항섬유소용해) → ★vitamin K → 증례 Mr. J
 
 @G ① 출혈 위험 환자와 검사
@@ -101,7 +100,7 @@ M: 병력 — 약 3: {r:Aspirin} · {r:Anticoagulants} · {r:Long-term antibioti
 M: 병력 — 질환 4: {r:Leukemia} · {r:Liver disease} · {r:Hemophilia} · {r:Congenital heart disease}
 M: 진찰 7: jaundice·pallor · {r:spider angiomas}(간) · {r:ecchymoses} · {r:petechiae} · oral ulcers · hyperplastic gingiva · hemarthrosis
 
-## Screening Tests — PT vs aPTT | 선별 검사 — 외인계 PT vs 내인계 aPTT | 10-12 | 검사 ★
+## Screening Tests — PT vs aPTT | 선별 검사 — 외인계 PT vs 내인계 aPTT | 10-12 | 검사 ★ · 기출 21 | jb=HM25
 > tissue factor를 넣으면 PT(외인계·warfarin), partial thromboplastin을 넣으면 aPTT(내인계·heparin·혈우병)
 = {r:PT} = tissue factor · extrinsic · {r:10-14 s} · warfarin↑ / {r:aPTT} = partial thromboplastin · intrinsic · {r:30-40 s} · heparin·혈우병↑
 # 3. Screening laboratory tests
@@ -118,6 +117,7 @@ F: 10=Intrinsic·Extrinsic·Common pathway와 검사
 | 2. {r:aPTT} | {r:30-40 seconds} | factors {r:VIII · IX · XI · XII} | {r:heparin therapy} · {r:hemophilia A or B} |
 | 3. {r:PT} | {r:10-14 seconds} | factors {r:I · II · V · VII · X} | {r:Warfarin}(vitamin K antagonist) — hemophilia A·B는 대부분 정상 |
 | 4. Fibrinogen (factor I) test | — | fibrinogen | PT·aPTT 이상일 때 함께 order |
+E: HM25 | 21년 서술 "수술하기 전에 해야하는 검사의 종류, 기준, 산출방법" → JB 답 "검사 – INR(PT), aPTT tests"(증례 p.59도 수술 전 "ordering INR and aPTT tests" · INR < 3.0 and aPTT normal) / 기준: PT = factor 1, 2, 5, 7, 10 · 정상 {r:10-14초} · 와파린 투약 환자에서 비정상 / aPTT = factor 8, 9, 11, 12 · 정상 {r:30-40초} · A, B형 혈우병에서 연장 / 산출방법 = INR(다음 카드). 함정: 인자·정상치를 PT↔aPTT로 뒤바꾸기 · JB의 aPTT 'phospholipid 추가'는 슬라이드엔 partial thromboplastin.
 U: 임상적으로 가장 많이 쓰는 것이 PT — warfarin 복용 환자에서 늘어남 / heparin 투여 환자·혈우병 환자에서 aPTT 증가(필기).
 F: 11=CBC·aPTT·PT·fibrinogen
 # 5. Clotting factor tests — 혈우병 중증도
@@ -127,12 +127,11 @@ F: 11=CBC·aPTT·PT·fibrinogen
 | {r:Moderate} hemophilia | {r:1% to 5%} |
 | {r:Severe} hemophilia | {r:Less than 1%} |
 F: 12=혈우병 중증도 표
-- ⚠ JB 분해 누락 문항 — 2021년 14번 "수술하기 전에 해야하는 검사의 종류, 기준, 산출방법"(JB 답: 검사 – INR(PT), aPTT tests / PT factor 1,2,5,7,10 정상 10-14초 · aPTT factor 8,9,11,12 정상 30-40초 · INR 공식)은 HM04 원문 뒤에 붙어 있음 → 이 카드 표 + 다음 카드 INR이 답.
 M: {r:PT} = tissue factor · {r:extrinsic} · {r:10-14초} · {r:I·II·V·VII·X} · {r:warfarin}↑
 M: {r:aPTT} = partial thromboplastin · {r:intrinsic} · {r:30-40초} · {r:VIII·IX·XI·XII} · {r:heparin·혈우병}↑
 M: 혈우병(VIII·IX 농도): mild {r:5-50%} · moderate {r:1-5%} · severe {r:<1%}
 
-## PT Measurement · INR | PT 측정 절차와 INR — 0.8-1.2 vs 2.0-3.0 | 13 | 교수 강조 · 수치
+## PT Measurement · INR | PT 측정 절차와 INR — 0.8-1.2 vs 2.0-3.0 | 13 | 교수 강조 · 수치 · 기출 21 | jb=HM25
 > 제조사마다 다른 tissue factor 차이(ISI)를 보정해 PT를 국제 표준 숫자로 만든 것이 INR
 = PT = tissue factor를 넣고 응고까지 걸린 시간({r:10-14 s}) / {r:INR} = (PT환자 / PT정상)의 {r:ISI} 제곱 · 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0}
 # Prothrombin (factor II) time 측정 — 5단계
@@ -147,6 +146,7 @@ M: 혈우병(VIII·IX 농도): mild {r:5-50%} · moderate {r:1-5%} · severe {r:
 | 대상 | INR |
 | Healthy person not using warfarin | {r:0.8–1.2} |
 | People on warfarin therapy | {r:2.0–3.0} |
+E: HM25 | 21년 서술 "수술하기 전에 해야하는 검사의 종류, 기준, 산출방법"의 '산출방법' → JB 해설 INR = (PT patient/PT normal)ISI · Healthy person not using warfarin : 0.8-1.2 · People on warfarin therapy : 2.0-3.0(p.13 그림·문장과 같음). 함정: ISI는 곱하는 값이 아니라 {r:지수}(raised to the power of the ISI value) · 정상 0.8-1.2와 warfarin 2.0-3.0 뒤바꾸기.
 P: 💬 "Warfarin therapy를 받는 환자는 2-3 정도이고, 이보다 높을 수도 있다. 이 숫자를 기억해주시면 좋겠습니다"(p.13 필기).
 U: PT는 보통 INR이라는 숫자로 표현 — ISI는 제조 회사에 따라 달라지는 숫자(필기).
 F: 13=PT 측정과 INR
