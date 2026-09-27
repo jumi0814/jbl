@@ -81,8 +81,8 @@ def _depth_iter(s):
     d = 0; q = False
     for i, ch in enumerate(s):
         if ch in '"“”': q = not q if ch == '"' else (ch == '“')
-        if ch in '(（[': d += 1
-        elif ch in ')）]': d = max(0, d - 1)
+        if ch in '(（[{': d += 1                 # {r:…}·{k:…} 안에서도 나누지 않음(예: {r:0.04 · 0.70})
+        elif ch in ')）]}': d = max(0, d - 1)
         yield i, ch, d + (1 if q else 0)
 def split_top(s, sep=' / '):
     out, last = [], 0; skip = -1
@@ -119,8 +119,9 @@ def split_enum(s):
         if len(pos) >= 3:
             idx = [p for p, _ in pos]
             raw_lead = s[:idx[0]]
-            lead = raw_lead.strip().rstrip(':：—-=').strip()
-            if raw_lead.count('==') % 2 == 1: lead = lead.replace('==', '').strip()
+            lead = raw_lead.strip().rstrip(':：—-').strip()
+            if lead.endswith('=') and not lead.endswith('=='): lead = lead.rstrip('=').strip()   # 끝의 '=' 기호만 떼고 ==형광== 닫힘은 살림
+            if lead.count('==') % 2 == 1: lead = lead.replace('==', '').strip()
             if lead in ('', '=='): lead = ''
             items = [s[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(s)])]
             return lead, _rebalance(items, raw_lead.count('==') % 2 == 1), pat is PAT_CIRC
@@ -148,16 +149,24 @@ def segments(s, min_len=14):
     return None
 def _rebalance(parts, hl0=False):
     """조각마다 ==…== 과 {r:…} 짝을 맞춤 — 형광이 걸친 조각은 조각 전체를 형광으로"""
-    out = []; hl = hl0; rs = 0
+    out = []; hl = hl0; rs = 0; bd = False
     for p in parts:
         if p == '→': out.append(p); continue
         n = p.count('=='); piece_hl = hl or n > 0
         hl = hl ^ (n % 2 == 1)
+        nb = p.count('**'); was_bd = bd                          # **굵게**가 조각을 넘으면 조각마다 짝을 맞춤
+        bd = bd ^ (nb % 2 == 1)
         q = p.replace('==', '').strip()
+        if was_bd and nb % 2 == 1: q = '**' + q                  # 앞 조각에서 열린 굵게를 이 조각에서 닫음
+        elif not was_bd and nb % 2 == 1: q = q + '**'           # 이 조각에서 열고 다음 조각으로 넘어감
+        elif was_bd and nb == 0: q = '**' + q + '**'            # 조각 전체가 굵게 안
         q = ('{r:' * rs) + q
         rs = max(0, q.count('{r:') - q.count('}'))
         q = q + ('}' * rs)
-        out.append(('==' + q + '==') if piece_hl and q else q)
+        if piece_hl and q:                                      # 형광으로 감쌀 때 기출·인용 버튼 표시는 밖으로(짝이 끊기지 않게)
+            toks = ' '.join(CITE.findall(q)); core = CITE.sub('', q).strip()
+            q = ('==' + core + '==' if core else '') + (' ' + toks if toks else '')
+        out.append(q)
     return out
 # ---- U23: 짧은 나열은 가로 흐름(ul.kflow) · 여러 조각에 걸친 ==기출 문장==은 형광 블록(hlblock) · 목록만 든 li 없애기
 LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
@@ -238,6 +247,7 @@ def render_block(v, ctx, depth=0):
             lb, rest = m.group(1), m.group(2)
             if lb.count('==') % 2 == 1: lb = lb.replace('==', ''); rest = '==' + rest
             if lb.count('{r:') > lb.count('}'): lb = lb + '}'; rest = '{r:' + rest
+            if lb.count('**') % 2 == 1: lb = lb.replace('**', ''); rest = '**' + rest
             return f'<b class="lbl">{inline(lb, ctx)}</b> ' + inline(rest, ctx)
         parts = _lab_merge(_rebalance(top))
         return _list_html(parts, ctx, depth, 'ul', 'kflow lab' if _is_flow(parts) else 'klist lab', fmt=lab)

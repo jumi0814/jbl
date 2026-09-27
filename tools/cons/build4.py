@@ -257,7 +257,7 @@ def bullet(kind, text):
     if ' :: ' in text:
         lead, rest = text.split(' :: ', 1)
         tags = ''.join(re.findall(r'\{jb:[^}]+\}', rest)); rest = re.sub(r'\s*\{jb:[^}]+\}', '', rest)
-        items = ''.join(f'<li>{lecparse.inline(x.strip(), ctx)}</li>' for x in rest.split(' / ') if x.strip())
+        items = ''.join(f'<li>{lecparse.inline(x.strip(), ctx)}</li>' for x in lecparse._rebalance(lecparse.split_top(rest, ' / ')) if x.strip())
         return f'<div class="{cls}">{tag}<div class="lead">{lecparse.inline(lead + " " + tags, ctx)}</div><ol class="sub">{items}</ol></div>'
     return f'<div class="{cls}">{tag}{lecparse.inline(text, ctx)}</div>'
 def figgrid(kk, fl):
@@ -331,7 +331,9 @@ def lec_card(L, j, c):
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             for r in v[1:]:
                 r0 = r[0].replace('**', '').strip(); rest_ = ' / '.join(x for x in r[1:] if x)
-                curb['items'].append(('**' + r0 + '** — ' + rest_) if r0 else rest_)
+                toks = ' '.join(re.findall(r'\{jb:[^}]+\}|\[\[[^\]]+\]\]', r0))   # 기출·인용 버튼은 굵게 밖으로(굵게 짝이 끊기지 않게)
+                r0 = re.sub(r'\s*(\{jb:[^}]+\}|\[\[[^\]]+\]\])', '', r0).strip()
+                curb['items'].append(('**' + r0 + '**' + (' ' + toks if toks else '') + ' — ' + rest_) if r0 else ((toks + ' ' if toks else '') + rest_))
         elif t == 'F': h.append(figgrid(kk, v))
         elif t == 'E':
             exams.append(v); exbuf.append(v)
@@ -453,7 +455,7 @@ for line in open(DIR + '/tables.txt', encoding='utf-8'):
         cur['rows'].append(rr)
     elif line.startswith('N:') and cur: cur['notes'].append(lecparse.inline(line[2:].strip(), ctx))
 def cell(c):
-    parts = [x.strip() for x in c.split(' / ') if x.strip()]
+    parts = lecparse._rebalance(lecparse.split_top(c, ' / '))   # 괄호·{r:…} 안의 ' / '는 나누지 않고, 조각을 넘는 표시는 짝을 맞춤
     if len(parts) <= 1: return lecparse.inline(c, ctx)
     return ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in parts)
 CITE1 = re.compile(r'<button class="cite" data-k="([A-Z0-9]+)" data-p="(\d+)">([^<]*?) p\.\d+</button>')
