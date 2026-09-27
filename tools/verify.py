@@ -48,6 +48,9 @@ with sync_playwright() as p:
     pg.goto(URL); pg.wait_for_selector('.scard'); pg.wait_for_timeout(500)
     cards = pg.eval_on_selector_all('.scard', 'es=>es.length'); built = pg.eval_on_selector_all('.scard[data-s]', 'es=>es.map(e=>e.dataset.s)')
     ok(cards == 7, f'허브 홈 과목 카드 {cards}개 (7과목)'); print('       팩 있는 과목:', built)
+    # 원고 문법 표기가 화면 글자로 새어 나온 곳(U25) — 숨은 답·접힌 절 포함(textContent). JB 원문(문제·답안·다른 판본·한눈표 답)은 글자 불변이라 제외
+    LEAK = r"(()=>{const c=document.querySelector('#stage').cloneNode(true);c.querySelectorAll('.qtext,.jbans,.box0,table.sum .lines,.pickd').forEach(e=>e.remove());const t=c.textContent;const o=[];const re=/\*\*|\{r:|\{jb:|==/g;let m;while((m=re.exec(t))&&o.length<3)o.push(t.slice(Math.max(0,m.index-25),m.index+25).replace(/\s+/g,' '));return o;})()"
+    leaks = []
     for s in built:
         pg.goto(URL); pg.wait_for_selector('.scard'); pg.click(f'.scard[data-s="{s}"]'); pg.wait_for_selector('#side .dbtn')
         docs = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d)'); nt = 0
@@ -55,7 +58,13 @@ with sync_playwright() as p:
             pg.click(f'#side .dbtn[data-d="{d}"]'); pg.wait_for_timeout(80)
             for t in pg.eval_on_selector_all('#dtabs button[data-t]', 'es=>es.map(e=>e.dataset.t)'):
                 pg.click(f'#dtabs button[data-t="{t}"]'); pg.wait_for_timeout(40); nt += 1
+                lk_ = pg.evaluate(LEAK)
+                if lk_: leaks.append(f'{d}/{t}: {lk_[0]}')
+            if d.startswith('_') and d not in ('_home', '_marks'):
+                lk_ = pg.evaluate(LEAK)
+                if lk_: leaks.append(f'{d}: {lk_[0]}')
         ok(True, f'{s}: 문서 {len(docs)}개 · 탭 {nt}개 열어봄')
+        ok(not leaks, f'{s}: 렌더된 글자에 원고 표기(** {{r: {{jb: ==) 0건 {leaks[:3]}'); leaks.clear()
         # 강의 정리본 본문 그림(강의 이미지 청크에서 로딩)
         lk = [d for d in docs if not d.startswith('_')]
         for d in lk:
@@ -74,7 +83,7 @@ with sync_playwright() as p:
     # ---- 3. 도구 (첫 과목 첫 강의)
     s = built[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_selector('.scard'); pg.click(f'.scard[data-s="{s}"]'); pg.wait_for_selector('#side .dbtn')
     d = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))')[0]; pg.click(f'#side .dbtn[data-d="{d}"]'); pg.wait_for_timeout(300)
-    PICK = '''(n=>{const lis=[...document.querySelectorAll('#stage [data-aid] li')].filter(l=>l.offsetParent&&!l.querySelector('[data-rk]')&&/[A-Za-z가-힣]{3}/.test(l.textContent));const li=lis[n];li.scrollIntoView({block:'center'});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let x;while(x=w.nextNode()){const m=/[A-Za-z가-힣]{3,}/.exec(x.nodeValue);if(m&&!x.parentElement.closest('button,.chip,.noann,[data-rk]')){const r=document.createRange();r.setStart(x,m.index+1);r.setEnd(x,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2,m[0]];}}})'''
+    PICK = '''(n=>{const lis=[...document.querySelectorAll('#stage [data-aid] li')].filter(l=>l.offsetParent&&!l.closest('details:not([open])')&&!l.querySelector('[data-rk]')&&/[A-Za-z가-힣]{3}/.test(l.textContent));const li=lis[n];li.scrollIntoView({block:'center'});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let x;while(x=w.nextNode()){const m=/[A-Za-z가-힣]{3,}/.exec(x.nodeValue);if(m&&!x.parentElement.closest('button,.chip,.noann,[data-rk]')){const r=document.createRange();r.setStart(x,m.index+1);r.setEnd(x,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2,m[0]];}}})'''
     cnt = lambda t: pg.eval_on_selector_all(f'#stage [data-rk={t}]', 'es=>es.length')
     pg.click('#k-h'); a = pg.evaluate(PICK + '(0)'); pg.mouse.click(a[0], a[1]); pg.wait_for_timeout(100); ok(cnt('h') == 1, f'형광펜 ("{a[2]}")')
     pg.click('#k-b'); a = pg.evaluate(PICK + '(1)'); pg.mouse.click(a[0], a[1]); pg.wait_for_timeout(100); ok(cnt('b') == 1, f'빈칸 ("{a[2]}")'); pg.click('#k-b')

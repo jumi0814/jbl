@@ -8,7 +8,7 @@ window.__JBLQ=[];window.JBLHUB={register:function(p){__JBLQ.push(['p',p]);},imag
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:#0A3332;--acc:#0F5C5A;--accbg:#E1EEEB;
 --k:#B3261E;--head:#5E1A15;--mark:#FFE98A;--sky:#EAF4FA;--skyb:#BBDCEC;--peach:#FDEFE3;--peachb:#F1C9A8;--purp:#F0EBFB;--purpb:#D2C6F1;--mint:#E6F3E8;--mintb:#B7DBBE;--grey:#EFEAE0;--r3:#8E1B14;--r2:#C4473C;--r1:#E9C46A;--note:#F3F6FA;--noteb:#CBD6E6}
 *{box-sizing:border-box}:root{--toph:44px;--tabh:0px;--kith:62px}/* scroll-padding-top은 쓰지 않음 — 위에 붙은 막대 안의 입력칸(전체 검색·JB 검색)을 누르면 브라우저가 그 칸을 '가려진 것'으로 보고 페이지를 끌어올렸음. 화면 안 이동은 goEl이 맞춤 */
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 "Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 "Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 .serif{font-family:Georgia,"Times New Roman","Noto Serif KR",serif}button{font:inherit;color:inherit;cursor:pointer}[hidden]{display:none!important}small{font-weight:500;color:var(--sub);font-size:.82em}
 #top{position:sticky;top:0;z-index:30;display:flex;gap:10px;align-items:center;background:#26221D;color:#F3EDE1;padding:7px 14px;flex-wrap:wrap}
 #top .brand{font-weight:800;cursor:pointer}#top .brand small{color:#B9AE9E;margin-left:6px}#top input{flex:1;min-width:120px;max-width:360px;font:inherit;font-size:13.5px;padding:6px 12px;border-radius:999px;border:0;background:#3F3830;color:#fff}#top input::placeholder{color:#B9AE9E}
@@ -391,6 +391,17 @@ details.trend[open]>summary{margin-bottom:6px}details.trend .tnote{margin-bottom
 @media (max-width:860px){.frame .ol{display:flex;flex-wrap:nowrap;gap:6px}.frame .ol b{flex:none;min-width:1.4em}.frame .ol .ot{flex:0 1 auto;max-width:58%}.frame .ol .og2{flex:1 1 0;min-width:0;white-space:nowrap;display:block}.frame .ol .oy{flex:none}
  details.trend .tsl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 @media (max-width:600px){.frame .outline{column-count:1}}
+/* 정리표·비교표 v7(U25) — 좁은 화면 카드형 정리표·넓은 화면 머리 고정·비교표 열 최소 폭·첫 열 고정 */
+table.mtx .mkey .mkl{color:var(--acc);margin-right:2px}table.mtx tbody th .men{overflow-wrap:anywhere;hyphens:auto}.mblk .more2{font-size:12.5px;font-weight:700;color:var(--acc);margin-top:2px}
+.mth{width:100%;max-width:118px}
+@media (min-width:1001px){.tblwrap.wide .tscroll{overflow:visible}table.mtx thead th{position:sticky;top:calc(var(--toph) + var(--tabh));z-index:5;box-shadow:0 1px 0 var(--line)}}
+@media (max-width:1000px){table.mtx,table.mtx tbody,table.mtx tr,table.mtx th,table.mtx td{display:block;width:auto!important}table.mtx thead{display:none}
+ table.mtx tr{border:1px solid var(--line);border-radius:10px;margin:0 0 12px;padding:8px 12px 10px;background:#fff}table.mtx tr.grow{border:0;background:none;padding:6px 0 0;margin:6px 0 4px}table.mtx tr.grow td{padding:0;font-weight:800;color:var(--acc);background:none!important}
+ table.mtx td,table.mtx th{border:0!important;padding:4px 0!important;background:none!important}table.mtx tbody th{border-bottom:1px solid var(--line2)!important;padding-bottom:6px!important}
+ table.mtx td[data-h]::before{content:attr(data-h);display:block;font-size:11.5px;font-weight:800;color:var(--sub);letter-spacing:.03em;margin:4px 0 1px}table.mtx td:empty{display:none}
+ .tblwrap.wide{padding:10px 10px}}
+table.cmp th,table.cmp td{min-width:6.5em;overflow-wrap:break-word;word-break:keep-all}
+table.cmp tr>:first-child{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 var(--line)}table.cmp tbody tr>:first-child{background:#FAF8F4}table.cmp thead tr>:first-child{z-index:3}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>

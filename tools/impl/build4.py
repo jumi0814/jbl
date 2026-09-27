@@ -285,6 +285,11 @@ def mini_table(rows):
     head = ''.join(f'<th>{lecparse.inline(c, ctx)}</th>' for c in rows[0])
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
     return f'<div class="tscroll"><table class="mini"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
+def mkey_html(key):
+    """정리표 🔑: 라벨을 첫 줄(앞머리·첫 항목) 안에 인라인으로 — '🔑' 혼자 한 줄에 서지 않게"""
+    r = lecparse.render_block(key, ctx); lb = '<b class="mkl">🔑</b> '
+    m = re.match(r'^(<div class="klead">|<(?:ul|ol) class="[^"]*"><li(?: class="[^"]*")?>)', r)
+    return (r[:m.end()] + lb + r[m.end():]) if m else lb + r
 def lec_card(L, j, c):
     k = L['k']; ids = [x for x in c['jb'] if x in QMAP]; mx = max([len(QMAP[x]['yrs']) for x in ids] or [0])
     m = re.fullmatch(r'(\d+)(?:-(\d+))?', c['rng']); lab = ''
@@ -324,7 +329,9 @@ def lec_card(L, j, c):
         elif t == 'T':
             h.append(mini_table(v))
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
-            for r in v[1:]: curb['items'].append('**' + r[0] + '** — ' + ' / '.join(x for x in r[1:] if x))
+            for r in v[1:]:
+                r0 = r[0].replace('**', '').strip(); rest_ = ' / '.join(x for x in r[1:] if x)
+                curb['items'].append(('**' + r0 + '** — ' + rest_) if r0 else rest_)
         elif t == 'F': h.append(figgrid(kk, v))
         elif t == 'E':
             exams.append(v); exbuf.append(v)
@@ -337,11 +344,12 @@ def lec_card(L, j, c):
     if c['figs']:
         tp, tk = c['figs'][0]; tk = tk or kk
         thumb = f'<figure class="mth" data-fig="{tk}-{tp}"><img data-img="{tk}-{tp}" alt=""></figure>'
-    det = ''.join(f'<div class="mblk">{("<b>" + lecparse.inline(bk["h"], ctx) + "</b>") if bk["h"] else ""}{"".join(f"<div class=ci>{lecparse.render_block(x, ctx) if len(x) > 110 else lecparse.inline(x, ctx)}</div>" for x in bk["items"][:6])}</div>' for bk in blocks if bk['items'])
+    more2 = lambda bk: f'<button class="link more2 noann" data-scroll2="{k}:{j}">+{len(bk["items"]) - 6} 더 보기(카드로)</button>' if len(bk['items']) > 6 else ''
+    det = ''.join(f'<div class="mblk">{("<b>" + lecparse.inline(bk["h"], ctx) + "</b>") if bk["h"] else ""}{"".join(f"<div class=ci>{lecparse.render_block(x, ctx) if len(x) > 110 else lecparse.inline(x, ctx)}</div>" for x in bk["items"][:6])}{more2(bk)}</div>' for bk in blocks if bk['items'])
     ex = ''.join(f'<div class="mex">{ychips(e[0])}<div>{lecparse.inline(e[1], ctx)}</div></div>' for e in exams) or '<span class="small">미출제</span>'
     mem = ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in c['recall']) or '<span class="small">—</span>'
     row = (f'<tr class="{heat(mx)}"><th><button class="link" data-scroll2="{k}:{j}"><span class="mn">{j+1}</span> <span class="serif men">{esc(c["en"])}</span></button><div class="mko">{esc(c["ko"])} <span class="pg">· {lab}</span></div>{thumb}</th>'
-           f'<td><div class="mg">{lecparse.inline(c["gist"], ctx)}</div>{("<div class=mkey><b>🔑</b> " + lecparse.render_block(key, ctx) + "</div>") if key else ""}</td><td>{det}</td><td class="mt">{ex}</td><td class="mnote">{mem}</td></tr>')
+           f'<td data-h="한 줄 요지 · 🔑 핵심"><div class="mg">{lecparse.inline(c["gist"], ctx)}</div>{("<div class=mkey>" + mkey_html(key) + "</div>") if key else ""}</td><td data-h="세부 내용">{det}</td><td class="mt" data-h="⭐ 기출 — 이렇게 나왔다">{ex}</td><td class="mnote" data-h="⚡ 암기 줄">{mem}</td></tr>')
     return ''.join(h), mx, ids, lab, row
 
 profS = {}
@@ -414,7 +422,7 @@ for L in LEC:
     gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button></div>'
     head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div><div class="fsrc" data-fsrc="1" title="눌러서 전체 보기">출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
             f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div></div></section>{gp}')
-    summ = f'<div class="pills noann"><span class="small">강의 전체를 한 표로 — 주제를 누르면 학습 탭의 그 카드로, 연도를 누르면 문제로 이동합니다. ⚡자동 빈칸(빨간 글씨)으로 가리고 복습할 수 있습니다.</span></div><div class="tblwrap wide" data-aid="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><thead><tr><th style="width:15%">주제</th><th style="width:20%">한 줄 요지 · 🔑 핵심</th><th style="width:30%">세부 내용</th><th style="width:17%">⭐ 기출 — 이렇게 나왔다</th><th style="width:18%">⚡ 암기 줄</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>'
+    summ = f'<div class="pills noann"><span class="small">강의 전체를 한 표로 — 주제를 누르면 학습 탭의 그 카드로, 연도를 누르면 문제로 이동합니다. ⚡자동 빈칸(빨간 글씨)으로 가리고 복습할 수 있습니다.</span></div><div class="tblwrap wide" data-aid="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><thead><tr><th style="width:14%">주제</th><th style="width:24%">한 줄 요지 · 🔑 핵심</th><th style="width:30%">세부 내용</th><th style="width:16%">⭐ 기출 — 이렇게 나왔다</th><th style="width:16%">⚡ 암기 줄</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>'
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.inline(x, ctx)} for c in L['cards'] for x in c['recall']]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
@@ -434,7 +442,7 @@ for line in open(DIR + '/tables.txt', encoding='utf-8'):
             elif x.startswith('src='): cur['src'] = lecparse.inline(x[4:], ctx)
         tables.append(cur)
     elif line.startswith('H:') and cur:
-        hh = [esc(c.strip()) for c in line[2:].split('|')]
+        hh = [lecparse.inline(c.strip(), ctx) for c in line[2:].split('|')]
         while hh and not hh[-1]: hh.pop()
         cur['head'] = hh
     elif line.startswith('R:') and cur:
@@ -446,11 +454,21 @@ def cell(c):
     parts = [x.strip() for x in c.split(' / ') if x.strip()]
     if len(parts) <= 1: return lecparse.inline(c, ctx)
     return ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in parts)
+CITE1 = re.compile(r'<button class="cite" data-k="([A-Z0-9]+)" data-p="(\d+)">([^<]*?) p\.\d+</button>')
+def merge_cites(h):
+    """같은 강의의 연속 인용 칩(사이에 공백·쉼표·가운뎃점만)을 하나로: '강의 p.17–21'(이어진 쪽) · 'p.17·19·21'"""
+    def run(m):
+        cs = CITE1.findall(m.group(0))
+        if len({k for k, _, _ in cs}) != 1: return m.group(0)
+        ps = [int(p_) for _, p_, _ in cs]
+        lab = f'{ps[0]}–{ps[-1]}' if ps == list(range(ps[0], ps[0] + len(ps))) else '·'.join(map(str, ps))
+        return f'<button class="cite" data-k="{cs[0][0]}" data-p="{ps[0]}" data-pp="{",".join(map(str, ps))}">{cs[0][2]} p.{lab}</button>'
+    return re.sub(r'(?:<button class="cite" data-k="([A-Z0-9]+)" data-p="\d+">[^<]*?</button>)(?:[\s,·]*<button class="cite" data-k="\1" data-p="\d+">[^<]*?</button>)+', run, h)
 TBL = []
 for i, t in enumerate(tables):
     head = ''.join(f'<th>{c}</th>' for c in t['head'])
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td>{cell(c)}</td>') for j, c in enumerate(r)) + '</tr>' for r in t['rows'])
-    TBL.append({'k': t['k'], 'html': f'<div class="tblwrap" data-aid="{aid("T:" + slug(t["title"]))}" data-alt="{aid("T%d" % i)}"><div class="tbt serif">{esc(t["title"])}</div><div class="tscroll"><table class="cmp"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>{"".join(f"<div class=note>{n}</div>" for n in t["notes"])}<div class="pgrow"><span class="small">출처</span>{t["src"]}</div></div>'})
+    TBL.append({'k': t['k'], 'html': merge_cites(f'<div class="tblwrap" data-aid="{aid("T:" + slug(t["title"]))}" data-alt="{aid("T%d" % i)}"><div class="tbt serif">{esc(t["title"])}</div><div class="tscroll"><table class="cmp"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>{"".join(f"<div class=note>{n}</div>" for n in t["notes"])}<div class="pgrow"><span class="small">출처</span>{t["src"]}</div></div>')})
 for L in lect: L['tbl'] = [i for i, t in enumerate(TBL) if t['k'] == L['k']]
 
 # ---- 예상문제
