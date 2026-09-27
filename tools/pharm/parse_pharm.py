@@ -46,12 +46,14 @@ def parse(ed, n):
                 cur = {'ed': ed, 'topic': topic, 'sec': sec, 'prof': prof, 'num': num, 'pg': pg, 'pg2': pg, 'lines': [l]}; blocks.append(cur); inans = False; last = nn; continue
             # 답안·해설 안에 삼켜진 다음 문항(직전 번호+1로 시작하고 문항형 문장으로 끝남) → 새 블록 (split=True: assemble이 기존 id 뒤에 번호를 붙임)
             if cur is not None and nn == last + 1:
-                stem = [s]
+                stem = [s]; hit_ans = False
                 for _pg, x_ in L[idx + 1:idx + 21]:
                     xs = x_.strip()
-                    if ANS.match(xs) or re.match(r'^\s*해설\s*[:：]', xs) or re.match(r'^\s*\d{1,2}\s*[.．)]', xs): break
+                    if ANS.match(xs): hit_ans = True; break
+                    if re.match(r'^\s*해설\s*[:：]', xs) or re.match(r'^\s*\d{1,2}\s*[.．)]', xs): break
                     stem.append(xs)
-                if QEND.search(' '.join(stem)):
+                # 문항형으로 끝나거나(? · 것은 · 시오), 명사로 끝나도 3줄 안에 곧바로 '답'이 오면 문항(예: 2021년 14번 "…검사의 종류, 기준, 산출방법")
+                if QEND.search(" ".join(stem)) or (hit_ans and inans and len(stem) <= 3 and len("".join(stem)) >= 12):
                     cur = {'ed': ed, 'topic': topic, 'sec': sec, 'prof': prof, 'num': num, 'pg': pg, 'pg2': pg, 'lines': [l], 'split': True}; blocks.append(cur); inans = False; last = nn; continue
         if cur is not None:
             cur['lines'].append(l); cur['pg2'] = pg

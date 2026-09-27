@@ -43,10 +43,24 @@ def title(c):
     return (c.get('en', '') + ' | ' + c.get('ko', '')).lower()
 
 
+def tokens(c):
+    """카드 전체 글의 단어 집합(영문·한글 2자 이상, 숫자 포함 단어) — 문장이 다시 쓰여도 같은 주제면 많이 겹침"""
+    txt = ' '.join([c.get('en', ''), c.get('ko', ''), c.get('gist', '')] + [v if isinstance(v, str) else (' '.join(' '.join(r) for r in v) if t == 'T' else (v[1] if t == 'E' else '')) for t, v in c.get('body', []) if t != 'F'] + c.get('recall', []))
+    txt = re.sub(r'\{[a-z]:|\}|==|\*\*|\[\[[^\]]*\]\]|\{jb:[^}]*\}', ' ', txt.lower())
+    return {w for w in re.findall(r'[a-z][a-z0-9\-]{1,}|[가-힣]{2,}|\d+[a-z%]+', txt)}
+
+
 def score(new, old):
+    """제목이 같으면 1.0(우선). 아니면 제목 유사도 × 0.4 + 내용 유사도 × 0.6.
+    내용 유사도 = 옛 항목에 단어 집합(tok, tools/aidlock_enrich.py)이 있으면 단어 겹침 비율(작은 쪽 기준), 없으면 문장 해시 Jaccard."""
+    if new.get('en') == old.get('en') and new.get('ko') == old.get('ko'): return 1.0
     t = difflib.SequenceMatcher(None, title(new), (old.get('en', '') + ' | ' + old.get('ko', '')).lower()).ratio()
-    a, b = set(new['_sig']), set(old.get('sig', []))
-    j = len(a & b) / len(a | b) if (a or b) else 0.0
+    if old.get('tok'):
+        a, b = new.setdefault('_tok', tokens(new)), set(old['tok'])
+        j = len(a & b) / min(len(a), len(b)) if a and b else 0.0
+    else:
+        a, b = set(new['_sig']), set(old.get('sig', []))
+        j = len(a & b) / len(a | b) if (a or b) else 0.0
     return W_TITLE * t + W_SENT * j
 
 
@@ -88,10 +102,10 @@ def assign(k, cards, old, fresh):
             if i in taken or not n: continue
             j = max(range(n), key=lambda j_: (S[j_][i], -j_))
             if o['aid'] not in alts[j] and o['aid'] != aids[j]: alts[j].append(o['aid'])
-    lock = [{'aid': aids[j], 'en': c['en'], 'ko': c['ko'], 'sig': c['_sig']} for j, c in enumerate(cards)]
+    lock = [{'aid': aids[j], 'en': c['en'], 'ko': c['ko'], 'sig': c['_sig'], 'tok': sorted(c.get('_tok') or tokens(c))} for j, c in enumerate(cards)]
     cur = {x['aid'] for x in lock}
     lock += [dict(o, gone=1) for o in (old or []) if o['aid'] not in cur]
-    for c in cards: c.pop('_sig', None)
+    for c in cards: c.pop('_sig', None); c.pop('_tok', None)
     return aids, alts, lock, st
 
 
