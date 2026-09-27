@@ -1,0 +1,74 @@
+#TBL 처방전 — 법 조항별 요점 | k=RX | src=[[RX:3]] [[RX:6]] [[RX:9]] [[RX:12]] [[RX:13]]
+H: 조항 | 내용 | 기출
+R: 의료법 17조의2 | 직접 진찰한 의사·치과의사·한의사만 처방전 작성·교부(전자처방전 포함) | 발급 주체 T/F {jb:RX18}
+R: 의료법 18조 | 의약품 투여 필요 시 처방전 작성·교부 의무, 서식·기재·보존은 복지부령 | 18조 빈칸 {jb:RX14}
+R: 시행규칙 12조 | 기재사항(성명·주민번호 / 기관 / 질병분류기호 — 환자 요구 시 생략 / 의료인 면허 / 약품 명칭·분량·용법·용량 / 발급일·사용기간) · 2부 발급 · 2년 보존 · 다음 내원일 약 미리 처방 가능 | {jb:RX01} {jb:RX07} {jb:RX20}
+R: 약사법 23조의2 | 대체조제는 처방의 사전 동의, 식약처장 생물학적 동등성 인정 품목은 예외(사후 통보) | {jb:RX22}
+R: 의료법 18조의2 + 시행규칙 13조의2 | 확인 4: 동일 성분 / 금기 성분 / 회수·폐기 / 안전성 속보·서한 — 알러지는 조항 × | {jb:RX02}
+
+#TBL 금연 약물 3 비교 | k=RX | src=[[RX:64]] [[RX:70]] [[RX:71]] [[RX:73]] [[RX:78]]
+H: 약물 | 기전 | 금기·주의 | 요점
+R: {r:NRT}(껌·패치) | 니코틴 대체(껌 20분·패치 2-4 h 최고) | 중증 심혈관·부정맥·MI/뇌졸중 2주·활동성 궤양·과민(청소년·임산부) {jb:RX04} | 30개비↑ 2 mg, 청소년 필요 시 주의 깊게 {jb:RX05}
+R: {r:Bupropion} | DA·NE 재흡수 억제 {jb:RX12} | 18세 이하 금기, 경련 역치↓, BP↑ | 서방형이 금연용, 1-2주 전 시작
+R: {r:Varenicline} | α4β2 nAChR partial agonist {jb:RX31} | 18세 이하 안전성 미확립 | 가장 우수, 1주 전 시작, 금연치료 유일 용도 {jb:RX26}
+R: 지원사업 | 바레니클린·부프로피온 약값 + NRT 보조제 지원 {jb:RX09} | 1인 1년 3차 · 12회 | 상담 = 의사·치과의사·한의사 {jb:RX24}
+
+#TBL 타액 분비율과 구강건조증 약물 | k=XE | src=[[XE:40]] [[XE:41]] [[XE:32]] [[XE:49]] [[XE:55]]
+H: 항목 | 내용
+R: 정상 whole saliva {jb:XE02} | 비자극 0.3-0.5 / 자극 1.0-3.0 mL/min (parotid 0.04/0.70, SM·SL 0.15/0.60)
+R: Dry mouth 기준 {jb:XE08} | 비자극 < 0.1 / 자극 < 0.5-0.7
+R: {r:Pilocarpine} {jb:XE03} | M1·3·5 agonist, 구강건조증·녹내장에만; 5 mg qid 허가 → 2.5 mg bid-tid 시작해 20 mg/day; 과량 → atropine {jb:XE16}
+R: {r:Cevimeline} {jb:XE17} | M1·M3 선택, CYP3A4 대사(CYP2D6 영향 적음) {jb:XE05}
+R: 부작용 {jb:XE09} | 발한·구역·구토·설사·타액과다·홍조·반사성 빈맥·기관지수축 — urinary retention ✗
+R: 인공타액으로 대체 {jb:XE11} | 약 불내성 / 조절 안 되는 천식 / 타액 기능 완전 소실
+R: 유발 약물 {jb:XE01} | TCA·항무스카린·항히스타민·이뇨제·opioid·BZD·항정신병 — physostigmine은 침↑
+R: BMS {jb:XE07} | clonazepam 0.5 mg qd hs 30일(또는 bid), GABA channel opening↑, 3-5분 물고 삼키기
+
+#TBL 보톡스 — 균·독소·임상·주의 한눈에 | k=BT | src=[[BT:4]] [[BT:5]] [[BT:11]] [[BT:19]] [[BT:22]] [[BT:23]] [[BT:33]]
+H: 항목 | 옳은 것 | 자주 나오는 틀린 선지
+R: 균 {jb:BT01} | Gram+ 간균, motile, 절대 혐기, Group I~IV(III는 동물), 독소는 sporulation기, gene은 plasmid/chromosome/phage | 운동성 없다 ✗ / 인간에게만 ✗ {jb:BT08}
+R: 보툴리즘 {jb:BT02} | 사체·부패 음식(BoNT), 꿀 → 영아(spore), 100℃ 15분 불활성화, BoNT는 소화효소 저항 | 대부분 소화된다 ✗
+R: 독소 구조 {jb:BT03} | light chain = catalytic(Zn metalloprotease), heavy chain = 결합·translocation, disulfide 연결, NTNHA·HA는 보호·안정화, 최초 안과(Scott) | protease가 분리해 독성 ✗ / 독성 약하다 ✗
+R: 기전 | SNARE(SNAP-25) 절단 → ACh 분비 억제 | 신경전달물질 파괴 ✗ {jb:BT16}
+R: 임상 {jb:BT04} | 치과: 저작근 + 안면 미용·TMD·gummy smile·보철/교정 보조, 4-6개월, 2주 시작·6주 최대 | 저작근 외 불법 ✗
+R: 주의 {jb:BT05} | 1 U = 마우스 LD50, 회사별 희석, 혈관 유입 위험; 부작용 과민·원거리 확산·내성; 금기 감염 부위·NMJ 질환·임신 C; 항콜린제 증폭 | 감염 부위 소독 후 진행 ✗ / 용량 회사마다 동일 ✗ / 우울·탈모 ✗ {jb:BT06}
+R: 교근 {jb:BT07} | 20-50 U/side, 0.5-1 cm 2-3점, aspiration, 수직 자입 | submandibular gland 주의 ✗(parotid·facial a.)
+
+#TBL 통증 약물 — 작용점과 시험 문장 | k=CHR | src=[[ACU:10]] [[ACU:25]] [[ACU:26]] [[CHR:10]] [[CHR:18]] [[CHR:24]]
+H: 약물·개념 | 핵심 | 기출
+R: Sensitization | PG가 nociceptor threshold를 낮춤(중추·말초) | {jb:PN02}
+R: Capsaicin | nociceptor 활성 → substance P 유리 → CNS 고갈 | {jb:PN10}
+R: NSAIDs vs opioid | 치성 통증 = 염증 → 항염 있는 NSAIDs 1차, opioid는 항염 × | {jb:PN04}
+R: Acetaminophen | 항염 ×, 과량 간독성(황달·AST/ALT↑); 투석 환자 권장 진통제 | {jb:PN08} {jb:PN05}
+R: Aspirin | 최저 용량 = 항혈소판(COX 비가역 → TXA2↓); 항혈소판 필요 시 celecoxib 대신 | {jb:PN16} {jb:PN18}
+R: Codeine | prodrug, CYP2D6 poor metabolizer → 효과 ↓ | {jb:PN11}
+R: Carbamazepine | Na 채널 차단, TN first-line, 막전위 안정화 | {jb:PN01}
+R: Gabapentin·pregabalin | voltage-dependent Ca 채널, diabetic neuropathy·TN | {jb:PN03}
+R: Opioid | pre(Ca↓)·post(K↑) synaptic 억제; 과량 naloxone; 금단 methadone·clonidine; CKD 축적 → 호흡억제 | {jb:PN15} {jb:PN22} {jb:PN07}
+R: 신경병성 통증 예 | TN · postherpetic neuralgia · diabetic neuropathy → anticonvulsant·TCA·SNRI | {jb:PN12} {jb:PN13}
+
+#TBL 항응고·항혈소판·지혈 target 표 | k=HM | src=[[HM:16]] [[HM:18]] [[HM:19]] [[HM:50]] [[HM:56]]
+H: 약물 | Target | 효과
+R: Warfarin | vit K 길항 → II·VII·IX·X γ-carboxylation 억제 | 개시 느림·INR 모니터링 {jb:HM03}
+R: Dabigatran | direct thrombin(II) inhibitor | 예측 가능·고정 용량·짧은 반감기
+R: Apixaban·rivaroxaban·edoxaban | factor Xa 직접 억제 | DOAC
+R: Heparin / LMWH {jb:HM16} | antithrombin III 활성화(LMWH는 Xa 위주) | 주사
+R: Aspirin {jb:HM04} | COX 비가역 → thromboxane A2↓ | 혈소판 응집 억제
+R: Clopidogrel {jb:HM15} | ADP receptor(P2Y12) | 항혈소판
+R: Tirofiban·abciximab {jb:HM17} | GP IIb/IIIa receptor | 항혈소판
+R: ε-Aminocaproic·tranexamic acid {jb:HM14} | t-PA·plasminogen·plasmin(lysine site) | 항섬유소용해 → 지혈
+R: Vitamin K {jb:HM05} | II·VII·IX·X의 Gla(9-12개) 형성 cofactor | 결핍: 흡수 장애·항생제 {jb:HM09}
+R: 생리적 항응고제 {jb:HM06} | protein C·S·antithrombin III·TFPI(간), thrombomodulin | thrombin이 활성화 {jb:HM01}
+
+#TBL 살균·소독제 10 — general features 한 줄 | k=DS | src=[[DS:5]] [[DS:7]] [[DS:9]] [[DS:18]] [[DS:22]] [[DS:25]] [[DS:28]] [[DS:31]] [[DS:34]] [[DS:37]]
+H: 제제 | 옳은 특징 | 틀린 선지·주의
+R: Alcohol {jb:DS07} | vegetative에 살균, 단백 변성, 70%, non-staining, 단기 보존 | spore·fungus ✗, staining ✗
+R: Iodine {jb:DS03} | most valuable·powerful, sporicidal·fungicidal·virucidal, low toxicity, rapid·penetrating, 유기물 영향 ×, alkali 비호환, disclosing | high toxicity ✗, slow ✗, water에 잘 녹음 ✗, 착색 없다 ✗
+R: Bis-biguanide(CHX) {jb:DS02} | G+·G-, 결핵·spore·virus ✗, cationic, 유기물 영향 ×, 빛에 민감, 술전 4%·구강 0.12% | 빛에 강함 ✗, 유기물에 약함 ✗ / antiplaque 3 {jb:DS05}
+R: Oxygenating(H2O2) {jb:DS01} | 산소 유리, 구강 살균 미미, 기계적 세정, 고농도 표백(30%), 1.5% mouthwash, ANUG | 새 조직 금기, black hairy tongue {jb:DS15}
+R: Hypochlorite {jb:DS04} | potent germicidal, 유기물과 강반응, alkali 안정, 고온↑, 고농도 용해, 근관 세척·농양 | 빛·방치에 변성, 냄새, 유기물이 효과↓
+R: Phenol {jb:DS17} | bacteriostatic/cidal·fungicidal, cavity sanitizer·root canal | 저온·유기물에 효과↓, resin 중합 방해, candida
+R: ZOE {jb:DS12} | eugenol 진통·마취(치수 진정), 열전도↓, 습기 가속, astringent | 압축강도 ×, 영구 수복 ✗
+R: Aldehyde {jb:DS13} | bacteria·fungus·virus·spore(broadest), 금속 비부식, 렌즈·고무 손상 ×, 30일 내 사용 | 휘발·자극·알레르기, 산화제·알칼리 비호환, irreversible alkylation
+R: Mercury {jb:DS26} | bacteriostatic, 주사 전 구강 소독, thimerosal 보존제 | sunlight 불안정, TI 낮음
+R: QAC(Zephiran) {jb:DS25} | cationic surfactant, G+ 효과, 표면 소독·구강용 | G– 약함, sporicidal ✗, soap 비호환, 금속 흡착

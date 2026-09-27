@@ -9,7 +9,8 @@
 |---|---|---|
 | `docs/index.html` | 허브(모든 과목 공통, 도구·검색·백업 내장) | O |
 | `docs/packs/<SID>.js`, `<SID>.img.<강의키>.js`, `<SID>.img.jb.js` | 과목 팩 | O |
-| `tools/oms1/`, `tools/cons/` | 과목별 빌드 파이프라인. **cons/가 최신 템플릿** | O |
+| `tools/<sid>/` (oms1·cons·impl·anat·geri·pharm) | 과목별 빌드 파이프라인. 모든 과목이 같은 스크립트, `subject.py`·`assemble.py`·`parse_<sid>.py`·원고만 다름 | O |
+| `guide/` | 정리본 원칙·피드백기록·과목노트 — **작업 전 반드시 읽을 것** | O |
 | `tools/SPEC.md` | 파이프라인 상세 스펙 — 작업 전 반드시 읽을 것 | O |
 | `materials/<과목명>/` | 사용자가 넣는 강의자료(PDF 등) | X |
 | `jb/` | JB 파일(`2025 3Q <과목> JB.pdf` 등 — 실제 PDF. `tools/jbx.py`가 `work/jb/<SID>_20xx/`에 N.txt·N.jpeg·manifest.json으로 풂. ZIP판도 처리) | X |

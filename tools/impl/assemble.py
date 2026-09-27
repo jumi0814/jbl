@@ -127,8 +127,8 @@ for line in open(DIR + '/pred.txt', encoding='utf-8'):
         for x in p[1:]:
             k, _, v = x.partition('='); cur[k] = v
         PRED.append(cur)
-    elif line.startswith('Q:') and cur: cur['q'] = cite_html(line[2:].strip())
-    elif line.startswith('A:') and cur: collect(line); cur['a'] = cite_html(line[2:].strip())
+    elif line.startswith('Q:') and cur: cur['q'] = cite_html(line[2:].strip()); cur['q_raw'] = line[2:].strip()
+    elif line.startswith('A:') and cur: collect(line); cur['a'] = cite_html(line[2:].strip()); cur['a_raw'] = line[2:].strip()
 def b64(im, q):
     b = io.BytesIO(); im.save(b, 'JPEG', quality=q, optimize=True); return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
 IMG = {'jb': {}, 'lec': {}, 'crop': {}}

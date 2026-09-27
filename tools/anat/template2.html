@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>구강악안면외과학1 · JBL (3Q)</title>
+<style>
+:root{--paper:#F6F1E8;--card:#FFFDF8;--ink:#23201B;--sub:#6B6257;--line:#E2D9CA;--hero1:#0F4B4A;--hero2:#0A3332;--acc:#0F5C5A;--accbg:#DCEBE8;
+--k:#B3261E;--head:#691C16;--mark:#FFE98A;--sky:#E4F3FA;--skyb:#B7DDEE;--peach:#FDEBDD;--peachb:#F3C9A6;--purp:#EEE8FB;--purpb:#CFC2F2;--mint:#E3F3E6;--mintb:#B5DDBD;--grey:#ECE7DD;
+--r3:#8E1B14;--r2:#C4473C;--r1:#E9C46A}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--paper);color:var(--ink);font:15.5px/1.68 "Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;word-break:keep-all;overflow-wrap:anywhere}
+.serif{font-family:Georgia,"Times New Roman","Noto Serif KR",serif}
+button{font:inherit;color:inherit;cursor:pointer}
+header.hero{background:linear-gradient(120deg,var(--hero1),var(--hero2));color:#F3F8F6;padding:20px 22px 16px}
+.hero .kick{font-size:12.5px;letter-spacing:.18em;opacity:.85}.hero h1{margin:6px 0 4px;font:700 27px/1.25 Georgia,"Noto Serif KR",serif}
+.hero .sub{font-size:13.5px;opacity:.9}.hchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.hchip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:600}
+nav.tabs{position:sticky;top:0;z-index:20;background:#FFFCF6;border-bottom:1px solid var(--line);display:flex;gap:4px;padding:7px 10px;overflow-x:auto}
+nav.tabs button{background:none;border:0;border-radius:9px;padding:7px 12px;font-weight:700;font-size:14px;color:var(--sub);white-space:nowrap}
+nav.tabs button.on{background:var(--acc);color:#fff}.kbd{display:inline-block;margin-left:6px;font-size:11px;background:rgba(0,0,0,.12);border-radius:5px;padding:0 5px}
+main{max-width:940px;margin:0 auto;padding:18px 14px 120px}
+.view{display:none}.view.on{display:block}
+.pills,.bar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:14px}
+.bar{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.bar label{font-size:13px;color:var(--sub)}.bar select,.bar input{font:inherit;font-size:13.5px;padding:4px 7px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);max-width:100%}
+.tg{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 13px;font-size:13.5px;font-weight:600;color:var(--sub)}.tg.on{background:#4A423A;color:#fff;border-color:#4A423A}
+.cnt{margin-left:auto;font-size:13px;color:var(--sub)}.cnt::after{content:attr(data-c)}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 11px;font-size:13.5px}.btn.sm{font-size:12.5px;padding:2px 8px}.btn.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
+.small{font-size:13px;color:var(--sub)}.pg{color:var(--sub);font-size:.92em}
+.k{color:var(--k);font-weight:700}
+/* chips */
+.meta,.tchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.meta{margin-bottom:9px}
+.chip{display:inline-block;font-size:12.5px;line-height:1.4;padding:2px 9px;border-radius:999px;background:var(--grey);color:#4A423A;white-space:nowrap;border:1px solid transparent}
+.chip.yr{font-weight:800;font-size:13px;color:#fff}.chip.n3{background:var(--r3);color:#fff}.chip.n2{background:var(--r2);color:#fff}.chip.n1{background:var(--r1);color:#4A3500}
+.chip.jb{background:#fff;border-color:#C9A39F;color:var(--head)}.chip.jbn{background:#fff;border:1px dashed #B8AE9F;color:var(--sub)}.chip.cmp{background:#DDE7F5;color:#1E4E8C}.chip.ol{background:#fff;border-color:var(--line)}
+.chip.src{background:transparent;border-color:var(--line);color:var(--sub);font-size:12px}.chip.emc{background:var(--purp);color:#4B3A8C}
+.chip.v-ok{background:var(--mint);color:#1C5B33}.chip.v-part{background:#FBEFCB;color:#5A3B00}.chip.v-diff{background:#7A1712;color:#fff}.chip.v-none,.chip.v-na{background:var(--grey);color:var(--sub)}
+/* question cards */
+.cards{display:flex;flex-direction:column}
+.qc,.pc,.tc{background:var(--card);border:1px solid var(--line);border-left:6px solid #B8AE9F;border-radius:14px;padding:13px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(60,40,10,.05)}
+.qc.h2,.tc.h2{border-left-color:var(--r3)}.qc.h1,.tc.h1{border-left-color:#D9A62E}.qc.tC{background:#F4F0E6;border-style:dashed;border-left-style:solid}.pc{border-left-color:#3A6EA5}
+.qc.hid,.pc.hid,.tblwrap.hid{display:none}.qc.flash{outline:3px solid var(--mark)}
+.qc.mk-ok{box-shadow:inset 0 0 0 2px var(--mintb)}.qc.mk-ng{box-shadow:inset 0 0 0 2px #E6A9A3}
+.qtext,.pre{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 13px;font-size:15px}.qtext{font-weight:600}
+.pq{font-weight:700}.pre2{font-size:14.5px}
+.fig{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;margin:9px 0;background:#fff}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mk.ok{}.qc.mk-ok .mk.ok{background:var(--mint);border-color:var(--mintb)}.qc.mk-ng .mk.ng{background:#F7DAD6;border-color:#E6A9A3}.qc.mk-bm .mk.bm{background:var(--mark);border-color:#D9B93A}
+.ans{display:none;margin-top:11px}.qc.open .ans,.pc.open .ans,.revall .ans{display:block}
+.box{border-radius:12px;padding:10px 14px;margin-top:10px;border:1px solid var(--line)}.box ul{margin:4px 0 2px;padding-left:19px}.box li{margin:4px 0;font-size:14.5px}
+.bt{font-weight:800;font-size:14px;color:var(--head);margin-bottom:4px}
+.box.jbans{background:#FFFBEA;border-color:#EADF9F}.box.jbans .pre{background:transparent;border:0;padding:0}
+.box.chk{background:var(--sky);border-color:var(--skyb)}.box.chk.v-diff{background:#FBE3E0;border-color:#E6A9A3}.box.chk.v-part{background:#FFF6DC;border-color:#EBD58F}.box.chk.v-ok{background:var(--mint);border-color:var(--mintb)}.box.chk.v-none,.box.chk.v-na{background:var(--grey)}
+.box.more{background:#fff}.box.prof{background:var(--purp);border-color:var(--purpb)}.box.prof .bt{color:#4B3A8C}.box.exam{background:var(--peach);border-color:var(--peachb)}
+.note{font-size:13.5px;color:#1E4E8C;background:#E6EEF9;border-radius:8px;padding:5px 10px;margin-top:7px}
+.warn{color:var(--head)}.bulb{background:var(--mark);border-radius:4px;padding:0 2px}
+.cite{border:1px solid var(--acc);background:#fff;color:var(--acc);border-radius:6px;padding:0 6px;font-size:12.5px;margin:0 1px;white-space:nowrap}.cite.noimg{border-style:dashed;color:var(--sub);border-color:#B8AE9F}.cite.t{white-space:normal;text-align:left}
+.link{background:none;border:0;padding:0;color:var(--acc);text-decoration:underline;font-size:inherit;text-align:left}
+.jbchip{border:1px solid #C9A39F;background:#fff;color:var(--head);border-radius:7px;padding:0 8px;font-size:12.5px;font-weight:700}.jbchip.rep{background:var(--r3);color:#fff;border-color:var(--r3)}
+details.oth{margin-top:10px}details>summary{cursor:pointer;font-size:13.5px;color:var(--sub)}.oh{font-size:13px;color:var(--sub);margin:9px 0 4px;font-weight:700}
+.onebar{display:none;gap:10px;align-items:center;justify-content:center;margin-bottom:12px}.single .onebar{display:flex}.single .qc{display:none}.single .qc.cur{display:block}
+#opos::after{content:attr(data-c);font-size:13.5px;color:var(--sub)}
+/* lecture cards */
+.lecwrap{display:none}.lecwrap.on{display:block}
+.lhead{background:var(--accbg);border:1px solid #BFD9D4;border-radius:14px;padding:13px 16px;margin-bottom:14px}.lhead .en{font-size:21px;font-weight:700}.lhead .ko{font-size:13.5px;color:var(--sub);margin-bottom:4px}.lhead p{margin:4px 0;font-size:13.5px;color:#3D4A47}
+.thead{display:flex;gap:12px;align-items:flex-start;cursor:pointer}.badge{flex:none;min-width:58px;text-align:center;background:var(--acc);color:#fff;border-radius:9px;padding:6px 8px;font-weight:800;font-size:12.5px}
+.tc.h2 .badge{background:var(--r3)}.tc.h1 .badge{background:#B5851A}.tt{flex:1}.tt .en{font-size:17px;font-weight:700;line-height:1.35}.tchips{margin-top:5px}
+.car{flex:none;color:#B8AE9F;transition:transform .15s}.tc.open .car{transform:rotate(90deg)}
+.tbody{display:none;margin-top:10px;border-top:1px solid var(--line);padding-top:4px}.tc.open .tbody{display:block}
+ul.pts{margin:8px 0 4px;padding-left:20px}ul.pts li{margin:6px 0}
+.pgrow{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:9px}
+/* tables */
+.tblwrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:16px}.tbt{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--ink)}summary.tbt{cursor:pointer}
+.tscroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13.5px}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+thead th{background:var(--accbg);color:#173F3D;position:sticky;top:0}tbody th{background:#FAF5EA;font-weight:700;min-width:96px}
+table.sum tr.h2 th{background:#F8DEDA}table.sum tr.h1 th{background:#FBF0CC}td.qs{font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:14px}
+.pggrid{display:flex;flex-wrap:wrap;gap:5px}.pggrid .btn{min-width:40px}
+/* modal */
+#imgmodal{position:fixed;inset:0;background:rgba(20,16,10,.9);z-index:60;display:none;flex-direction:column}#imgmodal.on{display:flex}
+#mbar{display:flex;gap:8px;align-items:center;padding:8px 12px;color:#fff;flex-wrap:wrap}#mtitle{flex:1;font-size:14px;font-weight:700}#mtitle::after{content:attr(data-c)}
+#mwrap{flex:1;overflow:auto;text-align:center;padding:0 8px 80px}#mimg{max-width:100%;height:auto;background:#fff;border-radius:4px}#mimg.zoom{max-width:none;width:170%}
+@media (max-width:640px){body{font-size:15px}.hero h1{font-size:22px}main{padding:12px 9px 120px}.cnt{margin-left:0;width:100%}}
+@media print{nav.tabs,.bar,.pills,.acts,#imgmodal{display:none!important}.view{display:block!important}.ans,.tbody{display:block!important}}
+</style></head><body>
+<header class="hero"><div class="kick">구강악안면외과학 1 · 3학년 3쿼터</div><h1>Oral &amp; Maxillofacial Surgery I</h1>
+<div class="sub">JB 기출 전 문항 × 강의자료(26년도 우선, 없으면 25년도) — 서병무 · 한정준 · 서미현 · 윤필영 교수님</div><div class="hchips"><!--STATS--></div></header>
+<nav class="tabs" id="tabs"><!--NAV--></nav>
+<main><!--VIEWS--></main>
+<div id="imgmodal"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mprev">◀</button><button class="btn" id="mnext">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mwrap"><img id="mimg" alt=""></div></div>
+<script>
+/*__IMG__*/
+(function(){
+const $=(s,e)=>(e||document).querySelector(s),$$=(s,e)=>[...(e||document).querySelectorAll(s)];
+let MK={ok:{},ng:{},bm:{}};try{const s=localStorage.getItem('oms1_jbl_v2');if(s)MK=Object.assign(MK,JSON.parse(s));}catch(e){}
+const save=()=>{try{localStorage.setItem('oms1_jbl_v2',JSON.stringify(MK));}catch(e){}};
+const cards=$$('#cards .qc');cards.forEach(c=>{['ok','ng','bm'].forEach(k=>{if(MK[k][c.dataset.id])c.classList.add('mk-'+k);});});
+$$('.cite').forEach(b=>{if(b.dataset.k!=='DD3'&&!IMG.lec[b.dataset.k+'-'+b.dataset.p])b.classList.add('noimg');});
+/* tabs */
+function tab(t){$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));$$('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+t));}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){tab(b.dataset.t);window.scrollTo(0,0);}});
+/* JB filters — 보이기/숨기기와 순서는 class·style만 바꿈(DOM 구조 불변) */
+const F={tiers:{A:true,B:true,C:false},prof:'',lec:'',n:0,ver:'',mine:'',sort:'',q:''};let one=false,cur=0,vis=[];
+function apply(){const s=F.q.toLowerCase();vis=[];
+ cards.forEach(c=>{const d=c.dataset;let ok=F.tiers[d.tier]&&(!F.prof||d.prof===F.prof)&&(!F.lec||d.lec===F.lec)&&(+d.n>=F.n);
+  if(ok&&F.ver==='flag')ok=(d.v==='diff'||d.v==='part');if(ok&&F.ver==='none')ok=d.v==='none';
+  if(ok&&F.mine==='bm')ok=!!MK.bm[d.id];if(ok&&F.mine==='ng')ok=!!MK.ng[d.id];if(ok&&F.mine==='todo')ok=!MK.ok[d.id]&&!MK.ng[d.id];
+  if(ok&&s)ok=c.textContent.toLowerCase().includes(s);
+  c.classList.toggle('hid',!ok);if(ok)vis.push(c);});
+ cards.forEach(c=>{const d=c.dataset;let o=+d.idx;if(F.sort==='n')o=(9-+d.n)*100000+(99-+d.y0)*1000+ +d.idx;else if(F.sort==='y')o=(99-+d.y0)*100000+(9-+d.n)*1000+ +d.idx;else if(F.sort==='r')o=Math.floor(Math.random()*1e6);c.style.order=o;c._o=o;});
+ vis.sort((a,b)=>a._o-b._o);$('#jbcnt').setAttribute('data-c','표시 '+vis.length+' / 전체 '+cards.length+'문항 · 맞음 '+Object.keys(MK.ok).length+' · 틀림 '+Object.keys(MK.ng).length);
+ $('#jbempty').style.display=vis.length?'none':'block';cur=0;showCur();}
+function showCur(){cards.forEach(c=>c.classList.remove('cur'));if(one&&vis.length){cur=(cur+vis.length)%vis.length;vis[cur].classList.add('cur');$('#opos').setAttribute('data-c',(cur+1)+' / '+vis.length);}}
+const bar=$('#jbbar');
+bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.tier){F.tiers[b.dataset.tier]=!F.tiers[b.dataset.tier];b.classList.toggle('on');apply();}
+ else if(b.id==='fone'){one=!one;b.classList.toggle('on',one);$('#v-jb').classList.toggle('single',one);showCur();}
+ else if(b.id==='frev'){b.classList.toggle('on');$('#v-jb').classList.toggle('revall');}});
+bar.addEventListener('change',e=>{const t=e.target;if(t.id==='fprof')F.prof=t.value;else if(t.id==='flec')F.lec=t.value;else if(t.id==='fn')F.n=+t.value;else if(t.id==='fver')F.ver=t.value;else if(t.id==='fmine')F.mine=t.value;else if(t.id==='fsort')F.sort=t.value;else return;apply();});
+$('#fq').addEventListener('input',e=>{F.q=e.target.value;apply();});
+$('#oprev').onclick=()=>{cur--;showCur();window.scrollTo(0,0);};$('#onext').onclick=()=>{cur++;showCur();window.scrollTo(0,0);};
+function go(id){const c=document.getElementById('c-'+id);if(!c)return;tab('jb');F.tiers[c.dataset.tier]=true;$$('#jbbar [data-tier]').forEach(b=>b.classList.toggle('on',F.tiers[b.dataset.tier]));
+ F.prof=F.lec=F.ver=F.mine=F.q='';F.n=0;['fprof','flec','fver','fmine'].forEach(i=>$('#'+i).value='');$('#fn').value='0';$('#fq').value='';apply();
+ c.classList.add('open');if(one){cur=vis.indexOf(c);showCur();}c.scrollIntoView({block:'start'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),1800);}
+/* modal */
+let SEQ=[],MI=0;function show(){const x=SEQ[MI];$('#mimg').src=x[0];$('#mtitle').setAttribute('data-c',x[1]+'  ('+(MI+1)+'/'+SEQ.length+')');$('#imgmodal').classList.add('on');}
+function openLec(k,p){const ks=Object.keys(IMG.lec).filter(x=>x.indexOf(k+'-')===0).sort((a,b)=>+a.split('-')[1]-+b.split('-')[1]);SEQ=ks.map(x=>[IMG.lec[x],LECNAME[k]+' p.'+x.split('-')[1]]);MI=Math.max(0,ks.indexOf(k+'-'+p));show();}
+function openJB(key){const ed=key.split('-')[0],ks=[];for(let p=1;p<=NPAGES[ed];p++)ks.push(ed+'-'+p);SEQ=ks.map(x=>[IMG.jb[x],'JB 원본 '+x.split('-')[1]+'쪽']);MI=ks.indexOf(key);show();}
+$('#mclose').onclick=()=>$('#imgmodal').classList.remove('on');$('#mprev').onclick=()=>{MI=(MI-1+SEQ.length)%SEQ.length;show();};$('#mnext').onclick=()=>{MI=(MI+1)%SEQ.length;show();};$('#mzoom').onclick=()=>$('#mimg').classList.toggle('zoom');
+/* delegated clicks */
+document.querySelector('main').addEventListener('click',e=>{const t=e.target.closest('button,[data-ttog]');if(!t)return;const d=t.dataset;
+ if(d.tog){t.closest('article').classList.toggle('open');return;}
+ if(d.ttog){t.closest('.tc').classList.toggle('open');return;}
+ if(d.mk){const c=t.closest('.qc'),id=c.dataset.id,k=d.mk;if(MK[k][id]){delete MK[k][id];c.classList.remove('mk-'+k);}else{MK[k][id]=1;c.classList.add('mk-'+k);if(k==='ok'){delete MK.ng[id];c.classList.remove('mk-ng');}if(k==='ng'){delete MK.ok[id];c.classList.remove('mk-ok');}}save();return;}
+ if(d.jb){openJB(d.jb);return;}
+ if(t.classList.contains('cite')){if(d.k==='DD3'){tab('lec');selLec('DD3');window.scrollTo(0,0);}else if(IMG.lec[d.k+'-'+d.p])openLec(d.k,d.p);else alert('이 쪽의 원본 이미지는 파일 용량 때문에 넣지 않았습니다: '+LECNAME[d.k]+' p.'+d.p);return;}
+ if(d.go){go(d.go);return;}
+ if(d.lec&&t.closest('#lecpills')){selLec(d.lec);return;}
+ if(t.id==='lopen'||t.id==='lclose'){$$('.lecwrap.on .tc').forEach(c=>c.classList.toggle('open',t.id==='lopen'));return;}
+ if(d.tk!==undefined){$$('#tblpills .tg').forEach(b=>b.classList.toggle('on',b===t));$$('#v-tbl .tblwrap').forEach(w=>w.classList.toggle('hid',!!d.tk&&w.dataset.k!==d.tk));return;}
+ if(d.pk!==undefined){$$('#predpills .tg').forEach(b=>b.classList.toggle('on',b===t));$$('#v-pred .pc').forEach(w=>w.classList.toggle('hid',!!d.pk&&w.dataset.k!==d.pk));return;}
+ if(t.id==='popen'){$('#v-pred').classList.toggle('revall');return;}
+});
+function selLec(k){$$('#lecpills [data-lec]').forEach(b=>b.classList.toggle('on',b.dataset.lec===k));$$('.lecwrap').forEach(w=>w.classList.toggle('on',w.dataset.k===k));}
+/* keys: 숫자=탭, ←→=한 장씩. (H·A·V·L·M은 HUB 도구 단축키라 쓰지 않음) */
+document.addEventListener('keydown',e=>{if(e.target&&/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)||e.target.isContentEditable)return;if(e.ctrlKey||e.metaKey||e.altKey)return;
+ if($('#imgmodal').classList.contains('on')){if(e.key==='Escape')$('#mclose').click();if(e.key==='ArrowLeft')$('#mprev').click();if(e.key==='ArrowRight')$('#mnext').click();return;}
+ const n=+e.key;const bs=$$('#tabs button');if(n>=1&&n<=bs.length){bs[n-1].click();return;}
+ if(one&&$('#v-jb').classList.contains('on')){if(e.key==='ArrowLeft')$('#oprev').click();if(e.key==='ArrowRight')$('#onext').click();if(e.key===' '){e.preventDefault();if(vis[cur])vis[cur].classList.toggle('open');}}});
+apply();
+})();
+</script></body></html>

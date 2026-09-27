@@ -7,8 +7,9 @@
 - 바꾼 뒤 claude.ai 경로가 하나라도 남으면 실패로 끝낸다 → 규칙을 추가할 것."""
 import os, re, sys, shutil, zipfile, tempfile, difflib, unicodedata
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BAD = re.compile(r"/home/claude|/mnt/user-data|TESSDATA_PREFIX|f'/tmp/")
+BAD = re.compile(r"/home/claude|/mnt/user-data|TESSDATA_PREFIX|'/tmp/")
 PRE = "import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py\n"
+PRE_ROOT = "import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__))); import jblpaths as J  # tools/localize.py\n"   # tools/ 바로 아래 파일
 HERE = "_os.path.dirname(_os.path.abspath(__file__))"
 
 def unpack(src):
@@ -65,6 +66,10 @@ for (k, p) in sorted(ctx['cited'] | {(k_, p_) for k_, r_ in S.FORCE_PAGES.items(
     # OCR·idx: work/<SID>/에서 실행, tesseract는 Homebrew 기본 tessdata
     s = re.sub(r"os\.environ\['TESSDATA_PREFIX'\] *= *'[^']*'", f"_os.chdir(J.work('{sid}'))   # 강의 PDF·OCR 결과는 work/{sid}/, tesseract는 Homebrew 기본 tessdata", s)
     s = s.replace("tmp=f'/tmp/", "tmp=f'{k}o/_")
+    # 테스트·감사 스크립트: 허브 = docs/index.html, 단일 파일판 = work/, 임시 파일 = work/_tmp/
+    s = re.sub(r"'file:///mnt/user-data/outputs/JBL_HUB/JBL_HUB\.html([^']*)'", lambda m: "J.HUB_URL" + (f" + '{m.group(1)}'" if m.group(1) else ""), s)
+    s = re.sub(r"'file:///mnt/user-data/outputs/([^'#]+_JBL\.html)([^']*)'", lambda m: f"'file://' + _os.path.join(J.WORK, '{m.group(1)}')" + (f" + '{m.group(2)}'" if m.group(2) else ""), s)
+    s = re.sub(r"(?<![{\w])'/tmp/([^']*)'", lambda m: f"_os.path.join(J.TMP, '{m.group(1)}')", s)
     if fn == 'idx.py' and 'J.work' not in s:
         s = s.replace("if __name__=='__main__':\n", f"if __name__=='__main__':\n    _os.chdir(J.work('{sid}'))\n", 1)
     if s != o or 'J.' in s: s = PRE + s
@@ -75,7 +80,7 @@ def main(src):
     for sub in sorted(os.listdir(os.path.join(M, 'tools'))):
         sd = os.path.join(M, 'tools', sub)
         if not os.path.isdir(sd): continue
-        sid = sub.upper(); dst = os.path.join(ROOT, 'tools', sub); os.makedirs(dst, exist_ok=True)
+        sid = None if sub == 'tests' else sub.upper(); dst = os.path.join(ROOT, 'tools', sub); os.makedirs(dst, exist_ok=True)
         for fn in sorted(os.listdir(sd)):
             p = os.path.join(sd, fn)
             if not os.path.isfile(p) or fn.endswith('.pyc'): continue
@@ -88,6 +93,14 @@ def main(src):
                 data = t.encode('utf-8')
             q = os.path.join(dst, fn); old = open(q, 'rb').read() if os.path.exists(q) else None
             if old != data: open(q, 'wb').write(data); rep.append(('새 파일' if old is None else '갱신', f'tools/{sub}/{fn}'))
+    for fn in sorted(os.listdir(os.path.join(M, 'tools'))):   # tools/ 바로 아래 스크립트(audit_design.py 등)
+        p = os.path.join(M, 'tools', fn)
+        if not (os.path.isfile(p) and fn.endswith('.py')): continue
+        t = localize(open(p, encoding='utf-8').read(), None, fn).replace(PRE, PRE_ROOT, 1)
+        left = [f'{fn}:{i}: {l.strip()[:90]}' for i, l in enumerate(t.split('\n'), 1) if BAD.search(l)]
+        if left: sys.exit(f'✗ tools/{fn}: 바꾸지 못한 claude.ai 경로 — tools/localize.py에 규칙 추가 필요\n  ' + '\n  '.join(left))
+        q = os.path.join(ROOT, 'tools', fn); old = open(q, encoding='utf-8').read() if os.path.exists(q) else None
+        if old != t: open(q, 'w', encoding='utf-8').write(t); rep.append(('새 파일' if old is None else '갱신', f'tools/{fn}'))
     for sub in ('guide', '.claude/commands'):
         sd = os.path.join(M, sub)
         if not os.path.isdir(sd): continue

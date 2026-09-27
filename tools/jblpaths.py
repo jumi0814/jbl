@@ -6,6 +6,8 @@ ROOT = os.path.dirname(TOOLS)
 WORK = os.path.join(ROOT, 'work')
 DOCS = os.path.join(ROOT, 'docs')
 JBX = os.path.join(WORK, 'jb') + '/'          # f'{JBX}{SID}_20{ed}/{i}.txt'
+HUB_URL = 'file://' + os.path.join(DOCS, 'index.html')   # 테스트·감사 스크립트가 여는 허브
+TMP = os.path.join(WORK, '_tmp'); os.makedirs(TMP, exist_ok=True)   # 스크린샷 등 임시 파일
 def work(sid, *p):
     d = os.path.join(WORK, sid); os.makedirs(d, exist_ok=True)
     return os.path.join(d, *p)

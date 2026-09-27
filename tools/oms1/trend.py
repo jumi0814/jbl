@@ -71,7 +71,8 @@ def years_html(S, limit=6):
         cells.append(f'<span class="ycell"><b>{YR(y)}</b> {d["n"]}문항 · 짤 <b class="cj">{d["jjal"]}</b> / 탈 <b class="ct">{d["tal"]}</b>{tl}</span>')
     if older:
         on = sum(d['n'] for _, d in older); oj = sum(d['jjal'] for _, d in older); ot = sum(d['tal'] for _, d in older)
-        cells.append(f'<span class="ycell base"><b>{YR(older[-1][0])}~{YR(older[0][0])}</b> {on}문항 · 짤 {oj} / 탈 {ot}{" (기준선 포함)" if any(d["base"] for _, d in older) else ""}</span>')
+        rng_ = YR(older[-1][0]) if older[-1][0] == older[0][0] else f'{YR(older[-1][0])}~{YR(older[0][0])}'
+        cells.append(f'<span class="ycell base"><b>{rng_}</b> {on}문항 · 짤 {oj} / 탈 {ot}{" (기준선 포함)" if any(d["base"] for _, d in older) else ""}</span>')
     return ''.join(cells)
 def tendency_text(S, name, ment='', short=False):
     """데이터에서 규칙으로 뽑는 경향 문장 + 공부 전략. 최근 연도 비율을 기준으로 판정하고 연도별 추이를 함께 보여줌"""

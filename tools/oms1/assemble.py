@@ -244,8 +244,8 @@ for line in open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'pr
         for x in p[1:]:
             k, _, v = x.partition('='); cur[k] = v
         PRED.append(cur)
-    elif line.startswith('Q:') and cur: cur['q'] = cite_html(line[2:].strip())
-    elif line.startswith('A:') and cur: collect(line); cur['a'] = cite_html(line[2:].strip())
+    elif line.startswith('Q:') and cur: cur['q'] = cite_html(line[2:].strip()); cur['q_raw'] = line[2:].strip()
+    elif line.startswith('A:') and cur: collect(line); cur['a'] = cite_html(line[2:].strip()); cur['a_raw'] = line[2:].strip()
 
 # ---------- 6. images ----------
 def b64(im, q):
