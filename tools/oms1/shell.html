@@ -422,6 +422,13 @@ button.car{flex:none;width:32px;height:32px;border:0;background:none;padding:0;m
 .figs .fb{display:none}
 .small,.co .ct small{color:#6A645B}
 tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
+/* 플래시카드 v2(U28) */
+.fcf{justify-content:flex-start}.fcprog{height:6px;border-radius:3px;background:#EEE9DF;display:flex;overflow:hidden;margin:8px 0 3px}.fcprog i{display:block;height:100%}.fcprog i.o{background:#2E8B57}.fcprog i.x{background:#B3261E}.fcps{text-align:left;margin-bottom:10px}
+.fcard .fcbody{text-align:left;font-size:16px;line-height:1.7}.fcard ul.fcl{margin:0;padding-left:20px}.fcard ul.fcl li{margin:4px 0}
+.fcard.cloze .k{color:inherit;background:none}.fcard .k.fcb{background:#E9E2D0;color:transparent!important;border-bottom:2px solid #8C857A;border-radius:3px 3px 0 0;cursor:pointer;padding:0 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}.fcard .k.fcb.show{background:#FFF3C8;color:var(--red)!important;border-bottom-color:#C99A2E}
+.fcm{font-size:11.5px;font-weight:800;letter-spacing:0;border-radius:999px;padding:1px 8px;margin-left:6px;border:1px solid}.fcm.o{color:#1C5B33;border-color:#5F9E7A}.fcm.x{color:#8E1B14;border-color:#C98484}
+.fcjudge{display:flex;gap:12px;justify-content:center;margin-top:12px}.fcjudge .btn{min-width:120px;min-height:48px;font-size:15px;font-weight:800;border-radius:12px}.fcjudge .fx{color:#8E1B14;border-color:#C98484;background:#fff}.fcjudge .fo{color:#1C5B33;border-color:#5F9E7A;background:#fff}.fcjudge .fx.on{background:#F7DAD6}.fcjudge .fo.on{background:var(--mint)}
+.fckeys{margin-top:8px}@media (hover:none){.fckeys{display:none}}#fc .fcard{touch-action:pan-y}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -444,6 +451,7 @@ tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
 <tr><th>이동</th><td>숫자키 = 탭 · M 메모 · V 도구 숨기기 · Esc 모드 끄기 · ? 도움말 · 학습 탭에서 J/K = 다음/이전 카드</td></tr>
 <tr><th>한 장씩 풀기</th><td>아래 풀이 막대 [◀][답 보기][✗ 틀림][✓ 맞음][★][▶] · 키 ←/→, Space 답, O 맞음 · X 틀림(누르면 그 상태로 — 해제는 카드의 버튼), B ★ · 손가락 좌우 스와이프로 넘기기 · ‘자동 넘김’이 켜져 있으면 채점 0.25초 뒤 다음 문제 · 마지막 다음은 회차 요약(틀린 것만 다시·안 채점만·처음부터) · 카드 머리의 ‘✗2 ✓1’은 최근 채점 기록</td></tr>
+<tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억</td></tr>
 </tbody></table></div></div>
 <div id="toast"></div>
 <script>
@@ -782,16 +790,42 @@ const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.
 /* 한 장씩 풀기: 카드 영역 좌우 스와이프(|dx|>70·|dy|<50, 형광펜·빈칸 모드가 꺼져 있을 때만) */
 let SW=null;$('#stage').addEventListener('touchstart',e=>{SW=null;if(!JB.one||e.touches.length!==1||Kit.mode()||!e.target.closest('#cards .qc.cur,#onesum')||e.target.closest('.tscroll,input,textarea,select,.fig,figure'))return;const t=e.touches[0];SW={x:t.clientX,y:t.clientY,t:Date.now()};},{passive:true});
 $('#stage').addEventListener('touchend',e=>{if(!SW)return;const t=e.changedTouches[0],dx=t.clientX-SW.x,dy=t.clientY-SW.y;SW=null;if(Math.abs(dx)>70&&Math.abs(dy)<50)JB.go(dx<0?1:-1);},{passive:true});
-/* ---------- 플래시카드 ---------- */
-const Flash={deck:[],all:[],i:0,back:false,kind:'',init(p,L){const tmp=document.createElement('div');this.deck=[];const E=x=>x.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
-  (L.recall||[]).forEach(r=>this.deck.push({tag:'암기 · 빈칸',cloze:true,q:'<div class="fct">'+E(r.t)+'</div>'+r.h,a:'<div class="fct">'+E(r.t)+'</div>'+r.h}));
-  const LN=el=>$$('.ln',el).map(x=>x.textContent).join('\n');L.jb.forEach(id=>{tmp.innerHTML=p.cards[id];const q=$('.qtext',tmp),a=$('.jbans .lines',tmp),y=$('.ybadge b',tmp);const v=($('.qc',tmp)||{dataset:{}}).dataset.v;if(q&&a)this.deck.push({tag:'기출 '+(y?y.textContent:''),q:E(LN(q)),a:E((v==='diff'?'⚠ 이 JB 답은 강의자료와 어긋납니다 — 문제 카드의 ‘강의자료 대조’ 확인\n\n':'')+LN(a))});});
-  L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp);if(q&&a)this.deck.push({tag:'예상',q:E(q.textContent),a:E(a.textContent)});});this.all=this.deck.slice();this.kind='';this.i=0;this.back=false;this.draw();},
- filter(k){this.kind=k;this.deck=k?this.all.filter(c=>c.tag.startsWith(k)):this.all.slice();this.i=0;this.back=false;this.draw();},
- draw(){const f=$('#fc');if(!f)return;if(!this.deck.length){f.innerHTML='<div class="pills noann">'+['','암기','기출','예상'].map(k=>`<button class="tg ${this.kind===k?'on':''}" data-fk="${k}">${k||'전체'}</button>`).join('')+'</div><div class="panel">이 종류의 카드가 없습니다.</div>';return;}const c=this.deck[this.i];
-  const kb=['','암기','기출','예상'].map(k=>`<button class="tg ${this.kind===k?'on':''}" data-fk="${k}">${k||'전체'} ${this.all.filter(c=>!k||c.tag.startsWith(k)).length}</button>`).join('');
-  f.innerHTML=`<div class="pills noann">${kb}</div><div class="fcard ${this.back?'back':''} ${c.cloze&&!this.back?'cloze':''}" id="fcard"><div class="side">${this.back?'답':c.tag+(c.cloze?' — 가려진 곳을 떠올린 뒤 뒤집기':' · 문제')}</div><div></div></div><div class="fcctl"><button class="btn" id="fprev">◀</button><span class="small">${this.i+1} / ${this.deck.length}</span><button class="btn" id="fnext">▶</button><button class="btn" id="fshuf">섞기</button><span class="small">카드를 누르거나 Space로 뒤집기</span></div>`;
-  $('#fcard').lastChild.innerHTML=this.back?c.a:c.q;}};
+/* ---------- 플래시카드 v2(U28) — 빨간 부분 = 빈칸 하나씩(누르면 그것만) · 카드 다른 곳/Space = 뒤집기 · 알아요 ○ / 몰라요 ✕(O/X) 저장 LS 'fc.<S>' = {카드키:{s:'o'|'x',t}}
+   · 필터: 종류(암기·기출·예상) × 상태(몰라요만·안 본 것) · 위치·섞은 순서 LS 'fcpos.<S>.<강의>' · 스와이프 넘기기 ---------- */
+const fcHash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36);};
+const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
+ init(p,L){const tmp=document.createElement('div');this.s=p.id;this.k=L.k;this.all=[];const E=x=>x.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
+  (L.recall||[]).forEach(r=>{tmp.innerHTML=r.h;const h=/^\s*<li/.test(r.h)?'<ul class="fcl">'+r.h+'</ul>':'<ul class="fcl"><li>'+r.h+'</li></ul>';const hasK=/class="k"/.test(r.h);
+   this.all.push({key:'R:'+L.k+':'+fcHash(r.t+'|'+tmp.textContent),tag:'암기',kind:'암기',cloze:hasK,q:'<div class="fct">'+E(r.t)+'</div>'+h,a:'<div class="fct">'+E(r.t)+'</div>'+h});});
+  const LN=el=>$$('.ln',el).map(x=>x.textContent).join('\n');L.jb.forEach(id=>{tmp.innerHTML=p.cards[id];const q=$('.qtext',tmp),a=$('.jbans .lines',tmp),y=$('.ybadge b',tmp);const v=($('.qc',tmp)||{dataset:{}}).dataset.v;if(q&&a)this.all.push({key:'J:'+id,tag:'기출 '+(y?y.textContent:''),kind:'기출',q:E(LN(q)),a:E((v==='diff'?'⚠ 이 JB 답은 강의자료와 어긋납니다 — 문제 카드의 ‘강의자료 대조’ 확인\n\n':'')+LN(a))});});
+  L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp),pc=$('.pc',tmp);if(q&&a)this.all.push({key:'P:'+((pc&&pc.dataset.aid)||i),tag:'예상',kind:'예상',q:E(q.textContent),a:E(a.textContent)});});
+  const ps=mkObj(LS.get('fcpos.'+this.s+'.'+this.k,{}));this.kind=typeof ps.kind==='string'?ps.kind:'';this.st=typeof ps.st==='string'?ps.st:'';this.ord=Array.isArray(ps.ord)?ps.ord:null;this.back=false;this.build(ps.key);},
+ mem(){return mkObj(LS.get('fc.'+this.s,{}));},
+ build(key){const M=this.mem();let d=this.all.filter(c=>(!this.kind||c.kind===this.kind)&&(!this.st||(this.st==='x'?(M[c.key]&&M[c.key].s==='x'):!M[c.key])));
+  if(this.ord){const pos={};this.ord.forEach((k,i)=>pos[k]=i);d.sort((a,b)=>(pos[a.key]==null?1e9:pos[a.key])-(pos[b.key]==null?1e9:pos[b.key]));}
+  this.deck=d;const j=key?d.findIndex(c=>c.key===key):-1;this.i=j>=0?j:Math.min(this.i,Math.max(0,d.length-1));if(j<0&&key==null)this.i=0;this.draw();},
+ save(){const c=this.deck[this.i];LS.set('fcpos.'+this.s+'.'+this.k,{kind:this.kind,st:this.st,ord:this.ord,key:c?c.key:null});},
+ filter(k){this.kind=k;this.back=false;this.i=0;this.build(null);this.save();},
+ stf(v){this.st=this.st===v?'':v;this.back=false;this.i=0;this.build(null);this.save();},
+ shuffle(){const ks=this.all.map(c=>c.key);for(let i=ks.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ks[i],ks[j]]=[ks[j],ks[i]];}this.ord=ks;this.back=false;this.i=0;this.build(null);this.save();toast('카드를 섞었어요 — 순서는 이 강의에 저장');},
+ move(d){if(!this.deck.length)return;this.i=(this.i+d+this.deck.length)%this.deck.length;this.back=false;this.draw();this.save();},
+ judge(v){const c=this.deck[this.i];if(!c)return;const M=this.mem();M[c.key]={s:v,t:Date.now()};LS.set('fc.'+this.s,M);
+  if(this.st&&!(this.st==='x'&&v==='x')){const k=c.key;this.build(k);if(this.deck[this.i]&&this.deck[this.i].key===k)this.move(1);else{this.back=false;this.draw();this.save();}}else this.move(1);},
+ flip(){this.back=!this.back;this.draw();},
+ draw(){const f=$('#fc');if(!f)return;const M=this.mem(),A=this.all;const cnt=(k,st)=>A.filter(c=>(!k||c.kind===k)&&(!st||(st==='x'?(M[c.key]&&M[c.key].s==='x'):!M[c.key]))).length;
+  const kb=['','암기','기출','예상'].map(k=>`<button class="tg ${this.kind===k?'on':''}" data-fk="${k}">${k||'전체'} ${cnt(k,'')}</button>`).join('');
+  const sb=`<button class="tg ${this.st==='x'?'on':''}" data-fst="x">몰라요만 ${cnt(this.kind,'x')}</button><button class="tg ${this.st==='new'?'on':''}" data-fst="new">안 본 것 ${cnt(this.kind,'new')}</button><button class="tg" id="fshuf">섞기</button>${this.ord?'<button class="tg" id="funshuf">원래 순서</button>':''}`;
+  const base=A.filter(c=>!this.kind||c.kind===this.kind),no=base.filter(c=>M[c.key]&&M[c.key].s==='o').length,nx=base.filter(c=>M[c.key]&&M[c.key].s==='x').length,nt=base.length||1;
+  const prog=`<div class="fcprog" title="알아요 ${no} · 몰라요 ${nx} · 안 본 것 ${base.length-no-nx}"><i class="o" style="width:${no/nt*100}%"></i><i class="x" style="width:${nx/nt*100}%"></i></div><div class="small fcps">알아요 <b class="cok">${no}</b> · 몰라요 <b class="cng">${nx}</b> · 안 본 것 ${base.length-no-nx} / ${base.length}</div>`;
+  const head=`<div class="pills noann fcf">${kb}<span class="sp"></span>${sb}</div>${prog}`;
+  if(!this.deck.length){f.innerHTML=head+`<div class="panel">${this.st==='x'?'몰라요로 표시한 카드가 없어요.':this.st==='new'?'이 종류는 모두 한 번씩 봤어요.':'이 종류의 카드가 없습니다.'}</div>`;return;}
+  const c=this.deck[this.i],m=M[c.key],cl=c.cloze&&!this.back;
+  f.innerHTML=head+`<div class="fcard ${this.back?'back':''} ${cl?'cloze':''}" id="fcard"><div class="side">${this.back?'답':c.tag+(cl?' — 빨간 칸을 눌러 하나씩 · 카드를 누르면 뒤집기':' · 문제')}${m?` <span class="fcm ${m.s}">${m.s==='o'?'알아요':'몰라요'}</span>`:''}</div><div class="fcbody"></div></div>`
+   +`<div class="fcctl"><button class="btn" id="fprev" aria-label="이전">◀</button><span class="small fcpos">${this.i+1} / ${this.deck.length}</span><button class="btn" id="fnext" aria-label="다음">▶</button></div>`
+   +`<div class="fcjudge"><button class="btn fx${m&&m.s==='x'?' on':''}" id="fx" title="몰라요 (X)">몰라요 ✕</button><button class="btn fo${m&&m.s==='o'?' on':''}" id="fo" title="알아요 (O)">알아요 ○</button></div><div class="small fckeys">Space 뒤집기 · ←/→ 넘기기 · O 알아요 · X 몰라요 · 좌우로 쓸어 넘기기</div>`;
+  const b=f.querySelector('.fcbody');b.innerHTML=this.back?c.a:c.q;if(cl)b.querySelectorAll('.k').forEach(k=>k.classList.add('fcb'));}};
+let FSW=null;$('#stage').addEventListener('touchstart',e=>{FSW=null;if(e.touches.length!==1||Kit.mode()||!e.target.closest('#fc .fcard'))return;const t=e.touches[0];FSW={x:t.clientX,y:t.clientY};},{passive:true});
+$('#stage').addEventListener('touchend',e=>{if(!FSW)return;const t=e.changedTouches[0],dx=t.clientX-FSW.x,dy=t.clientY-FSW.y;FSW=null;if(Math.abs(dx)>60&&Math.abs(dy)<60){e.preventDefault();Flash.move(dx<0?1:-1);}},{passive:false});
 /* ---------- 이미지 모달 ---------- */
 /* 이미지 모달 v2 — 바깥 누르면 닫힘·그림 누르면 그 자리 확대·드래그 이동·스와이프 넘기기·Ctrl+휠 확대 ---------- */
 let SEQ=[],MI=0,MZ=1,MD=null;
@@ -852,8 +886,8 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.filt){t.classList.toggle('on');$('#stage').classList.toggle('only-'+d.filt);return;}
  if(d.grp!==undefined&&t.closest('#grppills')){$$('#grppills [data-grp]').forEach(b=>b.classList.toggle('on',b===t));$$('#stage .tc,#stage .gdiv').forEach(c=>c.classList.toggle('hid',!!d.grp&&c.dataset.grp!==d.grp));return;}
  if(d.ptype!==undefined&&t.closest('#ppills')){$$('#ppills [data-ptype]').forEach(b=>b.classList.toggle('on',b===t));$$('#stage .pc').forEach(c=>c.classList.toggle('hid',!!d.ptype&&c.dataset.ptype!==d.ptype));return;}
- if(d.fk!==undefined){Flash.filter(d.fk);return;}
- if(t.id==='fcard'){Flash.back=!Flash.back;Flash.draw();return;}if(t.id==='fprev'){Flash.i=(Flash.i-1+Flash.deck.length)%Flash.deck.length;Flash.back=false;Flash.draw();return;}if(t.id==='fnext'){Flash.i=(Flash.i+1)%Flash.deck.length;Flash.back=false;Flash.draw();return;}if(t.id==='fshuf'){Flash.deck.sort(()=>Math.random()-.5);Flash.i=0;Flash.back=false;Flash.draw();return;}
+ if(d.fk!==undefined){Flash.filter(d.fk);return;}if(d.fst){Flash.stf(d.fst);return;}
+ if(t.id==='fcard'){const fb=e.target.closest('.fcb');if(fb){fb.classList.toggle('show');return;}Flash.flip();return;}if(t.id==='fprev'){Flash.move(-1);return;}if(t.id==='fnext'){Flash.move(1);return;}if(t.id==='fshuf'){Flash.shuffle();return;}if(t.id==='funshuf'){Flash.ord=null;Flash.build(null);Flash.save();return;}if(t.id==='fo'||t.id==='fx'){Flash.judge(t.id==='fo'?'o':'x');return;}
  if(d.tog){const c=t.closest('article');c.classList.toggle('open');togLabel(c);return;}
  if(d.ttog!==undefined){t.closest('.tc').classList.toggle('open');foldSave();return;}
  if(d.fig){openImg('lec',d.fig);return;}
@@ -1002,7 +1036,7 @@ document.addEventListener('keydown',e=>{const tg=e.target;if(tg&&(/INPUT|SELECT|
  const k=e.key.toLowerCase();if(e.key==='?'){helpToggle();return;}if(k==='escape'){if($('#help').classList.contains('on')){helpToggle();return;}if(document.body.classList.contains('navopen')){navOpen(false);return;}$$('.pop.on').forEach(x=>x.classList.remove('on'));Kit.off();return;}if(k==='h'){Kit.setMode('h');return;}if(k==='a'){Kit.setMode('b');return;}if(k==='m'){Kit.memo();return;}if(k==='v'){Kit.hide();return;}
  if((k==='j'||k==='k')&&VIEW==='doc'&&CUR.t==='learn'&&$('#lmini')){lnav(k==='j'?1:-1);return;}
  const n=+e.key,bs=$$('#dtabs button[data-t]');if(n>=1&&n<=bs.length){bs[n-1].click();return;}
- if($('#fc')){if(e.key===' '){e.preventDefault();$('#fcard').click();}if(e.key==='ArrowLeft')$('#fprev').click();if(e.key==='ArrowRight')$('#fnext').click();return;}
+ if($('#fc')){if(e.key===' '){e.preventDefault();Flash.flip();}if(e.key==='ArrowLeft')Flash.move(-1);if(e.key==='ArrowRight')Flash.move(1);if(k==='o')Flash.judge('o');if(k==='x')Flash.judge('x');return;}
  if(JB.one&&isJBv()&&$('#cards')){const c=JB.vis[JB.cur];if(e.key==='ArrowLeft'){JB.go(-1);return;}if(e.key==='ArrowRight'||e.key==='Enter'){JB.go(1);return;}
   if(e.key===' '){e.preventDefault();if(c){c.classList.toggle('open');togLabel(c);}return;}if(c&&(k==='o'||k==='x')){JB.grade(k==='o'?'ok':'ng');return;}if(c&&k==='b'){mark(c.dataset.id,'bm','toggle');return;}}});
 /* ---------- 검색 ---------- */
