@@ -402,6 +402,13 @@ table.mtx .mkey .mkl{color:var(--acc);margin-right:2px}table.mtx tbody th .men{o
  .tblwrap.wide{padding:10px 10px}}
 table.cmp th,table.cmp td{min-width:6.5em;overflow-wrap:break-word;word-break:keep-all}
 table.cmp tr>:first-child{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 var(--line)}table.cmp tbody tr>:first-child{background:#FAF8F4}table.cmp thead tr>:first-child{z-index:3}
+/* 카드 머리 v7(U26) — 접기는 번호·영문 제목·▶(32×32)만 · 요지·칩은 형광펜 가능 · 연도 칩 = 기출로 · 안 읽은 것만 · 압축 보기 */
+.thead{cursor:auto}.thead [data-ttog]{cursor:pointer}.thead .en[data-ttog]:hover{text-decoration:underline;text-decoration-color:var(--line)}
+button.car{flex:none;width:32px;height:32px;border:0;background:none;padding:0;margin-top:4px;color:#A69C8C;font-size:14px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}button.car:hover{background:#F4EFE4}
+.tchips button.chip.yr{cursor:pointer;font:inherit;font-size:12px;font-weight:600}
+.only-unread .tc.done{display:none}
+.cond .c-key .kb>ul>li:nth-child(n+2),.cond .c-key .kb>ol>li:nth-child(n+2),.cond .tchips{display:none}
+@media (pointer:coarse){button.car{width:40px;height:40px}}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색 (과목·강의·기출)"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -537,7 +544,7 @@ function revealCard(el,o){o=o||{};if(!el)return;const st=$('#stage');const c=el.
   if(c.classList.contains('hid')){F.mine='';F.q='';JB.apply(true);}if(c.classList.contains('hid')){F.prof='';F.lec='';F.n=0;F.ver='';F.yr='';F.st='';JB.apply(true);}
   JB.sync();if(JB.one){const i=JB.vis.indexOf(c);if(i>=0){JB.cur=i;JB.show(true);}}}
  if(c.classList.contains('tc')){if(c.classList.contains('hid')||$$('#stage .gdiv.hid').length){$$('#grppills [data-grp]').forEach(b=>b.classList.toggle('on',b.dataset.grp===''));$$('#stage .tc,#stage .gdiv').forEach(x=>x.classList.remove('hid'));}
-  if(st.classList.contains('cond'))condSet(false);c.classList.add('open');}
+  if(st.classList.contains('cond'))condSet(false,false);c.classList.add('open');}
  if(c.classList.contains('pc')&&c.classList.contains('hid')){$$('#ppills [data-ptype]').forEach(b=>b.classList.toggle('on',b.dataset.ptype===''));$$('#stage .pc').forEach(x=>x.classList.remove('hid'));}
  [...st.classList].filter(x=>x.indexOf('only-')===0).forEach(x=>{if(c.closest('.hid')||getComputedStyle(c).display==='none'){st.classList.remove(x);$$('#stage [data-filt="'+x.slice(5)+'"]').forEach(b=>b.classList.remove('on'));}});
  let mk=null;if(o.mark){mk=findMark(c,o.mark);if(mk){if(mk[0].closest('.ans'))c.classList.add('open');const dt=mk[0].closest('details');if(dt)dt.open=true;const cl=mk[0].closest('.exw.clamp');if(cl){const sec=cl.closest('.jbans');sec.classList.add('full');const eb=sec.querySelector('.exmore');if(eb)eb.textContent='해설 접기 ▴';}const kb=mk[0].closest('.kb.cut');if(kb){kb.classList.remove('cut');const lb=kb.querySelector('.lkmore');if(lb)lb.remove();}}}
@@ -645,7 +652,7 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  st.innerHTML=h;
  paintMarks(st);
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
- if(d==='_home')homeTrend(p);Kit.restore(st);learnSpy();}
+ if(d==='_home')homeTrend(p);if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();}
 /* 과목 홈 교수별 세부(연도별 칸)는 접어 둠 — 펼치면 그 상태를 기억(LS homeTrendOpen.<S>). 처음부터 펼치면 강의 카드가 1200px 아래로 밀려 기본은 접힘 */
 function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='homeTrendOpen.'+p.id;dt.open=!!LS.get(k,false);dt.addEventListener('toggle',()=>LS.set(k,dt.open));}
 /* 채점·이해함 표시를 지금 화면에 다시 칠함(다른 창에서 바뀌었을 때도) */
@@ -691,7 +698,8 @@ function lpopOpen(){const p=$('#lpop');if(p.classList.contains('on')){p.classLis
  p.innerHTML=`<div class="bt">${E(L.title)} <span class="small">카드 ${L.cards.length} · J/K 다음/이전</span></div><div class="lpl">`+L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="lpi${j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}"><b>${c[1]}</b><span>${E(c[2])}</span>${al.some(a=>DN[a])?'<em>✓</em>':''}${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')+'</div>';
  const m=$('#lmini').getBoundingClientRect();p.style.top=(m.bottom+6)+'px';p.classList.add('on');const on=p.querySelector('.lpi.on');if(on)on.scrollIntoView({block:'center'});}
 $('#lpop').addEventListener('click',e=>{const b=e.target.closest('[data-lj]');if(b)goCard(+b.dataset.lj);});
-function condSet(on){const st=$('#stage');st.classList.toggle('cond',on);['#lcond','#lmcond'].forEach(x=>{const e=$(x);if(e)e.classList.toggle('on',on);});}
+/* 압축 보기 — LS 'cond'에 저장(강의를 옮겨도 유지) · 숨은 카드로 갈 때 잠시 끄는 것(save===false)은 저장 안 함 */
+function condSet(on,save){const st=$('#stage');st.classList.toggle('cond',on);if(save!==false)LS.set('cond',!!on);['#lcond','#lmcond'].forEach(x=>{const e=$(x);if(e)e.classList.toggle('on',on);});}
 function lminiClick(b){if(b.id==='lmcur'){lpopOpen();return;}if(b.id==='lmcond'){condSet(!$('#stage').classList.contains('cond'));return;}if(b.id==='lmup'){const f=$('#stage .frame');if(f)settle(()=>goEl(f));else window.scrollTo(0,0);}}
 function lnav(d){const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null);if(!cs.length)return;let i=cs.findIndex(c=>+c.id.split('-').pop()===LCUR);
  if(i<0){const line=topOff();i=cs.findIndex(c=>c.getBoundingClientRect().bottom>line);i=d>0?(i<0?cs.length-1:(cs[i].getBoundingClientRect().top>line+4?i:i+1)):(i<=0?0:i-1);}else i=Math.max(0,Math.min(cs.length-1,i+d));
@@ -795,7 +803,11 @@ function openImg(kind,key){const s=CUR.s;needImages(s,kind==='jb'?'jb':chunkOf(k
 function fillThumbs(root){const im=$$('img[data-img]:not([src])',root);if(!im.length)return;const by={};im.forEach(i=>{const c=chunkOf(i.dataset.img);(by[c]=by[c]||[]).push(i);});Object.keys(by).forEach(c=>needImages(CUR.s,c,()=>by[c].forEach(i=>{const v=IMGS[CUR.s].lec[i.dataset.img];if(v)i.src=v;else{const f=i.closest('figure');if(f)f.remove();}})));}
 /* ---------- 스테이지 클릭 ---------- */
 /* 문제로 이동 — 이 강의의 기출이면 강의의 기출 탭, 아니면 JB 문제. 답은 가린 채(한눈표에서 온 것만 open) */
-function go(id,o){o=Object.assign({qid:id},o||{});const p=PACKS[CUR.s];const L=p.lect.find(x=>x.k===CUR.d);if(L&&L.jb.indexOf(id)>=0)openDoc(CUR.s,CUR.d,'jb',null,o);else openDoc(CUR.s,'_jb',null,null,o);}
+function go(id,o){o=Object.assign({qid:id},o||{});const p=PACKS[CUR.s];const L=p.lect.find(x=>x.k===CUR.d);if(L&&L.jb.indexOf(id)>=0)openDoc(CUR.s,CUR.d,'jb',null,o);else openDoc(CUR.s,'_jb',null,null,o);
+ if(o.flash&&o.flash.length>1)setTimeout(()=>o.flash.forEach(i=>{const c=document.getElementById('c-'+i);if(c&&c.offsetParent!==null){c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),1800);}}),60);}   /* 카드 머리 연도 칩: 여러 문항이면 첫 문항으로 가고 나머지도 깜빡임 */
+/* 강의별 접힌 카드 LS 'fold.<S>.<강의>' = [aid…] — 사용자가 접고 편 것만 저장(이동으로 펼친 것은 저장 안 함) */
+function foldSave(){if(VIEW!=='doc'||CUR.t!=='learn'||!$('#stage .tc'))return;LS.set('fold.'+CUR.s+'.'+CUR.d,$$('#stage .tc:not(.open)').map(c=>c.dataset.aid));}
+function foldRestore(){const f=new Set(LS.get('fold.'+CUR.s+'.'+CUR.d,[])||[]);if(!f.size)return;$$('#stage .tc').forEach(c=>{if(f.has(c.dataset.aid))c.classList.remove('open');});}
 $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e.target.closest('.res');if(rs){resClick(rs);return;}
  /* 📖 정리본 절 펼침 선호(lkopen) — 사용자가 머리를 눌렀을 때만 저장 · 머리 안의 '카드로 이동' 버튼은 펼치지 않음 */
  const sm=e.target.closest('details.ab.lk>summary');if(sm){if(e.target.closest('button'))e.preventDefault();else{const dt=sm.parentElement;setTimeout(()=>{LS.set('lkopen',dt.open);},0);}}const t=e.target.closest('button,[data-ttog],[data-fsrc],figure[data-fig],#fcard');if(!t)return;const d=t.dataset;
@@ -803,7 +815,9 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.go||d.golec||d.scroll2||(t.classList.contains('cite')&&d.p==='')){PENDRET=retFrom();queueMicrotask(()=>{PENDRET=null;});}
  if(d.mkgo){marksGo(d.mkgo,+d.mki);return;}if(d.lostfind!==undefined){const x=d.lostfind;if(x.trim().length<2){toast('글자가 너무 짧아 찾을 수 없어요');return;}search(x,{s:CUR.s});return;}
  if(d.lostdrop){marksDrop(d.lostdrop,+d.mki);return;}if(d.memoopen){openDoc(CUR.s,d.memoopen);$('#memo').classList.add('on');return;}
- if(d.done){const c=t.closest('.tc');c.classList.toggle('done');const DN=mkObj(LS.get('done.'+CUR.s,{}));if(c.classList.contains('done'))DN[c.dataset.aid]=1;else delete DN[c.dataset.aid];LS.set('done.'+CUR.s,DN);const ob=$('#stage .ol[data-scroll="'+c.id+'"]');if(ob)ob.classList.toggle('done',c.classList.contains('done'));sideRender();return;}
+ if(d.done){const c=t.closest('.tc');c.classList.toggle('done');const DN=mkObj(LS.get('done.'+CUR.s,{}));if(c.classList.contains('done'))DN[c.dataset.aid]=1;else delete DN[c.dataset.aid];LS.set('done.'+CUR.s,DN);const ob=$('#stage .ol[data-scroll="'+c.id+'"]');if(ob)ob.classList.toggle('done',c.classList.contains('done'));sideRender();hstat();
+  /* 읽은 카드 자동 접기(LS autofold, 기본 켬): 접고 다음 카드 머리를 탭 아래로 */
+  if(c.classList.contains('done')&&LS.get('autofold',true)){c.classList.remove('open');foldSave();const cs=$$('#stage .tc').filter(x=>x.offsetParent!==null);const nx=cs[cs.indexOf(c)+1];const tg=nx||c;LHOLD=Date.now()+900;window.scrollTo({top:Math.max(0,tg.getBoundingClientRect().top+scrollY-topOff()),behavior:'smooth'});if(nx)setLCur(+nx.id.split('-').pop());}return;}
  if(d.exmore){const sec=t.closest('.jbans');const on=!sec.classList.contains('full');sec.classList.toggle('full',on);t.textContent=on?'해설 접기 ▴':'해설 전체 보기 ▾';if(!on){const c=t.closest('.qc');if(c&&c.getBoundingClientRect().top<topOff())goEl(sec);}return;}
  if(d.lkmore){const kb=t.parentElement;if(kb)kb.classList.remove('cut');t.remove();return;}
  if(t.id==='ffocus'){const on=!LS.get('jbfocus',false);LS.set('jbfocus',on);t.classList.toggle('on',on);$('#stage').classList.toggle('focus',on);return;}
@@ -828,7 +842,7 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(d.fk!==undefined){Flash.filter(d.fk);return;}
  if(t.id==='fcard'){Flash.back=!Flash.back;Flash.draw();return;}if(t.id==='fprev'){Flash.i=(Flash.i-1+Flash.deck.length)%Flash.deck.length;Flash.back=false;Flash.draw();return;}if(t.id==='fnext'){Flash.i=(Flash.i+1)%Flash.deck.length;Flash.back=false;Flash.draw();return;}if(t.id==='fshuf'){Flash.deck.sort(()=>Math.random()-.5);Flash.i=0;Flash.back=false;Flash.draw();return;}
  if(d.tog){const c=t.closest('article');c.classList.toggle('open');togLabel(c);return;}
- if(d.ttog!==undefined){t.closest('.tc').classList.toggle('open');return;}
+ if(d.ttog!==undefined){t.closest('.tc').classList.toggle('open');foldSave();return;}
  if(d.fig){openImg('lec',d.fig);return;}
  if(d.mk){const c=t.closest('.qc'),id=c.dataset.id;mark(id,d.mk,'toggle');if(JB.one&&d.mk!=='bm'&&MK[d.mk][id]){JB.sess=JB.sess||{};JB.sess[id]=d.mk;JB.save();}return;}
  if(d.fold){const c=t.closest('.qc');c.classList.remove('open');togLabel(c);goEl(c);return;}
@@ -837,8 +851,9 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const rs=e
  if(t.id==='ook'||t.id==='ong'){JB.grade(t.id==='ook'?'ok':'ng');return;}if(t.id==='obm'){const c=JB.vis[JB.cur];if(c)mark(c.dataset.id,'bm','toggle');return;}
  if(d.jb){openImg('jb',d.jb);return;}
  if(t.classList.contains('cite')){const p=PACKS[CUR.s];if(d.p==='')openDoc(CUR.s,d.k,'learn');else openImg('lec',d.k+'-'+d.p);return;}
- if(d.go){go(d.go,{open:d.src==='sum'});return;}
- if(t.id==='lopen'||t.id==='lclose'){$$('#stage .tc').forEach(c=>c.classList.toggle('open',t.id==='lopen'));return;}
+ if(d.go){go(d.go,{open:d.src==='sum',flash:d.gos?d.gos.split(' '):null});return;}
+ if(t.id==='lopen'||t.id==='lclose'){$$('#stage .tc').forEach(c=>c.classList.toggle('open',t.id==='lopen'));foldSave();return;}
+ if(t.id==='lautofold'){const on=!LS.get('autofold',true);LS.set('autofold',on);t.classList.toggle('on',on);toast(on?'✓를 누르면 그 카드를 접고 다음 카드로 갑니다':'✓를 눌러도 카드를 접지 않습니다');return;}
  if(t.id==='frev'){const on=!t.classList.contains('on');t.classList.toggle('on',on);$$('#stage .qc,#stage .pc').forEach(c=>{c.classList.toggle('open',on);togLabel(c);});return;}   /* 모든 카드에 .open을 더하고/빼기 — 개별 토글이 그대로 살아 있음 */
  if(d.tier){JB.F.tiers[d.tier]=!JB.F.tiers[d.tier];t.classList.toggle('on');JB.apply();return;}
  if(d.reftog){if(JB.F&&$('#cards')){JB.F.tiers.C=!JB.F.tiers.C;JB.sync();JB.apply();}else{openDoc(CUR.s,'_jb');if(JB.F&&!JB.F.tiers.C){JB.F.tiers.C=true;JB.sync();JB.apply();}}return;}
@@ -868,7 +883,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  function persist(){if(!S)return;LS.set('ann.'+S,ANN);LS.set('annAt.'+S,Date.now());updLost();}
  function blockOf(n){let p=n.nodeType===1?n:n.parentElement;while(p&&!/^(P|LI|TD|TH|DIV|SECTION|ARTICLE|H1|H2|H3|H4|H5|TR|UL|OL|TABLE|FIGCAPTION|SUMMARY|DETAILS)$/.test(p.nodeName))p=p.parentElement;return p;}
  function index(B){const w=document.createTreeWalker(B,NodeFilter.SHOW_TEXT,null);let s='',map=[],bs={},prev=null,n;
-  while(n=w.nextNode()){if(!n.nodeValue)continue;const p=n.parentElement;if(!p||p.closest(SKIP))continue;const bl=blockOf(n);if(bl!==prev){bs[s.length]=1;prev=bl;}map.push({n,start:s.length,len:n.nodeValue.length});s+=n.nodeValue;}return{s,map,bs};}
+  while(n=w.nextNode()){if(!n.nodeValue)continue;const p=n.parentElement;if(!p||p.closest(SKIP))continue;const ab=p.closest('[data-aid]');if(ab&&ab!==B)continue;   /* 안쪽 표시 단위(카드 머리 .tt 등)는 그 단위 것 */const bl=blockOf(n);if(bl!==prev){bs[s.length]=1;prev=bl;}map.push({n,start:s.length,len:n.nodeValue.length});s+=n.nodeValue;}return{s,map,bs};}
  const isB=ch=>BND.test(ch);
  function tidy(s,a,b){while(a<b&&/[\s.\-~,!?]/.test(s[a]))a++;while(b>a&&/[\s,!?]/.test(s[b-1]))b--;if(b-a>1&&s[b-1]==='.'&&/[가-힣)]/.test(s[b-2]))b--;return b>a?[a,b]:null;}
  function wordAt(ix,pos){const s=ix.s;if(pos==null||!s.length)return null;let i=Math.min(pos,s.length-1);
