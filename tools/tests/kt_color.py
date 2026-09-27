@@ -44,9 +44,9 @@ async def main():
         ok(bg3 == 'rgb(201, 221, 247)' and c3 != 'rgba(0, 0, 0, 0)', f'옛 파랑 기록이 파랑으로 보임 ({c3}, {bg3})')
         cb = await pg.locator('#stage .rk-b').first.evaluate(STYLE)
         ok(await pg.locator('#stage .rk-b').count() >= 1 and cb[0] == 'rgba(0, 0, 0, 0)', f'빈칸(t:b)은 그대로 빈칸 ({cb})')
-        # 모아보기 견본 색
+        # 모아보기 색 (A09부터 표시는 줄 안의 mark.mk-hl — 위치 잃음 절은 칩 .mk)
         await open_(pg, '#/CONS/_marks/')
-        cols = await pg.evaluate("[...document.querySelectorAll('#stage .mk:not(.b)')].map(e=>getComputedStyle(e).backgroundColor)")
+        cols = await pg.evaluate("[...document.querySelectorAll('#stage .mk-line mark.mk-hl, #stage span.mk:not(.b)')].map(e=>getComputedStyle(e).backgroundColor)")
         ok('rgb(201, 221, 247)' in cols, f'모아보기 파랑 견본 {cols}')
         ok(not errs, f'pageerror 0 {errs[:2]}')
         await b.close()
