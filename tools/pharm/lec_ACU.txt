@@ -116,7 +116,7 @@ M: Capsaicin·열·proton → {r:TRPV1} / bradykinin → B2 / PG → prostanoid 
 U: 시냅스까지 신호가 오면 절전세포에서 칼슘 influx → synaptic vesicle이 세포막과 결합해 glutamate 유리 → 절후 receptor 중 AMPA·NMDA가 빠른 신호전달(필기).
 F: 8=절전 Ca influx 후 glutamate 유리
 M: fast excitatory = {r:Glutamate}(AMPA·NMDA) / slower = {r:substance P} · {r:CGRP} · {r:BDNF}
-M: Ca2+ influx → vesicle release → postsynaptic depolarization → {r:Na+ channel threshold} → AP
+M: Ca2+ influx → vesicle release → postsynaptic depolarization → {r:Na+ channel threshold} → action potential
 
 ## Descending & Local Inhibitory Regulation | 척수의 하행·국소 억제 — opioid·norepinephrine·GABA | 9 | 기전
 > dorsal horn은 올라가는 통증과 내려오는 억제가 만나는 통합 장소 — 앞 뉴런은 Ca 유입↓, 뒤 뉴런은 과분극
@@ -128,7 +128,7 @@ M: Ca2+ influx → vesicle release → postsynaptic depolarization → {r:Na+ ch
 # 절전 vs 절후 (그림·필기)
 | 구분 | 수용체(그림) | 작용 | 결과 |
 | 절전 (primary afferent terminal) | α2(Norepinephrine) · GABA_B · μ(Endorphins·Enkephalins) | {r:↓Calcium influx} | ↓Synaptic vesicle release |
-| 절후 (secondary relay neuron) | GABA_A · GABA_B · μ · α2 | {r:↑Cl- conductance} · {r:↑K+ conductance} | Postsynaptic hyperpolarization → ↓Na+ channels reaching threshold → ↓AP generation |
+| 절후 (secondary relay neuron) | GABA_A · GABA_B · μ · α2 | {r:↑Cl- conductance} · {r:↑K+ conductance} | Postsynaptic hyperpolarization → ↓Na+ channels reaching threshold → ↓Action potential generation |
 - 필기: 절전에선 각 receptor에 붙어 칼슘의 inward current를 저해 → synaptic vesicle이 많이 유리되지 못함 / 절후에선 potassium outward current를 증가 → depolarization이 쉽게 일어나지 못함.
 U: spinal cord dorsal horn의 절전·절후 섬유 모두 descending inhibitory modulation을 받을 수 있다(필기) — opioid 진통 기전(만성통증 강의 {jb:PN15})과 같은 그림.
 F: 9=절전은 칼슘 inward current 저해 절후는 potassium outward current 증가
@@ -293,14 +293,14 @@ M: {r:Capsaicin} → peripheral nociceptor 활성 → substance P {r:release↑}
 | **First-line** (strong recommendations) | {r:Gabapentin} | 1200-3600 mg, in three divided doses |
 | | Gabapentin extended release or enacarbil | 1200-3600 mg, in two divided doses |
 | | {r:Pregabalin} | 300-600 mg, in two divided doses |
-| | {r:SNRI} duloxetine or venlafaxine | 60-120 mg once per day (duloxetine) · 150-225 mg once per day (venlafaxine ER) |
+| | {r:Serotonin-noradrenaline reuptake inhibitors} duloxetine or venlafaxine | 60-120 mg once per day (duloxetine) · 150-225 mg once per day (venlafaxine ER) |
 | | {r:Tricyclic antidepressants} | 25-150 mg, once per day or in two divided doses |
 | **Second-line** (weak) | {r:Capsaicin 8% patches} (for peripheral neuropathic pain) | 1-4 patches to the painful area for 30-60 min every 3 months |
 | | {r:Lidocaine patches} (for peripheral neuropathic pain) | 1-3 patches to the region of pain once per day for up to 12 h |
 | | {r:Tramadol} | 200-400 mg, in two (tramadol extended release) or three divided doses |
 | **Third-line** (weak) | {r:Botulinum toxin A} (subcutaneously) | 50-200 units to the painful area every 3 months |
 | | {r:Strong opioids} | Individual titration |
-- *{r:Duloxetine} is the most studied among the SNRIs, and therefore {r:recommended as the first choice}.
+- *{r:Duloxetine} is the most studied among the serotonin-noradrenaline reuptake inhibitors, and therefore {r:recommended as the first choice}.
 - Recommendations based on {r:GRADE classification}, adapted from Finnerup et al. Lancet Neurol 2015.
 U: First, second, third line의 약물 class가 존재하며 first line을 가장 우선적으로 사용하는 것이 추천된다(필기).
 E: PN13 | 21년 빈칸 "( ) are effective for chronic, neuropathic pain by virtue of their membrane stabilizing properties" → Anticonvulsants. 문장 출처는 만성통증 p.18(같은 문장이 20년에도 {jb:PN24}) — 이 자료에선 1st line {r:gabapentin·pregabalin}(항경련제)과 p.20 "anticonvulsants (gabapentin)". 함정: 약 이름이 아니라 약물군(Anticonvulsants).
@@ -375,7 +375,7 @@ M: 간독성 = {r:NAPQI} ↔ {r:glutathione} 고갈 · {r:codeine 병용} 주의
 
 ## Aspirin ★ | 아스피린 — 네 가지 효과 모두, 위장·천식·출혈 주의 | 26 | 기출 20 | jb=PN16
 > 진통·해열·항염·항혈소판 네 가지 다 — 대신 위장 출혈, 천식 환자의 기관지 연축, 단회 복용에도 1주 가는 항혈소판을 조심
-= 진통·해열·항염·{r:항혈소판} · max {r:4 g/d} · AE {r:GI bleeding} · {r:asthma·nasal polyps} 과민 · 항혈소판 {r:up to 1 week}
+= 진통·해열·항염·{r:항혈소판} · max {r:4 g/d} · 부작용 {r:GI bleeding} · {r:asthma·nasal polyps} 과민 · 항혈소판 {r:up to 1 week}
 # 작용·용량·제형
 - Aspirin has {r:analgesic, antipyretic, anti-inflammatory, and antiplatelet} effects.
 - {r:325 to 650 mg PO q4h PRN} (maximum dose, {r:4 g/d}).
@@ -393,7 +393,7 @@ U: GI irritation은 {r:COX-1} 저해 때문 / COX가 저해되면 {r:lipoxygenas
 P: 간과 신장 부작용 — "올려준 논문에 나와 있으니 확인해 보시면 됩니다"(필기).
 F: 26=COX-1 저해로 GI irritation과 leukotriene 증가
 M: Aspirin = 진통·해열·항염·{r:항혈소판} · {r:325-650 mg q4h} · max {r:4 g/d}
-M: AE: {r:GI bleeding}(COX-1) · {r:asthma·nasal polyps} → bronchospasm(leukotriene↑) · {r:interstitial nephritis·papillary necrosis}
+M: 부작용: {r:GI bleeding}(COX-1) · {r:asthma·nasal polyps} → bronchospasm(leukotriene↑) · {r:interstitial nephritis·papillary necrosis}
 M: aspirin 과민 → {r:NSAIDs도 금지} · 항혈소판 단회에도 {r:up to 1 week}
 
 ## NSAIDs — Ketorolac · Cardiovascular Warning | NSAIDs — 효능·독성은 다 비슷, 신장·심혈관 주의 | 27 | 기출 20(만성통증 배정)
@@ -419,7 +419,7 @@ M: FDA boxed warning = {r:cardiovascular thrombotic events}(MI·stroke) · aspir
 
 ## COX-2 Inhibitors — Celecoxib ★ | COX-2 억제제 — 위는 편하지만 항혈소판이 없다 | 28 | 기출 20 | jb=PN18
 > 염증의 COX-2만 골라 막아 위가 편하지만 진통은 더 낫지 않고, aspirin처럼 혈소판을 막지 못해 심혈관 위험이 문제
-= {r:celecoxib} · 위 점막 영향 {r:little} · 진통 이점 {r:no} · AE {r:cardiovascular events}·stent 후 {r:thrombotic risk} · 항혈소판 없음
+= {r:celecoxib} · 위 점막 영향 {r:little} · 진통 이점 {r:no} · 부작용 {r:cardiovascular events}·stent 후 {r:thrombotic risk} · 항혈소판 없음
 # 작용
 - COX-2 inhibitors act primarily on {r:COX-2}, an {r:inducible form} of cyclooxygenase and an important mediator of pain and inflammation.
 - COX-2 inhibitors have {r:little significant effect on the gastric mucosa}.
@@ -439,7 +439,7 @@ E: PN18 | 20년 단답 "Celecoxib보다 aspirin을 써야 하는 경우는?" →
 | COX-2 inhibitor | 진통 O — {r:no analgesic advantage} over other NSAIDs(해열은 슬라이드에 없음) | COX-2 = mediator of pain and inflammation | {r:없음}(필기) | {r:little effect} |
 F: 28=antiplatelet effect가 없어 심혈관계 부작용 주의
 M: COX-2 inhibitor = {r:celecoxib} · 위 점막 영향 {r:적음} · 진통 이점 {r:없음}
-M: 핵심 AE = {r:cardiovascular events} · cardiac stenting 후 {r:thrombotic risk} — 항혈소판 효과 {r:없음}
+M: 핵심 부작용 = {r:cardiovascular events} · cardiac stenting 후 {r:thrombotic risk} — 항혈소판 효과 {r:없음}
 M: aspirin·NSAIDs에 {r:allergic·bronchospastic} → COX-2 inhibitor도 {r:금지}
 
 ## Ceiling Effect — Analgesic Comparison | 천장 효과 — COX 억제제는 올려도 한계, opioid를 더한다 | 29 | 기전

@@ -4,7 +4,7 @@
 ! 교수님 강조: p.15 "이거는 외워야 한다"(Crile의 RND 정의) · p.32 "이거 구분 정도는 할 줄 알아야 한다"(ND 4분류). 가볍게: p.7·9 전이 순서("외울 필요가 없다"), p.12 N staging("전혀 외울 필요가 없다" — 단 "크기 주면서 stage 맞추라는 문제를 내기도 한다"), p.44 incision("외우지 않아도 된다"), p.52 "(여기까지 끝!)" → 합병증 p.53~56은 26 수업에서 다루지 않음.
 ! 25 필기 강조(보조): 2024 별표 슬라이드 = level 경계 그림 · 강조 = "Neck dissection의 구분과 그 이유", "Modified neck dissection에서 제거하는 3가지(순서: SCM → internal jugular v. → spinal accessory n.)" / ★ "시험문제가능성: RND 시 LN과 함께 제거되는 6가지 구조물이 뭐냐?"(25 p.18) / ★ N staging "기말고사에서 이걸 단순하게 물어보는 문항이 있을 수 있습니다!"(25 p.13) / "Incision 관련 문제는 안 낼 거지만 MacFee 하나는 알아둡시다"(25 p.47·49).
 ! JB: 명훈 교수님 기출은 18년 3문항(level II 경계 · functional ND 보존 구조물 · SAN 손상 후유증) + 17년 1문항(RND가 포함 안 하는 node · level 경계 도해) — 18년 3문항은 탈(첫 출제), 17년은 자료 시작 해(기준선). 18년 이후 JB 출제 없음. 26년 대비는 공개 시험문제(level 경계 표) + 4분류가 핵심.
-@MAP 왜 림프절인가(전이·TNM) → 전이 순서·N 병기·예후 인자(ECS) → 진단·sentinel node mapping → ★ level 경계 표(공개 시험문제) → landmark 4각형과 level I~VI 원발 부위 → ND 4분류(RND·MRND·SND·END) → 술식 10단계·절개(MacFee)·열면 만나는 구조물 → 합병증(shoulder syndrome)
+@MAP 왜 림프절인가(전이·TNM) → 전이 순서·N 병기·예후 인자(ECS) → 진단·sentinel node mapping → ★ level 경계 표(공개 시험문제) → landmark 4각형과 level I~VI 원발 부위 → ND 4분류(RND·MRND·SND·Extended ND) → 술식 10단계·절개(MacFee)·열면 만나는 구조물 → 합병증(shoulder syndrome)
 
 @G ① 림프절 전이와 예후
 ## Why Lymph Nodes Matter | 왜 림프절인가 — 전이와 TNM | 3 | 도입
@@ -74,7 +74,7 @@ M: ECS = {r:extranodal spread} by {r:capsular rupture} → 술후 {r:방사선·
 
 ## Diagnosis · Sentinel Node Mapping | 진단과 sentinel node mapping 4단계 | 14·17-20 | 진단
 > 보고 만지고 영상 → 바늘로 확인(FNAB) → 어느 림프절이 먼저인지 지도 그리기(sentinel mapping)
-= Histologic = {r:FNAB}·{r:cytologic smear} / Systemic search / SN mapping = {r:핵의학} → {r:blue dye} → {r:isotope probe} → {r:biopsy}
+= Histologic = {r:FNAB}·{r:cytologic smear} / Systemic search / Sentinel node mapping = {r:핵의학} → {r:blue dye} → {r:isotope probe} → {r:biopsy}
 # Clinical features and diagnosis
 - 필기: 눈으로 보고 만져서 툭 튀어나온 곳 확인 → 살이 많으면 잘 모름 → {r:CT/MRI}로 뒤지거나 {r:소노}로 확인(우리나라는 보험으로 저렴 — SCC는 진료비의 5%).
 - **Histologic diagnosis**: ① {r:FNAB} ② {r:Cytologic smear}(도말) → 병리 검사.
@@ -91,7 +91,7 @@ U: 25 필기: "FNAB의 개념만 알면 된다" — Fine Needle Aspiration Biops
 U: 25 필기: biopsy에서 전이가 있으면 본격적인 neck dissection, 전이가 없으면 neck dissection을 안 함 — "용어 정도만 기억".
 F: 14=Clinical features and diagnosis, 17=핵의학 검사 — 하얗게 반응성 높은 부위, 18=Isosulfan blue dye 주입, 19=Hand-held isotope probe, 20=열어서 조직검사
 M: 진단: {r:FNAB} · {r:cytologic smear} / systemic search: primary site · {r:fiberoptic nasolaryngoscopy} · unknown primary
-M: SN mapping: 핵의학 → {r:isosulfan blue 1%}(4 quadrants · 0.5 ml subdermal) → {r:isotope probe}(hot?) → {r:biopsy}(blue node · highest activity · pathology)
+M: Sentinel node mapping: 핵의학 → {r:isosulfan blue 1%}(4 quadrants · 0.5 ml subdermal) → {r:isotope probe}(hot?) → {r:biopsy}(blue node · highest activity · pathology)
 
 @G ② ★ 경부 level — 공개 시험문제
 ## Cervical Lymph Node Levels ★ | 경부 림프절 level의 경계 — 공개 시험문제 | 4-6 | 시험문제 | jb=M01,M04
@@ -210,7 +210,7 @@ M: VI = {r:hyoid ~ suprasternal}, 앞·뒤 모두 {r:common carotid a.}
 @G ③ Neck dissection 분류
 ## Neck Dissection — Definition · 4 Types ★ | ND의 정의(Crile)와 4분류 (외울 것) | 15-16·32-33 | 교수 강조
 > 다 떼는 RND가 기준 — 구조물을 살리면 Modified, level을 살리면 Selective, 더 떼면 Extended
-= RND = {r:Crile}({r:1906}) — LN + {r:SCM·IJV·SAN}·submandibular gl.·parotid tail·cervical plexus 피부가지 / 4분류 = RND·MRND·SND·END
+= RND = {r:Crile}({r:1906}) — LN + {r:SCM·IJV·SAN}·submandibular gl.·parotid tail·cervical plexus 피부가지 / 4분류 = RND·MRND·SND·Extended ND
 # RND의 정의 — "이거는 외워야 한다"
 - Radical neck dissection(RND); Dr {r:George Crile} from the {r:Cleveland Clinic} in {r:1906} in the journal of the American Medical Association.
 - removal of all lymph nodes along with ① {r:sternocleidomastoid muscle} ② {r:internal jugular vein} ③ {r:spinal accessory nerve} ④ {r:submandibular salivary gland} ⑤ {r:tail of parotid gland} ⑥ {r:cutaneous branches of the cervical plexus}.
@@ -226,8 +226,8 @@ F: 15=Crile의 RND 정의 — 외워야 한다, 16=George Crile, NK5:18=LN과 �
 U: 필기(p.32 그림): I·II·III = {r:SOND}(supraomohyoid ND), RND가 떼는 비림프 구조물 ① SCM ② IJV ③ SAN.
 P: 25 필기 2024 강조: "Neck dissection의 구분과 그 이유" / 25 필기 "RND가 과하다고 생각해서 하는 처치가 MRND, 오히려 더 강하게 하는 경우가 Extended".
 F: 32=4분류 필기 — 구분 정도는 할 줄 알아야, 33=Neck dissection classification
-M: RND = {r:Crile} {r:1906}(Cleveland Clinic · JAMA) — LN + {r:SCM} · {r:IJV} · {r:SAN} · {r:submandibular gl.} · {r:parotid tail} · {r:cervical plexus cutaneous br.}
-M: RND = {r:standard basic} / MRND = {r:nonlymphatic} 구조물 보존 / SND = {r:level} 보존 / END = {r:additional} 제거
+M: RND = {r:Crile} {r:1906}(Cleveland Clinic · journal of the American Medical Association) — LN + {r:SCM} · {r:IJV} · {r:SAN} · {r:submandibular gl.} · {r:parotid tail} · {r:cervical plexus cutaneous br.}
+M: RND = {r:standard basic} / MRND = {r:nonlymphatic} 구조물 보존 / SND = {r:level} 보존 / Extended ND = {r:additional} 제거
 
 ## Radical Neck Dissection | RND — 떼는 것과 포함하지 않는 것 | 34 | 기출 17 | jb=M04
 > level I–V 전부 + SAN·IJV·SCM — 그래도 목 밖 림프절 5군은 RND 범위 밖
@@ -290,9 +290,9 @@ M: Greatest risk: 구강 {r:I–III} / 구인두·(하인두)·후두 {r:II–IV
 M: 구강암 SND(I–III) 아래 경계 = {r:omohyoid 상복과 IJV의 교차점} = {r:supraomohyoid} ND
 M: SND(II–IV) = {r:skull base ~ clavicle}, 앞 {r:sternohyoid·stylohyoid}
 
-## Extended Neck Dissection | END — RND 밖까지 | 40 | 분류 · 예후
+## Extended Neck Dissection | Extended ND — RND 밖까지 | 40 | 분류 · 예후
 > RND가 못 덮는 림프절이나 비림프 구조물까지 — 제일 빡센, 그리고 예후가 가장 나쁜
-= END = {r:additional LN}(retropharyngeal·superior mediastinal·buccinator·paratracheal) + {r:nonlymphatic}(carotid·XII·X·paraspinal)
+= Extended ND = {r:additional LN}(retropharyngeal·superior mediastinal·buccinator·paratracheal) + {r:nonlymphatic}(carotid a.·hypoglossal n.·vagus n.·paraspinal m.)
 # 정의
 - Removal of 1 or more {r:additional lymph node groups} or {r:nonlymphatic structures}.
 | Additional lymph node not encompassed by RND | Nonlymphatic structures |
@@ -307,8 +307,8 @@ M: SND(II–IV) = {r:skull base ~ clavicle}, 앞 {r:sternohyoid·stylohyoid}
 - "문제는 이렇게 빡세게 RND까지 했는데도 환자들이 많이 죽는다는 점이다".
 U: 25 필기: extended는 너무 늦어 큰 의미가 없는 경우가 많아 잘 안 함 — hypoglossal 제거 시 혀가 잘 안 움직이고 vagus 제거 시 부교감 기능이 떨어짐.
 F: 40=Extended ND — 요즘은 MRND 추세
-M: END 추가 LN 4: {r:parapharyngeal(retropharyngeal)} · {r:superior mediastinal} · {r:perifacial(buccinator)} · {r:paratracheal}
-M: END 비림프 4: {r:carotid a.} · {r:hypoglossal n.} · {r:vagus n.} · {r:paraspinal m.}
+M: Extended ND 추가 LN 4: {r:parapharyngeal(retropharyngeal)} · {r:superior mediastinal} · {r:perifacial(buccinator)} · {r:paratracheal}
+M: Extended ND 비림프 4: {r:carotid a.} · {r:hypoglossal n.} · {r:vagus n.} · {r:paraspinal m.}
 
 @G ④ 술식 · 합병증
 ## Incisions · Dissection Sequence | 절개법과 박리 순서 | 41-47 | 술식 · MacFee
@@ -328,7 +328,7 @@ M: RND 술식 {r:10}단계: preop → {r:incision·flap} → SCM 하부 → {r:t
 M: 가장 어렵지만 healing·심미·RT에 유리 = {r:MacFee}(submandible·clavicle 두 선)
 
 ## Anatomy Met During Dissection | 열면 만나는 구조물 순서 | 48-52 | 술식 해부
-> flap을 젖히면 얕은 곳부터 — EJV → cervical plexus → 더 깊이 brachial plexus → 림프절, 근육으로 방향 잡기
+> flap을 젖히면 얕은 곳부터 — external jugular v. → cervical plexus → 더 깊이 brachial plexus → 림프절, 근육으로 방향 잡기
 = 얕은 곳부터 {r:external jugular v.} → {r:cervical plexus} → {r:brachial plexus} → LN / 근육 landmark {r:digastric 후복}·{r:SCM}
 # 목의 정맥
 - Trace the pathways for venous drainage from the neck into the brachial veins — 그림 라벨: {r:Ext. jugular} · {r:Int. jugular} · Ant. jugular · Sup. thyroid · Middle thyroid · Inf. thyroid.
@@ -341,7 +341,7 @@ M: 가장 어렵지만 healing·심미·RT에 유리 = {r:MacFee}(submandible·c
 P: p.48 "절개를 들어갔으면 향하는 방향이나 인접 구조물 같은 걸 보고 이게 어떤 해부학적 구조물인지 구분해 낼 수 있으면 된다(Vesalius 같은 곳에서 하나씩 찾아보면서 공부)".
 U: 25 필기: facial nerve를 살리려면 facial vein을 잘라 위로 올린 다음 그 아래로 작업.
 U: 25 필기: phrenic nerve를 끊으면 숨을 잘 못 쉼 / lingual n.을 건드렸다면 굉장히 깊게 들어간 것.
-F: 48=목의 정맥 — jugular와 thyroid v., 49=EJV 확인 후 그 밑 cervical plexus, 50=cervical plexus 밑 brachial plexus, 51=림프절이 포함된 모습, 52=posterior belly of digastric과 SCM
+F: 48=목의 정맥 — jugular와 thyroid v., 49=external jugular v. 확인 후 그 밑 cervical plexus, 50=cervical plexus 밑 brachial plexus, 51=림프절이 포함된 모습, 52=posterior belly of digastric과 SCM
 M: 열면 먼저 {r:external jugular v.} → 밑에 {r:cervical plexus} → 더 깊이 {r:brachial plexus}
 M: facial a.·v. 밑 = {r:facial n.} / 근육 landmark = {r:posterior belly of digastric} · {r:SCM}
 

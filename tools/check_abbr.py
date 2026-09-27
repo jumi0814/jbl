@@ -23,6 +23,8 @@ def main(sids):
     for sid in sids:
         d = os.path.join(J.TOOLS, sid.lower()); C = corpus(sid); Cn = re.sub(r'[\s\-.]', '', C)
         miss = {}; K = keys(sid)
+        try: K |= set(__import__('json').load(open(J.work(sid, 'review', 'qids.json'), encoding='utf-8'))['q'])   # 문항 id(BT04 등)
+        except Exception: pass
         for f in sorted(glob.glob(os.path.join(d, 'lec_*.txt'))) + [os.path.join(d, x) for x in ('annot.txt', 'tables.txt', 'pred.txt')]:
             if not os.path.exists(f): continue
             for i, line in enumerate(open(f, encoding='utf-8'), 1):

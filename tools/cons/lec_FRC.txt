@@ -125,7 +125,7 @@ F: 14=Important factors for success
 - post의 유무보다 중요 — 없으면 impression 시 post와 core가 딸려 나오기도(필기).
 E: Q29 | 21·20·17·16·14·11년 6회 서술형 "Ferrule effect에 대하여 설명" — 두 문장 그대로. 함정: 높이를 이루는 것은 {r:tooth structure}(core material ×), 위치는 {r:above the margin}.
 F: 15=No ferrule vs ferrule
-# FEM 연구 — ferrule 높이별
+# Finite element analysis 연구 — ferrule 높이별
 - A finite element analysis of ferrule design on restoration resistance and distribution of stress within a root(Ichim et al. IEJ 2006) — No ferrule · 0.5 · 1.0 · 1.5 · 2.0 mm ferrule.
 - Without ferrule, simulated crown {r:tilted to labial} and {r:rotated with distal incisal angle labially}.
 - {r:Increasing ferrule height}, {r:displacement and rotation of crown reduced}.
@@ -134,7 +134,7 @@ U: ferrule이 0 mm에서 2 mm로 길어질수록 displacement가 줄어듦 → "
 F: 16=Ferrule 0~2 mm 가상 모델, 17=Ferrule 높이별 displacement 감소, 18=Ferrule 2 mm에서 compressive stress 최소
 M: 성공 요인 3: {r:Amount of remaining tooth} · {r:Ferrule} · {r:Magnitude and direction of functional loads} > type of post
 M: Ferrule = margin 위 {r:1.5~2 mm} {r:치질}(no core) → {r:Bracing} — dislodgement·fracture 저항
-M: FEM: ferrule↑ → crown {r:displacement·rotation↓} · {r:2 mm}에서 stress 최소
+M: Finite element analysis: ferrule↑ → crown {r:displacement·rotation↓} · {r:2 mm}에서 stress 최소
 
 @G ② post의 종류
 ## Types of Post | post의 종류 — cast · prefabricated metal · non-metal | 19-26 | 분류 · 빠르게 넘어감
@@ -219,7 +219,7 @@ M: Radiopacity 이상 = {r:dentin과 GP 사이} / D.T. = {r:Double Taper} → �
 
 ## Advantages · Disadvantages · Favorable Failure ★ | FRC post의 장점 11 · 단점 2 · 실패 양상 | 37-44 | 기출 13~21 · 최다 기출 | jb=Q26
 > 장점은 많고 단점은 "하기 어렵다"뿐 — 실패해도 다시 수복할 여지를 남긴다
-= 장점 11(핵심 {r:similar EM} · {r:stress along the root} · {r:Monoblock}) / 단점 2 = {r:Technique sensitivity} · {r:careful adhesive protocol}
+= 장점 11(핵심 {r:similar modulus of elasticity} · {r:stress along the root} · {r:Monoblock}) / 단점 2 = {r:Technique sensitivity} · {r:careful adhesive protocol}
 # Advantages of FRC Post — 11
 - ① ==Aesthetics== ② ==One-appointment== ③ ==No laboratory process== ④ ==No corrosion==.
 - ⑤ ==Negligible root fracture== ⑥ ==Increased retention== ⑦ ==Conserved tooth structure== ⑧ ==Retrievable==.
@@ -257,7 +257,7 @@ F: 40=Elastic FRC post — favorable failure, 41=Stiff metal post — unfavorabl
 | 처치 | 재접착·재수복, forced eruption·외과적 수술로 치아 사용 | 끌어올리기엔 너무 많이 올려야 함 → {r:발치} |
 U: 탈락을 하느냐 안 하느냐보다 탈락했을 때 {r:수정이 가능하냐}가 더 중요 — FRC post가 꼭 덜 떨어지는 건 아니지만(잘못 붙이면 단기 탈락↑) 다시 해볼 수 있고, metal post는 실패하면 돌이킬 수 없음(필기).
 F: 44=Failure mode — favorable vs unfavorable
-M: 장점 11: aesthetics · one-appointment · no lab · no corrosion · negligible root fracture · retention↑ · 치질 보존 · retrievable · {r:similar EM} · {r:stress along the root} · {r:Monoblock}
+M: 장점 11: aesthetics · one-appointment · no lab · no corrosion · negligible root fracture · retention↑ · 치질 보존 · retrievable · {r:similar modulus of elasticity} · {r:stress along the root} · {r:Monoblock}
 M: 단점 2: {r:Technique sensitivity} · {r:Need for careful adhesive protocol}
 M: Metal = {r:end of the post}에 응력 → {r:unfavorable}(root fracture·발치) / FRC = {r:all deform together} → {r:favorable}(reparable, 치조정 상방)
 
@@ -375,7 +375,7 @@ M: {r:Distance↑ → Irradiance↓}: {r:1.5 cm}에 절반 이상↓ → 세기�
 M: {r:shield}로 보면서 정확히 조사(before vs after instruction)
 
 @G ⑤ 제거·임상 술식·요약
-## Removal · Clinical Procedure ★ | 제거와 임상 술식 (매년 출제) | 66-81 | 기출 11~20 | jb=Q28
+## Removal · Clinical Procedure ★ | 제거와 임상 술식 | 66-81 | 기출 11~20 | jb=Q28
 > 치아 준비 → post 준비 → 접착 → core — 순서와 paper point, 제거는 갈아내는 수밖에
 = 술식 3단계 = ① {r:Preparation of tooth} ② {r:Pretreatment of post} ③ {r:Post cementation with resin cement} → core
 # Removal of FRC post
