@@ -16,7 +16,7 @@ async def main():
         b = await p.chromium.launch(); pg = await b.new_page(viewport={'width': 1280, 'height': 900}); errs = []
         pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         for s in ['ANAT', 'GERI', 'OMS1']:
-            P = json.loads(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read()[len('JBLHUB.register('):-2])
+            P = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read())
             for L in P['lect']:
                 await pg.goto('about:blank'); await pg.goto(U + f'#/{s}/{L["k"]}/learn'); await pg.wait_for_timeout(450)
                 r = await pg.evaluate(JS)

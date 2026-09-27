@@ -8,7 +8,7 @@ SEP = re.compile(r'[\s/:：;·,—\-=→]')
 def grab():
     out = {}
     for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
-        t = open(f'{ROOT}/docs/packs/{s}.js', encoding='utf-8').read(); p = json.loads(t[len('JBLHUB.register('):-2])
+        t = open(f'{ROOT}/docs/packs/{s}.js', encoding='utf-8').read(); p = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(t)
         for qid, h in p['cards'].items():
             txt = []
             for sec in re.findall(r'<section class="ab (?:chk v-\w+|more)">(.*?)</section>', h, flags=re.S):
@@ -20,6 +20,7 @@ def grab():
 if __name__ == '__main__':
     a = sys.argv[1:]
     if a and a[0] == '--save': json.dump(grab(), open(a[1], 'w'), ensure_ascii=False); print('saved'); sys.exit(0)
+    if not a: print(__doc__.strip().splitlines()[0]); print('RESULT SKIP — 비교할 저장본 인자가 없음(구조화 전후 1회용 검사)'); sys.exit(0)
     old = json.load(open(a[0])); new = grab(); bad = []
     for k, v in old.items():
         w = new.get(k)

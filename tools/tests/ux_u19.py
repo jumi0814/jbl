@@ -29,7 +29,7 @@ async def run(b, vp, touch, tag):
         ok(r['wrap'] == 0, f"{s}: 연도 배지 줄바꿈 {r['wrap']}")
         # 카드 원문 대조: 팩 파일을 다시 읽음
         import json
-        t = open(_os.path.join(J.DOCS, 'packs', f'{s}.js'), encoding='utf-8').read(); pk = json.loads(t[len('JBLHUB.register('):-2])
+        t = open(_os.path.join(J.DOCS, 'packs', f'{s}.js'), encoding='utf-8').read(); pk = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(t)
         await pg.evaluate("c=>{window.__cards=c}", pk['cards'])
         r2 = await pg.evaluate(SUBSTR, s)
         ok(not r2['bad'], f"{s}: 보기 줄 {r2['n']}개 모두 문제 원문 부분 문자열 {r2['bad']}")

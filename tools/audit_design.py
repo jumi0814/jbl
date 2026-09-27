@@ -33,6 +33,28 @@ CHK=r"""()=>{const cs=[...document.querySelectorAll('#cards .qc')];const was=cs.
  const leaf=el=>{const c=el.cloneNode(true);c.querySelectorAll('ul,ol,div,.cites,button').forEach(x=>x.remove());return c.textContent.replace(/\s+/g,' ').trim();};
  document.querySelectorAll('#cards .ab.chk li, #cards .ab.chk div, #cards .ab.more li, #cards .ab.more div').forEach(el=>{if(!el.offsetParent)return;all++;const t=leaf(el);if(t.length>230)longs.push(el.closest('.qc').dataset.id+' '+t.slice(0,80)+' …['+t.length+']');});
  cs.forEach((c,i)=>c.classList.toggle('open',was[i]));return {n:longs.length,all,longs:longs.slice(0,20)};}"""
+OVERLAP=r"""()=>{const bad=[];document.querySelectorAll('#stage .ln.li, #stage .mtx .ci, #stage .li').forEach(el=>{if(!el.offsetParent)return;const b=getComputedStyle(el,'::before');if(b.content==='none'||b.display==='none'||b.content==='normal'||b.position!=='absolute')return;
+ const cs=getComputedStyle(el);const pad=parseFloat(cs.paddingLeft)+(parseFloat(cs.textIndent)||0);const L=parseFloat(b.left)||0,W=parseFloat(b.width)||0;if(L+W>pad-1)bad.push(el.className+': '+el.textContent.trim().slice(0,20));});return bad.slice(0,3);}"""
+TEAL=r"""(sid)=>{if(sid==='OMS1'||sid==='PHARM')return [];const T=['rgb(14, 72, 70)','rgb(23, 63, 61)','rgb(225, 238, 235)','rgb(195, 218, 213)','rgb(186, 215, 210)','rgb(10, 51, 50)'];const bad=new Set();
+ document.querySelectorAll('#stage *, #hero, #hero *, #side *').forEach(el=>{if(!el.offsetParent&&el.id!=='hero')return;const cs=getComputedStyle(el);for(const v of [cs.color,cs.backgroundColor,cs.borderTopColor,cs.borderLeftColor,cs.backgroundImage])if(T.some(t=>v.indexOf(t)>=0))bad.add(el.tagName+'.'+String(el.className).slice(0,30));});return [...bad].slice(0,5);}"""
+async def ipad_sweep(b):
+    """아이패드 세로(820×1180)·가로(1180×820): 모든 과목 문서·강의 학습/정리표 — 페이지 가로 밀림 · 목록 점이 첫 글자를 가림 · 과목색이 아닌 청록(OMS1·PHARM 밖)"""
+    bad=[]
+    for vw,vh in [(820,1180),(1180,820)]:
+        pg=await (await b.new_context(viewport={'width':vw,'height':vh},has_touch=vw<1000)).new_page()
+        for s,ls in SUBJ.items():
+            for d in ['_home','_jb','_sum','_tbl','_pred','_led']+[f'{k}/learn' for k in ls]+[f'{k}/sum' for k in ls]:
+                await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{d}'); await pg.wait_for_timeout(500)
+                if d=='_jb': await pg.evaluate("document.querySelector('#frev')&&document.querySelector('#frev').click()"); await pg.wait_for_timeout(200)
+                ov=await pg.evaluate('document.documentElement.scrollWidth-innerWidth')
+                if ov>1: bad.append(f'OVERFLOW {vw} {s}/{d} {ov}px')
+                o=await pg.evaluate(OVERLAP)
+                if o: bad.append(f'OVERLAP {vw} {s}/{d} {o}')
+                if vw==820:
+                    t=await pg.evaluate(TEAL, s)
+                    if t: bad.append(f'TEAL {s}/{d} {t}')
+        await pg.close()
+    return bad
 async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
@@ -55,7 +77,7 @@ async def main():
                 r=await pg.evaluate(JS); acc(r, s+view)
                 for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],s+view))
                 totlong+=r['nlong']; longs+= [s+view+': '+t for t in r['longs'][:3]]
-                if r['ov']: print('OVERFLOW',s,view)
+                if r['ov']: print('OVERFLOW',s,view); errs.append(f'OVERFLOW 1280 {s}/{view}')
             for k in ls:
                 await pg.evaluate('d=>document.querySelector(`#side .dbtn[data-d="${d}"]`)?.click()', k); await pg.wait_for_timeout(900)
                 for t in ['learn','sum','tbl','jb','pred','flash']:
@@ -63,7 +85,7 @@ async def main():
                     r=await pg.evaluate(JS); acc(r, f'{s}/{k}/{t}')
                     for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],f'{s}/{k}/{t}'))
                     totlong+=r['nlong']; longs+= [f'{s}/{k}/{t}: '+x for x in r['longs']]
-                    if r['ov']: print('OVERFLOW',s,k,t)
+                    if r['ov']: print('OVERFLOW',s,k,t); errs.append(f'OVERFLOW 1280 {s}/{k}/{t}')
         print('RED FILL', len(RED))
         for k,v in RED.items(): print(' ',k,'|',v)
         print('SMALL LOW CONTRAST(<13px, <4.5)', len(SMALL))
@@ -73,5 +95,10 @@ async def main():
         print('LONG', totlong)
         json.dump(longs,open(_os.path.join(J.TMP, 'longs.json'),'w'),ensure_ascii=False,indent=0)
         for x in longs[:60]: print(' ',x[:170])
+        IP=await ipad_sweep(b)
+        print('IPAD SWEEP (가로 밀림·점 겹침·청록)', len(IP))
+        for x in IP[:40]: print(' ',x)
         print('errs',errs[:3]); await b.close()
-asyncio.run(main())
+        return not IP and not errs
+ok_=asyncio.run(main())
+print('RESULT', 'PASS' if ok_ else 'FAIL'); sys.exit(0 if ok_ else 1)

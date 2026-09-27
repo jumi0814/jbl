@@ -77,8 +77,8 @@ def st_chip(q):
     st = q.get('st')
     if not st or (q.get('v') == 'na' and not q.get('lk')): return ''
     a = st['latest']
-    if a['kind'] == '짤': return f'<span class="chip jj" title="{YR(a["from"])}년에도 출제된 문제">짤 · {YR(a["from"])}년에도 출제</span>'
-    if a['kind'] == '탈': return f'<span class="chip tt" title="이 해에 처음 출제 — {"같은 카드에서 이전 기출이 있음(변형)" if a["tal"] == "변형" else "이전 기출이 없던 카드(새 영역)"}{", 교수 강조 쪽" if a.get("emph") else ""}">탈 · 첫 출제 · {"변형" if a["tal"] == "변형" else "새 영역"}{" · 💬" if a.get("emph") else ""}</span>'
+    if a['kind'] == '짤': return f'<span class="chip jj" title="짤 — {YR(a["from"])}년에도 출제된 문제">짤</span>'   # 연도는 배지에 이미 있음(V06)
+    if a['kind'] == '탈': return f'<span class="chip tt" title="탈 — 이 해에 처음 출제 · {"같은 카드에서 이전 기출이 있음(변형)" if a["tal"] == "변형" else "이전 기출이 없던 카드(새 영역)"}{", 교수 강조 쪽" if a.get("emph") else ""}">탈 · {"변형" if a["tal"] == "변형" else "새 영역"}{" · 💬" if a.get("emph") else ""}</span>'
     return f'<span class="chip base">{YR(a["y"])}년 — 기준선(이전 자료 없음)</span>'
 def st_kind(q):
     """짤/탈 필터용: 최근 출제 해의 판정 — jj 짤 · tt 탈 · base 기준선 · '' 판정 없음"""
@@ -208,17 +208,18 @@ def qcard(q, idx):
     lecchip = ''
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; lecchip = f'<button class="chip lec" data-golec="{k}:{j}">📖 {esc(LECNAME[k])} 정리본</button>'
+    # 출처 한 줄(V06) — JB 괄호 · 시험 회차 · JB 표기를 흐린 글 한 줄로(판 연도는 표시하지 않음 — CLAUDE.md). 칩은 추가 연도·교수님 pick만
+    prov = [f'JB 괄호 {esc(q["jbtag"])}' if q['jbtag'] else 'JB 괄호 없음', esc(re.sub(r'^\s*JB\s*\d{2}\s*판\s*·?\s*', '', q['src'] or ''))]
+    if q['tal']: prov.append('JB 표기 (탈)')
+    if q.get('lab24'): prov.append(f'JB 표기(2023년 시험): {esc(q["lab24"])}')
     sub = []
-    sub.append(f'<span class="chip jb">JB 괄호 {esc(q["jbtag"])}</span>' if q['jbtag'] else '<span class="chip jbn">JB 괄호 없음</span>')
     if q.get('xtra'): sub.append(f'<span class="chip cmp">괄호에 없던 {"·".join(YR(y) for y in q["xtra"])}년 추가</span>')
-    if q['tal']: sub.append('<span class="chip ol">JB 표기 (탈)</span>')
     if q.get('pick'): sub.append(f'<span class="chip pk">⭐ {esc(q["pick"])}</span>')
-    if q.get('lab24'): sub.append(f'<span class="chip ol" title="JB 24판이 2023년 시험 문항에 붙인 표기">24판 표기(23년 시험): {esc(q["lab24"])}</span>')
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}">',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}<span class="chip pf">{esc(q["prof"] or "")}</span>{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{reflow.render(qt, True)}</div>{figq}']
     if q['fig'] and not figq: h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
-    h.append(f'<div class="qsub">{"".join(sub)}<span class="chip src">{esc(q["src"])}</span></div>')
+    h.append(f'<div class="qsub"><span class="prov noann">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>')
     if q['yrsnote']: h.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
     if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; h.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(r["short"]))}</div>')
     if q.get('pair') and q['pair'] in QMAP: h.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(q["pair"], esc(QMAP[q["pair"]]["src"]))}</div>')
@@ -387,13 +388,24 @@ for p_, qs in profS.items():
         if x not in SCOMMON: SUSE.setdefault(x, []).append(p_)
     psum += f'<li title="{esc(t_)}"><span class="tsl">{esc(trend.prof_line(p_, SM))}</span>{(" <span class=tk>· " + esc(" · ".join(tags)) + "</span>") if tags else ""}</li>'
 # 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
-strat_html = (f'<div class="tc0"><b>공통:</b> {" · ".join(SCOMMON)}</div>' if SCOMMON else '') + (('<div class="tsx">' + ''.join(f'<span>{esc(x)} <i>{esc("·".join(ps))}</i></span>' for x, ps in SUSE.items()) + '</div>') if SUSE else '')
+def strat_list(items, top=4):
+    """📌 전략 목록(V05) — 한 줄에 전략 하나(본문 글자) + 교수 꼬리표(작은 회색). 위 top개만, 나머지는 '+N 더 보기'"""
+    li = lambda x, ps: f'<li><span class="sx">{x}</span>{(" <i>" + esc("·".join(ps)) + "</i>") if ps else ""}</li>'
+    h = '<ul class="tsl2">' + ''.join(li(x, ps) for x, ps in items[:top]) + '</ul>'
+    if len(items) > top: h += f'<details class="smore"><summary>+{len(items) - top} 더 보기</summary><ul class="tsl2">' + ''.join(li(x, ps) for x, ps in items[top:]) + '</ul></details>'
+    return h
+_sitems = [(x, ['공통']) for x in SCOMMON] + [(esc(x), ps) for x, ps in sorted(SUSE.items(), key=lambda kv: -len(kv[1]))]
+strat_html = strat_list(_sitems) if _sitems else ''
 PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not None]
 trends_html = (f'<div class="panel ptrend"><div class="bt">교수별 출제 경향 · 📌 공부 전략 <span class="small">— JB 자료에서 산출(짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음)</span></div><ul class="tsum">{psum}</ul>'
                + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
                + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></div>')
 top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_clean(q['short']), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 lect = []; KEYLONG = {}; MEMTIP = {}
+def fsrc_short(f):
+    """강의 틀 첫 줄(V11) — '26년도 슬라이드 · 75쪽'처럼 짧게. 파일 이름·자료 안내는 눌러서 펼침"""
+    m = re.search(r'\((\d{2})년도[^,)]*,\s*(\d+)\s*쪽', f or '')
+    return f'{m.group(1)}년도 강의자료 · {m.group(2)}쪽 ▸' if m else '출처 ▸'
 for L in LEC:
     k = L['k']; cards = []; rows = []; grps = []; curg = None; outline = []
     for j, c in enumerate(L['cards']):
@@ -416,19 +428,19 @@ for L in LEC:
     pk_ = re.split(r'[(·,/]', L['prof'])[0].strip()
     strat_ = PSTRAT.get(pk_) or tstrat
     trend_html = (f'<details class="trend"><summary><b>출제 경향</b> <span class="tsl">{esc(trend.short_line(SM))}</span></summary><div class="small tnote">JB 자료에서 산출 — 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음</div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}'
-                  + (f'<div class="small">이 강의 기출만으로 본 전략: {tstrat}</div>' if strat_ != tstrat else '') + f'</details><div class="tstr">📌 공부 전략{(" (" + esc(pk_) + ")") if strat_ != tstrat else ""}: {strat_}</div>')
+                  + (f'<div class="small">이 강의 기출만으로 본 전략: {tstrat}</div>' if strat_ != tstrat else '') + f'</details><div class="tstr"><div class="tsh">📌 공부 전략{(" (" + esc(pk_) + ")") if strat_ != tstrat else ""}</div>{strat_list([(x.strip(), []) for x in strat_.split(" · ") if x.strip()], 3)}</div>')
     top_ids = sorted(jb_ids, key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
     ltop = ''.join(f'<li{" class=tmore" if n_ >= 5 else ""}>{ychips([i])} <span class="tq">{esc(short_clean(QMAP[i]["short"]))}</span></li>' for n_, i in enumerate(top_ids))
     NH = [x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)]; NO = [x for n in L['notes'] for x in split_note(n) if not HINT_RE.search(x)]
     hint_html = f'<div class="co c-prof fhint"><div class="ct">📣 교수님 예고·강조</div>{"".join(f"<div class=fh>{lecparse.inline(x, ctx)}</div>" for x in NH)}</div>' if NH else ''
-    gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><button class="tg" data-filt="unread" title="✓ 읽음 표시한 카드 숨기기">안 읽은 것만</button><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button></div>'
-    head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div><div class="fsrc" data-fsrc="1" title="눌러서 전체 보기">출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
+    gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><button class="tg" data-filt="unread" title="✓ 읽음 표시한 카드 숨기기">안 읽은 것만</button><details class="pmore"><summary class="tg" title="보기 설정 — ✓하면 접기 · 압축 보기 · 모두 펼치기/접기">⋯</summary><div class="pmenu"><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button></div></details></div>'
+    head = (f'<section class="frame" data-aid="{aid(k + ":frame")}"><div class="frt">이 강의의 틀</div><div class="fsrc" data-fsrc="1" title="눌러서 출처 전체 보기"><span class="fs0">{fsrc_short(L["file"])}</span><span class="fs1"> — 출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</span></div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
             f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div></div></section>{gp}')
     summ = f'<div class="pills noann"><span class="small">강의 전체를 한 표로 — 주제를 누르면 학습 탭의 그 카드로, 연도를 누르면 문제로 이동합니다. ⚡자동 빈칸(빨간 글씨)으로 가리고 복습할 수 있습니다.</span></div><div class="tblwrap wide" data-aid="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><thead><tr><th style="width:14%">주제</th><th style="width:24%">한 줄 요지 · 🔑 핵심</th><th style="width:30%">세부 내용</th><th style="width:16%">⭐ 기출 — 이렇게 나왔다</th><th style="width:16%">⚡ 암기 줄</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>'
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.render_recall(x, ctx)} for c in L['cards'] for x in c['recall']]   # 플래시카드: ' / ' 줄은 <li>로(U28)
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
-    lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'head': head, 'learn': ''.join(cards), 'sum': summ,
+    lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
                  'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
@@ -553,6 +565,7 @@ for q in Q:
     if p_ and p_ not in profs: profs.append(p_)
 # JB 필터 막대는 허브(shell.html jbBar)가 pack.jbprofs·jbyears·tcount로 그림 — 과목 JB 문제와 강의 기출 탭이 같이 씀
 ledger = B.view_led()
+ledger = re.sub(r'(?<!<div class="tscroll">)(<table class="cmp">.*?</table>)', r'<div class="tscroll">\1</div>', ledger, flags=re.S)   # 기출 대장 표는 가로 스크롤 상자 안에(F6 — 페이지 전체가 옆으로 밀리지 않게)
 # 과목 홈 공부 순서(U21): subject.py의 GUIDE(선택) — [(굵은 제목, 설명, 실행 버튼 키)]. 없으면 자동 규칙(JB 통계만):
 #   교수별 최근 해 짤 비율 평균 ≥ 60%면 1단계 = '⭐ 2회 이상 n문항 · 한눈표로 답부터'. 실행 키: resume(이어서 학습)·todo(안 푼 것)·rep(2회 이상만 풀기)·sumrep(한눈표 2회 이상)
 GUIDE = getattr(S, 'GUIDE', None)
@@ -585,24 +598,45 @@ for L in LEC:
 pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
         'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
 js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
-pack_js = 'JBLHUB.register(' + js(pack) + ');'
+import hashlib as _hl
+_h8 = lambda t: _hl.md5(t.encode('utf-8')).hexdigest()[:8]
+shell = open(DIR + '/shell.html', encoding='utf-8').read()
+BUILD = _h8(shell)   # 허브 코드 판 — index(HUB_BUILD)와 모든 팩(p.build)에 같이 박음(F5: 배포 중 옛 index·새 팩 섞임 감지)
+pack['build'] = BUILD
 CH = {}   # JB 원본 쪽 이미지는 판본별 청크(<SID>.img.jb23/jb24/jb25.js) — 누른 판본 것만 받음(U29, 재압축 없음)
 for key_, v_ in IMG['jb'].items(): CH.setdefault('jb' + key_.split('-')[0], {'jb': {}})['jb'][key_] = v_
 for key, v in lecimg.items():
     ck = key.split('-')[0]; ck = getattr(S, 'IMG_ALIAS', {}).get(ck, ck)
     CH.setdefault(ck, {'lec': {}})['lec'][key] = v
 img_files = {c: "JBLHUB.images('%s',%s,'%s');" % (SID, js(o), c) for c, o in CH.items()}
-shell = open(DIR + '/shell.html', encoding='utf-8').read()
+pack['imgv'] = {c: _h8(t) for c, t in img_files.items()}   # 이미지 청크 캐시 무효화(?v=)
+# 옛 허브(배포본) 표시 기준선 — 옛 표시가 남은 과목만 허브가 받아 표시에 문맥(p·s·v)을 붙임(F1, tools/legacy_base.py)
+LXF = os.path.join(DIR, 'legacy_txt.json'); lx_js = None
+if os.path.exists(LXF):
+    _lx = json.load(open(LXF, encoding='utf-8'))
+    lx_js = "JBLHUB.legacy('%s',%s,%s);" % (SID, js(_lx['txt']), js(_lx.get('rev', '')))
+    pack['lx'] = _h8(lx_js)
+# 옛 허브(JBLHUB.build 없음)가 이 팩을 받으면 새 index로 바꿔 엶(?v= 붙여 캐시 우회) — 같은 판을 이미 붙였으면 그냥 등록
+pack_js = ("window.JBLHUB&&!JBLHUB.build&&location.search.indexOf('v=%s')<0&&/^https?:/.test(location.protocol)&&location.replace(location.pathname+'?v=%s'+location.hash);"   # 중괄호 없는 한 줄(팩 파서는 첫 '{'부터 읽음)
+           "JBLHUB.register(%s);") % (BUILD, BUILD, js(pack))
 OUT = J.DOCS; os.makedirs(OUT + '/packs', exist_ok=True)
 open(OUT + f'/packs/{SID}.js', 'w', encoding='utf-8').write(pack_js)
-# 허브가 불러올 팩 = docs/packs에 실제로 있는 <SID>.js (없는 과목은 '자료 대기' 카드 — 404 방지)
+# 허브가 불러올 팩 = docs/packs에 실제로 있는 <SID>.js (없는 과목은 '자료 대기' 카드 — 404 방지) · 팩마다 내용 지문(?v=)
 READY = [x for x in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'] if os.path.exists(OUT + f'/packs/{x}.js')]
-open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)))
+PV = {x: _h8(open(OUT + f'/packs/{x}.js', encoding='utf-8').read()) for x in READY}
+open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)).replace('null/*PV*/', js(PV)).replace("'dev'/*BUILD*/", js(BUILD)))
 for f_ in os.listdir(OUT + '/packs'):
-    if f_.startswith(SID + '.img'): os.remove(OUT + '/packs/' + f_)
+    if f_.startswith(SID + '.img') or f_ == SID + '.lx.js': os.remove(OUT + '/packs/' + f_)
 for c, t in img_files.items(): open(OUT + f'/packs/{SID}.img.{c}.js', 'w', encoding='utf-8').write(t)
+if lx_js: open(OUT + f'/packs/{SID}.lx.js', 'w', encoding='utf-8').write(lx_js)
+# 호환: 옛 index가 찾는 <SID>.img.jb.js — 판본별 청크(jb23·24·25)를 받아 옛 허브가 기다리는 'jb' 한 묶음으로 넘김
+_jbc = sorted(c for c in img_files if c.startswith('jb'))
+if _jbc:
+    open(OUT + f'/packs/{SID}.img.jb.js', 'w', encoding='utf-8').write(
+        "(function(){var H=window.JBLHUB,o=H.images,N=%s,acc={jb:{},lec:{}},n=0;H.images=function(i,x,c){if(i==='%s'&&N.indexOf(c)>=0){for(var k in (x.jb||{}))acc.jb[k]=x.jb[k];if(++n===N.length){H.images=o;o.call(H,i,acc,'jb');}return;}return o.apply(H,arguments);};"
+        "N.forEach(function(c){var s=document.createElement('script');s.src='packs/%s.img.'+c+'.js';document.head.appendChild(s);});})();" % (js(_jbc), SID, SID))
 SINGLE = _os.path.join(J.WORK, f'{S.TITLE.replace(" ", "")}_JBL.html')   # 단일 파일판 — work/에만, 커밋 안 함
-open(SINGLE, 'w', encoding='utf-8').write(shell.replace('null/*READY*/', '[]').replace('<!--INLINE_PACKS-->', '<script>' + pack_js + '</script>\n' + ''.join('<script>' + t + '</script>\n' for t in img_files.values())))
+open(SINGLE, 'w', encoding='utf-8').write(shell.replace('null/*READY*/', '[]').replace("'dev'/*BUILD*/", js(BUILD)).replace('<!--INLINE_PACKS-->', '<script>' + pack_js + '</script>\n' + ''.join('<script>' + t + '</script>\n' for t in img_files.values())))
 # ---- 검증
 inlec = {i for L in LEC for c in L['cards'] for i in (list(c['jb']) + [i_ for b in c['body'] if b[0] == 'E' for i_ in b[1][0]])}
 print('⭐ 시험포인트로 다뤄지지 않은 연결 기출:', sorted({i for L in LEC for c in L['cards'] for i in c['jb']} - {i_ for L in LEC for c in L['cards'] for b in c['body'] if b[0] == 'E' for i_ in b[1][0]}))
