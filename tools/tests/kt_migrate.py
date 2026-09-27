@@ -20,8 +20,10 @@ async def main():
         await open_(pg, '#/CONS/CRK/learn'); await pg.evaluate('localStorage.clear()'); await open_(pg, '#/CONS/CRK/learn')
         info = await pg.evaluate("""(()=>{const C=[...document.querySelectorAll('#stage .tc')];const words=c=>c.querySelector('.tbody').textContent.split(/\\s+/).filter(w=>/^[A-Za-z]{6,}$/.test(w));
           const nz=t=>t.toLowerCase().replace(/[\\s\\/·•→;,|]/g,'');const all=C.map(c=>nz(c.textContent));const uniq=(c,i)=>words(c).find(w=>all.filter(t=>t.includes(nz(w))).length===1);
-          return C.slice(0,4).map((c,i)=>({aid:c.dataset.aid,alt:c.dataset.alt,w:words(c)[0],u:uniq(c,i)}));})()""")
+          const once=c=>{const T=__h.Kit.textOf(c);return words(c).find(w=>T.split(w).length===2);};   /* 카드 안 한 번뿐인 낱말 — 문맥 없는 옛 기록은 후보가 하나일 때만 복원(v3) */
+          return C.slice(0,4).map((c,i)=>({aid:c.dataset.aid,alt:c.dataset.alt,w:once(c),u:uniq(c,i)}));})()""")
         c0, c3 = info[0], info[3]
+        ok(bool(c0['w'] and c3['u']), f"픽스처: 카드 안 한 번뿐인 낱말 {c0['w']} · 강의 전체에서 한 번뿐인 낱말 {c3['u']}")
         ok(c0['alt'].split(' ')[0] == 'CONS:CRK:c0', f"카드 data-alt에 옛 index aid ({c0['alt']})")
         ann = {c0['alt'].split(' ')[0]: [{'t': 'h', 'x': c0['w'], 'i': 0, 'c': 'g'}],
                'CONS:CRK:oldcard_abc123': [{'t': 'h', 'x': c3['u'], 'i': 0, 'c': 'y'}, {'t': 'b', 'x': '원고에서사라진글자', 'i': 0}]}

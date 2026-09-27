@@ -12,8 +12,13 @@ async def open_(pg, h):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.wait_for_timeout(1200)
 async def ann(pg): return json.loads(await pg.evaluate(f"localStorage.getItem('{KEY}')") or '{}')
 async def tap_word(pg, aid, nth=-1):
-    b = await pg.evaluate("""([aid,nth])=>{const B=document.querySelector('[data-aid="'+aid+'"]');const L=[...B.querySelectorAll('.tbody li,.tbody p')].filter(e=>e.offsetParent&&e.textContent.trim().length>20);const c=L[nth<0?L.length+nth:nth];c.scrollIntoView({block:'center'});
-      const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){if(t.nodeValue.trim().length>5)break;}const r=document.createRange();r.setStart(t,1);r.setEnd(t,2);const b=r.getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2};}""", [aid, nth])
+    """카드 본문 한 줄(목록 li·항목 div.li — 원고 구조와 무관)의 첫 3자 이상 낱말 가운데를 누름. 줄과 글자 위치(textContent 기준)는 처음 고른 것을
+    data-ko에 적어 두고 다시 누를 때도 같은 낱말 — 칠해져 글자 노드가 쪼개져도 같은 자리"""
+    b = await pg.evaluate("""([aid,nth])=>{const B=document.querySelector('[data-aid="'+aid+'"]');let c=B.querySelector('[data-ko]');
+      if(!c){const L=[...B.querySelectorAll('.tbody li,.tbody div.li:not(.nolead),.tbody p')].filter(e=>e.offsetParent&&!e.closest('.noann,.c-exam')&&e.textContent.trim().length>20);c=L[nth<0?L.length+nth:nth];
+        const m=/[A-Za-z가-힣]{3,}/.exec(c.textContent);c.setAttribute('data-ko',m.index+1);}
+      c.scrollIntoView({block:'center'});let k=+c.getAttribute('data-ko');const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let t;
+      while(t=w.nextNode()){if(k<t.nodeValue.length)break;k-=t.nodeValue.length;}const r=document.createRange();r.setStart(t,k);r.setEnd(t,k+1);const b=r.getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2};}""", [aid, nth])
     await pg.mouse.click(b['x'], b['y']); await pg.wait_for_timeout(150)
 async def main():
     async with async_playwright() as p:
@@ -44,7 +49,7 @@ async def main():
         await pg.screenshot(path=J.TMP + '/ux_kt_orphan_marks.png')
         # 글자가 다시 생기면 lost 해제: 잃은 표시의 x를 실제 있는 어절로 바꿈
         await open_(pg, '#/CONS/CRK/learn')
-        real = await pg.evaluate("([aid])=>{const B=document.querySelector('[data-aid=\"'+aid+'\"]');return B.querySelector('.tbody li').textContent.trim().split(/\\s+/).find(w=>w.length>=4)}", [aid])
+        real = await pg.evaluate("([aid])=>{const B=document.querySelector('[data-aid=\"'+aid+'\"]'),T=__h.Kit.textOf(B);const W=[...B.querySelectorAll('.tbody div.li,.tbody li')].flatMap(e=>e.textContent.split(/[^A-Za-z가-힣]+/));return W.find(w=>w.length>=4&&T.split(w).length===2)}", [aid])   # 카드 안 한 번뿐인 낱말(문맥 없는 기록은 후보가 하나일 때만 복원)
         await pg.evaluate("([k,aid,x,r])=>{const a=JSON.parse(localStorage.getItem(k));a[aid].forEach(o=>{if(o.x===x)o.x=r;});localStorage.setItem(k,JSON.stringify(a));}", [KEY, aid, GHOST, real])
         await open_(pg, '#/CONS/CRK/learn')
         a = await ann(pg); ok(all(not o.get('lost') for o in a.get(aid, [])), f'글자를 다시 찾으면 lost 해제 ({real})')

@@ -63,10 +63,12 @@ async def run(b, vp, touch, tag):
         await pg.evaluate("document.querySelector('#k-h').click()")
     # 마지막 다음 = 요약
     n = await pg.evaluate("JSON.parse(document.querySelector('#opos').textContent.split('/')[1])")
+    nm = await pg.evaluate("__h.PACKS.PHARM.stats.main")
+    ok(n == nm, f'한 장씩 분모 {n} = 팩의 현 교수 기출 수(stats.main) {nm}')
     await pg.evaluate(f"(()=>{{for(let i=0;i<{n}+2;i++)document.querySelector('#onext').click()}})()")
     await pg.evaluate("(()=>{let g=0;while(document.querySelector('#opos').textContent!=='요약'&&g++<400)document.querySelector('#onext').click();})()"); await pg.wait_for_timeout(300)
     r = await pg.evaluate("(()=>{const s=document.querySelector('#onesum');return s&&!s.hidden?s.innerText:''})()")
-    ok('이번 회차 156문항' in r and '✗ 1' in r and '틀린 것만 다시' in r, f"마지막 다음 = 회차 요약 ({r[:60]})")
+    ok(f'이번 회차 {n}문항' in r and '✗ 1' in r and '틀린 것만 다시' in r, f"마지막 다음 = 회차 요약 — 회차 문항 수 = 풀이 막대 분모 {n} ({r[:60]})")
     await pg.screenshot(path=J.TMP + f'/ux_u14_sum_{tag}.png')
     await pg.evaluate("document.querySelector('[data-onesum=\"ng\"]').click()"); await pg.wait_for_timeout(300)
     ok(await pg.inner_text('#opos') == '1/1' and await pg.evaluate(CUR) == id0, f"틀린 것만 다시 → {await pg.inner_text('#opos')}")

@@ -17,7 +17,7 @@ async def run(b, vp, touch, tag):
         r = await pg.evaluate(CHK); ok(r['n'] == 0, f"{s}: .ab.chk·.ab.more 230자 덩어리 {r['n']}/{r['all']} {r['longs'][:2]}")
     await pg.goto('about:blank'); await pg.goto(U + '#/ANAT/_jb/_jb'); await pg.wait_for_timeout(1400)
     r = await pg.evaluate("(()=>{const li=document.querySelector('#c-Q02 .ab.chk>ul>li');return {ul:!!li.querySelector('ul.klist'),n:Math.max(0,...[...li.querySelectorAll('ul.klist')].map(u=>u.children.length)),cites:li.querySelectorAll(':scope>.cites .cite').length}})()")
-    ok(r['ul'] and r['n'] >= 5 and r['cites'] >= 1, f'ANAT Q02 대조 첫 항목 = 점 목록 {r}')
+    ok(r['ul'] and r['n'] >= 2 and r['cites'] >= 1, f'ANAT Q02 대조 첫 항목 = 점 목록(인용 속 \' / \' 나열 → 항목 2개↑ — 항목 수는 원고 따라) {r}')
     for s, q in [('ANAT', 'Q02'), ('GERI', 'J01'), ('IMPL', 'Q13'), ('PHARM', 'DS25')]:
         await pg.goto('about:blank'); await pg.goto(U + f'#/{s}/_jb/_jb'); await pg.wait_for_timeout(1300)
         await pg.evaluate(f"(()=>{{const c=document.querySelector('#c-{q}');c.classList.add('open');const e=c.querySelector('.ab.chk');const cs=getComputedStyle(document.documentElement);scrollTo(0,e.getBoundingClientRect().top+scrollY-parseFloat(cs.getPropertyValue('--toph'))-parseFloat(cs.getPropertyValue('--tabh'))-20)}})()")

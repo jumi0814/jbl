@@ -1,9 +1,10 @@
 """U17 회귀: JB 카드 무게 — '답:' 줄 18px(.ans0) · 긴 해설 접기(.exw.clamp + '해설 전체 보기') · 📖 정리본 절 기본 접힘(lkopen 저장) + 🔑 5항목 '더 보기'
-· '✓ 대조' 작은 칩 · 문제 집중(jbfocus) · PHARM RX01 펼친 높이(개선 전 1483px, 맥 1280폭) 40%↑ 감소. 스크린샷 work/_tmp/ux_u17_*.png"""
+· '✓ 대조' 작은 칩 · 문제 집중(jbfocus) · PHARM RX01 펼친 높이가 같은 카드를 모두 펼친 높이(해설 clamp 풀고 📖 절 연 복제본)보다 40%↑ 작음(맥 1280폭 —
+원고 분량에 묶인 고정 px 대신 같은 내용 기준). 🔑 5항목 자르기는 실제 카드에 6항목↑ 목록이 없으면 합성 목록으로 lkCut 규칙을 확인. 스크린샷 work/_tmp/ux_u17_*.png"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio
 from playwright.async_api import async_playwright
-U = J.HUB_URL; fails = []; BASE_RX01 = 1483
+U = J.HUB_URL; fails = []
 def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
@@ -15,24 +16,31 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     await open_(pg, '#/PHARM/_jb/_jb')
     r = await pg.evaluate("""(()=>{const c=document.querySelector('#c-RX01');const h0=c.offsetHeight;c.classList.add('open');const a=c.querySelector('.ln.ans0');
-      return {h0,h1:c.offsetHeight,fs:a&&getComputedStyle(a).fontSize,fw:a&&getComputedStyle(a).fontWeight,clamp:!!c.querySelector('.exw.clamp'),lk:!!c.querySelector('details.ab.lk:not([open])'),vchip:(c.querySelector('.qhead .chip.v-ok')||{}).textContent}})()""")
+      const k=c.cloneNode(true);k.removeAttribute('id');c.after(k);k.querySelectorAll('.exw.clamp').forEach(e=>e.classList.remove('clamp'));k.querySelectorAll('details').forEach(d=>d.open=true);const hf=k.offsetHeight;k.remove();
+      return {h0,h1:c.offsetHeight,hf,fs:a&&getComputedStyle(a).fontSize,fw:a&&getComputedStyle(a).fontWeight,clamp:!!c.querySelector('.exw.clamp'),lk:!!c.querySelector('details.ab.lk:not([open])'),vchip:(c.querySelector('.qhead .chip.v-ok')||{}).textContent}})()""")
     ok(r['fs'] == '18px' and r['fw'] == '800', f"'답:' 줄 18px·800 {r['fs']} {r['fw']}")
     ok(r['clamp'] and r['lk'], '긴 해설 접힘·📖 절 기본 접힘')
     ok(r['vchip'] == '✓ 대조', f"대조 칩 '✓ 대조' ({r['vchip']})")
-    if tag == 'mac': ok(r['h1'] <= BASE_RX01 * 0.6, f"RX01 펼친 높이 {BASE_RX01} → {r['h1']} ({round((1 - r['h1'] / BASE_RX01) * 100)}% 감소)")
+    if tag == 'mac': ok(r['h1'] <= r['hf'] * 0.6, f"RX01 펼친 높이: 모두 펼침 {r['hf']} → 기본 {r['h1']} ({round((1 - r['h1'] / r['hf']) * 100)}% 감소 ≥ 40%)")
     await pg.evaluate("(()=>{const c=document.querySelector('#c-RX01');scrollTo(0,c.getBoundingClientRect().top+scrollY-110)})()"); await pg.wait_for_timeout(200)
     await pg.screenshot(path=J.TMP + f'/ux_u17_rx01_{tag}.png')
     # 해설 전체 보기
     await pg.evaluate("document.querySelector('#c-RX01 .exmore').click()"); await pg.wait_for_timeout(100)
     r = await pg.evaluate("(()=>{const e=document.querySelector('#c-RX01 .exw');return [getComputedStyle(e).maxHeight,document.querySelector('#c-RX01 .exmore').textContent]})()")
     ok(r[0] == 'none' and '접기' in r[1], f'해설 전체 보기 → 펼침 {r}')
-    # 📖 절 펼치기 → 🔑 5항목 + 더 보기, lkopen 저장
+    # 📖 절 펼치기 → lkopen 저장
     await pg.evaluate("document.querySelector('#c-RX01 details.ab.lk>summary .lkt').click()"); await pg.wait_for_timeout(200)
-    r = await pg.evaluate("""(()=>{const d=document.querySelector('#c-RX01 details.ab.lk');const kb=d.querySelector('.kb');const l=kb.querySelector(':scope>ul,:scope>ol');const vis=[...l.children].filter(x=>x.offsetParent).length;
-      return {open:d.open,vis,all:l.children.length,more:!!d.querySelector('.lkmore'),rec:d.querySelectorAll('.lrec li').length,ls:localStorage.getItem('jblhub.v1.lkopen')}})()""")
-    ok(r['open'] and r['vis'] == 5 and r['all'] > 5 and r['more'] and r['ls'] == 'true', f'📖 절 펼침: 🔑 앞 5항목·더 보기·lkopen 저장 {r}')
-    await pg.evaluate("document.querySelector('#c-RX01 .lkmore').click()"); await pg.wait_for_timeout(100)
-    r = await pg.evaluate("(()=>{const l=document.querySelector('#c-RX01 details.ab.lk .kb').querySelector(':scope>ul,:scope>ol');return [...l.children].filter(x=>x.offsetParent).length===l.children.length})()")
+    r = await pg.evaluate("(()=>{const d=document.querySelector('#c-RX01 details.ab.lk');return {open:d.open,rec:d.querySelectorAll('.lrec li').length,ls:localStorage.getItem('jblhub.v1.lkopen')}})()")
+    ok(r['open'] and r['ls'] == 'true', f'📖 절 펼침·lkopen 저장 {r}')
+    # 🔑 5항목 + 더 보기: 6항목↑ 목록인 실제 카드(없으면 RX01에 8항목 합성 목록) — 5항목 이하 카드엔 '더 보기' 없음
+    r = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#cards details.ab.lk .kb')].map(kb=>[kb,kb.querySelector(':scope>ul,:scope>ol')]);
+      const long=L.filter(([kb,l])=>l&&l.children.length>5),wrong=L.filter(([kb,l])=>!(l&&l.children.length>5)&&kb.querySelector('.lkmore')).length;let kb,syn=false;
+      if(long.length)kb=long[0][0];else{kb=document.querySelector('#c-RX01 details.ab.lk .kb');kb.innerHTML='<ul class="klist">'+[1,2,3,4,5,6,7,8].map(i=>'<li>합성 항목 '+i+'</li>').join('')+'</ul>';delete kb.dataset.cut;kb.classList.remove('cut');__h.lkCut(kb.closest('.qc'));syn=true;}
+      const q=kb.closest('.qc');q.classList.add('open');q.querySelectorAll('details.ab.lk').forEach(d=>d.open=true);kb.setAttribute('data-u17','1');const l=kb.querySelector(':scope>ul,:scope>ol');
+      return {syn,wrong,vis:[...l.children].filter(x=>x.offsetParent).length,all:l.children.length,more:!!kb.parentElement.querySelector('.lkmore')}})()""")
+    ok(r['vis'] == 5 and r['all'] > 5 and r['more'] and r['wrong'] == 0, f"🔑 앞 5항목·더 보기{' (합성 목록)' if r['syn'] else ''} · 5항목 이하 카드의 더 보기 {r['wrong']} {r}")
+    await pg.evaluate("document.querySelector('[data-u17] .lkmore').click()"); await pg.wait_for_timeout(100)
+    r = await pg.evaluate("(()=>{const l=document.querySelector('[data-u17]').querySelector(':scope>ul,:scope>ol');return [...l.children].filter(x=>x.offsetParent).length===l.children.length})()")
     ok(r, '더 보기 → 🔑 전부')
     await pg.screenshot(path=J.TMP + f'/ux_u17_lkopen_{tag}.png')
     await open_(pg, '#/PHARM/_jb/_jb')

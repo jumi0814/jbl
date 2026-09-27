@@ -10,9 +10,10 @@ def ok(c, m):
     if not c: fails.append(m)
 async def open_(pg, h):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.wait_for_timeout(1200)
+LINES = "#stage .tc .tbody li, #stage .tc .tbody div.li:not(.nolead)"   # 본문 한 줄 = 목록 li 또는 항목 div.li(원고 구조와 무관)
 async def tap(pg, sel_nth):
-    b = await pg.evaluate("""(n)=>{const L=[...document.querySelectorAll('#stage .tc .tbody li')].filter(e=>e.offsetParent&&e.textContent.trim().length>20);const c=L[n];c.scrollIntoView({block:'center'});
-      const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){if(t.nodeValue.trim().length>5&&!t.parentElement.closest('[data-rk]'))break;}const r=document.createRange();r.setStart(t,1);r.setEnd(t,2);const b=r.getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2};}""", sel_nth)
+    b = await pg.evaluate("""(n)=>{const LINES='""" + LINES + """';const L=[...document.querySelectorAll(LINES)].filter(e=>e.offsetParent&&!e.closest('.noann,.c-exam')&&e.textContent.trim().length>20);const c=L[n];c.scrollIntoView({block:'center'});
+      const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let t,m;while(t=w.nextNode()){if(t.parentElement.closest('[data-rk],.noann,button'))continue;if(m=/[A-Za-z가-힣]{3,}/.exec(t.nodeValue))break;}const r=document.createRange();r.setStart(t,m.index+1);r.setEnd(t,m.index+2);const b=r.getBoundingClientRect();return {x:b.left+b.width/2,y:b.top+b.height/2};}""", sel_nth)
     await pg.mouse.click(b['x'], b['y']); await pg.wait_for_timeout(150)
 STYLE = "(el)=>{const s=getComputedStyle(el);return [s.color,s.backgroundColor]}"
 async def main():
@@ -32,7 +33,7 @@ async def main():
         ok(any(o.get('c') == 'u' for L in a.values() for o in L), "새 기록의 파랑 키 = 'u'")
         # 옛 기록 {t:'h',c:'b'} + 빈칸 {t:'b'} 넣고 새로고침
         aid = await pg.evaluate("document.querySelector('#stage .tc').dataset.aid")
-        words = await pg.evaluate("[...document.querySelectorAll('#stage .tc')][0].querySelector('.tbody li').textContent.trim().split(/\\s+/).filter(w=>w.length>=4&&/^[A-Za-z]+$/.test(w)).slice(0,2)")
+        words = await pg.evaluate("(()=>{const B=document.querySelector('#stage .tc'),T=__h.Kit.textOf(B);const W=[...B.querySelectorAll('.tbody div.li,.tbody li')].flatMap(e=>e.textContent.split(/[^A-Za-z]+/));return [...new Set(W)].filter(w=>w.length>=4&&T.split(w).length===2).slice(0,2)})()")   # 카드 안에 한 번만 나오는 영어 낱말(문맥 없는 옛 기록은 후보가 하나일 때만 복원)
         await pg.evaluate("([k,aid,w])=>{const a={};a[aid]=[{t:'h',x:w[0],i:0,c:'b'},{t:'b',x:w[1],i:0}];localStorage.setItem(k,JSON.stringify(a));localStorage.removeItem('jblhub.v1.autobak.i');localStorage.removeItem('jblhub.v1.autobak.pi');for(const i of ['p0','p1','p2',0,1,2,3,4])localStorage.removeItem('jblhub.v1.autobak.'+i);}", [KEY, aid, words])
         await open_(pg, '#/CONS/CRK/learn')
         a = json.loads(await pg.evaluate(f"localStorage.getItem('{KEY}')"))

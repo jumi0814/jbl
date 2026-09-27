@@ -193,7 +193,7 @@ def struct_item(x):
     """대조(A)·주변부(M)·메모(N) 항목(HTML): 150자를 넘거나 ' / '가 3개 이상이면 astruct로 점 목록화하고 인용 칩은 끝의 .cites 줄로 모음"""
     plain = html.unescape(re.sub(r'<[^>]+>', '', CITE_BTN.sub('', x)))
     if len(plain) <= 150 and plain.count(' / ') < 3: return x
-    cites = CITE_BTN.findall(x); body = CITE_BTN.sub(' ', x); keep = []
+    cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x); keep = []   # 문장마다 같은 쪽을 인용한 원고 — .cites 줄에는 한 번만
     def ph(m): keep.append(m.group(0)); return f'\ue000{len(keep) - 1}\ue001'
     body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
     if '<' in body: return x

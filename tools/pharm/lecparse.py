@@ -214,7 +214,7 @@ def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
     def flush():
         if not run: return
         allf = all(f for _, f in run)
-        c2 = cls + (' hlblock' if allf else '')
+        c2 = cls + (' hlblock' if allf else (' hlsome' if any(f for _, f in run) else ''))
         lis = []
         for k, (h, f) in enumerate(run):
             lc = '' if (allf or not f) else (' class="hlb hlb0"' if (k == 0 or not run[k - 1][1]) else ' class="hlb"')
@@ -266,7 +266,7 @@ def render_block(v, ctx, depth=0):
 def _seg_html(parts, ctx, depth, raw=None):
     parts = _rebalance(parts)
     if parts[0] == '→':
-        return '<ol class="steps">' + ''.join(f'<li>{inline(p, ctx)}</li>' for p in parts[1:]) + '</ol>'
+        return _list_html(parts[1:], ctx, depth, 'ol', 'steps', fmt=lambda p: inline(p, ctx))   # 단계도 기출 문장(==) 3개↑ 연속이면 한 묶음(hlb) — U23
     if depth >= 1 and raw is not None and _is_flow(parts): return inline(raw, ctx)   # 안쪽 짧은 나열은 원문 줄 그대로(li 안에 목록만 들지 않게)
     return _list_html(parts, ctx, depth)
 def key_split(v):

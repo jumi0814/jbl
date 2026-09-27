@@ -374,6 +374,8 @@ details.scards{margin:2px 0 8px 14px;border-left:2px solid var(--line);padding-l
 ul.kflow{list-style:none;margin:2px 0;padding:0;line-height:1.66}ul.kflow>li{display:inline;padding:0}ul.kflow>li+li::before{content:" · ";color:var(--faint);font-weight:700}ul.kflow.lab b.lbl{margin-right:2px}
 .hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
 li.hlb{box-shadow:inset 3px 0 0 #F2C94C}li.hlb0::after{content:"기출 문장";position:absolute;right:0;top:4px;font-size:11px;font-weight:800;color:#7C5E0E}.klist>li.hlb{padding-left:16px}
+/* 단계(ol.steps) 속 기출 문장 3개↑ 연속: 번호 원·이음선(::before·::after)과 겹치지 않게 칸 바탕 + 목록 머리 라벨 */
+ol.steps>li.hlb{box-shadow:none;background:#FFF4CC;border-radius:4px}ol.steps.hlsome::before{content:"기출 문장 = 노란 칸";display:block;font-size:11px;font-weight:800;color:#7C5E0E;margin-bottom:2px}
 .klist>li:has(>ul:first-child,>ol:first-child)::before{display:none}
 /* 이 강의의 틀 v7(U24) — 출처 줄·📣 교수님 예고·강조·출제 경향 접기·📌 한 줄·목차 두 단·⭐ 상위 5 */
 .frame{padding:12px 16px}.frame .frt{margin-bottom:0}.frame .fsrc{font-size:12.5px;color:var(--sub);margin:0 0 8px;line-height:1.5}
@@ -1057,9 +1059,10 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  function fnv(t){let h=0x811c9dc5;for(let k=0;k<t.length;k++){h^=t.charCodeAt(k);h=Math.imul(h,0x01000193);}return (h>>>0).toString(36);}
  function occ(t,x){const r=[];if(!x)return r;let q=-1;while((q=t.indexOf(x,q+1))>=0)r.push(q);return r;}
  const sq=t=>String(t==null?'':t).replace(/\s+/g,'');
- function ctxScore(t,a,b,o){const P=sq(o.p),Q=sq(o.s),bf=sq(t.slice(Math.max(0,a-CTX*3),a)),af=sq(t.slice(b,b+CTX*3));let k=0,j=0;
-  while(k<P.length&&k<bf.length&&P[P.length-1-k]===bf[bf.length-1-k])k++;while(j<Q.length&&j<af.length&&Q[j]===af[j])j++;
-  return k+j+((!P.length&&!bf.length)?2:0)+((!Q.length&&!af.length)?2:0);}   /* 블록 처음·끝에 붙은 표시는 그 자체가 문맥 */
+ function ctxRun(P,Q,bf,af){let k=0,j=0;while(k<P.length&&k<bf.length&&P[P.length-1-k]===bf[bf.length-1-k])k++;while(j<Q.length&&j<af.length&&Q[j]===af[j])j++;return k+j;}
+ function ctxScore(t,a,b,o){const P=sq(o.p),Q=sq(o.s),B0=t.slice(Math.max(0,a-CTX*3),a),A0=t.slice(b,b+CTX*3),bf=sq(B0),af=sq(A0);
+  const run=Math.max(ctxRun(P,Q,bf,af),ctxRun(fz(String(o.p||'')).t,fz(String(o.s||'')).t,fz(B0).t,fz(A0).t));   /* 원고를 고쳐 쓰며 구분 기호만 바뀐 문맥(→·/·번호)은 글자·숫자만으로도 비교 */
+  return run+((!P.length&&!bf.length)?2:0)+((!Q.length&&!af.length)?2:0);}   /* 블록 처음·끝에 붙은 표시는 그 자체가 문맥 */
  function pick(t,L,o){if(!L.length)return null;if(o.p==null&&o.s==null)return L.length===1?L[0]:null;   /* 문맥 없는 옛 표시: 후보가 하나일 때만 */
   const need=Math.min(6,Math.max(3,Math.round(.3*(sq(o.p).length+sq(o.s).length))));
   if(L.length===1)return (fz(String(o.x)).t.length>=4||ctxScore(t,L[0][0],L[0][1],o)>=need)?L[0]:null;   /* 🔑·'수치'처럼 짧고 흔한 글자는 문맥이 맞아야 */
@@ -1324,7 +1327,7 @@ function staleCheck(){if(HUB_BUILD==='dev')return;const bad=Object.keys(PACKS).f
  $('#stalego').onclick=()=>{const u=location.pathname+'?v='+HUB_BUILD+'.'+Date.now().toString(36)+location.hash;location.replace(u);};}
 function loadLX(){let n=0;const go=()=>{staleCheck();boot();};Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();}
 let pend=0;SUBJECTS.forEach(([id])=>{if(PACKS[id]||(Array.isArray(READY)&&READY.indexOf(id)<0))return;pend++;const s=document.createElement('script');s.src='packs/'+id+'.js'+(PV&&PV[id]?'?v='+PV[id]:'');s.onload=s.onerror=()=>{if(--pend===0)loadLX();};document.head.appendChild(s);});if(!pend)loadLX();
-window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
+window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 })();
 </script>
 </body></html>

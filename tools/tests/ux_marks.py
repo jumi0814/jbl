@@ -10,13 +10,18 @@ def ok(c, m):
 async def open_(pg, h, w=1100):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.wait_for_timeout(w)
 UNIQ = """(sel)=>{const B=document.querySelector(sel);if(!B)return null;const txt=B.textContent;const L=[...B.querySelectorAll(%s)];for(const e of L){for(const w of e.textContent.split(/\\s+/)){const x=w.replace(/[^가-힣A-Za-z0-9]/g,'');if(x.length>=3&&txt.split(x).length===2)return [B.dataset.aid,x];}}return null;}"""
-CENTER = """()=>{const e=document.querySelector('#stage .mkflash');if(!e)return null;const r=e.getBoundingClientRect();return Math.round((r.top+r.bottom)/2-innerHeight/2);}"""
+CENTER = """()=>{const e=document.querySelector('#stage .mkflash');if(!e)return null;const r=e.getBoundingClientRect();const c=Math.round((r.top+r.bottom)/2-innerHeight/2);
+  const atEnd=Math.ceil(scrollY+innerHeight)>=document.documentElement.scrollHeight-1,vis=r.top>=0&&r.bottom<=innerHeight;return atEnd&&vis&&c>0?0:c;}"""   # 문서 바닥이라 더 못 내리면 화면 안에 보이는 것으로 충분
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('dialog', lambda d: asyncio.ensure_future(d.accept()))
     print(f'== {tag}')
     await open_(pg, '#/CONS/CRK/learn'); await pg.evaluate('localStorage.clear();sessionStorage.clear()'); await open_(pg, '#/CONS/CRK/learn')
-    a1 = await pg.evaluate(UNIQ % "'.tbody li'", '#stage .tc:nth-of-type(9)') or await pg.evaluate(UNIQ % "'.tbody li'", '#stage .tc:last-of-type')
+    # 픽스처: 강의 가운데쯤 카드(끝 카드는 문서 바닥이라 가운데로 못 옴)의 본문 줄(li·div.li)에서 문서 안 한 번뿐인 낱말
+    nc = await pg.evaluate("document.querySelectorAll('#stage .tc').length"); a1 = None
+    for k in sorted(range(1, nc + 1), key=lambda k: abs(k - (nc + 1) // 2)):
+        a1 = await pg.evaluate(UNIQ % "'.tbody li,.tbody div.li'", f'#stage .tc:nth-of-type({k})')
+        if a1: break
     await open_(pg, '#/CONS/_jb/_jb')
     a2 = None
     for n in range(8, 40):
