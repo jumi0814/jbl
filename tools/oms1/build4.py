@@ -76,6 +76,10 @@ def st_kind(q):
     st = q.get('st')
     if not st or (q.get('v') == 'na' and not q.get('lk')): return ''
     return {'짤': 'jj', '탈': 'tt'}.get(st['latest']['kind'], 'base')
+def vchip(v):
+    """카드 머리 대조 칩: 일치는 작은 '✓ 대조' 점 칩, 부분 일치·불일치만 글자 그대로, 근거 없음·자료 없음은 짧게(전체 뜻은 title)"""
+    short = {'ok': '✓ 대조', 'none': '근거 없음', 'na': '자료 없음'}.get(v)
+    return f'<span class="chip v-{v}{" vsm" if short else ""}" title="{VNAME[v]}">{short or VNAME[v]}</span>'
 def split_qa(q):
     qs, as_, mode = [], [], 'q'
     for l in q['text'].split('\n'):
@@ -202,7 +206,7 @@ def qcard(q, idx):
     if q.get('pick'): sub.append(f'<span class="chip pk">⭐ {esc(q["pick"])}</span>')
     if q.get('lab24'): sub.append(f'<span class="chip ol" title="JB 24판이 2023년 시험 문항에 붙인 표기">24판 표기(23년 시험): {esc(q["lab24"])}</span>')
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}">',
-         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}<span class="chip pf">{esc(q["prof"] or "")}</span>{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}<span class="chip v-{q["v"]}">{VNAME[q["v"]]}</span></div>',
+         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}<span class="chip pf">{esc(q["prof"] or "")}</span>{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{reflow.render(qt, True)}</div>{figq}']
     if q['fig'] and not figq: h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
     h.append(f'<div class="qsub">{"".join(sub)}<span class="chip src">{esc(q["src"])}</span></div>')
@@ -211,7 +215,9 @@ def qcard(q, idx):
     if q.get('pair') and q['pair'] in QMAP: h.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(q["pair"], esc(QMAP[q["pair"]]["src"]))}</div>')
     jbb = ''.join(f'<button class="btn sm" data-jb="{q["ed"]}-{p}">JB 원본 {p}쪽</button>' for p in range(q['pg'], q['pg2'] + 1))
     h.append(f'<div class="acts"><button class="btn pri" data-tog="1">답·해설</button><button class="btn mk ok" data-mk="ok">맞음</button><button class="btn mk ng" data-mk="ng">틀림</button><button class="btn mk bm" data-mk="bm">★</button>{jbb}</div>')
-    a = ['<div class="ans">', f'<section class="ab jbans"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{reflow.render(at) if at.strip() else "<div class=ln>(JB에 답 표기가 따로 없음 — 위 원문 참조)</div>"}</div>{figa}</section>']
+    ansh = reflow.render(at, ans=True) if at.strip() else "<div class=ln>(JB에 답 표기가 따로 없음 — 위 원문 참조)</div>"
+    exbtn = '<button class="btn sm exmore noann" data-exmore="1">해설 전체 보기 ▾</button>' if 'class="exw clamp"' in ansh else ''
+    a = ['<div class="ans">', f'<section class="ab jbans"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{ansh}</div>{exbtn}{figa}</section>']
     if q['A']: a.append(f'<section class="ab chk v-{q["v"]}"><h5>🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small></h5><ul>{"".join((f"<li class=\"auto\">{auto_item(*x)}</li>" if q.get("auto") else f"<li>{struct_item(x)}</li>") for x in q["A"])}</ul>{"".join(f"<div class=note>{struct_item(x)}</div>" for x in q["N"])}</section>')
     elif q['tier'] == 'C':
         same = f' 같은 문제의 다른 수록본은 {go(q["same"], esc(QMAP[q["same"]]["short"]))}에서 강의자료와 대조했습니다.' if q.get('same') else ''
@@ -220,8 +226,9 @@ def qcard(q, idx):
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
-        rec_ = ''.join(lecparse.render_recall(x, ctx) for x in c_['recall'][:3])
-        a.append(f'<section class="ab lk"><h5>📖 정리본 카드 <small>{esc(LECNAME[k])} · {esc(c_["ko"])}</small> <button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></h5><div class="lkey"><div class="ct">🔑 핵심</div>{lecparse.render_key(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=ct style=margin-top:8px>⚡ 암기</div><ul class=lrec>" + rec_ + "</ul>") if rec_ else ""}</section>')
+        m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
+        rec_ = ''.join(lecparse.render_recall(x, ctx) for x in c_['recall'])
+        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(LECNAME[k])}</small></div>{lecparse.render_key(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=ct style=margin-top:8px>⚡ 암기</div><ul class=lrec>" + rec_ + "</ul>") if rec_ else ""}</details>')
     if q['other']:
         o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
         a.append(f'<details class="oth"><summary>다른 연도 칸·다른 판본에 실린 같은 문제 {len(q["other"])}건 (원문 그대로)</summary>{o}</details>')
