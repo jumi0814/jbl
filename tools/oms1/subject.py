@@ -3,7 +3,7 @@ import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dir
 SID, TITLE, EN, COLOR = 'OMS1', '구강악안면외과학 1', 'Oral & Maxillofacial Surgery I', '#0F4B4A'
 PROFS = '서병무 · 한정준 · 서미현 · 윤필영'
 BUILT = '2026-09-24'
-LECMAP = {'DD1': ('L08', 'DD I(26)'), 'DD2': ('L09', 'DD II(26)'), 'DD3': (None, 'DD III(26·필기본)'), 'DX': ('L03', '진단·치료계획(25)'),
+LECMAP = {'DD1': ('L08', 'DD I(26)'), 'DD2': ('L09', 'DD II(26)'), 'DD3': ('L10', 'DD III(26)'), 'DX': ('L03', '진단·치료계획(25)'),
           'EXT': ('L04', '발치와·식립시기(25)'), 'LOAD': ('L05', 'Loading(25)'), 'REP': ('L06', '재식론(25)'), 'REP2': ('L07', '보존과 ppt(25)')}
 LEC_ORDER = ['DD1', 'DD2', 'DD3', 'DX', 'EXT', 'LOAD', 'REP']
 LEC_IMG_ROOT = J.work('OMS1', 'lec') + '/'     # 강의 쪽 이미지: work/OMS1/lec/<폴더>/<쪽>.jpg

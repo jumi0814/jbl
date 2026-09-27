@@ -4,7 +4,7 @@ SID, TITLE, EN, COLOR = 'CONS', '임상치과보존학', 'Clinical Conservative 
 PROFS = '이인복 · 서덕규 · 김선영 · 이창하'
 BUILT = '2026-09-23'
 LECMAP = {'WHT': ('C01c', 'Tooth whitening(26·25)'), 'CRK': ('C09i', 'Cracked tooth(26)'), 'DHS': ('C09i', '시린 치아·DH(26)'), 'CR5': ('C02i', 'Cracked tooth(25)'), 'DH5': ('C03i', 'Dentin hypersensitivity(25)'),
-          'INL': (None, 'Inlay vs Fillings(25·필기본)'), 'ANT': (None, '전치부 레진 심미수복(25·필기본)'),
+          'INL': ('C04i', 'Inlay vs Fillings(25)'), 'ANT': ('C05i', '전치부 레진 심미수복(25)'), 'WH6': ('C08i', 'Tooth whitening(26)'),
           'ADH': ('C06i', 'Dental adhesive(25)'), 'FRC': ('C07i', 'FRC post(25)')}
 LEC_ORDER = ['WHT', 'CRK', 'DHS', 'INL', 'ANT', 'ADH', 'FRC']
 LEC_IMG_ROOT = J.work('CONS', 'lec') + '/'     # 강의 쪽 이미지: work/CONS/lec/<폴더>/<쪽>.jpg
@@ -13,7 +13,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {'WHT': '슬라이드 '}          # 이미지 전부 넣을 강의 {키: range}
-IMG_ALIAS = {'CR5': 'CRK', 'DH5': 'DHS'}
+IMG_ALIAS = {'CR5': 'CRK', 'DH5': 'DHS', 'WH6': 'WHT'}
 PROF_LEC = {'이인복': ['WHT'], '서덕규': ['CRK', 'DHS'], '김선영': ['INL', 'ANT'], '이창하': ['ADH', 'FRC'], '손호현': []}
 PROF_ORDER = ['이인복', '서덕규', '김선영', '이창하']
 COVER = {'이인복': 10, '서덕규': 10, '김선영': 10, '이창하': 10, '손호현': 10}   # 괄호 연도가 10년까지 → 2010년이 기준선

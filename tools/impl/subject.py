@@ -6,7 +6,7 @@ BUILT = '2026-09-25'
 LECMAP = {'HIS': ('I01i', '역사·용어·설계·표면(26)'), 'OSS': ('I02i', 'Osseointegration·bone physiology(25)'),
           'PATH': ('I03i', 'Implant in pathologic bone(26)'), 'ONJ5': ('I04i', 'ONJ and bisphosphonate(25)'),
           'BIO': ('I06i', '진단과 치료계획·biomechanics(26)'), 'PRO': ('I07i', '임플란트 보철의 이해(25)'),
-          'PART': ('I08i', '보철 부품의 종류·명칭·용도(25)'), 'GRAFT': (None, '치과 임플란트를 위한 골이식(25·텍스트본)')}
+          'PART': ('I08i', '보철 부품의 종류·명칭·용도(25)'), 'GRAFT': ('I09i', '치과 임플란트를 위한 골이식(25)'), 'HIS5': ('I10i', '역사·용어·설계·표면(25)'), 'BIO5': ('I05i', '진단과 치료계획(25)')}
 LEC_ORDER = ['HIS', 'OSS', 'PATH', 'BIO', 'PRO', 'PART', 'GRAFT']
 LEC_IMG_ROOT = J.work('IMPL', 'lec') + '/'     # 강의 쪽 이미지: work/IMPL/lec/<폴더>/<쪽>.jpg
 def lec_img_path(k, p):
@@ -14,7 +14,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {}
-IMG_ALIAS = {'ONJ5': 'PATH'}
+IMG_ALIAS = {'ONJ5': 'PATH', 'HIS5': 'HIS', 'BIO5': 'BIO'}
 PROF_LEC = {'조영단': ['HIS'], '한정준': ['OSS'], '명훈': ['PATH'], '임영준': ['BIO'], '김성균': ['PRO'], '조준호': ['PART'], '이재현': ['PART'], '윤필영': ['GRAFT']}
 PROF_ORDER = ['조영단', '한정준', '명훈', '임영준', '김성균', '조준호', '윤필영']
 COVER = {'조영단': 22, '한정준': 22, '윤필영': 22, '명훈': 22, '임영준': 20, '김성균': 20, '조준호': 22, '이재현': 22}

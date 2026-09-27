@@ -5,7 +5,7 @@ PROFS = '명훈 · 권익재 · 양훈주 · 서병무 · 서미현 · 박주영
 BUILT = '2026-09-25'
 LECMAP = {'NECK': ('A01i', 'Neck dissection(26)'), 'NV': ('A02i', '신경·혈관 해부학(26)'), 'NV5': ('A03i', '신경·혈관 해부학(25)'),
           'LIP': ('A04i', '구순열·구개열·비 해부학(26)'), 'LP5': ('A05i', 'Lip, Palate, Nose(25 한정준)'),
-          'MAND': ('A06i', 'Mandible(25)'), 'PAR': ('A07i', 'Parotidectomy(25)'), 'MAX': (None, 'Maxilla(25·슬라이드 제목 텍스트)'), 'TMJ': ('A09i', 'TMJ·SMAS(25)')}
+          'MAND': ('A06i', 'Mandible(25)'), 'PAR': ('A07i', 'Parotidectomy(25)'), 'MAX': ('A08i', 'Maxilla(25)'), 'NK5': ('A10i', 'Neck dissection(25)'), 'TMJ': ('A09i', 'TMJ·SMAS(25)')}
 LEC_ORDER = ['NECK', 'NV', 'LIP', 'MAND', 'PAR', 'MAX', 'TMJ']
 LEC_IMG_ROOT = J.work('ANAT', 'lec') + '/'     # 강의 쪽 이미지: work/ANAT/lec/<폴더>/<쪽>.jpg
 def lec_img_path(k, p):
@@ -13,7 +13,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {}
-IMG_ALIAS = {'NV5': 'NV', 'LP5': 'LIP'}
+IMG_ALIAS = {'NV5': 'NV', 'LP5': 'LIP', 'NK5': 'NECK'}
 PROF_LEC = {'명훈': ['NECK'], '권익재': ['NV'], '이종호': ['NV'], '양훈주': ['LIP'], '최진영': ['LIP'], '한정준': ['LIP'], '서병무': ['MAND', 'MAX'], '서미현': ['PAR'], '김성민': ['PAR', 'TMJ'], '박주영': ['TMJ']}
 PROF_ORDER = ['서병무', '권익재', '양훈주', '서미현', '박주영', '명훈']
 COVER = {'서병무': 20, '권익재': 22, '이종호': 19, '양훈주': 20, '최진영': 20, '한정준': 20, '서미현': 20, '김성민': 19, '박주영': 20, '명훈': 17}
