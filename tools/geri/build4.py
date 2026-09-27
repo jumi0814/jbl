@@ -229,6 +229,7 @@ def qcard(q, idx):
         m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
         rec_ = ''.join(lecparse.render_recall(x, ctx) for x in c_['recall'])
         a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(LECNAME[k])}</small></div>{lecparse.render_key(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=ct style=margin-top:8px>⚡ 암기</div><ul class=lrec>" + rec_ + "</ul>") if rec_ else ""}</details>')
+    a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
         o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
         a.append(f'<details class="oth"><summary>다른 연도 칸·다른 판본에 실린 같은 문제 {len(q["other"])}건 (원문 그대로)</summary>{o}</details>')
