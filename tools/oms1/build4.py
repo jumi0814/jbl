@@ -20,6 +20,16 @@ def card_aid(k, c): return aid(k + ':' + slug(c['en'], c['ko']))
 heat = lambda n: 'h2' if n >= 2 else ('h1' if n == 1 else 'h0')
 ctx = {'QMAP': QMAP, 'YR': YR, 'LECNAME': LECNAME, 'cited': set()}
 LEC = lecparse.load_all()
+# ---- 카드 aid 고정(tools/aidlock.py · aid_lock.json): 원고를 다시 써도 옛 카드의 표시·✓가 새 카드로 이어지게
+import aidlock
+LOCK_P = os.path.join(DIR, 'aid_lock.json'); LOCK = aidlock.load(LOCK_P); AIDS, ALTS, _lk_log = {}, {}, []
+for L_ in LEC:
+    _a, _al, LOCK[L_['k']], _st = aidlock.assign(L_['k'], L_['cards'], LOCK.get(L_['k'], []), lambda j, c, k=L_['k']: card_aid(k, c))
+    for j_ in range(len(L_['cards'])): AIDS[(L_['k'], j_)] = _a[j_]; ALTS[(L_['k'], j_)] = _al[j_]
+    _lk_log.append(f"{L_['k']} 유지 {_st['keep']}·이관 {_st['moved']}·신규 {_st['new']}")
+aidlock.save(LOCK_P, LOCK)
+print('카드 aid 잠금:', ' / '.join(_lk_log))
+def card_alt(k, j): return ' '.join([aid(k + ':c%d' % j)] + [a for a in ALTS[(k, j)] if a != aid(k + ':c%d' % j)])
 
 for q in Q:
     L0 = reflow.reflow(q['text'])
@@ -160,7 +170,7 @@ def lec_card(L, j, c):
     prof = any(b[0] == 'P' for b in c['body'])
     tg = ' · '.join(x for x in c['tag'].split(' · ') if not x.strip().startswith('기출'))
     tagc = f'<span class="chip tagc">{esc(tg)}</span>' if tg else ''
-    h = [f'<article class="tc {heat(mx)} open" id="t-{k}-{j}" data-grp="{esc(c["grp"])}" data-aid="{card_aid(k, c)}" data-alt="{aid(k + ":c%d" % j)}"><div class="thead" data-ttog><span class="badge">{j+1}</span><div class="tt"><div class="en serif">{esc(c["en"])}</div><div class="ko">{esc(c["ko"])} <span class="pg">· {lab}</span></div><div class="one">{lecparse.inline(c["gist"], ctx)}</div><div class="tchips">{tagc}{ych}{"<span class=\'chip emc\'>💬 교수 강조</span>" if prof else ""}</div></div><button class="dn noann" data-done="1" title="이해함 표시">✓</button><span class="car">▶</span></div><div class="tbody">']
+    h = [f'<article class="tc {heat(mx)} open" id="t-{k}-{j}" data-grp="{esc(c["grp"])}" data-aid="{AIDS[(k, j)]}" data-alt="{card_alt(k, j)}"><div class="thead" data-ttog><span class="badge">{j+1}</span><div class="tt"><div class="en serif">{esc(c["en"])}</div><div class="ko">{esc(c["ko"])} <span class="pg">· {lab}</span></div><div class="one">{lecparse.inline(c["gist"], ctx)}</div><div class="tchips">{tagc}{ych}{"<span class=\'chip emc\'>💬 교수 강조</span>" if prof else ""}</div></div><button class="dn noann" data-done="1" title="이해함 표시">✓</button><span class="car">▶</span></div><div class="tbody">']
     blocks = []; curb = None; key = ''; exams = []; exbuf = []
     def flush_ex():
         if not exbuf: return
@@ -229,7 +239,7 @@ for L in LEC:
     summ = f'<div class="pills noann"><span class="small">강의 전체를 한 표로 — 주제를 누르면 학습 탭의 그 카드로, 연도를 누르면 문제로 이동합니다. ⚡자동 빈칸(빨간 글씨)으로 가리고 복습할 수 있습니다.</span></div><div class="tblwrap wide" data-aid="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><thead><tr><th style="width:15%">주제</th><th style="width:20%">한 줄 요지 · 🔑 핵심</th><th style="width:30%">세부 내용</th><th style="width:17%">⭐ 기출 — 이렇게 나왔다</th><th style="width:18%">⚡ 암기 줄</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>'
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.inline(x, ctx)} for c in L['cards'] for x in c['recall']]
-    lect.append({'k': k, 'title': L['title'], 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[card_aid(k, c_), aid(k + ':c%d' % j_)] for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'head': head, 'learn': ''.join(cards), 'sum': summ,
+    lect.append({'k': k, 'title': L['title'], 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(next((n for n in L['notes'] if re.search(r'시험|강조|예고|공개|QUIZ|퀴즈|별표', n)), ''))})
 
 # ---- 비교표(칸 안의 ' / ' 나열을 줄 단위로)
