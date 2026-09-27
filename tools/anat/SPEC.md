@@ -20,6 +20,14 @@
 5. 출력: `docs/index.html`(허브) + `docs/packs/<SID>.js` + `docs/packs/<SID>.img.<강의>.js`, 단일 파일판 `work/<과목>_JBL.html` → `python tools/verify.py`
    - 강의 쪽 이미지 원본(`work/<SID>/lec/`)이 없으면 지금 `docs/packs/`에 있는 같은 쪽 이미지를 그대로 씀(재빌드해도 그림이 빠지지 않음)
 
+## 공통 코드 동기화·전 과목 빌드 (tools/sync_common.py · tools/build_all.sh)
+- 공통 생성 코드(shell.html·build4.py·lecparse.py·trend.py·reflow.py·emph.py·template2.html)는 **tools/cons/에서만 고친다**. SPEC.md는 tools/SPEC.md가 원본
+- `.venv/bin/python tools/sync_common.py` — cons → oms1·impl·anat·geri·pharm 복사(SPEC.md 사본 포함) · `--check` 사본끼리 다르면 종료 코드 1 · `--build` 복사 후 6과목 build4 → verify.py → audit_design.py
+- `tools/build_all.sh` = `sync_common.py --build --all`(tests/ux_all.py가 있으면 그것까지)
+- build2.py는 과목마다 마지막 출력 줄(`J.work('<SID>', 'build2_view.html')`)이 달라 복사하지 않는다 — 고칠 때는 과목별로
+- 과목별로 달라야 하는 설정은 subject.py의 선택 항목(`getattr(S, '이름', 기본값)`)으로 — 없으면 기존 동작
+- 기준선: work/는 메인 저장소와 공유되어 강의 이미지·강의 이름이 바뀔 수 있으므로, 코드 변경 전후 비교는 "지금 work/로 HEAD 코드를 빌드한 docs/"를 기준으로 한다(빌드는 결정적 — 같은 입력이면 같은 출력)
+
 ## lec_<키>.txt 문법
 ```
 #LEC 키 | 제목 | 교수 | 연도 | 파일 설명 | 쪽수
