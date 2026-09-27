@@ -17,7 +17,7 @@ async def run(b, vp, touch, tag):
     st = await pg.evaluate("(()=>{const s=[...document.querySelectorAll('.scard')];return 0})()")
     await open_(pg, '#/')
     hub = await pg.evaluate("document.querySelector('.scard[data-s=\"OMS1\"]').innerText")
-    ok('기출 68문항' in hub and '참고 42' in hub and '기출 68 — 맞음 2 · 틀림 1 · 안 푼 것 65' in hub, '허브 카드 OMS1 분모 68 · 참고 42')
+    ok('기출 68문항' in hub and '참고 42' in hub and '맞음 2 · 틀림 1 / 68' in hub and '안 푼 기출 65' in hub, '허브 카드 OMS1 분모 68 · 참고 42 (U22 두 줄 진행·안 푼 기출 버튼)')
     ph = await pg.evaluate("document.querySelector('.scard[data-s=\"PHARM\"]').innerText")
     ok('기출 156문항' in ph and '참고' not in ph, 'PHARM 허브 카드 156 · 참고 없음')
     await pg.screenshot(path=J.TMP + f'/ux_u16_hub_{tag}.png')

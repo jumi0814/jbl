@@ -16,7 +16,7 @@ async def main():
         # 2) 같은 곳 다시 클릭 → 지움
         await pg.mouse.click(kb['x']+5,kb['y']+kb['height']/2); await pg.wait_for_timeout(150); print('2 toggle off →', await pg.locator('#stage .rk-h').count())
         # 3) 드래그로 여러 어절(요소 경계 포함) → 빈칸 한 묶음
-        li=pg.locator('#t-MAND-1 .c-key li >> nth=1'); lb=await li.bounding_box()
+        li=pg.locator('#t-MAND-1 .tbody :is(li,.li) >> nth=1'); lb=await li.bounding_box()
         await pg.keyboard.press('a'); await pg.mouse.move(lb['x']+30,lb['y']+lb['height']/2); await pg.mouse.down(); await pg.mouse.move(lb['x']+200,lb['y']+lb['height']/2,steps=6)
         print('3a preview spans', await pg.locator('#stage [data-pre]').count())
         await pg.mouse.move(lb['x']+380,lb['y']+lb['height']/2,steps=4); await pg.mouse.up(); await pg.wait_for_timeout(150)
@@ -26,7 +26,7 @@ async def main():
         await pg.keyboard.press('Escape'); await pg.locator('#stage .rk-b >> nth=0').click(); await pg.wait_for_timeout(100)
         print('4 reveal all in group', await pg.locator('#stage .rk-b.show').count(), '/', await pg.locator('#stage .rk-b').count())
         # 5) 형광 드래그 다른 카드 + undo/redo
-        li2=pg.locator('#t-MAND-2 .c-key li >> nth=0'); await li2.evaluate("e=>e.scrollIntoView({block:'center'})"); b2=await li2.bounding_box()
+        li2=pg.locator('#t-MAND-2 .tbody :is(li,.li) >> nth=0'); await li2.evaluate("e=>e.scrollIntoView({block:'center'})"); b2=await li2.bounding_box()
         await pg.keyboard.press('h'); await pg.mouse.move(b2['x']+20,b2['y']+10); await pg.mouse.down(); await pg.mouse.move(b2['x']+260,b2['y']+10,steps=5); await pg.mouse.up(); await pg.wait_for_timeout(150)
         n_h=await pg.locator('#stage .rk-h').count(); await pg.keyboard.press('Control+z'); await pg.wait_for_timeout(100); n_u=await pg.locator('#stage .rk-h').count(); await pg.keyboard.press('Control+Shift+z'); await pg.wait_for_timeout(100); n_r=await pg.locator('#stage .rk-h').count()
         print('5 hl', n_h, 'undo', n_u, 'redo', n_r)
