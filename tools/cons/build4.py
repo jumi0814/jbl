@@ -71,6 +71,11 @@ def st_chip(q):
     if a['kind'] == '짤': return f'<span class="chip jj" title="{YR(a["from"])}년에도 출제된 문제">짤 · {YR(a["from"])}년에도 출제</span>'
     if a['kind'] == '탈': return f'<span class="chip tt" title="이 해에 처음 출제 — {"같은 카드에서 이전 기출이 있음(변형)" if a["tal"] == "변형" else "이전 기출이 없던 카드(새 영역)"}{", 교수 강조 쪽" if a.get("emph") else ""}">탈 · 첫 출제 · {"변형" if a["tal"] == "변형" else "새 영역"}{" · 💬" if a.get("emph") else ""}</span>'
     return f'<span class="chip base">{YR(a["y"])}년 — 기준선(이전 자료 없음)</span>'
+def st_kind(q):
+    """짤/탈 필터용: 최근 출제 해의 판정 — jj 짤 · tt 탈 · base 기준선 · '' 판정 없음"""
+    st = q.get('st')
+    if not st or (q.get('v') == 'na' and not q.get('lk')): return ''
+    return {'짤': 'jj', '탈': 'tt'}.get(st['latest']['kind'], 'base')
 def split_qa(q):
     qs, as_, mode = [], [], 'q'
     for l in q['text'].split('\n'):
@@ -196,7 +201,7 @@ def qcard(q, idx):
     if q['tal']: sub.append('<span class="chip ol">JB 표기 (탈)</span>')
     if q.get('pick'): sub.append(f'<span class="chip pk">⭐ {esc(q["pick"])}</span>')
     if q.get('lab24'): sub.append(f'<span class="chip ol" title="JB 24판이 2023년 시험 문항에 붙인 표기">24판 표기(23년 시험): {esc(q["lab24"])}</span>')
-    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-v="{q["v"]}" data-idx="{idx}">',
+    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}">',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}<span class="chip pf">{esc(q["prof"] or "")}</span>{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}<span class="chip v-{q["v"]}">{VNAME[q["v"]]}</span></div>',
          f'<div class="qtext">{reflow.render(qt, True)}</div>{figq}']
     if q['fig'] and not figq: h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
@@ -450,17 +455,7 @@ profs = []
 for q in Q:
     p_ = (q['prof'] or '').split('(')[0]
     if p_ and p_ not in profs: profs.append(p_)
-jbbar = f"""<div class="bar noann" id="jbbar"><div class="brow">
-<span class="qf"><button class="tg on" data-qf="">전체</button><button class="tg" data-qf="todo">안 푼 것</button><button class="tg" data-qf="ng">틀린 것</button><button class="tg" data-qf="bm">★ 북마크</button></span>
-<select id="fn"><option value="0">출제 횟수 전체</option><option value="2">2회 이상</option><option value="3">3회 이상</option></select>
-<select id="fsort"><option value="">JB 수록 순서</option><option value="n">출제 횟수 많은 순</option><option value="y">최근 출제 순</option><option value="r">셔플</option></select>
-<input type="search" id="fq" placeholder="문제 검색"><button class="tg" id="fone">한 장씩 풀기</button><button class="tg" id="frev">답 모두 펼치기</button><button class="btn sm" id="fmore">상세 필터 ▾</button></div>
-<div class="brow" id="jbmore" hidden><button class="tg on" data-tier="A">{TIERS['A']} {nt['A']}</button>{f'<button class="tg on" data-tier="B">{TIERS["B"]} {nt["B"]}</button>' if nt['B'] else ''}<button class="tg" data-tier="C">{TIERS['C']} {nt['C']}</button>
-<label>교수 <select id="fprof"><option value="">전체</option>{''.join(f'<option>{esc(p_)}</option>' for p_ in profs)}</select></label>
-<label>강의 <select id="flec"><option value="">전체</option>{''.join(f'<option value="{l["k"]}">{esc(l["title"])}</option>' for l in lect)}</select></label>
-<label>대조 <select id="fver"><option value="">전체</option><option value="flag">불일치·부분 일치</option><option value="none">근거 없음</option></select></label></div>
-<div class="prog" id="jbprog"></div></div>
-<div class="onebar noann" id="onebar"><button class="btn" id="oprev">◀ 이전</button><span id="opos"></span><button class="btn" id="onext">다음 ▶</button><span class="small">O 맞음 · X 틀림 · B 북마크 · Space 답 · ←/→ 이동</span></div>"""
+# JB 필터 막대는 허브(shell.html jbBar)가 pack.jbprofs·jbyears·tcount로 그림 — 과목 JB 문제와 강의 기출 탭이 같이 씀
 profS = {}
 for q in Q:
     if q['tier'] == 'C' or not q.get('st') or not (q['prof'] or '').strip(): continue
@@ -492,7 +487,7 @@ for L in LEC:
     for n in L['notes']:
         if re.search(r'시험|예고|강조|공개|keyword|키워드|별표|QUIZ|퀴즈', n): HINTS.append({'k': L['k'], 't': L['title'], 'h': lecparse.inline(n, ctx)})
 pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
-        'tiers': TIERS, 'top': top, 'trends': trends_html, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbbar': jbbar, 'sumall': ''.join(sumall), 'ledger': ledger}
+        'tiers': TIERS, 'top': top, 'trends': trends_html, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
 js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 pack_js = 'JBLHUB.register(' + js(pack) + ');'
 CH = {'jb': {'jb': IMG['jb']}}
