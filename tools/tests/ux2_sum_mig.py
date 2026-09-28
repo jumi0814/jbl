@@ -11,9 +11,10 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 def old_pack(sid):
-    """배포본 팩 — docs/packs/<SID>.js를 마지막으로 커밋한 판(없으면 None)"""
+    """1차 배포본 팩(7095e56 — 정리표가 옛 '<S>:<K>:sum' 한 단위이던 판, 사용자가 쓰던 판). ux3: 2차 판(0918775)을 커밋한 뒤로 '마지막 커밋 판'은
+    이미 행 단위라 옮길 옛 표시가 생기지 않으므로 옛 판을 못 박음(없으면 None)"""
     try:
-        h = subprocess.run(['git', 'log', '-1', '--format=%H', '--', f'docs/packs/{sid}.js'], cwd=J.ROOT, capture_output=True, text=True).stdout.strip()
+        h = '7095e56' 
         t = subprocess.run(['git', 'show', f'{h}:docs/packs/{sid}.js'], cwd=J.ROOT, capture_output=True, text=True).stdout
         return json.loads(t[t.index('JBLHUB.register(') + 16:t.rindex(');')])
     except Exception as e:

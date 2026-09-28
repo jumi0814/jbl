@@ -302,7 +302,8 @@ def render_block(v, ctx, depth=0):
             if lb.count('**') % 2 == 1: lb = lb.replace('**', ''); rest = '**' + rest
             return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rest, ctx)
         parts = _lab_merge(_rebalance(top))
-        fl = _is_flow(parts) and not (_IP[0] and sum(_L(x) for x in parts) > 50)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 아주 짧은 것만 가로 흐름
+        ls_ = sorted(_L(x) for x in parts)
+        fl = _is_flow(parts) and not (_IP[0] and ls_[len(ls_) // 2] > 22)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 짧은 나열(중앙값 22자 이하, ux2 D09)은 가로 흐름 그대로
         return _list_html(parts, ctx, depth, 'ul', 'kflow lab' if fl else 'klist lab', fmt=lab)
     if len(v) > 90:
         sp = split_lead(v)
