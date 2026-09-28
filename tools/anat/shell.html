@@ -1000,7 +1000,7 @@ details.ab.chk>h5.rkshow,details.ab.more>h5.rkshow{display:block!important}
 table.cmp th,table.cmp td,table.mtx th,table.mtx td{padding:9px 12px;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 table.sum th,table.sum td{line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 .msum td.mk{font-size:calc(13px*var(--fs));line-height:1.5}
-table.tw th,table.tw td{min-width:0}
+table.tw th,table.tw td{min-width:0}table.tw .xjb,table.tw .chip,table.tw .jbchip{white-space:normal;max-width:100%}   /* 열 폭을 정해 두므로 긴 연도 칩(기출 24·23·…)은 칸 안에서 줄바꿈 */
 /* L4 좁은 폭에서 열이 모자라는 5열↑ 표 = 행 카드(.stcard — 칸마다 열 이름 data-h) · 전체정리표 밖(비교표)에도 */
 .tblwrap.stcard table,.tblwrap.stcard tbody,.tblwrap.stcard tr,.tblwrap.stcard td,.tblwrap.stcard th{display:block;width:auto!important;min-width:0!important}.tblwrap.stcard thead,.tblwrap.stcard colgroup{display:none}.tblwrap.stcard>.tscroll{overflow:visible}
 .tblwrap.stcard tbody tr{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;margin:0 0 10px;padding:6px 12px 8px;background:#fff}
@@ -3019,7 +3019,7 @@ document.addEventListener('jbl:layout',()=>tblRefit(false,0));
 
 /* ---------- L2 정리표 colFit(table.mtx 5열) — '표 전체 높이 최소' 탐욕 탐색(산술만, 탐색 중 reflow 없음).
    칸마다 문단(블록 요소의 글자)을 그 글꼴로 잰 폭(canvas measureText) → 폭 w에서 줄 수 = ceil(글폭×1.06/(w−들여쓰기)) · 줄 제한(-webkit-line-clamp)·그림은 고정 높이 →
-   행 높이 = 칸 높이 최대 · 표 높이 = 행 합. 출발 = CSS 기본값(요약 15/23/22/18/22 · 자세히 14/24/30/16/16), 두 열 사이 2%씩 옮기는 가장 좋은 한 수를 최대 40번.
+   행 높이 = 칸 높이 최대 · 표 높이 = 행 합. 출발 = CSS 기본값(요약 15/23/22/18/22 · 자세히 14/24/30/16/16), 두 열 사이 2%씩(다음 1%씩) 옮기는 가장 좋은 한 수를 최대 40번씩.
    하한 주제 9em·요지 14em·세부 12em·시험 11em·암기 12em · 상한 36% · 모든 열 변화가 1.5%p 미만이면 그대로. 적용 뒤 실제 높이가 기본값보다 낮을 때만 남김(아니면 기본값).
    캐시 = 강의·모드·폭(24px 단위)·글자 크기 → <col style=width:x%>. 표가 카드형(좁은 폭)이면 하지 않음 ---------- */
 const CF={cache:new Map(),stats:new WeakMap(),cv:null,n:0};
@@ -3043,21 +3043,21 @@ function cfStats(t,mode){let S=CF.stats.get(t);if(S&&S.mode===mode)return S;cons
  S={mode,rows};CF.stats.set(t,S);return S;}
 function cfH(S,x,W){let H=0;for(const cells of S.rows){let rh=0;for(const c of cells){let w=0;for(let k=c.c0;k<c.c0+c.sp&&k<x.length;k++)w+=x[k];w=w/100*W-c.px;let h=c.py;for(const b of c.b){if(b.fh){h+=b.fh;continue;}const av=Math.max(24,w-b.ind);let L=Math.max(1,Math.ceil(b.tw*1.06/av));if(b.cl)L=Math.min(L,b.cl);h+=L*b.lh+b.ex;}if(h>rh)rh=h;}H+=rh;}return H;}
 function cfSolve(S,W,mode,fpx){const mins=CFMIN.map(e=>e*fpx/W*100);let x=CFDEF[mode].slice();x=x.map((v,i)=>Math.max(v,mins[i]));const sm=x.reduce((a,b)=>a+b,0);if(sm>100.5)return null;x[x.length-1]+=100-sm;
- let h=cfH(S,x,W);const h0=h;for(let it=0;it<40;it++){let best=null,bh=h;for(let i=0;i<5;i++)for(let j=0;j<5;j++){if(i===j)continue;const y=x.slice();y[i]-=2;y[j]+=2;if(y[i]<mins[i]||y[j]>CFMAX)continue;const hy=cfH(S,y,W);if(hy<bh-0.5){bh=hy;best=y;}}if(!best)break;x=best;h=bh;}
- if(h>h0*0.99)return null;return x.map(v=>Math.round(v*10)/10);}
+ let h=cfH(S,x,W);const h0=h,C=[];for(const st of [2,1]){for(let it=0;it<40;it++){let best=null,bh=h;for(let i=0;i<5;i++)for(let j=0;j<5;j++){if(i===j)continue;const y=x.slice();y[i]-=st;y[j]+=st;if(y[i]<mins[i]||y[j]>CFMAX)continue;const hy=cfH(S,y,W);if(hy<bh-0.5){bh=hy;best=y;}}if(!best)break;x=best;h=bh;}if(h<=h0*0.99)C.push(x.map(v=>Math.round(v*10)/10));}   /* 2%씩 → 1%씩 다듬기 — 후보 둘(실제 높이로 고름) */
+ return C;}
 function cfApply(t,x){const cols=t.querySelectorAll('colgroup>col');cols.forEach((c,i)=>{c.style.width=x?x[i]+'%':'';});t.dataset.cfw=x?x.join(','):'';}
 function colFit(force){$$('#stage .msum table.mtx').forEach(t=>{const wrap=t.closest('.tscroll')||t.parentElement,W=wrap.clientWidth;if(!W||!t.tBodies[0]||getComputedStyle(t).display!=='table'){delete t.dataset.cfk;return;}
  const st=$('#stage'),mode=st.classList.contains('sdfull')?'f':'s',fpx=parseFloat(getComputedStyle(t).fontSize)||13.5,fs=document.documentElement.style.getPropertyValue('--fs')||'1';
  const key=CUR.s+':'+CUR.d+':'+mode+':'+Math.round(W/24)+':'+fs;if(!force&&t.dataset.cfk===key)return;t.dataset.cfk=key;
  if(CF.cache.has(key)){const x=CF.cache.get(key),cur=(t.dataset.cfw||'').split(',').map(Number);if(x&&cur.length===5&&x.every((v,i)=>Math.abs(v-cur[i])<1.5))return;cfApply(t,x);return;}
- CF.n++;const prev=t.dataset.cfw||'';cfApply(t,null);const S=cfStats(t,mode),x=cfSolve(S,W,mode,fpx);let keep=null;
- if(x){const H0=t.offsetHeight;cfApply(t,x);const H1=t.offsetHeight;if(H1<H0*0.995)keep=x;}
+ CF.n++;const prev=t.dataset.cfw||'';cfApply(t,null);const S=cfStats(t,mode),C=cfSolve(S,W,mode,fpx)||[];let keep=null;
+ if(C.length){let bh=t.offsetHeight*0.995;C.forEach(x=>{cfApply(t,x);const h=t.offsetHeight;if(h<bh){bh=h;keep=x;}});}
  if(keep&&prev){const p=prev.split(',').map(Number);if(p.length===5&&keep.every((v,i)=>Math.abs(v-p[i])<1.5))keep=p;}   /* 1.5%p 문턱 — 앞 폭과 거의 같으면 그대로(흔들림 없음) */
  cfApply(t,keep);CF.cache.set(key,keep);});}
 
 /* ---------- L4 비교표·전체정리표·한눈표(table.cmp/sum) 열 폭 — √글자량 무게 px 배분. W = .tscroll 폭 · 열마다 글자량 80백분위·끊을 수 없는 가장 긴 조각·머리 글자 → 최소 폭(4.5~12em) ·
    첫 열 6~11em·W의 18% 이하 · 무게 = √Σ글자량 · 한 열 42% 상한(넘친 몫은 무게대로 다시 나눔 3회) · 글이 다 들어가는 열은 그 폭까지만.
-   최소 폭 합이 W를 넘으면: 열 5개↑이고 W<760이면 행 카드(.stcard — 칸마다 열 이름), 아니면 첫 열 고정 가로 스크롤(.ovx). 적용 = colgroup + table-layout:fixed ---------- */
+   (최소 폭은 90px 아래로 내리지 않음 — 아이패드 세로에서 한 글자씩 끊기지 않게) 최소 폭 합이 W를 넘으면: 열 5개↑이고 W<760이면 행 카드(.stcard — 칸마다 열 이름), 아니면 첫 열 고정 가로 스크롤(.ovx). 적용 = colgroup + table-layout:fixed ---------- */
 const TWT=new WeakMap();
 function cwLen(s){let n=0;for(const ch of s){const c=ch.codePointAt(0);n+=c<=32?0.3:(c>=0x1100&&c<=0x11FF)||(c>=0x2E80&&c<=0xD7FF)||(c>=0xF900&&c<=0xFAFF)||(c>=0xFF00&&c<=0xFFEF)?1:/[A-Za-z0-9]/.test(ch)?0.56:0.45;}return n;}
 function twStats(t){let S=TWT.get(t);if(S)return S;const hr=t.tHead&&t.tHead.rows[0],body=t.tBodies[0];if(!body)return null;let n=0;const rows=[...body.rows];rows.forEach(r=>{let k=0;[...r.cells].forEach(c=>k+=c.colSpan||1);n=Math.max(n,k);});if(hr){let k=0;[...hr.cells].forEach(c=>k+=c.colSpan||1);n=Math.max(n,k);}
@@ -3066,7 +3066,7 @@ function twStats(t){let S=TWT.get(t);if(S)return S;const hr=t.tHead&&t.tHead.row
  rows.forEach(r=>{let k=0;[...r.cells].forEach(c=>{const sp=c.colSpan||1;if(sp===1&&L[k]){const s=c.textContent.replace(/\s+/g,' ').trim(),v=cwLen(s);const o=L[k];o.ls.push(v);o.sum+=v;if(v>o.max)o.max=v;const tm=tokMax(s);if(tm>o.tok)o.tok=tm;}k+=sp;});});
  if(hr){let k=0;[...hr.cells].forEach(c=>{const sp=c.colSpan||1;if(sp===1&&L[k]){const b=c.cloneNode(true);b.querySelectorAll('button').forEach(x=>x.remove());L[k].head=cwLen(b.textContent.replace(/\s+/g,' ').trim());}k+=sp;});}
  L.forEach(o=>{o.ls.sort((a,b)=>a-b);o.p80=o.ls.length?o.ls[Math.min(o.ls.length-1,Math.floor(o.ls.length*0.8))]:0;});S={n,L};TWT.set(t,S);return S;}
-function twSolve(S,W,fpx,pad){const em=fpx,n=S.n;const mins=S.L.map((o,j)=>{const base=Math.max(o.tok*fpx*1.02,o.head*fpx,Math.min(o.p80*fpx,7*em))+pad;let m=Math.min(12*em,Math.max(4.5*em,base));if(j===0)m=Math.min(Math.max(m,6*em),11*em,Math.max(6*em,W*0.18));return m;});
+function twSolve(S,W,fpx,pad){const em=fpx,n=S.n;const mins=S.L.map((o,j)=>{const base=Math.max(o.tok*fpx*1.02,o.head*fpx,Math.min(o.p80*fpx,7*em))+pad;let m=Math.min(12*em,Math.max(4.5*em,90,base));if(j===0)m=Math.min(Math.max(m,6*em),11*em,Math.max(6*em,W*0.18));return m;});
  const cap=S.L.map((o,j)=>Math.max(mins[j],Math.min(W*0.42,o.max*fpx*1.04+pad,j===0?Math.max(mins[0],Math.min(11*em,W*0.18)):Infinity)));
  const sm=mins.reduce((a,b)=>a+b,0);if(sm>W+1)return {over:true,x:mins};
  const w=S.L.map(o=>Math.sqrt(Math.max(1,o.sum)));let x=mins.slice(),free=[...Array(n).keys()];
@@ -3123,7 +3123,7 @@ window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,merge
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 Object.assign(window.__h,{bkLimit,storeProtect,bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});
-Object.assign(window.__h,{navRender,navBadges,sideToggle,sideApply,rvcN:()=>RVCN,examPlan,sjShort,colFit,CF,tblFit,cfApply});   /* ux3 트랙1 회귀 고리 */
+Object.assign(window.__h,{navRender,navBadges,sideToggle,sideApply,rvcN:()=>RVCN,examPlan,sjShort,colFit,CF,tblFit,cfApply,cfStats,cfH,cfSolve,twStats,twSolve});   /* ux3 트랙1 회귀 고리 */
 Object.assign(window.__h,{migBak,migLS,migKit,migWait(){return Promise.all(Object.values(MIGP)).then(()=>MIGB);},lsCap,lsCapProbe,lqReplay,lqWrite,revNext,mark,devCut:()=>DEVCUT,idleBack,predIds});   /* ux2 fixA 회귀 고리 */Object.defineProperty(window.__h,'LCUR',{get(){return LCUR;}});   /* ux2 트랙B 회귀 고리 */
 })();
 </script>
