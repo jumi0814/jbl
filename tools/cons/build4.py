@@ -599,6 +599,14 @@ for L in LEC:
     if hs: HINTS.append({'k': L['k'], 't': L['title'], 'h': lecparse.inline(' '.join(hs), ctx)})
 pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
         'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
+# JB 문항 id 잠금(C09, tools/jblock.py) — 새 id만 잠금에 추가 · 팩에 이번 해시(jbhash, verify가 비교)와 옮김 표(jbmove·jbmovev, 허브가 기록을 옮김)
+import jblock as _JL
+_QH = {q['id']: _JL.qhash(split_qa(q)[0]) for q in Q}
+_jlock, _jmove, _jadd = _JL.update(SID, _QH)
+pack['jbhash'] = _QH
+if _jmove: pack['jbmove'] = _jmove; pack['jbmovev'] = _hl.md5(json.dumps(_jmove, sort_keys=True).encode('utf-8')).hexdigest()[:8]
+_jerr = _JL.check(SID, _QH, _jlock, _jmove)
+print('JB id 잠금:', len(_jlock), '| 새로 잠금', len(_jadd), '| 옮김 표', len(_jmove), ('| ⚠ ' + ' · '.join(_jerr[:5]) + ' → ' + _JL.need_msg(SID)) if _jerr else '')
 js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 import hashlib as _hl
 _h8 = lambda t: _hl.md5(t.encode('utf-8')).hexdigest()[:8]

@@ -969,7 +969,7 @@ function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
-function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);fcMerge(s);MK=getMK(s);}
+function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);jbMove(s);fcMerge(s);MK=getMK(s);}
  const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];
  const same=VIEW==='doc'&&CUR.s===s&&CUR.d===d&&CUR.t===t,push=opt.push!==false&&!same&&VIEW!=='none';if(push)stampHist();
  /* 돌아가기 알약: 칩으로 다른 화면에 가면 출발점 기억 · 도착 문서를 벗어나거나 출발점으로 돌아오면 지움 */
@@ -1887,6 +1887,14 @@ function fcMerge(s){if(LS.get('fcMerged.'+s,0))return;const p=PACKS[s];if(!p)ret
  J.forEach(k=>{const id=k.slice(2),e=F[k],t=+e.t||0,L=Array.isArray(m.log[id])?m.log[id].filter(x=>x&&typeof x==='object'):[];if(L.some(x=>x.how==='fc'&&+x.t===t))return;const last=L.reduce((a,x)=>Math.max(a,+x.t||0),0);if(L.length&&t<=last)return;
   const r=e.s==='o'?'ok':'ng';m[r][id]=1;delete m[r==='ok'?'ng':'ok'][id];L.push({r,t,how:'fc'});m.log[id]=L.sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);n++;});
  if(n){autoBak(true,'플래시카드 기록 합침');LS.set('mk.'+s,m);}LS.set('fcMerged.'+s,1);if(n)toast('플래시카드 기출 판정 '+n+'개를 JB 채점 기록에 합쳤어요');}
+/* C09 JB 문항 번호 옮김 — 팩의 p.jbmove {옛 id: 새 id}(tools/<sid>/jb_move.json)를 과목을 열 때 한 번(LS jbmoved.<S>.<jbmovev>): mk ok·ng·bm·log, fc 'J:옛', ann '<S>:옛' → 새 id(합침) · 옮길 기록이 있으면 먼저 autoBak(true,'기출 번호 옮김 전') */
+function jbMove(s){const p=PACKS[s];if(!p||!p.jbmove||typeof p.jbmove!=='object')return;const fk='jbmoved.'+s+'.'+(p.jbmovev||'0');if(LS.get(fk,0))return;const M=p.jbmove,pairs=Object.keys(M).filter(o=>typeof M[o]==='string'&&M[o]&&M[o]!==o);
+ const mk=getMK(s),fc=mkObj(LS.get('fc.'+s,{})),A=JSON.parse(JSON.stringify(Kit.sub()===s?Kit.all():mkObj(LS.get('ann.'+s,{}))));
+ const has=o=>['ok','ng','bm'].some(k=>mk[k][o])||mk.log[o]||fc['J:'+o]||A[s+':'+o];if(!pairs.some(has)){LS.set(fk,1);return;}
+ autoBak(true,'기출 번호 옮김 전');let n=0;
+ pairs.forEach(o=>{const w=M[o];['ok','ng','bm'].forEach(k=>{if(mk[k][o]){mk[k][w]=1;delete mk[k][o];n++;}});if(mk.log[o]){mk.log[w]=[].concat(Array.isArray(mk.log[w])?mk.log[w]:[],Array.isArray(mk.log[o])?mk.log[o]:[]).sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);delete mk.log[o];}
+  if(fc['J:'+o]){if(!fc['J:'+w]||(+fc['J:'+o].t||0)>(+fc['J:'+w].t||0))fc['J:'+w]=fc['J:'+o];delete fc['J:'+o];n++;}const ao=s+':'+o,an=s+':'+w;if(A[ao]){A[an]=[].concat(Array.isArray(A[an])?A[an]:[],A[ao]);delete A[ao];n++;}});
+ fixGrades(mk);LS.set('mk.'+s,mk);LS.set('fc.'+s,fc);if(Kit.sub()===s)Kit.setAll(A);else LS.set('ann.'+s,A);LS.set(fk,1);toast('기출 번호가 바뀌어 기록 '+n+'건을 새 번호로 옮겼어요');}
 /* ---------- 저장 공간(C02) — localStorage 한도(크롬·사파리 약 5M 글자)에 대한 사용량 · IDB 백업 크기 · navigator.storage.estimate ---------- */
 const LSCAP=5242880;
 function lsUsed(){let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);n+=k.length+(localStorage.getItem(k)||'').length;}}catch(e){}return n;}
@@ -2098,7 +2106,7 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 (function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
-Object.assign(window.__h,{fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
+Object.assign(window.__h,{jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 })();
 </script>
 </body></html>
