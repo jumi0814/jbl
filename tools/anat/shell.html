@@ -615,12 +615,15 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 #autopop .aprev{color:#FFD980;margin:4px 0 0 22px;font-size:12.5px;max-width:300px}#autopop .go2{display:block;margin-top:8px;background:none;color:#EEE8DA;border:1px solid #5A5248;border-radius:8px;padding:5px 12px;font-size:12.5px}#autopop .go2:disabled{opacity:.4}
 /* C07 '필터 다시 적용 ↻' 알약 · ↪ 이어서 풀기 */
 #jbbar .jbrerow{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;margin:6px 0 2px}#jbbar .tg.jbre{border:1px dashed var(--accb);color:var(--acct);white-space:nowrap}#jbbar.mini .jbrerow{display:none}.btn.jbres{white-space:normal;text-align:left}
+/* C10 기기 옮기기 창·노란 백업 띠 */
+#bkpop .devn{display:flex;align-items:center;gap:8px;margin:6px 0}#bkpop .devn input{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;min-height:36px;width:9em}.bkgot{margin-top:8px}
+.bkband{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#FFF6DA;border-bottom:1px solid #E8D49A;color:#4A3B12;padding:6px 12px;font-size:14px}.bkband span{flex:1;min-width:12em}.bkband .tx{border:0;background:none;min-width:36px;min-height:36px;border-radius:8px;font-size:15px;color:#4A3B12}
 /* C01 공간 정리 · C02 저장 공간 줄·홈 경고 · C05 합치기 결과 */
 .rstore{background:var(--tint);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;margin:6px 0 4px;font-size:13.5px;line-height:1.55}.storewarn{background:#FFF6DA;border-color:#E8D49A;font-size:14px}.mres{background:#F2F7F3;border-color:#CFE3D5;font-size:13.5px;margin:6px 0}
 details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px}details.rclean>summary{cursor:pointer;font-weight:700}details.rclean .row{margin-top:6px}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><button type="button" class="brand" id="gohome" title="허브 홈 — 모든 과목">🏠 JBL 허브<small>3학년 3쿼터</small></button><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
-<button type="button" id="clock" aria-label="오늘 공부 시간 · 누르면 기록">00:00:00</button><span id="idlechip" class="noann" hidden title="입력이 없어 시계를 멈췄어요 — 움직이면 이어서 잽니다"></span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
+<button type="button" id="clock" aria-label="오늘 공부 시간 · 누르면 기록">00:00:00</button><span id="idlechip" class="noann" hidden title="입력이 없어 시계를 멈췄어요 — 움직이면 이어서 잽니다"></span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="백업 · 기기 옮기기 — 표시·채점·메모·공부 시간을 파일로 보내고(공유·내려받기) 다른 기기에서 받아 합치기">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
 <div id="home"></div>
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
 <div id="kit" class="noann"><button id="k-min" title="도구 막대 펼치기">✎</button><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)"><span class="ic">↶<b class="ubn"></b></span><span class="lb2">되돌리기</span></button><button id="k-redo" title="다시 실행 (Ctrl/⌘ Shift Z)"><span class="ic">↷</span><span class="lb2">다시</span></button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기"><span class="ic">👁</span><span class="lb2">전체 보기</span></button><button id="k-clear" title="표시 지우기 — 자동 빈칸만·내 빈칸만·형광펜만·모두 × 이 카드·이 탭"><span class="ic">🧹</span><span class="lb2">지우기</span></button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
@@ -630,7 +633,7 @@ details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px
 <div id="clearpop" class="noann"></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
-<div id="tpop" class="pop noann"></div><div id="rpop" class="pop noann"></div><div id="lpop" class="pop noann"></div>
+<div id="tpop" class="pop noann"></div><div id="rpop" class="pop noann"></div><div id="bkpop" class="pop noann"></div><div id="lpop" class="pop noann"></div>
 <div id="help" class="noann"><div class="hbox"><div class="bt">도움말 · 단축키 <button class="btn" id="helpx" style="float:right">닫기</button></div>
 <div class="small hkey">⌨ 단축키는 <b>한/영 상관없이 동작</b>해요(한글 입력 상태여도 H·B·J… 그대로) · 글 입력칸(검색·메모)에 있을 때만 쉬고, Esc로 빠져나오면 다시 동작</div>
 <table><tbody>
@@ -648,6 +651,7 @@ details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px
 <tr><th>📊 공부 기록</th><td>허브 홈 ‘오늘’ 띠·시계 팝업 [자세히]·과목 홈 진행률 아래 줄 → 이번 주 월~일 막대(과목색 · 옅은 막대 = 지난주 · 점선 = 하루 목표) · 막대를 누르면 그날 과목·강의별 · ◀ ▶ 주 옮기기 · 요일별 평균(최근 4주) · 최근 12주 잔디 · 과목별 누적·강의 상위 10(읽음·기출 정답률) · <b>+ 시간 고치기</b>(날짜·과목·±분 — 자동 기록은 그대로 두고 따로 저장)</td></tr>
 <tr><th>시험일·오늘 복습</th><td>허브 과목 카드의 <b>시험일</b>을 넣으면 D-n(3일 이내 강조)·‘시험 가까운 순’ 정렬·과목 홈에 <b>하루 분량</b>(남은 안 읽은 카드·안 푼 기출 ÷ 남은 날) · <b>🔁 오늘 복습</b>: 틀렸던 기출을 틀린 뒤 맞힌 횟수로 1·3·7일 간격으로 다시(허브 카드·과목 홈 공부 순서·JB 필터 ‘🔁 복습’ — 누르면 한 장씩) · 채점 칩에 마우스를 올리면 ‘다음 복습 9/30’</td></tr>
 <tr><th>백업·저장 공간</th><td>5분마다 자동 백업(바뀌었을 때만 · 마지막 성공 <b id="hbakat">—</b>) · 저장이 안 되면(저장 공간 부족) 닫을 때까지 남는 빨간 띠 <b>‘⚠ 저장되지 않았어요’</b> — 방금 표시는 이 창에만 있으니 [지금 백업 파일 받기]로 파일을 받고 [공간 정리]로 자리를 비우면 30초 안에 다시 저장해요(‘저장됐어요’)</td></tr>
+<tr><th>백업 · 기기 옮기기</th><td>[백업] → <b>⬆ 보내기</b>(아이패드 = 공유 시트로 AirDrop·iCloud·메모, 맥 = 내려받기 뒤 [받았어요]) · <b>⬇ 받기</b>(다른 기기 파일을 골라 합치기 — 지금 기록은 그대로) · 처음 한 번 <b>이 기기 이름</b>(맥·아이패드) · 다른 기기의 공부 시간은 기기별로 따로 두고 <b>합계에 더함</b>(같은 파일을 두 번 합쳐도 한 번만) · 표시·채점이 바뀐 지 3일(시험 7일 안이면 2일)이 넘도록 보내지 않으면 과목을 열 때 노란 띠(하루 한 번, ✕로 닫기) · 허브 홈 ‘이 기기 마지막 보내기 · 다른 기기와 합친 때’</td></tr>
 <tr><th>복원·되돌리기</th><td>[복원] 창 맨 위 <b>저장 공간</b>(기록 n MB / 5MB · 백업 크기 · 과목별 · 마지막 자동 백업) — 70%를 넘으면 허브 홈에 경고 · 자동 백업은 이 기기의 IndexedDB에 주기 5개 + <b>이유별 보관</b>(원고 갱신 전 = 빌드마다 1개 · 버리기 전 3 · 지우기 전 3 · 그 밖의 이관·교체 전 3) · <b>되돌리기·교체는 공부 기록(표시·채점·이해함·메모·플래시카드·자동 빈칸 규칙)만</b> 바꾸고 공부 시간은 줄지 않으며 읽던 위치·설정은 그대로 — 확인창에 ‘바뀐 표시 N개·채점 M개가 사라집니다’ · 바꾸기 전 상태를 먼저 백업하고, 백업이 안 되면 멈춤 · 쓰다 실패하면 원래대로 · 파일 합치기 뒤에는 ‘합친 것 n · 건너뜀 k(이유)’</td></tr>
 <tr><th>검색·알림</th><td><b>/</b> 검색 → 결과 위 [전체][정리본][JB][표][예상]으로 좁히기(주소에 남아 새로고침해도 유지) · JB 결과의 ‘답 바로 보기’ · 알림은 화면 아래 도구 막대 위에 하나씩 차례로, 오류는 ✕로 닫을 때까지 빨간 띠 · 지나간 알림은 [복원] 창 ‘최근 알림’</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
@@ -731,9 +735,9 @@ $('#clock').onclick=tPop;tBtn();
 let TADJ=null;
 function tAdj(){if(!TADJ)TADJ=tObj(LS.get('tadj',{}));return TADJ;}
 function tLive(){return T.run?Math.max(0,Math.min(Date.now(),T.last+60000)-T.t0):0;}
-function tDay(d){const o={},add=(k,v)=>{v=+v||0;if(v)o[k]=(o[k]||0)+v;};const a=tObj(T.log[d]),b=tObj(tAdj()[d]);for(const k in a)add(k,a[k]);for(const k in b)add(k,b[k]);if(d===day())add(CUR.s||'기타',tLive());for(const k in o)if(!(o[k]>0))delete o[k];return o;}
+function tDay(d){const o={},add=(k,v)=>{v=+v||0;if(v)o[k]=(o[k]||0)+v;};const a=tObj(T.log[d]),b=tObj(tAdj()[d]);for(const k in a)add(k,a[k]);for(const k in b)add(k,b[k]);tDevs().forEach(e=>{const x=tObj(tObj(e.time)[d]),y=tObj(tObj(e.tadj)[d]);for(const k in x)add(k,x[k]);for(const k in y)add(k,y[k]);});   /* C10 다른 기기(timeDev) 몫 */if(d===day())add(CUR.s||'기타',tLive());for(const k in o)if(!(o[k]>0))delete o[k];return o;}
 function tSum(o){let s=0;for(const k in o)s+=o[k];return s;}
-function tLec(d){const o=Object.assign({},tObj(T.dlog[d]));if(d===day()&&T.run&&CUR.s&&CUR.d){const k=CUR.s+':'+CUR.d;o[k]=(+o[k]||0)+tLive();}return o;}
+function tLec(d){const o=Object.assign({},tObj(T.dlog[d]));tDevs().forEach(e=>{const x=tObj(tObj(e.timed)[d]);for(const k in x)o[k]=(+o[k]||0)+(+x[k]||0);});if(d===day()&&T.run&&CUR.s&&CUR.d){const k=CUR.s+':'+CUR.d;o[k]=(+o[k]||0)+tLive();}return o;}
 function tD0(dt){const x=new Date(dt||Date.now());x.setHours(12,0,0,0);return x;}   /* 한낮으로 맞춰 날짜 더하기가 서머타임에도 어긋나지 않게 */
 function tDAdd(dt,n){const x=tD0(dt);x.setDate(x.getDate()+n);return x;}
 function tMon(dt){const x=tD0(dt);x.setDate(x.getDate()-((x.getDay()+6)%7));return x;}
@@ -886,7 +890,7 @@ function home(opt){opt=opt||{};leaveView();const push=opt.push!==false&&VIEW!=='
     +`<div class="spb"><span>${C.ref?'현 교수 ':''}기출 맞음 <b class="cok">${ok}</b> · 틀림 <b class="cng">${ng}</b> <i>/ ${C.main}</i></span><div class="pbar"><i class="ok" style="width:${C.main?ok/C.main*100:0}%"></i><i class="ng" style="width:${C.main?ng/C.main*100:0}%"></i></div></div>`
     +`${exCard(id)}<div class="sacts">${r?`<button class="btn sm res go-resume" data-s="${id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'↪ 이어서':'▶ 시작'}: ${EH(sname(p,r.d))} · ${tl}</button>`:''}<button class="btn sm" data-sjbf="${C.todo?'todo':'ng'}">📝 ${C.todo?'안 푼 기출 '+C.todo:'틀린 기출 '+C.ng}</button>${revBtn(id)}${jbResume(id,true)}</div><div class="small" style="margin-top:6px">갱신 ${p.built}</div></div>`;}
   else g+=`<div class="scard off${plPending(id)?' plw':''}"><div class="en serif">${ko}</div><div class="ko">${plPending(id)?'불러오는 중…':PL.bad[id]?'⚠ 불러오기 실패':'자료 준비 중'}</div></div>`;});
- h.innerHTML=`${todayBand()}<h2>JBL 허브${plChip()}</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div>${homeSortBar()}<div id="storewarn" class="noann"></div><div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업(마지막 성공 ${bakAtTxt()})도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}${(()=>{const R=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const A=LS.get('ann.'+id,{});let nh=0,nb=0;if(A&&typeof A==='object')for(const k in A)(Array.isArray(A[k])?A[k]:[]).forEach(o=>{if(o&&typeof o==='object'){if(o.t==='b')nb++;else nh++;}});return [id,nh,nb];});
+ h.innerHTML=`${todayBand()}<h2>JBL 허브${plChip()}</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div>${homeSortBar()}<div id="storewarn" class="noann"></div><div class="sgrid">${g}</div>${resumeHTML()}${bkPanel()}${(()=>{const R=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const A=LS.get('ann.'+id,{});let nh=0,nb=0;if(A&&typeof A==='object')for(const k in A)(Array.isArray(A[k])?A[k]:[]).forEach(o=>{if(o&&typeof o==='object'){if(o.t==='b')nb++;else nh++;}});return [id,nh,nb];});
   return `<div class="panel mkall"><div class="bt">🖍 전 과목 내 표시 <span class="small">— 과목을 누르면 내 표시 모아보기(표시가 든 문장·색별로 보기·빈칸 떠올리기)</span></div><div class="row">${R.map(([id,nh,nb])=>`<button class="btn sm" data-mks="${id}">${EH(PACKS[id].title)} · 🖍 ${nh} · ▣ ${nb}</button>`).join('')}</div></div>`;})()}
  <div class="panel htime"><div class="bt">최근 공부 시간</div>${tHomeTable()}</div>
  <div class="panel"><div class="bt">도움말</div><div class="small">형광펜·빈칸 쓰는 법, 그림 보기, 공부 시간, 백업·복원, 단축키는 오른쪽 위 <b>?</b> 버튼(또는 ? 키)에 모아 두었어요.</div></div>`;
@@ -969,7 +973,7 @@ function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
-function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);jbMove(s);fcMerge(s);MK=getMK(s);}
+function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);jbMove(s);fcMerge(s);MK=getMK(s);setTimeout(bkNag,600);}
  const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];
  const same=VIEW==='doc'&&CUR.s===s&&CUR.d===d&&CUR.t===t,push=opt.push!==false&&!same&&VIEW!=='none';if(push)stampHist();
  /* 돌아가기 알약: 칩으로 다른 화면에 가면 출발점 기억 · 도착 문서를 벗어나거나 출발점으로 돌아오면 지움 */
@@ -1771,7 +1775,7 @@ function dumpAll(){const o={};for(let i=0;i<localStorage.length;i++){const k=loc
  if(LSQ.size){LSQ.forEach((v,k)=>{o[NS+k]=v;});try{const ks=Kit.sub();if(ks)o[NS+'ann.'+ks]=JSON.stringify(Kit.all());if(CUR.s)o[NS+'mk.'+CUR.s]=JSON.stringify(MK);}catch(e){}}   /* C01: 저장하지 못한 값(메모리의 ANN·MK)까지 */
  return o;}
 function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
-$('#bkup').onclick=()=>{tFlush();dl('JBL허브_백업_'+day()+'.json',{app:'jblhub',v:2,at:new Date().toISOString(),data:dumpAll()});LS.set('lastBackup',Date.now());toast('백업 파일을 저장했어요 — 기기를 바꿔도 [복원]으로 되살릴 수 있어요');};
+$('#bkup').onclick=bkPop;   /* C10 [백업] = 기기 옮기기 창 */
 /* 합치기 v3(C05) — 키마다 따로(try): 깨진 값·형식이 다른 값은 건너뛰고 이유를 모음 → {n: 합친 것, skip: [[키, 이유]]} · mergeInto(옛 호출)는 n만
    기기 키(devId·devName·timeDev·devMerged)·백업 관리 키(autobak*·lastBackup·bakWarnDay)는 합치지 않음 · 메모: 백업 메모가 지금 메모를 품으면 백업 것으로 */
 const MSKIP=/^(devId|devName|timeDev|devMerged|lastBackup|autobak|bakWarnDay|a2hsNote|fcMerged|jbmoved)/;
@@ -1783,7 +1787,7 @@ function mergeData(data,opt){opt=opt||{};const J=v=>{try{return JSON.parse(v);}c
    if(/^(ann|mk|done|fc|autoRule)\./.test(key)&&!isObj(b)){skip.push([key,'깨진 값']);continue;}
    if(/^ann\./.test(key)&&Object.keys(b).some(a=>!Array.isArray(b[a]))){skip.push([key,'깨진 값']);continue;}
    if((key==='time'||key==='timed'||key==='tadj')&&!isObj(b)){skip.push([key,'깨진 값']);continue;}
-   if((key==='time'||key==='timed')&&opt.dev){n+=devTimeMerge(opt.dev,key,b);continue;}   /* C10 다른 기기 시간은 timeDev로 */
+   if((key==='time'||key==='timed'||key==='tadj')&&opt.dev){n+=devTimeMerge(opt.dev,key,b);continue;}   /* C10 다른 기기 시간은 timeDev로(이 기기 time은 그대로) */
    const cur=localStorage.getItem(k);if(cur==null){localStorage.setItem(k,inc);n++;continue;}if(cur===inc)continue;const a=J(cur);if(a===undefined||a===null){localStorage.setItem(k,inc);n++;continue;}
    if(key.indexOf('ann.')===0){for(const aid in b){const L=Array.isArray(a[aid])?a[aid]:[];const sig=o=>o&&(o.t+'|'+o.x+'|'+(o.i||0));const have=new Set(L.map(sig));b[aid].forEach(o=>{if(o&&typeof o==='object'&&!have.has(sig(o))){L.push(o);n++;}});a[aid]=L;}localStorage.setItem(k,JSON.stringify(a));}
    else if(key.indexOf('mk.')===0){const pref={};for(const id in mkObj(a.ok))pref[id]='ok';for(const id in mkObj(a.ng))pref[id]=pref[id]?pref[id]:'ng';   /* 기록이 없으면 지금 기기의 채점을 따름 */
@@ -1895,6 +1899,42 @@ function jbMove(s){const p=PACKS[s];if(!p||!p.jbmove||typeof p.jbmove!=='object'
  pairs.forEach(o=>{const w=M[o];['ok','ng','bm'].forEach(k=>{if(mk[k][o]){mk[k][w]=1;delete mk[k][o];n++;}});if(mk.log[o]){mk.log[w]=[].concat(Array.isArray(mk.log[w])?mk.log[w]:[],Array.isArray(mk.log[o])?mk.log[o]:[]).sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);delete mk.log[o];}
   if(fc['J:'+o]){if(!fc['J:'+w]||(+fc['J:'+o].t||0)>(+fc['J:'+w].t||0))fc['J:'+w]=fc['J:'+o];delete fc['J:'+o];n++;}const ao=s+':'+o,an=s+':'+w;if(A[ao]){A[an]=[].concat(Array.isArray(A[an])?A[an]:[],A[ao]);delete A[ao];n++;}});
  fixGrades(mk);LS.set('mk.'+s,mk);LS.set('fc.'+s,fc);if(Kit.sub()===s)Kit.setAll(A);else LS.set('ann.'+s,A);LS.set(fk,1);toast('기출 번호가 바뀌어 기록 '+n+'건을 새 번호로 옮겼어요');}
+/* C10 기기 옮기기(맥↔아이패드) — [백업] = 창 #bkpop: 기기 이름(LS devName)·기기 id(LS devId) · [⬆ 보내기](공유 시트 — navigator.canShare({files}), 안 되면 내려받기 → [받았어요 ✓]) · [⬇ 받기](파일 합치기)
+   백업 파일에 dev {id,name} · 다른 기기 백업을 합치면 그 기기의 공부 시간은 LS timeDev = {devId:{name,time,timed,tadj}}(같은 기기끼리 max) — 이 기기 time·timed는 그대로, 표시 합계 = 이 기기 + timeDev(tDay·tLec)
+   lastBackup은 공유 성공·'받았어요'에서만 · 표시·채점이 바뀐 지 3일(시험 7일 안·저장소 보호 안 됨이면 2일)이 넘도록 백업이 없으면 과목을 열 때 노란 띠(하루 한 번, LS bkNagDay) */
+var TDEV=null;   /* var — 시계가 이 줄보다 먼저 tDay를 불러도 되게 */
+function tDevs(){if(!TDEV){const o=mkObj(LS.get('timeDev',{})),me=LS.get('devId','');TDEV=Object.keys(o).filter(k=>k!==me).map(k=>mkObj(o[k]));}return TDEV;}
+addEventListener('storage',e=>{if(e.key===NS+'timeDev')TDEV=null;});
+function devGuess(){const ua=navigator.userAgent||'';const touch=navigator.maxTouchPoints>1;return /iPad/.test(ua)||(/Macintosh/.test(ua)&&touch)?'아이패드':/iPhone/.test(ua)?'아이폰':/Mac/.test(ua)?'맥':/Android/.test(ua)?'태블릿':'이 기기';}
+function devMine(){let id=LS.get('devId','');if(!id||typeof id!=='string'){id='d'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);LS.set('devId',id);}let nm=LS.get('devName','');if(!nm||typeof nm!=='string'){nm=devGuess();LS.set('devName',nm);}return {id,name:nm};}
+function devTimeMerge(dev,key,b){const o=mkObj(LS.get('timeDev',{})),e=o[dev.id]=mkObj(o[dev.id]);e.name=dev.name||e.name||'다른 기기';e[key]=tMax(e[key],b);LS.set('timeDev',o);TDEV=null;return 1;}
+function devPlan(set,dev,t,b){const k=NS+'timeDev';let o;try{o=mkObj(JSON.parse(set[k]||localStorage.getItem(k)||'{}'));}catch(e){o={};}const e=o[dev.id]=mkObj(o[dev.id]);e.name=dev.name||e.name||'다른 기기';e[t]=tMax(e[t],b);set[k]=JSON.stringify(o);}
+/* 받은 백업에 든 제3 기기의 시간(그 기기가 합쳐 둔 timeDev)도 — 이 기기 것은 빼고 max */
+function devTimeDevIn(data){let o;try{o=mkObj(JSON.parse(data[NS+'timeDev']||'{}'));}catch(e){return;}const me=devMine().id;Object.keys(o).forEach(id=>{if(id===me)return;const e=mkObj(o[id]);['time','timed','tadj'].forEach(k=>{if(e[k])devTimeMerge({id,name:e.name},k,e[k]);});});}
+function devMerged(dev){const o=mkObj(LS.get('devMerged',{}));o[dev.id]={name:dev.name,at:Date.now()};LS.set('devMerged',o);}
+const agoD=t=>{const d=Math.floor((Date.now()-t)/864e5);return d<=0?'오늘':d+'일 전';};
+function bkStatus(){const me=devMine(),lb=+LS.get('lastBackup',0),M=mkObj(LS.get('devMerged',{}));const ms=Object.values(M).filter(x=>x&&x.at).sort((a,b)=>b.at-a.at);
+ return `이 기기(${EH(me.name)}) 마지막 보내기 ${lb?agoD(lb):'없음'}${ms.length?' · 다른 기기('+ms.slice(0,2).map(x=>EH(x.name)).join('·')+')와 합친 때 '+mdw(new Date(ms[0].at)):''}`;}
+function bkPanel(){const lb=+LS.get('lastBackup',0),dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업 · 기기 옮기기</div><div class="small">${bkStatus()}</div><div class="small">표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업(마지막 성공 ${bakAtTxt()})도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [보내기]를 권해요 — 다른 기기에서 [받기]로 합치면 공부 시간도 기기별로 더해져요.</div><div class="row"><button class="btn sm pri" data-bksend="1">⬆ 보내기</button><button class="btn sm" data-bkpop="1">기기 옮기기 창</button></div></div>`;}
+function bkPop(){const p=$('#bkpop');if(p.classList.contains('on')){p.classList.remove('on');return;}$$('.pop.on').forEach(x=>x.classList.remove('on'));const me=devMine();
+ p.innerHTML=`<div class="bt">💾 백업 · 기기 옮기기</div><label class="devn small">이 기기 이름 <input id="devname" value="${EH(me.name)}" maxlength="20" aria-label="이 기기 이름"></label><div class="small">${bkStatus()}</div>
+ <div class="row"><button class="btn pri" id="bksend">⬆ 보내기</button><button class="btn" id="bkrecv">⬇ 받기(합치기)</button></div><div class="small">보내기 = 표시·채점·메모·공부 시간을 파일 하나로 — 아이패드는 공유 시트(AirDrop·iCloud·메모)로, 맥은 내려받기 · 받기 = 다른 기기의 파일을 골라 합침(지금 기록은 그대로, 공부 시간은 기기별로 더함)</div><div id="bkgotrow"></div><button class="btn" id="bkclose" style="margin-top:8px">닫기</button>`;
+ p.classList.add('on');$('#devname').onchange=e=>{const v=e.target.value.trim().slice(0,20);if(v){LS.set('devName',v);toast('이 기기 이름: '+v);}};$('#bksend').onclick=bkSend;$('#bkrecv').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#bkclose').onclick=()=>p.classList.remove('on');}
+async function bkSend(){try{tFlush();}catch(e){}const j=bakFile(),name='JBL허브_'+(j.dev.name||'기기').replace(/\s+/g,'')+'_'+day()+'.json';let file=null;try{file=new File([JSON.stringify(j)],name,{type:'application/json'});}catch(e){}
+ if(file&&navigator.canShare&&navigator.share){let can=false;try{can=navigator.canShare({files:[file]});}catch(e){}if(can){try{await navigator.share({files:[file],title:'JBL 백업'});LS.set('lastBackup',Date.now());toast('보냈어요 — 다른 기기에서 [백업] → [⬇ 받기]로 합치세요',{level:'result'});bkRefresh();}catch(e){toast('보내기를 취소했어요');}return;}}
+ dl(name,j);const r=$('#bkgotrow');const ask=`<div class="bkgot small">파일을 받았나요? <button class="btn sm pri" data-bkgot="1">받았어요 ✓</button></div>`;if(r&&$('#bkpop').classList.contains('on'))r.innerHTML=ask;else toast('백업 파일을 내려받았어요 — 받았으면 [받았어요]',{level:'result',ms:9000,action:{label:'받았어요',fn:bkGot}});}
+function bkGot(){LS.set('lastBackup',Date.now());const r=$('#bkgotrow');if(r)r.innerHTML='';toast('마지막 백업을 오늘로 적었어요',{level:'result'});bkRefresh();}
+function bkRefresh(){if(VIEW==='home'){const y=scrollY;home({push:false,y});}const b=$('#bkband');if(b)b.remove();}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-bkgot],[data-bksend],[data-bkpop],[data-bkx]');if(!t)return;e.stopPropagation();if(t.dataset.bkgot)bkGot();else if(t.dataset.bksend)bkSend();else if(t.dataset.bkpop)bkPop();else if(t.dataset.bkx){const b=$('#bkband');if(b)b.remove();}},true);
+function lastChange(){let t=0,t0=Infinity;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k||k.indexOf(NS)!==0)continue;const key=k.slice(NS.length);
+  if(key.indexOf('annAt.')===0){const v=+LS.get(key,0);if(v){t=Math.max(t,v);t0=Math.min(t0,v);}}else if(key.indexOf('mk.')===0){const m=getMK(key.slice(3));for(const id in m.log)(Array.isArray(m.log[id])?m.log[id]:[]).forEach(x=>{const v=+(x&&x.t)||0;if(v){t=Math.max(t,v);t0=Math.min(t0,v);}});}}
+ return {t,t0:t0===Infinity?0:t0};}
+function bkLimit(){let lim=3;SUBJECTS.forEach(([s])=>{const v=LS.get('exam.'+s,'');const d=pDate(v);if(d){const n=Math.round((d-tD0())/864e5);if(n>=0&&n<=7)lim=2;}});if(PERSIST===false)lim=2;return lim;}
+var PERSIST=null;   /* C11 navigator.storage.persisted() 결과 */
+function bkNag(){if(VIEW!=='doc'||$('#bkband'))return;const td=day();if(LS.get('bkNagDay','')===td)return;const C=lastChange();if(!C.t)return;const lb=+LS.get('lastBackup',0);if(lb&&C.t<=lb)return;
+ const since=lb||C.t0,dd=Math.floor((Date.now()-since)/864e5),lim=bkLimit();if(dd<=lim)return;LS.set('bkNagDay',td);
+ const b=document.createElement('div');b.id='bkband';b.className='bkband noann';b.innerHTML=`<span>${lb?'마지막 백업 '+dd+'일 전':'아직 백업 파일을 보낸 적이 없어요'} — 표시·채점이 이 기기에만 있어요</span><button type="button" class="btn sm pri" data-bksend="1">⬆ 보내기</button><button type="button" class="tx" data-bkx="1" aria-label="닫기" title="닫기">✕</button>`;
+ const r=$('#right');if(r)r.prepend(b);}
 /* ---------- 저장 공간(C02) — localStorage 한도(크롬·사파리 약 5M 글자)에 대한 사용량 · IDB 백업 크기 · navigator.storage.estimate ---------- */
 const LSCAP=5242880;
 function lsUsed(){let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);n+=k.length+(localStorage.getItem(k)||'').length;}}catch(e){}return n;}
@@ -1923,7 +1963,7 @@ function mresHTML(r){const sk=Array.isArray(r.skip)?r.skip:[];return `<div class
 const STUDY=/^(ann|mk|done|memo|fc|autoRule)\./;
 function studyPlan(data,dev){const set={},del=[],cur=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf(NS)===0&&STUDY.test(k.slice(NS.length)))cur.push(k);}
  for(const k in data){if(k.indexOf(NS)!==0||!STUDY.test(k.slice(NS.length))||typeof data[k]!=='string')continue;set[k]=data[k];}cur.forEach(k=>{if(!(k in set))del.push(k);});
- ['time','timed','tadj'].forEach(t=>{const k=NS+t;if(typeof data[k]!=='string')return;let b;try{b=JSON.parse(data[k]);}catch(e){return;}if(dev&&t!=='tadj'&&typeof devPlan==='function'){devPlan(set,dev,t,b);return;}const js=JSON.stringify(tMax(LS.get(t,{}),b));if(js!==localStorage.getItem(k))set[k]=js;});
+ ['time','timed','tadj'].forEach(t=>{const k=NS+t;if(typeof data[k]!=='string')return;let b;try{b=JSON.parse(data[k]);}catch(e){return;}if(dev&&typeof devPlan==='function'){devPlan(set,dev,t,b);return;}const js=JSON.stringify(tMax(LS.get(t,{}),b));if(js!==localStorage.getItem(k))set[k]=js;});
  let size=0,free=0;for(const k in set){size+=k.length+set[k].length;free+=(k.length+(localStorage.getItem(k)||'').length)*(localStorage.getItem(k)!=null?1:0);}del.forEach(k=>{free+=k.length+(localStorage.getItem(k)||'').length;});
  return {set,del,size,fits:lsUsed()-free+size<=LSCAP*0.98};}
 function diffCount(data){let n=0,m=0;const J=v=>{try{return JSON.parse(v);}catch(e){return null;}};
@@ -1946,9 +1986,9 @@ $('#rstr').onclick=openRestore;$('#home').addEventListener('click',e=>{if(e.targ
 /* 파일 복원 — 같은 파일을 다시 골라도 change가 일어나게 value는 항상 비움(try/finally) */
 $('#rfile').onchange=e=>{const inp=e.target;try{const f=inp.files&&inp.files[0];if(!f)return;const how=inp.dataset.how||'merge';const r=new FileReader();r.onload=()=>fileRestore(r.result,how);r.readAsText(f);}finally{inp.value='';}};
 async function fileRestore(txt,how){let j;try{j=JSON.parse(txt);if(!j||j.app!=='jblhub'||!j.data||typeof j.data!=='object')throw 0;}catch(_){toast('백업 파일을 읽지 못했어요',{level:'error'});return;}
- const dev=(j.dev&&j.dev.id&&typeof devMine==='function'&&j.dev.id!==devMine().id)?j.dev:null;
+ const dev=(j.dev&&j.dev.id&&j.dev.id!==devMine().id)?{id:String(j.dev.id),name:String(j.dev.name||'다른 기기').slice(0,20)}:null;
  if(how==='over'){const D=diffCount(j.data);if(!confirm('백업 상태로 교체할까요? (지금 기록 삭제)\n\n지금 있는 표시 중 백업에 없는 '+D.n+'개·채점 '+D.m+'개가 사라집니다.\n\n(공부 시간은 줄지 않고, 읽던 위치·설정은 그대로 · 지금 상태는 먼저 자동 백업해 둡니다)'))return;await studyReplace(j.data,'교체 전',dev);return;}
- try{tFlush();}catch(e){}if(!await autoBak(true,'합치기 전')){bakFirst();return;}const r=mergeData(j.data,{dev});if(dev&&typeof devMerged==='function')devMerged(dev);SS.set('mergeRes',{n:r.n,skip:r.skip,at:Date.now()});setTimeout(()=>location.reload(),300);}
+ try{tFlush();}catch(e){}if(!await autoBak(true,'합치기 전')){bakFirst();return;}const r=mergeData(j.data,{dev});if(dev){devMerged(dev);}devTimeDevIn(j.data);SS.set('mergeRes',{n:r.n,skip:r.skip,at:Date.now()});setTimeout(()=>location.reload(),300);}
 /* 새로고침 뒤: 합치기 결과 창 · 되돌리기 알림 */
 setTimeout(()=>{const r=SS.get('mergeRes',null);if(r&&Date.now()-(+r.at||0)<60000&&!$('#rpop').classList.contains('on')){openRestore();toast('백업을 합쳤어요 — 합친 것 '+r.n+' · 건너뜀 '+(r.skip||[]).length,{level:'result'});}
  const d=SS.get('rstDone',null);if(d&&Date.now()-(+d.at||0)<60000){try{sessionStorage.removeItem(NS+'rstDone');}catch(e){}toast('되돌렸어요 — 바꾸기 전 상태는 [복원]의 ‘'+(d.why||'되돌리기 전')+'’에 있어요',{level:'result'});}},900);
@@ -1968,7 +2008,7 @@ function lsFlush(){if(!LSQ.size)return true;let n=0;for(const [k,v] of [...LSQ])
 setInterval(()=>{if(LSQ.size)lsFlush();},30000);
 /* [지금 백업 파일 받기] — 메모리 큐까지 담은 dumpAll(마지막 파일 백업 시각은 C10 규칙대로 바꾸지 않음) */
 function bakDownload(){try{tFlush();}catch(e){}dl('JBL허브_백업_'+day()+'.json',bakFile());toast('백업 파일을 내려받았어요 — 파일 앱(다운로드)에 있어요',{level:'result'});}
-function bakFile(){return {app:'jblhub',v:2,at:new Date().toISOString(),data:dumpAll()};}
+function bakFile(){return {app:'jblhub',v:2,at:new Date().toISOString(),dev:devMine(),data:dumpAll()};}   /* C10: 어느 기기의 백업인지(dev) */
 /* 자동 백업 실패 경고 — 하루 한 번 */
 function bakWarn(){const d=day();if(bakWarn.d===d||LS.get('bakWarnDay','')===d)return;bakWarn.d=d;lsRaw('bakWarnDay',d);toast('자동 백업을 남기지 못했어요 — 저장 공간이 부족해요',{level:'error',id:'bakerr',actions:[{label:'백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}]});}
 function bakAtTxt(){const at=+LS.get('autobakAt',0);if(!at)return '아직 없음';const d=new Date(at),t=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);return (day(d)===day()?'오늘 ':(d.getMonth()+1)+'/'+d.getDate()+' ')+t;}
@@ -2065,7 +2105,7 @@ function marksDrop(aid,i){const o=(Kit.all()[aid]||[])[i];if(!o)return;if(!confi
 /* ---------- 도움말 ---------- */
 function helpToggle(){$('#help').classList.toggle('on');helpBak();}
 $('#helpb').onclick=helpToggle;$('#helpx').onclick=helpToggle;$('#help').addEventListener('click',e=>{if(e.target.id==='help')helpToggle();});
-document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e.target)&&!e.target.closest('#clock,#rstr,#rfile,#lmcur'))p.classList.remove('on');});},true);
+document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e.target)&&!e.target.closest('#clock,#rstr,#rfile,#lmcur,#bkup,[data-bkpop],[data-openrst],a[download]'))p.classList.remove('on');});},true);
 
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
 /* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */
@@ -2106,7 +2146,7 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 (function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
-Object.assign(window.__h,{jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
+Object.assign(window.__h,{bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 })();
 </script>
 </body></html>
