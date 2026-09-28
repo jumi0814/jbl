@@ -1,4 +1,4 @@
-"""B01~B05 회귀: 공부 시간 — 📊 공부 기록 화면(#/_time — ux3부터 📅 공부 달력의 [📊 통계] 탭)·시계 팝업·허브 홈 시간 표·측정 표시(되감기 없음·자리 비움)·무활동 되묻기·창 여러 개.
+"""B01~B05 회귀(무활동 되묻기·창 여러 개는 LS restAuto=false — 쉬는 시간 자동 측정을 끈 옛 흐름, 켠 흐름은 ux3_rest): 공부 시간 — 📊 공부 기록 화면(#/_time — ux3부터 📅 공부 달력의 [📊 통계] 탭)·시계 팝업·허브 홈 시간 표·측정 표시(되감기 없음·자리 비움)·무활동 되묻기·창 여러 개.
 가짜 시계(page.clock)로 2026-09-24(목) 기준 14일치 합성 기록(time·timed, 3과목)을 넣고 확인한다.
 맥 1280×900 + 아이패드 세로 820×1180 + 가로 1180×820. 스크린샷 work/_tmp/ux2i_b0*_*.png"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
@@ -114,7 +114,7 @@ async def part_clock(b):
     ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('== B03·B04 측정 표시·무활동')
     await pg.clock.install(time=NOW)
-    await boot(pg, '#/OMS1/DD1/learn'); await pg.evaluate("localStorage.clear()"); await boot(pg, '#/OMS1/DD1/learn', 1200)
+    await boot(pg, '#/OMS1/DD1/learn'); await pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')"); await boot(pg, '#/OMS1/DD1/learn', 1200)   # ux3 J9: 옛 되묻기 띠(무활동 → [공부했어요][빼기])는 '쉬는 시간 재기'를 끈 때의 흐름 — 새 흐름은 tests/ux3_rest.py
     clk = lambda: pg.inner_text('#clock')
     sec = lambda t: int(t[0:2]) * 3600 + int(t[3:5]) * 60 + int(t[6:8])
     await pg.mouse.move(400, 400)
@@ -170,7 +170,7 @@ async def part_multi(b):
     for pg in (A, B): pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     print('== B05 창 여러 개')
     await A.clock.install(time=NOW)   # 컨텍스트 공용 시계
-    await boot(A, '#/PHARM/RX/learn'); await A.evaluate("localStorage.clear()")
+    await boot(A, '#/PHARM/RX/learn'); await A.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')")
     await boot(A, '#/PHARM/RX/learn'); await boot(B, '#/PHARM/RX/learn')
     for i in range(12):          # 10초마다 번갈아 입력 — 2분
         pg = (A, B)[i % 2]; await pg.mouse.move(300 + i * 7, 400); await asyncio.sleep(0.15)
@@ -209,7 +209,7 @@ async def part_twoidle(b):
     for pg in (A, B): pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     print('== V02 창 두 개 무활동 뒤 다른 창')
     await A.clock.install(time=NOW)
-    await boot(A, '#/OMS1/_home'); await A.evaluate("localStorage.clear()")
+    await boot(A, '#/OMS1/_home'); await A.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')")
     await boot(A, '#/OMS1/_home'); await boot(B, '#/CONS/_home')
     await A.mouse.move(300, 400); await A.clock.run_for(1000)
     for i in range(10): await A.mouse.move(310 + i, 400); await A.clock.run_for(30000)   # A 5분 공부
