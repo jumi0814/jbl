@@ -1,5 +1,8 @@
 """회귀: 옛 허브(배포본 f2e99d3)에서 만든 형광펜·빈칸이 새 허브에서 '같은 자리'에 복원되고, 못 찾은 것은 지우지 않고 보관되는지 (F1·F2·F7)
-  .venv/bin/python tools/tests/legacy_restore.py [--max-shift 3] [--max-lost 0.06]
+  .venv/bin/python tools/tests/legacy_restore.py [--rev f2e99d3|7095e56] [--max-shift 3] [--max-lost 0.06] [--max-gone 1]
+--rev 7095e56(1차 배포본 — 사용자가 지금 쓰는 판, ux2 fixA V06): 옛 허브의 Kit으로 실제 저장 형식 {t,x,i,c,p,s,v}(앞뒤 12자·블록 지문)를 심고,
+  '같은 자리' 판정도 양쪽 Kit 글자(textOf)로 — 심은 앞뒤 글자 vs 새 허브가 다시 닻 내린 앞뒤 글자(저장된 p·s) · 새 Kit 글자에 옛 앞뒤를 가진 다른 자리가 있는데 딴 데 그리면 SHIFTED
+  · 원고를 다시 써서 글자가 사라진 LOST_GONE은 강의별 수를 보고하고 --max-gone 비율로 막음(알려진·검토된 수 — tools/tests/legacy_restore_107.py가 ux_all에서 이 판으로 돌림)
 1) 옛 허브(tools/legacy_base.py가 work/_legacy/<rev>/docs에 풀어 둔 것)의 모든 과목·문서·탭을 돌며
    블록마다 합성 표시(한 단어 · 3~5단어 범위 · 줄 경계를 넘는 범위)를 옛 저장 형식 {t,x,i,c}로 만든다.
 2) 같은 브라우저 저장소로 새 허브(docs/)를 열어 모든 문서·탭을 돌며 실제로 그려진 표시와 블록 글자를 모은다.
@@ -44,12 +47,17 @@ GEN = r"""(args)=>{const [S,seen]=args;const out=[];const BND=/[\s\/()\[\]{},;:�
    out.push({S,aid,t:tt,x,pre:s.slice(Math.max(0,a-14),a),post:s.slice(b,b+14)});}
   out.push({__ann:aid,list});}
  return out;}"""
+GEN2 = GEN[:-len("return out;}")] + r"""
+ for(const o of out){if(!o.__ann)continue;const B=document.querySelector('#stage [data-aid="'+CSS.escape(o.__ann)+'"]');if(!B)continue;const T=__h.Kit.textOf(B),v=__h.Kit.fnv(T);
+  for(const m of o.list){let p=-1,k=0,at=-1;while((p=T.indexOf(m.x,p+1))>=0){if(k===m.i){at=p;break;}k++;}if(at<0){at=T.indexOf(m.x);if(at<0)continue;m.i=0;}m.p=T.slice(Math.max(0,at-12),at);m.s=T.slice(at+m.x.length,at+m.x.length+12);m.v=v;}}
+ return out;}"""   # 7095e56 판: 옛 Kit 글자로 문맥(p·s·v)을 붙인 실제 저장 형식
 COL = r"""()=>{const out=[];
  for(const B of document.querySelectorAll('#stage [data-aid]')){const aid=B.dataset.aid;const ix=__index(B,true);const s=ix.s;const gs={};
   B.querySelectorAll('[data-rk]').forEach(el=>{if(el.closest('[data-aid]')!==B)return;const g=el.getAttribute('data-g');(gs[g]=gs[g]||[]).push(el);});
   for(const g in gs){let a=1e9,b=-1;gs[g].forEach(e=>{const w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m){a=Math.min(a,m.start);b=Math.max(b,m.start+m.len);}}});
-   if(b<=a)continue;out.push({aid,x:s.slice(a,b),a,pre:s.slice(Math.max(0,a-14),a),post:s.slice(b,b+14),t:gs[g][0].getAttribute('data-rk')});}
-  out.push({__blk:aid,alt:B.dataset.alt||'',s});}
+   if(b<=a)continue;let hid='';if(!gs[g].some(e=>e.getClientRects().length>0)){const h=gs[g][0].closest('.mfull,.sline,.srt,.ex-yr,.tho,details.ab>h5');if(h&&getComputedStyle(h).display==='none')hid=h.tagName.toLowerCase()+'.'+[...h.classList].filter(c=>c!=='rkshow').join('.');}   /* ux2 fixA V01·V07: 화면에서 숨긴 자리에 갇힌 표시 */
+   out.push({aid,x:s.slice(a,b),a,pre:s.slice(Math.max(0,a-14),a),post:s.slice(b,b+14),t:gs[g][0].getAttribute('data-rk'),hid});}
+  out.push({__blk:aid,alt:B.dataset.alt||'',s,kt:(window.__h&&__h.Kit&&__h.Kit.textOf)?__h.Kit.textOf(B):''});}
  return out;}"""
 DOCS = """(S=>{__h.openDoc(S,'_home');const p=__h.PACKS[S];return ['_jb','_sum','_tbl','_pred','_led'].map(d=>[d,'']).concat(p.lect.flatMap(L=>__h.docTabs(p,L.k).map(t=>[L.k,t[0]])));})"""
 sq = lambda s: re.sub(r'\s+', '', s or '')
@@ -67,8 +75,9 @@ async def crawl(pg, S, fn, each=None, arg=None):
     return res
 
 async def main(a):
-    old = LB.old_docs(a.rev, None); new = J.DOCS
-    prof = os.path.join(J.TMP, 'legacy_restore_profile'); shutil.rmtree(prof, ignore_errors=True)
+    old = LB.old_docs(a.rev, None); new = J.DOCS; modern = a.rev != 'f2e99d3'; tag = '' if not modern else '_' + a.rev
+    max_gone = getattr(a, 'max_gone', None); max_gone = 1.0 if max_gone is None else max_gone
+    prof = os.path.join(J.TMP, 'legacy_restore_profile' + tag); shutil.rmtree(prof, ignore_errors=True)
     async with async_playwright() as p:
         ctx = await p.chromium.launch_persistent_context(prof, viewport={'width': 1280, 'height': 900})
         pg = ctx.pages[0] if ctx.pages else await ctx.new_page(); errs = []
@@ -87,7 +96,7 @@ async def main(a):
                         for o, e in zip(x['list'], pend): o['tid'] = e['tid'] = len(exp); exp.append(e)
                         ann[x['__ann']] = x['list']; seen[x['__ann']] = 1; pend = []
                     else: pend.append(x)
-            await crawl(pg, S, GEN, each, lambda: [S, seen])
+            await crawl(pg, S, GEN2 if modern else GEN, each, lambda: [S, seen])
             ALL[S] = ann
         await pg.goto('about:blank')
         await pg.goto('file://' + old + '/index.html#/'); await pg.evaluate("(A)=>{localStorage.clear();for(const S in A)localStorage.setItem('jblhub.v1.ann.'+S,JSON.stringify(A[S]));}", ALL)
@@ -96,13 +105,13 @@ async def main(a):
         pg.on('pageerror', lambda e: errs.append(str(e)[:300])); pg.on('console', lambda m: m.type == 'error' and 'Failed to load' not in m.text and errs.append(m.text[:200]))
         await pg.goto('about:blank'); await pg.goto('file://' + new + '/index.html#/'); await pg.wait_for_timeout(2500)
         await pg.evaluate("window.__h||(window.__h=null)"); await pg.add_script_tag(content=IDX)
-        recs = collections.defaultdict(list); blocks = {}; alt_rev = collections.defaultdict(list); seen_r = set()
+        recs = collections.defaultdict(list); blocks = {}; KT = {}; alt_rev = collections.defaultdict(list); seen_r = set()
         for S in SUBJ:
             for r in await crawl(pg, S, COL):
                 for x in r:
                     if '__blk' in x:
                         if x['__blk'] not in blocks:
-                            blocks[x['__blk']] = x['s']
+                            blocks[x['__blk']] = x['s']; KT[x['__blk']] = x.get('kt') or x['s']
                             for o in x['alt'].split():
                                 if o != x['__blk']: alt_rev[o].append(x['__blk'])
                     else:
@@ -153,6 +162,15 @@ async def main(a):
         if o['x'] != e['x']: cat['PARTIAL'] += 1   # 글자·숫자만·⚡ 안내문 조각을 떼고 찾은 것(지금 글자로 다시 닻)
         if key != e['aid'] and key not in alt_rev.get(e['aid'], []):
             cat['MOVED'] += 1; bad['MOVED'].append((e, key, r)); continue   # 없어진 카드 → 같은 강의 다른 카드(한 곳뿐인 글자)
+        if modern:   # 양쪽 Kit 글자: 심은 앞뒤(p·s — 옛 Kit) vs 새 허브가 그린 자리에 다시 닻 내린 앞뒤(저장된 p·s — 새 Kit)
+            m0 = seedo[e['tid']]; P0, S0, P1, S1 = sq(m0.get('p')), sq(m0.get('s')), sq(o.get('p')), sq(o.get('s'))
+            kok = lambda p0, s0, p1, s1: (p0[-4:] == p1[-4:] and (p0 or not p1)) or (s0[:4] == s1[:4] and (s0 or not s1))
+            if kok(P0, S0, P1, S1): cat['OK'] += 1; continue
+            T_ = KT.get(key, ''); x = o['x']; L = len(x)
+            other = [q for q in (m.start() for m in re.finditer(re.escape(x), T_)) if kok(P0, S0, sq(T_[max(0, q - 12):q]), sq(T_[q + L:q + L + 12])) and (sq(T_[max(0, q - 12):q]), sq(T_[q + L:q + L + 12])) != (P1, S1)]
+            if other: cat['SHIFTED'] += 1; bad['SHIFTED'].append((e, r, T_[max(0, other[0] - 14):other[0] + L + 14]))
+            else: cat['REANCHORED'] += 1; bad['REANCHORED'].append((e, r))
+            continue
         if ctx_ok(e, r['pre'], r['x'], r['post']): cat['OK'] += 1; continue
         s_ = blocks.get(key, ''); x = r['x']; L = len(x)
         other = [q for q in (m.start() for m in re.finditer(re.escape(x), s_)) if q != r['a'] and ctx_ok(e, s_[max(0, q - 14):q], x, s_[q + L:q + L + 14])]
@@ -166,8 +184,12 @@ async def main(a):
     for e, r, o in bad['SHIFTED'][:10]: print('  SHIFTED', e['aid'][:48], repr(e['x'][:30]), '| was', repr(e['pre'][-10:]), '→ drawn', repr(r['pre'][-10:]), '| 옛 자리 남음', repr(o))
     for k in ('MERGED', 'DELETED', 'NOTDRAWN'):
         for z in bad[k][:5]: print(' ', k, z[0]['aid'][:48], repr(z[0]['x'][:30]), '→', z[1])
-    json.dump({'cat': cat, 'bad': bad, 'marks': MK, 'ls': {k: v for k, v in ls.items() if '.ann.' in k}}, open(os.path.join(J.TMP, 'legacy_restore.json'), 'w'), ensure_ascii=False, indent=1)
+    gl = collections.Counter(':'.join(z[0]['aid'].split(':')[:2]) for z in bad['LOST_GONE'])
+    print(f"  LOST_GONE {cat['LOST_GONE']} ({cat['LOST_GONE'] / max(1, n):.3%}) 강의별:", ', '.join(f'{k} {v}' for k, v in gl.most_common(12)))
+    for z in bad['LOST_GONE'][:6]: print('  LOST_GONE', z[0]['aid'][:48], repr(z[0]['x'][:30]))
+    json.dump({'cat': cat, 'bad': bad, 'marks': MK, 'gone_by_lec': gl, 'ls': {k: v for k, v in ls.items() if '.ann.' in k}}, open(os.path.join(J.TMP, 'legacy_restore' + tag + '.json'), 'w'), ensure_ascii=False, indent=1)
     fail = []
+    if cat['LOST_GONE'] / max(1, n) > max_gone: fail.append(f"LOST_GONE rate {cat['LOST_GONE'] / n:.3f} > {max_gone}")
     if cat['SHIFTED'] > a.max_shift: fail.append(f"SHIFTED {cat['SHIFTED']} > {a.max_shift}")
     if cat['LOST_AMBIG'] / max(1, n) > a.max_lost: fail.append(f"LOST_AMBIG rate {cat['LOST_AMBIG'] / n:.3f} > {a.max_lost}")
     if cat['DELETED']: fail.append(f"DELETED {cat['DELETED']} (저장소에서 사라진 표시)")
@@ -184,9 +206,12 @@ async def main(a):
         if tot != seeded[S] - mg: fail.append(f'{S} 표시 총수 {tot} ≠ 심은 {seeded[S]} − 합침 {mg}')
         if nls != len(L_): fail.append(f'{S} 위치 잃음 {nls} ≠ 저장소 {len(L_)}')
         if miss: fail.append(f'{S} ⚠ 위치 잃음 절에 없는 표시 {len(miss)}')
+    hidden = collections.Counter(r['hid'] for L in recs.values() for r in L if r.get('hid'))
+    print('  숨긴 자리에 갇힌 표시(세부 .mfull·출처 .srt·연도 머리·옛 라벨·답 h5):', dict(hidden) or 0)
+    if hidden: fail.append(f'숨긴 자리에 갇힌 표시 {sum(hidden.values())} {dict(hidden)}')
     if errs: fail.append(f'console errors {errs[:3]}')
     print('RESULT', 'PASS' if not fail else 'FAIL ' + '; '.join(fail)); return not fail
 
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('--rev', default='f2e99d3'); ap.add_argument('--max-lost', type=float, default=0.06); ap.add_argument('--max-shift', type=int, default=3)
+    ap = argparse.ArgumentParser(); ap.add_argument('--rev', default='f2e99d3'); ap.add_argument('--max-lost', type=float, default=0.06); ap.add_argument('--max-shift', type=int, default=3); ap.add_argument('--max-gone', type=float, default=None)
     sys.exit(0 if asyncio.run(main(ap.parse_args())) else 1)
