@@ -23,6 +23,12 @@ def main(sid, keys, also):
     Q = qj['q']; bylec = qj['bylec']
     keys = keys or [k for k in S.LEC_ORDER if os.path.exists(os.path.join(d, f'lec_{k}.txt'))]
     bad_total = 0
+    # ux3 N2·N5 🔑·요지 렌더 글자 동일 검사 + 80자 넘는 한 줄 덩어리 수 — 빌드 없이 원고만으로(문항·강의 이름은 가짜 값: 두 렌더에 똑같이 들어감)
+    import collections as _co
+    class _QM(dict):
+        def get(self, k, d=None): return {'yrs': [24], 'short': ''}
+    kctx = {'QMAP': _QM(), 'LECNAME': _co.defaultdict(lambda: 'L'), 'cited': set()}
+    ktot = [0, 0, 0, 0, 0]   # 🔑 상자 · 요지 · 글자 다름 · 옛 80자↑ · 새 80자↑
     for k in keys:
         path = os.path.join(d, f'lec_{k}.txt'); errs, warns = [], []
         try: L = LP.parse(path)
@@ -32,6 +38,15 @@ def main(sid, keys, also):
         cites = []
         for ci, c in enumerate(L['cards'], 1):
             nm = f'카드{ci} "{c["en"][:30]}"'
+            if hasattr(LP, 'key_lines'):
+                for t_, v_ in c['body']:
+                    if t_ != 'K': continue
+                    ks_ = LP.key_split(v_); k_ = ks_[0] if ks_ else v_; o_ = LP.render_block(k_, kctx); n_ = LP.key_lines(k_, kctx); ktot[0] += 1
+                    if LP._txt(o_) != LP._txt(n_): errs.append(f'{nm}: 🔑 렌더 글자가 옛 렌더와 다름'); ktot[2] += 1
+                    ktot[3] += sum(len(x) > 80 for x in LP.line_units(o_)); ktot[4] += sum(len(x) > 80 for x in LP.line_units(n_))
+                if c['gist']:
+                    ktot[1] += 1
+                    if LP._txt(LP.gist_html(c['gist'], kctx)) != LP._txt(LP.inline(c['gist'], kctx)): errs.append(f'{nm}: 요지(>) 렌더 글자가 옛 렌더와 다름'); ktot[2] += 1
             if not c['gist']: errs.append(f'{nm}: > 요지 없음')
             if not any(b[0] == 'K' for b in c['body']): errs.append(f'{nm}: = 🔑 핵심 없음')
             if not c['recall']: errs.append(f'{nm}: M: 암기 줄 없음')
@@ -90,6 +105,9 @@ def main(sid, keys, also):
         for e in errs: print('   ✗', e)
         for w in warns[:25]: print('   ·', w)
         bad_total += bool(errs)
+    if ktot[0]:
+        print(f'🔑 렌더(ux3 N): 🔑 {ktot[0]} · 요지 {ktot[1]} · 옛 렌더와 글자 다름 {ktot[2]} · key_lines 되돌림 {LP.KL[2]} · 80자 넘는 한 줄 덩어리 {ktot[3]} → {ktot[4]} (🔑 상자 기준 — 정리표 🔑 칸도 같은 수)')
+        if LP.KL[2]: print('   · key_lines가 글자 차이로 옛 렌더로 되돌린 🔑이 있음(구조만 옛 모양)')
     return bad_total
 
 if __name__ == '__main__':

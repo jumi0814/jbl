@@ -29,7 +29,7 @@ def _kcls(core):
             if n == c or (min(len(n), len(c)) >= 2 and (n in c or c in n)): return 'k'
         return 'k k2'
     return f
-def inline(s, ctx):
+def inline(s, ctx, first=True):
     out = []; core = ctx.get('RED'); kc = _kcls(core) if core is not None else None
     for ti, tok in enumerate(CITE.split(s)):
         if tok.startswith('[['):
@@ -49,7 +49,7 @@ def inline(s, ctx):
             t = t.replace('💡', '<b class="bulb">💡</b>').replace('⚠', '<b class="warn">⚠</b>')
             if '\ue010' in t or '\ue012' in t:   # ux2 E03 작은 표를 펼친 줄의 열 이름(표시 글자에 안 드는 .noann)·숨긴 칸(.csx)
                 t = re.sub('\ue010([^\ue011]*)\ue011', r'<span class="clab noann">\1 </span>', t).replace('\ue012', '<span class="csx">').replace('\ue013', '</span>')
-            out.append(_wbr(_srcmeta(t, ti == 0)))
+            out.append(_wbr(_srcmeta(t, first and ti == 0)))
     return ''.join(out)
 def parse(path):
     lec = None; card = None; grp = ''
@@ -203,6 +203,8 @@ def _rebalance(parts, hl0=False):
     return out
 # ---- U23: 짧은 나열은 가로 흐름(ul.kflow) · 여러 조각에 걸친 ==기출 문장==은 형광 블록(hlblock) · 목록만 든 li 없애기
 LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
+_IP = [None]   # ux3 트랙3 N1 — key_lines가 도는 동안만 조각 렌더를 바꾸는 갈고리(평소에는 inline 그대로)
+def _ip(p, ctx, li=False): return _IP[0](p, ctx, li) if _IP[0] else inline(p, ctx)
 def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|==|\*\*|\}', '', p)
 def _is_flow(parts):
     """가로 흐름(ul.kflow): 4조각↑ 중앙값 24자 미만 · ux2 D09 2~3조각은 합 100자 이하이거나 3조각 중앙값 22자 이하"""
@@ -259,7 +261,7 @@ def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
                 else: segs.append(('blk', inner))
                 continue
             segs.append(('li', inner, f)); continue
-        segs.append(('li', inline(p, ctx), f))
+        segs.append(('li', _ip(p, ctx, True) if (cls.split()[0] in ('klist', 'circ') and not any(x in cls for x in ('kflow', 'cgrid', 'cflow'))) else inline(p, ctx), f))
     out, run = [], []
     def flush():
         if not run: return
@@ -312,7 +314,7 @@ def render_block(v, ctx, depth=0):
                 return f'<div class="klead">{inline(lead, ctx)}</div>' + _seg_html(inner, ctx, depth, rest)
     parts = segments(v)
     if parts: return _seg_html(parts, ctx, depth, v)
-    return inline(v, ctx)
+    return _ip(v, ctx)
 def _seg_html(parts, ctx, depth, raw=None):
     parts = _rebalance(parts)
     if parts[0] == '→':
@@ -431,3 +433,166 @@ def render_exam(v, ctx):
         if k == 'trap': out.append(f'<div class="ex-trap">{inline(t.strip(), ctx)}</div>')
         elif k == 'src': out.append(f'<div class="ex-src">{inline(t.strip(), ctx)}</div>')   # 기본 접힘 — 머리 줄 끝 '근거 ▸'(.exsrcb)로 펼침
     return '<div class="exs">' + ''.join(out) + '</div>'
+# ---- ux3 트랙3 N1·N2 🔑 핵심 상자·정리표 🔑 칸·한 줄 요지 줄 나누기 (key_lines) ----
+# 원고 글자는 그대로 — 새로 나누는 자리의 구분자(' · ',' / ',' — ',' → ',' + ')는 <span class="ksep">로 DOM에 남김(줄이 바뀌는 곳에서만 CSS로 숨김 .kh).
+# 그래서 표시 단위(aid) textContent가 옛 렌더(render_block)와 글자까지 같다 — 다르면 옛 렌더를 그대로 씀(KL[2] 되돌림 수).
+# 규칙: K1 최상위 ' / '(50자 초과 · 12자 이하 수치 나열 제외) → 줄 / K5 최상위 ' — ' 뒤 16자↑ → 둘째 줄 .ksub / K2 ' · ' 사실 중 'X = …'·'X: …'
+# (라벨 26자 이하·괄호 없음) 2개↑ → 라벨 사실마다 줄(b.lbl) / 'X: 긴 내용' → 머리 줄(.klh) + 나머지 / K4 ' → ' 4단계↑·70자 초과 → 단계 흐름(.ksi)
+# / K6 90자 초과 · ' + ' 조각 모두 12자↑ · 괄호 부연 → '+ ' 앞에서 줄 / K3 56자 초과 · ' · ' 사실 3개↑ → 사실 단위 흐름(.kfi, 32자 이하는 nowrap)
+# · 8자 미만 짧은 줄은 앞 줄에 붙임 · 한 상자 7줄까지(넘으면 그 단계는 나누지 않음 — 넘치는 🔑은 key_split이 이미 .krest로 내림)
+KL = [0, 0, 0]   # 상자 수 · 새 구조 · 글자가 달라 옛 렌더로 되돌린 수(빌드 로그·check_lec)
+def _ks(sep, cls='kh'): return f'<span class="ksep {cls}">{html.escape(sep, quote=False)}</span>'
+def _sp(s, sep):
+    """최상위(괄호·{…}·따옴표 밖) sep 자리로 나눔 — 조각을 sep로 다시 이으면 s와 글자까지 같음"""
+    out, last, skip = [], 0, -1
+    for i, ch, d in _depth_iter(s):
+        if i < skip: continue
+        if d == 0 and s.startswith(sep, i): out.append(s[last:i]); last = i + len(sep); skip = last
+    out.append(s[last:]); return out
+def _bal(parts):
+    """조각마다 ==…==·**…** 짝을 맞춤(경계에서 닫고 다음 조각에서 다시 엶 — 글자는 그대로, 표시만)"""
+    out, hl, bd = [], False, False
+    for p in parts:
+        q = ('**' if bd else '') + ('==' if hl else '') + p
+        hl ^= p.count('==') % 2 == 1; bd ^= p.count('**') % 2 == 1
+        q = q + ('==' if hl else '') + ('**' if bd else '')
+        out.append(q.replace('====', ''))
+    return out
+def _L(p): return len(_plain(CITE.sub('', p)).strip())
+LBLK = re.compile(r'^(\s*)([^=:：()（）{}\[\]*"“”/·]{1,26}?)(\s=\s|[:：]\s)(\S.*)$', re.S)
+def _lab(p):
+    m = LBLK.match(p)
+    if not m or '==' in m.group(2) or not m.group(2).strip(): return None
+    return m
+def _labh(p, ctx, first):
+    m = _lab(p)
+    if not m: return inline(p, ctx, first)
+    return inline(m.group(1), ctx, first) + '<b class="lbl">' + inline(m.group(2), ctx, False) + '</b>' + inline(m.group(3) + m.group(4), ctx, False)
+def _numlist(parts): return all(_L(x) <= 12 for x in parts) and sum(bool(re.search(r'\d', _plain(x))) for x in parts) >= len(parts) - 1
+def _lines(items):
+    """[(html, 길이)…] → 8자 미만은 앞 줄에 붙인 줄 목록(html만) · items의 html은 앞 구분자(숨김 .kh)를 이미 품고 있음 — 붙일 때는 구분자를 보이게"""
+    out = []
+    for h, n in items:
+        if out and n < 8: out[-1] = [out[-1][0] + h.replace('class="ksep kh"', 'class="ksep kj"', 1), out[-1][1] + n]
+        else: out.append([h, n])
+    return [h for h, _ in out]
+def _div(lines, cls='kl'): return ''.join(f'<div class="{cls}">{h}</div>' for h in lines)
+def _kp(p, ctx, first=True, lvl=0, li=False):
+    """한 조각(옛 렌더라면 inline 한 덩어리) → 줄 나눈 HTML. 줄이 없으면 inline 그대로 · li = 옛 렌더의 목록 한 줄(라벨 'X = …'은 굵게)"""
+    n = _L(p)
+    m = _lab(p) if li else None
+    if m and _L(m.group(4)) >= 2:
+        return inline(m.group(1), ctx, first) + '<b class="lbl">' + inline(m.group(2), ctx, False) + '</b>' + inline(m.group(3), ctx, False) + _kp(m.group(4), ctx, False, 1)
+    if n <= 40: return inline(p, ctx, first)
+    # K1 ' / '
+    if lvl == 0 and n > 50:
+        ps = _sp(p, ' / ')
+        if len(ps) >= 2 and not _numlist(ps) and all(x.strip() for x in ps):
+            ps = _bal(ps); its = [((_ks(' / ') if i else '') + _kp(x, ctx, first and not i, 1), _L(x)) for i, x in enumerate(ps)]
+            ls = _lines(its)
+            if 2 <= len(ls) <= 7: return _div(ls)
+    # K5 ' — ' 뒤 16자↑ → 둘째 줄
+    ps = _sp(p, ' — ')
+    if len(ps) >= 2 and all(x.strip() for x in ps[:2]):
+        head, tail = ps[0], ' — '.join(ps[1:])
+        if _L(tail) >= 16 and _L(head) >= 4:
+            head, tail = _bal([head, tail])
+            return _kp(head, ctx, first, lvl + 1) + '<div class="ksub">' + _ks(' — ') + _kp(tail, ctx, False, lvl + 1) + '</div>'
+    # K2 라벨 사실마다 줄
+    ps = _sp(p, ' · ')
+    if len(ps) >= 2 and all(x.strip() for x in ps):
+        bp = _bal(ps); labs = [bool(_lab(x)) for x in bp]
+        if sum(labs) >= 2:
+            groups = []
+            for i, x in enumerate(bp):
+                if labs[i] or not groups: groups.append([i])
+                else: groups[-1].append(i)
+            if 2 <= len(groups) <= 7:
+                lines = []
+                for gi, g in enumerate(groups):
+                    h = ''
+                    for k, i in enumerate(g):
+                        sep = '' if i == 0 else (_ks(' · ') if k == 0 else _ks(' · ', 'kj'))
+                        h += sep + (_labh(bp[i], ctx, first and i == 0) if labs[i] else _kf(bp[i], ctx, first and i == 0))
+                    lines.append(h)
+                return _div(lines)
+    # 'X: 긴 내용' → 머리 줄 + 나머지
+    m = re.match(r'^([^:：=/(){}\[\]"“”·]{2,30}?[:：])(\s)(.+)$', p, re.S)
+    if m and n > 70 and _L(m.group(3)) > 50 and m.group(1).count('==') % 2 == 0 and m.group(1).count('**') % 2 == 0:
+        rest = _kp(m.group(3), ctx, False, lvl + 1)
+        if rest.startswith('<div') or 'class="kfi' in rest or 'class="ksi' in rest:
+            return '<div class="kl klh">' + inline(m.group(1), ctx, first) + _ks(m.group(2), 'kj') + '</div>' + ('<div class="kl">' + rest + '</div>' if not rest.startswith('<div') else rest)
+    # K4 ' → ' 단계 흐름
+    ps = _sp(p, ' → ')
+    if (len(ps) >= 4 and n > 70 or len(ps) == 3 and n > 80) and all(x.strip() for x in ps):
+        bp = _bal(ps)
+        return '<span class="kst">' + ''.join(f'<span class="ksi{" kfn" if _L(x) <= 32 else ""}">' + (_ks(' → ', 'ka') if i else '') + inline(x, ctx, first and not i) + '</span>' for i, x in enumerate(bp)) + '</span>'
+    # K6 ' + ' 부연 묶음
+    ps = _sp(p, ' + ')
+    if n > 90 and len(ps) >= 2 and all(_L(x) >= 12 for x in ps) and any(re.search(r'[(（]', x) for x in ps) and len(ps) <= 7:
+        bp = _bal(ps)
+        return _div([(_ks(' + ', 'kp') if i else '') + _kp(x, ctx, first and not i, lvl + 1) for i, x in enumerate(bp)])
+    # K3 ' · ' 사실 흐름
+    ps = _sp(p, ' · ')
+    if n > 56 and len(ps) >= 3 and all(x.strip() for x in ps):
+        return _flow(_bal(ps), ' · ', ctx, first)
+    # K3b 띄어 쓰지 않은 'A·B·C·D' 나열(80자 초과, 4개↑) → 항목 흐름(라벨 'X = '가 있으면 라벨 굵게 + 흐름)
+    if n > 80:
+        m = _lab(p); body = m.group(4) if m else p
+        ps = _sp(body, '·')
+        if len(ps) >= 4 and all(x.strip() and not x.startswith(' ') and not x.endswith(' ') for x in ps):
+            h = _flow(_bal(ps), '·', ctx, first and not m)
+            return (inline(m.group(1), ctx, first) + '<b class="lbl">' + inline(m.group(2), ctx, False) + '</b>' + inline(m.group(3), ctx, False) + h) if m else h
+    return inline(p, ctx, first)
+def _kf(p, ctx, first):
+    """라벨 줄에 붙는 라벨 없는 사실 — inline"""
+    return inline(p, ctx, first)
+def _flow(bp, sep, ctx, first):
+    return '<span class="kfw">' + ''.join(f'<span class="kfi{" kfn" if _L(x) <= 32 else ""}">' + inline(x, ctx, first and not i) + (_ks(sep, 'kfs') if i < len(bp) - 1 else '') + '</span>' for i, x in enumerate(bp)) + '</span>'
+def _txt(h): return html.unescape(re.sub(r'<[^>]+>', '', h))
+def key_lines(v, ctx):
+    """🔑 상자·정리표 🔑 칸 본문(ux3 N1) — 옛 render_block과 같은 틀(번호·라벨·' / ' 목록)에 조각마다 K1~K6. 글자가 옛 렌더와 다르면 옛 렌더"""
+    old = render_block(v, ctx); KL[0] += 1
+    _IP[0] = lambda p, c, li=False: _kp(p, c, True, 0, li)
+    try: new = render_block(v, ctx)
+    except Exception: new = None
+    finally: _IP[0] = None
+    if new is None or _txt(new) != _txt(old): KL[2] += 1; return old
+    if new != old: KL[1] += 1
+    return new
+def render_keybox(v, ctx): return f'<div class="kb">{key_lines(v, ctx)}</div>'
+def gist_html(g, ctx):
+    """한 줄 요지(ux3 N3) — 첫 최상위 ' — ' 뒤가 16자↑면 둘째 줄 .ksub(구분자는 .ksep로 남김 — 글자 불변)"""
+    ps = _sp(g, ' — ')
+    if len(ps) >= 2 and ps[0].strip():
+        head, tail = ps[0], ' — '.join(ps[1:])
+        if _L(tail) >= 16:
+            head, tail = _bal([head, tail]); h = inline(head, ctx) + '<span class="ksub">' + _ks(' — ') + inline(tail, ctx, False) + '</span>'
+            if _txt(h) == _txt(inline(g, ctx)): return h
+    return inline(g, ctx)
+def line_units(h):
+    """ux3 N5 점검용 — 렌더 HTML을 '화면에서 한 덩어리로 흐르는 글자' 단위로 나눔(블록 div·li·목록 경계, 흐름 항목 .kfi·.ksi·.ksub 시작에서 끊음 · 숨긴 구분자 .kh 글자는 뺌 · 가로 흐름 목록 kflow·sflow·cflow의 li는 이어짐)"""
+    from html.parser import HTMLParser
+    BLK = {'div', 'ul', 'ol', 'li', 'h4'}
+    class U(HTMLParser):
+        def __init__(s): super().__init__(); s.units = []; s.cur = ''; s.st = []; s.hide = 0
+        def flush(s):
+            t = re.sub(r'\s+', ' ', s.cur).strip()
+            if t: s.units.append(t)
+            s.cur = ''
+        def handle_starttag(s, tag, a):
+            c = dict(a).get('class', '') or ''
+            inflow = tag == 'li' and any(x in ('kflow', 'sflow', 'cflow') for st in s.st for x in st[1].split())
+            if (tag in BLK and not inflow) or (tag == 'span' and re.search(r'\b(kfi|ksi|ksub)\b', c)): s.flush()
+            hid = tag == 'span' and 'ksep' in c.split() and 'kh' in c.split()
+            if hid: s.hide += 1
+            if tag not in ('wbr', 'br', 'img'): s.st.append((tag, c, hid))
+        def handle_endtag(s, tag):
+            while s.st:
+                t, c, hid = s.st.pop()
+                if hid: s.hide -= 1
+                if t == tag: break
+            if tag in BLK: s.flush()
+        def handle_data(s, d):
+            if not s.hide: s.cur += d
+    u = U(); u.feed(h); u.flush(); return u.units
