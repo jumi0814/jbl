@@ -37,6 +37,18 @@ OVERLAP=r"""()=>{const bad=[];document.querySelectorAll('#stage .ln.li, #stage .
  const cs=getComputedStyle(el);const pad=parseFloat(cs.paddingLeft)+(parseFloat(cs.textIndent)||0);const L=parseFloat(b.left)||0,W=parseFloat(b.width)||0;if(L+W>pad-1)bad.push(el.className+': '+el.textContent.trim().slice(0,20));});return bad.slice(0,3);}"""
 TEAL=r"""(sid)=>{if(sid==='OMS1'||sid==='PHARM')return [];const T=['rgb(14, 72, 70)','rgb(23, 63, 61)','rgb(225, 238, 235)','rgb(195, 218, 213)','rgb(186, 215, 210)','rgb(10, 51, 50)'];const bad=new Set();
  document.querySelectorAll('#stage *, #hero, #hero *, #side *').forEach(el=>{if(!el.offsetParent&&el.id!=='hero')return;const cs=getComputedStyle(el);for(const v of [cs.color,cs.backgroundColor,cs.borderTopColor,cs.borderLeftColor,cs.backgroundImage])if(T.some(t=>v.indexOf(t)>=0))bad.add(el.tagName+'.'+String(el.className).slice(0,30));});return [...bad].slice(0,5);}"""
+REDJS=r"""()=>{const isRed=el=>{const c=(getComputedStyle(el).color.match(/\d+/g)||[0,0,0]).map(Number);return c[0]>=150&&c[1]<=90&&c[2]<=90;};let tot=0,red=0;
+ document.querySelectorAll('#stage .tc').forEach(c=>{const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const p=n.parentElement;if(!p||!p.offsetParent||p.closest('button,.noann,.chip'))continue;const L=n.nodeValue.replace(/\s/g,'').length;if(!L)continue;tot+=L;if(isRed(p))red+=L;}});
+ const it=[...document.querySelectorAll('#stage .tc .tbody .li')].filter(e=>e.offsetParent),ri=it.filter(e=>[...e.querySelectorAll('.k')].some(k=>k.offsetParent&&isRed(k))).length;
+ return {chars:tot?Math.round(red/tot*1000)/10:0,items:it.length?Math.round(ri/it.length*1000)/10:0,spans:document.querySelectorAll('#stage .tc .k').length,red:[...document.querySelectorAll('#stage .tc .k')].filter(isRed).length};}"""
+RED_REP=[('OMS1','EXT'),('GERI','PAIN'),('PHARM','HM'),('ANAT','MAND'),('CONS','WHT'),('IMPL','GRAFT')]
+async def red_share(b):
+    """ux2 D06 RED SHARE — 대표 6개 강의 학습 탭(1280): 빨간 글자 비율(보이는 카드 글자 중 빨강) · 빨강이 든 항목(.li) 비율 · 빨간 span/전체 .k (목표 글자 ≤10%·항목 ≤45% — 보고용, 판정에는 안 씀)"""
+    pg=await b.new_page(viewport={'width':1280,'height':900}); out=[]
+    for s,k in RED_REP:
+        await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/learn'); await pg.wait_for_timeout(700)
+        r=await pg.evaluate(REDJS); out.append((s,k,r))
+    await pg.close(); return out
 async def ipad_sweep(b):
     """아이패드 세로(820×1180)·가로(1180×820): 모든 과목 문서·강의 학습/정리표 — 페이지 가로 밀림 · 목록 점이 첫 글자를 가림 · 과목색이 아닌 청록(OMS1·PHARM 밖)"""
     bad=[]
@@ -95,6 +107,9 @@ async def main():
         print('LONG', totlong)
         json.dump(longs,open(_os.path.join(J.TMP, 'longs.json'),'w'),ensure_ascii=False,indent=0)
         for x in longs[:60]: print(' ',x[:170])
+        RS=await red_share(b)
+        print('RED SHARE (빨간 글자 % · 빨강이 든 항목 % · 빨간 span/전체 .k — 목표 ≤10% · ≤45%)')
+        for s_,k_,r_ in RS: print(f"  {s_}/{k_}: 글자 {r_['chars']}% · 항목 {r_['items']}% · span {r_['red']}/{r_['spans']}{'' if r_['chars']<=10 and r_['items']<=45 else '  (목표 초과)'}")
         IP=await ipad_sweep(b)
         print('IPAD SWEEP (가로 밀림·점 겹침·청록)', len(IP))
         for x in IP[:40]: print(' ',x)

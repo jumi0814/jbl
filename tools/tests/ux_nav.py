@@ -47,7 +47,7 @@ async def run(b, vp, touch, tag):
     # 뒤로가기 스크롤 복원: DD1 카드 10 → ⭐ 연도칩 → 뒤로
     await open_(pg, '#/OMS1/DD1/learn')
     await pg.evaluate(SCROLLTO, '#t-DD1-9'); await pg.wait_for_timeout(900)
-    await pg.evaluate("document.querySelector('#t-DD1-9 .jbchip, #t-DD1-9 .xjb').click()"); await pg.wait_for_timeout(700)
+    await pg.evaluate("(()=>{document.querySelector('#t-DD1-9 .jbchip, #t-DD1-9 .xjb').click();const g=document.querySelector('#jbpeek.on [data-jpgo]');if(g)g.click();})()")   # ux2 D12 ⭐ 칩 = 미리보기 → [JB에서 풀기]; await pg.wait_for_timeout(700)
     await pg.go_back(); await pg.wait_for_timeout(1600)
     r = await pg.evaluate(TOPREL, '#t-DD1-9'); ok(r is not None and abs(r - 12) <= 40, f'뒤로가기 후 읽던 카드 위치 복원 (카드 10 top-탭 = {r})')
     # ---- U08 JB 풀이 상태 + ↩ 알약
@@ -78,7 +78,7 @@ async def run(b, vp, touch, tag):
     # 정리본 → 문제 → 알약 '↩ DD I 카드 N로'
     await open_(pg, '#/OMS1/DD1/learn')
     await pg.evaluate(SCROLLTO, '#t-DD1-6'); await pg.wait_for_timeout(900)
-    await pg.evaluate("document.querySelector('#t-DD1-6 .jbchip, #t-DD1-6 .xjb').click()"); await pg.wait_for_timeout(900)
+    await pg.evaluate("(()=>{document.querySelector('#t-DD1-6 .jbchip, #t-DD1-6 .xjb').click();const g=document.querySelector('#jbpeek.on [data-jpgo]');if(g)g.click();})()")   # ux2 D12 ⭐ 칩 = 미리보기 → [JB에서 풀기]; await pg.wait_for_timeout(900)
     pill = await pg.evaluate("document.querySelector('#retpill').textContent")
     ok('카드 7' in pill and pill.startswith('↩ DD I'), f'정리본 → 문제 알약 ({pill})')
     tgt = await pg.evaluate("(()=>{const e=document.querySelector('#stage .qc.flash');return e?[e.classList.contains('open'),!!e.querySelector('.ansnow.hl')]:null})()")

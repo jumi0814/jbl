@@ -71,7 +71,9 @@ with sync_playwright() as p:
         lk = [d for d in docs if not d.startswith('_')]
         for d in lk:
             pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(150)
-            inl = pg.evaluate('(async()=>{const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
+            pgb = pg.evaluate('[...document.querySelectorAll("#stage .tc .thead .ko")].filter(k=>{const g=k.querySelector(".pg");return !g||!g.textContent.replace(/[·\\s]/g,"")||/·\\s*$/.test(g.textContent);}).map(k=>k.textContent.trim().slice(0,30))')
+            ok(not pgb, f'{s}/{d}: 카드 머리 쪽 번호 빈 카드 {len(pgb)} {pgb[:2]}')   # ux2 D08
+            inl = pg.evaluate('(async()=>{window.__h&&__h.fillAll&&__h.fillAll();const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
             ok(inl[0] == inl[1], f'{s}/{d}: 본문 그림 {inl[1]}/{inl[0]} 표시')
         pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_led\"]').click()"); pg.wait_for_timeout(200)
         for ed in pg.evaluate('[...new Set([...document.querySelectorAll("#stage [data-jb]")].map(e=>e.dataset.jb.split("-")[0]))]'):
