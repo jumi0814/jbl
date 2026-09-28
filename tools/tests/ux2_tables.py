@@ -199,7 +199,7 @@ async def ipad(b, w, h):
     await open_(pg, '#/CONS/WHT/sum', '#stage .msum')
     if w < 1000:
         hs = await pg.evaluate(f"{ROWS}.map(r=>r.offsetHeight)")
-        ok(min(hs) >= 180 and max(hs) <= 450, f'E02 820 WHT 카드 높이 {min(hs)}~{max(hs)} (180~450 — ux3 L3 2단 카드 · fixB VIS03 ⚡ 전부·V14 칸 이름 👁 칩)')
+        ok(min(hs) >= 180 and max(hs) <= 480, f'E02 820 WHT 카드 높이 {min(hs)}~{max(hs)} (180~480 — ux3 L3 2단 카드 · fixB VIS03 ⚡ 전부·V14 칸 이름 👁 칩 · ux3 N3 요약 🔑 칸 줄 나눔 +30)')
         r = await pg.evaluate("(()=>{const td=document.querySelector('#m-WHT-1 td.md');const v0=[td.querySelector('.sline'),td.querySelector('.mfull')].map(e=>e.offsetParent!==null);td.querySelector('.mdmore').click();return [v0,td.querySelector('.mfull').offsetParent!==null,td.querySelector('.mdmore').textContent]})()")
         ok(r[0] == [False, False] and r[1], f"E02 820 카드형: 세부 접힘 → '세부 n줄 ▸' 누르면 펼침 {r}")
     else:
