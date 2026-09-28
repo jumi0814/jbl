@@ -48,8 +48,8 @@ async def mac(b):
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     # ---- E02
     await open_(pg, '#/CONS/WHT/sum', '#stage .msum')
-    r = await pg.evaluate(f"[document.documentElement.scrollHeight,document.querySelector('#stage').classList.contains('sdfull'),Math.max(...{ROWS}.map(r=>r.offsetHeight)),document.body.classList.contains('sidefold')]")
-    ok(r[0] <= 4500 and not r[1], f'E02 1280 WHT 정리표(요약) 문서 높이 {r[0]} ≤ 4500 (사이드바 자동 접힘 {r[3]})')
+    r = await pg.evaluate(f"[document.documentElement.scrollHeight-(document.querySelector('#sumtop')||{{offsetHeight:0}}).offsetHeight,document.querySelector('#stage').classList.contains('sdfull'),Math.max(...{ROWS}.map(r=>r.offsetHeight)),document.body.classList.contains('sidefold')]")
+    ok(r[0] <= 5000 and not r[1], f'E02 1280 WHT 정리표(요약) 문서 높이(맨 위 전체정리표 뺀 것 — fixB N2 첫 표 기본 펼침) {r[0]} ≤ 5000 (fixB VIS01·VIS03: ★ 답 3줄·⚡ 전부 보이게 4500→5000 · 사이드바 자동 접힘 {r[3]})')
     ok(r[2] <= 400, f'E02 요약 모드 행 최대 높이 {r[2]} ≤ 400')
     await pg.screenshot(path=J.TMP + '/ux2i_e02_sum_1280.png')
     n0 = await mark_words(pg, '#stage .msum td.mk, #stage .msum .mfull, #stage .msum td.mnote', 4)
@@ -100,8 +100,9 @@ async def mac(b):
     await open_(pg, '#/CONS/WHT/sum', '#stage .msum')
     r = await pg.evaluate("(()=>{const f=document.querySelector('#stage').firstElementChild;const aids=[...document.querySelectorAll('#sumtop [data-aid]')].map(e=>e.dataset.aid);return [f&&f.id,aids]})()")
     ok(r[0] == 'sumtop' and len(r[1]) == 3, f'E05 WHT 정리표 탭 첫 요소 = 전체정리표({r[0]}, 표 {len(r[1])}개)')
-    await pg.evaluate("document.querySelector('#sumtop [data-sttab=\"0\"]').click()"); await pg.wait_for_timeout(200)
-    ok(await pg.evaluate("document.querySelector('#sumtop .stbl[data-sti=\"0\"]').offsetParent!==null&&document.querySelector('#sumtop .stbl[data-sti=\"1\"]').offsetParent===null"), 'E05 전체정리표 칩 ① → 그 표만 펼침')
+    ok(await pg.evaluate("document.querySelector('#sumtop .stbl[data-sti=\"0\"]').offsetParent!==null&&document.querySelector('#sumtop .stbl[data-sti=\"1\"]').offsetParent===null"), 'fixB N2 처음(기록 없음) = 첫 전체정리표 펼침')
+    await pg.evaluate("document.querySelector('#sumtop [data-sttab=\"1\"]').click()"); await pg.wait_for_timeout(200)
+    ok(await pg.evaluate("document.querySelector('#sumtop .stbl[data-sti=\"1\"]').offsetParent!==null&&document.querySelector('#sumtop .stbl[data-sti=\"0\"]').offsetParent===null"), 'E05 전체정리표 칩 ② → 그 표만 펼침(①은 접힘)')
     await pg.screenshot(path=J.TMP + '/ux2i_e05_sumtop_1280.png')
     dup = await pg.evaluate("""(a=>{__h.openDoc('CONS','_tbl');const t=[...document.querySelectorAll('#stage [data-aid]')].map(e=>e.dataset.aid);__h.openDoc('CONS','WHT','tbl');const l=[...document.querySelectorAll('#stage [data-aid]')].map(e=>e.dataset.aid);return a.filter(x=>t.includes(x)||l.includes(x))})""" + f"({json.dumps(r[1])})")
     ok(not dup, f'E05 전체정리표는 비교표(과목·강의)에 없음 {dup}')
@@ -198,7 +199,7 @@ async def ipad(b, w, h):
     await open_(pg, '#/CONS/WHT/sum', '#stage .msum')
     if w < 1000:
         hs = await pg.evaluate(f"{ROWS}.map(r=>r.offsetHeight)")
-        ok(min(hs) >= 250 and max(hs) <= 400, f'E02 820 WHT 카드 높이 {min(hs)}~{max(hs)} (250~400)')
+        ok(min(hs) >= 250 and max(hs) <= 450, f'E02 820 WHT 카드 높이 {min(hs)}~{max(hs)} (250~450 — fixB VIS03 ⚡ 전부·V14 칸 이름 👁 칩)')
         r = await pg.evaluate("(()=>{const td=document.querySelector('#m-WHT-1 td.md');const v0=[td.querySelector('.sline'),td.querySelector('.mfull')].map(e=>e.offsetParent!==null);td.querySelector('.mdmore').click();return [v0,td.querySelector('.mfull').offsetParent!==null,td.querySelector('.mdmore').textContent]})()")
         ok(r[0] == [False, False] and r[1], f"E02 820 카드형: 세부 접힘 → '세부 n줄 ▸' 누르면 펼침 {r}")
     else:

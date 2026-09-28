@@ -4,6 +4,11 @@ CITE = re.compile(r'(\[\[[A-Z0-9]+:[^\]]+\]\]|\{jb:[^}]+\})')
 SRCN = re.compile(r'\((\d{2}\s)?필기\)')
 SRCH = re.compile(r'^필기:\s')
 SRCP = re.compile(r'^슬라이드\s(\d{1,3})((?:\s흐름|\s표시)?):\s')
+_WBR_SPLIT = re.compile(r'(<[^>]*>)'); _WBR_DOT = re.compile(r'(?<![\s·])·(?![\s·])')
+def _wbr(t):
+    """ux2 fixB VIS04 — 띄어 쓰지 않은 'A·B·C' 가운뎃점 뒤에 줄바꿈 자리(<wbr>)를 넣어 좁은 칸에서 영어 낱말이 글자 중간(Lambdo|id)에서 끊기지 않게. 글자(textContent)·표시 위치 불변 — 태그 밖 글자에만"""
+    if '·' not in t: return t
+    return ''.join(p if p.startswith('<') else _WBR_DOT.sub('·<wbr>', p) for p in _WBR_SPLIT.split(t))
 def _srcmeta(t, first):
     """ux2 D07 출처 메타를 가볍게 — 글자는 그대로 두고 감싸기만(.srcn = ✍ 아이콘·.srcp = 회색 'p.NN' 칩, 원문 글자는 안쪽 .srt — CSS display:none, textContent·표시·검색 그대로)"""
     t = SRCN.sub(lambda m: f'<span class="srcn" title="{(m.group(1) or "").strip() + " " if m.group(1) else ""}필기"><span class="srt">{m.group(0)}</span></span>', t)
@@ -44,7 +49,7 @@ def inline(s, ctx):
             t = t.replace('💡', '<b class="bulb">💡</b>').replace('⚠', '<b class="warn">⚠</b>')
             if '\ue010' in t or '\ue012' in t:   # ux2 E03 작은 표를 펼친 줄의 열 이름(표시 글자에 안 드는 .noann)·숨긴 칸(.csx)
                 t = re.sub('\ue010([^\ue011]*)\ue011', r'<span class="clab noann">\1 </span>', t).replace('\ue012', '<span class="csx">').replace('\ue013', '</span>')
-            out.append(_srcmeta(t, ti == 0))
+            out.append(_wbr(_srcmeta(t, ti == 0)))
     return ''.join(out)
 def parse(path):
     lec = None; card = None; grp = ''
@@ -222,15 +227,22 @@ def _single_list(h):
     m = re.fullmatch(r'<(ul|ol) class="([^"]*)">(.*)</\1>', h, flags=re.S)
     if not m or len(re.findall(r'<(?:ul|ol)\b', h)) != 1: return None
     return m.group(1), m.group(2), m.group(3)
+def _gridc(cls, n):
+    """ux2 fixB VIS06 격자 단 수 고정(--c) — 마지막 줄에 하나만 남지 않게: n≤4면 n단, 아니면 4·3·2단 중 나누어떨어지거나 마지막 줄이 한 칸 모자란 것(넓은 칸 격자는 3단까지). 화면이 좁으면 CSS가 단 수만 줄임"""
+    if 'cgrid' not in cls: return ''
+    mx = 3 if 'cgw' in cls else 4
+    c = n if n <= mx else next((c for c in range(mx, 1, -1) if n % c == 0 or n % c == c - 1), 2)
+    return f' style="--c:{c}"'
 def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
     """조각 목록 → 목록 HTML. fmt(p) = li 안 HTML(기본: 길면 한 단계 더 구조화). 안쪽이 목록 하나뿐인 조각은 li에 목록만 들지 않게:
        klist·circ면 바깥 목록에 항목으로 풀어 넣고, steps·kflow면 바깥 목록을 잠시 닫고 그 블록을 둠"""
     parts, flags = _hl_flags(parts)
     if cls == 'klist' and _is_flow(parts): cls = 'kflow'
-    if cls == 'circ' and len(parts) >= 2:   # ux2 D09 짧은 번호 나열(중앙값 22자 이하)은 2~4단 격자(번호 그대로)
-        ls = sorted(len(_plain(p).strip()) for p in parts)
-        if ls[len(ls) // 2] <= 22: cls = 'circ cgrid'
-        elif ls[len(ls) // 2] <= 34 and len(parts) >= 4 and ls[-1] <= 60: cls = 'circ cgrid cgw'   # 조금 긴 짧은 나열(중앙값 34자 이하)은 넓은 칸 격자
+    if cls == 'circ' and len(parts) >= 3:   # ux2 D09 짧은 번호 나열은 격자(번호 그대로) — fixB VIS06: 가장 긴 항목 기준(중앙값 아님) · → 흐름은 격자로 만들지 않음
+        ls = [len(_plain(p).strip()) for p in parts]
+        if not any('→' in _plain(p) for p in parts):
+            if max(ls) <= 24: cls = 'circ cgrid'
+            elif max(ls) <= 40 and len(parts) >= 4: cls = 'circ cgrid cgw'
     segs = []   # ('li', html, flag) | ('blk', html)
     for p, f in zip(parts, flags):
         if fmt: segs.append(('li', fmt(p), f)); continue
@@ -253,7 +265,7 @@ def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
         for k, (h, f) in enumerate(run):
             lc = '' if (allf or not f) else (' class="hlb hlb0"' if (k == 0 or not run[k - 1][1]) else ' class="hlb"')
             lis.append(f'<li{lc}>{h}</li>')
-        out.append(f'<{tag} class="{c2}">' + ''.join(lis) + f'</{tag}>'); run.clear()
+        out.append(f'<{tag} class="{c2}"{_gridc(c2, len(run))}>' + ''.join(lis) + f'</{tag}>'); run.clear()
     for sg in segs:
         if sg[0] == 'blk': flush(); out.append(sg[1])
         else: run.append((sg[1], sg[2]))

@@ -12,6 +12,11 @@ def stray(prev, s, W):
     if not CHOICE.match(prev) or re.search(r'[.?？。:：]\s*$', prev): return False
     if CHOICE.match(s) or LABEL.match(s) or (STARTER.match(s) and not re.match(r'^\s*\d+\.\d', s)): return False
     return len(s) <= 40 and width(s) <= W * 0.6
+TROW = re.compile(r'^[A-Za-z][A-Za-z0-9 /+()\-]*$')   # 영문 표 행(한글·문장 부호 없음)
+def is_thead(s):
+    """ux2 fixB VIS10 영문 표 머리 줄: 대문자로 시작하는 낱말 3개↑·문장 부호 없음(예: 'Fused suture Name Description')"""
+    w = s.split()
+    return len(w) >= 3 and sum(1 for x in w if x[:1].isupper()) >= 3 and not re.search(r'[.,:;?!]', s)
 def reflow(text, choices=False):
     raw = [l.rstrip() for l in text.split('\n')]
     lines = [l for l in raw if l.strip()]
@@ -19,10 +24,16 @@ def reflow(text, choices=False):
     ws = sorted(width(l) for l in lines)
     W = ws[int(len(ws) * 0.9)] if len(ws) >= 6 else max(ws)
     W = max(W, 30)
-    out = []; prev_full = False; prev_raw = ''
+    out = []; prev_full = False; prev_raw = ''; tbl = False
     for l in lines:
         s = l.strip()
         single = len(s) == 1 and '가' <= s <= '힣'
+        if tbl and (STARTER.match(s) or LABEL.match(s) or not TROW.match(s)): tbl = False
+        if tbl and out:   # ux2 fixB VIS10 영문 표 블록: 소문자 한 낱말 줄(skull) = 앞 칸의 끝 · 앞 행이 3낱말 미만이면 아직 한 행 · 그 밖에 대문자로 시작하면 새 행(앞 줄이 넓어도 붙이지 않음)
+            if re.fullmatch(r'[a-z]+', s) or len(out[-1].split()) < 3: out[-1] += ' ' + s
+            else: out.append(s)
+            prev_full = False; prev_raw = l; continue
+        if TROW.match(s) and is_thead(s): tbl = True; out.append(s); prev_full = False; prev_raw = l; continue
         if out and single and len(prev_raw.strip()) == 1 and '가' <= prev_raw.strip() <= '힣':
             out[-1] += s                                   # 세로로 끊긴 표 머리("장"/"점") → 붙임
         elif out and not STARTER.match(s) and (prev_full or prev_raw.rstrip().endswith((',', '，'))) and not prev_raw.rstrip().endswith((':', '：')):

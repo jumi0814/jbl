@@ -60,7 +60,8 @@ async def a02(pg, tag):
     await pg.keyboard.press('e'); e2 = await pg.evaluate("getComputedStyle(document.querySelector('#t-DD1-3 [data-rk=b]')).color")
     ok(e1 != 'rgba(0, 0, 0, 0)' and e2 == 'rgba(0, 0, 0, 0)', f'E → 전부 열기·가리기 ({e1},{e2})')
     # 한 장씩: S = ★, B = 빈칸 모드(★ 그대로)
-    await open_(pg, '#/OMS1/_jb/_jb'); await pg.evaluate("localStorage.removeItem('jblhub.v1.keyNotice')"); await pg.click('#fone'); await pg.wait_for_timeout(300)
+    await open_(pg, '#/OMS1/_jb/_jb'); await pg.evaluate("localStorage.removeItem('jblhub.v1.keyNotice');localStorage.setItem('jblhub.v1.ux2old','1')")   # fixB flow V17: 안내는 옛 사용자(1차 판 기록이 있던 기기)에게만
+    await open_(pg, '#/OMS1/_jb/_jb'); await pg.click('#fone'); await pg.wait_for_timeout(300)
     try: await pg.wait_for_function("t=>(document.querySelector('#toast').textContent||'').includes(t)", arg='★는 이제 S', timeout=4000)   # B11 알림 대기열 — 앞 알림 뒤 차례로
     except Exception: pass
     t = await pg.inner_text('#toast'); ok('★는 이제 S' in t, f'처음 한 번 안내 토스트 {t!r}')

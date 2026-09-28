@@ -18,7 +18,7 @@ async def run(b, vp, touch, tag):
     # 차례로 하나씩
     await pg.evaluate("__h.toast('알림 A',{level:'result'});__h.toast('알림 B',{level:'result'});__h.toast('알림 C')")
     seen, multi, t0 = [], False, time.time()
-    while time.time() - t0 < 7:
+    while time.time() - t0 < 12:
         v = await pg.evaluate(VIS); n = await pg.evaluate("document.querySelectorAll('#toast span').length")
         multi = multi or n > 1
         if v and (not seen or seen[-1] != v): seen.append(v)

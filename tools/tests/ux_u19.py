@@ -17,7 +17,7 @@ CHECK = r"""()=>{const P=window.__P;const rows=[...document.querySelectorAll('ta
 SUBSTR = r"""(s)=>{const p=window.JBLHUB&&0;const rows=[...document.querySelectorAll('table.sum tbody tr')];let n=0,bad=[];const tmp=document.createElement('div');
  for(const r of rows){const g=r.querySelector('[data-go]');if(!g)continue;const pk=[...r.querySelectorAll('.ln.pick')];if(!pk.length)continue;
   const html=window.__cards[g.dataset.go];tmp.innerHTML=html;const qt=tmp.querySelector('.qtext').textContent;
-  pk.forEach(x=>{n++;const t=x.textContent.replace(/^(정답 보기|틀린 보기)\s/,'');if(qt.indexOf(t)<0)bad.push(g.dataset.go+': '+t.slice(0,40));});}
+  pk.forEach(x=>{n++;const t=x.textContent.replace(/^(정답 보기|틀린 보기|정답 · 틀린 설명)\s/,'');if(qt.indexOf(t)<0)bad.push(g.dataset.go+': '+t.slice(0,40));});}
  return {n,bad:bad.slice(0,5)};}"""
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []

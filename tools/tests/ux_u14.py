@@ -101,6 +101,7 @@ async def run(b, vp, touch, tag):
     m = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.mk.OMS1')||'{}')"); p1 = await pg.evaluate(POS)
     ok(len(m.get('ok', {})) == 1 and not m.get('ng') and p1 == p0 + 1 and foc != 'ook', f"✓ 클릭 → Enter: 맞음 {len(m.get('ok', {}))}건 · 위치 {p0}→{p1} · 포커스 {foc}")
     sel = '#fprof' if await pg.evaluate("!!document.querySelector('#fprof')") else '#fyr'
+    if not await pg.evaluate(f"document.querySelector('{sel}').offsetParent!==null"): await pg.click('#fexp'); await pg.wait_for_timeout(200)   # fixB flow V02: 좁은 화면 한 장씩 막대는 교수·연도를 필터 ▾ 안에
     await pg.focus(sel); await pg.select_option(sel, index=1); await pg.wait_for_timeout(300)
     v0 = await pg.evaluate(f"document.querySelector('{sel}').value"); q0 = await pg.evaluate(POS)
     await pg.keyboard.press('ArrowRight'); await pg.wait_for_timeout(300)

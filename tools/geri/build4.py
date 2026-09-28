@@ -13,6 +13,20 @@ LECNAME = {k: v[1] for k, v in A.LECMAP.items()}
 VNAME = {'ok': '강의자료와 일치', 'part': '부분 일치·부분 근거', 'diff': '⚠ 강의자료와 불일치', 'none': '강의자료에 근거 없음', 'na': '대응 강의자료 없음'}
 aid = lambda x: f'{SID}:{x}'
 import hashlib as _hl
+UNREC = re.compile(r'^\d+\s*[.)]\s*미복원\s*$')   # ux2 fixB VIS14 문제 전체가 '미복원'인 문항(풀 수 없음)
+PICKLAB = {'틀린 보기': '정답 · 틀린 설명'}   # ux2 fixB VIS07 부정 발문('틀린 것을 고르시오')의 답 = 정답(틀린 설명) — 초록 강조와 같은 말로
+def cut_hint(h, n=130):
+    """ux2 fixB VIS12 강의 카드 💬 한 줄 — n자 안에서 ' · '·문장 끝·닫는 따옴표 뒤(따옴표 짝이 맞는 자리)에서 자르고 ' …'(따옴표 한가운데서 끊지 않음)"""
+    if len(h) <= n: return h
+    best = -1
+    for m in re.finditer(r' · |[.!]\s|["”]\s', h[:n + 1]):
+        e = m.start() if m.group(0) == ' · ' else m.start() + 1
+        if e >= 40 and h[:e].count('"') % 2 == 0 and h[:e].count('“') == h[:e].count('”'): best = e
+    if best < 0:
+        best = h.rfind(' ', 0, n)
+        if best < 40: best = n
+        while h[:best].count('"') % 2: best = h.rfind('"', 0, best)
+    return h[:best].rstrip(' ·,') + ' …'
 def slug(*xs):
     t = '|'.join(xs); base = re.sub(r'[^a-z0-9가-힣]+', '', t.lower())[:24]
     return base + '_' + _hl.md5(t.encode('utf-8')).hexdigest()[:6]
@@ -264,9 +278,9 @@ def qcard(q, idx):
     if pk and pk[1]:
         lab, lines = pk; dv = 'wrong' if lab == '틀린 보기' else 'ok'
         for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
-        pick_ln = ''.join(f'<div class="ln pick noann"><b>{lab}</b> {esc(x)}</div>' for x in lines)
-    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}">',
-         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}<span class="chip pf">{esc(q["prof"] or "")}</span>{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
+        pick_ln = ''.join(f'<div class="ln pick noann"><b>{PICKLAB.get(lab, lab)}</b> {esc(x)}</div>' for x in lines)
+    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
+         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{f'<span class="chip pf">{esc(q["prof"])}</span>' if (q["prof"] or "").strip() else ''}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
     if q['fig'] and not figq: h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
     sd = [f'<div class="qsub"><span class="prov noann" title="{esc(q["src"] or "")}">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>']
@@ -500,7 +514,7 @@ def lec_card(L, j, c):
         elif t == 'h': h.append(f'<h4 class="sh">{lecparse.inline(v, ctx)}</h4>'); curb = {'h': v, 'items': []}; blocks.append(curb)
         elif t == 'b':
             st_ = None; C_ = lecparse.CIRC; v0 = v.lstrip()[:1]
-            if prevb is not None and v0 and v0 in C_:   # ux2 D09 앞 줄이 ⑤로 끝나고 이 줄이 ⑥으로 시작 → 한 목록처럼(ol start=6)
+            if prevb is not None and v0 and v0 in C_ and h and h[-1].startswith('<div class="li nolead'):   # ux2 D09 앞 줄이 ⑤로 끝나고 이 줄이 ⑥으로 시작 → 한 목록처럼(ol start=6) — fixB N1: 앞 줄이 실제로 번호 목록(ol)으로 그려졌을 때만(① ② 한 줄씩 쓴 나열은 끝까지 같은 모양)
                 lc = [ch for ch in prevb if ch in C_]
                 if lc and C_.index(v0) == C_.index(lc[-1]) + 1 and C_.index(lc[-1]) >= 1: st_ = C_.index(v0) + 1
             h.append(lecparse.render_item(v, ctx, cont=st_)); prevb = v
@@ -520,9 +534,14 @@ def lec_card(L, j, c):
         tip = '' if MEMTIP.get(k) else ' <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small>'; MEMTIP[k] = 1
         def mli(x):   # ux2 D03 ⚡ 줄마다 플래시카드와 같은 키(data-fk) · 줄 끝 ○✕(글자 없는 버튼 — 표시·글자 검사 불변)
             r_ = lecparse.render_recall(x, ctx); fk = 'R:' + k + ':' + fchash(c['en'] + '|' + txt_of(r_))
-            r_ = r_.replace('<li>', f'<li data-fk="{fk}">')
+            nli = r_.count('<li>')   # ux2 fixB flow V08(B안): ' / '로 나뉜 한 줄 = 한 판정(키 하나) — 여러 li를 한 묶음(.mg)으로 보이고 ○✕는 끝 줄에 하나
+            if nli > 1:
+                parts = r_.split('<li>'); r_ = parts[0] + ''.join(f'<li data-fk="{fk}" class="mg{" mg0" if j == 0 else (" mgz" if j == nli - 1 else "")}">' + t for j, t in enumerate(parts[1:]))
+            else:
+                r_ = r_.replace('<li>', f'<li data-fk="{fk}">')
             i_ = r_.rfind('</li>')
-            return r_[:i_] + '<span class="mj noann"><button data-mj="o" aria-label="알아요"></button><button data-mj="x" aria-label="몰라요"></button></span>' + r_[i_:]
+            ttl = f' title="위 {nli}줄을 함께 판정"' if nli > 1 else ''
+            return r_[:i_] + f'<span class="mj noann"{ttl}><button data-mj="o" aria-label="알아요"></button><button data-mj="x" aria-label="몰라요"></button></span>' + r_[i_:]
         h.append(f'<div class="co c-mem"><div class="ct">⚡ 암기{tip}<button class="memqz noann" data-memqz="1" aria-label="가리기"></button></div><ul>{"".join(mli(x) for x in c["recall"])}</ul></div>')
     h.append('<div class="rvj noann"><button data-rv="o" aria-label="알아요"></button><button data-rv="x" aria-label="몰라요"></button></div></div></article>')
     thumb = ''
@@ -546,7 +565,9 @@ def lec_card(L, j, c):
         else:
             f0 = next((x for x in bk['items'] if not isinstance(x, tuple)), '')
             f0 = re.sub(r'\s+', ' ', lecparse._plain(re.sub(r'\[\[[^\]]*\]\]|\ue010[^\ue011]*\ue011|[\ue012\ue013]', '', f0))).strip()
-            body = (f0[:50] + ('…' if len(f0) > 50 else '')).replace('{', '(').replace('}', ')') if f0 else ''
+            f1 = f0[:50]
+            if len(f0) > 50 and ' ' in f1.strip(): f1 = f1.rsplit(' ', 1)[0].rstrip(' ·,;:—-(')   # ux2 fixB VIS03 낱말 경계에서 자름(bra… → 낱말 끝 …)
+            body = (f1 + ('…' if len(f0) > len(f1) else '')).replace('{', '(').replace('}', ')') if f0 else ''
         hh = lecparse._plain(bk['h'] or '')
         ln = len(hh) + len(lecparse._plain(body))
         if len(sl) >= 4 or (sl and used + ln > 300): cut += 1; continue
@@ -660,20 +681,20 @@ for L in LEC:
     ltop = ''.join(ltop_li(n_, i) for n_, i in enumerate(top_ids))
     NH = [x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)]; NO = [x for n in L['notes'] for x in split_note(n) if not HINT_RE.search(x)]
     hint_html = f'<div class="co c-prof fhint"><div class="ct">📣 교수님 예고·강조</div>{"".join(f"<div class=fh>{lecparse.inline(x, ctx)}</div>" for x in NH)}</div>' if NH else ''
-    gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><span class="rvsort" title="복습 보기 정렬"><button class="tg on" data-rvs="">강의 순</button><button class="tg" data-rvs="n">기출 많은 순</button><button class="tg" data-rvs="x">몰라요·안 읽은 것 먼저</button></span><button class="tg" data-filt="unread" title="✓ 읽음 표시한 카드 숨기기">안 읽은 것만</button><button class="tg" data-filt="jb" title="⭐ 기출이 걸린 카드만">⭐ 기출 카드만</button><button class="tg" data-filt="rep2" title="2회 이상 나온 기출이 걸린 카드만">2회↑만</button><button class="tg" data-filt="mine" title="내 형광펜·빈칸이 있는 카드만">내 표시만</button><details class="pmore"><summary class="tg" title="보기 설정 — ✓하면 접기 · 압축 보기 · 모두 펼치기/접기">⋯</summary><div class="pmenu"><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="tg" id="lexfirst" title="⭐ 시험포인트를 🔑 핵심 바로 뒤에 (모든 강의)">⭐ 먼저</button><div class="pseg" title="빨간 글씨 — 시험 핵심만(🔑·⭐·⚡에도 나오는 것) · 전부"><b>빨강</b><button class="tg" data-redm="core">시험 핵심만</button><button class="tg" data-redm="all">전부</button></div><div class="pseg" title="카드 그림 (I로 바꾸기)"><b>그림</b><button class="tg" data-figm="big">크게</button><button class="tg" data-figm="small">작게</button><button class="tg" data-figm="hide">숨김</button></div><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button><span class="fsz" title="글자 크기(모든 과목·화면 공통)"><button class="btn sm" id="fsdn" title="글자 작게">A−</button><b id="fsv">100%</b><button class="btn sm" id="fsup" title="글자 크게">A+</button></span></div></details></div>'
+    gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><span class="rvsort" title="복습 보기 정렬"><button class="tg on" data-rvs="">강의 순</button><button class="tg" data-rvs="n">기출 많은 순</button><button class="tg" data-rvs="x">몰라요·안 읽은 것 먼저</button></span><span class="rvleg">카드 [알아요○][몰라요✕] → ‘몰라요·안 읽은 것 먼저’ 정렬 · 몰라요 카드만 ⚡ 줄마다 ○✕(모르는 줄 → 플래시카드 ‘몰라요만’) · ✓ = 읽음(진행률) · 🔁 오늘 복습은 JB 채점 기준</span><button class="tg" data-filt="unread" title="✓ 읽음 표시한 카드 숨기기">안 읽은 것만</button><button class="tg" data-filt="jb" title="⭐ 기출이 걸린 카드만">⭐ 기출 카드만</button><button class="tg" data-filt="rep2" title="2회 이상 나온 기출이 걸린 카드만">2회↑만</button><button class="tg" data-filt="mine" title="내 형광펜·빈칸이 있는 카드만">내 표시만</button><details class="pmore"><summary class="tg" title="보기 설정 — ✓하면 접기 · 압축 보기 · 모두 펼치기/접기">⋯</summary><div class="pmenu"><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="tg" id="lexfirst" title="⭐ 시험포인트를 🔑 핵심 바로 뒤에 (모든 강의)">⭐ 먼저</button><div class="pseg" title="빨간 글씨 — 시험 핵심만(🔑·⭐·⚡에도 나오는 것) · 전부"><b>빨강</b><button class="tg" data-redm="core">시험 핵심만</button><button class="tg" data-redm="all">전부</button></div><div class="pseg" title="카드 그림 (I로 바꾸기)"><b>그림</b><button class="tg" data-figm="big">크게</button><button class="tg" data-figm="small">작게</button><button class="tg" data-figm="hide">숨김</button></div><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button><span class="fsz" title="글자 크기(모든 과목·화면 공통)"><button class="btn sm" id="fsdn" title="글자 작게">A−</button><b id="fsv">100%</b><button class="btn sm" id="fsup" title="글자 크게">A+</button></span></div></details></div>'
     head = (f'<section class="frame" data-aid="{aid(k + ":frame")}" data-k="{k}"><div class="frt">이 강의의 틀<button class="frtog noann" data-frtog="1" title="이 강의의 틀 접기/펼치기 (강의마다 기억)"></button></div><div class="fsrc" data-fsrc="1" title="눌러서 출처 전체 보기"><span class="fs0">{fsrc_short(L["file"])}</span><span class="fs1"> — 출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</span></div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
             f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div></div></section>{gp}')
     mgp = ''.join(f'<button class="tg" data-mgrp="{esc(g)}" title="{esc(g)}">{esc(g)}</button>' for g in grps)
-    summ = (f'<div class="pills noann msbar" id="msbar"><span class="pseg"><button class="tg" data-mdense="s" title="세부를 소제목마다 한 줄(시험 핵심어)로">요약</button><button class="tg" data-mdense="f" title="세부 내용 전부">전체</button></span>'
-            f'<span class="pseg"><button class="tg" data-mfilt="">전체</button><button class="tg" data-mfilt="hit" title="기출이 나온 주제만">기출 나온 주제만</button><button class="tg" data-mfilt="rep2" title="2회 이상 나온 기출이 걸린 주제만">2회↑</button></span>'
-            f'<span class="pseg mgrp"><button class="tg on" data-mgrp="">모든 묶음</button>{mgp}</span><span class="small mshelp">주제를 누르면 학습 카드로 · 연도 칩은 기출 문제로 · 열 머리 👁 = 그 열 가리고 떠올리기 · J/K 다음/이전 행</span></div>'
+    summ = (f'<div class="pills noann msbar" id="msbar"><span class="pseg"><span class="pglab">보기</span><button class="tg" data-mdense="s" title="세부를 소제목마다 한 줄(시험 핵심어)로">요약</button><button class="tg" data-mdense="f" title="세부 내용 전부">자세히</button></span>'
+            f'<span class="pseg"><span class="pglab">주제</span><button class="tg" data-mfilt="">모든 주제</button><button class="tg" data-mfilt="hit" title="기출이 나온 주제만">기출 나온 주제</button><button class="tg" data-mfilt="rep2" title="2회 이상 나온 기출이 걸린 주제만">2회↑</button></span>'
+            f'<span class="pseg mgrp"><button class="tg on" data-mgrp="">모든 묶음</button>{mgp}</span><span class="small mshelp">주제를 누르면 학습 카드로 · 연도 칩은 기출 문제로 · <span class="mshw">열 머리 👁 = 그 열 가리고 떠올리기</span><span class="mshn">칸 이름(🔑 요지·★ 시험·⚡ 암기…)의 👁를 누르면 그 칸을 모든 주제에서 가리기</span> · J/K 다음/이전 행</span></div>'
             f'<div class="tblwrap wide msum" data-aid="{aid(k + ":sumt")}" data-alt="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup><thead><tr><th data-col="topic">주제</th>{"".join(f'<th data-col="{c_}"><span class="thn noann">{n_}</span><span class="tho">{o_}</span></th>' for c_, n_, o_ in (("key", "🔑 요지·핵심", "한 줄 요지 · 🔑 핵심"), ("det", "세부", "세부 내용"), ("ex", "★ 시험", "⭐ 기출 — 이렇게 나왔다"), ("mem", "⚡ 암기", "⚡ 암기 줄")))}</tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>')
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.render_recall(x, ctx)} for c in L['cards'] for x in c['recall']]   # 플래시카드: ' / ' 줄은 <li>로(U28)
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
-                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': (lambda h_: (h_[:180] + '…') if len(h_) > 180 else h_)(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
+                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
 print('⭐ 시험포인트 구조화(ux2 D04):', f'{lecparse.EXAM_N[0]}/{lecparse.EXAM_N[1]}줄')
 print('🔑 180자 초과 카드(상자 밖으로 나눔 대상):', ' · '.join(f'{L_["k"]} {KEYLONG.get(L_["k"], 0)}' for L_ in LEC))
@@ -698,6 +719,7 @@ for line in open(DIR + '/tables.txt', encoding='utf-8'):
         cur['rows'].append(rr)
     elif line.startswith('N:') and cur: cur['notes'].append(lecparse.inline(line[2:].strip(), ctx))
 def cell(c):
+    if c.strip() == '해당 없음': return '<span class="na" title="해당 없음">해당 없음</span>'   # ux2 fixB VIS13 빈 칸 표기 통일 — 글자(textContent)는 그대로, 화면은 '—'(CSS)
     parts = lecparse._rebalance(lecparse.split_top(c, ' / '))   # 괄호·{r:…} 안의 ' / '는 나누지 않고, 조각을 넘는 표시는 짝을 맞춤
     if len(parts) <= 1: return lecparse.inline(c, ctx)
     return ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in parts)
@@ -803,7 +825,7 @@ def ans_core(q):
     pk = pick_choices(q, out)
     if pk:
         lab, lines = pk
-        if lines: h += ''.join(f'<div class="ln pick"><b>{lab}</b> {esc(x)}</div>' for x in lines)
+        if lines: h += ''.join(f'<div class="ln pick"><b>{PICKLAB.get(lab, lab)}</b> {esc(x)}</div>' for x in lines)
         else:
             qt, _ = split_qa(q); QL = reflow.reflow(qt, True)[1:]; ch = [x for x in QL if reflow.LISTM.match(x)] or QL
             if ch: h += f'<details class="pickd noann"><summary>▸ 보기 펼치기</summary>{"".join(f"<div class=ln>{esc(x)}</div>" for x in ch)}</details>'
@@ -912,7 +934,8 @@ open(OUT + f'/packs/{SID}.js', 'w', encoding='utf-8').write(pack_js)
 # 허브가 불러올 팩 = docs/packs에 실제로 있는 <SID>.js (없는 과목은 '자료 대기' 카드 — 404 방지) · 팩마다 내용 지문(?v=)
 READY = [x for x in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'] if os.path.exists(OUT + f'/packs/{x}.js')]
 PV = {x: _h8(open(OUT + f'/packs/{x}.js', encoding='utf-8').read()) for x in READY}
-open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)).replace('null/*PV*/', js(PV)).replace("'dev'/*BUILD*/", js(BUILD)))
+PSZ = {x: round(sum(os.path.getsize(os.path.join(OUT, 'packs', f)) for f in os.listdir(os.path.join(OUT, 'packs')) if f == x + '.js') / 1e6, 1) for x in READY}   # ux2 fixB flow V11 첫 방문 진행 표시(MB)
+open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)).replace('null/*PV*/', js(PV)).replace('null/*PSZ*/', js(PSZ)).replace("'dev'/*BUILD*/", js(BUILD)))
 # 홈 화면 앱(C11) — docs/manifest.webmanifest·icon-192.png·icon-512.png (내용이 바뀐 때만 씀 · 모든 과목 빌드가 같은 것을 냄)
 def _icon(n):
     from PIL import ImageDraw, ImageFont

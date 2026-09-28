@@ -1,7 +1,7 @@
 """ux2 묶음 6 회귀(F01~F12): JB 문제 화면 — 떠올리기·암기 최적
 F01 정답 보기 강조(답을 연 뒤에만 #E6F4EA)·.ln.pick 수 ≥ 한눈표 · F02 답 두 단계(1단계 높이·Space 1→2→닫기·jbdeep) ·
 F03 한 장씩 넓히기(820×1180 카드 시작 y ≤ 130·도구 막대 겹침 0·끄면 원래 도구 막대·위로 쓸기 = 답) · F04 앞면은 문제만(연도 근거는 답 뒤 details·.qsub '판' 0·켜진 ✓ 채움) ·
-F05 목록 키보드(J×3 → 네 번째 카드·O → mk.ok·순번 칩 1,2,3…·'지금 n/N' 입력 이동) · F06 필터 개수·회차 요약 '이번 회차 틀린 것 다시' ·
+F05 목록 키보드(맨 위에서 J×3 → 세 번째 카드 — fixB flow V06: 첫 J = 1번·O → mk.ok·순번 칩 1,2,3…·'지금 n/N' 입력 이동) · F06 필터 개수·회차 요약 '이번 회차 틀린 것 다시' ·
 F07 ✗면 머묾·✓면 넘김·한 장씩 켜면 답 모두 펼치기 해제 · F08 플래시카드 기출 그림·뒷면 · F09 빈 글머리 0 · F10 예상 보기 줄·번호 나열·채점 ·
 F11 인쇄(해설 안 잘림·압축 인쇄 ≤ 1/4)·압축 목록 카드 ≤ 80px · F12 보기 줄 끊김 이어 붙임.
 맥 1280×900 · 아이패드 세로 820×1180(터치) · 가로 1180×820(터치). 스크린샷 work/_tmp/ux2i_f*_*.png"""
@@ -28,8 +28,8 @@ async def run(b, vp, touch, tag):
     await go(pg, '#/PHARM/_jb/_jb')
     r = await pg.evaluate("""(()=>{const c=document.querySelector('#c-RX01'),a=c.querySelector('.qtext .ln.li[data-ans]');const b0=getComputedStyle(a).backgroundColor,p0=getComputedStyle(a,'::before').content;
       c.querySelector('.acts [data-tog]').click();return {b0,p0,b1:getComputedStyle(a).backgroundColor,p1:getComputedStyle(a,'::before').content,dv:a.dataset.ans,pick:(c.querySelector('.jbans .ln.pick')||{}).textContent||''}})()""")
-    ok(r['b0'] != 'rgb(230, 244, 234)' and r['b1'] == 'rgb(230, 244, 234)' and '틀린 보기' in r['p1'] and r['dv'] == 'wrong', f"F01 RX01 열기 전 강조 없음 {r['b0']} → 연 뒤 #E6F4EA·'✗ 틀린 보기' {r['b1']} {r['p1']}")
-    ok(r['pick'].startswith('틀린 보기') and '환자에게' in r['pick'], f"F01 .ans0 아래 정답 보기 줄 {r['pick'][:40]!r}")
+    ok(r['b0'] != 'rgb(230, 244, 234)' and r['b1'] == 'rgb(230, 244, 234)' and '정답 · 틀린 설명' in r['p1'] and r['dv'] == 'wrong', f"F01 RX01 열기 전 강조 없음 {r['b0']} → 연 뒤 #E6F4EA·'✗ 틀린 보기' {r['b1']} {r['p1']}")
+    ok(r['pick'].startswith('정답 · 틀린 설명') and '환자에게' in r['pick'], f"F01 .ans0 아래 정답 보기 줄 {r['pick'][:40]!r}")
     if mac:
         r = await pg.evaluate("""['OMS1','CONS','IMPL','ANAT','GERI','PHARM'].map(s=>{const p=__h.PACKS[s];const c=Object.values(p.cards).filter(h=>h.indexOf('class="ln pick noann"')>=0).length,t=(p.sumall.match(/<tr[^>]*data-id="[^"]+"(?:(?!<\\/tr>).)*?class="ln pick"/g)||[]).length;return [s,c,t]})""")
         ok(all(c >= t for s, c, t in r), f"F01 카드의 .ln.pick 문항 수 ≥ 한눈표 {r}")
@@ -128,14 +128,15 @@ async def run(b, vp, touch, tag):
     # ---------- F05 목록 키보드·순번·지금 n/N ----------
     await pg.evaluate("localStorage.removeItem('jblhub.v1.mk.PHARM');sessionStorage.clear();localStorage.removeItem('jblhub.v1.jbst.PHARM._jb')")
     await go(pg, '#/PHARM/_jb/_jb')
+    i0 = await pg.evaluate("__h.JB.lc?__h.JB.vis.indexOf(__h.JB.lc):-1")   # 화면 위 30% 선에 걸친 카드가 이미 '지금 카드'면(세로 화면) 거기서부터
     for _ in range(3): await key(pg, 'j', 350)
-    r = await pg.evaluate("(()=>{const v=__h.JB.vis,c=v[3],t=c.getBoundingClientRect().top;return {id:c.dataset.id,t:Math.round(t),line:Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--toph'))+parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tabh'))),cur:c.classList.contains('cur2'),lc:__h.JB.lc===c}})()")
-    ok(r['cur'] and r['lc'] and r['line'] < r['t'] < r['line'] + 200, f"F05 j 세 번 → 네 번째 카드({r['id']})가 탭 아래 y {r['t']}")
+    r = await pg.evaluate("(()=>{const v=__h.JB.vis,c=v[%d]," % (i0 + 3 if i0 >= 0 else 2) + "t=c.getBoundingClientRect().top;return {id:c.dataset.id,t:Math.round(t),line:Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--toph'))+parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tabh'))),cur:c.classList.contains('cur2'),lc:__h.JB.lc===c}})()")
+    ok(r['cur'] and r['lc'] and r['line'] < r['t'] < r['line'] + 200, f"F05 맨 위에서 j 세 번 → 세 번째 카드({r['id']})가 탭 아래 y {r['t']}")
     await key(pg, 'o', 150)
     ok((await pg.evaluate(MK('PHARM'))).get('ok', {}).get(r['id']) == 1, f"F05 o → 그 카드 mk.ok[{r['id']}]")
     await key(pg, 'Space', 200)
     ok(await pg.evaluate("__h.JB.lc.classList.contains('open')"), 'F05 Space → 지금 카드 답 1단계')
-    await key(pg, 'k', 350); ok(await pg.evaluate("__h.JB.lc===__h.JB.vis[2]"), 'F05 k → 이전 카드')
+    await key(pg, 'k', 350); ok(await pg.evaluate("__h.JB.lc===__h.JB.vis[%d]" % (i0 + 2 if i0 >= 0 else 1)), 'F05 k → 이전 카드')
     await pg.screenshot(path=SHOT('f05_list', tag))
     # 지금 n/N 입력 이동
     await pg.evaluate("scrollBy(0,400)"); await pg.wait_for_function("document.querySelector('#jbbar').classList.contains('mini')")
