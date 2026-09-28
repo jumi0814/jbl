@@ -46,8 +46,8 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("!document.querySelector('#sjsel')&&!document.querySelector('#side .hubhome')"), f'{tag} #sjsel·허브 홈 줄 없음')
     if narrow:
         await pg.click('#navbtn'); await pg.wait_for_timeout(300)
-        r = await pg.evaluate("[document.body.classList.contains('navopen'),getComputedStyle(document.querySelector('#kit')).visibility,getComputedStyle(document.querySelector('#navbg')).display,Math.round(document.querySelector('#side').getBoundingClientRect().width)]")
-        ok(r[0] and r[1] == 'hidden' and r[2] == 'block' and 300 <= r[3] <= 322, f'{tag} ☰ → 서랍 열림 · 도구 막대 숨김 · 배경 {r}')
+        r = await pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect();return [document.body.classList.contains('navopen'),getComputedStyle(document.querySelector('#kit')).visibility,getComputedStyle(document.querySelector('#navbg')).display,Math.round(s.width),Math.round(s.top)-document.querySelector('#top').offsetHeight,Math.round(s.bottom)-innerHeight]})()")
+        ok(r[0] and r[1] == 'hidden' and r[2] == 'block' and 300 <= r[3] <= 322 and r[4] == 0 and r[5] == 0, f'{tag} ☰ → 서랍 열림(상단 막대 아래~화면 아래) · 도구 막대 숨김 · 배경 {r}')
         await pg.screenshot(path=J.TMP + f'/ux3i_g_{tag}_drawer.png')
         await pg.click('#side .nvsb[data-nvs="ANAT"]'); await pg.wait_for_timeout(300)
         ok(await pg.evaluate("document.body.classList.contains('navopen') && !!document.querySelector('#side .nvs[data-s=ANAT] .nvl') && location.hash.indexOf('CONS')>0"), f'{tag} 서랍에서 과목 줄 = 펼치기만(서랍 열림·주소 그대로)')
