@@ -71,11 +71,18 @@ with sync_playwright() as p:
                 if lk_: leaks.append(f'{d}: {lk_[0]}')
         ok(True, f'{s}: 문서 {len(docs)}개 · 탭 {nt}개 열어봄')
         ok(not leaks, f'{s}: 렌더된 글자에 원고 표기(** {{r: {{jb: ==) 0건 {leaks[:3]}'); leaks.clear()
+        # ux2 E03 정리표 세부 칸에 뜻 없는 '행 머리 — ○/×/—'(작은 표를 펼칠 때 열 이름 빠짐) 0 · E10 한눈표 답 핵심이 '해설 참조'뿐인 행 0
+        e3 = pg.evaluate("""(s=>{const P=__h.PACKS[s],o=[],e=[];P.lect.forEach(L=>{const d=document.createElement('div');d.innerHTML=L.sum;d.querySelectorAll('.msum .mfull .ci').forEach(c=>{const x=c.cloneNode(true);x.querySelectorAll('.csx').forEach(z=>z.remove());const t=x.textContent,i=t.indexOf(' — ');if(i>0&&/^(—|○|×)\\s*(\\/|$)/.test(t.slice(i+3)))o.push(L.k+': '+t.slice(0,50));});});
+          const d=document.createElement('div');d.innerHTML=P.sumall;d.querySelectorAll('table.sum tbody tr').forEach(r=>{const L=r.querySelector('.lines');if(!L)return;const c=L.cloneNode(true);c.querySelectorAll('.alab').forEach(z=>z.remove());const t=c.textContent.replace(/\\s+/g,' ').trim();if(/^\\(?\\s*(해설|해답|아래|위)?\\s*(참조|참고)\\s*\\)?\\s*\\.?$/.test(t))e.push(r.dataset.id);});return [o,e];})""", s)
+        ok(not e3[0], f'{s}: 정리표 세부 칸 빈 기호 줄(행 머리 — ○) 0 {e3[0][:2]}')
+        ok(not e3[1], f'{s}: 한눈표 답 핵심이 참조뿐인 행 0 {e3[1][:3]}')
         # 강의 정리본 본문 그림(강의 이미지 청크에서 로딩)
         lk = [d for d in docs if not d.startswith('_')]
         for d in lk:
             pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(150)
-            inl = pg.evaluate('(async()=>{const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
+            pgb = pg.evaluate('[...document.querySelectorAll("#stage .tc .thead .ko")].filter(k=>{const g=k.querySelector(".pg");return !g||!g.textContent.replace(/[·\\s]/g,"")||/·\\s*$/.test(g.textContent);}).map(k=>k.textContent.trim().slice(0,30))')
+            ok(not pgb, f'{s}/{d}: 카드 머리 쪽 번호 빈 카드 {len(pgb)} {pgb[:2]}')   # ux2 D08
+            inl = pg.evaluate('(async()=>{window.__h&&__h.fillAll&&__h.fillAll();const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
             ok(inl[0] == inl[1], f'{s}/{d}: 본문 그림 {inl[1]}/{inl[0]} 표시')
         pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_led\"]').click()"); pg.wait_for_timeout(200)
         for ed in pg.evaluate('[...new Set([...document.querySelectorAll("#stage [data-jb]")].map(e=>e.dataset.jb.split("-")[0]))]'):

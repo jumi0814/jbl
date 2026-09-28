@@ -23,7 +23,7 @@ def notes_ok():
                     if c and c not in ft: ok(False, f'{s}/{L["k"]} ! 줄 글자 누락: {chunk[:40]}'); break
     ok(True, '! 줄 글자 검사 끝')
 JS = """()=>{const f=document.querySelector('#stage .frame');const t=f.querySelector('details.trend');const top=f.querySelectorAll('.ftop li');
-const ol=f.querySelector('.outline');const olh=ol?ol.getBoundingClientRect().height:0;const ols=ol?[...ol.querySelectorAll('.ol')].filter(e=>e.getBoundingClientRect().height>60).length:0;   /* 목차는 900px 이하 한 단(V09) — 높이 예산에서 빼고, 항목 하나가 두 줄을 넘지 않는지 따로 */
+const ol=f.querySelector('.outline');const olh=ol?ol.getBoundingClientRect().height:0;const ols=ol?[...ol.querySelectorAll('.ol')].filter(e=>e.getBoundingClientRect().height>72).length:0;   /* 목차는 900px 이하 한 단(V09) — 높이 예산에서 빼고, 항목 하나가 제목 한 줄 + 요지 두 줄(ux2 D11 line-clamp 2)을 넘지 않는지 따로 */
 const cs=getComputedStyle(document.documentElement),kit=document.querySelector('#kit'),kr=kit&&kit.getBoundingClientRect(),kb=kr&&getComputedStyle(kit).position==='fixed'&&getComputedStyle(kit).visibility!=='hidden'&&kr.height>0?innerHeight-kr.top:0;
 return {lim:Math.round(innerHeight-parseFloat(cs.getPropertyValue('--toph'))-parseFloat(cs.getPropertyValue('--tabh'))-kb),h:Math.round(f.getBoundingClientRect().height-olh),ol2:ols,trend:!!t&&!t.open&&t.querySelector('summary').innerText.length>10,strat:!!f.querySelector('.tstr')&&f.querySelector('.tstr').offsetHeight>0,
 top:top.length,vis:[...top].filter(l=>l.offsetParent!==null).length,jb:(PACKS_J=null,0)}}"""
