@@ -1,0 +1,22 @@
+{
+ "name": "JBL 허브",
+ "short_name": "JBL 허브",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "lang": "ko",
+ "background_color": "#F6F4EF",
+ "theme_color": "#0F4B4A",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}
