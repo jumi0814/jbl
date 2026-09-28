@@ -228,21 +228,25 @@ def _single_list(h):
     if not m or len(re.findall(r'<(?:ul|ol)\b', h)) != 1: return None
     return m.group(1), m.group(2), m.group(3)
 def _gridc(cls, n):
-    """ux2 fixB VIS06 격자 단 수 고정(--c) — 마지막 줄에 하나만 남지 않게: n≤4면 n단, 아니면 4·3·2단 중 나누어떨어지거나 마지막 줄이 한 칸 모자란 것(넓은 칸 격자는 3단까지). 화면이 좁으면 CSS가 단 수만 줄임"""
+    """ux2 fixB VIS06 격자 단 수 고정 — --c(넓은 화면)·--cn(아이패드 세로 ≤860): n이 단 수 이하면 n단, 아니면 나누어떨어지는 가장 큰 단, 없으면 마지막 줄이 가장 많이 차는 단(하나만 남는 줄을 피함). 넓은 칸(cgw)은 3단(세로 2단)·40자↑(cg2)는 2단까지. 칸이 좁으면 CSS가 단 수만 줄임"""
     if 'cgrid' not in cls: return ''
-    mx = 3 if 'cgw' in cls else 4
-    c = n if n <= mx else next((c for c in range(mx, 1, -1) if n % c == 0 or n % c == c - 1), 2)
-    return f' style="--c:{c}"'
+    def best(mx):
+        if n <= mx: return n
+        for c in range(mx, 1, -1):
+            if n % c == 0: return c
+        return max(range(mx, 1, -1), key=lambda c: ((n % c) / c, c))
+    mx = 2 if 'cg2' in cls else (3 if 'cgw' in cls else 4)
+    return f' style="--c:{best(mx)};--cn:{best(min(mx, 3))}"'
 def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
     """조각 목록 → 목록 HTML. fmt(p) = li 안 HTML(기본: 길면 한 단계 더 구조화). 안쪽이 목록 하나뿐인 조각은 li에 목록만 들지 않게:
        klist·circ면 바깥 목록에 항목으로 풀어 넣고, steps·kflow면 바깥 목록을 잠시 닫고 그 블록을 둠"""
     parts, flags = _hl_flags(parts)
     if cls == 'klist' and _is_flow(parts): cls = 'kflow'
-    if cls == 'circ' and len(parts) >= 3:   # ux2 D09 짧은 번호 나열은 격자(번호 그대로) — fixB VIS06: 가장 긴 항목 기준(중앙값 아님) · → 흐름은 격자로 만들지 않음
-        ls = [len(_plain(p).strip()) for p in parts]
-        if not any('→' in _plain(p) for p in parts):
-            if max(ls) <= 24: cls = 'circ cgrid'
-            elif max(ls) <= 40 and len(parts) >= 4: cls = 'circ cgrid cgw'
+    if cls == 'circ' and len(parts) >= 2:   # ux2 D09 짧은 번호 나열(중앙값 22자 이하)은 격자(번호 그대로) — fixB VIS06: 칸 폭은 가장 긴 항목 기준(24자↑ 넓은 칸 · 40자↑ 2단까지) · → 흐름은 가로 한 줄 흐름
+        ls = sorted(len(_plain(p).strip()) for p in parts); med = ls[len(ls) // 2]
+        if med <= 22 and sum('→' in _plain(p) for p in parts) >= max(1, len(parts) - 1): cls = 'circ cflow'
+        elif med <= 22: cls = 'circ cgrid' if ls[-1] <= 24 else ('circ cgrid cgw' if ls[-1] <= 40 else 'circ cgrid cgw cg2')
+        elif med <= 34 and len(parts) >= 4 and ls[-1] <= 60: cls = 'circ cgrid cgw' + (' cg2' if ls[-1] > 40 else '')
     segs = []   # ('li', html, flag) | ('blk', html)
     for p, f in zip(parts, flags):
         if fmt: segs.append(('li', fmt(p), f)); continue

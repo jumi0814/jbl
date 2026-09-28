@@ -38,7 +38,10 @@ def main(sid, keys, also):
             for b in c['body']:
                 if b[0] == 'K' and len(re.sub(r'\{r:|\}|==|\*\*', '', b[1])) > 260: warns.append(f'{nm}: 🔑 핵심이 너무 김({len(b[1])}자) — 한 줄 공식으로 압축, 나머지는 # 소제목/- 항목으로')
                 if b[0] == 'h' and re.search(r'\(p\.?\s*\d', b[1]): warns.append(f'{nm}: 소제목에 쪽 번호 "{b[1][:30]}" — 의미 단위로')
-                if b[0] == 'E': exam |= set(b[1][0])
+                if b[0] == 'E':
+                    exam |= set(b[1][0])
+                    d_ = LP.exam_parts(b[1][1])   # ux2 fixB VIS11 서술·빈칸 답에 말줄임(…)은 그대로 외울 답을 가림 — JB 답 전문으로
+                    if d_ and re.search(r'…|\.\.\.', d_['a'].split(' — ')[0]) and re.search(r'서술|빈칸|단답', d_['mid'] + d_['q']): warns.append(f'{nm}: ⭐ 답에 말줄임(…) "{d_["a"][:50]}" — 서술·빈칸 답은 JB 답 전문으로')
                 if b[0] == 'F':
                     for p_, cap, fk in b[1]:
                         cites.append((fk or k, p_, nm))
@@ -47,6 +50,10 @@ def main(sid, keys, also):
                 for m in re.finditer(r'\[\[([A-Z0-9]+):([^\]]+)\]\]', str(txt)): cites.append((m.group(1), m.group(2), nm))
                 for m in re.finditer(r'\{jb:([^}]+)\}', str(txt)): linked.add(m.group(1))
             linked |= set(c['jb'])
+            body_t = ' '.join(b[1] for b in c['body'] if b[0] in ('b', 'K') and isinstance(b[1], str))   # ux2 fixB VIS08 빨강 비율(원칙 7-1 — 빨강은 핵심어·수치만)
+            kc_ = LP._kcls(LP.red_set([v for t_, v in c['body'] if t_ == 'K'] + [v[1] for t_, v in c['body'] if t_ == 'E'] + list(c['recall'])))   # 화면과 같게: 🔑·⭐·⚡와 겹치는 {r:}만 빨강(나머지는 굵은 검정)
+            tot_ = len(re.sub(r'\s|\{r:|\{k:|\}|==|\*\*|\[\[[^\]]*\]\]', '', body_t)); red_ = sum(len(re.sub(r'\s', '', x)) for x in re.findall(r'\{r:([^{}]*)\}', body_t) if kc_(x) == 'k')
+            if tot_ > 80 and red_ / tot_ > 0.30: warns.append(f'{nm}: 빨강 {round(red_ / tot_ * 100)}% (30% 넘음 — 🔑·⚡와 겹치는 본문 {{r:}}는 **굵게**로)')
             items = sum(1 for b in c['body'] if b[0] == 'b'); heads = sum(1 for b in c['body'] if b[0] == 'h')
             if heads == 0 and items == 0: warns.append(f'{nm}: # 소제목·- 항목이 하나도 없음(🔑 줄에 몰아씀?)')
         for i in sorted(linked | exam):

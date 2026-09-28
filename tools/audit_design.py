@@ -60,6 +60,54 @@ async def sum_rows(b):
             r=await pg.evaluate("[...document.querySelectorAll('#stage .msum table.mtx>tbody>tr[data-aid]')].filter(r=>r.offsetHeight>400).map(r=>r.id+' '+r.offsetHeight)")
             out+= [f'{s}/{k} {x}' for x in r]
     await pg.close(); return out
+# ---- ux2 fixB 화면 검사(VIS01·VIS02·VIS04·VIS05·VIS08·V12) ----
+PARTIAL=r"""()=>{/* 줄임(overflow:hidden) 칸의 아래 끝에 걸쳐 반쯤 잘린 줄 — 정리표 ★·⚡·세부 */const bad=[];
+ document.querySelectorAll('#stage .msum td.mt .mexb, #stage .msum td.mt .ex-q, #stage .msum td.mt .ex-a, #stage .msum td.mt .ex-ab, #stage .msum td.mnote .ci, #stage .msum td.md .sline').forEach(el=>{if(!el.offsetParent)return;const cs=getComputedStyle(el);if(cs.overflow!=='hidden'&&cs.overflowY!=='hidden')return;const b=el.getBoundingClientRect();if(!b.height)return;
+  const r=document.createRange();r.selectNodeContents(el);const cut=[...r.getClientRects()].some(x=>x.height>4&&x.width>2&&x.top<b.bottom-2&&x.bottom>b.bottom+2);if(cut)bad.push((el.closest('tr')||{}).id+' '+el.className);});return bad;}"""
+STOPEN=r"""()=>{const f=document.querySelector('#sumtop');if(!f)return -1;f.querySelectorAll('.stbl.stoff').forEach(t=>t.classList.remove('stoff'));return f.querySelectorAll('.stbl').length;}"""
+STOV=r"""()=>[...document.querySelectorAll('#sumtop .tblwrap.stbl')].filter(w=>{const x=w.querySelector('.tscroll')||w,t=w.querySelector('table');return t&&t.scrollWidth>x.clientWidth+1;}).map(w=>(w.querySelector('.tbt')||w).textContent.slice(0,30)+' +'+(w.querySelector('table').scrollWidth-(w.querySelector('.tscroll')||w).clientWidth))"""
+DBL=r"""()=>{/* 칸 점(::before)이 보이는데 첫 자식이 목록(ul/ol) = 점 두 개 */const bad=[];document.querySelectorAll('#stage .ci').forEach(el=>{if(!el.offsetParent)return;const b=getComputedStyle(el,'::before');if(b.display==='none'||b.content==='none'||b.content==='normal')return;const f=el.firstElementChild;if(f&&/^(UL|OL)$/.test(f.tagName)&&!el.firstChild.textContent.trim().length)bad.push(el.textContent.trim().slice(0,30));});return bad.slice(0,5);}"""
+MIDW=r"""()=>{/* 영어 낱말이 글자 사이에서 줄바꿈(Lambdo|id) — 보이는 표·카드 글자 */let n=0;const ex=[];const w=document.createTreeWalker(document.querySelector('#stage'),NodeFilter.SHOW_TEXT);let t;const r=document.createRange();
+ while(t=w.nextNode()){const v=t.nodeValue;if(!/[A-Za-z]{2}/.test(v)||!t.parentElement||!t.parentElement.offsetParent)continue;r.selectNodeContents(t);if(r.getClientRects().length<2)continue;let prev=null;
+  for(let i=0;i<v.length;i++){r.setStart(t,i);r.setEnd(t,i+1);const b=r.getClientRects()[0];if(!b)continue;if(prev&&b.top>prev.top+4&&/[A-Za-z]/.test(prev.ch)&&/[A-Za-z]/.test(v[i])){n++;if(ex.length<3)ex.push(v.slice(Math.max(0,i-8),i)+'|'+v.slice(i,i+6));}prev={top:b.top,ch:v[i]};}}return {n,ex};}"""
+SMALLT=r"""()=>[...document.querySelectorAll('button,[role=button],summary,select')].filter(e=>{if(!e.offsetParent||e.closest('#help,.pop:not(.on)'))return false;const r=e.getBoundingClientRect();return r.width>0&&(r.height<40||r.width<40);}).length"""
+REDC=r"""()=>{const isRed=el=>{const c=(getComputedStyle(el).color.match(/\d+/g)||[0,0,0]).map(Number);return c[0]>=150&&c[1]<=90&&c[2]<=90;};let T=0,R=0;const hi=[];
+ document.querySelectorAll('#stage .tc').forEach(c=>{let tot=0,red=0;const w=document.createTreeWalker(c.querySelector('.tbody')||c,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const p=n.parentElement;if(!p||!p.offsetParent||p.closest('button,.noann,.chip,figure,.figs,.c-exam'))continue;const L=n.nodeValue.replace(/\s/g,'').length;if(!L)continue;tot+=L;if(p.closest('.k:not(.k2)')&&isRed(p))red+=L;}
+  T+=tot;R+=red;if(tot>80&&red/tot>0.30)hi.push(((c.querySelector('.thead .en')||c).textContent.trim().slice(0,34))+' '+Math.round(red/tot*100)+'%');});return {avg:T?Math.round(R/T*1000)/10:0,hi};}"""
+async def fixb_sweep(b):
+    """정리표 반쯤 잘린 줄(터치 1180·1366 · 맥 1280) = 판정 · 820 전체정리표 가로 넘침 = 판정 · 점 두 개 = 판정 · 영어 낱말 중간 끊김·40px 미만 누름 자리·빨강 비율(원고) = 보고"""
+    bad=[]; rep=[]
+    for vw,vh,tch in [(1180,820,True),(1366,1024,True),(1280,900,False),(820,1180,True)]:
+        pg=await (await b.new_context(viewport={'width':vw,'height':vh},has_touch=tch)).new_page(); mid=0; mex=[]
+        for s,ls in SUBJ.items():
+            for k in ls:
+                await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/sum'); await pg.wait_for_timeout(450)
+                if vw!=820:
+                    pl=await pg.evaluate(PARTIAL)
+                    if pl: bad.append(f'PARTIAL LINE {vw}{"t" if tch else ""} {s}/{k} {len(pl)} {pl[:2]}')
+                if vw==820:
+                    n=await pg.evaluate(STOPEN)
+                    if n>0:
+                        await pg.wait_for_timeout(350); ov=await pg.evaluate(STOV)
+                        if ov: bad.append(f'SUMTOP OVERFLOW 820 {s}/{k} {ov}')
+                d=await pg.evaluate(DBL)
+                if d: bad.append(f'DOUBLE BULLET {vw} {s}/{k} {d}')
+                if vw in (1180,1280):
+                    m=await pg.evaluate(MIDW); mid+=m['n']; mex+=[f'{s}/{k} {x}' for x in m['ex']][:1]
+        if vw in (1180,1280): rep.append(f'MIDWORD {vw} 정리표 영어 낱말 중간 줄바꿈 {mid} {mex[:4]}')
+        if vw==820:
+            for h in ['#/','#/OMS1/_home','#/OMS1/DD1/learn','#/OMS1/DD1/sum','#/OMS1/_sum','#/OMS1/_jb/_jb']:
+                await pg.goto('about:blank'); await pg.goto(U+h); await pg.wait_for_timeout(600)
+                rep.append(f'TOUCH<40 820 {h} {await pg.evaluate(SMALLT)}')
+        await pg.close()
+    pg=await b.new_page(viewport={'width':1280,'height':900}); hi=[]; avg=[]
+    for s,ls in SUBJ.items():
+        for k in ls:
+            await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/learn'); await pg.wait_for_timeout(500)
+            r=await pg.evaluate(REDC); avg.append((r['avg'],f'{s}/{k}')); hi+=[f'{s}/{k} {x}' for x in r['hi']]
+    await pg.close()
+    avg.sort(reverse=True); rep.append(f"RED RATIO 강의 평균 20% 초과 {[f'{n} {a}%' for a,n in avg if a>20]} · 카드 30% 초과 {len(hi)} {hi[:12]} (원고 — 보고만)")
+    return bad, rep
 async def ipad_sweep(b):
     """아이패드 세로(820×1180)·가로(1180×820): 모든 과목 문서·강의 학습/정리표 — 페이지 가로 밀림 · 목록 점이 첫 글자를 가림 · 과목색이 아닌 청록(OMS1·PHARM 밖)"""
     bad=[]
@@ -130,10 +178,14 @@ async def main():
         RS=await red_share(b)
         print('RED SHARE (빨간 글자 % · 빨강이 든 항목 % · 빨간 span/전체 .k — 목표 ≤10% · ≤45%)')
         for s_,k_,r_ in RS: print(f"  {s_}/{k_}: 글자 {r_['chars']}% · 항목 {r_['items']}% · span {r_['red']}/{r_['spans']}{'' if r_['chars']<=10 and r_['items']<=45 else '  (목표 초과)'}")
+        FB,FR=await fixb_sweep(b)
+        print('FIXB SWEEP (반쯤 잘린 줄·820 전체정리표 넘침·점 두 개 — 0이어야 함)', len(FB))
+        for x in FB[:40]: print(' ',x)
+        for x in FR: print('  (보고)',x)
         IP=await ipad_sweep(b)
         print('IPAD SWEEP (가로 밀림·점 겹침·청록)', len(IP))
         for x in IP[:40]: print(' ',x)
         print('errs',errs[:3]); await b.close()
-        return not IP and not errs
+        return not IP and not errs and not FB
 ok_=asyncio.run(main())
 print('RESULT', 'PASS' if ok_ else 'FAIL'); sys.exit(0 if ok_ else 1)

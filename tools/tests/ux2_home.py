@@ -46,7 +46,7 @@ async def run(b, vp, touch, tag):
           'log': {ids[0]: [{'r': 'ng', 't': now - 2 * DAY}, {'r': 'ok', 't': now - 1 * DAY}],                 # 틀림→맞음(어제) → 오늘 복습
                   ids[1]: [{'r': 'ng', 't': now - 10 * DAY}, {'r': 'ok', 't': now - 6 * DAY}, {'r': 'ok', 't': now - 4 * DAY}],   # →맞음 2번(4일 전) → +3일 = 복습
                   ids[2]: [{'r': 'ok', 't': now - 3 * DAY}],                                                  # 맞음만 → 뺌
-                  ids[3]: [{'r': 'ng', 't': now - 2 * 3600e3}, {'r': 'ok', 't': now - 3600e3}]}}              # 오늘 맞음 → 내일
+                  ids[3]: [{'r': 'ng', 't': now - 2 * 60e3}, {'r': 'ok', 't': now - 60e3}]}}              # 오늘 맞음 → 내일 (몇 분 전 — 자정 직후에 돌려도 '오늘')
     raw = json.dumps(mk)
     await pg.evaluate("r=>localStorage.setItem('jblhub.v1.mk.PHARM',r)", raw)
     R = await pg.evaluate("(()=>{const r=__h.revInfo('PHARM');return [[...r.due].sort(),[...r.ever].sort()]})()")

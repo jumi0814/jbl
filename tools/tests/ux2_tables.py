@@ -93,7 +93,7 @@ async def mac(b):
     for s in SUBJ:
         for k in await pg.evaluate(f"__h.PACKS['{s}'].lect.map(L=>L.k)"):
             await pg.evaluate(f"__h.openDoc('{s}','{k}','sum')"); await pg.wait_for_timeout(60)
-            r = await pg.evaluate("(()=>{const o=[],t=[];let n=0;document.querySelectorAll('#stage .msum td.mt').forEach(td=>{n++;const x=td.innerText.trim();if(/^\\d{2}(·\\d{2})*년/.test(x))o.push(x.slice(0,30));td.querySelectorAll('.mex').forEach(m=>{if(m.offsetParent===null)return;const lh=parseFloat(getComputedStyle(m.querySelector('.mexb')).lineHeight)||20;if(m.offsetHeight>lh*5+2)t.push(td.closest('tr').id+':'+m.offsetHeight);});});return [o,t,n]})()")
+            r = await pg.evaluate("(()=>{const o=[],t=[];let n=0;document.querySelectorAll('#stage .msum td.mt').forEach(td=>{n++;const x=td.innerText.trim();if(/^\\d{2}(·\\d{2})*년/.test(x))o.push(x.slice(0,30));td.querySelectorAll('.mex').forEach(m=>{if(m.offsetParent===null)return;const lh=parseFloat(getComputedStyle(m.querySelector('.mexb')).lineHeight)||20;const ch=m.querySelector('.mexi>.jbchip'),ex=m.querySelector('.mexi>.exs');const cw=ch&&ex&&ex.getBoundingClientRect().top>=ch.getBoundingClientRect().bottom-1?ch.offsetHeight+3:0;if(m.offsetHeight-cw>lh*5+2)t.push(td.closest('tr').id+':'+m.offsetHeight);});});return [o,t,n]})()")
             bad += [f'{s}/{k} {x}' for x in r[0]]; tall += [f'{s}/{x}' for x in r[1]]; n += r[2]
     ok(not bad, f'E05 ★ 칸 {n}개 중 innerText가 연도로 시작 {len(bad)} {bad[:2]}')
     ok(not tall, f'E05 ★ 문항 높이 5줄 초과 {len(tall)} {tall[:3]}')
