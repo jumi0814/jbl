@@ -657,7 +657,7 @@ details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px
 <tr><th>학습 탭</th><td><b>J/K</b> 다음/이전 카드 · <b>D</b> 지금 카드 ✓ 이해함 · <b>F</b> 지금 카드 접기/펼치기 · <b>C</b> 압축 보기(🔑·⭐·⚡만)</td></tr>
 <tr><th>한 장씩 풀기</th><td>아래 풀이 막대 [◀][답 보기][✗ 틀림][✓ 맞음][★][▶] · 키 ←/→(Enter = 다음), Space 답, O 맞음 · X 틀림(누르면 그 상태로 — 해제는 카드의 버튼), <b>S ★</b>(B는 빈칸) · 손가락 좌우 스와이프로 넘기기 · ‘자동 넘김’이 켜져 있으면 채점 0.25초 뒤 다음 문제 · 마지막 다음은 회차 요약(틀린 것만 다시·안 채점만·처음부터) · 카드 머리의 ‘✗2 ✓1’은 최근 채점 기록</td></tr>
 <tr><th>한 장씩 회차</th><td>한 장씩을 시작한 순간의 문항 목록이 <b>이번 회차</b>로 고정 — 채점해서 ‘안 푼 것’에서 빠져도, 새로고침하거나 새 탭에서 열어도 같은 목록·같은 위치(‘5/36’) · 요약도 이번 회차 기준 · 회차 중 필터를 바꾸면 ‘새 회차를 시작할까요?’ · [필터 다시 적용 ↻]로 지금 필터로 새로 시작 · 과목 홈 ‘최근 읽던 곳’과 허브 과목 카드의 <b>↪ 이어서 풀기</b>(7일 안)</td></tr>
-<tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억</td></tr>
+<tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · <b>기출 카드의 알아요/몰라요 = JB 맞음/틀림</b>(한 기록 — JB ‘틀린 것’·🔁 복습에 그대로, JB에서 매긴 것도 플래시카드에 보임) · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억</td></tr>
 </tbody></table></div></div>
 <div id="toast" role="status" aria-live="polite"></div><div id="toasterr" class="noann" role="alert"></div><div id="idleband" class="noann" hidden></div><div id="packbar" class="noann" hidden></div>
 <script>
@@ -969,7 +969,7 @@ function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
-function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);MK=getMK(s);}
+function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migrateAids(s);legacyNote(s);fcMerge(s);MK=getMK(s);}
  const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];
  const same=VIEW==='doc'&&CUR.s===s&&CUR.d===d&&CUR.t===t,push=opt.push!==false&&!same&&VIEW!=='none';if(push)stampHist();
  /* 돌아가기 알약: 칩으로 다른 화면에 가면 출발점 기억 · 도착 문서를 벗어나거나 출발점으로 돌아오면 지움 */
@@ -1119,9 +1119,9 @@ function lnav(d){const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null);if(!
  goCard(+cs[i].id.split('-').pop());}
 /* 채점: how='toggle'(카드 버튼) | 'set'(풀이 막대·O/X — 누르면 항상 그 상태). 맞음/틀림을 매길 때마다 MK.log[id]에 {r,t} (최근 10개)
    — mk.<S>의 ok·ng·bm 형식은 그대로(옛 기록·옛 허브와 호환), log만 더함. 쓰기 직전에 다시 읽음(다른 창과 합침) */
-function mark(id,k,how){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}MK=getMK(CUR.s);const was=!!MK[k][id];
+function mark(id,k,how,src){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}MK=getMK(CUR.s);const was=!!MK[k][id];
  if(how==='toggle'&&was)delete MK[k][id];
- else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];L.push({r:k,t:Date.now()});MK.log[id]=L.slice(-10);}}
+ else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];L.push(src?{r:k,t:Date.now(),how:src}:{r:k,t:Date.now()});MK.log[id]=L.slice(-10);}}   /* C08: 플래시카드에서 매긴 것은 how:'fc' */
  LS.set('mk.'+CUR.s,MK);$$('#stage .qc[data-id="'+id+'"]').forEach(paintQ);if(JB.F)JB.prog();JB.bar&&JB.bar();sideRender();hstat();revQfUpd();}
 /* 카드 한 장의 채점 색·'✗2 ✓1' 기록 칩 */
 function paintQ(c){const id=c.dataset.id;['ok','ng','bm'].forEach(k=>c.classList.toggle('mk-'+k,!!MK[k][id]));const L=Array.isArray(MK.log[id])?MK.log[id]:[];let a=0,b=0;L.forEach(x=>{if(x&&x.r==='ok')a++;else if(x&&x.r==='ng')b++;});
@@ -1202,7 +1202,9 @@ const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
   L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp),pc=$('.pc',tmp);if(q&&a)this.all.push({key:'P:'+((pc&&pc.dataset.aid)||i),tag:'예상',kind:'예상',q:E(q.textContent),a:E(a.textContent)});});
   const ps=mkObj(LS.get('fcpos.'+this.s+'.'+this.k,{}));this.kind=typeof ps.kind==='string'?ps.kind:'';this.st=typeof ps.st==='string'?ps.st:'';this.ord=Array.isArray(ps.ord)?ps.ord:null;this.back=false;this.build(ps.key);},
  mem(){return mkObj(LS.get('fc.'+this.s,{}));},
- build(key){const M=this.mem();let d=this.all.filter(c=>(!this.kind||c.kind===this.kind)&&(!this.st||(this.st==='x'?(M[c.key]&&M[c.key].s==='x'):!M[c.key])));
+ /* C08: 기출 카드(J:<id>)의 상태는 JB 채점 기록(mk)에서 — 틀림 = 몰라요 · 맞음 = 알아요 · 암기(R:)·예상(P:)은 fc 그대로 */
+ stt(c,M){if(c.key.indexOf('J:')===0){const id=c.key.slice(2);return MK.ng[id]?{s:'x'}:MK.ok[id]?{s:'o'}:null;}return M[c.key]||null;},
+ build(key){const M=this.mem();let d=this.all.filter(c=>{const m=this.stt(c,M);return (!this.kind||c.kind===this.kind)&&(!this.st||(this.st==='x'?(m&&m.s==='x'):!m));});
   if(this.ord){const pos={};this.ord.forEach((k,i)=>pos[k]=i);d.sort((a,b)=>(pos[a.key]==null?1e9:pos[a.key])-(pos[b.key]==null?1e9:pos[b.key]));}
   this.deck=d;const j=key?d.findIndex(c=>c.key===key):-1;this.i=j>=0?j:Math.min(this.i,Math.max(0,d.length-1));if(j<0&&key==null)this.i=0;this.draw();},
  save(){const c=this.deck[this.i];LS.set('fcpos.'+this.s+'.'+this.k,{kind:this.kind,st:this.st,ord:this.ord,key:c?c.key:null});},
@@ -1210,17 +1212,17 @@ const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
  stf(v){this.st=this.st===v?'':v;this.back=false;this.i=0;this.build(null);this.save();},
  shuffle(){const ks=this.all.map(c=>c.key);for(let i=ks.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ks[i],ks[j]]=[ks[j],ks[i]];}this.ord=ks;this.back=false;this.i=0;this.build(null);this.save();toast('카드를 섞었어요 — 순서는 이 강의에 저장');},
  move(d){if(!this.deck.length)return;this.i=(this.i+d+this.deck.length)%this.deck.length;this.back=false;this.draw();this.save();},
- judge(v){const c=this.deck[this.i];if(!c)return;const M=this.mem();M[c.key]={s:v,t:Date.now()};LS.set('fc.'+this.s,M);
+ judge(v){const c=this.deck[this.i];if(!c)return;if(c.key.indexOf('J:')===0){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}mark(c.key.slice(2),v==='o'?'ok':'ng','set','fc');}else{const M=this.mem();M[c.key]={s:v,t:Date.now()};LS.set('fc.'+this.s,M);}   /* C08 기출 카드 = JB 채점 */
   if(this.st&&!(this.st==='x'&&v==='x')){const k=c.key;this.build(k);if(this.deck[this.i]&&this.deck[this.i].key===k)this.move(1);else{this.back=false;this.draw();this.save();}}else this.move(1);},
  flip(){this.back=!this.back;this.draw();},
- draw(){const f=$('#fc');if(!f)return;const M=this.mem(),A=this.all;const cnt=(k,st)=>A.filter(c=>(!k||c.kind===k)&&(!st||(st==='x'?(M[c.key]&&M[c.key].s==='x'):!M[c.key]))).length;
+ draw(){const f=$('#fc');if(!f)return;const M=this.mem(),A=this.all,S_=c=>this.stt(c,M);const cnt=(k,st)=>A.filter(c=>{const m=S_(c);return (!k||c.kind===k)&&(!st||(st==='x'?(m&&m.s==='x'):!m));}).length;
   const kb=['','암기','기출','예상'].map(k=>`<button class="tg ${this.kind===k?'on':''}" data-fk="${k}">${k||'전체'} ${cnt(k,'')}</button>`).join('');
   const sb=`<button class="tg ${this.st==='x'?'on':''}" data-fst="x">몰라요만 ${cnt(this.kind,'x')}</button><button class="tg ${this.st==='new'?'on':''}" data-fst="new">안 본 것 ${cnt(this.kind,'new')}</button><button class="tg" id="fshuf">섞기</button>${this.ord?'<button class="tg" id="funshuf">원래 순서</button>':''}`;
-  const base=A.filter(c=>!this.kind||c.kind===this.kind),no=base.filter(c=>M[c.key]&&M[c.key].s==='o').length,nx=base.filter(c=>M[c.key]&&M[c.key].s==='x').length,nt=base.length||1;
+  const base=A.filter(c=>!this.kind||c.kind===this.kind),no=base.filter(c=>{const m=S_(c);return m&&m.s==='o';}).length,nx=base.filter(c=>{const m=S_(c);return m&&m.s==='x';}).length,nt=base.length||1;
   const prog=`<div class="fcprog" title="알아요 ${no} · 몰라요 ${nx} · 안 본 것 ${base.length-no-nx}"><i class="o" style="width:${no/nt*100}%"></i><i class="x" style="width:${nx/nt*100}%"></i></div><div class="small fcps">알아요 <b class="cok">${no}</b> · 몰라요 <b class="cng">${nx}</b> · 안 본 것 ${base.length-no-nx} / ${base.length}</div>`;
   const head=`<div class="pills noann fcf">${kb}<span class="sp"></span>${sb}</div>${prog}`;
   if(!this.deck.length){f.innerHTML=head+`<div class="panel">${this.st==='x'?'몰라요로 표시한 카드가 없어요.':this.st==='new'?'이 종류는 모두 한 번씩 봤어요.':'이 종류의 카드가 없습니다.'}</div>`;return;}
-  const c=this.deck[this.i],m=M[c.key],cl=c.cloze&&!this.back;
+  const c=this.deck[this.i],m=S_(c),cl=c.cloze&&!this.back;
   f.innerHTML=head+`<div class="fcard ${this.back?'back':''} ${cl?'cloze':''}" id="fcard"><div class="side">${this.back?'답':c.tag+(cl?' — 빨간 칸을 눌러 하나씩 · 카드를 누르면 뒤집기':' · 문제')}${m?` <span class="fcm ${m.s}">${m.s==='o'?'알아요':'몰라요'}</span>`:''}</div><div class="fcbody"></div></div>`
    +`<div class="fcctl"><button class="btn" id="fprev" aria-label="이전">◀</button><span class="small fcpos">${this.i+1} / ${this.deck.length}</span><button class="btn" id="fnext" aria-label="다음">▶</button></div>`
    +`<div class="fcjudge"><button class="btn fx${m&&m.s==='x'?' on':''}" id="fx" title="몰라요 (X)">몰라요 ✕</button><button class="btn fo${m&&m.s==='o'?' on':''}" id="fo" title="알아요 (O)">알아요 ○</button></div><div class="small fckeys">Space 뒤집기 · ←/→ 넘기기 · O 알아요 · X 몰라요 · 좌우로 쓸어 넘기기</div>`;
@@ -1878,6 +1880,13 @@ function jbResume(S,card){const p=PACKS[S];if(!p)return '';let best=null,bk='';c
  return `<button type="button" class="btn sm jbres" data-jbres="${EH(S)}|${EH(bk)}">↪ 이어서 풀기: ${EH(parts.join(' · ')||'전체')} · 한 장씩 ${pos}</button>`;}
 function jbResGo(v){const [S,d]=v.split('|');if(!PACKS[S])return;openDoc(S,d,d[0]==='_'?null:'jb');const c=JB.one&&JB.vis[JB.cur];if(c)goEl(c);}
 ['#home','#stage'].forEach(sel=>$(sel).addEventListener('click',e=>{const b=e.target.closest('[data-jbres]');if(!b)return;e.stopPropagation();e.preventDefault();jbResGo(b.dataset.jbres);},true));
+/* C08 옛 플래시카드 기출 판정(fc.<S>의 J:<id>) → JB 채점(mk)에 한 번 합침(LS fcMerged.<S>=1) — 그 문항에 기록(log)이 없거나 fc 판정이 더 최신일 때만 ok/ng + log {r,t,how:'fc'}(같은 t의 fc 기록이 있으면 건너뜀)
+   합치기 전 autoBak(true,'플래시카드 기록 합침') · fc의 J: 키는 지우지 않음 */
+function fcMerge(s){if(LS.get('fcMerged.'+s,0))return;const p=PACKS[s];if(!p)return;const F=mkObj(LS.get('fc.'+s,{}));const J=Object.keys(F).filter(k=>k.indexOf('J:')===0&&F[k]&&(F[k].s==='o'||F[k].s==='x')&&p.cards[k.slice(2)]);
+ if(!J.length){LS.set('fcMerged.'+s,1);return;}const m=getMK(s);let n=0;
+ J.forEach(k=>{const id=k.slice(2),e=F[k],t=+e.t||0,L=Array.isArray(m.log[id])?m.log[id].filter(x=>x&&typeof x==='object'):[];if(L.some(x=>x.how==='fc'&&+x.t===t))return;const last=L.reduce((a,x)=>Math.max(a,+x.t||0),0);if(L.length&&t<=last)return;
+  const r=e.s==='o'?'ok':'ng';m[r][id]=1;delete m[r==='ok'?'ng':'ok'][id];L.push({r,t,how:'fc'});m.log[id]=L.sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);n++;});
+ if(n){autoBak(true,'플래시카드 기록 합침');LS.set('mk.'+s,m);}LS.set('fcMerged.'+s,1);if(n)toast('플래시카드 기출 판정 '+n+'개를 JB 채점 기록에 합쳤어요');}
 /* ---------- 저장 공간(C02) — localStorage 한도(크롬·사파리 약 5M 글자)에 대한 사용량 · IDB 백업 크기 · navigator.storage.estimate ---------- */
 const LSCAP=5242880;
 function lsUsed(){let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);n+=k.length+(localStorage.getItem(k)||'').length;}}catch(e){}return n;}
@@ -2089,7 +2098,7 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 (function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
-Object.assign(window.__h,{JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
+Object.assign(window.__h,{fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 })();
 </script>
 </body></html>
