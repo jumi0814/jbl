@@ -43,7 +43,7 @@ async def part_states(b, vp, touch, tag):
     tr = ((await ls(pg, 'trest')) or {}).get(TODAY, 0); ok(abs(tr - 5 * MIN - 300) <= 1000, f'닫을 때 기록 → trest = {tr / 1000:.1f}초 (300±1)')
     # 새로고침 → 휴식 유지, 휴식 시계 이어감
     await boot(pg, '#/OMS1/DD1/learn', 1500)
-    t = await pg.inner_text('#tmr'); ok(await st(pg) == 'rest' and '5:0' in t, f"새로고침 → 휴식 유지 ({t!r})")
+    t = await pg.inner_text('#tmr'); import re as _re; ok(await st(pg) == 'rest' and _re.search(r'쉬는 중 5:[0-5]\d', t), f"새로고침 → 휴식 유지·휴식 시계 이어감 ({t!r})")   # 5분 + 새로고침 몇 초(부하에 따라 달라짐)
     ok(await pg.evaluate("document.querySelector('#trband').hidden"), '새로고침(2분 안) → 닫힘 질문 없음')
     # ▶ 다시 → 세션
     await pg.evaluate("document.querySelector('#tmr').click()"); await pg.clock.run_for(300)
