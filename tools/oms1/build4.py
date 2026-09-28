@@ -635,6 +635,20 @@ open(OUT + f'/packs/{SID}.js', 'w', encoding='utf-8').write(pack_js)
 READY = [x for x in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'] if os.path.exists(OUT + f'/packs/{x}.js')]
 PV = {x: _h8(open(OUT + f'/packs/{x}.js', encoding='utf-8').read()) for x in READY}
 open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)).replace('null/*PV*/', js(PV)).replace("'dev'/*BUILD*/", js(BUILD)))
+# 홈 화면 앱(C11) — docs/manifest.webmanifest·icon-192.png·icon-512.png (내용이 바뀐 때만 씀 · 모든 과목 빌드가 같은 것을 냄)
+def _icon(n):
+    from PIL import ImageDraw, ImageFont
+    im = Image.new('RGB', (n, n), '#0F4B4A'); d = ImageDraw.Draw(im)
+    d.rounded_rectangle([int(n * .16), int(n * .60), int(n * .84), int(n * .74)], radius=max(2, n // 28), fill='#FFE58A')
+    try: f = ImageFont.load_default(size=int(n * .30))
+    except TypeError: f = ImageFont.load_default()
+    d.text((n / 2, n * .42), 'JBL', fill='#FFFFFF', font=f, anchor='mm')
+    b = io.BytesIO(); im.save(b, 'PNG', optimize=True); return b.getvalue()
+_man = json.dumps({'name': 'JBL 허브', 'short_name': 'JBL 허브', 'start_url': './', 'scope': './', 'display': 'standalone', 'lang': 'ko', 'background_color': '#F6F4EF', 'theme_color': '#0F4B4A',
+                   'icons': [{'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png'}]}, ensure_ascii=False, indent=1).encode('utf-8')
+for _fn, _b in [('manifest.webmanifest', _man), ('icon-192.png', _icon(192)), ('icon-512.png', _icon(512))]:
+    _p = os.path.join(OUT, _fn)
+    if not os.path.exists(_p) or open(_p, 'rb').read() != _b: open(_p, 'wb').write(_b)
 for f_ in os.listdir(OUT + '/packs'):
     if f_.startswith(SID + '.img') or f_ == SID + '.lx.js': os.remove(OUT + '/packs/' + f_)
 for c, t in img_files.items(): open(OUT + f'/packs/{SID}.img.{c}.js', 'w', encoding='utf-8').write(t)
