@@ -49,6 +49,15 @@ async def red_share(b):
         await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/learn'); await pg.wait_for_timeout(700)
         r=await pg.evaluate(REDJS); out.append((s,k,r))
     await pg.close(); return out
+async def sum_rows(b):
+    """ux2 E02 정리표(요약 모드, 1280·사이드바 자동 접힘) 행 높이 400px 넘는 행 — 경고(판정에는 안 씀)"""
+    pg=await b.new_page(viewport={'width':1280,'height':900}); out=[]
+    for s,ls in SUBJ.items():
+        for k in ls:
+            await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/sum'); await pg.wait_for_timeout(400)
+            r=await pg.evaluate("[...document.querySelectorAll('#stage .msum table.mtx>tbody>tr[data-aid]')].filter(r=>r.offsetHeight>400).map(r=>r.id+' '+r.offsetHeight)")
+            out+= [f'{s}/{k} {x}' for x in r]
+    await pg.close(); return out
 async def ipad_sweep(b):
     """아이패드 세로(820×1180)·가로(1180×820): 모든 과목 문서·강의 학습/정리표 — 페이지 가로 밀림 · 목록 점이 첫 글자를 가림 · 과목색이 아닌 청록(OMS1·PHARM 밖)"""
     bad=[]
@@ -60,6 +69,9 @@ async def ipad_sweep(b):
                 if d=='_jb': await pg.evaluate("document.querySelector('#frev')&&document.querySelector('#frev').click()"); await pg.wait_for_timeout(200)
                 ov=await pg.evaluate('document.documentElement.scrollWidth-innerWidth')
                 if ov>1: bad.append(f'OVERFLOW {vw} {s}/{d} {ov}px')
+                if d=='_led':   # ux2 E12 기출 대장 — 문서 가로 넘침 정확히 0
+                    ov2=await pg.evaluate('document.documentElement.scrollWidth-document.documentElement.clientWidth')
+                    if ov2: bad.append(f'OVERFLOW(led) {vw} {s}/{d} {ov2}px')
                 o=await pg.evaluate(OVERLAP)
                 if o: bad.append(f'OVERLAP {vw} {s}/{d} {o}')
                 if vw==820:
@@ -107,6 +119,9 @@ async def main():
         print('LONG', totlong)
         json.dump(longs,open(_os.path.join(J.TMP, 'longs.json'),'w'),ensure_ascii=False,indent=0)
         for x in longs[:60]: print(' ',x[:170])
+        TR=await sum_rows(b)
+        print('SUM ROW (정리표 요약 모드 행 높이 > 400px — 경고)', len(TR))
+        for x in TR[:20]: print(' ',x)
         RS=await red_share(b)
         print('RED SHARE (빨간 글자 % · 빨강이 든 항목 % · 빨간 span/전체 .k — 목표 ≤10% · ≤45%)')
         for s_,k_,r_ in RS: print(f"  {s_}/{k_}: 글자 {r_['chars']}% · 항목 {r_['items']}% · span {r_['red']}/{r_['spans']}{'' if r_['chars']<=10 and r_['items']<=45 else '  (목표 초과)'}")

@@ -669,6 +669,41 @@ table.mtx th[data-col=topic]{min-width:11em}.msum table.mtx thead th{white-space
  .msum .mtw{position:relative;padding-right:82px;min-height:56px}.msum .mtw .mth{position:absolute;right:0;top:0;width:72px;height:54px;margin:0;max-width:none}.msum .mtw .mth img{width:72px;height:54px;min-height:0;object-fit:cover}
  .msum .mtw>button.link{display:block}.msum .mtw .mko{display:inline}.msum .mtw .mych{display:inline-flex;margin:0 0 0 6px;vertical-align:1px}.msum td[data-h]:not(.md)::before{display:inline!important;margin:0 6px 0 0!important}.msum td.mk .mg{display:inline}
  .msum td.mt .mex{margin-bottom:4px}.msum table.mtx td,.msum table.mtx th{padding:3px 0!important}.msum td.mnote .ci{font-size:calc(13.5px*var(--fs));line-height:1.5;margin:0 0 2px}.msum .mkey{margin-top:4px;padding:3px 8px}.msum table.mtx tr:not(.grow){padding:8px 12px 8px} .msum table.mtx tbody tr:not(.grow)>*{border-bottom:0}table.mtx tbody tr.h2{box-shadow:inset 4px 0 0 var(--acc)}table.mtx tbody tr.h1{box-shadow:inset 1px 0 0 var(--acc)}table.mtx tbody tr>th{box-shadow:none!important}}
+/* E07 열 가리기(👁) — 덮개 .cov(배경 #E9DFC6·'탭해서 보기') · 누른 칸만 .covo */
+.coveye{border:0;background:none;padding:0 0 0 5px;margin:0;min-height:0;cursor:pointer;opacity:.5;font-size:12px;line-height:1;vertical-align:1px}.coveye::before{content:"👁"}.coveye:hover,.covh .coveye{opacity:1}th.covh{box-shadow:inset 0 -3px 0 #C9B98E}
+@media (pointer:coarse){.coveye{padding:6px 6px 6px 8px;margin:-6px 0}}
+td.cov:not(.covo),th.cov:not(.covo){position:relative;background:#E9DFC6!important;color:transparent!important;cursor:pointer}td.cov:not(.covo)>*,th.cov:not(.covo)>*{visibility:hidden}
+td.cov:not(.covo)::after,th.cov:not(.covo)::after{content:"탭해서 보기";position:absolute;left:8px;top:7px;font-size:11px;font-weight:700;color:#6B5B38;visibility:visible}
+td.covo,th.covo{box-shadow:inset 0 0 0 2px #E9DFC6}
+.covall{display:inline-flex;align-items:center;border:1px solid #C9B98E;background:#FBF6E8;border-radius:999px;font:inherit;font-size:12.5px;font-weight:700;color:#6B5B38;min-height:30px;padding:2px 12px;margin:0 0 8px;cursor:pointer}
+@media (max-width:1000px){table.mtx td.cov:not(.covo),table.mtx th.cov:not(.covo){min-height:44px;display:block}table.mtx td.cov:not(.covo)::before{color:var(--sub)!important;visibility:visible}table.mtx td.cov:not(.covo)::after{top:auto;bottom:6px}.msum td[data-h]::before{cursor:pointer}}
+/* E08 정리표·한눈표 지금 행 */
+.msum table.mtx>tbody>tr.rcur>td,.msum table.mtx>tbody>tr.rcur>th,table.sum>tbody>tr.rcur>td,table.sum>tbody>tr.rcur>th{background:var(--accbg)!important}.pc.rcur{box-shadow:0 0 0 2px var(--accb)}
+/* E09 과목 비교표 — 강의별 h3 · 위에 붙는 목차 칩 막대 · 기출 연결 표만 · 넘치지 않는 표는 머리행 고정(.fit), 넘치는 표만 가로 스크롤 + 첫 열 고정(.ovx) */
+.tbltoc{position:sticky;top:calc(var(--toph) + var(--tabh));z-index:12;background:var(--paper);padding:6px 0 6px;margin:-4px 0 10px;border-bottom:1px solid var(--line2)}.tbltoc .ttc{display:flex;flex-wrap:wrap;gap:5px;align-items:center}.tbltoc .ttc .tg b{font-size:11.5px;color:var(--sub);margin-left:2px}.tbltoc .ttc .tg.on b{color:inherit}.tbltoc .sp{flex:1}
+.tbltoc .tpl{display:flex;flex-direction:column;gap:2px;margin-top:6px;max-height:50vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px}.tbltoc .tpi{border:0;background:none;text-align:left;font:inherit;font-size:13.5px;padding:6px 8px;border-radius:6px;cursor:pointer}.tbltoc .tpi:hover{background:var(--accbg)}.tbltoc .tpi i{font-style:normal;font-size:11.5px;font-weight:700;color:#7C5E0E;border:1px solid #C99A2E;border-radius:999px;padding:0 6px;margin-left:4px}
+.tgh{font-size:18px;margin:22px 0 10px;padding-bottom:4px;border-bottom:2px solid var(--line)}.tgh:first-of-type{margin-top:6px}.tgh .small{font-weight:600}
+.tnj{display:inline-block;margin-left:8px;font-family:inherit;font-size:11.5px;font-weight:700;color:#7C5E0E;border:1px solid #C99A2E;border-radius:999px;padding:0 7px;vertical-align:3px;background:#fff}
+#stage.only-tjb .tblwrap[data-nj="0"],#stage.only-tjb .tgh.tgempty{display:none}
+.tblwrap>.tscroll.fit{overflow:visible}.tblwrap>.tscroll.fit>table>thead th{position:sticky;top:calc(var(--toph) + var(--tabh) + var(--tocH,0px));z-index:4;box-shadow:0 1px 0 var(--line)}
+.tblwrap>.tscroll.ovx>table>tbody>tr>:first-child,.tblwrap>.tscroll.ovx>table>thead>tr>:first-child{position:sticky;left:0;z-index:2;box-shadow:1px 0 0 var(--line)}.tblwrap>.tscroll.ovx>table>tbody>tr>th:first-child{background:#FAF6EC}.tblwrap>.tscroll.ovx>table>tbody>tr>td:first-child{background:#fff}
+/* E10·E11 기출 한눈표 */
+table.sum td.qs .link.sq{text-decoration:none;text-align:left}table.sum td.qs .link.sq::after{content:" ▸";color:var(--faint);font-weight:400}table.sum td.qs .link.sq:hover{text-decoration:underline;text-decoration-color:var(--line)}
+table.sum .qbody{font-weight:400;font-size:calc(13.5px*var(--fs));color:#4A423A;margin-top:3px;line-height:1.55}table.sum .qbody .qrest{display:none}table.sum .qbody.qopen .qrest{display:inline}
+.qmore{border:0;background:none;font:inherit;font-weight:700;color:var(--acc);padding:0 3px;cursor:pointer}.qmore::before{content:"…▸"}.qopen .qmore::before{content:" ▴"}@media (pointer:coarse){.qmore{padding:6px 8px;margin:-6px 0}}
+.alab{font-size:calc(11.5px*var(--fs));font-weight:700;color:var(--sub);margin-right:2px}table.sum .ln.exl{margin-top:4px}table.sum .ln.tabl{white-space:pre-wrap;font-variant-numeric:tabular-nums;font-size:calc(13px*var(--fs))}
+.sumlk{margin:4px 0 0;cursor:pointer;min-height:26px}.sumlk::before{content:"📖 카드"}
+.sumbar{position:sticky;top:calc(var(--toph) + var(--tabh));z-index:12;background:var(--paper);padding:6px 0;margin:-4px 0 10px;border-bottom:1px solid var(--line2);display:flex;flex-direction:column;gap:5px}.sumbar .sbr{display:flex;flex-wrap:wrap;gap:5px;align-items:center}.sumbar .sbl{display:flex;flex-wrap:wrap;gap:5px}.sumbar .tg b{font-size:11.5px;color:var(--sub);margin-left:2px}
+.sleg{margin-left:6px}.sleg i{display:inline-block;vertical-align:-1px;margin:0 3px 0 6px}.sleg .lg2{width:4px;height:12px;background:var(--acc)}.sleg .lg1{width:1px;height:12px;background:var(--acc)}
+.smk{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:6px}.mdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#C9C1B3}.mdot.ok,tr.mk-ok .mdot{background:#3E8E5A}.mdot.ng,tr.mk-ng .mdot{background:#B3261E}
+.smk button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;padding:0;font-size:13px;color:var(--sub);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.smk [data-smk=ok]::before{content:"✓"}.smk [data-smk=ng]::before{content:"✗"}.smk [data-smk=bm]::before{content:"★"}
+.smk [data-smk=ok].on{background:var(--mint);border-color:#5F9E7A;color:#1C5B33}.smk [data-smk=ng].on{background:#FBE3E0;border-color:#C98484;color:#8E1B14}.smk [data-smk=bm].on{background:#FFF1C2;border-color:#C99A2E;color:#7C5E0E}
+@media (pointer:coarse){.smk button{width:40px;height:40px}}
+table.sum tr.h2>th,table.sum tr.h1>th{background:#FAF6EC}table.sum tr.h2>th{box-shadow:inset 4px 0 0 var(--acc)}table.sum tr.h1>th{box-shadow:inset 1px 0 0 var(--acc)}
+#stage.sf-ng table.sum>tbody>tr:not(.mk-ng),#stage.sf-todo table.sum>tbody>tr.mk-ok,#stage.sf-todo table.sum>tbody>tr.mk-ng{display:none}#stage .tblwrap.sempty{display:none}
+/* E12 기출 대장 — 표는 가로 스크롤 상자 안(.ovx면 첫 열 교수 고정) · 연도 머리 두 자리 · 연도 칸 3.2em */
+table.cmp.led td{min-width:3.2em}table.cmp.led thead th[title]{text-align:center;min-width:3.2em}
+table.sum th[data-col=yr]{width:140px!important}@media (pointer:coarse){table.sum th[data-col=yr]{width:156px!important}}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -849,7 +884,7 @@ const SUBJDOCS=[['_home','🏠 과목 홈','공부 순서 · 진행률 · 강의
 function docTabs(p,d){if(d[0]==='_')return [[d,'']];const L=p.lect.find(x=>x.k===d);return [['learn','📖 학습'],['sum','🗂 정리표'],['tbl','📊 비교표 '+L.tbl.length],['jb','📝 기출 '+L.jb.length],['pred','✍️ 예상 '+L.pred.length],['flash','🃏 플래시카드']].filter(t=>!(t[0]==='tbl'&&!L.tbl.length));}
 function openSubj(s){openDoc(s,'_home');}
 function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
- $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select><button id="sidefold" title="사이드바 접기 (\\) — 표를 넓게">‹</button></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
+ $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select><button id="sidefold" title="사이드바 접기 (\\) — 표를 넓게">‹</button></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[0]==='_tbl'?'강의별 '+p.tables.filter(t=>!t.sum).length+'개 표':x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
@@ -987,7 +1022,7 @@ function learnSpy(){if(LIO){LIO.disconnect();LIO=null;}LCUR=-1;if(!$('#lmini')||
 function setLCur(j){LCUR=j;lmCount(j);fpill(true);$$('#side .scard2').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));$$('#lpop .lpi').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));
  const sb=$('#side .scard2.on'),sd=$('#side');if(sb&&sd&&sd.scrollHeight>sd.clientHeight){const r=sb.getBoundingClientRect(),q=sd.getBoundingClientRect();if(r.top<q.top+40||r.bottom>q.bottom-20)sd.scrollTop+=r.top-q.top-q.height/2;}}
 /* 카드 j로: 학습 탭이면 드러내고(그룹 필터·압축 해제) 탭 아래로, 다른 탭이면 학습 탭을 열어서 */
-function goCard(j){const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L)return;const id='t-'+L.k+'-'+j;navOpen(false);$('#lpop').classList.remove('on');
+function goCard(j){if(CUR.t==='sum'&&goRow(j))return;const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L)return;const id='t-'+L.k+'-'+j;navOpen(false);$('#lpop').classList.remove('on');
  if(CUR.t!=='learn'){openDoc(CUR.s,CUR.d,'learn',null,{id});return;}const el=document.getElementById(id);if(!el)return;LHOLD=Date.now()+900;setLCur(j);
  if(el.classList.contains('hid'))revealCard(el);else{el.classList.add('open');settle(()=>goEl(el));}qzFollow(el);}
 function lpopOpen(){const p=$('#lpop');if(p.classList.contains('on')){p.classList.remove('on');return;}const P=PACKS[CUR.s],L=P.lect.find(x=>x.k===CUR.d);if(!L)return;const DN=mkObj(LS.get('done.'+P.id,{}));const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
@@ -1361,7 +1396,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  function handleClick(e){const rk=e.target.closest&&e.target.closest('[data-rk="b"]');
   if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));if(on)LASTOPEN=rk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return true;}
   if(!mode)return false;return !!targetOK(e.target);}
- function auto(kind,one){const st=$('#stage');let sel=kind==='red'?(kInc2()?'.k':'.k:not(.k2)'):kind==='red2'?'.k':kind==='term'?'tbody th':'tbody td';const els=$$(sel,st).filter(el=>el.offsetParent!==null||el.closest('.tbody,.ans'));if(!els.length){toast('이 화면에는 해당하는 대상이 없습니다');return;}
+ function auto(kind,one){const st=$('#stage');let sel=kind==='red'?(kInc2()?'.k':'.k:not(.k2)'):kind==='red2'?'.k':kind==='term'?'tbody th':(CUR.t==='sum'?'table.mtx>tbody>tr>td.mk,table.mtx>tbody>tr>td.mnote,#sumtop tbody td':'tbody td');const els=$$(sel,st).filter(el=>el.offsetParent!==null||el.closest('.tbody,.ans'));if(!els.length){toast('이 화면에는 해당하는 대상이 없습니다');return;}
   push();const seen=new Set(),touched=new Set();let n=0;els.forEach(el=>{const B=el.closest('[data-aid]');if(!B||el.closest('[data-rk]')||el.closest(SKIP))return;if(one){const row=el.closest('li,tr,p')||B;if(seen.has(row))return;seen.add(row);}
    const ix=index(B);let a=1e9,b=-1;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let tn;while(tn=w.nextNode()){const m=ix.map.find(q=>q.n===tn);if(m){a=Math.min(a,m.start);b=Math.max(b,m.start+m.len);}}
    if(b<=a)return;const r=tidy(ix.s,a,b);if(!r)return;wrap(B,r[0],r[1],'b','y','a'+(++GID));touched.add(B);n++;});touched.forEach(commit);toast('빈칸 '+n+'개 — 빈칸을 누르면 열리고, 👁로 전체 보기');}
@@ -1824,12 +1859,26 @@ function sumHTML(p,L){const st=(L.sumt||[]).map(i=>p.tables[i]).filter(Boolean);
  return `<section class="sumtop" id="sumtop"><div class="sth noann"><b>📋 전체정리표</b> <span class="small">강의 전체를 의미 축으로 한 표에 — 마지막 열 ★ = 시험</span><div class="stchips">${tt.map((t,i)=>`<button class="tg" data-sttab="${i}" title="${t}">${stLabel(t)}</button>`).join('')}${st.length>1?'<button class="tg" data-sttab="all">모두 펼치기</button>':''}</div></div>${st.map((x,i)=>x.html.replace('<div class="tblwrap stbl"','<div data-sti="'+i+'" class="tblwrap stbl"')).join('')}</section>`+L.sum;}
 function stApply(v,save){const f=$('#sumtop');if(!f)return;const k='sumtop.'+CUR.s+'.'+CUR.d;if(v===undefined)v=LS.get(k,null);if(save)LS.set(k,v);
  $$('#sumtop .stbl[data-sti]').forEach(t=>t.classList.toggle('stoff',!(v==='all'||String(v)===t.dataset.sti)));$$('#sumtop [data-sttab]').forEach(b=>b.classList.toggle('on',v!=null&&String(v)===b.dataset.sttab));f.classList.toggle('stclosed',v==null);}
-function tblAllHTML(p){return p.tables.filter(x=>!x.sum).map(x=>x.html).join('');}
+/* E09 과목 비교표: 강의 순서로 묶고(h3 '강의명 · 표 n개') · 위에 붙는 목차 칩 막대(강의 칩 → 표 제목 목록 → 그 표로) · [기출 연결 표만] · 표 제목 옆 '기출 n'(noann) */
+function tblAllHTML(p){const T=p.tables.map((x,i)=>[x,i]).filter(([x])=>!x.sum),by={};T.forEach(([x,i])=>{(by[x.k]=by[x.k]||[]).push([x,i]);});
+ const ks=p.lect.map(L=>L.k).filter(k=>by[k]).concat(Object.keys(by).filter(k=>!p.lect.find(L=>L.k===k)));const nm=k=>{const L=p.lect.find(x=>x.k===k);return L?sname(p,k):'기타';};
+ const tt=x=>{const m=/<div class="tbt serif">([^<]*)<\/div>/.exec(x.html);return m?m[1]:'';};
+ const toc=`<div class="tbltoc noann" id="tbltoc"><div class="ttc">${ks.map(k=>`<button class="tg" data-tgk="${EH(k)}">${EH(nm(k))} <b>${by[k].length}</b></button>`).join('')}<span class="sp"></span><button class="tg" data-tjb="1" title="표 안에 기출 칩이 있는 표만">기출 연결 표만</button></div><div class="tpl" id="tbllist" hidden></div></div>`;
+ return toc+ks.map(k=>`<h3 class="tgh" id="tg-${EH(k)}" data-k="${EH(k)}">${EH(nm(k))} <span class="small">· 표 ${by[k].length}개${by[k].some(([x])=>x.nj)?' · 기출 연결 '+by[k].filter(([x])=>x.nj).length:''}</span></h3>`+by[k].map(([x,i])=>x.html.replace('<div class="tblwrap"','<div id="tb-'+i+'" class="tblwrap"')).join('')).join('');}
+function tblListOpen(k){const box=$('#tbllist');if(!box)return;if(box.dataset.k===k&&!box.hidden){box.hidden=true;$$('#tbltoc [data-tgk]').forEach(b=>b.classList.remove('on'));return;}const P=PACKS[CUR.s];
+ const L=$$('#stage .tgh[data-k="'+CSS.escape(k)+'"]')[0];let items=[];for(let e=L&&L.nextElementSibling;e&&!e.classList.contains('tgh');e=e.nextElementSibling){if(e.classList.contains('tblwrap')){const t=e.querySelector('.tbt');items.push(`<button class="tpi" data-tgo="${e.id}">${EH(t?t.childNodes[0].textContent.trim():e.id)}${+e.dataset.nj?` <i>기출 ${e.dataset.nj}</i>`:''}</button>`);}}
+ box.innerHTML=items.join('');box.dataset.k=k;box.hidden=false;$$('#tbltoc [data-tgk]').forEach(b=>b.classList.toggle('on',b.dataset.tgk===k));}
+function tocH(){const t=$('#tbltoc')||$('#sumbar');const h=t&&t.offsetParent!==null?t.offsetHeight:0;$('#stage').style.setProperty('--tocH',h+'px');return h;}
+function tblFit(){const ts=$$('#stage .tblwrap:not(.msum) > .tscroll').filter(x=>x.querySelector('table.cmp,table.sum'));ts.forEach(x=>{const t=x.querySelector('table');x.classList.remove('fit');const fit=t.scrollWidth<=x.clientWidth+1;x.classList.toggle('fit',fit);x.classList.toggle('ovx',!fit);});}
+let TRO=null;function tblMount(){if(TRO){TRO.disconnect();TRO=null;}const on=VIEW==='doc'&&(CUR.d==='_tbl'||CUR.t==='tbl'||CUR.t==='sum'||CUR.d==='_sum'||CUR.d==='_led');if(!on)return;
+ $$('#stage .tblwrap[data-nj]').forEach(w=>{const n=+w.dataset.nj,t=w.querySelector('.tbt');if(n&&t&&!t.querySelector('.tnj')){const b=document.createElement('span');b.className='tnj noann';b.textContent='기출 '+n;t.appendChild(b);}});
+ tblFit();tocH();if(window.ResizeObserver){let q=0;TRO=new ResizeObserver(()=>{if(q)return;q=requestAnimationFrame(()=>{q=0;tblFit();tocH();});});TRO.observe($('#stage'));}}
 function sumDense(m,save){const st=$('#stage');if(!st)return;if(m==null)m=LS.get('sumdense','s');m=m==='f'?'f':'s';if(save)LS.set('sumdense',m);st.classList.toggle('sdfull',m==='f');$$('#stage [data-mdense]').forEach(b=>b.classList.toggle('on',b.dataset.mdense===m));}
 function sumFilt(f){const st=$('#stage');['hit','rep2'].forEach(x=>st.classList.toggle('mf-'+x,f===x));$$('#stage [data-mfilt]').forEach(b=>b.classList.toggle('on',b.dataset.mfilt===(f||'')));}
 function sumGrp(g){$$('#stage [data-mgrp]').forEach(b=>b.classList.toggle('on',b.dataset.mgrp===(g||'')));$$('#stage .msum tr[data-grp]').forEach(r=>r.classList.toggle('hid',!!g&&r.dataset.grp!==g));}
 function ux2MountE(){const st=$('#stage');if(!st)return;st.classList.remove('sdfull','mf-hit','mf-rep2');
- if(isSumTab()){sumDense();sumFilt('');stApply();}}
+ if(isSumTab()){sumDense();sumFilt('');stApply();}
+ covInit();tblMount();if(VIEW==='doc'&&CUR.d==='_sum')sumPaint();}
 function ux2Reveal(c){if(!c||!c.closest)return;const sw=c.closest('#sumtop .stbl.stoff');if(sw)stApply(sw.dataset.sti,true);const tr=c.closest('.msum tr[data-aid]');if(!tr)return;if(tr.classList.contains('hid'))sumGrp('');if(getComputedStyle(tr).display==='none')sumFilt('');
  const md=tr.querySelector('td.md');if(md&&md.querySelector('.mfull [data-rk]'))md.classList.add('dopen');}
 $('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||VIEW!=='doc')return;const b=t.closest('button');const d=b?b.dataset:{};
@@ -1842,6 +1891,66 @@ $('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||VIEW!==
  if(Kit.mode())return;
  const mx=t.closest('.msum td.mt .mex');if(mx&&!b&&!t.closest('[data-rk]')){mx.classList.toggle('mexo');return;}
  const mc=t.closest('#stage:not(.sdfull) .msum td.mnote .ci');if(mc&&!b&&!t.closest('[data-rk]')&&(mc.scrollHeight>mc.clientHeight+2||mc.classList.contains('cio'))){mc.classList.toggle('cio');return;}});
+
+/* E07 표 열 가리고 떠올리기(보기 상태 — 저장형 빈칸 아님, ann 불변): 정리표·전체정리표·비교표·기출 한눈표 머리 칸마다 👁(.coveye)
+   → 그 열 칸 .cov(덮개 · '탭해서 보기') · 칸을 누르면 그 칸만 .covo(열기/닫기, 저장 안 함) · 표 위 [가린 열 n개 — 모두 열기]
+   LS cover.<S>.<문서>/<탭> = {표 단위 aid: [열 이름…]} — 새로고침 뒤 가린 열은 그대로, 연 칸은 다시 가림. 카드형(≤1000)은 칸 머리 라벨(td::before)을 눌러 가림 */
+const covKey=()=>'cover.'+CUR.s+'.'+CUR.d+'/'+(CUR.t||'');
+const covOn=()=>VIEW==='doc'&&(CUR.t==='sum'||CUR.t==='tbl'||CUR.d==='_sum'||CUR.d==='_tbl');
+function covTables(){return $$('#stage table.mtx,#stage table.cmp,#stage table.sum').filter(t=>t.tHead&&t.tBodies[0]&&!t.closest('.mfull,.tc,.qc,.ans'));}
+function covName(h){const c=h.dataset.col;return c&&!/^c\d+$/.test(c)?c:((h.querySelector('.thn')||h).textContent.trim().slice(0,40)||c);}
+function covCols(t){const hs=[...t.tHead.rows[0].cells];hs.forEach((h,i)=>{if(!h.dataset.col)h.dataset.col='c'+i;});
+ [...t.tBodies[0].rows].forEach(r=>{let i=0;[...r.cells].forEach(c=>{const sp=c.colSpan||1;if(!c.dataset.col&&sp===1&&hs[i])c.dataset.col=hs[i].dataset.col;i+=sp;});});}
+function covAid(t){const w=t.closest('[data-aid]');return w?w.dataset.aid:'t'+covTables().indexOf(t);}
+function covPaint(t,cols){const hs=[...t.tHead.rows[0].cells],on=new Set(hs.filter(h=>cols.indexOf(covName(h))>=0).map(h=>h.dataset.col));
+ hs.forEach(h=>h.classList.toggle('covh',on.has(h.dataset.col)));
+ [...t.tBodies[0].rows].forEach(r=>[...r.cells].forEach(c=>{const v=!!c.dataset.col&&on.has(c.dataset.col);c.classList.toggle('cov',v);if(!v)c.classList.remove('covo');}));
+ const w=t.closest('.tblwrap')||t.parentElement;let a=w.querySelector(':scope>.covall');
+ if(on.size){if(!a){a=document.createElement('button');a.className='covall noann';a.dataset.covall='1';w.insertBefore(a,w.querySelector(':scope>.tscroll')||w.firstChild);}a.textContent='👁 가린 열 '+on.size+'개 — 모두 열기';}else if(a)a.remove();}
+function covInit(){if(!covOn())return;const st=mkObj(LS.get(covKey(),{})),sh=CUR.d==='_sum'&&!!LS.get('sumhide',false);covTables().forEach(t=>{covCols(t);[...t.tHead.rows[0].cells].forEach(h=>{if(!h.querySelector('.coveye')){const b=document.createElement('button');b.className='coveye noann';b.dataset.cov='1';b.setAttribute('aria-label','이 열 가리기');h.appendChild(b);}});const L=Array.isArray(st[covAid(t)])?st[covAid(t)]:[];covPaint(t,sh&&t.matches('table.sum')&&L.indexOf('ans')<0?L.concat(['ans']):L);});$$('#stage [data-sumhide]').forEach(b=>b.classList.toggle('on',sh));}
+function covToggle(t,col){const st=mkObj(LS.get(covKey(),{})),k=covAid(t),h=[...t.tHead.rows[0].cells].find(x=>x.dataset.col===col);if(!h)return;const nm=covName(h);let L=Array.isArray(st[k])?st[k].slice():[];
+ const on=L.indexOf(nm)<0;L=on?L.concat([nm]):L.filter(x=>x!==nm);if(L.length)st[k]=L;else delete st[k];LS.set(covKey(),st);covPaint(t,L);toast(on?'‘'+(h.querySelector('.thn')||h).textContent.trim()+'’ 열을 가렸어요 — 칸을 누르면 그 칸만 열림':'열 가림을 풀었어요');}
+function covClear(t){const st=mkObj(LS.get(covKey(),{}));delete st[covAid(t)];LS.set(covKey(),st);if(CUR.d==='_sum'&&LS.get('sumhide',false)){LS.set('sumhide',false);covInit();return;}covPaint(t,[]);}
+$('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||!covOn())return;const b=t.closest('button');
+ if(b&&b.dataset.cov){e.stopImmediatePropagation();const th=b.closest('th'),tb=th&&th.closest('table');if(tb)covToggle(tb,th.dataset.col);return;}
+ if(b&&b.dataset.covall){e.stopImmediatePropagation();const w=b.parentElement,tb=w.querySelector('table');if(tb)covClear(tb);b.remove();return;}
+ if(Kit.mode())return;
+ const c=t.closest('.cov');
+ if(c&&!c.classList.contains('covo')){e.stopImmediatePropagation();e.preventDefault();c.classList.add('covo');return;}
+ if(c&&c.classList.contains('covo')&&!b&&!t.closest('a,[data-rk],.mex,.ci')){c.classList.remove('covo');return;}
+ if(t.matches&&t.matches('td[data-col],th[data-col]')&&innerWidth<=1000&&t.closest('table.mtx')){const r=t.getBoundingClientRect();if(e.clientY-r.top<22){e.stopImmediatePropagation();covToggle(t.closest('table'),t.dataset.col);}}},true);
+
+/* E08 정리표·한눈표·예상 안에서 이동: 정리표 행 id 'm-<K>-<j>' — 사이드바 카드 목록·goCard·J/K는 그 행으로(머리 고정 높이만큼 아래), 지금 행 .cur
+   한눈표(_sum)는 문항 행, 예상(pred·_pred)은 카드. 학습 탭으로 넘어가지 않음 */
+function stickH(el){const t=el&&el.closest&&el.closest('table');const h=t&&t.tHead;const bar=t&&(t.closest('.tscroll.fit')||t.matches('table.sum'))?tocH():0;if(!h||!h.rows[0]||!h.rows[0].cells[0])return bar;return bar+(getComputedStyle(h.rows[0].cells[0]).position==='sticky'&&h.offsetParent!==null?h.offsetHeight:0);}
+function rowCur(el){$$('#stage .rcur').forEach(x=>x!==el&&x.classList.remove('rcur'));if(el)el.classList.add('rcur');const m=el&&/^m-[^-]+-(\d+)$/.exec(el.id||'');if(m){LCUR=+m[1];$$('#side .scard2').forEach(b=>b.classList.toggle('on',+b.dataset.lj===LCUR));}}
+function goRowEl(el){if(!el)return;if(el.offsetParent===null||getComputedStyle(el).display==='none')ux2Reveal(el);const h=stickH(el);settle(()=>goEl(el,12-h-2));rowCur(el);}
+function goRow(j){const el=document.getElementById('m-'+CUR.d+'-'+j);if(!el)return false;navOpen(false);goRowEl(el);return true;}
+function rowItems(){if(isSumTab())return $$('#stage .msum table.mtx>tbody>tr[data-aid]');if(VIEW==='doc'&&CUR.d==='_sum')return $$('#stage table.sum>tbody>tr');if(VIEW==='doc'&&(CUR.t==='pred'||CUR.d==='_pred'))return $$('#stage .pc');return null;}
+function rowNav(d){const L=(rowItems()||[]).filter(e=>e.offsetParent!==null&&getComputedStyle(e).display!=='none');if(!L.length)return false;const h=stickH(L[0]),line=topOff()-12+h;
+ let t=null;if(d>0)t=L.find(e=>e.getBoundingClientRect().top>line+6);else{for(const e of L){if(e.getBoundingClientRect().top<line-6)t=e;else break;}}
+ if(!t){toast(d>0?'마지막이에요':'처음이에요');return true;}if(L[0].closest('table'))goRowEl(t);else{settle(()=>goEl(t));rowCur(t);}return true;}
+document.addEventListener('keydown',e=>{if(isTextField(e.target)||e.ctrlKey||e.metaKey||e.altKey||$('#imgmodal').classList.contains('on')||$('#help').classList.contains('on')||VIEW!=='doc')return;const K=keyOf(e);
+ if((K==='j'||K==='k')&&rowItems()){e.preventDefault();rowNav(K==='j'?1:-1);}});
+
+$('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||VIEW!=='doc'||CUR.d!=='_tbl')return;const b=t.closest('button');if(!b)return;const d=b.dataset;
+ if(d.tgk){const h=$('#tg-'+CSS.escape(d.tgk));tblListOpen(d.tgk);if(h)settle(()=>goEl(h,-tocH()));return;}
+ if(d.tgo){const w=document.getElementById(d.tgo);$('#tbllist').hidden=true;$$('#tbltoc [data-tgk]').forEach(x=>x.classList.remove('on'));if(w){if(w.offsetParent===null){$('#stage').classList.remove('only-tjb');$$('#tbltoc [data-tjb]').forEach(x=>x.classList.remove('on'));}settle(()=>goEl(w,-tocH()));w.classList.add('flash');setTimeout(()=>w.classList.remove('flash'),1500);}return;}
+ if(d.tjb){const on=!$('#stage').classList.contains('only-tjb');$('#stage').classList.toggle('only-tjb',on);b.classList.toggle('on',on);$$('#stage .tgh').forEach(h=>{let v=false;for(let e=h.nextElementSibling;e&&!e.classList.contains('tgh');e=e.nextElementSibling)if(e.classList.contains('tblwrap')&&(!on||+e.dataset.nj>0))v=true;h.classList.toggle('tgempty',!v);});toast(on?'기출 연결 표만 — 표 안에 기출 칩이 있는 표':'모든 비교표');return;}});
+
+/* E10·E11 기출 한눈표 공부 막대(#sumbar — 위에 붙음): 강의 칩(n문항 → 그 표로) · 2회↑만(data-filt=rep) · ✗ 틀린 것만 · 안 푼 것만 · 답 가리기(LS sumhide — E07 덮개, 칸을 누르면 그 칸만)
+   행 tr[data-id] 왼쪽 채점 점(.mdot)·✓ ✗ ★(mark() — JB 문제와 같은 mk.<S>) · 문제 칸 본문 '…▸' 그 자리 펼침 · 📖 정리본 카드 칩 */
+function sumPaint(){const P=PACKS[CUR.s];if(!P)return;MK=getMK(CUR.s);$$('#stage table.sum>tbody>tr[data-id]').forEach(r=>{const id=r.dataset.id;['ok','ng','bm'].forEach(k=>{r.classList.toggle('mk-'+k,!!MK[k][id]);const b=r.querySelector('[data-smk="'+k+'"]');if(b)b.classList.toggle('on',!!MK[k][id]);});});sumEmpty();}
+function sumEmpty(){$$('#stage .tblwrap').forEach(w=>{const t=w.querySelector('table.sum');if(!t)return;w.classList.toggle('sempty',![...t.tBodies[0].rows].some(r=>getComputedStyle(r).display!=='none'));});}
+function sumSf(f){const st=$('#stage');['ng','todo'].forEach(x=>st.classList.toggle('sf-'+x,f===x));$$('#stage [data-sf]').forEach(b=>b.classList.toggle('on',b.dataset.sf===f));sumEmpty();}
+$('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||VIEW!=='doc'||CUR.d!=='_sum')return;const b=t.closest('button');const d=b?b.dataset:{};
+ if(b&&d.smk){const r=b.closest('tr[data-id]');if(!r)return;mark(r.dataset.id,d.smk,'toggle');sumPaint();if(d.smk!=='bm')toast(MK[d.smk][r.dataset.id]?(d.smk==='ok'?'맞음으로 기록했어요':'틀림으로 기록했어요 — JB 문제에도 반영'):'기록을 지웠어요');return;}
+ if(b&&d.sf){const on=!b.classList.contains('on');sumSf(on?d.sf:'');return;}
+ if(b&&d.filt==='rep'){setTimeout(sumEmpty,0);return;}
+ if(b&&d.sumhide){const on=!LS.get('sumhide',false);LS.set('sumhide',on);if(!on){const st=mkObj(LS.get(covKey(),{}));Object.keys(st).forEach(k=>{st[k]=(st[k]||[]).filter(x=>x!=='ans');if(!st[k].length)delete st[k];});LS.set(covKey(),st);}covInit();toast(on?'답 가리기 — 답 칸을 누르면 그 칸만 열려요':'답을 모두 보여요');return;}
+ if(b&&d.sgo){const w=document.getElementById(d.sgo);if(w){if(w.classList.contains('sempty'))sumSf('');settle(()=>goEl(w,-tocH()));}return;}
+ if(b&&d.qmore){b.closest('.qbody').classList.toggle('qopen');return;}});
+addEventListener('storage',e=>{if(e.key===NS+'mk.'+CUR.s&&VIEW==='doc'&&CUR.d==='_sum')sumPaint();});
 
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
 /* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */

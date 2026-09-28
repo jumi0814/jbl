@@ -307,9 +307,25 @@ def q_gist(t):
     if GENERIC_Q.match(t): return ''
     if len(t) > 60: t = (t[:60].rsplit(' ', 1)[0] if ' ' in t[:60] else t[:60]).rstrip(' ,·(') + '…'
     return t
+YRPAR = re.compile(r'\s*\(\s*\d{2}\s*[’′\']?(?:\s*[,·~]\s*\d{2}\s*[’′\']?)*(?:\s*[,·]\s*[탈짤])?\s*[,·]?\s*\)')
 def short_clean(t):
-    """문항 요약 끝의 JB 괄호 연도 '(21,22,24)'·'(24, 탈)' 떼기 — 연도는 칩에 있음"""
-    return re.sub(r'\s*\([^()]*\b\d{2}\b[^()]*\)\s*\.?\s*$', '', t).strip() or t
+    """문항 요약의 JB 괄호 연도 '(21,22,24)'·'(20’, 19’)'·'(24, 탈)' 떼기(어디에 있든) — 연도는 칩에 있음 · 끝의 옛 형식 괄호도"""
+    t2 = YRPAR.sub('', t)
+    t2 = re.sub(r'\s*\([^()]*\b\d{2}\b[^()]*\)\s*\.?\s*$', '', t2).strip()
+    return t2 or t
+SUMQ_STEM = re.compile(r'다음\s*(?:설명|글|그림|표|증례)')
+def sum_q(q):
+    """ux2 E10 한눈표 문제 칸: 발문(번호·JB 괄호 연도 뗌) + 발문이 '다음 설명·글·그림·표·증례'이거나 목록 줄이 1개뿐이면 본문 줄을 160자까지(넘치면 '…▸'로 그 자리 펼침)"""
+    qt, _ = split_qa(q); L = reflow.reflow(qt)
+    if not L: return esc(q['short']), ''
+    stem = short_clean(re.sub(r'^\s*\d{1,3}(-\d)?\s?[.)]?\s*', '', L[0]).strip()) or q['short']
+    body = [x for x in L[1:] if x.strip()]
+    nl = sum(1 for x in body if reflow.LISTM.match(x))
+    if not body or not (SUMQ_STEM.search(stem) or nl == 1): return esc(stem[:120] + ('…' if len(stem) > 120 else '')), ''
+    bt = YRPAR.sub('', ' '.join(body)).strip()
+    if len(bt) <= 160: return esc(stem), f'<div class="qbody">{esc(bt)}</div>'
+    cut = bt[:160].rsplit(' ', 1)[0] if ' ' in bt[:160] else bt[:160]
+    return esc(stem), f'<div class="qbody">{esc(cut)}<span class="qrest">{esc(bt[len(cut):])}</span><button class="qmore noann" data-qmore="1" aria-label="본문 더 보기"></button></div>'
 def mini_table(rows, cls='mini'):
     head = ''.join(f'<th>{lecparse.inline(c, ctx)}</th>' for c in rows[0])
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
@@ -684,7 +700,26 @@ def ans_core(q):
     for s in L:
         if re.match(r'^\s*(참고|해설)\s*[:：)]?', s): break
         out.append(s)
-    h = ''.join(f'<div class="ln{" li" if reflow.LISTM.match(s) else ""}">{esc(s)}</div>' for s in out[:14]) + ('<div class="ln small">… (이하 카드에서)</div>' if len(out) > 14 else '')
+    def lab_(s):   # ux2 E10 '답 :'·'답:'·'[답]' 라벨은 글자 그대로 .alab(작은 회색)
+        m = re.match(r'^(\s*(?:\[답\]|답)\s*[:：)]?\s*)(.*)$', s)
+        return (f'<span class="alab">{esc(m.group(1))}</span>{esc(m.group(2))}') if m and m.group(2).strip() else esc(s)
+    TOK = lambda s: [x for x in re.split(r'\s{2,}|\t|\s\|\s', s.strip()) if x]
+    tab = [s for s in out if len(TOK(s)) >= 3 and all(len(x) <= 14 for x in TOK(s))]
+    if len(tab) >= 3:   # 표 모양 답(짧은 토막 3칸↑ 줄이 3줄↑) — 첫 3줄만 글자 그대로 격자로
+        h = ''.join(f'<div class="ln tabl">{esc(s)}</div>' for s in out[:3]) + (f'<div class="ln small">… (이하 {len(out) - 3}줄 카드에서)</div>' if len(out) > 3 else '')
+    else:
+        h = ''.join(f'<div class="ln{" li" if reflow.LISTM.match(s) else ""}">{lab_(s)}</div>' for s in out[:14]) + ('<div class="ln small">… (이하 카드에서)</div>' if len(out) > 14 else '')
+    core_ = re.sub(r'^\s*(?:\[답\]|답)\s*[:：)]?\s*', '', ' '.join(out)).strip()
+    if not core_ or re.fullmatch(r'\(?\s*(?:해설|해답|아래|위)?\s*(?:참조|참고)\s*\)?\s*\.?', core_):   # 답 핵심이 '해설 참조'뿐 → 해설 첫 줄부터 6줄(원문 그대로) · 해설도 없으면 연결 카드 ⚡ 첫 줄
+        i0 = next((i for i, x in enumerate(L) if re.match(r'^\s*해설\s*[:：)]?', x)), None)
+        ex_ = []
+        if i0 is not None:
+            first = re.sub(r'^\s*해설\s*[:：)]?\s*', '', L[i0]).strip(); ex_ = ([first] if first else []) + L[i0 + 1:]
+        if ex_: h += '<div class="ln exl"><span class="alab">해설</span></div>' + ''.join(f'<div class="ln">{esc(x)}</div>' for x in ex_[:6]) + (f'<div class="ln small">… (이하 {len(ex_) - 6}줄 카드에서)</div>' if len(ex_) > 6 else '')
+        elif q['id'] in Q2CARD:
+            k_, j_ = Q2CARD[q['id']]; c_ = next(L_ for L_ in LEC if L_['k'] == k_)['cards'][j_]
+            if c_['recall']: h += f'<div class="ln exl"><span class="alab">📖</span> {lecparse.inline(c_["recall"][0], ctx)}</div>'
+        if not core_ and '<div class="ln exl">' not in h: h += '<div class="ln small">(JB에 답 표기 없음 — 문제를 눌러 원문으로)</div>'
     pk = pick_choices(q, out)
     if pk:
         lab, lines = pk
@@ -697,14 +732,27 @@ def ybadge_sum(q):
     ys = ['%02d' % y for y in q['yrs']]
     lab_ = '·'.join(ys) if len(ys) <= 4 else '·'.join(ys[:3]) + f' +{len(ys) - 3}'
     return f'<span class="ybadge sm n{min(len(ys),3)}" title="{" · ".join(YR(y) for y in q["yrs"])}"><b>{lab_}</b></span>'
-sumall = ['<div class="pills noann"><button class="tg" data-filt="rep">2회 이상만</button><span class="small">강의 순서 · 출제 많은 순 — 문제를 누르면 카드로 이동. ⚡자동 빈칸 ‘표의 내용’으로 답 열을 가리고 복습할 수 있습니다.</span></div>']
+SUMCHIPS = []
+sumall = ['']   # ux2 E11 공부 막대는 아래에서(강의 칩이 필요)
+sname_ = lambda L: re.sub(r'\s*\([^)]*\)\s*$', '', LECNAME.get(L['k'], L['title'])) or L['title']
 for n_, L in enumerate(LEC + [None]):
     k = L['k'] if L else ''
     rows = [q for q in Q if q['tier'] != 'C' and q['lk'] == k]
     if not rows: continue
     rows.sort(key=lambda q: (-len(q['yrs']), -(q['yrs'][0] if q['yrs'] else 0)))
-    tr = ''.join(f'<tr class="{heat(len(q["yrs"]))}{" rep" if len(q["yrs"]) >= 2 else ""}"><th>{ybadge_sum(q)}<div class="small">{esc(q["prof"])}</div></th><td class="qs">{go(q["id"], esc(q["short"]), src="sum")}{("<div><span class='chip v-" + q["v"] + "'>" + VNAME[q["v"]] + "</span></div>") if q["v"] in ("diff", "part", "none") else ""}</td><td>{("<div class='note'>⚠ 아래 JB 답은 강의자료와 어긋납니다 — 문제를 눌러 ‘강의자료 대조’를 확인하세요.</div>") if q["v"] == "diff" else ""}<div class="lines">{ans_core(q)}</div></td></tr>' for q in rows)
-    sumall.append(f'<div class="tblwrap" data-aid="{aid("SUM:" + (k if k else "none"))}" data-alt="{aid("SUM%d" % n_)}"><div class="tbt serif">{esc(L["title"] if L else "강의자료에 대응 쪽 없음")} <small>{len(rows)}문항</small></div><div class="tscroll"><table class="sum"><thead><tr><th style="width:96px">출제</th><th style="width:32%">문제</th><th>답 핵심 (JB 원문)</th></tr></thead><tbody>{tr}</tbody></table></div></div>')
+    def srow(q):
+        st_, bd_ = sum_q(q)
+        lk_ = (f'<button class="chip lec sumlk noann" data-golec="{Q2CARD[q["id"]][0]}:{Q2CARD[q["id"]][1]}" aria-label="정리본 카드로"></button>') if q['id'] in Q2CARD else ''
+        vc_ = f"<div><span class='chip v-{q['v']}'>{VNAME[q['v']]}</span></div>" if q['v'] in ('diff', 'part', 'none') else ''
+        nt_ = "<div class='note'>⚠ 아래 JB 답은 강의자료와 어긋납니다 — 문제를 눌러 ‘강의자료 대조’를 확인하세요.</div>" if q['v'] == 'diff' else ''
+        return (f'<tr class="{heat(len(q["yrs"]))}{" rep" if len(q["yrs"]) >= 2 else ""}" data-id="{q["id"]}"><th data-col="yr">{ybadge_sum(q)}<div class="small">{esc(q["prof"])}</div><span class="smk noann"><i class="mdot"></i><button data-smk="ok" aria-label="맞음"></button><button data-smk="ng" aria-label="틀림"></button><button data-smk="bm" aria-label="북마크"></button></span></th>'
+                f'<td class="qs" data-col="q">{go(q["id"], st_, cls="link sq", src="sum")}{bd_}{lk_}{vc_}</td><td data-col="ans">{nt_}<div class="lines">{ans_core(q)}</div></td></tr>')
+    tr = ''.join(srow(q) for q in rows)
+    sid_ = 'sm-' + (k if k else 'none'); SUMCHIPS.append((sid_, (sname_(L) if L else '대응 쪽 없음'), len(rows)))
+    sumall.append(f'<div class="tblwrap" id="{sid_}" data-aid="{aid("SUM:" + (k if k else "none"))}" data-alt="{aid("SUM%d" % n_)}"><div class="tbt serif">{esc(L["title"] if L else "강의자료에 대응 쪽 없음")} <small>{len(rows)}문항</small></div><div class="tscroll"><table class="sum"><thead><tr><th style="width:96px" data-col="yr">출제</th><th style="width:32%" data-col="q">문제</th><th data-col="ans">답 핵심 (JB 원문)</th></tr></thead><tbody>{tr}</tbody></table></div></div>')
+sumall[0] = ('<div class="sumbar noann" id="sumbar"><div class="sbr"><span class="sbl">' + ''.join(f'<button class="tg" data-sgo="{a_}">{esc(n_)} <b>{c_}</b></button>' for a_, n_, c_ in SUMCHIPS) + '</span></div>'
+             '<div class="sbr"><button class="tg" data-filt="rep">2회↑만</button><button class="tg" data-sf="ng">✗ 틀린 것만</button><button class="tg" data-sf="todo">안 푼 것만</button><button class="tg" data-sumhide="1" title="답 칸을 가리고 떠올리기 — 칸을 누르면 그 칸만 열림(저장 안 함)">답 가리기</button>'
+             '<span class="small sleg"><i class="lg2"></i>2회↑ <i class="lg1"></i>1회 · <i class="mdot ok"></i>맞음 <i class="mdot ng"></i>틀림 <i class="mdot"></i>안 푼 것 · 문제를 누르면 JB · 📖 정리본 카드</span></div></div>')
 
 # ---- JB 필터 막대 / 대장
 import build2 as B
@@ -717,6 +765,7 @@ for q in Q:
 # JB 필터 막대는 허브(shell.html jbBar)가 pack.jbprofs·jbyears·tcount로 그림 — 과목 JB 문제와 강의 기출 탭이 같이 씀
 ledger = B.view_led()
 ledger = re.sub(r'(?<!<div class="tscroll">)(<table class="cmp">.*?</table>)', r'<div class="tscroll">\1</div>', ledger, flags=re.S)   # 기출 대장 표는 가로 스크롤 상자 안에(F6 — 페이지 전체가 옆으로 밀리지 않게)
+ledger = re.sub(r'<th>20(\d{2})</th>', r'<th title="20\1">\1</th>', ledger).replace('<table class="cmp">', '<table class="cmp led">')   # ux2 E12 연도 머리 두 자리 · 첫 열(교수) 고정은 허브 tblFit(.ovx)
 # 과목 홈 공부 순서(U21): subject.py의 GUIDE(선택) — [(굵은 제목, 설명, 실행 버튼 키)]. 없으면 자동 규칙(JB 통계만):
 #   교수별 최근 해 짤 비율 평균 ≥ 60%면 1단계 = '⭐ 2회 이상 n문항 · 한눈표로 답부터'. 실행 키: resume(이어서 학습)·todo(안 푼 것)·rep(2회 이상만 풀기)·sumrep(한눈표 2회 이상)
 GUIDE = getattr(S, 'GUIDE', None)
