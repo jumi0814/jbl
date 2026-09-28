@@ -30,7 +30,7 @@ async def main():
         await pg.evaluate("async ([ns,a,d])=>{localStorage.setItem(ns+'ann.CONS',JSON.stringify(a));localStorage.setItem(ns+'done.CONS',JSON.stringify(d));await __h.bkClear();}",
                           [NS, ann, {c0['alt'].split(' ')[0]: 1}])
         n0 = total(ann)
-        await pg.goto('about:blank'); await pg.goto(U + '#/CONS/CRK/learn'); await pg.wait_for_timeout(250)
+        await pg.goto('about:blank'); await pg.goto(U + '#/CONS/CRK/learn'); await pg.wait_for_timeout(250); await pg.evaluate("__h.migWait()")
         toast = await pg.evaluate("document.querySelector('#toast').textContent"); await pg.wait_for_timeout(1000)
         a = await ls(pg, 'ann.CONS'); dn = await ls(pg, 'done.CONS')
         ok([o['x'] for o in a.get(c0['aid'], [])] == [c0['w']], f"옛 index aid의 표시 → 새 카드 {c0['aid']}")
@@ -41,8 +41,8 @@ async def main():
         ok(len(lost) == 1 and lost[0].get('lost') == 1, '못 찾은 표시는 옛 키에 lost:1로 보존')
         ok(total(a) == n0, f'localStorage 표시 총수 불변 ({n0} → {total(a)})')
         ok('옮겼어요' in toast and '못 찾은 1개' in toast, f'토스트: {toast}')
-        why = await pg.evaluate("__h.bkList().then(L=>{const x=L.find(x=>x.why==='원고 갱신 전');return x?x.why:''})")   # 보호 칸(p0~2)에 '표시 위치 보강 전'과 함께 있을 수 있음
-        ok(why == '원고 갱신 전', f'이관 전 자동 백업 ({why})')
+        why = await pg.evaluate("__h.bkList().then(L=>{const x=L.find(x=>x.cat==='upd');return x?x.why:''})")   # ux2 fixA V04: 이관 전 전 과목 백업 한 칸(upd)
+        ok('원고 갱신' in why, f'이관 전 자동 백업 ({why})')
         ok(await pg.evaluate("document.querySelector('#k-lost b').textContent") == '1', '⚠ 위치 잃음 1')
         await pg.screenshot(path=J.TMP + '/ux_kt_migrate.png')
         await open_(pg, '#/CONS/_marks/')

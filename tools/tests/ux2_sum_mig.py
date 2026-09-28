@@ -50,6 +50,7 @@ async def main():
         want = {tid: altmap.get(oldA[j] + '~s') for tid, j in J_.items()}
         await pg.evaluate("([ns,a])=>{localStorage.clear();localStorage.setItem(ns+'ann.CONS',JSON.stringify(a));}", [NS, {'CONS:WHT:sum': marks}])
         await pg.goto('about:blank'); await pg.goto(U + '#/CONS/WHT/sum'); await pg.wait_for_function("document.querySelector('#stage table.mtx')", timeout=15000)
+        await pg.evaluate("__h.migWait()")   # ux2 fixA V04: 이관은 전 과목 백업(migBak)이 끝난 뒤
         toast = await pg.evaluate("document.querySelector('#toast').textContent"); await pg.wait_for_timeout(600)
         a = json.loads(await pg.evaluate(f"localStorage.getItem('{NS}ann.CONS')"))
         where = {}
@@ -76,8 +77,8 @@ async def main():
         ok(all(k.endswith('~s') for t, (k, o) in where.items() if t in moved), '옮긴 표시 키는 모두 행 aid(~s)')
         ok('행으로 옮겼어요' in toast, f'토스트: {toast}')
         # 자동 백업 = IndexedDB(C02) 또는 localStorage 칸 — __h.bkList·bkLoad로 읽음(두 트랙 병합 뒤)
-        await pg.wait_for_function("__h.bkList().then(L=>L.some(x=>x.why==='정리표 표시 이관 전'))", timeout=10000)
-        bak = await pg.evaluate(f"__h.bkList().then(L=>{{const x=L.find(x=>x.why==='정리표 표시 이관 전');return x?__h.bkLoad(x.id).then(r=>r&&r.data?JSON.parse(r.data['{NS}ann.CONS']||'{{}}'):null):null;}})")
+        await pg.wait_for_function("__h.bkList().then(L=>L.some(x=>x.cat==='upd'))", timeout=10000)
+        bak = await pg.evaluate(f"__h.bkList().then(L=>{{const x=L.find(x=>x.cat==='upd');return x?__h.bkLoad(x.id).then(r=>r&&r.data?JSON.parse(r.data['{NS}ann.CONS']||'{{}}'):null):null;}})")
         ok(bool(bak) and len(bak.get('CONS:WHT:sum', [])) == 50, f"옮기기 전 자동 백업에 옛 키 표시 {len((bak or {}).get('CONS:WHT:sum', []))}개")
         # ③ 화면
         drawn = await pg.evaluate("(()=>{const o={};document.querySelectorAll('#stage tr[data-aid] [data-rk]').forEach(e=>{const tr=e.closest('tr');o[tr.dataset.aid+'|'+e.dataset.g]=1;});return Object.keys(o).length})()")

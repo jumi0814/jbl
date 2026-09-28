@@ -27,7 +27,7 @@ async def run(b, vp, touch, tag, full):
         fc = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.fc.OMS1')")); ok(f'J:{qc}' in fc and 'R:x:abc' in fc, 'fc 원본 남음')
         await pg.evaluate("localStorage.removeItem('jblhub.v1.fcMerged.OMS1')"); await go(pg, '#/OMS1/_home')
         ok(len((await pg.evaluate(MK)).get('log', {}).get(qc, [])) == 1, '두 번 열어도 log 중복 없음')
-        await pg.wait_for_timeout(300); ok(any(x['why'] == '플래시카드 기록 합침' for x in await pg.evaluate("__h.bkList()")), "합치기 전 자동 백업('플래시카드 기록 합침')")
+        await pg.wait_for_timeout(300); ok(any(x['cat'] == 'upd' for x in await pg.evaluate("__h.bkList()")), "합치기 전 자동 백업(원고 갱신·이관 전 — ux2 fixA V04)")
     # 플래시카드에서 몰라요 → JB 틀린 것
     await go(pg, f'#/OMS1/{lec}/flash'); await pg.click('#fc [data-fk="기출"]'); await pg.wait_for_timeout(150)
     await pg.evaluate("q=>{const F=__h.Flash;const j=F.deck.findIndex(c=>c.key==='J:'+q);F.i=j;F.draw();}", qa)

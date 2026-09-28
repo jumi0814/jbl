@@ -179,10 +179,51 @@ async def part_multi(b):
     ok(110000 <= s <= 130000, f'두 창 번갈아 2분 → time +{s / 1000:.0f}초 (겹쳐 잡힌 시간 ≤ 10초)')
     st = await A.evaluate("document.querySelector('#tmr').textContent"); ok('다른 창' in st, f"다른 창 버튼 '{st}'")
     await B.mouse.move(700, 400); await B.clock.run_for(1000)
+    # ux2 fixA V07·V10: 화면에 보이는 채 blur(Split View 옆 앱) = 무활동과 같게 — 30초에 멈추지 않음
     await B.evaluate("dispatchEvent(new Event('blur'))"); await B.clock.run_for(31000)
-    ok(await B.evaluate("document.querySelector('#tmr').dataset.st") != 'run', 'blur 31초 → 측정 멈춤')
+    ok(await B.evaluate("document.querySelector('#tmr').dataset.st") == 'run', 'blur(화면에 보임) 31초 → 계속 잼(무활동 규칙)')
+    await B.evaluate("dispatchEvent(new Event('focus'))"); await B.mouse.move(710, 400); await B.clock.run_for(1000)
+    # 옛 방식(LS blurIdle=false): 30초 뒤 멈춤 → focus → 다시
+    await B.evaluate("localStorage.setItem('jblhub.v1.blurIdle','false')")
+    await B.evaluate("dispatchEvent(new Event('blur'))"); await B.clock.run_for(31000)
+    ok(await B.evaluate("document.querySelector('#tmr').dataset.st") != 'run', 'blurIdle 끔 → blur 31초 → 측정 멈춤')
     await B.evaluate("dispatchEvent(new Event('focus'))"); await B.clock.run_for(1000)
     ok(await B.evaluate("document.querySelector('#tmr').dataset.st") == 'run', 'focus → 다시 잼')
+    await B.evaluate("localStorage.removeItem('jblhub.v1.blurIdle')")
+    # Split View: blur 뒤 12분 입력 없음 → 무활동 기준(8분)에 멈춤 → 돌아와 입력하면 [공부했어요 +n분]
+    await B.mouse.move(720, 400); await B.clock.run_for(1000)
+    await B.evaluate("dispatchEvent(new Event('blur'))"); await B.clock.run_for(12 * MIN)
+    ok(await B.evaluate("document.querySelector('#tmr').dataset.st") != 'run', 'blur 12분 → 무활동 기준에서 멈춤')
+    await B.evaluate("dispatchEvent(new Event('focus'))"); await B.mouse.move(730, 400); await B.clock.run_for(300)
+    band = await B.evaluate("(()=>{const b=document.querySelector('#idleband');return b.hidden?'':b.textContent})()")
+    ok('공부했어요 +11분' in band, f'Split View 돌아옴 → 띠 {band!r}')
+    await B.evaluate("document.querySelector('#idleband [data-ib=no]').click()"); await B.clock.run_for(200)
+    await B.screenshot(path=J.TMP + '/ux2f_v07_split.png', clip={'x': 0, 'y': 0, 'width': 1280, 'height': 60})
+    ok(not errs, f'pageerror 0 ({errs[:2]})')
+    await ctx.close()
+
+async def part_twoidle(b):
+    """ux2 fixA V02: 창 A 무활동(기준 넘어 멈춤) → 창 B가 30분 잼 → A로 돌아와도 B가 잰 시간은 되묻지 않음(띠 ≤ B 시작 전 공백)"""
+    ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); A = await ctx.new_page(); B = await ctx.new_page(); errs = []
+    for pg in (A, B): pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
+    print('== V02 창 두 개 무활동 뒤 다른 창')
+    await A.clock.install(time=NOW)
+    await boot(A, '#/OMS1/_home'); await A.evaluate("localStorage.clear()")
+    await boot(A, '#/OMS1/_home'); await boot(B, '#/CONS/_home')
+    await A.mouse.move(300, 400); await A.clock.run_for(1000)
+    for i in range(10): await A.mouse.move(310 + i, 400); await A.clock.run_for(30000)   # A 5분 공부
+    await A.clock.run_for(10 * MIN)   # 둘 다 10분 입력 없음 → A 멈춤(idleGap)
+    ok(await A.evaluate("document.querySelector('#tmr').dataset.st") != 'run', 'A 10분 무활동 → 멈춤')
+    for i in range(60): await B.mouse.move(300 + (i % 20), 420); await asyncio.sleep(0.02); await A.clock.run_for(30000)   # B 30분
+    await A.mouse.move(500, 500); await asyncio.sleep(0.1); await A.clock.run_for(300)
+    band = await A.evaluate("(()=>{const b=document.querySelector('#idleband');return b.hidden?'':b.textContent})()")
+    import re as _re
+    m = _re.search(r'공부했어요 \+(\d+)분', band); add = int(m.group(1)) if m else 0
+    ok(add <= 11, f'A로 돌아옴 → 띠 +{add}분 ≤ B 시작 전 공백(약 9분) ({band!r})')
+    if m: await A.evaluate("document.querySelector('#idleband [data-ib=add]').click()"); await A.clock.run_for(200)
+    for q in (A, B): await q.evaluate("dispatchEvent(new Event('pagehide'))")
+    tm = (await ls(A, 'time') or {}).get('2026-09-24', {}); tot = sum(tm.values())
+    ok(tot <= 47 * MIN, f"합계 {tot / MIN:.0f}분 ≤ 실제 흐른 약 46분 ({ {k: round(v / MIN) for k, v in tm.items()} })")
     ok(not errs, f'pageerror 0 ({errs[:2]})')
     await ctx.close()
 
@@ -194,6 +235,7 @@ async def main():
         await part_view(b, {'width': 1180, 'height': 820}, True, 'ipl')
         await part_clock(b)
         await part_multi(b)
+        await part_twoidle(b)
         await b.close()
     print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
     _sys.exit(1 if fails else 0)

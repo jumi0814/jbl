@@ -879,6 +879,11 @@ body.mode-h .onebar #okh,body.mode-b .onebar #okb{background:#443C33;color:#fff;
  body.prc .jbans{padding:4px 8px!important;font-size:12px}body.prc .jbans>h5,body.prc .jbans>img,body.prc .jbans:not(.excore) .exw{display:none!important}
  body.prc .jbans.excore .exw{max-height:9em!important;overflow:hidden}
 }
+/* ux2 fixA — 데이터·시간·기록 (V01 세부 칸 표시 · V05 복습 칩 · V07 숨긴 글자 속 표시) */
+#jbbar .rvq[hidden]{display:none!important}
+.srcn .srt.rkshow,.srcp .srt.rkshow,.exs .ex-yr.rkshow,.msum td.mt .ex-yr.rkshow,.tho.rkshow{display:inline!important;color:var(--sub);font-size:calc(12px*var(--fs))}
+details.ab.chk>h5.rkshow,details.ab.more>h5.rkshow{display:block!important}
+.mdmore .rkn{font-weight:700;color:#7C5E0E;margin-left:4px}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><button type="button" class="brand" id="gohome" title="허브 홈 — 모든 과목">🏠 JBL 허브<small>3학년 3쿼터</small></button><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <button type="button" id="clock" aria-label="오늘 공부 시간 · 누르면 기록">00:00:00</button><span id="idlechip" class="noann" hidden title="입력이 없어 시계를 멈췄어요 — 움직이면 이어서 잽니다"></span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="백업 · 기기 옮기기 — 표시·채점·메모·공부 시간을 파일로 보내고(공유·내려받기) 다른 기기에서 받아 합치기">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -905,12 +910,12 @@ body.mode-h .onebar #okh,body.mode-b .onebar #okb{background:#443C33;color:#fff;
 <tr><th>도구 막대</th><td>형광펜·빈칸 모드가 켜진 동안은 탭 줄 아래에 ‘🖍 형광펜 켜짐 · 노랑 — 누르면 끄기’ 칩이 뜨고 카드에 점선 테두리 · 아래로 스크롤하는 동안 도구 막대는 ✎ 하나로 줄었다가 멈추면(1.2초)·위로 스크롤하면·✎를 누르면 다시 펼침 · <b>T</b>로 숨긴 상태는 새로고침 뒤에도 유지</td></tr>
 <tr><th>그림</th><td>그림을 누르면 크게 · 크게 본 그림을 누르면 그 자리 확대/맞추기 · 확대 중엔 끌어서 이동 · Ctrl/⌘+휠 확대 · 바깥을 누르거나 Esc로 닫기 · ←/→(스와이프)로 넘기기 · 아래로 쓸면 닫기</td></tr>
 <tr><th>공부 시간</th><td>시계(오늘 합계)를 누르면 <b>목표 고리</b>·이번 주 월~일 막대·오늘 과목·강의별 · [📊 자세히] · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고, 오른쪽 버튼이 <b>● 측정 중</b> / <b>○ 자동 대기</b>(과목을 열고 움직이면 시작) / <b>▶ 공부 시작</b>(자동 꺼짐) · 누르면 쉬기</td></tr>
-<tr><th>무활동·창 여러 개</th><td>입력 없이 1분이 지나면 시계 옆 <b>⏸ 자리 비움</b>(숫자는 멈춤) · <b>무활동 기준</b>(시계 팝업에서 5·8·15·25분, 기본 8분 — 한 장씩 풀기에서 답을 가린 동안은 2배)을 넘으면 멈추고, 돌아오면 아래 띠 ‘12분 동안 입력이 없었어요 — [공부했어요 +11분] [빼기]’(10초 뒤 저절로 빼기 · 최대 60분) · 다른 앱으로 가서 30초가 지나면 멈춤 · 허브를 창 두 개로 열면 마지막으로 만진 창만 잼(다른 창은 ‘○ 다른 창에서 측정 중’)</td></tr>
+<tr><th>무활동·창 여러 개</th><td>입력 없이 1분이 지나면 시계 옆 <b>⏸ 자리 비움</b>(숫자는 멈춤) · <b>무활동 기준</b>(시계 팝업에서 5·8·15·25분, 기본 8분 — 한 장씩 풀기에서 답을 가린 동안은 2배)을 넘으면 멈추고, 돌아오면 아래 띠 ‘12분 동안 입력이 없었어요 — [공부했어요 +11분] [빼기]’(10초 뒤 저절로 빼기 · 최대 60분) · 다른 앱을 쓰는 동안 이 창이 화면에 보이면(아이패드 Split View로 옆 노트 앱에 필기 등) 무활동과 같게 — 기준까지는 계속 재고, 넘으면 멈춘 뒤 돌아오면 [공부했어요 +n분]으로 물음(시계 팝업에서 끄면 30초 뒤 멈춤) · 화면에서 사라지면 바로 멈춤 · 허브를 창 두 개로 열면 마지막으로 만진 창만 잼(다른 창은 ‘○ 다른 창에서 측정 중’) — 무활동 뒤 다른 창이 이어서 잰 시간은 되묻지 않음</td></tr>
 <tr><th>📊 공부 기록</th><td>허브 홈 ‘오늘’ 띠·시계 팝업 [자세히]·과목 홈 진행률 아래 줄 → 이번 주 월~일 막대(과목색 · 옅은 막대 = 지난주 · 점선 = 하루 목표) · 막대를 누르면 그날 과목·강의별 · ◀ ▶ 주 옮기기 · 요일별 평균(최근 4주) · 최근 12주 잔디 · 과목별 누적·강의 상위 10(읽음·기출 정답률) · <b>+ 시간 고치기</b>(날짜·과목·±분 — 자동 기록은 그대로 두고 따로 저장)</td></tr>
-<tr><th>시험일·오늘 복습</th><td>허브 과목 카드의 <b>시험일</b>을 넣으면 D-n(3일 이내 강조)·‘시험 가까운 순’ 정렬·과목 홈에 <b>하루 분량</b>(남은 안 읽은 카드·안 푼 기출 ÷ 남은 날) · <b>🔁 오늘 복습</b>: 틀렸던 기출을 틀린 뒤 맞힌 횟수로 1·3·7일 간격으로 다시(허브 카드·과목 홈 공부 순서·JB 필터 ‘🔁 복습’ — 누르면 한 장씩) · 채점 칩에 마우스를 올리면 ‘다음 복습 9/30’</td></tr>
-<tr><th>백업·저장 공간</th><td>5분마다 자동 백업(바뀌었을 때만 · 마지막 성공 <b id="hbakat">—</b>) · <span id="hpers">저장소 보호: 확인 중</span>(안 됨이면 아이패드는 공유 → 홈 화면에 추가로 열기) · 저장이 안 되면(저장 공간 부족) 닫을 때까지 남는 빨간 띠 <b>‘⚠ 저장되지 않았어요’</b> — 방금 표시는 이 창에만 있으니 [지금 백업 파일 받기]로 파일을 받고 [공간 정리]로 자리를 비우면 30초 안에 다시 저장해요(‘저장됐어요’)</td></tr>
-<tr><th>백업 · 기기 옮기기</th><td>[백업] → <b>⬆ 보내기</b>(아이패드 = 공유 시트로 AirDrop·iCloud·메모, 맥 = 내려받기 뒤 [받았어요]) · <b>⬇ 받기</b>(다른 기기 파일을 골라 합치기 — 지금 기록은 그대로) · 처음 한 번 <b>이 기기 이름</b>(맥·아이패드) · 다른 기기의 공부 시간은 기기별로 따로 두고 <b>합계에 더함</b>(같은 파일을 두 번 합쳐도 한 번만) · 표시·채점이 바뀐 지 3일(시험 7일 안이면 2일)이 넘도록 보내지 않으면 과목을 열 때 노란 띠(하루 한 번, ✕로 닫기) · 허브 홈 ‘이 기기 마지막 보내기 · 다른 기기와 합친 때’</td></tr>
-<tr><th>복원·되돌리기</th><td>[복원] 창 맨 위 <b>저장 공간</b>(기록 n MB / 5MB · 백업 크기 · 과목별 · 마지막 자동 백업) — 70%를 넘으면 허브 홈에 경고 · 자동 백업은 이 기기의 IndexedDB에 주기 5개 + <b>이유별 보관</b>(원고 갱신 전 = 빌드마다 1개 · 버리기 전 3 · 지우기 전 3 · 그 밖의 이관·교체 전 3) · <b>되돌리기·교체는 공부 기록(표시·채점·이해함·메모·플래시카드·자동 빈칸 규칙)만</b> 바꾸고 공부 시간은 줄지 않으며 읽던 위치·설정은 그대로 — 확인창에 ‘바뀐 표시 N개·채점 M개가 사라집니다’ · 바꾸기 전 상태를 먼저 백업하고, 백업이 안 되면 멈춤 · 쓰다 실패하면 원래대로 · 파일 합치기 뒤에는 ‘합친 것 n · 건너뜀 k(이유)’</td></tr>
+<tr><th>시험일·오늘 복습</th><td>허브 과목 카드의 <b>시험일</b>을 넣으면 D-n(3일 이내 강조)·‘시험 가까운 순’ 정렬·과목 홈에 <b>하루 분량</b>(남은 안 읽은 카드·안 푼 기출 ÷ 남은 날) · <b>🔁 오늘 복습</b>: 틀렸던 기출을 틀린 뒤 맞힌 날 수로 1·3·7일 간격으로 다시(같은 날 여러 번 맞혀도 하루로 셈 · 20초 안에 ✗→✓로 고치면 한 번 채점 · ✗를 다시 눌러 끄면 복습에서도 빠짐)(허브 카드·과목 홈 공부 순서·JB 필터 ‘🔁 복습’ — 누르면 한 장씩) · 채점 칩에 마우스를 올리면 ‘다음 복습 9/30’</td></tr>
+<tr><th>백업·저장 공간</th><td>5분마다 자동 백업(바뀌었을 때만 · 마지막 성공 <b id="hbakat">—</b>) · <span id="hpers">저장소 보호: 확인 중</span>(안 됨이면 아이패드는 공유 → 홈 화면에 추가로 열기) · 저장이 안 되면(저장 공간 부족) 닫을 때까지 남는 빨간 띠 <b>‘⚠ 저장되지 않았어요 — 기록 n건을 이 기기에 임시 보관 중’</b> — 임시 보관은 창을 닫아도 남아 다음에 열 때 다시 저장해 봐요(맥은 닫기 전에 확인) · [지금 백업 파일 받기]로 파일을 받고 [공간 정리]로 자리를 비우면 30초 안에 다시 저장해요(‘저장됐어요’)</td></tr>
+<tr><th>백업 · 기기 옮기기</th><td>[백업] → <b>⬆ 보내기</b>(아이패드 = 공유 시트로 AirDrop·iCloud·메모, 맥 = 내려받기 뒤 [받았어요]) · <b>⬇ 받기</b>(다른 기기 파일을 골라 합치기 — 지금 기록은 그대로) · 처음 한 번 <b>이 기기 이름</b>(맥·아이패드) · 다른 기기의 공부 시간은 기기별로 따로 두고 <b>합계에 더함</b>(같은 파일을 두 번 합쳐도 한 번만 · 이 판을 처음 연 날 전의 날짜는 1차 판 합치기가 이미 큰 값으로 합쳐 두었을 수 있어 더하지 않고 큰 값으로) · 표시·채점이 바뀐 지 3일(시험 7일 안이면 2일)이 넘도록 보내지 않으면 과목을 열 때 노란 띠(하루 한 번, ✕로 닫기) · 허브 홈 ‘이 기기 마지막 보내기 · 다른 기기와 합친 때’</td></tr>
+<tr><th>복원·되돌리기</th><td>[복원] 창 맨 위 <b>저장 공간</b>(기록 n MB / 한도 — 한도는 기기마다 한 번 재어 둠: 맥 크롬 약 5MB, 아이패드 사파리 약 2.5MB · 백업 크기 · 과목별 · 마지막 자동 백업) — 70%를 넘으면 허브 홈에 경고 · 자동 백업은 이 기기의 IndexedDB에 주기 5개 + <b>이유별 보관</b>(원고 갱신·이관 전 = 새 판에서 처음 기록을 옮기기 직전 전 과목 한 개, 빌드마다 · 합치기·되돌리기·교체 전 3 · 버리기 전 3 · 지우기 전 3 · 그 밖의 정리 전 3 — 이관 전 백업이 안 되면 옮기지 않음) · <b>되돌리기·교체는 공부 기록(표시·채점·이해함·메모·플래시카드·자동 빈칸 규칙)만</b> 바꾸고 공부 시간은 줄지 않으며 읽던 위치·설정은 그대로 — 확인창에 ‘바뀐 표시 N개·채점 M개가 사라집니다’ · 바꾸기 전 상태를 먼저 백업하고, 백업이 안 되면 멈춤 · 쓰다 실패하면 원래대로 · 파일 합치기 뒤에는 ‘합친 것 n · 건너뜀 k(이유)’</td></tr>
 <tr><th>검색·알림</th><td><b>/</b> 검색 → 결과 위 [전체][정리본][JB][표][예상]으로 좁히기(주소에 남아 새로고침해도 유지) · JB 결과의 ‘답 바로 보기’ · 알림은 화면 아래 도구 막대 위에 하나씩 차례로, 오류는 ✕로 닫을 때까지 빨간 띠 · 지나간 알림은 [복원] 창 ‘최근 알림’</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
 <tr><th>이동·화면</th><td>왼쪽 위 <b>🏠 JBL 허브</b>(아이패드 세로는 ☰ 서랍 맨 위 ‘🏠 허브 홈’)로 허브 홈 · <b>1~6</b> 탭 · <b>G</b> 과목 홈 · <b>/</b> 검색창 · <b>M</b> 메모 · <b>T</b> 도구 막대 숨기기 · <b>Esc</b> 한 단계씩(팝업·도움말 닫기 → 모드 끄기) · <b>?</b> 도움말</td></tr>
@@ -930,13 +935,13 @@ body.mode-h .onebar #okh,body.mode-b .onebar #okb{background:#443C33;color:#fff;
 <tr><th>한 장씩 풀기</th><td>아래 풀이 막대 [◀][답 보기][✗ 틀림][✓ 맞음][★][▶] + 🖍 ▣(형광펜·빈칸) · 키 ←/→(Enter = 다음), Space 답(1단계 → 2단계 → 닫기), O 맞음 · X 틀림(누르면 그 상태로 — 해제는 카드의 버튼), <b>S ★</b>, H 형광펜 · B 빈칸 · 손가락 좌우 스와이프로 넘기기 · <b>카드를 위로 쓸기 = 답 보기</b> · ‘자동 넘김’이 켜져 있으면 <b>✓는 0.25초 뒤 다음 문제, ✗는 답을 펼치고 머묾</b>(‘틀려도 넘김’을 켜면 ✗도 넘김) · 한 장씩 동안 위 막대는 한 줄(필터 ▾로 펼침)·hero 숨김·도구 막대는 ✎ 하나(누르면 이 탭 동안 펼침) · 한 장씩을 켜면 ‘답 모두 펼치기’는 꺼짐 · 마지막 다음은 회차 요약([이번 회차 틀린 것 n 다시][전체 틀린 것 n][안 채점 n][처음부터]) · 카드 머리의 ‘✗2 ✓1’은 최근 채점 기록</td></tr>
 <tr><th>✍ 예상문제</th><td>객관식 보기 ①~④는 줄마다 · 카드마다 [✓ 맞음][✗ 틀림][★](과목 기록에 ‘P:’로 저장 — JB 진행률·허브 개수에는 안 들어감) · 위 막대 [안 푼 것][틀린 것]으로 다시 보기 · J/K 다음/이전 카드</td></tr>
 <tr><th>한 장씩 회차</th><td>한 장씩을 시작한 순간의 문항 목록이 <b>이번 회차</b>로 고정 — 채점해서 ‘안 푼 것’에서 빠져도, 새로고침하거나 새 탭에서 열어도 같은 목록·같은 위치(‘5/36’) · 요약도 이번 회차 기준 · 회차 중 필터를 바꾸면 ‘새 회차를 시작할까요?’ · [필터 다시 적용 ↻]로 지금 필터로 새로 시작 · 과목 홈 ‘최근 읽던 곳’과 허브 과목 카드의 <b>↪ 이어서 풀기</b>(7일 안)</td></tr>
-<tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · <b>기출 카드의 알아요/몰라요 = JB 맞음/틀림</b>(한 기록 — JB ‘틀린 것’·🔁 복습에 그대로, JB에서 매긴 것도 플래시카드에 보임) · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억 · 기출 카드 앞면 = 문제 원문 그대로(그림 포함), 뒷면 = JB 답 핵심·정답 보기·해설 2줄·📖 ⚡ 첫 줄 + [📝 문제 카드로 →]</td></tr>
+<tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · <b>기출 카드의 알아요/몰라요 = JB 맞음/틀림</b>(한 기록 — JB ‘틀린 것’·🔁 복습에 그대로, JB에서 매긴 것도 플래시카드에 보임) · <b>예상 카드의 알아요/몰라요 = 예상 탭 ✓ 맞음/✗ 틀림</b>(한 기록 — 옛 예상 카드 판정은 처음 한 번 옮김) · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억 · 기출 카드 앞면 = 문제 원문 그대로(그림 포함), 뒷면 = JB 답 핵심·정답 보기·해설 2줄·📖 ⚡ 첫 줄 + [📝 문제 카드로 →]</td></tr>
 </tbody></table></div></div>
 <div id="toast" role="status" aria-live="polite"></div><div id="toasterr" class="noann" role="alert"></div><div id="idleband" class="noann" hidden></div><div id="packbar" class="noann" hidden></div>
 <script>
 (function(){
 const $=(s,e)=>(e||document).querySelector(s),$$=(s,e)=>[...(e||document).querySelectorAll(s)];
-const NS='jblhub.v1.';const LSQ=new Map();   /* C01 저장 실패 큐(키 → JSON 글) — 쓰지 못한 값은 여기 두고 읽을 때도 이것을 먼저(메모리가 최신) · 30초마다·공간 정리 뒤 다시 씀 */
+const NS='jblhub.v1.';const LSQ=new Map(),LQ={p:null,busy:false,dirty:false,used:false};   /* LQ = LSQ의 IndexedDB 비춤 상태(ux2 fixA V08) */   /* C01 저장 실패 큐(키 → JSON 글) — 쓰지 못한 값은 여기 두고 읽을 때도 이것을 먼저(메모리가 최신) · 30초마다·공간 정리 뒤 다시 씀 */
 const LS={get(k,d){if(LSQ.has(k)){try{return JSON.parse(LSQ.get(k));}catch(e){return d;}}try{const v=localStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){const s=JSON.stringify(v);try{localStorage.setItem(NS+k,s);if(LSQ.size){LSQ.delete(k);lsFlush();}}catch(e){lsFail(k,s);}}};
 /* ux2 트랙A B11 알림 — toast(글, 숫자(ms) | {level:'info'|'result'|'error', action:{label,fn}, ms}) · 옛 toast(글, ms)는 info 그대로
    · 대기열: 한 번에 하나씩 차례로(뒤에 기다리는 것이 있으면 지금 것은 info 0.7초·result 1.5초 뒤 넘김 · 같은 글은 한 번만) · info 2.5초 · result 6초 + [보기]
@@ -1004,9 +1009,15 @@ $('#clock').onclick=tPop;tBtn();
 let TADJ=null;
 function tAdj(){if(!TADJ)TADJ=tObj(LS.get('tadj',{}));return TADJ;}
 function tLive(){return T.run?Math.max(0,Math.min(Date.now(),T.last+60000)-T.t0):0;}
-function tDay(d){const o={},add=(k,v)=>{v=+v||0;if(v)o[k]=(o[k]||0)+v;};const a=tObj(T.log[d]),b=tObj(tAdj()[d]);for(const k in a)add(k,a[k]);for(const k in b)add(k,b[k]);tDevs().forEach(e=>{const x=tObj(tObj(e.time)[d]),y=tObj(tObj(e.tadj)[d]);for(const k in x)add(k,x[k]);for(const k in y)add(k,y[k]);});   /* C10 다른 기기(timeDev) 몫 */if(d===day())add(CUR.s||'기타',tLive());for(const k in o)if(!(o[k]>0))delete o[k];return o;}
+/* ux2 fixA V05: 기기별 합산을 시작한 날(LS devCut — 이 판을 처음 연 날, 한 번만 씀). 그 전 날짜는 1차 판의 백업 합치기가 이미 기기 시간을 큰 값(max)으로 이 기기 time에 합쳐 두었을 수 있어
+   다른 기기 몫을 더하지 않고 과목마다 큰 값으로 · 그 날부터는 더함. 받은 파일에 그 기기의 devCut이 있으면 두 날 중 늦은 날(timeDev[id].cut) */
+const DEVCUT=(()=>{let c=LS.get('devCut','');if(typeof c!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(c)){c=day();LS.set('devCut',c);}return c;})();
+const devCutOf=e=>{const c=e&&typeof e.cut==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(e.cut)?e.cut:'';return c>DEVCUT?c:DEVCUT;};
+function tDay(d){const o={},add=(k,v)=>{v=+v||0;if(v)o[k]=(o[k]||0)+v;};const a=tObj(T.log[d]),b=tObj(tAdj()[d]);for(const k in a)add(k,a[k]);for(const k in b)add(k,b[k]);tDevs().forEach(e=>{const x=tObj(tObj(e.time)[d]),y=tObj(tObj(e.tadj)[d]);
+  if(d<devCutOf(e)){const v={};for(const k in x)v[k]=(v[k]||0)+(+x[k]||0);for(const k in y)v[k]=(v[k]||0)+(+y[k]||0);for(const k in v)if(v[k]>(o[k]||0))o[k]=v[k];return;}   /* V05 합산 시작 전 = 큰 값 */
+  for(const k in x)add(k,x[k]);for(const k in y)add(k,y[k]);});   /* C10 다른 기기(timeDev) 몫 */if(d===day())add(CUR.s||'기타',tLive());for(const k in o)if(!(o[k]>0))delete o[k];return o;}
 function tSum(o){let s=0;for(const k in o)s+=o[k];return s;}
-function tLec(d){const o=Object.assign({},tObj(T.dlog[d]));tDevs().forEach(e=>{const x=tObj(tObj(e.timed)[d]);for(const k in x)o[k]=(+o[k]||0)+(+x[k]||0);});if(d===day()&&T.run&&CUR.s&&CUR.d){const k=CUR.s+':'+CUR.d;o[k]=(+o[k]||0)+tLive();}return o;}
+function tLec(d){const o=Object.assign({},tObj(T.dlog[d]));tDevs().forEach(e=>{const x=tObj(tObj(e.timed)[d]),pre=d<devCutOf(e);for(const k in x)o[k]=pre?Math.max(+o[k]||0,+x[k]||0):(+o[k]||0)+(+x[k]||0);});if(d===day()&&T.run&&CUR.s&&CUR.d){const k=CUR.s+':'+CUR.d;o[k]=(+o[k]||0)+tLive();}return o;}
 function tD0(dt){const x=new Date(dt||Date.now());x.setHours(12,0,0,0);return x;}   /* 한낮으로 맞춰 날짜 더하기가 서머타임에도 어긋나지 않게 */
 function tDAdd(dt,n){const x=tD0(dt);x.setDate(x.getDate()+n);return x;}
 function tMon(dt){const x=tD0(dt);x.setDate(x.getDate()-((x.getDay()+6)%7));return x;}
@@ -1085,14 +1096,15 @@ function tPopHTML(){const today=day(),goal=tGoal()*60000,o=tDay(today),td=tSum(o
  ${lk.length?`<div class="small">강의별</div><ul class="tpl">${lk.map(k=>{const x=docName(k);return `<li>${EH(x.nm)} <span class="small">${EH(x.P?x.P.title:x.s)}</span> <b>${fmtH(L[k])}</b></li>`;}).join('')}</ul>`:''}
  <div class="row"><button type="button" class="btn sm" id="tpmore">📊 자세히</button></div>
  <label class="tauto"><input type="checkbox" id="tautoc" ${T.auto?'checked':''}> 자동 측정 — 과목을 열어 두고 움직이는 동안 재고, 무활동·다른 창이면 멈춤</label>
- <label class="tauto tidle">무활동 기준 <select id="tidle" aria-label="무활동 기준">${[5,8,15,25].map(m=>`<option value="${m}"${m===im?' selected':''}>${m}분</option>`).join('')}</select> <span class="small">— 넘으면 멈추고, 돌아오면 그동안을 더할지 물어요(한 장씩 풀기에서 답을 가린 동안은 2배)</span></label>`;}
+ <label class="tauto tidle">무활동 기준 <select id="tidle" aria-label="무활동 기준">${[5,8,15,25].map(m=>`<option value="${m}"${m===im?' selected':''}>${m}분</option>`).join('')}</select> <span class="small">— 넘으면 멈추고, 돌아오면 그동안을 더할지 물어요(한 장씩 풀기에서 답을 가린 동안은 2배)</span></label>
+ <label class="tauto"><input type="checkbox" id="tblurc" ${blurIdle()?'checked':''}> 옆 앱을 쓰는 동안(Split View처럼 이 창이 화면에 보이면)도 무활동처럼 재기 <span class="small">— 끄면 다른 앱으로 가고 30초 뒤 멈춤</span></label>`;}
 function tPopWire(p){$('#tautoc').onchange=e=>{T.auto=e.target.checked;LS.set('tauto',T.auto);T.manualPause=false;if(!T.auto&&T.run)tStop();tBtn();};
- $('#tidle').onchange=e=>{LS.set('idleMin',+e.target.value);setTimeout(()=>e.target.blur(),0);};$('#tpmore').onclick=()=>{p.classList.remove('on');timeView();};}
+ $('#tblurc').onchange=e=>{LS.set('blurIdle',!!e.target.checked);};$('#tidle').onchange=e=>{LS.set('idleMin',+e.target.value);setTimeout(()=>e.target.blur(),0);};$('#tpmore').onclick=()=>{p.classList.remove('on');timeView();};}
 /* ---- B03·B04 무활동: 입력 없이 60초 → 시계 옆 '⏸ 자리 비움 m:ss'(숫자는 저장 규칙대로 멈춤) · 기준(LS idleMin 5·8·15·25분, 기본 8 — 한 장씩 풀기에서 답을 가린 동안 2배)을 넘으면
    마지막 입력 1분 뒤까지만 저장하고 멈춤 → 돌아오면 아래 띠 '12분 동안 입력이 없었어요 — [공부했어요 +11분] [빼기]'(10초 뒤 저절로 빼기 · 최대 60분) ---- */
 function idleMs(){let m=+LS.get('idleMin',8);if([5,8,15,25].indexOf(m)<0)m=8;let ms=m*60000;if(JB.one&&isJBv()){const c=JB.vis[JB.cur];if(c&&!c.classList.contains('open'))ms*=2;}return ms;}
 function idleChip(){const c=$('#idlechip');if(!c)return;const g=Date.now()-T.last,on=(T.run&&g>60000)||!!T.idleGap;c.hidden=!on;if(on){const s=Math.floor(g/1000);c.textContent='⏸ 자리 비움 '+Math.floor(s/60)+':'+('0'+s%60).slice(-2);}}
-function idleBack(now){const G=T.idleGap;T.idleGap=null;idleChip();if(!G)return;const add=Math.min(60*60000,now-G.from),gap=now-G.last;if(add<60000)return;
+function idleBack(now){const G=T.idleGap;T.idleGap=null;idleChip();if(!G)return;const end=Math.min(now,+G.until||now),add=Math.min(60*60000,end-G.from),gap=end-G.last;if(add<60000)return;   /* ux2 fixA V02: 다른 창이 재기 시작한 때(until)까지만 — 그 뒤는 그 창이 이미 셈 */
  const b=$('#idleband');clearTimeout(idleBack.t);b.innerHTML=`<span>${Math.round(gap/60000)}분 동안 입력이 없었어요</span><button type="button" class="btn pri sm" data-ib="add" title="마지막 입력 뒤 1분은 이미 셈 — 나머지를 ${EH(sjName(G.s))}${G.d?' · '+EH(docName(G.s+':'+G.d).nm):''}에 더함">공부했어요 +${Math.round(add/60000)}분</button><button type="button" class="btn sm" data-ib="no">빼기</button><i class="ibt"></i>`;
  b.hidden=false;b.dataset.at=now;idleBack.G=Object.assign({},G,{add,at:now});idleBack.t=setTimeout(()=>idleEnd(false),10000);}
 function idleEnd(yes){clearTimeout(idleBack.t);const b=$('#idleband'),G=idleBack.G;idleBack.G=null;if(b)b.hidden=true;if(!yes||!G)return;
@@ -1101,9 +1113,11 @@ function idleEnd(yes){clearTimeout(idleBack.t);const b=$('#idleband'),G=idleBack
 $('#idleband').addEventListener('click',e=>{const t=e.target.closest('[data-ib]');if(t)idleEnd(t.dataset.ib==='add');});
 /* ---- B05 창 여러 개: 창(탭) blur 30초 → 멈춤, focus → 다시 · BroadcastChannel('jblhub')로 '재는 창'은 마지막으로 입력이 있었던 창 하나만(다른 창은 '○ 다른 창에서 측정 중') · 채널이 없으면 지금 방식 ---- */
 const TWID=Math.random().toString(36).slice(2);let TBC=null,TOWN='',TPOST=0,TBLUR=0;
-try{if(window.BroadcastChannel){TBC=new BroadcastChannel('jblhub');TBC.onmessage=e=>{const m=e.data||{};if(m.k!=='own'||m.id===TWID)return;TOWN=m.id;if(T.run){T.resumeOnAct=!T.autoRun;tStop();}T.other=!!m.run;tBtn();};}}catch(e){TBC=null;}
-function tOwn(){if(!TBC)return;const now=Date.now();if(T.other){T.other=false;tBtn();}if(TOWN!==TWID||now-TPOST>4000){TOWN=TWID;TPOST=now;try{TBC.postMessage({k:'own',id:TWID,run:T.run});}catch(e){}}}
-addEventListener('blur',e=>{if(e.target!==window)return;clearTimeout(TBLUR);TBLUR=setTimeout(()=>{if(T.run){T.blurStop=true;T.blurAuto=!!T.autoRun;tStop();}},30000);});
+try{if(window.BroadcastChannel){TBC=new BroadcastChannel('jblhub');TBC.onmessage=e=>{const m=e.data||{};if(m.k!=='own'||m.id===TWID)return;TOWN=m.id;if(T.run){T.resumeOnAct=!T.autoRun;tStop();}if(T.idleGap&&!T.idleGap.until)T.idleGap.until=Math.max(T.idleGap.from,+m.at||Date.now());T.other=!!m.run;tBtn();};}}catch(e){TBC=null;}
+function tOwn(){if(!TBC)return;const now=Date.now();if(T.other){T.other=false;tBtn();}if(TOWN!==TWID||now-TPOST>4000){TOWN=TWID;TPOST=now;try{TBC.postMessage({k:'own',id:TWID,run:T.run,at:now});}catch(e){}}}
+/* ux2 fixA V07·V10: 창이 화면에 보이는 채 초점만 잃으면(아이패드 Split View로 옆 노트 앱에 쓰기 등) 무활동과 같게 — 무활동 기준까지 재고, 넘으면 멈춘 뒤 돌아오면 [공부했어요 +n분] · LS blurIdle=false면 옛 방식(30초 뒤 멈춤) · 화면에서 사라지면(visibilitychange) 바로 멈춤 그대로 */
+const blurIdle=()=>LS.get('blurIdle',true)!==false;
+addEventListener('blur',e=>{if(e.target!==window)return;clearTimeout(TBLUR);if(document.visibilityState==='visible'&&blurIdle())return;TBLUR=setTimeout(()=>{if(T.run){T.blurStop=true;T.blurAuto=!!T.autoRun;tStop();}},30000);});
 addEventListener('focus',e=>{if(e.target!==window)return;clearTimeout(TBLUR);if(T.blurStop){T.blurStop=false;T.last=Date.now();if(!T.manualPause&&(!T.blurAuto||(T.auto&&CUR.s)))tStart(T.blurAuto);}});
 addEventListener('storage',e=>{if(e.key===NS+'tadj')TADJ=null;});
 /* ---- B06 허브 홈 '오늘' 띠·시험일 D-day(LS exam.<S> = 'YYYY-MM-DD')·과목 카드 정렬(LS homeSort)·과목 홈 하루 분량 ---- */
@@ -1128,13 +1142,17 @@ function tSubjLine(p){let s=0;for(const d of Object.keys(T.log))s+=+tObj(T.log[d
 /* ---- B07 오늘 복습(라이트너 — mk.log만 읽음, 저장 형식 그대로): 마지막 결과가 틀림 → 지금 · 틀림 뒤 맞음 1번 → 1일 뒤 · 2번 → 3일 뒤 · 3번↑ → 7일 뒤 · 한 번도 틀린 적 없으면 뺌
    (log 없이 ng만 있는 옛 기록 = 지금 복습) ---- */
 function revNext(m,id){const L=(Array.isArray(m.log&&m.log[id])?m.log[id]:[]).filter(x=>x&&(x.r==='ok'||x.r==='ng')).sort((a,b)=>(+a.t||0)-(+b.t||0));let li=-1;L.forEach((x,i)=>{if(x.r==='ng')li=i;});
- if(li<0)return (!L.length&&m.ng&&m.ng[id])?day():null;const k=L.length-1-li;if(!k)return day(new Date(+L[li].t||Date.now()));return day(tDAdd(new Date(+L[L.length-1].t||Date.now()),k===1?1:k===2?3:7));}
+ if(li<0)return (!L.length&&m.ng&&m.ng[id])?day():null;
+ if(!(m.ok&&m.ok[id])&&!(m.ng&&m.ng[id])&&li===L.length-1)return null;   /* ux2 fixA V03: 지금 채점이 없고(✗를 다시 눌러 끔) 마지막 기록이 틀림 = 취소한 것 — 복습에서 뺌(옛 기록 포함) */
+ const ds=new Set(L.slice(li+1).map(x=>day(new Date(+x.t||0)))),k=ds.size;   /* ux2 fixA V11: 틀린 뒤 맞음은 하루에 한 번만 셈(같은 날 다시 풀기·요약 다시로 7일로 건너뛰지 않게) */
+ if(!k)return day(new Date(+L[li].t||Date.now()));return day(tDAdd(new Date(+L[L.length-1].t||Date.now()),k===1?1:k===2?3:7));}
 function revInfo(S){const p=PACKS[S],m=getMK(S),out={due:new Set(),ever:new Set(),next:{}},today=day();if(!p)return out;new Set([...Object.keys(m.log||{}),...Object.keys(m.ng||{})]).forEach(id=>{if(!p.cards[id])return;const nd=revNext(m,id);if(!nd)return;out.ever.add(id);out.next[id]=nd;if(nd<=today)out.due.add(id);});return out;}
 function revTitle(id){if(!CUR.s)return '';const nd=revNext(MK,id);if(!nd)return '';return nd<=day()?' · 지금 복습 대상 🔁':' · 다음 복습 '+(+nd.slice(5,7))+'/'+(+nd.slice(8));}
-function revQf(p,ids){const R=revInfo(p.id),set=new Set(ids);let du=0,ev=0;R.ever.forEach(id=>{if(set.has(id)){ev++;if(R.due.has(id))du++;}});if(!ev)return '';
- return `<button class="tg rvq" data-qf="due" title="오늘 복습할 문항 — 틀린 뒤 맞힌 횟수로 1·3·7일 간격(라이트너)"><span class="rvn">🔁 복습 ${du}</span></button><button class="tg rvq" data-qf="ever" title="채점 기록에 틀림이 한 번이라도 있는 문항"><span class="rvn">한 번이라도 틀림 ${ev}</span></button>`;}
+function revQf(p,ids){const R=revInfo(p.id),set=new Set(ids);let du=0,ev=0;R.ever.forEach(id=>{if(set.has(id)){ev++;if(R.due.has(id))du++;}});const hd=ev?'':' hidden';   /* ux2 fixA V05·V11: 0이어도 숨긴 채 만들어 두고 채점하면 바로 나타남 */
+ return `<button class="tg rvq" data-qf="due"${hd} title="오늘 복습할 문항 — 틀린 뒤 맞힌 날 수로 1·3·7일 간격(라이트너)"><span class="rvn">🔁 복습 ${du}</span></button><button class="tg rvq" data-qf="ever"${hd} title="채점 기록에 틀림이 한 번이라도 있는 문항"><span class="rvn">한 번이라도 틀림 ${ev}</span></button>`;}
 function revQfUpd(){const b=$('#jbbar [data-qf="due"]');if(!b||!CUR.s)return;const p=PACKS[CUR.s],R=revInfo(CUR.s),set=new Set($$('#cards .qc').map(c=>c.dataset.id));let du=0,ev=0;R.ever.forEach(id=>{if(set.has(id)){ev++;if(R.due.has(id))du++;}});
- b.querySelector('.rvn').textContent='🔁 복습 '+du;const e=$('#jbbar [data-qf="ever"] .rvn');if(e)e.textContent='한 번이라도 틀림 '+ev;}
+ b.querySelector('.rvn').textContent='🔁 복습 '+du;const e=$('#jbbar [data-qf="ever"]');if(e)e.querySelector('.rvn').textContent='한 번이라도 틀림 '+ev;
+ [b,e].forEach(x=>{if(x)x.hidden=!ev&&!x.classList.contains('on');});}
 function revBtn(S,cls){const n=revInfo(S).due.size;return n?`<button type="button" class="btn ${cls||'sm'} rvgo" data-revgo="${S}">🔁 오늘 복습 ${n}문항 ▶</button>`:'';}
 function revGo(S){if(!PACKS[S])return;const due=revInfo(S).due;openDoc(S,'_jb');const F=JB.F;if(!F)return;Object.assign(F,{prof:'',lec:'',n:0,ver:'',yr:'',st:'',q:'',mine:'due'});if([...due].some(id=>(PACKS[S].refids||[]).indexOf(id)>=0))F.tiers.C=true;
  JB.sess={};JB.sync();JB.apply(true);if(!JB.one)$('#fone').click();else{JB.startRound();JB.cur=0;JB.show();}window.scrollTo(0,0);if(!due.size)toast('오늘 복습할 문항이 없어요');}
@@ -1244,7 +1262,7 @@ function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
-function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);sumMig(s);migrateAids(s);legacyNote(s);jbMove(s);fcMerge(s);MK=getMK(s);setTimeout(bkNag,600);}
+function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const pend=PENDRET;PENDRET=null;leaveView();tFlush();if(CUR.s!==s){Kit.load(s);migKit(s);migLS(s);MK=getMK(s);setTimeout(bkNag,600);}
  const tabs=docTabs(p,d);if(!t||!tabs.find(x=>x[0]===t))t=tabs[0][0];
  const same=VIEW==='doc'&&CUR.s===s&&CUR.d===d&&CUR.t===t,push=opt.push!==false&&!same&&VIEW!=='none';if(push)stampHist();
  /* 돌아가기 알약: 칩으로 다른 화면에 가면 출발점 기억 · 도착 문서를 벗어나거나 출발점으로 돌아오면 지움 */
@@ -1394,9 +1412,11 @@ function lnav(d,ex){const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null&&(
  goCard(+cs[i].id.split('-').pop());}
 /* 채점: how='toggle'(카드 버튼) | 'set'(풀이 막대·O/X — 누르면 항상 그 상태). 맞음/틀림을 매길 때마다 MK.log[id]에 {r,t} (최근 10개)
    — mk.<S>의 ok·ng·bm 형식은 그대로(옛 기록·옛 허브와 호환), log만 더함. 쓰기 직전에 다시 읽음(다른 창과 합침) */
+const MKFIX=20000;   /* ux2 fixA V04: 이 시간(ms) 안의 다시 매김 = 고침(기록 하나) */
 function mark(id,k,how,src){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}MK=getMK(CUR.s);const was=!!MK[k][id];
- if(how==='toggle'&&was)delete MK[k][id];
- else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];L.push(src?{r:k,t:Date.now(),how:src}:{r:k,t:Date.now()});MK.log[id]=L.slice(-10);}}   /* C08: 플래시카드에서 매긴 것은 how:'fc' */
+ if(how==='toggle'&&was){delete MK[k][id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];const z=L[L.length-1];if(z&&z.r===k){L.pop();if(L.length)MK.log[id]=L;else delete MK.log[id];}}}   /* ux2 fixA V03: 채점을 끄면(✗ 다시 누름) 그 채점 기록(log 마지막 것)도 뺌 — 복습 대기열·'한 번이라도 틀림'에 남지 않게 */
+ else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];const now=Date.now(),z=L[L.length-1];if(z&&(z.r==='ok'||z.r==='ng')&&now-(+z.t||0)>=0&&now-(+z.t||0)<MKFIX)L.pop();   /* ux2 fixA V04: 20초 안에 다시 매기면(✗→✓ 잘못 누름 고침) 앞 기록을 바꿈 */
+  L.push(src?{r:k,t:now,how:src}:{r:k,t:now});MK.log[id]=L.slice(-10);}}   /* C08: 플래시카드에서 매긴 것은 how:'fc' */
  LS.set('mk.'+CUR.s,MK);$$('#stage .qc[data-id="'+CSS.escape(id)+'"],#stage .pc[data-id="'+CSS.escape(id)+'"]').forEach(paintQ);if(JB.F)JB.prog();JB.bar&&JB.bar();sideRender();hstat();revQfUpd();}
 /* 카드 한 장의 채점 색·'✗2 ✓1' 기록 칩 */
 function paintQ(c){const id=c.dataset.id;['ok','ng','bm'].forEach(k=>c.classList.toggle('mk-'+k,!!MK[k][id]));const L=Array.isArray(MK.log[id])?MK.log[id]:[];let a=0,b=0;L.forEach(x=>{if(x&&x.r==='ok')a++;else if(x&&x.r==='ng')b++;});
@@ -1477,8 +1497,9 @@ const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
   L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp),pc=$('.pc',tmp);if(q&&a)this.all.push({key:'P:'+((pc&&pc.dataset.aid)||i),tag:'예상',kind:'예상',q:E(q.textContent),a:E(a.textContent)});});
   const ps=mkObj(LS.get('fcpos.'+this.s+'.'+this.k,{}));this.kind=typeof ps.kind==='string'?ps.kind:'';this.st=typeof ps.st==='string'?ps.st:'';this.ord=Array.isArray(ps.ord)?ps.ord:null;this.back=false;this.build(ps.key);},
  mem(){return mkObj(LS.get('fc.'+this.s,{}));},
- /* C08: 기출 카드(J:<id>)의 상태는 JB 채점 기록(mk)에서 — 틀림 = 몰라요 · 맞음 = 알아요 · 암기(R:)·예상(P:)은 fc 그대로 */
- stt(c,M){if(c.key.indexOf('J:')===0){const id=c.key.slice(2);return MK.ng[id]?{s:'x'}:MK.ok[id]?{s:'o'}:null;}return M[c.key]||null;},
+ /* C08: 기출 카드(J:<id>)의 상태는 JB 채점 기록(mk)에서 — 틀림 = 몰라요 · 맞음 = 알아요 · ux2 fixA V13: 예상(P:<aid>)도 mk(예상 탭 ✓✗와 같은 기록, id = 'P:'+aid) · 암기(R:)는 fc 그대로 */
+ mkid(c){return c.key.indexOf('J:')===0?c.key.slice(2):c.key.indexOf('P:')===0?c.key:null;},
+ stt(c,M){const id=this.mkid(c);if(id)return MK.ng[id]?{s:'x'}:MK.ok[id]?{s:'o'}:null;return M[c.key]||null;},
  build(key){const M=this.mem();let d=this.all.filter(c=>{const m=this.stt(c,M);return (!this.kind||c.kind===this.kind)&&(!this.st||(this.st==='x'?(m&&m.s==='x'):!m));});
   if(this.ord){const pos={};this.ord.forEach((k,i)=>pos[k]=i);d.sort((a,b)=>(pos[a.key]==null?1e9:pos[a.key])-(pos[b.key]==null?1e9:pos[b.key]));}
   this.deck=d;const j=key?d.findIndex(c=>c.key===key):-1;this.i=j>=0?j:Math.min(this.i,Math.max(0,d.length-1));if(j<0&&key==null)this.i=0;this.draw();},
@@ -1487,7 +1508,7 @@ const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
  stf(v){this.st=this.st===v?'':v;this.back=false;this.i=0;this.build(null);this.save();},
  shuffle(){const ks=this.all.map(c=>c.key);for(let i=ks.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ks[i],ks[j]]=[ks[j],ks[i]];}this.ord=ks;this.back=false;this.i=0;this.build(null);this.save();toast('카드를 섞었어요 — 순서는 이 강의에 저장');},
  move(d){if(!this.deck.length)return;this.i=(this.i+d+this.deck.length)%this.deck.length;this.back=false;this.draw();this.save();},
- judge(v){const c=this.deck[this.i];if(!c)return;if(c.key.indexOf('J:')===0){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}mark(c.key.slice(2),v==='o'?'ok':'ng','set','fc');}else{const M=this.mem();M[c.key]={s:v,t:Date.now()};LS.set('fc.'+this.s,M);}   /* C08 기출 카드 = JB 채점 */
+ judge(v){const c=this.deck[this.i];if(!c)return;const mid=this.mkid(c);if(mid){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}mark(mid,v==='o'?'ok':'ng','set','fc');}else{const M=this.mem();M[c.key]={s:v,t:Date.now()};LS.set('fc.'+this.s,M);}   /* C08 기출 카드 = JB 채점 */
   if(this.st&&!(this.st==='x'&&v==='x')){const k=c.key;this.build(k);if(this.deck[this.i]&&this.deck[this.i].key===k)this.move(1);else{this.back=false;this.draw();this.save();}}else this.move(1);},
  flip(){this.back=!this.back;this.draw();},
  draw(){const f=$('#fc');if(!f)return;const M=this.mem(),A=this.all,S_=c=>this.stt(c,M);const cnt=(k,st)=>A.filter(c=>{const m=S_(c);return (!k||c.kind===k)&&(!st||(st==='x'?(m&&m.s==='x'):!m));}).length;
@@ -1624,7 +1645,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  /* 옛 파랑 형광펜 {t:'h',c:'b'} → c:'u' (전 과목, 바꾸기 전 자동 백업) */
  function migBlue(){const ks=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf(NS+'ann.')===0)ks.push(k);}const todo=[];
   ks.forEach(k=>{try{const a=JSON.parse(localStorage.getItem(k));let hit=false;for(const id in a)(a[id]||[]).forEach(o=>{if(o&&o.t==='h'&&o.c==='b'){o.c='u';hit=true;}});if(hit)todo.push([k,a]);}catch(e){}});
-  if(!todo.length)return;autoBak(true,'파랑 색 키 이관');todo.forEach(([k,a])=>{try{localStorage.setItem(k,JSON.stringify(a));}catch(e){}});}
+  if(!todo.length)return;migBak();   /* ux2 fixA V04: 이관 전 전 과목 백업(upd) — 부른 순간의 상태를 떠 둠 */todo.forEach(([k,a])=>{try{localStorage.setItem(k,JSON.stringify(a));}catch(e){}});}
  function lostN(){let n=0;for(const k in ANN)(ANN[k]||[]).forEach(o=>{if(o&&o.lost)n++;});return n;}
  function updLost(){const b=$('#k-lost');if(!b)return;const n=S?lostN():0;b.hidden=!n;b.querySelector('b').textContent=n;}
  function persist(){if(!S)return;LS.set('ann.'+S,ANN);LS.set('annAt.'+S,Date.now());updLost();coverChips();}
@@ -1701,7 +1722,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  /* 옛 표시(v 없음)에 옛 기준선 글자로 문맥 붙이기 — 과목마다 한 번(바꾸기 전 자동 백업) */
  function needsLX(s){const A=LS.get('ann.'+s,{});if(!A||typeof A!=='object')return false;for(const k in A)if(Array.isArray(A[k])&&A[k].some(o=>o&&typeof o==='object'&&o.x&&!o.v&&!o.lx))return true;return false;}
  function enrich(s){const X=LXT[s];if(!X||S!==s)return 0;let n=0,todo=0;for(const k in ANN)(ANN[k]||[]).forEach(o=>{if(o&&typeof o==='object'&&o.x&&!o.v&&!o.lx)todo++;});if(!todo)return 0;
-  autoBak(true,'표시 위치 보강 전');
+  migBak();   /* ux2 fixA V04 (옛: '표시 위치 보강 전') */
   for(const k in ANN)(ANN[k]||[]).forEach(o=>{if(!o||typeof o!=='object'||!o.x||o.v||o.lx)return;const T0=X[k];const r=T0!=null?oldLocate(T0,o.x,o.i):null;
    if(!r){o.lx=1;return;}o.p=T0.slice(Math.max(0,r[0]-CTX),r[0]);o.s=T0.slice(r[1],r[1]+CTX);o.v=fnv(T0);n++;});
   persist();return n;}
@@ -2052,7 +2073,7 @@ function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/
 $('#bkup').onclick=bkPop;   /* C10 [백업] = 기기 옮기기 창 */
 /* 합치기 v3(C05) — 키마다 따로(try): 깨진 값·형식이 다른 값은 건너뛰고 이유를 모음 → {n: 합친 것, skip: [[키, 이유]]} · mergeInto(옛 호출)는 n만
    기기 키(devId·devName·timeDev·devMerged)·백업 관리 키(autobak*·lastBackup·bakWarnDay)는 합치지 않음 · 메모: 백업 메모가 지금 메모를 품으면 백업 것으로 */
-const MSKIP=/^(devId|devName|timeDev|devMerged|lastBackup|autobak|bakWarnDay|a2hsNote|fcMerged|jbmoved|sumMig)/;
+const MSKIP=/^(devId|devName|devCut|timeDev|devMerged|lastBackup|autobak|bakWarnDay|a2hsNote|fcMerged|jbmoved|sumMig|lscap|lsq)/;
 function mergeData(data,opt){opt=opt||{};const J=v=>{try{return JSON.parse(v);}catch(e){return undefined;}};let n=0;const skip=[];
  const isObj=v=>v&&typeof v==='object'&&!Array.isArray(v);
  for(const k in data){const key=k.indexOf(NS)===0?k.slice(NS.length):k;
@@ -2091,17 +2112,17 @@ function bkMetaAll(db){return bkTx(db,['meta'],'readonly',(tx,out)=>{const r=tx.
 function bkGet(db,at){return bkTx(db,['snap','meta'],'readonly',(tx,out)=>{const o={};const r=tx.objectStore('snap').get(at),m=tx.objectStore('meta').get(at);r.onsuccess=()=>{o.s=r.result;out(o);};m.onsuccess=()=>{o.m=m.result;out(o);};}).then(x=>x.ok&&x.v&&x.v.s?Object.assign({},x.v.m||{},{at:x.v.s.at,data:x.v.s.data}):null);}
 function bkPutRec(db,recs){return bkTx(db,['snap','meta'],'readwrite',tx=>{recs.forEach(([s,m])=>{tx.objectStore('snap').put(s);tx.objectStore('meta').put(m);});}).then(x=>x.ok);}
 function bkDel(db,ats){if(!ats.length)return Promise.resolve(true);return bkTx(db,['snap','meta'],'readwrite',tx=>{ats.forEach(a=>{tx.objectStore('snap').delete(a);tx.objectStore('meta').delete(a);});}).then(x=>x.ok);}
-function bkCat(why){if(!why)return 'i';if(/원고 갱신/.test(why))return 'upd';if(/버리기/.test(why))return 'drop';if(/지우기/.test(why))return 'clear';return 'misc';}
-const BKCATN={i:'자동',upd:'원고 갱신 전',drop:'버리기 전',clear:'지우기 전',misc:'이관·교체 전'};
+function bkCat(why){if(!why)return 'i';if(/원고 갱신/.test(why))return 'upd';if(/합치기 전|되돌리기 전|교체 전/.test(why))return 'rst';if(/버리기/.test(why))return 'drop';if(/지우기/.test(why))return 'clear';return 'misc';}   /* ux2 fixA V04: 합치기·되돌리기·교체 전은 따로 3칸(rst) */
+const BKCATN={i:'자동',upd:'원고 갱신·이관 전',rst:'합치기·되돌리기 전',drop:'버리기 전',clear:'지우기 전',misc:'그 밖의 정리 전'};
 function bkNow(){let t=Date.now();if(t<=BK.lastAt)t=BK.lastAt+1;BK.lastAt=t;return t;}
 const SUBKEY=s=>new RegExp('^'+NS.replace(/\./g,'\\.')+'(ann|done|mk|fc|autoRule|memo)\\.'+s+'(\\.|$)');
 function bkMeta(at,why,cat,data,sig,extra){let size=0;for(const k in data)size+=k.length+String(data[k]).length;return Object.assign({at,why:why||'',cat,size,sig},extra||{});}
 async function bkIdb(db,force,why,sub,data,s){const cat=force&&!why?'i':bkCat(why),sig=fnv1(s),M=await bkMetaAll(db);
  if(cat==='i'&&!force){const last=M.filter(m=>m.cat==='i').sort((a,b)=>b.at-a.at)[0];if(last&&last.sig===sig){autoBak.last=s;return true;}}
- if(cat==='upd'){const ex=M.find(m=>m.cat==='upd'&&m.build===HUB_BUILD);if(ex){const subs=Array.isArray(ex.subs)?ex.subs:[];if(!sub||subs.indexOf(sub)>=0)return true;   /* 같은 빌드: 과목마다 처음 이관 직전 값만 채워 넣음 */
+ if(cat==='upd'){const ex=M.find(m=>m.cat==='upd'&&m.build===HUB_BUILD);if(ex){const subs=Array.isArray(ex.subs)?ex.subs:[];if(!sub||subs.indexOf(sub)>=0||subs.indexOf('*')>=0)return true;   /* '*' = 전 과목 이관 전 값이 다 든 스냅숏(migBak) */   /* 같은 빌드: 과목마다 처음 이관 직전 값만 채워 넣음 */
    const rec=await bkGet(db,ex.at);if(!rec)return false;const re=SUBKEY(sub),d=rec.data||{};Object.keys(d).forEach(k=>{if(re.test(k))delete d[k];});Object.keys(data).forEach(k=>{if(re.test(k))d[k]=data[k];});
    return bkPutRec(db,[[{at:ex.at,data:d},bkMeta(ex.at,ex.why,'upd',d,fnv1(bakSig(d)),{build:HUB_BUILD,subs:subs.concat([sub])})]]);}}
- const at=bkNow(),extra=cat==='upd'?{build:HUB_BUILD,subs:sub?[sub]:[]}:{};const ok=await bkPutRec(db,[[{at,data},bkMeta(at,why||(force?'바꾸기 전':''),cat,data,sig,extra)]]);if(!ok)return false;
+ const at=bkNow(),extra=cat==='upd'?{build:HUB_BUILD,subs:sub?[sub]:['*']}:{};const ok=await bkPutRec(db,[[{at,data},bkMeta(at,why||(force?'바꾸기 전':''),cat,data,sig,extra)]]);if(!ok)return false;
  if(cat==='i')autoBak.last=s;await bkPrune(db);return true;}
 async function bkPrune(db){const M=await bkMetaAll(db),del=[],by={};M.sort((a,b)=>b.at-a.at).forEach(m=>{(by[m.cat]=by[m.cat]||[]).push(m);});
  for(const c in by){const L=by[c];if(c==='upd'){const bs=[];L.forEach(m=>{if(bs.indexOf(m.build)<0)bs.push(m.build);if(bs.indexOf(m.build)>=3)del.push(m.at);});}else L.slice(c==='i'?5:3).forEach(m=>del.push(m.at));}
@@ -2160,19 +2181,37 @@ function jbResGo(v){const [S,d]=v.split('|');if(!PACKS[S])return;openDoc(S,d,d[0
 ['#home','#stage'].forEach(sel=>$(sel).addEventListener('click',e=>{const b=e.target.closest('[data-jbres]');if(!b)return;e.stopPropagation();e.preventDefault();jbResGo(b.dataset.jbres);},true));
 /* C08 옛 플래시카드 기출 판정(fc.<S>의 J:<id>) → JB 채점(mk)에 한 번 합침(LS fcMerged.<S>=1) — 그 문항에 기록(log)이 없거나 fc 판정이 더 최신일 때만 ok/ng + log {r,t,how:'fc'}(같은 t의 fc 기록이 있으면 건너뜀)
    합치기 전 autoBak(true,'플래시카드 기록 합침') · fc의 J: 키는 지우지 않음 */
-function fcMerge(s){if(LS.get('fcMerged.'+s,0))return;const p=PACKS[s];if(!p)return;const F=mkObj(LS.get('fc.'+s,{}));const J=Object.keys(F).filter(k=>k.indexOf('J:')===0&&F[k]&&(F[k].s==='o'||F[k].s==='x')&&p.cards[k.slice(2)]);
- if(!J.length){LS.set('fcMerged.'+s,1);return;}const m=getMK(s);let n=0;
- J.forEach(k=>{const id=k.slice(2),e=F[k],t=+e.t||0,L=Array.isArray(m.log[id])?m.log[id].filter(x=>x&&typeof x==='object'):[];if(L.some(x=>x.how==='fc'&&+x.t===t))return;const last=L.reduce((a,x)=>Math.max(a,+x.t||0),0);if(L.length&&t<=last)return;
-  const r=e.s==='o'?'ok':'ng';m[r][id]=1;delete m[r==='ok'?'ng':'ok'][id];L.push({r,t,how:'fc'});m.log[id]=L.sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);n++;});
- if(n){autoBak(true,'플래시카드 기록 합침');LS.set('mk.'+s,m);}LS.set('fcMerged.'+s,1);if(n)toast('플래시카드 기출 판정 '+n+'개를 JB 채점 기록에 합쳤어요');}
-/* C09 JB 문항 번호 옮김 — 팩의 p.jbmove {옛 id: 새 id}(tools/<sid>/jb_move.json)를 과목을 열 때 한 번(LS jbmoved.<S>.<jbmovev>): mk ok·ng·bm·log, fc 'J:옛', ann '<S>:옛' → 새 id(합침) · 옮길 기록이 있으면 먼저 autoBak(true,'기출 번호 옮김 전') */
-function jbMove(s){const p=PACKS[s];if(!p||!p.jbmove||typeof p.jbmove!=='object')return;const fk='jbmoved.'+s+'.'+(p.jbmovev||'0');if(LS.get(fk,0))return;const M=p.jbmove,pairs=Object.keys(M).filter(o=>typeof M[o]==='string'&&M[o]&&M[o]!==o);
+function predIds(p){const o=new Set();(p.preds||[]).forEach(x=>{const m=/data-id="(P:[^"]+)"/.exec(x.html||'');if(m)o.add(m[1]);});return o;}
+/* ux2 fixA V13: 예상문제 플래시카드(P:<aid>) 옛 판정도 한 번(LS fcMergedP.<S>) mk로 — 예상 탭 ✓✗와 같은 기록 · dry=true면 옮길 것이 있는지만(없으면 플래그만 씀) · 백업은 migBak(부르는 쪽) */
+function fcMerge(s,dry){const p=PACKS[s];if(!p)return false;const dJ=LS.get('fcMerged.'+s,0),dP=LS.get('fcMergedP.'+s,0);if(dJ&&dP)return false;const F=mkObj(LS.get('fc.'+s,{})),PID=dP?new Set():predIds(p);
+ const ok2=k=>F[k]&&typeof F[k]==='object'&&(F[k].s==='o'||F[k].s==='x');
+ const C=Object.keys(F).filter(k=>ok2(k)&&((!dJ&&k.indexOf('J:')===0&&p.cards[k.slice(2)])||(!dP&&k.indexOf('P:')===0&&PID.has(k)))).map(k=>[k,k.indexOf('J:')===0?k.slice(2):k]);
+ const m=getMK(s),todo=C.filter(([k,id])=>{const t=+F[k].t||0,L=Array.isArray(m.log[id])?m.log[id].filter(x=>x&&typeof x==='object'):[];if(L.some(x=>x.how==='fc'&&+x.t===t))return false;const last=L.reduce((a,x)=>Math.max(a,+x.t||0),0);return !(L.length&&t<=last);});
+ if(!todo.length){if(!dJ)LS.set('fcMerged.'+s,1);if(!dP)LS.set('fcMergedP.'+s,1);return false;}if(dry)return true;let nj=0,np=0;
+ todo.forEach(([k,id])=>{const e=F[k],t=+e.t||0,L=Array.isArray(m.log[id])?m.log[id].filter(x=>x&&typeof x==='object'):[];const r=e.s==='o'?'ok':'ng';m[r][id]=1;delete m[r==='ok'?'ng':'ok'][id];L.push({r,t,how:'fc'});m.log[id]=L.sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);if(k.indexOf('J:')===0)nj++;else np++;});
+ LS.set('mk.'+s,m);LS.set('fcMerged.'+s,1);LS.set('fcMergedP.'+s,1);toast('플래시카드 판정 '+(nj+np)+'개를 채점 기록에 합쳤어요'+(np?' (기출 '+nj+' · 예상 '+np+')':''));return true;}
+/* C09 JB 문항 번호 옮김 — 팩의 p.jbmove {옛 id: 새 id}(tools/<sid>/jb_move.json)를 한 번(LS jbmoved.<S>.<jbmovev>): mk ok·ng·bm·log, fc 'J:옛', ann '<S>:옛' → 새 id(합침) · 백업은 migBak(부르는 쪽) · dry=true면 옮길 것이 있는지만 */
+function jbMove(s,dry){const p=PACKS[s];if(!p||!p.jbmove||typeof p.jbmove!=='object')return false;const fk='jbmoved.'+s+'.'+(p.jbmovev||'0');if(LS.get(fk,0))return false;const M=p.jbmove,pairs=Object.keys(M).filter(o=>typeof M[o]==='string'&&M[o]&&M[o]!==o);
  const mk=getMK(s),fc=mkObj(LS.get('fc.'+s,{})),A=JSON.parse(JSON.stringify(Kit.sub()===s?Kit.all():mkObj(LS.get('ann.'+s,{}))));
- const has=o=>['ok','ng','bm'].some(k=>mk[k][o])||mk.log[o]||fc['J:'+o]||A[s+':'+o];if(!pairs.some(has)){LS.set(fk,1);return;}
- autoBak(true,'기출 번호 옮김 전');let n=0;
+ const has=o=>['ok','ng','bm'].some(k=>mk[k][o])||mk.log[o]||fc['J:'+o]||A[s+':'+o];if(!pairs.some(has)){LS.set(fk,1);return false;}if(dry)return true;let n=0;
  pairs.forEach(o=>{const w=M[o];['ok','ng','bm'].forEach(k=>{if(mk[k][o]){mk[k][w]=1;delete mk[k][o];n++;}});if(mk.log[o]){mk.log[w]=[].concat(Array.isArray(mk.log[w])?mk.log[w]:[],Array.isArray(mk.log[o])?mk.log[o]:[]).sort((a,b)=>(+a.t||0)-(+b.t||0)).slice(-10);delete mk.log[o];}
   if(fc['J:'+o]){if(!fc['J:'+w]||(+fc['J:'+o].t||0)>(+fc['J:'+w].t||0))fc['J:'+w]=fc['J:'+o];delete fc['J:'+o];n++;}const ao=s+':'+o,an=s+':'+w;if(A[ao]){A[an]=[].concat(Array.isArray(A[an])?A[an]:[],A[ao]);delete A[ao];n++;}});
- fixGrades(mk);LS.set('mk.'+s,mk);LS.set('fc.'+s,fc);if(Kit.sub()===s)Kit.setAll(A);else LS.set('ann.'+s,A);LS.set(fk,1);toast('기출 번호가 바뀌어 기록 '+n+'건을 새 번호로 옮겼어요');}
+ fixGrades(mk);LS.set('mk.'+s,mk);LS.set('fc.'+s,fc);if(Kit.sub()===s)Kit.setAll(A);else LS.set('ann.'+s,A);LS.set(fk,1);toast('기출 번호가 바뀌어 기록 '+n+'건을 새 번호로 옮겼어요');return true;}
+/* ux2 fixA V04·V10 한 번짜리 이관 — 원고 갱신 aid 이관(migrateAids)·정리표 행 이관(sumMig)·옛 표시 문맥(legacyNote)·기출 번호 옮김(jbMove)·플래시카드 판정 합침(fcMerge)·파랑 키·표시 위치 보강
+   ① 이번 빌드에서 처음 이관하기 직전에 전 과목 상태를 'upd' 한 칸(원고 갱신·이관 전, subs ['*'])에 한 번 백업(migBak — 과목을 여러 개 열어도 밀려나지 않음, 빌드마다 1개·최근 3빌드)
+   ② 백업이 성공한 뒤에만 옮김(실패 = 옮기지 않고 오류 띠, 다음에 다시) ③ 표시가 없는 이관(jbMove·fcMerge)은 과목 팩이 도착하면 바로(허브 홈 개수가 과목을 열기 전에도 맞게), 표시 이관은 과목을 열 때 */
+let MIGB=null;const MIGP={};
+function migBak(){if(!MIGB){MIGB=autoBak(true,'원고 갱신·이관 전 (전 과목)',null).then(ok=>{if(!ok){MIGB=null;migFail();}return !!ok;});}return MIGB;}
+function migFail(){toast('이관 전 자동 백업을 남기지 못해 이번에는 기록을 옮기지 않았어요 — 백업 파일을 받아 두고 공간을 정리해 주세요',{level:'error',id:'migerr',actions:[{label:'백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}]});}
+function mkRefresh(s){if(CUR.s===s){MK=getMK(s);paintMarks();if(JB.F){JB.prog();JB.bar();}sideRender();hstat();revQfUpd();if(VIEW==='doc'&&CUR.t==='flash'&&$('#fc'))Flash.build(Flash.deck[Flash.i]?Flash.deck[Flash.i].key:null);}
+ if(VIEW==='home')home({push:false,y:scrollY});else if(VIEW==='doc'&&CUR.s===s&&CUR.d==='_home'){const y=scrollY;mount(PACKS[s],CUR.d,CUR.t);scrollTo(0,y);}}
+function migLS(s){if(!PACKS[s]||STALE)return;const a=jbMove(s,true),b=fcMerge(s,true);if(!a&&!b)return;
+ MIGP['l'+s]=migBak().then(ok=>{if(!ok)return;const x=jbMove(s),y=fcMerge(s);if(x||y)mkRefresh(s);});}
+function migKit(s){if(STALE||Kit.sub()!==s)return;const P=PACKS[s],A0=Kit.all();
+ const need=sumMigNeed(s,A0)||migAidsKeys(s,A0)||(Kit.enriched()&&!LS.get('lxnote.'+s,0));if(!need)return;
+ MIGP['k'+s]=migBak().then(ok=>{if(!ok||Kit.sub()!==s)return;sumMig(s);const dm=migrateAids(s);legacyNote(s);jbMove(s);
+  if(VIEW==='doc'&&CUR.s===s){if(dm){const y=scrollY;mount(PACKS[s],CUR.d,CUR.t);scrollTo(0,y);}else Kit.redraw();}});}   /* 이해함 ✓를 옮겼으면 화면을 다시 그림 */
+function migArrived(){Object.keys(PACKS).forEach(migLS);}
 /* C10 기기 옮기기(맥↔아이패드) — [백업] = 창 #bkpop: 기기 이름(LS devName)·기기 id(LS devId) · [⬆ 보내기](공유 시트 — navigator.canShare({files}), 안 되면 내려받기 → [받았어요 ✓]) · [⬇ 받기](파일 합치기)
    백업 파일에 dev {id,name} · 다른 기기 백업을 합치면 그 기기의 공부 시간은 LS timeDev = {devId:{name,time,timed,tadj}}(같은 기기끼리 max) — 이 기기 time·timed는 그대로, 표시 합계 = 이 기기 + timeDev(tDay·tLec)
    lastBackup은 공유 성공·'받았어요'에서만 · 표시·채점이 바뀐 지 3일(시험 7일 안·저장소 보호 안 됨이면 2일)이 넘도록 백업이 없으면 과목을 열 때 노란 띠(하루 한 번, LS bkNagDay) */
@@ -2181,10 +2220,12 @@ function tDevs(){if(!TDEV){const o=mkObj(LS.get('timeDev',{})),me=LS.get('devId'
 addEventListener('storage',e=>{if(e.key===NS+'timeDev')TDEV=null;});
 function devGuess(){const ua=navigator.userAgent||'';const touch=navigator.maxTouchPoints>1;return /iPad/.test(ua)||(/Macintosh/.test(ua)&&touch)?'아이패드':/iPhone/.test(ua)?'아이폰':/Mac/.test(ua)?'맥':/Android/.test(ua)?'태블릿':'이 기기';}
 function devMine(){let id=LS.get('devId','');if(!id||typeof id!=='string'){id='d'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);LS.set('devId',id);}let nm=LS.get('devName','');if(!nm||typeof nm!=='string'){nm=devGuess();LS.set('devName',nm);}return {id,name:nm};}
-function devTimeMerge(dev,key,b){const o=mkObj(LS.get('timeDev',{})),e=o[dev.id]=mkObj(o[dev.id]);e.name=dev.name||e.name||'다른 기기';e[key]=tMax(e[key],b);LS.set('timeDev',o);TDEV=null;return 1;}
-function devPlan(set,dev,t,b){const k=NS+'timeDev';let o;try{o=mkObj(JSON.parse(set[k]||localStorage.getItem(k)||'{}'));}catch(e){o={};}const e=o[dev.id]=mkObj(o[dev.id]);e.name=dev.name||e.name||'다른 기기';e[t]=tMax(e[t],b);set[k]=JSON.stringify(o);}
+function devTimeMerge(dev,key,b){const o=mkObj(LS.get('timeDev',{})),e=o[dev.id]=mkObj(o[dev.id]);e.name=dev.name||e.name||'다른 기기';e[key]=tMax(e[key],b);devCutSet(e,dev.cut);LS.set('timeDev',o);TDEV=null;return 1;}
+function devCutSet(e,c){if(typeof c==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(c)&&!(typeof e.cut==='string'&&e.cut>=c))e.cut=c;}   /* ux2 fixA V05 그 기기의 합산 시작일(늦은 쪽) */
+const cutIn=data=>{try{const v=JSON.parse(data[NS+'devCut']||'""');return typeof v==='string'?v:'';}catch(e){return '';}};
+function devPlan(set,dev,t,b){const k=NS+'timeDev';let o;try{o=mkObj(JSON.parse(set[k]||localStorage.getItem(k)||'{}'));}catch(e){o={};}const e=o[dev.id]=mkObj(o[dev.id]);e.name=dev.name||e.name||'다른 기기';e[t]=tMax(e[t],b);devCutSet(e,dev.cut);set[k]=JSON.stringify(o);}
 /* 받은 백업에 든 제3 기기의 시간(그 기기가 합쳐 둔 timeDev)도 — 이 기기 것은 빼고 max */
-function devTimeDevIn(data){let o;try{o=mkObj(JSON.parse(data[NS+'timeDev']||'{}'));}catch(e){return;}const me=devMine().id;Object.keys(o).forEach(id=>{if(id===me)return;const e=mkObj(o[id]);['time','timed','tadj'].forEach(k=>{if(e[k])devTimeMerge({id,name:e.name},k,e[k]);});});}
+function devTimeDevIn(data){let o;try{o=mkObj(JSON.parse(data[NS+'timeDev']||'{}'));}catch(e){return;}const me=devMine().id;Object.keys(o).forEach(id=>{if(id===me)return;const e=mkObj(o[id]);['time','timed','tadj'].forEach(k=>{if(e[k])devTimeMerge({id,name:e.name,cut:e.cut},k,e[k]);});});}
 function devMerged(dev){const o=mkObj(LS.get('devMerged',{}));o[dev.id]={name:dev.name,at:Date.now()};LS.set('devMerged',o);}
 const agoD=t=>{const d=Math.floor((Date.now()-t)/864e5);return d<=0?'오늘':d+'일 전';};
 function bkStatus(){const me=devMine(),lb=+LS.get('lastBackup',0),M=mkObj(LS.get('devMerged',{}));const ms=Object.values(M).filter(x=>x&&x.at).sort((a,b)=>b.at-a.at);
@@ -2219,14 +2260,22 @@ function persistShow(){a2hsNote();['#rstp','#hpers'].forEach(q=>{const e=$(q);if
 function a2hsNote(){const e=$('#a2hs');if(!e)return;if(PERSIST!==false||standalone()||LS.get('a2hsNote',0)){e.innerHTML='';return;}e.innerHTML='📱 아이패드: 공유 → <b>홈 화면에 추가</b>로 열면 기록이 더 안전해요(브라우저가 저장 공간을 비울 때 지워지지 않게) <button type="button" class="btn sm" data-a2hsx="1">알겠어요</button>';e.querySelector('button').onclick=ev=>{ev.stopPropagation();LS.set('a2hsNote',1);e.innerHTML='';};}
 function rstExtra(p){persistShow();}
 /* ---------- 저장 공간(C02) — localStorage 한도(크롬·사파리 약 5M 글자)에 대한 사용량 · IDB 백업 크기 · navigator.storage.estimate ---------- */
-const LSCAP=5242880;
+const LSCAP=5242880;   /* 기본값 — 잰 한도(lscap)가 없을 때만 */
+/* ux2 fixA V12 저장 한도 — 기기마다 한 번 sessionStorage(같은 엔진은 localStorage와 같은 방식으로 셈)에 긴 글을 써 보며(이분 탐색, 4천 자 단위) 한 칸에 들어가는 글자 수를 잼 → LS lscap
+   · 크롬은 약 524만 자, WebKit(아이패드 사파리)은 5MB를 바이트로 세어 약 262만 자 · 기록 막대·70% 경고·되돌리기 크기 계산이 이 값을 씀 · 못 재면 5,242,880 */
+function lsCap(){const c=+LS.get('lscap',0);return c>=1e6&&c<=2e7?c:LSCAP;}
+function lsCapProbe(){if(+LS.get('lscap',0))return;let ss;try{ss=window.sessionStorage;if(!ss)return;}catch(e){return;}const k='jblhub.probe';
+ try{let used=0;for(let i=0;i<ss.length;i++){const x=ss.key(i);if(x&&x!==k)used+=x.length+(ss.getItem(x)||'').length;}const big='x'.repeat(6e6);
+  const fits=n=>{try{ss.setItem(k,big.slice(0,n));return true;}catch(e){return false;}};let lo=0,hi=6e6;if(fits(hi)){ss.removeItem(k);return;}
+  while(hi-lo>4096){const mid=Math.floor((lo+hi)/2);if(fits(mid))lo=mid;else hi=mid;}ss.removeItem(k);if(lo>=5e5)LS.set('lscap',used+lo+k.length);}catch(e){try{ss.removeItem(k);}catch(_){}}}
+setTimeout(()=>{const f=()=>lsCapProbe();if(window.requestIdleCallback)requestIdleCallback(f,{timeout:5000});else f();},20000);
 function lsUsed(){let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);n+=k.length+(localStorage.getItem(k)||'').length;}}catch(e){}return n;}
 function lsBySub(){const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf(NS)!==0)continue;const seg=k.slice(NS.length).split('.');const s=seg.find(x=>SUBJECTS.some(y=>y[0]===x))||'공통';o[s]=(o[s]||0)+k.length+(localStorage.getItem(k)||'').length;}}catch(e){}return o;}
-function storeHTML(L){const u=lsUsed(),pct=Math.round(u/LSCAP*100),bs=(L||[]).reduce((a,x)=>a+(x.size||0),0),by=lsBySub();
- return `<div class="rstore"><div><b>저장 공간</b>: 기록 ${mb(u)} / 5MB <span class="${pct>=70?'cng':''}">(${pct}%)</span> · 백업 ${mb(bs)}${BK.ok?' (IndexedDB)':''} <span id="rstq"></span></div><div class="small">${Object.keys(by).sort((a,b)=>by[b]-by[a]).map(s=>EH(s)+' '+mb(by[s])).join(' · ')}</div><div class="small">마지막 자동 백업 성공: ${bakAtTxt()} <span id="rstp">· 저장소 보호: ${persistTxt()}</span></div></div>`;}
+function storeHTML(L){const u=lsUsed(),cap=lsCap(),pct=Math.round(u/cap*100),bs=(L||[]).reduce((a,x)=>a+(x.size||0),0),by=lsBySub();
+ return `<div class="rstore"><div><b>저장 공간</b>: <span title="한도 = 이 기기에서 잰 글자 수(${cap.toLocaleString()}자)">기록 ${mb(u)} / ${mb(cap)}</span> <span class="${pct>=70?'cng':''}">(${pct}%)</span> · 백업 ${mb(bs)}${BK.ok?' (IndexedDB)':''} <span id="rstq"></span></div><div class="small">${Object.keys(by).sort((a,b)=>by[b]-by[a]).map(s=>EH(s)+' '+mb(by[s])).join(' · ')}</div><div class="small">마지막 자동 백업 성공: ${bakAtTxt()} <span id="rstp">· 저장소 보호: ${persistTxt()}</span></div></div>`;}
 function storeFill(p){try{if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(e=>{const q=p.querySelector('#rstq');if(q&&e&&e.quota)q.textContent='· 기기 여유 '+mb(Math.max(0,e.quota-(e.usage||0)));}).catch(()=>{});}catch(e){}}
 /* 허브 홈 경고 한 줄 — 기록이 한도의 70%를 넘거나 기기 저장소가 70%를 넘으면 */
-function storeWarn(){const e=$('#storewarn');if(!e)return;const pct=Math.round(lsUsed()/LSCAP*100);const put=t=>{e.innerHTML=`<div class="panel storewarn">⚠ ${t} — <button class="link" data-openrst="1">[복원] 창의 공간 정리</button>·[백업] 파일 받기를 권해요</div>`;};
+function storeWarn(){const e=$('#storewarn');if(!e)return;const pct=Math.round(lsUsed()/lsCap()*100);const put=t=>{e.innerHTML=`<div class="panel storewarn">⚠ ${t} — <button class="link" data-openrst="1">[복원] 창의 공간 정리</button>·[백업] 파일 받기를 권해요</div>`;};
  if(pct>=70){put('저장 공간 '+pct+'% 사용 중');return;}try{if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(x=>{if(x&&x.quota&&x.usage/x.quota>=.7)put('기기 저장 공간 '+Math.round(x.usage/x.quota*100)+'% 사용 중');}).catch(()=>{});}catch(_){}}
 /* ---------- 복원 창 ---------- */
 const tmAt=at=>new Date(at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
@@ -2248,7 +2297,7 @@ function studyPlan(data,dev){const set={},del=[],cur=[];for(let i=0;i<localStora
  for(const k in data){if(k.indexOf(NS)!==0||!STUDY.test(k.slice(NS.length))||typeof data[k]!=='string')continue;set[k]=data[k];}cur.forEach(k=>{if(!(k in set))del.push(k);});
  ['time','timed','tadj'].forEach(t=>{const k=NS+t;if(typeof data[k]!=='string')return;let b;try{b=JSON.parse(data[k]);}catch(e){return;}if(dev&&typeof devPlan==='function'){devPlan(set,dev,t,b);return;}const js=JSON.stringify(tMax(LS.get(t,{}),b));if(js!==localStorage.getItem(k))set[k]=js;});
  let size=0,free=0;for(const k in set){size+=k.length+set[k].length;free+=(k.length+(localStorage.getItem(k)||'').length)*(localStorage.getItem(k)!=null?1:0);}del.forEach(k=>{free+=k.length+(localStorage.getItem(k)||'').length;});
- return {set,del,size,fits:lsUsed()-free+size<=LSCAP*0.98};}
+ return {set,del,size,fits:lsUsed()-free+size<=lsCap()*0.98};}
 function diffCount(data){let n=0,m=0;const J=v=>{try{return JSON.parse(v);}catch(e){return null;}};
  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k||k.indexOf(NS)!==0)continue;const key=k.slice(NS.length);
   if(key.indexOf('ann.')===0){const a=J(localStorage.getItem(k))||{},b=J(data[k])||{};const sig=o=>o&&(o.t+'|'+o.x+'|'+(o.i||0));for(const aid in a){if(!Array.isArray(a[aid]))continue;const have=new Set((Array.isArray(b[aid])?b[aid]:[]).map(sig));a[aid].forEach(o=>{if(o&&!have.has(sig(o)))n++;});}}
@@ -2261,7 +2310,9 @@ async function studyReplace(data,why,dev){const P=studyPlan(data,dev);
  const prev={};try{P.del.forEach(k=>{prev[k]=localStorage.getItem(k);localStorage.removeItem(k);});Object.keys(P.set).forEach(k=>{if(!(k in prev))prev[k]=localStorage.getItem(k);localStorage.setItem(k,P.set[k]);});}
  catch(e){const ks=Object.keys(prev);ks.filter(k=>prev[k]==null).forEach(k=>{try{localStorage.removeItem(k);}catch(_){}});ks.filter(k=>prev[k]!=null).forEach(k=>{try{localStorage.setItem(k,prev[k]);}catch(_){}});
   toast('바꾸지 못했어요 — 저장 공간이 모자라 원래 기록을 그대로 두었어요',{level:'error',id:'rsterr',actions:[{label:'공간 정리',fn:openClean},{label:'백업 파일 받기',fn:bakDownload}]});return false;}
- SS.set('rstDone',{at:Date.now(),why});location.reload();return true;}
+ migFlagsReset();SS.set('rstDone',{at:Date.now(),why});location.reload();return true;}
+/* ux2 fixA V09: 되돌리기·교체·합치기 뒤 한 번짜리 이관(플래시카드 판정 합침 fcMerged·기출 번호 옮김 jbmoved)을 다시 돌게 플래그를 지움 — 둘 다 여러 번 돌아도 같은 결과(같은 t·더 오래된 판정은 건너뜀, 옮길 옛 번호가 없으면 그대로) */
+function migFlagsReset(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS)===0&&/^(fcMerged|fcMergedP|jbmoved)\./.test(k.slice(NS.length))){try{localStorage.removeItem(k);}catch(e){}}}}
 async function snapRestore(id){const rec=await bkLoad(id);if(!rec||!rec.data){toast('백업을 읽지 못했어요',{level:'error'});return;}const D=diffCount(rec.data);
  if(!confirm(tmAt(rec.at)+' 상태로 되돌릴까요?\n\n이 시점 이후 바뀐 표시 '+D.n+'개·채점 '+D.m+'개가 사라집니다.\n\n(공부 시간은 줄지 않고, 읽던 위치·설정은 지금 그대로예요 · 지금 상태는 먼저 자동 백업해 둡니다)'))return;
  await studyReplace(rec.data,'되돌리기 전');}
@@ -2269,9 +2320,9 @@ $('#rstr').onclick=openRestore;$('#home').addEventListener('click',e=>{if(e.targ
 /* 파일 복원 — 같은 파일을 다시 골라도 change가 일어나게 value는 항상 비움(try/finally) */
 $('#rfile').onchange=e=>{const inp=e.target;try{const f=inp.files&&inp.files[0];if(!f)return;const how=inp.dataset.how||'merge';const r=new FileReader();r.onload=()=>fileRestore(r.result,how);r.readAsText(f);}finally{inp.value='';}};
 async function fileRestore(txt,how){let j;try{j=JSON.parse(txt);if(!j||j.app!=='jblhub'||!j.data||typeof j.data!=='object')throw 0;}catch(_){toast('백업 파일을 읽지 못했어요',{level:'error'});return;}
- const dev=(j.dev&&j.dev.id&&j.dev.id!==devMine().id)?{id:String(j.dev.id),name:String(j.dev.name||'다른 기기').slice(0,20)}:null;
+ const dev=(j.dev&&j.dev.id&&j.dev.id!==devMine().id)?{id:String(j.dev.id),name:String(j.dev.name||'다른 기기').slice(0,20),cut:cutIn(j.data)}:null;
  if(how==='over'){const D=diffCount(j.data);if(!confirm('백업 상태로 교체할까요? (지금 기록 삭제)\n\n지금 있는 표시 중 백업에 없는 '+D.n+'개·채점 '+D.m+'개가 사라집니다.\n\n(공부 시간은 줄지 않고, 읽던 위치·설정은 그대로 · 지금 상태는 먼저 자동 백업해 둡니다)'))return;await studyReplace(j.data,'교체 전',dev);return;}
- try{tFlush();}catch(e){}if(!await autoBak(true,'합치기 전')){bakFirst();return;}const r=mergeData(j.data,{dev});if(dev){devMerged(dev);}devTimeDevIn(j.data);SS.set('mergeRes',{n:r.n,skip:r.skip,at:Date.now()});setTimeout(()=>location.reload(),300);}
+ try{tFlush();}catch(e){}if(!await autoBak(true,'합치기 전')){bakFirst();return;}const r=mergeData(j.data,{dev});if(dev){devMerged(dev);}devTimeDevIn(j.data);migFlagsReset();SS.set('mergeRes',{n:r.n,skip:r.skip,at:Date.now()});setTimeout(()=>location.reload(),300);}
 /* 새로고침 뒤: 합치기 결과 창 · 되돌리기 알림 */
 setTimeout(()=>{const r=SS.get('mergeRes',null);if(r&&Date.now()-(+r.at||0)<60000&&!$('#rpop').classList.contains('on')){openRestore();toast('백업을 합쳤어요 — 합친 것 '+r.n+' · 건너뜀 '+(r.skip||[]).length,{level:'result'});}
  const d=SS.get('rstDone',null);if(d&&Date.now()-(+d.at||0)<60000){try{sessionStorage.removeItem(NS+'rstDone');}catch(e){}toast('되돌렸어요 — 바꾸기 전 상태는 [복원]의 ‘'+(d.why||'되돌리기 전')+'’에 있어요',{level:'result'});}},900);
@@ -2285,11 +2336,27 @@ function lsRaw(k,v){try{localStorage.setItem(NS+k,JSON.stringify(v));return true
 function lsBakSlots(){const per=[],pro=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);const m=k&&/^jblhub\.v1\.autobak\.(p?)\d$/.exec(k);if(!m)continue;let at=0;try{const v=localStorage.getItem(k)||'';const a=/^\{"at":(\d+)/.exec(v);at=a?+a[1]:0;}catch(e){}(m[1]?pro:per).push([k,at]);}
  const o=(a,b)=>a[1]-b[1];return per.sort(o).concat(pro.sort(o)).map(x=>x[0]);}
 function lsFail(k,s){for(const bk of lsBakSlots()){try{localStorage.removeItem(bk);}catch(e){}try{localStorage.setItem(NS+k,s);LSQ.delete(k);if(!lsFail.n){lsFail.n=1;toast('저장 공간이 모자라 오래된 자동 백업 사본을 지우고 저장했어요');}return;}catch(e){}}
- LSQ.set(k,s);lsErrShow();}
-function lsErrShow(){LSQ.err=true;if(document.getElementById('lserr'))return;toast('저장되지 않았어요 — 방금 표시는 이 창에만 있어요',{level:'error',id:'lserr',actions:[{label:'지금 백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}]});}
-function lsFlush(){if(!LSQ.size)return true;let n=0;for(const [k,v] of [...LSQ]){try{localStorage.setItem(NS+k,v);LSQ.delete(k);n++;}catch(e){}}
- if(LSQ.size)return false;const r=document.getElementById('lserr');if(r)r.remove();if(LSQ.err){LSQ.err=false;toast('저장됐어요 — 밀려 있던 기록 '+n+'개를 저장했어요',{level:'result'});}return true;}
+ LSQ.set(k,s);lsErrShow();lqSync();}
+function lsErrTxt(){return '저장되지 않았어요 — 기록 '+LSQ.size+'건을 이 기기에 임시 보관 중(창을 닫아도 다음에 열 때 다시 저장) · 백업 파일을 받고 자리를 비워 주세요';}
+function lsErrShow(){LSQ.err=true;const o=document.getElementById('lserr');if(o){const s=o.querySelector('span');if(s)s.textContent='⚠ '+lsErrTxt();return;}toast(lsErrTxt(),{level:'error',id:'lserr',actions:[{label:'지금 백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}]});}
+function lsFlush(){if(!LSQ.size){if(LQ.used)lqSync();return true;}let n=0;for(const [k,v] of [...LSQ]){try{localStorage.setItem(NS+k,v);LSQ.delete(k);n++;}catch(e){}}
+ if(n||LQ.used)lqSync();if(LSQ.size){if(n&&document.getElementById('lserr'))lsErrShow();return false;}const r=document.getElementById('lserr');if(r)r.remove();if(LSQ.err){LSQ.err=false;toast('저장됐어요 — 밀려 있던 기록 '+n+'개를 저장했어요',{level:'result'});}return true;}
 setInterval(()=>{if(LSQ.size)lsFlush();},30000);
+/* ux2 fixA V08 저장 실패 큐(LSQ)를 창이 닫혀도 잃지 않게 — IndexedDB 'jblhub-lsq'(store 'q' {k,v,at}, 자동 백업과 다른 DB)에 LSQ를 그대로 비춰 둠(바뀔 때마다)
+   · 다음에 열 때 팩을 부르기 전에(lqGate) 다시 씀: localStorage에 써지면 행을 지우고 '지난번에 저장하지 못한 기록 n개를 저장했어요', 또 안 되면 LSQ로(빨간 띠) · 14일 지난 행은 버림
+   · LSQ가 남은 채 창을 닫거나 옮기려 하면 브라우저 확인(beforeunload — 맥) · 띠 = '기록 n건을 이 기기에 임시 보관 중' */
+function lqDB(){if(LQ.p)return LQ.p;LQ.p=new Promise(res=>{let done=false;const fin=v=>{if(done)return;done=true;res(v||null);};
+ try{if(typeof indexedDB==='undefined'||!indexedDB)return fin(null);const r=indexedDB.open('jblhub-lsq',1);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('q'))db.createObjectStore('q',{keyPath:'k'});};
+  r.onsuccess=()=>fin(r.result);r.onerror=()=>fin(null);r.onblocked=()=>fin(null);setTimeout(()=>fin(null),3000);}catch(e){fin(null);}});return LQ.p;}
+function lqWrite(){const rows=[...LSQ].map(([k,v])=>({k,v,at:Date.now()}));return lqDB().then(db=>{if(!db)return false;return bkTx(db,['q'],'readwrite',tx=>{const st=tx.objectStore('q');st.clear();rows.forEach(r=>st.put(r));}).then(x=>x.ok);}).catch(()=>false);}
+function lqSync(){LQ.used=true;if(!LSQ.size&&LQ.last===0&&!LQ.busy)return;if(LQ.busy){LQ.dirty=true;return;}LQ.busy=true;const n=LSQ.size;lqWrite().then(ok=>{LQ.busy=false;if(ok)LQ.last=n;if(LQ.dirty){LQ.dirty=false;lqSync();}});}
+function lqReplay(){return lqDB().then(db=>{if(!db)return;return bkTx(db,['q'],'readonly',(tx,out)=>{const r=tx.objectStore('q').getAll();r.onsuccess=()=>out(r.result||[]);}).then(x=>{const L=x.ok&&Array.isArray(x.v)?x.v:[];if(!L.length)return;let n=0,q=0;
+ L.forEach(r=>{if(!r||typeof r.k!=='string'||typeof r.v!=='string'||Date.now()-(+r.at||0)>14*864e5||LSQ.has(r.k))return;try{localStorage.setItem(NS+r.k,r.v);n++;}catch(e){LSQ.set(r.k,r.v);q++;}});
+ LQ.used=true;const done=()=>{if(q)lsErrShow();else if(n)toast('지난번에 저장하지 못한 기록 '+n+'개를 저장했어요',{level:'result'});};return lqWrite().then(done);});}).catch(()=>{});}
+const LQW={done:false,q:[]};function lqReady(f){if(LQW.done)f();else LQW.q.push(f);}   /* 팩은 바로 부르고, 시작(boot)만 다시 쓰기가 끝난 뒤 */
+(function(){const fin=()=>{if(LQW.done)return;LQW.done=true;LQW.q.splice(0).forEach(f=>{try{f();}catch(e){setTimeout(()=>{throw e;});}});};lqReplay().then(fin,fin);setTimeout(fin,1500);})();
+addEventListener('beforeunload',e=>{if(LSQ.size){lqWrite();e.preventDefault();e.returnValue='';return '';}});
+addEventListener('pagehide',()=>{if(LSQ.size)lqWrite();});
 /* [지금 백업 파일 받기] — 메모리 큐까지 담은 dumpAll(마지막 파일 백업 시각은 C10 규칙대로 바꾸지 않음) */
 function bakDownload(){try{tFlush();}catch(e){}dl('JBL허브_백업_'+day()+'.json',bakFile());toast('백업 파일을 내려받았어요 — 파일 앱(다운로드)에 있어요',{level:'result'});}
 function bakFile(){return {app:'jblhub',v:2,at:new Date().toISOString(),dev:devMine(),data:dumpAll()};}   /* C10: 어느 기기의 백업인지(dev) */
@@ -2327,8 +2394,10 @@ function aidIdx(s){if(AIDX[s])return AIDX[s];const p=PACKS[s],aids=new Set(),alt
  p.lect.forEach(L=>{scan(L.head);scan(L.learn);scan(L.sum);});p.order.forEach(i=>scan(p.cards[i]));p.tables.forEach(x=>scan(x.html));p.preds.forEach(x=>scan(x.html));scan(p.sumall);return AIDX[s]={aids,alt};}
 function aidText(s){if(ATXT[s])return ATXT[s];const p=PACKS[s],o={},tmp=document.createElement('div');const add=h=>{if(!h)return;tmp.innerHTML=h;$$('[data-aid]',tmp).forEach(b=>{if(o[b.dataset.aid]==null)o[b.dataset.aid]=Kit.textOf(b);});};
  p.lect.forEach(L=>{add(L.head+L.learn);add(L.sum);});add(cardsHTML(p,p.order));add(p.tables.map(x=>x.html).join(''));add(p.preds.map(x=>x.html).join(''));add(p.sumall);tmp.innerHTML='';return ATXT[s]=o;}
-function migrateAids(s){if(AMIG[s])return;AMIG[s]=1;const X=aidIdx(s),A0=Kit.all(),DN0=mkObj(LS.get('done.'+s,{}));
- const keys=Object.keys(A0).filter(k=>Array.isArray(A0[k])&&A0[k].length&&(!X.aids.has(k)||X.alt[k]));const dkeys=Object.keys(DN0).filter(k=>!X.aids.has(k)&&X.alt[k]);if(!keys.length&&!dkeys.length)return;
+/* ux2 fixA: 옮길 것이 있는지만(없으면 AMIG) — 옛 ':sum' 키는 정리표 행 이관(sumMig)이 맡음 */
+function migAidsKeys(s,A0){if(AMIG[s])return false;const X=aidIdx(s),DN0=mkObj(LS.get('done.'+s,{}));
+ const keys=Object.keys(A0).filter(k=>Array.isArray(A0[k])&&A0[k].length&&!/:sum$/.test(k)&&(!X.aids.has(k)||X.alt[k]));const dkeys=Object.keys(DN0).filter(k=>!X.aids.has(k)&&X.alt[k]);if(!keys.length&&!dkeys.length){AMIG[s]=1;return false;}return {keys,dkeys};}
+function migrateAids(s){const A0=Kit.all(),K=migAidsKeys(s,A0);if(!K)return;AMIG[s]=1;const X=aidIdx(s),DN0=mkObj(LS.get('done.'+s,{})),keys=K.keys,dkeys=K.dkeys;
  const T=aidText(s),A=JSON.parse(JSON.stringify(A0)),DN=Object.assign({},DN0);const sig=o=>o.t+'|'+o.x+'|'+(o.i||0);let tot=0,mv=0,lost=0,dmv=0;
  const put=(a,o)=>{const L=A[a]=A[a]||[];if(!L.some(x=>sig(x)===sig(o)))L.push(o);};
  keys.forEach(k=>{const isAid=X.aids.has(k),cands=(isAid?[k]:[]).concat(X.alt[k]||[]),lm=/^([^:]+):([^:]+):/.exec(k),keep=[];
@@ -2343,11 +2412,11 @@ function migrateAids(s){if(AMIG[s])return;AMIG[s]=1;const X=aidIdx(s),A0=Kit.all
   if(keep.length)A[k]=keep;else delete A[k];});
  dkeys.forEach(k=>{X.alt[k].forEach(a=>DN[a]=1);delete DN[k];dmv++;});
  if(JSON.stringify(A)===JSON.stringify(A0)&&!dmv)return;
- autoBak(true,'원고 갱신 전',s);Kit.setAll(A);if(dmv)LS.set('done.'+s,DN);
- if(mv||lost||dmv)toast('원고가 바뀌어 표시 '+tot+'개 중 '+mv+'개를 옮겼어요'+(lost?' · 못 찾은 '+lost+'개는 🖍 내 표시 모아보기에':'')+(dmv?' · 이해함 ✓ '+dmv+'개 이관':''));}
+ Kit.setAll(A);if(dmv)LS.set('done.'+s,DN);   /* 백업 = migBak(migKit이 먼저) */
+ if(mv||lost||dmv)toast('원고가 바뀌어 표시 '+tot+'개 중 '+mv+'개를 옮겼어요'+(lost?' · 못 찾은 '+lost+'개는 🖍 내 표시 모아보기에':'')+(dmv?' · 이해함 ✓ '+dmv+'개 이관':''));return dmv;}
 /* 옛 표시 문맥 보강(Kit.enrich)을 한 과목 — 지금 원고에서 찾을 수 없는 것은 lost로 두고 한 번만 알림(F2) */
 function legacyNote(s){if(!Kit.enriched()||LS.get('lxnote.'+s,0))return;const T=aidText(s),A=JSON.parse(JSON.stringify(Kit.all()));let n=0,lost=0;
- for(const k in A)(A[k]||[]).forEach(o=>{if(!o||typeof o!=='object'||!o.x)return;n++;if(T[k]==null||!Kit.resolve(T[k],o)){o.lost=1;lost++;}});
+ for(const k in A)if(!/:sum$/.test(k))(A[k]||[]).forEach(o=>{if(!o||typeof o!=='object'||!o.x)return;n++;if(T[k]==null||!Kit.resolve(T[k],o)){o.lost=1;lost++;}});
  LS.set('lxnote.'+s,1);if(!lost)return;Kit.setAll(A);toast('화면 구조가 바뀌어 표시 '+n+'개 중 '+lost+'개는 ⚠ 위치 잃은 표시로 보관했어요 — 🖍 내 표시 모아보기에서 확인',6000);}
 /* 🖍 내 표시 모아보기 — ⚠ 위치를 잃은 표시(aidMap에 없는 키·lost)를 맨 위에 강의별로(옛 제목·[이 과목에서 찾기]·[버리기]),
    그다음 강의별 표시(칩을 누르면 그 표시 묶음을 화면 가운데로·깜빡임), 끝에 📝 메모(문서별 앞 120자·[열기]) */
@@ -2400,7 +2469,12 @@ const fcGet=()=>mkObj(LS.get('fc.'+CUR.s,{}));
 /* D01 내 표시가 든 줄·표 행·카드 = .has-rk (:has 없는 브라우저용 · 필터 '내 표시만') — Kit.restore·commit 뒤 */
 function rkFlag(B){const st=$('#stage');if(!st)return;const root=(B&&B.closest&&B.closest('.tc'))||st;
  [root,...$$('.has-rk',root)].forEach(e=>e.classList.remove('has-rk'));
- $$('[data-rk]:not([data-auto])',root).forEach(m=>{for(let e=m.parentElement;e;e=e.parentElement){if(e.matches('.li,.und,.tscroll,tr,.tc'))e.classList.add('has-rk');if(e===root||e===st)break;}});}
+ $$('[data-rk]:not([data-auto])',root).forEach(m=>{for(let e=m.parentElement;e;e=e.parentElement){if(e.matches('.li,.und,.tscroll,tr,.tc'))e.classList.add('has-rk');if(e===root||e===st)break;}});
+ rkShow(root,!B);}
+/* ux2 fixA V07: 화면에서 숨긴 글자(출처 '(필기)'·'슬라이드 NN: '·⭐ 연도 머리·정리표 옛 라벨·답 h5)에 든 내 표시는 그 글자를 드러냄(.rkshow) · V01: 정리표 세부(.mfull)에 내 표시가 있으면 그 칸을 펼쳐 둠(dopen, 새로 그릴 때만)·'세부 ▸'에 🖍 n */
+function rkShow(root,full){$$('.rkshow',root).forEach(e=>e.classList.remove('rkshow'));
+ $$('[data-rk]:not([data-auto])',root).forEach(m=>{const h=m.parentElement&&m.parentElement.closest('.srt,.ex-yr,.tho,details.ab>h5');if(h&&root.contains(h))h.classList.add('rkshow');});
+ $$('.msum td.md',root).forEach(td=>{const n=new Set($$('.mfull [data-rk]:not([data-auto])',td).map(m=>m.dataset.g)).size;const b=td.querySelector('.mdmore');if(b){let r=b.querySelector('.rkn');if(n){if(!r){r=document.createElement('span');r.className='rkn';b.appendChild(r);}r.textContent='🖍 '+n;r.title='세부에 든 내 표시 '+n+'개';}else if(r)r.remove();}if(n&&full)td.classList.add('dopen');});}
 /* 빈 그룹 제목 숨김(필터 뒤) · 미니바 '카드 n/N' = 보이는 카드 기준 */
 function gdivEmpty(){$$('#stage .gdiv').forEach(g=>{let vis=false;for(let e=g.nextElementSibling;e&&!e.classList.contains('gdiv');e=e.nextElementSibling){if(e.classList.contains('tc')&&getComputedStyle(e).display!=='none'){vis=true;break;}}g.classList.toggle('gempty',!vis);});}
 function lmCount(j){const n=$('#lmn'),N=$('#lmN');if(!n)return;const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null);if(N)N.textContent=cs.length;if(j<0){lmLabel(-1);return;}lmLabel(j);const i=cs.findIndex(c=>+c.id.split('-').pop()===j);n.textContent=i>=0?i+1:'–';}
@@ -2500,7 +2574,8 @@ $('#qzk2c').onchange=e=>{LS.set('qzk2',e.target.checked);if(QZ.on)qzApply();};
    E01 정리표 행 = 표시 단위: tr data-aid '<카드 aid>~s'(옛 카드 aid~s는 data-alt) · 표 전체(머리·그룹 줄)는 '<S>:<K>:sumt'(data-alt = 옛 '<S>:<K>:sum')
    옛 '<S>:<K>:sum' 표시를 과목을 처음 열 때 한 번(LS sumMig.<S>) 행으로 옮김 — 새 표를 행 aid 없이 이어 붙인 글자(=옛 표 글자와 같은 순서)에서
    문맥(p·s)·i로 찾아 그 행의 글자 기준으로 다시 닻(x·i·p·s·v). 여러 행에 걸치면 행마다 따로 찾아 하나일 때만, 못 찾으면 표 전체 단위(sumt)에 lost:1(🖍 모아보기). 옮기기 전 autoBak */
-function sumMig(s){const P=PACKS[s];   /* 플래그(sumMig.<S>)가 있어도 옛 ':sum' 표시가 남아 있으면 다시 옮김 — 옛 백업을 되돌리거나 합친 뒤에도(병합 뒤 보강) */
+function sumMigNeed(s,A0){const P=PACKS[s];if(!P)return false;const n=P.lect.some(L=>Array.isArray(A0[s+':'+L.k+':sum'])&&A0[s+':'+L.k+':sum'].some(o=>o&&typeof o==='object'&&o.x));if(!n&&!LS.get('sumMig.'+s,0))LS.set('sumMig.'+s,1);return n;}
+function sumMig(s){const P=PACKS[s];   /* 플래그(sumMig.<S>)가 있어도 옛 ':sum' 표시가 남아 있으면 다시 옮김 — 옛 백업을 되돌리거나 합친 뒤에도(병합 뒤 보강) · 백업 = migBak이 성공한 뒤에만 불림(ux2 fixA V04) */
  if(!P)return;const A0=Kit.all();
  const todo=P.lect.filter(L=>Array.isArray(A0[s+':'+L.k+':sum'])&&A0[s+':'+L.k+':sum'].some(o=>o&&typeof o==='object'&&o.x));if(!todo.length){if(!LS.get('sumMig.'+s,0))LS.set('sumMig.'+s,1);return;}
  const A=JSON.parse(JSON.stringify(A0)),D=document.implementation.createHTMLDocument(''),SK=Kit.skipSel,CX=12,sig=o=>o.t+'|'+o.x+'|'+(o.i||0);let tot=0,mv=0,lost=0;
@@ -2517,7 +2592,7 @@ function sumMig(s){const P=PACKS[s];   /* 플래그(sumMig.<S>)가 있어도 옛
    else{const Lw=A[W.dataset.aid]=A[W.dataset.aid]||[];Lw.push(Object.assign({},o,{lost:1}));lost++;}});   /* 못 찾은 것 = 표 전체 단위(sumt)에 lost:1 — 옛 키를 비워 일반 이관(migrateAids)이 다시 세지 않게 */
   if(keep.length)A[key]=keep;else delete A[key];d.remove();});
  LS.set('sumMig.'+s,1);if(!tot)return;
- autoBak(true,'정리표 표시 이관 전');Kit.setAll(A);
+ Kit.setAll(A);
  toast('정리표가 행 단위로 바뀌어 표시 '+tot+'개 중 '+mv+'개를 행으로 옮겼어요'+(lost?' · 못 찾은 '+lost+'개는 🖍 내 표시 모아보기에':''),5000);}
 
 /* E02·E04·E05·E08 정리표 탭 — 전체정리표(sum=1 표) 맨 위 · [요약|전체](LS sumdense 's'|'f') · 기출 필터·묶음 필터(저장 안 함) */
@@ -2698,7 +2773,8 @@ $('#stage').addEventListener('focusout',e=>{if(e.target.id==='fnowi')setTimeout(
 
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
 /* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */
-function boot(){if(LS.get('focus',false))document.body.classList.add('focus');if(LS.get('kitoff',false))document.body.classList.add('kit-off');fsApply();const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home)||(st.time&&hs.time))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;buildSearch();}   /* 검색 색인은 쉬는 틈에 조각으로(B09) */
+function boot(){try{migArrived();}catch(e){}   /* ux2 fixA V10: 도착한 과목의 한 번짜리 채점 이관(기출 번호·플래시카드 판정)을 허브 홈 개수를 세기 전에 */
+ if(LS.get('focus',false))document.body.classList.add('focus');if(LS.get('kitoff',false))document.body.classList.add('kit-off');fsApply();const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home)||(st.time&&hs.time))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;buildSearch();}   /* 검색 색인은 쉬는 틈에 조각으로(B09) */
 /* 팩 → (옛 표시가 남은 과목만) 옛 기준선 → 시작. 팩 판이 허브 판과 다르면(배포 중 캐시 섞임) 새로고침 안내 + 표시·채점 잠금 */
 function staleCheck(){if(HUB_BUILD==='dev'||STALE)return;const bad=Object.keys(PACKS).filter(id=>PACKS[id].build&&PACKS[id].build!==HUB_BUILD);if(!bad.length&&!Object.keys(PACKS).some(id=>!PACKS[id].build))return;
  STALE=true;document.body.classList.add('stale');const b=document.createElement('div');b.id='stalebar';b.className='noann';b.innerHTML='새 버전이 있어요 — 새로고침해야 형광펜·채점이 저장돼요 <button class="btn pri" id="stalego">새로고침</button>';document.body.prepend(b);
@@ -2720,15 +2796,15 @@ function plLoad(id,retry){PL.wait[id]=1;delete PL.bad[id];plRender();const old=d
  s.src='packs/'+id+'.js'+(PV&&PV[id]?'?v='+PV[id]:'')+(retry?((PV&&PV[id])?'&':'?')+'r='+Date.now().toString(36):'');s.onload=()=>{if(!PACKS[id]){plEnd(id,false);return;}plLX(id,()=>plEnd(id,true));};s.onerror=()=>plEnd(id,false);document.head.appendChild(s);}
 function plLX(id,cb){const p=PACKS[id];if(!p||!p.lx||LXT[id]||!Kit.needsLX(id))return cb();const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>cb();document.head.appendChild(s);}
 function plEnd(id,ok){delete PL.wait[id];if(ok){PL.ok[id]=1;delete PL.bad[id];staleCheck();}else PL.bad[id]=1;
- if(!PL.booted&&(PL.first?id===PL.first:(ok||!Object.keys(PL.wait).length))){PL.booted=true;const st=parseHash();if(st.s&&!PACKS[st.s])PL.lost=st;boot();plRender();}
- else if(PL.booted&&ok)plArrive(id);else plRender();
+ if(!PL.booted&&(PL.first?id===PL.first:(ok||!Object.keys(PL.wait).length))){PL.booted=true;lqReady(()=>{const st=parseHash();if(st.s&&!PACKS[st.s])PL.lost=st;boot();plRender();});}   /* ux2 fixA V08: 저장 실패 큐 다시 쓰기 뒤에 시작 */
+ else if(PL.booted&&ok)lqReady(()=>plArrive(id));else plRender();
  if(PL.seq&&(id===PL.first||id===PL.cur)){PL.cur=PL.seq.shift();if(PL.cur){const nx=PL.cur,go=()=>plLoad(nx);if(window.requestIdleCallback)requestIdleCallback(go,{timeout:400});else setTimeout(go,50);}}}
-function plArrive(id){plRender();if(SIDX)sxQueue(id);
+function plArrive(id){try{migLS(id);}catch(e){}plRender();if(SIDX)sxQueue(id);
  if(PL.lost&&PL.lost.s===id&&VIEW==='home'){const st=PL.lost;PL.lost=null;route(st);return;}
  if(VIEW==='home')home({push:false,y:scrollY});else if(VIEW==='time')tvRender();else if(VIEW==='search')sxDone();
  else if(VIEW==='doc'){const sel=$('#sjsel');if(sel)sel.innerHTML=SUBJECTS.filter(([x])=>PACKS[x]).map(([x,ko])=>`<option value="${x}"${x===CUR.s?' selected':''}>${ko}</option>`).join('');}}
 function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Array.isArray(READY)&&READY.indexOf(id)<0));PL.all=SUBJECTS.map(x=>x[0]).filter(id=>PACKS[id]||need.indexOf(id)>=0);Object.keys(PACKS).forEach(id=>PL.ok[id]=1);
- if(!need.length){PL.booted=true;staleCheck();boot();return;}
+ if(!need.length){PL.booted=true;staleCheck();lqReady(boot);return;}
  const st=parseHash(),first=st.s&&need.indexOf(st.s)>=0?st.s:null;plRender();
  if(first){PL.first=first;PL.seq=need.filter(id=>id!==first);plLoad(first);}else need.forEach(id=>plLoad(id));}
 /* 이미 든 팩(단일 파일판)의 옛 기준선 → 시작 */
@@ -2736,7 +2812,8 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 Object.assign(window.__h,{bkLimit,storeProtect,bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
-Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});Object.defineProperty(window.__h,'LCUR',{get(){return LCUR;}});   /* ux2 트랙B 회귀 고리 */
+Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});
+Object.assign(window.__h,{migBak,migLS,migKit,migWait(){return Promise.all(Object.values(MIGP)).then(()=>MIGB);},lsCap,lsCapProbe,lqReplay,lqWrite,revNext,mark,devCut:()=>DEVCUT,idleBack,predIds});   /* ux2 fixA 회귀 고리 */Object.defineProperty(window.__h,'LCUR',{get(){return LCUR;}});   /* ux2 트랙B 회귀 고리 */
 })();
 </script>
 </body></html>

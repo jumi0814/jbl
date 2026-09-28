@@ -40,7 +40,7 @@ async def main():
         ok(mk['ok'].get('RX01a') == 1 and 'RX01' not in mk['ok'] and mk['bm'].get('RX01a') == 1 and len(mk['log'].get('RX01a', [])) == 2 and mk['ok'].get('RX02') == 1, f"mk 이관 {mk}")
         ok('J:RX01a' in fc and 'J:RX01' not in fc and 'PHARM:RX01a' in an and 'PHARM:RX01' not in an, 'fc J:·ann 키 이관')
         ok(await pg.evaluate("localStorage.getItem('jblhub.v1.jbmoved.PHARM.t1')") == '1', '한 번만(jbmoved.PHARM.t1)')
-        await pg.wait_for_timeout(300); ok(any(x['why'] == '기출 번호 옮김 전' for x in await pg.evaluate("__h.bkList()")), "옮기기 전 자동 백업('기출 번호 옮김 전')")
+        await pg.wait_for_timeout(300); ok(any(x['cat'] == 'upd' for x in await pg.evaluate("__h.bkList()")), "옮기기 전 자동 백업(원고 갱신·이관 전 — ux2 fixA V04)")
         ok(not errs, f'pageerror 0 ({errs[:2]})'); await b.close()
 asyncio.run(main())
 print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
