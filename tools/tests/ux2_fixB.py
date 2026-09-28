@@ -180,7 +180,10 @@ async def ipad(b, w, h):
             ok(all(x <= 1 for x in r), f'VIS02 820 {h_} 전체정리표 가로 넘침 {r}')
         await open_(pg, '#/GERI/SAL/sum', '#stage .msum'); await pg.wait_for_timeout(300)
         r = await pg.evaluate("(()=>{const w=document.querySelector('#sumtop .stcard');if(!w)return null;const tr=w.querySelector('tbody tr'),th=tr.querySelector('th'),k=tr.querySelector('td.keycell');if(!k)return 'nokey';const kt=k.getBoundingClientRect().top;return [th.getBoundingClientRect().top<kt,[...tr.querySelectorAll('td')].filter(x=>x!==k).every(x=>x.getBoundingClientRect().top>kt),getComputedStyle(tr.querySelector('td'),'::before').content]})()")
-        ok(r and r != 'nokey' and r[0] and r[1] and r[2] not in ('none', 'normal'), f'VIS02 넘치는 표 = 카드형(항목 → ★ 시험 → 나머지 · 열 이름) {r}')
+        if r is None:   # ux3 L4: 열 폭을 맞춰(twApply) 넘치지 않으면 표 그대로 — 카드형은 5열↑·폭 760 미만에서 열이 모자랄 때만
+            r2 = await pg.evaluate("[...document.querySelectorAll('#sumtop .tblwrap.stbl:not(.stoff)')].map(w=>{const x=w.querySelector('.tscroll')||w,t=w.querySelector('table');return [t.classList.contains('tw'),Math.round(t.scrollWidth-x.clientWidth)]})")
+            ok(r2 and all(a and o <= 1 for a, o in r2), f'VIS02 넘치는 표 없음(ux3 L4 열 폭 맞춤 — 카드형 대신 표) {r2}')
+        else: ok(r != 'nokey' and r[0] and r[1] and r[2] not in ('none', 'normal'), f'VIS02 넘치는 표 = 카드형(항목 → ★ 시험 → 나머지 · 열 이름) {r}')
         await pg.screenshot(path=SHOT('vis02_sumtop', tag))
         # ---- V14 카드형 칸 이름 👁
         await open_(pg, '#/CONS/WHT/sum', '#stage .msum')

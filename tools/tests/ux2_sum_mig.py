@@ -11,11 +11,16 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 def old_pack(sid):
-    """배포본 팩 — docs/packs/<SID>.js를 마지막으로 커밋한 판(없으면 None)"""
+    """배포본 팩 — 정리표가 아직 행 단위(E01, 행 data-aid '…~s')가 아니었던 마지막 커밋의 docs/packs/<SID>.js(1차 배포본 7095e56 등, 없으면 None).
+    ux3: 2차 판(0918775)이 docs를 커밋해 '마지막 커밋'이 이미 행 단위라 옛 ':sum' 표시 픽스처를 만들 수 없던 것 — 행 aid가 없는 판을 찾음"""
     try:
-        h = subprocess.run(['git', 'log', '-1', '--format=%H', '--', f'docs/packs/{sid}.js'], cwd=J.ROOT, capture_output=True, text=True).stdout.strip()
-        t = subprocess.run(['git', 'show', f'{h}:docs/packs/{sid}.js'], cwd=J.ROOT, capture_output=True, text=True).stdout
-        return json.loads(t[t.index('JBLHUB.register(') + 16:t.rindex(');')])
+        hs = subprocess.run(['git', 'log', '--format=%H', '--', f'docs/packs/{sid}.js'], cwd=J.ROOT, capture_output=True, text=True).stdout.split()
+        for h in hs:
+            t = subprocess.run(['git', 'show', f'{h}:docs/packs/{sid}.js'], cwd=J.ROOT, capture_output=True, text=True).stdout
+            P = json.loads(t[t.index('JBLHUB.register(') + 16:t.rindex(');')])
+            L = next((L for L in P.get('lect', []) if L.get('k') == 'WHT'), None)
+            if L and '~s"' not in L.get('sum', ''): return P
+        return None
     except Exception as e:
         print('  (배포본 팩 없음)', e); return None
 # 옛 표 글자(= Kit.textOf(옛 표)) · 카드 행마다 글자 범위 → 합성 표시

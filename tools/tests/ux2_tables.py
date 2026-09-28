@@ -151,8 +151,8 @@ async def mac(b):
     ok(r[0] == 0 and r[1] > 0, f'E08 묶음 ② 필터 → 다른 묶음 행 {r[0]} · 보이는 행 {r[1]}')
     # ---- E09
     await open_(pg, '#/OMS1/_tbl', '#stage .tgh')
-    r = await pg.evaluate("[document.querySelectorAll('#stage .tgh').length,__h.PACKS.OMS1.lect.filter(L=>__h.PACKS.OMS1.tables.some(t=>t.k===L.k&&!t.sum)).length,document.querySelector('#side .dbtn[data-d=_tbl] small').textContent]")
-    ok(r[0] == r[1] and '강의별' in r[2], f'E09 OMS1 h3 {r[0]} = 표가 있는 강의 {r[1]} · 사이드바 {r[2]}')
+    r = await pg.evaluate("[document.querySelectorAll('#stage .tgh').length,__h.PACKS.OMS1.lect.filter(L=>__h.PACKS.OMS1.tables.some(t=>t.k===L.k&&!t.sum)).length,document.querySelector('#side .dbtn[data-d=_tbl]').title]")   # ux3 G4 문서 칩 — 설명은 title
+    ok(r[0] == r[1] and '강의별' in r[2], f'E09 OMS1 h3 {r[0]} = 표가 있는 강의 {r[1]} · 메뉴 칩 {r[2]}')
     await pg.evaluate("document.querySelectorAll('#tbltoc [data-tgk]')[2].click()"); await pg.wait_for_timeout(400)
     await pg.evaluate("document.querySelectorAll('#tbllist [data-tgo]')[1].click()"); await pg.wait_for_timeout(500)
     r = await pg.evaluate("(()=>{const id=document.querySelectorAll('#tbllist [data-tgo]')[1].dataset.tgo;const w=document.getElementById(id);return [Math.round(w.getBoundingClientRect().top),Math.round(document.querySelector('#tbltoc').getBoundingClientRect().bottom)]})()")
@@ -199,7 +199,7 @@ async def ipad(b, w, h):
     await open_(pg, '#/CONS/WHT/sum', '#stage .msum')
     if w < 1000:
         hs = await pg.evaluate(f"{ROWS}.map(r=>r.offsetHeight)")
-        ok(min(hs) >= 250 and max(hs) <= 450, f'E02 820 WHT 카드 높이 {min(hs)}~{max(hs)} (250~450 — fixB VIS03 ⚡ 전부·V14 칸 이름 👁 칩)')
+        ok(min(hs) >= 180 and max(hs) <= 450, f'E02 820 WHT 카드 높이 {min(hs)}~{max(hs)} (180~450 — ux3 L3 2단 카드 · fixB VIS03 ⚡ 전부·V14 칸 이름 👁 칩)')
         r = await pg.evaluate("(()=>{const td=document.querySelector('#m-WHT-1 td.md');const v0=[td.querySelector('.sline'),td.querySelector('.mfull')].map(e=>e.offsetParent!==null);td.querySelector('.mdmore').click();return [v0,td.querySelector('.mfull').offsetParent!==null,td.querySelector('.mdmore').textContent]})()")
         ok(r[0] == [False, False] and r[1], f"E02 820 카드형: 세부 접힘 → '세부 n줄 ▸' 누르면 펼침 {r}")
     else:
