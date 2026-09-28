@@ -129,6 +129,29 @@ async def ipad_sweep(b):
                     if t: bad.append(f'TEAL {s}/{d} {t}')
         await pg.close()
     return bad
+# ---- ux3 트랙3 K·N 화면 검사 ----
+KEYCH=r"""()=>{/* 🔑 상자(.c-key .kb)·정리표 🔑 칸(.mkey)의 '한 덩어리로 흐르는 글자'(가장 가까운 block·list-item·inline-block 조상 단위, 보이는 글자만) 중 150자·80자 넘는 수 */
+ let n150=0,n80=0;const blk=el=>{while(el){const d=getComputedStyle(el).display;if(d!=='inline'&&d!=='contents')return el;el=el.parentElement;}return null;};
+ document.querySelectorAll('#stage .c-key .kb, #stage .mkey').forEach(R=>{const M=new Map();const w=document.createTreeWalker(R,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){const p=t.parentElement;if(!p||!p.getClientRects().length)continue;const b=blk(p);M.set(b,(M.get(b)||'')+t.nodeValue);}
+  M.forEach(v=>{const L=v.replace(/\s+/g,' ').trim().length;if(L>150)n150++;if(L>80)n80++;});});return [n150,n80];}"""
+BLANKCR=r"""()=>{/* 빈칸 5색 가린 상태 밑줄 대 바탕 대비(3.0↑) · 인쇄는 따로 */const lum=c=>{const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c[0])+0.7152*f(c[1])+0.0722*f(c[2]);};const rgb=s=>(s.match(/\d+(\.\d+)?/g)||[]).slice(0,3).map(Number);
+ const box=document.querySelector('#stage')||document.body,o={};for(const c of ['n','u','g','p','v']){const e=document.createElement('span');e.className='rk-b'+(c!=='n'?' rkb-'+c:'');e.textContent='가나';box.appendChild(e);const cs=getComputedStyle(e);const a=lum(rgb(cs.backgroundColor)),b=lum(rgb(cs.borderBottomColor));o[c]=Math.round((Math.max(a,b)+0.05)/(Math.min(a,b)+0.05)*100)/100;e.remove();}return o;}"""
+KEYCH_BASE=(3,954)   # 옛 렌더(0918775 docs) 1280 학습+정리표 42강의: 150자↑ 3 · 80자↑ 954 — 새 렌더 150자↑는 30% 이하(≤0)여야
+async def ux3_checks(b):
+    """ux3 N4 🔑 긴 덩어리(1280 학습·정리표 전 강의) · K2 빈칸 5색 밑줄 대비 · 인쇄 에뮬레이션 색 없음"""
+    bad=[]; rep=[]; pg=await b.new_page(viewport={'width':1280,'height':900}); t150=t80=0
+    for s,ls in SUBJ.items():
+        for k in ls:
+            for t in ('learn','sum'):
+                await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/{t}'); await pg.wait_for_timeout(350)
+                r=await pg.evaluate(KEYCH); t150+=r[0]; t80+=r[1]
+    rep.append(f'KEYCHUNK 🔑 상자·정리표 칸 한 덩어리 150자↑ {KEYCH_BASE[0]} → {t150} · 80자↑ {KEYCH_BASE[1]} → {t80} (옛 → 새)')
+    if t150>KEYCH_BASE[0]*0.3: bad.append(f'KEYCHUNK 150자↑ {t150} (옛 {KEYCH_BASE[0]}의 30% 넘음)')
+    cr=await pg.evaluate(BLANKCR); rep.append(f'BLANKCR 빈칸 밑줄 대비 {cr}')
+    if any(v<3.0 for v in cr.values()): bad.append(f'BLANKCR 대비 3.0 미만 {cr}')
+    await pg.emulate_media(media='print'); pr=await pg.evaluate("(()=>{const box=document.querySelector('#stage');const o=[];for(const c of ['n','u','g','p','v']){const e=document.createElement('span');e.className='rk-b'+(c!=='n'?' rkb-'+c:'');e.textContent='가';box.appendChild(e);o.push(getComputedStyle(e).backgroundColor);e.remove();}return o})()"); await pg.emulate_media(media='screen')
+    if any(x!='rgba(0, 0, 0, 0)' for x in pr): bad.append(f'BLANK PRINT 인쇄에 빈칸 바탕색 {pr}')
+    await pg.close(); return bad, rep
 async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
@@ -182,10 +205,14 @@ async def main():
         print('FIXB SWEEP (반쯤 잘린 줄·820 전체정리표 넘침·점 두 개 — 0이어야 함)', len(FB))
         for x in FB[:40]: print(' ',x)
         for x in FR: print('  (보고)',x)
+        UB,UR=await ux3_checks(b)
+        print('UX3 K·N (🔑 긴 덩어리·빈칸 대비·인쇄 — 판정)', len(UB))
+        for x in UB: print(' ',x)
+        for x in UR: print('  (보고)',x)
         IP=await ipad_sweep(b)
         print('IPAD SWEEP (가로 밀림·점 겹침·청록)', len(IP))
         for x in IP[:40]: print(' ',x)
         print('errs',errs[:3]); await b.close()
-        return not IP and not errs and not FB
+        return not IP and not errs and not FB and not UB
 ok_=asyncio.run(main())
 print('RESULT', 'PASS' if ok_ else 'FAIL'); sys.exit(0 if ok_ else 1)

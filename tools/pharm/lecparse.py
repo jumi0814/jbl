@@ -300,9 +300,10 @@ def render_block(v, ctx, depth=0):
             if lb.count('==') % 2 == 1: lb = lb.replace('==', ''); rest = '==' + rest
             if lb.count('{r:') > lb.count('}'): lb = lb + '}'; rest = '{r:' + rest
             if lb.count('**') % 2 == 1: lb = lb.replace('**', ''); rest = '**' + rest
-            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + inline(rest, ctx)
+            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rest, ctx)
         parts = _lab_merge(_rebalance(top))
-        return _list_html(parts, ctx, depth, 'ul', 'kflow lab' if _is_flow(parts) else 'klist lab', fmt=lab)
+        fl = _is_flow(parts) and not (_IP[0] and sum(_L(x) for x in parts) > 50)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 아주 짧은 것만 가로 흐름
+        return _list_html(parts, ctx, depth, 'ul', 'kflow lab' if fl else 'klist lab', fmt=lab)
     if len(v) > 90:
         sp = split_lead(v)
         if sp and depth <= 1:
@@ -438,8 +439,9 @@ def render_exam(v, ctx):
 # 그래서 표시 단위(aid) textContent가 옛 렌더(render_block)와 글자까지 같다 — 다르면 옛 렌더를 그대로 씀(KL[2] 되돌림 수).
 # 규칙: K1 최상위 ' / '(50자 초과 · 12자 이하 수치 나열 제외) → 줄 / K5 최상위 ' — ' 뒤 16자↑ → 둘째 줄 .ksub / K2 ' · ' 사실 중 'X = …'·'X: …'
 # (라벨 26자 이하·괄호 없음) 2개↑ → 라벨 사실마다 줄(b.lbl) / 'X: 긴 내용' → 머리 줄(.klh) + 나머지 / K4 ' → ' 4단계↑·70자 초과 → 단계 흐름(.ksi)
-# / K6 90자 초과 · ' + ' 조각 모두 12자↑ · 괄호 부연 → '+ ' 앞에서 줄 / K3 56자 초과 · ' · ' 사실 3개↑ → 사실 단위 흐름(.kfi, 32자 이하는 nowrap)
+# / K6 90자 초과 · ' + ' 조각 모두 12자↑ · 괄호 부연 → '+ ' 앞에서 줄 / K3 56자 초과 · ' · ' 사실 3개↑ → 사실 단위 흐름(.kfi, 24자 이하는 nowrap)
 # · 8자 미만 짧은 줄은 앞 줄에 붙임 · 한 상자 7줄까지(넘으면 그 단계는 나누지 않음 — 넘치는 🔑은 key_split이 이미 .krest로 내림)
+KFN = 24   # 이 글자 수 이하 사실·단계는 중간에서 끊지 않음(nowrap 덩어리) — 계획 32자에서 정리표 🔑 칸(약 240px) 폭에 맞춰 24자로
 KL = [0, 0, 0]   # 상자 수 · 새 구조 · 글자가 달라 옛 렌더로 되돌린 수(빌드 로그·check_lec)
 def _ks(sep, cls='kh'): return f'<span class="ksep {cls}">{html.escape(sep, quote=False)}</span>'
 def _sp(s, sep):
@@ -526,7 +528,7 @@ def _kp(p, ctx, first=True, lvl=0, li=False):
     ps = _sp(p, ' → ')
     if (len(ps) >= 4 and n > 70 or len(ps) == 3 and n > 80) and all(x.strip() for x in ps):
         bp = _bal(ps)
-        return '<span class="kst">' + ''.join(f'<span class="ksi{" kfn" if _L(x) <= 32 else ""}">' + (_ks(' → ', 'ka') if i else '') + inline(x, ctx, first and not i) + '</span>' for i, x in enumerate(bp)) + '</span>'
+        return '<span class="kst">' + ''.join(f'<span class="ksi{" kfn" if _L(x) <= KFN else ""}">' + (_ks(' → ', 'ka') if i else '') + inline(x, ctx, first and not i) + '</span>' for i, x in enumerate(bp)) + '</span>'
     # K6 ' + ' 부연 묶음
     ps = _sp(p, ' + ')
     if n > 90 and len(ps) >= 2 and all(_L(x) >= 12 for x in ps) and any(re.search(r'[(（]', x) for x in ps) and len(ps) <= 7:
@@ -548,7 +550,7 @@ def _kf(p, ctx, first):
     """라벨 줄에 붙는 라벨 없는 사실 — inline"""
     return inline(p, ctx, first)
 def _flow(bp, sep, ctx, first):
-    return '<span class="kfw">' + ''.join(f'<span class="kfi{" kfn" if _L(x) <= 32 else ""}">' + inline(x, ctx, first and not i) + (_ks(sep, 'kfs') if i < len(bp) - 1 else '') + '</span>' for i, x in enumerate(bp)) + '</span>'
+    return '<span class="kfw">' + ''.join(f'<span class="kfi{" kfn" if _L(x) <= KFN else ""}">' + inline(x, ctx, first and not i) + (_ks(sep, 'kfs') if i < len(bp) - 1 else '') + '</span>' for i, x in enumerate(bp)) + '</span>'
 def _txt(h): return html.unescape(re.sub(r'<[^>]+>', '', h))
 def key_lines(v, ctx):
     """🔑 상자·정리표 🔑 칸 본문(ux3 N1) — 옛 render_block과 같은 틀(번호·라벨·' / ' 목록)에 조각마다 K1~K6. 글자가 옛 렌더와 다르면 옛 렌더"""

@@ -183,7 +183,7 @@ async def a06(pg, tag, vp):
     await pg.keyboard.press('Escape'); await pg.wait_for_timeout(100)
     ok(await pg.evaluate("getComputedStyle(document.querySelector('.modechip')).display") == 'none' and not await pg.evaluate("document.querySelector('#stage').classList.contains('modeon')"), 'Esc → 모드 칩 사라짐')
     await pg.keyboard.press('b'); t = await pg.inner_text('.modechip'); await pg.click('.modechip')
-    ok(t == '▣ 빈칸 만들기 켜짐 — 빈칸을 누르면 지워져요 (B·Esc)' and not await pg.evaluate("document.body.classList.contains('mode-b')"), f'B → 빈칸 칩 문구 · 칩 누르면 끄기 ({t})')
+    ok(t == '▣ 빈칸 만들기 켜짐 · 회색 — 빈칸을 누르면 지워져요 (B·Esc)' and not await pg.evaluate("document.body.classList.contains('mode-b')"), f'B → 빈칸 칩 문구 · 칩 누르면 끄기 ({t})')
     # ↶ 배지 = 되돌리기 스택 길이
     await pg.keyboard.press('h')
     for k in (1, 2):
