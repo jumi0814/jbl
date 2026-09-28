@@ -608,6 +608,8 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 .skinds{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}.chip.sxw{border-style:dashed;color:var(--sub);background:#fff}
 .sres .sans{align-self:flex-start;font-size:12.5px;font-weight:700;color:var(--acct);border:1px solid var(--accb);border-radius:999px;padding:2px 12px;background:#fff;margin-top:3px;min-height:28px;display:inline-flex;align-items:center}.sres .sans:hover{background:var(--accbg)}
 .rlog{margin-top:10px;font-size:13px}.rlog summary{cursor:pointer;color:var(--sub)}.rlog ul{margin:4px 0;padding-left:18px;max-height:180px;overflow:auto}.rlog li.err{color:#8E1B14}
+/* C01 공간 정리(복원 창) */
+details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px}details.rclean>summary{cursor:pointer;font-weight:700}details.rclean .row{margin-top:6px}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><button type="button" class="brand" id="gohome" title="허브 홈 — 모든 과목">🏠 JBL 허브<small>3학년 3쿼터</small></button><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
 <button type="button" id="clock" aria-label="오늘 공부 시간 · 누르면 기록">00:00:00</button><span id="idlechip" class="noann" hidden title="입력이 없어 시계를 멈췄어요 — 움직이면 이어서 잽니다"></span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -635,6 +637,7 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 <tr><th>무활동·창 여러 개</th><td>입력 없이 1분이 지나면 시계 옆 <b>⏸ 자리 비움</b>(숫자는 멈춤) · <b>무활동 기준</b>(시계 팝업에서 5·8·15·25분, 기본 8분 — 한 장씩 풀기에서 답을 가린 동안은 2배)을 넘으면 멈추고, 돌아오면 아래 띠 ‘12분 동안 입력이 없었어요 — [공부했어요 +11분] [빼기]’(10초 뒤 저절로 빼기 · 최대 60분) · 다른 앱으로 가서 30초가 지나면 멈춤 · 허브를 창 두 개로 열면 마지막으로 만진 창만 잼(다른 창은 ‘○ 다른 창에서 측정 중’)</td></tr>
 <tr><th>📊 공부 기록</th><td>허브 홈 ‘오늘’ 띠·시계 팝업 [자세히]·과목 홈 진행률 아래 줄 → 이번 주 월~일 막대(과목색 · 옅은 막대 = 지난주 · 점선 = 하루 목표) · 막대를 누르면 그날 과목·강의별 · ◀ ▶ 주 옮기기 · 요일별 평균(최근 4주) · 최근 12주 잔디 · 과목별 누적·강의 상위 10(읽음·기출 정답률) · <b>+ 시간 고치기</b>(날짜·과목·±분 — 자동 기록은 그대로 두고 따로 저장)</td></tr>
 <tr><th>시험일·오늘 복습</th><td>허브 과목 카드의 <b>시험일</b>을 넣으면 D-n(3일 이내 강조)·‘시험 가까운 순’ 정렬·과목 홈에 <b>하루 분량</b>(남은 안 읽은 카드·안 푼 기출 ÷ 남은 날) · <b>🔁 오늘 복습</b>: 틀렸던 기출을 틀린 뒤 맞힌 횟수로 1·3·7일 간격으로 다시(허브 카드·과목 홈 공부 순서·JB 필터 ‘🔁 복습’ — 누르면 한 장씩) · 채점 칩에 마우스를 올리면 ‘다음 복습 9/30’</td></tr>
+<tr><th>백업·저장 공간</th><td>5분마다 자동 백업(바뀌었을 때만 · 마지막 성공 <b id="hbakat">—</b>) · 저장이 안 되면(저장 공간 부족) 닫을 때까지 남는 빨간 띠 <b>‘⚠ 저장되지 않았어요’</b> — 방금 표시는 이 창에만 있으니 [지금 백업 파일 받기]로 파일을 받고 [공간 정리]로 자리를 비우면 30초 안에 다시 저장해요(‘저장됐어요’)</td></tr>
 <tr><th>검색·알림</th><td><b>/</b> 검색 → 결과 위 [전체][정리본][JB][표][예상]으로 좁히기(주소에 남아 새로고침해도 유지) · JB 결과의 ‘답 바로 보기’ · 알림은 화면 아래 도구 막대 위에 하나씩 차례로, 오류는 ✕로 닫을 때까지 빨간 띠 · 지나간 알림은 [복원] 창 ‘최근 알림’</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
 <tr><th>이동·화면</th><td>왼쪽 위 <b>🏠 JBL 허브</b>(아이패드 세로는 ☰ 서랍 맨 위 ‘🏠 허브 홈’)로 허브 홈 · <b>1~6</b> 탭 · <b>G</b> 과목 홈 · <b>/</b> 검색창 · <b>M</b> 메모 · <b>T</b> 도구 막대 숨기기 · <b>Esc</b> 한 단계씩(팝업·도움말 닫기 → 모드 끄기) · <b>?</b> 도움말</td></tr>
@@ -648,12 +651,13 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 <script>
 (function(){
 const $=(s,e)=>(e||document).querySelector(s),$$=(s,e)=>[...(e||document).querySelectorAll(s)];
-const NS='jblhub.v1.';const LS={get(k,d){try{const v=localStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(NS+k,JSON.stringify(v));}catch(e){toast('저장 공간 오류 — 백업을 받아두세요');}}};
+const NS='jblhub.v1.';const LSQ=new Map();   /* C01 저장 실패 큐(키 → JSON 글) — 쓰지 못한 값은 여기 두고 읽을 때도 이것을 먼저(메모리가 최신) · 30초마다·공간 정리 뒤 다시 씀 */
+const LS={get(k,d){if(LSQ.has(k)){try{return JSON.parse(LSQ.get(k));}catch(e){return d;}}try{const v=localStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){const s=JSON.stringify(v);try{localStorage.setItem(NS+k,s);if(LSQ.size){LSQ.delete(k);lsFlush();}}catch(e){lsFail(k,s);}}};
 /* ux2 트랙A B11 알림 — toast(글, 숫자(ms) | {level:'info'|'result'|'error', action:{label,fn}, ms}) · 옛 toast(글, ms)는 info 그대로
    · 대기열: 한 번에 하나씩 차례로(뒤에 기다리는 것이 있으면 지금 것은 info 0.7초·result 1.5초 뒤 넘김 · 같은 글은 한 번만) · info 2.5초 · result 6초 + [보기]
    · error = 닫을 때까지 남는 빨간 띠(#toasterr, 대기열과 따로 — 다른 알림을 막지 않음) · 위치 = 도구 막대 위(팝업이 열려 있으면 팝업 아래) · 최근 20개 sessionStorage 'toasts' */
 const TQ={q:[],cur:null,t:0,at:0};
-function toast(t,o){o=(typeof o==='number')?{ms:o}:(o||{});const lv=(o.level==='result'||o.level==='error')?o.level:'info';const it={t:String(t==null?'':t),lv,ms:+o.ms||(lv==='result'?6000:2500),act:o.action||null,at:Date.now()};
+function toast(t,o){o=(typeof o==='number')?{ms:o}:(o||{});const lv=(o.level==='result'||o.level==='error')?o.level:'info';const it={t:String(t==null?'':t),lv,ms:+o.ms||(lv==='result'?6000:2500),act:o.action||null,acts:Array.isArray(o.actions)?o.actions:null,id:o.id||'',at:Date.now()};
  try{const k=NS+'toasts',L=JSON.parse(sessionStorage.getItem(k)||'[]');L.unshift({t:it.t,lv,at:it.at});sessionStorage.setItem(k,JSON.stringify(L.slice(0,20)));}catch(e){}
  if(lv==='error'){toastErr(it);return;}if((TQ.cur&&TQ.cur.t===it.t&&!TQ.q.length)||TQ.q.some(x=>x.t===it.t))return;TQ.q.push(it);if(TQ.q.length>6)TQ.q.splice(0,TQ.q.length-6);toastNext();}
 function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length){clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,Math.max(0,(TQ.cur.lv==='result'?1500:700)-(Date.now()-TQ.at)));}return;}
@@ -662,8 +666,8 @@ function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length)
  e.style.display='block';toastPos(e);clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,TQ.q.length?(it.lv==='result'?1500:700):it.ms);}
 function toastEnd(){clearTimeout(TQ.t);TQ.cur=null;const e=$('#toast');if(e)e.style.display='none';toastNext();}
 function toastPos(e){const P=[...document.querySelectorAll('.pop.on')].map(x=>x.getBoundingClientRect()).filter(r=>r.height>0);if(P.length&&e.id==='toast'){const b=Math.max(...P.map(r=>r.bottom));if(b+60<innerHeight){e.classList.add('atpop');e.style.top=(b+8)+'px';return;}}e.classList.remove('atpop');e.style.top='';}
-function toastErr(it){const w=$('#toasterr');if(!w)return;const r=document.createElement('div');r.className='terr';const s=document.createElement('span');s.textContent='⚠ '+it.t;r.appendChild(s);
- if(it.act&&typeof it.act.fn==='function'){const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=it.act.label||'보기';b.onclick=()=>{try{it.act.fn();}catch(_){}};r.appendChild(b);}
+function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=document.getElementById(it.id);if(o)o.remove();}const r=document.createElement('div');r.className='terr';if(it.id)r.id=it.id;const s=document.createElement('span');s.textContent='⚠ '+it.t;r.appendChild(s);
+ (it.acts||(it.act?[it.act]:[])).forEach(a=>{if(!a||typeof a.fn!=='function')return;const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=a.label||'보기';b.onclick=()=>{try{a.fn();}catch(_){}};r.appendChild(b);});   /* C01: 버튼 여러 개(actions) · id가 같은 띠는 하나만 */
  const x=document.createElement('button');x.type='button';x.className='tx';x.textContent='✕';x.title='닫기';x.setAttribute('aria-label','알림 닫기');x.onclick=()=>r.remove();r.appendChild(x);w.appendChild(r);}
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=null/*READY*/;
@@ -870,7 +874,7 @@ function home(opt){opt=opt||{};leaveView();const push=opt.push!==false&&VIEW!=='
     +`<div class="spb"><span>${C.ref?'현 교수 ':''}기출 맞음 <b class="cok">${ok}</b> · 틀림 <b class="cng">${ng}</b> <i>/ ${C.main}</i></span><div class="pbar"><i class="ok" style="width:${C.main?ok/C.main*100:0}%"></i><i class="ng" style="width:${C.main?ng/C.main*100:0}%"></i></div></div>`
     +`${exCard(id)}<div class="sacts">${r?`<button class="btn sm res go-resume" data-s="${id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'↪ 이어서':'▶ 시작'}: ${EH(sname(p,r.d))} · ${tl}</button>`:''}<button class="btn sm" data-sjbf="${C.todo?'todo':'ng'}">📝 ${C.todo?'안 푼 기출 '+C.todo:'틀린 기출 '+C.ng}</button>${revBtn(id)}</div><div class="small" style="margin-top:6px">갱신 ${p.built}</div></div>`;}
   else g+=`<div class="scard off${plPending(id)?' plw':''}"><div class="en serif">${ko}</div><div class="ko">${plPending(id)?'불러오는 중…':PL.bad[id]?'⚠ 불러오기 실패':'자료 준비 중'}</div></div>`;});
- h.innerHTML=`${todayBand()}<h2>JBL 허브${plChip()}</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div>${homeSortBar()}<div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}${(()=>{const R=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const A=LS.get('ann.'+id,{});let nh=0,nb=0;if(A&&typeof A==='object')for(const k in A)(Array.isArray(A[k])?A[k]:[]).forEach(o=>{if(o&&typeof o==='object'){if(o.t==='b')nb++;else nh++;}});return [id,nh,nb];});
+ h.innerHTML=`${todayBand()}<h2>JBL 허브${plChip()}</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div>${homeSortBar()}<div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업(마지막 성공 ${bakAtTxt()})도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}${(()=>{const R=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const A=LS.get('ann.'+id,{});let nh=0,nb=0;if(A&&typeof A==='object')for(const k in A)(Array.isArray(A[k])?A[k]:[]).forEach(o=>{if(o&&typeof o==='object'){if(o.t==='b')nb++;else nh++;}});return [id,nh,nb];});
   return `<div class="panel mkall"><div class="bt">🖍 전 과목 내 표시 <span class="small">— 과목을 누르면 내 표시 모아보기(표시가 든 문장·색별로 보기·빈칸 떠올리기)</span></div><div class="row">${R.map(([id,nh,nb])=>`<button class="btn sm" data-mks="${id}">${EH(PACKS[id].title)} · 🖍 ${nh} · ▣ ${nb}</button>`).join('')}</div></div>`;})()}
  <div class="panel htime"><div class="bt">최근 공부 시간</div>${tHomeTable()}</div>
  <div class="panel"><div class="bt">도움말</div><div class="small">형광펜·빈칸 쓰는 법, 그림 보기, 공부 시간, 백업·복원, 단축키는 오른쪽 위 <b>?</b> 버튼(또는 ? 키)에 모아 두었어요.</div></div>`;
@@ -1499,7 +1503,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
  /* 다른 탭(허브·단일 파일판을 함께 열었을 때)에서 바꾼 표시를 반영 — 덮어쓰기 방지 */
  addEventListener('storage',e=>{if(S&&e.key===NS+'ann.'+S){ANN=LS.get('ann.'+S,{});U=[];R=[];upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}});
  $('#k-lost').onclick=()=>{if(!CUR.s)return;openDoc(CUR.s,'_marks');const el=$('#mk-lost');if(el)goEl(el);};
- return{load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,pen:PEN,ctxOf,labels,editLabel,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
+ return{sub(){return S;},load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,pen:PEN,ctxOf,labels,editLabel,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
   textOf(B){return index(B).s;},locate,resolve,enrich,needsLX,fnv,enriched(){return ENR;},setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN,
   drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push();L.splice(i,1);if(!L.length)delete ANN[aid];persist();}};})();
 const memoBase={v:''};
@@ -1686,7 +1690,9 @@ $('#home').addEventListener('click',e=>{if(e.target.closest('#sclose')){closeSea
 let st_;$('#gsearch').addEventListener('input',e=>{clearTimeout(st_);const v=e.target.value;if(!v.trim()){if(VIEW==='search')closeSearch();return;}st_=setTimeout(()=>search(v,{s:VIEW==='search'?SQ.s:''}),250);});
 $('#gsearch').addEventListener('keydown',e=>{if(e.key==='Escape'&&VIEW==='search'){e.preventDefault();closeSearch();}});
 /* ---------- 백업·복원 v2 — 합치기(기본)·덮어쓰기·자동 백업 시점으로 되돌리기 ---------- */
-function dumpAll(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)o[k]=localStorage.getItem(k);}return o;}
+function dumpAll(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)o[k]=localStorage.getItem(k);}
+ if(LSQ.size){LSQ.forEach((v,k)=>{o[NS+k]=v;});try{const ks=Kit.sub();if(ks)o[NS+'ann.'+ks]=JSON.stringify(Kit.all());if(CUR.s)o[NS+'mk.'+CUR.s]=JSON.stringify(MK);}catch(e){}}   /* C01: 저장하지 못한 값(메모리의 ANN·MK)까지 */
+ return o;}
 function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
 $('#bkup').onclick=()=>{tFlush();dl('JBL허브_백업_'+day()+'.json',{app:'jblhub',v:2,at:new Date().toISOString(),data:dumpAll()});LS.set('lastBackup',Date.now());toast('백업 파일을 저장했어요 — 기기를 바꿔도 [복원]으로 되살릴 수 있어요');};
 function mergeInto(data){const J=v=>{try{return JSON.parse(v);}catch(e){return null;}};let n=0;
@@ -1703,16 +1709,16 @@ function mergeInto(data){const J=v=>{try{return JSON.parse(v);}catch(e){return n
 /* 비교는 공부 기록(표시·채점·이해함·메모·플래시카드)만 — 읽던 위치·시간처럼 늘 바뀌는 값 때문에 같은 백업을 또 쓰지 않게 */
 const bakSig=d=>JSON.stringify(Object.keys(d).filter(k=>/^jblhub\.v1\.(ann|mk|done|memo|fc)\./.test(k)).sort().map(k=>[k,d[k]]));
 function autoBak(force,why){try{const data=dumpAll();const s=bakSig(data);
-  if(why){const pi=(LS.get('autobak.pi',-1)+1)%3;localStorage.setItem(NS+'autobak.p'+pi,JSON.stringify({at:Date.now(),why,data}));LS.set('autobak.pi',pi);autoBak.last=s;return;}
-  if(s===autoBak.last)return;const li=LS.get('autobak.i',null);if(li!=null){try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+li)||'null');if(j&&j.data&&bakSig(j.data)===s){autoBak.last=s;return;}}catch(e){}}
-  autoBak.last=s;const idx=((li==null?-1:li)+1)%5;localStorage.setItem(NS+'autobak.'+idx,JSON.stringify(force?{at:Date.now(),why:'바꾸기 전',data}:{at:Date.now(),data}));LS.set('autobak.i',idx);}catch(e){}}
+  if(why){const pi=(LS.get('autobak.pi',-1)+1)%3;localStorage.setItem(NS+'autobak.p'+pi,JSON.stringify({at:Date.now(),why,data}));lsRaw('autobak.pi',pi);autoBak.last=s;lsRaw('autobakAt',Date.now());return true;}
+  if(s===autoBak.last)return true;const li=LS.get('autobak.i',null);if(li!=null){try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+li)||'null');if(j&&j.data&&bakSig(j.data)===s){autoBak.last=s;return true;}}catch(e){}}
+  const idx=((li==null?-1:li)+1)%5;localStorage.setItem(NS+'autobak.'+idx,JSON.stringify(force?{at:Date.now(),why:'바꾸기 전',data}:{at:Date.now(),data}));autoBak.last=s;lsRaw('autobak.i',idx);lsRaw('autobakAt',Date.now());return true;}catch(e){bakWarn();return false;}}   /* C01: 성공 여부를 돌려줌 · 실패는 하루 한 번 경고 */
 setInterval(()=>autoBak(false),5*60*1000);setTimeout(()=>autoBak(false),15000);
 function openRestore(){const p=$('#rpop');if(p.classList.contains('on')){p.classList.remove('on');return;}const snaps=[],pre=[];for(let i=0;i<5;i++){const v=localStorage.getItem(NS+'autobak.'+i);if(v){try{const j=JSON.parse(v);snaps.push([String(i),j.at,j.why||'']);}catch(e){}}}
  for(let i=0;i<3;i++){const v=localStorage.getItem(NS+'autobak.p'+i);if(v){try{const j=JSON.parse(v);pre.push(['p'+i,j.at,j.why||'원고 갱신 전']);}catch(e){}}}snaps.sort((a,b)=>b[1]-a[1]);pre.sort((a,b)=>b[1]-a[1]);
  const tm=at=>new Date(at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
  p.innerHTML=`<div class="bt">복원</div><div class="small">백업 파일(.json)에서 가져오기</div><div class="row"><button class="btn pri" id="rmerge">합치기 (권장)</button><button class="btn" id="rover">덮어쓰기</button></div><div class="small">합치기 = 지금 표시·채점·메모는 그대로 두고 백업의 것을 더함 · 덮어쓰기 = 백업 상태로 교체</div>
  ${pre.length?`<div class="small" style="margin-top:10px">원고 갱신·표시 이관 직전 상태 <span class="small">(따로 보관 — 주기 백업이 밀어내지 않음)</span></div><div class="row">${pre.map(([i,at,why])=>`<button class="btn" data-snap="${i}">${tm(at)} · ${why}</button><button class="btn sm" data-snapdl="${i}" title="이 시점을 백업 파일로 받기">⬇ 파일</button>`).join('')}</div>`:''}
- <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(바뀌었을 때만 5분마다, 최근 5개 — 이 브라우저 안)</span></div><div class="row">${snaps.map(([i,at,why])=>`<button class="btn" data-snap="${i}"${why?` title="${why}"`:''}>${tm(at)}${why?' · '+why:''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div>${toastLog()}<button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;p.classList.add('on');
+ <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(바뀌었을 때만 5분마다, 최근 5개 — 이 브라우저 안)</span></div><div class="row">${snaps.map(([i,at,why])=>`<button class="btn" data-snap="${i}"${why?` title="${why}"`:''}>${tm(at)}${why?' · '+why:''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div>${cleanHTML()}${toastLog()}<button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;p.classList.add('on');$$('[data-clean]',p).forEach(b=>b.onclick=()=>cleanRun(b.dataset.clean));
  $('#rmerge').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#rover').onclick=()=>{$('#rfile').dataset.how='over';$('#rfile').click();};$('#rclose').onclick=()=>p.classList.remove('on');
  $$('[data-snapdl]',p).forEach(b=>b.onclick=()=>{try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+b.dataset.snapdl));dl('JBL허브_백업_'+(j.why||'자동').replace(/\s+/g,'')+'_'+day(new Date(j.at))+'.json',{app:'jblhub',v:2,at:new Date(j.at).toISOString(),data:j.data});}catch(e){toast('백업을 읽지 못했어요');}});
  $$('[data-snap]',p).forEach(b=>b.onclick=()=>{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+b.dataset.snap));if(!confirm(new Date(j.at).toLocaleString('ko-KR')+' 상태로 되돌릴까요? (지금 상태는 먼저 자동 백업해 둡니다)'))return;autoBak(true);for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)localStorage.removeItem(k);}for(const k in j.data)localStorage.setItem(k,j.data[k]);location.reload();});}
@@ -1721,6 +1727,34 @@ $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const how=e.targ
   if(how==='over'){if(!confirm('백업 파일 상태로 모두 교체할까요? (지금 상태는 자동 백업에 남겨 둡니다)'))return;for(const k in j.data)localStorage.setItem(k,j.data[k]);}else{const n=mergeInto(j.data);toast('합쳤어요 — 새로 더한 항목 '+n+'개');}
   setTimeout(()=>location.reload(),600);}catch(_){toast('백업 파일을 읽지 못했어요');}e.target.value='';};r.readAsText(f);};
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+// ux2 트랙A — 묶음 3(C01~C11): 저장 실패·자동 백업(IndexedDB)·저장 공간·자동 빈칸 규칙·🧹 메뉴·복원 안전·실행 취소·JB 회차·플래시카드 채점·기기 옮기기·홈 화면 앱
+/* C01 저장 실패 — LS.set이 실패하면 ① localStorage 자동 백업 사본을 가장 오래된 주기 칸부터(보호 칸 p0~2는 마지막) 하나씩 지우며 다시 씀
+   ② 그래도 안 되면 값을 LSQ(메모리 큐)에 두고 닫을 때까지 남는 빨간 띠 #lserr '⚠ 저장되지 않았어요 … [지금 백업 파일 받기] [공간 정리]'
+   ③ 30초마다·다른 쓰기가 성공할 때·공간 정리 뒤 큐를 다시 씀 → 다 쓰면 띠를 닫고 '저장됐어요' · LS.get은 큐의 값을 먼저 읽음 */
+function lsRaw(k,v){try{localStorage.setItem(NS+k,JSON.stringify(v));return true;}catch(e){return false;}}
+function lsBakSlots(){const per=[],pro=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);const m=k&&/^jblhub\.v1\.autobak\.(p?)\d$/.exec(k);if(!m)continue;let at=0;try{const v=localStorage.getItem(k)||'';const a=/^\{"at":(\d+)/.exec(v);at=a?+a[1]:0;}catch(e){}(m[1]?pro:per).push([k,at]);}
+ const o=(a,b)=>a[1]-b[1];return per.sort(o).concat(pro.sort(o)).map(x=>x[0]);}
+function lsFail(k,s){for(const bk of lsBakSlots()){try{localStorage.removeItem(bk);}catch(e){}try{localStorage.setItem(NS+k,s);LSQ.delete(k);if(!lsFail.n){lsFail.n=1;toast('저장 공간이 모자라 오래된 자동 백업 사본을 지우고 저장했어요');}return;}catch(e){}}
+ LSQ.set(k,s);lsErrShow();}
+function lsErrShow(){LSQ.err=true;if(document.getElementById('lserr'))return;toast('저장되지 않았어요 — 방금 표시는 이 창에만 있어요',{level:'error',id:'lserr',actions:[{label:'지금 백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}]});}
+function lsFlush(){if(!LSQ.size)return true;let n=0;for(const [k,v] of [...LSQ]){try{localStorage.setItem(NS+k,v);LSQ.delete(k);n++;}catch(e){}}
+ if(LSQ.size)return false;const r=document.getElementById('lserr');if(r)r.remove();if(LSQ.err){LSQ.err=false;toast('저장됐어요 — 밀려 있던 기록 '+n+'개를 저장했어요',{level:'result'});}return true;}
+setInterval(()=>{if(LSQ.size)lsFlush();},30000);
+/* [지금 백업 파일 받기] — 메모리 큐까지 담은 dumpAll(마지막 파일 백업 시각은 C10 규칙대로 바꾸지 않음) */
+function bakDownload(){try{tFlush();}catch(e){}dl('JBL허브_백업_'+day()+'.json',bakFile());toast('백업 파일을 내려받았어요 — 파일 앱(다운로드)에 있어요',{level:'result'});}
+function bakFile(){return {app:'jblhub',v:2,at:new Date().toISOString(),data:dumpAll()};}
+/* 자동 백업 실패 경고 — 하루 한 번 */
+function bakWarn(){const d=day();if(bakWarn.d===d||LS.get('bakWarnDay','')===d)return;bakWarn.d=d;lsRaw('bakWarnDay',d);toast('자동 백업을 남기지 못했어요 — 저장 공간이 부족해요',{level:'error',id:'bakerr',actions:[{label:'백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}]});}
+function bakAtTxt(){const at=+LS.get('autobakAt',0);if(!at)return '아직 없음';const d=new Date(at),t=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);return (day(d)===day()?'오늘 ':(d.getMonth()+1)+'/'+d.getDate()+' ')+t;}
+function helpBak(){const e=$('#hbakat');if(e)e.textContent=bakAtTxt();}
+/* [공간 정리] — 복원 창을 열고 '공간 정리' 절로 */
+function openClean(){const p=$('#rpop');if(!p.classList.contains('on'))openRestore();setTimeout(()=>{const c=$('#rclean');if(c){c.open=true;c.scrollIntoView({block:'nearest'});}},60);}
+function cleanHTML(){const L=lsBakSlots();let sz=0;L.forEach(k=>{try{sz+=(localStorage.getItem(k)||'').length;}catch(e){}});
+ return `<details class="rclean" id="rclean"><summary>🧹 공간 정리</summary><div class="small">자리가 모자라 저장이 안 될 때 — 지우기 전에 [백업 파일 받기]를 권해요</div><div class="row">${L.length?`<button class="btn sm" data-clean="lsbak">이 브라우저의 옛 자동 백업 사본 ${L.length}개 지우기 (${mb(sz)})</button>`:'<span class="small">지울 옛 자동 백업 사본이 없어요</span>'}</div></details>`;}
+function mb(n){return (n/1048576).toFixed(n>=1048576*10?0:1)+'MB';}
+function cleanRun(k){if(k==='lsbak'){const L=lsBakSlots();if(!L.length)return;if(!confirm('이 브라우저(localStorage)에 남은 옛 자동 백업 사본 '+L.length+'개를 지울까요? (표시·채점 기록은 그대로예요)'))return;L.forEach(x=>{try{localStorage.removeItem(x);}catch(e){}});['autobak.i','autobak.pi'].forEach(x=>{try{localStorage.removeItem(NS+x);}catch(e){}});
+  const ok=lsFlush();toast(ok?'공간을 정리했어요':'정리했지만 아직 자리가 모자라요 — [백업 파일 받기] 뒤 다른 과목 표시를 줄여 보세요',{level:ok?'result':'error'});}
+ const p=$('#rpop');if(p.classList.contains('on')){p.classList.remove('on');openRestore();}}
 /* ---------- 이어서 보기 ---------- */
 /* 탭별 읽던 위치 pos.<S> = {'문서/탭': {aid, off}} · 이어서 보기 lastBy(과목별 1개, 옛 형식 + off·ti) · lastList.<S>(과목별 최근 3곳)
    과목 홈·내 표시·기출 대장·검색 화면에서는 저장하지 않음(읽던 곳을 덮어쓰지 않게) */
@@ -1803,7 +1837,7 @@ function marksHTML(p){const ANN=Kit.all(),m=aidMap(p.id),S=p.id;const E=x=>Strin
 function marksGo(aid,i){const o=(Kit.all()[aid]||[])[i];const loc=aidMap(CUR.s)[aid];if(!o||!loc)return;openDoc(CUR.s,loc.d,loc.t,aid,{mark:o});}
 function marksDrop(aid,i){const o=(Kit.all()[aid]||[])[i];if(!o)return;if(!confirm('이 표시를 버릴까요?\n\n“'+String(o.x||'').slice(0,60)+'”\n\n(버리기 전에 자동 백업을 남겨 [복원]에서 되살릴 수 있어요)'))return;autoBak(true,'위치 잃은 표시 버리기');Kit.drop(aid,i);const y=scrollY;mount(PACKS[CUR.s],CUR.d,CUR.t);window.scrollTo(0,y);toast('표시를 버렸어요 — [복원]의 자동 백업에서 되살릴 수 있어요');}
 /* ---------- 도움말 ---------- */
-function helpToggle(){$('#help').classList.toggle('on');}
+function helpToggle(){$('#help').classList.toggle('on');helpBak();}
 $('#helpb').onclick=helpToggle;$('#helpx').onclick=helpToggle;$('#help').addEventListener('click',e=>{if(e.target.id==='help')helpToggle();});
 document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e.target)&&!e.target.closest('#clock,#rstr,#rfile,#lmcur'))p.classList.remove('on');});},true);
 
@@ -1846,6 +1880,7 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 (function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
+Object.assign(window.__h,{lsFlush,dumpAll,LSQ,lsBakSlots});   /* ux2 트랙A 묶음 3 회귀 고리 */
 })();
 </script>
 </body></html>
