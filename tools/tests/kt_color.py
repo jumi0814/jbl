@@ -39,7 +39,7 @@ async def main():
         a = json.loads(await pg.evaluate(f"localStorage.getItem('{KEY}')"))
         ok([o.get('c') for o in a[aid] if o['t'] == 'h'] == ['u'], f"옛 파랑 {{c:'b'}} → c:'u'로 이관 {a[aid]}")
         await pg.wait_for_timeout(300); bak = await pg.evaluate("__h.bkList().then(L=>{const x=L.find(x=>x.why);return x?x.why:''})")   # 자동 백업은 IndexedDB(C02)
-        ok(bak == '파랑 색 키 이관', f'이관 전 자동 백업 남김 ({bak})')
+        ok('원고 갱신' in bak, f'이관 전 자동 백업 남김 ({bak} — ux2 fixA V04: 한 번짜리 이관은 upd 한 칸)')
         c3, bg3 = await pg.locator('#stage .rk-h.rk-u').first.evaluate(STYLE)
         ok(bg3 == 'rgb(201, 221, 247)' and c3 != 'rgba(0, 0, 0, 0)', f'옛 파랑 기록이 파랑으로 보임 ({c3}, {bg3})')
         cb = await pg.locator('#stage .rk-b').first.evaluate(STYLE)

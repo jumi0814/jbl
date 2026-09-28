@@ -16,7 +16,7 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     # 강의 기출 탭: 공통 막대
     await open_(pg, '#/PHARM/RX/jb')
-    r = await pg.evaluate("(()=>({qf:document.querySelectorAll('#jbbar [data-qf]').length,prog:!!document.querySelector('#jbprog .pline'),flec:!!document.querySelector('#flec'),sort:document.querySelector('#fsort').value,hstat:document.querySelector('#hstat').textContent}))()")
+    r = await pg.evaluate("(()=>({qf:document.querySelectorAll('#jbbar [data-qf]:not([hidden])').length,prog:!!document.querySelector('#jbprog .pline'),flec:!!document.querySelector('#flec'),sort:document.querySelector('#fsort').value,hstat:document.querySelector('#hstat').textContent}))()")
     ok(r['qf'] == 4 and r['prog'] and not r['flec'] and r['sort'] == 'n', f'강의 기출 탭: 안 푼 것/틀린 것/★·진행률, 강의 필터 숨김, 기본 출제 횟수 순 {r}')
     ok(r['hstat'].startswith('✓0 ✗0'), f"강의 헤더 '✓ ✗' 칩 ({r['hstat']})")
     await pg.screenshot(path=J.TMP + f'/ux_u15_lectab_{tag}.png')

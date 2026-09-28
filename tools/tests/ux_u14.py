@@ -44,10 +44,10 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("localStorage.getItem('jblhub.v1.jbauto')") == 'false', '자동 넘김 끄기 저장(jbauto)')
     await pg.keyboard.press('o'); await pg.wait_for_timeout(350)
     m = await pg.evaluate(MKS)
-    ok(m['ok'].get(id0) == 1 and await pg.evaluate(CUR) == id0 and len(m['log'][id0]) == 2, 'O를 다시 눌러도 맞음 유지(설정)·자동 넘김 꺼져 제자리')
+    ok(m['ok'].get(id0) == 1 and await pg.evaluate(CUR) == id0 and len(m['log'][id0]) == 1, 'O를 다시 눌러도 맞음 유지(설정)·자동 넘김 꺼져 제자리 · 20초 안 다시 매김 = 기록 하나(ux2 fixA flow V04)')
     await pg.keyboard.press('x'); await pg.wait_for_timeout(100); await pg.keyboard.press('x'); await pg.wait_for_timeout(100)
     m = await pg.evaluate(MKS); chip = await pg.evaluate(f"document.querySelector('#c-{id0} .qhead .chip.rec')?.textContent")
-    ok(m['ng'].get(id0) == 1 and not m['ok'].get(id0) and chip == '✗2 ✓2', f"X 두 번 → 틀림 유지 · 기록 칩 {chip}")
+    ok(m['ng'].get(id0) == 1 and not m['ok'].get(id0) and chip == '✗1' and len(m['log'][id0]) == 1, f"X 두 번 → 틀림 유지 · 20초 안 고침 = 기록 하나 · 기록 칩 {chip}")
     await pg.evaluate("document.querySelector('#oauto').click()")
     # 스와이프(터치)·키
     if touch:
