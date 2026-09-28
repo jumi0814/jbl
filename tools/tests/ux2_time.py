@@ -1,4 +1,4 @@
-"""B01~B05 회귀: 공부 시간 — 📊 공부 기록 화면(#/_time)·시계 팝업·허브 홈 시간 표·측정 표시(되감기 없음·자리 비움)·무활동 되묻기·창 여러 개.
+"""B01~B05 회귀: 공부 시간 — 📊 공부 기록 화면(#/_time — ux3부터 📅 공부 달력의 [📊 통계] 탭)·시계 팝업·허브 홈 시간 표·측정 표시(되감기 없음·자리 비움)·무활동 되묻기·창 여러 개.
 가짜 시계(page.clock)로 2026-09-24(목) 기준 14일치 합성 기록(time·timed, 3과목)을 넣고 확인한다.
 맥 1280×900 + 아이패드 세로 820×1180 + 가로 1180×820. 스크린샷 work/_tmp/ux2i_b0*_*.png"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
@@ -81,7 +81,8 @@ async def part_view(b, vp, touch, tag):
     after = await pg.evaluate("document.querySelector('#home [data-tvd=\"%s\"] em').textContent" % d1)
     ok(after == fmtH(day_sum(d1) + 30 * MIN) and before == fmtH(day_sum(d1)), f'tadj +30분 → 그날 막대 {before} → {after}')
     ok(await pg.evaluate("localStorage.getItem('jblhub.v1.time')") == raw_time, 'time 키 값은 그대로')
-    adj = await ls(pg, 'tadj'); ok(adj == {d1: {'CONS': 30 * MIN}}, f'새 키 tadj {adj}')
+    te = await ls(pg, 'tedit') or []   # ux3 I5: 손 고침은 tadj 대신 tedit(추가 전용 원장)
+    ok(len(te) == 1 and te[0]['d'] == d1 and te[0]['S'] == 'CONS' and te[0]['ms'] == 30 * MIN and te[0]['k'] == 'set' and await ls(pg, 'tadj') is None, f'고친 시간 = tedit 한 항목 · tadj 쓰지 않음 {te}')
     ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth+1"), '가로 넘침 0')
     await pg.evaluate("scrollTo(0,document.body.scrollHeight)"); await pg.screenshot(path=J.TMP + f'/ux2i_b01_bottom_{tag}.png')
     # ---- B02 시계 팝업·허브 홈 시간 표
@@ -100,12 +101,12 @@ async def part_view(b, vp, touch, tag):
     ok(await pg.evaluate("document.querySelectorAll('#home .htime tbody tr').length") <= 7, '홈 표 7행 이하')
     bt = await pg.inner_text('#home .todayb'); ok('오늘' in bt and '이번 주' in bt, f"허브 홈 '오늘' 띠 {bt!r}")
     await pg.evaluate("document.querySelector('#home .todayb [data-tvgo2]').click()"); await pg.clock.run_for(300)
-    ok(await pg.evaluate("location.hash") == '#/_time', "'오늘' 띠 → #/_time")
+    ok(await pg.evaluate("location.hash") == '#/_cal', "'오늘' 띠 → #/_cal(📅 공부 달력)")
     await pg.go_back(); await pg.clock.run_for(300); ok(await pg.evaluate("!!document.querySelector('#home .sgrid')"), '뒤로 → 허브 홈')
     await boot(pg, '#/PHARM/_home')
     ok('📊 오늘' in await pg.inner_text('#hprog'), '과목 홈 진행률 줄에 📊 공부 시간 링크')
     await pg.evaluate("document.querySelector('#hprog [data-tvgo2]').click()"); await pg.clock.run_for(300)
-    ok(await pg.evaluate("location.hash") == '#/_time', '과목 홈 → #/_time')
+    ok(await pg.evaluate("location.hash") == '#/_cal', '과목 홈 → #/_cal')
     ok(not errs, f'pageerror 0 ({errs[:2]})')
     await ctx.close()
 
