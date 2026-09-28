@@ -5,7 +5,14 @@ LISTM = re.compile(r'^\s*(?:\d{1,2}\s?[\).]|\(\s?\d{1,2}\s?\)|[①-⑳㉠-㉭]|[
 NUMM = re.compile(r'^\s*(?:\d{1,2}\s?[\).]|\(\s?\d{1,2}\s?\)|[①-⑳]|[가-하]\.)')   # 번호 단계
 BULM = re.compile(r'^\s*[-•·▶▷→※*✓◆■□○●]')                                         # 그 아래 세부 항목
 def width(s): return sum(2 if unicodedata.east_asian_width(c) in 'WF' else 1 for c in s)
-def reflow(text):
+CHOICE = re.compile(r'^\s*(?:\d{1,2}(?:\s?[~-]\s?\d{1,2})?\s?\)|\(\s?\d{1,2}\s?\)|[①-⑳])')   # 보기 번호 줄(n) · n~m) · (n) · 원문자)
+def stray(prev, s, W):
+    """ux2 F12 문제 보기 줄 중간 끊김: 앞 줄이 보기(번호로 시작)이고 마침표·물음표로 끝나지 않았는데, 이 줄은 보기 번호·라벨로 시작하지 않는 짧은 줄 → 앞 보기에 붙일 줄
+    (0.2ml 같은 소수로 시작하는 줄은 번호 줄이 아님). verify.py가 같은 규칙으로 남은 줄을 셈"""
+    if not CHOICE.match(prev) or re.search(r'[.?？。:：]\s*$', prev): return False
+    if CHOICE.match(s) or LABEL.match(s) or (STARTER.match(s) and not re.match(r'^\s*\d+\.\d', s)): return False
+    return len(s) <= 40 and width(s) <= W * 0.6
+def reflow(text, choices=False):
     raw = [l.rstrip() for l in text.split('\n')]
     lines = [l for l in raw if l.strip()]
     if not lines: return []
@@ -20,17 +27,19 @@ def reflow(text):
             out[-1] += s                                   # 세로로 끊긴 표 머리("장"/"점") → 붙임
         elif out and not STARTER.match(s) and (prev_full or prev_raw.rstrip().endswith((',', '，'))) and not prev_raw.rstrip().endswith((':', '：')):
             out[-1] += ' ' + s                             # 단 폭 때문에 끊긴 줄 → 이어 붙임
+        elif choices and out and stray(out[-1], s, W):
+            out[-1] += ' ' + s                             # ux2 F12 보기 줄 중간 끊김 → 앞 보기에
         else:
             out.append(s)
         prev_full = width(l) >= W * 0.74
         prev_raw = l
     return out
 def same_chars(a, b): return re.sub(r'\s+', '', a) == re.sub(r'\s+', '', b)
-def render(text, first_bold=False, ans=False):
+def render(text, first_bold=False, ans=False, choices=False):
     """논리 줄 단위 HTML. 글자는 원문 그대로, 라벨(답·해설·참고)만 굵게.
     ans=True(JB 답안 칸): 첫 '답' 라벨 줄에 .ans0(크게·흰 칸), 첫 '해설' 라벨부터 끝까지를 .exw로 감싸고
     해설이 6줄 또는 400자를 넘으면 .exw.clamp(허브가 높이를 줄이고 '해설 전체 보기'를 붙임)"""
-    L = reflow(text); assert same_chars(text, '\n'.join(L)), 'reflow changed characters'
+    L = reflow(text, choices); assert same_chars(text, '\n'.join(L)), 'reflow changed characters'
     h = []; a0 = None; ex_at = None; innum = False   # 번호 단계 아래 '-'·'·' 줄은 .sub(들여쓰기) — 클래스만, 글자 불변(V04)
     for i, s in enumerate(L):
         m = LABEL.match(s)

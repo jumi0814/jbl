@@ -28,11 +28,13 @@ document.querySelectorAll('#stage .li, #stage .klist li, #stage .co > div, #stag
 const ov=document.documentElement.scrollWidth>document.documentElement.clientWidth;
 return {bad,longs:longs.slice(0,40),nlong:longs.length,ov,redfill,small};
 }"""
-CHK=r"""()=>{const cs=[...document.querySelectorAll('#cards .qc')];const was=cs.map(c=>c.classList.contains('open'));cs.forEach(c=>c.classList.add('open'));const longs=[];let all=0;
+CHK=r"""()=>{const cs=[...document.querySelectorAll('#cards .qc')];const was=cs.map(c=>c.className);const dw=[...document.querySelectorAll('#cards details')].map(d=>[d,d.open]);cs.forEach(c=>c.classList.add('open','deep'));document.querySelectorAll('#cards details.ab').forEach(d=>d.open=true);const longs=[];let all=0;
  /* 덩어리 = 그 요소가 직접 가진 글(안의 목록·블록·인용 칩 줄은 따로 셈) */
  const leaf=el=>{const c=el.cloneNode(true);c.querySelectorAll('ul,ol,div,.cites,button').forEach(x=>x.remove());return c.textContent.replace(/\s+/g,' ').trim();};
  document.querySelectorAll('#cards .ab.chk li, #cards .ab.chk div, #cards .ab.more li, #cards .ab.more div').forEach(el=>{if(!el.offsetParent)return;all++;const t=leaf(el);if(t.length>230)longs.push(el.closest('.qc').dataset.id+' '+t.slice(0,80)+' …['+t.length+']');});
- cs.forEach((c,i)=>c.classList.toggle('open',was[i]));return {n:longs.length,all,longs:longs.slice(0,20)};}"""
+ /* ux2 F09 EMPTY BULLET — 답을 모두 펼친 뒤(2단계) 글머리가 보이는 li인데 앞에 글 없이 첫 자식이 목록(ul/ol) = 빈 점 한 줄 · raw = CSS 안전망을 빼고 구조만 센 것(참고) */
+ let eb=0,raw=0;const ebx=[];document.querySelectorAll('#cards .ans li').forEach(li=>{if(!li.offsetParent)return;const f=[...li.childNodes].find(n=>n.nodeType===1||(n.nodeType===3&&n.textContent.trim()));if(!f||f.nodeType!==1||!/^(UL|OL)$/.test(f.tagName))return;if(f.classList.contains('kflow'))return;raw++;const cs_=getComputedStyle(li);if(cs_.display==='list-item'&&cs_.listStyleType!=='none'){eb++;if(ebx.length<5)ebx.push(li.closest('.qc').dataset.id);}});
+ cs.forEach((c,i)=>c.className=was[i]);dw.forEach(([d,o])=>d.open=o);return {n:longs.length,all,longs:longs.slice(0,20),eb,raw,ebx};}"""
 OVERLAP=r"""()=>{const bad=[];document.querySelectorAll('#stage .ln.li, #stage .mtx .ci, #stage .li').forEach(el=>{if(!el.offsetParent)return;const b=getComputedStyle(el,'::before');if(b.content==='none'||b.display==='none'||b.content==='normal'||b.position!=='absolute')return;
  const cs=getComputedStyle(el);const pad=parseFloat(cs.paddingLeft)+(parseFloat(cs.textIndent)||0);const L=parseFloat(b.left)||0,W=parseFloat(b.width)||0;if(L+W>pad-1)bad.push(el.className+': '+el.textContent.trim().slice(0,20));});return bad.slice(0,3);}"""
 TEAL=r"""(sid)=>{if(sid==='OMS1'||sid==='PHARM')return [];const T=['rgb(14, 72, 70)','rgb(23, 63, 61)','rgb(225, 238, 235)','rgb(195, 218, 213)','rgb(186, 215, 210)','rgb(10, 51, 50)'];const bad=new Set();
@@ -83,7 +85,7 @@ async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
         pg.on('pageerror',lambda e:errs.append(str(e)[:150]))
-        allbad={}; totlong=0; longs=[]; RED={}; SMALL={}
+        allbad={}; totlong=0; longs=[]; RED={}; SMALL={}; EMPTY={}
         def acc(r, where):
             for x in r.get('redfill', []): RED.setdefault(x, where)
             for x in r.get('small', []): SMALL.setdefault(x[0], (x[1], x[2], where))
@@ -97,6 +99,7 @@ async def main():
                 if view=='_jb':
                     # 대조·주변부 덩어리 검사 — 모든 카드의 답을 펼쳐 .ab.chk li·.ab.chk .note·.ab.more li
                     rc=await pg.evaluate(CHK); totlong+=rc['n']; longs+=[s+'/_jb/chk: '+t for t in rc['longs']]; print('  CHUNK',s,'.ab.chk/.ab.more 230자 넘는 덩어리',rc['n'],'/',rc['all'])
+                    EMPTY[s]=rc['eb']; print('  EMPTY BULLET',s,rc['eb'],'(구조만',rc['raw'],')',rc['ebx'])
                     await pg.evaluate("document.querySelectorAll('#cards [data-tog]').forEach((b,i)=>{if(i<8)b.click()})"); await pg.wait_for_timeout(300)
                 r=await pg.evaluate(JS); acc(r, s+view)
                 for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],s+view))
@@ -110,6 +113,8 @@ async def main():
                     for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],f'{s}/{k}/{t}'))
                     totlong+=r['nlong']; longs+= [f'{s}/{k}/{t}: '+x for x in r['longs']]
                     if r['ov']: print('OVERFLOW',s,k,t); errs.append(f'OVERFLOW 1280 {s}/{k}/{t}')
+        print('EMPTY BULLET (답 모두 펼침 뒤 빈 글머리 — 0이어야 함)', sum(EMPTY.values()), EMPTY)
+        if sum(EMPTY.values()): errs.append(f'EMPTY BULLET {EMPTY}')
         print('RED FILL', len(RED))
         for k,v in RED.items(): print(' ',k,'|',v)
         print('SMALL LOW CONTRAST(<13px, <4.5)', len(SMALL))

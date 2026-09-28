@@ -33,6 +33,18 @@ for f in sorted(os.listdir(DOCS + '/packs')):
             mm = _re.match(r'^\s*(\d{1,2})\s*[.．]\s+\S', l)
             if mm and _re.search(r'(\?|？|것은|시오)\s*\.?\s*$', l) and (int(mm.group(1)) - 1) not in nums: hits.append(f'{cid}: {l[:40]}')
     ok(not hits, f'{f}: 답안에 삼켜진 문항 {len(hits)}건 {hits[:3]}')
+# ---- 1b2. ux2 F12 문제 보기 줄 중간 끊김 — 보기(번호 줄) 사이·끝에 번호 없는 짧은 줄이 끼인 곳(tools/cons/reflow.py stray와 같은 규칙) 0
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cons')); import reflow as _RF
+for f in sorted(os.listdir(DOCS + '/packs')):
+    if '.img.' in f or not f.endswith('.js') or f.endswith('.lx.js'): continue
+    t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1]); hits = []
+    for cid, h in pk.get('cards', {}).items():
+        m = _re.search(r'<div class="qtext">((?:<div class="ln[^>]*>.*?</div>)*)</div>', h)
+        if not m: continue
+        L = [_html.unescape(_re.sub('<[^>]+>', '', x)) for x in _re.findall(r'<div class="ln[^>]*>(.*?)</div>', m.group(1))]
+        for i in range(1, len(L)):
+            if _RF.stray(L[i - 1], L[i], 10 ** 6) and (i == len(L) - 1 or _RF.CHOICE.match(L[i + 1])): hits.append(f'{cid}: {L[i][:30]}')
+    ok(not hits, f'{f}: 보기 사이에 끼인 번호 없는 짧은 줄 {len(hits)}건 {hits[:3]}')
 # ---- 1c. JB 문항 id 잠금(C09) — 있던 id의 문제 글자가 바뀌거나 id가 사라지면 실패(옮김 표 tools/<sid>/jb_move.json 필요)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import jblock as _JL
 for f, n, e in _JL.lock_errors(DOCS):

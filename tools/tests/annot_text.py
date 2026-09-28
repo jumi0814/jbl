@@ -11,8 +11,8 @@ def grab():
         t = open(f'{ROOT}/docs/packs/{s}.js', encoding='utf-8').read(); p = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(t)
         for qid, h in p['cards'].items():
             txt = []
-            for sec in re.findall(r'<section class="ab (?:chk v-\w+|more)">(.*?)</section>', h, flags=re.S):
-                sec = re.sub(r'<h5>.*?</h5>', '', sec, flags=re.S)
+            for _t, sec in re.findall(r'<(section|details) class="ab (?:chk v-\w+|more)">(.*?)</\1>', h, flags=re.S):   # ux2 F02 대조·주변부 = details(머리 summary)
+                sec = re.sub(r'<h5>.*?</h5>|<summary[^>]*>.*?</summary>', '', sec, flags=re.S)
                 if re.search(r'<li class="auto"', sec) or re.sub(r'<[^>]+>', '', sec).strip().startswith('정리본 «'): continue
                 txt.append(html.unescape(re.sub(r'<[^>]+>', '', sec)))
             if txt: out[f'{s}:{qid}'] = SEP.sub('', ''.join(txt))

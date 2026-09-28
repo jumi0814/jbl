@@ -12,7 +12,7 @@ def ok(c, msg):
     print(('  OK  ' if c else '  FAIL') + ' ' + msg)
     if not c: fail.append(msg)
 SUBJ = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']
-OVERLAP = r"""()=>{const bad=[];document.querySelectorAll('#stage .ln.li, #stage .mtx .ci').forEach(el=>{if(!el.offsetParent)return;const b=getComputedStyle(el,'::before');if(b.content==='none'||b.display==='none'||b.content==='normal')return;
+OVERLAP = r"""()=>{const bad=[];document.querySelectorAll('#stage .ln.li, #stage .mtx .ci').forEach(el=>{if(!el.offsetParent)return;const b=getComputedStyle(el,'::before');if(b.content==='none'||b.display==='none'||b.content==='normal'||b.position!=='absolute')return;   /* 글 흐름 안의 칩(ux2 F01 '✓ 정답')은 겹칠 수 없음 — audit_design OVERLAP과 같음 */
  const cs=getComputedStyle(el);const pad=parseFloat(cs.paddingLeft)+parseFloat(cs.textIndent||0);const L=parseFloat(b.left)||0,W=parseFloat(b.width)||0;if(L+W>pad-1)bad.push(el.className+': '+el.textContent.trim().slice(0,20));});return bad.slice(0,5);}"""
 
 def serve(d):

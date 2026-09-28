@@ -27,7 +27,7 @@ async def run(b, vp, touch, tag, full):
         await (d.accept() if D['acc'] else d.dismiss())
     pg.on('dialog', on_dialog); print('==', tag)
     lec = await setup(pg); n0 = await pg.evaluate("__h.JB.vis.length")
-    for k in 'oxox':
+    for k in ['o', 'x', 'ArrowRight', 'o', 'x', 'ArrowRight']:   # ux2 F07 ✗는 답을 펼치고 머묾 → →로 넘김
         await pg.keyboard.press(k); await pg.wait_for_timeout(450)
     p1 = await pg.evaluate(POS); ok(p1 == f'5/{n0}', f'4문항 채점 뒤 {p1} (N={n0})')
     await pg.screenshot(path=J.TMP + f'/ux2i_c07_one_{tag}.png')

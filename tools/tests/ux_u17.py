@@ -16,12 +16,14 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     await open_(pg, '#/PHARM/_jb/_jb')
     r = await pg.evaluate("""(()=>{const c=document.querySelector('#c-RX01');const h0=c.offsetHeight;c.classList.add('open');const a=c.querySelector('.ln.ans0');
-      const k=c.cloneNode(true);k.removeAttribute('id');c.after(k);k.querySelectorAll('.exw.clamp').forEach(e=>e.classList.remove('clamp'));k.querySelectorAll('details').forEach(d=>d.open=true);const hf=k.offsetHeight;k.remove();
+      const k=c.cloneNode(true);k.removeAttribute('id');k.classList.add('deep');c.after(k);k.querySelectorAll('.exw.clamp').forEach(e=>e.classList.remove('clamp'));k.querySelectorAll('details').forEach(d=>d.open=true);const hf=k.offsetHeight;k.remove();
       return {h0,h1:c.offsetHeight,hf,fs:a&&getComputedStyle(a).fontSize,fw:a&&getComputedStyle(a).fontWeight,clamp:!!c.querySelector('.exw.clamp'),lk:!!c.querySelector('details.ab.lk:not([open])'),vchip:(c.querySelector('.qhead .chip.v-ok')||{}).textContent}})()""")
     ok(r['fs'] == '18px' and r['fw'] == '800', f"'답:' 줄 18px·800 {r['fs']} {r['fw']}")
     ok(r['clamp'] and r['lk'], '긴 해설 접힘·📖 절 기본 접힘')
     ok(r['vchip'] == '✓ 대조', f"대조 칩 '✓ 대조' ({r['vchip']})")
-    if tag == 'mac': ok(r['h1'] <= r['hf'] * 0.6, f"RX01 펼친 높이: 모두 펼침 {r['hf']} → 기본 {r['h1']} ({round((1 - r['h1'] / r['hf']) * 100)}% 감소 ≥ 40%)")
+    if tag == 'mac':
+        ok(r['h1'] <= r['hf'] * 0.6, f"RX01 펼친 높이: 모두 펼침 {r['hf']} → 1단계 {r['h1']} ({round((1 - r['h1'] / r['hf']) * 100)}% 감소 ≥ 40%)")
+        ok(r['h1'] - r['h0'] <= 350, f"RX01 1단계로 늘어난 높이(답 절 머리 포함) {r['h1'] - r['h0']} ≤ 350 (ux2 F02)")
     await pg.evaluate("(()=>{const c=document.querySelector('#c-RX01');scrollTo(0,c.getBoundingClientRect().top+scrollY-110)})()"); await pg.wait_for_timeout(200)
     await pg.screenshot(path=J.TMP + f'/ux_u17_rx01_{tag}.png')
     # 해설 전체 보기
@@ -54,8 +56,8 @@ async def run(b, vp, touch, tag):
     # 문제 집중
     await open_(pg, '#/PHARM/_jb/_jb')
     await pg.evaluate("document.querySelector('#ffocus').click()"); await pg.wait_for_timeout(200)
-    r = await pg.evaluate("(()=>{const c=document.querySelector('#c-RX02');const lec=c.querySelector('.qhead .chip.lec'),sub=c.querySelector('.qsub');const a=[!!lec.offsetParent,!!sub.offsetParent];c.querySelector('[data-tog]').click();return a.concat([!!lec.offsetParent,!!sub.offsetParent])})()")
-    ok(r == [False, False, True, True], f'문제 집중: 닫힌 카드 📖 칩·출처 줄 숨김 → 펼치면 보임 {r}')
+    r = await pg.evaluate("(()=>{const c=document.querySelector('#c-RX02');const lec=c.querySelector('.qhead .chip.lec'),sub=c.querySelector('.srcd>summary');const a=[!!lec.offsetParent,!!sub.offsetParent];c.querySelector('[data-tog]').click();return a.concat([!!lec.offsetParent,!!sub.offsetParent])})()")
+    ok(r == [False, False, True, True], f'문제 집중: 닫힌 카드 📖 칩·출처(출처·연도 근거) 숨김 → 펼치면 보임 {r}')
     await pg.screenshot(path=J.TMP + f'/ux_u17_focus_{tag}.png')
     await open_(pg, '#/PHARM/RX/jb')
     ok(await pg.evaluate("document.querySelector('#stage').classList.contains('focus') && document.querySelector('#ffocus').classList.contains('on')"), '문제 집중 선호가 강의 기출 탭에도(jbfocus)')

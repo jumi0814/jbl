@@ -131,6 +131,8 @@ PAT_ABC = re.compile(r'([A-H])\) (?=\S)')
 def split_enum(s):
     for pat in (PAT_CIRC, PAT_NUM, PAT_ABC):
         pos = _marks(s, pat)
+        if pat is PAT_CIRC:  # ux2 F10 원문자가 이어진 것(①②③)·바로 앞이 조/항/호/숫자인 것(12조 ②)은 나누는 자리가 아님
+            pos = [(p, g) for p, g in pos if not (s[p + 1:p + 2] and s[p + 1] in CIRC) and not (p and s[p - 1] in CIRC) and not re.search(r'[조항호\d]\s*$', s[:p])]
         if pat is PAT_NUM:  # 1. 2. 3. 순서가 맞는 것만
             seq, want = [], 1
             for p, g in pos:
@@ -149,6 +151,7 @@ def split_enum(s):
             if lead.count('==') % 2 == 1: lead = lead.replace('==', '').strip()
             if lead in ('', '=='): lead = ''
             items = [s[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(s)])]
+            if pat is PAT_CIRC and any(len(x) <= 3 and all(c in CIRC or c in ' .,·/;' for c in x) for x in items): continue   # ux2 F10 원문자만 남는 조각이 생기면 나누지 않음
             return lead, _rebalance(items, raw_lead.count('==') % 2 == 1), pat is PAT_CIRC
             items = [s[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(s)])]
             return lead, items, pat is PAT_CIRC

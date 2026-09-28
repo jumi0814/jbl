@@ -201,6 +201,47 @@ def struct_item(x):
     r = astruct(raw) if len(raw) > 190 else lecparse.render_block(raw, ctx)
     r = re.sub('\ue000(\\d+)\ue001', lambda m: keep[int(m.group(1))], r)
     return r + (f'<div class="cites">{" ".join(cites)}</div>' if cites else '')
+def _top_lis(h):
+    """ux2 F09: h가 목록 하나(<ul class="klist">…</ul>)뿐이면 맨 위 li들의 안쪽 HTML, 아니면 None"""
+    m = re.match(r'^<ul class="klist(?: lab)?">(.*)</ul>$', h, flags=re.S)
+    if not m: return None
+    body = m.group(1); out = []; depth = 0; start = last = 0
+    for t in re.finditer(r'<(/?)(ul|ol|li)\b[^>]*>', body):
+        if not t.group(1):
+            if t.group(2) == 'li' and depth == 0:
+                if body[last:t.start()].strip(): return None
+                start = t.end()
+            depth += 1
+        else:
+            depth -= 1
+            if depth < 0: return None
+            if t.group(2) == 'li' and depth == 0: out.append(body[start:t.start()]); last = t.end()
+    return out if out and not depth and not body[last:].strip() else None
+def item_lis(x):
+    """대조·주변부 한 항목 → li 안쪽 HTML 목록: 구조화 결과가 '점 목록 하나 + 인용 줄'뿐이면 바깥 li를 풀어 항목을 형제 li로(빈 글머리 없음 — ux2 F09), 인용 줄은 마지막 li 끝에"""
+    r = struct_item(x)
+    m = re.match(r'^(<ul class="klist(?: lab)?">.*</ul>)(<div class="cites">(?:(?!</ul>).)*</div>)?$', r, flags=re.S)
+    its = _top_lis(m.group(1)) if m else None
+    if its: its[-1] += m.group(2) or ''; return its
+    return [r]
+ANS_REFONLY = re.compile(r'\(?\s*(?:해설|해답|아래|위)?\s*(?:참조|참고)\s*\)?\s*\.?')
+def ans_head(q):
+    """JB 답 핵심 줄(참고·해설 앞) — (줄 목록, 라벨 뗀 핵심 글)"""
+    _, at = split_qa(q); out = []
+    for s_ in reflow.reflow(at):
+        if re.match(r'^\s*(참고|해설)\s*[:：)]?', s_): break
+        out.append(s_)
+    return out, re.sub(r'^\s*(?:\[답\]|답)\s*[:：)]?\s*', '', ' '.join(out)).strip()
+def first_sent(t):
+    """괄호·따옴표 밖 첫 '. '까지(없으면 전체)"""
+    for i, ch, d in lecparse._depth_iter(t):
+        if d == 0 and ch == '.' and t[i + 1:i + 2] == ' ' and i > 8 and not re.search(r'(?:\bp|\bvs|\be\.g|\bcf|\bFig|\bNo|\bex|\bi\.e)$', t[max(0, i - 4):i]): return t[:i + 1]
+    return t
+def src_short(q):
+    """ux2 F04 출처 한 줄: 'JB 25판 · 2024년 칸 · 처방전과 금연요법 1번' → '2024년 칸 1번'(판 연도는 표시하지 않음 — 전체는 title)"""
+    s_ = re.sub(r'^\s*JB\s*\d{2}\s*판\s*·?\s*', '', q['src'] or '').strip()
+    m = re.match(r'^(\d{4}년 칸)\s*·\s*.*?(\d+번)\s*$', s_)
+    return f'{m.group(1)} {m.group(2)}' if m else s_
 def qcard(q, idx):
     qt, at = split_qa(q); n = len(q['yrs'])
     figq = ''.join(f'<img class="fig" loading="lazy" src="{IMG["crop"][k]}" alt="JB 그림">' for k in q['crops'].get('q', []))
@@ -208,31 +249,58 @@ def qcard(q, idx):
     lecchip = ''
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; lecchip = f'<button class="chip lec" data-golec="{k}:{j}">📖 {esc(LECNAME[k])} 정리본</button>'
-    # 출처 한 줄(V06) — JB 괄호 · 시험 회차 · JB 표기를 흐린 글 한 줄로(판 연도는 표시하지 않음 — CLAUDE.md). 칩은 추가 연도·교수님 pick만
-    prov = [f'JB 괄호 {esc(q["jbtag"])}' if q['jbtag'] else 'JB 괄호 없음', esc(re.sub(r'^\s*JB\s*\d{2}\s*판\s*·?\s*', '', q['src'] or ''))]
+    # 출처·연도 근거(ux2 F04) — 카드 앞면은 [연도 배지][짤/탈][교수][📖] + 문제만. 출처 줄·연도 표기 근거·관련 문항은 답 절 끝 details '출처·연도 근거'로 보임
+    # (DOM 자리는 문제 바로 뒤 그대로 — 글자 순서가 같아 형광펜 위치 불변. 화면 순서만 CSS order로 답 뒤). 판 연도는 표시하지 않음(CLAUDE.md) — 전체 출처는 title
+    prov = [f'출처: {esc(src_short(q))}' if q['src'] else '', f'JB 괄호 {esc(q["jbtag"])}' if q['jbtag'] else 'JB 괄호 없음']
     if q['tal']: prov.append('JB 표기 (탈)')
     if q.get('lab24'): prov.append(f'JB 표기(2023년 시험): {esc(q["lab24"])}')
     sub = []
     if q.get('xtra'): sub.append(f'<span class="chip cmp">괄호에 없던 {"·".join(YR(y) for y in q["xtra"])}년 추가</span>')
     if q.get('pick'): sub.append(f'<span class="chip pk">⭐ {esc(q["pick"])}</span>')
+    # 정답 보기(ux2 F01): 답이 보기 번호뿐이면 문제의 그 보기 줄에 data-ans(ok | 부정 발문이면 wrong) — 답을 펼쳤을 때만 강조(CSS) · 답 칸 .ans0 아래 '정답 보기 …' 한 줄(원문 부분 문자열·noann)
+    head_, core_ = ans_head(q); pk = pick_choices(q, head_); at_h = reflow.render(at, ans=True) if at.strip() else ''
+    qh = reflow.render(qt, True, choices=True)
+    pick_ln = ''
+    if pk and pk[1]:
+        lab, lines = pk; dv = 'wrong' if lab == '틀린 보기' else 'ok'
+        for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
+        pick_ln = ''.join(f'<div class="ln pick noann"><b>{lab}</b> {esc(x)}</div>' for x in lines)
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}">',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}<span class="chip pf">{esc(q["prof"] or "")}</span>{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
-         f'<div class="qtext">{reflow.render(qt, True)}</div>{figq}']
+         f'<div class="qtext">{qh}</div>{figq}']
     if q['fig'] and not figq: h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
-    h.append(f'<div class="qsub"><span class="prov noann">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>')
-    if q['yrsnote']: h.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
-    if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; h.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(r["short"]))}</div>')
-    if q.get('pair') and q['pair'] in QMAP: h.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(q["pair"], esc(QMAP[q["pair"]]["src"]))}</div>')
+    sd = [f'<div class="qsub"><span class="prov noann" title="{esc(q["src"] or "")}">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>']
+    if q['yrsnote']: sd.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
+    if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(r["short"]))}</div>')
+    if q.get('pair') and q['pair'] in QMAP: sd.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(q["pair"], esc(QMAP[q["pair"]]["src"]))}</div>')
+    h.append(f'<details class="srcd"><summary class="noann">출처·연도 근거</summary>{"".join(sd)}</details>')
     jbb = ''.join(f'<button class="btn sm" data-jb="{q["ed"]}-{p}">JB 원본 {p}쪽</button>' for p in range(q['pg'], q['pg2'] + 1))
-    h.append(f'<div class="acts"><button class="btn pri" data-tog="1">답·해설</button><button class="btn mk ok" data-mk="ok">맞음</button><button class="btn mk ng" data-mk="ng">틀림</button><button class="btn mk bm" data-mk="bm">★</button>{jbb}</div>')
+    deep = bool(q['A'] or q['M'] or q['N'] or q['other'] or 'class="exw' in at_h or q['tier'] == 'C')
+    h.append(f'<div class="acts"><button class="btn pri" data-tog="1">답·해설</button>{"<button class=\"btn deepb noann\" data-deep=\"1\"><span class=\"d1\">자세히 ▾ <small>해설·대조·주변부</small></span><span class=\"d2\">간단히 ▴</span></button>" if deep else ""}<button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button>{jbb}</div>')
     ansh = reflow.render(at, ans=True) if at.strip() else "<div class=ln>(JB에 답 표기가 따로 없음 — 위 원문 참조)</div>"
+    if pick_ln:
+        ansh, n_ = re.subn(r'(<div class="ln lab lab-a ans0">.*?</div>)', lambda m_: m_.group(1) + pick_ln, ansh, count=1)
+        if not n_: ansh = pick_ln + ansh
     exbtn = '<button class="btn sm exmore noann" data-exmore="1">해설 전체 보기 ▾</button>' if 'class="exw clamp"' in ansh else ''
-    a = ['<div class="ans">', f'<section class="ab jbans"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{ansh}</div>{exbtn}{figa}</section>']
-    if q['A']: a.append(f'<section class="ab chk v-{q["v"]}"><h5>🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small></h5><ul>{"".join((f"<li class=\"auto\">{auto_item(*x)}</li>" if q.get("auto") else f"<li>{struct_item(x)}</li>") for x in q["A"])}</ul>{"".join(f"<div class=note>{struct_item(x)}</div>" for x in q["N"])}</section>')
+    # 답 두 단계(ux2 F02): 1단계(.open) = JB 답 핵심(.ans0·정답 보기) + 대조 첫 항목의 '정답 …' 한 줄 + 📖 ⚡ 첫 줄 · 2단계(.open.deep) = 해설 전체·대조·주변부·다른 판본
+    # 답 핵심이 비었거나 '해설 참조'뿐이면(excore) 1단계에도 해설(접힌 채)을 보임. 대조·주변부는 details(머리 = noann summary, 원래 h5는 글자 보존용으로 숨김)
+    excore = not core_ or bool(ANS_REFONLY.fullmatch(core_))
+    a = ['<div class="ans">', f'<section class="ab jbans{" excore" if excore else ""}"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{ansh}</div>{exbtn}{figa}</section>']
+    a1 = ''
+    if q['A'] and not q.get('auto'):
+        pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', q['A'][0])))).strip()
+        if pl.startswith('정답'): a1 = f'<div class="a1k noann"><b>정답</b> {esc(first_sent(pl[2:].strip()))}</div>'
+    if a1: a.append(f'<div class="a1 noann">{a1}</div>')
+    if q['A']:
+        hd_ = f'🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small>'
+        lis_ = ''.join((f'<li class="auto">{auto_item(*x)}</li>' if q.get('auto') else ''.join(f'<li>{y}</li>' for y in item_lis(x))) for x in q['A'])
+        a.append(f'<details class="ab chk v-{q["v"]}"><summary class="noann">{hd_}</summary><h5>{hd_}</h5><ul>{lis_}</ul>{"".join(f"<div class=note>{struct_item(x)}</div>" for x in q["N"])}</details>')
     elif q['tier'] == 'C':
         same = f' 같은 문제의 다른 수록본은 {go(q["same"], esc(QMAP[q["same"]]["short"]))}에서 강의자료와 대조했습니다.' if q.get('same') else ''
         a.append(f'<section class="ab chk v-na"><h5>🔎 강의자료 대조</h5><div class="small">받은 25·26년도 강의자료에는 이 교수님 파트에 대응하는 강의가 없어 대조하지 않았습니다(JB 원문만 수록).{same}</div></section>')
-    if q['M']: a.append(f'<section class="ab more"><h5>🧭 주변부 확장 <small>같은·인접 슬라이드 — 변형 출제 대비</small></h5><ul>{"".join(f"<li>{struct_item(x)}</li>" for x in q["M"])}</ul></section>')
+    if q['M']:
+        hd_ = '🧭 주변부 확장 <small>같은·인접 슬라이드 — 변형 출제 대비</small>'
+        a.append(f'<details class="ab more"><summary class="noann">{hd_}</summary><h5>{hd_}</h5><ul>{"".join(f"<li>{y}</li>" for x in q["M"] for y in item_lis(x))}</ul></details>')
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
@@ -316,7 +384,7 @@ def short_clean(t):
 SUMQ_STEM = re.compile(r'다음\s*(?:설명|글|그림|표|증례)')
 def sum_q(q):
     """ux2 E10 한눈표 문제 칸: 발문(번호·JB 괄호 연도 뗌) + 발문이 '다음 설명·글·그림·표·증례'이거나 목록 줄이 1개뿐이면 본문 줄을 160자까지(넘치면 '…▸'로 그 자리 펼침)"""
-    qt, _ = split_qa(q); L = reflow.reflow(qt)
+    qt, _ = split_qa(q); L = reflow.reflow(qt, True)
     if not L: return esc(q['short']), ''
     stem = short_clean(re.sub(r'^\s*\d{1,3}(-\d)?\s?[.)]?\s*', '', L[0]).strip()) or q['short']
     body = [x for x in L[1:] if x.strip()]
@@ -654,10 +722,22 @@ for L in lect: L['tbl'] = [i for i, t in enumerate(TBL) if t['k'] == L['k'] and 
 
 # ---- 예상문제
 preds = []
+CIRC_ALL = '①②③④⑤⑥⑦⑧⑨⑩'
+def pq_lines(h):
+    """ux2 F10 예상문제 보기(①~⑩, 차례대로·앞이 공백인 것) 앞에서 줄바꿈 — 발문 .ln.q1 + 보기 .ln.li. 글자 그대로(나눈 자리의 공백은 앞 줄 끝에 남음) · 인용 버튼 안 글자는 건너뜀"""
+    pos, want, inb = [], 0, 0
+    for m in re.finditer(r'<[^>]+>|[①-⑩]', h):
+        t = m.group(0)
+        if t.startswith('<'): inb += 1 if re.match(r'<button\b', t) else (-1 if t == '</button>' else 0); continue
+        if inb or want >= len(CIRC_ALL) or t != CIRC_ALL[want] or (m.start() and h[m.start() - 1] not in ' \n'): continue
+        pos.append(m.start()); want += 1
+    if len(pos) < 2: return h
+    parts = [h[:pos[0]]] + [h[a:b] for a, b in zip(pos, pos[1:] + [len(h)])]
+    return (f'<div class="ln q1">{parts[0]}</div>' if parts[0].strip() else '') + ''.join(f'<div class="ln li">{x}</div>' for x in parts[1:])
 for i, p in enumerate(PRED):
     rel = ''
     if p['b'] and p['b'] in QMAP: r = QMAP[p['b']]; rel = f'<button class="jbchip" data-go="{r["id"]}">관련 기출 {"·".join(YR(y) for y in r["yrs"])}년 · {esc(r["short"])}</button>'
-    preds.append({'k': p['k'], 'html': f'<article class="pc" data-ptype="{"v" if "짤" in p["t"] else "n"}" data-aid="{aid("P:" + slug(p.get("q_raw") or p["q"]))}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>예상</b><i>{esc(p["t"])}</i></span><span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}</div><div class="pq">{p["q"]}</div><div class="acts"><button class="btn pri" data-tog="1">답 보기</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{lecparse.render_block(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'})
+    preds.append({'k': p['k'], 'html': f'<article class="pc" data-ptype="{"v" if "짤" in p["t"] else "n"}" data-aid="{aid("P:" + slug(p.get("q_raw") or p["q"]))}" data-id="P:{aid("P:" + slug(p.get("q_raw") or p["q"]))}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>예상</b><i>{esc(p["t"])}</i></span><span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}</div><div class="pq">{pq_lines(p["q"])}</div><div class="acts"><button class="btn pri" data-tog="1">답 보기</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{lecparse.render_block(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'})
 
 # ---- 기출 한눈표
 CIRC_N = '①②③④⑤⑥⑦⑧⑨'
@@ -672,7 +752,7 @@ def pick_choices(q, core):
     for x in re.findall(r'[1-9①-⑨]', m.group(1)):
         n = CIRC_N.index(x) + 1 if x in CIRC_N else int(x)
         if n not in nums: nums.append(n)
-    qt, _ = split_qa(q); L = reflow.reflow(qt)
+    qt, _ = split_qa(q); L = reflow.reflow(qt, True)
     stem, rest = (L[0] if L else ''), L[1:]
     lab = '틀린 보기' if WRONG_Q.search(' '.join(L[:2])) else '정답 보기'
     def mk(n):
@@ -725,7 +805,7 @@ def ans_core(q):
         lab, lines = pk
         if lines: h += ''.join(f'<div class="ln pick"><b>{lab}</b> {esc(x)}</div>' for x in lines)
         else:
-            qt, _ = split_qa(q); QL = reflow.reflow(qt)[1:]; ch = [x for x in QL if reflow.LISTM.match(x)] or QL
+            qt, _ = split_qa(q); QL = reflow.reflow(qt, True)[1:]; ch = [x for x in QL if reflow.LISTM.match(x)] or QL
             if ch: h += f'<details class="pickd noann"><summary>▸ 보기 펼치기</summary>{"".join(f"<div class=ln>{esc(x)}</div>" for x in ch)}</details>'
     return h
 def ybadge_sum(q):
