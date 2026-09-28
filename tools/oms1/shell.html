@@ -631,7 +631,7 @@ details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px
 <tr><th>🖍 내 표시 모아보기</th><td>사이드바 ‘🖍 내 표시 모아보기’(허브 홈 ‘🖍 전 과목 내 표시’) — 표시마다 <b>그 표시가 든 줄</b>을 보여 주고 칠한 부분만 색 · 위 색 칩으로 <b>색별로 보기</b>(빈칸만 보면 가린 채 — 누르면 열림, 떠올리기용) · ↗ 그 자리로 · <b>색 라벨</b>: 도구 막대의 색 견본을 <b>길게 누르거나 우클릭</b>해 이름 붙이기(기본 노랑=기출·분홍=헷갈림·초록=암기 완료)</td></tr>
 <tr><th>빈칸 열기</th><td>도구를 끈 상태에서 빈칸을 누르면 그 묶음이 열리고 다시 누르면 닫힘 · <b>E</b>(👁) 전부 열기/가리기 · <b>N</b> 화면 위쪽부터 하나씩 열기 · <b>Shift+N</b> 이 카드 다시 가리기 · ⚡ 자동 빈칸(빨간 핵심어·표)</td></tr>
 <tr><th>가리기 보기 Q</th><td><b>저장하지 않는</b> 떠올리기 — <b>Q</b>(또는 탭 줄의 ‘가리기’, ⚡ 창의 첫 선택지)로 빨간 핵심어를 가림 · 범위 = 이 카드(기본)·⚡ 암기 줄만·강의 전체(⚡ 창에서 고름, ‘빈칸 길이 숨기기’도) · 누르면 그 칸만 열림 · <b>N</b> 하나씩 · <b>Shift+N</b> 다시 가리기 · <b>E</b> 전부 · 카드 머리 ‘▣ 3/12 열림’을 누르면 이 카드 전체 · 연 칸은 탭을 옮겨도 유지, 새로고침하면 꺼짐 · J/K나 ✓로 다음 카드로 가면 그 카드를 가림</td></tr>
-<tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 🧹 지금 화면의 표시 지우기</td></tr>
+<tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 되돌리면 <b>무엇을 되돌렸는지</b> 알림(‘↶ 되돌림: 자동 빈칸 344개 (Tooth whitening 학습)’) — 다른 탭에서 한 것이면 [그 화면으로] · 최근 30단계는 새로고침 뒤에도 되돌릴 수 있음 · 다른 창에서 바꾼 카드는 되돌리기에서 빠짐 · 🧹 지금 화면의 표시 지우기</td></tr>
 <tr><th>도구 막대</th><td>형광펜·빈칸 모드가 켜진 동안은 탭 줄 아래에 ‘🖍 형광펜 켜짐 · 노랑 — 누르면 끄기’ 칩이 뜨고 카드에 점선 테두리 · 아래로 스크롤하는 동안 도구 막대는 ✎ 하나로 줄었다가 멈추면(1.2초)·위로 스크롤하면·✎를 누르면 다시 펼침 · <b>T</b>로 숨긴 상태는 새로고침 뒤에도 유지</td></tr>
 <tr><th>그림</th><td>그림을 누르면 크게 · 크게 본 그림을 누르면 그 자리 확대/맞추기 · 확대 중엔 끌어서 이동 · Ctrl/⌘+휠 확대 · 바깥을 누르거나 Esc로 닫기 · ←/→(스와이프)로 넘기기 · 아래로 쓸면 닫기</td></tr>
 <tr><th>공부 시간</th><td>시계(오늘 합계)를 누르면 <b>목표 고리</b>·이번 주 월~일 막대·오늘 과목·강의별 · [📊 자세히] · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고, 오른쪽 버튼이 <b>● 측정 중</b> / <b>○ 자동 대기</b>(과목을 열고 움직이면 시작) / <b>▶ 공부 시작</b>(자동 꺼짐) · 누르면 쉬기</td></tr>
@@ -1320,11 +1320,11 @@ $('#stage').addEventListener('focusin',e=>{if(e.target.id==='fq')jbMini();});$('
    · 묶음은 여러 조각(span)이어도 data-g로 하나 — 빈칸은 한 번에 열리고, 지울 때도 한 번에
    · 복원: 정확히 일치 → 공백·구분기호를 무시한 느슨한 일치(레이아웃이 바뀌어도 살아남음) */
 const LXT={};   /* 옛 허브 기준선 글자 {SID:{aid:글자}} — packs/<SID>.lx.js (옛 표시가 남은 과목만 받음) */
-const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag=null,ENR=0;const CTX=12;
+const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,GID=0,drag=null,ENR=0;const CTX=12;
  const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog]';
  const BND=/[\s\/()\[\]{},;:·•→"'“”‘’<>=|—–]/;
  const COLORS=[['y','#FFE58A'],['g','#BDEBC4'],['p','#FFCFDF'],['u','#C9DDF7'],['o','#FFC98C']],CNAME={y:'노랑',g:'초록',p:'분홍',u:'파랑',o:'주황'};   /* 파랑 = 'u' ('b'는 빈칸 클래스 .rk-b와 겹쳐 글자가 사라졌음 — 옛 기록은 load에서 이관) */
- function load(s){if(S&&S!==s)persist();migBlue();S=s;ANN=LS.get('ann.'+s,{});if(!ANN||typeof ANN!=='object'||Array.isArray(ANN))ANN={};U=[];R=[];ENR=enrich(s);upd();updLost();}
+ function load(s){if(S&&S!==s)persist();migBlue();S=s;ANN=LS.get('ann.'+s,{});if(!ANN||typeof ANN!=='object'||Array.isArray(ANN))ANN={};PEND=null;stackLoad();ENR=enrich(s);upd();updLost();}
  /* 옛 파랑 형광펜 {t:'h',c:'b'} → c:'u' (전 과목, 바꾸기 전 자동 백업) */
  function migBlue(){const ks=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf(NS+'ann.')===0)ks.push(k);}const todo=[];
   ks.forEach(k=>{try{const a=JSON.parse(localStorage.getItem(k));let hit=false;for(const id in a)(a[id]||[]).forEach(o=>{if(o&&o.t==='h'&&o.c==='b'){o.c='u';hit=true;}});if(hit)todo.push([k,a]);}catch(e){}});
@@ -1414,24 +1414,38 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
      if(a.v!==hv){const x=TX.slice(r[0],r[1]);let i=0,q=-1;while((q=TX.indexOf(x,q+1))>=0&&q<r[0])i++;a.x=x;a.i=i;a.p=TX.slice(Math.max(0,r[0]-CTX),r[0]);a.s=TX.slice(r[1],r[1]+CTX);a.v=hv;delete a.lx;ch=true;}}   /* 찾은 자리로 다시 닻 내림 — 다음부터는 i 그대로 */
     else{if(!a.lost){a.lost=1;ch=true;}B._lost.push(a);}});});if(ch)persist();else updLost();}
  function redraw(){const st=$('#stage');$$('[data-rk],[data-pre]',st).forEach(unwrap);restore(st);rbRestore();coverChips();}
- function push(){U.push(JSON.stringify(ANN));if(U.length>80)U.shift();R=[];upd();}
+ /* 실행 취소 v2(C06) — 한 단계 = {d:설명('형광펜 1개'·'자동 빈칸 344개'), s·doc·tab(어디서), p:{바뀐 aid: 그 전 값 JSON|null}, r?:{k:'문서/탭', v:그 전 규칙 JSON|null}}.
+    push(설명)는 지금 ANN의 얕은 사본만 떠 두고, 같은 작업이 끝난 뒤(microtask) 달라진 aid만 차분으로 남김(fin) · 최근 30단계는 sessionStorage undo.<S>(새로고침 뒤에도 ⌘Z) */
+ function push(d){fin();PEND={b:Object.assign({},ANN),e:{d:d||'표시',s:S,doc:CUR.d,tab:CUR.t,at:Date.now(),p:{}}};R=[];queueMicrotask(fin);}
+ function pendDesc(d){if(PEND)PEND.e.d=d;}
+ function pendRule(k,v){if(PEND&&!PEND.e.r)PEND.e.r={k,v:v==null?null:JSON.stringify(v)};}
+ function fin(){if(!PEND)return;const b=PEND.b,e=PEND.e;PEND=null;new Set(Object.keys(b).concat(Object.keys(ANN))).forEach(k=>{if(b[k]!==ANN[k])e.p[k]=b[k]===undefined?null:JSON.stringify(b[k]);});
+  if(Object.keys(e.p).length||e.r){U.push(e);if(U.length>80)U.shift();stackSave();}upd();}
+ function stackSave(){if(S)SS.set('undo.'+S,{U:U.slice(-30),R:R.slice(-30)});}
+ function stackLoad(){const v=S?SS.get('undo.'+S,null):null;const ok=L=>Array.isArray(L)?L.filter(e=>e&&typeof e==='object'&&e.p&&typeof e.p==='object'):[];U=ok(v&&v.U);R=ok(v&&v.R);}
+ function swap(e){const r=Object.assign({},e,{p:{}});for(const k in e.p){r.p[k]=ANN[k]===undefined?null:JSON.stringify(ANN[k]);const v=e.p[k];if(v==null)delete ANN[k];else{try{ANN[k]=JSON.parse(v);}catch(_){}}}
+  if(e.r&&S){const R0=mkObj(LS.get('autoRule.'+S,{})),k=e.r.k;r.r={k,v:R0[k]===undefined?null:JSON.stringify(R0[k])};if(e.r.v==null)delete R0[k];else{try{R0[k]=JSON.parse(e.r.v);}catch(_){}}LS.set('autoRule.'+S,R0);}return r;}
+ const TABN={learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'};
+ function where(e){const p=PACKS[e.s];if(!p)return '';const L=p.lect.find(x=>x.k===e.doc);const dn=L?sname(p,e.doc):String((SUBJDOCS.find(x=>x[0]===e.doc)||['',e.doc])[1]).replace(/^\S+\s/,'');return dn+(L&&TABN[e.tab]?' '+TABN[e.tab]:'');}
+ function undoToast(e,lead){const away=VIEW!=='doc'||e.s!==CUR.s||e.doc!==CUR.d||(e.tab||'')!==(CUR.t||'');const w=where(e);
+  toast(lead+': '+e.d+(w?' ('+w+')':''),away?{level:'result',action:{label:'그 화면으로',fn:()=>openDoc(e.s,e.doc,e.tab)}}:{level:'result'});}
  function commit(B){const l=snap(B).concat((B._lost||[]).map(o=>Object.assign({},o,{lost:1})));if(l.length)ANN[B.dataset.aid]=l;else delete ANN[B.dataset.aid];persist();}
  function upd(){const u=$('#k-undo'),r=$('#k-redo');if(u){u.disabled=!U.length;const b=u.querySelector('.ubn');if(b)b.textContent=U.length||'';u.title='실행 취소 (Ctrl/⌘ Z)'+(U.length?' — '+U.length+'번 되돌릴 수 있어요':'');}if(r)r.disabled=!R.length;}
- function undo(){if(!U.length)return toast('되돌릴 표시가 없어요');R.push(JSON.stringify(ANN));ANN=JSON.parse(U.pop());persist();redraw();upd();}
- function redo(){if(!R.length)return;U.push(JSON.stringify(ANN));ANN=JSON.parse(R.pop());persist();redraw();upd();}
+ function undo(){fin();if(!U.length)return toast('되돌릴 표시가 없어요');const e=U.pop();R.push(swap(e));persist();redraw();upd();stackSave();undoToast(e,'↶ 되돌림');}
+ function redo(){fin();if(!R.length)return;const e=R.pop();U.push(swap(e));persist();redraw();upd();stackSave();undoToast(e,'↷ 다시 실행');}
  function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');coverChips();modeChip();
   if(mode)toast(mode==='h'?'형광펜 — 누르면 어절, 누른 채 끌면 범위 (손가락은 길게 누른 뒤 끌기)':'빈칸 — 누르면 어절, 끌면 한 묶음 빈칸');}
  function clearOverlap(B,a,b){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
   gs.forEach(g=>{(typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g]).forEach(unwrap);});}
  /* 칠할 종류: 모드가 켜져 있으면 그것, 모드 없이 애플펜슬로 끌면(펜슬로 바로 칠하기 — LS penDirect) 형광펜 */
  const eff=d=>mode||(d&&d.pen?'h':null);
- function apply(B,a,b,t){push();clearOverlap(B,a,b);wrap(B,a,b,t||mode,color,'n'+(++GID));commit(B);}
+ function apply(B,a,b,t){push((t||mode)==='b'?'빈칸 1개':'형광펜 1개');clearOverlap(B,a,b);wrap(B,a,b,t||mode,color,'n'+(++GID));commit(B);}
  function clearPre(B){(B?B:document).querySelectorAll('[data-pre]').forEach(unwrap);}
  function preview(B,a,b,t){clearPre(B);if(b>a)wrap(B,a,b,t||mode,color,null,true);}
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;return el.closest('[data-aid]');}
  /* 누르기(마우스 클릭·손가락 톡·길게 누른 뒤 그대로 떼기·펜슬 톡): 칠한 곳이면 지우고, 형광펜으로 다른 색이면 색만 바꾸고, 빈 곳이면 어절을 칠함 */
  function tapAt(B,x,y,target,t){t=t||mode;const rk=target&&target.closest&&target.closest('[data-rk]');
-  if(rk&&B.contains(rk)){push();const els=group(rk);if(t==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
+  if(rk&&B.contains(rk)){const recol=t==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color;push(recol?'형광펜 색 바꾸기':(rk.getAttribute('data-rk')==='b'?'빈칸 지우기 1개':'형광펜 지우기 1개'));const els=group(rk);if(recol){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
   if(!t)return;const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;apply(B,w[0],w[1],t);}
  /* 끄는 범위(A08): 포인터가 시작 카드(표시 단위) 밖이면 — 아래로 벗어나면 시작 카드의 끝까지, 위로 벗어나면 처음까지(cross) */
  function dragSpan(d,x,y){if(!d||d.p0==null)return null;const ix=index(d.B),R=d.B.getBoundingClientRect();let p=null,cross=false;
@@ -1461,7 +1475,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(!drag.active){if(dist>10){clearTimeout(drag.tm);drag=null;}return;}e.preventDefault();if(dist>(drag.stylus?6:4))drag.moved=true;if(drag.moved)dragMove(t.clientX,t.clientY);},{passive:false});
  document.addEventListener('touchend',e=>{if(!drag||!drag.touch)return;const d=drag;drag=null;clearTimeout(d.tm);stopAS();const t=e.changedTouches[0];clearPre(d.B);
   if(d.active){if(d.moved){e.preventDefault();dragEnd(d,t.clientX,t.clientY);return;}
-   if(d.pen){const rk=d.target&&d.target.closest&&d.target.closest('[data-rk="h"]');if(rk&&d.B.contains(rk)){e.preventDefault();push();group(rk).forEach(unwrap);commit(d.B);}return;}   /* 펜슬 톡(모드 없음): 칠한 곳이면 지우기, 아니면 보통 누르기(빈칸 열기 등) */
+   if(d.pen){const rk=d.target&&d.target.closest&&d.target.closest('[data-rk="h"]');if(rk&&d.B.contains(rk)){e.preventDefault();push('형광펜 지우기 1개');group(rk).forEach(unwrap);commit(d.B);}return;}   /* 펜슬 톡(모드 없음): 칠한 곳이면 지우기, 아니면 보통 누르기(빈칸 열기 등) */
    e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);return;}
   if(!d.moved&&Date.now()-d.t0<400){e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);}},{passive:false});
  document.addEventListener('touchcancel',()=>{if(drag&&drag.touch)cancelDrag();});
@@ -1469,10 +1483,10 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));if(on)LASTOPEN=rk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return true;}
   if(!mode)return false;return !!targetOK(e.target);}
  function auto(kind,one){const st=$('#stage');let sel=kind==='red'?'.k':kind==='term'?'tbody th':'tbody td';const els=$$(sel,st).filter(el=>el.offsetParent!==null||el.closest('.tbody,.ans'));if(!els.length){toast('이 화면에는 해당하는 대상이 없습니다');return;}
-  push();const seen=new Set(),touched=new Set();let n=0;els.forEach(el=>{const B=el.closest('[data-aid]');if(!B||el.closest('[data-rk]')||el.closest(SKIP))return;if(one){const row=el.closest('li,tr,p')||B;if(seen.has(row))return;seen.add(row);}
+  push('자동 빈칸');const seen=new Set(),touched=new Set();let n=0;els.forEach(el=>{const B=el.closest('[data-aid]');if(!B||el.closest('[data-rk]')||el.closest(SKIP))return;if(one){const row=el.closest('li,tr,p')||B;if(seen.has(row))return;seen.add(row);}
    const ix=index(B);let a=1e9,b=-1;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let tn;while(tn=w.nextNode()){const m=ix.map.find(q=>q.n===tn);if(m){a=Math.min(a,m.start);b=Math.max(b,m.start+m.len);}}
-   if(b<=a)return;const r=tidy(ix.s,a,b);if(!r)return;wrap(B,r[0],r[1],'b','y','a'+(++GID));touched.add(B);n++;});touched.forEach(commit);toast('빈칸 '+n+'개 — 빈칸을 누르면 열리고, 👁로 전체 보기');}
- function clearView(){const st=$('#stage');const bs=new Set($$('[data-rk]',st).map(e=>e.closest('[data-aid]')));if(!bs.size)return toast('지울 표시가 없어요');if(!confirm('지금 열린 화면의 형광펜·빈칸을 모두 지울까요? (↶로 되돌릴 수 있어요 · ⚠ 위치를 잃은 표시는 지우지 않고 남겨 둡니다)'))return;push();$$('[data-rk]',st).forEach(unwrap);bs.forEach(B=>B&&commit(B));}
+   if(b<=a)return;const r=tidy(ix.s,a,b);if(!r)return;wrap(B,r[0],r[1],'b','y','a'+(++GID));touched.add(B);n++;});pendDesc('자동 빈칸 '+n+'개');touched.forEach(commit);toast('빈칸 '+n+'개 — 빈칸을 누르면 열리고, 👁로 전체 보기');}
+ function clearView(){const st=$('#stage');const bs=new Set($$('[data-rk]',st).map(e=>e.closest('[data-aid]')));if(!bs.size)return toast('지울 표시가 없어요');if(!confirm('지금 열린 화면의 형광펜·빈칸을 모두 지울까요? (↶로 되돌릴 수 있어요 · ⚠ 위치를 잃은 표시는 지우지 않고 남겨 둡니다)'))return;push('표시 지우기 '+$$('[data-rk]',st).length+'조각');$$('[data-rk]',st).forEach(unwrap);bs.forEach(B=>B&&commit(B));}
  function hideAll(){$$('#stage .rk-b.show').forEach(x=>x.classList.remove('show'));document.body.classList.remove('rk-reveal');$('#k-eye').classList.remove('on');}
  /* 색 견본: 넓은 화면은 5개 나란히, 860px 이하는 '지금 색 1개 + ▾' 팝오버 */
  $('#k-sw').innerHTML=`<button class="swc" id="k-swc" title="형광펜 색 고르기"><span class="sw swcur" style="background:${COLORS[0][1]}"></span>▾</button><span id="k-swl">`+COLORS.map((c,i)=>`<span class="sw ${i?'':'sel'}" data-c="${c[0]}" style="background:${c[1]}" title="형광펜 색"></span>`).join('')+'</span>';
@@ -1503,11 +1517,13 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],GID=0,drag
   if(typeof cur==='string'&&cur!==memoBase.v&&cur!==v&&v.indexOf(cur)<0){v=v+(v?'\n\n':'')+'— 다른 창의 메모와 합침 —\n'+cur;const a=ta.selectionStart,b=ta.selectionEnd;ta.value=v;try{ta.setSelectionRange(a,b);}catch(e){}toast('다른 창에서 쓴 메모를 아래에 합쳤어요');}
   LS.set(key,v);memoBase.v=v;};$('#memota').oninput=()=>{clearTimeout(mt);mt=setTimeout(saveMemo,300);};$('#memota').onblur=saveMemo;
  /* 다른 탭(허브·단일 파일판을 함께 열었을 때)에서 바꾼 표시를 반영 — 덮어쓰기 방지 */
- addEventListener('storage',e=>{if(S&&e.key===NS+'ann.'+S){ANN=LS.get('ann.'+S,{});U=[];R=[];upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}});
+ addEventListener('storage',e=>{if(!S)return;if(e.key===NS+'ann.'+S){fin();const old=ANN;ANN=LS.get('ann.'+S,{});const ch=new Set();new Set(Object.keys(old).concat(Object.keys(ANN))).forEach(k=>{if(JSON.stringify(old[k])!==JSON.stringify(ANN[k]))ch.add(k);});
+  const inv=L=>L.filter(x=>{ch.forEach(k=>{delete x.p[k];});return Object.keys(x.p).length||x.r;});U=inv(U);R=inv(R);stackSave();upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}   /* C06: 그 창이 바꾼 aid 항목만 되돌리기에서 뺌 */
+  else if(e.key===NS+'autoRule.'+S){const inv=L=>L.filter(x=>{delete x.r;return Object.keys(x.p).length;});U=inv(U);R=inv(R);stackSave();upd();redraw();}});
  $('#k-lost').onclick=()=>{if(!CUR.s)return;openDoc(CUR.s,'_marks');const el=$('#mk-lost');if(el)goEl(el);};
  return{sub(){return S;},load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,pen:PEN,ctxOf,labels,editLabel,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
-  textOf(B){return index(B).s;},locate,resolve,enrich,needsLX,fnv,enriched(){return ENR;},setAll(o){ANN=o;U=[];R=[];upd();persist();},lostN,
-  drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push();L.splice(i,1);if(!L.length)delete ANN[aid];persist();}};})();
+  textOf(B){return index(B).s;},locate,resolve,enrich,needsLX,fnv,enriched(){return ENR;},setAll(o){ANN=o;U=[];R=[];PEND=null;stackSave();upd();persist();},lostN,
+  drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push('위치 잃은 표시 버리기');const M=L.filter((_,j)=>j!==i);if(M.length)ANN[aid]=M;else delete ANN[aid];persist();},stackBytes(){fin();return U.reduce((a,e)=>a+JSON.stringify(e).length,0);},push,pendDesc,pendRule};})();
 const memoBase={v:''};
 /* 다른 창(같은 브라우저)에서 바꾼 채점·이해함·메모를 반영 */
 addEventListener('storage',e=>{if(!CUR.s||!e.key||e.key.indexOf(NS)!==0)return;const k=e.key.slice(NS.length);
