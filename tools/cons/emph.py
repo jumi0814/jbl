@@ -40,11 +40,11 @@ NUM = re.compile(
  r'(?<![\w.#/])(?:\d+(?:\.\d+)?\s?±\s?\d+(?:\.\d+)?\s?(?:°|mm|도)?'
  r'|(?:\d+(?:\.\d+)?-)?1\s?[/:]\s?\d{1,3}(?:,\d{3})+(?:-\d{1,3}(?:,\d{3})+)?|1/\d{3,5}'
  r'|(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)(?:\s?[-~–]\s?\d+(?:\.\d+)?)?\s?(?:%|mm|Ms\b|months?\b|weeks?\b|years?\b|주|개월|세\b|도\b|°|Ncm|N/cm2|μm|rads|ys\b|YO\b|Y\b))')
-def apply(t, phrases=True, numbers=True):
-    # 1) 수동 표기 {r:...}
+def apply(t, phrases=True, numbers=True, kcls=None):
+    # 1) 수동 표기 {r:...} — kcls(글자) → 클래스(ux2 D06 빨강 두 단계: 'k' | 'k k2'), 없으면 'k'
     marks = []
     def keep(m):
-        marks.append('<span class="k">' + m.group(1) + '</span>'); return '\x00%d\x00' % (len(marks) - 1)
+        marks.append('<span class="' + (kcls(m.group(1)) if kcls else 'k') + '">' + m.group(1) + '</span>'); return '\x00%d\x00' % (len(marks) - 1)
     t = re.sub(r'\{r:([^{}]+)\}', keep, t)
     # 2) 핵심어 사전 (한 줄에서 구절당 첫 1회)
     for ph in (PHRASES if phrases else []):

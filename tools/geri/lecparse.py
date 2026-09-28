@@ -1,9 +1,32 @@
 import re, html, os
 import emph
 CITE = re.compile(r'(\[\[[A-Z0-9]+:[^\]]+\]\]|\{jb:[^}]+\})')
+SRCN = re.compile(r'\((\d{2}\s)?필기\)')
+SRCH = re.compile(r'^필기:\s')
+SRCP = re.compile(r'^슬라이드\s(\d{1,3})((?:\s흐름|\s표시)?):\s')
+def _srcmeta(t, first):
+    """ux2 D07 출처 메타를 가볍게 — 글자는 그대로 두고 감싸기만(.srcn = ✍ 아이콘·.srcp = 회색 'p.NN' 칩, 원문 글자는 안쪽 .srt — CSS display:none, textContent·표시·검색 그대로)"""
+    t = SRCN.sub(lambda m: f'<span class="srcn" title="{(m.group(1) or "").strip() + " " if m.group(1) else ""}필기"><span class="srt">{m.group(0)}</span></span>', t)
+    if first:
+        t = SRCH.sub(lambda m: f'<span class="srcn srch" title="필기"><span class="srt">{m.group(0)}</span></span>', t, count=1)
+        t = SRCP.sub(lambda m: f'<span class="srcp" data-p="{m.group(1)}" title="슬라이드 {m.group(1)}{m.group(2)}"><span class="srt">{m.group(0)}</span></span>', t, count=1)
+    return t
+def _rnorm(x): return re.sub(r'\s+', '', html.unescape(re.sub(r'==|\*\*|<[^>]+>', '', x))).lower()
+def red_set(texts):
+    """ux2 D06 — 카드의 🔑·⭐·⚡ 원고에 든 {r:…} 글자 집합(소문자·공백 제거)"""
+    return {_rnorm(m) for t in texts for m in re.findall(r'\{r:([^{}]+)\}', t) if _rnorm(m)}
+def _kcls(core):
+    """본문 {r:}가 카드 핵심 집합과 서로 포함 관계면 'k'(빨강), 아니면 'k k2'(굵은 검정 — 원칙 7-1 안). 한 글자는 같을 때만"""
+    def f(x):
+        n = _rnorm(x)
+        if not n: return 'k'
+        for c in core:
+            if n == c or (min(len(n), len(c)) >= 2 and (n in c or c in n)): return 'k'
+        return 'k k2'
+    return f
 def inline(s, ctx):
-    out = []
-    for tok in CITE.split(s):
+    out = []; core = ctx.get('RED'); kc = _kcls(core) if core is not None else None
+    for ti, tok in enumerate(CITE.split(s)):
         if tok.startswith('[['):
             k, p = tok[2:-2].split(':', 1)
             if not S.LECMAP.get(k, (None,))[0]: out.append(f'<button class="cite t" data-k="{k}" data-p="">{ctx["LECNAME"][k]} ‘{html.escape(p)}’</button>')
@@ -14,12 +37,12 @@ def inline(s, ctx):
             i = tok[4:-1]; q = ctx['QMAP'].get(i)
             if q: out.append(f'<button class="xjb{" rep" if len(q["yrs"]) >= 2 else ""}" data-go="{i}" title="{html.escape(q["short"])}">기출 {"·".join("%02d" % y for y in q["yrs"])}</button>')
         else:
-            t = emph.apply(html.escape(tok, quote=False), phrases=False, numbers=False)
+            t = emph.apply(html.escape(tok, quote=False), phrases=False, numbers=False, kcls=kc)
             t = re.sub(r'\*\*(.+?)\*\*', r'<b class="term">\1</b>', t)
             t = re.sub(r'==(.+?)==', r'<span class="hl">\1</span>', t)
             t = re.sub(r'\{k:([^{}]+)\}', r'<span class="hk">\1</span>', t)
             t = t.replace('💡', '<b class="bulb">💡</b>').replace('⚠', '<b class="warn">⚠</b>')
-            out.append(t)
+            out.append(_srcmeta(t, ti == 0))
     return ''.join(out)
 def parse(path):
     lec = None; card = None; grp = ''
@@ -172,9 +195,11 @@ def _rebalance(parts, hl0=False):
 LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
 def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|==|\*\*|\}', '', p)
 def _is_flow(parts):
-    if len(parts) < 4: return False
+    """가로 흐름(ul.kflow): 4조각↑ 중앙값 24자 미만 · ux2 D09 2~3조각은 합 100자 이하이거나 3조각 중앙값 22자 이하"""
+    if len(parts) < 2: return False
     ls = sorted(len(_plain(p).strip()) for p in parts)
-    return ls[len(ls) // 2] < 24
+    if len(parts) >= 4: return ls[len(ls) // 2] < 24
+    return sum(ls) <= 100 or (len(parts) == 3 and ls[1] <= 22)
 def _hl_flags(parts):
     """조각마다 ==…== 로 통째 감싸였는지 → 연속 3조각↑ 또는 (2조각↑·합 120자 초과)인 구간은 형광 블록: == 를 떼고 flag"""
     full = [p.startswith('==') and p.endswith('==') and p.count('==') == 2 and len(p) > 4 for p in parts]
@@ -197,6 +222,10 @@ def _list_html(parts, ctx, depth, tag='ul', cls='klist', fmt=None):
        klist·circ면 바깥 목록에 항목으로 풀어 넣고, steps·kflow면 바깥 목록을 잠시 닫고 그 블록을 둠"""
     parts, flags = _hl_flags(parts)
     if cls == 'klist' and _is_flow(parts): cls = 'kflow'
+    if cls == 'circ' and len(parts) >= 2:   # ux2 D09 짧은 번호 나열(중앙값 22자 이하)은 2~4단 격자(번호 그대로)
+        ls = sorted(len(_plain(p).strip()) for p in parts)
+        if ls[len(ls) // 2] <= 22: cls = 'circ cgrid'
+        elif ls[len(ls) // 2] <= 34 and len(parts) >= 4 and ls[-1] <= 60: cls = 'circ cgrid cgw'   # 조금 긴 짧은 나열(중앙값 34자 이하)은 넓은 칸 격자
     segs = []   # ('li', html, flag) | ('blk', html)
     for p, f in zip(parts, flags):
         if fmt: segs.append(('li', fmt(p), f)); continue
@@ -266,7 +295,8 @@ def render_block(v, ctx, depth=0):
 def _seg_html(parts, ctx, depth, raw=None):
     parts = _rebalance(parts)
     if parts[0] == '→':
-        return _list_html(parts[1:], ctx, depth, 'ol', 'steps', fmt=lambda p: inline(p, ctx))   # 단계도 기출 문장(==) 3개↑ 연속이면 한 묶음(hlb) — U23
+        ls = sorted(len(_plain(p).strip()) for p in parts[1:])   # ux2 D09 짧은 단계(중앙값 22자 이하)는 한 줄 흐름(→)
+        return _list_html(parts[1:], ctx, depth, 'ol', 'steps sflow' if ls and ls[len(ls) // 2] <= 22 else 'steps', fmt=lambda p: inline(p, ctx))   # 단계도 기출 문장(==) 3개↑ 연속이면 한 묶음(hlb) — U23
     if depth >= 1 and raw is not None and _is_flow(parts): return inline(raw, ctx)   # 안쪽 짧은 나열은 원문 줄 그대로(li 안에 목록만 들지 않게)
     return _list_html(parts, ctx, depth)
 def key_split(v):
@@ -292,7 +322,9 @@ def key_split(v):
     if not (len(pieces) > 4 or len(v) > 180): return None
     return pieces[0], pieces[1:]
 def render_key_rest(pieces, ctx):
-    """상자 밖으로 내린 🔑 조각: '라벨: 내용'은 소제목(h4.sh) + 항목, 나머지는 항목"""
+    """상자 밖으로 내린 🔑 조각: '라벨: 내용'은 소제목(h4.sh) + 항목, 나머지는 항목 — ux2 D01 div.krest로 감쌈(압축 보기에서도 보임)"""
+    return '<div class="krest">' + _key_rest(pieces, ctx) + '</div>'
+def _key_rest(pieces, ctx):
     out = []
     for p in pieces:
         m = LBL.match(p)
@@ -301,10 +333,80 @@ def render_key_rest(pieces, ctx):
         else: out.append(render_item(p, ctx))
     return ''.join(out)
 def render_key(v, ctx): return f'<div class="kb">{render_block(v, ctx)}</div>'
-def render_item(v, ctx):
-    body = render_block(v, ctx) if len(v) > 110 else inline(v, ctx)
+def _ncirc(v):
+    e = split_enum(v)
+    return len(e[1]) if (e and e[2]) else 0
+def render_item(v, ctx, cont=None):
+    """항목 한 줄 — 110자 초과 또는 ux2 D09 원문자 번호 3개↑(길이 무관)면 구조화. cont = 앞 줄 번호에 이어지는 시작 번호(⑤ 다음 ⑥ → 6)"""
+    if cont:
+        pos = _marks(v, PAT_CIRC)
+        if pos and pos[0][0] == 0:
+            idx = [p for p, _ in pos]
+            items = _rebalance([v[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(v)])])
+            body = _list_html(items, ctx, 0, 'ol', 'circ').replace('<ol class="circ', f'<ol start="{cont}" class="circ', 1)
+            return f'<div class="li nolead cont">{body}</div>'
+    body = render_block(v, ctx) if (len(v) > 110 or _ncirc(v) >= 3) else inline(v, ctx)
     return f'<div class="li{" nolead" if body.startswith("<ol") or body.startswith("<ul") else ""}">{body}</div>'
 def render_recall(x, ctx):
     rows = split_top(x)
     if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)
     return f'<li>{inline(x, ctx)}</li>'
+# ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
+EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
+EXAM_FMT = re.compile(r'(?:서술형?|빈칸|객관식|단답형?|T/F|그림)(?:\s?(?:단답|빈칸|서술))?')
+EXAM_SRC = re.compile(r'자료|p\.|JB 해설|JB 답|슬라이드|필기|원문|강의록')
+def _mk_ok(x):
+    """조각 안에서 원고 표기 짝이 맞는지(==·**·{r:…}·{k:…}) — 안 맞으면 구조화하지 않음"""
+    if x.count('==') % 2 or x.count('**') % 2: return False
+    y = re.sub(r'\{(?:r|k|jb):[^{}]*\}', '', x)
+    return '{r:' not in y and '{k:' not in y and '{jb:' not in y
+def _d0pos(s, pat, start=0):
+    """깊이 0(괄호·따옴표·{…} 밖)에서 pat(문자열)이 시작하는 첫 자리 ≥ start"""
+    for i, ch, d in _depth_iter(s):
+        if i >= start and d == 0 and s.startswith(pat, i): return i
+    return -1
+def exam_parts(v):
+    """E: 줄 → dict(yr, mid, q, arr, a, tail=[(kind, 글자)…]) | None. kind = 'src'(근거·대조 — 접음) · 'more'(— 뒤 설명) · 'trap'(⚠ 함정)"""
+    m = EXAM_RE.match(v)
+    if not m: return None
+    rest = m.group('rest'); cuts = [x for x in (_d0pos(rest, ' — '), _d0pos(rest, ' ⚠'), _d0pos(rest, '⚠')) if x > 0]
+    cut = min(cuts) if cuts else len(rest); a = rest[:cut]; tail = []; i = cut
+    while i < len(rest):
+        seg = rest[i:]
+        if seg.lstrip().startswith('⚠'):
+            j = _d0pos(rest, ' — ', i + 1); j = len(rest) if j < 0 else j; kind = 'trap'
+        else:
+            js = [x for x in (_d0pos(rest, ' ⚠', i + 3), _d0pos(rest, '⚠', i + 3)) if x > 0]; j = min(js) if js else len(rest)
+            kind = 'src' if EXAM_SRC.search(rest[i:j]) else 'more'
+        tail.append((kind, rest[i:j])); i = j
+    d = {'yr': m.group('yr'), 'mid': m.group('mid'), 'q': m.group('q'), 'qx': m.group('qx') or '', 'arr': m.group('arr'), 'a': a, 'tail': tail}
+    if not all(_mk_ok(x) for x in [d['mid'], d['q'], d['qx'], d['a']] + [t for _, t in tail]) or not a.strip(): return None
+    return d
+def exam_q(v):
+    """E: 줄의 문제 요지(따옴표 안 글자, 원고 표기 뗌) | None"""
+    d = exam_parts(v)
+    if not d: 
+        m = re.search(r'["“]([^"”]{4,}?)["”]', v)
+        return _plain(m.group(1)).strip() if m else None
+    return _plain(re.sub(r'^["“]|["”](?:의 \'[^\']+\')?$', '', d['q'])).strip()
+EXAM_N = [0, 0]   # 구조화 적용 수 / 전체 ⭐ 줄 수(빌드 로그)
+def render_exam(v, ctx):
+    """⭐ 한 줄 → 구조화 HTML(연도 머리 .ex-yr는 CSS로 숨김 · 형식 칩 .exf · 문제 .ex-q · → 답 .ex-a · ⚠ 함정 .ex-trap 다음 줄 · 근거 .ex-src 접힘(머리 줄 끝 '근거 ▸')) | None(옛 줄 — 지금 렌더)"""
+    EXAM_N[1] += 1
+    d = exam_parts(v)
+    if not d: return None
+    EXAM_N[0] += 1
+    mid = ('<span class="exmid">' + inline(d['mid'], ctx) + '</span>') if d['mid'].strip() else html.escape(d['mid'], quote=False)
+    mid = EXAM_FMT.sub(lambda m: f'<span class="exf">{m.group(0)}</span>', mid, count=1)
+    mid = re.sub(r'\([^)]*\)', lambda m: f'<span class="exp">{m.group(0)}</span>', mid)
+    a = d["a"]; ah = render_block(a, ctx) if len(a) > 170 else inline(a, ctx)   # 답이 아주 길 때만 목록으로(줄 수 늘지 않게)
+    blk = ah.startswith('<') and re.match(r'<(?:div|ul|ol)\b', ah)
+    head = f'<div class="exh"><span class="ex-yr">{html.escape(d["yr"], quote=False)}</span>{mid}<span class="ex-q">{inline(d["q"], ctx)}</span>{('<span class="exp">' + inline(d["qx"], ctx) + '</span>') if d["qx"] else ''}<span class="ex-arr">{html.escape(d["arr"], quote=False)}</span>' + ('' if blk else f'<span class="ex-a">{ah}</span>')
+    more = ''.join(f'<span class="ex-more">{inline(t, ctx)}</span>' for k, t in d['tail'] if k == 'more' and not blk)
+    srcb = '<button class="exsrcb noann" data-exsrc="1" aria-label="근거 보기"></button>' if any(k == 'src' for k, _ in d['tail']) else ''
+    out = [head + more + srcb + '</div>']
+    if blk: out.append(f'<div class="ex-a ex-ab">{ah}</div>' + ''.join(f'<div class="ex-more">{inline(t, ctx)}</div>' for k, t in d['tail'] if k == 'more'))
+    for k, t in d['tail']:
+        if k == 'trap': out.append(f'<div class="ex-trap">{inline(t.strip(), ctx)}</div>')
+        elif k == 'src': out.append(f'<div class="ex-src">{inline(t.strip(), ctx)}</div>')   # 기본 접힘 — 머리 줄 끝 '근거 ▸'(.exsrcb)로 펼침
+    return '<div class="exs">' + ''.join(out) + '</div>'
