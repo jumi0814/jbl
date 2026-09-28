@@ -42,6 +42,8 @@ def inline(s, ctx):
             t = re.sub(r'==(.+?)==', r'<span class="hl">\1</span>', t)
             t = re.sub(r'\{k:([^{}]+)\}', r'<span class="hk">\1</span>', t)
             t = t.replace('💡', '<b class="bulb">💡</b>').replace('⚠', '<b class="warn">⚠</b>')
+            if '\ue010' in t or '\ue012' in t:   # ux2 E03 작은 표를 펼친 줄의 열 이름(표시 글자에 안 드는 .noann)·숨긴 칸(.csx)
+                t = re.sub('\ue010([^\ue011]*)\ue011', r'<span class="clab noann">\1 </span>', t).replace('\ue012', '<span class="csx">').replace('\ue013', '</span>')
             out.append(_srcmeta(t, ti == 0))
     return ''.join(out)
 def parse(path):
