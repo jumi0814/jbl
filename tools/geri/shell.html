@@ -542,9 +542,75 @@ body.focus .modechip{left:auto;right:12px;transform:none;top:calc(var(--toph) + 
 #kit #k-min{display:none}#kit.min>*:not(#k-min){display:none!important}#kit.min #k-min{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;font-size:17px}#kit.min{padding:2px}
 #kit #k-undo:disabled,#kit #k-redo:disabled{opacity:.6}#kit .ubn{font-size:10.5px;font-weight:800;margin-left:1px;vertical-align:super;line-height:1;color:#FFD980}#kit .ubn:empty{display:none}
 #kit .lb2{display:none}@media (max-width:860px){#kit .lb2{display:block;font-size:10px;line-height:1;margin-top:1px;opacity:.85}#kit #k-undo,#kit #k-redo,#kit #k-eye,#kit #k-clear{flex-direction:column;line-height:1.2}#kit .ic{line-height:1.2}}
+/* ux2 트랙A — B·C 묶음 */
+/* B03 시계(button)·자리 비움 칩·측정 상태(● 측정 중 = 초록 점) · B10 🏠 JBL 허브(button) · 서랍 맨 위 '🏠 허브 홈' · hero ✓✗ 0이면 숨김 */
+button#clock{background:none;border:0;color:inherit;font:inherit;font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;line-height:1.4}
+#idlechip{font-size:12px;font-weight:700;color:#E4DCCD;background:#4A443B;border-radius:999px;padding:2px 9px;white-space:nowrap;font-variant-numeric:tabular-nums}
+#tmr .tdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2E7D4F;box-shadow:0 0 0 2px #CFE8D8;margin:0 7px 1px 2px;vertical-align:middle}#tmr.on{background:#3F3830;color:#F3EDE1}
+#top button.brand{background:none;border:0;padding:2px 0;color:inherit;font-weight:800;font-size:inherit;line-height:inherit;white-space:nowrap}#top button.brand:hover{text-decoration:underline;text-underline-offset:3px}
+#side .hubhome{display:none}@media (max-width:860px){#side .hubhome{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:8px 10px 10px;margin:0 0 8px;font-weight:700;font-size:14.5px;color:var(--ink);min-height:44px}#side .hubhome small{display:block;font-weight:500;font-size:12px;color:var(--sub)}}
+#hstat.z{display:none}
+/* B11 알림 — 도구 막대 위(팝업이 열려 있으면 팝업 아래) · result [보기] · error 빨간 띠(✕로 닫음) */
+#toast{top:auto;bottom:calc(var(--kith) + 16px + var(--oneh));max-width:min(560px,calc(100vw - 24px));width:max-content;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.28)}#toast.atpop{bottom:auto}
+#toast .tact,#toasterr .tact{margin-left:10px;background:#FFD980;color:#201A10;border:0;border-radius:8px;padding:3px 12px;font-weight:700;font-size:13px;min-height:30px}
+#toasterr{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--kith) + 64px + var(--oneh));z-index:99;display:flex;flex-direction:column;gap:6px;width:min(560px,calc(100vw - 24px))}#toasterr:empty{display:none}
+#toasterr .terr{background:#FBEAE8;color:#8E1B14;border:1px solid #D9A39D;border-radius:10px;padding:6px 6px 6px 14px;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,.12)}#toasterr .terr span{flex:1}
+#toasterr .tx{border:0;background:none;font-size:15px;min-width:36px;min-height:36px;color:#8E1B14;border-radius:8px}#toasterr .tx:hover{background:#F6D8D4}
+/* B04 무활동 되묻기 띠 — 10초 뒤 저절로 빼기(아래 줄이 줄어듦) */
+#idleband{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--kith) + 64px + var(--oneh));z-index:98;background:#26221D;color:#fff;border-radius:12px;padding:8px 10px 10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:calc(100vw - 24px);box-shadow:0 8px 24px rgba(0,0,0,.3);font-size:14px}
+#idleband .btn{min-height:34px}#idleband .btn:not(.pri){background:#3F3830;color:#F3EDE1;border:1px solid #5A5248}#idleband .ibt{position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:#FFD980;transform-origin:left;animation:ibt 10s linear forwards}@keyframes ibt{to{transform:scaleX(0)}}
+/* B08 첫 화면 불러오기 — 뼈대·진행 막대·실패 [다시] · '불러오는 중' 칩 */
+.plbox .plline{font-size:14px;line-height:1.6}.plline .ok{color:#2E7D4F;font-weight:700}.plline .bad{color:#8E1B14;font-weight:700}.plbar{height:6px!important;margin-top:6px!important}.plbar i{transition:width .2s}
+.plbad{background:#FBEAE8;color:#8E1B14;border:1px solid #D9A39D;border-radius:10px;padding:5px 6px 5px 14px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:10px;margin-top:6px}
+#packbar{position:fixed;top:calc(var(--toph) + 8px);left:50%;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:6px;max-width:calc(100vw - 24px)}#packbar .plbad{margin:0;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.sgrid.plskel .scard.sk{opacity:.75}.scard.sk .skl{display:block;height:10px;border-radius:5px;background:#EEE8DC;margin-top:14px;width:80%}.scard.sk .skl.s2{width:55%}
+.chip.plc{border-style:dashed;color:var(--sub);font:600 12px/1.6 system-ui,sans-serif;vertical-align:middle;margin-left:10px;background:#fff}.scard.off.plw .ko{font-style:italic}
+/* B06 허브 홈 '오늘' 띠·과목 순서·시험일 D-day · 과목 홈 하루 분량 · B02 '최근 공부 시간' */
+.todayb{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 8px;margin:0 0 14px;font-size:14px}
+.todayb button{background:none;border:0;padding:4px 8px;border-radius:8px;min-height:36px;color:var(--ink)}.todayb button:hover{background:#F4F1EA}.todayb b{font-variant-numeric:tabular-nums}.todayb .tsep{color:var(--faint)}
+.hsort{display:flex;align-items:center;gap:6px;margin:0 0 10px;flex-wrap:wrap}.hsb{border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 12px;font-size:13px;min-height:32px;color:#4A453E}.hsb.on{background:#34312C;border-color:#34312C;color:#fff;font-weight:700}
+.scard .exrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;margin-top:10px;font-size:12.5px;color:var(--sub);cursor:default}.scard .exd{display:inline-flex;align-items:center;gap:6px}
+.scard .exd input{font:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:2px 6px;background:#fff;color:var(--ink);min-height:32px}
+.dday{font-weight:800;font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--ink);background:#fff;font-variant-numeric:tabular-nums}.dday.soon{border:2px solid var(--acc);color:var(--acct)}
+.exline{font-size:14px;margin-bottom:0}.exline .exq{color:var(--acct)}
+.link.tvlink{font-size:12.5px;color:var(--sub);margin-left:4px;white-space:nowrap}.link.tvall{margin-top:8px;font-size:13px}
+table.thome th:first-child{white-space:nowrap}table.thome td:nth-child(2){font-variant-numeric:tabular-nums;white-space:nowrap}
+.guide .rvli .btn{margin-left:6px}
+/* B01 📊 공부 기록 화면 — 월~일 과목색 쌓은 막대·지난주 옅은 막대·목표 점선·요일별 평균·12주 잔디(한 색 농도)·과목·강의 누적·시간 고치기 */
+.tv{--acc:#0F5C5A}.tv .shead h2{margin:0}
+.tvsum{font-size:15px;margin:6px 0 12px;color:var(--ink)}.tvsum b{font-size:17px;font-variant-numeric:tabular-nums}
+.tvnav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.tvnav .wl{font-variant-numeric:tabular-nums}.tvnav select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:2px 4px}
+.tvplot{position:relative;height:210px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;border-bottom:1px solid var(--line);margin-top:26px}
+.tvplot .goal{position:absolute;left:0;right:0;bottom:var(--goal);border-top:1.5px dashed #8C857A;pointer-events:none;z-index:2}.tvplot .goal span{position:absolute;right:0;top:-19px;font-size:11px;color:var(--sub);background:var(--card);padding:0 4px}
+.tvb{position:relative;height:100%;border:0;background:none;padding:0;cursor:pointer;border-radius:8px 8px 0 0}.tvb:hover,.tvb.sel{background:#F4F1EA}.tvb.fut{cursor:default}
+.tvb .stk{position:absolute;left:16%;right:16%;bottom:0;display:flex;flex-direction:column-reverse;border-radius:5px 5px 0 0;overflow:hidden;z-index:1}.tvb .stk i{display:block;min-height:1px}
+.tvb .gh{position:absolute;left:6%;right:6%;bottom:0;background:#E9E3D6;border-radius:5px 5px 0 0}
+.tvb em{position:absolute;left:-4px;right:-4px;font-style:normal;font-size:12px;font-weight:700;text-align:center;padding-bottom:2px;font-variant-numeric:tabular-nums;color:var(--ink);z-index:3;line-height:1.2}
+.tvb.today:not(.z) .stk{box-shadow:0 0 0 2px #fff,0 0 0 4px #23211D}.tvb.today{background:#FAF7F0}
+.tvlab{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;text-align:center;font-size:12.5px;margin-top:4px}.tvlab span{display:flex;flex-direction:column;line-height:1.3}.tvlab small{font-size:11px}.tvlab .today b{text-decoration:underline;text-underline-offset:3px}
+.tvleg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px}.tvleg span{display:inline-flex;align-items:center;gap:5px}.tvleg .ghk{display:inline-block;width:14px;height:10px;background:#E9E3D6;border-radius:2px}.tvleg .sjdot,.tvdl .sjdot,.tpl .sjdot,.tvs .sjdot,.tvlec .sjdot{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:1px}
+#tvday{margin-top:10px;border-top:1px solid var(--line2);padding-top:8px}.tvdh{font-size:14px}.tvdl{margin:4px 0 6px;padding-left:18px;font-size:13.5px}.tvdl b,.tpl b{font-variant-numeric:tabular-nums;margin-left:4px}
+.tvgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 14px}
+.week.tvwd{height:130px}.week .wb.today span{font-weight:800;color:var(--ink);text-decoration:underline;text-underline-offset:2px}.week .wb.today i{opacity:1}.week .wb.fut i{opacity:.3}.week .wb em{line-height:1.2;margin-bottom:2px;font-variant-numeric:tabular-nums}
+.tvhm{display:flex;gap:6px;overflow-x:auto}.hmd{display:grid;grid-template-rows:repeat(7,14px);gap:3px;font-size:10px;color:var(--sub);line-height:14px}.hmg{display:grid;grid-template-rows:repeat(7,14px);grid-auto-flow:column;grid-auto-columns:14px;gap:3px}
+.hm{display:inline-block;width:14px;height:14px;border-radius:3px;background:#EEE8DC;position:relative}.hm.l1,.hm.l2,.hm.l3,.hm.l4{background:none}.hm.l1::before,.hm.l2::before,.hm.l3::before,.hm.l4::before{content:'';position:absolute;inset:0;border-radius:3px;background:var(--acc)}
+.hm.l1::before{opacity:.25}.hm.l2::before{opacity:.45}.hm.l3::before{opacity:.7}.hm.lf{background:transparent;box-shadow:inset 0 0 0 1px #E4DCCD}.hm.today{box-shadow:0 0 0 2px #23211D}.hml{display:flex;align-items:center;gap:3px;margin-top:6px}
+.tvs{display:grid;grid-template-columns:minmax(6em,11em) minmax(0,1fr) 3.6em;gap:8px;align-items:center;font-size:13.5px;margin:5px 0}.tvs .br{height:10px;background:#F1EEE7;border-radius:5px;overflow:hidden}.tvs .br i{display:block;height:100%;border-radius:5px}.tvs b{text-align:right;font-variant-numeric:tabular-nums}.tvs .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tvsc{margin-left:8px;display:inline-flex;gap:4px;vertical-align:middle}
+.tvlec{width:100%;border-collapse:collapse;font-size:13.5px}.tvlec th,.tvlec td{padding:6px 8px;border-bottom:1px solid var(--line2);text-align:left}.tvlec td.t,.tvlec td.r,.tvlec th:nth-child(n+3){text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tvlec tr[data-tvgo]{cursor:pointer}.tvlec tr[data-tvgo]:hover{background:#FAF7F0}.tvlec td.n{color:var(--faint);width:2em}
+details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tvadj>summary::-webkit-details-marker{display:none}.tvadj .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.tvadj input,.tvadj select{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;min-height:38px;background:#fff;color:var(--ink)}#tvam{width:5.5em}.tval{font-size:13px;margin:8px 0 0;padding-left:18px}
+/* B02 시계 팝업 — 목표 고리·이번 주 미니 막대(오늘 강조)·무활동 기준 */
+.tph{display:flex;align-items:center;gap:12px}.pop ul.tpl,ul.tvdl{list-style:none;padding-left:2px}.tph .tring{flex:none}.week.tpw{height:92px;margin-top:8px}.tpl{font-size:13.5px}.tidle select{font:inherit;font-size:12.5px;border-radius:6px}.tauto.tidle{border-top:0;padding-top:4px}
+/* B07 JB 필터 🔁 복습·한 번이라도 틀림 · B09 검색 종류 칩·'색인 준비 중'·JB 결과 '답 바로 보기' */
+#jbbar .tg.rvq{white-space:nowrap}
+.skinds{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}.chip.sxw{border-style:dashed;color:var(--sub);background:#fff}
+.sres .sans{align-self:flex-start;font-size:12.5px;font-weight:700;color:var(--acct);border:1px solid var(--accb);border-radius:999px;padding:2px 12px;background:#fff;margin-top:3px;min-height:28px;display:inline-flex;align-items:center}.sres .sans:hover{background:var(--accbg)}
+.rlog{margin-top:10px;font-size:13px}.rlog summary{cursor:pointer;color:var(--sub)}.rlog ul{margin:4px 0;padding-left:18px;max-height:180px;overflow:auto}.rlog li.err{color:#8E1B14}
 </style></head><body>
-<div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><span class="brand" id="gohome">JBL 허브<small>3학년 3쿼터</small></span><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
-<span id="clock">00:00:00</span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
+<div id="top" class="noann"><button id="navbtn" class="btn sm" title="과목·강의 메뉴">☰</button><button id="focusb" class="tbtn" title="집중 모드 (V) — 메뉴·탭·사이드바 숨기기">⤢</button><button type="button" class="brand" id="gohome" title="허브 홈 — 모든 과목">🏠 JBL 허브<small>3학년 3쿼터</small></button><input id="gsearch" type="search" placeholder="전체 검색"><span class="sp"></span>
+<button type="button" id="clock" aria-label="오늘 공부 시간 · 누르면 기록">00:00:00</button><span id="idlechip" class="noann" hidden title="입력이 없어 시계를 멈췄어요 — 움직이면 이어서 잽니다"></span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
 <div id="home"></div>
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
 <div id="kit" class="noann"><button id="k-min" title="도구 막대 펼치기">✎</button><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)"><span class="ic">↶<b class="ubn"></b></span><span class="lb2">되돌리기</span></button><button id="k-redo" title="다시 실행 (Ctrl/⌘ Shift Z)"><span class="ic">↷</span><span class="lb2">다시</span></button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기"><span class="ic">👁</span><span class="lb2">전체 보기</span></button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기"><span class="ic">🧹</span><span class="lb2">지우기</span></button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
@@ -565,21 +631,40 @@ body.focus .modechip{left:auto;right:12px;transform:none;top:calc(var(--toph) + 
 <tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 🧹 지금 화면의 표시 지우기</td></tr>
 <tr><th>도구 막대</th><td>형광펜·빈칸 모드가 켜진 동안은 탭 줄 아래에 ‘🖍 형광펜 켜짐 · 노랑 — 누르면 끄기’ 칩이 뜨고 카드에 점선 테두리 · 아래로 스크롤하는 동안 도구 막대는 ✎ 하나로 줄었다가 멈추면(1.2초)·위로 스크롤하면·✎를 누르면 다시 펼침 · <b>T</b>로 숨긴 상태는 새로고침 뒤에도 유지</td></tr>
 <tr><th>그림</th><td>그림을 누르면 크게 · 크게 본 그림을 누르면 그 자리 확대/맞추기 · 확대 중엔 끌어서 이동 · Ctrl/⌘+휠 확대 · 바깥을 누르거나 Esc로 닫기 · ←/→(스와이프)로 넘기기 · 아래로 쓸면 닫기</td></tr>
-<tr><th>공부 시간</th><td>시계를 누르면 오늘 과목·강의별 시간과 최근 7일 · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고 8분 무활동·다른 창이면 멈춤 · [쉬기]로 수동 정지</td></tr>
+<tr><th>공부 시간</th><td>시계(오늘 합계)를 누르면 <b>목표 고리</b>·이번 주 월~일 막대·오늘 과목·강의별 · [📊 자세히] · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고, 오른쪽 버튼이 <b>● 측정 중</b> / <b>○ 자동 대기</b>(과목을 열고 움직이면 시작) / <b>▶ 공부 시작</b>(자동 꺼짐) · 누르면 쉬기</td></tr>
+<tr><th>무활동·창 여러 개</th><td>입력 없이 1분이 지나면 시계 옆 <b>⏸ 자리 비움</b>(숫자는 멈춤) · <b>무활동 기준</b>(시계 팝업에서 5·8·15·25분, 기본 8분 — 한 장씩 풀기에서 답을 가린 동안은 2배)을 넘으면 멈추고, 돌아오면 아래 띠 ‘12분 동안 입력이 없었어요 — [공부했어요 +11분] [빼기]’(10초 뒤 저절로 빼기 · 최대 60분) · 다른 앱으로 가서 30초가 지나면 멈춤 · 허브를 창 두 개로 열면 마지막으로 만진 창만 잼(다른 창은 ‘○ 다른 창에서 측정 중’)</td></tr>
+<tr><th>📊 공부 기록</th><td>허브 홈 ‘오늘’ 띠·시계 팝업 [자세히]·과목 홈 진행률 아래 줄 → 이번 주 월~일 막대(과목색 · 옅은 막대 = 지난주 · 점선 = 하루 목표) · 막대를 누르면 그날 과목·강의별 · ◀ ▶ 주 옮기기 · 요일별 평균(최근 4주) · 최근 12주 잔디 · 과목별 누적·강의 상위 10(읽음·기출 정답률) · <b>+ 시간 고치기</b>(날짜·과목·±분 — 자동 기록은 그대로 두고 따로 저장)</td></tr>
+<tr><th>시험일·오늘 복습</th><td>허브 과목 카드의 <b>시험일</b>을 넣으면 D-n(3일 이내 강조)·‘시험 가까운 순’ 정렬·과목 홈에 <b>하루 분량</b>(남은 안 읽은 카드·안 푼 기출 ÷ 남은 날) · <b>🔁 오늘 복습</b>: 틀렸던 기출을 틀린 뒤 맞힌 횟수로 1·3·7일 간격으로 다시(허브 카드·과목 홈 공부 순서·JB 필터 ‘🔁 복습’ — 누르면 한 장씩) · 채점 칩에 마우스를 올리면 ‘다음 복습 9/30’</td></tr>
+<tr><th>검색·알림</th><td><b>/</b> 검색 → 결과 위 [전체][정리본][JB][표][예상]으로 좁히기(주소에 남아 새로고침해도 유지) · JB 결과의 ‘답 바로 보기’ · 알림은 화면 아래 도구 막대 위에 하나씩 차례로, 오류는 ✕로 닫을 때까지 빨간 띠 · 지나간 알림은 [복원] 창 ‘최근 알림’</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · [백업]=파일로 저장 · [복원]=합치기(권장)/덮어쓰기/자동 백업 시점으로 · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
-<tr><th>이동·화면</th><td><b>1~6</b> 탭 · <b>G</b> 과목 홈 · <b>/</b> 검색창 · <b>M</b> 메모 · <b>T</b> 도구 막대 숨기기 · <b>Esc</b> 한 단계씩(팝업·도움말 닫기 → 모드 끄기) · <b>?</b> 도움말</td></tr>
+<tr><th>이동·화면</th><td>왼쪽 위 <b>🏠 JBL 허브</b>(아이패드 세로는 ☰ 서랍 맨 위 ‘🏠 허브 홈’)로 허브 홈 · <b>1~6</b> 탭 · <b>G</b> 과목 홈 · <b>/</b> 검색창 · <b>M</b> 메모 · <b>T</b> 도구 막대 숨기기 · <b>Esc</b> 한 단계씩(팝업·도움말 닫기 → 모드 끄기) · <b>?</b> 도움말</td></tr>
 <tr><th>집중 모드 V</th><td><b>V</b>(아이패드는 ⤢)로 사이드바·과목 제목·메뉴를 숨기고 본문만 · 위 막대는 시계만 든 얇은 띠(위쪽 40px에 마우스를 대거나 위로 스크롤하면 펼침) · 탭 줄은 아래로 스크롤하면 숨고 위로 조금만 올리면 다시 · 도구 막대는 ✎ 하나 · 나가기 = V · Esc · 오른쪽 위 알약 · 새로고침·강의를 옮겨도 유지 · 글자 크기는 학습 탭 ⋯ 보기 설정의 A−/A+(90~120%, 모든 과목 공통)</td></tr>
 <tr><th>사이드바 접기 \</th><td>넓은 화면에서 <b>\</b> 또는 사이드바 머리 ‹ 로 접고, 탭 줄 왼쪽(탭 줄이 없으면 왼쪽 가장자리) › 로 펼침 · 정리표·비교표·기출 한눈표는 화면 폭 1440 이하면 저절로 접힘(그 화면에서 펼치면 다음부터는 안 접음)</td></tr>
 <tr><th>학습 탭</th><td><b>J/K</b> 다음/이전 카드 · <b>D</b> 지금 카드 ✓ 이해함 · <b>F</b> 지금 카드 접기/펼치기 · <b>C</b> 압축 보기(🔑·⭐·⚡만)</td></tr>
 <tr><th>한 장씩 풀기</th><td>아래 풀이 막대 [◀][답 보기][✗ 틀림][✓ 맞음][★][▶] · 키 ←/→(Enter = 다음), Space 답, O 맞음 · X 틀림(누르면 그 상태로 — 해제는 카드의 버튼), <b>S ★</b>(B는 빈칸) · 손가락 좌우 스와이프로 넘기기 · ‘자동 넘김’이 켜져 있으면 채점 0.25초 뒤 다음 문제 · 마지막 다음은 회차 요약(틀린 것만 다시·안 채점만·처음부터) · 카드 머리의 ‘✗2 ✓1’은 최근 채점 기록</td></tr>
 <tr><th>플래시카드</th><td>빨간 칸을 누르면 그 빈칸만 열림 · 카드의 다른 곳이나 Space = 뒤집기 · [알아요 ○](O)·[몰라요 ✕](X)는 저장되고 ‘몰라요만’·‘안 본 것’으로 다시 · ←/→·좌우로 쓸어 넘기기 · 섞은 순서와 위치는 강의마다 기억</td></tr>
 </tbody></table></div></div>
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite"></div><div id="toasterr" class="noann" role="alert"></div><div id="idleband" class="noann" hidden></div><div id="packbar" class="noann" hidden></div>
 <script>
 (function(){
 const $=(s,e)=>(e||document).querySelector(s),$$=(s,e)=>[...(e||document).querySelectorAll(s)];
 const NS='jblhub.v1.';const LS={get(k,d){try{const v=localStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(NS+k,JSON.stringify(v));}catch(e){toast('저장 공간 오류 — 백업을 받아두세요');}}};
-function toast(t,ms){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',ms||2200);}
+/* ux2 트랙A B11 알림 — toast(글, 숫자(ms) | {level:'info'|'result'|'error', action:{label,fn}, ms}) · 옛 toast(글, ms)는 info 그대로
+   · 대기열: 한 번에 하나씩 차례로(뒤에 기다리는 것이 있으면 지금 것은 info 0.7초·result 1.5초 뒤 넘김 · 같은 글은 한 번만) · info 2.5초 · result 6초 + [보기]
+   · error = 닫을 때까지 남는 빨간 띠(#toasterr, 대기열과 따로 — 다른 알림을 막지 않음) · 위치 = 도구 막대 위(팝업이 열려 있으면 팝업 아래) · 최근 20개 sessionStorage 'toasts' */
+const TQ={q:[],cur:null,t:0,at:0};
+function toast(t,o){o=(typeof o==='number')?{ms:o}:(o||{});const lv=(o.level==='result'||o.level==='error')?o.level:'info';const it={t:String(t==null?'':t),lv,ms:+o.ms||(lv==='result'?6000:2500),act:o.action||null,at:Date.now()};
+ try{const k=NS+'toasts',L=JSON.parse(sessionStorage.getItem(k)||'[]');L.unshift({t:it.t,lv,at:it.at});sessionStorage.setItem(k,JSON.stringify(L.slice(0,20)));}catch(e){}
+ if(lv==='error'){toastErr(it);return;}if((TQ.cur&&TQ.cur.t===it.t&&!TQ.q.length)||TQ.q.some(x=>x.t===it.t))return;TQ.q.push(it);if(TQ.q.length>6)TQ.q.splice(0,TQ.q.length-6);toastNext();}
+function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length){clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,Math.max(0,(TQ.cur.lv==='result'?1500:700)-(Date.now()-TQ.at)));}return;}
+ const it=TQ.q.shift();if(!it)return;TQ.cur=it;TQ.at=Date.now();e.className='t-'+it.lv;e.textContent='';const s=document.createElement('span');s.textContent=it.t;e.appendChild(s);
+ if(it.act&&typeof it.act.fn==='function'){const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=it.act.label||'보기';b.onclick=()=>{toastEnd();try{it.act.fn();}catch(_){}};e.appendChild(b);}
+ e.style.display='block';toastPos(e);clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,TQ.q.length?(it.lv==='result'?1500:700):it.ms);}
+function toastEnd(){clearTimeout(TQ.t);TQ.cur=null;const e=$('#toast');if(e)e.style.display='none';toastNext();}
+function toastPos(e){const P=[...document.querySelectorAll('.pop.on')].map(x=>x.getBoundingClientRect()).filter(r=>r.height>0);if(P.length&&e.id==='toast'){const b=Math.max(...P.map(r=>r.bottom));if(b+60<innerHeight){e.classList.add('atpop');e.style.top=(b+8)+'px';return;}}e.classList.remove('atpop');e.style.top='';}
+function toastErr(it){const w=$('#toasterr');if(!w)return;const r=document.createElement('div');r.className='terr';const s=document.createElement('span');s.textContent='⚠ '+it.t;r.appendChild(s);
+ if(it.act&&typeof it.act.fn==='function'){const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=it.act.label||'보기';b.onclick=()=>{try{it.act.fn();}catch(_){}};r.appendChild(b);}
+ const x=document.createElement('button');x.type='button';x.className='tx';x.textContent='✕';x.title='닫기';x.setAttribute('aria-label','알림 닫기');x.onclick=()=>r.remove();r.appendChild(x);w.appendChild(r);}
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=null/*READY*/;
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
@@ -608,39 +693,186 @@ const fmtS=ms=>{const m=Math.round(ms/60000);return m>=60?Math.floor(m/60)+'시�
 const tObj=v=>(v&&typeof v==='object'&&!Array.isArray(v))?v:{};
 function tFlush(upTo){if(!T.run)return;let now=(typeof upTo==='number')?upTo:Date.now();now=Math.min(now,T.last+60000);if(now<=T.t0)return;const ms=now-T.t0,k=CUR.s||'기타',d=day();const log=tObj(LS.get('time',{})),dlog=tObj(LS.get('timed',{}));log[d]=tObj(log[d]);log[d][k]=(+log[d][k]||0)+ms;
  if(CUR.s&&CUR.d){const dk=CUR.s+':'+CUR.d;dlog[d]=tObj(dlog[d]);dlog[d][dk]=(+dlog[d][dk]||0)+ms;}T.t0=now;T.log=log;T.dlog=dlog;LS.set('time',log);LS.set('timed',dlog);}
-function tBtn(){const b=$('#tmr');b.textContent=T.run?'⏸ 쉬기':(T.auto&&!T.manualPause?'⏱ 자동':'▶ 공부 시작');b.classList.toggle('on',T.run);$('#clock').classList.toggle('run',T.run);}
+/* 버튼 상태(B03·B05): ● 측정 중 / ○ 다른 창에서 측정 중 / ○ 자동 대기(과목을 열고 움직이면 시작) / ▶ 공부 시작(자동 꺼짐·쉬기 누름) */
+function tBtn(){const b=$('#tmr');const st=T.run?'run':T.other?'other':(T.auto&&!T.manualPause)?'wait':'off';b.innerHTML=st==='run'?'<i class="tdot"></i>측정 중':st==='other'?'○ 다른 창에서 측정 중':st==='wait'?'○ 자동 대기':'▶ 공부 시작';
+ b.title=st==='run'?'공부 시간을 재는 중 — 누르면 쉬기(멈춤)':st==='other'?'다른 창(탭)에서 재는 중 — 이 창에서 움직이면 이 창이 이어받음':st==='wait'?'자동 측정 — 과목을 열고 움직이면 저절로 시작 · 누르면 바로 시작':'누르면 공부 시간 재기 시작';b.dataset.st=st;b.classList.toggle('on',T.run);$('#clock').classList.toggle('run',T.run);}
 function tStart(auto){if(T.run)return;T.run=true;T.autoRun=!!auto;T.t0=Date.now();tBtn();}
 function tStop(upTo){if(!T.run)return;tFlush(upTo);T.run=false;tBtn();}
-function tToday(){const o=tObj(T.log[day()]);let s=0;for(const k in o)s+=o[k];return s+(T.run?Date.now()-T.t0:0);}
-function tTick(){$('#clock').textContent=fmt(tToday());}
+/* 오늘 합계 = 저장한 몫 + 지금 재는 몫(마지막 입력 뒤 1분까지만 — 저장 규칙과 같아 무활동 뒤에도 시계가 되감기지 않음, B03) + 고친 시간(tadj) */
+function tToday(){return tSum(tDay(day()));}
+function tTick(){$('#clock').textContent=fmt(tToday());idleChip();}
 $('#tmr').onclick=()=>{if(T.run){tStop();T.manualPause=true;toast('공부 시간을 멈췄어요'+(T.auto?' — 다시 누르면 이어서 잽니다':''));}else{T.manualPause=false;T.last=Date.now();tStart();}};
-const tAct=()=>{T.last=Date.now();if(!T.run&&T.auto&&!T.manualPause&&CUR.s&&!document.hidden)tStart(true);};
+const tAct=()=>{const now=Date.now();if(T.idleGap)idleBack(now);T.last=now;if(!T.run&&T.resumeOnAct&&!document.hidden){T.resumeOnAct=false;tStart(false);}if(!T.run&&T.auto&&!T.manualPause&&CUR.s&&!document.hidden)tStart(true);tOwn();};
 ['mousemove','keydown','scroll','touchstart','click','wheel'].forEach(ev=>addEventListener(ev,tAct,{passive:true,capture:true}));
-setInterval(()=>{tTick();if(!T.run)return;if(Date.now()-T.last>T.IDLE){tStop(T.last+60000);toast('8분 동안 움직임이 없어 공부 시간을 멈췄어요 — 다시 움직이면 이어집니다');}else if(Math.min(Date.now(),T.last+60000)-T.t0>20000)tFlush();},1000);
+setInterval(()=>{tTick();if(!T.run)return;if(Date.now()-T.last>idleMs()){T.idleGap={s:CUR.s||'기타',d:CUR.s&&CUR.d?CUR.d:'',from:T.last+60000,last:T.last,auto:!!T.autoRun};tStop(T.last+60000);idleChip();}else if(Math.min(Date.now(),T.last+60000)-T.t0>20000)tFlush();},1000);   /* 무활동 기준(LS idleMin, 기본 8분)을 넘으면 마지막 입력 1분 뒤까지만 저장하고 멈춤 — 돌아오면 그동안을 더할지 물음(B04) */
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(T.run){tStop();T.hiddenStop=true;}}else{T.last=Date.now();if(T.hiddenStop&&!T.manualPause){T.hiddenStop=false;tStart(!!CUR.s&&T.auto);}}});
 addEventListener('pagehide',()=>tFlush());addEventListener('beforeunload',()=>tFlush());
-function tPop(){const p=$('#tpop');if(p.classList.contains('on')){p.classList.remove('on');return;}tFlush();const d=day();const o=T.log[d]||{},od=T.dlog[d]||{};
- const subj=Object.keys(o).sort((a,b)=>o[b]-o[a]).map(k=>`<li><b>${PACKS[k]?PACKS[k].title:k}</b> ${fmtS(o[k])}</li>`).join('')||'<li class="small">아직 없음</li>';
- const lec=Object.keys(od).sort((a,b)=>od[b]-od[a]).slice(0,6).map(k=>{const [s,dd]=k.split(':');const P=PACKS[s];const L=P&&P.lect.find(x=>x.k===dd);const nm=L?L.title:((SUBJDOCS.find(x=>x[0]===dd)||['',dd])[1]);return `<li>${P?P.title:s} · ${nm} <span class="small">${fmtS(od[k])}</span></li>`;}).join('');
- let wk='';for(let i=6;i>=0;i--){const dt=new Date(Date.now()-i*864e5),dk=day(dt),x=T.log[dk]||{};let s=0;for(const k in x)s+=x[k];const h=Math.min(100,s/36e5/8*100);wk+=`<div class="wb"><i style="height:${h}%"></i><span>${'일월화수목금토'[dt.getDay()]}</span><em>${s?Math.round(s/6e4)+'′':''}</em></div>`;}
- p.innerHTML=`<div class="bt">오늘 ${fmtS(tToday())}</div><ul>${subj}</ul>${lec?`<div class="small" style="margin-top:6px">강의별</div><ul>${lec}</ul>`:''}<div class="small" style="margin-top:6px">최근 7일</div><div class="week">${wk}</div>
- <label class="tauto"><input type="checkbox" id="tautoc" ${T.auto?'checked':''}> 자동 측정 — 과목을 열어 두고 움직이는 동안 재고, 8분 무활동·다른 창이면 멈춤</label>`;p.classList.add('on');
- $('#tautoc').onchange=e=>{T.auto=e.target.checked;LS.set('tauto',T.auto);T.manualPause=false;if(!T.auto&&T.run)tStop();tBtn();};}
+function tPop(){const p=$('#tpop');if(p.classList.contains('on')){p.classList.remove('on');return;}tFlush();p.innerHTML=tPopHTML();p.classList.add('on');tPopWire(p);}
 $('#clock').onclick=tPop;tBtn();
+// ux2 트랙A — 묶음 2(B01~B10): 공부 기록 화면·시계 팝업·측정 표시·무활동 되묻기·창 여러 개·오늘 띠·D-day·복습 대기열·첫 화면 불러오기·검색 색인·작은 표시
+/* B01 공부 시간 합계 — 모든 화면이 tDay(날짜)·tWeek(월요일)만 씀: time(자동 측정 기록, 그대로 읽기만) + tadj(손으로 고친 ±, {날짜:{과목:ms}} — 새 키) + 지금 재는 몫.
+   묶음 3의 기기 합산은 이 두 함수만 바꾸면 됨 · 표기는 h:mm · 30초 미만은 숨김 */
+let TADJ=null;
+function tAdj(){if(!TADJ)TADJ=tObj(LS.get('tadj',{}));return TADJ;}
+function tLive(){return T.run?Math.max(0,Math.min(Date.now(),T.last+60000)-T.t0):0;}
+function tDay(d){const o={},add=(k,v)=>{v=+v||0;if(v)o[k]=(o[k]||0)+v;};const a=tObj(T.log[d]),b=tObj(tAdj()[d]);for(const k in a)add(k,a[k]);for(const k in b)add(k,b[k]);if(d===day())add(CUR.s||'기타',tLive());for(const k in o)if(!(o[k]>0))delete o[k];return o;}
+function tSum(o){let s=0;for(const k in o)s+=o[k];return s;}
+function tLec(d){const o=Object.assign({},tObj(T.dlog[d]));if(d===day()&&T.run&&CUR.s&&CUR.d){const k=CUR.s+':'+CUR.d;o[k]=(+o[k]||0)+tLive();}return o;}
+function tD0(dt){const x=new Date(dt||Date.now());x.setHours(12,0,0,0);return x;}   /* 한낮으로 맞춰 날짜 더하기가 서머타임에도 어긋나지 않게 */
+function tDAdd(dt,n){const x=tD0(dt);x.setDate(x.getDate()+n);return x;}
+function tMon(dt){const x=tD0(dt);x.setDate(x.getDate()-((x.getDay()+6)%7));return x;}
+function tWeek(mon){return [0,1,2,3,4,5,6].map(i=>{const dt=tDAdd(mon,i),d=day(dt),o=tDay(d);return {dt,d,o,sum:tSum(o)};});}
+function fmtH(ms){const m=Math.round(Math.max(0,ms)/60000);return Math.floor(m/60)+':'+('0'+m%60).slice(-2);}
+const TWD='월화수목금토일',wdOf=dt=>(dt.getDay()+6)%7,mdw=dt=>(dt.getMonth()+1)+'/'+dt.getDate()+'('+TWD[wdOf(dt)]+')';
+function pDate(s){const m=/^(\d{4})-(\d\d)-(\d\d)$/.exec(s||'');return m?new Date(+m[1],+m[2]-1,+m[3],12):null;}
+function tGoal(){const v=+LS.get('tgoal',240);return v>=30&&v<=960?v:240;}
+function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
+function sjColor(k){return PACKS[k]?PACKS[k].color:'#9A9288';}
+const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
+function docName(k){const i=k.indexOf(':'),s=k.slice(0,i),d=k.slice(i+1),P=PACKS[s],L=P&&P.lect.find(x=>x.k===d);return {s,d,P,L,nm:L?L.title:((SUBJDOCS.find(x=>x[0]===d)||['',d])[1])};}
+const sjOrd=k=>{const i=SUBJECTS.findIndex(x=>x[0]===k);return i<0?99:i;};
+/* ---- B01 📊 공부 기록 화면 (#/_time) ---- */
+let TVW=0,TVSEL='',TVSC='all',TVADJ=false,TVAS='';
+function timeView(o){o=o||{};leaveView();const push=o.push!==false&&VIEW!=='time'&&VIEW!=='none';if(push)stampHist();tFlush();if(T.run&&T.autoRun)tStop();
+ if(VIEW!=='time'){TVW=0;TVSEL='';}CUR={s:null,d:null,t:null};VIEW='time';document.title='공부 기록 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');document.body.classList.remove('d-home');navOpen(false);$('#home').hidden=false;$('#tpop').classList.remove('on');
+ tvRender();histSet({time:1},'#/_time',push);measure();window.scrollTo(0,o.y||0);}
+function tvRender(){if(VIEW!=='time')return;const h=$('#home'),today=day(),now=new Date(),mon=tDAdd(tMon(now),7*TVW),W=tWeek(mon),P=tWeek(tDAdd(mon,-7)),goal=tGoal()*60000,ti=wdOf(now),isCur=TVW===0;
+ const tot=W.reduce((a,x)=>a+x.sum,0),n=isCur?ti+1:7,ptot=P.slice(0,n).reduce((a,x)=>a+x.sum,0),diff=tot-ptot;
+ let st=0;{let dt=tD0(now);if(tSum(tDay(day(dt)))<60000)dt=tDAdd(dt,-1);while(st<400&&tSum(tDay(day(dt)))>=60000){st++;dt=tDAdd(dt,-1);}}
+ const mx=Math.max(goal,...W.map(x=>x.sum),...P.map(x=>x.sum))*1.12,pc=v=>(v/mx*100).toFixed(2)+'%';
+ const cols=W.map((x,i)=>{const ks=Object.keys(x.o).sort((a,b)=>sjOrd(a)-sjOrd(b));const g=P[i].sum;
+   return `<button type="button" class="tvb${x.d===today?' today':''}${x.d===TVSEL?' sel':''}${x.d>today?' fut':''}${x.sum<30000?' z':''}" data-tvd="${x.d}" aria-label="${mdw(x.dt)} ${fmtH(x.sum)}">${g>=30000?`<span class="gh" style="height:${pc(g)}" title="지난주 ${TWD[i]} ${fmtH(g)}"></span>`:''}<span class="stk" style="height:${pc(x.sum)}">${ks.map(k=>`<i style="flex:${x.o[k]};background:${sjColor(k)}" title="${EH(sjName(k))} ${fmtH(x.o[k])}"></i>`).join('')}</span>${x.sum>=30000?`<em style="bottom:${pc(x.sum)}">${fmtH(x.sum)}</em>`:''}</button>`;}).join('');
+ const labs=W.map((x,i)=>`<span class="${x.d===today?'today':''}"><b>${TWD[i]}</b><small>${x.dt.getMonth()+1}/${x.dt.getDate()}</small></span>`).join('');
+ const wks={};W.forEach(x=>{for(const k in x.o)wks[k]=(wks[k]||0)+x.o[k];});const legend=Object.keys(wks).filter(k=>wks[k]>=30000).sort((a,b)=>sjOrd(a)-sjOrd(b)).map(k=>`<span><i class="sjdot" style="background:${sjColor(k)}"></i>${EH(sjName(k))}</span>`).join('');
+ /* ④ 요일별 평균 — 오늘까지 28일(요일마다 4번) */
+ const wa=[0,0,0,0,0,0,0];for(let i=0;i<28;i++){const dt=tDAdd(now,-i);wa[wdOf(dt)]+=tSum(tDay(day(dt)));}const wmx=Math.max(goal,...wa.map(v=>v/4))*1.1;
+ const wdh=wa.map((v,i)=>`<div class="wb${i===ti?' today':''}"><em>${v/4>=30000?fmtH(v/4):''}</em><i style="height:${(v/4/wmx*100).toFixed(1)}%"></i><span>${TWD[i]}</span></div>`).join('');
+ /* ⑤ 최근 12주 잔디 — 84칸(열 = 주, 행 = 월~일) · 5단계 = 목표의 ¼·½·1 기준, 과목색 하나의 농도 */
+ const hs=tDAdd(tMon(now),-77);let hm='';for(let w=0;w<12;w++)for(let i=0;i<7;i++){const dt=tDAdd(hs,w*7+i),d=day(dt),v=d>today?-1:tSum(tDay(d));const lv=v<0?'f':v<30000?0:v<goal/4?1:v<goal/2?2:v<goal?3:4;hm+=`<i class="hm l${lv}${d===today?' today':''}" title="${mdw(dt)} ${v>=30000?fmtH(v):'—'}"></i>`;}
+ /* ⑥ 과목별 누적·강의 상위 10 — 범위 [이 주|전체] */
+ const acc={},lec={},addO=(o,t)=>{for(const k in o)t[k]=(t[k]||0)+o[k];};
+ if(TVSC==='wk')W.forEach(x=>{addO(x.o,acc);addO(tLec(x.d),lec);});else{new Set([...Object.keys(T.log),...Object.keys(tAdj()),today]).forEach(d=>addO(tDay(d),acc));new Set([...Object.keys(T.dlog),today]).forEach(d=>addO(tLec(d),lec));}
+ const sk=Object.keys(acc).filter(k=>acc[k]>=30000).sort((a,b)=>acc[b]-acc[a]),smx=Math.max(1,...sk.map(k=>acc[k]));
+ const sbar=sk.map(k=>`<div class="tvs"><span class="nm"><i class="sjdot" style="background:${sjColor(k)}"></i>${EH(sjName(k))}</span><span class="br"><i style="width:${(acc[k]/smx*100).toFixed(1)}%;background:${sjColor(k)}"></i></span><b>${fmtH(acc[k])}</b></div>`).join('')||'<div class="small">아직 기록이 없어요.</div>';
+ const lk=Object.keys(lec).filter(k=>k.indexOf(':')>0&&!NOSTUDY.test(k.slice(k.indexOf(':')+1))&&lec[k]>=30000).sort((a,b)=>lec[b]-lec[a]).slice(0,10);
+ const lrow=lk.map((k,i)=>{const x=docName(k);let rd='—',ac='—';if(x.L&&x.P){const pr=lecProg(x.P,x.L);rd=Math.round(pr.done/Math.max(1,x.L.nsec)*100)+'%';if(pr.ok+pr.ng)ac=Math.round(pr.ok/(pr.ok+pr.ng)*100)+'%';}else if(x.P&&x.d==='_jb'){const C=jbCount(x.P);if(C.ok+C.ng)ac=Math.round(C.ok/(C.ok+C.ng)*100)+'%';}
+   return `<tr data-tvgo="${EH(x.s)}|${EH(x.d)}"><td class="n">${i+1}</td><td><i class="sjdot" style="background:${sjColor(x.s)}"></i>${EH(x.P?x.P.title:x.s)} · <b>${EH(x.nm)}</b></td><td class="t">${fmtH(lec[k])}</td><td class="r">${rd}</td><td class="r">${ac}</td></tr>`;}).join('');
+ /* ⑦ 시간 고치기 — tadj에만 씀(time·timed는 그대로) */
+ const A=tAdj(),al=[];Object.keys(A).filter(d=>pDate(d)).sort().reverse().forEach(d=>{const o=tObj(A[d]);Object.keys(o).forEach(k=>{if(+o[k])al.push([d,k,+o[k]]);});});
+ const sjo=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>`<option value="${id}"${id===TVAS?' selected':''}>${EH(PACKS[id].title)}</option>`).join('')+`<option value="기타"${TVAS==='기타'?' selected':''}>기타(과목 밖)</option>`;
+ const gsel=[120,180,240,300,360,480,600].map(m=>`<option value="${m}"${m===tGoal()?' selected':''}>${fmtH(m*60000)}</option>`).join('');
+ const wl=`${mon.getMonth()+1}/${mon.getDate()} – ${tDAdd(mon,6).getMonth()+1}/${tDAdd(mon,6).getDate()}`;
+ h.innerHTML=`<div class="tv"><div class="shead"><h2>📊 공부 기록</h2><button type="button" class="btn" data-tvhome="1">🏠 허브 홈</button></div>
+ <div class="tvsum" id="tvsum"><b>${isCur?'이번 주':'이 주'} ${fmtH(tot)}</b> · 하루 평균 ${fmtH(tot/n)} · 지난주${isCur?' 같은 요일까지':''}보다 ${diff>=0?'+':'−'}${fmtH(Math.abs(diff))} ${diff>=0?'▲':'▼'}${st?` · 연속 ${st}일`:''}</div>
+ <div class="panel tvweek"><div class="tvnav"><button type="button" class="btn sm" data-tvw="-1" aria-label="이전 주">◀</button><b class="wl">${wl}</b><button type="button" class="btn sm" data-tvw="1" aria-label="다음 주"${isCur?' disabled':''}>▶</button>${isCur?'':'<button type="button" class="btn sm" data-tvw="0">이번 주로</button>'}<span class="sp"></span><label class="small">목표 <select id="tvgoal" aria-label="하루 목표">${gsel}</select></label></div>
+ <div class="tvplot" style="--goal:${pc(goal)}"><div class="goal" title="하루 목표 ${fmtH(goal)}"><span>목표 ${fmtH(goal)}</span></div>${cols}</div><div class="tvlab">${labs}</div>
+ <div class="tvleg small">${legend}<span><i class="ghk"></i>옅은 막대 = 지난주 같은 요일</span></div><div id="tvday">${TVSEL?tvDayHTML(TVSEL):'<div class="small">막대를 누르면 그날 과목·강의별 시간이 나와요.</div>'}</div></div>
+ <div class="tvgrid"><div class="panel"><div class="bt">요일별 평균 <span class="small">— 최근 4주</span></div><div class="week tvwd">${wdh}</div></div>
+ <div class="panel"><div class="bt">최근 12주</div><div class="tvhm"><div class="hmd"><span>월</span><span></span><span>수</span><span></span><span>금</span><span></span><span>일</span></div><div class="hmg">${hm}</div></div><div class="hml small">적음 <i class="hm l1"></i><i class="hm l2"></i><i class="hm l3"></i><i class="hm l4"></i> 목표 이상</div></div></div>
+ <div class="panel"><div class="bt">과목별 누적 <span class="tvsc"><button type="button" class="hsb${TVSC==='wk'?' on':''}" data-tvsc="wk">이 주</button><button type="button" class="hsb${TVSC==='all'?' on':''}" data-tvsc="all">전체</button></span></div>${sbar}
+ <div class="bt" style="margin-top:14px">강의별 상위 10 <span class="small">— 누르면 그 강의로</span></div>${lrow?`<div class="tscroll"><table class="tvlec"><thead><tr><th></th><th>강의</th><th>시간</th><th>읽음</th><th>기출 정답률</th></tr></thead><tbody>${lrow}</tbody></table></div>`:'<div class="small">아직 기록이 없어요.</div>'}</div>
+ <details class="panel tvadj"${TVADJ?' open':''}><summary>+ 시간 고치기 <span class="small">— 재지 못한 공부를 더하거나 잘못 잰 시간을 빼기(자동 기록은 그대로 두고 따로 저장)</span></summary>
+ <div class="row"><input type="date" id="tvad" value="${TVSEL||today}" max="${today}" aria-label="날짜"><select id="tvas" aria-label="과목">${sjo}</select><input type="number" id="tvam" value="30" min="1" max="600" step="5" inputmode="numeric" aria-label="분"><span class="small">분</span><button type="button" class="btn pri" data-tvadj="1">+ 더하기</button><button type="button" class="btn" data-tvadj="-1">− 빼기</button></div>
+ ${al.length?`<ul class="tval">${al.slice(0,30).map(([d,k,v])=>`<li>${mdw(pDate(d))} · ${EH(sjName(k))} <b>${v>0?'+':'−'}${fmtH(Math.abs(v))}</b> <button type="button" class="link" data-tvadx="${d}|${EH(k)}" title="이 고침 지우기">✕</button></li>`).join('')}</ul>`:''}</details></div>`;}
+function tvDayHTML(d){const dt=pDate(d),o=tDay(d),L=tLec(d);const ks=Object.keys(o).filter(k=>o[k]>=30000).sort((a,b)=>o[b]-o[a]);const lk=Object.keys(L).filter(k=>k.indexOf(':')>0&&!NOSTUDY.test(k.slice(k.indexOf(':')+1))&&L[k]>=30000).sort((a,b)=>L[b]-L[a]);
+ return `<div class="tvdh"><b>${dt?mdw(dt):d}</b> 합계 ${fmtH(tSum(o))}</div>`+(ks.length?`<ul class="tvdl">${ks.map(k=>`<li><i class="sjdot" style="background:${sjColor(k)}"></i>${EH(sjName(k))} <b>${fmtH(o[k])}</b></li>`).join('')}</ul>`:'<div class="small">이날은 기록이 없어요.</div>')
+  +(lk.length?`<div class="small">강의별</div><ul class="tvdl">${lk.map(k=>{const x=docName(k);return `<li>${EH(x.P?x.P.title:x.s)} · ${EH(x.nm)} <b>${fmtH(L[k])}</b></li>`;}).join('')}</ul>`:'');}
+function tvAdjust(sign){const d=$('#tvad').value,S=$('#tvas').value,m=Math.round(+$('#tvam').value||0);if(!pDate(d)||d>day()||!S||!(m>0)){toast('날짜·과목·분을 확인해 주세요');return;}
+ const A=tObj(LS.get('tadj',{}));A[d]=tObj(A[d]);A[d][S]=(+A[d][S]||0)+sign*m*60000;if(!A[d][S])delete A[d][S];if(!Object.keys(A[d]).length)delete A[d];LS.set('tadj',A);TADJ=null;TVSEL=d;TVADJ=true;TVAS=S;TVW=Math.round((tMon(pDate(d))-tMon(new Date()))/(7*864e5));tvRender();toast(mdw(pDate(d))+' '+sjName(S)+' '+(sign>0?'+':'−')+fmtH(m*60000)+' 고쳤어요');}
+$('#home').addEventListener('click',e=>{if(VIEW!=='time')return;const t=e.target.closest('[data-tvw],[data-tvd],[data-tvsc],[data-tvadj],[data-tvadx],[data-tvgo],[data-tvhome]');if(!t)return;const d=t.dataset;
+ if(d.tvhome){home();return;}if(d.tvw!=null){TVW=d.tvw==='0'?0:Math.min(0,TVW+ +d.tvw);TVSEL='';tvRender();return;}if(d.tvd){TVSEL=TVSEL===d.tvd?'':d.tvd;tvRender();return;}if(d.tvsc){TVSC=d.tvsc;tvRender();return;}
+ if(d.tvadj){TVADJ=true;tvAdjust(+d.tvadj);return;}if(d.tvadx){const [dd,k]=d.tvadx.split('|');const A=tObj(LS.get('tadj',{}));if(A[dd]){delete A[dd][k];if(!Object.keys(tObj(A[dd])).length)delete A[dd];LS.set('tadj',A);TADJ=null;tvRender();}return;}
+ if(d.tvgo){const [s,dd]=d.tvgo.split('|');if(PACKS[s])openDoc(s,dd);}});
+$('#home').addEventListener('change',e=>{if(VIEW==='time'&&e.target.id==='tvgoal'){LS.set('tgoal',+e.target.value);tvRender();}});
+$('#home').addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details.tvadj'))TVADJ=e.target.open;},true);
+/* ---- B02 시계 팝업 — 오늘 h:mm·목표 고리 · 이번 주 월~일 막대 · 1분 미만·비학습 화면 줄은 숨김 · [📊 자세히] · 자동 측정·무활동 기준 ---- */
+function tRing(ms,goal){const f=Math.min(1,ms/goal),C=2*Math.PI*26;return `<svg class="tring" viewBox="0 0 64 64" width="60" height="60" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="#E8E1D3" stroke-width="7"/><circle cx="32" cy="32" r="26" fill="none" stroke="var(--acc)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${(f*C).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 32 32)"/><text x="32" y="37" text-anchor="middle" font-size="14" font-weight="800" fill="#23211D">${Math.round(f*100)}%</text></svg>`;}
+function tPopHTML(){const today=day(),goal=tGoal()*60000,o=tDay(today),td=tSum(o),W=tWeek(tMon(new Date())),wk=W.reduce((a,x)=>a+x.sum,0),mx=Math.max(goal,...W.map(x=>x.sum));
+ const bars=W.map((x,i)=>`<div class="wb${x.d===today?' today':''}${x.d>today?' fut':''}"><em>${x.sum>=60000?fmtH(x.sum):''}</em><i style="height:${(x.sum/mx*100).toFixed(1)}%"></i><span>${TWD[i]}</span></div>`).join('');
+ const sk=Object.keys(o).filter(k=>o[k]>=60000).sort((a,b)=>o[b]-o[a]),L=tLec(today),lk=Object.keys(L).filter(k=>k.indexOf(':')>0&&!NOSTUDY.test(k.slice(k.indexOf(':')+1))&&L[k]>=60000).sort((a,b)=>L[b]-L[a]).slice(0,5);
+ const im=+LS.get('idleMin',8);
+ return `<div class="tph">${tRing(td,goal)}<div><div class="bt" style="margin:0">오늘 <b>${fmtH(td)}</b> <span class="small">· 목표 ${fmtH(goal)}</span></div><div class="small">이번 주 합계 <b>${fmtH(wk)}</b></div></div></div>
+ <div class="week tpw">${bars}</div>${sk.length?`<ul class="tpl">${sk.map(k=>`<li><i class="sjdot" style="background:${sjColor(k)}"></i>${EH(sjName(k))} <b>${fmtH(o[k])}</b></li>`).join('')}</ul>`:''}
+ ${lk.length?`<div class="small">강의별</div><ul class="tpl">${lk.map(k=>{const x=docName(k);return `<li>${EH(x.nm)} <span class="small">${EH(x.P?x.P.title:x.s)}</span> <b>${fmtH(L[k])}</b></li>`;}).join('')}</ul>`:''}
+ <div class="row"><button type="button" class="btn sm" id="tpmore">📊 자세히</button></div>
+ <label class="tauto"><input type="checkbox" id="tautoc" ${T.auto?'checked':''}> 자동 측정 — 과목을 열어 두고 움직이는 동안 재고, 무활동·다른 창이면 멈춤</label>
+ <label class="tauto tidle">무활동 기준 <select id="tidle" aria-label="무활동 기준">${[5,8,15,25].map(m=>`<option value="${m}"${m===im?' selected':''}>${m}분</option>`).join('')}</select> <span class="small">— 넘으면 멈추고, 돌아오면 그동안을 더할지 물어요(한 장씩 풀기에서 답을 가린 동안은 2배)</span></label>`;}
+function tPopWire(p){$('#tautoc').onchange=e=>{T.auto=e.target.checked;LS.set('tauto',T.auto);T.manualPause=false;if(!T.auto&&T.run)tStop();tBtn();};
+ $('#tidle').onchange=e=>{LS.set('idleMin',+e.target.value);setTimeout(()=>e.target.blur(),0);};$('#tpmore').onclick=()=>{p.classList.remove('on');timeView();};}
+/* ---- B03·B04 무활동: 입력 없이 60초 → 시계 옆 '⏸ 자리 비움 m:ss'(숫자는 저장 규칙대로 멈춤) · 기준(LS idleMin 5·8·15·25분, 기본 8 — 한 장씩 풀기에서 답을 가린 동안 2배)을 넘으면
+   마지막 입력 1분 뒤까지만 저장하고 멈춤 → 돌아오면 아래 띠 '12분 동안 입력이 없었어요 — [공부했어요 +11분] [빼기]'(10초 뒤 저절로 빼기 · 최대 60분) ---- */
+function idleMs(){let m=+LS.get('idleMin',8);if([5,8,15,25].indexOf(m)<0)m=8;let ms=m*60000;if(JB.one&&isJBv()){const c=JB.vis[JB.cur];if(c&&!c.classList.contains('open'))ms*=2;}return ms;}
+function idleChip(){const c=$('#idlechip');if(!c)return;const g=Date.now()-T.last,on=(T.run&&g>60000)||!!T.idleGap;c.hidden=!on;if(on){const s=Math.floor(g/1000);c.textContent='⏸ 자리 비움 '+Math.floor(s/60)+':'+('0'+s%60).slice(-2);}}
+function idleBack(now){const G=T.idleGap;T.idleGap=null;idleChip();if(!G)return;const add=Math.min(60*60000,now-G.from),gap=now-G.last;if(add<60000)return;
+ const b=$('#idleband');clearTimeout(idleBack.t);b.innerHTML=`<span>${Math.round(gap/60000)}분 동안 입력이 없었어요</span><button type="button" class="btn pri sm" data-ib="add" title="마지막 입력 뒤 1분은 이미 셈 — 나머지를 ${EH(sjName(G.s))}${G.d?' · '+EH(docName(G.s+':'+G.d).nm):''}에 더함">공부했어요 +${Math.round(add/60000)}분</button><button type="button" class="btn sm" data-ib="no">빼기</button><i class="ibt"></i>`;
+ b.hidden=false;b.dataset.at=now;idleBack.G=Object.assign({},G,{add,at:now});idleBack.t=setTimeout(()=>idleEnd(false),10000);}
+function idleEnd(yes){clearTimeout(idleBack.t);const b=$('#idleband'),G=idleBack.G;idleBack.G=null;if(b)b.hidden=true;if(!yes||!G)return;
+ const d=day(new Date(G.from)),log=tObj(LS.get('time',{})),dlog=tObj(LS.get('timed',{}));log[d]=tObj(log[d]);log[d][G.s]=(+log[d][G.s]||0)+G.add;if(G.d){const dk=G.s+':'+G.d;dlog[d]=tObj(dlog[d]);dlog[d][dk]=(+dlog[d][dk]||0)+G.add;}
+ T.log=log;T.dlog=dlog;LS.set('time',log);LS.set('timed',dlog);tTick();toast(fmtH(G.add)+' 더했어요');}
+$('#idleband').addEventListener('click',e=>{const t=e.target.closest('[data-ib]');if(t)idleEnd(t.dataset.ib==='add');});
+/* ---- B05 창 여러 개: 창(탭) blur 30초 → 멈춤, focus → 다시 · BroadcastChannel('jblhub')로 '재는 창'은 마지막으로 입력이 있었던 창 하나만(다른 창은 '○ 다른 창에서 측정 중') · 채널이 없으면 지금 방식 ---- */
+const TWID=Math.random().toString(36).slice(2);let TBC=null,TOWN='',TPOST=0,TBLUR=0;
+try{if(window.BroadcastChannel){TBC=new BroadcastChannel('jblhub');TBC.onmessage=e=>{const m=e.data||{};if(m.k!=='own'||m.id===TWID)return;TOWN=m.id;if(T.run){T.resumeOnAct=!T.autoRun;tStop();}T.other=!!m.run;tBtn();};}}catch(e){TBC=null;}
+function tOwn(){if(!TBC)return;const now=Date.now();if(T.other){T.other=false;tBtn();}if(TOWN!==TWID||now-TPOST>4000){TOWN=TWID;TPOST=now;try{TBC.postMessage({k:'own',id:TWID,run:T.run});}catch(e){}}}
+addEventListener('blur',e=>{if(e.target!==window)return;clearTimeout(TBLUR);TBLUR=setTimeout(()=>{if(T.run){T.blurStop=true;T.blurAuto=!!T.autoRun;tStop();}},30000);});
+addEventListener('focus',e=>{if(e.target!==window)return;clearTimeout(TBLUR);if(T.blurStop){T.blurStop=false;T.last=Date.now();if(!T.manualPause&&(!T.blurAuto||(T.auto&&CUR.s)))tStart(T.blurAuto);}});
+addEventListener('storage',e=>{if(e.key===NS+'tadj')TADJ=null;});
+/* ---- B06 허브 홈 '오늘' 띠·시험일 D-day(LS exam.<S> = 'YYYY-MM-DD')·과목 카드 정렬(LS homeSort)·과목 홈 하루 분량 ---- */
+function examOf(S){const v=LS.get('exam.'+S,'');const dt=pDate(v);if(!dt)return null;const n=Math.round((dt-tD0(new Date()))/864e5);return {v,dt,n};}
+const ddLab=n=>n===0?'D-day':n>0?'D-'+n:'D+'+(-n);
+function examNear(){let b=null;SUBJECTS.forEach(([id])=>{if(!PACKS[id])return;const x=examOf(id);if(x&&x.n>=0&&(!b||x.n<b.n))b={s:id,n:x.n};});return b;}
+function homeOrder(){const L=SUBJECTS.slice();if(LS.get('homeSort','')!=='exam')return L;const k=id=>{const x=examOf(id);return x&&x.n>=0?x.n:1e6;};return L.map((x,i)=>[x,i]).sort((a,b)=>k(a[0][0])-k(b[0][0])||a[1]-b[1]).map(x=>x[0]);}
+function exCard(id){const x=examOf(id);return `<div class="exrow noann"><label class="exd">시험일 <input type="date" data-exam="${id}" value="${x?x.v:''}" aria-label="${EH(sjName(id))} 시험일"></label>${x&&x.n>=0?`<span class="dday${x.n<=3?' soon':''}" title="시험까지 ${x.n}일">${ddLab(x.n)}</span>`:''}</div>`;}
+function todayBand(){const goal=tGoal()*60000,td=tSum(tDay(day())),wk=tWeek(tMon(new Date())).reduce((a,x)=>a+x.sum,0),ex=examNear();let rv=0,rvS='',rvM=0;
+ SUBJECTS.forEach(([id])=>{if(!PACKS[id])return;const n=revInfo(id).due.size;rv+=n;if(n>rvM){rvM=n;rvS=id;}});
+ return `<div class="todayb noann"><button type="button" data-tvgo2="1" title="📊 공부 기록 보기">오늘 <b>${fmtH(td)}</b> / ${fmtH(goal)}</button><span class="tsep">·</span><button type="button" data-tvgo2="1">이번 주 <b>${fmtH(wk)}</b></button>${ex?`<span class="tsep">·</span><button type="button" data-exgo="${ex.s}" title="이 과목 홈으로">가장 가까운 시험 <b>${EH(sjName(ex.s))} ${ddLab(ex.n)}</b></button>`:''}${rv?`<span class="tsep">·</span><button type="button" data-revgo="${rvS}" title="${EH(sjName(rvS))}부터 — 복습 필터 + 한 장씩">🔁 오늘 복습 <b>${rv}</b></button>`:''}</div>`;}
+function homeSortBar(){const s=LS.get('homeSort','');return `<div class="hsort noann"><span class="small">과목 순서</span><button type="button" class="hsb${s!=='exam'?' on':''}" data-hsort="">기본</button><button type="button" class="hsb${s==='exam'?' on':''}" data-hsort="exam">시험 가까운 순</button></div>`;}
+/* 허브 홈 '최근 공부 시간' — 최신 날짜 위 · '9/28(월)' · 1분 미만 과목 숨김 · 7행 아래 '📊 전체 기록' */
+function tHomeTable(){const ds=new Set([...Object.keys(T.log),...Object.keys(tAdj()),day()]);const rows=[...ds].filter(d=>pDate(d)).sort().reverse().map(d=>[d,tDay(d)]).filter(([d,o])=>tSum(o)>=60000).slice(0,7);
+ if(!rows.length)return '<div class="small">아직 기록이 없습니다. 과목을 열어 공부하면 자동으로 재요(위 시계를 누르면 설정).</div>';
+ return `<table class="thome"><thead><tr><th>날짜</th><th>합계</th><th>과목별</th></tr></thead><tbody>${rows.map(([d,o])=>`<tr><th>${mdw(pDate(d))}</th><td>${fmtH(tSum(o))}</td><td>${Object.keys(o).filter(k=>o[k]>=60000).sort((a,b)=>o[b]-o[a]).map(k=>EH(sjName(k))+' '+fmtH(o[k])).join(' · ')}</td></tr>`).join('')}</tbody></table><button type="button" class="link tvall" data-tvgo2="1">📊 전체 기록 →</button>`;}
+/* 과목 홈: 시험일이 있으면 진행률 위에 '남은 안 읽은 카드 80 · 안 푼 기출 41 → 하루 27장 · 14문항'(남은 날 = D-n, 오늘 포함 — D-day는 1) */
+function examLine(p,C){const x=examOf(p.id);if(!x||x.n<0)return '';let un=0;p.lect.forEach(L=>{un+=Math.max(0,L.nsec-lecProg(p,L).done);});const dd=Math.max(1,x.n);
+ return `<div class="panel exline noann"><b>📅 시험 ${ddLab(x.n)}</b> <span class="small">${x.dt.getMonth()+1}/${x.dt.getDate()}(${TWD[wdOf(x.dt)]})</span> · 남은 안 읽은 카드 <b>${un}</b> · 안 푼 기출 <b>${C.todo}</b> → 하루 <b class="exq">${Math.ceil(un/dd)}장 · ${Math.ceil(C.todo/dd)}문항</b></div>`;}
+function tSubjLine(p){let s=0;for(const d of Object.keys(T.log))s+=+tObj(T.log[d])[p.id]||0;for(const d of Object.keys(tAdj()))s+=+tObj(tAdj()[d])[p.id]||0;const td=tDay(day())[p.id]||0;
+ return `<button type="button" class="link tvlink" data-tvgo2="1" title="📊 공부 기록">📊 오늘 ${fmtH(td)} · 전체 ${fmtH(s+(T.run&&CUR.s===p.id?tLive():0))}</button>`;}
+/* ---- B07 오늘 복습(라이트너 — mk.log만 읽음, 저장 형식 그대로): 마지막 결과가 틀림 → 지금 · 틀림 뒤 맞음 1번 → 1일 뒤 · 2번 → 3일 뒤 · 3번↑ → 7일 뒤 · 한 번도 틀린 적 없으면 뺌
+   (log 없이 ng만 있는 옛 기록 = 지금 복습) ---- */
+function revNext(m,id){const L=(Array.isArray(m.log&&m.log[id])?m.log[id]:[]).filter(x=>x&&(x.r==='ok'||x.r==='ng')).sort((a,b)=>(+a.t||0)-(+b.t||0));let li=-1;L.forEach((x,i)=>{if(x.r==='ng')li=i;});
+ if(li<0)return (!L.length&&m.ng&&m.ng[id])?day():null;const k=L.length-1-li;if(!k)return day(new Date(+L[li].t||Date.now()));return day(tDAdd(new Date(+L[L.length-1].t||Date.now()),k===1?1:k===2?3:7));}
+function revInfo(S){const p=PACKS[S],m=getMK(S),out={due:new Set(),ever:new Set(),next:{}},today=day();if(!p)return out;new Set([...Object.keys(m.log||{}),...Object.keys(m.ng||{})]).forEach(id=>{if(!p.cards[id])return;const nd=revNext(m,id);if(!nd)return;out.ever.add(id);out.next[id]=nd;if(nd<=today)out.due.add(id);});return out;}
+function revTitle(id){if(!CUR.s)return '';const nd=revNext(MK,id);if(!nd)return '';return nd<=day()?' · 지금 복습 대상 🔁':' · 다음 복습 '+(+nd.slice(5,7))+'/'+(+nd.slice(8));}
+function revQf(p,ids){const R=revInfo(p.id),set=new Set(ids);let du=0,ev=0;R.ever.forEach(id=>{if(set.has(id)){ev++;if(R.due.has(id))du++;}});if(!ev)return '';
+ return `<button class="tg rvq" data-qf="due" title="오늘 복습할 문항 — 틀린 뒤 맞힌 횟수로 1·3·7일 간격(라이트너)"><span class="rvn">🔁 복습 ${du}</span></button><button class="tg rvq" data-qf="ever" title="채점 기록에 틀림이 한 번이라도 있는 문항"><span class="rvn">한 번이라도 틀림 ${ev}</span></button>`;}
+function revQfUpd(){const b=$('#jbbar [data-qf="due"]');if(!b||!CUR.s)return;const p=PACKS[CUR.s],R=revInfo(CUR.s),set=new Set($$('#cards .qc').map(c=>c.dataset.id));let du=0,ev=0;R.ever.forEach(id=>{if(set.has(id)){ev++;if(R.due.has(id))du++;}});
+ b.querySelector('.rvn').textContent='🔁 복습 '+du;const e=$('#jbbar [data-qf="ever"] .rvn');if(e)e.textContent='한 번이라도 틀림 '+ev;}
+function revBtn(S,cls){const n=revInfo(S).due.size;return n?`<button type="button" class="btn ${cls||'sm'} rvgo" data-revgo="${S}">🔁 오늘 복습 ${n}문항 ▶</button>`:'';}
+function revGo(S){if(!PACKS[S])return;const due=revInfo(S).due;openDoc(S,'_jb');const F=JB.F;if(!F)return;Object.assign(F,{prof:'',lec:'',n:0,ver:'',yr:'',st:'',q:'',mine:'due'});if([...due].some(id=>(PACKS[S].refids||[]).indexOf(id)>=0))F.tiers.C=true;
+ JB.sync();JB.apply(true);if(!JB.one)$('#fone').click();else{JB.cur=0;JB.show();}window.scrollTo(0,0);if(!due.size)toast('오늘 복습할 문항이 없어요');}
+$('#stage').addEventListener('click',e=>{const t=e.target.closest('[data-revgo],[data-tvgo2]');if(!t)return;if(t.dataset.revgo)revGo(t.dataset.revgo);else timeView();});
+/* 허브 홈: 과목 카드 안의 시험일 입력·복습 버튼은 카드 열기보다 먼저(캡처) */
+$('#home').addEventListener('click',e=>{const t=e.target.closest('[data-exam],.exd,[data-revgo],[data-tvgo2],[data-exgo],[data-hsort],[data-plretry]');if(!t)return;e.stopPropagation();const d=t.dataset;
+ if(d.revgo)revGo(d.revgo);else if(d.tvgo2)timeView();else if(d.exgo)openSubj(d.exgo);else if(d.hsort!=null){LS.set('homeSort',d.hsort);home({push:false,y:scrollY});}else if(d.plretry)plRetry(d.plretry);},true);
+$('#home').addEventListener('change',e=>{const t=e.target;if(!t.dataset||!t.dataset.exam)return;LS.set('exam.'+t.dataset.exam,t.value||'');if(VIEW==='home')home({push:false,y:scrollY});});
+/* ---- B10 강의 미니바 — 첫 카드보다 위: '틀 · 19장 ▾'(읽은 카드가 있으면 '틀 · 읽음 4/19') · 첫 카드가 기준선을 넘으면 '카드 1/19 ▾' ---- */
+/* B11 복원 창 '최근 알림' — 이 탭에서 뜬 알림 20개(sessionStorage 'toasts') */
+function toastLog(){let L=[];try{L=JSON.parse(sessionStorage.getItem(NS+'toasts')||'[]');}catch(e){}if(!Array.isArray(L)||!L.length)return '';const tm=at=>new Date(at).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ return `<details class="rlog"><summary>최근 알림 ${L.length}</summary><ul>${L.map(x=>`<li class="${x.lv==='error'?'err':''}"><span class="small">${tm(x.at)}</span> ${EH(x.t)}</li>`).join('')}</ul></details>`;}
+function lmLabel(j){const n=$('#lmn'),pre=$('#lmpre'),suf=$('#lmsuf');if(!n)return;if(j>=0){n.textContent=j+1;if(pre)pre.textContent='카드 ';if(suf)suf.hidden=false;return;}
+ const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L){n.textContent='틀';return;}const dn=lecProg(p,L).done;n.textContent=dn?'틀 · 읽음 '+dn+'/'+L.cards.length:'틀 · '+L.cards.length+'장';if(pre)pre.textContent='';if(suf)suf.hidden=true;}
 
 /* ---------- 홈 ---------- */
 function home(opt){opt=opt||{};leaveView();const push=opt.push!==false&&VIEW!=='home'&&VIEW!=='none';if(push)stampHist();tFlush();if(T.run&&T.autoRun)tStop();CUR={s:null,d:null,t:null};VIEW='home';document.title='JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
- let g='';SUBJECTS.forEach(([id,ko])=>{const p=PACKS[id];if(p){const C=jbCount(p),ok=C.ok,ng=C.ng;let dn=0;const nc=p.lect.reduce((a,L)=>{dn+=lecProg(p,L).done;return a+L.nsec;},0);const rp=nc?Math.round(dn/nc*100):0;
+ let g='';homeOrder().forEach(([id,ko])=>{const p=PACKS[id];if(p){const C=jbCount(p),ok=C.ok,ng=C.ng;let dn=0;const nc=p.lect.reduce((a,L)=>{dn+=lecProg(p,L).done;return a+L.nsec;},0);const rp=nc?Math.round(dn/nc*100):0;
    const r=resumeTarget(p),tl=r?(({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[r.t]||'학습'):'';
    g+=`<div class="scard" data-s="${id}" style="border-top-color:${p.color};--acc:${p.color}"><div class="en serif">${p.en}</div><div class="ko">${p.title} · ${p.profs}</div><div class="st"><span class="chip n2">기출 ${C.main}문항</span>${C.ref?`<span class="chip refc">참고 ${C.ref}</span>`:''}<span class="chip n1">2회 이상 ${p.stats.rep}</span><span class="chip">강의 정리본 ${p.lect.length}</span><span class="chip">비교표 ${p.tables.length}</span><span class="chip">예상 ${p.preds.length}</span></div>`
     +`<div class="spb"><span>정리본 읽음 <b>${rp}%</b> <i>${dn}/${nc}</i></span><div class="pbar"><i class="rd" style="width:${rp}%;background:${p.color}"></i></div></div>`
     +`<div class="spb"><span>${C.ref?'현 교수 ':''}기출 맞음 <b class="cok">${ok}</b> · 틀림 <b class="cng">${ng}</b> <i>/ ${C.main}</i></span><div class="pbar"><i class="ok" style="width:${C.main?ok/C.main*100:0}%"></i><i class="ng" style="width:${C.main?ng/C.main*100:0}%"></i></div></div>`
-    +`<div class="sacts">${r?`<button class="btn sm res go-resume" data-s="${id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'↪ 이어서':'▶ 시작'}: ${EH(sname(p,r.d))} · ${tl}</button>`:''}<button class="btn sm" data-sjbf="${C.todo?'todo':'ng'}">📝 ${C.todo?'안 푼 기출 '+C.todo:'틀린 기출 '+C.ng}</button></div><div class="small" style="margin-top:6px">갱신 ${p.built}</div></div>`;}
-  else g+=`<div class="scard off"><div class="en serif">${ko}</div><div class="ko">자료 준비 중</div></div>`;});
- const days=Object.keys(T.log).sort().slice(-7);let tt='';days.forEach(d=>{const o=T.log[d];let s=0;for(const k in o)s+=o[k];tt+=`<tr><th>${d}</th><td>${fmtS(s)}</td><td>${Object.keys(o).map(k=>(PACKS[k]?PACKS[k].title:k)+' '+fmtS(o[k])).join(' · ')}</td></tr>`;});
- h.innerHTML=`<h2>JBL 허브</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div><div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}${(()=>{const R=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const A=LS.get('ann.'+id,{});let nh=0,nb=0;if(A&&typeof A==='object')for(const k in A)(Array.isArray(A[k])?A[k]:[]).forEach(o=>{if(o&&typeof o==='object'){if(o.t==='b')nb++;else nh++;}});return [id,nh,nb];});
+    +`${exCard(id)}<div class="sacts">${r?`<button class="btn sm res go-resume" data-s="${id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'↪ 이어서':'▶ 시작'}: ${EH(sname(p,r.d))} · ${tl}</button>`:''}<button class="btn sm" data-sjbf="${C.todo?'todo':'ng'}">📝 ${C.todo?'안 푼 기출 '+C.todo:'틀린 기출 '+C.ng}</button>${revBtn(id)}</div><div class="small" style="margin-top:6px">갱신 ${p.built}</div></div>`;}
+  else g+=`<div class="scard off${plPending(id)?' plw':''}"><div class="en serif">${ko}</div><div class="ko">${plPending(id)?'불러오는 중…':PL.bad[id]?'⚠ 불러오기 실패':'자료 준비 중'}</div></div>`;});
+ h.innerHTML=`${todayBand()}<h2>JBL 허브${plChip()}</h2><div class="lead">과목을 고르면 <b>과목 홈</b>(공부 순서·진행률) → 강의별 정리본 → JB 문제로 이어집니다. 아래 도구 막대로 형광펜·빈칸(빈칸빵)·메모를 쓰고, 위에서 공부 시간을 잽니다.</div>${homeSortBar()}<div class="sgrid">${g}</div>${resumeHTML()}${(()=>{const lb=LS.get('lastBackup',0);const dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${dd===null||dd>=7?'warn':''}"><div class="bt">💾 백업</div><div class="small">${dd===null?'아직 파일 백업을 받은 적이 없어요.':'마지막 파일 백업: '+(dd?dd+'일 전':'오늘')+'.'} 표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [백업]을 권해요.</div></div>`;})()}${(()=>{const R=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const A=LS.get('ann.'+id,{});let nh=0,nb=0;if(A&&typeof A==='object')for(const k in A)(Array.isArray(A[k])?A[k]:[]).forEach(o=>{if(o&&typeof o==='object'){if(o.t==='b')nb++;else nh++;}});return [id,nh,nb];});
   return `<div class="panel mkall"><div class="bt">🖍 전 과목 내 표시 <span class="small">— 과목을 누르면 내 표시 모아보기(표시가 든 문장·색별로 보기·빈칸 떠올리기)</span></div><div class="row">${R.map(([id,nh,nb])=>`<button class="btn sm" data-mks="${id}">${EH(PACKS[id].title)} · 🖍 ${nh} · ▣ ${nb}</button>`).join('')}</div></div>`;})()}
- <div class="panel"><div class="bt">최근 공부 시간</div>${tt?`<table><thead><tr><th>날짜</th><th>합계</th><th>과목별</th></tr></thead><tbody>${tt}</tbody></table>`:'<div class="small">아직 기록이 없습니다. 과목을 열어 공부하면 자동으로 재요(위 시계를 누르면 설정).</div>'}</div>
+ <div class="panel htime"><div class="bt">최근 공부 시간</div>${tHomeTable()}</div>
  <div class="panel"><div class="bt">도움말</div><div class="small">형광펜·빈칸 쓰는 법, 그림 보기, 공부 시간, 백업·복원, 단축키는 오른쪽 위 <b>?</b> 버튼(또는 ? 키)에 모아 두었어요.</div></div>`;
  histSet({home:1},'#/',push);measure();window.scrollTo(0,opt.y||0);}
 $('#home').addEventListener('click',e=>{const r=e.target.closest('.res');if(r){resClick(r);return;}const mks=e.target.closest('[data-mks]');if(mks){openDoc(mks.dataset.mks,'_marks');return;}const c=e.target.closest('.scard[data-s]');if(!c)return;const f=e.target.closest('[data-sjbf]');if(f){openDoc(c.dataset.s,'_jb');const b=$('#jbbar [data-qf="'+f.dataset.sjbf+'"]');if(b)b.click();return;}openSubj(c.dataset.s);});
@@ -666,14 +898,14 @@ try{history.scrollRestoration='manual';}catch(e){}
 const SS={get(k,d){try{const v=sessionStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{sessionStorage.setItem(NS+k,JSON.stringify(v));}catch(e){}}};
 const isJBv=()=>VIEW==='doc'&&(CUR.d==='_jb'||CUR.t==='jb');
 const sname=(p,k)=>{const L=p.lect.find(x=>x.k===k);return String((p.lecname&&p.lecname[k])||(L?L.title:k)).replace(/\s*\([^)]*\)\s*$/,'');};
-function curState(){return VIEW==='doc'?{s:CUR.s,d:CUR.d,t:CUR.t}:VIEW==='search'?Object.assign({q:SQ.q},SQ.s?{sj:SQ.s}:{}):{home:1};}
+function curState(){return VIEW==='doc'?{s:CUR.s,d:CUR.d,t:CUR.t}:VIEW==='search'?Object.assign({q:SQ.q},SQ.s?{sj:SQ.s}:{},SQ.k?{k:SQ.k}:{}):VIEW==='time'?{time:1}:{home:1};}
 function histSet(st,url,push){try{if(push)history.pushState(st,'',url);else history.replaceState(st,'',url);}catch(e){}LASTH=location.hash;}
 /* 떠나기 직전: 지금 항목에 스크롤 위치를 적어 둠(뒤로가기 복원용) */
 function stampHist(){try{const hs=history.state;const o=Object.assign(curState(),hs&&hs.ret?{ret:hs.ret}:{},{y:Math.round(scrollY)});if(VIEW==='doc'){const P=probePos();if(P)o.pos={aid:P.aid,off:P.off};}history.replaceState(o,'',location.href);}catch(e){}}
 function leaveView(){document.body.classList.remove('jbone');$('#lpop').classList.remove('on');if(LIO){LIO.disconnect();LIO=null;}if(STL)STL();if(VIEW==='doc'&&CUR.s){clearTimeout(spT);savePos();if(isJBv())JB.save();}}
-function parseHash(){const h=location.hash||'';let m=/^#\/\?q=([^&]*)(?:&s=([A-Z0-9]+))?/.exec(h);if(m){let q='';try{q=decodeURIComponent(m[1]);}catch(e){q=m[1];}return m[2]?{q,sj:m[2]}:{q};}
+function parseHash(){const h=location.hash||'';if(/^#\/_time\/?$/.test(h))return {time:1};let m=/^#\/\?q=([^&]*)(?:&s=([A-Z0-9]+))?(?:&k=(learn|jb|tbl|pred))?/.exec(h);if(m){let q='';try{q=decodeURIComponent(m[1]);}catch(e){q=m[1];}const o=m[2]?{q,sj:m[2]}:{q};if(m[3])o.k=m[3];return o;}
  m=/^#\/([^\/?]+)\/([^\/]+)\/?([^\/]*)/.exec(h);if(m){let d=m[2];try{d=decodeURIComponent(d);}catch(e){}return {s:m[1],d,t:m[3]};}return {home:1};}
-function route(st){st=st||parseHash();if(st.q!=null&&String(st.q).trim().length>=2){search(st.q,{push:false,y:st.y,s:st.sj});return;}
+function route(st){st=st||parseHash();if(st.q!=null&&String(st.q).trim().length>=2){search(st.q,{push:false,y:st.y,s:st.sj,k:st.k});return;}if(st.time){timeView({push:false,y:st.y});return;}
  if(st.s&&PACKS[st.s]){openDoc(st.s,st.d,st.t,(st.y==null&&!st.pos)?st.aid:null,{push:false,y:st.y,pos:st.pos});return;}home({push:false,y:st.y});}
 addEventListener('popstate',e=>{route(e.state||parseHash());LASTH=location.hash;});
 addEventListener('hashchange',()=>{if(location.hash===LASTH)return;route(parseHash());LASTH=location.hash;});
@@ -717,7 +949,7 @@ const SUBJDOCS=[['_home','🏠 과목 홈','공부 순서 · 진행률 · 강의
 function docTabs(p,d){if(d[0]==='_')return [[d,'']];const L=p.lect.find(x=>x.k===d);return [['learn','📖 학습'],['sum','🗂 정리표'],['tbl','📊 비교표 '+L.tbl.length],['jb','📝 기출 '+L.jb.length],['pred','✍️ 예상 '+L.pred.length],['flash','🃏 플래시카드']].filter(t=>!(t[0]==='tbl'&&!L.tbl.length));}
 function openSubj(s){openDoc(s,'_home');}
 function sideRender(){const p=PACKS[CUR.s];if(!p)return;const d=CUR.d;
- $('#side').innerHTML=`<div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select><button id="sidefold" title="사이드바 접기 (\\) — 표를 넓게">‹</button></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
+ $('#side').innerHTML=`<button type="button" class="hubhome" data-hub="1">🏠 허브 홈<small>모든 과목 · 공부 기록</small></button><div class="sjsw"><i class="sjdot" style="background:${p.color}"></i><select id="sjsel" aria-label="과목 바꾸기">${SUBJECTS.filter(([id])=>PACKS[id]).map(([id,ko])=>`<option value="${id}"${id===p.id?' selected':''}>${ko}</option>`).join('')}</select><button id="sidefold" title="사이드바 접기 (\\) — 표를 넓게">‹</button></div><div class="grp">과목 전체</div>`+SUBJDOCS.map(x=>`<button class="dbtn ${x[0]===d?'on':''}" data-d="${x[0]}">${x[1]}<small>${x[2]}</small></button>`).join('')+`<div class="grp">강의별 정리본</div>`+p.lect.map(L=>{const pr=lecProg(p,L);return `<button class="dbtn ${L.k===d?'on':''}" data-d="${L.k}"><span class="dot ${L.heat}${L.hot?' hot':''}"${L.hot?' title="3회 이상 나온 기출이 있는 강의"':''}></span>${L.title}<small>${L.prof} · 읽음 ${pr.done}/${L.nsec} · 기출 맞음 ${pr.ok}/${L.jb.length}</small></button>`+(L.k===d?sideCards(p,L):'');}).join('');}
 /* 넓은 화면(>860): 사이드바의 지금 강의 아래 카드 목록(접이식, LS 'sidecards') — 학습 탭에서 스크롤 스파이로 지금 카드를 굵게 */
 function sideCards(p,L){if(!(L.cards||[]).length)return '';const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const DN=mkObj(LS.get('done.'+p.id,{}));
  return `<details class="scards" ${LS.get('sidecards',true)?'open':''}><summary>카드 ${L.cards.length}</summary><div class="scl">${L.cards.map((c,j)=>{const al=L.aids&&L.aids[j]||[c[0]];return `<button class="scard2${CUR.t==='learn'&&j===LCUR?' on':''}${al.some(a=>DN[a])?' done':''}" data-lj="${j}" title="${E(c[2])}"><b>${c[1]}</b><span>${E(c[2])}</span>${c[3]?`<i>⭐${c[3]}</i>`:''}</button>`;}).join('')}</div></details>`;}
@@ -737,7 +969,7 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  $('#hero').classList.toggle('home',d==='_home');$('#hero').classList.toggle('cmp',d!=='_home');document.title=(L?L.title+' · ':'')+p.title+' — JBL';
  const lm=L&&t==='learn'&&(L.cards||[]).length;
  $('#dtabs').innerHTML=tabs.length>1?'<button class="sideopen" title="사이드바 펼치기 (\\)">›</button>'+tabs.map((x,i)=>`<button data-t="${x[0]}" class="${x[0]===t?'on':''}">${x[1]}<span class="kbd">${i+1}</span></button>`).join('')+'<span class="dtname">'+(L?L.title:'')+'</span>'
-  +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)">카드 <b id="lmn">–</b>/${L.cards.length} ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmqz" title="가리기 보기 (Q) — 빨간 핵심어를 가리고 떠올리기 · 저장 안 함">가리기</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button><button id="dfocus" class="dfoc" title="집중 모드 (V)">⤢</button></span>`:'<span class="lmini2"><button id="dfocus2" class="dfoc" title="집중 모드 (V)">⤢</button></span>'):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);sideApply();hstat();measure();
+  +(lm?`<span class="lmini" id="lmini"><button id="lmcur" title="이 강의 카드 목록 (J/K = 다음/이전 카드)"><span id="lmpre">카드 </span><b id="lmn">–</b><span id="lmsuf">/${L.cards.length}</span> ▾</button><button id="lmcond" title="압축 보기 — 🔑 핵심·⭐ 시험포인트·⚡ 암기만">압축</button><button id="lmqz" title="가리기 보기 (Q) — 빨간 핵심어를 가리고 떠올리기 · 저장 안 함">가리기</button><button id="lmup" title="이 강의의 틀로">↑ 틀</button><button id="dfocus" class="dfoc" title="집중 모드 (V)">⤢</button></span>`:'<span class="lmini2"><button id="dfocus2" class="dfoc" title="집중 모드 (V)">⤢</button></span>'):'';$('#dtabs').classList.toggle('haslm',!!lm);$('#dtabs').hidden=tabs.length<2;navOpen(false);sideApply();hstat();measure();
  if(!(same&&tgt))mount(p,d,t);   /* 같은 화면 안의 카드로 가는 것이면 다시 그리지 않음 */
  const st={s,d,t};if(aid)st.aid=aid;if(newRet)st.ret=RET.id;histSet(st,'#/'+s+'/'+d+'/'+t,push);retPill();fpill();
  /* 위치: 목표 카드 → 뒤로가기·이어서 보기의 위치 → JB 풀이 상태 → 탭별 읽던 위치 → 맨 위 */
@@ -748,13 +980,13 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  else if(!isJBv()&&restoreAt(mkObj(LS.get('pos.'+s,{}))[d+'/'+t],null)){}
  else window.scrollTo(0,0);
  setTimeout(savePos,1500);$('#memot').textContent='메모 — '+(L?L.title:(SUBJDOCS.find(x=>x[0]===d)||['',''])[1]);$('#memota').value=LS.get('memo.'+s+'.'+d,'');memoBase.v=$('#memota').value;}
-$('#side').addEventListener('click',e=>{if(e.target.closest('#sidefold')){sideToggle();return;}const lj=e.target.closest('[data-lj]');if(lj){goCard(+lj.dataset.lj);return;}if(e.target.closest('.dbtn'))navOpen(false);const b=e.target.closest('.dbtn');if(b)openDoc(CUR.s,b.dataset.d);});
+$('#side').addEventListener('click',e=>{if(e.target.closest('#sidefold')){sideToggle();return;}if(e.target.closest('[data-hub]')){navOpen(false);home();return;}const lj=e.target.closest('[data-lj]');if(lj){goCard(+lj.dataset.lj);return;}if(e.target.closest('.dbtn'))navOpen(false);const b=e.target.closest('.dbtn');if(b)openDoc(CUR.s,b.dataset.d);});
 $('#side').addEventListener('change',e=>{if(e.target.id==='sjsel'&&e.target.value!==CUR.s){navOpen(false);openSubj(e.target.value);}});
 $('#side').addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details.scards'))LS.set('sidecards',e.target.open);},true);
 $('#dtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.classList.contains('dfoc')){focusSet(!document.body.classList.contains('focus'));return;}if(b.classList.contains('sideopen')){sideToggle();return;}if(b.closest('#lmini')){lminiClick(b);return;}if(b.dataset.t===CUR.t){if(STL)STL();window.scrollTo(0,0);return;}openDoc(CUR.s,CUR.d,b.dataset.t);});   /* 이미 선택된 탭을 한 번 더 누르면 맨 위로 */
 const cardsHTML=(p,ids)=>ids.map(i=>p.cards[i]).join('');
 /* 강의 헤더의 기출 채점 '✓12 ✗4' */
-function hstat(){const e=$('#hstat');if(!e)return;const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L){e.textContent='';return;}const pr=lecProg(p,L);e.textContent='✓'+pr.ok+' ✗'+pr.ng;e.title='이 강의 기출 '+L.jb.length+'문항 중 맞음 '+pr.ok+' · 틀림 '+pr.ng;}
+function hstat(){const e=$('#hstat');if(!e)return;const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L){e.textContent='';return;}const pr=lecProg(p,L);e.textContent='✓'+pr.ok+' ✗'+pr.ng;e.classList.toggle('z',!pr.ok&&!pr.ng);e.title='이 강의 기출 '+L.jb.length+'문항 중 맞음 '+pr.ok+' · 틀림 '+pr.ng;}
 function lecProg(p,L){const dn=mkObj(LS.get('done.'+p.id,{}));let done=0;(L.aids||[]).forEach(a=>{if(a.some(x=>dn[x]))done++;});const mk=getMK(p.id);let ok=0,ng=0;L.jb.forEach(i=>{if(mk.ok[i])ok++;if(mk.ng[i])ng++;});return {done,ok,ng};}
 /* 과목 홈(U21) — 순서 유지: 공부 순서(+실행 버튼) → 강의 바로가기 → 진행률 → 교수별 경향·📌 전략(세부는 접힘) → 📣 → 강의 카드 → 2회 이상(횟수별) */
 const EH=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
@@ -778,9 +1010,10 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  const top=Object.keys(byN).map(Number).sort((a,b)=>b-a).map(n=>{const L=byN[n],ok=L.filter(t=>MKh.ok[t.id]).length,ng=L.filter(t=>MKh.ng[t.id]).length,h=`${n}회 출제 ${L.length}문항 <span class="small">— 맞음 ${ok} · 틀림 ${ng}</span>`;
   return n>=3?`<div class="tgrp"><div class="tgt">${h}</div><ol class="toplist">${L.map(item).join('')}</ol></div>`:`<details class="tgrp"><summary class="tgt">${h}</summary><ol class="toplist">${L.map(item).join('')}</ol></details>`;}).join('');
  const hints=(p.hints&&p.hints.length)?`<div class="panel hints"><div class="bt">📣 교수님이 예고·강조한 것 <span class="small">— 강의자료 필기·학습부 멘트에서 모음. 누르면 그 강의로</span>${p.hints.length>3?` <button class="btn sm" data-hmore="1">모두 보기 (+${p.hints.length-3})</button>`:''}</div><ul class="hlist">${p.hints.map((x,i)=>`<li${i>=3?' class="hmore"':''}><button class="chip lec" data-golec="${x.k}:0">${x.t.length>28?x.t.slice(0,28)+'…':x.t}</button> ${x.h}</li>`).join('')}</ul></div>`:'';
- return `<div class="guide" id="hguide"><div class="gt">공부 순서</div><ol class="steps">${guide}</ol></div>
+ const rvb=revBtn(p.id,'act');
+ return `<div class="guide" id="hguide"><div class="gt">공부 순서</div><ol class="steps">${rvb?`<li class="rvli"><b>오늘 복습</b> 틀렸던 기출을 1·3·7일 간격으로 다시 ${rvb}</li>`:''}${guide}</ol></div>
  <div class="ljump noann"><span class="small">강의 바로가기</span>${jump}</div>
- <div class="panel" id="hprog"><div class="pline"><span><b class="hpt">진행률</b> ${C.ref?'현 교수 ':''}기출 <b>${total}</b>문항 — <b class="cok">맞음 ${nOk}</b> · <b class="cng">틀림 ${nNg}</b> · 안 푼 것 ${C.todo} · ★ ${nBm}</span>${refChip(C,false)}<span class="sp"></span><button class="btn" data-jbf="todo">안 푼 것 풀기</button><button class="btn" data-jbf="ng">틀린 것 다시</button><button class="btn" data-jbf="bm">★ 북마크</button></div><div class="pbar big"><i class="ok" style="width:${total?nOk/total*100:0}%"></i><i class="ng" style="width:${total?nNg/total*100:0}%"></i></div>${resumeHTML(p.id,true)}</div>
+ ${examLine(p,C)}<div class="panel" id="hprog"><div class="pline"><span><b class="hpt">진행률</b> ${C.ref?'현 교수 ':''}기출 <b>${total}</b>문항 — <b class="cok">맞음 ${nOk}</b> · <b class="cng">틀림 ${nNg}</b> · 안 푼 것 ${C.todo} · ★ ${nBm}</span>${refChip(C,false)}${tSubjLine(p)}<span class="sp"></span><button class="btn" data-jbf="todo">안 푼 것 풀기</button><button class="btn" data-jbf="ng">틀린 것 다시</button><button class="btn" data-jbf="bm">★ 북마크</button></div><div class="pbar big"><i class="ok" style="width:${total?nOk/total*100:0}%"></i><i class="ng" style="width:${total?nNg/total*100:0}%"></i></div>${resumeHTML(p.id,true)}</div>
  ${p.trends||''}
  ${hints}
  <div class="bt" id="hlec" style="margin:10px 0 8px">강의별 정리본 <span class="small">— 왼쪽 띠: 진한 색 = 2회 이상 출제된 내용이 있는 강의 · 아래 줄: 최근 해의 짤/탈</span></div><div class="lgrid">${lecs}</div>
@@ -831,7 +1064,7 @@ function jbBar(p,o){o=o||{};const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>
  ids.forEach(i=>{const h=p.cards[i]||'';let m=/data-prof="([^"]*)"/.exec(h);if(m&&m[1]&&pr.indexOf(m[1])<0)pr.push(m[1]);m=/data-yrs="([^"]*)"/.exec(h);if(m)m[1].split(' ').forEach(v=>v&&yr.add(v));m=/data-tier="(\w)"/.exec(h);if(m)nt[m[1]]=(nt[m[1]]||0)+1;});
  const profs=(p.jbprofs||pr).filter(x=>pr.indexOf(x)>=0),yrs=[...yr].sort((a,b)=>b-a);
  const tier=k=>nt[k]?`<button class="tg${k==='C'?'':' on'}" data-tier="${k}">${E(T[k]||k)} ${nt[k]}</button>`:'';
- return `<div id="jbsent"></div><div class="bar noann" id="jbbar"><div class="brow b1"><span class="qf"><button class="tg on" data-qf="">전체</button><button class="tg" data-qf="todo">안 푼 것</button><button class="tg" data-qf="ng">틀린 것</button><button class="tg" data-qf="bm" title="북마크">★</button></span>`
+ return `<div id="jbsent"></div><div class="bar noann" id="jbbar"><div class="brow b1"><span class="qf"><button class="tg on" data-qf="">전체</button><button class="tg" data-qf="todo">안 푼 것</button><button class="tg" data-qf="ng">틀린 것</button><button class="tg" data-qf="bm" title="북마크">★</button>${revQf(p,ids)}</span>`
   +(profs.length>1?`<select id="fprof" aria-label="교수"><option value="">교수 전체</option>${profs.map(x=>`<option>${E(x)}</option>`).join('')}</select>`:'')
   +`<select id="fyr" aria-label="출제 연도"><option value="">연도 전체</option>${yrs.map(y=>`<option value="${y}">20${y}</option>`).join('')}</select>`
   +`<span class="qf"><button class="tg" data-stf="jj" title="짤 — 이전 해에도 나온 문제(최근 출제 해 기준)">짤</button><button class="tg" data-stf="tt" title="탈 — 그 해 처음 나온 문제(최근 출제 해 기준)">탈</button></span>`
@@ -851,8 +1084,8 @@ addEventListener('scroll',()=>{if(!jbMiniQ)jbMiniQ=requestAnimationFrame(jbMini)
    지금 카드 = 화면 위 30% 선에 걸친 카드(IntersectionObserver rootMargin '-30% 0px -70% 0px') */
 let LIO=null,LCUR=-1,LHOLD=0;
 function learnSpy(){if(LIO){LIO.disconnect();LIO=null;}LCUR=-1;if(!$('#lmini')||!window.IntersectionObserver){setLCur(-1);return;}
- LIO=new IntersectionObserver(es=>{if(Date.now()<LHOLD)return;es.forEach(en=>{if(en.isIntersecting){const j=+en.target.id.split('-').pop();if(!isNaN(j))setLCur(j);}});},{rootMargin:'-30% 0px -70% 0px'});$$('#stage .tc').forEach(c=>LIO.observe(c));setLCur(-1);}
-function setLCur(j){LCUR=j;const n=$('#lmn');if(n)n.textContent=j>=0?j+1:'–';fpill(true);$$('#side .scard2').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));$$('#lpop .lpi').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));
+ LIO=new IntersectionObserver(es=>{if(Date.now()<LHOLD)return;es.forEach(en=>{if(en.isIntersecting){const j=+en.target.id.split('-').pop();if(!isNaN(j))setLCur(j);}});if(LCUR>=0){const c0=$$('#stage .tc').find(c=>c.offsetParent!==null);if(c0&&c0.getBoundingClientRect().top>innerHeight*.3)setLCur(-1);}},{rootMargin:'-30% 0px -70% 0px'});$$('#stage .tc').forEach(c=>LIO.observe(c));setLCur(-1);}
+function setLCur(j){LCUR=j;lmLabel(j);fpill(true);$$('#side .scard2').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));$$('#lpop .lpi').forEach(b=>b.classList.toggle('on',+b.dataset.lj===j));
  const sb=$('#side .scard2.on'),sd=$('#side');if(sb&&sd&&sd.scrollHeight>sd.clientHeight){const r=sb.getBoundingClientRect(),q=sd.getBoundingClientRect();if(r.top<q.top+40||r.bottom>q.bottom-20)sd.scrollTop+=r.top-q.top-q.height/2;}}
 /* 카드 j로: 학습 탭이면 드러내고(그룹 필터·압축 해제) 탭 아래로, 다른 탭이면 학습 탭을 열어서 */
 function goCard(j){const p=PACKS[CUR.s],L=p&&p.lect.find(x=>x.k===CUR.d);if(!L)return;const id='t-'+L.k+'-'+j;navOpen(false);$('#lpop').classList.remove('on');
@@ -873,10 +1106,10 @@ function lnav(d){const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null);if(!
 function mark(id,k,how){if(STALE){toast('새로고침 후에 채점할 수 있어요 (새 버전)');return;}MK=getMK(CUR.s);const was=!!MK[k][id];
  if(how==='toggle'&&was)delete MK[k][id];
  else{MK[k][id]=1;if(k==='ok')delete MK.ng[id];if(k==='ng')delete MK.ok[id];if(k!=='bm'){const L=Array.isArray(MK.log[id])?MK.log[id].filter(x=>x&&typeof x==='object'):[];L.push({r:k,t:Date.now()});MK.log[id]=L.slice(-10);}}
- LS.set('mk.'+CUR.s,MK);$$('#stage .qc[data-id="'+id+'"]').forEach(paintQ);if(JB.F)JB.prog();JB.bar&&JB.bar();sideRender();hstat();}
+ LS.set('mk.'+CUR.s,MK);$$('#stage .qc[data-id="'+id+'"]').forEach(paintQ);if(JB.F)JB.prog();JB.bar&&JB.bar();sideRender();hstat();revQfUpd();}
 /* 카드 한 장의 채점 색·'✗2 ✓1' 기록 칩 */
 function paintQ(c){const id=c.dataset.id;['ok','ng','bm'].forEach(k=>c.classList.toggle('mk-'+k,!!MK[k][id]));const L=Array.isArray(MK.log[id])?MK.log[id]:[];let a=0,b=0;L.forEach(x=>{if(x&&x.r==='ok')a++;else if(x&&x.r==='ng')b++;});
- let r=c.querySelector('.qhead .chip.rec');if(!a&&!b){if(r)r.remove();return;}if(!r){r=document.createElement('span');r.className='chip rec noann';const h=c.querySelector('.qhead');if(!h)return;h.appendChild(r);}r.textContent=(b?'✗'+b:'')+(a&&b?' ':'')+(a?'✓'+a:'');r.title='채점 기록(최근 10번): 틀림 '+b+' · 맞음 '+a;}
+ let r=c.querySelector('.qhead .chip.rec');if(!a&&!b){if(r)r.remove();return;}if(!r){r=document.createElement('span');r.className='chip rec noann';const h=c.querySelector('.qhead');if(!h)return;h.appendChild(r);}r.textContent=(b?'✗'+b:'')+(a&&b?' ':'')+(a?'✓'+a:'');r.title='채점 기록(최근 10번): 틀림 '+b+' · 맞음 '+a+revTitle(id);}
 /* 답 토글 버튼 글자: 펼치면 '답 가리기 ▲' */
 function togLabel(c){const b=c&&c.querySelector('.acts:not(.acts2) [data-tog]');if(!b)return;if(!b.dataset.l0)b.dataset.l0=b.textContent;b.textContent=c.classList.contains('open')?'답 가리기 ▲':b.dataset.l0;if(JB.one&&JB.vis&&JB.vis[JB.cur]===c)JB.bar();}
 /* 답 칸의 📖 정리본 절: 🔑 목록이 5항목을 넘으면 앞 5개만 + '더 보기 (+N)' */
@@ -898,10 +1131,10 @@ const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.
   const more=$('#jbmore');if(more&&more.hidden&&(F.lec||F.ver||+F.n||F.tiers.C||F.tiers.A===false||F.tiers.B===false)){more.hidden=false;const fm=$('#fmore');if(fm)fm.textContent='상세 필터 ▴';}},
  save(){if(!this.F||!isJBv()||!$('#cards'))return;const P=this.one?null:probePos();const c=this.one?this.vis[this.cur]:(P?findAid(P.aid):null);
   const o={F:this.F,one:this.one,curId:(c&&c.dataset.id)||null,y:Math.round(scrollY)};if(P)o.pos={aid:P.aid,off:P.off};if(this.F.sort==='r'&&this.shuf)o.shuf=this.shuf;if(this.sess&&Object.keys(this.sess).length)o.sess=this.sess;SS.set(this.key(),o);this.saved=o;},
- apply(ns){const F=this.F,nz=x=>String(x||'').toLowerCase().replace(/\s+/g,''),qn=nz(String(F.q||'').split(/\s+/).map(w=>w.replace(/^([A-Za-z0-9.+\-]+)(과|와|을|를|이|가|은|는|의|에|에서|로|으로|도|만)$/,'$1')).join('')),cs=$$('#cards .qc');this.vis=[];   /* 영문 낱말 뒤 조사는 뗌('warfarin과' → warfarin) */
+ apply(ns){const F=this.F,nz=x=>String(x||'').toLowerCase().replace(/\s+/g,''),qn=nz(String(F.q||'').split(/\s+/).map(w=>w.replace(/^([A-Za-z0-9.+\-]+)(과|와|을|를|이|가|은|는|의|에|에서|로|으로|도|만)$/,'$1')).join('')),cs=$$('#cards .qc');this.vis=[];let RV=null;   /* 영문 낱말 뒤 조사는 뗌('warfarin과' → warfarin) */
   cs.forEach(c=>{const d=c.dataset;let ok=F.tiers[d.tier]&&(!F.prof||d.prof===F.prof)&&(!F.lec||d.lec===F.lec)&&(+d.n>=F.n);
    if(ok&&F.ver==='flag')ok=(d.v==='diff'||d.v==='part');if(ok&&F.ver==='none')ok=d.v==='none';
-   if(ok&&F.mine==='bm')ok=!!MK.bm[d.id];if(ok&&F.mine==='ng')ok=!!MK.ng[d.id];if(ok&&F.mine==='todo')ok=!MK.ok[d.id]&&!MK.ng[d.id];
+   if(ok&&F.mine==='bm')ok=!!MK.bm[d.id];if(ok&&(F.mine==='due'||F.mine==='ever')){if(!RV)RV=revInfo(CUR.s);ok=RV[F.mine].has(d.id);}if(ok&&F.mine==='ng')ok=!!MK.ng[d.id];if(ok&&F.mine==='todo')ok=!MK.ok[d.id]&&!MK.ng[d.id];
    if(ok&&F.yr)ok=(' '+(d.yrs||'')+' ').indexOf(' '+F.yr+' ')>=0;if(ok&&F.st)ok=d.st===F.st;
    /* 검색: 띄어쓰기를 뺀 글자끼리 · 범위 = 문제만(.qtext) / 문제+답(+JB 답안) / 전체(카드 전체) */
    if(ok&&qn){if(c._sq==null){const q=c.querySelector('.qtext'),a=c.querySelector('.jbans');c._sq=nz(q&&q.textContent);c._sa=c._sq+'|'+nz(a&&a.textContent);c._sx=nz(c.textContent);}ok=(F.qs==='all'?c._sx:F.qs==='qa'?c._sa:c._sq).indexOf(qn)>=0;}
@@ -1402,30 +1635,49 @@ $('#stage').addEventListener('click',e=>{const b=e.target.closest&&e.target.clos
 let SIDX=null;
 function sText(el){el.querySelectorAll('.acts,.acts2,.qhead,.qsub,button,.noann,.ansnow,figure,img,.badge,.car').forEach(x=>x.remove());el.querySelectorAll('div,li,p,h3,h4,h5,td,th,tr,section,ul,ol,figcaption,summary,.fl,.chip,.ycell,.tq').forEach(x=>x.append(' · '));
  return el.textContent.replace(/\s+/g,' ').replace(/(\s*·\s*){2,}/g,' · ').replace(/^\s*·\s*|\s*·\s*$/g,'').trim();}
-function buildSearch(){SIDX=[];const tmp=document.createElement('div');for(const s in PACKS){const p=PACKS[s];
-  const add=(d,t,html,kind,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).filter(b=>!/~h$/.test(b.dataset.aid)).forEach(b=>{const c=b.cloneNode(true);let ti='';
-   if(kind==='learn'){const bd=b.querySelector('.thead .badge'),en=b.querySelector('.thead .en');ti=bd&&en?'카드 '+bd.textContent.trim()+' '+en.textContent.trim():(b.classList.contains('frame')?'이 강의의 틀':'');}
-   else if(kind==='jb'){const id=b.dataset.id||'',m=/^Q0*(\d+)$/.exec(id),ys=(b.dataset.yrs||'').split(' ').filter(Boolean);ti='JB '+(m?m[1]+'번':id)+(ys.length?' ('+ys.join('·')+')':'');}
-   else if(kind==='tbl'){const t_=b.querySelector('.tbt');ti='비교표 '+(t_?t_.textContent.trim():'');}
-   else if(kind==='pred'){const q_=b.querySelector('.pq');ti='예상 '+(q_?q_.textContent.trim().slice(0,40):'');}
-   SIDX.push({s,d,t,aid:b.dataset.aid,label,ti,txt:sText(c)});});};
-  p.lect.forEach(L=>add(L.k,'learn',L.head+L.learn,'learn',sname(p,L.k)));add('_jb','',cardsHTML(p,p.order),'jb','');add('_tbl','',p.tables.map(x=>x.html).join(''),'tbl','');add('_pred','',p.preds.map(x=>x.html).join(''),'pred','');}}
-let SQ={q:'',s:'',from:null};
+/* ux2 트랙A B09 — 색인은 boot 뒤 쉬는 틈에(requestIdleCallback, 없으면 setTimeout 50) 과목 하나씩·작은 조각으로(지금 과목 먼저) — 첫 입력이 긴 작업에 막히지 않게.
+   끝나기 전에 검색하면 만든 것까지 보여 주고 '색인 준비 중 4/6' · 과목 하나가 끝날 때마다 결과를 다시 채움 · 파싱은 화면 밖 문서(그림을 불러오지 않음) */
+const SIX={q:[],done:{},queued:{},run:false};
+function sxOne(s,d,t,kind,label,b){const c=b.cloneNode(true);let ti='';
+ if(kind==='learn'){const bd=b.querySelector('.thead .badge'),en=b.querySelector('.thead .en');ti=bd&&en?'카드 '+bd.textContent.trim()+' '+en.textContent.trim():(b.classList.contains('frame')?'이 강의의 틀':'');}
+ else if(kind==='jb'){const id=b.dataset.id||'',m=/^Q0*(\d+)$/.exec(id),ys=(b.dataset.yrs||'').split(' ').filter(Boolean);ti='JB '+(m?m[1]+'번':id)+(ys.length?' ('+ys.join('·')+')':'');}
+ else if(kind==='tbl'){const t_=b.querySelector('.tbt');ti='비교표 '+(t_?t_.textContent.trim():'');}
+ else if(kind==='pred'){const q_=b.querySelector('.pq');ti='예상 '+(q_?q_.textContent.trim().slice(0,40):'');}
+ const txt=sText(c);SIDX.push({s,d,t,aid:b.dataset.aid,label,ti,kind,txt,lo:txt.toLowerCase()});}
+function sxUnits(s){const p=PACKS[s],D=document.implementation.createHTMLDocument(''),U=[];
+ const unit=(d,t,kind,label,html)=>U.push(()=>{const w=D.createElement('div');w.innerHTML=html();const B=[...w.querySelectorAll('[data-aid]')].filter(b=>!/~h$/.test(b.dataset.aid)),out=[];for(let i=0;i<B.length;i+=6){const sl=B.slice(i,i+6);out.push(()=>sl.forEach(b=>sxOne(s,d,t,kind,label,b)));}return out;});
+ p.lect.forEach(L=>unit(L.k,'learn','learn',sname(p,L.k),()=>L.head+L.learn));
+ for(let i=0;i<p.order.length;i+=30){const ids=p.order.slice(i,i+30);unit('_jb','','jb','',()=>cardsHTML(p,ids));}
+ for(let i=0;i<p.tables.length;i+=8){const T_=p.tables.slice(i,i+8);unit('_tbl','','tbl','',()=>T_.map(x=>x.html).join(''));}
+ for(let i=0;i<p.preds.length;i+=20){const P_=p.preds.slice(i,i+20);unit('_pred','','pred','',()=>P_.map(x=>x.html).join(''));}
+ return U;}
+function sxPump(dl){SIX.run=false;const t0=performance.now(),more=()=>dl&&!dl.didTimeout&&dl.timeRemaining?dl.timeRemaining()>4:performance.now()-t0<12;let n=0;
+ while(SIX.q.length&&(n===0||more())){const f=SIX.q.shift();let r=null;try{r=f();}catch(e){}if(Array.isArray(r)&&r.length)SIX.q.unshift(...r);n++;}if(SIX.q.length)sxSched();}
+function sxSched(){if(SIX.run)return;SIX.run=true;if(window.requestIdleCallback)requestIdleCallback(sxPump,{timeout:700});else setTimeout(()=>sxPump(null),50);}
+function sxQueue(s,front){if(SIX.queued[s]||!PACKS[s])return;SIX.queued[s]=1;const U=sxUnits(s);U.push(()=>{SIX.done[s]=1;sxDone();});if(front)SIX.q.unshift(...U);else SIX.q.push(...U);sxSched();}
+function sxDone(){if(VIEW!=='search'||!SQ.q)return;clearTimeout(sxDone.t);sxDone.t=setTimeout(()=>{if(VIEW==='search')search(SQ.q,{push:false,s:SQ.s,k:SQ.k,y:scrollY});},30);}
+function sxProg(){const all=SUBJECTS.filter(([id])=>PACKS[id]||plPending(id)).length,dn=Object.keys(SIX.done).length;return {all,dn,ready:dn>=all};}
+function buildSearch(){if(SIDX)return;SIDX=[];const f=CUR.s||(SQ.from&&SQ.from.s)||'';if(f)sxQueue(f);SUBJECTS.forEach(([id])=>sxQueue(id));}
+let SQ={q:'',s:'',from:null,k:''};
 function searchFrom(){if(VIEW!=='doc'||!CUR.s)return VIEW==='home'?{home:1,y:Math.round(scrollY)}:null;const P=probePos();return {s:CUR.s,d:CUR.d,t:CUR.t,pos:P?{aid:P.aid,off:P.off}:null,y:Math.round(scrollY)};}
-function search(q,o){o=o||{};q=String(q||'').trim();const ql=q.toLowerCase();if(ql.length<2)return;if(!SIDX)buildSearch();const only=(o.s&&PACKS[o.s])?o.s:'';
+function search(q,o){o=o||{};q=String(q||'').trim();const ql=q.toLowerCase();if(ql.length<2)return;if(!SIDX)buildSearch();const only=(o.s&&PACKS[o.s])?o.s:'',kk=SKIND[o.k]?o.k:'';
  const VIEW_WAS_SEARCH=VIEW==='search',from=VIEW==='search'?SQ.from:(o.from!==undefined?o.from:searchFrom());
  leaveView();const push=o.push!==false&&VIEW!=='search'&&VIEW!=='none';if(push)stampHist();
  const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const by={};let tot=0;
- for(const r of SIDX){if(only&&r.s!==only)continue;const i=r.txt.toLowerCase().indexOf(ql);if(i<0)continue;(by[r.s]=by[r.s]||[]).push([r,i]);tot++;}
+ const kc={learn:0,jb:0,tbl:0,pred:0};let all=0;for(const r of SIDX){if(only&&r.s!==only)continue;const i=r.lo.indexOf(ql);if(i<0)continue;all++;kc[r.kind]=(kc[r.kind]||0)+1;if(kk&&r.kind!==kk)continue;(by[r.s]=by[r.s]||[]).push([r,i]);tot++;}
  const first=(from&&from.s)||CUR.s||'';const order=Object.keys(by).sort((a,b)=>(b===first)-(a===first)||SUBJECTS.findIndex(x=>x[0]===a)-SUBJECTS.findIndex(x=>x[0]===b));
  const sur=(t,k)=>k>0&&k<t.length&&/[\uDC00-\uDFFF]/.test(t[k])?k-1:k;const snip=(txt,i)=>{const a=sur(txt,Math.max(0,i-50)),b=sur(txt,Math.min(txt.length,i+ql.length+80));return (a?'…':'')+E(txt.slice(a,i))+'<mark>'+E(txt.slice(i,i+ql.length))+'</mark>'+E(txt.slice(i+ql.length,b))+(b<txt.length?'…':'');};
- let h=`<div class="shead"><h2>검색: ${E(q)}${only?' <span class="small">— '+PACKS[only].title+'에서</span>':''}</h2><button class="btn" id="sclose" title="검색 전 화면으로 (Esc)">✕ 닫기</button></div><div class="lead">${tot}건 — 누르면 그 자리로 이동${order.length>1?' · 지금 과목 먼저':''}</div>`;
+ let h=`<div class="shead"><h2>검색: ${E(q)}${only?' <span class="small">— '+PACKS[only].title+'에서</span>':''}</h2><button class="btn" id="sclose" title="검색 전 화면으로 (Esc)">✕ 닫기</button></div><div class="skinds noann">${['',...Object.keys(SKIND)].map(k=>`<button type="button" class="hsb${k===kk?' on':''}" data-sk="${k}">${k?SKIND[k]:'전체'} ${k?kc[k]:all}</button>`).join('')}${(()=>{const P=sxProg();return P.ready?'':`<span class="chip sxw" title="검색 색인을 만드는 중 — 끝나는 대로 결과를 채워요">색인 준비 중 ${P.dn}/${P.all}</span>`;})()}${plChip()}</div><div class="lead">${tot}건 — 누르면 그 자리로 이동${order.length>1?' · 지금 과목 먼저':''}</div>`;
  order.forEach(s=>{const P=PACKS[s],L=by[s];h+=`<div class="sgrp"><div class="sgt"><i class="sjdot" style="background:${P.color}"></i>${E(P.title)} <span class="small">${L.length}건</span></div>`+L.map(([r,i],n)=>{const where=r.d==='_jb'?'':r.d==='_tbl'||r.d==='_pred'?'':E(r.label)+' · ';
-   return `<button class="res sres${n>=20?' smore':''}" data-s="${r.s}" data-d="${E(r.d)}" data-t="${E(r.t)}" data-aid="${E(r.aid)}"><span class="stl"><i class="sjdot" style="background:${P.color}"></i><b>${s} · ${where}${E(r.ti||'')}</b></span><span class="ssn">${snip(r.txt,i)}</span></button>`;}).join('')+(L.length>20?`<button class="btn sm" data-smore="1">더 보기 (${L.length-20})</button>`:'')+'</div>';});
+   return `<button class="res sres${n>=20?' smore':''}" data-s="${r.s}" data-d="${E(r.d)}" data-t="${E(r.t)}" data-aid="${E(r.aid)}"><span class="stl"><i class="sjdot" style="background:${P.color}"></i><b>${s} · ${where}${E(r.ti||'')}</b></span><span class="ssn">${snip(r.txt,i)}</span>${r.kind==='jb'?'<span class="sans" data-sans="1" role="button" title="이 문제로 가서 답을 펼침">답 바로 보기 ▸</span>':''}</button>`;}).join('')+(L.length>20?`<button class="btn sm" data-smore="1">더 보기 (${L.length-20})</button>`:'')+'</div>';});
  if(!tot)h+='<div class="panel">찾는 글자가 없어요.</div>';
- const pushed=push||(VIEW_WAS_SEARCH&&SQ.pushed);VIEW='search';SQ={q,s:only,from,pushed};document.title='검색: '+q+' — JBL 허브';RET=null;retPill();if($('#gsearch').value.trim()!==q)$('#gsearch').value=q;
+ const pushed=push||(VIEW_WAS_SEARCH&&SQ.pushed);VIEW='search';SQ={q,s:only,from,pushed,k:kk};document.title='검색: '+q+' — JBL 허브';RET=null;retPill();if($('#gsearch').value.trim()!==q)$('#gsearch').value=q;
  $('#subj').hidden=true;document.body.classList.add('at-home');$('#home').hidden=false;$('#home').innerHTML=h;measure();
- histSet(only?{q,sj:only}:{q},'#/?q='+encodeURIComponent(q)+(only?'&s='+only:''),push);window.scrollTo(0,o.y||0);}
+ histSet(Object.assign({q},only?{sj:only}:{},kk?{k:kk}:{}),'#/?q='+encodeURIComponent(q)+(only?'&s='+only:'')+(kk?'&k='+kk:''),push);window.scrollTo(0,o.y||0);}
+/* B09 검색 결과 종류 칩 [전체][정리본][JB][표][예상] — 고른 것은 해시 &k=로 남김(새로고침·뒤로가기에도) · JB 결과의 '답 바로 보기' */
+const SKIND={learn:'정리본',jb:'JB',tbl:'표',pred:'예상'};
+$('#home').addEventListener('click',e=>{if(VIEW!=='search')return;const k=e.target.closest('[data-sk]');if(k){e.stopPropagation();search(SQ.q,{push:false,s:SQ.s,k:k.dataset.sk});return;}
+ const a=e.target.closest('[data-sans]');if(a){e.stopPropagation();e.preventDefault();const r=a.closest('.res');if(r)openDoc(r.dataset.s,r.dataset.d,r.dataset.t||undefined,r.dataset.aid||undefined,{open:true});}},true);
 /* 검색 닫기 — 검색에 들어오며 쌓은 기록이면 뒤로(그 화면의 위치까지), 아니면 기억해 둔 화면을 직접 엶 */
 function closeSearch(){if(VIEW!=='search')return;const f=SQ.from;$('#gsearch').value='';$('#gsearch').blur();
  if(history.state&&history.state.q!=null&&f&&history.length>1&&SQ.pushed){history.back();return;}
@@ -1460,7 +1712,7 @@ function openRestore(){const p=$('#rpop');if(p.classList.contains('on')){p.class
  const tm=at=>new Date(at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
  p.innerHTML=`<div class="bt">복원</div><div class="small">백업 파일(.json)에서 가져오기</div><div class="row"><button class="btn pri" id="rmerge">합치기 (권장)</button><button class="btn" id="rover">덮어쓰기</button></div><div class="small">합치기 = 지금 표시·채점·메모는 그대로 두고 백업의 것을 더함 · 덮어쓰기 = 백업 상태로 교체</div>
  ${pre.length?`<div class="small" style="margin-top:10px">원고 갱신·표시 이관 직전 상태 <span class="small">(따로 보관 — 주기 백업이 밀어내지 않음)</span></div><div class="row">${pre.map(([i,at,why])=>`<button class="btn" data-snap="${i}">${tm(at)} · ${why}</button><button class="btn sm" data-snapdl="${i}" title="이 시점을 백업 파일로 받기">⬇ 파일</button>`).join('')}</div>`:''}
- <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(바뀌었을 때만 5분마다, 최근 5개 — 이 브라우저 안)</span></div><div class="row">${snaps.map(([i,at,why])=>`<button class="btn" data-snap="${i}"${why?` title="${why}"`:''}>${tm(at)}${why?' · '+why:''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div><button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;p.classList.add('on');
+ <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(바뀌었을 때만 5분마다, 최근 5개 — 이 브라우저 안)</span></div><div class="row">${snaps.map(([i,at,why])=>`<button class="btn" data-snap="${i}"${why?` title="${why}"`:''}>${tm(at)}${why?' · '+why:''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div>${toastLog()}<button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;p.classList.add('on');
  $('#rmerge').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#rover').onclick=()=>{$('#rfile').dataset.how='over';$('#rfile').click();};$('#rclose').onclick=()=>p.classList.remove('on');
  $$('[data-snapdl]',p).forEach(b=>b.onclick=()=>{try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+b.dataset.snapdl));dl('JBL허브_백업_'+(j.why||'자동').replace(/\s+/g,'')+'_'+day(new Date(j.at))+'.json',{app:'jblhub',v:2,at:new Date(j.at).toISOString(),data:j.data});}catch(e){toast('백업을 읽지 못했어요');}});
  $$('[data-snap]',p).forEach(b=>b.onclick=()=>{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+b.dataset.snap));if(!confirm(new Date(j.at).toLocaleString('ko-KR')+' 상태로 되돌릴까요? (지금 상태는 먼저 자동 백업해 둡니다)'))return;autoBak(true);for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)localStorage.removeItem(k);}for(const k in j.data)localStorage.setItem(k,j.data[k]);location.reload();});}
@@ -1557,14 +1809,43 @@ document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e
 
 /* ---------- 시작: 과목 팩 불러오기 ---------- */
 /* 새로 열기·새로고침: 해시대로(같은 항목의 history.state가 있으면 그 스크롤까지) */
-function boot(){if(LS.get('focus',false))document.body.classList.add('focus');if(LS.get('kitoff',false))document.body.classList.add('kit-off');fsApply();const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;}
+function boot(){if(LS.get('focus',false))document.body.classList.add('focus');if(LS.get('kitoff',false))document.body.classList.add('kit-off');fsApply();const st=parseHash(),hs=history.state;if(hs&&((st.s&&hs.s===st.s&&hs.d===st.d&&hs.t===st.t)||(st.q!=null&&hs.q===st.q)||(st.home&&hs.home)||(st.time&&hs.time))){st.y=hs.y;st.pos=hs.pos;}route(st);LASTH=location.hash;buildSearch();}   /* 검색 색인은 쉬는 틈에 조각으로(B09) */
 /* 팩 → (옛 표시가 남은 과목만) 옛 기준선 → 시작. 팩 판이 허브 판과 다르면(배포 중 캐시 섞임) 새로고침 안내 + 표시·채점 잠금 */
-function staleCheck(){if(HUB_BUILD==='dev')return;const bad=Object.keys(PACKS).filter(id=>PACKS[id].build&&PACKS[id].build!==HUB_BUILD);if(!bad.length&&!Object.keys(PACKS).some(id=>!PACKS[id].build))return;
+function staleCheck(){if(HUB_BUILD==='dev'||STALE)return;const bad=Object.keys(PACKS).filter(id=>PACKS[id].build&&PACKS[id].build!==HUB_BUILD);if(!bad.length&&!Object.keys(PACKS).some(id=>!PACKS[id].build))return;
  STALE=true;document.body.classList.add('stale');const b=document.createElement('div');b.id='stalebar';b.className='noann';b.innerHTML='새 버전이 있어요 — 새로고침해야 형광펜·채점이 저장돼요 <button class="btn pri" id="stalego">새로고침</button>';document.body.prepend(b);
  $('#stalego').onclick=()=>{const u=location.pathname+'?v='+HUB_BUILD+'.'+Date.now().toString(36)+location.hash;location.replace(u);};}
-function loadLX(){let n=0;const go=()=>{staleCheck();boot();};Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();}
-let pend=0;SUBJECTS.forEach(([id])=>{if(PACKS[id]||(Array.isArray(READY)&&READY.indexOf(id)<0))return;pend++;const s=document.createElement('script');s.src='packs/'+id+'.js'+(PV&&PV[id]?'?v='+PV[id]:'');s.onload=s.onerror=()=>{if(--pend===0)loadLX();};document.head.appendChild(s);});if(!pend)loadLX();
+/* ux2 트랙A B08 — 팩 불러오기: 해시가 과목을 가리키면 그 팩 먼저 → 곧바로 route, 나머지는 쉬는 틈에(requestIdleCallback, 없으면 setTimeout 50) 하나씩 ·
+   아니면 한꺼번에 받고 먼저 온 과목부터 허브 홈·검색을 채움('불러오는 중' 칩) · 부팅 전 #home = 뼈대 + '과목 자료 불러오는 중 3/6 · OMS1 ✓ CONS …' 막대 ·
+   팩 onerror → '⚠ PHARM 불러오기 실패 [다시]'([다시] = 스크립트 태그를 다시 붙임) · 옛 표시 기준선(lx)이 필요한 과목은 lx까지 받은 뒤 도착 · READY·?v= 판 지문은 그대로 */
+const PL={all:[],ok:{},bad:{},wait:{},seq:null,booted:false,lost:null};
+function plPending(id){return !!PL.wait[id];}
+function plStat(){const n=PL.all.filter(id=>PL.ok[id]).length;return {n,all:PL.all.length,pend:PL.all.filter(id=>PL.wait[id]||(!PL.ok[id]&&!PL.bad[id])).length};}
+function plChip(){const S=plStat();return S.pend?`<span class="chip plc noann" title="남은 과목 자료를 받는 중 — 도착하는 대로 채워요">불러오는 중 ${S.n}/${S.all}</span>`:'';}
+function plLine(){const S=plStat();return `<div class="plline"><b>과목 자료 불러오는 중 ${S.n}/${S.all}</b> · ${PL.all.map(id=>`<span class="${PL.ok[id]?'ok':PL.bad[id]?'bad':''}">${id} ${PL.ok[id]?'✓':PL.bad[id]?'⚠':'…'}</span>`).join(' ')}</div><div class="pbar plbar"><i style="width:${S.all?Math.round(S.n/S.all*100):0}%"></i></div>`;}
+function plFails(){return PL.all.filter(id=>PL.bad[id]).map(id=>`<div class="plbad">⚠ ${EH(sjName(id))}(${id}) 불러오기 실패 <button type="button" class="btn sm" data-plretry="${id}">다시</button></div>`).join('');}
+function plRender(){if(!PL.booted){const h=$('#home');h.hidden=false;h.innerHTML=`<h2>JBL 허브</h2><div class="panel plbox noann" id="plbox">${plLine()}${plFails()}</div><div class="sgrid plskel">${PL.all.map(id=>`<div class="scard off sk"><div class="en serif">${EH(sjName(id))}</div><div class="ko">${PL.ok[id]?'✓ 준비됨':PL.bad[id]?'⚠ 불러오기 실패':'불러오는 중…'}</div><i class="skl"></i><i class="skl s2"></i></div>`).join('')}</div>`;return;}
+ const b=$('#packbar'),f=plFails();b.innerHTML=f;b.hidden=!f;}
+$('#packbar').addEventListener('click',e=>{const t=e.target.closest('[data-plretry]');if(t)plRetry(t.dataset.plretry);});
+function plRetry(id){if(PL.ok[id])return;plLoad(id,true);}
+function plLoad(id,retry){PL.wait[id]=1;delete PL.bad[id];plRender();const old=document.querySelector('script[data-pack="'+id+'"]');if(old)old.remove();const s=document.createElement('script');s.dataset.pack=id;
+ s.src='packs/'+id+'.js'+(PV&&PV[id]?'?v='+PV[id]:'')+(retry?((PV&&PV[id])?'&':'?')+'r='+Date.now().toString(36):'');s.onload=()=>{if(!PACKS[id]){plEnd(id,false);return;}plLX(id,()=>plEnd(id,true));};s.onerror=()=>plEnd(id,false);document.head.appendChild(s);}
+function plLX(id,cb){const p=PACKS[id];if(!p||!p.lx||LXT[id]||!Kit.needsLX(id))return cb();const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>cb();document.head.appendChild(s);}
+function plEnd(id,ok){delete PL.wait[id];if(ok){PL.ok[id]=1;delete PL.bad[id];staleCheck();}else PL.bad[id]=1;
+ if(!PL.booted&&(PL.first?id===PL.first:(ok||!Object.keys(PL.wait).length))){PL.booted=true;const st=parseHash();if(st.s&&!PACKS[st.s])PL.lost=st;boot();plRender();}
+ else if(PL.booted&&ok)plArrive(id);else plRender();
+ if(PL.seq&&(id===PL.first||id===PL.cur)){PL.cur=PL.seq.shift();if(PL.cur){const nx=PL.cur,go=()=>plLoad(nx);if(window.requestIdleCallback)requestIdleCallback(go,{timeout:400});else setTimeout(go,50);}}}
+function plArrive(id){plRender();if(SIDX)sxQueue(id);
+ if(PL.lost&&PL.lost.s===id&&VIEW==='home'){const st=PL.lost;PL.lost=null;route(st);return;}
+ if(VIEW==='home')home({push:false,y:scrollY});else if(VIEW==='time')tvRender();else if(VIEW==='search')sxDone();
+ else if(VIEW==='doc'){const sel=$('#sjsel');if(sel)sel.innerHTML=SUBJECTS.filter(([x])=>PACKS[x]).map(([x,ko])=>`<option value="${x}"${x===CUR.s?' selected':''}>${ko}</option>`).join('');}}
+function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Array.isArray(READY)&&READY.indexOf(id)<0));PL.all=SUBJECTS.map(x=>x[0]).filter(id=>PACKS[id]||need.indexOf(id)>=0);Object.keys(PACKS).forEach(id=>PL.ok[id]=1);
+ if(!need.length){PL.booted=true;staleCheck();boot();return;}
+ const st=parseHash(),first=st.s&&need.indexOf(st.s)>=0?st.s:null;plRender();
+ if(first){PL.first=first;PL.seq=need.filter(id=>id!==first);plLoad(first);}else need.forEach(id=>plLoad(id));}
+/* 이미 든 팩(단일 파일판)의 옛 기준선 → 시작 */
+(function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
+Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 })();
 </script>
 </body></html>

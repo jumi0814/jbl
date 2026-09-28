@@ -20,6 +20,8 @@ async def a02(pg, tag):
     ok(a1 and not await pg.evaluate(BODY, 'mode-b'), '옛 A 키도 빈칸 모드 · Esc 끄기')
     c0 = await pg.evaluate("[__h.Kit.color(),document.querySelector('#k-swc .swcur').style.background,document.querySelector('#k-swl .sw.sel').dataset.c]")
     await pg.keyboard.press('Shift+H'); await pg.wait_for_timeout(100)
+    try: await pg.wait_for_function("t=>(document.querySelector('#toast').textContent||'').includes(t)", arg='초록', timeout=4000)   # B11 알림 대기열 — 앞 알림 뒤 차례로
+    except Exception: pass
     c1 = await pg.evaluate("[__h.Kit.color(),document.querySelector('#k-swc .swcur').style.background,document.querySelector('#k-swl .sw.sel').dataset.c]")
     toast = await pg.inner_text('#toast')
     ok(c0[0] == 'y' and c1[0] == 'g' and c1[1] != c0[1] and c1[2] == 'g' and '초록' in toast, f'Shift+H → 색 칩 {c0} → {c1} · 토스트 {toast!r}')
@@ -59,6 +61,8 @@ async def a02(pg, tag):
     ok(e1 != 'rgba(0, 0, 0, 0)' and e2 == 'rgba(0, 0, 0, 0)', f'E → 전부 열기·가리기 ({e1},{e2})')
     # 한 장씩: S = ★, B = 빈칸 모드(★ 그대로)
     await open_(pg, '#/OMS1/_jb/_jb'); await pg.evaluate("localStorage.removeItem('jblhub.v1.keyNotice')"); await pg.click('#fone'); await pg.wait_for_timeout(300)
+    try: await pg.wait_for_function("t=>(document.querySelector('#toast').textContent||'').includes(t)", arg='★는 이제 S', timeout=4000)   # B11 알림 대기열 — 앞 알림 뒤 차례로
+    except Exception: pass
     t = await pg.inner_text('#toast'); ok('★는 이제 S' in t, f'처음 한 번 안내 토스트 {t!r}')
     cid = await pg.evaluate("document.querySelector('#cards .qc.cur').dataset.id")
     BM = f"!!(JSON.parse(localStorage.getItem('jblhub.v1.mk.OMS1')||'{{}}').bm||{{}})['{cid}']"
@@ -210,6 +214,8 @@ async def a08(pg, tag, vp):
     p1 = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#t-DD1-3 .tbody li,#t-DD1-3 .tbody div.li')].filter(e=>e.offsetParent&&!e.closest('.noann')&&/[A-Za-z가-힣]{4}/.test(e.textContent));const e=L[L.length-1];e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return [r.left+30,r.top+r.height/2]})()""")
     p2 = await pg.evaluate("""(()=>{const e=document.querySelector('#t-DD1-4 .thead');const r=e.getBoundingClientRect();return [r.left+140,r.top+14]})()""")
     await pg.keyboard.press('h'); await pg.mouse.move(p1[0], p1[1]); await pg.mouse.down(); await pg.mouse.move(p2[0], p2[1], steps=8); await pg.mouse.up(); await pg.wait_for_timeout(150)
+    try: await pg.wait_for_function("t=>(document.querySelector('#toast').textContent||'').includes(t)", arg='카드 경계까지', timeout=4000)   # B11 알림 대기열 — 앞 알림 뒤 차례로
+    except Exception: pass
     ann = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.ann.OMS1')") or '{}'); a3 = await pg.evaluate("document.querySelector('#t-DD1-3').dataset.aid"); a4 = await pg.evaluate("document.querySelector('#t-DD1-4').dataset.aid")
     t = await pg.inner_text('#toast')
     ok(len(ann.get(a3, [])) == 1 and not ann.get(a4) and not ann.get(a4 + '~h') and '카드 경계까지' in t, f'카드 3 → 카드 4로 끌기 = 카드 3 끝까지 표시 1 · 토스트 {t!r} ({[(k[-10:], len(v)) for k, v in ann.items()]})')
