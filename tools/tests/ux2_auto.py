@@ -89,7 +89,7 @@ async def main_flow(b):
     seed = await pg.evaluate("""(()=>{const A={};let n=0;let hw=null;document.querySelectorAll('#stage .tc').forEach(c=>{const ks=[...c.querySelectorAll('.k')].filter(k=>k.closest('[data-aid]')===c&&!k.closest('.noann,button'));if(ks.length<3)return;const cnt={};A[c.dataset.aid]=ks.map(k=>{const x=k.textContent.trim();cnt[x]=(cnt[x]||0)+1;n++;return {t:'b',x,i:cnt[x]-1};});});
       const c0=[...document.querySelectorAll('#stage .tc')].find(c=>A[c.dataset.aid]);const T=__h.Kit.textOf(c0);hw=T.split(/[^A-Za-z]+/).filter(w=>w.length>=5&&T.split(w).length===2)[0];A[c0.dataset.aid].push({t:'h',x:hw,i:0,c:'y'});
       localStorage.setItem('jblhub.v1.ann.OMS1',JSON.stringify(A));return [n,c0.dataset.aid,hw];})()""")
-    await openL(pg); await pg.click('#rstr'); await pg.wait_for_selector('#rpop #rclean'); await pg.evaluate("document.querySelector('#rclean').open=true"); await pg.wait_for_selector('#oldauto [data-clean]', timeout=5000)
+    await openL(pg); await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_selector('#rpop #rclean'); await pg.evaluate("document.querySelector('#rclean').open=true"); await pg.wait_for_selector('#oldauto [data-clean]', timeout=5000)
     lab = await pg.inner_text('#oldauto'); ok(f'{seed[0]}개' in lab and '규칙 1개' in lab, f'공간 정리 미리 보기 {lab!r} (심은 {seed[0]}개)')
     await pg.screenshot(path=J.TMP + '/ux2i_c03_clean.png')
     await pg.click('#oldauto [data-clean]'); await pg.wait_for_timeout(500)

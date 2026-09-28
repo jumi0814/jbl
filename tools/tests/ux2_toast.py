@@ -47,7 +47,7 @@ async def run(b, vp, touch, tag):
     ok(tt >= pb, f'팝업이 열려 있으면 팝업 아래 (팝업 {pb:.0f} · 토스트 {tt:.0f})')
     await pg.keyboard.press('Escape')
     # 최근 알림
-    await pg.click('#rstr'); await pg.wait_for_timeout(200)
+    await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_timeout(200)
     lg = await pg.evaluate("(()=>{const d=document.querySelector('#rpop .rlog');return d?d.textContent:''})()")
     ok('최근 알림' in lg and '저장 실패 예시' in lg and '알림 A' in lg, f"복원 창 '최근 알림' ({lg[:40]!r})")
     n = await pg.evaluate("JSON.parse(sessionStorage.getItem('jblhub.v1.toasts')).length"); ok(n <= 20, f'sessionStorage 최근 알림 {n}개 (≤20)')

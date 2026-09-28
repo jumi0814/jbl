@@ -92,7 +92,7 @@ async def part_mig(b):
     # V09: 이관 전 백업으로 되돌리기 → fcMerged 지워지고 다시 합침
     snap = await pg.evaluate("__h.bkList().then(L=>L.find(x=>x.cat==='upd').id)")
     pg.once('dialog', lambda d: asyncio.ensure_future(d.accept()))
-    await pg.evaluate("document.querySelector('#rstr').click()"); await pg.wait_for_timeout(400)
+    await pg.evaluate("document.querySelector('#bkup').click();document.querySelector('#rstr').click()"); await pg.wait_for_timeout(400)
     await pg.evaluate(f"document.querySelector('#rpop [data-snap=\"{snap}\"]').click()")
     await pg.wait_for_timeout(2500); await pg.wait_for_function('window.__h&&__h.PACKS.OMS1', timeout=20000); await pg.wait_for_timeout(800); await pg.evaluate('__h.migWait()')
     mk = await ls(pg, 'mk.OMS1')

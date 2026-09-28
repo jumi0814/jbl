@@ -25,7 +25,7 @@ async def run(b, vp, touch, tag, persisted):
     if persisted is not None: await ctx.add_init_script(f"(()=>{{const v={str(persisted).lower()};try{{Object.defineProperty(navigator,'storage',{{value:{{persisted:()=>Promise.resolve(v),persist:()=>Promise.resolve(v),estimate:()=>Promise.resolve({{usage:1e6,quota:1e9}})}},configurable:true}});}}catch(e){{}}}})()")
     pg = await ctx.new_page(); errs = []; pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
     await pg.goto(BASE + 'index.html#/'); await pg.wait_for_selector('.scard[data-s="OMS1"]'); await pg.wait_for_timeout(400)
-    await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore'); t = await pg.inner_text('#rpop .rstore')
+    await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore'); t = await pg.inner_text('#rpop .rstore')
     want = {True: '허용됨', False: '안 됨', None: ''}[persisted]
     ok('저장소 보호' in t and want in t, f"복원 창 {re.search(r'저장소 보호[^\n]*', t).group(0) if '저장소 보호' in t else t[-60:]!r}")
     await pg.screenshot(path=J.TMP + f'/ux2i_c11_restore_{tag}.png'); await pg.keyboard.press('Escape')

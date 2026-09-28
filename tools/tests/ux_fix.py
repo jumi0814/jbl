@@ -54,7 +54,7 @@ async def main():
         await pg.evaluate("localStorage.setItem('jblhub.v1.memo.ANAT._home',JSON.stringify('x'))"); await pg.evaluate("__h.autoBak(false)")
         L2 = await pg.evaluate("__h.bkList()")
         ok(len([x for x in L2 if x['cat'] == 'i']) == len(per) + 1, 'F3 바뀌면 새 주기 백업')
-        await pg.click('#rstr'); await pg.wait_for_timeout(200)
+        await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_timeout(200)
         ok(await pg.locator('#rpop [data-snapdl]').count() >= 1, 'F3 복원 창에 원고 갱신 전 시점 + 파일로 받기')
         await pg.keyboard.press('Escape')
         # ---- F6·V01·V03 (아이패드 세로·가로)

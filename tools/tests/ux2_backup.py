@@ -27,7 +27,7 @@ async def c02(b, vp, touch, tag, full):
     await pg.wait_for_function("__h.bkList().then(L=>L.length>=6)", timeout=8000)
     n_idb = await pg.evaluate("__h.bkList().then(L=>L.length)"); n_ls = await pg.evaluate("Object.keys(localStorage).filter(k=>k.indexOf('jblhub.v1.autobak')===0).length")
     ok(n_idb == 6 and n_ls == 0 and await pg.evaluate("__h.BK.ok"), f'옛 autobak 6개 → IDB {n_idb}개 · localStorage autobak {n_ls}개')
-    await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore')
+    await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore')
     ns = await pg.locator('#rpop [data-snap]').count(); ok(ns == 6, f'복원 창 목록 {ns}개 ({time.time() - t0:.0f}초 안)')
     st = await pg.inner_text('#rpop .rstore'); ok('저장 공간' in st and '백업' in st and 'MB' in st and '마지막 자동 백업' in st, f'저장 공간 줄 {st[:80]!r}')
     await pg.wait_for_timeout(300); await pg.screenshot(path=J.TMP + f'/ux2i_c02_restore_{tag}.png')
@@ -48,7 +48,7 @@ async def c02_noidb(b):
     r = await pg.evaluate("__h.autoBak(true,'파랑 색 키 이관')"); r2 = await pg.evaluate("(localStorage.setItem('jblhub.v1.memo.OMS1.DD1','\"a\"'),__h.autoBak(false))")
     ks = await pg.evaluate("Object.keys(localStorage).filter(k=>/autobak\\.p?\\d$/.test(k)).sort()")
     ok(r and r2 and 'jblhub.v1.autobak.p0' in ks and any(k.endswith('autobak.0') for k in ks) and not await pg.evaluate("__h.BK.ok"), f'localStorage 방식 유지 {ks}')
-    await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore'); ok(await pg.locator('#rpop [data-snap]').count() == 2, '복원 창 목록 2개(localStorage)')
+    await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore'); ok(await pg.locator('#rpop [data-snap]').count() == 2, '복원 창 목록 2개(localStorage)')
     ok(not errs, f'오류 0 ({errs[:2]})'); await ctx.close()
 async def c05(b):
     ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); pg = await ctx.new_page(); errs = []; dlg = []
@@ -62,7 +62,7 @@ async def c05(b):
     await pg.evaluate("([a,d])=>{const ns='jblhub.v1.';localStorage.setItem(ns+'ann.OMS1',JSON.stringify(a));localStorage.setItem(ns+'mk.OMS1',JSON.stringify({ok:{Q01:1},ng:{Q02:1,Q03:1},bm:{}}));localStorage.setItem(ns+'time',JSON.stringify({[d]:{OMS1:7200000}}));localStorage.setItem(ns+'pos.OMS1',JSON.stringify({'DD1/learn':{aid:'B',off:9}}));}", [A2, TODAY])
     # 쓰기 중 QuotaExceeded 주입 → 원래 값·새로고침 안 함
     await pg.evaluate("(()=>{window.__mark=1;const o=Storage.prototype.setItem;let n=0;window.__o=o;Storage.prototype.setItem=function(k,v){if(/\\.(ann|mk)\\./.test(k)&&++n===2){const e=new Error('quota');e.name='QuotaExceededError';throw e;}return o.call(this,k,v);};})()")
-    await pg.click('#rstr'); await pg.wait_for_selector('#rpop [data-snap]'); await pg.click('#rpop [data-snap]'); await pg.wait_for_timeout(1500)
+    await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_selector('#rpop [data-snap]'); await pg.click('#rpop [data-snap]'); await pg.wait_for_timeout(1500)
     ann = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.ann.OMS1')")); mk = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.mk.OMS1')"))
     ok(await pg.evaluate("window.__mark") == 1 and len(ann['OMS1:DD1:x']) == 3 and len(mk['ng']) == 2, '쓰기 중 QuotaExceeded → 원래 값 그대로·새로고침 안 함')
     ok(await pg.locator('#rsterr').count() == 1, '오류 띠')
@@ -70,8 +70,8 @@ async def c05(b):
     ok(any('바뀐 표시 2개·채점 2개' in m for m in dlg), f"확인창 '바뀐 표시 2개·채점 2개' {dlg[-1][:90] if dlg else ''!r}")
     await pg.evaluate("(()=>{Storage.prototype.setItem=window.__o;})()")
     # 되돌리기: 공부 기록만 · 시간은 큰 값
-    await pg.click('#rstr'); await pg.wait_for_timeout(100)
-    if not await pg.is_visible('#rpop'): await pg.click('#rstr')
+    await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_timeout(100)
+    if not await pg.is_visible('#rpop'): await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr')
     await pg.wait_for_selector('#rpop [data-snap]'); await pg.evaluate("document.querySelectorAll('#rpop [data-snap]')[document.querySelectorAll('#rpop [data-snap]').length-1].click()")
     await pg.wait_for_function("!window.__mark", timeout=8000); await pg.wait_for_function("window.__h", timeout=8000); await pg.wait_for_timeout(300)
     ann = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.ann.OMS1')")); tm = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.time')")); pos = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.pos.OMS1')"))

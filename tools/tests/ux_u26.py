@@ -37,7 +37,7 @@ async def main():
         s0 = await pg.evaluate("document.querySelector('#side .dbtn.on small').textContent")
         await pg.evaluate("document.querySelector('#t-DD1-3 .dn').click()"); await pg.wait_for_timeout(900)
         s1 = await pg.evaluate("document.querySelector('#side .dbtn.on small').textContent")
-        ok(s0 != s1 and '읽음 2/' in s1, f'✓ → 사이드바 즉시 ({s0} → {s1})')
+        ok(s0 != s1 and s1.startswith('2/'), f'✓ → 메뉴 강의 줄 읽음 즉시 ({s0} → {s1})')
         r = await pg.evaluate("(()=>{const c=document.querySelector('#t-DD1-3'),n=document.querySelector('#t-DD1-4');return [c.classList.contains('open'),Math.round(n.getBoundingClientRect().top-document.querySelector('#dtabs').getBoundingClientRect().bottom)]})()")
         ok(not r[0] and 0 <= r[1] <= 30, f'자동 접기·다음 카드가 탭 아래 {r}')
         await pg.screenshot(path=J.TMP + '/ux_u26_done_820.png')

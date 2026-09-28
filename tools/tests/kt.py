@@ -72,7 +72,7 @@ async def main():
         await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_marks\"]').click()"); await pg.wait_for_timeout(600); ok(await pg.locator('.mk-row').count()>=1, f"11 모아보기 줄 {await pg.locator('.mk-row').count()}")
         await pg.locator('.mk-row .res >> nth=0').click(); await pg.wait_for_timeout(800); ok('_marks' not in await pg.evaluate('location.hash'), f"11b 칩 → 그 자리 {await pg.evaluate('location.hash')}")
         # 12) 복원 팝업·도움말
-        await pg.click('#rstr'); await pg.wait_for_timeout(150); ok(await pg.locator('#rpop.on').count()==1, f"12 복원 창 (자동 백업 {await pg.locator('#rpop [data-snap]').count()})")
+        await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_timeout(150); ok(await pg.locator('#rpop.on').count()==1, f"12 복원 창 (자동 백업 {await pg.locator('#rpop [data-snap]').count()})")
         await pg.keyboard.press('Escape'); await pg.keyboard.press('?'); await pg.wait_for_timeout(100); ok(await pg.locator('#help.on').count()==1, '12b 도움말(?)'); await pg.keyboard.press('Escape')
         # 13) 홈 이어서 보기
         await pg.click('#gohome'); await pg.wait_for_timeout(300); ok(await pg.locator('.resume .res').count()>=1, '13 홈 이어서 보기')

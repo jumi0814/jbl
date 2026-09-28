@@ -87,11 +87,11 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("document.querySelector('#gohome').tagName") == 'BUTTON', '#gohome = BUTTON')
     if vp['width'] <= 860:
         await pg.click('#navbtn'); await pg.wait_for_timeout(300)
-        hh = pg.locator('#side .hubhome'); ok(await hh.is_visible(), "서랍 맨 위 '🏠 허브 홈'")
+        hh = pg.locator('#side .nvr1[data-nv="home"]'); ok(await hh.is_visible(), "서랍 ① '🏠 오늘' (ux3 G2 — 옛 '🏠 허브 홈' 줄 대신)")
         await pg.screenshot(path=J.TMP + f'/ux2i_b10_drawer_{tag}.png')
         await hh.click(); await pg.wait_for_timeout(500)
     else:
-        ok(not await pg.locator('#side .hubhome').is_visible(), '넓은 화면 사이드바엔 허브 홈 줄 숨김(위 🏠 JBL 허브)')
+        ok(await pg.locator('#side .nvr1[data-nv="home"]').is_visible(), "넓은 화면 메뉴 ① '🏠 오늘' 늘 보임")
         await pg.click('#gohome'); await pg.wait_for_timeout(500)
     ok(await pg.evaluate("!!document.querySelector('#home .sgrid')&&!document.querySelector('#home').hidden"), '→ 허브 홈')
     await pg.evaluate("localStorage.setItem('jblhub.v1.mk.OMS1',JSON.stringify({ok:{},ng:{},bm:{}}))")
