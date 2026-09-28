@@ -31,6 +31,7 @@ async def run(b, vp, touch, tag):
     ok(r['b0'] != 'rgb(230, 244, 234)' and r['b1'] == 'rgb(230, 244, 234)' and '정답 · 틀린 설명' in r['p1'] and r['dv'] == 'wrong', f"F01 RX01 열기 전 강조 없음 {r['b0']} → 연 뒤 #E6F4EA·'✗ 틀린 보기' {r['b1']} {r['p1']}")
     ok(r['pick'].startswith('정답 · 틀린 설명') and '환자에게' in r['pick'], f"F01 .ans0 아래 정답 보기 줄 {r['pick'][:40]!r}")
     if mac:
+        await pg.wait_for_function("__h.plStat().pend===0", timeout=30000)   # 주소 과목(PHARM) 먼저 · 나머지 팩은 쉬는 틈에 — 모두 온 뒤에 여섯 과목을 셈(경합 없앰)
         r = await pg.evaluate("""['OMS1','CONS','IMPL','ANAT','GERI','PHARM'].map(s=>{const p=__h.PACKS[s];const c=Object.values(p.cards).filter(h=>h.indexOf('class="ln pick noann"')>=0).length,t=(p.sumall.match(/<tr[^>]*data-id="[^"]+"(?:(?!<\\/tr>).)*?class="ln pick"/g)||[]).length;return [s,c,t]})""")
         ok(all(c >= t for s, c, t in r), f"F01 카드의 .ln.pick 문항 수 ≥ 한눈표 {r}")
         # ---------- F02 1단계 높이·F04 판 0 ----------
