@@ -1001,7 +1001,7 @@ table.cmp th,table.cmp td,table.mtx th,table.mtx td{padding:9px 12px;line-height
 table.sum th,table.sum td{line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 .msum td.mk{font-size:calc(13px*var(--fs));line-height:1.5}
 table.tw th,table.tw td{min-width:0}table.tw .xjb,table.tw .chip,table.tw .jbchip{white-space:normal;max-width:100%}   /* 열 폭을 정해 두므로 긴 연도 칩(기출 24·23·…)은 칸 안에서 줄바꿈 */
-.msum table.mtx tbody th .mych .chip{white-space:normal;max-width:100%;min-width:0;text-align:left}.msum table.mtx tbody th .link{max-width:100%}   /* 정리표 주제 칸 — 긴 연도 칩(기출 23·22·21·20 +6 (10회))·긴 영문 제목이 칸 밖(옆 열)으로 넘치지 않게 · 영문 낱말 폭은 colFit 하한(CF 주제 낱말) */
+.msum table.mtx tbody th .mych .chip{white-space:normal;max-width:100%;min-width:0;text-align:left}   /* 정리표 주제 칸 — 긴 연도 칩(기출 23·22·21·20 +6 (10회))이 칸 밖(옆 열)으로 넘치지 않게 · 긴 영문 낱말은 끊지 않고 colFit 하한(cfStats tok0)으로 열을 넓힘 */
 /* L4 좁은 폭에서 열이 모자라는 5열↑ 표 = 행 카드(.stcard — 칸마다 열 이름 data-h) · 전체정리표 밖(비교표)에도 */
 .tblwrap.stcard table,.tblwrap.stcard tbody,.tblwrap.stcard tr,.tblwrap.stcard td,.tblwrap.stcard th{display:block;width:auto!important;min-width:0!important}.tblwrap.stcard thead,.tblwrap.stcard colgroup{display:none}.tblwrap.stcard>.tscroll{overflow:visible}
 .tblwrap.stcard tbody tr{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;margin:0 0 10px;padding:6px 12px 8px;background:#fff}
@@ -3050,7 +3050,7 @@ function cfStats(t,mode){let S=CF.stats.get(t);if(S&&S.mode===mode)return S;cons
  S={mode,rows,tok0};CF.stats.set(t,S);return S;}
 function cfH(S,x,W){let H=0;for(const cells of S.rows){let rh=0;for(const c of cells){let w=0;for(let k=c.c0;k<c.c0+c.sp&&k<x.length;k++)w+=x[k];w=w/100*W-c.px;let h=c.py;for(const b of c.b){if(b.fh){h+=b.fh;continue;}const av=Math.max(24,w-b.ind);let L=Math.max(1,Math.ceil(b.tw*1.06/av));if(b.cl)L=Math.min(L,b.cl);h+=L*b.lh+b.ex;}if(h>rh)rh=h;}H+=rh;}return H;}
 function cfSolve(S,W,mode,fpx){const mins=CFMIN.map(e=>e*fpx/W*100);const px0=S.rows[0]&&S.rows[0][0]?S.rows[0][0].px:24;if(S.tok0)mins[0]=Math.min(CFMAX-2,Math.max(mins[0],(S.tok0+px0+1)/W*100));   /* 주제 열 ≥ 영문 제목 가장 긴 낱말 + 여백 */
- let x=CFDEF[mode].slice();const x0=x.slice();x=x.map((v,i)=>Math.max(v,mins[i]));let sm=x.reduce((a,b)=>a+b,0);if(sm>100.5){const j=x.indexOf(Math.max(...x));x[j]-=sm-100;if(x[j]<mins[j])return null;sm=100;}x[x.length-1]+=100-sm;if(x[x.length-1]<mins[x.length-1]){const j=x.indexOf(Math.max(...x.slice(0,-1)));x[j]-=mins[4]-x[4];x[4]=mins[4];}
+ let x=CFDEF[mode].slice();const x0=x.slice();x=x.map((v,i)=>Math.max(v,mins[i]));const sm=x.reduce((a,b)=>a+b,0);if(sm>100){const ex=sm-100,sl=x.map((v,i)=>v-mins[i]),ss=sl.reduce((a,b)=>a+b,0);if(ss<ex)return null;x=x.map((v,i)=>v-ex*sl[i]/ss);}else x[x.length-1]+=100-sm;   /* 하한을 올려 100%를 넘으면 넘친 몫을 다른 열의 여유(폭−하한)만큼 나눠 뺌 */
  const adj=x.some((v,i)=>Math.abs(v-x0[i])>0.05);   /* 기본값이 하한을 어기면(좁은 폭·긴 영문 낱말) 고친 출발점부터가 기준 */
  const h0=cfH(S,x,W),C=[];if(adj)C.push({x:x.slice(),h:h0,base:1});
  const climb=(x,steps)=>{let h=cfH(S,x,W);for(const st of steps){for(let it=0;it<40;it++){let best=null,bh=h;for(let i=0;i<5;i++)for(let j=0;j<5;j++){if(i===j)continue;const y=x.slice();y[i]-=st;y[j]+=st;if(y[i]<mins[i]||y[j]>CFMAX)continue;const hy=cfH(S,y,W);if(hy<bh-0.5){bh=hy;best=y;}}if(!best)break;x=best;h=bh;}}return {x,h};};
@@ -3058,16 +3058,17 @@ function cfSolve(S,W,mode,fpx){const mins=CFMIN.map(e=>e*fpx/W*100);const px0=S.
  let sd=7;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;const M=[];   /* 다른 출발점 6개(고정 씨앗 — 같은 표면 늘 같은 답): 탐욕 탐색이 기본값 근처 골짜기에 갇히지 않게 */
  for(let k=0;k<6;k++){let y=mins.map(m=>m+rnd()*18);const s=y.reduce((a,b)=>a+b,0);y=y.map(v=>v/s*100);if(y.some((v,i)=>v<mins[i]||v>CFMAX))continue;const r=climb(y,[4,2,1]);if(r.h<=h0*0.99)M.push(r);}
  M.sort((a,b)=>a.h-b.h);M.slice(0,2).forEach(r=>{if(!C.some(c=>c.x.every((v,i)=>Math.abs(v-r.x[i])<1)))C.push(r);});
- const R=C.map(r=>r.x.map(v=>Math.round(v*10)/10));R.adj=adj;return R;}   /* 후보 ≤4개 — 실제 높이로 고름(colFit) */
+ const R=C.map(r=>r.x.map(v=>Math.round(v*10)/10));R.adj=adj;R.mins=mins;return R;}   /* 후보 ≤4개 — 실제 높이로 고름(colFit) */
 function cfApply(t,x){const cols=t.querySelectorAll('colgroup>col');cols.forEach((c,i)=>{c.style.width=x?x[i]+'%':'';});t.dataset.cfw=x?x.join(','):'';}
 function colFit(force){$$('#stage .msum table.mtx').forEach(t=>{const wrap=t.closest('.tscroll')||t.parentElement,W=wrap.clientWidth;if(!W||!t.tBodies[0]||getComputedStyle(t).display!=='table'){delete t.dataset.cfk;return;}
  const st=$('#stage'),mode=st.classList.contains('sdfull')?'f':'s',fpx=parseFloat(getComputedStyle(t).fontSize)||13.5,fs=document.documentElement.style.getPropertyValue('--fs')||'1';
  const key=CUR.s+':'+CUR.d+':'+mode+':'+Math.round(W/24)+':'+fs;if(!force&&t.dataset.cfk===key)return;t.dataset.cfk=key;
- if(CF.cache.has(key)){const x=CF.cache.get(key),cur=(t.dataset.cfw||'').split(',').map(Number);if(x&&cur.length===5&&x.every((v,i)=>Math.abs(v-cur[i])<1.5))return;cfApply(t,x);return;}
- CF.n++;const prev=t.dataset.cfw||'';cfApply(t,null);const S=cfStats(t,mode),C=cfSolve(S,W,mode,fpx)||[];let keep=null;
+ if(CF.cache.has(key)){const o=CF.cache.get(key),x=o.x,cur=(t.dataset.cfw||'').split(',').map(Number);if(x&&cur.length===5&&cfOkMin(cur,o.mn)&&x.every((v,i)=>Math.abs(v-cur[i])<1.5))return;cfApply(t,x);return;}
+ CF.n++;const prev=t.dataset.cfw||'';cfApply(t,null);const S=cfStats(t,mode),C=cfSolve(S,W,mode,fpx)||[],mn=C.mins||[];let keep=null;
  if(C.length){let bh=C.adj?Infinity:t.offsetHeight*0.995;C.forEach(x=>{cfApply(t,x);const h=t.offsetHeight;if(h<bh){bh=h;keep=x;}});}   /* C.adj = 기본값이 하한을 어김 → 후보 중 가장 낮은 것(기본값은 후보 아님) */
- if(keep&&prev){const p=prev.split(',').map(Number);if(p.length===5&&keep.every((v,i)=>Math.abs(v-p[i])<1.5))keep=p;}   /* 1.5%p 문턱 — 앞 폭과 거의 같으면 그대로(흔들림 없음) */
- cfApply(t,keep);CF.cache.set(key,keep);});}
+ if(keep&&prev){const p=prev.split(',').map(Number);if(p.length===5&&cfOkMin(p,mn)&&keep.every((v,i)=>Math.abs(v-p[i])<1.5))keep=p;}   /* 1.5%p 문턱 — 앞 폭과 거의 같으면 그대로(흔들림 없음) · 단 이 폭의 하한(영문 낱말 등)을 지킬 때만 */
+ cfApply(t,keep);CF.cache.set(key,{x:keep,mn});});}
+function cfOkMin(p,mn){return p.every((v,i)=>!mn[i]||v>=mn[i]-0.06);}
 
 /* ---------- L4 비교표·전체정리표·한눈표(table.cmp/sum) 열 폭 — √글자량 무게 px 배분. W = .tscroll 폭 · 열마다 글자량 80백분위·끊을 수 없는 가장 긴 조각·머리 글자 → 최소 폭(4.5~12em) ·
    첫 열 6~11em·W의 18% 이하 · 무게 = √Σ글자량 · 한 열 42% 상한(넘친 몫은 무게대로 다시 나눔 3회) · 글이 다 들어가는 열은 그 폭까지만.
