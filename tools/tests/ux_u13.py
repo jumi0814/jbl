@@ -56,6 +56,9 @@ async def run(b, vp, touch, tag):
     await pg.evaluate("document.querySelector('#dtabs button[data-t=\"sum\"]').click()"); await pg.wait_for_timeout(500)
     ok(not await pg.evaluate("!!document.querySelector('#lmini')"), '정리표 탭에는 미니바 없음')
     if vp['width'] > 860:
+        await pg.evaluate("document.querySelector('#side .scard2[data-lj=\"5\"]').click()"); await pg.wait_for_timeout(700)   # ux2 E08 정리표 탭에서는 그 행으로(학습 탭으로 안 넘어감)
+        ok((await pg.evaluate('location.hash')).startswith('#/OMS1/DD1/sum') and await pg.evaluate("document.querySelector('#m-DD1-5').classList.contains('rcur')"), '사이드바 카드 6(정리표 탭) → 정리표 그 행')
+        await pg.evaluate("document.querySelector('#dtabs button[data-t=\"jb\"]').click()"); await pg.wait_for_timeout(500)
         await pg.evaluate("document.querySelector('#side .scard2[data-lj=\"5\"]').click()"); await pg.wait_for_timeout(1600)
         ok((await pg.evaluate('location.hash')).startswith('#/OMS1/DD1/learn') and 0 <= await pg.evaluate(UNDERTAB, '#t-DD1-5 .thead') <= 40, '사이드바 카드 6(다른 탭에서) → 학습 탭 그 카드')
         await pg.screenshot(path=J.TMP + f'/ux_u13_side_{tag}.png')

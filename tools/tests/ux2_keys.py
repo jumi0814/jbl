@@ -100,7 +100,7 @@ async def a04(pg, tag, vp):
     """A04 사이드바 접기(\\ · ‹ ›) · 정리표·비교표·한눈표 1440 이하 자동 접기(wideSide)"""
     await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','wideSide','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
     await open_(pg, '#/CONS/WHT/sum', 1500)
-    S = "(()=>({fold:document.body.classList.contains('sidefold'),tw:Math.round(document.querySelector('table.mtx,table.cmp').getBoundingClientRect().width),side:Math.round(document.querySelector('#side').getBoundingClientRect().width),over:document.documentElement.scrollWidth>innerWidth}))()"
+    S = "(()=>({fold:document.body.classList.contains('sidefold'),tw:Math.round((document.querySelector('.msum table.mtx')||document.querySelector('table.cmp')).getBoundingClientRect().width),side:Math.round(document.querySelector('#side').getBoundingClientRect().width),over:document.documentElement.scrollWidth>innerWidth}))()"
     r0 = await pg.evaluate(S)
     if vp['width'] <= 860:
         ok(not r0['fold'] and not r0['over'], f'세로 화면은 접기 없음(서랍) {r0}')
