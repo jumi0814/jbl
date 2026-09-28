@@ -27,7 +27,7 @@ async def main():
         ok(c0['alt'].split(' ')[0] == 'CONS:CRK:c0', f"카드 data-alt에 옛 index aid ({c0['alt']})")
         ann = {c0['alt'].split(' ')[0]: [{'t': 'h', 'x': c0['w'], 'i': 0, 'c': 'g'}],
                'CONS:CRK:oldcard_abc123': [{'t': 'h', 'x': c3['u'], 'i': 0, 'c': 'y'}, {'t': 'b', 'x': '원고에서사라진글자', 'i': 0}]}
-        await pg.evaluate("([ns,a,d])=>{localStorage.setItem(ns+'ann.CONS',JSON.stringify(a));localStorage.setItem(ns+'done.CONS',JSON.stringify(d));for(const i of ['p0','p1','p2',0,1,2,3,4])localStorage.removeItem(ns+'autobak.'+i);}",
+        await pg.evaluate("async ([ns,a,d])=>{localStorage.setItem(ns+'ann.CONS',JSON.stringify(a));localStorage.setItem(ns+'done.CONS',JSON.stringify(d));await __h.bkClear();}",
                           [NS, ann, {c0['alt'].split(' ')[0]: 1}])
         n0 = total(ann)
         await pg.goto('about:blank'); await pg.goto(U + '#/CONS/CRK/learn'); await pg.wait_for_timeout(250)
@@ -41,7 +41,7 @@ async def main():
         ok(len(lost) == 1 and lost[0].get('lost') == 1, '못 찾은 표시는 옛 키에 lost:1로 보존')
         ok(total(a) == n0, f'localStorage 표시 총수 불변 ({n0} → {total(a)})')
         ok('옮겼어요' in toast and '못 찾은 1개' in toast, f'토스트: {toast}')
-        why = await pg.evaluate(f"(()=>{{for(const i of ['p0','p1','p2',0,1,2,3,4]){{const v=localStorage.getItem('{NS}autobak.'+i);if(v&&JSON.parse(v).why==='원고 갱신 전')return JSON.parse(v).why;}}return ''}})()")   # 보호 칸(p0~2)에 '표시 위치 보강 전'과 함께 있을 수 있음
+        why = await pg.evaluate("__h.bkList().then(L=>{const x=L.find(x=>x.why==='원고 갱신 전');return x?x.why:''})")   # 보호 칸(p0~2)에 '표시 위치 보강 전'과 함께 있을 수 있음
         ok(why == '원고 갱신 전', f'이관 전 자동 백업 ({why})')
         ok(await pg.evaluate("document.querySelector('#k-lost b').textContent") == '1', '⚠ 위치 잃음 1')
         await pg.screenshot(path=J.TMP + '/ux_kt_migrate.png')
