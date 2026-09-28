@@ -142,7 +142,7 @@ async def main(a):
                 pre = lec(e['aid']); present = bool(pre) and len(fx) >= 4 and sum(1 for a_, t_ in blocks.items() if a_.startswith(pre) and e['x'] in t_) == 1
             k = 'LOST_AMBIG' if present else 'LOST_GONE'; cat[k] += 1; bad[k].append((e, key, o['x'])); continue
         # 복원됨 → 그 블록에 실제로 그려진 자리(지금 표시의 앞뒤 글자 p·s로 고름)
-        rs = [r for r in recs.get(key, []) if r['t'] == o['t'] and (r['x'] == o['x'] or norm(r['x']) == norm(o['x']) or fz(r['x']) == fz(o['x']))]   # 허브 색인과 이 검사 색인(__index)의 건너뛰는 요소 차이 흡수
+        rs = [r for r in recs.get(key, []) if r['t'] == o['t'] and (r['x'] == o['x'] or norm(r['x']) == norm(o['x']) or fz(r['x']) == fz(o['x']) or (o.get('xl') and len(r['x']) == o['xl'] and r['x'].startswith(o['x'])))]   # 긴 빈칸(C03)은 x = 앞 24자 + xl   # 허브 색인과 이 검사 색인(__index)의 건너뛰는 요소 차이 흡수
         rs.sort(key=lambda r: -(len(os.path.commonprefix([sq(r['pre'])[::-1], sq(o.get('p', ''))[::-1]])) + len(os.path.commonprefix([sq(r['post']), sq(o.get('s', ''))]))))
         if not rs:
             # 겹친 표시: 먼저 그린 다른 표시가 글자 일부를 차지하면 나머지만 이 표시 묶음으로 그려짐(겹친 곳은 먼저 것 색) — 보이는 표시

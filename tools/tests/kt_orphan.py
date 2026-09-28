@@ -39,7 +39,7 @@ async def main():
         a = await ann(pg); ok([o['x'] for o in a.get(aid, [])] == [GHOST], '칠한 곳을 다시 눌러 지워도 잃은 표시 유지')
         await tap_word(pg, aid); await pg.click('#k-sw .sw[data-c="g"]'); await tap_word(pg, aid)
         a = await ann(pg); ok(any(o['x'] == GHOST for o in a.get(aid, [])) and any(o.get('c') == 'g' for o in a.get(aid, [])), '색 바꾸기 뒤에도 유지')
-        await pg.keyboard.press('Escape'); await pg.click('#k-clear'); await pg.wait_for_timeout(200)
+        await pg.keyboard.press('Escape'); await pg.click('#k-clear'); await pg.click('#clearpop [data-csc=tab]'); await pg.click('#clearpop [data-ck=all]'); await pg.wait_for_timeout(200)   # 🧹 = 메뉴(C04) — 이 탭 · 모두
         a = await ann(pg); ok([o['x'] for o in a.get(aid, [])] == [GHOST], '🧹 화면 지우기 뒤에도 잃은 표시만 남음')
         await pg.click('#k-undo'); await pg.wait_for_timeout(200)
         a = await ann(pg); ok(any(o['x'] == GHOST for o in a.get(aid, [])) and len(a.get(aid, [])) == 2, '되돌리기 → 칠한 것 복귀 + 잃은 표시 유지')

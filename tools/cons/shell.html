@@ -608,6 +608,11 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 .skinds{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}.chip.sxw{border-style:dashed;color:var(--sub);background:#fff}
 .sres .sans{align-self:flex-start;font-size:12.5px;font-weight:700;color:var(--acct);border:1px solid var(--accb);border-radius:999px;padding:2px 12px;background:#fff;margin-top:3px;min-height:28px;display:inline-flex;align-items:center}.sres .sans:hover{background:var(--accbg)}
 .rlog{margin-top:10px;font-size:13px}.rlog summary{cursor:pointer;color:var(--sub)}.rlog ul{margin:4px 0;padding-left:18px;max-height:180px;overflow:auto}.rlog li.err{color:#8E1B14}
+/* C04 🧹 지우기 메뉴(#clearpop — ⚡ 창과 같은 어두운 팝업) · ⚡ 창 미리 보기·[이 탭의 자동 빈칸 지우기] */
+#clearpop{position:fixed;z-index:71;background:rgba(35,35,31,.97);color:#EEE8DA;border-radius:12px;box-shadow:0 10px 34px rgba(0,0,0,.4);font-size:13.5px;left:50%;bottom:calc(var(--kith) + 8px + var(--oneh));transform:translateX(-50%);padding:12px 14px;min-width:260px;display:none}#clearpop.on{display:block}body.at-home #clearpop{display:none!important}
+#clearpop .csc{display:flex;gap:4px;margin:6px 0 8px}#clearpop .csc button{flex:1;border:1px solid #5A5248;background:none;color:#EEE8DA;border-radius:8px;padding:5px 8px;min-height:34px;font-size:13px}#clearpop .csc button.on{background:#EEE8DA;color:#23231F;font-weight:700}#clearpop .csc button:disabled{opacity:.4}
+#clearpop .crow{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:none;color:#EEE8DA;padding:7px 6px;min-height:38px;border-radius:8px;font-size:14px;text-align:left}#clearpop .crow:hover:not(:disabled){background:rgba(255,255,255,.08)}#clearpop .crow:disabled{opacity:.4}#clearpop .crow b{font-variant-numeric:tabular-nums}#clearpop .apt{color:#B9B2A2;margin-top:6px}
+#autopop .aprev{color:#FFD980;margin:4px 0 0 22px;font-size:12.5px;max-width:300px}#autopop .go2{display:block;margin-top:8px;background:none;color:#EEE8DA;border:1px solid #5A5248;border-radius:8px;padding:5px 12px;font-size:12.5px}#autopop .go2:disabled{opacity:.4}
 /* C01 공간 정리 · C02 저장 공간 줄·홈 경고 · C05 합치기 결과 */
 .rstore{background:var(--tint);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;margin:6px 0 4px;font-size:13.5px;line-height:1.55}.storewarn{background:#FFF6DA;border-color:#E8D49A;font-size:14px}.mres{background:#F2F7F3;border-color:#CFE3D5;font-size:13.5px;margin:6px 0}
 details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px}details.rclean>summary{cursor:pointer;font-weight:700}details.rclean .row{margin-top:6px}
@@ -616,10 +621,11 @@ details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px
 <button type="button" id="clock" aria-label="오늘 공부 시간 · 누르면 기록">00:00:00</button><span id="idlechip" class="noann" hidden title="입력이 없어 시계를 멈췄어요 — 움직이면 이어서 잽니다"></span><button class="tbtn" id="tmr">▶ 공부 시작</button><button class="tbtn" id="bkup" title="형광펜·빈칸·메모·채점·공부시간을 파일로 저장">백업</button><button class="tbtn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기">복원</button><button class="tbtn" id="helpb" title="도움말 (?)">?</button><input type="file" id="rfile" accept=".json" hidden></div>
 <div id="home"></div>
 <div id="subj" hidden><div id="navbg" class="noann"></div><aside id="side" class="noann"></aside><div id="right"><div id="hero" class="hero noann"></div><nav id="dtabs" class="noann"></nav><main id="stage"></main></div></div>
-<div id="kit" class="noann"><button id="k-min" title="도구 막대 펼치기">✎</button><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)"><span class="ic">↶<b class="ubn"></b></span><span class="lb2">되돌리기</span></button><button id="k-redo" title="다시 실행 (Ctrl/⌘ Shift Z)"><span class="ic">↷</span><span class="lb2">다시</span></button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기"><span class="ic">👁</span><span class="lb2">전체 보기</span></button><button id="k-clear" title="지금 보이는 화면의 형광펜·빈칸 지우기"><span class="ic">🧹</span><span class="lb2">지우기</span></button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
+<div id="kit" class="noann"><button id="k-min" title="도구 막대 펼치기">✎</button><button id="k-h" title="형광펜 (H) · 색 바꾸기 Shift+H — 켠 뒤 단어를 누르거나 드래그">🖍<span class="lbl"> 형광펜</span></button><span id="k-sw"></span><button id="k-b" title="빈칸 (B): 켠 뒤 단어를 누르거나 드래그 · 빈칸을 누르면 열림/닫힘">▣<span class="lbl"> 빈칸</span></button><button id="k-auto" title="자동 빈칸">⚡<span class="lbl"> 자동</span></button><span class="sep"></span><button id="k-undo" title="실행 취소 (Ctrl/⌘ Z)"><span class="ic">↶<b class="ubn"></b></span><span class="lb2">되돌리기</span></button><button id="k-redo" title="다시 실행 (Ctrl/⌘ Shift Z)"><span class="ic">↷</span><span class="lb2">다시</span></button><span class="sep"></span><button id="k-memo" title="이 문서 메모 (M)">📝<span class="lbl"> 메모</span></button><button id="k-eye" title="전체 보기 (E) — 빈칸·가린 것 모두 열기/가리기 · N 하나씩 열기"><span class="ic">👁</span><span class="lb2">전체 보기</span></button><button id="k-clear" title="표시 지우기 — 자동 빈칸만·내 빈칸만·형광펜만·모두 × 이 카드·이 탭"><span class="ic">🧹</span><span class="lb2">지우기</span></button><button id="k-lost" hidden title="원고가 바뀌어 원래 자리를 찾지 못한 표시 — 지우지 않고 보관 중 · 누르면 모아보기">⚠ 위치 잃음 <b>0</b></button><button id="k-hide" title="도구 막대 숨기기 (T)">✕</button></div>
 <button id="kitshow" class="noann">✎</button>
 <button id="retpill" class="noann" title="칩을 누르기 전 보던 곳으로"></button><button id="fpill" class="noann" title="집중 모드 나가기 (V · Esc)">집중 · V로 나가기</button><button id="sideopen" class="noann" title="사이드바 펼치기 (\)">›</button><button id="modechip" class="modechip noann"></button>
-<div id="autopop" class="noann"><div class="small apt" style="margin-top:0">가리기 보기 — 저장하지 않고 떠올리기 (Q)</div><label><input type="radio" name="am" value="quiz" checked> 빨간 핵심어 가리기</label><div class="qzopt">범위 <select id="qzsc" aria-label="가리기 범위"><option value="card">이 카드</option><option value="mem">⚡ 암기 줄만</option><option value="all">강의 전체</option></select><label class="in"><input type="checkbox" id="qzfixc"> 빈칸 길이 숨기기</label></div><div class="small apt">자동 빈칸 — 지금 보이는 화면에 저장</div><label><input type="radio" name="am" value="red"> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><label style="border-top:1px solid rgba(255,255,255,.15);margin-top:4px;padding-top:7px"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label><button class="go" id="ago">적용</button><label class="pend" style="border-top:1px solid rgba(255,255,255,.15);margin-top:8px;padding-top:7px" title="모드를 켜지 않아도 애플펜슬로 끌면 지금 색 형광펜, 펜슬로 칠한 곳을 톡 치면 지움 · 손가락은 스크롤·빈칸 열기만"><input type="checkbox" id="pendir"> ✏️ 펜슬로 바로 칠하기 (모드 없이)</label></div>
+<div id="autopop" class="noann"><div class="small apt" style="margin-top:0">가리기 보기 — 저장하지 않고 떠올리기 (Q)</div><label><input type="radio" name="am" value="quiz" checked> 빨간 핵심어 가리기</label><div class="qzopt">범위 <select id="qzsc" aria-label="가리기 범위"><option value="card">이 카드</option><option value="mem">⚡ 암기 줄만</option><option value="all">강의 전체</option></select><label class="in"><input type="checkbox" id="qzfixc"> 빈칸 길이 숨기기</label></div><div class="small apt">빈칸으로 저장 — 새로고침해도 남음</div><label><input type="radio" name="am" value="red"> 빨간 핵심어·수치</label><label><input type="radio" name="am" value="term"> 표의 항목 이름(왼쪽 칸)</label><label><input type="radio" name="am" value="def"> 표의 내용(오른쪽 칸)</label><div class="qzopt">범위 <select id="asc" aria-label="빈칸 저장 범위"><option value="card">이 카드</option><option value="all">이 탭 전체</option></select><label class="in"><input type="checkbox" id="aone"> 항목(줄)당 1개만</label></div><div class="small aprev" id="aprev"></div><button class="go" id="ago">적용</button><button class="go2" id="aclr" type="button">이 탭의 자동 빈칸 지우기</button><label class="pend" style="border-top:1px solid rgba(255,255,255,.15);margin-top:8px;padding-top:7px" title="모드를 켜지 않아도 애플펜슬로 끌면 지금 색 형광펜, 펜슬로 칠한 곳을 톡 치면 지움 · 손가락은 스크롤·빈칸 열기만"><input type="checkbox" id="pendir"> ✏️ 펜슬로 바로 칠하기 (모드 없이)</label></div>
+<div id="clearpop" class="noann"></div>
 <div id="memo" class="noann"><div class="mt"><span id="memot">메모</span><button class="tbtn" id="memox">닫기</button></div><textarea id="memota" placeholder="이 문서 전용 메모 — 자동 저장"></textarea></div>
 <div id="imgmodal" class="noann"><div id="mbar"><span id="mtitle"></span><button class="btn" id="mscope" hidden title="넘기기 범위">이 카드 그림</button><button class="btn" id="mprev" aria-label="이전 그림">◀</button><button class="btn" id="mnext" aria-label="다음 그림">▶</button><button class="btn" id="mzoom">확대</button><button class="btn pri" id="mclose">닫기</button></div><div id="mcap"></div><div id="mspin" hidden>원본 쪽 불러오는 중…</div><div id="mwrap"><img id="mimg" alt=""></div></div>
 <div id="tpop" class="pop noann"></div><div id="rpop" class="pop noann"></div><div id="lpop" class="pop noann"></div>
@@ -631,7 +637,8 @@ details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px
 <tr><th>🖍 내 표시 모아보기</th><td>사이드바 ‘🖍 내 표시 모아보기’(허브 홈 ‘🖍 전 과목 내 표시’) — 표시마다 <b>그 표시가 든 줄</b>을 보여 주고 칠한 부분만 색 · 위 색 칩으로 <b>색별로 보기</b>(빈칸만 보면 가린 채 — 누르면 열림, 떠올리기용) · ↗ 그 자리로 · <b>색 라벨</b>: 도구 막대의 색 견본을 <b>길게 누르거나 우클릭</b>해 이름 붙이기(기본 노랑=기출·분홍=헷갈림·초록=암기 완료)</td></tr>
 <tr><th>빈칸 열기</th><td>도구를 끈 상태에서 빈칸을 누르면 그 묶음이 열리고 다시 누르면 닫힘 · <b>E</b>(👁) 전부 열기/가리기 · <b>N</b> 화면 위쪽부터 하나씩 열기 · <b>Shift+N</b> 이 카드 다시 가리기 · ⚡ 자동 빈칸(빨간 핵심어·표)</td></tr>
 <tr><th>가리기 보기 Q</th><td><b>저장하지 않는</b> 떠올리기 — <b>Q</b>(또는 탭 줄의 ‘가리기’, ⚡ 창의 첫 선택지)로 빨간 핵심어를 가림 · 범위 = 이 카드(기본)·⚡ 암기 줄만·강의 전체(⚡ 창에서 고름, ‘빈칸 길이 숨기기’도) · 누르면 그 칸만 열림 · <b>N</b> 하나씩 · <b>Shift+N</b> 다시 가리기 · <b>E</b> 전부 · 카드 머리 ‘▣ 3/12 열림’을 누르면 이 카드 전체 · 연 칸은 탭을 옮겨도 유지, 새로고침하면 꺼짐 · J/K나 ✓로 다음 카드로 가면 그 카드를 가림</td></tr>
-<tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 되돌리면 <b>무엇을 되돌렸는지</b> 알림(‘↶ 되돌림: 자동 빈칸 344개 (Tooth whitening 학습)’) — 다른 탭에서 한 것이면 [그 화면으로] · 최근 30단계는 새로고침 뒤에도 되돌릴 수 있음 · 다른 창에서 바꾼 카드는 되돌리기에서 빠짐 · 🧹 지금 화면의 표시 지우기</td></tr>
+<tr><th>되돌리기</th><td>↶ / Ctrl·⌘+Z(옆 작은 숫자 = 되돌릴 수 있는 횟수) · 다시 실행 ↷ / Ctrl·⌘+Shift+Z · 되돌리면 <b>무엇을 되돌렸는지</b> 알림(‘↶ 되돌림: 자동 빈칸 344개 (Tooth whitening 학습)’) — 다른 탭에서 한 것이면 [그 화면으로] · 최근 30단계는 새로고침 뒤에도 되돌릴 수 있음 · 다른 창에서 바꾼 카드는 되돌리기에서 빠짐</td></tr>
+<tr><th>⚡ 빈칸 저장 · 🧹 지우기</th><td>⚡ 창 ‘빈칸으로 저장’ — 범위 <b>이 카드</b>(단어마다 기록) / <b>이 탭 전체</b>(규칙 하나로 저장 — 기록이 가볍고 새로고침해도 그대로) · 창 아래에 실제 범위와 개수(‘이 카드의 빨간 글씨 23개를 빈칸으로 저장합니다’) · [이 탭의 자동 빈칸 지우기] · 🧹 = [자동 빈칸만][내 빈칸만][형광펜만][모두] × [이 카드|이 탭] — 개수를 보고 고르고, 지우기 전 상태는 자동 백업(‘지우기 전’) · ⚠ 위치를 잃은 표시는 지우지 않음 · 자동 빈칸(규칙)은 빈칸 모드로 눌러 지우지 않고 🧹로</td></tr>
 <tr><th>도구 막대</th><td>형광펜·빈칸 모드가 켜진 동안은 탭 줄 아래에 ‘🖍 형광펜 켜짐 · 노랑 — 누르면 끄기’ 칩이 뜨고 카드에 점선 테두리 · 아래로 스크롤하는 동안 도구 막대는 ✎ 하나로 줄었다가 멈추면(1.2초)·위로 스크롤하면·✎를 누르면 다시 펼침 · <b>T</b>로 숨긴 상태는 새로고침 뒤에도 유지</td></tr>
 <tr><th>그림</th><td>그림을 누르면 크게 · 크게 본 그림을 누르면 그 자리 확대/맞추기 · 확대 중엔 끌어서 이동 · Ctrl/⌘+휠 확대 · 바깥을 누르거나 Esc로 닫기 · ←/→(스와이프)로 넘기기 · 아래로 쓸면 닫기</td></tr>
 <tr><th>공부 시간</th><td>시계(오늘 합계)를 누르면 <b>목표 고리</b>·이번 주 월~일 막대·오늘 과목·강의별 · [📊 자세히] · 자동 측정(기본 켜짐): 과목을 연 채 움직이는 동안 재고, 오른쪽 버튼이 <b>● 측정 중</b> / <b>○ 자동 대기</b>(과목을 열고 움직이면 시작) / <b>▶ 공부 시작</b>(자동 꺼짐) · 누르면 쉬기</td></tr>
@@ -1357,9 +1364,11 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
   if(made.length){made[0].classList.add('rk-first');made[made.length-1].classList.add('rk-last');}return made;}
  function unwrap(el){const p=el.parentNode;if(!p)return;while(el.firstChild)p.insertBefore(el.firstChild,el);p.removeChild(el);p.normalize();}
  function group(el){const g=el.getAttribute('data-g');const B=el.closest('[data-aid]');return g&&B?[...B.querySelectorAll('[data-g="'+g+'"]')]:[el];}
- function snap(B){const ix=index(B),seen={},out=[];let hv=null;B.querySelectorAll('[data-rk]').forEach(el=>{const g=el.getAttribute('data-g')||('x'+(++GID));if(seen[g])return;seen[g]=1;const els=el.getAttribute('data-g')?group(el):[el];let a=1e9,b=-1;
+ function snap(B){const ix=index(B),seen={},out=[];let hv=null;B.querySelectorAll('[data-rk]').forEach(el=>{if(el.hasAttribute('data-auto'))return;   /* C03 규칙 빈칸은 저장하지 않음 */const g=el.getAttribute('data-g')||('x'+(++GID));if(seen[g])return;seen[g]=1;const els=el.getAttribute('data-g')?group(el):[el];let a=1e9,b=-1;
    els.forEach(e=>{const w=document.createTreeWalker(e,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m){a=Math.min(a,m.start);b=Math.max(b,m.start+m.len);}}});
-   if(b<=a)return;const x=ix.s.slice(a,b);let i=0,p=-1;while((p=ix.s.indexOf(x,p+1))>=0&&p<a)i++;const o={t:el.getAttribute('data-rk'),x,i,p:ix.s.slice(Math.max(0,a-CTX),a),s:ix.s.slice(b,b+CTX),v:hv||(hv=fnv(ix.s))};if(o.t==='h')o.c=el.getAttribute('data-c')||'y';out.push(o);});return out;}
+   if(b<=a)return;const x=ix.s.slice(a,b);let i=0,p=-1;while((p=ix.s.indexOf(x,p+1))>=0&&p<a)i++;const o={t:el.getAttribute('data-rk'),x,i,p:ix.s.slice(Math.max(0,a-CTX),a),s:ix.s.slice(b,b+CTX),v:hv||(hv=fnv(ix.s))};if(o.t==='h')o.c=el.getAttribute('data-c')||'y';if(el.getAttribute('data-a'))o.a=1;packX(o,x);out.push(o);});return out;}
+ /* C03 긴 빈칸(40자↑ — 표 칸 전체): x = 앞 24자 + xl(길이) + xh(FNV) — 해시로 확인해 복원 · 옛 전체 x도 그대로 읽음 */
+ function packX(o,x){if(o.t==='b'&&x.length>=40){o.x=x.slice(0,24);o.xl=x.length;o.xh=fnv(x);}else{o.x=x;delete o.xl;delete o.xh;}}
  function norm(s){let t='',m=[];for(let i=0;i<s.length;i++){const ch=s[i];if(/[\s\/·•→;,|]/.test(ch))continue;t+=ch.toLowerCase();m.push(i);}return{t,m};}
  /* 옛 허브의 찾기(같은 글자 i번째, 모자라면 마지막) — 옛 기준선(legacy_txt)에서 옛 표시가 '보이던 자리'를 되짚을 때만 씀 */
  function oldLocate(s,x,i){let p=-1,last=-1;for(let k=0;k<=(i||0);k++){const q=s.indexOf(x,p+1);if(q<0)break;p=q;last=q;}if(last>=0)return[last,last+x.length];
@@ -1383,6 +1392,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  const HINT='빨간글씨를자동빈칸으로가리고떠올리기';
  function fz(t){let u='',m=[];for(let k=0;k<t.length;k++){const ch=t[k];if(!/[\p{L}\p{N}]/u.test(ch))continue;u+=ch.toLowerCase();m.push(k);}return{t:u,m};}
  function resolve(t,o,hv){if(!o||!o.x||t==null)return null;const x=String(o.x),i=o.i||0;
+  if(o.xl&&o.xh){const L=occ(t,x).filter(a=>fnv(t.slice(a,a+o.xl))===o.xh).map(a=>[a,a+o.xl]);if(!L.length)return null;if(o.v&&L.length>i&&(hv||fnv(t))===o.v)return L[i];return L.length===1?L[0]:pick(t,L,o);}   /* C03 긴 빈칸 */
   const ex=occ(t,x).map(a=>[a,a+x.length]);
   if(o.v&&ex.length>i&&(hv||fnv(t))===o.v)return ex[i];
   if(ex.length)return pick(t,ex,o);
@@ -1410,9 +1420,9 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  function blocks(root){return $$('[data-aid]',root).filter(B=>!B.closest(SKIP)&&!B.classList.contains('res'));}
  function restore(root){let ch=false;blocks(root).forEach(B=>{B._lost=[];const list=ANN[B.dataset.aid];if(!list||!list.length)return;
    const TX=index(B).s,hv=fnv(TX);list.forEach(a=>{if(!a||typeof a!=='object')return;const r=a.x?resolve(TX,a,hv):null;
-    if(r){wrap(B,r[0],r[1],a.t,a.c||'y','r'+(++GID));if(a.lost){delete a.lost;ch=true;}
-     if(a.v!==hv){const x=TX.slice(r[0],r[1]);let i=0,q=-1;while((q=TX.indexOf(x,q+1))>=0&&q<r[0])i++;a.x=x;a.i=i;a.p=TX.slice(Math.max(0,r[0]-CTX),r[0]);a.s=TX.slice(r[1],r[1]+CTX);a.v=hv;delete a.lx;ch=true;}}   /* 찾은 자리로 다시 닻 내림 — 다음부터는 i 그대로 */
-    else{if(!a.lost){a.lost=1;ch=true;}B._lost.push(a);}});});if(ch)persist();else updLost();}
+    if(r){const els=wrap(B,r[0],r[1],a.t,a.c||'y','r'+(++GID));if(a.a)els.forEach(e=>e.setAttribute('data-a','1'));if(a.lost){delete a.lost;ch=true;}
+     if(a.v!==hv){const x=TX.slice(r[0],r[1]);let i=0,q=-1;while((q=TX.indexOf(x,q+1))>=0&&q<r[0])i++;packX(a,x);a.i=i;a.p=TX.slice(Math.max(0,r[0]-CTX),r[0]);a.s=TX.slice(r[1],r[1]+CTX);a.v=hv;delete a.lx;ch=true;}}   /* 찾은 자리로 다시 닻 내림 — 다음부터는 i 그대로 */
+    else{if(!a.lost){a.lost=1;ch=true;}B._lost.push(a);}});});if(ch)persist();else updLost();ruleApply(root);}
  function redraw(){const st=$('#stage');$$('[data-rk],[data-pre]',st).forEach(unwrap);restore(st);rbRestore();coverChips();}
  /* 실행 취소 v2(C06) — 한 단계 = {d:설명('형광펜 1개'·'자동 빈칸 344개'), s·doc·tab(어디서), p:{바뀐 aid: 그 전 값 JSON|null}, r?:{k:'문서/탭', v:그 전 규칙 JSON|null}}.
     push(설명)는 지금 ANN의 얕은 사본만 떠 두고, 같은 작업이 끝난 뒤(microtask) 달라진 aid만 차분으로 남김(fin) · 최근 30단계는 sessionStorage undo.<S>(새로고침 뒤에도 ⌘Z) */
@@ -1445,6 +1455,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;return el.closest('[data-aid]');}
  /* 누르기(마우스 클릭·손가락 톡·길게 누른 뒤 그대로 떼기·펜슬 톡): 칠한 곳이면 지우고, 형광펜으로 다른 색이면 색만 바꾸고, 빈 곳이면 어절을 칠함 */
  function tapAt(B,x,y,target,t){t=t||mode;const rk=target&&target.closest&&target.closest('[data-rk]');
+  if(rk&&rk.hasAttribute('data-auto')){toast('자동 빈칸(규칙)은 🧹 지우기나 ⚡ 창의 [이 탭의 자동 빈칸 지우기]로 지워요');return;}
   if(rk&&B.contains(rk)){const recol=t==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color;push(recol?'형광펜 색 바꾸기':(rk.getAttribute('data-rk')==='b'?'빈칸 지우기 1개':'형광펜 지우기 1개'));const els=group(rk);if(recol){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
   if(!t)return;const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;apply(B,w[0],w[1],t);}
  /* 끄는 범위(A08): 포인터가 시작 카드(표시 단위) 밖이면 — 아래로 벗어나면 시작 카드의 끝까지, 위로 벗어나면 처음까지(cross) */
@@ -1482,11 +1493,46 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  function handleClick(e){const rk=e.target.closest&&e.target.closest('[data-rk="b"]');
   if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));if(on)LASTOPEN=rk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return true;}
   if(!mode)return false;return !!targetOK(e.target);}
- function auto(kind,one){const st=$('#stage');let sel=kind==='red'?'.k':kind==='term'?'tbody th':'tbody td';const els=$$(sel,st).filter(el=>el.offsetParent!==null||el.closest('.tbody,.ans'));if(!els.length){toast('이 화면에는 해당하는 대상이 없습니다');return;}
-  push('자동 빈칸');const seen=new Set(),touched=new Set();let n=0;els.forEach(el=>{const B=el.closest('[data-aid]');if(!B||el.closest('[data-rk]')||el.closest(SKIP))return;if(one){const row=el.closest('li,tr,p')||B;if(seen.has(row))return;seen.add(row);}
+ /* ⚡ 저장형 자동 빈칸(C03) — 범위 card(이 카드: 단어별 기록 + a:1) | all(이 탭 전체: 규칙 autoRule.<S>['문서/탭'] = {kind:'red'|'term'|'td', scope:'all', one, at, skip?:[aid]} —
+    ann에 쓰지 않고 그릴 때마다 저장하지 않는 .rk-b[data-auto]로 · 연 상태는 sessionStorage rbopen) · 100개가 넘으면 확인 */
+ const AKN={red:'빨간 글씨',term:'표 항목 이름',def:'표 내용',td:'표 내용'};
+ function autoEls(kind,root,one){if(!root)return [];const sel=kind==='red'?'.k':kind==='term'?'tbody th':'tbody td';const seen=new Set();
+  return $$(sel,root).filter(el=>{const B=el.closest('[data-aid]');if(!B||B.classList.contains('res')||el.closest(SKIP)||el.closest('[data-rk]')||el.querySelector('[data-rk]'))return false;if(kind==='red'&&el.closest('.frame,.fcard'))return false;if(!el.textContent.trim())return false;
+   if(one){const row=el.closest('li,tr,p')||B;if(seen.has(row))return false;seen.add(row);}return true;});}
+ function rules(){return S?mkObj(LS.get('autoRule.'+S,{})):{};}
+ const rkey=()=>CUR.d+'/'+CUR.t;
+ function ruleApply(root){if(!S||!CUR.d)return;const r=rules()[rkey()];if(!r||typeof r!=='object')return;const skip=new Set(Array.isArray(r.skip)?r.skip:[]);const st=root||$('#stage');
+  autoEls(r.kind==='td'?'def':r.kind,st,!!r.one).forEach(el=>{const B=el.closest('[data-aid]');if(skip.has(B.dataset.aid))return;const sp=document.createElement('span');sp.className='rk-b';sp.setAttribute('data-rk','b');sp.setAttribute('data-auto','1');sp.setAttribute('data-g','ar'+(++GID));while(el.firstChild)sp.appendChild(el.firstChild);el.appendChild(sp);});}
+ function auto(kind,one,scope){const st=$('#stage');scope=scope==='card'?'card':'all';const root=scope==='card'?curCard():st;if(scope==='card'&&!root){toast('지금 카드가 없어요 — 범위를 ‘이 탭 전체’로 골라 보세요');return;}
+  const els=autoEls(kind,root,one);if(!els.length){toast(scope==='card'?'이 카드에는 해당하는 대상이 없어요':'이 탭에는 해당하는 대상이 없어요');return;}
+  if(scope==='card'&&els.length>100&&!confirm('이 카드의 '+AKN[kind]+' '+els.length+'개를 빈칸으로 저장할까요?'))return;   /* 단어별 기록(저장형) 100개 초과만 확인 — 규칙은 가벼움 */
+  if(scope==='all'){const R0=rules(),k=rkey();push('자동 빈칸 '+els.length+'개');pendRule(k,R0[k]);R0[k]={kind:kind==='def'?'td':kind,scope:'all',one:!!one,at:Date.now()};LS.set('autoRule.'+S,R0);ruleApply(st);rbRestore();coverChips();
+   toast('빈칸 '+els.length+'개 — 이 탭 전체 규칙으로 저장(기록이 가벼워요) · 누르면 열리고, 👁로 전체 보기');return;}
+  push('자동 빈칸');const touched=new Set();let n=0;els.forEach(el=>{const B=el.closest('[data-aid]');
    const ix=index(B);let a=1e9,b=-1;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let tn;while(tn=w.nextNode()){const m=ix.map.find(q=>q.n===tn);if(m){a=Math.min(a,m.start);b=Math.max(b,m.start+m.len);}}
-   if(b<=a)return;const r=tidy(ix.s,a,b);if(!r)return;wrap(B,r[0],r[1],'b','y','a'+(++GID));touched.add(B);n++;});pendDesc('자동 빈칸 '+n+'개');touched.forEach(commit);toast('빈칸 '+n+'개 — 빈칸을 누르면 열리고, 👁로 전체 보기');}
- function clearView(){const st=$('#stage');const bs=new Set($$('[data-rk]',st).map(e=>e.closest('[data-aid]')));if(!bs.size)return toast('지울 표시가 없어요');if(!confirm('지금 열린 화면의 형광펜·빈칸을 모두 지울까요? (↶로 되돌릴 수 있어요 · ⚠ 위치를 잃은 표시는 지우지 않고 남겨 둡니다)'))return;push('표시 지우기 '+$$('[data-rk]',st).length+'조각');$$('[data-rk]',st).forEach(unwrap);bs.forEach(B=>B&&commit(B));}
+   if(b<=a)return;const r=tidy(ix.s,a,b);if(!r)return;wrap(B,r[0],r[1],'b','y','a'+(++GID)).forEach(e=>e.setAttribute('data-a','1'));touched.add(B);n++;});pendDesc('자동 빈칸 '+n+'개');touched.forEach(commit);toast('빈칸 '+n+'개 — 빈칸을 누르면 열리고, 👁로 전체 보기');}
+ /* 🧹 지우기 메뉴(C04) — [자동 빈칸만][내 빈칸만][형광펜만][모두] × [이 카드|이 탭] · 개수(묶음 수) · 확인창에도 개수 · 지우기 전 autoBak(true,'표시 지우기 전') · lost:1은 그대로(commit이 _lost를 다시 붙임)
+    자동 빈칸 = 저장형 a:1 기록 + 규칙 빈칸(data-auto — '이 탭'이면 규칙을 지우고, '이 카드'면 규칙에 skip:[그 카드 aid]) */
+ const CKN={auto:'자동 빈칸',mine:'내 빈칸',hl:'형광펜',all:'표시'};let CSC=null;
+ function clrGroups(root){const G={auto:[],mine:[],hl:[]},seen=new Set();if(!root)return G;$$('[data-rk]',root).forEach(el=>{const B=el.closest('[data-aid]'),g=el.getAttribute('data-g');if(g){const key=(B?B.dataset.aid:'')+'|'+g;if(seen.has(key))return;seen.add(key);}
+  const els=g&&B?[...B.querySelectorAll('[data-g="'+g+'"]')].filter(x=>root.contains(x)):[el];G[el.getAttribute('data-rk')==='h'?'hl':(el.hasAttribute('data-auto')||el.hasAttribute('data-a'))?'auto':'mine'].push(els);});return G;}
+ const clrRoot=sc=>sc==='card'?curCard():$('#stage');
+ function clearMenu(){const p=$('#clearpop');if(p.classList.contains('on')){p.classList.remove('on');return;}$('#autopop').classList.remove('on');if(!CSC||(CSC==='card'&&!curCard()))CSC=curCard()?'card':'tab';clearDraw();p.classList.add('on');}
+ function clearDraw(){const p=$('#clearpop'),G=clrGroups(clrRoot(CSC)),n={auto:G.auto.length,mine:G.mine.length,hl:G.hl.length};n.all=n.auto+n.mine+n.hl;
+  p.innerHTML=`<div class="small apt" style="margin-top:0">🧹 표시 지우기</div><div class="csc"><button type="button" class="${CSC==='card'?'on':''}" data-csc="card"${curCard()?'':' disabled'}>이 카드</button><button type="button" class="${CSC==='tab'?'on':''}" data-csc="tab">이 탭</button></div>`
+   +['auto','mine','hl','all'].map(k=>`<button type="button" class="crow" data-ck="${k}"${n[k]?'':' disabled'}><span>${CKN[k]}${k==='all'?' 모두':'만'}</span><b>${n[k]}</b></button>`).join('')+`<div class="small apt">⚠ 위치를 잃은 표시는 지우지 않아요 · ↶로 되돌릴 수 있어요</div>`;}
+ function clearKind(kind,sc){const root=clrRoot(sc);if(!root){toast('지금 카드가 없어요');return;}const G=clrGroups(root),L=kind==='all'?G.auto.concat(G.mine,G.hl):(G[kind]||[]);if(!L.length){toast('지울 표시가 없어요');return;}
+  const wh=sc==='card'?'이 카드':'이 탭';if(!confirm(wh+'의 '+CKN[kind]+' '+L.length+'개를 지울까요?\n\n(↶로 되돌릴 수 있어요 · 지우기 전 상태를 자동 백업해 둡니다 · ⚠ 위치를 잃은 표시는 그대로)'))return;
+  autoBak(true,'표시 지우기 전');push(wh+' '+CKN[kind]+' '+L.length+'개 지우기');const F=L.flat();
+  if(kind==='auto'||kind==='all'){const R0=rules(),k=rkey(),ra=F.filter(e=>e.hasAttribute('data-auto'));if(R0[k]&&(sc==='tab'||ra.length)){pendRule(k,R0[k]);if(sc==='tab')delete R0[k];else{const r=Object.assign({},R0[k]);r.skip=[...new Set((Array.isArray(r.skip)?r.skip:[]).concat(ra.map(e=>e.closest('[data-aid]').dataset.aid)))];R0[k]=r;}LS.set('autoRule.'+S,R0);}}
+  const bs=new Set();F.forEach(el=>{const B=el.closest('[data-aid]');if(B&&!el.hasAttribute('data-auto'))bs.add(B);unwrap(el);});bs.forEach(commit);coverChips();toast(wh+'의 '+CKN[kind]+' '+L.length+'개를 지웠어요 — ↶로 되돌리기',{level:'result'});}
+ $('#clearpop').addEventListener('click',e=>{const c=e.target.closest('[data-csc]');if(c&&!c.disabled){CSC=c.dataset.csc;clearDraw();return;}const k=e.target.closest('[data-ck]');if(k&&!k.disabled){$('#clearpop').classList.remove('on');clearKind(k.dataset.ck,CSC);}});
+ document.addEventListener('click',e=>{if(!e.target.closest('#clearpop,#k-clear'))$('#clearpop').classList.remove('on');},true);
+ /* ⚡ 창 미리 보기(C04): 실제 범위와 개수 — '이 카드의 빨간 글씨 23개를 가립니다' / '이 탭 전체 344개' */
+ function apPrev(){const e=$('#aprev');if(!e)return;const v=($('input[name=am]:checked')||{}).value,one=$('#aone').checked;
+  if(v==='quiz'){const sc=$('#qzsc').value,all=qzAllK(),c=curCard(),n=sc==='all'?all.length:sc==='mem'?all.filter(k=>k.closest('.c-mem')).length:(c?all.filter(k=>c.contains(k)).length:0);e.textContent=(sc==='card'?'이 카드의':sc==='mem'?'⚡ 암기 줄의':'강의 전체의')+' 빨간 글씨 '+n+'개를 가립니다 (저장 안 함)';}
+  else{const sc=$('#asc').value,n=autoEls(v,clrRoot(sc==='card'?'card':'tab'),one).length;e.textContent=sc==='card'?'이 카드의 '+AKN[v]+' '+n+'개를 빈칸으로 저장합니다'+(n>100?' — 적용 전에 한 번 더 물어요':''):'이 탭 전체의 '+AKN[v]+' '+n+'개 — 규칙 하나로 저장(기록이 가벼워요)';}
+  const c=$('#aclr');if(c){const n=clrGroups($('#stage')).auto.length;c.textContent='이 탭의 자동 빈칸 지우기 '+n;c.disabled=!n;}}
  function hideAll(){$$('#stage .rk-b.show').forEach(x=>x.classList.remove('show'));document.body.classList.remove('rk-reveal');$('#k-eye').classList.remove('on');}
  /* 색 견본: 넓은 화면은 5개 나란히, 860px 이하는 '지금 색 1개 + ▾' 팝오버 */
  $('#k-sw').innerHTML=`<button class="swc" id="k-swc" title="형광펜 색 고르기"><span class="sw swcur" style="background:${COLORS[0][1]}"></span>▾</button><span id="k-swl">`+COLORS.map((c,i)=>`<span class="sw ${i?'':'sel'}" data-c="${c[0]}" style="background:${c[1]}" title="형광펜 색"></span>`).join('')+'</span>';
@@ -1504,12 +1550,13 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  $('#k-sw').onclick=e=>{if(e.target.closest('#k-swc')){$('#k-sw').classList.toggle('open');return;}const s=e.target.closest('#k-swl .sw');if(!s)return;if(Date.now()<SWSKIP)return;setColor(s.dataset.c);$('#k-sw').classList.remove('open');if(mode!=='h')setMode('h');};
  swTitles();
  document.addEventListener('click',e=>{if(!e.target.closest('#k-sw'))$('#k-sw').classList.remove('open');},true);
- $('#k-h').onclick=()=>setMode('h');$('#k-b').onclick=()=>setMode('b');$('#k-undo').onclick=undo;$('#k-redo').onclick=redo;$('#k-clear').onclick=clearView;
+ $('#k-h').onclick=()=>setMode('h');$('#k-b').onclick=()=>setMode('b');$('#k-undo').onclick=undo;$('#k-redo').onclick=redo;$('#k-clear').onclick=clearMenu;
  $('#k-eye').onclick=()=>revealAll();
- $('#k-auto').onclick=()=>{const on=$('#autopop').classList.toggle('on');if(on){$('#qzsc').value=LS.get('qzscope','card');$('#qzfixc').checked=!!LS.get('qzfix',false);$('#pendir').checked=PEN();}};
+ $('#k-auto').onclick=()=>{const on=$('#autopop').classList.toggle('on');if(on){$('#clearpop').classList.remove('on');$('#qzsc').value=LS.get('qzscope','card');$('#qzfixc').checked=!!LS.get('qzfix',false);$('#pendir').checked=PEN();$('#asc').value=LS.get('ascope','all')==='card'?'card':'all';apPrev();}};
+ $('#autopop').addEventListener('change',apPrev);$('#aclr').onclick=()=>{$('#autopop').classList.remove('on');clearKind('auto','tab');};
  $('#pendir').onchange=e=>{LS.set('penDirect',e.target.checked);toast(e.target.checked?'펜슬로 끌면 바로 형광펜 — 손가락은 스크롤':'펜슬도 형광펜 모드(H)를 켠 뒤에 칠해요');};
  $('#qzsc').onchange=e=>LS.set('qzscope',e.target.value);$('#qzfixc').onchange=e=>{LS.set('qzfix',e.target.checked);if(QZ.on)qzApply();};
- $('#ago').onclick=()=>{const v=$('input[name=am]:checked').value;$('#autopop').classList.remove('on');if(v==='quiz'){quizOn($('#qzsc').value);return;}auto(v,$('#aone').checked);};
+ $('#ago').onclick=()=>{const v=$('input[name=am]:checked').value;$('#autopop').classList.remove('on');if(v==='quiz'){quizOn($('#qzsc').value);return;}const sc=$('#asc').value;LS.set('ascope',sc);auto(v,$('#aone').checked,sc);};
  const hide=()=>{const B=document.body.classList;if(B.contains('focus')&&!B.contains('at-home')&&!B.contains('kit-off')){B.toggle('kitopen');measure();return;}B.toggle('kit-off');LS.set('kitoff',B.contains('kit-off'));measure();};$('#k-hide').onclick=hide;$('#kitshow').onclick=hide;
  const memo=()=>{$('#memo').classList.toggle('on');if($('#memo').classList.contains('on'))setTimeout(()=>$('#memota').focus(),50);};$('#k-memo').onclick=memo;$('#memox').onclick=memo;let mt;
  /* 메모 — 쓰기 직전에 다시 읽고, 입력하는 사이 다른 창이 바꿨으면 구분선을 넣어 합침 */
@@ -1521,9 +1568,9 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
   const inv=L=>L.filter(x=>{ch.forEach(k=>{delete x.p[k];});return Object.keys(x.p).length||x.r;});U=inv(U);R=inv(R);stackSave();upd();redraw();toast('다른 창에서 바꾼 표시를 불러왔어요');}   /* C06: 그 창이 바꾼 aid 항목만 되돌리기에서 뺌 */
   else if(e.key===NS+'autoRule.'+S){const inv=L=>L.filter(x=>{delete x.r;return Object.keys(x.p).length;});U=inv(U);R=inv(R);stackSave();upd();redraw();}});
  $('#k-lost').onclick=()=>{if(!CUR.s)return;openDoc(CUR.s,'_marks');const el=$('#mk-lost');if(el)goEl(el);};
- return{sub(){return S;},load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,pen:PEN,ctxOf,labels,editLabel,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');},all(){return ANN;},colors:COLORS,
+ return{sub(){return S;},load,restore,redraw,handleClick,setMode,undo,redo,hide,memo,hideAll,setColor,cycleColor,pen:PEN,ctxOf,labels,editLabel,color(){return color;},cname:CNAME,undoN(){return U.length;},mode(){return mode;},off(){if(mode)setMode(mode);$('#autopop').classList.remove('on');$('#clearpop').classList.remove('on');},all(){return ANN;},colors:COLORS,
   textOf(B){return index(B).s;},locate,resolve,enrich,needsLX,fnv,enriched(){return ENR;},setAll(o){ANN=o;U=[];R=[];PEND=null;stackSave();upd();persist();},lostN,
-  drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push('위치 잃은 표시 버리기');const M=L.filter((_,j)=>j!==i);if(M.length)ANN[aid]=M;else delete ANN[aid];persist();},stackBytes(){fin();return U.reduce((a,e)=>a+JSON.stringify(e).length,0);},push,pendDesc,pendRule};})();
+  drop(aid,i){const L=ANN[aid];if(!Array.isArray(L)||!L[i])return;push('위치 잃은 표시 버리기');const M=L.filter((_,j)=>j!==i);if(M.length)ANN[aid]=M;else delete ANN[aid];persist();},stackBytes(){fin();return U.reduce((a,e)=>a+JSON.stringify(e).length,0);},push,pendDesc,pendRule,clearMenu,clearKind,rules,fnv};})();
 const memoBase={v:''};
 /* 다른 창(같은 브라우저)에서 바꾼 채점·이해함·메모를 반영 */
 addEventListener('storage',e=>{if(!CUR.s||!e.key||e.key.indexOf(NS)!==0)return;const k=e.key.slice(NS.length);
@@ -1610,7 +1657,7 @@ function coverChips(){const st=$('#stage');if(!st||VIEW!=='doc')return;const on=
 function coverSaved(){qzSave();rbSave();coverChips();}
 /* Esc = 한 단계씩: 도움말 → 서랍 → 팝업 → 도구 모드 */
 function escStep(){if($('#help').classList.contains('on')){helpToggle();return;}if(document.body.classList.contains('navopen')){navOpen(false);return;}
- const pops=$$('.pop.on,#autopop.on,#k-sw.open,details.pmore[open]');if(pops.length){pops.forEach(p=>{if(p.tagName==='DETAILS')p.open=false;else p.classList.remove('on','open');});return;}
+ const pops=$$('.pop.on,#autopop.on,#clearpop.on,#k-sw.open,details.pmore[open]');if(pops.length){pops.forEach(p=>{if(p.tagName==='DETAILS')p.open=false;else p.classList.remove('on','open');});return;}
  if(Kit.mode()){Kit.off();return;}if(QZ.on){quizOff();toast('가리기 보기를 껐어요');return;}
  if(document.body.classList.contains('focus')&&VIEW==='doc'){focusSet(false);return;}}
 /* ---------- 집중 모드(A03) — V · ⤢ · 알약. LS 'focus'(새로고침·강의 이동 뒤에도) ---------- */
@@ -1793,6 +1840,21 @@ setInterval(()=>autoBak(false),5*60*1000);setTimeout(()=>autoBak(false),15000);
 function bkList(){return bkDB().then(db=>{if(db)return bkMetaAll(db).then(M=>M.map(m=>({id:String(m.at),at:m.at,why:m.why||'',cat:m.cat||'i',build:m.build,subs:m.subs||[],size:m.size||0})));
   const L=[];for(const id of ['0','1','2','3','4','p0','p1','p2']){const v=localStorage.getItem(NS+'autobak.'+id);if(!v)continue;try{const j=JSON.parse(v);const pro=id[0]==='p',why=j.why||(pro?'원고 갱신 전':'');L.push({id,at:j.at,why,cat:pro?bkCat(why):'i',size:v.length});}catch(e){}}return L;});}
 function bkLoad(id){return bkDB().then(db=>{if(db)return bkGet(db,+id);try{const j=JSON.parse(localStorage.getItem(NS+'autobak.'+id)||'null');return j&&j.data?j:null;}catch(e){return null;}});}
+/* C03 옛 자동 빈칸 → 규칙으로 바꾸기(공간 정리) — 대상 = 카드의 빈칸 기록(위치 잃은 것 포함)이 3개 이상이고 모두 그 카드 .k 글자와 정확히 같은(긴 빈칸은 길이·해시) 카드뿐
+   → 그 기록만 빼고(형광펜·다른 기록은 그대로) 카드가 든 문서/탭마다 규칙 {kind:'red', scope:'all'} 하나 · 실행 전 autoBak(true,'자동 빈칸 정리 전') */
+function tidyT(t){t=String(t).replace(/^[\s.\-~,!?]+/,'').replace(/[\s,!?]+$/,'');if(t.length>1&&/\.$/.test(t)&&/[가-힣)]/.test(t[t.length-2]))t=t.slice(0,-1);return t;}
+function oldAutoScan(){const out=[];SUBJECTS.forEach(([s])=>{if(!PACKS[s])return;const A=Kit.sub()===s?Kit.all():mkObj(LS.get('ann.'+s,{}));let EL=null,M=null;
+ for(const aid in A){const L=Array.isArray(A[aid])?A[aid]:[];const bl=L.filter(o=>o&&typeof o==='object'&&o.t==='b');if(bl.length<3)continue;if(!EL){EL=aidEls(s);M=aidMap(s);}const B=EL[aid],loc=M[aid];if(!B||!loc)continue;
+  const ks=new Set(),kh=new Set();B.querySelectorAll('.k').forEach(k=>{const t=k.textContent;[t,t.trim(),tidyT(t)].forEach(x=>{ks.add(x);kh.add(x.length+'|'+Kit.fnv(x));});});if(!bl.every(o=>o.xl?kh.has(o.xl+'|'+o.xh):ks.has(String(o.x))))continue;   /* 긴 빈칸은 길이·해시로 */out.push({s,aid,key:loc.d+'/'+(loc.t||loc.d),n:bl.length});}});return out;}
+function oldAutoFill(p){const e=p.querySelector('#oldauto');if(!e)return;let L=[];try{L=oldAutoScan();}catch(_){}const n=L.reduce((a,x)=>a+x.n,0),rk=new Set(L.map(x=>x.s+'|'+x.key)).size;
+ e.innerHTML=n?`<button class="btn sm" data-clean="oldauto">옛 자동 빈칸으로 보이는 기록 ${n}개(카드 ${L.length}) → 규칙 ${rk}개로 바꾸기</button>`:'<span class="small">옛 자동 빈칸으로 보이는 기록 0개</span>';const b=e.querySelector('[data-clean]');if(b)b.onclick=()=>cleanRun('oldauto');}
+function oldAutoRun(){const L=oldAutoScan();const n=L.reduce((a,x)=>a+x.n,0);if(!n){toast('옛 자동 빈칸으로 보이는 기록이 없어요');return;}const rk=new Set(L.map(x=>x.s+'|'+x.key)).size;
+ if(!confirm('옛 자동 빈칸으로 보이는 기록 '+n+'개(카드 '+L.length+'개)를 규칙 '+rk+'개로 바꿀까요?\n\n빈칸은 그대로 보이고, 형광펜·직접 만든 빈칸은 건드리지 않아요 · 바꾸기 전 상태를 자동 백업해 둡니다'))return;
+ autoBak(true,'자동 빈칸 정리 전');const by={};L.forEach(x=>{(by[x.s]=by[x.s]||[]).push(x);});
+ for(const s in by){const cur=Kit.sub()===s,A=JSON.parse(JSON.stringify(cur?Kit.all():mkObj(LS.get('ann.'+s,{})))),R0=mkObj(LS.get('autoRule.'+s,{}));
+  by[s].forEach(x=>{const K=(A[x.aid]||[]).filter(o=>!(o&&o.t==='b'));if(K.length)A[x.aid]=K;else delete A[x.aid];if(!R0[x.key])R0[x.key]={kind:'red',scope:'all',one:false,at:Date.now()};});
+  LS.set('autoRule.'+s,R0);if(cur)Kit.setAll(A);else LS.set('ann.'+s,A);}
+ if(VIEW==='doc')Kit.redraw();toast('기록 '+n+'개를 규칙 '+rk+'개로 바꿨어요 — 빈칸은 그대로예요',{level:'result'});const p=$('#rpop');if(p.classList.contains('on')){p.classList.remove('on');openRestore();}}
 /* ---------- 저장 공간(C02) — localStorage 한도(크롬·사파리 약 5M 글자)에 대한 사용량 · IDB 백업 크기 · navigator.storage.estimate ---------- */
 const LSCAP=5242880;
 function lsUsed(){let n=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);n+=k.length+(localStorage.getItem(k)||'').length;}}catch(e){}return n;}
@@ -1812,7 +1874,7 @@ async function rstRender(p){let L=[];try{L=await bkList();}catch(e){}if(!p.class
  ${pro.length?`<div class="small" style="margin-top:10px">이관·지우기 직전 상태 <span class="small">(이유별로 따로 보관 — 주기 백업이 밀어내지 않음)</span></div><div class="row">${pro.map(x=>`<button class="btn" data-snap="${x.id}">${tmAt(x.at)} · ${EH(x.why||BKCATN[x.cat])}${x.cat==='upd'&&x.subs&&x.subs.length?' ('+x.subs.length+'과목)':''}</button><button class="btn sm" data-snapdl="${x.id}" title="이 시점을 백업 파일로 받기">⬇ 파일</button>`).join('')}</div>`:''}
  <div class="small" style="margin-top:10px">자동 백업 시점으로 되돌리기 <span class="small">(바뀌었을 때만 5분마다, 최근 5개 — ${BK.ok?'이 기기(IndexedDB)':'이 브라우저 안'})</span></div><div class="row">${per.map(x=>`<button class="btn" data-snap="${x.id}"${x.why?` title="${EH(x.why)}"`:''}>${tmAt(x.at)}${x.why?' · '+EH(x.why):''}</button>`).join('')||'<span class="small">아직 없음</span>'}</div>${cleanHTML()}${toastLog()}<button class="btn" id="rclose" style="margin-top:8px">닫기</button>`;
  $('#rmerge').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#rover').onclick=()=>{$('#rfile').dataset.how='over';$('#rfile').click();};$('#rclose').onclick=()=>p.classList.remove('on');
- $$('[data-clean]',p).forEach(b=>b.onclick=()=>cleanRun(b.dataset.clean));const mx=p.querySelector('[data-mresx]');if(mx)mx.onclick=()=>{try{sessionStorage.removeItem(NS+'mergeRes');}catch(e){}mx.closest('.mres').remove();};
+ $$('[data-clean]',p).forEach(b=>b.onclick=()=>cleanRun(b.dataset.clean));const rc=p.querySelector('#rclean');if(rc)rc.addEventListener('toggle',()=>{if(rc.open)setTimeout(()=>oldAutoFill(p),30);});const mx=p.querySelector('[data-mresx]');if(mx)mx.onclick=()=>{try{sessionStorage.removeItem(NS+'mergeRes');}catch(e){}mx.closest('.mres').remove();};
  $$('[data-snapdl]',p).forEach(b=>b.onclick=async()=>{const j=await bkLoad(b.dataset.snapdl);if(!j){toast('백업을 읽지 못했어요',{level:'error'});return;}dl('JBL허브_백업_'+(j.why||'자동').replace(/\s+/g,'')+'_'+day(new Date(j.at))+'.json',{app:'jblhub',v:2,at:new Date(j.at).toISOString(),data:j.data});});
  $$('[data-snap]',p).forEach(b=>b.onclick=()=>snapRestore(b.dataset.snap));storeFill(p);if(typeof rstExtra==='function')rstExtra(p);}
 function mresHTML(r){const sk=Array.isArray(r.skip)?r.skip:[];return `<div class="mres panel"><b>백업 합치기 결과</b> — 합친 것 ${+r.n||0} · 건너뜀 ${sk.length}${sk.length?' <span class="small">('+sk.slice(0,6).map(x=>EH(x[0])+': '+EH(x[1])).join(' · ')+(sk.length>6?' …':'')+')</span>':''} <button class="btn sm" data-mresx="1">확인</button></div>`;}
@@ -1874,9 +1936,9 @@ function helpBak(){const e=$('#hbakat');if(e)e.textContent=bakAtTxt();}
 /* [공간 정리] — 복원 창을 열고 '공간 정리' 절로 */
 function openClean(){const p=$('#rpop');if(!p.classList.contains('on'))openRestore();setTimeout(()=>{const c=$('#rclean');if(c){c.open=true;c.scrollIntoView({block:'nearest'});}},60);}
 function cleanHTML(){const L=lsBakSlots();let sz=0;L.forEach(k=>{try{sz+=(localStorage.getItem(k)||'').length;}catch(e){}});
- return `<details class="rclean" id="rclean"><summary>🧹 공간 정리</summary><div class="small">자리가 모자라 저장이 안 될 때 — 지우기 전에 [백업 파일 받기]를 권해요</div><div class="row">${L.length?`<button class="btn sm" data-clean="lsbak">이 브라우저의 옛 자동 백업 사본 ${L.length}개 지우기 (${mb(sz)})</button>`:'<span class="small">지울 옛 자동 백업 사본이 없어요</span>'}</div></details>`;}
+ return `<details class="rclean" id="rclean"><summary>🧹 공간 정리</summary><div class="small">자리가 모자라 저장이 안 될 때 — 지우기 전에 [백업 파일 받기]를 권해요</div><div class="row">${L.length?`<button class="btn sm" data-clean="lsbak">이 브라우저의 옛 자동 백업 사본 ${L.length}개 지우기 (${mb(sz)})</button>`:'<span class="small">지울 옛 자동 백업 사본이 없어요</span>'}</div><div class="row" id="oldauto"><span class="small">옛 자동 빈칸 기록을 찾는 중…</span></div></details>`;}
 function mb(n){n=+n||0;if(n>=1073741824)return (n/1073741824).toFixed(1)+'GB';if(n>=104858)return (n/1048576).toFixed(n>=1048576*10?0:1)+'MB';return Math.max(n?1:0,Math.round(n/1024))+'KB';}
-function cleanRun(k){if(k==='lsbak'){const L=lsBakSlots();if(!L.length)return;if(!confirm('이 브라우저(localStorage)에 남은 옛 자동 백업 사본 '+L.length+'개를 지울까요? (표시·채점 기록은 그대로예요)'))return;L.forEach(x=>{try{localStorage.removeItem(x);}catch(e){}});['autobak.i','autobak.pi'].forEach(x=>{try{localStorage.removeItem(NS+x);}catch(e){}});
+function cleanRun(k){if(k==='oldauto'){oldAutoRun();return;}if(k==='lsbak'){const L=lsBakSlots();if(!L.length)return;if(!confirm('이 브라우저(localStorage)에 남은 옛 자동 백업 사본 '+L.length+'개를 지울까요? (표시·채점 기록은 그대로예요)'))return;L.forEach(x=>{try{localStorage.removeItem(x);}catch(e){}});['autobak.i','autobak.pi'].forEach(x=>{try{localStorage.removeItem(NS+x);}catch(e){}});
   const ok=lsFlush();toast(ok?'공간을 정리했어요':'정리했지만 아직 자리가 모자라요 — [백업 파일 받기] 뒤 다른 과목 표시를 줄여 보세요',{level:ok?'result':'error'});}
  const p=$('#rpop');if(p.classList.contains('on')){p.classList.remove('on');openRestore();}}
 /* ---------- 이어서 보기 ---------- */
@@ -1939,7 +2001,7 @@ function marksHTML(p){const ANN=Kit.all(),m=aidMap(p.id),S=p.id;const E=x=>Strin
  const memos=[],mp=NS+'memo.'+S+'.';for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k||k.indexOf(mp)!==0)continue;let v='';try{v=JSON.parse(localStorage.getItem(k));}catch(e){}if(typeof v==='string'&&v.trim())memos.push([k.slice(mp.length),v]);}
  const dname=d=>{const L=p.lect.find(x=>x.k===d);return L?L.title:((SUBJDOCS.find(x=>x[0]===d)||['',d])[1]);};
  const cols={b:'#C9DDF7',n:'#FFC98C'};Kit.colors.forEach(c=>cols[c[0]]=c[1]);
- const chip=(o,aid,i,go)=>{const tag=go?'button':'span',at=go?` data-mkgo="${E(aid)}" data-mki="${i}" title="그 자리로"`:'';return o.t==='b'?`<${tag} class="mk b${o.lost?' lost':''}"${at}>▣ ${E(o.x)}</${tag}>`:`<${tag} class="mk${o.lost?' lost':''}"${at} style="background:${cols[o.c||'y']||'#FFE58A'}">${E(o.x)}</${tag}>`;};
+ const chip=(o,aid,i,go)=>{const tag=go?'button':'span',at=go?` data-mkgo="${E(aid)}" data-mki="${i}" title="그 자리로"`:'';return o.t==='b'?`<${tag} class="mk b${o.lost?' lost':''}"${at}>▣ ${E(o.x)}${o.xl?'…':''}</${tag}>`:`<${tag} class="mk${o.lost?' lost':''}"${at} style="background:${cols[o.c||'y']||'#FFE58A'}">${E(o.x)}</${tag}>`;};
  let h=`<div class="panel noann"><div class="bt">🖍 내 표시 모아보기 <span class="small">— 표시마다 그 표시가 든 줄을 보여 줘요. ↗를 누르면 그 자리로 가서 깜빡입니다 · 빈칸은 가려 두어 떠올리기용(누르면 열림)</span></div><div class="mk-sum"><span>표시 <b>${n}</b></span><span class="lostn">위치 잃음 <b>${nl}</b></span><span>메모 <b>${memos.length}</b></span></div></div>`;
  if(!n&&!memos.length)return h+'<div class="panel noann small">아직 표시가 없어요. 아래 도구 막대의 🖍 형광펜 또는 ▣ 빈칸을 켜고 단어를 누르거나 끌어 보세요.</div>';
  if(nl){h+=`<div class="panel noann mk-grp mk-lost" id="mk-lost"><div class="bt">⚠ 위치를 잃은 표시 ${nl}개 <span class="small">— 원고가 바뀌어 원래 글자를 찾지 못했어요. 지우지 않고 보관 중이며, 같은 글자가 다시 생기면 저절로 돌아갑니다</span></div>`;
@@ -2004,7 +2066,7 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 (function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
-Object.assign(window.__h,{lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
+Object.assign(window.__h,{curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 })();
 </script>
 </body></html>
