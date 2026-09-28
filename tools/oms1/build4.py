@@ -445,6 +445,7 @@ def lec_card(L, j, c):
     if c['figs']:
         tp, tk = c['figs'][0]; tk = tk or kk
         thumb = f'<figure class="mth" data-fig="{tk}-{tp}"><img data-img="{tk}-{tp}" alt=""></figure>'
+    # (옛 빌드 글자 '미출제'·머리 라벨은 .tho(숨김)로 같은 자리에 남김 — 옛 표시 위치 불변, 보이는 새 라벨은 .noann)
     # ---- 정리표 행(ux2 E01~E06): 주제(제목·연도 칩·미출제) · 🔑 요지·핵심 · 세부(요약 줄 .sline(noann) + 전체 .mfull) · ★ 시험(문항마다 연도 칩 + 문제 → 답) · ⚡ 암기
     kc = lecparse._kcls(ctx['RED'])
     def ci_html(x):
@@ -480,7 +481,7 @@ def lec_card(L, j, c):
     mem = ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in c['recall']) or '<span class="small">—</span>'
     ralt = ' '.join(x + '~s' for x in card_alt(k, j).split(' '))   # ux2 E01 정리표 행 = 표시 단위(카드 aid~s) · 옛 카드 aid도 ~s로 이어받음
     ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 기출 문제로">기출 {ylab(sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
-    exc = f'<td class="mt" data-col="ex" data-h="★ 시험">{ex}</td><td class="mnote" data-col="mem" data-h="⚡ 암기">{mem}</td>' if exams else f'<td class="mnote mw" colspan="2" data-col="mem" data-h="⚡ 암기">{mem}</td>'
+    exc = f'<td class="mt" data-col="ex" data-h="★ 시험">{ex}</td><td class="mnote" data-col="mem" data-h="⚡ 암기">{mem}</td>' if exams else f'<td class="mnote mw" colspan="2" data-col="mem" data-h="⚡ 암기"><span class="tho">미출제</span>{mem}</td>'
     row = (f'<tr class="{heat(dn)}" id="m-{k}-{j}" data-aid="{AIDS[(k, j)]}~s" data-alt="{ralt}" data-grp="{esc(c["grp"])}" data-n="{dn}"><th data-col="topic"><div class="mtw"><button class="link" data-scroll2="{k}:{j}"><span class="mn">{j+1}</span> <span class="serif men" lang="en">{esc(c["en"])}</span></button><div class="mko">{esc(c["ko"])}{(" <span class=" + chr(34) + "pg" + chr(34) + ">· " + lab + "</span>") if lab else ""}</div><div class="mych noann">{ych2}</div>{thumb}</div></th>'
            f'<td class="mk" data-col="key" data-h="🔑 요지·핵심"><div class="mg">{lecparse.inline(c["gist"], ctx)}</div>{("<div class=mkey>" + mkey_html(key) + "</div>") if key else ""}</td><td class="md" data-col="det" data-h="세부">{("<div class=" + chr(34) + "sline noann" + chr(34) + ">" + "".join(sl) + "</div>") if sl else ""}<div class="mfull">{det}</div>{dbtn}</td>{exc}</tr>')
     ctx['RED'] = None
@@ -582,7 +583,7 @@ for L in LEC:
     summ = (f'<div class="pills noann msbar" id="msbar"><span class="pseg"><button class="tg" data-mdense="s" title="세부를 소제목마다 한 줄(시험 핵심어)로">요약</button><button class="tg" data-mdense="f" title="세부 내용 전부">전체</button></span>'
             f'<span class="pseg"><button class="tg" data-mfilt="">전체</button><button class="tg" data-mfilt="hit" title="기출이 나온 주제만">기출 나온 주제만</button><button class="tg" data-mfilt="rep2" title="2회 이상 나온 기출이 걸린 주제만">2회↑</button></span>'
             f'<span class="pseg mgrp"><button class="tg on" data-mgrp="">모든 묶음</button>{mgp}</span><span class="small mshelp">주제를 누르면 학습 카드로 · 연도 칩은 기출 문제로 · 열 머리 👁 = 그 열 가리고 떠올리기 · J/K 다음/이전 행</span></div>'
-            f'<div class="tblwrap wide msum" data-aid="{aid(k + ":sumt")}" data-alt="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup><thead><tr><th data-col="topic">주제</th><th data-col="key">🔑 요지·핵심</th><th data-col="det">세부</th><th data-col="ex">★ 시험</th><th data-col="mem">⚡ 암기</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>')
+            f'<div class="tblwrap wide msum" data-aid="{aid(k + ":sumt")}" data-alt="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup><thead><tr><th data-col="topic">주제</th>{"".join(f'<th data-col="{c_}"><span class="thn noann">{n_}</span><span class="tho">{o_}</span></th>' for c_, n_, o_ in (("key", "🔑 요지·핵심", "한 줄 요지 · 🔑 핵심"), ("det", "세부", "세부 내용"), ("ex", "★ 시험", "⭐ 기출 — 이렇게 나왔다"), ("mem", "⚡ 암기", "⚡ 암기 줄")))}</tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>')
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.render_recall(x, ctx)} for c in L['cards'] for x in c['recall']]   # 플래시카드: ' / ' 줄은 <li>로(U28)
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
