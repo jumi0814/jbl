@@ -1,6 +1,6 @@
 """ux3 트랙1 묶음 L 회귀 — 표 자동 확장·열 폭.
 L1 메뉴 숨김/펼침 → .msum 폭 ±248 · col 합 100% · 행 필터·묶음 필터 뒤 col 그대로 · 요약↔자세히 다시 맞춤
-L2 정리표 colFit — 7강의 × 1280(숨김·펼침)·1180: 맞춘 높이 ≤ 기본값(CSS 기본 열 폭) · 가로 넘침 0
+L2 정리표 colFit — 7강의 × 1280(숨김·펼침)·1180: 맞춘 높이 ≤ 기본값(CSS 기본 열 폭 — 기본 폭에서 칸이 넘치면 ×1.02까지) · 가로 넘침 0 · 칸 넘침(th·td scrollWidth) 0
 L3 820 세로 = 2단 카드(38%|62%) — 1단 카드보다 25%↑ 낮음 · 카드 안 가로 넘침 0 · 👁 칸 이름 누르면 가림
 L4 비교표 820 PHARM RX 최소 열 ≥ 90px 또는 카드형 · 1180 PHARM DS 최대 행 높이 ≤ 220px · 전체정리표 넘침은 .ovx 스크롤 안에서만
 결과 표 work/_tmp/ux3l_tables.json · 스크린샷 work/_tmp/ux3i_l_*.png"""
@@ -17,17 +17,20 @@ async def open_(pg, h, wait=900):
 LECS = [('CONS', 'WHT'), ('ANAT', 'LIP'), ('OMS1', 'DD1'), ('IMPL', 'OSS'), ('GERI', 'SAL'), ('PHARM', 'DS'), ('CONS', 'ADH')]
 M = """(()=>{const t=document.querySelector('#stage .msum table.mtx'),w=document.querySelector('#stage .msum');const cols=[...t.querySelectorAll('colgroup>col')].map(c=>parseFloat(c.style.width)||0);
  return {H:Math.round(t.getBoundingClientRect().height),W:Math.round(w.getBoundingClientRect().width),disp:getComputedStyle(t).display,cfw:t.dataset.cfw||'',sum:cols.reduce((a,b)=>a+b,0),
-  over:document.documentElement.scrollWidth-innerWidth,tover:Math.round(t.getBoundingClientRect().width-t.closest('.tscroll').clientWidth)}})()"""
-DEF = "(()=>{const t=document.querySelector('#stage .msum table.mtx');const k=t.dataset.cfw;__h.cfApply(t,null);const h=Math.round(t.getBoundingClientRect().height);__h.cfApply(t,k?k.split(',').map(Number):null);return h})()"
+  over:document.documentElement.scrollWidth-innerWidth,cov:[...t.querySelectorAll('tbody tr:not(.grow)>th,tbody tr:not(.grow)>td')].filter(c=>c.scrollWidth>c.clientWidth+1).length,tover:Math.round(t.getBoundingClientRect().width-t.closest('.tscroll').clientWidth)}})()"""
+DEF = "(()=>{const t=document.querySelector('#stage .msum table.mtx');const k=t.dataset.cfw;__h.cfApply(t,null);const h=Math.round(t.getBoundingClientRect().height);window.__dcov=[...t.querySelectorAll('tbody tr:not(.grow)>th,tbody tr:not(.grow)>td')].filter(c=>c.scrollWidth>c.clientWidth+1).length;__h.cfApply(t,k?k.split(',').map(Number):null);return h})()"
+async def dflt(pg):   # 기본 열 폭 높이 · 기본 폭에서 칸 넘침이 있으면(주제 열 < 영문 낱말) 하한을 지킨 colFit이 기본보다 2%까지 높아도 됨
+    d = await pg.evaluate(DEF); dc = await pg.evaluate("window.__dcov"); return d, dc
+def le(r, d, dc): return r['cov'] == 0 and (r['H'] <= d or (dc > 0 and r['H'] <= d * 1.02))
 async def run(b):
     ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     # ---- L2 1280 숨김(정리표 자동 숨김) · 펼침
     for s, k in LECS:
-        await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d = await pg.evaluate(DEF)
+        await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d, dc = await dflt(pg)
         OUT[f'1280fold {s}/{k}'] = dict(r, default=d)
-        ok(r['disp'] == 'table' and r['H'] <= d and (not r['cfw'] or abs(r['sum'] - 100) < 0.6) and r['over'] <= 0 and r['tover'] <= 1, f'1280 숨김 {s}/{k} 높이 {r["H"]} ≤ 기본 {d} ({round((1 - r["H"] / d) * 100, 1)}%↓) 열 {r["cfw"]} 폭 {r["W"]}')
+        ok(r['disp'] == 'table' and le(r, d, dc) and (not r['cfw'] or abs(r['sum'] - 100) < 0.6) and r['over'] <= 0 and r['tover'] <= 1, f'1280 숨김 {s}/{k} 높이 {r["H"]} ≤ 기본 {d}{"(넘침 " + str(dc) + ")" if dc else ""} 칸넘침 {r["cov"]} ({round((1 - r["H"] / d) * 100, 1)}%↓) 열 {r["cfw"]} 폭 {r["W"]}')
     await open_(pg, '#/CONS/WHT/sum', 1200); r0 = await pg.evaluate(M)
     await pg.evaluate("window.__lev=0;document.addEventListener('jbl:layout',()=>__lev++)")
     await pg.click('#sideopen'); await pg.wait_for_timeout(250); w250 = await pg.evaluate("Math.round(document.querySelector('#stage .msum').getBoundingClientRect().width)"); await pg.wait_for_timeout(500); r1 = await pg.evaluate(M)
@@ -36,9 +39,9 @@ async def run(b):
     ok(r2['W'] == r0['W'] and r2['cfw'] == r0['cfw'], f'L1 \\ 다시 숨김 → 폭·열 처음과 같음 {r2["W"]} {r2["cfw"]}')
     await pg.evaluate("localStorage.removeItem('jblhub.v1.sidefold');localStorage.setItem('jblhub.v1.wideSide','1')")
     for s, k in LECS:
-        await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d = await pg.evaluate(DEF)
+        await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d, dc = await dflt(pg)
         OUT[f'1280open {s}/{k}'] = dict(r, default=d)
-        ok(r['H'] <= d and r['over'] <= 0 and r['tover'] <= 1, f'1280 펼침 {s}/{k} {r["disp"]} 높이 {r["H"]} ≤ 기본 {d} 열 {r["cfw"]} 폭 {r["W"]}')
+        ok(le(r, d, dc) and r['over'] <= 0 and r['tover'] <= 1, f'1280 펼침 {s}/{k} {r["disp"]} 높이 {r["H"]} ≤ 기본 {d}{"(넘침 " + str(dc) + ")" if dc else ""} 칸넘침 {r["cov"]} 열 {r["cfw"]} 폭 {r["W"]}')
     await pg.screenshot(path=J.TMP + '/ux3i_l_1280_open.png')
     # 필터 뒤 col 그대로 · 요약↔자세히 다시 맞춤
     await open_(pg, '#/CONS/WHT/sum', 1200); c0 = (await pg.evaluate(M))['cfw']
@@ -46,17 +49,17 @@ async def run(b):
         await pg.click('#msbar ' + sel); await pg.wait_for_timeout(350)
     await pg.click('#msbar [data-mgrp]:not([data-mgrp=""])'); await pg.wait_for_timeout(350); await pg.click('#msbar [data-mgrp=""]'); await pg.wait_for_timeout(350)
     c1 = (await pg.evaluate(M))['cfw']; ok(c1 == c0, f'L1 행 필터·묶음 필터 뒤 열 폭 그대로 {c0} → {c1}')
-    n0 = await pg.evaluate("__h.CF.n"); await pg.click('#msbar [data-mdense="f"]'); await pg.wait_for_timeout(700); rf = await pg.evaluate(M); df = await pg.evaluate(DEF); n1 = await pg.evaluate("__h.CF.n")
-    ok(n1 == n0 + 1 and rf['H'] <= df, f'L1 자세히 → 다시 맞춤({n1 - n0}회) {rf["cfw"]} 높이 {rf["H"]} ≤ {df}')
+    n0 = await pg.evaluate("__h.CF.n"); await pg.click('#msbar [data-mdense="f"]'); await pg.wait_for_timeout(700); rf = await pg.evaluate(M); df, dfc = await dflt(pg); n1 = await pg.evaluate("__h.CF.n")
+    ok(n1 == n0 + 1 and le(rf, df, dfc), f'L1 자세히 → 다시 맞춤({n1 - n0}회) {rf["cfw"]} 높이 {rf["H"]} ≤ {df}')
     OUT['1280 full CONS/WHT'] = dict(rf, default=df)
     await pg.click('#msbar [data-mdense="s"]'); await pg.wait_for_timeout(500)
     ok(not errs, f'오류 0 {errs[:2]}'); await ctx.close()
     # ---- 1180 가로
     ctx = await b.new_context(viewport={'width': 1180, 'height': 820}, has_touch=True); pg = await ctx.new_page(); pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     for s, k in LECS[:4]:
-        await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d = await pg.evaluate(DEF)
+        await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d, dc = await dflt(pg)
         OUT[f'1180 {s}/{k}'] = dict(r, default=d)
-        ok(r['H'] <= d and r['over'] <= 0, f'1180 {s}/{k} {r["disp"]} 높이 {r["H"]} ≤ {d} 열 {r["cfw"]}')
+        ok(le(r, d, dc) and r['over'] <= 0, f'1180 {s}/{k} {r["disp"]} 높이 {r["H"]} ≤ {d}{"(넘침 " + str(dc) + ")" if dc else ""} 칸넘침 {r["cov"]} 열 {r["cfw"]}')
     await pg.screenshot(path=J.TMP + '/ux3i_l_1180_sum.png')
     await open_(pg, '#/PHARM/DS/tbl', 1200)
     mh = await pg.evaluate("Math.max(...[...document.querySelectorAll('#stage table.cmp tbody tr')].map(r=>r.getBoundingClientRect().height))")
