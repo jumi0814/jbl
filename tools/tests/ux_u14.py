@@ -16,6 +16,7 @@ MKS = "JSON.parse(localStorage.getItem('jblhub.v1.mk.PHARM')||'{}')"
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
+    pg.on('dialog', lambda d: asyncio.ensure_future(d.accept()))   # 한 장씩 중 필터를 바꾸면 '새 회차를 시작할까요?'(C07) — 수락
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     # 옛 mk 형식(log 없음·bm 없음)
     await pg.evaluate("localStorage.setItem('jblhub.v1.mk.PHARM', JSON.stringify({ok:{RX03:1},ng:{}}))")
