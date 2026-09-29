@@ -121,11 +121,11 @@ async def mac(b):
     await pg.screenshot(path=SHOT('v03_whatsnew', tag))
     await pg.evaluate("document.querySelector('#wnew [data-wnh]').click()"); await pg.wait_for_timeout(400)
     r = await pg.evaluate("[document.querySelector('#help').classList.contains('on'),(document.querySelector('#help tr.flash th')||{}).textContent||'']")
-    ok(r[0] and r[1] == '⚡ 복습 보기 R', f'V03 카드 [도움말 ▸] → 도움말의 그 줄 {r}')
+    ok(r[0] and r[1] == '왼쪽 메뉴 M', f'V03 카드 [도움말 ▸] → 도움말의 그 줄 {r}')   # ux3 P2: 카드 = 3차 안내(첫 줄 🧭 왼쪽 메뉴)
     await pg.evaluate("document.querySelector('#helpx').click()"); await pg.wait_for_timeout(200)
     await pg.evaluate("document.querySelector('#wnew [data-wnx]').click()"); await pg.wait_for_timeout(200)
     await open_(pg, '#/')
-    ok(not await pg.evaluate("document.querySelector('#wnew')") and await ls(pg, 'whatsNew.2') == 1, "V03 [알겠어요] → 다시 안 보임(LS whatsNew.2)")
+    ok(not await pg.evaluate("document.querySelector('#wnew')") and await ls(pg, 'whatsNew.3') == 1, "V03 [알겠어요] → 다시 안 보임(LS whatsNew.3 — ux3 P2)")
     ok(not errs, f'{tag}: pageerror 0 {errs[:2]}')
     await ctx.close()
 

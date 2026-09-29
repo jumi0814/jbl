@@ -299,3 +299,41 @@ M: ⚡ 암기 줄({r:} 포함)
 - **H5 이번 주·더보기**: tWeek(tMon) 월~일 `button.hwb[data-hwd]`(막대 72px · 점선 = 그날 tGoal · 달성 .met 진하게 · 오늘 테두리 · 앞날 흐림 → 누르면 calView(그날)) + '합계 · 하루 평균(오늘까지 날 수)'(= 시계 팝업 주 합계) + [📅 달력 열기]. `details.hxm[data-hmd=bk]` 💾 백업·기기 옮기기(summary '— n일 전 보냄', bkDue면 .warn · 안 = bkPanel) · `details.hxm[data-hmd=mk]` 🖍 전 과목 내 표시(.mkall · 과목별 🖍·▣ 수 → 내 표시 모아보기). 넓으면(hub 760↑) 두 칸.
 - **H6 과목 홈**: 구성 순서 그대로. examLine(p,C,edit) — 시험일이 없거나 지났으면 그 자리 `.exline.exset` 날짜 입력(#stage change → LS exam.<S> → 그 줄만 다시 + navBadges) · 있으면 하루 분량 줄 끝 ✎(data-exline → 입력, [닫기] data-exlx). 진행률 줄 tSubjLine = '📅 이 과목 달력'(data-tvgo2 + data-s → #/_cal?s=<SID>).
 - **정리**: sjShort 중복 선언(트랙 1·2) → 트랙 2 것 하나(SJS·'기타'). 새 LS 키 없음. 회귀 고리 __h.todayTasks·todoGo·bkDue·sjTotals·homeTick·home·HEXED. 회귀 tests/ux3_home.py(세 폭 · 스크린샷 work/_tmp/ux3h_{1280,1180,820}.png) + 옛 과목 카드 선택자를 쓰던 테스트(ux2_home·ux2_time·ux2_load·ux2_fixA·ux2_jbq·ux2_jbround·ux_u16·ux_u22·ux_nav·ct·gt·ux2_device·ux2_flash·ux2_pwa·ux2_jblock·ux2_backup)와 verify.py를 .hsj로.
+
+## 묶음 P — 도움말 한 표·새 기능 안내·3차 저장 키·옛 판 호환 v18 (2026-09-29, ux3 통합 — shell.html 도움말 `#help .hkt`·'ux3 P2' 주석(OLD3·WN_ITEMS·whatsNew)·tests/ux3_help.py·ux3_compat.py)
+- **도움말 '⌨ 모든 단축키'(P2)**: 도움말 맨 위 `section.hkt[data-hn="⌨ 모든 단축키"]` — 화면별 묶음 `.hkg`(이름 `.hkn` + `li` = `<kbd>키</kbd><span>하는 일</span>`, auto-fill 210px 격자 · 600 이하 한 단). helpGo(이름)는 `th` 글자 → 없으면 `[data-hn]`으로 찾아 flash. 옛 `.hkey` 한 줄 안내는 이 머리에 합침. 아래 표는 기능별 설명 줄(이름 중복 0 — M은 '왼쪽 메뉴 M' 한 줄로 합침, 옛 'M 메뉴 · Shift+M 메모' 줄은 없앰).
+
+| 어디서 | 키 | 하는 일 |
+|---|---|---|
+| 모든 화면 | `?` · `/` · `Esc` | 도움말 · 검색 · 한 단계씩 닫기(팝업·도움말 → 모드 끄기) |
+| 모든 화면 | `M`(= `\`) · `Shift+M` | 왼쪽 메뉴 숨기기/보이기(≤860 서랍 · 집중 모드 중이면 끄고 메뉴) · 📝 메모 |
+| 모든 화면 | `V` · `T`(= `Shift+V`) | 집중 모드 · 도구 막대 숨기기 |
+| 모든 화면 | `H` · `Shift+H` · `B`(= `A`) · `Shift+B` | 형광펜 · 형광펜 색 · 빈칸 · 빈칸 색(n→u→g→p→v) |
+| 모든 화면 | `E` · `N` · `Shift+N` · `⌘/Ctrl+Z`(+Shift) | 가린 칸 전부 · 다음 가린 칸 · 이 카드 다시 가리기 · 되돌리기(다시 실행) |
+| 과목 문서 | `1~6` · `G` · `Q` | 탭 · 과목 홈 · 가리기 보기 |
+| 학습 탭 | `J/K`(+Shift = 기출 카드) · `D` · `F` · `C` · `R` · `I` | 카드 이동 · ✓ 이해함 · 접기 · 압축 · ⚡ 복습 보기 · 그림 크기 |
+| 정리표·한눈표·예상 | `J/K` | 행·문항 이동 |
+| JB 목록 | `J/K` · `Space` · `O/X` · `S` | 문항 · 답 1→2단계→닫기 · 맞음/틀림 · ★ |
+| 한 장씩 | `←/→`(Enter = 다음) · `Space` · `O/X` · `S` | 넘기기 · 답 · 채점 · ★ |
+| 플래시카드 | `Space` · `←/→` · `O/X` | 뒤집기 · 넘기기 · 알아요/몰라요 |
+| 📅 달력(탭 'cal') | `←/→` · `Shift+←/→` · `T` · `A` | 하루 · 한 달 · 오늘 · + 시간 추가 (캡처 단계 — 이 화면에서는 도구 막대 T·빈칸 A보다 먼저) |
+| 그림 크게 · ⏱ 크게 | `←/→` · `+/−` · `Esc` | 그림 넘기기 · 확대 · 닫기 |
+
+- **줄 정리(P2)**: '✨ 새로 생긴 것' = 3차 링크(🧭 왼쪽 메뉴·🏠 오늘·📅 달력·▶ 세션·☕ 쉬는 시간·🎨 빈칸 색·📐 표 폭·🔑 줄 나누기·⌨ 모든 단축키) + 2차 링크 한 줄 · 옛 상단 [백업][복원] 글 → '왼쪽 메뉴 맨 아래 💾 백업'·'💾 → ↺ 복원·되돌리기' · '사이드바' → '왼쪽 메뉴' · '시험 가까운 순' → '[시험순]' · 한 장씩 회차 = 허브 홈 ↪ 이어서의 회차 줄. 회귀 tests/ux3_help.py(도움말 안 모든 data-wnh가 실제 줄로 · 'M 메모' 문구 없음 · 세 폭 가로 넘침 0).
+- **새 기능 안내(P2)**: `WN_ITEMS` 7줄(🧭 왼쪽 메뉴·🏠 오늘 화면·📅 공부 달력·▶ 세션 측정·🎨 빈칸 색·📐 표 폭·🔑 줄 나누기 — 줄 끝 [도움말 ▸] = 그 줄) · 조건 `OLD3 && !LS whatsNew.3` · [알겠어요] = whatsNew.3=1(+whatsNew.2=1 — 2차 카드는 이 카드로 대신). **OLD3** = OLDU(ux2old — 2차 판을 처음 열 때 기록이 있던 기기) 또는 3차 판을 처음 연 순간 공부 기록 키(mk·ann·done·fc·memo·time·timed)가 있으면 1(LS **ux3old** — 2차 판을 기록 없이 처음 열어 ux2old=0인 기기도 3차 안내를 받음). keyNoticeM(M 안내 알림)도 OLD3. ux3old·whatsNew.*는 MSKIP(기기 전용).
+- **3차 저장 키 한 표**(모두 `jblhub.v1.*` · 기존 키 형식·의미 그대로, 새 키만 더함):
+
+| 키 | 형식 | 쓰는 곳 | 백업 합치기 |
+|---|---|---|---|
+| tseg | {날짜:[[s초,e초,S,D,f]]} f=a·s·m·r·ra(+e·x) · 180일 | 달력 24시간 띠·목록(표시 전용 — 합계에 안 씀) | (s\|S\|D) 합집합·e 최대·x가 이김 · 기기 백업은 timeDev[id] |
+| tedit | [{i,at,d,S,D,ms,k,g,x,p?,sx?,sa?,r?}] 추가 전용 | 손 고침 원장 — 합계에 더함(x 아님) | i 합집합(x=1이 이김, 한 번만) |
+| trest | {날짜:ms} | ☕ 휴식(합계에 절대 안 씀) | 날짜별 큰 값 · 기기 백업은 timeDev[id] |
+| tgoalDay | {날짜:분} | 날짜별 목표(없으면 tgoal) | 이 기기 값 우선 |
+| tstate | {st,t0,seg,S,D,at,d} | 측정 상태(세션·쉬기·종료) | 합치지 않음(MSKIP) |
+| sessAsk · restAuto · restMax | 분 · 불리언 · 분 | 세션 안전장치 · 자동 휴식 | 없을 때만 채움 |
+| calTab · navExp · navSec | 'cal'\|'stats' · {S:1} · {res:1} | 달력 하위 탭 · 메뉴 펼침 · 이어서 접기 | 없을 때만 채움 |
+| bcol · hcol · blabel | 'n'\|'u'\|'g'\|'p'\|'v' · 형광펜 색 · {c:글} | 빈칸 색 · 마지막 형광펜 색 · 빈칸 라벨 | 없을 때만 채움 |
+| keyNoticeM · ux3old · whatsNew.3 | 1 · 0/1 · 1 | M 안내 한 번 · 3차 안내 대상 · 안내 닫음 | keyNoticeM 없을 때만 · 나머지 MSKIP |
+
+- **옛 판 호환(P5 — tests/ux3_compat.py)**: 정방향 = 1차(7095e56)·2차(0918775) 판에서 쌓은 데이터(time·timed·tadj·timeDev·mk 채점·done·memo·fc·ann·exam.<S>·homeSort·sidefold·tgoal·idleMin·hlabel·tauto·last·lastBy)를 새 허브로 열면 지난 날짜 합계(tDay·tLec)가 옛 판 계산과 같고(2차는 옛 허브의 tDay를 직접 불러 비교), 그 키들의 저장 JSON이 바뀌지 않음(형광펜·빈칸 위치는 legacy_restore --rev 7095e56). **역방향** = 새 허브에서 만든 tedit(+ 시간 추가·지우기)·tseg·trest·색 빈칸(c)·tgoalDay를 옛 판으로 열면: 오류 없이 열리고, 2차 판 합계 = 새 합계 − tedit 몫(1차 판은 time만 — tadj·timeDev·tedit 모두 모름), 색 빈칸은 회색 빈칸으로 보이고 저장 JSON(c 필드)은 그대로 남음, 나머지 새 키는 무시. 백업 보내기(dumpAll) → 빈 프로필 합치기(mergeData, 기기 모드 — timeDev)도 지난 날짜 합계가 같음.
+- **화면 회귀(P4 — tests/ux3_views.py)**: 1280·1180(터치)·820(터치) × 홈·📅 달력·📊 통계(#/_time)·검색(#/?q=)·🖍 내 표시·과목 홈·학습·정리표·비교표·JB·한 장씩 + 820 ☰ 서랍(M) · 1180/1280 메뉴 숨김 정리표 — 가로 넘침 0 · 본문이 비지 않음 · 콘솔 오류 0 · 스크린샷 work/_tmp/ux3p_<폭>_<화면>.png. 허브에는 다크 모드가 없음(prefers-color-scheme: dark에서도 밝은 화면 그대로 — 빈칸 색 토큰만 `:root[data-theme="dark"]` 짝이 있음). P4에서 고친 것: 허브 홈 과목 표 시험 칸의 빈 자리 글 '날짜' → '시험일'(820 두 줄 카드에서 머리 없이 보여 뜻이 안 통하던 것).
