@@ -103,7 +103,7 @@ async def a03(pg, tag, vp):
     ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), '가로 넘침 없음')
 async def a04(pg, tag, vp):
     """A04 사이드바 접기(\\ · ‹ ›) · 정리표·비교표·한눈표 1440 이하 자동 접기(wideSide)"""
-    await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','wideSide','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+    await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','navfold','navfoldHub','wideSide','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
     await open_(pg, '#/CONS/WHT/sum', 1500)
     S = "(()=>({fold:document.body.classList.contains('sidefold'),tw:Math.round((document.querySelector('.msum table.mtx')||document.querySelector('table.cmp')).getBoundingClientRect().width),side:Math.round(document.querySelector('#side').getBoundingClientRect().width),over:document.documentElement.scrollWidth>innerWidth}))()"
     r0 = await pg.evaluate(S)
@@ -116,8 +116,10 @@ async def a04(pg, tag, vp):
     ws = await pg.evaluate("localStorage.getItem('jblhub.v1.wideSide')")
     await pg.keyboard.press('Backslash'); await pg.wait_for_timeout(450); r2 = await pg.evaluate(S)
     ok(not r1['fold'] and r1['side'] > 200 and ws == '1' and r2['fold'], f'\\ → 펼침(wideSide={ws}) → 다시 접힘 {r1["side"]}/{r2["side"]}')
+    ok(await pg.evaluate("localStorage.getItem('jblhub.v1.wideSide')") == '0' and await pg.evaluate("localStorage.getItem('jblhub.v1.navfold')") is None, 'ux3 F9 정리표에서 다시 숨김 = wideSide 0만(학습·홈 설정 그대로)')
     await pg.click('#dtabs button[data-t="learn"]'); await pg.wait_for_timeout(700)
-    ok(await pg.evaluate("document.body.classList.contains('sidefold')"), '학습 탭으로 돌아가도 접은 설정 그대로')
+    ok(not await pg.evaluate("document.body.classList.contains('sidefold')"), 'ux3 F9 학습 탭은 메뉴 보임(정리표에서 숨긴 것이 새지 않음)')
+    await pg.click('#dtabs button[data-t="sum"]'); await pg.wait_for_timeout(700)
     await pg.click('#sideopen'); await pg.wait_for_timeout(450)
     ok(not await pg.evaluate("document.body.classList.contains('sidefold')"), '왼쪽 가장자리 › → 펼침')
     await open_(pg, '#/CONS/_tbl/_tbl'); r3 = await pg.evaluate(S)
@@ -125,10 +127,10 @@ async def a04(pg, tag, vp):
     await pg.click('#side .nvhead [data-nvfold]'); await pg.wait_for_timeout(450)
     vis = await pg.evaluate("getComputedStyle(document.querySelector('#sideopen')).display")
     ok(await pg.evaluate("document.body.classList.contains('sidefold')") and vis == 'flex', f'메뉴 머리 ‹ → 접힘 · 왼쪽 가장자리 › ({vis})')
-    await pg.click('#sideopen'); await pg.evaluate("['sidefold','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+    await pg.click('#sideopen'); await pg.evaluate("['sidefold','navfold','navfoldHub','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
 async def a05(pg, tag, vp):
     """A05 가리기 보기(Q — 저장 안 함)·N·Shift+N·카드 머리 칩·⚡ 창 첫 선택지·강의 전체 200ms"""
-    await open_(pg, '#/OMS1/EXT/learn'); await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1');sessionStorage.clear();['qzscope','qzfix','focus','sidefold'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+    await open_(pg, '#/OMS1/EXT/learn'); await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1');sessionStorage.clear();['qzscope','qzfix','focus','sidefold','navfold','navfoldHub'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
     await open_(pg, '#/OMS1/EXT/learn')
     ANN = "(localStorage.getItem('jblhub.v1.ann.OMS1')||'').length"
     a0 = await pg.evaluate(ANN)
@@ -175,7 +177,7 @@ async def a05(pg, tag, vp):
     await pg.evaluate("localStorage.removeItem('jblhub.v1.ann.OMS1')")
 async def a06(pg, tag, vp):
     """A06 모드 칩·모드 중 카드 점선·스크롤하는 동안 도구 막대 ✎·↶ 배지·kit-off 저장"""
-    await open_(pg, '#/OMS1/DD2/learn'); await pg.evaluate("['kitoff','focus','sidefold'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/OMS1/DD2/learn')
+    await open_(pg, '#/OMS1/DD2/learn'); await pg.evaluate("['kitoff','focus','sidefold','navfold','navfoldHub'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/OMS1/DD2/learn')
     await pg.keyboard.press('h'); await pg.wait_for_timeout(100)
     c = await pg.evaluate("(()=>{const c=document.querySelector('.modechip');return [getComputedStyle(c).display,c.textContent,document.querySelector('#stage').classList.contains('modeon'),getComputedStyle(document.querySelector('#stage .tc')).outlineStyle]})()")
     ok(c[0] != 'none' and c[1] == '🖍 형광펜 켜짐 · 노랑 — 누르면 끄기 (H·Esc)' and c[2] and c[3] == 'dashed', f'H → 모드 칩·카드 점선 {c}')

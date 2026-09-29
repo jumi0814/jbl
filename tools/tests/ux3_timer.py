@@ -102,7 +102,7 @@ async def part_safety(b):
     await pg.screenshot(path=J.TMP + '/ux3i_timer_ask_mac.png')
     await pg.evaluate("document.querySelector('#trband [data-trq=stopli]').click()"); await pg.clock.run_for(500)
     d = (await tsum(pg)) - t0
-    ok(abs(d - MIN) <= 2000 and await st(pg) == 'end', f'[마지막 입력 때 멈춤] → 초과분 빠짐 · time +{d / 1000:.0f}초 (시작 +1분)')
+    ok(abs(d - MIN) <= 2000 and await st(pg) not in ('end', 'sess', 'rest'), f'[마지막 입력 때 멈춤] → 초과분 빠짐 · time +{d / 1000:.0f}초 (시작 +1분)')
     seg = ((await ls(pg, 'tseg')) or {}).get(TODAY, [])
     ss = sum(q[1] - q[0] for q in seg if q[4].startswith('s'))
     ok(abs(ss - 60) <= 2, f'세션 구간(tseg) 합 {ss}초 = 60초')
@@ -110,13 +110,13 @@ async def part_safety(b):
     await pg.evaluate("__h.trStart()"); await pg.clock.run_for(1000); t1 = await tsum(pg)
     await pg.clock.run_for(121 * MIN)
     d = (await tsum(pg)) - t1
-    ok(await st(pg) == 'end' and abs(d - MIN) <= 2000, f'되묻기 30분 무응답 → 자동 종료 · time +{d / 1000:.0f}초')
+    ok(await st(pg) not in ('end', 'sess', 'rest') and abs(d - MIN) <= 2000, f'되묻기 30분 무응답 → 자동 종료 · time +{d / 1000:.0f}초')
     # 세션 되묻기 끔 → 12시간 상한
     await pg.evaluate("localStorage.setItem('jblhub.v1.sessAsk','0')")
     await pg.evaluate("__h.trStart()"); await pg.clock.run_for(1000); t2 = sum(sum(v.values()) for v in ((await ls(pg, 'time')) or {}).values())
     await pg.clock.fast_forward(12 * 60 * MIN + 5 * MIN); await pg.clock.run_for(2000)   # 기기가 잠든 채 12시간(타이머가 한 번에 몰려 옴)
     d = sum(sum(v.values()) for v in ((await ls(pg, 'time')) or {}).values()) - t2
-    ok(await st(pg) == 'end' and abs(d - 12 * 60 * MIN) <= 5000, f'되묻기 끔 → 12시간 상한에서 끝냄 · +{d / 3600000:.3f}시간')
+    ok(await st(pg) not in ('end', 'sess', 'rest') and abs(d - 12 * 60 * MIN) <= 5000, f'되묻기 끔 → 12시간 상한에서 끝냄 · +{d / 3600000:.3f}시간')
     ok(not errs, f'pageerror 0 ({errs[:2]})')
     await ctx.close()
 
@@ -135,7 +135,7 @@ async def part_closed(b):
         if how == 'cend':
             await pg.screenshot(path=J.TMP + '/ux3i_timer_closed_mac.png')
             await pg.evaluate("document.querySelector('#trband [data-trq=cend]').click()"); await pg.clock.run_for(500)
-            ok(await tsum(pg) == 0 and await st(pg) == 'end', f'[마지막 기록 때 끝난 것으로(기본)] → 더하지 않음 ({await tsum(pg)}) · 멈춤')
+            ok(await tsum(pg) == 0 and await st(pg) not in ('end', 'sess', 'rest'), f'[마지막 기록 때 끝난 것으로(기본)] → 더하지 않음 ({await tsum(pg)}) · 자동 대기(F2 — ■ 멈춤 아님)')
         else:
             await pg.evaluate("document.querySelector('#trband [data-trq=cnow]').click()"); await pg.clock.run_for(500)
             ok(abs(await tsum(pg) - 50 * MIN) <= 10000 and await st(pg) == 'sess', f'[지금까지로] → +{(await tsum(pg)) / MIN:.1f}분 · 세션 계속')
@@ -144,7 +144,7 @@ async def part_closed(b):
     now2 = await pg.evaluate("Date.now()")
     await pg.evaluate("s=>localStorage.setItem('jblhub.v1.tstate',JSON.stringify(s))", {'st': 'sess', 't0': now2 - 30 * MIN, 'seg': now2 - 20 * MIN, 'S': 'CONS', 'D': '', 'at': now2 - 20 * MIN, 'd': TODAY, 'own': 'x', 'li': now2 - 20 * MIN, 'sum': 10 * MIN, 'rsum': 0})
     await boot(pg, '#/', 1000); await pg.clock.run_for(61000)
-    ok(await st(pg) == 'end' and (await tsum(pg)) == 0 and await pg.evaluate("document.querySelector('#trband').hidden"), '답이 없으면 1분 뒤 기본값(마지막 기록 때)')
+    ok(await st(pg) not in ('end', 'sess', 'rest') and (await tsum(pg)) == 0 and await pg.evaluate("document.querySelector('#trband').hidden"), '답이 없으면 1분 뒤 기본값(마지막 기록 때) · 자동 대기(F2)')
     ok(not errs, f'pageerror 0 ({errs[:2]})')
     await ctx.close()
 

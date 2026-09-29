@@ -37,7 +37,7 @@ async def run(b):
     ok(abs((r0['W'] - w250) - 248) <= 10 and abs(r1['sum'] - 100) < 0.6 and r1['disp'] == 'table', f'L1 › 펼침 → 250ms 안에 .msum {r0["W"]} → {w250} · 열 {r1["cfw"]} 합 {r1["sum"]}')
     await pg.keyboard.press('Backslash'); await pg.wait_for_timeout(700); r2 = await pg.evaluate(M)
     ok(r2['W'] == r0['W'] and r2['cfw'] == r0['cfw'], f'L1 \\ 다시 숨김 → 폭·열 처음과 같음 {r2["W"]} {r2["cfw"]}')
-    await pg.evaluate("localStorage.removeItem('jblhub.v1.sidefold');localStorage.setItem('jblhub.v1.wideSide','1')")
+    await pg.evaluate("localStorage.removeItem('jblhub.v1.sidefold');localStorage.removeItem('jblhub.v1.navfold');localStorage.removeItem('jblhub.v1.navfoldHub');localStorage.setItem('jblhub.v1.wideSide','1')")
     for s, k in LECS:
         await open_(pg, f'#/{s}/{k}/sum', 1200); r = await pg.evaluate(M); d, dc = await dflt(pg)
         OUT[f'1280open {s}/{k}'] = dict(r, default=d)

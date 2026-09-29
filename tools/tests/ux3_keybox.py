@@ -15,7 +15,7 @@ KB = """(t)=>{const k=[...document.querySelectorAll('#stage .c-key')].find(e=>e.
  const ls=[...k.querySelectorAll('.kl,.ksub')].filter(e=>e.getClientRects().length);const tops=new Set(ls.map(e=>Math.round(e.getBoundingClientRect().top)));
  const kh=[...k.querySelectorAll('.ksep.kh')];return {lines:ls.length,rows:tops.size,disp:ls.length?getComputedStyle(ls[0]).display:'',khShown:kh.filter(e=>e.getClientRects().length).length,kh:kh.length}}"""
 async def run(pg, tag, W):
-    await open_(pg, '#/ANAT/LIP/learn'); await pg.evaluate("['cond','review','focus','sidefold','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/ANAT/LIP/learn')
+    await open_(pg, '#/ANAT/LIP/learn'); await pg.evaluate("['cond','review','focus','sidefold','navfold','navfoldHub','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/ANAT/LIP/learn')
     r = await pg.evaluate(KB, '인중 = philtrum')
     ok(r and r['lines'] == 2 and r['rows'] == 2 and r['disp'] == 'block' and r['kh'] >= 1 and r['khShown'] == 0, f'{tag} 학습 🔑 라벨 줄 2줄 · 숨긴 구분자 안 보임 {r}')
     el = await pg.evaluate_handle("[...document.querySelectorAll('#stage .c-key')].find(e=>e.textContent.includes('인중 = philtrum'))")

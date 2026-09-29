@@ -91,11 +91,11 @@ async def run(b, vp, touch, tag):
     ok(rv[2] >= 1 and rv[0] == '🔁' + str(rv[2]) and rv[1] == str(rv[2]), f'{tag} ✗ 채점 → 메뉴 🔁 배지 즉시 {rv}')
     # ---- G5 메뉴 숨기기
     if not narrow:
-        await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','wideSide','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/CONS/WHT/learn')
+        await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','navfold','navfoldHub','wideSide','focus'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/CONS/WHT/learn')
         await pg.evaluate("window.__lev=0;document.addEventListener('jbl:layout',()=>__lev++)")
         m0 = await pg.evaluate("document.querySelector('#main').getBoundingClientRect().width")
         await pg.keyboard.press('Backslash'); await pg.wait_for_timeout(500)
-        r = await pg.evaluate("[document.body.classList.contains('sidefold'),Math.round(document.querySelector('#main').getBoundingClientRect().width),__lev,getComputedStyle(document.querySelector('#sideopen')).display,getComputedStyle(document.querySelector('#navbtn')).display,JSON.parse(localStorage.getItem('jblhub.v1.sidefold'))]")
+        r = await pg.evaluate("[document.body.classList.contains('sidefold'),Math.round(document.querySelector('#main').getBoundingClientRect().width),__lev,getComputedStyle(document.querySelector('#sideopen')).display,getComputedStyle(document.querySelector('#navbtn')).display,JSON.parse(localStorage.getItem('jblhub.v1.navfold'))]")
         ok(r[0] and r[1] - m0 == (248 if W >= 1024 else 232) and r[2] == 1 and r[3] == 'flex' and r[4] != 'none' and r[5] is True, f'{tag} \\ → 메뉴 숨김 · #main {m0}→{r[1]} · jbl:layout {r[2]}회 · › {r[3]} · ☰ {r[4]}')
         await open_(pg, '#/CONS/WHT/learn'); ok(await pg.evaluate("document.body.classList.contains('sidefold')"), f'{tag} 새로고침 뒤에도 숨김')
         await pg.screenshot(path=J.TMP + f'/ux3i_g_{tag}_fold.png')
@@ -111,7 +111,7 @@ async def run(b, vp, touch, tag):
         ok(await pg.evaluate("document.body.classList.contains('sidefold')") == (W <= 1440), f'{tag} 정리표 1440 이하 자동 숨김')
         await pg.click('#sideopen'); await pg.wait_for_timeout(450)
         ok(await pg.evaluate("localStorage.getItem('jblhub.v1.wideSide')") == '1', f'{tag} 정리표에서 › → wideSide=1')
-        await pg.evaluate("['sidefold','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+        await pg.evaluate("['sidefold','navfold','navfoldHub','wideSide'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
     ok(not errs, f'{tag} 콘솔·페이지 오류 0 {errs[:3]}')
     await ctx.close()
 async def main():

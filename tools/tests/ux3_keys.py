@@ -13,7 +13,7 @@ async def open_(pg, h, w=1300):
 KM = "document.body.dispatchEvent(new KeyboardEvent('keydown',{key:'ㅡ',code:'KeyM',bubbles:true,cancelable:true}))"   # 한글 입력 상태의 M
 ST = "(()=>{const B=document.body.classList;return {fold:B.contains('sidefold'),nav:B.contains('navopen'),focus:B.contains('focus'),memo:document.querySelector('#memo').classList.contains('on')}})()"
 async def run(pg, tag, vp):
-    await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','wideSide','focus','keyNoticeM','ux2old'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/CONS/WHT/learn')
+    await open_(pg, '#/CONS/WHT/learn'); await pg.evaluate("['sidefold','navfold','navfoldHub','wideSide','focus','keyNoticeM','ux2old'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/CONS/WHT/learn')
     narrow = vp['width'] <= 860
     s0 = await pg.evaluate(ST); await pg.evaluate(KM); await pg.wait_for_timeout(250); s1 = await pg.evaluate(ST)
     if narrow: ok(not s0['nav'] and s1['nav'], f'{tag} M(한글 ㅡ/KeyM) → 서랍 열림 {s0} → {s1}')
@@ -47,7 +47,7 @@ async def run(pg, tag, vp):
     try: await pg.wait_for_function("t=>(document.querySelector('#toast').textContent||'').includes(t)", arg='M은 이제 메뉴', timeout=6000); shown = True
     except Exception: shown = False
     ok(shown, f'{tag} 알림이 화면에 뜸')
-    await pg.evaluate("['sidefold','wideSide','ux2old','keyNoticeM'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
+    await pg.evaluate("['sidefold','navfold','navfoldHub','wideSide','ux2old','keyNoticeM'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))")
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
