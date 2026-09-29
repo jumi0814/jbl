@@ -17,7 +17,7 @@ async def main():
         await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await open_(pg, '#/')
         ok(await pg.title() == 'JBL 허브', f'허브 제목 ({await pg.title()})')
         ok(await pg.evaluate("document.querySelectorAll('.hsj.off').length") == 1 and '자료 준비 중' in await pg.inner_text('.hsj.off[data-off=ESTH]'), 'ESTH 자료 대기 행')
-        ok(await pg.evaluate("document.querySelectorAll('.hsj[data-s] .pbar').length") == 12, '과목 표 진행 막대 두 개(읽음·기출) × 6')
+        ok(await pg.evaluate("document.querySelectorAll('.hsj[data-s] .pbar').length") == 6, '과목 표 진행 막대 하나(기출 — ux4 B1-6 읽음 막대 없음) × 6')
         await open_(pg, '#/OMS1/DD2/learn', 1300)
         ok('DD' in await pg.title() or 'Dentofacial' in await pg.title(), f'강의 제목 ({await pg.title()})')
         await pg.evaluate("window.scrollTo(0,3000)"); await pg.wait_for_timeout(1200)

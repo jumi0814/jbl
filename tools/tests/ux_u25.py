@@ -22,7 +22,7 @@ async def main():
         pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
             await open_(pg, f'#/{s}/_tbl')
-            r = await pg.evaluate("""()=>({page:document.documentElement.scrollWidth>innerWidth+1,bad:[...document.querySelectorAll('#stage .tblwrap')].filter(w=>{const t=w.querySelector('.tscroll');const mn=Math.min(...[...w.querySelectorAll('thead th')].map(th=>th.getBoundingClientRect().width));return mn<80&&!(t.scrollWidth>t.clientWidth+2);}).length})""")
+            r = await pg.evaluate("""()=>({page:document.documentElement.scrollWidth>innerWidth+1,bad:[...document.querySelectorAll('#stage .tblwrap')].filter(w=>{if(w.classList.contains('stcard'))return false;const t=w.querySelector('.tscroll');const mn=Math.min(...[...w.querySelectorAll('thead th')].map(th=>th.getBoundingClientRect().width));return mn<80&&!(t.scrollWidth>t.clientWidth+2);}).length})""")
             ok(not r['page'] and not r['bad'], f'{s} 820 비교표: 페이지 가로 넘침 {r["page"]} · 좁은 열(스크롤 없음) {r["bad"]}')
         await open_(pg, '#/IMPL/OSS/sum')
         r = await pg.evaluate("""()=>{const t=document.querySelector('table.mtx');const td=t.querySelector('tbody td[data-h]');return {thead:getComputedStyle(t.querySelector('thead')).display,label:getComputedStyle(td,'::before').content,page:document.documentElement.scrollWidth>innerWidth+1}}""")

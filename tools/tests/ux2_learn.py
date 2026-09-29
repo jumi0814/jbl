@@ -1,7 +1,7 @@
 """ux2 묶음 4(트랙B) 회귀 — 정리본 학습 탭: 빠른 훑기·가독성·암기 (D01~D12). 맥 1280×900 · 아이패드 세로 820×1180(터치) · 가로 1180×820(터치)
 D01 압축 보기: 🔑·.krest 보이는 글자 = 압축 전 · 연도 칩 보임·태그 칩 숨김 · 형광 친 .li만 남고 나머지 .li 숨김 · '내 표시만' 필터
 D02 ⚡ 복습 보기(R): 1280 EXT 카드 평균 높이 ≤ 220 · 문서 ≤ 5000 · R 두 번 = 원래대로 · 몰라요 2장 → '몰라요 먼저'에서 앞 · 새로고침 유지 · 2회↑만 · 표시 복원 수 불변 · 머리 누르면 끄고 그 카드
-D03 ⚡ 가리기(그 블록 .k만) · ✕ → fc.<S>의 R: 키(s:'x') = 플래시카드 키 · 플래시카드 '몰라요만'에 나옴 · ann 불변
+D03 ⚡ 가리기(그 블록 .k만) · ⚡ 줄 키(data-fk) = 플래시카드 R: 키 — 줄마다 ○✕는 ux4에서 없앰 · 플래시카드 '몰라요만'에 나옴 · ann 불변
 D04 ⭐ 구조화: 연도 머리 숨김·형식 칩·근거 접힘(누르면 펼침) · HM ⭐ 블록 높이(보고)
 D05 '⭐ n ↓' → .c-exam이 탭 아래 ±20 · Shift+J 3번 = data-n>0 카드만 · ⭐ 먼저 → .c-exam이 첫 .li 위 · 목록 ⭐ 숫자 → ⭐ 블록
 D06 기본 = 시험 핵심만 빨강(.k2는 빨강 아님) · '전부' = 빨간 span 수 = 전체 .k · 가리기 대상은 .k:not(.k2)
@@ -99,10 +99,8 @@ async def mac(b):
     ok(r[0] > 0 and r[0] == r[1] and r[2] == 0, f'D03 ⚡ 가리기 = 그 블록 .k만 {r}')
     await pg.evaluate("document.querySelector('#t-EXT-0 .c-mem .k').click()")
     ok(await pg.evaluate("document.querySelector('#t-EXT-0 .c-mem .k').classList.contains('mshow')"), 'D03 가린 칸 누르면 열림')
-    fk = await pg.evaluate("(()=>{const li=document.querySelector('#t-EXT-0 .c-mem li[data-fk]');li.querySelector('[data-mj=x]').click();return li.dataset.fk})()")
-    fc = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.fc.OMS1')||'{}')")
-    ok(fk.startswith('R:EXT:') and fc.get(fk, {}).get('s') == 'x', f'D03 ✕ → fc.OMS1[{fk}] = x')
-    ok(await pg.evaluate("document.querySelector('#t-EXT-0 .c-mem li[data-fk]').classList.contains('fx')"), 'D03 ✕ 줄 빨간 점(.fx)')
+    fk = await pg.evaluate("(()=>{const li=document.querySelector('#t-EXT-0 .c-mem li[data-fk]');return [li.dataset.fk,document.querySelectorAll('#stage .mj,#stage [data-mj]').length]})()")
+    ok(fk[0].startswith('R:EXT:') and fk[1] == 0, f'D03 ⚡ 줄 키 data-fk = 플래시카드 키 · ux4 B1-5 줄마다 ○✕ 없음 {fk}')
     ok(ann0 == await pg.evaluate("localStorage.getItem('jblhub.v1.ann.OMS1')"), 'D03 ann 변화 0')
     await pg.screenshot(path=J.TMP + '/ux2i_d03_mem_1280.png')
     keys = await pg.evaluate("[...new Set([...document.querySelectorAll('#stage .c-mem li[data-fk]')].map(l=>l.dataset.fk))]")
@@ -218,9 +216,10 @@ async def tablet(b, W, H):
     r = await pg.evaluate("(()=>{const p=document.querySelector('#jbpeek');const r=p.getBoundingClientRect();return [p.classList.contains('on'),Math.round(r.left),Math.round(r.right)]})()")
     ok(r[0] and r[1] >= 0 and r[2] <= W, f'{W}: ⭐ 칩 탭 → 미리보기 화면 안 {r}')
     await pg.screenshot(path=J.TMP + f'/ux2i_d12_peek_{W}.png'); await pg.keyboard.press('Escape')
-    m = await pg.evaluate("(()=>{const b=document.querySelector('#t-EXT-0 .c-mem .mj [data-mj=o]');b.scrollIntoView({block:'center'});const r=b.getBoundingClientRect();return [r.x+r.width/2,r.y+r.height/2,Math.round(r.height)]})()")
+    m = await pg.evaluate("(()=>{const b=document.querySelector('#t-EXT-0 .c-mem .memqz');b.scrollIntoView({block:'center'});const r=b.getBoundingClientRect();return [r.x+r.width/2,r.y+r.height/2,Math.round(r.height)]})()")
     await pg.touchscreen.tap(m[0], m[1]); await pg.wait_for_timeout(200)
-    ok(m[2] >= 36 and await pg.evaluate("document.querySelector('#t-EXT-0 .c-mem li[data-fk]').classList.contains('fo')"), f'{W}: ⚡ ○ 탭({m[2]}px) → 알아요')
+    ok(m[2] >= 36 and await pg.evaluate("document.querySelector('#t-EXT-0 .c-mem').classList.contains('memhide')"), f'{W}: ⚡ 가리기 탭({m[2]}px) → 그 블록 가림(ux4 B1-5 ○✕ 대신)')
+    await pg.touchscreen.tap(m[0], m[1]); await pg.wait_for_timeout(150)
     await pg.screenshot(path=J.TMP + f'/ux2i_d03_mem_{W}.png')
     await open_(pg, '#/PHARM/HM/learn'); await pg.evaluate("document.querySelector('#lmcond').click()"); await pg.wait_for_timeout(200)
     await pg.evaluate("document.querySelector('#t-HM-4').scrollIntoView()"); await pg.wait_for_timeout(200); await pg.screenshot(path=J.TMP + f'/ux2i_d01_cond_{W}.png')

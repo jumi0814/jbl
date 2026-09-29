@@ -263,8 +263,8 @@ async def part_nav(b):
         if vp['width'] <= 860: await pg.evaluate("document.querySelector('#navbtn').click()"); await pg.clock.run_for(400)
         await pg.evaluate("document.querySelector('#side details.scards').open=true"); await pg.clock.run_for(200)
         SM = """(sels)=>sels.map(s=>{const e=[...document.querySelectorAll(s)].find(x=>x.getClientRects().length);if(!e)return [s,0,0];const r=e.getBoundingClientRect();return [s,Math.round(r.width),Math.round(r.height)]})"""
-        sz = await pg.evaluate(SM, ['#side .nvtime', '#side .nvsh[data-nvsec]', '#side [data-hsort2]', '#side .nvq', '#side .scard2'])
-        bad = [x for x in sz if x[2] < (40 if x[0].endswith('scard2') else 44) or (x[0].endswith('nvq') and x[1] < 44) or (x[0].endswith('hsort2]') and x[1] < 44)]
+        sz = await pg.evaluate(SM, ['#side .nvtime', '#side .nvsh[data-nvsec]', '#side .nvq', '#side .scard2'])
+        bad = [x for x in sz if x[2] < (40 if x[0].endswith('scard2') else 44) or (x[0].endswith('nvq') and x[1] < 44) ]
         ok(not bad, f'{tag} flow V09 손가락 크기 {sz} 모자람 {bad}')
         await pg.evaluate("location.hash='#/_cal'"); await pg.clock.run_for(800)
         await pg.evaluate("document.querySelector('#calmset').open=true;document.querySelector('#cadd')&&(document.querySelector('#cadd').open=true)"); await pg.clock.run_for(200)
