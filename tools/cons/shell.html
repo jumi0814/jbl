@@ -948,7 +948,9 @@ details.ab.chk>h5.rkshow,details.ab.more>h5.rkshow{display:block!important}
  body.navopen #side{transform:none;visibility:visible}}
 @media print{#app{display:block}#side{display:none!important}}
 #bkpop.nvpop{top:auto;bottom:12px;left:calc(var(--sidew) + 10px);right:auto;max-height:calc(100vh - var(--toph) - 30px)}
-@media (pointer:coarse){.hsort2 .hsb{min-height:44px}}   /* (옛 G2 메뉴 CSS를 ux4 묶음2 블록으로 옮기며 남긴 것 — 홈 [기본|시험순] 누름 자리) */
+/* (옛 G2 메뉴 CSS를 ux4 묶음2 블록으로 옮기며 남긴 메뉴 밖 규칙 — 🖍 과목 전환 칩 · 홈 [기본|시험순] · 📅 달력 누름 자리) */
+.mksw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px}.mksw .small{margin-right:2px}.mksw .tg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
+@media (pointer:coarse){.hsort2 .hsb{min-height:44px}#calday .cadd [data-caq]{min-height:44px}.calset label.tauto{min-height:44px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.calset label.tauto input[type=checkbox]{width:22px;height:22px;flex:none}}   /* flow V09 손가락 44px */
 /* G4 과목 홈 강의 바로가기는 메뉴와 겹치므로 넓은 화면에서 숨김(서랍 폭에서만) */
 @media (min-width:861px){#stage .ljump{display:none}}
 /* L — 정리표 모양은 화면 폭이 아니라 표가 받은 폭으로(@container msum = .msum 안쪽 폭): 860px↑ 표(ux3 fix V05 — 900이면 아이패드 가로에서 메뉴를 펼치면 카드형으로 바뀌어 24~33% 길어졌음) · 600~859 2단 카드(아이패드 세로) · 600 미만 1단 카드
@@ -1154,7 +1156,7 @@ details.cadd{border:1px solid var(--line);border-radius:10px;padding:6px 10px;ma
 /* H6 과목 홈 '📅 시험일' 넣기 줄 — 한 줄로 얇게(강의 카드가 밀리지 않게) */
 .exline.exset{display:flex;align-items:center;flex-wrap:wrap;gap:2px 10px;padding:4px 14px;margin:10px 0;font-size:13.5px}.exset .exd{display:inline-flex;align-items:center;gap:6px;font-weight:700}.exset input{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:1px 6px;min-height:32px;background:#fff;color:var(--ink)}.exline .exed{margin-left:4px;text-decoration:none}
 /* ux4 묶음2 — 두 단계 메뉴(허브/과목)·밝은 상단 막대(빵부스러기·검색·시계 알약)·시계 팝오버·서랍(≤860 300px)·M(>860 256px 고정 ↔ 0)
-   색은 묶음 3 토큰(--bg·--side·--surface·--tint)을 쓰고 없으면 같은 값 · 강조 = --nc(허브 #2F4F45 · 과목 안 그 과목 색 — navRender가 #nav·body에 둠) · 흐린 글자 #766F64(종이 대비 ≥4.5) */
+   색은 묶음 3 토큰(--bg·--side·--surface·--tint)을 쓰고 없으면 같은 값 · 강조 = --nc(허브 #2F4F45 · 과목 안 그 과목 색 — navRender가 #nav·body에 둠) · 흐린 글자 = 상단·팝오버 #766F64(종이 4.6) · 메뉴 #6F685D(메뉴 바탕 #F1EEE7 대비 4.7) */
 :root{--sidew:256px;--navw:256px}
 @media (max-width:860px){:root{--sidew:0px;--navw:300px}}
 /* 상단 막대 52px — 종이 바탕 + 선 하나 · [☰(서랍·M 숨김일 때)] 빵부스러기 … 검색 · 시계 알약 · ? */
@@ -1182,7 +1184,7 @@ body.navopen #top #navbtn{background:var(--tint,#F2EEE6);color:var(--ink)}
 #clock .ckl{font-size:12px;font-weight:400;color:#766F64}#clock.rest .ckl{color:#8A5A00;font-weight:600}#clock.idle .ckl{color:var(--sub)}
 @media (max-width:860px){#top{padding:0 12px;gap:10px}#top #gsearch{flex-basis:160px;width:160px;max-width:160px}}
 @media (max-width:600px){#top #gsearch{flex-basis:110px;width:110px;min-width:90px}#top #clock .ckl{display:none}}
-@media (pointer:coarse){body:not(.focus) #top #clock,body:not(.focus) #top #helpb,#top #gsearch{height:40px;min-height:40px}body:not(.focus) #top #helpb{width:40px;min-width:40px}#top .crumb button{min-height:40px}}
+@media (pointer:coarse){body:not(.focus) #top #clock,body:not(.focus) #top #helpb,body:not(.focus) #top #navbtn{height:44px;min-height:44px}body:not(.focus) #top #helpb,body:not(.focus) #top #navbtn{width:44px;min-width:44px}#top #gsearch{height:40px;min-height:40px}#top .crumb button{min-height:40px}}   /* 아이패드 누름 자리 44(ux2 fixB V12) */
 /* 집중 모드 얇은 띠(24px)에서는 알약을 글자로 */
 body.focus:not(.at-home):not(.topshow) #top #clock{height:22px;min-height:0;border:0;background:none;padding:0 4px;font-size:12px}
 /* 시계 팝오버 — 줄 버튼(누르면 닫힘) · 설정은 📅 달력 '측정 설정' */
@@ -1202,7 +1204,7 @@ body.focus:not(.at-home):not(.topshow) #top #clock{height:22px;min-height:0;bord
 #nav .nvbrand{font-weight:700;font-size:15px;letter-spacing:.02em}
 #nav .nvclose{width:40px;height:40px;border:1px solid var(--line);border-radius:6px;background:var(--surface,#fff);font-size:16px;line-height:1;padding:0;color:var(--ink)}
 #nav .nvsc{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:16px 12px 12px;overscroll-behavior:contain;scrollbar-width:thin}
-#nav .nvsec{font-size:12px;color:#766F64;font-weight:600;letter-spacing:.04em;margin:18px 12px 6px;padding:0;border:0;background:none}
+#nav .nvsec{font-size:12px;color:#6F685D;font-weight:600;letter-spacing:.04em;margin:18px 12px 6px;padding:0;border:0;background:none}
 #nav .nvsc>.nvsec:first-child{margin-top:4px}
 #nav .ni{position:relative;display:flex;align-items:center;gap:10px;width:100%;min-height:34px;margin:0;padding:0 12px;border:0;border-radius:6px;background:none;font-size:13.5px;font-weight:400;line-height:1.3;color:var(--ink);text-align:left;cursor:pointer}
 #nav .ni:hover{background:var(--tint,#F2EEE6)}
@@ -1210,32 +1212,32 @@ body.focus:not(.at-home):not(.topshow) #top #clock{height:22px;min-height:0;bord
 #nav .ni[aria-current],#nav .nvtoc .scard2.on{background:var(--surface,#fff);font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
 #nav .ni[aria-current]::before,#nav .nvtoc .scard2.on::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:2px;background:var(--nc,#2F4F45)}
 #nav .ni .el{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#nav .ni .r{margin-left:auto;padding-left:6px;flex:none;font-size:12px;font-weight:400;color:#766F64;font-variant-numeric:tabular-nums}
+#nav .ni .r{margin-left:auto;padding-left:6px;flex:none;font-size:12px;font-weight:400;color:#6F685D;font-variant-numeric:tabular-nums}
 #nav .nvdot{flex:none;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dc,#B9B2A6);opacity:1}
-#nav .nvs{margin:0}#nav .nvs.off .ni{color:#766F64;cursor:default}#nav .nvs.off .ni:hover{background:none}#nav .nvs.off .nvdot{opacity:.5}
-#nav .nvback{display:flex;align-items:center;gap:6px;width:100%;background:none;border:0;border-radius:6px;padding:4px 12px 10px;font-size:12px;color:#766F64;text-align:left;cursor:pointer}#nav .nvback:hover{color:var(--ink)}
+#nav .nvs{margin:0}#nav .nvs.off .ni{color:#6F685D;cursor:default}#nav .nvs.off .ni:hover{background:none}#nav .nvs.off .nvdot{opacity:.5}
+#nav .nvback{display:flex;align-items:center;gap:6px;width:100%;background:none;border:0;border-radius:6px;padding:4px 12px 10px;font-size:12px;color:#6F685D;text-align:left;cursor:pointer}#nav .nvback:hover{color:var(--ink)}
 #nav .nvsjh{position:relative;display:flex;align-items:center;gap:10px;padding:4px 12px 10px}
 #nav .nvsjh>.nvdot{width:10px;height:10px}
-#nav .nvsjn{min-width:0;font-size:17px;font-weight:700;line-height:1.25}#nav .nvsjn small{display:block;font-size:12px;font-weight:400;color:#766F64;line-height:1.35;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#nav .nvsjn{min-width:0;font-size:17px;font-weight:700;line-height:1.25}#nav .nvsjn small{display:block;font-size:12px;font-weight:400;color:#6F685D;line-height:1.35;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #nav .nvsw{margin-left:auto;flex:none;font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:6px;padding:4px 8px;background:var(--surface,#fff);line-height:1.3;cursor:pointer}
 #nav .nvsw:hover,#nav .nvsw.on{background:var(--tint,#F2EEE6);color:var(--ink)}
 #nav .nvswp{position:absolute;right:12px;top:calc(100% - 4px);z-index:5;min-width:196px;padding:6px;background:var(--surface,#fff);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(35,33,29,.14)}
 #nav .nvswp .pi{display:flex;align-items:center;gap:10px;width:100%;min-height:36px;padding:0 10px;border:0;border-radius:6px;background:none;font-size:13.5px;color:var(--ink);text-align:left;cursor:pointer}
 #nav .nvswp .pi:hover{background:var(--tint,#F2EEE6)}#nav .nvswp .pi.on{background:color-mix(in srgb,var(--nc,#2F4F45) 9%,#fff);color:var(--nc,#2F4F45);font-weight:600}
-#nav .nvswp .pi[aria-disabled]{color:#766F64;cursor:default}#nav .nvswp .pi[aria-disabled]:hover{background:none}#nav .nvswp .pk{margin-left:auto;font-size:12px;color:#766F64}
+#nav .nvswp .pi[aria-disabled]{color:#6F685D;cursor:default}#nav .nvswp .pi[aria-disabled]:hover{background:none}#nav .nvswp .pk{margin-left:auto;font-size:12px;color:#6F685D}
 #nav .nvgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 4px}
 #nav .nvgrid .ni{padding:0 10px;gap:6px}
 #nav .nvtoc{margin:2px 0 6px 18px;padding-left:10px;border-left:1px solid var(--line)}
 #nav .nvtoc .scard2{position:relative;display:flex;align-items:center;gap:8px;width:100%;min-height:30px;margin:0;padding:0 8px;border:0;border-radius:6px;background:none;font-size:12px;font-weight:400;line-height:1.3;color:var(--sub);text-align:left;cursor:pointer}
 #nav .nvtoc .scard2:hover{background:var(--tint,#F2EEE6)}
-#nav .nvtoc .scard2 b{flex:none;min-width:0;width:18px;text-align:right;font-weight:600;color:#766F64;font-variant-numeric:tabular-nums}
+#nav .nvtoc .scard2 b{flex:none;min-width:0;width:18px;text-align:right;font-weight:600;color:#6F685D;font-variant-numeric:tabular-nums}
 #nav .nvtoc .scard2 .el{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #nav .nvtoc .scard2 .x{margin-left:auto;flex:none;width:6px;height:6px;border-radius:50%;background:var(--mark-rule,#D4A72C)}
 #nav .nvtoc .scard2.on{color:var(--ink)}
 #nav .nvfoot{flex:none;display:flex;align-items:center;gap:4px;padding:10px 12px;border-top:1px solid var(--line);background:none}
 #nav .nvfoot button{flex:none;min-height:30px;padding:4px 8px;border:0;border-radius:6px;background:none;font-size:12px;font-weight:400;color:var(--sub);text-align:left;overflow:visible}
 #nav .nvfoot button:hover{background:var(--tint,#F2EEE6);color:var(--ink)}#nav .nvfoot #bkup.warn{color:#B3261E;background:none;border:0;font-weight:600}#nav .nvfoot .nvhide b{font-weight:700}#nav .nvfoot .sp{flex:1}
-@media (pointer:coarse){#nav .ni{min-height:40px}#nav .nvtoc .scard2{min-height:36px}#nav .nvfoot button{min-height:40px;padding:4px 10px}#nav .nvback{min-height:36px}#nav .nvsw{min-height:36px}#nav .nvswp .pi{min-height:42px}}
+@media (pointer:coarse){#nav .ni{min-height:40px}#nav .nvtoc .scard2{min-height:36px}#nav .nvfoot button{min-height:44px;padding:4px 10px}#nav .nvback{min-height:36px}#nav .nvsw{min-height:36px}#nav .nvswp .pi{min-height:42px}}
 /* 서랍(≤860, 아이패드 세로) — 300px · 화면 위부터 · 머리 'JBL 허브 ✕' · 가림막 · 열린 동안 뒤 페이지는 스크롤 안 됨 · 바닥에 M 없음 */
 @media (max-width:860px){#side{top:0;height:auto;width:300px;z-index:60;box-shadow:none}body.navopen #side{box-shadow:8px 0 32px rgba(35,33,29,.14)}
  #navbg{top:0;background:rgba(35,33,29,.22);touch-action:none;overscroll-behavior:contain}#nav .nvdh{display:flex}#nav .nvhidew{display:none!important}}

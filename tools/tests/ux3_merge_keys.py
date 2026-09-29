@@ -1,6 +1,6 @@
 """ux3 병합 회귀: 세 트랙의 새 LS 키가 백업(dumpAll)에 들어가고, 빈 기기에 합치기(mergeData)하면 돌아오며, 기기 전용 키(tstate)는 건너뜀.
 트랙1 navExp·navSec · 트랙2 tseg·tedit·trest·tgoalDay·sessAsk·calTab·restAuto·restMax(+tstate 기기 전용) · 트랙3 bcol·hcol·blabel·keyNoticeM
-+ 계약: M(한글 ㅡ 포함) → sideToggle(body.sidefold) → 'jbl:layout' 이벤트 1번 · 메뉴 머리 #nav에 trkUI('nav') 조각 · 맥 1280×900"""
++ 계약: M(한글 ㅡ 포함) → sideToggle(body.sidefold) → 'jbl:layout' 이벤트 1번 · 상단 시계 알약 #clock[data-st](ux4 묶음2 — 메뉴 트래커 없음) · 맥 1280×900"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, json
 from playwright.async_api import async_playwright
@@ -34,7 +34,7 @@ async def main():
             # 계약: M → sideToggle → jbl:layout
             await pg.evaluate("localStorage.clear()"); await pg.goto('about:blank'); await pg.goto(U + '#/CONS/WHT/sum')
             await pg.wait_for_selector('#stage .msum', timeout=30000); await pg.wait_for_timeout(400)
-            ok(await pg.evaluate("!!document.querySelector('#nav [data-trk=nav]')"), "메뉴 머리 ⓪ #nav에 trkUI('nav') 조각")
+            ok(await pg.evaluate("!document.querySelector('#nav [data-trk]')&&!!document.querySelector('#top #clock[data-st] .ckl')"), "ux4 묶음2 계약: 메뉴에 트래커 없음 · 측정 상태는 상단 시계 알약(#clock[data-st])")
             await pg.evaluate("window.__lay=0;document.addEventListener('jbl:layout',()=>__lay++)")
             f0 = await pg.evaluate("document.body.classList.contains('sidefold')")   # 정리표는 SIDEAUTO로 접혀 시작할 수 있음
             w0 = await pg.evaluate("document.querySelector('#stage .msum').getBoundingClientRect().width")

@@ -54,7 +54,7 @@ async def run(b, vp, touch, tag):
     ex = await pg.evaluate("(()=>{const P=__h.examPlan('CONS');return [P.cd,P.qd]})()")
     ok(f'오늘 카드 {ex[0]}장 · 기출 {ex[1]}문항' in tx, f'{tag} H3 하루 분량 = examPlan {ex}')
     nb = await pg.evaluate("(document.querySelector('#nav [data-nb=tk]')||{}).textContent")
-    ok(nb == '5', f'{tag} H3 메뉴 🏠 오늘 배지 = 할 일 수 {nb!r}')
+    ok(nb is None, f'{tag} H3 메뉴 오늘 줄에는 배지 없음(ux4 묶음2 — 할 일은 홈에만) {nb!r}')
     bt = await pg.inner_text('#home .hband')
     ok('보존 D-2' in bt and '가장 가까운 시험' in bt, f'{tag} H2 가장 가까운 시험 ({bt[:60]!r})')
     pc = await pg.evaluate("d=>{const td=Object.values(__h.tDay(d)).reduce((a,b)=>a+b,0);return [Math.round(td/(__h.tGoal(d)*60000)*100)+'%',document.querySelector('#home [data-hb=pct]').textContent]}", dd(0))
@@ -67,12 +67,11 @@ async def run(b, vp, touch, tag):
     # 가로 넘침 0 · 칸 넘침 0
     ov = await pg.evaluate("(()=>{const r=[document.documentElement.scrollWidth-innerWidth];document.querySelectorAll('#home .hsj,#home .hband,#home .htodo,#home .hres,#home .hweek').forEach(e=>{if(e.scrollWidth>e.clientWidth+1)r.push(e.className+':'+(e.scrollWidth-e.clientWidth));});return r})()")
     ok(ov[0] <= 0 and len(ov) == 1, f'{tag} H4 가로 넘침 0 {ov}')
-    # 시계 팝업 — 같은 목록 앞 3
+    # 시계 팝오버(ux4 묶음2 — 할 일 목록은 홈에만) — 오늘 합계 = 홈 오늘 줄
     await pg.evaluate("document.querySelector('#clock').click()"); await pg.wait_for_timeout(250)
-    pt = await pg.evaluate("[...document.querySelectorAll('#tpop .tptodo [data-todo]')].map(b=>b.dataset.todo+':'+b.dataset.ts)")
-    ok(pt == tk[:3], f'{tag} H3 시계 팝업 할 일 3 {pt}')
-    await pg.evaluate("document.querySelector('#tpop .tptodo [data-todo=exam]').click()"); await pg.wait_for_timeout(700)
-    ok((await pg.evaluate('location.hash')).startswith('#/CONS/_home') and not await pg.evaluate("document.querySelector('#tpop').classList.contains('on')"), f'{tag} H3 팝업 📅 → 과목 홈·팝업 닫힘')
+    pt = await pg.evaluate("[(document.querySelector('#tpop [data-tpt=td]')||{}).textContent,document.querySelector('#home [data-hb=td]').textContent,!document.querySelector('#tpop .tptodo')]")
+    ok(pt[0] == pt[1] and pt[2], f'{tag} H3 시계 팝오버 오늘 합계 = 홈 · 할 일 줄 없음 {pt}')
+    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(150)
     # 각 ▶ 라우트
     async def todo(k, S=''):
         await open_(pg, '#/'); await pg.evaluate("([k,S])=>document.querySelector(`#home .htodo [data-todo=${k}]`+(S?`[data-ts=${S}]`:'')).click()", [k, S]); await pg.wait_for_timeout(900)
@@ -102,7 +101,7 @@ async def run(b, vp, touch, tag):
     await pg.screenshot(path=J.TMP + f'/ux3i_h_{tag}_exedit.png')
     await pg.fill('#home .hsj[data-s=PHARM] input[data-exam]', dd(4)); await pg.wait_for_timeout(300)
     st = await pg.evaluate("[JSON.parse(localStorage.getItem('jblhub.v1.exam.PHARM')),!!document.querySelector('#home .hsj.ed'),(document.querySelector('#home .hsj[data-s=PHARM] .dday')||{}).textContent,(document.querySelector('#nav [data-nb=\"dd.PHARM\"]')||{}).textContent]")
-    ok(st[0] == dd(4) and not st[1] and st[2] == 'D-4' and st[3] == 'D-4', f'{tag} H4 시험일 저장 → 표·메뉴 D-4 {st}')
+    ok(st[0] == dd(4) and not st[1] and st[2] == 'D-4' and st[3] is None, f'{tag} H4 시험일 저장 → 표 D-4 · 메뉴에는 D-n 없음(ux4 묶음2) {st}')
     await pg.evaluate("document.querySelector('#home [data-hsort=exam]').click()"); await pg.wait_for_timeout(250)
     o = await pg.evaluate("[...document.querySelectorAll('#home .hsj[data-s]')].map(r=>r.dataset.s).slice(0,3)")
     ok(o == ['CONS', 'PHARM', 'ANAT'], f'{tag} H4 시험순 {o}')
@@ -112,7 +111,7 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/')
     await pg.evaluate("document.querySelector('#home .hsj[data-s=PHARM] [data-exed]').click()"); await pg.wait_for_timeout(200)
     await pg.evaluate("document.querySelector('#home .hsj[data-s=PHARM] [data-exclr]').click()"); await pg.wait_for_timeout(250)
-    ok(await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.exam.PHARM'))") == '' and await pg.evaluate("(document.querySelector('#nav [data-nb=\"dd.PHARM\"]')||{}).textContent") == '', f'{tag} H4 지우기 → exam.PHARM 빈 값·메뉴 D-n 없음')
+    ok(await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.exam.PHARM'))") == '' and await pg.evaluate("(document.querySelector('#nav [data-nb=\"dd.PHARM\"]')||{textContent:''}).textContent") == '', f'{tag} H4 지우기 → exam.PHARM 빈 값·메뉴 D-n 없음')
     # 행 → 과목 홈 · ↪
     await pg.evaluate("document.querySelector('#home .hsj[data-s=OMS1] .hcr').click()"); await pg.wait_for_timeout(600)
     ok((await pg.evaluate('location.hash')).startswith('#/OMS1/_home'), f'{tag} H4 행 누르면 과목 홈')
@@ -126,9 +125,7 @@ async def run(b, vp, touch, tag):
     # ---- H5 이번 주 · 더보기
     wk = await pg.evaluate("(()=>{const W=__h.tWeek((()=>{const x=new Date();x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x})());const s=W.reduce((a,x)=>a+x.sum,0);const m=Math.round(s/60000);return [Math.floor(m/60)+':'+('0'+m%60).slice(-2),document.querySelector('#home [data-hw=tot]').textContent,document.querySelectorAll('#home .hwb').length,document.querySelectorAll('#home .hwb.today').length]})()")
     ok(wk[0] == wk[1] and wk[2] == 7 and wk[3] == 1, f'{tag} H5 주 합계 = tWeek 합 · 막대 7 · 오늘 1 {wk}')
-    await pg.evaluate("document.querySelector('#clock').click()"); await pg.wait_for_timeout(200)
-    ok(wk[1] in await pg.inner_text('#tpop .tph'), f'{tag} H5 주 합계 = 시계 팝업 주 합계')
-    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(150)
+    ok(await pg.evaluate("document.querySelector('#nav [data-nb=wk]').textContent") == '이번 주 ' + wk[1], f'{tag} H5 주 합계 = 허브 메뉴 공부 달력 줄 이번 주(ux4 묶음2)')
     await pg.evaluate(f"document.querySelector('#home .hwb[data-hwd=\"{dd(0)}\"]').click()"); await pg.wait_for_timeout(500)
     h = await pg.evaluate('location.hash'); ok(h.startswith('#/_cal') and await pg.evaluate("__h.CAL.sel") == dd(0), f'{tag} H5 막대 → 그날 달력 {h}')
     await open_(pg, '#/')
@@ -144,7 +141,7 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("!!document.querySelector('#stage .exline.exset input[data-exam=IMPL]')"), f'{tag} H6 시험일 없음 → 과목 홈에 넣기 칸')
     await pg.fill('#stage .exline input[data-exam=IMPL]', dd(5)); await pg.wait_for_timeout(300)
     el = await pg.inner_text('#stage .exline'); nd = await pg.evaluate("(document.querySelector('#nav [data-nb=\"dd.IMPL\"]')||{}).textContent")
-    ok('D-5' in el and nd == 'D-5', f'{tag} H6 넣기 → examLine D-5 · 메뉴 {nd!r}')
+    ok('D-5' in el and nd is None, f'{tag} H6 넣기 → examLine D-5 · 메뉴에는 D-n 없음(ux4 묶음2) {nd!r}')
     await pg.evaluate("document.querySelector('#stage [data-exline]').click()"); await pg.wait_for_timeout(200)
     ok(await pg.evaluate("document.activeElement&&document.activeElement.dataset.exam==='IMPL'"), f'{tag} H6 ✎ → 입력 칸')
     await pg.evaluate("document.querySelector('#stage [data-exlx]').click()"); await pg.wait_for_timeout(200)

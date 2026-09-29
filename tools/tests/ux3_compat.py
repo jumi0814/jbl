@@ -59,7 +59,7 @@ async def forward(b, tag, seed, oldu):
     pg2 = await page(ctx, errs_new); await pg.close()
     await newhub(pg2)
     new = await pg2.evaluate("D=>D.map(d=>[__h.tDay(d),__h.tLec(d)])", [D1, D2, D3])
-    clk_new = await pg2.inner_text('#clock')
+    clk_new = await pg2.inner_text('#clock .ckt')
     if old is None:   # 1차 = time·timed 그대로(tadj·timeDev 없음)
         tm, td = json.loads(base['time']), json.loads(base['timed'])
         old = [[tm.get(d, {}), td.get(d, {})] for d in [D1, D2, D3]]
@@ -67,11 +67,13 @@ async def forward(b, tag, seed, oldu):
     ok(not diff, f'{tag} 지난 날짜 과목별 합계 tDay 같음 {[(d, SUM(o[0]) / MIN) for d, o in zip([D1, D2, D3], old)]} 차이 {diff}')
     dl = [d for d, o, n in zip([D1, D2, D3], old, new) if o[1] != n[1]]
     ok(not dl, f'{tag} 강의별 tLec 같음 {dl}')
-    ok(clk_old[:5] == clk_new[:5], f'{tag} 오늘 시계 {clk_old} → {clk_new}')
+    hm = lambda s: (lambda a: int(a[0]) * 60 + int(a[1]))(s.strip().split()[0].split(':'))   # ux4 묶음2 알약 '0:15:00 대기' ↔ 옛 '00:15:00'
+    ok(hm(clk_old) == hm(clk_new), f'{tag} 오늘 시계 {clk_old} → {clk_new}')
     if tag == '2차':
         band = await pg2.evaluate("(document.querySelector('.hband')||{}).textContent||''")
         nav = await pg2.evaluate("(document.querySelector('#nav .nvs[data-s=CONS] .nvdd')||{}).textContent||''")
-        ok('D-9' in band and 'D-9' in nav, f'{tag} 시험일 → 오늘 띠·메뉴 D-9 ({nav})')
+        ok('D-9' in band, f'{tag} 시험일 → 오늘 띠 D-9')
+        ok('D-' not in nav, f'{tag} 메뉴에는 시험일 D-n 없음(ux4 묶음2 — exam.<S> 값은 그대로) ({nav[:60]})')
         ok(await pg2.evaluate("__h.tDay&&typeof __h.tDay==='function'") and await pg2.evaluate("document.querySelector('[data-hsort=exam].on,[data-hsort2=exam].on')!==null"), f'{tag} homeSort 시험순 유지(표·메뉴 버튼 on)')
     await pg2.close(); pg3 = await page(ctx, errs_new); await go(pg3, BLANKU, 100); after = await pg3.evaluate(SNAP)
     ch = [k for k in KEEP if k in base and k != 'time' and k != 'timed' and after.get(k) != base[k]]

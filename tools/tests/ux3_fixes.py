@@ -39,38 +39,28 @@ async def part_trk(b):
         ctx, pg, errs = await ctxpg(b, vp, touch); print('== 트래커 버튼(V01·V02)', tag)
         await fresh(pg, '#/CONS/WHT/learn')
         ok(await st(pg) == 'wait', f'{tag} 처음 = ○ 자동 대기 ({await st(pg)})')
-        if touch: await pg.tap('#tmr')
-        else: await pg.click('#tmr')
-        await pg.clock.run_for(300)
-        ok(await st(pg) == 'sess', f"{tag} 대기에서 #tmr 한 번 → ▶ 세션 (☕ 휴식 아님) ({await st(pg)} · {await pg.inner_text('#tmr')!r})")
+        tp = (lambda s: pg.tap(s)) if touch else (lambda s: pg.click(s))
+        # ux4 묶음2: 상단 #tmr 대신 시계 알약(#clock) → 팝오버 줄(#tpop [data-tp]) — 알약을 누르는 입력은 상태를 바꾸지 않음(TRKSEL)
+        await tp('#clock'); await pg.clock.run_for(300)
+        ok(await st(pg) == 'wait', f'{tag} 대기에서 알약을 눌러도 측정이 저절로 시작되지 않음 ({await st(pg)})')
+        await tp('#tpop [data-tp=start]'); await pg.clock.run_for(300)
+        ok(await st(pg) == 'sess', f"{tag} 대기에서 알약 → [▶ 공부 시작] → 세션 (☕ 휴식 아님) ({await st(pg)} · {await pg.inner_text('#clock')!r})")
         await pg.screenshot(path=J.TMP + f'/ux3f_trk_tmr_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 70})
         await pg.evaluate("__h.trStop();localStorage.removeItem('jblhub.v1.tstate')"); await boot(pg, '#/CONS/WHT/learn')
-        if vp['width'] > 860:
-            ok(await st(pg) == 'wait', f'{tag} 다시 대기')
-            sel = '#nav [data-trk=nav] [data-trb=start]'
-            if touch: await pg.tap(sel)
-            else: await pg.click(sel)
-            await pg.clock.run_for(300)
-            ok(await st(pg) == 'sess', f'{tag} 메뉴 머리 ▶ → 세션 ({await st(pg)})')
-            await pg.evaluate("__h.trStop();localStorage.removeItem('jblhub.v1.tstate')"); await boot(pg, '#/CONS/WHT/learn')
-        # 자동 휴식 중 #tmr / 메뉴 ▶ 다시 → 자동 측정(run) — 새 수동 휴식·■ 아님
-        for how in (['tmr', 'nav'] if vp['width'] > 860 else ['tmr']):
-            await study(pg, 6); await pg.clock.run_for(9 * MIN)
-            ts = await ls(pg, 'tstate'); ok(ts and ts.get('ar') == 1, f'{tag} 무입력 9분 → 자동 휴식(ar)')
-            sel = '#tmr' if how == 'tmr' else '#nav [data-trk=nav] [data-trb=resume]'
-            if touch: await pg.tap(sel)
-            else: await pg.click(sel)
-            await pg.clock.run_for(300)
-            ts = await ls(pg, 'tstate')
-            ok(await st(pg) == 'run' and ts is None, f'{tag} 자동 휴식 중 {how} ▶ → 자동 측정(run) · tstate 없음 ({await st(pg)} · {ts})')
-            t = await toast(pg); ok('다시 공부' in t, f'{tag} {how} 알림 {t[:40]!r}')
+        # 자동 휴식 중 알약 → [▶ 다시 공부] → 자동 측정(run) — 새 수동 휴식·■ 아님
+        await study(pg, 6); await pg.clock.run_for(9 * MIN)
+        ts = await ls(pg, 'tstate'); ok(ts and ts.get('ar') == 1, f'{tag} 무입력 9분 → 자동 휴식(ar)')
+        await tp('#clock'); await pg.clock.run_for(200); await tp('#tpop [data-tp=resume]'); await pg.clock.run_for(300)
+        ts = await ls(pg, 'tstate')
+        ok(await st(pg) == 'run' and ts is None, f'{tag} 자동 휴식 중 알약 ▶ 다시 공부 → 자동 측정(run) · tstate 없음 ({await st(pg)} · {ts})')
+        t = await toast(pg); ok('다시 공부' in t, f'{tag} 알림 {t[:40]!r}')
         ok(not errs, f'{tag} pageerror 0 {errs[:2]}')
         await ctx.close()
     # 홈 오늘 띠 ▶ (1180 터치)
     ctx, pg, errs = await ctxpg(b, LAND, True); await fresh(pg, '#/')
     await pg.tap('#home [data-trk=band] [data-trb=start]'); await pg.clock.run_for(300)
     ok(await st(pg) == 'sess', f'홈 오늘 띠 ▶ → 세션 ({await st(pg)})')
-    ok(await pg.evaluate("getComputedStyle(document.querySelector('#tmr')).display") == 'none', 'V12 🏠 오늘 = 상단 #tmr 숨김(띠가 버튼)')
+    ok(await pg.evaluate("!document.querySelector('#tmr')&&!document.querySelector('#home [data-trb=big]')"), 'ux4 묶음2 상단 #tmr 없음(시계 알약 하나) · 홈 ⏱ 크게 없음')
     await ctx.close()
 
     ctx, pg, errs = await ctxpg(b, LAND, True); print('== F2 ■ 멈춤 풀기 · flow V10 시계 안 되감김')
@@ -239,6 +229,8 @@ async def part_nav(b):
         # V10: 학습에서 숨김 → 정리표에서 보이게 → 학습 → 정리표 다시 = 보임
         await pg.evaluate("location.hash='#/CONS/WHT/learn'"); await pg.clock.run_for(800); await pg.keyboard.press('m'); await pg.clock.run_for(500)
         ok(await pg.evaluate(FOLD) and await ls(pg, 'navfold') is True, f'{tag} 학습 M → 숨김(navfold)')
+        await pg.evaluate("location.hash='#/'"); await pg.clock.run_for(800); ok(await pg.evaluate(FOLD), f'{tag} ux4 묶음2(B13) 숨김 설정 하나 — 학습에서 숨기면 홈도 숨김')
+        await pg.evaluate("location.hash='#/CONS/WHT/learn'"); await pg.clock.run_for(800)
         await pg.evaluate("location.hash='#/CONS/WHT/sum'"); await pg.clock.run_for(800); await pg.keyboard.press('m'); await pg.clock.run_for(500)
         ok(not await pg.evaluate(FOLD), f'{tag} 정리표 M → 보임')
         await pg.evaluate("location.hash='#/CONS/WHT/learn'"); await pg.clock.run_for(800); await pg.evaluate("location.hash='#/CONS/WHT/sum'"); await pg.clock.run_for(800)
@@ -250,10 +242,9 @@ async def part_nav(b):
     await pg.keyboard.press('v'); await pg.clock.run_for(300); await pg.keyboard.press('m'); await pg.clock.run_for(400)
     r = await pg.evaluate("document.body.className")
     ok('focus' not in r.split() and 'navopen' in r.split(), f'F8 820 집중 모드에서 M → 집중 끔 · 서랍 열림 ({r})')
-    sc = await pg.evaluate("(d=>d?[getComputedStyle(d).display,d.open,d.getBoundingClientRect().height]:null)(document.querySelector('#side details.scards'))")
-    ok(sc and sc[0] != 'none' and sc[1] is False and sc[2] > 0, f'V09 서랍에도 지금 강의 카드 목차(접힌 채) {sc}')
+    sc = await pg.evaluate("(d=>d?[getComputedStyle(d).display,d.querySelectorAll('.scard2').length,d.getBoundingClientRect().height]:null)(document.querySelector('#side .nvtoc'))")
+    ok(sc and sc[0] != 'none' and sc[1] > 3 and sc[2] > 100, f'V09 서랍에도 지금 강의 카드 목차(ux4 묶음2 — 늘 펼침) {sc}')
     await pg.screenshot(path=J.TMP + '/ux3f_nav_drawer_port.png')
-    await pg.evaluate("document.querySelector('#side details.scards').open=true"); await pg.clock.run_for(200)
     await pg.tap('#side .scard2[data-lj="3"]'); await pg.clock.run_for(900)
     ok(not await pg.evaluate("document.body.classList.contains('navopen')") and await pg.evaluate("__h.LCUR") == 3, f"서랍 카드 누름 → 서랍 닫고 카드 4로 (LCUR {await pg.evaluate('__h.LCUR')})")
     await ctx.close()
@@ -261,10 +252,9 @@ async def part_nav(b):
         ctx, pg, errs = await ctxpg(b, vp, True)
         await fresh(pg, '#/CONS/WHT/learn', "localStorage.setItem('jblhub.v1.keyNoticeM','1');localStorage.setItem('jblhub.v1.lastBy',JSON.stringify({CONS:{s:'CONS',d:'WHT',t:'learn',at:1}}))"); 
         if vp['width'] <= 860: await pg.evaluate("document.querySelector('#navbtn').click()"); await pg.clock.run_for(400)
-        await pg.evaluate("document.querySelector('#side details.scards').open=true"); await pg.clock.run_for(200)
         SM = """(sels)=>sels.map(s=>{const e=[...document.querySelectorAll(s)].find(x=>x.getClientRects().length);if(!e)return [s,0,0];const r=e.getBoundingClientRect();return [s,Math.round(r.width),Math.round(r.height)]})"""
-        sz = await pg.evaluate(SM, ['#side .nvtime', '#side .nvsh[data-nvsec]', '#side [data-hsort2]', '#side .nvq', '#side .scard2'])
-        bad = [x for x in sz if x[2] < (40 if x[0].endswith('scard2') else 44) or (x[0].endswith('nvq') and x[1] < 44) or (x[0].endswith('hsort2]') and x[1] < 44)]
+        sz = await pg.evaluate(SM, ['#side .nvl', '#side .nvd', '#side .nvback', '#side .nvsw', '#side .nvq', '#side .scard2'])   # ux4 묶음2 과목 메뉴(줄 40 · 목차·과목 바꾸기·‹ 36 · 바닥 44)
+        bad = [x for x in sz if x[2] < (44 if x[0].endswith('nvq') else 36 if x[0].endswith(('scard2', 'nvsw', 'nvback')) else 40) or (x[0].endswith('nvq') and x[1] < 44)]
         ok(not bad, f'{tag} flow V09 손가락 크기 {sz} 모자람 {bad}')
         await pg.evaluate("location.hash='#/_cal'"); await pg.clock.run_for(800)
         await pg.evaluate("document.querySelector('#calmset').open=true;document.querySelector('#cadd')&&(document.querySelector('#cadd').open=true)"); await pg.clock.run_for(200)
@@ -275,29 +265,26 @@ async def part_nav(b):
     for vp, tag in ((MAC, 'mac'), (LAND, 'land'), ({'width': 1000, 'height': 800}, 'w1000')):
         ctx, pg, errs = await ctxpg(b, vp, vp is LAND)
         await fresh(pg, '#/ANAT/LIP/learn', "localStorage.setItem('jblhub.v1.keyNoticeM','1')")
-        r = await pg.evaluate("""(()=>{const sc=document.querySelector('#navsc').getBoundingClientRect(),L=[...document.querySelectorAll('#nav .nvs.cur .nvl')],i=L.findIndex(x=>x.classList.contains('on')),nx=L[i+1],cd=document.querySelector('#nav .nvs.cur .nvcards');
-          return {n:L.length,i,nxb:nx?Math.round(nx.getBoundingClientRect().bottom):0,lastb:Math.round(L[L.length-1].getBoundingClientRect().bottom),scb:Math.round(sc.bottom),cardsAfter:!!(cd&&L[L.length-1].compareDocumentPosition(cd)&4)}})()""")
-        ok(r['cardsAfter'] and r['nxb'] and r['lastb'] <= r['scb'], f'{tag} V04 카드 목차는 강의 줄 아래 · 지금 과목 강의 줄 끝까지 보임 {r}')
+        r = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#nav .nvl')],i=L.findIndex(x=>x.hasAttribute('aria-current')),toc=document.querySelector('#nav .nvtoc');
+          return {n:L.length,i,tocAfterCur:!!(toc&&L[i]&&L[i].nextElementSibling===toc),nextAfterToc:!!(toc&&L[i+1]&&toc.nextElementSibling===L[i+1])}})()""")
+        ok(r['n'] == 7 and r['tocAfterCur'] and (r['i'] == r['n'] - 1 or r['nextAfterToc']), f'{tag} V04·ux4 카드 목차는 지금 강의 줄 바로 아래 {r}')
         await pg.screenshot(path=J.TMP + f'/ux3f_nav_lecs_{tag}.png')
         clip = []
         for S in ('OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM'):
-            await pg.evaluate(f"localStorage.setItem('jblhub.v1.navExp',JSON.stringify({{{S}:1}}));__h.navRender()")
-            clip += await pg.evaluate("[...document.querySelectorAll('#nav .nvd')].filter(e=>e.getClientRects().length&&(e.scrollWidth>e.clientWidth+1||[...e.querySelectorAll('.nvdn')].some(n=>n.getClientRects().length&&n.scrollWidth>n.clientWidth+1))).map(e=>e.dataset.s+':'+e.textContent)")
+            await pg.evaluate(f"__h.openDoc('{S}','_home')"); await pg.clock.run_for(300)
+            clip += await pg.evaluate("[...document.querySelectorAll('#nav .nvd .el,#nav .nvsjn')].filter(e=>e.getClientRects().length&&e.scrollWidth>e.clientWidth+1).map(e=>e.closest('[data-s]')?.dataset.s+':'+e.textContent)")
         ok(not clip, f'{tag} V08 문서 칩 글자 잘림 0 {clip[:4]}')
         await ctx.close()
     ctx, pg, errs = await ctxpg(b, LAND, True)
     await fresh(pg, '#/', "localStorage.setItem('jblhub.v1.keyNoticeM','1')")
-    await pg.tap('#nav [data-nvx="GERI"]'); await pg.clock.run_for(200); await pg.tap('#nav [data-nvx="IMPL"]'); await pg.clock.run_for(200)
-    ok(await ls(pg, 'navExp') == {'IMPL': 1}, f"flow V08 ▸ 두 과목 → 펼친 것은 하나 {await ls(pg, 'navExp')}")
-    wk = await pg.inner_text('#nav [data-nb="wk"]'); ok(wk.startswith('주 '), f"V12 메뉴 달력 배지 '{wk}'")
+    wk = await pg.inner_text('#nav [data-nb="wk"]'); ok(wk.startswith('이번 주 '), f"V12 메뉴 달력 줄 '{wk}'")
     # F7 다른 창이 재는 동안(storage time·timed) 메뉴 노드 그대로 · 배지 갱신
-    await pg.evaluate("location.hash='#/OMS1/DD1/learn'"); await pg.clock.run_for(800)
-    await pg.evaluate("window.__nv=document.querySelector('#nav .nvs.cur');window.__mut=0;new MutationObserver(m=>{m.forEach(x=>{if(x.type==='childList'&&x.target.id==='nav')__mut++})}).observe(document.querySelector('#nav'),{childList:true})")
+    await pg.evaluate("window.__nv=document.querySelector('#nav .nvs[data-s=OMS1]');window.__mut=0;new MutationObserver(m=>{m.forEach(x=>{if(x.type==='childList'&&x.target.id==='nav')__mut++})}).observe(document.querySelector('#nav'),{childList:true})")
     for i in range(3):
         await pg.evaluate("i=>{const o=JSON.parse(localStorage.getItem('jblhub.v1.time')||'{}');o['%s']={OMS1:(i+1)*20*60000};localStorage.setItem('jblhub.v1.time',JSON.stringify(o));dispatchEvent(new StorageEvent('storage',{key:'jblhub.v1.time'}))}" % TODAY, i)
         await pg.clock.run_for(25000)
-    r = await pg.evaluate("[__mut,window.__nv===document.querySelector('#nav .nvs.cur'),document.querySelector('#nav [data-nb=td]').textContent]")
-    ok(r[0] == 0 and r[1] and r[2] == '1:00', f'F7 다른 창 기록(storage time) 3번 → 메뉴 다시 그림 0 · 노드 그대로 · 오늘 배지 {r}')
+    r = await pg.evaluate("[__mut,window.__nv===document.querySelector('#nav .nvs[data-s=OMS1]'),document.querySelector('#nav [data-nb=wk]').textContent]")
+    ok(r[0] == 0 and r[1] and r[2] == '이번 주 1:00', f'F7 다른 창 기록(storage time) 3번 → 메뉴 다시 그림 0 · 노드 그대로 · 이번 주 글자 {r}')
     # V03 색 거리
     cols = await pg.evaluate("['OMS1','CONS','IMPL','ANAT','GERI','PHARM'].map(k=>__h.sjColor(k))")
     dm = min(math.dist(lab(a), lab(c)) for a, c in itertools.combinations(cols, 2))
