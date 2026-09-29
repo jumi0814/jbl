@@ -57,7 +57,7 @@ async def run(b, vp, touch, tag):
       return {top:Math.round(c.getBoundingClientRect().top),mini:j.classList.contains('mini'),jh:j.offsetHeight,hero:!!hero.offsetParent,kitN:[...k.children].filter(x=>x.offsetParent).map(x=>x.id),acts:!!c.querySelector('.acts [data-tog]').offsetParent,keys:(document.querySelector('.onebar .okeys')||{}).textContent}})()""")
     lim = 130
     ok(r['top'] <= lim and r['mini'] and not r['hero'], f"F03 한 장씩 카드 시작 y {r['top']} ≤ {lim} · 막대 압축 {r['jh']}px · hero 숨김")
-    ok(r['kitN'] == ['k-min'] and not r['acts'], f"F03 도구 막대 ✎ 하나 {r['kitN']} · 카드 안 중복 버튼 숨김")
+    ok('k-h' in r['kitN'] and 'k-min' not in r['kitN'] and not r['acts'], f"F03(ux4 B1-1) 도구 막대 = LS kitoff 하나(한 장씩도 그대로 보임·✎ 접힘 없음) {r['kitN']} · 카드 안 중복 버튼 숨김")
     ok('H 형광펜' in (r['keys'] or '') and 'B 빈칸' in (r['keys'] or ''), 'F03 키 안내에 H 형광펜 · B 빈칸')
     await pg.screenshot(path=SHOT('f03_one', tag))
     id0 = await pg.evaluate("__h.JB.vis[__h.JB.cur].dataset.id")
@@ -95,15 +95,13 @@ async def run(b, vp, touch, tag):
         await cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []}); await pg.wait_for_timeout(250)
         r = await pg.evaluate("(()=>{const c=__h.JB.vis[__h.JB.cur];return [c.dataset.id,c.classList.contains('open')]})()")
         ok(r == [c1, True], f"F03 카드 위로 쓸기 → 답 보기 {r}")
-    # F03 ✎ 펼치면 세션 동안 유지 → 한 장씩 끄면 원래 도구 막대
-    await pg.wait_for_function("!document.querySelector('#kit').classList.contains('min')", timeout=5000)   # A06 스크롤 중 접힘(.min)이 풀린 뒤
-    await pg.evaluate("document.querySelector('#k-min').click()"); await pg.wait_for_timeout(150)
-    ok(await pg.evaluate("[...document.querySelector('#kit').children].filter(x=>x.offsetParent).length>3 && sessionStorage.getItem('jblhub.v1.jbkit')==='1'"), 'F03 ✎ 누르면 도구 막대 펼침(이 탭 동안 jbkit)')
-    await pg.evaluate("sessionStorage.removeItem('jblhub.v1.jbkit');document.body.classList.remove('jbkit')")
+    # F03 → ux4 B1-1: 풀이 막대의 [✎ 도구]로 도구 막대를 끄고 켬(LS kitoff 하나 — 한 장씩을 끄면 그 상태 그대로)
+    await pg.evaluate("document.querySelector('#onebar [data-kitt]').click()"); await pg.wait_for_timeout(150)
+    ok(await pg.evaluate("getComputedStyle(document.querySelector('#kit')).display==='none' && localStorage.getItem('jblhub.v1.kitoff')==='true' && document.querySelector('#onebar [data-kitt]').getAttribute('aria-pressed')==='false'"), 'F03 풀이 막대 [✎ 도구] → 도구 막대 숨김(LS kitoff)')
+    await pg.evaluate("document.querySelector('#onebar [data-kitt]').click()"); await pg.wait_for_timeout(150)
     await pg.evaluate("document.querySelector('#fone').click()"); await pg.wait_for_timeout(250)
-    await pg.wait_for_function("!document.querySelector('#kit').classList.contains('min')", timeout=5000)
     r = await pg.evaluate("({one:document.body.classList.contains('jbone'),kit:[...document.querySelector('#kit').children].filter(x=>x.offsetParent).length,koff:localStorage.getItem('jblhub.v1.kitoff')})")
-    ok(not r['one'] and r['kit'] > 3 and r['koff'] is None, f"F03 한 장씩 끄면 원래 도구 막대(LS kitoff 그대로) {r}")
+    ok(not r['one'] and r['kit'] > 3 and r['koff'] == 'false', f"F03 한 장씩 끄면 도구 막대 그대로(LS kitoff) {r}")
     # ---------- F06 개수·회차 요약 ----------
     await pg.evaluate("localStorage.removeItem('jblhub.v1.mk.PHARM');sessionStorage.clear();localStorage.removeItem('jblhub.v1.jbst.PHARM._jb')")
     await go(pg, '#/PHARM/_jb/_jb')

@@ -44,7 +44,7 @@ async def mac(b):
     await pg.keyboard.press('Escape'); await pg.click('#k-bswc'); await pg.click('#k-bswl .bsw[data-bc="g"]'); await pg.wait_for_timeout(150)
     mb = await pg.evaluate("[__h.Kit.bcolor(),document.body.classList.contains('mode-b'),localStorage.getItem('jblhub.v1.bcol')]")
     ok(mb == ['g', True, '"g"'], f'견본 초록 → 빈칸 모드·bcol 저장 {mb}')
-    chip = await pg.inner_text('#modechip'); ok('초록' in chip and '빈칸 만들기 켜짐' in chip, f'모드 칩에 색 {chip!r}')
+    chip = await pg.evaluate("[document.querySelectorAll('#modechip').length,document.querySelector('#k-b').classList.contains('on'),getComputedStyle(document.querySelector('#k-b')).getPropertyValue('--bcb').trim()]"); ok(chip[0] == 0 and chip[1] and chip[2].upper() == '#D3EBD9', f'ux4 B1-4 모드 칩 없이 ▣ 버튼 눌림 + 점 색 = 초록 {chip}')
     xy2 = await pg.evaluate(WORD, ['t-DD1-3', 0]); await pg.mouse.click(xy2[0], xy2[1]); await pg.wait_for_timeout(200)
     a = await pg.evaluate(BAT, xy2[2]); sv = await pg.evaluate(f"(w)=>Object.values({ANN}).flat().find(o=>o.x===w)", xy2[2])
     ok(a and 'rkb-g' in a[0] and a[1] == 'g' and sv and sv.get('c') == 'g', f'초록 빈칸 만들기 → {a} · 저장 {sv and {k: sv[k] for k in ("t", "c")}}')
@@ -74,11 +74,11 @@ async def mac(b):
     await pg.click('#k-bswc'); await pg.click('#k-bswl .bsw[data-bc="g"]', button='right'); await pg.wait_for_timeout(300)
     bl = await pg.evaluate("localStorage.getItem('jblhub.v1.blabel')"); await pg.keyboard.press('Escape')
     await pg.evaluate("__h.Kit.setBColor('g')"); await pg.keyboard.press('b'); await pg.wait_for_timeout(100)
-    chip = await pg.inner_text('#modechip'); ttl = await pg.evaluate("document.querySelector('#k-b').title+' | '+document.querySelector('#k-bswc').title")
-    ok(bl == '{"g":"수치"}' and '수치' in chip and '수치' in ttl, f'라벨 수치 → LS {bl} · 칩 {chip!r} · title')
+    chip = await pg.evaluate("document.querySelectorAll('#modechip').length"); ttl = await pg.evaluate("document.querySelector('#k-b').title+' | '+document.querySelector('#k-bswc').title")
+    ok(bl == '{"g":"수치"}' and chip == 0 and '수치' in ttl, f'라벨 수치 → LS {bl} · 모드 칩 없음(ux4 B1-4) {chip} · title {ttl[-40:]!r}')
     await pg.keyboard.press('Escape')
     # 6) 형광펜 색 기억(hcol)
-    await pg.click('#k-swl .sw[data-c="g"]'); await pg.keyboard.press('Escape'); await pg.reload(); await pg.wait_for_timeout(1500)
+    await pg.click('#k-swc'); await pg.click('#k-swl .sw[data-c="g"]'); await pg.keyboard.press('Escape'); await pg.reload(); await pg.wait_for_timeout(1500)
     hc = await pg.evaluate("[__h.Kit.color(),document.querySelector('#k-swl .sw.sel').dataset.c,localStorage.getItem('jblhub.v1.hcol')]")
     ok(hc == ['g', 'g', '"g"'], f'형광펜 초록 → 새로고침 뒤에도 초록 {hc}')
     # 7) 빈칸 모드 밖 우클릭 → 색 바꾸기 팝업 → 보라
@@ -128,12 +128,7 @@ async def touch(b, W, H):
     ctx = await b.new_context(viewport={'width': W, 'height': H}, has_touch=True); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)))
     await open_(pg, '#/OMS1/DD1/learn'); await pg.evaluate("['bcol','hcol','blabel'].forEach(k=>localStorage.removeItem('jblhub.v1.'+k))"); await open_(pg, '#/OMS1/DD1/learn')
-    if W <= 860:
-        vis = await pg.evaluate("getComputedStyle(document.querySelector('#k-bsw')).display"); await pg.tap('#k-swc'); await pg.wait_for_timeout(200)
-        n = await pg.evaluate("[...document.querySelectorAll('#k-swl .bsw')].filter(e=>e.offsetParent).length"); await pg.screenshot(path=J.TMP + f'/ux3i_blank_pop_{W}.png')
-        await pg.tap('#k-swl .bsw[data-bc="u"]'); await pg.wait_for_timeout(150)
-        ok(vis == 'none' and n == 5 and await pg.evaluate("[__h.Kit.bcolor(),document.body.classList.contains('mode-b')]") == ['u', True], f'{W} ▾ 팝업 둘째 줄 빈칸 5색 → 파랑·빈칸 모드 (견본 {vis})')
-    else:
+    if True:   # ux4 B1-4 모든 폭 = [● 빈칸 ▾] 팝오버(좁은 화면도 형광펜 ▾와 따로)
         await pg.tap('#k-bswc'); await pg.wait_for_timeout(150); await pg.screenshot(path=J.TMP + f'/ux3i_blank_pop_{W}.png')
         r = await pg.evaluate("[...document.querySelectorAll('#k-bswl .bsw')].map(e=>{const r=e.getBoundingClientRect();return Math.round(r.width)})")
         await pg.tap('#k-bswl .bsw[data-bc="p"]'); await pg.wait_for_timeout(150)

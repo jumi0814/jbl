@@ -21,11 +21,11 @@ async def main():
         b = await p.chromium.launch(); ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); pg = await ctx.new_page(); errs = []
         pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         await open_(pg, '#/CONS/CRK/learn'); await pg.evaluate('localStorage.clear()'); await open_(pg, '#/CONS/CRK/learn')
-        await pg.click('#k-sw .sw[data-c="u"]'); await tap(pg, 0)
+        await pg.click('#k-swc'); await pg.click('#k-swl .sw[data-c="u"]'); await tap(pg, 0)   # ux4 B1-4 색 5개는 ▾ 팝오버
         el = pg.locator('#stage .rk-h.rk-u').first; c, bg = await el.evaluate(STYLE)
         ok(c not in ('rgba(0, 0, 0, 0)', 'transparent') and bg == 'rgb(201, 221, 247)', f'파랑 형광펜: 글자색 {c} · 배경 {bg} (#C9DDF7)')
         ok(await pg.locator('#stage .rk-b').count() == 0, '파랑으로 칠해도 빈칸(.rk-b)이 생기지 않음')
-        await pg.click('#k-sw .sw[data-c="o"]'); await tap(pg, 1)
+        await pg.click('#k-swc'); await pg.click('#k-swl .sw[data-c="o"]'); await tap(pg, 1)   # ux4 B1-4 색 5개는 ▾ 팝오버
         c2, bg2 = await pg.locator('#stage .rk-h.rk-o').first.evaluate(STYLE)
         ok(bg2 == 'rgb(255, 201, 140)', f'주황 형광펜 배경 {bg2} = rgb(255,201,140)')
         await pg.screenshot(path=J.TMP + '/ux_kt_color.png')

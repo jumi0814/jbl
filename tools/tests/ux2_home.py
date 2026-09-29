@@ -1,4 +1,4 @@
-"""B06·B07·B10 회귀: 허브 홈 '오늘' 띠·시험일 D-day·과목 순서(LS homeSort)·과목 홈 하루 분량 / 오늘 복습 대기열(라이트너 — mk.log만 읽음) /
+"""B06·B07·B10 회귀: 허브 홈 '오늘' 띠(ux4: 시험일 D-day·시험순·하루 분량은 화면에서 뺌 — 값은 보존) / 오늘 복습 대기열(라이트너 — mk.log만 읽음) /
 작은 표시(hero ✓✗ 0이면 숨김·강의 미니바 '틀 · 19장'·#gohome button·서랍 '🏠 허브 홈').
 맥 1280×900 + 아이패드 세로 820×1180 + 가로 1180×820. 스크린샷 work/_tmp/ux2i_b0*_*.png"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
@@ -15,30 +15,16 @@ async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await open_(pg, '#/')
-    # ---- B06 시험일·D-day·정렬·하루 분량
-    bt = await pg.inner_text('#home .hband'); ok(not re.search(r'D-\d', bt) and '가장 가까운 시험' not in bt, f'시험일 없으면 띠에 D-n 없음 ({bt!r})')   # ux3 H2 새 오늘 띠
-    first0 = await pg.evaluate("document.querySelector('#home .hsj[data-s]').dataset.s")
+    # ---- B06 → ux4 B1-6: 시험일·시험순·하루 분량은 화면에서 뺌(LS exam.<S>·homeSort는 지우지 않고 그대로 · 로직에도 안 씀)
     d3 = (datetime.date.today() + datetime.timedelta(days=3)).isoformat()
-    await pg.evaluate("document.querySelector('#home .hsj[data-s=PHARM] [data-exed]').click()"); await pg.wait_for_timeout(200)   # ux3 H4 ✎ → 칸 안 날짜 입력
-    await pg.fill('#home input[data-exam=PHARM]', d3); await pg.wait_for_timeout(300)
-    ok(await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.exam.PHARM'))") == d3, f'시험일 입력 → LS exam.PHARM = {d3}')
-    ok(await pg.evaluate("location.hash") in ('#/', ''), '시험일을 눌러도 과목이 열리지 않음')
-    bt = await pg.inner_text('#home .hband'); ok('D-3' in bt and '약물' in bt, f"띠 '가장 가까운 시험 … D-3' ({bt!r})")
-    dd = await pg.evaluate("(()=>{const e=document.querySelector('#home .hsj[data-s=PHARM] .dday');return e?[e.textContent,e.classList.contains('soon'),getComputedStyle(e).borderTopColor]:null})()")
-    ok(dd and dd[0] == 'D-3' and dd[1], f'PHARM 카드 D-3 배지(3일 이내 강조) {dd}')
-    await pg.evaluate("document.querySelector('#home [data-hsort=exam]').click()"); await pg.wait_for_timeout(300)
-    f1 = await pg.evaluate("document.querySelector('#home .hsj[data-s]').dataset.s")
-    ok(first0 == 'OMS1' and f1 == 'PHARM' and await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.homeSort'))") == 'exam', f'시험 가까운 순 → 첫 카드 {first0} → {f1}')
+    await pg.evaluate(f"localStorage.setItem('jblhub.v1.exam.PHARM',JSON.stringify('{d3}'));localStorage.setItem('jblhub.v1.homeSort',JSON.stringify('exam'))"); await open_(pg, '#/')
+    bt = await pg.inner_text('#home .hband'); ok(not re.search(r'D-\d', bt) and '시험' not in bt, f'시험일이 있어도 띠에 D-n·시험 없음 ({bt!r})')
+    r = await pg.evaluate("[document.querySelectorAll('#home .dday,#home [data-exed],#home [data-hsort],#home [data-exfocus],#home input[data-exam]').length,document.querySelector('#home .hsj[data-s]').dataset.s,document.querySelector('#home .hsjh').innerText]")
+    ok(r[0] == 0 and r[1] == 'OMS1' and '시험' not in r[2] and '읽음' not in r[2], f'과목 표: 시험 칸·✎·기본/시험순 없음 · 순서 기본(OMS1 먼저) · 머리 {r[2]!r}')
     await pg.screenshot(path=J.TMP + f'/ux2i_b06_home_{tag}.png')
-    await pg.evaluate("document.querySelector('#home [data-hsort=\"\"]').click()"); await pg.wait_for_timeout(300)
-    ok(await pg.evaluate("document.querySelector('#home .hsj[data-s]').dataset.s") == 'OMS1', '기본 → 원래 순서')
-    await pg.evaluate("document.querySelector('#home .hband [data-exgo]').click()"); await pg.wait_for_timeout(700)
-    ok((await pg.evaluate("location.hash")).startswith('#/PHARM/_home'), '띠의 D-3 → 그 과목 홈')
-    ex = await pg.inner_text('#stage .exline')
-    un = await pg.evaluate("(()=>{const p=__h.PACKS.PHARM,D=JSON.parse(localStorage.getItem('jblhub.v1.done.PHARM')||'{}');let n=0;p.lect.forEach(L=>{let d=0;(L.aids||[]).forEach(a=>{if(a.some(x=>D[x]))d++;});n+=Math.max(0,L.nsec-d);});return n})()")
-    m = re.search(r'안 읽은 카드 (\d+) · 안 푼 기출 (\d+) → 하루 (\d+)장 · (\d+)문항', ex)
-    ok(bool(m) and int(m.group(1)) == un and int(m.group(3)) == math.ceil(un / 3) and int(m.group(4)) == math.ceil(int(m.group(2)) / 3), f'과목 홈 하루 분량 = ceil(남은 수/3) ({ex!r})')
-    ok(await pg.evaluate("(()=>{const a=document.querySelector('#stage .exline'),b=document.querySelector('#hprog');return a&&b&&(a.compareDocumentPosition(b)&Node.DOCUMENT_POSITION_FOLLOWING)>0})()"), '하루 분량 줄은 진행률 위')
+    await open_(pg, '#/PHARM/_home')
+    ok(await pg.evaluate("!document.querySelector('#stage .exline')") and '하루' not in await pg.inner_text('#stage'), '과목 홈 하루 분량(시험일) 줄 없음')
+    ok(await pg.evaluate("[JSON.parse(localStorage.getItem('jblhub.v1.exam.PHARM')),JSON.parse(localStorage.getItem('jblhub.v1.homeSort'))]") == [d3, 'exam'], 'LS exam.PHARM·homeSort 값 그대로')
     await pg.screenshot(path=J.TMP + f'/ux2i_b06_subj_{tag}.png')
     # ---- B07 오늘 복습
     ids = await pg.evaluate("__h.PACKS.PHARM.order.filter(id=>(__h.PACKS.PHARM.refids||[]).indexOf(id)<0).slice(0,4)")

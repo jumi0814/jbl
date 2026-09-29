@@ -62,7 +62,7 @@ async def run(b, vp, touch, tag):
         await pg.evaluate("document.querySelector('#k-swl .sw[data-c=u]').click()")
         ok(await pg.evaluate("__h.Kit.color()") == c_before and not await pg.evaluate("document.body.classList.contains('mode-h')"), '길게 누른 뒤의 누르기는 색·모드를 바꾸지 않음')
     else:
-        await pg.click('#k-swl .sw[data-c=u]', button='right')
+        await pg.click('#k-swc'); await pg.click('#k-swl .sw[data-c=u]', button='right')   # ux4 B1-4 견본은 ▾ 팝오버 안
     await pg.wait_for_timeout(300)
     lab = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.hlabel')||'null')")
     ok(bool(lab) and lab.get('u') == '시험 직전' and lab.get('y') == '기출', f'견본 {"길게 누르기" if touch else "우클릭"} → 라벨 저장 {lab}')

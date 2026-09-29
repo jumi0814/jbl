@@ -21,7 +21,7 @@ for f in ['manifest.webmanifest', 'icon-192.png', 'icon-512.png']:
     r = urllib.request.urlopen(BASE + f); b = r.read()
     ok(r.status == 200 and (f.endswith('webmanifest') or b[:8] == b'\x89PNG\r\n\x1a\n'), f'{f} → {r.status} ({len(b)} B)')
 async def run(b, vp, touch, tag, persisted):
-    ctx = await b.new_context(viewport=vp, has_touch=touch)
+    ctx = await b.new_context(viewport=vp, has_touch=touch, **({'user_agent': 'Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'} if tag == 'ipp' else {}))   # ux4 B43 홈 화면 추가 안내는 아이패드에서만
     if persisted is not None: await ctx.add_init_script(f"(()=>{{const v={str(persisted).lower()};try{{Object.defineProperty(navigator,'storage',{{value:{{persisted:()=>Promise.resolve(v),persist:()=>Promise.resolve(v),estimate:()=>Promise.resolve({{usage:1e6,quota:1e9}})}},configurable:true}});}}catch(e){{}}}})()")
     pg = await ctx.new_page(); errs = []; pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
     await pg.goto(BASE + 'index.html#/'); await pg.wait_for_selector('.hsj[data-s="OMS1"]'); await pg.wait_for_timeout(400)
@@ -37,6 +37,7 @@ async def run(b, vp, touch, tag, persisted):
         await pg.click('#a2hs [data-a2hsx]'); await pg.reload(); await pg.wait_for_selector('.hsj[data-s="OMS1"]'); await pg.wait_for_timeout(400)
         ok(await pg.inner_text('#a2hs') == '' and await pg.evaluate("localStorage.getItem('jblhub.v1.a2hsNote')") == '1', '[알겠어요] 뒤에는 안내 없음(한 번)')
     if persisted is True: ok(await pg.inner_text('#a2hs') == '', '허용됨 → 안내 없음')
+    if tag == 'ipl': ok(await pg.inner_text('#a2hs') == '', 'ux4 B43 아이패드가 아닌 브라우저(맥 등)는 안내 없음')
     ok(not errs, f'pageerror 0 ({errs[:2]})'); await ctx.close()
 async def main():
     async with async_playwright() as p:

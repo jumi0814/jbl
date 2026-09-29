@@ -60,7 +60,7 @@ async def part_main(b, vp, touch, tag):
         if got != exp: bad.append((d, got, exp))
     ok(not bad, f'9월 칸 h:mm = tDay 29일 ({bad[:3]})')
     ok(await cell(pg, D(19)) == fmtH(sum(time[D(19)].values()) + 20 * MIN), f'옛 tadj가 있는 날도 칸 = time + tadj ({await cell(pg, D(19))})')
-    ok('보존 시험' in await pg.evaluate("document.querySelector('#calg [data-cd=\"2026-10-01\"] .cx').textContent"), '시험일 칩 10/1 보존 시험')
+    ok(await pg.evaluate("!document.querySelector('#calg .cx')"), 'ux4 B1-6 시험일(LS exam.CONS 10/1)이 있어도 달력에 시험 칩 없음')
     ok(await pg.evaluate("document.querySelector('#calg .cc.today').dataset.cd") == D(0) and await pg.evaluate("document.querySelector('#calg .cc.sel').dataset.cd") == D(0), '오늘 테두리·선택 = 오늘')
     goal = 240 * MIN
     exp_dots = sorted([D(i) for i in range(29) if await dsum(pg, D(i)) >= goal])
@@ -155,12 +155,10 @@ async def part_main(b, vp, touch, tag):
     f = await pg.evaluate(f"+document.querySelector('#calg [data-cd=\"{D(1)}\"]').style.getPropertyValue('--f')")
     ok(abs(f - min(1, (await dsum(pg, D(1))) / (120 * MIN))) < 0.002 and await pg.evaluate(f"!!document.querySelector('#calg [data-cd=\"{D(1)}\"] .cg')"), f'어제 칸 채움·● 기준 = 2:00 (--f {f})')
     ok(await pg.evaluate(f"document.querySelector('#calg [data-cd=\"{D(1)}\"] .cn').classList.contains('gd')"), '따로 정한 목표 = 날짜 밑줄')
-    # 시험일 지정 → exam.<S> · 홈 D-n
+    # ux4 B1-6 앞날: 목표만 · '이 날을 시험일로'·시험 칩 없음 · LS exam.CONS는 그대로
     await pg.evaluate("document.querySelector('#calg [data-cd=\"2026-09-30\"]').click()"); await pg.clock.run_for(100)
-    ok(await pg.locator('#calday #cadd').count() == 0, '앞날 = 추가 없음(목표·시험일만)')
-    await pg.select_option('#calday select[data-cexs]', 'ANAT'); await pg.clock.run_for(200)
-    ok(await ls(pg, 'exam.ANAT') == '2026-09-30' and '두경부해부 시험' in await pg.evaluate("document.querySelector('#calg [data-cd=\"2026-09-30\"] .cx').title"), '이 날을 시험일로 → exam.ANAT · 칸 칩(좁으면 과목 이름만 — title·aria에 시험)')
-    await boot(pg, '#/', 1200); ok('D-1' in await pg.inner_text('#home'), '홈 D-n 바뀜(D-1)')
+    ok(await pg.locator('#calday #cadd').count() == 0 and await pg.locator('#calday select[data-cexs],#calday .cdex').count() == 0, '앞날 = 추가 없음 · 시험일 고르기 없음')
+    ok(await ls(pg, 'exam.CONS') == '2026-10-01' and '시험' not in await pg.inner_text('#calday'), 'LS exam.CONS 보존 · 그 날 칸에 시험 글자 없음')
     # 키: ← → · Shift+← · T · A
     await boot(pg, '#/_cal', 1200); await pg.mouse.click(5, 300)
     await pg.keyboard.press('ArrowLeft'); await pg.clock.run_for(100)

@@ -1,7 +1,7 @@
 """ux3 묶음 P5 회귀: 옛 판(1차 7095e56 · 2차 0918775 배포본) 데이터 ↔ 새 허브 호환.
 정방향 — 옛 허브로 쌓은 형식의 데이터(time·timed·tadj·timeDev·devCut·mk 채점·done·memo·exam.<S>·homeSort·sidefold·tgoal·idleMin·hlabel·tauto·lastBy)를
   옛 허브로 한 번 열어(옛 허브가 쓴 그대로를 기준선으로) 새 허브로 열면: 지난 날짜 합계 tDay·tLec = 옛 계산(2차는 옛 허브의 tDay·tLec을 직접 부름,
-  1차는 time·timed 그대로) · 오늘 시계 글자 같음 · 그 키들의 저장 JSON 불변 · 과목 표·메뉴에 시험 D-n.
+  1차는 time·timed 그대로) · 오늘 시계 글자 같음 · 그 키들의 저장 JSON 불변 · (ux4) 시험일·시험순은 화면에 없고 값만 보존.
 역방향 — 새 허브에서 만든 tedit(시간 추가)·tseg·trest·tgoalDay·색 빈칸(c)을 옛 허브로 열면: 콘솔 오류 0 · 2차 합계 = 새 합계 − tedit 몫 ·
   색 빈칸은 옛 허브에 빈칸으로 그려짐 · 옛 허브를 거친 뒤에도 새 키·c 필드 그대로.
 백업 — 새 허브 dumpAll → 빈 프로필 mergeData(기기 모드) → 지난 날짜 합계 = 보낸 기기의 (time+tadj+tedit), 두 번 합쳐도 같음.
@@ -71,8 +71,8 @@ async def forward(b, tag, seed, oldu):
     if tag == '2차':
         band = await pg2.evaluate("(document.querySelector('.hband')||{}).textContent||''")
         nav = await pg2.evaluate("(document.querySelector('#nav .nvs[data-s=CONS] .nvdd')||{}).textContent||''")
-        ok('D-9' in band and 'D-9' in nav, f'{tag} 시험일 → 오늘 띠·메뉴 D-9 ({nav})')
-        ok(await pg2.evaluate("__h.tDay&&typeof __h.tDay==='function'") and await pg2.evaluate("document.querySelector('[data-hsort=exam].on,[data-hsort2=exam].on')!==null"), f'{tag} homeSort 시험순 유지(표·메뉴 버튼 on)')
+        ok('D-9' not in band and not nav, f'{tag} ux4 B1-6 시험일(exam.CONS)은 화면에 없음 — 띠·메뉴 D-n 없음 ({nav!r})')
+        ok(await pg2.evaluate("__h.tDay&&typeof __h.tDay==='function'") and await pg2.evaluate("document.querySelector('[data-hsort=exam],[data-hsort2=exam]:not(:is(.nvsort *))')===null"), f'{tag} ux4 시험순 버튼 없음(homeSort 값은 아래 저장 JSON 불변 검사로)')
     await pg2.close(); pg3 = await page(ctx, errs_new); await go(pg3, BLANKU, 100); after = await pg3.evaluate(SNAP)
     ch = [k for k in KEEP if k in base and k != 'time' and k != 'timed' and after.get(k) != base[k]]
     tpast = lambda s, k: {d: v for d, v in json.loads(s.get(k, '{}')).items() if d != T0}

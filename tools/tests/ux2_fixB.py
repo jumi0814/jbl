@@ -151,8 +151,8 @@ async def ipad(b, w, h):
     r = await pg.evaluate("[document.querySelector('#ong').classList.contains('on'),__h.JB.vis[__h.JB.cur].classList.contains('pvh')]")
     ok(r[0] and not r[1], f'V20 답을 열면 이전 채점 보임 {r}')
     # ---- VIS09 ✎가 본문을 가리지 않음
-    r = await pg.evaluate("(()=>{const c=__h.JB.vis[__h.JB.cur].getBoundingClientRect(),k=document.querySelector('#k-min').getBoundingClientRect();return [Math.round(c.right),Math.round(k.left),k.width>0]})()")
-    ok(not r[2] or r[0] <= r[1] + 2 or w < 700, f'VIS09 {w} 한 장씩 카드 오른쪽 {r[0]} ≤ ✎ 왼쪽 {r[1]}')
+    r = await pg.evaluate("(()=>{const c=__h.JB.vis[__h.JB.cur].getBoundingClientRect(),j=document.querySelector('#jbbar').getBoundingClientRect();return [Math.round(c.right),Math.round(j.right),document.querySelectorAll('#k-min,#kitshow').length]})()")
+    ok(abs(r[0] - r[1]) <= 2 and r[2] == 0, f'VIS09→ux4 B01 {w} 한 장씩 카드 오른쪽 {r[0]} = 필터 막대 오른쪽 {r[1]}(58px 비움 없음 · ✎ 접힘 없음)')
     await pg.screenshot(path=SHOT('vis09_one', tag))
     # ---- V01 펜슬 가로 긋기
     if w < 1000:
@@ -198,7 +198,7 @@ async def ipad(b, w, h):
         ok(await pg.evaluate("(()=>{const n=document.querySelector('.msum .mshn,#msbar .mshn'),w=document.querySelector('#msbar .mshw');return !!(n&&n.offsetParent&&w&&!w.offsetParent)})()"), 'V14 카드형 안내 문구(칸 이름의 👁)')
         # ---- V15 탭 줄
         await open_(pg, '#/OMS1/DD1/learn', '#stage .tc')
-        r = await pg.evaluate("[document.querySelector('#dtabs').scrollWidth-document.querySelector('#dtabs').clientWidth,getComputedStyle(document.querySelector('#focusb')).display,[...document.querySelectorAll('#dtabs .dfoc')].filter(e=>e.offsetParent).length]")
+        r = await pg.evaluate("[document.querySelector('#dtabs').scrollWidth-document.querySelector('#dtabs').clientWidth,(document.querySelector('#focusb')?getComputedStyle(document.querySelector('#focusb')).display:'none'),[...document.querySelectorAll('#dtabs .dfoc')].filter(e=>e.offsetParent).length]")
         ok(r[0] <= 1 and r[1] == 'none' and r[2] == 1, f'V15 820 탭 줄 넘침 {r[0]} · 위 막대 ⤢ {r[1]} · 탭 줄 ⤢ {r[2]}')
         await pg.screenshot(path=SHOT('v15_tabs', tag))
         # ---- V12 누름 자리

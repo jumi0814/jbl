@@ -37,7 +37,7 @@ async def main():
         a = await ann(pg); ok(any(o['x'] == GHOST for o in a.get(aid, [])) and len(a[aid]) == 2, '새 표시를 칠해도 잃은 표시 유지 (orphan_kept_after_edit=true)')
         await tap_word(pg, aid)
         a = await ann(pg); ok([o['x'] for o in a.get(aid, [])] == [GHOST], '칠한 곳을 다시 눌러 지워도 잃은 표시 유지')
-        await tap_word(pg, aid); await pg.click('#k-sw .sw[data-c="g"]'); await tap_word(pg, aid)
+        await tap_word(pg, aid); await pg.click('#k-swc'); await pg.click('#k-swl .sw[data-c="g"]'); await tap_word(pg, aid)   # ux4 B1-4 색 5개는 ▾ 팝오버
         a = await ann(pg); ok(any(o['x'] == GHOST for o in a.get(aid, [])) and any(o.get('c') == 'g' for o in a.get(aid, [])), '색 바꾸기 뒤에도 유지')
         await pg.keyboard.press('Escape'); await pg.click('#k-clear'); await pg.click('#clearpop [data-csc=tab]'); await pg.click('#clearpop [data-ck=all]'); await pg.wait_for_timeout(200)   # 🧹 = 메뉴(C04) — 이 탭 · 모두
         a = await ann(pg); ok([o['x'] for o in a.get(aid, [])] == [GHOST], '🧹 화면 지우기 뒤에도 잃은 표시만 남음')
