@@ -16,12 +16,12 @@ async def open_(pg, h, wait=900):
     await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .nvs')&&(location.hash.length<3||document.querySelector('#stage .msum,#stage .tblwrap,#stage .qc'))", timeout=30000); await pg.wait_for_timeout(wait)
 LECS = [('CONS', 'WHT'), ('ANAT', 'LIP'), ('OMS1', 'DD1'), ('IMPL', 'OSS'), ('GERI', 'SAL'), ('PHARM', 'DS'), ('CONS', 'ADH')]
 M = """(()=>{const t=document.querySelector('#stage .msum table.mtx'),w=document.querySelector('#stage .msum');const cols=[...t.querySelectorAll('colgroup>col')].map(c=>parseFloat(c.style.width)||0);
- return {H:Math.round(t.getBoundingClientRect().height),W:Math.round(w.getBoundingClientRect().width),disp:getComputedStyle(t).display,cfw:t.dataset.cfw||'',sum:cols.reduce((a,b)=>a+b,0),
+ return {H:Math.round(t.getBoundingClientRect().height),W:Math.round(w.getBoundingClientRect().width),disp:getComputedStyle(t).display,cfw:t.dataset.cfw||'',adj:t.dataset.cfadj==='1',sum:cols.reduce((a,b)=>a+b,0),
   over:document.documentElement.scrollWidth-innerWidth,cov:[...t.querySelectorAll('tbody tr:not(.grow)>th,tbody tr:not(.grow)>td')].filter(c=>c.scrollWidth>c.clientWidth+1).length,tover:Math.round(t.getBoundingClientRect().width-t.closest('.tscroll').clientWidth)}})()"""
 DEF = "(()=>{const t=document.querySelector('#stage .msum table.mtx');const k=t.dataset.cfw;__h.cfApply(t,null);const h=Math.round(t.getBoundingClientRect().height);window.__dcov=[...t.querySelectorAll('tbody tr:not(.grow)>th,tbody tr:not(.grow)>td')].filter(c=>c.scrollWidth>c.clientWidth+1).length;__h.cfApply(t,k?k.split(',').map(Number):null);return h})()"
 async def dflt(pg):   # 기본 열 폭 높이 · 기본 폭에서 칸 넘침이 있으면(주제 열 < 영문 낱말) 하한을 지킨 colFit이 기본보다 2%까지 높아도 됨
     d = await pg.evaluate(DEF); dc = await pg.evaluate("window.__dcov"); return d, dc
-def le(r, d, dc): return r['cov'] == 0 and (r['H'] <= d or (dc > 0 and r['H'] <= d * 1.02))
+def le(r, d, dc): return r['cov'] == 0 and (r['H'] <= d or (dc > 0 and r['H'] <= d * 1.02) or (r.get('adj') and r['H'] <= d * 1.03))   # adj = 기본 폭이 영문 낱말을 가운데서 끊어 낱말을 지키는 폭을 고름 — colFit F4 규칙대로 3%까지
 async def run(b):
     ctx = await b.new_context(viewport={'width': 1280, 'height': 900}); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200]))

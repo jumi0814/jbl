@@ -3820,7 +3820,7 @@ function colFit(force){$$('#stage .msum table.mtx').forEach(t=>{const wrap=t.clo
  const pick=C=>{keep=null;bh=C.adj?Infinity:h0*0.995;C.forEach(x=>{cfApply(t,x);const h=t.offsetHeight;if(h<bh){bh=h;keep=x;}});};if(C.length)pick(C);   /* C.adj = 기본값이 하한을 어김 → 후보 중 가장 낮은 것(기본값은 후보 아님) */
  if(S.cmin&&S.cmin.some(v=>v)&&(!keep&&(C.adj||!C.length)||keep&&bh>h0*1.03)){const C2=cfSolve(Object.assign({},S,{cmin:null}),W,mode,fpx)||[];if(C2.length){C=C2;mn=C2.mins||[];pick(C2);}else{keep=null;mn=[];}}   /* F4 긴 영문 조각을 지키느라 표가 3% 넘게 길어지면 그 하한은 버림(한 낱말 끊김보다 표 길이) */
  if(keep&&prev){const p=prev.split(',').map(Number);if(p.length===5&&cfOkMin(p,mn)&&keep.every((v,i)=>Math.abs(v-p[i])<1.5))keep=p;}   /* 1.5%p 문턱 — 앞 폭과 거의 같으면 그대로(흔들림 없음) · 단 이 폭의 하한(영문 낱말 등)을 지킬 때만 */
- cfApply(t,keep);CF.cache.set(key,{x:keep,mn});});}
+ cfApply(t,keep);t.dataset.cfadj=keep&&C&&C.adj?'1':'';CF.cache.set(key,{x:keep,mn});});}   /* cfadj = 기본 폭이 영문 낱말 하한을 어겨 낱말을 지키는 폭을 골랐음(표가 3%까지 길어질 수 있음 — F4) */
 function cfOkMin(p,mn){return p.every((v,i)=>!mn[i]||v>=mn[i]-0.06);}
 
 /* ---------- L4 비교표·전체정리표·한눈표(table.cmp/sum) 열 폭 — √글자량 무게 px 배분. W = .tscroll 폭 · 열마다 글자량 80백분위·끊을 수 없는 가장 긴 조각·머리 글자 → 최소 폭(4.5~12em) ·
