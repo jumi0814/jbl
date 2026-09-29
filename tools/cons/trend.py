@@ -93,7 +93,15 @@ def prof_line(name, S):
     if not ys:
         y = next(iter(S)); return f'{name} · {YR(y)} {S[y]["n"]}문항 (기준선 — 짤/탈 판정 불가)'
     y = ys[0]; d = S[y]; r = latest_ratio(S)
-    return f'{name} · 최근 {YR(y)} {d["n"]}문항 짤 {d["jjal"]}/탈 {d["tal"]} → {ratio_word(r)}' + (f' · 짤 비율 {round(r * 100)}%' if r is not None else '')
+    return f'{name} · 최근 {YR(y)} {d["n"]}문항 짤 {d["jjal"]}/탈 {d["tal"]}{pooled(S)} → {ratio_word(r)}' + (f' · 짤 비율 {round(r * 100)}%' if r is not None else '')
+def pooled(S):
+    """ux4 B20 최근 해 표본이 3 미만이라 판정 가능한 해를 합산했으면 그 사실과 합산 수를 드러냄(최근 해 숫자와 판정이 반대로 읽히지 않게) — 아니면 ''"""
+    ys = [y for y, d in S.items() if not d['base']]
+    if len(ys) < 2: return ''
+    L = S[ys[0]]
+    if L['jjal'] + L['tal'] >= 3: return ''
+    j = sum(S[y]['jjal'] for y in ys); n = j + sum(S[y]['tal'] for y in ys)
+    return f' · 표본이 적어 누적 짤 {j}/{n}'
 def tendency_parts(S, name, ment=''):
     """(경향 문장 목록, 공부 전략 항목 목록)"""
     ys = [y for y, d in S.items() if not d['base']]
@@ -144,5 +152,5 @@ def short_line(S):
     if not S: return '기출 없음'
     if not ys:
         y = next(iter(S)); return f'{YR(y)}년 {S[y]["n"]}문항 (기준선)'
-    y = ys[0]; d = S[y]; nn = d['jjal'] + d['tal']
-    return f'{YR(y)}년 {d["n"]}문항 · 짤 {d["jjal"]} / 탈 {d["tal"]} → {ratio_word(d["jjal"]/nn if nn else None)} · {fmt_str(d["fmt"])}'
+    y = ys[0]; d = S[y]
+    return f'{YR(y)}년 {d["n"]}문항 · 짤 {d["jjal"]} / 탈 {d["tal"]}{pooled(S)} → {ratio_word(latest_ratio(S))} · {fmt_str(d["fmt"])}'   # ux4 B20 교수 줄과 같은 판정 규칙(latest_ratio)
