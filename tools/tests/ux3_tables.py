@@ -1,5 +1,5 @@
 """ux3 트랙1 묶음 L 회귀 — 표 자동 확장·열 폭.
-L1 메뉴 숨김/펼침 → .msum 폭 ±248 · col 합 100% · 행 필터·묶음 필터 뒤 col 그대로 · 요약↔자세히 다시 맞춤
+L1 메뉴 숨김/펼침 → .msum 폭 ±256(ux4 묶음2 메뉴 폭) · col 합 100% · 행 필터·묶음 필터 뒤 col 그대로 · 요약↔자세히 다시 맞춤
 L2 정리표 colFit — 7강의 × 1280(숨김·펼침)·1180: 맞춘 높이 ≤ 기본값(CSS 기본 열 폭 — 기본 폭에서 칸이 넘치면 ×1.02까지) · 가로 넘침 0 · 칸 넘침(th·td scrollWidth) 0
 L3 820 세로 = 2단 카드(38%|62%) — 1단 카드보다 25%↑ 낮음 · 카드 안 가로 넘침 0 · 👁 칸 이름 누르면 가림
 L4 비교표 820 PHARM RX 최소 열 ≥ 90px 또는 카드형 · 1180 PHARM DS 최대 행 높이 ≤ 220px · 전체정리표 넘침은 .ovx 스크롤 안에서만
@@ -13,7 +13,7 @@ def ok(c, m):
     if not c: fails.append(m)
 async def open_(pg, h, wait=900):
     await pg.goto('about:blank'); await pg.goto(U + h)
-    await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .nvs')&&(location.hash.length<3||document.querySelector('#stage .msum,#stage .tblwrap,#stage .qc'))", timeout=30000); await pg.wait_for_timeout(wait)
+    await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')&&(location.hash.length<3||document.querySelector('#stage .msum,#stage .tblwrap,#stage .qc'))", timeout=30000); await pg.wait_for_timeout(wait)
 LECS = [('CONS', 'WHT'), ('ANAT', 'LIP'), ('OMS1', 'DD1'), ('IMPL', 'OSS'), ('GERI', 'SAL'), ('PHARM', 'DS'), ('CONS', 'ADH')]
 M = """(()=>{const t=document.querySelector('#stage .msum table.mtx'),w=document.querySelector('#stage .msum');const cols=[...t.querySelectorAll('colgroup>col')].map(c=>parseFloat(c.style.width)||0);
  return {H:Math.round(t.getBoundingClientRect().height),W:Math.round(w.getBoundingClientRect().width),disp:getComputedStyle(t).display,cfw:t.dataset.cfw||'',adj:t.dataset.cfadj==='1',sum:cols.reduce((a,b)=>a+b,0),
@@ -33,8 +33,8 @@ async def run(b):
         ok(r['disp'] == 'table' and le(r, d, dc) and (not r['cfw'] or abs(r['sum'] - 100) < 0.6) and r['over'] <= 0 and r['tover'] <= 1, f'1280 숨김 {s}/{k} 높이 {r["H"]} ≤ 기본 {d}{"(넘침 " + str(dc) + ")" if dc else ""} 칸넘침 {r["cov"]} ({round((1 - r["H"] / d) * 100, 1)}%↓) 열 {r["cfw"]} 폭 {r["W"]}')
     await open_(pg, '#/CONS/WHT/sum', 1200); r0 = await pg.evaluate(M)
     await pg.evaluate("window.__lev=0;document.addEventListener('jbl:layout',()=>__lev++)")
-    await pg.click('#sideopen'); await pg.wait_for_timeout(250); w250 = await pg.evaluate("Math.round(document.querySelector('#stage .msum').getBoundingClientRect().width)"); await pg.wait_for_timeout(500); r1 = await pg.evaluate(M)
-    ok(abs((r0['W'] - w250) - 248) <= 10 and abs(r1['sum'] - 100) < 0.6 and r1['disp'] == 'table', f'L1 › 펼침 → 250ms 안에 .msum {r0["W"]} → {w250} · 열 {r1["cfw"]} 합 {r1["sum"]}')
+    await pg.click('#navbtn'); await pg.wait_for_timeout(250); w250 = await pg.evaluate("Math.round(document.querySelector('#stage .msum').getBoundingClientRect().width)"); await pg.wait_for_timeout(500); r1 = await pg.evaluate(M)
+    ok(abs((r0['W'] - w250) - 256) <= 10 and abs(r1['sum'] - 100) < 0.6 and r1['disp'] == 'table', f'L1 상단 ☰ 펼침(ux4 묶음2 — › 손잡이 대신·메뉴 256) → 250ms 안에 .msum {r0["W"]} → {w250} · 열 {r1["cfw"]} 합 {r1["sum"]}')
     await pg.keyboard.press('Backslash'); await pg.wait_for_timeout(700); r2 = await pg.evaluate(M)
     ok(r2['W'] == r0['W'] and r2['cfw'] == r0['cfw'], f'L1 \\ 다시 숨김 → 폭·열 처음과 같음 {r2["W"]} {r2["cfw"]}')
     await pg.evaluate("localStorage.removeItem('jblhub.v1.sidefold');localStorage.removeItem('jblhub.v1.navfold');localStorage.removeItem('jblhub.v1.navfoldHub');localStorage.setItem('jblhub.v1.wideSide','1')")

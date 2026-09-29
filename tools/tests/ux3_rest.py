@@ -24,7 +24,7 @@ async def fresh(pg, h, extra=''):
 TE = "(d,r)=>(JSON.parse(localStorage.getItem('jblhub.v1.tedit')||'[]')).filter(e=>e&&!e.x&&e.d===d&&((e.f==='r')===r)).reduce((a,e)=>a+(+e.ms||0),0)"
 async def tsum(pg, d=TODAY): return sum(((await ls(pg, 'time')) or {}).get(d, {}).values()) + await pg.evaluate(f"({TE})('{d}',false)")
 async def rest(pg, d=TODAY): return ((await ls(pg, 'trest')) or {}).get(d, 0) + await pg.evaluate(f"({TE})('{d}',true)")
-async def st(pg): return await pg.evaluate("document.querySelector('#tmr').dataset.st")
+async def st(pg): return await pg.evaluate("document.querySelector('#clock').dataset.st")   # ux4 묶음2 시계 알약
 async def band(pg): return await pg.evaluate("(b=>b.hidden?'':b.textContent)(document.querySelector('#idleband'))")
 async def study(pg, n, step=30000, x=300):
     """n번 입력(step 간격) — 마지막 입력 뒤 멈춤 · 돌려줌: 마지막 입력 시각(ms)"""
@@ -46,8 +46,8 @@ async def part_idle(b):
     li = await study(pg, 21)
     await pg.clock.run_for(8 * MIN + 2000)
     ts = await ls(pg, 'tstate')
-    ok(await st(pg) == 'rest' and ts and ts.get('ar') == 1 and ts.get('r0') == li + MIN, f"무입력 8분 → ☕ 쉬는 중·ar·r0 = 마지막 입력 + 1분(flow V10 — 미리 센 1분은 공부) ({await pg.inner_text('#tmr')!r} r0-li={ts and ts.get('r0') - li})")
-    ok(re.search(r'쉬는 중 7:0\d', await pg.inner_text('#tmr')), f"#tmr 휴식 시계 = 마지막 입력 1분 뒤부터 ({await pg.inner_text('#tmr')!r})")
+    ok(await st(pg) == 'rest' and ts and ts.get('ar') == 1 and ts.get('r0') == li + MIN, f"무입력 8분 → ☕ 쉬는 중·ar·r0 = 마지막 입력 + 1분(flow V10 — 미리 센 1분은 공부) ({await pg.inner_text('#clock .ckl')!r} r0-li={ts and ts.get('r0') - li})")
+    ok(re.search(r'휴식 7:0\d', await pg.inner_text('#clock .ckl')), f"알약 휴식 시계 = 마지막 입력 1분 뒤부터 ({await pg.inner_text('#clock .ckl')!r})")
     ok(abs(await tsum(pg) - 11 * MIN) <= 1000, f'공부 = 11분(flow V10 마지막 입력 뒤 1분은 공부 그대로 — 시계 안 되감김) — time {await tsum(pg) / 1000:.0f}초')
     await pg.screenshot(path=J.TMP + '/ux3i_rest_tmr_mac.png', clip={'x': 0, 'y': 0, 'width': 1280, 'height': 60})
     # 마지막 입력에서 28분 뒤 입력 → 띠(기본 쉬었어요) → 10초 무응답
@@ -207,11 +207,12 @@ async def part_view(b, vp, touch, tag):
     await pg.click('#clock'); await pg.clock.run_for(300)
     pl = await pg.evaluate("(e=>e?e.textContent:'')(document.querySelector('#tpop .trrl'))")
     ok('휴식' in pl and '집중' in pl and '가장 긴 휴식' in pl, f'시계 팝업 휴식 줄 {pl!r}')
-    ok(await pg.evaluate("!!document.querySelector('#tpop #trestc')&&document.querySelector('#tpop #trestc').checked&&document.querySelector('#tpop #trmax').value==='90'"), '시계 팝업 설정 = 켬·90분')
+    ok(await pg.evaluate("!document.querySelector('#tpop #trestc,#tpop select')||!!document.querySelector('#tpop #trsj')"), 'ux4 묶음2 시계 팝오버에는 설정 없음(📅 달력 측정 설정)')
     await pg.screenshot(path=J.TMP + f'/ux3i_rest_pop_{tag}.png')
-    # 팝업에서 끄기 → 휴식 없음
-    await pg.evaluate("(c=>{c.checked=false;c.dispatchEvent(new Event('change'))})(document.querySelector('#trestc'))")
-    ok(await ls(pg, 'restAuto') is False, '팝업에서 끄면 LS restAuto=false')
+    # 측정 설정(달력)에서 끄기 → 휴식 없음
+    await pg.evaluate("document.querySelector('#tpop [data-tp=goal]').click()"); await pg.clock.run_for(600)
+    await pg.evaluate("(c=>{c.checked=false;c.dispatchEvent(new Event('change',{bubbles:true}))})(document.querySelector('[data-cset=restAuto]'))")
+    ok(await ls(pg, 'restAuto') is False, '측정 설정에서 끄면 LS restAuto=false')
     await pg.evaluate("localStorage.removeItem('jblhub.v1.restAuto')")
     # 휴식 중 띠 화면(아이패드 폭 — 띠 넘침)
     await pg.evaluate("location.hash='#/PHARM/RX/learn'"); await pg.clock.run_for(800)

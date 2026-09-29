@@ -200,7 +200,7 @@ async def ipad(b, w, h):
         ok(await pg.evaluate("(()=>{const n=document.querySelector('.msum .mshn,#msbar .mshn'),w=document.querySelector('#msbar .mshw');return !!(n&&n.offsetParent&&w&&!w.offsetParent)})()"), 'V14 카드형 안내 문구(칸 이름의 👁)')
         # ---- V15 탭 줄
         await open_(pg, '#/OMS1/DD1/learn', '#stage .tc')
-        r = await pg.evaluate("[document.querySelector('#dtabs').scrollWidth-document.querySelector('#dtabs').clientWidth,(document.querySelector('#focusb')?getComputedStyle(document.querySelector('#focusb')).display:'none'),[...document.querySelectorAll('#dtabs .dfoc')].filter(e=>e.offsetParent).length]")
+        r = await pg.evaluate("[document.querySelector('#dtabs').scrollWidth-document.querySelector('#dtabs').clientWidth,document.querySelector('#focusb')?getComputedStyle(document.querySelector('#focusb')).display:'none',[...document.querySelectorAll('#dtabs .dfoc')].filter(e=>e.offsetParent).length]")   # ux4 묶음2: 위 막대 ⤢(#focusb)는 없앰
         ok(r[0] <= 1 and r[1] == 'none' and r[2] == 1, f'V15 820 탭 줄 넘침 {r[0]} · 위 막대 ⤢ {r[1]} · 탭 줄 ⤢ {r[2]}')
         await pg.screenshot(path=SHOT('v15_tabs', tag))
         # ---- V12 누름 자리

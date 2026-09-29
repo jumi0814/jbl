@@ -1,6 +1,6 @@
 """ux3 묶음 P2 회귀: 도움말(?) '⌨ 모든 단축키' 한 표(모든 화면 키 — M 메뉴·Shift+M 메모·Shift+B 빈칸 색·\\·달력 ←→·T·A 포함) ·
 'M = 메모' 문구 없음 · 옛 상단 [백업][복원]·'사이드바' 문구 없음 · 모든 [도움말 ▸]/data-wnh 링크가 실제 도움말 줄로 감 ·
-새 기능 안내(whatsNew, LS whatsNew.3): 기록 없는 새 기기 = 안 뜸 · 1차 기기(ux2old) = 7줄 한 번 · 2차 판을 기록 없이 처음 열었던 기기(ux2old=0)도
+새 기능 안내(whatsNew — ux4 묶음2부터 LS whatsNew.4 · 4줄): 기록 없는 새 기기 = 안 뜸 · 옛 판 기기(ux2old) = 4줄 한 번 · 2차 판을 기록 없이 처음 열었던 기기(ux2old=0)도
 3차를 처음 열 때 기록이 있으면 뜸(ux3old) · [알겠어요] → 다시 안 뜸 · 도움말 상자 가로 넘침 0.
 맥 1280×900 · 아이패드 세로 820×1180(터치)·가로 1180×820(터치). 스크린샷 work/_tmp/ux3i_help_*.png"""
 import os as _os, sys as _sys, re; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
@@ -49,9 +49,9 @@ async def run(pg, tag, vp):
     await pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.mk.OMS1',JSON.stringify({ok:{Q01:1},ng:{},bm:{},log:{}}))"); await open_(pg, '#/')
     await pg.wait_for_function("window.__h&&__h.plStat().pend===0", timeout=30000)
     w = await pg.evaluate("(()=>{const w=document.querySelector('#wnew');if(!w)return null;const r=w.getBoundingClientRect(),b=document.querySelector('.hband');return {n:w.querySelectorAll('li').length,t:w.textContent,top:Math.round(r.top),h:Math.round(r.height),band:b?Math.round(b.getBoundingClientRect().top):-1,ov:w.scrollWidth-w.clientWidth}})()")
-    ok(w and w['n'] == 7, f"1차 기기 → '✨ 이번 업데이트' 7줄 {w and w['n']}")
-    ok(w and all(x in w['t'] for x in ['왼쪽 메뉴', '오늘', '공부 달력', '세션', '빈칸 색', '표 폭', '🔑']), '3차 핵심(메뉴·오늘·달력·세션·빈칸 색·표 폭·🔑) 모두')
-    ok(w and 'Shift+M' in w['t'] and w['ov'] <= 0, f"M 줄에 '메모는 Shift+M' · 가로 넘침 0")
+    ok(w and w['n'] == 4, f"옛 판 기기 → '✨ 이번 업데이트'(ux4 4차) 4줄 {w and w['n']}")
+    ok(w and all(x in w['t'] for x in ['과목 메뉴', '허브 홈', '시계', '쉬기', '✎ 도구', '빵부스러기', '전체로 넓히기']), '4차 핵심(과목 메뉴·시계 하나·✎ 도구·빵부스러기·과목 안 검색) 모두')
+    ok(w and w['ov'] <= 0, f"가로 넘침 0")
     ok(w and w['h'] <= (360 if vp['width'] <= 860 else 300), f"안내 카드 높이 {w and w['h']}px(홈을 너무 밀지 않게)")
     await pg.screenshot(path=J.TMP + f'/ux3i_help_wnew_{tag}.png')
     links = await pg.evaluate("[...document.querySelectorAll('#wnew [data-wnh]')].map(b=>b.dataset.wnh)")
@@ -63,12 +63,12 @@ async def run(pg, tag, vp):
     await open_(pg, '#/')
     ok(await pg.evaluate("!!document.querySelector('#wnew')"), '[알겠어요] 전에는 다시 열어도 보임')
     await pg.evaluate("document.querySelector('#wnew [data-wnx]').click()"); await pg.wait_for_timeout(200)
-    ok(not await pg.evaluate("document.querySelector('#wnew')") and await pg.evaluate(LSK('whatsNew.3')) == 1, '[알겠어요] → 사라짐 · LS whatsNew.3=1')
+    ok(not await pg.evaluate("document.querySelector('#wnew')") and await pg.evaluate(LSK('whatsNew.4')) == 1 and await pg.evaluate(LSK('whatsNew.3')) == 1, '[알겠어요] → 사라짐 · LS whatsNew.4=1(·3)')
     await open_(pg, '#/')
     ok(not await pg.evaluate("document.querySelector('#wnew')"), '새로고침 뒤에도 안 뜸(한 번)')
     # ---- 2차 판을 기록 없이 처음 열었던 기기(ux2old=0) + 그 뒤 쌓인 기록 → 3차 처음 열 때 안내
-    await pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.ux2old','0');localStorage.setItem('jblhub.v1.time',JSON.stringify({'2026-09-20':{CONS:600000}}));localStorage.setItem('jblhub.v1.whatsNew.2','1')"); await open_(pg, '#/')
-    ok(await pg.evaluate("!!document.querySelector('#wnew')") and await pg.evaluate(LSK('ux3old')) == 1, '2차 시작 기기(ux2old=0)도 기록이 있으면 3차 안내 · ux3old=1')
+    await pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.ux2old','0');localStorage.setItem('jblhub.v1.time',JSON.stringify({'2026-09-20':{CONS:600000}}));localStorage.setItem('jblhub.v1.whatsNew.2','1');localStorage.setItem('jblhub.v1.whatsNew.3','1')"); await open_(pg, '#/')
+    ok(await pg.evaluate("!!document.querySelector('#wnew')") and await pg.evaluate(LSK('ux3old')) == 1, '3차 안내를 닫은 기기(whatsNew.3=1)도 4차 안내는 한 번 · ux3old=1')
     await pg.evaluate("localStorage.clear()"); await open_(pg, '#/')
     await pg.evaluate("localStorage.setItem('jblhub.v1.time',JSON.stringify({'2026-09-20':{CONS:600000}}))"); await open_(pg, '#/')
     ok(not await pg.evaluate("document.querySelector('#wnew')"), '3차 판에서 새로 시작한 기기(ux3old=0)는 기록이 생겨도 안 뜸')

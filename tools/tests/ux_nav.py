@@ -36,12 +36,12 @@ async def run(b, vp, touch, tag):
     ok(await H(pg) == '#/OMS1/_home/_home' and await pg.evaluate("!document.querySelector('#subj').hidden"), '앞으로 가기 = 과목 홈')
     await pg.evaluate("location.hash='#/CONS/WHT/learn'"); await pg.wait_for_timeout(700)
     ok(await pg.evaluate("document.querySelector('#hero h1').textContent") and await pg.evaluate("location.hash==='#/CONS/WHT/learn' && !!document.querySelector('#stage .tc[id^=\"t-WHT-\"]')"), '해시를 직접 고치면 화면이 바뀜')
-    # 검색 → 결과 → 뒤로 = 검색 결과
-    await pg.fill('#gsearch', 'fontanel'); await pg.wait_for_timeout(700)
-    ok((await H(pg)).startswith('#/?q=fontanel'), f'검색 주소 #/?q= ({await H(pg)})')
+    # 검색 → 결과 → 뒤로 = 검색 결과 (ux4 묶음2: 과목 안에서 찾으면 그 과목만 — 보존에 있는 낱말로)
+    await pg.fill('#gsearch', 'bleaching'); await pg.wait_for_timeout(700)
+    ok((await H(pg)).startswith('#/?q=bleaching&s=CONS'), f'검색 주소 #/?q=…&s=CONS ({await H(pg)})')
     await click(pg, '#home .res >> nth=0', touch); await pg.wait_for_timeout(700)
     await pg.go_back(); await pg.wait_for_timeout(600)
-    ok(await pg.evaluate("!document.querySelector('#home').hidden && document.querySelectorAll('#home .res').length>0 && document.querySelector('#gsearch').value==='fontanel'"), '결과에서 뒤로 = 검색 결과 복원')
+    ok(await pg.evaluate("!document.querySelector('#home').hidden && document.querySelectorAll('#home .res').length>0 && document.querySelector('#gsearch').value==='bleaching'"), '결과에서 뒤로 = 검색 결과 복원')
     await pg.go_back(); await pg.wait_for_timeout(600)
     ok(await H(pg) == '#/CONS/WHT/learn', f'한 번 더 뒤로 = 검색 전 화면 ({await H(pg)})')
     # 뒤로가기 스크롤 복원: DD1 카드 10 → ⭐ 연도칩 → 뒤로

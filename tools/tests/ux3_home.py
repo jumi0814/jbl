@@ -48,7 +48,7 @@ async def run(b, vp, touch, tag):
     ok('복습 3문항' in tx and 'D-' not in tx and '보존 안 푼 기출' in tx and '최근 공부한 과목' in tx and '백업 10일 전' in tx, f'{tag} H3 문구 ({tx[:160]!r})')
     ok(await pg.evaluate("__h.examPlan('CONS')") is None, f'{tag} H3 하루 분량 계산 없음(examPlan null)')
     nb = await pg.evaluate("(document.querySelector('#nav [data-nb=tk]')||{}).textContent")
-    ok(nb == '3', f'{tag} H3 메뉴 🏠 오늘 배지 = 할 일 수 {nb!r}')
+    ok(nb is None, f'{tag} H3 메뉴 오늘 줄에는 배지 없음(ux4 묶음2 — 할 일은 홈에만) {nb!r}')
     bt = await pg.inner_text('#home .hband')
     ok('D-2' not in bt and '가장 가까운 시험' not in bt, f'{tag} H2 시험일이 있어도 띠에 D-n 없음 ({bt[:60]!r})')
     pc = await pg.evaluate("d=>{const td=Object.values(__h.tDay(d)).reduce((a,b)=>a+b,0);return [Math.min(100,Math.round(td/(__h.tGoal(d)*60000)*100))+'%',document.querySelector('#home [data-hbw]').style.width,!document.querySelector('#home [data-hb=pct]')]}", dd(0))
@@ -61,12 +61,11 @@ async def run(b, vp, touch, tag):
     # 가로 넘침 0 · 칸 넘침 0
     ov = await pg.evaluate("(()=>{const r=[document.documentElement.scrollWidth-innerWidth];document.querySelectorAll('#home .hsj,#home .hband,#home .htodo,#home .hres,#home .hweek').forEach(e=>{if(e.scrollWidth>e.clientWidth+1)r.push(e.className+':'+(e.scrollWidth-e.clientWidth));});return r})()")
     ok(ov[0] <= 0 and len(ov) == 1, f'{tag} H4 가로 넘침 0 {ov}')
-    # 시계 팝업 — 같은 목록 앞 3
+    # 시계 팝오버(ux4 묶음2 — 할 일 목록은 홈에만) — 오늘 합계 = 홈 오늘 줄
     await pg.evaluate("document.querySelector('#clock').click()"); await pg.wait_for_timeout(250)
-    pt = await pg.evaluate("[...document.querySelectorAll('#tpop .tptodo [data-todo]')].map(b=>b.dataset.todo+':'+b.dataset.ts)")
-    ok(pt == tk[:3], f'{tag} H3 시계 팝업 할 일 3 {pt}')
-    await pg.evaluate("document.querySelector('#tpop .tptodo [data-todo=jb]').click()"); await pg.wait_for_timeout(700)
-    ok((await pg.evaluate('location.hash')).startswith('#/CONS/_jb') and not await pg.evaluate("document.querySelector('#tpop').classList.contains('on')"), f'{tag} H3 팝업 📝 → JB·팝업 닫힘')
+    pt = await pg.evaluate("[(document.querySelector('#tpop [data-tpt=td]')||{}).textContent,document.querySelector('#home [data-hb=td]').textContent,!document.querySelector('#tpop .tptodo')]")
+    ok(pt[0] == pt[1] and pt[2], f'{tag} H3 시계 팝오버 오늘 합계 = 홈 · 할 일 줄 없음 {pt}')
+    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(150)
     # 각 ▶ 라우트
     async def todo(k, S=''):
         await open_(pg, '#/'); await pg.evaluate("([k,S])=>document.querySelector(`#home .htodo [data-todo=${k}]`+(S?`[data-ts=${S}]`:'')).click()", [k, S]); await pg.wait_for_timeout(900)
@@ -108,9 +107,7 @@ async def run(b, vp, touch, tag):
     # ---- H5 이번 주 · 더보기
     wk = await pg.evaluate("(()=>{const W=__h.tWeek((()=>{const x=new Date();x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x})());const s=W.reduce((a,x)=>a+x.sum,0);const m=Math.round(s/60000);return [Math.floor(m/60)+':'+('0'+m%60).slice(-2),document.querySelector('#home [data-hw=tot]').textContent,document.querySelectorAll('#home .hwb').length,document.querySelectorAll('#home .hwb.today').length]})()")
     ok(wk[0] == wk[1] and wk[2] == 7 and wk[3] == 1, f'{tag} H5 주 합계 = tWeek 합 · 막대 7 · 오늘 1 {wk}')
-    await pg.evaluate("document.querySelector('#clock').click()"); await pg.wait_for_timeout(200)
-    ok(wk[1] in await pg.inner_text('#tpop .tph'), f'{tag} H5 주 합계 = 시계 팝업 주 합계')
-    await pg.keyboard.press('Escape'); await pg.wait_for_timeout(150)
+    ok(await pg.evaluate("document.querySelector('#nav [data-nb=wk]').textContent") == '이번 주 ' + wk[1], f'{tag} H5 주 합계 = 허브 메뉴 공부 달력 줄 이번 주(ux4 묶음2)')
     await pg.evaluate(f"document.querySelector('#home .hwb[data-hwd=\"{dd(0)}\"]').click()"); await pg.wait_for_timeout(500)
     h = await pg.evaluate('location.hash'); ok(h.startswith('#/_cal') and await pg.evaluate("__h.CAL.sel") == dd(0), f'{tag} H5 막대 → 그날 달력 {h}')
     await open_(pg, '#/')
