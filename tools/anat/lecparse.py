@@ -4,11 +4,12 @@ CITE = re.compile(r'(\[\[[A-Z0-9]+:[^\]]+\]\]|\{jb:[^}]+\})')
 SRCN = re.compile(r'\((\d{2}\s)?필기\)')
 SRCH = re.compile(r'^필기:\s')
 SRCP = re.compile(r'^슬라이드\s(\d{1,3})((?:\s흐름|\s표시)?):\s')
-_WBR_SPLIT = re.compile(r'(<[^>]*>)'); _WBR_DOT = re.compile(r'(?<![\s·])·(?![\s·])')
+_WBR_SPLIT = re.compile(r'(<[^>]*>)'); _WBR_DOT = re.compile(r'(&#?[A-Za-z0-9]+;|[^\s·<>&])·(?![\s·])'); _WBR_SDOT = re.compile(r' ·(?= )'); _WBR_D0 = re.compile(r'^·(?![\s·])')
 def _wbr(t):
-    """ux2 fixB VIS04 — 띄어 쓰지 않은 'A·B·C' 가운뎃점 뒤에 줄바꿈 자리(<wbr>)를 넣어 좁은 칸에서 영어 낱말이 글자 중간(Lambdo|id)에서 끊기지 않게. 글자(textContent)·표시 위치 불변 — 태그 밖 글자에만"""
+    """ux2 fixB VIS04 — 띄어 쓰지 않은 'A·B·C' 가운뎃점 뒤에 줄바꿈 자리(<wbr>)를 넣어 좁은 칸에서 영어 낱말이 글자 중간(Lambdo|id)에서 끊기지 않게. 글자(textContent)·표시 위치 불변 — 태그 밖 글자에만
+    ux3 fix V07 — 가운뎃점이 줄 머리로 가지 않게('전방 / ·일차구개'): 앞 글자와 '·'를 끊지 않는 조각(.nwd)으로 묶음 · ' · '는 ' ·'를 묶어 줄은 '· ' 뒤에서만 바뀜"""
     if '·' not in t: return t
-    return ''.join(p if p.startswith('<') else _WBR_DOT.sub('·<wbr>', p) for p in _WBR_SPLIT.split(t))
+    return ''.join(p if p.startswith('<') else _WBR_D0.sub('·<wbr>', _WBR_SDOT.sub('<span class="nwd"> ·</span>', _WBR_DOT.sub(r'<span class="nwd">\1·</span><wbr>', p))) for p in _WBR_SPLIT.split(t))   # 태그 바로 뒤 '·'(앞 글자가 태그 안)는 옛 규칙대로 뒤에 <wbr>만
 def _srcmeta(t, first):
     """ux2 D07 출처 메타를 가볍게 — 글자는 그대로 두고 감싸기만(.srcn = ✍ 아이콘·.srcp = 회색 'p.NN' 칩, 원문 글자는 안쪽 .srt — CSS display:none, textContent·표시·검색 그대로)"""
     t = SRCN.sub(lambda m: f'<span class="srcn" title="{(m.group(1) or "").strip() + " " if m.group(1) else ""}필기"><span class="srt">{m.group(0)}</span></span>', t)
@@ -551,7 +552,20 @@ def _kf(p, ctx, first):
     """라벨 줄에 붙는 라벨 없는 사실 — inline"""
     return inline(p, ctx, first)
 def _flow(bp, sep, ctx, first):
-    return '<span class="kfw">' + ''.join(f'<span class="kfi{" kfn" if _L(x) <= KFN else ""}">' + inline(x, ctx, first and not i) + (_ks(sep, 'kfs') if i < len(bp) - 1 else '') + '</span>' for i, x in enumerate(bp)) + '</span>'
+    """K3 사실 흐름 — 사실마다 .kfi(24자 이하는 끊지 않는 덩어리). ux3 fix V06: 14자 미만 조각이 '→'로 시작하거나 앞 사실이 라벨 없는 '→' 흐름이면
+    앞 사실에 붙임('Common carotid → internal(뇌) · external(얼굴)'이 한 사실) — 구분자는 그대로(글자 불변)"""
+    groups = []
+    for i, x in enumerate(bp):
+        if groups and _L(x) < 14:
+            prev = bp[groups[-1][-1]]
+            if _plain(x).strip().startswith('→') or ('→' in _plain(prev) and not _lab(prev) and not _lab(x)):
+                groups[-1].append(i); continue
+        groups.append([i])
+    out = ''
+    for g in groups:
+        n = sum(_L(bp[i]) for i in g) + 3 * (len(g) - 1)
+        out += f'<span class="kfi{" kfn" if n <= KFN else ""}">' + ''.join(inline(bp[i], ctx, first and not i) + (_ks(sep, 'kfs') if i < len(bp) - 1 else '') for i in g) + '</span>'
+    return '<span class="kfw">' + out + '</span>'
 def _txt(h): return html.unescape(re.sub(r'<[^>]+>', '', h))
 def key_lines(v, ctx):
     """🔑 상자·정리표 🔑 칸 본문(ux3 N1) — 옛 render_block과 같은 틀(번호·라벨·' / ' 목록)에 조각마다 K1~K6. 글자가 옛 렌더와 다르면 옛 렌더"""
@@ -564,15 +578,28 @@ def key_lines(v, ctx):
     if new != old: KL[1] += 1
     return new
 def render_keybox(v, ctx): return f'<div class="kb">{key_lines(v, ctx)}</div>'
+GK = [0, 0]   # 요지 수 · 단계 흐름(K4)을 쓴 요지 수(빌드 로그)
+def _gsteps(p, ctx, first=True):
+    """ux3 fix flow V07 요지의 ' → ' 흐름 — 3단계↑·40자 초과면 단계마다 .ksi(24자 이하는 끊지 않는 덩어리 · 줄머리 '→ ') — 좁은 정리표 🔑 칸에서 단계 경계로 줄이 바뀜"""
+    ps = _sp(p, ' → ')
+    if len(ps) >= 3 and _L(p) > 40 and all(x.strip() for x in ps):
+        bp = _bal(ps); GK[1] += 1
+        return '<span class="kst">' + ''.join(f'<span class="ksi{" kfn" if _L(x) <= KFN else ""}">' + (_ks(' → ', 'ka') if i else '') + inline(x, ctx, first and not i) + '</span>' for i, x in enumerate(bp)) + '</span>'
+    return inline(p, ctx, first)
 def gist_html(g, ctx):
-    """한 줄 요지(ux3 N3) — 첫 최상위 ' — ' 뒤가 16자↑면 둘째 줄 .ksub(구분자는 .ksep로 남김 — 글자 불변)"""
+    """한 줄 요지(ux3 N3) — 첫 최상위 ' — ' 뒤가 16자↑면 둘째 줄 .ksub(구분자는 .ksep로 남김 — 글자 불변) · 긴 '→' 흐름은 단계 단위(flow V07)"""
+    GK[0] += 1; ref = _txt(inline(g, ctx)); k0 = GK[1]
     ps = _sp(g, ' — ')
     if len(ps) >= 2 and ps[0].strip():
         head, tail = ps[0], ' — '.join(ps[1:])
         if _L(tail) >= 16:
-            head, tail = _bal([head, tail]); h = inline(head, ctx) + '<span class="ksub">' + _ks(' — ') + inline(tail, ctx, False) + '</span>'
-            if _txt(h) == _txt(inline(g, ctx)): return h
-    return inline(g, ctx)
+            head, tail = _bal([head, tail]); h = _gsteps(head, ctx) + '<span class="ksub">' + _ks(' — ') + _gsteps(tail, ctx, False) + '</span>'
+            if _txt(h) == ref: return h
+            h = inline(head, ctx) + '<span class="ksub">' + _ks(' — ') + inline(tail, ctx, False) + '</span>'; GK[1] = k0
+            if _txt(h) == ref: return h
+    h = _gsteps(g, ctx)
+    if _txt(h) == ref: return h
+    GK[1] = k0; return inline(g, ctx)
 def line_units(h):
     """ux3 N5 점검용 — 렌더 HTML을 '화면에서 한 덩어리로 흐르는 글자' 단위로 나눔(블록 div·li·목록 경계, 흐름 항목 .kfi·.ksi·.ksub 시작에서 끊음 · 숨긴 구분자 .kh 글자는 뺌 · 가로 흐름 목록 kflow·sflow·cflow의 li는 이어짐)"""
     from html.parser import HTMLParser

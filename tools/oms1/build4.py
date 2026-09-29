@@ -699,6 +699,7 @@ for L in LEC:
 print('⭐ 시험포인트 구조화(ux2 D04):', f'{lecparse.EXAM_N[0]}/{lecparse.EXAM_N[1]}줄')
 print('🔑 줄 나누기(ux3 N1 key_lines):', f'상자·칸 {lecparse.KL[0]} · 새 구조 {lecparse.KL[1]} · 글자가 달라 옛 렌더로 되돌림 {lecparse.KL[2]}')
 if lecparse.KL[2]: print('  ⚠ key_lines 되돌림이 있음 — tools/check_lec.py로 확인')
+print('요지 → 흐름(ux3 fix flow V07 gist_html):', f'요지 {lecparse.GK[0]} · 단계 흐름 {lecparse.GK[1]}')
 print('🔑 180자 초과 카드(상자 밖으로 나눔 대상):', ' · '.join(f'{L_["k"]} {KEYLONG.get(L_["k"], 0)}' for L_ in LEC))
 # ---- 비교표(칸 안의 ' / ' 나열을 줄 단위로)
 tables = []; cur = None

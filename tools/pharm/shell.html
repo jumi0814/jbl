@@ -3786,7 +3786,7 @@ function cfBlocks(cell){const out=[],cw=cell.clientWidth,ccs=getComputedStyle(ce
  walk(cell,ccs);return {b:out,py:parseFloat(ccs.paddingTop)+parseFloat(ccs.paddingBottom)+1,px:cpx};}
 function cfStats(t,mode){let S=CF.stats.get(t);if(S&&S.mode===mode)return S;const rows=[];let tok0=0;t.querySelectorAll('tbody tr:not(.grow)>th .men').forEach(e=>{const f=cfFont(getComputedStyle(e));e.textContent.split(/\s+/).forEach(w=>{if(w){const v=cfTW(w,f);if(v>tok0)tok0=v;}});});   /* 주제 칸 영문 제목의 가장 긴 낱말(끊지 않을 조각) */
  [...t.tBodies[0].rows].forEach(r=>{if(r.classList.contains('grow'))return;let c0=0;const cells=[];[...r.cells].forEach(c=>{const sp=c.colSpan||1;cells.push(Object.assign({c0,sp},cfBlocks(c)));c0+=sp;});rows.push(cells);});
- const cmin=[0,0,0,0,0];rows.forEach(cells=>cells.forEach(c=>{if(c.sp!==1||c.c0>4)return;let m=0;c.b.forEach(b=>{if(b.ws)b.ws.forEach(w=>{const v=w*1.03+b.ind;if(v>m)m=v;});});if(m+c.px>cmin[c.c0])cmin[c.c0]=m+c.px+1;}));   /* F4 열마다 끊을 수 없는 가장 긴 조각(낱말·🔑 짧은 사실) */
+ const cmin=[0,0,0,0,0];[...t.tBodies[0].rows].forEach(r=>{if(r.classList.contains('grow'))return;let c0=0;[...r.cells].forEach(c=>{const sp=c.colSpan||1;if(sp===1&&c0<5){const cs=getComputedStyle(c),ft=cfFont(cs),px=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);let m=0;c.textContent.replace(/\s+/g,' ').split(/\s+|(?<=[\/\-–—→·])/).forEach(w=>{if(w&&/[A-Za-z]{5,}/.test(w)){const v=cfTW(w,ft)*1.08;if(v>m)m=v;}});if(m&&m+px+2>cmin[c0])cmin[c0]=m+px+2;}c0+=sp;});});   /* F4 열마다 끊을 수 없는 가장 긴 영문 조각(띄어쓰기·/·-·→·'·'(<wbr>) 뒤만 끊김 — 굵은 글씨 몫 8%) */
  S={mode,rows,tok0,cmin};CF.stats.set(t,S);return S;}
 function cfH(S,x,W){let H=0;for(const cells of S.rows){let rh=0;for(const c of cells){let w=0;for(let k=c.c0;k<c.c0+c.sp&&k<x.length;k++)w+=x[k];w=w/100*W-c.px;let h=c.py;for(const b of c.b){if(b.fh){h+=b.fh;continue;}const av=Math.max(24,w-b.ind);let L=b.ws?cfLines(b,av):Math.max(1,Math.ceil(b.tw*1.06/av));if(b.cl)L=Math.min(L,b.cl);h+=L*b.lh+b.ex;}if(h>rh)rh=h;}H+=rh;}return H;}
 /* 병합(트랙3 N × 트랙1 L2): 줄 수 = 낱말(띄어쓰기 단위 — keep-all이라 한글 어절도 한 덩어리)·🔑 짧은 사실 .kfn(inline-block 덩어리)을 차례로 채우는 줄 채우기 ·
@@ -3808,8 +3808,9 @@ function colFit(force){$$('#stage .msum table.mtx').forEach(t=>{const wrap=t.clo
  const st=$('#stage'),mode=st.classList.contains('sdfull')?'f':'s',fpx=parseFloat(getComputedStyle(t).fontSize)||13.5,fs=document.documentElement.style.getPropertyValue('--fs')||'1';
  const key=CUR.s+':'+CUR.d+':'+mode+':'+Math.round(W/24)+':'+fs;if(!force&&t.dataset.cfk===key)return;t.dataset.cfk=key;
  if(CF.cache.has(key)){const o=CF.cache.get(key),x=o.x,cur=(t.dataset.cfw||'').split(',').map(Number);if(x&&cur.length===5&&cfOkMin(cur,o.mn)&&x.every((v,i)=>Math.abs(v-cur[i])<1.5))return;cfApply(t,x);return;}
- CF.n++;const prev=t.dataset.cfw||'';cfApply(t,null);const S=cfStats(t,mode),C=cfSolve(S,W,mode,fpx)||[],mn=C.mins||[];let keep=null;
- if(C.length){let bh=C.adj?Infinity:t.offsetHeight*0.995;C.forEach(x=>{cfApply(t,x);const h=t.offsetHeight;if(h<bh){bh=h;keep=x;}});}   /* C.adj = 기본값이 하한을 어김 → 후보 중 가장 낮은 것(기본값은 후보 아님) */
+ CF.n++;const prev=t.dataset.cfw||'';cfApply(t,null);const S=cfStats(t,mode),h0=t.offsetHeight;let C=cfSolve(S,W,mode,fpx)||[],mn=C.mins||[];let keep=null,bh=Infinity;
+ const pick=C=>{keep=null;bh=C.adj?Infinity:h0*0.995;C.forEach(x=>{cfApply(t,x);const h=t.offsetHeight;if(h<bh){bh=h;keep=x;}});};if(C.length)pick(C);   /* C.adj = 기본값이 하한을 어김 → 후보 중 가장 낮은 것(기본값은 후보 아님) */
+ if(S.cmin&&S.cmin.some(v=>v)&&(!keep&&(C.adj||!C.length)||keep&&bh>h0*1.03)){const C2=cfSolve(Object.assign({},S,{cmin:null}),W,mode,fpx)||[];if(C2.length){C=C2;mn=C2.mins||[];pick(C2);}else{keep=null;mn=[];}}   /* F4 긴 영문 조각을 지키느라 표가 3% 넘게 길어지면 그 하한은 버림(한 낱말 끊김보다 표 길이) */
  if(keep&&prev){const p=prev.split(',').map(Number);if(p.length===5&&cfOkMin(p,mn)&&keep.every((v,i)=>Math.abs(v-p[i])<1.5))keep=p;}   /* 1.5%p 문턱 — 앞 폭과 거의 같으면 그대로(흔들림 없음) · 단 이 폭의 하한(영문 낱말 등)을 지킬 때만 */
  cfApply(t,keep);CF.cache.set(key,{x:keep,mn});});}
 function cfOkMin(p,mn){return p.every((v,i)=>!mn[i]||v>=mn[i]-0.06);}
@@ -3829,12 +3830,15 @@ function twStats(t){let S=TWT.get(t);if(S)return S;const hr=t.tHead&&t.tHead.row
  rows.forEach(r=>{let k=0;[...r.cells].forEach(c=>{const sp=c.colSpan||1;if(sp===1&&L[k]){const ft=cfFont(getComputedStyle(c)),s=c.textContent.replace(/\s+/g,' ').trim();s.split(/\s+|(?<=[\/\-–—→])/).forEach(w=>{if(!w||!/[A-Za-z]{4,}/.test(w))return;const v=cfTW(w,ft);if(v>L[k].cpx)L[k].cpx=v;});}k+=sp;});});
  S={n,L};TWT.set(t,S);return S;}
 function twSolve(S,W,fpx,pad){const em=fpx,n=S.n;const mins=S.L.map((o,j)=>{const base=Math.max(o.tok*fpx*1.02,o.head*fpx,Math.min(o.p80*fpx,7*em))+pad;let m=Math.min(12*em,Math.max(4.5*em,90,base));if(j===0)m=Math.min(Math.max(m,6*em),11*em,Math.max(6*em,W*0.18));
-  if(o.cpx)m=Math.max(m,Math.min(o.cpx+pad+2,W*(j===0?0.26:0.42)));return m;});   /* F4 끊을 수 없는 영문 조각(mechanotransduction·NaOCl(hypochlorite))이 들어가게 — 첫 열도 W의 26%까지 */
+  return m;});
+ {const m1=S.L.map((o,j)=>o.cpx?Math.max(mins[j],Math.min(o.cpx+pad+2,W*(j===0?0.26:0.42))):mins[j]),s0=mins.reduce((a,b)=>a+b,0),s1=m1.reduce((a,b)=>a+b,0);   /* F4 끊을 수 없는 영문 조각(mechanotransduction·NaOCl(hypochlorite))이 들어가게 — 첫 열도 W의 26%까지 */
+  const k=s1<=W+1||s0>=W?1:(W-s0)/(s1-s0);m1.forEach((v,j)=>{mins[j]+=(v-mins[j])*k;});}   /* 그 몫 때문에만 폭을 넘으면(행 카드·가로 스크롤로 바뀌지 않게) 들어가는 만큼만 */
  const cap=S.L.map((o,j)=>Math.max(mins[j],Math.min(W*0.42,o.max*fpx*1.04+pad,j===0?Math.max(mins[0],Math.min(11*em,W*0.18)):Infinity)));
  const sm=mins.reduce((a,b)=>a+b,0);if(sm>W+1)return {over:true,x:mins};
  const w=S.L.map(o=>Math.sqrt(Math.max(1,o.sum)));let x=mins.slice(),free=[...Array(n).keys()];
  for(let it=0;it<4&&free.length;it++){const used=x.reduce((a,b,j)=>a+(free.indexOf(j)<0?b:0),0),left=W-used,ws=free.reduce((a,j)=>a+w[j],0);let nf=[];free.forEach(j=>{const v=Math.max(mins[j],left*w[j]/ws);if(v>=cap[j]){x[j]=cap[j];}else{x[j]=v;nf.push(j);}});if(nf.length===free.length)break;free=nf;}
  const tot=x.reduce((a,b)=>a+b,0);if(tot<W){const k=W/tot;x=x.map(v=>v*k);}   /* 모든 열이 다 들어가면 남는 폭은 비율대로 */
+ else if(tot>W+0.5){const sl=x.map((v,j)=>Math.max(0,v-mins[j])),ss=sl.reduce((a,b)=>a+b,0),ex=tot-W;if(ss>0)x=x.map((v,j)=>v-ex*Math.min(1,sl[j]/ss));}   /* F4 넘친 몫은 하한 위 여유에서만 뺌(비율로 줄이면 하한 — 긴 낱말 폭 — 아래로 내려가던 것) */
  return {over:false,x};}
 function stHdr(t){if(t.dataset.hset||!t.tHead||!t.tBodies[0])return;const hs=[...t.tHead.rows[0].cells].map(h=>{const c=h.cloneNode(true);c.querySelectorAll('button').forEach(b=>b.remove());return c.textContent.trim();});[...t.tBodies[0].rows].forEach(r=>{let i=0;[...r.cells].forEach(c=>{if(!c.dataset.h&&hs[i]&&c.tagName==='TD')c.dataset.h=hs[i];i+=c.colSpan||1;});});t.dataset.hset='1';}
 function twApply(x,t){const S=twStats(t);if(!S||S.n<2)return;const W=x.clientWidth;if(!W)return;const cs=getComputedStyle(t.querySelector('tbody td,tbody th')||t),fpx=parseFloat(getComputedStyle(t).fontSize)||14,pad=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.paddingRight)||0)+2;

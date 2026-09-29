@@ -146,6 +146,15 @@ async def ux3_checks(b):
                 await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/{k}/{t}'); await pg.wait_for_timeout(350)
                 r=await pg.evaluate(KEYCH); t150+=r[0]; t80+=r[1]
     rep.append(f'KEYCHUNK 🔑 상자·정리표 칸 한 덩어리 150자↑ {KEYCH_BASE[0]} → {t150} · 80자↑ {KEYCH_BASE[1]} → {t80} (옛 → 새)')
+    # ux3 fix flow V07 — 정리표 '🔑 요지·핵심' 칸(요지 .mg + 🔑 .mkey)만, 폭별(1280 표 · 820 2단 카드) 80자↑ 덩어리(보고만)
+    for vw in (1280, 820):
+        p2 = await b.new_page(viewport={'width': vw, 'height': 900}); n80 = n50 = 0
+        for s, ls in SUBJ.items():
+            for k in ls:
+                await p2.goto('about:blank'); await p2.goto(f'{U}#/{s}/{k}/sum'); await p2.wait_for_timeout(350)
+                r = await p2.evaluate(KEYCH.replace("'#stage .c-key .kb, #stage .mkey'", "'#stage .msum td.mk'").replace('if(L>150)n150++;if(L>80)n80++;', 'if(L>80)n150++;if(L>50)n80++;'))
+                n80 += r[0]; n50 += r[1]
+        await p2.close(); rep.append(f'KEYCHUNK 정리표 🔑 요지·핵심 칸만 {vw}: 80자↑ {n80} · 50자↑ {n50}')
     if t150>KEYCH_BASE[0]*0.3: bad.append(f'KEYCHUNK 150자↑ {t150} (옛 {KEYCH_BASE[0]}의 30% 넘음)')
     cr=await pg.evaluate(BLANKCR); rep.append(f'BLANKCR 빈칸 밑줄 대비 {cr}')
     if any(v<3.0 for v in cr.values()): bad.append(f'BLANKCR 대비 3.0 미만 {cr}')
