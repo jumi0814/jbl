@@ -217,7 +217,7 @@ async def ipad(b, w, h):
         # ---- VIS12 과목 홈 강의 카드
         await open_(pg, '#/OMS1/_home')
         r = await pg.evaluate("[getComputedStyle(document.querySelector('.lgrid')).gridTemplateColumns.split(' ').length,[...document.querySelectorAll('.lcard .lh')].filter(e=>(e.textContent.match(/\"/g)||[]).length%2).length]")
-        ok(r[0] == 2 and r[1] == 0, f'VIS12 820 강의 카드 {r[0]}단 · 💬 따옴표 안에서 끊긴 카드 {r[1]}')
+        ok(r[0] == 1 and r[1] == 0, f'VIS12(ux4 B3-3 ≤860 1열) 820 강의 카드 {r[0]}단 · 💬 따옴표 안에서 끊긴 카드 {r[1]}')
         await pg.evaluate("document.querySelector('.lgrid').scrollIntoView()"); await pg.wait_for_timeout(200); await pg.screenshot(path=SHOT('vis12_home', tag))
         # ---- VIS09 플래시카드 판정 버튼
         await open_(pg, '#/OMS1/DD1/flash')

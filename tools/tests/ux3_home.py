@@ -1,5 +1,5 @@
 """ux3 묶음 H 회귀 — 허브 홈 '오늘' 대시보드.
-H1 섹션 5개 순서(띠 → 이어서|할 일 → 과목 표 → 이번 주 → 더보기)·.scard 없음 · H2 오늘 띠(ux4 B1-6: 시험일이 있어도 D-n·시험일 넣기 없음 · 막대 폭 = 오늘/목표) ·
+H1 섹션 6개 순서(ux4 B3-2: 머리 → 이어서(주 버튼 하나) → 오늘 할 일|최근 → 과목 표 → 이번 주 → 바닥 주석)·.scard 없음 · H2 오늘 띠(ux4 B1-6: 시험일이 있어도 D-n·시험일 넣기 없음 · 막대 폭 = 오늘/목표) ·
 H3 todayTasks 규칙·순서(🔁 복습 → 📝 최근 과목 안 푼 기출 → ✗ 틀린 기출(복습과 겹치면 뺌) → 💾 백업 — 시험 하루 분량 줄 없음)·각 ▶ 라우트·메뉴 🏠 배지·시계 팝업 ·
 H4 과목 표 7행·ESTH·시험 칸·✎·기본/시험순 없음(LS exam.<S>·homeSort는 그대로)·행 → 과목 홈 · H5 이번 주 합계 = 시계 팝업 주 합계·막대 → 그날 달력·더보기 details ·
 H6 과목 홈 시험일 줄 없음·순서 유지·'📅 이 과목 달력' · 세 폭 가로 넘침 0 · 1180 메뉴 펼침에서 띠·이어서·할 일이 첫 화면.
@@ -31,7 +31,8 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await open_(pg, '#/')
     # ---- H1 구성
     secs = await pg.evaluate("[...document.querySelectorAll('#home .hub>.hsec')].map(e=>e.classList[1])")
-    ok(secs == ['hband', 'hduo', 'hsubj', 'hweek', 'hxtra'], f'{tag} H1 섹션 순서 {secs}')
+    ok(secs == ['hband', 'hres', 'hduo', 'hsubj', 'hweek', 'hxtra'], f'{tag} H1 섹션 순서 {secs}')
+    np = await pg.evaluate("[...document.querySelectorAll('#home .btn.pri')].filter(e=>e.checkVisibility()).length"); ok(np == 1, f'{tag} B3-2 주 버튼(.btn.pri) 정확히 1개 {np}')
     ok(await pg.evaluate("!document.querySelector('#home .scard,#home .sgrid,#home .lead,#home .todayb,#home .htime')"), f'{tag} H1 옛 과목 카드·lead·옛 띠·최근 시간 표 없음')
     # ---- H2 띠: 시험일 넣기·D-n 없음(ux4 B1-6) · 첫 과목 안 푼 기출 · 시험일 안내 줄 없음
     bt = await pg.inner_text('#home .hband')
@@ -84,10 +85,9 @@ async def run(b, vp, touch, tag):
     ok(len(rows) == 7 and rows[-1] == 'off:ESTH' and '자료 준비 중' in await pg.inner_text('#home .hsj.off[data-off=ESTH]'), f'{tag} H4 7행·ESTH 흐린 행 {rows}')
     rh = await pg.evaluate("Math.min(...[...document.querySelectorAll('#home .hsj[data-s]')].map(r=>r.getBoundingClientRect().height))")
     ok(rh >= 50, f'{tag} H4 행 높이 ≥ 52(카드는 두 줄) {rh:.0f}')
-    cols = await pg.evaluate("(()=>{const r=document.querySelector('#home .hsj[data-s=CONS]');return {t:getComputedStyle(r.querySelector('.hct')).display,h:getComputedStyle(document.querySelector('#home .hsjh')).display,w:document.querySelector('#home .hsjw').clientWidth,tx:r.innerText}})()")
-    wantT = 'none' if cols['w'] < 940 else 'block'
-    ok(cols['t'] == wantT and (cols['h'] == 'none') == (cols['w'] < 780), f'{tag} H4 폭 {cols["w"]}: 시간 열 {cols["t"]} · 머리 {cols["h"]}')
-    ok('D-2' not in cols['tx'] and '읽음' not in cols['tx'] and '%' not in cols['tx'] and '🔁3' in cols['tx'], f'{tag} H4 CONS 행 시험·읽음 없음·🔁3 ({cols["tx"][:80]!r})')
+    cols = await pg.evaluate("(()=>{const r=document.querySelector('#home .hsj[data-s=CONS]');return {t:getComputedStyle(r.querySelector('.hct')).display,h:getComputedStyle(document.querySelector('#home .hsjh')).display,ng:r.querySelector('.hcng').textContent,bar:r.querySelector('.hcj .pbar i').style.width,tx:r.innerText,role:r.getAttribute('role')}})()")
+    ok(cols['t'] == ('none' if narrow else 'block') and cols['h'] != 'none', f'{tag} H4 오늘 열 {"숨김(≤860)" if narrow else "보임"} {cols["t"]} · 머리 {cols["h"]}')
+    ok('D-2' not in cols['tx'] and '읽음' not in cols['tx'] and '%' not in cols['tx'] and '🔁' not in cols['tx'] and cols['ng'] == '3' and cols['bar'] != '0%' and cols['role'] == 'link', f'{tag} H4 CONS 행: 시험·읽음·🔁 없음 · 틀림 3 · 푼 것 막대 {cols}')
     # ux4 B1-6 시험 칸 ✎·기본/시험순 없음 · 시험일(LS)이 있어도 순서 = 기본 · 과목 홈 시험일 줄 없음
     st = await pg.evaluate("[document.querySelectorAll('#home [data-exed],#home [data-hsort],#home .hce,#home .hcr,#home input[data-exam]').length,[...document.querySelectorAll('#home .hsj[data-s]')].map(r=>r.dataset.s).slice(0,3),JSON.parse(localStorage.getItem('jblhub.v1.exam.CONS'))]")
     ok(st[0] == 0 and st[1] == ['OMS1', 'CONS', 'IMPL'] and st[2] == dd(2), f'{tag} H4 시험 칸·✎·정렬 없음 · 순서 기본 · LS exam.CONS 그대로 {st}')
@@ -97,9 +97,10 @@ async def run(b, vp, touch, tag):
     # 행 → 과목 홈 · ↪
     await pg.evaluate("document.querySelector('#home .hsj[data-s=OMS1] .hcj').click()"); await pg.wait_for_timeout(600)
     ok((await pg.evaluate('location.hash')).startswith('#/OMS1/_home'), f'{tag} H4 행 누르면 과목 홈')
-    await open_(pg, '#/'); await pg.evaluate("document.querySelector('#home .hsj[data-s=ANAT] .hgo').click()"); await pg.wait_for_timeout(900)
-    lb = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.lastBy')).ANAT.d")
-    ok((await pg.evaluate('location.hash')).startswith('#/ANAT/' + lb), f'{tag} H4 ↪ → 이어서(lastBy {lb})')
+    ok(await pg.evaluate("!document.querySelector('#home .hgo,#home [data-revgo],#home .hcv')"), f'{tag} H4 ↪ 원 버튼·🔁 열 없음(ux4 B3-2)')
+    await open_(pg, '#/'); await pg.evaluate("document.querySelector('#home .hrbig').click()"); await pg.wait_for_timeout(900)
+    lb = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.last')).d")
+    ok((await pg.evaluate('location.hash')).startswith('#/CONS/' + lb + '/sum'), f'{tag} B3-2 계속하기 → 마지막 위치(LS last {lb} 정리표) {await pg.evaluate("location.hash")}')
     # 이어서 큰 버튼 = LS last · 칩 2
     await open_(pg, '#/')
     rs = await pg.evaluate("[document.querySelector('#home .hrbig').dataset.s,document.querySelector('#home .hrbig').innerText,[...document.querySelectorAll('#home .hrchip')].map(b=>b.dataset.s)]")

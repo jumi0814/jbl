@@ -114,7 +114,7 @@ async def run(b, vp, touch, tag):
     if t:
         await pg.goto('about:blank'); await pg.goto(U); await pg.wait_for_timeout(900)
         await pg.fill('#gsearch', t[1]); await pg.wait_for_timeout(700)
-        await pg.locator('#home .res[data-d="_jb"]').first.click()   # U30: 결과 제목이 'JB n번 (연도)'; await pg.wait_for_timeout(1000)
+        await pg.locator('#home .res[data-d="_jb"]').first.click(); await pg.wait_for_timeout(1000)   # U30: 결과 제목이 'JB n번 (연도)' · (ux4 B3 — 기다림이 주석 안에 들어가 있던 것을 코드로: 이동 뒤 settle이 자리를 잡을 때까지)
         st = await pg.evaluate("(id)=>{const e=document.getElementById(id);return [e.offsetParent!==null,e.classList.contains('open')]}", t[0])
         ok(st[0] and await pg.evaluate(INVIEW, '#' + t[0]) and not st[1], f'tier C 검색 → 보이고 화면 안·답 가림 ({st})')
         await pg.screenshot(path=J.TMP + f'/ux_nav_tierC_{tag}.png')

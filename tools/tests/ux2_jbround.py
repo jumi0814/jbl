@@ -15,6 +15,7 @@ async def jb(pg, h='#/PHARM/_jb'):
 async def setup(pg):
     await jb(pg); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await jb(pg)
     lec = await pg.evaluate("(()=>{const c={};document.querySelectorAll('#cards .qc').forEach(q=>{if(q.dataset.tier!=='C')c[q.dataset.lec]=(c[q.dataset.lec]||0)+1;});return Object.entries(c).sort((a,b)=>b[1]-a[1])[0][0]})()")
+    await pg.evaluate("document.querySelector('#jbbar').classList.contains('fopen')||document.querySelector('#fexp').click()")   # ux4 B3-6 상세 필터는 [필터 ▾] 안
     await pg.evaluate("document.querySelector('#fmore').click()"); await pg.select_option('#flec', lec); await pg.click('#jbbar [data-qf="todo"]'); await pg.wait_for_timeout(200)
     await pg.click('#fone'); await pg.wait_for_timeout(300)
     return lec

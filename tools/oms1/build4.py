@@ -262,7 +262,7 @@ def qcard(q, idx):
     figa = ''.join(f'<img class="fig" loading="lazy" src="{IMG["crop"][k]}" alt="JB 그림(답)">' for k in q['crops'].get('a', []))
     lecchip = ''
     if q['id'] in Q2CARD:
-        k, j = Q2CARD[q['id']]; lecchip = f'<button class="chip lec" data-golec="{k}:{j}">📖 {esc(LECNAME[k])} 정리본</button>'
+        k, j = Q2CARD[q['id']]; lecchip = f'<button class="chip lec" data-golec="{k}:{j}">{esc(LECNAME[k])} 정리본 →</button>'   # ux4 B3-6 문항 머리 12px 메타의 과목색 글자 링크(크롬 이모지 없음)
     # 출처·연도 근거(ux2 F04) — 카드 앞면은 [연도 배지][짤/탈][교수][📖] + 문제만. 출처 줄·연도 표기 근거·관련 문항은 답 절 끝 details '출처·연도 근거'로 보임
     # (DOM 자리는 문제 바로 뒤 그대로 — 글자 순서가 같아 형광펜 위치 불변. 화면 순서만 CSS order로 답 뒤). 판 연도는 표시하지 않음(CLAUDE.md) — 전체 출처는 title
     prov = [f'출처: {esc(src_short(q))}' if q['src'] else '', f'JB 괄호 {esc(q["jbtag"])}' if q['jbtag'] else 'JB 괄호 없음']
@@ -611,7 +611,7 @@ def strat_tag(x):
     if x.startswith('💬'): return '💬 강조 카드'
     m = re.match(r'^(서술형|객관식|빈칸|T/F|단답형):', x)
     return m.group(1) if m else ''
-prow = ''; psum = ''; SUSE = {}
+prow = ''; psum = ''; trow = ''; SUSE = {}
 for p_, qs in profS.items():
     SM = PSM[p_]; t_ = ' / '.join(PPARTS[p_][0])
     lecs = sorted({LECNAME.get(q['lk'], '') for q in qs if q['lk']})
@@ -622,6 +622,10 @@ for p_, qs in profS.items():
     for x in PPARTS[p_][1]:
         if x not in SCOMMON: SUSE.setdefault(x, []).append(p_)
     psum += f'<li title="{esc(t_)}"><span class="tsl">{esc(trend.prof_line(p_, SM))}</span>{(" <span class=tk>· " + esc(" · ".join(tags)) + "</span>") if tags else ""}</li>'
+    # ux4 B3-3 경향 표 한 행(교수 | 최근 해 | 짤/탈 | 유형 | 짤 비율 | 탈의 성격·형식) — 탈 성격은 전략 항목 전체에서(공통 항목 포함), 형식은 최근 해 최다
+    _nat = [t.replace('탈=', '') for t in dict.fromkeys(strat_tag(x) for x in PPARTS[p_][1]) if t and t not in ('서술형', '객관식', '빈칸', 'T/F', '단답형')]
+    _pc = trend.prof_cells(SM); _fm = max(_pc[4].split(' · '), key=lambda z: int(z.rsplit(' ', 1)[-1]) if z.rsplit(' ', 1)[-1].isdigit() else 0).rsplit(' ', 1)[0] if _pc[4] and _pc[4] != '—' else ''
+    trow += f'<tr class="tsl" title="{esc(trend.prof_line(p_, SM))}"><th>{esc(p_)}</th><td class="n">{_pc[0]}</td><td class="n">{_pc[1]}</td><td>{_pc[2]}</td><td class="n">{_pc[3]}</td><td>{esc(" · ".join(_nat + ([_fm] if _fm else [])))}</td></tr>'
 # 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
 def strat_list(items, top=4):
     """📌 전략 목록(V05) — 한 줄에 전략 하나(본문 글자) + 교수 꼬리표(작은 회색). 위 top개만, 나머지는 '+N 더 보기'"""
@@ -632,9 +636,9 @@ def strat_list(items, top=4):
 _sitems = [(x, ['공통']) for x in SCOMMON] + [(esc(x), ps) for x, ps in sorted(SUSE.items(), key=lambda kv: -len(kv[1]))]
 strat_html = strat_list(_sitems) if _sitems else ''
 PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not None]
-trends_html = (f'<div class="panel ptrend"><div class="bt">교수별 출제 경향 · 📌 공부 전략 <span class="small">— JB 자료에서 산출(짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음)</span></div><ul class="tsum">{psum}</ul>'
+trends_html = (f'<section class="ptrend sh4"><h2 class="hh">교수별 출제 경향 <small>짤 = 이전 해에 한 번이라도 나온 문제 · 탈 = 그 해 처음</small></h2><div class="tscroll"><table class="ttab"><thead><tr><th>교수</th><th>최근 해</th><th>짤 / 탈</th><th>유형</th><th>짤 비율</th><th>탈의 성격 · 형식</th></tr></thead><tbody>{trow}</tbody></table></div>'   # ux4 B3-3 문장 목록 → 표(행 = 최근 2개 시험 해에 문항이 있는 교수)
                + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
-               + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></div>')
+               + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></section>')
 top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_clean(q['short']), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 lect = []; KEYLONG = {}; MEMTIP = {}
 def fsrc_short(f):

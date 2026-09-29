@@ -39,8 +39,8 @@ async def run(b, vp, touch, tag):
     R = await pg.evaluate("(()=>{const r=__h.revInfo('PHARM');return [[...r.due].sort(),[...r.ever].sort()]})()")
     ok(R[0] == sorted(ids[:2]) and R[1] == sorted([ids[0], ids[1], ids[3]]), f'복습 = {ids[0]}·{ids[1]} (맞음만인 {ids[2]} 빠짐, 오늘 맞힌 {ids[3]}은 내일) {R}')
     await open_(pg, '#/')
-    rb = await pg.evaluate("(()=>{const b=document.querySelector('#home .hsj[data-s=PHARM] [data-revgo]');return b?b.textContent+' '+b.title:''})()")
-    ok('🔁2' in rb and '오늘 복습 2문항' in rb and '복습 2문항' in await pg.inner_text('#home .htodo'), f'허브 과목 표 {rb!r} · ✅ 할 일 복습 2')   # ux3 H3·H4
+    rb = await pg.evaluate("(()=>{const b=document.querySelector('#home .htodo [data-todo=rev][data-ts=PHARM]');return [b?b.textContent:'',!!document.querySelector('#home .hsj [data-revgo]')]})()")
+    ok('복습 2문항' in rb[0] and not rb[1], f'허브 오늘 할 일 복습 줄 {rb[0]!r} · 과목 표 🔁 열 없음(ux4 B3-2 — 복습은 오늘 할 일·메뉴 오늘 복습)')   # ux3 H3·H4
     await open_(pg, '#/PHARM/_home')
     g1 = await pg.evaluate("document.querySelector('#hguide ol.steps li').textContent")
     ok('오늘 복습 2문항' in g1, f'과목 홈 공부 순서 첫 줄 {g1[:40]!r}')
@@ -56,9 +56,9 @@ async def run(b, vp, touch, tag):
     ok('다음 복습' in t3, f'기록 칩 title {t3!r}')
     await pg.screenshot(path=J.TMP + f'/ux2i_b07_jb_{tag}.png')
     await open_(pg, '#/')
-    await pg.evaluate("document.querySelector('#home .hsj[data-s=PHARM] [data-revgo]').click()"); await pg.wait_for_timeout(800)
+    await pg.evaluate("document.querySelector('#home .htodo [data-todo=rev][data-ts=PHARM]').click()"); await pg.wait_for_timeout(800)
     st = await pg.evaluate("[location.hash,document.body.classList.contains('jbone'),[...document.querySelectorAll('#cards .qc')].filter(c=>!c.classList.contains('hid')).length,(document.querySelector('#opos')||{}).textContent]")
-    ok(st[0].startswith('#/PHARM/_jb') and st[1] and st[2] == 2 and st[3] == '1/2', f'🔁 버튼 → JB 복습 필터 + 한 장씩 {st}')
+    ok(st[0].startswith('#/PHARM/_jb') and st[1] and st[2] == 2 and st[3] == '1/2', f'오늘 할 일 복습 줄 → JB 복습 필터 + 한 장씩 {st}')
     await pg.screenshot(path=J.TMP + f'/ux2i_b07_one_{tag}.png')
     ok(await pg.evaluate("localStorage.getItem('jblhub.v1.mk.PHARM')") == raw, 'mk 원본 바이트 그대로(읽기만)')
     # ---- B10 작은 표시

@@ -154,3 +154,12 @@ def short_line(S):
         y = next(iter(S)); return f'{YR(y)}년 {S[y]["n"]}문항 (기준선)'
     y = ys[0]; d = S[y]
     return f'{YR(y)}년 {d["n"]}문항 · 짤 {d["jjal"]} / 탈 {d["tal"]}{pooled(S)} → {ratio_word(latest_ratio(S))} · {fmt_str(d["fmt"])}'   # ux4 B20 교수 줄과 같은 판정 규칙(latest_ratio)
+def prof_cells(S):
+    """ux4 B3-3 과목 홈 교수별 출제 경향 표 한 행 — (최근 해 'YYYY · n문항', '짤 / 탈', 판정, 짤 비율(합산이면 '표본이 적어 누적 짤 j/n'), 최근 해 형식) · prof_line과 같은 판정 규칙(latest_ratio)"""
+    if not S: return ('기출 없음', '—', '—', '—', '')
+    ys = [y for y, d in S.items() if not d['base']]
+    if not ys:
+        y = next(iter(S)); return (f'{YR(y)} · {S[y]["n"]}문항', '기준선', '판정 불가', '—', fmt_str(S[y]['fmt']))
+    y = ys[0]; d = S[y]; r = latest_ratio(S); pl = pooled(S)
+    return (f'{YR(y)} · {d["n"]}문항', f'{d["jjal"]} / {d["tal"]}', ratio_word(r), (f'{round(r * 100)}%' if r is not None else '—') + (f' <small>{pl[3:]}</small>' if pl else ''), fmt_str(d['fmt']))
+

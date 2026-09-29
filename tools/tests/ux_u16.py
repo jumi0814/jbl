@@ -19,13 +19,14 @@ async def run(b, vp, touch, tag):
     ST = await pg.evaluate("({O:__h.PACKS.OMS1.stats,P:__h.PACKS.PHARM.stats})"); M, R, PM = ST['O']['main'], ST['O']['ref'], ST['P']['main']
     ok(R > 0 and ST['P']['ref'] == 0 and ST['P']['cards'] == PM, f'픽스처: OMS1 현 교수 {M}·참고 {R} / PHARM {PM}(참고 0)')
     hub = await pg.evaluate("(()=>{const r=document.querySelector('.hsj[data-s=\"OMS1\"]');return r.querySelector('.hcj').title+' | '+r.innerText})()")   # ux3 H4 과목 표 기출 칸 title
-    ok(f'현 교수 기출 {M}문항' in hub and f'참고 {R}' in hub and '맞음 2 · 틀림 1' in hub and f'안 푼 것 {M - 3}' in hub and f'2·1/{M}' in hub.replace('\n',''), f'허브 과목 표 OMS1 분모 {M} · 참고 {R} ({hub[:90]!r})')
+    r_ng = await pg.evaluate("document.querySelector('.hsj[data-s=\"OMS1\"] .hcng').textContent")
+    ok(f'현 교수 기출 {M}문항' in hub and f'참고 {R}' in hub and '맞음 2 · 틀림 1' in hub and f'안 푼 것 {M - 3}' in hub and f'3 / {M}' in hub and r_ng == '1', f'허브 과목 표 OMS1 푼 것 3 / 분모 {M} · 틀림 1 · 참고 {R}(title) ({hub[:90]!r})')   # ux4 B3-2 '기출 푼 것 n / 전체' + 틀림 열
     ph = await pg.evaluate("document.querySelector('.hsj[data-s=\"PHARM\"] .hcj').title")
     ok(f'기출 {PM}문항' in ph and '참고' not in ph and '현 교수' not in ph, f'PHARM 허브 과목 표 {PM} · 참고 없음 ({ph!r})')
     await pg.screenshot(path=J.TMP + f'/ux_u16_hub_{tag}.png')
     await open_(pg, '#/OMS1/_home/_home')
-    t = await pg.evaluate("document.querySelector('#stage .panel .pline').innerText")
-    ok(f'현 교수 기출 {M}문항' in t and f'안 푼 것 {M - 3}' in t and f'참고 {R} 숨김' in t, f'과목 홈 진행률 ({t[:80]})')
+    t = await pg.evaluate("document.querySelector('#hprog').innerText")
+    ok(f'현 교수 기출 {M}문항' in t and f'안 푼 것 {M - 3}' in t and f'참고 {R} 보이기' in t, f'과목 홈 진행률(ux4 B3-3 — 참고는 절 제목 오른쪽 링크) ({t[:80]})')
     await pg.screenshot(path=J.TMP + f'/ux_u16_home_{tag}.png')
     await open_(pg, '#/OMS1/_jb/_jb')
     t = await pg.inner_text('#jbprog')

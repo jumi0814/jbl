@@ -31,6 +31,7 @@ async def run(b, vp, touch, tag):
     await pg.screenshot(path=J.TMP + f'/ux_u15_scrolled_{tag}.png')
     await pg.evaluate("scrollTo(0,0)"); await pg.wait_for_timeout(300)
     # 검색: 'warfarin과' 문제만 = 6건
+    if not await pg.evaluate("document.querySelector('#fq').offsetParent!==null"): await pg.click('#fexp'); await pg.wait_for_timeout(200)   # ux4 B3-6 검색 줄은 [필터 ▾] 안
     await pg.fill('#fq', 'warfarin과'); await pg.wait_for_timeout(400)
     n = await pg.evaluate(f"{VIS}.length"); t = await pg.inner_text('#fqn')
     ok(n == 6 and t == '6건', f"'warfarin과' 문제만 {n}건 ({t})")

@@ -186,6 +186,20 @@ async def subj_color(b):
         if r['w']<4.5 or r['p']<4.5: bad.append(f'{s} {r["c"]} 대비 흰 글자 {r["w"]:.2f} · 종이 {r["p"]:.2f} (<4.5)')
         bad+=[f'{s}/_home {x}' for x in await pg.evaluate(SJCOL)]
     await pg.close(); return bad
+CALM=r"""()=>{const vis=e=>{const r=e.getBoundingClientRect();if(r.width<1||r.height<1||r.bottom<0||r.top>innerHeight)return false;const s=getComputedStyle(e);return s.visibility!=='hidden'&&s.display!=='none'&&+s.opacity>0.05};
+ const fs=new Set(),odd=new Set();for(const e of document.querySelectorAll('#home *,#hero *,#dtabs *,#stage *')){if(!vis(e))continue;if(![...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim()))continue;if(e.closest('.tc .tbody,.qc .qtext,.qc .ans,table'))continue;const f=getComputedStyle(e).fontSize;fs.add(f);if(Math.abs(parseFloat(f)*2-Math.round(parseFloat(f)*2))>0.01)odd.add(f+' '+e.tagName+'.'+String(e.className).slice(0,30));}
+ const OK=/[🔑⭐💬✍⚡📌⚠☕▶]/u,emo=[];document.querySelectorAll('#top,#nav,#dtabs,#hero,#lvpop,#home h1,#home h2,#stage h2.hh,#stage .frt,#home .btn,#stage #jbbar,#stage .acts').forEach(r=>{if(!vis(r))return;const t=r.innerText||'';(t.match(/\p{Extended_Pictographic}/gu)||[]).forEach(c=>{if(!OK.test(c))emo.push(c+' '+(r.id||r.className||r.tagName));});});
+ return {fs:[...fs].sort((a,b)=>parseFloat(a)-parseFloat(b)),odd:[...odd].slice(0,8),emo};}"""
+async def calm_checks(b):
+    """ux4 B3-1 최종 시안 글자 6단계·크롬 이모지 — 1280 첫 화면(허브 홈·과목 홈·강의 학습·JB)의 본문 밖(머리·탭·절 제목·버튼) 글자 크기 종류 ≤7/6/6/7, 0.5px 단위가 아닌 크기 0, 크롬(상단·메뉴·탭·머리·절 제목·버튼) 이모지 0(정리본 표지 🔑⭐💬✍⚡📌⚠·☕·재생 ▶ 제외 — 시안의 [▶ 시작][☕ 쉬기])"""
+    bad=[]; rep=[]; pg=await b.new_page(viewport={'width':1280,'height':900})
+    for h,lim in [('#/',7),('#/CONS/_home/_home',6),('#/CONS/WHT/learn',6),('#/CONS/_jb/_jb',7),('#/PHARM/_home/_home',6),('#/OMS1/DD1/learn',6)]:
+        await pg.goto('about:blank'); await pg.goto(U+h); await pg.wait_for_timeout(1500)
+        r=await pg.evaluate(CALM); rep.append(f'{h} 글자 크기 {len(r["fs"])}종 {" ".join(r["fs"])}')
+        if len(r['fs'])>lim: bad.append(f'{h} 글자 크기 {len(r["fs"])}종 > {lim}: {r["fs"]}')
+        if r['odd']: bad.append(f'{h} 0.5px 단위 아닌 크기 {r["odd"]}')
+        if r['emo']: bad.append(f'{h} 크롬 이모지 {r["emo"][:8]}')
+    await pg.close(); return bad, rep
 async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
@@ -246,10 +260,14 @@ async def main():
         IP=await ipad_sweep(b)
         print('IPAD SWEEP (가로 밀림·점 겹침·청록)', len(IP))
         for x in IP[:40]: print(' ',x)
+        CB,CR=await calm_checks(b)
+        print('CALM (ux4 B3-1 글자 6단계·크롬 이모지 — 0이어야 함)', len(CB))
+        for x in CR: print('  (보고)',x)
+        for x in CB: print(' ',x)
         SC=await subj_color(b)
         print('SUBJ COLOR (과목 색 한 가지 — 0이어야 함)', len(SC))
         for x in SC[:20]: print(' ',x)
         print('errs',errs[:3]); await b.close()
-        return not IP and not errs and not FB and not UB and not SC
+        return not IP and not errs and not FB and not UB and not SC and not CB
 ok_=asyncio.run(main())
 print('RESULT', 'PASS' if ok_ else 'FAIL'); sys.exit(0 if ok_ else 1)

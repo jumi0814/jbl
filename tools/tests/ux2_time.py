@@ -106,7 +106,7 @@ async def part_view(b, vp, touch, tag):
     ok(await pg.evaluate("location.hash") == '#/_cal', "'오늘' 띠 → #/_cal(📅 공부 달력)")
     await pg.go_back(); await pg.clock.run_for(300); ok(await pg.evaluate("!!document.querySelector('#home .hub .hsj')"), '뒤로 → 허브 홈')
     await boot(pg, '#/PHARM/_home')
-    ok('📅 이 과목 달력' in await pg.inner_text('#hprog'), '과목 홈 진행률 줄에 📅 이 과목 달력 링크(ux3 H6)')
+    ok('이 과목 달력' in await pg.inner_text('#hprog') and await pg.evaluate("!!document.querySelector('#hprog h2 [data-tvgo2]')"), '과목 홈 진행률 절 제목 오른쪽에 이 과목 달력 링크(ux3 H6 · ux4 B3-3 크롬 이모지 없음)')
     await pg.evaluate("document.querySelector('#hprog [data-tvgo2]').click()"); await pg.clock.run_for(300)
     ok(await pg.evaluate("location.hash") == '#/_cal?s=PHARM', '과목 홈 → #/_cal?s=PHARM(과목 필터)')
     ok(not errs, f'pageerror 0 ({errs[:2]})')

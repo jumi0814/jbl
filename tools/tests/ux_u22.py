@@ -22,9 +22,9 @@ async def main():
         ok('DD' in await pg.title() or 'Dentofacial' in await pg.title(), f'강의 제목 ({await pg.title()})')
         await pg.evaluate("window.scrollTo(0,3000)"); await pg.wait_for_timeout(1200)
         await open_(pg, '#/')
-        t = await pg.get_attribute('.hsj[data-s="OMS1"] .go-resume', 'title')
-        ok('이어서' in t, f'허브 과목 표 ↪ 이어서 버튼 ({t})')
-        await pg.click('.hsj[data-s="OMS1"] .go-resume'); await pg.wait_for_timeout(1300)
+        t = await pg.inner_text('#home .hrbig')
+        ok('이어서' in t and '계속하기' in t, f'허브 홈 이어서 [계속하기 →] (ux4 B3-2 — 과목 표 ↪ 대신) ({t!r})')
+        await pg.click('#home .hrbig'); await pg.wait_for_timeout(1300)
         ok(await pg.evaluate("location.hash.startsWith('#/OMS1/DD2/learn') && scrollY>1500"), f'이어서 → DD2 학습 읽던 곳 (y={await pg.evaluate("scrollY")})')
         await open_(pg, '#/'); await pg.click('#home .htodo [data-todo=jb]'); await pg.wait_for_timeout(900)   # ux3 H3 ✅ 오늘 할 일 ③(최근 과목 OMS1)
         ok(await pg.evaluate("location.hash.startsWith('#/OMS1/_jb') && document.querySelector('#jbbar [data-qf=\"todo\"]').classList.contains('on')"), '안 푼 기출 → _jb 안 푼 것')
@@ -35,7 +35,7 @@ async def main():
         for h in ['#/OMS1/DD1/learn', '#/PHARM/HM/learn', '#/GERI/_jb/_jb']:
             await open_(pg2, h)
             y = await pg2.evaluate("Math.round(document.querySelector('#stage').firstElementChild.getBoundingClientRect().top)")
-            ok(y <= 170 or '_jb' in h and y <= 175, f'1180×820 {h} 본문 시작 y={y}')
+            ok(y <= 175 if '_jb' in h else y <= 260, f'1180×820 {h} 본문 시작 y={y}')   # ux4 B3-4 강의 머리(kicker·h1)·탭 줄 — 최종 시안 v2_lecture_1180의 '이 강의의 틀' 제목 ≈250
         await pg2.screenshot(path=J.TMP + '/ux_u22_jb_1180.png')
         ctx3 = await b.new_context(viewport={'width': 820, 'height': 1180}, has_touch=True); pg3 = await ctx3.new_page()
         await open_(pg3, '#/OMS1/DD1/learn'); await pg3.click('#navbtn'); await pg3.wait_for_timeout(400)

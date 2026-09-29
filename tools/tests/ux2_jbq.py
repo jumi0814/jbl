@@ -153,8 +153,8 @@ async def run(b, vp, touch, tag):
       c.querySelector('.acts [data-tog]').click();const s=c.querySelector('.srcd>summary');return {f0,id:c.dataset.id,v0,inD:!!(n&&n.closest('details.srcd')),sum:!!(s&&s.offsetParent),vchip:[...c.querySelectorAll('.qhead .chip[class*=v-]')].map(x=>!!x.offsetParent)}})()""")
     ok(not r['v0'] and r['inD'] and r['sum'], f"F04 OMS1 DD1 기출 탭 {'첫 ' if r['f0'] else ''}카드 {r['id']}: 답을 열기 전 '연도 표기 근거' 안 보임 → 연 뒤 details '출처·연도 근거' 안")
     await pg.screenshot(path=SHOT('f04_front', tag))
-    r = await pg.evaluate("(()=>{const c=__h.JB.vis[1];const b=c.querySelector('.acts [data-mk=ok]');const before=getComputedStyle(b).backgroundColor;b.click();return [before,getComputedStyle(b).backgroundColor,getComputedStyle(b).borderTopStyle,Math.round(b.getBoundingClientRect().height)]})()")
-    ok(r[0] != r[1] and r[1] == 'rgb(46, 125, 79)' and r[2] == 'solid' and (not touch or r[3] >= 44), f"F04 ✓ 맞음 테두리 버튼 → 켜지면 채움 {r}")
+    r = await pg.evaluate("(()=>{const c=__h.JB.vis[1];const b=c.querySelector('.acts [data-mk=ok]'),cs=()=>getComputedStyle(b);const before=[cs().borderTopColor,cs().fontWeight];b.click();return [before,[cs().borderTopColor,cs().fontWeight,cs().backgroundColor,cs().color],cs().borderTopStyle,Math.round(b.getBoundingClientRect().height)]})()")
+    ok(r[0] != r[1][:2] and r[1] == ['rgb(35, 33, 29)', '700', 'rgb(255, 255, 255)', 'rgb(35, 33, 29)'] and r[2] == 'solid' and (not touch or r[3] >= 44), f"F04(ux4 B3-6) ✓ 맞음 테두리 버튼 → 켜지면 ink 테두리·굵게(채움 없음) {r}")
     # ---------- F08 플래시카드 기출 그림·뒷면 ----------
     await go(pg, '#/OMS1/DX/flash')
     r = await pg.evaluate("""(async()=>{const F=__h.Flash;F.filter('기출');const i=F.deck.findIndex(c=>c.key==='J:Q35');F.i=i;F.back=false;F.draw();const im=document.querySelector('#fcard img');if(!im)return {i,img:0};try{await im.decode()}catch(e){};return {i,img:im.naturalWidth,mh:getComputedStyle(im).maxHeight}})()""")

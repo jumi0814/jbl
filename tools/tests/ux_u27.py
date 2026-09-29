@@ -1,5 +1,5 @@
 """U27 회귀: 색 체계 — 카드 머리(.thead)의 채움 색은 과목색·흰색뿐(ANAT·GERI 전 강의), ⚡ 안내문은 강의당 1번, 그림 '슬라이드' 배지 없음,
-연도·기출 칩은 흰 바탕. 채운 빨강·13px 미만 대비는 tools/audit_design.py(RED FILL · SMALL LOW CONTRAST)."""
+연도·기출 칩은 흰 바탕(ux4 B3-5: 카드 머리 ⭐ 기출 칩만 #FFFBEA). 채운 빨강·13px 미만 대비는 tools/audit_design.py(RED FILL · SMALL LOW CONTRAST)."""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, json
 from playwright.async_api import async_playwright
@@ -8,9 +8,9 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 JS = """()=>{const acc=getComputedStyle(document.documentElement).getPropertyValue('--acc').trim();const d=document.createElement('i');d.style.color=acc;document.body.appendChild(d);const A=getComputedStyle(d).color;d.remove();
-const bad=new Set();document.querySelectorAll('#stage .thead, #stage .thead *').forEach(e=>{if(!e.offsetParent)return;const b=getComputedStyle(e).backgroundColor;if(b==='rgba(0, 0, 0, 0)'||b==='rgb(255, 255, 255)'||b===A)return;bad.add(e.className+':'+b);});
+const bad=new Set();document.querySelectorAll('#stage .thead, #stage .thead *').forEach(e=>{if(!e.offsetParent)return;const b=getComputedStyle(e).backgroundColor;if(b==='rgba(0, 0, 0, 0)'||b==='rgb(255, 255, 255)'||b===A)return;if(b==='rgb(255, 251, 234)'&&e.matches('.chip.yr'))return;   /* ux4 B3-5 ⭐ 기출 칩 하나 = 노란 선 + #FFFBEA(시각 체계) */bad.add(e.className+':'+b);});
 return {bad:[...bad].slice(0,4),tips:document.querySelectorAll('#stage .c-mem .ct small').length,fb:document.querySelectorAll('#stage .figs .fb').length,
- chips:[...document.querySelectorAll('#stage .jbchip,#stage .chip.yr')].filter(e=>e.offsetParent&&getComputedStyle(e).backgroundColor!=='rgb(255, 255, 255)').length}}"""
+ chips:[...document.querySelectorAll('#stage .jbchip,#stage .chip.yr')].filter(e=>e.offsetParent&&!['rgb(255, 255, 255)','rgb(255, 251, 234)'].includes(getComputedStyle(e).backgroundColor)).length}}"""
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(); pg = await b.new_page(viewport={'width': 1280, 'height': 900}); errs = []
