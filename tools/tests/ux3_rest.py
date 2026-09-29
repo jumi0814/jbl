@@ -20,8 +20,10 @@ async def boot(pg, h, ms=1800):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
 async def fresh(pg, h, extra=''):
     await boot(pg, h); await pg.evaluate("localStorage.clear();sessionStorage.clear();" + extra); await boot(pg, h)
-async def tsum(pg, d=TODAY): return sum(((await ls(pg, 'time')) or {}).get(d, {}).values())
-async def rest(pg, d=TODAY): return ((await ls(pg, 'trest')) or {}).get(d, 0)
+# ux3 fix2 F6 — 줄이는 기록은 tedit(k:'trim', 휴식은 f:'r')에 − 로 남음: 기록된 합 = time + tedit(공부) · trest + tedit(휴식)
+TE = "(d,r)=>(JSON.parse(localStorage.getItem('jblhub.v1.tedit')||'[]')).filter(e=>e&&!e.x&&e.d===d&&((e.f==='r')===r)).reduce((a,e)=>a+(+e.ms||0),0)"
+async def tsum(pg, d=TODAY): return sum(((await ls(pg, 'time')) or {}).get(d, {}).values()) + await pg.evaluate(f"({TE})('{d}',false)")
+async def rest(pg, d=TODAY): return ((await ls(pg, 'trest')) or {}).get(d, 0) + await pg.evaluate(f"({TE})('{d}',true)")
 async def st(pg): return await pg.evaluate("document.querySelector('#tmr').dataset.st")
 async def band(pg): return await pg.evaluate("(b=>b.hidden?'':b.textContent)(document.querySelector('#idleband'))")
 async def study(pg, n, step=30000, x=300):

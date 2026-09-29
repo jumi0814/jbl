@@ -5,11 +5,21 @@ SRCN = re.compile(r'\((\d{2}\s)?필기\)')
 SRCH = re.compile(r'^필기:\s')
 SRCP = re.compile(r'^슬라이드\s(\d{1,3})((?:\s흐름|\s표시)?):\s')
 _WBR_SPLIT = re.compile(r'(<[^>]*>)'); _WBR_DOT = re.compile(r'(&#?[A-Za-z0-9]+;|[^\s·<>&])·(?![\s·])'); _WBR_SDOT = re.compile(r' ·(?= )'); _WBR_D0 = re.compile(r'^·(?![\s·])')
+_WBR_PAR = re.compile(r'(?<=[A-Za-z0-9])\((?=[A-Za-z])'); _WBR_ARR = re.compile(r'(?<=[A-Za-z])→(?=[A-Za-z])'); _WBR_LONG = re.compile(r'(?<![A-Za-z0-9&#_\-])([A-Za-z]{13,})(?![A-Za-z0-9;_\-]|<span class="nwd">[A-Za-z])'); _WBR_SL = re.compile(r'(?<=[A-Za-z][A-Za-z0-9])/(?=[A-Za-z][A-Za-z0-9])')
 def _wbr(t):
     """ux2 fixB VIS04 — 띄어 쓰지 않은 'A·B·C' 가운뎃점 뒤에 줄바꿈 자리(<wbr>)를 넣어 좁은 칸에서 영어 낱말이 글자 중간(Lambdo|id)에서 끊기지 않게. 글자(textContent)·표시 위치 불변 — 태그 밖 글자에만
     ux3 fix V07 — 가운뎃점이 줄 머리로 가지 않게('전방 / ·일차구개'): 앞 글자와 '·'를 끊지 않는 조각(.nwd)으로 묶음 · ' · '는 ' ·'를 묶어 줄은 '· ' 뒤에서만 바뀜"""
-    if '·' not in t: return t
-    return ''.join(p if p.startswith('<') else _WBR_D0.sub('·<wbr>', _WBR_SDOT.sub('<span class="nwd"> ·</span>', _WBR_DOT.sub(r'<span class="nwd">\1·</span><wbr>', p))) for p in _WBR_SPLIT.split(t))   # 태그 바로 뒤 '·'(앞 글자가 태그 안)는 옛 규칙대로 뒤에 <wbr>만
+    if '·' not in t and '(' not in t and '→' not in t and '/' not in t and not _WBR_LONG.search(t): return t
+    P = _WBR_SPLIT.split(t)
+    def one(i, p):
+        if p.startswith('<'): return p
+        if '·' in p: p = _WBR_D0.sub('·<wbr>', _WBR_SDOT.sub('<span class="nwd"> ·</span>', _WBR_DOT.sub(r'<span class="nwd">\1·</span><wbr>', p)))   # 태그 바로 뒤 '·'(앞 글자가 태그 안)는 옛 규칙대로 뒤에 <wbr>만
+        # ux3 fix2 F4 — 붙여 쓴 영문 조각 'parachlorophenol(Endotine)'·'incisal→middle→cervical'·'A/B'가 좁은 칸에서 글자 중간(hypochl|orite)에서 끊기지 않게 '(' 앞·'→'/'/' 뒤에 줄바꿈 자리
+        p = _WBR_PAR.sub('<wbr>(', p); p = _WBR_ARR.sub('→<wbr>', p); p = _WBR_SL.sub('/<wbr>', p)
+        if i and p.startswith('(') and len(p) > 1 and p[1].isascii() and p[1].isalpha() and P[i - 1].startswith('</'): p = '<wbr>' + p   # '<b>H2O2</b>(oxygenating)'
+        p = _WBR_LONG.sub(r'<span class="lw" lang="en">\1</span>', p)   # ux3 fix2 F4 13자↑ 영문 낱말 — 칸보다 길 때만(shell lwFit → .hy) 하이픈 줄바꿈 mechano-|transduction
+        return p
+    return ''.join(one(i, p) for i, p in enumerate(P))
 def _srcmeta(t, first):
     """ux2 D07 출처 메타를 가볍게 — 글자는 그대로 두고 감싸기만(.srcn = ✍ 아이콘·.srcp = 회색 'p.NN' 칩, 원문 글자는 안쪽 .srt — CSS display:none, textContent·표시·검색 그대로)"""
     t = SRCN.sub(lambda m: f'<span class="srcn" title="{(m.group(1) or "").strip() + " " if m.group(1) else ""}필기"><span class="srt">{m.group(0)}</span></span>', t)

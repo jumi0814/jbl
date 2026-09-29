@@ -14,8 +14,10 @@ async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
 async def boot(pg, h, ms=1800):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
+TE = "(d)=>(JSON.parse(localStorage.getItem('jblhub.v1.tedit')||'[]')).filter(e=>e&&!e.x&&e.f!=='r'&&(!d||e.d===d)).reduce((a,e)=>a+(+e.ms||0),0)"   # ux3 fix2 F6 줄인 몫 = tedit trim
 async def tsum(pg, d=TODAY):
-    return sum(((await ls(pg, 'time')) or {}).get(d, {}).values())
+    return sum(((await ls(pg, 'time')) or {}).get(d, {}).values()) + await pg.evaluate(f"({TE})('{d}')")
+async def tall(pg): return sum(sum(v.values()) for v in ((await ls(pg, 'time')) or {}).values()) + await pg.evaluate(f"({TE})('')")
 async def st(pg): return await pg.evaluate("document.querySelector('#tmr').dataset.st")
 async def fresh(pg, h, extra=''):
     await boot(pg, h); await pg.evaluate("localStorage.clear();sessionStorage.clear();" + extra); await boot(pg, h)
@@ -113,9 +115,9 @@ async def part_safety(b):
     ok(await st(pg) not in ('end', 'sess', 'rest') and abs(d - MIN) <= 2000, f'되묻기 30분 무응답 → 자동 종료 · time +{d / 1000:.0f}초')
     # 세션 되묻기 끔 → 12시간 상한
     await pg.evaluate("localStorage.setItem('jblhub.v1.sessAsk','0')")
-    await pg.evaluate("__h.trStart()"); await pg.clock.run_for(1000); t2 = sum(sum(v.values()) for v in ((await ls(pg, 'time')) or {}).values())
+    await pg.evaluate("__h.trStart()"); await pg.clock.run_for(1000); t2 = await tall(pg)
     await pg.clock.fast_forward(12 * 60 * MIN + 5 * MIN); await pg.clock.run_for(2000)   # 기기가 잠든 채 12시간(타이머가 한 번에 몰려 옴)
-    d = sum(sum(v.values()) for v in ((await ls(pg, 'time')) or {}).values()) - t2
+    d = await tall(pg) - t2
     ok(await st(pg) not in ('end', 'sess', 'rest') and abs(d - 12 * 60 * MIN) <= 5000, f'되묻기 끔 → 12시간 상한에서 끝냄 · +{d / 3600000:.3f}시간')
     ok(not errs, f'pageerror 0 ({errs[:2]})')
     await ctx.close()

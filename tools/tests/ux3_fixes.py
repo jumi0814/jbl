@@ -1,6 +1,6 @@
 """ux3 검증 수정 회귀(func F1~F10 · visual V01~V12 · flow V01~V12) — 트래커·달력 고치기·메뉴 숨김·메뉴 구성·색·대비.
 가짜 시계(page.clock) 2026-09-29(화) 10:00 · 맥 1280×900 · 아이패드 세로 820×1180 · 가로 1180×820(터치 has_touch). 스크린샷 work/_tmp/ux3f_*.png
-  .venv/bin/python tools/tests/ux3_fixes.py [부분 …]   # 부분 = trk cal nav"""
+  .venv/bin/python tools/tests/ux3_fixes.py [부분 …]   # 부분 = trk cal mrg nav tbl"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, json, datetime, math, itertools
 from playwright.async_api import async_playwright
@@ -14,7 +14,7 @@ MAC, PORT, LAND = {'width': 1280, 'height': 900}, {'width': 820, 'height': 1180}
 async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
 async def boot(pg, h, ms=1800):
-    await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
+    await pg.goto('about:blank'); await pg.goto(U + h, timeout=120000); await pg.clock.run_for(ms)
 async def fresh(pg, h, extra=''):
     await boot(pg, h); await pg.evaluate("localStorage.clear();sessionStorage.clear();" + extra); await boot(pg, h)
 async def st(pg): return await pg.evaluate("__h.trState()")
@@ -103,7 +103,8 @@ async def part_trk(b):
     await boot(pg, '#/CONS/WHT/learn', 1500); await pg.clock.run_for(1000)
     band = await pg.evaluate("(b=>b.hidden?'':b.textContent)(document.querySelector('#trband'))")
     ok(band == '' and await st(pg) == 'sess', f'flow V04 숨김만(다른 앱·탭 버림) → 질문 없이 세션 ({await st(pg)} · {band[:20]!r})')
-    ok(abs(await sub(pg, TODAY, 'CONS') - 50 * MIN) <= 30000, f'화면 밖 50분 세션에 들어감 ({await sub(pg, TODAY, "CONS") / MIN:.1f}분)')
+    exp = await pg.evaluate("Date.now()") - (now - 50 * MIN)   # page.clock은 실제 시간도 흐름 — 느린 기계에서 50분 + 걸린 시간
+    ok(abs(await sub(pg, TODAY, 'CONS') - exp) <= 30000, f'화면 밖 50분 세션에 들어감 ({await sub(pg, TODAY, "CONS") / MIN:.1f}분 · 기대 {exp / MIN:.1f})')
     await pg.evaluate("__h.trStop();localStorage.removeItem('jblhub.v1.tstate')"); await boot(pg, '#/CONS/WHT/learn')
     # flow V10 자동 휴식 시작 때 시계가 되감기지 않음
     await study(pg, 6); await pg.clock.run_for(5 * MIN); c3 = await pg.evaluate("__h.tDay(__h.CAL?'%s':'%s')" % (TODAY, TODAY))
@@ -111,12 +112,12 @@ async def part_trk(b):
     ok(await st(pg) == 'rest' and await tot(pg, TODAY) >= s3, f'flow V10 자동 휴식 시작 → 오늘 합계 {s3 / 1000:.0f}→{await tot(pg, TODAY) / 1000:.0f}초 (되감기 없음)')
     # flow V05 띠 10초 기본값 뒤 [📖 공부로 바꾸기] 알림
     await pg.clock.run_for(20 * MIN); await pg.mouse.move(700, 500); await pg.clock.run_for(300)
-    r0 = ((await ls(pg, 'trest')) or {}).get(TODAY, 0); s0 = await tot(pg, TODAY)
+    r0 = await pg.evaluate("__h.restDay('%s')" % TODAY); s0 = await tot(pg, TODAY)
     await pg.clock.run_for(10500); t = await toast(pg)
     ok('휴식으로 넣었어요' in t and '공부로 바꾸기' in t, f'flow V05 기본값(쉬었어요) 뒤 알림 {t!r}')
     await pg.screenshot(path=J.TMP + '/ux3f_rest_toast_land.png')
     await pg.evaluate("document.querySelector('#toast .tact').click()"); await pg.clock.run_for(300)
-    r1 = ((await ls(pg, 'trest')) or {}).get(TODAY, 0); s1 = await tot(pg, TODAY)
+    r1 = await pg.evaluate("__h.restDay('%s')" % TODAY); s1 = await tot(pg, TODAY)
     ok(r0 - r1 >= 20 * MIN and s1 - s0 >= 20 * MIN, f'[📖 공부로 바꾸기] → 휴식 −{(r0 - r1) / MIN:.0f}분 · 공부 +{(s1 - s0) / MIN:.0f}분')
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
@@ -193,11 +194,11 @@ async def part_cal(b):
     c0 = await sub(pg, YDAY, 'CONS'); i = await pg.evaluate("__h.CAL.rows.findIndex(r=>r.r)")
     ok(await pg.evaluate(f"!!document.querySelector('[data-crs=\"{i}\"]')"), '휴식 줄에 📖 버튼')
     await pg.evaluate(f"document.querySelector('[data-crs=\"{i}\"]').click()"); await pg.clock.run_for(300)
-    ok(await sub(pg, YDAY, 'CONS') - c0 == 30 * MIN and ((await ls(pg, 'trest')) or {}).get(YDAY, 0) == 0, f'📖 → 보존 +30 · 휴식 0 ({(await sub(pg, YDAY, "CONS") - c0) / MIN:.0f})')
+    ok(await sub(pg, YDAY, 'CONS') - c0 == 30 * MIN and await pg.evaluate("__h.restDay('%s')" % YDAY) == 0, f'📖 → 보존 +30 · 휴식 0 ({(await sub(pg, YDAY, "CONS") - c0) / MIN:.0f})')
     ok(await pg.evaluate("__h.tLec('%s')['CONS:WHT']" % YDAY) == 90 * MIN, '바로 앞 공부 구간의 강의(WHT)로')
     await pg.screenshot(path=J.TMP + '/ux3f_cal_reststudy_mac.png')
     await pg.evaluate("document.querySelector('#toast .tact').click()"); await pg.clock.run_for(300)
-    ok(await sub(pg, YDAY, 'CONS') == c0 and ((await ls(pg, 'trest')) or {}).get(YDAY, 0) == 30 * MIN, '되돌리기 → 휴식 30 · 공부 그대로')
+    ok(await sub(pg, YDAY, 'CONS') == c0 and await pg.evaluate("__h.restDay('%s')" % YDAY) == 30 * MIN, '되돌리기 → 휴식 30 · 공부 그대로')
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 
@@ -319,23 +320,58 @@ async def part_nav(b):
 # ---------------- 표(F4): 칸 넘침 0 · 1280 영문 낱말 중간 끊김 0 (문제였던 강의) ----------------
 TSCAN = r"""()=>{const out=[];const cells=[...document.querySelectorAll('#stage table td, #stage table th')].filter(c=>c.offsetParent);
  for(const c of cells){const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){const re=/[A-Za-z][A-Za-z\-]{3,}/g;let m;while(m=re.exec(t.nodeValue)){const r=document.createRange();r.setStart(t,m.index);r.setEnd(t,m.index+m[0].length);const rs=[...r.getClientRects()].filter(x=>x.width>0);
-  if(rs.length>1&&Math.abs(rs[0].top-rs[rs.length-1].top)>4&&m[0].indexOf('-')<0)out.push('BRK:'+m[0]);}}
+  if(rs.length>1&&Math.abs(rs[0].top-rs[rs.length-1].top)>4&&m[0].indexOf('-')<0&&!t.parentElement.closest('.lw.hy'))out.push('BRK:'+m[0]);}}
  if(c.scrollWidth>c.clientWidth+1)out.push('OVF:'+c.textContent.slice(0,20));}return out;}"""
 async def part_tbl(b):
-    for vp, tag in ((MAC, 'mac'), (LAND, 'land')):
-        ctx = await b.new_context(viewport=vp, has_touch=vp is LAND); pg = await ctx.new_page(); print('== F4 표', tag)
-        for sk in ('PHARM/DS', 'IMPL/PRO', 'CONS/INL', 'CONS/FRC', 'OMS1/LOAD', 'IMPL/OSS', 'ANAT/LIP'):
-            await pg.goto('about:blank'); await pg.goto(U + f'#/{sk}/sum')
-            await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#stage .msum')", timeout=60000); await pg.wait_for_timeout(1200)
+    # ux3 fix2 F4 — 세 폭 모두 낱말 중간 끊김 0('(' 앞·'→'·'/' 뒤 줄바꿈 자리 · 칸보다 긴 13자↑ 낱말은 .lw.hy 하이픈 — 끊김으로 안 셈) · 옛 검증에서 끊기던 강의 포함
+    for vp, tag in ((MAC, 'mac'), (LAND, 'land'), (PORT, 'port')):
+        ctx = await b.new_context(viewport=vp, has_touch=vp is not MAC); pg = await ctx.new_page(); print('== F4 표', tag)
+        for sk in ('PHARM/DS/sum', 'IMPL/PRO/sum', 'CONS/INL/sum', 'CONS/FRC/sum', 'OMS1/LOAD/sum', 'IMPL/OSS/sum', 'ANAT/LIP/sum', 'CONS/CRK/tbl', 'GERI/BLE/sum', 'PHARM/CHR/sum', 'IMPL/HIS/sum', 'PHARM/HM/sum', 'GERI/PAIN/tbl', 'CONS/ADH/sum'):
+            await pg.goto('about:blank'); await pg.goto(U + f'#/{sk}', timeout=120000)
+            await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#stage table')", timeout=90000); await pg.wait_for_timeout(1200)
             r = await pg.evaluate(TSCAN); ovf = [x for x in r if x.startswith('OVF')]; brk = [x for x in r if x.startswith('BRK')]
-            ok(not ovf and (tag != 'mac' or not brk), f'{tag} {sk} 정리표 칸 넘침 {len(ovf)} · 낱말 끊김 {len(brk)} {r[:3]}')
+            ok(not ovf and not brk, f'{tag} {sk} 표 칸 넘침 {len(ovf)} · 낱말 끊김 {len(brk)} {r[:3]}')
         await pg.screenshot(path=J.TMP + f'/ux3f_tbl_{tag}.png'); await ctx.close()
+
+# ---------------- F6 줄인 기록(세션 정리·휴식 지움·📖)은 tedit trim — 줄이기 전 백업을 합쳐도 되살아나지 않음 ----------------
+SNAP = "(()=>{const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf('jblhub.v1.')===0)o[k]=localStorage.getItem(k);}return o;})()"
+async def part_mrg(b):
+    ctx, pg, errs = await ctxpg(b, MAC); print('== F6 줄인 기록 + 옛 백업 합치기')
+    await fresh(pg, '#/CONS/WHT/learn', "localStorage.setItem('jblhub.v1.tauto','false');")
+    t = await pg.evaluate("Date.now()")
+    await pg.evaluate("t=>__h.tRec('CONS','WHT',t-40*60000,t-10*60000,'s')", t)
+    snap = await pg.evaluate(SNAP); c0 = await sub(pg, TODAY, 'CONS')
+    tm0 = await pg.evaluate("localStorage.getItem('jblhub.v1.time')")
+    await pg.evaluate("t=>__h.tUnrec('CONS','WHT',t-30*60000,t-10*60000,'s')", t)   # '마지막 입력 때 멈춤' — 뒤 20분 되돌림
+    c1 = await sub(pg, TODAY, 'CONS'); ok(c0 - c1 == 20 * MIN, f'세션 뒤 20분 되돌림 → 보존 −{(c0 - c1) / MIN:.0f}분')
+    ok(await pg.evaluate("localStorage.getItem('jblhub.v1.time')") == tm0, 'time은 그대로(tedit trim에 −)')
+    ok(await pg.evaluate("__h.tLec('%s')['CONS:WHT']" % TODAY) == 10 * MIN, 'tLec 강의도 −20')
+    await pg.evaluate("d=>__h.mergeData(d)", snap)
+    ok(await sub(pg, TODAY, 'CONS') == c1, f'되돌리기 전 백업 합치기 → 보존 그대로 {c1 / MIN:.0f}분 ({(await sub(pg, TODAY, "CONS")) / MIN:.0f})')
+    # 휴식 30분 → 📖(tUnrec r) → 옛 백업 합치기 → 휴식 0 그대로
+    await pg.evaluate("t=>__h.tRec('','',t-9*60000,t-60000,'ra')", t); snap2 = await pg.evaluate(SNAP)
+    ok(await pg.evaluate("__h.restDay('%s')" % TODAY) == 8 * MIN, '휴식 8분')
+    await pg.evaluate("t=>__h.tUnrec('','',t-9*60000,t-60000,'r')", t)
+    ok(await pg.evaluate("__h.restDay('%s')" % TODAY) == 0, '휴식 되돌림 → 0')
+    await pg.evaluate("d=>__h.mergeData(d)", snap2)
+    rd = await pg.evaluate("__h.restDay('%s')" % TODAY); ok(rd == 0, f'옛 백업 합치기 → 휴식 0 그대로 ({rd})')
+    # 있는 만큼만 뺌 — 기록보다 큰 되돌림이 음수로 남아 뒤 공부를 삼키지 않음
+    await pg.evaluate("t=>__h.tUnrec('CONS','WHT',t-200*60000,t-100*60000,'s')", t)
+    c2 = await sub(pg, TODAY, 'CONS'); ok(c2 == 0, f'기록(10분)보다 큰 되돌림 → 0 ({c2 / MIN:.0f})')
+    await pg.evaluate("t=>__h.tRec('CONS','WHT',t-5*60000,t,'a')", t)
+    ok(await sub(pg, TODAY, 'CONS') == 5 * MIN, f'뒤 공부 5분은 그대로 +5 ({(await sub(pg, TODAY, "CONS")) / MIN:.1f})')
+    # 고친 기록(통계)에는 trim이 안 보임
+    await boot(pg, '#/_time')
+    h = await pg.evaluate("(e=>e?e.textContent:'')(document.querySelector('.tehist'))")
+    ok('−' not in h, f"고친 기록에 자동 정리(trim) 없음 {h[:60]!r}")
+    ok(not errs, f'pageerror 0 {errs[:2]}')
+    await ctx.close()
 
 async def main():
     only = _sys.argv[1:]
     async with async_playwright() as p:
         b = await p.chromium.launch()
-        for nm, fn in (('trk', part_trk), ('cal', part_cal), ('nav', part_nav), ('tbl', part_tbl)):
+        for nm, fn in (('trk', part_trk), ('cal', part_cal), ('mrg', part_mrg), ('nav', part_nav), ('tbl', part_tbl)):
             if not only or nm in only: await fn(b)
         await b.close()
     print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
