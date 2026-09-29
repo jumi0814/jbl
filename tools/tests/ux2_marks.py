@@ -72,7 +72,7 @@ async def run(b, vp, touch, tag):
     ok('시험 직전' in await pg.inner_text('#stage .mkf[data-mkcol=u]'), '모아보기 칩에 바꾼 라벨')
     # 허브 홈 '🖍 전 과목 내 표시'
     await open_(pg, '#/', 1200)
-    t = await pg.inner_text('#home .mkall'); ok('전 과목 내 표시' in t and '🖍 3 · ▣ 1' in t, f'허브 홈 전 과목 내 표시 ({t[:120]!r})')
+    t = await pg.evaluate("document.querySelector('#home .mkall').textContent"); ok('전 과목 내 표시' in t and '🖍 3 · ▣ 1' in t, f'허브 홈 전 과목 내 표시 ({t[:120]!r})')
     await pg.evaluate("document.querySelector('#home .mkall').scrollIntoView({block:'center'})"); await pg.screenshot(path=J.TMP + f'/ux2i_a09_home_{tag}.png')
     await pg.evaluate("document.querySelector('#home [data-mks=OMS1]').click()"); await pg.wait_for_timeout(900)
     ok((await pg.evaluate('location.hash')).startswith('#/OMS1/_marks') and await pg.evaluate(VIS) == 4, '→ 그 과목 모아보기')

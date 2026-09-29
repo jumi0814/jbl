@@ -11,8 +11,8 @@ async def main():
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1440,'height':1500}); errs=[]
         pg.on('pageerror',lambda e:errs.append(str(e)[:200]))
         await pg.goto(U); await pg.wait_for_timeout(2500)
-        ok(await pg.locator('.scard[data-s]').count()>=6, '허브 과목 카드')
-        await pg.click('.scard[data-s="CONS"]'); await pg.wait_for_timeout(600); ok(await pg.locator('.lcard').count()>=5, f"CONS 강의 카드 {await pg.locator('.lcard').count()}")
+        ok(await pg.locator('.hsj[data-s]').count()>=6, '허브 과목 표 행')
+        await pg.click('.hsj[data-s="CONS"] .hsjn'); await pg.wait_for_timeout(600); ok(await pg.locator('.lcard').count()>=5, f"CONS 강의 카드 {await pg.locator('.lcard').count()}")
         await pg.screenshot(path=_os.path.join(J.TMP, 'k0.png'))
         await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_jb\"]').click()"); await pg.wait_for_timeout(400); ok(await pg.locator('#cards .qc:not(.hid)').count()>10, 'JB 카드 보임')
         await pg.click('#c-Q08 [data-tog]'); await pg.evaluate("(c=>{c.classList.add('deep');c.querySelectorAll('details.ab').forEach(d=>d.open=true)})(document.getElementById('c-Q08'))"); await pg.evaluate("document.getElementById('c-Q08').scrollIntoView()"); await pg.wait_for_timeout(300); await pg.screenshot(path=_os.path.join(J.TMP, 'k1.png'))
@@ -29,7 +29,7 @@ async def main():
         await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_led\"]').click()"); await pg.wait_for_timeout(300); ok(len(await pg.inner_text('#stage'))>200, '기출 대장')
         # 도구
         await pg.evaluate("document.querySelector('#side .dbtn[data-d=\"ADH\"]').click()"); await pg.wait_for_timeout(800); await pg.click('#k-auto'); await pg.check('input[value="red"]'); await pg.click('#ago'); await pg.wait_for_timeout(400); ok(await pg.locator('#stage .rk-b').count()>0, '자동 빈칸'); await pg.keyboard.press('Control+z')
-        await pg.click('.scard, #gohome'); await pg.wait_for_timeout(400); ok(await pg.locator('.scard[data-s]').count()>=6, '홈으로')
+        await pg.click('#gohome'); await pg.wait_for_timeout(400); ok(await pg.locator('.hsj[data-s]').count()>=6, '홈으로')
         ok(not errs, f'콘솔 오류 0 {errs[:3]}')
         p2=await b.new_page(); e2=[]; p2.on('pageerror',lambda e:e2.append(str(e)[:150])); await p2.goto('file://' + _os.path.join(J.WORK, '임상치과보존학_JBL.html') + '#/CONS/FRC/learn'); await p2.wait_for_timeout(2500); ok(await p2.evaluate("[...document.querySelectorAll('#stage .figs img')].filter(i=>i.src.startsWith('data:')).length")>0 and not e2, f'단일 파일판 그림 {e2[:2]}')
         await b.close()

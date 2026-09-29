@@ -27,7 +27,7 @@ async def run(b, base, vp, touch, tag):
     ok('과목 자료 불러오는 중' in st and '0/6' in st, f'0.3초: 뼈대 + 진행 막대 {st[:60]!r}')
     await pg.screenshot(path=J.TMP + f'/ux2i_b08_skel_{tag}.png')
     await pg.wait_for_function("window.__h&&__h.plStat().pend===0", timeout=20000)
-    ok(await pg.evaluate("document.querySelectorAll('#home .scard[data-s]').length") == 6 and not await pg.evaluate("document.querySelector('#home .plc')"), '모두 도착 → 과목 카드 6·불러오는 중 칩 없음')
+    ok(await pg.evaluate("document.querySelectorAll('#home .hsj[data-s]').length") == 6 and not await pg.evaluate("document.querySelector('#home .plc')"), '모두 도착 → 과목 표 6행·불러오는 중 칩 없음')
     # ---- B08-b 딥링크는 그 과목 팩만 기다림
     await pg.goto('about:blank'); t0 = time.time(); await pg.goto(base + '/index.html#/OMS1/DD1/learn', wait_until='commit')
     await pg.wait_for_function("document.querySelectorAll('#stage .tc').length>3", timeout=20000); dt = time.time() - t0
@@ -47,10 +47,10 @@ async def run(b, base, vp, touch, tag):
     await pg.goto('about:blank'); await pg.goto(base + '/index.html#/')
     await pg.wait_for_function("document.querySelector('#packbar .plbad')", timeout=15000)
     t = await pg.inner_text('#packbar'); ok('PHARM' in t and '실패' in t and '다시' in t, f'팩 404 → 실패 안내 {t!r}')
-    ok('불러오기 실패' in await pg.inner_text('#home .scard.off'), '허브 카드에도 ⚠ 불러오기 실패')
+    ok('불러오기 실패' in await pg.inner_text('#home .hsj.off[data-off=PHARM]'), '허브 과목 표에도 ⚠ 불러오기 실패')
     await pg.screenshot(path=J.TMP + f'/ux2i_b08_fail_{tag}.png')
     await pg.click('#packbar [data-plretry=PHARM]')
-    await pg.wait_for_function("__h.PACKS.PHARM&&document.querySelector('#home .scard[data-s=PHARM]')", timeout=15000)
+    await pg.wait_for_function("__h.PACKS.PHARM&&document.querySelector('#home .hsj[data-s=PHARM]')", timeout=15000)
     ok(await pg.evaluate("document.querySelector('#packbar').hidden"), '[다시] → 성공 · 안내 사라짐 · 카드 채워짐')
     await pg.unroute(re.compile(r'/packs/PHARM\.js'), f404)
     # ---- B09 검색: 첫 입력 긴 작업(CPU×4) · 종류 칩 · 답 바로 보기

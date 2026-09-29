@@ -22,7 +22,7 @@ async def key(pg, k, w=120):
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('dialog', lambda d: asyncio.ensure_future(d.accept())); print('==', tag)
-    await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="PHARM"]'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
+    await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="PHARM"]'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     mac = tag == 'mac'
     # ---------- F01 정답 보기 강조 ----------
     await go(pg, '#/PHARM/_jb/_jb')
@@ -169,8 +169,8 @@ async def run(b, vp, touch, tag):
     await pg.evaluate("document.querySelector('#fcard [data-go]').click()"); await pg.wait_for_timeout(600)
     ok(await pg.evaluate("location.hash.indexOf('/OMS1/DX/jb')>=0 && !!document.querySelector('#c-Q35')"), 'F08 문제 카드로 → 강의 기출 탭 그 문항')
     # ---------- F10 예상문제 ----------
-    HUB = "[...document.querySelectorAll('.scard[data-s=\"PHARM\"] .spb span')].map(x=>x.textContent).join(' | ')"
-    await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="PHARM"] .spb'); hub0 = await pg.evaluate(HUB)
+    HUB = "[...document.querySelectorAll('.hsj[data-s=\"PHARM\"] .hcr,.hsj[data-s=\"PHARM\"] .hcj')].map(x=>x.title+' '+x.textContent).join(' | ')"   # ux3 H4 과목 표
+    await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="PHARM"] .hcj'); hub0 = await pg.evaluate(HUB)
     await go(pg, '#/PHARM/_pred')
     r = await pg.evaluate("""(()=>{const p=document.querySelectorAll('#stage .pc')[1];const d=document.createElement('div');d.innerHTML=__h.PACKS.PHARM.preds[1].html;
       return {li:p.querySelectorAll('.pq .ln.li').length,q1:!!p.querySelector('.pq .ln.q1'),lone:[...d.querySelectorAll('.pre2 li')].filter(l=>/^[①-⑩]$/.test(l.textContent.trim())).length}})()""")
@@ -184,7 +184,7 @@ async def run(b, vp, touch, tag):
     await pg.evaluate("document.querySelector('#ppills [data-pf=todo]').click()"); await pg.wait_for_timeout(100)
     ok(await pg.evaluate("[...document.querySelectorAll('#stage .pc')].filter(p=>p.offsetParent).length") == await pg.evaluate("document.querySelectorAll('#stage .pc').length-1"), "F10 예상 '안 푼 것' 필터")
     await pg.screenshot(path=SHOT('f10_pred', tag))
-    await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="PHARM"] .spb'); hub1 = await pg.evaluate(HUB)
+    await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="PHARM"] .hcj'); hub1 = await pg.evaluate(HUB)
     ok(hub0 == hub1, f"F10 예상 채점 뒤 허브 과목 카드 기출 개수 그대로 {hub1!r}")
     # ---------- F11 인쇄·압축 목록 ----------
     await go(pg, '#/PHARM/_jb/_jb')

@@ -28,14 +28,14 @@ async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(); pg = await b.new_page(viewport={'width': 1280, 'height': 900}); errs = []
         pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
-        await pg.goto(J.HUB_URL + '#/'); await pg.wait_for_selector('.scard[data-s="PHARM"]')
+        await pg.goto(J.HUB_URL + '#/'); await pg.wait_for_selector('.hsj[data-s="PHARM"]')
         await pg.evaluate("localStorage.clear()"); await pg.evaluate("__h.bkClear()")
         await pg.evaluate("""(()=>{const ns='jblhub.v1.';localStorage.setItem(ns+'mk.PHARM',JSON.stringify({ok:{RX01:1,RX02:1},ng:{},bm:{RX01:1},log:{RX01:[{r:'ng',t:1},{r:'ok',t:2}]}}));
           localStorage.setItem(ns+'fc.PHARM',JSON.stringify({'J:RX01':{s:'o',t:5}}));localStorage.setItem(ns+'fcMerged.PHARM','1');
           localStorage.setItem(ns+'ann.PHARM',JSON.stringify({'PHARM:RX01':[{t:'h',x:'처방전',i:0,c:'y'}]}));})()""")
-        await pg.reload(); await pg.wait_for_selector('.scard[data-s="PHARM"]')
+        await pg.reload(); await pg.wait_for_selector('.hsj[data-s="PHARM"]')
         await pg.evaluate("__h.PACKS.PHARM.jbmove={RX01:'RX01a'};__h.PACKS.PHARM.jbmovev='t1'")
-        await pg.click('.scard[data-s="PHARM"]'); await pg.wait_for_function("location.hash.indexOf('PHARM')>0"); await pg.wait_for_timeout(500)
+        await pg.click('.hsj[data-s="PHARM"] .hsjn'); await pg.wait_for_function("location.hash.indexOf('PHARM')>0"); await pg.wait_for_timeout(500)
         mk = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.mk.PHARM')")); fc = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.fc.PHARM')")); an = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.ann.PHARM')"))
         ok(mk['ok'].get('RX01a') == 1 and 'RX01' not in mk['ok'] and mk['bm'].get('RX01a') == 1 and len(mk['log'].get('RX01a', [])) == 2 and mk['ok'].get('RX02') == 1, f"mk 이관 {mk}")
         ok('J:RX01a' in fc and 'J:RX01' not in fc and 'PHARM:RX01a' in an and 'PHARM:RX01' not in an, 'fc J:·ann 키 이관')

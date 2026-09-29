@@ -16,13 +16,13 @@ async def ctx_dev(b, vp, touch, did, name, mins, init=''):
     ctx = await b.new_context(viewport=vp, has_touch=touch, accept_downloads=True)
     if init: await ctx.add_init_script(init)
     pg = await ctx.new_page(); errs = []; pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('dialog', lambda d: asyncio.ensure_future(d.accept()))
-    await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="OMS1"]')
+    await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="OMS1"]')
     await pg.evaluate("([id,nm,d,m])=>{localStorage.clear();const ns='jblhub.v1.';localStorage.setItem(ns+'devId',JSON.stringify(id));localStorage.setItem(ns+'devName',JSON.stringify(nm));localStorage.setItem(ns+'time',JSON.stringify({[d]:{OMS1:m*60000}}));localStorage.setItem(ns+'timed',JSON.stringify({[d]:{'OMS1:DD1':m*60000}}));}", [did, name, TODAY, mins])
-    await pg.evaluate("__h.bkClear()"); await pg.reload(); await pg.wait_for_selector('.scard[data-s="OMS1"]')
+    await pg.evaluate("__h.bkClear()"); await pg.reload(); await pg.wait_for_selector('.hsj[data-s="OMS1"]')
     return ctx, pg, errs
 async def merge(pg, f):
     await pg.evaluate("window.__mark=1;document.querySelector('#rfile').dataset.how='merge'"); await pg.set_input_files('#rfile', f)
-    await pg.wait_for_function("!window.__mark", timeout=8000); await pg.wait_for_function("window.__h&&document.querySelector('.scard[data-s]')", timeout=8000); await pg.wait_for_timeout(300)
+    await pg.wait_for_function("!window.__mark", timeout=8000); await pg.wait_for_function("window.__h&&document.querySelector('.hsj[data-s]')", timeout=8000); await pg.wait_for_timeout(300)
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
@@ -40,7 +40,7 @@ async def main():
         ok('이 기기(아이패드)' in t and '다른 기기(맥)와 합친 때' in t, f'기기 옮기기 창 {t[:90]!r}')
         await B.screenshot(path=J.TMP + '/ux2i_c10_pop_ipp.png'); await B.keyboard.press('Escape')
         await B.evaluate("document.querySelector('#bkup').click()")
-        hp = await B.inner_text('#home .bkp'); ok('이 기기(아이패드) 마지막 보내기 없음' in hp, f'허브 홈 백업 패널 {hp[:60]!r}')
+        hp = await B.evaluate("document.querySelector('#home .bkp').textContent")   # ux3 H5 접힌 💾 더보기 안; ok('이 기기(아이패드) 마지막 보내기 없음' in hp, f'허브 홈 백업 패널 {hp[:60]!r}')
         # 공유 모의
         for tag, init, want in [('share-ok', "navigator.canShare=()=>true;navigator.share=()=>Promise.resolve();", True), ('share-cancel', "navigator.canShare=()=>true;navigator.share=()=>Promise.reject(new DOMException('abort','AbortError'));", False)]:
             cx, P, ep = await ctx_dev(b, {'width': 1180, 'height': 820}, True, 'devC', '아이패드', 10, init)

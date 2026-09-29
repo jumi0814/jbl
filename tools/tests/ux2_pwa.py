@@ -24,7 +24,7 @@ async def run(b, vp, touch, tag, persisted):
     ctx = await b.new_context(viewport=vp, has_touch=touch)
     if persisted is not None: await ctx.add_init_script(f"(()=>{{const v={str(persisted).lower()};try{{Object.defineProperty(navigator,'storage',{{value:{{persisted:()=>Promise.resolve(v),persist:()=>Promise.resolve(v),estimate:()=>Promise.resolve({{usage:1e6,quota:1e9}})}},configurable:true}});}}catch(e){{}}}})()")
     pg = await ctx.new_page(); errs = []; pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
-    await pg.goto(BASE + 'index.html#/'); await pg.wait_for_selector('.scard[data-s="OMS1"]'); await pg.wait_for_timeout(400)
+    await pg.goto(BASE + 'index.html#/'); await pg.wait_for_selector('.hsj[data-s="OMS1"]'); await pg.wait_for_timeout(400)
     await pg.evaluate("document.querySelector('#bkup').click()"); await pg.click('#rstr'); await pg.wait_for_selector('#rpop .rstore'); t = await pg.inner_text('#rpop .rstore')
     want = {True: '허용됨', False: '안 됨', None: ''}[persisted]
     ok('저장소 보호' in t and want in t, f"복원 창 {re.search(r'저장소 보호[^\n]*', t).group(0) if '저장소 보호' in t else t[-60:]!r}")
@@ -34,7 +34,7 @@ async def run(b, vp, touch, tag, persisted):
         a = await pg.inner_text('#a2hs'); ok('홈 화면에 추가' in a, f'안 됨 → 허브 홈 안내 한 줄 {a[:40]!r}')
         await pg.screenshot(path=J.TMP + f'/ux2i_c11_a2hs_{tag}.png')
         ok(await pg.evaluate("__h.bkLimit()") == 2, '안 됨 → 백업 알림 기준 2일')
-        await pg.click('#a2hs [data-a2hsx]'); await pg.reload(); await pg.wait_for_selector('.scard[data-s="OMS1"]'); await pg.wait_for_timeout(400)
+        await pg.click('#a2hs [data-a2hsx]'); await pg.reload(); await pg.wait_for_selector('.hsj[data-s="OMS1"]'); await pg.wait_for_timeout(400)
         ok(await pg.inner_text('#a2hs') == '' and await pg.evaluate("localStorage.getItem('jblhub.v1.a2hsNote')") == '1', '[알겠어요] 뒤에는 안내 없음(한 번)')
     if persisted is True: ok(await pg.inner_text('#a2hs') == '', '허용됨 → 안내 없음')
     ok(not errs, f'pageerror 0 ({errs[:2]})'); await ctx.close()

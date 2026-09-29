@@ -15,8 +15,8 @@ async def go(pg, h):
 async def run(b, vp, touch, tag, full):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('dialog', lambda d: asyncio.ensure_future(d.accept())); print('==', tag)
-    await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="OMS1"]'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
-    await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="OMS1"]')
+    await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="OMS1"]'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
+    await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="OMS1"]')
     lec, q1 = await pg.evaluate("(()=>{const p=__h.PACKS.OMS1;const L=p.lect.find(L=>L.jb.length>=3);return [L.k,L.jb]})()")
     qa, qb, qc = q1[0], q1[1], q1[2]
     if full:

@@ -15,14 +15,13 @@ async def run(b, vp, touch, tag):
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
     await pg.evaluate("localStorage.setItem('jblhub.v1.mk.OMS1', JSON.stringify({ok:{Q01:1,Q02:1},ng:{Q03:1},bm:{}}))")
-    st = await pg.evaluate("(()=>{const s=[...document.querySelectorAll('.scard')];return 0})()")
     await open_(pg, '#/')
     ST = await pg.evaluate("({O:__h.PACKS.OMS1.stats,P:__h.PACKS.PHARM.stats})"); M, R, PM = ST['O']['main'], ST['O']['ref'], ST['P']['main']
     ok(R > 0 and ST['P']['ref'] == 0 and ST['P']['cards'] == PM, f'픽스처: OMS1 현 교수 {M}·참고 {R} / PHARM {PM}(참고 0)')
-    hub = await pg.evaluate("document.querySelector('.scard[data-s=\"OMS1\"]').innerText")
-    ok(f'기출 {M}문항' in hub and f'참고 {R}' in hub and f'맞음 2 · 틀림 1 / {M}' in hub and f'안 푼 기출 {M - 3}' in hub, f'허브 카드 OMS1 분모 {M} · 참고 {R} (U22 두 줄 진행·안 푼 기출 버튼)')
-    ph = await pg.evaluate("document.querySelector('.scard[data-s=\"PHARM\"]').innerText")
-    ok(f'기출 {PM}문항' in ph and '참고' not in ph, f'PHARM 허브 카드 {PM} · 참고 없음')
+    hub = await pg.evaluate("(()=>{const r=document.querySelector('.hsj[data-s=\"OMS1\"]');return r.querySelector('.hcj').title+' | '+r.innerText})()")   # ux3 H4 과목 표 기출 칸 title
+    ok(f'현 교수 기출 {M}문항' in hub and f'참고 {R}' in hub and '맞음 2 · 틀림 1' in hub and f'안 푼 것 {M - 3}' in hub and f'2·1/{M}' in hub.replace('\n',''), f'허브 과목 표 OMS1 분모 {M} · 참고 {R} ({hub[:90]!r})')
+    ph = await pg.evaluate("document.querySelector('.hsj[data-s=\"PHARM\"] .hcj').title")
+    ok(f'기출 {PM}문항' in ph and '참고' not in ph and '현 교수' not in ph, f'PHARM 허브 과목 표 {PM} · 참고 없음 ({ph!r})')
     await pg.screenshot(path=J.TMP + f'/ux_u16_hub_{tag}.png')
     await open_(pg, '#/OMS1/_home/_home')
     t = await pg.evaluate("document.querySelector('#stage .panel .pline').innerText")

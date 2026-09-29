@@ -12,7 +12,7 @@ def ok(c, m):
     if not c: fails.append(m)
 TODAY = datetime.date.today().isoformat()
 async def home(pg, h=''):
-    await pg.goto(U + h); await pg.wait_for_function("window.__h&&document.querySelector('#home .scard[data-s]')||document.querySelector('#stage [data-aid]')")
+    await pg.goto(U + h); await pg.wait_for_function("window.__h&&document.querySelector('#home .hsj[data-s]')||document.querySelector('#stage [data-aid]')")
 async def c02(b, vp, touch, tag, full):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []; dlg = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200]))

@@ -44,8 +44,8 @@ async def run(b, vp, touch, tag, full):
         # 과목 홈·허브 카드 '이어서 풀기'
         await pg.goto('about:blank'); await pg.goto(U + '#/PHARM/_home'); await pg.wait_for_selector('#stage [data-jbres]'); t = await pg.inner_text('#stage [data-jbres]')
         ok('이어서 풀기' in t and '안 푼 것' in t and f'5/{n0}' in t, f'과목 홈 {t!r}')
-        await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('.scard[data-s="PHARM"] [data-jbres]'); t = await pg.inner_text('.scard[data-s="PHARM"] [data-jbres]'); ok(f'5/{n0}' in t, f'허브 카드 {t!r}')
-        await pg.click('.scard[data-s="PHARM"] [data-jbres]'); await pg.wait_for_function("location.hash.indexOf('_jb')>0"); await pg.wait_for_timeout(500)
+        await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('#home .hres [data-jbres^="PHARM|"]'); t = await pg.inner_text('#home .hres [data-jbres^="PHARM|"]'); ok(f'5/{n0}' in t, f'허브 ↪ 이어서 {t!r}')
+        await pg.click('#home .hres [data-jbres^="PHARM|"]'); await pg.wait_for_function("location.hash.indexOf('_jb')>0"); await pg.wait_for_timeout(500)
         ok(await pg.evaluate(POS) == f'5/{n0}', '누르면 그 회차·그 문항으로')
         # 회차 중 필터 바꾸기 → 확인(취소 = 그대로)
         D['acc'] = False; await pg.click('#jbbar [data-qf=""]'); await pg.wait_for_timeout(300)
