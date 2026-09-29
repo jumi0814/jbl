@@ -316,11 +316,26 @@ async def part_nav(b):
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()
 
+# ---------------- 표(F4): 칸 넘침 0 · 1280 영문 낱말 중간 끊김 0 (문제였던 강의) ----------------
+TSCAN = r"""()=>{const out=[];const cells=[...document.querySelectorAll('#stage table td, #stage table th')].filter(c=>c.offsetParent);
+ for(const c of cells){const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){const re=/[A-Za-z][A-Za-z\-]{3,}/g;let m;while(m=re.exec(t.nodeValue)){const r=document.createRange();r.setStart(t,m.index);r.setEnd(t,m.index+m[0].length);const rs=[...r.getClientRects()].filter(x=>x.width>0);
+  if(rs.length>1&&Math.abs(rs[0].top-rs[rs.length-1].top)>4&&m[0].indexOf('-')<0)out.push('BRK:'+m[0]);}}
+ if(c.scrollWidth>c.clientWidth+1)out.push('OVF:'+c.textContent.slice(0,20));}return out;}"""
+async def part_tbl(b):
+    for vp, tag in ((MAC, 'mac'), (LAND, 'land')):
+        ctx = await b.new_context(viewport=vp, has_touch=vp is LAND); pg = await ctx.new_page(); print('== F4 표', tag)
+        for sk in ('PHARM/DS', 'IMPL/PRO', 'CONS/INL', 'CONS/FRC', 'OMS1/LOAD', 'IMPL/OSS', 'ANAT/LIP'):
+            await pg.goto('about:blank'); await pg.goto(U + f'#/{sk}/sum')
+            await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#stage .msum')", timeout=60000); await pg.wait_for_timeout(1200)
+            r = await pg.evaluate(TSCAN); ovf = [x for x in r if x.startswith('OVF')]; brk = [x for x in r if x.startswith('BRK')]
+            ok(not ovf and (tag != 'mac' or not brk), f'{tag} {sk} 정리표 칸 넘침 {len(ovf)} · 낱말 끊김 {len(brk)} {r[:3]}')
+        await pg.screenshot(path=J.TMP + f'/ux3f_tbl_{tag}.png'); await ctx.close()
+
 async def main():
     only = _sys.argv[1:]
     async with async_playwright() as p:
         b = await p.chromium.launch()
-        for nm, fn in (('trk', part_trk), ('cal', part_cal), ('nav', part_nav)):
+        for nm, fn in (('trk', part_trk), ('cal', part_cal), ('nav', part_nav), ('tbl', part_tbl)):
             if not only or nm in only: await fn(b)
         await b.close()
     print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
