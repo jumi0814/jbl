@@ -1224,8 +1224,7 @@ body.navopen #top #navbtn{background:var(--tint,#F2EEE6);color:var(--ink)}
 @media (max-width:860px){#top{padding:0 12px;gap:10px}#top #gsearch{flex-basis:160px;width:160px;max-width:160px}}
 @media (max-width:600px){#top #gsearch{flex-basis:110px;width:110px;min-width:90px}#top #clock .ckl{display:none}}
 @media (pointer:coarse){body:not(.focus) #top #clock,body:not(.focus) #top #helpb,body:not(.focus) #top #navbtn{height:44px;min-height:44px}body:not(.focus) #top #helpb,body:not(.focus) #top #navbtn{width:44px;min-width:44px}#top #gsearch{height:40px;min-height:40px}#top .crumb button{min-height:40px}}   /* 아이패드 누름 자리 44(ux2 fixB V12) */
-/* 집중 모드 얇은 띠(24px)에서는 알약을 글자로 */
-body.focus:not(.at-home):not(.topshow) #top #clock{height:22px;min-height:0;border:0;background:none;padding:0 4px;font-size:12px}
+/* 병합: 집중 모드는 #top을 숨김(묶음 1) — 시계는 탭 줄 [집중 끝] 옆 .fclock이 알약 글자를 따라감 */
 /* 시계 팝오버 — 줄 버튼(누르면 닫힘) · 설정은 📅 달력 '측정 설정' */
 #tpop.ckpop{width:auto;min-width:268px;max-width:calc(100vw - 16px);padding:6px;border-radius:10px;font-size:13.5px;box-shadow:0 8px 28px rgba(35,33,29,.14);border:1px solid var(--line);background:var(--surface,#fff)}
 #tpop.ckpop .ph{font-size:12px;color:#766F64;font-weight:600;padding:6px 10px 4px;font-variant-numeric:tabular-nums}#tpop.ckpop .ph b{color:var(--ink)}
@@ -4034,7 +4033,7 @@ function plStart(){const need=SUBJECTS.map(x=>x[0]).filter(id=>!PACKS[id]&&!(Arr
 /* 이미 든 팩(단일 파일판)의 옛 기준선 → 시작 */
 (function(){let n=0;const go=()=>plStart();Object.keys(PACKS).forEach(id=>{const p=PACKS[id];if(!p.lx||LXT[id]||!Kit.needsLX(id))return;n++;const s=document.createElement('script');s.src='packs/'+id+'.lx.js?v='+p.lx;s.onload=s.onerror=()=>{if(--n===0)go();};document.head.appendChild(s);});if(!n)go();})();
 // ux4 묶음1 — B1-1 도구 막대 토글(✎ 도구·T) · B1-2 집중 모드 가운데·집중 끝 · B1-3 🧹 지우기 2단계 · B1-4 모드 칩·켜짐 안내 삭제 · B1-5 ⚡ ○✕ 삭제 · B1-6 시험일·읽음 빼기 · B1-7 오류 수정
-const DOCNM={_home:'과목 홈',_jb:'JB 문제',_sum:'기출 한눈표',_tbl:'비교표',_pred:'예상문제',_led:'기출 대장',_marks:'내 표시'};
+/* 병합: DOCNM은 '// ux4 묶음2' 구역의 var 하나를 같이 씀(빵부스러기·과목 메뉴·한 탭 문서 머리 이름) */
 function docLabel(d){return DOCNM[d]||String((SUBJDOCS.find(x=>x[0]===d)||['',d])[1]).replace(/^\S+\s/,'');}
 /* [✎ 도구][⤢ 집중] — 강의 탭 줄 오른쪽(#lmini·.lmini2)·한 탭 문서 머리(.dhk)·집중 모드의 한 탭 문서 줄(#dtabs.dsolo). 눌린 모양 = aria-pressed */
 function ktoolsHTML(kit,hero){const B=document.body.classList,off=B.contains('kit-off'),fo=B.contains('focus');
