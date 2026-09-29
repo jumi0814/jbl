@@ -34,10 +34,11 @@ async def main():
         ok(await pg.evaluate("!!document.querySelector('#t-DD1-2 .one [data-rk=h]')"), '새로고침 후 .one 형광펜 복원')
         # ✓ → 사이드바·자동 접기
         await pg.evaluate("document.querySelector('#t-DD1-3').scrollIntoView()")
-        s0 = await pg.evaluate("document.querySelector('#side .dbtn.on small').textContent")
+        DN = "Object.keys(JSON.parse(localStorage.getItem('jblhub.v1.done.OMS1')||'{}')).length"
+        s0 = await pg.evaluate(DN)
         await pg.evaluate("document.querySelector('#t-DD1-3 .dn').click()"); await pg.wait_for_timeout(900)
-        s1 = await pg.evaluate("document.querySelector('#side .dbtn.on small').textContent")
-        ok(s0 != s1 and s1.startswith('2/'), f'✓ → 메뉴 강의 줄 읽음 즉시 ({s0} → {s1})')
+        s1 = await pg.evaluate(DN)
+        ok(s1 == s0 + 1 and not await pg.evaluate("document.querySelector('#side .nvl[aria-current] small')") and '/' not in await pg.evaluate("document.querySelector('#side .nvl[aria-current]').textContent"), f'✓ → LS done 기록 {s0} → {s1} · 메뉴 강의 줄에는 읽음 n/N 없음(ux4 묶음2)')
         r = await pg.evaluate("(()=>{const c=document.querySelector('#t-DD1-3'),n=document.querySelector('#t-DD1-4');return [c.classList.contains('open'),Math.round(n.getBoundingClientRect().top-document.querySelector('#dtabs').getBoundingClientRect().bottom)]})()")
         ok(not r[0] and 0 <= r[1] <= 30, f'자동 접기·다음 카드가 탭 아래 {r}')
         await pg.screenshot(path=J.TMP + '/ux_u26_done_820.png')
