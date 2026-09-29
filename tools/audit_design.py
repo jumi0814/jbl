@@ -37,7 +37,7 @@ CHK=r"""()=>{const cs=[...document.querySelectorAll('#cards .qc')];const was=cs.
  cs.forEach((c,i)=>c.className=was[i]);dw.forEach(([d,o])=>d.open=o);return {n:longs.length,all,longs:longs.slice(0,20),eb,raw,ebx};}"""
 OVERLAP=r"""()=>{const bad=[];document.querySelectorAll('#stage .ln.li, #stage .mtx .ci, #stage .li').forEach(el=>{if(!el.offsetParent)return;const b=getComputedStyle(el,'::before');if(b.content==='none'||b.display==='none'||b.content==='normal'||b.position!=='absolute')return;
  const cs=getComputedStyle(el);const pad=parseFloat(cs.paddingLeft)+(parseFloat(cs.textIndent)||0);const L=parseFloat(b.left)||0,W=parseFloat(b.width)||0;if(L+W>pad-1)bad.push(el.className+': '+el.textContent.trim().slice(0,20));});return bad.slice(0,3);}"""
-TEAL=r"""(sid)=>{if(sid==='OMS1'||sid==='PHARM')return [];const T=['rgb(14, 72, 70)','rgb(23, 63, 61)','rgb(225, 238, 235)','rgb(195, 218, 213)','rgb(186, 215, 210)','rgb(10, 51, 50)'];const bad=new Set();
+TEAL=r"""(sid)=>{if(sid==='OMS1')return [];   /* ux3 R3 약물치료 과목 색이 자두색이 되어 청록 예외는 구강외과1만 */const T=['rgb(14, 72, 70)','rgb(23, 63, 61)','rgb(225, 238, 235)','rgb(195, 218, 213)','rgb(186, 215, 210)','rgb(10, 51, 50)'];const bad=new Set();
  document.querySelectorAll('#stage *, #hero, #hero *, #side *').forEach(el=>{if(!el.offsetParent&&el.id!=='hero')return;const cs=getComputedStyle(el);for(const v of [cs.color,cs.backgroundColor,cs.borderTopColor,cs.borderLeftColor,cs.backgroundImage])if(T.some(t=>v.indexOf(t)>=0))bad.add(el.tagName+'.'+String(el.className).slice(0,30));});return [...bad].slice(0,5);}"""
 REDJS=r"""()=>{const isRed=el=>{const c=(getComputedStyle(el).color.match(/\d+/g)||[0,0,0]).map(Number);return c[0]>=150&&c[1]<=90&&c[2]<=90;};let tot=0,red=0;
  document.querySelectorAll('#stage .tc').forEach(c=>{const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const p=n.parentElement;if(!p||!p.offsetParent||p.closest('button,.noann,.chip'))continue;const L=n.nodeValue.replace(/\s/g,'').length;if(!L)continue;tot+=L;if(isRed(p))red+=L;}});
@@ -109,7 +109,7 @@ async def fixb_sweep(b):
     avg.sort(reverse=True); rep.append(f"RED RATIO 강의 평균 20% 초과 {[f'{n} {a}%' for a,n in avg if a>20]} · 카드 30% 초과 {len(hi)} {hi[:12]} (원고 — 보고만)")
     return bad, rep
 async def ipad_sweep(b):
-    """아이패드 세로(820×1180)·가로(1180×820): 모든 과목 문서·강의 학습/정리표 — 페이지 가로 밀림 · 목록 점이 첫 글자를 가림 · 과목색이 아닌 청록(OMS1·PHARM 밖)"""
+    """아이패드 세로(820×1180)·가로(1180×820): 모든 과목 문서·강의 학습/정리표 — 페이지 가로 밀림 · 목록 점이 첫 글자를 가림 · 과목색이 아닌 청록(OMS1 밖)"""
     bad=[]
     for vw,vh in [(820,1180),(1180,820)]:
         pg=await (await b.new_context(viewport={'width':vw,'height':vh},has_touch=vw<1000)).new_page()
@@ -161,6 +161,31 @@ async def ux3_checks(b):
     await pg.emulate_media(media='print'); pr=await pg.evaluate("(()=>{const box=document.querySelector('#stage');const o=[];for(const c of ['n','u','g','p','v']){const e=document.createElement('span');e.className='rk-b'+(c!=='n'?' rkb-'+c:'');e.textContent='가';box.appendChild(e);o.push(getComputedStyle(e).backgroundColor);e.remove();}return o})()"); await pg.emulate_media(media='screen')
     if any(x!='rgba(0, 0, 0, 0)' for x in pr): bad.append(f'BLANK PRINT 인쇄에 빈칸 바탕색 {pr}')
     await pg.close(); return bad, rep
+# ---- ux3 R3 과목 색 한 가지 — 팩 color(subject.py) = SJC = sjColor · 메뉴 점·홈 과목표 점·이어서·과목 홈 hero·--acc·통계·달력 과목 점이 모두 그 색 · hero 흰 글자·종이 바탕 대비 ≥4.5 ----
+SJCOL=r"""()=>{const H=window.__h,P=H.PACKS,ids=Object.keys(P),bad=[];const hex=c=>{const m=(c||'').match(/\d+/g);return m?'#'+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('').toUpperCase():'';};
+ const SJC=H.SJC||{};ids.forEach(k=>{const a=(P[k].color||'').toUpperCase(),b=(SJC[k]||'').toUpperCase(),c=(H.sjColor(k)||'').toUpperCase();if(!(a&&a===b&&b===c))bad.push(`${k} 팩 ${a} · SJC ${b} · sjColor ${c}`);});
+ const want=new Set(ids.map(k=>H.sjColor(k).toUpperCase()));Object.keys(SJC).forEach(k=>want.add(SJC[k].toUpperCase()));want.add('#9A9288');
+ const pick=(sel,prop,key)=>document.querySelectorAll(sel).forEach(e=>{if(!e.getClientRects().length)return;const v=hex(getComputedStyle(e)[prop]);const s=key?key(e):'';if(s&&v!==H.sjColor(s).toUpperCase())bad.push(`${sel} ${s} ${v}≠${H.sjColor(s)}`);else if(!s&&v&&!want.has(v))bad.push(`${sel} 과목 색이 아님 ${v}`);});
+ pick('#nav .nvs .nvdot','backgroundColor',e=>e.closest('.nvs').dataset.s);pick('#home .hsj .hdot','backgroundColor',e=>{const h=e.closest('.hsj');return h.dataset.s||h.dataset.off;});
+ pick('#nav .nvrs .nvdot','backgroundColor',e=>e.closest('.nvrs').dataset.s);pick('.sjdot','backgroundColor',null);return bad;}"""
+async def subj_color(b):
+    """ux3 R3 과목 색 한 가지 — 허브 홈·통계·달력·과목 홈(hero·--acc)을 1280으로 열어 같은 과목이 화면마다 같은 색인지, hero 흰 글자·종이 바탕 대비 ≥4.5"""
+    bad=[]; pg=await b.new_page(viewport={'width':1280,'height':900})
+    await pg.goto('about:blank'); await pg.goto(U+'#/'); await pg.wait_for_timeout(1500)
+    ids=await pg.evaluate("Object.keys(__h.PACKS)")
+    await pg.evaluate("ids=>{const d=new Date(),t=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),o={};o[t]={};ids.forEach((k,i)=>o[t][k]=(i+1)*6e5);localStorage.setItem('jblhub.v1.time',JSON.stringify(o));}", ids)
+    for h in ['#/','#/_time','#/_cal']:
+        await pg.goto('about:blank'); await pg.goto(U+h); await pg.wait_for_timeout(1200)
+        bad+=[f'{h} {x}' for x in await pg.evaluate(SJCOL)]
+    for s in ids:
+        await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/_home'); await pg.wait_for_timeout(900)
+        r=await pg.evaluate("""s=>{const c=__h.sjColor(s).toUpperCase(),cs=getComputedStyle(document.documentElement),h1=cs.getPropertyValue('--hero1').trim().toUpperCase(),ac=cs.getPropertyValue('--acc').trim().toUpperCase();
+          const lin=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)},L=h=>{const n=parseInt(h.slice(1),16);return 0.2126*lin(n>>16&255)+0.7152*lin(n>>8&255)+0.0722*lin(n&255)},cr=(a,b)=>{const x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+          return {c,h1,ac,w:cr(c,'#FFFFFF'),p:cr(c,'#F1EDE5')};}""", s)
+        if not (r['h1']==r['c']==r['ac']): bad.append(f'{s} 과목 홈 --hero1 {r["h1"]} · --acc {r["ac"]} ≠ {r["c"]}')
+        if r['w']<4.5 or r['p']<4.5: bad.append(f'{s} {r["c"]} 대비 흰 글자 {r["w"]:.2f} · 종이 {r["p"]:.2f} (<4.5)')
+        bad+=[f'{s}/_home {x}' for x in await pg.evaluate(SJCOL)]
+    await pg.close(); return bad
 async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch(); pg=await b.new_page(viewport={'width':1280,'height':1000}); errs=[]
@@ -221,7 +246,10 @@ async def main():
         IP=await ipad_sweep(b)
         print('IPAD SWEEP (가로 밀림·점 겹침·청록)', len(IP))
         for x in IP[:40]: print(' ',x)
+        SC=await subj_color(b)
+        print('SUBJ COLOR (과목 색 한 가지 — 0이어야 함)', len(SC))
+        for x in SC[:20]: print(' ',x)
         print('errs',errs[:3]); await b.close()
-        return not IP and not errs and not FB and not UB
+        return not IP and not errs and not FB and not UB and not SC
 ok_=asyncio.run(main())
 print('RESULT', 'PASS' if ok_ else 'FAIL'); sys.exit(0 if ok_ else 1)

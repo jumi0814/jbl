@@ -1,5 +1,5 @@
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
-SID, TITLE, EN, COLOR = 'PHARM', '임상치과약물치료학', 'Clinical Dental Pharmacotherapeutics', '#1F5F5B'
+SID, TITLE, EN, COLOR = 'PHARM', '임상치과약물치료학', 'Clinical Dental Pharmacotherapeutics', '#8E3B78'
 PROFS = '백정화 · 이윤실 · 김우진 · 우경미 · 조영단'
 BUILT = '2026-09-27'
 LECMAP = {'RX': ('P01i', '처방전과 금연요법(26)'), 'RX5': ('P02i', '처방전과 금연요법(25)'), 'XE': ('P03i', '구강건조증 치료제(26)'), 'XE5': ('P04i', '구강건조증 치료제(25)'),

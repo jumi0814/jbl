@@ -1,6 +1,6 @@
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 # 과목별 설정 — ANAT 임상두경부해부학
-SID, TITLE, EN, COLOR = 'ANAT', '임상두경부해부학', 'Clinical Head & Neck Anatomy', '#4B2E83'
+SID, TITLE, EN, COLOR = 'ANAT', '임상두경부해부학', 'Clinical Head & Neck Anatomy', '#2F5DA8'
 PROFS = '명훈 · 권익재 · 양훈주 · 서병무 · 서미현 · 박주영'
 BUILT = '2026-09-25'
 LECMAP = {'NECK': ('A01i', 'Neck dissection(26)'), 'NV': ('A02i', '신경·혈관 해부학(26)'), 'NV5': ('A03i', '신경·혈관 해부학(25)'),

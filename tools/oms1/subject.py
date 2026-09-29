@@ -1,6 +1,6 @@
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 # 과목별 설정 — OMS1 구강악안면외과학 1
-SID, TITLE, EN, COLOR = 'OMS1', '구강악안면외과학 1', 'Oral & Maxillofacial Surgery I', '#0F4B4A'
+SID, TITLE, EN, COLOR = 'OMS1', '구강악안면외과학 1', 'Oral & Maxillofacial Surgery I', '#0F6E6C'
 PROFS = '서병무 · 한정준 · 서미현 · 윤필영'
 BUILT = '2026-09-24'
 LECMAP = {'DD1': ('L08', 'DD I(26)'), 'DD2': ('L09', 'DD II(26)'), 'DD3': ('L10', 'DD III(26)'), 'DX': ('L03', '진단·치료계획(25)'),

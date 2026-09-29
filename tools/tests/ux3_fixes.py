@@ -114,7 +114,7 @@ async def part_trk(b):
     await pg.clock.run_for(20 * MIN); await pg.mouse.move(700, 500); await pg.clock.run_for(300)
     r0 = await pg.evaluate("__h.restDay('%s')" % TODAY); s0 = await tot(pg, TODAY)
     await pg.clock.run_for(10500); t = await toast(pg)
-    ok('휴식으로 넣었어요' in t and '공부로 바꾸기' in t, f'flow V05 기본값(쉬었어요) 뒤 알림 {t!r}')
+    ok('휴식' in t and '기록했어요' in t and '공부로 바꾸기' in t, f'flow V05 기본값(쉬었어요) 뒤 알림 {t!r}')
     await pg.screenshot(path=J.TMP + '/ux3f_rest_toast_land.png')
     await pg.evaluate("document.querySelector('#toast .tact').click()"); await pg.clock.run_for(300)
     r1 = await pg.evaluate("__h.restDay('%s')" % TODAY); s1 = await tot(pg, TODAY)

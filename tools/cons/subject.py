@@ -1,6 +1,6 @@
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 # 과목별 설정 — 새 과목은 이 파일과 assemble.py(JB·강의 매핑)만 바꾸면 된다
-SID, TITLE, EN, COLOR = 'CONS', '임상치과보존학', 'Clinical Conservative Dentistry', '#5B2A86'
+SID, TITLE, EN, COLOR = 'CONS', '임상치과보존학', 'Clinical Conservative Dentistry', '#6B3FA0'
 PROFS = '이인복 · 서덕규 · 김선영 · 이창하'
 BUILT = '2026-09-23'
 LECMAP = {'WHT': ('C01c', 'Tooth whitening(26·25)'), 'CRK': ('C09i', 'Cracked tooth(26)'), 'DHS': ('C09i', '시린 치아·DH(26)'), 'CR5': ('C02i', 'Cracked tooth(25)'), 'DH5': ('C03i', 'Dentin hypersensitivity(25)'),

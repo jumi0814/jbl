@@ -1,6 +1,6 @@
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 # 과목별 설정 — GERI 노인치과학
-SID, TITLE, EN, COLOR = 'GERI', '노인치과학', 'Geriatric Dentistry', '#6B4E1E'
+SID, TITLE, EN, COLOR = 'GERI', '노인치과학', 'Geriatric Dentistry', '#6A6A1C'
 PROFS = '유연지 · 한동헌 · 이우철 · 금기연 · 고홍섭 · 장지희 · 변민수'
 BUILT = '2026-09-26'
 LECMAP = {'HARD': ('G01i', '치아경조직 질환(25)'), 'OHQ': (None, '구강건강과 삶의 질(26·텍스트)'), 'OHQ5': ('G02i', '구강건강과 삶의 질(25)'),

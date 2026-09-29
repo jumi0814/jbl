@@ -1,6 +1,6 @@
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J  # tools/localize.py
 # 과목별 설정 — IMPL 치과임플란트학
-SID, TITLE, EN, COLOR = 'IMPL', '치과임플란트학', 'Dental Implantology', '#8A3B00'
+SID, TITLE, EN, COLOR = 'IMPL', '치과임플란트학', 'Dental Implantology', '#93561A'
 PROFS = '조영단 · 한정준 · 명훈 · 임영준 · 김성균 · 조준호 · 윤필영'
 BUILT = '2026-09-25'
 LECMAP = {'HIS': ('I01i', '역사·용어·설계·표면(26)'), 'OSS': ('I02i', 'Osseointegration·bone physiology(25)'),
