@@ -56,7 +56,7 @@ def card_alt(k, j): return ' '.join([aid(k + ':c%d' % j)] + [a for a in ALTS[(k,
 
 for q in Q:
     L0 = reflow.reflow(q['text'])
-    if L0: q['short'] = re.sub(r'^\s*\d{1,3}(-\d)?\s?[.)]?\s*', '', L0[0]).strip()[:78]
+    if L0: q['stem'] = re.sub(r'^\s*\d{1,3}(-\d)?\s?[.)]?\s*', '', L0[0]).strip(); q['short'] = q['stem'][:78]
 # ---- 문항 → 강의 카드 위치
 PROF_LEC = S.PROF_LEC
 cand = {}
@@ -394,7 +394,16 @@ def short_clean(t):
     """문항 요약의 JB 괄호 연도 '(21,22,24)'·'(20’, 19’)'·'(24, 탈)' 떼기(어디에 있든) — 연도는 칩에 있음 · 끝의 옛 형식 괄호도"""
     t2 = YRPAR.sub('', t)
     t2 = re.sub(r'\s*\([^()]*\b\d{2}\b[^()]*\)\s*\.?\s*$', '', t2).strip()
+    t2 = YRCUT.sub('', t2).strip()   # 4차 최종: 78자 자르기에 걸려 닫히지 않은 끝 괄호 연도 '(24,23' · '(2' · '(' 떼기
     return t2 or t
+YRCUT = re.compile(r'\s*\(\s*(?:\d{1,2}\s*[’′\']?(?:\s*[,·~]\s*(?:\d{1,2}\s*[’′\']?|[탈짤])?)*)?\s*$')
+def short_top(q):
+    """4차 최종: 과목 홈 '2회 이상 출제' 줄 — 첫 줄 전체에서 괄호 연도를 먼저 떼고 78자(넘치면 …)"""
+    t = short_clean(q.get('stem') or q['short']); cut = len(t) > 78
+    if cut: t = t[:77].rstrip()
+    i = t.rfind('(')
+    if i > t.rfind(')') and len(t[:i].rstrip()) >= 12: t, cut = t[:i].rstrip(), False   # 닫히지 않은 괄호(잘림·다음 줄로 이어짐) 앞에서 끊기
+    return t + ('…' if cut else '')
 SUMQ_STEM = re.compile(r'다음\s*(?:설명|글|그림|표|증례)')
 def sum_q(q):
     """ux2 E10 한눈표 문제 칸: 발문(번호·JB 괄호 연도 뗌) + 발문이 '다음 설명·글·그림·표·증례'이거나 목록 줄이 1개뿐이면 본문 줄을 160자까지(넘치면 '…▸'로 그 자리 펼침)"""
@@ -639,7 +648,7 @@ PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not
 trends_html = (f'<section class="ptrend sh4"><h2 class="hh">교수별 출제 경향 <small>짤 = 이전 해에 한 번이라도 나온 문제 · 탈 = 그 해 처음</small></h2><div class="tscroll"><table class="ttab"><thead><tr><th>교수</th><th>최근 해</th><th>짤 / 탈</th><th>유형</th><th>짤 비율</th><th>탈의 성격 · 형식</th></tr></thead><tbody>{trow}</tbody></table></div>'   # ux4 B3-3 문장 목록 → 표(행 = 최근 2개 시험 해에 문항이 있는 교수)
                + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
                + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></section>')
-top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_clean(q['short']), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
+top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_top(q), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 lect = []; KEYLONG = {}; MEMTIP = {}
 def fsrc_short(f):
     """강의 틀 첫 줄(V11) — '26년도 슬라이드 · 75쪽'처럼 짧게. 파일 이름·자료 안내는 눌러서 펼침"""

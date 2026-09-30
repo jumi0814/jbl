@@ -1484,6 +1484,8 @@ body.d-home #stage{padding-top:8px}
 #htop .toplist{list-style:none;margin:0;padding:0}
 #htop .toplist>li{display:grid;grid-template-columns:48px 9.5em minmax(0,1fr) auto;gap:12px;align-items:baseline;margin:0;padding:10px 4px;border-bottom:1px solid var(--line);font-size:13.5px}
 #htop .toplist>li:last-child{border-bottom:0}
+#htop:not(.all) .toplist>li.tmr{display:none}#htop:not(.all) .toplist>li:nth-child(5){border-bottom:0}   /* 4차 최종: 처음 5줄만 · [나머지 n문항 더 보기 ▾] */
+#htop .topmore{display:inline-block;margin:10px 4px 0;font-size:13px}
 #htop .toplist .c{font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
 #htop .toplist .yr{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
 #htop .toplist .q{border:0;background:none;padding:0;margin:0;font:inherit;color:var(--ink);text-align:left;cursor:pointer;min-height:0;white-space:normal;line-height:1.55}
@@ -2682,7 +2684,7 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  const hot2=new Set((p.top||[]).map(t=>t.lk).filter(Boolean));
  const lecs=p.lect.map(L=>`<button class="lcard ${L.heat}" data-d="${L.k}"><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.hint?`<span class="lh">${EH(L.hint)}</span>`:''}</button>`).join('');
  const T=p.top||[],y4=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return a.length>4?a.slice(0,4).join('·')+' +'+(a.length-4):a.join('·');};
- const top=T.map(t=>{const st=MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'';return `<li class="${st}"><span class="c">${t.yrs.length}회</span><span class="yr">${y4(t.yrs)}</span><button class="q" data-go="${t.id}" title="${EH(yrsLab(t.yrs))} — JB 문제로">${EH(t.short)}</button><span class="p">${EH(t.prof)}</span></li>`;}).join('');
+ const TN=5,top=T.map((t,i)=>{const st=(MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'')+(i>=TN?' tmr':'');return `<li class="${st.trim()}"><span class="c">${t.yrs.length}회</span><span class="yr">${y4(t.yrs)}</span><button class="q" data-go="${t.id}" title="${EH(yrsLab(t.yrs))} — JB 문제로">${EH(t.short)}</button><span class="p">${EH(t.prof)}</span></li>`;}).join('');
  const hints=(p.hints&&p.hints.length)?`<section class="hints sh4" id="hhint"><h2 class="hh">교수님이 예고·강조한 것${p.hints.length>3?`<button class="more" data-hmore="1">모두 보기 ${p.hints.length}</button>`:''}</h2><ul class="hlist">${p.hints.map((x,i)=>`<li class="hq${i>=3?' hmore':''}"><button class="lec" data-golec="${x.k}:0">${EH(x.t)}</button><p>${x.h}</p></li>`).join('')}</ul></section>`:'';
  const rvb=revBtn(p.id,'b3lk');
  return `<section class="guide sh4" id="hguide"><h2 class="hh gt">공부 순서</h2><ol class="steps">${rvb?`<li class="rvli"><span class="stx"><b>오늘 복습</b> <span class="d">틀렸던 기출을 1·3·7일 간격으로 다시</span></span>${rvb}</li>`:''}${guide}</ol></section>
@@ -2691,7 +2693,7 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  ${p.trends||''}
  ${hints}
  <section class="sh4" id="hlec"><h2 class="hh">강의 <small>${p.lect.length} · 2회+ = 두 번 이상 나온 문제가 있는 강의</small></h2><div class="lgrid">${lecs}</div></section>
- <section class="sh4" id="htop"><h2 class="hh bt">2회 이상 출제 <small>완짤 후보 ${T.length}문항</small>${T.length?`<button class="more" data-jbn="2" data-one="1">한 장씩 풀기 →</button>`:''}</h2><ol class="toplist">${top}</ol></section>`;}
+ <section class="sh4" id="htop"><h2 class="hh bt">2회 이상 출제 <small>완짤 후보 ${T.length}문항</small>${T.length?`<button class="more" data-jbn="2" data-one="1">한 장씩 풀기 →</button>`:''}</h2><ol class="toplist">${top}</ol>${T.length>TN?`<button type="button" class="b3lk topmore" data-topmore="1">나머지 ${T.length-TN}문항 더 보기 ▾</button>`:''}</section>`;}
 /* 학습 탭 끝 '다음 할 일'(U31) — 이 강의 기출(안 푼 것)·플래시카드·예상·다음 강의(마지막이면 과목 홈) + 읽음 안 한 카드. 기출·정리표 탭 끝은 한 줄 */
 function nextOf(p,L){const i=p.lect.indexOf(L);return p.lect[i+1]||null;}
 function nextHTML(p,L){const mk=getMK(p.id),todo=L.jb.filter(i=>!mk.ok[i]&&!mk.ng[i]).length,N=nextOf(p,L),pr=lecProg(p,L),un=L.nsec-pr.done,E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
@@ -2973,6 +2975,7 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const mb=e
  if(d.sumrep){openDoc(CUR.s,'_sum');const b=$('#stage [data-filt="rep"]');if(b&&!b.classList.contains('on'))b.click();return;}
  if(d.nx){nxGo(t);return;}
  if(d.hmore){t.closest('.hints').classList.add('all');t.remove();return;}
+ if(d.topmore){const h=t.closest('#htop');h.classList.add('all');t.remove();const f=h.querySelector('li.tmr');if(f){const b=f.querySelector('.q');if(b)b.focus({preventScroll:true});}return;}   /* 4차 최종: 과목 홈 2회 이상 5줄 + 더 보기 */
  if(d.tmore){t.closest('.ftop').classList.add('all');t.remove();return;}
  if(d.fsrc){t.classList.toggle('all');return;}
  if(d.d&&(t.classList.contains('lcard')||t.classList.contains('ljc'))){openDoc(CUR.s,d.d,'learn');return;}

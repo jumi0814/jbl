@@ -1,5 +1,5 @@
 """U21 회귀: 과목 홈 압축·실행 버튼 — 순서 유지(공부 순서 → 진행률 → 교수별 경향·📌 → 📣 → 강의 카드 → 2회 이상),
-1280에서 강의 카드 시작 y ≤ 1800(6과목 · ux4 B3-3 시안 기준), 2회 이상 목록 항목 수 = 제목의 N, 실행 버튼(이어서·안 푼 것·2회 이상·한눈표)이 맞는 문서·필터로 열림.
+1280에서 강의 카드 시작 y ≤ 1800(6과목 · ux4 B3-3 시안 기준), 2회 이상 목록 항목 수 = 제목의 N(처음 5줄 + 더 보기 · 닫히지 않은 괄호 없음), 실행 버튼(이어서·안 푼 것·2회 이상·한눈표)이 맞는 문서·필터로 열림.
 스크린샷 work/_tmp/ux_u21_*.png (맥 1280×900 · 아이패드 세로 820×1180)"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, re
@@ -25,6 +25,13 @@ async def main():
             n, t = await pg.evaluate("[document.querySelectorAll('#htop .toplist li').length, document.querySelector('#htop .bt').textContent]")
             N = int(re.search(r'(\d+)문항', t).group(1))
             ok(n == N, f'{s} 2회 이상 항목 {n} = 제목 N {N}')
+            # 4차 최종: 처음 5줄만 보이고 [나머지 n문항 더 보기 ▾] → 누르면 전부 · 문항 글자에 닫히지 않은 괄호(잘린 연도 '(24,23') 없음
+            v, bt, qs = await pg.evaluate("[[...document.querySelectorAll('#htop .toplist li')].filter(l=>l.offsetParent).length, (document.querySelector('#htop .topmore')||{}).textContent||'', [...document.querySelectorAll('#htop .toplist .q')].map(q=>q.textContent)]")
+            ok(v == min(N, 5) and (N <= 5 or f'{N-5}문항' in bt), f'{s} 2회 이상 처음 {v}줄 · 버튼 {bt!r}')
+            ok(not [q for q in qs if q.rfind('(') > q.rfind(')')], f'{s} 2회 이상 문항 글자 닫히지 않은 괄호 없음 {[q for q in qs if q.rfind("(") > q.rfind(")")][:2]}')
+            if N > 5:
+                await pg.click('#htop .topmore'); await pg.wait_for_timeout(200)
+                ok(await pg.evaluate("[...document.querySelectorAll('#htop .toplist li')].every(l=>l.offsetParent) && !document.querySelector('#htop .topmore')"), f'{s} 더 보기 → {N}줄 모두')
             ok(await pg.evaluate("!!document.querySelector('#stage details.trd') && !document.querySelector('#stage details.trd').open"), f'{s} 연도별 세부 접힘')
         await open_(pg, '#/PHARM/_home/_home')
         g1 = await pg.inner_text('#hguide ol.steps li:first-child')
