@@ -52,7 +52,7 @@ async def run(b, vp, touch, tag):
     ok(nb is None, f'{tag} H3 메뉴 오늘 줄에는 배지 없음(ux4 묶음2 — 할 일은 홈에만) {nb!r}')
     bt = await pg.inner_text('#home .hband')
     ok('D-2' not in bt and '가장 가까운 시험' not in bt, f'{tag} H2 시험일이 있어도 띠에 D-n 없음 ({bt[:60]!r})')
-    pc = await pg.evaluate("d=>{const td=Object.values(__h.tDay(d)).reduce((a,b)=>a+b,0);return [Math.min(100,Math.round(td/(__h.tGoal(d)*60000)*100))+'%',document.querySelector('#home [data-hbw]').style.width,!document.querySelector('#home [data-hb=pct]')]}", dd(0))
+    pc = await pg.evaluate("d=>{const td=Object.values(__h.tDay(d)).reduce((a,b)=>a+b,0);return [Math.min(100,Math.floor(td/(__h.tGoal(d)*60000)*100))+'%',document.querySelector('#home [data-hbw]').style.width,!document.querySelector('#home [data-hb=pct]')]}", dd(0))
     ok(pc[0] == pc[1] and pc[2], f'{tag} H2 막대 폭 = 오늘/목표 · % 글자 없음 {pc}')
     await pg.screenshot(path=J.TMP + f'/ux3h_{W}.png'); await pg.screenshot(path=J.TMP + f'/ux3i_h_{tag}_full.png', full_page=True)
     # 1180 메뉴 펼침·1280: 띠·이어서·할 일이 첫 화면에(스크롤 없이)
@@ -98,15 +98,17 @@ async def run(b, vp, touch, tag):
     await pg.evaluate("document.querySelector('#home .hsj[data-s=OMS1] .hcj').click()"); await pg.wait_for_timeout(600)
     ok((await pg.evaluate('location.hash')).startswith('#/OMS1/_home'), f'{tag} H4 행 누르면 과목 홈')
     ok(await pg.evaluate("!document.querySelector('#home .hgo,#home [data-revgo],#home .hcv')"), f'{tag} H4 ↪ 원 버튼·🔁 열 없음(ux4 B3-2)')
+    await open_(pg, '#/'); await pg.evaluate(SEED, {'c': dd(2), 'a': dd(6), 't0': dd(0)})   # ux4c 1회차: 문서를 떠날 때(pagehide) 읽던 자리를 저장 — 위에서 연 JB가 last가 되므로 다시 심음
     await open_(pg, '#/'); await pg.evaluate("document.querySelector('#home .hrbig').click()"); await pg.wait_for_timeout(900)
     lb = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.last')).d")
     ok((await pg.evaluate('location.hash')).startswith('#/CONS/' + lb + '/sum'), f'{tag} B3-2 계속하기 → 마지막 위치(LS last {lb} 정리표) {await pg.evaluate("location.hash")}')
     # 이어서 큰 버튼 = LS last · 칩 2
+    await open_(pg, '#/'); await pg.evaluate(SEED, {'c': dd(2), 'a': dd(6), 't0': dd(0)})
     await open_(pg, '#/')
     rs = await pg.evaluate("[document.querySelector('#home .hrbig').dataset.s,document.querySelector('#home .hrbig').innerText,[...document.querySelectorAll('#home .hrchip')].map(b=>b.dataset.s)]")
     ok(rs[0] == 'CONS' and '정리표' in rs[1] and '카드 제목' in rs[1] and rs[2] == ['ANAT', 'PHARM'], f'{tag} H3 ↪ 큰 버튼 = last · 칩 = lastBy 다음 2 {rs}')
     # ---- H5 이번 주 · 더보기
-    wk = await pg.evaluate("(()=>{const W=__h.tWeek((()=>{const x=new Date();x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x})());const s=W.reduce((a,x)=>a+x.sum,0);const m=Math.round(s/60000);return [Math.floor(m/60)+':'+('0'+m%60).slice(-2),document.querySelector('#home [data-hw=tot]').textContent,document.querySelectorAll('#home .hwb').length,document.querySelectorAll('#home .hwb.today').length]})()")
+    wk = await pg.evaluate("(()=>{const W=__h.tWeek((()=>{const x=new Date();x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x})());const s=W.reduce((a,x)=>a+x.sum,0);const m=Math.floor(s/60000);return [Math.floor(m/60)+':'+('0'+m%60).slice(-2),document.querySelector('#home [data-hw=tot]').textContent,document.querySelectorAll('#home .hwb').length,document.querySelectorAll('#home .hwb.today').length]})()")
     ok(wk[0] == wk[1] and wk[2] == 7 and wk[3] == 1, f'{tag} H5 주 합계 = tWeek 합 · 막대 7 · 오늘 1 {wk}')
     ok(await pg.evaluate("document.querySelector('#nav [data-nb=wk]').textContent") == '이번 주 ' + wk[1], f'{tag} H5 주 합계 = 허브 메뉴 공부 달력 줄 이번 주(ux4 묶음2)')
     await pg.evaluate(f"document.querySelector('#home .hwb[data-hwd=\"{dd(0)}\"]').click()"); await pg.wait_for_timeout(500)

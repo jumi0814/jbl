@@ -14,7 +14,7 @@ def ok(c, m):
     if not c: fails.append(m)
 NOW = datetime.datetime(2026, 9, 24, 10, 0, 0); MIN = 60000
 def fmtH(ms):
-    m = int(math.floor(max(0, ms) / 60000 + 0.5)); return f'{m // 60}:{m % 60:02d}'
+    m = int(math.floor(max(0, ms) / 60000)); return f'{m // 60}:{m % 60:02d}'   # ux4c 1회차 fmtH = 분 내림
 async def boot(pg, h, ms=1500):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
 async def fresh(pg, h):
@@ -39,7 +39,7 @@ async def part_view(b, vp, touch, tag):
     await pg.screenshot(path=J.TMP + f'/ux3p_t_study_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 360})
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')
-    ok(bl == '● 집중 중' and bt.startswith('00:25:') and '오늘 공부 0:25' in bs and '세션 0:25' in bs and '목표' in bs, f'⏱ 크게(공부 중) {bl!r} {bt!r} {bs!r}')
+    ok(bl == '● 집중 중' and bt.startswith('0:25:') and '오늘 공부 0:25' in bs and '세션 0:25' in bs and '목표' in bs, f'⏱ 크게(공부 중) {bl!r} {bt!r} {bs!r}')
     await pg.evaluate("document.querySelector('[data-bigx]').click()"); await pg.clock.run_for(200)
     # ② ☕ 쉬기 4분
     await pg.evaluate("__h.trRest()"); await pg.clock.run_for(4 * MIN + 10000)
@@ -53,7 +53,7 @@ async def part_view(b, vp, touch, tag):
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')
     cls = await pg.evaluate("document.querySelector('#bigclock').className")
-    ok(bl == '☕ 쉬는 중' and re.fullmatch(r'00:04:[0-2]\d', bt) and bs.startswith('오늘 휴식 0:04 · 공부 0:25') and 'rest' in cls, f'⏱ 크게(쉬는 중) {bl!r} {bt!r} {bs!r} {cls!r}')
+    ok(bl == '☕ 쉬는 중' and re.fullmatch(r'4:[0-2]\d', bt) and bs.startswith('오늘 휴식 0:04 · 공부 0:25') and 'rest' in cls, f'⏱ 크게(쉬는 중) {bl!r} {bt!r} {bs!r} {cls!r}')
     await pg.screenshot(path=J.TMP + f'/ux3p_t_big_{tag}.png')
     await pg.evaluate("document.querySelector('[data-bigx]').click()"); await pg.clock.run_for(200)
     # ③④ 홈 — 알약 글자 · 오늘 띠 휴식 = restStats

@@ -125,8 +125,8 @@ async def run(b, vp, touch, tag):
     # ---- B2-5 서랍 / M
     if narrow:
         await open_(pg, '#/CONS/WHT/learn'); await tap('#navbtn'); await pg.wait_for_timeout(350)
-        r = await pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect(),h=document.querySelector('#nav .nvdh');return [document.body.classList.contains('navopen'),Math.round(s.left),Math.round(s.width),Math.round(s.top),Math.round(s.bottom)-innerHeight,getComputedStyle(h).display,h.textContent.includes('JBL 허브'),document.documentElement.classList.contains('navlock'),getComputedStyle(document.querySelector('#navbg')).display,getComputedStyle(document.querySelector('#nav .nvhidew')).display]})()")
-        ok(r[0] and r[1] == 0 and r[2] == 300 and r[3] == 0 and r[4] == 0 and r[5] == 'flex' and r[6] and r[7] and r[8] == 'block' and r[9] == 'none', f'{tag} ☰ → 300px 서랍(화면 위부터·머리 JBL 허브 ✕·뒤 스크롤 잠금·가림막·M 없음) {r}')
+        r = await pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect(),h=document.querySelector('#nav .nvdh');return [document.body.classList.contains('navopen'),Math.round(s.left),Math.round(s.width),Math.round(s.top),Math.round(s.bottom)-innerHeight,getComputedStyle(h).display,h.textContent.includes('보존 메뉴'),document.documentElement.classList.contains('navlock'),getComputedStyle(document.querySelector('#navbg')).display,getComputedStyle(document.querySelector('#nav .nvhidew')).display]})()")
+        ok(r[0] and r[1] == 0 and r[2] == 300 and r[3] == 0 and r[4] == 0 and r[5] == 'flex' and r[6] and r[7] and r[8] == 'block' and r[9] == 'none', f'{tag} ☰ → 300px 서랍(화면 위부터·머리 ● 보존 메뉴 ✕(ux4c 1회차 과목 메뉴는 과목 이름)·뒤 스크롤 잠금·가림막·M 없음) {r}')
         y0 = await pg.evaluate('scrollY'); await pg.mouse.wheel(0, 600); await pg.wait_for_timeout(250)
         ok(await pg.evaluate('scrollY') == y0, f'{tag} 서랍 열린 동안 뒤 화면 스크롤 안 됨')
         await tap('#nav .nvl[data-d="CRK"]'); await pg.wait_for_timeout(900)

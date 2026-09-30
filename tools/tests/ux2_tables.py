@@ -140,6 +140,7 @@ async def mac(b):
     # ---- E08
     await open_(pg, '#/CONS/WHT/sum', '#stage .msum')
     await pg.evaluate("(()=>{const b=document.querySelector('#sumtop [data-sttab].on');if(b)b.click();})()"); await pg.wait_for_timeout(200)   # ux4 B46 J/K는 펼친 전체정리표 행도 지나감 — 여기서는 접고 본 정리표 행만
+    await pg.evaluate("scrollTo(0,0)"); await pg.wait_for_timeout(300)   # ux4c 1회차: 떠날 때 읽던 자리를 저장 → 다시 열면 그 자리 — 맨 위에서 시작
     for _ in range(3): await pg.keyboard.press('j'); await pg.wait_for_timeout(450)
     r = await pg.evaluate("(()=>{const r=document.querySelector('#stage tr.rcur'),th=document.querySelector('#stage table.mtx thead th');return [r&&r.id,Math.round(r.getBoundingClientRect().top),Math.round(th.getBoundingClientRect().bottom),location.hash]})()")
     ok(r[0] == 'm-WHT-2' and abs(r[1] - r[2]) <= 20 and r[3].endswith('/WHT/sum'), f'E08 J 3번 → {r[0]} top {r[1]} · 머리 아래 {r[2]} · {r[3]}')

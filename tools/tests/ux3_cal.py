@@ -13,7 +13,7 @@ NOW = datetime.datetime(2026, 9, 29, 10, 0, 0)
 D = lambda i: (NOW - datetime.timedelta(days=i)).strftime('%Y-%m-%d')
 MIN = 60000
 def fmtH(ms):
-    m = int(math.floor(max(0, ms) / 60000 + 0.5)); return f'{m // 60}:{m % 60:02d}'
+    m = int(math.floor(max(0, ms) / 60000)); return f'{m // 60}:{m % 60:02d}'   # ux4c 1회차 fmtH = 분 내림
 async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
 async def raw(pg, k): return await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')")
@@ -68,7 +68,7 @@ async def part_main(b, vp, touch, tag):
     ok(got_dots == exp_dots, f'달성 ● = 합계 ≥ 4:00인 날 {len(got_dots)}/{len(exp_dots)}')
     ok(await pg.evaluate("document.querySelector('#calg [data-cd=\"2026-09-30\"]').classList.contains('fut')"), '미래 칸 흐림(fut)')
     # J2 카드 = tDay·trest
-    ok(await pg.inner_text('#cc-td') == '00:30:00', f"오늘 공부 카드 {await pg.inner_text('#cc-td')}")
+    ok(await pg.inner_text('#cc-td') == '0:30:00', f"오늘 공부 카드 {await pg.inner_text('#cc-td')}")
     sm = await pg.inner_text('#calsum'); ok(sm.startswith('9월 ') and '공부한 날 29' in sm, f'월 요약 {sm!r}')
     await pg.screenshot(path=J.TMP + f'/ux3j_{vp["width"]}.png', full_page=True)
     ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth+1"), '가로 넘침 0(달력)')

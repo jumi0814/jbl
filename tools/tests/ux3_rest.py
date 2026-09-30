@@ -13,7 +13,7 @@ def ok(c, m):
 NOW = datetime.datetime(2026, 9, 24, 10, 0, 0)
 TODAY = '2026-09-24'; MIN = 60000
 def fmtH(ms):
-    m = int(math.floor(max(0, ms) / 60000 + 0.5)); return f'{m // 60}:{m % 60:02d}'
+    m = int(math.floor(max(0, ms) / 60000)); return f'{m // 60}:{m % 60:02d}'   # ux4c 1회차 fmtH = 분 내림
 async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
 async def boot(pg, h, ms=1800):

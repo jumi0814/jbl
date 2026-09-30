@@ -31,7 +31,7 @@ async def run(b, tag, vp, touch):
     ok(r['secs'] == ['hband', 'hres', 'hduo', 'hsubj', 'hweek', 'hxtra'], f'{tag} B3-2 절 순서 {r["secs"]}')
     ok(r['pri'] == 1, f'{tag} B3-2 보이는 주 버튼 1개 ({r["pri"]})')
     ok(not re.search(r'D-\d|시험일|읽음|\d+%', r['tx']), f'{tag} B3-2 시험·D-n·읽음·% 없음')
-    ok(r['hd'][:3] == ['과목', '기출 푼 것', '틀림'] and ('오늘' in r['hd']) != narrow and r['today'] == ('none' if narrow else 'block'), f'{tag} B3-2 과목 표 열 {r["hd"]} · 오늘 열 {r["today"]}')
+    ok(r['hd'][:3] == ['', '기출 푼 것', '틀림'] and ('오늘' in r['hd']) != narrow and r['today'] == ('none' if narrow else 'block'), f'{tag} B3-2 과목 표 열 {r["hd"]} · 오늘 열 {r["today"]}')
     ok(r['sw'] <= 0, f'{tag} B3-2 가로 넘침 0 ({r["sw"]})')
     await pg.screenshot(path=J.TMP + f'/ux4i_b3_home_{tag}.png')
     await pg.evaluate("document.querySelector('#home .hsj[data-s=PHARM] .hcn').click()"); await pg.wait_for_timeout(700)
@@ -39,6 +39,7 @@ async def run(b, tag, vp, touch):
     # 계속하기 = LS last(카드 aid까지)
     await go(pg, '#/CONS/WHT/learn', '#stage .tc')
     aid = await pg.evaluate("document.querySelector('#t-WHT-5').dataset.aid")
+    await go(pg, '#/', '#home .hrbig')   # ux4c 1회차: 문서를 떠날 때(pagehide) 읽던 자리를 저장하므로 심기는 허브에서
     await pg.evaluate("a=>{const o={s:'CONS',d:'WHT',t:'learn',aid:a,off:0,at:Date.now(),ti:'카드 6'};localStorage.setItem('jblhub.v1.last',JSON.stringify(o));const l=JSON.parse(localStorage.getItem('jblhub.v1.lastBy')||'{}');l.CONS=o;localStorage.setItem('jblhub.v1.lastBy',JSON.stringify(l));}", aid)
     await go(pg, '#/', '#home .hrbig')
     t = await pg.inner_text('#home .hrbig'); await pg.evaluate("document.querySelector('#home .hrbig').click()"); await pg.wait_for_timeout(1600)

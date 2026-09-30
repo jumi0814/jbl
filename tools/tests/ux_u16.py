@@ -26,7 +26,7 @@ async def run(b, vp, touch, tag):
     await pg.screenshot(path=J.TMP + f'/ux_u16_hub_{tag}.png')
     await open_(pg, '#/OMS1/_home/_home')
     t = await pg.evaluate("document.querySelector('#hprog').innerText")
-    ok(f'현 교수 기출 {M}문항' in t and f'안 푼 것 {M - 3}' in t and f'참고 {R} 보이기' in t, f'과목 홈 진행률(ux4 B3-3 — 참고는 절 제목 오른쪽 링크) ({t[:80]})')
+    ok(f'현 교수 기출 {M}문항' in t and f'안 푼 것 {M - 3}' in t and f'JB에서 참고 {R} 보기' in t, f'과목 홈 진행률(ux4 B3-3 — 참고는 절 제목 오른쪽 링크) ({t[:80]})')
     await pg.screenshot(path=J.TMP + f'/ux_u16_home_{tag}.png')
     await open_(pg, '#/OMS1/_jb/_jb')
     t = await pg.inner_text('#jbprog')

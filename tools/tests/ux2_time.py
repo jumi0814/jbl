@@ -11,7 +11,7 @@ def ok(c, m):
 NOW = datetime.datetime(2026, 9, 24, 10, 0, 0)          # 목요일 — 이번 주 = 9/21(월)~9/27(일)
 D = lambda i: (NOW - datetime.timedelta(days=i)).strftime('%Y-%m-%d')   # i일 전
 def fmtH(ms):
-    m = int(math.floor(max(0, ms) / 60000 + 0.5)); return f'{m // 60}:{m % 60:02d}'
+    m = int(math.floor(max(0, ms) / 60000)); return f'{m // 60}:{m % 60:02d}'   # ux4c 1회차 fmtH = 분 내림
 MIN = 60000
 async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
