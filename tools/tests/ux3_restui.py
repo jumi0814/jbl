@@ -22,7 +22,7 @@ async def fresh(pg, h):
 async def lab(pg): return await pg.evaluate("document.querySelector('#clock .ckl').textContent")
 async def st(pg): return await pg.evaluate("document.querySelector('#clock').dataset.st")
 async def pop(pg):   # 팝오버를 열어(열려 있으면 그대로) 글자 — 알약·팝오버 누름은 측정 상태를 바꾸지 않음(TRKSEL)
-    return await pg.evaluate("(()=>{const p=document.querySelector('#tpop');if(!p.classList.contains('on'))document.querySelector('#clock').click();return {seg:(p.querySelector('[data-tpt=seg]')||{}).textContent||'',rv:(p.querySelector('[data-tpt=rv]')||{}).textContent||'',rl:(p.querySelector('.trrl')||{}).textContent||'',rows:[...p.querySelectorAll('[data-tp]')].map(b=>b.dataset.tp)}})()")
+    return await pg.evaluate("(()=>{const p=document.querySelector('#tpop');if(!p.classList.contains('on'))document.querySelector('#clock').click();return {seg:(p.querySelector('[data-tpt=seg]')||{}).textContent||'',rest:(p.querySelector('[data-tpt=rest]')||{}).textContent||'',rv:(p.querySelector('[data-tpt=rv]')||{}).textContent||'',rl:(p.querySelector('.trrl')||{}).textContent||'',rows:[...p.querySelectorAll('[data-tp]')].map(b=>b.dataset.tp)}})()")
 async def popx(pg): await pg.evaluate("document.querySelector('#tpop').classList.remove('on')")
 async def toast(pg): return await pg.evaluate("(t=>t&&getComputedStyle(t).display!=='none'?t.textContent:'')(document.querySelector('#toast'))")
 
@@ -48,7 +48,7 @@ async def part_view(b, vp, touch, tag):
     ok(ck[0] and re.fullmatch(r'휴식 4:[0-2]\d', ck[1]) and ck[2] == 'rgb(183, 121, 31)' and ck[3].startswith('0:25:'), f'알약 휴식 — 금색 점·지금 휴식 구간·공부 합계 그대로 {ck}')
     await pg.clock.run_for(2000); ok((await lab(pg)) != ck[1], f'쉬는 동안 휴식 타이머가 흐름 {ck[1]!r} → {await lab(pg)!r}')
     P = await pop(pg)
-    ok(P['rows'][:2] == ['resume', 'stop'] and re.fullmatch(r'지금 구간 4:[0-2]\d', P['seg']) and P['rv'] == fmtH(R['ms']) and '휴식' in P['rl'] and f"{R['ratio']}%" in P['rl'], f'쉬는 중 팝오버 [▶ 다시][■] · 지금 구간 · 휴식 = restStats {P}')
+    ok(P['rows'][:2] == ['resume', 'stop'] and P['seg'] == '' and re.fullmatch(r'지금 휴식 4:[0-2]\d', P['rest']) and P['rv'] == fmtH(R['ms']) and '오늘 휴식' in P['rl'] and f"{R['ratio']}%" in P['rl'], f'쉬는 중 팝오버 [▶ 다시 — 지금 휴식 m:ss][■] · 지금 구간 중복 없음(ux4c 2회차) · 오늘 휴식 = restStats {P}')
     await pg.screenshot(path=J.TMP + f'/ux3p_t_rest_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 360})
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')

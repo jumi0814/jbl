@@ -45,8 +45,10 @@ def hub_rest(b):
         ts = pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.tstate')||'null')")
         ok(ts and ts.get('why') == 'hub' and ts.get('S') == 'CONS' and ts.get('D') == 'WHT', f'{tag} tstate why hub · 떠난 강의로 귀속 {ts and [ts.get("why"), ts.get("S"), ts.get("D")]}')
         mv(pg); pg.clock.run_for(2000); pg.wait_for_timeout(300)
+        ok(pg.evaluate(CK)['st'] == 'rest', f'{tag} 허브에서 움직여도 휴식 이어짐(ux4c 2회차)')
+        pg.evaluate("__h.openDoc('CONS','WHT','learn')"); pg.wait_for_timeout(300)
         r = pg.evaluate("[!document.querySelector('#idleband').hidden,document.querySelector('#idleband').dataset.k,document.querySelector('#idleband').innerText,+Object.values(JSON.parse(localStorage.getItem('jblhub.v1.trest')||'{}'))[0]||0]")
-        ok(r[0] and r[1] == 'rest' and '쉬었어요' in r[2] and r[3] >= 20 * 60000, f'{tag} 돌아오면 [☕ 쉬었어요][📖 공부했어요] 띠 · trest {r[3] // 60000}분')
+        ok(r[0] and r[1] == 'rest' and '쉬었어요' in r[2] and r[3] >= 20 * 60000, f'{tag} 과목 문서를 열면 [☕ 쉬었어요][📖 공부했어요] 띠 · trest {r[3] // 60000}분')
         # 허브를 쓰는 동안(입력이 계속)은 휴식이 시작되지 않음
         go(pg, '#/CONS/WHT/learn', 800)
         for i in range(3): mv(pg, i); pg.clock.run_for(60000)
