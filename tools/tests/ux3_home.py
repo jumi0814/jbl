@@ -46,7 +46,7 @@ async def run(b, vp, touch, tag):
     li = await pg.evaluate("[...document.querySelectorAll('#home .htodo .htk')].map(b=>b.dataset.todo+':'+b.dataset.ts)")
     ok(li == tk, f'{tag} H3 홈 ✅ 목록 = todayTasks {li}')
     tx = await pg.inner_text('#home .htodo')
-    ok('복습 3문항' in tx and 'D-' not in tx and '보존 안 푼 기출' in tx and '최근 공부한 과목' in tx and '백업 10일 전' in tx, f'{tag} H3 문구 ({tx[:160]!r})')
+    ok('복습 3문항' in tx and 'D-' not in tx and '임상치과보존학 안 푼 기출' in tx and '최근 공부한 과목' in tx and '백업 10일 전' in tx, f'{tag} H3 문구 ({tx[:160]!r})')
     ok(await pg.evaluate("__h.examPlan('CONS')") is None, f'{tag} H3 하루 분량 계산 없음(examPlan null)')
     nb = await pg.evaluate("(document.querySelector('#nav [data-nb=tk]')||{}).textContent")
     ok(nb is None, f'{tag} H3 메뉴 오늘 줄에는 배지 없음(ux4 묶음2 — 할 일은 홈에만) {nb!r}')

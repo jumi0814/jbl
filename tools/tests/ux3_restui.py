@@ -48,7 +48,8 @@ async def part_view(b, vp, touch, tag):
     ok(ck[0] and re.fullmatch(r'휴식 4:[0-2]\d', ck[1]) and ck[2] == 'rgb(183, 121, 31)' and ck[3].startswith('0:25:'), f'알약 휴식 — 금색 점·지금 휴식 구간·공부 합계 그대로 {ck}')
     await pg.clock.run_for(2000); ok((await lab(pg)) != ck[1], f'쉬는 동안 휴식 타이머가 흐름 {ck[1]!r} → {await lab(pg)!r}')
     P = await pop(pg)
-    ok(P['rows'][:2] == ['resume', 'stop'] and P['seg'] == '' and re.fullmatch(r'지금 휴식 4:[0-2]\d', P['rest']) and P['rv'] == fmtH(R['ms']) and '오늘 휴식' in P['rl'] and f"{R['ratio']}%" in P['rl'], f'쉬는 중 팝오버 [▶ 다시 — 지금 휴식 m:ss][■] · 지금 구간 중복 없음(ux4c 2회차) · 오늘 휴식 = restStats {P}')
+    ok(P['rows'][:2] == ['resume', 'stop'] and P['seg'] == '' and re.fullmatch(r'지금 휴식 4:[0-2]\d', P['rest']) and P['rv'] == fmtH(R['ms']) and '오늘 휴식' in P['rl'] and '%' not in P['rl'],   # ux4d 집중 % 없음
+       f'쉬는 중 팝오버 [▶ 다시 — 지금 휴식 m:ss][■] · 지금 구간 중복 없음(ux4c 2회차) · 오늘 휴식 = restStats {P}')
     await pg.screenshot(path=J.TMP + f'/ux3p_t_rest_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 360})
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')

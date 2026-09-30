@@ -253,8 +253,8 @@ async def part_nav(b):
         await fresh(pg, '#/CONS/WHT/learn', "localStorage.setItem('jblhub.v1.keyNoticeM','1');localStorage.setItem('jblhub.v1.lastBy',JSON.stringify({CONS:{s:'CONS',d:'WHT',t:'learn',at:1}}))"); 
         if vp['width'] <= 860: await pg.evaluate("document.querySelector('#navbtn').click()"); await pg.clock.run_for(400)
         SM = """(sels)=>sels.map(s=>{const e=[...document.querySelectorAll(s)].find(x=>x.getClientRects().length);if(!e)return [s,0,0];const r=e.getBoundingClientRect();return [s,Math.round(r.width),Math.round(r.height)]})"""
-        sz = await pg.evaluate(SM, ['#side .nvl', '#side .nvd', '#side .nvback', '#side .nvsw', '#side .nvq', '#side .scard2'])   # ux4 묶음2 과목 메뉴(줄 40 · 목차·과목 바꾸기·‹ 36 · 바닥 44)
-        bad = [x for x in sz if x[2] < (44 if x[0].endswith('nvq') else 36 if x[0].endswith(('scard2', 'nvsw', 'nvback')) else 40) or (x[0].endswith('nvq') and x[1] < 44)]
+        sz = await pg.evaluate(SM, ['#side .nvl', '#side .nvd', '#side .nvback', '#side .nvsw', '#bkup', '#side .scard2'])   # ux4d 바닥 '도움말'(.nvq) 뺌 → 바닥 백업 버튼 높이로   # ux4 묶음2 과목 메뉴(줄 40 · 목차·과목 바꾸기·‹ 36 · 바닥 44)
+        bad = [x for x in sz if x[2] < (40 if x[0].endswith('bkup') else 36 if x[0].endswith(('scard2', 'nvsw', 'nvback')) else 40)]
         ok(not bad, f'{tag} flow V09 손가락 크기 {sz} 모자람 {bad}')
         await pg.evaluate("location.hash='#/_cal'"); await pg.clock.run_for(800)
         await pg.evaluate("document.querySelector('#calmset').open=true;document.querySelector('#cadd')&&(document.querySelector('#cadd').open=true)"); await pg.clock.run_for(200)

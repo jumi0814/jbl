@@ -2,7 +2,7 @@
 허브: 공부하다 허브(홈·달력)로 나와 쉬면 ☕ 휴식(알약·띠) · 홈 '이번 주'·과목 표 시간이 머리와 같은 값 · 키보드 포커스 버튼 Enter/Space
      · 알약 폭 고정(쉬는 중 검색칸이 흔들리지 않음) · 좁은 폭 서랍 포커스(inert·Esc → ☰) · 버튼 이름 통일(■ 멈춤 · ▶ 다시 공부)
      · ⏱ 크게(상태 글자 한 번 · 휴식 m:ss · 1분 전 집중 % 없음) · 달력 오늘 공부 앞 0 없음 · 복원 창 자리 · 맥에 '홈 화면에 추가' 없음 · 바닥 '백업' 한 번
-과목: 서랍 머리 '보존 메뉴' · 틀린 것 0이면 [틀린 것 다시] 꺼짐 · 바로가기 필터는 한 번만(메뉴 'JB 문제'는 전체) · 비교표 수(머리 = 메뉴 = 화면)
+과목: 서랍 머리 '임상치과보존학 메뉴'(ux4e 정식 이름) · 틀린 것 0이면 [틀린 것 다시] 꺼짐 · 바로가기 필터는 한 번만(메뉴 'JB 문제'는 전체) · 비교표 수(머리 = 메뉴 = 화면)
      · 2회 이상 펼침 기억(뒤로 와도) · 과목 홈 새로고침 스크롤 · 'JB에서 참고 n 보기 →' · 강의 바로가기 간격 · 창을 바로 닫아도 읽던 자리 · IMPL 메뉴 강의 이름 두 줄
 학습: T로 막대를 숨기면 펜 모드 끔 · [카드 ▾] 목록이 화면 안·버튼 아래 · C 뒤 지금 카드 · 틀·카드 1에서 K · / 뒤 Esc · 🧹 창 Esc 뒤 테두리 없음 · ⚡ 창 바깥 닫힘 · 서랍+V
 그 밖: 예상 J/K(필터 줄 아래·첫 문항까지)·필터 뒤 강의 머리 · 한눈표 2회↑ 새로고침 칩 수 · 전체정리표 모두 접기 · 가린 칸 가운데 탭 · 검색 머리 작은 링크
@@ -17,7 +17,7 @@ def new(b, w, h, touch=False, clock=False):
     ctx = b.new_context(viewport={'width': w, 'height': h}, has_touch=touch); pg = ctx.new_page(); pg.errs = []
     pg.on('pageerror', lambda e: pg.errs.append(str(e)[:200])); pg.on('console', lambda m: pg.errs.append('console ' + m.text[:160]) if m.type == 'error' else None)
     pg.on('dialog', lambda d: d.accept())
-    if clock: pg.clock.install()
+    if clock: import datetime as _dt; pg.clock.install(time=_dt.datetime.now().replace(hour=10, minute=0, second=0, microsecond=0))   # ux4d: 오늘 10시에 고정(자정 가까이 돌리면 오늘·이번 주가 두 날로 갈림)
     pg.goto('about:blank'); pg.goto(U + '#/'); pg.evaluate("localStorage.clear();sessionStorage.clear();localStorage.setItem('jblhub.v1.whatsNew.4','1')")
     return ctx, pg
 def go(pg, h, wait=500):
@@ -120,7 +120,7 @@ def hub_home(b):
             ok(r == ['navbtn', False, False], f'{tag} Esc → 닫힘 · 포커스 ☰ · inert 풀림 {r}')
             go(pg, '#/CONS/_home/_home', 500); pg.click('#navbtn'); pg.wait_for_timeout(300)
             hd = pg.evaluate("document.querySelector('#nav .nvbrand').textContent.trim()")
-            ok(hd == '보존 메뉴', f'{tag} 과목 안 서랍 머리 {hd!r}')
+            ok(hd == '임상치과보존학 메뉴', f'{tag} 과목 안 서랍 머리 {hd!r}')
             pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
         else:
             # 복원 창 자리 · 맥 '홈 화면에 추가' 없음

@@ -1,5 +1,5 @@
 """ux4 묶음 2 회귀 — 상단 막대(B2-3)·공부 시계 알약(B2-4).
-B2-3 밝은 상단 막대 52px(종이 바탕 · 선 하나 · 크롬 이모지 0 · 가로 넘침 0) · 빵부스러기 글자(홈 'JBL / 오늘' · 과목 홈 'JBL / 보존' · 강의 'JBL / 보존 / Tooth whitening' · JB · 달력 · 검색)
+B2-3 밝은 상단 막대 52px(종이 바탕 · 선 하나 · 크롬 이모지 0 · 가로 넘침 0) · 빵부스러기 글자(홈 'JBL / 오늘' · 과목 홈 'JBL / 임상치과보존학' · 강의 'JBL / 임상치과보존학 / Tooth whitening' · JB · 달력 · 검색)
      · 'JBL' → 허브 홈 · 과목 이름 → 과목 홈 · 글자 대비 ≥4.5 · 과목 안 '/' → 검색 칸(‘보존에서 검색’) · 결과 = 그 과목만 → [전체로 넓히기] → 모든 과목 · 허브에서는 전체
 B2-4 시계 알약 하나(#tmr·⏸ 자리 비움 칩·⤢·🏠 글자 없음 · 메뉴·홈에 트래커 ⏱ 없음) · 상태 점(대기 회색 · 공부 중 과목색 · 휴식 금색) + 오늘 h:mm:ss + '공부 중/휴식 m:ss/대기'
      · 쉬는 중 '휴식 m:ss'가 1초마다 흐름 · 알약을 눌러도 측정이 저절로 시작되지 않음 · 팝오버 [■ 멈춤][☕ 쉬기][⏱ 크게 보기][공부 달력][하루 목표·측정 설정] · 화면 안에 뜸
@@ -25,8 +25,8 @@ async def run(b, vp, touch, tag):
     tap = (lambda s: pg.tap(s)) if touch else (lambda s: pg.click(s))
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await open_(pg, '#/')
     # ---- B2-3 막대 모양 · 빵부스러기
-    want = [('#/', 'JBL / 오늘'), ('#/CONS/_home/_home', 'JBL / 보존'), ('#/CONS/WHT/learn', 'JBL / 보존 / Tooth whitening'), ('#/CONS/_jb/_jb', 'JBL / 보존 / JB 문제'),
-            ('#/CONS/_sum/_sum', 'JBL / 보존 / 기출 한눈표'), ('#/_cal', 'JBL / 공부 달력'), ('#/?q=%ED%86%B5%EC%A6%9D', 'JBL / 검색')]
+    want = [('#/', 'JBL / 오늘'), ('#/CONS/_home/_home', 'JBL / 임상치과보존학'), ('#/CONS/WHT/learn', 'JBL / 임상치과보존학 / Tooth whitening'), ('#/CONS/_jb/_jb', 'JBL / 임상치과보존학 / JB 문제'),
+            ('#/CONS/_sum/_sum', 'JBL / 임상치과보존학 / 기출 한눈표'), ('#/_cal', 'JBL / 공부 달력'), ('#/?q=%ED%86%B5%EC%A6%9D', 'JBL / 검색')]
     for h, w in want:
         await open_(pg, h); c = await pg.evaluate(CRUMB)
         t = await pg.evaluate(f"""(()=>{{const t=document.querySelector('#top'),r=t.getBoundingClientRect(),cs=getComputedStyle(t),L={LUM},cur=document.querySelector('#crumb .ccur'),fg=getComputedStyle(cur).color,sl=getComputedStyle(document.querySelector('#crumb #gohome')).color;
@@ -44,10 +44,10 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/CONS/WHT/learn', 1500)
     await pg.keyboard.press('Slash'); await pg.wait_for_timeout(150)
     r = await pg.evaluate("[document.activeElement&&document.activeElement.id,document.querySelector('#gsearch').placeholder]")
-    ok(r == ['gsearch', '보존에서 검색'], f"{tag} 과목 안 '/' → 검색 칸 '보존에서 검색' {r}")
+    ok(r == ['gsearch', '과목 검색'], f"{tag} 과목 안 '/' → 검색 칸 '과목 검색' {r}")
     await pg.keyboard.type('통증'); await pg.wait_for_timeout(2500)
     r = await pg.evaluate("[location.hash,[...new Set([...document.querySelectorAll('#home .sres')].map(x=>x.dataset.s))],!!document.querySelector('#home [data-swide]'),document.querySelector('#nav').dataset.mode,document.querySelector('#gsearch').placeholder]")
-    ok('&s=CONS' in r[0] and r[1] == ['CONS'] and r[2] and r[3] == 'hub' and r[4] == '보존에서 검색', f'{tag} 결과 = 보존만 · [전체로 넓히기] · 허브 메뉴 {r}')
+    ok('&s=CONS' in r[0] and r[1] == ['CONS'] and r[2] and r[3] == 'subj' and r[4] == '과목 검색', f'{tag} 결과 = 보존만 · [전체로 넓히기] · 과목 메뉴(ux4c 2회차 navS) {r}')
     await pg.evaluate("document.querySelector('#home [data-swide]').click()"); await pg.wait_for_timeout(2500)
     r = await pg.evaluate("[location.hash,[...new Set([...document.querySelectorAll('#home .sres')].map(x=>x.dataset.s))].length,document.querySelector('#gsearch').placeholder]")
     ok('&s=' not in r[0] and r[1] >= 3 and r[2] == '전체 검색', f'{tag} 전체로 넓히기 → 여러 과목 {r}')
@@ -77,7 +77,7 @@ async def run(b, vp, touch, tag):
     ok(a['st'] == 'rest' and a['dot'] == 'rgb(183, 121, 31)' and re.fullmatch(r'휴식 \d+:\d\d', a['l']) and b2['l'] != a['l'] and b2['t'] == a['t'], f'{tag} ☕ → 휴식 금색 점 · 휴식 타이머가 흐름({a["l"]} → {b2["l"]}) · 공부 합계는 멈춤')
     await tap('#clock'); await pg.wait_for_timeout(1300)
     r = await pg.evaluate("[[...document.querySelectorAll('#tpop [data-tp]')].map(b=>b.dataset.tp),(document.querySelector('#tpop [data-tpt=rest]')||{}).textContent]")
-    ok(r[0] == ['resume', 'stop', 'big', 'cal', 'goal'] and r[1] and r[1].startswith('휴식'), f'{tag} 쉬는 중 팝오버 [▶ 다시 공부 · 휴식 m:ss] {r}')
+    ok(r[0] == ['resume', 'stop', 'big', 'cal', 'goal'] and r[1] and r[1].startswith('지금 휴식'), f'{tag} 쉬는 중 팝오버 [▶ 다시 공부 · 휴식 m:ss] {r}')
     await pg.screenshot(path=J.TMP + f'/ux4i_top_{tag}_pop_rest.png')
     await tap('#tpop [data-tp=big]'); await pg.wait_for_timeout(1200)
     r = await pg.evaluate("[document.querySelector('#bigclock').classList.contains('on'),document.querySelector('#bigclock').classList.contains('rest'),document.querySelector('#tpop').classList.contains('on')]")

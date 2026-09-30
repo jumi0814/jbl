@@ -173,8 +173,8 @@ def subj(b):
         go(pg, '#/CONS/' + d, 600); pg.evaluate("window.scrollBy(0,200)"); pg.wait_for_timeout(1300)
     go(pg, '#/CONS/_home', 600)
     lk = pg.evaluate("(document.querySelector('#hguide .go-resume')||{}).textContent||''")
-    ok('이어서' in lk and 'Cracked' in lk, f'JB·한눈표·비교표·예상을 열어도 공부 순서 이어서 = 마지막 강의 {lk!r}')
-    ok('Cracked' in pg.inner_text('#stage'), "과목 홈 '최근 읽던 곳'에 마지막 강의가 남음")
+    ok('이어서' in lk and 'cracked tooth' in lk.lower(), f'JB·한눈표·비교표·예상을 열어도 공부 순서 이어서 = 마지막 강의 {lk!r}')
+    ok('cracked tooth' in pg.inner_text('#stage').lower(), "과목 홈 '최근 읽던 곳'에 마지막 강의가 남음")
     pg.click('#hguide .go-resume'); pg.wait_for_timeout(1200)
     ok(pg.evaluate("location.hash").startswith('#/CONS/CRK/learn') and pg.evaluate("scrollY") > 200, f'누르면 그 강의 그 자리 {pg.evaluate("[location.hash,scrollY]")}')
     # 2회 이상 → 안 푼 것 n

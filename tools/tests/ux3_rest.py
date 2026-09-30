@@ -184,7 +184,8 @@ async def part_view(b, vp, touch, tag):
     ok(await st(pg) == 'rest', '달력으로 가도(입력 없이) 쉬는 중')
     exp = await pg.evaluate("__h.restStats().ms")
     cr = await pg.inner_text('#cc-rest'); ok(cr == fmtH(exp), f'상태 카드 휴식 {cr} = trest[오늘]+진행 {fmtH(exp)}')
-    rs = await pg.inner_text('#cc-rs'); ok('집중' in rs and '1회' in rs, f'휴식 카드 요약 {rs!r}')
+    rs = await pg.inner_text('#cc-rs'); ok('%' not in rs and '1회' in rs,   # ux4d 집중 % 없음
+       f'휴식 카드 요약 {rs!r}')
     ok(await pg.evaluate("document.querySelectorAll('#calday .cband .cbk.r').length") >= 1, '24시간 띠에 휴식(빗금) 블록')
     rows = await pg.evaluate("[...document.querySelectorAll('#calday .crow.r')].map(r=>r.textContent)")
     ok(len(rows) == 1 and '휴식' in rows[0], f'기록 목록 ☕ 휴식 줄 {rows}')
@@ -195,9 +196,10 @@ async def part_view(b, vp, touch, tag):
     ok(await pg.evaluate("document.querySelector('[data-cset=restAuto]').checked") and await pg.evaluate("document.querySelector('[data-cset=restMax]').value") == '90', '측정 설정: 쉬는 시간 재기 켬 · 상한 90분')
     await pg.select_option('[data-cset=restMax]', '60'); ok(await ls(pg, 'restMax') == 60, '상한 60 → LS restMax=60')
     await pg.select_option('[data-cset=restMax]', '90')
-    # ⏱ 크게: 쉬는 중 · 집중 %
+    # ⏱ 크게: 쉬는 중 · 오늘 휴식(집중 % 없음 — ux4d)
     await pg.evaluate("__h.bigOpen()"); await pg.clock.run_for(1100)
-    ok(await pg.inner_text('#bcl') == '☕ 쉬는 중' and '집중' in await pg.inner_text('#bcs'), f"⏱ 크게 {await pg.inner_text('#bcl')!r} · {await pg.inner_text('#bcs')!r}")
+    ok(await pg.inner_text('#bcl') == '☕ 쉬는 중' and '오늘 휴식' in await pg.inner_text('#bcs') and '%' not in await pg.inner_text('#bcs'),   # ux4d 집중 % 없음
+       f"⏱ 크게 {await pg.inner_text('#bcl')!r} · {await pg.inner_text('#bcs')!r}")
     await pg.screenshot(path=J.TMP + f'/ux3i_rest_big_{tag}.png')
     await pg.keyboard.press('Escape'); await pg.clock.run_for(300)   # Esc도 입력 → 휴식 끝
     # 홈 오늘 띠 조각(band) 짧게 '휴식 h:mm' · 시계 팝업 휴식 줄
@@ -206,7 +208,8 @@ async def part_view(b, vp, touch, tag):
     t = await pg.inner_text('#trkt'); ok(re.search(r'휴식 0:(19|2\d)', t), f'오늘 띠 조각 {t!r} (휴식은 마지막 입력 1분 뒤부터 — flow V10)')
     await pg.click('#clock'); await pg.clock.run_for(300)
     pl = await pg.evaluate("(e=>e?e.textContent:'')(document.querySelector('#tpop .trrl'))")
-    ok('휴식' in pl and '집중' in pl and '가장 긴 휴식' in pl, f'시계 팝업 휴식 줄 {pl!r}')
+    ok('휴식' in pl and '%' not in pl and '가장 긴 휴식' in pl,   # ux4d 집중 % 없음
+       f'시계 팝업 휴식 줄 {pl!r}')
     ok(await pg.evaluate("!document.querySelector('#tpop #trestc,#tpop select')||!!document.querySelector('#tpop #trsj')"), 'ux4 묶음2 시계 팝오버에는 설정 없음(📅 달력 측정 설정)')
     await pg.screenshot(path=J.TMP + f'/ux3i_rest_pop_{tag}.png')
     # 측정 설정(달력)에서 끄기 → 휴식 없음

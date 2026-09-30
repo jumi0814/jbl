@@ -34,6 +34,9 @@ def card_aid(k, c): return aid(k + ':' + slug(c['en'], c['ko']))
 heat = lambda n: 'h2' if n >= 2 else ('h1' if n == 1 else 'h0')
 ctx = {'QMAP': QMAP, 'YR': YR, 'LECNAME': LECNAME, 'cited': set()}
 LEC = lecparse.load_all()
+# ux4e 사용자 '과목명·강의자료 이름은 줄이지 말고 원래 그대로' — 화면에 보이는 강의 이름 = 정리본 원고의 강의 제목(L['title']) 그대로. LECNAME(LECMAP 짧은 이름)은 두고 화면에는 쓰지 않음
+LECT = {L_['k']: L_['title'] for L_ in LEC}
+lname = lambda k: LECT.get(k) or LECT.get(getattr(S, 'IMG_ALIAS', {}).get(k, '')) or re.sub(r'\s*\([^)]*\)\s*$', '', LECNAME.get(k, k)) or k
 # ---- 머리말(! 줄) 문장 나누기(U24): 괄호·따옴표 밖의 '. '에서 — 교수님 예고·강조 문장만 📣로
 HINT_RE = re.compile(r'시험|강조|예고|공개|QUIZ|퀴즈|별표|중요(?!성)|keyword|키워드')
 def split_note(n):
@@ -262,7 +265,7 @@ def qcard(q, idx):
     figa = ''.join(f'<img class="fig" loading="lazy" src="{IMG["crop"][k]}" alt="JB 그림(답)">' for k in q['crops'].get('a', []))
     lecchip = ''
     if q['id'] in Q2CARD:
-        k, j = Q2CARD[q['id']]; lecchip = f'<button class="chip lec" data-golec="{k}:{j}">{esc(LECNAME[k])} 정리본 →</button>'   # ux4 B3-6 문항 머리 12px 메타의 과목색 글자 링크(크롬 이모지 없음)
+        k, j = Q2CARD[q['id']]; lecchip = f'<button class="chip lec" data-golec="{k}:{j}">{esc(lname(k))} 정리본 →</button>'   # ux4 B3-6 문항 머리 12px 메타의 과목색 글자 링크(크롬 이모지 없음)
     # 출처·연도 근거(ux2 F04) — 카드 앞면은 [연도 배지][짤/탈][교수][📖] + 문제만. 출처 줄·연도 표기 근거·관련 문항은 답 절 끝 details '출처·연도 근거'로 보임
     # (DOM 자리는 문제 바로 뒤 그대로 — 글자 순서가 같아 형광펜 위치 불변. 화면 순서만 CSS order로 답 뒤). 판 연도는 표시하지 않음(CLAUDE.md) — 전체 출처는 title
     prov = [f'출처: {esc(src_short(q))}' if q['src'] else '', f'JB 괄호 {esc(q["jbtag"])}' if q['jbtag'] else 'JB 괄호 없음']
@@ -320,7 +323,7 @@ def qcard(q, idx):
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
         m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
         rec_ = ''.join(lecparse.render_recall(x, ctx) for x in c_['recall'])
-        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(LECNAME[k])}</small></div>{lecparse.render_keybox(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=ct style=margin-top:8px>⚡ 암기</div><ul class=lrec>" + rec_ + "</ul>") if rec_ else ""}</details>')
+        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{lecparse.render_keybox(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=ct style=margin-top:8px>⚡ 암기</div><ul class=lrec>" + rec_ + "</ul>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
         o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
@@ -623,7 +626,7 @@ def strat_tag(x):
 prow = ''; psum = ''; trow = ''; SUSE = {}
 for p_, qs in profS.items():
     SM = PSM[p_]; t_ = ' / '.join(PPARTS[p_][0])
-    lecs = sorted({LECNAME.get(q['lk'], '') for q in qs if q['lk']})
+    lecs = sorted({lname(q['lk']) for q in qs if q['lk']})
     note = S.PROF_NOTE.get(p_, '')
     prow += f'<tr><th>{esc(p_)}<div class="small">{esc(" · ".join(lecs))}{("<br>" + esc(note)) if note else ""}</div></th><td><div class="yrow">{trend.years_html(SM)}</div></td><td><div class="tlines">{"".join(f"<div>{x}</div>" for x in t_.split(" / "))}</div></td></tr>'
     if p_ not in PCUR: continue
@@ -850,7 +853,7 @@ def ybadge_sum(q):
     return f'<span class="ybadge sm n{min(len(ys),3)}" title="{" · ".join(YR(y) for y in q["yrs"])}"><b>{lab_}</b></span>'
 SUMCHIPS = []
 sumall = ['']   # ux2 E11 공부 막대는 아래에서(강의 칩이 필요)
-sname_ = lambda L: re.sub(r'\s*\([^)]*\)\s*$', '', LECNAME.get(L['k'], L['title'])) or L['title']
+sname_ = lambda L: L['title']   # ux4e 원래 강의 제목 그대로
 for n_, L in enumerate(LEC + [None]):
     k = L['k'] if L else ''
     rows = [q for q in Q if q['tier'] != 'C' and q['lk'] == k]

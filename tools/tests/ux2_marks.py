@@ -72,7 +72,7 @@ async def run(b, vp, touch, tag):
     ok('시험 직전' in await pg.inner_text('#stage .mkf[data-mkcol=u]'), '모아보기 칩에 바꾼 라벨')
     # 허브 홈 '🖍 전 과목 내 표시'
     await open_(pg, '#/', 1200)
-    t = await pg.evaluate("document.querySelector('#home details.hmk').textContent"); ok('전 과목 내 표시' in t and '형광펜 3 · 빈칸 1' in t.split('과목을')[0] and '구강외과1 · 형광펜 3 · 빈칸 1' in t, f'허브 홈 전 과목 내 표시(ux4 B3-2 바닥 줄 · 크롬 이모지 없이 형광펜·빈칸) ({t[:160]!r})')
+    t = await pg.evaluate("document.querySelector('#home details.hmk').textContent"); ok('전 과목 내 표시' in t and '형광펜 3 · 빈칸 1' in t.split('과목을')[0] and '구강악안면외과학 1 · 형광펜 3 · 빈칸 1' in t, f'허브 홈 전 과목 내 표시(ux4 B3-2 바닥 줄 · 크롬 이모지 없이 형광펜·빈칸) ({t[:160]!r})')
     await pg.evaluate("document.querySelector('#home .mkall').scrollIntoView({block:'center'})"); await pg.screenshot(path=J.TMP + f'/ux2i_a09_home_{tag}.png')
     await pg.evaluate("document.querySelector('#home [data-mks=OMS1]').click()"); await pg.wait_for_timeout(900)
     ok((await pg.evaluate('location.hash')).startswith('#/OMS1/_marks') and await pg.evaluate(VIS) == 4, '→ 그 과목 모아보기')

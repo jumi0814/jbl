@@ -53,7 +53,7 @@ async def run(b, tag, vp, touch):
     await pg.evaluate("__h.trStop()"); await pg.wait_for_timeout(300)
     # ③ 집중 중 / 검색
     await pg.evaluate(KEY('/', 'Slash')); await pg.wait_for_timeout(400); r = await pg.evaluate(ST)
-    ok(r['fo'] and r['top'] != 'none' and r['ph'].endswith('에서 검색') and r['ph'] != '전체 검색', f'{tag} ③ 집중 중 / → 상단 막대·과목 안 검색 {r["top"]} {r["ph"]!r}')
+    ok(r['fo'] and r['top'] != 'none' and r['ph'] == '과목 검색' and r['ph'] != '전체 검색', f'{tag} ③ 집중 중 / → 상단 막대·과목 안 검색 {r["top"]} {r["ph"]!r}')
     ok(await pg.evaluate("document.activeElement&&document.activeElement.id==='gsearch'"), f'{tag} ③ 검색칸 포커스')
     await shot('focus_search')
     await pg.evaluate("document.activeElement.blur()"); await pg.wait_for_timeout(300); r = await pg.evaluate(ST)
