@@ -1,0 +1,274 @@
+[
+ {
+  "lens": "visual",
+  "id": "V01",
+  "severity": "high",
+  "problem": "Pressing a tracker 'start' button while the tracker is in the '○ 자동 대기' state starts a ☕ rest instead of a study session. This affects the top-bar #tmr button (its title says '누르면 ▶ 세션 시작') and the ▶ in the menu header (data-trb=start). The cause: window-level capture listeners in tAct run on 'mousemove', 'touchstart' and 'click' (shell.html:1303) before the button's own handler. tAct calls tStart(true), which switches the state to 'run' and makes trkAll redraw the button under the finger/cursor as ☕ (data-trb=rest). The click then lands on that ☕ button. For #tmr, trTmrClick (1511) sees st==='run' and calls trRest(). On iPad this happens on the first tap after opening a lecture. The user thinks study time is being counted, but it is rest time.",
+  "evidence": "Repro with work/_tmp/v/timer2.py (820 touch / 1280 mouse, #/CONS/WHT/learn, default tauto): before = '○ 자동 대기' → first tap on #tmr = '☕ 쉬는 중 0:00' → second tap = '측정 중' (auto measuring, not a session). work/_tmp/v/rest2.py: clicking the menu ▶ (#navtrkb [data-trb=start]) from 'wait' → trState()='rest'. Screenshot work/_tmp/ux3v_port_sess_run.png, where the top bar shows '☕ 쉬는 중' right after pressing start. Code: shell.html:1302-1303 (tAct), 1511 (trTmrClick), 1565 (data-trb delegation), 1562 (trkAll redraw).",
+  "proposal": "(1) At the top of tAct, return early without starting or resuming measurement when the event target is a tracker control: `if(e&&e.target&&e.target.closest&&e.target.closest('#tmr,[data-trk],[data-nvtmr],#idleband,#trband'))return;` (turn tAct into (e)=>…). (2) Also in trTmrClick, use the state captured on pointerdown (trTmrClick.st0 = trState()) instead of the state at click time. (3) Add tests to tools/tests/ux3_timer.py: from 'wait', one tap (has_touch) or click on #tmr, the menu ▶, and the home band ▶ must each give trState()==='sess'."
+ },
+ {
+  "lens": "visual",
+  "id": "V02",
+  "severity": "high",
+  "problem": "Pressing '☕ 쉬는 중' (#tmr) or the menu ▶ to come back from an automatic rest (J9, ar:1) starts a new manual rest immediately. The input (touchstart/click) runs tAct first. tAct calls restBack(), which ends the auto rest and shows the '[☕ 쉬었어요][📖 공부했어요]' band, then starts auto measuring. Now in state 'run', the click handler calls trRest(). That creates tstate {st:'rest', from:'auto'} without ar, a manual rest that does not end on activity. Anything the user studies afterwards goes into rest time, and only the I3 nudge after 3 minutes points it out.",
+  "evidence": "work/_tmp/v/rest.py (820 touch and 1280): auto rest '☕ 쉬는 중 5:01' → one tap on #tmr → trState()='rest', '☕ 쉬는 중 0:00', tstate has no ar, and at the same time the band '13:04부터 10분 공부를 멈췄어요' and the toast '☕ 쉬는 중 — 공부 시간에 들어가지 않아요' appear. Screenshot work/_tmp/ux3v_port_rest_after.png (band, toast and top-bar ☕ all at once). rest2.py: the menu's first button (▶) during auto rest gives the same result, 'rest'.",
+  "proposal": "Fixing V01 (tAct ignores events from tracker controls) also fixes this: tAct no longer calls restBack or tStart, trTmrClick sees 'rest', and trResume ends the auto rest (ts.ar → tsWrite(null) + tStart). Also, after trResume ends an auto rest, show a short '▶ 다시 공부' toast, as restBack does, so the result is clear. Add a regression test to ux3_rest.py: trAutoRest → tap #tmr → trState() is 'run' or 'sess' and tstate is null or sess."
+ },
+ {
+  "lens": "visual",
+  "id": "V03",
+  "severity": "medium",
+  "problem": "Subject colors are almost identical in pairs. 보존 CONS rgb(91,42,134) and 두경부해부 ANAT rgb(75,46,131) are both purple. 구강외과1 OMS1 rgb(15,75,74) and 약물치료 PHARM rgb(31,95,91) are both dark teal. 임플란트 (138,59,0) and 노인치과 (107,78,30) are also close. This matters more now because the new time views separate subjects only by color: the 📊 통계 stacked week bars and legend, the calendar day panel's subject bars, the menu subject dots and the home table dots. For example, Monday 9/28 is ANAT 0:47 + OMS1 0:25, but in the stats bar ANAT reads the same as CONS (see screenshot).",
+  "evidence": "work/_tmp/ux3v_mac_stats_full.png: the legend '● 임상치과보존학 ● 임상두경부해부학' shows two dots of the same purple, and Monday's stacked bar cannot be told apart. The menu dots in ux3v_mac_home.png look the same. Values measured from the DOM: sjColor = PACKS[k].color (shell.html:1346).",
+  "proposal": "Keep the subject theme colors (page headers) and add a separate categorical palette only for time and menu displays, e.g. SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#B5651D',ANAT:'#2F5DA8',GERI:'#8A6D1F',PHARM:'#B03A5B',ESTH:'#7A7A7A'} (neighboring colors ΔE>20, contrast ≥3:1 on white). Use it in sjColor() for the stats, calendar, menu .nvdot and home table dots. Add a test in ux3_cal/ux3_nav that computes the pairwise color distance of the 6 subjects and requires it to be at or above a threshold."
+ },
+ {
+  "lens": "visual",
+  "id": "V04",
+  "severity": "medium",
+  "problem": "In the expanded current subject, the full card list of the current lecture (sideCards, 18–19 cards) sits between the lecture rows. The lectures after the current one (e.g. ANAT: Mandible, Parotidectomy, Maxilla, TMJ) move below all the cards. To switch lecture the user has to scroll the menu past about 500px of cards. At 1280 the menu's scrollHeight is 1162 against a visible height of 715, so the next lecture and the subjects below it are out of view.",
+  "evidence": "work/_tmp/v/nav.py (1280, #/ANAT/LIP/learn): current lecture row y=547 → '카드 18' y=576 → card 18 y=1036 → 'Mandible' y=1067, TMJ 1151, 노인치과 1185 (#navsc clientHeight 715). Screenshot work/_tmp/ux3v_mac_sum_LIP_open.png: only 3 lecture rows are visible in the menu, and the rest of the lectures cannot be seen.",
+  "proposal": "Pick one of three: (A) draw all lecture rows first, then a separate '▼ 지금 강의 카드 18' section at the end of the subject block (recommended: the lecture list stays fixed). (B) Collapse cards to 8 by default when there are more than 8, with a '+10장 더' button and the collapse state in LS. (C) Make the card list scroll inside its own max-height:40vh box. In every option, scroll-spy should scroll only the card area, and ux3_nav should check that after the current lecture is expanded, the next lecture row is inside #navsc's visible area."
+ },
+ {
+  "lens": "visual",
+  "id": "V05",
+  "severity": "low",
+  "problem": "When the menu is shown at 1180 (iPad landscape), the lecture summary table becomes a 2-column card instead of a table. .msum is 900px wide but the container query threshold (@container msum min-width 900) is measured on the inner content box, which is narrower. The auto-hide on 1180 (SIDEAUTO) leaves the table in place, so the default is fine. But if the user brings the menu back with M, the layout switches to cards and gets 24–33% taller.",
+  "evidence": "work/_tmp/v/sumh.py measurements (table height, max row height, median row height). 1280 menu hidden → shown: CONS WHT 4052→5019 (max row 256→314, median 195→245) · ANAT LIP 4214→5343 (median 224→293) · PHARM DS 4187→5109 · OMS1 DD1 4073→4960 · GERI SAL 3541→4373 (max 313→451). 1180 hidden (table) → shown (display:block card): WHT 4350→5376 · LIP 4670→5401 · DS 4633→6160 (+33%) · DD1 4530→5812. 820: always 2-column card, WHT 5742 · DS 6451. No horizontal overflow at any width (ov 0). This confirms the user's request that hiding the menu widens the table and lowers the rows.",
+  "proposal": "Lower the table threshold slightly, to @container msum (min-width:860px), so that 1180 with the menu shown keeps the table. Or leave it as is, and on the first M on a 1180 summary table show the toast '메뉴를 펼치면 카드형으로 바뀌어요 — M으로 다시 넓게'. In ux3_tables.py, fix the display mode and the 20% height-increase ceiling for 1180 with the menu shown."
+ },
+ {
+  "lens": "visual",
+  "id": "V06",
+  "severity": "low",
+  "problem": "Line breaks in the 🔑 box (K3 fact flow) can separate items that belong to one fact and leave an orphan. In ANAT NV card 1, 'Common carotid → internal(뇌) · external(얼굴) · external carotid 5 = …' is split into 3 inline-blocks, so 'external(얼굴)' reads as a separate fact. Because the ksep ' · ' is inside the inline-block and a space follows it, the gap is doubled ('(뇌) ·  external'). The last fact (78 characters) wraps with no fact boundary.",
+  "evidence": "work/_tmp/ux3v_port_key_NV0.png, ux3v_mac_key_NV0.png. DOM: <span class=kfi>Common carotid → internal(뇌)<span class='ksep kfs'> · </span></span><span class='kfi kfn'>external(얼굴)…. Across 42 lectures (work/_tmp/v/keysK_*.json): 719 🔑 boxes, 1–2 lines 626, 4 lines 61, 5–6 lines 12, none of 7+ lines. Most read well (ux3v_mac_key_WHT5/ENDO4, ux3v_port_key_DHS11).",
+  "proposal": "In lecparse.key_lines K3: (1) if a fact piece starts with '→' or the previous piece contains '→' with no label '=', and the piece is under 14 characters, merge it into the previous fact (keeping the arrow flow). (2) Replace the inline-block ksep with a form that has no trailing space (' ·' plus word joiner) to remove the double gap. Add a check_lec rule that flags lone facts of 12 characters or fewer."
+ },
+ {
+  "lens": "visual",
+  "id": "V07",
+  "severity": "low",
+  "problem": "In the 🔑 cell and key box of the summary table, keep-all + overflow-wrap:anywhere puts the '·' separator at the start of a line. In ANAT LIP row 1, '(→ 인중·비중격 전방' is followed by a new line starting '·일차구개)'. In a narrow column (🔑 19%, about 230px) this happens often and makes the text harder to read.",
+  "evidence": "work/_tmp/ux3v_mac_msum_ANATLIP.png, row 1 🔑 cell ('…전방 / ·일차구개)', '→ 7주 / intermaxillary segment'). The same pattern appears in the 820 two-column card, ux3v_port_msum_ANATLIP.png.",
+  "proposal": "In build (mkey_html or key_lines) or in client-side rendering, attach a U+2060 word joiner right before '·' in the middle-dot joins of short lists, so the dot stays at the end of the previous word. Or wrap each '·'-joined item in white-space:nowrap spans when it is 12 characters or shorter. textContent changes by U+2060, so exclude it in Kit.textOf, or do it in CSS only (::before content)."
+ },
+ {
+  "lens": "visual",
+  "id": "V08",
+  "severity": "low",
+  "problem": "In the menu doc chips (4×2 grid, 248px), a three-digit JB count clips the label: PHARM shows '📝 J‥ 157'. At 861–1023 (232px) this happens with even smaller counts.",
+  "evidence": "work/_tmp/ux3v_land_navchip_zoom.png (1180, #/PHARM/DS/sum with the menu shown). CSS: .nvd{white-space:nowrap;overflow:hidden} .nvdn{text-overflow:ellipsis} and .nvdocs grid-template-columns:repeat(4,minmax(0,1fr)).",
+  "proposal": "When the count is 100 or more, drop the 'JB' label and show '📝157' (with the full name in title), or make the chip grid `grid-template-columns:repeat(4,auto)` with justify-content:stretch, or make the count <b> 10.5px. In ux3_nav, test that no .nvdn has scrollWidth>clientWidth for all 6 subjects."
+ },
+ {
+  "lens": "visual",
+  "id": "V09",
+  "severity": "low",
+  "problem": "At 820 or narrower, the drawer has no card list for the current lecture (sideCards): details.scards{display:none} (shell.html:369, an old ux2 rule) still applies. Plan decision 2 puts the current lecture's card list in the menu. On iPad portrait the user can only reach cards through the 틀·19장▾ dropdown in the tab row.",
+  "evidence": "work/_tmp/ux3v_port_drawer2.png and drawer4.png: under the current lecture there is no '카드 19'. DOM: DETAILS.scards display:none [open] (820) vs block, 510px (1280).",
+  "proposal": "If this is intended (a short drawer), add a note to SPEC. If not, remove line 369 and show the cards in the drawer collapsed (details without open) — if V04 option A is used, the length is not a problem. Clicking a card should close the drawer and move to the card."
+ },
+ {
+  "lens": "visual",
+  "id": "V10",
+  "severity": "low",
+  "problem": "If the user shows the menu with M on the summary table, the menu is hidden again on the next visit. Repro: on 학습, press M to hide (LS sidefold=true), open 정리표 (hidden), press M to show (sidefold=false; SIDEAUTO was false because of the preference, so wideSide is not saved). Go to 학습, then 정리표 again → hidden again. The code comment says it will not auto-hide from then on, but it does.",
+  "evidence": "work/_tmp/v/fold.py (1280): 'M on sum (show) [False, sidefold false, wideSide None]' → 'sum again [True …]'. Code: shell.html:2796 (sideApply SIDEAUTO) and 2800 (wideSide is saved only when SIDEAUTO is true).",
+  "proposal": "In sideToggle, when the menu is shown on a wide doc (sum/tbl) at 861–1440, always call LS.set('wideSide',1), even when SIDEAUTO is false. Or, when hiding with M on a sum/tbl screen, reset wideSide to 0 so the user's latest intent wins. Add this sequence to ux3_nav."
+ },
+ {
+  "lens": "visual",
+  "id": "V11",
+  "severity": "low",
+  "problem": "Some elements are below the contrast target of principle 7-1: the home '이번 주' future weekday labels (수~일) 2.12:1, the calendar's other-month and future day numbers 1.97:1, and the menu's '준비 중' (ESTH) 2.27:1 at 11.5px. Fading future days is intended, but the weekday names themselves are hard to read.",
+  "evidence": "work/_tmp/v/contrast.py: #home .hwl '수' 2.12 · #home .cn '1'(10/1) 1.97 · #side .nvst2 '준비 중' 2.27 · .nvsn '심미' 3.38. Screenshots ux3v_mac_home_full.png (week bars) and ux3v_mac_cal_full.png.",
+  "proposal": "Future and other-month text: color #8A8175 (≥3.5:1) and show the difference with the background or fill instead. '준비 중': #7A7268 (≥4.5:1). Add these selectors to audit_design's contrast scan."
+ },
+ {
+  "lens": "visual",
+  "id": "V12",
+  "severity": "low",
+  "problem": "Naming and duplication inconsistencies. (1) 📊 통계 (subject totals, top-10 lectures, recent study time) uses full names (임상치과보존학…) while the menu, home table and calendar use short names (보존) — decision 3 says the short names are shared. (2) On the 1280 home page the same start control appears three times (top bar #tmr '▶ 공부 시작', menu header ▶, home band ▶) and today's time appears three times (top bar 01:23:00, menu 1:23/4:00, band 1:23/4:00). (3) The menu shows '📅 공부 달력 2:35', which is this week's total, but without a label it reads as a daily time.",
+  "evidence": "work/_tmp/ux3v_mac_stats_full.png (full names), ux3v_mac_home.png (three trackers and times), ux3v_mac_home.png menu '공부 달력 2:35'.",
+  "proposal": "Use sjShort() in stats (full name in title). On the home view, hide the top-bar #tmr, or show only the clock, because the band is the main control. Change the menu calendar badge to '주 2:35', or add title='이번 주 합계'."
+ },
+ {
+  "lens": "flow",
+  "id": "V01",
+  "severity": "high",
+  "problem": "On a document page (lecture, 정리표, JB), a tap on the tracker button does the opposite of what it says. The tap's own touchstart/mousemove reaches the capture listener tAct (shell.html:1302) before the button's click handler. tAct changes the state and redraws every [data-trk] button, so the click then lands on the new button. Result on iPad: (a) '○ 자동 대기' in the top bar, or the menu-header ▶ 공부 시작, starts ☕ rest instead of a session. (b) During an automatic rest, top-bar '☕ 쉬는 중' ends the rest and immediately starts a manual rest. (c) During an automatic rest, the menu-header '▶ 다시' hits ■ and stops measuring completely (■ 멈춤, stays stopped until a new document). The user thinks they are studying while the time goes to rest or to nothing. On Mac, clicking #tmr when the mouse had not moved also gives rest.",
+  "evidence": "Reproduction (work/_tmp/vflow/f18.py, f25.py; tauto on; open #/CONS/WHT/learn so the state is 'wait').\n- has_touch 1180, 820 and Mac 1280: tap #tmr → ['☕ 쉬는 중 0:00','rest', toast '☕ 쉬는 중 — 공부 시간에 들어가지 않아요'].\n- 1180 touch, menu header [data-trb=start] → rest.\n- After 20 minutes idle (automatic rest): tap #tmr → state rest again and the band '14:04부터 21분 공부를 멈췄어요' appears; tap menu header [data-trb=resume] → ['■ 멈춤','end','■ 측정을 멈췄어요 …'].\n- f15: ▶ → 40 min → ☕ → 10 min → ▶ → 20 min records study 0 and rest 1:10. Screenshot work/_tmp/ux3v_f15_cal_1180.png: calendar shows only '11:00-12:10 1:10 휴식' and the header still shows '☕ 쉬는 중 20:28'.\n- Code: tAct (1302) runs on touchstart/mousemove/click in the capture phase and calls restBack and tStart(true) → tBtn/trPaint redraws [data-trk] (1564) → trTmrClick (1511) and the [data-trb] delegation (1565) see the new state or the new button.",
+  "proposal": "Let tracker controls decide for themselves. In tAct(e), when e.target.closest('#tmr,[data-trk],#trband,#idleband,#bigclock') is set, skip the restBack/tStart(true)/trAct part and keep only T.inp/T.last. That means passing e from the addEventListener loop at 1303. Also, trkUI/trPaint should not replace the DOM of a button under a pressed pointer: skip the redraw while a pointerdown is active, or redraw only the text in place. Regression test in tests/ux3_timer.py, has_touch 1180 and 820, doc view: in wait, tapping #tmr or the menu ▶ gives tstate.st==='sess'; during an automatic rest, the menu ▶ 다시 gives run (never end) and #tmr gives run."
+ },
+ {
+  "lens": "flow",
+  "id": "V02",
+  "severity": "high",
+  "problem": "Existing data conflict. In the 2nd version (0918775), LS sidefold only folded the subject sidebar on subject pages (#subj). Now the same key hides the new global left menu on every screen, including 🏠 오늘. A 2nd-version user who ever pressed \\ or the fold button opens the update and does not see the new main feature (the left menu) at all. They only get a narrow › handle, yet the ✨ 이번 업데이트 card says '모든 화면 왼쪽에 … 과목 7줄'.",
+  "evidence": "f1.py: seed {sidefold:true, ux2old:1} from the V2 data of ux3_compat → at 1280, 1180 and 820, home body.className = 'at-home sidefold'. Screenshot work/_tmp/ux3v_f1_mac_home.png: no menu, only › at the left edge, while the whatsNew card says '🧭 왼쪽 메뉴 — 모든 화면 왼쪽에…'. Legacy code: work/_legacy/0918775/docs/index.html 'body.sidefold:not(.focus) #subj{grid-template-columns:0 …}'. New code: sideApply (shell.html:2796) and sideToggle (2798) apply LS sidefold everywhere.",
+  "proposal": "Do not reinterpret the old key. Store the new menu preference under a new key (e.g. LS navfold). Its initial value is empty, which means the menu is shown. Keep the old sidefold read-only as the 2nd-version meaning: on its first 3rd-version open, an OLD3 device applies it only to doc views, or ignores it once. Leave the sidefold value itself unchanged (compat rule ①). Alternative: if OLD3 && sidefold && !LS navFoldSeen, show the menu once on the first home visit with a toast 'M으로 숨길 수 있어요'. Add a case to tests/ux3_compat.py: V2 seed (sidefold:true) → at 1280/1180 home, #side visible on first open."
+ },
+ {
+  "lens": "flow",
+  "id": "V03",
+  "severity": "high",
+  "problem": "In the calendar, the '시간대 없음' row's ± → '− 빼기' can subtract more than the subject has that day, with no limit. tDayW (1326) drops any subject total ≤0 (for k in o if !(o[k]>0) delete), so the screen shows 0 and the row disappears, but the full negative stays in tedit. After that, time added to the same subject on that day (+ 시간 추가, another device's timeDev, a backup merge) is silently absorbed by the leftover negative and the total does not change. The only undo is the 8-second toast, and the row is gone. The input also has no clamp above max=600, and there is no 24-hour check.",
+  "evidence": "f6.py / f11.py (1280): on 9/26, CONS 0:20 → ± 60 → '− 빼기' → tedit [{S:'CONS',ms:-3600000,k:'set'}], day total 1:15 → 0:55, the 보존 row disappears. Then + 시간 추가 보존 30 min (no start time) → tedit gains +1800000, but the day total stays '9/26(토) · 0:55'. Screenshot work/_tmp/ux3v_f6_minus.png. Code: shell.html:1736 (if(q.cntsgo){const m=Math.round(+$('#cntsm').value||0)…teLog([{…ms:+q.cntsgo*m*60000…}])}).",
+  "proposal": "When subtracting, clamp to the amount on that row: m ≤ round(v/60000) for that subject's '시간대 없음' v, or the subject's day total. Past the limit, show a warning in #cawarn ('보존은 이 날 0:20뿐이에요'). For additions, apply the same 24-hour check as calAddGo (tSum(tDay(d))+m*60000 ≤ 864e5) and clamp the input 1–600. Protect existing data too: tDayW/tLec would also need to cap tedit negatives below 0 per subject. Test: in ux3_tedit, subtract 60 from 20 → the entry is -20. Then +30 → the day total goes up by 30."
+ },
+ {
+  "lens": "flow",
+  "id": "V04",
+  "severity": "medium",
+  "problem": "A '▶ 공부 시작' session is meant to be wall-clock time that also counts off-screen study (paper notes, another app). On iPad, if the user switches to another app (e.g. a note app) and iOS discards the Safari tab or the home-screen app, reopening the hub treats it as a 'closed window'. It shows the band '세션이 켜진 채 닫혔어요 … [hh:mm에 끝난 것으로]', and if nobody taps it within 60 seconds it ends the session at the moment the app went to the background. The same off-screen study counts when the tab survives but is dropped when it is evicted. Which one happens depends on the device's memory, not on anything the user did.",
+  "evidence": "Startup code shell.html:1802: `else if(ts&&ts.st==='sess'&&now-(+ts.at||0)>120000){T.closedQ=…;trBand('closed',…)}` and trBand 'closed' → `trBand.t=setTimeout(()=>trQ('cend'),60000)` (around shell.html:1525). When hidden, visibilitychange only runs sessFlush (at = moment of hiding) and timers stop, so ts.at does not advance. Case where the tab survives: on visible, sessFlush(now) counts all of the away time (f2 flow, 1:01 counted).",
+  "proposal": "Record separately whether the page was hidden or closed. Set ts.hid=now in the visibilitychange hidden handler, and set ts.cls=now in the pagehide handler (which runs on a real close). On startup, if hid is set and cls is not (tab eviction or app switch), treat it like a return from the background: count up to now, and show the existing ask band only when now − li ≥ sessAsk minutes. Remove the automatic 60-second default for the 'closed' band, or make the default '지금까지로' when the gap ≤ sessAsk. Document it in the help '▶ 세션 측정' row and SPEC J."
+ },
+ {
+  "lens": "flow",
+  "id": "V05",
+  "severity": "medium",
+  "problem": "The automatic rest return band ('14:09부터 26분 공부를 멈췄어요 [☕ 쉬었어요][📖 공부했어요]') picks '쉬었어요' by itself after 10 seconds and disappears without a toast. In the calendar, a rest row only has ✎ (time) and 🗑, with no way to turn it into study. If the user reads the page or a table for 8 minutes without touching and misses the band on return, that reading time is permanently rest. The only fix is to delete the rest row and then enter the same time again with + 시간 추가.",
+  "evidence": "f9.py (820 touch, clock): 10 min of scroll input → 25 min idle → input → band shown (screenshot work/_tmp/ux3v_f9_band.png, bottom center over the text) → 11 s later band hidden, trest {'2026-09-29':1551065}, no toast. Code: restAsk shell.html:1781 (setTimeout(()=>restAns('rest'),10000)). Calendar rest rows: calEditHTML with r.r only has start/end (around 1681); calDel only has trest.",
+  "proposal": "(1) After the automatic default, show a result toast with an action: '☕ 26분 휴식으로 넣었어요 [📖 공부로 바꾸기]' (8 s, reusing the restAns('study') logic). (2) Add a '📖 공부로' button to calendar rest rows ('ra'/'r' segments): tUnrec(…,'r') + tRec(S,D,…,'a'), using the S/D recorded on the rest segment or chosen by the user. (3) Either lengthen the band's default time or keep the band until the next navigation. Add a regression test to tests/ux3_rest.py."
+ },
+ {
+  "lens": "flow",
+  "id": "V06",
+  "severity": "medium",
+  "problem": "In the menu, the card list of the current lecture (19–20 lines, ~540px) is inserted between the current lecture row and the subject's other lecture rows. On iPad landscape (menu scroll area 592px), the next lectures of the current subject are pushed below the menu. Moving to the next lecture in the same subject (the most common move) needs a ~600px menu scroll plus a tap. At 820 the drawer has the same structure.",
+  "evidence": "f22.py (1180×820 touch, #/CONS/WHT/learn): #navsc clientHeight 592 / scrollHeight 1565. Lecture rows at y: Tooth whitening 621, Cracked tooth 1182, 시린 치아 1226 … FRC post 1402. OMS1 DD1: DD I 666 → DD II 1253. Screenshots work/_tmp/ux3v_f5_1180_learn.png and work/_tmp/ux3p_1280_learn.png: only the current lecture and the card list are visible.",
+  "proposal": "Option A: put all lecture rows first, then the current lecture's card list ('▼ 카드 19') below them. Option B: collapse the card list by default at ≤1180 and keep it in the existing LS sidecards. Option C: give the card list its own scroll area with max-height:40vh. A is the simplest (scroll spy on #navsc still works). Add to tests/ux3_nav.py: at 1180, the last lecture row of the current subject has bottom ≤ #navsc bottom."
+ },
+ {
+  "lens": "flow",
+  "id": "V07",
+  "severity": "medium",
+  "problem": "The one-line gist at the top of the 정리표 '🔑 요지·핵심' cell, and some 🔑 chunks, still flow as a single block. The user specifically complained that 줄바꿈이 거의 안 되어 읽기 어렵다. The gist only gets the ' — ' second-line rule, so gists that are long arrow sequences show 4–5 bold lines with no break in the narrow cell (~220px). The audit's 80+-character chunks went from 954 to 439, so about half remain.",
+  "evidence": "Screenshot work/_tmp/ux3v_f17_sum_1280.png (ANAT LIP, 1280 with the menu hidden), row 1 '🔑 요지·핵심': '입 둘레 세 돌기 → 코 쪽 돌기가 내측·외측으로 갈라짐 → 상악돌기가 가운데로 모임 → palatal shelf가 높고 만나면 구개 완성' runs 4 lines with no break. work/_tmp/ux3H_build_all.log: '(보고) KEYCHUNK … 80자↑ 954 → 439'.",
+  "proposal": "Apply the K4 arrow-step flow of lecparse.key_lines (4+ steps and more than 70 characters → one inline-block per step, each line starting with '→ ') to the gist '>' rendering (gist_html) as well, keeping ksep so textContent is unchanged. Then recheck KEYCHUNK 80+ against the 정리표 🔑 cells only (the learn-page boxes are wide, so 80 characters is about one line). Report the remaining count split by width."
+ },
+ {
+  "lens": "flow",
+  "id": "V08",
+  "severity": "low",
+  "problem": "Subject expansion in the menu (navExp) accumulates. Every ▸ tap, and every subject-row tap in the 820 drawer, is saved permanently. After moving between several subjects, several subjects stay expanded, each with ~130px of doc chips plus 7 lecture rows. The menu gets long and the subject list moves down.",
+  "evidence": "f4.py (1180): ▸ GERI → GERI lecture → back → exp ['CONS','GERI']. After reload it is still ['CONS','GERI']. Code: shell.html:3695 (toggles o[S]=1 on LS navExp) and 3696 (the drawer subject row also writes navExp).",
+  "proposal": "Make it an accordion: when ▸ opens a subject, remove the others from navExp (keep at most 1). The current subject stays expanded automatically as now. Or: navigating to another subject's lecture removes that subject from navExp."
+ },
+ {
+  "lens": "flow",
+  "id": "V09",
+  "severity": "low",
+  "problem": "Some touch targets are below 44px: the menu's [기본|시험순] (35×30, 45×30), '↪ 이어서' section header (31px tall), '⏱ 오늘 0:15/5:00' row (29px), footer '?' (30×44), card-list rows (26px), calendar '0으로' link (32×22), the calendar settings checkboxes themselves (13px), and the home-page [기본|시험순] (49×32).",
+  "evidence": "f3.py measurement (820 and 1180, has_touch): '.[hsort2=] 35x30 \"기본\"', '.nvsh[nvsec=res] 304x31', '.nvtime[nv=cal] 252x29', '.nvq[nvhelp=1] 30x44', '.scard2[lj=0] 198x26', '.link[caq=0] 32x22', '[cset=tauto] 13x13'.",
+  "proposal": "Under @media (pointer:coarse): min-height 44px for #side .nvtime, .nvsh, [data-hsort2], and .scard2 (or at least 36px, with an invisible ::after to extend the tap area), and min-width 44px for .nvq. Make [data-caq=0] a .btn.sm, and wrap cset checkboxes in a label with min-height 44px. Add a 44px check for these selectors to ux3_nav."
+ },
+ {
+  "lens": "flow",
+  "id": "V10",
+  "severity": "low",
+  "problem": "When an automatic rest starts, the pre-counted '1 minute after the last input' is removed, so the top-bar/menu clock visibly goes back by about 50 seconds. This contradicts the 2nd-version promise B03 that the clock never rewinds.",
+  "evidence": "f9.py: while measuring, clock '00:25:00' → after 25 min idle (automatic rest) '00:24:09'. Code: trAutoRest shell.html:1770 `if(rec>r0)tUnrec(S,D,r0,rec,'a')`.",
+  "proposal": "Start the rest at li+60s (keep the pre-counted minute as study), or show a toast when the clock goes back. Either way, write it in the help '☕ 쉬는 시간' row."
+ },
+ {
+  "lens": "flow",
+  "id": "V11",
+  "severity": "low",
+  "problem": "The home '오늘 할 일' second lines join the short subject name and the count without a separator, so '구강외과1' (which ends in a digit) reads as '구강외과1 1' or '구강외과1 2 · 보존 3'. Same for the menu's '구강외과1 🔁1' badge.",
+  "evidence": "Screenshot work/_tmp/ux3v_f2_home.png: '복습 1문항 / 구강외과1 1'. Code: todayTasks shell.html:1894 `sub:rv.map(([S,n])=>sjShort(S)+' '+n).join(' · ')` (the ng line at 1897 is the same).",
+  "proposal": "Make it sjShort(S)+' '+n+'문항' (or 'n개'), e.g. '구강외과1 1문항 · 보존 3문항'."
+ },
+ {
+  "lens": "flow",
+  "id": "V12",
+  "severity": "low",
+  "problem": "On the first M press, an old user gets two toasts in a row ('M은 이제 메뉴 숨기기 — 메모는 Shift+M' and '메뉴를 펼쳤어요/숨겼어요'). On 820 portrait, M opens the drawer, but the wording says '숨기기'.",
+  "evidence": "f1.py: 1280/1180 toast log [{'메뉴를 펼쳤어요'},{'M은 이제 메뉴 숨기기 — 메모는 Shift+M'}]. At 820 the result is body 'sidefold navopen' (drawer open) with the toast 'M은 이제 메뉴 숨기기…'. Code: keyNoticeM shell.html:2729, menuKey 2727.",
+  "proposal": "If keyNoticeM fires, replace the sideToggle toast with one combined message, e.g. '메뉴를 숨겼어요 — M은 이제 메뉴(메모는 Shift+M)'. At ≤860, use 'M = 메뉴 열기/닫기' instead."
+ },
+ {
+  "lens": "func",
+  "id": "F1",
+  "severity": "high",
+  "problem": "Calendar undo can undo the wrong edit and push the day's total below the time that was actually measured. (a) Undo toasts wait in a queue, and a result toast stays up for at least 3 seconds. So right after you delete (🗑) a row you just added or edited, the toast on screen still belongs to the earlier add or edit, and tapping its 되돌리기 undoes that earlier action. (b) undoEdit ignores later changes to the same segment. If you undo an add or edit whose segment was later edited or deleted (from the toast or with ✕ under 고친 기록 on the 통계 tab), the later minus entry stays and time is subtracted twice. The segments and the total then disagree.",
+  "evidence": "t3 (820 touch, yesterday CONS auto 60 min): + 시간 추가 30 min at 10:00 gives 90. 🗑 on that row gives 60. Tap the 되돌리기 on screen within 0.5 s: the toast is the add's (\"9/28(월) 보존 +0:30 더했어요\"), and the result is 30 min, below the measured 60, with a leftover row '시간대 없음 0:30 보존'. Screenshots: work/_tmp/ux3i_vf_undo_toast.png, ux3i_vf_undo_after.png. t2 (1280): add → edit → 🗑 → tap 되돌리기 gives CONS 3,000,000 → 1,200,000 ms, again below the 50 min base. t25: add 30 → edit to 60 min (total 120) → ✕ on the '추가' row under 고친 기록 gives total 90, but the 10:00–11:00 60-min segment is still shown (segments and total disagree). Code: tools/cons/shell.html toast() / toastNext() at 1256–1257 (a queued result toast gets at least 3000 ms); teToast / undoEdit at ~1581–1582; calDel / calSave at 1690–1704 (sx/sa keys).",
+  "proposal": "① teToast: add a replace option to toast(). If the current toast has an action, call toastEnd() right away and drop any queued toasts that have actions, so the undo on screen is always for the latest action. ② undoEdit(g): collect the sa keys of group g. If a later group that has not been undone (x) has any of those keys in its sx, either undo the later groups first, newest first, then undo g, or refuse with the toast '뒤에 고친/지운 기록을 먼저 되돌려 주세요'. Show ✕ as disabled for groups in that state under 고친 기록. ③ Add tests/ux3_tedit cases: add→🗑→toast 되돌리기 returns to the post-add total; add→edit→undo add keeps tSum = visible segments + 시간대 없음; the total never falls below time+tadj."
+ },
+ {
+  "lens": "func",
+  "id": "F2",
+  "severity": "high",
+  "problem": "The ■ 멈춤 state lifts only when you open a different document or the date changes. After ■ (or a session the system ended: the closed-window question resolving to its default, the 90+30-minute no-input stop, or the 12-hour cap), coming back to the same lecture hours later, even after a reload, records nothing for the rest of the day. The only sign is '■ 멈춤' in the top bar. The main way back is ↪ 이어서 (last document = same lecture), so time is lost without the user noticing.",
+  "evidence": "t5 (1180 touch, fake clock): 5 min auto on CONS WHT → ■ → away 2 h → reopen #/CONS/WHT/learn and study 30 min with wheel/mouse input → still 'end' and tDay CONS 300028 (+0). Opening the subject home (a different document) resumes. t16: a session closed without ■ → reopened 3 h later → '켜진 채 닫혔어요' band → default after 60 s (cend) → 20 min of study on the same document is not recorded ('■ 멈춤'). Code: trStop() writes {st:'end'} at ~1506 (including when why is set); trTick() moved check at ~1536 (lastDoc starts as the first document seen, so after a reload the same document never counts as moved); startup IIFE at ~1799 lifts 'end' only when ts.d!==day().",
+  "proposal": "① Stops the system makes (trQ 'cend', 'stopli', 12-hour cap, restCapEnd) should call tsWrite(null) (back to auto wait) instead of writing 'end'. ② For a user ■: in the startup IIFE, lift 'end' when now-ts.at ≥ 20 minutes (a reload later is a new sitting). Also lift it in visibilitychange when the page comes back after being hidden 20 minutes or more. ③ Change the toast and #tmr title from '새 문서를 열거나' to '다른 문서·다시 열기(20분 뒤)·▶'. ④ Regression test: ■ → reload 2 h later on the same document → 5 min of input → tDay +5 min; closed-session default → studying the same document is measured automatically."
+ },
+ {
+  "lens": "func",
+  "id": "F3",
+  "severity": "medium",
+  "problem": "The ± '− 빼기' on the '시간대 없음' row has no upper limit. Subtracting more than the subject has that day leaves a negative amount in tedit. tDayW only hides values ≤ 0, so later study on that subject that day is swallowed by the negative amount, and the row disappears, leaving no way to spot it.",
+  "evidence": "t18: today CONS 20 min → ± − 60 → tDay {} and no nts row → 30 min of real study added afterwards (time +1,800,000) → tDay still {} and the 오늘 공부 card shows 00:00:00. Code: shell.html 1736 (data-cntsgo handler, teLog ms:+q.cntsgo*m*60000 with no limit); tDayW 1326 (if(!(o[k]>0))delete o[k]).",
+  "proposal": "When subtracting, cap m at that subject's total for the day (tDay(d)[S], or the '시간대 없음' amount v). If the input is larger, show '이 날 보존은 0:20까지만 뺄 수 있어요' and clip or refuse. Set the input max to that total as well. In the day panel, show a subject whose total is ≤ 0 but has tedit entries as '−0:40 (고친 기록 확인)', not hidden."
+ },
+ {
+  "lens": "func",
+  "id": "F4",
+  "severity": "medium",
+  "problem": "Tables still have cell overflow and English words broken mid-word, which is the user's core complaint about table readability. (a) In the 🔑 요지 cell of the lecture summary table (table.mtx), the ① ② ③ grid (ol.circ.cgrid, --c:2/4) is wider than its column, so text runs past the box edge. (b) In the 전체정리표 and comparison tables (table.cmp.tw, twApply), the first-column cap (≤11em / 18%) and overflow-wrap:anywhere break words such as mechanotransducti|on, NaOCl(hypochl|orite) and Branem|ark. The implementation report says 42 lectures have 0 overflowing cells, but a full scan of the snapshot disagrees.",
+  "evidence": "Full scan of 42 lectures × learn/sum/cmp (work/_tmp/vfunc/t13.log). Overflow (scrollWidth>clientWidth): 1280 CONS/INL, CONS/FRC (250>230); 1180 OMS1/LOAD (210>208). Still there after waiting 3 s with fonts loaded and after __h.colFit(true) (t28). Mid-word breaks: 1280 = PHARM DS (oxygenating·hypochlorite·Endotine), IMPL PRO (Branemark); 1180 = 8 lectures; 820 = 14 lectures (cephalometric, Osseointegration, mechanotransduction, Thrombocytopenia, …). Screenshots: work/_tmp/ux3i_vf_tbl_1280_INL.png (③ line crosses the box edge), ux3i_vf_tbl_820_OSS.png, ux3i_vf_tbl_1280_DS.png. Code: colFit / cfStats at shell.html ~3753 (the 🔑 column minimum only uses tok0); twApply at ~3782 (first column 6–11em·18%); L5 cell CSS overflow-wrap:anywhere.",
+  "proposal": "① In .msum td .mkey .cgrid, use grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5em),1fr)), or a container query that drops to one column when narrow. Have cfStats count the cgrid minimum track × --c in the c2 minimum. ② In twApply, set each column's minimum to the widest Latin token when split at '(' '/' '·' — raise the first-column cap to 13em/22% when needed — and render '(' in terms with a <wbr> before it. ③ Change cell CSS from overflow-wrap:anywhere to overflow-wrap:break-word, and add hyphens:auto to Latin runs (lang=en spans). ④ Extend ux3_tables.py from 7 lectures to all 42 × sum tab × 1280/1180/820, checking th/td scrollWidth and words split across line boxes (Range.getClientRects)."
+ },
+ {
+  "lens": "func",
+  "id": "F5",
+  "severity": "medium",
+  "problem": "Keyboard shortcuts fire inside the calendar's <input type=time> fields (+ 시간 추가 start, ✎ edit start/end). isTextField does not cover type=time, so ←/→ changes the selected day and clears the form being filled (focus lost), T jumps to today, and A / M / Shift+B act globally. Anyone adjusting time segments with arrow keys on the Mac or on the iPad hardware keyboard loses their input.",
+  "evidence": "t23 (1280): open + 시간 추가 → focus #caT → ArrowLeft makes CAL.sel 2026-09-29→09-28, the form re-renders and focus is gone; 't' in the time field → jumps to today; 'm' → menu hidden (sidefold true). Code: shell.html 2698 isTextField regex ^(text|search|email|url|number|password|tel)?$ (no time/date); calendar keydown at 1745 relies on isTextField.",
+  "proposal": "Add time|date|datetime-local|month|week to the isTextField regex. In the calendar capture handler, also return when tg.closest('.cadd,.cedit') is true. Add a test to ux3_cal: ArrowLeft and 't' inside #caT / #ceA leave CAL.sel unchanged and keep the form open."
+ },
+ {
+  "lens": "func",
+  "id": "F6",
+  "severity": "low",
+  "problem": "Session-stopped (tUnrec) reductions and edits to rest segments are not kept through backup merges. tUnrec (session '마지막 입력 때 멈춤' or a closed session resolving to its default, and the 1 minute already counted before an auto rest) and 📖 공부했어요 lower time/timed/trest directly. calDel/calSave on rest segments also write trest directly. tMax / tFlatMax take the larger value, so merging a backup (device mode timeDev or 되돌리기) taken between the write and the reduction brings the removed time back. This is the same class of bug the tedit ledger was meant to fix, left on these paths.",
+  "evidence": "Found by reading the code (no automated repro). Code: tUnrec at ~1471, restAns at ~1784, calDel/calSave rest branches at ~1690/1697, tMax at 2911, tFlatMax at ~1595, devTimeMerge at 3044.",
+  "proposal": "Log reductions from session trims and rest edits/deletes in tedit as well (k:'trim', and for rest a separate entry with f:'r' that tDay skips and restDay adds). Or at least record them in tedit alongside the direct time write so merges can re-apply them. Add a merge test: stopli (−N min) → merge a backup taken before it → total stays the same."
+ },
+ {
+  "lens": "func",
+  "id": "F7",
+  "severity": "low",
+  "problem": "When a second window is open (Mac tabs, iPad Split View), the menu (#nav) is fully rebuilt every 20–25 s while the other window measures time (storage time/timed events → navRender). A tap or click that lands during a rebuild can be lost, and keyboard focus is lost. The calendar's storage re-render also resets a ± minutes input being typed (CAL.nts) and open <select> dropdowns.",
+  "evidence": "t29: A measures, B sits on OMS1 DD1. Over 50 s, B's #nav childList was rebuilt 2 times and the .nvs nodes were replaced. Code: shell.html 3700 (a storage 'time|timed' change triggers navRender after 300 ms); 1549–1550 (the calendar calRender(true) guard only checks CAL.edit / addOpen).",
+  "proposal": "For time/timed/tedit storage events, call only navBadges() (text of [data-nb] and the head's h:mm), and keep full navRender for mk/done/exam/lastBy/homeSort/navExp/navSec. In the calendar storage listener, skip re-rendering when CAL.nts is set or when document.activeElement is inside #calday or #calcards, and update only calTick text."
+ },
+ {
+  "lens": "func",
+  "id": "F8",
+  "severity": "low",
+  "problem": "In focus mode (V) at 860px and below, M/\\ opens the drawer but focus mode stays on. The top bar stays in its collapsed state and '집중 · V로 나가기' remains, so the drawer and focus mode are active together. Decision 8 and the track contract say M in focus mode turns focus mode off.",
+  "evidence": "t7 820 touch: V → M gives body.className 'focus navopen'. Screenshot: work/_tmp/ux3i_vf_port_focus_drawer.png. Code: sideToggle at shell.html 2798 (if(innerWidth<=860){navOpen();return;} returns before the focus handling).",
+  "proposal": "At the start of sideToggle, if body.classList.contains('focus'), call focusSet(false) first, then continue to navOpen() when ≤860 or to the unfold path otherwise. Add a check to ux3_keys for 820: V→M means no focus class and drawer open."
+ },
+ {
+  "lens": "func",
+  "id": "F9",
+  "severity": "low",
+  "problem": "Hiding the menu with M on a page where it was auto-hidden (정리표, 비교표 SIDEAUTO) — M to show, then M to hide — sets LS sidefold=true for every screen. After that, the 🏠 오늘 home and the calendar also open with the menu hidden. The user meant 'hide on the table page', but the setting leaks to hub screens.",
+  "evidence": "t17 (1280): learn → sum (auto-hidden) → M (shown, wideSide=1) → M (hidden, sidefold=true) → learn and home #/ now also have sidefold true and #side width 0.",
+  "proposal": "Option A: when hiding on a SIDEAUTO view, set only wideSide=0 and leave sidefold unchanged. Option B: store fold separately for hub screens (home/cal/search/marks) and doc views (LS sidefoldHub), so home keeps the menu by default. Present both to the user and pick one."
+ },
+ {
+  "lens": "func",
+  "id": "F10",
+  "severity": "low",
+  "problem": "Calendar URL state is inconsistent. After a subject filter (?s=CONS) is set, opening #/_cal/2026-08-03 without ?s keeps the filter and rewrites the URL with ?s=CONS. Future dates such as #/_cal/2099-01-01 are accepted and jump the view to 2099. Day selection and tab switches replace history, so Back jumps straight to the previous screen (a design choice, but the help does not mention it).",
+  "evidence": "t12: filter → goto #/_cal/2026-08-03 gives '#/_cal/2026-08-03?s=CONS'; goto #/_cal/2099-01-01 gives CAL.sel 2099-01-01. Code: calView at shell.html 1603–1606 (when o.s is undefined and was is true, CAL.s stays).",
+  "proposal": "In parseHash→calView, always pass the URL's ?s as o.s (empty string when absent). For dates later than today+400 days, fall back to today. Note in the SPEC and help that selecting days doesn't add history entries."
+ }
+]

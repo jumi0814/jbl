@@ -1,0 +1,483 @@
+{
+ "decisions": [
+  "0. 적용 시점: 수정자 B의 진행 중 변경(docs·tools 수정분, ux2_fixB.py, icon·manifest)을 검증해 먼저 커밋하는 것이 '하던 작업 마무리'다(묶음 G의 G0). 두 트랙은 그 커밋 위에서 시작한다. tools/{oms1,cons,impl,anat,geri,pharm}/shell.html·lecparse.py는 지금 cmp로 모두 같다. 원본은 cons에서만 고치고 다른 과목 폴더로 복사한다. 적용 직전과 통합 때 cmp로 다시 확인한다.",
+  "1. 세 설계안의 공통 뼈대를 채택한다. 왼쪽 메뉴를 #subj 밖 전역 #app 격자로 올려 모든 화면(🏠 오늘·📅 달력·검색·🖍 표시·과목 홈·정리본·JB)에 붙인다. 폭 --sidew는 1024 이상 248px, 861~1023 232px, 860 이하는 서랍(min(320px,86vw))이다. body.sidefold이면 0이 되고 grid-template-columns에 .18s 전환을 준다. 전환이 끝나면 CustomEvent 'jbl:layout'을 보낸다. 이 이벤트가 트랙 2(표)와의 유일한 연결 계약이다.",
+  "2. 메뉴 구성(위→아래)은 설계안 1을 바탕으로 한다. ⓪ 고정 머리 트래커(오늘 h:mm / 목표 + 3px 막대 + 상태 버튼 + ‹ M) → ① 🏠 오늘 · 📅 공부 달력(이번 주 합) · 🔁 오늘 복습(전 과목 due 합, 0이면 숨김) · 🖍 내 표시 → ② ↪ 이어서(lastBy 최대 3, 접기) → ③ 과목 7줄(색 점·짧은 이름·D-n·읽음 %·▸, 순서는 LS homeSort) → 펼친 과목: 문서 칩 4×2(홈·JB n·한눈·비교·예상·대장·표시) + 강의 줄 + 지금 강의의 카드 목차(sideCards·스크롤 스파이 유지) → ④ 고정 바닥(💾 백업 상태 · ? · 'M 메뉴 숨기기'). 검색은 상단 막대에만 둔다(/ 키). 백업·복원 버튼은 상단 막대에서 메뉴 바닥 💾(bkPop)로 옮겨 820 세로 상단 막대를 비운다. #sjsel·'과목 전체' 두 줄 버튼·서랍 전용 '🏠 허브 홈'은 없앤다.",
+  "3. 아코디언: 지금 과목은 자동으로 펼친다. 다른 과목은 ▸로 연 것만 펼치고 LS navExp{S:1}에 저장한다. 과목 줄 본문을 누르면 과목 홈으로 가면서 펼친다. 서랍에서 과목 줄을 누르면 펼치기만 하고 서랍은 열어 둔다(강의까지 2탭). ESTH처럼 팩이 없는 과목은 흐린 '준비 중' 줄로 두고, 불러오는 중이면 '불러오는 중'이라고 쓴다. SUBJECTS에 셋째 값으로 짧은 이름을 더한다(구강외과1·보존·임플란트·두경부해부·노인치과·약물치료·심미). 메뉴·홈 표·할 일·달력이 이 이름을 함께 쓴다.",
+  "4. 허브 홈 = '오늘' 대시보드. 과목 카드 6장(.sgrid)을 없애고 다음 순서로 둔다. 오늘 띠(날짜·가장 가까운 시험·오늘 막대·측정 버튼) → 두 단(↪ 이어서 큰 버튼 + 칩 2 | ✅ 오늘 할 일, 자동 목록 최대 5줄) → 과목 한눈표 7행(시험 D-n ✎·정리본 읽음·기출 맞/틀·🔁·오늘/전체 시간·↪) → 이번 주 7칸 막대 + [📅 달력] → 접힌 details(💾 백업·기기 옮기기, 🖍 전 과목 내 표시). lead 문단은 도움말로, tHomeTable은 달력으로 옮긴다. 할 일은 저장하지 않는 파생 목록이며 todayTasks() 하나를 홈·메뉴 배지·시계 팝업이 함께 쓴다.",
+  "5. 측정은 자동 측정(입력이 있을 때만·무활동 되묻기·창 하나)을 기본으로 유지한다. 여기에 HUB식 수동 세션(▶ 공부 시작 → ☕ 쉬기 ↔ ▶ 다시 → ■ 종료)을 더한다. 세션은 벽시계로 재서 종이 필기 같은 화면 밖 공부도 센다. 안전장치: 입력 없이 90분이면 확인 띠(LS sessAsk 60/90/120/끄기), 창을 닫았다 다시 열면 '마지막 기록 때 끝난 것으로(기본)' 질문, 12시간 상한, 자정 분할. 세션·휴식 중에는 자동 시작을 막아 두 번 세지 않는다. ■ 종료 뒤에는 다음 ▶나 새 문서를 열 때까지 자동 측정을 멈춘다. 떠 있는 트래커 위젯은 만들지 않는다(아이패드 #kit·JB 막대와 겹침). 같은 버튼을 메뉴 머리·상단 #tmr·시계 팝업·홈 오늘 띠·달력 상태 카드에 둔다. 날짜 경계는 지금처럼 0시다(HUB의 6시는 가져오지 않음). [09-29 사용자 추가 요청] 자동 측정에서도 공부가 멈추면(무활동·화면 숨김·☕) 그때부터 휴식을 잰다(restAuto 기본 켬, 한 번 휴식 상한 restMax 90분, 돌아오면 '쉬었어요(기본)/공부했어요' 띠) — 묶음 J9.",
+  "6. 수정·추가·삭제 데이터 모델은 설계안 2의 추가 전용 로그 tedit을 채택한다. time·timed(측정 원본)와 옛 tadj는 형식을 바꾸지 않는다. 앞으로 손으로 고친 기록은 tadj에 쓰지 않고 tedit[{i,at,d,S,D,ms,k,g,x}]에 쌓는다. 백업을 합칠 때 i 합집합(x가 이김)으로 합치므로, 지금 tMax 규칙이 음수(빼기)를 덮어 사라지게 하는 버그가 새 기록에서는 생기지 않는다. 합계 = time + tadj(옛, 읽기 전용) + tedit + timeDev + 진행 중 측정이다. tseg(시간대 구간)는 화면 표시 전용이라 합계 계산에 쓰지 않는다. 구간 합과 합계의 차이는 '시간대 없음 · 보존 1:10' 줄로 드러낸다.",
+  "7. 공부 달력은 #/_cal(#/_cal/YYYY-MM-DD, ?s=SID 과목 필터)로 둔다. 옛 #/_time은 같은 화면의 [📊 통계] 하위 탭 별칭이라 링크·뒤로가기가 호환된다. 화면: 상태 카드 4장(오늘 공부 hh:mm:ss·휴식·달성 고리·상태 버튼) → 월 요약 줄 → 월요일 시작 월 달력(h:mm·목표 대비 채움·달성 ●·시험 칩·✎ 고친 날·오늘 테두리) → 선택한 날 패널(이 날 목표·과목 막대·24시간 띠·기록 목록 ✎🗑·+ 시간 추가·이 날 시험). 1024 이상은 달력 58% | 패널 42%(sticky), 그 아래 폭은 위아래로 쌓는다. 전체 화면 시계(#bigclock)는 V 읽기 집중 모드와 따로 둔다.",
+  "8. M 키: M(e.code 'KeyM', 한글 입력 상태에서도 동작, isComposing·입력칸에서는 무시) = 모든 화면에서 메뉴 숨기기/보이기(860 이하는 서랍). \\\\는 같은 동작의 별칭이다. 메모는 Shift+M이고 📝 버튼은 그대로 둔다. 1차 사용자(OLDU)에게는 처음 한 번 'M은 이제 메뉴 — 메모는 Shift+M' 알림을 띄운다(LS keyNoticeM). 정리표·비교표를 1440 이하에서 자동으로 접는 SIDEAUTO와 #stage.wide 최대 1560은 유지한다. 메뉴를 숨긴 동안에는 왼쪽 › 손잡이와 상단 ☰가 늘 보인다(notabs 조건을 없앰). 집중 모드(V) 중에 M으로 펼치면 집중 모드를 끈다.",
+  "9. 표 폭: 정리표(table.mtx, 5열)는 설계안 1의 '표 전체 높이 최소' 탐욕 탐색 colFit을 쓴다. 산술로만 계산해 reflow가 없다. 하한은 em 단위, 상한 36%, 1.5%p 이력 문턱, 모드·폭(24px 단위)이 바뀔 때만 다시 계산하고 행 필터가 바뀔 때는 다시 계산하지 않는다. 전체정리표·비교표·한눈표(table.cmp/sum)는 설계안 2의 √글자량 무게 px 배분을 쓴다(첫 열 6~11em·18% 이하, 한 열 42% 상한). 열이 5개 이상이고 폭이 760 미만이면 행 카드로, 아니면 첫 열 고정 가로 스크롤로 둔다. 본문 폭 700~999(아이패드 세로)의 정리표는 1열로 쌓지 않고 2단 카드(38%: 주제+🔑 | 62%: 세부→★→⚡)로 둔다. 칸 공통: padding 9px 12px, word-break:keep-all + overflow-wrap:anywhere, line-height 1.55.",
+  "10. 🔑 상자와 정리표 '🔑 요지·핵심' 칸은 같은 새 함수 lecparse.key_lines로 그린다. 규칙: K1 ' / '(50자 초과, 짧은 수치 나열 제외) → 줄 / K2 'X = …'·'X: …' 라벨 사실이 2개 이상이면 라벨마다 줄(라벨 굵게) / K3 남은 긴 ' · ' 나열은 사실 단위 inline-block 흐름(사실 중간에서 끊기지 않음, 칸 폭에 따라 2~4줄) / K4 ' → ' 4단계 이상·70자 초과면 단계 단위 흐름(줄머리 '→ ') / K5 ' — ' 뒤 16자 이상은 둘째 줄 .ksub / K6 ' + ' 부연 묶음(90자 초과) / 앞머리 'X:'는 klead / 상자 최대 7줄, 넘치면 기존 .krest. 새로 나누는 자리의 구분자는 <span class=ksep>로 DOM에 남기고 줄이 바뀌는 곳에서만 숨긴다. 그래서 textContent가 지금 빌드와 글자까지 같고, 형광펜·빈칸 위치와 검색 색인이 그대로다(check_lec에 글자 동일 검사 추가). 정리표 요약 모드의 '🔑 목록 한 줄 흐름' CSS(shell.html 763~764)는 지운다. 압축(C)·⚡ 복습(R) 보기의 한 줄 흐름은 유지한다. 한 줄 요지('>' 719줄 중 513줄에 ' — ')는 첫 최상위 ' — ' 뒤가 16자 이상이면 둘째 줄 .ksub로 나누고, keep-all과 text-wrap:pretty를 준다.",
+  "11. 빈칸 색: 형광펜과 헷갈리지 않게 노랑 계열을 빼고 5색으로 한다. n 회색(기본·옛 빈칸) · u 파랑 · g 초록 · p 분홍 · v 보라. 가린 상태는 옅은 바탕 + 진한 밑줄이다. 연 상태는 지금 노랑 바탕을 유지하고 밑줄만 제 색을 남긴다. 규칙 자동 빈칸은 점선 밑줄로 구별한다. ann 빈칸 객체에 선택 필드 c를 더하고, 회색이면 c를 쓰지 않아 저장 JSON이 지금과 글자까지 같다. DOM은 class rkb-<c> + data-bc를 쓴다(형광펜 data-c와 분리). 조작: ▣ 옆 견본 #k-bsw(한 번 누르면 5색) · Shift+B 색 순환 · 빈칸 모드에서 다른 색 빈칸을 누르면 색만 바꿈(되돌리기 가능) · 길게 누르면 라벨(LS blabel) · 마지막 색은 LS bcol에 기억한다. 덤으로 형광펜 색도 LS hcol에 기억한다(지금은 새로고침마다 노랑으로 돌아감).",
+  "12. 그 밖의 오류·개선도 이번에 함께 고친다. (a) tFlush가 자정을 넘긴 누적분을 flush 시점 날짜에 몰아넣는 문제 → [t0,now]를 자정에서 두 날로 나눔. (b) tadj 백업 합치기 tMax가 음수를 잃는 문제 → 새 쓰기를 tedit으로 옮기고, '빼기 후 옛 백업 합치기' 회귀 테스트 추가. (c) revInfo를 홈·메뉴·할 일에서 반복해 부르는 문제 → RVC[S] 캐시(mk.<S>·done.<S> storage 이벤트로 무효화). (d) 메뉴 배지는 1분 타이머에서 textContent만 갱신. (e) 과목 홈 .ljump는 861 이상에서 메뉴와 중복이므로 숨김. (f) .onebar left를 --sidew로.",
+  "13. 트랙 경계. 트랙 1(본 저장소)은 #app·#side 레이아웃 CSS, navRender·sideToggle·sideApply 함수 본문, home()·todayBand·tHomeTable·exCard, 측정 코어 T·tFlush·tBtn·tDay·tLec·tGoal·tPopHTML(1029~1183), timeView·tvRender → calView·statsRender, parseHash·curState, mergeData·devTimeMerge·devPlan·MSKIP의 시간 분기, guide/·SUBJECTS를 맡는다. 트랙 2(별도 worktree)는 keydown의 M·Shift+M·Shift+B 줄(1967 부근)과 Kit(1690~1960: COLORS 옆 BCOL·wrap·snap·restore·swatch·modeChip 문구), 빈칸 CSS(266~270), 표·정리표 CSS 블록(718~780, 418~422 카드), tblFit·stCard·tblMount(2683~2700)와 새 colFit, marksHTML 빈칸 색, lecparse.py·build4.py(mkey_html)·check_lec.py를 맡는다. 두 트랙 모두 docs/는 커밋하지 않고 tools/ 원본만 바꾼다. docs/index.html·packs 재생성, 도움말 단축키 표·tools/SPEC.md·whatsNew(WN_ITEMS)는 통합 묶음 P에서 한 번에 한다. 트랙 2는 'jbl:layout' 이벤트와 지금의 body.sidefold만 가정한다.",
+  "14. 사용자에게 고르게 할 선택지(통합 보고 때 제시): (A) 허브 홈 과목 영역을 '한눈표'(기본) 또는 [카드로 보기](LS homeView)로 바꾸는 전환을 둘지 / (B) ■ 종료 뒤 자동 측정 재개 시점을 '새 문서를 열 때'(기본) 또는 '다음 날까지 멈춤' 중에서 / (C) 나중 항목: 날짜 경계 4시(LS dayStart)·사용자가 직접 넣는 할 일은 이번에 넣지 않음."
+ ],
+ "wireframes": "① 허브 홈 '오늘' — Mac 1280 (메뉴 248 + 본문 ≈1032, #home max 1100)\n┌ ⏱ 오늘 1:23 / 4:00  ‹M ┬──────────────────────────────────────────────────────┐\n│ ▓▓▓▓▓░░░░░  ● 측정 중   │ 9월 29일 (화)        가장 가까운 시험  보존 D-2 (10/1 목) ▸ │\n│ [☕ 쉬기] [■ 종료]       │ 오늘 1:23 / 4:00 ▓▓▓▓▓░░░░░ 35%   [☕ 쉬기][■ 종료][⏱ 크게] │\n│ 🏠 오늘            🔁12 ├───────────────────────────────┬──────────────────────┤\n│ 📅 공부 달력       9:40 │ ↪ 이어서                       │ ✅ 오늘 할 일          │\n│ 🖍 내 표시              │ ┌───────────────────────────┐ │ 🔁 복습 12 (보존7·해부5)▶│\n│ ─ 이어서 ─────────── ▾ │ │↪ 보존 · Tooth whitening    │ │ 📅 보존 D-2: 카드 27 ·  │\n│  보존·미백·정리표        │ │  정리표 · 카드 5 · 어제 23:10│ │    기출 14           ▶│\n│  해부·Lip·학습          │ └───────────────────────────┘ │ 📝 보존 안 푼 기출 14  ▶│\n│  약물·CHR·기출          │  [해부 · Lip · 학습] [약물 · CHR]│ 💾 백업 9일 전        ▶│\n│ ─ 과목 ──── [기본|시험순]├───────────────────────────────┴──────────────────────┤\n│ ● 구강외과1   10/6 38% ▸│ 과목         시험   정리본 읽음   기출 맞·틀     🔁  오늘/전체 ↪│\n│ ● 보존  D-2 🔁7  61% ▾ │ ● 구강외과1  10/6✎ ▓▓░░ 38%   ▓▓▓░ 20·4/68   –  0:40/12:10 ↪│\n│  [홈][JB 30][한눈][비교]│ ● 보존       D-2✎  ▓▓▓░ 61%   ▓▓░░ 12·4/30   7  1:10/20:40 ↪│\n│  [예상][대장][표시]     │ ● 임플란트   날짜✎ ░░░░ 0%    ░░░░ 0·0/39    –  —         ↪│\n│  ● Tooth whitening 4/19│ ● 두경부해부 …  ● 노인치과 …  ● 약물치료 …              │\n│  ● Adhesion        0/21│ ○ 심미       자료 준비 중                                │\n│   ▾ 카드 19 (스크롤)   ├──────────────────────────────────────────────────────┤\n│ ● 임플란트          0% ▸│ 이번 주  월▂ 화▅ 수▇ 목▃ 금░ 토░ 일░  합계 9:40·평균 1:37 [📅 달력]│\n│ ● 두경부해부 🔁5   22% ▸│ ▸ 💾 백업·기기 옮기기        ▸ 🖍 전 과목 내 표시          │\n│ ○ 심미       준비 중    │                                                      │\n├─────────────────────────┤                                                      │\n│ 💾 3일 전 보냄  ?  M 숨기기│                                                      │\n└─────────────────────────┴──────────────────────────────────────────────────────┘\n\n② 왼쪽 메뉴 상세 (248px, 줄 40 / pointer:coarse 44)\n┌──────────────────────────────┐\n│ ⏱ 오늘 1:23 / 4:00     ‹ (M) │ ⓪ 고정 머리. 시간 누르면 📅, 상태 버튼 = 트래커\n│ ▓▓▓▓▓░░░░░                    │    상태: ○ 자동 대기 · ● 측정 중 · ● 세션 0:42\n│ ● 세션 0:42   [☕][■]          │          · ☕ 쉬는 중 3:10 [▶][■] · ▶ 시작\n├──────────────────────────────┤\n│ 🏠 오늘                  🔁12 │ ① 전역 3줄\n│ 📅 공부 달력            9:40 │\n│ 🖍 내 표시                    │\n│ ─ ↪ 이어서 ─────────────── ▾ │ ② 최대 3줄(32px) LS lastBy\n│ ─ 과목 ─────── [기본|시험순] │ ③ 7줄\n│ ● 구강외과1        10/6 38% ▸│    D-n은 3일 이내 빨강, 읽음 % 회색\n│ ● 보존     D-2 🔁7  61% ▾    │    ▸/▾ = 44px 펼침 버튼(이동 없음)\n│   [🏠홈][📝JB 14][🗂한눈][📊비교]│    문서 칩 4×2 (32px)\n│   [✍️예상][📚대장][🖍표시]      │\n│   ● Tooth whitening   4/19   │    강의 줄 36px(열 점·sname·읽음)\n│     ▾ 카드 19 ← 스크롤 스파이   │    sideCards 그대로\n│   ● Adhesion          0/21   │\n│ ○ 심미         준비 중        │    팩 없으면 흐림\n├──────────────────────────────┤\n│ 💾 3일 전 보냄 ·  ?  · M 숨기기│ ④ 고정 바닥(기한 넘으면 호박색)\n└──────────────────────────────┘\n메뉴 숨김(M·\\·‹): 격자 열 248→0(.18s) → 'jbl:layout' → 표 colFit 다시. 왼쪽 가장자리에 › 손잡이(20×48)와 상단 ☰.\n\n③ 📅 공부 달력 #/_cal — Mac 1280 / 아이패드 가로 1180\n┌ 메뉴 ┬ [📅 달력 | 📊 통계]                                                     ┐\n│      │ ┌오늘 공부────┐┌휴식──────┐┌달성──────┐┌상태──────────────────┐      │\n│      │ │ 01:23:45   ││ 0:25     ││ (◔ 35%)  ││ ● 세션 0:42           │      │\n│      │ │ 목표 4:00  ││          ││ 목표 4:00▾││ [☕][■]  [⏱ 크게]     │      │\n│      │ └────────────┘└──────────┘└──────────┘└──────────────────────┘      │\n│      │ 9월 42:10 · 공부한 날 18 · 평균 2:21 · 목표 달성 9일 · 연속 4일            │\n│      │ ┌ ‹ 2026년 9월 › [이번 달] ─────────────┐┌ 9/28(월) 3:12 / 4:00 80% ─┐│\n│      │ │ 월   화   수   목   금   토   일       ││ 이 날 목표 [4:00▾][기본값] ││\n│      │ │ 1    2    3    4    5    6    7       ││ ● 보존 1:40 ▓▓▓▓▓▓        ││\n│      │ │2:10 3:05● 1:20      4:12●            ││ ● 해부 1:02 ▓▓▓▓          ││\n│      │ │ ▁▁   ▃▃   ▁         ▇▇               ││ 0   6    12    18    24   ││\n│      │ │ …                                     ││ ░░░██▒▒███░░░██░░░        ││\n│      │ │ 28✎  29▢(오늘)  30   1 보존시험        ││ 09:12–10:40 1:28 ●보존 ·  ││\n│      │ │3:12  1:23                             ││   미백 ⏱          [✎][🗑] ││\n│      │ │ ▅▅   ▂▂                               ││ ☕ 10:40–10:55 0:15       ││\n│      │ └───────────────────────────────────────┘│ ✍ 21:00– 1:00 ●해부 [✎][🗑]││\n│      │  기본 목표 [4:00▾]  ▸ 측정 설정            │ 시간대 없음 · 보존 0:12 [±]││\n│      │                                          │ [+ 시간 추가]              ││\n│      │                                          │  과목[보존▾] 강의[과목 전체▾]││\n│      │                                          │  시작[--:--] [+15][+30][+60]││\n│      │                                          │  [1]시간 [30]분  [추가]     ││\n│      │                                          │ 이 날 시험: (없음) [시험일로▾]││\n│      │                                          └──────────────────────────┘│\n└──────┴─────────────────────────────────────────────────────────────────────┘\n(달력 칸: 왼쪽 위 날짜, 오른쪽 위 시험 칩, 가운데 h:mm, 바닥부터 목표 대비 채움, 달성 ●, 고친 날 ✎, 미래는 흐림)\n\n④ 아이패드 세로 820 — 메뉴는 ☰ 서랍, 홈은 1단\n┌ ☰  JBL   [🔎 검색……………]  ● 1:23  ? ┐      서랍 열림(☰ 또는 M):\n├──────────────────────────────────────┤      ┌──────────────────────┐░░░\n│ 9/29(화) · 보존 D-2 ▸                │      │ ⏱ 오늘 1:23/4:00  ✕ │░░░\n│ 오늘 1:23/4:00 ▓▓▓░░  [☕][■]         │      │ ● 측정 중 [☕][■]     │░░░\n├──────────────────────────────────────┤      │ 🏠 오늘        🔁12 │░░░\n│ [↪ 보존 · 미백 · 정리표 · 카드 5   ]  │      │ 📅 공부 달력   9:40 │░#navbg\n│  [해부·Lip·학습] [약물·CHR]           │      │ 🖍 내 표시           │░░░\n├──────────────────────────────────────┤      │ ─ 이어서 ─          │░░░\n│ ✅ 오늘 할 일                         │      │ ─ 과목 ─            │░░░\n│ 🔁 복습 12 (보존7·해부5)          ▶  │      │ ● 보존 D-2 🔁7   ▾  │░░░\n│ 📅 보존 D-2 카드27·기출14         ▶  │      │  [홈][JB][한눈][비교]│░░░\n├──────────────────────────────────────┤      │  ● Tooth whitening   │░░░\n│ ● 보존      D-2✎            [↪]      │      │ ● 해부 🔁5       ▸  │░░░\n│   읽음 ▓▓▓░ 61%  기출 ▓▓░ 12·4/30     │      │ (줄 44px, 항목 누르면 │░░░\n│ ● 구강외과1 10/6✎           [↪]      │      │  서랍 닫힘, #kit 숨김)│░░░\n│   읽음 ▓▓░░ 38%  기출 ▓▓▓ 20·4/68     │      ├──────────────────────┤░░░\n│ … 7장                                │      │ 💾 3일 전 · ? · M    │░░░\n│ 이번 주 ▂▅▇▃░░░ 9:40 [📅]             │      └──────────────────────┘░░░\n└──────────────────────────────────────┘      폭 min(320px, 86vw)\n정리표(세로 본문 740px): 한 행 = 2단 카드 [주제+🔑 38% | 세부→★→⚡ 62%]",
+ "batches": [
+  {
+   "name": "묶음 G 전역 왼쪽 메뉴·레이아웃",
+   "track": "1",
+   "items": [
+    {
+     "id": "G0",
+     "title": "하던 작업 마무리·피드백 기록",
+     "what": "(1) 수정자 B 1차 이후의 커밋 안 된 변경(docs/index.html·packs 6개, tools/*/shell.html·build4.py·SPEC.md, audit_design.py, check_lec.py, ux2_fixB.py, docs/icon-192·512.png·manifest.webmanifest)을 검증 뒤 커밋한다. 검증: 6개 shell.html·lecparse.py·build4.py cmp 동일, 6과목 build4, verify.py, tools/tests/*.py, audit_design.py. (2) CLAUDE.md 피드백 절차에 따라 사용자 요청 원문을 guide/피드백기록.md에 한 줄 추가한다. guide/정리본_원칙.md 7-1에는 🔑 줄바꿈 규칙·빈칸 색·메뉴 M 규칙을 반영한다(문구는 결정 10·11·8).",
+     "acceptance": "git status에 materials·jb·work가 없고, 커밋 뒤 tools·docs 작업 트리가 깨끗하다. verify.py 통과, tests 전부 통과, 콘솔 오류 0. 피드백기록.md 마지막 줄이 사용자 원문과 같다.",
+     "files": "docs/*, tools/*/shell.html, tools/*/build4.py, tools/tests/ux2_fixB.py, guide/피드백기록.md, guide/정리본_원칙.md"
+    },
+    {
+     "id": "G1",
+     "title": "#app 격자로 메뉴를 앱 수준에 올리기",
+     "what": "마크업: body > #app{display:grid;grid-template-columns:var(--sidew) minmax(0,1fr)} = [aside#side.noann > nav[aria-label='JBL 메뉴'] | div#main > section#home + div#subj(#hero·#dtabs·#stage)]. --sidew는 1024 이상 248px, 861~1023 232px, 860 이하 0(서랍)이다. body.sidefold이면 --sidew:0이고 transition:grid-template-columns .18s를 준다. transitionend(없으면 220ms 뒤)에 rAF로 measure()를 부르고 document.dispatchEvent(new CustomEvent('jbl:layout'))를 보낸다. #subj 안의 기존 2단 격자는 한 단으로 바꾼다. body.at-home·focus(V)·navopen·.onebar left(var(--sidew))·서랍 z-index 규칙을 새 구조에 맞춘다.",
+     "acceptance": "playwright 1280·1180·820에서 홈·달력·검색·과목 홈·학습·정리표·JB 각 화면에 #side가 보인다(820은 서랍 닫힘 상태). body.sidefold를 켜면 #main 폭이 +248(1280)이고 'jbl:layout'이 한 번 발생한다. 가로 넘침 0(audit_design), 콘솔 오류 0.",
+     "files": "tools/cons/shell.html (레이아웃 CSS 150~160·300~310·520~545 부근, body 마크업)"
+    },
+    {
+     "id": "G2",
+     "title": "navRender() — 메뉴 구역 ⓪~④",
+     "what": "sideRender(1310)를 navRender()로 바꾼다. CUR.s가 없어도(VIEW home·cal·search·marks) 그린다. 구역: ⓪ 고정 머리(#navtrk: 오늘 h:mm / tGoal(오늘) + 3px 막대 + 상태 버튼. 버튼 HTML은 묶음 I의 tTrkHTML()을 부르고, G 단계에서는 tBtn 상태 문구만) · ① 🏠 오늘(#/), 📅 공부 달력(#/_cal, 배지 = 이번 주 합), 🖍 내 표시(지금 과목, 없으면 LS lastBy 첫 과목의 _marks. 화면 위에 과목 전환 칩) · ② ↪ 이어서(LS lastBy를 at 순으로 최대 3, 13px 한 줄 말줄임, resClick 재사용, 접기 LS navSec{res}) · ③ 과목(묶음 G3) · ④ 고정 바닥(💾 bkStatus 한 줄 → bkPop, ?, 'M 메뉴 숨기기'). 머리·바닥은 position:sticky이고 가운데만 스크롤한다. 다시 그리는 때: home()·calView()·search()·openDoc() 끝, storage 이벤트(mk.*·done.*·exam.*·time·tedit), 1분 타이머. 타이머는 배지 textContent만 바꾼다. aria-current·aria-expanded를 단다. 상단 막대의 [백업][복원]은 없애고 💾로 옮긴다.",
+     "acceptance": "각 VIEW에서 aria-current가 맞는 항목에 있다. ↪ 이어서 줄을 누르면 lastBy 문서의 카드 위치로 간다. 💾를 누르면 bkPop이 열리고 백업 보내기·복원이 모두 된다. 1분 타이머 뒤 #side의 innerHTML 길이는 그대로이고 배지 글자만 바뀐다.",
+     "files": "tools/cons/shell.html (sideRender 1310~1330, 상단 막대 마크업, bkStatus)"
+    },
+    {
+     "id": "G3",
+     "title": "과목 7줄·아코디언·짧은 이름·ESTH",
+     "what": "SUBJECTS 항목에 셋째 값으로 짧은 이름을 더한다(구강외과1·보존·임플란트·두경부해부·노인치과·약물치료·심미). ESTH가 없으면 목록에 추가한다. 줄: 과목색 점 · 짧은 이름 · D-n 칩(LS exam.<S>, 3일 이내 빨강) · 🔁n(0이면 숨김) · 읽음 %(회색) · ▸ 버튼(44px, aria-expanded). 순서는 LS homeSort(''|'exam', 홈과 공유)이고 머리에 [기본|시험순] 토글을 둔다. 줄 본문을 누르면 과목 홈으로 가면서 펼친다(서랍에서는 펼치기만 하고 서랍을 열어 둔다). ▸는 펼침·접기만 한다. 지금 과목은 늘 펼치고, 나머지는 LS navExp{S:1}에 저장한다. 팩이 없으면 흐린 '준비 중'(plPending이면 '불러오는 중'), 누를 수 없음. plArrive 때 navRender·home을 다시 그린다.",
+     "acceptance": "7줄이 보이고 ESTH는 aria-disabled이다. ▸를 누르면 URL이 그대로이고 펼침이 새로고침 뒤에도 유지된다. 줄 본문을 누르면 #/<SID>/ 과목 홈으로 간다. 시험순으로 바꾸면 홈 표 순서도 같이 바뀐다.",
+     "files": "tools/cons/shell.html (SUBJECTS 정의, navRender)"
+    },
+    {
+     "id": "G4",
+     "title": "펼친 과목: 문서 칩 격자·강의·카드 목차",
+     "what": "SUBJDOCS(1307) 7개를 4열×2줄 칩으로 둔다(32px, pointer:coarse 40px, 아이콘+두 글자: 🏠홈·📝JB n(안 푼 수)·🗂한눈·📊비교·✍️예상·📚대장·🖍표시). 지금 문서는 .on이고 title은 SUBJDOCS 설명이다. 강의 줄 36px: 열 표시 점(heat·hot) · sname · 오른쪽 회색 '4/19'. 기출 맞음은 title로만 보인다. 지금 강의 아래에 sideCards(details.scards, LS sidecards)와 setLCur 스크롤 스파이·J/K 연동을 그대로 둔다. #sjsel, '과목 전체' 두 줄 버튼, .hubhome을 없앤다. 과목 홈 .ljump는 861 이상에서 숨기고 서랍 폭에서만 보인다.",
+     "acceptance": "CONS 학습 탭에서 스크롤하면 메뉴의 카드 목차 현재 표시가 따라온다(기존 ux 테스트 통과). 칩 7개가 각 문서로 간다. #sjsel이 DOM에 없다. 1280에서 과목 하나를 펼친 메뉴 전체 높이가 900px 이하이다.",
+     "files": "tools/cons/shell.html (sideCards 1313, SUBJDOCS 1307, 과목 홈 .ljump 1374 부근)"
+    },
+    {
+     "id": "G5",
+     "title": "sideToggle·서랍·손잡이",
+     "what": "sideToggle(2043): 861 이상이면 body.sidefold를 토글하고 LS sidefold를 저장한다. 펼칠 때 SIDEAUTO였으면 지금처럼 LS wideSide=1로 둔다. 알림은 '메뉴를 숨겼어요 — M으로 다시 보기' / '메뉴를 펼쳤어요'. 860 이하에서는 navOpen()을 부른다. sideApply의 SIDEAUTO(정리표·비교표, 1440 이하)는 모든 VIEW 구조에 맞게 유지한다. 접힌 동안 #sideopen ›(20×48)을 notabs 조건 없이 늘 보이고, 상단 ☰(#navbtn)도 861 이상에서 보인다. 집중 모드(V)에서 펼치면 focusSet(false)를 부른다. 서랍은 폭 min(320px,86vw)이다. 항목을 누르거나 #navbg를 누르면 닫히고, 열린 동안 #kit은 숨긴다. 키 바인딩(M)은 트랙 2의 K1이 하고, 여기서는 함수 계약(body.sidefold + 'jbl:layout')만 지킨다.",
+     "acceptance": "1280에서 \\\\ → sidefold가 켜지고, 새로고침 뒤에도 유지되며 › 손잡이가 보인다. ›를 누르면 펼쳐진다. 820에서 ☰ → 서랍이 열리고 #kit이 숨는다. 강의를 누르면 이동하고 서랍이 닫힌다. 정리표 1180에서는 자동으로 접히고 ›로 펼치면 wideSide=1이다.",
+     "files": "tools/cons/shell.html (sideApply·sideToggle 2040~2045, navOpen 1249, #sideopen·#navbtn CSS)"
+    },
+    {
+     "id": "G6",
+     "title": "revInfo 캐시와 배지 계산 통일",
+     "what": "RVC[S] = revInfo(S) 결과 캐시를 둔다. mk.<S>·done.<S>·날짜 변경 storage 이벤트, 이 창의 기록 저장 때 무효화한다. todayTasks()·navRender 🔁 배지·홈 표 🔁 칸·오늘 할 일이 모두 캐시를 쓴다. examPlan(S) = examLine의 '하루 분량' 계산을 함수로 뺀 것(홈 할 일·과목 홈이 함께 씀).",
+     "acceptance": "홈에서 revInfo 실제 호출이 과목당 1회이다(카운터 계측). 문항을 채점해 복습 수가 바뀌면 메뉴 배지와 홈 할 일이 1초 안에 같은 수로 바뀐다.",
+     "files": "tools/cons/shell.html (revInfo, examLine 부근)"
+    },
+    {
+     "id": "G7",
+     "title": "메뉴 테스트 갱신·신설",
+     "what": "#sjsel·'#side .dbtn'·.hubhome·상단 백업 버튼을 쓰는 기존 tools/tests(ux_nav·reg·ux2_* 등)를 새 선택자로 고친다. 옛 선택자를 숨은 호환 요소로 남기지는 않는다. 새 tools/tests/ux3_nav.py: 모든 VIEW에 #side가 있음 · 과목 전환 1탭 · ▸ 펼침 저장 · sidefold 새로고침 유지 · 820 서랍 여닫기 · aria-current.",
+     "acceptance": "tools/tests/*.py 전부와 ux3_nav.py 통과, verify.py 통과, 세 폭 스크린샷(work/_tmp/ux3g_*.png)을 직접 확인한다.",
+     "files": "tools/tests/*.py, tools/tests/ux3_nav.py, tools/verify.py"
+    }
+   ]
+  },
+  {
+   "name": "묶음 H 허브 홈 '오늘' 대시보드",
+   "track": "1",
+   "items": [
+    {
+     "id": "H1",
+     "title": "home()를 homeToday() 조각으로 다시 쓰기",
+     "what": "home()(1222)의 본문 생성을 homeBand()·homeResume()·homeTodo()·homeSubjects()·homeWeek()·homeMore()로 나눈다. #home max-width는 1100이다. whatsNew·storewarn은 맨 위 띠로 유지한다. .lead 문단·도움말 패널·homeSortBar(메뉴와 표 머리로)·tHomeTable(달력으로)·.sgrid 과목 카드·exCard를 없앤다. 클릭 위임(1211·1235)에 data-todo·data-exam·data-res·data-cal을 더한다.",
+     "acceptance": "#/에 .scard가 없고 섹션 5개(띠·이어서/할 일·과목 표·이번 주·더보기)가 순서대로 있다. 콘솔 오류 0.",
+     "files": "tools/cons/shell.html (home 1222~1240, todayBand 1179, tHomeTable 1184)"
+    },
+    {
+     "id": "H2",
+     "title": "오늘 띠",
+     "what": "첫 줄: '9월 29일 (화)' · '가장 가까운 시험 보존 D-2 (10/1 목)'(examNear, 누르면 과목 홈, 없으면 '시험일 넣기' → 과목 표 시험 칸 포커스). 둘째 줄: 오늘 h:mm / tGoal(오늘) 막대 + 트래커 버튼(tTrkHTML — 묶음 I 전에는 tBtn 토글). 높이 약 84px.",
+     "acceptance": "시험일이 없으면 안내 문구가 나오고, 있으면 가장 가까운 과목의 D-n이 나온다. 막대 %가 tSum(tDay(오늘))/목표와 같다.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "H3",
+     "title": "↪ 이어서 + ✅ 오늘 할 일(todayTasks)",
+     "what": "두 단(본문 1024 이상은 58:42, 아래는 쌓음). 왼쪽: LS last의 큰 버튼(64px, '↪ 과목 · 강의 · 탭 · 카드 n — 어제 23:10') + lastBy 다음 2개 칩. 기록이 없으면 '▶ 시작: 시험 가까운 과목 첫 강의'(resumeTarget). 오른쪽: todayTasks() 최대 5줄, 줄마다 [▶]. ① 🔁 전 과목 복습 합(과목별 내역) → 가장 많은 과목 revGo ② 시험 7일 이내 과목(최대 2)의 examPlan 하루 분량 → 과목 홈 ③ 시험 가장 가까운 과목의 안 푼 기출 → _jb todo 필터 ④ 틀린 기출 다시(전 과목 ng 합) → 한 장씩 ⑤ 백업 기한 초과(bkNag 조건) → bkPop. 모두 없으면 '오늘 할 일을 다 했어요'. 시험일이 하나도 없으면 '시험일을 넣으면 하루 분량을 계산해요'. 저장 키는 없다.",
+     "acceptance": "테스트 데이터(복습 due·시험일·백업 10일 전)를 심으면 5줄이 기대 순서로 나오고, 각 ▶가 올바른 라우트로 간다. 1180×820 메뉴 펼침 상태에서 띠·이어서·할 일이 스크롤 없이 보인다.",
+     "files": "tools/cons/shell.html (resumeHTML 2442 재사용)"
+    },
+    {
+     "id": "H4",
+     "title": "과목 한눈표 7행",
+     "what": "열: 과목(색 점·짧은 이름, 작은 글씨 교수) · 시험(D-n 칩 또는 '날짜', ✎를 누르면 칸 안에 input type=date가 펼쳐짐, LS exam.<S>) · 정리본 읽음(막대 + % · dn/nc) · 기출(맞/틀 막대 + '12·4/68') · 🔁 · 오늘/전체 h:mm · [↪](resumeTarget). 행 높이 52px, 행을 누르면 과목 홈. 머리에 [기본|시험순](homeSort). ESTH는 흐린 '자료 준비 중' 행. 본문 861~1023은 시간 열을 숨기고, 860 이하는 과목마다 두 줄 카드(이름·D-n·↪ / 읽음·기출 막대).",
+     "acceptance": "7행이 있다. 시험일을 바꾸면 메뉴 D-n과 과목 홈 examLine이 같이 바뀐다(같은 키). 820 세로에서 가로 넘침 0이다.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "H5",
+     "title": "이번 주 막대와 더보기",
+     "what": "tWeek(tMon(now)) 월~일 막대(높이 72, 목표선, 오늘 테두리) + '합계 · 하루 평균' + [📅 달력 열기]. 그 아래 접힌 details 2개: '💾 백업·기기 옮기기'(bkPanel)와 '🖍 전 과목 내 표시'(mkall 버튼 줄).",
+     "acceptance": "막대 합계가 tPopHTML의 주 합계와 같다. details를 열면 기존 백업 테스트(ux2_backup 계열)가 통과한다.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "H6",
+     "title": "과목 홈 연동(구성 유지)",
+     "what": "과목 홈 순서(공부 순서→진행률→교수별 경향·📌→📣→강의 카드→2회↑)는 바꾸지 않는다. examLine에 시험일이 없으면 인라인 '시험일 넣기' 입력을 둔다(exam.<S>). 진행률의 tSubjLine('📊 오늘·전체')은 '📅 이 과목 달력' 링크(#/_cal?s=<SID>)로 바꾼다.",
+     "acceptance": "과목 홈 섹션 순서가 커밋 전 스냅숏과 같다(ux 테스트). 링크를 누르면 달력이 그 과목 필터로 열린다.",
+     "files": "tools/cons/shell.html (examLine, tSubjLine)"
+    },
+    {
+     "id": "H7",
+     "title": "홈 테스트",
+     "what": "ux2_home 등 .scard[data-s]를 쓰는 테스트를 .hsj[data-s]/표 행으로 고친다. 새 ux3_home.py: 첫 화면 구성·할 일 규칙·시험일 편집 저장·ESTH 행·세 폭 넘침 0.",
+     "acceptance": "테스트 전부 통과, 스크린샷 work/_tmp/ux3h_{1280,1180,820}.png를 직접 확인한다.",
+     "files": "tools/tests/ux2_home*.py, tools/tests/ux3_home.py"
+    }
+   ]
+  },
+  {
+   "name": "묶음 I 측정 상태·세션·시간 데이터",
+   "track": "1",
+   "items": [
+    {
+     "id": "I1",
+     "title": "측정 상태 기계와 tstate",
+     "what": "상태: auto-wait(○ 자동 대기) · auto-run(● 측정 중) · sess(● 세션 h:mm) · rest(☕ 쉬는 중 m:ss) · end(■ 멈춤) · off(▶ 시작) · other(○ 다른 창에서 측정 중). LS tstate={st:'sess'|'rest'|'end', t0, seg, S, D, at, d}는 기기 전용이라 MSKIP에 추가한다. 함수: trStart()(세션 시작, 귀속 = CUR.s·CUR.d, 없으면 lastBy 첫 과목, 시계 팝업 select로 바꿀 수 있음) · trRest() · trResume() · trStop(). 새로고침하면 tstate를 복원한다(rest면 휴식 시계를 이어 가고, end면 자동 대기로 가지 않음). BroadcastChannel 'own' 메시지에 st를 싣는다. ■ 뒤에는 새 문서를 열거나 ▶를 누를 때까지 자동 시작을 막는다(manualPause). 날짜가 바뀌면 end를 푼다.",
+     "acceptance": "playwright: ▶ → #tmr '세션 0:00'. ☕ → 휴식 시계가 흐르고 time이 늘지 않는다. 새로고침 → 휴식 유지. ▶ → 세션 재개. ■ → 같은 문서에서 스크롤해도 time 증가 0이다.",
+     "files": "tools/cons/shell.html (T·tStart·tStop·tAct·tBtn 1029~1046, MSKIP 2129)"
+    },
+    {
+     "id": "I2",
+     "title": "세션 벽시계 측정과 안전장치",
+     "what": "세션 중 tFlush는 T.last+60000 상한·무활동 멈춤·visibilitychange/blur 멈춤을 건너뛰고 시각 차로 계산한다. flush는 소유 창만 한다. 문서가 바뀌면 구간을 나눈다. 입력 없이 LS sessAsk분(기본 90, 60/120/끄기)이 지나면 아래 띠 '90분째 입력이 없어요 [계속][마지막 입력 때 멈춤]'을 띄운다. 30분 더 무응답이면 마지막 입력 +1분에서 종료한다. 다시 열었을 때 tstate.sess이고 now−at>2분이면 '14:02 시작 세션이 켜진 채 닫혔어요(마지막 15:10) [15:10에 끝난 것으로(기본)][지금까지로]'를 묻는다. 12시간 상한. ■ 종료 알림: '세션 끝 — 공부 1:52 · 휴식 0:14 · 오늘 3:40 (92%)'.",
+     "acceptance": "가짜 시계(page.clock)로 세션 30분·무입력 → time이 30분 늘어난다. 90분 무입력 → 띠가 뜨고 [마지막 입력 때 멈춤] → 초과분이 들어가지 않는다. 닫힘 복귀 질문 기본값 → 마지막 기록 시각까지만 들어간다.",
+     "files": "tools/cons/shell.html (tFlush 1036, 무활동·되묻기 코드)"
+    },
+    {
+     "id": "I3",
+     "title": "자정 분할·휴식 기록",
+     "what": "tFlush에서 [t0,now]를 자정에서 잘라 time·timed·tseg에 두 날로 나눠 쓴다(자동·세션 모두, 기존 자정 몰림 버그 수정). 휴식 합은 새 키 trest{날짜:ms}와 tseg 'r' 구간에 쓴다. 쉬는 중 과목 화면에서 3분 넘게 입력이 이어지면 아래 띠 '쉬는 중이에요 — [다시 공부 ▶]'를 띄운다(강제로 바꾸지 않음).",
+     "acceptance": "23:50 시작 → 00:20 flush → 어제 10분·오늘 20분. 휴식 5분 → trest[오늘]=300000±1000.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "I4",
+     "title": "tseg 시간대 구간 기록",
+     "what": "새 키 tseg{날짜:[[s초,e초,S,D,f]]}. f: 'a' 자동, 's' 세션, 'm' 직접 추가, 'r' 휴식, 뒤에 'x' 지움·'e' 고침을 덧붙일 수 있다. tFlush 때 tsegPush: 같은 S·D·종류이고 앞 구간 끝과 90초 이내면 e만 늘린다. 쓰기 직전에 LS를 다시 읽는다. 부팅 때 180일 넘은 날짜는 버린다(합계는 time에 영구히 남음). 표시 전용이며 tDay·tLec 합계에는 쓰지 않는다. 되묻기 [공부했어요 +n분](idleEnd)도 그 구간을 tseg에 쓴다. lsBySub 저장 공간 표에 '공부 시간대' 줄을 더한다.",
+     "acceptance": "자동 측정 10분 → tseg[오늘] 한 구간(길이 ±20초). tseg를 지우고 새로고침해도 tDay 합계가 같다. 181일 전 tseg가 부팅 뒤 없어진다.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "I5",
+     "title": "tedit 편집 원장과 합계",
+     "what": "새 키 tedit=[{i:랜덤8,at,d,S,D:''|doc,ms:±,k:'add'|'del'|'mv'|'len'|'set',g:[s,e]|null,x:0|1}], 추가 전용이다. tDay(d)는 x가 아닌 항목 ms를 과목별로 더하고, tLec(d)는 D가 있는 항목을 더한다. devCut과 상관없이 항상 더한다. tEdit() 캐시는 storage 이벤트로 무효화한다. 과목 바꾸기(mv) = 두 항목(−옛, +새). 옛 tadj는 읽기만 하고 새 쓰기는 하지 않는다. 기존 통계 화면의 '시간 고치기'(tvAdjust)·옛 tadj ✕ 취소도 tedit 상쇄 항목으로 쓴다. 함수: addTime({d,S,D,start,min}) · editSeg(d,idx,{S,D,start,end}) · delSeg(d,idx) · undoEdit(i).",
+     "acceptance": "add 60분 → tDay 과목 +3600000이고 time·timed·tadj JSON이 바이트까지 같다. del → 원래대로. undo → 다시 +60분. 옛 tadj가 있는 날도 합계 = time+tadj+tedit.",
+     "files": "tools/cons/shell.html (tDay 1066, tLec 1070, tvAdjust)"
+    },
+    {
+     "id": "I6",
+     "title": "날짜별 목표 tGoal(d)",
+     "what": "새 키 tgoalDay{날짜:분}(30~960). tGoal(d)=tgoalDay[d] ?? tgoal. 인자가 없으면 오늘. todayBand/homeBand·tRing·tPopHTML·tvRender 12주 잔디·달력이 날짜를 넘긴다.",
+     "acceptance": "어제만 목표 2:00 → 달력 어제 칸 채움과 ● 기준이 2:00, 오늘은 기본 4:00이다.",
+     "files": "tools/cons/shell.html (tGoal 1078)"
+    },
+    {
+     "id": "I7",
+     "title": "백업 합치기·다른 기기",
+     "what": "mergeData(2130): tedit는 i 합집합(같은 i면 x=1이 이김). tseg는 날짜별 (s|S|D) 합집합, e는 큰 값, x가 이김. trest는 tMax. tgoalDay는 이 기기 값 우선. tstate는 MSKIP. 기기 모드(devPlan·devTimeMerge)는 timeDev[id]에 tseg·trest를 더한다(tedit는 기기와 상관없이 로컬 원장에 합집합 — 한 번만 적용). 달력은 다른 기기 구간을 💻 기기 이름으로 흐리게, 읽기 전용으로 그린다.",
+     "acceptance": "tools/tests/ux2_merge 계열 통과 + 새 회귀: '구간 삭제(tedit −30분) 뒤 삭제 전 백업 합치기 → 합계가 삭제 반영 상태 그대로'. 같은 백업을 두 번 합쳐도 합계가 같다.",
+     "files": "tools/cons/shell.html (mergeData 2130~2150, devTimeMerge 2282, devPlan 2285, 2357)"
+    },
+    {
+     "id": "I8",
+     "title": "트래커 UI 공통 조각",
+     "what": "tTrkHTML(where): 상태 문구 + 상태에 맞는 버튼([▶ 공부 시작] / [☕ 쉬기][■ 종료] / [▶ 다시][■ 종료]) + [⏱ 크게](달력·홈에서). 메뉴 머리·홈 띠·달력 카드·시계 팝업이 쓴다. #tmr: 누르면 측정 중→☕, 쉬는 중→▶, 멈춤→▶. 길게 누르면(0.5초) ■. tPopHTML(1140) 맨 위에 버튼 줄 + 세션 과목 select + '📅 달력'('📊 자세히' 대체) + '측정 설정' 링크. 1초 갱신은 textContent만 바꾼다.",
+     "acceptance": "네 곳의 버튼이 같은 상태를 보인다. 한 곳에서 ☕를 누르면 1초 안에 나머지도 바뀐다. 두 창을 열면 한쪽은 '다른 창에서 측정 중'이다.",
+     "files": "tools/cons/shell.html (tBtn 1039, tPopHTML 1140~1152)"
+    },
+    {
+     "id": "I9",
+     "title": "측정 테스트",
+     "what": "새 ux3_timer.py(상태 전이·새로고침 복원·자정 분할·세션 안전장치·두 창)와 ux3_tedit.py(add/edit/del/undo 뒤 time·timed 바이트 동일·합계 기대값·합치기 회귀). 기존 ux_u14·ux_u15·flow V07 등 측정 테스트를 새 상태 문구로 갱신한다.",
+     "acceptance": "tests 전부 통과, legacy_restore(1차 배포본 데이터) 합계가 이전과 같다.",
+     "files": "tools/tests/ux3_timer.py, tools/tests/ux3_tedit.py, 기존 측정 테스트"
+    }
+   ]
+  },
+  {
+   "name": "묶음 J 📅 공부 달력 화면",
+   "track": "1",
+   "items": [
+    {
+     "id": "J1",
+     "title": "라우트·뷰·하위 탭",
+     "what": "parseHash(1264): #/_cal, #/_cal/YYYY-MM-DD, #/_cal?s=SID, #/_time(→{cal:1,tab:'stats'}). VIEW='cal', curState·stampHist·뒤로가기 복원. timeView(1086)를 calView(o)로 바꾸고 [📅 달력 | 📊 통계] 하위 탭(LS calTab)을 둔다. 통계 = 지금 tvRender(주 막대·요일 평균·12주 잔디·과목 누적·강의 상위 10) + 맨 아래 '고친 기록'(tedit·옛 tadj 날짜별, ✕로 한 건 취소). 메뉴 이름은 '📅 공부 달력'이다.",
+     "acceptance": "#/_time을 열면 통계 탭이 보이고 뒤로가기가 제자리로 온다. #/_cal/2026-09-28을 열면 그날이 선택돼 있다.",
+     "files": "tools/cons/shell.html (timeView·tvRender 1084~1137, parseHash 1264)"
+    },
+    {
+     "id": "J2",
+     "title": "상태 카드 4장·월 요약·측정 설정",
+     "what": "카드: 오늘 공부 hh:mm:ss(1초) · 휴식(trest) · 달성 고리(tRing, tGoal(오늘)) · 상태(tTrkHTML + [⏱ 크게]). 1024 이상은 1줄, 아래는 2×2. 월 요약 줄: '9월 42:10 · 공부한 날 18 · 평균 2:21 · 목표 달성 9일 · 연속 4일'. 달력 아래: 기본 목표 select(tgoal, 30분 단위) + 접힌 '측정 설정'(tauto·idleMin·blurIdle·sessAsk — 시계 팝업과 같은 LS).",
+     "acceptance": "카드 숫자가 tDay·trest와 일치한다. 1초 갱신 동안 달력 격자 DOM이 다시 만들어지지 않는다(MutationObserver 0).",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "J3",
+     "title": "월 달력 격자",
+     "what": "월요일 시작(TWD와 같음), 5~6주. calRender에서 날짜→합계 맵을 한 번만 만든다(tDevs를 칸마다 돌지 않음). 칸: 날짜(왼쪽 위, 그날 목표가 따로 있으면 밑줄) · 시험 칩(exam.<S>가 그날이면 과목색 '보존 시험', 여럿이면 '시험 2') · 가운데 h:mm(tabular, 30초 미만이면 비움) · 바닥부터 채움 min(1, 합/tGoal(d)), --acc 18% 투명 · 달성 ● · tedit가 있는 날 ✎ · 오늘 2px 테두리 · 선택한 날 강조 테두리 · 미래는 흐림(목표만 설정 가능). 칸 높이: Mac 84, 가로 78, 세로 64(pointer:coarse 44 이상). ?s=SID이면 그 과목만 합산한다. 머리: ‹ 2026년 9월 › [이번 달]. 키(입력칸이 아닐 때, e.code): ←/→ 날짜, Shift+←/→ 달, T 오늘, A 선택한 날에 추가.",
+     "acceptance": "테스트 데이터로 9월 칸 h:mm이 tDay와 모두 같다. 시험일 칩·✎·●가 기대 칸에 있다. ‹›로 달이 바뀌어도 선택일이 유지된다. 820 세로에서 가로 넘침 0이다.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "J4",
+     "title": "선택한 날 패널",
+     "what": "1024 이상은 오른쪽 42% sticky, 아래는 달력 뒤에 둔다. ① 머리 '9/28(월) · 3:12 / 4:00 (80%)' + '이 날 목표' select(0.5시간 단위, [기본값으로]) → tgoalDay. ② 과목별 막대(과목색). ③ 24시간 띠(0~24, 6·12·18 눈금. 공부는 과목색 블록, 휴식은 회색 빗금, 다른 기기는 점선 테두리. 블록을 누르면 목록의 그 줄로). ④ 기록 목록(시간순, 같은 과목 5분 이내 연속은 한 줄로 묶어 보임): '09:12–10:40 · 1:28 · ● 보존 · Tooth whitening · ⏱' + [✎][🗑]. 출처: ⏱ 자동 · ▶ 세션 · ✍ 직접 · ☕ 휴식 · 💻 기기(읽기 전용). 1분 미만은 숨긴다(합계에는 포함). 구간 합과 합계의 차이, 이 기능 전 날짜, 옛 tadj는 '시간대 없음 · 보존 1:10 [±]' 줄로 둔다. ⑤ 강의별 시간(tLec). ⑥ '이 날 시험' 칩 + [이 날을 시험일로 ▾과목] → exam.<S>.",
+     "acceptance": "tseg가 없는 옛 날짜는 '시간대 없음' 줄만 나오고 합계가 맞다. 블록을 누르면 해당 줄로 스크롤된다. 시험일로 지정하면 홈 표·메뉴 D-n이 바뀐다.",
+     "files": "tools/cons/shell.html (tvDayHTML 대체 dayPanel)"
+    },
+    {
+     "id": "J5",
+     "title": "+ 시간 추가",
+     "what": "패널 안 인라인 폼: 과목 select(기본 = 그날 최다, 없으면 CUR.s, +기타) · 강의 select(선택, '과목 전체') · 시작 time(선택, 비우면 시간대 없음) · 길이 [+15][+30][+60][+90] 칩 + 시간·분 number(inputmode=numeric) · [추가]. 미래 날짜·0분·하루 24시간 초과는 거부한다. 시작 시각이 기존 구간과 겹치면 '09:00–10:00에 이미 자동 기록 0:40이 있어요 [그래도 더하기][겹친 만큼 빼고]'. 저장: addTime → tedit add + tseg 'm'. 알림 [되돌리기].",
+     "acceptance": "어제 +1시간 30분 → 칸·합계 +1:30, time·timed 바이트 동일. 겹침 경고에서 [겹친 만큼 빼고]를 누르면 +50분만 들어간다. 되돌리기 → 원상태.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "J6",
+     "title": "수정 ✎·삭제 🗑",
+     "what": "✎: 그 줄 아래에 과목·강의·시작·끝 편집 줄이 펼쳐진다. 저장하면 차이만 tedit(mv/len)에 쓰고, tseg 구간 값을 바꾸고 f에 'e'를 붙인다. 🗑: 확인창 없이 바로 tedit del(−dur) + tseg 'x'를 쓰고, '구간을 지웠어요 [되돌리기]'(8초)를 띄운다. 휴식 구간은 trest·tseg만 바꾼다. '시간대 없음' 줄의 [±]는 과목 합계를 분 단위로 더하거나 뺀다(tedit set). 다른 기기 구간은 고칠 수 없고 [±]로만 보정한다.",
+     "acceptance": "✎로 과목을 보존→해부로 바꾸면 보존 −, 해부 + 같은 양이고 하루 합계가 그대로이다. 🗑 뒤 새로고침·다른 창에서 되살아나지 않는다. 되돌리기가 된다.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "J7",
+     "title": "⏱ 크게 (#bigclock)",
+     "what": "전체 화면 흰 바탕(다크는 토큰), 가운데 지금 구간 h:mm:ss(96px, tabular), 아래 '오늘 공부 3:12 · 휴식 0:25 · 목표 80%' + [☕][▶][■]. Esc·바깥 탭으로 닫힌다. 숨겨지면 interval을 멈춘다. V 집중 모드와 따로 동작한다.",
+     "acceptance": "열기 → 1초마다 숫자가 바뀐다. Esc → 닫힌다. 문서 숨김 동안 타이머 콜백 0.",
+     "files": "tools/cons/shell.html"
+    },
+    {
+     "id": "J8",
+     "title": "달력 테스트",
+     "what": "새 ux3_cal.py: 라우트·옛 #/_time·칸 합계 = tDay·추가/수정/삭제/되돌리기·날짜별 목표·시험일 지정·옛 날짜 '시간대 없음'·세 폭 넘침 0·1초 갱신 격자 불변. 기존 tvad/tvgoal 테스트를 새 UI로 고친다.",
+     "acceptance": "테스트 통과, work/_tmp/ux3j_{1280,1180,820}.png를 직접 확인한다.",
+     "files": "tools/tests/ux3_cal.py, 기존 공부 기록 테스트"
+    },
+    {
+     "id": "J9",
+     "title": "공부하다 멈추면 쉬는 시간 자동 측정(참고 HUB 휴식 — 사용자 추가 요청 09-29)",
+     "what": "사용자 추가 요청(원문): \"허브 html 참고해서 쉬는 시간도 측정되게끔, 내가 공부하다가 멈추면 쉬는시간 측정되게끔 하는걸 넣어줬으면 좋겠어!\" → ① 오늘 공부가 한 번이라도 측정된 뒤(자동 측정·세션 모두) 공부 측정이 멈추면 그 순간부터 '휴식'으로 잰다: (a) ☕ 쉬기(수동, I1) (b) 무활동 멈춤(idleMin) — 휴식 시작 = 마지막 입력 시각(무활동 대기 시간도 휴식에 포함) (c) 화면 숨김·다른 앱·아이패드 잠금(visibility hidden/blur 멈춤) — 휴식 시작 = 숨긴 시각. 상태는 '☕ 쉬는 중 m:ss'로 #tmr·메뉴 머리·홈 오늘 띠·달력 상태 카드·⏱ 크게에 똑같이(trkUI). ② 다시 입력·공부가 시작되면 휴식을 끝내고 trest[날짜]에 더하고 tseg에 휴식 구간(f 'r' — 자동 휴식은 'ra')을 쓴다. 돌아왔을 때 되묻기 띠는 '[☕ 쉬었어요 N분](기본) [📖 공부했어요 +N분]' — 10초 무응답이면 휴식으로 확정(지금의 +N분/빼기 띠를 대체, 공부했어요를 고르면 그 시간을 공부로 옮기고 휴식에서 뺀다). ③ 상한·끝: 한 번의 휴식이 LS restMax분(기본 90; 30/60/90/120/끄기)을 넘으면 넘는 부분은 휴식에 넣지 않고 그 시점에 '오늘 공부 멈춤'(자동 대기)으로 본다. ■ 종료·자정은 휴식을 끝낸다(■ 뒤, 다음 날 첫 측정 전은 휴식 아님). 창을 닫았다 다시 열면: 닫기 직전 상태가 공부·휴식이었고 공백 ≤ restMax면 그 공백을 휴식으로(참고 HUB처럼 이어 가기), 넘으면 넣지 않는다. ④ 표시: 오늘 휴식 합계·공부/휴식 비율(참고 HUB trRatio '집중 76%')·휴식 횟수·가장 긴 휴식을 시계 팝업·달력 상태 카드(휴식 카드)·⏱ 크게·홈 오늘 띠(짧게 '휴식 0:25')에. 달력 선택한 날 24시간 띠에 휴식 구간(회색 빗금), 기록 목록에 '☕ 휴식' 줄(✎ 길이·🗑 가능 — trest·tseg만 바뀜). 통계 탭 주 막대에 휴식을 옅게 겹쳐 보이기(선택). ⑤ 설정: '측정 설정'(시계 팝업·달력 공통)에 '공부를 멈추면 쉬는 시간으로 재기 [켬]'(LS restAuto, 기본 켬)과 restMax. ⑥ 여러 창: 휴식 측정도 소유 창 하나만(BroadcastChannel — 다른 창이 공부를 시작하면 이 창의 휴식은 그 시각에 끝). 백업 합치기는 trest tMax·tseg 'r' 합집합(I7 규칙 그대로). tDay·tLec 공부 합계에는 휴식을 절대 넣지 않는다.",
+     "acceptance": "playwright page.clock: 10분 공부(입력) → 무입력 idleMin(8분) 경과 → 측정 멈춤 + '☕ 쉬는 중'(휴식 시작 = 마지막 입력 시각) → 20분 뒤 입력 → 되묻기 띠 기본 '쉬었어요' → trest[오늘] ≈ 28분(±1분), tseg 휴식 구간 1개, time은 10분만. [공부했어요] 고르면 trest 증가 0·time +28분. 무입력 3시간 → trest 증가 = restMax(90분) 상한. ■ 종료 뒤 30분 → trest 증가 0. 23:50 휴식 시작 → 00:20 복귀 → 어제 10분·오늘 20분. visibility hidden 15분 → 휴식 15분. restAuto 끄면 자동 휴식 0(☕ 수동만). 두 창: A 휴식 중 B에서 공부 시작 → A 휴식이 그 시각에 끝남. 달력 오늘 패널에 휴식 줄·빗금 구간, 상태 카드 휴식 합계 = trest[오늘].",
+     "files": "tools/cons/shell.html(T·tFlush·idle 처리·idleBack 띠·tstate·trkUI·tPopHTML·calView 상태 카드·날 패널·bigclock·측정 설정), tools/SPEC.md, tools/tests/ux3_rest.py(신규)"
+    }
+   ]
+  },
+  {
+   "name": "묶음 K M 키·빈칸 색",
+   "track": "2",
+   "items": [
+    {
+     "id": "K1",
+     "title": "M = 메뉴, Shift+M = 메모",
+     "what": "keydown(1967): if(K==='m'){ if(e.shiftKey) Kit.memo(); else sideToggle(); return; }. 한글 입력 상태 대비 keyOf의 e.code 경로를 확인하고, isComposing·입력칸(isTextField)에서는 무시한다. \\\\는 그대로 sideToggle. #k-memo title '이 문서 메모 (Shift+M)'. OLDU이고 LS keyNoticeM이 없으면 처음 M을 눌렀을 때 알림에 'M은 이제 메뉴 숨기기 — 메모는 Shift+M'을 한 번 덧붙인다. sideToggle 본문은 건드리지 않는다(트랙 1 소유).",
+     "acceptance": "한글 입력 상태 흉내(key='ㅡ', code='KeyM')로 M → body.sidefold가 토글된다. Shift+M → 메모 창이 열린다. 메모 textarea 안에서 m을 입력하면 글자가 들어간다.",
+     "files": "tools/cons/shell.html (keydown 1945~1975, #k-memo 마크업)"
+    },
+    {
+     "id": "K2",
+     "title": "빈칸 팔레트 BCOL과 CSS",
+     "what": "Kit COLORS(1696) 옆에 BCOL = n 회색 #E9E2D0/#8C857A · u 파랑 #D6E4F5/#4F74A8 · g 초록 #D3EBD9/#4E8F67 · p 분홍 #F5D6E0/#B0607C · v 보라 #E2DAF2/#7458A6(가린 바탕/밑줄). CSS(266~270 옆): .rk-b.rkb-u{background:…!important;border-bottom-color:…!important}, 연 상태 .rk-b.show.rkb-u·.rk-reveal .rk-b.rkb-u{background:#FFF3C8!important;border-bottom-color:제 색!important}. 규칙 자동 빈칸(data-auto)은 점선 밑줄. 인쇄(160)는 색과 무관하게 밑줄만. 다크 모드 토큰도 짝으로 둔다.",
+     "acceptance": "audit_design의 새 검사: 가린 빈칸 밑줄 대 바탕 대비 3.0 이상, 5색 모두. 인쇄 에뮬레이션에서 색이 없다.",
+     "files": "tools/cons/shell.html (CSS 266~270, 160, Kit 1696)"
+    },
+    {
+     "id": "K3",
+     "title": "저장·복원(하위 호환)",
+     "what": "wrap(1723): t==='b'면 className='rk-b'+(c&&c!=='n'?' rkb-'+c:''), data-bc. snap(1730): 빈칸 객체는 data-bc가 n이 아닐 때만 o.c를 쓴다(회색 빈칸 JSON이 지금과 글자까지 같음). restore·되돌리기 경로에서 o.c를 넘긴다. 합치기 서명 t|x|i는 그대로이고, 같은 자리 색 충돌은 먼저 있던 것을 유지한다. 옛 기록은 이관하지 않는다(c가 없으면 회색).",
+     "acceptance": "새 ux3_blankcolor.py: 초록 빈칸 저장 → 새로고침 → rkb-g로 복원. 회색 빈칸 저장 JSON에 c 키 없음(1차 배포본 JSON과 바이트 비교). kt_* 이관 테스트 통과.",
+     "files": "tools/cons/shell.html (Kit wrap·snap·restore 1719~1760)"
+    },
+    {
+     "id": "K4",
+     "title": "도구 막대 견본·라벨·색 기억",
+     "what": "▣ 빈칸 버튼 옆에 #k-bsw(지금 색 원 하나, 누르면 5색 펼침, #k-sw와 같은 방식). 좁은 화면 .swc ▾ 팝업에 형광펜 줄과 빈칸 줄 두 줄. 길게 누르기·우클릭으로 라벨(LS blabel{c:글}, hlabel과 따로, 기본 라벨 없음). 마지막 빈칸 색은 LS bcol, 형광펜 색도 LS hcol에 기억한다(지금은 새로고침마다 노랑). ▣ 아이콘 밑줄을 지금 색으로 칠한다.",
+     "acceptance": "견본에서 파랑을 고르고 새로고침하면 bcol='u'가 유지되고 빈칸이 파랑으로 만들어진다. 형광펜 초록을 고르고 새로고침하면 초록이 유지된다. 라벨 '수치'가 title과 모드 칩에 나온다.",
+     "files": "tools/cons/shell.html (Kit 툴바 1890~1915)"
+    },
+    {
+     "id": "K5",
+     "title": "Shift+B·색 바꾸기·모드 칩",
+     "what": "Shift+B = 빈칸 색 순환 n→u→g→p→v(알림 '빈칸 색: 초록(라벨)'). 빈칸 모드에서 같은 색 빈칸을 누르면 지우고(지금 동작), 다른 색 빈칸을 누르면 같은 g 묶음 전체의 색만 바꾼다(persist, 되돌리기 스택에 들어감). 빈칸 모드가 아닐 때 이미 만든 빈칸을 길게 누르면 색 바꾸기 작은 팝업. modeChip(2046) '▣ 빈칸 만들기 켜짐 · ● 초록 — 빈칸을 누르면 지워져요 (B·Esc)'. E·N·Shift+N·카드 머리 '▣ 3/12 열림'은 색과 무관하게 지금과 같다.",
+     "acceptance": "Shift+B 네 번 → 보라, 알림이 네 번 뜬다. 초록 빈칸을 파랑 모드로 누르면 rkb-u가 되고 Ctrl/⌘+Z(되돌리기)로 rkb-g가 된다. 지우기 동작 회귀 없음.",
+     "files": "tools/cons/shell.html (keydown, Kit click, modeChip 2046)"
+    },
+    {
+     "id": "K6",
+     "title": "자동 빈칸 창·내 표시 모아보기",
+     "what": "⚡ 자동 빈칸 창의 '빈칸으로 저장' 줄에 색 칩 5개(기본 = bcol). autoRule 저장 객체 R0[key].c(선택), 규칙 빈칸에도 rkb 클래스. marksHTML(2486~2513): 색 칩을 '▣ 회색 n · ▣ 초록 n…'으로 나누고, 빈칸만 보기에서 색별 필터, 라벨은 blabel.",
+     "acceptance": "자동 빈칸을 분홍으로 저장하면 규칙 빈칸이 분홍이다. #/CONS/_marks에서 초록 빈칸 필터를 누르면 초록만 남는다.",
+     "files": "tools/cons/shell.html (autoRule, marksHTML 2486~2513)"
+    },
+    {
+     "id": "K7",
+     "title": "빈칸·키 테스트",
+     "what": "ux3_blankcolor.py(저장·복원·회색 바이트 동일·색 바꾸기·되돌리기·Shift+B·bcol/hcol 기억), ux3_keys.py(M·\\\\·Shift+M·한글 입력 code·입력칸 무시). verify.py '빈칸·실행취소·새로고침 복원' 통과.",
+     "acceptance": "테스트 전부 통과, 콘솔 오류 0.",
+     "files": "tools/tests/ux3_blankcolor.py, tools/tests/ux3_keys.py"
+    }
+   ]
+  },
+  {
+   "name": "묶음 L 표 자동 확장·열 폭",
+   "track": "2",
+   "items": [
+    {
+     "id": "L1",
+     "title": "폭 변화 감지와 재계산 규칙",
+     "what": "document 'jbl:layout' 이벤트와 기존 ResizeObserver(TRO, tblMount 2689)를 합쳐 120ms 디바운스로 tblFit()·colFit()·measure()를 부른다. 폭이 8px 이상 바뀌었을 때, 요약↔자세히(sumDense 2691)·글자 크기 변경 때만 다시 계산한다. 행 필터(기출 나온 주제·2회↑)·묶음 필터 때는 폭을 다시 계산하지 않는다. 표마다 글자 길이 통계는 WeakMap에 캐시한다.",
+     "acceptance": "1280 정리표에서 body.sidefold 토글 → 250ms 안에 .msum 폭 970→1214(±10)이고 col 합 100%. 필터를 켜고 끄면 col style이 그대로이다.",
+     "files": "tools/cons/shell.html (tblFit·tblMount·sumDense 2683~2700)"
+    },
+    {
+     "id": "L2",
+     "title": "정리표 colFit(table.mtx 5열)",
+     "what": "보이는 행 칸마다 가중 글자 길이(한글·한자 1.0, 라틴·숫자 0.56, 공백 0.3; 단위 f=13.5px×--fs)로 줄 수를 추정한다: 칸 줄 수 = Σ문단 ceil(len/((w·W−24)/f)), 행 높이 ≈ max(줄 수)×1.5f+16. Σ행 높이가 가장 작도록 두 열 사이 2%씩 옮기는 탐욕 탐색(최대 40회)을 돌린다. 출발은 지금 CSS 기본값(요약 15/23/22/18/22, 자세히 14/24/30/16/16). 하한: 주제 9em·요지 14em·세부 12em·시험 11em·암기 12em. 상한 36%. 모든 열 변화가 1.5%p 미만이면 적용하지 않는다. 캐시 키 = 강의·모드·폭(24px 단위). <col style=width:x%>로 적용한다.",
+     "acceptance": "메뉴 숨김 1214px에서 CONS WHT 정리표 전체 높이 ≤ 3600px(지금 4066), ANAT LIP ≤ 3850(지금 4083), 어느 강의도 기본값보다 높아지지 않는다(7강의 측정). 가로 넘침 0.",
+     "files": "tools/cons/shell.html (새 colFit, 정리표 CSS 729~730·773)"
+    },
+    {
+     "id": "L3",
+     "title": "아이패드 세로 정리표 2단 카드",
+     "what": "본문 폭 700~999: .msum 행을 1열 쌓기 대신 grid-template-columns:38% 62% 카드로 둔다(왼쪽 주제+🔑, 오른쪽 세부→★→⚡). 700 미만은 지금 1열 카드. 👁 열 가리기(covInit)·⚡ 3줄 규칙과 호환된다.",
+     "acceptance": "820×1180에서 CONS WHT 정리표 전체 높이가 지금보다 25% 이상 낮고, 카드 안 가로 넘침 0. 👁 가리기가 동작한다.",
+     "files": "tools/cons/shell.html (CSS 418~422 카드 블록)"
+    },
+    {
+     "id": "L4",
+     "title": "비교표·전체정리표·한눈표 colFit(table.cmp/sum)",
+     "what": "W=.tscroll.clientWidth. 열마다 ℓ 80백분위, 끊을 수 없는 가장 긴 조각, 머리 글자 → min_j=clamp(…,4.5em,12em). 첫 열은 6~11em·W의 18% 이하. 무게 w_j=√Σℓ. x_j=max(min_j, W·w_j/Σw), 한 열 상한 42%, 초과분은 무게 비례로 다시 나눈다(3회). Σmin>W이면: 열 5개 이상이고 W<760이면 행 카드(stCard 재사용, 칸마다 data-h 라벨), 아니면 첫 열 sticky 가로 스크롤(불투명 배경·오른쪽 1px 그림자). 적용은 colgroup px + table-layout:fixed.",
+     "acceptance": "820 세로 PHARM RX 비교표 최소 열 ≥ 90px이거나 카드형. 1180에서 PHARM DS 최대 행 높이 ≤ 220px(지금 323). 전체정리표 42개 가로 넘침은 .ovx 스크롤 안에서만 생긴다.",
+     "files": "tools/cons/shell.html (tblFit·stCard 2683~, table.cmp CSS)"
+    },
+    {
+     "id": "L5",
+     "title": "칸 공통 CSS",
+     "what": "표 td·th padding 9px 12px, line-height 1.55, word-break:keep-all + overflow-wrap:anywhere(긴 영문은 기존 _wbr). 정리표 🔑 칸은 13px·1.5(묶음 N의 줄 구조를 그대로 보여 줌).",
+     "acceptance": "audit_design 가로 넘침 0, 명암 통과. 한글 낱말 중간 끊김 샘플 0(스크린샷 확인).",
+     "files": "tools/cons/shell.html (표 CSS 718~780)"
+    },
+    {
+     "id": "L6",
+     "title": "표 테스트",
+     "what": "새 ux3_tables.py: 7강의 × (1280 펼침/숨김, 1180, 820) 정리표 전체 높이·col 합·넘침·필터 뒤 col 불변·요약↔자세히 재계산. 결과 표를 work/_tmp/ux3l_tables.json에 남긴다.",
+     "acceptance": "기준(L2·L3·L4)을 충족하고 기존 표 테스트(ux2_tbl 계열) 통과.",
+     "files": "tools/tests/ux3_tables.py"
+    }
+   ]
+  },
+  {
+   "name": "묶음 N 🔑 핵심 상자·요지 줄바꿈",
+   "track": "2",
+   "items": [
+    {
+     "id": "N1",
+     "title": "lecparse.key_lines — 규칙 K1~K7",
+     "what": "새 함수 key_lines(v, ctx) → 줄 목록. render_key(352)와 key_split(319) 뒤 상자 본문이 이 함수를 쓴다. 괄호·{r:}·==·** 짝은 기존 _depth_iter·_rebalance를 쓴다. K1 최상위 ' / ' → 줄(전체 50자 초과 시, 조각이 모두 12자 이하인 숫자·단위 나열은 제외) / K2 최상위 ' · ' 사실 중 'X = …'·'X: …'(라벨 26자 이하, 괄호 없음)가 2개 이상이면 라벨 사실마다 줄, 라벨 b.lbl / K3 56자 넘고 ' · ' 사실 3개 이상 → ul.kflow(사실 inline-block, 32자 이하는 nowrap), 모두 22자 이하 3개 이상이면 기존 cgrid / K4 ' → ' 4단계 이상·70자 초과 → ol.sflow(단계 nowrap, 줄머리 '→ ') / K5 최상위 ' — ' 뒤 16자 이상 → .ksub 둘째 줄 / K6 90자 초과·최상위 ' + ' 조각이 모두 12자 이상이고 괄호 부연 → '+ ' 앞에서 줄 / 'X: 긴 내용'(split_lead)은 klead 한 줄 + 나머지에 K2~K4 / 8자 미만 짧은 줄은 앞 줄에 붙이고 상자는 최대 7줄, 넘치면 기존 .krest.",
+     "acceptance": "예시 5개가 결정 10의 '후' 모양으로 렌더된다(단위 테스트 tools/tests/ux3_keylines.py가 HTML 구조 확인): anat LIP:45, geri ENDO:252, cons WHT:117, pharm CHR:406, cons WHT:424, anat NECK:295.",
+     "files": "tools/cons/lecparse.py (segments 168, _is_flow 207, key_split 319, render_key 352)"
+    },
+    {
+     "id": "N2",
+     "title": "글자 불변 ksep",
+     "what": "새로 나누는 자리의 구분자(' · ',' / ',' — ',' → ',' + ')는 <span class=ksep>…</span>로 DOM에 남긴다. 줄이 바뀌는 자리에서만 CSS로 display:none. 지금 빌드에서 이미 빠지던 ' / '(14자 규칙으로 나뉘던 것)는 지금처럼 뺀다. 그래서 강의마다 aid 블록 textContent가 옛 렌더와 같다.",
+     "acceptance": "check_lec.py 새 검사: 719개 🔑 + 719개 '>' 줄의 새/옛 렌더 plain 텍스트가 전부 같다(0 차이). kt_*·legacy_restore 테스트에서 🔑 안 표시 '⚠ 위치 잃음' 0.",
+     "files": "tools/cons/lecparse.py, tools/check_lec.py"
+    },
+    {
+     "id": "N3",
+     "title": "정리표 🔑 칸·요지 .mg",
+     "what": "build4.mkey_html(444)이 key_lines를 쓴다. shell.html 763~764의 요약 모드 '.msum .mkey li inline + \" · \"' 규칙을 지운다. 복습 보기(#stage.review 659~660)·압축(C)의 한 줄 흐름은 유지하고 .kl·.kflow·.sflow를 inline으로 되돌린다. 한 줄 요지('>' → .mg): 첫 최상위 ' — ' 뒤가 16자 이상이면 둘째 줄 .ksub(ksep 유지).",
+     "acceptance": "CONS CRK·GERI ENDO 정리표 요약 모드 스크린샷에서 🔑가 라벨 줄로 나뉜다. R·C 보기에서는 한 줄 흐름이다. .mg가 ' — ' 기준 두 줄이다.",
+     "files": "tools/cons/build4.py (mkey_html 444), tools/cons/shell.html (CSS 640·659~660·763~764)"
+    },
+    {
+     "id": "N4",
+     "title": "🔑 CSS",
+     "what": ".kb,.mkey,.mg{word-break:keep-all;overflow-wrap:anywhere;line-height:1.6;text-wrap:pretty}; .kb .kl{display:block}.kl+.kl{margin-top:3px}; .kflow>li{display:inline-block;max-width:100%} 사이 ' · '는 --faint; .sflow 줄머리 '→ ' 내어쓰기 1.2em; .ksub{font-size:.93em;color:var(--sub)}; b.lbl{font-weight:800;color:var(--head)}. 원칙 7-1(색 절제)에 맞게 새 색을 쓰지 않는다.",
+     "acceptance": "audit_design: .c-key·.mkey 150자 넘는 한 줄 덩어리 수가 지금보다 70% 이상 줄어든다. 명암 통과.",
+     "files": "tools/cons/shell.html (학습 🔑 CSS 블록)"
+    },
+    {
+     "id": "N5",
+     "title": "점검 도구와 전 과목 적용 확인",
+     "what": "check_lec.py에 '🔑 렌더 뒤 80자 넘는 한 줄 수'와 글자 동일 검사를 넣는다. lecparse.py·build4.py를 tools/{oms1,impl,anat,geri,pharm}/로 복사한다. worktree 안에서 6과목 build4를 돌려 검증만 한다(docs 커밋은 묶음 P). audit_design.py에 .mkey 기준을 더한다.",
+     "acceptance": "6과목 build4·check_lec 오류 0, 80자 초과 한 줄 🔑 ≤ 150(지금 559), 기출 ⭐ 연결 누락 0 유지.",
+     "files": "tools/check_lec.py, tools/audit_design.py, tools/*/lecparse.py, tools/*/build4.py"
+    }
+   ]
+  },
+  {
+   "name": "묶음 P 통합·문서·전 과목 빌드·배포",
+   "track": "1(통합)",
+   "items": [
+    {
+     "id": "P1",
+     "title": "트랙 2 합치기",
+     "what": "트랙 2 worktree 브랜치를 트랙 1 위에 합친다(경계상 충돌은 keydown 한 줄 부근뿐). cons 원본을 6과목 shell.html·lecparse.py·build4.py로 복사하고 cmp로 동일함을 확인한다.",
+     "acceptance": "git merge 뒤 충돌 해결, 6개 사본 cmp 동일.",
+     "files": "tools/*/shell.html, tools/*/lecparse.py, tools/*/build4.py"
+    },
+    {
+     "id": "P2",
+     "title": "도움말·SPEC·새 기능 안내",
+     "what": "도움말(?): 이동·화면(M 메뉴, \\\\ 별칭, ☰, ›), 메모 Shift+M, Shift+B 빈칸 색, '📅 공부 달력'(세션·쉬기·종료·추가·수정·삭제·날짜별 목표·⏱ 크게), 달력 키(←→·T·A). tools/SPEC.md 단축키 표와 저장 키 표(tseg·tedit·trest·tgoalDay·tstate·sessAsk·calTab·navExp·navSec·bcol·hcol·blabel·keyNoticeM). whatsNew(WN_ITEMS) 5줄. 과목별 SPEC.md 사본도 갱신한다.",
+     "acceptance": "도움말에 M=메모 문구가 남아 있지 않다(grep). whatsNew가 1차 사용자에게 한 번 뜬다.",
+     "files": "tools/cons/shell.html (도움말·WN_ITEMS), tools/SPEC.md, tools/*/SPEC.md"
+    },
+    {
+     "id": "P3",
+     "title": "6과목 재빌드·내용 검증",
+     "what": "6과목 build4로 docs/index.html·docs/packs/*를 만든다. build4 출력(⭐ 누락 0·id 존재), check_lec.py(글자 동일 포함), check_years.py, check_eyears.py, check_abbr.py를 돌린다. JB 원문 글자 불변·대조표 연결 안 된 블록 0.",
+     "acceptance": "모든 검사 통과. docs/packs의 차이가 🔑·요지 렌더 구조에만 있다(글자 plain 비교 동일).",
+     "files": "docs/index.html, docs/packs/*"
+    },
+    {
+     "id": "P4",
+     "title": "playwright 전체 회귀·화면 확인",
+     "what": "verify.py(허브 홈 7과목·이미지·형광펜·빈칸·실행취소·새로고침 복원·콘솔 0), audit_design.py(명암·긴 덩어리·가로 넘침), tools/tests/*.py 전부, 새 ux3_*.py. 1280·1180·820 × VIEW(홈·달력·통계·검색·내 표시·과목 홈·학습·정리표·비교표·JB·한 장씩) 스크린샷(work/_tmp/ux3p_*.png)을 직접 본다. 다크 모드 한 벌.",
+     "acceptance": "전부 통과, 스크린샷에서 잘림·겹침 0(특히 820 서랍과 #kit, 달력 칸, 정리표 2단 카드).",
+     "files": "tools/verify.py, tools/audit_design.py, tools/tests/*"
+    },
+    {
+     "id": "P5",
+     "title": "1차 사용자 데이터 호환",
+     "what": "legacy_restore --rev 7095e56로 1차 배포본 형식 데이터를 심고 새 허브를 연다. 확인: 합계(tDay·tLec) 동일 · 형광펜·빈칸 위치 잃음 0 · 회색 빈칸 JSON 불변 · sidefold·homeSort·exam 유지. 거꾸로 새 데이터(tedit·tseg·색 빈칸)를 1차 허브로 열면 합계는 tedit 몫만 빠지고 깨지지 않는다(문서화). 백업 보내기→다른 프로필 복원(기기 모드 포함)도 확인한다.",
+     "acceptance": "legacy_restore 보고 LOST_GONE 0, 합계 차이 0, 1차 허브 콘솔 오류 0.",
+     "files": "tools/tests/legacy_restore*.py"
+    },
+    {
+     "id": "P6",
+     "title": "커밋·푸시·보고",
+     "what": "git status로 materials·jb·reference·work가 없음을 확인한다. docs/·tools/·guide/만 커밋한다(메시지 예: 'HUB: 전역 메뉴·오늘 홈·공부 달력·세션 측정·빈칸 색·표 열 폭·🔑 줄바꿈'). git push. 사용자에게 Pages 반영 1~2분, 바뀐 화면 목록, 선택지(결정 14)를 보고한다.",
+     "acceptance": "push 성공, 1~2분 뒤 Pages URL에서 새 메뉴가 보인다.",
+     "files": "docs/, tools/, guide/"
+    }
+   ]
+  }
+ ],
+ "data_compat": [
+  "기존 키는 형식과 의미를 바꾸지 않는다. time{날짜:{과목:ms}} · timed{날짜:{'S:doc':ms}} · tadj{날짜:{과목:±ms}} · timeDev · tgoal(분) · idleMin · tauto · blurIdle · exam.<S> · homeSort · sidefold · wideSide · sidecards · last·lastBy · ann.<S> · mk.<S> · done.<S> · hlabel. 자동 백업 IndexedDB jblhub-bak도 같다.",
+  "tadj는 앞으로 읽기 전용이다. 합계는 계속 더한다. 새 손 고침은 모두 tedit(추가 전용 원장, i 합집합)에 쓴다. 옛 tadj 한 건을 ✕로 취소하는 것도 tedit 상쇄 항목으로 한다. 옛 tadj 값은 한 글자도 바꾸지 않는다.",
+  "새 키(localStorage jblhub.v1.*): tseg{날짜:[[s,e,S,D,f]]}(표시 전용, 180일 보관) · tedit[{i,at,d,S,D,ms,k,g,x}] · trest{날짜:ms} · tgoalDay{날짜:분} · tstate{st,t0,seg,S,D,at,d}(기기 전용, MSKIP) · sessAsk(분) · calTab · navExp{S:1} · navSec{res} · bcol · hcol · blabel{c:글} · keyNoticeM. 이관할 옛 데이터는 없다.",
+  "합계 공식: tDay(d) = time + tadj(옛) + tedit(x 아님) + timeDev(devCut 규칙 그대로) + 진행 중 측정. tLec도 같은 꼴(timed + tedit의 D 항목)이다. tseg·trest는 합계에 쓰지 않으므로 tseg가 없는 옛 날짜도 달력 칸·합계가 1차 판과 같다.",
+  "빈칸: ann 빈칸 객체 {t:'b',…}에 선택 필드 c(u·g·p·v)를 더한다. 회색은 c를 쓰지 않아 저장 JSON이 1차 판과 바이트까지 같다. 1차 허브는 c를 무시하고 회색으로 보여 줄 뿐 깨지지 않는다. 합치기 서명 t|x|i는 그대로다. 형광펜 data-c와 빈칸 data-bc는 DOM에서 나눈다.",
+  "🔑·요지 렌더: 원고 글자는 바꾸지 않는다. 새 구분 자리는 ksep span으로 DOM에 남겨 aid 블록 textContent가 지금 빌드와 같다. 그래서 형광펜·빈칸 위치(Kit index·v 해시)와 검색 색인이 그대로다. check_lec 글자 동일 검사와 legacy_restore 위치 잃음 0으로 막는다.",
+  "백업 합치기(mergeData): tedit는 i 합집합(x가 이김), tseg는 (s|S|D) 합집합 + e 최대 + x가 이김, trest는 tMax, tgoalDay는 이 기기 값 우선, tstate는 합치지 않음. 기기 모드는 timeDev[id]에 tseg·trest를 더하고, tedit는 로컬 원장에 한 번만 합집합한다. 같은 백업을 두 번 합쳐도 합계가 변하지 않는다.",
+  "라우트: 옛 #/_time은 #/_cal의 통계 탭 별칭으로 남아 즐겨찾기·뒤로가기가 호환된다. 과목 라우트 #/<SID>/…는 그대로다.",
+  "역방향: 새 데이터를 1차 허브로 열면 tedit 몫(새로 추가·수정·삭제한 시간)만 합계에서 빠진다. 나머지 키는 무시되고 오류가 없다. 이 내용을 SPEC.md에 적는다.",
+  "날짜 경계는 지금처럼 0시다(HUB의 6시는 가져오지 않음). tFlush 자정 분할은 앞으로의 기록에만 적용되고 옛 데이터를 다시 쓰지 않는다.",
+  "새 키(09-29 추가): restAuto(불리언, 기본 켬)·restMax(분, 기본 90) — 기기 설정(MSKIP 아님, 백업에 포함). 자동 휴식은 trest·tseg('ra')에만 쓰고 time·timed에는 절대 쓰지 않는다."
+ ],
+ "user_facing_summary": "1. 먼저 하던 작업(수정자 B 1차 수정분)을 검증해서 커밋하고, 그 위에 이번 개편을 두 트랙으로 나눠 동시에 진행합니다.\n2. 왼쪽 메뉴를 모든 화면(홈·달력·검색·정리본)에 붙박이로 둡니다. 맨 위에는 '오늘 공부 시간 + ▶/☕/■ 버튼', 그 아래에는 🏠 오늘 · 📅 공부 달력 · 🔁 복습 · 🖍 내 표시 · ↪ 이어서, 그다음 과목 7개(ESTH 포함)가 옵니다. 과목을 누르면 문서 칩·강의·카드 목차가 펼쳐지고, 다른 과목으로도 한 번에 넘어갑니다.\n3. 허브 홈은 과목 카드 나열 대신 '오늘' 화면입니다. 오늘 시간·가장 가까운 시험, 이어서 보기, 오늘 할 일(복습·시험 하루 분량·안 푼 기출·틀린 문제·백업)이 첫 화면에 보이고, 아래에 과목 한눈표 7줄과 이번 주 막대가 옵니다.\n4. 📅 공부 달력은 HUB처럼 월 달력입니다. 날짜 칸마다 공부 시간, 목표 대비 채움, 달성 점, 시험일이 보입니다. 날짜를 누르면 그날의 시간대 띠·기록 목록이 나오고, 기록을 ✎ 고치기·🗑 지우기(되돌리기 가능)·'+ 시간 추가'할 수 있습니다. 목표는 날짜마다 따로 정할 수 있고, 기존 통계는 '통계' 탭으로 옮깁니다.\n5. 측정은 지금의 자동 측정에 더해 '▶ 공부 시작 → ☕ 쉬기 → ■ 종료' 세션을 새로 둡니다. 세션은 종이 필기처럼 화면 밖 공부도 잽니다. 오래 입력이 없으면 되묻고, 자정을 넘기면 두 날로 나눠 기록합니다. ⏱ 크게 보기(전체 화면 시계)도 있습니다.\n6. M 키로 어느 화면에서든 메뉴를 숨기거나 보입니다. 메모는 Shift+M으로 옮기고, 처음 한 번 알림으로 알려 드립니다. 메뉴를 숨기면 정리표가 자동으로 넓어집니다.\n7. 정리표 열 폭은 내용량을 보고 '표 전체 높이가 가장 낮아지게' 자동으로 맞춥니다(미리 재 보니 강의에 따라 15~30% 짧아짐). 아이패드 세로에서는 한 행을 2단 카드로 보여 줍니다.\n8. 🔑 핵심 상자와 정리표의 '요지·핵심' 칸은 '/'·'라벨 ='·'→ 단계'·'—' 기준으로 줄을 나눕니다. 긴 나열은 항목 중간이 아니라 항목 경계에서만 줄이 바뀝니다. 한 줄 요지도 ' — ' 뒤를 둘째 줄로 내립니다. 글자는 그대로 두기 때문에 이미 칠해 둔 형광펜·빈칸은 제자리에 남습니다.\n9. 빈칸도 색을 고를 수 있습니다(회색·파랑·초록·분홍·보라). ▣ 옆 견본이나 Shift+B로 바꾸고, 색 라벨을 붙일 수 있으며, 고른 색은 새로고침 뒤에도 기억합니다(형광펜 색도 이제 기억합니다).\n10. 함께 고치는 오류가 있습니다. 자정을 넘긴 공부 시간이 다음 날로 몰리던 문제, 백업을 합칠 때 '뺀 시간'이 되살아날 수 있던 문제, 과목 홈의 중복 바로가기입니다.\n11. 기존 기록(공부 시간·형광펜·빈칸·시험일·설정)은 형식을 바꾸지 않고 새 항목만 더합니다. 1차 배포본 데이터로 합계와 표시 위치가 그대로인지 확인한 뒤 올리겠습니다.\n12. 마지막에 여쭤볼 선택지가 두 가지 있습니다. 홈 과목 영역을 '표'로만 둘지 [카드로 보기] 전환도 둘지, 그리고 ■ 종료 뒤 자동 측정을 '새 문서를 열 때' 다시 켤지 '그날은 계속 멈출지'입니다."
+}

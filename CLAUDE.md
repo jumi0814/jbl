@@ -70,6 +70,12 @@
 - `JBL_master.zip`(도구·원고·지침): `.venv/bin/python tools/localize.py <zip>` → 출력된 CLAUDE.md·SPEC.md 차이 중 새 규칙만 손으로 합침 → 받은 과목을 재빌드해 `docs/`와 같은지 확인 → 커밋·푸시.
 - `guide/정리본_원칙.md`·`guide/피드백기록.md`·`guide/과목노트_<SID>.md`는 다음 과목 작업 전에 반드시 읽는다(누적된 사용자 피드백).
 
+## 클라우드 세션(원본 자료가 없는 환경)에서 작업할 때
+- 먼저 `guide/인수인계_클라우드.md`를 읽는다(상태·남은 일·배포 방법·사용자 지시사항 요약).
+- `materials/`·`jb/`·`work/`·`reference/`가 없다. `sh tools/cloud_setup.sh`로 환경을 준비하고, 허브 코드(shell.html)만 고쳤으면 `sh tools/hub_all.sh`(= sync → `tools/rehub.py` → verify → audit → tests)로 빌드·검증한다. rehub는 커밋된 팩을 그대로 두고 허브만 다시 만든다(전체 빌드와 결과가 같음).
+- 팩 내용이 바뀌는 수정(원고·build4·lecparse·reflow·trend)과 새 과목 작업은 원본이 있는 맥에서만 — `guide/handoff/로컬에서_할_일.md`에 적고 사용자에게 알린다.
+- 원본 자료를 저장소에 올리는 것은(암호화해도) 사용자가 분명히 허락했을 때만.
+
 ## 커밋·푸시 정책
 - 빌드·검증이 통과하면 `docs/`(와 바뀐 `tools/`)만 커밋하고 `git push`. 메시지 예: `CONS: 서덕규 26 강의자료 반영`.
 - `materials/`·`jb/`·`reference/`·`work/`는 **절대 커밋하지 않는다**(.gitignore). 커밋 전 `git status`로 확인.

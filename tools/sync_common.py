@@ -2,6 +2,7 @@
   .venv/bin/python tools/sync_common.py            # cons → oms1·impl·anat·geri·pharm 복사
   .venv/bin/python tools/sync_common.py --check    # 사본끼리 다르면 실패(종료 코드 1)
   .venv/bin/python tools/sync_common.py --build    # 복사 후 6과목 build4 → verify → audit_design (tools/build_all.sh와 같음)
+  .venv/bin/python tools/sync_common.py --rehub --all   # 원본(work/jb)이 없는 환경: 복사 후 허브만 다시(tools/rehub.py) → verify → audit_design → tests (tools/hub_all.sh와 같음)
 build2.py는 과목마다 마지막 출력 줄이 달라 복사하지 않는다(고칠 때는 과목별로)."""
 import os, sys, shutil, hashlib, subprocess
 TOOLS = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(TOOLS)
@@ -26,9 +27,12 @@ def sync():
         for f in COMMON:
             shutil.copyfile(os.path.join(TOOLS, SRC, f), os.path.join(TOOLS, d, f))
     print('synced', len(COMMON), 'files →', ', '.join(DST))
-def build(extra=()):
+def build(extra=(), rehub=False):
     py = os.path.join(ROOT, '.venv', 'bin', 'python'); py = py if os.path.exists(py) else sys.executable
-    for s in SUBJ_ORDER:
+    if rehub:   # 원본(work/jb)이 없는 환경 — 팩은 그대로 두고 허브만 다시(tools/rehub.py)
+        print('== rehub', flush=True)
+        if subprocess.run([py, os.path.join(TOOLS, 'rehub.py')], cwd=ROOT).returncode: print('REHUB FAIL'); return False
+    for s in ([] if rehub else SUBJ_ORDER):
         print(f'== build {s}', flush=True)
         r = subprocess.run([py, os.path.join(TOOLS, s, 'build4.py')], cwd=ROOT)
         if r.returncode: print('BUILD FAIL', s); return False
@@ -41,5 +45,5 @@ if __name__ == '__main__':
     a = sys.argv[1:]
     if '--check' in a: sys.exit(0 if check() else 1)
     sync(); ok = check()
-    if '--build' in a: ok = build(['tests/ux_all.py'] if '--all' in a and os.path.exists(os.path.join(TOOLS, 'tests', 'ux_all.py')) else []) and ok
+    if '--build' in a or '--rehub' in a: ok = build(['tests/ux_all.py'] if '--all' in a and os.path.exists(os.path.join(TOOLS, 'tests', 'ux_all.py')) else [], rehub='--rehub' in a) and ok
     sys.exit(0 if ok else 1)

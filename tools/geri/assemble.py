@@ -150,6 +150,8 @@ for ed, n in NPAGES.items():
     man = json.load(open(f'{BASE}{SUB}_20{ed}/manifest.json'))
     vis = {p['page_number'] for p in man['pages'] if p.get('has_visual_content')}
     for i in range(1, n + 1):
+        if not os.path.exists(f'{BASE}{SUB}_20{ed}/{i}.jpeg'):   # JB 쪽 이미지가 없는 환경(클라우드 세션) — 지금 docs/packs의 쪽 이미지를 그대로(tools/jblpaths.prev_jb_pages)
+            IMG['jb'][f'{ed}-{i}'] = J.prev_jb_pages(SUB)[f'{ed}-{i}']; continue
         im = Image.open(f'{BASE}{SUB}_20{ed}/{i}.jpeg').convert('RGB')
         if i in vis: IMG['jb'][f'{ed}-{i}'] = b64(im, 50)
         else: IMG['jb'][f'{ed}-{i}'] = b64(im.convert('L').resize((860, int(im.size[1] * 860 / im.size[0]))), 32)

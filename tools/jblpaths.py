@@ -38,3 +38,14 @@ def prev_jb(sid):
     """지금 docs/packs/<SID>.img.jb.js의 JB 원본 쪽 이미지 {판-쪽: dataURI} — 같은 JB PDF를 다시 렌더해 파일만 바뀌는 것을 막는 용도."""
     p = os.path.join(DOCS, 'packs', sid + '.img.jb.js')
     return _load_js(p).get('jb', {}) if os.path.exists(p) else {}
+
+_PJ = {}
+def prev_jb_pages(sid):
+    """지금 docs/packs/<SID>.img.jb23·jb24·jb25.js에 든 JB 원본 쪽 이미지 {판-쪽: dataURI}.
+    JB 쪽 이미지 파일(work/jb/<SID>_20xx/N.jpeg)이 없는 환경(클라우드 세션 — 텍스트만 풀어 둠)에서 assemble.py가 그대로 다시 쓰는 대체용."""
+    if sid not in _PJ:
+        out = {}; d = os.path.join(DOCS, 'packs')
+        for f in (sorted(os.listdir(d)) if os.path.isdir(d) else []):
+            if re.fullmatch(re.escape(sid) + r'\.img\.jb\d+\.js', f): out.update(_load_js(os.path.join(d, f)).get('jb', {}))
+        _PJ[sid] = out
+    return _PJ[sid]

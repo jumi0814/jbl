@@ -1,0 +1,94 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JBL 보존 — ux4 최종 시안 과목 홈</title><link rel="stylesheet" href="final.css">
+<style>:root{--acc:#6B3FA0}</style></head>
+<body>
+<div id="top"><button id="navbtn" onclick="document.body.classList.toggle('drawer')" aria-label="메뉴">☰</button>
+  <div class="crumb"><a class="brand">JBL</a><span class="sl">/</span><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--acc);display:inline-block"></span><b>보존</b></div>
+  <span class="sp"></span><input id="gsearch" type="search" placeholder="보존에서 검색">
+  <button id="clock" class="on"><i></i>1:25:10 <small>공부 중</small></button><button class="qbtn">?</button></div>
+
+<!-- 과목 메뉴: 과목에 들어오면 이 과목 전용 -->
+<aside id="side"><div class="dhd"><span class="brand">JBL 허브</span><button onclick="document.body.classList.remove('drawer')">✕</button></div>
+<nav id="nav">
+  <div class="back">‹ 허브 홈</div>
+  <div class="sjh"><span class="dot"></span><b>보존<small>임상치과보존학</small></b><span class="sw">과목 바꾸기 ▾</span></div>
+  <div class="dgrid">
+  <div class="ni cur">과목 홈</div><div class="ni">JB 문제<span class="r">30</span></div>
+  <div class="ni">기출 한눈표<span class="r">17</span></div><div class="ni">비교표<span class="r">55</span></div>
+  <div class="ni">예상문제<span class="r">70</span></div><div class="ni">기출 대장</div>
+  <div class="ni">내 표시<span class="r">3</span></div>
+  </div>
+  <div class="nsec">강의 7</div>
+  <div class="ni"><span class="el">Tooth whitening</span><span class="r">이인복</span></div>
+  <div class="ni"><span class="el">Cracked tooth</span><span class="r">서덕규</span></div>
+  <div class="ni"><span class="el">시린 치아 · DH</span><span class="r">서덕규</span></div>
+  <div class="ni"><span class="el">Inlay vs Fillings</span><span class="r">김선영</span></div>
+  <div class="ni"><span class="el">전치부 레진 심미수복</span><span class="r">김선영</span></div>
+  <div class="ni"><span class="el">Dental adhesive</span><span class="r">이창하</span></div>
+  <div class="ni"><span class="el">FRC post</span><span class="r">이창하</span></div>
+</nav>
+<div class="foot"><a>백업</a><a>도움말</a><span class="sp"></span><a class="mh">M 숨기기</a></div></aside>
+<div id="navbg" onclick="document.body.classList.remove('drawer')"></div>
+
+<div id="main"><div class="page">
+  <p class="kick"><span class="dot"></span>보존 · 임상치과보존학 · 이인복 · 서덕규 · 김선영 · 이창하</p>
+  <h1 class="ser">Clinical Conservative Dentistry</h1>
+  <p class="lead"><a>현 교수 기출 30</a> <span class="faint">(+참고 2)</span><span class="s">·</span><a>2회 이상 17</a><span class="s">·</span><a>강의 7</a><span class="s">·</span><a>비교표 55</a><span class="s">·</span><a>예상 70</a></p>
+
+  <section><h2>공부 순서</h2>
+  <ol class="steps">
+    <li><span><b>2회 이상 17문항</b> <span class="d">한눈표로 답부터 — 교수별 최근 해 짤 비율 평균 62%</span></span><a class="lk">한눈표</a></li>
+    <li class="now"><span><b>강의 정리본 → 학습</b> <span class="d">'이 강의의 틀'로 흐름 → 카드마다 🔑 → 세부 → ⭐ 시험포인트</span></span><a class="lk">이어서: Tooth whitening</a></li>
+    <li><span><b>강의 → 기출</b> <span class="d">그 강의 기출을 한 장씩 풀고 맞음/틀림 — 📖 칩으로 정리본과 오가기</span></span><a class="lk">안 푼 것 30</a></li>
+    <li><span><b>강의 → 플래시카드 · 자동 빈칸</b> <span class="d">암기 줄을 가리고 떠올리기</span></span><span></span></li>
+    <li><span><b>과목 → JB 문제</b> <span class="d">출제 횟수 순으로 풀고 틀린 것만 다시 · 비교표 · 예상문제로 마무리</span></span><a class="lk">2회 이상만 풀기</a></li>
+  </ol></section>
+
+  <section><h2>진행률 <small>현 교수 기출 30문항</small><a class="more">참고 2 보이기</a></h2>
+  <div class="prog"><span class="num">맞음 <b>8</b> · 틀림 <b class="red">2</b> · 안 푼 것 20 · ★ 3</span><div class="bar"><i style="width:33%"></i></div>
+  <button class="btn">안 푼 것 풀기</button><button class="btn">틀린 것 다시</button></div></section>
+
+  <section><h2>교수별 출제 경향 <small>짤 = 이전 해에 한 번이라도 나온 문제 · 탈 = 그 해 처음</small></h2>
+  <table class="trend"><thead><tr><th>교수</th><th>최근 해</th><th>짤 / 탈</th><th>유형</th><th>짤 비율</th><th>탈의 성격 · 형식</th></tr></thead><tbody>
+  <tr><td><b>이인복</b></td><td class="n">2024 · 3문항</td><td class="n">2 / 1</td><td>완짤형</td><td class="n">67%</td><td class="sub">새 영역 · 서술형</td></tr>
+  <tr><td><b>서덕규</b></td><td class="n">2024 · 1문항</td><td class="n">1 / 0</td><td>완짤형</td><td class="n">88%</td><td class="sub">새 영역 · 💬 강조 카드 · 서술형</td></tr>
+  <tr><td><b>김선영</b></td><td class="n">2024 · 2문항</td><td class="n">2 / 0</td><td>완짤형</td><td class="n">60%</td><td class="sub">새 영역 · 💬 강조 카드 · 단답형</td></tr>
+  <tr><td><b>이창하</b></td><td class="n">2024 · 6문항</td><td class="n">2 / 4</td><td>반짤반탈</td><td class="n">33%</td><td class="sub">변형 · 서술형</td></tr>
+  </tbody></table>
+  <ul class="plist">
+    <li>JB 문항을 답까지 그대로 쓸 수 있게 외우는 것이 1순위<small>이인복 · 서덕규 · 김선영</small></li>
+    <li>아직 안 나온 카드도 버리지 말 것<small>이인복 · 서덕규 · 김선영</small></li>
+    <li>서술형: 항목 수와 번호(①②③)를 정확히 — 암기 줄을 소리 내어 나열<small>이인복 · 서덕규 · 이창하</small></li>
+    <li>교수 강조 카드를 먼저<small>서덕규 · 김선영</small></li>
+  </ul>
+  <p style="margin:8px 0 0"><a class="lk" style="color:var(--sub)">전략 3개 더 · 연도별 짤/탈 세부</a></p></section>
+
+  <section><h2>교수님이 예고·강조한 것<a class="more">모두 보기 7</a></h2>
+    <div class="quote"><b>Tooth whitening</b><p>26 필기 강조: 슬라이드 16 "교수님이 강조한 또 다른 분류"(Physical / Chemical dye / Structural change), 슬라이드 26 "매우 중요: bleaching은 chemical dye를 파괴해 색을 바꾸는 치료" — 23년 T/F가 슬라이드 16·26·40에서 그대로 출제.</p></div>
+    <div class="quote"><b>Cracked tooth</b><p>26 필기 p.66 ★ 시험 예고: "Cracked tooth의 검사법에 대해서 내겠습니다 / 분류 5가지 내신다 / 그중 cracked tooth의 특징 2~3가지 아시길" — 분류는 단순 암기보다 각 category의 의미를 이해할 것.</p></div>
+    <div class="quote"><b>Dentin hypersensitivity</b><p>25 필기 p.12 "이 슬라이드 매우 중요 — [아래 두 내용 시험문제 낸다고 하셨습니다!] 1 mm²당 2-5만 개의 tubule 존재 / Inward flow를 야기하는 것: Heating, Probing".</p></div>
+  </section>
+
+  <section><h2>강의 <small>7 · 2회+ = 두 번 이상 나온 문제가 있는 강의</small></h2>
+  <div class="lecs">
+    <a class="lec"><div class="h">Tooth whitening<span class="hot">2회+</span></div><div class="m">이인복 · 26년도 자료 · 카드 19 · 기출 6 · 예상 10</div><div class="y"><b>2024</b> 3문항 · 짤 2 / 탈 1 → 완짤형</div><div class="q">슬라이드 16 "교수님이 강조한 또 다른 분류"(Physical / Chemical dye / Structural change), 슬라이드 26 "매우 중요"…</div></a>
+    <a class="lec"><div class="h">Diagnosis and treatment of the cracked tooth<span class="hot">2회+</span></div><div class="m">서덕규 · 26년도 자료 · 카드 18 · 기출 1 · 예상 10</div><div class="y"><b>2023</b> 1문항 · 짤 1 / 탈 0 → 완짤형</div><div class="q">p.66 ★ 시험 예고: "Cracked tooth의 검사법에 대해서 내겠습니다 / 분류 5가지 내신다"…</div></a>
+    <a class="lec"><div class="h">Dentin hypersensitivity — 시린 치아<span class="hot">2회+</span></div><div class="m">서덕규 · 26년도 자료 · 카드 17 · 기출 1 · 예상 10</div><div class="y"><b>2024</b> 1문항 · 짤 1 / 탈 0 → 완짤형</div><div class="q">p.13 hydrodynamic theory — "시험을 위해 외워둡시다, 아래 내용 외울 것"…</div></a>
+    <a class="lec"><div class="h">Inlay vs Fillings — in aspect of longevity<span class="hot">2회+</span></div><div class="m">김선영 · 25년도 자료 · 카드 16 · 기출 4 · 예상 10</div><div class="y"><b>2024</b> 1문항 · 짤 1 / 탈 0 → 완짤형</div><div class="q">"시험은 시험문제 페이지(p.7, 25)에서만 출제하신다 하셨습니다."…</div></a>
+    <a class="lec"><div class="h">복합레진을 이용한 전치부 심미수복</div><div class="m">김선영 · 26년도 자료 · 카드 15 · 기출 1 · 예상 10</div><div class="y"><b>2024</b> 1문항 · 짤 0 / 탈 1 → 탈형</div></a>
+    <a class="lec"><div class="h">Dental adhesive<span class="hot">2회+</span></div><div class="m">이창하 · 26년도 자료 · 카드 15 · 기출 7 · 예상 10</div><div class="y"><b>2024</b> 3문항 · 짤 1 / 탈 2 → 반짤반탈</div></a>
+    <a class="lec"><div class="h">FRC post<span class="hot">2회+</span></div><div class="m">이창하 · 26년도 자료 · 카드 14 · 기출 10 · 예상 10</div><div class="y"><b>2024</b> 3문항 · 짤 1 / 탈 2 → 반짤반탈</div></a>
+  </div></section>
+
+  <section><h2>2회 이상 출제 <small>완짤 후보 17문항</small><a class="more">한눈표로</a></h2>
+  <div class="reps">
+    <a><span class="c">11회</span><span class="yr">24·23·21·20 +7</span><span class="q">Non-vital bleaching (walking bleaching) 술식에 쓰이는 agent와 술식을 그림 그리고 설명하기</span><span class="p">이인복</span></a>
+    <a><span class="c">10회</span><span class="yr">23·22·21·20 +6</span><span class="q">Cracks 분류 5가지에 대하여 쓰시오.</span><span class="p">서덕규</span></a>
+    <a><span class="c">8회</span><span class="yr">21·20·19·18 +4</span><span class="q">FRC post의 장점에 대하여 쓰시오.</span><span class="p">이창하</span></a>
+    <a><span class="c">7회</span><span class="yr">24·23·22·21 +3</span><span class="q">Dentin hypersensitivity의 기전인 hydrodynamic theory에서 fluid가 치수 쪽과 반대쪽으로 흐르게 하는…</span><span class="p">서덕규</span></a>
+    <a><span class="c">7회</span><span class="yr">22·21·20·17 +3</span><span class="q">Bleaching 후 적절한 복합레진 수복시기와 그 이유는?</span><span class="p">이인복</span></a>
+  </div></section>
+</div></div>
+<script>if(/focus=1/.test(location.search))document.body.classList.add('focus');
+if(/drawer=1/.test(location.search))document.body.classList.add('drawer')</script>
+</body></html>

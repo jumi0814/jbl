@@ -1,0 +1,80 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JBL 허브 — ux4 최종 시안 홈</title><link rel="stylesheet" href="final.css"></head>
+<body>
+<!-- 상단 막대: 빵부스러기 · 검색 · 시계 알약(상태 점 + 시간 + 상태) · ? -->
+<div id="top"><button id="navbtn" onclick="document.body.classList.toggle('drawer')" aria-label="메뉴">☰</button>
+  <div class="crumb"><span class="brand">JBL</span><span class="sl">/</span><b>오늘</b></div>
+  <span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색  /">
+  <button id="clock" class="on" onclick="document.getElementById('cpop').hidden^=1"><i></i>1:25:10 <small>공부 중</small></button><button class="qbtn">?</button></div>
+
+<!-- 시계 팝오버(?pop=clock) — 옛 메뉴 트래커·자동 대기 칩·⏱ 크게를 한 곳에 -->
+<div id="cpop" class="pop" style="right:56px;top:48px" hidden>
+  <div class="ph">오늘 1:25 / 4:00 · 휴식 0:12</div>
+  <div class="pi on">■ 공부 멈춤 <kbd>자동 측정 중</kbd></div>
+  <div class="pi">☕ 쉬기 시작</div>
+  <div class="pi">⏱ 크게 보기 <small style="margin-left:auto">지금 구간 0:42</small></div>
+  <hr><div class="pi">공부 달력 · 오늘 기록 고치기</div><div class="pi">하루 목표 4:00</div>
+</div>
+
+<!-- 허브 메뉴 -->
+<aside id="side"><div class="dhd"><span class="brand">JBL 허브</span><button onclick="document.body.classList.remove('drawer')">✕</button></div>
+<nav id="nav">
+  <div class="nsec">허브</div>
+  <div class="ni cur">오늘</div>
+  <div class="ni">공부 달력<span class="r">이번 주 6:40</span></div>
+  <div class="ni">내 표시<span class="r">12</span></div>
+  <div class="nsec">과목</div>
+  <div class="ni"><span class="dot" style="background:#0F6E6C"></span>구강외과1<span class="r">68</span></div>
+  <div class="ni"><span class="dot" style="background:#6B3FA0"></span>보존<span class="r">30</span></div>
+  <div class="ni"><span class="dot" style="background:#93561A"></span>임플란트<span class="r">39</span></div>
+  <div class="ni"><span class="dot" style="background:#2F5DA8"></span>두경부해부<span class="r">73</span></div>
+  <div class="ni"><span class="dot" style="background:#6A6A1C"></span>노인치과<span class="r">80</span></div>
+  <div class="ni"><span class="dot" style="background:#8E3B78"></span>약물치료<span class="r">157</span></div>
+  <div class="ni off"><span class="dot" style="background:#BDB6AA"></span>심미<span class="r">준비 중</span></div>
+</nav>
+<div class="foot"><a>백업</a><a>도움말</a><span class="sp"></span><a class="mh">M 숨기기</a></div></aside>
+<div id="navbg" onclick="document.body.classList.remove('drawer')"></div>
+
+<div id="main"><div id="home" class="page">
+  <p class="kick">3학년 3쿼터 · 7과목</p>
+  <h1>9월 29일 화요일</h1>
+  <div class="today"><span class="tt">오늘 <b>1:25</b> / 4:00</span><div class="bar"><i style="width:35%"></i></div><span class="rest">휴식 0:12</span><button class="btn">■ 멈춤</button><button class="btn">☕ 쉬기</button></div>
+
+  <!-- 이어서: 이 화면의 주 버튼 하나 -->
+  <a class="resume" style="--acc2:#6B3FA0"><span class="t"><span class="k2">이어서 · 보존 · 오후 11:21</span><b>Tooth whitening · 학습</b><small>카드 4 · NVB — Indications · Contraindications</small></span><span class="btn pri">계속하기 →</span></a>
+
+  <div class="grid2">
+  <section><h2>오늘 할 일 <small>3</small><a class="more">달력에서 고치기</a></h2>
+    <div class="rows">
+      <a><span class="t"><b>보존 안 푼 기출 30</b><small>JB 문제 · 2회 이상부터</small></span><span class="chev">›</span></a>
+      <a><span class="t"><b>구강외과1 틀린 기출 다시 4</b><small>JB 문제 · 틀린 것</small></span><span class="chev">›</span></a>
+      <a><span class="t"><b>약물치료 강의 2개 훑기</b><small>달력 목표 · 항생제 · 진통제</small></span><span class="chev">›</span></a>
+    </div></section>
+  <section><h2>최근 <small>2</small></h2>
+    <div class="rows">
+      <a><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#0F6E6C;flex:none"></span><span class="t"><b>JB 문제 · 21/68</b><small>구강외과1 · 어제 오후 9:40</small></span><span class="chev">›</span></a>
+      <a><span class="dot" style="width:8px;height:8px;border-radius:50%;background:#8E3B78;flex:none"></span><span class="t"><b>항생제 · 정리표</b><small>약물치료 · 어제 오후 7:05</small></span><span class="chev">›</span></a>
+    </div></section>
+  </div>
+
+  <section><h2>과목</h2>
+  <table class="sjt"><thead><tr><th>과목</th><th class="n">기출 푼 것</th><th class="n">틀림</th><th class="n hide-p">오늘</th><th class="n">전체 시간</th><th></th></tr></thead><tbody>
+  <tr><td><div class="nm"><span class="dot" style="background:#0F6E6C"></span><div><b>구강외과1</b><small>서병무 · 한정준 · 서미현 · 윤필영</small></div></div></td><td class="n"><div class="pb"><span>21 / 68</span><div class="bar"><i style="width:31%;background:#0F6E6C"></i></div></div></td><td class="n red">4</td><td class="n hide-p">0:50</td><td class="n">6:10</td><td class="n chev">›</td></tr>
+  <tr><td><div class="nm"><span class="dot" style="background:#6B3FA0"></span><div><b>보존</b><small>이인복 · 서덕규 · 김선영 · 이창하</small></div></div></td><td class="n"><div class="pb"><span>0 / 30</span><div class="bar"><i style="width:0"></i></div></div></td><td class="n faint">–</td><td class="n hide-p">0:35</td><td class="n">2:05</td><td class="n chev">›</td></tr>
+  <tr><td><div class="nm"><span class="dot" style="background:#93561A"></span><div><b>임플란트</b><small>조영단 · 한정준 · 명훈 · 임영준 외 3</small></div></div></td><td class="n"><div class="pb"><span>12 / 39</span><div class="bar"><i style="width:31%;background:#93561A"></i></div></div></td><td class="n red">2</td><td class="n faint hide-p">–</td><td class="n">3:20</td><td class="n chev">›</td></tr>
+  <tr><td><div class="nm"><span class="dot" style="background:#2F5DA8"></span><div><b>두경부해부</b><small>명훈 · 권익재 · 양훈주 · 서병무 외 2</small></div></div></td><td class="n"><div class="pb"><span>0 / 73</span><div class="bar"><i style="width:0"></i></div></div></td><td class="n faint">–</td><td class="n faint hide-p">–</td><td class="n">1:00</td><td class="n chev">›</td></tr>
+  <tr><td><div class="nm"><span class="dot" style="background:#6A6A1C"></span><div><b>노인치과</b><small>유연지 · 한동헌 · 이우철 · 금기연 외 3</small></div></div></td><td class="n"><div class="pb"><span>0 / 80</span><div class="bar"><i style="width:0"></i></div></div></td><td class="n faint">–</td><td class="n faint hide-p">–</td><td class="n faint">–</td><td class="n chev">›</td></tr>
+  <tr><td><div class="nm"><span class="dot" style="background:#8E3B78"></span><div><b>약물치료</b><small>백정화 · 이윤실 · 김우진 · 우경미 외 1</small></div></div></td><td class="n"><div class="pb"><span>0 / 157</span><div class="bar"><i style="width:0"></i></div></div></td><td class="n faint">–</td><td class="n faint hide-p">–</td><td class="n faint">–</td><td class="n chev">›</td></tr>
+  <tr class="off"><td><div class="nm"><span class="dot" style="background:#BDB6AA"></span><div><b>심미</b><small>심미치과학 · 자료 준비 중</small></div></div></td><td></td><td></td><td class="hide-p"></td><td></td><td></td></tr>
+  </tbody></table></section>
+
+  <section><h2>이번 주 <small>합계 6:40 · 하루 평균 0:57</small><a class="more">공부 달력</a></h2>
+  <div class="week">
+    <div><i style="height:40px"></i>월</div><div><i style="height:62px"></i>화</div><div><i style="height:18px"></i>수</div><div><i style="height:50px"></i>목</div><div><i style="height:30px"></i>금</div><div><i style="height:70px"></i>토</div><div class="td"><i style="height:34px"></i>오늘</div>
+  </div></section>
+
+  <div class="note"><span>백업 — 마지막으로 보낸 날 없음 · <a class="lk" style="color:var(--sub)">파일로 보내기</a></span><span>아이패드는 공유 → 홈 화면에 추가로 열면 기록이 더 안전해요</span></div>
+</div></div>
+<script>if(/drawer=1/.test(location.search))document.body.classList.add('drawer');
+if(/pop=clock/.test(location.search))document.getElementById('cpop').hidden=false;</script>
+</body></html>

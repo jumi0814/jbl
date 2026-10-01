@@ -1,0 +1,593 @@
+{
+ "batches": [
+  {
+   "name": "묶음 1 — 단축키·집중 모드·형광펜·빈칸 (사용자 요청 H·B·V, 키 관련 high 오류 포함)",
+   "items": [
+    {
+     "id": "A01",
+     "title": "키 처리 기반 정비: 한글 입력 상태·포커스·Enter 잘못 채점",
+     "what": "keydown 첫머리를 다시 짠다. 키 이름은 e.code로 판정한다: K = e.code가 'Key'로 시작하면 뒤 글자 소문자('KeyH'→'h'), 'Digit'이면 숫자. e.key는 '?'·'/'·Escape·Arrow·' ' 판정에만 쓴다. 단축키를 무시하는 경우는 input[type=text|search]·textarea·contenteditable로 좁힌다. SELECT·checkbox·button에 포커스가 있어도 단축키가 동작하고, Esc는 먼저 blur한다. jbBar의 select는 change 뒤 blur()한다. e.target이 BUTTON·A·SUMMARY이고 키가 Enter·Space면 먼저 preventDefault하고 단축키로만 처리한다. #onebar와 플래시카드 판정 버튼은 pointerdown에서 preventDefault해 포커스를 받지 않게 하고, click 끝에 blur한다. 한 장씩 풀기 분기의 Enter·Space·O·X·S·←·→는 모두 preventDefault한다. 채점 뒤 자동 넘김 250ms 동안 들어온 Enter·→는 한 번만 반영한다. 도움말 맨 위에 '한/영 상관없이 동작' 한 줄을 넣는다.",
+     "acceptance": "playwright: keydown {key:'ㅗ',code:'KeyH'}이면 body.mode-h가 켜지고, {key:'ㅠ',code:'KeyB'}이면 빈칸 모드가 켜진다. #/OMS1/_jb/_jb 한 장씩에서 #ook 클릭 → Enter를 누르면 mk.OMS1.ok가 1건만 늘고 위치는 +1만 움직인다(보지 않은 문항 채점 0). 교수 select를 바꾼 직후 →를 누르면 select 값은 그대로이고 카드가 넘어간다. ux_u14·kt에 단언을 추가하고 ux_all이 통과한다.",
+     "files": "tools/cons/shell.html(keydown·jbBar change·#onebar·Flash), tools/tests/ux_u14.py, tools/tests/kt.py",
+     "source": "tools:T01, tools:T14, JB-01, R02"
+    },
+    {
+     "id": "A02",
+     "title": "새 단축키 배치 (H 형광펜·B 빈칸·V 집중)",
+     "what": "모든 화면에 같은 키 표를 쓴다. H = 형광펜 모드 켜기/끄기, Shift+H = 형광펜 색 순환(y→g→p→u→o, 토스트 '형광펜 색: 초록'), B = 빈칸 모드 켜기/끄기(A는 별칭으로 유지), Q = 가리기 보기(A05), E = 빈칸·가린 것 모두 열기/가리기(👁), N = 다음 가린 칸 열기, Shift+N = 이 카드 다시 가리기, V = 집중 모드(A03), T(와 Shift+V) = 도구 막대 숨기기, \\ = 사이드바 접기(A04), M = 메모, / = 검색창, G = 과목 홈, 1~6 = 탭, J/K = 다음/이전 카드, D = 지금 카드 ✓ 이해함, F = 지금 카드 접기/펼치기, C = 압축 보기(학습 탭), ? = 도움말. Esc는 팝업·도움말 닫기 → 모드 끄기 → 집중 모드 나가기 순서로 한 단계씩 처리한다. 한 장씩 풀기에서는 ←/→ 이동, Space 답, O 맞음, X 틀림, S ★이다(★는 B에서 S로 옮김). 플래시카드는 Space 뒤집기, O/X, ←/→. R·I·Shift+J/K는 묶음 4에서 연결하도록 비워 둔다. #kit 버튼 title('형광펜 (H)', '빈칸 (B)', '전체 보기 (E)'), #onebar 안내 'O 맞음 · X 틀림 · S ★ · Space 답 · ←/→', #obm title, ? 도움말 표, tools/SPEC.md 단축키 표를 고친다. 처음 한 번은 토스트 '★는 이제 S — B는 빈칸'을 띄운다(LS keyNotice).",
+     "acceptance": "학습 탭에서 b를 누르면 body.mode-b가 켜지고, 다시 누르면 꺼진다. h 두 번이면 켜졌다 꺼진다. Shift+H를 누르면 지금 색 칩이 바뀐다. 한 장씩에서 s는 mk.bm을 토글하고, b는 ★를 바꾸지 않고 빈칸 모드를 켠다. d는 지금 카드를 done으로 만든다. ? 도움말 텍스트에 'B'와 '빈칸', 'S'와 '★'가 있다. 옛 A 키도 빈칸 모드를 켠다.",
+     "files": "tools/cons/shell.html(keydown·#kit·#help·jbBar .okeys·#obm), tools/SPEC.md",
+     "source": "tools:T02, R03, JB-11, L13"
+    },
+    {
+     "id": "A03",
+     "title": "V 집중 모드 (메뉴·탭·사이드바 숨기기) + 글자 크기",
+     "what": "V로 body.focus를 켜고 끈다(LS 'focus'에 저장해 새로고침·강의 이동 뒤에도 유지). 켜면 다음과 같이 바뀐다. ① #side와 과목 hero를 숨긴다(#subj grid-template-columns:1fr). ② #top은 24px 얇은 띠(시계만)로 줄이고, 마우스가 위 40px에 오거나 위로 스크롤하면 펼친다. ③ #dtabs는 아래로 스크롤하면 translateY(-100%)(200ms)로 숨고, 위로 조금만 올려도 다시 보인다. goEl 오프셋은 보이는 높이 기준으로 계산한다. ④ #kit은 ✎ 하나로 접되, 형광펜·빈칸 모드 중이면 모드 칩(A06)을 보인다. ⑤ 본문은 max-width 960px로 가운데 둔다. ⑥ 오른쪽 위에 반투명 알약 '집중 · V로 나가기'를 둔다(3초 뒤 opacity .25, hover 1). 학습 탭이면 알약에 '카드 n/N'도 표시한다. 해제는 V·Esc(팝업이 없을 때)·알약 클릭. 한 장씩 풀기에서는 풀이 막대만 남긴다. 아이패드용 ⤢ 버튼을 #dtabs 오른쪽 미니바와 ☰ 옆에 둔다. ⋯ 보기 설정에 글자 크기 A−/A+를 추가한다(LS fontScale 0.9~1.2, 0.05 단위, :root 글자 크기 변수에 곱함).",
+     "acceptance": "1180×820 터치와 1280×900에서 v를 누르면 #side·hero가 display:none이 되고, 본문 폭은 1180에서 900 이상이다. 아래로 600px 스크롤하면 #dtabs가 화면 밖에 있고, 위로 60px 스크롤하면 다시 보인다. 새로고침 뒤에도 body.focus가 유지되고, Esc로 풀린다. A+를 두 번 누르면 .li font-size가 약 10% 커지고 새로고침 뒤에도 유지된다. 콘솔 오류 0.",
+     "files": "tools/cons/shell.html(CSS v6 블록·measure·keydown·#lmini·⋯ 보기 설정)",
+     "source": "tools:T03, R04, L13, ideas.learn(글자 크기)"
+    },
+    {
+     "id": "A04",
+     "title": "사이드바 접기와 넓은 표 화면",
+     "what": "860px보다 넓은 화면에서 사이드바 머리에 ‹ 버튼(#sidefold)을 두고, \\ 키로도 body.sidefold를 켜고 끈다(#subj grid-template-columns:0 1fr, #side visibility:hidden, LS 'sidefold'). 접혀 있으면 #dtabs 왼쪽의 › 버튼으로 펼친다. 정리표·비교표·한눈표(sum·tbl·_sum·_tbl)는 폭 1440 이하일 때 들어가면 자동으로 접는다. 사용자가 그 화면에서 펼치면 LS 'wideSide'=1로 기억하고 다음부터 자동으로 접지 않는다.",
+     "acceptance": "1280에서 #/CONS/WHT/sum에 들어가면 table.mtx 폭이 1180 이상이다. \\를 누르면 사이드바가 보이고, 다시 누르면 숨는다. 학습 탭으로 돌아가면 sidefold 설정 그대로다. 1180×820에서 가로 넘침 0.",
+     "files": "tools/cons/shell.html(#subj 그리드·mount의 wide 클래스·CSS)",
+     "source": "R04, tables:T08"
+    },
+    {
+     "id": "A05",
+     "title": "가리기 보기(Q)와 빈칸 떠올리기 흐름 (저장 안 함)",
+     "what": "저장하지 않는 '가리기 보기'를 만든다. #stage.quiz가 켜지면 범위 안의 .k(빨간 핵심어)를 CSS로 가린다(color:transparent; background:#E9DFC6; border-radius:4px). 옵션 '빈칸 길이 숨기기'(LS qzfix)를 켜면 모든 가림을 min-width:3em 고정폭으로 만든다. 누르면 그 칸만 .show가 된다. 범위는 [이 카드(기본) · ⚡ 암기 줄만 · 강의 전체](LS qzscope). Q 키, 미니바 '가리기' 버튼, ⚡ 자동 창의 첫 선택지(기본값)로 켠다. ann에는 아무것도 쓰지 않는다(연 상태는 sessionStorage qzopen.<문서>). 저장형 빈칸(.rk-b)과 가림 모두에 쓰는 키: N = 화면 위쪽부터 아직 안 연 것 하나를 열고 화면 가운데로, Shift+N = 지금 카드 다시 가리기, E = 전부 열기/가리기. 모드가 꺼져 있고 가린 것이 있으면 카드 머리에 '▣ 3/12 열림' 칩을 두고, 누르면 이 카드 전체를 열고 닫는다. 연 저장형 빈칸 상태도 sessionStorage에 두어 탭을 옮겼다 와도 유지한다.",
+     "acceptance": "EXT 학습 탭에서 q를 누르면 지금 카드 .k의 계산 color가 transparent가 되고, localStorage ann.OMS1 바이트 변화는 0이다. 한 칸 클릭 → 그 칸만 보인다. n 3번 → 3개가 열리고 스크롤이 이동한다. Shift+N → 다시 가려진다. 새로고침하면 quiz가 꺼지고 ann 변화는 0이다. '강의 전체' 적용은 200ms 이하이다(쓰기 없음).",
+     "files": "tools/cons/shell.html(Kit.auto·#autopop·CSS·keydown·카드 머리 칩)",
+     "source": "L01, tools:T12, tools:T11, ideas.learn(가리기 보기), ideas.hub(빈칸 연습)"
+    },
+    {
+     "id": "A06",
+     "title": "모드 표시 칩과 도구 막대의 본문 가림 줄이기",
+     "what": "형광펜·빈칸 모드가 켜진 동안 탭 막대 아래(집중 모드에서는 오른쪽 위)에 고정 칩을 띄운다: '🖍 형광펜 켜짐 · 노랑 — 누르면 끄기 (H·Esc)' / '▣ 빈칸 만들기 켜짐 — 빈칸을 누르면 지워져요 (B·Esc)'. 모드 중에는 #stage.modeon에서 카드 outline을 1px dashed var(--acc)로 한다. 아래로 스크롤하는 동안 #kit을 ✎ 하나(44px)로 줄이고, 멈춘 지 1.2초 뒤·위로 스크롤·✎를 누르면 펼친다(모드 중에는 줄이지 않음). ↶/↷는 비활성 opacity .6, 활성이면 개수 배지 '↶3'. 860px 이하에서는 아이콘 아래 10px 라벨(되돌리기·다시·전체 보기·지우기)을 붙인다. 숨김(kit-off)은 LS 'kitoff'에 저장한다.",
+     "acceptance": "h를 누르면 .modechip이 보이고 문구가 맞다. Esc를 누르면 사라진다. 820×1180에서 스크롤하는 동안 #kit 높이 ≤ 48이고, 1.5초 뒤 원래 높이로 돌아온다. T → 새로고침 뒤에도 kit-off가 유지된다. ↶ 배지 숫자 = 되돌리기 스택 길이.",
+     "files": "tools/cons/shell.html(#kit CSS·setMode·hide·scroll 처리)",
+     "source": "tools:T10, R13"
+    },
+    {
+     "id": "A07",
+     "title": "애플펜슬: 탭으로 지우기 고치기 + 바로 칠하기",
+     "what": "touchend의 active && !moved 분기를 tapAt(d.B,x,y,target)로 바꾼다. 마우스와 같이 칠한 곳이면 지우고, 다른 색이면 색을 바꾸고, 빈 곳이면 어절을 칠한다. stylus의 moved 기준은 6px로 한다. 손가락으로 길게 누른 뒤 그대로 뗀 경우도 tapAt을 부른다. 설정 '펜슬로 바로 칠하기'(LS penDirect, pointer:coarse 기기는 기본 켬)를 추가한다. 모드가 꺼져 있어도 touchType==='stylus'로 끌면 지금 색으로 형광펜을 칠하고, 펜슬로 탭한 곳이 칠한 곳이면 지운다. 손가락은 지금처럼 스크롤과 빈칸 열기만 한다. 도움말에 한 줄을 추가한다.",
+     "acceptance": "합성 터치 길게 누르기(0.4초) 두 번 → 표시 0. 짧은 탭 두 번 → 0(기존 동작 유지). penDirect 경로는 Touch에 touchType을 넣을 수 있으면 합성 이벤트로, 안 되면 처리 함수 단위 테스트로 확인한다: 모드 없이 표시 1. kt_orphan·kt_sync 통과.",
+     "files": "tools/cons/shell.html(Kit touchstart/touchend·설정), tools/tests/kt3.py",
+     "source": "tools:T04, R07"
+    },
+    {
+     "id": "A08",
+     "title": "드래그 보완 (카드 경계·자동 스크롤)",
+     "what": "드래그가 다른 카드에서 끝나면 시작 카드의 끝까지 칠하고 토스트 '카드 경계까지 칠했어요'를 띄운다. 드래그 중 포인터가 화면 위·아래 60px 안에 있으면 requestAnimationFrame으로 초당 400px씩 자동 스크롤하고, 떼면 멈춘다.",
+     "acceptance": "마우스로 카드 3 중간에서 카드 4까지 끌면 카드 3에 표시 1개가 생기고 토스트가 뜬다. 아래 가장자리에 1초 머물면 scrollY가 +300~500 늘어난다.",
+     "files": "tools/cons/shell.html(Kit 마우스·터치)",
+     "source": "tools:T20"
+    },
+    {
+     "id": "A09",
+     "title": "🖍 내 표시 모아보기: 문장 맥락·색 필터·색 라벨",
+     "what": "표시마다 그 표시가 든 줄(li·td·p·.ln, 최대 160자)을 보이고, 칠한 부분만 <mark class='rk-색'>으로 강조한다. 머리에 색 필터 칩 [노랑][초록][분홍][파랑][주황][빈칸](LS mkcol)을 둔다. 빈칸은 가린 채 보이고 탭하면 열린다(퀴즈용). 색 견본을 길게 누르거나(0.5초) 우클릭하면 라벨을 붙인다(LS hlabel, 기본 {y:'기출',p:'헷갈림',g:'암기 완료'}, 사용자가 수정). 라벨은 견본 title과 모아보기 칩에 표시한다. 허브 홈 백업 패널 옆에 '🖍 전 과목 내 표시' 링크를 둔다.",
+     "acceptance": "DD1에 노랑 2·분홍 1을 칠하면 _marks에 줄 3개·mark 3개가 나온다. 분홍 필터 → 1줄. 빈칸 줄은 가려져 있고 클릭하면 열린다. 라벨을 바꾸고 새로고침해도 유지된다. ux_marks 통과.",
+     "files": "tools/cons/shell.html(_marks 렌더·#k-sw·home)",
+     "source": "R16, tools:T20"
+    }
+   ]
+  },
+  {
+   "name": "묶음 2 — 공부 시간(요일별 기록)·허브 홈·첫 화면",
+   "items": [
+    {
+     "id": "B01",
+     "title": "📊 공부 기록 화면 (#/_time)",
+     "what": "route에 '_time'(VIEW 'time')을 추가한다. 들어가는 곳은 허브 홈 '오늘' 띠, 시계 팝업 [자세히], 과목 홈 진행률 줄이다. 화면 구성: ① 이번 주 월~일 세로 막대(과목색으로 쌓고, 오늘은 테두리, 막대 위 'h:mm', 목표선 점선 = LS tgoal 기본 240분, 막대를 누르면 그날 과목·강의별 목록). ② 요약 줄 '이번 주 18:40 · 하루 평균 2:40 · 지난주보다 +3:10 ▲ · 연속 5일'. ③ ◀ ▶로 주를 옮기고, 지난주는 옅은 막대로 겹친다. ④ 요일별 평균(최근 4주, 월~일, 오늘 요일 강조). ⑤ 최근 12주 잔디 달력(5단계, --acc 농도 한 색 — 원칙 7-1). ⑥ 과목별 누적(이번 주/전체) 가로 막대 + 강의별 상위 10(시간·읽음 %·기출 정답률). ⑦ [+ 시간 고치기]: 날짜·과목·±분을 새 키 LS 'tadj' = {날짜:{S:ms}}에 쓴다(time·timed는 건드리지 않음). 합계는 tDay(d)/tWeek(월요일) 함수 하나로 계산해, 묶음 3의 기기 합산은 이 함수만 바꾸게 한다. 표기는 모두 'h:mm'이고, 30초 미만은 숨긴다. 기존 time 날짜 키 형식은 그대로 읽는다.",
+     "acceptance": "playwright로 time·timed에 14일치 합성 기록(3과목)을 넣고 #/_time을 연다. 막대 7개가 월~일 순서이고, 합계 텍스트 = 합성 합(h:mm)이다. ◀ → 지난주 합이 맞다. 달력 칸은 84개, 강의 상위 10 정렬이 맞다. tadj +30분 → 그날 막대 +0:30, time 키 값은 그대로다. 820×1180 가로 넘침 0, 콘솔 오류 0.",
+     "files": "tools/cons/shell.html(route·home·새 view·공부 시간 v2), tools/SPEC.md, tools/tests/ux2_time.py(신규)",
+     "source": "tools:T07, R05, ideas.tools(공부 기록)"
+    },
+    {
+     "id": "B02",
+     "title": "시계 팝업과 허브 홈 시간 표 정리",
+     "what": "시계 팝업은 '오늘 1:25 · 목표 4:00 진행 고리' + 이번 주 월~일 미니 막대(요일 글자·'1:20') + 주 합계 + [📊 자세히]로 줄인다. 무활동 기준 선택(B04)도 여기에 둔다. 1분 미만 과목·강의 항목과 '🏠 과목 홈' 같은 비학습 문서의 줄은 숨긴다. 허브 홈 '최근 공부 시간' 표는 최신 날짜를 위에, 날짜에 요일을 붙여 '9/28(월)'로 쓴다. 0분 과목은 숨기고, 7행 아래에 '📊 전체 기록' 링크를 둔다.",
+     "acceptance": "합성 기록에서 팝업 막대가 월→일 순서이고 오늘이 강조된다. 팝업·홈에 '0분' 텍스트가 없다. 홈 표 첫 행이 최신 날짜다.",
+     "files": "tools/cons/shell.html(tPop·home 시간 패널)",
+     "source": "tools:T07, R05, R23"
+    },
+    {
+     "id": "B03",
+     "title": "측정 표시를 저장 규칙과 맞추기 + 상태 3가지",
+     "what": "tToday 표시값을 min(now, T.last+60s) − t0로 계산해 저장 규칙과 같게 한다. 그러면 무활동 뒤 시계가 되감기지 않는다. 입력 없이 60초가 지나면 시계 옆에 회색 칩 '⏸ 자리 비움 3:12'을 띄우고 숫자는 멈춘다. 버튼 상태는 세 가지로 나눈다: '● 측정 중'(초록 점 #2E7D4F), '○ 자동 대기'(과목을 열면 시작), '▶ 공부 시작'(자동 꺼짐). #clock은 button으로 바꾼다(aria-label '오늘 공부 시간 · 누르면 기록').",
+     "acceptance": "clock.install로 30초 → '00:00:29'. 5분 무활동 → 표시 ≤ '00:01:29'이고 자리 비움 칩이 보인다. 8분 → 표시값이 줄지 않는다(1초마다 읽어 단조 증가 단언).",
+     "files": "tools/cons/shell.html(tToday·tBtn·setInterval·#clock)",
+     "source": "tools:T08, R23"
+    },
+    {
+     "id": "B04",
+     "title": "무활동 시간 되묻기와 기준 선택",
+     "what": "무활동으로 멈춘 뒤 입력이 돌아오면 아래 띠를 띄운다: '12분 동안 입력이 없었어요 — [공부했어요 +12분] [빼기]'. 10초 뒤에는 자동으로 빼고, 제안은 최대 60분까지만 한다. [공부했어요]는 멈춘 과목·강의의 time·timed에 증가분으로 더한다(직전에 다시 읽고 더하는 기존 방식). 무활동 기준은 5·8·15·25분 중에서 고른다(LS idleMin, 기본 8). 한 장씩 풀기에서 답이 가려진 동안은 기준을 2배로 한다.",
+     "acceptance": "clock으로 12분 무활동 후 입력하면 띠가 보인다. [공부했어요] → time 오늘 값 +12분(±1분). [빼기]나 10초 경과 → 변화 없음. idleMin=15로 두면 12분에는 멈추지 않는다.",
+     "files": "tools/cons/shell.html(T·setInterval·tPop)",
+     "source": "tools:T09"
+    },
+    {
+     "id": "B05",
+     "title": "창 여러 개일 때 시간이 두 번 잡히지 않게",
+     "what": "window blur 30초 뒤 측정을 멈추고, focus가 오면 다시 잰다. BroadcastChannel('jblhub')로 '측정 중인 창'을 하나(마지막으로 입력이 있었던 창)만 둔다. 다른 창은 '○ 다른 창에서 측정 중'으로 표시하고 시간을 더하지 않는다. BroadcastChannel이 없으면 지금 방식을 그대로 쓴다.",
+     "acceptance": "같은 컨텍스트에 페이지 두 개를 열고 양쪽에 번갈아 2분 동안 입력하면 time 증가가 약 2분이다(겹쳐 잡힌 시간 ≤ 10초). blur 31초 → 측정이 멈춘다.",
+     "files": "tools/cons/shell.html(공부 시간 v2 블록)",
+     "source": "tools:T21"
+    },
+    {
+     "id": "B06",
+     "title": "허브 홈 '오늘' 띠·시험일 D-day·하루 분량",
+     "what": "허브 홈 맨 위에 한 줄 띠를 둔다: '오늘 1:20 / 4:00 · 이번 주 9:40 · 가장 가까운 시험 약물치료학 D-3 · 🔁 오늘 복습 12'(B07). 과목 카드에 시험일 입력(input type=date, LS exam.<S>)과 D-n 배지를 둔다(D-3 이내는 과목색 테두리). 시험일이 있으면 과목 홈 진행률 위에 '남은 안 읽은 카드 80 · 안 푼 기출 41 → 하루 27장 · 14문항'을 보인다(남은 날 = D-n, 오늘 포함). 과목 카드 정렬은 [기본|시험 가까운 순](LS homeSort)에서 고른다.",
+     "acceptance": "exam.PHARM=오늘+3이면 띠에 'D-3'이 나오고, 과목 홈 하루 분량 = ceil(남은 수/3)이다. 시험일이 없으면 띠의 D 부분이 빠진다. 정렬을 바꾸면 카드 순서가 바뀐다.",
+     "files": "tools/cons/shell.html(home 렌더·과목 홈)",
+     "source": "R19, ideas.tools(D-day), ideas.hub(D-day)"
+    },
+    {
+     "id": "B07",
+     "title": "오늘 복습 대기열 (라이트너, 기존 기록만 읽음)",
+     "what": "reviewDue(S)는 mk.log로 계산한다. 마지막 결과가 ng면 지금 복습 대상이다. ng 뒤 ok가 1번 이어졌으면 1일 뒤, 2번이면 3일 뒤, 3번 이상이면 7일 뒤에 다시 대상이 된다. 한 번도 틀린 적 없는 ok는 뺀다. 저장 형식은 바꾸지 않는다. JB 필터 qf에 '🔁 복습 n'과 '한 번이라도 틀림 n'을 추가하고, 기록 칩 title에 '다음 복습 9/30'을 넣는다. 과목 홈 공부 순서 첫 줄과 허브 과목 카드에 '🔁 오늘 복습 12문항 ▶'를 둔다. 누르면 _jb의 복습 필터 + 한 장씩으로 연다(묶음 3의 C07 회차 고정과 연동).",
+     "acceptance": "합성 log(RX01: ng→ok 어제, RX02: ng→ok→ok 4일 전, RX03: ok만)에서 복습 = RX01·RX02이고 RX03은 빠진다. 버튼 개수가 맞고, mk 원본 바이트는 그대로다.",
+     "files": "tools/cons/shell.html(jbBar qf·JB.apply·과목 홈·허브 카드)",
+     "source": "JB-07, ideas.jb(오늘 복습), ideas.hub(SRS)"
+    },
+    {
+     "id": "B08",
+     "title": "첫 화면 불러오기 표시와 요청한 과목 먼저 불러오기",
+     "what": "부팅 전 #home에 뼈대 화면과 '과목 자료 불러오는 중 3/6 · OMS1 ✓ CONS …' 진행 막대를 보인다. 팩 onerror면 '⚠ PHARM 불러오기 실패 [다시]'를 띄우고, [다시]는 스크립트 태그를 다시 붙인다. 해시가 과목을 가리키면 그 과목 팩을 먼저 불러 route()하고, 나머지는 requestIdleCallback(없으면 setTimeout 50)으로 차례로 받는다. 허브 홈·검색은 불러온 과목부터 채우고 '불러오는 중' 칩을 붙인다. READY 목록과 ?v= 판 지문은 그대로 둔다.",
+     "acceptance": "route.fulfill로 팩마다 1초씩 늦추면 0.3초 시점에 진행 막대가 보인다. #/OMS1/DD1/learn 딥링크는 다른 팩을 기다리지 않고 학습 탭을 그린다. 팩 하나를 404로 만들면 실패 안내가 뜨고 [다시] 뒤 성공한다. ux_fix(판·새 버전 막대) 통과.",
+     "files": "tools/cons/shell.html(boot·팩 로드)",
+     "source": "R06"
+    },
+    {
+     "id": "B09",
+     "title": "검색 색인을 나눠 만들기 + 종류 필터",
+     "what": "boot 뒤 requestIdleCallback으로 과목 하나씩 sText 색인을 만든다(지금 과목 먼저). 색인이 끝나기 전에 입력하면 '색인 준비 중 4/6'을 보이고, 끝나는 대로 결과를 채운다. 결과 머리에 칩 [전체 n][정리본 n][JB n][표 n][예상 n]을 두고, 선택은 해시 &k=jb로 남긴다. JB 결과에는 '답 바로 보기'를 붙인다.",
+     "acceptance": "CPU×4 에뮬레이션에서 첫 입력의 long task < 200ms. 'warfarin' 검색 후 JB 칩을 누르면 JB 결과만 보이고, 해시에 &k=jb가 붙고, 새로고침해도 유지된다. ux_u30 통과.",
+     "files": "tools/cons/shell.html(검색 v2·buildSearch)",
+     "source": "R18"
+    },
+    {
+     "id": "B10",
+     "title": "작은 표시 정리 (오류처럼 보이는 것)",
+     "what": "hero의 ✓·✗ 칩은 둘 다 0이면 숨긴다. 강의 미니바는 첫 카드보다 위에 있을 때 '틀 · 19장 ▾'(읽은 카드가 있으면 '틀 · 읽음 4/19'), 첫 카드가 기준선을 넘으면 '카드 1/19'로 표시한다. #gohome은 button '🏠 JBL 허브'(hover 밑줄)로 바꾸고, 서랍 맨 위에 '🏠 허브 홈' 한 줄을 넣는다.",
+     "acceptance": "새 컨텍스트에서 강의를 열면 #lmn 텍스트에 '–'가 없고 '틀'이 있다. ✓·✗가 모두 0이면 hero 칩이 display:none이다. #gohome의 tagName이 BUTTON이다.",
+     "files": "tools/cons/shell.html(hstat·setLCur·#lmini·#gohome·서랍)",
+     "source": "R23, L19"
+    },
+    {
+     "id": "B11",
+     "title": "알림 대기열·등급·위치 (묶음 3 오류 띠의 바탕)",
+     "what": "toast(msg,{level:'info'|'result'|'error',action})로 바꾸고 대기열을 둔다(한 번에 하나, 차례로). info는 2.5초, result는 6초 + [보기] 버튼, error는 닫을 때까지 남는 빨간 띠다. 위치는 화면 아래 도구 막대 위(bottom:calc(var(--kith)+16px))이고, 팝업이 열려 있으면 팝업 아래에 띄운다. 최근 알림 20개를 sessionStorage에 두고 복원 창 '최근 알림'에서 다시 볼 수 있게 한다. 기존 toast(msg) 호출은 info로 그대로 동작한다.",
+     "acceptance": "세 번 연달아 호출하면 하나씩 차례로 보인다(동시에 1개). error는 7초 뒤에도 남아 있고 ✕로 닫힌다. 820×1180에서 토스트 bbox와 #dtabs bbox가 겹치지 않는다.",
+     "files": "tools/cons/shell.html(toast·#toast CSS·openRestore)",
+     "source": "tools:T17"
+    }
+   ]
+  },
+  {
+   "name": "묶음 3 — 데이터 안전 (저장 공간·백업·복원·기록 일치)",
+   "items": [
+    {
+     "id": "C01",
+     "title": "저장 실패를 확실히 알리고 다시 쓰기",
+     "what": "LS.set이 실패(QuotaExceeded)하면 먼저 localStorage의 autobak.* 중 가장 오래된 주기 칸부터 지우고 한 번 더 쓴다(보호 칸 p0~2는 마지막에). 그래도 실패하면 B11 error 띠 '⚠ 저장되지 않았어요 — 방금 표시는 이 창에만 있어요 [지금 백업 파일 받기] [공간 정리]'를 닫을 때까지 띄운다. 실패한 키·값은 메모리 큐에 두고, 30초마다와 공간 정리 뒤에 다시 쓴다. 성공하면 '저장됐어요'를 알린다. [백업 파일 받기]는 메모리의 ANN·MK까지 담은 dumpAll을 내려받는다. autoBak 실패도 하루 한 번 경고한다. 도움말의 '5분마다 자동 백업' 옆에는 마지막 성공 시각을 표시한다.",
+     "acceptance": "localStorage를 더미로 한도까지 채운 뒤 형광펜 1개를 칠하면 오류 띠가 보인다. 더미를 지우면 30초 안에 ann에 기록이 쓰이고, 새로고침 뒤 표시 1개가 남는다. 기존 kt 테스트 통과.",
+     "files": "tools/cons/shell.html(LS·autoBak·toast)",
+     "source": "R01, tools:T05"
+    },
+    {
+     "id": "C02",
+     "title": "자동 백업을 IndexedDB로 옮기고 저장 공간 막대 표시",
+     "what": "IndexedDB 'jblhub-bak'(store 'snap', key at)에 주기 백업 5개와 이유별 보호 칸(C05)을 둔다. 첫 실행 때 localStorage autobak.*를 IDB에 복사하고, 다시 읽어 같은지 확인한 뒤에만 localStorage 사본을 지운다. IDB를 쓸 수 없는 환경이면 지금 방식을 유지한다. 복원 창 맨 위에 '저장 공간: 표시 2.9MB · 백업 12MB · 여유 …'(navigator.storage.estimate + 키별 합), 과목별 크기, 마지막 자동 백업 성공 시각을 보인다. 사용량이 70%를 넘으면 허브 홈에 경고 한 줄을 띄운다.",
+     "acceptance": "옛 autobak.0~4·p0이 있는 컨텍스트를 열면 IDB에 6개가 생기고 localStorage autobak은 0개가 된다. 복원 창 목록은 그대로 6개이고, '되돌리기'가 IDB에서 동작한다. indexedDB를 undefined로 만든 컨텍스트에서는 localStorage 방식이 유지되고 오류가 0이다.",
+     "files": "tools/cons/shell.html(autoBak·openRestore·dumpAll)",
+     "source": "R01, tools:T05"
+    },
+    {
+     "id": "C03",
+     "title": "자동 빈칸 기록을 구분하고 가볍게",
+     "what": "저장형 자동 빈칸(⚡ 창 '빈칸으로 저장' 선택지 — 기본은 A05 가리기 보기)을 쓰면 기록에 a:1을 붙인다. 범위가 '강의 전체'면 단어별 기록 대신 규칙 LS 'autoRule.<S>' = {'<문서>/<탭>':{kind:'red'|'term'|'td',scope,at}}을 저장하고, 렌더할 때 저장하지 않는 .rk-b(data-auto)로 만든다(연 상태는 sessionStorage). 옛 기록은 형식 그대로 두고 지우지 않는다. '공간 정리'에 [옛 자동 빈칸으로 보이는 기록 n개 → 규칙으로 바꾸기]를 둔다. 대상은 카드의 빈칸 기록이 모두 .k 글자와 정확히 같고 3개 이상인 카드뿐이다. 개수를 미리 보여 주고, autoBak('자동 빈칸 정리 전') 뒤 실행한다. 긴 x(40자 이상, 표 칸 전체 빈칸)는 {x:앞 24자, xl:길이, xh:FNV}로 저장하고 해시로 확인해 복원한다. 옛 전체 x 기록도 계속 읽는다.",
+     "acceptance": "'강의 전체' 저장형을 적용해도 ann 증가가 2KB 미만이고, 새로고침 뒤 빈칸 개수가 같다. 옛 형식 345개가 든 ann에서 정리하면 규칙 1개가 생기고 해당 항목만 빠지며, 사용자 형광펜은 남는다. legacy_restore·kt_migrate 통과.",
+     "files": "tools/cons/shell.html(Kit.auto·snap·restore·openRestore)",
+     "source": "R01, tools:T05, tools:T11, L01"
+    },
+    {
+     "id": "C04",
+     "title": "🧹 지우기 메뉴와 자동 창 문구 바로잡기",
+     "what": "🧹를 누르면 작은 메뉴를 연다: [자동 빈칸만 n][내 빈칸만 n][형광펜만 n][모두 n] × [이 카드|이 탭]. 항목마다 개수를 보이고, 실행 전 확인창에도 개수를 적는다. 지우기 전에 autoBak(true,'표시 지우기 전')을 부른다. lost:1 기록은 건드리지 않는다(기존 규칙). ⚡ 창 문구 '지금 보이는 화면'은 실제 범위로 바꾼다('이 카드의 빨간 글씨 23개를 가립니다' / '이 탭 전체 344개'). 적용 전에 개수를 미리 보이고, 저장형 100개 초과는 확인을 받는다. ⚡ 창에 [이 탭의 자동 빈칸 지우기]를 추가한다.",
+     "acceptance": "형광펜 2개 + 자동 빈칸 30개(a:1)에서 '자동 빈칸만'을 고르면 형광펜 2개가 남는다. '이 카드' 범위는 다른 카드의 표시를 바꾸지 않는다. 창과 title에 '보이는 화면' 문자열이 0개다.",
+     "files": "tools/cons/shell.html(#kit·clearView·#autopop)",
+     "source": "tools:T11, R08, L01, tables:T07"
+    },
+    {
+     "id": "C05",
+     "title": "복원·되돌리기를 안전하게",
+     "what": "① '자동 백업 시점으로 되돌리기'는 공부 기록 키(ann·mk·done·memo·fc·autoRule)만 바꾼다. time·timed·tadj는 max 병합하고, pos·last·lastList·설정 키는 지금 값을 둔다. ② 쓰기 전에 크기를 계산하고 autoBak(true)의 반환값을 확인한다. 실패하면 '먼저 [백업 파일 받기]' 버튼만 보이고 진행하지 않는다. ③ 쓰는 도중 실패하면 지우기 전 값으로 롤백하고 오류 띠를 띄운다. ④ 확인창에 '이 시점 이후 바뀐 표시 N개·채점 M개가 사라집니다'를 적는다. ⑤ 보호 백업 칸을 이유별로 나눈다: '원고 갱신 전'은 빌드 번호마다 1개(6과목 이관을 한 스냅숏에 모음, 최근 3빌드), '버리기 전'·'지우기 전'은 따로 3칸. ⑥ 파일 복원: rfile onchange는 try/finally로 value를 비운다. '덮어쓰기'는 문구를 '백업 상태로 교체(지금 기록 삭제)'로 바꾸고 ①~③ 경로를 쓴다. mergeInto는 키마다 try로 감싸 결과 창에 '합친 것 n · 건너뛴 것 k(이유)'를 보인다. 메모는 b.indexOf(a)>=0이면 b로 바꾼다.",
+     "acceptance": "time 오늘 120분인 상태에서 5분 전 백업으로 되돌려도 time 오늘은 120분 이상이고, ann은 백업 값이다. 쓰기 중 QuotaExceeded를 주입하면 원래 값이 그대로이고 reload하지 않는다. 같은 파일을 취소 후 다시 고르면 change가 일어난다. ann이 깨진 백업을 합치면 다른 키는 합쳐지고 결과 창에 '건너뜀 1'이 나온다. 6과목 연속 이관 뒤 '원고 갱신 전' 스냅숏 1개에 6과목이 모두 들어 있다.",
+     "files": "tools/cons/shell.html(openRestore·autoBak·migrateAids·mergeInto·#rfile)",
+     "source": "tools:T06, R17, tools:T19"
+    },
+    {
+     "id": "C06",
+     "title": "실행 취소: 무엇을 되돌렸는지 알리기",
+     "what": "undo 기록은 {aid 목록, 설명('자동 빈칸 344개'·'형광펜 1개'), 문서/탭, 바뀐 aid의 이전 값}만 둔다. 되돌리면 result 토스트 '↶ 되돌림: 자동 빈칸 344개 (Tooth whitening 학습)'를 띄우고, 다른 탭의 변경이면 [그 화면으로] 버튼을 붙인다. 스택은 차분만 저장해 메모리를 줄이고, 최근 30개를 sessionStorage에 두어 새로고침 뒤에도 되돌릴 수 있게 한다. 다른 창 storage 이벤트가 오면 그 aid 항목만 무효로 한다.",
+     "acceptance": "학습 탭에서 형광펜 1개 → 기출 탭으로 이동 → ⌘Z를 누르면 토스트에 '학습'과 [그 화면으로]가 나온다. 새로고침 뒤 ⌘Z도 동작한다. 80단계 스택의 JSON 길이 합이 이전의 1/10 이하다.",
+     "files": "tools/cons/shell.html(Kit push/undo/redo)",
+     "source": "tools:T13"
+    },
+    {
+     "id": "C07",
+     "title": "JB 회차 고정과 풀이 상태 보존",
+     "what": "한 장씩을 시작할 때(onesum·2회 이상·복습 진입 포함) 그 순간의 vis id 목록을 JB.sess.ids로 jbst에 저장한다. init에서 one && sess.ids가 있으면 필터를 다시 계산하지 않고 그 순서로 vis를 복원하고, 필터 막대에 '필터 다시 적용 ↻' 알약을 보인다. 요약은 sess.ids 기준('이번 회차 36문항 — ✓2 ✗2 · 안 채점 32')으로 센다. 회차 중 필터를 바꾸면 '새 회차를 시작할까요?'를 확인한다. jbst는 sessionStorage와 LS 'jbst.<S>.<문서>'({…,at}, 7일 지나면 무시)에 함께 저장하고, init은 SS를 먼저, 없으면 LS를 쓴다. 과목 홈 '최근 읽던 곳'과 허브 과목 카드에 '↪ 이어서 풀기: 2회 이상 · 한 장씩 23/60'을 둔다.",
+     "acceptance": "PHARM _jb에서 안 푼 것 + 강의 필터로 한 장씩 4문항을 채점하고 새로고침하면 '5/36'이 유지되고, 요약이 ✓2 ✗2다. 같은 컨텍스트 새 탭에서 #/PHARM/_jb/_jb를 열면 한 장씩·필터·위치가 복원된다. 8일 지난 LS jbst는 무시된다.",
+     "files": "tools/cons/shell.html(JB.init·apply·save·sumHTML·onesum·과목 홈·허브 카드)",
+     "source": "JB-02, JB-09"
+    },
+    {
+     "id": "C08",
+     "title": "플래시카드 기출 판정과 JB 채점을 하나로",
+     "what": "플래시카드 '기출' 카드(J:<id>)의 judge는 mark(id, o?'ok':'ng','set')를 부르고 log에 how:'fc'를 더한다(옛 log는 그대로 읽힘). 기출 카드의 상태 표시와 필터(몰라요만·안 본 것)는 getMK에서 읽는다. 첫 실행 때 옛 fc J: 기록을 mk에 한 번 합친다: 그 id에 log가 없거나 fc.t가 더 최신일 때만 ok/ng를 반영하고 log에 {r,t,how:'fc'}를 넣는다. 합치기 전에 autoBak('플래시카드 기록 합침')을 부르고, 합친 뒤에도 fc J: 키는 지우지 않는다(LS 'fcMerged.<S>'=1). 암기(R:)·예상(P:) 카드는 지금처럼 fc에 둔다.",
+     "acceptance": "fc.OMS1 = {'J:Q35':{s:'x',t}}를 넣고 열면 mk.ng.Q35와 log 1건이 생기고, fc 원본은 남는다. 플래시카드에서 Q01을 몰라요로 하면 JB '틀린 것' 필터에 Q01이 나온다. 두 번 열어도 log가 중복되지 않는다.",
+     "files": "tools/cons/shell.html(Flash.judge·mem·draw·mark)",
+     "source": "JB-05"
+    },
+    {
+     "id": "C09",
+     "title": "JB 문항 id 잠금 (기록이 다른 문제에 붙지 않게)",
+     "what": "build4가 tools/<sid>/jb_lock.json = {id: md5(공백 뺀 문제 앞 80자)}를 갱신한다(새 id는 추가만). 기존 id의 해시가 바뀌거나 id가 사라지면 tools/verify.py가 실패하고 '옮김 표 tools/<sid>/jb_move.json(old→new) 필요'를 안내한다. 옮김 표가 있으면 팩에 p.jbmove를 넣고, 셸 migrate가 mk·log·fc J:·ann 키를 옮긴다(직전 autoBak, 한 번만 — LS jbmoved.<S>.<build>).",
+     "acceptance": "6과목 빌드 → jb_lock 생성, verify 통과. 한 문항 글자를 인위로 바꾸면 verify가 실패 메시지를 낸다. jb_move로 RX01→RX01a를 옮기면 합성 mk가 이관된다.",
+     "files": "tools/cons/build4.py, tools/verify.py, tools/cons/shell.html(migrate), tools/sync_common.py, tools/<sid>/jb_lock.json",
+     "source": "JB-20"
+    },
+    {
+     "id": "C10",
+     "title": "기기 옮기기(맥↔아이패드)와 공부 시간 합산",
+     "what": "[백업]을 '기기 옮기기' 창으로 바꾼다. [⬆ 보내기]는 navigator.canShare({files})가 되면 공유 시트(AirDrop·iCloud·메모)로 보내고, 안 되면 내려받는다. [⬇ 받기]는 파일을 골라 합친다. 처음 한 번 기기 이름(LS devName, 예 '아이패드')과 devId를 정하고, 백업 JSON에 dev {id,name}을 넣는다. 공부 시간: 이 기기 기록은 지금 time·timed 그대로 둔다. 다른 기기 백업을 합칠 때 그 기기의 시간은 새 키 LS 'timeDev' = {devId:{name,time,timed}}에 넣는다. 같은 devId끼리는 max 병합하고, dev가 없는 옛 백업은 지금처럼 max 병합한다. 표시 합계 = 이 기기 + timeDev(B01의 tDay만 수정). lastBackup은 share 성공이나 다운로드 뒤 '받았어요' 확인에서만 갱신한다. 표시·채점이 바뀐 지 3일이 넘도록 백업이 없으면, 과목을 열 때 닫을 수 있는 노란 띠 '마지막 백업 5일 전 — [보내기]'를 하루 한 번 띄운다(시험 7일 안이면 2일 기준). 홈 백업 패널에 '이 기기 마지막 보내기 3일 전 · 다른 기기(맥)와 합친 때 …'를 표시한다.",
+     "acceptance": "두 컨텍스트(devName A·B)에 같은 날 60분·40분을 기록하고 A 백업을 B에 합치면 B 오늘 합계가 1:40이고, B의 time 원본 40분은 그대로다. 같은 A 백업을 두 번 합쳐도 1:40이다. navigator.share 모의 성공 → lastBackup 갱신, reject(취소) → 그대로.",
+     "files": "tools/cons/shell.html(#bkup·mergeInto·T·home 백업 패널)",
+     "source": "tools:T15, R14, tools:T16, ideas.tools(기기 옮기기), ideas.hub(다른 기기와 합치기)"
+    },
+    {
+     "id": "C11",
+     "title": "저장소 보호 확인과 홈 화면 앱",
+     "what": "복원 창과 도움말에 '저장소 보호: 허용됨/안 됨'(navigator.storage.persisted())을 표시한다. 안 됨이면 '아이패드: 공유 → 홈 화면에 추가로 열면 기록이 더 안전해요'를 한 번 안내한다(LS a2hsNote). docs/manifest.webmanifest(name 'JBL 허브', display standalone, start_url './', 아이콘 192·512 PNG — build4가 만들어 복사)를 두고, shell head에 manifest 링크·apple-mobile-web-app-capable·apple-touch-icon을 넣는다. persist() 결과가 false면 백업 알림 기준을 2일로 줄인다. service worker는 보류한다.",
+     "acceptance": "docs/index.html head에 manifest 링크와 apple 메타가 있다. manifest가 유효한 JSON이고 아이콘이 200으로 응답한다. 복원 창에 '저장소 보호' 텍스트가 있다.",
+     "files": "tools/cons/shell.html(head·openRestore), tools/cons/build4.py(manifest·아이콘 출력), docs/manifest.webmanifest",
+     "source": "R15, tools:T16"
+    }
+   ]
+  },
+  {
+   "name": "묶음 4 — 정리본 학습 탭: 빠른 훑기·가독성·암기 (공통 규칙: 렌더를 바꿔도 카드 textContent는 그대로 — 숨김은 CSS로, 표시 위치 잃음 증가 0)",
+   "items": [
+    {
+     "id": "D01",
+     "title": "압축 보기 고치기: 핵심 수치와 내 표시가 사라지지 않게",
+     "what": "CSS의 `.cond .c-key .kb>ul>li:nth-child(n+2)…{display:none}` 규칙을 지운다. 압축에서는 🔑 목록을 한 줄 흐름으로 보인다(.cond .c-key .kb>ul>li{display:inline}, li+li::before{content:' · '}). render_key_rest 출력에 class 'krest'를 붙이고, 압축에서도 보이게 한다(14px, margin 2px 0). 압축에서 .chip.yr는 남기고 .tagc만 숨긴다. 내 표시가 있는 줄은 남긴다: `.cond .tbody .li:has([data-rk]){display:block}`, 표는 `.cond .tbody .tscroll:has([data-rk])`만 보이고 표시 없는 tr은 숨긴다. 남은 줄은 왼쪽 2px 노란 선(.mine)으로 표시한다. :has를 지원하지 않는 브라우저를 위해 Kit.restore·commit 뒤 .has-rk 클래스를 붙인다. 학습 필터에 '내 표시 있는 카드만'(data-filt=mine)을 추가한다.",
+     "acceptance": "PHARM HM 카드 5를 압축하면 .c-key와 .krest의 textContent 합이 압축 전과 같다. EXT 카드 3의 한 항목에 형광을 칠하면 압축에서 그 .li는 보이고 다른 .li는 숨는다. 연도 칩이 보인다. ux_u26 통과.",
+     "files": "tools/cons/shell.html(.cond CSS·Kit.restore/commit·필터), tools/cons/build4.py, tools/cons/lecparse.py(krest 클래스)",
+     "source": "L02, L14, ideas.learn(내 표시만 보기)"
+    },
+    {
+     "id": "D02",
+     "title": "⚡ 복습 보기(R)와 기출 카드 필터",
+     "what": "미니바 '⚡ 복습' 버튼과 R 키로 #stage.review를 켠다(LS 'review'). 카드마다 머리(번호·국문 제목·기출 칩, 요지는 숨김) + 🔑 전체(한 줄 흐름) + ⭐ 문제 요지 한 줄(D04의 .ex-q, 없으면 ⭐ 첫 문장 80자) + ⚡ 암기 줄만 보인다. 항목·표·그림·✍·💬는 CSS로 숨긴다(DOM 글자 그대로). 빨간 글씨는 A05 가리기를 '강의 전체' 범위로 자동으로 켜서 누르면 열린다. 정렬은 [강의 순 · 기출 많은 순 · 몰라요/안 읽은 것 먼저](CSS order, data-n·data-fx). 카드 끝 [알아요][몰라요]는 fc.<S>의 새 접두 키 'V:<카드 aid>'에 저장한다(기존 R:/J:/P:는 그대로). 카드 머리를 누르면 복습 보기를 끄고 goCard한다. build4는 카드 article에 data-n(최대 출제 횟수 0~3, 3=3회 이상)을 넣는다. pills에 [⭐ 기출 카드만][2회↑만]을 추가한다(.only-jb .tc[data-n='0']{display:none}, 빈 그룹 제목도 숨김). 미니바 n/N은 보이는 카드 기준으로 센다.",
+     "acceptance": "1280 EXT 복습 보기에서 카드 평균 높이 ≤ 220px, 문서 높이 ≤ 5,000px. R 두 번 → 원래대로. 두 장을 몰라요로 하면 '몰라요 먼저' 정렬에서 그 둘이 먼저 온다. '2회↑만'에서 data-n<2 카드가 하나도 보이지 않는다. 새로고침 뒤에도 유지된다. 표시 복원 수 변화 0.",
+     "files": "tools/cons/shell.html(보기 토글·CSS·키·lmini), tools/cons/build4.py(lec_card data-n·gp)",
+     "source": "L03, L15, ideas.learn(복습 보기), ideas.hub(훑기 모드)"
+    },
+    {
+     "id": "D03",
+     "title": "⚡ 암기 블록을 그 자리에서 가리기·○✕",
+     "what": "⚡ 머리 오른쪽에 '가리기' 토글을 둔다(저장 안 함, 이 블록 .k만 A05 방식으로 가림). 줄 끝의 작은 [○][✕](터치 36px)는 fc.<S>의 기존 암기 키 R:<강의>:<해시>에 기록한다. 플래시카드와 같은 키가 되도록 build4가 c-mem li에 data-fk로 같은 해시를 넣는다. ✕ 줄은 왼쪽에 빨간 점(6px)을 찍고, 복습 보기 '몰라요 먼저'에 반영한다.",
+     "acceptance": "⚡ 가리기를 누르면 그 블록의 .k만 가려진다. ✕ → fc.<S>에 R: 키 s:'x'가 생기고, 플래시카드 '몰라요만'에 그 줄이 나온다. ann 변화 0.",
+     "files": "tools/cons/build4.py(c-mem data-fk), tools/cons/shell.html(토글·fc 기록)",
+     "source": "L17"
+    },
+    {
+     "id": "D04",
+     "title": "⭐ 시험포인트 구조화 (무엇이 나왔고 답이 뭔지 한눈에)",
+     "what": "lecparse.render_exam(v)를 추가한다. `^([\\d·]+년)(\\s*\\d+회)?(\\([^)]*\\))?\\s*(서술형?|빈칸|객관식|단답|T/F|그림)?\\s*[\"“](.+?)[\"”]\\s*(?:의 '[^']+')?\\s*→\\s*(.+)$`에 맞는 줄은 다음처럼 나눈다. ① 연도 머리는 <span class='ex-yr'>로 감싸 CSS로 숨긴다(글자는 DOM에 남겨 표시·검색 불변, 옆 칩과 중복 제거). ② 형식 칩(11px 테두리). ③ 문제는 <span class='ex-q'>(굵게). ④ '→ 답'은 ' — ' 앞까지(형광·빨강 그대로). ⑤ '⚠ 함정' 조각은 다음 줄에 둔다(왼쪽 2px #B3261E 선). ⑥ ' — ' 뒤의 근거·대조 문장('자료'·'p.'·'JB 해설'·'슬라이드' 포함)은 <details class='ex-src'><summary>근거 ▸</summary>(13px var(--sub))로 기본 접는다. 패턴에 안 맞는 줄은 지금 렌더를 쓴다. 빌드 로그에 적용 수를 출력한다.",
+     "acceptance": "tests/card_text.py 글자 다중집합 통과. HM 카드 ⭐ 블록 높이가 30% 이상 줄어든다(1280). 빌드 로그 적용 수 ≥ 250/587. legacy_restore 다른 자리 ≤ 3 유지.",
+     "files": "tools/cons/lecparse.py(render_exam), tools/cons/build4.py(flush_ex), tools/cons/shell.html(.c-exam CSS), tools/tests/card_text.py",
+     "source": "L04"
+    },
+    {
+     "id": "D05",
+     "title": "⭐로 바로 가기",
+     "what": "카드 머리 칩 줄에 '⭐ n ↓'(data-exjump)를 둔다. 누르면 그 카드의 첫 .c-exam으로 goEl하고 1초 깜빡인다(기존 연도 칩의 JB 이동은 그대로). Shift+J/K는 기출이 있는 다음·이전 카드(data-n>0)로 간다. #lpop 목록의 ⭐ 숫자를 누르면 그 카드의 ⭐ 블록으로 간다. ⋯ 보기 설정에 '⭐ 먼저'(LS exfirst, 기본 끔)를 두고, 켜면 .tbody를 flex column으로 바꿔 .c-exam을 🔑 바로 뒤에 둔다(order).",
+     "acceptance": "EXT 카드 1의 '⭐ ↓'를 누르면 .c-exam top이 탭 아래 ±20px에 온다. Shift+J 3번 → data-n>0 카드만 차례로 간다. exfirst를 켜면 .c-exam의 y가 첫 .li의 y보다 작다.",
+     "files": "tools/cons/build4.py(lec_card 머리), tools/cons/shell.html(lnav·lpop·클릭·CSS)",
+     "source": "L05"
+    },
+    {
+     "id": "D06",
+     "title": "빨강 두 단계 (시험 핵심만 빨강)",
+     "what": "build4 lec_card가 카드마다 🔑·⭐·⚡의 {r:} 집합(소문자·공백 제거)을 모은다. 본문(.li·표·정리표 세부)의 {r:}가 그 집합과 서로 포함 관계면 .k, 아니면 .k.k2로 렌더한다(클래스만 추가 — 글자 그대로). 기본(LS redmode 'core', ⋯ 보기 설정 [시험 핵심만 빨강|전부 빨강])에서 .k2{color:var(--ink);font-weight:700}로 보인다. 원칙 7-1의 세 가지 표현(빨강·형광·굵게) 안에 머문다. 가리기 보기·자동 빈칸의 '빨간 핵심어' 대상은 .k:not(.k2)이고, '본문 굵은 핵심어까지' 선택지를 따로 둔다. 정리표 요약 모드도 같은 규칙을 쓴다. audit_design.py에 RED SHARE(빨간 글자 비율·빨강이 든 항목 비율) 지표를 추가한다.",
+     "acceptance": "audit RED SHARE에서 대표 6개 강의의 빨간 글자 ≤ 10%, 빨강이 든 항목 ≤ 45%. '전부 빨강'을 고르면 빨간 span 수가 이전 빌드와 같다. RED FILL·SMALL LOW CONTRAST 0 유지.",
+     "files": "tools/cons/build4.py(lec_card), tools/cons/lecparse.py(inline의 {r:} 처리), tools/cons/shell.html(.k2 CSS·auto 선택자·보기 설정), tools/audit_design.py",
+     "source": "L06, tables:T17"
+    },
+    {
+     "id": "D07",
+     "title": "출처 메타를 가볍게 ((필기)·슬라이드 NN)",
+     "what": "lecparse.inline에서 줄 끝 `\\((?:\\d{2}\\s)?필기\\)`를 <span class='srcn' title='필기' 또는 '26 필기'>(필기)</span>로 감싼다. CSS는 .srcn{font-size:0}, .srcn::after{content:'✍';font-size:11px;color:var(--faint);margin-left:2px}로 해서 textContent가 바뀌지 않게 한다(검색·표시·card_text 그대로). 줄 머리 '필기: '도 같은 방식으로, 줄 머리 '슬라이드 NN( 흐름| 표시)?: '는 같은 방식의 회색 쪽 칩 'p.NN'으로 보인다.",
+     "acceptance": "EXT 카드 2의 innerText에 '(필기)'가 0개이고, ✍ 아이콘 수 = 원고의 (필기) 수. 카드 textContent가 빌드 전후 같다. '필기' 검색 결과 수가 그대로다.",
+     "files": "tools/cons/lecparse.py(inline), tools/cons/shell.html(.srcn CSS)",
+     "source": "L07"
+    },
+    {
+     "id": "D08",
+     "title": "쪽 범위 여러 조각 표시",
+     "what": "rng를 [,·]로 나눠 조각마다 'a' 또는 'a-b'로 해석해 'p.1–3·12', 'p.17–18·23'으로 표시한다. 100을 넘는 조각은 '별도 파일', 0은 '필기본'. ALT_KEY 판정은 첫 조각으로 한다. lab이 비면 ' · '를 출력하지 않는다. tools/verify.py에 '머리 .pg가 비었거나 ·로 끝나는 카드 0' 검사를 추가한다.",
+     "acceptance": "ANAT MAND 카드 7 머리에 'p.'가 있다. verify 새 검사 0건. 6과목 77개 카드 모두 쪽 번호가 보인다.",
+     "files": "tools/cons/build4.py(lec_card), tools/verify.py",
+     "source": "L08"
+    },
+    {
+     "id": "D09",
+     "title": "번호 나열 모양 통일",
+     "what": "(a) render_item: 원문자가 3개 이상이면 길이와 상관없이 split_enum을 쓴다. (b) circ 목록 조각의 중앙값이 22자 이하면 ol.circ.cgrid(display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); column-gap:18px, 번호 유지)로 2~4단 배치한다. (c) 앞 '-' 줄이 ⑤로 끝나고 다음 줄이 ⑥으로 시작하면 한 목록처럼 이어 보인다(ol start=6, 줄·블록 단위는 그대로 — 표시 단위 불변 확인). (d) 🔑·항목 조각이 2~3개이고 plain 합이 100자 이하면 목록 대신 한 줄 ' · '로 잇는다(kflow 조건 확장).",
+     "acceptance": "ux_u23에 '중앙값 22자 이하 세로 목록 0개' 단언 추가. PAIN 카드 15 높이 30% 이상 감소. card_text·표시 복원 테스트 통과.",
+     "files": "tools/cons/lecparse.py(render_item·_is_flow·_list_html), tools/cons/shell.html(ol.circ.cgrid CSS), tools/tests/ux_u23.py",
+     "source": "L09"
+    },
+    {
+     "id": "D10",
+     "title": "그림 크기와 보기 방식",
+     "what": "build4 figgrid: 그림 1장이면 .figs.one(width:min(100%,540px), img max-height 420px), 2장이면 각 50%, 3장 이상은 minmax(240px,1fr). img에 loading='lazy' decoding='async'와 width·height 속성을 준다(이미지 청크 메타에서, 없으면 aspect-ratio 4/3). ⋯ 보기 설정과 I 키로 '그림 [크게|작게|숨김]'(LS figmode)을 고른다. 작게 = 72px 높이 가로 띠(누르면 확대창), 숨김 = '🖼 3' 칩(누르면 그 카드만 펼침). 압축·복습 보기에서는 자동으로 숨긴다.",
+     "acceptance": "GRAFT를 처음 열면 스크롤 전 로드된 img가 30개 미만이다. 1장짜리 그림 폭 ≥ 500(1280). I 순환 → figmode 저장, 새로고침 뒤 유지. ux_nav(settle 위치 맞춤)·ux_u29(그림 확대창) 통과.",
+     "files": "tools/cons/build4.py(figgrid), tools/cons/shell.html(.figs CSS·figmode·이미지 주입)",
+     "source": "L10, ideas.learn(그림 보기 방식)"
+    },
+    {
+     "id": "D11",
+     "title": "'이 강의의 틀' 접기와 ⭐ 많이 나온 순 문구 정리",
+     "what": "틀을 details.frame으로 바꾼다(LS frameOpen.<S>.<K>). 저장값이 없으면 그 강의에 ✓한 카드가 0개일 때 펼치고, 1개 이상이면 접는다. 접힌 상태 = @MAP 한 줄 + ⭐ 많이 나온 순 상위 3개 한 줄씩 + '틀 펼치기'(약 180px). 미니바 '↑ 틀'은 틀을 펼치면서 이동한다. 860px 이하 목차는 한 단으로 하고, 요지는 제목 아래 -webkit-line-clamp:2로 보인다. ⭐ 많이 나온 순 문구는 '연결 카드 국문 제목 — 문제 요지'로 바꾼다. 문제 요지는 E: 줄 따옴표 안 문구를 먼저 쓰고, 없으면 short를 쓴다. 위치와 상관없이 (탈)·(짤)·(복원 원문)·(\\d{2}(,\\s?\\d{2})*…)·'지문을 읽고 물음에 답하시오.'를 떼고, 60자에서 어절 경계로 잘라 '…'를 붙인다. 일반 발문만 남으면 카드 제목만 쓴다. 줄 = goCard, 연도 칩 = JB.",
+     "acceptance": "EXT 두 번째 방문(카드 1 ✓)에서 첫 카드 top ≤ 450px(1280). 6과목 전 강의 .ftop .tq에 '(탈)'·'(짤)'·'(복원 원문)'이나 '다음 중 옳은 것을 고르시오.' 단독 문구가 0건.",
+     "files": "tools/cons/build4.py(head·ltop·short_clean), tools/cons/shell.html(frame 토글·CSS)",
+     "source": "L11, L12"
+    },
+    {
+     "id": "D12",
+     "title": "연도 칩으로 그 자리에서 JB 미리보기",
+     "what": "⭐ 블록 안의 연도 칩을 누르면 칩 아래에 .jbpeek(최대 폭 560px)를 연다. 내용: 문제 첫 3줄 + 답 핵심(한눈표 ans_core·pick_choices 값, 기본 가림, 누르면 열림) + [JB에서 풀기 →][✓ 맞음][✗ 틀림](mark 공유). 팩에 문항별 {q3, core}(p.peek)를 넣는다(한눈표 계산 재사용, 그림 문항은 '🖼 그림 문항' 표시). 카드 머리의 연도 칩은 지금처럼 JB로 간다. Esc나 바깥 클릭으로 닫는다.",
+     "acceptance": "HM ⭐ 칩을 누르면 해시는 그대로이고 .jbpeek이 보이며 답은 가려져 있다. [✗] → mk.ng에 id가 생긴다. [JB에서 풀기] → 기존 go와 ↩ 알약이 동작한다. 팩 크기 증가는 과목당 60KB 이하.",
+     "files": "tools/cons/build4.py(pack peek), tools/cons/shell.html(팝오버·클릭)",
+     "source": "L16, ideas.learn(연도 칩 미리보기)"
+    }
+   ]
+  },
+  {
+   "name": "묶음 5 — 정리표·비교표·기출 한눈표 (전체정리표 요약·한눈에 보기)",
+   "items": [
+    {
+     "id": "E01",
+     "title": "정리표를 행 단위로 저장하고 옛 표시 옮기기 (E02보다 먼저)",
+     "what": "정리표 tr마다 data-aid '<카드 aid>~s'를 준다(옛 전체 aid '<S>:<K>:sum'은 표 wrapper의 data-alt). 과목을 처음 열 때 한 번(LS sumMig.<S>) 옮긴다: 옛 'k:sum' 기록마다 x·p·s로 새 행 텍스트들에서 찾아, 하나면 그 행으로, 여럿이면 i 순서와 문맥 점수로 고르고, 못 찾으면 lost:1로 보관한다. migrateAids의 a!==pre+'sum' 조건은 '정리표 행 aid끼리만 후보'로 바꾼다. 옮기기 전 autoBak('정리표 표시 이관 전'). 행 aid의 블록 글자는 요약/전체 모드(E02)와 상관없이 '전체' 기준이다. 요약 줄은 별도 비표시 단위(noann)로 둔다.",
+     "acceptance": "옛 빌드 정리표에 합성 표시 50개를 넣고 새 빌드를 열면 옮김 ≥ 47, 다른 자리 0, lost ≤ 3이고, 원래 키 백업이 있다. 원고에 한 줄을 추가해 다시 빌드해도 위치가 유지된다. kt_migrate 통과.",
+     "files": "tools/cons/build4.py(row data-aid·aid_lock), tools/cons/shell.html(migrateAids·aidIdx), tools/tests/ux2_sum_mig.py(신규)",
+     "source": "tables:T06"
+    },
+    {
+     "id": "E02",
+     "title": "정리표를 두 밀도로: 요약(기본)·전체",
+     "what": "요약(기본, LS sumdense): 세부 칸은 # 소제목마다 한 줄 '**소제목**: 빨간 핵심어·수치(.k:not(.k2)) 연결'(예 'Intrinsic: 테트라사이클린·과잉 불소증·Porphyria')로 만든다. 블록 최대 4개, 행 300자, 넘치면 '+n줄 ▸'로 그 자리에서 펼친다. 요지와 🔑은 한 칸('🔑 요지·핵심')으로 합친다. 전체 = 지금 내용. 구현: 요약 줄은 별도 .sline(noann, 가리기는 가능)으로 넣고, 전체 세부는 DOM에 그대로 둔 채 요약 모드에서 details로 접는다. 그래서 모드를 바꿔도 표시 글자와 위치가 바뀌지 않는다. pills에 [요약|전체] 토글을 둔다. 1000px 이하 카드형: 주제·🔑·★·⚡만 보이고, 세부는 <details class='mdet'><summary>세부 n줄 ▸, 썸네일은 제목 오른쪽 float 72×54.",
+     "acceptance": "1280 WHT 정리표 문서 높이 ≤ 4,500px이고, 요약 모드에서 행 높이 400px 초과가 0이다(audit_design에 '정리표 행 높이 > 400px' 경고 추가). 요약↔전체를 바꿔도 Kit 표시 수가 같고 lost 0. 820×1180에서 카드 하나가 250~400px.",
+     "files": "tools/cons/build4.py(lec_card det·row·summ), tools/cons/lecparse.py(압축 렌더), tools/cons/shell.html(토글·CSS), tools/audit_design.py",
+     "source": "tables:T01, tables:T09, R10"
+    },
+    {
+     "id": "E03",
+     "title": "카드 안 작은 표를 세부 칸에 옮길 때 열 이름 살리기",
+     "what": "t=='T' 분기에서 행을 펼칠 때 머리 칸 이름을 붙인다: '**Prophylaxis · Air polisher** — Extrinsic ○'. ○/×/✓ 기호표는 ○인 열 이름만 남기고('— Intrinsic ○ · Extrinsic ○'), 빈칸과 '—'뿐인 칸은 뺀다. 열이 3개 이상이거나 기호표면 펼치지 않고 mini_table을 그대로(12.5px, tscroll) 넣는다. tools/verify.py에 정리표 텍스트 정규식 ' — (—|○|×)\\s*(/|$)' 0건 검사를 추가한다.",
+     "acceptance": "verify 새 검사 6과목 0건. WHT 해당 행에 'Intrinsic'·'Extrinsic' 글자가 있다.",
+     "files": "tools/cons/build4.py(lec_card 'T' 분기·mini_table), tools/verify.py",
+     "source": "tables:T02"
+    },
+    {
+     "id": "E04",
+     "title": "주제 칸에 기출 표시와 기출 필터",
+     "what": "주제 칸 제목 아래에 카드 연도 칩(학습 카드 머리 ych 재사용, '24·23·21 (3회)', 누르면 JB)을 넣는다. U27 덮어쓰기를 고친다: 2회 이상 행은 왼쪽 4px 과목색 선, 1회는 1px, 미출제는 번호 배지 #B8B0A2 + '미출제' 작은 회색 태그. 미출제 행은 ⭐·⚡ 칸을 colspan=2로 합쳐 ⚡만 보인다. pills에 [전체|기출 나온 주제만|2회↑]를 둔다(.only-hit tr.h0{display:none}, grow 행은 남김). 카드형(≤1000px)은 미출제 행의 ⭐ 구역을 숨긴다.",
+     "acceptance": "GERI OHQ 정리표 .mn 계산 배경이 h0와 h2에서 다르다. '2회↑' 필터 → h0·h1 행이 0개 보인다. 미출제 행의 td 수 = 기출 행 td 수 − 1.",
+     "files": "tools/cons/build4.py(row 주제 칸), tools/cons/shell.html(CSS·필터)",
+     "source": "tables:T03, tables:T05"
+    },
+    {
+     "id": "E05",
+     "title": "열 구성: ★ 시험 요약 열 + 의미 축 전체정리표 지원",
+     "what": "⭐ 칸을 '★ 시험 요약' 열로 바꾼다. 문항마다 연도 칩 + D04 .ex-q(없으면 첫 문장 80자) + '→ 답'(==형광== 문장 우선)을 보이고, 3줄에서 말줄임한다(-webkit-line-clamp:3, 누르면 펼침, 형광펜이 있는 칸은 줄이지 않음). 칩이 있으면 앞머리 '\\d{2}(·\\d{2})*년 '은 span으로 숨긴다. 요약 모드 열 폭은 주제 15 / 요지·🔑 25 / 세부 28 / ★ 시험 18 / ⚡ 14%. tables.txt에 '#TBL 제목 | k=WHT | sum=1'로 표시한 표는 정리표 탭 맨 위 '전체정리표'(의미 축 열, 마지막 열 keycell 옅은 --accbg)로 싣도록 파서·렌더를 지원한다(원고 작성은 content_side).",
+     "acceptance": "⭐ 칸 최대 높이 ≤ 5줄(1280). ⭐ 칸 innerText가 '23년'처럼 연도로 시작하는 칸 0. sum=1 샘플 표(테스트 픽스처)가 정리표 탭 첫 요소로 나오고, 비교표에 중복되지 않는다.",
+     "files": "tools/cons/build4.py(ex 생성·tables 파서·summ), tools/cons/shell.html(CSS·펼치기), tools/SPEC.md",
+     "source": "tables:T04, tables:T16, R10, ideas.tables(의미 축 정리표)"
+    },
+    {
+     "id": "E06",
+     "title": "주제 칸 줄바꿈·머리 라벨·긴 행을 따라오는 주제",
+     "what": "주제 열 min-width 11em(약 150px), 제목 16px 산세리프. 영문 span에 lang='en', overflow-wrap:break-word; hyphens:auto를 주고 .men의 anywhere는 뺀다. 머리 라벨은 '🔑 요지·핵심' '세부' '★ 시험' '⚡ 암기'로 줄인다(nowrap). 줄무늬는 빼고 행 경계는 2px var(--line) + hover 배경으로 한다. 주제 칸 안쪽 div에 position:sticky; top:calc(var(--toph)+var(--tabh)+44px)를 준다. 강의 비교표 탭 끝에도 nextLine(p,L)을 붙인다.",
+     "acceptance": "1280(사이드바 접힘)·1180에서 .men 영문 단어 중간 줄바꿈 0(줄 끝과 다음 줄 첫 글자가 모두 영문 소문자인 경우 0). 긴 행 중간에서도 주제 div가 화면 안에 있다. tbl 탭 끝에 .nextl이 있다.",
+     "files": "tools/cons/shell.html(CSS·mount), tools/cons/build4.py(주제 칸 래퍼·thead·lang)",
+     "source": "tables:T08, tables:T18, R10"
+    },
+    {
+     "id": "E07",
+     "title": "표 열 가리고 떠올리기 (보기 상태)",
+     "what": "정리표·한눈표·비교표 thead 칸마다 👁 버튼을 둔다. 누르면 그 열 td를 덮개(.cov: color transparent, 배경 #E9DFC6, ::after '탭해서 보기' 11px)로 가린다. 칸을 누르면 그 칸만 열리고, 다시 누르면 닫힌다. 머리에 [모두 열기]를 둔다. 상태는 LS 'cover.<S>.<문서>/<탭>'에 가린 열 이름만 저장한다(저장형 빈칸이 아님 — ann 불변). 카드형에서는 구역 라벨(td::before)을 눌러 가린다. 정리표 ⚡ 자동의 '표의 내용'은 🔑·⚡ 칸에만 적용한다.",
+     "acceptance": "WHT 정리표 ⚡ 열 👁 → 해당 td가 모두 .cov이고 ann 바이트 변화 0. 칸 클릭 → 1개만 열린다. 새로고침 → 열 가림은 유지되고 열었던 칸은 다시 가려진다. 820 카드형에서도 동작한다.",
+     "files": "tools/cons/shell.html(thead 버튼·CSS·클릭), tools/cons/build4.py(th data-col)",
+     "source": "tables:T07, R09, ideas.tables(가리고 떠올리기)"
+    },
+    {
+     "id": "E08",
+     "title": "정리표 안에서 이동 (J/K·사이드바·그룹 필터)",
+     "what": "정리표 행에 id 'm-<k>-<j>'를 준다. 정리표 탭에서 사이드바 카드 목록·#lpop 카드 클릭·J/K는 그 행으로 goEl한다(머리 고정 높이만큼 오프셋). 지금 행은 .cur(옅은 --accbg)로 표시한다. 정리표 pills에 그룹 필터(① ② …, 학습 탭 gp 재사용)와 E04 기출 필터를 둔다. 한눈표·예상에서도 J/K = 다음/이전 행·카드.",
+     "acceptance": "WHT sum 탭에서 j 3번 → 세 번째 행 top이 머리 아래 ±20px이고, 학습 탭으로 넘어가지 않는다. 정리표 탭에서 사이드바 카드 5를 누르면 행 5로 간다. 그룹 ② 필터 → 다른 그룹 행이 숨는다.",
+     "files": "tools/cons/shell.html(goCard·lnav·키), tools/cons/build4.py(row id·summ pills)",
+     "source": "tables:T10, R21"
+    },
+    {
+     "id": "E09",
+     "title": "과목 비교표: 강의별 묶음·목차·머리행 고정",
+     "what": "_tbl을 강의 순서로 묶고, 강의마다 h3 '강의명 · 표 n개'를 붙인다. 위에 붙는 목차 칩 막대(강의 칩 → 펼치면 표 제목 목록, 누르면 이동)와 [기출 연결 표만](표 안에 jbchip이 있는 표) 필터를 두고, 표 제목 옆에 '기출 n' 배지를 붙인다. 사이드바 설명은 '강의별 38개 표'로 바꾼다. mount 뒤 표마다 가로 넘침을 판정해, 넘치지 않으면 .tscroll.fit(overflow:visible; thead th sticky top:calc(var(--toph)+var(--tabh)))을 적용한다. 넘치는 표만 가로 스크롤 + 첫 열 sticky로 두고, ResizeObserver로 다시 판정한다.",
+     "acceptance": "OMS1 _tbl의 h3 수 = 표가 있는 강의 수. 칩 클릭 → 그 표가 위에 맞춰진다. NSCS 표 중간까지 스크롤해도 thead th가 탭 아래에 보인다. '기출 연결 표만' → jbchip 없는 표 0개.",
+     "files": "tools/cons/shell.html(mount _tbl·SUBJDOCS·CSS), tools/cons/build4.py(TBL 강의명·기출 수)",
+     "source": "tables:T11, tables:T12, ideas.tables(기출 연결 표)"
+    },
+    {
+     "id": "E10",
+     "title": "기출 한눈표 문제·답 칸 정리",
+     "what": "문제 칸에 short_clean을 적용하고, 정규식에 ’/′ 변형 '(20’, 19’…)'과 '(24, 탈)'을 포함한다(문제 원문은 JB 카드에 그대로). 발문이 /다음 (설명|글|그림|표|증례)/이거나 목록 줄이 1개뿐이면 본문 줄을 160자까지 붙이고, 넘치면 '…▸'로 펼친다. 답 첫머리 '답 :'·'답:' 라벨은 글자 그대로 <span class='alab'>(11.5px 회색)로 감싼다. ans_core가 '해설 참조/참고'뿐이면 해설 첫 문장부터 최대 6줄(원문 그대로)을 '해설' 라벨로 붙이고, 해설도 없으면 연결 카드 ⚡ 첫 줄을 '📖' 라벨로 붙인다. 표 모양 답(3칸 이상 짧은 토막 반복)은 글자 그대로 white-space:pre-wrap + 격자로 보이거나, 첫 3줄 + '… 카드에서'로 줄인다. 문제 링크는 밑줄을 빼고 hover·▸로 표시한다. tools/verify.py에 '한눈표 답 핵심이 참조뿐인 행 0'을 추가하고, JB 답 글자 불변(공백 제외 비교)은 그대로 검사한다.",
+     "acceptance": "6과목 _sum 문제 칸에 /\\(\\d{2}[’′']?(,\\s*\\d{2}[’′']?)*\\)/ 0건. PHARM RX35 문제 칸에 'nAchR'이 있다. verify 새 검사 0건. reflow same_chars 단언 통과.",
+     "files": "tools/cons/build4.py(short_clean·sumall·ans_core), tools/verify.py, tools/cons/shell.html(CSS)",
+     "source": "tables:T13, tables:T14, JB-13, R09"
+    },
+    {
+     "id": "E11",
+     "title": "한눈표 공부 막대: 답 가리기·채점·틀린 것만",
+     "what": "위에 붙는 막대를 만든다: [강의 칩(n문항) → 그 표로] [2회↑만] [✗ 틀린 것만] [안 푼 것만] [답 가리기](LS sumhide, 보기 상태, 칸을 탭하면 그 칸만 열기/닫기). 행에 data-id를 넣고, 왼쪽에 채점 점(.mdot: ✓ 초록 / ✗ 빨강 / 회색)과 ★를 둔다. 출제 칸 아래 ✓/✗ 버튼(32px, 터치 40px)은 mark()로 기록하고(mk 공유), paintMarks로 다시 칠한다. 문제 칸 끝에 📖 카드 칩을 둔다. 행 색은 원칙 7-1대로 왼쪽 선으로 통일하고 범례 한 줄을 둔다.",
+     "acceptance": "PHARM _sum에서 답 가리기 → 답 칸이 .cov이고 ann 변화 0. 행 ✗ → mk.ng에 id가 생기고 JB 카드 기록 칩에 반영된다. '틀린 것만' → mk.ng 행만 보인다. 새로고침 뒤 sumhide 유지.",
+     "files": "tools/cons/build4.py(sumall 행 data-id·📖 칩), tools/cons/shell.html(mount _sum·클릭·CSS)",
+     "source": "tables:T15, JB-12, ideas.tables(한눈표 플래시)"
+    },
+    {
+     "id": "E12",
+     "title": "기출 대장 가로 넘침 없애기",
+     "what": "view_led 표를 .tscroll(overflow-x:auto) 안에 넣고, 첫 열(교수)을 sticky left로 한다. 연도 머리는 두 자리('24'), 칸 min-width 3.2em. audit_design.py 가로 넘침 검사에 _led와 820 뷰포트를 추가한다.",
+     "acceptance": "820×1180에서 모든 과목 #/<S>/_led의 documentElement scrollWidth − clientWidth = 0. audit 통과.",
+     "files": "tools/cons/build2.py 또는 build4.py(view_led — 실제 위치 확인), tools/cons/shell.html(table.cmp CSS), tools/audit_design.py",
+     "source": "R20"
+    }
+   ]
+  },
+  {
+   "name": "묶음 6 — JB 문제 화면: 떠올리기·암기 최적",
+   "items": [
+    {
+     "id": "F01",
+     "title": "정답 보기를 문제 안에서 강조",
+     "what": "build4 qcard에서 pick_choices 결과로 해당 .ln.li에 data-ans='ok'(발문이 옳지 않은/틀린이면 'wrong')를 붙인다. CSS는 .qc.open .ln.li[data-ans]{background:#E6F4EA; box-shadow:inset 4px 0 #2E7D4F; font-weight:700}로 하고, ::before에 '✓ 정답'(부정 발문이면 '✗ 틀린 보기', #B3261E 글자·흰 바탕 테두리 칩)을 둔다. 답이 가려져 있을 때는 표시하지 않는다. .ans0 아래에 한눈표와 같은 .ln.pick '정답 보기 2) …' 한 줄을 붙인다(원문 부분 문자열이라 JB 답 글자 불변).",
+     "acceptance": "PHARM RX01을 열기 전에는 [data-ans] 강조가 계산 스타일에 없고, 연 뒤에는 배경이 #E6F4EA다. 번호만 답인 카드(PHARM 50개 등)의 .ln.pick 수 ≥ 한눈표 pick 수. verify JB 답 글자 불변 통과.",
+     "files": "tools/cons/build4.py(pick_choices·qcard), tools/cons/shell.html(v6 CSS 블록)",
+     "source": "JB-03"
+    },
+    {
+     "id": "F02",
+     "title": "답을 두 단계로 펼치기",
+     "what": "1단계(답 보기·Space 한 번)에는 .ans0 + 정답 보기 강조(F01) + 대조 첫 항목의 '정답 …' 줄 1개 + 📖 카드 ⚡ 첫 줄만 보인다(목표 높이 250px 이하). 2단계('자세히 ▾'·Space 한 번 더)에서 해설 전체·대조·주변부를 펼친다. 대조·주변부는 <details>로 바꾸고, 펼침 선호는 LS 'jbdeep'에 기억한다. 한 장씩에서도 Space는 1단계 → 2단계 → 가리기 순서로 돈다. 글자는 바꾸지 않는다(감싸기만).",
+     "acceptance": "1280 PHARM RX01 1단계 높이 ≤ 350px(카드 머리 포함). Space 세 번 → 1단계 → 2단계 → 닫힘. jbdeep=1이면 한 번에 2단계. ux_u17 수치 갱신·통과.",
+     "files": "tools/cons/build4.py(qcard 답 절 조립·struct_item), tools/cons/shell.html(data-tog 처리·togLabel·CSS)",
+     "source": "JB-06, R11"
+    },
+    {
+     "id": "F03",
+     "title": "한 장씩 풀기 화면 넓히기",
+     "what": "body.jbone에서는 #jbbar에 .mini를 강제한다(첫 줄 + 진행 막대, 약 52px, '필터 ▾'를 누르면 펼침). .hero.cmp는 숨긴다. #kit은 ✎ 하나로 자동으로 접는다(LS kitoff는 건드리지 않음, 사용자가 펼치면 그 세션 동안 유지). 카드 안 .acts 줄(풀이 막대와 중복)은 숨긴다. 풀이 막대 오른쪽에 🖍·▣ 작은 토글 두 개를 넣고, 키 안내는 'O 맞음 · X 틀림 · S ★ · Space 답 · ←/→ · H 형광펜 · B 빈칸'으로 한다. 카드 위로 쓸기(dy<−70, |dx|<50) = 답 보기.",
+     "acceptance": "820×1180에서 카드 시작 y ≤ 130, 답을 연 카드 아래가 #kit에 가리지 않는다(bbox 겹침 0). 한 장씩을 끄면 원래 #kit 상태로 돌아온다. ux_u14에 수치 단언.",
+     "files": "tools/cons/shell.html(JB.show jbone·jbMini·#kit CSS·Kit.hide·#onebar)",
+     "source": "JB-08, R11, tools:T18"
+    },
+    {
+     "id": "F04",
+     "title": "카드 앞면은 문제만: 메타 정리·채점 버튼 모양",
+     "what": "카드 앞면 = [연도 배지][짤/탈][교수][📖] 한 줄 + 문제. 'JB 괄호 …'·'연도 표기 근거'·'관련 문항' 안내는 답 절 끝의 details '출처·연도 근거'로 옮긴다(기출 대장은 그대로). 부분 일치·근거 없음 칩은 답을 연 뒤에만 보인다. 한 장씩에서는 문제 집중을 켠 상태로 보인다(목록은 LS jbfocus 값). .qsub 출처 칩은 '출처: 2024년 칸 1번'으로 줄이고 판 정보는 title로만 둔다(CLAUDE.md '판 연도 표시 안 함'). 맞음/틀림/★는 테두리 버튼으로 바꾼다: '✓ 맞음'(초록 #2E7D4F 테두리), '✗ 틀림'(#B3261E 테두리), 켜지면 채움, 터치 기기 높이 44px.",
+     "acceptance": "OMS1 DD1 기출 탭 첫 카드에서 답을 열기 전 '연도 표기 근거' 텍스트가 보이지 않고, 열면 details 안에 있다. 6과목 .qsub 텍스트에 '판'이 0건. 켜진 맞음 버튼 배경이 채워진다. ux_u15·u17 통과.",
+     "files": "tools/cons/build4.py(qcard .qsub·연도 근거 위치·acts), tools/cons/shell.html(#ffocus·CSS)",
+     "source": "R12, JB-19, JB-21"
+    },
+    {
+     "id": "F05",
+     "title": "목록 모드에서도 키보드로 풀기 + 순번",
+     "what": "목록 모드에서도 '현재 카드'를 둔다. 화면 위 30% 선에 걸친 .qc를 IntersectionObserver로 잡고(learnSpy 재사용), .qc.cur2에 은은한 왼쪽 테두리를 준다. J/K = 다음/이전 카드 머리를 탭 아래로, Space = 그 카드 답(F02 단계), O/X = 채점 토글, S = ★. JB.apply가 보이는 순서대로 카드 머리 맨 왼쪽에 작은 회색 칩 '12/157'(.chip.seq, 11.5px)을 채운다(JB 원문 번호는 그대로). .mini 막대 오른쪽에 '지금 23/157'을 두고, 누르면 번호를 입력해 이동한다. 도움말과 필터 막대 안내를 갱신한다.",
+     "acceptance": "PHARM _jb 목록에서 j 3번 → 네 번째 카드가 탭 아래에 온다. o → 그 카드 mk.ok. 강의 기출 탭(많이 나온 순)의 순번 칩이 1,2,3… 순서다. '지금 n/157' 입력 이동이 동작한다.",
+     "files": "tools/cons/shell.html(keydown·JB.apply·jbBar·learnSpy 패턴)",
+     "source": "JB-10, R21, JB-16"
+    },
+    {
+     "id": "F06",
+     "title": "필터 버튼에 개수 + 회차 요약 버튼 나누기",
+     "what": "qf 버튼 글자를 '안 푼 것 153', '틀린 것 2', '★ 0'처럼 바꾸고, mark()와 apply 때 갱신한다(지금 필터의 교수·강의·연도 범위 안에서 셈). 회차 요약 버튼은 [이번 회차 틀린 것 2 다시](sess의 ng id로 새 회차), [전체 틀린 것 n], [안 채점 32], [처음부터]로 나눈다.",
+     "acceptance": "한 문항을 ✗로 채점하면 '틀린 것' 숫자가 +1이다. 회차 요약 '이번 회차 틀린 것 다시' → 새 회차 id 목록 = 이번 회차의 ng id.",
+     "files": "tools/cons/shell.html(jbBar·mark·JB.prog·sumHTML·onesum)",
+     "source": "JB-17"
+    },
+    {
+     "id": "F07",
+     "title": "자동 넘김과 '답 모두 펼치기' 정리",
+     "what": "자동 넘김은 ✓일 때만 넘어간다. ✗면 답이 닫혀 있을 때 펼치고 머문다(옵션 '틀려도 넘김' LS jbautoNg, 기본 끔). 한 장씩을 켤 때 '답 모두 펼치기'(frev)를 끄고 .open을 모두 지운다. 한 장씩 중에는 frev 버튼을 숨긴다.",
+     "acceptance": "자동 넘김 켠 상태에서 ✗ → 0.5초 뒤에도 같은 카드이고 답이 열려 있다. ✓ → 다음 카드. frev를 켠 뒤 한 장씩으로 가면 첫 카드 .open이 없다.",
+     "files": "tools/cons/shell.html(JB.grade·frev·fone click)",
+     "source": "JB-19"
+    },
+    {
+     "id": "F08",
+     "title": "플래시카드 기출 카드에 그림과 핵심 뒷면",
+     "what": "기출 카드 앞면 q는 .qtext를 복제해 figure·img를 유지한다(이미지 청크 지연 로딩 fillThumbs 다시 호출, max-height 45vh). 뒷면 a = .ans0 + .ln.pick(F01) + 해설 첫 2줄 + 연결 정리본 카드의 ⚡ 첫 줄. 맨 아래에 '📝 문제 카드로 →'(data-go=id)를 둔다.",
+     "acceptance": "OMS1 DX 플래시카드 기출 Q35 앞면에 img가 있고 naturalWidth > 0이다. 뒷면에 .ans0와 '문제 카드로' 버튼이 있다.",
+     "files": "tools/cons/shell.html(Flash.init·Flash.draw)",
+     "source": "JB-04"
+    },
+    {
+     "id": "F09",
+     "title": "답 칸 빈 글머리 없애기",
+     "what": "build4 struct_item 결과가 '목록 하나 + .cites'뿐이면 바깥 li를 풀고, klist 항목을 바깥 ul의 형제 li로 옮긴 뒤 .cites는 마지막 li 끝에 붙인다. CSS 안전망으로 .ab li:has(>ul:first-child,>ol:first-child){list-style:none;margin-left:-1.1em}를 둔다. audit_design.py에 'EMPTY BULLET' 집계를 추가한다.",
+     "acceptance": "답을 모두 펼친 뒤 EMPTY BULLET 6과목 0(지금 약 190). annot_text 글자 검사 통과.",
+     "files": "tools/cons/build4.py(struct_item·astruct), tools/audit_design.py, tools/cons/shell.html(CSS)",
+     "source": "JB-14"
+    },
+    {
+     "id": "F10",
+     "title": "예상문제: 보기 줄바꿈·번호 나열 분할·채점",
+     "what": "① build4 예상 카드 .pq를 ①~⑩ 앞에서 줄바꿈해 .ln.li로 렌더한다(발문은 .ln.q1). ② split_enum은 원문자가 연속(①②③)이거나 바로 앞이 '조/항/호/숫자'면 나누지 않고, 나눈 조각이 3자 이하 원문자뿐이면 나누기를 취소한다(card_text 글자 검사 유지). ③ 예상 카드에 [맞음][틀림][★](data-mk, id='P:'+aid)를 두고 mk.<S>에 기록하며, 예상 탭에 '안 푼 것·틀린 것' 필터를 추가한다. 진행률·허브 개수·JB 필터는 'P:' 접두 id를 빼고 센다.",
+     "acceptance": "PHARM 예상 두 번째 카드의 보기 4개가 각각 .ln.li다. preds[1] 답 목록에 '②' 단독 li가 없다. 예상 카드 ✗ → mk.ng['P:…']가 생기고 허브 과목 카드 기출 개수는 변하지 않는다.",
+     "files": "tools/cons/build4.py(preds 조립), tools/cons/lecparse.py(split_enum), tools/cons/shell.html(predBar·getMK 셈)",
+     "source": "JB-15"
+    },
+    {
+     "id": "F11",
+     "title": "압축 목록 보기와 인쇄",
+     "what": "@media print에 .exw.clamp{max-height:none!important;-webkit-mask:none}, .exmore,.onebar,.chip.rec{display:none}를 추가한다. 필터 막대 ⋯에 '🖨 압축 인쇄: 문제+답 핵심'(발문 + 보기 + .ans0 + 정답 보기 줄, 두 단, 대조·주변부 숨김)과 '시험지: 답 없이'를 두고, 지금 필터를 그대로 따른다. 화면에서도 같은 '압축 목록' 보기(문제 한 줄 + 답 한 줄 + 출제 연도, 누르면 카드 펼침, LS jblist)를 제공한다.",
+     "acceptance": "emulate_media print에서 PHARM _jb 첫 카드 해설이 잘리지 않고 '해설 전체 보기' 버튼이 없다. 압축 인쇄 모드의 문서 높이가 일반 인쇄의 1/4 이하. 압축 목록 보기에서 카드 하나 ≤ 80px(1280).",
+     "files": "tools/cons/shell.html(@media print·jbBar ⋯·CSS)",
+     "source": "JB-18, ideas.jb(압축 목록), ideas.hub(오답 노트 인쇄 일부)"
+    },
+    {
+     "id": "F12",
+     "title": "문제 보기 줄 중간 끊김 이어 붙이기",
+     "what": "reflow에서 보기 번호('n)'·'(n)'·원문자)로 시작하지 않고, 앞 줄이 마침표·물음표로 끝나지 않은 짧은 줄은 앞 보기에 붙인다(same_chars 단언 유지). tools/verify.py에 '번호 없는 짧은 줄이 보기 사이에 끼인 경우' 수를 세는 검사를 추가한다.",
+     "acceptance": "PHARM 구강건조증 치료제 2번의 보기 5) 줄이 '0.2ml/min 이면 정상이다.'까지 한 줄이다. verify 새 검사 6과목 0건. reflow same_chars 통과.",
+     "files": "tools/cons/reflow.py, tools/cons/build4.py, tools/verify.py",
+     "source": "R22"
+    }
+   ]
+  }
+ ],
+ "content_side": [
+  "의미 축 전체정리표 원고: tables.txt에 '#TBL 제목 | k=<강의> | sum=1'로 강의별 표를 쓴다(E05가 정리표 탭 맨 위에 싣는다). 축이 분명한 강의부터 쓴다: PHARM 약물 = 약물 | 기전 | 적응증 | 부작용 | 금기 | ★시험, GERI·OMS1 질환 = 질환 | 원인 | 임상 | 치료 | ★감별. 칸당 50~150자로 하고, 강의자료·JB 근거만 쓴다(tables:T04, ideas.tables).",
+  "⭐ 시험포인트(E:) 줄 형식 맞추기: '연도 형식 \"문제\" → 답 — 근거' 틀로 쓰고, 220자 이하를 권장한다. 근거·대조 메모는 ' — ' 뒤에, 함정은 '⚠ 함정:'으로 쓴다. 따옴표 안에 문제 요지가 없는 E: 줄에 요지를 넣는다. D04 구조화, D11 '⭐ 많이 나온 순' 문구, E05 ★ 시험 요약 열이 이 형식에 기대므로, D04 빌드 로그에서 패턴에 안 맞는 줄부터 고친다(L04, L12).",
+  "같은 번호 나열이 '-' 두 줄로 나뉜 곳을 원고에서 합친다(예: tools/geri/lec_PAIN.txt 340~343행 ①~⑤ / ⑥~⑨). D09 (c)의 렌더 연결은 안전망일 뿐이다(L09).",
+  "'답: 해설 참조'뿐인 20문항(PHARM 15·IMPL 5)은 annot.txt 대조 첫 항목에 '정답 …' 요지 줄을 보강한다. JB 답안 글자는 바꾸지 않는다(tables:T14, JB-13).",
+  "카드 안 ○× 표에서 '—' 빈칸의 뜻(해당 없음/자료 없음)을 확인하고, 필요하면 원고 표 머리를 정리한다. E03을 적용한 뒤에도 verify에 남는 행이 대상이다(tables:T02).",
+  "D06 적용 뒤 audit RED SHARE가 여전히 높은 강의(PHARM HM·IMPL GRAFT 등)는 원고의 {r:}를 다시 본다: 🔑·⭐·⚡에 없는 본문 빨강은 **굵게**로 바꾸는 것을 검토한다(선택, L06·tables:T17).",
+  "원고 수정 뒤에는 aid 잠금·legacy_restore·card_text를 다시 돌려 표시 위치 잃음 증가가 0인지 확인한다(원고는 막 전면 재작성됨 — 이번 2차의 코드 변경은 원고 문법을 바꾸지 않는다)."
+ ],
+ "deferred": [
+  "L18 넓은 화면 글·그림 두 칸 배치: build4가 소제목마다 div.sec로 감싸야 해서 카드 블록 구조와 표시 복원(블록 지문 v·Kit.index)에 영향을 줄 위험이 크다. 이득은 1200px 이상 화면에만 있다. D10(그림 크기·보기 방식)으로 먼저 해결한다.",
+  "R06 ③④ 허브 요약 팩(packs/index.js)과 JB 그림 data URI를 청크로 분리: 빌드·로드 구조를 바꾸는 큰 작업이다. B08(요청 과목 먼저·진행 표시)으로 체감 대기 대부분이 풀리므로, 측정 뒤 다음 차수에 한다.",
+  "R15 service worker 오프라인 캐시: 판 지문(F5)의 '새 버전' 잠금과 캐시 무효화가 얽혀 옛 팩이 남을 위험이 있다. 이번에는 manifest·홈 화면 추가·persist 안내(C11)만 한다.",
+  "R05 세션 타임라인(time.sess 500개): 저장 공간을 계속 쓰는 데 비해 쓰임이 적다. 요일별·주간·달력(B01)으로 요청을 충족한다.",
+  "tools:T12 '헷갈린 빈칸' 표시와 플래시카드 덱 연결: 새 저장 형식과 덱이 필요하다. A05 가리기 보기 사용 패턴을 본 뒤 결정한다.",
+  "ideas.jb 모의고사(교수·연도별 제한 시간), 오답 노트(_wrong, 틀린 이유 태그), 펜슬 필기 캔버스·답 써보기 칸, 서술형 자기 채점 체크리스트, 회차 기록 히스토리, 강의별 약점 지도, 연도 칸 그대로 풀기, 비슷한 문항 묶음 보기, 헷갈림(?) 상태: 새 화면이나 새 기록 형식이 필요하다. 2차 핵심(복습 대기열 B07·압축 목록 F11·2단계 답 F02)으로 먼저 암기 흐름을 잡는다.",
+  "ideas.tools/hub 명령 팔레트(⌘K), 포모도로, 오늘의 기록 한 줄 카드, Shift 길게 눌러 키 배지 보기, 빈칸 시트 인쇄: 효과보다 비용이 크거나 다른 기능과 겹친다(검색 B09·도움말 A02·공부 기록 B01).",
+  "ideas.learn/hub 야간(어두운) 테마: 원칙 7-1 색 체계(빨강·형광·과목색)를 어두운 바탕에서 다시 검증해야 한다. 사용자 확인 뒤 별도로 진행한다.",
+  "ideas.learn 카드 자기평가 3단계(△ 애매), 남은 분량·예상 시간 표시: 복습 보기(D02)의 알아요/몰라요와 오늘 띠(B06)의 하루 분량으로 대신한다.",
+  "ideas.tables 정리표 매치 연습, 과목 최종 요약 문서, 정리표·비교표 A4 인쇄, 정리표 행 ✓ 읽음·정답률 점 연동: 요약 모드(E02)·★ 시험 요약 열(E05)·열 가리기(E07)를 먼저 쓴 뒤 필요하면 추가한다.",
+  "tools:T10 아이패드 가로 도구 막대 오른쪽 세로 레일 옵션: A06(스크롤 중 축소·모드 칩)과 A03 집중 모드로 가림 문제를 먼저 푼 뒤, 남으면 추가한다."
+ ],
+ "user_facing_summary": "2차 개선은 6묶음 66항목입니다. 점검 결과 102건을 합치고 중복을 정리했습니다.\n① 단축키가 요청하신 대로 바뀝니다. H는 형광펜, B는 빈칸(A도 계속 동작), V는 집중 모드입니다. 집중 모드에서는 사이드바·상단·탭·도구 막대가 숨고 본문만 남습니다. 한글 입력 상태에서도 키가 먹고, 한 장씩 풀기의 ★는 S로 옮깁니다.\n② 빈칸빵용 '가리기 보기'(Q)를 새로 넣습니다. 빨간 핵심어를 저장 없이 가렸다가 누르거나 N으로 하나씩 엽니다. 형광펜과 빈칸이 켜져 있을 때는 화면에 표시 칩이 뜨고, 애플펜슬로 탭하면 지워지게 고칩니다.\n③ 새 '📊 공부 기록' 화면이 생깁니다. 이번 주 월~일 막대(과목별), 주 합계와 지난주 비교, 요일별 평균, 12주 달력, 강의별 시간을 보여 줍니다. 시계가 되감기던 문제를 고치고, 자리 비움 시간은 '공부했어요/빼기'로 물어봅니다.\n④ 허브 홈 맨 위에 '오늘' 띠를 둡니다: 오늘 시간과 목표, 시험 D-day, 오늘 복습할 틀린 문제. 라이트너 방식(1·3·7일)으로 복습 대상을 고릅니다.\n⑤ 데이터 안전: 저장 공간이 차면 조용히 날아가던 문제를 막습니다. 자동 백업은 IndexedDB로 옮기고, 저장에 실패하면 닫을 때까지 남는 경고와 재시도를 둡니다. 되돌리기를 해도 공부 시간은 보존되고, 🧹는 '자동 빈칸만 지우기'처럼 골라서 지웁니다.\n⑥ 맥과 아이패드는 공유 시트(AirDrop)로 기록을 주고받고, 공부 시간은 두 기기 것을 더해서 보여 줍니다. 한 장씩 풀다 새로고침해도 회차가 유지되고, 플래시카드 판정과 JB 채점이 하나로 합쳐집니다.\n⑦ 정리본: 압축 보기에서 핵심 수치가 사라지던 문제를 고칩니다. '⚡ 복습 보기'(R)는 🔑·⭐ 문제 요지·⚡만 모아 한 강의를 4~5화면에 훑게 합니다. ⭐ 시험포인트는 형식·문제·답·함정으로 나누고, 빨강은 시험 핵심만 남겨 눈이 머물 곳을 만듭니다.\n⑧ 전체정리표는 기본을 '요약'으로 바꿉니다. 한 행을 몇 줄로 줄이고 '★ 시험 요약' 열과 기출 표시·필터를 둡니다. 열마다 👁로 가리고 떠올리기를 할 수 있고, 표 화면에서는 사이드바를 접어 폭을 넓힙니다. 한눈표에서도 답 가리기, 행별 ✓/✗, 틀린 것만 보기가 됩니다.\n⑨ JB 문제: 답을 펴면 문제 안의 정답 보기가 초록으로 강조되고, 답은 '핵심 → 자세히' 두 단계로 열립니다. 한 장씩 풀기는 화면을 넓히고 도구 막대가 답을 가리지 않게 합니다. 목록에서도 J/K·Space·O/X로 풀 수 있고, 시험 직전용 압축 목록과 인쇄를 추가합니다.\n⑩ 버튼을 클릭한 뒤 Enter를 누르면 보지 않은 다음 문제까지 채점되던 오류를 가장 먼저 고칩니다.\n기존 형광펜·채점·시간·메모 기록은 형식을 그대로 두고 옮기기만 합니다. 묶음마다 빌드·검증·playwright 확인을 통과한 뒤 커밋합니다. 의미 축 전체정리표 원고와 ⭐ 줄 형식 정리는 원고 작업으로 따로 진행합니다."
+}
