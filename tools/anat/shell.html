@@ -2439,7 +2439,7 @@ function bigClose(){const el=$('#bigclock'),ae=document.activeElement,back=el&&e
 function bigRun(){clearInterval(BIG.iv);BIG.iv=0;if(BIG.on&&!document.hidden)BIG.iv=setInterval(bigTick,1000);}
 document.addEventListener('visibilitychange',bigRun);
 function bigTick(){if(!BIG.on)return;BIG.n++;const st=trState(),ts=tsGet(),now=Date.now(),td=tToday(),g=tGoal()*60000;
- const aw=st==='run'&&now-T.last>60000,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
+ const aw=st==='run'&&now-T.last>60000/* ux4f L8 알약과 같은 '자리 비움 m:ss' */,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
  const a=$('#bcl'),b=$('#bct'),c=$('#bcs');if(!b)return;const el=$('#bigclock');if(el){el.classList.toggle('rest',st==='rest');el.classList.toggle('fo',fo);}if(a.textContent!==lab)a.textContent=lab;const bt=st==='rest'?fmtMS(v):ckFmt(v);if(b.textContent!==bt)b.textContent=bt;const R=restStats(),pc=' · 목표 '+fmtH(g),ss=st==='sess'?' · 세션 '+fmtH(trSessMs(ts,now)):'';   /* ux4c 1회차 알약과 같은 표기(공부 h:mm:ss 앞 0 없음 · 휴식 m:ss) · 목표는 %가 아니라 h:mm · ux4d 집중 %는 없앰(사용자 '퍼센트 필요 없어' · 참고 HUB도 화면엔 달성 %만) */
  const s=st==='rest'?`오늘 휴식 ${fmtH(R.ms)} · 공부 ${fmtH(td)}${pc}`:`오늘 공부 ${fmtH(td)}${ss} · 휴식 ${fmtH(R.ms)}${pc}`;if(c.textContent!==s)c.textContent=s;}
 document.addEventListener('keydown',e=>{if(BIG.on&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();bigClose();}},true);

@@ -74,9 +74,9 @@ with sync_playwright() as p:
        f'L1 ✎ 시작을 앞 공부 구간에 겹치게 → 되물음 [{w[:60]}] · 합계 그대로 {fmtH(x.tday())}')
     R0 = x.ev(f"__h.dayRows('{td}').map(r=>[r.s,r.e])")
     x.clk('#cewarn [data-cef="cut"]'); v1 = x.view(); r1 = x.rows()
-    exp = (R0[2][1] - R0[0][0]) * 1000   # 앞 구간 겹친 몫은 빼고 휴식 시간대는 공부로 = 첫 줄 시작–셋째 줄 끝 벽시계
+    exp = (R0[2][1] - 9 * 3600) * 1000   # 앞 구간 겹친 몫은 빼고 휴식 시간대는 공부로 = 09:00–셋째 줄 끝 벽시계(넘지 않음)
     ok(abs(v1['t'] - exp) <= 3000 and v1['rest'] < 60000 and not any('휴식' in r for r in r1),
-       f"L1 [겹친 만큼 빼고] 합계 {fmtH(v0['t'])}→{fmtH(v1['t'])}(기대 {fmtH(exp)}) · 휴식 {fmtH(v0['rest'])}→{fmtH(v1['rest'])} · 줄 {r1}")
+       f"L1 [겹친 만큼 빼고] 합계 {fmtH(v0['t'])}→{fmtH(v1['t'])}({v1['t']/1000:.0f}s, 기대 {exp/1000:.0f}s) · 휴식 {fmtH(v0['rest'])}→{fmtH(v1['rest'])} · 줄 {r1}")
     same_nums(x, v1, 'L1 고친 뒤')
     ok(sum(1 for r in r1 if '✎' in r) >= 1, 'L1 고친 줄 ✎ 표시')
     x.undo(); v2 = x.view()
@@ -124,7 +124,7 @@ with sync_playwright() as p:
     x.go('#/ANAT/TMJ/learn', False); x.run(1000); x.pop('다시'); x.move(15)
     tm = json.loads(x.ev("localStorage.getItem('jblhub.v1.timed')"))[td]; ts = x.ev("(t=>[t.S,t.D])(__h.tsRead())")
     ok(ts == ['ANAT', 'TMJ'] and tm.get('ANAT:TMJ', 0) >= 4.5 * 60000 and tm.get('CONS:WHT', 0) <= 5.5 * 60000, f'L2 쉬는 동안 ANAT로 → 다시 공부 5분: 세션 {ts} · {tm}')
-    x.go('#/_cal/' + td, False); x.run(800); same_nums(x, x.view(), 'L2')
+    x.pop('멈춤'); x.run(1000); x.go('#/_cal/' + td, False); x.run(800); same_nums(x, x.view(), 'L2 멈춘 뒤')
     x.ctx.close()
     a = P(b); a.clear(); a.go('#/'); a.ev("[...document.querySelectorAll('[data-trb=start]')].find(e=>e.offsetParent).click()"); a.run(500)
     a.go('#/CONS/WHT/learn', False); a.move(6)

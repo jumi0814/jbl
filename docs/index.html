@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"47f13fde",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"aab23399",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1908,7 +1908,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="47f13fde",PV={"OMS1": "1a1b2db2", "CONS": "a22c96a2", "IMPL": "1194a5b8", "ANAT": "2be01057", "GERI": "9a4d5d30", "PHARM": "551c9fc6"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="aab23399",PV={"OMS1": "603cae9f", "CONS": "012e419c", "IMPL": "1236c24e", "ANAT": "c054456e", "GERI": "e81a0a58", "PHARM": "33ae6b9d"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2439,7 +2439,7 @@ function bigClose(){const el=$('#bigclock'),ae=document.activeElement,back=el&&e
 function bigRun(){clearInterval(BIG.iv);BIG.iv=0;if(BIG.on&&!document.hidden)BIG.iv=setInterval(bigTick,1000);}
 document.addEventListener('visibilitychange',bigRun);
 function bigTick(){if(!BIG.on)return;BIG.n++;const st=trState(),ts=tsGet(),now=Date.now(),td=tToday(),g=tGoal()*60000;
- const aw=st==='run'&&now-T.last>60000,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
+ const aw=st==='run'&&now-T.last>60000/* ux4f L8 알약과 같은 '자리 비움 m:ss' */,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
  const a=$('#bcl'),b=$('#bct'),c=$('#bcs');if(!b)return;const el=$('#bigclock');if(el){el.classList.toggle('rest',st==='rest');el.classList.toggle('fo',fo);}if(a.textContent!==lab)a.textContent=lab;const bt=st==='rest'?fmtMS(v):ckFmt(v);if(b.textContent!==bt)b.textContent=bt;const R=restStats(),pc=' · 목표 '+fmtH(g),ss=st==='sess'?' · 세션 '+fmtH(trSessMs(ts,now)):'';   /* ux4c 1회차 알약과 같은 표기(공부 h:mm:ss 앞 0 없음 · 휴식 m:ss) · 목표는 %가 아니라 h:mm · ux4d 집중 %는 없앰(사용자 '퍼센트 필요 없어' · 참고 HUB도 화면엔 달성 %만) */
  const s=st==='rest'?`오늘 휴식 ${fmtH(R.ms)} · 공부 ${fmtH(td)}${pc}`:`오늘 공부 ${fmtH(td)}${ss} · 휴식 ${fmtH(R.ms)}${pc}`;if(c.textContent!==s)c.textContent=s;}
 document.addEventListener('keydown',e=>{if(BIG.on&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();bigClose();}},true);
