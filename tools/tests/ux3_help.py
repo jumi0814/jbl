@@ -1,4 +1,4 @@
-"""ux3 묶음 P2 회귀: 도움말(?) '⌨ 모든 단축키' 한 표(모든 화면 키 — M 메뉴·Shift+M 메모·Shift+B 빈칸 색·\\·달력 ←→·T·A 포함) ·
+"""ux3 묶음 P2 회귀: 도움말(?) '⌨ 모든 단축키' 한 표(모든 화면 키 — M 메모·Shift+M 메뉴(ux4f 사용자 10-02 바꿈)·Shift+B 빈칸 색·\\·달력 ←→·T·A 포함) ·
 'M = 메모' 문구 없음 · 옛 상단 [백업][복원]·'사이드바' 문구 없음 · 모든 [도움말 ▸]/data-wnh 링크가 실제 도움말 줄로 감 ·
 새 기능 안내(whatsNew — ux4 묶음2부터 LS whatsNew.4 · 4줄): 기록 없는 새 기기 = 안 뜸 · 옛 판 기기(ux2old) = 4줄 한 번 · 2차 판을 기록 없이 처음 열었던 기기(ux2old=0)도
 3차를 처음 열 때 기록이 있으면 뜸(ux3old) · [알겠어요] → 다시 안 뜸 · 도움말 상자 가로 넘침 0.
@@ -30,12 +30,13 @@ async def run(pg, tag, vp):
     cal = keys.get('📅 공부 달력', set())
     ok({'← / →', 'Shift+← / →', 'T', 'A'} <= cal, f'📅 달력 키 ←→·Shift+←→·T·A {sorted(cal)}')
     mrow = [t for n, L in (kt or []) for k, t in L if k == 'M']
-    ok(mrow and '메뉴' in mrow[0] and '\\' in mrow[0], f'M = 왼쪽 메뉴(\\ 별칭) {mrow}')
-    ok(not re.search(r'(?<!Shift\+)(?<!Shift\+\s)\bM\s*[=:·]?\s*메모', ht), "도움말에 'M 메모' 문구 없음(메모는 Shift+M)")
+    srow = [t for n, L in (kt or []) for k, t in L if k == 'Shift+M']
+    ok(mrow and '메모' in mrow[0] and srow and '메뉴' in srow[0] and '\\' in srow[0], f'M = 📝 메모 · Shift+M = 왼쪽 메뉴(\\ 별칭) {mrow} {srow}')
+    ok(not re.search(r'Shift\+\s?M\s*[=:·]?\s*(📝\s*)?메모', ht), "도움말에 'Shift+M 메모' 문구 없음(메모는 M · ux4f 사용자 10-02)")
     ok('[백업]' not in ht and '[복원]' not in ht and '사이드바' not in ht, "옛 상단 [백업][복원]·'사이드바' 문구 없음")
     ths = await pg.evaluate("[...document.querySelectorAll('#help tbody th')].map(t=>t.textContent.trim())")
     ok(len(ths) == len(set(ths)), f'도움말 줄 이름 중복 0 ({len(ths)}줄)')
-    ok(sum(1 for t in ths if 'M' in t.split() or t.endswith(' M')) == 1, f"M을 설명하는 줄은 하나('왼쪽 메뉴 M') {[t for t in ths if t.endswith(' M')]}")
+    ok(sum(1 for t in ths if 'Shift+M' in t.split()) == 1, f"메뉴 키를 설명하는 줄은 하나('왼쪽 메뉴 Shift+M') {[t for t in ths if t.endswith('M')]}")
     bad = await pg.evaluate("(()=>{const names=new Set([...document.querySelectorAll('#help tbody th')].map(t=>t.textContent.trim()).concat([...document.querySelectorAll('#help [data-hn]')].map(x=>x.dataset.hn)));return [...document.querySelectorAll('#help [data-wnh]')].map(b=>b.dataset.wnh).filter(n=>!names.has(n))})()")
     ok(not bad, f'도움말 안 링크가 모두 실제 줄로 {bad}')
     ov = await pg.evaluate("(()=>{const b=document.querySelector('#help .hbox');return [b.scrollWidth-b.clientWidth,[...b.querySelectorAll('.hkt li')].filter(l=>l.scrollWidth>l.clientWidth+1).length]})()")

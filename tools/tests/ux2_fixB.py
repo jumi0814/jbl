@@ -121,7 +121,7 @@ async def mac(b):
     await pg.screenshot(path=SHOT('v03_whatsnew', tag))
     await pg.evaluate("document.querySelector('#wnew [data-wnh]').click()"); await pg.wait_for_timeout(400)
     r = await pg.evaluate("[document.querySelector('#help').classList.contains('on'),(document.querySelector('#help tr.flash th')||{}).textContent||'']")
-    ok(r[0] and r[1] == '왼쪽 메뉴 M', f'V03 카드 [도움말 ▸] → 도움말의 그 줄 {r}')   # ux3 P2: 카드 = 3차 안내(첫 줄 🧭 왼쪽 메뉴)
+    ok(r[0] and r[1] == '왼쪽 메뉴 Shift+M', f'V03 카드 [도움말 ▸] → 도움말의 그 줄 {r}')   # ux3 P2: 카드 = 3차 안내(첫 줄 🧭 왼쪽 메뉴) · ux4f 사용자 10-02 메뉴 키 = Shift+M(M = 메모)
     await pg.evaluate("document.querySelector('#helpx').click()"); await pg.wait_for_timeout(200)
     await pg.evaluate("document.querySelector('#wnew [data-wnx]').click()"); await pg.wait_for_timeout(200)
     await open_(pg, '#/')
