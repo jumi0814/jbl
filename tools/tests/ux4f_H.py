@@ -28,7 +28,7 @@ with sync_playwright() as p:
         ctx, pg = new(b, W, H, T)
         for h_ in ['/CONS/WHT/sum', '/GERI/PSY/sum']:
             go(pg, h_)
-            if menu and pg.evaluate("document.body.classList.contains('sidefold')"): pg.keyboard.press('m'); pg.wait_for_timeout(800)
+            if menu and pg.evaluate("document.body.classList.contains('sidefold')"): pg.keyboard.press('Shift+M'); pg.wait_for_timeout(800)
             pg.evaluate("document.querySelectorAll('#stage .msum .mex:not(.mexo)').forEach(()=>0)"); r = pg.evaluate(STAR)
             ok(not r, f'H1 {W}{" 메뉴" if menu else ""} {h_} ★ 칸 칩 넘침 0 {r[:4]}')
         ok(not pg.errs, f'H1 {W} 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()

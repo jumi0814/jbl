@@ -38,11 +38,11 @@ async def main():
             await pg.evaluate("window.__lay=0;document.addEventListener('jbl:layout',()=>__lay++)")
             f0 = await pg.evaluate("document.body.classList.contains('sidefold')")   # 정리표는 SIDEAUTO로 접혀 시작할 수 있음
             w0 = await pg.evaluate("document.querySelector('#stage .msum').getBoundingClientRect().width")
-            await pg.keyboard.press('m'); await pg.wait_for_function("__lay>=1", timeout=5000); await pg.wait_for_timeout(300)
+            await pg.keyboard.press('Shift+M'); await pg.wait_for_function("__lay>=1", timeout=5000); await pg.wait_for_timeout(300)
             w1 = await pg.evaluate("document.querySelector('#stage .msum').getBoundingClientRect().width")
             f1 = await pg.evaluate("document.body.classList.contains('sidefold')")
             ok(f1 != f0 and abs(w1 - w0) > 200 and (w1 > w0) == f1, f'M → 메뉴 {"숨김" if f1 else "보임"}(sidefold {f0}→{f1}) · jbl:layout · 표 폭 {w0:.0f}→{w1:.0f}')
-            await pg.evaluate("document.dispatchEvent(new KeyboardEvent('keydown',{key:'ㅡ',code:'KeyM',bubbles:true}))"); await pg.wait_for_function("__lay>=2", timeout=5000)
+            await pg.evaluate("document.dispatchEvent(new KeyboardEvent('keydown',{key:'ㅡ',code:'KeyM',shiftKey:true,bubbles:true}))"); await pg.wait_for_function("__lay>=2", timeout=5000)
             ok(await pg.evaluate("document.body.classList.contains('sidefold')") == f0, '한글 입력 상태 M(ㅡ, KeyM) → 처음 상태로')
             ok(not errs, f'pageerror 0 {errs[:2]}')
             await ctx.close()

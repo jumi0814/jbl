@@ -255,7 +255,7 @@ def extra(b):
         ok(r[2] <= r[3] and (abs(r[1] - r[0]) < 2 or r[2] >= r[3] - 9), f'{tag} 집중 모드 [카드 ▾] 창이 버튼 아래 {r}')
         pg.click('#lmcur'); pg.keyboard.press('v'); pg.wait_for_timeout(500)
         if w <= 860:
-            pg.keyboard.press('m'); pg.wait_for_timeout(300); pg.keyboard.press('v'); pg.wait_for_timeout(500)
+            pg.keyboard.press('Shift+M'); pg.wait_for_timeout(300); pg.keyboard.press('v'); pg.wait_for_timeout(500)
             r = pg.evaluate("[document.body.classList.contains('navopen'),document.body.classList.contains('focus')]")
             ok(r == [False, True], f'{tag} 서랍이 열린 채 V → 서랍 닫고 집중 {r}')
             pg.keyboard.press('v'); pg.wait_for_timeout(400)

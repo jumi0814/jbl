@@ -33,14 +33,14 @@ async def run(b, tag, vp, touch):
     await pg.screenshot(path=J.TMP + f'/ux3p_{tag}_one.png'); await pg.click('#fone'); await pg.wait_for_timeout(300)
     if vp['width'] <= 860:   # ☰ 서랍
         await pg.goto('about:blank'); await pg.goto(U + '#/CONS/WHT/learn'); await pg.wait_for_selector('#stage .tc', timeout=30000); await pg.wait_for_timeout(600)
-        await pg.keyboard.press('m'); await pg.wait_for_timeout(500)
+        await pg.keyboard.press('Shift+M'); await pg.wait_for_timeout(500)
         r = await pg.evaluate("(()=>{const s=document.querySelector('#side').getBoundingClientRect();return [document.body.classList.contains('navopen'),Math.round(s.left),Math.round(s.right),document.documentElement.scrollWidth-innerWidth]})()")
         ok(r[0] and r[1] >= 0 and r[2] <= vp['width'] and r[3] <= 0, f'{tag} ☰ 서랍 열림·화면 안 {r}')
         await pg.screenshot(path=J.TMP + f'/ux3p_{tag}_drawer.png'); await pg.keyboard.press('Escape')
     else:   # 메뉴 숨김 정리표
         await pg.goto('about:blank'); await pg.goto(U + '#/CONS/WHT/sum'); await pg.wait_for_selector('#stage .msum', timeout=30000); await pg.wait_for_timeout(800)
         f0 = await pg.evaluate("document.body.classList.contains('sidefold')")
-        if not f0: await pg.keyboard.press('m'); await pg.wait_for_timeout(900)
+        if not f0: await pg.keyboard.press('Shift+M'); await pg.wait_for_timeout(900)
         r = await pg.evaluate("(()=>{const m=document.querySelector('#stage .msum').getBoundingClientRect();return [document.body.classList.contains('sidefold'),Math.round(m.width),document.documentElement.scrollWidth-innerWidth]})()")
         ok(r[0] and r[1] >= vp['width'] - 120 and r[2] <= 0, f'{tag} 메뉴 숨김 정리표 폭 {r}')
         await pg.screenshot(path=J.TMP + f'/ux3p_{tag}_sumfold.png')

@@ -127,7 +127,7 @@ def nav(b):
             ok(pg.evaluate("__h.LCUR") == -1, f'{tag} {s[0]} J J K K K → 틀 {pg.evaluate("__h.LCUR")}')
         if w <= 860:
             go(pg, '#/CONS/WHT/learn')
-            pg.keyboard.press('m'); pg.wait_for_timeout(300); pg.keyboard.press('v'); pg.wait_for_timeout(500)
+            pg.keyboard.press('Shift+M'); pg.wait_for_timeout(300); pg.keyboard.press('v'); pg.wait_for_timeout(500)
             r = pg.evaluate("[document.body.classList.contains('navopen'),document.body.classList.contains('focus'),document.documentElement.classList.contains('navlock')]")
             ok(r == [False, True, False], f'{tag} 서랍이 열린 채 V → 서랍 닫고 집중 · 스크롤 잠금 풀림 {r}')
         ok(not pg.errs, f'{tag} 오류 0 {pg.errs[:3]}')

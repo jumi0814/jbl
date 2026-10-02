@@ -262,8 +262,8 @@ def learn(b):
         ok(r[0] is False and r[1] and r[2] != 'none', f'{tag} 숨긴 채 H → 막대 다시 보임·형광펜 {r}')
         key(pg, 'ㅗ', 'KeyH')
         # 메모 Esc
-        key(pg, 'M', 'KeyM', True)
-        ok(pg.evaluate("document.activeElement.id") == 'memota', f'{tag} Shift+M → 메모 입력')
+        key(pg, 'm', 'KeyM')
+        ok(pg.evaluate("document.activeElement.id") == 'memota', f'{tag} M → 메모 입력')   # ux4f 10-02 M = 메모
         pg.keyboard.type('ab'); pg.keyboard.press('Escape'); pg.wait_for_timeout(250)
         r = pg.evaluate("[document.querySelector('#memo').classList.contains('on'),document.activeElement.id]")
         ok(r[0] is False and r[1] != 'memota', f'{tag} 메모에서 Esc → 닫힘·커서 빠짐 {r}')

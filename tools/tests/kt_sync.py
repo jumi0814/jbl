@@ -40,9 +40,9 @@ async def main():
             ok(vis == ['RX03'] and not errs, f'옛·깨진 mk {bad} → ★ 필터·O/X·키보드 pageerror 0 ({vis}) {errs[:1]}')
         # 메모: 포커스 없는 창은 새 값을 불러오고, 입력 중인 창은 저장할 때 구분선으로 합침
         await A.goto('about:blank'); await A.goto(U + '#/PHARM/RX/learn'); await Bp.goto('about:blank'); await Bp.goto(U + '#/PHARM/RX/learn'); await A.wait_for_timeout(900); await Bp.wait_for_timeout(900)
-        await A.keyboard.press('Shift+M'); await A.fill('#memota', '창A 메모'); await A.locator('#memota').blur(); await A.wait_for_timeout(200)
+        await A.keyboard.press('m'); await A.fill('#memota', '창A 메모'); await A.locator('#memota').blur(); await A.wait_for_timeout(200)
         ok(await Bp.evaluate("document.querySelector('#memota').value") == '창A 메모', '포커스 없는 창은 다른 창의 메모를 바로 불러옴')
-        await Bp.keyboard.press('Shift+M'); await Bp.wait_for_timeout(100); await Bp.type('#memota', ' + 창B 입력 중')
+        await Bp.keyboard.press('m'); await Bp.wait_for_timeout(100); await Bp.type('#memota', ' + 창B 입력 중')
         await A.fill('#memota', '창A 메모 수정'); await A.locator('#memota').blur(); await A.wait_for_timeout(200)
         await Bp.locator('#memota').blur(); await Bp.wait_for_timeout(200)
         mm = await ls(A, 'memo.PHARM.RX') or ''

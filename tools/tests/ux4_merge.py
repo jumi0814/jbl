@@ -15,7 +15,7 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 KEY = lambda k, code: f"document.dispatchEvent(new KeyboardEvent('keydown',{{key:'{k}',code:'{code}',bubbles:true}}))"
-KV, KM, KT = KEY('ㅍ', 'KeyV'), KEY('ㅡ', 'KeyM'), KEY('ㅅ', 'KeyT')
+KV, KM, KT = KEY('ㅍ', 'KeyV'), KEY('ㅡ', 'KeyM').replace("bubbles:true", "shiftKey:true,bubbles:true"), KEY('ㅅ', 'KeyT')   # ux4f 10-02 메뉴 = Shift+M
 ST = """(()=>{const q=s=>document.querySelector(s),vis=e=>!!e&&e.offsetParent!==null&&getComputedStyle(e).display!=='none'&&e.getBoundingClientRect().width>0;
  const B=document.body.classList,k=q('#kit'),kr=k.getBoundingClientRect(),dt=q('#dtabs'),sw=parseFloat(getComputedStyle(document.body).getPropertyValue('--sidew'))||0,W=document.documentElement.clientWidth;
  const fc=[...document.querySelectorAll('.fclock')].find(vis),c=q('#clock');
@@ -47,7 +47,7 @@ async def run(b, tag, vp, touch):
     ok(r['kv'] and abs(r['kc'] - r['W'] / 2) <= 2, f'{tag} ② 집중 중 도구 막대 화면 가운데 {r["kc"]}/{r["W"] / 2}')
     await pg.evaluate("__h.trStart()"); await pg.wait_for_timeout(1200); await pg.evaluate("__h.trRest()"); await pg.wait_for_timeout(1300)
     f1 = await pg.evaluate(ST); await pg.wait_for_timeout(2200); f2 = await pg.evaluate(ST)
-    ok(f1['st'] == 'rest' and (f1['fc'] or '').startswith('☕ 휴식 ') and ' · 공부 ' in (f1['fc'] or ''), f'{tag} ② 쉬는 중 .fclock {f1["fc"]!r}')
+    ok(f1['st'] == 'rest' and '휴식 ' in (f1['fc'] or '') and re.search(r'\d:\d\d:\d\d', f1['fc'] or ''), f'{tag} ② 쉬는 중 .fclock {f1["fc"]!r}')   # ux4f 10-02 탭 줄 시계 = [시간][상태] 칸(폭 고정)
     ok(f1['fc'] != f2['fc'] and re.search(r'휴식 \d+:\d\d', f2['fc'] or ''), f'{tag} ② 휴식 m:ss가 흐름 {f1["fc"]!r} → {f2["fc"]!r}')
     await shot('focus_rest')
     await pg.evaluate("__h.trStop()"); await pg.wait_for_timeout(300)
