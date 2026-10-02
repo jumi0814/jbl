@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"e4f049da",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"ddc4662a",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1779,6 +1779,10 @@ body.jbone #hero.hero{display:none}
 .cc .cx{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;text-overflow:clip;line-height:1.15}
 #nav .ni.nvl .el{display:block;-webkit-line-clamp:unset;overflow:visible}   /* ux4e 강의 줄 = 원래 제목 전체(줄바꿈 — 2줄 자름 없앰) */
 #nav .nvsjh{flex-wrap:wrap;row-gap:6px}#nav .nvsjn{flex:0 1 auto;min-width:auto;overflow-wrap:normal}   /* ux4e 과목 머리 이름은 낱말 한가운데서 끊지 않음 — 좁으면 [과목 바꾸기]가 다음 줄로 */
+/* ux4e 빵부스러기 강의 제목은 자르지 않음(3줄 자름 없앰) — 상단 막대는 52px 이상으로 늘어남(--toph는 layout()이 잼) · ≤860은 제목을 다음 줄 전체 폭으로 */
+#top{height:auto;min-height:52px}#top .crumb{max-height:none;padding:4px 0}
+#top .crumb .ccur{display:block;-webkit-line-clamp:unset;overflow:visible}
+@media (max-width:860px){#top .crumb{flex-wrap:wrap;row-gap:0}#top .crumb .ccur{flex:1 1 100%;padding:0 4px 2px}}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" type="button" title="메뉴 (M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt">0:00:00</span><small class="ckl"></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -1867,7 +1871,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="e4f049da",PV={"OMS1": "66314789", "CONS": "a7d1ac62", "IMPL": "823690a3", "ANAT": "963260a4", "GERI": "7992475b", "PHARM": "ba13a4bd"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="ddc4662a",PV={"OMS1": "80a357c7", "CONS": "db0d7b22", "IMPL": "11709d50", "ANAT": "23394521", "GERI": "363a2f19", "PHARM": "e26b7f39"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
