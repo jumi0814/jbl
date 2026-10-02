@@ -74,7 +74,7 @@ async def run(b, base, vp, touch, tag):
     nall = int(chips[0].split()[-1]); njb = int([c for c in chips if c.startswith('JB')][0].split()[-1])
     await pg.evaluate("document.querySelector('#home [data-sk=jb]').click()"); await pg.wait_for_timeout(300)
     tl = await pg.evaluate("[...document.querySelectorAll('#home .sres .stl b')].map(b=>b.textContent)")
-    ok(len(tl) == njb and all(' · JB ' in x or x.split(' · ')[1].startswith('JB') for x in tl) and (await pg.evaluate('location.hash')).endswith('&k=jb'), f'JB 칩 → JB 결과만 {len(tl)}건 · 해시 &k=jb')
+    ok(len(tl) == njb and all(x.startswith('JB ') or ' · JB ' in x for x in tl) and (await pg.evaluate('location.hash')).endswith('&k=jb'), f'JB 칩 → JB 결과만 {len(tl)}건 · 해시 &k=jb {tl[:2]}')   # ux4f 결과 줄 머리에 과목 코드 없음(사용자 10-01 코드·줄임 대신 원래 이름) — 줄이 \'JB …\'로 시작
     await pg.screenshot(path=J.TMP + f'/ux2i_b09_jb_{tag}.png')
     await pg.reload(); await pg.wait_for_function("document.querySelector('#home .skinds [data-sk=jb].on')&&__h.sxProg().ready", timeout=30000); await pg.wait_for_timeout(300)
     tl2 = await pg.evaluate("document.querySelectorAll('#home .sres').length")
