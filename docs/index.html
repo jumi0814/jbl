@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"b71cc7ae",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"adfc9b83",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -454,7 +454,7 @@ tr.h1 .mn,tr.h2 .mn{background:var(--acc)}.ln.lab-r b{background:#5F584E}
 .fcard .fcbody{text-align:left;font-size:16px;line-height:1.7}.fcard ul.fcl{margin:0;padding-left:20px}.fcard ul.fcl li{margin:4px 0}
 .fcard.cloze .k{color:inherit;background:none}.fcard .k.fcb{background:#E9E2D0;color:transparent!important;border-bottom:2px solid #8C857A;border-radius:3px 3px 0 0;cursor:pointer;padding:0 2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}.fcard .k.fcb.show{background:#FFF3C8;color:var(--red)!important;border-bottom-color:#C99A2E}
 .fcm{font-size:11.5px;font-weight:800;letter-spacing:0;border-radius:999px;padding:1px 8px;margin-left:6px;border:1px solid}.fcm.o{color:#1C5B33;border-color:#5F9E7A}.fcm.x{color:#8E1B14;border-color:#C98484}
-.fcjudge{display:flex;gap:12px;justify-content:center;margin-top:12px;position:sticky;bottom:calc(var(--kith,64px) + 10px);z-index:5;padding:6px 0;background:linear-gradient(rgba(245,241,233,0),var(--paper) 35%)}   /* ux2 fixB VIS09 긴 뒷면에서도 알아요/몰라요가 도구 막대 위에 늘 보임 */.fcjudge .btn{min-width:120px;min-height:48px;font-size:15px;font-weight:800;border-radius:12px}.fcjudge .fx{color:#8E1B14;border-color:#C98484;background:#fff}.fcjudge .fo{color:#1C5B33;border-color:#5F9E7A;background:#fff}.fcjudge .fx.on{background:#F7DAD6}.fcjudge .fo.on{background:var(--mint)}
+.fcjudge{display:flex;gap:12px;justify-content:center;margin-top:8px}.fcdock{position:sticky;bottom:calc(var(--kith,64px) + 10px);z-index:5;padding:6px 0;background:linear-gradient(rgba(245,241,233,0),var(--paper) 35%)}.fcdock .fcctl{margin-top:6px}   /* ux4f C 36 ◀ n/N ▶ 줄과 알아요/몰라요를 한 덩어리(.fcdock)로 붙임 — 긴 카드에서 판정 줄이 ◀▶ 줄을 덮던 것 */   /* ux2 fixB VIS09 긴 뒷면에서도 알아요/몰라요가 도구 막대 위에 늘 보임 */.fcjudge .btn{min-width:120px;min-height:48px;font-size:15px;font-weight:800;border-radius:12px}.fcjudge .fx{color:#8E1B14;border-color:#C98484;background:#fff}.fcjudge .fo{color:#1C5B33;border-color:#5F9E7A;background:#fff}.fcjudge .fx.on{background:#F7DAD6}.fcjudge .fo.on{background:var(--mint)}
 .fckeys{margin-top:8px}@media (hover:none){.fckeys{display:none}}#fc .fcard{touch-action:pan-y}
 /* 그림 확대창 v3(U29) — 캡션·넘기기 범위·44px 버튼·불러오는 중 */
 #mbar .btn{min-width:44px;min-height:44px}#mcap{color:#EDE6D8;font-size:14px;line-height:1.5;padding:0 16px 8px;max-width:980px}#mcap[hidden]{display:none}
@@ -708,7 +708,7 @@ body.fighide .tc .figs{display:none}body.fighide .tc .figchip{display:inline-fle
 .jbpeek .jph{display:flex;align-items:center;gap:8px;margin-bottom:6px}.jbpeek .jph b{font-size:13px;color:var(--sub)}.jbpeek .jpx{margin-left:auto;border:0;background:none;font-size:16px;color:var(--sub);min-width:36px;min-height:32px;cursor:pointer}
 .jbpeek .jpq .ln{margin:1px 0}.jbpeek .jpq .ln:first-child{font-weight:700}.jbpeek .jpmore{color:var(--sub);font-size:13px}.jbpeek .jpfig{font-size:13px;color:#7C5E0E;margin-top:2px}
 .jbpeek .jpa{margin-top:6px;border-left:3px solid #C99A2E;padding:2px 0 2px 10px;background:var(--peach);border-radius:0 8px 8px 0;max-height:260px;overflow:auto}.jbpeek .jpshow{margin-top:8px}
-.jbpeek .jpb{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.jbpeek .jpb .btn{min-height:36px}.jbpeek .jpb .on[data-jpmk=ok]{background:var(--mint);border-color:#5F9E7A}.jbpeek .jpb .on[data-jpmk=ng]{background:#FBE3E0;border-color:#C98484}
+.jbpeek .jpb{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.jbpeek .jpb .btn{min-height:36px}.jbpeek .jpb .on[data-jpmk=ok]{background:var(--surface,#fff);border-color:var(--ink);color:var(--ink);font-weight:700}.jbpeek .jpb .on[data-jpmk=ng]{background:var(--surface,#fff);border-color:var(--red);color:var(--red);font-weight:700}   /* ux4f C 53 JB 채점 버튼과 같이 채움 없음 */
 /* ===== E — 정리표·비교표·기출 한눈표 (2차 묶음 5) ===== */
 /* E02 정리표 두 밀도: 요약(기본) = 세부 칸은 .sline(소제목: 시험 핵심어) · 전체 = #stage.sdfull · 세부 전체는 DOM에 그대로(.mfull) */
 table.mtx col.c1{width:15%}table.mtx col.c2{width:23%}table.mtx col.c3{width:22%}table.mtx col.c4{width:18%}table.mtx col.c5{width:22%}
@@ -790,7 +790,7 @@ table.sum .qbody{font-weight:400;font-size:calc(13.5px*var(--fs));color:#4A423A;
 .qmore{border:0;background:none;font:inherit;font-weight:700;color:var(--acc);padding:0 3px;cursor:pointer}.qmore::before{content:"…▸"}.qopen .qmore::before{content:" ▴"}@media (pointer:coarse){.qmore{padding:6px 8px;margin:-6px 0}}
 .alab{font-size:calc(11.5px*var(--fs));font-weight:700;color:var(--sub);margin-right:2px}table.sum .ln.exl{margin-top:4px}table.sum .ln.tabl{white-space:pre-wrap;font-variant-numeric:tabular-nums;font-size:calc(13px*var(--fs))}
 .sumlk{margin:4px 0 0;cursor:pointer;min-height:26px}.sumlk::before{content:"📖 카드"}
-.sumbar{position:sticky;top:calc(var(--toph) + var(--tabh));z-index:12;background:var(--paper);padding:6px 0;margin:-4px 0 10px;border-bottom:1px solid var(--line2);display:flex;flex-direction:column;gap:5px}.sumbar .sbr{display:flex;flex-wrap:wrap;gap:5px;align-items:center}.sumbar .sbl{display:flex;flex-wrap:wrap;gap:5px}.sumbar .tg b{font-size:11.5px;color:var(--sub);margin-left:2px}
+.sumbar{position:sticky;top:calc(var(--toph) + var(--tabh));z-index:12;background:var(--paper);padding:6px 0;margin:-4px 0 10px;border-bottom:1px solid var(--line2);display:flex;flex-direction:column;gap:5px}.sumbar .sbr{display:flex;flex-wrap:wrap;gap:5px;align-items:center}.sumbar .sbl{display:flex;flex-wrap:wrap;gap:5px}.sumbar .sbr:first-child,.sumbar .sbl{flex-wrap:nowrap;min-width:0;flex:1 1 100%}.sumbar .sbl,.tbltoc .ttc{overflow-x:auto;scrollbar-width:thin;overscroll-behavior-x:contain}.sumbar .sbl .tg,.tbltoc .ttc .tg{flex:none;white-space:nowrap}.tbltoc .ttc{flex-wrap:nowrap}.tbltoc .ttc [data-tjb]{position:sticky;right:0;background:var(--paper)!important;box-shadow:-10px 0 8px -4px var(--paper)}.sleg.slego{display:block;margin:-4px 0 10px}   /* ux4f C 39 붙는 막대는 한 줄씩 — 강의 칩은 가로로 밀어 보는 한 줄(이름은 그대로)·범례는 막대 밖(스크롤되어 사라짐) */.sumbar .tg b{font-size:11.5px;color:var(--sub);margin-left:2px}
 .sleg{margin-left:6px}.sleg i{display:inline-block;vertical-align:-1px;margin:0 3px 0 6px}.sleg .lg2{width:4px;height:12px;background:var(--acc)}.sleg .lg1{width:1px;height:12px;background:var(--acc)}
 .smk{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:6px}.mdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#C9C1B3}.mdot.ok,tr.mk-ok .mdot{background:#3E8E5A}.mdot.ng,tr.mk-ng .mdot{background:#B3261E}
 .smk button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;padding:0;font-size:13px;color:var(--sub);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.smk [data-smk=ok]::before{content:"✓"}.smk [data-smk=ng]::before{content:"✗"}.smk [data-smk=bm]::before{content:"★"}
@@ -846,7 +846,7 @@ body.jbone #stage{padding-top:2px}body.jbone #jbbar{padding-top:4px;padding-bott
 body.jbone #jbbar.fopen .b2{display:flex}body.jbone #jbbar.fopen{box-shadow:0 6px 16px rgba(40,30,10,.12)}
 body.jbone #stage .qc .acts:not(.acts2)>[data-tog],body.jbone #stage .qc .acts:not(.acts2)>[data-mk]{display:none}body.jbone #stage .qc .acts:not(.acts2):not(:has(>[data-jb])):not(.qc.open .acts){display:none}body.jbone #stage .qc .acts:not(.acts2){margin-top:6px}
 #stage.single .onebar{gap:6px}.onebar .oautos{display:inline-flex;flex-direction:column;align-items:flex-start;gap:0;font-size:12.5px;line-height:1.35}.onebar .oautos .oauto{min-height:0}
-.onebar .otool{display:inline-flex;gap:4px}.onebar .otk{min-width:44px;min-height:44px;padding:4px 8px;font-size:16px;border-radius:12px}
+.onebar .otool{display:inline-flex;gap:4px}body.focus .onebar .otool .ktog,body.focus .onebar .otool .dfoc{display:none}   /* ux4f C 50 집중 모드에선 위 탭 줄(lmini2)에 ✎ 도구·집중 끝이 있으니 아래 풀이 막대엔 🖍 ▣만(한 벌) */.onebar .otk{min-width:44px;min-height:44px;padding:4px 8px;font-size:16px;border-radius:12px}
 body.mode-h .onebar #okh,body.mode-b .onebar #okb{background:#443C33;color:#fff;border-color:#443C33}
 .oang{display:none}.onebar:has(#oauto:checked) .oang{display:inline-flex}
 @media (max-width:1199px){.onebar .okeys{display:none}}
@@ -854,7 +854,7 @@ body.mode-h .onebar #okh,body.mode-b .onebar #okb{background:#443C33;color:#fff;
 .qhead .chip.seq{background:transparent;border:1px solid var(--line);color:#6A6257;font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;min-height:22px;padding:1px 7px}
 .single .qhead .chip.seq{display:none}
 #cards .qc.cur2{box-shadow:inset 3px 0 0 var(--accb,#C9BFAE),0 1px 2px rgba(0,0,0,.03)}
-#fnow{display:none;white-space:nowrap;font-variant-numeric:tabular-nums;gap:.3em}#jbbar.mini #fnow:not([hidden]){display:inline-flex;margin-left:auto}#jbbar.mini #fnowi:not([hidden]){margin-left:auto}#jbbar.mini .b1 select{max-width:7.2em}@media (max-width:1240px){#jbbar.mini #fsort{display:none}}#jbbar.mini .b1 .tg{padding-left:9px;padding-right:9px}#jbbar.mini .b1{gap:4px}#jbbar.mini .b1 select{padding-left:5px;padding-right:2px}body.jbone #fnow,body.jbone #fnowi{display:none!important}
+#fnow{display:none;white-space:nowrap;font-variant-numeric:tabular-nums;gap:.3em}#jbbar.mini #fnow:not([hidden]){display:inline-flex;margin-left:auto}#jbbar.mini #fnowi:not([hidden]){margin-left:auto}#jbbar.mini .b1 select{max-width:7.2em}@media (max-width:1320px){#jbbar.mini #fsort{display:none}}@media (max-width:860px){#jbbar.mini #frev{display:none}}#jbbar.mini .b1 .tg{padding-left:9px;padding-right:9px}#jbbar.mini .b1{gap:4px}#jbbar.mini .b1 select{padding-left:5px;padding-right:2px}body.jbone #fnow,body.jbone #fnowi{display:none!important}
 #fnowi{width:5.2em;padding:1px 8px;border:1px solid var(--line);border-radius:999px;font-size:13.5px}
 #jbbar .qn,#jbbar .rvc{font-variant-numeric:tabular-nums;font-weight:800;font-size:12px;opacity:.85}#jbbar.mini .wl{display:none}
 /* ux2 fixB flow V02·V16 줄인 막대(.mini): 한 줄 고정 — 글자 줄바꿈 없음 · 넘치면 가로로 밀기(끝내기 버튼은 오른쪽에 붙음) · '한 번이라도 틀림'은 필터 ▾ 안(켜져 있을 때만 막대에) · 한 장씩 좁은 화면은 교수·연도·정렬·짤/탈을 필터 ▾ 안으로(고른 값이 있으면 막대에 남음) */
@@ -1035,7 +1035,7 @@ details.cadd{border:1px solid var(--line);border-radius:10px;padding:6px 10px;ma
 .rk-b.show.rkb-u,.rk-reveal .rk-b.rkb-u{background:var(--bk-open)!important;border-bottom-color:var(--bk-uu)!important}.rk-b.show.rkb-g,.rk-reveal .rk-b.rkb-g{background:var(--bk-open)!important;border-bottom-color:var(--bk-gu)!important}
 .rk-b.show.rkb-p,.rk-reveal .rk-b.rkb-p{background:var(--bk-open)!important;border-bottom-color:var(--bk-pu)!important}.rk-b.show.rkb-v,.rk-reveal .rk-b.rkb-v{background:var(--bk-open)!important;border-bottom-color:var(--bk-vu)!important}
 .rk-b[data-auto]{border-bottom-style:dotted!important}
-.rk-b{-webkit-touch-callout:none}
+.rk-b{-webkit-touch-callout:none}@media (pointer:coarse){#stage .rk-b{-webkit-user-select:none;user-select:none}}   /* ux4f C 59 빈칸 길게 누르기(색 바꾸기)에 iOS 글자 선택이 함께 뜨지 않게 */
 @media print{.rk-b.rk-b.rk-b.rk-b{background:none!important;color:inherit!important;border-bottom:1.5px solid #000!important}.rk-b *{color:inherit!important}}
 /* K4 도구 막대 빈칸 견본(#k-bsw — 지금 색 하나, 누르면 5색) · 좁은 화면은 #k-sw ▾ 팝업 둘째 줄 · ▣ 밑줄 = 지금 빈칸 색 */
 .bsw{display:inline-block;width:17px;height:17px;border-radius:4px;background:var(--bb);box-shadow:inset 0 -3px 0 var(--bu);border:2px solid transparent;cursor:pointer;padding:0;vertical-align:middle;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
@@ -1762,7 +1762,7 @@ body.jbone #hero.hero{display:none}
 /* ux4 묶음3 끝 */
 /* ux4c 1회차 — 검색 머리의 '전체로 넓히기'는 제목 크기가 아닌 작은 링크 · 터치 기기 작은 버튼 40px */
 #home .shead h2 .swide{font-size:13.5px;font-weight:400;margin-left:6px;vertical-align:middle}#home .shead h2 .small{font-weight:400}
-@media (pointer:coarse){#dtabs .dfoc,#kit #k-swc,#kit #k-bswc{min-width:40px;justify-content:center}#stage .frame .frtog{min-width:40px;min-height:40px!important;justify-content:flex-end}}
+@media (pointer:coarse){#dtabs .dfoc,#kit #k-swc,#kit #k-bswc{min-width:40px;justify-content:center}#dtabs button.dfoc,#dtabs button.ktog{min-width:44px!important;height:44px;min-height:44px}#kit #k-swc,#kit #k-bswc{min-width:44px;min-height:44px}#toasterr .tact,#toast .tact,#toasterr button{min-height:44px}#stage details>summary:not(.tg),.pop details>summary{min-height:44px;box-sizing:border-box;padding-top:10px;padding-bottom:10px}#stage .frame details.trend>summary{display:inline-block;padding:10px 0;min-height:44px;box-sizing:border-box}   /* ux4f C 58 손가락 대상 44px — ⤢ 집중·색 ▾·저장 실패 띠 버튼·접는 줄(출제 경향·탈 문항 목록·복원 창) */#stage .frame .frtog{min-width:40px;min-height:40px!important;justify-content:flex-end}}
 
 /* ===== ux4e 이름 그대로(사용자 '과목명·강의자료 이름은 줄이지 말고 원래 그대로'): 과목·강의 이름은 말줄임(…) 대신 줄바꿈 — 낱말 단위(keep-all)·줄간격 1.3 ===== */
 #nav .ni .el,#nav .nvsn,#nav .nvsjn,.nvswp .pi,#home .hub4 .hrt small,#home .hub4 .htx small,#home .hub4 .htx b,#home .hub4 .hnm b,#home .hub4 .hnm small,.hcn small,.chip.ljc span,.hres .hrchip span,.tvs .nm,.crow .csj,#dtabs .dtone,.dtname,.hrk,.hrt b{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;overflow-wrap:anywhere;line-height:1.3}
@@ -1872,7 +1872,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="b71cc7ae",PV={"OMS1": "feeb9044", "CONS": "8b812617", "IMPL": "bf5a05da", "ANAT": "2e0253aa", "GERI": "6cf1428d", "PHARM": "8c2aabae"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="adfc9b83",PV={"OMS1": "66093a9d", "CONS": "71f83d96", "IMPL": "1f6a736d", "ANAT": "37b91c2d", "GERI": "e3155976", "PHARM": "6f7bf0cc"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2648,7 +2648,8 @@ function probePos(){const line=topOff(),line0=line-12;for(const b of $$('#stage 
 function restoreAt(pos,y){const el=pos&&pos.aid?findAid(pos.aid):null;if(el&&el.offsetParent!==null){settle(()=>goEl(el,pos.off||0));return true;}if(y!=null&&!isNaN(+y)){settle(()=>window.scrollTo(0,+y));return true;}return false;}
 /* 숨은 카드로 갈 때 드러내기: JB = tier 켜기·내 필터/검색어 풀기(가린 것만)·한 장씩이면 그 카드로 / 정리본 = 그룹·압축·only- 필터 해제 후 펼침. 답은 opt.open일 때만 */
 function revealCard(el,o){o=o||{};if(!el)return;const st=$('#stage');const c=el.closest('.qc,.tc,.pc,.tblwrap,[data-aid]')||el;ux2Reveal(c);
- if(c.classList.contains('qc')&&JB.F&&$('#cards')){const F=JB.F;JB._free=true;try{   /* ux4 B17 문항 id로 가는 것은 회차 확인창 없이(회차 목록 sess는 그대로 — 새로고침하면 회차로) */if(!F.tiers[c.dataset.tier]){F.tiers[c.dataset.tier]=true;JB.apply(true);}
+ if(c.classList.contains('qc')&&JB.F&&$('#cards')&&JB.one&&JB.sess&&Array.isArray(JB.sess.ids)&&JB.sess.ids.indexOf(c.dataset.id)<0){JB.visitShow(c);return;}   /* ux4f C 46 한 장씩 회차 밖 문항은 그 카드만 잠깐(회차·필터·위치 그대로 — ◀▶면 회차 자리로) */
+  if(c.classList.contains('qc')&&JB.F&&$('#cards')){const F=JB.F;JB._free=true;try{   /* ux4 B17 문항 id로 가는 것은 회차 확인창 없이(회차 목록 sess는 그대로 — 새로고침하면 회차로) */if(!F.tiers[c.dataset.tier]){F.tiers[c.dataset.tier]=true;JB.apply(true);}
   if(c.classList.contains('hid')){F.mine='';F.q='';JB.apply(true);}if(c.classList.contains('hid')){F.prof='';F.lec='';F.n=0;F.ver='';F.yr='';F.st='';JB.apply(true);}
   JB.sync();if(JB.one){const i=JB.vis.indexOf(c);if(i>=0){JB.cur=i;JB.show(true);}}else if(st.classList.contains('jblist'))c.classList.add('lx');}finally{JB._free=false;JB.Fsnap=JSON.stringify(JB.F);}}   /* ux2 F11 압축 목록이면 그 카드는 원래 모양으로 */
  if(c.classList.contains('tc')){if(c.classList.contains('hid')||$$('#stage .gdiv.hid').length){$$('#grppills [data-grp]').forEach(b=>b.classList.toggle('on',b.dataset.grp===''));$$('#stage .tc,#stage .gdiv').forEach(x=>x.classList.remove('hid'));}
@@ -2670,7 +2671,7 @@ function findMark(c,o){const nz=x=>String(x||'').replace(/\s+/g,'');const want=n
 function retFrom(){if(VIEW!=='doc'||!CUR.s)return null;const p=PACKS[CUR.s],L=p.lect.find(x=>x.k===CUR.d);const r={s:CUR.s,d:CUR.d,t:CUR.t};
  if(isJBv()&&JB.F){JB.save();const sv=JB.saved||{};const pre=L?sname(p,CUR.d)+' 기출':'JB';r.label=(JB.one&&JB.vis.length)?pre+' '+(JB.cur<JB.vis.length?(JB.cur+1)+'/'+JB.vis.length:'요약'):pre+(sv.curId?' '+sv.curId:'');r.curId=sv.curId||null;r.pos=sv.pos||null;return r;}
  const P=probePos();r.pos=P?{aid:P.aid,off:P.off}:null;const base=L?sname(p,CUR.d):((SUBJDOCS.find(x=>x[0]===CUR.d)||['',CUR.d])[1]).replace(/^\S+\s/,'');r.label=base+(P&&P.n&&CUR.t==='learn'?' 카드 '+P.n:'');return r;}
-function retPill(){const b=$('#retpill');if(!b)return;const on=!!RET&&VIEW==='doc';b.classList.toggle('on',on);if(on)b.textContent='↩ '+RET.label+'로 돌아가기';}
+function retPill(){const b=$('#retpill');if(!b)return;const on=!!RET&&VIEW==='doc';b.classList.toggle('on',on);if(on)b.textContent='↩ 돌아가기 · '+RET.label;   /* ux4f C 60 조사 없이(‘Tooth whitening로’·‘카드 3로’) */}
 function goRet(){const r=RET;if(!r)return;RET=null;retPill();if(history.state&&history.state.ret===r.id){history.back();return;}openDoc(r.s,r.d,r.t,null,{pos:r.pos});}
 function resClick(r){const d=r.dataset;if(r.classList.contains('go-resume'))openDoc(d.s,d.d,d.t||undefined,null,{pos:d.aid?{aid:d.aid,off:+d.off||0}:null});else openDoc(d.s,d.d,d.t||undefined,d.aid||undefined);}
 /* ---------- 과목·문서 ---------- */
@@ -2767,7 +2768,7 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  if(d==='_jb')h=jbBar(p,{})+'<div class="cards" id="cards">'+cardsHTML(p,p.order)+'</div><div class="panel" id="jbempty" hidden>조건에 맞는 문항이 없습니다.</div>';
  else if(d==='_sum')h=p.sumall;else if(d==='_led')h=p.ledger;else if(d==='_marks')h=marksHTML(p);
  else if(d==='_tbl')h=tblAllHTML(p);
- else if(d==='_pred')h=predBar()+p.preds.map(x=>x.html).join('');
+ else if(d==='_pred')h=predBar()+predOrd(p).map(i=>p.preds[i].html).join('');
  else{const L=p.lect.find(x=>x.k===d);
   if(t==='learn')h=L.head+L.learn+nextHTML(p,L);
   else if(t==='sum')h=sumHTML(p,L)+nextLine(p,L);else if(t==='tbl')h=L.tbl.map(i=>p.tables[i].html).join('')+nextLine(p,L);
@@ -2882,16 +2883,16 @@ const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.
   const fo=$('#fone');if(fo)fo.classList.toggle('on',this.one);$('#stage').classList.toggle('single',this.one);
   const more=$('#jbmore');if(more&&more.hidden&&(F.lec||F.ver||+F.n||F.tiers.C||F.tiers.A===false||F.tiers.B===false)){more.hidden=false;const fm=$('#fmore');if(fm)fm.textContent='상세 필터 ▴';}},
  save(){if(!this.F||!isJBv()||!$('#cards'))return;const P=this.one?null:probePos();const c=this.one?this.vis[this.cur]:(P?findAid(P.aid):null);
-  const o={F:this.F,one:this.one,curId:(c&&c.dataset.id)||null,y:Math.round(scrollY)};if(P)o.pos={aid:P.aid,off:P.off};if(this.F.sort==='r'&&this.shuf)o.shuf=this.shuf;if(this.sess&&Object.keys(this.sess).length)o.sess=this.sess;if(this.hs)o.hs=this.hs;if(!this.one){const op=$$('#cards .qc.open').map(c=>c.dataset.id+(c.classList.contains('deep')?'+':'')).slice(0,60);if(op.length)o.op=op;}   /* ux4d: 펼친 답(1·2단계)은 이 탭에만 — ↩ 돌아가기·뒤로가기 후 그대로 */
+  const vc=this.one&&this.visit?(this.vis.filter(x=>x!==this.visit.c)[this.visit.back]||null):c;const o={F:this.F,one:this.one,curId:(vc&&vc.dataset.id)||null,y:Math.round(scrollY)};if(P)o.pos={aid:P.aid,off:P.off};if(this.F.sort==='r'&&this.shuf)o.shuf=this.shuf;if(this.sess&&Object.keys(this.sess).length)o.sess=this.sess;if(this.hs)o.hs=this.hs;if(!this.one){const op=$$('#cards .qc.open').map(c=>c.dataset.id+(c.classList.contains('deep')?'+':'')).slice(0,60);if(op.length)o.op=op;}   /* ux4d: 펼친 답(1·2단계)은 이 탭에만 — ↩ 돌아가기·뒤로가기 후 그대로 */
   SS.set(this.key(),o);LS.set(this.key(),Object.assign({},o,{at:Date.now(),op:undefined}));this.saved=o;},
  /* C07 회차 고정 — 한 장씩을 시작할 때의 문항 목록(sess.ids)을 그대로: 새로고침·새 탭에서도 필터를 다시 계산하지 않음 · 회차 중 필터를 바꾸면 '새 회차를 시작할까요?' */
- applyIds(){const pos={};this.sess.ids.forEach((id,i)=>pos[id]=i);this.vis=[];$$('#cards .qc').forEach(c=>{const i=pos[c.dataset.id],on=i!=null;c.classList.toggle('hid',!on);if(on){c.style.order=i;c._o=i;this.vis.push(c);}});
+ applyIds(){this.visit=null;const pos={};this.sess.ids.forEach((id,i)=>pos[id]=i);this.vis=[];$$('#cards .qc').forEach(c=>{const i=pos[c.dataset.id],on=i!=null;c.classList.toggle('hid',!on);if(on){c.style.order=i;c._o=i;this.vis.push(c);}});
   this.vis.sort((a,b)=>a._o-b._o);seqFill();this.prog();const em=$('#jbempty');if(em)em.hidden=!!this.vis.length;this.cur=0;this.show(true);jbRePill();},
  startRound(){this.pvOk=new Set();this.sess={ids:this.vis.map(c=>c.dataset.id)};this.save();jbRePill();},
  newRound(){this.sess={};this._free=true;this.apply(true);this._free=false;this.startRound();this.cur=0;this.show();const c=this.vis[0];if(c)goEl(c);toast('필터를 다시 적용해 새 회차를 시작했어요 — '+this.vis.length+'문항');},
  apply(ns){if(this.one&&this.sess&&Array.isArray(this.sess.ids)&&!this._free){if(Date.now()-(this._conf||0)>3000&&!confirm('새 회차를 시작할까요?\n\n지금 회차('+this.sess.ids.length+'문항)를 끝내고 바뀐 필터로 한 장씩을 새로 시작해요. (채점 기록은 그대로)')){if(this.Fsnap)this.F=JSON.parse(this.Fsnap);this.sync();return;}this._conf=Date.now();this.sess={};this._round=true;}
   this._apply(ns);if(this._round){this._round=false;this.sess={ids:this.vis.map(c=>c.dataset.id)};this.save();}this.Fsnap=JSON.stringify(this.F);jbRePill();},
- _apply(ns){const F=this.F,nz=x=>String(x||'').toLowerCase().replace(/\s+/g,''),qn=nz(String(F.q||'').split(/\s+/).map(w=>w.replace(/^([A-Za-z0-9.+\-]+)(과|와|을|를|이|가|은|는|의|에|에서|로|으로|도|만)$/,'$1')).join('')),cs=$$('#cards .qc');this.vis=[];let RV=null;   /* 영문 낱말 뒤 조사는 뗌('warfarin과' → warfarin) */
+ _apply(ns){this.visit=null;const F=this.F,nz=x=>String(x||'').toLowerCase().replace(/\s+/g,''),qn=nz(String(F.q||'').split(/\s+/).map(w=>w.replace(/^([A-Za-z0-9.+\-]+)(과|와|을|를|이|가|은|는|의|에|에서|로|으로|도|만)$/,'$1')).join('')),cs=$$('#cards .qc');this.vis=[];let RV=null;   /* 영문 낱말 뒤 조사는 뗌('warfarin과' → warfarin) */
   cs.forEach(c=>{const d=c.dataset;let ok=jbBase(c,F);
    if(ok&&F.mine==='bm')ok=!!MK.bm[d.id];if(ok&&(F.mine==='due'||F.mine==='ever')){if(!RV)RV=revInfo(CUR.s);ok=RV[F.mine].has(d.id);}if(ok&&F.mine==='ng')ok=!!MK.ng[d.id];if(ok&&F.mine==='todo')ok=!MK.ok[d.id]&&!MK.ng[d.id]&&!d.unrec;if(ok&&this.one&&d.unrec&&!MK.ok[d.id]&&!MK.ng[d.id])ok=false;   /* ux2 fixB VIS14 미복원 문항은 안 푼 것·한 장씩 회차에서 뺌(목록 '전체'에는 남음) */
    /* 검색: 띄어쓰기를 뺀 글자끼리 · 범위 = 문제만(.qtext) / 문제+답(+JB 답안) / 전체(카드 전체) */
@@ -2910,16 +2911,18 @@ const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.
   $$('#cards .qc.pvh').forEach(x=>{if(!one||x!==this.vis[this.cur])x.classList.remove('pvh');});
   if(one){const n=this.vis.length;if(this.cur<0)this.cur=0;if(this.cur>n)this.cur=0;const c=this.vis[this.cur];if(c)c.classList.add('cur');
    if(c)c.classList.toggle('pvh',!!LS.get('jbhidePrev',true)&&!c.classList.contains('open')&&!(this.pvOk&&this.pvOk.has(c.dataset.id)));   /* ux2 fixB flow V20: 답을 열거나 이번에 채점하기 전까지 이전 채점(✓✗ 채움·기록 칩)을 숨김 */
-   if(sm){sm.hidden=!!c||!n;if(!c&&n)sm.innerHTML=this.sumHTML();}const op=$('#opos');if(op)op.textContent=n?(c?(this.cur+1)+'/'+n:'요약'):'0/0';this.bar();}
+   if(sm){sm.hidden=!!c||!n;if(!c&&n)sm.innerHTML=this.sumHTML();}const op=$('#opos');const vz=!!(this.visit&&c===this.visit.c),nn=this.visit?n-1:n;if(op)op.textContent=vz?'회차 밖':n?(c?(this.cur+1-(this.visit&&this.cur>this.visit.back?1:0))+'/'+nn:'요약'):'0/0';this.bar();}
   else if(sm)sm.hidden=true;
   jbMini();measure();jbSpyOn();if(!ns)this.save();},
  /* 풀이 막대 버튼 상태(답 보기/가리기·맞음·틀림·★) */
  bar(){const c=this.one?this.vis[this.cur]:null,id=c&&c.dataset.id;const t=$('#otog');if(!t)return;t.textContent=!c||!c.classList.contains('open')?'답 보기':c.classList.contains('deep')?'답 가리기 ▲':'자세히 ▾';
   const pv=!!(c&&c.classList.contains('pvh'));[['ook','ok'],['ong','ng'],['obm','bm']].forEach(([b,k])=>{const e=document.getElementById(b);if(e){e.classList.toggle('on',!!(id&&MK[k][id])&&!(pv&&k!=='bm'));e.disabled=!c;}});t.disabled=!c;},
- go(d){const n=this.vis.length;if(!n)return;if(d>0&&this.cur>=n)this.cur=0;else this.cur=Math.max(0,Math.min(n,this.cur+d));this.show();const el=this.vis[this.cur]||$('#onesum');
+ visitShow(c){this.visitEnd(true);const back=Math.min(this.cur,this.vis.length);c.classList.remove('hid');this.vis.splice(back,0,c);this.visit={c,back};this.cur=back;this.show(true);goEl(c);toast('이번 회차 밖 문항이에요 — ◀ ▶를 누르면 회차 '+(back<this.sess.ids.length?(back+1)+'/'+this.sess.ids.length:'요약')+'로 돌아가요');},
+ visitEnd(quiet){const v=this.visit;if(!v)return false;this.visit=null;const i=this.vis.indexOf(v.c);if(i>=0)this.vis.splice(i,1);if(this.sess&&Array.isArray(this.sess.ids)&&this.sess.ids.indexOf(v.c.dataset.id)<0){v.c.classList.add('hid');v.c.classList.remove('cur','open','deep');}this.cur=v.back;return true;},
+ go(d){if(this.visitEnd()){this.show();const el=this.vis[this.cur]||$('#onesum');if(el)goEl(el);return;}const n=this.vis.length;if(!n)return;if(d>0&&this.cur>=n)this.cur=0;else this.cur=Math.max(0,Math.min(n,this.cur+d));this.show();const el=this.vis[this.cur]||$('#onesum');
   if(el){const r=el.getBoundingClientRect();if(r.top<topOff()-2||r.top>innerHeight*.5)goEl(el);}},
  /* ✓/✗ = 설정(누르면 항상 그 상태 · 해제는 카드 버튼으로) · 자동 넘김(jbauto, 기본 켬)이면 0.25초 뒤 다음 */
- grade(k){const c=this.vis[this.cur];if(!c)return;const id=c.dataset.id;mark(id,k,'set');this.sess=this.sess||{};this.sess[id]=k;this.bar();this.save();
+ grade(k){const c=this.vis[this.cur];if(!c)return;const id=c.dataset.id;mark(id,k,'set');this.sess=this.sess||{};if(!(this.visit&&this.visit.c===c))this.sess[id]=k;this.bar();this.save();
   if(k==='ng'&&!LS.get('jbautoNg',false)){clearTimeout(this.gt);this.gtc=null;if(!c.classList.contains('open')){qOpen(c);togLabel(c);}return;}   /* ux2 F07 ✗ = 답을 펼치고 머묾(옵션 '틀려도 넘김' LS jbautoNg) */
   if(LS.get('jbauto',true)){clearTimeout(this.gt);this.gtc=c;this.gt=setTimeout(()=>{this.gtc=null;if(this.one&&this.vis[this.cur]===c)this.go(1);},250);}},
  /* 다음(→·Enter·▶): 채점 뒤 자동 넘김(0.25초)을 기다리는 중이면 그 넘김과 합쳐 한 번만 */
@@ -2964,8 +2967,8 @@ const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
   if(!this.deck.length){f.innerHTML=head+`<div class="panel">${this.st==='x'?'몰라요로 표시한 카드가 없어요.':this.st==='new'?'이 종류는 모두 한 번씩 봤어요.':'이 종류의 카드가 없습니다.'}</div>`;return;}
   const c=this.deck[this.i],m=S_(c),cl=c.cloze&&!this.back;
   f.innerHTML=head+`<div class="fcard ${this.back?'back':''} ${cl?'cloze':''}" id="fcard"><div class="side">${this.back?'답':c.tag+(cl?' — 빨간 칸을 눌러 하나씩 · 카드를 누르면 뒤집기':' · 문제')}${m?` <span class="fcm ${m.s}">${m.s==='o'?'알아요':'몰라요'}</span>`:''}</div><div class="fcbody"></div></div>`
-   +`<div class="fcctl"><button class="btn" id="fprev" aria-label="이전">◀</button><span class="small fcpos">${this.i+1} / ${this.deck.length}</span><button class="btn" id="fnext" aria-label="다음">▶</button></div>`
-   +`<div class="fcjudge"><button class="btn fx${m&&m.s==='x'?' on':''}" id="fx" title="몰라요 (X)">몰라요 ✕</button><button class="btn fo${m&&m.s==='o'?' on':''}" id="fo" title="알아요 (O)">알아요 ○</button></div><div class="small fckeys">Space 뒤집기 · ←/→ 넘기기 · O 알아요 · X 몰라요 · 좌우로 쓸어 넘기기</div>`;
+   +`<div class="fcdock"><div class="fcctl"><button class="btn" id="fprev" aria-label="이전">◀</button><span class="small fcpos">${this.i+1} / ${this.deck.length}</span><button class="btn" id="fnext" aria-label="다음">▶</button></div>`
+   +`<div class="fcjudge"><button class="btn fx${m&&m.s==='x'?' on':''}" id="fx" title="몰라요 (X)">몰라요 ✕</button><button class="btn fo${m&&m.s==='o'?' on':''}" id="fo" title="알아요 (O)">알아요 ○</button></div></div><div class="small fckeys">Space 뒤집기 · ←/→ 넘기기 · O 알아요 · X 몰라요 · 좌우로 쓸어 넘기기</div>`;
   const b=f.querySelector('.fcbody');b.innerHTML=this.back?c.a:c.q;if(cl)b.querySelectorAll('.k').forEach(k=>k.classList.add('fcb'));fillThumbs(b);}};
 let FSW=null;$('#stage').addEventListener('touchstart',e=>{FSW=null;if(e.touches.length!==1||e.touches[0].touchType==='stylus'||Kit.mode()||!e.target.closest('#fc .fcard'))return;const t=e.touches[0];FSW={x:t.clientX,y:t.clientY};},{passive:true});
 $('#stage').addEventListener('touchend',e=>{if(!FSW)return;const t=e.changedTouches[0],dx=t.clientX-FSW.x,dy=t.clientY-FSW.y;FSW=null;if(Math.abs(dx)>60&&Math.abs(dy)<60){e.preventDefault();Flash.move(dx<0?1:-1);}},{passive:false});
@@ -3062,7 +3065,7 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const mb=e
  if(d.mk){const c=t.closest('.qc,.pc'),id=c&&c.dataset.id;if(!id)return;mark(id,d.mk,'toggle');if(c.classList.contains('pc'))return;if(JB.one&&d.mk!=='bm'&&MK[d.mk][id]){JB.sess=JB.sess||{};JB.sess[id]=d.mk;JB.save();}return;}
  if(d.fold){const c=t.closest('.qc');qClose(c);togLabel(c);goEl(c);return;}
  if(d.onesum){sumGo(d.onesum);return;}
- if(t.id==='otog'){const c=JB.vis[JB.cur];if(c)qStep(c);return;}if(t.id==='okh'||t.id==='okb'){Kit.setMode(t.id==='okh'?'h':'b');return;}
+ if(t.id==='otog'){const c=JB.vis[JB.cur];if(c)qStep(c);return;}if(t.id==='okh'||t.id==='okb'){if(document.body.classList.contains('kit-off'))kitSet(true);Kit.setMode(t.id==='okh'?'h':'b');return;}   /* ux4f C 50 도구 막대를 숨긴 채 🖍 ▣ → 막대도 보임(색·되돌리기) */
  if(t.id==='ook'||t.id==='ong'){JB.grade(t.id==='ook'?'ok':'ng');return;}if(t.id==='obm'){const c=JB.vis[JB.cur];if(c)mark(c.dataset.id,'bm','toggle');return;}
  if(d.jb){openImg('jb',d.jb);return;}
  if(t.classList.contains('cite')){const p=PACKS[CUR.s];if(d.p==='')openDoc(CUR.s,d.k,'learn');else openImg('lec',d.k+'-'+d.p);return;}
@@ -3077,7 +3080,8 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const mb=e
 $('#stage').addEventListener('change',e=>{const t=e.target,F=JB.F;if(t.tagName==='SELECT')setTimeout(()=>t.blur(),0);   /* select는 고른 뒤 포커스를 뺌 — 곧이어 누른 ←/→가 값을 바꾸지 않고 카드를 넘기게(A01) */if(t.id==='oauto'){LS.set('jbauto',t.checked);return;}if(t.id==='oautong'){LS.set('jbautoNg',t.checked);return;}if(!F)return;if(t.id==='fprof')F.prof=t.value;else if(t.id==='flec')F.lec=t.value;else if(t.id==='fn')F.n=+t.value;else if(t.id==='fver')F.ver=t.value;else if(t.id==='fmine')F.mine=t.value;else if(t.id==='fsort'){F.sort=t.value;if(t.value==='r')JB.shuf=null;}
  else if(t.id==='fyr'){F.yr=t.value;if(F.yr&&F.sort!=='r'){F.sort='';const so=$('#fsort');if(so)so.value='';}}   /* 연도를 고르면 JB 수록 순서(그 해 시험 순서)로 */
  else return;JB.apply();});
-$('#stage').addEventListener('input',e=>{if(e.target.id==='fq'){JB.F.q=e.target.value;JB.apply();jbMini();}});
+$('#stage').addEventListener('input',e=>{if(e.target.id==='fq'){if(JB.one&&JB.sess&&Array.isArray(JB.sess.ids)){jbMini();return;}JB.F.q=e.target.value;JB.apply();jbMini();}});
+$('#stage').addEventListener('change',e=>{if(e.target.id==='fq'&&JB.one&&JB.sess&&Array.isArray(JB.sess.ids)&&e.target.value!==JB.F.q){JB.F.q=e.target.value;JB._conf=0;JB.apply();jbMini();}});   /* ux4f C 47 한 장씩 회차 중 검색은 글자마다가 아니라 Enter·칸을 떠날 때 한 번(새 회차 확인도 한 번) */
 $('#stage').addEventListener('focusin',e=>{if(e.target.id==='fq')jbMini();});$('#stage').addEventListener('focusout',e=>{if(e.target.id==='fq')setTimeout(jbMini,0);});
 /* ---------- 형광펜·빈칸 도구 v2 ----------
    · 카드(data-aid) 단위 저장: {t:'h'|'b', x:표시된 글자, i:같은 글자 몇 번째, c:색}
@@ -3205,11 +3209,13 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  function undo(){fin();if(!U.length)return toast('되돌릴 표시가 없어요',{kind:'undo'});const e=U.pop();R.push(swap(e));persist();redraw();upd();stackSave();undoToast(e,'↶ 되돌림');}
  function redo(){fin();if(!R.length)return;const e=R.pop();U.push(swap(e));persist();redraw();upd();stackSave();undoToast(e,'↷ 다시 실행');}
  function setMode(m){if(STALE&&mode!==m){toast('새로고침 후에 쓸 수 있어요 (새 버전)');return;}if(m&&mode!==m&&document.body.classList.contains('kit-off')){try{kitSet(true);}catch(e){}}   /* ux4c 2회차 막대를 숨긴 채(T·✕) H·B·A·JB [형광펜][빈칸]으로 켜면 막대를 다시 보임 — 보이지 않는 모드 없음 */mode=(mode===m?null:m);$('#k-h').classList.toggle('on',mode==='h');$('#k-b').classList.toggle('on',mode==='b');document.body.classList.toggle('mode-h',mode==='h');document.body.classList.toggle('mode-b',mode==='b');coverChips();$('#k-h').setAttribute('aria-pressed',String(mode==='h'));$('#k-b').setAttribute('aria-pressed',String(mode==='b'));}   /* ux4 B1-4 켜짐 = 버튼 눌림 모양만(모드 칩·켜짐 안내·점선 테두리 없음) */
- function clearOverlap(B,a,b){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
-  gs.forEach(g=>{(typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g]).forEach(unwrap);});}
+ function clearOverlap(B,a,b,t){const ix=index(B);const gs=new Set();B.querySelectorAll('[data-rk]').forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let t;while(t=w.nextNode()){const m=ix.map.find(q=>q.n===t);if(m&&m.start<b&&m.start+m.len>a){gs.add(el.getAttribute('data-g')||el);break;}}});
+  let other=0;const keep=[],G=[];gs.forEach(g=>{const els=typeof g==='string'?[...B.querySelectorAll('[data-g="'+g+'"]')]:[g];let ga=1e9,gb=-1;els.forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let n;while(n=w.nextNode()){const m=ix.map.find(q=>q.n===n);if(m){ga=Math.min(ga,m.start);gb=Math.max(gb,m.start+m.len);}}});G.push(els);
+    const e0=els[0];if(!e0||e0.hasAttribute('data-auto'))return;const rt=e0.getAttribute('data-rk');if(t&&rt!==t)other++;const o={rt,c:e0.getAttribute('data-c'),bc:e0.getAttribute('data-bc')};if(ga<a)keep.push(Object.assign({a:ga,b:a,g:typeof g==='string'?g:null},o));if(gb>b)keep.push(Object.assign({a:b,b:gb,g:null},o));});
+   G.forEach(els=>els.forEach(unwrap));keep.forEach(k=>wrap(B,k.a,k.b,k.rt,k.c||color,k.g||('n'+(++GID)),false,k.bc));return other;}   /* ux4f C 56 겹친 부분만 지움 — 겹치지 않은 앞뒤 조각은 남김(앞 = 원래 묶음 · 뒤 = 새 묶음) · 다른 종류(빈칸↔형광펜)를 덮으면 그 수를 돌려줌 */
  /* 칠할 종류: 모드가 켜져 있으면 그것, 모드 없이 애플펜슬로 끌면(펜슬로 바로 칠하기 — LS penDirect) 형광펜 */
  const eff=d=>mode||(d&&d.pen?'h':null);
- function apply(B,a,b,t){push((t||mode)==='b'?'빈칸 1개':'형광펜 1개');clearOverlap(B,a,b);wrap(B,a,b,t||mode,color,'n'+(++GID),false,bcolor);commit(B);}
+ function apply(B,a,b,t){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor);commit(B);if(ov)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',action:{label:'↶ 되돌리기',fn:()=>undo()}});}
  function clearPre(B){(B?B:document).querySelectorAll('[data-pre]').forEach(unwrap);}
  function preview(B,a,b,t){clearPre(B);if(b>a)wrap(B,a,b,t||mode,color,null,true);}
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;return el.closest('[data-aid]');}
@@ -3529,7 +3535,8 @@ $('#stage').addEventListener('click',e=>{const b=e.target.closest&&e.target.clos
 /* ---------- 검색 v2(U30) — 색인: 블록 사이 ' · '·버튼·채점 줄·머리 칩 줄 제외 · 결과: 과목색 점 + '과목 · 강의 · 카드 n 제목'/'JB 12번 (24·23)' + <mark> 스니펫
    · 지금 과목 먼저·과목별 20건 + 더 보기 · 검색 전 화면을 기억(SQ.from) — 검색창을 비우거나 Esc·'✕ 닫기'면 그 화면·위치로 ---------- */
 let SIDX=null;
-function sText(el){el.querySelectorAll('.acts,.acts2,.qhead,.qsub,button,.noann,.ansnow,figure,img,.badge,.car').forEach(x=>x.remove());el.querySelectorAll('div,li,p,h3,h4,h5,td,th,tr,section,ul,ol,figcaption,summary,.fl,.chip,.ycell,.tq').forEach(x=>x.append(' · '));
+function sText(el){el.querySelectorAll('.c-mem .ct small').forEach(x=>{if(/^빨간 글씨를 자동 빈칸으로/.test(x.textContent.trim()))x.remove();});   /* ux4f C 52 ⚡ 블록 안내 글은 검색 조각에서 뺌(팩 글자는 그대로 — 형광펜 위치) */
+ el.querySelectorAll('.acts,.acts2,.qhead,.qsub,button,.noann,.ansnow,figure,img,.badge,.car').forEach(x=>x.remove());el.querySelectorAll('div,li,p,h3,h4,h5,td,th,tr,section,ul,ol,figcaption,summary,.fl,.chip,.ycell,.tq').forEach(x=>x.append(' · '));
  return el.textContent.replace(/\s+/g,' ').replace(/(\s*·\s*){2,}/g,' · ').replace(/^\s*·\s*|\s*·\s*$/g,'').trim();}
 /* ux2 트랙A B09 — 색인은 boot 뒤 쉬는 틈에(requestIdleCallback, 없으면 setTimeout 50) 과목 하나씩·작은 조각으로(지금 과목 먼저) — 첫 입력이 긴 작업에 막히지 않게.
    끝나기 전에 검색하면 만든 것까지 보여 주고 '색인 준비 중 4/6' · 과목 하나가 끝날 때마다 결과를 다시 채움 · 파싱은 화면 밖 문서(그림을 불러오지 않음) */
@@ -4065,7 +4072,7 @@ function peekOpen(chip){const P=PACKS[CUR.s],id=chip.dataset.go,h=P&&P.cards[id]
  let p=$('#jbpeek');if(!p){p=document.createElement('div');p.id='jbpeek';p.className='jbpeek noann';document.body.appendChild(p);
   p.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
    if(b.classList.contains('jpx')){peekClose();return;}if(b.classList.contains('jpshow')){const a=p.querySelector('.jpa');a.hidden=!a.hidden;b.textContent=a.hidden?'답 핵심 보기':'답 핵심 가리기';return;}
-   if(d.jpmk){const q=PEEK;if(!q)return;mark(q,d.jpmk,'set');$$('#jbpeek [data-jpmk]').forEach(x=>x.classList.toggle('on',!!MK[x.dataset.jpmk][q]));toast(d.jpmk==='ok'?'맞음으로 기록했어요':'틀림으로 기록했어요');return;}
+   if(d.jpmk){const q=PEEK;if(!q)return;mark(q,d.jpmk,'toggle');$$('#jbpeek [data-jpmk]').forEach(x=>x.classList.toggle('on',!!MK[x.dataset.jpmk][q]));toast(MK[d.jpmk][q]?(d.jpmk==='ok'?'맞음으로 기록했어요':'틀림으로 기록했어요'):'기록을 지웠어요');return;}   /* ux4f C 53 JB 카드 버튼처럼 다시 누르면 지움 */
    if(d.jpgo){const q=d.jpgo;peekClose();PENDRET=retFrom();queueMicrotask(()=>{PENDRET=null;});go(q,{});}});}
  p.innerHTML=`<div class="jph">${yb?yb.outerHTML:''}<b>JB 미리보기</b><button class="jpx" aria-label="닫기" title="닫기 (Esc)">✕</button></div><div class="jpq">${ls.slice(0,3).map(x=>`<div class="ln">${E(x)}</div>`).join('')}${ls.length>3?'<div class="jpmore">… (이하 JB에서)</div>':''}${fig?'<div class="jpfig">🖼 그림 문항 — 그림은 JB에서</div>':''}</div>`
   +(core?`<button class="btn sm jpshow">답 핵심 보기</button><div class="jpa lines" hidden>${core}</div>`:'')
@@ -4151,7 +4158,8 @@ function sumHTML(p,L){const st=(L.sumt||[]).map(i=>p.tables[i]).filter(Boolean);
  return `<section class="sumtop" id="sumtop"><div class="sth noann"><b>📋 전체정리표</b> <span class="small">강의 전체를 의미 축으로 한 표에 — 마지막 열 ★ = 시험</span><div class="stchips">${tt.map((t,i)=>`<button class="tg" data-sttab="${i}" title="${t}">${stLabel(t)}</button>`).join('')}${st.length>1?'<button class="tg" data-sttab="all">모두 펼치기</button>':''}</div></div>${st.map((x,i)=>x.html.replace('<div class="tblwrap stbl"','<div data-sti="'+i+'" class="tblwrap stbl"')).join('')}</section>`+L.sum;}
 function stApply(v,save){const f=$('#sumtop');if(!f)return;const k='sumtop.'+CUR.s+'.'+CUR.d;if(v===undefined){v=LS.get(k,'__unset');if(v==='__unset')v=innerWidth<=860?'none':0;}   /* ux4 B26 아이패드 세로는 처음엔 접힌 칩 막대(본 정리표가 네 화면 아래로 밀리지 않게) */if(save)LS.set(k,v);   /* ux2 fixB N2: 처음(기록 없음)엔 첫 표를 펼침 · 접으면 'none'으로 기억(옛 null도 접힘) */
  $$('#sumtop .stbl[data-sti]').forEach(t=>t.classList.toggle('stoff',!(v==='all'||String(v)===t.dataset.sti)));$$('#sumtop [data-sttab]').forEach(b=>b.classList.toggle('on',v!=null&&String(v)===b.dataset.sttab));f.classList.toggle('stclosed',v==null||v==='none');const ab=$('#sumtop [data-sttab="all"]');if(ab)ab.textContent=v==='all'?'모두 접기':'모두 펼치기';stCard();}   /* ux4c 1회차 펼친 뒤에는 '모두 접기' */
-{let w0=innerWidth<=860;addEventListener('resize',()=>{const w=innerWidth<=860;if(w===w0)return;w0=w;if(!CUR.s||!$('#sumtop'))return;if(LS.get('sumtop.'+CUR.s+'.'+CUR.d,'__unset')==='__unset')stApply();});}   /* ux4d: 한 번도 안 누른 전체정리표는 기기를 돌려 860을 넘나들면 그 폭의 처음 상태(세로 = 접힘 · 가로 = 첫 표)로 */
+{let w0=innerWidth<=860;addEventListener('resize',()=>{const w=innerWidth<=860;if(w===w0)return;w0=w;if(!CUR.s||!$('#sumtop'))return;if(LS.get('sumtop.'+CUR.s+'.'+CUR.d,'__unset')==='__unset')stApply();msbarPlace();});}   /* ux4f C 45 돌리면 요약/자세히 막대 자리도 그 폭의 처음 상태로 */
+function msbarPlace(){if(!isSumTab())return;const mb=$('#stage #msbar'),tp=$('#stage #sumtop');if(!mb||!tp)return;const first=!!(mb.compareDocumentPosition(tp)&4);if(innerWidth<=860&&!first)tp.before(mb);else if(innerWidth>860&&first)tp.after(mb);}   /* ux4d: 한 번도 안 누른 전체정리표는 기기를 돌려 860을 넘나들면 그 폭의 처음 상태(세로 = 접힘 · 가로 = 첫 표)로 */
 /* E09 과목 비교표: 강의 순서로 묶고(h3 '강의명 · 표 n개') · 위에 붙는 목차 칩 막대(강의 칩 → 표 제목 목록 → 그 표로) · [기출 연결 표만] · 표 제목 옆 '기출 n'(noann) */
 function tblAllHTML(p){const T=p.tables.map((x,i)=>[x,i]).filter(([x])=>!x.sum),by={};T.forEach(([x,i])=>{(by[x.k]=by[x.k]||[]).push([x,i]);});
  const ks=p.lect.map(L=>L.k).filter(k=>by[k]).concat(Object.keys(by).filter(k=>!p.lect.find(L=>L.k===k)));const nm=k=>{const L=p.lect.find(x=>x.k===k);return L?sname(p,k):'기타';};
@@ -4162,7 +4170,8 @@ function tblListOpen(k){const box=$('#tbllist');if(!box)return;if(box.dataset.k=
  const L=$$('#stage .tgh[data-k="'+CSS.escape(k)+'"]')[0];let items=[];for(let e=L&&L.nextElementSibling;e&&!e.classList.contains('tgh');e=e.nextElementSibling){if(e.classList.contains('tblwrap')){const t=e.querySelector('.tbt');items.push(`<button class="tpi" data-tgo="${e.id}">${EH(t?t.childNodes[0].textContent.trim():e.id)}${+e.dataset.nj?` <i>기출 ${e.dataset.nj}</i>`:''}</button>`);}}
  box.innerHTML=items.join('');box.dataset.k=k;box.hidden=false;$$('#tbltoc [data-tgk]').forEach(b=>b.classList.toggle('on',b.dataset.tgk===k));}
 function tocH(){const t=$('#tbltoc')||$('#sumbar');const h=t&&t.offsetParent!==null?t.offsetHeight:0;$('#stage').style.setProperty('--tocH',h+'px');return h;}
-function tblFit(){const ts=$$('#stage .tblwrap:not(.msum) > .tscroll').filter(x=>x.querySelector('table.cmp:not(.led),table.sum'));   /* ux4 B11 기출 대장(숫자 몇 개) 표는 열 최소 90px 계산에서 뺌 — 원래 폭 */ts.forEach(x=>{const t=x.querySelector('table');if(!x.clientWidth)return;const hasOwn=t.querySelector('colgroup:not([data-tw])');if(!hasOwn){twApply(x,t);t.classList.add('tw');return;}x.classList.remove('fit');const fit=t.scrollWidth<=x.clientWidth+1;x.classList.toggle('fit',fit);x.classList.toggle('ovx',!fit);});}   /* ux3 L4 열 폭 = twApply(√글자량) · 표에 원래 colgroup이 있으면 옛 방식(넘치면 가로 스크롤) */
+function tblFit(){const ts=$$('#stage .tblwrap:not(.msum) > .tscroll').filter(x=>x.querySelector('table.cmp:not(.led),table.sum'));   /* ux4 B11 기출 대장(숫자 몇 개) 표는 열 최소 90px 계산에서 뺌 — 원래 폭 */ts.forEach(x=>{const t=x.querySelector('table');if(!x.clientWidth)return;const hasOwn=t.querySelector('colgroup:not([data-tw])');if(!hasOwn){twApply(x,t);t.classList.add('tw');return;}x.classList.remove('fit');const fit=t.scrollWidth<=x.clientWidth+1;x.classList.toggle('fit',fit);x.classList.toggle('ovx',!fit);});
+ $$('#stage .tblwrap > .tscroll').filter(x=>x.querySelector(':scope>table.led')).forEach(x=>{if(!x.clientWidth)return;x.classList.remove('fit');const fit=x.querySelector(":scope>table.led").scrollWidth<=x.clientWidth+1;x.classList.toggle('fit',fit);});}   /* ux4f C 42 기출 대장 표도 폭이 맞으면 .fit(겉 스크롤 없음) — 열 머리가 위 막대 아래에 붙음 · ux3 L4 열 폭 = twApply(√글자량) · 표에 원래 colgroup이 있으면 옛 방식(넘치면 가로 스크롤) */
 /* ux2 fixB VIS02·N2 아이패드 세로(≤860): 전체정리표가 화면 폭을 넘으면 그 표만 카드형(행 = 카드 · 항목 → ★ 시험 → 나머지 열, 칸마다 열 이름) — DOM 순서·글자는 그대로(CSS order), 열 이름은 data-h 속성 */
 function stCard(){$$('#sumtop .stbl:not(.stoff)').forEach(w=>{const t=w.querySelector('table'),x=w.querySelector('.tscroll');if(t&&x&&x.clientWidth){twApply(x,t);t.classList.add('tw');}});}   /* ux3 L4 전체정리표 = 펼친 표만 열 폭·카드형 판정(twApply — 5열↑·폭 760 미만에서 열이 모자라면 카드) */
 let TRO=null;function tblMount(){if(TRO){TRO.disconnect();TRO=null;}const on=VIEW==='doc'&&(CUR.d==='_tbl'||CUR.t==='tbl'||CUR.t==='sum'||CUR.d==='_sum'||CUR.d==='_led');if(!on)return;
@@ -4172,8 +4181,8 @@ function sumDense(m,save){const st=$('#stage');if(!st)return;if(m==null)m=LS.get
 function sumFilt(f){const st=$('#stage');['hit','rep2'].forEach(x=>st.classList.toggle('mf-'+x,f===x));$$('#stage [data-mfilt]').forEach(b=>b.classList.toggle('on',b.dataset.mfilt===(f||'')));}
 function sumGrp(g){$$('#stage [data-mgrp]').forEach(b=>b.classList.toggle('on',b.dataset.mgrp===(g||'')));$$('#stage .msum tr[data-grp]').forEach(r=>r.classList.toggle('hid',!!g&&r.dataset.grp!==g));}
 function ux2MountE(){const st=$('#stage');if(!st)return;st.classList.remove('sdfull','mf-hit','mf-rep2');
- if(isSumTab()){sumDense();sumFilt('');stApply();if(innerWidth<=860){const mb=$('#stage #msbar'),tp=$('#stage #sumtop');if(mb&&tp&&(tp.compareDocumentPosition(mb)&4))tp.before(mb);}}   /* ux4 B26 좁은 화면은 요약/자세히 막대를 맨 위로 */
- covInit();tblMount();if(VIEW==='doc'&&CUR.d==='_sum')sumPaint();if(VIEW==='doc'&&CUR.d==='_pred')predHeads(PACKS[CUR.s]);fltRestore();}   /* ux4 B10 필터 복원 · B25 _pred 강의 머리 */
+ if(isSumTab()){sumDense();sumFilt('');stApply();msbarPlace();}   /* ux4 B26 좁은 화면은 요약/자세히 막대를 맨 위로 */
+ covInit();tblMount();if(VIEW==='doc'&&CUR.d==='_sum'){sumPaint();const lg=$('#sumbar .sleg');if(lg){lg.classList.add('slego');$('#sumbar').after(lg);}}if(VIEW==='doc'&&CUR.d==='_pred')predHeads(PACKS[CUR.s]);fltRestore();}   /* ux4 B10 필터 복원 · B25 _pred 강의 머리 */
 function ux2Reveal(c){if(!c||!c.closest)return;const sw=c.closest('#sumtop .stbl.stoff');if(sw)stApply(sw.dataset.sti,true);const tr=c.closest('.msum tr[data-aid]');if(!tr)return;if(tr.classList.contains('hid'))sumGrp('');if(getComputedStyle(tr).display==='none')sumFilt('');
  const md=tr.querySelector('td.md');if(md&&md.querySelector('.mfull [data-rk]'))md.classList.add('dopen');}
 $('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||VIEW!=='doc')return;const b=t.closest('button');const d=b?b.dataset:{};
@@ -4215,7 +4224,7 @@ $('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||!covOn(
  if(b&&b.dataset.cov){e.stopImmediatePropagation();const th=b.closest('th'),tb=th&&th.closest('table');if(tb)covToggle(tb,th.dataset.col);return;}
  if(b&&b.dataset.covall){e.stopImmediatePropagation();const w=b.parentElement,tb=w.querySelector('table');if(tb)covClear(tb);b.remove();return;}
  if(Kit.mode())return;
- {const lc=t.closest&&t.closest('td[data-col],th[data-col]'),lt=lc&&lc.closest('table.mtx,#sumtop table');if(lc&&lt&&(lc===t||lc.classList.contains('cov'))&&!b&&getComputedStyle(lt).display!=='table'){const r=lc.getBoundingClientRect();if(e.clientY-r.top<(lc.closest('.msum')?(lc.classList.contains('cov')&&!lc.classList.contains('covo')?18:40):22)&&e.clientX-r.left<200){e.stopImmediatePropagation();e.preventDefault();covToggle(lt,lc.dataset.col);return;}}}   /* ux4 B28 칸 이름 판정을 가린 칸 열기보다 먼저 · ux4c 1회차 가린 칸(44px)은 윗줄 18px만 칸 이름 — 가운데를 누르면 그 칸만 열림(열 전체가 풀리던 것) */
+ {const lc=t.closest&&t.closest('td[data-col],th[data-col]'),lt=lc&&lc.closest('table.mtx,#sumtop table,.stcard table.cmp');if(lc&&lt&&(lc===t||lc.classList.contains('cov'))&&!b&&getComputedStyle(lt).display!=='table'){const r=lc.getBoundingClientRect();if(e.clientY-r.top<(lc.classList.contains('cov')&&!lc.classList.contains('covo')?18:lc.closest('.msum')?40:22)&&e.clientX-r.left<200){e.stopImmediatePropagation();e.preventDefault();covToggle(lt,lc.dataset.col);return;}}}   /* ux4 B28 칸 이름 판정을 가린 칸 열기보다 먼저 · ux4c 1회차 가린 칸(44px)은 윗줄 18px만 칸 이름 — 가운데를 누르면 그 칸만 열림(열 전체가 풀리던 것) · ux4f C 38 카드형 비교표(.stcard table.cmp)도 칸 이름을 누르면 열 가림 */
  const c=t.closest('.cov');
  if(c&&!c.classList.contains('covo')){e.stopImmediatePropagation();e.preventDefault();c.classList.add('covo');return;}
  if(c&&c.classList.contains('covo')&&!b&&!t.closest('a,[data-rk],.mex,.ci')){c.classList.remove('covo');return;}},true);
@@ -4292,7 +4301,7 @@ function jbListKey(e,K,isSpace){if(e.shiftKey&&K!=='j'&&K!=='k')return false;
  let c=JB.lc&&JB.lc.isConnected&&!JB.lc.classList.contains('hid')?JB.lc:null;
  if(!c&&(isSpace||K==='o'||K==='x'||K==='s')&&JB.vis&&JB.vis.length){const line=topOff();c=JB.vis.find(x=>x.getBoundingClientRect().bottom>line)||null;if(c){JB.hold=Date.now()+900;jbCur(c);}}   /* flow V06: 맨 위(지금 카드 없음)에서도 Space·O·X·S = 선 아래 첫 카드 */
  if(!c)return false;
- if(isSpace){e.preventDefault();const a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();if($('#stage').classList.contains('jblist')&&!c.classList.contains('lx')){c.classList.add('lx');if(c.classList.contains('open')){togLabel(c);return true;}}   /* ux4 B30 압축 목록에서는 먼저 카드를 원래 모양으로 */qStep(c);if(c.getBoundingClientRect().top<topOff()-2)goEl(c);return true;}
+ if(isSpace){e.preventDefault();const a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();if($('#stage').classList.contains('jblist')&&!c.classList.contains('lx')){c.classList.add('lx');if(c.classList.contains('open')){togLabel(c);return true;}}   /* ux4 B30 압축 목록에서는 먼저 카드를 원래 모양으로 */if(c.classList.contains('open'))qClose(c);else qOpen(c);togLabel(c);   /* ux4f C 54 목록의 Space = 카드의 [답·해설 ↔ 답 가리기 ▲] 버튼과 같은 두 단계(자세히는 카드의 [자세히 ▾]) — 한 장씩은 아래 막대 글자대로 세 단계 */if(c.getBoundingClientRect().top<topOff()-2)goEl(c);return true;}
  if(K==='o'||K==='x'){e.preventDefault();mark(c.dataset.id,K==='o'?'ok':'ng','toggle');return true;}
  if(K==='s'){e.preventDefault();mark(c.dataset.id,'bm','toggle');return true;}return false;}
 function nowAsk(){const b=$('#fnow'),i=$('#fnowi');if(!b||!i)return;const n=JB.vis.length;i.max=n;i.value=JB.lc?JB.vis.indexOf(JB.lc)+1:'';b.hidden=true;i.hidden=false;i.focus();i.select();}
@@ -4705,7 +4714,8 @@ document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#frev');if(!t)return;setTimeout(()=>{const on=t.classList.contains('on');if(t.closest('#ppills'))t.textContent=on?'답 모두 접기':'답 모두 펼치기';else{const w=t.querySelector('.wl');t.innerHTML='답<span class="wl"> 모두</span> '+(on?'접기':'펼치기');}},0);});
 function predAfterMark(){if(!$('#ppills [data-pf].on'))return;clearTimeout(predAfterMark.t);$$('#stage .pc').forEach(c=>c.classList.add('pfgo'));predAfterMark.t=setTimeout(()=>{$$('#stage .pc').forEach(c=>c.classList.remove('pfgo'));predApply();predEmpty();},500);}
 /* _pred(과목 예상문제): 강의마다 머리 줄 */
-function predHeads(p){const st=$('#stage');if(!st||CUR.d!=='_pred')return;let k0=null;p.preds.forEach((x,i)=>{if(x.k===k0)return;k0=x.k;const el=$$('#stage .pc')[i];if(!el)return;const h=document.createElement('h3');h.className='pgh noann';const n=p.preds.filter(y=>y.k===x.k).length;h.dataset.n=n;h.innerHTML=EH(sname(p,x.k))+` <span class="small pgn">· ${n}문항</span>`;el.before(h);});}
+function predOrd(p){const o={};p.lect.forEach((L,i)=>o[L.k]=i);return p.preds.map((x,i)=>i).sort((a,b)=>((o[p.preds[a].k]??999)-(o[p.preds[b].k]??999))||a-b);}   /* ux4f C 43 과목 예상문제는 강의 순서대로(팩의 원고 합친 순서가 메뉴와 다를 때 — 약물 급성통증) · L.pred 번호는 그대로 */
+function predHeads(p){const st=$('#stage');if(!st||CUR.d!=='_pred')return;let k0=null;predOrd(p).map(i=>p.preds[i]).forEach((x,i)=>{if(x.k===k0)return;k0=x.k;const el=$$('#stage .pc')[i];if(!el)return;const h=document.createElement('h3');h.className='pgh noann';const n=p.preds.filter(y=>y.k===x.k).length;h.dataset.n=n;h.innerHTML=EH(sname(p,x.k))+` <span class="small pgn">· ${n}문항</span>`;el.before(h);});}
 /* B49 기출 한눈표: 필터 뒤 강의 칩 숫자 = 보이는 행 수(0이면 흐림) · 스크롤하면 지금 강의 칩 .cur */
 function sumChips(){if(VIEW!=='doc'||CUR.d!=='_sum')return;$$('#sumbar [data-sgo]').forEach(b=>{const w=document.getElementById(b.dataset.sgo),t=w&&w.querySelector('table.sum');if(!t)return;const n=[...t.tBodies[0].rows].filter(r=>getComputedStyle(r).display!=='none').length,e=b.querySelector('b');if(e&&e.textContent!==String(n))e.textContent=n;b.classList.toggle('z',!n);});}
 /* B27·B49 과목 비교표 목차 목록은 사용자가 스크롤하거나 바깥을 누르면 닫힘 · 과목 비교표·한눈표 칩 = 지금 보는 강의(.cur) */
@@ -4713,14 +4723,15 @@ function sumChips(){if(VIEW!=='doc'||CUR.d!=='_sum')return;$$('#sumbar [data-sgo
 document.addEventListener('click',e=>{const b=$('#tbllist');if(b&&!b.hidden&&!(e.target.closest&&e.target.closest('#tbltoc'))){b.hidden=true;$$('#tbltoc [data-tgk]').forEach(x=>x.classList.remove('on'));}},true);
 {let q=0;addEventListener('scroll',()=>{if(q||VIEW!=='doc'||(CUR.d!=='_tbl'&&CUR.d!=='_sum'))return;q=requestAnimationFrame(()=>{q=0;const line=topOff()+tocH()+8;
  if(CUR.d==='_tbl'){let cur=null;$$('#stage .tgh').forEach(h=>{if(h.offsetParent&&h.getBoundingClientRect().top<=line)cur=h.dataset.k;});$$('#tbltoc [data-tgk]').forEach(b=>b.classList.toggle('cur',b.dataset.tgk===cur));}
- else{let cur=null;$$('#sumbar [data-sgo]').forEach(b=>{const w=document.getElementById(b.dataset.sgo);if(w&&w.offsetParent&&w.getBoundingClientRect().top<=line)cur=b.dataset.sgo;});$$('#sumbar [data-sgo]').forEach(b=>b.classList.toggle('cur',b.dataset.sgo===cur));}});},{passive:true});}
+ else{let cur=null;$$('#sumbar [data-sgo]').forEach(b=>{const w=document.getElementById(b.dataset.sgo);if(w&&w.offsetParent&&w.getBoundingClientRect().top<=line)cur=b.dataset.sgo;});$$('#sumbar [data-sgo]').forEach(b=>b.classList.toggle('cur',b.dataset.sgo===cur));}chipShow($('#tbltoc [data-tgk].cur,#sumbar [data-sgo].cur'));});},{passive:true});}
+function chipShow(b){if(!b)return;const p=b.parentElement;if(!p||p.scrollWidth<=p.clientWidth+1)return;const r=b.getBoundingClientRect(),q=p.getBoundingClientRect();if(r.left<q.left)p.scrollLeft-=q.left-r.left+8;else if(r.right>q.right-40)p.scrollLeft+=r.right-q.right+48;}   /* ux4f C 39 한 줄 칩 — 지금 강의 칩이 보이게 */
 /* B36 미리보기 창은 메뉴 접기·회전(레이아웃 변화) 때 닫음 — 칩과 떨어져 떠 있지 않게 */
 {let pw=innerWidth;document.addEventListener('jbl:layout',()=>{try{peekClose();}catch(e){}});addEventListener('resize',()=>{if(innerWidth===pw)return;pw=innerWidth;try{peekClose();}catch(e){}});}   /* 폭이 바뀔 때만(사파리 주소 막대가 접히며 높이만 바뀌는 것은 무시) */
 /* B51 애플펜슬로 모드 없이 칠하는 동안(펜슬로 바로 칠하기) 글 선택·돋보기가 끼어들지 않게 */
 document.addEventListener('touchstart',e=>{const t=e.touches[0];if(e.touches.length===1&&t&&t.touchType==='stylus'&&!Kit.mode()&&Kit.pen()&&e.target.closest&&e.target.closest('#stage [data-aid]'))document.body.classList.add('pen-drag');},{passive:true,capture:true});
 ['touchend','touchcancel'].forEach(ev=>document.addEventListener(ev,()=>document.body.classList.remove('pen-drag'),{passive:true,capture:true}));
 // ux4 묶음1 끝
-window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
+window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},revealCard,Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 Object.assign(window.__h,{bkLimit,storeProtect,bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});
