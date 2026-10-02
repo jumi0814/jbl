@@ -15,14 +15,17 @@ def load(sid):
     d = os.path.join(T, sid)
     for m in ('lecparse', 'subject', 'emph'): sys.modules.pop(m, None)
     sys.path.insert(0, d); LP = importlib.import_module('lecparse'); sys.path.remove(d); return LP, d
-def line(d, f, n): return open(os.path.join(d, f), encoding='utf-8').read().split('\n')[n - 1][2:].strip()
+def line(d, f, n):   # n = 원고 줄 머리(앞부분 글자) — 원고를 고치면 줄 번호가 밀리므로 번호 대신 글자로 찾음(10-02 정리본 검토로 ENDO·CHR 한 줄씩 밀림)
+    L = [x for x in open(os.path.join(d, f), encoding='utf-8').read().split('\n') if x.startswith(n)]
+    assert len(L) == 1, f'{f} 예시 줄 {n!r} {len(L)}개'
+    return L[0][2:].strip()
 tot_o = tot_n = nk = ng = 0; ctxs = {}
-EX = {('anat', 'lec_LIP.txt', 45): lambda h: h.count('<div class="kl">') == 2 and '<b class="lbl">인중</b>' in h and '<b class="lbl">입술 경계</b>' in h and '<span class="ksep kh"> · </span>' in h,
-      ('geri', 'lec_ENDO.txt', 252): lambda h: h.count('<b class="lbl">') == 3 and '<ul class="klist">' in h and h.count('<li>') == 3,
-      ('cons', 'lec_WHT.txt', 117): lambda h: '<div class="kl klh">핵심 수치:' in h and h.count('class="kfi') == 6,
-      ('pharm', 'lec_CHR.txt', 406): lambda h: '<span class="kst">' in h and h.count('class="ksi') == 6 and h.count('class="ksep ka"') == 5,
-      ('cons', 'lec_WHT.txt', 424): lambda h: '<div class="ksub"><span class="ksep kh"> — </span>best ultimate results' in h,
-      ('anat', 'lec_NECK.txt', 295): lambda h: h.count('<div class="kl">') == 2 and '<span class="ksep kp"> + </span>' in h}
+EX = {('anat', 'lec_LIP.txt', '= 인중 = {r:philtrum}'): lambda h: h.count('<div class="kl">') == 2 and '<b class="lbl">인중</b>' in h and '<b class="lbl">입술 경계</b>' in h and '<span class="ksep kh"> · </span>' in h,
+      ('geri', 'lec_ENDO.txt', '= Negotiation = {r:Do 100 strokes}'): lambda h: h.count('<b class="lbl">') == 3 and '<ul class="klist">' in h and h.count('<li>') == 3,
+      ('cons', 'lec_WHT.txt', '= 핵심 수치: gutta percha'): lambda h: '<div class="kl klh">핵심 수치:' in h and h.count('class="kfi') == 6,
+      ('pharm', 'lec_CHR.txt', '= IV {r:morphine} → 수술'): lambda h: '<span class="kst">' in h and h.count('class="ksi') == 6 and h.count('class="ksep ka"') == 5,
+      ('cons', 'lec_WHT.txt', '= ==10% carbamide peroxide in a custom-f'): lambda h: '<div class="ksub"><span class="ksep kh"> — </span>best ultimate results' in h,
+      ('anat', 'lec_NECK.txt', '= Extended ND = {r:additional LN}'): lambda h: h.count('<div class="kl">') == 2 and '<span class="ksep kp"> + </span>' in h}
 for sid in ['oms1', 'cons', 'impl', 'anat', 'geri', 'pharm']:
     LP, d = load(sid); ctx = {'QMAP': QM(), 'LECNAME': collections.defaultdict(lambda: 'L'), 'cited': set()}
     for (s2, f, n), chk in EX.items():

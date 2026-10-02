@@ -5,7 +5,8 @@ O3 구멍 난 형광펜(가운데 빈칸) 위에 빈칸을 겹쳐 칠해도 원�
 O5 덮어쓰기 알림의 [↶ 되돌리기]는 그 동작만 — 그 뒤 다른 표시를 했으면 엉뚱한 것을 되돌리지 않음
 O6 과목 홈 '안 푼 것 n →'이 풀던 한 장씩 회차를 묻지 않고 지우지 않음(취소하면 회차 그대로)
 O7 전에 M으로 메뉴를 쓰던 사용자가 M을 먼저 눌러도 '이제 Shift+M' 알림 한 번
-O8 다른 기기 합산 시작 전 날짜의 빈 과목('') 기록도 '기타'"""
+O8 다른 기기 합산 시작 전 날짜의 빈 과목('') 기록도 '기타'
+O10 열기·읽던 자리로 되돌리는 스크롤(프로그램)은 '움직임'이 아님 — 아무것도 안 했으면 자동 대기 그대로 · 휠을 굴리면 그때 측정"""
 import os as _os, sys as _sys, json; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 from playwright.sync_api import sync_playwright
 U = J.HUB_URL; fails = []
@@ -64,7 +65,7 @@ with sync_playwright() as p:
         ok(not pg.errs, f'O2 {W} 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
     # ---------- O3·O5 (학습 카드) ----------
     ctx, pg = new(b, 1280, 900, False); go(pg, '/'); pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.whatsNew.4','1')"); go(pg, '/CONS/WHT/learn')
-    li = pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#stage .tc .tbody li')].filter(l=>l.offsetParent&&!l.querySelector('[data-rk],b,i,span,a')&&l.textContent.trim().length>=70&&l.textContent.trim().split(/\s+/).length>=10&&l.textContent===l.textContent.trimStart());const l=L[3]||L[0];l.id='o3';l.scrollIntoView({block:'center'});return l.textContent.trim().slice(0,40)})()""")
+    li = pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#stage .tc .tbody li')].filter(l=>l.offsetParent&&!l.querySelector('[data-rk],b,i,span,a')&&l.textContent.trim().length>=70&&l.textContent.trim().split(/\\s+/).length>=10&&l.textContent===l.textContent.trimStart());const l=L[3]||L[0];l.id='o3';l.scrollIntoView({block:'center'});return l.textContent.trim().slice(0,40)})()""")
     pg.wait_for_timeout(300)
     def marks():
         return pg.evaluate("[...document.querySelectorAll('#o3 [data-rk]')].map(e=>e.dataset.rk+':'+e.textContent)")
@@ -133,6 +134,19 @@ with sync_playwright() as p:
     d = pg.evaluate("__h.tDay('2026-01-05')")
     ok(d == {'기타': 600000, 'CONS': 60000}, f"O8 다른 기기 합산 시작 전 날 빈 과목 = 기타 {d}")
     ok(not pg.errs, f'O7·O8 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
+    # ---------- O10 ----------
+    for W, H, T in [(1280, 900, False), (820, 1180, True)]:
+        ctx, pg = new(b, W, H, T); go(pg, '/'); pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.whatsNew.4','1')"); go(pg, '/CONS/WHT/learn', 1500)
+        s0 = pg.evaluate("__h.trState()")
+        pg.evaluate("window.scrollTo(0,1800)"); pg.wait_for_timeout(1200)
+        s1 = pg.evaluate("__h.trState()")
+        pg.wait_for_timeout(900); pg.reload(); pg.wait_for_function(WAIT, timeout=60000); pg.wait_for_timeout(2500)
+        s2 = pg.evaluate("[__h.trState(),Math.round(scrollY)]")
+        if T: pg.touchscreen.tap(W // 2, H // 2)
+        else: pg.mouse.wheel(0, 200)
+        pg.wait_for_timeout(600); s3 = pg.evaluate("__h.trState()")
+        ok(s0 == 'wait' and s1 == 'wait' and s2[0] == 'wait' and s2[1] > 300 and s3 == 'run', f'O10 {W} 열기 {s0} · 프로그램 스크롤 {s1} · 새로고침(읽던 자리 {s2[1]}) {s2[0]} → 손가락/휠 {s3}')
+        ok(not pg.errs, f'O10 {W} 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
     b.close()
 print('RESULT', 'PASS' if not fails else f'FAIL {len(fails)}')
 _sys.exit(1 if fails else 0)
