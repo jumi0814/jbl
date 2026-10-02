@@ -31,7 +31,7 @@ async def run(b, vp, touch, tag):
         await open_(pg, h); c = await pg.evaluate(CRUMB)
         t = await pg.evaluate(f"""(()=>{{const t=document.querySelector('#top'),r=t.getBoundingClientRect(),cs=getComputedStyle(t),L={LUM},cur=document.querySelector('#crumb .ccur'),fg=getComputedStyle(cur).color,sl=getComputedStyle(document.querySelector('#crumb #gohome')).color;
           const bg=cs.backgroundColor,cr=(a,b)=>{{const x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}};
-          return {{h:Math.round(r.height),bg,ovx:t.scrollWidth-t.clientWidth,emo:/\\p{{Extended_Pictographic}}/u.test(t.innerText),c1:Math.round(cr(fg,bg)*10)/10,c2:Math.round(cr(sl,bg)*10)/10,cut:cur.scrollWidth>cur.clientWidth+1}}}})()""")
+          return {{h:Math.round(r.height),bg,ovx:t.scrollWidth-t.clientWidth,emo:/\\p{{Extended_Pictographic}}/u.test(t.innerText.replace(/[☰✎★]/g,'')),c1:Math.round(cr(fg,bg)*10)/10,c2:Math.round(cr(sl,bg)*10)/10,cut:cur.scrollWidth>cur.clientWidth+1}}}})()""")
         ok(c == w, f'{tag} {h} 빵부스러기 {c!r} = {w!r}')
         ok(52 <= t['h'] <= 53 and t['bg'] == 'rgb(247, 245, 240)' and t['ovx'] <= 0 and not t['emo'] and t['c1'] >= 4.5 and t['c2'] >= 4.5, f'{tag} {h} 상단 막대 {t}')
         if h in ('#/', '#/CONS/WHT/learn'): await pg.screenshot(path=J.TMP + f'/ux4i_top_{tag}_{h.strip("#/").replace("/", "_") or "home"}.png', clip={'x': 0, 'y': 0, 'width': W, 'height': 60})

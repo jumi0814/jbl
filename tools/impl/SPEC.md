@@ -470,6 +470,22 @@ M: ⚡ 암기 줄({r:} 포함)
 - **정리표·비교표 Q**: 카드가 없는 탭에서 범위가 '이 카드'인데 지금 카드를 못 찾으면 이번만 '이 화면'(scope all — LS qzscope는 그대로) · mount 뒤 가린 칸이 0이면(복습이 켠 가리기 제외) 가리기 끔 — 학습 탭에서 켠 '이 카드' 가리기가 정리표에 보이지 않는 상태로 남지 않음.
 - **🧹·⚡ 창 + 보기 키**: E·Q·C·V·R·J·K·N·1~6을 처리하기 전에 Kit.clearClose()·#autopop 닫기.
 - **[보기 ▾]**: #lvpop class를 MutationObserver로 보고 #lmview aria-expanded를 맞춤(Esc·바깥·항목 어느 길로 닫아도 false).
-- **그림 확대 + 뒤로**: 열 때 history.pushState({...state, jblModal:1}) 한 번(MHIST — 다음·이전 그림은 더 쌓지 않음) · popstate에서 확대 창이 열려 있으면 창만 닫음 · [닫기]·Esc·바깥·아래로 쓸기는 history.back()(MPOPSKIP로 route 건너뜀) · 화면 이동(overlaysClose)으로 닫힐 때는 되돌리지 않음(mclose(true)).
+- **그림 확대 + 뒤로**: (E와 합치며 E 방식 하나로) 열 때 `mOn()`이 history에 한 칸({...state, modal:1}) · popstate에서 창이 열려 있으면 창만 닫음 · ✕·Esc·바깥은 `mclose()`가 그 칸을 history.back()으로 지움(MPOP 만큼 route를 건너뜀) · 화면 이동(overlaysClose)은 `mclose(true)`(되돌리지 않음).
 - **도움말**: 학습 탭 'D 지금 카드 ✓ 다 봄(카드 끝 버튼)' · ⭐ 시험포인트 '카드 머리 ‘기출 연도’ 칩'(숨긴 '⭐ n ↓' 문구 없음).
 - 회귀: tests/ux4f_D.py(61~85는 tests/ux4c_fix2.py).
+
+### ux4f 마무리(클라우드 10-02 — 오류 118건 재검 A~E · 새 오류 F~H · tests/ux4f_A~H.py)
+- **재검**: 118건 = 이미 고쳐짐 약 60 · 이번에 고침 약 58(범위 A 1~22·B 23~34·C 35~60·D 61~90·E 91~118). 범위마다 tests/ux4f_<범위>.py.
+- **C·E 겹친 곳 결정**: 정리표·비교표 Q = 화면 위쪽 행(`qzUnit` — tr[data-aid] → .tblwrap) '이 행/이 표', 못 찾으면 '이 화면' 전부 · 그림 확대 history = E 방식(mOn·MPOP) · 기출 한눈표 답 가리기 = 과목마다(LS `sumhide.<S>` 새 키 — 옛 `sumhide`는 지우지 않고 과목 값이 없을 때 그대로 씀) · JB 목록 Space = 카드 버튼과 같은 두 단계(열기 ↔ 접기, 자세히는 [자세히 ▾]) · 한 장씩은 세 단계 그대로.
+- **형광펜·빈칸**: 겹쳐 칠하면 겹친 부분만 바뀌고 앞뒤 조각은 남음(clearOverlap) · 다른 종류를 덮으면 알림+↶ · 빈칸 모드에서 형광펜을 누르면 빈칸으로(반대도) — 알림 하나(apply quiet) · 펜슬 톡(모드 없음) 지우기는 알림+[↶ 되돌리기] · 형광펜·빈칸 모드에서 👁 가린 칸을 누르면 먼저 열기(보이지 않는 글자에 저장 안 함) · 복원·합치기 뒤 ↶ 목록 비움(undoDrop).
+- **알림**: 되돌리기 알림(kind 'undo', 버튼 없는 것)은 다음 알림에 곧바로 자리를 내줌 · ⌘Z 여러 번 = 마지막 것 하나 · '되돌릴 표시가 없어요'도 undo 종류.
+- **바깥 누름**: 열린 창(.pop.on)을 닫으려고 그림 위를 누르면 닫기만(그림 확대가 같이 열리지 않게 — tests/kt.py).
+- **회전**: 스크롤이 멈출 때마다 anchorNow()를 ROTA에 적어 두고, 폭이 바뀐 resize 뒤 두 프레임 지나 그 블록으로(아이패드 1180↔820 — JB 목록·학습·한눈표).
+- **상단 막대 ≤860**: 빵부스러기는 글줄처럼 이어 흐름(display:block · 버튼 inline + 위아래 11px 여백으로 누름 자리 40px) — 강의 42개 모두 52px 한 높이 · 시계 알약은 시간 위·상태 아래 두 줄(약 125px) · 검색칸 120px 고정. >860은 #top height:auto(min 52) · 강의 제목은 자르지 않음.
+- **과목 홈 %**: `trendNoPct(p.trends)` — 경향 표 '짤 비율' 열을 '짤 / 문항'(j/n, 표본이 적으면 '누적 a/b')으로, tr title의 '짤 비율 n%' 지움, 공부 순서 '짤 비율 평균 n%' → '짤 j/n문항'. 팩 원문은 맥에서 trend.py로(guide/handoff/로컬에서_할_일.md).
+- **공부 순서**: '오늘 복습' 줄(li.rvli)은 counter-increment:none(단계 번호가 1부터).
+- **손가락 44px(pointer:coarse)**: 틀 접기 줄·더 보기·▣ 칩·⤢·✎ 도구·색 ▾·저장 실패 띠·details summary·JB 참고 [보이기]·📖 칩·.cite·내 표시 ↗·대장 쪽 번호·공부 순서 링크(.b3lk)·강의 바로가기(.ljc)·진행률 .b3btn·.tvlink·서랍 .nvback·.nvsw·카드 목차 .scard2·통계 ◀▶·#tvgoal·검색 탭 .hsb·플래시카드 ◀▶.
+- **이름 줄바꿈**: 틀 카드 목차 .ot는 2줄(line-clamp) · 정리표 묶음 칩·전체정리표 칩은 말줄임 없음(stLabel 글자 수 자르기 없앰) · 한 줄 칩 줄(한눈표 .sbl·비교표 .ttc)은 넘치면 `.ovr` 오른쪽 흐림 + 세로 휠 → 가로 넘김.
+- **표**: 정리표 ★ 칸 연도 칩은 칸 안에서 줄바꿈 · 820 학습 탭 본문 표 칸 overflow-wrap:anywhere.
+- **백업 창**: 기기 이름 Esc = 저장하고 닫기, Enter = 저장 · 상태 줄 #bkst 바로 갱신. 과목 홈 '↪ 최근 읽던 곳' 시각 = atLab.
+- **검사 기준(리눅스 클라우드)**: 이모지 검사에서 시안의 글자 기호 ☰·✎·★는 제외(audit_design calm·tests/ux4_top).
