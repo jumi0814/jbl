@@ -188,10 +188,10 @@ async def subj_color(b):
     await pg.close(); return bad
 CALM=r"""()=>{const vis=e=>{const r=e.getBoundingClientRect();if(r.width<1||r.height<1||r.bottom<0||r.top>innerHeight)return false;const s=getComputedStyle(e);return s.visibility!=='hidden'&&s.display!=='none'&&+s.opacity>0.05};
  const fs=new Set(),odd=new Set();for(const e of document.querySelectorAll('#home *,#hero *,#dtabs *,#stage *')){if(!vis(e))continue;if(![...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim()))continue;if(e.closest('.tc .tbody,.qc .qtext,.qc .ans,table'))continue;const f=getComputedStyle(e).fontSize;fs.add(f);if(Math.abs(parseFloat(f)*2-Math.round(parseFloat(f)*2))>0.01)odd.add(f+' '+e.tagName+'.'+String(e.className).slice(0,30));}
- const OK=/[🔑⭐💬✍⚡📌⚠☕▶]/u,emo=[];document.querySelectorAll('#top,#nav,#dtabs,#hero,#lvpop,#home h1,#home h2,#stage h2.hh,#stage .frt,#home .btn,#stage #jbbar,#stage .acts').forEach(r=>{if(!vis(r))return;const t=r.innerText||'';(t.match(/\p{Extended_Pictographic}/gu)||[]).forEach(c=>{if(!OK.test(c))emo.push(c+' '+(r.id||r.className||r.tagName));});});
+ const OK=/[🔑⭐💬✍⚡📌⚠☕▶✎★]/u,emo=[];document.querySelectorAll('#top,#nav,#dtabs,#hero,#lvpop,#home h1,#home h2,#stage h2.hh,#stage .frt,#home .btn,#stage #jbbar,#stage .acts').forEach(r=>{if(!vis(r))return;const t=r.innerText||'';(t.match(/\p{Extended_Pictographic}/gu)||[]).forEach(c=>{if(!OK.test(c))emo.push(c+' '+(r.id||r.className||r.tagName));});});
  return {fs:[...fs].sort((a,b)=>parseFloat(a)-parseFloat(b)),odd:[...odd].slice(0,8),emo};}"""
 async def calm_checks(b):
-    """ux4 B3-1 최종 시안 글자 6단계·크롬 이모지 — 1280 첫 화면(허브 홈·과목 홈·강의 학습·JB)의 본문 밖(머리·탭·절 제목·버튼) 글자 크기 종류 ≤7/6/6/7, 0.5px 단위가 아닌 크기 0, 크롬(상단·메뉴·탭·머리·절 제목·버튼) 이모지 0(정리본 표지 🔑⭐💬✍⚡📌⚠·☕·재생 ▶ 제외 — 시안의 [▶ 시작][☕ 쉬기])"""
+    """ux4 B3-1 최종 시안 글자 6단계·크롬 이모지 — 1280 첫 화면(허브 홈·과목 홈·강의 학습·JB)의 본문 밖(머리·탭·절 제목·버튼) 글자 크기 종류 ≤7/6/6/7, 0.5px 단위가 아닌 크기 0, 크롬(상단·메뉴·탭·머리·절 제목·버튼) 이모지 0(정리본 표지 🔑⭐💬✍⚡📌⚠·☕·재생 ▶ 제외 — 시안의 [▶ 시작][☕ 쉬기] · 시안의 글자 기호 [✎ 도구]·JB 별표 ★도 제외)"""
     bad=[]; rep=[]; pg=await b.new_page(viewport={'width':1280,'height':900})
     for h,lim in [('#/',7),('#/CONS/_home/_home',6),('#/CONS/WHT/learn',6),('#/CONS/_jb/_jb',7),('#/PHARM/_home/_home',6),('#/OMS1/DD1/learn',6)]:
         await pg.goto('about:blank'); await pg.goto(U+h); await pg.wait_for_timeout(1500)
