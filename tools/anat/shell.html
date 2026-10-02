@@ -1791,6 +1791,15 @@ body.jbone #hero.hero{display:none}
 @media (pointer:coarse){#stage .frame details.trend>summary{min-height:44px;display:flex;align-items:center}#stage .frame details.tald>summary{padding-top:9px;padding-bottom:9px}#stage .frame .ftop .tmorebtn,#stage .frame .btn.sm{min-height:44px;padding:0 10px}button.qzchip{min-height:44px}#dtabs button.dfoc{min-width:44px!important;justify-content:center}}
 @media (pointer:coarse){.chip.refc .link{min-height:44px;padding:0 10px;display:inline-flex;align-items:center}button.mk.mkgo{min-width:44px;min-height:44px}.pggrid .btn.sm{min-width:44px;min-height:44px}#stage .qc .qhead .chip.lec,#stage .cite{min-height:44px}}   /* ux4f 새 오류: JB 참고 [보이기]·내 표시 ↗·대장 쪽 번호·📖 칩·근거 버튼도 손가락 44px */
 @media (pointer:coarse){#stage .b3lk,#home .b3lk{display:inline-flex;align-items:center;min-height:44px;padding-left:6px;padding-right:6px}.chip.ljc,.b3btn,#stage .b3btn,#home .b3btn,.tvlink,#nav .nvback,#nav .nvsw,#nav .nvtoc .scard2,[data-tvw],#tvgoal,.hsb,[data-tvsc]{min-height:44px}[data-tvw]{min-width:44px}.b3btn,.tvlink{display:inline-flex;align-items:center}}   /* ux4f 새 오류: 과목 홈 공부 순서 링크·강의 바로가기·진행률 버튼·서랍 머리·카드 목차·통계 ◀▶·목표·검색 탭도 손가락 44px */
+/* ux4f 새 오류(학습·표 관점) — 정리표 ★ 칸 연도 칩은 칸 안에서 줄바꿈 · 학습 탭 본문 표 긴 영어 낱말 줄바꿈(820) · 틀 카드 목차·묶음 칩 이름은 말줄임 대신 줄바꿈(2줄) · 칩 줄이 넘치면 오른쪽 흐림 · 플래시카드 ◀▶ 44px */
+.msum td.mt .mexi>.jbchip,.msum td.mt .jbchip{flex:0 1 auto;max-width:100%;white-space:normal;overflow-wrap:anywhere;height:auto}
+@media (max-width:860px){#stage .tc .tscroll td,#stage .tc .tscroll th{overflow-wrap:anywhere}}
+#stage .frame .ol .ot,.frame .ol .ot{white-space:normal;overflow:hidden;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;word-break:keep-all;overflow-wrap:anywhere;max-width:none}
+@media (max-width:860px){.frame .ol{align-items:start}.frame .ol .oy{align-self:start}}
+.msbar .mgrp .tg{max-width:none;white-space:normal;text-overflow:clip;overflow:visible;height:auto;text-align:left;word-break:keep-all}
+.sumbar .sbl.ovr,.tbltoc .ttc.ovr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.sumbar .sbl.ovr.end,.tbltoc .ttc.ovr.end{-webkit-mask-image:none;mask-image:none}
+@media (pointer:coarse){#fprev,#fnext{min-width:44px;min-height:44px}}
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" type="button" title="메뉴 (M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt">0:00:00</span><small class="ckl"></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -4170,7 +4179,7 @@ function sumMig(s){const P=PACKS[s];   /* 플래그(sumMig.<S>)가 있어도 옛
 /* E02·E04·E05·E08 정리표 탭 — 전체정리표(sum=1 표) 맨 위 · [요약|전체](LS sumdense 's'|'f') · 기출 필터·묶음 필터(저장 안 함) */
 const isSumTab=()=>VIEW==='doc'&&CUR.t==='sum'&&!!$('#stage .msum');
 /* 전체정리표 = 맨 위 칩 막대(표 제목) — 누른 표만 펼침(LS sumtop.<S>.<K> = 번호 | 'all' | 없음). 처음엔 접힌 칩 막대(정리표 한 화면 높이를 지키려고) */
-function stLabel(t){t=String(t||'');const cut=(x,n)=>{x=x.trim();return x.length>n?x.slice(0,n-1)+'…':x;};const m=/([①-⑳])\s*(.*)$/.exec(t);   /* ux4 B46 '전체정리표 강의명 ① 주제 — 설명' → '① 주제'(전체는 title) */
+function stLabel(t){t=String(t||'');const cut=(x,n)=>x.trim();   /* ux4f 새 오류: 글자 수로 자르지 않음(이름 그대로 — 칩은 줄바꿈) */const m=/([①-⑳])\s*(.*)$/.exec(t);   /* ux4 B46 '전체정리표 강의명 ① 주제 — 설명' → '① 주제'(전체는 title) */
  if(m){const r=m[2].replace(/^[—–-]\s*/,'');return m[1]+' '+cut(r.split(/\s+[—–]\s+/)[0].split(/\s*→\s*/)[0],16);}const k=t.split(/\s+[—–]\s+/);return cut(k.length>1?k.slice(1).join(' — '):t.replace(/^.*?전체\s*정리표?\s*/,''),16);}
 function sumHTML(p,L){const st=(L.sumt||[]).map(i=>p.tables[i]).filter(Boolean);if(!st.length)return L.sum;
  const tt=st.map(x=>{const m=/<div class="tbt serif">([^<]*)<\/div>/.exec(x.html);return m?m[1]:'';});
@@ -4202,7 +4211,7 @@ function sumGrp(g){$$('#stage [data-mgrp]').forEach(b=>b.classList.toggle('on',b
 function ux2MountE(){const st=$('#stage');if(!st)return;st.classList.remove('sdfull','mf-hit','mf-rep2');
  if(isSumTab()){sumDense();sumFilt('');stApply();msbarPlace();}   /* ux4 B26 좁은 화면은 요약/자세히 막대를 맨 위로 */
  $$('#stage [data-mfilt="rep2"]').forEach(b=>{if(b.textContent.trim()==='2회↑')b.textContent='2회↑만';});   /* ux4f E 한눈표·학습 필터와 같은 이름(옛 팩 버튼) */
- covInit();tblMount();if(VIEW==='doc'&&CUR.d==='_sum'){sumPaint();const lg=$('#sumbar .sleg');if(lg){lg.classList.add('slego');$('#sumbar').after(lg);}}if(VIEW==='doc'&&CUR.d==='_pred')predHeads(PACKS[CUR.s]);fltRestore();}   /* ux4 B10 필터 복원 · B25 _pred 강의 머리 */
+ covInit();tblMount();setTimeout(stripOvr,300);if(VIEW==='doc'&&CUR.d==='_sum'){sumPaint();const lg=$('#sumbar .sleg');if(lg){lg.classList.add('slego');$('#sumbar').after(lg);}}if(VIEW==='doc'&&CUR.d==='_pred')predHeads(PACKS[CUR.s]);fltRestore();}   /* ux4 B10 필터 복원 · B25 _pred 강의 머리 */
 function ux2Reveal(c){if(!c||!c.closest)return;const sw=c.closest('#sumtop .stbl.stoff');if(sw)stApply(sw.dataset.sti,true);const tr=c.closest('.msum tr[data-aid]');if(!tr)return;if(tr.classList.contains('hid'))sumGrp('');if(getComputedStyle(tr).display==='none')sumFilt('');
  const md=tr.querySelector('td.md');if(md&&md.querySelector('.mfull [data-rk]'))md.classList.add('dopen');}
 $('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||VIEW!=='doc')return;const b=t.closest('button');const d=b?b.dataset:{};
@@ -4701,6 +4710,11 @@ function trendNoPct(h){if(trendNoPct.k===h)return trendNoPct.v;let J=0,N=0;
  const o=String(h).replace(/<th>짤 비율<\/th>/g,'<th>짤 / 문항</th>').replace(/ · 짤 비율 \d+%/g,'')
   .replace(/<td class="n">(\d+) \/ (\d+)<\/td><td>([^<]*)<\/td><td class="n">\d+%( <small>표본이 적어 누적 짤 (\d+)\/(\d+)<\/small>)?<\/td>/g,(m,j,tl,ty,sm,a,b)=>{J+=+j;N+=(+j)+(+tl);return `<td class="n">${j} / ${tl}</td><td>${ty}</td><td class="n">${sm?`누적 ${a}/${b}`:`${j}/${(+j)+(+tl)}`}</td>`;});
  trendNoPct.k=h;trendNoPct.v={h:o,j:N?J+'/'+N:''};return trendNoPct.v;}
+/* ux4f 새 오류: 한 줄 칩 줄(한눈표·비교표 강의 칩)이 넘치면 오른쪽을 흐리게(.ovr — 끝까지 밀면 .end) · 맥 세로 휠로도 가로로 넘김 */
+function stripOvr(){$$('#stage .sumbar .sbl,#stage .tbltoc .ttc').forEach(s=>{const o=s.scrollWidth>s.clientWidth+2;s.classList.toggle('ovr',o);s.classList.toggle('end',o&&s.scrollLeft+s.clientWidth>=s.scrollWidth-2);});}
+document.addEventListener('wheel',e=>{const s=e.target.closest&&e.target.closest('#stage .sumbar .sbl,#stage .tbltoc .ttc');if(!s||s.scrollWidth<=s.clientWidth+2||Math.abs(e.deltaX)>=Math.abs(e.deltaY))return;const L=s.scrollLeft;s.scrollLeft+=e.deltaY;if(s.scrollLeft!==L)e.preventDefault();},{passive:false});
+document.addEventListener('scroll',e=>{const s=e.target;if(s&&s.classList&&(s.classList.contains('sbl')||s.classList.contains('ttc')))stripOvr();},true);
+addEventListener('resize',()=>{clearTimeout(stripOvr.t);stripOvr.t=setTimeout(stripOvr,200);});
 /* B04 허브 화면에서 과목 전용 키를 누르면 한 번만 알림(상태는 바꾸지 않음) */
 let HUBKN=0;function hubKeyNote(){if(HUBKN)return;HUBKN=1;toast('H·B·E·N·T·V·Q는 과목 화면(강의·JB·표)에서 쓰는 키예요');}
 /* B15 / = 검색 — 집중 모드면 상단 막대를 잠시 내려(topshow) 바로 포커스, 검색칸을 떠나면 다시 숨김 */
