@@ -6,6 +6,7 @@ O5 덮어쓰기 알림의 [↶ 되돌리기]는 그 동작만 — 그 뒤 다른
 O6 과목 홈 '안 푼 것 n →'이 풀던 한 장씩 회차를 묻지 않고 지우지 않음(취소하면 회차 그대로)
 O7 전에 M으로 메뉴를 쓰던 사용자가 M을 먼저 눌러도 '이제 Shift+M' 알림 한 번
 O8 다른 기기 합산 시작 전 날짜의 빈 과목('') 기록도 '기타'
+O11 비교표 표 ↔ 카드형 판정이 부를 때마다 뒤집히지 않음(칸 여백을 늘 표 모양 기준으로) — 820 CONS/CRK 비교표 = 카드형 · 'Origination' 머리 낱말 안 끊김
 O10 열기·읽던 자리로 되돌리는 스크롤(프로그램)은 '움직임'이 아님 — 아무것도 안 했으면 자동 대기 그대로 · 휠을 굴리면 그때 측정"""
 import os as _os, sys as _sys, json; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 from playwright.sync_api import sync_playwright
@@ -147,6 +148,14 @@ with sync_playwright() as p:
         pg.wait_for_timeout(600); s3 = pg.evaluate("__h.trState()")
         ok(s0 == 'wait' and s1 == 'wait' and s2[0] == 'wait' and s2[1] > 300 and s3 == 'run', f'O10 {W} 열기 {s0} · 프로그램 스크롤 {s1} · 새로고침(읽던 자리 {s2[1]}) {s2[0]} → 손가락/휠 {s3}')
         ok(not pg.errs, f'O10 {W} 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
+    # ---------- O11 ----------
+    ctx, pg = new(b, 820, 1180, True); go(pg, '/CONS/CRK/tbl', 1500)
+    CARD = "(()=>{const th=[...document.querySelectorAll('#stage table th')].find(e=>e.textContent.trim()==='Origination');const w=th.closest('.tblwrap');const r=document.createRange();r.selectNodeContents(th);const q=[...r.getClientRects()].filter(x=>x.width>0);return [w.classList.contains('stcard'),q.length&&Math.abs(q[0].top-q[q.length-1].top)<=4]})()"
+    seen = [pg.evaluate(CARD)]
+    for _ in range(4):
+        pg.evaluate("window.dispatchEvent(new Event('resize'));document.dispatchEvent(new CustomEvent('jbl:layout'))"); pg.wait_for_timeout(500); seen.append(pg.evaluate(CARD))
+    ok(all(x == [True, True] for x in seen), f'O11 820 CRK 비교표 카드형 그대로·머리 낱말 안 끊김(다시 맞춤 4번) {seen}')
+    ok(not pg.errs, f'O11 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
     b.close()
 print('RESULT', 'PASS' if not fails else f'FAIL {len(fails)}')
 _sys.exit(1 if fails else 0)
