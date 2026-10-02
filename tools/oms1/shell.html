@@ -1787,7 +1787,8 @@ body.jbone #hero.hero{display:none}
 @media print{#retpill,#jbpeek,#toast,#toasts,#toasterr{display:none!important}}
 #fexp,#jbrec{align-items:center;justify-content:center}
 #jbbar.mini.fopen .b2,#jbbar.mini.fopen #jbmore:not([hidden]){display:flex}
-@media (pointer:coarse){#stage .frame details.trend>summary{min-height:40px;display:flex;align-items:center}#stage .frame details.tald>summary{padding-top:9px;padding-bottom:9px}#stage .frame .ftop .tmorebtn,#stage .frame .btn.sm{min-height:40px;padding:0 10px}button.qzchip{min-height:40px}#dtabs button.dfoc{min-width:44px!important;justify-content:center}}
+@media (pointer:coarse){#stage .frame details.trend>summary{min-height:44px;display:flex;align-items:center}#stage .frame details.tald>summary{padding-top:9px;padding-bottom:9px}#stage .frame .ftop .tmorebtn,#stage .frame .btn.sm{min-height:44px;padding:0 10px}button.qzchip{min-height:44px}#dtabs button.dfoc{min-width:44px!important;justify-content:center}}
+@media (pointer:coarse){.chip.refc .link{min-height:44px;padding:0 10px;display:inline-flex;align-items:center}button.mk.mkgo{min-width:44px;min-height:44px}.pggrid .btn.sm{min-width:44px;min-height:44px}#stage .qc .qhead .chip.lec,#stage .cite{min-height:44px}}   /* ux4f 새 오류: JB 참고 [보이기]·내 표시 ↗·대장 쪽 번호·📖 칩·근거 버튼도 손가락 44px */
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" type="button" title="메뉴 (M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt">0:00:00</span><small class="ckl"></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -3223,7 +3224,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
    G.forEach(els=>els.forEach(unwrap));keep.forEach(k=>wrap(B,k.a,k.b,k.rt,k.c||color,k.g||('n'+(++GID)),false,k.bc));return other;}   /* ux4f C 56 겹친 부분만 지움 — 겹치지 않은 앞뒤 조각은 남김(앞 = 원래 묶음 · 뒤 = 새 묶음) · 다른 종류(빈칸↔형광펜)를 덮으면 그 수를 돌려줌 */
  /* 칠할 종류: 모드가 켜져 있으면 그것, 모드 없이 애플펜슬로 끌면(펜슬로 바로 칠하기 — LS penDirect) 형광펜 */
  const eff=d=>mode||(d&&d.pen?'h':null);
- function apply(B,a,b,t){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor);commit(B);if(ov)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',action:{label:'↶ 되돌리기',fn:()=>undo()}});}
+ function apply(B,a,b,t,quiet){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor);commit(B);if(ov&&!quiet)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',action:{label:'↶ 되돌리기',fn:()=>undo()}});}
  function clearPre(B){(B?B:document).querySelectorAll('[data-pre]').forEach(unwrap);}
  function preview(B,a,b,t){clearPre(B);if(b>a)wrap(B,a,b,t||mode,color,null,true);}
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;if(el.closest('.cov:not(.covo)'))return null;   /* ux4f E 가린 칸(👁)에서는 칠하기를 시작하지 않음 — 누르면 열림 */
@@ -3233,7 +3234,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
   if(rk&&rk.hasAttribute('data-auto')){toast('자동 빈칸(규칙)은 🧹 지우기나 ⚡ 창의 [이 탭의 자동 빈칸 지우기]로 지워요');return;}
   if(rk&&B.contains(rk)){const recol=t==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color;const brecol=t==='b'&&rk.getAttribute('data-rk')==='b'&&(rk.getAttribute('data-bc')||'n')!==bcolor;   /* ux3 K5 빈칸 모드에서 다른 색 빈칸 = 그 묶음 색만 바꿈(되돌리기 가능) · 같은 색 = 지움 */
    if(brecol){recolB(B,rk,bcolor);return;}
-   if((t==='h'||t==='b')&&rk.getAttribute('data-rk')!==t){const els=group(rk),ix=index(B);let a=1e9,z=-1;ix.map.forEach(m=>{if(els.some(x=>x.contains(m.n))){a=Math.min(a,m.start);z=Math.max(z,m.start+m.len);}});if(z>a){apply(B,a,z,t);toast(t==='b'?'형광펜을 빈칸으로 바꿨어요 (↶ 되돌리기)':'빈칸을 형광펜으로 바꿨어요 (↶ 되돌리기)');return;}}   /* ux4f E 빈칸 모드에서 형광펜 = 빈칸으로 · 형광펜 모드에서 빈칸 = 형광펜으로(조용히 지우던 것) */
+   if((t==='h'||t==='b')&&rk.getAttribute('data-rk')!==t){const els=group(rk),ix=index(B);let a=1e9,z=-1;ix.map.forEach(m=>{if(els.some(x=>x.contains(m.n))){a=Math.min(a,m.start);z=Math.max(z,m.start+m.len);}});if(z>a){apply(B,a,z,t,true);toast(t==='b'?'형광펜을 빈칸으로 바꿨어요':'빈칸을 형광펜으로 바꿨어요',{level:'result',action:{label:'↶ 되돌리기',fn:()=>undo()}});return;}}   /* ux4f E 빈칸 모드에서 형광펜 = 빈칸으로 · 형광펜 모드에서 빈칸 = 형광펜으로(조용히 지우던 것) */
    push(recol?'형광펜 색 바꾸기':(rk.getAttribute('data-rk')==='b'?'빈칸 지우기 1개':'형광펜 지우기 1개'));const els=group(rk);if(recol){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
   if(!t)return;const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;apply(B,w[0],w[1],t);}
  /* 끄는 범위(A08): 포인터가 시작 카드(표시 단위) 밖이면 — 아래로 벗어나면 시작 카드의 끝까지, 위로 벗어나면 처음까지(cross) */
@@ -3264,7 +3265,7 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
   if(!drag.active){if(dist>10){clearTimeout(drag.tm);drag=null;}return;}e.preventDefault();if(dist>(drag.stylus?6:4))drag.moved=true;if(drag.moved)dragMove(t.clientX,t.clientY);},{passive:false});
  document.addEventListener('touchend',e=>{if(!drag||!drag.touch)return;const d=drag;drag=null;clearTimeout(d.tm);stopAS();const t=e.changedTouches[0];clearPre(d.B);
   if(d.active){if(d.moved){e.preventDefault();dragEnd(d,t.clientX,t.clientY);return;}
-   if(d.pen){const rk=d.target&&d.target.closest&&d.target.closest('[data-rk="h"]');if(rk&&d.B.contains(rk)){e.preventDefault();push('형광펜 지우기 1개');group(rk).forEach(unwrap);commit(d.B);}return;}   /* 펜슬 톡(모드 없음): 칠한 곳이면 지우기, 아니면 보통 누르기(빈칸 열기 등) */
+   if(d.pen){const rk=d.target&&d.target.closest&&d.target.closest('[data-rk="h"]');if(rk&&d.B.contains(rk)){e.preventDefault();push('형광펜 지우기 1개');group(rk).forEach(unwrap);commit(d.B);toast('펜슬로 형광펜 1개를 지웠어요',{level:'result',action:{label:'↶ 되돌리기',fn:()=>undo()}});}return;}   /* ux4f 새 오류: 말없이 지워지지 않게 알림 + 되돌리기 */   /* 펜슬 톡(모드 없음): 칠한 곳이면 지우기, 아니면 보통 누르기(빈칸 열기 등) */
    e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);return;}
   if(!d.moved&&Date.now()-d.t0<400){e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);}},{passive:false});
  document.addEventListener('touchcancel',()=>{if(drag&&drag.touch)cancelDrag();});
@@ -4688,6 +4689,11 @@ function anchorNow(){if(VIEW!=='doc')return null;const line=topOff();let best=nu
   if(r.top<=line){if(r.top>=bt){bt=r.top;best=b;}}else if(r.top<nt){nt=r.top;nx=b;}}
  const el=best||nx;if(!el)return null;const c=el.closest('.tc,.qc,.pc,.tblwrap');return {el,off:Math.round(line-el.getBoundingClientRect().top),c,coff:c?Math.round(line-c.getBoundingClientRect().top):0};}
 function keepAnchor(fn){const a=scrollY>8?anchorNow():null;fn();if(!a)return;const s0=STL;requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;   /* 그 사이 다른 이동(↑ 틀·goCard)이 시작됐으면 그쪽을 따름 */const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off));else if(vis(a.c))settle(()=>goEl(a.c,0));clearTimeout(keepAnchor.t);keepAnchor.t=setTimeout(lcurGeo,1500);[120,400].forEach(ms=>setTimeout(lcurGeo,ms));}));}   /* 블록이 숨으면(압축 보기 등) 그 카드 머리로 */
+/* ux4f 새 오류: 아이패드를 돌리면(폭이 바뀜) 읽던 블록을 같은 자리에 — 스크롤이 멈출 때마다 기준 블록을 적어 두고, 폭이 바뀐 resize 뒤 두 프레임 지나 되돌림(사파리는 스크롤 고정이 없음) */
+let ROTA=null,ROTW=innerWidth;
+addEventListener('scroll',()=>{clearTimeout(ROTA&&ROTA.t);const tm=setTimeout(()=>{if(innerWidth!==ROTW)return;const a=scrollY>8?anchorNow():null;ROTA=a?Object.assign(a,{t:0}):null;},160);ROTA=ROTA?Object.assign(ROTA,{t:tm}):{t:tm,none:1};},{passive:true});
+addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;const a=ROTA&&!ROTA.none&&ROTA.el?ROTA:null;if(!a)return;clearTimeout(a.t);const s0=STL;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off));else if(vis(a.c))settle(()=>goEl(a.c,a.coff));}));});
 /* B04 허브 화면에서 과목 전용 키를 누르면 한 번만 알림(상태는 바꾸지 않음) */
 let HUBKN=0;function hubKeyNote(){if(HUBKN)return;HUBKN=1;toast('H·B·E·N·T·V·Q는 과목 화면(강의·JB·표)에서 쓰는 키예요');}
 /* B15 / = 검색 — 집중 모드면 상단 막대를 잠시 내려(topshow) 바로 포커스, 검색칸을 떠나면 다시 숨김 */

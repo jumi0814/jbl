@@ -6,7 +6,7 @@
 89 그림 확대 창이 열린 채 뒤로 = 창만 닫고 강의에 남음(자리 그대로) · [닫기]로 닫은 뒤 뒤로 = 앞 화면(과목 홈)
 90 도움말: 'D 지금 카드 ✓ 다 봄' · 카드 머리 '⭐ n ↓' 문구 없음
 맥 1280×900 · 아이패드 세로 820×1180(터치) · 가로 1180×820(터치)"""
-import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
+import re, os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 from playwright.sync_api import sync_playwright
 U = J.HUB_URL; fails = []
 def ok(c, m):
@@ -41,7 +41,7 @@ def quiz_sum(b):
         key(pg, 'Escape', 'Escape')
         ok('가리기 보기를 껐어요' not in pg.evaluate(TOASTS), f'{tag} 정리표에서 Esc → 보이지 않던 가리기를 껐다는 알림 없음')
         key(pg, 'ㅂ', 'KeyQ'); d = pg.evaluate(QS); tx = pg.evaluate(TOASTS)
-        ok(d[0] and d[2] > 0 and d[3] == d[2] and '이 화면' in tx and '없어요' not in tx, f'{tag} 정리표 Q → 이 화면 빨간 핵심어 {d[2]}개 가림 {d}')
+        ok(d[0] and d[2] > 0 and d[3] == d[2] and re.search('가리기 보기 — (이 행|이 표|이 화면)', tx) and '없어요' not in tx, f'{tag} 정리표 Q → 이 행(못 찾으면 이 표·이 화면) 빨간 핵심어 {d[2]}개 가림 {d}')   # E 합침: 정리표의 '이 카드' = 화면 위쪽 행(qzUnit)
         ok(pg.evaluate("localStorage.getItem('jblhub.v1.qzscope')") in (None, '"card"'), f'{tag} 저장된 범위는 그대로')
         key(pg, 'ㅂ', 'KeyQ'); e = pg.evaluate(QS)
         ok(not e[0] and e[2] == 0, f'{tag} 정리표 Q 다시 → 끔 {e}')
