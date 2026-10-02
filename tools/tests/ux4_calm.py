@@ -69,10 +69,10 @@ async def run(b, tag, vp, touch):
     # ---- B3-4 강의 탭 줄·미니바
     await go(pg, '#/CONS/WHT/learn', '#stage .tc')
     r = await pg.evaluate(f"""(()=>{{const d=document.querySelector('#dtabs'),tabs=[...d.querySelectorAll('button[data-t]')];return {{emo:tabs.flatMap(b=>{EMO}(b.textContent)),kbd:d.querySelectorAll('.kbd').length,h:d.clientHeight,
-      ov:d.scrollWidth-d.clientWidth,tn:getComputedStyle(d.querySelector('.tn')).color,lab:tabs.map(b=>b.textContent),btn:[...d.querySelectorAll('#lmini>button,#lmini .ktog,#lmini .dfoc')].map(b=>b.id||b.className)}}}})()""")
+      ov:d.scrollWidth-d.clientWidth,tn:getComputedStyle(d.querySelector('.tn')).color,lab:tabs.map(b=>b.textContent),btn:[...d.querySelectorAll('#lmini>button,#lmini .ktog,#lmini .dfoc')].filter(b=>!b.hidden&&getComputedStyle(b).display!=='none').map(b=>b.id||b.className)}}}})()""")
     ok(not r['emo'] and r['kbd'] == 0 and r['lab'][0] == '학습', f'{tag} B3-4 글자 탭(이모지·번호 배지 없음) {r["lab"]}')
     ok(r['h'] <= 48 and r['ov'] <= 1, f'{tag} B3-4 탭 6 + 미니바 한 줄(높이 {r["h"]} ≤48 · 밀림 {r["ov"]})')
-    ok(r['btn'][:2] == ['lmcur', 'lmview'] and len(r['btn']) == 4, f'{tag} B3-4 미니바 4개 {r["btn"]}')
+    ok(r['btn'][:2] == ['lmcur', 'lmview'] and len(r['btn']) == 4, f'{tag} B3-4 미니바 4개 {r["btn"]}')   # ux4f 집중 모드 시계(.fclock 버튼)는 집중 모드에서만 보임 — 보이는 버튼만 셈
     await pg.screenshot(path=J.TMP + f'/ux4i_b3_lecture_{tag}.png')
     VS = "[document.querySelector('#lmview').textContent,document.querySelector('#lmview').getAttribute('aria-pressed'),['review','cond','quiz'].filter(c=>document.querySelector('#stage').classList.contains(c)).join(','),document.querySelector('#lvpop').classList.contains('on')]"
     async def pick(i):
