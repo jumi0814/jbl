@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"1c128a5f",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"47f13fde",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -996,7 +996,7 @@ body.v-home #tmr{display:none}   /* V12 🏠 오늘 = 오늘 띠가 측정 버�
 .cbl{display:flex;justify-content:space-between;font-size:10.5px;margin:1px 0 8px}
 ul.crows{list-style:none;margin:6px 0 8px;padding:0}.crow{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto auto;gap:4px 10px;align-items:center;padding:5px 2px;border-bottom:1px solid var(--line2);font-size:13.5px}
 .crow .ctm{white-space:nowrap}.crow .cdur{white-space:nowrap}.crow .csj{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.crow .csj .sjdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:1px}
-.crow .csrc{white-space:nowrap;color:var(--sub)}.crow .cact{display:inline-flex;gap:4px}.crow .cact .btn{min-height:32px;min-width:34px;padding:2px 6px}@media (pointer:coarse){.crow .cact .btn{min-height:40px;min-width:40px}}
+.crow .csrc{white-space:nowrap;color:var(--sub)}.crow .cact{display:inline-flex;gap:4px}.crow .cact .btn{min-height:32px;min-width:34px;padding:2px 6px}@media (pointer:coarse){.crow .cact .btn{min-height:44px;min-width:44px}#calday .cedit .btn,#calday .cedit .link,#calday .cedit input,#calday .cedit select{min-height:44px;min-width:44px;box-sizing:border-box}#calday .cedit .link{display:inline-flex;align-items:center;justify-content:center;padding:0 10px}}   /* ux4f L9 달력 줄 ✎🗑±·고치기 줄(시간대 없음 ±의 취소 포함) 손가락 44px */
 .crow.r{color:var(--sub)}.crow.dv{color:var(--sub);font-style:italic}.crow.nts .ctm{color:var(--sub);font-size:12.5px}.crow.flash{outline:3px solid var(--mark);outline-offset:1px;border-radius:6px}
 li.cedit{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 6px;background:#FAF7F0;border-bottom:1px solid var(--line2);font-size:13px}
 li.cedit input,li.cedit select,.caf input,.caf select{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:3px 6px;min-height:36px;background:#fff;color:var(--ink);max-width:100%}li.cedit select,.caf select{max-width:13em}#cntsm{width:5em}
@@ -1908,7 +1908,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="1c128a5f",PV={"OMS1": "3df0d096", "CONS": "5c676d23", "IMPL": "31d3ffb4", "ANAT": "5f5f3784", "GERI": "4109f901", "PHARM": "134c16d7"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="47f13fde",PV={"OMS1": "1a1b2db2", "CONS": "a22c96a2", "IMPL": "1194a5b8", "ANAT": "2be01057", "GERI": "9a4d5d30", "PHARM": "551c9fc6"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -1928,7 +1928,7 @@ function needImages(id,c,cb){const key=id+':'+c;if(LOADED[key])return cb();(imgW
 const T={run:false,t0:0,log:LS.get('time',{}),dlog:LS.get('timed',{}),auto:LS.get('tauto',true),last:Date.now(),IDLE:8*60*1000,manualPause:false,hiddenStop:false};
 const day=(dd)=>{const d=dd||new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);};
 const fmt=ms=>{const s=Math.floor(ms/1000);return ('0'+Math.floor(s/3600)).slice(-2)+':'+('0'+Math.floor(s/60)%60).slice(-2)+':'+('0'+s%60).slice(-2);};
-const fmtS=ms=>{const m=Math.round(ms/60000);return m>=60?Math.floor(m/60)+'시간 '+(m%60)+'분':m+'분';};
+const fmtS=ms=>{const m=Math.floor(Math.max(0,ms)/60000);   /* ux4f L5 휴식 띠·알림도 내림(달력·홈·⏱ 크게 fmtH와 같은 숫자) */return m>=60?Math.floor(m/60)+'시간 '+(m%60)+'분':m+'분';};
 /* 다른 창과 함께 열어도 합산되게: 쓰기 직전에 LS를 다시 읽고 이번 증가분(ms)만 더함. 마지막 입력 뒤 1분까지만 미리 계상(무활동 구간은 활동이 돌아오면 그때 더해지고, 8분 넘으면 멈춤) */
 const tObj=v=>(v&&typeof v==='object'&&!Array.isArray(v))?v:{};
 function tFlush(upTo){if(!T.run)return;let now=(typeof upTo==='number')?upTo:Date.now();now=Math.min(now,T.last+60000);if(now<=T.t0)return;tRec(CUR.s||'기타',CUR.s&&CUR.d?CUR.d:'',T.t0,now,'a');T.t0=now;}   /* ux3 I3 [t0,now]를 자정에서 두 날로 나눠 time·timed·tseg에 씀(tRec — '// ux3 트랙2' 구역) */
@@ -2125,7 +2125,9 @@ function sessFlush(now){const ts=tsRead();TS=ts||0;if(!ts||ts.st==='end'||T.clos
  const lim=Math.min(now,trCap(ts));if(lim>ts.seg){if(ts.st==='sess'){tRec(ts.S,ts.D,ts.seg,lim,'s');ts.sum=(+ts.sum||0)+(lim-ts.seg);}else{tRec('','',ts.seg,lim,ts.ar?'ra':'r');ts.rsum=(+ts.rsum||0)+(lim-ts.seg);}ts.seg=lim;}
  ts.at=now;if((T.inp||0)>(+ts.li||0))ts.li=T.inp;tsWrite(ts);return ts;}
 function trTake(){const ts=tsRead();TS=ts||0;if(ts&&ts.st!=='end'&&ts.own!==TWID){ts.own=TWID;tsWrite(ts);}return ts;}   /* 이 창이 기록을 이어받음 — 기록 시작점(seg)은 LS에 있어 겹치거나 빠지지 않음 */
-function trAct(){const ts=tsGet();if(ts&&ts.st!=='end'&&ts.own!==TWID&&!T.closedQ)trTake();}
+function trAct(){const ts=tsGet();if(ts&&ts.st!=='end'&&ts.own!==TWID&&!T.closedQ)trFollow(trTake());}
+/* ux4f L2 (I2) 세션 귀속은 공부하는 문서를 따름 — 다른 창이 이어받거나 쉬다 돌아왔을 때 이 창 문서가 세션 과목·강의와 다르면 그때까지 기록하고(sessFlush) 새 문서로 */
+function trFollow(ts){if(!ts||ts.st!=='sess'||ts.own!==TWID||T.closedQ||VIEW==='none'||!CUR.s||(ts.S===CUR.s&&(ts.D||'')===(CUR.d||'')))return ts;const t2=sessFlush(Date.now())||ts;if(t2.st==='sess'){t2.S=CUR.s;t2.D=CUR.d||'';tsWrite(t2);}T.lastDoc=CUR.s+':'+(CUR.d||'');tBtn();return t2;}
 function trLastSub(){const all=mkObj(LS.get('lastBy',{}));let b=null;for(const k in all){const o=all[k];if(o&&typeof o==='object'&&(!b||(+o.at||0)>(+b.at||0)))b=Object.assign({s:k},o);}return b||{};}
 function trStart(o){o=o||{};const now=Date.now();let ts=tsRead();if(ts&&ts.st==='sess')return;if(ts&&ts.st==='rest'){if(ts.ar){restBack(now,'start',true);ts=null;}else{trResume();return;}}   /* J9 자동 휴식 중 ▶ = 휴식을 지금 끝내고 세션 */
  if(T.run)tStop();T.manualPause=false;T.idleGap=null;T.askAt=0;idleChip();const lb=trLastSub(),S=o.S||CUR.s||lb.s||'',D=o.D!=null?o.D:(CUR.s&&CUR.s===S?(CUR.d||''):'');
@@ -2138,7 +2140,7 @@ function trRest(){const now=Date.now();trTake();let ts=sessFlush(now);T.f0=0;
 function trResume(){const now=Date.now();trTake();const ts=sessFlush(now);if(!ts||ts.st!=='rest')return;
  if(ts.ar){const dur=Math.min(now,trCap(ts))-(+ts.r0||+ts.t0||now);restBack(now,'resume',true);T.inp=now;if(CUR.s)tStart(true);toast('▶ 다시 공부'+(dur>=60000?' — 방금 '+fmtS(dur)+'은 ☕ 휴식으로':''),{level:'result',ms:3500,replace:true});}   /* V02 자동 휴식에서 ▶ = 휴식을 지금 끝내고 자동 측정(새 수동 휴식 아님) */
  else if(ts.from==='auto'&&T.auto){tsWrite(null);T.manualPause=false;T.last=now;T.inp=now;if(CUR.s)tStart(true);}
- else{ts.st='sess';ts.seg=now;ts.f0=now;ts.li=now;T.inp=now;delete ts.r0;delete ts.from;T.lastDoc=CUR.s?CUR.s+':'+(CUR.d||''):T.lastDoc;tsWrite(ts);}
+ else{ts.st='sess';ts.seg=now;ts.f0=now;ts.li=now;T.inp=now;delete ts.r0;delete ts.from;if(CUR.s&&VIEW!=='none'){ts.S=CUR.s;ts.D=CUR.d||'';}T.lastDoc=CUR.s?CUR.s+':'+(CUR.d||''):T.lastDoc;tsWrite(ts);}   /* ux4f L2 쉬는 동안 옮긴 문서로 다시 공부 */
  T.nudged=0;trBand();tBtn();}
 /* ■ 종료(at = 그 시각에 끝난 것으로 — 이미 기록한 뒷부분은 되돌림) → 멈춤(새 문서를 열거나 ▶까지 자동 측정 쉼) */
 function trStop(at,why){const now=Date.now();trTake();let ts=sessFlush(at?Math.min(now,at):now);const act=ts&&(ts.st==='sess'||ts.st==='rest');
@@ -2172,12 +2174,12 @@ TRB.addEventListener('click',e=>{const t=e.target.closest('[data-trq]');if(t)trQ
 function trAsk(ts,now){if(ts.st!=='sess'){if(T.askAt&&TRB.dataset.k==='ask'){T.askAt=0;trBand();}return;}const A=sessAskMin(),li=Math.max(+ts.li||0,T.inp||0,ts.t0);
  if(!T.askAt){if(A&&now-li>=A*60000){T.askAt=now;T.askLi=li;trBand('ask',{min:Math.round((now-li)/60000),li});}return;}
  if(now-T.askAt>=30*60000){if(li>T.askLi){T.askAt=0;trBand();}else trQ('stopli');}}
-function trNudge(ts,now){if(ts.st!=='rest'||!CUR.s||T.nudged===ts.r0||TRB.dataset.k)return;if(now-(T.inp||0)<60000&&(T.irun||now)<=now-180000&&(T.irun||0)>=(+ts.r0||0)){T.nudged=ts.r0;trBand('rest');}}
+function trNudge(ts,now){if(ts.st!=='rest'||!CUR.s||T.nudged===ts.r0||TRB.dataset.k)return;if(now-(T.inp||0)<60000&&Math.max(T.irun||now,+ts.r0||0)<=now-180000){   /* ux4f L7 쉬기 전부터 이어진 입력은 쉬기 시작부터 셈 */T.nudged=ts.r0;trBand('rest');}}
 /* 1초마다(tTick): 멈춤 풀기 · 기록 창 이어받기 · 20초마다 기록 · 문서가 바뀌면 구간을 나눔 · 12시간 상한 · 되묻기 · 버튼 시간 */
 function trTick(){const now=Date.now();let ts=tsGet();const dk=CUR.s?CUR.s+':'+(CUR.d||''):'',moved=VIEW!=='none'&&T.lastDoc!=null&&dk&&dk!==T.lastDoc;   /* moved = 이 창에서 다른 문서를 엶(처음 본 문서가 기준선 — 홈·달력으로 가도 그대로) */
  if(ts&&ts.st==='end'&&(ts.d!==day()||moved)){tsWrite(null);ts=null;tBtn();}   /* ■ 멈춤은 새 문서를 열거나 날짜가 바뀌면 풀림 */
  if(ts&&ts.st!=='end'&&!T.closedQ){
-  if(ts.own!==TWID&&(!ts.own||now-(+ts.at||0)>45000)&&!document.hidden)ts=trTake()||ts;
+  if(ts.own!==TWID&&(!ts.own||now-(+ts.at||0)>45000)&&!document.hidden)ts=trFollow(trTake())||ts;
   if(ts.own===TWID){
    if(ts.t0+H12<=now){trStop(ts.t0+H12,'세션이 12시간을 넘어 끝냈어요');return;}
    if(ts.st==='rest'&&trCap(ts)<=now){restCapEnd(ts);return;}   /* J9 한 번의 휴식이 restMax를 넘음 */
@@ -2303,7 +2305,8 @@ function dayRows(d,L){L=L||daySegs(d);const R=[];L.forEach(x=>{const r=x.f.charA
   if(last&&last.r===r&&last.dev===x.dev&&(r||last.S===x.S)&&x.s-last.e<=300){last.segs.push(x);last.e=Math.max(last.e,x.e);last.dur+=x.e-x.s;return;}R.push({r,dev:x.dev,S:x.S,s:x.s,e:x.e,dur:x.e-x.s,segs:[x]});});
  return R.filter(r=>r.dur>=60).map((r,i)=>{const by={};r.segs.forEach(x=>{by[x.D]=(by[x.D]||0)+(x.e-x.s);});const Ds=Object.keys(by).sort((a,b)=>by[b]-by[a]);return Object.assign(r,{i,D:Ds[0]||'',nD:Ds.length,src:[...new Set(r.segs.map(x=>x.f.charAt(0)))]});});}
 /* 그 날 과목 S의 '시간대 없음' 몫 = 합계 − 공부 구간 합(로컬+기기) */
-function ntsAmt(d,S){let s=0;daySegs(d).forEach(x=>{if(x.f.charAt(0)!=='r'&&x.S===S)s+=(x.e-x.s)*1000;});return (+tDay(d)[S]||0)-s;}
+function ntsAmt(d,S){let s=0;daySegs(d).forEach(x=>{if(x.f.charAt(0)!=='r'&&x.S===S)s+=(x.e-x.s)*1000;});return ntsR((+tDay(d)[S]||0)-s);}
+const ntsR=v=>Math.round(v/60000)*60000;   /* ux4f L6 구간은 초로 반올림해 저장 — 합계(ms)와의 차는 분으로 반올림(5분 더하면 0:05) */
 const hms=s=>('0'+Math.floor(s/3600)).slice(-2)+':'+('0'+Math.floor(s/60)%60).slice(-2);
 const SRC={a:['⏱','자동 측정'],s:['▶','세션'],m:['✍','직접 추가'],r:['☕','휴식']};
 function lecName(S,D){if(!D)return '';const x=docName(S+':'+D);return x.nm||D;}
@@ -2314,7 +2317,7 @@ function dayPanel(d){const dt=pDate(d);if(!dt)return '';const today=day(),fut=d>
   h+=ks.length?`<div class="cdsj">${ks.map(k=>`<div class="tvs"><span class="nm"><i class="sjdot" style="background:${sjColor(k)}"></i>${EH(sjShort(k))}</span><span class="br"><i style="width:${(o[k]/mx*100).toFixed(1)}%;background:${sjColor(k)}"></i></span><b>${fmtH(o[k])}</b></div>`).join('')}</div>`:'<div class="small">이 날은 기록이 없어요.</div>';
   const segAll=daySegs(d),R=dayRows(d,segAll);CAL.rows=R;
   h+=`<div class="cband" aria-label="24시간 띠">${segAll.map(x=>{const r=x.f.charAt(0)==='r',row=R.find(y=>y.segs.indexOf(x)>=0);return `<i class="cbk${r?' r':''}${x.dev?' dv':''}" style="left:${(x.s/864).toFixed(3)}%;width:${Math.max(.25,(x.e-x.s)/864).toFixed(3)}%;${r?'':'background:'+sjColor(x.S)}"${row?` data-crow="${row.i}"`:''} title="${hms(x.s)}–${hms(x.e)} ${r?'휴식':EH(sjShort(x.S))}${x.dev?' · 💻 '+EH(x.dev):''}"></i>`;}).join('')}<span class="cbt" style="left:25%">6</span><span class="cbt" style="left:50%">12</span><span class="cbt" style="left:75%">18</span></div><div class="cbl small"><span>0</span><span>24</span></div>`;
-  const segSum={};segAll.forEach(x=>{if(x.f.charAt(0)!=='r')segSum[x.S]=(segSum[x.S]||0)+(x.e-x.s)*1000;});const nts=Object.keys(Object.assign({},o,segSum)).map(k=>[k,(o[k]||0)-(segSum[k]||0)]).filter(([k,v])=>Math.abs(v)>=60000).sort((a,b)=>sjOrd(a[0])-sjOrd(b[0]));
+  const segSum={};segAll.forEach(x=>{if(x.f.charAt(0)!=='r')segSum[x.S]=(segSum[x.S]||0)+(x.e-x.s)*1000;});const nts=Object.keys(Object.assign({},o,segSum)).map(k=>[k,(o[k]||0)-(segSum[k]||0)]).filter(([k,v])=>Math.abs(v)>=60000).map(([k,v])=>[k,ntsR(v)]).sort((a,b)=>sjOrd(a[0])-sjOrd(b[0]));
   h+=`<ul class="crows">${R.map(r=>{const lab=r.r?'휴식':EH(sjShort(r.S))+(r.D?' · '+EH(lecName(r.S,r.D))+(r.nD>1?' 외 '+(r.nD-1):''):''),ed=!r.dev,sr=r.dev?'💻 '+EH(r.dev):r.src.map(c=>`<span title="${(SRC[c]||['',''])[1]}">${(SRC[c]||['·'])[0]}</span>`).join('')+(r.segs.some(x=>x.f.indexOf('e')>=0)?'<span title="고친 구간">✎</span>':'');
    return `<li class="crow${r.r?' r':''}${r.dev?' dv':''}" id="cr-${r.i}" data-cr="${r.i}"><span class="ctm">${hms(r.s)}–${hms(r.e)}</span><b class="cdur">${fmtH(r.dur*1000)}</b><span class="csj">${r.r?'':`<i class="sjdot" style="background:${sjColor(r.S)}"></i>`}${lab}</span><span class="csrc">${sr}</span>${ed?`<span class="cact">${r.r?`<button type="button" class="btn sm" data-crs="${r.i}" aria-label="이 휴식을 공부로 바꾸기" title="공부로 바꾸기(바로 앞 공부의 과목·강의로)">📖</button>`:''}<button type="button" class="btn sm" data-cre="${r.i}" aria-label="이 구간 고치기" title="고치기">✎</button><button type="button" class="btn sm" data-crd="${r.i}" aria-label="이 구간 지우기" title="지우기(되돌리기 가능)">🗑</button></span>`:''}</li>${CAL.edit===r.i?calEditHTML(d,r):''}`;}).join('')}
   ${nts.map(([k,v])=>`<li class="crow nts"><span class="ctm">시간대 없음</span><b class="cdur">${v<0?'−':''}${fmtH(Math.abs(v))}</b><span class="csj"><i class="sjdot" style="background:${sjColor(k)}"></i>${EH(sjShort(k))}</span><span class="csrc small" title="이 기능 전 기록·옛 고침·시간대 없이 더한 시간">—</span><span class="cact"><button type="button" class="btn sm" data-cnts="${EH(k)}" aria-label="${EH(sjShort(k))} 합계 고치기" title="분 단위로 더하거나 빼기">±</button></span></li>${CAL.nts===k?`<li class="cedit"><input type="number" id="cntsm" min="1" max="600" value="10" inputmode="numeric" aria-label="분"> 분 <button type="button" class="btn sm pri" data-cntsgo="1">+ 더하기</button><button type="button" class="btn sm" data-cntsgo="-1"${v<60000?' disabled':''}>− 빼기</button><button type="button" class="link" data-cntsx="1">취소</button> <span class="small">${v>=60000?'빼기는 '+fmtH(v)+'까지':'뺄 시간 없음'}</span></li>`:''}`).join('')}</ul>`;
@@ -2336,7 +2339,7 @@ function calAddHTML(d,o){const ks=Object.keys(o).sort((a,b)=>o[b]-o[a]),def=CAL.
  <div class="carow"><button type="button" class="btn pri" data-cago="1">추가</button></div><div id="cawarn" class="cawarn" hidden></div></div></details>`;}
 function calLecOpts(S,cur){const p=PACKS[S];return `<option value="">과목 전체</option>`+(p?p.lect.map(L=>`<option value="${EH(L.k)}"${L.k===cur?' selected':''}>${EH(sname(p,L.k))}</option>`).join(''):'');}
 function calEditHTML(d,r){const S=r.S,D=r.D;const sjo=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>`<option value="${id}"${id===S?' selected':''}>${EH(sjShort(id))}</option>`).join('')+`<option value="기타"${S==='기타'?' selected':''}>기타</option>`;
- return `<li class="cedit" data-ce="${r.i}">${r.r?'':`<label>과목 <select id="ceS">${sjo}</select></label><label>강의 <select id="ceD">${calLecOpts(S,r.nD>1?'':D)}</select></label>`}<label>시작 <input type="time" id="ceA" step="60" value="${hms(r.s)}"></label><label>끝 <input type="time" id="ceB" step="60" value="${hms(Math.min(r.e,86340))}"></label><button type="button" class="btn sm pri" data-cesave="${r.i}">저장</button><button type="button" class="btn sm" data-cex="1">취소</button>${r.nD>1?'<div class="small">강의가 여러 개인 줄 — 강의를 고르면 한 강의로 합쳐요(과목 전체 = 그대로)</div>':''}</li>`;}
+ return `<li class="cedit" data-ce="${r.i}">${r.r?'':`<label>과목 <select id="ceS">${sjo}</select></label><label>강의 <select id="ceD">${calLecOpts(S,r.nD>1?'':D)}</select></label>`}<label>시작 <input type="time" id="ceA" step="60" value="${hms(r.s)}"></label><label>끝 <input type="time" id="ceB" step="60" value="${hms(Math.min(r.e,86340))}"></label><button type="button" class="btn sm pri" data-cesave="${r.i}">저장</button><button type="button" class="btn sm" data-cex="1">취소</button>${r.nD>1?'<div class="small">강의가 여러 개인 줄 — 강의를 고르면 한 강의로 합쳐요(과목 전체 = 그대로)</div>':''}<div id="cewarn" class="cawarn" hidden></div></li>`;}
 const tmSec=v=>{const m=/^(\d\d):(\d\d)$/.exec(v||'');return m?(+m[1])*3600+(+m[2])*60:null;};
 function calSegTouch(d,r){return r.segs.filter(x=>!x.dev&&x.k).map(x=>x.k);}
 /* 🗑 지우기 — 확인창 없이: 공부 = tedit del(−길이, 과목·강의별) + tseg 'x' · 휴식 = trest·tseg만 · [되돌리기](8초) */
@@ -2352,35 +2355,50 @@ function calRestStudy(d,r){const keys=calSegTouch(d,r);if(!keys.length||!r.r)ret
  const g=teLog([{d,S,D,ms,k:'add',g:[r.s,r.e],sa},{d,S:'',D:'',ms:-rm,k:'del',f:'r',sx:keys}]);CAL.edit=null;calRender(true);   /* ux3 fix2 F6 휴식 − 도 같은 묶음(되돌리기 한 번에) */
  teToast('☕ → 📖 '+fmtH(ms)+' 공부로 바꿨어요 — '+sjShort(S)+(D?' · '+lecName(S,D):''),g);return g;}
 /* ✎ 고치기 — 과목·강의·시작·끝: 옛 구간은 x, 새 구간은 f+'e' · 합계 차이만 tedit(mv = 옛 −·새 +, len = 길이만) */
-function calSave(d,r){const a=tmSec($('#ceA')&&$('#ceA').value),b=tmSec($('#ceB')&&$('#ceB').value);if(a==null||b==null||b<=a){toast('시작·끝 시각을 확인해 주세요');return;}
+function calSave(d,r,force){const vA=$('#ceA')&&$('#ceA').value,vB=$('#ceB')&&$('#ceB').value;let a=tmSec(vA),b=tmSec(vB);if(a!=null&&vA===hms(r.s))a=r.s;if(b!=null&&vB===hms(Math.min(r.e,86340)))b=r.e;   /* ux4f L3 칸은 분 단위 — 그대로 둔 칸은 원래 초 값(24:00 끝 포함) */
+ if(a==null||b==null||b<=a){toast('시작·끝 시각을 확인해 주세요');return;}
  const now=new Date(),nowS=d===day()?now.getHours()*3600+now.getMinutes()*60+now.getSeconds():86400;if(b>nowS+60){toast('아직 오지 않은 시각이에요');return;}
  const keys=calSegTouch(d,r),kind=String(r.segs[0].f).replace(/x/g,'');if(!keys.length)return;
+ if(r.r&&a===r.s&&b===r.e){CAL.edit=null;calRender(true);return;}   /* ux4f L3 바꾼 것 없음 → 기록 안 남김 */
  if(r.r){const old=r.segs.reduce((x,y)=>x+(y.e-y.s),0),diff=Math.max((b-a-old)*1000,-teAvail(d,'','',1));segMark(d,keys,true);const seg=tObj(LS.get('tseg',{})),SL=(seg[d]=Array.isArray(seg[d])?seg[d]:[]),rq=segFree(SL,[a,b,'','',String(r.segs[0].f).replace(/x/g,'')+'e']);SL.push(rq);LS.set('tseg',seg);const nk=segKey(rq);
   const g=teLog([{d,S:'',D:'',ms:diff,k:'len',f:'r',g:[a,b],sx:keys,sa:[nk]}]);CAL.edit=null;calRender(true);teToast('휴식 구간을 고쳤어요',g);return g;}   /* ux3 fix2 F6 휴식 길이 차이도 tedit(f:'r') */
  const nS=($('#ceS')&&$('#ceS').value)||r.S,dsel=$('#ceD')?$('#ceD').value:r.D,multi=r.nD>1&&!dsel;
+ if(a===r.s&&b===r.e&&nS===r.S&&(multi||dsel===r.D)){CAL.edit=null;calRender(true);return;}   /* ux4f L3 바꾼 것 없음 → 기록 안 남김 */
+ const {G,ov}=calGaps(d,a,b,new Set(keys));   /* ux4f L1 다른 공부 구간과 겹치면 '+ 시간 추가'처럼 되물음(1분 미만은 그 몫만 뺌) */
+ if(ov>=60&&!force){const w=$('#cewarn');if(w){w.hidden=false;w.innerHTML=`${hms(a)}–${hms(b)}에 다른 공부 기록 ${fmtH(ov*1000)}이 겹쳐요 <button type="button" class="btn sm" data-cesave="${r.i}" data-cef="all">그래도 고치기</button><button type="button" class="btn sm pri" data-cesave="${r.i}" data-cef="cut">겹친 만큼 빼고</button>`;}return;}
+ const P=force==='all'?[[a,b]]:G,nl=P.reduce((x,[s,e])=>x+(e-s),0);if(nl<=0){toast('모두 다른 구간과 겹쳐요',{level:'result'});return;}
  const net={};r.segs.forEach(x=>{const k=x.S+'\u0001'+x.D;net[k]=(net[k]||0)-(x.e-x.s);});
- let add=[];if(multi&&nS===r.S){const tot=r.segs.reduce((x,y)=>x+(y.e-y.s),0);r.segs.forEach(x=>{const k=x.S+'\u0001'+x.D;net[k]=(net[k]||0)+(b-a)*(x.e-x.s)/tot;});add=[[a,b,nS,r.D]];}   /* 여러 강의 줄의 길이만 고침 — 강의별 비율 그대로 */
- else{const k=nS+'\u0001'+(nS===r.S||!dsel?dsel:dsel);net[k]=(net[k]||0)+(b-a);add=[[a,b,nS,dsel||'']];}
+ let D2;if(multi&&nS===r.S){const tot=r.segs.reduce((x,y)=>x+(y.e-y.s),0);r.segs.forEach(x=>{const k=x.S+'\u0001'+x.D;net[k]=(net[k]||0)+nl*(x.e-x.s)/tot;});D2=r.D;}   /* 여러 강의 줄의 길이만 고침 — 강의별 비율 그대로 */
+ else{const k=nS+'\u0001'+dsel;net[k]=(net[k]||0)+nl;D2=dsel||'';}
  const same=Object.values(net).every(v=>Math.abs(v)<1)&&a===r.s&&b===r.e&&nS===r.S&&(multi||dsel===r.D);if(same){CAL.edit=null;calRender(true);return;}
- const nq=segFree(Array.isArray(tObj(LS.get('tseg',{}))[d])?tObj(LS.get('tseg',{}))[d]:[],[a,b,nS,add[0][3],kind+'e']),nk=segKey(nq),ks=Object.keys(net).filter(k=>Math.abs(net[k])>=1),one=ks.length<=1&&nS===r.S;
- const L=(ks.length?ks:[nS+'\u0001'+(add[0][3])]).map((k,j)=>{const [S,D]=k.split('\u0001');const e={d,S,D:D||'',ms:Math.round((net[k]||0)*1000),k:one?'len':'mv',g:[a,b]};if(!j){e.sx=keys;e.sa=[nk];}return e;});
- const g=teLog(L);segMark(d,keys,true);const seg=tObj(LS.get('tseg',{}));(seg[d]=Array.isArray(seg[d])?seg[d]:[]).push(nq);LS.set('tseg',seg);CAL.edit=null;calRender(true);teToast('구간을 고쳤어요 — '+hms(a)+'–'+hms(b)+' '+fmtH((b-a)*1000),g);return g;}
+ const rc=restCut(d,P),seg=tObj(LS.get('tseg',{})),SL=Array.isArray(seg[d])?seg[d]:(seg[d]=[]),nks=P.map(([s,e])=>{const q=segFree(SL,[s,e,nS,D2,kind+'e']);SL.push(q);return segKey(q);});
+ const ks=Object.keys(net).filter(k=>Math.abs(net[k])>=1),one=ks.length<=1&&nS===r.S;
+ const L=(ks.length?ks:[nS+'\u0001'+D2]).map((k,j)=>{const [S,D]=k.split('\u0001');const e={d,S,D:D||'',ms:Math.round((net[k]||0)*1000),k:one?'len':'mv',g:[a,b]};if(!j){e.sx=keys;e.sa=nks;}return e;});
+ if(rc.ov)L.push({d,S:'',D:'',ms:-Math.min(rc.ov*1000,teAvail(d,'','',1)),k:one?'len':'mv',f:'r',g:[a,b],sx:rc.sx,sa:rc.sa});   /* ux4f L1 휴식과 겹친 부분은 휴식에서 뺌(같은 묶음 — 되돌리기 한 번에) */
+ const g=teLog(L);LS.set('tseg',seg);segMark(d,keys,true);CAL.edit=null;calRender(true);teToast('구간을 고쳤어요 — '+hms(a)+'–'+hms(b)+' '+fmtH(nl*1000)+(nl<b-a?' (겹친 '+fmtH((b-a-nl)*1000)+' 뺌)':'')+(rc.ov>=60?' · 휴식 '+fmtH(rc.ov*1000)+' → 공부':''),g);return g;}
+/* ux4f L1·L4 공부로 넣는 시간대 P([[s,e]])와 겹치는 휴식 구간 — 겹친 휴식 구간은 x(sx), 남는 앞·뒤 조각은 새 구간(sa, 'e') · tseg에 바로 씀 · 휴식 합계 −는 부르는 쪽이 tedit(f:'r')에 같은 묶음으로 */
+function restCut(d,P){const seg=tObj(LS.get('tseg',{})),L=Array.isArray(seg[d])?seg[d]:(seg[d]=[]),sx=[],nw=[];let ov=0;
+ L.forEach(q=>{if(!Array.isArray(q))return;const f=String(q[4]||'');if(f.charAt(0)!=='r'||f.indexOf('x')>=0)return;let o=0,c=[[+q[0]||0,+q[1]||0]];
+  P.forEach(([a,b])=>{c=c.flatMap(([x,y])=>{if(b<=x||a>=y)return [[x,y]];o+=Math.min(b,y)-Math.max(a,x);return [[x,a],[b,y]].filter(([u,v])=>v>u);});});
+  if(o<=0)return;ov+=o;sx.push(segKey(q));q[4]=f+'x';c.forEach(([x,y])=>nw.push([x,y,'','',f.indexOf('e')>=0?f:f+'e']));});
+ const sa=nw.map(q=>{q=segFree(L,q);L.push(q);return segKey(q);});if(ov)LS.set('tseg',seg);return {ov,sx,sa};}
 /* 추가 — 시작이 있으면 구간('m'), 겹침은 되물음([그래도 더하기] / [겹친 만큼 빼고] = 빈 틈만) */
-function calGaps(d,a,b){const L=daySegs(d).filter(x=>x.f.charAt(0)!=='r').map(x=>[Math.max(a,x.s),Math.min(b,x.e)]).filter(x=>x[1]>x[0]).sort((p,q)=>p[0]-q[0]);const G=[];let c=a,ov=0;
+function calGaps(d,a,b,skip){const L=daySegs(d).filter(x=>x.f.charAt(0)!=='r'&&!(skip&&x.k&&skip.has(x.k))).map(x=>[Math.max(a,x.s),Math.min(b,x.e)]).filter(x=>x[1]>x[0]).sort((p,q)=>p[0]-q[0]);const G=[];let c=a,ov=0;
  L.forEach(([s,e])=>{if(s>c)G.push([c,s]);if(e>c){ov+=e-Math.max(s,c);c=e;}});if(c<b)G.push([c,b]);return {G,ov};}
 function addTime(o){const d=o.d,S=o.S||'기타',D=o.D||'',ms=Math.round(o.min*60000);if(!pDate(d)||d>day()||!(ms>0))return null;
  if(o.start==null){const g=teLog([{d,S,D,ms,k:'add',g:null}]);return g;}
  const a=o.start,b=a+Math.round(ms/1000),P=o.cut?calGaps(d,a,b).G:[[a,b]],add=P.reduce((x,[s,e])=>x+(e-s),0);if(add<=0)return null;
- const seg=tObj(LS.get('tseg',{})),L=Array.isArray(seg[d])?seg[d]:(seg[d]=[]),keys=P.map(([s,e])=>{const q=segFree(L,[s,e,S,D,'m']);L.push(q);return segKey(q);});LS.set('tseg',seg);
- return teLog([{d,S,D,ms:add*1000,k:'add',g:[a,b],sa:keys}]);}
-function editSeg(d,idx,o){const r=(CAL.rows||[])[idx];if(!r)return null;CAL.edit=idx;calRender(true);if($('#ceS')&&o.S){$('#ceS').value=o.S;$('#ceD').innerHTML=calLecOpts(o.S,o.D||'');}if($('#ceD')&&o.D!=null)$('#ceD').value=o.D;if(o.start!=null)$('#ceA').value=hms(o.start);if(o.end!=null)$('#ceB').value=hms(o.end);return calSave(d,r);}
+ const rc=restCut(d,P),seg=tObj(LS.get('tseg',{})),L=Array.isArray(seg[d])?seg[d]:(seg[d]=[]),keys=P.map(([s,e])=>{const q=segFree(L,[s,e,S,D,'m']);L.push(q);return segKey(q);});LS.set('tseg',seg);addTime.rv=rc.ov;
+ const E=[{d,S,D,ms:add*1000,k:'add',g:[a,b],sa:keys}];if(rc.ov)E.push({d,S:'',D:'',ms:-Math.min(rc.ov*1000,teAvail(d,'','',1)),k:'del',f:'r',g:[a,b],sx:rc.sx,sa:rc.sa});   /* ux4f L4 휴식 시간대에 넣으면 그 휴식은 공부로(📖 calRestStudy처럼 휴식에서 빼고 x) */
+ return teLog(E);}
+function editSeg(d,idx,o){const r=(CAL.rows||[])[idx];if(!r)return null;CAL.edit=idx;calRender(true);if($('#ceS')&&o.S){$('#ceS').value=o.S;$('#ceD').innerHTML=calLecOpts(o.S,o.D||'');}if($('#ceD')&&o.D!=null)$('#ceD').value=o.D;if(o.start!=null)$('#ceA').value=hms(o.start);if(o.end!=null)$('#ceB').value=hms(o.end);return calSave(d,r,o.force||false);}
 function delSeg(d,idx){const r=(CAL.rows||[])[idx];return r?calDel(d,r):null;}
 function calAddGo(force){const d=CAL.sel,S=$('#caS').value,D=$('#caD').value,t=tmSec($('#caT').value),min=(+$('#caH').value||0)*60+(+$('#caM').value||0),w=$('#cawarn');
  const bad=m=>{w.hidden=false;w.innerHTML=m;};if(d>day()){bad('앞날에는 더할 수 없어요');return;}if(!(min>0)){bad('길이를 넣어 주세요(0분)');return;}
  if(tSum(tDay(d))+min*60000>864e5){bad('하루 24시간을 넘어요');return;}
  if(t!=null){const nowS=d===day()?(()=>{const n=new Date();return n.getHours()*3600+n.getMinutes()*60+n.getSeconds();})():86400;if(t+min*60>86400){bad('자정을 넘어요 — 다음 날에 나눠 넣어 주세요');return;}if(t+min*60>nowS+60){bad('아직 오지 않은 시각이에요');return;}
   if(!force){const {ov}=calGaps(d,t,t+min*60);if(ov>=60){const x=daySegs(d).find(y=>y.f.charAt(0)!=='r'&&y.e>t&&y.s<t+min*60),src=x?(x.dev?'💻 '+x.dev:(SRC[x.f.charAt(0)]||['',''])[1]):'';bad(`${hms(t)}–${hms(t+min*60)}에 이미 ${EH(src)} 기록 ${fmtH(ov*1000)}이 있어요 <button type="button" class="btn sm" data-cago="all">그래도 더하기</button><button type="button" class="btn sm pri" data-cago="cut">겹친 만큼 빼고</button>`);return;}}}
- const g=addTime({d,S,D,start:t,min,cut:force==='cut'});if(!g){bad('더할 시간이 없어요(모두 겹침)');return;}CAL.addOpen=false;CAL.addS=S;CAL.addSd=d;calRender(true);teToast(mdw(pDate(d))+' '+sjShort(S)+' +'+fmtH(min*60000)+(force==='cut'?'(겹친 만큼 뺌)':'')+' 더했어요',g);}
+ addTime.rv=0;const g=addTime({d,S,D,start:t,min,cut:force==='cut'});if(!g){bad('더할 시간이 없어요(모두 겹침)');return;}CAL.addOpen=false;CAL.addS=S;CAL.addSd=d;calRender(true);teToast(mdw(pDate(d))+' '+sjShort(S)+' +'+fmtH(min*60000)+(force==='cut'?'(겹친 만큼 뺌)':'')+' 더했어요'+(addTime.rv>=60?' · 휴식 '+fmtH(addTime.rv*1000)+' → 공부':''),g);}
 function calPick(d,keepMonth){if(!pDate(d))return;const ym=d.slice(0,7);CAL.sel=d;CAL.edit=null;CAL.nts='';if(!keepMonth&&ym!==CAL.ym){CAL.ym=ym;calBody();}else{$$('#calg .cc').forEach(c=>{const on=c.dataset.cd===d;c.classList.toggle('sel',on);c.setAttribute('aria-pressed',on);});const p=$('#calday');if(p)p.innerHTML=dayPanel(d);}
  histSet(calState(),calURL(),false);}
 function calMonth(n){if(n===0)CAL.ym=day().slice(0,7);else{const [y,m]=CAL.ym.split('-').map(Number),x=new Date(y,m-1+n,1,12);CAL.ym=day(x).slice(0,7);}calBody();if(VIEW==='cal')histSet(calState(),calURL(),false);}
@@ -2390,7 +2408,7 @@ $('#home').addEventListener('click',e=>{if(VIEW!=='cal')return;const t=e.target.
  if(q.calm!=null){calMonth(+q.calm);return;}if(q.cd){calPick(q.cd,true);return;}
  if(q.crow!=null){const el=$('#cr-'+q.crow);if(el){el.scrollIntoView({block:'nearest'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600);}return;}
  const R=CAL.rows||[];if(q.cre!=null){CAL.edit=CAL.edit===+q.cre?null:+q.cre;$('#calday').innerHTML=dayPanel(CAL.sel);const s=$('#ceA');if(s)s.focus();return;}
- if(q.crd!=null){const r=R[+q.crd];if(r)calDel(CAL.sel,r);return;}if(q.crs!=null){const r=R[+q.crs];if(r)calRestStudy(CAL.sel,r);return;}if(q.cesave!=null){const r=R[+q.cesave];if(r)calSave(CAL.sel,r);return;}if(q.cex){CAL.edit=null;$('#calday').innerHTML=dayPanel(CAL.sel);return;}
+ if(q.crd!=null){const r=R[+q.crd];if(r)calDel(CAL.sel,r);return;}if(q.crs!=null){const r=R[+q.crs];if(r)calRestStudy(CAL.sel,r);return;}if(q.cesave!=null){const r=R[+q.cesave];if(r)calSave(CAL.sel,r,q.cef||false);return;}if(q.cex){CAL.edit=null;$('#calday').innerHTML=dayPanel(CAL.sel);return;}
  if(q.cgdef){const G=Object.assign({},tGoalDay());delete G[q.cgdef];LS.set('tgoalDay',G);TGD=null;calRender(true);return;}
  if(q.cexx){LS.set('exam.'+q.cexx,'');calRender(true);toast(sjShort(q.cexx)+' 시험일을 지웠어요');return;}
  if(q.caq!=null){const H=$('#caH'),M=$('#caM');let v=q.caq==='0'?0:(+H.value||0)*60+(+M.value||0)+ +q.caq;v=Math.min(24*60,v);H.value=Math.floor(v/60);M.value=v%60;$('#cawarn').hidden=true;return;}
@@ -2421,7 +2439,7 @@ function bigClose(){const el=$('#bigclock'),ae=document.activeElement,back=el&&e
 function bigRun(){clearInterval(BIG.iv);BIG.iv=0;if(BIG.on&&!document.hidden)BIG.iv=setInterval(bigTick,1000);}
 document.addEventListener('visibilitychange',bigRun);
 function bigTick(){if(!BIG.on)return;BIG.n++;const st=trState(),ts=tsGet(),now=Date.now(),td=tToday(),g=tGoal()*60000;
- const fo=st==='run'||st==='sess',lab=fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
+ const aw=st==='run'&&now-T.last>60000,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
  const a=$('#bcl'),b=$('#bct'),c=$('#bcs');if(!b)return;const el=$('#bigclock');if(el){el.classList.toggle('rest',st==='rest');el.classList.toggle('fo',fo);}if(a.textContent!==lab)a.textContent=lab;const bt=st==='rest'?fmtMS(v):ckFmt(v);if(b.textContent!==bt)b.textContent=bt;const R=restStats(),pc=' · 목표 '+fmtH(g),ss=st==='sess'?' · 세션 '+fmtH(trSessMs(ts,now)):'';   /* ux4c 1회차 알약과 같은 표기(공부 h:mm:ss 앞 0 없음 · 휴식 m:ss) · 목표는 %가 아니라 h:mm · ux4d 집중 %는 없앰(사용자 '퍼센트 필요 없어' · 참고 HUB도 화면엔 달성 %만) */
  const s=st==='rest'?`오늘 휴식 ${fmtH(R.ms)} · 공부 ${fmtH(td)}${pc}`:`오늘 공부 ${fmtH(td)}${ss} · 휴식 ${fmtH(R.ms)}${pc}`;if(c.textContent!==s)c.textContent=s;}
 document.addEventListener('keydown',e=>{if(BIG.on&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();bigClose();}},true);
