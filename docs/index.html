@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"0e99c08c",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"b71cc7ae",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1872,7 +1872,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="0e99c08c",PV={"OMS1": "a6b924c2", "CONS": "a36faf93", "IMPL": "ca15ce3e", "ANAT": "b69709b5", "GERI": "09621302", "PHARM": "4ae79645"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="b71cc7ae",PV={"OMS1": "feeb9044", "CONS": "8b812617", "IMPL": "bf5a05da", "ANAT": "2e0253aa", "GERI": "6cf1428d", "PHARM": "8c2aabae"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -4000,7 +4000,8 @@ function whatsNew(){if(!OLD3||LS.get('whatsNew.4',0))return '';const o=mkObj(LS.
  return `<div class="panel wnew noann" id="wnew"><div class="bt">✨ 이번 업데이트에서 바뀐 것 <button type="button" class="btn sm" data-wnx="1">알겠어요 ✕</button></div><ul>${WN4_ITEMS.map(([a,b,h])=>`<li><b>${a}</b> — ${b} <button type="button" class="link" data-wnh="${EH(h)}">도움말 ▸</button></li>`).join('')}</ul><div class="small">${r.length?'내 기록 옮기기: '+r.join(' · ')+' · ':''}형광펜·빈칸·채점·공부 시간·메모는 그대로예요 · 모든 키는 <button type="button" class="link" data-wnh="⌨ 모든 단축키">⌨ 단축키 표</button>(?) · 3차에 바뀐 것은 도움말 ‘✨ 새로 생긴 것’</div></div>`;}
 $('#home').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-wnx],[data-wnh]');if(!b)return;e.stopPropagation();if(b.dataset.wnx){LS.set('whatsNew.4',1);LS.set('whatsNew.3',1);LS.set('whatsNew.2',1);const w=$('#wnew');if(w)w.remove();return;}helpGo(b.dataset.wnh);},true);
 $('#helpb').onclick=helpToggle;$('#helpx').onclick=helpToggle;$('#help').addEventListener('click',e=>{if(e.target.id==='help')helpToggle();});
-document.addEventListener('click',e=>{$$('.pop.on').forEach(p=>{if(!p.contains(e.target)&&!e.target.closest('#clock,#rstr,#rfile,#lmcur,#lmview,#bkup,[data-bkpop],[data-openrst],[data-todo],a[download]'))p.classList.remove('on');});},true);
+document.addEventListener('click',e=>{let shut=0;$$('.pop.on').forEach(p=>{if(!p.contains(e.target)&&!e.target.closest('#clock,#rstr,#rfile,#lmcur,#lmview,#bkup,[data-bkpop],[data-openrst],[data-todo],a[download]')){p.classList.remove('on');shut=1;}});
+ if(shut&&e.target.closest&&e.target.closest('#stage figure,#stage .fig,#stage img')){e.preventDefault();e.stopPropagation();}},true);   /* ux4f 창을 닫으려고 바깥(그림 위)을 누르면 닫기만 — 그림 확대 창이 같이 열리지 않게 */
 
 /* ===================== ux2 트랙B — D·E 묶음(정리본 학습 탭: 빠른 훑기·가독성·암기) =====================
    새 LS 키: review(복습 보기)·reviewSort(''|n|x)·exfirst(⭐ 먼저)·redmode('core'|'all')·figmode('big'|'small'|'hide')·frameOpen.<S>.<K>·qzk2(가리기에 본문 굵은 핵심어까지)
