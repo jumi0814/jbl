@@ -57,7 +57,7 @@ async def run(b, vp, touch, tag):
     pos0 = await pg.inner_text('#opos'); id0 = await pg.evaluate("document.querySelector('.qc.cur').dataset.id")
     await pg.evaluate("document.querySelector('.qc.cur button.chip.lec').click()"); await pg.wait_for_timeout(900)
     pill = await pg.evaluate("(()=>{const b=document.querySelector('#retpill');return b.classList.contains('on')?b.textContent:''})()")
-    ok(pill.startswith('↩ JB 5/'), f'📖 칩 뒤 알약 ({pill})')
+    ok(pill.startswith('↩ 돌아가기 · JB 5/'), f'📖 칩 뒤 알약 ({pill})')   # ux4f C60 알약 = '↩ 돌아가기 · <이름>'(조사 문제 없음)
     pb = await pg.evaluate("(()=>{const b=document.querySelector('#retpill').getBoundingClientRect(),k=document.querySelector('#kit').getBoundingClientRect();return [Math.round(b.height),Math.round(k.top-b.bottom)]})()")
     ok(pb[0] >= 44 and pb[1] >= 8, f'알약 높이 44·도구 막대 위 ({pb})')
     await pg.screenshot(path=J.TMP + f'/ux_nav_pill_{tag}.png')
@@ -80,7 +80,7 @@ async def run(b, vp, touch, tag):
     await pg.evaluate(SCROLLTO, '#t-DD1-6'); await pg.wait_for_timeout(900)
     await pg.evaluate("(()=>{document.querySelector('#t-DD1-6 .jbchip, #t-DD1-6 .xjb').click();const g=document.querySelector('#jbpeek.on [data-jpgo]');if(g)g.click();})()")   # ux2 D12 ⭐ 칩 = 미리보기 → [JB에서 풀기]; await pg.wait_for_timeout(900)
     pill = await pg.evaluate("document.querySelector('#retpill').textContent")
-    ok('카드 7' in pill and pill.startswith('↩ DD I'), f'정리본 → 문제 알약 ({pill})')
+    ok('카드 7' in pill and pill.startswith('↩ 돌아가기 · Dentofacial deformity I'), f'정리본 → 문제 알약 ({pill})')   # ux4e 강의 이름 원래 그대로 · ux4f C60
     tgt = await pg.evaluate("(()=>{const e=document.querySelector('#stage .qc.flash');return e?[e.classList.contains('open'),!!e.querySelector('.ansnow.hl')]:null})()")
     ok(tgt is not None and tgt[0] is False and tgt[1], f'정리본 ⭐ 칩 → 문제: 답 가림·답 바로 보기 강조 ({tgt})')
     await click(pg, '#retpill', touch); await pg.wait_for_timeout(1600)

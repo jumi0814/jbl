@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"bd918a31",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"ed7dbc0a",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1877,7 +1877,7 @@ function toast(t,o){o=(typeof o==='number')?{ms:o}:(o||{});const lv=(o.level==='
  if(o.replace){TQ.q=TQ.q.filter(x=>!x.act);if(TQ.cur&&TQ.cur.act){clearTimeout(TQ.t);TQ.cur=null;}TQ.q.unshift(it);toastNext();return;}   /* ux3 fix F1 replace — 되돌리기 알림은 늘 마지막 동작 것(앞 동작의 [되돌리기]가 화면에 남아 엉뚱한 것을 되돌리지 않게) */
  if(it.kind==='undo'){TQ.q=TQ.q.filter(x=>x.kind!=='undo');if(TQ.cur&&TQ.cur.kind==='undo'&&TQ.cur.t!==it.t){clearTimeout(TQ.t);TQ.cur=null;}}   /* ux4f B33 ⌘Z를 여러 번 = 마지막 되돌리기 알림 하나 */
  if((TQ.cur&&TQ.cur.t===it.t&&!TQ.q.length)||TQ.q.some(x=>x.t===it.t))return;TQ.q.push(it);if(TQ.q.length>6)TQ.q.splice(0,TQ.q.length-6);toastNext();}
-function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length){clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,Math.max(0,(TQ.cur.kind==='undo'&&!TQ.cur.act?0:TQ.cur.lv==='result'?3000:700)-(Date.now()-TQ.at)));}return;}   /* ux4f B33 되돌리기 알림(바로 보이는 화면 것)은 다음 동작 알림에 곧바로 자리를 내줌 */
+function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length){clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,Math.max(0,(TQ.cur.kind==='undo'&&!TQ.cur.act?0:TQ.cur.lv==='result'?3000:700)-(Date.now()-TQ.at)));}return;}   /* ux4f B33 되돌리기 알림(버튼 없는 것)은 다음 동작 알림에 곧바로 자리를 내줌 */
  const it=TQ.q.shift();if(!it)return;TQ.cur=it;TQ.at=Date.now();e.className='t-'+it.lv;e.textContent='';const s=document.createElement('span');s.textContent=it.t;e.appendChild(s);
  if(it.act&&typeof it.act.fn==='function'){const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=it.act.label||'보기';b.onclick=()=>{toastEnd();try{it.act.fn();}catch(_){}};e.appendChild(b);}
  e.style.display='block';toastPos(e);clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,TQ.q.length?(it.kind==='undo'&&!it.act?0:it.lv==='result'?3000:700):it.ms);}   /* ux2 fixB flow V03: 결과 알림은 뒤에 기다리는 것이 있어도 3초는 읽을 수 있게 */
@@ -1889,7 +1889,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="bd918a31",PV={"OMS1": "8e4f96ef", "CONS": "63228e7e", "IMPL": "7826f0bc", "ANAT": "7fe5e82b", "GERI": "4fd9e9c8", "PHARM": "bf38b226"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="ed7dbc0a",PV={"OMS1": "4488cf82", "CONS": "fa32edd9", "IMPL": "b043e1ca", "ANAT": "39905daf", "GERI": "945ddddd", "PHARM": "b1e17da6"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -4708,7 +4708,7 @@ addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;const
 /* ux4f 새 오류: 과목 홈 교수별 출제 경향 표·공부 순서의 '짤 비율 n%'를 개수로(사용자 '퍼센트 필요 없어') — 팩(trend.py)은 그대로, 화면에 낼 때만 바꿈 · 맥 빌드에서 trend.py도 개수로 바꿀 것(로컬에서_할_일) */
 function trendNoPct(h){if(trendNoPct.k===h)return trendNoPct.v;let J=0,N=0;
  const o=String(h).replace(/<th>짤 비율<\/th>/g,'<th>짤 / 문항</th>').replace(/ · 짤 비율 \d+%/g,'')
-  .replace(/<td class="n">(\d+) \/ (\d+)<\/td><td>([^<]*)<\/td><td class="n">\d+%( <small>표본이 적어 누적 짤 (\d+)\/(\d+)<\/small>)?<\/td>/g,(m,j,tl,ty,sm,a,b)=>{J+=+j;N+=(+j)+(+tl);return `<td class="n">${j} / ${tl}</td><td>${ty}</td><td class="n">${sm?`누적 ${a}/${b}`:`${j}/${(+j)+(+tl)}`}</td>`;});
+  .replace(/<td class="n">(\d+) \/ (\d+)<\/td><td>([^<]*)<\/td><td class="n">\d+%( <small>표본이 적어 누적 짤 (\d+)\/(\d+)<\/small>)?<\/td>/g,(m,j,tl,ty,sm,a,b)=>{J+=+j;N+=(+j)+(+tl);return `<td class="n">${j} / ${tl}</td><td>${ty}</td><td class="n">${j}/${(+j)+(+tl)}${sm?` <small>표본이 적어 누적 짤 ${a}/${b}</small>`:''}</td>`;});
  trendNoPct.k=h;trendNoPct.v={h:o,j:N?J+'/'+N:''};return trendNoPct.v;}
 /* ux4f 새 오류: 한 줄 칩 줄(한눈표·비교표 강의 칩)이 넘치면 오른쪽을 흐리게(.ovr — 끝까지 밀면 .end) · 맥 세로 휠로도 가로로 넘김 */
 function stripOvr(){$$('#stage .sumbar .sbl,#stage .tbltoc .ttc').forEach(s=>{const o=s.scrollWidth>s.clientWidth+2;s.classList.toggle('ovr',o);s.classList.toggle('end',o&&s.scrollLeft+s.clientWidth>=s.scrollWidth-2);});}

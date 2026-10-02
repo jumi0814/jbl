@@ -1,7 +1,7 @@
 """ux3 묶음 I 회귀: 측정 상태 기계(tstate)·세션 벽시계·안전장치·자정 분할·trest·tseg·창 두 개·트래커 조각(trkUI).
 가짜 시계(page.clock — 컨텍스트 공용)로 2026-09-24(목) 10:00 기준. 맥 1280×900 · 아이패드 세로 820×1180(터치) · 가로 1180×820(터치).
 스크린샷 work/_tmp/ux3i_timer_*.png"""
-import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
+import re, os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, json, datetime
 from playwright.async_api import async_playwright
 U = J.HUB_URL; fails = []
@@ -35,7 +35,7 @@ async def part_states(b, vp, touch, tag):
     ts = await ls(pg, 'tstate'); ok(ts and ts['st'] == 'sess' and ts['S'] == 'OMS1' and ts['D'] == 'DD1', f"tstate 세션 귀속 = 지금 문서 {ts and (ts['S'], ts['D'])}")
     await pg.clock.run_for(10 * MIN)   # 입력 없이 10분 — 세션은 벽시계
     s0 = await tsum(pg); ok(abs(s0 - 10 * MIN) <= 21000, f'세션 10분(입력 없음) → time +{s0 / MIN:.2f}분')
-    ok('세션 0:10' in await pg.inner_text('#clock .ckl'), f"알약 세션 h:mm {await pg.inner_text('#clock .ckl')!r}")
+    ok(re.search(r'세션 0:(09|10)', await pg.inner_text('#clock .ckl')), f"알약 세션 h:mm {await pg.inner_text('#clock .ckl')!r}")   # ux4f A8 fmtH 내림(h:mm:ss 알약과 같은 기준) — 10분 ±1초는 0:09 또는 0:10
     await pg.screenshot(path=J.TMP + f'/ux3i_timer_sess_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 60})
     # ☕ 쉬기 — 5분 동안 time 그대로, trest +5분
     await tp(pg, 'rest'); await pg.clock.run_for(300)

@@ -1877,7 +1877,7 @@ function toast(t,o){o=(typeof o==='number')?{ms:o}:(o||{});const lv=(o.level==='
  if(o.replace){TQ.q=TQ.q.filter(x=>!x.act);if(TQ.cur&&TQ.cur.act){clearTimeout(TQ.t);TQ.cur=null;}TQ.q.unshift(it);toastNext();return;}   /* ux3 fix F1 replace — 되돌리기 알림은 늘 마지막 동작 것(앞 동작의 [되돌리기]가 화면에 남아 엉뚱한 것을 되돌리지 않게) */
  if(it.kind==='undo'){TQ.q=TQ.q.filter(x=>x.kind!=='undo');if(TQ.cur&&TQ.cur.kind==='undo'&&TQ.cur.t!==it.t){clearTimeout(TQ.t);TQ.cur=null;}}   /* ux4f B33 ⌘Z를 여러 번 = 마지막 되돌리기 알림 하나 */
  if((TQ.cur&&TQ.cur.t===it.t&&!TQ.q.length)||TQ.q.some(x=>x.t===it.t))return;TQ.q.push(it);if(TQ.q.length>6)TQ.q.splice(0,TQ.q.length-6);toastNext();}
-function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length){clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,Math.max(0,(TQ.cur.kind==='undo'&&!TQ.cur.act?0:TQ.cur.lv==='result'?3000:700)-(Date.now()-TQ.at)));}return;}   /* ux4f B33 되돌리기 알림(바로 보이는 화면 것)은 다음 동작 알림에 곧바로 자리를 내줌 */
+function toastNext(){const e=$('#toast');if(!e)return;if(TQ.cur){if(TQ.q.length){clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,Math.max(0,(TQ.cur.kind==='undo'&&!TQ.cur.act?0:TQ.cur.lv==='result'?3000:700)-(Date.now()-TQ.at)));}return;}   /* ux4f B33 되돌리기 알림(버튼 없는 것)은 다음 동작 알림에 곧바로 자리를 내줌 */
  const it=TQ.q.shift();if(!it)return;TQ.cur=it;TQ.at=Date.now();e.className='t-'+it.lv;e.textContent='';const s=document.createElement('span');s.textContent=it.t;e.appendChild(s);
  if(it.act&&typeof it.act.fn==='function'){const b=document.createElement('button');b.type='button';b.className='tact';b.textContent=it.act.label||'보기';b.onclick=()=>{toastEnd();try{it.act.fn();}catch(_){}};e.appendChild(b);}
  e.style.display='block';toastPos(e);clearTimeout(TQ.t);TQ.t=setTimeout(toastEnd,TQ.q.length?(it.kind==='undo'&&!it.act?0:it.lv==='result'?3000:700):it.ms);}   /* ux2 fixB flow V03: 결과 알림은 뒤에 기다리는 것이 있어도 3초는 읽을 수 있게 */
@@ -4708,7 +4708,7 @@ addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;const
 /* ux4f 새 오류: 과목 홈 교수별 출제 경향 표·공부 순서의 '짤 비율 n%'를 개수로(사용자 '퍼센트 필요 없어') — 팩(trend.py)은 그대로, 화면에 낼 때만 바꿈 · 맥 빌드에서 trend.py도 개수로 바꿀 것(로컬에서_할_일) */
 function trendNoPct(h){if(trendNoPct.k===h)return trendNoPct.v;let J=0,N=0;
  const o=String(h).replace(/<th>짤 비율<\/th>/g,'<th>짤 / 문항</th>').replace(/ · 짤 비율 \d+%/g,'')
-  .replace(/<td class="n">(\d+) \/ (\d+)<\/td><td>([^<]*)<\/td><td class="n">\d+%( <small>표본이 적어 누적 짤 (\d+)\/(\d+)<\/small>)?<\/td>/g,(m,j,tl,ty,sm,a,b)=>{J+=+j;N+=(+j)+(+tl);return `<td class="n">${j} / ${tl}</td><td>${ty}</td><td class="n">${sm?`누적 ${a}/${b}`:`${j}/${(+j)+(+tl)}`}</td>`;});
+  .replace(/<td class="n">(\d+) \/ (\d+)<\/td><td>([^<]*)<\/td><td class="n">\d+%( <small>표본이 적어 누적 짤 (\d+)\/(\d+)<\/small>)?<\/td>/g,(m,j,tl,ty,sm,a,b)=>{J+=+j;N+=(+j)+(+tl);return `<td class="n">${j} / ${tl}</td><td>${ty}</td><td class="n">${j}/${(+j)+(+tl)}${sm?` <small>표본이 적어 누적 짤 ${a}/${b}</small>`:''}</td>`;});
  trendNoPct.k=h;trendNoPct.v={h:o,j:N?J+'/'+N:''};return trendNoPct.v;}
 /* ux4f 새 오류: 한 줄 칩 줄(한눈표·비교표 강의 칩)이 넘치면 오른쪽을 흐리게(.ovr — 끝까지 밀면 .end) · 맥 세로 휠로도 가로로 넘김 */
 function stripOvr(){$$('#stage .sumbar .sbl,#stage .tbltoc .ttc').forEach(s=>{const o=s.scrollWidth>s.clientWidth+2;s.classList.toggle('ovr',o);s.classList.toggle('end',o&&s.scrollLeft+s.clientWidth>=s.scrollWidth-2);});}
