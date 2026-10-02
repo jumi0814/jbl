@@ -281,4 +281,5 @@ if __name__ == '__main__':
             if not only or f.__name__ in only: f(b)
         b.close()
     print('\n' + ('ALL OK' if not fails else f'FAIL {len(fails)}\n  ' + '\n  '.join(fails)))
+    print('RESULT', 'PASS' if not fails else f'FAIL {len(fails)}')   # ux_all 판정 줄(F7 — 판정 없는 테스트는 테스트가 아님)
     _sys.exit(1 if fails else 0)
