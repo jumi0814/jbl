@@ -225,7 +225,7 @@ async def a08(pg, tag, vp):
     await pg.keyboard.press('Control+z')
     # 자동 스크롤: 아래 가장자리 60px 안에 1초 머묾
     await pg.evaluate("document.querySelector('#t-DD1-5').scrollIntoView({block:'start'})"); await pg.evaluate("scrollBy(0,-150)"); await pg.wait_for_timeout(500)
-    q = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#stage .tc.open .tbody li,#stage .tc.open .tbody div.li,#stage .tc.open .tbody td')].filter(e=>e.offsetParent&&!e.closest('.noann,.c-exam')&&/[A-Za-z가-힣]{4}/.test(e.textContent)&&e.getBoundingClientRect().top>150&&e.getBoundingClientRect().bottom<innerHeight-250);const r=L[0].getBoundingClientRect();return [r.left+30,r.top+Math.min(r.height/2,12)]})()""")
+    q = await pg.evaluate("""(()=>{const L=[...document.querySelectorAll('#stage .tc.open .tbody li,#stage .tc.open .tbody div.li,#stage .tc.open .tbody td')].filter(e=>e.offsetParent&&!e.closest('.noann,.c-exam')&&/[A-Za-z가-힣]{4}/.test(e.textContent)&&e.getBoundingClientRect().top>150&&e.getBoundingClientRect().bottom<innerHeight-160);const r=L[0].getBoundingClientRect()   /* 아래 가장자리(도구 막대 위) 전까지 — 카드 머리·🔑 상자가 커져 250 여백 안에 줄이 없던 것 */;return [r.left+30,r.top+Math.min(r.height/2,12)]})()""")
     await pg.mouse.move(q[0], q[1]); await pg.mouse.down(); await pg.mouse.move(q[0] + 40, vp['height'] - 25, steps=6); y0 = await pg.evaluate('scrollY')
     await pg.wait_for_timeout(1000); y1 = await pg.evaluate('scrollY'); await pg.mouse.up(); await pg.wait_for_timeout(200); y2 = await pg.evaluate('scrollY')
     ok(300 <= y1 - y0 <= 520 and y2 - y1 < 40, f'아래 가장자리 1초 → 자동 스크롤 +{y1 - y0:.0f}px · 떼면 멈춤(+{y2 - y1:.0f})')

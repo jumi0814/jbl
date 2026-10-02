@@ -19,6 +19,9 @@ async def ls(pg, k):
 async def raw(pg, k): return await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')")
 async def boot(pg, h, ms=1800):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
+    for _ in range(150):   # 팩(과목 자료) 도착까지 — 느린 컴퓨터(클라우드)에서는 1.8초 안에 다 못 받음(가짜 시계와 별개로 실제 읽기 시간)
+        if await pg.evaluate("!!(window.__h&&__h.plStat&&__h.plStat().pend===0)"): break
+        await pg.wait_for_timeout(100); await pg.clock.run_for(100)
 async def dsum(pg, d): return await pg.evaluate(f"(o=>Object.values(o).reduce((a,b)=>a+b,0))(__h.tDay('{d}'))")
 async def dsub(pg, d, s): return await pg.evaluate(f"__h.tDay('{d}')['{s}']||0")
 async def cell(pg, d): return await pg.evaluate(f"(c=>c?c.querySelector('.cv').textContent:null)(document.querySelector('#calg [data-cd=\"{d}\"]'))")

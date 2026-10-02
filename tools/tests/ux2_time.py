@@ -17,6 +17,9 @@ async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
 async def boot(pg, h, ms=1800):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
+    for _ in range(150):   # 팩(과목 자료) 도착까지 — 느린 컴퓨터(클라우드)에서는 1.8초 안에 다 못 받음(가짜 시계와 별개로 실제 읽기 시간)
+        if await pg.evaluate("!!(window.__h&&__h.plStat&&__h.plStat().pend===0)"): break
+        await pg.wait_for_timeout(100); await pg.clock.run_for(100)
 
 def synth(lec):
     """14일(오늘 포함) × OMS1·CONS·PHARM · 분 단위 · 강의별(timed)은 과목 시간을 강의 키에 나눠 담고 비학습 화면(_home)도 조금"""

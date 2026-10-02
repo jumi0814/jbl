@@ -1772,7 +1772,7 @@ body.jbone #hero.hero{display:none}
 .chip.ljc{max-width:100%;height:auto;min-height:32px;text-align:left}
 .hres .hrchip{height:auto;text-align:left}
 .dtname{max-width:40vw}
-#nav .nvtoc .scard2{height:auto;align-items:flex-start}#nav .nvtoc .scard2 .el{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere;line-height:1.3}
+#nav .nvtoc .scard2{height:auto;align-items:flex-start;padding-top:6px;padding-bottom:6px}#nav .nvtoc .scard2 .x{margin-top:5px}#nav .nvtoc .scard2 .el{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere;line-height:1.3}
 #top .crumb{white-space:normal;line-height:1.2;max-height:50px}
 #top .crumb button.cbs{flex:none;white-space:nowrap}
 #top .crumb .ccur{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere;line-height:1.2}
@@ -1793,7 +1793,7 @@ body.jbone #hero.hero{display:none}
 @media (pointer:coarse){#stage .b3lk,#home .b3lk{display:inline-flex;align-items:center;min-height:44px;padding-left:6px;padding-right:6px}.chip.ljc,.b3btn,#stage .b3btn,#home .b3btn,.tvlink,#nav .nvback,#nav .nvsw,#nav .nvtoc .scard2,[data-tvw],#tvgoal,.hsb,[data-tvsc]{min-height:44px}[data-tvw]{min-width:44px}.b3btn,.tvlink{display:inline-flex;align-items:center}}   /* ux4f 새 오류: 과목 홈 공부 순서 링크·강의 바로가기·진행률 버튼·서랍 머리·카드 목차·통계 ◀▶·목표·검색 탭도 손가락 44px */
 /* ux4f 새 오류(학습·표 관점) — 정리표 ★ 칸 연도 칩은 칸 안에서 줄바꿈 · 학습 탭 본문 표 긴 영어 낱말 줄바꿈(820) · 틀 카드 목차·묶음 칩 이름은 말줄임 대신 줄바꿈(2줄) · 칩 줄이 넘치면 오른쪽 흐림 · 플래시카드 ◀▶ 44px */
 .msum td.mt .mexi>.jbchip,.msum td.mt .jbchip{flex:0 1 auto;max-width:100%;white-space:normal;overflow-wrap:anywhere;height:auto}
-@media (max-width:860px){#stage .tc .tscroll td,#stage .tc .tscroll th{overflow-wrap:anywhere}}
+@media (max-width:860px){#stage:not(.wide) .tc .tscroll td,#stage:not(.wide) .tc .tscroll th{overflow-wrap:anywhere}}
 #stage .frame .ol .ot,.frame .ol .ot{white-space:normal;overflow:hidden;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;word-break:keep-all;overflow-wrap:anywhere;max-width:none}
 @media (max-width:860px){.frame .ol{align-items:start}.frame .ol .oy{align-self:start}}
 .msbar .mgrp .tg{max-width:none;white-space:normal;text-overflow:clip;overflow:visible;height:auto;text-align:left;word-break:keep-all}
@@ -2799,7 +2799,7 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
  paintMarks(st);dnEnd(st);
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
  if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();
- if(QZ.on&&QZ.doc!==CUR.s+'/'+d)QZ.on=false;if(QZ.on&&QZ.scope==='card')QZ.card=QZ.cardAid?findAid(QZ.cardAid):null;qzApply();if(QZ.on&&!RVQZ&&!$$('#stage .k.qzk').length){QZ.on=false;qzApply();}   /* ux4f D 학습 탭에서 켠 가리기(이 카드)가 정리표·비교표에 가린 칸 0개로 보이지 않게 남던 것 — 이 탭에 가린 칸이 없으면 끔 */
+ if(QZ.on&&QZ.doc!==CUR.s+'/'+d)QZ.on=false;if(QZ.sus&&(QZ.sus!==CUR.s+'/'+d||QZ.on))QZ.sus=null;if(!QZ.on&&QZ.sus&&t==='learn'){QZ.on=true;QZ.sus=null;}   /* ux4f 정리표에 들렀다 학습 탭으로 돌아오면 멈춰 둔 가리기를 다시(ux2 '탭을 옮겼다 와도 가리기 유지') */if(QZ.on&&QZ.scope==='card')QZ.card=QZ.cardAid?findAid(QZ.cardAid):null;qzApply();if(QZ.on&&!RVQZ&&!$$('#stage .k.qzk').length){QZ.on=false;QZ.sus=QZ.doc;qzApply();}   /* ux4f D 학습 탭에서 켠 가리기(이 카드)가 정리표·비교표에 가린 칸 0개로 보이지 않게 남던 것 — 이 탭에 가린 칸이 없으면 끔 */
  rbRestore();coverChips();ux2Mount();}
 /* 과목 홈 교수별 세부(연도별 칸)는 접어 둠 — 펼치면 그 상태를 기억(LS homeTrendOpen.<S>). 처음부터 펼치면 강의 카드가 1200px 아래로 밀려 기본은 접힘 */
 function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='homeTrendOpen.'+p.id;dt.open=!!LS.get(k,false);dt.addEventListener('toggle',()=>LS.set(k,dt.open));}
@@ -3505,7 +3505,7 @@ const qzUName=c=>!c?'이 카드':c.matches('tr')?'이 행':c.matches('.tblwrap')
 function quizOn(scope){if(VIEW!=='doc')return;if(CUR.t==='flash'){toast('플래시카드는 카드를 눌러 뒤집어요 — 가리기 보기(Q)는 학습·정리표에서');return;}QZ.scope=scope||LS.get('qzscope','card');if(!QZN[QZ.scope])QZ.scope='card';QZ.card=QZ.scope==='card'?qzUnit():null;if(QZ.scope==='card'&&!QZ.card&&CUR.t!=='learn')QZ.scope='all';   /* ux4f D 행·표도 못 찾으면 이 화면 전부 */QZ.cardAid=QZ.card?QZ.card.dataset.aid:null;QZ.doc=CUR.s+'/'+CUR.d;QZ.on=true;qzApply();
  const n=$$('#stage .k.qzk').length;if(!n){QZ.on=false;qzApply();toast(QZ.scope==='card'?(CUR.t==='learn'?'이 카드에는 가릴 빨간 핵심어가 없어요 — ⚡에서 범위를 넓혀 보세요':'이 화면에는 가릴 빨간 핵심어가 없어요'):'가릴 빨간 핵심어가 없어요');return;}
  toast('가리기 보기 — '+(QZ.scope==='card'?qzUName(QZ.card):CUR.t!=='learn'?'이 화면':QZN[QZ.scope])+' 빨간 핵심어 '+n+'개 · 누르면 열림 · N 하나씩 · Q 끄기 (저장 안 함)',3000);}
-function quizOff(){QZ.on=false;qzApply();}
+function quizOff(){QZ.sus=null;QZ.on=false;qzApply();}
 function quizToggle(){if(QZ.on&&RVQZ&&$('#stage')&&$('#stage').classList.contains('review')){RVQZ=false;RVPREV=null;lmView();toast('가리기를 켰어요 — 복습 보기를 꺼도 가린 채로');return;}if(QZ.on)quizOff();else quizOn();}   /* ux4f B32 복습이 켠 가리기 위에서 가리기(Q·[보기 ▾]) = 내 가리기로 넘겨받음(누른 것이 꺼지지 않게) */
 /* '이 카드' 범위: J/K·목록·✓ 다음 카드로 옮기면 그 카드를 가림 */
 function qzFollow(el){if(!QZ.on||QZ.scope!=='card'||!el||QZ.card===el)return;QZ.card=el;QZ.cardAid=el.dataset.aid;qzApply();}
@@ -4619,6 +4619,7 @@ function twStats(t){let S=TWT.get(t);if(S)return S;const hr=t.tHead&&t.tHead.row
  L.forEach(o=>{o.ls.sort((a,b)=>a-b);o.p80=o.ls.length?o.ls[Math.min(o.ls.length-1,Math.floor(o.ls.length*0.8))]:0;});
  /* F4 실제로 끊을 수 없는 조각(띄어쓰기·'/'·'-' 뒤만 끊김 — '(' '·'는 낱말에 붙음 · keep-all이라 한글 어절도 한 덩어리)을 그 칸 글꼴로 잰 폭(px) */
  rows.forEach(r=>{let k=0;[...r.cells].forEach(c=>{const sp=c.colSpan||1;if(sp===1&&L[k]){const ft=cfFont(getComputedStyle(c)),s=c.textContent.replace(/\s+/g,' ').trim();s.split(/\s+|(?<=[\/\-–—→])|(?<=[A-Za-z0-9])(?=\([A-Za-z])/).forEach(w=>{if(!w||!/[A-Za-z]{4,}/.test(w))return;const v=cfTW(w,ft);if(v>L[k].cpx)L[k].cpx=v;});}k+=sp;});});
+ if(hr){let k=0;[...hr.cells].forEach(c=>{const sp=c.colSpan||1;if(sp===1&&L[k]){const ft=cfFont(getComputedStyle(c)),b=c.cloneNode(true);b.querySelectorAll('button').forEach(x=>x.remove());b.textContent.replace(/\s+/g,' ').trim().split(/\s+|(?<=[\/\-–—→])/).forEach(w=>{if(!w||!/[A-Za-z]{4,}/.test(w))return;const v=cfTW(w,ft);if(v>L[k].cpx)L[k].cpx=v;});}k+=sp;});}   /* ux4f 머리 칸(굵게)의 긴 영어 낱말도 — 'Origination' 머리가 1px 모자라 끊기던 것 */
  S={n,L};TWT.set(t,S);return S;}
 function twSolve(S,W,fpx,pad){const em=fpx,n=S.n;const mins=S.L.map((o,j)=>{const base=Math.max(o.tok*fpx*1.02,o.head*fpx,Math.min(o.p80*fpx,7*em))+pad;let m=Math.min(12*em,Math.max(4.5*em,90,base));if(j===0)m=Math.min(Math.max(m,6*em),11*em,Math.max(6*em,W*0.18));
   return m;});

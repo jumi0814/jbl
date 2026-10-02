@@ -14,6 +14,9 @@ async def ls(pg, k):
     v = await pg.evaluate(f"localStorage.getItem('jblhub.v1.{k}')"); return json.loads(v) if v else None
 async def boot(pg, h, ms=1800):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
+    for _ in range(150):   # 팩(과목 자료) 도착까지 — 느린 컴퓨터(클라우드)에서는 1.8초 안에 다 못 받음(가짜 시계와 별개로 실제 읽기 시간)
+        if await pg.evaluate("!!(window.__h&&__h.plStat&&__h.plStat().pend===0)"): break
+        await pg.wait_for_timeout(100); await pg.clock.run_for(100)
 TE = "(d)=>(JSON.parse(localStorage.getItem('jblhub.v1.tedit')||'[]')).filter(e=>e&&!e.x&&e.f!=='r'&&(!d||e.d===d)).reduce((a,e)=>a+(+e.ms||0),0)"   # ux3 fix2 F6 줄인 몫 = tedit trim
 async def tsum(pg, d=TODAY):
     return sum(((await ls(pg, 'time')) or {}).get(d, {}).values()) + await pg.evaluate(f"({TE})('{d}')")
