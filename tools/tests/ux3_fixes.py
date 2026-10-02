@@ -220,7 +220,7 @@ async def part_nav(b):
         # flow V12 처음 M = 알림 하나
         await pg.evaluate("sessionStorage.removeItem('jblhub.v1.toasts')"); await pg.keyboard.press('Shift+M'); await pg.clock.run_for(400)
         L = await pg.evaluate("JSON.parse(sessionStorage.getItem('jblhub.v1.toasts')||'[]').map(x=>x.t)")
-        ok(len(L) == 1 and 'M은 이제 메뉴' in L[0] and '펼쳤어요' in L[0], f'{tag} flow V12 옛 사용자 첫 M → 알림 하나 {L}')
+        ok(len(L) == 1 and '이제 Shift+M' in L[0] and '펼쳤어요' in L[0], f'{tag} flow V12 옛 사용자 첫 Shift+M → 알림 하나 {L}')   # ux4f 사용자 10-02 메뉴 키 = Shift+M — 알림 글자도 바뀜
         ok(not await pg.evaluate(FOLD) and await ls(pg, 'navfold') is False and await ls(pg, 'sidefold') is True, f'{tag} M → 펼침 · 새 키 navfold=false · 옛 sidefold 그대로')
         # F9: 정리표(자동 숨김) → M 보임 → M 숨김 → 학습·홈은 보임
         await boot(pg, '#/CONS/WHT/sum'); f0 = await pg.evaluate(FOLD)
