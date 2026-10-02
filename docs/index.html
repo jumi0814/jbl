@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"0eb47b4f",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"1cd90ec4",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1432,7 +1432,7 @@ body.d-home #stage{padding-top:8px}
 #hguide ol.steps>li:last-child{border-bottom:0}
 #hguide ol.steps>li::before{content:counter(s4);position:static;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin:0;border:0;border-radius:50%;background:none;color:var(--acc);font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:none}
 #hguide ol.steps>li.now::before{background:var(--acc);color:#fff}
-#hguide ol.steps>li.rvli::before{content:'·'}
+#hguide ol.steps>li.rvli::before{content:'·'}#hguide ol.steps>li.rvli{counter-increment:none}   /* ux4f 오늘 복습 줄은 번호를 세지 않음(1 없이 2부터 나오던 것) */
 #hguide .stx b{font-weight:600}#hguide .stx .d{color:var(--sub)}
 #hguide .act{margin:0;justify-self:end;font-size:13.5px}
 /* 진행률 */
@@ -1782,13 +1782,15 @@ body.jbone #hero.hero{display:none}
 /* ux4e 빵부스러기 강의 제목은 자르지 않음(3줄 자름 없앰) — 상단 막대는 52px 이상으로 늘어남(--toph는 layout()이 잼) · ≤860은 제목을 다음 줄 전체 폭으로 */
 #top{height:auto;min-height:52px}#top .crumb{max-height:none;padding:2px 0}
 #top .crumb .ccur{display:block;-webkit-line-clamp:unset;overflow:visible}
-@media (max-width:860px){#top .crumb{flex-wrap:wrap;row-gap:0}#top .crumb .ccur{flex:0 1 auto;padding:0 4px}#top #gsearch{flex-basis:120px;width:120px;max-width:120px;min-width:104px}}   /* 한 줄에 안 들어가는 긴 제목만 다음 줄로 · 검색칸을 줄여 빵부스러기 자리를 넓힘 */
+@media (max-width:860px){#top .crumb{display:block;white-space:normal;line-height:18px;padding:6px 0;word-break:keep-all;overflow-wrap:anywhere}#top .crumb>*{vertical-align:baseline}#top .crumb button,body:not(.focus) #top .crumb button{display:inline;min-height:0;padding:11px 4px;margin:-11px 0}#top .crumb .sl{display:inline;margin:0 4px}#top .crumb .cdot{margin-right:6px;vertical-align:1px}#top .crumb .ccur{display:inline;padding:0 0 0 2px}   /* ux4f 새 오류: 글줄처럼 이어 흐름 — 긴 강의 제목도 '과목 /' 바로 뒤에서 이어져 상단 막대가 강의마다 덜 달라짐 · 버튼 누름 자리는 위아래 11px 여백(줄 높이는 그대로) */#top #gsearch{flex:none;width:120px;max-width:120px;min-width:120px}
+ #top #clock,body:not(.focus) #top #clock{display:inline-grid;grid-template-columns:auto auto;column-gap:7px;row-gap:3px;align-content:center;padding:0 10px}#top #clock .ckd{grid-row:1/3;align-self:center}#top #clock .ckt,#top #clock .ckl{line-height:1.1}#top #clock .ckl{font-size:11.5px}}   /* ux4f 새 오류: ≤860 시계 알약은 시간 위·상태 아래 두 줄(198 → 약 130px) — 검색칸은 줄지 않고(글자 잘림) 빵부스러기 자리가 넓어져 상단 막대 높이가 덜 바뀜 */   /* 한 줄에 안 들어가는 긴 제목만 다음 줄로 · 검색칸을 줄여 빵부스러기 자리를 넓힘 */
 /* ux4f E 오류 재검 2회차 — 인쇄에 ↩ 알약·미리보기·알림 숨김 · [필터 ▾]·[회차 ↻] 글자 세로 가운데 · 위에 붙은(mini) 목록 막대에서도 [필터 ▾]로 펼침 · 터치 누름 자리(틀 접기 줄·더 보기·▣ 칩·⤢) */
 @media print{#retpill,#jbpeek,#toast,#toasts,#toasterr{display:none!important}}
 #fexp,#jbrec{align-items:center;justify-content:center}
 #jbbar.mini.fopen .b2,#jbbar.mini.fopen #jbmore:not([hidden]){display:flex}
 @media (pointer:coarse){#stage .frame details.trend>summary{min-height:44px;display:flex;align-items:center}#stage .frame details.tald>summary{padding-top:9px;padding-bottom:9px}#stage .frame .ftop .tmorebtn,#stage .frame .btn.sm{min-height:44px;padding:0 10px}button.qzchip{min-height:44px}#dtabs button.dfoc{min-width:44px!important;justify-content:center}}
 @media (pointer:coarse){.chip.refc .link{min-height:44px;padding:0 10px;display:inline-flex;align-items:center}button.mk.mkgo{min-width:44px;min-height:44px}.pggrid .btn.sm{min-width:44px;min-height:44px}#stage .qc .qhead .chip.lec,#stage .cite{min-height:44px}}   /* ux4f 새 오류: JB 참고 [보이기]·내 표시 ↗·대장 쪽 번호·📖 칩·근거 버튼도 손가락 44px */
+@media (pointer:coarse){#stage .b3lk,#home .b3lk{display:inline-flex;align-items:center;min-height:44px;padding-left:6px;padding-right:6px}.chip.ljc,.b3btn,#stage .b3btn,#home .b3btn,.tvlink,#nav .nvback,#nav .nvsw,#nav .nvtoc .scard2,[data-tvw],#tvgoal,.hsb,[data-tvsc]{min-height:44px}[data-tvw]{min-width:44px}.b3btn,.tvlink{display:inline-flex;align-items:center}}   /* ux4f 새 오류: 과목 홈 공부 순서 링크·강의 바로가기·진행률 버튼·서랍 머리·카드 목차·통계 ◀▶·목표·검색 탭도 손가락 44px */
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" type="button" title="메뉴 (M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt">0:00:00</span><small class="ckl"></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -1878,7 +1880,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="0eb47b4f",PV={"OMS1": "9545592a", "CONS": "1db7d348", "IMPL": "cc61fc76", "ANAT": "b3421a75", "GERI": "755b8b74", "PHARM": "8979847c"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="1cd90ec4",PV={"OMS1": "1d7a1bdd", "CONS": "76e46a2d", "IMPL": "8dd68263", "ANAT": "e6fa535c", "GERI": "ddc7c2c9", "PHARM": "dbf22728"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2742,7 +2744,7 @@ const GUIDE0=[{b:'강의 정리본 → 학습',t:'‘이 강의의 틀’로 흐
    절 = 제목 17 굵게 + 선 하나 · 공부 순서 = 번호(과목색) · 굵은 단계 · 회색 설명 · 오른쪽 글자 링크, 지금 단계는 번호를 채운 원 · 진행률 한 줄 + 4px 막대 + 보조 버튼 2 · 시험일·읽음 % 없음 */
 function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const MKh=getMK(p.id);const G=(p.guide&&p.guide.length?p.guide:GUIDE0),r0=resumeTarget(p);
  let now=G.findIndex(g=>g.act==='resume');if(!(r0&&r0.cont)&&!(nOk+nNg))now=0;if(now<0)now=0;
- const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(g.t)}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');
+ const TJ=trendNoPct(p.trends||'').j;const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(String(g.t).replace(/짤 비율 평균 \d+%/,TJ?'짤 '+TJ+'문항':'짤이 많음'))}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');
  const jump=p.lect.map(L=>`<button class="chip ljc" data-d="${L.k}" title="${EH(L.title)}"><span>${EH(sname(p,L.k))}</span></button>`).join('');
  const hot2=new Set((p.top||[]).map(t=>t.lk).filter(Boolean));
  const lecs=p.lect.map(L=>`<button class="lcard ${L.heat}" data-d="${L.k}"><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.hint?`<span class="lh">${EH(L.hint)}</span>`:''}</button>`).join('');
@@ -2753,7 +2755,7 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  return `<section class="guide sh4" id="hguide"><h2 class="hh gt">공부 순서</h2><ol class="steps">${rvb?`<li class="rvli"><span class="stx"><b>오늘 복습</b> <span class="d">틀렸던 기출을 1·3·7일 간격으로 다시</span></span>${rvb}</li>`:''}${guide}</ol></section>
  <div class="ljump noann"><span class="small">강의 바로가기</span>${jump}</div>
  ${examLine(p,C)}<section class="sh4" id="hprog"><h2 class="hh">진행률 <small>${C.ref?'현 교수 ':''}기출 ${total}문항</small><span class="more">${C.ref?`<button class="b3lk" data-reftog="1" title="현 교수 파트가 아닌 참고 기출 — JB 문제에서 함께 보기">JB에서 참고 ${C.ref} 보기 →</button> · `:''}${tSubjLine(p)}</span></h2><div class="pline"><span class="ptx">맞음 <b>${nOk}</b> · 틀림 <b class="cng">${nNg}</b> · 안 푼 것 ${C.todo} · ★ ${nBm}</span><span class="pbar big" aria-hidden="true"><i class="ok" style="width:${total?nOk/total*100:0}%"></i><i class="ng" style="width:${total?nNg/total*100:0}%"></i></span><button class="b3btn" data-jbf="todo"${C.todo?'':' disabled title="안 푼 문항 없음"'}>안 푼 것 풀기</button><button class="b3btn" data-jbf="ng"${nNg?'':' disabled title="틀린 문항 없음"'}>틀린 것 다시</button></div>${resumeHTML(p.id,true)}${jbResume(p.id)}</section>
- ${p.trends||''}
+ ${trendNoPct(p.trends||'').h}
  ${hints}
  <section class="sh4" id="hlec"><h2 class="hh">강의 <small>${p.lect.length} · 2회+ = 두 번 이상 나온 문제가 있는 강의</small></h2><div class="lgrid">${lecs}</div></section>
  <section class="sh4${TA?' all':''}" id="htop"><h2 class="hh bt">2회 이상 출제 <small>완짤 후보 ${T.length}문항</small>${T.length?`<button class="more" data-jbn="2" data-one="1">한 장씩 풀기 →</button>`:''}</h2><ol class="toplist">${top}</ol>${T.length>TN&&!TA?`<button type="button" class="b3lk topmore" data-topmore="1">나머지 ${T.length-TN}문항 더 보기 ▾</button>`:''}</section>`;}
@@ -3781,9 +3783,9 @@ function bkStatus(){const me=devMine(),lb=+LS.get('lastBackup',0),M=mkObj(LS.get
  return `이 기기(${EH(me.name)}) 마지막 보내기 ${lb?agoD(lb):'없음'}${ms.length?' · 다른 기기('+ms.slice(0,2).map(x=>EH(x.name)).join('·')+')와 합친 때 '+mdw(new Date(ms[0].at)):''}`;}
 function bkPanel(){const lb=+LS.get('lastBackup',0),dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${bkDue()?'warn':''}"><div class="bt">💾 백업 · 기기 옮기기</div><div class="small">${bkStatus()}</div><div class="small">표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업(마지막 성공 ${bakAtTxt()})도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [보내기]를 권해요 — 다른 기기에서 [받기]로 합치면 공부 시간도 기기별로 더해져요.</div><div class="small a2hs" id="a2hs"></div><div class="row"><button class="btn sm pri" data-bksend="1">⬆ 보내기</button><button class="btn sm" data-bkpop="1">기기 옮기기 창</button></div></div>`;}
 function bkPop(){const p=$('#bkpop');if(p.classList.contains('on')){p.classList.remove('on');return;}$$('.pop.on').forEach(x=>x.classList.remove('on'));const me=devMine();
- p.innerHTML=`<div class="bt">💾 백업 · 기기 옮기기</div><label class="devn small">이 기기 이름 <input id="devname" value="${EH(me.name)}" maxlength="20" aria-label="이 기기 이름"></label><div class="small">${bkStatus()}</div>
+ p.innerHTML=`<div class="bt">💾 백업 · 기기 옮기기</div><label class="devn small">이 기기 이름 <input id="devname" value="${EH(me.name)}" maxlength="20" aria-label="이 기기 이름"></label><div class="small" id="bkst">${bkStatus()}</div>
  <div class="row"><button class="btn pri" id="bksend">⬆ 보내기</button><button class="btn" id="bkrecv">⬇ 받기(합치기)</button><button class="btn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기, 저장 공간">↺ 복원·되돌리기</button></div><div class="small">보내기 = 표시·채점·메모·공부 시간을 파일 하나로 — 아이패드는 공유 시트(AirDrop·iCloud·메모)로, 맥은 내려받기 · 받기 = 다른 기기의 파일을 골라 합침(지금 기록은 그대로, 공부 시간은 기기별로 더함)</div><div id="bkgotrow"></div><button class="btn" id="bkclose" style="margin-top:8px">닫기</button>`;
- p.classList.add('on');$('#devname').onchange=e=>{const v=e.target.value.trim().slice(0,20);if(v){LS.set('devName',v);toast('이 기기 이름: '+v);}};$('#bksend').onclick=bkSend;$('#bkrecv').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#bkclose').onclick=()=>p.classList.remove('on');}
+ p.classList.add('on');$('#devname').onchange=e=>{const v=e.target.value.trim().slice(0,20);if(v){LS.set('devName',v);toast('이 기기 이름: '+v);const s=$('#bkst');if(s)s.innerHTML=bkStatus();}};$('#devname').onkeydown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();e.target.blur();p.classList.remove('on');const b=$('#bkup');if(b&&b.offsetParent)b.focus({preventScroll:true});}else if(e.key==='Enter'){e.preventDefault();e.target.blur();}};   /* ux4f 새 오류: Esc = 저장하고 창 닫기 · 이름을 바꾸면 상태 줄도 바로 */$('#bksend').onclick=bkSend;$('#bkrecv').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#bkclose').onclick=()=>p.classList.remove('on');}
 async function bkSend(){try{tFlush();}catch(e){}const j=bakFile(),name='JBL허브_'+(j.dev.name||'기기').replace(/\s+/g,'')+'_'+day()+'.json';let file=null;try{file=new File([JSON.stringify(j)],name,{type:'application/json'});}catch(e){}
  if(file&&navigator.canShare&&navigator.share){let can=false;try{can=navigator.canShare({files:[file]});}catch(e){}if(can){try{await navigator.share({files:[file],title:'JBL 백업'});LS.set('lastBackup',Date.now());toast('보냈어요 — 다른 기기에서 [백업] → [⬇ 받기]로 합치세요',{level:'result'});bkRefresh();}catch(e){toast('보내기를 취소했어요');}return;}}
  dl(name,j);const r=$('#bkgotrow');const ask=`<div class="bkgot small">파일을 받았나요? <button class="btn sm pri" data-bkgot="1">받았어요 ✓</button></div>`;if(r&&$('#bkpop').classList.contains('on'))r.innerHTML=ask;else toast('백업 파일을 내려받았어요 — 받았으면 [받았어요]',{level:'result',ms:9000,action:{label:'받았어요',fn:bkGot}});}
@@ -3940,7 +3942,7 @@ addEventListener('pagehide',()=>{try{if(window.memoFlush)memoFlush();}catch(e){}
 function resumeHTML(only,inl){const all=mkObj(LS.get('lastBy',{}));let L;if(only){L=LS.get('lastList.'+only,[]);if(!Array.isArray(L)||!L.length)L=all[only]?[all[only]]:[];L=L.filter(o=>o&&typeof o==='object').map(o=>Object.assign({},o,{s:only}));}else L=Object.values(all);
  L=L.filter(o=>o&&typeof o==='object'&&PACKS[o.s]&&o.d).sort((a,b)=>(b.at||0)-(a.at||0));if(!L.length)return '';const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
  return `<div class="${inl?'resume inl':'panel resume'}">${inl?'<span class="small">↪ 최근 읽던 곳</span>':'<div class="bt">↪ 이어서 보기'+(only?' <span class="small">— 최근 읽던 곳 '+L.length+'</span>':'')+'</div>'}${L.map(o=>{const P=PACKS[o.s];const Lc=P.lect.find(x=>x.k===o.d);const nm=Lc?sname(P,o.d):((SUBJDOCS.find(x=>x[0]===o.d)||['',o.d])[1]);const tl=({learn:'학습',sum:'정리표',tbl:'비교표',jb:'기출',pred:'예상',flash:'플래시카드'})[o.t]||'';
-  return `<button class="res go-resume" data-s="${o.s}" data-d="${E(o.d)}" data-t="${E(o.t||'')}" data-aid="${E(o.aid||'')}" data-off="${+o.off||0}"><b>↪ ${only?'':E(P.title)+' · '}${E(nm)}${tl?' · '+tl:''}${o.ti?' · '+E(tiClean(o.ti)):''}</b><span class="small"> (${o.at?new Date(o.at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):''})</span></button>`;}).join('')}</div>`;}
+  return `<button class="res go-resume" data-s="${o.s}" data-d="${E(o.d)}" data-t="${E(o.t||'')}" data-aid="${E(o.aid||'')}" data-off="${+o.off||0}"><b>↪ ${only?'':E(P.title)+' · '}${E(nm)}${tl?' · '+tl:''}${o.ti?' · '+E(tiClean(o.ti)):''}</b>${o.at?`<span class="small"> · ${E(atLab(o.at))}</span>`:''}</button>`;}   /* ux4f 새 오류: 허브 홈 '이어서'와 같은 시각 표기(atLab) */).join('')}</div>`;}
 /* ---------- 내 표시 모아보기 ---------- */
 const AMAP={};function aidMap(s){if(AMAP[s])return AMAP[s];const p=PACKS[s],m={},tmp=document.createElement('div');const add=(d,t,html,label)=>{tmp.innerHTML=html;$$('[data-aid]',tmp).forEach(b=>{const h=b.querySelector('.thead .en,.qtitle,.tbt,.pq,.qtext,.men');const ti=h?h.textContent.replace(/\s+/g,' ').trim():'';m[b.dataset.aid]={d,t,label,title:(b.classList.contains('qc')&&b.dataset.id?b.dataset.id+' · ':'')+ti.slice(0,60)};if(b.dataset.alt)b.dataset.alt.split(' ').forEach(a=>{if(a&&!m[a])m[a]=m[b.dataset.aid];});});};
  p.lect.forEach(L=>{add(L.k,'learn',L.head+L.learn,L.title);add(L.k,'sum',(L.sumt||[]).map(i=>p.tables[i].html).join('')+L.sum,L.title+' · 정리표');});add('_jb','',cardsHTML(p,p.order),'JB 문제');add('_tbl','',p.tables.filter(x=>!x.sum).map(x=>x.html).join(''),'비교표');add('_pred','',p.preds.map(x=>x.html).join(''),'예상문제');add('_sum','',p.sumall,'기출 한눈표');return AMAP[s]=m;}
@@ -4694,6 +4696,11 @@ let ROTA=null,ROTW=innerWidth;
 addEventListener('scroll',()=>{clearTimeout(ROTA&&ROTA.t);const tm=setTimeout(()=>{if(innerWidth!==ROTW)return;const a=scrollY>8?anchorNow():null;ROTA=a?Object.assign(a,{t:0}):null;},160);ROTA=ROTA?Object.assign(ROTA,{t:tm}):{t:tm,none:1};},{passive:true});
 addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;const a=ROTA&&!ROTA.none&&ROTA.el?ROTA:null;if(!a)return;clearTimeout(a.t);const s0=STL;
  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off));else if(vis(a.c))settle(()=>goEl(a.c,a.coff));}));});
+/* ux4f 새 오류: 과목 홈 교수별 출제 경향 표·공부 순서의 '짤 비율 n%'를 개수로(사용자 '퍼센트 필요 없어') — 팩(trend.py)은 그대로, 화면에 낼 때만 바꿈 · 맥 빌드에서 trend.py도 개수로 바꿀 것(로컬에서_할_일) */
+function trendNoPct(h){if(trendNoPct.k===h)return trendNoPct.v;let J=0,N=0;
+ const o=String(h).replace(/<th>짤 비율<\/th>/g,'<th>짤 / 문항</th>').replace(/ · 짤 비율 \d+%/g,'')
+  .replace(/<td class="n">(\d+) \/ (\d+)<\/td><td>([^<]*)<\/td><td class="n">\d+%( <small>표본이 적어 누적 짤 (\d+)\/(\d+)<\/small>)?<\/td>/g,(m,j,tl,ty,sm,a,b)=>{J+=+j;N+=(+j)+(+tl);return `<td class="n">${j} / ${tl}</td><td>${ty}</td><td class="n">${sm?`누적 ${a}/${b}`:`${j}/${(+j)+(+tl)}`}</td>`;});
+ trendNoPct.k=h;trendNoPct.v={h:o,j:N?J+'/'+N:''};return trendNoPct.v;}
 /* B04 허브 화면에서 과목 전용 키를 누르면 한 번만 알림(상태는 바꾸지 않음) */
 let HUBKN=0;function hubKeyNote(){if(HUBKN)return;HUBKN=1;toast('H·B·E·N·T·V·Q는 과목 화면(강의·JB·표)에서 쓰는 키예요');}
 /* B15 / = 검색 — 집중 모드면 상단 막대를 잠시 내려(topshow) 바로 포커스, 검색칸을 떠나면 다시 숨김 */
