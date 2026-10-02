@@ -8,8 +8,14 @@ PYBIN=$(command -v python3.14 || command -v python3.13 || command -v python3.12 
 $PYBIN -c 'import sys; assert sys.version_info >= (3, 12), "Python 3.12+ 필요: " + sys.version'
 [ -d .venv ] || $PYBIN -m venv .venv
 .venv/bin/pip install -q --upgrade pip
-.venv/bin/pip install -q pillow playwright
-.venv/bin/python -m playwright install chromium || echo "!! chromium 내려받기 실패 — 환경의 네트워크 접근을 넓히거나(playwright CDN 허용) 사용자에게 알릴 것"
+# claude.ai 클라우드 컨테이너: chromium이 /opt/pw-browsers에 미리 깔려 있고 CDN 내려받기는 막혀 있음 → 그 chromium 판에 맞는 playwright를 고름
+#   (chromium-1194 = playwright 1.56.x). 다른 판이 깔려 있으면 PW_VER=1.xx.x sh tools/cloud_setup.sh 로 지정.
+PW_VER=${PW_VER:-}
+if [ -z "$PW_VER" ] && [ -d /opt/pw-browsers/chromium-1194 ]; then PW_VER=1.56.0; fi
+.venv/bin/pip install -q pillow "playwright${PW_VER:+==$PW_VER}"
+.venv/bin/python -c "from playwright.sync_api import sync_playwright as s
+with s() as p: p.chromium.launch().close()" 2>/dev/null && echo "chromium OK" || \
+ .venv/bin/python -m playwright install chromium || echo "!! chromium 실행·내려받기 실패 — /opt/pw-browsers 판에 맞게 PW_VER를 주거나, 환경의 네트워크 접근을 넓히거나 사용자에게 알릴 것"
 # 리눅스: 브라우저 의존 라이브러리·한글 글꼴(없으면 화면 폭·줄바꿈 검사가 맥과 달라짐)
 if [ "$(uname)" = Linux ]; then
   (.venv/bin/python -m playwright install-deps chromium >/dev/null 2>&1 || true)
