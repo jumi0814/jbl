@@ -118,7 +118,7 @@ async def run(b, vp, touch, tag):
     await pg.evaluate("(()=>{__h.JB.cur=__h.JB.vis.length;__h.JB.show();})()"); await pg.wait_for_timeout(150)
     r = await pg.evaluate("(()=>{const S=__h.JB.sess;return {ng:S.ids.filter(i=>S[i]==='ng'),t:document.querySelector('#onesum').innerText}})()")
     nall = await pg.evaluate("(()=>{const m=__h.getMK('PHARM');return Object.keys(m.ng).filter(i=>__h.PACKS.PHARM.cards[i]).length})()")
-    ok(len(r['ng']) == 2 and '이번 회차 틀린 것 2 다시' in r['t'] and f'전체 틀린 것 {nall}' in r['t'] and '안 채점 153' in r['t'] and '처음부터' in r['t'], f"F06 회차 요약 버튼 {r['t'][-80:]!r}")
+    ok(len(r['ng']) == 2 and '이번 회차 틀린 것 2 다시' in r['t'] and f'전체 틀린 것 {nall}' in r['t'] and '안 푼 것 153' in r['t'] and '처음부터' in r['t'], f"F06 회차 요약 버튼 {r['t'][-80:]!r}")   # ux4f E111 '안 채점' → '안 푼 것'(필터 칩과 같은 이름)
     await pg.screenshot(path=SHOT('f06_sum', tag))
     await pg.evaluate("document.querySelector('[data-onesum=\"sng\"]').click()"); await pg.wait_for_timeout(200)
     r2 = await pg.evaluate("__h.JB.sess.ids")

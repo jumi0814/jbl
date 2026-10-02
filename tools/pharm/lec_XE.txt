@@ -98,7 +98,7 @@ M: 모든 부교감 반응 = {r:muscarinic} 매개
 | {r:M3} | {r:타액선}, {r:평활근} | ACh, Carbachol, Bethanechol, {r:Pilocarpine}, {r:Cevimeline} | Atropine, Scopolamine, Ipratropium, Oxybutynin, Trospium, Darifenacin, {r:Solifenacin}, Tolterodine, Propiverine(비뇨기질환 치료제: 과민성 방광) |
 | M4 | 뇌(전체적으로) | ACh, Carbachol | Atropine, Scopolamine, Benzquiamide, Doxepin, Dosulepin |
 | {r:M5} | 뇌(substantia nigra), 눈 | ACh, Carbachol, {r:Pilocarpine} | Atropine, Scopolamine, Benzquiamide, Doxepin, Dosulepin |
-E: XE12 | 21년 빈칸(복원) "Pilocarpine은 nonselective muscarinic agonist로, M1-5 중 …" → {r:M1,3,5} — p.19 표·p.43 "M1, M3, M5" ⚠ 함정: M2·M4 ✗
+E: XE12 | 21년 복원 문항 "Pilocarpine은 nonselective muscarinic agonist로, M1-5 중 …" → {r:M1,3,5} — p.19 표·p.43 "M1, M3, M5" ⚠ 함정: M2·M4 ✗
 P: 💬 "M3의 antagonist인 {r:solifenacin}은 기억해두세요"(p.19 필기) — p.52 증례의 과민성 방광 약.
 U: ✍ pilocarpine은 M1·3·5, cevimeline은 M1·3 → cevimeline이 {r:selectivity}가 높아 더 자주 씀(필기; 25 필기: M5에 작용하지 않아서).
 # 반응·기전·prototype
@@ -265,7 +265,7 @@ U: ✍ 25 자료는 금기/주의 구분 없이 '금기 환자군'으로, 안과
 | 과량투여 처치 | {r:100 mg 이상} 투여 시 치명적 | {r:Atropine 0.5 mg ~ 1.0 mg} 피하 또는 정맥투여, 호흡·순환 유지 |
 | 과량투여 처치 | 심한 심혈관기능 저하 or 기관지 수축 | {r:Epinephrine 0.3 mg ~ 1.0 mg} 피하 또는 정맥투여 |
 U: ✍ ⚠ 천식 금기 이유를 p.45는 'Beta2 receptor 활성', p.32(교수님 강조)·p.42는 'M3 → 기관지 평활근 수축'으로 적음.
-E: XE16 | 21년 빈칸 "과다복용 시 경쟁적 길항제 ( )를 피하 혹은 정맥주사" → {r:Atropine} — 0.5-1.0 mg 피하·정맥(이 표)
+E: XE16 | 21년 빈칸 "과다복용 시 경쟁적 길항제 ( )을 피하 혹은 정맥주사" → {r:Atropine} — 0.5-1.0 mg 피하·정맥(이 표)
 E: XE05 | 23년 객관식 "cevimeline 약물 효과에 부작용 없을 사람" → JB 답 ④ {r:CYP2D6 활성 낮은 사람} — ⚠ CYP 대사는 강의자료에 없음(JB도 명시) · 자료상 위험군 = 천식·만성기관지염·협심증
 F: 32=금기와 주의를 구분하세요, 45=Pilocarpine 주의사항, XE5:33=25 자료 금기 그림
 M: 금기 = {r:조절 안 되는 천식 · 축동(급성 홍채염·angle-closure)} / 주의 = {r:COPD · 심혈관}
@@ -363,8 +363,8 @@ M: Schirmer {r:≤5 mm/5 min} · 비자극 whole {r:≤0.1 mL/min} · 증상 {r:
 - 진단 기준: ① Unstimulated {r:< 0.1 ml/min} ② Stimulated {r:< 0.5 – 0.7 ml/min} — 주로 **Unstimulated** 타액분비율 기준으로 진단.
 - 비자극 = 가만히 있는 상태 / 자극 = 껌 같은 것을 씹으며 나오는 분비율(25 필기).
 P: 💬 "큰 별표! 이 표의 수치를 외우세요 — 특히 dry mouth whole saliva unstimulated < 0.1 ml/min 아주 중요합니다!"(p.40) · "이 숫자가 굉장히 중요하고 주관식으로 나올 수 있습니다"(p.1).
-E: XE02 | 24년 객관식 "진단 기준에 대해 옳지 않은 것" → JB 답 ③ "비자극 전체 0.2 ml/min이면 정상" ✗(정상 {r:0.3-0.5}) — ⚠ 다른 선지 값(0.8·0.05·0.2)도 표와 정확히 같지 않음(JB 동의)
-E: XE08,XE20 | 22년 빈칸(백정화) "타액분비율 표 — A 0.1 이하, B 0.7 이하" → A = {r:비자극}, B = {r:자극} — dry mouth 기준(0.1·0.7 짝 보기)
+E: XE02 | 24년 객관식 "진단 기준에 대해 옳지 않은 것" → JB 답 ③ "비자극 전체 0.2 ml/min이면 정상" ✗(정상 {r:0.3-0.5}) — ⚠ 다른 선지 값(0.8·0.05·0.2)도 표(0.70·0.04·0.15)와 정확히 같지 않음 — JB도 "정상 수치에서 벗어나는 선지는 3번뿐"이라 ③ 선택
+E: XE08,XE20 | 22년 객관식(백정화, 복원) "타액분비율 표 — A 0.1 이하, B 0.7 이하" → JB 답 3)(0.1·0.7 짝 보기) — A = {r:비자극}, B = {r:자극} dry mouth 기준
 E: XE15 | 21년 빈칸 "타액분비율 표 빈칸" → 복원 답 없음 — 이 표(p.40) 또는 p.55(2017 시험문제: 정상·구강건조 whole saliva 4칸, 소수점 첫째자리) 중 어느 표인지 불명
 F: 40=큰 별표 수치를 외우세요, 55=2017년 시험문제 빈칸 표
 M: Dry mouth: 비자극 {r:< 0.1} · 자극 {r:< 0.5-0.7} mL/min — 주로 {r:비자극}으로 진단
@@ -440,7 +440,7 @@ M: 보조치료 3 = {r:증상완화(껌·얼음·인공타액) · BZD(통증) ·
 - 추가약물: {r:Alpha-lipoic acid(ALA)} — natural heavy metal chelator(reduction of drug toxicity), 세포 내 glutathione 증가 → 활성산소 제거(항산화) → 면역·세포활성도 증가, 신경손상 회복.
 - 대체약물: {r:Gabapentin}, Steroid gargle(Dexamethasone 참조).
 U: ✍ 구강건조증이 너무 장기화되면 통증이 동반 → 만성 통증 완화를 위해 BZD를 쓰기도 함(p.49 필기).
-E: XE07,XE21 | 23·21년 서술(BMS 증례) "병명·약물·작용기전·처방" → {r:burning mouth syndrome} / {r:clonazepam} / "Increases opening frequency of gaba channel"(JB 답) / 처방 = 위 두 문장 — ⚠ 기전(GABA)은 슬라이드에 없음
+E: XE07,XE21 | 23·21년 서술(BMS 증례) "병명·약물·작용기전·처방" → {r:burning mouth syndrome} / {r:clonazepam} / 기전 JB 답 = 23년 "Increases opening frequency of gaba channel" · 21년 "GABA A receptor potentiation" / 처방 = 위 두 문장 — ⚠ 기전(GABA)은 슬라이드에 없음
 F: 49=Clonazepam 선배 발표
 M: BMS = 점막 정상 + {r:타는 통증 6개월↑}(감각·미각 변화·타액 분비 이상 동반)
 M: Clonazepam {r:0.5 mg} {r:qd hs × 30일} or {r:bid}(아침·저녁 식후) · {r:3-5분} 물고 삼키기
