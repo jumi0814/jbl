@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"aab23399",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"7f2129d8",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1819,6 +1819,10 @@ body.focus #dtabs .fclock[data-st=rest] .fcl{color:#8A5A00;font-weight:600}
 #dtabs .fclock .ckd{flex:none;width:7px;height:7px;border-radius:50%;background:#B9B2A6}#dtabs .fclock[data-st=run] .ckd,#dtabs .fclock[data-st=sess] .ckd{background:var(--nc,#2F4F45)}#dtabs .fclock[data-st=rest] .ckd{background:#B7791F}
 @media (pointer:coarse){body.focus #dtabs .fclock:not([hidden]){height:44px}}
 @media (max-width:860px){body.focus #dtabs .fclock:not([hidden]){display:inline-grid;grid-template-columns:auto auto;column-gap:6px;row-gap:2px;align-content:center}body.focus #dtabs .fclock .ckd{grid-row:1/3}body.focus #dtabs .fclock .fcl{font-size:11px}}
+/* ux4f 집중 모드 ≤860: 탭 6개는 한 줄 · [카드 ▾][보기 ▾][✎ 도구][집중 끝][시계]는 다음 줄(탭 이름을 줄이지 않고 가로 넘침 없음) · 아이패드 [카드 ▾]·[보기 ▾] 44px */
+@media (max-width:860px){body.focus #dtabs{flex-wrap:wrap;row-gap:4px;overflow-x:visible}body.focus #dtabs .lmini2,body.focus #dtabs .lmini{flex:1 1 100%;justify-content:flex-end;margin-left:0}body.focus #dtabs .fclock:not([hidden]){display:inline-flex;height:40px}body.focus #dtabs .fclock .fcl{font-size:11.5px}}
+@media (pointer:coarse){#dtabs .lmini .mbb,#dtabs #lmcur,#dtabs #lmview{min-height:44px!important}}
+@media (min-width:861px){body.focus #dtabs{overflow-x:clip}}   /* ux4f 넓은 화면 집중 모드 탭 줄이 글자 폭 반올림으로 4px 옆으로 밀리던 것(보이는 넘침 없음) */
 </style></head><body>
 <div id="top" class="noann"><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt">0:00:00</span><small class="ckl"></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -1908,7 +1912,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="aab23399",PV={"OMS1": "603cae9f", "CONS": "012e419c", "IMPL": "1236c24e", "ANAT": "c054456e", "GERI": "e81a0a58", "PHARM": "33ae6b9d"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="7f2129d8",PV={"OMS1": "222e825f", "CONS": "5a931f27", "IMPL": "f1d5ca7d", "ANAT": "378c356c", "GERI": "94d0050c", "PHARM": "2779b052"},PSZ={"OMS1": 3.4, "CONS": 2.6, "IMPL": 2.7, "ANAT": 3.4, "GERI": 3.5, "PHARM": 4.8};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2907,7 +2911,7 @@ $('#hero').addEventListener('click',e=>{const b=e.target.closest&&e.target.close
 function lnav(d,ex){lcurGeo();const cs=$$('#stage .tc').filter(c=>c.offsetParent!==null&&(!ex||+c.dataset.n>0)).sort((a,b)=>a.getBoundingClientRect().top-b.getBoundingClientRect().top);if(!cs.length){if(ex)toast('기출이 걸린 카드가 없어요');return;}let i=cs.findIndex(c=>+c.id.split('-').pop()===LCUR);
  if(d<0&&!ex&&(i===0||(i<0&&cs[0].getBoundingClientRect().top>topOff()-4))){const f=$('#stage .frame');if(f&&(i===0||f.getBoundingClientRect().top<topOff()-8))lminiClick({id:'lmup'});return;}   /* ux4c 1회차 첫 카드·틀에서 K = 틀로(아래 카드 1로 내려가던 것) */
  if(i<0){const line=topOff();i=cs.findIndex(c=>c.getBoundingClientRect().bottom>line);i=d>0?(i<0?cs.length-1:(cs[i].getBoundingClientRect().top>line+4?i:i+1)):(i<=0?0:i-1);}else i=Math.max(0,Math.min(cs.length-1,i+d));
- goCard(+cs[i].id.split('-').pop());}
+ goCard(+cs[i].id.split('-').pop());try{stampHist();}catch(_){}clearTimeout(lnav.t);lnav.t=setTimeout(()=>{try{stampHist();}catch(_){}},400);}   /* ux4f J/K 뒤 곧바로 새로고침해도 그 카드로(Q 때 찍힌 옛 y로 돌아가던 것) */
 /* 채점: how='toggle'(카드 버튼) | 'set'(풀이 막대·O/X — 누르면 항상 그 상태). 맞음/틀림을 매길 때마다 MK.log[id]에 {r,t} (최근 10개)
    — mk.<S>의 ok·ng·bm 형식은 그대로(옛 기록·옛 허브와 호환), log만 더함. 쓰기 직전에 다시 읽음(다른 창과 합침) */
 const MKFIX=20000;   /* ux2 fixA V04: 이 시간(ms) 안의 다시 매김 = 고침(기록 하나) */
@@ -3477,7 +3481,8 @@ document.addEventListener('focusin',e=>{const t=e.target;if(t&&t.nodeType===1)t.
 document.addEventListener('keydown',e=>{const tg=e.target;if(isTextField(tg))return;const K=keyOf(e);
  if((e.ctrlKey||e.metaKey)&&K==='z'){e.preventDefault();e.shiftKey?Kit.redo():Kit.undo();return;}if(e.ctrlKey||e.metaKey||e.altKey)return;
  const isEnter=e.key==='Enter',isSpace=e.key===' '||e.code==='Space',onBtn=!!(tg&&tg.closest&&tg.closest('button,a,summary'));
- if((isEnter||isSpace)&&tg&&tg.matches&&tg.matches('input[type=checkbox],input[type=radio],select')&&!tg.__pf)return;   /* ux4f E 키보드로 포커스한 체크박스·select는 기본 동작 */
+ if((isEnter||isSpace)&&tg&&tg.matches&&tg.matches('input[type=checkbox],input[type=radio],select')&&!tg.__pf)return;
+ if((isEnter||isSpace)&&tg&&tg.matches&&tg.matches('input[type=checkbox],input[type=radio]')&&tg.__pf){e.preventDefault();tg.blur();if(isSpace){window.scrollBy(0,(e.shiftKey?-1:1)*innerHeight*.8);}return;}   /* ux4f 손가락·마우스로 누른 체크박스에 포커스가 남은 채 Space = 화면 넘기기(설정이 몰래 다시 바뀌던 것) */   /* ux4f E 키보드로 포커스한 체크박스·select는 기본 동작 */
  if((isEnter||isSpace)&&onBtn){const ob=tg.closest('button,a,summary');if(!ob.__pf&&!(JB.one&&isJBv()&&$('#cards')&&!ob.closest('#onesum')))return;e.preventDefault();}   /* ux4f E 회차 요약(#onesum) 버튼은 한 장씩이어도 키보드 Enter·Space = 그 버튼 */   /* ux4c 1회차 Tab·코드로 포커스를 준 버튼(키보드 사용)은 Enter·Space가 그 버튼을 누름(단축키로 넘기지 않음) — 막는 것은 포인터로 누른 뒤 남은 포커스(__pf)만 · 마우스로 누른 뒤 포커스가 남은 버튼을 Enter·Space가 다시 누르지 않게(한 장씩 ✓ 뒤 Enter = 보지 않은 문항 채점 오류) */
  if($('#imgmodal').classList.contains('on')){if(e.key==='+'||e.key==='=')mzoom(MZ*1.25);if(e.key==='-')mzoom(MZ/1.25);if(e.key==='Escape')$('#mclose').click();if(e.key==='ArrowLeft')$('#mprev').click();if(e.key==='ArrowRight')$('#mnext').click();return;}
  if(e.key==='Escape'){const ae=document.activeElement;if(ae&&ae!==document.body&&ae.blur)ae.blur();escStep();return;}
@@ -3494,10 +3499,11 @@ document.addEventListener('keydown',e=>{const tg=e.target;if(isTextField(tg))ret
  /* 모든 화면 같은 키 표(A02): H 형광펜(Shift+H 색 순환) · B 빈칸(A 별칭) · E 전체 보기 · N 다음 가린 칸 열기(Shift+N 이 카드 다시 가리기) · T 도구 막대 숨기기 · M 메모 · Shift+M 메뉴(\\ 별칭) · Shift+B 빈칸 색 · / 검색 · G 과목 홈 · 1~6 탭 · J/K·D·F·C(학습 탭) */
  if(VIEW!=='doc'&&/^[hbaentvq]$/.test(K)){hubKeyNote();return;}   /* ux4 B04 허브 화면(홈·달력·검색)에서는 과목 전용 키(H·B·A·E·N·T·V·Q)가 몰래 상태를 바꾸지 않게 */
  if(VIEW==='doc'&&CUR.d==='_home'&&/^[hbav]$/.test(K)&&!(K==='v'&&e.shiftKey)){toast((K==='v'?'집중 모드는':'형광펜·빈칸은')+' 강의·JB 문제·표 화면에서 써요',{replace:true});return;}   /* ux4c 2회차 과목 홈에는 도구 막대·집중 모드가 없음 — 보이지 않는 모드를 켜지 않게 */
+ if(document.body.classList.contains('navopen')&&(/^[hbaeqcrtnjkdf1-6]$/.test(K)||(K==='m'&&!e.shiftKey)))navOpen(false);   /* ux4f 서랍이 열린 채 보기·도구 키 = 서랍을 먼저 닫음(가림막 뒤에서 몰래 바뀌던 것) */
  if(/^[eqcvrjkn1-6]$/.test(K)&&($('#clearpop.on')||$('#autopop.on'))){try{Kit.clearClose();}catch(_){}$('#autopop').classList.remove('on');}   /* ux4f D 보기를 바꾸는 키(E·Q·C·V·R·J/K·N·1~6)는 🧹 지우기·⚡ 창을 먼저 닫음 — 옛 범위·개수를 띄운 채 남던 것 (R은 아래 다른 keydown이 처리하지만 이 처리가 먼저 등록됨) */
  if(K==='h'){if(e.shiftKey)Kit.cycleColor();else Kit.setMode('h');return;}if(K==='b'&&e.shiftKey){Kit.cycleBColor();return;}if(K==='b'||K==='a'){Kit.setMode('b');return;}
  if(K==='e'){revealAll();return;}if(K==='q'&&VIEW==='doc'){quizToggle();return;}if(K==='n'){if(e.shiftKey)rehideCard();else openNext();return;}
- if(K==='\\'){sideToggle();return;}if(K==='t'||(K==='v'&&e.shiftKey)){Kit.hide();return;}if(K==='v'){focusSet(!document.body.classList.contains('focus'));return;}if(K==='m'){if(e.shiftKey){if(!e.isComposing)menuKey();}else{e.preventDefault();if(VIEW!=='doc'){toast('메모(M)는 과목 화면에서 써요 — 메뉴는 Shift+M',{replace:true});return;}Kit.memo();}return;}   /* ux4f 사용자 10-02 'shift m이 메뉴탭이고 그냥 m은 메모장' — M = 메모 · Shift+M = 메뉴(한글 ㅡ도 keyOf가 m) */
+ if(K==='\\'){sideToggle();return;}if(K==='t'||(K==='v'&&e.shiftKey)){Kit.hide();return;}if(K==='v'){focusSet(!document.body.classList.contains('focus'));return;}if(K==='m'){if(e.shiftKey){if(!e.isComposing)menuKey();}else{e.preventDefault();if(VIEW!=='doc'){toast('메모(M)는 과목 화면에서 써요 — 메뉴는 Shift+M',{replace:true});return;}popsClose();try{Kit.clearClose();}catch(_){}$('#autopop').classList.remove('on');Kit.memo();}return;}   /* ux4f 사용자 10-02 'shift m이 메뉴탭이고 그냥 m은 메모장' — M = 메모 · Shift+M = 메뉴(한글 ㅡ도 keyOf가 m) */
  if(e.key==='/'||(e.code==='Slash'&&!e.shiftKey)){e.preventDefault();searchKey();return;}   /* ux4 B15 집중 모드면 상단 막대를 잠시 내려 검색칸에 */
  if(K==='g'&&VIEW==='doc'&&CUR.s){openDoc(CUR.s,'_home');return;}
  if(VIEW==='doc'&&CUR.t==='learn'&&$('#lmini')){if(K==='j'||K==='k'){lnav(K==='j'?1:-1,e.shiftKey);return;}
@@ -3568,7 +3574,8 @@ function escStep(){if($('#help').classList.contains('on')){helpToggle();return;}
 /* ---------- 집중 모드(A03 → ux4 B1-2) — V · 탭 줄 [⤢ 집중]('집중 끝'으로 바뀜) · Esc. LS 'focus'(새로고침·강의 이동 뒤에도)
    상단 막대·메뉴·hero를 숨기고 탭 줄을 맨 위에 붙임. 도구 막대(LS kitoff)는 건드리지 않음. 좌우 여백은 대칭(--sidew 0 + #stage 가운데) ---------- */
 let NOBAR=0;
-function focusSet(on,save){const B=document.body.classList;if(on&&B.contains('navopen'))navOpen(false);   /* ux4c 1회차 서랍이 열린 채 V → 서랍을 닫고 집중 */if(!!on===B.contains('focus')&&save!==false){focusBtns();return;}keepAnchor(()=>{B.toggle('focus',!!on);B.remove('topshow');if(save!==false)LS.set('focus',!!on);focusBtns();measure();});if(save!==false)toast(on?'집중 모드 — V·Esc·[집중 끝]으로 나가기':'집중 모드를 껐어요');}
+function popsClose(){['#lpop','#lvpop','#tpop'].forEach(q=>{const e=$(q);if(e)e.classList.remove('on');});['#lmcur','#lmview'].forEach(q=>{const b=$(q);if(b)b.setAttribute('aria-expanded','false');});}   /* ux4f 배치가 바뀌면(집중·메뉴·회전) 버튼에 붙어 있던 창은 닫음 — 옛 자리·화면 밖에 남던 것 */
+function focusSet(on,save){popsClose();const B=document.body.classList;if(on&&B.contains('navopen'))navOpen(false);   /* ux4c 1회차 서랍이 열린 채 V → 서랍을 닫고 집중 */if(!!on===B.contains('focus')&&save!==false){focusBtns();return;}keepAnchor(()=>{B.toggle('focus',!!on);B.remove('topshow');if(save!==false)LS.set('focus',!!on);focusBtns();measure();});if(save!==false)toast(on?'집중 모드 — V·Esc·[집중 끝]으로 나가기':'집중 모드를 껐어요');}
 {const fb=$('#focusb');if(fb)fb.onclick=()=>focusSet(!document.body.classList.contains('focus'));}
 /* ---------- 메뉴 숨기기(A04 → ux3 G5) — 넓은 화면(>860): \ · M(트랙 3이 연결) · 메뉴 머리 ‹ · 왼쪽 가장자리 › · 상단 ☰. LS 'sidefold' = 사용자 설정(모든 화면 공통).
    정리표·비교표·한눈표(sum·tbl·_sum·_tbl)는 폭 1440 이하에서 자동으로 숨김(SIDEAUTO — 저장 안 함) · 그 화면에서 펼치면 LS 'wideSide'=1(다음부터 자동으로 안 숨김).
@@ -3583,7 +3590,7 @@ function sideSave(on){if(sideWideAuto()){LS.set('wideSide',on?0:1);SIDEAUTO=!!on
 function sideApply(){const wa=sideWideAuto();SIDEAUTO=wa&&!LS.get('wideSide',0);document.body.classList.toggle('v-home',VIEW==='home');
  const B=document.body.classList,on=wa?SIDEAUTO:sidePref();if(B.contains('sidefold')!==on){B.add('sfnt');B.toggle('sidefold',on);void document.body.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(()=>B.remove('sfnt')));}}
 /* note = 처음 M(옛 사용자) — 결과 알림 하나에 'M은 이제 메뉴' 안내를 붙임(flow V12 알림 두 개 연달아 X) · F8 좁은 폭(서랍)에서도 집중 모드면 먼저 끔 */
-function sideToggle(note){const B=document.body.classList,nar=innerWidth<=860,nt=note?(nar?' — 메뉴는 이제 Shift+M(M은 메모)':' — 메뉴 숨기기는 이제 Shift+M(M은 메모)'):'';
+function sideToggle(note){popsClose();const B=document.body.classList,nar=innerWidth<=860,nt=note?(nar?' — 메뉴는 이제 Shift+M(M은 메모)':' — 메뉴 숨기기는 이제 Shift+M(M은 메모)'):'';
  if(B.contains('focus')&&!B.contains('at-home')){focusSet(false,false);LS.set('focus',false);if(nar)navOpen(true);else if(B.contains('sidefold')){sideSave(false);B.remove('sidefold');}measure();toast('집중 모드를 끄고 메뉴를 '+(nar?'열었어요':'펼쳤어요')+nt);return;}   /* 집중 모드 중 M = 메뉴 보이기(집중 모드 끔) */
  if(nar){navOpen();if(note)toast('메뉴는 이제 Shift+M — M은 메모',3500);return;}
  const on=!B.contains('sidefold');sideSave(on);B.toggle('sidefold',on);measure();toast((on?'메뉴를 숨겼어요 — Shift+M으로 다시 보기':'메뉴를 펼쳤어요')+nt,note?4000:undefined);}
@@ -4745,7 +4752,7 @@ function keepAnchor(fn){const a=scrollY>8?anchorNow():null;fn();if(!a)return;con
 /* ux4f 새 오류: 아이패드를 돌리면(폭이 바뀜) 읽던 블록을 같은 자리에 — 스크롤이 멈출 때마다 기준 블록을 적어 두고, 폭이 바뀐 resize 뒤 두 프레임 지나 되돌림(사파리는 스크롤 고정이 없음) */
 let ROTA=null,ROTW=innerWidth;
 addEventListener('scroll',()=>{clearTimeout(ROTA&&ROTA.t);const tm=setTimeout(()=>{if(innerWidth!==ROTW)return;const a=scrollY>8?anchorNow():null;ROTA=a?Object.assign(a,{t:0}):null;},160);ROTA=ROTA?Object.assign(ROTA,{t:tm}):{t:tm,none:1};},{passive:true});
-addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;const a=ROTA&&!ROTA.none&&ROTA.el?ROTA:null;if(!a)return;clearTimeout(a.t);const s0=STL;
+addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;popsClose();const a=ROTA&&!ROTA.none&&ROTA.el?ROTA:null;if(!a)return;clearTimeout(a.t);const s0=STL;
  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off));else if(vis(a.c))settle(()=>goEl(a.c,a.coff));}));});
 /* ux4f 새 오류: 과목 홈 교수별 출제 경향 표·공부 순서의 '짤 비율 n%'를 개수로(사용자 '퍼센트 필요 없어') — 팩(trend.py)은 그대로, 화면에 낼 때만 바꿈 · 맥 빌드에서 trend.py도 개수로 바꿀 것(로컬에서_할_일) */
 function trendNoPct(h){if(trendNoPct.k===h)return trendNoPct.v;let J=0,N=0;
@@ -4762,14 +4769,14 @@ addEventListener('resize',()=>{clearTimeout(stripOvr.t);stripOvr.t=setTimeout(st
 function lbmGet(S){const o=LS.get('lbm.'+S,{});return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}
 function lbmBtn(S,k,cls){const on=!!lbmGet(S)[k];return `<button type="button" class="${cls} noann${on?' on':''}" data-lbm="${EH(S)}|${EH(k)}" aria-pressed="${on}" aria-label="${on?'북마크 빼기':'이 강의 북마크'}" title="${on?'북마크 빼기':'이 강의 북마크'}">${on?'★':'☆'}<span class="lbt">${on?'북마크':'북마크'}</span></button>`;}
 function lbmRow(p){const B=lbmGet(p.id),ks=p.lect.filter(L=>B[L.k]).sort((a,b)=>(+B[b.k]||0)-(+B[a.k]||0));return ks.length?`<div class="lbmrow"><span class="lbmh">★ 북마크</span>${ks.map(L=>`<button type="button" class="chip ljc bm" data-d="${L.k}" title="${EH(L.title)}"><span>${EH(sname(p,L.k))}</span></button>`).join('')}</div>`:'';}
-function lbmToggle(S,k){const B=lbmGet(S),on=!B[k];if(on)B[k]=Date.now();else delete B[k];LS.set('lbm.'+S,B);
+function lbmToggle(S,k,src){const y0=src&&src.getBoundingClientRect?src.getBoundingClientRect().top:null;const B=lbmGet(S),on=!B[k];if(on)B[k]=Date.now();else delete B[k];LS.set('lbm.'+S,B);
  const p=PACKS[S],L=p&&p.lect.find(x=>x.k===k),nm=L?L.title:k;toast(on?'★ 북마크했어요 — '+nm:'북마크를 뺐어요 — '+nm);
  if(VIEW==='doc'&&CUR.s===S&&CUR.d==='_home'&&p){const B2=lbmGet(S);$$('#hlec .lcw').forEach(w=>{const c=w.querySelector('.lcard');w.classList.toggle('bm',!!(c&&B2[c.dataset.d]));});
   const sec=$('#hlec');if(sec){const old=sec.querySelector('.lbmrow');if(old)old.remove();const h2=sec.querySelector('h2');if(h2)h2.insertAdjacentHTML('afterend',lbmRow(p));}
   $$('#stage .chip.ljc[data-d]').forEach(c=>{if(c.closest('.lbmrow'))return;const on2=!!B2[c.dataset.d],i=c.querySelector('i.bmk');c.classList.toggle('bm',on2);if(on2&&!i)c.insertAdjacentHTML('afterbegin','<i class="bmk" aria-label="북마크">★</i>');if(!on2&&i)i.remove();});}
  $$('[data-lbm="'+S+'|'+k+'"]').forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'북마크 빼기':'이 강의 북마크');b.title=on?'북마크 빼기':'이 강의 북마크';b.firstChild.nodeValue=on?'★':'☆';});
- try{navRender();}catch(e){}return on;}
-document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lbm]');if(!b)return;e.preventDefault();e.stopPropagation();const [S,k]=b.dataset.lbm.split('|');lbmToggle(S,k);},true);
+ try{navRender();}catch(e){}if(y0!=null){const b2=$$('#hlec [data-lbm="'+S+'|'+k+'"],#hero [data-lbm="'+S+'|'+k+'"]')[0];if(b2){const dy=b2.getBoundingClientRect().top-y0;if(Math.abs(dy)>1)window.scrollBy(0,dy);}}return on;}   /* ux4f ★ 줄이 생기거나 사라져도 누른 ☆이 손가락 아래 그대로 */
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lbm]');if(!b)return;e.preventDefault();e.stopPropagation();const [S,k]=b.dataset.lbm.split('|');lbmToggle(S,k,b);},true);
 /* B04 허브 화면에서 과목 전용 키를 누르면 한 번만 알림(상태는 바꾸지 않음) */
 let HUBKN=0;function hubKeyNote(){if(HUBKN)return;HUBKN=1;toast('H·B·E·N·T·V·Q는 과목 화면(강의·JB·표)에서 쓰는 키예요');}
 /* B15 / = 검색 — 집중 모드면 상단 막대를 잠시 내려(topshow) 바로 포커스, 검색칸을 떠나면 다시 숨김 */
