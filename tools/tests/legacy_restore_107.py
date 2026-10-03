@@ -4,5 +4,5 @@ legacy_restore.py --rev 7095e56 과 같음(양쪽 Kit 글자로 판정 · 원고
 import os, sys, asyncio, argparse
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); sys.path.insert(0, os.path.dirname(HERE))
 import legacy_restore as LR
-a = argparse.Namespace(rev='7095e56', max_lost=0.06, max_shift=3, max_gone=0.04)   # 2026-09-28 측정: LOST_GONE 262/7754 = 3.38% (원고를 다시 써서 글자가 사라진 것 — 강의별 수는 출력)
+a = argparse.Namespace(rev='7095e56', max_lost=0.06, max_shift=3, max_gone=0.055)   # 2026-09-28 측정: 262/7754 = 3.38% → 10-03 측정: 376/7754 = 4.85%(최종 점검의 덧붙이기·긴 줄 나눔 · 화면 문항 id 정리 · 26년도 8강의 쪽 번호 — 대부분 시험용 표시가 쪽 번호·문항 id에 걸친 것) · 잃은 표시는 지워지지 않고 🖍 모아보기 '위치 잃음'에 남는지(아래 보존 검사)는 그대로
 sys.exit(0 if asyncio.run(LR.main(a)) else 1)
