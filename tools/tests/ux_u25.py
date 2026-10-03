@@ -37,9 +37,10 @@ async def main():
         g = await pg2.evaluate("(()=>{const th=document.querySelector('table.mtx thead th').getBoundingClientRect();const d=document.querySelector('#dtabs').getBoundingClientRect();return [Math.round(th.top),Math.round(d.bottom)]})()")
         ok(abs(g[0] - g[1]) <= 2, f'1280 정리표 2500px 스크롤 후 머리 top {g[0]} = 탭 아래 {g[1]}')
         await pg2.screenshot(path=J.TMP + '/ux_u25_sum_1280.png')
-        await open_(pg2, '#/OMS1/DD1/sum'); n = await pg2.evaluate("document.querySelectorAll('#stage .more2').length")
+        await open_(pg2, '#/OMS1/DD1/sum'); await pg2.click('#stage [data-mdense="f"]'); await pg2.wait_for_timeout(400); n = await pg2.evaluate("[...document.querySelectorAll('#stage .more2')].filter(e=>e.getClientRects().length).length")
+        ok(n > 0, f'전체 보기에서 +N 더 보기 버튼 {n}개')
         if n:
-            await pg2.click('#stage .more2'); await pg2.wait_for_timeout(800)
+            await pg2.click('#stage .more2 >> visible=true'); await pg2.wait_for_timeout(800)
             ok(await pg2.evaluate("location.hash.includes('/learn')"), '+N 더 보기(카드로) → 학습 탭 카드')
         ok(not errs, f'pageerror 0 {errs[:2]}')
         await b.close()
