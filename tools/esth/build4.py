@@ -499,7 +499,7 @@ def lec_card(L, j, c):
     ys = sorted({y for x in ids for y in QMAP[x]['yrs']}, reverse=True)
     eids = [x for t_, v in c['body'] if t_ == 'E' for x in v[0] if x in QMAP]; allq = list(dict.fromkeys(ids + eids))
     dn = min(3, max([len(QMAP[x]['yrs']) for x in allq] or [0]))   # ux2 D02 data-n = 최대 출제 횟수(3 = 3회 이상)
-    ych = f'<button class="chip yr n{min(mx,3)}" data-go="{ids[0]}"{(" data-gos=" + chr(34) + " ".join(ids) + chr(34)) if len(ids) > 1 else ""} title="{"·".join(YR(y) for y in ys)} — 누르면 기출 문제로">기출 {ylab(ys)}</button>' if ids else ''
+    ych = f'<button class="chip yr n{min(mx,3)}" data-go="{ids[0]}"{(" data-gos=" + chr(34) + " ".join(ids) + chr(34)) if len(ids) > 1 else ""} title="{"·".join(YR(y) for y in ys)} — 누르면 JB 미리보기">기출 {ylab(ys)}</button>' if ids else ''
     nex = sum(1 for t_, _ in c['body'] if t_ == 'E')
     exj = f'<button class="chip exj noann" data-exjump="1" aria-label="이 카드의 ⭐ 시험포인트로">⭐ {len(allq) or nex} ↓</button>' if nex else ''   # ux2 D05
     prof = any(b[0] == 'P' for b in c['body'])
@@ -603,7 +603,7 @@ def lec_card(L, j, c):
         ex = ex.replace('<div class="mex">', '<div class="mex mexx">'); ex = ex.replace('<div class="mex mexx">', '<div class="mex">', 3) + f'<button class="mexmore noann" data-mexmore="1"><span class="l1">+{len(exams) - 3}문항 ▸</span><span class="l3">접기 ▴</span></button>'
     mem = ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in c['recall']) or '<span class="small">—</span>'
     ralt = ' '.join(x + '~s' for x in card_alt(k, j).split(' '))   # ux2 E01 정리표 행 = 표시 단위(카드 aid~s) · 옛 카드 aid도 ~s로 이어받음
-    ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 기출 문제로">기출 {ylab(sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
+    ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 JB 미리보기">기출 {ylab(sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
     exc = f'<td class="mt" data-col="ex" data-h="★ 시험">{ex}</td><td class="mnote" data-col="mem" data-h="⚡ 암기">{mem}</td>' if exams else f'<td class="mnote mw" colspan="2" data-col="mem" data-h="⚡ 암기"><span class="tho">미출제</span>{mem}</td>'
     row = (f'<tr class="{heat(dn)}" id="m-{k}-{j}" data-aid="{AIDS[(k, j)]}~s" data-alt="{ralt}" data-grp="{esc(c["grp"])}" data-n="{dn}"><th data-col="topic"><div class="mtw"><button class="link" data-scroll2="{k}:{j}"><span class="mn">{j+1}</span> <span class="serif men" lang="en">{esc(c["en"])}</span></button><div class="mko">{lecparse._wbr(esc(c["ko"]))}{(" <span class=" + chr(34) + "pg" + chr(34) + ">· " + lab + "</span>") if lab else ""}</div><div class="mych noann">{ych2}</div>{thumb}</div></th>'
            f'<td class="mk" data-col="key" data-h="🔑 요지·핵심"><div class="mg">{lecparse.gist_html(c["gist"], ctx)}</div>{("<div class=mkey>" + mkey_html(key) + "</div>") if key else ""}</td><td class="md" data-col="det" data-h="세부">{("<div class=" + chr(34) + "sline noann" + chr(34) + ">" + "".join(sl) + "</div>") if sl else ""}<div class="mfull">{det}</div>{dbtn}</td>{exc}</tr>')
@@ -646,6 +646,7 @@ for p_, qs in profS.items():
     _nat = [t.replace('탈=', '') for t in dict.fromkeys(strat_tag(x) for x in PPARTS[p_][1]) if t and t not in ('서술형', '객관식', '빈칸', 'T/F', '단답형')]
     _pc = trend.prof_cells(SM); _fm = max(_pc[4].split(' · '), key=lambda z: int(z.rsplit(' ', 1)[-1]) if z.rsplit(' ', 1)[-1].isdigit() else 0).rsplit(' ', 1)[0] if _pc[4] and _pc[4] != '—' else ''
     trow += f'<tr class="tsl" title="{esc(trend.prof_line(p_, SM))}"><th>{esc(p_)}</th><td class="n">{_pc[0]}</td><td class="n">{_pc[1]}</td><td>{_pc[2]}</td><td class="n">{_pc[3]}</td><td>{esc(" · ".join(_nat + ([_fm] if _fm else [])))}</td></tr>'
+    if getattr(S, 'PROF_NOTE', {}).get(p_): trow += f'<tr class="tnote"><td colspan="6"><small>※ {esc(S.PROF_NOTE[p_])}</small></td></tr>'   # ux4f 맥 인계 10-03 — 강의 연결만으로 그 교수에 들어간 문항 등 집계 주석(subject.py PROF_NOTE)
 # 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
 def strat_list(items, top=4):
     """📌 전략 목록(V05) — 한 줄에 전략 하나(본문 글자) + 교수 꼬리표(작은 회색). 위 top개만, 나머지는 '+N 더 보기'"""
