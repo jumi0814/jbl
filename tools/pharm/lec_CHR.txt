@@ -236,8 +236,8 @@ F: 17=1차 gabapentin과 SNRI → 2차 capsaicin과 tramadol → 3차 strong opi
 | Etiology | {r:Nerve injury} | {r:Tissue or potential tissue damage} |
 | Descriptors | {r:Lancinating, shooting, electrical-like} | {r:Throbbing, aching, pressure-like} |
 - 이 강의에서도 같은 묘사: anticonvulsant = "intermittent lancinating quality"(p.18), trigeminal neuralgia = "sharp, lancinating (shooting), and electric shock–like pain"(p.25), Case 1 치통 = "dull, aching, and throbbing"(p.26).
-E: PN21 | 20년 빈칸(표) "Etiology·Descriptors × neuropathic·nociceptive" → Nerve injury / Tissue or potential tissue damage / Lancinating, shooting, electrical-like / Throbbing, aching, pressure-like — 표 원본은 급성통증 p.18
-F: ACU:18=어떻게 아프세요에 대한 묘사가 다름
+E: PN21 | 20년 빈칸(표) "Etiology·Descriptors × neuropathic·nociceptive" → Nerve injury / Tissue or potential tissue damage / Lancinating, shooting, electrical-like / Throbbing, aching, pressure-like — 표 원본은 급성통증 p.17
+F: ACU:17=어떻게 아프세요에 대한 묘사가 다름
 M: 1st = {r:gabapentin}·{r:pregabalin}·{r:SNRI}(duloxetine first choice)·{r:TCA}
 M: 2nd = {r:capsaicin 8%}·{r:lidocaine patch}·{r:tramadol} / 3rd = {r:botulinum toxin A}·{r:strong opioids}
 M: Neuropathic = {r:nerve injury}·{r:lancinating·shooting·electrical} vs Nociceptive = {r:tissue damage}·{r:throbbing·aching·pressure}
@@ -353,7 +353,7 @@ U: NSAID는 efficacy에 천장 효과(ceiling effect)가 있어 통증이 심하
 | 한계 | {r:ceiling effect}(필기) | ceiling effect 없음(필기) · CNS depressant → 다른 CNS 억제제와 additive |
 | 치과에서 | aspirin · acetaminophen · ibuprofen / 주사 = ketorolac(급성통증 강의) | codeine · hydrocodone · oxycodone(weak opioid) |
 E: PN26 | 20년 서술 "NSAIDs와 opioid를 함께 사용하면 더 효과가 좋은 이유" → different complementary central and peripheral mechanisms of pain relief — 슬라이드 그대로(p.24)
-E: PN17 | 20년 단답 "아편계 진통제 대신 주사할 수 있는 강력한 진통제" → Ketorolac — 근거는 급성통증 p.27 "can be given IM or IV and is often used postoperatively" · 5일 제한(nephrotoxicity)
+E: PN17 | 20년 단답 "아편계 진통제 대신 주사할 수 있는 강력한 진통제" → Ketorolac — 근거는 급성통증 p.26 "can be given IM or IV and is often used postoperatively" · 5일 제한(nephrotoxicity)
 F: 24=치성 통증은 염증 NSAIDs 1차
 M: 치성 통증 = {r:INFLAMMATION} → {r:NSAIDs} first choice / opioid = {r:no anti-inflammatory properties}
 M: 병용 이유 = {r:different complementary central and peripheral mechanisms}
@@ -422,7 +422,7 @@ F: 30=숙제 증례 중간고사가 검사
 - ④ Mechanisms that could produce spontaneous pain in the full-thickness burn region months to years after healing, and the rationale for using {r:gabapentin}?
 # 이 강의 카드로 연결(모범답은 자료에 없음)
 - ③ → morphine tapering = withdrawal을 {r:tapering}으로 최소화(p.11) · codeine/acetaminophen = WHO {r:Step 2} moderate opioid(p.16).
-- ④ → tingling = neuropathic pain의 sensory deficits(numbness, tingling, pricking — 급성통증 강의 p.18 표) · sharp knife-like ≈ lancinating(p.18).
+- ④ → tingling = neuropathic pain의 sensory deficits(numbness, tingling, pricking — 급성통증 강의 p.17 표) · sharp knife-like ≈ lancinating(p.17).
 - ④ 약 → {r:gabapentin} = IASP 1st line·voltage-dependent Ca channel(p.17-18) · {r:amitriptyline} = TCA(p.19-20).
 - 수술 후 4일의 patient-controlled analgesia = postoperative pain 조절(p.5) · ①의 통증 발생 기전과 ②의 remifentanil은 이 자료에 설명 없음.
 F: 31
