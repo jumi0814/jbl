@@ -98,6 +98,7 @@ M: 말초 = peripheral sensitization / dorsal horn = {r:central sensitization} /
 | Thermal | {r:TRPV1}, TRPV2 receptors |
 - → {r:Na+/Ca2+ influx} → Generator potential (membrane depolarization) → Reach {r:voltage-gated sodium channel threshold} → Action potential.
 U: Nociception이 전기신호로 바뀌는 것이 가장 먼저 일어나는 단계(Transduction) — 자극 고유의 receptor는 ion channel일 수도 GPCR일 수도(25 필기).
+U: 말초 신경세포의 자리 — 통각수용기 = {r:말초 조직} · 세포체 = {r:dorsal root ganglion} · 상부 신경세포와의 시냅스 = brainstem / 통각 신호 전달은 막이 탈분극되는 일반적인 메커니즘(26 필기).
 F: 6=화학 기계 열 자극으로 막이 탈분극
 # 염증 매개물질 — 직접 vs 간접
 | 작용 | 슬라이드 문장 | 매개물질 |
@@ -212,6 +213,7 @@ M: 세기: mild {r:1-3} / moderate {r:4-6} / severe {r:≥7}
 | Persistent Pain | (자료 없음) | {r:Months to Years} |
 P: 25 p.14 "Acute pain이 어떻게 chronic pain으로 전환되는지 보여주는 그림 — 결국 acute pain을 잘 control해야 chronic pain이 발생하지 않는 것"(25 필기).
 U: 급성통증이 반드시 만성화되는 것은 아니나 방치되거나 어떠한 이유로 만성화될 수 있음 — 그 기전은 아직 명확히 이해하지 못함(26 필기).
+U: 통각수용기 활성(수 초) → 감작으로 통증 강도·특징 조절(수 분) → 신경세포·수용체 조절이 반복되다 일부 세포가 변형되어 {r:신호전달 경로가 변형}되면 만성으로 이행(26 필기).
 F: 13=통증이 방치되면 만성화될 수 있음
 # Poorly controlled acute pain — 세 갈래
 | 과정 | 이어지는 현상 | 임상 결과 |
@@ -418,6 +420,7 @@ M: 26 기전: 중추 {r:COX} 억제 · {r:AM404}(TRPV1) · 하행성 {r:세로�
 = 진통·해열·항염·{r:항혈소판} · max {r:4 g/d} · 부작용 {r:GI bleeding} · {r:asthma·nasal polyps} 과민 · 항혈소판 {r:up to 1 week} · 소아 {r:Reye syndrome}(26)
 # 작용·용량·제형
 - Aspirin has {r:analgesic, antipyretic, anti-inflammatory, and antiplatelet} effects.
+- 26: 아스피린은 진통·해열·항염증·항혈소판 작용을 가짐 {r:(=NSAID)} — acetaminophen은 '{r:NSAID 아님}'(p.24)과 대비.
 - {r:325 to 650 mg PO q4h PRN} (maximum dose, {r:4 g/d}).
 - {r:Rectal suppositories} may be irritating to the mucosa and have variable absorption.
 - {r:Enteric-coated tablets} may cause less injury to the gastric mucosa than plain aspirin.
@@ -474,7 +477,7 @@ M: FDA boxed warning = {r:cardiovascular thrombotic events}(MI·stroke) · aspir
 - ② pharmacologic data suggest celecoxib has {r:no effects on the platelet inhibitory effects of aspirin or clopidogrel}, but there is some concern for =={r:increased thrombotic risk}== when celecoxib is used {r:after cardiac stenting}.
 - ③ COX-2 inhibitors **should not be used** in patients who have **allergic or bronchospastic reactions to aspirin or other NSAIDs**.
 U: 이 계열의 가장 중요한 부작용 = 심혈관계 — NSAID나 aspirin과 다르게 {r:antiplatelet effect가 없기} 때문에 주의, 일부 약물은 이 부작용으로 시장에서 회수(25 필기).
-E: PN18 | 20년 단답 "Celecoxib보다 aspirin을 써야 하는 경우는?" → Cardiovascular event에 대한 우려가 있는 경우 — 25 필기 "antiplatelet effect가 없다" + cardiovascular events↑ ⚠ 함정: 위장은 celecoxib 유리
+E: PN18 | 20년 단답 "Celecoxib보다 aspirin을 써야 하는 경우는?" → Cardiovascular event에 대한 우려가 있는 경우 — 25 필기 "antiplatelet effect가 없다" + cardiovascular events↑ ⚠ 함정: 위장은 celecoxib 유리 ⚠ '항혈소판 없음' 설명은 25 필기 — 26 자료에는 없음(26 p.27은 심혈관 부작용·스텐트 후 혈전 위험만)
 # 네 약의 작용 비교
 | 약 | 진통·해열 | 항염 | 항혈소판 | 위장 |
 | Acetaminophen | O | {r:X} | {r:X} | lack of gastric toxicity |
