@@ -2,6 +2,7 @@
 document.title(강의명 · 과목 — JBL / JBL 허브), READY(없는 팩 불러오지 않음 — 콘솔 오류 0), 압축 hero(1180×820 학습 본문 시작 y ≤ 170)."""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio
+ESTH_READY = _os.path.exists(_os.path.join(J.DOCS, 'packs', 'ESTH.js'))   # 심미치과학 팩이 생기면 '준비 중' 대신 정상
 from playwright.async_api import async_playwright
 U = J.HUB_URL; fails = []
 def ok(c, m):
@@ -16,8 +17,9 @@ async def main():
         pg.on('pageerror', lambda e: errs.append(str(e)[:200])); pg.on('console', lambda m: errs.append('console ' + m.text[:120]) if m.type == 'error' else None)
         await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await open_(pg, '#/')
         ok(await pg.title() == 'JBL 허브', f'허브 제목 ({await pg.title()})')
-        ok(await pg.evaluate("document.querySelectorAll('.hsj.off').length") == 1 and '자료 준비 중' in await pg.inner_text('.hsj.off[data-off=ESTH]'), 'ESTH 자료 대기 행')
-        ok(await pg.evaluate("document.querySelectorAll('.hsj[data-s] .pbar').length") == 6, '과목 표 진행 막대 하나(기출 — ux4 B1-6 읽음 막대 없음) × 6')
+        if ESTH_READY: ok(await pg.evaluate("document.querySelectorAll('.hsj.off').length") == 0, 'ESTH 준비됨 — 대기 행 없음')
+        else: ok(await pg.evaluate("document.querySelectorAll('.hsj.off').length") == 1 and '자료 준비 중' in await pg.inner_text('.hsj.off[data-off=ESTH]'), 'ESTH 자료 대기 행')
+        ok(await pg.evaluate("document.querySelectorAll('.hsj[data-s] .pbar').length") == (7 if ESTH_READY else 6), '과목 표 진행 막대 하나(기출 — ux4 B1-6 읽음 막대 없음) × 과목 수')
         await open_(pg, '#/OMS1/DD2/learn', 1300)
         ok('DD' in await pg.title() or 'Dentofacial' in await pg.title(), f'강의 제목 ({await pg.title()})')
         await pg.evaluate("window.scrollTo(0,3000)"); await pg.wait_for_timeout(1200)

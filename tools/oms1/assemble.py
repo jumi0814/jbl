@@ -179,7 +179,7 @@ for q in Q:
             if m: lab = m.group(1)
     q['lab24'] = lab
     q['crops'] = CROPS.get(q['id'], {})
-    q['fig'] = bool(re.search(r'그림|사진|도해', ' '.join(q['text'].split('\n')[:4])))
+    q['fig'] = bool(re.search(r'그림|(?<!경)사진|도해', ' '.join(q['text'].split('\n')[:4]))) and q['id'] not in ('S20-4',)   # S20-4 = '방사선 사진 종류'를 묻는 글 문항(그림 없음 — 10-03 맥 확인)
 
 # ---------- 4. lectures ----------
 LECT = []

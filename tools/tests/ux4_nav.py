@@ -8,6 +8,7 @@ B2-6 '‹ 허브 홈'·뒤로가기 → 허브 메뉴 스크롤 복원 · 과목
 맥 1280×900 · 아이패드 가로 1180×820·세로 820×1180(터치). 스크린샷 work/_tmp/ux4i_nav_*.png"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio
+ESTH_READY = _os.path.exists(_os.path.join(J.DOCS, 'packs', 'ESTH.js'))   # 심미치과학 팩이 생기면 '준비 중' 대신 정상
 from playwright.async_api import async_playwright
 U = J.HUB_URL; fails = []
 def ok(c, m):
@@ -38,9 +39,10 @@ async def run(b, vp, touch, tag):
         ok(r['cur'] == cur, f'{tag} {h}: aria-current {r["cur"]} = {cur}')
         if h in ('#/', '#/CONS/WHT/learn'): await pg.screenshot(path=J.TMP + f'/ux4i_nav_{tag}_{h.strip("#/").replace("/", "_") or "home"}.png')
     await open_(pg, '#/'); es = await pg.evaluate("(()=>{const e=document.querySelector('#nav .nvs[data-s=ESTH] .nvsb');return e?[e.getAttribute('aria-disabled'),e.textContent]:null})()")
-    ok(es and es[0] == 'true' and '준비 중' in es[1], f'{tag} ESTH 준비 중 aria-disabled {es}')
+    if ESTH_READY: ok(es and es[0] != 'true' and '준비 중' not in es[1], f'{tag} ESTH 준비됨(누를 수 있음) {es}')
+    else: ok(es and es[0] == 'true' and '준비 중' in es[1], f'{tag} ESTH 준비 중 aria-disabled {es}')
     nums = await pg.evaluate("[...document.querySelectorAll('#nav .nvs:not(.off) .nvsb')].map(b=>[b.dataset.nvs,+b.querySelector('.r').textContent,(__h.PACKS[b.dataset.nvs].stats.main!=null?__h.PACKS[b.dataset.nvs].stats.main:__h.PACKS[b.dataset.nvs].stats.cards)])")
-    ok(len(nums) == 6 and all(a == c for _, a, c in nums), f'{tag} 과목 줄 숫자 = 현 교수 기출 수 {nums}')
+    ok(len(nums) == (7 if ESTH_READY else 6) and all(a == c for _, a, c in nums), f'{tag} 과목 줄 숫자 = 현 교수 기출 수 {nums}')
     txt = await pg.evaluate("document.querySelector('#nav').innerText")
     ok('%' not in txt and 'D-' not in txt and '시험' not in txt and '읽음' not in txt and '▸' not in txt, f"{tag} 허브 메뉴에 읽음 %·시험일·▸ 없음")
     # 과목 줄 → 과목 홈 + 과목 메뉴(서랍이면 먼저 열기)

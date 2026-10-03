@@ -78,9 +78,9 @@ OTHER = {
 }
 for n in ['3', '8', '9', '10', '11', '12', '14', '16', '17', '20', '21', '22', '23']:
     OTHER['T%02d' % int(n)] = [('23', '2021-3Q', n)]
-# 등급: A 현 강의(기본) · B 전임 여인성 Resin-bonded restoration · C 서덕규 Successful cervical restoration(JB: '23년도 시험범위 아닙니다')
-TIER = {'T21': 'B', 'T22': 'B', 'T23': 'B', 'T10': 'C', 'T11': 'C', 'T14': 'C', 'T16': 'C', 'U01': 'C'}
-PROF_FIX = {'T21': '여인성', 'T22': '여인성', 'T23': '여인성', 'T10': '서덕규', 'T11': '서덕규', 'T14': '서덕규', 'T16': '서덕규', 'U01': '서덕규'}
+# 등급: A 현 강의(기본) · B 전임 여인성 Resin-bonded restoration · C 서덕규 시절 범위(Successful cervical restoration — JB '23년도 시험범위 아닙니다' · T17 전치부 증례 — JB '출제되지는 않을 것으로 예상')
+TIER = {'T21': 'B', 'T22': 'B', 'T23': 'B', 'T10': 'C', 'T11': 'C', 'T14': 'C', 'U01': 'C', 'T17': 'C'}   # T16(erosion 원인·치료계획)은 지금 PLAN p.25-29 증례와 같은 형식이라 A(10-03 원고 검토)
+PROF_FIX = {'T21': '여인성', 'T22': '여인성', 'T23': '여인성', 'T10': '서덕규', 'T11': '서덕규', 'T14': '서덕규', 'U01': '서덕규', 'T17': '서덕규'}
 # JB 쪽 이미지에서 잘라 넣는 그림(25판, 쪽 이미지 폭 924 기준 좌표) — 모두 답·해설 쪽 그림
 CROP_BOX = {'Q23_a': ('25', 7, (476, 696, 880, 934)), 'Q26_a': ('25', 8, (474, 310, 866, 670)), 'Q28_a': ('25', 9, (474, 106, 872, 336))}
 CROPS = {'Q23': {'a': ['Q23_a']}, 'Q26': {'a': ['Q26_a']}, 'Q28': {'a': ['Q28_a']}}
@@ -142,7 +142,7 @@ for q in Q:
         x2 = find(e2, s2, n2)
         if x2: o.append({'ed': e2, 'sec': s2, 'num': n2, 'pg': x2['pg'], 'pg2': x2['pg2'], 'text': x2['text']})
     q['other'] = o; q['lab24'] = ''; q['crops'] = CROPS.get(q['id'], {})
-    q['fig'] = bool(re.search(r'사진|그림', ' '.join(q['text'].split('\n')[:3])))
+    q['fig'] = bool(re.search(r'(?<!경)사진|그림', ' '.join(q['text'].split('\n')[:3])))
 
 LECT = []; TABLES = []
 PRED = []; cur = None

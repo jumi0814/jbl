@@ -19,13 +19,14 @@ CLAUDE.md(절대 규칙·정리본 형식·검증) · guide/정리본_원칙.md 
 git log 마지막 커밋과 이 문서 아래 진행 표시를 보고 이어서. 사용자 결정이 꼭 필요한 것만 2~3안으로 묻고, 그 외에는 멈추지 말고 진행.
 
 ## 진행 표시
-- [x] 1 자료 확인 · [x] 2 폴더·목록 · [x] 3 JB 분해 · [ ] 4 자료 정독 · [ ] 5 원고 · [ ] 6 빌드·검증 · [ ] 7 검토 2회차 · [ ] 8 확인·배포
+- [x] 1 자료 확인 · [x] 2 폴더·목록 · [x] 3 JB 분해 · [x] 4 자료 정독 · [x] 5 원고 · [ ] 6 빌드·검증 · [ ] 7 검토 2회차 · [ ] 8 확인·배포
 - 이어서(사용자 10-03): [ ] 9 전 과목 최종 점검(맥_세션_시작 2·3·4·7 포함 — 7과목 정리본·JB·주석·정리표 + 허브 기능 전부) · [ ] 10 최종 배포·사이트 확인 · [ ] 11 최종본 전달
 
-## 재개 메모 (10-03 세션 — 마지막으로 한 일·다음 할 일)
-- 강의 키(정함): INT Introduction(26 260911) · FUN Fundamentals of esthetic dentistry(26 260911) · PLAN 심미수복에서의 진단 및 치료계획(26 260918) · SPE Special Effects(25 250926) · COL 색(안진수, 25 251010) · MAT 심미수복재료(25 251017) · VEN Direct veneer, Indirect composite resin inlay(25 251024) · 보조 키(25판) INT5·FUN5·PLAN5. 쪽 이미지 폴더 E01i~E07i(본 키) · E08i~E10i(보조) — `tools/matx.py` SRC['ESTH'](커밋 전, 작업 폴더에만).
-- 한 일: `tools/jbx.py ESTH`(work/jb/ESTH_2023·2024·2025) · `tools/matx.py ESTH`(work/ESTH/mat, lec 링크) · `tools/esth/parse_esth.py` 작성 — 25판 64·24판 60·23판 44블록(끝 대비표 '표' 포함), 블록 밖 줄은 멘트·표지·칸 제목뿐.
-- 정본 설계(assemble.py에 쓸 것): 25판 2024 칸 Q01~Q28(미복원 범위 3-5 → Q03) · 2023 칸 비포인터 R03·R04·R05·R06·R07·R08·R09·R10(10-11)·R14(14-15)·R18·R19·R20·R22 · 2022 칸 S04·S12·S14 · 24판 2021 칸 T03·T08·T09·T10·T11·T12·T14·T15·T16·T17·T20·T21·T22·T23 · 23판 2020 칸 U01~U05 = 61장(미복원 11). 24판 2023 칸 두 번째 '4.'=4b(=R06), 2022 칸 두 번째 '6.'=6b(=R07). 2021 #6 치관 폭 = R07과 같은 문제로 연결(→ 23·22·21·20). Q06은 24판 2022 칸 괄호 (23,21,20)의 23 포함. 대비표 3개 = T15의 OTHER.
-- 2·3단계 끝(10-03): tools/esth/ 공통 파일 복사 + subject.py·assemble.py(정본 61 · 판본 간 중복 107 · 미연결 0) · 6과목 목록에 ESTH(check_years·check_eyears·check_abbr·dump_review·aidlock_enrich·tests annot_text·card_text·aidlock_test, sync_common DST·SUBJ_ORDER) — legacy_base·tests/legacy_restore는 옛 허브에 ESTH가 없어 6과목 그대로. audit_design SUBJ·RED_REP와 shell SJC.ESTH(#2F7A3E 예정)는 원고가 생긴 뒤.
-- 자동 이어가기: 예약 작업 `jbl-auto-resume`(매시간, 하트비트 work/_resume/heartbeat가 2시간 넘게 멈추면 /Users/jumisong/JBL에서 이어서). 작업 중에는 하트비트를 자주 갱신.
-- 다음: 4단계 자료 정독 → 5단계 강의별 원고(lec_INT·FUN·PLAN·SPE·COL·MAT·VEN) + work/ESTH/parts/annot_·tables_·pred_<키>.txt → merge_parts → build4.
+## 재개 메모 (10-03 — 마지막으로 한 일·다음 할 일)
+- 강의 키: INT Introduction(26) · FUN Fundamentals of esthetic dentistry(26) · PLAN 심미수복에서의 진단 및 치료계획(26) · SPE Special Effects(25) · COL 색(안진수 25) · MAT 심미수복재료(25) · VEN Direct veneer, Indirect composite resin inlay(25) · 보조 키 INT5·FUN5·PLAN5(25판 — 슬라이드 동일, 필기는 26 파일에 합본). 쪽 이미지 폴더 E01i~E10i(tools/matx.py SRC).
+- 4·5단계 끝: 강의별 작성자 7명(guide/handoff/ESTH_원고_BRIEF.md) → 원고 7개(카드 105 · 그림 285 · ⭐ 91 · 표 89) + work/ESTH/parts/{annot,tables,pred}_<키>.txt → `tools/merge_parts.py ESTH`로 tools/esth/annot·tables·pred(대조 61 · 비교표 50 · 예상 93). 작성자 보고 work/ESTH/parts/R_<키>.md.
+- 빌드: ESTH build4 통과(⭐ 91/91 구조화 · 연결 누락 0 · 없는 문항 0) · check_lec 7강의 ✗ 0 · check_years 0 · check_eyears 0 · check_abbr 4개(TSR·APS·BFD·BPA — 모두 슬라이드 그림 속 글자).
+- 등급: B = T21~T23(여인성) · C = T10·T11·T14·U01(서덕규 cervical, '23년도 시험범위 아님')·T17(증례, '출제되지 않을 것으로 예상'). T16은 PLAN p.25-29 증례와 같은 형식이라 A.
+- 함께 한 일: 6과목 '맥에서 확인할 것' 146건(맞음 123·고침 16·판단 불가 7 — guide/handoff/review_final/M_<SID>.md) · trend.py·build4 '짤 비율 %' → '짤 j/n'(사용자 09-29) · build4 옛 문구 3개 · UNREC 범위 · OMS1 그림 판정(S20-4·'경사진') · tests 3개(ux3_home·ux4_nav·ux_u22)를 ESTH 준비 상태에 맞춤 · audit_design SUBJ에 ESTH.
+- 진행 중(10-03): 7과목 전체 빌드·검증 `sh tools/build_all.sh`(로그 work/_tmp/build_all_1003a.log) · ESTH 독립 검토 1회차(검토자 7명 — guide/handoff/ESTH_검토_BRIEF.md, 보고 work/ESTH/parts/R2_<키>.md). 검토가 끝나면 merge_parts → ESTH build4 → check 4종 → 커밋·푸시 → 검토 2회차(새 문제가 안 나올 때까지) → 8단계.
+- 사용자 확인 필요(모아 둘 것): R19 JB 답이 자료와 반대 · R06 opalescence 정의가 두 강의에서 다름 · Q16 근거(24년 porcelain 표)가 25 자료에 없음 · Q23·Q25·T12·T21~T23 근거 강의(2024 Laminate veneer·여인성 2024 RBR·서덕규 2021)가 materials에 없음 — 더 과거 자료를 받을지.

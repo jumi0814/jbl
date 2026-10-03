@@ -3,6 +3,7 @@ import asyncio, json, sys
 from playwright.async_api import async_playwright
 U=J.HUB_URL
 SUBJ={'GERI':['HARD','OHQ','ENDO','BLE','SAL','PAIN','PSY'],'OMS1':['DD1','DD2','DD3','DX','EXT','LOAD','REP'],'CONS':['WHT','CRK','DHS','INL','ANT','ADH','FRC'],'IMPL':['HIS','OSS','PATH','BIO','PRO','PART','GRAFT'],'ANAT':['NECK','NV','LIP','MAND','PAR','MAX','TMJ'],'PHARM':['RX','XE','BT','ACU','CHR','HM','DS']}
+if _os.path.exists(_os.path.join(J.DOCS,'packs','ESTH.js')): SUBJ['ESTH']=['INT','FUN','PLAN','SPE','COL','MAT','VEN']   # 심미치과학(10-03) — 팩이 생긴 뒤부터 감사
 JS=r"""()=>{
 function rgb(s){const m=s.match(/rgba?\(([^)]+)\)/);if(!m)return null;const p=m[1].split(',').map(x=>parseFloat(x));return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
 function lum(c){const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b);}
@@ -44,6 +45,7 @@ REDJS=r"""()=>{const isRed=el=>{const c=(getComputedStyle(el).color.match(/\d+/g
  const it=[...document.querySelectorAll('#stage .tc .tbody .li')].filter(e=>e.offsetParent),ri=it.filter(e=>[...e.querySelectorAll('.k')].some(k=>k.offsetParent&&isRed(k))).length;
  return {chars:tot?Math.round(red/tot*1000)/10:0,items:it.length?Math.round(ri/it.length*1000)/10:0,spans:document.querySelectorAll('#stage .tc .k').length,red:[...document.querySelectorAll('#stage .tc .k')].filter(isRed).length};}"""
 RED_REP=[('OMS1','EXT'),('GERI','PAIN'),('PHARM','HM'),('ANAT','MAND'),('CONS','WHT'),('IMPL','GRAFT')]
+if 'ESTH' in SUBJ: RED_REP.append(('ESTH','FUN'))
 async def red_share(b):
     """ux2 D06 RED SHARE — 대표 6개 강의 학습 탭(1280): 빨간 글자 비율(보이는 카드 글자 중 빨강) · 빨강이 든 항목(.li) 비율 · 빨간 span/전체 .k (목표 글자 ≤10%·항목 ≤45% — 보고용, 판정에는 안 씀)"""
     pg=await b.new_page(viewport={'width':1280,'height':900}); out=[]

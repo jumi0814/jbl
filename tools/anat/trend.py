@@ -87,13 +87,13 @@ def latest_ratio(S):
     n = sum(S[y]['jjal'] + S[y]['tal'] for y in ys)
     return sum(S[y]['jjal'] for y in ys) / n if n else None
 def prof_line(name, S):
-    """과목 홈 교수별 요약 한 줄: '서병무 · 최근 2024 16문항 짤 11/탈 5 → 완짤형 · 짤 비율 69%' (JB 통계만)"""
+    """과목 홈 교수별 요약 한 줄: '서병무 · 최근 2024 16문항 짤 11/탈 5 → 완짤형' (JB 통계만 · % 없음)"""
     ys = [y for y, d in S.items() if not d['base']]
     if not S: return f'{name} · 기출 없음'
     if not ys:
         y = next(iter(S)); return f'{name} · {YR(y)} {S[y]["n"]}문항 (기준선 — 짤/탈 판정 불가)'
     y = ys[0]; d = S[y]; r = latest_ratio(S)
-    return f'{name} · 최근 {YR(y)} {d["n"]}문항 짤 {d["jjal"]}/탈 {d["tal"]}{pooled(S)} → {ratio_word(r)}' + (f' · 짤 비율 {round(r * 100)}%' if r is not None else '')
+    return f'{name} · 최근 {YR(y)} {d["n"]}문항 짤 {d["jjal"]}/탈 {d["tal"]}{pooled(S)} → {ratio_word(r)}'   # % 없음(사용자 09-29)
 def pooled(S):
     """ux4 B20 최근 해 표본이 3 미만이라 판정 가능한 해를 합산했으면 그 사실과 합산 수를 드러냄(최근 해 숫자와 판정이 반대로 읽히지 않게) — 아니면 ''"""
     ys = [y for y, d in S.items() if not d['base']]
@@ -111,13 +111,13 @@ def tendency_parts(S, name, ment=''):
     rL = L['jjal'] / nL if nL else None
     tot_j = sum(S[y]['jjal'] for y in ys); tot_t = sum(S[y]['tal'] for y in ys); n = tot_j + tot_t
     r = rL if (nL >= 3 or len(ys) == 1) else (tot_j / n if n else None)
-    traj = ' → '.join(f'{YR(y)[2:]}년 {round(S[y]["jjal"]/(S[y]["jjal"]+S[y]["tal"])*100)}%' for y in sorted(ys)[-5:] if S[y]['jjal'] + S[y]['tal'])
+    traj = ' → '.join(f'{YR(y)[2:]}년 짤 {S[y]["jjal"]}/{S[y]["jjal"]+S[y]["tal"]}' for y in sorted(ys)[-5:] if S[y]['jjal'] + S[y]['tal'])   # 사용자 09-29 '퍼센트 필요 없어' — 해마다 짤 수/판정 문항 수
     var = sum(S[y]['var'] for y in ys); new = sum(S[y]['new'] for y in ys); emph = sum(S[y]['emph'] for y in ys)
     rising = len(ys) >= 2 and all((S[a]['jjal']/(S[a]['jjal']+S[a]['tal']) if S[a]['jjal']+S[a]['tal'] else 0) <= (S[b]['jjal']/(S[b]['jjal']+S[b]['tal']) if S[b]['jjal']+S[b]['tal'] else 0) for a, b in zip(sorted(ys), sorted(ys)[1:]))
     word = ratio_word(r)
     if nL >= 3 or len(ys) == 1: parts = [f'최근 {YR(latest)}년 {L["n"]}문항 = 짤 {L["jjal"]} · 탈 {L["tal"]} → <b>{word}</b>']
     else: parts = [f'최근 {YR(latest)}년은 {L["n"]}문항(짤 {L["jjal"]} · 탈 {L["tal"]})으로 표본이 적어 판정 가능한 해를 합산: 짤 {tot_j}/{n} → <b>{word}</b>']
-    if len(ys) > 1: parts.append('짤 비율 추이 ' + traj + (' — 기출이 쌓이면서 짤이 늘어나는 중' if rising and rL and rL >= 0.5 and nL >= 3 else ''))
+    if len(ys) > 1: parts.append('짤 추이 ' + traj + (' — 기출이 쌓이면서 짤이 늘어나는 중' if rising and rL and rL >= 0.5 and nL >= 3 else ''))
     if tot_t:
         lv, ln_ = L['var'], L['new']
         if L['tal'] >= 2:
@@ -155,11 +155,11 @@ def short_line(S):
     y = ys[0]; d = S[y]
     return f'{YR(y)}년 {d["n"]}문항 · 짤 {d["jjal"]} / 탈 {d["tal"]}{pooled(S)} → {ratio_word(latest_ratio(S))} · {fmt_str(d["fmt"])}'   # ux4 B20 교수 줄과 같은 판정 규칙(latest_ratio)
 def prof_cells(S):
-    """ux4 B3-3 과목 홈 교수별 출제 경향 표 한 행 — (최근 해 'YYYY · n문항', '짤 / 탈', 판정, 짤 비율(합산이면 '표본이 적어 누적 짤 j/n'), 최근 해 형식) · prof_line과 같은 판정 규칙(latest_ratio)"""
+    """ux4 B3-3 과목 홈 교수별 출제 경향 표 한 행 — (최근 해 'YYYY · n문항', '짤 / 탈', 판정, 짤 / 문항(합산이면 '표본이 적어 누적 짤 j/n'), 최근 해 형식) · prof_line과 같은 판정 규칙(latest_ratio)"""
     if not S: return ('기출 없음', '—', '—', '—', '')
     ys = [y for y, d in S.items() if not d['base']]
     if not ys:
         y = next(iter(S)); return (f'{YR(y)} · {S[y]["n"]}문항', '기준선', '판정 불가', '—', fmt_str(S[y]['fmt']))
     y = ys[0]; d = S[y]; r = latest_ratio(S); pl = pooled(S)
-    return (f'{YR(y)} · {d["n"]}문항', f'{d["jjal"]} / {d["tal"]}', ratio_word(r), (f'{round(r * 100)}%' if r is not None else '—') + (f' <small>{pl[3:]}</small>' if pl else ''), fmt_str(d['fmt']))
+    return (f'{YR(y)} · {d["n"]}문항', f'{d["jjal"]} / {d["tal"]}', ratio_word(r), (f'{d["jjal"]}/{d["jjal"] + d["tal"]}' if d['jjal'] + d['tal'] else '—') + (f' <small>{pl[3:]}</small>' if pl else ''), fmt_str(d['fmt']))   # 짤 / 문항(% 없음 — 사용자 09-29)
 

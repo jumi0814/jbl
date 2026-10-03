@@ -6,6 +6,7 @@ H6 과목 홈 시험일 줄 없음·순서 유지·'📅 이 과목 달력' · �
 맥 1280×900 + 아이패드 가로 1180×820·세로 820×1180(터치). 스크린샷 work/_tmp/ux3h_{1280,1180,820}.png · ux3i_h_*.png"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, json, datetime, re
+ESTH_READY = _os.path.exists(_os.path.join(J.DOCS, 'packs', 'ESTH.js'))   # 심미치과학 팩이 생기면 '준비 중' 대신 정상 행
 from playwright.async_api import async_playwright
 U = J.HUB_URL; fails = []
 def ok(c, m):
@@ -82,7 +83,8 @@ async def run(b, vp, touch, tag):
     # ---- H4 과목 표
     await open_(pg, '#/')
     rows = await pg.evaluate("[...document.querySelectorAll('#home .hsj')].map(r=>r.dataset.s||('off:'+r.dataset.off))")
-    ok(len(rows) == 7 and rows[-1] == 'off:ESTH' and '자료 준비 중' in await pg.inner_text('#home .hsj.off[data-off=ESTH]'), f'{tag} H4 7행·ESTH 흐린 행 {rows}')
+    if ESTH_READY: ok(len(rows) == 7 and rows[-1] == 'ESTH' and not any(r.startswith('off:') for r in rows), f'{tag} H4 7행·ESTH 준비됨(흐린 행 없음) {rows}')
+    else: ok(len(rows) == 7 and rows[-1] == 'off:ESTH' and '자료 준비 중' in await pg.inner_text('#home .hsj.off[data-off=ESTH]'), f'{tag} H4 7행·ESTH 흐린 행 {rows}')
     rh = await pg.evaluate("Math.min(...[...document.querySelectorAll('#home .hsj[data-s]')].map(r=>r.getBoundingClientRect().height))")
     ok(rh >= 50, f'{tag} H4 행 높이 ≥ 52(카드는 두 줄) {rh:.0f}')
     cols = await pg.evaluate("(()=>{const r=document.querySelector('#home .hsj[data-s=CONS]');return {t:getComputedStyle(r.querySelector('.hct')).display,h:getComputedStyle(document.querySelector('#home .hsjh')).display,ng:r.querySelector('.hcng').textContent,bar:r.querySelector('.hcj .pbar i').style.width,tx:r.innerText,role:r.getAttribute('role')}})()")
