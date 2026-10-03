@@ -51,7 +51,7 @@ def inline(s, ctx, first=True):
                 out.append(f'<button class="cite" data-k="{k}" data-p="{p}">{ctx["LECNAME"][k]} p.{p}</button>')
         elif tok.startswith('{jb:'):
             i = tok[4:-1]; q = ctx['QMAP'].get(i)
-            if q: out.append(f'<button class="xjb{" rep" if len(q["yrs"]) >= 2 else ""}" data-go="{i}" title="{html.escape(q["short"])}">기출 {"·".join("%02d" % y for y in q["yrs"])}</button>')
+            if q: out.append(f'<button class="xjb{" rep" if len(q["yrs"]) >= 2 else ""}" data-go="{i}" title="{html.escape(q["short"])}">기출 {"·".join("%02d" % y for y in q["yrs"]) or "연도 미상"}</button>')
         else:
             t = emph.apply(html.escape(tok, quote=False), phrases=False, numbers=False, kcls=kc)
             t = re.sub(r'\*\*(.+?)\*\*', r'<b class="term">\1</b>', t)
