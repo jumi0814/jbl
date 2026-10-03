@@ -28,7 +28,7 @@ def main(sids):
                 ids, _, txt = line[2:].partition('|'); ids = [x.strip() for x in ids.split(',') if x.strip()]
                 if len(ids) != 1 or ids[0] not in B: continue
                 head = re.split(r'→|—|JB 답|JB 해설', txt)[0]
-                ys = years_in(head)
+                ys = years_in(re.sub(r'"[^"]*"|“[^”]*”', '', head))   # 따옴표 안 문제 원문('보존기간은 10년' 같은 숫자)은 출제연도가 아님
                 if not ys: continue
                 extra = sorted(ys - B[ids[0]], reverse=True)
                 if extra:
