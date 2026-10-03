@@ -1946,7 +1946,7 @@ const tObj=v=>(v&&typeof v==='object'&&!Array.isArray(v))?v:{};
 function tFlush(upTo){if(!T.run)return;let now=(typeof upTo==='number')?upTo:Date.now();now=Math.min(now,T.last+60000);if(now<=T.t0)return;tRec(CUR.s||'기타',CUR.s&&CUR.d?CUR.d:'',T.t0,now,'a');T.t0=now;}   /* ux3 I3 [t0,now]를 자정에서 두 날로 나눠 time·timed·tseg에 씀(tRec — '// ux3 트랙2' 구역) */
 /* 버튼 상태(B03·B05 → ux3 I1): ● 측정 중(자동) / ● 세션 h:mm / ☕ 쉬는 중 m:ss / ■ 멈춤 / ○ 다른 창에서 측정 중 / ○ 자동 대기 / ▶ 공부 시작(자동 꺼짐) — 상태는 trState(), 메뉴·팝업·달력의 같은 버튼(trkUI)도 함께 */
 function tBtn(){ckPaint(true);trkAll();if(homeTick.d){if(VIEW==='home')homeTick();navBadgesSoon();}}   /* homeTick.d 먼저 — 처음 tBtn()은 VIEW 선언보다 먼저 불림 */   /* ux4 묶음2 상태가 바뀌면 — 상단 시계 알약(ckPaint — '// ux4 묶음2' 구역)과 [data-trk] 조각(달력 카드·홈 띠·⏱ 크게) */
-function tStart(auto){if(T.run||trBlock())return;T.run=true;T.autoRun=!!auto;T.t0=Date.now();if(!T.f0||T.t0-(T.fEnd||0)>120000)T.f0=T.t0;tBtn();}   /* ux3 R1 T.f0 = 이번 집중(지금 공부 구간) 시작 — 2분 안에 다시 재면(화면 전환) 이어 감 · 쉬기·■·자동 휴식은 0 */
+function tStart(auto){if(T.run||trBlock())return;T.run=true;T.autoRun=!!auto;T.t0=Date.now();if(!T.f0||T.t0-(T.fEnd||0)>120000)T.f0=T.t0;else if(T.fEnd&&T.t0>T.fEnd)T.f0+=T.t0-T.fEnd;tBtn();}   /* 10-03 허브 점검: 이어 갈 때 잰 적 없는 빈틈만큼 구간 시작을 밀어 '공부 m:ss'가 오늘 합계보다 커지지 않게 */   /* ux3 R1 T.f0 = 이번 집중(지금 공부 구간) 시작 — 2분 안에 다시 재면(화면 전환) 이어 감 · 쉬기·■·자동 휴식은 0 */
 function tStop(upTo){if(!T.run)return;tFlush(upTo);T.run=false;T.fEnd=Math.min(Date.now(),T.last+60000);tBtn();}
 /* 오늘 합계 = 저장한 몫 + 지금 재는 몫(마지막 입력 뒤 1분까지만 — 저장 규칙과 같아 무활동 뒤에도 시계가 되감기지 않음, B03) + 고친 시간(tadj) */
 function tToday(){return tSum(tDay(day()));}
@@ -1956,7 +1956,7 @@ function tTick(){ckPaint();trTick();}   /* ux4 묶음2 알약: 오늘 합계 + �
 const TRKSEL='#clock,#tpop,[data-trk],#idleband,#trband,#bigclock';   /* ux4 묶음2 시계 알약·팝오버 */
 const tAct=e=>{const now=Date.now(),tg=e&&e.target;if(e&&e.type==='scroll'){if(tg&&tg.closest&&tg.closest('#side,.scl'))return;if(now-(T.rin||0)>3000)return;}else if(e&&e.type==='mousemove'){if(!T.run||T.idleGap||trAR()||now-(T.last||0)>60000)return;}else T.rin=now;   /* ux4f O18 사용자 10-03 '자동측정에서 공부 시간측정 재개는 내가 스크롤 또는 클릭을 하면서 시작' — 마우스를 움직이기만 해서는 시작·재개하지 않음(재는 중에는 계속 공부로 셈) · 시작 = 스크롤(휠)·클릭·손가락·키 */   /* 메뉴 스크롤 이벤트는 입력 아님(메뉴를 다시 그리며 scrollTop을 되돌릴 때도 옴 — 손으로 굴리면 wheel·touchstart가 셈) · ux4f O10 스크롤은 3초 안에 실제 입력(마우스·키·손가락·휠)이 있었을 때만 셈 — 열 때 읽던 자리로 되돌리는 스크롤(restoreAt·goEl)이 '움직임'으로 세어져 아무것도 안 했는데 자동 측정이 시작되던 것 */
  if(tg&&tg.closest&&tg.closest(TRKSEL)){if(now-(T.inp||0)>60000)T.irun=now;T.inp=now;T.last=now;return;}endLift(now);if(!document.hidden&&trAR()&&!hubV())restBack(now,'inp');if(T.idleGap)idleBack(now);if(now-(T.inp||0)>60000)T.irun=now;T.inp=now;T.last=now;if(!T.run&&T.resumeOnAct&&!document.hidden){T.resumeOnAct=false;tStart(false);}if(!T.run&&T.auto&&!T.manualPause&&CUR.s&&!document.hidden)tStart(true);tOwn();trAct();};   /* ux3: T.inp = 마지막 실제 입력(세션 되묻기) · 세션·휴식·멈춤 중에는 tStart가 막힘 */
-['mousemove','keydown','scroll','touchstart','click','wheel'].forEach(ev=>addEventListener(ev,tAct,{passive:true,capture:true}));
+['mousemove','keydown','scroll','touchstart','click','wheel','pointerdown'].forEach(ev=>addEventListener(ev,tAct,{passive:true,capture:true}));
 setInterval(()=>{tTick();if(!T.run){if(T.hubLeft&&!document.hidden&&Date.now()-Math.max(T.hubLeft,T.inp||0)>=60000)hubRest('idle');return;}if(Date.now()-T.last>idleMs()){if(restCan()){trAutoRest('idle',T.last);return;}T.idleGap={s:CUR.s||'기타',d:CUR.s&&CUR.d?CUR.d:'',from:T.last+60000,last:T.last,auto:!!T.autoRun};tStop(T.last+60000);idleChip();}else if(Math.min(Date.now(),T.last+60000)-T.t0>20000)tFlush();},1000);   /* 무활동 기준(LS idleMin, 기본 8분)을 넘으면 마지막 입력 1분 뒤까지만 저장하고 멈춤 — 돌아오면 그동안을 더할지 물음(B04) */
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(T.run){if(restCan())trAutoRest('hide',Date.now());else tStop();T.hiddenStop=true;}else if(T.hubLeft)hubRest('hide');}else{if(T.hiddenStop&&!T.manualPause&&!trBlock()){T.hiddenStop=false;if(!T.auto)T.resumeOnAct=true;}}});   /* ux4f O15 사용자 10-03 '다른 탭으로 옮길 때는 자동 측정 모드에선 시간이 멈추고 휴식으로 바뀌었다가, 다시 돌아오고 화면 움직이면서 공부 시작하면 측정 재개' — 돌아와도 바로 재지 않고 휴식 그대로 · 다음 실제 입력(tAct: restBack 'inp' → tStart)에서 휴식을 끝내고 다시 잼 */
 addEventListener('pagehide',()=>tFlush());addEventListener('beforeunload',()=>tFlush());
@@ -2009,7 +2009,7 @@ const sjOrd=k=>{const i=SUBJECTS.findIndex(x=>x[0]===k);return i<0?99:i;};
 let TVW=0,TVSEL='',TVSC='all',TVADJ=false,TVAS='';
 /* ux3 J1: 옛 📊 공부 기록(#/_time)은 📅 공부 달력의 [📊 통계] 하위 탭 별칭 — 링크·뒤로가기 호환 */
 function timeView(o){calView(Object.assign({tab:'stats'},o||{}));}
-function tvRender(){if(VIEW!=='cal'||CAL.tab!=='stats')return;const h=$('#calbody');if(!h)return;const today=day(),now=new Date(),mon=tDAdd(tMon(now),7*TVW),W=tWeek(mon),P=tWeek(tDAdd(mon,-7)),goal=tGoal()*60000,ti=wdOf(now),isCur=TVW===0;
+function tvRender(){if(VIEW!=='cal'||CAL.tab!=='stats')return;const h=$('#calbody');if(!h)return;const today=day(),now=pDate(today)||new Date(),mon=tDAdd(tMon(now),7*TVW),W=tWeek(mon),P=tWeek(tDAdd(mon,-7)),goal=tGoal()*60000,ti=wdOf(now),isCur=TVW===0;
  const tot=W.reduce((a,x)=>a+x.sum,0),n=isCur?ti+1:7,ptot=P.slice(0,n).reduce((a,x)=>a+x.sum,0),diff=tot-ptot;
  let st=0;{let dt=tD0(now);if(tSum(tDay(day(dt)))<60000)dt=tDAdd(dt,-1);while(st<400&&tSum(tDay(day(dt)))>=60000){st++;dt=tDAdd(dt,-1);}}
  const mx=Math.max(goal,...W.map(x=>x.sum),...P.map(x=>x.sum))*1.12,pc=v=>(v/mx*100).toFixed(2)+'%';
@@ -2372,7 +2372,7 @@ function calRestStudy(d,r){const keys=calSegTouch(d,r);if(!keys.length||!r.r)ret
  const g=teLog([{d,S,D,ms,k:'add',g:[r.s,r.e],sa},{d,S:'',D:'',ms:-rm,k:'del',f:'r',sx:keys}]);CAL.edit=null;calRender(true);   /* ux3 fix2 F6 휴식 − 도 같은 묶음(되돌리기 한 번에) */
  teToast('☕ → 📖 '+fmtH(ms)+' 공부로 바꿨어요 — '+sjShort(S)+(D?' · '+lecName(S,D):''),g);return g;}
 /* ✎ 고치기 — 과목·강의·시작·끝: 옛 구간은 x, 새 구간은 f+'e' · 합계 차이만 tedit(mv = 옛 −·새 +, len = 길이만) */
-function calSave(d,r,force){const vA=$('#ceA')&&$('#ceA').value,vB=$('#ceB')&&$('#ceB').value;let a=tmSecD(d,vA),b=tmSecD(d,vB);if(a!=null&&vA===hmsD(d,r.s))a=r.s;if(b!=null&&vB===hmsD(d,Math.min(r.e,dayLen(d)-60)))b=r.e;if(a!=null&&b!=null&&b<=a&&b+86400<=dayLen(d))b+=86400;   /* ux4f O17 끝이 다음 날 새벽(6시 날)이면 같은 공부 날 */   /* ux4f L3 칸은 분 단위 — 그대로 둔 칸은 원래 초 값(24:00 끝 포함) */
+function calSave(d,r,force){const vA=$('#ceA')&&$('#ceA').value,vB=$('#ceB')&&$('#ceB').value;let a=tmSecD(d,vA),b=tmSecD(d,vB);if(a!=null&&vA===hmsD(d,r.s))a=r.s;if(b!=null&&vB===hmsD(d,Math.min(r.e,dayLen(d)-60)))b=r.e;if(dayLen(d)>86400){if(a!=null&&a<86400&&r.s>=86400&&a+86400<dayLen(d))a+=86400;if(b!=null&&b<86400&&r.e>86400&&b+86400<=dayLen(d))b+=86400;}   /* 10-03 허브 점검: 30시간 날(DCUT)의 자정 뒤 구간 — 칸의 00~06시는 원래 구간 쪽 새벽으로 */if(a!=null&&b!=null&&b<=a&&b+86400<=dayLen(d))b+=86400;if(a!=null&&b!=null&&b-a>20*3600){toast('한 구간이 20시간을 넘어요 — 시작·끝 시각을 확인해 주세요');return;}   /* ux4f O17 끝이 다음 날 새벽(6시 날)이면 같은 공부 날 */   /* ux4f L3 칸은 분 단위 — 그대로 둔 칸은 원래 초 값(24:00 끝 포함) */
  if(a==null||b==null||b<=a){toast('시작·끝 시각을 확인해 주세요');return;}
  const nowS=d===day()?Math.round((Date.now()-dayMs(d))/1000):dayLen(d);if(b>nowS+60){toast('아직 오지 않은 시각이에요');return;}
  const keys=calSegTouch(d,r),kind=String(r.segs[0].f).replace(/x/g,'');if(!keys.length)return;
@@ -2410,7 +2410,8 @@ function addTime(o){const d=o.d,S=o.S||'기타',D=o.D||'',ms=Math.round(o.min*60
  return teLog(E);}
 function editSeg(d,idx,o){const r=(CAL.rows||[])[idx];if(!r)return null;CAL.edit=idx;calRender(true);if($('#ceS')&&o.S){$('#ceS').value=o.S;$('#ceD').innerHTML=calLecOpts(o.S,o.D||'');}if($('#ceD')&&o.D!=null)$('#ceD').value=o.D;if(o.start!=null)$('#ceA').value=hmsD(d,o.start);if(o.end!=null)$('#ceB').value=hmsD(d,o.end);return calSave(d,r,o.force||false);}
 function delSeg(d,idx){const r=(CAL.rows||[])[idx];return r?calDel(d,r):null;}
-function calAddGo(force){const d=CAL.sel,S=$('#caS').value,D=$('#caD').value,t=tmSecD(d,$('#caT').value),min=(+$('#caH').value||0)*60+(+$('#caM').value||0),w=$('#cawarn');
+function calAddGo(force){const d=CAL.sel,S=$('#caS').value,D=$('#caD').value,t0_=tmSecD(d,$('#caT').value),min=(+$('#caH').value||0)*60+(+$('#caM').value||0),w=$('#cawarn');
+ let t=t0_;if(t!=null&&dayLen(d)>86400&&t<DAYH*3600){const nS=d===day()?Math.round((Date.now()-dayMs(d))/1000):dayLen(d);if(t+86400+min*60<=nS+60)t+=86400;}   /* 10-03 허브 점검: 30시간 날(DCUT)의 00~06시는 둘째 새벽(다음 날 새벽)이 지났으면 그쪽으로 */
  const bad=m=>{w.hidden=false;w.innerHTML=m;};if(d>day()){bad('앞날에는 더할 수 없어요');return;}if(!(min>0)){bad('길이를 넣어 주세요(0분)');return;}
  if(tSum(tDay(d))+min*60000>864e5){bad('하루 24시간을 넘어요');return;}
  if(t!=null){const nowS=d===day()?Math.round((Date.now()-dayMs(d))/1000):dayLen(d);if(t+min*60>dayLen(d)){bad('공부 날 경계(아침 6시)를 넘어요 — 다음 날에 나눠 넣어 주세요');return;}if(t+min*60>nowS+60){bad('아직 오지 않은 시각이에요');return;}
@@ -2459,7 +2460,7 @@ function bigTick(){if(!BIG.on)return;BIG.n++;const st=trState(),ts=tsGet(),now=D
  const aw=st==='run'&&now-T.last>60000/* ux4f L8 알약과 같은 '자리 비움 m:ss' */,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
  const a=$('#bcl'),b=$('#bct'),c=$('#bcs');if(!b)return;const el=$('#bigclock');if(el){el.classList.toggle('rest',st==='rest');el.classList.toggle('fo',fo);}if(a.textContent!==lab)a.textContent=lab;const bt=st==='rest'?fmtMS(v):ckFmt(v);if(b.textContent!==bt)b.textContent=bt;const R=restStats(),pc=' · 목표 '+fmtH(g),ss=st==='sess'?' · 세션 '+fmtH(trSessMs(ts,now)):'';   /* ux4c 1회차 알약과 같은 표기(공부 h:mm:ss 앞 0 없음 · 휴식 m:ss) · 목표는 %가 아니라 h:mm · ux4d 집중 %는 없앰(사용자 '퍼센트 필요 없어' · 참고 HUB도 화면엔 달성 %만) */
  const s=st==='rest'?`오늘 휴식 ${fmtH(R.ms)} · 공부 ${fmtH(td)}${pc}`:`오늘 공부 ${fmtH(td)}${ss} · 휴식 ${fmtH(R.ms)}${pc}`;if(c.textContent!==s)c.textContent=s;}
-document.addEventListener('keydown',e=>{if(BIG.on&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();bigClose();}},true);
+document.addEventListener('keydown',e=>{if(!BIG.on)return;if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();bigClose();return;}if(e.key!=='Tab'&&e.key!=='Enter'&&e.key!==' ')e.stopImmediatePropagation();},true);   /* 10-03 허브 점검: ⏱ 크게(대화상자)를 연 채 누른 V·H·2·J·M·/·? 등이 뒤 화면에서 동작하던 것 — Esc·Tab·Enter·Space만 */
 /* ---- J9 공부하다 멈추면 쉬는 시간 자동 측정(참고 HUB 휴식) — LS restAuto(기본 켬)·restMax(분, 기본 90) · 오늘 공부가 한 번이라도 측정된 뒤 자동 측정이
    무활동(idleMin)·화면 숨김(잠금·다른 탭)·다른 앱(blur 멈춤)으로 멈추면 그 순간부터 ☕ 휴식(tstate {st:'rest',from:'auto',ar:1,why}) — 시작 = 마지막 입력(무활동 대기 포함),
    방금까지 움직였으면 멈춘(숨긴) 시각 · 쉬기 시작 뒤로 미리 센 1분은 공부에서 뺌(tUnrec 'a') · 기록은 세션처럼 소유 창이 20초마다 trest·tseg('ra')에(자정에서 나눔)
@@ -2579,7 +2580,7 @@ const hMd=dt=>(dt.getMonth()+1)+'/'+dt.getDate();
 function atLab(at){if(!at)return '';const t=new Date(+at),hm=('0'+t.getHours()).slice(-2)+':'+('0'+t.getMinutes()).slice(-2),d=day(t);return d===day()?'오늘 '+hm:d===day(tDAdd(new Date(),-1))?'어제 '+hm:hMd(t)+' '+hm;}
 /* ① 오늘 띠 — 첫 줄: 날짜 · 가장 가까운 시험(누르면 과목 홈, 없으면 '📅 시험일 넣기' → 과목 표 시험 칸) / 둘째 줄: 오늘 h:mm / 오늘 목표 막대·% + 트래커(trkUI 'band') */
 /* ① 머리(ux4 B3-2) — kicker · 날짜 h1 · 한 줄: 오늘 h:mm / 목표(누르면 달력) + 4px 막대 + trkUI('band')(휴식 m:ss · [■ 멈춤/▶ 시작][☕ 쉬기] — 주 버튼 아님) · 시험일 없음 */
-function homeBand(){const now=new Date(),goal=tGoal(day())*60000,td=tSum(tDay(day())),pct=Math.floor(td/goal*100),n=SUBJECTS.length;
+function homeBand(){const now=pDate(day())||new Date(),goal=tGoal(day())*60000,td=tSum(tDay(day())),pct=Math.floor(td/goal*100),n=SUBJECTS.length;
  return `<section class="hsec hband noann"><p class="hkick">3학년 3쿼터 · ${n}과목${plChip()}</p><h1 class="hdate">${hDate(now)}</h1><div class="hb2"><button type="button" class="hbt" data-tvgo2="1" title="공부 달력 — 오늘 공부 시간 / 오늘 목표"><span>오늘</span> <b data-hb="td">${fmtH(td)}</b> <span class="hbg">/ <span data-hb="goal">${fmtH(goal)}</span></span></button><span class="hbar" aria-hidden="true"><i data-hbw="1" style="width:${Math.min(100,pct)}%"></i></span>${trkUI('band')}</div></section>`;}
 /* 30초마다 띠 숫자만(다시 그리지 않음) — 측정 중에도 오늘 시간이 움직이게 */
 function homeTick(){if(VIEW!=='home')return;if(homeTick.d&&homeTick.d!==day()){homeTick.d=day();home({push:false,y:scrollY});try{navRender();}catch(e){}return;}homeTick.d=day();   /* ux4 B22 자정이 지나면 날짜 제목·이번 주·오늘 할 일·이어서를 새 날로 */const goal=tGoal(day())*60000,td=tSum(tDay(day())),pct=Math.floor(td/goal*100),V={td:fmtH(td),goal:fmtH(goal)};$$('#home [data-hb]').forEach(e=>{const v=V[e.dataset.hb];if(v!=null&&e.textContent!==v)e.textContent=v;});const w=$('#home [data-hbw]');if(w)w.style.width=Math.min(100,pct)+'%';
@@ -2653,7 +2654,7 @@ function hexFirst(){const S=(homeOrder().find(([id])=>PACKS[id]&&!examOf(id))||h
 function hexFocus(){const i=$('#home .hsj.ed input[data-exam]');if(!i)return;const r=i.closest('.hsj').getBoundingClientRect();if(r.top<topOff()||r.bottom>innerHeight-(LAY.kith||0)-20)i.closest('.hsj').scrollIntoView({block:'center'});try{i.focus({preventScroll:true});}catch(e){i.focus();}}
 /* ④ 이번 주 — 월~일 막대(높이 72 · 날마다 목표선 · 오늘 테두리 · 목표 달성 진하게) + 합계·하루 평균(오늘까지 날 수) + [📅 달력] · 막대를 누르면 그날 달력 */
 /* ⑤ 이번 주 — 월~일 막대(오늘만 강조색 · 막대를 누르면 그날 달력) · 제목 옆 '합계 · 하루 평균' · 오른쪽 '공부 달력' */
-function homeWeek(){const now=new Date(),today=day(),W=tWeek(tMon(now)),tot=W.reduce((a,x)=>a+x.sum,0),n=wdOf(now)+1,mx=Math.max(1,...W.map(x=>Math.max(x.sum,tGoal(x.d)*60000)))*1.08;
+function homeWeek(){const today=day(),now=pDate(today)||new Date(),W=tWeek(tMon(now)),tot=W.reduce((a,x)=>a+x.sum,0),n=wdOf(now)+1,mx=Math.max(1,...W.map(x=>Math.max(x.sum,tGoal(x.d)*60000)))*1.08;
  const bars=W.map((x,i)=>{const g=tGoal(x.d)*60000,fut=x.d>today;return `<button type="button" class="hwb${x.d===today?' today':''}${fut?' fut':''}${x.sum>=g?' met':''}" data-hwd="${x.d}" aria-label="${mdw(x.dt)} ${fmtH(x.sum)} / 목표 ${fmtH(g)}" title="${mdw(x.dt)} ${fmtH(x.sum)} / 목표 ${fmtH(g)} — 누르면 그날 달력"><span class="hwv">${x.sum>=60000?fmtH(x.sum):''}</span><span class="hwp"><i class="hwf" style="height:${(x.sum/mx*100).toFixed(1)}%"></i><i class="hwg" style="bottom:${(g/mx*100).toFixed(1)}%"></i></span><span class="hwl">${x.d===today?'오늘':TWD[i]}</span></button>`;}).join('');
  return `<section class="hsec hweek noann"><h2 class="hh">이번 주 <small>${hMd(W[0].dt)} – ${hMd(W[6].dt)} · 합계 <b data-hw="tot">${fmtH(tot)}</b> · 하루 평균 ${fmtH(tot/n)}</small><button type="button" class="more" data-tvgo2="1">공부 달력</button></h2><div class="hwk">${bars}</div></section>`;}
 /* ⑤ 더보기(접힘 — 열림은 이 창에서만 기억) — 💾 백업·기기 옮기기(bkPanel) · 🖍 전 과목 내 표시(과목마다 🖍 형광펜·▣ 빈칸 수 → 내 표시 모아보기) */
@@ -4494,7 +4495,7 @@ function navColor(){return navMode()==='subj'?sjColor(navS()):HUBC;}
 /* 내 표시 개수(형광펜 + 내 빈칸) — 지금 과목은 메모리(Kit), 다른 과목은 LS 글이 같으면 캐시 */
 function annN(S){if(!PACKS[S])return 0;const cnt=A=>{let n=0;for(const k in A)if(Array.isArray(A[k]))A[k].forEach(o=>{if(o&&typeof o==='object')n++;});return n;};
  try{if(Kit.sub()===S)return cnt(Kit.all());}catch(e){}const raw=lsGetRaw('ann.'+S),c=ANNC[S];if(c&&c.raw===raw)return c.n;const n=cnt(mkObj(LS.get('ann.'+S,{})));ANNC[S]={raw,n};return n;}
-function navVals(){const V={};let wk=0;try{wk=tWeek(tMon(new Date())).reduce((a,x)=>a+x.sum,0);}catch(e){}V.wk='이번 주 '+fmtH(wk);const R=navRevAll();V.rv=R.n?String(R.n):'';V.rvS=R.S;
+function navVals(){const V={};let wk=0;try{wk=tWeek(tMon(pDate(day())||new Date())).reduce((a,x)=>a+x.sum,0);}catch(e){}V.wk='이번 주 '+fmtH(wk);const R=navRevAll();V.rv=R.n?String(R.n):'';V.rvS=R.S;
  const B=bkLine();V.bk=B.t;V.bkw=B.warn;let ma=0;SUBJECTS.forEach(([id])=>{if(!PACKS[id])return;const n=annN(id);V['mk.'+id]=n?String(n):'';ma+=n;});V.mka=ma?String(ma):'';return V;}
 function navHub(V){const E=EH,cur=on=>on?' aria-current="page"':'';
  let h=`<div class="nvsec">허브</div><button type="button" class="ni nvr1" data-nv="home"${cur(VIEW==='home')} title="허브 홈 — 이어서·오늘 할 일·과목 표">오늘</button>`
@@ -4839,6 +4840,8 @@ function cbmHTML(p){const B=cbmGet(p.id),tpl=document.createElement('template');
 function cbmRow(p){const n=cbmN(p.id);return n?`<div class="lbmrow cbmrow"><button type="button" class="chip ljc bm" data-cbmall="${EH(p.id)}" title="★ 북마크한 카드를 강의 순서로 모아 보기"><i class="bmk" aria-label="북마크">★</i><span>북마크 카드 ${n}장 모아 보기</span></button></div>`:'';}
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-cbm],[data-cbmgo],[data-cbmall]');if(!t)return;e.preventDefault();e.stopPropagation();
  if(t.dataset.cbmall){openDoc(t.dataset.cbmall,'_cbm');window.scrollTo(0,0);return;}if(t.dataset.cbmgo){openDoc(CUR.s,t.dataset.cbmgo,'learn');return;}const c=t.closest('.tc');if(c)cbmToggle(c);},true);
+/* 10-03 허브 점검: ⋯ 보기 메뉴(details.pmore)가 줄 첫머리로 넘어가면 오른쪽 기준 메뉴가 화면 왼쪽 밖으로 열리던 것(820 세로) — 열 때 화면 안으로 */
+document.addEventListener('toggle',e=>{const d=e.target;if(!d||!d.matches||!d.matches('details.pmore')||!d.open)return;const m=d.querySelector('.pmenu');if(!m)return;m.style.left='';m.style.right='';const r=m.getBoundingClientRect();if(r.left<8){m.style.left='0';m.style.right='auto';}else if(r.right>innerWidth-8){m.style.right='0';m.style.left='auto';}},true);
 /* B16 화면을 옮길 때 떠 있는 그림 확대·JB 미리보기·지우기·⚡ 창·⋯ 메뉴를 닫음(스크롤 잠김 modal-on이 남지 않게) */
 function overlaysClose(){if($('#imgmodal').classList.contains('on'))mclose(true);try{peekClose();}catch(e){}const m=$('#jbmenu');if(m)m.remove();try{Kit.clearClose();}catch(e){}$('#autopop').classList.remove('on');const bp=$('#bcpop');if(bp)bp.classList.remove('on');}
 /* B23 검색칸에 한 글자만이면 '2글자부터' 안내(아무 반응이 없어 고장처럼 보이던 것) */
