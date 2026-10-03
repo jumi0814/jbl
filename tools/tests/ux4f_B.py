@@ -40,10 +40,10 @@ def kit(b):
         pg.evaluate("['#k-sw','#k-bsw'].forEach(q=>{const e=document.querySelector(q);if(e)e.classList.add('open')})")
         pg.keyboard.press('t'); pg.wait_for_timeout(150)
         r = pg.evaluate("[__h.Kit.mode(),document.body.classList.contains('mode-b'),document.body.classList.contains('kit-off'),document.querySelectorAll('#k-sw.open,#k-bsw.open').length]")
-        ok(r == [None, False, True, 0], f'{tag} B → T: 빈칸 모드 꺼짐 · 견본 창 닫힘 {r}')
+        ok(r == ['b', True, True, 0], f'{tag} B → T: 빈칸 모드는 그대로(사용자 10-03) · 견본 창 닫힘 {r}')
         pg.keyboard.press('t'); pg.wait_for_timeout(150)
         r = pg.evaluate("[document.body.classList.contains('kit-off'),document.querySelector('#k-b').getAttribute('aria-pressed'),document.querySelectorAll('#k-sw.open,#k-bsw.open').length]")
-        ok(r == [False, 'false', 0], f'{tag} 다시 T → 막대 보임 · 빈칸 버튼 안 눌림 · 견본 창 닫힌 채 {r}')
+        ok(r == [False, 'true', 0], f'{tag} 다시 T → 막대 보임 · 빈칸 버튼 눌린 채 · 견본 창 닫힌 채 {r}')
         # 23 막대 ✕로 숨겨도 같음
         pg.keyboard.press('h'); pg.wait_for_timeout(100); pg.click('#k-hide'); pg.wait_for_timeout(200)
         n0 = pg.evaluate("document.querySelectorAll('#stage .rk-h,#stage .rk-b').length")

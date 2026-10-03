@@ -32,14 +32,14 @@ async def run(b, tag, vp, touch):
             ok(o[:3] == ['OMS1', 'CONS', 'IMPL'], f'{tag} 과목 표 순서 = 기본(시험순 없음) {o[:3]}')
             await pg.screenshot(path=J.TMP + f'/ux4i_home_{tag}.png')
     ok(await pg.evaluate("['exam.CONS','exam.PHARM','homeSort','fc.CONS'].map(k=>localStorage.getItem('jblhub.v1.'+k))") == keep0, f'{tag} LS exam.·homeSort·fc 값 그대로')
-    # ✓ 다 봄
+    # ux4f O13 카드 끝 ☆ 북마크(사용자 10-03 '다 봄 표시는 필요없고 북마크') — done.CONS 기록은 그대로 두고 cbm.CONS에 aid
     await pg.goto('about:blank'); await pg.goto(U + '#/CONS/WHT/learn'); await pg.wait_for_selector('#stage .tc', timeout=30000); await pg.wait_for_timeout(700)
-    r = await pg.evaluate("(()=>{const c=document.querySelector('#t-WHT-1');const h=c.querySelector('.thead .dn'),e=c.querySelector('.dnend');e.scrollIntoView({block:'center'});return [getComputedStyle(h).display,!!e.offsetParent,e.textContent,c.dataset.aid]})()")
-    await (pg.tap('#t-WHT-1 .dnend') if touch else pg.click('#t-WHT-1 .dnend')); await pg.wait_for_timeout(200)
-    dn = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.done.CONS')||'{}')")
-    ok(r[0] == 'none' and r[1] and r[2] == '✓ 다 봄' and dn.get(r[3]) == 1 and await pg.evaluate("document.querySelector('#t-WHT-1').classList.contains('done')"), f'{tag} 카드 끝 ✓ 다 봄 → LS done.CONS[{r[3]}] (머리 ✓ 숨김) {r[:3]}')
-    await (pg.tap('#t-WHT-1 .dnend') if touch else pg.click('#t-WHT-1 .dnend')); await pg.wait_for_timeout(200)
-    ok(r[3] not in await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.done.CONS')||'{}')"), f'{tag} 다시 누르면 취소')
+    r = await pg.evaluate("(()=>{const c=document.querySelector('#t-WHT-1');const h=c.querySelector('.thead .dn'),e=c.querySelector('.cbend');e.scrollIntoView({block:'center'});return [getComputedStyle(h).display,!!e.offsetParent,e.textContent,c.dataset.aid]})()")
+    await (pg.tap('#t-WHT-1 .cbend') if touch else pg.click('#t-WHT-1 .cbend')); await pg.wait_for_timeout(200)
+    dn = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.cbm.CONS')||'{}')")
+    ok(r[0] == 'none' and r[1] and r[2] == '☆ 북마크' and dn.get(r[3]) and await pg.evaluate("document.querySelector('#t-WHT-1').classList.contains('cbm')") and not await pg.evaluate("document.querySelector('#stage .dnend')"), f'{tag} 카드 끝 ☆ 북마크 → LS cbm.CONS[{r[3]}] (머리 ✓ 숨김 · 다 봄 버튼 없음) {r[:3]}')
+    await (pg.tap('#t-WHT-1 .cbend') if touch else pg.click('#t-WHT-1 .cbend')); await pg.wait_for_timeout(200)
+    ok(r[3] not in await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.cbm.CONS')||'{}')"), f'{tag} 다시 누르면 북마크 빼기')
     # B1-5 ⚡ ○✕ 없음
     m = await pg.evaluate("(()=>{const L=[...document.querySelectorAll('#stage .c-mem li')];return [document.querySelectorAll('#stage .mj,#stage [data-mj]').length,L.length,L.filter(li=>{const b=getComputedStyle(li).backgroundColor;return b!=='rgba(0, 0, 0, 0)'&&b!=='transparent'}).length]})()")
     ok(m[0] == 0 and m[1] > 0 and m[2] == 0, f'{tag} 학습: .mj 0 · ⚡ 줄 {m[1]}개 바탕색 {m[2]}')

@@ -18,7 +18,7 @@ async def main():
         await open_(pg, '#/OMS1/DD1/learn')
         k = await pg.evaluate(SZ, '#kit'); ok(k and k[1] <= 56, f'iPad 세로 kit 높이 ≤56 ({k})')
         ok(await pg.evaluate("document.querySelectorAll('#k-swl .sw').length===5 && getComputedStyle(document.querySelector('#k-swl')).display==='none'"), '860 이하: 견본 5개는 ▾ 팝오버 안')
-        dn = await pg.evaluate(SZ, '#stage .dnend'); ok(dn and dn[1] >= 40, f'카드 끝 ✓ 다 봄 높이 ≥40 (ux4 B1-6 — 머리 ✓ 원 대신) ({dn})')
+        dn = await pg.evaluate(SZ, '#stage .cbend'); ok(dn and dn[1] >= 40, f'카드 끝 ☆ 북마크 높이 ≥40 (ux4f O13 — 다 봄 자리) ({dn})')
         kb = await pg.evaluate(SZ, '#kit button'); ok(kb and min(kb) >= 40, f'kit 버튼 ≥40 ({kb})')
         await pg.tap('#k-swc'); await pg.wait_for_timeout(200)
         ok(await pg.evaluate("getComputedStyle(document.querySelector('#k-swl')).display!=='none'"), '▾ 누르면 견본 팝오버 열림')

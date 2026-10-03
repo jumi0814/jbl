@@ -108,9 +108,9 @@ def help_text(b):
     ctx, pg = new(b, 1280, 900)
     go(pg, '#/CONS/WHT/learn', 600)
     tx = pg.evaluate("document.querySelector('#help').textContent")
-    ok('지금 카드 ✓ 다 봄' in tx and '✓ 이해함 ·' not in tx.split('학습 탭')[-1][:200], "도움말 'D 지금 카드 ✓ 다 봄'")
+    ok('지금 카드 ★ 북마크' in tx and '✓ 이해함 ·' not in tx.split('학습 탭')[-1][:200], "도움말 'D 지금 카드 ★ 북마크'(사용자 10-03 다 봄 → 북마크)")
     ok('⭐ n ↓' not in tx, "도움말에 숨긴 '⭐ n ↓' 문구 없음")
-    ok(pg.evaluate("[...document.querySelectorAll('#stage [data-done]')].some(x=>x.offsetParent&&x.textContent.includes('다 봄'))"), "카드 끝 버튼 이름 '✓ 다 봄'")
+    ok(pg.evaluate("[...document.querySelectorAll('#stage [data-cbm]')].some(x=>x.offsetParent&&x.textContent.includes('북마크'))"), "카드 끝 버튼 이름 '☆ 북마크'")
     ok(not pg.errs, f'오류 0 {pg.errs[:3]}')
     ctx.close()
 

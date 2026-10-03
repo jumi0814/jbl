@@ -103,7 +103,7 @@ async def run(b, tag, vp, touch):
       return {flbg:getComputedStyle(fl).backgroundColor,frn:(f.querySelector('.frn')||{}).textContent,chips:[...c.querySelectorAll('.tchips .chip')].filter(e=>e.offsetParent).map(e=>e.className),
         dn:getComputedStyle(c.querySelector('.thead>.dn')).display,end:c.lastElementChild.className,tsh:(f.querySelector('.tstr .tsh')||{dataset:{}}).dataset.n}})()""")
     ok(r['flbg'] in ('rgba(0, 0, 0, 0)', 'transparent') and re.match(r'카드 \d+ · \d+묶음', r['frn'] or ''), f'{tag} B3-5 흐름 글자·틀 머리 {r["frn"]}')
-    ok(r['chips'] == ['chip yr n2'] and r['dn'] == 'none' and 'dnend' in r['end'], f'{tag} B3-5 카드 머리 칩 ⭐ 하나 {r["chips"]} · ✓ 원 {r["dn"]} · 끝 {r["end"]}')
+    ok(r['chips'] == ['chip yr n2'] and r['dn'] == 'none' and 'cbend' in r['end'], f'{tag} B3-5 카드 머리 칩 ⭐ 하나(끝 = ☆ 북마크 — 사용자 10-03 다 봄 대신) {r["chips"]} · ✓ 원 {r["dn"]} · 끝 {r["end"]}')
     if r['tsh']:
         await pg.evaluate("document.querySelector('#stage .frame').classList.remove('fold');document.querySelector('#stage .frame .tstr .tsh').click()"); await pg.wait_for_timeout(200)
         ok(await pg.evaluate("document.querySelector('#stage .frame .tstr').classList.contains('open')&&getComputedStyle(document.querySelector('#stage .frame .tstr .tsl2')).display!=='none'"), f'{tag} B3-5 📌 전략 {r["tsh"]}개 → 펼침')
