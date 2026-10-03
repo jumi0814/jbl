@@ -28,7 +28,7 @@ R: Beare-Stevenson {jb:S21-2} | {r:FGFR2 signaling pathway} mutation | — | {r:
 R: Antley-Bixler | One of two: P450 oxidoreductase gene or FGFR2 (S351C) | Extremely rare | Bicoronal (rarely lambdoid and metopic) / {r:Radiohumeral synostosis} / Choanal stenosis/atresia / Multiple joint contractures / Initially lifesaving therapies
 R: Carpenter {jb:J1} {jb:J2} | {r:RAB23} (6p12.1-p11.2) | 1/1,000,000, {r:Autosomal recessive} | Cloverleaf skull / Syndactyly and polydactyly / CNS abnormality / Airway maintaining: immediate precedence
 R: Thanatophoric dysplasia | FGFR3 | 3-6/100,000 births | Premature ossification of long bones / Achondroplasia/hypochondroplasia / "Thanatophorus"="death bearing" / Frequent lethal skeletal dysplasia
-R: Treacher Collins | {r:TCOF1} (81-93%) · Non-TCOF1 9% POLR1D, POLR1C | 1/25,000-50,000, familial 40%, Autosomal dominent, High penetrance | most common mandibulofacial dysostosis / (특징 5는 Treacher Collins vs Hemifacial microsomia 표)
+R: Treacher Collins {jb:J6} | {r:TCOF1} (81-93%) · Non-TCOF1 9% POLR1D, POLR1C | 1/25,000-50,000, familial 40%, Autosomal dominent, High penetrance | most common mandibulofacial dysostosis / (특징 5는 Treacher Collins vs Hemifacial microsomia 표)
 N: CDS 7(p.12) = Crouzon · Pfeiffer · Apert · Saethre-Chotzen · Carpenter · Muenke · Treacher Collins {jb:Q39}. 나머지(Jackson-Weiss·Beare-Stevenson·Antley-Bixler·Thanatophoric)는 추가 슬라이드. [[DD1:12]]
 N: FGFR와 관련 없는 둘 = Saethre-Chotzen(TWIST1)·Carpenter(RAB23) {jb:J2}. 단 p.37 "Fibroblast growth factor family" 목록에는 Saethre-Chotzen도 적혀 있으니 유전자는 개별 슬라이드 기준. [[DD1:37]] [[DD1:56]] [[DD1:62]]
 
@@ -581,6 +581,7 @@ R: 4 | proximal segment | rotated until {r:buccal horizontal surgical reference 
 R: 5 | chin point | NB line: AP position of chin {r:4 ±2 mm} / Facial depth angle: {r:FH∠N-Pog 90 ±3°} | 달성되지 않으면 {r:occlusal plane을 바꿔} 조정(Mx-Mn complex 회전), 여성은 각도를 조금 작게
 N: 출발점 = Natural head position에서 자세를 취했을 때의 profile. 상악 전치부 각도는 보통 교정으로 결정, 바람직하지 않으면 segmental osteotomy. [[DD3:14]] [[DD3:15]]
 N: 뼈를 움직인 만큼 연조직이 1:1로 따라오지 않음 — chin setback 시 연조직 변화가 setback 양의 90% 안 되는 경우 많음(수치 암기 아님). [[DD3:20]]
+N: 슬라이드의 Three critical decision 순서는 ① The vertical position of the maxillary incisor ② The AP position of the maxillary incisor ③ The occlusal plane angulation — 위 표의 1·2(AP·vertical)는 paper surgery에서 상악 전치부 위치를 잡는 기준을 나눠 적은 것. [[DD3:14]]
 
 #TBL CAS — 정의·동의어·쓰임·구성 | k=DD3 | src=[[DD3:33]] [[DD3:34]] [[DD3:36]] [[DD3:38]] [[DD3:49]]
 H: 항목 | 슬라이드 원문 | 필기
@@ -631,3 +632,19 @@ R: CAS 수술 순서 | 계획을 수술장에서 그대로 재현 | {r:template}
 R: 정확도 연구 | {r:18}명 · {r:12} landmarks · {r:MAE} | pre/postop {r:1wk} CT 중첩 | condyle {r:1.03} < 상악 1.25 < L1·B point {r:2.55} mm | 하악 {r:Y(수직)} error 큼 → 상악 {r:impaction 조금 더} | —
 R: **CAS 장점 6** | ==Precise prediction== · asymmetric cases · maxilla positioning · proximal segments · TMJ positioning · setback amount | CBCT + STL fusion · 계획 단위 mm → {r:sub-mm} | 해당 없음 | p.122 Precise prediction에 빨간 밑줄 | {jb:Q16} 서술 — 장점 6
 R: **CAS 단점 5 · Future 4** | 단점 = {r:2~3 days} · wire {r:3 weeks} 전 · mass production ✗ · high quality 3D CT · precise surgery | Future = Easy planning · Less time consuming · Real time navigation · Cost efficient | 해당 없음 | 장점 6 · 단점 5 개수 구별 | {jb:Q29} 서술 — 단점 5
+
+#TBL CDS 영아기 문제 — 소견과 처치 | k=DD1 | src=[[DD1:38]] [[DD1:39]] [[DD1:40]] [[DD1:41]] [[DD1:43]]
+H: 문제 | 소견 | 처치·검사
+R: Airway | Deficient growth of midfacial structures · increased resistance to airflow, nose breathing difficulties, nocturnal apneas and snoring, hypoxia | nasopharyngeal airway or {r:tracheostomy}
+R: Feeding | Breast-feeding: can be impossible | {r:nasogastric tube} or gastrostomy
+R: ICP | Cranial sutures not patent → not enough space for rapid growing brain during the first year of life → raised ICP · no defined limits of harmful pressure | X-ray: cranial vault "{r:beaten copper}" / CT: small or absent liquor cistern / {r:Papilledema}(blurred disk margins)
+R: Hydrocephalus | accumulation CSF within cranium · closely associated CDS patients · ventriculomegaly masked by a craniostenosis | {r:Ventriculoperitoneal shunting}: tx of choice
+R: Visual impairment | {r:Optic atrophy} · {r:Amblyopia} · {r:Strabismus} · {r:Exorbitism} with shallow orbit | repeated, careful ophthalmologic assessment · strabismus는 early treatment to restore binocular vision
+N: 필기: 신생아 때는 진짜 치료해야겠다 보이는 것만 치료 · x-ray로 보면 그릇 두들겨 만든 모양(beaten copper) · CT로 보면 대뇌수도관 좁아져 있음. [[DD1:38]]
+
+#TBL 골유착 치유 3단계 (26 필기: 골친화기 서술 언급) | k=DX | src=[[DX:2]] [[DX:5]]
+H: 단계 | 시기 | 일어나는 일
+R: ① {r:골친화기} | 식립 직후 ~ 약 {r:1달} | 창상으로 인한 골치유 반응과 유사 / 혈병 형성 → 분해와 함께 fibrin network 형성 / 식립 {r:1주일} 내 골아세포 이주·골화 시작 / 압축된 골의 초기 흡수 및 BMP 유리 / 유골(osteoid) 형성 → {r:woven bone} 침착
+R: ② {r:골전도기} | {r:2-3개월} | Woven bone이 더 강한 성숙골인 {r:층판골(lamellar bone)}로 치환 / 임플란트 표면에 더 많은 양의 골이 더해짐
+R: ③ {r:골적응기} | 식립 후 {r:3-4개월} 이후 | 더 이상의 골 접촉은 증가하거나 감소하지 않음 / 부하에 반응하여 {r:골개조(bone remodeling)}
+N: 26 필기 p.2: "골친화기에 대해 서술하라고 하면 여기 있는 거 대략 서술하세요". 정의: 살아있는 뼈와 하중을 받는 임플란트 표면의 직접적인 구조적, 기능적 연결(1960초 Branemark) · 그림 Osseointegrated vs Non-Integrated(Connective Tissue) — 26 필기 p.5: fibrous tissue가 개제되었다면 골유착 실패로 본다. [[DX:2]] [[DX:5]]

@@ -6,6 +6,14 @@ R: {r:Absorption} | molecular interaction | 모든 파장 흡수 = 검게(열로
 R: {r:Scattering} | particles or air bubbles · titanium dioxide·calcium carbonate | 모든 파장 산란 = 희게(투과도 없음) · etching = chalky white | 적색만 산란 = 적색
 N: Two processes reduce transparency = Absorption + Scattering · 이 두 가지가 아니면 투명하게 통과(필기) · Gloss = 정반사 영역(p.85). [[COL:13]] [[COL:85]]
 
+#TBL 빛의 산란이 만드는 색 — 낮 하늘 · 노을 · 치아 유백광 | k=COL | src=[[COL:39]] [[COL:40]] [[COL:89]]
+H: 장면 | 빛의 경로·조건(필기) | 산란되는 빛 | 보이는 색
+R: 낮 하늘 {jb:S14} | 빛의 {r:이동거리가 짧음} · 공기 중 나노보다 작은 입자 | 파장이 짧은 {r:푸른빛} — 파장이 짧을수록 산란이 잘 됨 | 산란된 푸른빛이 지표에 도달 → {r:파랑}
+R: 노을(해 뜰 때·질 때) {jb:S14} | 빛이 {r:비스듬히} 들어오며 공기를 지남 → {r:이동거리가 길어짐} | 푸른빛이 계속 산란되어 없어짐 | 남은 {r:빨간색}만 보임
+R: 산란이 없다면 | — | — | {r:까맣게}만 보일 것(모든 파장의 빛이 흡수되므로)
+R: 치아 Opalescence(유백광) | Particles : smaller than the wavelength of visible light · higher refractive index · HA | Scattering of the {r:shorter wavelengths} (opal effect) | Reflected light : {r:bluish}(앞에서 비추면 푸르게) · Transmitted light : {r:orange/brown}(뒤에서 비추면 누렇게)
+N: 필기 p.39 "하늘이 파란 이유와 노을이 빨간 이유는 같습니다" · p.40 "사람 치아의 유백광과 같은 원리". JB 답(22·21·20·19년 서술)의 산란 정의 '파동이나 입자선이 물체와 충돌'·'질소, 산소 분자'는 자료에 없음 — 필기는 '나노보다 작은 입자'. [[COL:39]] [[COL:40]] [[COL:89]]
+
 #TBL 간상체·추상체와 색맹 | k=COL | src=[[COL:17]] [[COL:29]] [[COL:30]] [[COL:32]] [[COL:33]] [[COL:36]]
 H: 구분 | 무엇을 | 이상이 생기면 | 보이는 세상
 R: {r:Rods}(간상체) {jb:Q13} | Rhodopsin, no color information — 흑백 | Rod Monochromat = 추상체가 모두 기능 ✗ → 간상체로만 | 흑백
@@ -91,12 +99,12 @@ R: 3 | Tooth axis | Distal inclination: {r:increases from the central incisor to
 R: 4 | Zenith of the gingival contour | {r:the most apical point of the gingival outline} · usually distal to the center | {jb:Q08} {jb:Q11}
 R: 5 | Balance of the gingival levels | Lateral incisor gingival height: {r:Class I: Coronal} · Class II: Apical | {jb:Q11}
 R: 6 | Level of the interdental contact | {r:Progress apically} from the incisors toward the posterior dentition | {jb:Q11}
-R: 7 | Relative tooth dimensions | Golden proportion 1.618 : 1.0 : 0.618 · width/height ratio Central {r:85-86%} | {jb:R07}
-R: 8 | Basic features of tooth form | {r:Square · Ovoid · Triangular} | {jb:Q10}
-R: 9 | Tooth characterization | Opalescence(transmit red-orange · reflect blue-violet) · Fluorescence · Translucency · Dentin effect | {jb:S04} {jb:R06}
-R: 10 | Surface texture | Horizontal = {r:shorter or wider} · Vertical = {r:longer or narrower} · aging → darker | {jb:Q06}
-R: 11 | Color | Value: {r:Most important} · minor effect | {jb:U05} {jb:Q12}
-R: 12 | Incisal edge configuration | "Gull" shape(young) → {r:Straight line or inverted curve} | {jb:Q06} {jb:Q11}
+R: 7 | Relative tooth dimensions | Golden proportion 1.618 : 1.0 : 0.618 · width/height ratio Central {r:85-86%} | {jb:R07} {jb:T08}
+R: 8 | Basic features of tooth form | {r:Square · Ovoid · Triangular} | {jb:Q10} {jb:T08}
+R: 9 | Tooth characterization | Opalescence(transmit red-orange · reflect blue-violet) · Fluorescence · Translucency · Dentin effect | {jb:S04} {jb:R06} {jb:T08}
+R: 10 | Surface texture | Horizontal = {r:shorter or wider} · Vertical = {r:longer or narrower} · aging → darker | {jb:Q06} {jb:T08}
+R: 11 | Color | Value: {r:Most important} · minor effect | {jb:U05} {jb:Q12} {jb:T08}
+R: 12 | Incisal edge configuration | "Gull" shape(young) → {r:Straight line or inverted curve} | {jb:Q06} {jb:Q11} {jb:T08}
 R: 13 | Lower lip line | Coincidence of incisal edges with the lower lip | {jb:T09} {jb:Q11}
 R: 14 | Smile symmetry | {r:mouth corners · occlusal line · interpupilary line} | {jb:R09} {jb:T09}
 N: 교수님 필기 "이걸 넘버링 내진 않습니다" · 26 "다만 간혹 다른 교수님이 내시기도 합니다" — 번호보다 기준마다의 문장. 7~12번이 21년 8번 문항의 보기 6개. [[FUN:10]]
@@ -304,6 +312,13 @@ R: Posterior teeth | Stress-bearing | Gold inlay, Onlay, Veneer Crown | (설명 
 R: Posterior teeth | Non-stress-bearing | Resin Composite, Compomer, Glass Ionomer, RMGI, Metallic | (설명 없음) |
 N: 분홍 글씨는 슬라이드가 색으로 따로 표시한 말(범례 없음). 필기: 실제로는 복합레진 or GI or RMGI 정도지 compomer는 요즘 잘 안 씀 · 세라믹은 중간고사 이후 · 오늘은 전치부 직접 수복(복합레진)에 초점. [[MAT:6]]
 
+#TBL Shade selection — 기성 shade guide vs 나만의 shade guide vs 색측정기 | k=MAT | src=[[MAT:26]] [[MAT:27]] [[MAT:30]] [[MAT:31]] [[MAT:32]]
+H: 방법 | 무엇(슬라이드·필기) | 좋은 점(필기) | 한계·주의(필기)
+R: 기성 {r:shade guide} | VITA guide 4 = Toothguide 3D-Master · Bleachedguide 3D-Master · {r:Classical} · Linearguide 3D-Master | 손쉽고 전통적으로 많이 씀 | 실제 내가 쓰는 {r:복합레진}의 셰이드와 같지 않음 · 인공치 모양이라 {r:두께}가 있어 충전 두께에 따라 달라지기도
+R: {r:Customized shade guide} | {r:내가 쓰는 레진}으로 셰이드 가이드를 채워 손잡이를 달아 만듦(Anderson and Kugel) | customizing한 나만의 셰이드 가이드를 구비하면 좋음 | —
+R: {r:Spectrophotometer}(색측정기) | {r:portable} — 진료실 체어사이드 · VITA Easyshade · SpectroShade · Shadepilot | 치아의 {r:middle}, {r:cervical}, {r:incisal} 쪽을 구분해서 색을 추천 | —
+N: 기성 guide의 한계가 Shade Mismatch로 이어지고, 극복 방법이 ① Customized shade guide ② Spectrophotometer(필기 "어떻게 극복?"). 증례: Shadepilot으로 #31(D3) · 32(A3) · 41(C3). [[MAT:27]] [[MAT:30]] [[MAT:31]] [[MAT:32]]
+
 #TBL 심미 치료의 9단계 — 단계별로 하는 일 | k=PLAN | src=[[PLAN:8]] [[PLAN:7]]
 H: 단계 | 슬라이드 항목 | 필기 풀이
 R: 1. {r:Understanding patient} | Patient interview, oral examination · X-rays, photographs, study casts · Evaluation sheet, questionnaires · Tentative diagnosis and treatment planning · Shade documentation | 환자에 대한 정보를 얻고 평가하는 단계
@@ -415,7 +430,7 @@ R: Shaping and Contouring | Angles · Curved lines and surfaces · Vertical and 
 R: Surface Characterization (Contouring) | Surface texture – Convexity, concavity, groove, fissure, stain, shadow, highlight · Study model, photographs · Reference – Adjacent teeth · Young pt. – textured surface · Older pt. – smoother texture, flat incisal edge | 가장 좋은 참고자료 = 거울상의 맞은편 치아 · teflon tape는 contouring·참고할 때 제거
 R: Arrangement of Teeth | Alteration of axial inclination of labio-lingual and mesio-distal surfaces · Lombardi's guide · Need time to adapt → Temporary restorations or diagnostic mock-up | 치아 자체를 움직이는 건 쉽지 않음 → 기울인 것 같은 효과를 다른 방법으로
 R: Staining | Duplicate the natural variations · Create illusions · Glaze the crown first: Apply stain over the glaze · Cut into the porcelain · Combine glaze with stains | 진하게 → 작아 보이고 들어가 보임 / 밝게 → 튀어나와 보이고 커 보임
-N: Principle of Illusion — To simulate shadow (depth): Changing contour · Arrangement of teeth · Staining / To change edge line: Combination of lines. [[SPE:5]]
+N: Principle of Illusion {jb:Q21} — To simulate shadow (depth): Changing contour · Arrangement of teeth · Staining / To change edge line: Combination of lines. [[SPE:5]]
 
 #TBL Lombardi's guide | k=SPE | src=[[SPE:10]]
 H: 치아 | 반영 | 그림의 양 끝
@@ -481,6 +496,12 @@ R: vs {r:Direct composite} | cusp capping · multiple restorations · large & pr
 R: vs {r:Indirect ceramic(Porcelain)} | questionable prognosis · financial problem | Contact modification(Composite adding & adjusting) · Wear, laboratory process, elastic modulus | Mechanical properties
 N: 필기: 적응증은 절대적인 것이 아니고 간접 수복 세라믹 인레이와 직접 컴포짓 수복 사이의 대체제로서 고민. [[VEN:16]]
 N: Contra-indication 3: {r:Heavy occlusal force}(필기: 절대 금기는 아니고 상대 금기 — 포세린에 비해 강도 떨어짐) · Parafunctional habit · Impossible isolation & moisture control. [[VEN:17]]
+
+#TBL 간접 레진 인레이 제작 — 전통 기공 적층 vs hybrid composite block 밀링 | k=VEN | src=[[VEN:20]] [[VEN:21]] [[VEN:22]]
+H: 방식 | 과정(필기) | 특징(필기)
+R: 전통 — {r:기공소 적층} | 인상 채득 → margin 표시 → 복합레진 {r:적층법}으로 채움 → 광조사 + 찜통 같은 데서 {r:열} → 조정 → 치아 처리 후 접착 | {r:구외}라 타액 문제없이 해부학적 형태·인접면·groove 재현 · 추가 중합 = p.18 Improved mechanical properties · 미세하게 더 수축 → 안 들어갈 때가 있어 {r:조정} 필요
+R: 요즘 — {r:hybrid composite block} | 광학 3차원 인상 데이터 → {r:밀링}해서 붙임 | 블록: Lava Ultimate · Paradigm MZ 100(Solventum) · Tetric CAD(Ivoclar) · Grandio Blocs(Voco) · CeraSmart(GC) · LuxaCam Composite(DMG) · Brilliant Crios(Coltene) · Katana Avencia Block(Kuraray) · Shofu Block(Shofu) · Mazic Duro(Vericom)
+N: p.18 장점 Improved mechanical properties — Additional polymerization: heat, pressure, light와 이어짐. [[VEN:18]] [[VEN:20]] [[VEN:21]]
 
 #TBL 접착 계면 처리 — composite inlay(이 강의) vs PLV·crown(JB 해설) | k=VEN | src=[[VEN:23]]
 H: 계면 | Composite resin inlay (p.23) | Porcelain laminate veneer (JB 24년 23번 그림) | Crown cementation (JB 21년 23·22번·24년 25번 해설)

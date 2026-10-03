@@ -130,6 +130,7 @@ R: 방향 | M-D &/or B-L(M-D 40% · B-L 40% · 복합 20%) | 주로 {r:B-L}(F-L)
 R: 증상 | Highly variable — bite pain·cold | Usually none(불편한 증상 없는 경우 많음)
 R: 확인 | Illumination · probing · stain · biting · magnification | {r:Flap reflection} — diagnostic surgery + microscope
 R: 치료·예후 | CEJ 상방이면 crown(± RCT), 하방이면 발치 — {r:Varied} | 확인되면 발치 — {r:Hopeless}
+N: ⚠ 방향 칸: 26 p.27 Table 3 Direction 행(P = .357)은 cracked tooth M-D 36 · B-L 30 · Both 21 / VRF M-D 8 · B-L 4 · Both 2 — 이 표의 VRF는 M-D가 더 많아 교수님 설명·Summary 표의 'VRF = B-L'과 다름(자료 숫자 그대로 병기). [[CRK:27]]
 N: 25 필기 p.20: "longitudinal tooth fracture가 뭔지, 5가지 카테고리가 어떻게 나뉘는지, 그중 cracked tooth와 vertical root fracture의 차이점에 대해서만 알면 된다". [[CR5:20]]
 
 #TBL Band vs Crown · 분류별 치료 흐름 | k=CRK | src=[[CRK:57]] [[CRK:58]] [[CRK:59]] [[CRK:60]] [[CR5:36]] [[CR5:42]]
@@ -154,6 +155,8 @@ R: 분류 | Cracked tooth {r:약 80%}(87례) · VRF 14례 · split tooth 4례 ·
 R: 수복물 | Cracked tooth 87례 중 gold 34 · no treatment 24 · amalgam 18 · resin 등 11 / Class I 35 > crown 16 > Class II 12 → {r:크고 금속성}·{r:Class I}
 R: 근관치료 | VRF 14례 중 {r:11례}가 근관치료 치아(P < .001)
 R: 방향 | M-D 40.2% · B-L 40.2% · 복합 19.6% → {r:방향 무관}
+R: 수복물 크기(Table 3, P = .102) | Cracked tooth: <1/3 12 · {r:1/3–2/3 27} · >2/3 8 · crown 16
+R: 방향(Table 3, P = .357) | Cracked tooth M-D 36 · B-L 30 · Both 21 / VRF M-D 8 · B-L 4 · Both 2 — ⚠ 교수님 설명의 'VRF = B-L'과 다름
 R: 진단 방법 | Naked eye 47.7% · Transillumination 17.8% · Dye 16.8% · Microscope 9.3% · Diagnostic surgery 8.4%
 N: 26 p.22 논문: J Endod 2012 · J Dent 2020 · Eur J Oral Sci 2022 · Dent Mater J 2022(Seo et al.). 25 in vivo 온도 측정·cyclic stress 분석: gold 수복치에서 온도 변화가 급격, cold(아이스)가 더 큰 stress, Gold Class II가 stress 최대. [[CRK:22]] [[CR5:25]] [[CR5:28]]
 
@@ -272,7 +275,7 @@ R: 와동형성 | 저항·유지형태 원칙을 다 지켜야 · 수복물 두�
 R: 술자 요인 | {r:cavity preparation} · {r:cementation} | {r:Bonding} · {r:resin handling} · {r:Matrix application for class 2}
 R: 상대적 적응증 | {r:Large defect or previous restoration} · {r:Class 2 cavity} | 치질이 많이 남았을 때(11세 증례) · 큰 와동도 cusp별 build-up으로 가능
 R: 치아 수명 | — | 삭제가 적어 {r:치아 자체의 수명 연장}에 유리
-R: 결정 기준 5 {jb:Q10} | Physical properties of materials / Remaining tooth structure / aesthetics / Preference of clinician/patient / Cost | (같은 5가지로 판단)
+R: 결정 기준 5 {jb:Q10} | Physical properties of materials / Remaining tooth structure / aesthetics / Preference of clinician/patient / Cost (income)-domestic dental fee-for-service | (같은 5가지로 판단)
 R: 성공 요소 4 {jb:Q09} | Luting cement / mechanical properties of inlay materials / operator skill / patient selection | —
 N: 교수님 요지 — "와동이 넓으면 inlay, 좁으면 filling?"이 아니라 위 5가지를 따진다. 접착은 filling, 형태·contact은 inlay. [[INL:25]] [[INL:21]] [[INL:22]]
 
@@ -345,7 +348,7 @@ N: 접착은 filling이 유리(cement는 10 MPa 미만인 경우도), 형태·co
 #TBL Inlay vs Filling 전체정리 ② — 결정·술식·성공의 기준 | k=INL | sum=1 | src=[[INL:7]] [[INL:20]] [[INL:25]] [[INL:26]] [[INL:29]] [[INL:31]] [[INL:32]] [[INL:36]] [[INL:43]] [[INL:44]] [[INL:49]] [[INL:53]] [[INL:73]] [[INL:74]] [[INL:103]] [[INL:104]]
 H: 항목 | 기준·수치 | 방법·요령 | 이유·주의 | ★ 시험
 R: 인레이 성공 요소 | 4개 — 적당한 기간 유지(van Dijken 2003) | {r:Luting cement}(dual cured · cementation · IDS) · {r:mechanical properties} · {r:operator skill} · {r:patient selection} | {r:cementation is the most critical step} · patient selection 빠뜨리기 쉬움 | {jb:Q09} 22년 — 성공 요소(p.7)
-R: Inlay? Filling? 결정 기준 | 5개 — "넓으면 인레이?"가 아님 | {r:Physical properties} · {r:Remaining tooth structure} · {r:aesthetics} · {r:Preference of clinician/patient} · {r:Cost} | 치질이 많이 남으면 {r:direct}(치질 보존) | {jb:Q10} 23·20년 — 고려사항 5(p.25)
+R: Inlay? Filling? 결정 기준 | 5개 — "넓으면 인레이?"가 아님 | {r:Physical properties} of materials · {r:Remaining tooth structure} · {r:aesthetics} · {r:Preference of clinician/patient} · {r:Cost} (income)-domestic dental fee-for-service | 치질이 많이 남으면 {r:direct}(치질 보존) | {jb:Q10} 23·20년 — 고려사항 5(p.25)
 R: Indirect tooth-colored 상대적 적응증 | composite inlay 또는 ceramic inlay | {r:Large defect or previous restoration} · {r:Class 2 cavity} | 물성 차이보다 defect 크기·위치 | —
 R: Gold cusp capping(저항형태) | margin 위치 = primary groove→cusp 거리의 ~1/2 no · {r:1/2~2/3} consider · {r:2/3~} capping | 응력 분산 위해 둘러싸기 | 악습관·치아 위치·functional cusp 고려 · 하악 {r:DL cusp} 주의 | —
 R: Tooth-colored 잔존 wall | {r:1 mm} = bonded reinforcement minimum · {r:1-2 mm} = 고려 · 0.5 mm는 강화 무의미 | tooth position · parafunction · lateral guidance → bonded reinforcing or {r:occlusal coverage} | gold 2/3 원칙을 그대로 적용하자는 consensus 없음 | {jb:Q12} 연도 미상 — cusp coverage 기준(p.43)
@@ -389,7 +392,7 @@ R: Total-etch | 길게 형성 | {r:Thick} hybrid layer · deeply exposed collage
 R: Self-etch | {r:짧음} — 그래도 큰 문제 안 됨 | {r:얇음}(Shallow hybridization)
 N: 25 p.13 필기 "tubule의 단면적 < intertubule의 단면적, 그래서 resin tag 자체가 얼마나 깊게 들어가느냐보다는 hybrid layer에서 얼마나 견고하게 결합 형성되는지 봐야" — p.45 keyword 25 필기에도 같은 질문. [[ADH:13]] [[ADH:45]]
 
-#TBL Total-etch vs Self-etch vs Universal | k=ADH | src=[[ADH:24]] [[ADH:25]] [[ADH:26]] [[ADH:28]] [[ADH:30]] [[ADH:31]] [[ADH:33]] [[ADH:36]] [[ADH:37]]
+#TBL Total-etch vs Self-etch vs Universal | k=ADH | src=[[ADH:24]] [[ADH:25]] [[ADH:26]] [[ADH:28]] [[ADH:29]] [[ADH:30]] [[ADH:31]] [[ADH:33]] [[ADH:36]] [[ADH:37]]
 H: 항목 | Total-etch (Etch & Rinse) | Self-etch | Universal
 R: 합친 단계 | Etching / Priming / Bonding {r:각각} | {r:Etching + Priming}(산성 primer) / Bonding | {r:Etching + Priming + Bonding} 한 병
 R: Smear layer | {r:제거}(인산 부식 후 rinse) | {r:유지} — 도말층과 함께 문질러 hybrid layer에 포함 | Etch & Rinse / Self-etch / Selective enamel etch 모두 가능
@@ -399,6 +402,7 @@ R: 상아질 | {r:(too) aggressive for dentin} · vulnerable to leakage and biod
 R: 약점 | collagen 과건조 collapse · resin tag 부족 → 빈 공간 · MMP | Potential smear layer interference · {r:Sensitive for hydrolytic degradation} | 각 방법을 알고 써야(다른 접착제를 universal처럼 쓰면 안 됨) · '한 병'이라고 모두 universal은 아님 — 1-bottle Etch & Rinse와 혼동 금지(26 필기 p.33)
 R: Protocol | 30-40% 인산 {r:15 sec}(enamel & dentin) → primer {r:active rubbing 15 sec}(wet bonding) → separate hydrophobic bonding agent → immediate light-curing | {r:Selectively etch enamel} 30-40% 인산 15 sec → {r:actively rubbing} mild self-etch primer(10-MDP) → separate hydrophobic bonding agent → immediate light-curing | —
 R: 범용성 | — | — | {r:Single bottle} · Metal / Ceramic / Composite · Direct & Indirect
+R: 산성도(self-etch primer) | — | {r:Strong} pH < 1 · Intermediately strong 1 < pH < 2 · {r:Mild} pH ≈ 2 · Ultra-mild pH > 2.5 — 보통 {r:pH 2~3}(필기) · 강할수록 resin tag 길고 탈회 깊음 | —
 N: Combined(selective enamel etching + self-etch primer) = gold standard — enamel은 선택적으로 산부식, dentin에는 self-etch. 25 필기 조언: self-etch는 20초 이상 열심히 문지르고 용매를 충분히 날릴 것. [[ADH:20]] [[ADH:36]] [[ADH:34]]
 
 #TBL 접착제의 적용 방식과 세대 | k=ADH | src=[[ADH:20]] [[ADH:21]]
@@ -630,3 +634,27 @@ R: 변색치·ankylosis | non-vital 변색 · #11 ankylosis | {r:resin veneering
 R: Diastema closure | 삭제 덜 하는 것 선호 | {r:grinding} 필수 · line angle을 {r:center}로 + distal filling · 작은 space는 {r:body shade mix} | grinding 안 하면 {r:접착력↓} | —
 R: Finishing & polishing | 두 번에 나눠 | {r:1st}: gross contouring·palatal / {r:2nd}: contour correction·final polish | strip은 {r:S-shape} — C-shape이면 {r:contact loose} | —
 R: Consistent success | 3요소 | {r:anatomy·materials 지식} · {r:determination(passion)} · {r:training} | 레진은 {r:1-2 brand}로 self-training · microhybrid + microfill · nanohybrid | —
+
+#TBL Vital bleaching의 종류 — 치과 관리 vs OTC 4종 | k=WHT | src=[[WHT:72]] [[WHT:73]] [[WHT:74]] [[WHT:75]]
+H: 종류 | 방식 | 특징·예 | 문제점
+R: {r:In-office bleaching}(power bleaching) | Professionally supervised — 진료실 | 30% H2O2 ± light | 장단점은 'Night guard vs In-office' 표
+R: {r:At-home bleaching}(night guard bleaching) | Professionally supervised — 맞춤 tray | 10% carbamide peroxide | 장단점은 'Night guard vs In-office' 표
+R: {r:Whitening dentifrice} | {r:Abrasion} | remove {r:surface stain} | {r:Do not change intrinsic color}
+R: Tray-based OTC systems | fabricate(boil and form) tray | — | {r:hard to fit}, uneven whitening
+R: Brush-applicator systems | whitening gel is painted onto the teeth | Colgate Simply White(18% carbamide peroxide) | —
+R: Whitening strips | adhesive-strip delivery systems | Crest White strips(6% hydrogen peroxide) · Crest Professional Whitestrips(6.5% hydrogen peroxide) · LG 생활건강 Claren(2.7% hydrogen peroxide) | —
+N: Chief concerns of OTC(슬라이드 75): ① {r:Absence of dentist supervision} — etiology of tooth discoloration / whether bleaching is appropriate ② Lacking clinical studies on safety. 26 필기(슬라이드 74): 농도·적용법이 다양하므로 '제품 자체'보다 적응증 판단이 먼저. [[WHT:75]]
+
+#TBL Tooth-colored inlay 와동형성 원리 — 수치와 이유 (26 '시험 출제 예고' p.36-41) | k=INL | src=[[INL:36]] [[INL:37]] [[INL:38]] [[INL:39]] [[INL:40]] [[INL:41]] [[INL:43]] [[INL5:36]] [[INL5:37]] [[INL5:38]] [[INL5:39]] [[INL5:40]]
+H: 원리(슬라이드) | 수치·방법 | 이유(슬라이드·필기)
+R: {r:Occlusal clearance} | {r:1.5-2.0 mm} · possibly {r:1.0 mm for e.max} | Otherwise, {r:break during fabrication}; {r:fracture during cementation} · 25 필기: 1 mm 하면 시멘트 두께 때문에 실제로는 0.8 mm → 1.5 mm는 해야
+R: {r:No bevel} | — | (슬라이드 원문 — 이유는 자료에 없음)
+R: {r:Width} | {r:≥ 1.5 mm}(≥ 1.0 mm for e.max) | 26 필기: isthmus width ≥1.5 mm가 일반적, 너무 얇으면 fabrication/cementation 중 fracture 위험↑
+R: {r:Divergent, relatively less-retentive prep} | Tooth-colored {r:12도-15도} · Gold inlay {r:6도} ok | 25 필기: 그렇지 않으면 seating이 잘 안 돼서 resin cement로 많이 채워질 수밖에 없음
+R: {r:Proximal clearance} | 인접치와 {r:0.5 mm} | 26 필기: 기공·{r:cement removal}·{r:self-cleaning}에 유리 · 25 필기: 기공물 작업할 때 여유
+R: {r:Rounded proximal box} | 완만한 곡선 | 25 필기: 와동이 너무 복잡하면 {r:CAD-CAM milling bur}가 잘 따라가지 못함
+R: {r:Smooth and even walls and floors} | 적당한 사이즈의 bur로 한 번에 쭉 | 25 필기: 바닥이 찌글찌글하면 피팅할 때 어려움
+R: {r:Internal angle: rounded} | rounding된 inlay bur(resin inlay bur) | Otherwise, technician이 {r:block-out with die-spacer} · 26 필기: sharp angle은 {r:stress concentration} · 25 필기: 둥글어야 seating이 잘 되고 응력집중이 덜 됨
+R: {r:Uniform reduction} | — | 26 필기: uniform reduction + enamel margin 유지가 핵심
+R: {r:Enamel margin} | 가능한 한 enamel에 margin | 26 필기: {r:bonding}과 {r:prognosis}에 유리 · margin이 enamel이면 approximately {r:8–10 years}(p.87)
+N: 26 필기 p.43 "★ 시험 가능: tooth-colored inlay cavity preparation 원리를 {r:5가지 이상} 설명할 수 있어야 함" — 이름 + 수치 + 이유 한 줄씩. 남은 wall 기준(1 mm · 1-2 mm)은 '잔존 wall 두께와 cusp coverage' 표 {jb:Q12}. [[INL:43]]
