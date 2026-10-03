@@ -497,7 +497,7 @@ body.jbone #jbbar .b2{display:none}body.jbone #jbbar .b1{flex-wrap:nowrap;overfl
 @media (max-width:1024px){body.jbone #kit .lbl{display:none}body.jbone #kit{padding:4px 6px}}
 /* V09 강의 틀 목차: 좁은 화면은 한 단(요지가 잘리지 않게) · 보기 설정은 ⋯ 안에 */
 @media (max-width:900px){.frame .outline{column-count:1}}
-html{scrollbar-gutter:stable}button.link[data-jb]{min-width:28px;min-height:28px;padding:2px 6px}@media(pointer:coarse){button.link[data-jb]{min-width:44px;min-height:44px}}details.pmore{position:relative;display:inline-block}details.pmore>summary{list-style:none;cursor:pointer;min-width:40px;text-align:center}details.pmore>summary::-webkit-details-marker{display:none}
+@media(hover:hover) and (pointer:fine){html{scrollbar-gutter:stable}}button.link[data-jb]{min-width:28px;min-height:28px;padding:2px 6px}@media(pointer:coarse){button.link[data-jb]{min-width:44px;min-height:44px}}details.pmore{position:relative;display:inline-block}details.pmore>summary{list-style:none;cursor:pointer;min-width:40px;text-align:center}details.pmore>summary::-webkit-details-marker{display:none}
 details.pmore .pmenu{position:absolute;right:0;top:calc(100% + 4px);z-index:30;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(40,30,10,.14);padding:8px;display:flex;flex-direction:column;gap:6px;min-width:150px}
 /* V10 허브·과목 홈 잔손질 */
 .scard .sacts{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}.scard .sacts .btn{display:block;width:100%}
