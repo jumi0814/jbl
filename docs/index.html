@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"06a4f59f",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"25e484c0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1481,7 +1481,7 @@ body.d-home #stage{padding-top:8px}
 #hlec .lcard .hot2{display:inline-block;margin-left:6px;font-size:12px;font-weight:600;color:var(--acc)}
 #hlec .lcard .lm{display:block;margin-top:4px;font-size:12px;color:var(--faint)}
 #hlec .lcard .tl{display:block;margin:10px 0 0;padding:0;background:none;border:0;border-radius:0;font-size:13.5px;color:var(--sub)}
-#hlec .lcard .lh{display:-webkit-box;margin:6px 0 0;padding:0;background:none;border:0;border-radius:0;font-size:12px;color:var(--faint);-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#hlec .lcard .lh{display:-webkit-box;margin:6px 0 0;padding:0;background:none;border:0;border-radius:0;font-size:12px;color:var(--faint);-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}#hlec .lcard .lh.ltip{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:13px;line-height:1.5;color:var(--sub)}#hlec .lcard .lh.ltip b{color:var(--acc);font-weight:700}
 /* 2회 이상 출제 — 4열 줄 */
 #htop.sh4{padding:0;background:none;border:0}
 #htop .toplist{list-style:none;margin:0;padding:0}
@@ -1915,7 +1915,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="06a4f59f",PV={"OMS1": "ec848d93", "CONS": "30051d3b", "IMPL": "62cd9bd1", "ANAT": "bb592d54", "GERI": "b53f8281", "PHARM": "9408bc81", "ESTH": "3072c391"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.5, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="25e484c0",PV={"OMS1": "9bf06581", "CONS": "5dfb45e1", "IMPL": "ed246c4e", "ANAT": "5cf2a150", "GERI": "fd3be1ab", "PHARM": "9448fc0b", "ESTH": "50ea8df1"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.5, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -1934,7 +1934,7 @@ function needImages(id,c,cb){const key=id+':'+c;if(LOADED[key])return cb();(imgW
 /* ---------- 공부 시간 v2 — 자동 측정(설정)·8분 무활동/다른 창이면 멈춤·과목·강의별 기록 ---------- */
 const T={run:false,t0:0,log:LS.get('time',{}),dlog:LS.get('timed',{}),auto:LS.get('tauto',true),last:Date.now(),IDLE:8*60*1000,manualPause:false,hiddenStop:false};
 /* ux4f O17 사용자 10-03 '공부시간 리셋 타임은 매일 아침 6시로 … 새벽12~아침 6시 전까지는 전날의 공부시간에 함께' — 공부 날 = 아침 6시 ~ 다음 날 6시.
-   옛 기록을 옮기지 않게 경계 날 DCUT(2026-10-04)부터 적용: DCUT 이전 날은 자정 기준 그대로 · DCUT 날은 자정 ~ 다음 날 6시(30시간) · 그 뒤 날은 6시 ~ 다음 날 6시.
+   옛 기록을 옮기지 않게 경계 날 DCUT(2026-10-03 — 처음엔 10-04, 10-03 밤 사용자 요청으로 당김)부터 적용: DCUT 이전 날은 자정 기준 그대로 · DCUT 날은 자정 ~ 다음 날 6시(30시간) · 그 뒤 날은 6시 ~ 다음 날 6시.
    구간(tseg) 초는 그 날 시작(dayMs) 기준 — 6시 날은 0초 = 06:00 · 화면 시각은 hmsD/tmSecD로 바꿈. 모든 기기에 같은 고정 날짜(기기마다 다르지 않게) */
 const DAYH=6,DCUT='2026-10-03';   /* 10-03 밤 사용자 '다음날 오전 6시 그 시간까진 전날 공부시간으로 이어서' — 경계 날을 10-04 → 10-03으로 당김(오늘 밤 10-04 06:00까지 = 10-03) */
 const calKey=d=>d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
@@ -2830,7 +2830,7 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  const TJ=trendNoPct(p.trends||'').j;const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(String(g.t).replace(/짤 비율 평균 \d+%/,TJ?'짤 '+TJ+'문항':'짤이 많음'))}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');
  const BMJ=lbmGet(p.id),jump=p.lect.map(L=>`<button class="chip ljc${BMJ[L.k]?' bm':''}" data-d="${L.k}" title="${EH(L.title)}${BMJ[L.k]?' · ★ 북마크':''}">${BMJ[L.k]?'<i class="bmk" aria-label="북마크">★</i>':''}<span>${EH(sname(p,L.k))}</span></button>`).join('');
  const hot2=new Set((p.top||[]).map(t=>t.lk).filter(Boolean));
- const BM=lbmGet(p.id),lecs=p.lect.map(L=>`<div class="lcw${BM[L.k]?' bm':''}">${lbmBtn(p.id,L.k,'lbm')}<button class="lcard ${L.heat}" data-d="${L.k}"><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.hint?`<span class="lh">${EH(L.hint)}</span>`:''}</button></div>`).join('');
+ const BM=lbmGet(p.id),lecs=p.lect.map(L=>`<div class="lcw${BM[L.k]?' bm':''}">${lbmBtn(p.id,L.k,'lbm')}<button class="lcard ${L.heat}" data-d="${L.k}"><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.tip?`<span class="lh ltip"><b>📌 공부 전략</b> ${EH(L.tip)}</span>`:''}</button></div>`).join('');
  const T=p.top||[],y4=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return a.length>4?a.slice(0,4).join('·')+' +'+(a.length-4):a.join('·');};
  const TN=5,top=T.map((t,i)=>{const st=(MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'')+(i>=TN?' tmr':'');return `<li class="${st.trim()}"><span class="c">${t.yrs.length}회</span><span class="yr">${y4(t.yrs)}</span><button class="q" data-go="${t.id}" title="${EH(yrsLab(t.yrs))} — JB 문제로">${EH(t.short)}</button><span class="p">${EH(t.prof)}</span></li>`;}).join('');
  const HA=!!SS.get('hintAll.'+p.id,0),TA=!!SS.get('htopAll.'+p.id,0);const hints=(p.hints&&p.hints.length)?`<section class="hints sh4${HA?' all':''}" id="hhint"><h2 class="hh">교수님이 예고·강조한 것${p.hints.length>3&&!HA?`<button class="more" data-hmore="1">모두 보기 ${p.hints.length}</button>`:''}</h2><ul class="hlist">${p.hints.map((x,i)=>`<li class="hq${i>=3?' hmore':''}"><button class="lec" data-golec="${x.k}:0">${EH(x.t)}</button><p>${x.h}</p></li>`).join('')}</ul></section>`:'';
