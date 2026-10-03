@@ -350,12 +350,13 @@ F: 59=x축이 a y축이 b z축이 L
 - Equations 3: {r:h_ab = tan⁻¹(b*/a*)} — 각도가 색상(hue), tan로 계산(필기).
 - {r:C*_ab = (a*² + b*²)^1/2} — 거리가 채도(chroma), 루트 제곱합으로 계산(필기).
 - 가운데로 가면 {r:채도가 없어짐}(필기 p.60) — p.59 필기 "a가 0이면 채도가 없는 것" · "x축은 0은 색없는".
-- 한 글자로(필기 p.60): "a가 적녹 / b가 황청 을 의미함" — a = 적(+)·녹(−) · b = 황(+)·청(−).
+- 줄여서(필기 p.60): "a가 적녹 / b가 황청 을 의미함" — a = 적(+)·녹(−) · b = 황(+)·청(−).
 - a는 숫자가 정해져 있지 않지만 L은 숫자 범위가 있음(필기).
 - 각도의 방향(필기 p.59): "x축 상 0이 순수한 적색 → 노란색 거쳐서 → {r:180도} 지점이 녹색".
 - L, C, h는 거리·각도로 변환한 것 — Lab을 LCh로 변환 가능, 서로 호환(필기) · "Ab가 직관적이지 않다"(필기).
 - 그림: L* 세로축(100 White ~ 0 Black) · a* 가로축(Red (+) / Green (−)) · b* 축(Yellow (+) / Blue (−)) · 원점에서의 거리 C*ab · 각 hab.
 E: Q26 | 24·23·22·21·20·18년 서술·그림 "CIE Lab을 그림그리고 L,a,b의 의미를 서술" → L: lightness (z축) / a: redness-greenness (x축) / b: yellowness-blueness (y축) — p.59 L*: lightness scale · a*: redness-greenness · b*: yellowness-blueness, p.60 그림(필기의 z축·x축·y축 표시) ⚠ 함정: 그림에 +a = 빨강(−초록) · +b = 노랑(−파랑) 방향·부호까지 · 옛 JB 답(21년 칸) 가운데 "Hue를 L로 표시"라고 적힌 것은 ✗(p.60: L = 밝기, hue = 각도 h_ab, chroma = 거리 C*ab)
+P: p.60 "시험 나온다! (그림 그릴 줄 알아야 함)" · "그림 그려보세요 라고 시험 출제" · "이 그림 그리세요~"(필기, 별표 여러 개).
 F: 60=각도는 hue 거리는 chroma — 그림 그리기 시험문제
 # CIE system = Munsell system
 - 왼쪽 CIELAB 색입체(white~black value 축 · hue 둘레 · chroma 바깥 방향) = 오른쪽 Munsell Color System(Value 0~10 · Hue · Chroma) — "CIE system과 Munsell system은 동일하다"(필기).

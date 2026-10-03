@@ -53,6 +53,9 @@ U: ✍ p.9 exceptions의 머리글자 B·A·S·K에 밑줄 — 교감만 받는 
 | Trachea·bronchioles | Dilation | {r:Constriction}, increased secretions |
 | Heart | Increased rate·contractility | Decreased rate·contractility |
 | Ureters·bladder | detrusor 이완, trigone·sphincter 수축 | {r:detrusor 수축}, trigone·sphincter 이완 |
+| Gastrointestinal system | Decreased muscle motility and tone; contraction of sphincters | Increased muscle motility and tone |
+| Adrenal medulla | Secretion of epinephrine and norepinephrine | 해당 없음(교감만) |
+| Kidney | Secretion of renin(β1 increases; α1 decreases) | 해당 없음(교감만) |
 # 예외 — Sweat glands
 - **Generalized sweat glands**(체온 조절): {r:Sympathetic}인데 postganglionic fiber가 {r:cholinergic} → ACh → {r:M} receptor.
 - **Localized sweat glands**(activated with stress — 손바닥·발바닥·생식기·겨드랑이): adrenergic → NE → α-1.
@@ -80,6 +83,7 @@ P: 💬 "이 내용은 중요합니다"(p.12) · "parasympathetic의 effector or
 U: ✍ Excitatory = 뉴런 내 Ca2+ 농도 증가로 신경전달물질 방출 촉진 / Inhibitory = AC 불활성화 및 protein 인산화(필기).
 # Subtype dominance
 - One receptor subtype from each system tends to {r:dominate} in a tissue — 심장 근육 {r:β1}(heart rate↑), 폐 평활근 {r:β2}(bronchodilation), 혈관 평활근 {r:α1}(vasoconstriction).
+- p.13 그림: β-1 = oddly numbered = {r:excitatory} / β-2 = evenly numbered = {r:inhibitory}(p.12 'Oddly … Excitatory, Evenly … Inhibitory'와 같은 표현).
 # Cholinergic receptors and drugs
 - nAChR 약물의 주 용도: ① {r:Neuromuscular blockade}(competitive antagonists·depolarizing blockers) ② {r:Ganglionic blockade}.
 - mAChR agonists·antagonists의 주 용도: {r:Modulate autonomic responses of effector organs}.
@@ -147,7 +151,7 @@ M: {r:Physostigmine} = reversible AChE 억제 → 침 {r:증가} → 유발 약�
 - Adverse effects: muscarinic overstimulation typically manifest within {r:15–30 minutes} — ① {r:nausea} ② {r:vomiting} ③ {r:diarrhea} ④ {r:sweating} ⑤ {r:hypersalivation} ⑥ {r:cutaneous flushing} ⑦ {r:reflex tachycardia}(sometimes {r:bradycardia}) ⑧ {r:bronchoconstriction}.
 - Intoxication with these agents can be treated by {r:competitive blockade using Atropine}.
 P: 💬 pilocarpine은 {r:bronchoconstriction} 효과 → {r:조절되지 않는 천식}에 쓰면 안 됩니다!(p.20 필기; 25 필기 "가장 중요한 부작용").
-E: XE09,XE19 | 22년 객관식(백정화) "Oral secretagogues(침 나오게 하는 약)의 부작용이 아닌 것" → {r:urinary retention} — diarrhea·sweating·bradycardia·hypotension ○ ⚠ 함정: 부교감은 배뇨 촉진(p.9·31)
+E: XE09,XE19 | 22년 객관식(백정화) "Oral secretagogues(침 나오게 하는 약)의 부작용이 아닌 것" → {r:urinary retention} — diarrhea·sweating·bradycardia·hypotension ○ ⚠ 함정: 부교감은 배뇨 촉진(p.9·31) · 24판 복원("침 나오게 하는 약의 부작용이 아닌 것")은 보기 땀남·서맥·저혈압만 남아 JB 답 "해설참고"
 # Atropine
 - The prototypical {r:muscarinic receptor antagonist} — 천연 alkaloid(*Atropa belladonna*, deadly nightshade).
 - Belladonna = "beautiful woman" — 르네상스 이탈리아 여성들이 {r:dilation of the pupils}(산동)를 위해 사용.
@@ -197,6 +201,8 @@ U: ✍ direct = 수용체 결합 = ACh와 구조 유사 / pilocarpine은 {r:musc
 | Methacholine | + | +++ | ++ | + | AChE에 분해되긴 하나 약함 |
 | Carbachol | − | + | +++ | +++ | AChE에 분해 안 됨 |
 | Bethanechol | − | ± | +++ | − | 분해 안 됨, 작용시간이 길어 약효↑ |
+- 같은 표의 Eye(Topical)·Atropine antagonism 칸(p.27): ACh +·+++ / Methacholine +·+++ / Carbachol ++·+ / Bethanechol ++·+++.
+- p.29 Table 9-1의 Muscarine 행(Not used therapeutically): AChE −, cardiovascular ++, GI·urinary +++, eye ++, atropine +++, nicotinic −.
 - Atropine is a {r:competitive antagonist} of the muscarinic ACh receptor types {r:M1, M2, M3, M4 and M5}(p.27·29).
 U: ✍ carboxylic acid 쪽이 amide로 바뀌며(carbamate) 분해가 잘 안 돼 지속시간이 길어짐(p.26 필기).
 F: 25=pilocarpine은 muscarine과 구조 유사, 26=Carbamate ester는 AChE에 저항, 27=Choline ester 약리 성질, 29=Choline ester와 alkaloid 비교
@@ -221,7 +227,7 @@ M: Atropine = {r:M1-M5} {r:competitive antagonist}
 | {r:Cevimeline} | {r:Muscarinic} | No | Oral | {r:Xerostomia} |
 | Varenicline | Nicotinic | No | Oral | Smoking cessation |
 P: 💬 "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) → 이 둘은 꼭 기억하세요!"(p.30 필기)
-E: XE03 | 24·23·21년 빈칸(3회) "Pilocarpine은 … ==전신적인 부작용때문에, 주로 ( )과 ( ) 치료용으로만 사용한다==" → {r:구강건조증(Xerostomia)}·{r:녹내장(glaucoma)} — p.56 2017년 시험문제 그대로
+E: XE03 | 24·23·21년 빈칸(3회) "Pilocarpine은 … ==전신적인 부작용때문에, 주로 ( )과 ( ) 치료용으로만 사용한다==" → {r:구강건조증(Xerostomia)}·{r:녹내장(glaucoma)} — p.56 2017년 시험문제 그대로 · 24판 21년 칸 복원은 "주로 ()와 ()의 치료에만 제한적으로 사용된다" → JB 답 Glaucoma, Xerostomia
 E: XE18 | 21년 T/F "Pilocarpine은 구강건조증 치료에 사용한다" → {r:T} — 경구 → xerostomia(p.30)
 E: XE17 | 21년 단답 "Pilocarpine과 유사하게 사용할 수 있는 구강건조증 치료제" → {r:Cevimeline} — M1·M3 agonist, 적응증 xerostomia(p.30)
 # Muscarinic receptor agonists — 적응·부작용·금기
@@ -253,6 +259,7 @@ M: "전신적인 부작용 때문에 주로 ( {r:구강건조증} )과 ( {r:녹�
 | 비뇨기계 질환(방광폐색, 전립선비대증) | (자료 없음) | 방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화 |
 | {r:축동으로 악화되는 안과 질환}(급성 홍채염 등) | {r:금기} | {r:동공수축} 유발 → 안과적 상태 악화 |
 P: 💬 교수님이 한 번 더 강조 — "금기와 주의를 구분하세요!" 금기: 조절되지 않는 천식, 축동 / 주의: COPD. 시험 예) "pilocarpine은 COPD에 절대 금기다"(X) · "조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다"(X).
+P: 💬 25 필기(XE5 p.32): "거듭해서 말씀드리지만, bronchoconstriction 때문에 천식 환자에게는 안 쓰는 것이 좋겠습니다. 이런건 시험문제에 나올 수 있어요".
 U: ✍ 25 자료는 금기/주의 구분 없이 '금기 환자군'으로, 안과 질환에 망막박리까지 넣음(XE5 p.33 그림: Asthma·COPD / Cardiovascular / Peptic ulcer·GI obstruction / Urinary tract obstruction / Acute iritis·retinal detachment).
 # Pilocarpine 주의사항 표
 | 항목 | Case | 부작용/설명 |
@@ -459,6 +466,7 @@ M: 간기능 저하 노인 = {r:Oxazepam · temazepam · lorazepam} / 추가 {r:
 - Zn2+-induced [Ca2+]i 증가: muscarinic antagonist로는 안 막히고 {r:phospholipase C-β inhibitor}로 완전히 차단 · muscarinic agonist처럼 aquaporin-5(AQP-5)를 plasma membrane으로 이동시킴.
 - 결론: salivary secretion을 {r:independent of muscarinic or histamine receptor signaling}으로 조절할 수 있음 · 슬라이드 사진: Zinc Chloride Mouthwash(Fresh-M).
 U: ✍ ZnCl2의 수용체도 GPCR로 악하선에 있음 — 논문에 의하면 악하선에 작용해 구강건조 완화에 도움(필기).
+U: ✍ ⚠ p.50 필기 원문은 "ZnCl2가 악하선에 작용해서 ACh이 방출되고 구강건조 완화에 도움" — 논문 결론은 "independent of muscarinic or histamine receptor signaling".
 P: 💬 "ZnCl2를 구강건조증에 쓸 수 있다는 연구가 있는데 상당히 흥미롭습니다"(p.46 필기).
 E: XE13 | 21년 T/F "ZnCl2가 침분비를 촉진한다는 연구결과가 최근에 보고된 바 있다" → {r:T} — ZnR/GPR39 경로(Scientific Reports 2019)
 F: 50=ZnCl2 논문과 가글 제품
