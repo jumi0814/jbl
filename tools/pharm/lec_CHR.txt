@@ -91,7 +91,7 @@ F: 7
 | {r:Morphine} | 15-30 | 2-4 | {r:10} | 30(IM:PO 1:2 to 1:3 for repetitive dosing) |
 | Oxycodone | 15-30 | 3-4 | NA | 20 |
 | {r:Codeine} | 15-30 | 4-6 | {r:120} | 200 |
-- Equivalences are based on single-dose studies.
+- Equivalences are based on single-dose studies. · NA = not applicable(표 제목 Equipotent Doses of Opioid Analgesics).
 U: 같은 효과에 fentanyl 0.1 mg vs morphine 10 mg — 펜타닐이 매우 potent(필기).
 F: 8=펜타닐이 매우 potent
 M: 복합제 = codeine·oxycodone·hydrocodone + {r:acetaminophen} → {r:acetaminophen overdose} 주의
@@ -110,7 +110,7 @@ U: μ의 약한 agonist라 opioid라고도 아니라고도 함 — codeine과 �
 # CYP2D6 phenotype
 | Phenotype | Activity score | 빈도 | Genotype·의미 |
 | {r:Ultrarapid} metabolizer | >2.0 | ~1-2% | more than two copies of functional alleles → 기대보다 {r:매우 큰 효과} 주의(필기) |
-| Extensive metabolizer | 1.0-2.0 | ~77-92% | two alleles(full or reduced function) |
+| Extensive metabolizer | 1.0-2.0 | ~77-92% | two alleles(full or reduced function) 또는 one full-function + one nonfunctional or reduced-function allele |
 | {r:Intermediate} metabolizer | 0.5 | ~2-11% | one reduced-function + one nonfunctional allele |
 | {r:Poor} metabolizer | 0 | ~5-10% | {r:no functional alleles} |
 F: 9=Tramadol 대사와 CYP2D6 phenotype
@@ -190,6 +190,7 @@ F: 13=Antidote는 naloxone
 - Misuse of and addiction to opioids — prescription pain relievers, {r:heroin}, and synthetic opioids such as {r:fentanyl}.
 - The Centers for Disease Control and Prevention 추정: prescription opioid misuse alone의 "economic burden" = {r:$78.5 billion} a year(healthcare·lost productivity·addiction treatment·criminal justice).
 - National drug overdose deaths(USA): synthetic narcotics other than methadone(mainly {r:fentanyl}) {r:31,335}로 최다·급증 — heroin 14,996 · prescription opioids 14,975 · cocaine 14,666.
+- 같은 그래프의 나머지: psychostimulants with abuse potential(including methamphetamine) 12,676 · benzodiazepines 10,724 · antidepressants 5,064 — 슬라이드 박스 표시는 synthetic narcotics(mainly fentanyl)·prescription opioids·heroin 세 줄.
 U: Opioid overdose crisis와 가장 연관이 깊은 두 약물 = heroin과 fentanyl, fentanyl이 매우 급격하게 늘고 있음(필기).
 F: 14=heroin과 fentanyl, 15=fentanyl 급증
 M: 과량 해독제 = {r:Naloxone}(antagonist) — 부작용 {r:seizure}·{r:cardiac arrhythmias}
@@ -224,7 +225,7 @@ U: opioid도 neuropathic pain에 효과는 있지만 anticonvulsant·antidepress
 | First | {r:Tricyclic antidepressants} | 25-150 mg, once per day or two divided doses |
 | {r:Second}(weak) | {r:Capsaicin 8% patches}(peripheral) | 1-4 patches 30-60 min every 3 months |
 | Second | {r:Lidocaine patches}(peripheral) | 1-3 patches once per day for up to 12 h |
-| Second | {r:Tramadol} | 200-400 mg, two or three divided doses |
+| Second | {r:Tramadol} | 200-400 mg, two(tramadol extended release) or three divided doses |
 | {r:Third}(weak) | {r:Botulinum toxin A}(subcutaneously) | 50-200 units every 3 months |
 | Third | {r:Strong opioids} | individual titration |
 - {r:Duloxetine} is the most studied among the serotonin-noradrenaline reuptake inhibitors → recommended as the {r:first choice}.
@@ -421,7 +422,8 @@ F: 30=숙제 증례 중간고사가 검사
 - ④ Mechanisms that could produce spontaneous pain in the full-thickness burn region months to years after healing, and the rationale for using {r:gabapentin}?
 # 이 강의 카드로 연결(모범답은 자료에 없음)
 - ③ → morphine tapering = withdrawal을 {r:tapering}으로 최소화(p.11) · codeine/acetaminophen = WHO {r:Step 2} moderate opioid(p.16).
-- ④ → tingling = neuropathic pain의 sensory deficits(numbness, tingling, pricking — 급성통증 강의 p.18 표) · sharp knife-like ≈ lancinating(p.18) · {r:gabapentin} = IASP 1st line·voltage-dependent Ca channel(p.17-18) · {r:amitriptyline} = TCA(p.19-20).
+- ④ → tingling = neuropathic pain의 sensory deficits(numbness, tingling, pricking — 급성통증 강의 p.18 표) · sharp knife-like ≈ lancinating(p.18).
+- ④ 약 → {r:gabapentin} = IASP 1st line·voltage-dependent Ca channel(p.17-18) · {r:amitriptyline} = TCA(p.19-20).
 - 수술 후 4일의 patient-controlled analgesia = postoperative pain 조절(p.5) · ①의 통증 발생 기전과 ②의 remifentanil은 이 자료에 설명 없음.
 F: 31
 M: JD 순서: {r:IV morphine} → 수술 {r:remifentanil}+morphine bolus → {r:patient-controlled analgesia} → {r:taper} → {r:codeine/acetaminophen} → {r:gabapentin} → +{r:amitriptyline}
