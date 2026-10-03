@@ -10,7 +10,7 @@ LEC_IMG_ROOT = J.work('OMS1', 'lec') + '/'     # 강의 쪽 이미지: work/OMS1
 def lec_img_path(k, p):
     d = LECMAP[k][0]
     return f'{LEC_IMG_ROOT}{d}i/{p}.jpg' if d else None
-FORCE_PAGES = {'DX': range(1, 46)}
+FORCE_PAGES = {'DX': range(1, 44)}
 PAGE_LABEL = {}
 ALT_KEY = {'REP': 'REP2'}
 IMG_ALIAS = {'REP2': 'REP', 'DX5': 'DX', 'EXT5': 'EXT'}
