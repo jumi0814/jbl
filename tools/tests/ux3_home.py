@@ -16,7 +16,7 @@ async def open_(pg, h, wait=300):
     await pg.goto('about:blank'); await pg.goto(U + h)
     await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&(document.querySelector('#home .hub .hsj[data-s]')||document.querySelector('#stage [data-aid],#stage .guide,#stage #cards,.cal'))", timeout=30000)
     await pg.wait_for_timeout(wait)
-def dd(n): return (datetime.date.today() + datetime.timedelta(days=n)).isoformat()
+def dd(n): return (J.study_today() + datetime.timedelta(days=n)).isoformat()
 SEED = """(a)=>{const NS='jblhub.v1.',S=(k,v)=>localStorage.setItem(NS+k,JSON.stringify(v)),P=__h.PACKS,now=Date.now(),D=864e5;
  S('exam.CONS',a.c);S('exam.ANAT',a.a);
  const ids=s=>P[s].order.filter(id=>(P[s].refids||[]).indexOf(id)<0);

@@ -49,3 +49,9 @@ def prev_jb_pages(sid):
             if re.fullmatch(re.escape(sid) + r'\.img\.jb\d+\.js', f): out.update(_load_js(os.path.join(d, f)).get('jb', {}))
         _PJ[sid] = out
     return _PJ[sid]
+
+def study_today():
+    """허브의 '오늘'(공부 날) — 아침 6시 경계(DCUT 2026-10-04부터, shell.html day()와 같은 규칙). 새벽 0~6시 실행에도 테스트가 허브와 같은 날을 씀"""
+    import datetime as _dt
+    now = _dt.datetime.now(); k = (now - _dt.timedelta(hours=6)).date()
+    return k if k.isoformat() >= '2026-10-04' else now.date()

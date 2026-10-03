@@ -16,7 +16,7 @@ async def run(b, vp, touch, tag):
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('==', tag)
     await open_(pg, '#/'); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await open_(pg, '#/')
     # ---- B06 → ux4 B1-6: 시험일·시험순·하루 분량은 화면에서 뺌(LS exam.<S>·homeSort는 지우지 않고 그대로 · 로직에도 안 씀)
-    d3 = (datetime.date.today() + datetime.timedelta(days=3)).isoformat()
+    d3 = (J.study_today() + datetime.timedelta(days=3)).isoformat()
     await pg.evaluate(f"localStorage.setItem('jblhub.v1.exam.PHARM',JSON.stringify('{d3}'));localStorage.setItem('jblhub.v1.homeSort',JSON.stringify('exam'))"); await open_(pg, '#/')
     bt = await pg.inner_text('#home .hband'); ok(not re.search(r'D-\d', bt) and '시험' not in bt, f'시험일이 있어도 띠에 D-n·시험 없음 ({bt!r})')
     r = await pg.evaluate("[document.querySelectorAll('#home .dday,#home [data-exed],#home [data-hsort],#home [data-exfocus],#home input[data-exam]').length,document.querySelector('#home .hsj[data-s]').dataset.s,document.querySelector('#home .hsjh').innerText]")

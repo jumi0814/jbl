@@ -15,7 +15,7 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 MIN = 60000
-today = datetime.date.today()
+today = J.study_today()
 D = lambda n: (today - datetime.timedelta(days=n)).isoformat()
 D1, D2, D3, T0 = D(3), D(2), D(10), today.isoformat()
 def old2_docs():

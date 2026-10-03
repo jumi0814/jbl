@@ -12,7 +12,7 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 WAIT = "window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')"
-td = datetime.date.today().isoformat()
+td = J.study_today().isoformat()
 def new(b, w, h, touch, seed=None):
     ctx = b.new_context(viewport={'width': w, 'height': h}, has_touch=touch)
     ctx.add_init_script("try{if(!localStorage.getItem('jblhub.v1.whatsNew.4'))localStorage.setItem('jblhub.v1.whatsNew.4','1')}catch(e){}")

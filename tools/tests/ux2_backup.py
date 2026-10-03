@@ -10,7 +10,7 @@ U = J.HUB_URL; fails = []; NS = 'jblhub.v1.'
 def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
-TODAY = datetime.date.today().isoformat()
+TODAY = J.study_today().isoformat()
 async def home(pg, h=''):
     await pg.goto(U + h); await pg.wait_for_function("window.__h&&document.querySelector('#home .hsj[data-s]')||document.querySelector('#stage [data-aid]')")
 async def c02(b, vp, touch, tag, full):

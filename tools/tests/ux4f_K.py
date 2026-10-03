@@ -9,7 +9,7 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 W = "!!(window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni'))"
-td = datetime.date.today().isoformat()
+td = J.study_today().isoformat()
 with sync_playwright() as p:
     b = p.chromium.launch()
     c = b.new_context(viewport={'width': 1280, 'height': 900}); pg = c.new_page(); E = []

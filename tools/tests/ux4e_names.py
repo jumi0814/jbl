@@ -11,7 +11,7 @@ U = J.HUB_URL; fails = []
 def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
-td = datetime.date.today(); yd = td - datetime.timedelta(days=1); D = lambda d: d.isoformat()
+td = J.study_today(); yd = td - datetime.timedelta(days=1); D = lambda d: d.isoformat()
 SEED = {'time': {D(td): {'CONS': 5400000, 'PHARM': 2400000, 'OMS1': 900000}, D(yd): {'ANAT': 3600000, 'GERI': 1800000}},
         'timed': {D(td): {'CONS:DHS': 5400000, 'PHARM:XE': 2400000, 'OMS1:DD1': 900000}, D(yd): {'ANAT:NV': 3600000, 'GERI:SAL': 1800000}},
         'tgoal': 240, 'whatsNew.4': 1, 'tauto': False}

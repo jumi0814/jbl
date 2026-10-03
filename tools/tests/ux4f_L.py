@@ -12,7 +12,7 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 W = "!!(window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni'))"
-D0 = datetime.date.today(); td = D0.isoformat()
+D0 = J.study_today(); td = D0.isoformat()
 def fmtH(ms): m = int(max(0, ms) // 60000); return f'{m // 60}:{m % 60:02d}'
 class P:
     def __init__(s, b, w=1280, h=900, touch=False, start=None, ctx=None):

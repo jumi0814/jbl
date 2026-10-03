@@ -10,7 +10,7 @@ U = J.HUB_URL; fails = []
 def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
-TODAY = datetime.date.today().isoformat()
+TODAY = J.study_today().isoformat()
 SUM = f"Math.round(Object.values(__h.tDay('{TODAY}')).reduce((a,b)=>a+b,0)/60000)"
 async def ctx_dev(b, vp, touch, did, name, mins, init=''):
     ctx = await b.new_context(viewport=vp, has_touch=touch, accept_downloads=True)
