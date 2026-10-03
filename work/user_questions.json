@@ -1,0 +1,51 @@
+{
+ "OMS1": [
+  "TCS 카드 부제를 '가장 흔한 mandibulofacial dysostosis'로 바꿨습니다. 카드 id가 부제로 만들어져서, 지난 푸시 뒤 Treacher Collins 카드에 칠한 형광펜이나 완료 표시는 다음 빌드부터 안 보일 수 있습니다. 괜찮은지, 아니면 이전 부제로 되돌릴지 정해 주세요.",
+  "승인본에서 바뀐 것이 있습니다. Treacher Collins 요약에서 'bilateral'을 뺐고(슬라이드에 없음), 시험에 안 나온 슬라이드 문장 4개의 ==형광==을 {r:빨강}으로 바꿨습니다. DD2 카드 분할로 예전 형광펜이 복원 안 될 수 있습니다. 이대로 괜찮은지 확인이 필요합니다.",
+  "S20-4와 J6의 판정을 ok에서 part로 내린 것이 맞는지 확인해 주세요.",
+  "복원 답이 불확실합니다. Q12(22년 칸의 'ear rod … 전하방' 답)와 Q20('수평력'인지 '수직력'인지) 중 어느 복원 답을 외울지 정해 주세요.",
+  "Q17 발치와 치유 5단계는 JB가 교과서 p.105-106을 근거로 듭니다. 그 교과서 쪽을 받을 수 있는지요? Q47 선지 근거(방강미 22 자료 p.21)도 받은 25년 자료에 없습니다.",
+  "Q30(서미현 EXT 문항)이 DX 골량 카드의 ⭐에도 연결되어 보이는데, 의도한 것인지 확인해 주세요. EXT 증례 카드(항목 187개)가 너무 긴지도 판단이 필요합니다.",
+  "빌드는 하지 않았습니다(지시). 약어 교체는 docs/에 아직 반영되지 않았으니, 다음 빌드·커밋 때 함께 반영해야 합니다."
+ ],
+ "GERI": [
+  "마지막 빌드(09-27 21:34) 이후 바뀐 것은 아직 docs/에 반영되지 않았습니다: PSY 4개 카드 부제에서 연도를 뺀 것과 이번 NREM 문장 교체입니다. 카드 id가 제목으로 만들어지므로 PSY 4개 카드의 기존 형광펜·빈칸이 떨어질 수 있습니다. 다시 빌드할지 정해 주세요",
+  "ENDO: 촬영본이 아닌 원본 슬라이드 파일이 있으면 받아서 그림을 바꿀지 알려 주세요. 필기가 아니라 슬라이드 제목에서 온 그림 캡션을 쪽 번호만 남기도록 엄격하게 바꿀지도 정해 주세요. E11·E13을 ok에서 part로 바꾼 판정을 받아들일지도 확인이 필요합니다",
+  "OHQ: 26 pptx의 그림(슬라이드 6·7·15·20·22~25)을 쪽 이미지로 뽑아 25 PDF 그림 대신 쓸지 정해 주세요",
+  "HARD: Y02(새 cementum의 방향성)와 Y06(erosion intrinsic source 6개)은 25 자료에 없습니다. 24년도 유연지 강의자료가 있는지 알려 주세요",
+  "BLE: JB가 가리키는 24 강의 쪽을 25 PDF에서 1쪽 밀린 것으로 추정해 맞췄습니다(24 PDF와 직접 대조하지 않음). splotchy 정의 형광은 JB 문장이 아니라 p.32 필기 문장입니다. 이대로 둘지 확인해 주세요",
+  "PAIN: 카드가 27장으로 원칙(7~19장)보다 많습니다. Presentation을 Perception에, PAINAD를 Nonverbal에 합칠지 정해 주세요. 합치면 카드 id가 바뀝니다",
+  "PSY: P01·P02 출제연도 7회·8회(학번을 연도로 환산한 값)가 맞는지 확인이 필요합니다. SAL G04의 '14회' 전체 연도 목록도 확인해 주세요"
+ ],
+ "IMPL": [
+  "Year lists are still in 4 Korean card subtitles: BIO 'PDL의 장점 4 (22 T/F → 24 나열)', '(23년 빈칸)', '(23년 넘버링)' and PRO '골유착 정의의 변화 (23년 서술)'. Changing a subtitle wipes the saved highlights and blanks on that card. Should these be removed anyway?",
+  "JB answers differ from the slides in two places, marked ⚠ in the notes: Q18·S01 say '5~10배' where the slide says 10X, and Q06 adds '설측', which appears only in the figure. For PATH 26 p.2 (the old national-exam question), the slide's answer ① and the handwritten note (keep aspirin) disagree. Which should an exam answer follow in each case?",
+  "Q14 and Q16 were changed from ok (matches) to part (partial match). Q14's 'external' answer rests only on a photo, and Q16's option 2 rests on a lecture from another subject. Do you agree with the part rating?",
+  "The GRAFT header note '24 필기 별표 18·57·94': the p.1 handwriting reads '1 8' (with a space), while the old subject note said 16. Is it 16 or 18?",
+  "The Dentium column in the PART Osstem–Dentium table pairs parts by name only; the note just says '덴티움도 똑같아요'. Keep it or drop it? Also, no card covers PART p.32-33 (flagged by check_lec) — are those reference pages?"
+ ],
+ "CONS": [
+  "CRK VRF direction: the professor (25 notes, 26 p.34) and the Summary say mainly B-L, but 26 p.27 Table 3 counts M-D 8, B-L 4, both 2. The manuscript follows the professor. Should it stay that way?",
+  "INL: p.21 notes say direct filling is better for anatomical form, which contradicts p.22 (inlay is better). The p.48 red notes say 'the other 4 faces' are coated, while the slide and JB say 3 faces. The manuscript follows p.22 and '3 faces'. Should the contradiction be shown to the reader?",
+  "ANT p.83 enamel shade thickness: the green box says 1/3 and the red notes say 2/3. Both are listed with ⚠. Which is right? Also, if you know which year the notes on p.40·65·83 are from, please tell me.",
+  "WHT: the approved manuscript has slide sentences that never appeared on an exam painted with ==highlight== (e.g., Safest, efficient method). Should these be removed to match the SPEC definition?",
+  "WHT: the 25 handout original is not in materials/. Its images and notes (e.g., the MTA note on slide 7) exist only inside docs/packs/CONS.img.WHT.js. Can you supply the 25 handout PDF again? That would allow a full caption check and restoring the image folder.",
+  "In the earlier session, '(매년 출제)' was removed from four card subtitles (CRK Five Categories, DHS Hydrodynamic, WHT NVB Protocol, FRC Removal). The card key is built from the title, so after the next build, saved highlights/blanks on those 4 cards may reset. Is that acceptable, or should the old keys be migrated?",
+  "INL is much denser than DD1 (157 items, 13 tables). Is that level acceptable?"
+ ],
+ "PHARM": [
+  "HM JB 분해 오류 의심: 21년 14번(술전 검사, 답 INR(PT)·aPTT)이 HM04에, 21년 12번 Mr. J 증례가 HM18에 붙어 있음. HM24의 15-1은 HM07과 같은 문제이고, HM03=HM11, HM16=HM21도 같은 문제로 보임. 문항을 합치고 연도(HM10 21년, HM07 20년)를 더할지?",
+  "PN13(21년 영문)과 PN24(20년 한국어 복원)는 같은 만성통증 p.18 문장임. 다른 판본의 같은 문제(OTHER)로 연결할지?",
+  "RX18(한의사 처방 주체): JB 답은 F인데 의료법 조항은 한의사를 포함함. 어느 쪽을 외울지?",
+  "BT JB 답과 슬라이드·필기가 다른 곳(BT02 효소 저항, BT03·BT15 정답 번호, BT04·BT18 활성 4-6개월, BT07·BT13·BT17 용량)은 지금처럼 ⚠ 표시로 둘지?",
+  "DS '포타딘 볼 = povidone-iodine'은 필기 두 곳을 이어 붙인 추정임. 맞는지?",
+  "HM 카드가 24장으로 원칙(7~19장)보다 많음. Gelfoam+FloSeal, PT·INR+선별검사 카드를 합칠지?",
+  "투석 논문(PN05·06·07) 원본 PDF가 있으면 달라. 지금은 JB 해설이 옮긴 문장으로만 확인함.",
+  "우경미(ACU·CHR·HM)·조영단(DS) 26년도 자료가 나오면 달라."
+ ],
+ "ANAT": [
+  "LVP appears only in the title of the 25 slide LP5 p.31 ('Dissection of LVP'), so I kept it. The 26 cards (구개 근육 6, VP closure 표 등) now mix the abbreviation LVP with the full name 'tensor veli palatini'. Should LVP also be spelled out as 'levator veli palatini' everywhere for consistency?",
+  "BFP (MAX p.8 figure) and LLS·OO (MAX p.54 figure) are kept only in the MAX cards, because they appear on those pages. The same terms are spelled out in full in the LIP and MAND cards. Is this split by lecture acceptable?",
+  "Unresolved items carried over from concerns.md (now under '남은 것' in guide/과목노트_ANAT.md):\n- Contradictory notes: levator veli palatini and the hamulus; the parotid duct opening; TMJ p.37 1.7cm vs 0.7cm.\n- MAX U13: keep v=ok or change to part?\n- T17: is it OK to link it to both NV and MAX?\n- NECK p.4: should the publicly announced exam question be marked with ==highlight==?\n- 26 exam scope: the nose material comes only from the 25 slides.\n- Cards whose aid changed may lose saved highlights and blanks."
+ ]
+}

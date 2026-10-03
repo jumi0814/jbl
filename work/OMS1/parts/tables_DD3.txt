@@ -1,0 +1,56 @@
+#TBL 전통적 계획 vs CAS(VSP) — 무엇이 바뀌었나 | k=DD3 | src=[[DD3:3]] [[DD3:4]] [[DD3:10]] [[DD3:13]] [[DD3:30]] [[DD3:37]] [[DD3:41]] [[DD3:73]] [[DD3:117]]
+H: 항목 | 전통적 방법(2D STO + model surgery) | CAS(VSP)
+R: 계획 도구 {jb:Q13} {jb:Q15} | cephalometric tracing & {r:2D STO} — Prediction tracing (2D) | {r:3D skull model} — skull은 CT data, 상하악·치아는 model scan data
+R: splint 만들기 {jb:Q14} {jb:Q11} | 모델 → facebow mounting → 먼저 움직일 악골 {r:grinding} → intermediate splint | surgery simulation → {r:intermediate splint} 제작(3D printing) — 모델 surgery의 필요성을 없앰
+R: 오차 {jb:Q12} | mounting → grinding → splint 제작 → 구강 내 위치, 단계마다 {r:누적} / facebow의 Axis-Orbital Plane은 FH에서 {r:7°} off | 과정에 error 여지가 있으나 그 정도가 작다고 판단
+R: 확인 | landmark identification error — SN to FH가 술후 1년 5개월에 바뀜 / 계획이 정확히 수행됐는지 체크하기 어려움 | 술전/술후 CT {r:중첩} 비교, 각 평면에서 확인
+R: 계획 단위 | {r:mm} | {r:sub-mm}(error도 해당 단위에서 측정)
+R: 먼저 수술하는 악골 | 과거에는 하악 위치 파악이 어려워 {r:상악 먼저} | virtual surgical planning으로 {r:하악 먼저}도 가능
+N: Final STO 한계 3(2D / Cannot detect occlusal interference / Not exact as 3D virtual surgical planning)이 곧 전통적 방식의 한계. [[DD3:13]]
+N: CAS의 장점 6은 p.117 — 아래 '장점·단점·미래' 표. [[DD3:117]]
+
+#TBL Initial STO vs Final STO | k=DD3 | src=[[DD3:11]] [[DD3:12]] [[DD3:13]]
+H: 구분 | Initial STO | Final STO
+R: 시기 {jb:Q28} | 치료계획 단계 — 술전 교정의 목표를 세울 때 | {r:After active orthodontic treatment} · {r:Before surgery}
+R: 목적·하는 일 {jb:Q13} | Purpose of STO: {r:Establish orthodontic goals} / {r:Develop surgical objectives} / {r:Create the predicted facial profile} | {r:Determine the exact vertical and AP change} — 수술계획을 rough하게 잡음
+R: 필기 풀이 | 어느 정도의 수술적 이동을 했을 때 개선효과가 있을지, 술전 교정의 목표를 어떻게 달성할지 계획 | 술전교정 후 수술 직전에 시행
+R: 방법·한계 {jb:Q15} | Prediction tracing ({r:2D}) | 한계: {r:2D} / {r:Cannot detect occlusal interference} / {r:Not exact as 3D virtual surgical planning}
+N: STO 앞 단계 = Diagnostic list(Listing all existing problems: clinical, radiographic, dental model → Formulate the treatment plan). [[DD3:11]]
+N: 한계 풀이(필기): 2D라 중첩된 양측성 구조물이 일치하지 않으면 어떤 선을 쓸지 논점 / 교합 간섭 위치·양이 부정확 / 이런 진단으로 model sx.를 하면 error 범주가 넓어져 3D VSP와 불일치. [[DD3:13]]
+
+#TBL Paper surgery 기준 — Three critical decision과 chin | k=DD3 | src=[[DD3:14]] [[DD3:15]] [[DD3:16]] [[DD3:17]] [[DD3:18]]
+H: 순서 | 결정 | 슬라이드 기준 | 필기 풀이
+R: 1 {jb:S20-7} | 상악 전치 AP position | Place {r:point A in the normal NA line} · incisor tip AP reference line | FH plane에 Na에서 내린 {r:N-perp}이 보통 A point를 지남(2-3mm 전후방 차이)
+R: 2 {jb:S20-7} | 상악 전치 vertical position | incisor tip vertical reference line | 상악 전치 tip이 상순 아래로 얼마나 {r:노출}되는지
+R: 3 {jb:S20-7} | occlusal plane angulation | Mandible position into the best fit in the reference to the maxillary incisors and the occlusal plane angle reference line | 하악골은 occlusal plane을 따라옴
+R: 4 | proximal segment | rotated until {r:buccal horizontal surgical reference lines} contact each other | 상악골을 positioning하고 교합시키면 하악골도 positioning
+R: 5 | chin point | NB line: AP position of chin {r:4 ±2 mm} / Facial depth angle: {r:FH∠N-Pog 90 ±3°} | 달성되지 않으면 {r:occlusal plane을 바꿔} 조정(Mx-Mn complex 회전), 여성은 각도를 조금 작게
+N: 출발점 = Natural head position에서 자세를 취했을 때의 profile. 상악 전치부 각도는 보통 교정으로 결정, 바람직하지 않으면 segmental osteotomy. [[DD3:14]] [[DD3:15]]
+N: 뼈를 움직인 만큼 연조직이 1:1로 따라오지 않음 — chin setback 시 연조직 변화가 setback 양의 90% 안 되는 경우 많음(수치 암기 아님). [[DD3:20]]
+
+#TBL CAS — 정의·동의어·쓰임·구성 | k=DD3 | src=[[DD3:33]] [[DD3:34]] [[DD3:36]] [[DD3:38]] [[DD3:49]]
+H: 항목 | 슬라이드 원문 | 필기
+R: 정의 {jb:S20-8} {jb:S21-5} | Computer assisted surgery (CAS): use computer technology for {r:presurgical planning}, and for {r:guiding or performing surgical interventions} | p.33 Virtual Surgical Planning 슬라이드: CASS = computer-aided surgical simulation
+R: 동의어 4 {jb:S20-8} | {r:computer aided surgery} / {r:computer assisted intervention} / {r:image guided surgery} / {r:surgical navigation} | 여러 명칭으로 불리고 있다
+R: CAS in orthognathic surgery 6 {jb:S21-5} | Simulation surgery / Presurgical planning / Surgical wafer/guide / Pre-bended plates and screw hole markings / Virtual surgical planning (VSP) / Surgical navigation-guiding/manipulation | 아래 과정들을 수행하는 데 CAS가 사용됨 · 3D printing하기도 함
+R: CAS 구성 6 {jb:S21-5} | CBCT data / Impression & dental cast model / Facial photos / Cephalometric x-ray / Condylar positioning device (CPD) / Surgical wafers, surgical guides, prebended plates | 구강을 direct scan하거나 cast model을 scan
+R: CPD | Intermediate and final surgical wafer functioning as {r:condylar positioning device} during the operation | intermediate guide와 final splint가 잡은 {r:ramus 각도}가 같으면 condyle이 움직이지 않은 것
+N: Surgical navigation(외부 3포인트로 Mx. 위치를 실시간 추적)은 시도했지만 불편하고 정확하지 않아 사용되지 않음. [[DD3:35]]
+
+#TBL CAS의 장점 6 · 단점 5 · 미래 4 | k=DD3 | src=[[DD3:117]] [[DD3:118]] [[DD3:119]]
+H: 번호 | Advantages {jb:Q16} | Disadvantages {jb:Q29} | Future development
+R: 1 | {r:Precise prediction} — conventional보다 정확 | Needs preoperative procedure {r:2 ~3 days} | {r:Easy planning}
+R: 2 | Excellent end results esp. in {r:asymmetric} cases | Orthodontic surgical wire insertion in advance {r:3 weeks} before surgery | {r:Less time consuming}
+R: 3 | Easy positioning of {r:maxilla} into predetermined location | {r:Not suitable for mass production} in current form(가내수공업적) | {r:Real time navigation}(수술과 동시에 위치 confirm)
+R: 4 | Less burden on the positioning of {r:proximal segments} | Needs {r:high quality 3D CT} images | {r:Cost efficient}
+R: 5 | Good for {r:TMJ positioning}(TMJ 술후 위치가 가장 정확하다는 연구결과) | Needs {r:precise surgical procedure}, less room for modification | —
+R: 6 | Less time consuming on deciding the {r:mandibular setback amount} | — | —
+N: 수업 화면 p.122에서 'Precise prediction'에 빨간 밑줄. 정확도 연구에서 condyle error가 가장 작음(1.03 mm) → 'Good for TMJ positioning'의 근거. [[DD3:122]] [[DD3:107]]
+
+#TBL CAS 정확도 연구 — landmark별 error | k=DD3 | src=[[DD3:104]] [[DD3:105]] [[DD3:106]] [[DD3:107]]
+H: landmark 묶음 | 포함 landmark | 3D-distance MAE (mm) | 해석
+R: Condylar | Right · Left Condyle | Both {r:1.03} | error가 {r:제일 적음}
+R: Maxillary | #16 · #26 · Point A · U1 | All {r:1.25} | 그다음
+R: Mandibular distal | #36 · #46 · L1 · Point B | All {r:2.24}(L1 2.34 · Point B {r:2.55}) | {r:L1·B point}가 가장 안 좋음 — 특히 {r:Y(수직)} error
+N: 대상·방법: 18 patients(two jaw surgery with/without genioplasty), pre- & postop(1wk) CT superimposition, 12 hard tissue points, Mean absolute error(MAE), Paired t-test. [[DD3:104]]
+N: 결론(필기): 수술 sequence를 바꿔도 error 정도에 큰 변화 없음 → 상악 impaction 양을 계획보다 조금 더 / splint가 잘 물리지 않거나 만드는 과정의 error가 하악골에 반영. [[DD3:106]]

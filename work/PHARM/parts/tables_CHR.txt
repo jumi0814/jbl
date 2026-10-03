@@ -1,0 +1,55 @@
+#TBL 주요 opioid 약물 한눈에 — 제형·특징·주의 | k=CHR | src=[[CHR:6]] [[CHR:7]] [[CHR:8]] [[CHR:9]] [[CHR:16]] [[CHR:24]]
+H: 약물 | WHO ladder | 특징 | 주의·함정
+R: Codeine | Step 2(moderate) · 치과 opioid | aspirin 또는 acetaminophen과 복합 · cough suppressant(10 to 15 mg PO q4-6h) · IM 120 mg = morphine 10 mg | CYP2D6 변이에 가장 민감 → poor·intermediate metabolizer는 효과↓ {jb:PN11} · 복합제 acetaminophen overdose
+R: Hydrocodone · Oxycodone | Step 2(oxycodone은 Step 3에도) · 치과 opioid | acetaminophen과 복합(oxycodone은 단독 제제도 → 고용량 필요 시) | acetaminophen overdose · hydrocodone도 CYP2D6 영향
+R: Tramadol | Step 2 · 신경병성 2nd line | weak agonist for MOR + SNRI · Tridol / Ultracet(+ acetaminophen) | 활성 대사체 O-desmethyltramadol ← CYP2D6 · ultrarapid → 과한 효과
+R: Morphine | Step 3 | short half-life 약물로 권장 · tolerance 시 larger doses · IM 10 mg(기준) | renal insufficiency 주의 {jb:PN07}
+R: Meperidine | Step 3 목록 | limited efficacy · very short duration · significant euphoria | no longer recommended(필기: metabolite가 κ에 작용)
+R: Methadone | — | orally very effective · extended half-life → 다른 opioid의 withdrawal 억제 | 반감기는 길지만 analgesic duration은 훨씬 짧음 · 금단 해소 {jb:PN25}
+R: Fentanyl | Step 3 | transdermal patch · sustained release over 72 hours · IM 0.1 mg(가장 potent) {jb:PN19} | onset delayed · respiratory depression 더 잦음 · overdose crisis(heroin과 함께)
+R: Hydromorphone | Step 3 | potent morphine derivative · rectal suppository | —
+R: Mixed agonist-antagonist | — | butorphanol · nalbuphine · oxymorphone · pentazocine | few advantages · more adverse effects
+N: 등가 용량(Table 1-1, IM/IV/SC): fentanyl 0.1 · levorphanol 2 · hydromorphone 1.5-2.0 · methadone 10 · morphine 10 · codeine 120 mg — 필기 "펜타닐이 매우 potent". 필기: 최근 금단 해소 용도로 buprenorphine이 더 많이 쓰임.
+
+#TBL Opioid 문제 상황별 대처 — 금단·과량·부작용 | k=CHR | src=[[CHR:4]] [[CHR:11]] [[CHR:12]] [[CHR:13]] [[CHR:7]]
+H: 상황 | 슬라이드 내용 | 대처
+R: Physical dependence · withdrawal | anxiety, irritability, diaphoresis, tachycardia, GI distress, and temperature instability {jb:PN23} · 2 weeks만에도 생김 | tapering the medication slowly over several days · 다른 opioid 금단엔 methadone {jb:PN25}
+R: Overdose(intoxication) | accidental or intentional overdose · 가장 중요한 부작용 respiratory depression | Naloxone(opioid antagonist) {jb:PN22} — side effects: seizure activity·cardiac arrhythmias·hypertension or hypotension 등
+R: Antagonist 투여 | 3 days of therapy 뒤에도 withdrawal을 유발할 수 있음 | 금단 유발 가능성 고려
+R: Tolerance | chronic use → physical dependence와 함께 · 진통 tolerance가 부작용 tolerance보다 빠름(필기) | morphine은 larger doses 필요할 수 있음
+R: GI effects | constipation · nausea and vomiting | stool softeners and laxatives / anti-emetics = benzodiazepines · prochlorperazine · metoclopramide · ondansetron
+R: 부작용 상승 약물 | phenothiazines · antidepressants · benzodiazepines · alcohol | 병용 주의(CNS depressants: additive effect)
+R: 주의 환자 | hypothyroidism · Addison disease · hypopituitarism · anemia · respiratory disease(COPD·asthma·kyphoscoliosis·severe obesity) · malnutrition | impaired hepatic function → dosage adjusted · 신장 저하(필기) {jb:PN07}
+N: 필기 강조 — "Antidote로는 naloxone이 사용됨을 기억하세요"(p.13), "Physical dependence는 금단 증상과 함께 … 어떻게 치료를 하는지 알아둡시다(Tapering)"(p.11). 금단 = methadone·tapering, 과량 = naloxone 을 섞지 말 것.
+
+#TBL 신경병성 통증 약물 — 기전과 적응증 | k=CHR | src=[[CHR:4]] [[CHR:17]] [[CHR:18]] [[CHR:19]] [[CHR:23]] [[CHR:25]]
+H: 약물군 | 대표 약 | 기전 | 적응증·특징
+R: Anticonvulsants | gabapentin · pregabalin · carbamazepine · lamotrigine · valproic acid · clonazepam | membrane stabilizing properties {jb:PN24} | chronic neuropathic pain · intermittent lancinating(trigeminal neuralgia·post-herpetic neuralgia) · continuous burning
+R: Gabapentin(pregabalin) | IASP 1st line | voltage-dependent calcium channels {jb:PN03} | diabetic neuropathy · trigeminal neuralgia
+R: Carbamazepine(Tegretol) | trigeminal neuralgia first-line {jb:PN20} | blocks sodium channels {jb:PN01} | trigeminal neuralgia · agranulocytosis → periodic CBC
+R: Clonazepam | — | (기전 슬라이드에 없음) | burning mouth syndrome (BMS)
+R: Antidepressants(TCA·SNRI) | amitriptyline · nortriptyline · imipramine · duloxetine(SNRI first choice) | noradrenergic·serotonergic 하행 투사↑ + sodium channel block · 항우울 효과와 독립(더 빠르고 저용량) | post-herpetic · diabetic neuropathy · migraine · tension-type headache · facial pain · TCA > duloxetine
+R: NMDA antagonists | ketamine(anesthetic) · dextromethorphan(antitussive) | central sensitization의 NMDA 차단 | chronic·postoperative pain↓ · psychomimetic effects로 사용 제한
+R: Opioids | tramadol(2nd line) · strong opioids(3rd line) | μ 수용체 | 효과는 비슷하지만 abuse·long-term tolerance 위험 → 뒤로
+N: IASP 권고 — First: gabapentin(ER·enacarbil 포함)·pregabalin·SNRI·TCA / Second: capsaicin 8% patches·lidocaine patches·tramadol / Third: botulinum toxin A·strong opioids. 24년 PN03 복원의 '편두통'은 antidepressant 쪽(p.19)이지만 Ca 채널은 gabapentin뿐(p.18).
+
+#TBL CYP 효소와 통증약 — 누가 켜고 누가 끄나 | k=CHR | src=[[CHR:9]] [[CHR:10]] [[CHR:20]] [[CHR:21]] [[CHR:22]]
+H: 약물 | 효소의 역할 | 효소가 빠르면(ultrarapid) | 효소가 느리면(poor·intermediate)
+R: Codeine | CYP2D6 변이에 가장 민감(tramadol·hydrocodone도 영향) | 기대보다 큰 효과 주의(필기) | lower analgesic response — 발목 골절 codeine 무효 {jb:PN11} · 아시아 intermediate 51% · 한국인 PM 약 0.2%
+R: Tramadol | CYP2D6 → O-desmethyltramadol(활성, 몇 배 active) / CYP3A4·2B6 → N-desmethyltramadol | 기대보다 매우 큰 효과(필기) | 활성 대사체↓
+R: TCA — CYP2C19 | tertiary amines(amitriptyline·imipramine) → active secondary amines(nortriptyline·desipramine) | avoid tertiary amine(sub-optimal response) → nortriptyline·desipramine | poor: avoid tertiary · 쓰면 50% reduction
+R: TCA — CYP2D6 | tertiary·secondary 모두 → less active metabolites | avoid tricyclic(lack of efficacy) · higher target dose | intermediate: 25% reduction · poor: avoid(side effects) · 50% reduction
+N: 같은 CYP2D6라도 codeine·tramadol에선 활성 대사체를 만들고, TCA에선 덜 활성인 대사체로 만듦 — 필기 "CYP2D6 rapid metabolizer일 경우 antidepressant의 효과는 기대보다 떨어질 것". CYP2D6 빈도(p.9): ultrarapid ~1–2% · extensive ~77–92% · intermediate ~2–11% · poor ~5–10%.
+
+#TBL 치과 통증에서의 진통제 선택 — 슬라이드와 논문 | k=CHR | src=[[CHR:4]] [[CHR:24]] [[CHR:25]] [[CHR:27]] [[CHR:29]] [[ACU:27]]
+H: 상황 | 선택 | 근거 문장
+R: 일반 치성 통증(염증성: pulpitis·periodontitis) | NSAIDs first choice {jb:PN04} | Pain of dental origin frequently arises from INFLAMMATION · Opioids do not have anti-inflammatory properties
+R: NSAID만으로 부족(ceiling effect) | NSAIDs + weak opioid(codeine·hydrocodone·oxycodone) {jb:PN26} | different complementary central and peripheral mechanisms of pain relief
+R: 주사가 필요한 강한 통증 | Ketorolac(IM·IV NSAID) {jb:PN17} | 급성통증 강의 — often used postoperatively · parenteral therapy should not exceed 5 days due to nephrotoxicity
+R: Acute pulpitis 환자가 narcotic 요구 | local anesthesia + pulpectomy/extraction → ibuprofen 400-600 mg q4-6h 또는 aspirin 650 mg q4h → breakthrough엔 oxycodone 5 mg | NSAIDs primary · narcotics backup(증례 2)
+R: 근관치료 후 통증(골·연조직 침범) | hydrocodone 5 mg + acetaminophen 325 mg → ibuprofen으로 충분하면 계속 | 증례 1
+R: Trigeminal neuralgia | Carbamazepine(Tegretol) first-line {jb:PN20} | agranulocytosis → periodic CBC
+R: 투석(CKD) 환자 — 임플란트 후 | Paracetamol(acetaminophen) {jb:PN05} | most frequently recommended analgesic for pain in dialyzed patients(논문)
+R: 투석 환자 — NSAIDs | controversial · nephrologist 평가 · dose adjustment {jb:PN06} | inhibit prostaglandin and generate a hypertensive effect(논문)
+R: 투석 환자 — opioids | meperidine·dextropropoxyphene·morphine·tramadol·codeine 축적 {jb:PN07} | CNS hypofunction · respiratory effects due to accumulation(논문)
+N: 투석 3행은 슬라이드가 아닌 교수님 지정 논문(Dental implant treatment for renal failure patients on dialysis: a clinical guideline, p.129) — 24년 JB 해설의 인용 문장.

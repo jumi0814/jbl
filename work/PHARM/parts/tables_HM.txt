@@ -1,0 +1,46 @@
+#TBL 항응고·항혈소판·항섬유소용해 — 약물별 target 표 | k=HM | src=[[HM:16]] [[HM:18]] [[HM:19]] [[HM:50]] [[HM:51]] [[HM:55]]
+H: 분류 | 약물 | Target · 기전 | 특징
+R: VKA(경구) | Warfarin (Coumarin) {jb:HM03} | vit K epoxide reductase 차단 → II·VII·IX·X의 γ-carboxylation 억제(슬라이드: Inhibition of γ-glutamylcarboxylase) | 개시 느림(기존 인자 degradation 후) · 초기 protein C·S 먼저 → pro-coagulation · INR 모니터링 필수 · prolonged therapy
+R: DOAC(경구) | Dabigatran (+ hirudin) {jb:HM11} | factor IIa (thrombin) 직접 억제 | 모니터링 적게 · 예측 가능성↑ (JB: 용량 고정 · 반감기 짧음) · 증례 Mr. J의 A {jb:HM10}
+R: DOAC(경구) | Apixaban · Edoxaban · Rivaroxaban (-xaban) | factor Xa 직접 억제 | JADA: routine monitoring No
+R: 주사 | Heparin | Activation of anti-thrombin III (AT III) → IIa · Xa (그림: XIIa·XIa·IXa도) | Injectable · acutely for short-term action · aPTT↑↑
+R: 주사 | LMWH {jb:HM16} {jb:HM21} | Anti-thrombin III → Xa 위주 | heparin의 기능 부분만 잘라 사용 → 더 예측가능·long lasting · aPTT ↔
+R: 항혈소판 | Aspirin (baby aspirin) {jb:HM04} | COX enzyme 저해 → thromboxane 생성 저해 | JB: 비가역적 · bleeding time↑(PT·aPTT ↔) · Mr. J의 B
+R: 항혈소판 | Ticlopidine · Clopidogrel · Prasugrel · Ticagrelor {jb:HM15} | ADP receptor (P2Y12) antagonist | release된 ADP의 modulation 차단
+R: 항혈소판 | Tirofiban · Abciximab {jb:HM17} {jb:HM02} | GP IIb/IIIa receptor antagonist | adhesion 때 주요 receptor · -mab = monoclonal antibody · JB: fibrinogen·vWF 결합 방해 {jb:HM19}
+R: 항섬유소용해 | ε-Aminocaproic acid (Amicar) · Tranexamic acid (Cyklokapron) {jb:HM14} | competitive inhibitor of plasminogen activation · aminocaproic은 lysine과 닮은 구조(그림) (JB: t-PA · plasminogen · plasmin) | 지혈 가글 tranexamic acid 5% 100mL — warfarin을 끊을 수 없을 때
+R: 비타민 | Vitamin K (Phytonadione K1) {jb:HM22} | II·VII·IX·X의 γ-carboxylation cofactor(간) {jb:HM05} | 수술 4-7일 전 · warfarin 해독제(SC·IM) · Kcentra(II·VII·IX·X)
+N: 24·22년 표 빈칸(HM02)은 aminocaproic → t-PA·plasminogen·plasmin / clopidogrel → P2Y12 / LMWH → AT III / tirofiban → GP IIb/IIIa. 함정: LMWH의 target은 Xa가 아니라 AT III.
+
+#TBL 선별 검사 — PT vs aPTT vs BT | k=HM | src=[[HM:10]] [[HM:11]] [[HM:13]] [[HM:14]]
+H: 항목 | PT (INR) | aPTT | Bleeding time
+R: 넣는 시약 | Tissue factor (factor III) — extrinsic | Partial thromboplastin — intrinsic | — (혈소판 기능)
+R: 정상 | 10-14 seconds · INR 0.8-1.2 | 30-40 seconds | —
+R: 측정 인자 | I · II · V · VII · X | VIII · IX · XI · XII | platelet
+R: 늘어나는 경우 | Warfarin(coumarin ↑↑) · DTI·Xa therapy ↑ · severe liver disease · DIC | Heparin ↑↑ · Hemophilia A or B ↑↑ · DTI ↑↑ · coumarin ↑ | Aspirin ↑ · thrombocytopenia ↑↑ · leukemia ↑ · vessel wall defect ↑
+R: 정상으로 남는 경우 | hemophilia A·B · heparin · aspirin | aspirin · LMWH | coumarin · heparin · hemophilia
+R: 임상 | 가장 많이 사용 — warfarin 모니터링(INR = (PT환자/PT정상)^ISI · warfarin 2.0-3.0) | heparin 투여·혈우병 | antiplatelet 작용 확인
+N: 필기 — "Aspirin therapy를 받으면 blood clotting time에는 크게 변화가 없지만, bleeding time은 증가한다. Coumarin therapy를 받으면 PT가 증가한다." 혈우병 중증도(factor VIII·IX): mild 5-50% · moderate 1-5% · severe <1%. 2021년 14번(검사 종류·기준·산출방법, HM04 원문에 붙어 있음)의 답.
+
+#TBL INR 구간별 치과 시술 — 할 수 있는 것 | k=HM | src=[[HM:24]] [[HM:25]]
+H: 시술 | ≤3.0 | >3.0–3.5 | >3.5
+R: Examination · radiographs · impressions · orthodontics | 가능 | 가능 | 주의
+R: Simple restorative dentistry · supragingival prophylaxis {jb:HM24} | 가능 | 가능 | 금지
+R: Complex restorative · scaling & root planing · endodontics | 가능 | probably safe | 금지
+R: Simple extraction · curettage · gingivoplasty · biopsy {jb:HM07} | 2.5 이상 local measures | local measures | 금지
+R: Multiple extractions · single bony impaction | 2.0 이상 local measures | local measures | 금지
+R: Gingivectomy · minor flap · apicoectomy · single implant | 2.5 미만만 probably safe | 금지 | 금지
+R: Full mouth · full arch extractions | 2.0 미만만(1.5–<2.0 local measures) | 금지 | 금지
+R: Extensive flap · multiple bony impactions · multiple implants | 1.5 미만만 probably safe | 금지 | 금지
+N: INR >4.0 → No surgical treatment until INR is reduced. 흐름도(INR <4.0): minimal bleeding → No modifications, local measures / moderate(multiple extractions·third molars) → consider reducing INR / significant(full mouth clearance) → INR <3.0으로 modify. 모든 경우 local measures(§ sutures·oxidized cellulose·microfibrillar collagen·topical thrombin·aminocaproic·tranexamic acid). 치료 목표 INR 2.0–3.0(atrial fibrillation·venous thrombosis·pulmonary or systemic embolism·acute MI), 2.5–3.5(mechanical prosthetic heart valves).
+
+#TBL 국소 지혈제 비교 — 원료·기전·흡수·주의 | k=HM | src=[[HM:32]] [[HM:34]] [[HM:36]] [[HM:37]] [[HM:40]] [[HM:42]] [[HM:43]] [[HM:45]] [[HM:46]] [[HM:47]] [[HM:49]]
+H: 제제(상품명) | 원료·성질 | 기전 | 흡수·사용 | 주의(금지)
+R: Epinephrine (bosmin) {jb:HM20} | 1:1000 racemic · potent vasoactive · levorotatory 15배 | 혈관수축 — capillaries·arterioles만 | impregnated retraction cord · superficial bleeding만 | serious cardiovascular reactions · retard wound healing · ischemia → tissue necrosis
+R: Gelatin sponge (Gelfoam) | absorbable · water-insoluble gelatin · 149°C 4 hrs 견딤 | more physical — platelet 파괴 + fibrin framework · thrombin으로 강화 | 4-6 weeks 흡수 · dry 또는 saline · minimum amount | skin incision 봉합 × · intravascular ×(embolization) · porcine collagen 알레르기 × · 재멸균 × · giant-cell granuloma
+R: Gelatin-thrombin matrix (FloSeal) | bovine gelatin + human thrombin | mechanical + active — 과립 10-20% 팽윤/10분 + fibrinogen → fibrin | 6-8 weeks 흡수 · suturing·electrocauterization 실패 시 | not recommended(safety·cost·availability) · 혈관 내 × · active blood flow 없으면 × · thromboembolism
+R: Oxidized cellulose (Oxycel, Novocell) {jb:HM07} | plant material, nitrogen dioxide로 산화 → cellulosic acid · alkali에만 녹음 · antimicrobial | hemoglobin 친화 → artificial clot · platelet aggregation platform | 2-7일 흡수 시작 · 6주 완료 · dry로 · 발치와 temporary packing | stick·extremely friable · 적시지 말 것 · thrombin 파괴(산성) · 골절 permanent packing × · surface dressing ×(상피화 억제)
+R: Oxidized regenerated cellulose (Surgicel) {jb:HM07} | alpha-cellulose → viscose → spun·oxidized · less friable · less stick | 혈액 포화 → gelatinous mass → stable clot | 하치조동맥 골내 출혈 · surface dressing ○(상피화 방해 ×) · 성형 가능 | socket 깊숙이 → 치유 지연 · 골결손·골절 ×(callus·cyst) · inferior alveolar nerve 노출 시 neurotoxic
+R: Microfibrillar collagen (Avitene) | active absorbable collagen | platelets adhere → release → aggregation | dry로 · sheets·flour(arterial bleeding)·sponge | No autoclave · skin 봉합 × · methylmethacrylate 접착력↓ · 감염 potentiation · dry socket↑
+R: Topical thrombin {jb:HM01} | activated factor II (bovine·human·recombinant) | fibrinogen → fibrin · XIII 활성 · 혈소판 응집 · 평활근 수축(PAR) | capillaries·small venules oozing · Gelfoam과 병용 · powder/saline | topically only — 정맥 내 embolism · human plasma 유래 infectious risk · Oxycel·Surgicel·Avitene과는 무효(pH)
+N: 필기 — p.30-47은 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인" 하며 넘어간 부분(기출은 epinephrine·Oxycel/Surgicel 정도) → 변형·미출제 대비. TABLE 25-6: Gelfoam "useful for most patients taking an antithrombotic agent", Colla-Cote·Tape·Plug 10-14일 흡수, Instat 2-5분.

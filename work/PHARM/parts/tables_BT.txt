@@ -1,0 +1,64 @@
+#TBL 보톡스 — 균·독소·임상·주의 한눈에 | k=BT | src=[[BT:4]] [[BT:5]] [[BT:7]] [[BT:9]] [[BT:10]] [[BT:14]] [[BT:18]] [[BT:21]] [[BT:22]] [[BT:23]] [[BT:33]]
+H: 주제 | 강의자료의 옳은 문장 | JB에서 틀린 선지로 나온 것
+R: 균 특성 {jb:BT01} | Gram-positive · rod-shaped · anaerobic · spore-forming · motile bacterium → Neurotoxin (p.4) | "구균과 간균으로 운동성이 없다"
+R: 4 그룹 {jb:BT08} {jb:BT14} | Disease host I·II = Human, III = Animal, IV = – · Toxin Gene Chromosome/Plasmid·Bacteriophage·Plasmid (p.5) | "인간에게만 감염된다" / "인간에서만 발생한다"
+R: 생활사 | 독소는 sporulation cycle 초기에 생성, 의료용은 균주 배양 (p.6) | —
+R: 보툴리즘 {jb:BT02} | BoNT 위장관계 효소에 저항 · 가열비활성화 100도씨 15분 · 꿀 → 영아 (p.7) | "단백질이라 대부분 소화되나 소량 흡수 시 위험" (⚠ 26 필기는 '대부분 소화'라고 말함)
+R: 독성 {jb:BT15} | 평균치사량 0.0003 ㎍/kg — 독성 순위 1위 (p.9) | "보툴리눔은 비교적 독성이 약하다"
+R: 독소 구조 {jb:BT03} | bont = LC(Catalytic · Zn protease) + HC(Translocation · Binding), S-S 연결 · NTNHA = 독소 안정화 및 보호 (p.10-11) | "Heavy와 light를 분리하는 protease에 의해 독성을 가진다"
+R: 기전 {jb:BT16} | 타깃 = 신경말단의 SNARE complex, Zn-의존적 단백분해 → ACh 분비 억제 (p.13-14) | "신경전달물질을 파괴하여 직접적으로 차단"
+R: 치과 진료 범위 {jb:BT04} {jb:BT12} {jb:BT18} | 대법원 판결 — 두경부(목 위 모든 부위) 시술 합법 · 교정·임플란트·골절 수술 보조 (p.18-19) | "저작근 외에는 불법" / "활성화 기간 보통 4-6개월"(JB 기준 ✗)
+R: 침샘 {jb:BT19} | 치과 허용 영역·FDA 적응증에 Sialorrhea (p.16·19) | "악하선·이하선 주변 고농도 투여 → 타액량 증가"
+R: 용량 단위 {jb:BT09} | 1 U = 마우스 복강 LD50, 공장마다 약효가 달라 '효과'로 표준화 (p.21) | "용량은 회사마다 동일하므로 동일하게 희석"
+R: 부작용 {jb:BT06} {jb:BT10} | 과민반응 · 원거리 확산 · 말초신경증 · 심혈관 장애 · 의인성 장애 · 신경 저하 · 내성 (p.22) | 우울증 등 정신질환 · 탈모증
+R: 금기 {jb:BT05} | 과민증 · 전신성 신경근접합부 장애 · 중증 호흡기능장애 · 임신·수유(Class C) · 주사부위 감염 · 근이완제 (p.23) | "감염부위에도 소독하고 진행할 수 있다"
+R: 교근 비대증 {jb:BT07} {jb:BT13} {jb:BT17} | 주의 = Parotid gland · Facial a. · 25~50 U/side · 2~3 point · 0.5~1cm · Aspiration (p.33) | "submandibular gland를 주의"
+N: 김우진 교수님 객관식은 슬라이드의 한 단어를 뒤집어 틀린 선지를 만듦 — 오른쪽 열의 단어(운동성 없다·인간에게만·소화된다·약하다·분리하는 protease·파괴·불법·동일·submandibular)를 보면 바로 ✗.
+
+#TBL BoNT 구조 → 작용 단계 연결 | k=BT | src=[[BT:10]] [[BT:11]] [[BT:13]] [[BT:14]]
+H: 부분 | 도메인 | 크기 | 하는 일 | 작용 단계
+R: Heavy chain C-terminal(HC) | Binding Domain | HC 전체 100 kDa | presynaptic nerve terminal 수용체(PSG → SV2·Syt)에 결합 | 1단계 Docking
+R: Heavy chain N-terminal(HN) | Translocation Domain | (HC에 포함) | 이름만 제시(역할 설명 없음) | 2단계 Endocytosis and fusion — Thioredoxin reductase에 의해 S-S결합이 깨지고 catalytic domain이 세포질로 이동
+R: Light chain(LC) | Catalytic Domain(Zn) | 50 kDa | Zn-의존적 단백분해효소 → SNARE 단백질 분해 {jb:BT16} | 3단계 Proteolysis — B·D·F·G → VAMP / A·C·E → SNAP25 / C → SNAP25·syntaxin
+R: NTNHA | Non-Toxic Non-hemagglutinating protein | BoNT + NTNHA = M-PTC 290 kDa | 독소 안정화 및 보호 {jb:BT03} | 25 필기: 독소가 활성화되기 전에 보호하는 안전장치
+R: HAP(HA70·HA17·HA33) | Haemagglutinating protein | M-PTC + HA = L-PTC 760 kDa | 응집소 및 장에서 장벽을 통과 | —
+R: 부형제(Excipients) | — | — | 독소 안정화 | —
+N: 두 chain은 disulfide(S-S)로 연결 — Progenitor toxin(inactive)은 Bacterial or Gastric protease로 Active toxin이 됨(p.10 그림). 필기: 산성화로 오히려 활성화, 세포질의 중성 pH에서 light chain이 heavy chain에서 떨어져 독소로 작용. {jb:BT15}
+
+#TBL 주의점 — 부작용 7 · 금기 6 · 상호작용 8 | k=BT | src=[[BT:22]] [[BT:23]] [[BT:24]]
+H: 구분 | 항목 | 상세 · 필기
+R: 부작용 {jb:BT06} | 과민반응 | 아나필락시스·두드러기·연조직부종·호흡곤란 — 아나필락시스는 용제로 리도카인 사용 시 · 가장 흔함(주로 용제·보존제 탓)
+R: 부작용 | 원거리 확산 | 보톡스 중독 = 보툴리즘, 타액 — 근력쇠약·목쉼·언어장애·말더듬·호흡곤란·삼킴곤란·복시·눈꺼풀 처짐(혈관에 직접 주입 시)
+R: 부작용 | 말초신경증 / 심혈관 장애 / 의인성 장애 / 신경 저하 | 삼킴곤란·호흡곤란 / 부정맥·심근경색 / 관통·출혈 / 삼차신경통·눈깜박임 감소
+R: 부작용 {jb:BT10} | 보톡스 내성 | 보톡스 치료 효과 저하 — 우울증·탈모증은 부작용 아님
+R: 금기 {jb:BT05} | 과민증 · 전신성 신경근접합부 장애 | 약제·보존제·용제 / 중증근무력증·Lambert-Eaton 증후군·근위축성측색경화증
+R: 금기 | 중증의 호흡기능장애 · 임신·수유부 · 주사부위 감염 · 근이완제 투여 중 | 임신 = Class C
+R: 상호작용 — 상승 | 근이완제(Baclofen·Tizanidine) · 칼슘채널차단제(verapamil·diltiazem) | 보톡스와 같은 작용
+R: 상호작용 — 상쇄 | 콜린성 약물(pyridostigmine·neostigmine) | 보톡스와 반대 작용
+R: 상호작용 — 증폭 | 항콜린제 | 전신적 anticholinergic 효과를 증폭 {jb:BT05}
+R: 상호작용 — 대사 지연 | 항생제(polymyxin·tetracycline·lincomycin·spectinomycin) · 아미노글리코시드계(아미카신·겐타마이신·카나마이신·네오마이신·스트렙토마이신) | 25 필기: 보톡스가 항생제 대사를 지연, 특히 아미노글리코시드 · 26 필기(총론): 대사가 저해되어 체내 고농도 유지 위험
+R: 상호작용 — CNS 저하 | 마약성 진통제 및 마취제(morphine·pethidine·propofol) | 중추신경계 저하 효과 → 병용 다소 위험
+R: 상호작용 | 항경련제(gabapentin·pregabalin) | 표에만 있음(필기 설명 없음)
+N: 필기 이유는 26 PDF 주석(p.22-24) — 항경련제는 표에만 있고 필기 설명 없음.
+
+#TBL 치료 순서 6단계 — 단계별 원칙 | k=BT | src=[[BT:26]] [[BT:27]] [[BT:28]] [[BT:29]] [[BT:30]] [[BT:31]] [[BT:32]]
+H: 단계 | 원칙(슬라이드) | 필기
+R: 1. 정확한 진단 {jb:BT09} | 적응증 · Bad Habit · Medical History · 주사부위의 감염여부 · 복용하고 있는 약물 · 임신가능성 · 약물반응 | 7항목 읽어주심 · 25: 근육에 의한 것인지, 정확한 근육 부위는 어디인지
+R: 2. 시술 부위의 선택 | 촉진/시진 · 안전 지역 | 근육이 가장 풍융한 부위에 주사
+R: 3. 주입 용량의 결정 {jb:BT04} | 눈꺼풀 경련 0.5~2.5 U · 사시 교정 1.25~5.0 U · Gummy Smile 4~6 U · Popple Chin 4~12 U · Glabellar line 5~20 U · 교근비대증 25~50 U · 다한증 50~100 U · 편두통·방광기능장애 150~200 U | 일반적으로 15-20U로 3-6개월 효과
+R: 4. 약제의 준비 및 희석 | 미리 조제 금지 · 생리식염수 사용 · 거품금지 · 정확한 계량 | 단백질이라 활성 저하 → 요즘은 용액 형태
+R: 5. 주입 {jb:BT09} | 적정한 소독 · 수직 자입 · Intradermal · Intramuscular · Aspiration · 문지르지 말 것 | 문지르거나 사우나 등 확산 유발 행위 금지
+R: 6. F/U {jb:BT18} | 2주/6주 C/U · 4주 이내 재주사 금지 · Muscle tone C/U · Rebounding C/U | 수 개월 유지되므로 단기간 재주사 지양(25: 4-8주 내 재주사 권장 안 함 — 내성)
+N: 필기 "과다투여의 위험은 적지만, 어디에 주사할 것인가를 아는 것은 중요". JB의 '활성화 기간 4-6개월 ✗'(2주 시작·6주 최대)는 옛 자료 근거 — 26 자료에선 '2주/6주 C/U'만.
+
+#TBL 교근 비대증 vs Gummy smile 술식 | k=BT | src=[[BT:29]] [[BT:33]] [[BT:34]]
+H: 항목 | 저작근 비대증 | Gummy smile
+R: 적용 근육 | Masseter m. · Temporalis m. | Levator labii superioris m. · Zygomaticus minor m.
+R: 주의해야 할 부분 {jb:BT07} {jb:BT17} | Parotid gland · Facial a.(필기: facial artery & vein) | Orbicularis oris m. · Zygomaticus major m. · Hematoma
+R: 용량 | 25 ~50 U/side(p.29 표 25~50 U) | 2~6 U/side(p.29 표 4~6 U)
+R: 자입점 | 2~3 point/side · 0.5~1cm 간격 | 1~2 point/side · 0.2~0.5cm 간격
+R: 주입 | 수직 자입 후 bone touch 후 약간 후퇴 | Intramuscular injection
+R: 흡인 | Aspiration | No aspiration
+R: 위치 | Safety Margin — Earlobe-Mouth corner line · Mandibular border · Ant.·Post. border line of Masseter | 상악견치 부근에서 상방으로 ala line과 교차하는 부분
+R: 희석 예 | 50 U 기준 1.1 ml 생리식염수 → 0.5 ml/side | —
+N: JB 선지 "20-50U 양쪽"·"20-60 U"는 슬라이드 수치(25~50 U/side)와 다르지만 JB는 틀린 선지로 보지 않음 — 확실한 오답은 'submandibular gland'.

@@ -1,0 +1,67 @@
+#TBL 접착 용어 6개 짝짓기 | k=ADH | src=[[ADH:4]] [[ADH:5]]
+H: 용어 | 한글 | 끝말 | 정의
+R: {r:Adhesion (Bonding)} {jb:Q17_1} | 접착 | 성질 | 분자 사이의 힘에 의해 종류가 다른 두 물질이 달라붙는 성질
+R: {r:Adherend} | 피착면 | 표면 | 접착되는 물질의 표면
+R: {r:Adhesive} = {r:Bonding agent} | 접착제 | 물질 | 양쪽의 피착면을 연결시켜 주는 물질
+R: {r:Adhesive (Bond) strength} | 접착(결합)강도 | 척도 | 접착된 두 물질이 접착 계면에서 하중을 견디는 능력에 대한 척도
+R: {r:Adhesive (Bonding) durability} {jb:Q17} | 접착의 내구성 | 상태 | 접착이 오랜 시간 동안 결손 없이 공고하게 유지되는 상태
+N: 24년 객관식은 정의를 서로 바꿔 끼운 보기 — 끝말(성질·표면·물질·척도·상태)만 맞춰도 풀린다. 필기: durability는 "붙어 있는 정도를 떠나서 얼마나 오래 가느냐", strength는 microtensile·shear stress 등으로 측정. [[ADH:5]]
+
+#TBL 접착에 유리한 표면 — High vs Low surface energy | k=ADH | src=[[ADH:6]] [[ADH:7]] [[ADH:9]]
+H: 항목 | 접착에 유리 | 접착에 불리
+R: 표면에너지 {jb:Q14} | {r:High surface energy} | {r:Low surface energy}
+R: 물성 | Hard, high melting point | Soft, low melting point
+R: 분자간 힘 | Strong intermolecular bond strength | Weak intermolecular bond strength
+R: 구조·성분 | Crystalline solid | {r:Collagen fiber}, organic component of resin
+R: 표면 {jb:Q14} | {r:Pure surface} | {r:Contaminated surface}(salivary protein · biofilm · smear layer)
+R: 접착제 | 표면장력 {r:낮음} → 잘 퍼짐 · {r:접촉각 낮음} {jb:Q14} | 표면장력 큼 → 뭉침 · 접촉각 큼
+R: 조건 | {r:Surface energy of adherend > ST of adhesive} | 반대
+R: 치질 {jb:Q14} | {r:Enamel} — 무기질 95~98 wt% · 물 ~4 wt% | {r:Dentin} — 무기질 70 wt% · 물 12 wt% · 유기질 18 wt%, tubule로 물이 올라옴
+N: 필기 "이를 높은 표면에너지 상태로 만들어주고 붙여야 오래 간다" · "접착제가 잘 퍼져나가야 접착에 유리하기 때문". [[ADH:6]] [[ADH:7]]
+
+#TBL 산부식 후 치질별 결과 — Resin tag vs Hybrid layer | k=ADH | src=[[ADH:12]] [[ADH:13]] [[ADH:15]] [[ADH:25]] [[ADH:28]]
+H: 항목 | Resin tag | Hybrid layer
+R: 어디에 | Enamel(micropore) · Dentin {r:intratubular}(세관 안) | Dentin {r:intertubular}(세관 사이)
+R: 무엇이 | smear plug 자리·micropore로 레진이 흘러듦 | 노출된 {r:collagen fiber} + {r:resin monomer}가 얼기설기 엮임
+R: 특성 {jb:Q18} | 상아세관에 도말층이 끼어들어가듯 생김 | {r:15 - 20 nm micropore} · {r:Penetration of resin monomer}
+R: 접착 기여 {jb:Q14} {jb:Q18} | 상대적으로 작음 — tubule 단면적이 작음 | {r:더 큼} — {r:Micromechanical interlocking} · Important layer for successful adhesion
+R: Total-etch | 길게 형성 | {r:Thick} hybrid layer · deeply exposed collagen
+R: Self-etch | {r:짧음} — 그래도 큰 문제 안 됨 | {r:얇음}(Shallow hybridization)
+N: p.13 필기 "tubule의 단면적 < intertubule의 단면적, 그래서 resin tag 자체가 얼마나 깊게 들어가느냐보다는 hybrid layer에서 얼마나 견고하게 결합 형성되는지 봐야" — p.45 keyword 필기에도 같은 질문. [[ADH:13]] [[ADH:45]]
+
+#TBL Total-etch vs Self-etch vs Universal | k=ADH | src=[[ADH:24]] [[ADH:25]] [[ADH:26]] [[ADH:28]] [[ADH:30]] [[ADH:31]] [[ADH:33]] [[ADH:36]] [[ADH:37]]
+H: 항목 | Total-etch (Etch & Rinse) | Self-etch | Universal
+R: 합친 단계 | Etching / Priming / Bonding {r:각각} | {r:Etching + Priming}(산성 primer) / Bonding | {r:Etching + Priming + Bonding} 한 병
+R: Smear layer | {r:제거}(인산 부식 후 rinse) | {r:유지} — 도말층과 함께 문질러 hybrid layer에 포함 | Etch & Rinse / Self-etch / Selective enamel etch 모두 가능
+R: Hybrid layer · resin tag | {r:Thick} hybrid layer · 긴 resin tag · deeply exposed collagen | {r:Shallow hybridization} · 짧은 resin tag · limited collagen exposure | —
+R: 법랑질 | {r:Best approach for enamel} | 부식 부족 → {r:Selective enamel etching required} | Selective enamel etch 가능
+R: 상아질 | {r:(too) aggressive for dentin} · vulnerable to leakage and biodegradation | Partial demineralization · possibility of chemical interaction | 대표 functional monomer {r:10-MDP}
+R: 약점 | collagen 과건조 collapse · resin tag 부족 → 빈 공간 · MMP | Potential smear layer interference · {r:Sensitive for hydrolytic degradation} | 각 방법을 알고 써야(다른 접착제를 universal처럼 쓰면 안 됨)
+R: Protocol | 30-40% 인산 {r:15 sec}(enamel & dentin) → primer {r:active rubbing 15 sec}(wet bonding) → separate hydrophobic bonding agent → immediate light-curing | {r:Selectively etch enamel} 30-40% 인산 15 sec → {r:actively rubbing} mild self-etch primer(10-MDP) → separate hydrophobic bonding agent → immediate light-curing | —
+R: 범용성 | — | — | {r:Single bottle} · Metal / Ceramic / Composite · Direct & Indirect
+N: Combined(selective enamel etching + self-etch primer) = gold standard — enamel은 선택적으로 산부식, dentin에는 self-etch. 필기 조언: self-etch는 20초 이상 열심히 문지르고 용매를 충분히 날릴 것. [[ADH:20]] [[ADH:36]] [[ADH:34]]
+
+#TBL 접착제의 적용 방식과 세대 | k=ADH | src=[[ADH:20]] [[ADH:21]]
+H: 세대 | 년도 | 도말층의 처리 | 주요 특징 · 적용 방식
+R: 1세대 | 1950~1960년대 | — | 상아질과의 화학적 결합 시도하였으나 실패 · 낮은 접착강도
+R: 2세대 | 1970~1980년대 | 도말층의 변형(modification) | Self-etch의 효시 · 도말층을 투과하지 못하므로 낮은 접착력
+R: 3세대 | 1980년대 후반 | 도말층의 변형(modification) | 약산으로 상아질 부식 시도 · 도말층을 투과하여 향상된 접착력
+R: {r:4세대} | 1990년대 초반 | 도말층 용해와 제거(etch and rinse) | {r:Total etch 상용화} · {r:3-step etch and rinse}(가장 많이 사용) · {r:Wet bonding technique 권장} — 비로소 쓸 만한 접착력
+R: 5세대 | 1990년대 중반 | 도말층 용해와 제거(etch and rinse) | 2-step etch and rinse(priming·bonding 합침)
+R: 6세대 | 1990년대 후반 | 도말층 용해와 잔존(self-etch) | {r:2-step self-etch}(self-etch 중 가장 많이 사용) · 1-step, 2-component
+R: 7세대 | 2000년대 이후 | 도말층 용해와 잔존(self-etch) | 1-step, 1-component(All-in-one) — 임상에서 쓰기에 문제 많음
+R: Universal | {r:2012년 이후} | multi modes | {r:Universal adhesive 출시} · 새로운 기능적 단량체 · 세대 구분 안 함
+R: Combined | — | selective enamel etching + self-etch primer | self-etch의 법랑질 부식 부족을 보완 = gold standard
+N: 필기: 1~3세대는 임상에서 쓸 수 있을 정도의 접착력을 얻지 못함 · 3-step이 번거롭고 technique-sensitive해 발전 · self-etch는 enamel 산부식이 충분치 못해 따로 산부식 필요하다는 결론. [[ADH:21]]
+
+#TBL 접착의 임상 고려사항과 중합수축 응력 줄이기 | k=ADH | src=[[ADH:39]] [[ADH:40]] [[ADH:41]] [[ADH:42]] [[ADH:44]]
+H: 항목 | 슬라이드 | 요점(필기)
+R: {r:Wet bonding} | Wet Bonding | 물 안에 collagen fiber가 떠 있어야 primer가 대체 · 과건조 → collapse · cotton pellet으로 다 마르지도 축축하지도 않게
+R: {r:Priming} | Priming | 급격히 말리면 {r:resin globule}로 갇힘 → 약한 바람으로 서서히 · self-etch는 active rubbing
+R: {r:Water permeability} | Simple-step adhesive – water permeability | tubular fluid → water permeable adhesive layer → osmotic blistering
+R: 호환성 | Compatibility with self-cured/dual-cured composite resin | —
+R: {r:Durability} | Durability – degeneration, biodegradation, hydrolysis | 붙여놓고 나중에 가수분해 등으로 오래 못 가는 경우 고려(p.44 필기)
+R: 수명·생체 | Clinical longevity · Biocompatibility | 레진·접착제에 맨손으로 닿지 않도록
+R: 응력 줄이기 — 레진 수복 | {r:Flowable composite application} · {r:Incremental filling} · {r:Modification of photopolymerization protocol} | lining · 적층 충전 · 광중합 출력·거리 조절로 서서히
+R: 응력 줄이기 — 접착제 | {r:Stress bearing potential} · {r:Prevention degeneration, biodegradation, hydrolysis} | 얇게 여러 번 펴 바르기 · 가수분해로 오래 못 가는 경우 고려
+N: 중합수축 = Double bond → Single bond ⇒ Shrinkage → Stress at the adhesion interface — 벽에서 생기는 응력이 접착을 방해하므로 접착제를 써야 함. [[ADH:43]]

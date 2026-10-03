@@ -1,0 +1,55 @@
+#TBL 경부 림프절 level 경계 — 공개 시험문제 | k=NECK | src=[[NECK:4]] [[NECK:5]] [[NECK:24]] [[NECK:25]] [[NECK:27]] [[NECK:28]] [[NECK:29]] [[NECK:30]] [[NECK:31]]
+H: Level | Superior | Inferior | Anterior | Posterior | Metastases from (원발 부위)
+R: {r:IA} Submental {jb:M04} | Symphysis of mandible | Body of hyoid | Anterior belly of {r:contralateral} digastric m. | Anterior belly of {r:ipsilateral} digastric m. | floor of mouth, anterior oral tongue, anterior mandibular alveolar ridge, lower lip
+R: {r:IB} Submandibular | Body of mandible | Posterior belly of (digastric) muscle | Anterior belly of digastric m. | {r:Stylohyoid m.} | oral cavity, anterior nasal cavity, soft tissue structures of the midface, submandibular gland
+R: {r:IIA} Upper jugular {jb:M01} | {r:Skull base} | Inferior body of hyoid bone | {r:Stylohyoid m.} | {r:Spinal accessory n.} | oral cavity, nasal cavity, nasopharynx, oropharynx, hypopharynx, larynx, {r:parotid gland}
+R: {r:IIB} Upper jugular {jb:M01} | Skull base | Inferior body of hyoid bone | {r:Spinal accessory n.} | Lateral border of {r:SCM} | (IIA와 같음)
+R: {r:III} Middle jugular | Inferior border of hyoid bone | Inferior border of {r:cricoid} cartilage | Lateral border of {r:sternohyoid} m. | Lateral border of SCM, branches of cervical plexus | oral cavity, nasopharynx, oropharynx, hypopharynx, larynx
+R: {r:IV} Lower jugular | Inferior border of cricoid cartilage | {r:Clavicle} | Lateral border of sternohyoid m. | Lateral border of SCM, branches of cervical plexus | hypopharynx, cervical esophagus, larynx, {r:thyroid}
+R: {r:VA} Posterior triangular | {r:Apex of the convergence} of SCM and trapezius | Cricoid cartilage | Posterior border of SCM, sensory branches of cervical plexus | Anterior border of {r:trapezius} | nasopharynx, oropharynx, cutaneous structures of the posterior scalp and neck
+R: {r:VB} Posterior triangular | Lower border of cricoid cartilage | Clavicle | Posterior border of SCM, sensory branches of cervical plexus | Anterior border of trapezius | (VA와 같음)
+R: {r:VI} Anterior compartment | {r:Hyoid bone} | {r:Suprasternal} | {r:Common carotid artery} | Common carotid artery | thyroid gland, glottic and subglottic larynx, apex of the piriform sinus, cervical esophagus
+N: 26 p.4 필기 "이게 시험 문제다" — 문제: "경부림프절(Neck lymph nodes)의 level을 구분하는 해부학적 구조물을 그림상에 표시하고, 명명할 것(영어, 한글, 혼용무방)". [[NECK:4]]
+N: 필기의 큰 경계: SCM(1 | 234 | 5) · digastric anterior belly(IA/IB) · CN XI accessory n.(IIA/IIB) · hyoid(carotid 분지부 landmark) · cricoid · omohyoid(VA/VB, III·IV 가로지름). ⚠ 표는 III/IV·VA/VB를 cricoid 높이로 적음. [[NECK:23]]
+
+#TBL Neck dissection 4분류 | k=NECK | src=[[NECK:32]] [[NECK:33]] [[NECK:34]] [[NECK:35]] [[NECK:37]] [[NECK:40]]
+H: 분류 | 슬라이드 정의 | Level | SAN · IJV · SCM | 필기 · 비고
+R: {r:Radical ND} {jb:M04} | standard basic procedure for cervical lymphadenectomy | ipsilateral {r:I–V} 전부 | 셋 다 {r:제거} | Crile 1906. suboccipital·periparotid·buccinator·retropharyngeal·midline visceral node는 포함 안 함
+R: {r:Modified radical ND} {jb:M02} | preservation of 1 or more {r:nonlymphatic structures} | I–V 전부 | Type 1 SAN / Type 2 SAN+SCM / Type 3 SAN+SCM+IJV 보존 | Jatin P Shah 1996. 한두 가지는 살려두는 약간 마일드한 RND — 요즘 추세
+R: {r:Selective ND} | preservation of 1 or more {r:lymph node groups/levels} | 구강 {r:I–III} · 구인두·하인두·후두 {r:II–IV} · 갑상선 {r:VI} | — (슬라이드 언급 없음) | 구강암 SND(I–III) = supraomohyoid ND
+R: {r:Extended ND} | removal of {r:additional} lymph node groups or nonlymphatic structures | I–V + retropharyngeal·superior mediastinal·buccinator·paratracheal | 제거 + carotid a.·hypoglossal n.·vagus n.·paraspinal m. | 제일 빡센 박리
+N: p.32 필기 "이거 구분 정도는 할 줄 알아야 한다". 25 필기: RND가 과하다고 생각해서 하는 처치가 MRND, 오히려 더 강하게 하는 경우가 Extended. [[NECK:32]] [[NK5:35]]
+
+#TBL SAN · IJV · SCM — RND·MRND별 제거/보존과 결과 | k=NECK | src=[[NECK:34]] [[NECK:35]] [[NECK:40]] [[NK5:67]]
+H: 구조물 | RND | MRND-1 | MRND-2 | MRND-3 (functional) | 제거하면 | 살리는 우선순위
+R: {r:Spinal accessory n.} | 제거 | {r:보존} | {r:보존} | {r:보존} {jb:M02} | 팔도 잘 못 움직임 = shoulder syndrome(trapezius 위축) {jb:M03} | {r:1순위} — 후유증이 가장 큼
+R: {r:SCM} | 제거 | 제거 | {r:보존} | {r:보존} | 목도 잘 못 가눔 | 3순위 — 가장 희생 가능
+R: {r:Internal jugular v.} | 제거 | 제거 | 제거 | {r:보존} | 얼굴이 팅팅 부음 | 2순위
+N: 25 필기 2024 강조 "Modified neck dissection에서 제거하는 3가지(순서: SCM → internal jugular v. → spinal accessory n.)". MRND-1의 SCM·IJV '제거'는 "accessory nerve 보존"만 적힌 슬라이드 정의에서 나머지를 뜻함. [[NK5:1]] [[NECK:35]]
+
+#TBL Clinical N staging (AJCC & UICC) | k=NECK | src=[[NECK:11]] [[NECK:12]] [[NK5:13]]
+H: N | 개수·위치 | 크기 (greatest dimension)
+R: Nx | Regional lymph nodes cannot be assessed | —
+R: N0 | No regional lymph node metastasis | —
+R: {r:N1} | single {r:ipsilateral} | {r:<3 cm}
+R: {r:N2a} | single ipsilateral | {r:>3 cm but <6 cm}
+R: {r:N2b} | {r:multiple ipsilateral} | none >6 cm
+R: {r:N2c} | {r:bilateral or contralateral} | none >6 cm
+R: {r:N3} | a lymph node | {r:>6 cm}
+N: "The N staging system simply reflects the volume of tumor burden in regional lymphatics which is directly linked to prognosis" / "The prognosis worsens with increasing N stage". 26 필기 "전혀 외울 필요가 없다 … 크기 주면서 stage 맞추라는 문제를 내기도 한다", 25 필기 "기말고사에서 이걸 단순하게 물어보는 문항이 있을 수 있습니다!" [[NECK:11]] [[NECK:12]] [[NK5:13]]
+
+#TBL 원발 부위별 first echelon lymph nodes | k=NECK | src=[[NECK:7]] [[NECK:9]] [[NECK:10]]
+H: Primary site | First echelon lymph nodes | 필기
+R: {r:Oral cavity} | {r:Level I · II · III} | 레벨 1 > 2 > 3 순서대로 전이 — sentinel node(first echelon) 개념
+R: {r:Parotid} | {r:Preauricular} · Periparotid & intraparotid · Level II · Level III · {r:Upper accessory chain} | 이하선 안으로 먼저 → 중력 방향 따라 아래로
+R: {r:Larynx · Pharynx} | {r:Level II · III · IV} | 2 > 3 순서, 반대로 역류하지 않음
+N: p.7·9 "이런 개념은 외울 필요가 없다" — 흐름만. 25 필기: 이하선암은 level I로 잘 안 감. [[NECK:7]] [[NK5:10]]
+
+#TBL 합병증 — 수술 중 vs 수술 후 | k=NECK | src=[[NECK:53]] [[NECK:54]] [[NECK:56]]
+H: Intraoperative | Postoperative
+R: Bleeding; {r:vascular injury} | Postoperative {r:infection}
+R: Slipping of a ligature on the {r:internal jugular vein} | {r:Nerve injury} — facial n. / {r:11th nerve(="shoulder syndrome")} {jb:M03} / vagus n. / glossopharyngeal n. / phrenic n. / laryngeal n. / lingual n. / hypoglossal n.
+R: {r:Major chyle leak}(injury to the thoracic duct in the neck) | {r:Chylous fistula}
+R: Cardiac arrhythmia({r:carotid sinus syndrome}) | {r:Stroke} ← carotid artery stenosis
+R: — | {r:Pain} ← musculoskeletal imbalance / {r:Neuroma}
+N: 분류는 Intra-operative · Post-operative · Late(Late 세부 슬라이드는 26 자료에 없음). 26 수업은 p.52 "여기까지 끝!"으로 합병증을 다루지 않음. [[NECK:53]] [[NECK:52]]

@@ -1,0 +1,49 @@
+#TBL External vs Internal connection | k=HIS | src=[[HIS:24]] [[HIS:25]]
+H: 항목 | External connection | Internal connection
+R: 연결 | 지대주 {r:외부} 연결 — {r:Hexagon}이 주류 · 보철물이 fixture를 감쌈(필기) | 지대주 {r:내부} 연결 — fixture가 보철물을 감쌈(필기)
+R: 특징(p.24) | 다양한 보철 가능 / {r:Joint Stability 문제} | {r:No gap & movement} {jb:Q10}
+R: 1) Abut sinking | {r:없다} → 보철 안정성(교합이 아무리 되어도 내려가지 않음) | {r:발생} → cold welding으로 abut 분리 어려움 · 교합조정 다시 필요
+R: 2) 교합에 의한 응력전달 | {r:connection, screw} → {r:screw 풀림} 현상이 많음(보철이 screw로만 고정) | {r:screw, abut, fixture} → 응력분산에 유리하나 {r:fixture 찢어지는 현상} 가능(경계면이 얇아 가장 취약)
+R: 3) Platform 주변 골소실 | {r:많음} — 경계면 micromovement, {r:1-2 thread}는 정상으로 간주 | {r:적음} — cold-welding으로 거의 움직임이 없음
+R: 추세·부위 | 26 필기: internal이 잘 찢어질 수 있어 과거에 잘 안 쓰였음 / 25 필기: 강한 교합력 환자에겐 internal을 피함 | 최근 더 많이 쓰는 추세 · 기술 발전으로 {r:구치부에서도} / 25 필기: 전치부(심미) {jb:R02}
+N: 23년 서술형 비교(R02) → 24년 객관식 "internal에 관해 옳은 것"(Q10): 5개 선지 중 4개가 external 칸 문장. 25 필기 External 별표 + "시험문제!!!". [[HIS5:25]]
+
+#TBL One-stage vs Two-stage surgery | k=HIS | src=[[HIS:21]] [[HIS:22]] [[HIS:23]]
+H: 항목 | One-stage (일회법) | Two-stage (이회법)
+R: 수술 방식 | Fixture 식립 시 {r:바로 healing abutment}(지대주)를 연결하거나 매식체 일부를 잇몸 바깥으로 노출 → {r:2차 수술 불필요} | Fixture 식립 후 {r:soft tissue를 덮고} osseointegration(상악 {r:6개월} · 하악 {r:3개월}) 후 flap을 열어 healing abutment 연결 {jb:Q14}
+R: 장점 | 수술횟수 감소 / Soft tissue의 이차적 감염 예방 / Fixture의 예후 인지 용이 / 실패 시 조기진단으로 골손실 적음 | 수술 후 flap을 덮어 {r:초기고정}에 도움
+R: 단점 | {r:Loading 부하}의 가능성 / {r:abutment looseness}로 인한 infection 위험 | 2회 수술로 환자 불편 / 조직 손상 / 치료기간이 길다 / 실패 시 골손상이 클 수 있다
+R: 쓰는 부품 | {r:Healing abutment}: 최종 abutment 선택 전까지 치은조직의 개방을 유지하고 연조직의 완전한 치유를 돕는 역할 {jb:Q13} | {r:Cover screw}: fixture가 뼈에 붙는 동안 fixture 내부로 연조직 및 치조골이 성장하여 들어가는 것 방지 — 1st op에 고정 후 잇몸으로 완전히 덮음
+R: 선택 기준(필기) | 1st op 끝에 바로 healing abutment를 쓰면 one step | fixture가 {r:움직일 위험이 높다면} Two stage
+N: 24년 Q13 ⑤는 healing abutment의 역할 문장을 cover screw에 붙인 함정, Q14는 p.23 사진 그대로. [[HIS:51]]
+
+#TBL Straight vs Tapered body | k=HIS | src=[[HIS:30]] [[HIS:31]]
+H: 항목 | Straight Body | Tapered Body
+R: 형태(25 필기) | 위와 아래가 동일한 직경 | 아래로 갈수록 좁아짐
+R: 유리한 상황(슬라이드 문장) | {r:식립이 편하고}, {r:구치부 발치와}에서 초기고정력 획득에 유리 | 치조골의 {r:경사가 심한 경우}, {r:Soft Bone}에서 초기고정력 획득에 유리 {jb:Q13}
+R: 필기 | 경사진 치조골에서 lingual로 뼈를 뚫고 나올 우려 | 보통 많이 씀 — 식립하면서 {r:방향을 바꿀 때} 더 유리 · 뚫고 나올 우려로 더 선호
+N: Q13 ③④는 두 칸의 문장을 서로 바꾼 선지(둘 다 ×). [[HIS:31]]
+
+#TBL 표면에 의한 분류 — SA · CA · HA | k=HIS | src=[[HIS:26]] [[HIS:27]] [[HIS:17]]
+H: 표면 | 공정 | Roughness
+R: {r:SA} — Sand blast with alumina and Acid etching | ① {r:Blasting}: 큰 알갱이(Alumina)로 쳐서 거친 표면 구현 ② {r:Etching}: 산 부식(염산, 황산) 처리 | Macro + Micro
+R: {r:CA} — Calcium SA | ① Blasting ② Etching ③ {r:칼슘 이온 포장} | Macro + Micro + {r:Calcium}
+R: {r:HA} — hydroxyapatite Coated Implant | ① {r:RBM} 처리 ② Coating: {r:hydroxyapatite} | {r:Macro}
+N: 방향 = Smooth surface → Rough surface(Why? osseointegration의 속도 향상을 위해). ※ SLA = Sandblast Large grit & Acid etch. p.17 roughness 방법: Mechanical(Machined) · Chemical(SLA, 필기 "기본적으로 SLA") · Physical(TPS). [[HIS:17]]
+
+#TBL Implant drill 5 | k=HIS | src=[[HIS:38]] [[HIS:42]] [[HIS:48]]
+H: 드릴 | 슬라이드 문장(= JB 답) | 필기·키트
+R: A) {r:Initial drill} | 피질골 {r:천공 및 표시} {jb:Q11} | 얇은 굵기 · 키트의 {r:Lance drill = initial drill}
+R: B) {r:Twist drill} | {r:수직, 수평적 확대} | 옆 필기 "앞에는 2mm, 뒤에는 3mm" · p.48 Ø2.0 → Ø3.0 → Ø3.3 순서
+R: C) {r:Pilot drill} | twist drill의 {r:진입이 쉽도록 피질골 넓힘} | Pilot Drill(2.0/3.0) — 3 mm로 넓히는 과정
+R: D) {r:Tapping drill} | {r:나사산 형성} | {r:Cortical bone이 두꺼울 때만} 사용(그림 Dense bone 쪽)
+R: E) {r:Countersink drill} | 임플란트 {r:shoulder가 넓은 경우} | shoulder가 들어갈 자리를 미리 만들어준다
+N: 사용 순서(p.48): Lance → Ø2.0 Twist → Depth Gauge → Pilot(2.0/3.0) → Ø3.0 Twist → Ø3.3 Twist → Countersink → Tap. 25 필기: 별표 p.38 "A B C D 이름 쓰고 역할", p.42 "드릴을 사용 순서로 배열" 예시. [[HIS5:38]]
+
+#TBL 임플란트 발전사 4종 | k=HIS | src=[[HIS:7]] [[HIS:8]] [[HIS:9]] [[HIS:10]]
+H: 종류 | 고안 | 구조·위치 | 고정(필기)
+R: 1. {r:치내}(Endodontic) | — | 치근관 내를 통해 치근단 골조직으로 뻗은 금속성 매식체 → {r:실활치근 연장} | 금속성 매식체로 기계적 고정
+R: 2. {r:점막하}(Subdermal) | {r:1943} 스웨덴 {r:Dahl} | Base·cervix·head의 {r:stud type} — 총의치 조직면, head가 구강점막 부위 | {r:잇몸에 의한 고정력}(현대에는 안 씀)
+R: 3. {r:골막하}(Subperiosteal) | {r:1949} 미국 {r:Goldberg와 Gershkoff} | {r:말 안장 형태 framework}를 치조골 위에 안착 — 무치악 | 골막 절개 후 뼈 위에 얹음 — 뼈에 고정 안 돼 안정력 낮음
+R: 4. {r:골내}(Intraosseous) | 현재 | {r:blade형}, {r:root form} | 과거 blade를 망치로 → {r:screw type}(기계적 고정 + 골유착)
+N: 특허 흐름(Cho et al. 2021): 첫 metallic 특허 1909(Greenfield) · 첫 nonmetallic 1944(Kresse, MMA) · 지금도 titanium + 표면처리 변형으로 골유착 효율 증대. [[HIS:12]] [[HIS:13]]

@@ -1,0 +1,77 @@
+#TBL 빛과 물체 — 정반사·난반사·흡수·산란 | k=COL | src=[[COL:10]] [[COL:11]] [[COL:12]] [[COL:13]] [[COL:85]]
+H: 거동 | 슬라이드 | 보이는 것(필기) | 색과의 관계
+R: {r:Specular reflection}(정반사) | 입사각 = 반사각 | 조명이 그대로 — 광택, 거울 | 색이 아님 — 색 측정 시 없앰(gloss trap)
+R: {r:Diffuse reflection}(난반사) | 모든 방향으로 빛이 나감 | 특정 파장의 난반사 | 물체의 색 = 난반사
+R: {r:Absorption} | molecular interaction | 모든 파장 흡수 = 검게(열로) | 흡수하고 남은 빛이 보임
+R: {r:Scattering} | particles or air bubbles · titanium dioxide·calcium carbonate | 모든 파장 산란 = 희게(투과도 없음) · etching = chalky white | 적색만 산란 = 적색
+N: Two processes reduce transparency = Absorption + Scattering · 이 두 가지가 아니면 투명하게 통과(필기) · Gloss = 정반사 영역(p.85). [[COL:13]] [[COL:85]]
+
+#TBL 간상체·추상체와 색맹 | k=COL | src=[[COL:17]] [[COL:29]] [[COL:30]] [[COL:32]] [[COL:33]] [[COL:36]]
+H: 구분 | 무엇을 | 이상이 생기면 | 보이는 세상
+R: {r:Rods}(간상체) {jb:Q13} | Rhodopsin, no color information — 흑백 | Rod Monochromat = 추상체가 모두 기능 ✗ → 간상체로만 | 흑백
+R: Cone {r:L}(Long) | 적색 | {r:Protanope} — L이 M 쪽으로 이동 | 적색이 녹색으로(적색이 빠짐)
+R: Cone {r:M}(Middle) | 녹색 | {r:Deuteranope} — M이 L 쪽으로 이동 | 녹색이 적색으로
+R: Cone {r:S}(Short) | 청색 | {r:Tritananope} — S가 없음 | 하늘이 약간 녹색(까맣게 ✗)
+N: Color defectives (usually reds and greens) · Recessive disorder : X chromosome · 8% of male population · 검사 = Ishihara test(숫자 읽기) · Farnsworth D-15(배열이 지그재그). [[COL:27]] [[COL:37]] [[COL:38]]
+
+#TBL 색 지각 3차원 ↔ Munsell ↔ CIELAB | k=COL | src=[[COL:19]] [[COL:47]] [[COL:59]] [[COL:60]] [[COL:61]]
+H: 인간의 색 지각 | 한글 | Munsell (1905) | CIELAB (1976)
+R: {r:Hue} {jb:R22} | 색상 — 빨갛다·파랗다 | Hue (Y, R, P, B, G) — 원을 따라 돎 | 각도 h_ab = tan⁻¹(b*/a*)
+R: {r:Colorfulness} {jb:R22} | 채도 — 색상의 진하기 | Chroma — 바깥으로 갈수록 진해짐, 안은 무채색 | 거리 C*_ab = (a*² + b*²)^1/2
+R: {r:Brightness} {jb:R22} {jb:Q12} | 명도 — 밝은 정도 | Value (0~10) — 세로축 | L* = lightness scale (z축, 0 Black ~ 100 White)
+N: 필기 "CIE system과 Munsell system은 동일하다"(p.61) · 사람은 명도부터 인지한다(p.19). [[COL:61]] [[COL:19]]
+
+#TBL CIELAB 축 — 그림에 넣을 것 | k=COL | src=[[COL:59]] [[COL:60]]
+H: 기호 | 의미 | 축(필기) | + 방향 | − 방향
+R: {r:L*} {jb:Q26} | lightness scale | z축 | 100 White | 0 Black
+R: {r:a*} {jb:Q26} | redness-greenness | x축 | Red | Green
+R: {r:b*} {jb:Q26} | yellowness-blueness | y축 | Yellow | Blue
+R: C*ab | chroma(채도) | 원점에서의 거리 | (a*² + b*²)^1/2 | —
+R: hab | hue(색상) | 각도 | tan⁻¹(b*/a*) | —
+N: CIE L*a*b* (CIELAB) : Munsell spacing, colorant / CIE L*u*v* (CIELUV) : additive mixing · 색차 ΔE*ab = (ΔL*² + Δa*ab² + Δb*ab²)^1/2. [[COL:59]] [[COL:62]]
+
+#TBL 광원별 SPD와 CIE 표준광원 | k=COL | src=[[COL:6]] [[COL:8]] [[COL:9]] [[COL:51]] [[COL:52]]
+H: 광원 | 슬라이드 | SPD 모양 · 필기
+R: SPD 그래프의 축 {jb:Q28} | Spectral power distribution (SPD) | x축 = Wavelength λ (nm)(파장) · y축 = Relative radiant power(세기) — "시험에 나옵니다!"
+R: 햇빛 | Daylight @ 5000K | 모든 파장이 골고루 — 햇빛이 하얀 이유
+R: 형광등 | Daylight Fluorescent | 녹색 등 뾰족한 peak — 효율은 좋은데 peak 때문에 눈부심
+R: 흰색 LED | Spectral Power Distribution - White LED | 청색 peak가 매우 높고 형광 물질로 퍼뜨린 파장 — 효율·수명 좋지만 청색 peak 때문에 눈에 안 좋음
+R: {r:A} | incandescent light | 백열등 — 1931년엔 백열등밖에 없었음 · 가열해서 나오는 빛이라 SPD가 매우 안정적인 곡선
+R: {r:B} | direct sunlight | 직접적 햇빛(직사광선)
+R: {r:C} | average daylight | 낮의 평균적인 햇빛
+R: {r:D65} | D: newly recommended in 1964 · D65 : surface color | 60년대 형광등 개발 → 6500K 백색이 새 표준 · 약간 웜톤 · SPD 삐죽빼죽(뾰족한 피크가 많아 눈부시다)
+R: D50 | graphic art | —
+N: D65 refer to a black body at 6500 K — "D65가 이상적인 조명이다"(필기) · 색온도는 온도 낮을수록 빨개진다(필기) · CIE (1931) 3요소 = Illuminant · Object · observer. [[COL:7]] [[COL:9]] [[COL:49]]
+
+#TBL 측색 장비 4종 | k=COL | src=[[COL:68]] [[COL:69]] [[COL:70]] [[COL:71]] [[COL:72]] [[COL:73]] [[COL:74]] [[COL:76]]
+H: 장비 | 원리 | 장점 | 단점 | 조건등색(metamerism)
+R: {r:Tristimulus colorimeter}(색차계) {jb:T20} | RGB 필터(셀로판지) → XYZ · 프리즘 ✗ · CIE D65 and 1931 observer 고정 | Easy to use · less expensive | Repeatability is poor (aging of detectors) | Cannot be used to quantify metamerism
+R: {r:Spectrophotometer}(분광측색기) {jb:T20} | integrating sphere + 프리즘(monochromator) · 시편에 대고 측정 · 5·10·20 nm 간격 | Most widely used for surface colors · stable·accurate · 색상 측정의 표준 | 비쌈(필기) | Can also evaluate metamerism
+R: {r:Spectroradiometer}(TSR) | 프리즘 · 멀리서 현재 조명으로 | Actual condition · All forms of color ⇒ cross-media(monitor against print) | Caution : position | 파장별로 분광(필기)
+R: {r:Digital camera} | RGB 센서 · 필터 | whole object를 이미지로 | Camera RGB ≠ CIE XYZ · 카메라마다 필터가 달라 측정 장비로 ✗(필기) | observer metamerism
+N: 조건등색 = 조명 달라지므로 물체 색 달라보이는 현상 — 파장별 반사율이 달라 광원이 바뀌면 다르게 보임(필기). [[COL:70]]
+
+#TBL 색 이외의 외관 속성 (Other appearance attributes) | k=COL | src=[[COL:80]] [[COL:82]] [[COL:85]] [[COL:86]] [[COL:88]] [[COL:89]] [[COL:92]] [[COL:95]]
+H: 속성 | 슬라이드 정의 | 치아에서(필기) | 수치·측정
+R: {r:Translucency} {jb:Q20} {jb:Q27} | The ability of the material to allow light to pass thorough it | 치아는 translucent(건너편이 안 보임) · 나이 들수록 감소 | Transmittance · Contrast ratio · Reflectance · Thickness
+R: {r:Opacity} {jb:Q20} | The ability of a material to block the passage of light | 흰/검은 배경에서 같으면 불투명 | —
+R: Transparency {jb:S04} | extreme value of high translucency | 건너편 물체가 보일 정도 | —
+R: {r:Gloss} {jb:Q20} | Angular selectivity of reflectance(정반사) | 활택해 광택이 잘 나타남 · 조명 위치에 따라 다름 | GU: 0 GU ~ 1000 GU at 60 degrees
+R: Surface roughness {jb:Q20} | Roughness(finer irregularities) · Waviness(widely spaced component) · Form | waviness = 마멜론 · form = 치아 모양 | —
+R: {r:Opalescence} {jb:R06} {jb:S04} | Scattering of the shorter wavelengths (opal effect) | 앞에서 푸르게·뒤에서 누렇게 · HA | Reflected bluish / Transmitted orange/brown
+R: {r:Fluorescence} {jb:S04} | spontaneous emission of light in a longer wavelength | composite resin에 형광 물질 | within 10⁻⁸ sec · UV ⇒ bluish
+R: Phosphorescence | Persists after the exciting source is removed | 수산화인회석의 인 — 너무 적어 잘 모름 | 0.001 second to 1 day
+N: JB Q20 해설이 든 영향 요소(translucency and opacity · gloss · surface roughness · opalescence · fluorescence · phosphorescence · contrast · viewer associated effects)가 전부 이 표와 다음 표. ⚠ R06 JB 답은 "opalescence: 빛의 산란으로 나타나는 현상"을 틀린 설명으로 봄 — 근거는 이창하 Fundamentals p.25 "Enamel transmit red-orange tone and reflect blue-violet tones"이고, 이 강의 p.89 슬라이드(Scattering of the shorter wavelengths)와 다름. [[COL:89]]
+
+#TBL 보는 조건 — 대조 효과와 관찰자 효과 | k=COL | src=[[COL:21]] [[COL:22]] [[COL:97]] [[COL:98]] [[COL:99]] [[COL:100]] [[COL:101]] [[COL:102]] [[COL:103]]
+H: 효과 | 슬라이드 | 필기 · 임상
+R: Color Contrast — Spatial / Temporal (p.21) | Color Contrast – Spatial · Temporal | 공간적 = 착시(옆 색 때문에 달라 보임) · 시간적 = 빨간색을 한참 보다 보면 녹색(눈의 적응)
+R: Color constancy | One of the great mysteries of color vision | 조명이 달라도 뇌가 보정 — white balance
+R: {r:Areal contrast} {jb:Q20} | (그림) | 클수록 밝게 — 중절치가 밝아 보임
+R: {r:Spatial contrast} (p.98) {jb:Q20} | (그림) | 가까이 있을수록 밝게 — p.21의 Spatial과 이름은 같지만 필기 설명이 다름
+R: {r:Successive contrast} {jb:Q20} | Positive : short visual interaction / Negative : long visual contact | 노란 것을 보다 흰색을 보면 파랗게 · 처음 고른 shade가 정확 · 푸른 에이프런
+R: Age | after age 60 ⇒ difficulties in perceiving blues and purples | 나이 들수록 단파장을 잘 못 봄
+R: Fatigue · Nutrition · Emotions | Fatigue : hue and chroma · Emotions : pupillary diameter | 동공 크기에 따라 다르게 보임
+R: Medications | Alcohol or morphine: red/orange/yellow Lighter · blue/green/purple Darker / Caffeine: red/orange/yellow Darker · blue/green/purple Lighter / Viagra: Blue tint (between blue and green) / Oral contraceptives: Blues and yellows↓ | 진료 전에 마시거나 먹으면 안 됨 · 커피도 요인 중 하나
+R: {r:Binocular difference} | (그림) | 좌우로 두지 말고 위아래로 놓고 비교 — shade guide 꼭 위아래로
+N: 명도·채도·색상을 분리하는 것이 제일 헷갈림 → 3D master guide가 좋다, vita classic은 그렇지 않음(필기). [[COL:105]] [[COL:106]]

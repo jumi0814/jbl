@@ -1,0 +1,21 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• Dental model sx.: 양악수술에 필요한 intermediate splint를 만들기 위한 중간 단계
+• intermediate splint 만드는 개략적인 과정 모델 뜨고 → facebow transfer 이용해 mounting → 수술에 의해 먼저 이동하게 되는 악골의 이동을 simulation → 한쪽 악골만 수술한 상태에서 위아래 치
+아가 물리는 새로운 위치로 이동 → 그 위치에서의 상하악 치아 관계 기록
+• 대개 CR bite를 가지고 하지만, CO-CR discrepancy가 많지 않으면 CO 사용해도 큰 문제 없음. (단, Class II 환자에서는 discrepancy가 큰 경우 많음. Class II 환자가 CO로 턱을 내밀어 물고 있는 상태
+에서 수술 계획을 잡으면, 수술 후 턱이 기대한 것보다 들어간 상태에서 고정될 가능성이 높음.)
+모델 뜨고 mounting한 다음 먼저 움직일 악골을 계획대로 옮겨서, 그 위치를 splint로 딱 기록하는 과정임.

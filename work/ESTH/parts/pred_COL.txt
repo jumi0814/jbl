@@ -1,0 +1,51 @@
+@COL | t=짤 변형 | b=Q28
+Q: SPD(spectral power distribution)의 x축과 y축이 각각 나타내는 것을 쓰고, 650 nm 빛이 빨간색으로 보이는 이유를 SPD로 설명하시오.
+A: x축 = Wavelength λ (nm)(파장) · y축 = Relative radiant power(세기). 650 파장을 가진 빛도 빨~보를 모두 갖고 있는데 그중 가장 높은 세기를 갖고 있는 것이 빨간색이어서 빨간색으로 보인다(필기). [[COL:6]]
+@COL | t=짤 변형 | b=Q28
+Q: 흰색 LED의 SPD 특징과 그것이 눈에 좋지 않은 이유를 쓰시오.
+A: 흰색 LED = 파란색 LED에 형광물질을 넣어 분산 → 청색 파장 peak가 매우 높고 형광 물질로 퍼뜨린 파장이 함께 보임. 전기 효율이 좋고 수명이 길고 열이 덜 나지만 청색 peak 때문에 눈에 안 좋다(필기). [[COL:8]]
+@COL | t=짤 변형 | b=Q26
+Q: CIELAB에서 +a*, −a*, +b*, −b* 방향의 색을 쓰고, 채도(C*ab)와 색상각(hab)을 구하는 식을 쓰시오.
+A: +a* = Red · −a* = Green · +b* = Yellow · −b* = Blue. C*_ab = (a*² + b*²)^1/2(거리 = 채도) · h_ab = tan⁻¹(b*/a*)(각도 = 색상). [[COL:59]] [[COL:60]]
+@COL | t=짤 변형 | b=Q26
+Q: CIE L*a*b*와 CIE L*u*v*는 각각 무엇에 쓰이는지, 두 색의 색차(ΔE*ab)는 어떻게 구하는지 쓰시오.
+A: CIE L*a*b* (CIELAB) : Munsell spacing, colorant / CIE L*u*v* (CIELUV) : additive mixing. ΔE*ab = (ΔL*² + Δa*ab² + Δb*ab²)^1/2 — 3차원 공간상의 거리(필기). [[COL:59]] [[COL:62]]
+@COL | t=짤 변형 | b=R22
+Q: 인간의 색 지각이 three-dimensional이라는 뜻을 슬라이드의 세 용어와 한글 뜻으로 쓰시오.
+A: Hue(색상 — red, green, blue...) · Colorfulness(채도 — 얼마나 진한가) · Brightness(명도 — 얼마나 밝나). 세 가지를 조합하면 모든 색을 3차원 공간에 찍을 수 있다(필기). [[COL:19]]
+@COL | t=짤 변형 | b=S14
+Q: 치아의 opalescence를 정의하고, 반사광과 투과광의 색, 이를 일으키는 입자의 조건을 쓰시오.
+A: Scattering of the shorter wavelengths of the visible spectrum of light (opal effect). Reflected light : bluish / Transmitted light : orange/brown. Particles : smaller than the wavelength of visible light and have a much higher refractive index than the matrix material. [[COL:89]]
+@COL | t=짤 변형 | b=T20
+Q: Tristimulus colorimeter가 조건등색(metamerism)을 측정할 수 없는 이유와, 조건등색을 평가할 수 있는 장비를 쓰시오.
+A: 색차계는 RGB를 셀로판지 같은 필터로 XYZ로 나타낼 뿐 프리즘이 없어서 각 파장별 반사율은 계측 불가 — Cannot be used to quantify metamerism. Spectrophotometer(분광측색기)는 프리즘으로 분광해 파장별 반사율을 알 수 있어 Can also evaluate metamerism. [[COL:69]] [[COL:70]] [[COL:72]]
+@COL | t=미출제
+Q: 색 측정 장비 4가지를 쓰고, spectroradiometer의 장점을 쓰시오.
+A: Tristimulus colorimeters · Spectroradiometers · Spectrophotometers · Digital cameras. Spectroradiometer (TSR) Advantage: Actual condition · All forms of color (surface and self-luminous) ⇒ cross-media color reproduction (e.g., monitor against print). [[COL:68]] [[COL:74]]
+@COL | t=미출제
+Q: CIE system이 규정한 색 지각의 세 요소와 CIE 표준광원 A·B·C·D65를 쓰시오.
+A: Illuminant · Object · observer. A : incandescent light · B : direct sunlight · C : average daylight · D65 : surface color(D: newly recommended in 1964, 6500K). [[COL:49]] [[COL:51]]
+@COL | t=교수 강조 | b=
+Q: 정반사와 난반사를 구분하고, 물체의 색은 어느 것에 의한 것인지 쓰시오.
+A: Specular reflection(정반사) = 입사각=반사각, 조명이 그대로 보이는 광택 → 색이 아님 / Diffuse reflection(난반사) = 모든 방향으로 빛이 나감 → 우리가 보는 물체의 색상은 난반사에 의한 것(필기 "정반사는 색상이 아님! 중요", 별표 2개). [[COL:11]] [[COL:12]]
+@COL | t=짤 변형 | b=Q13
+Q: 망막의 두 수용체가 담당하는 정보와, 추상체 세 종류가 각각 인식하는 색을 쓰시오.
+A: Rods(간상체) : Rhodopsin, no color information — 흑백 / Cones(추상체) : 3 cone classes — 색 정보, Long = 적색 · Middle = 녹색 · Short = 청색(필기). [[COL:17]]
+@COL | t=미출제
+Q: Opacity·Translucency·Transparency를 정의하고, 치아의 반투명도를 구내에서 간접적으로 측정하는 방법을 쓰시오.
+A: Opacity : The ability of a material to block the passage of light / Translucency : The ability of the material to allow light to pass thorough it / Transparency : extreme value of high translucency. 흰색 배경과 검정 배경에서 각각 찍어 비교 — 같으면 불투명, 다르면 그만큼 투명(필기, Transmittance · Contrast ratio). [[COL:80]] [[COL:81]]
+@COL | t=교수 강조 | b=
+Q: Shade 선택 시 binocular difference와 successive contrast를 고려한 비교 방법을 쓰시오.
+A: Binocular difference — 좌우 눈이 인식하는 양이 달라 shade tab은 좌우로 두지 말고 위아래로 놓고 비교(필기 "임상적으로 중요"). Successive contrast — 오래 보면 눈이 적응하므로 처음 고른 것이 가장 정확, 푸른 에이프런을 보면 치아 색 구분이 쉬워짐(필기). [[COL:103]] [[COL:104]] [[COL:100]]
+@COL | t=미출제
+Q: Fluorescence와 phosphorescence를 비교하고, 수복물에 형광 물질을 넣는 이유를 쓰시오.
+A: Fluorescence = Absorption of light by a material and the spontaneous emission of light in a longer wavelength(UV ⇒ visible light in the bluish spectrum), Emission must take place within 10⁻⁸ sec / Phosphorescence = Persists after the exciting source is removed, lasts from 0.001 second to 1 day. 사람의 치아에도 형광 특성이 있어 composite resin에 형광 물질을 조금 넣음(필기). [[COL:92]] [[COL:93]] [[COL:94]] [[COL:95]]
+@COL | t=미출제
+Q: Gloss의 정의와 GU(Gloss Units)의 두 기준값을 쓰고, 광택은 어떤 반사에 해당하는지 쓰시오.
+A: "Angular selectivity of reflectance, involving surface-reflected light, responsible for the degree to which reflected highlights or images of objects may be seen as superimposed on a surface." · GU: Nonreflected surface : 0 GU / Perfect mirror : 1000 GU at 60 degrees. 광택은 정반사 영역 — 조명이 그대로 보이는 것, 측정 시 각도가 중요(필기). [[COL:85]] [[COL:86]]
+@COL | t=교수 강조 | b=
+Q: Shade 선택에서 "제일 헷갈리는 것"은 무엇이며, 이 점에서 어떤 shade guide가 좋은지 쓰시오.
+A: 명도, 채도, 색상을 분리하는 것(필기 "이게 중요하다~") — 칩을 흑백으로 보면 명도만 다른 줄만 다르게 보이고 채도만 다른 줄·색상만 다른 줄은 똑같이 보임. 3D master guide가 좋다 — 명도, 채도, 색상을 구분하기 때문 · 흔히 쓰는 vita classic은 그렇지 않음(필기). [[COL:105]] [[COL:106]]
+@COL | t=짤 변형 | b=Q20
+Q: Viewer-associated effects에 드는 항목을 쓰고, Age와 Medications(Alcohol or morphine · Caffeine)가 색 지각에 주는 영향을 쓰시오.
+A: Age · Fatigue · Nutrition · Emotions · Medications(+ Binocular difference). Age : after age 60 ⇒ difficulties in perceiving blues and purples / Fatigue : hue and chroma / Emotions : pupillary diameter. Effect of Chemicals on Color Perception — Alcohol or morphine: red/orange/yellow Lighter · blue/green/purple Darker / Caffeine: red/orange/yellow Darker · blue/green/purple Lighter. [[COL:101]] [[COL:102]] [[COL:103]]

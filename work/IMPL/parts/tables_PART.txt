@@ -1,0 +1,40 @@
+#TBL 인상 채득 — Pick-up vs Transfer vs Scan body | k=PART | src=[[PART:14]] [[PART:15]] [[PART:16]] [[PART:17]] [[PART:18]]
+H: 항목 | Pick-up coping {jb:R11} | Transfer coping | Scan body {jb:Q08}
+R: 인상 방식 | 아날로그 — {r:Open tray}(Direct) | 아날로그 — {r:Closed tray}(Indirect) | {r:디지털} 임프레션(구강 스캔)
+R: 트레이 | {r:Custom tray}에 transfer와 줄이 맞는 {r:구멍} · 나사가 트레이 밖으로 돌출 | 막힌 트레이 · transfer 높이에 맞는 retaining screw · 나사 위 구멍 block out | —
+R: 코핑의 행방 | 트레이를 문 채 나사를 모두 풀고 제거 → 인상재에 {r:딸려 나옴} | 입에 {r:남음} → 풀어서 replica를 달고 인상재에 {r:다시 끼움} | 안 꽂고 1번 + 꽂고 1번 스캔 → {r:정합}
+R: 임플란트 재현 | 인상 속 코핑에 {r:Lab analog}(replica) 연결 → 스톤 | replica를 단 코핑을 인상에 끼워 stone model | 디지털 상에서 {r:임플란트 위치} 시뮬레이션
+R: 적응(Dentium) | {r:Complicated case} | {r:Simple case} | —
+R: 주의(필기) | 너무 세게 잠그면 인상체 내에서 {r:돌아감} — 적당히 | 저항감이 있어 덜 끼우면 보철물이 {r:높게} 나옴 | 연결부가 {r:PEEK}면 세게 돌릴 때 뭉개지며 계속 들어감
+R: 종류 | Hex / Non-hex | Hex / Non-hex · Bite impression coping(위아래 한번에) | Hex / Non-hex · 메탈 / PEEK / 혼합
+N: 기출 형식 = 그림을 보고 이름 쓰기 — 23년 R11 구멍 뚫린 개인 트레이 사진 → Pick up impression / 23·24년 Q08 구강 스캔 그림 → Scan body. 헷갈리는 짝: open = pick-up = direct / closed = transfer = indirect.
+
+#TBL 상부 보철물 연결 방식 | k=PART | src=[[PART:4]] [[PART:5]] [[PART:6]] [[PART:7]] [[PART:10]]
+H: 방식 | 보철물 ↔ 지대주 | 지대주 ↔ 임플란트 | 특징(필기)
+R: {r:나사 유지형} 2-piece (Between restoration and abutment) | {r:gold screw 또는 prosthetic screw} | abutment screw | 전통적인 나사 유지형 — "나사에 나사"
+R: {r:나사 유지형} 1-piece (Between restoration and implant itself) | 한 덩어리(왁스업 → 캐스팅) | abutment screw 하나로 {r:직접} | = "{r:UCLA abutment}"(colloquially)
+R: {r:시멘트 유지형} (cement-retained) | {r:시멘트} | abutment screw | 시멘트 유지형도 보시게 될 것
+R: {r:SCRP} (screw- and cement-retained prosthesis) | {r:시멘트} + 보철물의 screw hole | abutment screw — 붙인 뒤 {r:한 번에} 체결 | 요즘 많이 봄 · 지대주는 {r:cement type}과 동일 · 다 연결하면 나사유지형과 차이가 없어지는 꼴 · multi-unit에서 뺄 때 안 빠지기도
+N: UCLA vs SCRP — 둘 다 나사 하나로 한 번에 연결되지만 UCLA는 abutment-crown을 한 덩어리로 주조, SCRP는 cement type 지대주에 보철물을 시멘트로 붙이고 구멍으로 체결. [[PART:6]] [[PART:7]]
+
+#TBL 어버트먼트 종류 — 만드는 방식과 용도 | k=PART | src=[[PART:19]] [[PART:20]] [[PART:21]] [[PART:23]] [[PART:24]] [[PART:25]] [[PART:27]] [[PART:28]] [[PART:29]] [[PART:30]]
+H: 지대주 | 만드는 방식·구조 | 예·쓰는 상황 | 필기 포인트
+R: {r:Combi abutment} | 지대주+나사 {r:원바디} · {r:hex 없음}(안에서 돌아야 하니까) | abutment-level 인상(closed tray) | 흔들려 와도 구멍이 없어 {r:두꺼운 보철물을 갈아야}
+R: {r:Dual abutment} | Hex / Non-hex · 나사 따로 | abutment-level 인상(closed tray) | non-hex는 모든 각 가능 · 체결이 어려워 교수님 비선호
+R: {r:Ready-made}(기성) | 기성품 그대로 · hex / non-hex | Osstem Transfer · Angled Abutment | hex는 들어가면 안 흔들림 · 원바디가 한 번씩 나타남
+R: {r:Custom} | {r:판봉 밀링} — 아래는 임플란트 규격 호환, 위만 깎음 | OneFit Abutment(Ti / TiN coating) | 요즘 {r:제일 많이} 봄
+R: {r:UCLA}(cast) | {r:왁스업 → 캐스팅}(골드 · 비귀금속) → 포세린 빌드업 | 1-piece screw-retained abutment-crown | Osstem GoldCast · NP-Cast = UCLA type
+R: {r:Link} | {r:체결부만 기성} | 잇몸 통과 부위도 보철물이 담당 | 우리나라보다 유럽에서 많이 씀
+R: {r:Temporary} | 레진으로 채워 {r:기계적 유지} · Ti screw | temp shell 리라이닝 → {r:temp crown} | 실습 때 써봄
+R: {r:Multi-unit} | 연결부를 {r:잇몸 레벨 이상}으로 · straight / angled(20°) | multiple case · 위에 crown·fixed hybrid | 전용 드라이버로 통째 체결 · 위는 prosthetic screw
+R: {r:Screw-retained 2-piece} | 지대주 {r:outer driver} · abutment screw 안쪽 홈에 prosthetic screw | 전통적 나사 유지형 | 복잡해 많이 안 하지만 multi-unit을 하려면 알아야
+R: {r:Convertible} | {r:Internal type → External-like structure} | internal을 external처럼 쓰고 싶을 때 | outer driver로 체결 → prosthetic screw로 보철 연결
+N: "이름은 너무 신경쓰지 마세요! 회사마다 달라요" [[PART:20]] — 이름보다 만드는 방식(기성·밀링·주조·임시)과 쓰임으로 기억.
+
+#TBL 인상 수준 — Implant-level vs Abutment-level | k=PART | src=[[PART:14]] [[PART:15]] [[PART:19]]
+H: 항목 | Implant(fixture)-level impression | Abutment-level impression
+R: 무엇 위에서 뜨나 | 임플란트에 impression coping을 끼워서 | 임플란트에 지대주(Combi · Dual abutment)를 올린 상태에서
+R: 트레이 | {r:Open tray}(pick-up) 또는 {r:Closed tray}(transfer) | {r:Closed Tray Technique}
+R: 부품 | Fixture Pick-up · Transfer · Bite Impression Coping + {r:Fixture Lab Analog} | {r:Combi Abutment}(원바디) · {r:Dual Abutment}(Hex / Non-hex)
+R: 직경(Dentium) | Ø4.0 / Ø4.5 / Ø5.5 / Ø6.5 | Ø4.5 / Ø5.5 / Ø6.5
+N: 기출(R11 · Q08)은 모두 implant-level 인상과 디지털 인상 쪽 — abutment-level은 미출제.

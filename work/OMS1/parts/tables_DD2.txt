@@ -1,0 +1,96 @@
+#TBL Cephalometric 기준 수치 | k=DD2 | src=[[DD2:38]] [[DD2:40]] [[DD2:42]] [[DD2:46]] [[DD2:47]] [[DD2:48]] [[DD2:49]]
+H: 구분 | 계측 항목 | 정의 | 기준값
+R: 1~7번 (p.38) | Maxillary depth {jb:Q09} | angular measurement FH∠NA | {r:90 ±3°}
+R: 1~7번 | Mandibular depth | FH∠NB | {r:88 ±3°}
+R: 1~7번 | Frankfort mandibular plane angle | FH∠Me-Go | {r:25 ±5°}
+R: 1~7번 | Occlusal plane angulation {jb:Q43} | FH∠occlusal plane | {r:8 ±4°}
+R: 1~7번 | Esthetic line | tangent to the labial surface of U1 to FH | ideally 90°
+R: 1~7번 | Upper incisor angulation to NA line | 각도 + U1 tip: anterior to NA line(거리) | 22 ±2° · tip 4 ±2 mm
+R: 1~7번 | Lower incisor angulation to NB line | 각도 + L1 labial surface of incisor tip to NB line(거리) | 20 ±2° · tip 4 ±2 mm
+R: 8~15번 (p.40·42) | Pogonion projection to NB line | — | 4 ±2 mm
+R: 8~15번 | Upper lip length | subnasale to upper lip stomion | M 22 ±2 mm · F 20 ±2 mm
+R: 8~15번 | ★ Upper tooth to lip {jb:Q40} | important in establishing vertical dimensions of the face | {r:2.5 ±1.5 mm}
+R: 8~15번 | Lower anterior dental height | L1 tip to Me | M 44 ±2 mm · F 40 ±2 mm
+R: 8~15번 | soft tissue thickness of upper lip, lower lip, and chin | — | 1:1:1 · range 11-14 mm
+R: 8~15번 | Soft tissue thickness of menton | — | 7 ±2 mm
+R: 8~15번 | Nasal projection angle | nasal dorsum to ⊥FH | F 34° · M 36°
+R: 8~15번 | Nasolabial angle | columella subnasale upper lip | 90-105°
+R: Location of chin (p.46) | Facial axis angle | posteroinferior angle Ba-Na∠facial axis | 90 ±3°
+R: Location of chin | Facial depth angle | posteroinferior angle FH∠facial plane (Na-Pog) | 90 ±3°
+R: Location of chin | Mandibular plane angle | FH∠mandibular plane | 24 ±4°
+R: Location of maxilla A-P (p.47) | Maxillary depth angle {jb:Q09} | FH∠Na-A | {r:90 ±3°}
+R: Location of maxilla A-P | Facial convexity | distance btw A to Na-Pog | 1 ±2 mm
+R: Effective length (p.48) | Effective maxillary length : mandibular length | Co-A/Co-Gn (condylion to point A : to Gn) | 1:1.3
+R: Dental relations (p.49) | Upper molar position | horizontal distance from pterygoid vertical to the distal surface of U6 | F 18 ±3 mm · M 21 ±3 mm
+R: Dental relations | Lower incisal protrusion | L1 tip to A-Pog | 1 ±2 mm
+R: Dental relations | Lower incisal inclination | A-Pog∠L1 long axis | 22 ±4°
+R: Dental relations | Interincisal angle | — | 130 ±6°
+N: 필기: 구체적 수치는 하나의 레퍼런스 — range 안에 들어가는 수술 계획을 잡아야 함 [[DD2:38]]. 슬라이드 별표(★)는 10번 Upper tooth to lip 하나 [[DD2:40]].
+N: 함정: FH∠Me-Go 25 ±5°(p.38) vs FH∠mandibular plane 24 ±4°(p.46) / 아랫앞니는 NB line 20 ±2°·4 ±2 mm(p.38) vs A-Pog line 22 ±4°·1 ±2 mm(p.49).
+
+#TBL 연조직 기준 — 임상 평가와 ceph의 비율·거리 | k=DD2 | src=[[DD2:7]] [[DD2:8]] [[DD2:15]] [[DD2:17]] [[DD2:44]]
+H: 항목 | 기준 | 슬라이드
+R: T-G : G-Sn : Sn-Gn {jb:S21-4} | {r:0.30 : 0.35 : 0.35} (필기: 대략 1:1:1) | Balance [[DD2:7]]
+R: 하안면 — Stomion 기준 | 위 1/3 : 아래 2/3 | Facial clinical exam 그림 [[DD2:8]]
+R: U1 expose in repose {jb:Q40} | {r:to 3 mm (2.5 ±1.5 mm)} | Perioral area [[DD2:15]]
+R: Interlabial separation (in repose) | up to 3 mm | Perioral area [[DD2:15]]
+R: Cervicomental angle · neck-chin length | 100° · 50 mm | Cervicofacial area [[DD2:17]]
+R: Chin projection | 4 mm behind SN perpendicular to FH plane | Cervicofacial area [[DD2:17]]
+R: G-Sn/Sn-Me | 1:1 | Soft tissue relations — vertical [[DD2:44]]
+R: Upper lip length (Sn-St) | M 22 ±2 mm · F 20 ±2 mm | Soft tissue relations — vertical [[DD2:44]]
+R: Sn-St/St-Me | 1:2 | Soft tissue relations — vertical [[DD2:44]]
+R: Sn-LLV/LLV-Me | 1:0.9 | Soft tissue relations — vertical [[DD2:44]]
+R: Interlabial distance | 0-3 mm | Soft tissue relations [[DD2:44]]
+R: Subnasale perpendicular to upper lip / lower lip / chin | 0 ±2 / -2 ±2 / -4 ±2 mm | Soft tissue relations — horizontal [[DD2:44]]
+N: Vertical relations는 FH plane에 수직으로 잼, horizontal은 subnasale perpendicular 기준 [[DD2:44]]. 필기: soft tissue 변화량은 1:1이 아니라 하부 skeletal factor 변화량의 90~100%를 따라감.
+
+#TBL 나이에 따른 안면 피부·골 변화 | k=DD2 | src=[[DD2:18]] [[DD2:19]] [[DD2:20]] [[DD2:21]] [[DD2:22]] [[DD2:23]] [[DD2:24]] [[DD2:25]]
+H: 조직 | 슬라이드 변화 | 필기 이해
+R: 영향 요소 {jb:Q07} | {r:UV light exposure} / Chronologic aging / Smoking / Genetics / Diet | UV light · 나이 · 담배 · 유전적 소인 · 식습관의 영향
+R: Epidermis {jb:Q26} | Retraction or loss of the {r:rete pegs} / Abnormal stratum corneum / Loss of vertical polarity / Irreversible UV-induced DNA damage / Loss of proliferative potential of the keratinocytes / Melanocytes → dyschromia, brown spots | rete ridge가 짧아지고 편평 · 색소 침착
+R: Dermis | UV light or radiation = {r:primary determinant} / Thinning of dermis, decreased collagen and elastin fiber density / {r:Dermal elastosis}: excessive thickened bundles of elastic fibers / Loss of skin elasticity, rhytids | papillary dermis 얕아짐 · reticular dermis 상대적으로 두꺼움 · 트럭 운전사의 얼굴
+R: Vasculature | Alteration in the thickness / Reduction in the number of venules per unit area / Postcapillary venules (most permeable) / Reduced blood flow · rate of clearance / {r:Delayed healing} | 노폐물 배출이 안 되고 healing이 늦어짐
+R: Sebaceous apparatus | secretion of oily-like substances → moisturize, protect / Aging: dry skin, coarseness / Decreased sebaceous production, sebaceous hypertrophy, increased pore size | 얼굴이 건조하고 거칠어짐 · 모공이 커짐
+R: Subcutaneous fat | Loss: {r:temples, brows, and mouth} / Redistribution: cheeks, ptosis of soof and malar fat → {r:tear trough deformity}, nasolabial folds | 눈물이 흐르는 구조를 따라 눈고랑 변형
+R: Facial bones | Cranium skeletal maturity {r:M 18 ys, F 16 ys} / orbits enlarge · infraorbital rims backward and downward / maxillae decrease projection · vertical elongation / nose no significant osseous change / Mandible {r:anterior and downward} increase | 나이 든 사람도 VD 변화 → 턱이 더 나오고 코가 길어 보임
+R: Teeth | Tooth attrition / Tooth eruption / Tooth mass to arch length change | 쭉 읽으심
+N: {jb:Q07} JB 해설의 대안 답 = Epidermis~Subcutaneous fat 다섯 부분의 이름(p.19~23 슬라이드 제목) [[DD2:19]].
+
+#TBL 골격 평가 영상 — gold standard와 6종의 역할 | k=DD2 | src=[[DD2:26]] [[DD2:27]]
+H: 영상 | 슬라이드 | 필기 — 역할
+R: Cephalometric evaluation {jb:Q27} | gold standard | 아직까지 가장 중요한 gold standard
+R: CT | CT, MRI, 3-D CT modeling | 보조적 수단 · CT reformatted image로 CT-based cephalometric lateral·PA·panoramic view
+R: MRI | CT, MRI, 3-D CT modeling | 제한된 정보 · soft tissue 관련 lesion(특히 TMJ)
+R: 3-D CT modeling | CT, MRI, 3-D CT modeling | virtual surgical planning의 key
+R: ① Cone beam technology {jb:Q41} | a 1:1 ratio of imaging with panoramic view, cephalometric, and tomographic imaging, 3-D imaging | —
+R: ② Lateral cephalometric radiograph | Types of imaging techniques | 가장 많이 사용되는 1차 평가 도구
+R: ③ Panoramic radiograph | Types of imaging techniques | 치아 주변 조직들의 pathology를 쉽게 평가
+R: ④ Periapical radiograph | Types of imaging techniques | 치아 상태·잇몸 상태를 치아 단위로 세밀하게
+R: ⑤ Posteroanterior cephalometric radiograph | Types of imaging techniques | 좌우 대칭성 평가에 도움
+R: ⑥ Transcranial radiographs | Types of imaging techniques | 요즘 안 씀
+N: {jb:S20-4} 20년 답은 p.26(ceph·CT·MRI·3-D CT) + p.27 일부를 섞은 복원 — 필기에서 '보조적'이라 한 것은 CT [[DD2:26]].
+N: ceph X-ray는 좌우 확대율이 다르고 orientation 변경이 어려움 ↔ CT reconstruction은 좌우 확대율이 같음(필기) [[DD2:27]].
+
+#TBL 세팔로 촬영 — 일반 조건 vs lateral ceph 자세 | k=DD2 | src=[[DD2:33]] [[DD2:34]]
+H: 항목 | Cephalometric radiographs be taken with | Lateral ceph — Proper positioning the head
+R: 머리 | — | {r:FH plane parallel to the floor} (필기: natural head position)
+R: 턱·교합 | {r:Centric occlusion (CO)} — significant CO-CR discrepancy면 CR 추가 촬영 | {r:Jaws in CR}
+R: 치아 | — | {r:Teeth in lightly touching}
+R: 입술 | {r:Lip in repose} | {r:Lips relaxed}
+R: 기출 | — | {jb:Q42} 22년 — 네 줄 그대로
+N: CR 추가 촬영 이유: to document CR · to study freeway space · to assess upper tooth to lip relations · to study true relations of the maxilla and mandible [[DD2:33]]. 필기: 대부분 CO, discrepancy가 심한 경우는 대개 class II.
+N: Lateral ceph 목적: To analyse skeletal, dentoalveolar, and soft tissue relationships in the AP and vertical dimensions [[DD2:34]].
+
+#TBL 부위별 임상 평가 — 무엇을 보고 수술로 어떻게 바뀌나 | k=DD2 | src=[[DD2:10]] [[DD2:11]] [[DD2:12]] [[DD2:13]] [[DD2:14]] [[DD2:15]] [[DD2:16]] [[DD2:17]]
+H: 부위 | 슬라이드 평가 항목 | 필기 — 평가·수술 포인트
+R: Upper third | the shape of the forehead · supraorbital rims · frontal bossing | —
+R: Middle third | nose · eyes(lateral orbital rim · infraorbital rim) · cheeks(normally convex · flat to concave-midface deficiency) | Mx.의 Le Fort I level에서 움직임 · 동양인은 전방 5mm 이상 바람직하지 않음(cleft 예외)
+R: Lower third | lips · labiomental fold · chin projection · cervicomental area | 하안모 = profile 변경의 핵심 · Mn. setback 10~15mm 이상 가능(특히 Class III)
+R: Cervicomental | Mandibular angle-inferior border definition · Neck-chin angle and length | Mn. setback 후 soft tissue가 처져 obtuse한 각
+R: Periorbital | Symmetry of the brow and eyes · Shape of the brows · Redundant skin · Upper and lower eyelid fat excesses · Lower eyelid laxity | 좌우 눈 높이 비교는 코의 방향이 가장 중요 · 안구 주위 수술 권장 안 함
+R: Cheeks | cheek proper: malar eminence · Paranasal area · Buccal area | zygomatic bone projection · buccal fat의 영향
+R: Nose | Glabella · dorsum · tip · alar bases | 상악 advancement를 많이 하면 Prn↑ → nostril 노출 · nasolabial angle 변화
+R: Perioral {jb:Q40} | In repose: U1 expose to 3 mm (2.5 ±1.5 mm) · interlabial separation up to 3 mm / During animation / Symmetry | 상악골 수직적 위치 결정 · Class III는 Mentalis m. 과활성
+R: Ears | Symmetry · Level · Projection | 좌우·수직·전후방 대칭 · 튀어나온 정도
+R: Cervicofacial | Mandibular angle and inferior borders · Chin-neck angle and length(100° · 50 mm) · Chin projection(4 mm behind SN perpendicular to FH plane) | 사람마다 다름
+N: 임상 평가 4항목 = Facial skin type · Facial skin health · General facial anthropometric proportions · Detailed regional facial evaluations [[DD2:4]].
