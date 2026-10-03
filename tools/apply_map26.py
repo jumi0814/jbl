@@ -12,6 +12,8 @@ import jblpaths as J
 def main(sid, key, dry):
     d = os.path.join(J.TOOLS, sid.lower()); m = json.load(open(J.work(sid, 'upd26', f'{key}_map.json'), encoding='utf-8'))
     mp = {int(k): v for k, v in m['map'].items()}; fix = {int(k): v for k, v in (m.get('lecfix') or {}).items()}
+    done = J.work(sid, 'upd26', f'{key}.applied')
+    if os.path.exists(done) and not dry: print(sid, key, '이미 옮김(두 번 옮기면 쪽이 어긋남) —', done); return
     old = key + '5'; st = {'cite': 0, 'cite5': 0, 'lec': 0, 'plain': 0, 'plain25': 0, 'warn': []}
     def cite(mm):
         n = int(mm.group(1)); v = mp.get(n)
@@ -23,6 +25,7 @@ def main(sid, key, dry):
             def rp(mm):
                 if re.search(r'(25|26)\s*$', parts[i][:mm.start()][-4:]): return mm.group(0)   # '25 p.n'·'26 p.n'은 그대로
                 n = int(mm.group(2)); v = mp.get(n)
+                if n not in mp: return mm.group(0)   # 이 강의 쪽 범위 밖(교과서·다른 자료 쪽) — 그대로
                 if v: st['plain'] += 1; return f'{mm.group(1)}{v}'
                 st['plain25'] += 1; return f'25 {mm.group(1)}{n}'
             parts[i] = re.sub(r'(?<![0-9A-Za-z])(p\.\s?)(\d+)(?![0-9])', rp, parts[i])
@@ -45,6 +48,7 @@ def main(sid, key, dry):
             if blk and f in ('annot.txt', 'tables.txt', 'pred.txt') and not l2.startswith('@'): l2 = plain(l2)
             L[i] = l2
         if not dry: open(p, 'w', encoding='utf-8').write('\n'.join(L))
+    if not dry: open(done, 'w').write('1')
     print(sid, key, {k: v for k, v in st.items() if k != 'warn'}); [print('  ⚠', w) for w in st['warn']]
 
 if __name__ == '__main__':
