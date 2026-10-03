@@ -8,7 +8,7 @@ def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
 WAIT = "window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')"
-td = datetime.date.today().isoformat()
+td = '2026-09-30'   # 지난 날(공부 날 경계 DCUT 이전) — 오늘이면 실제 시각보다 늦은 09:15 고치기가 '아직 오지 않은 시각'으로 막힘
 def go(pg, h, w=800):
     pg.goto('about:blank'); pg.goto(U + h); pg.wait_for_function(WAIT, timeout=60000); pg.wait_for_timeout(w)
 with sync_playwright() as p:
