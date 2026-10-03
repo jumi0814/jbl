@@ -72,7 +72,8 @@ for L in LEC:
 Q2CARD = {}
 for i, lst in cand.items():
     q = QMAP.get(i); pl = PROF_LEC.get((q['prof'] or '').split('(')[0], []) if q else []
-    lst.sort(key=lambda x: (x[1] not in pl, x[0]))
+    own = getattr(S, 'IMG_ALIAS', {}).get(q['lk'], q['lk']) if q and q.get('lk') else ''   # annot lec=의 주 강의(보조 키는 본 강의로) — 같은 교수의 앞 강의에 짧은 ⭐만 있어도 주 강의 카드로(ESTH R19·S12 → SPE · T12 → VEN, 10-03)
+    lst.sort(key=lambda x: (x[1] != own, x[1] not in pl, x[0]))
     Q2CARD[i] = (lst[0][1], lst[0][2])
 for q in Q:
     if q['id'] in Q2CARD: q['lk'] = Q2CARD[q['id']][0]

@@ -12,7 +12,7 @@ def ok(c, m):
 # 1. 잠금 = 팩
 R = jblock.lock_errors(J.DOCS)
 ok(len(R) >= 6 and all(n > 0 and not e for f, n, e in R), f"6과목 잠금 {[(f, n, e[:1]) for f, n, e in R]}")
-ok(all(_os.path.exists(jblock.paths(s)[0]) for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']), 'tools/<sid>/jb_lock.json 6개')
+ok(all(_os.path.exists(jblock.paths(s)[0]) for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']), 'tools/<sid>/jb_lock.json 7개')
 # 2. 글자를 바꾼 팩 → 실패 메시지
 tmp = tempfile.mkdtemp(); _os.makedirs(tmp + '/packs')
 t = open(J.DOCS + '/packs/PHARM.js', encoding='utf-8').read(); i = t.index('{'); pk = json.loads(t[i:t.rindex('}') + 1])

@@ -30,3 +30,12 @@ git log 마지막 커밋과 이 문서 아래 진행 표시를 보고 이어서.
 - 함께 한 일: 6과목 '맥에서 확인할 것' 146건(맞음 123·고침 16·판단 불가 7 — guide/handoff/review_final/M_<SID>.md) · trend.py·build4 '짤 비율 %' → '짤 j/n'(사용자 09-29) · build4 옛 문구 3개 · UNREC 범위 · OMS1 그림 판정(S20-4·'경사진') · tests 3개(ux3_home·ux4_nav·ux_u22)를 ESTH 준비 상태에 맞춤 · audit_design SUBJ에 ESTH.
 - 진행 중(10-03): 7과목 전체 빌드·검증 `sh tools/build_all.sh`(로그 work/_tmp/build_all_1003a.log) · ESTH 독립 검토 1회차(검토자 7명 — guide/handoff/ESTH_검토_BRIEF.md, 보고 work/ESTH/parts/R2_<키>.md). 검토가 끝나면 merge_parts → ESTH build4 → check 4종 → 커밋·푸시 → 검토 2회차(새 문제가 안 나올 때까지) → 8단계.
 - 사용자 확인 필요(모아 둘 것): R19 JB 답이 자료와 반대 · R06 opalescence 정의가 두 강의에서 다름 · Q16 근거(24년 porcelain 표)가 25 자료에 없음 · Q23·Q25·T12·T21~T23 근거 강의(2024 Laminate veneer·여인성 2024 RBR·서덕규 2021)가 materials에 없음 — 더 과거 자료를 받을지.
+
+## 재개 메모 추가 (10-03 오후 — 사용 한도로 멈춤, 여기서 이어서)
+- **상태**: 7과목 빌드 통과 · verify PASS · audit PASS(로그 work/_tmp/build_all_1003b.log) · tests/ux_all 진행 중이었음(ux3_rest까지 ok). 실패 3개 원인: ux2_load(과목 수 6 가정 → NP로 고침) · ux2_learn(EXT 기준 480→472·5000→5100 — 고침) · **ux2_keys 타임아웃(Page.click 30초) — 아직 원인 미확인, 단독으로 다시 돌려 볼 것**.
+- **docs는 아직 커밋 안 함**(작업 폴더 /Users/jumisong/JBL/.claude/worktrees/materials-aesthetics-jb-folders-d4ae36 에 빌드본이 있음 — 다른 곳에서 이어 가면 `sh tools/build_all.sh`로 다시 빌드). tools·guide는 커밋·푸시함.
+- **ESTH 검토 2회차**: INT(20건)·COL(18건)·MAT(17건) 끝 — 보고 work/ESTH/parts/R3_<키>.md. FUN·PLAN·SPE·VEN은 진행 중이었음(R3 파일이 없으면 그 강의 2회차를 다시 돌릴 것 — guide/handoff/ESTH_검토_BRIEF.md '2회차'). 끝나면: `tools/merge_parts.py ESTH` → `tools/sync_common.py` → esth build4 → check_lec·check_years·check_eyears·check_abbr → verify → 3회차(새 문제 0이 될 때까지).
+- **빌드 규칙 바꿈(tools/cons/build4.py Q2CARD)**: annot `lec=<키>:<쪽>`의 주 강의 → 그 쪽을 담은 카드가 주 카드(ESTH assemble가 q['lkp']로 넘김). 그래서 검토자들이 📖 연결을 맞추려고 보조 카드 머리에서 뺀 `jb=`를 **되살릴 것**(카드 머리 기출 칩용): INT 카드4(R04) · PLAN 54Y/M 카드(U02)·p.17 카드(T12) · COL Light·Human Vision 카드(Q13) · MAT p.10 Opacity 카드(Q18) — R2/R3 보고서에 적힌 곳. 되살린 뒤 빌드해 questions.md '연결 강의'와 📖 카드가 annot 쪽과 맞는지 확인. MAT R3 보고서에 '다른 강의에서 확인할 문항 18개' 목록 있음.
+- **강의 이름**: #LEC 제목을 강의자료 원래 이름으로 고침(PLAN·SPE·COL·MAT) — 다시 빌드해야 화면에 반영.
+- **새 사용자 요청(10-03)**: "강의자료화면이 자꾸 미세하게 간헐적으로 왼쪽 오른쪽으로 작게 움직이는 흔들리는 오류" — 아직 손 못 댐. 재현(1280·820·1180, 학습 탭에서 가만히 두거나 스크롤·시계 1초 갱신·도구 막대 켜기) → shell.html 수정(공통은 tools/cons에서만, sync_common) → 회귀 테스트 추가.
+- **그다음**: 6 빌드·검증 마무리 → 커밋(docs 포함)·푸시 → 7 검토 회차 마무리 → 8 세 화면 확인·배포 → 9 전 과목 최종 점검(guide/handoff/맥_세션_시작.md 7번 — 맥 확인 146건은 끝: review_final/M_<SID>.md, 판단 불가 7건·제안 43건은 사용자 확인 목록으로) → 10 배포 → 11 최종본(JBL_HUB.zip은 work/에).

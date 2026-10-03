@@ -62,7 +62,7 @@ async def run(b, vp, touch, tag):
     L0 = await pg.evaluate("document.querySelector('#nav').innerHTML.length"); await pg.evaluate("__h.navBadges()"); L1 = await pg.evaluate("document.querySelector('#nav').innerHTML.length")
     ok(abs(L1 - L0) <= 4, f'{tag} 글자 갱신은 다시 그리지 않음 ({L0} → {L1})')
     await open_(pg, '#/'); n0 = await pg.evaluate("__h.rvcN()"); await pg.evaluate("__h.navRender()"); n1 = await pg.evaluate("__h.rvcN()")
-    ok(0 < n0 <= 6 and n1 == n0, f'{tag} 허브 홈 revInfo = 과목당 1회({n0}) · 다시 그려도 0회 추가({n1 - n0})')
+    ok(0 < n0 <= (7 if ESTH_READY else 6) and n1 == n0, f'{tag} 허브 홈 revInfo = 과목당 1회({n0}) · 다시 그려도 0회 추가({n1 - n0})')
     await open_(pg, '#/CONS/_jb/_jb', 600)
     await pg.evaluate("(()=>{const c=document.querySelector('#cards .qc:not(.hid)');c.querySelector('.mk.ng,[data-mk=ng]').click();})()"); await pg.wait_for_timeout(600)
     await open_(pg, '#/')

@@ -14,6 +14,7 @@ def serve(d):
     class S(socketserver.ThreadingTCPServer): allow_reuse_address = True; daemon_threads = True
     srv = S(('127.0.0.1', 0), Q); threading.Thread(target=srv.serve_forever, daemon=True).start(); return srv
 PACK = re.compile(r'/packs/([A-Z0-9]+)\.js(\?|$)')
+NP = sum(_os.path.exists(_os.path.join(J.DOCS, 'packs', x + '.js')) for x in ('OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'))   # 준비된 과목 팩 수(ESTH가 생기면 7)
 
 async def run(b, base, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []
@@ -24,10 +25,10 @@ async def run(b, base, vp, touch, tag):
     await pg.route(PACK, slow)
     t0 = time.time(); await pg.goto(base + '/index.html#/', wait_until='commit'); await pg.wait_for_timeout(300)
     st = await pg.evaluate("(()=>{const b=document.querySelector('#plbox');return b&&b.offsetParent?b.textContent:''})()")
-    ok('과목 자료 불러오는 중' in st and '0/6' in st, f'0.3초: 뼈대 + 진행 막대 {st[:60]!r}')
+    ok('과목 자료 불러오는 중' in st and f'0/{NP}' in st, f'0.3초: 뼈대 + 진행 막대 {st[:60]!r}')
     await pg.screenshot(path=J.TMP + f'/ux2i_b08_skel_{tag}.png')
     await pg.wait_for_function("window.__h&&__h.plStat().pend===0", timeout=20000)
-    ok(await pg.evaluate("document.querySelectorAll('#home .hsj[data-s]').length") == 6 and not await pg.evaluate("document.querySelector('#home .plc')"), '모두 도착 → 과목 표 6행·불러오는 중 칩 없음')
+    ok(await pg.evaluate("document.querySelectorAll('#home .hsj[data-s]').length") == NP and not await pg.evaluate("document.querySelector('#home .plc')"), f'모두 도착 → 과목 표 {NP}행·불러오는 중 칩 없음')
     # ---- B08-b 딥링크는 그 과목 팩만 기다림
     await pg.goto('about:blank'); t0 = time.time(); await pg.goto(base + '/index.html#/OMS1/DD1/learn', wait_until='commit')
     await pg.wait_for_function("document.querySelectorAll('#stage .tc').length>3", timeout=20000); dt = time.time() - t0
@@ -35,7 +36,7 @@ async def run(b, base, vp, touch, tag):
     ok(dt < 3.0 and n <= 2, f'#/OMS1/DD1/learn → {dt:.1f}초에 학습 탭 · 그때 불러온 팩 {n}개(다른 팩을 기다리지 않음)')
     await pg.screenshot(path=J.TMP + f'/ux2i_b08_deep_{tag}.png')
     await pg.wait_for_function("__h.plStat().pend===0", timeout=30000)
-    ok(await pg.evaluate("Object.keys(__h.PACKS).length") == 6, '나머지는 차례로 도착')
+    ok(await pg.evaluate("Object.keys(__h.PACKS).length") == NP, '나머지는 차례로 도착')
     await pg.unroute(PACK, slow)
     # ---- B08-c 404 → 실패 안내 → [다시]
     hits = {'n': 0}

@@ -70,9 +70,17 @@ for L in LEC:
             if b_[0] == 'E':
                 for i in b_[1][0]: cand.setdefault(i, []).append((1, L['k'], j))
 Q2CARD = {}
+def _cpages(k_, j_):
+    """카드 쪽 범위('17-22' · '5·7' · '5, 7-9') → 쪽 집합"""
+    out = set()
+    for a_, b_ in re.findall(r'(\d+)(?:\s*[-~–]\s*(\d+))?', [L_ for L_ in LEC if L_['k'] == k_][0]['cards'][j_].get('rng', '') or ''):
+        out |= set(range(int(a_), int(b_ or a_) + 1))
+    return out
 for i, lst in cand.items():
     q = QMAP.get(i); pl = PROF_LEC.get((q['prof'] or '').split('(')[0], []) if q else []
-    lst.sort(key=lambda x: (x[1] not in pl, x[0]))
+    own = getattr(S, 'IMG_ALIAS', {}).get(q['lk'], q['lk']) if q and q.get('lk') else ''   # annot lec=의 주 강의(보조 키는 본 강의로) — 같은 교수의 앞 강의에 짧은 ⭐만 있어도 주 강의 카드로(ESTH R19·S12 → SPE · T12 → VEN, 10-03)
+    pg_ = q.get('lkp') if q else None   # annot lec=<키>:<쪽>의 쪽(assemble이 넘겨줄 때만 — ESTH) → 주 강의 안에서 그 쪽을 담은 카드가 주 카드(보조 카드 머리 jb=를 지우지 않아도 됨)
+    lst.sort(key=lambda x: (x[1] != own, x[1] not in pl, bool(pg_) and x[1] == own and pg_ not in _cpages(x[1], x[2]), x[0]))
     Q2CARD[i] = (lst[0][1], lst[0][2])
 for q in Q:
     if q['id'] in Q2CARD: q['lk'] = Q2CARD[q['id']][0]

@@ -132,7 +132,8 @@ for q in Q:
     a = ANN.get(q['id'])
     if a:
         lk_ = a['lec'][0].split(':')[0] if a['lec'] else ''; lk_ = getattr(S, 'IMG_ALIAS', {}).get(lk_, lk_)
-        q.update({'v': a['v'], 'yrsnote': a['yrsnote'], 'rel': a['rel'], 'pair': a['pair'], 'A': a['A'], 'M': a['M'], 'N': a['N'], 'lk': lk_})
+        lkp_ = a['lec'][0].split(':')[1] if a['lec'] and ':' in a['lec'][0] else ''
+        q.update({'v': a['v'], 'yrsnote': a['yrsnote'], 'rel': a['rel'], 'pair': a['pair'], 'A': a['A'], 'M': a['M'], 'N': a['N'], 'lk': lk_, 'lkp': int(lkp_) if lkp_.isdigit() else None})
         q['yrs'] = sorted(set(q['base']) | set(a['yrs']), reverse=True); q['xtra'] = sorted(set(a['yrs']) - set(q['base']), reverse=True)
     else:
         q.update({'v': 'na', 'yrsnote': '', 'rel': '', 'pair': '', 'A': [], 'M': [], 'N': [], 'lk': '', 'xtra': []}); q['yrs'] = sorted(q['base'], reverse=True)
@@ -142,7 +143,7 @@ for q in Q:
         x2 = find(e2, s2, n2)
         if x2: o.append({'ed': e2, 'sec': s2, 'num': n2, 'pg': x2['pg'], 'pg2': x2['pg2'], 'text': x2['text']})
     q['other'] = o; q['lab24'] = ''; q['crops'] = CROPS.get(q['id'], {})
-    q['fig'] = bool(re.search(r'(?<!경)사진|그림', ' '.join(q['text'].split('\n')[:3])))
+    q['fig'] = False   # ESTH JB에는 시험 사진이 실려 있지 않음('사진 주고' 문항도 JB 쪽에 그림 없음) — 그림이 있는 Q23·Q26·Q28은 CROPS로 답 쪽에 직접(10-03 검토)
 
 LECT = []; TABLES = []
 PRED = []; cur = None
