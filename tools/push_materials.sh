@@ -38,10 +38,10 @@ for S in $SIDS; do
   done
 done
 if [ $N = 0 ]; then echo '새 파일 없음 — materials/<과목>/에 PDF를 넣었는지 확인'; exit 0; fi
-if [ $DRY = 1 ]; then echo "(--dry: $N개 — 올리지 않음)"; exit 0; fi
-echo "== 3) 올리기 ($N개 파일)"
+if [ $DRY = 1 ]; then echo "(--dry: ${N}개 — 올리지 않음)"; exit 0; fi
+echo "== 3) 올리기 (${N}개 파일)"
 cd "$TMP"
 for S in $(echo $NEW | tr ' ' '\n' | sort -u); do cp "$ROOT/work/$S/mat/index.json" "work/$S/mat/index.json"; ADD="$ADD work/$S/mat/index.json"; done
-git add -- $ADD   # 새 폴더와 index.json만(다른 경로는 손대지 않음)
-git commit -q -m "새 강의자료 추출본: $(echo $NEW | tr ' ' '\n' | sort -u | tr '\n' ' ')($(date +%m-%d) · $N개)"
+git add -f -- $ADD   # 새 폴더와 index.json만(다른 경로는 손대지 않음 · work/는 main의 .gitignore 대상이라 -f)
+git commit -q -m "새 강의자료 추출본: $(echo $NEW | tr ' ' '\n' | sort -u | tr '\n' ' ')($(date +%m-%d) · ${N}개)"
 git push -q origin HEAD:cloud-materials && echo "올림 — 클라우드 세션에 '26년도 자료 반영해 줘'라고 말하면 됨"
