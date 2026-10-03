@@ -370,7 +370,7 @@ M: 치과 opioid = {r:codeine}·{r:hydrocodone}·{r:oxycodone} / 주사 NSAID = 
 - Adverse effects(such as {r:agranulocytosis}) limit its utility for other conditions.
 - **Periodic CBC test**.
 U: nociceptive pain 외에도 trigeminal neuralgia 같은 neuropathic pain이 치과 영역에 존재 — 지속 투여는 agranulocytosis 때문에 지양, 투여 환자는 CBC를 routine하게 체크(필기).
-E: PN20 | 20년 빈칸 "( )는 trigeminal neuralgia의 firstline agent" → Carbamazepine(Tegretol) — p.18 문장으로 묻는 것이 PN01(24·23·21) · 세트: Tegretol·agranulocytosis·CBC
+E: PN20 | 20년 빈칸 "( )는 trigeminal neuralgia의 firstline agent" → Carbamazepine(Tegretol) — p.18 문장으로 묻는 것이 {jb:PN01} · 세트: Tegretol·agranulocytosis·CBC
 F: 25=Tegretol 무과립구증 CBC
 M: 삼차신경통 = {r:sharp·lancinating(shooting)·electric shock–like} · V2 {r:cheek} · V3 {r:chin·lower teeth} · V1 {r:around the eye}
 M: 삼차신경통 first-line = {r:Carbamazepine}({r:Tegretol}) → {r:agranulocytosis} → {r:periodic CBC}
