@@ -791,13 +791,15 @@ for i, p in enumerate(PRED):
 CIRC_N = '①②③④⑤⑥⑦⑧⑨'
 WRONG_Q = re.compile(r'옳지\s*않은|틀린\s*것|잘못된|바르지\s*않은')
 ANS_NUM = re.compile(r'^\s*(?:\[답\]|답)\s*[:：)]?\s*((?:[1-9①-⑨]\s*(?:\)|번)?\s*(?:[,，·/]|및|와|과)?\s*)+)\.?\s*$')
+ANS_NUM_VAL = re.compile(r'^\s*(?:\[답\]|답)\s*[:：)]?\s*([1-9])\s*\)\s+[0-9]+(?:\.[0-9]+)?\s*\.?\s*$')
 def pick_choices(q, core):
     """한눈표: 답이 보기 번호뿐이면 문제 원문에서 그 번호의 보기 줄(글자 그대로)을 찾음 → (라벨, [줄…]) / 못 찾으면 (라벨, None) / 번호 답이 아니면 None"""
     if not core: return None
     m = ANS_NUM.match(core[0])
     if not m: return None
+    m1 = ANS_NUM_VAL.match(core[0])   # "답: 5) 2" = 5번 보기(내용이 숫자 2) — 뒤 숫자는 보기 번호가 아님(10-03 최종 점검 GERI C01·C04)
     nums = []
-    for x in re.findall(r'[1-9①-⑨]', m.group(1)):
+    for x in ([m1.group(1)] if m1 else re.findall(r'[1-9①-⑨]', m.group(1))):
         n = CIRC_N.index(x) + 1 if x in CIRC_N else int(x)
         if n not in nums: nums.append(n)
     qt, _ = split_qa(q); L = reflow.reflow(qt, True)
