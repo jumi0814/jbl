@@ -26,7 +26,7 @@ with sync_playwright() as p:
         ok(pg.evaluate("document.body.classList.contains('focus')"), f'{vw} V → 집중 모드')
         seen = {}; sts = set()
         for i in range(30):
-            if i % 3 == 0: pg.mouse.move(400 + i, 500)
+            if i % 3 == 0: pg.mouse.move(400 + i, 500); pg.mouse.wheel(0, 1)
             pg.clock.run_for(1000); g = pg.evaluate(GEO); seen[g] = seen.get(g, 0) + 1; sts.add(pg.evaluate("document.querySelector('.fclock').dataset.st"))
         for i in range(12):
             pg.clock.run_for(60000); g = pg.evaluate(GEO); seen[g] = seen.get(g, 0) + 1; sts.add(pg.evaluate("document.querySelector('.fclock').dataset.st"))

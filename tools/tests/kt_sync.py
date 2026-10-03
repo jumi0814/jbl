@@ -58,17 +58,17 @@ async def main():
         for pg in (A, Bp): await pg.clock.run_for(1500)
         for pg in (A, Bp):
             for i in range(3):
-                await pg.mouse.move(300 + i * 10, 400); await pg.clock.run_for(10000)
+                await pg.mouse.move(300 + i * 10, 400); await pg.mouse.wheel(0, 1); await pg.clock.run_for(10000)
         await A.clock.run_for(1500); await Bp.clock.run_for(1500)
         tm = await ls(A, 'time') or {}; d = today(t0); s = (tm.get(d) or {}).get('PHARM', 0)
         ok(s >= 50000, f'두 창 공부 시간 합산: {s/1000:.0f}초 (각 창 약 30초 → 50초 이상)')
         await Bp.close()
         before = s
-        await A.mouse.move(500, 500); await A.clock.run_for(1000)
+        await A.mouse.move(500, 500); await A.mouse.wheel(0, 1); await A.clock.run_for(1000)
         await A.clock.run_for(9 * 60 * 1000)
         tm = await ls(A, 'time') or {}; s2 = (tm.get(d) or {}).get('PHARM', 0)
         ok(s2 - before <= 80000, f'9분 무입력 → 늘어난 시간 {(s2-before)/1000:.0f}초 ≤ 80초')
-        await A.mouse.move(520, 500); await A.clock.run_for(25000)
+        await A.mouse.move(520, 500); await A.mouse.wheel(0, 1); await A.clock.run_for(25000)
         tm = await ls(A, 'time') or {}; s3 = (tm.get(d) or {}).get('PHARM', 0)
         ok(0 < s3 - s2 <= 30000, f'다시 움직이면 이어서 잼: +{(s3-s2)/1000:.0f}초')
         ok(not errs, f'pageerror 0 {errs[:2]}')
