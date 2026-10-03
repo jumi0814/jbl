@@ -49,7 +49,7 @@ def kit(b):
         n0 = pg.evaluate("document.querySelectorAll('#stage .rk-h,#stage .rk-b').length")
         li = pg.evaluate("(()=>{const e=document.querySelectorAll('#stage .tc .tbody :is(li,.li)')[2];e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return [r.left+20,r.top+8]})()")
         pg.wait_for_timeout(200); (pg.touchscreen.tap if t else pg.mouse.click)(li[0], li[1]); pg.wait_for_timeout(300)
-        ok(pg.evaluate("__h.Kit.mode()") is None and pg.evaluate("document.querySelectorAll('#stage .rk-h,#stage .rk-b').length") == n0, f'{tag} H → 막대 ✕ → 모드 꺼짐 · 눌러도 표시 없음')
+        ok(pg.evaluate("__h.Kit.mode()") == 'h' and pg.evaluate("document.body.classList.contains('kit-off')"), f'{tag} H → 막대 ✕ = T와 같음 — 막대만 숨김 · 형광펜 모드 그대로(사용자 10-03)'); pg.keyboard.press('h'); pg.wait_for_timeout(100); pg.keyboard.press('t'); pg.wait_for_timeout(100)
         pg.keyboard.press('t'); pg.wait_for_timeout(200)
         # 27 🧹 이 카드 → T
         pg.evaluate("document.querySelectorAll('#stage .tc')[3].scrollIntoView({block:'center'})"); pg.wait_for_timeout(300)
