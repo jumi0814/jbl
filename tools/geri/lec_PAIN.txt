@@ -222,7 +222,7 @@ U: chronic facial pain에 노출되어 있다가 병원에 오면 이러한 것�
 F: 31=Nonverbal pain indicators 1-3, 32=Nonverbal pain indicators 4-6
 M: 앞 3: {r:Facial expressions}(grimacing) · {r:Vocalizations}(crying·moaning·groaning) · {r:Body movements}(guarding)
 M: 뒤 3 = changes in: {r:interpersonal interactions}(combative·disruptive) · {r:mental status}(confusion·irritability) · {r:usual activity}(refusing food)
-M: 21년 예시: interpersonal = combative·disruptive·{r:resisting care}·decreased social interactions·{r:withdrawn} / mental = confusion·irritability·{r:agitation}·crying / usual = refusing food·{r:increased wandering}·change in sleep habits
+M: 21년 예시: interpersonal = combative·disruptive·{r:resisting care}·decreased social interactions·{r:withdrawn} / mental = confusion·irritability·{r:agitation}·crying / usual = refusing food/appetite change·{r:increased wandering}·change in sleep habits
 
 ## PAINAD | 진행된 치매의 통증 평가 — 5항목 × 0-2점 | 33-34 | 도구
 > 말 못 하는 치매 환자의 통증을 숫자로 — 다섯 가지 행동을 0·1·2점으로
@@ -444,7 +444,8 @@ M: 코골이(no disease) → {r:OSA}(disease) · 진단 {r:AHI}
 - 수면 및 깨어남과 관련된 다양한 생리적 지표를 동시에 측정 — 여러 기구를 붙이고 밤에 자면서 진행.
 - Sleep disordered breathing을 진단하는 데 가장 흔히 사용하는 검사이자 {r:'Gold Standard'}.
 # Limitations of PSG
-- ① {r:First night effect}: awakenings and arousals·sleep and REM latency·light sleep ↑ / sleep efficiency·REM·slow wave sleep ↓ ② Technician, technology dependent ③ Episodic disorders may be missed ④ Night to night variability — repeat with strong clinical suspicion of OSA.
+- ① {r:First night effect}: awakenings and arousals·sleep and REM latency·light sleep ↑ / sleep efficiency·REM·slow wave sleep ↓
+- ② Technician, technology dependent ③ Episodic disorders may be missed ④ Night to night variability — repeat with strong clinical suspicion of OSA.
 P: 26 필기: 첫날 결과는 당연히 불편하여 비교적 안 좋게 나올 수 있다.
 U: 잘 된 연구는 2-3회 반복해 first night 결과는 버리고 진행하지만, 요즘은 subject가 중요해 그러기 쉽지 않다 · 경험이 많은 사람이 평가를 잘한다.
 # Portable PSG
@@ -541,7 +542,8 @@ U: 하루 종일 졸려도 크게 문제없다고 생각할 수 있지만 {r:낙
 # Anticonvulsants · 그 외
 - Anticonvulsants(gabapentin, pregabalin, carbamazepine) for neuropathic pain · {r:Carbamazepine} can be used for {r:trigeminal neuralgia}, may cause {r:pancytopenia}.
 - Muscle relaxants: for muscle spasm, monitor for {r:sedation}.
-- Local anesthetics(lidocaine patch, topical gel, capsaicin): {r:Capsaicin depletes substance P}, may take weeks to reach full effect, adverse effects burning and erythema · {r:Lidocaine patch FDA approved for post herpetic neuralgia}.
+- Local anesthetics(lidocaine patch, topical gel, capsaicin): {r:Capsaicin depletes substance P}, may take weeks to reach full effect, adverse effects burning and erythema.
+- {r:Lidocaine patch FDA approved for post herpetic neuralgia}.
 - Placebos.
 # SSRI(first line)
 - Fluoxetine, paroxetine, sertraline, citalopram — prevent reuptake of serotonin in synaptic cleft → increased level of neurotransmitters.
@@ -644,6 +646,7 @@ U: 소통해 진단부터 제대로(첫날은 많은 대화) → 신체·심리 
 # Health care system barriers
 - Lack of a neighborhood pharmacy · lack of transportation to the physician or pharmacy · an absence of high doses of opioids at the pharmacy · lack of a home caregiver to assist with administering drugs.
 U: 우리나라는 그렇게 해당되지 않는다 — caregiver와의 interaction, 매일 관리가 중요.
+U: Health care system이 부족하면 통증을 빠르게 진단하고 치료하는 기회가 줄어든다(p.94 필기).
 | 수준 | 장벽 |
 | 의사 | 적극적 치료 의지 부족 · 통증 경시 · 통증 관리 지식 부족 |
 | 환자 | {r:Communication} · {r:Psychological} · {r:Attitudinal issues} |
