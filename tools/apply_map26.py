@@ -3,7 +3,9 @@
 고치는 곳: tools/<sid>/annot.txt·tables.txt·pred.txt · 같은 과목의 다른 lec_*.txt (lec_<KEY>.txt는 작업자가 직접 고침)
 - [[KEY:n]] → [[KEY:새쪽]] · 새쪽이 없으면(26에서 빠짐) [[KEY5:n]]
 - annot 머리 lec=KEY:n(또는 n-m) → 새쪽(없으면 lecfix) · 둘 다 없으면 그대로 두고 경고
+- tables 머리줄(#TBL)의 src= 칩도 같은 규칙
 - annot에서 lec=KEY 블록의 A:/M:/N: 줄 · tables의 k=KEY 블록 · pred의 @KEY 블록 안 맨글 'p.n'(인용 칩 밖) → 'p.새쪽' · 없으면 '25 p.n'
+주의: 블록 안 맨글 p.n 중 다른 강의 쪽·JB 참고 쪽·25 필기 쪽까지 옮겨질 수 있다 → 옮긴 뒤 담당 검토자가 확인(25 필기 인용은 [[KEY5:n]]).
 사용: .venv/bin/python tools/apply_map26.py <SID> <KEY> [--dry]"""
 import os, re, sys, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -42,7 +44,7 @@ def main(sid, key, dry):
                     if v: L[i] = l[:mm.start()] + f'lec={key}:{v}' + l[mm.end():]; st['lec'] += 1
                     else: st['warn'].append(f'{l[:40]} — lec 옮길 쪽 없음')
                 continue
-            if f == 'tables.txt' and l.startswith('#TBL'): blk = bool(re.search(r'k=\s*' + key + r'\b', l)); continue
+            if f == 'tables.txt' and l.startswith('#TBL'): blk = bool(re.search(r'k=\s*' + key + r'\b', l)); L[i] = CITE.sub(cite, l); continue   # 머리줄 src= 칩도
             if f == 'pred.txt' and l.startswith('@'): blk = re.sub(r'^@P ', '@', l)[1:].split('|')[0].strip() == key; continue
             l2 = CITE.sub(cite, l)
             if blk and f in ('annot.txt', 'tables.txt', 'pred.txt') and not l2.startswith('@'): l2 = plain(l2)
