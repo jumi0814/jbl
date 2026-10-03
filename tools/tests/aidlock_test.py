@@ -45,7 +45,7 @@ ok(any(o['aid'] == old[1]['aid'] and o.get('gone') for o in lk3), '카드 삭제
 a4, al4, lk4, _ = aidlock.assign(K, parse_text(t3)['cards'], lk3, fresh)
 ok(any(old[1]['aid'] in x for x in al4), '다음 빌드에도 gone aid가 alt로 이어짐')
 # 5) 모든 과목: 잠금 파일이 지금 원고와 맞음(유지 = 전체)
-for sid in ['oms1', 'cons', 'impl', 'anat', 'geri', 'pharm']:
+for sid in ['oms1', 'cons', 'impl', 'anat', 'geri', 'pharm', 'esth']:
     lk = aidlock.load(os.path.join(TOOLS, sid, 'aid_lock.json'))
     ok(bool(lk), f'{sid}/aid_lock.json 있음 ({len(lk)}강의)')
 print('RESULT', 'PASS' if not fails else 'FAIL')

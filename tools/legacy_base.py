@@ -8,7 +8,7 @@ import os, sys, json, asyncio, subprocess, argparse
 TOOLS = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(TOOLS)
 sys.path.insert(0, TOOLS)
 from jblpaths import WORK
-SUBJ = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']
+SUBJ = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']   # ESTH는 옛 허브(f2e99d3)에 없던 과목 — 이관할 옛 표시 없음
 
 IDX = r"""(()=>{const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog]';
  const blockOf=n=>{let p=n.nodeType===1?n:n.parentElement;while(p&&!/^(P|LI|TD|TH|DIV|SECTION|ARTICLE|H1|H2|H3|H4|H5|TR|UL|OL|TABLE|FIGCAPTION|SUMMARY|DETAILS)$/.test(p.nodeName))p=p.parentElement;return p;};

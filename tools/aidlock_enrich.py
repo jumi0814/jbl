@@ -36,4 +36,4 @@ def main(rev, sids):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2: sys.exit(__doc__)
-    main(sys.argv[1], [a.upper() for a in sys.argv[2:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM'])
+    main(sys.argv[1], [a.upper() for a in sys.argv[2:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'])

@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 SEP = re.compile(r'[\s/:：;·,—\-=→|•]')
 def grab(skip_mem=False):
     out = {}
-    for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
+    for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']:
         t = open(f'{ROOT}/docs/packs/{s}.js', encoding='utf-8').read(); p = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(t)
         for L in p['lect']:
             for m in re.finditer(r'<article class="tc[^"]*"[^>]*data-aid="([^"]+)"(.*?)</article>', L['learn'], flags=re.S):

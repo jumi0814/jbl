@@ -38,4 +38,4 @@ def main(sids):
     return bad
 
 if __name__ == '__main__':
-    sys.exit(1 if main([a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']) else 0)
+    sys.exit(1 if main([a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']) else 0)

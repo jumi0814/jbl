@@ -1,15 +1,15 @@
 """공통 생성 코드 동기화 — 수정은 tools/cons/에서만 하고 이 스크립트로 다른 과목 폴더에 복사한다.
-  .venv/bin/python tools/sync_common.py            # cons → oms1·impl·anat·geri·pharm 복사
+  .venv/bin/python tools/sync_common.py            # cons → oms1·impl·anat·geri·pharm·esth 복사
   .venv/bin/python tools/sync_common.py --check    # 사본끼리 다르면 실패(종료 코드 1)
-  .venv/bin/python tools/sync_common.py --build    # 복사 후 6과목 build4 → verify → audit_design (tools/build_all.sh와 같음)
+  .venv/bin/python tools/sync_common.py --build    # 복사 후 7과목 build4 → verify → audit_design (tools/build_all.sh와 같음)
   .venv/bin/python tools/sync_common.py --rehub --all   # 원본(work/jb)이 없는 환경: 복사 후 허브만 다시(tools/rehub.py) → verify → audit_design → tests (tools/hub_all.sh와 같음)
 build2.py는 과목마다 마지막 출력 줄이 달라 복사하지 않는다(고칠 때는 과목별로)."""
 import os, sys, shutil, hashlib, subprocess
 TOOLS = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(TOOLS)
 SRC = 'cons'
-DST = ['oms1', 'impl', 'anat', 'geri', 'pharm']
+DST = ['oms1', 'impl', 'anat', 'geri', 'pharm', 'esth']
 COMMON = ['shell.html', 'build4.py', 'lecparse.py', 'trend.py', 'reflow.py', 'emph.py', 'template2.html', 'SPEC.md']
-SUBJ_ORDER = ['oms1', 'cons', 'impl', 'anat', 'geri', 'pharm']
+SUBJ_ORDER = ['oms1', 'cons', 'impl', 'anat', 'geri', 'pharm', 'esth']
 md5 = lambda p: hashlib.md5(open(p, 'rb').read()).hexdigest()
 def check():
     bad = []
@@ -19,7 +19,7 @@ def check():
         for d in [SRC] + DST:
             p = os.path.join(TOOLS, d, f)
             if not os.path.exists(p) or md5(p) != h0: bad.append(f'{d}/{f}')
-    print('sync check:', 'OK — 6개 사본 동일' if not bad else 'DIFF ' + ', '.join(bad))
+    print('sync check:', 'OK — 7개 사본 동일' if not bad else 'DIFF ' + ', '.join(bad))
     return not bad
 def sync():
     shutil.copyfile(os.path.join(TOOLS, 'SPEC.md'), os.path.join(TOOLS, SRC, 'SPEC.md'))

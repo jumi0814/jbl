@@ -39,4 +39,4 @@ def main(sids):
             print(f'   {a:8} {len(locs):3}회  {", ".join(locs[:6])}')
 
 if __name__ == '__main__':
-    main([a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM'])
+    main([a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'])

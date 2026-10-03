@@ -52,4 +52,4 @@ def run(sid):
     print(sid, len(p['order']), '문항 →', os.path.relpath(out, J.ROOT))
 
 if __name__ == '__main__':
-    for sid in [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']: run(sid)
+    for sid in [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']: run(sid)
