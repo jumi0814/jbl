@@ -208,11 +208,12 @@ async def mac(b):
     t = await pg.evaluate("document.querySelector('#stage .mkf[data-mkcol=\"\"] b').textContent")
     ok(t == '4', f'B29 내 표시 전체 = 4(형광 3 + 빈칸 1) · {t}')
     # ---- B50 플래시카드 × 모드
-    await go(pg, '#/CONS/WHT/flash', '#fc .fcard'); await pg.keyboard.press('h')
+    await go(pg, '#/CONS/WHT/flash', '#fc .fcard'); await pg.keyboard.press('h'); await pg.wait_for_timeout(200)
+    r = await pg.evaluate("[!!(window.__h&&__h.Kit&&__h.Kit.mode()),(document.querySelector('#toast')||{}).textContent||'']")
+    ok(r[0] is False and '학습' in r[1], f'B50(10-03 허브 점검으로 바뀜) 플래시카드에서 H = 형광펜이 켜지지 않고 안내 {r}')   # 칠할 곳이 없는 화면에서 모드가 켜진 것처럼 보이던 것
     b0 = await pg.evaluate("document.querySelector('#fc .fcard').classList.contains('back')")
     await pg.evaluate("document.querySelector('#fcard').click()"); await pg.wait_for_timeout(200)
-    r = await pg.evaluate("[document.querySelector('#fc .fcard').classList.contains('back'),(document.querySelector('#toast')||{}).textContent||'']")
-    ok(r[0] == b0 and '플래시카드' in r[1], f'B50 형광펜 모드 중 카드 누름 = 안 뒤집힘·안내 {r}'); await pg.keyboard.press('Escape')
+    ok(await pg.evaluate("document.querySelector('#fc .fcard').classList.contains('back')") != b0, 'B50 그 뒤 카드 누름 = 뒤집힘(모드 없음)'); await pg.keyboard.press('Escape')
     # ---- B43 맥 = 홈 화면 추가 안내 없음(저장소 보호 안 됨이어도)
     await pg.evaluate("localStorage.removeItem('jblhub.v1.a2hsNote')"); await go(pg, '#/', '#home .hsj')
     ok(await pg.evaluate("(document.querySelector('#a2hs')||{}).textContent||''") == '', 'B43 맥 브라우저 = 아이패드 홈 화면 추가 안내 없음')
