@@ -45,7 +45,7 @@ R: ⑥ {r:OLP / OLL} {jb:G04} | — | —
 R: ⑦ {r:Pemphigoid / Pemphigus} {jb:G04} | — | —
 R: ⑧ {r:Basal cell carcinoma} {jb:G04} | — | 얼굴 주위 피부 carcinoma 중 최다
 R: ⑨ {r:Epidermoid carcinoma (SCC)} {jb:G04} | — | 입 안 cancer 중 최다 · 다음 verrucous carcinoma
-R: (점막 통증) {r:Burning mouth syndrome} | Female at peri- or post-menopausal · Tongue or Mucosal Pain · Burning or dysesthesia · {r:No abnormality} · Cancerphobia · Depression / Anxiety / Sleeping Disorder | 점막질환이 아니라 점막에 일어나는 통증 → JB 답 9개에서 제외(20년 판본만 +BMS)
+R: (점막 통증) {r:Burning mouth syndrome} | Female at peri- or post-menopausal · Tongue or Mucosal Pain · Burning or dysesthesia · {r:No abnormality} · Cancerphobia · Depression / Anxiety / Sleeping Disorder | 점막질환이 아니라 점막에 일어나는 통증 → JB 답 9개에서 제외(20년 판본만 +BMS·OLL 없음)
 R: BMS 특징 5 | {r:Resting > Functional} · {r:Afternoon > Morning} · depends on sleep quality and behavior · {r:Seldom disturb sleeping} · comparable to {r:Toothache} | 통증 약 6 = 하루 종일 치통
 N: 전제 — No oral disease occurs exclusively in the elderly. 교수님: "노인에서 발생하는 점막질환을 적으세요 하면 이 page(18-2) 질환들 + candidiasis"(필기).
 
@@ -520,3 +520,51 @@ R: **노인 우울증** | 특징 5: {r:신체불편감} · {r:기억력 저하} 
 R: **노인 자살·치료** | 한국 노인자살률 {r:OECD 1위} · 80대↑ {r:83.7명}/10만 | 자살 생각 원인 1위 {r:경제적 어려움 40.4%} · 외로움 13.3% | 치료: 약물·ECT·TMS / 정신치료 / 운동·대인관계·사회활동 | —
 R: **상실(Object Loss)** | 신체: {r:청력·시력} 저하 → communication 차단 → {r:social isolation} | 사회경제: 경제 · 사별·애도 · {r:Loneliness} | 우울증·치매의 심리환경적 원인 | —
 R: **심리적 변화 5** | {r:경직성} · {r:조심성} · {r:내향성} · {r:의존성} · {r:우울 경향} 증가 | {r:개인차 매우 큼} · 우울 경향 ≠ 임상적 우울증 | 경직·조심 → 서서히 적응 · 충분한 의사소통 / 의존·우울·내향 → 경청 · 맞장구 · 자신감 | {jb:P02} 서술 — 5줄 그대로
+
+#TBL 진료실 미백 — 과거 vs 현재 · 광원과 laser | k=BLE | src=[[BLE:59]] [[BLE:60]] [[BLE:62]] [[BLE:63]] [[BLE:65]] [[BLE:66]] [[BLE:67]] [[BLE:68]] [[BLE:69]] [[BLE:70]] [[BLE:72]] [[BLE:73]] [[BLE:75]] [[BLE:76]]
+H: 항목 | 슬라이드 | 포인트(필기)
+R: 준비물 | Bleaching Agents · Catalysts: {r:Light, Laser} · Safety Glasses · 35-mm Camera | —
+R: 과거 — rubber dam with floss | radial surface에 {r:30% H2O2} → 30 cm 떨어진 곳에서 red light | time-consuming · 뜨거운 빛이 pulp에 흡수되어 통증 — Red light from lamp was {r:absorbed into reddish pulp}
+R: 현재 — light-cured dental dam | {r:1.5-2 mm} thick · {r:4-6 mm} wide in gingiva · enamel {r:0.5 mm} overlapped covering · light-curing for {r:30 secs} · {r:pre-mixed gels in syringe} instead of H2O2 liquid | 약제를 올려놓아도 흘러내리지 않아서 안전
+R: 광원 6 | Halogen · Argon laser · Plasma arc lamps · Xe-halogen · LED light · Diode laser | Xe-halogen {r:15분 / 3 cycle}
+R: 장비 | White Cool {r:36 LED}(380-530 nm) · Elite White {r:80 LED} · Flipo White 2(Xenon arc · 2 modes) · Zoom2 {r:IR SYSTEM} · SmartLite {r:Nd-YAG: no heat generation} | Flipo = light가 {r:pulse}로 꺼졌다 켜졌다 → 시린 사람을 위해 · Zoom2 = 환자가 머리를 움직여도 고정
+R: Laser의 역할 | {r:Laser on their own don't bleach}, merely to catalyze oxidation reaction · 용액을 conventional heat source보다 더 빨리 가열 → oxygen radicals fast & more | 보통 1시간 · hypersensitivity↑
+R: 위험과 대처 | High toxicity of {r:35% H2O2} to gum if leak · lamp 열원으로 pain↑ | immediate {r:saline irrigation} · analgesics · daily iodine dressing · vaseline coating
+R: Light-augmented vs conventional | Light {r:does not cause additional harm} · use of light {r:significantly improved the whitening efficacy} | light 자체는 미백제를 활성화 → 쏴 주는 것이 좋다(p.76)
+N: 미출제 쪽 — 'Laser on their own don't bleach'(스스로 미백 ×, 산화 촉매)와 dental dam 숫자(1.5-2 · 4-6 · 0.5 · 30초)가 변형 대비 포인트.
+
+#TBL 치매의 정신행동증상(BPSD) — 3군 · 원인 · 관리 · 돌봄 | k=PSY | src=[[PSY:28]] [[PSY:29]] [[PSY:30]] [[PSY:31]]
+H: 항목 | 슬라이드 | 포인트(필기)
+R: {r:Psychotic} symptoms | Hallucinations · Delusions · Misidentifications | 망상·환각 — 보호자도 힘들게 함
+R: {r:Affective} symptoms | Depression · Apathy · Elation · Anxiety · Disinhibition | NPI: Depression/Dysphoria 29 → 77% · Apathy 20 → 71%
+R: {r:Behavioural} symptoms | Aberrant motor behaviour · Irritability · Agitation/Aggression · Sleep disturbance · Stereotypes · Hyperorality · Eating disturbance · Hypersexuality | —
+R: 치료 반응 | 인지장애 증상에 비해 {r:약물치료나 비약물적 개입에 반응이 우수} | NPI any symptom — point {r:56%} · five-year {r:97%}
+R: 평가·관리 원칙 | BPSD {r:악화/유발요인 파악} → {r:원인교정} + {r:비약물적 접근 우선} +/- 필요시 {r:소량의 약물치료} | 신체적 원인·환경적 변화(이사·돌보는 사람 교체)로도 생김 · 아주 소량만으로도 효과
+R: 치과와 닿는 원인 | Pain · Excessive noise · Fear of medical treatment · Unfamiliar surroundings/persons(원인 13 중) | p.31 중기 — 소음이 심한 장비는 제한적으로 사용(행동 악화 요인)
+R: Supportive care | 장기요양서비스 이용 · 지역별 치매안심센터 · 다학제적 접근({r:Nutritional support} · Gait rehabilitation) · Caregiver support | 당장 이가 없어서 씹지 못하는 경우도 많다 — {r:치과의사의 역할!}
+N: 미출제. 치매 단계별 치과 진료(p.31)와 이어 읽기 — '정신행동증상 빈발'은 중기.
+
+#TBL 노인 우울 — 통증 강의와 행동심리 강의에서 | k=PAIN | src=[[PAIN:36]] [[PAIN:37]] [[PAIN:38]] [[PAIN:41]] [[PAIN:42]] [[PAIN:47]] [[PSY:32]] [[PSY:33]] [[PSY:36]] [[PSY:37]] [[PSY:38]]
+H: 항목 | 고령자의 만성안면통증(장지희) | 노인행동심리학(변민수)
+R: 기본 사실 | Depression = an illness · {r:leading cause of suicide}(2nd leading cause of death and disability in 15-44 yrs) · {r:M<F 1:2} · genetic component {jb:J05} | 노인 우울증을 잘 알아야 하는 이유 = {r:노인자살} · 한국 노인자살률 OECD 1위
+R: 진단·구분 | Major depression = ≥ {r:5} symptoms including depressed mood and/or anhedonia · ≥ {r:2 weeks} | 병적인 우울증 = {r:2주 이상} · 기능 지장 · 심한 증상 · 동반증상 / 정상적 우울감 = 1주 이내 · 기능 유지
+R: 노인에서 보이는 증상 | Symptoms 9: appetite·weight · disturbed sleep · self neglect · fatigue · irritable moods · loss of interest or pleasure · worthlessness·guilt · difficulty concentrating · suicidal thinking | 특징 5: 기분이 우울하다는 호소보다 {r:신체불편감} · 기억력 저하 · 불안, 초조 · 의욕, 흥미 상실 · 식욕감퇴, 불면 {jb:B04}
+R: 통증·고립과의 관계 | chronic pain·depression {r:frequently coexist} · loneliness = risk factor for depression · {r:lower pain threshold} {jb:J06} | 고립과 관련된 경우가 많아 코로나 때 증가 · social isolation 해결도 중요
+R: 평가·진료 | {r:Psychological assessment} should be part of chronic pain evaluation · Beck 21문항 · cut-off {r:16} | 설명되지 않는 증상 호소 → 우울증 의심 · 치료 순응도에 영향 · 방문환자에 매우 흔함 · 잘 치료됨 {jb:P01}
+R: 치료 | TCA(amitriptyline·desipramine) — neuropathic pain · depression · sleep disturbance / SSRI first line | 생물학적(약물·ECT·TMS) · 정신치료(개인·집단·인지행동) · 생활습관(운동·대인관계·사회활동)
+N: 같은 우울증을 두 강의가 다른 각도로 — 통증 강의는 영문 진단 기준·증상 9개, 행동심리 강의는 한국어 특징 5개와 정상 우울감과의 구분. 문항 답은 그 강의 슬라이드 문장으로 쓸 것.
+
+#TBL 수면 평가 — Epworth · PSG · Portable PSG | k=PAIN | src=[[PAIN:67]] [[PAIN:68]] [[PAIN:69]] [[PAIN:70]] [[PAIN:71]] [[PAIN:72]] [[PAIN:73]]
+H: 도구 | 무엇·기준 | 장점 | 한계·주의
+R: Epworth Sleepiness Scale | 8가지 활동 상황의 졸린 정도 · 점수 {r:0-3} · total {r:24} pts · 총점 {r:>10} = high possibility of sleep problem | OSA 증상 평가에 좋다고 알려짐 · [TV 볼 때] 항목이 가장 크리티컬(필기) | 해당 활동을 할 일이 없는 사람은 체크할 게 없음
+R: PSG | 수면 및 깨어남 관련 생리 지표 동시 측정 · Dement와 Raynal({r:1974}) | sleep disordered breathing 진단의 {r:'Gold Standard'} | {r:first night effect} · technician, technology dependent · episodic disorders may be missed · night to night variability
+R: Portable PSG | 환자의 집에서 검사 · Type 2~4 | 전극 수가 적어 편안 · 평상시 수면 반영? · 검사비 {r:1/5 - 1/7} · 접근성·반복 측정 용이 | 탈락 시 해결 불가 · 다른 수면장애 진단 불가 · {r:TST} 계산 곤란 · OSA 심도 underestimation? · 고령·인지장애 → {r:표준 PSG}
+N: First night effect — ↑ awakenings and arousals · sleep and REM latency · light sleep / ↓ sleep efficiency · REM · slow wave sleep. Airflow는 oronasal thermal sensor(apnea) + nasal pressure transducer(hypopnea) — Use both! · Full PSG when portable failed.
+
+#TBL 심화 사례 4 — 대상 · 결과 · 생각해볼 질문 | k=OHQ | src=[[OHQ:22]] [[OHQ:23]] [[OHQ:24]] [[OHQ:25]]
+H: 사례 | 자료·대상 | 결과 | 생각해볼 질문·주의
+R: ① 취약계층 노인 | 제7기 국민건강영양조사(2016~2018) · 기초생활보장 수급자 · 전기 vs 후기노인 | {r:후기노인}일수록 이닦이 실천·구강검진 수검이 구강건강 차이에 더 크게 기여 | 취약계층 구강보건사업은 {r:후기노인} 우선
+R: ② 우울과 칫솔질 | 제7기 국민건강영양조사 · 65세 이상 · {r:PHQ-9 5점↑} 우울증 | 여성: 우울 있음 하루 3회↑ 칫솔질 {r:32.1%} vs 없음 41.8%(p=0.004) · 남성은 차이 없음 | 여성 노인 우울증 유병자 이닦이 프로그램? · 독거노인 구강보건 사업 형태?
+R: ③ 성별 차이 | 제7기 국민건강영양조사 · 65세 이상 · 종속변수 = 주관적 건강상태 | 남성 = {r:구강건강을 나쁘게 인식}할수록 / 여성 = {r:말하기 불편함}을 인식할수록 주관적 건강 나쁨 | 정서적 공감 경로 가설 → 성별에 따라 다른 접근?
+R: ④ 코로나19 전후 | 국민건강영양조사 6·7기(2016~2019 vs 2020~2021) · 확진·사망자의 {r:80% 이상}이 노인 | 주관적 건강수준↑ · 저작불편 호소↓ · 칫솔질 횟수·구강위생용품 사용↑ | 가설: 건강관리 중요성·구강관리 관심 증가 · ※ {r:마스크 → 구강건조}
+N: 26 수업에서는 슬라이드 19 "오늘은 여기까지, 핵심정리로 바로 이동"으로 넘어간 쪽(미출제) — 숫자·성별 차이를 묻는 객관식 대비.

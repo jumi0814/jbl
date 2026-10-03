@@ -163,6 +163,19 @@ R: 보조치료 | 무설탕 껌/캔디·얼음조각·인공타액(carboxymethyl
 R: 유발 약물 {jb:XE01} | TCA·Imipramine·Atropine·Diazepam·Diphenhydramine·Naproxen/Ibuprofen·Codeine·Clonidine — physostigmine(AChE 억제)은 ✗
 R: BMS {jb:XE07} | Clonazepam 0.5 mg qd hs 30일 or bid, 3-5분 topical 후 삼킴
 
+#TBL 교수님 예고·공개 시험 문장 — 한 장(필기·공개 시험문제) | k=XE | src=[[XE:1]] [[XE:30]] [[XE:32]] [[XE:36]] [[XE:38]] [[XE:39]] [[XE:40]] [[XE:54]] [[XE:55]] [[XE:56]]
+H: 쪽 | 교수님 말씀·시험 예시(그대로) | 답·외울 것 | 기출
+R: p.1·40 | "이 숫자가 굉장히 중요하고 주관식으로 나올 수 있습니다" · "큰 별표! 이 표의 수치를 외우세요" | dry mouth whole saliva unstimulated {r:< 0.1 ml/min} · stimulated {r:< 0.5 – 0.7} · 정상 whole {r:0.3 – 0.5} / {r:1.0 – 3.0} | {jb:XE02} {jb:XE08} {jb:XE15}
+R: p.30 | pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) "이 둘은 꼭 기억하세요!" | Pilocarpine = {r:Glaucoma}(점안) · {r:Xerostomia}(경구) / Cevimeline = {r:Xerostomia} | {jb:XE03} {jb:XE17} {jb:XE18}
+R: p.32 | 시험 예) pilocarpine은 COPD에 절대 금기다 | {r:X} — COPD는 {r:주의} | {jb:XE05}
+R: p.32 | 시험 예) 조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다 | {r:X} — 조절되지 않는 천식은 {r:금기} | {jb:XE05}
+R: p.36 | "1,2번 시험 잘 나옵니다!" | 구강건조증을 유발하는 전신상태 1. {r:약물복용} 2. 자가면역질환: {r:Sjögren's syndrome} | {jb:XE01}
+R: p.38·39 | "항체 이름이 시험에 나올 수 있습니다" · "큰 별표! 이 표는 시험에 나옵니다!!" | {r:Anti-Ro/SSA · Anti-La/SSB} · 6항목 중 {r:≥4}(histopathology or serology 포함) 또는 객관 4항목 중 {r:≥3} | {jb:XE04}
+R: p.54 | 2016년 시험문제: 81세 여성 · 비자극 0.1 mL/min 미만 · 자극 0.5 mL/min 미만 → Primary Diagnosis·치료 약물·작용 기전·사용법 | {r:구강건조증} · {r:Pilocarpine} — 무스카린 수용체에 직접 결합 · 5mg 하루 한 번 혹은 두 번 시작 → 최종 {r:20mg/day}(5mg 하루 네 번) | {jb:XE06}
+R: p.55 | 2017년 시험문제: 정상군·구강건조증군 자극·비자극 타액분비율 표 빈칸(소수점 첫째자리) | 위 p.40 수치 | {jb:XE15}
+R: p.56 | 2017년 시험문제: Pilocarpine 적정 용량 빈칸 · 과량 시 길항제 · 주로 ( )과 ( ) 치료용 | 1회 {r:10 mg} 초과 ✗ · 두경부암 방사선 {r:3}회 · Sjögren {r:4}회 · 과량 {r:Atropine} · {r:구강건조증 (Xerostomia)}·{r:녹내장(glaucoma)} | {jb:XE03} {jb:XE16}
+N: 교수님 예고(p.1 필기) "내용이 굉장히 많지만 다 외우라는 뜻이 아닙니다. 이해만 하시고 외울 것은 집어드리겠습니다" — 이 표가 '집어 주신 것'. 25 필기: 시험에 잘 나오는 것은 치료와 관련된 부분.
+
 #TBL 구강건조증 치료제 ① — 자율신경·수용체·콜린성 약물 전체정리표 | k=XE | sum=1 | src=[[XE:4]] [[XE:5]] [[XE:7]] [[XE:8]] [[XE:9]] [[XE:10]] [[XE:12]] [[XE:16]] [[XE:18]] [[XE:19]] [[XE:20]] [[XE:21]] [[XE:23]] [[XE:24]]
 H: 대상 | 위치·구조 | 신호·기전 | 대표 약물 | 임상 의미 | ★ 시험
 R: **교감신경** | 절전 cell body {r:T1-L2/3} · paravertebral chain·prevertebral ganglia | 절전 ACh → {r:Nicotinic} / 절후 {r:NE} → adrenergic(α·β) | NE · 부신수질은 epinephrine | 침샘 = {r:thick, viscous} 분비 · 교감만 = 혈관·부신수질·땀샘·신장 | —
@@ -554,6 +567,19 @@ R: H2O2 vs NaOCl | negligible · mechanical cleanser · 고농도 {r:bleaching} 
 R: Aldehyde vs Mercury | noncorrosive to metal · alkylation(cross-linking) · 30 days | bacteriostatic · {r:reversible} -SH · {r:slow onset, prolonged} {jb:DS20} | aldehyde 문항의 오답은 mercury 문장
 R: CHX vs H2O2 기전 | disruption of bacterial plasma membrane · antiplaque 3 {jb:DS05} | {r:Hydroxyl free radicals} attack membrane lipids {jb:DS30} | CHX 문항의 오답 'free radical'은 H2O2
 N: JB 오답의 절반은 '다른 제제의 문장' — 짝으로 묶어 외우면 선지에서 바로 걸러짐.
+
+#TBL 교수님 시험 예시 문장 — O/X 한 장(필기) | k=DS | src=[[DS:5]] [[DS:7]] [[DS:9]] [[DS:10]] [[DS:16]] [[DS:19]] [[DS:21]] [[DS:42]]
+H: 쪽 | 필기의 시험 예시(그대로) | 답 | 근거 슬라이드 문장 | 기출
+R: p.5 ★ | Q. 알코올은 100% 농도일 때 살균효과가 가장 좋다 | {r:X} | More effective in the presence of water, thus {r:60-70%} prep is commonly used | {jb:DS07} {jb:DS16}
+R: p.7 | Q. 다음 중 가장 강력한 살균소독제는? | {r:iodine} | Most valuable, powerful antiseptic agent and have bactericidal, sporicidal, fungicidal and virucidal effects | {jb:DS03} {jb:DS08}
+R: p.9 | Q. Bis-guanides는 G(+) 세균에만 효과적이다 | {r:X} | Bactericidal against {r:G(+) and G(-)} bacteria | {jb:DS02} {jb:DS22}
+R: p.9 | bis-biguanides 는 sporocidal 하다 | {r:X} | Ineffective against tubercle bacilli, {r:spore} and viruses | {jb:DS02}
+R: p.10 ★ | Chlorhexidine이 갖고 있는 antiplaque action 세가지를 서술하시오(2023 — "반드시 시험에 나옵니다") | ①②③ | ①Reduced protein adsorption by cationic property ②Interfering bacterial adsorption by binding to bacterial surface in sublethal amount ③Competing with Ca2+ for the acidic agglutination factor in plaque | {jb:DS05}
+R: p.16 ★ | 수술 scrub에 사용하는 것은 0.12%이다 · mouthwash로 쓰는 CHX는 4%이다 | {r:X} · {r:X} | Preoperative preparation·Hand wash and scrubbing {r:4%} / Mouthwash {r:0.12%} | {jb:DS02}
+R: p.19 ★ | Ulcerative gingivitis 환자에게 hexamedine 처방한다 | {r:X} | Mouthwash for Tx. of {r:ANUG} = H2O2 | {jb:DS10}
+R: p.21 | Q. 다음 중 s/o 환자에게 적합하지 않은 살균 소독제는? | {r:H2O2} | Contraindicated in {r:newly regenerating tissues} due to tissue destruction & irritation | {jb:DS01}
+R: p.42 ★ | 가장 broad한 range를 나타내는 것은 alcohol이다 | {r:X}({r:aldehyde}) | Broadest Range = Aldehydes(표의 모든 칸 +) | {jb:DS28}
+N: ★ = 2023 별표 페이지(p.1 필기: 6·10·16·19·42). 교수님 말씀(p.1) "시험문제 이미 냈습니다~ 수업 하며 알려드릴테니 잘 들어주세요" — 이 표의 문장이 그 예시들.
 
 #TBL 살균제와 소독제 — 10제제 전체정리표 | k=DS | sum=1 | src=[[DS:3]] [[DS:5]] [[DS:6]] [[DS:7]] [[DS:9]] [[DS:10]] [[DS:16]] [[DS:17]] [[DS:18]] [[DS:19]] [[DS:21]] [[DS:22]] [[DS:23]] [[DS:24]] [[DS:25]] [[DS:28]] [[DS:31]] [[DS:34]] [[DS:37]] [[DS:42]]
 H: 제제 | 대표·농도 | 미생물 범위 | 유기물·빛·온도·alkali | 용도 | 주의 | ★ 시험
