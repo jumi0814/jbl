@@ -33,7 +33,7 @@ async def run(b, vp, touch, tag):
     for h, mode, cur in views:
         await open_(pg, h, 500); r = await pg.evaluate(NAV)
         if mode == 'hub': good = r['mode'] == 'hub' and r['nvs'] == 7 and r['grid'] == 0 and not r['back'] and r['lec'] == 0
-        else: good = r['mode'] == 'subj' and r['nvs'] == 0 and r['grid'] == 7 and r['back'] and '보존' in r['sj'] and r['lec'] == 7 and r['dbtn'] == 14
+        else: good = r['mode'] == 'subj' and r['nvs'] == 0 and r['grid'] == 8 and r['back'] and '보존' in r['sj'] and r['lec'] == 7 and r['dbtn'] == 15   # ux4f O13 과목 메뉴에 ★ 북마크 카드(_cbm) — 8칸·버튼 15
         shown = (r['vis'] == 'hidden') if narrow else (r['vis'] == 'visible' and r['w'] == 256) or (h.endswith('/sum') and W <= 1440)
         ok(good and shown and r['ovx'] <= 0, f'{tag} {h}: {mode} 메뉴 {r}')
         ok(r['cur'] == cur, f'{tag} {h}: aria-current {r["cur"]} = {cur}')
