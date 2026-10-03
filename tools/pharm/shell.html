@@ -1934,15 +1934,29 @@ function needImages(id,c,cb){const key=id+':'+c;if(LOADED[key])return cb();(imgW
 /* ---------- 공부 시간 v2 — 자동 측정(설정)·8분 무활동/다른 창이면 멈춤·과목·강의별 기록 ---------- */
 const T={run:false,t0:0,log:LS.get('time',{}),dlog:LS.get('timed',{}),auto:LS.get('tauto',true),last:Date.now(),IDLE:8*60*1000,manualPause:false,hiddenStop:false};
 /* ux4f O17 사용자 10-03 '공부시간 리셋 타임은 매일 아침 6시로 … 새벽12~아침 6시 전까지는 전날의 공부시간에 함께' — 공부 날 = 아침 6시 ~ 다음 날 6시.
-   옛 기록을 옮기지 않게 경계 날 DCUT(2026-10-04)부터 적용: DCUT 이전 날은 자정 기준 그대로 · DCUT 날은 자정 ~ 다음 날 6시(30시간) · 그 뒤 날은 6시 ~ 다음 날 6시.
+   옛 기록을 옮기지 않게 경계 날 DCUT(2026-10-03 — 처음엔 10-04, 10-03 밤 사용자 요청으로 당김)부터 적용: DCUT 이전 날은 자정 기준 그대로 · DCUT 날은 자정 ~ 다음 날 6시(30시간) · 그 뒤 날은 6시 ~ 다음 날 6시.
    구간(tseg) 초는 그 날 시작(dayMs) 기준 — 6시 날은 0초 = 06:00 · 화면 시각은 hmsD/tmSecD로 바꿈. 모든 기기에 같은 고정 날짜(기기마다 다르지 않게) */
-const DAYH=6,DCUT='2026-10-04';
+const DAYH=6,DCUT='2026-10-03';   /* 10-03 밤 사용자 '다음날 오전 6시 그 시간까진 전날 공부시간으로 이어서' — 경계 날을 10-04 → 10-03으로 당김(오늘 밤 10-04 06:00까지 = 10-03) */
 const calKey=d=>d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
 const day=(dd)=>{const d=dd||new Date();const k=calKey(new Date(d.getTime()-DAYH*36e5));return k>=DCUT?k:calKey(d);};
 const fmt=ms=>{const s=Math.floor(ms/1000);return ('0'+Math.floor(s/3600)).slice(-2)+':'+('0'+Math.floor(s/60)%60).slice(-2)+':'+('0'+s%60).slice(-2);};
 const fmtS=ms=>{const m=Math.floor(Math.max(0,ms)/60000);   /* ux4f L5 휴식 띠·알림도 내림(달력·홈·⏱ 크게 fmtH와 같은 숫자) */return m>=60?Math.floor(m/60)+'시간 '+(m%60)+'분':m+'분';};
 /* 다른 창과 함께 열어도 합산되게: 쓰기 직전에 LS를 다시 읽고 이번 증가분(ms)만 더함. 마지막 입력 뒤 1분까지만 미리 계상(무활동 구간은 활동이 돌아오면 그때 더해지고, 8분 넘으면 멈춤) */
 const tObj=v=>(v&&typeof v==='object'&&!Array.isArray(v))?v:{};
+/* 10-03 밤 DCUT를 당긴 뒤 한 번만: 옛 판(자정 경계)이 10-04로 적은 기록 중 06:00 전 것을 10-03의 자정 뒤(초 +86400)로 옮기고, 06:00 뒤 것은 새 기준(0초 = 06:00)으로. 옮기기 전 값은 LS dcutmv3bak에 남김 */
+(function dcutMove(){try{if(LS.get('dcutmv3',0))return;const A='2026-10-04',B='2026-10-03',H=DAYH*3600,seg=tObj(LS.get('tseg',{})),L=Array.isArray(seg[A])?seg[A]:[];
+ const log=tObj(LS.get('time',{})),dl=tObj(LS.get('timed',{})),R=tObj(LS.get('trest',{}));
+ if(L.length){LS.set('dcutmv3bak',{at:Date.now(),tseg:L,time:log[A]||null,timed:dl[A]||null,trest:R[A]||null});
+  const mv=[],keep=[];L.forEach(r=>{if(!Array.isArray(r))return;const x=+r[0],y=+r[1];if(y<=H)mv.push(r);else if(x>=H)keep.push(r);else{mv.push([x,H].concat(r.slice(2)));keep.push([H,y].concat(r.slice(2)));}});
+  const BL=Array.isArray(seg[B])?seg[B]:(seg[B]=[]);
+  mv.forEach(r=>{const ms=(r[1]-r[0])*1000,S=r[2]||'',D=r[3]||'',f=String(r[4]||'');BL.push([r[0]+86400,r[1]+86400].concat(r.slice(2)));
+   if(f.charAt(0)==='r'){const m=Math.min(ms,+R[A]||0);R[A]=(+R[A]||0)-m;R[B]=(+R[B]||0)+m;if(!R[A])delete R[A];}
+   else{const k=S||'기타';log[A]=tObj(log[A]);log[B]=tObj(log[B]);const m=Math.min(ms,+log[A][k]||0);log[A][k]=(+log[A][k]||0)-m;if(!log[A][k])delete log[A][k];log[B][k]=(+log[B][k]||0)+m;
+    if(S&&D){const dk=S+':'+D;dl[A]=tObj(dl[A]);dl[B]=tObj(dl[B]);const m2=Math.min(ms,+dl[A][dk]||0);dl[A][dk]=(+dl[A][dk]||0)-m2;if(!dl[A][dk])delete dl[A][dk];dl[B][dk]=(+dl[B][dk]||0)+m2;}}});
+  if(keep.length)seg[A]=keep.map(r=>[r[0]-H,r[1]-H].concat(r.slice(2)));else delete seg[A];
+  [log,dl].forEach(o=>{if(o[A]&&!Object.keys(o[A]).length)delete o[A];});
+  LS.set('tseg',seg);LS.set('time',log);LS.set('timed',dl);LS.set('trest',R);T.log=log;T.dlog=dl;}
+ LS.set('dcutmv3',Date.now());}catch(e){}})();
 function tFlush(upTo){if(!T.run)return;let now=(typeof upTo==='number')?upTo:Date.now();now=Math.min(now,T.last+60000);if(now<=T.t0)return;tRec(CUR.s||'기타',CUR.s&&CUR.d?CUR.d:'',T.t0,now,'a');T.t0=now;}   /* ux3 I3 [t0,now]를 자정에서 두 날로 나눠 time·timed·tseg에 씀(tRec — '// ux3 트랙2' 구역) */
 /* 버튼 상태(B03·B05 → ux3 I1): ● 측정 중(자동) / ● 세션 h:mm / ☕ 쉬는 중 m:ss / ■ 멈춤 / ○ 다른 창에서 측정 중 / ○ 자동 대기 / ▶ 공부 시작(자동 꺼짐) — 상태는 trState(), 메뉴·팝업·달력의 같은 버튼(trkUI)도 함께 */
 function tBtn(){ckPaint(true);trkAll();if(homeTick.d){if(VIEW==='home')homeTick();navBadgesSoon();}}   /* homeTick.d 먼저 — 처음 tBtn()은 VIEW 선언보다 먼저 불림 */   /* ux4 묶음2 상태가 바뀌면 — 상단 시계 알약(ckPaint — '// ux4 묶음2' 구역)과 [data-trk] 조각(달력 카드·홈 띠·⏱ 크게) */
@@ -2816,7 +2830,7 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  const TJ=trendNoPct(p.trends||'').j;const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(String(g.t).replace(/짤 비율 평균 \d+%/,TJ?'짤 '+TJ+'문항':'짤이 많음'))}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');
  const BMJ=lbmGet(p.id),jump=p.lect.map(L=>`<button class="chip ljc${BMJ[L.k]?' bm':''}" data-d="${L.k}" title="${EH(L.title)}${BMJ[L.k]?' · ★ 북마크':''}">${BMJ[L.k]?'<i class="bmk" aria-label="북마크">★</i>':''}<span>${EH(sname(p,L.k))}</span></button>`).join('');
  const hot2=new Set((p.top||[]).map(t=>t.lk).filter(Boolean));
- const BM=lbmGet(p.id),lecs=p.lect.map(L=>`<div class="lcw${BM[L.k]?' bm':''}">${lbmBtn(p.id,L.k,'lbm')}<button class="lcard ${L.heat}" data-d="${L.k}"><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.hint?`<span class="lh">${EH(L.hint)}</span>`:''}</button></div>`).join('');
+ const BM=lbmGet(p.id),lecs=p.lect.map(L=>`<div class="lcw${BM[L.k]?' bm':''}">${lbmBtn(p.id,L.k,'lbm')}<button class="lcard ${L.heat}" data-d="${L.k}"><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.tip?`<span class="lh ltip"><b>📌 공부 전략</b> ${EH(L.tip)}</span>`:''}</button></div>`).join('');
  const T=p.top||[],y4=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return a.length>4?a.slice(0,4).join('·')+' +'+(a.length-4):a.join('·');};
  const TN=5,top=T.map((t,i)=>{const st=(MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'')+(i>=TN?' tmr':'');return `<li class="${st.trim()}"><span class="c">${t.yrs.length}회</span><span class="yr">${y4(t.yrs)}</span><button class="q" data-go="${t.id}" title="${EH(yrsLab(t.yrs))} — JB 문제로">${EH(t.short)}</button><span class="p">${EH(t.prof)}</span></li>`;}).join('');
  const HA=!!SS.get('hintAll.'+p.id,0),TA=!!SS.get('htopAll.'+p.id,0);const hints=(p.hints&&p.hints.length)?`<section class="hints sh4${HA?' all':''}" id="hhint"><h2 class="hh">교수님이 예고·강조한 것${p.hints.length>3&&!HA?`<button class="more" data-hmore="1">모두 보기 ${p.hints.length}</button>`:''}</h2><ul class="hlist">${p.hints.map((x,i)=>`<li class="hq${i>=3?' hmore':''}"><button class="lec" data-golec="${x.k}:0">${EH(x.t)}</button><p>${x.h}</p></li>`).join('')}</ul></section>`:'';

@@ -719,7 +719,7 @@ for L in LEC:
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
-                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
+                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
 print('⭐ 시험포인트 구조화(ux2 D04):', f'{lecparse.EXAM_N[0]}/{lecparse.EXAM_N[1]}줄')
 print('🔑 줄 나누기(ux3 N1 key_lines):', f'상자·칸 {lecparse.KL[0]} · 새 구조 {lecparse.KL[1]} · 글자가 달라 옛 렌더로 되돌림 {lecparse.KL[2]}')

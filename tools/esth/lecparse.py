@@ -69,8 +69,9 @@ def parse(path):
         if not line.strip(): continue
         if line.startswith('#LEC'):
             p = [x.strip() for x in line[4:].split('|')]
-            lec = {'k': p[0], 'title': p[1], 'prof': p[2], 'yr': p[3], 'file': p[4], 'pages': int(p[5]), 'notes': [], 'cards': [], 'map': ''}
+            lec = {'k': p[0], 'title': p[1], 'prof': p[2], 'yr': p[3], 'file': p[4], 'pages': int(p[5]), 'notes': [], 'cards': [], 'map': '', 'tip': []}
         elif line.startswith('@MAP'): lec['map'] = line[4:].strip()
+        elif line.startswith('@TIP'): lec['tip'].append(line[4:].strip())   # 10-03 사용자: 과목 홈 강의 박스 = 공부 전략·팁(교수 예고·필기는 정리본 안에서)
         elif line.startswith('@G'): grp = line[2:].strip()
         elif line.startswith('!'): lec['notes'].append(line[1:].strip())
         elif line.startswith('## '):
