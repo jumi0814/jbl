@@ -66,7 +66,7 @@ with sync_playwright() as p:
             pg.goto('about:blank'); pg.goto(U + route); pg.wait_for_function(WAIT, timeout=60000); pg.wait_for_timeout(1200)
             # 문제 줄이 가장 많은 카드의 연도 칩
             info = pg.evaluate("""(()=>{const P=__h.PACKS[__h.CUR.s];let best=null;for(const b of document.querySelectorAll('#stage .tchips .chip.yr[data-go]')){const h=P.cards[b.dataset.go];if(!h)continue;const d=document.createElement('div');d.innerHTML=h;const n=d.querySelectorAll('.qtext .ln').length;
-              const a=d.querySelector('.jbans .lines');let na=0;if(a)for(const ln of a.children){if(ln.matches('.lab-e,.lab-r'))break;na++;}if(!best||n>best[1])best=[b,n,na,b.dataset.go];}if(!best)return null;best[0].id='qchip';best[0].scrollIntoView({block:'center'});return best.slice(1)})()""")
+              const a=d.querySelector('.jbans .lines');let na=0,tx='';if(a)for(const ln of a.children){if(ln.matches('.lab-e,.lab-r'))break;if(ln.matches('.exw')){if(/해설\s*참고|해설 ?참조/.test(tx))na++;break;}tx+=ln.textContent;na++;}if(!best||n>best[1])best=[b,n,na,b.dataset.go];}if(!best)return null;best[0].id='qchip';best[0].scrollIntoView({block:'center'});return best.slice(1)})()""")
             if not info: ok(False, f'Q3 {W} {route} 연도 칩 없음'); continue
             h0 = pg.evaluate("location.hash"); pg.wait_for_timeout(300)
             box = pg.evaluate("(e=>{const r=e.getBoundingClientRect();return [r.left+r.width/2,r.top+r.height/2]})(document.querySelector('#qchip'))")
@@ -74,8 +74,8 @@ with sync_playwright() as p:
             r = pg.evaluate("(p=>p?[p.classList.contains('on'),p.querySelectorAll('.jpq .ln').length,!!p.querySelector('.jpmore'),location.hash]:null)(document.querySelector('#jbpeek'))")
             ok(r and r[0] and r[1] == info[0] and not r[2] and r[3] == h0, f'Q3 {W} {route} 연도 칩 → 미리보기 · 문제 줄 {r and r[1]}/{info[0]} 전부 · 화면 그대로')
             pg.evaluate("document.querySelector('#jbpeek .jpshow').click()"); pg.wait_for_timeout(200)
-            a = pg.evaluate("(p=>[!p.hidden,p.querySelectorAll(':scope>.ln').length,p.querySelectorAll('.lab-e,.lab-r').length])(document.querySelector('#jbpeek .jpa'))")
-            ok(a[0] and a[1] == info[1] and a[2] == 0, f'Q3 {W} {route} 답 보기 → 답 줄 {a[1]}/{info[1]} 전부 · 해설·참고 줄 없음')
+            a = pg.evaluate("(p=>[!p.hidden,p.querySelectorAll(':scope>.ln,:scope>.exw').length,p.querySelectorAll(':scope>.lab-r,:scope>.ln.lab-e').length,p.querySelectorAll('.clamp').length])(document.querySelector('#jbpeek .jpa'))")
+            ok(a[0] and a[1] == info[1] and a[2] == 0 and a[3] == 0, f'Q3 {W} {route} 답 보기 → 답 줄 {a[1]}/{info[1]} 전부(답이 \'해설 참고\'면 해설 펼쳐서) · 참고 줄 없음 · 접힘 없음')
             pg.evaluate("document.querySelector('#jbpeek [data-jpgo]').click()"); pg.wait_for_timeout(900)
             ok(pg.evaluate(f"location.hash.indexOf('/_jb')>0||location.hash.indexOf('/jb')>0") and pg.evaluate(f"!!document.querySelector('#c-{info[2]}')"), f'Q3 {W} {route} [JB에서 풀기] → 그 문항 {info[2]}')
         ok(not E, f'Q3 {W} 콘솔 오류 없음 {E[:2]}'); ctx.close()
