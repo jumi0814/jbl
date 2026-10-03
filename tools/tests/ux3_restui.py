@@ -78,14 +78,14 @@ async def part_view(b, vp, touch, tag):
     # ⑤ 자동 측정 → 무활동 → 자동 휴식(같은 표시) → 돌아와 띠 → 기록 알림
     await fresh(pg, '#/CONS/WHT/learn')
     for i in range(21):
-        await pg.mouse.move(300 + (i % 9) * 11, 420 + (i % 3)); await pg.clock.run_for(30000)
+        await pg.mouse.move(300 + (i % 9) * 11, 420 + (i % 3)); await pg.mouse.wheel(0, 1); await pg.clock.run_for(30000)
     fm = await pg.evaluate("__h.trFocusMs()")
     ok(await st(pg) == 'run' and re.fullmatch(r'공부 1[01]:\d\d', await lab(pg)) and 10 * MIN <= fm < 11 * MIN, f'자동 측정 10분 → {await st(pg)} {await lab(pg)!r} · 지금 구간 {fm / MIN:.1f}분')
     await pg.clock.run_for(9 * MIN)
     ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.querySelector('.ckl').textContent])(document.querySelector('#clock'))")
     ok(await st(pg) == 'rest' and ck[0] and ck[1].startswith('휴식 '), f'무활동 → 자동 휴식 표시 {await st(pg)} {ck}')
     await pg.screenshot(path=J.TMP + f'/ux3p_t_auto_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 260})
-    await pg.clock.run_for(15 * MIN); await pg.mouse.move(640, 500); await pg.clock.run_for(300)
+    await pg.clock.run_for(15 * MIN); await pg.mouse.move(640, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     bd = await pg.evaluate("(b=>b.hidden?'':b.textContent)(document.querySelector('#idleband'))")
     ok('쉬었어요' in bd and '공부했어요' in bd, f'돌아와 입력 → 띠 {bd!r}')
     await pg.clock.run_for(10500); t = await toast(pg)

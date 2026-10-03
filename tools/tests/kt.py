@@ -65,7 +65,7 @@ async def main():
         await pg.mouse.click(ib['x']+ib['width']*0.3, ib['y']+ib['height']*0.3); await pg.wait_for_timeout(200); ok(await pg.evaluate("document.getElementById('mimg').style.width||'fit'")=='fit', '9c 다시 누르면 맞춤')
         await pg.mouse.click(8, 500); await pg.wait_for_timeout(200); ok(not await pg.evaluate("document.getElementById('imgmodal').classList.contains('on')"), '9d 바깥 누르면 닫힘')
         # 10) 공부시간 자동
-        await pg.mouse.move(300,300); await pg.mouse.move(310,320); await pg.wait_for_timeout(2300); ok(bool((await pg.inner_text('#clock')).strip()), f"10 공부 시계 알약 {await pg.inner_text('#clock')}")
+        await pg.mouse.move(300,300); await pg.mouse.wheel(0, 1); await pg.mouse.move(310,320); await pg.mouse.wheel(0, 1); await pg.wait_for_timeout(2300); ok(bool((await pg.inner_text('#clock')).strip()), f"10 공부 시계 알약 {await pg.inner_text('#clock')}")
         await pg.click('#clock'); await pg.wait_for_timeout(200); print('   tpop', (await pg.inner_text('#tpop'))[:80].replace('\n',' | '))
         await pg.mouse.click(600,600); await pg.wait_for_timeout(100)
         # 11) 모아보기

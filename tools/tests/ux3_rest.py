@@ -32,7 +32,7 @@ async def band(pg): return await pg.evaluate("(b=>b.hidden?'':b.textContent)(doc
 async def study(pg, n, step=30000, x=300):
     """n번 입력(step 간격) — 마지막 입력 뒤 멈춤 · 돌려줌: 마지막 입력 시각(ms)"""
     for i in range(n):
-        await pg.mouse.move(x + (i % 9) * 11, 420 + (i % 3)); await pg.clock.run_for(50)
+        await pg.mouse.move(x + (i % 9) * 11, 420 + (i % 3)); await pg.mouse.wheel(0, 1); await pg.clock.run_for(50)
         if i < n - 1: await pg.clock.run_for(step - 50)
     return await pg.evaluate("__h.T.last")
 HIDE = "Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'))"
@@ -55,7 +55,7 @@ async def part_idle(b):
     await pg.screenshot(path=J.TMP + '/ux3i_rest_tmr_mac.png', clip={'x': 0, 'y': 0, 'width': 1280, 'height': 60})
     # 마지막 입력에서 28분 뒤 입력 → 띠(기본 쉬었어요) → 10초 무응답
     await pg.clock.run_for(28 * MIN - 8 * MIN - 2000 - 50)
-    await pg.mouse.move(600, 500); await pg.clock.run_for(300)
+    await pg.mouse.move(600, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     bt = await band(pg); ok('쉬었어요' in bt and '공부했어요' in bt and '27분' in bt, f'돌아와 입력 → 띠 {bt!r}')
     await pg.screenshot(path=J.TMP + '/ux3i_rest_band_mac.png')
     ok(await st(pg) == 'run', f'입력 → 휴식 끝·자동 측정 다시 ({await st(pg)})')
@@ -70,7 +70,7 @@ async def part_idle(b):
     await pg.evaluate("location.hash='#/OMS1/DD2/learn'"); await pg.clock.run_for(800)
     li = await study(pg, 5, x=320); await pg.clock.run_for(9 * MIN); r0 = await rest(pg); tm0 = await tsum(pg)   # 휴식이 시작된 뒤(공부 몫 다 기록)
     r0 -= 8 * MIN - 50   # 이미 기록된 휴식(마지막 입력 1분 뒤부터) — 옮기면 이것까지 빠짐
-    await pg.clock.run_for(19 * MIN - 50); await pg.mouse.move(610, 500); await pg.clock.run_for(300)
+    await pg.clock.run_for(19 * MIN - 50); await pg.mouse.move(610, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     ok('공부했어요' in await band(pg), '두 번째 휴식 → 띠')
     await pg.evaluate("document.querySelector('#idleband [data-rb=study]').click()"); await pg.clock.run_for(300)
     r1 = await rest(pg); tm1 = await tsum(pg)
@@ -84,7 +84,7 @@ async def part_idle(b):
     await pg.clock.run_for(9 * MIN); await pg.clock.fast_forward(171 * MIN); await pg.clock.run_for(2000)
     r1 = await rest(pg)
     ok(abs((r1 - r0) - 90 * MIN) <= 2000 and await st(pg) != 'rest' and await ls(pg, 'tstate') is None, f'무입력 3시간 → trest +{(r1 - r0) / MIN:.2f}분 (상한 90) · 자동 대기 ({await st(pg)})')
-    await pg.mouse.move(640, 500); await pg.clock.run_for(300)
+    await pg.mouse.move(640, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     ok(await band(pg) == '' and await st(pg) == 'run', '상한 뒤 돌아오면 띠 없이 자동 측정')
     # restMax 30분
     await pg.evaluate("localStorage.setItem('jblhub.v1.restMax','30')")
@@ -114,7 +114,7 @@ async def part_hide(b):
     ts = await ls(pg, 'tstate'); ok(ts and ts.get('ar') == 1 and ts.get('why') == 'hide', f"화면 숨김 → 자동 휴식 {ts and ts.get('why')}")
     await pg.clock.run_for(30 * MIN - 1000); await pg.evaluate(SHOW); await pg.clock.run_for(300)
     ok(await st(pg) == 'rest', f'화면만 돌아옴(움직이지 않음) → 휴식 그대로 ({await st(pg)}) — ux4f O15')
-    await pg.mouse.move(640, 430); await pg.clock.run_for(300)
+    await pg.mouse.move(640, 430); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     bt = await band(pg); ok('쉬었어요' in bt and '30분' in bt, f'00:20 화면 돌아와 움직임 → 띠 {bt!r}')
     await pg.clock.run_for(10500)
     y = await rest(pg, '2026-09-23'); t = await rest(pg, '2026-09-24')
@@ -122,11 +122,11 @@ async def part_hide(b):
     ok(await st(pg) == 'run', f'화면 돌아옴 → 자동 측정 다시 ({await st(pg)})')
     # 화면 숨김 15분 → 휴식 15분
     await study(pg, 3, x=330); r0 = await rest(pg, TODAY)
-    await pg.evaluate(HIDE); await pg.clock.run_for(15 * MIN); await pg.evaluate(SHOW); await pg.mouse.move(650, 440); await pg.clock.run_for(10800)
+    await pg.evaluate(HIDE); await pg.clock.run_for(15 * MIN); await pg.evaluate(SHOW); await pg.mouse.move(650, 440); await pg.mouse.wheel(0, 1); await pg.clock.run_for(10800)
     ok(abs(await rest(pg, TODAY) - r0 - 15 * MIN) <= 2000, f'숨김 15분 → 휴식 +{(await rest(pg, TODAY) - r0) / MIN:.2f}분')
     # 숨김 30초(탭 잠깐 바꿈) → 휴식 아님
     await study(pg, 2, x=350); r0 = await rest(pg, TODAY)
-    await pg.evaluate(HIDE); await pg.clock.run_for(30000); await pg.evaluate(SHOW); await pg.mouse.move(660, 445); await pg.clock.run_for(500)
+    await pg.evaluate(HIDE); await pg.clock.run_for(30000); await pg.evaluate(SHOW); await pg.mouse.move(660, 445); await pg.mouse.wheel(0, 1); await pg.clock.run_for(500)
     ok(await rest(pg, TODAY) == r0 and await band(pg) == '', f'숨김 30초 → 휴식 0·띠 없음 (+{(await rest(pg, TODAY) - r0) / 1000:.0f}초)')
     # 새로고침 → 휴식 아님(자동 측정 중 새로고침)
     await study(pg, 3, x=360); r0 = await rest(pg, TODAY)
@@ -138,14 +138,14 @@ async def part_hide(b):
         await pg.evaluate(HIDE); await pg.evaluate("dispatchEvent(new Event('pagehide'))")
         await pg.goto('about:blank'); await pg.clock.run_for(gap * MIN)
         await pg.goto(U + '#/CONS/_home'); await pg.clock.run_for(1500)
-        await pg.mouse.move(700, 450); await pg.clock.run_for(10800)
+        await pg.mouse.move(700, 450); await pg.mouse.wheel(0, 1); await pg.clock.run_for(10800)
         d = await rest(pg, TODAY) - r0
         ok(abs(d - want * MIN) <= 15000, f'닫고 {gap}분 뒤 다시 열기 → 휴식 +{d / MIN:.1f}분 ({want})')
     # restAuto 끔 → 자동 휴식 0 · 옛 띠
     await pg.evaluate("localStorage.setItem('jblhub.v1.restAuto','false')")
     await study(pg, 3, x=400); r0 = await rest(pg, TODAY)
     await pg.clock.run_for(12 * MIN); ok(await ls(pg, 'tstate') is None and await st(pg) != 'rest', 'restAuto 끔 → 무활동이어도 쉬는 중 아님')
-    await pg.mouse.move(720, 450); await pg.clock.run_for(300)
+    await pg.mouse.move(720, 450); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     bt = await band(pg); ok('입력이 없었어요' in bt and await rest(pg, TODAY) == r0, f'restAuto 끔 → 옛 띠 {bt!r} · 휴식 0')
     await pg.evaluate("document.querySelector('#idleband [data-ib=no]').click()")
     await pg.evaluate(HIDE); await pg.clock.run_for(10 * MIN); await pg.evaluate(SHOW); await pg.clock.run_for(500)
@@ -169,10 +169,10 @@ async def part_two(b):
     await A.clock.run_for(12 * MIN)
     ok(await st(A) == 'rest' and await st(B) == 'rest', f'A 무활동 → A·B 모두 쉬는 중 ({await st(A)}·{await st(B)})')
     r0 = await rest(A)
-    await B.mouse.move(500, 500); await asyncio.sleep(0.1); await A.clock.run_for(1000)
+    await B.mouse.move(500, 500); await B.mouse.wheel(0, 1); await asyncio.sleep(0.1); await A.clock.run_for(1000)
     ok(await st(A) != 'rest' and await st(B) == 'run', f'B에서 공부 시작 → A 휴식 끝 ({await st(A)}·{await st(B)})')
     r1 = await rest(A)
-    for i in range(20): await B.mouse.move(500 + i, 520); await asyncio.sleep(0.02); await A.clock.run_for(30000)   # B 10분 공부
+    for i in range(20): await B.mouse.move(500 + i, 520); await B.mouse.wheel(0, 1); await asyncio.sleep(0.02); await A.clock.run_for(30000)   # B 10분 공부
     r2 = await rest(A)
     ok(r1 - r0 < 2 * MIN and r2 == r1, f'휴식은 B 시작 시각에 끝(그 뒤 +{(r2 - r1) / 1000:.0f}초)')
     ok(not errs, f'pageerror 0 ({errs[:2]})')
@@ -224,7 +224,7 @@ async def part_view(b, vp, touch, tag):
     await pg.evaluate("localStorage.removeItem('jblhub.v1.restAuto')")
     # 휴식 중 띠 화면(아이패드 폭 — 띠 넘침)
     await pg.evaluate("location.hash='#/PHARM/RX/learn'"); await pg.clock.run_for(800)
-    await study(pg, 3); await pg.clock.run_for(12 * MIN); await pg.mouse.move(400, 300); await pg.clock.run_for(300)
+    await study(pg, 3); await pg.clock.run_for(12 * MIN); await pg.mouse.move(400, 300); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     bw = await pg.evaluate("(b=>{const r=b.getBoundingClientRect();return [r.left,r.right,innerWidth,b.hidden]})(document.querySelector('#idleband'))")
     ok(not bw[3] and bw[0] >= 0 and bw[1] <= bw[2], f'되묻기 띠 화면 안 {bw}')
     await pg.screenshot(path=J.TMP + f'/ux3i_rest_band_{tag}.png')

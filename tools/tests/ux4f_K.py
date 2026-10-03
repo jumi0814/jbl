@@ -24,7 +24,7 @@ with sync_playwright() as p:
             pg.wait_for_timeout(100); pg.clock.run_for(100)
     st = lambda: pg.evaluate("__h.trState()")
     def move(n=4):
-        for i in range(n): pg.mouse.move(300 + i * 20, 420 + i); pg.clock.run_for(20000)
+        for i in range(n): pg.mouse.move(300 + i * 20, 420 + i); pg.mouse.wheel(0, 1); pg.clock.run_for(20000)
     def pop(rx):
         pg.evaluate("document.querySelector('#clock').click()"); pg.clock.run_for(300)
         return pg.evaluate(f"(b=>b?(b.click(),b.textContent.trim()):null)([...document.querySelectorAll('#tpop [data-tp]')].find(b=>/{rx}/.test(b.textContent)))")

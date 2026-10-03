@@ -66,7 +66,7 @@ async def run(b, vp, touch, tag):
     ok('오늘' in p['txt'] and '/ 4:00' in p['txt'] and '휴식' in p['txt'], f"{tag} 팝오버 머리 '오늘 h:mm / 목표 · 휴식' {p['txt'][:40]!r}")
     await pg.screenshot(path=J.TMP + f'/ux4i_top_{tag}_pop_wait.png')
     await pg.keyboard.press('Escape'); await pg.wait_for_timeout(150)
-    await open_(pg, '#/CONS/WHT/learn'); await pg.mouse.move(400, 500); await pg.mouse.move(420, 520); await pg.wait_for_timeout(1300)
+    await open_(pg, '#/CONS/WHT/learn'); await pg.mouse.move(400, 500); await pg.mouse.wheel(0, 1); await pg.mouse.move(420, 520); await pg.mouse.wheel(0, 1); await pg.wait_for_timeout(1300)
     ck = await pg.evaluate(CK); col = await pg.evaluate("__h.sjColor('CONS')")
     ok(ck['st'] == 'run' and ck['l'].startswith('공부 ') and ck['dot'] == rgb(col), f'{tag} 과목에서 움직이면 공부 중·과목색 점 {ck} {col}')
     await tap('#clock'); await pg.wait_for_timeout(250)

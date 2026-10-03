@@ -63,12 +63,12 @@ async def part_states(b, vp, touch, tag):
     # 같은 문서에서 스크롤·움직여도 time 0 (자동 측정 켬)
     await pg.evaluate("localStorage.setItem('jblhub.v1.tauto','true');__h.T.auto=true")
     e0 = await tsum(pg)
-    for i in range(6): await pg.mouse.wheel(0, 200); await pg.mouse.move(300 + i * 5, 400); await pg.clock.run_for(20000)
+    for i in range(6): await pg.mouse.wheel(0, 200); await pg.mouse.move(300 + i * 5, 400); await pg.mouse.wheel(0, 1); await pg.clock.run_for(20000)
     await pg.evaluate("dispatchEvent(new Event('pagehide'))"); e1 = await tsum(pg)
     ok(e1 - e0 == 0 and await st(pg) == 'end', f'■ 뒤 같은 문서 2분 입력 → time +{(e1 - e0) / 1000:.0f}초 (0) · 멈춤 유지')
     # 새 문서를 열면 자동 측정 다시
     await pg.evaluate("location.hash='#/OMS1/_home'"); await pg.clock.run_for(1500)
-    for i in range(3): await pg.mouse.move(400 + i * 7, 420); await pg.clock.run_for(1000)
+    for i in range(3): await pg.mouse.move(400 + i * 7, 420); await pg.mouse.wheel(0, 1); await pg.clock.run_for(1000)
     ok(await st(pg) == 'run', f"새 문서 열기 → 자동 측정 다시 ({await pg.inner_text('#clock .ckl')!r})")
     # 측정 중 → 알약 ☕(from auto) → ▶ → 자동 측정으로
     await tp(pg, 'rest'); await pg.clock.run_for(300)
@@ -174,7 +174,7 @@ async def part_midnight(b):
     await pg.clock.run_for(2 * 3600 * 1000)
     await pg.evaluate("localStorage.setItem('jblhub.v1.tauto','true');localStorage.removeItem('jblhub.v1.tstate');localStorage.removeItem('jblhub.v1.tseg')")
     await boot(pg, '#/OMS1/DD1/learn', 1000)
-    for i in range(20): await pg.mouse.move(300 + (i % 9) * 11, 420); await pg.clock.run_for(30000)
+    for i in range(20): await pg.mouse.move(300 + (i % 9) * 11, 420); await pg.mouse.wheel(0, 1); await pg.clock.run_for(30000)
     await pg.evaluate("dispatchEvent(new Event('pagehide'))")
     L = [q for q in ((await ls(pg, 'tseg')) or {}).get(TODAY, []) if q[4] == 'a']
     ok(len(L) == 1 and abs((L[0][1] - L[0][0]) - 600) <= 20 and L[0][2] == 'OMS1' and L[0][3] == 'DD1', f'자동 10분 → tseg 한 구간 {L}')
@@ -198,7 +198,7 @@ async def part_two(b):
     await A.evaluate("__h.trStart()"); await A.clock.run_for(1000)
     ok(await st(B) == 'sess', f"A에서 ▶ → B도 1초 안에 세션 ({await B.inner_text('#clock .ckl')!r})")
     for i in range(12):   # 10초마다 번갈아 입력 — 2분(기록 창이 옮겨 다녀도 한 번씩만)
-        pg = (A, B)[i % 2]; await pg.mouse.move(300 + i * 7, 400); await asyncio.sleep(0.1); await A.clock.run_for(10000)
+        pg = (A, B)[i % 2]; await pg.mouse.move(300 + i * 7, 400); await pg.mouse.wheel(0, 1); await asyncio.sleep(0.1); await A.clock.run_for(10000)
     for q in (A, B): await q.evaluate("dispatchEvent(new Event('pagehide'))")
     s = sum(sum(v.values()) for v in ((await ls(A, 'time')) or {}).values())
     ok(115000 <= s <= 125000, f'두 창 번갈아 2분 세션 → time +{s / 1000:.0f}초 (겹침 없음)')

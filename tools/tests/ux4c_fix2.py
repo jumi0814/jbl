@@ -24,7 +24,7 @@ def go(pg, h, wait=500):
     pg.goto('about:blank'); pg.goto(U + h)
     pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')", timeout=60000); pg.wait_for_timeout(wait)
 def mv(pg, i=0):
-    pg.mouse.move(300 + i % 7, 300 + i % 5); pg.mouse.move(310, 320 + i % 3)
+    pg.mouse.move(300 + i % 7, 300 + i % 5); pg.mouse.wheel(0, 1); pg.mouse.move(310, 320 + i % 3); pg.mouse.wheel(0, 1)
 def key(pg, k, code=None, shift=False):
     pg.evaluate("([k,c,s])=>document.dispatchEvent(new KeyboardEvent('keydown',{key:k,code:c,shiftKey:s,bubbles:true}))", [k, code or '', shift]); pg.wait_for_timeout(250)
 CK = "(c=>({st:c.dataset.st,t:c.querySelector('.ckt').textContent,l:c.querySelector('.ckl').textContent}))(document.querySelector('#clock'))"

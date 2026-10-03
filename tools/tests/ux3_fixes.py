@@ -25,7 +25,7 @@ async def sub(pg, d, s): return await pg.evaluate(f"__h.tDay('{d}')['{s}']||0")
 async def tot(pg, d): return await pg.evaluate(f"(o=>Object.values(o).reduce((a,b)=>a+b,0))(__h.tDay('{d}'))")
 async def study(pg, n, step=30000, x=300):
     for i in range(n):
-        await pg.mouse.move(x + (i % 9) * 11, 420 + (i % 3)); await pg.clock.run_for(50)
+        await pg.mouse.move(x + (i % 9) * 11, 420 + (i % 3)); await pg.mouse.wheel(0, 1); await pg.clock.run_for(50)
         if i < n - 1: await pg.clock.run_for(step - 50)
     return await pg.evaluate("__h.T.last")
 async def wheel(pg, n, step=30000):
@@ -79,7 +79,7 @@ async def part_trk(b):
     d = await sub(pg, TODAY, 'CONS') - c1; ok(abs(d - 5 * MIN) <= 40000, f'다시 연 뒤 5분 입력 → 보존 +{d / MIN:.1f}분 (5)')
     # 보이는 채 20분 넘게 입력 없음 → 다음 입력에 풀림
     await pg.evaluate("__h.trStop()"); await pg.clock.run_for(300); await pg.clock.fast_forward(25 * MIN)
-    await pg.mouse.move(500, 500); await pg.clock.run_for(1500)
+    await pg.mouse.move(500, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(1500)
     ok(await st(pg) == 'run', f'■ 뒤 25분 입력 없다가 움직임 → 자동 측정 ({await st(pg)})')
     # 저절로 끝난 세션(닫힘 기본값) → 같은 문서 공부 자동 측정
     now = await pg.evaluate("Date.now()")
@@ -104,7 +104,7 @@ async def part_trk(b):
     s3 = await tot(pg, TODAY); await pg.clock.run_for(4 * MIN)
     ok(await st(pg) == 'rest' and await tot(pg, TODAY) >= s3, f'flow V10 자동 휴식 시작 → 오늘 합계 {s3 / 1000:.0f}→{await tot(pg, TODAY) / 1000:.0f}초 (되감기 없음)')
     # flow V05 띠 10초 기본값 뒤 [📖 공부로 바꾸기] 알림
-    await pg.clock.run_for(20 * MIN); await pg.mouse.move(700, 500); await pg.clock.run_for(300)
+    await pg.clock.run_for(20 * MIN); await pg.mouse.move(700, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     r0 = await pg.evaluate("__h.restDay('%s')" % TODAY); s0 = await tot(pg, TODAY)
     await pg.clock.run_for(10500); t = await toast(pg)
     ok('휴식' in t and '기록했어요' in t and '공부로 바꾸기' in t, f'flow V05 기본값(쉬었어요) 뒤 알림 {t!r}')

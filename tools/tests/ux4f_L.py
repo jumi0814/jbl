@@ -34,7 +34,7 @@ class P:
     def run(s, ms): s.pg.clock.run_for(ms)
     def st(s): return s.ev("__h.trState()")
     def move(s, n=4, step=20000):
-        for i in range(n): s.pg.mouse.move(300 + i * 20 + (n % 7), 420 + i); s.pg.clock.run_for(step)
+        for i in range(n): s.pg.mouse.move(300 + i * 20 + (n % 7), 420 + i); s.pg.mouse.wheel(0, 1); s.pg.clock.run_for(step)
     def pop(s, rx):
         s.ev("document.querySelector('#clock').click()"); s.run(300)
         r = s.ev(f"(b=>b?(b.click(),b.textContent.trim()):null)([...document.querySelectorAll('#tpop [data-tp],#tpop [data-trb]')].find(b=>/{rx}/.test(b.textContent)))")
@@ -133,7 +133,7 @@ with sync_playwright() as p:
     ok(tm.get('ANAT:TMJ', 0) >= 9 * 60000 and tm.get('CONS:WHT', 0) <= 3 * 60000, f'L2 세션 중 다른 창에서 ANAT 10분 → {tm}')
     ok(not a.E and not c.E, f'L2 콘솔 오류 없음 {(a.E + c.E)[:2]}'); a.ctx.close()
     # ---- L5 반올림
-    x = P(b); x.clear(); x.go('#/CONS/WHT/learn'); x.move(15); x.run(int(12.2 * 60000)); x.pg.mouse.move(500, 500); x.run(1000)
+    x = P(b); x.clear(); x.go('#/CONS/WHT/learn'); x.move(15); x.run(int(12.2 * 60000)); x.pg.mouse.move(500, 500); x.pg.mouse.wheel(0, 1); x.run(1000)
     band = x.ev("document.querySelector('#idleband').textContent"); x.run(11000); toast = x.ev("document.querySelector('#toast').textContent")
     x.go('#/_cal/' + td, False); x.run(800); card = x.ev("[...document.querySelectorAll('.ccard')][1].textContent")
     m = int(x.rest() // 60000)

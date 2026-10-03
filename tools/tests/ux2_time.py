@@ -122,10 +122,10 @@ async def part_clock(b):
     await boot(pg, '#/OMS1/DD1/learn'); await pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')"); await boot(pg, '#/OMS1/DD1/learn', 1200)   # ux3 J9: 옛 되묻기 띠(무활동 → [공부했어요][빼기])는 '쉬는 시간 재기'를 끈 때의 흐름 — 새 흐름은 tests/ux3_rest.py
     clk = lambda: pg.inner_text('#clock .ckt')   # ux4 묶음2 알약의 오늘 합계(h:mm:ss)
     sec = lambda t: (lambda a: int(a[0]) * 3600 + int(a[1]) * 60 + int(a[2]))(t.strip().split(':'))
-    await pg.mouse.move(400, 400)
+    await pg.mouse.move(400, 400); await pg.mouse.wheel(0, 1)
     for i in range(3):
         await pg.clock.run_for(10000)
-        if i < 2: await pg.mouse.move(410 + i * 10, 400)   # 0·10·20초에 입력 → 마지막 입력 20초
+        if i < 2: await pg.mouse.move(410 + i * 10, 400); await pg.mouse.wheel(0, 1)   # 0·10·20초에 입력 → 마지막 입력 20초
     t30 = await clk(); ok(29 <= sec(t30) <= 30 and await pg.evaluate("document.querySelector('#clock').dataset.st") == 'run', f"30초 → {t30} · ● 측정 중")
     seq = [sec(await clk())]
     for _ in range(270):   # 무활동 4분 30초 — 1초마다 읽어 되감기지 않음
@@ -139,7 +139,7 @@ async def part_clock(b):
     # B04: 입력이 없은 지 12분 → 입력 → 띠 → [공부했어요]
     await pg.clock.run_for(12 * MIN - 540000 + 20000)   # 마지막 입력(20초)에서 12분 뒤로
     tm0 = sum((await ls(pg, 'time') or {}).get('2026-09-24', {}).values())
-    await pg.mouse.move(500, 500); await pg.clock.run_for(300)
+    await pg.mouse.move(500, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     band = await pg.evaluate("(()=>{const b=document.querySelector('#idleband');return b.hidden?'':b.textContent})()")
     ok('입력이 없었어요' in band and '공부했어요' in band, f'12분 무활동 뒤 입력 → 띠 {band!r}')
     await pg.screenshot(path=J.TMP + '/ux2i_b04_band_mac.png')
@@ -150,7 +150,7 @@ async def part_clock(b):
     for how in ('no', 'wait'):
         await pg.clock.run_for(9 * MIN); await pg.clock.run_for(3 * MIN)
         a0 = sum((await ls(pg, 'time') or {}).get('2026-09-24', {}).values())
-        await pg.mouse.move(520 if how == 'no' else 540, 500); await pg.clock.run_for(300)
+        await pg.mouse.move(520 if how == 'no' else 540, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
         vis = await pg.evaluate("!document.querySelector('#idleband').hidden")
         if how == 'no': await pg.evaluate("document.querySelector('#idleband [data-ib=no]').click()")
         else: await pg.clock.run_for(10500)
@@ -158,9 +158,9 @@ async def part_clock(b):
         ok(vis and a1 - a0 <= 1000 and await pg.evaluate("document.querySelector('#idleband').hidden"), f"{'[빼기]' if how == 'no' else '10초 경과'} → 띠 닫힘·변화 없음 (+{(a1 - a0) / 1000:.0f}초)")
     # idleMin=15 → 12분에는 멈추지 않음
     await pg.evaluate("localStorage.setItem('jblhub.v1.idleMin','15')")
-    await pg.mouse.move(560, 500); await pg.clock.run_for(12 * MIN)
+    await pg.mouse.move(560, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(12 * MIN)
     ok(await pg.evaluate("document.querySelector('#clock').dataset.st") == 'run', 'idleMin 15 → 12분 무활동에도 측정 중')
-    await pg.mouse.move(580, 500); await pg.clock.run_for(300)
+    await pg.mouse.move(580, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)
     ok(await pg.evaluate("document.querySelector('#idleband').hidden"), 'idleMin 15 → 12분 뒤 입력해도 띠 없음')
     # 시계 팝업의 무활동 기준 선택
     ok(await pg.evaluate("document.querySelector('#clock').tagName==='BUTTON'&&document.querySelector('#clock').getAttribute('aria-label').includes('공부 시계')"), '#clock = button · aria-label')
@@ -178,17 +178,17 @@ async def part_multi(b):
     await boot(A, '#/PHARM/RX/learn'); await A.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')")
     await boot(A, '#/PHARM/RX/learn'); await boot(B, '#/PHARM/RX/learn')
     for i in range(12):          # 10초마다 번갈아 입력 — 2분
-        pg = (A, B)[i % 2]; await pg.mouse.move(300 + i * 7, 400); await asyncio.sleep(0.15)
+        pg = (A, B)[i % 2]; await pg.mouse.move(300 + i * 7, 400); await pg.mouse.wheel(0, 1); await asyncio.sleep(0.15)
         await A.clock.run_for(10000)   # page.clock은 컨텍스트 공용 — 한 번만 돌림
     for q in (A, B): await q.evaluate("dispatchEvent(new Event('pagehide'))")
     s = sum((await ls(A, 'time') or {}).get('2026-09-24', {}).values())
     ok(110000 <= s <= 130000, f'두 창 번갈아 2분 → time +{s / 1000:.0f}초 (겹쳐 잡힌 시간 ≤ 10초)')
     st = await A.evaluate("document.querySelector('#clock').textContent"); ok('다른 창' in st, f"다른 창 버튼 '{st}'")
-    await B.mouse.move(700, 400); await B.clock.run_for(1000)
+    await B.mouse.move(700, 400); await B.mouse.wheel(0, 1); await B.clock.run_for(1000)
     # ux2 fixA V07·V10: 화면에 보이는 채 blur(Split View 옆 앱) = 무활동과 같게 — 30초에 멈추지 않음
     await B.evaluate("dispatchEvent(new Event('blur'))"); await B.clock.run_for(31000)
     ok(await B.evaluate("document.querySelector('#clock').dataset.st") == 'run', 'blur(화면에 보임) 31초 → 계속 잼(무활동 규칙)')
-    await B.evaluate("dispatchEvent(new Event('focus'))"); await B.mouse.move(710, 400); await B.clock.run_for(1000)
+    await B.evaluate("dispatchEvent(new Event('focus'))"); await B.mouse.move(710, 400); await B.mouse.wheel(0, 1); await B.clock.run_for(1000)
     # 옛 방식(LS blurIdle=false): 30초 뒤 멈춤 → focus → 다시
     await B.evaluate("localStorage.setItem('jblhub.v1.blurIdle','false')")
     await B.evaluate("dispatchEvent(new Event('blur'))"); await B.clock.run_for(31000)
@@ -197,10 +197,10 @@ async def part_multi(b):
     ok(await B.evaluate("document.querySelector('#clock').dataset.st") == 'run', 'focus → 다시 잼')
     await B.evaluate("localStorage.removeItem('jblhub.v1.blurIdle')")
     # Split View: blur 뒤 12분 입력 없음 → 무활동 기준(8분)에 멈춤 → 돌아와 입력하면 [공부했어요 +n분]
-    await B.mouse.move(720, 400); await B.clock.run_for(1000)
+    await B.mouse.move(720, 400); await B.mouse.wheel(0, 1); await B.clock.run_for(1000)
     await B.evaluate("dispatchEvent(new Event('blur'))"); await B.clock.run_for(12 * MIN)
     ok(await B.evaluate("document.querySelector('#clock').dataset.st") != 'run', 'blur 12분 → 무활동 기준에서 멈춤')
-    await B.evaluate("dispatchEvent(new Event('focus'))"); await B.mouse.move(730, 400); await B.clock.run_for(300)
+    await B.evaluate("dispatchEvent(new Event('focus'))"); await B.mouse.move(730, 400); await B.mouse.wheel(0, 1); await B.clock.run_for(300)
     band = await B.evaluate("(()=>{const b=document.querySelector('#idleband');return b.hidden?'':b.textContent})()")
     ok('공부했어요 +11분' in band, f'Split View 돌아옴 → 띠 {band!r}')
     await B.evaluate("document.querySelector('#idleband [data-ib=no]').click()"); await B.clock.run_for(200)
@@ -216,12 +216,12 @@ async def part_twoidle(b):
     await A.clock.install(time=NOW)
     await boot(A, '#/OMS1/_home'); await A.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')")
     await boot(A, '#/OMS1/_home'); await boot(B, '#/CONS/_home')
-    await A.mouse.move(300, 400); await A.clock.run_for(1000)
-    for i in range(10): await A.mouse.move(310 + i, 400); await A.clock.run_for(30000)   # A 5분 공부
+    await A.mouse.move(300, 400); await A.mouse.wheel(0, 1); await A.clock.run_for(1000)
+    for i in range(10): await A.mouse.move(310 + i, 400); await A.mouse.wheel(0, 1); await A.clock.run_for(30000)   # A 5분 공부
     await A.clock.run_for(10 * MIN)   # 둘 다 10분 입력 없음 → A 멈춤(idleGap)
     ok(await A.evaluate("document.querySelector('#clock').dataset.st") != 'run', 'A 10분 무활동 → 멈춤')
-    for i in range(60): await B.mouse.move(300 + (i % 20), 420); await asyncio.sleep(0.02); await A.clock.run_for(30000)   # B 30분
-    await A.mouse.move(500, 500); await asyncio.sleep(0.1); await A.clock.run_for(300)
+    for i in range(60): await B.mouse.move(300 + (i % 20), 420); await B.mouse.wheel(0, 1); await asyncio.sleep(0.02); await A.clock.run_for(30000)   # B 30분
+    await A.mouse.move(500, 500); await A.mouse.wheel(0, 1); await asyncio.sleep(0.1); await A.clock.run_for(300)
     band = await A.evaluate("(()=>{const b=document.querySelector('#idleband');return b.hidden?'':b.textContent})()")
     import re as _re
     m = _re.search(r'공부했어요 \+(\d+)분', band); add = int(m.group(1)) if m else 0

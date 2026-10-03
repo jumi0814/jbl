@@ -24,7 +24,7 @@ def go(pg, h, wait=500):
     pg.goto('about:blank'); pg.goto(U + h)
     pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')", timeout=60000); pg.wait_for_timeout(wait)
 def mv(pg, i=0):
-    pg.mouse.move(300 + i % 7, 300 + i % 5); pg.mouse.move(310, 320 + i % 3)
+    pg.mouse.move(300 + i % 7, 300 + i % 5); pg.mouse.wheel(0, 1); pg.mouse.move(310, 320 + i % 3); pg.mouse.wheel(0, 1)
 def tap(pg, sel, touch):
     if touch: pg.tap(sel)
     else: pg.click(sel)
