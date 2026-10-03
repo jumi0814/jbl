@@ -31,9 +31,9 @@ async def a02(pg, tag):
     await pg.evaluate("(()=>{const c=document.querySelector('#t-DD1-2');window.scrollTo(0,c.getBoundingClientRect().top+scrollY-120)})()"); await pg.wait_for_timeout(1200)
     cur = await pg.evaluate("(()=>{const n=document.querySelector('#lmn').textContent;return n})()")
     await pg.keyboard.press('d'); await pg.wait_for_timeout(300)
-    dn = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.done.OMS1')") or '{}')
+    dn = json.loads(await pg.evaluate("localStorage.getItem('jblhub.v1.cbm.OMS1')") or '{}')
     aid = await pg.evaluate(f"document.querySelector('#t-DD1-{int(cur)-1}').dataset.aid") if cur.isdigit() else None
-    ok(cur.isdigit() and dn.get(aid) == 1, f'D → 지금 카드({cur}) ✓ 이해함 {list(dn)[:2]}')
+    ok(cur.isdigit() and bool(dn.get(aid)), f'D → 지금 카드({cur}) ★ 북마크(ux4f O13 — 사용자 10-03 다 봄 대신) {list(dn)[:2]}')
     await pg.keyboard.press('d'); await pg.wait_for_timeout(300)
     c = await pg.evaluate("(()=>{const n=+document.querySelector('#lmn').textContent;const c=document.querySelector('#t-DD1-'+(n-1));return c?[n,c.classList.contains('open')]:null})()")
     await pg.keyboard.press('f'); await pg.wait_for_timeout(150)

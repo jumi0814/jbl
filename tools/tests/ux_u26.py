@@ -55,7 +55,9 @@ async def main():
         ok(await pg.evaluate("getComputedStyle(document.querySelector('#t-DD1-0')).display==='none' && getComputedStyle(document.querySelector('#t-DD1-1')).display!=='none'"), '안 읽은 것만 → 읽은 카드 숨김')
         # 연도 칩
         await open_(pg, '#/OMS1/DD1/learn'); qid = await pg.evaluate("(()=>{const b=document.querySelector('#stage .tchips button.chip.yr');b.click();return b.dataset.go})()"); await pg.wait_for_timeout(900)
-        ok(await pg.evaluate(f"location.hash.startsWith('#/OMS1/DD1/jb') && document.querySelector('#c-{qid}').getBoundingClientRect().top<400"), f'연도 칩 → 강의 기출 탭 {qid}')
+        ok(await pg.evaluate("document.querySelector('#jbpeek.on') && location.hash.startsWith('#/OMS1/DD1/learn') && !document.querySelector('#jbpeek .jpmore')"), f'연도 칩 → JB 미리보기(문제 전부 · 사용자 10-03) {qid}')
+        await pg.evaluate("document.querySelector('#jbpeek [data-jpgo]').click()"); await pg.wait_for_timeout(900)
+        ok(await pg.evaluate(f"location.hash.indexOf('/jb')>0 && document.querySelector('#c-{qid}').getBoundingClientRect().top<400"), f'미리보기 [JB에서 풀기] → 그 문항 {qid}')
         ok(not errs, f'pageerror 0 {errs[:2]}')
         await b.close()
     print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
