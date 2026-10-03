@@ -65,14 +65,14 @@ N: JB Q20 해설이 든 영향 요소(translucency and opacity · gloss · surfa
 
 #TBL 보는 조건 — 대조 효과와 관찰자 효과 | k=COL | src=[[COL:21]] [[COL:22]] [[COL:97]] [[COL:98]] [[COL:99]] [[COL:100]] [[COL:101]] [[COL:102]] [[COL:103]]
 H: 효과 | 슬라이드 | 필기 · 임상
-R: Spatial / Temporal contrast | Color Contrast – Spatial · Temporal | 공간적 = 착시(옆 색) · 시간적 = 빨간색을 한참 보다 보면 녹색
+R: Color Contrast — Spatial / Temporal (p.21) | Color Contrast – Spatial · Temporal | 공간적 = 착시(옆 색 때문에 달라 보임) · 시간적 = 빨간색을 한참 보다 보면 녹색(눈의 적응)
 R: Color constancy | One of the great mysteries of color vision | 조명이 달라도 뇌가 보정 — white balance
 R: {r:Areal contrast} {jb:Q20} | (그림) | 클수록 밝게 — 중절치가 밝아 보임
-R: {r:Spatial contrast} {jb:Q20} | (그림) | 가까이 있을수록 밝게
+R: {r:Spatial contrast} (p.98) {jb:Q20} | (그림) | 가까이 있을수록 밝게 — p.21의 Spatial과 이름은 같지만 필기 설명이 다름
 R: {r:Successive contrast} {jb:Q20} | Positive : short visual interaction / Negative : long visual contact | 노란 것을 보다 흰색을 보면 파랗게 · 처음 고른 shade가 정확 · 푸른 에이프런
 R: Age | after age 60 ⇒ difficulties in perceiving blues and purples | 나이 들수록 단파장을 잘 못 봄
 R: Fatigue · Nutrition · Emotions | Fatigue : hue and chroma · Emotions : pupillary diameter | 동공 크기에 따라 다르게 보임
-R: Medications | Alcohol or morphine: red/orange/yellow Lighter · Caffeine: blue/green/purple Lighter · Viagra: Blue tint · Oral contraceptives: Blues and yellows↓ | 진료 전에 마시거나 먹으면 안 됨
+R: Medications | Alcohol or morphine: red/orange/yellow Lighter · blue/green/purple Darker / Caffeine: red/orange/yellow Darker · blue/green/purple Lighter / Viagra: Blue tint (between blue and green) / Oral contraceptives: Blues and yellows↓ | 진료 전에 마시거나 먹으면 안 됨 · 커피도 요인 중 하나
 R: {r:Binocular difference} | (그림) | 좌우로 두지 말고 위아래로 놓고 비교 — shade guide 꼭 위아래로
 N: 명도·채도·색상을 분리하는 것이 제일 헷갈림 → 3D master guide가 좋다, vita classic은 그렇지 않음(필기). [[COL:105]] [[COL:106]]
 
@@ -135,15 +135,15 @@ R: Incisal edge configuration {jb:Q06} | {r:"Gull" shape}(1번 가장 아래·2�
 R: Thickness | — | Thick incisal edge: look old, artificial, and bulky(p.28) | (변형 대비)
 N: 24·23·22·21·20년 5회 같은 보기 그대로 출제. 함정은 inverted ↔ converted 한 단어. [[FUN:28]]
 
-#TBL Tooth characterization · 색 — 용어와 슬라이드 문장 | k=FUN | src=[[FUN:25]] [[FUN:27]]
-H: 용어 | 슬라이드 | 필기 | JB 보기(S04·R06)
-R: {r:Opalescence} {jb:R06} | Enamel transmit red-orange tone and reflect blue-violet tones | incisal 쪽에서 파랗게 보이는 line · 나이 들면 없어지기도 | S04 '굴절이 고르지 않을 때 단백석에서 볼 수 있는 유백색의 빛' ○ · R06 '빛의 산란으로 나타나는 현상' ✗
-R: {r:Fluorescence} {jb:S04} | (p.27) Dentin > enamel · Luminophore (Europium, Cerium, Ytterbium) | 깜깜한 데서 치아만 빛나거나 크라운 수복 치아만 다르게 보임 | 빛을 흡수하여 다른 파장의 빛으로 방출하는 것 ○
-R: Translucency | 항목명만 | 치아 뒤 배경을 얼마나 가릴 수 있는지 · 투명하면 오히려 어두워 보임 | 반투명 ○
-R: Transparency | (자료에 없음) | — | 투명 ○
-R: Dentin effect | Dentin mamelons · Dentin infiltration (external dentin staining) | 에나멜이 마모되면 덴틴 effect가 강하게 보임 | dentin infiltration: chipping, wear 등 손상이 생긴 곳에 외인성으로 stain된 경우 ○
-R: {r:Value} {jb:U05} {jb:Q12} | (p.27) Most important · Correlated to surface texture · Middle third: brightest · Brighter teeth appears closer & larger | 명도가 자연스러움을 유지하는데 가장 중요한 요소(26) | U05 value · Q12 명도
-N: 보기의 한글 정의는 서덕규 2021 퀴즈 근거(JB 해설) — 슬라이드 문장과 다른 점을 ⚠로. ⚠ 색 강의(안진수) p.89는 Opalescence = "Scattering of the shorter wavelengths of the visible spectrum of light (opal effect)" — R06 JB 답(1 '빛의 산란' ✗)은 이 강의 p.25(transmit · reflect) 기준. [[FUN:25]] [[COL:89]]
+#TBL Tooth characterization · 색 — 용어와 슬라이드 문장 | k=FUN | src=[[FUN:25]] [[FUN:27]] [[COL:19]] [[COL:80]] [[COL:89]] [[COL:92]]
+H: 용어 | 이 강의 슬라이드 | 색 강의(안진수) | 이 강의 필기 | JB 보기(S04·R06)
+R: {r:Opalescence} {jb:R06} | Enamel transmit red-orange tone and reflect blue-violet tones | (p.89) Scattering of the shorter wavelengths of the visible spectrum of light (opal effect) | incisal 쪽에서 파랗게 보이는 line · 나이 들면 없어지기도 | S04 '굴절이 고르지 않을 때 단백석에서 볼 수 있는 유백색의 빛' ○ · R06 '빛의 산란으로 나타나는 현상' ✗
+R: {r:Fluorescence} {jb:S04} | (p.27) Dentin > enamel · Luminophore (Europium, Cerium, Ytterbium) | (p.92) Absorption of light by a material and the spontaneous emission of light in a longer wavelength | 깜깜한 데서 치아만 빛나거나 크라운 수복 치아만 다르게 보임 | 빛을 흡수하여 다른 파장의 빛으로 방출하는 것 ○
+R: Translucency | 항목명만 | (p.80) The ability of the material to allow light to pass thorough it | 치아 뒤 배경을 얼마나 가릴 수 있는지 · 투명하면 오히려 어두워 보임 | 반투명 ○
+R: Transparency | (없음) | (p.80) extreme value of high translucency | — (색 강의 필기: 완전히 투과되는 것 · 사람의 치아는 translucent (반투명)) | 투명 ○
+R: Dentin effect | Dentin mamelons · Dentin infiltration (external dentin staining) | — | 에나멜이 마모되면 덴틴 effect가 강하게 보임 | dentin infiltration: chipping, wear 등 손상이 생긴 곳에 외인성으로 stain된 경우 ○
+R: {r:Value} {jb:U05} {jb:Q12} | (p.27) Most important · Correlated to surface texture · Middle third: brightest · Brighter teeth appears closer & larger | (p.19) Brightness — 필기 "brightness 명도 - 밝은 정도" | 명도가 자연스러움을 유지하는데 가장 중요한 요소(26) | U05 value · Q12 명도
+N: 보기 문장은 서덕규 2021 퀴즈 근거(JB 해설) — 이 강의 슬라이드엔 Fluorescence·Translucency가 항목명뿐이라 정의는 색 강의 p.80·92로 보완. ⚠ Opalescence는 두 강의 정의가 다름 — R06 JB 답(1 '빛의 산란' ✗)은 이 강의 p.25(transmit · reflect) 기준. [[FUN:25]] [[COL:80]] [[COL:89]] [[COL:92]] [[COL:19]]
 
 #TBL 보이는 크기를 바꾸는 요인 — 환영(illusion)과 연결 | k=FUN | src=[[FUN:19]] [[FUN:26]] [[FUN:27]]
 H: 요인 | 넓게·크게·가깝게 보임 | 길게·좁게·작게 보임
@@ -182,12 +182,13 @@ R: 서술형 대비 | — | p.8 "목표: {r:치아, 치아주위조직, 입술 �
 N: JB 답 1~5 전부는 서덕규 교수 수업(210903 '심미치과학의 정의 및 구성요소' p.26 퀴즈 3번) 답을 유지한 것 — 지금 강의자료엔 명확한 답이 없음(JB 해설). 교과서 문장 "수복 치과학의 궁극적인 목표는 치아의 결손 부위를 자연스러운 형태, 외관 및 기능으로 회복시키는 것이다"(JB 해설 인용)에도 건강은 없음. [[INT:8]]
 
 #TBL 아름다움을 바꾸는 것 — Culture · Social norm · Self-image | k=INT | src=[[INT:5]] [[INT:6]] [[INT:10]] [[INT:12]]
-H: 요소(p.6) | 필기 | 강의 속 사례
+H: 요소(p.6) | 필기 | 같이 볼 강의 속 사례
 R: {r:Culture} | 1. 문화적 | p.5 일본에선 이를 까맣게 한 것이 아름답다고 받아들여진 시대 · 고대 유물의 큐빅(부의 상징)
 R: {r:Social norm} | 2. 사회적 | p.10-12 diastema — 흔한 인종·사회(서양)는 나이 들어도 잘 안 메움 · 우리나라는 대부분 메우고 싶어 함
 R: {r:Self-image} | 3. 자기자신의 생각 — 과거 필기: 가장 중요 | 환자 스스로 봤을 때 좋아 보이는 것 — 기능 문제·후회할 선택이면 술자가 중재·가이드
 R: 결과 {jb:Q01} | 모두 합쳐진 것(26 필기) | {r:Beauty (Subjective experience)}
 N: p.5 큐빅을 붙이는 것은 누군가에겐 심미적, 누군가에겐 심미적이지 않게 보일 수 있음 → 결론 "심미는 주관적이며 다르게 받아들여짐"(필기). [[INT:5]]
+N: 사례를 요소에 짝지은 것은 정리용 — 슬라이드(p.6)에는 세 요소만 있고 사례와의 짝은 없음. 필기 근거: p.5 "받아들여진 시대" · p.10 "diastema가 흔한 인종, 사회에서는 괜찮다고 생각". [[INT:6]] [[INT:10]]
 
 #TBL Smile line — 이상 vs 부조화 | k=INT | src=[[INT:9]]
 H: 구분 | 모습(필기) | 평가
@@ -209,32 +210,33 @@ N: 콜게이트 광고 — 치실 잘 쓰라는 취지(필기) · p.17 "심미�
 
 #TBL Comparison of Direct Restorative Materials — 직접수복재 5종 성질 | k=MAT | src=[[MAT:7]] [[MAT:8]]
 H: Property | Amalgam | Glass Ionomer | RMGI | Compomer | Resin Composite
-R: Fluoride release | X | O | O | ? | X
-R: Adequate compressive strength | {r:OO} | O | O | O | O
-R: Adequate flexural strength | O | {r:X} | O | O | O
-R: Low thermal diffusivity | X | O | O | O | O
-R: {r:Coefficient of thermal expansion similar to tooth} {jb:Q15} | X | {r:O} | {r:O} | X | X
-R: Esthetics | X | O | O | O | {r:OO}
-R: Radiopacity greater than or equal to enamel | O | X | O | X | O
-R: Ease of mixing and placement | O | O | O | O | X
-R: No need for special equipment | O | O | O | O | O
-R: Short setting time | X | O | O | O | O
-R: Low cost | {r:OO} | O | X | ? | X
+R: Fluoride release(불소 방출) | X | O | O | ? | X
+R: Adequate compressive strength(충분한 압축강도) | {r:OO} | O | O | O | O
+R: Adequate flexural strength(충분한 굴곡강도) | O | {r:X} | O | O | O
+R: Low thermal diffusivity(낮은 열확산) | X | O | O | O | O
+R: {r:Coefficient of thermal expansion similar to tooth}(열팽창계수가 치아와 유사) {jb:Q15} | X | {r:O} | {r:O} | X | X
+R: Esthetics(심미) | X | O | O | O | {r:OO}
+R: Radiopacity greater than or equal to enamel(방사선 불투과성 ≥ 법랑질) | O | X | O | X | O
+R: Ease of mixing and placement(혼합·충전이 쉬움) | O | O | O | O | X
+R: No need for special equipment(특수 장비 불필요) | O | O | O | O | O
+R: Short setting time(짧은 경화 시간) | X | O | O | O | O
+R: Low cost(저비용) | {r:OO} | O | X | ? | X
 N: 필기: GI는 열팽창계수가 치아와 가장 비슷한 재료 중 하나라 계면 실패가 적음 "중요!!" · 불소 방출이 최대 장점 중 하나 / 복합레진은 심미적으로 가장 뛰어나고 비용은 가장 비쌈 / Compomer는 수업에서 pass. [[MAT:7]]
 
 #TBL Comparison of Indirect Restorative Materials — 간접수복재 3종 성질 | k=MAT | src=[[MAT:9]]
 H: Property | Indirect resin composite | Ceramic | Cast Gold
-R: Cariostatic | X | X | X
-R: Bonding to tooth substance | O | O | {r:X}
-R: Adequate compressive strength | O | O | O
-R: Adequate flexural strength | O | {r:X} | O
-R: Low thermal diffusivity | O | O | X
-R: {r:Coefficient of thermal expansion similar to tooth} {jb:Q15} | X | {r:O} | X
-R: Radiopacity greater than or equal to enamel | O | X | O
-R: Ease of mixing and placement | X | X | O
-R: No need for special equipment | O | O | O
-R: Low cost | X | X | X
+R: Cariostatic(우식 억제) | X | X | X
+R: Bonding to tooth substance(치질에 접착) | O | O | {r:X}
+R: Adequate compressive strength(충분한 압축강도) | O | O | O
+R: Adequate flexural strength(충분한 굴곡강도) | O | {r:X} | O
+R: Low thermal diffusivity(낮은 열확산) | O | O | X
+R: {r:Coefficient of thermal expansion similar to tooth}(열팽창계수가 치아와 유사) {jb:Q15} | X | {r:O} | X
+R: Radiopacity greater than or equal to enamel(방사선 불투과성 ≥ 법랑질) | O | X | O
+R: Ease of mixing and placement(혼합·충전이 쉬움) | X | X | O
+R: No need for special equipment(특수 장비 불필요) | O | O | O
+R: Low cost(저비용) | X | X | X
 N: 필기: 세라믹이 치아의 열팽창계수와 비슷하다는 장점, 심미적으로 가장 좋음 / 골드는 굉장히 비심미적이고 비싸지만 강도 좋고 잘 맞음 / indirect composite = 복합레진 인레이 간접 수복(다음 시간). [[MAT:9]]
+N: 직접 표와 다른 줄 — Fluoride release·Esthetics·Short setting time이 빠지고 Cariostatic·Bonding to tooth substance가 들어감(나머지 8줄은 같은 이름). [[MAT:7]] [[MAT:9]]
 
 #TBL Esthetic Restorative Materials — 재료별 적용 와동 | k=MAT | src=[[MAT:24]]
 H: Esthetic Restorative Material Type | Applicable Range | 필기 · JB 해설
@@ -249,15 +251,16 @@ R: Porcelain — Metal ceramic | Crown & bridge |
 R: Porcelain — Zirconia | Crown & bridge |
 N: Class II 치아색 수복에 쓸 수 있는 것 = Hybrid composite · All ceramic(inlay & onlay) · compomer(deciduous). Amalgam은 이 표에 없음. [[MAT:24]]
 
-#TBL Special enamel shade — 3묶음과 약자 | k=MAT | src=[[MAT:12]] [[MAT:13]] [[MAT:10]]
+#TBL Special enamel shade — 3묶음과 약자 | k=MAT | src=[[MAT:12]] [[MAT:13]] [[MAT:10]] [[MAT:16]]
 H: 묶음 | 다른 이름 | 특징 | 약자
 R: Opalescent enamel {jb:Q18} | translucent, incisal, trans-enamel | High translucency, several hues | {r:I, T, ST, SL, TB, TG, TO}
 R: Generic enamels | pearled enamel, value enamel | Opalescence, translucency, luminosity, white pigment - thick - value | {r:A, B, C, D x 1~4, P, EV}
 R: Intense white enamels | opaque | Opaque, no alteration of value | {r:WE}
 R: (목록에 없음) {jb:Q18} | XL = extra light(필기) · OA = opaque → dentin(필기) | 제품 표에는 있음(XL: Esthet-X·Premisa·Point 4·Clearfil AP-X / OA: Estelite S·Grandio·Filtek Supreme Flowable) | {r:XL} · {r:OA}
 N: 필기: "약자로 이런 약자들 보이면 에나멜 쪽의 특수 셰이드구나 알 수 있다"(슬라이드 12) · "opacity 쪽으로 가는 애들은 dentin / opaqe shade, 투명한 쪽으로 가는 애들은 enamel / traslucent, xl (extra light), xb (extra bleeching)"(슬라이드 10). [[MAT:12]] [[MAT:10]]
+N: 슬라이드 16: Composite for dentin의 shade = "O or Dentin" / Composite for enamel의 shade = "Generic or Opalescent" — opaque(O)는 슬라이드에서도 dentin 쪽. [[MAT:16]]
 
-#TBL 복합레진의 층 — dentin · body · enamel | k=MAT | src=[[MAT:10]] [[MAT:11]] [[MAT:16]] [[MAT:19]]
+#TBL 복합레진의 층 — dentin · body · enamel | k=MAT | src=[[MAT:10]] [[MAT:11]] [[MAT:16]] [[MAT:19]] [[MAT:25]]
 H: 항목 | Dentin | Body | Enamel
 R: 순서 {jb:Q17} | 가장 안쪽(치수 쪽) | 중간 | 가장 바깥(표면)
 R: 불투명도 | {r:Opaque}(가장 불투명 — More Opaque 쪽) | 중간 | {r:Translucent}
@@ -266,7 +269,9 @@ R: 슬라이드 16 | Composite for dentin = Hue and chroma / O or Dentin | (body
 R: 복합레진 종류(p.10) | Opacity: Microhybrid, Macrofilled | — | Translucency: Microfilled, Nanofilled
 R: 복합레진 종류(p.16) | Composite for dentin: Microhybrid or Nanoparticle of dentin type · Combination of body and dentin types | Composite for dentin: Microhybrid or Nanoparticle of body type | Composite for enamel: Microhybrid · Nanoparticle · Microfilled
 R: Z350XT shade | A1D … C4D, WD | A1B … D3B, WB, XWB | A1E … D2E, WE, XWE
+R: 증례 표기(p.25 Premisa) | D shade A2-O — 필기: universal shade만 쓰면 너무 투명 → opaque shade 적용 | — | E shade A2 · E shade B2 (+ T)
 N: 슬라이드 11: Thickness, saturation ↓ → Translucency ↑ — 두께·채도가 커지면 반투명도가 낮아짐 {jb:Q27}. 슬라이드 19: Translucent(Clear·Amber·Blue·Gray)는 enamel보다 더 투명. [[MAT:11]] [[MAT:19]]
+N: shade wheel 둘레의 작은 글자(슬라이드 22에서 읽힘): Dentin cure time 1.5mm 40 seconds / Body curetime 2.00mm 20 seconds / Enamel curetime 2.0mm 20 seconds. [[MAT:22]]
 
 #TBL Shade wheel for Z350XT — 층 수별 shade 조합 | k=MAT | src=[[MAT:20]] [[MAT:21]] [[MAT:22]] [[MAT:23]]
 H: Selection Guide | Single Shade | Two Shade (Dual) | Multi Shade
@@ -315,7 +320,7 @@ N: Shade documentation은 1·2·7·8단계에 반복(분홍 글씨), 5단계 Dia
 #TBL 9단계 도표 vs 심미 차트의 단계별 치료계획 | k=PLAN | src=[[PLAN:8]] [[PLAN:24]]
 H: 항목 | p.8 9단계 도표 | p.24 심미 차트 '단계별 치료계획'(5단계)
 R: 단계 수 | 9 — Understanding patient · Laboratory technician · Consultation · Initial therapy · Diagnostic phase · Consultation · Restorative phase · Laboratory technician · Maintenance phase | 5 — 1. Initial therapy · 2. Diagnostic phase · 3. Consultation · 4. Restorative phase · 5. Maintenance phase
-R: Initial therapy | Orthodontic treatment · Endodontic treatment, bleaching · Periodontic treatment · Surgical treatment | 치주치료 · 교정치료 · 근관치료 · 외과적 치료 — 각각 Y/N
+R: Initial therapy | Orthodontic treatment · Endodontic treatment, bleaching · Periodontic treatment · Surgical treatment (Extraction, alveoloplasty) | 1. 치주치료 · 2. 교정치료 · 3. 근관치료 · 4. 외과적 치료 — 각각 Y/N
 R: Diagnostic phase {jb:R20} | Diagnostic mock-up (shade selection) · Tooth preparation · Provisionalization · Preventive modality | Orthodontic setup · Diagnostic wax-up · Diagnostic mock-up · Tooth preparation · Provisionalization
 R: Orthodontic setup · Diagnostic wax-up | 2. {r:Laboratory technician} | 2. {r:Diagnostic phase}
 R: Restorative phase | Finishing preparation · Impression · (Master cast) · Shade documentation · Restoration · Adhesive luting · Presentation of progress | Finishing preparation · Impression · Cementation
@@ -374,7 +379,7 @@ R: Shaping ③ Cuspids {jb:S12} | move the labial ridge {r:mesially} · move the
 R: Shaping ④ Others {jb:S12} | move the developmental grooves {r:closer together} (gingival) · curve of CEJ – {r:more pronounced} and move incisally · slight concavity in the gingival third | move the developmental grooves {r:more apart} · curve of CEJ – {r:flatter}
 R: Staining {jb:R19} | {r:Darker} body color at mesial and distal 1/3 of labial surface · Accentuate {r:vertical} lines with light stain · Gray stain, opaque white, yellow, orange, or brown stain – vertically | {r:Lighter} body color at mesial and distal 1/3 of labial surface · Accentuate {r:horizontal} lines with light stain · {r:Dark stain simulating cervical abrasion} · Light stain, white opaque, yellow, thin orange, or brown stain – horizontally
 R: Arrangement {jb:T15} | Place the tooth in {r:linguoversion} · Rotate distal aspect {r:lingually} | (25 슬라이드에 없음 — JB 표는 rotate distal aspect labially, 슬라이드에서는 Longer teeth 배열)
-N: 표 문장은 25 슬라이드 원문. JB 답(T15)·JB 맨 뒤 표와 다른 곳: Wider ④ JB "move the developmental grooves closer together – desired shadows – breaking buccal reflecting surface" · Wider staining JB "Less prominent wider teeth: darker body color / accentuate vertical lines / light stain, and light stain, and gray stain …" · Narrower staining JB "Less prominent wider teeth: lighter body color". [[SPE:15]] [[SPE:16]] [[SPE:19]]
+N: 표 문장은 25 슬라이드 원문. JB 답(21·20·18년 서술)·JB 맨 뒤 표와 다른 곳: Wider ④ JB "move the developmental grooves closer together – desired shadows – breaking buccal reflecting surface" · Wider staining JB "Less prominent wider teeth: darker body color / accentuate vertical lines / light stain, and light stain, and gray stain …" · Narrower staining JB "Less prominent wider teeth: lighter body color". [[SPE:15]] [[SPE:16]] [[SPE:19]]
 N: 필기: Narrower는 "다 반대로!" — staining은 얼룩덜룩해 보일 수 있어 간접수복 이상에서만. [[SPE:18]] [[SPE:19]]
 
 #TBL Shorter teeth ↔ Longer teeth — 길이 조절 | k=SPE | src=[[SPE:20]] [[SPE:21]] [[SPE:22]]
@@ -392,7 +397,7 @@ N: 필기(Shorter): 중절치를 배열 측면에서 그대로 둘 수밖에 없
 #TBL 환영 판단표 — 무엇을 하면 어떻게 보이나 | k=SPE | src=[[SPE:5]] [[SPE:6]] [[SPE:11]] [[SPE:13]] [[SPE:15]] [[SPE:18]] [[FUN:19]] [[FUN:26]] [[FUN:27]]
 H: 조작 | 보이는 효과 | 근거
 R: 진하게(어둡게) 착색 {jb:S12} | {r:작아 보이고 들어가 보임} | p.11 필기
-R: 밝게 착색 {jb:R19} | {r:튀어나와 보이고 커 보임} | p.11 필기 · Fundamentals p.19 Lighter tooth > darker tooth · p.27 Brighter teeth appears closer & larger (R19 JB 답은 이와 어긋남)
+R: 밝게 착색 {jb:R19} | {r:튀어나와 보이고 커 보임} | p.11 필기 · Fundamentals p.19 Lighter tooth > darker tooth · p.27 Brighter teeth appears closer & larger (23년 19번 JB 답은 이와 어긋남)
 R: 하이라이트(공) | 밝은 부분만 눈에 들어오고 나머지는 그림자처럼 보여 {r:전체가 작아 보임} | p.5 필기
 R: 수평성분 부각(Horizontal: Perikymata) | {r:넓어 보임}(Look shorter or wider) | p.6 필기 · Fundamentals p.26
 R: 수직성분 부각(Vertical: developmental lobes·발육구) {jb:S12} | {r:길어 보임}(Look longer or narrower) · 시야를 수직으로 분산시켜 덜 넓어 보임 | p.6 필기 · p.15 필기 · Fundamentals p.26
@@ -459,23 +464,23 @@ H: 치아 | 슬라이드 | 필기
 R: {r:Lingually positioned} or short cervicoincisally | rarely require any preparation | 거의 삭제 안 해도 됨
 R: {r:Facially positioned} | some degree of preparation to allow space for the thickness | 순측으로 튀어나오거나 긴 치아(esp. 상악중절치)는 심미적으로 불리 → 삭제
 R: {r:Discolored teeth} | require preparation only if there is not enough space ({r:about 1 mm}) over the facial aspect to place a masking agent and composite resin | 순측 위치가 아니어도 변색이 있으면 마스킹 위해 삭제
-N: 삭제를 안 해도 표면 처리는 필수 — Biofilm 등 눈에 보이지 않는 것들이 접착 방해(5급 와동 수복 때와 같은 이야기) {jb:T11}. [[VEN:8]]
+N: 삭제를 안 해도 표면 처리는 필수 — Biofilm 등 눈에 보이지 않는 것들이 접착 방해(5급 와동 수복 때와 같은 이야기) {jb:T14} {jb:T11}. [[VEN:8]]
 
 #TBL Composite 선택과 Masking 층 순서 | k=VEN | src=[[VEN:9]] [[VEN:10]] [[VEN:11]]
-H: 그림 순서(치면 A → 바깥 E) | 셰이드 | 성질·필러 | 필기
+H: 그림 기호(필기: 이 순서로 씀) | 셰이드 | p.10 Selection of Composite와 연결 | 필기
 R: A | stain/fluorosis(치아의 변색) | — | 변색·불소증 등이 있으면
-R: B | {r:opaque shade} | Opacity | 꼭 가려줌 — 컨실러처럼
+R: B | {r:opaque shade} | — | 꼭 가려줌 — 컨실러처럼(p.9 필기)
 R: C | cervical shade | — | 그 다음 cervical
-R: D | body shade | Dentin – Opaque: Microhybrid, Macrofilled | dentin·body 셰이드처럼 불투명도를 가진 shade를 꼭 사용
-R: E | {r:translucent shade} | Enamel – Translucent: Microfilled, Nanofilled | incisal에는 투명한 셰이드
+R: D | body shade | Opacity: Dentin – {r:Opaque} — Microhybrid, Macrofilled | dentin·body 셰이드처럼 불투명도를 가진 shade를 꼭 사용(p.10 필기)
+R: E | {r:translucent shade} | Translucency: Enamel – {r:Translucent} — Microfilled, Nanofilled | translucent한 enamel shade(p.11 필기) · incisal에는 투명한 셰이드(p.9 필기)
 N: p.9 DCV 임상 고려: Single shade · Layering various shades and opacities · Masking effect – opaque shade · Color modifications – tints · Translucency – incisal edges · Diagnostic wax-up · PVS custom matrix from the wax-up model {jb:T12}. [[VEN:9]]
 
 #TBL Indirect composite resin inlay — 직접 레진 vs 포세린과 비교 | k=VEN | src=[[VEN:16]] [[VEN:17]] [[VEN:18]] [[VEN:19]]
 H: 비교 상대 | 이럴 때 레진 인레이(Indication) | 레진 인레이의 장점 | 레진 인레이의 단점
 R: vs {r:Direct composite} | cusp capping · multiple restorations · large & proximal surface involved | Improved mechanical properties(Additional polymerization: heat, pressure, light) · Reduced polymerization shrinkage(Thin resin cement layer) · Anatomical reproduction(Proximal contact & outline) | Multiple visit · High cost · Increased tooth preparation · Technique sensitivity
 R: vs {r:Indirect ceramic(Porcelain)} | questionable prognosis · financial problem | Contact modification(Composite adding & adjusting) · Wear, laboratory process, elastic modulus | Mechanical properties
-R: Contra-indication | Heavy occlusal force(상대 금기 — 필기) · Parafunctional habit · Impossible isolation & moisture control | — | —
 N: 필기: 적응증은 절대적인 것이 아니고 간접 수복 세라믹 인레이와 직접 컴포짓 수복 사이의 대체제로서 고민. [[VEN:16]]
+N: Contra-indication 3: {r:Heavy occlusal force}(필기: 절대 금기는 아니고 상대 금기 — 포세린에 비해 강도 떨어짐) · Parafunctional habit · Impossible isolation & moisture control. [[VEN:17]]
 
 #TBL 접착 계면 처리 — composite inlay(이 강의) vs PLV·crown(JB 해설) | k=VEN | src=[[VEN:23]]
 H: 계면 | Composite resin inlay (p.23) | Porcelain laminate veneer (JB Q23 그림) | Crown cementation (JB T23·T22·Q25 해설)
@@ -483,6 +488,7 @@ R: 수복물 내면 | Roughening(sandblasting — 인산·불산 에칭 불가) 
 R: 사이(시멘트) | {r:Dual-cured resin cement} — 붙인 뒤 충분한 광조사 | Luting composite {jb:Q23} | Resin cement가 adhesive type cement {jb:T22} {jb:Q25}
 R: 치아 | Etching → Priming → Bonding(box 코너에 고이지 않게 얇은 한 층) | Pumiced enamel / Etched enamel → Bonding resin | etchant · primer · adhesive {jb:T23}
 N: p.23 필기: 붙이기 전 광중합은 film thickness 때문에 passive 장착이 안 됨 → 광중합 없이 setting 후 오래 조사 / dual curing resin cement는 광조사 동반 여부로 접착력·강도 차이 → 20초 normal mode 1000 밀리와트 제곱센티미터 이상. [[VEN:23]]
+N: JB 해설의 분류(지금 강의자료엔 없음): adhesive type = Laminate veneer · Maryland bridge — 시멘트는 Resin cement / retentive type = all ceramic · cast gold restoration · metal ceramic restoration — 시멘트는 Zinc phosphate · Polycarboxylate · Glass ionomer · Resin-modified glass ionomer cement {jb:T21} {jb:T22} {jb:Q25}.
 
 #TBL 구치부 증례 — 직접 vs 간접 레진 인레이 판단 | k=VEN | src=[[VEN:24]] [[VEN:27]] [[VEN:30]] [[VEN:32]]
 H: 증례 | 치아 | 수복 | 이유(필기)

@@ -24,5 +24,5 @@ fi
 mkdir -p work/_tmp
 .venv/bin/python tools/sync_common.py --check
 .venv/bin/python tools/rehub.py --check || echo "docs가 shell.html과 다름 → .venv/bin/python tools/rehub.py"
-[ -d work/jb ] && echo "work/jb 있음 — 전체 빌드(sh tools/build_all.sh) 가능" || echo "work/jb 없음 — 허브만 빌드(sh tools/hub_all.sh). 팩 내용(원고·build4·lecparse)을 바꾸는 작업은 원본이 있는 컴퓨터에서."
+[ -d work/jb ] && echo "work/jb 있음 — 전체 빌드(sh tools/build_all.sh) 가능" || echo "work/jb 없음 — sh tools/cloud_materials.sh 로 작업용 추출본(cloud-materials 브랜치)을 받으면 전체 빌드 가능. 안 받으면 허브만 빌드(sh tools/hub_all.sh)."
 echo "준비 끝"

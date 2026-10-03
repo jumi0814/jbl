@@ -9,7 +9,7 @@
 |---|---|---|
 | `docs/index.html` | 허브(모든 과목 공통, 도구·검색·백업 내장) | O |
 | `docs/packs/<SID>.js`, `<SID>.img.<강의키>.js`, `<SID>.img.jb.js` | 과목 팩 | O |
-| `tools/<sid>/` (oms1·cons·impl·anat·geri·pharm) | 과목별 빌드 파이프라인. 모든 과목이 같은 스크립트, `subject.py`·`assemble.py`·`parse_<sid>.py`·원고만 다름 | O |
+| `tools/<sid>/` (oms1·cons·impl·anat·geri·pharm·esth) | 과목별 빌드 파이프라인. 모든 과목이 같은 스크립트, `subject.py`·`assemble.py`·`parse_<sid>.py`·원고만 다름 | O |
 | `guide/` | 정리본 원칙·피드백기록·과목노트 — **작업 전 반드시 읽을 것** | O |
 | `tools/SPEC.md` | 파이프라인 상세 스펙 — 작업 전 반드시 읽을 것 | O |
 | `materials/<과목명>/` | 사용자가 넣는 강의자료(PDF 등) | X |
@@ -70,11 +70,13 @@
 - `JBL_master.zip`(도구·원고·지침): `.venv/bin/python tools/localize.py <zip>` → 출력된 CLAUDE.md·SPEC.md 차이 중 새 규칙만 손으로 합침 → 받은 과목을 재빌드해 `docs/`와 같은지 확인 → 커밋·푸시.
 - `guide/정리본_원칙.md`·`guide/피드백기록.md`·`guide/과목노트_<SID>.md`는 다음 과목 작업 전에 반드시 읽는다(누적된 사용자 피드백).
 
-## 클라우드 세션(원본 자료가 없는 환경)에서 작업할 때
-- 먼저 `guide/인수인계_클라우드.md`를 읽는다(상태·남은 일·배포 방법·사용자 지시사항 요약).
-- `materials/`·`jb/`·`work/`·`reference/`가 없다. `sh tools/cloud_setup.sh`로 환경을 준비하고, 허브 코드(shell.html)만 고쳤으면 `sh tools/hub_all.sh`(= sync → `tools/rehub.py` → verify → audit → tests)로 빌드·검증한다. rehub는 커밋된 팩을 그대로 두고 허브만 다시 만든다(전체 빌드와 결과가 같음).
-- 팩 내용이 바뀌는 수정(원고·build4·lecparse·reflow·trend)과 새 과목 작업은 원본이 있는 맥에서만 — `guide/handoff/로컬에서_할_일.md`에 적고 사용자에게 알린다.
-- 원본 자료를 저장소에 올리는 것은(암호화해도) 사용자가 분명히 허락했을 때만.
+## 클라우드 세션(원본 PDF가 없는 환경)에서 작업할 때
+- 먼저 `guide/인수인계_클라우드.md`를 읽는다(A절 = 10-03 인계: 상태·자료 받기·남은 일·주의).
+- 원본 PDF(`materials/`·`jb/`)와 `reference/`는 없다. `sh tools/cloud_setup.sh`로 환경을 준비하고, **`sh tools/cloud_materials.sh`로 작업용 추출본을 받는다**(origin `cloud-materials` 브랜치 → `work/`: 7과목 강의자료 쪽 이미지·텍스트·OCR, JB 3판본 추출, 강의 폴더 연결, ESTH 작업 조각 — 사용자가 2026-10-03에 "암호화 없이 그대로·7과목 전부"로 정해 올린 것. main에 합치지 않는다).
+- 추출본을 받으면 원고·annot·build4 수정과 **전체 빌드 `sh tools/build_all.sh`**, 자료 대조(쪽 이미지 Read), check_lec·check_years·check_eyears·check_abbr를 클라우드에서 한다. 허브 코드(shell.html)만 고쳤으면 `sh tools/hub_all.sh`(= sync → `tools/rehub.py` → verify → audit → tests)도 된다.
+- 맥에서만 되는 것: 새 PDF 추출(`tools/matx.py`·`tools/jbx.py` — pymupdf·tesseract·원본 필요)과 새 과목·새 연도 자료 반영 — `guide/handoff/로컬에서_할_일.md`에 적고 사용자에게 알린다.
+- `work/`는 커밋되지 않는다 — `work/<SID>/parts`에서 고친 것은 `tools/merge_parts.py <SID>`로 `tools/<sid>/`에 합쳐야 남는다.
+- 원본 자료를 더 올리는 것(원본 PDF·새 자료)은 사용자가 분명히 허락했을 때만.
 
 ## 커밋·푸시 정책
 - 빌드·검증이 통과하면 `docs/`(와 바뀐 `tools/`)만 커밋하고 `git push`. 메시지 예: `CONS: 서덕규 26 강의자료 반영`.
