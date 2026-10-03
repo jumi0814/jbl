@@ -646,7 +646,7 @@ for p_, qs in profS.items():
     _nat = [t.replace('탈=', '') for t in dict.fromkeys(strat_tag(x) for x in PPARTS[p_][1]) if t and t not in ('서술형', '객관식', '빈칸', 'T/F', '단답형')]
     _pc = trend.prof_cells(SM); _fm = max(_pc[4].split(' · '), key=lambda z: int(z.rsplit(' ', 1)[-1]) if z.rsplit(' ', 1)[-1].isdigit() else 0).rsplit(' ', 1)[0] if _pc[4] and _pc[4] != '—' else ''
     trow += f'<tr class="tsl" title="{esc(trend.prof_line(p_, SM))}"><th>{esc(p_)}</th><td class="n">{_pc[0]}</td><td class="n">{_pc[1]}</td><td>{_pc[2]}</td><td class="n">{_pc[3]}</td><td>{esc(" · ".join(_nat + ([_fm] if _fm else [])))}</td></tr>'
-    if getattr(S, 'PROF_NOTE', {}).get(p_): trow += f'<tr class="tnote"><td colspan="6"><small>※ {esc(S.PROF_NOTE[p_])}</small></td></tr>'   # ux4f 맥 인계 10-03 — 강의 연결만으로 그 교수에 들어간 문항 등 집계 주석(subject.py PROF_NOTE)
+    if getattr(S, 'TREND_NOTE', {}).get(p_): trow += f'<tr class="tnote"><td colspan="6"><small>※ {esc(S.TREND_NOTE[p_])}</small></td></tr>'   # ux4f 맥 인계 10-03 — 강의 연결만으로 그 교수에 들어간 문항 등 집계 주석(subject.py PROF_NOTE)
 # 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
 def strat_list(items, top=4):
     """📌 전략 목록(V05) — 한 줄에 전략 하나(본문 글자) + 교수 꼬리표(작은 회색). 위 top개만, 나머지는 '+N 더 보기'"""
