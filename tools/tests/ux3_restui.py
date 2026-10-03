@@ -35,7 +35,7 @@ async def part_view(b, vp, touch, tag):
     await pg.evaluate("__h.trStart()"); await pg.clock.run_for(25 * MIN + 5000)
     a = (await pop(pg))['seg']; await pg.clock.run_for(2000); a2 = (await pop(pg))['seg']
     ok(re.fullmatch(r'지금 구간 0:25:0\d', a) and a2 != a, f'세션 25분 → 팝오버 지금 구간 {a!r} → 2초 뒤 {a2!r}')
-    ok((await pop(pg))['rows'][:3] == ['stop', 'rest', 'big'] and (await lab(pg)).startswith('세션 0:25'), f"알약 {await lab(pg)!r} · 팝오버 [■][☕][⏱ 크게]")
+    ok((await pop(pg))['rows'][:3] == ['stop', 'rest', 'big'] and re.fullmatch(r'세션 25:\d\d', await lab(pg)), f"알약 {await lab(pg)!r} · 팝오버 [■][☕][⏱ 크게]")
     await pg.screenshot(path=J.TMP + f'/ux3p_t_study_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 360})
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')
@@ -80,7 +80,7 @@ async def part_view(b, vp, touch, tag):
     for i in range(21):
         await pg.mouse.move(300 + (i % 9) * 11, 420 + (i % 3)); await pg.clock.run_for(30000)
     fm = await pg.evaluate("__h.trFocusMs()")
-    ok(await st(pg) == 'run' and await lab(pg) == '공부 중' and 10 * MIN <= fm < 11 * MIN, f'자동 측정 10분 → {await st(pg)} {await lab(pg)!r} · 지금 구간 {fm / MIN:.1f}분')
+    ok(await st(pg) == 'run' and re.fullmatch(r'공부 1[01]:\d\d', await lab(pg)) and 10 * MIN <= fm < 11 * MIN, f'자동 측정 10분 → {await st(pg)} {await lab(pg)!r} · 지금 구간 {fm / MIN:.1f}분')
     await pg.clock.run_for(9 * MIN)
     ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.querySelector('.ckl').textContent])(document.querySelector('#clock'))")
     ok(await st(pg) == 'rest' and ck[0] and ck[1].startswith('휴식 '), f'무활동 → 자동 휴식 표시 {await st(pg)} {ck}')
@@ -90,7 +90,7 @@ async def part_view(b, vp, touch, tag):
     ok('쉬었어요' in bd and '공부했어요' in bd, f'돌아와 입력 → 띠 {bd!r}')
     await pg.clock.run_for(10500); t = await toast(pg)
     ok(re.search(r'☕ 휴식 \d+분으로 기록했어요', t) and '공부로 바꾸기' in t, f'10초 뒤 기록 알림 {t!r}')
-    ok(not await pg.evaluate("document.querySelector('#clock').classList.contains('rest')") and await lab(pg) in ('공부 중', '대기'), f'돌아온 뒤 알약 {await lab(pg)!r}')
+    ok(not await pg.evaluate("document.querySelector('#clock').classList.contains('rest')") and (await lab(pg) == '대기' or (await lab(pg)).startswith('공부 ')), f'돌아온 뒤 알약 {await lab(pg)!r}')
     # R3 과목 색 한 가지
     await pg.evaluate("location.hash='#/'"); await pg.clock.run_for(1200)
     r = await pg.evaluate("""()=>{const hex=c=>'#'+c.match(/\\d+/g).slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join('').toUpperCase(),bad=[];

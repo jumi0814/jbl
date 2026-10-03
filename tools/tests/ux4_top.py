@@ -68,7 +68,7 @@ async def run(b, vp, touch, tag):
     await pg.keyboard.press('Escape'); await pg.wait_for_timeout(150)
     await open_(pg, '#/CONS/WHT/learn'); await pg.mouse.move(400, 500); await pg.mouse.move(420, 520); await pg.wait_for_timeout(1300)
     ck = await pg.evaluate(CK); col = await pg.evaluate("__h.sjColor('CONS')")
-    ok(ck['st'] == 'run' and ck['l'] == '공부 중' and ck['dot'] == rgb(col), f'{tag} 과목에서 움직이면 공부 중·과목색 점 {ck} {col}')
+    ok(ck['st'] == 'run' and ck['l'].startswith('공부 ') and ck['dot'] == rgb(col), f'{tag} 과목에서 움직이면 공부 중·과목색 점 {ck} {col}')
     await tap('#clock'); await pg.wait_for_timeout(250)
     rows = await pg.evaluate("[...document.querySelectorAll('#tpop [data-tp]')].map(b=>b.dataset.tp)")
     ok(rows == ['stop', 'rest', 'big', 'cal', 'goal'], f'{tag} 공부 중 팝오버 [■ 멈춤][☕ 쉬기]… {rows}')
