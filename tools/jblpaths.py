@@ -7,6 +7,15 @@ WORK = os.path.join(ROOT, 'work')
 DOCS = os.path.join(ROOT, 'docs')
 JBX = os.path.join(WORK, 'jb') + '/'          # f'{JBX}{SID}_20{ed}/{i}.txt'
 HUB_URL = 'file://' + os.path.join(DOCS, 'index.html')   # 테스트·감사 스크립트가 여는 허브
+if os.environ.get('JBL_HTTP'):   # 10-03 허브 점검: file://은 Chromium이 화면을 옮길 때 가끔 다른 localStorage를 보여 표시·북마크 테스트가 이유 없이 실패 → JBL_HTTP=1이면 docs/를 로컬 http로(포트 = JBL_HTTP 값이 숫자면 그 값)
+    import threading, http.server, functools, socketserver
+    _port = int(os.environ['JBL_HTTP']) if os.environ['JBL_HTTP'].isdigit() and int(os.environ['JBL_HTTP']) > 1 else 0
+    class _Q(http.server.SimpleHTTPRequestHandler):
+        def log_message(self, *a): pass
+    socketserver.TCPServer.allow_reuse_address = True
+    _srv = socketserver.ThreadingTCPServer(('127.0.0.1', _port), functools.partial(_Q, directory=DOCS)); _srv.daemon_threads = True
+    threading.Thread(target=_srv.serve_forever, daemon=True).start()
+    HUB_URL = f'http://127.0.0.1:{_srv.server_address[1]}/index.html'
 TMP = os.path.join(WORK, '_tmp'); os.makedirs(TMP, exist_ok=True)   # 스크린샷 등 임시 파일
 def work(sid, *p):
     d = os.path.join(WORK, sid); os.makedirs(d, exist_ok=True)
