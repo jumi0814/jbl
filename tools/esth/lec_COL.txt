@@ -382,7 +382,7 @@ M: CIELAB {r:1976} — L*a*b* = Munsell spacing·colorant / L*u*v* = additive mi
 F: 62=색의 차이는 3차원 공간상 거리 = 색차
 # 왜 공식이 계속 바뀌나 (넘어감)
 - {r:CMC} · BFD · {r:CIE94} — 3차원상의 거리가 같아도 사람의 눈은 같은 색 차이라고 여기지 않을 수 있음 · 나이가 들수록 짧은 파장의 색을 잘 못 보게 됨 · 색차도 말이 많고 계속 바뀜(필기).
-- Advanced Color Difference Formulae: ① **CMC** : ISO (International Organization for Standardization) ② **CIE94** : CIE ⇒ {r:Errors in predicting gray and blue} ③ CIE Technical Committee (TC) 1-47 ④ **CIEDE2000**.
+- Advanced Color Difference Formulae: ① **CMC** : ISO (International Organization for Standardization) ② **CIE94** : CIE ⇒ {r:Errors in predicting gray and blue} ③ CIE Technical Committee (TC) 1-47 · ④ **CIEDE2000**.
 - 그냥 델타 e로 했을 때의 에러를 수정한 게 cie2000(필기).
 F: 63=사람은 공간 사이 거리가 같아도 그렇게 느끼지 않음, 64=델타 e의 에러를 수정한 게 cie2000
 # ΔE*ab vs ΔE*94, 00 — 사람이 같다고 느끼는 범위
@@ -448,9 +448,9 @@ F: 71=프리즘이 있어 파장별 반사율을 알 수 있음, 72=Metamerism�
 P: "장점: Cross-media (중요)"(필기).
 F: 73=멀리서 현재 조명으로 분광, 74=cross-media — 모니터 색도 측정
 # Digital camera (후루룩 넘어가심)
-- The advantage is that the color appearance of the {r:whole object} is measured in terms of image, rather than a spot of color in the object · Two approaches: Colorimetric · Multispectral.
+- The advantage is that the color appearance of the {r:whole object} is measured in terms of image, rather than a spot of color in the object / Two approaches: Colorimetric · Multispectral.
 - Equation 5(R·G·B = k∫S(λ)R(λ)r̄(λ)dλ …): Camera RGB values do not match the CIE XYZ values, because the camera sensors do not have the same spectral sensitivities as the CIE standard observer ({r:observer metamerism}).
-- RGB signals must be correlated with the CIE XYZ values ⇒ {r:camera characterization} · Reference chart: Macbeth ColorChecker · ColorChecker DC · IT8 · ASTM E2466-06 (American Society for Testing and Materials).
+- RGB signals must be correlated with the CIE XYZ values ⇒ {r:camera characterization} / Reference chart: Macbeth ColorChecker · ColorChecker DC · IT8 · ASTM E2466-06 (American Society for Testing and Materials).
 - 카메라는 회사마다 필터가 달라 절대적 색상 측정이 어렵다 → 환자 치아의 shade를 정확히 측정하는 장치는 만들 수 없다 · "색착이랑 똑같아요"(필기 원문 — 색차계와 같다는 뜻으로 보임).
 - p.75 겹친 캡처: Spectroradiometer — 303-1호 실험실에 있다(1초 만에 지나가심).
 F: 75=필터를 거쳐 오므로 카메라로 완벽한 색 측정은 불가능, 76=카메라마다 필터가 달라 측정 장비로 쓸 수 없다, 77, 78=카메라 측정 표준은 안 됨
