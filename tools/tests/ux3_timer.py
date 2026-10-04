@@ -34,11 +34,11 @@ async def part_states(b, vp, touch, tag):
     await fresh(pg, '#/OMS1/DD1/learn', "localStorage.setItem('jblhub.v1.tauto','false');")
     ok(await st(pg) == 'off', f"자동 꺼짐 → ○ 상태 off ({await pg.inner_text('#clock .ckl')!r})")
     await tp(pg, 'start'); await pg.clock.run_for(300)
-    t = await pg.inner_text('#clock .ckl'); ok(await st(pg) == 'sess' and '세션 0:00' in t, f"▶ 공부 시작 → 알약 '세션 0:00' ({t!r})")
+    t = await pg.inner_text('#clock .ckl'); ok(await st(pg) == 'sess' and '공부 0:00' in t, f"▶ 공부 시작 → 알약 '공부 0:00'(10-04 이번 집중) ({t!r})")
     ts = await ls(pg, 'tstate'); ok(ts and ts['st'] == 'sess' and ts['S'] == 'OMS1' and ts['D'] == 'DD1', f"tstate 세션 귀속 = 지금 문서 {ts and (ts['S'], ts['D'])}")
     await pg.clock.run_for(10 * MIN)   # 입력 없이 10분 — 세션은 벽시계
     s0 = await tsum(pg); ok(abs(s0 - 10 * MIN) <= 21000, f'세션 10분(입력 없음) → time +{s0 / MIN:.2f}분')
-    ok(re.search(r'세션 (9|10):\d\d', await pg.inner_text('#clock .ckl')), f"알약 세션 h:mm {await pg.inner_text('#clock .ckl')!r}")   # ux4f A8 fmtH 내림(h:mm:ss 알약과 같은 기준) — 10분 ±1초는 0:09 또는 0:10
+    ok(re.search(r'공부 (9|10):\d\d', await pg.inner_text('#clock .ckl')), f"알약 이번 집중 m:ss {await pg.inner_text('#clock .ckl')!r}")   # ux4f A8 fmtH 내림(h:mm:ss 알약과 같은 기준) — 10분 ±1초는 0:09 또는 0:10
     await pg.screenshot(path=J.TMP + f'/ux3i_timer_sess_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 60})
     # ☕ 쉬기 — 5분 동안 time 그대로, trest +5분
     await tp(pg, 'rest'); await pg.clock.run_for(300)
