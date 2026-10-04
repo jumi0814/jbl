@@ -10,7 +10,7 @@
 @G ① 출혈 위험 환자와 검사
 ## Perioperative Anticoagulation Management | 항응고 환자 관리의 대원칙 — 약 중단보다 local measure | 1-5 | 개요 · ADA
 > 약을 끊으면 혈전, 계속 먹으면 출혈 — 이 시소의 균형을 local measure로 맞춘다
-= 치과의사의 선택지 3 = {r:stop} / {r:continue} / {r:bridge with heparin (LMWH)} → typical dental procedure = {r:중단 불필요 + local measures}
+= 치과의사의 선택지 3 = {r:stop} · {r:continue} · {r:bridge with heparin (LMWH)} → typical dental procedure = {r:중단 불필요 + local measures}
 # 왜 어려운가 — 두 위험의 저울질
 - Patients on chronic anti-coagulation often need to undergo procedures that pose risk of bleeding — providing optimal anticoagulation treatment is {r:challenging}.
 - The risk of {r:thromboembolic events} must be weighed against the risk of {r:surgical bleeding} — patient preferences도 고려.
@@ -410,7 +410,7 @@ E: HM20 | 20·18년 서술(2회) "보스민의 성분과 gingival cord의 유해
 F: 32=보스민
 M: 보스민 = {r:1:1000 racemic epinephrine} → {r:impregnated retraction cord}
 M: 주의 3: {r:serious cardiovascular reactions} · {r:retard wound healing} · {r:ischemia → tissue necrosis}
-M: {r:capillaries·arterioles}만 · {r:venous oozing ×} · superficial만 · levorotatory {r:15배}
+M: {r:capillaries·arterioles}만 · {r:venous oozing ×} · superficial만 / levorotatory {r:15배}
 
 ## Absorbable Gelatin Sponge — Gelfoam | 젤라틴 스펀지 — 물리적 뼈대 | 33-36 | 미출제 · 국소 지혈제
 > 피를 머금는 젤라틴 스펀지 — 응고 기전을 바꾸기보다 물리적 뼈대이고, thrombin을 적시면 더 강해진다
@@ -545,7 +545,7 @@ M: 주의: {r:No autoclave} · skin 봉합 × · {r:methylmethacrylate 접착력
 P: 💬 "Thrombin도 사용될 수 있는데, smooth muscle contraction을 일으키는 작용 또한 있다는 것을 기억해주시면 좋겠습니다"(p.47 필기).
 # Protease-activated receptors (PAR)
 - Interaction with specific {r:protease-activated receptors (PAR)} — {r:G-protein coupled receptor}.
-- receptor activation requires {r:proteolysis by thrombin of the extracellular N-terminal domain}; {r:'tethered agonist'}.
+- receptor activation requires {r:proteolysis by thrombin of the extracellular N-terminal domain} — {r:'tethered agonist'}.
 - contribution to {r:hemostasis, inflammation, and angiogenesis}.
 F: 47=thrombin의 역할과 PAR
 # fibrin clot의 생성과 분해 (그림)
