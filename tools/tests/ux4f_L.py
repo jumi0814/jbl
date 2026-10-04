@@ -161,7 +161,7 @@ with sync_playwright() as p:
     x.ev("document.querySelector('#clock').click()"); x.run(300)
     x.ev("[...document.querySelectorAll('#tpop [data-tp],#tpop [data-trb]')].find(b=>/크게/.test(b.textContent)).click()"); x.run(1000)
     l0 = x.ev("document.querySelector('#bcl').textContent"); x.run(150000)
-    l1 = x.ev("document.querySelector('#bcl').textContent"); ck = x.ev("document.querySelector('#clock').innerText.replace(/\\s+/g,' ')")
+    l1 = x.ev("document.querySelector('#bcl').textContent"); ck = x.ev("document.querySelector('#clock').dataset.lab")
     sec = lambda t: (lambda m: int(m.group(1)) * 60 + int(m.group(2)) if m else -99)(re.search(r'자리 비움 (\d+):(\d\d)', t))
     ok(x.st() == 'run' and '집중' in l0 and l1.startswith('자리 비움') and abs(sec(l1) - sec(ck)) <= 1, f'L8 ⏱ 크게 {l0} → 2분 30초 입력 없음 {l1} · 알약 {ck}')
     x.ctx.close()

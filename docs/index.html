@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"b299d15a",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"3579e485",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1223,9 +1223,9 @@ body.navopen #top #navbtn{background:var(--tint,#F2EEE6);color:var(--ink)}
 #top #clock.run,#top #clock.rest{color:var(--ink);background:var(--surface,#fff)}
 #clock .ckd{flex:none;width:7px;height:7px;border-radius:50%;background:#B9B2A6}
 #clock.on .ckd{background:var(--nc,#2F4F45)}#clock.rest .ckd{background:#B7791F}
-#clock .ckt,#clock .ckl{display:inline-block;white-space:nowrap;text-align:left}#clock .ckv,.fclock .ckv{display:inline-block;min-width:var(--ckt,4.6em);font-variant-numeric:tabular-nums}#clock .ckk,.fclock .ckk{font-size:11px;font-weight:600;color:var(--sub,#6A645B);margin-right:4px}#clock.rest .ckk,.fclock[data-st=rest] .ckk{color:#8A5A00}#clock .ckl,.fclock .fcl{display:inline-flex;flex-direction:column;justify-content:center;line-height:1.15}#clock .ck1,#clock .ck2,.fclock .ck1,.fclock .ck2{display:block;min-width:var(--ckl,5.4em);font-variant-numeric:tabular-nums}#clock .ck1,.fclock .ck1{color:#4F4A42;font-weight:600}#clock .ck2,.fclock .ck2{color:#8C857A;font-weight:400}#clock .ckl{font-size:12px;font-weight:400;color:#766F64}#clock.rest .ckl{color:#8A5A00;font-weight:600}#clock.idle .ckl{color:var(--sub)}
+#clock .ckt,#clock .ckl{display:inline-block;white-space:nowrap;text-align:left}#clock .ckv,.fclock .ckv{display:inline-block;min-width:var(--ckt,4.6em);font-variant-numeric:tabular-nums}#clock .ckk,.fclock .ckk{display:inline-block;min-width:4.6em;text-align:right;font-size:11px;font-weight:600;color:var(--sub,#6A645B);margin-right:4px}#clock.rest .ckk,.fclock[data-st=rest] .ckk{color:#8A5A00}#clock .ckl,.fclock .fcl{display:inline-flex;flex-direction:column;justify-content:center;line-height:1.15}#clock .ck1,#clock .ck2,.fclock .ck1,.fclock .ck2{display:block;min-width:var(--ckl,5.4em);font-variant-numeric:tabular-nums}#clock .ck1,.fclock .ck1{color:#4F4A42;font-weight:600}#clock .ck2,.fclock .ck2{color:#8C857A;font-weight:400}#clock .ckl{font-size:12px;font-weight:400;color:#766F64}#clock.rest .ckl{color:#8A5A00;font-weight:600}#clock.idle .ckl{color:var(--sub)}
 @media (max-width:860px){#top{padding:0 12px;gap:10px}#top #gsearch{flex-basis:160px;width:160px;max-width:160px}}
-@media (max-width:600px){#top #gsearch{flex-basis:110px;width:110px;min-width:90px}#top #clock .ckl{display:none}}
+@media (max-width:600px){#top #gsearch{flex-basis:110px;width:110px;min-width:90px}#top #clock .ckl{display:none}#top #clock .ckk{display:none}#top #clock.rest .ckv{color:#8A5A00}}   /* 10-04 폰: 큰 숫자만(이름 칸은 숨김 — 점 색·휴식이면 금색 숫자) */
 @media (pointer:coarse){body:not(.focus) #top #clock,body:not(.focus) #top #helpb,body:not(.focus) #top #navbtn{height:44px;min-height:44px}body:not(.focus) #top #helpb,body:not(.focus) #top #navbtn{width:44px;min-width:44px}#top #gsearch{height:40px;min-height:40px}#top .crumb button{min-height:40px}}   /* 아이패드 누름 자리 44(ux2 fixB V12) */
 /* 병합: 집중 모드는 #top을 숨김(묶음 1) — 시계는 탭 줄 [집중 끝] 옆 .fclock이 알약 글자를 따라감 */
 /* 시계 팝오버 — 줄 버튼(누르면 닫힘) · 설정은 📅 달력 '측정 설정' */
@@ -1927,7 +1927,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="b299d15a",PV={"OMS1": "7683aebf", "CONS": "8a7d5787", "IMPL": "d2faf4d4", "ANAT": "a3112a4c", "GERI": "47974ffb", "PHARM": "a04b3135", "ESTH": "573087c5"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="3579e485",PV={"OMS1": "8b59bcaa", "CONS": "e9af1c1b", "IMPL": "7938254d", "ANAT": "c82efdb6", "GERI": "09e77504", "PHARM": "fb86c5a0", "ESTH": "d22bfcc5"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
