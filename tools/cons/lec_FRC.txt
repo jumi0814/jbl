@@ -211,7 +211,12 @@ F: 31=27종 post의 방사선 불투과도, 32=Empty canal vs post in canal, 33=
 | Taper(상부 / 근단부) | .04 / .02 | .05 / .02 | .08 / .02 | .1 / .02 |
 | Diameter in mm(tip) | 0.8 | 0.9 | 1.0 | 1.2 |
 - 권장: 굵은 것(노랑·파랑) = {r:상악 전치 · 상악 대구치 palatal · 하악 대구치 distal} / 얇은 것(회색·빨강) = {r:소구치 · 대구치 MB·ML}.
-- 필기 가이드라인: 상악 전치부 = 굵은 {r:2·3번} · 하악 전치부 = 1번이라 되어 있지만 보통 {r:0.5번} · 구치부 굵은 근관 = 2·3번 · 구치부 얇은 근관·소구치 = {r:0.5·1번}.
+- 필기 가이드라인(그림 — 각 치아별 post 번호):
+| 부위 | 번호 |
+| 상악 전치부 | 굵은 {r:2·3번} |
+| 하악 전치부 | 1번이라 되어 있지만 보통 {r:0.5번} |
+| 구치부 굵은 근관 | 2·3번 |
+| 구치부 얇은 근관·소구치 | {r:0.5·1번} |
 F: 34=Double taper와 canal별 권장 크기
 M: FRC = {r:Fiber Reinforced Composite} / Concepts 5: {r:dentin 모방} · {r:stress distribution} · {r:root fracture↓} · {r:slightly weaker}(favorable) · {r:passive}(luting cement)
 M: 구조 = fiber({r:carbon or silica}) + matrix({r:epoxy resin}) / carbon은 회색 → {r:glass·quartz} 많이 씀
@@ -334,12 +339,11 @@ F: 58=Silane — hydrophilic glass fiber와 hydrophobic adhesive resin 연결, 5
 F: 60=Root dentin — total-etch + dual-cure adhesive, 61=ExciTE F DSC small brush
 # Resin cement와 core 조합 — 교수 강조
 - {r:Dual-cure resin cement} — self-adhesive 말고 전처리를 다 하는 것, 근관 안쪽까지 광조사가 어려우므로 dual-cure 필수.
-- For core restoration: ✓ {r:Adhesive (self-etch) + Light-cure core} ✓ {r:Adhesive (self-etch) + Dual-cure activator + Dual-cure core} ✓ {r:Adhesive (no self-etch) + Dual-cure/Light-cure core}.
 - * Self-etch: {r:acidic monomer}.
 - 이유: 자가중합은 {r:amine}(염기)에 의해 개시 → acidic monomer 든 접착제(self-etch type·universal adhesive)와 만나면 중화 → 개시 성분 감소 → 중합 방해·접착력 저하(필기).
 - 해결: DC 아닌 {r:광중합 core}(단점: 광조사 어려움) / {r:dual-cure activator}(amine 추가 공급) / {r:amine free} dual-cure core·cement(다른 개시제).
 - acidic monomer 없는 {r:4세대}는 어떤 core·resin cement든 상관없음 · 많이 쓰는 universal adhesive도 self-etching 기능이 있으니 주의(필기).
-| Core 조합 | Adhesive | Core | 이유 |
+| For core restoration(p.62) | Adhesive | Core | 이유 |
 | ① | Self-etch | {r:Light-cure core} | 자가중합이 필요 없음 |
 | ② | Self-etch | {r:Dual-cure activator} + Dual-cure core | activator가 amine 공급 → 산에 의한 방해를 막음 |
 | ③ | {r:No self-etch}(acidic monomer 없음) | Dual-cure / Light-cure core | 산이 없으면 아무거나 |

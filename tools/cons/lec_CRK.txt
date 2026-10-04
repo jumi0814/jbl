@@ -261,7 +261,12 @@ F: 24=Focusing on Cracked tooth — 환자 표현
 - Bite-related pain + cold를 {r:좋은 sign}으로 활용(26 필기).
 F: 25=증상 분포 그래프
 # 호발 부위
-- 상악 55례(51.4%) · 하악 52례(48.6%) — {r:상악 제1대구치 28.0%} · 하악 제1대구치 25.2% · 하악 제2대구치 20.6% · 상악 제2대구치 16.8%, 소구치는 적음.
+- 상악 55례(51.4%) · 하악 52례(48.6%) — 소구치는 적음.
+| 치아 | 비율 |
+| {r:상악 제1대구치} | {r:28.0%} |
+| 하악 제1대구치 | 25.2% |
+| 하악 제2대구치 | 20.6% |
+| 상악 제2대구치 | 16.8% |
 - 성별과 치아 종류는 무관(Fisher exact test P = .464) → 임상에서는 우선 '{r:구치부 crack}'을 강하게 의심.
 F: 26=치아별 분포 — 구치부에 호발
 U: 연구 내용은 핵심만 보라는 식으로 말씀하심(26 필기).
@@ -286,8 +291,10 @@ F: 27=Table 3 — 수복물 크고 금속성일수록 호발, CR5:16=Class I ama
 | B-L | 21 | 22 | 43 ({r:40.2%}) |
 | M-D & M-L(슬라이드 표기 — 복합 방향) | 12 | 9 | 21 ({r:19.6%}) |
 - 예전엔 evidence 없이 "cracked tooth는 M-D, VRF는 B-L"로 알려짐 → 데이터로 보니 crack은 M-D·B-L·양방향 모두 비슷하게 호발(VRF는 B-L 경향은 맞음).
-- ⚠ p.27 Table 3 Direction 행(P = .357) — cracked tooth: M-D 36 · B-L 30 · Both 21.
-- ⚠ 같은 행 VRF: M-D 8 · B-L 4 · Both 2.
+- ⚠ p.27 Table 3 Direction 행(P = .357):
+| Table 3 Direction | M-D | B-L | Both |
+| Cracked tooth | 36 | 30 | 21 |
+| VRF | 8 | 4 | 2 |
 - ⚠ 이 표의 VRF는 M-D가 더 많음 — 교수님 설명·Summary 표의 'VRF = B-L'과 다름.
 - "M-D & B-L 양방향 모두 유심히 봐야 해요~" → 의심되면 {r:치아 곳곳을 샅샅이}.
 F: 28=The direction of the cracked tooth
@@ -318,7 +325,13 @@ F: 29=Clinical Diagnosis
 | Crack(cracked tooth) | {r:Transillumination} — X-ray로는 오히려 전혀 알 수 없음 |
 | Root.Fx(VRF) | {r:X-ray} · {r:diagnostic surgery} · microscope |
 - 가로(밑변) = 케이스의 양, 세로 = 민감도(얼마나 effective한 검사였는지) — cracked tooth는 transillumination의 밑변이 넓음(26 필기).
-- 25 표(107례 진단 방법): Naked eye 47.7% · Transillumination 17.8% · Dye staining 16.8% · Microscope 9.3% · Diagnostic surgery 8.4%[[CR5:20]].
+- 25 표(107례 진단 방법)[[CR5:20]]:
+| 진단 방법(25 표) | 비율 |
+| Naked eye | 47.7% |
+| Transillumination | 17.8% |
+| Dye staining | 16.8% |
+| Microscope | 9.3% |
+| Diagnostic surgery | 8.4% |
 F: 30=진단법 association plot, CR5:20=Diagnostic methods for cracked teeth (25)
 P: 26 필기 p.66 ★ "Cracked tooth의 검사법에 대해서 내겠습니다" · 25 필기 p.20 "검사법 중요하다 · 진단할 때 transillumination 방법이 유용(가장 유용한 방법)".
 M: 검사법 5: {r:bite test}(tooth sloth·wood stick·rubber roll·cotton roll) · {r:cold test}(ice stick) · {r:PA 2장+ 다른 각도} · {r:probing} · macrography·{r:transillumination}·dye·microscope·diagnostic surgery
@@ -419,13 +432,13 @@ F: 60=Clinical Treatment flow, CR5:36=25 flow와 필기
 # Summary 표 — "하나 찍어도 되고 잘 기억해두세요"
 | | Location | Direction | Symptoms | Signs | How to identify | Treatment | Prognosis |
 | Craze line | Crown | Variable | None | None | Illumination | None | {r:Excellent} |
-| Cuspal fracture | Crown | M-D | Acute | Separable segment | Remove segment | Remove segment and restore | {r:Fair} |
-| Cracked tooth | Crown | {r:M-D &/or B-L} | Highly variable | Variable | Illumination · {r:probing} · stain · biting · magnification | Varied | {r:Varied} |
+| Cuspal fracture | Crown | M-D | Acute | Separable segment | Remove segment | Remove segment and restore | {r:Fair}(25: {r:margin location}에 따라) |
+| Cracked tooth | Crown | {r:M-D &/or B-L} | Highly variable | Variable | Illumination · {r:probing} · stain · biting · magnification | Varied | {r:Varied}(25: {r:how deeply extension}에 따라 · unpredictable) |
 | Split tooth | Crown | M-D | Acute · mastication | Separable segments | Separable segments | Remove separable segment | {r:Hopeless} |
 | VRF | {r:Roots} | {r:B-L} | Usually none | Usually none | {r:Flap reflection} | Removal | {r:Hopeless} |
 - Orientation: 넷은 Occlusal, VRF만 Root.
 - 25판 표는 Cuspal fracture 'M-D &/or F-L', Cracked tooth 'M-D'(필기: "사실 이렇지 않다. 어느 방향이든 호발"), VRF 'F-L' → 26판에서 cracked tooth는 'M-D &/or B-L'로 바뀜.
-- 예후(25 Clinical Prognosis): No detection → Needed time / Craze → Excellent / Fractured cusp → {r:margin location}에 따라 Fair / Cracked tooth → {r:how deeply extension}에 따라 Varied & unpredictable / Split·VRF → Hopeless.
+- 예후(25 Clinical Prognosis): No detection → Needed time.
 F: 61=Summary 표, CR5:44=25 Summary와 필기
 M: 예후: Craze {r:Excellent} · Cusp {r:Fair} · Cracked {r:Varied(unpredictable)} · Split·VRF {r:Hopeless}
 M: Cracked tooth flow: {r:extension 평가} → pulp ✗ {r:Cr} / pulp ○ {r:RCT + Cr} / CEJ 하방 {r:발치}
