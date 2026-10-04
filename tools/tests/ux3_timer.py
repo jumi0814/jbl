@@ -66,10 +66,12 @@ async def part_states(b, vp, touch, tag):
     for i in range(6): await pg.mouse.wheel(0, 200); await pg.mouse.move(300 + i * 5, 400); await pg.mouse.wheel(0, 1); await pg.clock.run_for(20000)
     await pg.evaluate("dispatchEvent(new Event('pagehide'))"); e1 = await tsum(pg)
     ok(e1 - e0 == 0 and await st(pg) == 'end', f'■ 뒤 같은 문서 2분 입력 → time +{(e1 - e0) / 1000:.0f}초 (0) · 멈춤 유지')
-    # 새 문서를 열면 자동 측정 다시
+    # (10-04 사용자 '멈춤 표시를 했을 땐 … 수동으로 공부 시작이라고 누르기 전까진 자동으로 공부 전환이 되면 안되는') 새 문서를 열어도 멈춤 그대로
     await pg.evaluate("location.hash='#/OMS1/_home'"); await pg.clock.run_for(1500)
     for i in range(3): await pg.mouse.move(400 + i * 7, 420); await pg.mouse.wheel(0, 1); await pg.clock.run_for(1000)
-    ok(await st(pg) == 'run', f"새 문서 열기 → 자동 측정 다시 ({await pg.inner_text('#clock .ckl')!r})")
+    ok(await st(pg) == 'end', f"새 문서 열기 → 멈춤 그대로 ({await pg.inner_text('#clock .ckl')!r})")
+    await pg.evaluate("__h.trDo('autoon')"); await pg.mouse.wheel(0, 1); await pg.clock.run_for(1000)
+    ok(await st(pg) == 'run', f"↻ 자동 측정 다시 → 자동 측정 ({await pg.inner_text('#clock .ckl')!r})")
     # 측정 중 → 알약 ☕(from auto) → ▶ → 자동 측정으로
     await tp(pg, 'rest'); await pg.clock.run_for(300)
     ok(await st(pg) == 'rest' and (await ls(pg, 'tstate'))['from'] == 'auto', '측정 중 → ☕ (자동에서 쉬기)')
