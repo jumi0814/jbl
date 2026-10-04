@@ -51,7 +51,7 @@ class P:
         st = sum(x['e'] - x['s'] for x in segs if not x['f'].startswith('r')); rs = sum(x['e'] - x['s'] for x in segs if x['f'].startswith('r'))
         s.run(1200)   # 알약은 1초마다 다시 그림
         return dict(t=s.tday(), seg=st, rseg=rs, rest=s.rest(), card=s.ev("[...document.querySelectorAll('.ccard')].slice(0,2).map(e=>e.textContent.replace(/\\s+/g,' '))"),
-                    pill=s.ev("document.querySelector('#clock').innerText.replace(/\\s+/g,' ')"))
+                    pill=s.ev("document.querySelector('#clock').dataset.today+' '+document.querySelector('#clock').dataset.lab"))
 def same_nums(x, v, tag):
     t = v['t']; okc = fmtH(t) in v['card'][0] and fmtH(v['rest']) in v['card'][1]
     ok(abs(v['seg'] - t / 1000) <= 3 and abs(v['rseg'] - v['rest'] / 1000) <= 3 and okc and v['pill'].startswith(fmtH(t)),
