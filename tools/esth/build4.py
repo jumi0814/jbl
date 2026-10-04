@@ -388,6 +388,11 @@ def ylab(yrs):
     if not yrs: return '연도 미상'   # 10-03 허브 점검: 연도 없는 문항 칩이 빈 버튼이던 것
     ys = ['%02d' % y for y in yrs]
     return ('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) + (f' ({len(ys)}회)' if len(ys) >= 2 else '')
+def hlab(ids, yrs):
+    """카드 머리·정리표 행 기출 칩 글자 — 문항이 둘 이상이면 문항 수를 앞에(10-04 사용자 '다수 문제 있는 경우엔 관련 출제문제 갯수를 써놓든 해서 … 클릭하지 않더라도 알 수 있게끔')"""
+    if len(ids) < 2: return '기출 ' + ylab(yrs)
+    ys = ['%02d' % y for y in yrs]
+    return f'기출 <b class="hqn">{len(ids)}문항</b> · ' + (('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) if ys else '연도 미상')
 def ychips(ids):
     return ''.join(f'<button class="jbchip{" rep" if len(QMAP[i]["yrs"]) >= 2 else ""}" data-go="{i}" title="{("·".join(YR(y) for y in QMAP[i]["yrs"]) + "년") if QMAP[i]["yrs"] else "연도 미상"}">{ylab(QMAP[i]["yrs"])}</button>' for i in ids if i in QMAP)
 GENERIC_Q = re.compile(r'^(?:다음|중|옳은|옳지|않은|틀린|바른|것|것을|것은|고르시오|고르세요|적기|적으시오|쓰시오|설명하시오|서술하시오|설명|T/?F|문제|[\s.,?!·()~0-9])*$')
@@ -501,7 +506,7 @@ def lec_card(L, j, c):
     eids = [x for t_, v in c['body'] if t_ == 'E' for x in v[0] if x in QMAP]; allq = list(dict.fromkeys(ids + eids))
     dn = min(3, max([len(QMAP[x]['yrs']) for x in allq] or [0]))   # ux2 D02 data-n = 최대 출제 횟수(3 = 3회 이상)
     hq = allq; hys = sorted({y for x in hq for y in QMAP[x]['yrs']}, reverse=True); hmx = max([len(QMAP[x]['yrs']) for x in hq] or [0])   # 10-03 허브 점검: 머리 칩 = 연결 문항 ∪ 이 카드 ⭐의 문항(⭐ 개수·미리보기와 같은 묶음)
-    ych = f'<button class="chip yr n{min(hmx,3)}" data-go="{hq[0]}"{(" data-gos=" + chr(34) + " ".join(hq) + chr(34)) if len(hq) > 1 else ""} title="{"·".join(YR(y) for y in hys) or "연도 미상"} — 누르면 JB 미리보기">기출 {ylab(hys)}</button>' if hq else ''
+    ych = f'<button class="chip yr n{min(hmx,3)}" data-go="{hq[0]}"{(" data-gos=" + chr(34) + " ".join(hq) + chr(34)) if len(hq) > 1 else ""} title="{(str(len(hq)) + "문항 · ") if len(hq) > 1 else ""}{"·".join(YR(y) for y in hys) or "연도 미상"} — 누르면 JB 미리보기{"(한꺼번에)" if len(hq) > 1 else ""}">{hlab(hq, hys)}</button>' if hq else ''
     nex = sum(1 for t_, _ in c['body'] if t_ == 'E')
     exj = f'<button class="chip exj noann" data-exjump="1" aria-label="이 카드의 ⭐ 시험포인트로">⭐ {len(allq) or nex} ↓</button>' if nex else ''   # ux2 D05
     prof = any(b[0] == 'P' for b in c['body'])
@@ -605,7 +610,7 @@ def lec_card(L, j, c):
         ex = ex.replace('<div class="mex">', '<div class="mex mexx">'); ex = ex.replace('<div class="mex mexx">', '<div class="mex">', 3) + f'<button class="mexmore noann" data-mexmore="1"><span class="l1">+{len(exams) - 3}문항 ▸</span><span class="l3">접기 ▴</span></button>'
     mem = ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in c['recall']) or '<span class="small">—</span>'
     ralt = ' '.join(x + '~s' for x in card_alt(k, j).split(' '))   # ux2 E01 정리표 행 = 표시 단위(카드 aid~s) · 옛 카드 aid도 ~s로 이어받음
-    ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 JB 문제로">기출 {ylab(sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
+    ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 JB 문제로">{hlab(allq, sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
     exc = f'<td class="mt" data-col="ex" data-h="★ 시험">{ex}</td><td class="mnote" data-col="mem" data-h="⚡ 암기">{mem}</td>' if exams else f'<td class="mnote mw" colspan="2" data-col="mem" data-h="⚡ 암기"><span class="tho">미출제</span>{mem}</td>'
     row = (f'<tr class="{heat(dn)}" id="m-{k}-{j}" data-aid="{AIDS[(k, j)]}~s" data-alt="{ralt}" data-grp="{esc(c["grp"])}" data-n="{dn}"><th data-col="topic"><div class="mtw"><button class="link" data-scroll2="{k}:{j}"><span class="mn">{j+1}</span> <span class="serif men" lang="en">{esc(c["en"])}</span></button><div class="mko">{lecparse._wbr(esc(c["ko"]))}{(" <span class=" + chr(34) + "pg" + chr(34) + ">· " + lab + "</span>") if lab else ""}</div><div class="mych noann">{ych2}</div>{thumb}</div></th>'
            f'<td class="mk" data-col="key" data-h="🔑 요지·핵심"><div class="mg">{lecparse.gist_html(c["gist"], ctx)}</div>{("<div class=mkey>" + mkey_html(key) + "</div>") if key else ""}</td><td class="md" data-col="det" data-h="세부">{("<div class=" + chr(34) + "sline noann" + chr(34) + ">" + "".join(sl) + "</div>") if sl else ""}<div class="mfull">{det}</div>{dbtn}</td>{exc}</tr>')
@@ -916,13 +921,20 @@ print('공부 순서 1단계:', guide[0]['b'], '| 교수별 최근 짤 비율', 
 # ---- 이미지(인용·썸네일 쪽 추가)
 def b64(im, q):
     b = io.BytesIO(); im.save(b, 'JPEG', quality=q, optimize=True); return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
+# 10-04 사용자 '피피티 사진 … 화질이 너무 깨져서 내용이 안 보이는데 … 틀과 크기는 그대로 유지하면서 화질만 개선 … 렉이 먹는다던가 파일이 너무 무거워져서 … 없게끔'
+#   강의 쪽 그림 = 원본 쪽 이미지 폭(1100) 그대로 WebP q72(예전 740px JPEG q38 — 글자 뭉개짐) · 한 장 평균 32KB → 47KB · 화면 크기는 CSS(폭 100%·max-height)라 그대로 · 지연 로딩(imgSet) 그대로 · JB 원본 그림은 그대로
+LECW, LECQ = 1100, 72
+def webp64(im):
+    b = io.BytesIO(); im.save(b, 'WEBP', quality=LECQ, method=6); return 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
 lecimg = {}; PREV = J.prev_images(SID)   # 강의 원본 이미지가 없으면 지금 docs/에 올라가 있는 이미지를 그대로 씀
 for (k, p) in sorted(ctx['cited'] | {(k_, p_) for k_, r_ in S.FORCE_PAGES.items() for p_ in r_}):
     f = S.lec_img_path(k, p)
     if not f or not os.path.exists(f):
         if f and f'{k}-{p}' in PREV: lecimg[f'{k}-{p}'] = PREV[f'{k}-{p}']
         continue
-    im = Image.open(f).convert('RGB'); w, hh = im.size; im = im.resize((740, int(hh * 740 / w))); lecimg[f'{k}-{p}'] = b64(im, 38)
+    im = Image.open(f).convert('RGB'); w, hh = im.size
+    if w > LECW: im = im.resize((LECW, int(hh * LECW / w)), Image.LANCZOS)
+    lecimg[f'{k}-{p}'] = webp64(im)
 
 HINTS = []
 for L in LEC:

@@ -13,6 +13,7 @@ def ok(c, m):
     if not c: fails.append(m)
 W = "!!(window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni'))"
 D0 = J.study_today(); td = D0.isoformat()
+DH = 0 if td <= '2026-10-03' else 6   # dayRows/daySegs의 s·e = 그 공부 날 시작(DCUT 뒤 06:00)부터 초 — 벽시계로 바꿀 때 더함
 def fmtH(ms): m = int(max(0, ms) // 60000); return f'{m // 60}:{m % 60:02d}'
 class P:
     def __init__(s, b, w=1280, h=900, touch=False, start=None, ctx=None):
@@ -74,7 +75,7 @@ with sync_playwright() as p:
        f'L1 ✎ 시작을 앞 공부 구간에 겹치게 → 되물음 [{w[:60]}] · 합계 그대로 {fmtH(x.tday())}')
     R0 = x.ev(f"__h.dayRows('{td}').map(r=>[r.s,r.e])")
     x.clk('#cewarn [data-cef="cut"]'); v1 = x.view(); r1 = x.rows()
-    exp = (R0[2][1] - 9 * 3600) * 1000   # 앞 구간 겹친 몫은 빼고 휴식 시간대는 공부로 = 09:00–셋째 줄 끝 벽시계(넘지 않음)
+    exp = (R0[2][1] + DH * 3600 - 9 * 3600) * 1000   # 앞 구간 겹친 몫은 빼고 휴식 시간대는 공부로 = 09:00–셋째 줄 끝 벽시계(넘지 않음)
     ok(abs(v1['t'] - exp) <= 3000 and v1['rest'] < 60000 and not any('휴식' in r for r in r1),
        f"L1 [겹친 만큼 빼고] 합계 {fmtH(v0['t'])}→{fmtH(v1['t'])}({v1['t']/1000:.0f}s, 기대 {exp/1000:.0f}s) · 휴식 {fmtH(v0['rest'])}→{fmtH(v1['rest'])} · 줄 {r1}")
     same_nums(x, v1, 'L1 고친 뒤')
@@ -82,7 +83,7 @@ with sync_playwright() as p:
     x.undo(); v2 = x.view()
     ok(abs(v2['t'] - v0['t']) < 2000 and abs(v2['rest'] - v0['rest']) < 2000 and len(x.rows()) == 3, f"L1 되돌리기 → {fmtH(v2['t'])} · 휴식 {fmtH(v2['rest'])} · 줄 {len(x.rows())}")
     # 휴식하고만 겹침(앞 공부 줄 끝을 휴식 안으로) — 되묻지 않고 그 부분을 휴식에서 뺌
-    e0 = x.ev(f"__h.dayRows('{td}')[0].e"); x.clk('[data-cre="0"]')
+    e0 = x.ev(f"__h.dayRows('{td}')[0].e") + DH * 3600; x.clk('[data-cre="0"]')
     x.ev(f"ceB.value=('0'+Math.floor({e0 + 300}/3600)).slice(-2)+':'+('0'+Math.floor({e0 + 300}/60)%60).slice(-2)"); x.clk('[data-cesave="0"]'); v3 = x.view()
     ok(not x.ev("(w=>w&&!w.hidden)(document.querySelector('#cewarn'))") and 4 * 60000 <= v3['t'] - v0['t'] <= 6 * 60000 and 4 * 60000 <= v0['rest'] - v3['rest'] <= 6 * 60000,
        f"L1 끝을 휴식 안으로 5분 → 공부 +{(v3['t']-v0['t'])/60000:.1f}분 · 휴식 −{(v0['rest']-v3['rest'])/60000:.1f}분")
@@ -96,7 +97,7 @@ with sync_playwright() as p:
     # ---- L4 + 시간 추가가 휴식 시간대
     x = P(b); setup3(x); v0 = x.view()
     x.ev("document.querySelector('#cadd').open=true"); x.run(200)
-    rs = x.ev(f"__h.daySegs('{td}').find(s=>s.f[0]==='r')"); hm = f"{rs['s'] // 3600:02d}:{rs['s'] // 60 % 60:02d}"
+    rs = x.ev(f"__h.daySegs('{td}').find(s=>s.f[0]==='r')"); ws = rs['s'] + DH * 3600; hm = f"{ws // 3600 % 24:02d}:{ws // 60 % 60:02d}"
     x.ev(f"caH.value=0;caM.value=5;caT.value='{hm}'"); x.ev("document.querySelector('[data-cago]').click()"); x.run(800); v1 = x.view()
     ok(4.9 * 60000 <= v1['t'] - v0['t'] <= 5.1 * 60000 and 4 * 60000 <= v0['rest'] - v1['rest'] <= 6 * 60000 and '휴식' in x.ev("document.querySelector('#toast').textContent"),
        f"L4 휴식 시간대 {hm}에 +5분 → 공부 +{(v1['t']-v0['t'])/60000:.1f}분 · 휴식 {fmtH(v0['rest'])}→{fmtH(v1['rest'])}")
