@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"c16da0e2",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"d497f277",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -124,7 +124,7 @@ table.mini{font-size:14px;margin:8px 0 10px}table.mini thead th{background:#EFE9
 .brow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;width:100%}.brow+.brow{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}.qf{display:inline-flex;gap:3px;background:#F1ECE1;border-radius:999px;padding:2px}.qf .tg{border:0;background:transparent}.qf .tg.on{background:#443C33;color:#fff}.prog{width:100%;margin-top:8px}
 .dn{margin-top:6px;flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:#fff;color:#B8AE9F;font-weight:800;font-size:14px}.tc.done .dn{background:#2E8B57;border-color:#2E8B57;color:#fff}.tc.done>.thead .en{color:var(--sub)}.tc.done .badge{opacity:.55}
 .ol.done .ot{color:var(--sub);text-decoration:line-through}.ol.done::after{content:"✓";color:#2E8B57;font-weight:800}
-.cond .tbody .li,.cond .tbody .sh,.cond .und,.cond .figs,.cond .tbody .tscroll{display:none}.cond .tbody{padding-top:0}
+.cond .tc:not(.cfull) .tbody .li,.cond .tc:not(.cfull) .tbody .sh,.cond .tc:not(.cfull) .und,.cond .tc:not(.cfull) .figs,.cond .tc:not(.cfull) .tbody .tscroll{display:none}.cond .tc:not(.cfull) .tbody{padding-top:0}
 
 .chip.jj{background:#E3F3E6;color:#1C5B33;font-weight:700}.chip.tt{background:#FBE3E0;color:#8E1B14;font-weight:700}.chip.base{background:var(--grey);color:var(--sub)}
 .trend{margin:12px 0 4px;background:#FFF8EE;border:1px solid #F1D9B8;border-radius:12px;padding:10px 14px}.frt2{font-weight:800;font-size:14.5px;color:#8A3B00;margin-bottom:6px}
@@ -434,7 +434,7 @@ table.cmp tr>:first-child{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 va
 button.car{flex:none;width:32px;height:32px;border:0;background:none;padding:0;margin-top:4px;color:#A69C8C;font-size:14px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}button.car:hover{background:#F4EFE4}
 .tchips button.chip.yr{cursor:pointer;font:inherit;font-size:12px;font-weight:600}
 .only-unread .tc.done{display:none}
-.cond .tchips .tagc{display:none}
+.cond .tc:not(.cfull) .tchips .tagc{display:none}
 @media (pointer:coarse){button.car{width:40px;height:40px}}
 /* 색 체계 v7(U27) — 채움은 과목색(번호 배지)만 · 칩은 흰 바탕 + 테두리 · 작은 글자 대비 4.5↑ */
 :root{--faint:#756E63}
@@ -627,15 +627,15 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 details.rclean{margin-top:12px;border-top:1px solid var(--line2);padding-top:8px}details.rclean>summary{cursor:pointer;font-weight:700}details.rclean .row{margin-top:6px}
 /* ux2 트랙B — D·E 묶음 (정리본 학습 탭: 빠른 훑기·가독성·암기) */
 /* D01 압축 보기: 🔑는 한 줄 흐름으로 전부 · 상자 밖 🔑(.krest)도 보임 · 연도 칩은 남기고 태그 칩만 숨김 · 내 표시가 있는 줄·표 행은 남김(왼쪽 노란 선) */
-.cond .c-key .kb>ul>li,.cond .c-key .kb>ol>li{display:inline;padding:0;position:static}.cond .c-key .kb>ul>li::before,.cond .c-key .kb>ol>li::before,.cond .c-key .kb>ol>li::after{content:none;display:none}
-.cond .c-key .kb>ul>li+li::before,.cond .c-key .kb>ol>li+li::before{content:" · ";display:inline;position:static;width:auto;height:auto;background:none;border-radius:0;color:var(--faint);font-weight:700;opacity:1}
-.cond .c-key .kb>ol.cgrid{display:block}
-.cond .tbody .krest .li,.cond .tbody .krest h4.sh{display:block}.cond .krest{font-size:calc(14px*var(--fs))}.cond .krest .li{margin:2px 0;padding-top:0;padding-bottom:0;font-size:calc(14px*var(--fs))}.cond .krest h4.sh{margin:6px 0 2px;font-size:calc(13.5px*var(--fs))}
-.cond .tbody .li.has-rk,.cond .tbody .und.has-rk{display:block;box-shadow:inset 2px 0 0 #F2C94C}
-.cond .tbody .li:has([data-rk]:not([data-auto])),.cond .tbody .und:has([data-rk]:not([data-auto])){display:block;box-shadow:inset 2px 0 0 #F2C94C}
-.cond .tbody .tscroll.has-rk{display:block}.cond .tbody .tscroll.has-rk tbody tr:not(.has-rk){display:none}
-.cond .tbody .tscroll:has([data-rk]:not([data-auto])){display:block}.cond .tbody .tscroll tbody tr:not(:has([data-rk]:not([data-auto]))){display:none}
-.cond .figchip{display:none!important}
+.cond .tc:not(.cfull) .c-key .kb>ul>li,.cond .tc:not(.cfull) .c-key .kb>ol>li{display:inline;padding:0;position:static}.cond .tc:not(.cfull) .c-key .kb>ul>li::before,.cond .tc:not(.cfull) .c-key .kb>ol>li::before,.cond .tc:not(.cfull) .c-key .kb>ol>li::after{content:none;display:none}
+.cond .tc:not(.cfull) .c-key .kb>ul>li+li::before,.cond .tc:not(.cfull) .c-key .kb>ol>li+li::before{content:" · ";display:inline;position:static;width:auto;height:auto;background:none;border-radius:0;color:var(--faint);font-weight:700;opacity:1}
+.cond .tc:not(.cfull) .c-key .kb>ol.cgrid{display:block}
+.cond .tc:not(.cfull) .tbody .krest .li,.cond .tc:not(.cfull) .tbody .krest h4.sh{display:block}.cond .tc:not(.cfull) .krest{font-size:calc(14px*var(--fs))}.cond .tc:not(.cfull) .krest .li{margin:2px 0;padding-top:0;padding-bottom:0;font-size:calc(14px*var(--fs))}.cond .tc:not(.cfull) .krest h4.sh{margin:6px 0 2px;font-size:calc(13.5px*var(--fs))}
+.cond .tc:not(.cfull) .tbody .li.has-rk,.cond .tc:not(.cfull) .tbody .und.has-rk{display:block;box-shadow:inset 2px 0 0 #F2C94C}
+.cond .tc:not(.cfull) .tbody .li:has([data-rk]:not([data-auto])),.cond .tc:not(.cfull) .tbody .und:has([data-rk]:not([data-auto])){display:block;box-shadow:inset 2px 0 0 #F2C94C}
+.cond .tc:not(.cfull) .tbody .tscroll.has-rk{display:block}.cond .tc:not(.cfull) .tbody .tscroll.has-rk tbody tr:not(.has-rk){display:none}
+.cond .tc:not(.cfull) .tbody .tscroll:has([data-rk]:not([data-auto])){display:block}.cond .tc:not(.cfull) .tbody .tscroll tbody tr:not(:has([data-rk]:not([data-auto]))){display:none}
+.cond .tc:not(.cfull) .figchip{display:none!important}
 #grppills{margin-bottom:10px;row-gap:6px}.only-mine .tc:not(.has-rk){display:none}.only-jb .tc[data-n="0"],.only-rep2 .tc[data-n="0"],.only-rep2 .tc[data-n="1"]{display:none}.gdiv.gempty{display:none}
 /* D02 ⚡ 복습 보기(R · 미니바 · LS review) — 머리(번호·국문 제목·기출 칩) + 🔑 한 줄 흐름 + ⭐ 문제 한 줄 + ⚡ 암기 줄 · 나머지는 CSS로만 숨김(글자 그대로) */
 .rvsort{display:none}.rvj{display:none}
@@ -1024,9 +1024,9 @@ details.cadd{border:1px solid var(--line);border-radius:10px;padding:6px 10px;ma
 .ksep.kfs,.ksep.ka,.ksep.kp{color:var(--faint);font-weight:700}
 .ksub{display:block;font-size:.93em;color:var(--sub);line-height:1.55}.thead .one .ksub{margin-top:1px}
 /* 압축(C)·⚡ 복습(R) 보기 = 한 줄 흐름 그대로(숨긴 구분자도 보임) */
-.cond .c-key .kb .kl,.cond .c-key .kb .ksub,#stage.review .c-key .kb .kl,#stage.review .c-key .kb .ksub{display:inline;margin:0;font-size:inherit;color:inherit}
-.cond .c-key .kb .ksep.kh,#stage.review .c-key .kb .ksep.kh{display:inline}
-.cond .c-key .kb .kfi,.cond .c-key .kb .ksi,#stage.review .c-key .kb .kfi,#stage.review .c-key .kb .ksi{display:inline;white-space:normal;margin:0}
+.cond .tc:not(.cfull) .c-key .kb .kl,.cond .tc:not(.cfull) .c-key .kb .ksub,#stage.review .c-key .kb .kl,#stage.review .c-key .kb .ksub{display:inline;margin:0;font-size:inherit;color:inherit}
+.cond .tc:not(.cfull) .c-key .kb .ksep.kh,#stage.review .c-key .kb .ksep.kh{display:inline}
+.cond .tc:not(.cfull) .c-key .kb .kfi,.cond .tc:not(.cfull) .c-key .kb .ksi,#stage.review .c-key .kb .kfi,#stage.review .c-key .kb .ksi{display:inline;white-space:normal;margin:0}
 /* K2 빈칸 5색(LS bcol · ann 빈칸 c) — 가린 상태 = 옅은 바탕 + 진한 밑줄(대비 3.0↑) · 연 상태 = 지금처럼 노랑 바탕 + 제 색 밑줄 · 규칙 자동 빈칸 = 점선 밑줄 · 인쇄는 색 없이 밑줄만 */
 :root{--bk-n:#E9E2D0;--bk-nu:#716A5F;--bk-u:#D6E4F5;--bk-uu:#4F74A8;--bk-g:#D3EBD9;--bk-gu:#43805A;--bk-p:#F5D6E0;--bk-pu:#A85473;--bk-v:#E2DAF2;--bk-vu:#7458A6;--bk-open:#FFF3C8}
 :root[data-theme="dark"]{--bk-n:#4A463F;--bk-nu:#B9B1A3;--bk-u:#2C3D55;--bk-uu:#8FB1E3;--bk-g:#2B4535;--bk-gu:#86C79D;--bk-p:#4F3440;--bk-pu:#E29AB5;--bk-v:#3C3452;--bk-vu:#B8A2E6;--bk-open:#5A4C22}
@@ -1669,7 +1669,7 @@ body.d-home .dfoc{display:none}   /* ux4c 2회차 과목 홈은 둘러보는 화
 #stage.review .tc>.dnend{margin-top:4px}
 #stage.review .tc .tchips{margin-top:0}#stage.review .tc .tt .ko{margin-top:0}
 #stage.review .gdiv{margin-top:24px}
-#stage.cond .tc>.tbody{margin-top:16px;padding-top:16px}#stage.cond .tc .co{margin-top:12px}
+#stage.cond .tc:not(.cfull)>.tbody{margin-top:16px;padding-top:16px}#stage.cond .tc:not(.cfull) .co{margin-top:12px}
 #stage.review .tc>.dnend{display:none}
 #stage.review .tc .co,#stage.review .tc .c-key .kb,#stage.review .tc .c-key .klist,#stage.review .tc .c-mem ul{font-size:calc(14px*var(--fs,1));line-height:1.6}
 #stage.review .tc .c-mem{padding:6px 12px}#stage.review .tc .c-exam{padding:2px 0 2px 12px}
@@ -1929,7 +1929,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="c16da0e2",PV={"OMS1": "5de9036d", "CONS": "4416f0da", "IMPL": "7a63aac8", "ANAT": "5cc42cf1", "GERI": "a3835bb7", "PHARM": "87eb7206", "ESTH": "b06d4818"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="d497f277",PV={"OMS1": "b3a492cc", "CONS": "35a834b0", "IMPL": "63a15631", "ANAT": "7d500f95", "GERI": "f85f4d86", "PHARM": "9f56344e", "ESTH": "26c06bef"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2971,7 +2971,7 @@ function lpopOpen(){const p=$('#lpop');if(p.classList.contains('on')){p.classLis
  const m=$('#lmini').getBoundingClientRect();p.style.top=(m.bottom+6)+'px';popFit(p,m.bottom+6);p.classList.add('on');const bc=$('#lmcur');if(bc){const r=bc.getBoundingClientRect(),w=p.offsetWidth;p.style.right='auto';p.style.left=Math.max(8,Math.min(innerWidth-w-8,r.left))+'px';}   /* ux4c 1회차 [카드 ▾] 바로 아래(집중 모드에서 화면 오른쪽 끝에 떨어져 뜨던 것) */const on=p.querySelector('.lpi.on');if(on)on.scrollIntoView({block:'center'});popFocus('#lpop');}
 $('#lpop').addEventListener('click',e=>{if(e.target.closest('#lmup')){lminiClick({id:'lmup'});return;}const b=e.target.closest('[data-lj]');if(b)goCard(+b.dataset.lj);});
 /* 압축 보기 — LS 'cond'에 저장(강의를 옮겨도 유지) · 숨은 카드로 갈 때 잠시 끄는 것(save===false)은 저장 안 함 */
-function condSet(on,save){const st=$('#stage');st.classList.toggle('cond',on);if(save!==false)LS.set('cond',!!on);['#lcond','#lmcond'].forEach(x=>{const e=$(x);if(e)e.classList.toggle('on',on);});lmView();}
+function condSet(on,save){const st=$('#stage');st.classList.toggle('cond',on);$$('#stage .tc.cfull').forEach(c=>c.classList.remove('cfull'));if(save!==false)LS.set('cond',!!on);['#lcond','#lmcond'].forEach(x=>{const e=$(x);if(e)e.classList.toggle('on',on);});lmView();}
 function lminiClick(b){if(b.id==='lmcur'){lpopOpen();return;}if(b.id==='lmview'){lvOpen();return;}if(b.id==='lmall'){$('#lvpop').classList.remove('on');keepAnchor(()=>{if($('#stage').classList.contains('review'))reviewSet(false);if(QZ.on)quizOff();condSet(false);});lmView();return;}
  if(b.id==='lmrev'){$('#lvpop').classList.remove('on');reviewSet(!$('#stage').classList.contains('review'));return;}if(b.id==='lmqz'){$('#lvpop').classList.remove('on');quizToggle();return;}if(b.id==='lmcbm'){$('#lvpop').classList.remove('on');cbmOnly();return;}if(b.id==='lmcond'){$('#lvpop').classList.remove('on');keepAnchor(()=>condSet(!$('#stage').classList.contains('cond')));return;}   /* ux4 B03 */
  if(b.id==='lmup'){$('#lpop').classList.remove('on');if($('#stage').classList.contains('review'))reviewSet(false);const f=$('#stage .frame');if(f){f.classList.remove('fold');settle(()=>goEl(f));}else window.scrollTo(0,0);}}
@@ -3210,7 +3210,9 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const mb=e
  if(t.id==='fcard'){const fb=e.target.closest('.fcb');if(fb){fb.classList.toggle('show');return;}if(Kit.mode()){toast('플래시카드에는 형광펜·빈칸을 칠하지 않아요 — H·B(또는 Esc)로 끄고 넘기세요');return;}Flash.flip();return;}   /* ux4 B50 모드 중 카드를 누르면 뒤집지 않고 안내 */if(t.id==='fprev'){Flash.move(-1);return;}if(t.id==='fnext'){Flash.move(1);return;}if(t.id==='fshuf'){Flash.shuffle();return;}if(t.id==='funshuf'){Flash.ord=null;Flash.build(null);Flash.save();return;}if(t.id==='fo'||t.id==='fx'){Flash.judge(t.id==='fo'?'o':'x');return;}
  if(d.tog){const c=t.closest('article');if(c.classList.contains('open'))qClose(c);else qOpen(c);togLabel(c);return;}
  if(d.deep){const c=t.closest('.qc');if(!c)return;const on=!c.classList.contains('deep');qDeep(c,on);LS.set('jbdeep',on?1:0);togLabel(c);if(!on&&c.getBoundingClientRect().top<topOff())goEl(c);return;}
- if(d.ttog!==undefined){t.closest('.tc').classList.toggle('open');foldSave();return;}
+ if(d.ttog!==undefined){const c=t.closest('.tc');if($('#stage').classList.contains('cond')&&c.classList.contains('open')&&!c.classList.contains('cfull')){keepAnchor(()=>c.classList.add('cfull'));return;}   /* 10-04 사용자 '압축한 모드에서 카드의 제목탭을 누르거나 펼치기를 누르면 압축 전 해당 카드의 전체 내용이 다 나오게' — 압축 보기: 1번 누름 = 그 카드만 전체 내용(.cfull) · 다시 누름 = 접기(전체 내용 풂) */
+  if(c.classList.contains('cfull')){c.classList.remove('cfull');}else if($('#stage').classList.contains('cond')&&!c.classList.contains('open'))c.classList.add('cfull');   /* 압축 중 접힌 카드를 펼치면 바로 전체 내용 */
+  c.classList.toggle('open');foldSave();return;}
  if(d.fig){openImg('lec',d.fig,{from:t});return;}
  if(d.mk){const c=t.closest('.qc,.pc'),id=c&&c.dataset.id;if(!id)return;mark(id,d.mk,'toggle');if(c.classList.contains('pc'))return;if(JB.one&&d.mk!=='bm'&&MK[d.mk][id]){JB.sess=JB.sess||{};JB.sess[id]=d.mk;JB.save();}return;}
  if(d.fold){const c=t.closest('.qc');qClose(c);togLabel(c);goEl(c);return;}
