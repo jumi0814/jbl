@@ -155,12 +155,12 @@ def _ul(items, cls='klist'): return f'<ul class="{cls}">' + ''.join(f'<li>{x}</l
 def astruct(s, lvl=0):
     s = s.strip()
     if lvl > 5 or len(s) <= 190:
-        if len(s) > 150 and lvl == 0: return lecparse.render_block(s, ctx)
+        if (len(s) > 150 or lecparse._facts(lecparse.split_top(s, ' / '))) and lvl == 0: return lecparse.render_block(s, ctx)   # 10-04 짧아도 ' / ' 사실 조각이면 줄마다
         return _lbl(s) or lecparse.inline(s, ctx)
     sub = lambda ps: _ul([astruct(x, lvl + 1) for x in lecparse._rebalance(ps)])
     blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in lecparse._rebalance(ps))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
     # 1) 문장('. ' — p. 같은 약어 제외)
-    pos = [(i, 1) for i in _d0(s, '. ') if not re.search(r'(?:\bp|\bvs|\be\.g|\bcf|\bFig|\bNo|\bex|\bi\.e)$', s[max(0, i - 4):i])]
+    pos = [(i, 1) for i in _d0(s, '. ') if not lecparse.ABBR.search(s[max(0, i - 8):i + 1])]   # 10-04 해부 약어(n. a. lig. proc. …)·번호(1.)·Perio. 뒤에서 문장을 자르지 않음
     ps = _cut(s, pos, 'L')
     if len(ps) >= 2 and min(len(x) for x in ps) >= 8: return blk(ps)
     # 1-2) 10-04 사용자 줄바꿈 전수(2차): 최상위 ' / '가 있으면 대시보다 먼저 — 'A — 설명 / B — 설명'이 대시에서 찢겨 'A' · '설명 / B' · '설명'으로 보이던 것
@@ -570,7 +570,7 @@ def lec_card(L, j, c):
         elif t == 'E':
             exams.append(v); exbuf.append(v)
         elif t == 'P': h.append(f'<div class="co c-prof"><div class="ct">💬 교수님 강조</div>{lecparse.render_key(v, ctx)}</div>')
-        elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if len(v) > 150 else lecparse.inline(v, ctx)}</div>')
+        elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if (len(v) > 150 or lecparse._facts(lecparse.split_top(v, " / "))) else lecparse.inline(v, ctx)}</div>')
     flush_ex()
     if c['recall']:   # 안내문은 강의의 첫 ⚡ 블록에만(U27 — 카드마다 반복하지 않음)
         tip = '' if MEMTIP.get(k) else ' <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small>'; MEMTIP[k] = 1
