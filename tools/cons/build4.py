@@ -388,6 +388,11 @@ def ylab(yrs):
     if not yrs: return '연도 미상'   # 10-03 허브 점검: 연도 없는 문항 칩이 빈 버튼이던 것
     ys = ['%02d' % y for y in yrs]
     return ('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) + (f' ({len(ys)}회)' if len(ys) >= 2 else '')
+def hlab(ids, yrs):
+    """카드 머리·정리표 행 기출 칩 글자 — 문항이 둘 이상이면 문항 수를 앞에(10-04 사용자 '다수 문제 있는 경우엔 관련 출제문제 갯수를 써놓든 해서 … 클릭하지 않더라도 알 수 있게끔')"""
+    if len(ids) < 2: return '기출 ' + ylab(yrs)
+    ys = ['%02d' % y for y in yrs]
+    return f'기출 <b class="hqn">{len(ids)}문항</b> · ' + (('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) if ys else '연도 미상')
 def ychips(ids):
     return ''.join(f'<button class="jbchip{" rep" if len(QMAP[i]["yrs"]) >= 2 else ""}" data-go="{i}" title="{("·".join(YR(y) for y in QMAP[i]["yrs"]) + "년") if QMAP[i]["yrs"] else "연도 미상"}">{ylab(QMAP[i]["yrs"])}</button>' for i in ids if i in QMAP)
 GENERIC_Q = re.compile(r'^(?:다음|중|옳은|옳지|않은|틀린|바른|것|것을|것은|고르시오|고르세요|적기|적으시오|쓰시오|설명하시오|서술하시오|설명|T/?F|문제|[\s.,?!·()~0-9])*$')
@@ -501,7 +506,7 @@ def lec_card(L, j, c):
     eids = [x for t_, v in c['body'] if t_ == 'E' for x in v[0] if x in QMAP]; allq = list(dict.fromkeys(ids + eids))
     dn = min(3, max([len(QMAP[x]['yrs']) for x in allq] or [0]))   # ux2 D02 data-n = 최대 출제 횟수(3 = 3회 이상)
     hq = allq; hys = sorted({y for x in hq for y in QMAP[x]['yrs']}, reverse=True); hmx = max([len(QMAP[x]['yrs']) for x in hq] or [0])   # 10-03 허브 점검: 머리 칩 = 연결 문항 ∪ 이 카드 ⭐의 문항(⭐ 개수·미리보기와 같은 묶음)
-    ych = f'<button class="chip yr n{min(hmx,3)}" data-go="{hq[0]}"{(" data-gos=" + chr(34) + " ".join(hq) + chr(34)) if len(hq) > 1 else ""} title="{"·".join(YR(y) for y in hys) or "연도 미상"} — 누르면 JB 미리보기">기출 {ylab(hys)}</button>' if hq else ''
+    ych = f'<button class="chip yr n{min(hmx,3)}" data-go="{hq[0]}"{(" data-gos=" + chr(34) + " ".join(hq) + chr(34)) if len(hq) > 1 else ""} title="{(str(len(hq)) + "문항 · ") if len(hq) > 1 else ""}{"·".join(YR(y) for y in hys) or "연도 미상"} — 누르면 JB 미리보기{"(한꺼번에)" if len(hq) > 1 else ""}">{hlab(hq, hys)}</button>' if hq else ''
     nex = sum(1 for t_, _ in c['body'] if t_ == 'E')
     exj = f'<button class="chip exj noann" data-exjump="1" aria-label="이 카드의 ⭐ 시험포인트로">⭐ {len(allq) or nex} ↓</button>' if nex else ''   # ux2 D05
     prof = any(b[0] == 'P' for b in c['body'])
@@ -605,7 +610,7 @@ def lec_card(L, j, c):
         ex = ex.replace('<div class="mex">', '<div class="mex mexx">'); ex = ex.replace('<div class="mex mexx">', '<div class="mex">', 3) + f'<button class="mexmore noann" data-mexmore="1"><span class="l1">+{len(exams) - 3}문항 ▸</span><span class="l3">접기 ▴</span></button>'
     mem = ''.join(f'<div class="ci">{lecparse.inline(x, ctx)}</div>' for x in c['recall']) or '<span class="small">—</span>'
     ralt = ' '.join(x + '~s' for x in card_alt(k, j).split(' '))   # ux2 E01 정리표 행 = 표시 단위(카드 aid~s) · 옛 카드 aid도 ~s로 이어받음
-    ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 JB 문제로">기출 {ylab(sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
+    ych2 = f'<button class="chip yr n{min(dn,3)}" data-go="{allq[0]}"{(" data-gos=" + chr(34) + " ".join(allq) + chr(34)) if len(allq) > 1 else ""} title="{"·".join(YR(y) for y in sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))} — 누르면 JB 문제로">{hlab(allq, sorted({y for x in allq for y in QMAP[x]["yrs"]}, reverse=True))}</button>' if allq else '<span class="m0">미출제</span>'
     exc = f'<td class="mt" data-col="ex" data-h="★ 시험">{ex}</td><td class="mnote" data-col="mem" data-h="⚡ 암기">{mem}</td>' if exams else f'<td class="mnote mw" colspan="2" data-col="mem" data-h="⚡ 암기"><span class="tho">미출제</span>{mem}</td>'
     row = (f'<tr class="{heat(dn)}" id="m-{k}-{j}" data-aid="{AIDS[(k, j)]}~s" data-alt="{ralt}" data-grp="{esc(c["grp"])}" data-n="{dn}"><th data-col="topic"><div class="mtw"><button class="link" data-scroll2="{k}:{j}"><span class="mn">{j+1}</span> <span class="serif men" lang="en">{esc(c["en"])}</span></button><div class="mko">{lecparse._wbr(esc(c["ko"]))}{(" <span class=" + chr(34) + "pg" + chr(34) + ">· " + lab + "</span>") if lab else ""}</div><div class="mych noann">{ych2}</div>{thumb}</div></th>'
            f'<td class="mk" data-col="key" data-h="🔑 요지·핵심"><div class="mg">{lecparse.gist_html(c["gist"], ctx)}</div>{("<div class=mkey>" + mkey_html(key) + "</div>") if key else ""}</td><td class="md" data-col="det" data-h="세부">{("<div class=" + chr(34) + "sline noann" + chr(34) + ">" + "".join(sl) + "</div>") if sl else ""}<div class="mfull">{det}</div>{dbtn}</td>{exc}</tr>')

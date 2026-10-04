@@ -104,6 +104,12 @@ async def main():
         await pg.evaluate("__h.trStop();__h.T.auto=false;localStorage.setItem('jblhub.v1.tauto','false')"); await pg.evaluate("__h.trStart()"); await pg.clock.run_for(MIN)
         await pg.evaluate("__h.trRest()"); await pg.clock.run_for(MIN); await pg.mouse.wheel(0, 120); await pg.clock.run_for(500)
         ok(await st(pg) == 'rest', f'자동 측정 끔 → 스크롤해도 쉬는 중 ({await st(pg)})')
+        # ---------- ③-2 카드 머리 기출 칩: 문항 둘 이상이면 'n문항' ----------
+        await boot(pg, '#/OMS1/DD1/learn')
+        r = await pg.evaluate("[...document.querySelectorAll('#stage .tc .tchips .chip.yr')].map(b=>[(b.dataset.gos||'').split(' ').filter(Boolean).length||1,b.textContent.trim()])")
+        multi = [x for x in r if x[0] > 1]; single = [x for x in r if x[0] == 1]
+        ok(multi and all(f'{n}문항' in t for n, t in multi), f'여러 문항 칩에 문항 수 {multi[:3]}')
+        ok(all('문항' not in t for _, t in single), f'한 문항 칩은 그대로 {single[:3]}')
         # ---------- ④ 메모 칸 밖 누르면 입력 끝 → M = 메모 토글 (터치·마우스) ----------
         for touch in (False, True):
             c4 = await b.new_context(viewport={'width': 1180, 'height': 820}, has_touch=touch); q = await c4.new_page(); e4 = []
