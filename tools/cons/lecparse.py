@@ -126,12 +126,27 @@ def _depth_iter(s):
         if ch in '(（[{': d += 1                 # {r:…}·{k:…} 안에서도 나누지 않음(예: {r:0.04 · 0.70})
         elif ch in ')）]}': d = max(0, d - 1)
         yield i, ch, d + (1 if q else 0)
+ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
+def sent_split(s):
+    """10-04 줄바꿈 2차: 문장 단위 나누기 — 괄호·따옴표 안(깊이>0)·약어(n. a. lig. Perio. …)·번호(1.) 뒤는 나누지 않음 · 마침표 없는 끝맺음은 음·함·됨만(‘보다’ 같은 ‘다’는 아님)"""
+    out, last = [], 0
+    for i, ch, d in _depth_iter(s):
+        if d or ch != ' ' or i == 0: continue
+        prev = s[:i]
+        if not (prev.endswith('.') or prev[-1] in '음함됨'): continue
+        if not prev.endswith('.') and re.search(r'(?:^|\s)(?:다음|처음|마음|이음|그다음|함께|이름)$', prev): continue   # '다음' 같은 낱말은 끝맺음 아님
+        if prev.endswith('.') and ABBR.search(prev): continue
+        if not re.match(r'[A-Z가-힣\d(①"“]', s[i + 1:i + 2] or ''): continue
+        out.append(s[last:i].strip()); last = i + 1
+    out.append(s[last:].strip())
+    return [x for x in out if x]
 def split_top(s, sep=' / '):
     out, last = [], 0; skip = -1
+    many = sep == ' / ' and s.count(' / ') >= 3   # 10-04 ' / '가 셋 이상인 나열에서는 '또는' 규칙을 쓰지 않음
     for i, ch, d in _depth_iter(s):
         if i < skip: continue
         if d == 0 and s.startswith(sep, i):
-            if sep == ' / ' and re.search(r'(?:^|[(]|(?:^|[\s(])[^\sA-Za-z]+\s)[a-z][a-z\-]{1,20}$', s[:i]) and re.match(r'[a-z][a-z\-]{1,20}(?:\s|$)', s[i + 3:]): continue   # 10-04 'frontal / posterior plagiocephaly'처럼 영어 낱말 둘 사이 ' / '는 '또는' — 줄을 나누지 않음
+            if sep == ' / ' and not many and re.search(r'(?:^|[(]|(?:^|[\s(])[^\sA-Za-z]+\s)[a-z][a-z\-]{1,20}$', s[:i]) and re.match(r'[a-z][a-z\-]{1,20}(?:\s|$)', s[i + 3:]): continue   # 10-04 'frontal / posterior plagiocephaly'처럼 영어 낱말 둘 사이 ' / '는 '또는' — 줄을 나누지 않음
             out.append(s[last:i].strip()); last = i + len(sep); skip = last
     out.append(s[last:].strip())
     return [x for x in out if x]
@@ -178,13 +193,16 @@ def split_lead(s):
     m = re.match(r'^([^:：=/]{2,46}?)\s*[:：]\s+(.+)$', s)
     if m and len(m.group(2)) > 60 and not re.search(r'https?$', m.group(1)): return m.group(1), m.group(2)
     return None
+def _facts(parts): return len(parts) >= 2 and min(len(_plain(p).strip()) for p in parts) >= 4 and sum(1 for p in parts if re.search(r' = | → |: ', _plain(p))) * 2 >= len(parts)
 def segments(s, min_len=14):
     """길면 나눌 조각 목록, 아니면 None"""
+    ft = split_top(s, ' / ')
+    if _facts(ft): return ft   # 10-04 줄바꿈 2차: ' / ' 조각이 사실 문장(=·→·:)이면 짧아도 나눔
     for sep, mn in ((' / ', min_len), ('; ', 20), (' · ', 22)):
         parts = split_top(s, sep)
         if len(parts) >= 2 and min(len(p) for p in parts) >= mn and (sep == ' / ' or len(s) > 110): return parts
     if len(s) > 190:  # 문장 단위
-        parts = [p.strip() for p in re.split(r'(?<=[.다음함됨])\s+(?=[A-Z가-힣\d(①"“])', s) if p.strip()]
+        parts = sent_split(s)
         if len(parts) >= 2 and parts[0] and len(parts[0]) < 25 and len(parts) >= 3: parts = [parts[0] + ' ' + parts[1]] + parts[2:]
         if len(parts) >= 2 and min(len(p) for p in parts) >= 25: return parts
         parts = split_top(s, '; ')
@@ -387,12 +405,12 @@ def render_item(v, ctx, cont=None):
             items = _rebalance([v[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(v)])])
             body = _list_html(items, ctx, 0, 'ol', 'circ').replace('<ol class="circ', f'<ol start="{cont}" class="circ', 1)
             return f'<div class="li nolead cont">{body}</div>'
-    body = render_block(v, ctx) if (len(v) > 110 or _ncirc(v) >= 3) else inline(v, ctx)
+    body = render_block(v, ctx) if (len(v) > 110 or _ncirc(v) >= 3 or _facts(split_top(v, ' / '))) else inline(v, ctx)   # 10-04 짧은 줄도 ' / ' 사실 조각이면 줄마다
     return f'<div class="li{" nolead" if body.startswith("<ol") or body.startswith("<ul") else ""}">{body}</div>'
 def render_recall(x, ctx):
     rows = split_top(x)
     if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)
-    if len(rows) >= 2 and min(len(_plain(r).strip()) for r in rows) >= 4 and sum(1 for r in rows if re.search(r' = | → |: ', _plain(r))) * 2 >= len(rows): return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
+    if _facts(rows): return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
     return f'<li>{inline(x, ctx)}</li>'
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
 EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
