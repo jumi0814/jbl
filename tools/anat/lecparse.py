@@ -131,6 +131,7 @@ def split_top(s, sep=' / '):
     for i, ch, d in _depth_iter(s):
         if i < skip: continue
         if d == 0 and s.startswith(sep, i):
+            if sep == ' / ' and re.search(r'(?:^|[(]|(?:^|[\s(])[^\sA-Za-z]+\s)[a-z][a-z\-]{1,20}$', s[:i]) and re.match(r'[a-z][a-z\-]{1,20}(?:\s|$)', s[i + 3:]): continue   # 10-04 'frontal / posterior plagiocephaly'처럼 영어 낱말 둘 사이 ' / '는 '또는' — 줄을 나누지 않음
             out.append(s[last:i].strip()); last = i + len(sep); skip = last
     out.append(s[last:].strip())
     return [x for x in out if x]
