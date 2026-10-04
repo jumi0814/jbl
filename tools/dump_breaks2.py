@@ -93,10 +93,12 @@ if isinstance(P.get('tables'), list):
     for t in P['tables']: scan(t.get('html') if isinstance(t, dict) else t, lambda el: '과목 비교표')
 scan(P.get('sumall'), lambda el: '기출 한눈표')
 os.makedirs(os.path.join(ROOT, 'work', 'review_breaks2'), exist_ok=True)
-p = os.path.join(ROOT, 'work', 'review_breaks2', f'{SID}.md')
-with open(p, 'w', encoding='utf-8') as f:
-    f.write(f'# {SID} 화면 줄바꿈 전수 덤프 2판 — 덩어리 {len(out_f) + len(out_n)} (⚑ 의심 {len(out_f)})\n\n## ⚑ 의심 표시가 붙은 덩어리\n')
-    for ctx, blk, fl in out_f: f.write(f'\n### {ctx}\n⚑ ' + ' · '.join(dict.fromkeys(fl)) + '\n' + '\n'.join('    ' + b for b in blk) + '\n')
-    f.write('\n## 나머지 덩어리(의심 표시 없음 — 그래도 전부 읽어 볼 것)\n')
-    for ctx, blk, fl in out_n: f.write(f'\n### {ctx}\n' + '\n'.join('    ' + b for b in blk) + '\n')
+for part, test in (('lec', lambda c: not (c.startswith('JB ') or c.startswith('예상문제') or c in ('과목 비교표', '기출 한눈표'))), ('jb', lambda c: c.startswith('JB ') or c.startswith('예상문제') or c in ('과목 비교표', '기출 한눈표'))):
+    F = [x for x in out_f if test(x[0])]; N = [x for x in out_n if test(x[0])]
+    p = os.path.join(ROOT, 'work', 'review_breaks2', f'{SID}_{part}.md')
+    with open(p, 'w', encoding='utf-8') as f:
+        f.write(f'# {SID} 화면 줄바꿈 전수 덤프 2판 ({part}) — 덩어리 {len(F) + len(N)} (⚑ 의심 {len(F)})\n\n## ⚑ 의심 표시가 붙은 덩어리\n')
+        for ctx, blk, fl in F: f.write(f'\n### {ctx}\n⚑ ' + ' · '.join(dict.fromkeys(fl)) + '\n' + '\n'.join('    ' + b for b in blk) + '\n')
+        f.write('\n## 나머지 덩어리(의심 표시 없음 — 그래도 전부 읽어 볼 것)\n')
+        for ctx, blk, fl in N: f.write(f'\n### {ctx}\n' + '\n'.join('    ' + b for b in blk) + '\n')
 print(SID, '덩어리', len(out_f) + len(out_n), '⚑', len(out_f), '→', p)
