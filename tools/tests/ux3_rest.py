@@ -66,7 +66,7 @@ async def part_idle(b):
     ok(len(segs) == 1 and segs[0][4] == 'ra', f'tseg 휴식 구간 1개(ra) {segs}')
     tm = await tsum(pg); ok(abs(tm - 11 * MIN) <= 1500, f'time은 11분만 ({tm / 1000:.0f}초)')
     # [📖 공부했어요] → 휴식에서 빼고 공부로
-    await pg.evaluate("__h.trStop()"); await pg.evaluate("localStorage.removeItem('jblhub.v1.tstate')"); await pg.clock.run_for(300)
+    await pg.evaluate("__h.trStop()"); await pg.evaluate("localStorage.removeItem('jblhub.v1.tstate');__h.tsRead()"); await pg.clock.run_for(300)
     await pg.evaluate("location.hash='#/OMS1/DD2/learn'"); await pg.clock.run_for(800)
     li = await study(pg, 5, x=320); await pg.clock.run_for(9 * MIN); r0 = await rest(pg); tm0 = await tsum(pg)   # 휴식이 시작된 뒤(공부 몫 다 기록)
     r0 -= 8 * MIN - 50   # 이미 기록된 휴식(마지막 입력 1분 뒤부터) — 옮기면 이것까지 빠짐
