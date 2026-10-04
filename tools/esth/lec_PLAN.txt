@@ -67,8 +67,8 @@ U: 치아 하나를 치료하는 거라면 이렇게까지 안 해도 되지만 
 F: 8=6전치나 하악까지 전체 심미 치료할 때 필요한 systemic 접근 도표
 # 도표의 화살표 — 단계가 어떻게 이어지나
 | 출발 | 도착 |
-| 1의 X-rays, photographs, study casts | 2의 Orthodontic setup · Diagnostic wax-up |
-| 2의 Orthodontic setup · Diagnostic wax-up | 3의 X-rays, photographs, study casts · Treatment plan and options |
+| 1의 X-rays, photographs, study casts | 2의 Orthodontic setup, Diagnostic wax-up |
+| 2의 Orthodontic setup, Diagnostic wax-up | 3의 X-rays, photographs, study casts · Treatment plan and options |
 | 1의 Tentative diagnosis and treatment planning | 3의 Treatment plan and options |
 | 3. Consultation | 4. Initial therapy · 5. Diagnostic phase |
 | 3의 Treatment plan and options | 5의 Diagnostic mock-up (shade selection) |
@@ -306,7 +306,7 @@ F: 35=끌어내리는 힘과 기간에 따라 bone도 함께 또는 치아만
 U: 다만 한계점은 중절치가 회전되어 있었기 때문에 치은의 형태가 다르다는 점(26 필기 p.37).
 F: 36=gingivectomy 등으로 zenith를 어느 정도 맞춤, 37=처음과 비교
 M: Forced eruption: {r:천천히} → bone도 같이 / {r:강한 힘으로 빨리} → 치아만
-M: Case 1 최종: #11 근관치료 + {r:Forced eruption} + {r:All ceramic crown} · #21 근관치료 + All ceramic crown · {r:gingivectomy}로 zenith 보정
+M: Case 1 최종: #11 근관치료 + {r:Forced eruption} + {r:All ceramic crown} / #21 근관치료 + All ceramic crown / {r:gingivectomy}로 zenith 보정
 M: 한계 = 회전되어 있던 중절치의 {r:치은 형태} 차이 · {r:4년} 유지
 
 ## Case 2 23Y/F — Root Fracture #11 · Crown Fracture #21 | 23세 여성 외상 — 진단과 치료 옵션 퀴즈 | 38-41 | 증례 · 외상 파절 | jb=U02
@@ -334,13 +334,13 @@ F: 40
 - #21은 환자가 크라운 수복까지는 피하고 싶다고 해서 shade의 문제가 있을 수 있지만 {r:직접수복}을 하게 되었다(26 필기).
 E: U02 | 20·18년 서술 "55세 어머니(고혈압 외 전신질환 없음) 전치 파절 — 어떤 치료를 선택 진행할지와 그 이유" → 치아 파절시 라미네이트, 도재전장관 수복, 레진 수복 등 다양한 방법을 사용할 수 있다. 치관이 반정도 남아있는 경우, 치수의 손상유무에 따라 두가지 방법을 시도해볼 수 있다. 1) 치수가 손상된 경우, 우선 근관치료를 시행해야하며, 치수 생활력 상실에 따른 상아질의 변색을 수반하므로, 상아질의 색조를 가릴 수 있는 full veneer crown을 제작한다. 남아있는 치관의 정도에 따라 composite resin core를 형성해준 후 crown preparation 하여 자연치와 유사한 형태와 색조의 전부도재관으로 수복하여준다. 2) 치수 손상이 없는 경우, 남아있는 치관을 최대한 보존하기 위해 치아 삭제량이 비교적 적은 composite resin build-up을 해준다. 전치부 파절의 경우, putty matrix index를 이용하여 enamel shade, body dentin shade, dentin shade의 resin으로 layering해주면 심미적으로 만족스러운 결과를 얻을 수 있다. 이 때, 파절 위험이 있으므로, 전치부에 큰 힘이 가해지지 않도록 환자를 주의시킨다. — p.41 #21 옵션(Direct composite · Laminate veneer · Full crown)이 JB 답 첫 문장의 세 갈래 · p.38 치수 침범 없는 #21 → p.42 Class IV direct composite / post, core가 불가능한 #11 → 정출 후 All ceramic crown이 같은 논리 · 선택 이유는 p.43 비용·기간·환자의 선호도 ⚠ 함정: '상아질 변색 → full veneer crown'·'큰 힘 주의'는 지금 자료에 없음(JB 근거 = 전임 서덕규 전치부 심미수복 p.2 퀴즈) · putty matrix index와 shade layering은 Direct veneer 강의 p.9 "PVS custom matrix from the wax-up model" · p.11 "cervical shade, body shade, translucent한 enamel shade 순으로" [[VEN:9]] [[VEN:11]]
 F: 41=치료 옵션 퀴즈
-M: Case 2 문제: #11 {r:horizontal root fracture}({r:palatal} 쪽 깊은 사선) · #21 {r:oblique crown fracture}({r:치수 침범은 없는} 치관 파절)
+M: Case 2 문제: #11 {r:horizontal root fracture}({r:palatal} 쪽 깊은 사선) / #21 {r:oblique crown fracture}({r:치수 침범은 없는} 치관 파절)
 M: #11 옵션: {r:Surgical repositioning} · Extraction & implant · {r:Forced eruption}(필기 + {r:CLP}) / #21 옵션: {r:Direct composite} · Laminate veneer · Full crown
 M: Plan: {r:Forced eruption of #11} · {r:Direct composite restoration of #21} · {r:Diastema closure of #12}
 
 ## Case 2 23Y/F — Decision · 10-Year Outcome | 결정 이유와 결과 — 치료계획을 고르는 기준 | 42-45 | 증례 · 선택 기준 | jb=U02
 > 긴 치근 덕에 교정적 정출, #21은 환자 뜻대로 직접 수복 — 정답은 없고 비용·기간·선호도·협조·술기로 고른다
-= #11 정출 → {r:All ceramic crown} · #21 {r:Class IV direct composite} · #12 {r:Diastema closure} / 기준 = 비용·기간·{r:환자의 선호도}
+= #11 정출 → {r:All ceramic crown} / #21 {r:Class IV direct composite} / #12 {r:Diastema closure} / 기준 = 비용·기간·{r:환자의 선호도}
 # 결정과 이유
 | 치아 | 최종 치료 | 이유(필기) |
 | #11 | **{r:All ceramic crown}** ({r:교정적 정출}술 결정) | surgical repositioning 하기에도 너무 깊은 파절선 · 파노라마에서 상악전치의 치근이 매우 긺(실제로 근관장이 {r:23mm} 정도, 견치 치근은 거의 코밑까지) → 교정적 정출에 이로움 |
@@ -359,5 +359,5 @@ F: 43=이렇게 치료함
 - {r:10년} 지났는데도 잘 유지되고 있다(26 필기 — 파노라마).
 F: 44=10년 지났는데도 잘 유지
 M: #11 = {r:교정적 정출}(근관장 {r:23mm} 긴 치근) → {r:All ceramic crown} · 정출 후 {r:1-2mm} 다시 올라감
-M: #21 = {r:Class IV direct composite}(크라운 회피) · #12 = {r:Diastema closure with composite} · 10년 유지
+M: #21 = {r:Class IV direct composite}(크라운 회피) / #12 = {r:Diastema closure with composite} · 10년 유지
 M: 치료계획 기준 = {r:비용} · {r:기간} · {r:환자의 선호도} · {r:환자의 협조} · 나의 술기 — "정답은 없다"

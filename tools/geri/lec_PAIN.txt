@@ -135,7 +135,7 @@ U: 통증이 많고 사회적으로 고립되어 있는 상태에서는 우울�
 E: J11 | 21년 서술(탈) "만성통증을 가진 노인환자 평가 시 주의·고려할 점"(유사: 안면통증을 지속·심화시키는 요인) → ==Pain perception의 변화 / Depression / Sleep problem / Organ deterioration== = 도넛 4칸 — p.18 · 학습부: 평가를 어렵게 하는 7가지도 답이 될 수 있음
 F: 18=노인 통증 4요인
 M: 4요인: {r:Pain perception} · {r:Depression} · {r:Organ deterioration} · {r:Sleep problems}
-M: 4칸이 여는 장: {r:Depression} p.35 → 우울·외로움 / {r:Organ deterioration} p.50 → 약물치료 / {r:Sleep problems} p.54 → 수면 — 21년 '평가 시 고려할 점' = 4칸 이름 그대로
+M: 4칸이 여는 장: {r:Depression} p.35 → 우울·외로움 / {r:Organ deterioration} p.50 → 약물치료 / {r:Sleep problems} p.54 → 수면 / 21년 '평가 시 고려할 점' = 4칸 이름 그대로
 
 ## Age Differences in Pain Perception | 노화에 따른 통증 지각 변화 — 말초·뇌·내인성 억제 | 19-23 | 기전 | jb=J11
 > 느끼는 것도 처리하는 것도 느려지고, 통증을 쳐내는 힘(억제)은 약해진다
@@ -184,7 +184,7 @@ M: 심근경색 생존 노인: {r:30%} 급성 증상 보고 안 함 · {r:30%} �
 @G ③ 인지장애 환자의 통증 평가
 ## Pain in Cognitive Impairment · Pain Scales | 인지장애 환자의 평가 원칙과 1차원 통증 척도 | 17,26-30 | 평가
 > 인지장애가 있어도 먼저 직접 묻고, 안 되면 척도, 그것도 안 되면 행동을 본다
-= 평가 3단계 = {r:Self-report} → {r:Simple scale}(NRS·Faces) → {r:Behavioral observation} · {r:생리적 지표만으로 판단 ×}
+= 평가 3단계 = {r:Self-report} → {r:Simple scale}(NRS·Faces) → {r:Behavioral observation} / {r:생리적 지표만으로 판단 ×}
 # 인지장애가 있어도 먼저 "직접" 물어본다(26 슬라이드)
 - **Self-report**: 현재 통증을 질문, 단순한 표현·반복 설명.
 - **Simple scale**: NRS / Faces scale 등 환자에게 맞는 도구 선택.
@@ -208,8 +208,8 @@ U: 치매로 인지기능이 떨어져도 천천히 기다려 주고 반복해�
 | {r:IOWA Pain Thermometer} | 온도계 그림 No Pain → The Most Intense Pain Imaginable — 그림 위에서 짚게 해서 정도 파악 |
 | Faces pain scale · {r:Wong-Baker FACES} | 얼굴 그림 0-10(No hurt → Hurts worst) + Numeric Pain Rating Scale |
 F: 17=인지장애가 있어도 먼저 직접 물어본다, 26=Pain in cognitive impairment, 27=self-report가 불가능해지면, 28=One dimensional pain scales, 29=IOWA Pain Thermometer, 30=Faces pain scale
-M: 평가 순서: {r:Self-report} → {r:Simple scale} → {r:Behavioral observation} · {r:혈압·맥박만으로} 판단 ×
-M: 치매 진행 ↔ 통증 강도와 진통제 투여 {r:역상관} · 최선의 지표 = {r:abrupt changes in behavior and function}
+M: 평가 순서: {r:Self-report} → {r:Simple scale} → {r:Behavioral observation} / {r:혈압·맥박만으로} 판단 ×
+M: 치매 진행 ↔ 통증 강도와 진통제 투여 {r:역상관} / 최선의 지표 = {r:abrupt changes in behavior and function}
 M: 1차원 척도: Simple descriptive · {r:0-10 Numeric} · VAS · {r:IOWA thermometer} · {r:Faces(Wong-Baker)}
 
 ## Nonverbal Pain Indicators ★ | 비언어적 통증 지표 6 | 31-32 | 기출 ★ 5년 연속 | jb=J01
@@ -236,7 +236,7 @@ M: 21년 예시: interpersonal = combative·disruptive·{r:resisting care}·decr
 
 ## PAINAD | 진행된 치매의 통증 평가 — 5항목 × 0-2점 | 33-34 | 도구
 > 말 못 하는 치매 환자의 통증을 숫자로 — 다섯 가지 행동을 0·1·2점으로
-= {r:PAINAD} 5 = Breathing · Negative vocalization · Facial expression · Body language · Consolability · 각 {r:0-2} · 총 {r:0-10}
+= {r:PAINAD} 5 = Breathing · Negative vocalization · Facial expression · Body language · Consolability / 각 {r:0-2} · 총 {r:0-10}
 # 5항목 — 1점과 2점의 차이
 | Behavior | 0 | 1 | 2 |
 | {r:Breathing}(independent of vocalization) | Normal | Occasional labored breathing · Short period of hyperventilation | Noisy labored breathing · Long period of hyperventilation · Cheyne-Stokes respirations |
@@ -255,7 +255,7 @@ P: 26 필기: 1점과 2점의 다른 점 위주로 읽어 주셨다.
 U: 점수를 참고하여 통증의 정도를 유추할 수 있다.
 F: 33=PAINAD 5항목, 34=PAINAD scoring
 M: PAINAD 5: {r:Breathing} · {r:Negative vocalization} · {r:Facial expression} · {r:Body language} · {r:Consolability}
-M: 각 {r:0-2} → 총 {r:0-10}: {r:1-3} mild / {r:4-6} moderate / {r:7-10} severe
+M: 각 {r:0-2} → 총 {r:0-10}: {r:1-3} mild · {r:4-6} moderate · {r:7-10} severe
 
 @G ④ 우울·외로움
 ## Depression and Chronic Pain | 우울증과 만성통증 — 기본 사실·진단 기준·노인의 우울 증상 | 25,36-37,41-42 | 기출 | jb=J05
@@ -337,7 +337,7 @@ U: 16점 이상이면 우울감이 높을 것으로 추측 — 나중에 의뢰�
 P: 26 필기: 올해는 이 내용을 자세히 다루지 않고 넘어가셨다(25: 시간 있으면 환자에게 한번 확인해 보라).
 F: 46=Beck's depression index, 47=채점과 해석, 48=문항 예시
 M: Beck: {r:21문항} · {r:자기보고} · 문항 {r:0-3점} · 총 {r:0-63}
-M: {r:0-9} 정상 / {r:10-15} 가벼움 / {r:16-23} 중함 / {r:24-63} 심함 · 한국판 cut-off {r:16}
+M: {r:0-9} 정상 · {r:10-15} 가벼움 · {r:16-23} 중함 · {r:24-63} 심함 / 한국판 cut-off {r:16}
 
 @G ⑤ 장기 기능 저하와 약물치료
 ## Pharmacotherapy Difficulty · Physiologic Changes | 노인 약물치료가 어려운 이유 — 떨어지는 것과 올라가는 것 | 50-53 | 개념 | jb=J11,J10
@@ -449,7 +449,7 @@ M: 코골이(no disease) → {r:OSA}(disease) · 진단 {r:AHI}
 
 ## Sleep Evaluation — Epworth · PSG · Portable PSG | 수면 평가 — 설문·PSG·휴대용 PSG | 67-74 | 검사
 > 설문으로 거르고 PSG로 확진 — 집에서 하는 portable은 편하지만 고령·인지장애 환자에겐 표준 PSG
-= {r:Epworth} 0-3 × 8 = {r:24}, 총점 {r:>10} · {r:PSG} = gold standard, 한계 {r:first night effect} · 고령·인지장애 → {r:표준 PSG}
+= {r:Epworth} 0-3 × 8 = {r:24}, 총점 {r:>10} / {r:PSG} = gold standard, 한계 {r:first night effect} / 고령·인지장애 → {r:표준 PSG}
 # Epworth Sleepiness Scale
 - 8가지 활동 상황(앉아서 독서 · {r:TV 볼 때} · 공공장소에서 가만히 · 1시간 이상 차 승객 · 오후에 혼자 누워 쉴 때 · 앉아서 대화 · 술 없이 점심 후 조용히 · 차에서 신호 대기)에서 졸린 정도.
 - 점수 {r:0-3}, total of {r:24} pts · 총점 {r:>10}: high possibility of sleep problem → 수면 문제 때문에 낮까지 영향받는다고 생각.
@@ -479,7 +479,7 @@ U: 잘 된 연구는 2-3회 반복해 first night 결과는 버리고 진행하�
 - Safety: 늘어진 전선에 넘어질 위험 · 배터리 기기의 감전 위험 · oximeter probe에 의한 화상 · 전극을 붙이고 운전할 경우 사고 위험 → 모든 주의사항을 설명.
 F: 67=Epworth Sleepiness Scale, 68=Polysomnography, 69=First night effect, 70=Limitations of PSG, 71=Portable PSG 장단점, 72=고령이나 인지장애는 표준 PSG, 73=측정 채널, 74=Safety
 M: Epworth {r:0-3 × 8 = 24} · {r:>10} 수면 문제 · critical = {r:TV 볼 때}
-M: PSG = {r:gold standard}(Dement·Raynal {r:1974}) · 한계: {r:first night effect} · technician 의존 · episodic 누락 · night-to-night 변동
+M: PSG = {r:gold standard}(Dement·Raynal {r:1974}) / 한계: {r:first night effect} · technician 의존 · episodic 누락 · night-to-night 변동
 M: Portable: 비용 {r:1/5-1/7} · 탈락 시 해결 불가 · {r:TST} 곤란 · 고령·인지장애 → {r:표준 PSG} · airflow는 {r:thermal + nasal pressure} 둘 다
 
 @G ⑦ 구강안면통증과 치료
@@ -599,7 +599,7 @@ P: 26 필기: **Bisphosphonate** 강조하셨다.
 P: 26 필기: **낙상 및 구강건조증**은 오늘 수업에서 정말 여러 차례 언급 — 가장 놓치기 쉬운 요인.
 F: 85=약물의 구강 부작용, 86=Oral adverse effects of medications in older adults, 87=약물군별 주요 문제와 유의사항
 M: TCA {r:xerostomia · pressor effect 증강} / SSRI {r:xerostomia · dysgeusia · stomatitis · glossitis · bruxism} / Lithium {r:lichenoid stomatitis · metallic taste}
-M: Bisphosphonates → {r:MRONJ} · Antihypertensives → {r:gingival enlargement} · erythromycin · NSAID → {r:toxicity}
+M: Bisphosphonates → {r:MRONJ} / Antihypertensives → {r:gingival enlargement} / erythromycin · NSAID → {r:toxicity}
 M: 가장 놓치기 쉬운 것 = {r:낙상} · {r:구강건조증}
 
 ## Non-drug Treatment ★ | 비약물 치료 6 | 88-89 | 기출 | jb=J12
@@ -620,7 +620,7 @@ U: 마음이 편안해지면 통증이 어느 정도 조절되기 쉬워진다(p
 P: 필기: 어르신들은 교육 중에서 받아들이는 양이 정해져 있고 제한되어 있다.
 F: 88=Non-drug treatment 교육 운동 물리, 89=Non-drug treatment CBT operant mind-body
 M: 비약물 6: {r:Education} · {r:Exercise} · {r:Physical modalities} · {r:CBT} · {r:Operant behavior} · {r:Mind-body}
-M: Exercise {r:30분↑ 주 3-4회} 계속 · Cold 급성 {r:48시간} / Heat 근육통 · CBT {r:10-12주} + {r:cognitively intact}
+M: Exercise {r:30분↑ 주 3-4회} 계속 / Cold 급성 {r:48시간} · Heat 근육통 / CBT {r:10-12주} + {r:cognitively intact}
 
 ## Biopsychosocial View · Untreated Pain | 만성통증은 생물–심리–사회 문제 — 방치의 결과와 마무리 | 90-91,95-96 | 정리
 > 통증 점수만 묻지 말고 기능·수면·기분까지 — 우리가 바꿀 수 있는 것은 심리와 수면

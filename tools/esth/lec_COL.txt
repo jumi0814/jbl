@@ -491,7 +491,7 @@ F: 82=표면 반사와 흡수와 내부 산란 — 에나멜은 투명 덴틴은
 - 투명도를 눈으로 측정할 수 없지만 입안이 어두워서 투명도를 간접적으로 인지할 수 있다(필기).
 F: 84=투명도는 나이가 들수록 줄어듦
 M: {r:Opacity} = 빛을 {r:막는} 능력 ↔ {r:Translucency} = 빛을 {r:통과}시키는 능력 / {r:Transparency} = 극값
-M: 치아 = {r:translucent}(반투명) · 측정 = {r:Transmittance} · {r:Contrast ratio}(흰/검은 배경)
+M: 치아 = {r:translucent}(반투명) / 측정 = {r:Transmittance} · {r:Contrast ratio}(흰/검은 배경)
 M: 관여 = {r:Reflectance} · {r:Thickness} / 나이↑ → translucency {r:↓}
 
 ## Gloss · Surface Roughness | 광택(정반사)과 표면 거칠기 | 85-88 | GU · roughness·waviness·form
