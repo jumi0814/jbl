@@ -392,6 +392,7 @@ def render_item(v, ctx, cont=None):
 def render_recall(x, ctx):
     rows = split_top(x)
     if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)
+    if len(rows) >= 2 and min(len(_plain(r).strip()) for r in rows) >= 4 and sum(1 for r in rows if re.search(r' = | → |: ', _plain(r))) * 2 >= len(rows): return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
     return f'<li>{inline(x, ctx)}</li>'
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
 EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
@@ -493,7 +494,7 @@ def _lines(items):
     """[(html, 길이)…] → 8자 미만은 앞 줄에 붙인 줄 목록(html만) · items의 html은 앞 구분자(숨김 .kh)를 이미 품고 있음 — 붙일 때는 구분자를 보이게"""
     out = []
     for h, n in items:
-        if out and n < 8: out[-1] = [out[-1][0] + h.replace('class="ksep kh"', 'class="ksep kj"', 1), out[-1][1] + n]
+        if out and n < 5: out[-1] = [out[-1][0] + h.replace('class="ksep kh"', 'class="ksep kj"', 1), out[-1][1] + n]   # 10-04 8 → 5자 미만만 앞 줄에(‘흡수성 80%’ 같은 짧은 사실은 제 줄)
         else: out.append([h, n])
     return [h for h, _ in out]
 def _div(lines, cls='kl'): return ''.join(f'<div class="{cls}">{h}</div>' for h in lines)
