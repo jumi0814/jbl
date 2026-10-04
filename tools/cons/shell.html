@@ -3090,7 +3090,8 @@ const fcHash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(
 const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
  init(p,L){const tmp=document.createElement('div');this.s=p.id;this.k=L.k;this.all=[];const E=x=>x.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
   (L.recall||[]).forEach(r=>{tmp.innerHTML=r.h;const h=/^\s*<li/.test(r.h)?'<ul class="fcl">'+r.h+'</ul>':'<ul class="fcl"><li>'+r.h+'</li></ul>';const hasK=/class="k"/.test(r.h);
-   this.all.push({key:'R:'+L.k+':'+fcHash(r.t+'|'+tmp.textContent),tag:'암기',kind:'암기',cloze:hasK,q:'<div class="fct">'+E(r.t)+'</div>'+h,a:'<div class="fct">'+E(r.t)+'</div>'+h});});
+   const key='R:'+L.k+':'+fcHash(r.t+'|'+tmp.textContent);if(Array.isArray(r.ok)&&r.ok.length){const M=mkObj(LS.get('fc.'+p.id,{}));if(!M[key]){const o=r.ok.find(x=>M[x]);if(o){M[key]=M[o];LS.set('fc.'+p.id,M);}}}   /* 10-04 ⚡ 줄 구분 기호만 바뀐 경우 옛 키 기록을 새 키로(옛 키는 지우지 않음) */
+   this.all.push({key,tag:'암기',kind:'암기',cloze:hasK,q:'<div class="fct">'+E(r.t)+'</div>'+h,a:'<div class="fct">'+E(r.t)+'</div>'+h});});
   L.jb.forEach(id=>{tmp.innerHTML=p.cards[id];const q=$('.qtext',tmp),a=$('.jbans .lines',tmp),y=$('.ybadge b',tmp);const v=($('.qc',tmp)||{dataset:{}}).dataset.v;if(q&&a)this.all.push(Object.assign({key:'J:'+id,tag:'기출 '+(y?y.textContent:''),kind:'기출'},fcJB(tmp,id,v)));});   /* ux2 F08 앞면 = 문제 원문 그대로(그림 포함) · 뒷면 = 답 핵심·정답 보기·해설 2줄·⚡ 첫 줄·문제 카드로 */
   L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp),pc=$('.pc',tmp);if(q&&a)this.all.push({key:'P:'+((pc&&pc.dataset.aid)||i),tag:'예상',kind:'예상',q:E(q.textContent),a:E(a.textContent)});});
   const ps=mkObj(LS.get('fcpos.'+this.s+'.'+this.k,{}));this.kind=typeof ps.kind==='string'?ps.kind:'';this.st=typeof ps.st==='string'?ps.st:'';this.ord=Array.isArray(ps.ord)?ps.ord:null;this.back=false;this.build(ps.key);},

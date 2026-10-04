@@ -3,6 +3,8 @@
 사용자(10-04 원문, 2번째 지적): "* 정필훈 교수님 기출(참고), JB 괄호 (2018) + … 슬라이드에서 각각 frontal * posterior plagiocephaly로 구분됨. p.35 감별: Positional plagiocephaly ipsilateral frontal bossing, ipsilateral ear displaced anteriorly / Lambdoid synostosis contralateral frontal bossing, … 이런식으로 줄바꿈이 이상하게 되어있어서 맥락 오해할 정도의 크고 작은 줄바꿈 오류들이 여전히 남아있어!! 강의자료 정리본과 jb 등 모든 곳에서 줄바꿈 오류 전수조사해서 큰 틀과 형식, 내용은 바꾸지 말고 줄바꿈만 잘 해주자!! … 너가 넘버링 붙이고 공간의 효율성 위해서 하나의 행에 여러 열로 나눠서 정렬한건 좋아! 내가 원하는건 줄바꿈이 되어야만 하는데 안되어있는 곳들을 줄바꿈 해달라는거야!! 저번에 이미 검사를 했음에도 수많은 누락 있었으니까 같은 지시 또 안하게끔 면밀하게 모든 곳을 검토"
 그리고 "* Lambdoid → Posterior plagiocephaly · 1:150,000 · 수술 6-10 Ms Positional = 조기유합 아님 · 예방이 최선 — 여기서도 positional 앞에 줄바꿈이 안되어있어 … 이런 누락 없게끔 꼭 면밀히 검토"
 
+사용자 예 3(10-04): "* 귀 위치: Positional 앞으로 * Lambdoid 뒤로 · 이마 bossing: Positional 같은 쪽 * Lambdoid 반대쪽 … 아래처럼 되어야지!! * 귀 위치: Positional 앞으로 Lambdoid 뒤로 * · 이마 bossing: Positional 같은 쪽 Lambdoid 반대쪽" — 원고 `M: 귀 위치: Positional {r:앞으로} / Lambdoid {r:뒤로} · 이마 bossing: …`의 ` / `와 ` · `가 거꾸로. **⚡ 암기 줄(M:)도 대상**(⚡ 줄은 ` / `에서 줄이 나뉨 — 플래시카드 기록은 기호만 바뀌면 빌드가 옛 키를 넘겨 이어지므로 기호 고치기는 안전. 낱말은 바꾸지 말 것).
+
 ## 이미 고친 렌더러 규칙(코드 — 다시 고치지 말 것)
 - JB 주석 긴 줄: ' / '를 대시(' — ')보다 먼저 나눔 → 'A — 설명 / B — 설명'이 바르게 둘로.
 - ' / '로 나뉜 조각이 '사실 문장'(' = '·' → '·': '·' — '·안에 ' · ' 나열)이면 가로로 잇지 않고 한 줄씩(🔑 'Lambdoid … / Positional …' 해결). 낱말뿐인 짧은 나열은 가로(격자) 그대로 — 사용자가 좋다고 한 모양.
