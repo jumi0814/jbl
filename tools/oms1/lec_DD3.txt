@@ -184,7 +184,8 @@ F: 26, 27=Op plan — 3D CT 모델로 rough하게 잡은 계획
 # 결과와 한계
 - Preop prediction vs real postop result · Maxilla: Le Fort I osteotomy with {r:posterior impaction}.
 - landmark로 분석하므로 {r:landmark identification} 관련 error가 많음 — 예: 술후에도 바뀌면 안 되는 {r:SN to FH} 값이 수술 1년 5개월 후 바뀜.
-- p.21 측정표의 SN to FH (deg): Mean±SD 10.3±2.4 · Pt. value 13.56 · prediction 13.56 · PO 1.5Y {r:11.65}.
+| p.21 측정표 | Mean±SD | Pt. value | prediction | PO 1.5Y |
+| SN to FH (deg) | 10.3±2.4 | 13.56 | 13.56 | {r:11.65} |
 - Postop 1 year: 교합과 외모 모두 {r:안정적으로 유지} · Postop occlusion.
 F: 28=수술 전 prediction과 수술 후, 29, 30=SN to FH가 술후 바뀜 — landmark identification error, 31=술후 1년 — 교합과 외모 모두 안정, 32
 M: 증례 plan: Le Fort I post impaction {r:3 mm} · A point {r:2 mm} 전방 · 1⊥1 고정 + IVSRO setback {r:7 mm}
@@ -317,15 +318,14 @@ F: 88, 94, 103
 # Result in numbers — Plan vs Result
 - 12 landmarks의 Right-left (X) · Anterior-posterior (Z) · Up-down (Y) 각각 Plan · Result · Error.
 - 상악 전치부는 **1mm 내외**의 오차, 하악은 **상대적으로 큰 오차**(필기).
-| landmark | X error | Z error | Y error |
-| Mx #1 | 0.46 | 0.43 | −0.96 |
-| A-point | 0.46 | −0.21 | −0.76 |
-| Mn #1 | 0.39 | 0.53 | {r:−2.94} |
-| Mn Lt#6 | −0.02 | 0.49 | −1.00 |
-| B-point | 0.06 | {r:2.16} | {r:−2.05} |
-| L condylion | −1.05 | 1.55 | −1.41 |
-| R condylion | 0.15 | 1.34 | −0.10 |
-- 슬라이드에서 빨간 글씨 Error: Mn #1·Mn Lt#6·B-point의 Y · B-point의 Z · L condylion의 X·Z·Y · R condylion의 Z.
+| landmark | X error | Z error | Y error | 슬라이드 빨간 글씨 Error |
+| Mx #1 | 0.46 | 0.43 | −0.96 | — |
+| A-point | 0.46 | −0.21 | −0.76 | — |
+| Mn #1 | 0.39 | 0.53 | {r:−2.94} | Y |
+| Mn Lt#6 | −0.02 | 0.49 | −1.00 | Y |
+| B-point | 0.06 | {r:2.16} | {r:−2.05} | Z·Y |
+| L condylion | −1.05 | 1.55 | −1.41 | X·Z·Y |
+| R condylion | 0.15 | 1.34 | −0.10 | Z |
 F: 102=상악 전치부는 1mm 내외 하악은 큰 오차
 M: 증례 = {r:Facial asymmetry with mandibular prognathism} → 3D 계획 → 수술 → {r:Postop superimposition} → PO 9M
 M: 증례 결과: 상악 전치 오차 {r:1mm 내외} · 하악 오차 {r:더 큼}(Mn #1·B-point의 {r:Y} 수직)
@@ -345,12 +345,11 @@ F: 104=수술 전후 1주일 CT로 평가, 105
 - error 방향 plot: condyle은 frontal plane에서 {r:왼쪽}이 더 넓은 error 범주 · U6/L6는 axial plane에서 {r:하악}이 더 넓음.
 - 수업 화면: Linear Landmarks (Mx)의 absolute mean 0.51-0.83 mm.
 - 같은 표에서 A-point의 Z p-value만 {r:0.000*}(빨간 글씨).
-- Y-coordinate MAE: All the maxillary landmarks 0.57 vs All the mandibular distal landmarks {r:1.40}(L1 1.67 · Point B 1.62).
-| Mean absolute error — 3D-distance (mm) | 값 |
-| Both Condyles | {r:1.03} |
-| All the maxillary landmarks | 1.25 |
-| All the mandibular distal landmarks | 2.24 |
-| L1 · Point B | 2.34 · {r:2.55} |
+| Mean absolute error (mm, p.107) | 3D-distance | Y-coordinate |
+| Both Condyles | {r:1.03} | 0.59 |
+| All the maxillary landmarks | 1.25 | 0.57 |
+| All the mandibular distal landmarks | 2.24 | {r:1.40} |
+| L1 · Point B | 2.34 · {r:2.55} | 1.67 · 1.62 |
 F: 106=condyle 최소 L1과 B point 최대, 107=특히 하악의 수직 Y error, 110=왼쪽에서 더 넓은 error 범주, 111=하악에서 더 넓음, 120
 # 해석
 - 수술 sequence를 바꿔도 error 정도에 큰 변화가 없었음.
