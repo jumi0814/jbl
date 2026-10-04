@@ -155,12 +155,12 @@ def _ul(items, cls='klist'): return f'<ul class="{cls}">' + ''.join(f'<li>{x}</l
 def astruct(s, lvl=0):
     s = s.strip()
     if lvl > 5 or len(s) <= 190:
-        if len(s) > 150 and lvl == 0: return lecparse.render_block(s, ctx)
+        if (len(s) > 150 or lecparse._facts(lecparse.split_top(s, ' / '))) and lvl == 0: return lecparse.render_block(s, ctx)   # 10-04 짧아도 ' / ' 사실 조각이면 줄마다
         return _lbl(s) or lecparse.inline(s, ctx)
     sub = lambda ps: _ul([astruct(x, lvl + 1) for x in lecparse._rebalance(ps)])
     blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in lecparse._rebalance(ps))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
     # 1) 문장('. ' — p. 같은 약어 제외)
-    pos = [(i, 1) for i in _d0(s, '. ') if not re.search(r'(?:\bp|\bvs|\be\.g|\bcf|\bFig|\bNo|\bex|\bi\.e)$', s[max(0, i - 4):i])]
+    pos = [(i, 1) for i in _d0(s, '. ') if not lecparse.ABBR.search(s[max(0, i - 8):i + 1])]   # 10-04 해부 약어(n. a. lig. proc. …)·번호(1.)·Perio. 뒤에서 문장을 자르지 않음
     ps = _cut(s, pos, 'L')
     if len(ps) >= 2 and min(len(x) for x in ps) >= 8: return blk(ps)
     # 1-2) 10-04 사용자 줄바꿈 전수(2차): 최상위 ' / '가 있으면 대시보다 먼저 — 'A — 설명 / B — 설명'이 대시에서 찢겨 'A' · '설명 / B' · '설명'으로 보이던 것
@@ -502,6 +502,15 @@ def fchash(t):
         h, r = divmod(h, 36); o = d[r] + o
         if not h: return o
 def txt_of(h_): return html.unescape(re.sub(r'<[^>]+>', '', h_))
+def fcnorm(t): return re.sub(r'[\s/·•,;:|]+', '', t)
+FCPREV = {}
+try:
+    _pp = J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))
+    for _L in _pp.get('lect', []):
+        for _r in _L.get('recall') or []:
+            _tc = txt_of(_r['h']); _k = 'R:' + _L['k'] + ':' + fchash(_r['t'] + '|' + _tc)
+            FCPREV.setdefault((_L['k'], fcnorm(_r['t'] + '|' + _tc)), []).extend([_k] + list(_r.get('ok') or []))
+except Exception as _e: print('FCPREV 없음', _e)
 EXN = [0, 0]
 def lec_card(L, j, c):
     k = L['k']; ids = [x for x in c['jb'] if x in QMAP]; mx = max([len(QMAP[x]['yrs']) for x in ids] or [0])
@@ -561,7 +570,7 @@ def lec_card(L, j, c):
         elif t == 'E':
             exams.append(v); exbuf.append(v)
         elif t == 'P': h.append(f'<div class="co c-prof"><div class="ct">💬 교수님 강조</div>{lecparse.render_key(v, ctx)}</div>')
-        elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if len(v) > 150 else lecparse.inline(v, ctx)}</div>')
+        elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if (len(v) > 150 or lecparse._facts(lecparse.split_top(v, " / "))) else lecparse.inline(v, ctx)}</div>')
     flush_ex()
     if c['recall']:   # 안내문은 강의의 첫 ⚡ 블록에만(U27 — 카드마다 반복하지 않음)
         tip = '' if MEMTIP.get(k) else ' <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small>'; MEMTIP[k] = 1
@@ -727,6 +736,10 @@ for L in LEC:
             f'<div class="tblwrap wide msum" data-aid="{aid(k + ":sumt")}" data-alt="{aid(k + ":sum")}"><div class="tscroll"><table class="mtx"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup><thead><tr><th data-col="topic">주제</th>{"".join(f'<th data-col="{c_}"><span class="thn noann">{n_}</span><span class="tho">{o_}</span></th>' for c_, n_, o_ in (("key", "🔑 요지·핵심", "한 줄 요지 · 🔑 핵심"), ("det", "세부", "세부 내용"), ("ex", "★ 시험", "⭐ 기출 — 이렇게 나왔다"), ("mem", "⚡ 암기", "⚡ 암기 줄")))}</tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>')
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.render_recall(x, ctx)} for c in L['cards'] for x in c['recall']]   # 플래시카드: ' / ' 줄은 <li>로(U28)
+    for r_ in recall:   # 10-04 ⚡ 줄 구분 기호(/ ·)·띄어쓰기만 바뀌어도 플래시카드 기록(알아요·몰라요)이 이어지게 — 지난 팩의 같은 줄(기호·공백 뺀 글자가 같음) 키를 ok로 넘김(허브가 옮김)
+        tc_ = txt_of(r_['h']); nk_ = 'R:' + L['k'] + ':' + fchash(r_['t'] + '|' + tc_); old_ = FCPREV.get((L['k'], fcnorm(r_['t'] + '|' + tc_)), [])
+        ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
+        if ok_: r_['ok'] = ok_[:6]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
