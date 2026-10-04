@@ -221,6 +221,9 @@ def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|==|\*\*|\}', '', p)
 def _is_flow(parts):
     """가로 흐름(ul.kflow): 4조각↑ 중앙값 24자 미만 · ux2 D09 2~3조각은 합 100자 이하이거나 3조각 중앙값 22자 이하"""
     if len(parts) < 2: return False
+    # 10-04 사용자 줄바꿈 전수(2차): 조각이 '사실 한 문장'(=·→·:·— 또는 안에 · 나열)이면 가로로 잇지 않고 한 줄에 하나 — 'Lambdoid → … · 수술 6-10 Ms / Positional = …'가 한 줄로 붙던 것 · 낱말뿐인 짧은 나열은 그대로 가로(격자)
+    st = sum(1 for p in parts if re.search(r' = | → |: | — | · ', _plain(p)))
+    if st * 2 >= len(parts): return False
     ls = sorted(len(_plain(p).strip()) for p in parts)
     if len(parts) >= 4: return ls[len(ls) // 2] < 24
     return sum(ls) <= 100 or (len(parts) == 3 and ls[1] <= 22)

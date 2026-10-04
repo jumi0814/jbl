@@ -163,6 +163,12 @@ def astruct(s, lvl=0):
     pos = [(i, 1) for i in _d0(s, '. ') if not re.search(r'(?:\bp|\bvs|\be\.g|\bcf|\bFig|\bNo|\bex|\bi\.e)$', s[max(0, i - 4):i])]
     ps = _cut(s, pos, 'L')
     if len(ps) >= 2 and min(len(x) for x in ps) >= 8: return blk(ps)
+    # 1-2) 10-04 사용자 줄바꿈 전수(2차): 최상위 ' / '가 있으면 대시보다 먼저 — 'A — 설명 / B — 설명'이 대시에서 찢겨 'A' · '설명 / B' · '설명'으로 보이던 것
+    ps = lecparse.split_top(s, ' / ')
+    if len(ps) >= 2 and min(len(x) for x in ps) >= 12:
+        m = re.match(r'^(.{4,80}?[:：])\s+(.+)$', ps[0])
+        if m and not re.search(r'[()"“”]', m.group(1)): return f'<div class="klead">{lecparse.inline(m.group(1), ctx)}</div>' + blk([m.group(2)] + ps[1:])
+        return blk(ps)
     # 2) ' — ' (대시는 뒤 조각 첫머리에)
     ps = _cut(s, [(i + 1, 1) for i in _d0(s, ' — ')], 'R')
     if len(ps) >= 2 and min(len(x) for x in ps) >= 10: return blk(ps)
