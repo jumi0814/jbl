@@ -69,7 +69,7 @@ async def mac(b):
     # ---- V08·V09·V18 ⚡ 묶음·복습 보기
     await open_(pg, '#/OMS1/DD2/learn', '#stage .tc')
     r = await pg.evaluate("(()=>{const L=[...document.querySelectorAll('#t-DD2-0 .c-mem li.mg')];return [L.length,new Set(L.map(l=>l.dataset.fk)).size,document.querySelectorAll('#stage .mj,#stage [data-mj]').length,L.length?L[L.length-1].classList.contains('mgz'):false]})()")
-    ok(r[0] == 2 and r[1] == 1 and r[2] == 0 and r[3], f"V08 DD2 카드 1 ' / ' 줄 = 한 키(data-fk) · ux4 B1-5 줄마다 ○✕ 없음 {r}")
+    ok(r[0] >= 2 and 1 <= r[1] < r[0] and r[2] == 0 and r[3], f"V08 DD2 카드 1 ' / ' 줄 = 줄 여러 개가 한 키(data-fk) · ux4 B1-5 줄마다 ○✕ 없음 {r}")   # 10-04 줄바꿈 2차로 이 카드 ⚡ 두 줄이 모두 나뉨(줄 4 · 키 2) — 묶음 규칙은 그대로
     await pg.evaluate("document.querySelector('#lmrev').click()"); await pg.wait_for_timeout(400)
     r = await pg.evaluate("[[...document.querySelectorAll('#stage .tc:not(.rv-x) .c-mem .mj')].filter(e=>e.offsetParent).length,!!document.querySelector('#stage .rvleg').offsetParent]")
     ok(r[0] == 0 and r[1], f'V09 복습 보기: 몰라요 아닌 카드 줄 ○✕ 보임 {r[0]} · 범례 {r[1]}')
