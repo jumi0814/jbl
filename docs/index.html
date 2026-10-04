@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"e70b76e0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"c16da0e2",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1786,7 +1786,7 @@ body.jbone #hero.hero{display:none}
 #top{height:auto;min-height:52px}#top .crumb{max-height:none;padding:2px 0}
 #top .crumb .ccur{display:block;-webkit-line-clamp:unset;overflow:visible}#top .crumb .ccur .cdot{margin-right:6px;vertical-align:1px}
 @media (max-width:860px){#top .crumb{display:block;white-space:normal;line-height:18px;padding:6px 0;word-break:keep-all;overflow-wrap:anywhere}#top .crumb>*{vertical-align:baseline}#top .crumb button,body:not(.focus) #top .crumb button{display:inline;min-height:0;padding:11px 4px;margin:-11px 0}#top .crumb .sl{display:inline;margin:0 4px}#top .crumb .cdot{margin-right:6px;vertical-align:1px}#top .crumb .ccur{display:inline;padding:0 0 0 2px}   /* ux4f 새 오류: 글줄처럼 이어 흐름 — 긴 강의 제목도 '과목 /' 바로 뒤에서 이어져 상단 막대가 강의마다 덜 달라짐 · 버튼 누름 자리는 위아래 11px 여백(줄 높이는 그대로) */#top #gsearch{flex:none;width:120px;max-width:120px;min-width:120px}
- #top #clock,body:not(.focus) #top #clock{display:inline-grid;grid-template-columns:auto auto;column-gap:7px;row-gap:3px;align-content:center;padding:0 10px}#top #clock .ckd{grid-row:1/3;align-self:center}#top #clock .ckt,#top #clock .ckl{line-height:1.1}#top #clock .ckl{font-size:11.5px;flex-direction:row;gap:12px;margin-left:0;padding-left:0;border-left:0}#top #clock .ck1{min-width:var(--ckl,5.4em)}#top #clock .ck2{min-width:4.2em}}   /* 10-04 ≤860: 아래 줄 = '공부 h:mm:ss  휴식 h:mm' 한 줄 */   /* ux4f 새 오류: ≤860 시계 알약은 시간 위·상태 아래 두 줄(198 → 약 130px) — 검색칸은 줄지 않고(글자 잘림) 빵부스러기 자리가 넓어져 상단 막대 높이가 덜 바뀜 */   /* 한 줄에 안 들어가는 긴 제목만 다음 줄로 · 검색칸을 줄여 빵부스러기 자리를 넓힘 */
+ #top #clock,body:not(.focus) #top #clock{display:inline-grid;grid-template-columns:auto auto;column-gap:7px;row-gap:3px;align-content:center;padding:0 10px}#top #clock .ckd{grid-row:1/3;align-self:center}#top #clock .ckt,#top #clock .ckl{line-height:1.1}#top #clock .ckl{font-size:11.5px;flex-direction:row;gap:12px;margin-left:0;padding-left:0;border-left:0}#top #clock .ck1{min-width:var(--ckl,5.4em)}#top #clock .ck2{min-width:var(--ckl,5.4em)}}   /* 10-04 ≤860: 아래 줄 = '공부 h:mm:ss  휴식 h:mm' 한 줄 */   /* ux4f 새 오류: ≤860 시계 알약은 시간 위·상태 아래 두 줄(198 → 약 130px) — 검색칸은 줄지 않고(글자 잘림) 빵부스러기 자리가 넓어져 상단 막대 높이가 덜 바뀜 */   /* 한 줄에 안 들어가는 긴 제목만 다음 줄로 · 검색칸을 줄여 빵부스러기 자리를 넓힘 */
 /* ux4f E 오류 재검 2회차 — 인쇄에 ↩ 알약·미리보기·알림 숨김 · [필터 ▾]·[회차 ↻] 글자 세로 가운데 · 위에 붙은(mini) 목록 막대에서도 [필터 ▾]로 펼침 · 터치 누름 자리(틀 접기 줄·더 보기·▣ 칩·⤢) */
 @media print{#retpill,#jbpeek,#toast,#toasts,#toasterr,.hbm,.cbend,#skipb{display:none!important}}   /* 10-04 NAV N2 ☆ 북마크 버튼도 인쇄에서 뺌 */
 /* 10-04 허브 점검 2차 NAV N3: 폰(≤480) 상단 막대 — 빵부스러기는 둘째 줄 전체 폭에 한 줄(긴 이름은 말줄임 · 한 글자 폭으로 눌려 세로로 늘어나던 것) · 도구 막대는 줄을 바꿔 화면 안 · JB 강의 칩·비교표 출처 쪽 버튼은 줄바꿈(가로 넘침) */
@@ -1929,7 +1929,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="e70b76e0",PV={"OMS1": "bb442adf", "CONS": "e78ec194", "IMPL": "f30a9821", "ANAT": "7f50a949", "GERI": "6fd543b1", "PHARM": "a6866003", "ESTH": "a58850ef"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="c16da0e2",PV={"OMS1": "5de9036d", "CONS": "4416f0da", "IMPL": "7a63aac8", "ANAT": "5cc42cf1", "GERI": "a3835bb7", "PHARM": "87eb7206", "ESTH": "b06d4818"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -4659,13 +4659,13 @@ function ckLab(st,ts,now){if(st==='rest')return '휴식 '+fmtMS(trRestMs(ts,now)
 function ckTitle(st,ts){return st==='run'?'자동 측정 중':st==='sess'?'공부 세션 — 화면 밖 공부(종이 필기)도 셈':st==='rest'?(ts&&ts.ar?'공부를 멈춰 쉬는 시간으로 재는 중(공부 시간에 안 들어감) — 다시 움직이면 끝나요':'쉬는 중(공부 시간에 안 들어감)'):st==='end'?'멈춤 — '+ENDTXT:st==='other'?'다른 창(탭)에서 재는 중 — 이 창에서 움직이면 이 창이 이어받음':st==='wait'?'자동 측정 대기 — 과목을 열고 움직이면 저절로 시작':'자동 측정 꺼짐 — ▶ 공부 시작으로 재기';}
 /* ux4c 1회차 알약 폭 고정 — 대체 글꼴(Apple SD Gothic Neo)은 숫자 폭이 달라 초마다 폭이 흔들리고 상태마다 검색칸이 밀림 → 가장 긴 글자 폭을 한 번 재어 min-width(--ckt·--ckl) */
 function ckMeasure(){const c=$('#clock');if(!c||!c.querySelector('.ckt'))return;const w=(cls,L)=>{const e=document.createElement('span');e.className=cls;e.style.cssText='position:absolute;visibility:hidden;min-width:0;left:-9999px';c.appendChild(e);let m=0;L.forEach(t=>{e.textContent=t;m=Math.max(m,e.getBoundingClientRect().width);});e.remove();return Math.ceil(m);};
- const D=['0','1','2','3','4','5','6','7','8','9'],dw=D.map(d=>d+':'+d+d+':'+d+d);const a=w('ckv',dw),b=w('ck1',['대기','멈춤','다른 창'].concat(D.map(d=>'공부 '+d+':'+d+d+':'+d+d),D.map(d=>'휴식 '+d+':'+d+d)));
+ const D=['0','1','2','3','4','5','6','7','8','9'],dw=D.map(d=>d+':'+d+d+':'+d+d);const a=w('ckv',dw),b=w('ck1',['대기','멈춤','다른 창'].concat(D.map(d=>'공부 '+d+':'+d+d+':'+d+d),D.map(d=>'휴식 '+d+':'+d+d+':'+d+d)));
  if(a>0){c.style.setProperty('--ckt',a+'px');c.style.setProperty('--ckl',b+'px');}}
 /* 10-04 사용자 '현재 공부하고 있으면 현재 집중시간이 크게 뜨고 오른쪽에 총공부시간 및 총 쉬는시간 … 쉬고 있으면 휴식이 크게 … 총공부시간이 그래도 총쉬는시간보단 살짝 더 진하게'
    큰 칸(.ckt) = [작은 이름 .ckk] + 숫자(.ckv): 공부 중 '집중 h:mm:ss'(이번 집중 — ▶·다시 공부부터) · 쉬는 중 '휴식 h:mm:ss'(이번 휴식) · 자리 비움 · 그 밖(대기·멈춤·다른 창·꺼짐) '오늘 h:mm:ss'(오늘 합계)
    오른쪽 작은 칸(.ckl) = 두 줄: '공부 h:mm:ss'(오늘 합계 .ck1 — 조금 진하게) · '휴식 h:mm'(오늘 휴식 .ck2) — 대기·멈춤이면 첫 줄이 상태 이름 */
 function ckBig(st,ts,now){if(st==='rest')return ['휴식',fmtHMS(trRestMs(ts,now))];if(st==='run'&&now-T.last>60000)return ['비움',fmtHMS(now-T.last-60000)];   /* 이름 칸은 두 글자로 같은 폭(집중·휴식·오늘·비움 — 알약 폭 흔들림 없음) · 보조 글자(aria)는 '자리 비움' */if(st==='run'||st==='sess')return ['집중',fmtHMS(trFocusMs(st,ts,now))];if(T.idleGap)return ['비움',fmtHMS(Math.max(0,now-T.last-60000))];return ['오늘',ckFmt(tToday())];}
-function ckSmall(st,ts,now){const act=st==='run'||st==='sess'||st==='rest'||T.idleGap;const a=act?'공부 '+ckFmt(tToday()):({end:'멈춤',other:'다른 창',wait:'대기',off:'꺼짐'}[st]||'대기'),b='휴식 '+fmtH(restDay(day()));return [a,b];}
+function ckSmall(st,ts,now){const act=st==='run'||st==='sess'||st==='rest'||T.idleGap;const a=act?'공부 '+ckFmt(tToday()):({end:'멈춤',other:'다른 창',wait:'대기',off:'꺼짐'}[st]||'대기'),b='휴식 '+ckFmt(restDay(day()));return [a,b];}   /* 10-04 사용자 '총휴식도 공부시간처럼 초단위까지' */
 function ckPaint(full){const c=$('#clock');if(!c)return;const st=trState(),ts=tsGet(),now=Date.now(),t=ckFmt(tToday()),lab=ckLab(st,ts,now),G=ckBig(st,ts,now),M=ckSmall(st,ts,now);
  if(!c.querySelector('.ckt')){c.innerHTML='<i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk"></small><span class="ckv"></span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small>';ckMeasure();try{document.fonts&&document.fonts.ready.then(ckMeasure);}catch(e){}}else if(full&&!c.style.getPropertyValue('--ckt'))ckMeasure();
  if(full||c.dataset.st!==st){c.dataset.st=st;c.classList.toggle('on',st==='run'||st==='sess');c.classList.toggle('run',st==='run'||st==='sess');c.classList.toggle('rest',st==='rest');c.title=ckTitle(st,ts)+' · 누르면 멈춤·쉬기·크게 보기';}
