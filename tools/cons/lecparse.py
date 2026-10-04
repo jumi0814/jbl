@@ -315,7 +315,7 @@ def _lab_merge(top):
     """라벨 목록: 라벨 없는 조각은 앞 라벨 항목에 ' / '로 합침"""
     out = []
     for p in top:
-        if out and not LBL.match(p) and LBL.match(out[-1]): out[-1] = out[-1] + ' / ' + p
+        if out and not LBL.match(p) and LBL.match(out[-1]): out[-1] = out[-1] + '\u2029' + p   # 10-04 줄바꿈 3차: 라벨 없는 조각은 그 라벨 아래 다음 줄(예전엔 ' / '로 한 줄에 붙어 '/'가 보이고 다른 사실이 붙었음)
         else: out.append(p)
     return out
 def render_block(v, ctx, depth=0):
@@ -334,7 +334,8 @@ def render_block(v, ctx, depth=0):
             if lb.count('==') % 2 == 1: lb = lb.replace('==', ''); rest = '==' + rest
             if lb.count('{r:') > lb.count('}'): lb = lb + '}'; rest = '{r:' + rest
             if lb.count('**') % 2 == 1: lb = lb.replace('**', ''); rest = '**' + rest
-            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rest, ctx)
+            rs = rest.split('\u2029')
+            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rs[0], ctx) + ''.join(f'<span class="ksep kh"> / </span><br>' + _ip(x, ctx) for x in rs[1:])
         parts = _lab_merge(_rebalance(top))
         ls_ = sorted(_L(x) for x in parts)
         fl = _is_flow(parts) and not (_IP[0] and ls_[len(ls_) // 2] > 22)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 짧은 나열(중앙값 22자 이하, ux2 D09)은 가로 흐름 그대로
