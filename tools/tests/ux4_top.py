@@ -71,7 +71,7 @@ async def run(b, vp, touch, tag):
     ok(ck['st'] == 'run' and ck['l'].startswith('공부 ') and ck['dot'] == rgb(col), f'{tag} 과목에서 움직이면 공부 중·과목색 점 {ck} {col}')
     await tap('#clock'); await pg.wait_for_timeout(250)
     rows = await pg.evaluate("[...document.querySelectorAll('#tpop [data-tp]')].map(b=>b.dataset.tp)")
-    ok(rows == ['stop', 'rest', 'big', 'cal', 'goal'], f'{tag} 공부 중 팝오버 [■ 멈춤][☕ 쉬기]… {rows}')
+    ok(rows == ['rest', 'stop', 'big', 'cal', 'goal'], f'{tag} 공부 중 팝오버 [☕ 쉬기][■ 멈춤]… {rows}')
     await tap('#tpop [data-tp=rest]'); await pg.wait_for_timeout(1200)
     a = await pg.evaluate(CK); await pg.wait_for_timeout(2100); b2 = await pg.evaluate(CK)
     ok(a['st'] == 'rest' and a['dot'] == 'rgb(183, 121, 31)' and re.fullmatch(r'휴식 \d+:\d\d', a['l']) and b2['l'] != a['l'] and b2['t'] == a['t'], f'{tag} ☕ → 휴식 금색 점 · 휴식 타이머가 흐름({a["l"]} → {b2["l"]}) · 공부 합계는 멈춤')

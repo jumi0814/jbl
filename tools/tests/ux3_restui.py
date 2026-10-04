@@ -35,7 +35,7 @@ async def part_view(b, vp, touch, tag):
     await pg.evaluate("__h.trStart()"); await pg.clock.run_for(25 * MIN + 5000)
     a = (await pop(pg))['seg']; await pg.clock.run_for(2000); a2 = (await pop(pg))['seg']
     ok(re.fullmatch(r'지금 구간 0:25:0\d', a) and a2 != a, f'세션 25분 → 팝오버 지금 구간 {a!r} → 2초 뒤 {a2!r}')
-    ok((await pop(pg))['rows'][:3] == ['stop', 'rest', 'big'] and re.fullmatch(r'공부 25:\d\d', await lab(pg)), f"알약 {await lab(pg)!r} · 팝오버 [■][☕][⏱ 크게]")
+    ok((await pop(pg))['rows'][:3] == ['rest', 'stop', 'big'] and re.fullmatch(r'공부 25:\d\d', await lab(pg)), f"알약 {await lab(pg)!r} · 팝오버 [■][☕][⏱ 크게]")
     await pg.screenshot(path=J.TMP + f'/ux3p_t_study_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 360})
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')
