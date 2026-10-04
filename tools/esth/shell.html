@@ -1838,6 +1838,7 @@ body.focus #dtabs .fclock[data-st=rest] .fcl{color:#8A5A00;font-weight:600}
 @media (max-width:860px) and (pointer:coarse){body.focus #dtabs .fclock:not([hidden]){height:44px}}   /* ux4f O9 아이패드 세로 집중 모드 시계도 손가락 44px(위 40px 규칙이 덮던 것) · 쓰이지 않던 두 줄 격자 규칙은 지움 */
 @media (pointer:coarse){#dtabs .lmini .mbb,#dtabs #lmcur,#dtabs #lmview{min-height:44px!important}}
 @media (min-width:861px){body.focus #dtabs{overflow-x:clip}}   /* ux4f 넓은 화면 집중 모드 탭 줄이 글자 폭 반올림으로 4px 옆으로 밀리던 것(보이는 넘침 없음) */
+html.vfx :is(button,kbd,.chip,.ybadge,.tg,.btn,.tbtn,.jbchip,.xjb,.cite,.badge,.pill,.lbt,.qn,.ckk,.mk,.tag,.lhd,.ych,.qf,.pi,.hk,.lh,.clab,.ey,.trs,.trk2,.pk){font-family:"JBL Box","Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif}   /* 10-04 상자 안 글자 위아래 가운데(vfix — 맥·아이패드 시스템 글꼴만, 같은 글꼴) */
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -3359,13 +3360,15 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;if(el.closest('.cov:not(.covo)'))return null;if(el.closest('#stage.quiz .k.qzk:not(.show)'))return null;   /* 10-04 QUIZ 3 가리기(Q)로 가린 칸도 칠하기를 시작하지 않음(눌러 보면 안내) */   /* ux4f E 가린 칸(👁)에서는 칠하기를 시작하지 않음 — 누르면 열림 */
  return el.closest('[data-aid]');}
  /* 누르기(마우스 클릭·손가락 톡·길게 누른 뒤 그대로 떼기·펜슬 톡): 칠한 곳이면 지우고, 형광펜으로 다른 색이면 색만 바꾸고, 빈 곳이면 어절을 칠함 */
- function tapAt(B,x,y,target,t){t=t||mode;const rk=target&&target.closest&&target.closest('[data-rk]');
+ function tapAt(B,x,y,target,t,tol){t=t||mode;const rk=target&&target.closest&&target.closest('[data-rk]');
   if(rk&&rk.hasAttribute('data-auto')){toast('자동 빈칸(규칙)은 🧹 지우기나 ⚡ 창의 [이 탭의 자동 빈칸 지우기]로 지워요');return;}
   if(rk&&B.contains(rk)){const recol=t==='h'&&rk.getAttribute('data-rk')==='h'&&rk.getAttribute('data-c')!==color;const brecol=t==='b'&&rk.getAttribute('data-rk')==='b'&&(rk.getAttribute('data-bc')||'n')!==bcolor;   /* ux3 K5 빈칸 모드에서 다른 색 빈칸 = 그 묶음 색만 바꿈(되돌리기 가능) · 같은 색 = 지움 */
    if(brecol){recolB(B,rk,bcolor);return;}
    if((t==='h'||t==='b')&&rk.getAttribute('data-rk')!==t){const els=group(rk),ix=index(B);let a=1e9,z=-1;ix.map.forEach(m=>{if(els.some(x=>x.contains(m.n))){a=Math.min(a,m.start);z=Math.max(z,m.start+m.len);}});if(z>a){apply(B,a,z,t,true);toast(t==='b'?'형광펜을 빈칸으로 바꿨어요':'빈칸을 형광펜으로 바꿨어요',{level:'result',replace:true,action:undoBtn()});return;}}   /* ux4f E 빈칸 모드에서 형광펜 = 빈칸으로 · 형광펜 모드에서 빈칸 = 형광펜으로(조용히 지우던 것) */
    push(recol?'형광펜 색 바꾸기':(rk.getAttribute('data-rk')==='b'?'빈칸 지우기 1개':'형광펜 지우기 1개'));const els=group(rk);if(recol){els.forEach(e=>{e.className=e.className.replace(/rk-[ygpuon]\b/,'rk-'+color);e.setAttribute('data-c',color);});}else els.forEach(unwrap);commit(B);return;}
-  if(!t)return;const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;apply(B,w[0],w[1],t);}
+  if(!t)return;const ix=index(B),p=posAt(ix,x,y);const w=wordAt(ix,p);if(!w)return;if(!onWord(ix,w,x,y,tol))return;apply(B,w[0],w[1],t);}
+ /* 10-04 사용자 '하이라이트모드에서 빈 공간을 클릭하면 … 위 아래 행의 첫글자가 하이라이트되는 오류' — 누른 자리가 그 어절 글자 위(마우스 ±4px · 손가락 ±10px)일 때만 칠함(줄 끝 뒤·줄 사이·들여쓰기 빈칸은 가까운 글자로 붙이지 않음) */
+ function onWord(ix,w,x,y,tol){tol=tol||4;const rg=document.createRange();for(const m of ix.map){const s0=Math.max(w[0],m.start),e0=Math.min(w[1],m.start+m.len);if(e0<=s0)continue;rg.setStart(m.n,s0-m.start);rg.setEnd(m.n,e0-m.start);for(const b of rg.getClientRects()){if(x>=b.left-tol&&x<=b.right+tol&&y>=b.top-Math.min(tol,4)&&y<=b.bottom+Math.min(tol,4))return true;}}return false;}
  /* 끄는 범위(A08): 포인터가 시작 카드(표시 단위) 밖이면 — 아래로 벗어나면 시작 카드의 끝까지, 위로 벗어나면 처음까지(cross) */
  function dragSpan(d,x,y){if(!d||d.p0==null)return null;const ix=index(d.B),R=d.B.getBoundingClientRect();let p=null,cross=false;
   if(x>=R.left-1&&x<=R.right+1&&y>=R.top-1&&y<=R.bottom+1)p=posAt(ix,x,y);
@@ -3395,8 +3398,8 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
  document.addEventListener('touchend',e=>{if(!drag||!drag.touch)return;const d=drag;drag=null;clearTimeout(d.tm);stopAS();const t=e.changedTouches[0];clearPre(d.B);
   if(d.active){if(d.moved){e.preventDefault();dragEnd(d,t.clientX,t.clientY);return;}
    if(d.pen){const rk=d.target&&d.target.closest&&d.target.closest('[data-rk="h"]');if(rk&&d.B.contains(rk)){e.preventDefault();push('형광펜 지우기 1개');group(rk).forEach(unwrap);commit(d.B);toast('펜슬로 형광펜 1개를 지웠어요',{level:'result',replace:true,action:undoBtn()});}return;}   /* ux4f 새 오류: 말없이 지워지지 않게 알림 + 되돌리기 */   /* 펜슬 톡(모드 없음): 칠한 곳이면 지우기, 아니면 보통 누르기(빈칸 열기 등) */
-   e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);return;}
-  if(!d.moved&&Date.now()-d.t0<400){e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target);}},{passive:false});
+   e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target,null,10);return;}
+  if(!d.moved&&Date.now()-d.t0<400){e.preventDefault();tapAt(d.B,t.clientX,t.clientY,d.target,null,10);}},{passive:false});
  document.addEventListener('touchcancel',()=>{if(drag&&drag.touch)cancelDrag();});
  function handleClick(e){if(Date.now()<BLPSKIP&&e.target.closest&&e.target.closest('[data-rk="b"]'))return true;const rk=e.target.closest&&e.target.closest('[data-rk="b"]');
   if(rk&&!mode){const els=group(rk);const on=!rk.classList.contains('show');els.forEach(x=>x.classList.toggle('show',on));if(on)LASTOPEN=rk.closest('.tc,.qc,.pc,[data-aid]');coverSaved();return true;}
@@ -4656,8 +4659,8 @@ function ckPaint(full){const c=$('#clock');if(!c)return;const st=trState(),ts=ts
 function tPopSeg(st,ts,now){return st==='run'||st==='sess'?fmtHMS(trFocusMs(st,ts,now)):'';}   /* ux4c 2회차 쉬는 중에는 바로 위 '▶ 다시 공부' 줄의 '지금 휴식'과 같은 값 — 한 번만 */
 function tPopHTML(){const st=trState(),ts=tsGet(),now=Date.now(),g=tGoal()*60000,E=EH;
  const row=(a,lab,k,on,kt)=>`<button type="button" class="pi${on?' on':''}" data-tp="${a}">${lab}${k?`<span class="pk"${kt?` data-tpt="${kt}"`:''}>${E(k)}</span>`:''}</button>`;
- let r='';if(st==='run')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','자동 측정 중',1);   /* 10-04 사용자 '쉬기 버튼이 멈춤버튼 위에' */
- else if(st==='sess')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','세션 공부 '+fmtH(trSessMs(ts,now)),1,'sess');
+ let r='';if(st==='run')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','자동 측정 중');   /* 10-04 사용자 '쉬기 버튼이 멈춤버튼 위에' */
+ else if(st==='sess')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','세션 공부 '+fmtH(trSessMs(ts,now)),0,'sess');   /* 10-04 사용자 '멈춤 버튼에만 색칠되어있는 이거 없애줘' */
  else if(st==='rest')r=row('resume','▶ 다시 공부','지금 휴식 '+fmtMS(trRestMs(ts,now)),1,'rest')+row('stop','■ 멈춤');
  else r=row('start','▶ 공부 시작',st==='end'?'멈춤 중':st==='other'?'다른 창에서 측정 중':st==='off'?'자동 측정 꺼짐':'자동 대기 — 화면 밖 공부도 셈',1)+(st==='end'?row('autoon','↻ 자동 측정 다시','멈춤 풀기 — 움직이면 잼'):st==='off'?row('autoon','↻ 자동 측정 켜기','과목을 열고 움직이면 잼'):'');   /* ux4f 멈춤·꺼짐에서 자동 측정으로 바로 돌아가는 길 */
  const sg=tPopSeg(st,ts,now);r+=row('big','⏱ 크게 보기',sg?'지금 구간 '+sg:'',0,sg?'seg':'');
@@ -4973,6 +4976,21 @@ Object.assign(window.__h,{teDeps,ntsAmt,calRestStudy,endLift,sjColor,SJC,trFocus
 Object.assign(window.__h,{restDay,teRest,teAvail,tUnrec,lwFit});   /* ux3 fix2 회귀 고리 */   /* ux3 검증 수정 회귀 고리 */
 Object.assign(window.__h,{todayTasks,todoGo,bkDue,sjTotals,homeTick,home});Object.defineProperty(window.__h,'HEXED',{get(){return HEXED;}});   /* ux3 묶음 H 회귀 고리 */
 Object.assign(window.__h,{navRender,navBadges,sideToggle,sideApply,rvcN:()=>RVCN,examPlan,sjShort,colFit,CF,tblFit,cfApply,cfStats,cfH,cfSolve,twStats,twSolve});   /* ux3 트랙1 회귀 고리 */
+
+/* 10-04 사용자 '박스 안에 … 글씨가 중앙 정렬되어있는게 아니라 위로 살짝 치우쳐져있자나 … 강의자료 정리본, jb, 시간탭 등 모든 곳 … 박스 위치만 위아래 기준 중앙에'
+   맥·아이패드 한글 시스템 글꼴(Apple SD Gothic Neo)은 글자 위아래 여백(ascent·descent)이 고르지 않아 칩·버튼·배지 안 글자가 위로 뜸 — 글꼴 모양·크기·틀은 그대로 두고
+   이 기기에서 그 글꼴의 실제 수치(canvas measureText)를 재어 같은 글꼴을 ascent/descent만 고른 별칭(JBL Box)으로 다시 걸어, 상자 안 글자가 위아래 가운데에 오게 함(html.vfx)
+   Pretendard가 깔려 있으면(위아래가 고른 글꼴) 하지 않음 · 다른 기기(윈도·리눅스)는 그대로 · 실패하면 아무것도 바꾸지 않음 */
+(function vfix(){try{if(!window.FontFace||!document.fonts)return;const cv=document.createElement('canvas').getContext('2d');if(!cv||!('fontBoundingBoxAscent' in cv.measureText('가')))return;
+ const has=f=>{const t='가나다라마바사JBL20';cv.font='40px monospace';const a=cv.measureText(t).width;cv.font='40px "'+f+'",monospace';return Math.abs(cv.measureText(t).width-a)>0.5;};
+ if(has('Pretendard')||!has('Apple SD Gothic Neo'))return;
+ cv.font='100px "Apple SD Gothic Neo"';const m=cv.measureText('가나H20'),A=m.fontBoundingBoxAscent,D=m.fontBoundingBoxDescent,ia=m.actualBoundingBoxAscent,id=m.actualBoundingBoxDescent;
+ if(!(A>0&&D>=0&&ia>0))return;const off=((D-A)-(id-ia))/2;if(Math.abs(off)<2)return;   /* 100px 기준 2px(=0.02em) 미만이면 이미 가운데 */
+ const A2=(A+D-(id-ia))/2,D2=(A+D+(id-ia))/2,ds={ascentOverride:(A2).toFixed(2)+'%',descentOverride:(D2).toFixed(2)+'%',lineGapOverride:'0%'};
+ const W=[[100,'Thin'],[200,'UltraLight'],[300,'Light'],[400,'Regular'],[500,'Medium'],[600,'SemiBold'],[700,'Bold'],[800,'ExtraBold'],[900,'Heavy']];
+ const fs=W.map(([w,n])=>new FontFace('JBL Box','local("AppleSDGothicNeo-'+n+'"), local("Apple SD Gothic Neo '+n+'")',Object.assign({weight:String(w)},ds)));
+ Promise.all(fs.map(f=>f.load().then(x=>{document.fonts.add(x);return 1;},()=>0))).then(r=>{if(r[3]&&r[6]){document.documentElement.classList.add('vfx');}});   /* 보통·굵게가 다 있어야 켬(없으면 가짜 굵기가 생김) */
+}catch(e){}})();
 Object.assign(window.__h,{trDo,cbmTab,trState,tsRead,trStart,trRest,trResume,trStop,trkUI,tRec,tEdit,teLog,undoEdit,addTime,editSeg,delSeg,tGoal,calView,calPick,dayRows,daySegs,sessFlush,BIG,bigOpen,trBand,tLec,teMerge,tsegMerge,get CAL(){return CAL;},restOn,restMaxMin,restStats,trAutoRest,restBack,restAns,trCap});   /* ux3 트랙2 회귀 고리 (J9 휴식 포함) */
 Object.assign(window.__h,{migBak,migLS,migKit,migWait(){return Promise.all(Object.values(MIGP)).then(()=>MIGB);},lsCap,lsCapProbe,lqReplay,lqWrite,revNext,mark,devCut:()=>DEVCUT,idleBack,predIds});   /* ux2 fixA 회귀 고리 */Object.defineProperty(window.__h,'LCUR',{get(){return LCUR;}});   /* ux2 트랙B 회귀 고리 */
 })();
