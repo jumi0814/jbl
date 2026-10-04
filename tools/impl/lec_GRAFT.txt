@@ -12,12 +12,9 @@
 > 뼈는 무기질·유기질·물이 섞인 복합체라 인공으로 똑같이 만들기 어렵고, 매일 조금씩 새 뼈로 바뀐다
 = Mineral {r:65-70%} + Organic {r:21-26%} + Water {r:8%} · 하루 {r:0.7%} 교체 → {r:142 days}면 전체 turnover
 # 골기질 구성 (Composition of Bone Matrix)
-- **Mineral salt(무기질염)**: calcium phosphate(인산칼슘) {r:85%}, calcium carbonate(탄산칼슘) {r:10%}, calcium fluoride(불화칼슘), magnesium fluoride(불화마그네슘) 등.
-- **Organic(유기질)**: Collagen, Noncollagen protein(비콜라겐성 단백질) 등.
-- **Water(수분)**.
 | 성분 | 비율 | 세부 |
-| Mineral | {r:65-70%} | 무기질염(calcium phosphate {r:85%} 등) — 균일한 HA가 아니라 다양한 것이 섞여 있음(필기) |
-| Organic | {r:21-26%} | Collagen {r:20%} · NonCollagenous Protein 0.6% · TGF-B1 0.0005% · {r:BMP} 0.000002% |
+| Mineral | {r:65-70%} | **Mineral salt(무기질염)**: calcium phosphate(인산칼슘) {r:85%} · calcium carbonate(탄산칼슘) {r:10%} · calcium fluoride(불화칼슘) · magnesium fluoride(불화마그네슘) 등 — 균일한 HA가 아니라 다양한 것이 섞여 있음(필기) |
+| Organic(유기질) | {r:21-26%} | Collagen {r:20%} · NonCollagenous Protein(비콜라겐성 단백질) 0.6% · TGF-B1 0.0005% · {r:BMP} 0.000002% |
 | Water | 8% | 수분 |
 | Etc. | 1% | 기타 |
 - BMP(Bone Morphogenetic Protein, 골형성 단백질) — 역할: 골 형성이 될 수 있게 {r:시그널링}을 한다(p.19 박스).
@@ -120,12 +117,11 @@ M: Biologic process: {r:Osteophyllic} → {r:Osteoconductive} → {r:Osteoadapti
 - 자가골 이식할 만한 곳이 많다 — 구강 내에서도 여러 군데서 골이식원을 채취할 수 있다(필기, 공여부 그림 A~G).
 F: 14
 # 골이식 예후를 불량하게 하는 요인: 외상
-| 외상 | 내용 |
-| {r:Surgical trauma}(외과적 외상) | 부적절한 피판 설계 · 주요 혈관 손상 · 골조직 {r:열손상}(드릴·전기소작기) · 과도한 피판 견인에 의한 조직 압박 |
-| {r:Mechanical trauma}(기계적 외상) | 과도한 교합력 · 과도한 압박 드레싱 · 구강악습관(이갈이·이악물기) |
-| {r:Chemical trauma}(화학적 외상) | {r:세균감염} · 이식재의 부적절한 조작 및 오염 |
-| {r:Cellular Injury}(세포의 손상) | 국소적 요인: 국소적 산소 공급 부족 · 전신적 요인: 전신 건강 불량·영양결핍 |
-U: surgical = blood supply를 나쁘게 하는 것(피판에 blood supply 잘 되게) · mechanical = 주로 환자 습관 · chemical = aseptic하게(필기).
+| 외상 | 내용 | 필기 |
+| {r:Surgical trauma}(외과적 외상) | 부적절한 피판 설계 · 주요 혈관 손상 · 골조직 {r:열손상}(드릴·전기소작기) · 과도한 피판 견인에 의한 조직 압박 | blood supply를 나쁘게 하는 것(피판에 blood supply 잘 되게) |
+| {r:Mechanical trauma}(기계적 외상) | 과도한 교합력 · 과도한 압박 드레싱 · 구강악습관(이갈이·이악물기) | 주로 환자 습관 |
+| {r:Chemical trauma}(화학적 외상) | {r:세균감염} · 이식재의 부적절한 조작 및 오염 | aseptic하게 |
+| {r:Cellular Injury}(세포의 손상) | 국소적 요인: 국소적 산소 공급 부족 · 전신적 요인: 전신 건강 불량·영양결핍 | (자료 없음) |
 F: 15
 # 이상적인 골이식재의 조건 (형광 5개 = 강조)
 - ① 우수한 {r:골형성 능력}(Osteogenic potential) 보유 — {r:골전도성과 골유도성}이 있을 것.
@@ -149,7 +145,10 @@ M: + 생체친화성 · 예지성 · 강도+{r:전성} · 충분한 양 · 멸�
 - ③ 공여 종별에 따른 분류: 자가골(Autograft) · 동종골(Allograft) · 이종골(Xenograft, Heterograft) · 합성골(Alloplastic material, Synthetic bone).
 - (+) Intramembranous(막내골) / Endochondral(연골내골).
 U: 이종골과 합성골의 관계는 조금 애매해 묶어서 분류하기도 한다(필기).
-U: Osteoconduction = 기계적 틀만 제공(인부가 일할 틀) · Osteoinduction = 신호기전 이용, BMP 등이 노출되어 미분화 세포 분화 유도(인부를 불러 모음) · Osteogenesis = 이식체 내 세포 자체가 골 형성(인부를 직접 데려옴)(26 필기).
+| 기전(26 필기) | 하는 일 | 비유 |
+| Osteoconduction | 기계적 틀만 제공 | 인부가 일할 틀 |
+| Osteoinduction | 신호기전 이용, BMP 등이 노출되어 미분화 세포 분화 유도 | 인부를 불러 모음 |
+| Osteogenesis | 이식체 내 세포 자체가 골 형성 | 인부를 직접 데려옴 |
 U: 과거에는 입자형을 주로 썼으나 요즘은 콜라겐 블록이 나와서 많이 쓴다(26 필기).
 P: 💬 26 PDF 새 별표(★) — 골이식재의 분류 3축 쪽(25에는 별표 없음).
 F: 17, GRAFT5:17=25 필기 — 이게 중요해요
@@ -298,7 +297,11 @@ M: 골유도능 ∝ DBM 내 {r:BMP 함량} / 동결건조 = {r:항원 불활성}
 U: 소뼈는 단백질 처리 기술이 획기적으로 개발되면서 안전하게 많이 쓰이게 됨(필기).
 F: 33
 # 제품
-- Bovine: Bio-Oss, BBP, BBC, Biocera, InduCera, OCS-B, A-Oss 등 / Porcine: Por-Oss, THE Graft / Equine: BIO-GEN, OSTEOPLANT FLEX, OCS-H / Composite: EQUIMATRIX Collagen(Equine+Porcine), OCS-B Collagen(Bovine+Porcine).
+| 원료 | 제품 |
+| Bovine | Bio-Oss, BBP, BBC, Biocera, InduCera, OCS-B, A-Oss 등 |
+| Porcine | Por-Oss, THE Graft |
+| Equine | BIO-GEN, OSTEOPLANT FLEX, OCS-H |
+| Composite | EQUIMATRIX Collagen(Equine+Porcine), OCS-B Collagen(Bovine+Porcine) |
 U: 대표는 {r:Bio-Oss} — 초기엔 가루였으나 요즘엔 {r:collagen block} 형태로 많이 전환(필기) · 26 필기도 "최근에는 대부분 블록 형태로 출시".
 F: 34
 M: 이종골 = {r:Bovine·Equine·Porcine}의 {r:무기질}(유기질 제거) · 저렴 · 인수공통 질환 위험
@@ -412,8 +415,10 @@ F: 56, 57
 # 조직공학적 골이식재료 (Tissue-engineered graft material)
 - ① Tooth-derived bone graft material ② {r:PepGen P-15} ③ {r:XoGlo}.
 - 조직공학 3요소 = {r:세포 · 케리어 · 성장인자}(필기).
-U: P-15 = 콜라겐에서 cell이 붙는 도메인 · XoGlo = 엑소좀을 이용한 재료 · Hyaloss = 하이알루론산 + BMP(필기).
-U: PepGen P-15 = 세포 부착을 잘 돕는다는 컨셉(26 필기).
+| 재료 | 필기 |
+| PepGen P-15 | 콜라겐에서 cell이 붙는 도메인 · 세포 부착을 잘 돕는다는 컨셉(26 필기) |
+| XoGlo | 엑소좀을 이용한 재료 |
+| Hyaloss | 하이알루론산 + BMP |
 F: 58, 59
 M: 촉진재 3: {r:Growth factors} · {r:rhBMP-2} · {r:PRP·PRF}
 M: rhBMP-2 생산 = {r:CHO cells}(mammalian) vs {r:E. coli}(bacteria) — 그래도 {r:비쌈}
