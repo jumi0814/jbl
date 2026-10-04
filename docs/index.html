@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"d497f277",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"2101ad3b",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1929,7 +1929,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="d497f277",PV={"OMS1": "e437ada7", "CONS": "c1d95510", "IMPL": "f3e8a205", "ANAT": "08b19121", "GERI": "d2ed7e78", "PHARM": "116474f5", "ESTH": "1e4ac572"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="2101ad3b",PV={"OMS1": "47cde6de", "CONS": "ffeae413", "IMPL": "7bf307f5", "ANAT": "d4f40ef3", "GERI": "b2907fb6", "PHARM": "e986636a", "ESTH": "58d8d071"},PSZ={"OMS1": 3.5, "CONS": 2.7, "IMPL": 2.8, "ANAT": 3.5, "GERI": 3.7, "PHARM": 4.9, "ESTH": 3.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3090,7 +3090,8 @@ const fcHash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(
 const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
  init(p,L){const tmp=document.createElement('div');this.s=p.id;this.k=L.k;this.all=[];const E=x=>x.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
   (L.recall||[]).forEach(r=>{tmp.innerHTML=r.h;const h=/^\s*<li/.test(r.h)?'<ul class="fcl">'+r.h+'</ul>':'<ul class="fcl"><li>'+r.h+'</li></ul>';const hasK=/class="k"/.test(r.h);
-   this.all.push({key:'R:'+L.k+':'+fcHash(r.t+'|'+tmp.textContent),tag:'암기',kind:'암기',cloze:hasK,q:'<div class="fct">'+E(r.t)+'</div>'+h,a:'<div class="fct">'+E(r.t)+'</div>'+h});});
+   const key='R:'+L.k+':'+fcHash(r.t+'|'+tmp.textContent);if(Array.isArray(r.ok)&&r.ok.length){const M=mkObj(LS.get('fc.'+p.id,{}));if(!M[key]){const o=r.ok.find(x=>M[x]);if(o){M[key]=M[o];LS.set('fc.'+p.id,M);}}}   /* 10-04 ⚡ 줄 구분 기호만 바뀐 경우 옛 키 기록을 새 키로(옛 키는 지우지 않음) */
+   this.all.push({key,tag:'암기',kind:'암기',cloze:hasK,q:'<div class="fct">'+E(r.t)+'</div>'+h,a:'<div class="fct">'+E(r.t)+'</div>'+h});});
   L.jb.forEach(id=>{tmp.innerHTML=p.cards[id];const q=$('.qtext',tmp),a=$('.jbans .lines',tmp),y=$('.ybadge b',tmp);const v=($('.qc',tmp)||{dataset:{}}).dataset.v;if(q&&a)this.all.push(Object.assign({key:'J:'+id,tag:'기출 '+(y?y.textContent:''),kind:'기출'},fcJB(tmp,id,v)));});   /* ux2 F08 앞면 = 문제 원문 그대로(그림 포함) · 뒷면 = 답 핵심·정답 보기·해설 2줄·⚡ 첫 줄·문제 카드로 */
   L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp),pc=$('.pc',tmp);if(q&&a)this.all.push({key:'P:'+((pc&&pc.dataset.aid)||i),tag:'예상',kind:'예상',q:E(q.textContent),a:E(a.textContent)});});
   const ps=mkObj(LS.get('fcpos.'+this.s+'.'+this.k,{}));this.kind=typeof ps.kind==='string'?ps.kind:'';this.st=typeof ps.st==='string'?ps.st:'';this.ord=Array.isArray(ps.ord)?ps.ord:null;this.back=false;this.build(ps.key);},
