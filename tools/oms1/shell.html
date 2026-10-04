@@ -4829,7 +4829,7 @@ function fclockPaint(){const c=$('#clock'),F=$$('.fclock');if(!F.length)return;c
  /* ux4f 사용자 10-02 '집중 모드 상단바가 시간이 지날 때마다 꿈틀' — 글자를 한 덩어리로 바꿔 쓰면 폭이 1초마다 달라져 탭 줄이 흔들림 → 알약처럼 시간·상태 칸 폭을 미리 잡아 둠(--ckt·--ckl = ckMeasure 값) */
  const ckt=c&&c.style.getPropertyValue('--ckt'),ckl=c&&c.style.getPropertyValue('--ckl');
  F.forEach(e=>{e.hidden=!on;if(!on)return;if(ckt&&e.style.getPropertyValue('--ckt')!==ckt){e.style.setProperty('--ckt',ckt);e.style.setProperty('--ckl',ckl);}
-  if(e.dataset.st!==st)e.dataset.st=st;const a=e.querySelector('.fct'),b=e.querySelector('.fcl');if(a&&a.innerHTML!==kt)a.innerHTML=kt;if(b&&b.innerHTML!==lt)b.innerHTML=lt;});}
+  if(e.dataset.st!==st)e.dataset.st=st;const a=e.querySelector('.fct'),b=e.querySelector('.fcl');[[a,kt,'.ckk,.ckv'],[b,lt,'.ck1,.ck2']].forEach(([el,h,q])=>{if(!el)return;const src=document.createElement('span');src.innerHTML=h;const S=[...src.querySelectorAll(q)],D=[...el.querySelectorAll(q)];if(D.length!==S.length||!S.length){if(el.innerHTML!==h)el.innerHTML=h;return;}S.forEach((x,i)=>{if(D[i].textContent!==x.textContent)D[i].textContent=x.textContent;});});   /* 글자만 바꿈(1초마다 요소를 갈아 끼우면 누르는 사이 대상이 사라져 시계 창이 안 열림) */});}
 if(window.MutationObserver&&$('#clock'))new MutationObserver(fclockPaint).observe($('#clock'),{childList:true,characterData:true,subtree:true,attributes:true,attributeFilter:['class','data-st']});
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-kitt],.dfoc');if(!t)return;e.stopPropagation();e.preventDefault();
  if(t.hasAttribute('data-kitt'))kitSet(document.body.classList.contains('kit-off'));else focusSet(!document.body.classList.contains('focus'));},true);
