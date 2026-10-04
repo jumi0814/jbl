@@ -916,13 +916,20 @@ print('공부 순서 1단계:', guide[0]['b'], '| 교수별 최근 짤 비율', 
 # ---- 이미지(인용·썸네일 쪽 추가)
 def b64(im, q):
     b = io.BytesIO(); im.save(b, 'JPEG', quality=q, optimize=True); return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
+# 10-04 사용자 '피피티 사진 … 화질이 너무 깨져서 내용이 안 보이는데 … 틀과 크기는 그대로 유지하면서 화질만 개선 … 렉이 먹는다던가 파일이 너무 무거워져서 … 없게끔'
+#   강의 쪽 그림 = 원본 쪽 이미지 폭(1100) 그대로 WebP q72(예전 740px JPEG q38 — 글자 뭉개짐) · 한 장 평균 32KB → 47KB · 화면 크기는 CSS(폭 100%·max-height)라 그대로 · 지연 로딩(imgSet) 그대로 · JB 원본 그림은 그대로
+LECW, LECQ = 1100, 72
+def webp64(im):
+    b = io.BytesIO(); im.save(b, 'WEBP', quality=LECQ, method=6); return 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
 lecimg = {}; PREV = J.prev_images(SID)   # 강의 원본 이미지가 없으면 지금 docs/에 올라가 있는 이미지를 그대로 씀
 for (k, p) in sorted(ctx['cited'] | {(k_, p_) for k_, r_ in S.FORCE_PAGES.items() for p_ in r_}):
     f = S.lec_img_path(k, p)
     if not f or not os.path.exists(f):
         if f and f'{k}-{p}' in PREV: lecimg[f'{k}-{p}'] = PREV[f'{k}-{p}']
         continue
-    im = Image.open(f).convert('RGB'); w, hh = im.size; im = im.resize((740, int(hh * 740 / w))); lecimg[f'{k}-{p}'] = b64(im, 38)
+    im = Image.open(f).convert('RGB'); w, hh = im.size
+    if w > LECW: im = im.resize((LECW, int(hh * LECW / w)), Image.LANCZOS)
+    lecimg[f'{k}-{p}'] = webp64(im)
 
 HINTS = []
 for L in LEC:
