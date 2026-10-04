@@ -2,7 +2,7 @@
 H: 용어 | 정의·기준(슬라이드) | 시험 포인트
 R: {r:Frailty}(노쇠) {jb:G11} | 노화에 따른 전반적인 기능저하로 생리적인 {r:예비능력}이 감소 → 외부 자극에 대한 반응이 저하 → {r:항상성} 유지 능력 감퇴 → 여러 질환 이환 위험·{r:기능의존이나 입원} 가능성↑ | 20·19·18 빈칸 = frailty — '예비능력'·'항상성'도 빈칸 후보
 R: Fried 5기준 {jb:G01} | {r:체중 감소} · {r:활력감소} · {r:허약} · {r:보행속도 감소} · {r:신체활동 감소} (한국형 노쇠측정 도구) | 24~20 매년 빈칸 — 24 신체활동 · 23 활력 · 22 보행속도 · 21 체중
-R: 노쇠의 종류 {jb:G07} | {r:Physical}(보통 노쇠) · {r:Cognitive} · {r:Social} / Systemic · General ? / {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠
+R: 노쇠의 종류 {jb:G07} | {r:Physical}(보통 노쇠) · {r:Cognitive} · {r:Social} · Systemic/General ? · {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠
 R: {r:Multimorbidity}(다중이환) | The coexistence of multiple chronic diseases · Prevalence {r:55 – 98%} · 결과 = disability and functional decline, poor quality of life, high health care cost | 노인 {r:90%} 1개↑ · 22% 2개 · {r:50%} 3개↑ · 최다 {r:고혈압·관절염} {jb:G06}
 R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} · 약물 부작용 = 입원·사망의 주요 원인 | 21 빈칸 · 필기 {r:5종류↑}(super {r:10종류↑}) · 노인 37% 5개↑ 처방약
 R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 {r:모호·복잡} — 질병 다발성 + 다약제 복용 → 질환–질환 · 질환–약물 · 약물–약물 상호작용 | 20·19 "A와 B" = {r:질환 · 약물}
@@ -124,7 +124,7 @@ R: Traumatic pulp necrosis | {r:walking bleaching} 효과 좋음 | 교정적 정
 R: Secondary dentin by trauma(석회화 근관) | vital bleaching 적응증 | 변색된 한 치아만 home bleaching(single tooth · horizontal margin)
 R: Shade A(red-brown)·B(red-yellow) | 잘 반응 | Shade guide 최명 {r:B1} · 최암 {r:C4}
 R: Shade C(gray brown)·D(red-gray) · blue-gray | 반응 잘 안 함 | 전신질환 gray-blue → 전치부만 라미네이트 등
-R: 나이·초기색 | {r:young & yellow > old with less yellow} · gender {r:similar} | 젊은이는 dentin tubule 직경이 커 미백제 침투 좋음 · 초기 a*(red)↑ → total color change↑
+R: 나이·초기색 | {r:young & yellow > old with less yellow} / gender {r:similar} | 젊은이는 dentin tubule 직경이 커 미백제 침투 좋음 · 초기 a*(red)↑ → total color change↑
 N: 예후 한 줄 = Brown-orange-yellow than Blue-gray → Better prognosis(p.28). Ideal case = good dentition & OH · 2-5 shade shift · aging·smoking·food·mild TC·brown trauma·brown fluorosis(p.47).
 
 #TBL 미백의 종류 — home · office · combination · walking · microabrasion | k=BLE | src=[[BLE:40]] [[BLE:46]] [[BLE:48]] [[BLE:52]] [[BLE:54]] [[BLE:62]] [[BLE:73]] [[BLE:84]] [[BLE:85]] [[BLE:90]] [[BLE:96]]
@@ -262,7 +262,7 @@ R: 정의·특징 | 이전에 비해 · {r:기억력을 포함한 여러 인지�
 R: 무엇과 구분 | ≠ Intellectual disability(stable) · ≠ Delirium, Coma — 섬망 상태에선 진단 × | 정상적 우울감(1주 이내 · 기능 유지 · 경함) vs 우울증({r:2주 이상} · 기능 지장 · 수면·식욕·의욕·자신감·죄책감·자살사고) | 우울 경향 ≠ {r:임상적인 우울증}(허무적인 사고 "이러면 뭐하냐~")
 R: 얼마나 흔한가 | 65세 이상 {r:약 9~10%} · 65세 이후 매 5세마다 약 {r:2배} · 85세 이상 30-40%(필기) | 지역사회 {r:10~25%}(주요우울증 1~4%) · 일차진료 17~30% · 입원 10~45% · 요양시설 {r:30~45%} — {r:치매보다 흔함} | 신체 및 사회적 변화 정도, 원래 성격에 따라 {r:개인차가 매우 큼}
 R: 원인 | 1위 {r:알츠하이머 71.3%} > 2위 {r:혈관성 16.9%} > 루이체 파킨슨병 3.4% · 가역적(갑상선기능저하증 · 비타민B12 결핍 · Malnutrition) | 생물학적(유전적 취약성 · 신경전달물질 이상 · 신체건강 이상 · 뇌 변화) + 심리사회적(성격적 취약성 · 다양한 상실 경험 · 경제적 어려움 · 역할 갈등) | 신체적 노화(청력·시력 저하 · 공존 신체질환) + 사회경제적 변화(경제적 문제 · 사별·애도·상실 · Loneliness) = "Object Loss"
-R: 경과·치료 | 초기 최근기억 → 중기 먼 과거기억 부분상실·실행증·정신행동증상 → 말기 사람 지남력·신체적 문제 / 약물 원칙 Start low, go slow | 비교적 잘 치료됨 — 약물(소량)·ECT·TMS / 개인·집단·인지행동치료 / 운동·대인관계·사회활동(social isolation 해결) | —
+R: 경과·치료 | 초기 최근기억 → 중기 먼 과거기억 부분상실·실행증·정신행동증상 → 말기 사람 지남력·신체적 문제 / 약물 원칙 Start low, go slow | 비교적 잘 치료됨 — 약물(소량)·ECT·TMS · 개인·집단·인지행동치료 · 운동·대인관계·사회활동(social isolation 해결) | —
 R: 진료 시사점 | 초기 보호자 협조 · 중기 충분한 국소마취·소음 장비 제한 · 말기 전신마취 ▶ 담당 physician 상의 | 설명되지 않는 증상 호소 → 우울증 의심 · 치료 순응도 영향 · 의료기관 방문환자에서 매우 흔함 · 잘 치료됨 | 경직·조심 → 서서히 적응 시간·충분한 의사소통 후 결정 / 의존·우울·내향 → 경청·맞장구·가벼운 스킨십·자신감 있는 태도
 N: 우울증 기억력 저하는 우울증이 좋아지면 기억력도 좋아진다(p.33 필기) · "기억력이 떨어졌다고 말할 때, 나중에 보면 치매가 아니라 우울증일 수도 있다"(p.32 필기).
 N: 박지은 11~21년 · 변민수 22~24년 기출이 모두 이 세 열 안에서 나옴 — 서술은 목록(특징 5 · 심리적 변화 5), 객관식은 수치·단계 한 단어 바꾸기.
@@ -421,7 +421,7 @@ R: **TC 변색 기전** | orthophosphate(yellow) + {r:sunlight} → {r:quinone}(
 R: **TC Class I~III** | I = incisal 3/4 · no banding / II = uniform deep yellow~gray · no banding | III = {r:dark gray or blue} · {r:marked banding} | I {r:good} · II {r:variable} · III {r:not response} → laminate·walking bleaching | —
 R: **Fluorosis** | simple · opaque · simple with pitting | 갈색(simple) vs {r:opaque white}(enamel dysmineralization) | 갈색 = 미백 O(fluorosis {r:80%}) / opaque white = × → home bleaching + {r:microabrasion} + 레진 | —
 R: **생리적·병적 변색 7** | traumatic pulp necrosis · canal filling · marginal leak · aging·caries · intracanal medicament · secondary dentin · decalcification after debanding | 외상 괴사 = 어둡게 · 석회화 근관 = 한 치아만 변색 | 외상 괴사 → {r:walking bleaching} / secondary dentin → {r:single tooth home bleaching}(horizontal margin) | —
-R: **색에 영향 주는 요인** | Gender {r:similar} bleaching response | coffee/tea {r:different maintenance plan} · {r:young & yellow > old} | 젊은 치아는 dentin tubule 직경이 커서 잘 침투 | —
+R: **색에 영향 주는 요인** | Gender {r:similar} bleaching response | coffee/tea {r:different maintenance plan} / {r:young & yellow > old} | 젊은 치아는 dentin tubule 직경이 커서 잘 침투 | —
 R: **Shade·색 계열** | VITA 명도순: 최명 {r:B1} · 최암 {r:C4} | A red-brown · B red-yellow / C gray brown(TC) · D red-gray | A·B 잘 반응 · C·D 반응↓ · {r:Brown-orange-yellow > Blue-gray} · initial {r:a*}↑ → 변화↑ | 교수 예고 "시험에 잘 나온다"(p.24) — 기출 없음
 
 #TBL 전체정리 ② — 미백 원리·종료·재발과 술식 | k=BLE | sum=1 | src=[[BLE:29]] [[BLE:30]] [[BLE:32]] [[BLE:36]] [[BLE:39]] [[BLE:40]] [[BLE:44]] [[BLE:45]] [[BLE:47]] [[BLE:48]] [[BLE:56]] [[BLE:58]] [[BLE:61]] [[BLE:73]] [[BLE:75]] [[BLE:77]] [[BLE:83]] [[BLE:85]] [[BLE:89]] [[BLE:97]] [[BLE:101]] [[BLE:102]]
@@ -437,7 +437,7 @@ R: **Home bleaching** | 적응: {r:2-5 shade shift} · {r:brown-orange-yellow} �
 R: **미백 후 주의·issues** | 시림(불소) · 착색음료·담배 × · {r:탈수}로 내일 아침 약간 어두움 | white spots {r:not removed} · fluorosis {r:about 80%} · hardness no change | sensitivity {r:transient / sporadic} | —
 R: **Office bleaching** | light-cured dental dam {r:1.5-2 mm} · gingiva {r:4-6 mm} · enamel {r:0.5 mm} · {r:30초} | pre-mixed gel > H2O2 liquid | 과거 rubber dam + red light → pulp 흡수 통증 | —
 R: **Light·laser** | {r:catalyze oxidation}(스스로 bleach ×) · 용액을 더 빨리 가열 | 35% H2O2 누출 → {r:saline irrigation} · analgesics · iodine · vaseline | light는 추가 해 × · efficacy↑ | —
-R: **부작용 5·시림** | color relapse · gum & lip irritation · {r:reduced bond strength} · thermal sensitivity · dehydration | bond↓ = {r:oxygen radical} 잔존 → 레진 {r:2주 뒤} | 시림: passive(농도·양·시간·빈도↓) / active(fluoride · 5% potassium nitrate) | —
+R: **부작용 5·시림** | color relapse · gum & lip irritation · {r:reduced bond strength} · thermal sensitivity · dehydration | bond↓ = {r:oxygen radical} 잔존 → 레진 {r:2주 뒤} | 시림: passive(농도·양·시간·빈도↓) · active(fluoride · 5% potassium nitrate) | —
 R: **Microabrasion** | {r:HCl} + disking → {r:superficial enamel stain} 제거 | Opalustre {r:6.6% HCl + silicon carbide} · {r:0.2 mm} 이하 · coat 1 mm | 흰·갈색 탈회반점 · fluorosis · pulpal damage insignificant | — (25 수업 제외)
 R: **Walking bleaching** | 30% H2O2 {r:pH 2-3} · + S.P(2:1) {r:7-8.7} · water + S.P {r:9-11} | {r:Buffered alkaline} H2O2가 더 효과 | 대상: traumatic pulp necrosis · TC Class III | — (25 수업 제외)
 R: **Barrier** | labial {r:bobsled tunnel} · proximal {r:sky slope} · {r:1-2 mm}(2 mm) | G-Ionomer · IRM · ZPC · Cavit · resin · transfer barrier probing | 없으면 {r:cervical root resorption} · 예방 5(low concentration 등) | —
@@ -479,7 +479,7 @@ R: **표현 변화** | {r:behavioral changes}: confusion · restlessness · aggr
 R: **인지장애 환자 평가** | {r:Self-report} → {r:Simple scale}(NRS·Faces) → {r:Behavioral observation} | 1차원 척도: descriptive · {r:0-10 numeric} · VAS · IOWA thermometer · Wong-Baker FACES | 최선의 지표 = {r:abrupt changes in behavior and function} · 혈압·맥박만으로 × | —
 R: **Nonverbal 지표 6** | {r:Facial expressions} · {r:Vocalizations} · {r:Body movements} | changes in {r:interpersonal interactions} · {r:mental status} · {r:usual activity} | JB 24 'interpersonal reaction' ≠ 슬라이드 interactions | {jb:J01} 24·23·22·21·20 5년 연속 — 빈칸·나열·예시
 R: **PAINAD** | Breathing · Negative vocalization · Facial expression · Body language · Consolability | 각 {r:0-2} → 총 {r:0-10}: 1-3 mild · 4-6 moderate · 7-10 severe | 진행된 치매 환자 | —
-R: **우울과 만성통증** | {r:frequently coexist} · 통증 강도·장애↑ | illness · suicide · {r:M<F 1:2} · genetic / major = {r:≥5} 증상 · {r:≥2 weeks} | 통증 평가에 {r:psychological assessment} | {jb:J05} 24 "우울증은 노인만 걸린다" ✗
+R: **우울과 만성통증** | {r:frequently coexist} · 통증 강도·장애↑ | illness · suicide · {r:M<F 1:2}·genetic / major = {r:≥5} 증상 · {r:≥2 weeks} | 통증 평가에 {r:psychological assessment} | {jb:J05} 24 "우울증은 노인만 걸린다" ✗
 R: **외로움** | {r:risk factor for depression} · {r:predictor of psychological distress} · {r:lower pain threshold} | {r:흡연만큼} 해롭다 · 고립 → 활동량↓ | 외로움 → 우울 → 역치↓ → 통증 악순환 | {jb:J06} 23 서술 — 우울·외로움·pain 상관
 R: **TMD·Beck** | TMD {r:39%} 우울 · {r:55%} 신체화(SCL-90) → {r:psychological screening} | Beck {r:21문항} · 문항 0-3 · 총 0-63 · 한국판 cut-off {r:16} | 0-9 정상 · 10-15 가벼움 · 16-23 중함 · 24-63 심함 | —
 R: **수면 문제 5** | {r:Circadian rhythm disorder} · {r:Primary sleep disorder} · {r:Medical illness} | {r:Medication/polypharmacy} · {r:Dementia} | {r:Sleep disturbance ↔ Chronic pain} | {jb:J13} 20 수면문제 기술 — 5항목
@@ -517,7 +517,7 @@ R: **진단·치료** | 초진 → 신경심리평가 → {r:Lab·Brain imaging}
 R: **BPSD** | {r:Psychotic} · {r:Affective} · {r:Behavioural} | 치료 반응 {r:우수} · 원인: pain · excessive noise · fear of medical treatment 등 | 유발요인 파악 → 원인교정 + {r:비약물 우선} ± 소량 약물 · nutritional support = 치과의사 역할 | —
 R: **우울감 vs 우울증** | 우울감 = {r:1주 이내} · 기능 유지 · 경함 | 우울증 = {r:2주 이상} · 기능 지장 · 수면·식욕·의욕·죄책감·자살사고 | 기억력 저하가 치매가 아니라 우울증일 수도 | —
 R: **노인 우울증** | 특징 5: {r:신체불편감} · {r:기억력 저하} · {r:불안, 초조} · {r:의욕, 흥미 상실} · {r:식욕감퇴, 불면} | 원인 생물학적 + 심리사회적 · 유병률 지역사회 {r:10~25%} · 요양시설 {r:30~45%} | 설명 안 되는 증상 · 순응도 · {r:방문환자에 흔함} · {r:잘 치료됨} | {jb:B04} 22 서술 · {jb:P01} 객관식 ① 신체증상 ○ · {jb:P04} 21 ④ 기억력 저하 ○
-R: **노인 자살·치료** | 한국 노인자살률 {r:OECD 1위} · 80대↑ {r:83.7명}/10만 | 자살 생각 원인 1위 {r:경제적 어려움 40.4%} · 외로움 13.3% | 치료: 약물·ECT·TMS / 정신치료 / 운동·대인관계·사회활동 | —
+R: **노인 자살·치료** | 한국 노인자살률 {r:OECD 1위} · 80대↑ {r:83.7명}/10만 | 자살 생각 원인 1위 {r:경제적 어려움 40.4%} · 외로움 13.3% | 치료: 약물·ECT·TMS · 정신치료 · 운동·대인관계·사회활동 | —
 R: **상실(Object Loss)** | 신체: {r:청력·시력} 저하 → communication 차단 → {r:social isolation} | 사회경제: 경제 · 사별·애도 · {r:Loneliness} | 우울증·치매의 심리환경적 원인 | —
 R: **심리적 변화 5** | {r:경직성} · {r:조심성} · {r:내향성} · {r:의존성} · {r:우울 경향} 증가 | {r:개인차 매우 큼} · 우울 경향 ≠ 임상적 우울증 | 경직·조심 → 서서히 적응 · 충분한 의사소통 / 의존·우울·내향 → 경청 · 맞장구 · 자신감 | {jb:P02} 서술 — 5줄 그대로
 
@@ -565,6 +565,6 @@ N: First night effect — ↑ awakenings and arousals · sleep and REM latency �
 H: 사례 | 자료·대상 | 결과 | 생각해볼 질문·주의
 R: ① 취약계층 노인 | 제7기 국민건강영양조사(2016~2018) · 기초생활보장 수급자 · 전기 vs 후기노인 | {r:후기노인}일수록 이닦이 실천·구강검진 수검이 구강건강 차이에 더 크게 기여 | 취약계층 구강보건사업은 {r:후기노인} 우선
 R: ② 우울과 칫솔질 | 제7기 국민건강영양조사 · 65세 이상 · {r:PHQ-9 5점↑} 우울증 | 여성: 우울 있음 하루 3회↑ 칫솔질 {r:32.1%} vs 없음 41.8%(p=0.004) · 남성은 차이 없음 | 여성 노인 우울증 유병자 이닦이 프로그램? · 독거노인 구강보건 사업 형태?
-R: ③ 성별 차이 | 제7기 국민건강영양조사 · 65세 이상 · 종속변수 = 주관적 건강상태 | 남성 = {r:구강건강을 나쁘게 인식}할수록 / 여성 = {r:말하기 불편함}을 인식할수록 주관적 건강 나쁨 | 정서적 공감 경로 가설 → 성별에 따라 다른 접근?
+R: ③ 성별 차이 | 제7기 국민건강영양조사 · 65세 이상 · 종속변수 = 주관적 건강상태 | 남성 = {r:구강건강을 나쁘게 인식}할수록 · 여성 = {r:말하기 불편함}을 인식할수록 주관적 건강 나쁨 | 정서적 공감 경로 가설 → 성별에 따라 다른 접근?
 R: ④ 코로나19 전후 | 국민건강영양조사 6·7기(2016~2019 vs 2020~2021) · 확진·사망자의 {r:80% 이상}이 노인 | 주관적 건강수준↑ · 저작불편 호소↓ · 칫솔질 횟수·구강위생용품 사용↑ | 가설: 건강관리 중요성·구강관리 관심 증가 · ※ {r:마스크 → 구강건조}
 N: 26 수업에서는 슬라이드 19 "오늘은 여기까지, 핵심정리로 바로 이동"으로 넘어간 쪽(미출제) — 숫자·성별 차이를 묻는 객관식 대비.
