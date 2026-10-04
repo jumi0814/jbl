@@ -126,7 +126,7 @@ def _depth_iter(s):
         if ch in '(（[{': d += 1                 # {r:…}·{k:…} 안에서도 나누지 않음(예: {r:0.04 · 0.70})
         elif ch in ')）]}': d = max(0, d - 1)
         yield i, ch, d + (1 if q else 0)
-ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|esp|Mx|Md|Max|Mand|resp|approx|incl|max|min|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
+ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|esp|pt|pts|Mx|Md|Max|Mand|resp|approx|incl|max|min|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
 def sent_split(s):
     """10-04 줄바꿈 2차: 문장 단위 나누기 — 괄호·따옴표 안(깊이>0)·약어(n. a. lig. Perio. …)·번호(1.) 뒤는 나누지 않음 · 마침표 없는 끝맺음은 음·함·됨만(‘보다’ 같은 ‘다’는 아님)"""
     out, last = [], 0
