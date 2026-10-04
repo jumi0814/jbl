@@ -53,7 +53,14 @@ E: Q28 | 24·23·22·21년 단답 "SPD(spectral power distribution)에서 x축�
 F: 6=SPD — x축은 파장 y축은 세기
 # Color temperature (중요하지 않다)
 - 색온도: {r:온도 낮을수록 빨개진다}(필기).
-- 표(카메라 WB 기준): 대략 3200K 텅스텐계열의 조명 · 4000K 백색 형광등계열의 조명 · 5200K 맑은 하늘의 옥외 · 6000K 구름 낀 하늘아래 · 6000K 플래쉬 촬영 · 7000K 맑은날 그늘진 곳.
+- 표(카메라 WB 기준 · 대략):
+| 색온도 | 조명 |
+| 3200K | 텅스텐계열의 조명 |
+| 4000K | 백색 형광등계열의 조명 |
+| 5200K | 맑은 하늘의 옥외 |
+| 6000K | 구름 낀 하늘아래 |
+| 6000K | 플래쉬 촬영 |
+| 7000K | 맑은날 그늘진 곳 |
 - 필기: "SPD는 빛의 속성 알 수 있어 중요하다" · 옛날엔 가열해서 백열등(노란색)을 씀 → 파란색 LED 발견(노벨상) → 흰색 LED.
 - 물체의 spd 반사율을 알면 그 물체가 어떤 색을 보일지 계산 가능(필기).
 F: 7=색온도 — 온도가 낮을수록 빨개진다
@@ -591,12 +598,11 @@ M: shade는 {r:처음 고른 것}이 가장 정확 — 오래 보면 적응 → 
 - **Medications** — 아래 표.
 F: 101=나이와 감정 등에 따라서도 색상이 다르게 보일 수 있음
 # Medications — Effect of Chemicals on Color Perception
-| Drug | Effect on red/orange/yellow | Effect on blue/green/purple |
-| **Alcohol or morphine** | {r:Lighter} | {r:Darker} |
-| **Caffeine** | {r:Darker} | {r:Lighter} |
-| **Viagra** | {r:Blue tint} (between blue and green) — 두 칸에 걸친 하나의 효과 | ← |
-| **Oral contraceptives** | {r:Blues and yellows↓} — 두 칸에 걸친 하나의 효과 | ← |
-- 필기 풀이: 술이나 morphine - 빨간 계열이 밝게 · 커피 - 푸른 계열이 밝게 · viagra - 파란색 보는 문제 · 경구피임제 - 파란·노란 계열 민감도 떨어짐.
+| Drug | Effect on red/orange/yellow | Effect on blue/green/purple | 필기 풀이 |
+| **Alcohol or morphine** | {r:Lighter} | {r:Darker} | 술이나 morphine - 빨간 계열이 밝게 |
+| **Caffeine** | {r:Darker} | {r:Lighter} | 커피 - 푸른 계열이 밝게 |
+| **Viagra** | {r:Blue tint} (between blue and green) — 두 칸에 걸친 하나의 효과 | ← | viagra - 파란색 보는 문제 |
+| **Oral contraceptives** | {r:Blues and yellows↓} — 두 칸에 걸친 하나의 효과 | ← | 경구피임제 - 파란·노란 계열 민감도 떨어짐 |
 - 약물을 복용하였을 때 색상 판단에 영향 — 진료 전에 이런 것들을 마시거나 먹으면 안 됨 · 커피도 요인 중 하나 · 색상 보는 민감도가 임상의 핵심(필기).
 F: 102=약물을 복용하면 색상 판단에 영향
 # Binocular difference — 두 눈은 다르게 본다
