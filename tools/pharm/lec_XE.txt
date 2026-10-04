@@ -197,13 +197,13 @@ U: ✍ direct = 수용체 결합 = ACh와 구조 유사 / pilocarpine은 {r:musc
 - Synthetic congeners: {r:longer duration}, relatively selective activity.
 - Choline esters are {r:hydrophilic} → poorly absorbed, poorly distributed into the CNS.
 - {r:Carbamate esters}(carbachol·bethanechol): resist hydrolysis by AChE / {r:β-methyl} group(methacholine·bethanechol): nicotinic potency↓.
-| Ester | AChE 감수성 | Cardiac | GI·Urinary | Nicotinic | 비고(슬라이드·필기) |
-| Acetylcholine | +++ | ++ | ++ | ++ | 작용이 짧고 비선택 |
-| Methacholine | + | +++ | ++ | + | AChE에 분해되긴 하나 약함 |
-| Carbachol | − | + | +++ | +++ | AChE에 분해 안 됨 |
-| Bethanechol | − | ± | +++ | − | 분해 안 됨, 작용시간이 길어 약효↑ |
-- 같은 표의 Eye(Topical)·Atropine antagonism 칸(p.27): ACh +·+++ / Methacholine +·+++ / Carbachol ++·+ / Bethanechol ++·+++.
-- p.29 Table 9-1의 Muscarine 행(Not used therapeutically): AChE −, cardiovascular ++, GI·urinary +++, eye ++, atropine +++, nicotinic −.
+- 표 출처: Choline ester 4행 = p.27 표 · Muscarine 행 = p.29 Table 9-1.
+| Ester | AChE 감수성 | Cardiac | GI·Urinary | Eye(Topical) | Atropine 길항 | Nicotinic | 비고(슬라이드·필기) |
+| Acetylcholine | +++ | ++ | ++ | + | +++ | ++ | 작용이 짧고 비선택 |
+| Methacholine | + | +++ | ++ | + | +++ | + | AChE에 분해되긴 하나 약함 |
+| Carbachol | − | + | +++ | ++ | + | +++ | AChE에 분해 안 됨 |
+| Bethanechol | − | ± | +++ | ++ | +++ | − | 분해 안 됨, 작용시간이 길어 약효↑ |
+| Muscarine | − | ++ | +++ | ++ | +++ | − | Not used therapeutically(치료에 안 씀) |
 - Atropine is a {r:competitive antagonist} of the muscarinic ACh receptor types {r:M1, M2, M3, M4 and M5}(p.27·29).
 U: ✍ carboxylic acid 쪽이 amide로 바뀌며(carbamate) 분해가 잘 안 돼 지속시간이 길어짐(p.26 필기).
 F: 25=pilocarpine은 muscarine과 구조 유사, 26=Carbamate ester는 AChE에 저항, 27=Choline ester 약리 성질, 29=Choline ester와 alkaloid 비교
@@ -217,7 +217,9 @@ M: Atropine = {r:M1-M5} {r:competitive antagonist}
 # Natural alkaloids
 - The {r:tertiary} natural cholinomimetic alkaloids(pilocarpine, nicotine, lobeline) are {r:well absorbed} from most sites of administration.
 - {r:Muscarine}(quaternary amine): GI 흡수는 덜 되지만 독버섯으로 먹으면 toxic, 뇌에도 들어감.
-- Pilocarpine의 muscarinic activity(p.29): AChE 감수성 −, GI·urinary bladder +++, eye ++, cardiovascular +, nicotinic −.
+- Pilocarpine의 muscarinic activity(p.29 Table 9-1):
+| Alkaloid | AChE 감수성 | Cardiovascular | GI·Urinary bladder | Eye | Nicotinic |
+| Pilocarpine | − | + | +++ | ++ | − |
 # Properties & clinical uses
 | Drug | Receptor | AChE 가수분해 | Route | Clinical uses |
 | Acetylcholine | Muscarinic & Nicotinic | Yes | Intraocular, intracoronary | Miosis during ophthalmic surgery, coronary angiography |
@@ -235,7 +237,11 @@ E: XE17 | 21년 단답 "Pilocarpine과 유사하게 사용할 수 있는 구강�
 | Drug | Clinical applications | Adverse effects | Contraindications |
 | Methacholine | Diagnosis of asthma | Dyspnea, lightheadedness, headache, pruritus, throat irritation | Recent heart attack or stroke, aortic aneurysm, uncontrolled hypertension |
 | Carbachol·Bethanechol·{r:Cevimeline}·{r:Pilocarpine} | Glaucoma(carbachol), urinary tract motility(bethanechol), {r:xerostomia in Sjögren's}(cevimeline·pilocarpine) | {r:Sweating}, shivering, nausea, dizziness, {r:increased frequency of urination}, rhinitis | {r:Acute iritis} or glaucoma after cataract extraction, {r:narrow-angle glaucoma} |
-- Therapeutic considerations: methacholine은 AChE에 매우 저항·심혈관 muscarinic에 비교적 선택 / carbachol은 nicotinic 작용이 강해 전신 사용 불가(점안 → miosis·안압↓) / bethanechol은 muscarinic에 거의 완전 선택.
+- Therapeutic considerations(choline esters):
+| Ester | 특징 |
+| Methacholine | AChE에 매우 저항 · 심혈관 muscarinic에 비교적 선택 |
+| Carbachol | nicotinic 작용이 강해 전신 사용 불가(점안 → miosis·안압↓) |
+| Bethanechol | muscarinic에 거의 완전 선택 |
 - Pilocarpine and Cevimeline ({r:an M1 and M3 agonist}) are used to treat {r:xerostomia in Sjögren's syndrome}.
 U: ✍ p.31 표는 궁금한 사람만 — "이런 곳에서 시험문제는 나오지 않습니다"(25 필기).
 # Pilocarpine 한 장 요약(선배 발표)
@@ -504,7 +510,10 @@ M: 항무스카린제 복용 중 → pilocarpine·cevimeline {r:피함} → {r:�
 - 허가 용법(5mg 하루 4회)을 처음부터 쓰면 땀·심계항진·구역 → 처음엔 {r:2.5mg 1일 2-3회}로 시작해 부작용이 없으면 증량.
 E: XE06 | 23년 서술(증례) "같은 증례(비자극 0.05·자극 0.1) 재출제" → JB 답 = 이 슬라이드 답 그대로 — 2016년 증례의 수치만 바뀜
 # 2017년 시험문제
-- 분비율 표 빈칸(0.5 point × 4, 소수점 첫째자리): Normal whole 비자극 {r:0.3 – 0.5} · 자극 {r:1.0 – 3.0} / Dry mouth 비자극 {r:< 0.1} · 자극 {r:< 0.5 – 0.7}.
+- 분비율 표 빈칸(0.5 point × 4, 소수점 첫째자리):
+| Whole saliva | 비자극 | 자극 |
+| Normal | {r:0.3 – 0.5} | {r:1.0 – 3.0} |
+| Dry mouth | {r:< 0.1} | {r:< 0.5 – 0.7} |
 - 적정 용량: 1회 복용량 ( {r:10 mg} ) 초과 금지 · 방사선치료 두경부암 초기 1정(5㎎) 1일 ( {r:3} )회 · Sjögren 1정(5㎎) 1일 ( {r:4} )회 수 주간.
 - 과량 투여: ==( Atropine )을 피하 또는 정맥투여==.
 - 적응증: ==전신적인 부작용때문에, 주로 ( 구강건조증 (Xerostomia) )과 ( 녹내장(glaucoma) ) 치료용으로만 사용한다==.
