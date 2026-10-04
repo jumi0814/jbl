@@ -568,7 +568,7 @@ def _kp(p, ctx, first=True, lvl=0, li=False):
         return '<span class="kst">' + ''.join(f'<span class="ksi{" kfn" if _L(x) <= KFN else ""}">' + (_ks(' → ', 'ka') if i else '') + inline(x, ctx, first and not i) + '</span>' for i, x in enumerate(bp)) + '</span>'
     # K6 ' + ' 부연 묶음
     ps = _sp(p, ' + ')
-    if n > 90 and len(ps) >= 3 and all(_L(x) >= 12 for x in ps) and any(re.search(r'[(（]', x) for x in ps) and len(ps) <= 7:   # 10-04 줄바꿈 2차: 'A + B' 한 사실(약 = 작용 A + 작용 B)은 나누지 않음 — 셋 이상 묶음만
+    if n > 90 and (len(ps) >= 3 or (len(ps) == 2 and min(_L(x) for x in ps) >= 40)) and all(_L(x) >= 12 for x in ps) and any(re.search(r'[(（]', x) for x in ps) and len(ps) <= 7:   # 10-04 줄바꿈 2차: 'A + B' 한 사실(약 = 작용 A + 작용 B)은 나누지 않음 — 셋 이상 묶음만
         bp = _bal(ps)
         return _div([(_ks(' + ', 'kp') if i else '') + _kp(x, ctx, first and not i, lvl + 1) for i, x in enumerate(bp)])
     # K3 ' · ' 사실 흐름

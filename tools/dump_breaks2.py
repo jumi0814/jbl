@@ -10,6 +10,7 @@ SID = sys.argv[1].upper()
 P = J._load_js(os.path.join(ROOT, 'docs', 'packs', SID + '.js'))
 SKIPC = {'noann', 'cite', 'jbchip', 'xjb', 'figchip', 'ey', 'ych', 'clab'}
 def txt(el):
+    for k in el.find_all(class_='kh') if hasattr(el, 'find_all') else []: k.replace_with(' ')
     return re.sub(r'\s+', ' ', el.get_text(' ', strip=True)).strip()
 def flags(pieces):
     f = []
@@ -61,9 +62,10 @@ def scan(html, where):
             parents.setdefault(id(e.parent), (e.parent, []))[1].append(e)
         for _, (par, es) in parents.items():
             if len(es) < 2 and cls != 'ksub': continue
-            if cls == 'ksub':   # 요지 둘째 줄 — 첫 줄과 같이
-                es = [c for c in par.children if not isinstance(c, NavigableString)]
-            pieces = ['• ' + txt(e) for e in es if txt(e)]
+            if cls == 'ksub':   # 요지 둘째 줄 — 첫 줄(ksub 앞 글자 전부) + 둘째 줄
+                head = ''.join(str(c) for c in par.children if not (getattr(c, 'get', None) and 'ksub' in (c.get('class') or [])))
+                pieces = ['• ' + txt(BeautifulSoup(head, 'html.parser'))] + ['• ' + txt(e) for e in es]
+            else: pieces = ['• ' + txt(e) for e in es if txt(e)]
             if len(pieces) < 2: continue
             fl = flags([p for p in pieces])
             (out_f if fl else out_n).append((where(par), pieces, fl))

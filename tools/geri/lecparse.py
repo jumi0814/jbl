@@ -126,7 +126,7 @@ def _depth_iter(s):
         if ch in '(（[{': d += 1                 # {r:…}·{k:…} 안에서도 나누지 않음(예: {r:0.04 · 0.70})
         elif ch in ')）]}': d = max(0, d - 1)
         yield i, ch, d + (1 if q else 0)
-ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
+ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|esp|pt|pts|Tx|Mr|Mrs|Ms|Hx|Dx|Mx|Md|Max|Mand|resp|approx|incl|max|min|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
 def sent_split(s):
     """10-04 줄바꿈 2차: 문장 단위 나누기 — 괄호·따옴표 안(깊이>0)·약어(n. a. lig. Perio. …)·번호(1.) 뒤는 나누지 않음 · 마침표 없는 끝맺음은 음·함·됨만(‘보다’ 같은 ‘다’는 아님)"""
     out, last = [], 0
@@ -568,7 +568,7 @@ def _kp(p, ctx, first=True, lvl=0, li=False):
         return '<span class="kst">' + ''.join(f'<span class="ksi{" kfn" if _L(x) <= KFN else ""}">' + (_ks(' → ', 'ka') if i else '') + inline(x, ctx, first and not i) + '</span>' for i, x in enumerate(bp)) + '</span>'
     # K6 ' + ' 부연 묶음
     ps = _sp(p, ' + ')
-    if n > 90 and len(ps) >= 3 and all(_L(x) >= 12 for x in ps) and any(re.search(r'[(（]', x) for x in ps) and len(ps) <= 7:   # 10-04 줄바꿈 2차: 'A + B' 한 사실(약 = 작용 A + 작용 B)은 나누지 않음 — 셋 이상 묶음만
+    if n > 90 and (len(ps) >= 3 or (len(ps) == 2 and min(_L(x) for x in ps) >= 40)) and all(_L(x) >= 12 for x in ps) and any(re.search(r'[(（]', x) for x in ps) and len(ps) <= 7:   # 10-04 줄바꿈 2차: 'A + B' 한 사실(약 = 작용 A + 작용 B)은 나누지 않음 — 셋 이상 묶음만
         bp = _bal(ps)
         return _div([(_ks(' + ', 'kp') if i else '') + _kp(x, ctx, first and not i, lvl + 1) for i, x in enumerate(bp)])
     # K3 ' · ' 사실 흐름
