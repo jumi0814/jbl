@@ -341,6 +341,7 @@ def key_split(v):
     e = split_enum(v); pieces = None
     if e:
         lead, items, _c = e
+        if len(items) <= 8 and all(len(_plain(x)) <= 70 for x in items) and len(_plain(lead)) <= 60: return None   # 10-04 줄바꿈 전수: 짧은 원문자 목록(①~⑥)은 상자 안에 통째로(①만 상자에 남고 ②~가 밖으로 내려가 목록이 찢기던 것)
         if len(items) >= 2: pieces = [((lead + ' ') if lead else '') + items[0]] + items[1:]
     else:
         top = split_top(v)
