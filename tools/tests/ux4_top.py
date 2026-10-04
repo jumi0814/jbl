@@ -16,7 +16,7 @@ async def open_(pg, h, wait=350):
     await pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')", timeout=30000); await pg.wait_for_timeout(wait)
 CRUMB = "[...document.querySelector('#crumb').children].filter(e=>!e.classList.contains('sl')).map(e=>e.textContent.trim()).join(' / ')"
 LUM = """(c)=>{const m=c.match(/[\\d.]+/g).map(Number);const f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(m[0])+.7152*f(m[1])+.0722*f(m[2]);}"""
-CK = "(c=>({st:c.dataset.st,t:c.querySelector('.ckt').textContent,l:c.querySelector('.ckl').textContent,dot:getComputedStyle(c.querySelector('.ckd')).backgroundColor}))(document.querySelector('#clock'))"
+CK = "(c=>({st:c.dataset.st,t:c.dataset.today,l:c.dataset.lab,dot:getComputedStyle(c.querySelector('.ckd')).backgroundColor}))(document.querySelector('#clock'))"
 def rgb(h): h = h.lstrip('#'); return 'rgb(%d, %d, %d)' % tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 async def run(b, vp, touch, tag):
     ctx = await b.new_context(viewport=vp, has_touch=touch); pg = await ctx.new_page(); errs = []

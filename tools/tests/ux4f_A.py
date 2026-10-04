@@ -28,7 +28,7 @@ def mv(pg, i=0):
 def tap(pg, sel, touch):
     if touch: pg.tap(sel)
     else: pg.click(sel)
-CK = "(c=>({st:c.dataset.st,t:c.querySelector('.ckt').textContent,l:c.querySelector('.ckl').textContent}))(document.querySelector('#clock'))"
+CK = "(c=>({st:c.dataset.st,t:c.dataset.today,l:c.dataset.lab}))(document.querySelector('#clock'))"
 PCT = "(s=>[...document.querySelectorAll(s)].filter(e=>e.offsetParent!==null||e===document.body).map(e=>e.innerText).join(' '))"
 
 def hub_rest(b):

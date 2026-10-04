@@ -19,7 +19,7 @@ async def boot(pg, h, ms=1500):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.clock.run_for(ms)
 async def fresh(pg, h):
     await boot(pg, h); await pg.evaluate("localStorage.clear();sessionStorage.clear()"); await boot(pg, h)
-async def lab(pg): return await pg.evaluate("document.querySelector('#clock .ckl').textContent")
+async def lab(pg): return await pg.evaluate("document.querySelector('#clock').dataset.lab")
 async def st(pg): return await pg.evaluate("document.querySelector('#clock').dataset.st")
 async def pop(pg):   # 팝오버를 열어(열려 있으면 그대로) 글자 — 알약·팝오버 누름은 측정 상태를 바꾸지 않음(TRKSEL)
     return await pg.evaluate("(()=>{const p=document.querySelector('#tpop');if(!p.classList.contains('on'))document.querySelector('#clock').click();return {seg:(p.querySelector('[data-tpt=seg]')||{}).textContent||'',rest:(p.querySelector('[data-tpt=rest]')||{}).textContent||'',rv:(p.querySelector('[data-tpt=rv]')||{}).textContent||'',rl:(p.querySelector('.trrl')||{}).textContent||'',rows:[...p.querySelectorAll('[data-tp]')].map(b=>b.dataset.tp)}})()")
@@ -44,7 +44,7 @@ async def part_view(b, vp, touch, tag):
     # ② ☕ 쉬기 4분
     await pg.evaluate("__h.trRest()"); await pg.clock.run_for(4 * MIN + 10000)
     R = await pg.evaluate("__h.restStats()")
-    ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.querySelector('.ckl').textContent,getComputedStyle(c.querySelector('.ckd')).backgroundColor,c.querySelector('.ckt').textContent])(document.querySelector('#clock'))")
+    ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.dataset.lab,getComputedStyle(c.querySelector('.ckd')).backgroundColor,c.dataset.today])(document.querySelector('#clock'))")
     ok(ck[0] and re.fullmatch(r'휴식 4:[0-2]\d', ck[1]) and ck[2] == 'rgb(183, 121, 31)' and ck[3].startswith('0:25:'), f'알약 휴식 — 금색 점·지금 휴식 구간·공부 합계 그대로 {ck}')
     await pg.clock.run_for(2000); ok((await lab(pg)) != ck[1], f'쉬는 동안 휴식 타이머가 흐름 {ck[1]!r} → {await lab(pg)!r}')
     P = await pop(pg)
@@ -82,7 +82,7 @@ async def part_view(b, vp, touch, tag):
     fm = await pg.evaluate("__h.trFocusMs()")
     ok(await st(pg) == 'run' and re.fullmatch(r'공부 1[01]:\d\d', await lab(pg)) and 10 * MIN <= fm < 11 * MIN, f'자동 측정 10분 → {await st(pg)} {await lab(pg)!r} · 지금 구간 {fm / MIN:.1f}분')
     await pg.clock.run_for(9 * MIN)
-    ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.querySelector('.ckl').textContent])(document.querySelector('#clock'))")
+    ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.dataset.lab])(document.querySelector('#clock'))")
     ok(await st(pg) == 'rest' and ck[0] and ck[1].startswith('휴식 '), f'무활동 → 자동 휴식 표시 {await st(pg)} {ck}')
     await pg.screenshot(path=J.TMP + f'/ux3p_t_auto_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 260})
     await pg.clock.run_for(15 * MIN); await pg.mouse.move(640, 500); await pg.mouse.wheel(0, 1); await pg.clock.run_for(300)

@@ -22,7 +22,7 @@ ST = """(()=>{const q=s=>document.querySelector(s),vis=e=>!!e&&e.offsetParent!==
  return {mode:q('#nav').dataset.mode,cbs:!!q('#crumb .cbs'),fo:B.contains('focus'),kitoff:B.contains('kit-off'),top:getComputedStyle(q('#top')).display,side:vis(q('#side'))&&q('#side').getBoundingClientRect().right>4,
   dt:vis(dt)?Math.round(dt.getBoundingClientRect().top):null,kv:getComputedStyle(k).display!=='none'&&getComputedStyle(k).visibility!=='hidden'&&kr.width>0,kc:Math.round((kr.left+kr.right)/2),bc:Math.round(sw+(W-sw)/2),W,sw,
   kitt:[...document.querySelectorAll('[data-kitt]')].filter(vis).length,dfoc:[...document.querySelectorAll('.dfoc')].filter(vis).length,
-  fc:fc?fc.textContent:null,ckt:(c.querySelector('.ckt')||{}).textContent,ckl:(c.querySelector('.ckl')||{}).textContent,st:c.dataset.st,
+  fc:fc?fc.textContent:null,ckt:c.dataset.today,ckl:c.dataset.lab,st:c.dataset.st,
   navopen:B.contains('navopen'),lock:document.documentElement.classList.contains('navlock'),fold:B.contains('sidefold'),
   solo:vis(q('#dtabs.dsolo'))?q('#dtabs .dtone')&&q('#dtabs .dtone').textContent:null,dhk:[...document.querySelectorAll('.hero .dhk button')].filter(vis).length,
   ph:q('#gsearch').placeholder,lsKit:localStorage.getItem('jblhub.v1.kitoff')}})()"""

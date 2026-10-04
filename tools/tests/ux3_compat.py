@@ -59,7 +59,7 @@ async def forward(b, tag, seed, oldu):
     pg2 = await page(ctx, errs_new); await pg.close()
     await newhub(pg2)
     new = await pg2.evaluate("D=>D.map(d=>[__h.tDay(d),__h.tLec(d)])", [D1, D2, D3])
-    clk_new = await pg2.inner_text('#clock .ckt')
+    clk_new = await pg2.evaluate("document.querySelector('#clock').dataset.today")
     if old is None:   # 1차 = time·timed 그대로(tadj·timeDev 없음)
         tm, td = json.loads(base['time']), json.loads(base['timed'])
         old = [[tm.get(d, {}), td.get(d, {})] for d in [D1, D2, D3]]

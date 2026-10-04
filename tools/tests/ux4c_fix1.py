@@ -25,7 +25,7 @@ def go(pg, h, wait=500):
     pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#nav .ni')", timeout=60000); pg.wait_for_timeout(wait)
 def mv(pg, i=0):
     pg.mouse.move(300 + i % 7, 300 + i % 5); pg.mouse.wheel(0, 1); pg.mouse.move(310, 320 + i % 3); pg.mouse.wheel(0, 1)
-CK = "(c=>({st:c.dataset.st,t:c.querySelector('.ckt').textContent,l:c.querySelector('.ckl').textContent}))(document.querySelector('#clock'))"
+CK = "(c=>({st:c.dataset.st,t:c.dataset.today,l:c.dataset.lab}))(document.querySelector('#clock'))"
 
 def hub_rest(b):
     print('== 허브로 나와 쉬기(가짜 시계)')

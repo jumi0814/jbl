@@ -49,8 +49,8 @@ async def part_idle(b):
     li = await study(pg, 21)
     await pg.clock.run_for(8 * MIN + 2000)
     ts = await ls(pg, 'tstate')
-    ok(await st(pg) == 'rest' and ts and ts.get('ar') == 1 and ts.get('r0') == li + MIN, f"무입력 8분 → ☕ 쉬는 중·ar·r0 = 마지막 입력 + 1분(flow V10 — 미리 센 1분은 공부) ({await pg.inner_text('#clock .ckl')!r} r0-li={ts and ts.get('r0') - li})")
-    ok(re.search(r'휴식 7:0\d', await pg.inner_text('#clock .ckl')), f"알약 휴식 시계 = 마지막 입력 1분 뒤부터 ({await pg.inner_text('#clock .ckl')!r})")
+    ok(await st(pg) == 'rest' and ts and ts.get('ar') == 1 and ts.get('r0') == li + MIN, f"무입력 8분 → ☕ 쉬는 중·ar·r0 = 마지막 입력 + 1분(flow V10 — 미리 센 1분은 공부) ({await pg.evaluate("document.querySelector('#clock').dataset.lab")!r} r0-li={ts and ts.get('r0') - li})")
+    ok(re.search(r'휴식 7:0\d', await pg.evaluate("document.querySelector('#clock').dataset.lab")), f"알약 휴식 시계 = 마지막 입력 1분 뒤부터 ({await pg.evaluate("document.querySelector('#clock').dataset.lab")!r})")
     ok(abs(await tsum(pg) - 11 * MIN) <= 1000, f'공부 = 11분(flow V10 마지막 입력 뒤 1분은 공부 그대로 — 시계 안 되감김) — time {await tsum(pg) / 1000:.0f}초')
     await pg.screenshot(path=J.TMP + '/ux3i_rest_tmr_mac.png', clip={'x': 0, 'y': 0, 'width': 1280, 'height': 60})
     # 마지막 입력에서 28분 뒤 입력 → 띠(기본 쉬었어요) → 10초 무응답

@@ -27,7 +27,7 @@ def mv(pg, i=0):
     pg.mouse.move(300 + i % 7, 300 + i % 5); pg.mouse.wheel(0, 1); pg.mouse.move(310, 320 + i % 3); pg.mouse.wheel(0, 1)
 def key(pg, k, code=None, shift=False):
     pg.evaluate("([k,c,s])=>document.dispatchEvent(new KeyboardEvent('keydown',{key:k,code:c,shiftKey:s,bubbles:true}))", [k, code or '', shift]); pg.wait_for_timeout(250)
-CK = "(c=>({st:c.dataset.st,t:c.querySelector('.ckt').textContent,l:c.querySelector('.ckl').textContent}))(document.querySelector('#clock'))"
+CK = "(c=>({st:c.dataset.st,t:c.dataset.today,l:c.dataset.lab}))(document.querySelector('#clock'))"
 TREST = "Object.values(JSON.parse(localStorage.getItem('jblhub.v1.trest')||'{}')).reduce((a,v)=>a+(+v||0),0)"
 T0 = datetime.datetime(2026, 9, 30, 10, 0, 0)
 TOASTS = "(JSON.parse(sessionStorage.getItem('jblhub.v1.toasts')||'[]')).map(x=>x&&(x.t||x[1]||'')).join(' | ')"
@@ -78,7 +78,7 @@ def hub_rest(b):
     for i in range(7): pg.clock.run_for(60000)
     pg.evaluate("__h.restBack(Date.now(),'x')"); pg.wait_for_timeout(200)
     pg.click('#idleband [data-rb=study]'); pg.wait_for_timeout(300)
-    r = pg.evaluate("[document.querySelector('#clock .ckt').textContent,document.querySelector('#home [data-hb=td]').textContent,document.querySelector('#home [data-hw=tot]').textContent,document.querySelector('#nav [data-nb=wk]').textContent]")
+    r = pg.evaluate("[document.querySelector('#clock').dataset.today,document.querySelector('#home [data-hb=td]').textContent,document.querySelector('#home [data-hw=tot]').textContent,document.querySelector('#nav [data-nb=wk]').textContent]")
     ok(r[0].rsplit(':', 1)[0] == r[1] == r[2] and r[3].endswith(r[1]) and ms_of(r[1]) >= 16, f'알약 = 머리 = 이번 주 = 메뉴 곧바로 {r}')
     ok(not pg.errs, f'오류 0 {pg.errs[:3]}')
     ctx.close()

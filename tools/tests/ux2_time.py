@@ -120,7 +120,7 @@ async def part_clock(b):
     pg.on('pageerror', lambda e: errs.append(str(e)[:200])); print('== B03·B04 측정 표시·무활동')
     await pg.clock.install(time=NOW)
     await boot(pg, '#/OMS1/DD1/learn'); await pg.evaluate("localStorage.clear();localStorage.setItem('jblhub.v1.restAuto','false')"); await boot(pg, '#/OMS1/DD1/learn', 1200)   # ux3 J9: 옛 되묻기 띠(무활동 → [공부했어요][빼기])는 '쉬는 시간 재기'를 끈 때의 흐름 — 새 흐름은 tests/ux3_rest.py
-    clk = lambda: pg.inner_text('#clock .ckt')   # ux4 묶음2 알약의 오늘 합계(h:mm:ss)
+    clk = lambda: pg.evaluate("document.querySelector('#clock').dataset.today")   # ux4 묶음2 알약의 오늘 합계(h:mm:ss)
     sec = lambda t: (lambda a: int(a[0]) * 3600 + int(a[1]) * 60 + int(a[2]))(t.strip().split(':'))
     await pg.mouse.move(400, 400); await pg.mouse.wheel(0, 1)
     for i in range(3):
@@ -130,7 +130,7 @@ async def part_clock(b):
     seq = [sec(await clk())]
     for _ in range(270):   # 무활동 4분 30초 — 1초마다 읽어 되감기지 않음
         await pg.clock.run_for(1000); seq.append(sec(await clk()))
-    ok(seq[-1] <= 20 + 60 and (await pg.inner_text('#clock .ckl')).startswith('자리 비움'), f"5분 무활동 → {await clk()} (마지막 입력 20초 + 1분 이내) · 알약 '{await pg.inner_text('#clock .ckl')}'")
+    ok(seq[-1] <= 20 + 60 and (await pg.evaluate("document.querySelector('#clock').dataset.lab")).startswith('자리 비움'), f"5분 무활동 → {await clk()} (마지막 입력 20초 + 1분 이내) · 알약 '{await pg.evaluate("document.querySelector('#clock').dataset.lab")}'")
     for _ in range(240):
         await pg.clock.run_for(1000); seq.append(sec(await clk()))
     ok(all(a <= b for a, b in zip(seq, seq[1:])), f'9분 동안 1초마다 읽은 값이 줄지 않음 ({seq[0]}→{seq[-1]})')
