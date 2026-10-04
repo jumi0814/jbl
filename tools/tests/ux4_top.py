@@ -90,7 +90,7 @@ async def run(b, vp, touch, tag):
     await tap('#clock'); await pg.wait_for_timeout(200); await tap('#tpop [data-tp=goal]'); await pg.wait_for_timeout(800)
     ok(await pg.evaluate("location.hash.indexOf('#/_cal')===0&&!!document.querySelector('#calmset')&&document.querySelector('#calmset').open"), f'{tag} 하루 목표·측정 설정 → 📅 달력 측정 설정 펼침')
     await tap('#clock'); await pg.wait_for_timeout(200); await tap('#tpop [data-tp=start]'); await pg.wait_for_timeout(400)
-    ck = await pg.evaluate(CK); ok(ck['st'] == 'sess' and ck['l'].startswith('세션 '), f'{tag} ▶ 공부 시작 → 세션 {ck}')
+    ck = await pg.evaluate(CK); ok(ck['st'] == 'sess' and ck['l'].startswith('공부 '), f'{tag} ▶ 공부 시작 → 세션(알약 = 이번 집중) {ck}')
     await pg.evaluate("__h.trStop()"); await pg.wait_for_timeout(200)
     ok(not errs, f'{tag} 콘솔·페이지 오류 0 {errs[:3]}')
     await ctx.close()

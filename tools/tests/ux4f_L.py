@@ -147,9 +147,13 @@ with sync_playwright() as p:
     ok(nr and '0:05' in nr[0] and x.ev(f"__h.ntsAmt('{td}','CONS')") == 300000, f"L6 시간대 없이 5분 → {nr} · ± 한도 {x.ev(f'__h.ntsAmt(\"{td}\",\"CONS\")')}")
     x.ctx.close()
     # ---- L7 쉬기 뒤 계속 입력
+    # 10-04 사용자: 자동 측정이 켜져 있으면 쉬는 중 움직임 = 공부 시작(띠 없이) — 띠는 자동 측정 끔일 때만
     x = P(b); x.clear(); x.go('#/CONS/WHT/learn'); x.move(6); x.pop('쉬기'); x.move(30)
+    ok(x.st() in ('run', 'sess'), f'L7 자동 측정 켬 · ☕ 쉬기 뒤 계속 입력 → 공부로 ({x.st()})')
+    x.ctx.close()
+    x = P(b); x.clear(); x.go('#/CONS/WHT/learn'); x.ev("__h.T.auto=false;localStorage.setItem('jblhub.v1.tauto','false')"); x.pop('공부 시작'); x.move(6); x.pop('쉬기'); x.move(30)
     bd = x.ev("(t=>[t.hidden,t.dataset.k])(document.querySelector('#trband'))")
-    ok(x.st() == 'rest' and bd == [False, 'rest'], f'L7 ☕ 쉬기 뒤 10분 계속 입력 → 띠 {bd}')
+    ok(x.st() == 'rest' and bd == [False, 'rest'], f'L7 자동 측정 끔 · ☕ 쉬기 뒤 10분 계속 입력 → 띠 {bd}')
     x.ctx.close()
     # ---- L8 ⏱ 크게 자리 비움
     x = P(b); x.clear(); x.go('#/CONS/WHT/learn'); x.move(6)
