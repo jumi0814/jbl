@@ -292,6 +292,8 @@ def cite_row(cites):
         if not m: gs.append(('', [c])); continue
         cls, k, p_, t = m.groups(); mm = re.match(r'^(.*?)\s*((?:슬라이드|p\.)\s?[\d–\-·,~ ]+)$', t)
         nm, pg = (mm.group(1).strip(), mm.group(2)) if mm else ('', t)
+        m3 = None if mm else re.match(r'^(.*?)\s*‘(.+)’$', t)
+        if m3: nm, pg = m3.group(1).strip(), (('p.' + m3.group(2)) if re.fullmatch(r'[\d–\-·,~ ]+', m3.group(2)) else m3.group(2))   # 쪽 이미지가 없는 강의 인용 ‘4’ → p.4
         b_ = f'<button class="{cls} cz" data-k="{k}" data-p="{p_}" title="{esc(t)}">{pg}</button>'
         if gs and gs[-1][0] == nm and nm: gs[-1][1].append(b_)
         else: gs.append((nm, [b_]))
