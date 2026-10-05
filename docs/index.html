@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"a1e1e191",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"ab992ad2",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1891,6 +1891,10 @@ details.ab.more .amg-n>ul>li::marker{color:#9484C9}details.ab.more .amg-v>ul>li:
 .ab.key1>h5{display:block;font-size:12.5px;font-weight:800;letter-spacing:.03em;color:#8A5A00;margin:0 0 4px}.ab.key1>h5 small{font-weight:500;color:var(--sub);letter-spacing:0;margin-left:4px}
 .ab.key1>ul{margin:0;padding-left:18px}.ab.key1>ul>li{margin:3px 0;font-size:calc(15px*var(--fs,1))}
 .ab.key1 .cites.cz{margin-top:2px}
+
+/* 10-05 사용자 '근거란 및 페이지는 너무 좋지만, 좀만 더 작게' */
+.ab .cites.cz{font-size:11px;gap:1px 10px;margin-top:4px}.ab .cites.cz::before{font-size:10px}.ab .cites.cz .cite.cz{font-size:11px;padding:0 2px}.ab .cites.cz .czk{font-size:11px}
+.ab .aloc .pg,.ab b.lbl .pg,.ab .klead .pg,.ab .pg{font-size:12px;font-weight:500}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -1980,7 +1984,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="a1e1e191",PV={"OMS1": "17f74cbd", "CONS": "9cb820b3", "IMPL": "f69edf44", "ANAT": "1b646feb", "GERI": "a3751db1", "PHARM": "65f38753", "ESTH": "b025a61b"},PSZ={"OMS1": 3.6, "CONS": 2.8, "IMPL": 2.9, "ANAT": 3.7, "GERI": 3.8, "PHARM": 5.2, "ESTH": 3.4};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="ab992ad2",PV={"OMS1": "a8cd589f", "CONS": "2c6c5b1b", "IMPL": "7d485bd7", "ANAT": "01521728", "GERI": "36820867", "PHARM": "170dee81", "ESTH": "169e0fff"},PSZ={"OMS1": 3.7, "CONS": 2.9, "IMPL": 3.0, "ANAT": 3.8, "GERI": 3.9, "PHARM": 5.4, "ESTH": 3.5};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
