@@ -325,6 +325,11 @@ def _nopg_head(raw):
         lab = _nopg(m.group(1)[:-1]); rest = re.sub(r'^\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*)\)?\s+', '', m.group(3))
         return (lab + m.group(1)[-1] + ' ' + _nopg_pre(rest)) if lab else _nopg_pre(rest)
     return _nopg_pre(re.sub(r'^\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*)\)?[\s:：]+', '', raw))
+def _nopg_mid(t):
+    """줄 안에서 출처 표시만 하는 쪽 표기('26 필기(p.9) "…', ', p.7 "…', '— p.7 "…', '/ p.12 "…')도 뺌 — 근거 줄에 같은 쪽이 있음"""
+    t = re.sub(r'(필기|슬라이드|표|그림)\s*\(\s*pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*\s*\)', r'\1', t)
+    t = re.sub(r'(^|[\s,/(])(?:—\s*)?pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*\s+(?=["“])', r'\1', t)
+    return re.sub(r'\s{2,}', ' ', t)
 def _nopg_pre(t):
     """첫 인용 앞 40자 안의 머리('25 p.6 필기 "…', '26 필기 — p.7 "…')에서 쪽 표기만 뺌"""
     i = min([k for k in (t.find('"'), t.find('“')) if k >= 0] or [-1])
@@ -344,7 +349,7 @@ def aitem_lis(x, kind='A'):
     m = re.match(r'^(.{1,24}?)\s+—\s+(.+)$', raw)
     if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“\[]', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'):
         tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
-    if cites: raw = _nopg_head(raw)
+    if cites: raw = _nopg_mid(_nopg_head(raw))
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
     pre_ = raw[:qs[0]].strip() if qs else ''
