@@ -22,12 +22,13 @@ F: 3=재료를 고를 때 어떻게 골라야 하나
 - 그 밖의 판단 요소(분홍 글씨): {r:In vitro testing}(실험 데이터) · {r:In vivo performance}(실제 임상 성적) · Esthetic considerations(심미) · Patients' need(환자의 요구) · Patient and operator's preferences(환자·술자의 선호) · {r:Cost effectiveness}(비용 대비 효과).
 U: in vitro 실험 데이터와 in vivo의 실제 심미·환자의 우식활성·구강위생 상태·비용이 중요한 요소 — 아무리 좋은 재료라도 비용 여건이 안 되면 타협이 필요(필기).
 F: 4=실험 데이터와 실제 임상·비용이 함께 중요한 요소
-M: Anterior → {r:Esthetics} / Posterior → {r:Function}
-M: 판단 요소: {r:In vitro testing} · {r:In vivo performance} · Esthetic considerations · Patients' need · preferences · {r:Cost effectiveness}
+M: 부위별 우선순위: Anterior → {r:Esthetics} ↔ Posterior → {r:Function}
+M: 성질 7: ① **Biologic** ② **Interfacial** ③ **Chemical** ④ **Mechanical** ⑤ **Esthetic** ⑥ **Practicability** ⑦ **Ease of use**
+M: 판단 요소: ① {r:In vitro testing} ② {r:In vivo performance} ③ Esthetic considerations ④ Patients' need ⑤ preferences ⑥ {r:Cost effectiveness}
 
 ## Patient Factors | 환자 요인 6가지 — 같은 와동도 환자에 따라 재료가 바뀐다 | 5 | 환자 요인
 > 구강위생·우식 활성·교합·협조도·방습이 재료를 바꾼다
-= ① Dental status ② {r:Oral hygiene} ③ Size and nature of the caries ④ Function of the tooth ⑤ Access to the cavity ⑥ {r:Isolation}
+= 환자 요인 6: ① Dental status ② {r:Oral hygiene} ③ Size and nature of the caries ④ Function of the tooth ⑤ Access to the cavity ⑥ {r:Isolation}
 # 요인 → 필요한 재료 성질
 | 요인 | 슬라이드 조건 | ✓ 항목 — 고려·필요한 것 |
 | 1. Dental status(치열 상태) | well-supported dentition(지지가 좋은 치열) | Well-distribution of occlusal loads(교합력이 고르게 분산) |
@@ -42,13 +43,13 @@ M: 판단 요소: {r:In vitro testing} · {r:In vivo performance} · Esthetic co
 - 환자 {r:협조도}에 따른 제약 — 집중할 수 있는 시간이 짧거나 협조할 수 없는 상황이면 {r:심미를 조금 포기}.
 - 간접수복이 불가능한 경우 — 예: {r:전신마취} 하에 해야 할 때 그날 인상 채득 후 다음번에 다시 전신마취하고 수복하기 어려움 → {r:직접수복}.
 F: 5
-M: 환자 요인 6: Dental status · {r:Oral hygiene} · Size and nature of caries · Function of tooth · Access to cavity · {r:Isolation}
-M: poor oral hygiene → {r:Cariostatic}·plaque 저항 / compliance 낮음 → {r:insensitive to technique}
-M: 필기 — {r:구강 위생}·{r:우식 활성도} · 교합·{r:parafunctional habit} / {r:협조도} 낮음 → {r:심미를 조금 포기} / {r:전신마취} → {r:직접수복}
+M: 환자 요인 6: ① Dental status ② {r:Oral hygiene} ③ Size and nature of caries ④ Function of tooth ⑤ Access to cavity ⑥ {r:Isolation}
+M: 요인 → 필요한 성질: ① poor oral hygiene → {r:Cariostatic}·plaque 저항 수복재 ② compliance 낮음 → {r:insensitive to technique} ③ wide cavity·tooth position → mechanical consideration
+M: 임상 고려(필기): ① {r:구강 위생}·{r:우식 활성도} ② 교합·{r:parafunctional habit} ③ {r:협조도} 낮음 → {r:심미를 조금 포기} ④ {r:전신마취} → {r:직접수복}
 
 ## Selection of Restorative Materials | 부위·방법·힘에 따른 재료 선택 흐름도 | 6 | 흐름도 · 별표 쪽
 > 전치부는 직접(복합레진)·간접(세라믹)으로, 구치부는 힘을 받느냐로 나눈다
-= 전치 Direct = {r:Resin Composite}(high caries → {r:Glass Ionomer}·Compomer) / Indirect = Metal Ceramic·All-Ceramic / 구치 = Stress-bearing vs Non-stress-bearing
+= 전치 Direct = {r:Resin Composite}(high caries → {r:Glass Ionomer}·Compomer) / 전치 Indirect = Metal Ceramic·All-Ceramic / 구치 = Stress-bearing vs Non-stress-bearing
 # Anterior teeth — 전치부
 | 방법 | 재료 | 슬라이드 설명 | 분홍 글씨 |
 | Direct(직접) | Resin Composite | Esthetic, physical properties, wear resistance, solubility | |
@@ -73,9 +74,9 @@ P: 이 쪽 머리(왼쪽 위)에 ⭐(별표) 표시가 있음(필기본 — 무�
 U: ⚠ p.6 ⭐ 판단 불가: 교수님 강조를 옮긴 표시일 수도, 필기한 사람이 스스로 붙인 표시일 수도 — 설명 필기 없음.
 F: 6=전치부/구치부 · 직접/간접 · 힘 받는 부위/아닌 부위로 나눈 흐름도
 M: 전치 Direct = {r:Resin Composite} / high caries activity → {r:Glass Ionomer}({r:interim restoration}·{r:pulp protection})·Compomer
+M: 전치 Indirect: Metal Ceramic = fracture resistance·{r:poor esthetics} ↔ All-Ceramic = {r:esthetics}
+M: 구치 Stress-bearing: ① Amalgam ② Resin Composite({r:small to medium}) ③ {r:Compomer·RMGI} ④ Ceramic or composite inlay ⑤ Gold / 구치 Non-stress-bearing = Resin Composite·Compomer·Glass Ionomer·RMGI·Metallic
 M: 실제로는 {r:복합레진} or {r:GI} or {r:RMGI} — {r:compomer}는 요즘 잘 안 씀(필기)
-M: Indirect: Metal Ceramic = fracture resistance·{r:poor esthetics} / All-Ceramic = {r:esthetics}
-M: 구치 Stress-bearing = Amalgam · Resin Composite({r:small to medium}) · {r:Compomer·RMGI} · Ceramic or composite inlay · Gold
 
 @G ② 직접·간접 수복재 성질 비교
 ## Comparison of Direct Restorative Materials ★ | 직접수복재 5종 성질 비교 — 열팽창계수가 치아와 비슷한 것은 GI | 7-8 | 기출 24·23·22 · 교수 강조 | jb=Q15
@@ -106,9 +107,10 @@ E: Q15 | 24·23·22년 객관식 "열팽창계수가 치아와 가장 유사한 
 P: GI — "수복재료와 치아가 온도변화가 있을 때 따로 수축하고 팽창하면 계면에 깨지겠죠 -> 중요!!"(필기).
 U: 보험 되는 재료로 해달라는 환자·무료환자는 원진실에서 복합레진 대신 자가중합 GI로 수복 — 치아색 재료지만 투명도 등이 치아와 차이남(필기).
 F: 7=GI는 열팽창계수가 치아와 가장 비슷한 재료 중 하나 — 중요!!, 8=같은 페이지 복사 — 필기 없는 표
-M: 열팽창계수 치아와 유사 = {r:GI}·{r:RMGI}(O) / amalgam·compomer·composite = X
-M: Esthetics {r:OO} = Resin Composite / Low cost·compressive {r:OO} = Amalgam
-M: GI의 X = {r:flexural strength}·{r:radiopacity} / Composite의 X = {r:ease of mixing}·low cost·F release·열팽창계수
+M: 열팽창계수 치아와 유사 = {r:GI}·{r:RMGI}(O) / amalgam·compomer·composite = X / 보기 gold = 간접 표 Cast Gold도 {r:X}
+M: OO 칸: Esthetics {r:OO} = Resin Composite / Low cost·compressive {r:OO} = Amalgam
+M: X 칸: GI의 X = {r:flexural strength}·{r:radiopacity} / Composite의 X = {r:ease of mixing}·low cost·F release·열팽창계수
+M: GI(필기) 장점: 열팽창계수가 치아와 가장 비슷 → {r:계면}에서의 실패가 적음(중요!!) · {r:불소 방출} · 급여 재료 / 단점: 강도·수분에 취약 · 투명도 차이
 
 ## Comparison of Indirect Restorative Materials | 간접수복재 3종 비교 — 간접에서는 세라믹이 열팽창계수 O | 9 | 비교 · 교수 강조 | jb=Q15
 > 간접에서는 세라믹만 열팽창계수가 치아와 비슷하고 심미도 최고, 골드는 비심미적이지만 강하고 잘 맞는다
@@ -134,7 +136,9 @@ E: Q15 | 24·23·22년 객관식 "열팽창계수가 치아와 가장 유사한 
 P: "간접수복은 2학년 때 배웠을 것 — 중요한건 세라믹이 치아의 열팽창계수와 비슷하다는 장점!, 심미적으로 가장 좋음"(필기).
 F: 9=세라믹이 치아의 열팽창계수와 비슷하다는 장점!
 M: 간접 표의 열팽창계수 O = {r:Ceramic}만 (직접 표에선 {r:GI}·{r:RMGI})
-M: Cast Gold = {r:Bonding} X · 열팽창계수 X · Low thermal diffusivity X · compressive·flexural O / 셋 다 {r:Cariostatic}·{r:Low cost} X
+M: 필기: {r:Ceramic} = 치아의 열팽창계수와 비슷 · 심미적으로 가장 좋음 ↔ {r:Cast Gold} = 비심미적·비쌈 but 강도 좋고 잘 맞음
+M: Cast Gold = {r:Bonding} X · 열팽창계수 X · Low thermal diffusivity X · compressive·flexural O
+M: 셋 다 {r:Cariostatic}·{r:Low cost} X
 
 @G ③ 복합레진의 투명도 — opacity·두께·3층
 ## Opacity vs Translucency | 불투명한 dentin vs 투명한 enamel — bulk-fill이 투명한 이유 | 10 | 투명도
@@ -163,11 +167,12 @@ E: Q18 | 24·23·22년 객관식 "Special enamel shade로 옳지 않은 것은?"
 F: 10=디스크 아래 검정 선이 보이는 정도가 다 다름 — Bulk-fill은 투명 · Body와 Dentin은 불투명
 M: Dentin = {r:Opaque}(Microhybrid·Macrofilled) / Enamel = {r:Translucent}(Microfilled·Nanofilled)
 M: Bulk-fill = {r:4 mm} 한 번에 → {r:투명해야} 가능 → {r:전치부}에선 {r:과도하게 투명}
-M: 디스크 — Z350 {r:Dentin}·{r:Body} = 불투명 / {r:Bulk-fill} = 투명 / 투명한 쪽 shade = enamel/translucent · {r:xl (extra light)} · xb
+M: 디스크 — Z350 {r:Dentin}·{r:Body} = 불투명 / {r:Bulk-fill} = 투명
+M: shade 이름: 투명한 쪽 = enamel/translucent · {r:xl (extra light)} · xb ↔ opacity 쪽 = dentin·{r:opaque shade}
 
 ## Thickness · Saturation · Three Layers ★ | 두께·채도가 줄면 투명해진다 — enamel·body·dentin 3층 | 11 | 기출 24 탈 · 3층 | jb=Q27,Q17
 > 같은 shade도 두께만 바뀌면 투명도가 크게 달라진다 — 그래서 층마다 역할을 나눠 쌓는다
-= {r:Thickness, saturation ↓ → Translucency ↑} / 3층 = Enamel(투명도) · Body(중간) · Dentin(색상·불투명)
+= {r:Thickness, saturation ↓ → Translucency ↑} / 3층(치수 → 표면) = Dentin(색상·불투명) → Body(중간) → Enamel(투명도)
 # 두께·채도와 투명도
 - **Thickness, saturation ↓ → Translucency ↑** — 두께가 줄어들수록, 채도가 낮아질수록 투명해진다(필기).
   - 뒤집어 읽으면: {r:두께}가 두꺼워지거나 {r:채도}가 높아지면 {r:반투명도}가 낮아짐(불투명해짐).
@@ -184,9 +189,9 @@ E: Q27 | 24년 단답(탈) "반투명도가 낮아지는 데에 관여하는 빛
 - 이렇게 세 가지 셰이드로 대부분의 제품이 구성되어 있음(필기).
 E: Q17 | 24·21·20년 객관식(보기 미복원) "전치부 심미 레진 수복 layer 3가지를 치수로부터 치아 표면 방향으로" → 3번 dentin-body-enamel shade — p.11 3층 + 필기 "body는 중간에" · p.19 More Opaque 순서 Dentin → Body → Enamel ⚠ 함정: 슬라이드 목록은 표면부터(Enamel·Body·Dentin) 적혀 있어 거꾸로 읽어야 함 · JB 근거는 서덕규 2021 전치부 심미수복 p.2
 F: 11=같은 셰이드로 두께만 달라도 투명도가 많이 차이 남
-M: {r:Thickness}·{r:saturation} ↓ → Translucency ↑ (뒤집으면 {r:두께}·{r:채도} ↑ → {r:반투명도} ↓)
-M: 반투명도를 낮추는 두 요소 = {r:Thickness}, {r:Saturation}(이창하) / {r:Reflectance}, Thickness(안진수 — 색 강의)
-M: 치수 → 표면 = {r:Dentin}({r:색상}·불투명) → {r:Body}({r:universal}) → {r:Enamel}({r:투명도})
+M: 원리: {r:Thickness}·{r:saturation} ↓ → Translucency ↑ (뒤집으면 {r:두께}·{r:채도} ↑ → {r:반투명도} ↓)
+M: 반투명도를 낮추는 두 요소 = {r:Thickness}, {r:Saturation}(이창하) / {r:Reflectance}, Thickness(안진수 — 색 강의) / ⚠ JB 괄호 '포화도가 내려가면 불투명'은 방향 반대
+M: 3층 순서: 치수 → 표면 = {r:Dentin}({r:색상}·불투명) → {r:Body}({r:universal}) → {r:Enamel}({r:투명도}) / ⚠ 슬라이드 목록은 표면부터(Enamel·Body·Dentin)
 
 @G ④ shade의 종류 — 약자·제품·층 조합
 ## Special Enamel Shade ★ | 특수 enamel shade 3묶음과 약자 | 12 | 기출 24·23·22 | jb=Q18
@@ -202,9 +207,9 @@ M: 치수 → 표면 = {r:Dentin}({r:색상}·불투명) → {r:Body}({r:univers
 P: "약자로 이런 약자들 보이면 에나멜 쪽의 특수 셰이드구나 알 수 있다"(필기).
 E: Q18 | 24·23·22년 객관식 "Special enamel shade로 옳지 않은 것은?"(ST·TB·XL·OA·WE) → 3), 4) — p.12 약자 목록에 XL·OA가 없음 · ST·TB = Opalescent · WE = Intense white ⚠ 함정: JB 해설 "이후 PPT에서 이어지는 표에 보기에 해당하는 모든 shade를 찾아볼 수 있어 수업 후 답의 수정이 필요할 수 있을 것으로 보입니다" → 25 자료 표(p.13~15)에는 ST·TB가 없고 OA는 dentin 쪽 → 답 유지(다음 카드)
 F: 12=이런 약자들이 보이면 에나멜 쪽의 특수 셰이드
-M: Opalescent = {r:I·T·ST·SL·TB·TG·TO} / Generic = {r:A·B·C·D x 1~4·P·EV} / Intense white = {r:WE}
-M: special enamel 약자가 아닌 것 = {r:XL}(extra light) · {r:OA}(opaque → dentin 쪽)
+M: 약자 3묶음: ① Opalescent = {r:I·T·ST·SL·TB·TG·TO} ② Generic = {r:A·B·C·D x 1~4·P·EV} ③ Intense white = {r:WE}
 M: 특징 — Opalescent = {r:high translucency}·several hues / Generic = {r:opalescence}·translucency·luminosity·white pigment / Intense white = {r:opaque}·{r:no alteration of value}
+M: special enamel 약자가 아닌 것 = {r:XL}(extra light) · {r:OA}(opaque → dentin 쪽) / ⚠ XL은 enamel 쪽 shade로 쓰이지만 special enamel 약자는 아님
 
 ## Composite Products & Shades | 제품별 filler와 shade 구성 — 약자 읽기 | 13-15 | 표 · shade 약자 | jb=Q18
 > 제품마다 기본 VITA shade + opaque·dentin·body·enamel·translucent·white 같은 특수 shade를 갖춘다
@@ -261,7 +266,7 @@ F: 14
 - 슬라이드는 특수 shade를 색 글씨(빨강·주황·초록·하늘·파랑)로 구분해 두었으나 색의 범례는 없음.
 - ⚠ 색 글씨 뜻 판단 불가(p.13~15): 초록이 OA3·AO2~AO4 같은 opaque shade에 주로 쓰여 'opaque 표시'로 읽을 수도, WD·WB·WE 같은 opaque 아닌 shade에도 초록이 쓰여 단순 구분일 수도.
 F: 15=Z350 XT는 enamel·body·dentin으로 투명도 구분 / G-aenial은 o - opaque · W - white · E - enamel
-M: O·-O·AO·OA = {r:opaque} → {r:dentin} 쪽 / XL = {r:extra light} / D·B·E = Dentin·Body·Enamel(Z350 XT)
+M: 약자 읽기: ① O·-O·AO·OA = {r:opaque} → {r:dentin} 쪽 ② XL = {r:extra light} ③ D·B·E = Dentin·Body·Enamel(Z350 XT) ④ enamel·white·translucent → **enamel** 쪽
 M: Filtek Z350 XT = {r:Nanohybrid} · Dentin · Body · Enamel · Translucent(Clear·Blue·Gray·Amber)
 
 ## Composite for Dentin vs Enamel | dentin용 vs enamel용 복합레진 | 16 | 비교
@@ -280,7 +285,7 @@ M: Filtek Z350 XT = {r:Nanohybrid} · Dentin · Body · Enamel · Translucent(Cl
 - 각각 다 구비해 놓고 쓰면 전치부용·에나멜용으로 할 수 있지만, 모두 구비하기 힘들면 보통 {r:microhybrid, nanohybrid}를 씀.
 F: 16=덴틴 쪽에 해당하는 게 색상과 관련된 것!
 M: dentin용 = {r:Hue and chroma}({r:색상}) · O or Dentin · body/dentin type / enamel용 = {r:Translucency·white hue·opalescence} · Generic or Opalescent
-M: enamel 쪽 가끔 {r:microfilled}(폴리싱 용이) / 다 못 갖추면 {r:microhybrid}·nanohybrid
+M: 재료(필기): enamel 쪽 가끔 {r:microfilled}(폴리싱 용이) / 다 못 갖추면 {r:microhybrid}·nanohybrid
 
 ## Single-shade / Simplified Composite | 한 가지 shade·세 가지 shade 복합레진 | 17-18 | 신제품 · 등장 정도만
 > 주변 치질 색을 따라가는 '카멜레온' 복합레진 — 아직 장기 데이터가 없다
@@ -308,8 +313,8 @@ F: 17=한 셰이드로 다 할 수 있다는 single-shade — 등장했다 정�
 - 이에 대한 데이터는 더더욱 없음(필기).
 P: "이런게 등장했다 정도만 알기"(필기).
 F: 18=기존 vita shade를 세 가지로 묶음
-M: Single-shade = 필러 {r:입자 크기·형태} 조절 → {r:chameleon effect}(색 자체는 안 바뀜) · 아직은 {r:전통적인 방식}이 나음 — {r:장기적 데이터} 필요
-M: Simplified 3 = {r:Bright}(Bleach·A1·B1·B2·C1·D2) · {r:Natural}(A2·A3·C2·D3·D4) · {r:Warm}(A3.5·A4·B3·B4·C3·C4)
+M: Single-shade = 필러 {r:입자 크기·형태} 조절 → {r:chameleon effect}(색 자체는 안 바뀜) / 아직은 {r:전통적인 방식}이 나음 — {r:장기적 데이터} 필요
+M: Simplified 3: ① {r:Bright}(Bleach·A1·B1·B2·C1·D2) ② {r:Natural}(A2·A3·C2·D3·D4) ③ {r:Warm}(A3.5·A4·B3·B4·C3·C4)
 
 ## Shade Reference · Shade Wheel for Z350XT | Z350XT shade 체계와 층 조합 가이드 | 19-23 | 층 조합 · 교수 강조 | jb=Q17
 > 불투명한 순서는 Dentin → Body → Enamel → Translucent — 층 수에 따라 쓸 shade를 바퀴가 알려준다
@@ -340,7 +345,9 @@ F: 19=Z350의 shade를 보면
 P: "섞을 때는 a1이라고 되어있으면 안쪽에 들어가는 body나 dentin shade는 하나 어두운 것! a2를 쓴다는 걸 알아두기"(필기).
 F: 20, 21=하나로 할 땐 바디로 · 두 개로 할 땐 이렇게 써라 — 가이드, 22, 23=a1이면 안쪽 body나 dentin shade는 하나 어두운 a2
 M: 불투명 순서 = {r:Dentin} > {r:Body} > {r:Enamel} > Translucent(Clear·Amber·Blue·Gray)
-M: A1 목표 → Multi {r:A2D}·A1B·WE·C / Two {r:A2D}·A1E / Single {r:A1B}(하나면 {r:바디}) — 안쪽은 {r:한 단계 어둡게}
+M: A1 목표 → Multi {r:A2D}·A1B·WE·C / Two {r:A2D}·A1E / Single {r:A1B}(하나면 {r:바디})
+M: 섞을 때(교수 강조): a1이면 안쪽 body·dentin shade는 {r:한 단계 어둡게} → {r:a2}
+M: 층 두께·cure time: Dentin {r:1.5mm}·{r:40 seconds} / Body·Enamel 2.0mm·20 seconds
 
 @G ⑤ 재료별 적응증과 임상 증례
 ## Esthetic Restorative Materials — Applicable Range ★ | 심미수복재별 적용 와동(Class) | 24 | 기출 24·23·22 · 교수 강조 | jb=Q19
@@ -363,8 +370,9 @@ M: A1 목표 → Multi {r:A2D}·A1B·WE·C / Two {r:A2D}·A1E / Single {r:A1B}(�
 P: "microfilled는 폴리싱이 좀 중요한, 심미성 요구되는 3,4,5급들!!"(필기).
 E: Q19 | 24·23·22년 객관식 "2급 와동 치아색 수복에 적절한 재료는?"(Self cure GI·Light cure GI·Hybrid composite·Microfilled composite·Amalgam) → 3) Hybrid composite — p.24에서 Class II가 들어간 것 = Hybrid(I, II…) · compomer(II deciduous) · All ceramic(I, II inlay & onlay) ⚠ 함정: Microfilled는 III, IV, V, veneer(2급 X) · Self-cure GI는 III, V · Light-cure GI는 칸이 비어 있는 묶음 이름 — 그 아래 RMGI는 III, V(base/liner), compomer의 II는 (deciduous)뿐 · Amalgam은 이 표에 없음(JB: 치아색 수복 X) · JB 일부 판본 해설의 Self cure GI 'Class III, IV'는 슬라이드 'Class III, V'의 오기
 F: 24
+M: 적용 Class: ① Hybrid = {r:I, II, III, IV, V, veneer, inlay} ② Microfilled = {r:III, IV, V, veneer}(폴리싱·심미) ③ Self-cure GI = III, V({r:high caries risk}) ④ RMGI = III, V({r:base/liner}) ⑤ compomer II = {r:deciduous}
 M: Class II 치아색 = {r:Hybrid composite} · compomer(deciduous) · All ceramic(inlay & onlay)
-M: Microfilled = {r:III, IV, V, veneer}(폴리싱·심미) / Self-cure GI = III, V({r:high caries risk}) / RMGI = III, V({r:base/liner}) / compomer II = {r:deciduous}
+M: ⚠ 함정: ① Microfilled = 2급 X ② Light-cure GI = 칸이 빈 묶음 이름 ③ Amalgam = 이 표에 없음(치아색 X)
 M: 필기 — {r:하이브리드}는 못 쓰는 게 없다 · {r:microhybrid}·{r:nanohybrid}로 거의 모든 진료
 
 ## Porcelain Types (JB 해설 표) | porcelain 5종 — 색조 재현 '어려움'은 castable | 24 | 기출 24·22 · 25 자료 근거 없음 | jb=Q16
@@ -387,6 +395,7 @@ M: 필기 — {r:하이브리드}는 못 쓰는 게 없다 · {r:microhybrid}·{
 - JB 해설: "응용범위 적으면 기계적 물성 불리, 색조 재현 능력 적으면 심미적으로 불리".
 E: Q16 | 24·22년 객관식 "심미성이 가장 떨어지는 것은?"(sintered porcelain·infiltrated ceramic·castable ceramic·pressed glass ceramic·machinable ceramic) → 3) castable ceramic — 근거 없음(25 자료에 porcelain 종류별 표 없음) · JB 해설 근거: 24년도 자료 p.17 Selection of porcelain — 색조 재현 능력 '어려움'은 castable ceramic뿐 ⚠ 함정: 응용범위가 single인 것은 sintered·castable 둘 — 묻는 것은 색조 재현
 M: (JB 해설 표) 색조 재현 '어려움' = {r:castable ceramic} / '보통 ~ 우수' = Sintered · Pressed-glass / '보통' = infiltrated · Machinable
+M: ⚠ 묻는 것 = 색조 재현(심미) — 응용범위 single은 sintered·castable 둘(JB 해설: 응용범위 적으면 기계적 물성 불리)
 M: 25 자료 porcelain: All ceramic = Class I, II {r:inlay & onlay} · veneer · crown / Metal ceramic · Zirconia = {r:Crown & bridge} / Metal Ceramic = {r:poor esthetics}
 
 ## Clinical Procedures of Direct Composite Restoration | 직접 복합레진 수복 증례 — opaque shade로 oral cavity 가리기 | 25 | 증례
@@ -402,7 +411,7 @@ M: 25 자료 porcelain: All ceramic = Class I, II {r:inlay & onlay} · veneer ·
 - 같은 이유(p.11 필기): dentin 층 = 적절한 불투명도를 제공해 안쪽의 까만 oral cavity 차단.
 U: opaque shade resin을 잘 써줘야 한다(필기).
 F: 25=universal shade만 쓰면 너무 투명 — 적당한 opaque shade 적용
-M: {r:광범위} 치질 손실 + universal shade만 → {r:너무 투명} → oral cavity 비침 → {r:opaque shade}
+M: 원리: {r:광범위} 치질 손실 + universal shade만 → {r:너무 투명} → oral cavity 비침 → {r:opaque shade}
 M: Premisa 증례 = E A2 + {r:D A2-O} + E A2 + {r:T} + E B2
 
 @G ⑥ Shade selection — 색 고르기와 mismatch 극복
@@ -419,8 +428,9 @@ F: 27=Shade guide — 손쉽고 전통적으로 많이 쓰지만 내 복합레�
 - shade tab(A1 · A2 · A3 · A3.5 · A4 · B1 · B2 · B3 · B4)을 치아 아래에 대고 고르는 사진.
 - Shade Mismatch — 노란 원으로 표시한 수복 부위 사진 3장(설명 필기 없음).
 F: 28, 29
+M: VITA guide 4: ① {r:Toothguide 3D-Master} ② Bleachedguide 3D-Master ③ {r:Classical} ④ Linearguide 3D-Master
+M: shade guide 장점: 손쉽고 전통적으로 많이 씀(필기)
 M: shade guide 한계 = 내 {r:복합레진 셰이드}와 다름 + 인공치라 {r:두께} 있음
-M: VITA guide 4 = {r:Toothguide 3D-Master} · Bleachedguide 3D-Master · {r:Classical} · Linearguide 3D-Master
 
 ## Customized Shade Guide · Spectrophotometer | mismatch 극복 2가지 — 나만의 shade guide와 색측정기 | 30-34 | shade selection
 > 내가 쓰는 레진으로 shade guide를 만들거나, 색측정기로 부위별 색을 잰다

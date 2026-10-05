@@ -46,7 +46,8 @@ F: 3=DENTIN vs DENTIN + ENAMEL
 | Ceramic veneer | 원래 에나멜과 **거의 비슷** |
 | Composite veneer | 안 했을 때보다 좀 낫지만 세라믹보다는 좀 덜하다 |
 F: 4=흰색 그래프가 자연치의 변이
-M: Enamel = {r:stiffness}·{r:wear resistance} / Dentin = {r:compliance}·{r:flexibility}
+M: 라미네이트 = {r:에나멜} 층에 국한해 삭제·에나멜에 {r:본딩} / PLV 단점({r:brittle}·대합치 {r:마모}·비쌈)·치아 삭제 부담 → **direct composite veneer**
+M: Enamel = {r:stiffness}·{r:wear resistance} ↔ Dentin = {r:compliance}·{r:flexibility}
 M: Elastic modulus: Enamel {r:80} GPa ≫ Dentin {r:14} GPa → 에나멜 ≈ {r:Feldspathic} ceramics · 덴틴 ≈ {r:Hybrid} composites
 M: 순측 에나멜 소실 → {r:flexibility↑}(Facial enamel 제거 시 최대 {r:2.16}) → 수복 / {r:Ceramic} veneer ≈ 자연치 > Composite veneer > 삭제만
 
@@ -61,12 +62,13 @@ M: 순측 에나멜 소실 → {r:flexibility↑}(Facial enamel 제거 시 최�
 - Porcelain의 **Enamel-like stiffness** = p.3 에나멜의 대응 재료 Feldspathic ceramics.
 P: "우선적으론 포세린 비니어 하는게 맞다 / 장점도 엄연히 존재 - 심미적 우수, 에나멜과 유사한 물성 / but 깨지는 것, 마모, 치아 삭제량, 비용 -> 컴포짓도 고려해볼 수 있다! 정도로 생각하자"(필기).
 F: 5
-M: Composite 장점 {r:Bonding} · {r:Economy} of tooth substrates · {r:Dentin-like} stiffness / 단점 {r:Curing contraction} · {r:Thermal expansion}
-M: Porcelain 장점 {r:Esthetics} · {r:Durability} · {r:Enamel-like} stiffness / 단점 {r:Brittleness} · {r:Wear properties}
+M: Composite 장점: ① {r:Bonding} ② {r:Economy} of tooth substrates ③ {r:Dentin-like} stiffness / 단점: {r:Curing contraction} · {r:Thermal expansion}
+M: Porcelain 장점: ① {r:Esthetics} ② {r:Durability} ③ {r:Enamel-like} stiffness / 단점: {r:Brittleness} · {r:Wear properties}
+M: 선택(필기): 우선적으론 {r:포세린 비니어} — 깨짐·마모·치아 삭제량·비용 때문에 컴포짓도 {r:고려해볼 수 있다}
 
 ## Direct Composite Veneer (DCV) — Advantages · Disadvantages | DCV 장단점 — PLV와 나란히 | 6-7 | 비교표
 > 하루에, 싸게, 거의 안 깎고 — 대신 오래 못 가고, 덜 예쁘고, 오래 걸리고, 손을 탄다
-= 장점 More {r:conservative}·{r:One visit}·No {r:laboratory fees}·{r:Lower cost} / 단점 {r:appearance} over time·{r:poor esthetic}·{r:chair time}·{r:Experience}
+= 장점: More {r:conservative}·{r:One visit}·No {r:laboratory fees}·{r:Lower cost} / 단점: {r:appearance} over time·{r:poor esthetic}·{r:chair time}·{r:Experience}
 # Advantages
 - ① More {r:conservative} approach — 보존적(필기).
 - ② {r:One visit} placement — 당일에 바로 수복 가능, 인상채득·임시치아 수복 등의 과정이 생략됨(필기).
@@ -91,8 +93,8 @@ F: 7
 | 대합치 | 대합치 wear 측면에서 좀 낫다(p.6 필기) | Wear properties(p.5) · 대합치 마모(p.2 필기) |
 | 술자·시간 | Considerable chair time · Experience required | 자료에 비교 없음 |
 - 선택: "우선적으론 포세린 비니어"(p.5 필기) — DCV는 PLV의 단점 보완 + 치아 삭제에 부담이 있을 때의 옵션(p.2 필기).
-M: DCV 장점: More {r:conservative} · {r:One visit} · No {r:laboratory fees} · {r:Lower cost} · {r:Little or no} enamel removal · 대합치 wear 유리
-M: DCV 단점: {r:appearance} over time 유지 못 함 · {r:poor esthetic} · {r:chair time} · {r:Experience} 필요
+M: DCV 장점: ① More {r:conservative} ② {r:One visit} ③ No {r:laboratory fees} ④ {r:Lower cost} ⑤ {r:Little or no} enamel removal ⑥ 대합치 wear 유리(⚠ 'Premature wear of the opposing dentition'은 장점 목록)
+M: DCV 단점: ① {r:appearance} over time 유지 못 함 ② {r:poor esthetic} ③ {r:chair time} ④ {r:Experience} 필요
 
 ## Tooth Preparation for DCV | DCV 치아 삭제 — 위치와 변색에 따라 | 8 | 삭제 기준 | jb=T11,T14
 > 안 깎아도 되는 치아는 있어도 아무것도 안 해도 되는 치아는 없다 — 표면 전처치는 늘 필요
@@ -111,7 +113,7 @@ E: T11 | 21·20년 객관식(서덕규 cervical restoration 퀴즈, 참고) "sel
 E: T14 | 21년 객관식(서덕규 cervical restoration 퀴즈, 참고) "치경부 결손에 대해 옳지 않은 것" → 3 — 틀린 설명 3) 치경부 결손 치료시 preparation을 반드시 할 필요는 없다 · 이 쪽 필기 "거의 파져서 오니까 와동형성 안해도 되지 않냐고 하는데, 표면 처리 해줘야 한다"·"표면 아무것도 안해도 되는건 아님"과 같은 방향 · 나머지 보기(abfraction의 원인·미세파절·Dentinal tubule·Hydrodynamic theory)는 자료에 없음 ⚠ 필기는 "삭제량 가지지 않아도 되지만"이라고도 함 · preparation을 표면 전처치로 읽을 때만 JB 답과 맞음 · JB: "23년도 시험범위 아닙니다"
 U: "삭제까지 아니라도 표면 전처치 필요!"(필기)
 F: 8
-M: 삭제 기준 = 치아 {r:위치}와 {r:변색} — 설측·짧은 치아 거의 X / 순측 위치는 두께만큼 / 변색은 {r:1 mm} 공간 없을 때
+M: 삭제 기준 = 치아 {r:위치}와 {r:변색} — 설측·짧은 치아 거의 X / 순측 위치는 두께만큼 / 변색은 {r:1 mm} 공간 없을 때(masking agent + composite resin)
 M: 삭제를 안 해도 {r:표면 전처치}는 필수 — {r:Biofilm}이 접착 방해
 M: 참고 기출: '치경부 결손은 preparation을 반드시 할 필요는 없다' ✗(= {r:표면 처리}는 해야) / 'finishing bur가 polishing bur보다 더 fine' ✗ → 더 {r:coarse}
 
@@ -130,7 +132,7 @@ M: 참고 기출: '치경부 결손은 preparation을 반드시 할 필요는 �
 - 실제 술식은 p.13 증례(재수복과 외상 파절 증례 카드) — 왁스업 후 찍은 퍼티 인덱스로 palatal 쪽 plate를 먼저.
 E: T12 | 21·20년 객관식(짤) "putty matrix index method 방법을 치료과정에 따라 순서대로" → 5번 D-F-E-G-H-B-J-A-I-C = D. Wax up → F. Putty index(음형) 제작 → E. 치아에 putty 시적후 fracture line 표시 → G. 치아 prep 및 에칭, 본딩, 중합 → H. putty에 레진 얇게 도포 → B. 레진이 얇게 도포된 putty를 치아에 위치 후 중합 → J. putty 제거 후 재중합 → A. dentin layer 충전 후 중합 → I. enamel layer(body layer를 추가할 수도 있음) 충전 후 중합 → C. Finishing과 polishing — 근거는 서덕규 2021 전치부 심미수복 p.2(지금 자료엔 10단계 슬라이드 없음) · 이 강의 p.9 Diagnostic wax-up → PVS custom matrix from the wax-up model(= D → F) · p.13 왁스업 후 퍼티 인덱스로 palatal 먼저 ⚠ 함정: 치아 prep·에칭·본딩(G)은 putty 제작·시적(F·E) 뒤 · dentin(A) → enamel(I) → 마지막이 Finishing과 polishing(C)
 F: 9
-M: DCV 임상 고려 7: {r:Single shade} · {r:Layering} · Masking({r:opaque} shade) · Color({r:tints}) · Translucency({r:incisal} edges) · Diagnostic {r:wax-up} · {r:PVS} custom matrix
+M: DCV 임상 고려 7: ① {r:Single shade} ② {r:Layering} ③ Masking({r:opaque} shade) ④ Color({r:tints}) ⑤ Translucency({r:incisal} edges) ⑥ Diagnostic {r:wax-up} ⑦ {r:PVS} custom matrix
 M: putty index: {r:Wax up} → {r:Putty index} 제작 → 시적·fracture line → prep·에칭·본딩 → putty에 레진 → 위치·중합 → 제거·재중합 → {r:dentin} → {r:enamel} → finishing·polishing
 M: putty 순서 답 = {r:D-F-E-G-H-B-J-A-I-C} / ⚠ prep·에칭·본딩(G)은 putty 제작·시적 {r:뒤} · 마지막 = {r:Finishing과 polishing}
 
@@ -210,8 +212,8 @@ F: 16
 - ③ {r:Impossible isolation} & moisture control — 접착해야 하므로 bleeding·moisture control이 안 되면 고려 어렵다(필기).
   - ③의 예: subgingival로 너무 깊을 때(필기).
 F: 17
-M: 적응증 = {r:indirect ceramic}(questionable prognosis·financial) 또는 {r:direct composite}({r:cusp capping}·{r:multiple}·{r:large & proximal})의 대안
-M: 금기 3 = {r:Heavy occlusal force}(상대 금기) · {r:Parafunctional} habit · {r:Impossible isolation} & moisture control
+M: 적응증(이럴 때 대안): {r:indirect ceramic} + questionable prognosis·financial problem / {r:direct composite} + {r:cusp capping}·{r:multiple}·{r:large & proximal}
+M: 금기 3: ① {r:Heavy occlusal force}(상대 금기) ② {r:Parafunctional} habit ③ {r:Impossible isolation} & moisture control
 
 ## Advantages · Disadvantages | 장단점 — 직접 레진과 비교 / 포세린과 비교 | 18-19 | 비교표
 > 직접 레진보다 강하고 덜 수축하고 형태가 좋다 — 대신 여러 번·비싸게·더 깎는다 / 포세린보다는 조정이 쉽지만 물성은 떨어진다
@@ -238,9 +240,9 @@ F: 19
 | 비교 상대 | 레진 인레이의 장점 | 레진 인레이의 단점 | 이럴 때 레진 인레이(p.16) |
 | vs **Direct composite** | Improved mechanical properties · Reduced polymerization shrinkage · Anatomical reproduction | Multiple visit · High cost · Increased tooth preparation · Technique sensitivity | cusp capping · multiple restorations · large & proximal surface involved |
 | vs **Porcelain(indirect ceramic)** | Contact modification · Wear, laboratory process, elastic modulus | Mechanical properties(→ Heavy occlusal force는 상대 금기 p.17) | questionable prognosis · financial problem |
-M: vs 직접 장점 3 — {r:mechanical}↑({r:heat, pressure, light}) · {r:shrinkage}↓(thin resin cement layer) · {r:Anatomical} reproduction
-M: vs 직접 단점 4 — {r:Multiple visit} · {r:High cost} · {r:Increased} tooth preparation · {r:Technique sensitivity}
-M: vs 포세린 — 장점 {r:Contact} modification(adding & adjusting) · wear·laboratory process·elastic modulus / 단점 {r:Mechanical properties}
+M: vs 직접 장점 3: ① {r:mechanical}↑({r:heat, pressure, light}) ② {r:shrinkage}↓(thin resin cement layer) ③ {r:Anatomical} reproduction
+M: vs 직접 단점 4: ① {r:Multiple visit} ② {r:High cost} ③ {r:Increased} tooth preparation ④ {r:Technique sensitivity}
+M: vs 포세린 — 장점: {r:Contact} modification(adding & adjusting) · wear·laboratory process·elastic modulus / 단점: {r:Mechanical properties}(→ Heavy occlusal force는 상대 금기)
 
 ## Indirect Composite Resin Materials · Hybrid Composite Block | 재료 — 기공 적층 vs 밀링 블록 | 20-22 | 재료
 > 전통적으로는 모델 위에 레진을 쌓아 구외에서 추가 중합, 요즘은 hybrid composite block을 광학 인상 데이터로 밀링
@@ -293,7 +295,7 @@ F: 23
 E: Q23 | 24년 객관식(탈) "Porcelain laminate veneer 빈칸 순서 — Pumiced enamel, Etched enamel – ( ) – ( ) – ( ) – ( ) – Etched veneer" → Bonding resin – Luting composite – Bonding resin - Silane — 근거는 2024 강의 Laminate veneer p.27(지금 자료엔 없음) · 구조는 p.23과 같음: 치아 쪽 bonding → 사이 resin cement(= luting composite) → 수복물 쪽 bonding → silane ⚠ 함정: Silane은 veneer 바로 안쪽(5번) · JB 그림 메모 "중요한 것은, 5번 silane의 사용 (ex. 포세린 프라이머) 사용하지 않으면 치면-bonding은 잘 붙지만 Resin cement와 laminate는 잘 안붙게 됩니다"
 E: T23 | 21·20년 빈칸(여인성, 참고) "crown cementation 두 계면 — 수복물 내면 @ 처리 / 치아 @,@,@" → 수복물 전, etchant, primer, adhesive — p.23 그림과 같은 두 계면: 수복물 Roughening·Silanization·Bonding / 치아 Etching·Priming·Bonding ⚠ JB 답 '수복물 전'은 해설의 '수복물 전처리' · 해설: PLV는 불산 etching 후 silane, Gold·PFM은 sandblasting(composite inlay는 인산·불산 에칭 불가 → sandblasting)
 M: 수복물 {r:Roughening}(sandblasting) → {r:Silanization} → {r:Bonding} / 치아 {r:Etching} → {r:Priming} → {r:Bonding}(JB 21년 23번: etchant · primer · adhesive)
-M: 레진 인레이 = 인산·불산 {r:에칭 불가} → {r:sandblasting} · 붙이기 전 광중합 X({r:film thickness}) · box 코너 {r:얇은 한 층}
+M: 주의할 것(교수 강조): ① 레진 인레이 = 인산·불산 {r:에칭 불가} → {r:sandblasting} ② 붙이기 전 광중합 X({r:film thickness}) ③ box 코너 {r:얇은 한 층}
 M: PLV 층: Pumiced enamel · Etched enamel → {r:Bonding resin} → {r:Luting composite} → {r:Bonding resin} → {r:Silane} → Etched veneer
 M: ⚠ {r:Silane} = veneer 바로 안쪽 — 안 쓰면 치면-bonding은 붙어도 {r:resin cement와 laminate}가 잘 안 붙음(JB 메모)
 
@@ -320,9 +322,8 @@ E: Q25 | 24년 탈(형식 JB 미기재) "포세린 비니어에 쓰이는 시멘
 E: T22 | 21·20년 객관식(여인성, 참고) "adhesive type cement" → 1) Resin cement — p.23 Dual-cured resin cement로 adhesive cementation · JB 해설: Adhesive type로 쓰이는 cement는 resin cement뿐이다 ⚠ 나머지 보기 GI·RMGI·Zinc phosphate·Polycarboxylate cement는 retentive type(24년 25번 해설)
 E: T21 | 21·20년 객관식(여인성, 참고) "adhesive type 보철물" → 1) Maryland bridge — 이 강의에 근거 없음(Maryland bridge·retentive type 분류 슬라이드 없음) · JB 해설: all ceramic, cast gold restoration, metal ceramic restoration 모두 retentive type ⚠ 문제 보기에 PLV는 없었음 · Laminate veneer도 adhesive type(24년 25번 해설)
 M: {r:Dual-cured} resin cement = 자가중합 되지만 {r:광조사}로 접착력·강도 차이 → {r:20초} normal mode {r:1000} 이상으로 충분히
-M: adhesive type cement = {r:Resin cement}(포세린 비니어도) / retentive type = Zinc phosphate · Polycarboxylate · GI · RMGI(JB 해설)
+M: adhesive type cement = {r:Resin cement}(포세린 비니어도) / retentive type = Zinc phosphate · Polycarboxylate · GI · RMGI(JB 해설) / Zinc oxide-eugenol cement = {r:임시접착용}(JB 해설)
 M: adhesive type 수복물 = Laminate veneer · {r:Maryland bridge} / retentive type = all ceramic · cast gold · metal ceramic(JB 해설)
-M: Zinc oxide-eugenol cement = {r:임시접착용}(JB 해설)
 
 ## Case – Direct DO + MOD Inlay | 증례 1 — 34 DO 직접 + 35 MOD 레진 인레이 | 24-26 | 증례
 > 한쪽 인접면은 직접, 양쪽 인접면(MOD)은 인레이로
@@ -378,5 +379,5 @@ M: 고2 · 다발성 우식({r:우식활성도↑}) → {r:골드 X} · 포세�
 - 교수님 파트는 객관식 {r:20-25문제} 정도, 시험시간 한 시간.
 - JB: 이 강의에 걸린 24년 23번(PLV 층 순서)도 "빈칸 순서대로 나열한 선지 고르는 문제"(JB 표기) — 객관식이어도 층의 순서·이름을 묻는다.
 F: 33
-M: 이창하 파트 = {r:전부 객관식}({r:20-25문제}) · 강의자료 + 교과서 {r:Chapter 06} 일부
-M: 다른 교수 파트 = {r:단답형·서술형} 가능 · 함정 주의
+M: 이창하 파트 = {r:전부 객관식}({r:20-25문제}) · 강의자료 + 교과서 {r:Chapter 06} 일부 · 함정 주의(문제 잘 읽기)
+M: 다른 교수 파트 = {r:단답형·서술형} 가능
