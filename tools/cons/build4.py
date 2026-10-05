@@ -277,6 +277,7 @@ def _vcls(v):
 def _qspan(s):
     """처음 나오는 큰따옴표 묶음 (여는 자리, 닫는 자리)"""
     for i, ch in enumerate(s):
+        if ch in '"“' and s[:i].count('(') > s[:i].count(')'): return None   # 10-05 괄호 안 인용은 상자로 떼지 않음(문장 속 덧말)
         if ch in '"“':
             j = s.find('"' if ch == '"' else '”', i + 1)
             return (i, j) if j > i else None
