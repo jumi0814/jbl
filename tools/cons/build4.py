@@ -268,11 +268,11 @@ def item_lis(x):
     return [r]
 # ---- 10-05 사용자 'jb문제 란에서 가독성을 전면적으로 … 인용이나 근거, 필기파트가 중구난방 … 슬라이드 원문 보는 버튼도 … 너무 크게' — 대조·주변부 항목 모양(글자 그대로, 배치만):
 #  A 줄 = [판정 꼬리표] 위치 → 슬라이드 인용 상자(" … " 안 ' / ' = 한 줄씩) → 설명 줄 → 작은 근거 줄(📄 강의명 쪽 쪽 — 강의명은 한 번) · M 줄 = 라벨로 📄 같은·인접 슬라이드 / ✍ 필기 / 🔁 변형 대비·함정 / 그 밖 소절에 모음
-VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|×|○')
+VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|틀림|옳음|×|○')
 def _vcls(v):
-    if re.search(r'불일치|×|오답|다른 점|근거 없음|정정', v): return 'vd'
+    if re.search(r'불일치|×|오답|다른 점|근거 없음|정정|틀림', v): return 'vd'
     if '부분' in v: return 'vp'
-    if re.search(r'일치|○|정답|대응', v): return 'vk'
+    if re.search(r'일치|○|정답|대응|옳음', v): return 'vk'
     return 'vi'
 def _qspan(s):
     """처음 나오는 큰따옴표 묶음 (여는 자리, 닫는 자리)"""
@@ -310,11 +310,11 @@ def aitem_lis(x, kind='A'):
     def ph(m): keep.append(m.group(0)); return f'{len(keep) - 1}'
     body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
     if '<' in body: return item_lis(x)
-    raw = re.sub(r'\s+', ' ', html.unescape(body)).strip()
+    raw = re.sub(r'\s+([.,;)])', r'\1', re.sub(r'\s+', ' ', html.unescape(body))).strip()   # 인용 칩을 뺀 자리의 ' .' 꼬리
     back = lambda h_: re.sub('(\\d+)', lambda m: keep[int(m.group(1))], h_)
     tag = ''
     m = re.match(r'^(.{1,24}?)\s+—\s+(.+)$', raw)
-    if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“(\[]', m.group(1)):
+    if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“\[]', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'):
         tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
