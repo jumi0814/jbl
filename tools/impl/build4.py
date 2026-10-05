@@ -428,7 +428,7 @@ def qcard(q, idx):
     a1 = ''
     if q['A'] and not q.get('auto'):
         pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', q['A'][0])))).strip()
-        if pl.startswith('정답'): a1 = f'<div class="a1k noann"><b>정답</b> {esc(first_sent(pl[2:].strip()))}</div>'
+        if pl.startswith('정답'): a1 = f'<div class="a1k noann"><b>정답</b> {esc(first_sent(lecparse._plain(pl[2:].strip())))}</div>'   # 10-05 annot {r:} 표기가 정답 요지 줄에 그대로 보이던 것
     if a1: a.append(f'<div class="a1 noann">{a1}</div>')
     if q['A']:
         hd_ = f'🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small>'
