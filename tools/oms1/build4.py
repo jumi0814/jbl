@@ -193,6 +193,7 @@ def astruct(s, lvl=0):
     # 4) 괄호·따옴표 안 나열 펼치기 — 가장 긴 묶음
     best = None
     for a_, b_ in _groups(s):
+        if a_ == 0 and s[0] in '"“' and not s[b_ + 1:].strip(' .,;'): continue   # 줄 전체가 인용 하나면 따옴표 묶음으로 다시 자르지 않음
         inner = s[a_ + 1:b_]
         cand = []
         e_ = lecparse.split_enum(inner)
@@ -203,6 +204,8 @@ def astruct(s, lvl=0):
         if cand and (best is None or b_ - a_ > best[1] - best[0]): best = (a_, b_, cand[0])
     if best:
         a_, b_, its = best; head = s[:a_ + 1].strip(); tail = s[b_ + 1:].strip()
+        if s[a_] in '"“' and head[:-1].strip(): head = head[:-1].strip(); its = [s[a_] + its[0]] + its[1:]   # 10-05 여는 따옴표가 머리 줄 끝에 홀로 남던 것 → 첫 항목 앞에
+        if re.fullmatch(r'[.,;:)\]·/]+', tail): its[-1] += tail; tail = ''
         m = re.match(r'^(.{3,80}? — )(.+)$', its[0])
         if m: head += m.group(1).rstrip(); its = [m.group(2)] + its[1:]
         its[-1] = its[-1] + s[b_]
@@ -210,9 +213,12 @@ def astruct(s, lvl=0):
         h_ = f'<div class="klead">{astruct(pp[0], lvl + 1) if len(pp[0]) > 190 else lecparse.inline(pp[0], ctx)}</div>' + _ul([astruct(x, lvl + 1) for x in pp[1:1 + len(its)]])
         return h_ + (f'<div class="ktail">{astruct(pp[-1], lvl + 1)}</div>' if tail else '')
     # 4b) 가장 긴 괄호·따옴표 묶음 안으로 들어가 다시 나눔(앞머리·꼬리는 따로 줄)
-    gs = [g for g in _groups(s) if g[1] - g[0] > 80 and not re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|란|도|만)(?:\s|$)', s[g[1] + 1:])]   # 10-05 인용·괄호 뒤가 조사로 이어지면 그 묶음에서 자르지 않음(" 한 글자 줄·조사로 시작하는 줄)
+    gs = [g for g in _groups(s) if g[1] - g[0] > 80 and not (g[0] == 0 and s[0] in '"“' and not s[g[1] + 1:].strip(' .,;')) and not re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|란|도|만)(?:\s|$)', s[g[1] + 1:])]   # 10-05 인용·괄호 뒤가 조사로 이어지면 그 묶음에서 자르지 않음(" 한 글자 줄·조사로 시작하는 줄)
     if gs:
         a_, b_ = max(gs, key=lambda g: g[1] - g[0]); head = s[:a_ + 1].strip(); inner = s[a_ + 1:b_ + 1]; tail = s[b_ + 1:].strip()
+        if s[a_] in '"“' and head[:-1].strip(): head = head[:-1].strip(); inner = s[a_] + inner   # 여는 따옴표는 안쪽 첫머리에
+        if re.fullmatch(r'[.,;:)\]·/]+', tail): inner += tail; tail = ''   # 10-05 꼬리가 문장부호뿐이면 안쪽 끝에(홀로 남은 '.' 줄)
+        if re.fullmatch(r'[.,;:)\]·/—]+', head): inner = head + ' ' + inner; head = ''
         return (f'<div class="klead">{astruct(head, lvl + 1)}</div>' if head else '') + f'<div class="kin">{astruct(inner, lvl + 1)}</div>' + (f'<div class="ktail">{astruct(tail, lvl + 1)}</div>' if tail else '')
     # 5) ', ' 로 140자 안팎씩
     ps = _cut(s, [(i, 1) for i in _d0(s, ', ')], 'L')
@@ -320,7 +326,7 @@ def _nopg(s):
     return re.sub(r'^[\s—·,:：]+|[\s—·,]+$', '', t)
 def _nopg_head(raw):
     """머리 라벨('5-1) ×(24): p.13 …', 'p.6: …', '26 필기(p.6) …')의 쪽 표기만 뺌 — 본문 글은 그대로"""
-    m = re.match(r'^([^"“:：]{0,60}?[:：])(\s*)(.*)$', raw)
+    m = re.match(r'^([^"“:：{\[]{0,60}?[:：])(\s*)(.*)$', raw)   # {r:…}·[[키:쪽]]의 콜론은 라벨 아님
     if m:
         lab = _nopg(m.group(1)[:-1]); rest = re.sub(r'^\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*)\)?\s+', '', m.group(3))
         return (lab + m.group(1)[-1] + ' ' + _nopg_pre(rest)) if lab else _nopg_pre(rest)
@@ -329,6 +335,8 @@ def _nopg_mid(t):
     """줄 안에서 출처 표시만 하는 쪽 표기('26 필기(p.9) "…', ', p.7 "…', '— p.7 "…', '/ p.12 "…')도 뺌 — 근거 줄에 같은 쪽이 있음"""
     t = re.sub(r'(필기|슬라이드|표|그림)\s*\(\s*pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*\s*\)', r'\1', t)
     t = re.sub(r'(^|[\s,/(])(?:—\s*)?pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*\s+(?=["“])', r'\1', t)
+    t = re.sub(r'(^|[\s,/(])pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*\s+(?=(?:\d{2}\s)?필기)', r'\1', t)   # 'p.4 필기' · '25 p.6 필기'
+    t = re.sub(r'(필기)\s+pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*(?=\s*[:：("“])', r'\1', t)   # '26 필기 p.36: "…'
     return re.sub(r'\s{2,}', ' ', t)
 def _nopg_pre(t):
     """첫 인용 앞 40자 안의 머리('25 p.6 필기 "…', '26 필기 — p.7 "…')에서 쪽 표기만 뺌"""
@@ -336,7 +344,7 @@ def _nopg_pre(t):
     if 0 < i <= 40 and PGTOK.search(t[:i]): return _nopg(t[:i]) + ' ' + t[i:]
     return t
 QPART = re.compile(r'(?:은|는|이|가|을|를|에|의|로|도|와|과|면|고|며|서|게|인|한|된|던|할|될)$')
-def aitem_lis(x, kind='A'):
+def _aitem_lis0(x, kind='A'):
     """대조(A)·주변부(M) 한 줄(HTML: 글자 + 인용 버튼 + ⚠💡) → li 안쪽 HTML 목록"""
     cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x)
     keep = []
@@ -383,6 +391,15 @@ def aitem_lis(x, kind='A'):
     if m2: lis[0] = f'<b class="lbl">{m2.group(1)}</b>' + lis[0][len(m2.group(1)):]
     lis[-1] += cr
     return lis
+BLKST = r'(<(?:div class="(?:klead|kp|ktail|kin|acm|ql)"|li)>(?:<b class="lbl">)?)'
+def aitem_lis(x, kind='A'):
+    """10-05 사용자 'JB 해설 … 난잡' — 합친 줄 안의 조각 머리 정리(화면만): 조각 첫머리 구분자 '/ ' 숨김 · 조각 첫머리 판정말('일치 — ')은 작은 꼬리표로"""
+    out = []
+    for h in _aitem_lis0(x, kind):
+        h = re.sub(BLKST + r'\s*/\s+', r'\1', h)
+        h = re.sub(BLKST + r'(일치|부분 일치|불일치|보강|보충|정정|오답|정답|다른 점) — ', lambda m: f'{m.group(1)}<span class="vtag {_vcls(m.group(2))}">{m.group(2)}</span> ', h)
+        out.append(h)
+    return out
 def note_html(x):
     """N(연도·판본 메모) — 인용 칩은 끝의 작은 근거 줄로"""
     cites = list(dict.fromkeys(CITE_BTN.findall(x)))
