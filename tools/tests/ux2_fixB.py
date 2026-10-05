@@ -94,7 +94,7 @@ async def mac(b):
     # ---- VIS07 부정 발문 정답 라벨
     await open_(pg, '#/PHARM/_jb/_jb')
     r = await pg.evaluate("""(()=>{const c=document.querySelector('#c-RX01'),a=c.querySelector('.qtext .ln.li[data-ans]');c.querySelector('.acts [data-tog]').click();return [getComputedStyle(a,'::before').content,getComputedStyle(a,'::before').color,(c.querySelector('.ln.pick')||{}).textContent||'']})()""")
-    ok('정답 · 틀린 설명' in r[0] and r[1] == 'rgb(30, 107, 63)' and r[2].startswith('정답 · 틀린 설명'), f'VIS07 틀린 것 고르기 답 = 초록 ✓ 정답 · 틀린 설명 {r[0]} {r[1]} · 줄 {r[2][:20]!r}')
+    ok('정답 · 틀린 설명' in r[0] and r[1] == 'rgb(30, 107, 63)' and r[2] == '', f'VIS07 틀린 것 고르기 답 = 초록 ✓ 정답 · 틀린 설명 {r[0]} {r[1]} · 답 칸 \'정답 보기\' 줄 없음(10-05 사용자) {r[2][:20]!r}')
     # ---- VIS10 JB 표 답
     await open_(pg, '#/OMS1/_sum')
     r = await pg.evaluate("[...document.querySelectorAll('#stage tr[data-id=\"J4\"] td[data-col=ans] .ln')].map(e=>e.textContent.trim())")
