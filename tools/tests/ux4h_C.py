@@ -26,6 +26,8 @@ with sync_playwright() as p:
         ok(pg.evaluate("document.querySelector('#hero [data-lrd]').textContent") == '1회독', f'{tag} 강의 머리에도 1회독')
         pg.goto(U + '#/_bm'); pg.wait_for_timeout(2500)
         n_all = len(pg.evaluate(CARDS)); ok(n_all > 30, f'{tag} 내 북마크 기본 = 모든 강의 {n_all}')
+        cc = pg.evaluate("(()=>{const b=document.querySelector('#home .hbmf .tg.on'),c=getComputedStyle(b);return [c.color,c.backgroundColor];})()")
+        ok(cc[0] != cc[1] and cc[1] not in ('rgb(255, 255, 255)', 'rgba(0, 0, 0, 0)') or cc[0] != 'rgb(255, 255, 255)', f'{tag} (10-05) 고른 거르기 칸 글씨 보임 {cc}')
         pg.evaluate("document.querySelector('#home [data-hbf=rd]').click()"); pg.wait_for_timeout(600)
         ok(pg.evaluate(CARDS) == ['PHARM:XE'], f'{tag} 📖 회독만 {pg.evaluate(CARDS)}')
         pg.evaluate("document.querySelector('#home [data-hbf=bm]').click()"); pg.wait_for_timeout(600)
