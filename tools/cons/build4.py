@@ -210,7 +210,7 @@ def astruct(s, lvl=0):
         h_ = f'<div class="klead">{astruct(pp[0], lvl + 1) if len(pp[0]) > 190 else lecparse.inline(pp[0], ctx)}</div>' + _ul([astruct(x, lvl + 1) for x in pp[1:1 + len(its)]])
         return h_ + (f'<div class="ktail">{astruct(pp[-1], lvl + 1)}</div>' if tail else '')
     # 4b) 가장 긴 괄호·따옴표 묶음 안으로 들어가 다시 나눔(앞머리·꼬리는 따로 줄)
-    gs = [g for g in _groups(s) if g[1] - g[0] > 80]
+    gs = [g for g in _groups(s) if g[1] - g[0] > 80 and not re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|란|도|만)(?:\s|$)', s[g[1] + 1:])]   # 10-05 인용·괄호 뒤가 조사로 이어지면 그 묶음에서 자르지 않음(" 한 글자 줄·조사로 시작하는 줄)
     if gs:
         a_, b_ = max(gs, key=lambda g: g[1] - g[0]); head = s[:a_ + 1].strip(); inner = s[a_ + 1:b_ + 1]; tail = s[b_ + 1:].strip()
         return (f'<div class="klead">{astruct(head, lvl + 1)}</div>' if head else '') + f'<div class="kin">{astruct(inner, lvl + 1)}</div>' + (f'<div class="ktail">{astruct(tail, lvl + 1)}</div>' if tail else '')
@@ -355,6 +355,7 @@ def mgroups(M):
     for x in M:
         pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', x)))).strip()
         m = re.match(r'^([^:]{1,60}?)[:：]\s', pl)
+        if m and (m.group(1).lstrip()[:1] in '"“' or (m.group(1).count('"') % 2) or m.group(1).count('“') != m.group(1).count('”')): m = None   # 따옴표로 시작하거나 따옴표 짝이 안 맞는 앞부분은 라벨 아님(인용 뒤 콜론)
         k = _mkind(m.group(1)) if m else prev
         G[k].append(x); prev = k
     used = [(k, t) for k, t in MKIND if G[k]]
