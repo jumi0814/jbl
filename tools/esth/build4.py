@@ -152,13 +152,20 @@ def _lbl(x):
     m = re.match(r'^([^:：()"“”/]{2,40}[:：])\s+(.+)$', x)
     return f'<b class="lbl">{lecparse.inline(m.group(1), ctx)}</b> {lecparse.inline(m.group(2), ctx)}' if m else None
 def _ul(items, cls='klist'): return f'<ul class="{cls}">' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>'
+def _pmerge(ps):
+    """10-05 문장부호만 남은 조각('.'·')'·'/')은 앞 조각 끝에 붙임 — 화면에 '.' 한 줄이 따로 생기던 것"""
+    out = []
+    for x in ps:
+        if out and re.fullmatch(r'\s*[.,;:)\]/·]+\s*', x): out[-1] = out[-1].rstrip() + x.strip()
+        else: out.append(x)
+    return out
 def astruct(s, lvl=0):
     s = s.strip()
     if lvl > 5 or len(s) <= 190:
         if (len(s) > 150 or lecparse._facts(lecparse.split_top(s, ' / '))) and lvl == 0: return lecparse.render_block(s, ctx)   # 10-04 짧아도 ' / ' 사실 조각이면 줄마다
         return _lbl(s) or lecparse.inline(s, ctx)
-    sub = lambda ps: _ul([astruct(x, lvl + 1) for x in lecparse._rebalance(ps)])
-    blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in lecparse._rebalance(ps))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
+    sub = lambda ps: _ul([astruct(x, lvl + 1) for x in _pmerge(lecparse._rebalance(ps))])
+    blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in _pmerge(lecparse._rebalance(ps)))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
     # 1) 문장('. ' — p. 같은 약어 제외)
     pos = [(i, 1) for i in _d0(s, '. ') if not lecparse.ABBR.search(s[max(0, i - 8):i + 1])]   # 10-04 해부 약어(n. a. lig. proc. …)·번호(1.)·Perio. 뒤에서 문장을 자르지 않음
     ps = _cut(s, pos, 'L')
@@ -220,10 +227,14 @@ def astruct(s, lvl=0):
 def auto_item(ko, etxt, cites):
     """annot가 없는 문항: '✓ 정리본 «카드» 일치' 한 줄 + ⭐ 시험포인트 원문(구조화) + 인용 칩 3개까지"""
     return f'<div class="agree">✓ 정리본 «{esc(ko)}» 일치</div>' + (f'<div class="aex"><span class="ui">⭐</span><div class="kb">{astruct(etxt) if len(etxt) > 190 else lecparse.render_block(etxt, ctx)}</div></div>' if etxt else '') + cite_row(CITE_BTN.findall(cites))
+def _inl_html(x):
+    """글자 + 인용 버튼·⚠💡 HTML에서 글자 조각에만 원고 표기({r:}·==·**) 렌더 — 10-05 해설 강조 표시"""
+    ps = re.split(r'(<button class="cite[^"]*"[^>]*>.*?</button>|<b class="(?:warn|bulb)">[^<]*</b>)', x)
+    return ''.join(t if (i % 2) else lecparse.inline(html.unescape(t), ctx) for i, t in enumerate(ps))
 def struct_item(x):
     """대조(A)·주변부(M)·메모(N) 항목(HTML): 150자를 넘거나 ' / '가 3개 이상이면 astruct로 점 목록화하고 인용 칩은 끝의 .cites 줄로 모음"""
     plain = html.unescape(re.sub(r'<[^>]+>', '', CITE_BTN.sub('', x)))
-    if len(plain) <= 150 and plain.count(' / ') < 3: return x
+    if len(plain) <= 150 and plain.count(' / ') < 3: return _inl_html(x) if re.search(r'\{r:|==|\*\*', plain) else x
     cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x); keep = []   # 문장마다 같은 쪽을 인용한 원고 — .cites 줄에는 한 번만
     def ph(m): keep.append(m.group(0)); return f'\ue000{len(keep) - 1}\ue001'
     body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
@@ -303,7 +314,7 @@ def aitem_lis(x, kind='A'):
     tag = ''
     m = re.match(r'^(.{1,24}?)\s+—\s+(.+)$', raw)
     if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“(\[]', m.group(1)):
-        tag = f'<span class="vtag {_vcls(m.group(1))}">{esc(m.group(1))}</span>'; raw = m.group(2)
+        tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and qs[0] <= 80 and qs[1] - qs[0] >= 30:
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
@@ -1061,7 +1072,8 @@ pack['jbhash'] = _QH
 if _jmove: pack['jbmove'] = _jmove; pack['jbmovev'] = _hl.md5(json.dumps(_jmove, sort_keys=True).encode('utf-8')).hexdigest()[:8]
 _jerr = _JL.check(SID, _QH, _jlock, _jmove)
 print('JB id 잠금:', len(_jlock), '| 새로 잠금', len(_jadd), '| 옮김 표', len(_jmove), ('| ⚠ ' + ' · '.join(_jerr[:5]) + ' → ' + _JL.need_msg(SID)) if _jerr else '')
-js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
+SYMPUA = {'\uf0b0': '°', '\uf0b1': '±', '\uf0b4': '×', '\uf0ae': '→', '\uf0ac': '←', '\uf0b3': '≥', '\uf0a3': '≤'}   # 10-05 PDF Symbol 글꼴의 사용 영역 글자(JB OMS1 Q44 '7\uf0b0' = 7°) → 원래 기호(화면 □ 깨짐)
+js = lambda o: re.sub('[\uf0a3\uf0ac\uf0ae\uf0b0\uf0b1\uf0b3\uf0b4]', lambda m: SYMPUA[m.group(0)], json.dumps(o, ensure_ascii=False)).replace('</', '<\\/')
 import hashlib as _hl
 _h8 = lambda t: _hl.md5(t.encode('utf-8')).hexdigest()[:8]
 shell = open(DIR + '/shell.html', encoding='utf-8').read()
