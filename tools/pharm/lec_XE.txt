@@ -73,7 +73,12 @@ M: generalized 땀샘 = 교감인데 {r:ACh → M} → muscarinic agonist의 부
 > 니코틴 수용체는 빠른 이온 채널(항상 흥분), 무스카린 수용체는 느린 GPCR(홀수 흥분·짝수 억제)
 = 교감 절후만 {r:adrenergic} · Nicotinic = {r:cation channel}(항상 흥분) · Muscarinic = {r:GPCR}(홀수 흥분 · 짝수 억제)
 # Autonomic neurotransmitters
-- ① All ANS neurons are {r:cholinergic} except post-ganglionic sympathetic, which is {r:adrenergic} ② Cholinergic neurons release {r:ACh} ③ Adrenergic neurons release {r:NE} ④ Cholinergic receptors: {r:Nicotinic}·{r:Muscarinic} ⑤ Adrenergic receptors: {r:Alpha}·{r:Beta} ⑥ All parasympathetic responses are mediated by activation of {r:muscarinic receptors}.
+- ① All ANS neurons are {r:cholinergic} except post-ganglionic sympathetic, which is {r:adrenergic}
+- ② Cholinergic neurons release {r:ACh}
+- ③ Adrenergic neurons release {r:NE}
+- ④ Cholinergic receptors: {r:Nicotinic}·{r:Muscarinic}
+- ⑤ Adrenergic receptors: {r:Alpha}·{r:Beta}
+- ⑥ All parasympathetic responses are mediated by activation of {r:muscarinic receptors}.
 # Channel vs GPCR
 | 구분 | Nicotinic receptors | Adrenergic·Muscarinic receptors |
 | 구조 | Ligand-gated non-selective {r:cation channel} — ACh {r:두 분자}가 결합해야 열림 | {r:G-Protein Coupled Receptors} |
@@ -169,7 +174,12 @@ M: Atropine 용도: {r:산동 · 서맥 역전 · 수술 중 침 억제 · 미�
 > choline 흡수 → 합성 → 소포 저장 → Ca2+로 유리 → AChE 분해 — 단계마다 막는 약이 있다
 = Hemicholinium(흡수) · Vesamicol(저장) · LEMS(Ca2+ 채널 항체) · {r:Botulinum toxin}(exocytosis 차단 → {r:ACh 유리↓}) · {r:AChE inhibitors}
 # ACh의 일생 6단계
-- ① Choline is transported into the presynaptic terminal by a high-affinity {r:Na+-choline co-transporter} ② {r:Choline acetyltransferase}: acetyl coenzyme A(AcCoA) + choline → ACh → {r:H+-ACh antiporter}로 소포에 저장 ③ presynaptic action potential → 세포 내 {r:Ca2+} 증가 → 소포가 plasma membrane과 융합 → 유리 ④ 시냅스 틈으로 확산해 post·presynaptic receptors에 결합 ⑤ presynaptic nicotinic은 유리↑, presynaptic {r:M2·M4}는 유리↓ ⑥ membrane-bound {r:acetylcholinesterase(AChE)}가 choline + acetate로 분해.
+- ① Choline is transported into the presynaptic terminal by a high-affinity {r:Na+-choline co-transporter}
+- ② {r:Choline acetyltransferase}: acetyl coenzyme A(AcCoA) + choline → ACh → {r:H+-ACh antiporter}로 소포에 저장
+- ③ presynaptic action potential → 세포 내 {r:Ca2+} 증가 → 소포가 plasma membrane과 융합 → 유리
+- ④ 시냅스 틈으로 확산해 post·presynaptic receptors에 결합
+- ⑤ presynaptic nicotinic은 유리↑, presynaptic {r:M2·M4}는 유리↓
+- ⑥ membrane-bound {r:acetylcholinesterase(AChE)}가 choline + acetate로 분해.
 # 각 단계를 막는 약
 | 단계 | 과정 | 막는 것 |
 | ① Choline uptake | high-affinity {r:Na+-choline co-transporter} | {r:Hemicholinium} |
@@ -399,7 +409,7 @@ U: ✍ 최근에는 cevimeline이 pilocarpine보다 더 많이 쓰임 — select
 E: XE10 | 22년 단답(백정화) "구강건조증 치료제 2개 쓰시오" → {r:pilocarpine, cevimeline} — JB 답은 보조치료제까지 나열
 # 인공타액으로 바꿔야 할 때 3
 - Saliva substitute solution should be substituted for pilocarpine if ==the drug is not well tolerated, in patients with uncontrolled asthma== (M3: Broncholar smooth muscle contration), ==and where there is a complete loss of salivary function==.
-- ① {r:not well tolerated}(불내성) ② {r:uncontrolled asthma}(M3 → 기관지 평활근 수축) ③ {r:complete loss of salivary function}(타액 기능 완전 소실).
+  - ① {r:not well tolerated}(불내성) ② {r:uncontrolled asthma}(M3 → 기관지 평활근 수축) ③ {r:complete loss of salivary function}(타액 기능 완전 소실).
 E: XE11 | 22년 서술(백정화) "salivary substitute solution should be substituded oral secretagogues if?" → 위 문장 그대로(3조건: 불내성·조절 안 되는 천식·타액 기능 완전 소실)
 # 치과에서의 적응증 — pilocarpine 용법·용량
 | Case | 용법 및 용량 |
@@ -505,9 +515,9 @@ M: 항무스카린제 복용 중 → pilocarpine·cevimeline {r:피함} → {r:�
 # 2016년 시험문제(8 points)
 - 문제: 81세 여성, 평소 입안이 마르고 식사할 때도 침이 잘 안 나옴 — 비자극 < 0.1, 자극 < 0.5 mL/min → Primary Diagnosis·치료 약물·작용 기전·약물 사용법.
 - 답 ① {r:구강건조증} ② {r:Pilocarpine}: ==무스카린 수용체에 직접 결합하여 수용체를 활성==.
-- 기전: 무스카린성 수용체는 부교감신경이 분포하는 표적장기에 있어 부교감 자극과 비슷한 반응 — ==타액선 선포의 기능이 일부 잔존한 환자들에서 타액분비를 촉진하는데 효과적==.
+  - 기전: 무스카린성 수용체는 부교감신경이 분포하는 표적장기에 있어 부교감 자극과 비슷한 반응 — ==타액선 선포의 기능이 일부 잔존한 환자들에서 타액분비를 촉진하는데 효과적==.
 - ③ 복용법: ==낮은 용량(5mg을 하루 한 번 혹은 두 번)을 복용하기 시작하여 용량을 증량== → 최종 {r:20mg/day}(5mg을 하루 네 번).
-- 허가 용법(5mg 하루 4회)을 처음부터 쓰면 땀·심계항진·구역 → 처음엔 {r:2.5mg 1일 2-3회}로 시작해 부작용이 없으면 증량.
+  - 허가 용법(5mg 하루 4회)을 처음부터 쓰면 땀·심계항진·구역 → 처음엔 {r:2.5mg 1일 2-3회}로 시작해 부작용이 없으면 증량.
 E: XE06 | 23년 서술(증례) "같은 증례(비자극 0.05·자극 0.1) 재출제" → JB 답 = 이 슬라이드 답 그대로 — 2016년 증례의 수치만 바뀜
 # 2017년 시험문제
 - 분비율 표 빈칸(0.5 point × 4, 소수점 첫째자리):

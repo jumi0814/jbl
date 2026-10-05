@@ -25,8 +25,8 @@ F: 3=눈으로 빛을 보는 것, 4=프리즘에서 빛이 분광됨
 - ({r:360~400} to {r:700~780} {r:nm}) — 가시광선(visible spectrum) = 파장 중에서 특별히 눈으로 볼 수 있는 것(필기).
 - 단위가 {r:나노미터}라는 것이 중요 · 숫자를 대략 알고 있으면 도움이 된다(필기).
 - 그림의 띠: **Red 700 nm** · Orange · Yellow · 600 nm · Green · Blue 500 nm · Indigo · **Violet 400 nm** — 빨강이 긴 파장, 보라가 짧은 파장.
-- 보라색 밖 = {r:자외선}(ultraviolet) → 더 짧아지면 X-선 → 우주선·감마선(필기).
-- 빨간색 밖 = {r:적외선}(infrared) → 더 길어지면 radio 주파수(필기).
+  - 보라색 밖 = {r:자외선}(ultraviolet) → 더 짧아지면 X-선 → 우주선·감마선(필기).
+  - 빨간색 밖 = {r:적외선}(infrared) → 더 길어지면 radio 주파수(필기).
 - 그림의 순서: Cosmic rays · X-rays · UV rays · **Visible spectrum** · Infrared · Radar · Radio.
 - 파장이 짧아지면 {r:에너지가 커지고} 몸에 안 좋아짐 — 적외선은 해롭지 않지만 자외선은 갈수록 해롭다(필기).
 - 치과에서(필기): 광중합기 파랑빛 = {r:450-470 nm} 정도(다른 해 필기 480~490nm) · 레진 filler 크기가 가시광선 영역에 많이 모여 있을수록 빛의 산란 효과가 커지는 것까지 고려해 만듦.
@@ -117,7 +117,7 @@ M: 색을 잴 때는 {r:정반사}를 없앤다 → integrating sphere·gloss tr
 # Two processes reduce transparency
 - {r:Absorption}: {r:molecular interaction} — 빛이 사라짐(에너지 불변의 법칙에 의해 {r:열}로 바뀜)(필기).
 - {r:Scattering}: {r:particles or air bubbles} — 빛이 딴 데로 감(필기).
-- 산란을 일으키기 위해 쓰는 것들 → {r:titanium dioxide}, {r:calcium carbonate}...
+  - 산란을 일으키기 위해 쓰는 것들 → {r:titanium dioxide}, {r:calcium carbonate}...
 - 이 두 가지가 아니면 투명하게 통과하는 것(필기).
 | 큐브 | 일어나는 일 | 보이는 모습 |
 | 검은 큐브 | 모든 파장을 {r:흡수} | 검게 보임 — 흡수된 빛은 열로 |
@@ -129,7 +129,7 @@ F: 13=흡수하면 검게 산란하면 희게 적색만 산란하면 적색
 # Spectral reflectance — 색을 재려면 분광
 - Spectral Reflectance – Measured with a {r:reflectance spectrophotometer}(분광측색기 — 파장별로 빛을 본다).
 - {r:Surface reflectance} + {r:body reflectance} — 내부에서의 산란도 합쳐져 색상이 나타남(필기).
-- Body reflectance: absorption, scattering ⇒ **responsible for the color of object**.
+  - Body reflectance: absorption, scattering ⇒ **responsible for the color of object**.
 - 색을 측정할 때는 분광을 해야 한다 — 표면에서 어느 파장을 어느 정도 반사하는지 재서 색상을 앎(필기).
 F: 14=분광측색기 — 파장별 반사를 측정
 # Models of spectral reflectance (넘어가심)
@@ -168,7 +168,7 @@ F: 16=망막에서 받아 대뇌피질 후엽으로 인식
 | {r:Rods} (간상체) | Rhodopsin, {r:no color information} | {r:흑백}정보 담당 — 밝고 어둡기만 본다 · 1종 |
 | {r:Cones} (추상체) | {r:3 cone classes} | 색 정보 담당 — 크기가 다른 3종이 각기 다른 파장을 맡음 |
 - Cone 3종(Relative sensitivity 그래프 S·M·L): Short = {r:청색} · Middle = {r:녹색} · Long = {r:적색} — 빛의 3원색 RGB에 해당하는 크기의 추상체가 빛을 감지(필기).
-- 파장이 긴 빛을 인식하는 수용체가 더 크다(필기).
+  - 파장이 긴 빛을 인식하는 수용체가 더 크다(필기).
 - 추상체는 어느 정도 이상의 에너지가 들어와야 작동 → 어두운 방에서 색상 구분이 잘 안 되는 이유(간상체만으로 보기 때문)(필기 p.36).
 P: The Retinal Response 슬라이드에 별표(필기) — "우리 눈엔 간상체 1개 추상체 3개".
 E: Q13 | 24년 객관식(탈) "색에 대한 설명으로 옳은 것 — 보기 ④ 간상체 세포는 색상과 채도를 인식한다" → ④ × — p.17 Rods: Rhodopsin, no color information(흑백) · 색 정보는 Cones ⚠ 함정: 색상·채도는 추상체 — JB 해설(교과서 138p): 간상체 = 광도(brightness)·명도(value), 추상체 = 색상(hue)·채도(chroma)
@@ -176,8 +176,8 @@ F: 17=간상체는 흑백 추상체 3종은 색
 # Cone signals → 보색 채널
 - Cone signals are combined by {r:ganglion}.
 - ① {r:Luminance channel} ② **Two opponent channels**: {r:Red-green} · {r:Yellow-blue}.
-- 좌우 신호가 바뀐 채로(오른쪽 눈으로 본 것은 왼쪽 뇌로) ganglion에서 combine되어 뇌로 전달 → 이로 인해 {r:보색}이라는 channel이 만들어짐(필기).
-- 예: 빨간색을 보다가 흰색 배경을 보면 갑자기 초록색으로 보임(필기) → p.21 temporal contrast · p.99 successive contrast.
+  - 좌우 신호가 바뀐 채로(오른쪽 눈으로 본 것은 왼쪽 뇌로) ganglion에서 combine되어 뇌로 전달 → 이로 인해 {r:보색}이라는 channel이 만들어짐(필기).
+  - 예: 빨간색을 보다가 흰색 배경을 보면 갑자기 초록색으로 보임(필기) → p.21 temporal contrast · p.99 successive contrast.
 P: "보색관계를 알아두는 것이 좋다" · "사람의 눈은 기계가 아니므로 복잡한 일이 일어난다"(필기).
 F: 18=ganglion에서 합쳐지며 보색 채널이 생김
 M: 경로 = 망막({r:Retinal signal}) → {r:Occipital lobe}(대뇌피질 후엽)
@@ -257,7 +257,7 @@ F: 28=색맹은 3가지 종류, 29=정상 추상체 감도 그래프, 30=Protano
 # 검사
 - {r:Ishihara} test (Pseudoisochromatic Plate Tests) — {r:숫자 읽기} · 쉽고 우리나라에서 많이 씀(필기).
 - {r:Farnsworth} Dichotomous test ({r:D-15}) — 정밀하게 측정하는 방법: 색상 변화별로 배열해 보라고 하면 색맹은 {r:지그재그}(순서 뒤죽박죽)(필기).
-- 원래 100개로 했는데 너무 힘들어 15개로 줄임(필기).
+  - 원래 100개로 했는데 너무 힘들어 15개로 줄임(필기).
 - 그림 D-15 Colour Arrangement 4장: Normal Trichromat(정상) / Protanope / Deuteranope / Tritanope — 축 Protan·Deutan·Tritan Axis.
 F: 37=이시하라 테스트 — 숫자 읽기, 38=D-15 — 색맹은 배열이 지그재그
 M: 색맹 = 대부분 {r:적록} · {r:X chromosome} 열성 · 남성 {r:8%}
@@ -295,7 +295,7 @@ F: 44=색을 어떻게 배열하는지, 45=Munsell이 가장 처음 만들었고
 - 원 모양으로 돌아가며(hue), 바깥으로 갈수록 색이 진해지고(chroma) 안으로 오면 {r:무채색} · 세로(Z)축은 {r:명도}(필기).
 - 그림 라벨: Hue circle · Weak chroma → Strong chroma · Value(흰색~검정 칩) · Munsell color space.
 - 필기: "|X| 커질수록 색이 진해진다" · "z축은 마이너스로 가면 검은색" · 그림 옆 메모 "지금은 100단계 원래는 10단계였다"(무엇의 단계인지는 적혀 있지 않음).
-- ⚠ 메모 대상 판단 불가(p.47): 메모가 Value 칩 바로 오른쪽에 있어 Value 단계(슬라이드 "Value (0~10)")일 수도, 같은 그림의 Hue circle 둘레 숫자가 100까지라 Hue 단계일 수도 — 설명 필기 없음.
+  - ⚠ 메모 대상 판단 불가(p.47): 메모가 Value 칩 바로 오른쪽에 있어 Value 단계(슬라이드 "Value (0~10)")일 수도, 같은 그림의 Hue circle 둘레 숫자가 100까지라 Hue 단계일 수도 — 설명 필기 없음.
 - 사람이 빛을 3차원으로 본다고 했는데(p.19) 그 내용이 여기 들어 있다 · 현재에도 Munsell의 색공간을 표준으로 함(필기).
 P: p.47 "꼭 알기!! cielab 시험에 나온다"(필기) — Munsell과 CIELAB은 같은 3차원 구조(p.61 "CIE system과 Munsell system은 동일하다").
 F: 46=hue value chroma로 3차원 배열, 47=바깥으로 갈수록 색이 진해지고 Z축은 명도, 48=우리가 지금 쓰는 색 체계
@@ -309,8 +309,11 @@ M: Munsell = {r:Hue}(Y R P B G) · {r:Value}(0~10) · {r:Chroma}(바깥으로 �
 # The CIE system (1931)
 - {r:Most widely used} color specification system.
 - Defines the three essential components for perceiving a color: ① {r:Illuminant} ② {r:Object} ③ {r:observer} — 국제 조명위원회에서 광원·물체·관찰자를 표준화하는 과정(필기).
-- CIE = 조명(illumination)·광학이나 색상 쪽의 표준 · ISO에서 빛에 대한 표준은 CIE 것을 그대로 가져다 씀(필기).
-- (중요X) CIE System이 담은 것: ① Include SPDs for daylight and tungsten sources ② Standard observers or color functions for field sizes greater and less than 4 degrees ③ Standard illuminating/viewing geometries for designing and manufacturing color measuring instruments, and diffuser.
+  - CIE = 조명(illumination)·광학이나 색상 쪽의 표준 · ISO에서 빛에 대한 표준은 CIE 것을 그대로 가져다 씀(필기).
+- (중요X) CIE System이 담은 것:
+  - ① Include SPDs for daylight and tungsten sources
+  - ② Standard observers or color functions for field sizes greater and less than 4 degrees
+  - ③ Standard illuminating/viewing geometries for designing and manufacturing color measuring instruments, and diffuser.
 F: 49=광원과 물체와 관찰자의 표준화
 # 1. 광원 — CIE Illuminants (1931)
 | 광원 | 슬라이드 | 뜻(필기) | SPD 모양(p.52 필기) |
@@ -542,8 +545,8 @@ F: 89=반사광은 푸르게 투과광은 노랗게, 90=뒤에서 빛을 비추�
 - Emission must take place within {r:10⁻⁸ sec} — 곧바로 파장이 길어지며 나온다(필기).
 - 청색 LED에 형광 물질을 발라 흰색 LED를 만든 것 — 청색 LED 발견이 흰색 LED를 만들 수 있게 함(필기, p.8).
 - 사람의 치아에도 형광 특성이 있다 — 세기는 필기마다 다름: p.93 "미세하지만" · p.92 "치아에서는 강하게 나타난다".
-- 그래서 {r:composite resin에 형광 물질}을 조금 넣음 · 수복물에도 꼭 일정량 넣게 됨(필기).
-- 형광물질 없는 전치부 수복물을 하면 클럽에 갔을 때 이 빠진 사람처럼 보일 것(필기).
+  - 그래서 {r:composite resin에 형광 물질}을 조금 넣음 · 수복물에도 꼭 일정량 넣게 됨(필기).
+  - 형광물질 없는 전치부 수복물을 하면 클럽에 갔을 때 이 빠진 사람처럼 보일 것(필기).
 - **Luminescence** = ① Fluorescence ② Phosphorescence(야광) ③ triboluminescence.
 F: 92=빛을 받아 곧바로 더 긴 파장으로 내놓는 형광, 93=곧바로 파장이 길어지며 나온다, 94=사람의 치아에도 형광 특성이 있다
 # Phosphorescence (인광 — 중요하진 않음)
@@ -617,7 +620,11 @@ F: 103=좌우로 두지 말고 위아래로 두고 비교, 104=shade guide는 �
 P: "이게 중요하다~"(필기).
 F: 105=명도 채도 색상 세 요소를 잘 구분해야, 106=흑백으로 보면 채도만 다른 줄과 색상만 다른 줄은 똑같이 보임
 # Color in dental research (다루지 않으심)
-- 목록(p.108 · p.107 간지 뒤): ① Color specification(Translucency, opacity, fluorescence, opalescence, etc…) ② Discoloration(Coffee, wine, etc… · Bleaching: in vivo) ③ Multiple layering(Opaque or Core + Body · Tooth + Core + Body · PLV + cement) ④ Reproducibility.
+- 목록(p.108 · p.107 간지 뒤):
+  - ① Color specification(Translucency, opacity, fluorescence, opalescence, etc…)
+  - ② Discoloration(Coffee, wine, etc… · Bleaching: in vivo)
+  - ③ Multiple layering(Opaque or Core + Body · Tooth + Core + Body · PLV + cement)
+  - ④ Reproducibility.
 - p.107 Academic application 간지는 다루지 않으심 · p.108 뒤로 정은구 교수님(Univ. of Washington 보철과 교수) 특별강연 — 수업 내용 아님(필기).
 F: 108
 M: Viewer effects = {r:Age}(60↑ blues·purples) · Fatigue(hue·chroma) · Nutrition · Emotions(pupil) · Medications
