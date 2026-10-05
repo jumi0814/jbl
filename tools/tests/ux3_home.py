@@ -110,7 +110,7 @@ async def run(b, vp, touch, tag):
     rs = await pg.evaluate("[document.querySelector('#home .hrbig').dataset.s,document.querySelector('#home .hrbig').innerText,[...document.querySelectorAll('#home .hrchip')].map(b=>b.dataset.s)]")
     ok(rs[0] == 'CONS' and '정리표' in rs[1] and '카드 제목' in rs[1] and rs[2] == ['ANAT', 'PHARM'], f'{tag} H3 ↪ 큰 버튼 = last · 칩 = lastBy 다음 2 {rs}')
     # ---- H5 이번 주 · 더보기
-    wk = await pg.evaluate("(()=>{const W=__h.tWeek((()=>{const x=new Date();x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x})());const s=W.reduce((a,x)=>a+x.sum,0);const m=Math.floor(s/60000);return [Math.floor(m/60)+':'+('0'+m%60).slice(-2),document.querySelector('#home [data-hw=tot]').textContent,document.querySelectorAll('#home .hwb').length,document.querySelectorAll('#home .hwb.today').length]})()")
+    wk = await pg.evaluate("(()=>{const W=__h.tWeek((()=>{const x=new Date(Date.now()-6*3600000);x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x})());const s=W.reduce((a,x)=>a+x.sum,0);const m=Math.floor(s/60000);return [Math.floor(m/60)+':'+('0'+m%60).slice(-2),document.querySelector('#home [data-hw=tot]').textContent,document.querySelectorAll('#home .hwb').length,document.querySelectorAll('#home .hwb.today').length]})()")
     ok(wk[0] == wk[1] and wk[2] == 7 and wk[3] == 1, f'{tag} H5 주 합계 = tWeek 합 · 막대 7 · 오늘 1 {wk}')
     ok(await pg.evaluate("document.querySelector('#nav [data-nb=wk]').textContent") == '이번 주 ' + wk[1], f'{tag} H5 주 합계 = 허브 메뉴 공부 달력 줄 이번 주(ux4 묶음2)')
     await pg.evaluate(f"document.querySelector('#home .hwb[data-hwd=\"{dd(0)}\"]').click()"); await pg.wait_for_timeout(500)

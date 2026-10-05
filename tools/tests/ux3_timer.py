@@ -81,7 +81,7 @@ async def part_states(b, vp, touch, tag):
     await pg.evaluate("document.body.insertAdjacentHTML('beforeend','<div id=\"trkt\">'+__h.trkUI('band')+__h.trkUI('card')+'</div>')")
     await pg.click('#clock'); await pg.clock.run_for(300)
     sts = await pg.evaluate("[...document.querySelectorAll('[data-trk] .trs')].map(e=>e.className.split('trs-')[1])")
-    ok(len(sts) >= 2 and set(sts) == {'run'} and await st(pg) == 'run' and await pg.evaluate("[...document.querySelectorAll('#tpop [data-tp]')].map(b=>b.dataset.tp).slice(0,2).join()") == 'stop,rest', f'띠·카드 조각·알약·팝오버 = 측정 중 {sts}')
+    ok(len(sts) >= 2 and set(sts) == {'run'} and await st(pg) == 'run' and await pg.evaluate("[...document.querySelectorAll('#tpop [data-tp]')].map(b=>b.dataset.tp).slice(0,2).join()") == 'rest,stop', f'띠·카드 조각·알약·팝오버 = 측정 중(10-04 ☕ 쉬기가 위) {sts}')
     ok(await pg.evaluate("!document.querySelector('#nav [data-trk],#tmr')"), 'ux4 묶음2 메뉴 트래커·#tmr 없음(시계 알약 하나)')
     await pg.screenshot(path=J.TMP + f'/ux3i_timer_pop_{tag}.png')
     await pg.evaluate("document.querySelector('#trkt [data-trk=band] [data-trb=rest]').click()"); await pg.clock.run_for(1000)
