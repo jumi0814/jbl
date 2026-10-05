@@ -145,6 +145,7 @@ F: 27=3차 상아질 — 보이는데 file은 안 들어감
 M: 원칙 {r:Radiographic = histologic}(Kuyk 1990)
 M: 보이는데 안 들어감 = {r:Radiographic > histologic} · radiodensity {r:tertiary < primary} (0.72 / 0.36)
 M: 안 보이는데 있음 = {r:Radiographic < histologic} (0 / 0.24) — {r:100% 막힌 근관은 없다}
+M: 안 보이는데 파일 잘 들어감(22 JB 답) = {r:근관 주위 상아질의 방사선투과성이 낮다면} 근관이 없는 것처럼 보임 / 보이는데 안 들어감(23·21) = {r:3차 상아질}의 방사선 투과상이 {r:1차 상아질보다 높아서}
 
 @G ③ 치료 방법 — 입구 찾기
 ## Treatment Steps · Procedural Accidents ★ | 치료 순서 4와 석회화 근관의 사고 4 | 28-32 | 기출 22·24 | jb=E04,E12
@@ -247,6 +248,7 @@ F: 56=Buckling resistance activation
 M: 형성 2원칙: {r:short file with straight tip} · {r:feel the binding}
 M: Binding = 전진 후 뺄 때 {r:잡아채는 느낌} → {r:빼지 말고} 파고들어 up-down 반복
 M: {r:Buckling resistance activation} = 초기 {r:access dimple} → file tip에 {r:수직 압력} → 근단부로 파고듦
+M: {r:Buckling} = {r:압축력이 저항을 초과}할 때 기구가 갑자기 {r:옆으로 휘는} 현상 / 근관이 있어야 전진 → 입구 찾기에 응용
 
 ## Negotiation · Glide Path ★ | Negotiation 100 strokes와 glide path | 57-60 | 기출 24 | jb=E02
 > 건너뛰는 방법은 없다 — 작은 파일로 100번, 입구에서 종말점까지 부드러운 터널이 날 때까지
@@ -274,6 +276,8 @@ F: 60=Glide path — 8·10번 파일로 만들어야 NiTi 사용
 M: Negotiation = {r:Do 100 strokes} · {r:small files}({r:8·10번}) · 목표 {r:initial patency}
 M: K-file({r:watch-winding}+vertical) · C+({r:pyramid tip}·stiffer) · precurve {r:1-2mm 60-90°} → {r:short up-and-down}
 M: {r:Glide path} = canal orifice → {r:physiologic terminus} smooth radicular tunnel · 있어야 {r:NiTi}
+M: Glide path(24 단답) = {r:근관입구}에서부터 apical constriction과 같은 {r:종말점}까지 이어지는 {r:부드럽고 반복적인 근관 통로}
+M: Negotiation 정의 = {r:Passive exploration(scouting) phase} · small files로 {r:canal morphology} 파악 + {r:initial patency} 확보
 
 ## Case — Apical Calcification Needing a #8 File | 증례 — 10번이 안 되면 8번, 8번도 안 되면 포기 | 61-63 | 증례 · 기출 장면 | jb=E09
 > 80세 #47 — 10번이 근단 근처까지 가도 patency가 안 나면 더 가는 8번으로
@@ -290,6 +294,7 @@ E: E09 | 23년 서술(탈·사진) "마모가 심해 저작 시 시큰·통증, 
 E: E12 | 22년 서술(사진) "치아우식은 없으나 교합면 마모가 심해 저작 시 시큰거리고 통증" → (1) 근관 석회화 예상 (2) 입구 찾기(dentin shelf·염색·NaOCl·초음파) → 형성(short straight file·binding·buckling) → negotiation·patency — p.61-63과 같은 장면
 M: 80세 #47: 10번 {r:patency ×} → {r:8번}으로 glide path · 8번도 안 되면 {r:포기}
 M: 마모 심해 시큰거리는 노인 구치 = {r:석회화 근관} 예상(22년·23년 사진 문항 장면)
+M: 23 필수 진단(JB 답): ① {r:pulp vitality test}(thermal heat/cold · EPT · cavity test) → vital/non-vital ② {r:radiographic examination}(병소·근관 수·형태·석회화)
 
 @G ⑤ 치료 예후 — 치료할까 말까
 ## When Not to Treat · Prognosis ★ | 치료하지 않는 경우와 예후 — 51/40/8.5, 89% | 64, 68-71 | 기출 18·20·22·24 | jb=E03
@@ -329,6 +334,7 @@ E: E03 | 24·20·18년 단답 "석회화로 근관치료를 제대로 못 한 �
 F: 70=Prognosis — 병소가 없는 경우 98% 성공률
 M: Not to treat: 석회화 case without {r:Symptoms · PAR · Deep decay · Severe perio · Pulp exposure} / To treat: {r:Discoloration·demand} · {r:deep caries} · {r:pulp exposure} · {r:PA lesion} · {r:signs & symptoms}
 M: Untreated(선원 {r:881명} {r:7-22년}): {r:51%} EPT normal · {r:40%} EPT(−) no PAR · {r:8.5%} PAR
+M: 22 단답: 치수괴사 확률 = {r:40%} / 치근단 병소 확률 = {r:8.5%} / 51%는 EPT normal(괴사 ×)
 M: Prognosis(Akerblom 1988, 64 roots): lesion {r:62.5%} · no lesion {r:97.9%} · total {r:89%}
 
 ## Cases — Treat or Watch | 증례 — 막혀 있다고 무조건 괜찮은 건 아니다 · 증상이 없으면 더 치료하지 않는다 | 65-67, 72-76 | 증례 · 미출제

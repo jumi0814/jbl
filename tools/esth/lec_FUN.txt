@@ -31,6 +31,7 @@ F: 4=인접치 요인 슬라이드
 M: 해당 치아(p.3): {r:Size} · {r:Shape} · {r:Color} · {r:Surface Texture} · {r:Facets} · {r:Grooves and developmental ridges}
 M: 인접치(p.4): {r:Proportionality} · {r:Balance} · {r:Alignment} · {r:Contact relationships} · {r:Embrassure}
 M: General(p.5): {r:Gingival contour} · {r:lips} · {r:Smile line} · {r:midline} of teeth ↔ face·lips
+M: 인접치 요인 모두 고르기 = Proportionality · Alignment · Contact relationship · Embrasure / ⚠ {r:Surface texture} = 해당 치아(p.3) 요인 → ✗
 
 ## Esthetic Success — Dental + Gingival Esthetics · Objective + Subjective | 심미 성공의 두 축 | 6-9 | 개념 · Magne & Belser
 > 치아 심미와 치은 심미가 조화를 이룬 미소 — 그리고 객관적 기준이 바닥, 주관적 통합이 그 위
@@ -79,6 +80,8 @@ F: 10
 M: 1~6 치은·배열: {r:Gingival health} · {r:Interdental closure} · {r:Tooth axis} · {r:Zenith} · {r:Balance of gingival levels} · {r:Level of interdental contact}
 M: 7~11 치아: {r:Relative tooth dimensions} · {r:Basic features of tooth form} · {r:Tooth characterization} · {r:Surface texture} · {r:Color}
 M: 12~14: {r:Incisal edge configuration} · {r:Lower lip line} · {r:Smile symmetry} — 번호로는 안 냄
+M: '심미에 영향을 주는 요인 모두'(21·20년) 보기 = criteria {r:7~12} → {r:전부 ○} / ⚠ p.4 인접치 요인과 섞지 말 것
+M: 상악 전치 배열(24년 탈) 근거 = 기준 {r:3·4·5·6·12·13}(axis · zenith · gingival levels · interdental contact · incisal edge · lower lipline)
 
 @G ② 치은과 배열 — Criterion 1~6
 ## Criterion 1: Gingival Health | 건강한 치은과 비외상적 술식 | 12 | 치은
@@ -119,6 +122,8 @@ F: 13=소위 black triangle 위치와 contact point
 U: contact 길이를 조정해 얼마나 차오르는지를 결정할 수 있다(필기).
 M: Black triangle = {r:contact point ~ alveolar crest} {r:5 mm} 이내 → papillae 차오름
 M: 억지로 채우면 {r:overhang}(치주·우식) · 너무 내리면 중절치 비율이 깨짐 → {r:타협}
+M: 완전히 채워지는 거리 = {r:1~5 mm} 전부(5 mm 포함) / {r:6 mm 이상} → 부분적으로만 채워짐(JB 해설)
+M: Black triangle 해결(JB 서술 답): ① 인접면 prep → 중점 맞춰 resin으로 {r:contact point를 내려} 치간공극 메움 ② {r:cord}로 gingival retraction(0.5~1mm 노출) → {r:cervical쪽 resin building}
 
 ## Criterion 3: Tooth Axis | 치아 장축 — 뒤로 갈수록 distal로 | 14 | 배열 | jb=Q11
 > 교합평면 수직선 기준 — 중절치는 거의 수직, 측절치·견치로 갈수록 distal로 더 눕는다
@@ -158,6 +163,7 @@ U: 또는 26 필기 "가장 내려와있어야"·24년 8번 다른 판본 해설
 F: 15=zenith는 장축보다 약간 distal
 M: Gingival zenith = {r:most apical point} of the gingival outline · {r:distal} to the center
 M: 슬라이드 {r:Mx. lateral and Mn. incisors – not always} / 필기: 상악 {r:측절치} · 하악 {r:중절치}가 가장 내려와 있어야 심미적 / prep 때 {r:respected}
+M: 단답: 치은에서 가장 {r:cervical}한 점 = {r:Gingival zenith}
 
 ## Criterion 5: Balance of Gingival Levels | 치은 높이의 균형 — 측절치는 coronal | 16 | 배열 | jb=Q11
 > 중절치·견치 zenith를 이은 선보다 측절치 zenith가 약간 아래(coronal)면 Class I
@@ -252,6 +258,7 @@ U: ⚠ p.19 ⭐의 뜻 판단 불가: 폭/높이 비율 슬라이드 내용을 �
 F: 20
 M: Width/height: Central {r:85-86%}(Men {r:85%} · Women 86%) > Canine {r:77-81%} > Lateral {r:76-79%} / Tooth size {r:Male} > female · {r:Lighter} tooth > darker
 M: Width C>L {r:2-3 mm} · C>Canine·Canine>L {r:1-1.5 mm} / Height {r:Central = Canine > Lateral} · Mx C = Mn C + {r:½ Mn L}
+M: ⚠ 79%·76% = {r:측절치} 값 → 중절치 답 = {r:85%} / 순서 = 중절치 > 견치 > 측절치
 
 ## Criterion 8: Central Incisor — Features · Three Typical Forms | 상악 중절치의 형태 — 세 가지 typical form | 21-22 | 기출 · ⭐ 이것만 기억해도 | jb=Q10,U04
 > "이것만 기억해도 좋다"는 부분 — 순면은 생각보다 flat, 형태는 square·ovoid·triangular
@@ -284,6 +291,8 @@ F: 22=square·ovoid·triangular 세 가지 typical form
 M: Square = {r:Straight} + {r:marked and parallel transition line angles} / Ovoid = {r:Rounded} + {r:barrel}(incisal·cervical convergence) / Triangular = {r:Straight} + {r:cervical convergence}
 M: 중절치: 순면 생각보다 {r:flat} · mesial outline {r:straight or slightly convex} · distal {r:convex}·{r:more rounded}
 M: Incisal outline: {r:more regular and straight} by wear and aging
+M: ⚠ {r:Rounded outline} = {r:Ovoid}만 / Square·Triangular = 둘 다 {r:Straight outline} → 'triangular - rounded outline' ✗
+M: incisal line angle: {r:mesial}이 더 두드러짐(직각~약간 둔각) / embrasure = mesial {r:적고} · distal {r:큼}
 
 ## Criterion 8: Lateral Incisor · Canine | 측절치와 견치의 형태 | 23-24 | 형태 비교
 > 측절치는 '작고 더 둥근 중절치', 견치는 '반은 전치·반은 구치'
@@ -332,6 +341,8 @@ E: R06 | 23년 객관식(22 선지 변형) "용어의 설명으로 옳지 않은
 F: 25=incisal 쪽 파랗게 보이는 line이 opalescence
 M: Opalescence = enamel {r:transmit red-orange} · {r:reflect blue-violet} (나이 들면 없어지기도)
 M: Dentin effect = {r:mamelons} · {r:infiltration}(external dentin staining) / 투명할수록 {r:어두워} 보임
+M: 용어 정의 5개 전부 ○: translucency {r:반투명} · transparency {r:투명} · fluorescence 흡수 → {r:다른 파장}으로 방출 · dentin infiltration = 손상 부위 {r:외인성 stain}
+M: 23년 '옳지 않은 것'(JB 답) = {r:opalescence: 빛의 산란으로 나타나는 현상} / 22년 같은 자리 '굴절이 고르지 않을 때 단백석의 유백색 빛' = ○
 
 ## Criterion 10: Surface Texture | 표면 질감 — 수평선은 넓게·수직선은 길게 | 26 | 기출 · 환영 연결 | jb=S12
 > 질감이 밝기를, 밝기가 색을 바꾼다 — 나이 들면 질감이 줄어 어두워진다
@@ -350,6 +361,7 @@ E: S12 | 22년 객관식(주 문항 Special Effects) "환영에 해당하는 것
 F: 26=수평선은 넓어 보이고 수직선은 길어 보이는 환영
 M: Aging → texture {r:↓} → light reflection {r:↓} → {r:darker}
 M: Horizontal({r:perikymata}) = {r:shorter·wider} / Vertical({r:developmental lobes}) = {r:longer·narrower}
+M: ⚠ '발육융선이 있으면 {r:넓어} 보인다' ✗ → 발육엽(vertical)은 {r:길고 좁아} 보임 / 넓어 보이는 건 horizontal
 
 ## Criterion 11: Color | 색 — 명도가 가장 중요 | 27 | 기출 · value | jb=U05,Q12
 > 색은 형태·배열보다 덜 눈에 띄지만, 색 중에서는 명도(value)가 자연스러움을 좌우한다
@@ -371,6 +383,7 @@ F: 27=가장 튀어나온 부위가 밝고 cervical은 어두움
 M: Color = {r:minor effect} / 거슬리는 순서: 형태 → {r:명도} → 채도 → 색상
 M: Value = {r:most important} · surface texture와 관련 · {r:middle third brightest} · 밝으면 {r:closer & larger}
 M: Fluorescence: {r:dentin > enamel} · luminophore {r:Europium, Cerium, Ytterbium}
+M: 가장 자연스러우려면 조절할 것 = {r:value} / 색의 상대적인 밝은 정도(밝음·어두움) = {r:명도}
 
 @G ④ 절단연·입술·얼굴 — Criterion 12~14와 주관적 통합
 ## Criterion 12: Incisal Edge Configuration | 절단연 형태 — 갈매기에서 직선으로 | 28 | 기출 5회 | jb=Q06,Q11
@@ -414,6 +427,7 @@ E: Q11 | 24년 객관식(탈) "상악 전치 배열"(보기 미복원) → JB �
 F: 30=동공·구각·교합평면 세 선이 평행
 M: Lower lipline = 상악 {r:incisal edges} ↔ {r:lower lip} coincidence → {r:pleasing smile}
 M: Smile symmetry 3선 = {r:mouth corners} · {r:occlusal line} · {r:interpupilary line} — 수복에선 {r:교합평면}만
+M: 잇몸·안모 포함 요인(21년) = {r:Lower lipline} · {r:Smile symmetry} · {r:Integration of the objective criteria to the pt's personality} → 전부 ○
 
 ## Integration of the Objective Criteria to the Patient's Personality | 객관적 기준을 환자 개성에 통합 | 11·31 | 주관 통합 | jb=T09
 > 14개 객관적 기준은 출발점 — 환자의 smile·얼굴형·나이·성격과 버무려야 심미가 완성된다

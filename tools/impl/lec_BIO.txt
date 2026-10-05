@@ -30,6 +30,7 @@ U: 25 필기: 나라도 사람도 어느 정도 힘의 균형이 맞아야 싸�
 F: 2, 4, 5, 8=상악 8개와 하악 5개, 9
 M: 하악 5개 {r:나란히} → AP 짧음 → {r:cantilever 길어짐}
 M: 상하악 {r:힘의 균형} — 하악이 덴처면 상악도 {r:덴처}로(상악 총의치면 cantilever 길어도 문제 적음)
+M: 가철을 고르는 이유 = 상하악 힘의 균형이 안 맞으면 {r:약한 쪽이 망가진다} → {r:hybrid type} 가철
 
 ## Biomechanics · Why It Matters | 생역학의 정의와 임플란트에서 중요한 이유 | 11-13 | 정의
 > 힘을 고르게 나누거나 피하는 학문 — 임플란트에는 충격을 받아 줄 PDL이 없다
@@ -72,6 +73,7 @@ U: 25 필기: 자연치는 과부하에 PDL 비후·동요·마모로 반응하�
 F: 14=PDL 유무로 달라지는 4가지
 M: PDL 장점 4: {r:tactile 10X} · {r:stress distribution} · {r:signs of overload} · {r:easier delivery}
 M: 임플란트: feedback {r:less reliable} · 힘이 {r:crestal bone}으로 · 경고 = {r:screw loosening·fracture} · {r:supereruption} 없음
+M: T/F 함정 = "PDL이 있으면 stress distribution을 {r:못한다}" → {r:F}(나머지 T) / 촉각: 슬라이드 {r:10X} · JB 답 "5~10배"
 
 @G ② 힘의 기초 — 하중·벡터·모멘트
 ## Loads Applied to Dental Implant · Passive Fit | 임플란트에 가해지는 하중과 passive fit | 15 | 교합력·기계적 하중 · passive fit
@@ -164,6 +166,7 @@ F: 20=크라운 크게 even contact, 21=lateral force 최소화, 22=cantilever�
 M: Moment = {r:moment arm} × {r:force magnitude} = {r:torsional load} → 핵심은 {r:lateral force 최소화}
 M: 모멘트 암 3: {r:교합면 높이} · {r:cantilever 길이} · {r:교합면 넓이}
 M: 피로실패 4: {r:biomaterial} · {r:macrogeometry}(슬라이드·JB 표기 marcrogeometry — 기하학적 구조) · {r:force magnitude} · {r:number of cycles}
+M: 그림(교수 강조): occlusal height 암 = {r:Lingual force} → lingual moment · {r:Mesial force} → apical moment / cantilever 암 = Lingual force → {r:lingual-transverse} moment · Occlusal force → {r:occlusal} moment
 
 @G ③ 자연치 vs 임플란트
 ## Natural Tooth vs Implant — 7 Statements ★ | 생역학적 관점의 자연치 vs 임플란트 | 25 | ★ 별표 슬라이드 · 전부 읽음 | jb=Q07
@@ -184,8 +187,8 @@ P: ★ 표시 슬라이드 · 필기 "전부 읽으셨습니다" · 25 필기 "�
 U: 필기 "WHY? PDL이 없기 때문에" — 25 필기: 자꾸 부딪치면 자연치는 피하는데 임플란트는 신경도 없어 부러지거나 뼈가 다 녹아 흔들리기 전까지 전구증상이 없다.
 U: 25 필기: ②의 회전 중심 = 최상부 {r:crestal} 부위 · 자연치와 임플란트가 섞인 새로운 {r:mixed dentition}에서 교합의 형성이 중요.
 F: 25=WHY PDL이 없기 때문에
-M: 앞 셋: {r:치주인대 유무 응력 흡수} · {r:회전 중심 상방}(치조골 상방) · 자연치 {r:전구증상}(가역·과민·충혈·동요)
-M: 뒤 넷: 임플란트 {r:경고 없이} stress fracture·fatigue · {r:파절·나사 풀림·골흡수} · {r:생체의 지지 능력 이내} · 생역학 고려 + {r:적절한 교합}
+M: 앞 셋: {r:치주인대 유무 응력 흡수} / {r:회전 중심 상방}(치조골 상방) / 자연치 {r:전구증상}(가역·과민·충혈·동요)
+M: 뒤 넷: 임플란트 {r:경고 없이} stress fracture·fatigue / {r:파절·나사 풀림·골흡수} / {r:생체의 지지 능력 이내} / 생역학 고려 + {r:적절한 교합}
 
 ## Comparison Table under Load ★ | 부하 시 치아와 임플란트의 특성 비교 표 (23년 빈칸) | 26 | 표 전부 읽음 · 빈칸 | jb=R03
 > 충격을 줄이는 치아 vs 충격이 그대로 오는 임플란트 — PDL 유무의 결과가 표 한 장에 다 있다
@@ -245,7 +248,7 @@ M: 9-11: {r:적합 정밀도} · {r:나사 풀림·파절} · {r:opposing arch}(
 
 ## 5 Offset · 6 Cantilever | 고정체의 배치(offset)와 캔틸레버 | 28·34 | 교수 설명 5·6 · AP distance | jb=U09
 > 일직선보다 살짝 어긋나게 — cantilever 길이는 AP distance가 허락하는 만큼만
-= offset: cantilever {r:200%} · 일자 {r:67%} · 어긋나게 {r:33%} / cantilever ≤ AP distance의 {r:2.5배}
+= offset = cantilever {r:200%} · 일자 {r:67%} · 어긋나게 {r:33%} / cantilever 길이 ≤ AP distance의 {r:2.5배}
 # 5. 고정체의 배치(offset)
 - 필기: 세 개의 크라운을 수복할 때 임플란트를 어떻게 배치해야 할 것인가(그림: 2개만 식립 = 100%).
 | 배치 | 그림 | 필기 |
@@ -293,6 +296,7 @@ E: T02 | 21년 표 빈칸 "Fully edentulous implants removable vs fixed(최소 �
 F: 29=교합력이 앞 임플란트를 뒤로 당김, 30=canine보다 약간 안쪽, 31=움직임을 허용하는 bar, 32=bar 상부 attachment, 33, 35
 M: 하악 2개 = {r:canine보다 약간 안쪽} + {r:움직임 허용}(멀면 fixture load↑)
 M: 2개 stud = {r:two independent implants} · bar도 {r:전후 움직임} / 3개 = bar 상부 {r:attachment} / 5개 = {r:Hader clip}·{r:O-ring}
+M: 무치악 최소 개수(JB 해설): 하악 오버덴처 {r:2개}(canine 안쪽 · 3개도 가능) / 고정성 최소 {r:4개}
 
 @G ⑤ 하악의 굴절 — Mandibular flexure
 ## 8 Mandibular Flexure ★ | 하악의 굴절 | 36-41 | 교수 3번 반복 · 최다 출제 | jb=Q06

@@ -37,10 +37,11 @@ F: 5=가시광선의 영역 — 단위는 나노미터
 M: 빛 = {r:에너지}의 한 형태 · 프리즘 → {r:파장}별 분광(Newton) · 파장 = 색상
 M: 가시광선 {r:360~400} ~ {r:700~780} {r:nm} — 보라 밖 {r:자외선}(해로움) · 빨강 밖 {r:적외선}
 M: 광중합기 파랑빛 ≈ {r:450-470 nm}
+M: ⚠ '사람의 눈은 380-780 {r:마이크로미터}' ✗ → 숫자는 맞고 단위가 {r:nm}
 
 ## Spectral Power Distribution (SPD) ★ | 빛의 속성 = 파장별 세기 그래프 | 6-9 | 기출 24·23·22·21 · 시험 예고 | jb=Q28
 > 빨간 빛에 빨간 파장만 있는 게 아니다 — 모든 파장이 섞여 있고 가장 센 파장의 색으로 보이며, 그 세기를 그린 것이 SPD
-= SPD: x축 = {r:Wavelength λ (nm)}(파장) · y축 = {r:Relative radiant power}(세기) — 조명의 특성을 나타냄
+= SPD: x축 = {r:Wavelength λ (nm)}(파장) / y축 = {r:Relative radiant power}(세기) — 조명의 특성을 나타냄
 # SPD란
 - **Spectral power distribution (SPD)**: 특정한 빛이 {r:파장별로 얼마나 세게} 들어 있느냐에 대한 그래프(필기).
 - 빛의 속성을 알기 위해서는 파장별 세기를 알아야 하고, 그래프로 표현하는 것이 중요(필기).
@@ -155,6 +156,7 @@ F: 39=하늘이 파란 이유와 노을이 빨간 이유는 같다, 40=노을 �
 M: 하늘 파랑·노을 빨강 = {r:빛의 산란} — {r:짧은 파장}일수록 잘 산란
 M: 낮 = 경로 {r:짧음} → 푸른 산란광 / 노을 = {r:비스듬히} 경로 길어 → 푸른빛 다 산란 → {r:빨강}만
 M: 같은 원리 = 치아의 {r:opalescence}(p.89)
+M: JB 서술 답에 더: 산란 = 파동·입자선이 물체와 충돌해 {r:여러 방향으로 흩어짐} / 대기 {r:질소·산소 분자}가 산란 / 붉은 빛(긴 파장)은 {r:산란이 적어} 남음
 
 @G ③ 눈과 뇌 — 색 지각
 ## The Human Color Vision System | 망막 → 후두엽 · 간상체와 추상체 · 보색 채널 | 16-18 | 간상체·추상체 · 기출 24(보기)
@@ -183,6 +185,7 @@ F: 18=ganglion에서 합쳐지며 보색 채널이 생김
 M: 경로 = 망막({r:Retinal signal}) → {r:Occipital lobe}(대뇌피질 후엽)
 M: {r:Rods} = rhodopsin · {r:흑백} / {r:Cones} = {r:3종}(L 적·M 녹·S 청) = 색
 M: ganglion → {r:Luminance channel} + opponent {r:Red-green} · {r:Yellow-blue}
+M: ⚠ '간상체가 색상과 채도를 인식' ✗ / 간상체 = 광도·명도 · 추상체 = {r:색상·채도}(JB 해설 교과서)
 
 ## Color Perception — Three-Dimensional ★ | 인간은 색을 3차원으로 본다 — Hue·Colorfulness·Brightness | 19-20 | 기출 23 · 시험 필출 | jb=R22,Q12,Q13
 > 색상·채도·명도 세 축을 조합하면 모든 색 — 이 3차원이 Munsell·CIELAB 색공간의 바탕
@@ -209,6 +212,7 @@ F: 20=광택과 질감과 주변 색상 등의 영향을 받음
 M: 색 지각 3차원 = {r:Hue}(색상) · {r:Colorfulness}(채도·chroma) · {r:Brightness}(명도·lightness)
 M: 표준 = {r:CIE}(국제조명위원회) {r:XYZ tristimulus values}
 M: 색은 외관의 일부 — {r:Gloss}·texture / surrounding colors·{r:adaptation of the eye}
+M: 24년 '옳은 것' = 채도를 높이려면 {r:해당 색상을 더 첨가} / 파장이 곧 {r:색상}(밝기 아님)
 
 ## Color Contrast · Color Constancy | 대조(착시)와 항속성(뇌의 보정) | 21-26 | 착시 · 뇌 보정
 > 대조 = 옆 색·직전 색 때문에 달라 보임 / 항속성 = 조명이 달라도 뇌가 보정해 원래 색으로 봄
@@ -376,6 +380,7 @@ F: 61=CIE system과 Munsell system은 동일하다
 M: L* = {r:lightness}({r:z축}) / a* = {r:redness-greenness}({r:x축} · +{r:빨강} −초록) / b* = {r:yellowness-blueness}({r:y축} · +{r:노랑} −파랑)
 M: 각도 {r:h_ab = tan⁻¹(b*/a*)} = 색상 / 거리 {r:C*_ab = (a*²+b*²)^1/2} = 채도
 M: CIELAB {r:1976} — L*a*b* = Munsell spacing·colorant / L*u*v* = additive mixing
+M: ⚠ 'Hue를 L로 표시' ✗ — L = 밝기 / 가운데(a·b = 0) = {r:채도 없음} / h 0° 순수 적색 → 노랑 → {r:180°} 녹색
 
 ## Color Difference Evaluation | 색차 ΔE = 3차원 공간의 거리 — CIEDE2000까지 | 62-67 | 색차 · 넘어감
 > 두 색의 차이 = CIELAB 공간 속 두 점 사이 거리(ΔE) — 하지만 사람 눈은 자리마다 민감도가 달라 보정 공식이 나옴
@@ -496,6 +501,8 @@ F: 84=투명도는 나이가 들수록 줄어듦
 M: {r:Opacity} = 빛을 {r:막는} 능력 ↔ {r:Translucency} = 빛을 {r:통과}시키는 능력 / {r:Transparency} = 극값
 M: 치아 = {r:translucent}(반투명) / 측정 = {r:Transmittance} · {r:Contrast ratio}(흰/검은 배경)
 M: 관여 = {r:Reflectance} · {r:Thickness} / 나이↑ → translucency {r:↓}
+M: 반투명도가 낮아지는 데 관여하는 두 요소(24년 단답) = 안진수 {r:Reflectance · Thickness} / 이창하(심미수복재료 p.11) {r:Thickness · Saturation}
+M: 외관 속성(24년 탈 근거): Translucency·Opacity · Gloss · Surface Roughness · Opalescence · Fluorescence · Phosphorescence / II: Areal · Spatial · Successive contrast · Viewer-associated effects
 
 ## Gloss · Surface Roughness | 광택(정반사)과 표면 거칠기 | 85-88 | GU · roughness·waviness·form
 > 광택은 색은 아니지만 인상을 바꾸는 정반사 — 각도를 정해 재고(GU), 표면 거칠기·형태도 색을 다르게 보이게 한다
@@ -526,7 +533,7 @@ M: Surface texture = {r:Roughness}(미세) · {r:Waviness}(마멜론) · {r:Form
 
 ## Opalescence · Fluorescence · Phosphorescence | 치아가 빛을 바꾸는 세 현상 — 유백광·형광·인광 | 89-95 | 수복물에 재현 | jb=S14,R06,S04
 > 유백광 = 짧은 파장 산란(반사광 푸르게·투과광 주황), 형광 = 받은 빛을 곧바로 더 긴 파장으로, 인광 = 빛을 머금었다 오래(최대 하루) 냄
-= 유백광 = {r:짧은 파장 산란}(반사 bluish·투과 orange) · 형광 = {r:더 긴 파장}으로 즉시 · 인광 = 소스 제거 후에도 지속({r:~1 day})
+= 유백광 = {r:짧은 파장 산란}(반사 bluish·투과 orange) / 형광 = {r:더 긴 파장}으로 즉시 / 인광 = 소스 제거 후에도 지속({r:~1 day})
 # Opalescence (유백광·단백광)
 - Scattering of the {r:shorter wavelengths} of the visible spectrum of light ({r:opal effect}).
 - Reflected light : {r:bluish} — 하늘이 파란 이유와 같다, 밖에선 파란색 / Transmitted light : {r:orange/brown} — 내부(뒤)에서 비추면 오렌지색(필기).
@@ -563,11 +570,12 @@ F: 95=인광 — 우리가 말하는 야광
 M: Opalescence = {r:짧은 파장 산란} — 반사 {r:bluish} · 투과 {r:orange/brown}(하늘·노을과 같은 원리)
 M: Fluorescence = 흡수 후 {r:더 긴 파장}으로 방출 · {r:10⁻⁸ sec} 이내 · UV → bluish
 M: Phosphorescence = 소스 제거 후에도 지속 {r:0.001 s ~ 1 day}(야광)
+M: ⚠ opalescence 정의 둘: 안진수 = {r:짧은 파장 산란} / 이창하 = enamel {r:transmit red-orange · reflect blue-violet} → 23년 JB 답 '빛의 산란으로 나타나는 현상' = 옳지 않은 것
 
 @G ⑦ 보는 조건 — 대조 효과·관찰자·shade 비교
 ## Areal · Spatial · Successive Contrast | 임상에서 치아가 달라 보이는 대조 효과 | 96-100 | shade 선택 · 푸른 에이프런 | jb=Q20
 > 크면 밝게, 가까우면 밝게, 오래 보면 적응 — shade는 처음 본 순간에 고른다
-= {r:Areal contrast}(클수록 밝게) · {r:Spatial contrast}(가까울수록 밝게) · {r:Successive contrast}(직전 색의 보색·적응)
+= {r:Areal contrast}(클수록 밝게) / {r:Spatial contrast}(가까울수록 밝게) / {r:Successive contrast}(직전 색의 보색·적응)
 # Other appearance attributes II — 임상에서 중요한 것들
 | 효과 | 슬라이드 | 임상 의미(필기) |
 | {r:Areal contrast} | 크기가 다른 치아 그림·사진 | {r:클수록 밝게} 느껴지는 효과 — 중절치는 크므로 밝게 느끼는 경향 |

@@ -194,6 +194,7 @@ def split_enum(s):
             if lead.count('==') % 2 == 1: lead = lead.replace('==', '').strip()
             if lead in ('', '=='): lead = ''
             items = [s[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(s)])]
+            if len(split_top(items[-1], ' / ')) > 1 and len(split_top(s, ' / ')) > 1: return None   # 10-05 번호 목록 뒤 ' / '로 다른 사실이 이어지면('① … ③ c / X = y') 마지막 항목이 다음 사실을 삼키지 않게 — ' / '로 먼저 나누고 조각마다 번호 목록
             if pat is PAT_CIRC and any(len(x) <= 3 and all(c in CIRC or c in ' .,·/;' for c in x) for x in items): continue   # ux2 F10 원문자만 남는 조각이 생기면 나누지 않음
             return lead, _rebalance(items, raw_lead.count('==') % 2 == 1), pat is PAT_CIRC
             items = [s[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(s)])]
@@ -345,7 +346,7 @@ def render_block(v, ctx, depth=0):
             if lb.count('{r:') > lb.count('}'): lb = lb + '}'; rest = '{r:' + rest
             if lb.count('**') % 2 == 1: lb = lb.replace('**', ''); rest = '**' + rest
             rs = rest.split('\u2029')
-            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rs[0], ctx) + ''.join(f'<span class="ksep kh"> / </span><br>' + _ip(x, ctx) for x in rs[1:])
+            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + (_eol(rs[0], ctx) or _ip(rs[0], ctx)) + ''.join(f'<span class="ksep kh"> / </span><br>' + _ip(x, ctx) for x in rs[1:])
         parts = _lab_merge(_rebalance(top))
         ls_ = sorted(_L(x) for x in parts)
         fl = _is_flow(parts) and not (_IP[0] and ls_[len(ls_) // 2] > 22)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 짧은 나열(중앙값 22자 이하, ux2 D09)은 가로 흐름 그대로
@@ -418,11 +419,18 @@ def render_item(v, ctx, cont=None):
             return f'<div class="li nolead cont">{body}</div>'
     body = render_block(v, ctx) if (len(v) > 110 or _ncirc(v) >= 3 or _facts(split_top(v, ' / '))) else inline(v, ctx)   # 10-04 짧은 줄도 ' / ' 사실 조각이면 줄마다
     return f'<div class="li{" nolead" if body.startswith("<ol") or body.startswith("<ul") else ""}">{body}</div>'
+def _eol(x, ctx, mn=40):
+    """10-05 사용자 '핵심 및 암기탭에서도 줄바꿈이랑 들여쓰기, 넘버링 등을 적극적으로' — ①②③ 3개↑ 나열이 길면(40자↑) 머리 + 번호 목록(짧으면 None → 한 줄 그대로)"""
+    e = split_enum(x)
+    if not e or not e[2] or len(_plain(x)) < mn: return None
+    ld, its, _ = e
+    return (f'<span class="klh">{inline(ld, ctx)}</span>' if ld else '') + _list_html(its, ctx, 1, 'ol', 'circ')
 def render_recall(x, ctx):
     rows = split_top(x)
-    if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)
-    if _facts(rows): return ''.join(f'<li>{inline(r, ctx)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
-    return f'<li>{inline(x, ctx)}</li>'
+    R = lambda r: _eol(r, ctx, 50) or inline(r, ctx)
+    if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{R(r)}</li>' for r in rows)
+    if _facts(rows): return ''.join(f'<li>{R(r)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
+    return f'<li>{R(x)}</li>'
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
 EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
 EXAM_FMT = re.compile(r'(?:서술형?|빈칸|객관식|단답형?|T/F|그림)(?:\s?(?:단답|빈칸|서술))?')
@@ -534,6 +542,8 @@ def _kp(p, ctx, first=True, lvl=0, li=False):
     if m and _L(m.group(4)) >= 2:
         return inline(m.group(1), ctx, first) + '<b class="lbl">' + inline(m.group(2), ctx, False) + '</b>' + inline(m.group(3), ctx, False) + _kp(m.group(4), ctx, False, 1)
     if n <= 40: return inline(p, ctx, first)
+    eh = _eol(p, ctx) if ' / ' not in p else None   # 10-05 🔑 안 긴 ①②③ 나열 = 머리 + 번호 목록
+    if eh: return eh
     # K1 ' / '
     if lvl == 0 and n > 50:
         ps = _sp(p, ' / ')

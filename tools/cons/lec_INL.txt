@@ -37,6 +37,7 @@ U: 수복이 얼마 가지 못하면 치과의사의 신뢰가 매우 떨어짐 
 F: 7=인레이의 성공을 좌우하는 요소 ★, INL5:7=25 필기 — "시험문제!" 빨간·노란 별표
 M: 인레이 성공 4: {r:luting cement} · {r:mechanical properties} · {r:operator skill} · {r:patient selection}
 M: {r:cementation is the most critical step} / IDS = 삭제 후 {r:인상 전} 상아질 sealing
+M: Luting cement = {r:dual cured cement} — {r:light intensity} · {r:exposure time} / patient selection = 악습관·부적절한 위치·margin 위치·{r:크라운 할 치아에 인레이}
 M: Aging = {r:계면} 문제 + 수복물 {r:물성 변화}·파절
 
 @G ② 재료별 수명 — amalgam과 gold, 그리고 '금 밑에 금'
@@ -173,6 +174,7 @@ F: 26=Indirect tooth-colored restoration — 상대적 적응증
 M: 결정 5: {r:물성} · {r:잔존 치질} · {r:심미} · {r:술자/환자 선호} · {r:비용}(fee-for-service)
 M: 상대적 적응증: {r:large defect}·{r:previous restoration} · {r:Class 2}
 M: 치질이 많이 남았으면 {r:direct}(치질 보존)
+M: '와동이 넓으면 inlay · 좁으면 filling'? → {r:절대적 경계 없음} — 5가지를 따진다(시험문제 필기)
 
 ## Direct Resin vs Porcelain Inlay vs Resin Inlay | 세 수복의 성질 비교 — 접착·술식 난이도·심미·마모 | 27-28 | 비교표
 > 접착은 direct, 심미는 porcelain, 대합치를 갈아내는 것도 porcelain
@@ -284,9 +286,11 @@ P: 25 p.43 빨간 별표 + '시험문제' — 24 필기: 다른 해에 강조한
 U: resin·porcelain 인레이는 cement 접착으로 잔존 치질이 강화되니 capping 기준이 더 유해져도 되지 않나? → 1 mm 이하면 강화 안 됨. direct filling으로 두께를 만든 뒤 tooth-colored inlay를 하면 더 보강.
 F: 43=Cusp coverage vs reinforcement ★, INL5:43=25 필기 — 빨간 별표 "시험문제" (올해는 언급 없음)
 M: Aesthetic inlay: clearance {r:1.5-2.0 mm}(e.max {r:1.0}) · {r:no bevel} · width {r:≥1.5 mm} · {r:12-15°}(gold {r:6°})
-M: 와동형성 원리(26 예고 p.36-41): {r:clearance}·{r:no bevel}·{r:width}·{r:divergent}·{r:proximal clearance 0.5 mm}·{r:rounded box}·{r:smooth floor}·{r:rounded internal angle}·{r:uniform reduction}·{r:enamel margin}
+M: 와동형성 원리(26 예고 p.36-41): {r:clearance}·{r:no bevel}·{r:width}·{r:divergent}·{r:proximal clearance 0.5 mm} / {r:rounded box}·{r:smooth floor}·{r:rounded internal angle}·{r:uniform reduction}·{r:enamel margin}
 M: 최소 두께: composite {r:1 mm} · low-strength ceramic {r:2 mm} · e.max {r:1-1.2 mm}
+M: 이유: clearance 부족 → {r:break during fabrication}·{r:fracture during cementation} / 내각 sharp → technician {r:block-out with die-spacer}·{r:stress concentration}
 M: 잔존 wall {r:1 mm} = bonded reinforcement minimum / {r:1-2 mm} = {r:tooth position·parafunction·lateral guidance} 고려 / {r:0.5 mm} 강화 무의미
+M: 잔존 wall < {r:1 mm} → 접착으로 강화 안 됨 → {r:cusp capping}(occlusal coverage) / {r:lateral force} 세면 capping이 나음
 
 @G ⑤ Safe preparation · 접착 · 술식
 ## Protecting the Adjacent Tooth — 4 Methods ★ | 2급 와동 형성 시 인접치 보호 4가지 (과거 강조 p.45-48) | 44-48 | ★ 시험문제 | jb=Q11
@@ -312,6 +316,7 @@ P: 24 필기: 44-48쪽이 그해 '시험문제'로 강조(보라색 별표), p.4
 F: 44=Safe preparation ★, 45=Customized matrix & wedge, 46=Wedge-guard — Palodent Plus, 47=Hand instrument use for protection, 48=Sonic device — coating 없는 면을 인접치로, INL5:44=25 필기 — 보라 별표 "시험문제" (올해는 언급 없음), INL5:45=25 필기 — 보라 별표 ① matrix & wedge, INL5:46=25 필기 — 보라 별표 ② wedge-guard, INL5:47=25 필기 — 보라 별표 ③ hand instrument, INL5:48=25 필기 — 보라 별표 ④ sonic device
 M: 인접치 보호 4: {r:matrix & wedge} · {r:wedge-guard} · {r:hand instrument} · {r:sonic device}
 M: wedge-guard는 proximal wall {r:0.5 mm} 남을 때 / hand instrument = {r:ditch cut} 후 wall 부수기
+M: matrix & wedge = wedge가 {r:치아 사이를 벌려} 보호 · loose해지면 {r:더 tight}하게 / wedge-guard = wedge + matrix {r:일체형}(Palodent Plus)
 M: sonic device = {r:3면} coating · coating 없는 면 → {r:인접치} · {r:finishing}에서만
 
 ## Bonding — Most Critical Procedure | 접착 — 격리와 bonded cementation의 힘 | 49-52 | 접착

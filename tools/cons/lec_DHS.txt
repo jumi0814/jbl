@@ -50,6 +50,7 @@ U: 다른 dental defect·pathology를 배제하고 남는 '짧고 날카로운 �
 F: 73=진료 시 시림 5가지와 일상의 지각과민증, 87
 M: 진료 시 시림 5: {r:치경부 노출} · {r:깊은 우식} · {r:접착실패·leakage} · {r:vital prep} · {r:cracked tooth}
 M: 일상의 지각과민증: {r:숨만 쉬어도 시림} · 안고 달래며 사는 + {r:aging}
+M: 원인별 처치: ① 치경부 노출 → {r:composite resin restoration} / ② 깊은 우식 → {r:proper restoration} / ③ 접착실패·leakage → 접착 원칙 점검·repair / ④ vital prep → {r:proper dentin sealing}(IDS) / ⑤ cracked tooth → {r:crown}
 
 ## Cervical Exposure — Abrasion · Erosion · Abfraction | 치경부 노출 — 세 가지 비우식성 병소 | 74-76 | 원인 ①
 > 칫솔(기계) · 산(화학) · 꽉 무는 힘(굴곡) — 모양이 아니라 history로 가른다
@@ -247,6 +248,8 @@ F: DH5:16=Management — Robin JADA 2006, 93=Clinical application — 국소 도
 M: 전략 3(Robin): avoid stimulus({r:불가능}) · {r:occlude tubules} · {r:decrease nerve excitability}
 M: Occlusion 3: {r:smear layer}·plug openings · {r:intratubular dentin} · {r:tertiary dentin}
 M: 도포는 {r:반복}, 효과는 환자마다 {r:response variation} → 재평가·조합
+M: 실제 2축: {r:tubule occlusion}(fluid movement 차단) / {r:nerve desensitization}(자극 역치↑) — 함께 쓸 수도
+M: 두 갈래: 저농도 {r:집에서}(치약 — 오래 공들여야) / 고농도 {r:진료실에서}(전문가 도포·여러 번)
 
 ## Desensitizers — Mechanism by Product | 약제·제품별 기전 | 92·98 | 25 슬라이드 보충
 > 칼륨은 신경을 재우고, 옥살산·불소·NovaMin은 세관을 메우고, glutaraldehyde는 태운다
@@ -275,6 +278,7 @@ F: 92=Clinical Products — oxalic acid·glutaraldehyde·potassium & oxalates, D
 M: {r:Potassium} = 신경(K+ burst → unresponsive) / {r:Oxalate}·{r:Fluoride}·NovaMin = tubule 폐쇄
 M: Oxalate: {r:Ca²⁺}와 반응 → {r:Ca-oxalate crystal} → occlude → {r:permeability↓}
 M: 전문가용 3: {r:Oxalic acid} · {r:Glutaraldehyde}(chemical burning) · {r:potassium & oxalates}
+M: Fluoride → {r:calcium fluoride crystal}·fluorapatite / NovaMin → 타액과 이온 교환 → {r:pH 상승} → {r:new hydroxyapatite-like layer}
 
 ## Remineralization with SDF | SDF — 은과 고농도 불소 | 96-97 | 약제
 > 우식 정지에 쓰던 SDF를 시린 치아에도 — 대가는 검게 변하는 것

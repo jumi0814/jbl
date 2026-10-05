@@ -60,6 +60,7 @@ F: 4=가장 큰 차이는 PDL 여부
 M: 구성 3: {r:fixture}(Ti 나사·root) · {r:abutment}(지대주·기둥) · {r:crown} / 전치부 심미 = {r:zirconia} one-body(약해서 전치부만)
 M: PDL = {r:완충} · {r:재생세포} · {r:영양공급} / 치아+뼈 = {r:ankylosis}(골유합) · 임플란트+뼈 = {r:osseointegration}(골유착)
 M: 임플란트 주위 섬유 = {r:No fiber attachment}(circumferential) → 힘이 {r:치조골로 직접}
+M: 주위 점막 함정: 교원섬유는 임플란트에 {r:부착 X} · 표면에 {r:평행} 주행 / "골유착으로 치주낭 깊이가 얕다" = {r:×}(probing하면 쑥 들어감)
 
 @G ② 발전사와 발전 방향
 ## History of Implant Types · Patents | 임플란트의 역사 4종과 특허 흐름 | 7-13 | 발전사 4종 · 특허
@@ -135,7 +136,7 @@ M: 방향 = {r:Easy & Convenience} → {r:Aesthetic & Speedy}
 @G ③ 분류 4축 — 수술법 · 연결 · 표면 · 디자인
 ## Classification I — One-stage vs Two-stage | 수술방법에 의한 분류 — 일회법과 이회법 | 19-23 | 분류 4축 · 일회법/이회법 | jb=Q13,Q14
 > 심고 바로 잇몸 밖으로 낼 것인가(healing abutment), 덮었다가 다시 열 것인가(cover screw)
-= One-stage = 식립 시 바로 {r:healing abutment} / Two-stage = {r:cover screw} + 연조직 덮음 → 골유착(상악 {r:6개월}·하악 {r:3개월}) 후 flap 열기
+= One-stage = 식립 시 바로 {r:healing abutment} / Two-stage = {r:cover screw} + 연조직 덮음 → 골유착(상악 {r:6개월}·하악 {r:3개월}) 후 flap 열기 / 움직일 위험 높으면 {r:Two stage}
 # 임플란트의 분류 4축
 - I. {r:수술 방법}에 의한 분류(일회법·이회법).
 - II. {r:연결 방식}(internal·external).
@@ -160,10 +161,11 @@ F: 22=Healing abutment, 23=Cover screw 1st op에 고정 후 잇몸으로 덮음
 M: One-stage = {r:healing abutment} 바로(2차 수술 X) / Two-stage = {r:cover screw} → 상악 {r:6개월} · 하악 {r:3개월} 후 flap 열어 healing abutment
 M: Healing abutment = {r:치은 개방 유지·연조직 치유} / Cover screw = fixture {r:내부로 연조직·치조골 성장 방지}
 M: One-stage 단점 = {r:loading 부하} · {r:abutment looseness}→infection / Two-stage 장점 = {r:초기고정}
+M: One-stage 장점 = {r:수술횟수 감소} · 이차 감염 예방 · 예후 인지 용이 · 조기진단(골손실 적음) / Two-stage 단점 = {r:2회 수술} · 조직 손상 · {r:치료기간 김} · 실패 시 골손상 큼
 
 ## Classification II — External vs Internal Connection ★ | 연결방식에 의한 분류 — 보철물과 fixture 중 누가 감싸나 | 24-25 | 교수 강조 · 표 암기 | jb=Q10,R02
 > 보철물이 fixture를 감싸면 external(안 내려가지만 screw가 풀림), fixture가 보철물을 감싸면 internal(내려가지만 틈이 없음)
-= External = {r:sinking 없음} · 응력 {r:connection·screw} → {r:screw 풀림} · 골소실 {r:많음} / Internal = {r:No gap & movement} · {r:sinking} · {r:fixture 찢어짐} · 골소실 {r:적음}
+= External = {r:sinking 없음}(식립 편함) · 응력 {r:connection·screw} → {r:screw 풀림} · 골소실 {r:많음} / Internal = {r:No gap & movement} · {r:sinking} · {r:fixture 찢어짐} · 골소실 {r:적음}
 # 정의 — 지대주를 안에서 잇나 밖에서 잇나
 - **Internal connection**: 지대주 {r:내부} 연결 — ==No gap & movement==.
 - **External connection**: 지대주 {r:외부} 연결 — {r:Hexagon이 주류} · {r:다양한 보철 가능} · {r:Joint Stability 문제}.
@@ -187,7 +189,8 @@ U: 25 필기: 전치부는 교합력이 약하고 골소실이 없어야 심미�
 F: 25=보철물이 fixture를 감싸면 External
 M: External: {r:sinking 없음}(보철 안정) · 응력 → {r:connection·screw} → {r:screw 풀림} · 골소실 {r:많음}(1-2 thread 정상) · {r:Hexagon} 주류
 M: Internal: {r:No gap & movement} · {r:sinking}(cold welding → abut 분리 어려움·교합조정) · 응력 분산 but {r:fixture 찢어짐} · 골소실 {r:적음}
-M: 감싸는 쪽: External = {r:보철물이 fixture를}, Internal = {r:fixture가 보철물을}
+M: 감싸는 쪽: External = {r:보철물이 fixture를} / Internal = {r:fixture가 보철물을}
+M: 쓰는 곳(JB 해설): Internal = 교합 보상 필요 · {r:전치부}(최근 구치부도) / External = {r:다양한 보철} 가능 · {r:구치부}
 
 ## Classification III · IV — Surface · Design | 표면과 디자인에 의한 분류 | 26-31 | 표면 SA·CA·HA · straight/tapered | jb=Q13
 > 표면은 거칠게(더 빨리 붙게), 몸통은 뼈 모양에 맞게 — 경사지거나 무른 뼈는 tapered
@@ -218,7 +221,7 @@ M: 보통 {r:tapered}를 씀 — 방향 전환 유리 · 뚫고 나올 우려↓
 @G ④ 수술 전 고려
 ## Considerations for Surgery — Anatomy · Bone Quality · Health | 수술 시 고려 3가지 | 33-36 | 해부 · 골질 · 전신 | jb=Q13
 > 해부 구조를 피하고, 골질을 읽고, 환자를 본다 — 가장 단단한 Type 1이 가장 좋은 뼈는 아니다
-= 해부: Mx {r:Nasal cavity·Maxillary sinus·Incisive canal} / Mn {r:Mandibular canal·Mental foramen} / 골질: {r:Type 2·3 적절}, {r:Type 1 최악}
+= 상악 = {r:Nasal cavity·Maxillary sinus·Incisive canal} / 하악 = {r:Mandibular canal·Mental foramen} / 골질 = {r:Type 2·3 적절} · {r:Type 1 최악}
 # 1. Anatomy
 - Mx) **Nasal cavity**, **Maxillary sinus**, **Incisive canal**.
 - Mn) **Mandibular canal**, **Mental foramen**.
@@ -240,7 +243,8 @@ F: 35=Type 2와 3이 적절
 U: 25 필기: 조절되는 당뇨는 괜찮고, 교수님이 특히 중요시하는 것은 정신질환(비현실적 기대).
 F: 36
 M: 해부: 상악 {r:nasal cavity · maxillary sinus · incisive canal} / 하악 {r:mandibular canal · mental foramen} / sinusitis면 {r:ENT 먼저}
-M: 골질: {r:Type 1}(통뼈) = 열·혈관 부족으로 {r:가장 안 좋음} · {r:Type 2·3} 적절 · {r:Type 4} = 초기고정 없음
+M: 골질: {r:Type 1}(통뼈) = 열·혈관 부족으로 {r:가장 안 좋음} / {r:Type 2·3} 적절 / {r:Type 4} = 초기고정 없음
+M: Type 3 = {r:thin cortical bone} with {r:dense trabecular bone of good strength} → 적절 ○ / "Type 1은 단단해서 적절" = {r:×}
 M: 환자 4축: {r:의학적}(당뇨·방사선·골대사약물) · {r:정신적}(비현실적 기대) · {r:습관}(흡연) · {r:구강내}(악골흡수·치주질환)
 
 @G ⑤ 기구와 술식
@@ -263,7 +267,7 @@ P: 25 필기: "별표는 p.38" · "시험문제!!! A B C D 이름 쓰고 역할 
 U: 25 필기: pilot은 피질골이 단단하면 확대가 힘들어 그 부분만 넓히는 것, countersink는 taper 형태가 피질골에 걸리지 않게 피질골을 더 넓히는 것.
 F: 38=★ 드릴 A부터 E와 골질, HIS5:38=25 필기 시험문제 ABCD 이름과 역할
 M: 드릴 5: {r:Initial}(천공·표시) → {r:Twist}(수직·수평 확대) → {r:Pilot}(twist 진입 쉽게 피질골 넓힘) → {r:Tapping}(나사산) → {r:Countersink}(shoulder 넓은 경우)
-M: {r:Tapping}은 {r:cortical bone이 두꺼울 때만} · {r:Countersink}는 shoulder가 들어갈 {r:자리를 미리}
+M: {r:Tapping}은 {r:cortical bone이 두꺼울 때만} / {r:Countersink}는 shoulder가 들어갈 {r:자리를 미리}
 
 ## Implant Surgical Kit — Components | 수술 키트 구성품 — 그림 보고 이름 대기 | 39-47 | 키트 · 교수 예고(p.42)
 > 키트는 '제조사 가이드대로' — 드릴은 모양(앞 얇고 뒤 뚱뚱·마지막 shoulder)으로 알아본다
@@ -283,9 +287,9 @@ M: {r:Tapping}은 {r:cortical bone이 두꺼울 때만} · {r:Countersink}는 sh
 - 25 필기(p.40): stopper = 길이 맞추는 것(초보들이 쓴다) — 위험한 해부학적 구조물을 피하기 위해.
 P: 25 필기(p.42 별표): "이런 드릴들의 그림 보고 이름을 쓸 수 있게 하자 — 예시 문제) 다음 드릴들을 사용하는 순서로 배열하여라".
 F: 39, 40=Long stopper drill, 41=No stopper drill, 42=Lance와 pilot과 countersink 형태, 43, 44, 45, 46, 47
-M: Kit: {r:Lance = initial} · stopper는 초보용(짬 차면 안 씀) · {r:No stopper = 고수의 드릴}
+M: Kit: {r:Lance = initial} / stopper는 초보용(짬 차면 안 씀) / {r:No stopper = 고수의 드릴}
 M: 모양: {r:Pilot} = 앞에는 얇고 뒤에 뚱뚱 / {r:Countersink} = 앞이 두껍고 뒤에 얇았다가 마지막에 {r:shoulder}
-M: 도구: {r:Depth gauge} = 뚫린 깊이 측정 · {r:Parallel pin} = 평행 확인 · {r:Hand·Torque driver} = healing·cover screw 체결
+M: 도구: {r:Depth gauge} = 뚫린 깊이 측정 / {r:Parallel pin} = 평행 확인 / {r:Hand·Torque driver} = healing·cover screw 체결
 
 ## Surgical Procedure · ISQ · Maintenance | 술식 순서, 안정성 평가, 유지관리 | 48-54 | 1st·2nd op · ISQ 55-80
 > 1st op: 뚫고·넓히고·심고·덮기 → 2nd op: 열고 healing abutment → ISQ로 확인 → 관리
@@ -319,5 +323,5 @@ F: 53=ISQ 55-80 okay
 U: 25 필기: 심고 보철 들어가면 끝이 아니다 — 관리 못하면 peri-implantitis로 뼈를 다시 만들고 다시 심어야 한다.
 F: 54
 M: 드릴 순서: {r:Lance} → {r:Ø2.0 twist} → {r:depth gauge} → {r:pilot 2.0/3.0} → Ø3.0 → Ø3.3 twist → {r:countersink} → {r:tap} → fixture
-M: 1st op 끝 = {r:cover screw} + suture(two-stage) / 바로 {r:healing abutment} = one step · 2nd op = incision → cover screw 제거 → {r:bone profiler} → healing abutment
+M: 1st op 끝 = {r:cover screw} + suture(two-stage) / 바로 {r:healing abutment} = one step / 2nd op = incision → cover screw 제거 → {r:bone profiler} → healing abutment
 M: ISQ {r:55-80} okay · {r:70-80} 좋다 / 관리 안 하면 {r:peri-implantitis}
