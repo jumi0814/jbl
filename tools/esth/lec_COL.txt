@@ -10,7 +10,7 @@
 @G ① 빛 — 에너지·파장·SPD
 ## Light & Visible Spectrum | 빛은 에너지 — 파장이 곧 색, 사람은 nm 단위의 좁은 띠만 본다 | 1-5 | 가시광선 범위 · 숫자 기억 · 기출 24(보기)
 > 빛은 에너지의 한 형태 — 프리즘으로 파장별로 나뉘고, 사람 눈은 그중 360~400 ~ 700~780 nm만 본다
-= Light = {r:a form of energy} · 프리즘 → {r:wavelengths} · 가시광선 {r:360~400 to 700~780 nm}
+= Light = {r:a form of energy} / 프리즘 → {r:wavelengths}(파장 = 색상) / 가시광선 {r:360~400 to 700~780 nm}
 # 강의의 틀 (Part I)
 - p.1 표지 **What is color?** · **Color and Appearance**: ① Color ② Colorimetry ③ Other appearance attributes
 - **Color Research** — p.2·41·79·96·107의 간지가 단원을 나눔(p.107 Academic application은 다루지 않으심).
@@ -34,10 +34,10 @@ F: 3=눈으로 빛을 보는 것, 4=프리즘에서 빛이 분광됨
 P: "가시광선의 영역 (숫자는 알고 있자)" · "380-700 nm 정도 - 단위가 나노미터라는 것이 중요!!"(필기).
 E: Q13 | 24년 객관식(탈) "색에 대한 설명으로 옳은 것 — 보기 ② 사람의 눈은 380-780 마이크로미터를 감응할 수 있다" → ② × (정답 ③) — p.5 가시광선 360~400 to 700~780 nm · 필기 "단위가 나노미터라는 것이 중요!!" ⚠ 함정: 숫자는 맞고 단위(마이크로미터 ✗ → nm)를 바꿔 냄
 F: 5=가시광선의 영역 — 단위는 나노미터
-M: 빛 = {r:에너지}의 한 형태 · 프리즘 → {r:파장}별 분광(Newton) · 파장 = 색상
-M: 가시광선 {r:360~400} ~ {r:700~780} {r:nm} — 보라 밖 {r:자외선}(해로움) · 빨강 밖 {r:적외선}
-M: 광중합기 파랑빛 ≈ {r:450-470 nm}
-M: ⚠ '사람의 눈은 380-780 {r:마이크로미터}' ✗ → 숫자는 맞고 단위가 {r:nm}
+M: 정의: 빛 = {r:에너지}의 한 형태 · 프리즘 → {r:파장}별 분광(Newton) · 파장 = 색상
+M: 가시광선 {r:360~400} ~ {r:700~780} {r:nm} / 보라 밖 {r:자외선}(해로움) · 빨강 밖 {r:적외선}
+M: 치과: 광중합기 파랑빛 ≈ {r:450-470 nm}
+M: 함정(24년 객관식): ⚠ '사람의 눈은 380-780 {r:마이크로미터}' ✗ → 숫자는 맞고 단위가 {r:nm}
 
 ## Spectral Power Distribution (SPD) ★ | 빛의 속성 = 파장별 세기 그래프 | 6-9 | 기출 24·23·22·21 · 시험 예고 | jb=Q28
 > 빨간 빛에 빨간 파장만 있는 게 아니다 — 모든 파장이 섞여 있고 가장 센 파장의 색으로 보이며, 그 세기를 그린 것이 SPD
@@ -79,9 +79,11 @@ F: 8=태양과 형광등과 흰색 LED의 SPD
 - {r:D65} refer to a black body at {r:6500 K} — "D65가 이상적인 조명이다"(필기) → CIE 표준광원 D65(p.51)로 이어짐.
 - 그림: C.I.E. 1976 U.C.S. Chromaticity Diagram(넘어감).
 F: 9=D65가 이상적인 조명
-M: SPD x축 = {r:파장}(Wavelength nm) · y축 = {r:세기}(Relative radiant power)
-M: 빨간 빛 = 모든 파장 중 {r:가장 센 파장}이 빨강 / Kelvin↑ → {r:푸름} · 색온도↓ → {r:붉음}
-M: 흰색 LED = {r:청색 LED} + 형광물질 → {r:청색 peak} 눈에 나쁨 / D65 = {r:6500 K}
+M: 정의: SPD = 특정한 빛이 {r:파장별로 얼마나 세게} 들어 있느냐에 대한 그래프 → 빛(조명)의 속성
+M: 축: SPD x축 = {r:파장}(Wavelength nm) / y축 = {r:세기}(Relative radiant power) / ⚠ 24·23·22·21년 단답은 {r:x축}을 물음 → 파장
+M: 특징: 빨간 빛 = 모든 파장 중 {r:가장 센 파장}이 빨강 — 특정 {r:peak}의 색으로 보임
+M: 색온도: Kelvin↑ → {r:푸름} · 색온도↓ → {r:붉음} / D65 = {r:6500 K}(이상적인 조명)
+M: 광원별 SPD: ① 햇빛 = {r:모든 파장이 골고루}(하얀 이유) ② 형광등 = 뾰족한 {r:peak} → 눈부심 ③ 흰색 LED = {r:청색 LED} + 형광물질 → {r:청색 peak} 눈에 나쁨
 
 @G ② 빛과 물체 — 반사·흡수·산란
 ## Specular vs Diffuse Reflection | 정반사는 색이 아니다 — 색은 난반사 | 10-12 | 개념 · 교수 강조
@@ -108,9 +110,10 @@ F: 11=정반사는 입사각과 반사각이 같고 난반사는 모든 방향
 - 책을 볼 때 하얗게 빛이 반사된 부분은 안 보이는 것을 예로 드심(필기).
 - 사람의 치아는 투과도를 가짐(필기) → p.80 translucency.
 F: 12=조명이 그대로 비치는 부분은 정반사 — 색이 아니다
-M: 색 = {r:난반사}(diffuse) / {r:정반사}(specular·입사각=반사각) = 광택 → 색 아님
-M: 빛의 거동 5: {r:Reflected} · {r:Refracted} · {r:Absorbed} · {r:Scattered} · {r:transmitted}
-M: 색을 잴 때는 {r:정반사}를 없앤다 → integrating sphere·gloss trap(p.54)
+M: 빛의 거동 5: ① {r:Reflected} ② {r:Refracted} ③ {r:Absorbed} ④ {r:Scattered} ⑤ {r:transmitted} — 그중 {r:반사}가 중요
+M: 정반사 vs 난반사: 색 = {r:난반사}(diffuse) / {r:정반사}(specular·입사각=반사각) = 광택 → 색 아님
+M: 치아: 흰색으로 보이는 부분 = 조명이 그대로 비치는 {r:정반사} → 치아색 아님 / 나머지 부분의 {r:난반사} = 치아의 색
+M: 측정: 색을 잴 때는 {r:정반사}를 없앤다 → integrating sphere·gloss trap(p.54)
 
 ## Absorption · Scattering · Spectral Reflectance | 투과도를 줄이는 두 과정과 분광반사율 | 13-15 | 흡수 vs 산란 · 분광측색기
 > 빛은 흡수되거나 산란되거나 아니면 투명하게 통과 — 흡수하고 남은(산란된) 빛이 물체의 색이다
@@ -136,9 +139,10 @@ F: 14=분광측색기 — 파장별 반사를 측정
 # Models of spectral reflectance (넘어가심)
 - **Kubelka-Munk (K-M) theory** — The K-M theory characterizes **colorants** in a mixture.
 F: 15
-M: 투과도를 줄이는 두 과정 = {r:Absorption}(molecular interaction) · {r:Scattering}(particles·air bubbles)
-M: 검정 = 모든 파장 {r:흡수} / 흰색 = 모든 파장 {r:산란} / 빨강 = {r:적색만 산란}
-M: 물체의 색 = {r:body reflectance}(absorption·scattering) — 측정 = {r:reflectance spectrophotometer}
+M: 투과도를 줄이는 두 과정 = {r:Absorption}(molecular interaction) / {r:Scattering}(particles·air bubbles) — 흡수된 빛은 {r:열}로 · 산란제 {r:titanium dioxide}·{r:calcium carbonate}
+M: 큐브: 검정 = 모든 파장 {r:흡수} / 흰색 = 모든 파장 {r:산란} / 빨강 = {r:적색만 산란}
+M: 분광반사율: 물체의 색 = {r:body reflectance}(absorption·scattering) / 측정 = {r:reflectance spectrophotometer}
+M: 표면: 거칠거나 기포 → 산란 → {r:etching}하면 {r:chalky white}(명도↑ → 색상에 영향)
 
 ## Why the Sky Is Blue · the Sunset Is Red ★ | 하늘이 파란 이유와 노을이 붉은 이유 = 빛의 산란 | 39-40 | 기출 22·21·20·19 | jb=S14
 > 같은 원리 — 짧은 파장일수록 잘 산란: 낮엔 산란된 푸른빛이, 해 뜰 때·질 때는 다 산란되고 남은 붉은빛이 보인다
@@ -153,15 +157,15 @@ M: 물체의 색 = {r:body reflectance}(absorption·scattering) — 측정 = {r:
 U: 사람 치아의 유백광과 같은 원리(필기 p.40) → p.89 opalescence: 반사광 bluish · 투과광 orange/brown.
 E: S14 | 22·21·20·19년 서술 "하늘이 파랗게 보이는 이유와 노을이 붉게 보이는 이유" → 낮에 하늘이 파랗게 보이고 노을이 붉게 보이는 이유는 빛의 산란현상 때문이다. ‘산란’이란 파동이나 입자선이 물체와 충돌하여 여러 방향으로 흩어지는 현상을 말한다. 우리 눈은 태양빛 중에서 가시광선 영역만을 볼 수 있는데, 가시광선은 대기를 통과하며 대기 중의 질소, 산소 분자 등에 의해 산란이 된다. 대기의 산란 정도는 빛의 파장에 따라 그 정도가 달라지며, 파장이 짧을수록 산란이 강하게 일어난다. 파장이 짧은 청색 빛이 산란이 많이 일어나 청색광이 지표에 가장 많이 도달하게 된다. 노을이 붉은 이유는 해가 뜰 때, 질 때는 햇빛이 비스듬히 들어오기 때문에, 빛이 대기권에 지나가게 되는 공기층의 거리가 매우 증가한다. 청색광은 모두 산란되어 사라져버리고 파장이 긴 붉은 빛은 산란이 적게 되어 남는다. — p.39-40 슬라이드는 노을 사진뿐 · 근거는 필기(산란 · 짧은 파장일수록 잘 산란 · 비스듬히 긴 경로) ⚠ JB 답의 산란 정의(파동이나 입자선이 물체와 충돌)·질소 산소 분자는 자료에 없음 — 필기는 나노보다 작은 입자
 F: 39=하늘이 파란 이유와 노을이 빨간 이유는 같다, 40=노을 — 푸른빛은 다 산란되고 남은 빨간색만 보임
-M: 하늘 파랑·노을 빨강 = {r:빛의 산란} — {r:짧은 파장}일수록 잘 산란
-M: 낮 = 경로 {r:짧음} → 푸른 산란광 / 노을 = {r:비스듬히} 경로 길어 → 푸른빛 다 산란 → {r:빨강}만
-M: 같은 원리 = 치아의 {r:opalescence}(p.89)
-M: JB 서술 답에 더: 산란 = 파동·입자선이 물체와 충돌해 {r:여러 방향으로 흩어짐} / 대기 {r:질소·산소 분자}가 산란 / 붉은 빛(긴 파장)은 {r:산란이 적어} 남음
+M: 원인: 하늘 파랑·노을 빨강 = {r:빛의 산란} — {r:짧은 파장}일수록 잘 산란
+M: 낮 vs 노을: 낮 = 경로 {r:짧음} → 푸른 산란광 / 노을 = {r:비스듬히} 경로 길어 → 푸른빛 다 산란 → {r:빨강}만
+M: JB 서술 답에 더: ① 산란 = 파동·입자선이 물체와 충돌해 {r:여러 방향으로 흩어짐} ② 대기 {r:질소·산소 분자}가 산란 ③ 붉은 빛(긴 파장)은 {r:산란이 적어} 남음
+M: 연결: 같은 원리 = 치아의 {r:opalescence}(p.89) — 반사광 bluish · 투과광 orange
 
 @G ③ 눈과 뇌 — 색 지각
 ## The Human Color Vision System | 망막 → 후두엽 · 간상체와 추상체 · 보색 채널 | 16-18 | 간상체·추상체 · 기출 24(보기)
 > 눈(망막)이 받고 뇌(후두엽)가 색으로 인식 — 간상체는 흑백, 추상체 3종(L·M·S)이 색, ganglion에서 합쳐 보색 채널
-= Retinal signal → {r:Occipital lobe} · Rods = {r:no color information} · Cones = {r:3 cone classes}(L 적·M 녹·S 청)
+= Retinal signal → {r:Occipital lobe} / Rods = {r:no color information} / Cones = {r:3 cone classes}(L 적·M 녹·S 청)
 # 색 인식 경로
 - {r:Retinal signal} → {r:Occipital lobe} of the brain's cortex — 사람 눈알 안의 망막에서 빛을 받아들이고 시신경을 통해 대뇌피질의 후엽으로 인식(필기).
 F: 16=망막에서 받아 대뇌피질 후엽으로 인식
@@ -183,9 +187,9 @@ F: 17=간상체는 흑백 추상체 3종은 색
 P: "보색관계를 알아두는 것이 좋다" · "사람의 눈은 기계가 아니므로 복잡한 일이 일어난다"(필기).
 F: 18=ganglion에서 합쳐지며 보색 채널이 생김
 M: 경로 = 망막({r:Retinal signal}) → {r:Occipital lobe}(대뇌피질 후엽)
-M: {r:Rods} = rhodopsin · {r:흑백} / {r:Cones} = {r:3종}(L 적·M 녹·S 청) = 색
-M: ganglion → {r:Luminance channel} + opponent {r:Red-green} · {r:Yellow-blue}
-M: ⚠ '간상체가 색상과 채도를 인식' ✗ / 간상체 = 광도·명도 · 추상체 = {r:색상·채도}(JB 해설 교과서)
+M: 수용체: {r:Rods} = rhodopsin · {r:흑백} / {r:Cones} = {r:3종}(L 적·M 녹·S 청) = 색 / 어두운 방 = 간상체만 → 색 구분 ✗
+M: 보색 채널: ganglion → {r:Luminance channel} + opponent {r:Red-green} · {r:Yellow-blue} → {r:보색}(빨강을 보다 흰 바탕 → 초록)
+M: 함정(24년 객관식): ⚠ '간상체가 색상과 채도를 인식' ✗ / 간상체 = 광도·명도 · 추상체 = {r:색상·채도}(JB 해설 교과서)
 
 ## Color Perception — Three-Dimensional ★ | 인간은 색을 3차원으로 본다 — Hue·Colorfulness·Brightness | 19-20 | 기출 23 · 시험 필출 | jb=R22,Q12,Q13
 > 색상·채도·명도 세 축을 조합하면 모든 색 — 이 3차원이 Munsell·CIELAB 색공간의 바탕
@@ -209,10 +213,11 @@ F: 19=색을 3차원으로 본다 — 시험 필출
 - ② **Surrounding colors, adaptation of the eye**... — 주변 색상의 영향, 눈의 적응(어두운 방에 처음엔 안 보이다가 보임)(필기).
 U: 3가지 외에도 광택·질감·굴곡·주변 색상·눈의 적응 등 다양한 조건에 맞춰진다(필기) → 대조·항속성(p.21-26), Other appearance attributes(p.79-104).
 F: 20=광택과 질감과 주변 색상 등의 영향을 받음
-M: 색 지각 3차원 = {r:Hue}(색상) · {r:Colorfulness}(채도·chroma) · {r:Brightness}(명도·lightness)
+M: 색 지각 3차원 = ① {r:Hue}(색상) ② {r:Colorfulness}(채도·chroma) ③ {r:Brightness}(명도·lightness) / 23년 단답 '인간 시각 인지 3요소' = {r:명도, 채도, 색상}
+M: 특징: 세 가지 조합 → 모든 색(3차원 공간의 점) · 사람은 {r:명도부터} 인지
 M: 표준 = {r:CIE}(국제조명위원회) {r:XYZ tristimulus values}
-M: 색은 외관의 일부 — {r:Gloss}·texture / surrounding colors·{r:adaptation of the eye}
-M: 24년 '옳은 것' = 채도를 높이려면 {r:해당 색상을 더 첨가} / 파장이 곧 {r:색상}(밝기 아님)
+M: 외관: 색은 외관의 일부 — {r:Gloss}·texture / surrounding colors·{r:adaptation of the eye}
+M: 24년 '옳은 것' = 채도를 높이려면 {r:해당 색상을 더 첨가} / 파장이 곧 {r:색상}(밝기 아님) / 색의 상대적인 밝은 정도(24·23년) = {r:명도}
 
 ## Color Contrast · Color Constancy | 대조(착시)와 항속성(뇌의 보정) | 21-26 | 착시 · 뇌 보정
 > 대조 = 옆 색·직전 색 때문에 달라 보임 / 항속성 = 조명이 달라도 뇌가 보정해 원래 색으로 봄
@@ -237,9 +242,10 @@ F: 21=공간적 대조와 시간적 대조
 | p.25 체스판 A·B | {r:같은 회색} | B는 원기둥 그림자 때문에 어두워진 것 → 원래 흰색이라 보정(착시) |
 | p.26 흑백 인물 사진 | — | 어떤 조명 하에서도 우리는 색상을 인식할 수 있다 |
 F: 22=어두운 배경의 회색 박스가 더 밝게 보인다, 23=조명이 달라도 같은 큐브로 인식, 24=잘라 보면 둘 다 회색, 25=그림자 속 B를 흰색이라고 뇌가 보정, 26
-M: Contrast = {r:Spatial}(옆 색·착시) · {r:Temporal}(직전 색·보색)
+M: Contrast = {r:Spatial}(옆 색·착시) / {r:Temporal}(직전 색·보색)
 M: Color constancy = 조명이 달라도 {r:뇌가 보정} — 카메라 {r:white balance}
-M: 큐브·체스판 A와 B = 실제로는 {r:같은 회색}
+M: 예: 큐브·체스판 A와 B = 실제로는 {r:같은 회색}
+M: 이름 주의: p.21 Temporal = p.99 {r:Successive contrast} / p.98 Spatial contrast = {r:가까울수록 밝게}(p.21 Spatial과 다름)
 
 ## Color Deficiency | 색맹 — 적록이 대부분, 추상체의 이상 | 27-38 | 간단히 넘어가심
 > 남성의 8%, X 염색체 열성 — 어느 추상체가 빠졌느냐로 Protanope·Deuteranope·Tritananope, 다 빠지면 Rod monochromat
@@ -264,8 +270,8 @@ F: 28=색맹은 3가지 종류, 29=정상 추상체 감도 그래프, 30=Protano
   - 원래 100개로 했는데 너무 힘들어 15개로 줄임(필기).
 - 그림 D-15 Colour Arrangement 4장: Normal Trichromat(정상) / Protanope / Deuteranope / Tritanope — 축 Protan·Deutan·Tritan Axis.
 F: 37=이시하라 테스트 — 숫자 읽기, 38=D-15 — 색맹은 배열이 지그재그
-M: 색맹 = 대부분 {r:적록} · {r:X chromosome} 열성 · 남성 {r:8%}
-M: {r:Protanope} 적 · {r:Deuteranope} 녹 · {r:Tritananope} 청(하늘 녹색) · {r:Rod monochromat} 흑백
+M: 특징: 색맹 = 대부분 {r:적록} · {r:X chromosome} 열성 · 남성 {r:8%}
+M: 분류: ① {r:Protanope} 적 ② {r:Deuteranope} 녹 ③ {r:Tritananope} 청(하늘 녹색) ④ {r:Rod monochromat} 흑백
 M: 검사 = {r:Ishihara}(숫자 읽기) · {r:Farnsworth D-15}(배열 → 지그재그)
 
 @G ④ 색의 표시 — Munsell · CIE · CIELAB
@@ -304,8 +310,8 @@ F: 44=색을 어떻게 배열하는지, 45=Munsell이 가장 처음 만들었고
 P: p.47 "꼭 알기!! cielab 시험에 나온다"(필기) — Munsell과 CIELAB은 같은 3차원 구조(p.61 "CIE system과 Munsell system은 동일하다").
 F: 46=hue value chroma로 3차원 배열, 47=바깥으로 갈수록 색이 진해지고 Z축은 명도, 48=우리가 지금 쓰는 색 체계
 M: 색 표시 2 = {r:Color order system}(배열) + {r:Colorimetry}(광원·물체·관찰자/기기)
-M: 최초 = {r:Munsell 1905} → Ostwald 1916 · OSA-UCS 1947 · DIN 1955 · NCS 1968 · Coloroid 1962
-M: Munsell = {r:Hue}(Y R P B G) · {r:Value}(0~10) · {r:Chroma}(바깥으로 진해짐)
+M: 연표: 최초 = {r:Munsell 1905} → Ostwald 1916 · OSA-UCS 1947 · DIN 1955 · NCS 1968 · Coloroid 1962
+M: Munsell = ① {r:Hue}(Y R P B G) ② {r:Value}(0~10) ③ {r:Chroma}(바깥으로 진해짐) / 안쪽 = {r:무채색} · 세로축 = {r:명도}
 
 ## The CIE System — Illuminant · Object · Observer | CIE 1931 — 광원·물체·관찰자의 표준화 | 49-58 | 표준광원 A·B·C·D65
 > 색을 지각하는 세 요소를 표준으로 정했다 — 광원(A·B·C·D65), 물체(정반사를 없앤 측정 geometry), 관찰자(2° · >4°) → X·Y·Z
@@ -346,8 +352,8 @@ F: 56=RGB 조명을 조절해 같게 보이게 해서 표준관찰자를 정함,
 - Equations 1: X = k∫S(λ)R(λ)x̄(λ)dλ · Y = k∫S(λ)R(λ)ȳ(λ)dλ · Z = k∫S(λ)R(λ)z̄(λ)dλ / Translucent : R(λ) ⇒ T(λ).
 - 복잡해 보이는 식을 계산하면 L, a, b가 나옴 — 사람의 추상체 3가지로 xyz 값을 알아냄(필기).
 F: 58=복잡한 식을 계산하면 L a b가 나옴
-M: CIE (1931) 3요소 = {r:Illuminant} · {r:Object} · {r:observer}
-M: 광원 A {r:백열등} · B {r:직사광선} · C {r:평균 햇빛} · D65 = {r:6500K} 표준(1964)
+M: CIE (1931) 3요소 = ① {r:Illuminant} ② {r:Object} ③ {r:observer} / 결과 = Tristimulus values {r:X Y Z}
+M: 광원: ① A {r:백열등} ② B {r:직사광선} ③ C {r:평균 햇빛} ④ D65 = {r:6500K} 표준(1964)
 M: 물체 = {r:정반사 제거}(integrating sphere·gloss trap · d/0) / 관찰자 1931 {r:2°} · 1964 {r:>4°}
 
 ## CIELAB ★★ | CIE L*a*b* — 그림 그리고 L·a·b의 의미 쓰기 | 59-61 | 기출 24·23·22·21·20·18 · 시험 예고 | jb=Q26
@@ -377,10 +383,10 @@ F: 60=각도는 hue 거리는 chroma — 그림 그리기 시험문제
 # CIE system = Munsell system
 - 왼쪽 CIELAB 색입체(white~black value 축 · hue 둘레 · chroma 바깥 방향) = 오른쪽 Munsell Color System(Value 0~10 · Hue · Chroma) — "CIE system과 Munsell system은 동일하다"(필기).
 F: 61=CIE system과 Munsell system은 동일하다
-M: L* = {r:lightness}({r:z축}) / a* = {r:redness-greenness}({r:x축} · +{r:빨강} −초록) / b* = {r:yellowness-blueness}({r:y축} · +{r:노랑} −파랑)
-M: 각도 {r:h_ab = tan⁻¹(b*/a*)} = 색상 / 거리 {r:C*_ab = (a*²+b*²)^1/2} = 채도
 M: CIELAB {r:1976} — L*a*b* = Munsell spacing·colorant / L*u*v* = additive mixing
-M: ⚠ 'Hue를 L로 표시' ✗ — L = 밝기 / 가운데(a·b = 0) = {r:채도 없음} / h 0° 순수 적색 → 노랑 → {r:180°} 녹색
+M: 그림 3축(24·23·22·21·20·18년): L* = {r:lightness}({r:z축}) / a* = {r:redness-greenness}({r:x축} · +{r:빨강} −초록) / b* = {r:yellowness-blueness}({r:y축} · +{r:노랑} −파랑)
+M: 각도 {r:h_ab = tan⁻¹(b*/a*)} = 색상 / 거리 {r:C*_ab = (a*²+b*²)^1/2} = 채도 / 가운데(a·b = 0) = {r:채도 없음} / h 0° 순수 적색 → 노랑 → {r:180°} 녹색
+M: 함정: ⚠ 'Hue를 L로 표시' ✗ — L = 밝기 · hue = 각도
 
 ## Color Difference Evaluation | 색차 ΔE = 3차원 공간의 거리 — CIEDE2000까지 | 62-67 | 색차 · 넘어감
 > 두 색의 차이 = CIELAB 공간 속 두 점 사이 거리(ΔE) — 하지만 사람 눈은 자리마다 민감도가 달라 보정 공식이 나옴
@@ -403,9 +409,9 @@ F: 65=흰 타원 안이 우리가 같다고 느끼는 범위
 - **Wavelength Discrimination** — 파장별로 우리가 구분할 수 있는 범위(y축 Wavelength difference nm) · 자외선·적외선 쪽으로 갈수록 색상을 잘 구분 못 함 · 파장별로 사람이 예민하게 보는 영역이 정해져 있다(필기).
 - 실제 사람의 치아 색상 범위 = 색 공간 속 {r:좁쌀만한} 영역 — 매우 좁다, 2000을 쓰나 마나 유의한 차이가 안 남(필기).
 F: 66=파장별로 구분할 수 있는 범위, 67=좁쌀만한 사람 치아 색상 범위
-M: 색차 {r:ΔE*ab} = {r:(ΔL*² + Δa*ab² + Δb*ab²)^1/2} — 3차원 공간의 {r:거리}
-M: 보정: {r:CMC}(ISO) · {r:CIE94}(gray·blue 예측 오류) → {r:CIEDE2000}
-M: 치아 색 범위 = {r:매우 좁다}(좁쌀만) · 회색조는 구분 잘함 · 양 끝 파장은 구분 못 함
+M: 정의: 색차 {r:ΔE*ab} = {r:(ΔL*² + Δa*ab² + Δb*ab²)^1/2} — 3차원 공간의 {r:거리}
+M: 보정: ① {r:CMC}(ISO) ② {r:CIE94}(gray·blue 예측 오류) ③ {r:CIEDE2000}
+M: 치아 색 범위 = {r:매우 좁다}(좁쌀만) / 회색조는 구분 잘함 · 양 끝 파장은 구분 못 함
 
 @G ⑤ 측색 — 장비 4종과 조건등색
 ## Color Measuring Instruments · Tristimulus Colorimeter · Metamerism ★ | 측색 장비 4종과 색차계 — 조건등색을 가려내지 못한다 | 68-70 | 기출 21·20·19 · 국시 단골 | jb=T20
@@ -433,9 +439,10 @@ F: 69=셀로판지 같은 필터로 RGB를 XYZ로
 - 예(필기): 오렌지색 조명의 터널 아래에서는 남색 차가 검게 보이고 색 차이를 구분하기 어렵다(에너지가 매우 적게 소모되어 쓰는 조명).
 E: T20 | 21·20·19년 단답 "조건등색을 설명해주고 적으라는 문제" → 조건등색 (metamerism) — 설명할 것 = 필기 '조명 달라지므로 물체 색 달라보이는 현상' + 파장별 반사율이 달라 광원이 달라지면 다르게 보임(JB 해설 첨언 "두 물체의 파장 차이로 광원이 달라지면 색상이 달라지는 것") — p.70 Tristimulus colorimeter: Cannot be used to quantify metamerism · p.72 Spectrophotometer: Can also evaluate metamerism ⚠ JB 해설의 영어 정의(when two colors that are not actually the same appear the same under certain lighting conditions)는 슬라이드에 없음 — JB 참고: X
 F: 70=조건등색 — daylight에선 같고 tungsten에선 다름
-M: {r:조건등색}({r:metamerism}) = {r:조명}이 달라지면 물체 색이 달라 보이는 현상 — {r:파장별 반사율}이 달라서
-M: 측색 장비 4 = {r:Tristimulus colorimeter} · {r:Spectroradiometer} · {r:Spectrophotometer} · {r:Digital camera}
-M: 색차계 = {r:필터}·{r:저렴} · {r:프리즘이 없어서} → {r:metamerism 측정 불가} · {r:Repeatability is poor}
+M: 측색 장비 4 = ① {r:Tristimulus colorimeter} ② {r:Spectroradiometer} ③ {r:Spectrophotometer} ④ {r:Digital camera}
+M: 색차계: 원리 = {r:필터}(RGB → XYZ) · {r:프리즘이 없어서} 파장별 반사율 ✗ / 장점 = {r:저렴}·간단 / 단점 = {r:metamerism 측정 불가} · {r:Repeatability is poor}(aging of detectors)
+M: 정의(21·20·19년 단답): {r:조건등색}({r:metamerism}) = {r:조명}이 달라지면 물체 색이 달라 보이는 현상 — {r:파장별 반사율}이 달라서
+M: 예: {r:daylight}에선 같은 빨간 공 두 개 → {r:tungsten}에선 빨강·자홍 / 색차계 = 측정 불가 ↔ 분광측색기 = {r:평가 가능}
 
 ## Spectrophotometer · Spectroradiometer · Digital Camera | 분광측색기(표준) · TSR(cross-media) · 카메라(측정 ✗) | 71-78 | 조건등색 평가 · cross-media
 > 프리즘으로 분광하는 spectrophotometer가 표준(조건등색까지 평가) — 멀리서 재는 TSR은 모니터 색까지, 카메라는 측정 장비로 못 쓴다
@@ -463,9 +470,9 @@ F: 73=멀리서 현재 조명으로 분광, 74=cross-media — 모니터 색도 
 - 카메라는 회사마다 필터가 달라 절대적 색상 측정이 어렵다 → 환자 치아의 shade를 정확히 측정하는 장치는 만들 수 없다 · "색착이랑 똑같아요"(필기 원문 — 색차계와 같다는 뜻으로 보임).
 - p.75 겹친 캡처: Spectroradiometer — 303-1호 실험실에 있다(1초 만에 지나가심).
 F: 75=필터를 거쳐 오므로 카메라로 완벽한 색 측정은 불가능, 76=카메라마다 필터가 달라 측정 장비로 쓸 수 없다, 77, 78=카메라 측정 표준은 안 됨
-M: 분광측색기 = {r:Most widely used} for {r:surface colors} · {r:5, 10, or 20 nm} 간격 · Can also evaluate {r:metamerism}
-M: TSR = {r:멀리서} 현재 조명 · Advantage {r:Actual condition} · {r:cross-media} · Caution {r:position}
-M: Digital camera = {r:whole object} 이미지 · RGB ≠ XYZ({r:observer metamerism}) → {r:camera characterization}
+M: 분광측색기 = {r:Most widely used} for {r:surface colors} · {r:5, 10, or 20 nm} 간격 · Can also evaluate {r:metamerism} / 구조 = integrating sphere + {r:Monochromator}(프리즘) · 정확·재현성 좋음 · 비쌈
+M: TSR = {r:멀리서} 현재 조명 / Advantage: {r:Actual condition} · {r:cross-media} / Caution: {r:position}
+M: Digital camera = {r:whole object} 이미지 / RGB ≠ XYZ({r:observer metamerism}) → {r:camera characterization} / 카메라마다 필터가 달라 측정 장비로 ✗
 
 @G ⑥ 색 이외의 외관 속성 — Other appearance attributes
 ## Translucency · Opacity | 반투명도와 불투명도 — 치아는 translucent | 79-84 | 기출 24 · 반사·두께 | jb=Q20,Q27
@@ -498,11 +505,11 @@ F: 82=표면 반사와 흡수와 내부 산란 — 에나멜은 투명 덴틴은
 - 투명도는 {r:나이가 들수록 줄어듦} = 나이가 들수록 불투과도가 증가함(필기).
 - 투명도를 눈으로 측정할 수 없지만 입안이 어두워서 투명도를 간접적으로 인지할 수 있다(필기).
 F: 84=투명도는 나이가 들수록 줄어듦
-M: {r:Opacity} = 빛을 {r:막는} 능력 ↔ {r:Translucency} = 빛을 {r:통과}시키는 능력 / {r:Transparency} = 극값
+M: 정의: {r:Opacity} = 빛을 {r:막는} 능력 ↔ {r:Translucency} = 빛을 {r:통과}시키는 능력 / {r:Transparency} = 극값
 M: 치아 = {r:translucent}(반투명) / 측정 = {r:Transmittance} · {r:Contrast ratio}(흰/검은 배경)
 M: 관여 = {r:Reflectance} · {r:Thickness} / 나이↑ → translucency {r:↓}
 M: 반투명도가 낮아지는 데 관여하는 두 요소(24년 단답) = 안진수 {r:Reflectance · Thickness} / 이창하(심미수복재료 p.11) {r:Thickness · Saturation}
-M: 외관 속성(24년 탈 근거): Translucency·Opacity · Gloss · Surface Roughness · Opalescence · Fluorescence · Phosphorescence / II: Areal · Spatial · Successive contrast · Viewer-associated effects
+M: 외관 속성(24년 탈 근거): ① Translucency·Opacity ② Gloss ③ Surface Roughness ④ Opalescence ⑤ Fluorescence ⑥ Phosphorescence / II: ① Areal ② Spatial ③ Successive contrast ④ Viewer-associated effects
 
 ## Gloss · Surface Roughness | 광택(정반사)과 표면 거칠기 | 85-88 | GU · roughness·waviness·form
 > 광택은 색은 아니지만 인상을 바꾸는 정반사 — 각도를 정해 재고(GU), 표면 거칠기·형태도 색을 다르게 보이게 한다
@@ -527,9 +534,9 @@ F: 87=조명의 위치에 따라 광택이 다르다
 | {r:Form} | {r:broader term to describe the shape} | 치아의 모양 — 각졌다·둥글둥글하다 |
 - 표면 거칠기도 색상에 영향 — 표면이 거칠면 하얗게 보임(p.20 필기) · 이에 따라 색상이 달라 보임(필기).
 F: 88=표면 거칠기도 색상에 영향
-M: Gloss = {r:정반사} · angular selectivity of {r:reflectance} — physical·physiologic·psychological
-M: GU: nonreflected {r:0 GU} · perfect mirror {r:1000 GU at 60°} — 각도를 정해 측정
-M: Surface texture = {r:Roughness}(미세) · {r:Waviness}(마멜론) · {r:Form}(모양)
+M: 정의: Gloss = {r:정반사} · angular selectivity of {r:reflectance} — physical·physiologic·psychological
+M: GU: nonreflected {r:0 GU} · perfect mirror {r:1000 GU at 60°} — 각도를 정해 측정 / 치아 = {r:조명의 위치}에 따라 광택이 다름
+M: Surface texture = ① {r:Roughness}(미세) ② {r:Waviness}(마멜론) ③ {r:Form}(모양) / 표면이 거칠면 {r:하얗게} 보임 → 색에 영향
 
 ## Opalescence · Fluorescence · Phosphorescence | 치아가 빛을 바꾸는 세 현상 — 유백광·형광·인광 | 89-95 | 수복물에 재현 | jb=S14,R06,S04
 > 유백광 = 짧은 파장 산란(반사광 푸르게·투과광 주황), 형광 = 받은 빛을 곧바로 더 긴 파장으로, 인광 = 빛을 머금었다 오래(최대 하루) 냄
@@ -567,10 +574,10 @@ F: 95=인광 — 우리가 말하는 야광
 | 시간 | — | 10⁻⁸ sec 이내 | 0.001 second to 1 day |
 | 치아에서(필기) | 강함(HA) — 앞에서 푸르게·뒤에서 누렇게 | 있음(필기마다 '미세'·'강하게') | 수산화인회석의 인 — 너무 적어 잘 모름 |
 | 수복물(필기) | 입자 조절로 오팔 특성 부여 | composite resin에 형광 물질 | — |
-M: Opalescence = {r:짧은 파장 산란} — 반사 {r:bluish} · 투과 {r:orange/brown}(하늘·노을과 같은 원리)
-M: Fluorescence = 흡수 후 {r:더 긴 파장}으로 방출 · {r:10⁻⁸ sec} 이내 · UV → bluish
+M: Opalescence = {r:짧은 파장 산란} — 반사 {r:bluish} · 투과 {r:orange/brown}(하늘·노을과 같은 원리) / 치아 {r:HA}가 단파장 산란 → 수복물에 입자 조절로 재현
+M: Fluorescence = 흡수 후 {r:더 긴 파장}으로 방출 · {r:10⁻⁸ sec} 이내 · UV → bluish / 치아에도 있음 → {r:composite resin에 형광 물질}
 M: Phosphorescence = 소스 제거 후에도 지속 {r:0.001 s ~ 1 day}(야광)
-M: ⚠ opalescence 정의 둘: 안진수 = {r:짧은 파장 산란} / 이창하 = enamel {r:transmit red-orange · reflect blue-violet} → 23년 JB 답 '빛의 산란으로 나타나는 현상' = 옳지 않은 것
+M: 함정(23년): ⚠ opalescence 정의 둘: 안진수 = {r:짧은 파장 산란} / 이창하 = enamel {r:transmit red-orange · reflect blue-violet} → 23년 JB 답 '빛의 산란으로 나타나는 현상' = 옳지 않은 것
 
 @G ⑦ 보는 조건 — 대조 효과·관찰자·shade 비교
 ## Areal · Spatial · Successive Contrast | 임상에서 치아가 달라 보이는 대조 효과 | 96-100 | shade 선택 · 푸른 에이프런 | jb=Q20
@@ -595,9 +602,9 @@ F: 98=가까이 있을수록 밝게 느낀다
 - 색상을 고를 때 {r:처음 고른 것이 가장 정확} — 오래 보면 눈이 적응해 구분이 안 되므로 뚫어지게 쳐다보면 안 됨, 잠깐 보고 딱 결정(필기).
 E: Q20 | 24년 객관식(탈) "치아의 심미를 안 좋게 하는 빛의 성질 (보기 미복원)" → ? — JB 해설이 든 Areal contrast, spatial contrast, successive contrast = p.97-100 · viewer associated effects = p.101-104(다음 카드) · 주 ⭐는 Translucency 카드
 F: 99=노란 것을 보다가 흰색을 보면 파랗게 보인다, 100=푸른 에이프런을 보면 치아 색상 구분이 잘 된다
-M: {r:Areal} = 클수록 밝게 / {r:Spatial} = 가까울수록 밝게 / {r:Successive} = 직전 색의 보색·적응
+M: 대조 3: {r:Areal} = 클수록 밝게 / {r:Spatial} = 가까울수록 밝게 / {r:Successive} = 직전 색의 보색·적응
 M: Successive: {r:Positive} = short visual interaction · {r:Negative} = long visual contact
-M: shade는 {r:처음 고른 것}이 가장 정확 — 오래 보면 적응 → {r:푸른 에이프런}
+M: 임상: shade는 {r:처음 고른 것}이 가장 정확 — 오래 보면 적응 → {r:푸른 에이프런} / 중절치는 커서 {r:밝게} 느낌(Areal)
 
 ## Viewer-associated Effects · Separating Value, Chroma, Hue | 보는 사람의 조건과 shade 비교법 | 101-108 | binocular difference · 3D master
 > 나이·피로·영양·감정·약물이 색을 바꾸고 두 눈도 다르게 본다 — shade tab은 위아래로, 명도·채도·색상은 따로 보라
@@ -635,6 +642,6 @@ F: 105=명도 채도 색상 세 요소를 잘 구분해야, 106=흑백으로 보
   - ④ Reproducibility.
 - p.107 Academic application 간지는 다루지 않으심 · p.108 뒤로 정은구 교수님(Univ. of Washington 보철과 교수) 특별강연 — 수업 내용 아님(필기).
 F: 108
-M: Viewer effects = {r:Age}(60↑ blues·purples) · Fatigue(hue·chroma) · Nutrition · Emotions(pupil) · Medications
-M: 약물: 술·morphine {r:붉은 계열 밝게} · caffeine {r:푸른 계열 밝게} · Viagra {r:blue tint} · 경구피임제 {r:blues·yellows↓}
-M: shade tab은 {r:위아래로}(binocular difference) · {r:3D master}가 명도·채도·색상을 구분
+M: Viewer effects = ① {r:Age}(60↑ blues·purples) ② Fatigue(hue·chroma) ③ Nutrition ④ Emotions(pupil) ⑤ Medications
+M: 약물: ① 술·morphine {r:붉은 계열 밝게} ② caffeine {r:푸른 계열 밝게} ③ Viagra {r:blue tint} ④ 경구피임제 {r:blues·yellows↓}
+M: shade tab은 {r:위아래로}(binocular difference) / {r:3D master}가 명도·채도·색상을 구분 · vita classic은 그렇지 않음
