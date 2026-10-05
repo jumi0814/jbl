@@ -28,13 +28,13 @@ E: T01 | 21년 서술 "완전 무치악에서 고정성이 아닌 가철식 장�
 P: 25 필기 p.10: 보철물을 제작할 때 biomechanics를 고려할 필요가 있다 — 간단히는 캔틸레버의 길이부터, 힘의 균형에 관한 이해가 중요.
 U: 25 필기: 나라도 사람도 어느 정도 힘의 균형이 맞아야 싸움이 없고 편안하다 — 약한 쪽이 망가진다.
 F: 2, 4, 5, 8=상악 8개와 하악 5개, 9
-M: 하악 5개 {r:나란히} → AP 짧음 → {r:cantilever 길어짐}
-M: 상하악 {r:힘의 균형} — 하악이 덴처면 상악도 {r:덴처}로(상악 총의치면 cantilever 길어도 문제 적음)
-M: 가철을 고르는 이유 = 상하악 힘의 균형이 안 맞으면 {r:약한 쪽이 망가진다} → {r:hybrid type} 가철
+M: 하악 문제: 하악 5개 {r:나란히} → AP 짧음 → {r:cantilever 길어짐} / cantilever는 {r:짧을수록 안전}(뒤로 갈수록 힘이 크고 좁아짐)
+M: 힘의 균형: 상하악 {r:힘의 균형} — 하악이 덴처면 상악도 {r:덴처}로 / 상악 총의치면 cantilever 길어도 문제 적음
+M: 가철을 고르는 이유: 상하악 힘의 균형이 안 맞으면 {r:약한 쪽이 망가진다} → {r:hybrid type} 가철
 
 ## Biomechanics · Why It Matters | 생역학의 정의와 임플란트에서 중요한 이유 | 11-13 | 정의
 > 힘을 고르게 나누거나 피하는 학문 — 임플란트에는 충격을 받아 줄 PDL이 없다
-= 생역학 = 힘에 대한 생체 반응 / {r:치료 생역학} = 과부하 요소를 {r:변경}하는 임상 과정 / late failure = {r:biomechanical}
+= 생역학 = 힘에 대한 생체 반응 / {r:치료 생역학} = 과부하 요소를 {r:변경}하는 임상 과정 / late failure = {r:biomechanical} / 중요한 이유 = {r:No PDL-like shock absorbing element}
 # 생역학(Biomechanics)의 정의
 - 생체 조직에 힘을 가했을 때 이에 대한 생체의 반응을 연구하는 학문이다.
 - 생체에서의 역학적 요소를 총칭하는 용어 — 임플랜트 보철에서 골유착된 고정체와 지대주를 포함한 상부구조에 작용되는 {r:응력과 부담의 관계}를 분석하는 분야.
@@ -52,13 +52,14 @@ U: 26 필기 "힘을 고르게 분배하는 것이 핵심" — 25 필기: 캔틸
   - Induced strains and stresses is transferred to the peri-implant bone tissue {r:directly}.
 U: 25 필기: 이를 앙 다물면 자연치는 무릎을 살짝 굽혔다 펴듯 받아 주는데 임플란트는 가만히 버티고 서 있다 → 과한 stress·strain이 뼈에 전달돼 peri-implantitis.
 F: 11, 12, 13
+M: 정의: 생역학 = 생체 조직에 힘을 가했을 때 생체의 반응을 연구하는 학문 / 임상 지표 = {r:응력 분산}과 {r:부담 하중}을 어떻게 피할 것인가
 M: {r:치료 생역학} = 과부하 요소를 {r:변경}시키는 임상적 과정
 M: Late failure = 보철 연결 후 발생 · mainly {r:biomechanical complications}
-M: {r:No PDL-like shock absorbing element} → 응력이 골로 {r:directly}
+M: 중요한 이유: {r:No PDL-like shock absorbing element} → 응력이 골로 {r:directly}
 
 ## Advantages of a Periodontal Ligament ★ | PDL의 장점 4 (22 T/F → 24 나열) | 14 | Table 1 · 교수 필기 4가지 | jb=Q18,S01
 > 자연치는 느끼고·나누고·경고하고·맞춰 준다 — 임플란트는 넷 다 못 한다
-= Natural dentition with a PDL allows 4 = {r:감각 10X} · {r:응력 분산} · {r:과부하 징후} · {r:delivery 용이}
+= PDL 장점 4(Natural dentition with a PDL allows): ① {r:감각 10X} ② {r:응력 분산} ③ {r:과부하 징후} ④ {r:delivery 용이}
 # Table 1 — PDL이 있는 자연치 vs 임플란트에서의 수복 변경
 | Natural dentition with a PDL allows | Restorative modification with implants |
 | ① ==Better tactile and sensory proprioception, 10X better acuity at low levels of biting force== | Patient feedback {r:less reliable} for occlusal adjustment — perception of force stimulation duller and more difficult to locate |
@@ -71,9 +72,9 @@ P: 필기: 자연치와 가장 큰 차이는 PDL의 유무 — 1. 감각 2. PDL�
 U: 필기: 인접치가 자연치라면 자연치의 생리적 동요도 때문에 contact 맞추는 것에 더욱 유의 — 자연치가 옆에 있는지에 따라 delivery도 다르다.
 U: 25 필기: 자연치는 과부하에 PDL 비후·동요·마모로 반응하지만 임플란트는 스크루가 풀리거나 크라운이 깨지거나 픽스처가 부러진다 — 약한 곳부터 망가짐.
 F: 14=PDL 유무로 달라지는 4가지
-M: PDL 장점 4: {r:tactile 10X} · {r:stress distribution} · {r:signs of overload} · {r:easier delivery}
-M: 임플란트: feedback {r:less reliable} · 힘이 {r:crestal bone}으로 · 경고 = {r:screw loosening·fracture} · {r:supereruption} 없음
-M: T/F 함정 = "PDL이 있으면 stress distribution을 {r:못한다}" → {r:F}(나머지 T) / 촉각: 슬라이드 {r:10X} · JB 답 "5~10배"
+M: PDL 장점 4: ① {r:tactile 10X} ② {r:stress distribution} ③ {r:signs of overload} ④ {r:easier delivery}
+M: 임플란트: ① feedback {r:less reliable} ② 힘이 {r:crestal bone}으로 ③ 경고 = {r:screw loosening·fracture} ④ {r:supereruption} 없음
+M: T/F 함정: "PDL이 있으면 stress distribution을 {r:못한다}" → {r:F}(나머지 T) / 촉각: 슬라이드 {r:10X} · JB 답 "5~10배"
 
 @G ② 힘의 기초 — 하중·벡터·모멘트
 ## Loads Applied to Dental Implant · Passive Fit | 임플란트에 가해지는 하중과 passive fit | 15 | 교합력·기계적 하중 · passive fit
@@ -90,12 +91,12 @@ M: T/F 함정 = "PDL이 있으면 stress distribution을 {r:못한다}" → {r:F
 - Nonpassive 보철물은 {r:인접한 자연치}에도 mechanical load를 가하게 된다(필기).
 - 25 필기: 임플란트가 약간 기울어 서로 당기면서 크라운이 맞아 있는 것처럼 보이는 상황 — 자연치는 아프다고 하지만 {r:임플란트는 모름} → {r:late failure}와 연관.
 F: 15
-M: 하중: {r:occlusal}(magnitude·frequency·duration) · {r:mechanical}(nonpassive prostheses · {r:perioral} forces of tongue·circumoral)
-M: Passive fit = {r:stress·strain 없이} 삽입 — 아니면 {r:osseointegration}에 영향
+M: 하중: {r:occlusal}(magnitude·frequency·duration) / {r:mechanical}(nonpassive prostheses · {r:perioral} forces of tongue·circumoral)
+M: Passive fit = {r:stress·strain 없이} 삽입 — 아니면 {r:osseointegration}에 영향 / nonpassive → {r:인접 자연치}에도 load · 임플란트는 모름 → {r:late failure}
 
 ## Loads on Implants · Force Types | 임플란트에 가해지는 힘과 힘의 종류 | 16-19 | 벡터 · 힘의 3유형 · crestal
 > 힘은 크기와 방향이 있는 벡터 — 장축으로만 오는 힘은 거의 없고, 뼈는 비껴 맞는 shear에 가장 약하다
-= 힘 = {r:벡터}(크기·방향) · {r:absolute axial loading}은 거의 없음 · 피질골 compression {r:100%} > tension {r:70%} > shear {r:35%}
+= 힘 = {r:벡터}(크기·방향) / {r:absolute axial loading}은 거의 없음 / 피질골 compression {r:100%} > tension {r:70%} > shear {r:35%}
 # 1. 힘의 요소(벡터)
 - 치과용 임플랜트에 가해지는 힘은 {r:벡터량}이다 — 힘의 크기, 힘의 방향.
 - F = resultant force · FN = {r:normal component} · FS = {r:shear or tangential component}(그림).
@@ -123,13 +124,14 @@ M: Passive fit = {r:stress·strain 없이} 삽입 — 아니면 {r:osseointegrat
 - 필기: overload를 장시간 받으면 치조골 가장 상부({r:crestal}) 부위가 가장 영향을 많이 받고, 여기부터 뼈가 녹기 시작.
 U: 25 필기: 자연치의 힘은 apical 3rd의 rotation axis에 걸리지만 임플란트는 최상부 {r:crestal} 부위에 집중된다.
 F: 16=벡터 때문에 교합조정이 중요, 17=교합점과 overloading 설정이 가장 중요, 18=compression 양호 shear 취약, 19=crestal부터 골흡수
+M: 벡터: 힘 = {r:벡터}(크기·방향) → {r:교합조정}이 중요 / {r:absolute axial loading}은 거의 없음(Richter) → lever arm·{r:bending moment}
 M: 이상적 = {r:정확한 위치} + {r:passive fit} + 벡터가 {r:지대주 방향}과 일치
-M: 피질골: compression {r:193 MPa 100%} > tension {r:133 MPa 70%} > shear {r:68 MPa 35%}
+M: 피질골: compression {r:193 MPa 100%} > tension {r:133 MPa 70%} > shear {r:68 MPa 35%} → {r:shear에 가장 취약}
 M: overload 장시간 → {r:crestal bone}부터 흡수
 
 ## Load–Deformation · Moment Arms · Fatigue ★ | 하중-변형, 모멘트 암 3, 피로실패 요인 4 | 20-24 | 모멘트 · 피로실패 ★빈출 | jb=T04
 > 하중은 고르게, 옆으로 비트는 힘(모멘트)은 작게 — 반복 하중이 쌓이면 피로로 부러진다
-= Moment = {r:moment arm × force magnitude} → 축과 어긋나면 {r:lateral force} · 피로실패 요인 {r:4}
+= Moment = {r:moment arm × force magnitude} → 축과 어긋나면 {r:lateral force} / 모멘트 암 {r:3} · 피로실패 요인 {r:4}
 # 3. 하중과 변형의 관계(Load-Deformation relationship)
 - 힘이 표면에 분산되는 방식을 {r:기계적 하중}이라 한다.
 - σ(psi, Pa) = F(N, lbf)/A(in², m²).
@@ -163,15 +165,16 @@ U: 25 필기: 할 수 없이 cantilever를 만들었다면 교합조정으로 �
 E: T04 | 21·20년 나열(★빈출★) "임플란트 피로실패에 영향을 주는 요인" → 네모 박스 4개 그대로(biomaterial · marcrogeometry · force magnitude · number of cycles) — 슬라이드·JB 모두 'marcrogeometry'(= macrogeometry)
 U: 25 필기: 치아는 계속해서 위아래로 부딪히면서 피로 실패가 생길 수 있다.
 F: 20=크라운 크게 even contact, 21=lateral force 최소화, 22=cantilever는 shear force, 23=그림을 잘 기억하세요, 24
+M: 하중: 기계적 하중을 임플랜트와 골에 {r:균등히 분산} → 크라운마다 {r:even한 contact} · {r:Crown-Fixture ratio}
 M: Moment = {r:moment arm} × {r:force magnitude} = {r:torsional load} → 핵심은 {r:lateral force 최소화}
-M: 모멘트 암 3: {r:교합면 높이} · {r:cantilever 길이} · {r:교합면 넓이}
-M: 피로실패 4: {r:biomaterial} · {r:macrogeometry}(슬라이드·JB 표기 marcrogeometry — 기하학적 구조) · {r:force magnitude} · {r:number of cycles}
+M: 모멘트 암 3: ① {r:교합면 높이} ② {r:cantilever 길이} ③ {r:교합면 넓이}
 M: 그림(교수 강조): occlusal height 암 = {r:Lingual force} → lingual moment · {r:Mesial force} → apical moment / cantilever 암 = Lingual force → {r:lingual-transverse} moment · Occlusal force → {r:occlusal} moment
+M: 피로실패 4: ① {r:biomaterial} ② {r:macrogeometry}(슬라이드·JB 표기 marcrogeometry — 기하학적 구조) ③ {r:force magnitude} ④ {r:number of cycles}
 
 @G ③ 자연치 vs 임플란트
 ## Natural Tooth vs Implant — 7 Statements ★ | 생역학적 관점의 자연치 vs 임플란트 | 25 | ★ 별표 슬라이드 · 전부 읽음 | jb=Q07
 > PDL이 없으니, 회전 중심은 위로, 경고 없이 조용히 부러지고 풀리고 녹는다
-= 7문장: {r:PDL 응력 흡수} · {r:회전 중심 상방} · {r:전구증상} vs {r:경고 없음} · 파절·나사 풀림·골흡수 · {r:생체의 지지 능력 이내} · 생역학 고려+{r:적절한 교합}
+= 7문장: ① {r:PDL 응력 흡수} ② {r:회전 중심 상방} ③ 자연치 {r:전구증상} ④ 임플란트 {r:경고 없음} ⑤ 파절·나사 풀림·골흡수 ⑥ {r:생체의 지지 능력 이내} ⑦ 생역학 고려 + {r:적절한 교합}
 # 차이 — PDL 유무에서 시작
 - ① ==치주인대 유무로 인한 응력 흡수 기전==
 - ② ==측방 하중이 가해 질 때 회전 중심이 자연치 보다 상방인 치조골 상방에 존재==
@@ -187,12 +190,13 @@ P: ★ 표시 슬라이드 · 필기 "전부 읽으셨습니다" · 25 필기 "�
 U: 필기 "WHY? PDL이 없기 때문에" — 25 필기: 자꾸 부딪치면 자연치는 피하는데 임플란트는 신경도 없어 부러지거나 뼈가 다 녹아 흔들리기 전까지 전구증상이 없다.
 U: 25 필기: ②의 회전 중심 = 최상부 {r:crestal} 부위 · 자연치와 임플란트가 섞인 새로운 {r:mixed dentition}에서 교합의 형성이 중요.
 F: 25=WHY PDL이 없기 때문에
-M: 앞 셋: {r:치주인대 유무 응력 흡수} / {r:회전 중심 상방}(치조골 상방) / 자연치 {r:전구증상}(가역·과민·충혈·동요)
-M: 뒤 넷: 임플란트 {r:경고 없이} stress fracture·fatigue / {r:파절·나사 풀림·골흡수} / {r:생체의 지지 능력 이내} / 생역학 고려 + {r:적절한 교합}
+M: 앞 셋: ① {r:치주인대 유무 응력 흡수} ② {r:회전 중심 상방}(치조골 상방) ③ 자연치 {r:전구증상}(가역·과민·충혈·동요)
+M: 뒤 넷: ④ 임플란트 {r:경고 없이} stress fracture·fatigue ⑤ {r:파절·나사 풀림·골흡수} ⑥ {r:생체의 지지 능력 이내} ⑦ 생역학 고려 + {r:적절한 교합}
+M: 왜? = {r:PDL이 없기 때문} / ②의 회전 중심 = 최상부 {r:crestal} 부위
 
 ## Comparison Table under Load ★ | 부하 시 치아와 임플란트의 특성 비교 표 (23년 빈칸) | 26 | 표 전부 읽음 · 빈칸 | jb=R03
 > 충격을 줄이는 치아 vs 충격이 그대로 오는 임플란트 — PDL 유무의 결과가 표 한 장에 다 있다
-= 충격력 {r:감소/증가} · 탄성률 {r:±피질골 / 골 소주의 5~10배} · 충혈·교정적 이동·Fremitus {r:+ / 0}
+= 23 빈칸(자연치 / 임플란트): ① 충격력 {r:감소 / 증가} ② 탄성률 {r:± 피질골 / 골 소주의 5~10배} ③ 충혈 {r:+ / 0} ④ 교정적 이동 {r:+ / 0}
 # 부하시 치아와 임플랜트의 특성비교
 | 기준 | 자연치아 | 임프란트 |
 | 충격력 | {r:감소} | {r:증가} |
@@ -217,9 +221,10 @@ E: R03 | 23년 표 빈칸 "부하 시 치아와 임플란트의 특성 비교" �
 - 25 필기: 치경부 abfraction — CEJ가 가장 얇아 위에서 아래로 반복되는 힘에 CEJ 위 가장 얇은 부위부터 파인다.
 P: 필기 "하나씩 모두 읽으셨습니다 · 표 전부 읽으셨습니다" · JB 해설 "교수님께서 쭉 읽고 넘어가신 부분" · 26 필기 "교수님은 다 이해할 수 있다고 생각한다".
 F: 26=PDL widening으로 충격 흡수
-M: 충격력 {r:감소 vs 증가} / 탄성률 {r:±피질골 vs 골 소주의 5~10배}
+M: 23 빈칸(자연치 vs 임플란트): 충격력 {r:감소 vs 증가} / 탄성률 {r:±피질골 vs 골 소주의 5~10배}
 M: 충혈·교정적 이동·Fremitus = 자연치 {r:+} · 임플란트 {r:0}
-M: 하방 {r:28 μm} vs {r:초기운동 없음} / 측방 {r:50~108} vs {r:10~50 μm}
+M: 움직임: 하방 {r:28 μm} vs {r:초기운동 없음} / 측방 {r:50~108} vs {r:10~50 μm}
+M: 변형 대비(자연치 vs 임플란트): 동요도 = 다양(전치>구치) vs {r:없음} / 횡단면 = 둥글지 않다 vs {r:둥글다} / 교합지각 = 민감 vs {r:낮음}(과부하가 필요) / 이동 = 치주인대 충격감소 vs {r:치조정 응력집중}
 
 @G ④ 생역학적 고려사항 — offset·cantilever·overdenture
 ## Biomechanical Considerations — 11 Items ★ | 임플란트 보철의 생역학적 고려사항 11 (23년 넘버링) | 27 | 넘버링 · 5·6·8 설명 | jb=R04
@@ -242,9 +247,9 @@ M: 하방 {r:28 μm} vs {r:초기운동 없음} / 측방 {r:50~108} vs {r:10~50 
 E: R04 | 23년 넘버링 "임플란트 보철 시 생역학적 고려사항" → 11개 — JB 해설: 매년 읽는 정도로 넘어가지만 넘버링으로 출제, 깊게 설명한 건 '고정체의 배치(offset)'
 P: 필기 "생역학적 고려사항이 많지만, 그 중에서 5, 6, 8에 대해 설명하겠다" · 25 필기 "5,6,8에 대해 대표적으로 하면서 마치려고 해요".
 F: 27=5 6 8만 설명
-M: 1-4 임플란트: {r:geometry·number·length·diameter·angulation} · {r:location in the arch} · {r:치관 치근 비율} · {r:식립 방향·하중}
-M: 5-8: {r:offset} · {r:캔틸레버 길이} · {r:교합면 설계·수복 재료} · {r:mandibular flexure}
-M: 9-11: {r:적합 정밀도} · {r:나사 풀림·파절} · {r:opposing arch}(보철 vs 자연치)
+M: 1-4 임플란트: ① {r:geometry·number·length·diameter·angulation} ② {r:location in the arch} ③ {r:치관 치근 비율} ④ {r:식립 방향·하중}
+M: 5-8: ⑤ {r:offset} ⑥ {r:캔틸레버 길이} ⑦ {r:교합면 설계·수복 재료} ⑧ {r:mandibular flexure}
+M: 9-11: ⑨ {r:적합 정밀도} ⑩ {r:나사 풀림·파절} ⑪ {r:opposing arch}(보철 vs 자연치)
 
 ## 5 Offset · 6 Cantilever | 고정체의 배치(offset)와 캔틸레버 | 28·34 | 교수 설명 5·6 · AP distance | jb=U09
 > 일직선보다 살짝 어긋나게 — cantilever 길이는 AP distance가 허락하는 만큼만
@@ -271,7 +276,7 @@ U: 25 필기: "붙어있지만 않으면 우린 오랫동안 친하게 잘 지�
 - 비교(김성균 강의): overextended cantilever = 하악 {r:>15 mm}, 상악 {r:>10-12 mm} [[PRO:27]].
 E: U09 | 20년 빈칸 "임플란트 지지 의치의 후방 연장은 전후방 거리의 ( )배 이하" → {r:2.5배} — 26은 원리(AP가 길수록 cantilever 길게)만, 수치는 25 필기 p.34
 F: 28=Cantilever 200% 일자 67% offset 33%, 34=AP가 길어질수록 cantilever를 길게, BIO5:34=AP distance의 2.5배까지
-M: offset: cantilever {r:2배} · 일자 {r:2/3} · 약간 어긋나게 {r:1/3}
+M: offset: ① cantilever {r:2배} ② 일자 {r:2/3} ③ 약간 어긋나게 {r:1/3}
 M: cantilever ≤ AP distance × {r:2.5}(최소 1.6·2배) — {r:tapered arch}가 유리
 M: 상악 cantilever {r:더 주의}(뷰머·루이스: 상악 ✗ · 하악 {r:20 mm} 이하)
 
@@ -294,8 +299,9 @@ M: 상악 cantilever {r:더 주의}(뷰머·루이스: 상악 ✗ · 하악 {r:2
 - 25 필기: bar로 연결해도 {r:전후 움직임}이 되게 해야 한다 — 안 되면 안 움직여서 좋아할 수 있으나 금방 박살난다.
 E: T02 | 21년 표 빈칸 "Fully edentulous implants removable vs fixed(최소 개수·보철물 종류·교합체계)" → 하악 = 오버덴처 2개를 canine 안쪽(3개도 가능) · 고정성은 최소 {r:4개} — JB 과거 해설 ⚠ JB 23 학습부답(하악 유지 2개·지지 4개 이상, 양측성 균형교합)은 교과서 근거
 F: 29=교합력이 앞 임플란트를 뒤로 당김, 30=canine보다 약간 안쪽, 31=움직임을 허용하는 bar, 32=bar 상부 attachment, 33, 35
+M: 원리: 교합력이 앞쪽 임플란트를 {r:뒤로 당김} → 처음부터 움직일 여유 / 안 움직이면 {r:지렛대}로 임플란트를 뽑음
 M: 하악 2개 = {r:canine보다 약간 안쪽} + {r:움직임 허용}(멀면 fixture load↑)
-M: 2개 stud = {r:two independent implants} · bar도 {r:전후 움직임} / 3개 = bar 상부 {r:attachment} / 5개 = {r:Hader clip}·{r:O-ring}
+M: 개수별: 2개 stud = {r:two independent implants} · bar도 {r:전후 움직임} / 3개 = bar 상부 {r:attachment} / 5개 = {r:Hader clip}·{r:O-ring}
 M: 무치악 최소 개수(JB 해설): 하악 오버덴처 {r:2개}(canine 안쪽 · 3개도 가능) / 고정성 최소 {r:4개}
 
 @G ⑤ 하악의 굴절 — Mandibular flexure
@@ -325,8 +331,8 @@ E: Q06 | 24·23·22·20년 서술 "Mandibular flexure를 설명"(23년: 휨 현�
 P: 필기 "교수님께서 3번정도 반복해서 말씀하셨습니다" · 고려사항 11 중 직접 설명한 8번.
 F: 36=개구·전방운동 시 M1 사이 0.8 mm, 38, 40, 41=원피스로 묶은 피개의치 골절
 M: Flexure: {r:개폐구·전방운동} → {r:이공 후방} {r:0.8 mm} 굴절(JB 답은 '설측'까지 씀)
-M: 근육 2: {r:내측 익돌근(internal pterygoid)} · {r:교근(masseter)}
-M: 하악 {r:1 piece 금지} / 상악은 flexure 없어 {r:한 덩어리 OK}(12개도)
+M: 근육 2: ① {r:내측 익돌근(internal pterygoid)} ② {r:교근(masseter)}
+M: 임상: 하악 {r:1 piece 금지} / 상악은 flexure 없어 {r:한 덩어리 OK}(12개도) / 하나로 묶으면 → 하악 {r:골절}(p.41 증례)
 
 ## Mandibular Full-Arch Implant Fixed Prostheses | 하악 전악 고정성 보철 — 1·2·3 piece 설계 | 42-44 | 1·2·3 piece | jb=Q06
 > 하나로 묶고 싶다면 한쪽 뒤는 비워라 — 아니면 2조각·3조각으로 나눠라
@@ -345,7 +351,7 @@ M: 하악 {r:1 piece 금지} / 상악은 flexure 없어 {r:한 덩어리 OK}(12�
 E: Q06 | 24·23·22·20년 서술 "Mandibular flexure를 설명" → 결론 "하악의 경우 이공 후방부 보철물까지 1개로 묶으면 안 되고, 2-3piece로 제작해야 한다" — 이 카드 그림 3가지(2 piece·3 piece·한쪽 cantilever 1 piece)
 F: 42=뼈 많은 한 쪽에만 후방 식립, 43, 44=3 piece 2 piece 1 piece
 M: 하악 전악: {r:2 piece}·{r:3 piece} / 1 piece면 {r:적어도 한쪽 cantilever}
-M: 후방 식립은 {r:뼈 많은 한 쪽}만 · 또는 {r:mental foramen 전방}만 + cantilever
+M: 1 piece 설계: 후방 식립은 {r:뼈 많은 한 쪽}만 · 또는 {r:mental foramen 전방}만 + cantilever
 
 @G ⑥ 무치악 상악 치료계획
 ## Treatment Plan for the Edentulous Maxilla | 무치악 상악의 임플란트 개수 — arch form별 6·7·8, 이상적 9 | 45-50 | arch form · 6~10개 | jb=T02
@@ -370,6 +376,6 @@ M: 후방 식립은 {r:뼈 많은 한 쪽}만 · 또는 {r:mental foramen 전방
 - 필기: 그래서 {r:6-10개} 정도로 상악 전악수복을 할 수 있다.
 E: T02 | 21년 표 빈칸 "Fully edentulous implants removable vs fixed(최소 개수·보철물 종류·교합체계)" → 상악 = square 6 · ovoid 7 · taper 8, 최소 6~최대 10, 교수님 선호 9개 — JB 과거 해설 ⚠ JB 23 학습부답(고정성 상악 8·하악 6 — 대합이 총의치가 아니면 freedom in centric·group function, 총의치 대합이면 양측성 균형교합 / 가철성 상악 유지 4개·지지 6개 이상)은 교과서 근거
 F: 45, 46=전치부 최소 2개, 47=Square 6 implants, 48=Ovoid 7 implants, 49=Tapering 8 implants, 50=6-10개로 상악 전악수복
-M: Square {r:6} · Ovoid {r:7} · Tapering {r:8} — premaxilla {r:2 Canines} + incisor 0·1·2
-M: 전치부 최소 {r:2} · 이상 {r:9}(premaxilla 3 + 구치부 3씩) · 범위 {r:6~10}
-M: 상악은 flexure가 없어 {r:하나의 arch}로 묶을 수 있다
+M: 상악은 flexure가 없어 {r:하나의 arch}로 묶을 수 있다 → 최소 {r:6개} 식립 후 하나의 arch
+M: 개수: 전치부 최소 {r:2} · 이상 {r:9}(premaxilla 3 + 구치부 3씩) · 범위 {r:6~10}
+M: Arch form별: Square {r:6} · Ovoid {r:7} · Tapering {r:8} — premaxilla {r:2 Canines} + incisor 0·1·2

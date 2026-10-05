@@ -425,9 +425,15 @@ def _eol(x, ctx, mn=40):
     if not e or not e[2] or len(_plain(x)) < mn: return None
     ld, its, _ = e
     return (f'<span class="klh">{inline(ld, ctx)}</span>' if ld else '') + _list_html(its, ctx, 1, 'ol', 'circ')
+MLAB = re.compile(r'^([^:：{}"“”=→/]{1,24}(?:\([^(){}]{0,30}\))?[:：])\s+(.+)$')
 def render_recall(x, ctx):
     rows = split_top(x)
-    R = lambda r: _eol(r, ctx, 50) or inline(r, ctx)
+    def R(r):
+        e = _eol(r, ctx, 50)
+        if e: return e
+        m = MLAB.match(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게
+        if m and m.group(2).strip(): return f'<b class="mlab">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
+        return inline(r, ctx)
     if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{R(r)}</li>' for r in rows)
     if _facts(rows): return ''.join(f'<li>{R(r)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
     return f'<li>{R(x)}</li>'
