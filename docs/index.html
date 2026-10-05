@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"31073423",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"800d5891",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1913,6 +1913,8 @@ details.ab.chk>ul>li{padding:5px 0}
 .ab .cites.cz .cite.cz{font-size:10.5px}
 @media (pointer:coarse){.ab .cites.cz .cite.cz{min-height:24px;padding:0 5px}}
 .lkey.lmem{margin-top:8px}
+b.mlab{font-weight:700;color:inherit}
+.c-mem span.klh,.lrec span.klh,.fc span.klh{font-weight:700}
 .ab.lk .lrec{font-size:15px;list-style:none;padding-left:2px}
 .ab.lk .lrec li{font-weight:400;position:relative;padding:2px 0 2px 16px}
 .ab.lk .lrec li::before{content:"";position:absolute;left:4px;top:.78em;width:5px;height:5px;border-radius:50%;background:#9484C9}
@@ -2005,7 +2007,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="31073423",PV={"OMS1": "8de09ea8", "CONS": "aff7a0dd", "IMPL": "ee9c0db7", "ANAT": "51388e6d", "GERI": "d1f15424", "PHARM": "60f64775", "ESTH": "d1a8dc97"},PSZ={"OMS1": 3.7, "CONS": 2.9, "IMPL": 3.0, "ANAT": 3.8, "GERI": 3.9, "PHARM": 5.4, "ESTH": 3.5};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="800d5891",PV={"OMS1": "e42ae784", "CONS": "0e14c91e", "IMPL": "922a8e7c", "ANAT": "eb487a06", "GERI": "98be3ef6", "PHARM": "fcdc8f56", "ESTH": "e4376c30"},PSZ={"OMS1": 3.9, "CONS": 3.0, "IMPL": 3.1, "ANAT": 3.9, "GERI": 4.1, "PHARM": 5.6, "ESTH": 3.6};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
