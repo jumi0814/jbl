@@ -675,8 +675,17 @@ def fchash(t):
 def txt_of(h_): return html.unescape(re.sub(r'<[^>]+>', '', h_))
 def fcnorm(t): return re.sub(r'[\s/·•,;:|①-⑳=↔()]+', '', t)   # 10-05 번호(①)·= ·괄호만 바뀌어도 같은 줄
 FCPREV = {}; FCBODY = {}
+def _fc_packs():
+    """지금 docs 팩 + 배포된 main 팩(git) — 중간 빌드가 docs를 덮어써도 사용자가 쓰던 키를 놓치지 않게(10-05)"""
+    out = [J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))]
+    try:
+        import subprocess
+        t = subprocess.run(['git', '-C', J.ROOT, 'show', f'origin/main:docs/packs/{SID}.js'], capture_output=True, text=True, timeout=60).stdout
+        if t: out.append(json.loads(t[t.index('{'):t.rindex('}') + 1]))
+    except Exception as _e: print('main 팩 못 읽음', _e)
+    return out
 try:
-    _pp = J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))
+  for _pp in _fc_packs():
     for _L in _pp.get('lect', []):
         for _r in _L.get('recall') or []:
             _tc = txt_of(_r['h']); _k = 'R:' + _L['k'] + ':' + fchash(_r['t'] + '|' + _tc)
@@ -918,6 +927,10 @@ for L in LEC:
             nb_ = fcnorm(tc_)
             for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []):
                 if len(ob_) >= 10 and (ob_ in nb_ or (len(nb_) >= 10 and nb_ in ob_)): old_ = old_ + ks_
+            if not old_ and len(nb_) >= 10:   # 줄을 쪼개거나 라벨을 가운데 넣은 줄: 글자 두 개씩 겹침(Dice) 0.6↑인 옛 줄 하나
+                bg = lambda t: {t[i:i + 2] for i in range(len(t) - 1)}
+                B = bg(nb_); best = max(((2 * len(B & bg(ob_)) / (len(B) + len(bg(ob_)) or 1), ks_) for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []) if len(ob_) >= 10), default=(0, []), key=lambda z: z[0])
+                if best[0] >= 0.6: old_ = old_ + best[1]
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]

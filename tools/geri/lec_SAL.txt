@@ -40,13 +40,17 @@ F: 1=용어 8과 노쇠의 정의
 - 가로 점선 = dependent와 independent의 cutoff.
 U: 기능이 떨어진 사람은 같은 일을 겪어도 손상 정도가 크고, 신체 기능이 완전히 회복되지 않는다(필기).
 F: 2=같은 minor illness에도 frail 노인은 크게 떨어지고 회복하지 못함
-M: Frailty = 생리적 {r:예비능력↓} → 자극 반응↓ → {r:항상성} 유지 능력 감퇴 → 이환·{r:기능의존}·{r:입원}↑
-M: 용어 8: {r:Frailty} · {r:Dependent} · {r:Multimorbidity} · Comorbidity · {r:Polypharmacy} · {r:Geriatric syndrome} · Disability · {r:Sarcopenia}
-M: Sarcopenia = 근육량↓ + 근육 활동↓ {r:동시} / Polypharmacy {r:5종류↑} · super {r:10종류↑}
+M: 정의: Frailty = 생리적 {r:예비능력↓} → 자극 반응↓ → {r:항상성} 유지 능력 감퇴 → 이환·{r:기능의존}·{r:입원}↑
+M: 용어 8: ① {r:Frailty} ② {r:Dependent} ③ {r:Multimorbidity} ④ Comorbidity ⑤ {r:Polypharmacy} ⑥ {r:Geriatric syndrome} ⑦ Disability ⑧ {r:Sarcopenia}
+M: Frail dependent older adult = {r:의존적이고 노쇠한 노인}(교수: 용어 의미를 알 것)
+M: Sarcopenia: 근육량↓ + 근육 활동↓ {r:동시}
+M: Polypharmacy: {r:5종류↑} · super {r:10종류↑}
+M: 세 원(노쇠·동반질환·장애): 원래 {r:별개} / 질환↑ → 노쇠↑ → {r:장애}↑
+M: Clegg 2013: minor illness 뒤 frail 노인 = {r:larger deterioration} → {r:baseline 회복 못 함}(fit = homoeostasis로 회복)
 
 ## Frailty — Fried's 5 · Types · Oral Frailty ★ | 노쇠의 5기준과 종류 | 3-6 | 매년 빈칸 · 기출 20~24 | jb=G01,G07
 > 노쇠를 재는 가장 흔한 잣대는 Fried의 5기준 — 그리고 노쇠는 몸만이 아니라 인지·사회·구강에도 있다
-= Fried 5 = {r:체중 감소 · 활력 감소 · 허약 · 보행속도 감소 · 신체활동 감소} / 보통 노쇠 = {r:Physical frailty}
+= Fried 5: ① {r:체중 감소} ② {r:활력 감소} ③ {r:허약} ④ {r:보행속도 감소} ⑤ {r:신체활동 감소} / 보통 노쇠 = {r:Physical frailty}
 # Fried 5기준 (한국형 노쇠측정도구)
 - 노쇠를 정의하는 기준은 여러 가지 — 그중 가장 많이 사용하는 것이 {r:Fried}의 논문(2001)에 제시된 기준, 총 5가지(필기).
 | 기준 | 무엇을 보나(필기) |
@@ -80,9 +84,12 @@ E: G07 | 23년 빈칸(탈) "우리가 생각하는 노쇠는 ( )이지만, 인�
 - 악구강계의 노화: 20대 여성의 입 안(왼) vs 80세 노인의 입 안(오).
 - 80세: 입이 너무 {r:건조}하고, 입 주변과 혀에 {r:주름}, {r:잇몸질환}이 있으며 {r:구강기능이 감소}한 구강노쇠 상태(필기).
 F: 6=20대(왼)와 80세(오) — 건조·주름·잇몸질환의 구강노쇠
-M: Fried 5: {r:체중↓} · {r:활력↓}(depression 포함) · {r:허약}(악력) · {r:보행속도↓} · {r:신체활동↓}
-M: 노쇠 종류: {r:Physical}(보통) · {r:Cognitive} · {r:Social} · (Systemic/General) · {r:Oral}
-M: {r:Robust → Pre-frailty → Frailty} → Nursing care → Death / 체중↓ → {r:sarcopenia} · 구강 문제 → {r:chronic undernutrition}
+M: Fried 5: ① {r:체중↓} ② {r:활력↓}(depression 포함) ③ {r:허약}(악력) ④ {r:보행속도↓} ⑤ {r:신체활동↓}
+M: 빈칸 기출: 24 {r:신체활동 감소} · 23 {r:활력 감소} · 22·20 {r:보행속도 감소} · 21 {r:체중 감소} / 함정: '체력 감소' ✗(슬라이드는 체중 감소)
+M: 노쇠 종류: ① {r:Physical}(보통) ② {r:Cognitive} ③ {r:Social} ④ (Systemic/General) ⑤ {r:Oral} / 23 빈칸 = {r:신체적 노쇠}
+M: {r:Robust → Pre-frailty → Frailty} → Nursing care → Death
+M: Fried 모식도: 체중↓ → {r:sarcopenia} → 보행속도↓ → 장애 / 구강 문제 → 식사량↓ → {r:chronic undernutrition}
+M: 구강노쇠(80세): {r:건조} · {r:주름} · {r:잇몸질환} · 구강기능↓
 
 @G ② 다중이환·다약제복용과 노인증후군
 ## Multimorbidity · Polypharmacy — Definitions · Numbers | 다중이환·다약제복용의 정의와 노인 통계 | 3·7 | 정의 빈칸 · 객관식 · 기출 21·24 | jb=G10,G06
@@ -109,10 +116,10 @@ E: G10 | 21년 빈칸(탈) "( ) may cause the increased risk of inappropriate us
 E: G06 | 24년 객관식(탈) "노인이 가장 많이 앓고 있는 만성질환은? 1)당뇨병 2)고혈압 3)골다공증 4)치매 5)암" → {r:2) 고혈압} — p.7 · JB 해설: 고혈압·관절염이 노인의 50% 이상 ⚠ 함정: 치매·암은 이 목록에 없음
 U: 치과치료 때 만나는 노인은 이런 전신질환을 갖고 있는 사람이라는 것을 기억하고 있어야 한다(필기).
 F: 7=노인 만성질환과 처방약 통계 · 노인병 · 노인증후군
-M: Multimorbidity = {r:multiple chronic diseases} · {r:55-98%} → {r:disability}·기능저하·삶의 질↓·의료비↑
-M: Polypharmacy → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} → {r:입원·사망}
-M: Polypharmacy 정의 = the use of multiple medications and/or the administration of {r:more medications than are clinically indicated}
-M: 노인 {r:90%} 1개↑ · {r:50%} 3개↑ 질환 / 처방약 {r:60%} 3개↑ · {r:37%} 5개↑ / 최다 {r:고혈압·관절염}(50%↑)
+M: Multimorbidity: {r:multiple chronic diseases} · {r:55-98%} → {r:disability}·기능저하·삶의 질↓·의료비↑
+M: Polypharmacy 정의: the use of multiple medications and/or the administration of {r:more medications than are clinically indicated}
+M: 결과: Polypharmacy → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} → {r:입원·사망} / 21 빈칸 = {r:Polypharmacy}
+M: 노인실태조사: 노인 {r:90%} 1개↑ · {r:50%} 3개↑ 질환 / 처방약 {r:60%} 3개↑ · {r:37%} 5개↑ / 최다 {r:고혈압·관절염}(50%↑) · 24 객관식 답 = {r:고혈압}
 
 ## Geriatric Diseases · Geriatric Syndrome · Falls ★ | 노인병·노인증후군과 낙상 | 7-8 | 서술 · 빈칸 · 기출 19·20·24 | jb=G12,G05
 > 노인병은 모호하고 복잡하다 — 여러 원인이 얽혀 결국 낙상 같은 하나의 증상으로 모인다
@@ -145,10 +152,10 @@ E: G05 | 24·20년 서술 "Geriatric syndrome에 대해 서술" → 24년 JB 답
 - Burning pain 환자의 60% 이상이 taste 문제를, 60% 이상이 dry mouth 문제를 갖고 있어 candidiasis도 함께 가짐 — 먹는 약·여러 심리적 문제가 모두 영향(필기).
 - 구강판 노인증후군 모식도(BMS)는 ④ 점막질환 카드에.
 F: 8=낙상 모식도와 BMS enigma · 구강건조증 유병률 · 타액선 구조 변화
-M: 노인병 = {r:모호·복잡} → {r:질환–질환 · 질환–약물 · 약물–약물} (A 질환 · B 약물)
-M: 노인증후군 10: {r:실금·우울·섬망·낙상·골다공증·감각변화·거동/보행장애·압창·수면장애·치매} → {r:unified manifestation}
-M: 낙상 = 당뇨(감각저하·저혈당 → 의식↓) + 약물({r:어지러움}·{r:기립성 저혈압}) + 백내장(시력) + 관절염(운동)
-M: 노인증후군 개념(24·20 서술): 여러 {r:etiology/pathogenesis}(잘 알지 못함) → {r:interacting pathogenetic pathways} → 하나의 증상 = {r:unified manifestation} / 바탕 = multimorbidity · polypharmacy
+M: 노인병: {r:모호·복잡} → {r:질환–질환 · 질환–약물 · 약물–약물} (A 질환 · B 약물)
+M: 노인증후군 개념(24·20 서술): 여러 {r:etiology/pathogenesis}(잘 알지 못함) → {r:interacting pathogenetic pathways} → 하나의 증상 = {r:unified manifestation} / 바탕 = multimorbidity · polypharmacy / 20 = 10개 나열 · 24 = 개념 + 낙상 예
+M: 노인증후군 10: ① {r:실금} ② {r:우울} ③ {r:섬망} ④ {r:낙상} ⑤ {r:골다공증} ⑥ {r:감각변화} ⑦ {r:거동/보행장애} ⑧ {r:압창} ⑨ {r:수면장애} ⑩ {r:치매}
+M: 대표 예: 낙상 = 당뇨(감각저하·저혈당 → 의식↓) + 약물({r:어지러움}·{r:기립성 저혈압}) + 백내장(시력) + 관절염(운동)
 
 @G ③ 구강건조증 — 노화 vs 질환·약물
 ## Xerostomia — Prevalence · Structure vs Function | 구강건조증 — 유병률과 노화의 영향(구조는 변해도 기능은 유지) | 8-10·12 | 개념 · 교수 결론
@@ -187,9 +194,10 @@ F: 9=연령별 조직 분포 비율과 whole saliva flow rate 보고
 | ① Hypertrophy or Hyperplasia for Compensation | 남아 있는 타액선이 hyperplasia·hypertrophy를 해서 compensation | "근데 이건 아닌 것 같다" |
 | ② {r:High Reserve Capacity} | 타액선은 보통 100% 기능하지 않고 reservoir가 많음 — 젊을 때는 다 쓰지 않다가 구조가 변하면서 남아 있는 구조물을 잘 이용 | {r:더 과학적인 신뢰}를 받음 |
 F: 10=분비선별 flow rate 보고와 structural/functional discrepancy
-M: 구강건조증 {r:K11.7} · 유병률 {r:12-40%} · 65세↑ 2010 {r:11.0%} → 2030 {r:24.3%}
-M: 구조 7: {r:선포 위축} · 결합조직↑ · {r:섬유화}↑ · {r:지방화}↑ · 만성염증 · 혈관 퇴행 · 도관 내 분비물 축적 / 악하선 acini {r:62.0 → 38.5%}
-M: 구조↓ 기능≈ = discrepancy → {r:High reserve capacity}(신뢰↑) · hypertrophy/hyperplasia 보상(×)
+M: 정의·유병률: 구강건조증 {r:K11.7} · 유병률 {r:12-40%} · 65세↑ 2010 {r:11.0%} → 2030 {r:24.3%}
+M: 구조 7: ① {r:선포 위축} ② 결합조직↑ ③ {r:섬유화}↑ ④ {r:지방화}↑ ⑤ 만성염증 ⑥ 혈관 퇴행 ⑦ 도관 내 분비물 축적 / 악하선 acini {r:62.0 → 38.5%}
+M: 기능: 분비율 Parotid = {r:independent of aging} · whole·SM = 보고 엇갈림({r:subject bias}) / 성분 = {r:일관된 변화 없음}
+M: Discrepancy: 구조↓ 기능≈ = discrepancy → {r:High reserve capacity}(신뢰↑) · hypertrophy/hyperplasia 보상(×)
 
 ## Normal Salivary Flow · Redundancy · Xerogenic Drugs | 정상 타액 분비율·redundancy와 구강건조 유발 약물 | 11 | 수치 · 미출제
 > 타액선은 여유가 많아 75%쯤 잃어야 비자극 분비가 문제 수준 — 그래서 원인은 대개 약물·질환
@@ -224,9 +232,10 @@ U: 양쪽 이하선을 수술로 다 떼어도 매우 건조하지 않게 조절
 # Drugs which may induce Xerostomia 9
 - ① {r:Anorectic drugs} ② {r:Anticholinergics} ③ {r:Antidepressants} ④ {r:Antipsychotics} ⑤ {r:Diuretics} ⑥ {r:Sedative & Hypnotics} ⑦ {r:Antihistamines} ⑧ {r:Antiparkinsonism drugs} ⑨ {r:Antihypertensive drugs}.
 F: 11=정상 분비율 · 평가 기준 · redundancy · multifunctionality · 건조 유발 약물 9
-M: Whole 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0} / 저하 = 비자극 {r:< 0.1} · 자극 {r:< 0.5-0.7}
-M: 비자극은 {r:75%} 감소(0.10)해야 문제 / 양측 이하선 비기능도 {r:0.32} = {r:redundancy}(backup · overlapping · multifunctionality)
-M: 건조 약물 9: anorectic · {r:anticholinergics} · antidepressants · antipsychotics · {r:diuretics} · sedative & hypnotics · {r:antihistamines} · antiparkinsonism · {r:antihypertensives}
+M: 정상: Whole 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0} / 저하: 비자극 {r:< 0.1} · 자극 {r:< 0.5-0.7}
+M: 비자극은 {r:75%} 감소(0.10)해야 문제
+M: Redundancy: 양측 이하선 비기능도 {r:0.32} = {r:redundancy}(backup · overlapping · multifunctionality) → 한 물질 양이 적다고 {r:질병 원인으로 단정 ×}
+M: 건조 약물 9: ① anorectic ② {r:anticholinergics} ③ antidepressants ④ antipsychotics ⑤ {r:diuretics} ⑥ sedative & hypnotics ⑦ {r:antihistamines} ⑧ antiparkinsonism ⑨ {r:antihypertensives}
 
 ## Signs · Symptoms · Questions | 구강건조증의 증상·관련 상태와 좋은 문진 | 12 | 미출제
 > 환자는 '마르다·화끈하다·삼키기 힘들다'고 호소하고, 진료실에서는 우식·칸디다·BMS로 만난다 — 문진은 "입이 마르세요?"가 아니다
@@ -259,8 +268,9 @@ M: 건조 약물 9: anorectic · {r:anticholinergics} · antidepressants · anti
 - Dry Mouth Patients(n=78) vs Controls(n=88): 6항목 모두 환자군이 높음.
 U: 불편해서 병원에 온 환자들은 입안 건조감을 느끼는 정도가 크다(필기).
 F: 12=증상·관련 상태·문진 3문항과 6항목 설문 · 환자 vs 대조군
-M: 좋은 문진(Fox 1987) = {r:마른 음식 삼킬 때 물}? · {r:식사 중 건조}? · {r:삼키기 어려움}? — "입이 마르세요?" ×
-M: 관련 상태 8: 우식↑ · 치주염↑ · {r:candidiasis & cheilitis} · {r:BMS} · 설열 · 구취 · 미각 저하 · {r:의치 유지↓}
+M: 호소 vs 소견: 호소 = dryness · burning · {r:삼킴 곤란} · 발음 · 미각 / 진료실 = {r:우식↑} · {r:candidiasis/cheilitis} · {r:BMS} · halitosis 등
+M: 관련 상태 8: ① 우식↑ ② 치주염↑ ③ {r:candidiasis & cheilitis} ④ {r:BMS} ⑤ 설열 ⑥ 구취 ⑦ 미각 저하 ⑧ {r:의치 유지↓}
+M: 좋은 문진(Fox 1987): {r:마른 음식 삼킬 때 물}? · {r:식사 중 건조}? · {r:삼키기 어려움}? — "입이 마르세요?" ×
 M: 6항목: {r:Dry-PM} · Dry-day · Dry-eat · {r:Dif-swal} · Am-sal · {r:Eff-life} — 환자군 모두 높음
 
 ## Life Quality · Salivary Hypofunction Conclusions | 삶의 질·인공타액과 타액선 기능저하 결론 | 13-15 | 교수 결론 · 미출제
@@ -298,9 +308,10 @@ F: 13=삶의 질 VAS · 인공타액 · 구강건조증에 대한 이해 · 결�
 | ④ 삶의 질·치료 | Salivary gland hypofunction affects {r:the life quality} of patients much more than we thought. At this moment, effective machinary is not available. {r:Motivation of patient} is as much important as therapeutic strategy. | 생활에 영향이 큼 · 좋은 치료법이 많지 않아 환자 motivation이 중요 |
 P: 수업 마무리에 강의 목적의 "구강건조증의 의미와 임상적 중요성"을 한 번 더 강조(p.22 필기).
 F: 15=타액선 기능저하 결론 2~4
-M: 불편감 VAS {r:7.31} · CMC 인공타액 7.30 → {r:6.63} → {r:new generation} of artificial saliva 필요 / 최고 불편 = {r:Post-radiation}
-M: 결론: 기능·성분은 {r:일관되게 변하지 않음} · 위험군 = {r:전신질환 + 약물} · {r:약물·질환 > 노화}
-M: 마르다고 오면 이미 {r:severely compromised} · 효과적 치료 없음 → {r:환자 motivation} / 이해 5: {r:비자극성} 분비율 · {r:악하선/설하선}
+M: 불편감 VAS {r:7.31} · CMC 인공타액 7.30 → {r:6.63} → {r:new generation} of artificial saliva 필요
+M: 원인군별 불편: 최고 불편 = {r:Post-radiation} > Antipsychotic / 최저 = Idiopathic · {r:Sjögren}도 적지 않음
+M: 결론: ① 기능·성분은 {r:일관되게 변하지 않음} ② 위험군 = {r:전신질환 + 약물} ③ {r:약물·질환 > 노화} ④ 마르다고 오면 이미 {r:severely compromised} · 효과적 치료 없음 → {r:환자 motivation}
+M: 이해 5: ① 노화보다 {r:약물/질환} ② {r:비자극성} 분비율 ③ {r:악하선/설하선} ④ 타액의 양/성질 ⑤ 잔존·소타액선 타액
 
 ## Oral Hygiene · Pneumonia · Dysphagia ★ | 구강위생과 폐렴, 건조와 연하곤란 | 15 | 빈칸 · 기출 21·22·23 | jb=G09,G08
 > 침이 적으면 삼키기 어렵고, 입안의 그람음성 혐기균이 폐로 — 틀니 끼고 자면 폐렴 위험 2.38배
@@ -317,7 +328,7 @@ M: 마르다고 오면 이미 {r:severely compromised} · 효과적 치료 없�
 E: G09 | 22·21년 빈칸 "low salivary rate is associated with ( ) that can lead to aspiration pneumonia and G-anaerobes that is originated from mouth" → {r:dysphagia} — p.15 Loesche 1995
 E: G08 | 23년 빈칸(탈) "… dysphagia that can lead to ( ) and G-anaerobes …" → {r:aspiration pneumonia} — p.15 ⚠ 함정: JB 문제문은 'salivary rate'·'and G-anaerobes'로 슬라이드와 몇 단어 다름 · 남은 칸 'G- anaerobes'·'mouth'도 대비
 F: 15=타액선 기능저하 결론 2~4 · 구강위생과 폐렴 · 틀니 취침 Hazard ratio 2.38 · Dry mouth and dysphagia
-M: {r:Low salivary flow} → {r:dysphagia} → {r:aspiration pneumonia} ← 구강 유래 {r:G- anaerobes}
+M: Loesche 1995: {r:Low salivary flow} → {r:dysphagia} → {r:aspiration pneumonia} ← 구강 유래 {r:G- anaerobes} / 빈칸: 22·21 = {r:dysphagia} · 23 = {r:aspiration pneumonia}
 M: 구강위생 불량 → {r:lung infection} / 구강위생 개선 → 병원·요양원 {r:폐렴 예방}
 M: 틀니 끼고 취침 = 폐렴 Hazard ratio {r:2.38}(524명 · >85세 · 3년) → {r:빼고 자기}
 
@@ -357,9 +368,10 @@ U: Dermis의 변화는 비교적 일관적으로 일어난다 — fibroblast·ma
 P: Connective tissue 변화는 비교적 일관적 = 노화로 주로 {r:lamina propria}에 변화가 일어난다는 뜻 → "어떤 변화가 일어나는지 인지하고 있어야 한다"(필기) · Cellular elements = Cell component(중요한 부분) 감소.
 E: G03 | 24·23·22·21·20·19년 서술 "노인환자의 결합조직 변화" → 7항목 그대로(앞 5개 Decreased · periodontal ligament 폭 Increased/Decreased · gingival recession Increased/Stable) — p.16 ⚠ 함정: 결합조직 mitotic = Decreased(상피는 Increased/Constant/Decreased)
 F: 16=피부 3칸 · 상피 · 결합조직의 노화 변화
-M: 결합조직 5 {r:Decreased}: {r:Cellular elements} · {r:Fibers} · {r:Mitotic activity} · {r:Collagen synthesis} · {r:Acid mucopolysaccharides}
-M: 결합조직: Width of periodontal ligament {r:Increased / Decreased} · Gingival recession {r:Increased / Stable}
-M: 상피 = width {r:Thinned} · 나머지는 사람마다 / Dermis = fibroblasts · mast cells · blood vessels {r:Fewer}(일관적)
+M: 결합조직 5 {r:Decreased}: ① {r:Cellular elements} ② {r:Fibers} ③ {r:Mitotic activity} ④ {r:Collagen synthesis} ⑤ {r:Acid mucopolysaccharides}
+M: 결합조직: ⑥ Width of periodontal ligament {r:Increased / Decreased} ⑦ Gingival recession {r:Increased / Stable}
+M: 상피: width {r:Thinned} · 나머지는 사람마다 / Dermis: fibroblasts · mast cells · blood vessels {r:Fewer}(일관적)
+M: 함정(19~24 서술): 결합조직 mitotic = {r:Decreased} ↔ 상피 mitotic = Increased/Constant/Decreased / 일관된 변화 = {r:lamina propria}(결합조직) · 표층(epithelium)은 개인차
 
 ## Oral Mucosa · Motor · Sensory Performance with Aging | 노화와 구강점막·구강운동·미각과 후각 | 17 | 미출제
 > 노화 자체는 점막을 거의 바꾸지 않는다 — 바꾸는 건 병·영양·약·안 맞는 틀니, 예외는 후각
@@ -380,9 +392,9 @@ U: 점막 변화는 mild — 나이보다 질환·nutrition·약물·의치 착�
 | 필기 | 여성에서 일부 감소 연구 · 단맛은 크게 안 변함 · 노화보다 {r:개인차}가 더 큼 | 조금씩 감소 = 질환·약물보다 {r:노화 요인}이 큼 |
 U: taste는 나이 들며 일관되게 변하지 않는 반면, olfaction은 일관되게 변한다(필기).
 F: 17=구강점막 · 운동 · 감각의 노화와 '노인만의 점막질환은 없다'
-M: 노화 자체 = 점막에 {r:큰 영향 없음}(변화는 mild) → 원인은 {r:질환·영양·약물·부적합 의치}
+M: 점막: 노화 자체 = 점막에 {r:큰 영향 없음}(변화는 mild) → 원인은 {r:질환·영양·약물·부적합 의치}
 M: 운동(저작·삼킴·발음) = {r:not uniformly} · 단순한 점진적 감소 아님
-M: 미각 = 미뢰 수 유지 · {r:짠·신·쓴} 역치↑ · {r:단맛} 그대로(개인차 큼) / 후각 = {r:hyposmic}(일관된 감소)
+M: 미각: 미뢰 수 유지 · {r:짠·신·쓴} 역치↑ · {r:단맛} 그대로(개인차 큼) / 후각: {r:hyposmic}(일관된 감소)
 
 ## Oral Mucosal Diseases in Elderly ★ · BMS | 노인 구강점막질환 9와 BMS | 17-20 | 기출 14회 나열 · 교수 강조 | jb=G04
 > 노인에게만 생기는 병은 없다 — '주로' 생기는 병이 있을 뿐, 그리고 점막질환이 아닌 점막 통증 BMS
@@ -429,9 +441,12 @@ F: 19=Chronic atrophic candidiasis — 노인에서 압도적, 20=Denture stomat
 - → 모두 {r:Oral burning symptoms}(Unified manifestation)로 모인다.
 U: 왼쪽 문제들로 오른쪽 증상들이 강화되므로, geriatric syndrome 측면에서 한 가지 증상을 악화시키는 여러 경로를 이해해야 한다(필기).
 F: 18=노인 구강점막질환 9와 BMS · 노인증후군 맥락
-M: 점막질환 9: {r:Herpes zoster} · {r:Candidiasis} · {r:Inflammatory fibrous hyperplasia}(epulis fissuratum) · {r:Actinic elastosis} · {r:Leuko/Erythroplakia} · {r:OLP/OLL} · {r:Pemphigoid/Pemphigus} · {r:Basal cell carcinoma} · {r:Epidermoid carcinoma (SCC)}
-M: 최다 = {r:chronic atrophic candidiasis} · 구강 암 {r:SCC} > verrucous · 얼굴 피부 {r:Basal cell carcinoma}
-M: BMS = {r:폐경 전후 여성} · 혀 · {r:no abnormality} / {r:resting > functional} · {r:afternoon > morning} · 잠은 거의 안 깸 · 치통급
+M: 점막질환 9: ① {r:Herpes zoster} ② {r:Candidiasis} ③ {r:Inflammatory fibrous hyperplasia}(epulis fissuratum) ④ {r:Actinic elastosis} ⑤ {r:Leuko/Erythroplakia} ⑥ {r:OLP/OLL} ⑦ {r:Pemphigoid/Pemphigus} ⑧ {r:Basal cell carcinoma} ⑨ {r:Epidermoid carcinoma (SCC)}
+M: 교수 기준: {r:노인에게만} 생기는 점막질환은 없다 — {r:'주로'} 생기는 질환 / "적으세요" = 18-2 질환들 + {r:candidiasis} / BMS는 '점막 통증'이라 제외
+M: 빈도: 최다 = {r:chronic atrophic candidiasis} · 구강 암 {r:SCC} > verrucous · 얼굴 피부 {r:Basal cell carcinoma}
+M: BMS: {r:폐경 전후 여성} · 혀 · {r:no abnormality}
+M: BMS 특징 5: ① {r:resting > functional} ② {r:afternoon > morning} ③ sleep quality·behavior에 좌우 ④ 잠은 거의 안 깸 ⑤ 치통급
+M: BMS 노인증후군: 당뇨 · 약물 · 영양결핍 · 신경질환 → {r:oral burning symptoms}(unified manifestation)
 
 @G ⑤ 노인치과학 — 올 수 없는 노인을 위한 치의학
 ## Oral Health in Geriatric Care — Pathways | 노인 건강관리에서 구강건강의 중요성 — 구강이 전신 노쇠로 이어지는 경로 | 21 | 개념 · 미출제
@@ -451,13 +466,15 @@ M: BMS = {r:폐경 전후 여성} · 혀 · {r:no abnormality} / {r:resting > fu
 - 필기: 턱을 적게 쓰면 뇌혈류량이 감소된다는 매우 객관적인 충분한 보고가 있다 — 그러나 뇌혈류량이 장기간 감소했을 때 뇌 기능이 어떻게 되는지는 {r:충분한 보고가 없다}.
 - 필기: 구강기능이 저하되면 사회로부터 고립된다 — 얼마나 큰 문제인지는 현장에 나가 보면 알게 될 것.
 F: 21=구강·악안면 기능장애의 연관 · 구강건강의 중요성 5갈래 · 노인 3분류 · Dependent frail patients
-M: 위생불량·건조 → 흡인 → {r:흡인성 폐렴} / 만성염증(치주·점막) → {r:당뇨·심장질환}
-M: 저작↓ → {r:뇌혈류량 만성 감소} → 알츠하이머·{r:인지적 노쇠} / 기능↓(저작·발음·심미) → {r:사회적 고립} → 사회적 노쇠
-M: 저작·삼킴↓ → {r:구강 노쇠} → 영양↓ → {r:근감소증} → 신체 노쇠 → 낙상·장애·사망
+M: ① 위생불량·건조 → 흡인 → {r:흡인성 폐렴}
+M: ② 만성염증(치주·점막) → {r:당뇨·심장질환}
+M: ③ 저작↓ → {r:뇌혈류량 만성 감소} → 알츠하이머·{r:인지적 노쇠}(뇌 기능 영향은 충분한 보고 없음)
+M: ④ 기능↓(저작·발음·심미) → {r:사회적 고립} → 사회적 노쇠
+M: ⑤ 저작·삼킴↓ → {r:구강 노쇠} → 영양↓ → {r:근감소증} → 신체 노쇠 → 낙상·장애·사망
 
 ## Not a Single Group — 3 Categories · Home Visit ★ | 노인의 3분류와 방문진료 | 21-22 | 서술 · 교수 마무리 강조 · 기출 22·23·24 | jb=G02
 > 스스로 걸어오는 노인은 medically compromised일 뿐 — 올 수 없는 노인을 진료하는 것이 노인치과학
-= 노인은 {r:동일한 집단이 아니다} — {r:Independent} · {r:Frail} · {r:Dependent} → 내원 못 하는 환자↑ → {r:방문진료}
+= 노인 3분류: {r:Independent} · {r:Frail} · {r:Dependent} / 이유: 노인은 {r:동일한 집단이 아니다} → 내원 못 하는 환자↑ → {r:방문진료}
 # Geriatric Dentistry란 무엇이 아닌가
 - {r:65세 이상 환자의 치료 개념이 아님}.
 - Not just adding Geriatric prior to Periodontics · Prosthodontics · Oral Medicine · Oral Surgery · Conservative Dentistry · Preventive Dentistry.
@@ -483,6 +500,9 @@ E: G02 | 24·23·22년 서술 "노인치과학에서 노인을 하나의 집단�
 - 필기: 전혀 다른 진료 환경에서 어려운 환자들을 다른 개념을 가지고 진료하는 제도를 구축하고 있다.
 P: 수업 마지막에 강의 목적 슬라이드로 돌아가 강조 — "병원에 스스로 와서 진료를 받을 수 있는 사람은 단지 medically compromised 상태. 그런 사람들이 아니라 매우 의존적인 상태에 있는 노인 분들을 진료하는 것에 필요한 지식들을 이해했으면 좋겠다"(p.22 필기).
 F: 22=돌봄통합지원법 조문 — 방문 진료와 방문 구강관리
-M: 노인 3분류: {r:Functionally Independent} · {r:Frail} · {r:Functionally Dependent} → {r:치과 접근성}이 다름 → 구분해야
-M: Geriatric dentistry ≠ {r:65세 이상 치료} · ≠ 각 과 앞에 Geriatric 붙이기 → {r:올 수 없는 노인} 진료
-M: Dependent frail → 요양기관·가정 {r:방문진료} · 촉탁의(= {r:계약의사}) · 돌봄통합지원법 {r:2026.3.27} 시행 · 일본 {r:23%}
+M: 노인 3분류: ① {r:Functionally Independent} ② {r:Frail} ③ {r:Functionally Dependent}
+M: 22·23·24 서술: 세 집단은 {r:치과 접근성}이 다름 → 노쇠·의존 노인은 {r:내원 어렵거나 불가} → 구분해 안정적 치료 방안 논의 = 노인치과학의 목표
+M: 정의: Geriatric dentistry ≠ {r:65세 이상 치료} · ≠ 각 과 앞에 Geriatric 붙이기 → {r:올 수 없는 노인} 진료
+M: Dependent frail → 요양기관·가정 {r:방문진료} · 촉탁의(= {r:계약의사})
+M: 대상 예: {r:Alzheimer's disease} · {r:Stroke survivors} · {r:Parkinson's disease}
+M: 돌봄통합지원법: 2024.3.26 제정 → {r:2026.3.27} 시행 · 가정·사회복지시설 진료 · {r:방문 구강관리} / 일본 {r:23%} 가정 방문
