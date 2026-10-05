@@ -50,7 +50,7 @@ F: 3=과거엔 금기 — 지금은 infection만으로는 금기 아님
 | **Etc.** | {r:Osteomyelitis} / {r:Fibro osseous lesion} | periapical pathosis를 넘어선 여러 악골 질환(예: cemento-ossifying fibroma) |
 U: infection은 괜찮지만 osteomyelitis까지 간 상태라면 심을 수 있는가? — 골수염은 녹는 것과 딱딱해지는 것이 있다(뒤 골수염 카드).
 F: 4=병적 상태 X인 bone defect vs 병적 상태 O
-M: 과거 금기 5: {r:Medically compromised} · {r:Poor bone density} · {r:Infection} · {r:Systemic bone disease} · {r:Trauma}
+M: 과거 금기 5: ① {r:Medically compromised} ② {r:Poor bone density} ③ {r:Infection} ④ {r:Systemic bone disease} ⑤ {r:Trauma}
 M: 지금: {r:infection is controllable} → 금기 아님 / 문제는 {r:bone healing 능력} 저하(BRONJ·radiation·osteomyelitis)
 
 @G ② 병적 골이어도 심을 수 있다 — 상대적 금기
@@ -83,9 +83,10 @@ F: 13=FD — 울퉁불퉁한 무치악부 · 정상 점막, 14=FD — swiss chee
 | **Paget's disease** | osteoclast 활성 이상, remodelling 예측 불가, reversal line | {r:remodeling은 일어남} → 가능(challenging) |
 | **FD** | 빈도 높음, swiss cheese·chinese character, 점막 정상 | {r:섬유조직 양}에 따라(5례 중 1 실패), 환자 동의 |
 E: R13 | 23년 객관식 "임플란트 식립의 절대적 금기증"(공개 문항 추1) → ORN(뒤 카드) — 보기 COD·PCD·{r:FD}·ORN·{r:OI} ⚠ 함정: 이 카드의 FD·OI는 25 해설 "1,2,3,5는 케이스에 따라 임플란트가 가능해 상대적 금기증" → 오답
-M: OI = {r:site-specific}(상악 위주) / Paget = {r:remodeling 됨} → 가능 / FD = {r:섬유조직 양}에 따라
-M: FD 조직 = {r:swiss cheese}·{r:chinese character} / Paget 조직 = {r:reversal line}
+M: 임플란트: OI = {r:site-specific}(상악 위주) / Paget = {r:remodeling 됨} → 가능 / FD = {r:섬유조직 양}에 따라
 M: OI 동반 = {r:dentinogenesis imperfecta} + {r:blue sclera}
+M: FD 조직 = {r:swiss cheese}·{r:chinese character} / Paget 조직 = {r:reversal line}
+M: 함정(23 절대 금기 보기): FD·OI = {r:상대적} 금기(케이스에 따라 가능) → 오답
 
 ## Infection · Fracture Sockets — Immediate Implant | 우식·치주·파절 발치와 — bone만 남아 있으면 금기 아님 | 16-24 | 핵심 원칙
 > 임플란트를 잘 심는 것보다 발치를 잘 하는 것이 중요하다
@@ -108,7 +109,7 @@ F: 17=심각한 치주질환 — 전부 발치, 18=치주질환에도 immediate 
 - implant를 잘 심는 것보다 발치를 잘 하는 것이 중요하다 — 이렇게 깨끗하게 빼는 게 어렵다.
 U: 사담 — 발치 의뢰만 하고 임플란트만 자기가 하겠다는 로컬이 많은데 그러지 말자(발치가 더 중요). 필기 "발치는 외과가 맞다. 임플란트는 소속된 과가 없다".
 F: 21=Fracture vs Infected Socket, 22=secondary caries에 의한 파절 — pathologic state 아님, 23=발치를 잘 하는 것이 중요, 24
-M: caries·perio·fracture 발치와 = {r:금기 아님} → {r:clear한 prep} + {r:immediate}
+M: 원칙: caries·perio·fracture 발치와 = {r:금기 아님} → {r:clear한 prep} + {r:immediate}
 M: 성공률 순서(그래프): {r:caries < periodontal disease < fracture}
 M: "임플란트를 잘 심는 것보다 {r:발치를 잘 하는 것}이 중요" / implant는 {r:maintenance}
 
@@ -138,6 +139,7 @@ F: 31=Infected socket with plasma rich in growth factor, 32=BMP·osteocalcin·os
 - 그냥 심는 것 = {r:control}, exp1 = {r:차폐막}을 만든 것, O는 lesion.
 - 결과: 계면에서는 큰 차이를 보이지 않는다 → periodontal lesion이 크게 contraindication이 되지 않는다 — 즉 periodontal lesion은 금기증이 아니다.
 F: 33=Exp study — control vs exp1(차폐막), 34=계면 차이 없음 — periodontal lesion은 금기 아님
+M: 뼈 만들기 = {r:GBR} · {r:lingual torus} 떼어 이식
 M: 치조골 유지 꼼수 = {r:interim endo}(incisional endo로 순차 발치) → infection control 후 식립
 M: defect 심하면 {r:root만 cutting}·granulation 제거·{r:septal bone 보존}
 M: PRGF = {r:BMP}·{r:osteocalcin}·{r:osteopontin} plasma 막(혈전 원심분리) / 실험: 계면 차이 없음 → {r:periodontal lesion은 금기 아님}
@@ -162,6 +164,7 @@ P: 26 필기 p.1 "시험문제라고 파일 띄워주신 거 답 — 4(4만 극�
 F: ONJ5:1=공개 시험문항 2개와 해설
 M: 절대 금기 = {r:ORN} — radiation → {r:hypoxia}·{r:hypo-cellularity}·{r:hypo-vascularity} → healing↓·necrosis
 M: COD·PCD·FD·OI = {r:상대적} 금기(케이스에 따라 가능) / ORN만 {r:극복 못함}
+M: 임상 = {r:dead bone} — healing 안 되어 계속 open · 썩어서 냄새
 
 ## Osteomyelitis — Sclerosing vs Suppurative | 골수염 — 젊은 사람의 sclerosing만 가능 | 37-39 | 두 유형
 > 방어막을 만드는 골수염(Garre)과 하염없이 파괴되는 골수염
@@ -199,6 +202,7 @@ F: 42=낫지 않는 발치와 — implant 불가
 - 26 p.53 필기: 여러 medication이 연관되기 때문에 현재는 MRONJ라는 말을 사용한다.
 - 25 p.11: AAOMS 2014 update — nomenclature를 BRONJ에서 {r:medication-related osteonecrosis of the jaw(MRONJ)}로 바꾸기를 권고.
 M: Chemo-induced ONJ: 혈관 노출 · {r:hypo-vascularity} · {r:통증 없음} → {r:plaque control}뿐
+M: 원인 모르는 낫지 않는 발치와 = 피가 안 통함 → {r:implant 이미 불가능}
 M: BRONJ {r:1기}만 되어도 손대면 안 됨 / 여러 약물 → {r:MRONJ}
 
 @G ④ Bisphosphonate — 골 대사에서 약물까지
@@ -230,6 +234,7 @@ F: 47=Normal Bone Remodelling — 사라지는 순서 보기, 48=resorption 20 d
 F: 46=OP — not critical · 담배보다 영향 적음
 M: remodeling 순서 = {r:osteoclast} 흡수 → {r:growth factors} → {r:osteoblast} 형성 (흡수 {r:20일} · 형성 {r:160일})
 M: osteoclast 없으면 → resorption X → osteoblast 작동 X → {r:골형성 X}
+M: Bisphosphonate가 {r:bone turnover}↓: ① {r:Killing Osteoclasts} ② osteoclast {r:recruitment} 억제 ③ osteoclastic {r:activity} 억제
 M: OP = {r:not critical}(담배보다 영향 적음) / Osteocyte 수명 {r:50-80 days}
 
 ## Bisphosphonates — Function · Mechanism | 약의 기능과 기전 — 뼈는 단단해지지만 낫지 않는다 | 53-55·102-105 | 기전
@@ -251,7 +256,7 @@ F: 55=Mechanism — osteoclast가 먹고 죽는다, ONJ5:5
 - 25 도입 필기(p.2-3): 임플란트는 titanium을 뼈에 박아 {r:osseointegration}을 유도하는 것 → 이때 중요한 것은 {r:골질과 골의 양} → 뼈의 질에 bisphosphonate가 challenge → 흔히 말하는 MRONJ가 생긴다.
 F: 53=ONJ and Bisphosphonates — 현재는 MRONJ
 E: R12 | 23년 객관식 "다음 중 가장 강한 bisphosphonate는?" → zoledronate — 약물별 potency는 25 자료(아래 Potency 카드)
-M: Bisphosphonate 기능 4: {r:pyrophosphate analog} · {r:hydroxyapatite 친화} · {r:osteoclast 억제} · {r:bone resorption 억제}
+M: Bisphosphonate 기능 4: ① {r:pyrophosphate analog} ② {r:hydroxyapatite 친화} ③ {r:osteoclast 억제} ④ {r:bone resorption 억제}
 M: osteoclast가 bisphosphonate를 {r:먹고 죽음} → 흡수 X → 전이 억제 + {r:bone healing도 억제}
 
 ## Fellow Experiment — Bisphosphonate in Bone Graft | 교수님 fellow 실험 — 뼈도 안 붙는데 임플란트도 붙을 리 없다 | 56·106-108 | 실험
@@ -291,6 +296,7 @@ U: 가이드북은 bp 전에 치과 처치를 다 하라지만 요새 우리나�
 F: ONJ5:10=Patient Brochure
 M: ONJ 3H = {r:hypovascularization} · {r:hypocellularity} · {r:hypooxygen} → {r:치료 불가}(dead bone)
 M: 전형: {r:exposed bone} — 무증상 → {r:이차 감염} → 통증
+M: 대처: {r:medical history}를 보고 방어 · 환자가 physicians·dentists와 {r:communicate}
 
 ## Bisphosphonate Details (25) — Potency · Position Paper · Oral vs IV | 25년도 ONJ 각론 — potency 순서, 지침, 경구 vs 주사 | 111-117 | 기출 23 | jb=R12
 > Etidronate 1 → Zoledronate >100,000 — IV일수록, 오래 먹을수록 위험
@@ -344,6 +350,7 @@ M: Potency: {r:etidronate 1} < tiludronate 10 < pamidronate 100 < alendronate 1,
 M: 상품명: alendronate = {r:Fosamax} · ibandronate = {r:Boniva} · zoledronate = {r:Zometa}(가장 많이 씀) — 중요 3 / 가장 약한 것 = {r:etidronate}
 M: ONJ 위험: {r:4년}↑ 복용(0.21%, 중앙값 4.4년) · {r:IV} > oral
 M: Oral bisphosphonate = implant 성공 {r:99.6%}(영향 x) / IV 예정 → 침습 수술 {r:주사 3주 전}
+M: 지침: AAOMS 2006 BRONJ → {r:2014} update(MRONJ) = {r:절대적인 rule 아님} / 투여 전 {r:발치·치주치료·근관치료} 먼저
 
 ## BRONJ Treatment · Implant-BRONJ Cases | 괴사 부위 처치와 임플란트-BRONJ 증례 — crisis or chance | 118-122 | 25 자료
 > 치료를 안 할 수는 없지만 예후는 나쁘다 — 마지막에 손댄 사람이 책임진다
@@ -384,8 +391,8 @@ F: ONJ5:25=condensing osteitis — biopsy, ONJ5:26=complex odontoma · pathology
 - ① {r:Bx.} ② {r:Trephination} ③ {r:Hypovascular dense bone; type I.} ④ {r:Conventional prosthodontics} ⑤ {r:Refer}.
 - 필기: mental foramen을 포함하고, 마진이 균일하지 않고, homogenous해 보이니 {r:osteosclerosis}일 가능성이 가장 큼 — osteosclerosis에 심는 것은 {r:dense bone에 심는 것}과 비슷.
 F: ONJ5:30=Consideration — Bx · Trephination · type I · 보철 · Refer
-M: 정체불명 불투과 병소 → 의견: condensing osteitis · {r:enostosis}(bone island) · complex odontoma → {r:biopsy}
-M: Consideration 5: {r:Bx} · {r:Trephination} · {r:hypovascular dense bone(type I)} · {r:conventional prosthodontics} · {r:Refer}
+M: 정체불명 불투과 병소 → 의견: condensing osteitis · {r:enostosis}(bone island) · complex odontoma → {r:biopsy} / 교수님 해석 = {r:osteosclerosis}(dense bone에 심는 것과 비슷)
+M: Consideration 5: ① {r:Bx} ② {r:Trephination} ③ {r:hypovascular dense bone(type I)} ④ {r:conventional prosthodontics} ⑤ {r:Refer}
 
 ## Bone Quality Debate — D1~D4 · Undersized Drilling ★ | 골질 논쟁과 초기 고정 (예고 문항) | 131-138 | 시험문항 | jb=R14
 > 골밀도 자체는 성공을 크게 좌우하지 않는다 — 다만 약한 뼈는 술식을 바꿔 초기 고정을 얻는다
@@ -438,8 +445,10 @@ F: ONJ5:38=Critical point in bone quality — dense bone은 면역학적으로 f
 | 골질 | 초기 고정 | 문제 | 대처 |
 | **Dense(D1)** | 유리(mechanically favorable) | 열발생·드릴링 어려움, {r:fragile immunologically}, 염증 삼출물 공간 부족 → tissue necrosis | 너무 단단해 안 들어가면 {r:tapping} / 심한 osteosclerosis면 D1 식립 피하기 |
 | **Low(D4·OPo·OPe)** | {r:어려움} | 생존·골유착 차이 없음, marginal bone loss 차이 | {r:undersized drilling}·stepwise drilling·bone condensation·design modification, 굵은 직경·충분한 치유 |
-M: 골질 불량 → {r:undersized drilling} · {r:stepwise drilling} · {r:bone condensation} · {r:implant design modification}
+M: 골밀도 분류 = {r:reference point}일 뿐 · 대부분 {r:D3·D4는 상악} / low bone density → 초기 고정·생존 {r:차이 없음} · {r:marginal bone loss}만 차이
+M: 골질 불량 → ① {r:undersized drilling} ② {r:stepwise drilling} ③ {r:bone condensation} ④ {r:implant design modification}
 M: Tapping = {r:너무 단단한 뼈}에 나사선 새기기 / D2 = {r:식립 기준 골질} / D4 = {r:상악 구치부}·초기 고정 어려움
+M: Dense(D1): 장점 = {r:primary stability} 유리 / 단점 = {r:fragile immunologically}(염증 삼출물 공간 부족 → tissue necrosis) · {r:열발생}·드릴링 어려움
 M: 확실히 안 되는 것 = {r:osteomyelitis·ORN·BRONJ} / 되는 것 = {r:Paget·FD}(bone quality 보장 시)
 
 ## Another Considerations — FOD · COD · PCD | 이형성증 — 예측할 수 없는 sclerosing state | 137-148 | 상대적 금기
@@ -467,8 +476,8 @@ F: ONJ5:40=FOD — idiopathic · 낫는다는 보장 없음, ONJ5:41=cyst와 감
 - 전반적으로 다 dysplasia의 상태(유독 심한 부위) → {r:fibula} 제거하고 {r:전방부만} 심어서 성공함.
 F: ONJ5:44=Failure of implants in COD, ONJ5:45=용감한 식립, ONJ5:46=cemental tear — 식립 부위 아님, ONJ5:47=전반적 dysplasia, ONJ5:48=fibula 제거 후 전방부만 식립
 E: R13 | 23년 객관식 "임플란트 식립의 절대적 금기증"(추1) → 보기 ① COD ② PCD는 오답 — 25 해설상 {r:상대적 금기증}(케이스에 따라 가능) ⚠ 함정: 절대 금기는 ORN 하나
+M: Sclerosing state = {r:bone metabolism 예측 불가}: ① {r:FOD} ② {r:Paget's disease} ③ {r:COD = focal FOD} ④ {r:PCD}
 M: {r:Cyst} = 긁어내면 가능 / {r:Dysplasia} = idiopathic → 확신 불가 / {r:종양}(ossifying fibroma) = 안 됨
-M: {r:COD = focal FOD} / sclerosing state는 {r:bone metabolism 예측 불가}
 M: COD 실패 → bx상 {r:cemental tear} = 식립 부위 아님 / 전반적 dysplasia → {r:fibula} 후 전방부만
 
 ## Dysplasia · Cysts · Sinus — Diagnosis Matters | 이형성증·낭·상악동 — 결국 진단이 중요하다 | 149-159 | 결론
@@ -491,5 +500,5 @@ F: ONJ5:56=정상 구조물, ONJ5:57=확장된 canal — 정상소견, ONJ5:59
 P: 25 필기 마지막 "임플란트 식립의 금기증(ex. osteomyelitis 등)을 정확하게 아는 게 중요하며 osteosclerosis가 너무 심한 경우에는 {r:D1에 식립하는 것은 피해} 주세요. 또한 후유증, 합병증에 대해서도 꼭 잘 알아두세요!"
 P: 25 필기 p.59 시험 언급: "임플란트학 시험에 관해서는, 공부를 안해도 다 맞춰요. 너무 쉬워요. 그래서 너무 어렵게 생각하지 말고 풀면 됩니다" · 실기시험은 의미 없으니 신경 안 써도 됨.
 U: 교수님 마무리 — 임플란트는 회사(시스템)에 종속되지 말고 스터디, bisphosphonate 얘기했으니 로컬 나가서 부작용 등 {r:차팅}을 잘 할 것(25 p.59).
-M: 결론: {r:해부학적 진단}이 우선 — 금기증(osteomyelitis 등) 정확히 · 심한 osteosclerosis면 {r:D1 식립 회피} · {r:정상 구조물} 숙지
+M: 결론: {r:해부학적 진단}이 우선 — ① 금기증(osteomyelitis 등) 정확히 ② 심한 osteosclerosis면 {r:D1 식립 회피} ③ {r:정상 구조물} 숙지 ④ 후유증·합병증도 꼭
 M: 상악동: 염증 물질·{r:mucous retention} = 예후 나쁨 / {r:격벽} = 따로따로 lifting
