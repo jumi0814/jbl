@@ -673,14 +673,15 @@ def fchash(t):
         h, r = divmod(h, 36); o = d[r] + o
         if not h: return o
 def txt_of(h_): return html.unescape(re.sub(r'<[^>]+>', '', h_))
-def fcnorm(t): return re.sub(r'[\s/·•,;:|]+', '', t)
-FCPREV = {}
+def fcnorm(t): return re.sub(r'[\s/·•,;:|①-⑳=↔()]+', '', t)   # 10-05 번호(①)·= ·괄호만 바뀌어도 같은 줄
+FCPREV = {}; FCBODY = {}
 try:
     _pp = J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))
     for _L in _pp.get('lect', []):
         for _r in _L.get('recall') or []:
             _tc = txt_of(_r['h']); _k = 'R:' + _L['k'] + ':' + fchash(_r['t'] + '|' + _tc)
             FCPREV.setdefault((_L['k'], fcnorm(_r['t'] + '|' + _tc)), []).extend([_k] + list(_r.get('ok') or []))
+            FCBODY.setdefault((_L['k'], fcnorm(_r['t'])), []).append((fcnorm(_tc), [_k] + list(_r.get('ok') or [])))
 except Exception as _e: print('FCPREV 없음', _e)
 EXN = [0, 0]
 def lec_card(L, j, c):
@@ -913,8 +914,12 @@ for L in LEC:
     recall = [{'t': c['en'], 'h': lecparse.render_recall(x, ctx)} for c in L['cards'] for x in c['recall']]   # 플래시카드: ' / ' 줄은 <li>로(U28)
     for r_ in recall:   # 10-04 ⚡ 줄 구분 기호(/ ·)·띄어쓰기만 바뀌어도 플래시카드 기록(알아요·몰라요)이 이어지게 — 지난 팩의 같은 줄(기호·공백 뺀 글자가 같음) 키를 ok로 넘김(허브가 옮김)
         tc_ = txt_of(r_['h']); nk_ = 'R:' + L['k'] + ':' + fchash(r_['t'] + '|' + tc_); old_ = FCPREV.get((L['k'], fcnorm(r_['t'] + '|' + tc_)), [])
+        if not old_:   # 10-05 사용자 '암기 … 구조화' — ⚡ 줄을 합치거나 라벨(장점:·단점:)을 붙여도: 같은 카드의 옛 줄 글자가 새 줄 안에 통째로 들어 있으면(기호·번호·공백 무시) 그 기록을 넘김
+            nb_ = fcnorm(tc_)
+            for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []):
+                if len(ob_) >= 10 and (ob_ in nb_ or (len(nb_) >= 10 and nb_ in ob_)): old_ = old_ + ks_
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
-        if ok_: r_['ok'] = ok_[:6]
+        if ok_: r_['ok'] = ok_[:12]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
