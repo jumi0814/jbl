@@ -34,15 +34,18 @@ R: FTND | 6문항 10점: 1~3 낮음 · 4~6 중간 · {r:7~10 높음} |
 R: HSI | FTND 항목 {r:1 + 4} ≥ {r:4점} → 의존도 높음 · 간편하고 금연성공 예측도↑ |
 N: 금단은 식욕 '증가' — 식욕감소를 넣은 선지가 두 번(23·21, 19) 출제.
 
-#TBL 금연 약물 3 비교 | k=RX | src=[[RX:63]] [[RX:64]] [[RX:70]] [[RX:71]] [[RX:73]] [[RX:78]] [[RX:79]] [[RX:80]]
+#TBL 금연 약물 3 비교 | k=RX | src=[[RX:63]] [[RX:64]] [[RX:70]] [[RX:71]] [[RX:72]] [[RX:73]] [[RX:74]] [[RX:76]] [[RX:77]] [[RX:78]] [[RX:79]] [[RX:80]]
 H: 항목 | NRT | 부프로피온(서방정) | 바레니클린
 R: 기전 | 니코틴을 느리고 낮은 농도로 대체(껌 20분·패치 2-4시간 최고) | {r:dopamine 재흡수 억제} + nAChR 비경쟁적 길항 {jb:RX12} | mesolimbic {r:α4β2 nAChR partial agonist} {jb:RX31}
 R: 시작 | {r:금연 시작일부터} | 금연 {r:1~2주 전} · 7주 이상 | 금연 {r:1주 전} · 유지 6개월~1년 {jb:RX30}
+R: 용법·기간 | 처음에는 매 1~2시간마다 1개씩 → 점차 줄임 / 껌 {r:12주}까지 · 로젠즈 {r:3~6개월} · 패치 {r:8~12주}(아래 NRT 제형별 표) [[RX:66]] | 적어도 연속 {r:7주} 이상 / 금연시작일 이후 {r:NRT와 병용 가능} / 금연치료에는 {r:서방형} 정제(속방형 = 우울증) [[RX:72]] | 0.5 mg·1 mg 제형 / 첫 {r:3일} 0.5 mg 하루 1번 → 다음 {r:4일} 0.5 mg 하루 2번 → 금연일부터 {r:1 mg 하루 2번} [[RX:74]]
 R: 부작용 | 수면장애·오심·두통·혈압상승·심계항진·흉통 | {r:불면(35~40%)}·{r:구강건조(10%)}·간질(1/1,000) {jb:RX25} | {r:메스꺼움}·수면장애·변비·생생한 꿈·두통 {jb:RX26}
 R: 금기·주의 | 중증 심혈관·중증 부정맥·심근경색·뇌졸중(최근 2주)·활동성 소화성 궤양·니코틴 과민·청소년 · 임산부 위험-이득 {jb:RX04} | 간질·심한 뇌 손상·중추신경계 종양·거식증·폭식증 병력·알코올이나 BZDs 급중단·2주 이내 MAO-I·{r:18세 이하}·임신·수유 | 18세 이하 비권장·임신 C·GFR ≤30 감량
+R: 간·신장 | — | 처방주의: {r:중증의 간장애} 신중히 투여 / 신장질환에서도 주의 [[RX:71]] | 주로 {r:신장} 배설 → GFR {r:30 ml/min 이하}·투석 중이면 감량 / {r:간 장애 환자에는 사용 가능} / 병용금기 약물·연령대 투여금기 없어 장기간 투여 가능 [[RX:73]]
 R: 청소년 | 꼭 필요하면 {r:주의 깊게 사용}(p.79) — 단 p.70은 금기 {jb:RX13} {jb:RX05} | 처방금기 | 권장되지 않음
 R: 심혈관 부작용 | 교감신경 자극 → HR·BP↑·관상동맥 수축 | NE 재흡수 억제 → BP↑ | CNS nAChR → HR·BP↑·심근수축
 R: 특징 | 흡연보다 유해성↓ · 부프로피온과 병용 가능 | 우울증·조현병 병력이면 권고 · 금연용은 서방형 | {r:금연치료 유일 용도} · 효과 최고(OR 2.33) {jb:RX35}
+R: 효과 비교 | 2023 코크란(위약 대비) Nicotine patch OR {r:1.37} / Fast-acting NRT OR {r:1.41} [[RX:76]] | 바레니클린보다 금연효과가 떨어진다는 보고 [[RX:71]] | 2023 코크란 OR {r:2.33} > Cytisine 2.21 [[RX:76]] / EAGLES(9-24주) 위약 대비 {r:2.74배} · 니코틴 대체제 대비 1.52배 · 부프로피온 대비 1.45배 [[RX:77]]
 N: 1차 약제 = NRT·부프로피온 서방정·바레니클린 / 2차 = 노르트립틸린·클로니딘. 지원사업은 바레니클린 84일·부프로피온 56일 + 금연보조제 구입비 {jb:RX09}.
 
 #TBL NRT 제형별 비교 | k=RX | src=[[RX:66]] [[RX:67]] [[RX:68]] [[RX:69]]
@@ -140,6 +143,17 @@ R: Cevimeline | Synthetic | Muscarinic(M1·3) | No | Oral | Xerostomia {jb:XE17}
 R: Nicotine / Varenicline | Alkaloid / Synthetic | Nicotinic | No | Oral·transdermal / Oral | Smoking cessation
 N: 필기 "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) -> 이 둘은 꼭 기억하세요!" · 부작용(Sweating, shivering, nausea, dizziness, increased frequency of urination, rhinitis).
 
+#TBL Choline ester·Alkaloid 약리 활성 비교 (Table 9-1) | k=XE | src=[[XE:27]] [[XE:29]]
+H: 성질 | Acetylcholine | Methacholine | Carbachol | Bethanechol | Muscarine | Pilocarpine
+R: Susceptibility to cholinesterases(AChE 분해) | {r:+++} | + | {r:−} | {r:−} | − | {r:−}
+R: Cardiovascular | ++ | {r:+++} | + | ± | ++ | +
+R: Gastrointestinal | ++ | ++ | +++ | +++ | +++ | +++
+R: Urinary bladder | ++ | ++ | +++ | +++ | +++ | +++
+R: Eye (Topical) | + | + | ++ | ++ | ++ | ++
+R: Antagonism by Atropine | +++ | +++ | {r:+} | +++ | +++ | +++
+R: Nicotinic activity | ++ | + | {r:+++} | {r:−} | − | {r:−}
+N: Muscarine = Not used therapeutically(표 주). 필기(p.27) — methacholine은 AChE에 의해 분해되긴 하지만 그 정도는 약함 · carbachol·bethanechol은 AChE에 의해 분해되지 않음 · bethanechol이 작용시간이 길어 약효도 높음. 같은 p.29: Atropine = M1–M5 competitive antagonist. 위 '직접 작용 콜린성 작용제 비교' 표의 AChE 분해 열과 짝.
+
 #TBL Pilocarpine 금기·주의와 과량 처치 | k=XE | src=[[XE:32]] [[XE:45]] [[XE:42]]
 H: 환자군 | 구분 | 이유
 R: 조절되지 않는 천식 | 금기 | M3 수용체 자극 → 기관지 수축 → 기도 폐쇄·발작 악화 — 인공타액으로 대체 {jb:XE11}
@@ -154,14 +168,24 @@ N: 교수님 강조(p.32) — 금기: 조절되지 않는 천식·축동 / 주�
 
 #TBL 타액 분비율과 구강건조증 약물 | k=XE | src=[[XE:40]] [[XE:41]] [[XE:42]] [[XE:44]] [[XE:46]] [[XE:49]]
 H: 항목 | 내용
-R: 진단 기준 {jb:XE08} | 비자극 whole < 0.1 / 자극 < 0.5–0.7 mL/min — 주로 비자극 기준
-R: 정상 whole saliva {jb:XE02} | 비자극 0.3–0.5 · 자극 1.0–3.0 (Parotid 0.04·0.70, Submandibular/Sublingual 0.15·0.60)
-R: 치료제 {jb:XE10} | Pilocarpine(Salagen tab 5 mg) · Cevimeline(Evoxac cap 30 mg) — 잔존 타액선 기능에 달림, 식전 30분 하루 3번
-R: Pilocarpine 용량 {jb:XE06} | 두경부암+방사선 5 mg×3/day(12주↑) · Sjögren 5 mg×4/day(6주) · 중등도 간장애 5 mg×2/day · 중증 간장애 권장 안 됨 · 1회 10 mg 초과 ✗ · 저용량 시작 → 20 mg/day
+R: 진단 기준 {jb:XE08} | 비자극 whole {r:< 0.1} / 자극 {r:< 0.5–0.7} mL/min / — 주로 비자극 기준
+R: 정상 whole saliva {jb:XE02} | 비자극 {r:0.3–0.5} / 자극 {r:1.0–3.0} / (Parotid 0.04·0.70, Submandibular/Sublingual 0.15·0.60)
+R: 치료제 {jb:XE10} | Pilocarpine(Salagen tab 5 mg) / Cevimeline(Evoxac cap 30 mg) / — 잔존 타액선 기능에 달림, 식전 30분 하루 3번
+R: Pilocarpine 용량 {jb:XE06} | 두경부암+방사선 5 mg×3/day(12주↑) / Sjögren 5 mg×4/day(6주) / 중등도 간장애 5 mg×2/day / 중증 간장애 권장 안 됨 / 1회 {r:10 mg} 초과 ✗ / 저용량 시작 → {r:20 mg/day}
 R: 인공타액으로 대체 {jb:XE11} | 약 불내성 / 조절되지 않는 천식 / 타액 기능 완전 소실
-R: 보조치료 | 무설탕 껌/캔디·얼음조각·인공타액(carboxymethylcellulose + glycerin, IgA 없음) · Benzodiazepines · ZnCl2 {jb:XE13}
-R: 유발 약물 {jb:XE01} | TCA·Imipramine·Atropine·Diazepam·Diphenhydramine·Naproxen/Ibuprofen·Codeine·Clonidine — physostigmine(AChE 억제)은 ✗
-R: BMS {jb:XE07} | Clonazepam 0.5 mg qd hs 30일 or bid, 3-5분 topical 후 삼킴
+R: 보조치료 | 무설탕 껌/캔디·얼음조각 / 인공타액(carboxymethylcellulose + glycerin, IgA 없음) / Benzodiazepines / ZnCl2 {jb:XE13}
+R: 유발 약물 {jb:XE01} | TCA·Imipramine·Atropine·Diazepam·Diphenhydramine·Naproxen/Ibuprofen·Codeine·Clonidine / — physostigmine(AChE 억제)은 ✗
+R: BMS {jb:XE07} | Clonazepam 0.5 mg qd hs 30일 or bid / 3-5분 topical 후 삼킴
+
+#TBL Sjögren's syndrome 진단 기준 6항목 (American European Consensus Group 2002) | k=XE | src=[[XE:38]] [[XE:39]]
+H: 구분 | 항목 | 정의(Brief definition) | 기준
+R: Subjective — Sicca (dryness) Symptoms | 1. Ocular symptoms | Dry eye | {r:> 3 months}
+R: Subjective — Sicca (dryness) Symptoms | 2. Oral symptoms | Dry mouth | {r:> 3 months}
+R: Objective — Exocrine dysfunction | 3. Ocular signs | Decreased tear production | Schirmer's test(+) {r:≤5mm in 5mins}
+R: Objective — Exocrine dysfunction | 4. Salivary gland Involvement (Oral signs) | Reduced saliva production | Unstimulated whole salivary flow rate {r:≤0.1mL/min} / Salivary gland scintigraphy
+R: Objective — Autoimmunity | 5. Histopathology | {r:Focal lymphocytic inflammation} | (p.38: the most specific diagnostic test requires {r:lip biopsy})
+R: Objective — Autoimmunity | 6. Autoantibodies (Serology) | {r:Anti-Ro/SSA} · {r:Anti-La/SSB} | SSA = Sjögren's-syndrome-related antigen A {jb:XE04}
+N: 진단 = 6항목 중 {r:≥4}(histopathology or serology 포함) 또는 objective 4항목 중 {r:≥3}. Criteria by American European Consensus Group(2002). 필기 "큰 별표! 이 표는 시험에 나옵니다!!"(p.39) · "항체 이름이 시험에 나올 수 있습니다"(p.38).
 
 #TBL 교수님 예고·공개 시험 문장 — 한 장(필기·공개 시험문제) | k=XE | src=[[XE:1]] [[XE:30]] [[XE:32]] [[XE:36]] [[XE:38]] [[XE:39]] [[XE:40]] [[XE:54]] [[XE:55]] [[XE:56]]
 H: 쪽 | 교수님 말씀·시험 예시(그대로) | 답·외울 것 | 기출
@@ -236,6 +260,15 @@ R: 부작용 {jb:BT06} {jb:BT10} | 과민반응 · 원거리 확산 · 말초신
 R: 금기 {jb:BT05} | 과민증 · 전신성 신경근접합부 장애 · 중증 호흡기능장애 · 임신·수유(Class C) · 주사부위 감염 · 근이완제 (p.23) | "감염부위에도 소독하고 진행할 수 있다"
 R: 교근 비대증 {jb:BT07} {jb:BT13} {jb:BT17} | 주의 = Parotid gland · Facial a. · 25~50 U/side · 2~3 point · 0.5~1cm · Aspiration (p.33) | "submandibular gland를 주의"
 N: 김우진 교수님 객관식은 슬라이드의 한 단어를 뒤집어 틀린 선지를 만듦 — 오른쪽 열의 단어(운동성 없다·인간에게만·소화된다·약하다·분리하는 protease·파괴·불법·동일·submandibular)를 보면 바로 ✗.
+
+#TBL C. botulinum 4 그룹 비교 (p.5 표) | k=BT | src=[[BT:5]]
+H: Properties | Group I | Group II | Group III | Group IV
+R: Toxin Type | {r:A, B, F} | {r:B, E, F} | {r:C, D} | {r:G}
+R: Proteolysis | ++ | - | + | -
+R: Saccharolysis | - | + | - | -
+R: Disease host | {r:Human} | {r:Human} | {r:Animal} | -
+R: Toxin Gene | Chromosome/Plasmid | Chromosome/Plasmid | {r:Bacteriophage} | Plasmid
+N: 필기 — toxin의 종류·단백질 분해능 등에 따라 네 그룹 · 사람에게 병원균으로 작용할 수 있는 것은 {r:group I, II} · type G는 아주 흔하고 흙에도 있으며 독성이 있지는 않음. 함정: "인간에게만 감염된다" ✗ {jb:BT08} · "인간에서만 발생한다" ✗ {jb:BT14}(Group III = Animal).
 
 #TBL BoNT 구조 → 작용 단계 연결 | k=BT | src=[[BT:10]] [[BT:11]] [[BT:13]] [[BT:14]]
 H: 부분 | 도메인 | 크기 | 하는 일 | 작용 단계
@@ -326,6 +359,25 @@ R: Fentanyl | Step 3 | transdermal patch · sustained release over 72 hours · I
 R: Hydromorphone | Step 3 | potent morphine derivative · rectal suppository | —
 R: Mixed agonist-antagonist | — | butorphanol · nalbuphine · oxymorphone · pentazocine | few advantages · more adverse effects
 N: 등가 용량(Table 1-1, IM/IV/SC): fentanyl 0.1 · levorphanol 2 · hydromorphone 1.5-2.0 · methadone 10 · morphine 10 · codeine 120 mg — 필기 "펜타닐이 매우 potent". 필기: 최근 금단 해소 용도로 buprenorphine이 더 많이 쓰임.
+
+#TBL Opioid 등가 용량 — Table 1-1 Equipotent Doses | k=CHR | src=[[CHR:8]]
+H: Drug | Onset (min) | Duration (hr) | IM/IV/SC (mg) | PO (mg)
+R: {r:Fentanyl} {jb:PN19} | {r:7-8} | 1-2 | {r:0.1} | NA
+R: Levorphanol | 30-90 | 4-6 | 2 | 4
+R: Hydromorphone | 15-30 | 2-4 | 1.5-2.0 | 7.5
+R: Methadone {jb:PN25} | 30-60 | {r:4-12} | 10 | 20
+R: {r:Morphine} | 15-30 | 2-4 | {r:10} | 30(An IM:PO ratio of 1:2 to 1:3 used for repetitive dosing)
+R: Oxycodone | 15-30 | 3-4 | NA | 20
+R: {r:Codeine} | 15-30 | 4-6 | {r:120} | 200
+N: Note: Equivalences are based on single-dose studies · NA, not applicable. 필기 "펜타닐이 매우 potent하다는 것을 볼 수 있습니다" — 같은 효과에 fentanyl {r:0.1} vs morphine {r:10} vs codeine {r:120} mg(IM).
+
+#TBL CYP2D6 phenotype — 활성 점수·빈도·인종별 | k=CHR | src=[[CHR:9]] [[CHR:10]]
+H: Phenotype | Activity score | 빈도(p.9) | Caucasian % | Ethiopian/Nigerian % | Asian % | Hispanic %
+R: {r:Ultrarapid} metabolizer | >2.0 | ~1-2% | 0.8-4.3 | {r:29} | 0.9 | 1.7
+R: Extensive metabolizer | 1.0-2.0 | ~77-92% | — | — | — | —
+R: {r:Intermediate} metabolizer | 0.5 | ~2-11% | 1-2 | N/A | {r:51} | N/A
+R: {r:Poor} metabolizer {jb:PN11} | 0 | ~5-10% | 3-10 | 1.8-8.1 | 0-1.2 | 2.2-6.6
+N: '—' = p.10 인종별 표에 Extensive 행 없음. Genotype(p.9) — ultrarapid = more than two copies of functional alleles / poor = no functional alleles. CYP2D6 PM is very rare in Koreans, frequency about {r:0.2%}(Byeon et al., 2018) · some Asian groups = slower metabolism(intermediate) → {r:lower analgesic response to codeine}. 필기: 한국 사람은 intermediate metabolizer가 50% 정도 → 약효가 더 약하게 / ultrarapid는 기대보다 매우 큰 효과 주의.
 
 #TBL Opioid 문제 상황별 대처 — 금단·과량·부작용 | k=CHR | src=[[CHR:4]] [[CHR:11]] [[CHR:12]] [[CHR:13]] [[CHR:7]]
 H: 상황 | 슬라이드 내용 | 대처
@@ -426,6 +478,31 @@ R: 늘어나는 경우 | Warfarin(coumarin ↑↑) · DTI·Xa therapy ↑ · sev
 R: 정상으로 남는 경우 | hemophilia A·B · heparin · aspirin | aspirin · LMWH | coumarin · heparin · hemophilia
 R: 임상 | 가장 많이 사용 — warfarin 모니터링(INR = (PT환자/PT정상)^ISI · warfarin 2.0-3.0) | heparin 투여·혈우병 | antiplatelet 작용 확인
 N: 필기 — "Aspirin therapy를 받으면 blood clotting time에는 크게 변화가 없지만, bleeding time은 증가한다. Coumarin therapy를 받으면 PT가 증가한다." 혈우병 중증도(factor VIII·IX): mild 5-50% · moderate 1-5% · severe <1%. 2021년 14번(검사 종류·기준·산출방법 {jb:HM25})의 답.
+
+#TBL Table 9.4 — 상태별 선별 검사 결과 | k=HM | src=[[HM:14]]
+H: Condition | Platelet Count | Bleeding Time/PFA-100 | PT/INR | aPTT | TT | Antifactor Xa
+R: {r:Aspirin} therapy | ↓ or ↔ | {r:↑} | ↔ | ↔ | ↔ | ↔
+R: {r:Coumarin} therapy | ↔ | ↔ | {r:↑↑} | ↑ | ↔ | ↓↓
+R: {r:Heparin} therapy | ↔ | ↔ | ↔ | {r:↑↑} | ↑ | ↓↓
+R: LMWH therapy | ↔ | ↔ | ↔ | ↔ | ↑ | ↓↓
+R: DTI therapy | ↔ | ↔ | ↑ | ↑↑ | ↑↑ | ↔
+R: Factor Xa therapy | ↔ | ↔ | ↑ | ↑ | ↔ | ↓↓
+R: {r:Hemophilia A or B} | ↔ | ↔ | ↔ | {r:↑↑} | ↔ | ↔
+R: {r:Thrombocytopenia} | {r:↓↓} | {r:↑↑} | ↔ | ↔ | ↔ | ↔
+R: Severe liver disease | ↓ | ↑ | ↑↑ | ↑↑ | ↑↑ | ↓↓
+R: Renal hemodialysis | ↓ | ↔ | ↔ | ↑ | ↔ | ↑
+R: Leukemia | ↓ | ↑ | ↔ | ↔ | ↔ | ↔
+R: Vessel wall defect | ↔ | ↑ | ↔ | ↔ | ↔ | ↔
+R: Fibrinogenolysis | ↔ | ↔ | ↑ | ↑ | ↑↑ | ↔
+R: DIC | ↓↓ | ↑↑ | ↑↑ | ↑↑ | ↑↑ | ↓↓
+N: ↑ mild increase · ↑↑ moderate to marked increase · ↓ mild decrease · ↓↓ moderate to marked decrease · ↔ normal level · PFA-100 = platelet function analyzer 100 · DIC = disseminated intravascular coagulation · DTI = direct thrombin inhibitor(ADA Practical Guide 2nd Ed). 필기 "Aspirin therapy를 받으면 … bleeding time은 증가한다. Coumarin therapy를 받으면 PT가 증가한다. 다른 것들도 확인을 해주시면 좋겠습니다."
+
+#TBL 항응고제 3계열 — 적응증·모니터링·치과 약물 상호작용 (JADA 2019) | k=HM | src=[[HM:21]]
+H: Drug class | Usual indication | Need for routine monitoring | Drug interactions with common dental medications
+R: {r:Vitamin K Antagonists} / Warfarin (Coumadin) · Acenocoumarol (Sintrom) {jb:HM18} | Rheumatic atrial fibrillation / {r:Mechanical heart valve} / Thrombosis with anti-phospholipid antibodies / Contraindication to alternative agents | {r:Yes (international normalized ratio)} | {r:Antibiotics}: Clindamycin · Amoxicillin · Amoxicillin clavulanate · Cephalexin · Doxycycline · Metronidazole · Macrolides / {r:Azole antifungals} / Analgesics: Carbamazepine · Oxcarbazepine · {r:NSAIDs}
+R: {r:Direct Oral Anticoagulants} / Apixaban (Eliquis) · Rivaroxaban (Xarelto) · Dabigatran (Pradaxa) · Edoxaban (Savaysa, Lixiana) | {r:Nonvalvular atrial fibrillation} / Venous thrombosis without cancer or severe thrombophilia | {r:No} | Antibiotics: Clarithromycin · Erythromycin / Azole antifungals / Analgesics: Carbamazepine · NSAIDs
+R: {r:Low-Molecular-Weight Heparins} / Tinzaparin (Innohep) · Dalteparin (Fragmin) · Enoxaparin (Lovenox) | Thrombosis or prophylaxis in {r:pregnancy} / Thrombosis in cancer | {r:No} | Analgesics: {r:NSAIDs}
+N: 필기(p.21) "빨간색으로 색칠해 둔 곳(drug interactions)은 여러분이 찾아봐서 확인하면 좋을 것들". 세 계열 모두 NSAIDs와 상호작용 · INR 모니터링은 VKA뿐 → 새 약 처방 후 INR 2-4일 내(p.22 알고리즘). ⚠ 21·20·17·16년 sulfonamide 문항({jb:HM18})의 sulfonamide는 이 표에 없음.
 
 #TBL INR 구간별 치과 시술 — 할 수 있는 것 | k=HM | src=[[HM:24]] [[HM:25]]
 H: 시술 | ≤3.0 | >3.0–3.5 | >3.5
@@ -597,10 +674,10 @@ N: 정의 — 살균제(antiseptics) = {r:living tissue} / 소독제(disinfectan
 
 #TBL COX 억제제 4종 한눈에 — 작용·용량·부작용 | k=ACU | src=[[ACU:24]] [[ACU:25]] [[ACU:26]] [[ACU:27]] [[ACU:28]]
 H: 약 | 진통·해열 | 항염 | 항혈소판 | 용량 | 장점 | 주요 부작용·주의
-R: Acetaminophen | O — 26: 중추성(중추 COX 억제·AM404 경로 TRPV1·하행성 세로토닌) | X — 26: POX 부위 작용 → 염증부위에서 효과↓(염증성 통증에 약함) | X | 325 to 1,000 mg q4-6h (max 4 g/d) · liver disease less than 2 g/d | lack of gastric toxicity | Hepatic toxicity — acute overdose 10 to 15 g → fatal hepatic necrosis {jb:PN08} · 26: NSAID 아님 · 간독성 약물(항생제 등) 병행 주의 · 25 필기: NAPQI ↔ glutathione 고갈 · codeine 병용 주의
-R: Aspirin | O | O | O — up to 1 week after a single dose {jb:PN16} | 325 to 650 mg PO q4h PRN (max 4 g/d) | enteric-coated tablets → gastric mucosa 손상 적음 | Dyspepsia and GI bleeding · asthma and nasal polyps → bronchospasm·laryngeal edema·urticaria · interstitial nephritis and papillary necrosis · 간·신장 질환·bleeding disorders·pregnancy·anticoagulation 주의 · 26: 바이러스 감염 소아 → Reye syndrome(간부전·뇌병증) → 소아는 acetaminophen·ibuprofen
-R: NSAIDs (ketorolac) | O | O | 25 필기상 있음(COX-2와 대비) · aspirin의 cardio-protective effects를 blunt | ketorolac IM or IV · parenteral therapy should not exceed 5 days | all NSAIDs similar efficacy · 술후 주사 {jb:PN17} | nephrotoxicity · impaired renal or hepatic function 주의 · FDA boxed warning(MI·stroke) · coronary artery bypass surgery 직후 금기
-R: COX-2 inhibitor (celecoxib) | 진통 O — no analgesic advantage over other NSAIDs(해열은 슬라이드에 없음) | COX-2 = an important mediator of pain and inflammation | 없음(25 필기) | — | little significant effect on the gastric mucosa | adverse cardiovascular events · cardiac stenting 후 thrombotic risk {jb:PN18} · aspirin·NSAIDs에 allergic or bronchospastic → 금지
+R: Acetaminophen | O — 26: 중추성(중추 COX 억제·AM404 경로 TRPV1·하행성 세로토닌) | X — 26: POX 부위 작용 → 염증부위에서 효과↓(염증성 통증에 약함) | X | 325 to 1,000 mg q4-6h (max 4 g/d) · liver disease less than 2 g/d | lack of gastric toxicity | Hepatic toxicity — acute overdose 10 to 15 g → fatal hepatic necrosis {jb:PN08} / 26: NSAID 아님 / 간독성 약물(항생제 등) 병행 주의 / 25 필기: NAPQI ↔ glutathione 고갈 / codeine 병용 주의
+R: Aspirin | O | O | O — up to 1 week after a single dose {jb:PN16} | 325 to 650 mg PO q4h PRN (max 4 g/d) | enteric-coated tablets → gastric mucosa 손상 적음 | Dyspepsia and GI bleeding / asthma and nasal polyps → bronchospasm·laryngeal edema·urticaria / interstitial nephritis and papillary necrosis / 간·신장 질환·bleeding disorders·pregnancy·anticoagulation 주의 / 26: 바이러스 감염 소아 → Reye syndrome(간부전·뇌병증) → 소아는 acetaminophen·ibuprofen
+R: NSAIDs (ketorolac) | O | O | 25 필기상 있음(COX-2와 대비) · aspirin의 cardio-protective effects를 blunt | ketorolac IM or IV · parenteral therapy should not exceed 5 days | all NSAIDs similar efficacy · 술후 주사 {jb:PN17} | nephrotoxicity / impaired renal or hepatic function 주의 / FDA boxed warning(MI·stroke) / coronary artery bypass surgery 직후 금기
+R: COX-2 inhibitor (celecoxib) | 진통 O — no analgesic advantage over other NSAIDs(해열은 슬라이드에 없음) | COX-2 = an important mediator of pain and inflammation | 없음(25 필기) | — | little significant effect on the gastric mucosa | adverse cardiovascular events / cardiac stenting 후 thrombotic risk {jb:PN18} / aspirin·NSAIDs에 allergic or bronchospastic → 금지
 N: 네 약 모두 target = COX enzyme → ceiling effect(용량을 늘려도 최대 효과가 정해짐) — codeine 같은 opioid는 ceiling effect가 없어 병용 시 pain relief가 더 높음(25 p.29 필기 — 26에서 빠짐; 26 p.28은 aspirin 650 + codeine 60 병용이 각 단독보다 효과적). 함정: 항염 X = acetaminophen / 항혈소판 X = acetaminophen·COX-2 inhibitor.
 
 #TBL 통증의 분류 — 시기(급성·만성)와 원인(침해성·신경병성) | k=ACU | src=[[ACU:12]] [[ACU:16]] [[ACU:17]]

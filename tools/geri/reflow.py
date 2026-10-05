@@ -34,7 +34,9 @@ def reflow(text, choices=False):
             else: out.append(s)
             prev_full = False; prev_raw = l; continue
         if TROW.match(s) and is_thead(s): tbl = True; out.append(s); prev_full = False; prev_raw = l; continue
-        if out and single and len(prev_raw.strip()) == 1 and '가' <= prev_raw.strip() <= '힣':
+        if out and out[-1].count('(') > out[-1].count(')') and s.count(')') > s.count('(') and not NUMM.match(s) and not LABEL.match(s) and width(s) <= W:
+            out[-1] += ' ' + s                             # 10-05 JB 가독성: 괄호가 열린 채 끊긴 줄('… (necrosis' | '-> degradation products)') → 이어 붙임(글자 그대로)
+        elif out and single and len(prev_raw.strip()) == 1 and '가' <= prev_raw.strip() <= '힣':
             out[-1] += s                                   # 세로로 끊긴 표 머리("장"/"점") → 붙임
         elif out and not STARTER.match(s) and (prev_full or prev_raw.rstrip().endswith((',', '，'))) and not prev_raw.rstrip().endswith((':', '：')):
             out[-1] += ' ' + s                             # 단 폭 때문에 끊긴 줄 → 이어 붙임

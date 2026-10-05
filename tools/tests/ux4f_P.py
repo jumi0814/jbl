@@ -54,6 +54,7 @@ with sync_playwright() as p:
         L = pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.cbm.ESTH')||'{}')")
         ok(len(L) == 3 and (c6 is None or c6 in L), f'P2 {W} D = 지금 카드 북마크 {len(L)}')
         pg.evaluate("document.querySelector('#lmview').click()"); pg.wait_for_timeout(250); pg.evaluate("document.querySelector('#lmcbm').click()"); pg.wait_for_timeout(500)
+        pg.evaluate("document.querySelector('#stage .hlbar [data-hlf=bm]').click()"); pg.wait_for_timeout(300)   # 10-05 강조 카드 보기(⭐ 기출 ∪ ★ 북마크) → 토글 ★ 북마크만
         r = pg.evaluate("[[...document.querySelectorAll('#stage .tc')].filter(c=>c.offsetParent).length,document.querySelector('#lmview').textContent,document.querySelector('#stage').classList.contains('cbmonly')]")
         ok(r[0] == 3 and '★' in r[1] and r[2], f'P2 {W} [보기 ▾] → ★ 북마크 카드만 {r}')
         pg.reload(); pg.wait_for_function(WAIT, timeout=60000); pg.wait_for_timeout(1000)

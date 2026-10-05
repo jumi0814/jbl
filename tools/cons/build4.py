@@ -219,7 +219,7 @@ def astruct(s, lvl=0):
     return lecparse.inline(s, ctx)
 def auto_item(ko, etxt, cites):
     """annot가 없는 문항: '✓ 정리본 «카드» 일치' 한 줄 + ⭐ 시험포인트 원문(구조화) + 인용 칩 3개까지"""
-    return f'<div class="agree">✓ 정리본 «{esc(ko)}» 일치</div>' + (f'<div class="aex"><span class="ui">⭐</span><div class="kb">{astruct(etxt) if len(etxt) > 190 else lecparse.render_block(etxt, ctx)}</div></div>' if etxt else '') + f'<div class="cites">{cites}</div>'
+    return f'<div class="agree">✓ 정리본 «{esc(ko)}» 일치</div>' + (f'<div class="aex"><span class="ui">⭐</span><div class="kb">{astruct(etxt) if len(etxt) > 190 else lecparse.render_block(etxt, ctx)}</div></div>' if etxt else '') + cite_row(CITE_BTN.findall(cites))
 def struct_item(x):
     """대조(A)·주변부(M)·메모(N) 항목(HTML): 150자를 넘거나 ' / '가 3개 이상이면 astruct로 점 목록화하고 인용 칩은 끝의 .cites 줄로 모음"""
     plain = html.unescape(re.sub(r'<[^>]+>', '', CITE_BTN.sub('', x)))
@@ -255,6 +255,94 @@ def item_lis(x):
     its = _top_lis(m.group(1)) if m else None
     if its: its[-1] += m.group(2) or ''; return its
     return [r]
+# ---- 10-05 사용자 'jb문제 란에서 가독성을 전면적으로 … 인용이나 근거, 필기파트가 중구난방 … 슬라이드 원문 보는 버튼도 … 너무 크게' — 대조·주변부 항목 모양(글자 그대로, 배치만):
+#  A 줄 = [판정 꼬리표] 위치 → 슬라이드 인용 상자(" … " 안 ' / ' = 한 줄씩) → 설명 줄 → 작은 근거 줄(📄 강의명 쪽 쪽 — 강의명은 한 번) · M 줄 = 라벨로 📄 같은·인접 슬라이드 / ✍ 필기 / 🔁 변형 대비·함정 / 그 밖 소절에 모음
+VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|×|○')
+def _vcls(v):
+    if re.search(r'불일치|×|오답|다른 점|근거 없음|정정', v): return 'vd'
+    if '부분' in v: return 'vp'
+    if re.search(r'일치|○|정답|대응', v): return 'vk'
+    return 'vi'
+def _qspan(s):
+    """처음 나오는 큰따옴표 묶음 (여는 자리, 닫는 자리)"""
+    for i, ch in enumerate(s):
+        if ch in '"“':
+            j = s.find('"' if ch == '"' else '”', i + 1)
+            return (i, j) if j > i else None
+    return None
+CITE_ONE = re.compile(r'<button class="(cite[^"]*)" data-k="([^"]*)" data-p="([^"]*)">(.*?)</button>')
+def cite_row(cites):
+    """인용 칩 → 작은 근거 줄: 같은 강의는 이름 한 번 + 쪽 링크들(버튼 = 쪽 글자, data-k·data-p 그대로)"""
+    if not cites: return ''
+    gs = []
+    for c in cites:
+        m = CITE_ONE.match(c)
+        if not m: gs.append(('', [c])); continue
+        cls, k, p_, t = m.groups(); mm = re.match(r'^(.*?)\s*((?:슬라이드|p\.)\s?[\d–\-·,~ ]+)$', t)
+        nm, pg = (mm.group(1).strip(), mm.group(2)) if mm else ('', t)
+        b_ = f'<button class="{cls} cz" data-k="{k}" data-p="{p_}" title="{esc(t)}">{pg}</button>'
+        if gs and gs[-1][0] == nm and nm: gs[-1][1].append(b_)
+        else: gs.append((nm, [b_]))
+    return '<div class="cites cz">' + ''.join(f'<span class="cg">{f"<span class=czk>{nm}</span>" if nm else ""}{"".join(bs)}</span>' for nm, bs in gs) + '</div>'
+def _qhtml(qt):
+    o, c_ = qt[0], qt[-1]; inner = qt[1:-1].strip()
+    ps = lecparse._rebalance(lecparse.split_top(inner, ' / ')) if ' / ' in inner else [inner]
+    ps = [x for x in ps if x.strip()] or ['']
+    ps[0] = o + ps[0]; ps[-1] = ps[-1] + c_
+    return ''.join(f'<div class="ql">{_lbl(x) if (len(ps) > 1 and _lbl(x)) else lecparse.inline(x, ctx)}</div>' for x in ps)
+def aitem_lis(x, kind='A'):
+    """대조(A)·주변부(M) 한 줄(HTML: 글자 + 인용 버튼 + ⚠💡) → li 안쪽 HTML 목록"""
+    cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x)
+    keep = []
+    def ph(m): keep.append(m.group(0)); return f'{len(keep) - 1}'
+    body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
+    if '<' in body: return item_lis(x)
+    raw = re.sub(r'\s+', ' ', html.unescape(body)).strip()
+    back = lambda h_: re.sub('(\\d+)', lambda m: keep[int(m.group(1))], h_)
+    tag = ''
+    m = re.match(r'^(.{1,24}?)\s+—\s+(.+)$', raw)
+    if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“(\[]', m.group(1)):
+        tag = f'<span class="vtag {_vcls(m.group(1))}">{esc(m.group(1))}</span>'; raw = m.group(2)
+    qs = _qspan(raw); cr = cite_row(cites)
+    if qs and qs[0] <= 80 and qs[1] - qs[0] >= 30:
+        loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
+        hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
+        ah = ''
+        if aft: ah = f'<div class="acm">{astruct(aft) if len(aft) > 190 else (lecparse.render_block(aft, ctx) if (len(aft) > 150 or lecparse._facts(lecparse.split_top(aft, " / "))) else lecparse.inline(aft, ctx))}</div>'
+        return [back((f'<div class="ahd">{hd}</div>' if hd else '') + f'<blockquote class="aq">{_qhtml(qt)}</blockquote>' + ah) + cr]
+    rest = html.escape(raw, quote=False)
+    rest = re.sub('(\\d+)', lambda m: keep[int(m.group(1))], rest)
+    lis = item_lis(rest) if raw else ['']
+    if tag:
+        if lis[0].startswith('<'): lis[0] = f'<div class="ahd">{tag}</div>' + lis[0]
+        else: lis[0] = f'<span class="ahd in">{tag}</span> ' + lis[0]
+    m2 = re.match(r'^([^:<"“”]{1,40}?:)(\s)', lis[0])
+    if m2: lis[0] = f'<b class="lbl">{m2.group(1)}</b>' + lis[0][len(m2.group(1)):]
+    lis[-1] += cr
+    return lis
+def note_html(x):
+    """N(연도·판본 메모) — 인용 칩은 끝의 작은 근거 줄로"""
+    cites = list(dict.fromkeys(CITE_BTN.findall(x)))
+    if not cites: return struct_item(x)
+    body = re.sub(r'\s+([.,·)])', r'\1', re.sub(r'\s{2,}', ' ', CITE_BTN.sub(' ', x))).strip()
+    return struct_item(body) + cite_row(cites)
+MKIND = (('s', '📄 같은·인접 슬라이드'), ('n', '✍ 필기'), ('v', '🔁 변형 대비·함정'), ('e', '📌 그 밖'))
+def _mkind(lab):
+    if '필기' in lab: return 'n'
+    if re.search(r'변형|함정|주의|혼동|헷갈|비교|구별', lab): return 'v'
+    if re.search(r'슬라이드|p\.\s?\d|쪽|앞|뒤|같은|표|그림|Table|Fig', lab): return 's'
+    return 'e'
+def mgroups(M):
+    """주변부 줄 → 종류별 소절(라벨 없는 줄은 앞 줄 종류를 이음 — 이어지는 말)"""
+    G = {k: [] for k, _ in MKIND}; prev = 'e'
+    for x in M:
+        pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', x)))).strip()
+        m = re.match(r'^([^:"“”]{1,40}?)[:：]\s', pl)
+        k = _mkind(m.group(1)) if m else prev
+        G[k].append(x); prev = k
+    used = [(k, t) for k, t in MKIND if G[k]]
+    if len(used) == 1 and used[0][0] == 'e': return '<ul>' + ''.join(f'<li>{y}</li>' for x in G['e'] for y in aitem_lis(x, 'M')) + '</ul>'
+    return ''.join(f'<div class="amg amg-{k}"><div class="amgh noann">{t}</div><ul>' + ''.join(f'<li>{y}</li>' for x in G[k] for y in aitem_lis(x, 'M')) + '</ul></div>' for k, t in used)
 ANS_REFONLY = re.compile(r'\(?\s*(?:해설|해답|아래|위)?\s*(?:참조|참고)\s*\)?\s*\.?')
 def ans_head(q):
     """JB 답 핵심 줄(참고·해설 앞) — (줄 목록, 라벨 뗀 핵심 글)"""
@@ -324,14 +412,14 @@ def qcard(q, idx):
     if a1: a.append(f'<div class="a1 noann">{a1}</div>')
     if q['A']:
         hd_ = f'🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small>'
-        lis_ = ''.join((f'<li class="auto">{auto_item(*x)}</li>' if q.get('auto') else ''.join(f'<li>{y}</li>' for y in item_lis(x))) for x in q['A'])
-        a.append(f'<details class="ab chk v-{q["v"]}"><summary class="noann">{hd_}</summary><h5>{hd_}</h5><ul>{lis_}</ul>{"".join(f"<div class=note>{struct_item(x)}</div>" for x in q["N"])}</details>')
+        lis_ = ''.join((f'<li class="auto">{auto_item(*x)}</li>' if q.get('auto') else ''.join(f'<li>{y}</li>' for y in aitem_lis(x, 'A'))) for x in q['A'])
+        a.append(f'<details class="ab chk v-{q["v"]}"><summary class="noann">{hd_}</summary><h5>{hd_}</h5><ul>{lis_}</ul>{"".join(f"<div class='note{" yr" if re.match(r'^\s*연도', html.unescape(re.sub(r'<[^>]+>', '', x))) else ""}'>{note_html(x)}</div>" for x in q["N"])}</details>')
     elif q['tier'] == 'C':
         same = f' 같은 문제의 다른 수록본은 {go(q["same"], esc(QMAP[q["same"]]["short"]))}에서 강의자료와 대조했습니다.' if q.get('same') else ''
         a.append(f'<section class="ab chk v-na"><h5>🔎 강의자료 대조</h5><div class="small">받은 25·26년도 강의자료에는 이 교수님 파트에 대응하는 강의가 없어 대조하지 않았습니다(JB 원문만 수록).{same}</div></section>')
     if q['M']:
         hd_ = '🧭 주변부 확장 <small>같은·인접 슬라이드 — 변형 출제 대비</small>'
-        a.append(f'<details class="ab more"><summary class="noann">{hd_}</summary><h5>{hd_}</h5><ul>{"".join(f"<li>{y}</li>" for x in q["M"] for y in item_lis(x))}</ul></details>')
+        a.append(f'<details class="ab more"><summary class="noann">{hd_}</summary><h5>{hd_}</h5>{mgroups(q["M"])}</details>')
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
@@ -600,7 +688,7 @@ def lec_card(L, j, c):
     det = ''.join(f'<div class="mblk">{("<b>" + lecparse.inline(bk["h"], ctx) + "</b>") if bk["h"] else ""}{"".join(ci_html(x) for x in bk["items"][:6])}{more2(bk)}</div>' for bk in bks)
     sl, used, cut = [], 0, 0
     for bk in bks:   # 요약 줄 = 소제목마다 '소제목: 시험 핵심어·수치' (블록 4개·300자까지, 핵심어가 없으면 첫 항목 앞 50자)
-        ts = list(dict.fromkeys(t_ for x in bk['items'] for t_ in red_terms(x, kc)))
+        ts = list(dict.fromkeys(t_ for x in bk['items'] if not isinstance(x, tuple) for t_ in red_terms(x, kc))) or list(dict.fromkeys(t_ for x in bk['items'] if isinstance(x, tuple) for t_ in red_terms(x, kc)))   # 10-05 소제목 아래 표가 다른 소제목 행까지 담으면(Indications 행이 든 표가 Contraindications 아래) 요약 줄이 섞이던 것 — 줄 항목의 핵심어 먼저, 없을 때만 표
         if ts: body = '·'.join('{r:' + t_ + '}' for t_ in ts)
         else:
             f0 = next((x for x in bk['items'] if not isinstance(x, tuple)), '')
