@@ -312,6 +312,25 @@ def _qhtml(qt):
     ps = [x for x in ps if x.strip()] or ['']
     ps[0] = o + ps[0]; ps[-1] = ps[-1] + c_
     return ''.join(f'<div class="ql">{_lbl(x) if (len(ps) > 1 and _lbl(x)) else lecparse.inline(x, ctx)}</div>' for x in ps)
+PGTOK = re.compile(r'\s*(?:—\s*)?\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*|슬라이드\s?\d+(?:\s?[-~–,·]\s?\d+)*)\)?(?=$|[\s:：,)\]—])')
+def _nopg(s):
+    """10-05 사용자 '선지마다 설명 앞에 어디 몇쪽 내용인지 나와있는건 없애고, 근거란에만 표시' — 항목 머리(위치·라벨)의 쪽 표기를 뺌(근거 줄이 있을 때만 부름)"""
+    t = PGTOK.sub(' ', s)
+    t = re.sub(r'\(\s*\)', '', t); t = re.sub(r'\s{2,}', ' ', t); t = re.sub(r'\s+([:：,)])', r'\1', t)
+    return re.sub(r'^[\s—·,:：]+|[\s—·,]+$', '', t)
+def _nopg_head(raw):
+    """머리 라벨('5-1) ×(24): p.13 …', 'p.6: …', '26 필기(p.6) …')의 쪽 표기만 뺌 — 본문 글은 그대로"""
+    m = re.match(r'^([^"“:：]{0,60}?[:：])(\s*)(.*)$', raw)
+    if m:
+        lab = _nopg(m.group(1)[:-1]); rest = re.sub(r'^\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*)\)?\s+', '', m.group(3))
+        return (lab + m.group(1)[-1] + ' ' + _nopg_pre(rest)) if lab else _nopg_pre(rest)
+    return _nopg_pre(re.sub(r'^\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*)\)?[\s:：]+', '', raw))
+def _nopg_pre(t):
+    """첫 인용 앞 40자 안의 머리('25 p.6 필기 "…', '26 필기 — p.7 "…')에서 쪽 표기만 뺌"""
+    i = min([k for k in (t.find('"'), t.find('“')) if k >= 0] or [-1])
+    if 0 < i <= 40 and PGTOK.search(t[:i]): return _nopg(t[:i]) + ' ' + t[i:]
+    return t
+QPART = re.compile(r'(?:은|는|이|가|을|를|에|의|로|도|와|과|면|고|며|서|게|인|한|된|던|할|될)$')
 def aitem_lis(x, kind='A'):
     """대조(A)·주변부(M) 한 줄(HTML: 글자 + 인용 버튼 + ⚠💡) → li 안쪽 HTML 목록"""
     cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x)
@@ -325,9 +344,11 @@ def aitem_lis(x, kind='A'):
     m = re.match(r'^(.{1,24}?)\s+—\s+(.+)$', raw)
     if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“\[]', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'):
         tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
+    if cites: raw = _nopg_head(raw)
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
-    if qs and qs[0] <= 80 and (qs[1] - qs[0] >= 30 or (qs[1] - qs[0] >= 6 and re.fullmatch(r'[^"“]{0,80}?[:：]?\s*', raw[:qs[0]] or ''))):   # 10-05 통일: 위치·라벨 뒤 첫 인용은 짧아도 상자
+    pre_ = raw[:qs[0]].strip() if qs else ''
+    if qs and qs[0] <= 80 and qs[1] - qs[0] >= 40 and re.fullmatch(r'[^"“]{0,80}?[:：]?', pre_) and not QPART.search(pre_.rstrip(':：')):   # 10-05 사용자 '"기억해줬으면 좋겠다" 이건 왜 굳이 줄바꿈하고 상자에' — 40자 이상 인용이 머리·라벨 바로 뒤에 올 때만 상자(짧은 인용·문장 속 인용은 같은 줄)
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
         if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
@@ -340,10 +361,13 @@ def aitem_lis(x, kind='A'):
             j_ = m4.start(1) + q2[1] + 1; mp2 = re.match(r'^[.,;:)\]]+', aft[j_:]); j2 = j_ + (mp2.end() if mp2 else 0)
             if re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|라고|란|도)(?:\s|$)', aft[j2:]): break
             qt += '\u2029' + aft[m4.start(1):j2]; aft = re.sub(r'^[/—,·]\s+', '', aft[j2:].strip())   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
+        loc = loc.rstrip(':：').strip()
         hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
         ah = ''
         if aft: ah = f'<div class="acm">{astruct(aft) if len(aft) > 190 else (lecparse.render_block(aft, ctx) if (len(aft) > 150 or lecparse._facts(lecparse.split_top(aft, " / "))) else lecparse.inline(aft, ctx))}</div>'
-        return [back((f'<div class="ahd">{hd}</div>' if hd else '') + f'<blockquote class="aq">{_qhtml(qt)}</blockquote>' + ah) + cr]
+        qh_ = _qhtml(qt)
+        if hd: qh_ = qh_.replace('<div class="ql">', f'<div class="ql"><span class="ahd in">{hd}</span> ', 1)   # 10-05 사용자 '하나의 선지에 대한 설명인데 너무 많은 칸' — 머리 라벨은 인용 상자 첫 줄 안에(따로 한 줄 쓰지 않음)
+        return [back(f'<blockquote class="aq">{qh_}</blockquote>' + ah) + cr]
     rest = html.escape(raw, quote=False)
     rest = re.sub('(\\d+)', lambda m: keep[int(m.group(1))], rest)
     lis = item_lis(rest) if raw else ['']
@@ -462,7 +486,7 @@ def qcard(q, idx):
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
         m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
         rec_ = ''.join(lecparse.render_recall(x, ctx) for x in c_['recall'])
-        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{lecparse.render_keybox(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=ct style=margin-top:8px>⚡ 암기</div><ul class=lrec>" + rec_ + "</ul>") if rec_ else ""}</details>')
+        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{lecparse.render_keybox(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
         o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])

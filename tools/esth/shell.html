@@ -1901,6 +1901,19 @@ details.ab.more .amg-n>ul>li::marker{color:#9484C9}details.ab.more .amg-v>ul>li:
 
 /* 10-05 사용자 '내 북마크에서 내가 토글을 할 때 안에 글씨가 안 보이는 오류' — .tg.on 흰 글씨 + .hbmf 흰 바탕이 겹치던 것 → 고른 칸 = 진한 바탕·흰 글씨 */
 .hbmf .tg.on{background:#443C33;border-color:#443C33;color:#fff;font-weight:700}.hbmf .tg.on .qn{color:#EDE6D8}
+/* 10-05 사용자 'JB 해설 칸 줄이기 · 근거란은 오른쪽 정렬로 작게 · 암기 글씨체' */
+details.ab.chk>ul>li{padding:5px 0}
+.ab blockquote.aq{margin:2px 0 2px;padding:5px 11px;line-height:1.58}
+.ab blockquote.aq .ahd.in{display:inline;margin:0 6px 0 0}
+.ab blockquote.aq .ahd.in .vtag{vertical-align:1px}
+.ab blockquote.aq .ahd.in .aloc{font-size:13.5px;font-weight:700;color:var(--ink)}
+.ab .acm{margin:2px 0 0}
+.ab .cites.cz{justify-content:flex-end;text-align:right;margin:1px 0 0;font-size:10.5px;line-height:1.35;gap:0 10px}
+.ab .cites.cz::before{font-size:9.5px}
+.ab .cites.cz .cite.cz{font-size:10.5px}
+@media (pointer:coarse){.ab .cites.cz .cite.cz{min-height:24px;padding:0 5px}}
+.lkey.lmem{margin-top:8px}
+.ab.lk .lrec{font-size:15px}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
