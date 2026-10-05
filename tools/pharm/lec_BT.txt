@@ -29,7 +29,7 @@ M: "운동성이 없다" ✗ → {r:motile} / "구균" ✗ → {r:rod-shaped}(�
 
 ## Four Groups · Life Cycle | 4 그룹과 생활사 — 사람은 I·II, 독소는 포자 형성 초기에 | 5-6 | 기출 20~23 | jb=BT08,BT14
 > 그룹은 독소 type·단백질 분해능으로 나누고, 독소는 살기 어려워져 포자를 만들기 시작할 때 나온다
-= 4 group: {r:I·II → Human} · {r:III → Animal} · IV(type {r:G}) → – / toxin은 {r:sporulation cycle 초기}에 생성
+= Disease host = {r:I·II → Human} · {r:III → Animal} · IV(type {r:G}) → – / toxin = {r:sporulation cycle 초기}에 생성
 # 4 그룹 — 독소 type·단백질 분해능·숙주·유전자 위치
 | Properties | Group I | Group II | Group III | Group IV |
 | Toxin Type | {r:A, B, F} | {r:B, E, F} | {r:C, D} | {r:G} |
@@ -56,6 +56,7 @@ E: BT08,BT01 | 24·23·22년 객관식 선지 "포자 형성 시기에 neurotoxi
 F: 6=두 cycle과 toxin 형성 시점
 M: Disease host: {r:I·II = Human} / {r:III = Animal} / IV = –(type {r:G} — 흙에 흔함·독성 없음)
 M: Toxin gene: I·II {r:Chromosome/Plasmid} · III {r:Bacteriophage} · IV {r:Plasmid}
+M: Toxin type: I {r:A·B·F} / II {r:B·E·F} / III {r:C·D} / IV {r:G}
 M: 독소 생성 = {r:sporulation cycle 초기} / 의료용 = {r:균주 배양}(합성 ✗)
 
 @G ② 보툴리즘 · 역사 · 독성
@@ -170,6 +171,7 @@ E: BT14,BT08 | 22·21년 객관식 선지 "독소를 코딩하는 유전자는 b
 F: 10=bont가 light chain과 heavy chain을 코딩
 M: {r:bont} → {r:LC}(Catalytic · {r:Zn} protease · 50 kDa) + {r:HC}(HN {r:Translocation} · HC {r:Binding} · 100 kDa)
 M: LC–HC = {r:disulfide(S-S)} 연결 / Progenitor(inactive) → {r:Bacterial·Gastric protease} → Active toxin
+M: 독성 = {r:LC}(Zn protease → SNARE 분해) — 'heavy·light를 분리하는 protease에 의해 독성' ✗(protease는 progenitor 활성화뿐)
 
 ## Protein Cluster | 단백질 클러스터 — NTNHA·HA가 독소를 감싸 보호한다 | 11 | 기출 20·21·23·24 | jb=BT15
 > BoNT(150 kDa)에 NTNHA가 붙어 M-PTC, HA까지 붙어 L-PTC — 독은 없지만 독소를 지키고 장벽을 넘게 한다
@@ -400,6 +402,7 @@ F: 29=부위별 주입 용량
 M: 6단계: {r:진단} → {r:부위}(촉진/시진·안전 지역) → {r:용량} → {r:희석} → {r:주입} → {r:F/U}
 M: 진단 7: 적응증 · {r:Bad Habit} · Medical History · {r:주사부위 감염여부} · {r:복용 약물} · {r:임신가능성} · 약물반응
 M: 용량: 눈꺼풀 {r:0.5~2.5} · Gummy {r:4~6} · Glabellar {r:5~20} · 교근 {r:25~50} · 다한증 {r:50~100} · 편두통·방광 {r:150~200 U}
+M: 💬 과다투여 위험은 적고 {r:어디에 주사할 것인가}가 중요 / 가장 중요한 첫 단계 = {r:정확한 진단}
 
 ## Preparation · Injection · Follow-up | 희석·주입·F/U — 거품 없이, 수직으로, 문지르지 말고 | 30-32 | 기출 선지 20~24
 > 단백질 약이라 미리 타 두지 않고 거품 없이, 원하는 곳에만 머물게 넣고, 4주 안에는 다시 놓지 않는다
@@ -426,6 +429,7 @@ F: 32=F/U 4원칙
 M: 희석 4: {r:미리 조제 금지} · {r:생리식염수} · {r:거품금지} · {r:정확한 계량}
 M: 주입 6: 적정한 소독 · {r:수직 자입} · Intradermal · Intramuscular · {r:Aspiration} · {r:문지르지 말 것}(사우나 ✗)
 M: F/U: {r:2주/6주 C/U} · {r:4주 이내 재주사 금지} · Muscle tone · Rebounding
+M: '활성화 기간 보통 4-6개월' ✗ → JB: {r:2주}에 효과 시작 · {r:6주}에 최대(26 자료엔 2주/6주 C/U만)
 
 ## Masseteric Hypertrophy | 저작근 비대증 — parotid gland와 facial a.를 피해 25~50 U | 33 | 기출 20~23 · 교수 강조 | jb=BT07,BT13,BT17
 > 귀 밑 이하선과 앞쪽 안면동맥 사이 네모 안에 — 뼈에 닿게 찌르고 살짝 빼서 흡인한 뒤 주입
