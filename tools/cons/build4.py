@@ -268,7 +268,7 @@ def item_lis(x):
     return [r]
 # ---- 10-05 사용자 'jb문제 란에서 가독성을 전면적으로 … 인용이나 근거, 필기파트가 중구난방 … 슬라이드 원문 보는 버튼도 … 너무 크게' — 대조·주변부 항목 모양(글자 그대로, 배치만):
 #  A 줄 = [판정 꼬리표] 위치 → 슬라이드 인용 상자(" … " 안 ' / ' = 한 줄씩) → 설명 줄 → 작은 근거 줄(📄 강의명 쪽 쪽 — 강의명은 한 번) · M 줄 = 라벨로 📄 같은·인접 슬라이드 / ✍ 필기 / 🔁 변형 대비·함정 / 그 밖 소절에 모음
-VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|틀림|옳음|×|○')
+VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|틀림|옳음|불가|보류|×|○')
 def _vcls(v):
     if re.search(r'불일치|×|오답|다른 점|근거 없음|정정|틀림', v): return 'vd'
     if '부분' in v: return 'vp'
@@ -322,7 +322,7 @@ def aitem_lis(x, kind='A'):
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
         if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
-        aft = re.sub(r'^/\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
+        aft = re.sub(r'^[/—,·]\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
         hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
         ah = ''
         if aft: ah = f'<div class="acm">{astruct(aft) if len(aft) > 190 else (lecparse.render_block(aft, ctx) if (len(aft) > 150 or lecparse._facts(lecparse.split_top(aft, " / "))) else lecparse.inline(aft, ctx))}</div>'
