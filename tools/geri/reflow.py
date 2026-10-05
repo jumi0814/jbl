@@ -14,9 +14,9 @@ def stray(prev, s, W):
     return len(s) <= 40 and width(s) <= W * 0.6
 TROW = re.compile(r'^[A-Za-z][A-Za-z0-9 /+()\-]*$')   # 영문 표 행(한글·문장 부호 없음)
 def is_thead(s):
-    """ux2 fixB VIS10 영문 표 머리 줄: 대문자로 시작하는 낱말 3개↑·문장 부호 없음(예: 'Fused suture Name Description')"""
+    """ux2 fixB VIS10 영문 표 머리 줄: 대문자로 시작하는 줄 · 대문자 낱말 3개↑·문장 부호 없음(예: 'Fused suture Name Description') — 10-05 소문자로 시작하면 앞 줄에서 끊긴 것(ANAT R03 'Coronoid' | 'process / Ramus / Body / Angle')"""
     w = s.split()
-    return len(w) >= 3 and sum(1 for x in w if x[:1].isupper()) >= 3 and not re.search(r'[.,:;?!]', s)
+    return len(w) >= 3 and s[:1].isupper() and sum(1 for x in w if x[:1].isupper()) >= 3 and not re.search(r'[.,:;?!]', s)
 def reflow(text, choices=False):
     raw = [l.rstrip() for l in text.split('\n')]
     lines = [l for l in raw if l.strip()]
