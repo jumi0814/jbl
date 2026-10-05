@@ -68,6 +68,7 @@ F: 7=Dual innervation과 예외, 8=Generalized sweat gland는 cholinergic, 9=교
 M: 교감만: {r:혈관 · 부신수질 · 땀샘 · 신장} / 부교감만: {r:이하선 · 누선}
 M: 침샘: 교감 = {r:진하고 점성(thick·viscous)} / 부교감 = {r:묽고 많이(copious·watery)}
 M: generalized 땀샘 = 교감인데 {r:ACh → M} → muscarinic agonist의 부작용 {r:발한}
+M: localized 땀샘(스트레스 — 손바닥·발바닥·겨드랑이) = {r:adrenergic}(NE → {r:α1}) / 부교감 수용체는 대부분 {r:M3} · 심장만 {r:M2}
 
 ## Autonomic Receptors — Nicotinic Channel vs Muscarinic GPCR | 신경전달물질과 수용체 — 채널 vs GPCR | 10·12-15 | 수용체 ★
 > 니코틴 수용체는 빠른 이온 채널(항상 흥분), 무스카린 수용체는 느린 GPCR(홀수 흥분·짝수 억제)
@@ -169,6 +170,7 @@ F: 20=조절되지 않는 천식에 쓰면 안 됨, 21=Atropine
 M: muscarinic 부작용: {r:구역 · 구토 · 설사 · 발한 · 타액과다 · 홍조 · 반사성 빈맥(때로 서맥) · 기관지 수축}
 M: 해독 = {r:Atropine}(경쟁적 길항) / urinary retention ✗ — 부교감은 배뇨 {r:촉진}
 M: Atropine 용도: {r:산동 · 서맥 역전 · 수술 중 침 억제 · 미주신경 반사 예방 · 버섯 중독}
+M: 급성 독성 원인 = {r:독버섯(Inocybe)} · {r:pilocarpine} / 발현 {r:15–30분} 이내
 
 ## ACh Synthesis · Release · Degradation — Drug Targets | ACh의 합성·저장·유리·분해와 작용 약물 — 보톡스는 유리 차단 | 22-23 | 기전 | jb=XE14
 > choline 흡수 → 합성 → 소포 저장 → Ca2+로 유리 → AChE 분해 — 단계마다 막는 약이 있다
@@ -297,6 +299,8 @@ F: 32=금기와 주의를 구분하세요, 45=Pilocarpine 주의사항, XE5:33=2
 M: 금기 = {r:조절 안 되는 천식 · 축동(급성 홍채염·angle-closure)} / 주의 = {r:COPD · 심혈관}
 M: 과량(100 mg↑) → {r:Atropine 0.5-1.0 mg} 피하·정맥 / 심혈관 저하·기관지 수축 → {r:Epinephrine 0.3-1.0 mg}
 M: 천식 금기 기전 = {r:M3} 자극 → {r:기관지 수축}
+M: T/F 함정: 'COPD에 절대 금기'({r:✗} — 주의) / '조절 안 되는 천식에 조절해서 사용 가능'({r:✗} — 금기)
+M: 23 객관식 'cevimeline 부작용 없을 사람' → JB 답 {r:CYP2D6 활성 낮은 사람}(CYP 대사는 자료에 없음)
 
 ## FYI — Aceclidine for Presbyopia | 노안 치료제 aceclidine — pilocarpine과 비교 | 33-35 | FYI · 재미로
 > 콜린성 작용제로 동공을 조여(핀홀 효과) 노안을 고친다 — 2025년 FDA 승인
@@ -374,6 +378,8 @@ F: 38=자가면역질환 중년 여성 호발, 39=큰 별표 진단표
 M: Sjögren 항체 = {r:Anti-Ro/SSA · Anti-La/SSB}
 M: 진단 = 6개 중 {r:≥4}(조직 또는 항체 포함) 또는 객관 4개 중 {r:≥3}
 M: Schirmer {r:≤5 mm/5 min} · 비자극 whole {r:≤0.1 mL/min} · 증상 {r:> 3개월}
+M: 6 criteria: 주관 = ① ocular symptoms ② oral symptoms / 객관 = ③ ocular signs(Schirmer) ④ salivary gland involvement ⑤ histopathology({r:focal lymphocytic inflammation}) ⑥ autoantibodies
+M: 확진 = {r:lip biopsy}(minor gland) · 여성 {r:~10배} · lymphoma 위험 {r:5%}
 
 ## Salivary Flow · Diagnosis ★ | 정상 타액 분비율과 구강건조증 진단 기준 | 40·55 | 큰 별표 ★ | jb=XE02,XE08,XE20,XE15
 > 가만히 있을 때 0.1 mL/min도 안 나오면 구강건조증 — 정상은 0.3-0.5
@@ -428,6 +434,8 @@ F: 41=구강건조증 치료제, 42=인공타액으로 대체하는 3경우, 44=
 M: 치료제 = {r:Pilocarpine}(Salagen {r:5 mg}) · {r:Cevimeline}(Evoxac {r:30 mg}) — 식전 {r:30분} 하루 {r:3번}
 M: 인공타액 대체 3 = {r:불내성 · 조절 안 되는 천식 · 타액 기능 완전 소실}
 M: 방사선 두경부암 {r:5 mg × 3회}(12주↑) / Sjögren {r:5 mg × 4회}(6주) / 중등도 간장애 {r:5 mg × 2회} / 1회 {r:10 mg} 초과 ✗
+M: 효과는 {r:잔존 타액선 기능}에 달림 — 침샘이 없으면 두 약 모두 무효 / 방사선 치료 환자 = 부작용 더 주의(25)·시작 용량 높게(26)
+M: 간장애: mild = 감량 불필요 / severe = {r:권장되지 않음}
 
 ## Adjunctive Therapy — Artificial Saliva | 보조치료제 — 인공타액의 성분과 한계 | 46-48 | 보조치료 | jb=XE10
 > 인공타액은 점막에 오래 남는 '적셔주기' — 침의 성질은 흉내 내지만 IgA 같은 보호 기능은 없다
@@ -452,6 +460,7 @@ F: 46=인공타액은 성분을 주의해서 봐라, 47=Artificial saliva 성분
 M: 인공타액 주성분 = {r:carboxymethylcellulose + glycerin}(점성) + {r:calcium·phosphate}
 M: 인공타액의 한계 = {r:IgA} 등 보호 기능 없음
 M: 보조치료 3 = {r:증상완화(껌·얼음·인공타액) · BZD(통증) · ZnCl2}
+M: 제품: Saliva-Orthana = {r:mucin} / Stoppers 4 = {r:lysozyme · lactoferrin}
 
 ## Clonazepam for Burning Mouth Syndrome ★ | BMS의 clonazepam 처방 — 0.5 mg 취침 전 30일 | 49 | 기출 ★ | jb=XE07,XE21
 > 입이 타는 듯 아픈데 점막은 멀쩡 — clonazepam 0.5 mg을 자기 전에, 3-5분 물고 있다 삼켜도 된다
@@ -471,6 +480,7 @@ F: 49=Clonazepam 선배 발표
 M: BMS = 점막 정상 + {r:타는 통증 6개월↑}(감각·미각 변화·타액 분비 이상 동반)
 M: Clonazepam {r:0.5 mg} {r:qd hs × 30일} or {r:bid}(아침·저녁 식후) · {r:3-5분} 물고 삼키기
 M: 간기능 저하 노인 = {r:Oxazepam · temazepam · lorazepam} / 추가 {r:ALA} / 대체 {r:Gabapentin}·steroid gargle
+M: 기전(JB 답 — 슬라이드엔 없음) = {r:GABA A receptor potentiation}(GABA channel opening frequency↑) / BZD는 {r:수면제와 같이 복용 ✗}
 
 ## ZnCl2 Solution | ZnCl2 — 무스카린과 무관한 새 타액 분비 경로 | 50 | 연구 | jb=XE13
 > 침샘에는 아연 수용체(GPCR)도 있다 — ZnCl2 가글이 비자극·자극 타액을 모두 늘렸다
