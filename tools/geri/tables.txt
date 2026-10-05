@@ -5,6 +5,7 @@ R: Fried 5기준 {jb:G01} | {r:체중 감소} · {r:활력감소} · {r:허약} 
 R: 노쇠의 종류 {jb:G07} | {r:Physical}(보통 노쇠) · {r:Cognitive} · {r:Social} · Systemic/General ? · {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠
 R: {r:Multimorbidity}(다중이환) | The coexistence of multiple chronic diseases / Prevalence {r:55 – 98%} / 결과 = disability and functional decline, poor quality of life, high health care cost | 노인 {r:90%} 1개↑ · 22% 2개 · {r:50%} 3개↑ / 최다 {r:고혈압·관절염} {jb:G06}
 R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} / 약물 부작용 = 입원·사망의 주요 원인 | 21 빈칸 / 필기 {r:5종류↑}(super {r:10종류↑}) / 노인 37% 5개↑ 처방약
+R: 노인 만성질환 목록(p.7 그래프 순) {jb:G06} | {r:고혈압} · {r:관절염} · 고지혈증 · 요통 · 당뇨병 · 골다공증 · 위궤양 · 전립선비대증 · 백내장 · 뇌졸증 / 협심증 / 처방약: 노인 {r:60%} 3개↑ · {r:37%} 5개↑(필기: 노인의 1/3에서 5개 이상) | 필기: 고혈압, 관절염 = {r:50% 이상}이 갖고 있는 질환 · 정신질환은 조사 시 일부 빠져 있음 · 누워 있는 노인까지 합치면 훨씬 많음
 R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 {r:모호·복잡} — 질병 다발성 + 다약제 복용 → 질환–질환 · 질환–약물 · 약물–약물 상호작용 | 20·19 "A와 B" = {r:질환 · 약물}
 R: {r:Geriatric syndrome}(노인증후군) {jb:G05} | 실금·우울·섬망·낙상·골다공증·감각변화·거동/보행장애·압창·수면장애·치매 — 여러 etiology/pathogenesis → {r:unified manifestation} | 24 서술(낙상 모식도 예) · 20 나열
 R: {r:Sarcopenia}(근감소증) | 근육량 일정 이하 감소 + 근육 활동 일정 이하 감소가 {r:동시에}(필기) | 체중 감소 → 근육 소실 → sarcopenia(Fried 모식도)
@@ -136,6 +137,27 @@ R: 치료하지 않은 석회화 근관 | 881명의 선원 · 7-22 years follow 
 R: Prognosis (Akerblom 1988) | 64 obliterated roots(X-ray에서 root 1/3 이상 canal 안 보임) · non-surgical endo · 2-12 yrs | Lesion {r:62.5%} · No lesion {r:97.9%} · Total {r:89%} | {jb:E03}(89%)
 N: '병소 유무에 상관없이' = Total 89% · '병소가 없으면' ≈ 98% · 괴사는 40%(EPT negative but no PAR), 51%(EPT normal)와 혼동 금지.
 
+#TBL Akerblom 1988 — 병소 유무별 성공·실패 | k=ENDO | src=[[ENDO:70]]
+H: 치료 전 | Success | Failure | 필기
+R: Lesion | 10 ({r:62.5%}) | 6 ({r:37.5%}) | 병소가 있는 경우는 실패한 경우가 조금 더 높았다(37.5%)
+R: No lesion | 47 ({r:97.9%}) | 1 (2.1%) | 병소가 없는 경우에는 석회화되었더라도 98% 가까이 문제 없었다 · 병소가 없는 경우 98% 성공율을 보인다
+R: Total {jb:E03} | 57 ({r:89%}) | 7 (11%) | 89% 정도는 큰 무리 없다
+N: 대상 = 64 obliterated roots(no canal seen on X-ray more than 1/3 of the root) · non-surgical endo treatment · 2-12 yrs follow up(p.70). 기출 '병소 유무에 상관없이 survival 할 확률' = Total 행.
+
+#TBL 석회화 근관의 원인 10 — 슬라이드 순서와 필기 풀이 | k=ENDO | src=[[ENDO:23]] [[ENDO:24]]
+H: 원인(슬라이드 순) {jb:E07} | 필기 풀이(p.23)
+R: ① Longstanding (deep) caries | 시간이 오래 지속되며 생김 — 깊게·천천히 진행되는 caries에 몸이 막아내려는 방어기전 → {r:근관을 좁게}(일종의 회피 기전)
+R: ② Periodontal disease | 잇몸에 나쁜 상황이 반복되고 지속되면서 석회화
+R: ③ Bruxism | {r:이 악무는 습관}
+R: ④ Occlusal overload | {r:질긴 음식을 먹고 껌을 씹는 습관}
+R: ⑤ Abrasion / erosion | {r:양치질을 과도하게} 하는 경우
+R: ⑥ Previous pulpotomy | 이전에 치료받은 history — 외상 때문에 pulpotomy를 한 경우 {r:약제 등}에 의해 석회화
+R: ⑦ Extensive / multiple restorations | (필기 없음)
+R: ⑧ {r:Trauma} | {r:2-24% incidence} · {r:가장 흔한 원인}(슬라이드 밑줄) · 그림: 외상 후 치료 안할시에
+R: ⑨ Orthodontic Tx | 치근이 짧아지는 결과도 나오지만 석회화 근관이 생기거나 치수가 necrosis되기도
+R: ⑩ {r:Aging} | 당연히 증령되면 근관이 석회화 · 이차, 삼차 상아질이 생기면서 치수가 좁아진다(p.24 필기)
+N: 석회화된 근관이 있을 때 {r:그 원인이 무엇일지 고민}해본 후에 치료해야 한다(p.23 필기). 함정 — 다른 판본 JB 답(9개)엔 Orthodontic Tx가 빠짐.
+
 #TBL 증례로 보는 치료계획 — 발치·근관치료·경과 관찰 | k=ENDO | src=[[ENDO:7]] [[ENDO:9]] [[ENDO:11]] [[ENDO:14]] [[ENDO:19]] [[ENDO:61]] [[ENDO:65]] [[ENDO:72]] [[ENDO:75]]
 H: 증례 | 상황 | 판단 · 결과 | 교훈
 R: 64세 여 #22 (p.7-8) | 파절 · cervical 약함 · 교합 깊음 · 근관 안 보임(외상 후 석회화) | ferrule 가능? → 차라리 implant가 나을 수도 | 파절 원인 파악 · 신경치료 + 보철 지식 {jb:E10}
@@ -237,9 +259,24 @@ R: {r:Preliminary assessment} | {r:Gingival response} as a marker of plaque biof
 R: {r:Follow up care} | Careful clinical evaluation of teeth · Replacement of caries-control restorations with {r:permanent restorations} · Monitoring of plaque biofilm and {r:mutans streptococci (MS) levels} · Further antimicrobial treatment and dietary reassessment as indicated by new cavitations, noncavitated lesions, or high MS levels | 우식이 재발하지 않도록 장기적인 관점에서 관리(필기)
 N: 필기 — 노인 환자의 치근우식 처치에서 굉장히 중요한 접근법 중 하나 · "다 외워서 쓰라는 게 아니라, 크게 어떻게 처치하고 세부사항이 어떻게 구성되어 있는지를 이해하고 임상에서 적용할 수 있으면 된다". 미출제.
 
+#TBL 노인 통증의 원인 — 14 목록과 분류 | k=PAIN | src=[[PAIN:5]] [[PAIN:7]] [[PAIN:8]]
+H: 출처 | 분류 | 항목
+R: p.5 Sources of pain in the elderly(14) {jb:J14} | (목록 순) | ① Degenerative joint disease / ② Spinal stenosis / ③ Fractures / ④ Pressure ulcers / ⑤ Neuropathic pain / ⑥ Urinary retention / ⑦ Post-stroke syndrome / ⑧ Improper positioning / ⑨ Fibromyalgia / ⑩ Cancer pain / ⑪ Contractures / ⑫ Postherpetic neuralgia / ⑬ Oral/dental sources / ⑭ Constipation
+R: 26 슬라이드(p.7) | 근골격계 | 퇴행성 관절질환 · 척주질환 · 골절 등(요통 · 무릎 · 고관절 통증)
+R: 26 슬라이드(p.7) | 신경병증성 | 포진 후 신경통 · 신경손상 · 당뇨병성 신경병증 등
+R: 26 슬라이드(p.7) | 구강·안면 | 치성 통증 · TMD · BMS · 신경통
+R: 26 슬라이드(p.7) | 기능/환경 | 욕창 · 구축 · 부적절한 자세
+R: 26 슬라이드(p.7) | 심리사회 | 불안 · 우울 · 외로움 · 수면장애
+R: 26 슬라이드(p.7) | 기타 | 암 · 혈관질환 · 감염
+R: 25 슬라이드 4칸 | Musculoskeletal conditions | Arthritis(osteoarthritis and rheumatoid arthritis) · Lower back pain · Knee pain · Hip pain · Neck pain · Degenerative joint disease
+R: 25 슬라이드 4칸 | Neurodegenerative and neurological conditions | Neuropathic pain · Fibromyalgia
+R: 25 슬라이드 4칸 | Vascular diseases | Peripheral vascular diseases
+R: 25 슬라이드 4칸 | Other common causes | Cancer · Old injuries · Pressure injuries/ulcers · Urinary tract infections · Bowel disease
+N: 20년 서술(탈) "노인에서 나타나는 통증의 원인 3가지 이상" — JB 답 = p.5 목록. 필기: 통증의 요인은 굉장히 많고, 노인은 여러 원인이 겹쳐 {r:복합적으로} 작용한다. p.7 슬라이드 결론 = {r:복수의 통증 원인이 공존}.
+
 #TBL 노인 통증 유병률 — 숫자 모음 | k=PAIN | src=[[PAIN:10]] [[PAIN:11]] [[PAIN:12]] [[PAIN:14]]
 H: 대상·항목 | 수치 | 출처·필기
-R: 노인 전체 | {r:1 in 5} elderly have pain · {r:18%} above 65 are taking pain medications regularly · 1/5 = 지난 한 달 24시간 넘게 지속된 통증 · 통증 있는 노인의 {r:3/5}은 1년 이상 지속 | CDC 2006(p.10)
+R: 노인 전체 | {r:1 in 5} elderly have pain · {r:18%} above 65 are taking pain medications regularly · 1/5 = 지난 한 달 24시간 넘게 지속된 통증 · 통증 있는 노인의 {r:3/5}은 1년 이상 지속 | CDC 2006(p.10) / 필기: 절반 이상은 1년에 1-2회 이상 통증을 느낀다고 한다
 R: 성별 | Women report severely painful joints more often than men({r:10 % : 7 %}) / >75 yrs 3곳 이상 통증 = women {r:31%} · men {r:19%} | p.10 · p.11 — 여성환자에서 비율이 높다(필기)
 R: 거주·질환 | Community-dwelling {r:25–56%} / Nursing home residents {r:45–80%} / 여러 질환(cancer·COPD·CAD)으로 사망하는 환자 {r:>50%} | p.11 — 지역사회보다 병원 환자가 통증을 더 많이 느낌(필기)
 R: 급성 vs 만성 | Acute pain {r:5%}: stable across life span / Chronic pain: {r:75세 이후 감소} | p.12 필기: ① 사망률이 높아져 건강한 노인만 남음 ② 인지 정도 감소로 통증 보고↓
@@ -280,14 +317,15 @@ R: 노인의 수면 {jb:J08} | {r:Time in bed} · Number of awakenings · Time t
 R: PSG first night effect | awakenings and arousals · sleep and REM latency · light sleep | sleep efficiency · REM · slow wave sleep
 R: 결과 | 수면 방해 → 통증 빈도 · 낮 기능 저하(피로·우울·활동 감소) | {r:pain threshold}(disturbed sleep lowers pain thresholds)
 R: 수면 문제 5 {jb:J13} | Circadian rhythm disorder · Primary sleep disorder · Medical illness · Medication/polypharmacy · Dementia | 26: + insomnia · sleep-disordered breathing · restless legs syndrome
+N: 수면단계 분포 그래프(p.57): N1 {r:7%} · N2 {r:50%} · N3 {r:18%} · REM {r:25%} — 필기 "좋은 건 줄어들고 나쁜 건 늘어난다!" · REM·서파 등 회복을 위한 수면은 감소, 얕은 수면은 증가하면서 잠을 잘 깨게 된다.
 N: ⚠ JB의 'NREM stage 증가'는 Stage N1(얕은 수면)↑ — slow wave sleep(서파수면 = 깊은 수면)은 ↓. 22년 수면장애 문항의 다른 판본 한국어 답의 '수면 시간 증가'는 time in bed(침대에 있는 시간)로 보임 — total sleep time은 ↓.
 
 #TBL 노인 약물 — 부작용과 구강 영향 | k=PAIN | src=[[PAIN:51]] [[PAIN:81]] [[PAIN:82]] [[PAIN:83]] [[PAIN:84]] [[PAIN:85]] [[PAIN:86]] [[PAIN:87]]
 H: 약물 | 특징·용도 | 부작용(주요 문제) | 유의사항(26 p.87 · 필기) | 구강
 R: Acetaminophen | osteoarthritis의 treatment of choice / analgesic ceiling | 간수치·pancytopenia | max {r:4 gm/day} / → 처방 전 혈액검사 |
-R: {r:Nonselective NSAIDs} {jb:J10} | inhibit prostaglandin synthesis / short term / ceiling effect | {r:GI bleed · renal impairment · platelet dysfunction} {jb:J07} / (26) BP/CV risk | 단기간·신기능 확인 / 필기: GI 내부 출혈은 환자가 잘 인지 못함 → 어떤 증상이 나타나면 끊어야 할지 명확하게 설명 | erythromycin · NSAID → toxicity(슬라이드 그대로)
+R: {r:Nonselective NSAIDs} {jb:J10} | inhibit prostaglandin synthesis / short term / ceiling effect | {r:GI bleed · renal impairment · platelet dysfunction} {jb:J07} / (26) BP/CV risk | 단기간·신기능 확인(p.87 원문: 가능하면 단기간, 병력/신기능 확인) / 필기: GI 내부 출혈은 환자가 잘 인지 못함 → 어떤 증상이 나타나면 끊어야 할지 명확하게 설명 | erythromycin · NSAID → toxicity(슬라이드 그대로)
 R: Selective COX-2 inhibitors | GI 부작용·platelet inhibition 감소 | {r:cardiovascular accident} | |
-R: {r:TCA}(amitriptyline·desipramine) | neuropathic·depression·sleep disturbance, 부작용으로 잘 안 씀 | (26) 항콜린성·기립성 저혈압 | 인지저하 / 낙상 / 필기: dry mouth 때문에 왔거나 구강 내 궤양이 많은 경우에는 사용 × | {r:xerostomia · potentiation of pressor effect} {jb:J07}
+R: {r:TCA}(amitriptyline·desipramine) | neuropathic·depression·sleep disturbance, 부작용으로 잘 안 씀 | (26) 항콜린성·기립성 저혈압 | 인지저하 / 낙상(p.87 원문: 인지저하 위험 주의 · p.83 필기: 낙상의 위험이 높아져 약으로 인한 이차적인 외상 주의) / 필기: dry mouth 때문에 왔거나 구강 내 궤양이 많은 경우에는 사용 × | {r:xerostomia · potentiation of pressor effect} {jb:J07}
 R: Duloxetine | FDA approved for neuropathic pain / newer antidepressant(Cymbalta) | | |
 R: Gabapentin / pregabalin | neuropathic pain | 졸림·어지럼·부종 | → 신기능에 따른 용량 조절 |
 R: {r:Carbamazepine} / oxcarbazepine | trigeminal neuralgia | pancytopenia / 어지럼·저나트륨혈증·상호작용 | → CBC/Na 모니터링 |
@@ -296,7 +334,7 @@ R: Local anesthetics(lidocaine patch · topical gel · capsaicin) | Capsaicin de
 R: SSRI(first line) | fluoxetine · paroxetine · sertraline · citalopram / Prevent reuptake of serotonin in synaptic cleft → increased level of neurotransmitters | GI trouble · insomnia · {r:bleeding time↑} | | <18% dry mouth · dysgeusia · stomatitis · glossitis · bruxism
 R: Lithium | | | 필기: 증상 onset과 약 변경 시점이 겹치면 약을 의심 | xerostomia · lichenoid stomatitis · metallic taste
 R: Bisphosphonates / antiresorptives | | | | {r:MRONJ}(26 강조)
-R: Antihypertensives · anticholinergic · polypharmacy | | | | xerostomia · gingival enlargement(일부 강압제) · caries·삼킴 곤란(anticholinergic) · 상호작용
+R: Antihypertensives · anticholinergic · polypharmacy | | | | xerostomia · gingival enlargement(일부 강압제) · caries·삼킴 곤란(anticholinergic) · 상호작용 / p.86 원문: Anticholinergic drugs(parkison drug) = Xerostomia → caries, {r:mucosal discomfort}, difficulty swallowing · Antihypertensives = Xerostomia; some agents may cause {r:gingival enlargement} · Polypharmacy = ↑ xerostomia and risk of drug–drug interactions
 R: Opioid | | 진정·변비·의존 | 만성 비암성 안면통에서는 제한적 |
 N: 원칙 = start low, go slow · 신기능·낙상·구강건조·출혈·인지 확인. 26 필기: 낙상과 구강건조증은 여러 차례 언급, bisphosphonate 강조. 루틴하게 쓰는 약도 처음 처방할 때는 짧은 주기로 처방해 어떤 event가 있었는지 확인(p.83 필기). Placebos도 p.83 목록에 있음.
 
@@ -307,6 +345,16 @@ R: {r:Trigeminal neuralgia} | {r:Good} | unilateral | Ipsilateral nonpainful sti
 R: {r:Postherpetic neuralgia} | {r:Good} | unilateral | Ipsilateral nonpainful stimulus | scarring·history of herpes zoster(varicella) | Tricyclic antidepressants and neuroleptics / topical capsaicin | 신경절 따라 / 날카로운 양상 / "반짝" 느낌이 잘 없음 / 초기엔 치수염과 구분 어려움 / viral infection이기 때문에 감기 전구증상 같은 증상을 보일 수도
 R: {r:Atypical facial pain} | {r:Poor} | unilateral or bilateral | none | none | Tricyclic antidepressants / behavioral therapy | broad(치아 쪽에 있다가 안면부로 가기도) / 올 때마다 위치가 바뀜 / NRS 최대 5-6
 N: 필기 — Localization Good = 어디가 아픈지 잘 짚는다(TN·postherpetic) / Poor = 잘 못 짚는다(atypical). 진료실에서 가장 많은 4가지 — 위치·quality·강도를 기록하면 어떤 약을 줄지가 달라진다. 노인에서는 soft tissue lesion과 BMS 구분이 특히 중요(p.78).
+
+#TBL 비약물 치료 6 — 무엇을 · 얼마나 · 누구에게 | k=PAIN | src=[[PAIN:88]] [[PAIN:89]]
+H: 치료 {jb:J12} | 내용(슬라이드) | 수치·조건 | 필기
+R: ① {r:Education} | basic knowledge about pain(diagnosis, treatment, complications, and prognosis) · other available treatment options · information about over-the-counter medications and self-help strategies | — | 환자와 보호자가 통증에 대해 잘못된 생각을 갖고 오는 경우가 많다 — 긍정적 + 부정적인 것을 모두 정확하게 / 어르신들은 교육 중에서 받아들이는 양이 정해져 있고 제한되어 있다
+R: ② {r:Exercise} | tailored for individual patient needs and lifestyle · moderate-intensity exercise | {r:30 min or more 3-4 times a week} · continued indefinitely | 물리치료·운동요법으로 통증이 줄어들 수 있다는 것을 알려줘야 한다
+R: ③ {r:Physical modalities}(heat, cold, and massage) | Cold for acute injuries · to decrease bleeding or hematoma formation, edema, and chronic back pain / Heat for relief of muscle aches and abdominal cramping | Cold = {r:first 48 hours} | —
+R: ④ {r:Cognitive-behavioral therapy} | Pain is influenced by cognition, affect and behavior · trained therapist · changing individual cognitive activity to modify associated behavior, thoughts, and emotions | {r:10-12 weekly} individual or group sessions · participants have to be {r:cognitively intact} | Education의 연장선 — 긍정적 강화↑ · 부정적인 것↓ / 통증 정도가 너무 높은 환자는 약물로 어느 정도 낮춰 놓고 시작
+R: ⑤ {r:Operant behavior therapy} | Use of negative and positive consequences to modify the behaviors | — | —
+R: ⑥ {r:Mind-body conditioning practices} | {r:Yoga, tai chi, qigong} | — | 마음이 편안해지면 통증이 어느 정도 조절되기 쉬워진다
+N: 20년 서술(탈) "악안면 통증의 비약물적 치료" — 6항목 이름. 변형 대비 숫자: 30분↑ 주 3-4회 · 48시간 · 10-12주. 약물만으로는 한계가 있을 수 있어 non-drug tx를 잘 활용해야 한다(p.88 필기).
 
 #TBL 지능·인지·기억 — 나이에 따라 무엇이 남고 무엇이 줄까 | k=PSY | src=[[PSY:7]] [[PSY:8]] [[PSY:9]] [[PSY:10]] [[PSY:11]] [[PSY:12]] [[PSY:13]] [[PSY:14]]
 H: 구분 | 유지·증가 | 감소 | 기억 요령(필기)
@@ -339,6 +387,17 @@ R: 중기 | 최근기억소실/{r:먼 과거기억 부분상실} · 시간 및 {
 R: 말기 | {r:대부분의 기억} 상실 · {r:사람} 지남력장애(가족 이름도 — 필기) | 언어능력 상실 · 판단력 및 실행기능 상실 · {r:경직, 보행이상, 실금, 감염, 욕창} 등 신체적 문제 {jb:B03} {jb:P03} | 의사소통 매우 어려움(행동변화로 문제 추정) · 장시간 많은 치료 → {r:전신마취}
 N: 모든 단계 ▶ {r:담당 physician}과 충분히 상의(p.31). 치매는 서서히 발병·서서히 진행 — 초기 전 gray zone = 경도인지장애(p.19).
 N: 중기 행동 악화와 연결되는 BPSD 원인(p.29): Pain · Excessive noise · Fear of medical treatment · Unfamiliar surroundings/persons → 원인교정 + 비약물적 접근 우선 ± 소량 약물.
+
+#TBL 치매 증후군의 원인질환 — 비율(p.22 원그래프) | k=PSY | src=[[PSY:22]]
+H: 원인질환 | 비율 | 필기·포인트
+R: 1위 {r:알츠하이머} {jb:P03} | {r:71.3%} | 원인질환의 개수는 여러 개지만 압도적으로 '알츠하이머'가 높은 비율(70% 이상) — 치매 ≠ 알츠하이머(치매는 증후군)
+R: 2위 {r:혈관성} {jb:B03} | {r:16.9%} | 기출 함정: "2위 알츠하이머" ✗
+R: 루이체 파킨슨병 | 3.4% | —
+R: 전두엽 | 1.0% | —
+R: 알코올성 | 0.9% | —
+R: 기타 | 6.5% | —
+R: Reversible Cause of Dementia Syndrome | Ex. 갑상선기능저하증 · 비타민B12 결핍 등 · *** {r:Malnutrition} | 빈도가 알츠하이머만큼 높지는 않지만, 발견하기만 하면 가역적으로 발병할 수 있는 것 · 영양상태/호르몬이 떨어지거나 뇌병변이 있는 경우 교정해주면 가역적으로 좋아질 수 있다 → 그래서 {r:치매 진단이 중요}
+N: 2단계 진단 — Syndromal → Causal(퇴행성 · 혈관성 · 기타).
 
 #TBL 정상 노화 · 경도인지장애 · 치매 | k=PSY | src=[[PSY:6]] [[PSY:16]] [[PSY:17]] [[PSY:19]] [[PSY:20]] [[PSY:21]]
 H: 항목 | 정상 노화 | 경도인지장애(MCI) | 치매
