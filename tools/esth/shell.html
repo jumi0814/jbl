@@ -3282,7 +3282,7 @@ $('#stage').addEventListener('focusin',e=>{if(e.target.id==='fq')jbMini();});$('
    · 복원: 정확히 일치 → 공백·구분기호를 무시한 느슨한 일치(레이아웃이 바뀌어도 살아남음) */
 const LXT={};   /* 옛 허브 기준선 글자 {SID:{aid:글자}} — packs/<SID>.lx.js (옛 표시가 남은 과목만 받음) */
 const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,GID=0,drag=null,ENR=0;const CTX=12;
- const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog]';
+ const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog],.und>.ui,.aex>.ui';   /* 10-05 사용자 '✍ 이해 여기 뒤에 있는 단어를 하이라이트 및 빈칸빵 하려고할 때 해당 ✍ 이해요게 같은 단어로 인식해서 같이 하이라이트' — ✍ 이해·⭐ 꼬리표는 표시 대상 글자에서 뺌(바로 붙은 첫 낱말과 한 낱말로 잡히던 것) */
  const BND=/[\s\/()\[\]{},;:·•→"'“”‘’<>=|—–]/;
  const COLORS=[['y','#FFE58A'],['g','#BDEBC4'],['p','#FFCFDF'],['u','#C9DDF7'],['o','#FFC98C']],CNAME={y:'노랑',g:'초록',p:'분홍',u:'파랑',o:'주황'};
  // ux3 트랙3 K2 빈칸 5색(형광펜 노랑 계열은 뺌) — [키, 가린 바탕, 밑줄]. 회색 n = 기본·옛 빈칸(저장 JSON에 c를 쓰지 않음 → 1차 판과 바이트까지 같음). DOM: class rkb-<c> + data-bc(형광펜 data-c와 따로)

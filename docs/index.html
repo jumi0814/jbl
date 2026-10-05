@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"3ebbb71f",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"a7d0569d",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -707,7 +707,7 @@ body.fighide .tc .figs{display:none}body.fighide .tc .figchip{display:inline-fle
 .jbpeek{position:absolute;z-index:45;width:min(560px,calc(100vw - 24px));background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(40,30,10,.18);padding:10px 14px 12px;font-size:14.5px;line-height:1.55;display:none}.jbpeek.on{display:block;max-height:min(72vh,640px);overflow-y:auto;overscroll-behavior:contain}.jbpeek .jpq img,.jbpeek .jpa img{max-width:100%;height:auto;display:block;margin:6px 0}.jbpeek .jpa{margin-top:6px;padding:8px 10px;background:var(--tint);border-radius:8px}   /* ux4f O19 문제·답 전부 — 길면 창 안에서 굴림 */
 .jbpeek .jph{display:flex;align-items:center;gap:8px;margin-bottom:6px}.jbpeek .jph b{font-size:13px;color:var(--sub)}.jbpeek .jppk{display:inline-flex;gap:4px}.jbpeek .jppk .btn{min-width:30px;padding:2px 6px}.jbpeek .jppk .btn.on{background:var(--acc,#2F4F45);color:#fff}.jbpeek .jpx{margin-left:auto;border:0;background:none;font-size:16px;color:var(--sub);min-width:36px;min-height:32px;cursor:pointer}
 .jbpeek .jpq .ln{margin:1px 0}.jbpeek .jpq .ln:first-child{font-weight:700}.jbpeek .jpmore{color:var(--sub);font-size:13px}.jbpeek .jpfig{font-size:13px;color:#7C5E0E;margin-top:2px}
-.jbpeek .jpa{margin-top:6px;border-left:3px solid #C99A2E;padding:2px 0 2px 10px;background:var(--peach);border-radius:0 8px 8px 0;max-height:260px;overflow:auto}.jbpeek .jpshow{margin-top:8px}
+.jbpeek .jpa{margin-top:6px;border-left:3px solid #C99A2E;padding:2px 0 2px 10px;background:var(--peach);border-radius:0 8px 8px 0;max-height:min(55vh,440px);overflow:auto}.jbpeek .jpshow{margin-top:8px}
 .jbpeek .jpb{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.jbpeek .jpb .btn{min-height:36px}.jbpeek .jpb .on[data-jpmk=ok]{background:var(--surface,#fff);border-color:var(--ink);color:var(--ink);font-weight:700}.jbpeek .jpb .on[data-jpmk=ng]{background:var(--surface,#fff);border-color:var(--red);color:var(--red);font-weight:700}   /* ux4f C 53 JB 채점 버튼과 같이 채움 없음 */
 /* ===== E — 정리표·비교표·기출 한눈표 (2차 묶음 5) ===== */
 /* E02 정리표 두 밀도: 요약(기본) = 세부 칸은 .sline(소제목: 시험 핵심어) · 전체 = #stage.sdfull · 세부 전체는 DOM에 그대로(.mfull) */
@@ -1957,7 +1957,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="3ebbb71f",PV={"OMS1": "aab7593b", "CONS": "18bce7b8", "IMPL": "d7cba73c", "ANAT": "9a5b2556", "GERI": "d3a051d7", "PHARM": "bf23a457", "ESTH": "8fa1e9cf"},PSZ={"OMS1": 3.6, "CONS": 2.8, "IMPL": 2.9, "ANAT": 3.6, "GERI": 3.8, "PHARM": 5.1, "ESTH": 3.4};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="a7d0569d",PV={"OMS1": "de02ed02", "CONS": "8cb080ab", "IMPL": "73588c0d", "ANAT": "24f9cfd1", "GERI": "a4180282", "PHARM": "fbc25a07", "ESTH": "1cb3d748"},PSZ={"OMS1": 3.6, "CONS": 2.8, "IMPL": 2.9, "ANAT": 3.7, "GERI": 3.8, "PHARM": 5.2, "ESTH": 3.4};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3282,7 +3282,7 @@ $('#stage').addEventListener('focusin',e=>{if(e.target.id==='fq')jbMini();});$('
    · 복원: 정확히 일치 → 공백·구분기호를 무시한 느슨한 일치(레이아웃이 바뀌어도 살아남음) */
 const LXT={};   /* 옛 허브 기준선 글자 {SID:{aid:글자}} — packs/<SID>.lx.js (옛 표시가 남은 과목만 받음) */
 const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,GID=0,drag=null,ENR=0;const CTX=12;
- const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog]';
+ const SKIP='button,.noann,select,input,textarea,summary,.chip,.badge,.kbd,.ntag,.ybadge,[data-ttog],.und>.ui,.aex>.ui';   /* 10-05 사용자 '✍ 이해 여기 뒤에 있는 단어를 하이라이트 및 빈칸빵 하려고할 때 해당 ✍ 이해요게 같은 단어로 인식해서 같이 하이라이트' — ✍ 이해·⭐ 꼬리표는 표시 대상 글자에서 뺌(바로 붙은 첫 낱말과 한 낱말로 잡히던 것) */
  const BND=/[\s\/()\[\]{},;:·•→"'“”‘’<>=|—–]/;
  const COLORS=[['y','#FFE58A'],['g','#BDEBC4'],['p','#FFCFDF'],['u','#C9DDF7'],['o','#FFC98C']],CNAME={y:'노랑',g:'초록',p:'분홍',u:'파랑',o:'주황'};
  // ux3 트랙3 K2 빈칸 5색(형광펜 노랑 계열은 뺌) — [키, 가린 바탕, 밑줄]. 회색 n = 기본·옛 빈칸(저장 JSON에 c를 쓰지 않음 → 1차 판과 바이트까지 같음). DOM: class rkb-<c> + data-bc(형광펜 data-c와 따로)
@@ -4329,7 +4329,7 @@ let PEEKA=null;function peekClose(){const p=$('#jbpeek');if(p)p.classList.remove
 function peekOpen(chip,pick){const P=PACKS[CUR.s],id=pick||chip.dataset.go,h=P&&P.cards[id];if(!h)return false;PEEKA=chip;const gos=(chip.dataset.gos||'').split(' ').filter(x=>x&&P.cards[x]);const E=x=>String(x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));
  const tmp=document.createElement('div');tmp.innerHTML=h;const ls=$$('.qtext .ln',tmp).map(x=>x.textContent.trim()).filter(Boolean);const fig=!!tmp.querySelector('.qtext img,img.fig')||/그림 문항/.test(tmp.textContent.slice(0,4000));
  /* ux4f O19 사용자 10-03 'jb 미리보기에서 문제 및 선지는 생략 없이 … 답도 … 명확한 답이 생략없이' — 문제 = JB 카드 문제 칸 전부(줄·그림) · 답 = JB 답안의 답 줄 전부(해설·참고 줄 앞까지 · 답 그림 포함) · 없으면 한눈표 핵심 */
- let core='';{const a=tmp.querySelector('.jbans .lines');if(a){const out=[];let tx='';for(const ln of a.children){if(ln.matches('.lab-e,.lab-r'))break;if(ln.matches('.exw')){if(/해설\s*참고|해설 ?참조/.test(tx)){ln.classList.remove('clamp');out.push(ln.outerHTML);}break;}tx+=ln.textContent;out.push(ln.outerHTML);}core=out.join('');   /* 답이 '해설 참고'면 답이 해설 안에 있으므로 해설을 접지 않고 함께 */const sec=a.closest('.jbans');if(sec)$$(':scope>img.fig',sec).forEach(i=>{core+=i.outerHTML;});}}if(!core)core=sumCore(P,id);const yb=tmp.querySelector('.ybadge');const qx=tmp.querySelector('.qtext');const qimg=$$('img.fig',tmp).filter(i=>!i.closest('.jbans,.qtext,.ans,details')).map(i=>i.outerHTML).join('');   /* 10-03 허브 점검: 문제 그림(.qc>img.fig)도 미리보기에 */
+ let core='';{const a=tmp.querySelector('.jbans .lines');if(a){const out=[];let tx='';for(const ln of a.children){if(ln.matches('.lab-r'))break;if(ln.matches('.exw')){const c=ln.cloneNode(true);c.classList.remove('clamp');$$('.lab-r',c).forEach(x=>{let n=x;while(n){const nx=n.nextElementSibling;n.remove();n=nx;}});out.push(c.outerHTML);break;}tx+=ln.textContent;out.push(ln.outerHTML);}   /* 10-05 사용자 'jb 미리보기에서 답 보기할 때 어떤건 해설이 뜨는데 어떤건 안 뜨거덩. 일괄적으로 해설까지만은 함께' — 답 + 해설 전부(참고 줄부터는 뺌) · 옛: 답이 '해설 참고'일 때만 해설 */core=out.join('');   /* 답이 '해설 참고'면 답이 해설 안에 있으므로 해설을 접지 않고 함께 */const sec=a.closest('.jbans');if(sec)$$(':scope>img.fig',sec).forEach(i=>{core+=i.outerHTML;});}}if(!core)core=sumCore(P,id);const yb=tmp.querySelector('.ybadge');const qx=tmp.querySelector('.qtext');const qimg=$$('img.fig',tmp).filter(i=>!i.closest('.jbans,.qtext,.ans,details')).map(i=>i.outerHTML).join('');   /* 10-03 허브 점검: 문제 그림(.qc>img.fig)도 미리보기에 */
  let p=$('#jbpeek');if(!p){p=document.createElement('div');p.id='jbpeek';p.className='jbpeek noann';document.body.appendChild(p);
   p.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
    if(b.classList.contains('jpx')){peekClose();return;}if(d.jppick){if(PEEKA&&PEEKA.isConnected)peekOpen(PEEKA,d.jppick);return;}if(b.classList.contains('jpshow')){const a=p.querySelector('.jpa');a.hidden=!a.hidden;b.textContent=a.hidden?'답 보기':'답 가리기';if(!a.hidden){try{fillThumbs(p);}catch(e){}const pr=p.getBoundingClientRect();if(pr.bottom>innerHeight-LAY.kith)window.scrollBy({top:Math.min(pr.bottom-innerHeight+LAY.kith+12,pr.top-topOff()),behavior:'smooth'});}return;}   /* 10-03 허브 점검: 답을 펼친 뒤에도 [JB에서 풀기]가 화면 안에 */
