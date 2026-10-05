@@ -11,7 +11,7 @@ JS = """()=>{const st=document.querySelector('#stage');const k=[...st.querySelec
 const orphan=[...st.querySelectorAll('li')].filter(l=>l.firstElementChild&&/^(UL|OL)$/.test(l.firstElementChild.tagName)&&l.firstChild===l.firstElementChild).length;
 let run3=0;st.querySelectorAll('ul,ol').forEach(u=>{let r=0;for(const li of u.children){const h=li.querySelector(':scope>.hl');if(h&&h.textContent.trim()===li.textContent.trim())r++;else r=0;if(r>=3){run3++;break;}}});
 let vshort=0;const vs=[];st.querySelectorAll('.tc ul,.tc ol').forEach(u=>{if(u.closest('.c-mem')||u.classList.contains('exlist')||!u.offsetParent)return;const lis=[...u.children].filter(x=>x.tagName==='LI'&&x.offsetParent);if(lis.length<3)return;
- const ls=lis.map(x=>x.innerText.replace(/\\s+/g,' ').trim().length).sort((a,b)=>a-b);if(ls[ls.length>>1]>22)return;const L=lis.map(x=>Math.round(x.getBoundingClientRect().left));if(L.every(x=>x===L[0])&&getComputedStyle(lis[0]).display!=='inline'){vshort++;vs.push(u.textContent.slice(0,40));}});   /* ux2 D09 중앙값 22자 이하 세로 목록 */
+ const ls=lis.map(x=>x.innerText.replace(/\\s+/g,' ').trim().length).sort((a,b)=>a-b);if(ls[ls.length>>1]>22)return;if(lis.filter(x=>/ = | → |: /.test(x.innerText)).length*2>=lis.length)return;   /* 10-04 사용자 줄바꿈 전수: '사실 문장'(=·→·:) 조각은 짧아도 한 줄씩 — 세로가 맞음 */const L=lis.map(x=>Math.round(x.getBoundingClientRect().left));if(L.every(x=>x===L[0])&&getComputedStyle(lis[0]).display!=='inline'){vshort++;vs.push(u.textContent.slice(0,40));}});   /* ux2 D09 중앙값 22자 이하 세로 목록 */
 return {n:k.length,sum:k.reduce((a,b)=>a+b,0),orphan,run3,flow:st.querySelectorAll('ul.kflow').length,blk:st.querySelectorAll('.hlblock,li.hlb').length,vshort,vs};}"""
 async def main():
     async with async_playwright() as p:
