@@ -34,7 +34,13 @@ def reflow(text, choices=False):
             else: out.append(s)
             prev_full = False; prev_raw = l; continue
         if TROW.match(s) and is_thead(s): tbl = True; out.append(s); prev_full = False; prev_raw = l; continue
-        if out and out[-1].count('(') > out[-1].count(')') and s.count(')') > s.count('(') and not NUMM.match(s) and not LABEL.match(s) and width(s) <= W:
+        nm_ = re.match(r'^(\d{1,2})([.)])\s', s); inl_ = re.findall(r'(?:^|[\s,，:])(\d{1,2})([.)])\s', out[-1]) if out else []
+        if out and nm_ and len(inl_) >= 2 and inl_[-1][1] == nm_.group(2) and int(nm_.group(1)) == int(inl_[-1][0]) + 1 and re.search(r'[,，]\s*$', out[-1]):
+            out[-1] += ' ' + s                             # 10-05 사용자 '1. 면허종류, 2. 번호, 3. 분량, 4. 용법,' | '5. 용량, 6. 사용기간' — 한 줄 나열(앞 줄에 번호 둘 이상 + 쉼표로 끝남)이 다음 번호에서 끊긴 것 → 이어 붙임
+        elif out and not STARTER.match(s) and not LABEL.match(s) and not re.match(r'^\s*(?:<[^>]+>|\[[^\]]+\])\s*$', out[-1]) and not re.search(r'[.?!:：;)\]”"…]\s*$', out[-1]) and (
+                re.search(r'(?:[을를에의및]|하고|하며|하여|되어|이며|이고|에서|으로|에게|부터|까지|처럼|보다|에는|에도|으며|지만|는데|[,，]|\b(?:and|or|of|the|to|a|an|in|with|for|by|from|at|on|as|that|which|is|are))\s*$', out[-1]) or (re.match(r'^[a-z(]', s) and not re.match(r'^(?:e\.g|i\.e|cf|ex)\b', s)) or width(out[-1]) >= W * 0.6):
+            out[-1] += ' ' + s                             # 10-05 문장 중간 끊김: 앞 줄이 문장부호로 끝나지 않고(조사·접속어·쉼표로 끝나거나 넓은 줄) 다음 줄이 번호·라벨·글머리가 아니면(소문자·여는 괄호로 시작하면 특히) → 이어 붙임
+        elif out and out[-1].count('(') > out[-1].count(')') and s.count(')') > s.count('(') and not NUMM.match(s) and not LABEL.match(s) and width(s) <= W:
             out[-1] += ' ' + s                             # 10-05 JB 가독성: 괄호가 열린 채 끊긴 줄('… (necrosis' | '-> degradation products)') → 이어 붙임(글자 그대로)
         elif out and single and len(prev_raw.strip()) == 1 and '가' <= prev_raw.strip() <= '힣':
             out[-1] += s                                   # 세로로 끊긴 표 머리("장"/"점") → 붙임

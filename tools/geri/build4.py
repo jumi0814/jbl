@@ -210,7 +210,7 @@ def astruct(s, lvl=0):
         h_ = f'<div class="klead">{astruct(pp[0], lvl + 1) if len(pp[0]) > 190 else lecparse.inline(pp[0], ctx)}</div>' + _ul([astruct(x, lvl + 1) for x in pp[1:1 + len(its)]])
         return h_ + (f'<div class="ktail">{astruct(pp[-1], lvl + 1)}</div>' if tail else '')
     # 4b) 가장 긴 괄호·따옴표 묶음 안으로 들어가 다시 나눔(앞머리·꼬리는 따로 줄)
-    gs = [g for g in _groups(s) if g[1] - g[0] > 80]
+    gs = [g for g in _groups(s) if g[1] - g[0] > 80 and not re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|란|도|만)(?:\s|$)', s[g[1] + 1:])]   # 10-05 인용·괄호 뒤가 조사로 이어지면 그 묶음에서 자르지 않음(" 한 글자 줄·조사로 시작하는 줄)
     if gs:
         a_, b_ = max(gs, key=lambda g: g[1] - g[0]); head = s[:a_ + 1].strip(); inner = s[a_ + 1:b_ + 1]; tail = s[b_ + 1:].strip()
         return (f'<div class="klead">{astruct(head, lvl + 1)}</div>' if head else '') + f'<div class="kin">{astruct(inner, lvl + 1)}</div>' + (f'<div class="ktail">{astruct(tail, lvl + 1)}</div>' if tail else '')
@@ -268,15 +268,16 @@ def item_lis(x):
     return [r]
 # ---- 10-05 사용자 'jb문제 란에서 가독성을 전면적으로 … 인용이나 근거, 필기파트가 중구난방 … 슬라이드 원문 보는 버튼도 … 너무 크게' — 대조·주변부 항목 모양(글자 그대로, 배치만):
 #  A 줄 = [판정 꼬리표] 위치 → 슬라이드 인용 상자(" … " 안 ' / ' = 한 줄씩) → 설명 줄 → 작은 근거 줄(📄 강의명 쪽 쪽 — 강의명은 한 번) · M 줄 = 라벨로 📄 같은·인접 슬라이드 / ✍ 필기 / 🔁 변형 대비·함정 / 그 밖 소절에 모음
-VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|×|○')
+VWORD = re.compile(r'일치|불일치|부분|근거 없음|보강|보충|정답|오답|다른 점|대응|정정|틀림|옳음|불가|보류|×|○')
 def _vcls(v):
-    if re.search(r'불일치|×|오답|다른 점|근거 없음|정정', v): return 'vd'
+    if re.search(r'불일치|×|오답|다른 점|근거 없음|정정|틀림', v): return 'vd'
     if '부분' in v: return 'vp'
-    if re.search(r'일치|○|정답|대응', v): return 'vk'
+    if re.search(r'일치|○|정답|대응|옳음', v): return 'vk'
     return 'vi'
 def _qspan(s):
     """처음 나오는 큰따옴표 묶음 (여는 자리, 닫는 자리)"""
     for i, ch in enumerate(s):
+        if ch in '"“' and s[:i].count('(') > s[:i].count(')'): return None   # 10-05 괄호 안 인용은 상자로 떼지 않음(문장 속 덧말)
         if ch in '"“':
             j = s.find('"' if ch == '"' else '”', i + 1)
             return (i, j) if j > i else None
@@ -291,6 +292,8 @@ def cite_row(cites):
         if not m: gs.append(('', [c])); continue
         cls, k, p_, t = m.groups(); mm = re.match(r'^(.*?)\s*((?:슬라이드|p\.)\s?[\d–\-·,~ ]+)$', t)
         nm, pg = (mm.group(1).strip(), mm.group(2)) if mm else ('', t)
+        m3 = None if mm else re.match(r'^(.*?)\s*‘(.+)’$', t)
+        if m3: nm, pg = m3.group(1).strip(), (('p.' + m3.group(2)) if re.fullmatch(r'[\d–\-·,~ ]+', m3.group(2)) else m3.group(2))   # 쪽 이미지가 없는 강의 인용 ‘4’ → p.4
         b_ = f'<button class="{cls} cz" data-k="{k}" data-p="{p_}" title="{esc(t)}">{pg}</button>'
         if gs and gs[-1][0] == nm and nm: gs[-1][1].append(b_)
         else: gs.append((nm, [b_]))
@@ -309,11 +312,11 @@ def aitem_lis(x, kind='A'):
     def ph(m): keep.append(m.group(0)); return f'{len(keep) - 1}'
     body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
     if '<' in body: return item_lis(x)
-    raw = re.sub(r'\s+', ' ', html.unescape(body)).strip()
+    raw = re.sub(r'\s+([.,;)])', r'\1', re.sub(r'\s+', ' ', html.unescape(body))).strip()   # 인용 칩을 뺀 자리의 ' .' 꼬리
     back = lambda h_: re.sub('(\\d+)', lambda m: keep[int(m.group(1))], h_)
     tag = ''
     m = re.match(r'^(.{1,24}?)\s+—\s+(.+)$', raw)
-    if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“(\[]', m.group(1)):
+    if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“\[]', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'):
         tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
@@ -321,7 +324,7 @@ def aitem_lis(x, kind='A'):
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
         if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
-        aft = re.sub(r'^/\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
+        aft = re.sub(r'^[/—,·]\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
         hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
         ah = ''
         if aft: ah = f'<div class="acm">{astruct(aft) if len(aft) > 190 else (lecparse.render_block(aft, ctx) if (len(aft) > 150 or lecparse._facts(lecparse.split_top(aft, " / "))) else lecparse.inline(aft, ctx))}</div>'
@@ -354,6 +357,7 @@ def mgroups(M):
     for x in M:
         pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', x)))).strip()
         m = re.match(r'^([^:]{1,60}?)[:：]\s', pl)
+        if m and (m.group(1).lstrip()[:1] in '"“' or (m.group(1).count('"') % 2) or m.group(1).count('“') != m.group(1).count('”')): m = None   # 따옴표로 시작하거나 따옴표 짝이 안 맞는 앞부분은 라벨 아님(인용 뒤 콜론)
         k = _mkind(m.group(1)) if m else prev
         G[k].append(x); prev = k
     used = [(k, t) for k, t in MKIND if G[k]]
