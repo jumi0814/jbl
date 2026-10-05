@@ -108,7 +108,7 @@ M: 슬라이드 11 Precautions: hypothyroidism, Addison disease, hypopituitarism
 M: 필기(슬라이드 6): metabolite가 κ 수용체에 작용해 부작용이 큼.
 N: 24년 1회(탈). 원래 lec=CHR:11로 걸려 있던 것을 논문 3문항을 모은 '투석 환자' 카드(p.24)에 맞춤. 슬라이드 밖 논문 문장이라 v=part.
 @XE08 | v=ok | lec=XE:40
-A: 슬라이드 40 진단 기준 "Unstimulated < 0.1 ml/min / Stimulated < 0.5 – 0.7 ml/min", 표의 Dry Mouth Whole Saliva < 0.1/< 0.5 – 0.7 — JB 해설(A 비자극·B 자극, 0.1·0.7)과 일치. [[XE:40]]
+A: 슬라이드 40 진단 기준 "Unstimulated < 0.1 ml/min / Stimulated < 0.5 – 0.7 ml/min" / 표의 Dry Mouth Whole Saliva < 0.1/< 0.5 – 0.7 — JB 해설(A 비자극·B 자극, {r:0.1}·{r:0.7})과 일치. [[XE:40]]
 M: 같은 표의 정상 whole saliva: 0.3 – 0.5 · 1.0 – 3.0 / Parotid 0.04 · 0.70 / Submandibular/Sublingual 0.15 · 0.60 [[XE:40]]
 M: 슬라이드 55: (2017년 시험문제)도 같은 표를 소수점 첫째자리 빈칸으로 냄. [[XE:55]]
 M: 필기: "큰 별표! 이 표의 수치를 외우세요".
@@ -116,7 +116,8 @@ N: 22년 백정화 출제(복원 "A: 0.1 이하 B: 0.7 이하" — 보기는 전
 @XE15 | v=part | lec=XE:55
 A: 정답 요지 — JB 답 "(해설참조)" · 해설 원문 "p.41, 55 둘 중 어떤 표가 출제되었는지 확실하지 않습니다"(답 원문 없음) → 두 표의 공통 값: 정상 whole 비자극 0.3–0.5·자극 1.0–3.0 / dry mouth 비자극 < 0.1·자극 < 0.5–0.7 mL/min [[XE:40]] [[XE:55]]
 A: 슬라이드 55(2017년 시험문제) "다음은 자극성, 비자극성 타액분비율을 정상군과 구강건조증군에서 비교한 표이다. 소수점 첫째자리까지 사용하여 빈칸에 알맞은 숫자를 적으시오" — 표 값 Normal Whole Saliva 0.3 – 0.5 · 1.0 – 3.0 / Dry Mouth Whole Saliva < 0.1 · < 0.5 – 0.7. [[XE:55]]
-A: 슬라이드 40 표는 같은 값에 Parotid 0.04 · 0.70, Submandibular/Sublingual 0.15 · 0.60이 더 있음. JB 답은 "(해설참조)"로 비어 있어 어느 칸이 나왔는지 대조 불가 — 부분. [[XE:40]]
+A: 슬라이드 40 표는 같은 값에 Parotid 0.04 · 0.70, Submandibular/Sublingual 0.15 · 0.60이 더 있음. [[XE:40]]
+A: 부분 — JB 답은 "(해설참조)"로 비어 있어 어느 칸이 나왔는지 대조 불가.
 M: 필기: "큰 별표! 이 표의 수치를 외우세요. 특히 dry mouth whole saliva - unstimulated < 0.1 ml/min 아주 중요합니다!" [[XE:40]]
 M: p.1 필기: "이 숫자가 굉장히 중요하고 주관식으로 나올 수 있습니다". [[XE:1]]
 N: 21년 출제, 그림 문항 — JB도 "p.41, 55 둘 중 어떤 표가 출제되었는지 확실하지 않습니다"(25년도 쪽수, p.41 = 26 p.40). p.55는 교수님이 공개한 2017년 빈칸 문제와 같은 형식.
@@ -152,7 +153,7 @@ M: 같은 슬라이드의 다른 General Features(짤 변형 후보): "Most valu
 M: 유기물 축: iodine not affected[[DS:7]] · CHX not reduced[[DS:9]] ↔ H2O2 reduce[[DS:18]] · NaOCl decrease[[DS:24]].
 N: 22년 칸 — 25판 8번·24판 9번·23판 9번. JB 스스로 "기출에서 이러한 내용을 찾기 어려웠으며"라 밝힌 추정 복원 → v=part. 바로 뒤 CHX 문항(25판 9번·24·23판 10번 "CHX 에 대한 설명으로 틀린 것은?")이 전에는 이 블록에 붙어 있었으나 별도 문항으로 분리 — 그 문항 참고.
 @BT01 | v=ok | lec=BT:4
-A: 슬라이드 4 "Clostridium botulinum — Gram-positive, rod-shaped, anaerobic, spore-forming, motile bacterium → Neurotoxin" — 3) "구균과 간균으로 운동성이 없다"는 rod-shaped·motile과 반대라 ✗ → JB 답 3)과 일치. 2) 신경 독소 ○, 4) 절대 혐기성 ○(필기 "강한 혐기성 균"). [[BT:4]]
+A: 슬라이드 4 "Clostridium botulinum — Gram-positive, rod-shaped, anaerobic, spore-forming, motile bacterium → Neurotoxin" / 3) "구균과 간균으로 운동성이 없다"는 {r:rod-shaped}·{r:motile}과 반대라 ✗ → JB 답 3)과 일치 / 2) 신경 독소 ○ / 4) 절대 혐기성 ○(필기 "강한 혐기성 균"). [[BT:4]]
 A: 1) 슬라이드 8 연표 "Ida A. Bengtson는 바실러스(Bacillus)와 달리 절대 혐기조건에서만 사는 Bacillus botulinum을 새로운 속(Genus)으로 볼링핀 모양을 뜻하는 Clostridium 속(Genus)으로 나눌 것을 제안" → ○. [[BT:8]]
 A: 5) 슬라이드 6 필기 "보톨리눔 균은 두 가지 cycle을 가지고 있습니다 … 정상적인 환경에서는 vegetative cycle … 생존이 어려운 환경이 되면 sporulation cycle" → ○. [[BT:6]]
 M: 슬라이드 6: toxin은 sporulation cycle 초기(Clostridial cell form — Solventogenesis and toxin formation)에 생성 [[BT:6]]
@@ -162,39 +163,49 @@ M: 25 필기: "섬모가 있어 움직일 수도 있다" — 'spore-forming'·'m
 M: 필기(슬라이드 6): 의료용 보톡스는 합성이 아니라 균주를 배양해 확보.
 N: 24·23·21·20년 4회 출제(25판 2024년 칸 1번 · 23년 칸 "2024년 1번 중복", 24판 23·21년 칸, 23판 21·20년 칸). 21·20년 판은 "옳은 것은?" 형식에 선지 3개(답 1), 2)). JB 참고 p.4-7은 25 자료 쪽수 = 26 같은 쪽.
 @BT02 | v=ok | lec=BT:7
-A: 슬라이드 7 "BoNT 위장관계 효소에 저항 / 가열비활성화가 효과적 → 100도씨 15분" — 5) "단백질이라 대부분 소화되나 소량 위장벽으로 흡수될 경우에 위험하다"는 '효소에 저항'과 반대라 ✗ → JB 답 5)와 일치. 3) 100도 15분 가열 ○. [[BT:7]]
-A: 슬라이드 7 그림 Sources: Zoonosis(소·돼지·생선 — Preformed toxins, oral uptake) · Plants/Honey · Environment(wounds) / Forms: Food-borne · Infant · Wound · Iatrogenic · Inhalation botulism — 1) 동물(사체)·2) 꿀 섭취로 영아 ○. 필기 "꿀에도 생각보다 보툴리눔 균이 많습니다. 그래서 면역력이 약한 영유아에게 꿀을 가급적 먹이지 말라고 합니다". [[BT:7]]
+A: 슬라이드 7 "BoNT 위장관계 효소에 저항 / 가열비활성화가 효과적 → 100도씨 15분" / 5) "단백질이라 대부분 소화되나 소량 위장벽으로 흡수될 경우에 위험하다"는 '{r:효소에 저항}'과 반대라 ✗ → JB 답 5)와 일치 / 3) 100도 15분 가열 ○. [[BT:7]]
+A: 슬라이드 7 그림 Sources: Zoonosis(소·돼지·생선 — Preformed toxins, oral uptake) · Plants/Honey · Environment(wounds) / Forms: Food-borne · Infant · Wound · Iatrogenic · Inhalation botulism — 1) 동물(사체)·2) 꿀 섭취로 영아 ○. [[BT:7]]
+A: 필기 "꿀에도 생각보다 보툴리눔 균이 많습니다. 그래서 면역력이 약한 영유아에게 꿀을 가급적 먹이지 말라고 합니다". [[BT:7]]
 A: ⚠ 26 필기(p.7) "설령 독소를 섭취한다고 해도 거의 대부분은 소화계에서 분해가 됩니다. 그래서 다량을 섭취하지 않는 이상 큰 문제는 없습니다" [[BT:7]]
-A: p.9 필기 "보툴리눔 독소는 위장관에서 다 분해되기 때문에 대체로 큰 문제는 없습니다" — 슬라이드 문장과 반대. JB 채점은 슬라이드 문장("효소에 저항") 기준. [[BT:9]]
+A: p.9 필기 "보툴리눔 독소는 위장관에서 다 분해되기 때문에 대체로 큰 문제는 없습니다" / 슬라이드 문장과 반대 / JB 채점은 슬라이드 문장("효소에 저항") 기준. [[BT:9]]
 M: 슬라이드 7: 그림 아래 체내 경로 ① Transcytosis → ② Circulation → ③ Synapse(Block neurotransmitter release) → ④ Descending flaccid paralysis → Respiratory failure. [[BT:7]]
 M: 슬라이드 9: 투여 경로별 치사량 1.3–2.1 ng/kg intravenously or intramuscularly / 10–13 ng/kg 흡입 / 1000 ng/kg 경구 — 경구가 가장 덜 위험(흡수 적음). [[BT:9]]
 M: 필기(슬라이드 7): 균주는 고온 가열에도 포자로 살아남지만 독소는 단백질이라 가열 시 변성 · 최근엔 오염된 의료기구에 의한 botulism이 많음 · 처음 발견은 햄 깡통.
 N: 24·23·22년 3회 출제(JB 괄호 (24,23,22)). 4번 선지 "음식에서는 신경독소보다 포자형태가 더 적다"는 JB 스스로 "(?, 정확한 의미가 잘 기억나지 않아)" — 복원 불확실. 22년 판은 선지 순서가 달라 답이 4).
 @BT03 | v=part | lec=BT:10
 A: 1) 슬라이드 8 "Alan B. Scott, 안과의사로 1980년 안검 경련(Blepharospasm)과 사시(Strabismus) 환자를 대상으로 보툴리눔 독소를 이용한 효과적인 치료 방법 개발/ 최초로 Oculinum 이름의 보툴리눔 치료제 개발" → ○. [[BT:8]]
-A: 2) 슬라이드 11 "Light chain(LC) — Catalytic Domain", 필기(p.10) "light chain : Zn을 포함한 protease인데, 이게 신경막에 있는 SNARE ptn을 분해합니다", 슬라이드 14 "Zn-의존적 단백분해효소" → ○. [[BT:11]] [[BT:10]] [[BT:14]]
+A: 2) 슬라이드 11 "Light chain(LC) — Catalytic Domain" [[BT:11]]
+A: 필기(p.10) "light chain : {r:Zn}을 포함한 protease인데, 이게 신경막에 있는 SNARE ptn을 분해합니다" [[BT:10]]
+A: 슬라이드 14 "Zn-의존적 단백분해효소" → ○. [[BT:14]]
 A: 5) 슬라이드 11 "Non-Toxic Non-hemagglutinating protein (NTNHA) — 독소 안정화 및 보호" → ○.
-A: 4) JB 답(✗)의 근거 — 슬라이드 10 그림: light chain과 heavy chain은 -S-S-로 연결, 필기 "light chain과 heavy chain이 연결된 긴 사슬로, 이황화결합에 의해 한 번 꺾여 있습니다". ⚠ 같은 그림은 "Progenitor toxin (inactive) → Bacterial or Gastric protease → Active toxin"이고 필기도 "독소가 활성화되면 두 chain이 분리되며 light chain이 실질적 독소로써 기능" — '분리하는 protease에 의해 독성'을 완전히 틀렸다고 하기 어려움. [[BT:10]]
-A: ⚠ 3) "독성은 약하나 의료용으로 사용할 수 있다" — 슬라이드 9 평균치사량 0.0003 ㎍/kg로 독성 순위 1위, 필기 "생물학적 독소 중에 가장 강력" → 슬라이드 기준으로는 3)도 틀린 문장. JB 답은 4)만(해설 3) "위험성이 매우 높으나 … 극소량 사용"). [[BT:9]]
+A: 4) JB 답(✗)의 근거 — 슬라이드 10 그림: light chain과 heavy chain은 -S-S-로 연결 [[BT:10]]
+A: 필기 "light chain과 heavy chain이 연결된 긴 사슬로, 이황화결합에 의해 한 번 꺾여 있습니다" [[BT:10]]
+A: ⚠ 같은 그림은 "Progenitor toxin (inactive) → Bacterial or Gastric protease → Active toxin"이고 필기도 "독소가 활성화되면 두 chain이 분리되며 light chain이 실질적 독소로써 기능" / '분리하는 protease에 의해 독성'을 완전히 틀렸다고 하기 어려움. [[BT:10]]
+A: ⚠ 3) "독성은 약하나 의료용으로 사용할 수 있다" — 슬라이드 9 평균치사량 0.0003 ㎍/kg로 독성 순위 {r:1위}, 필기 "생물학적 독소 중에 가장 강력" → 슬라이드 기준으로는 3)도 틀린 문장 / JB 답은 4)만(해설 3) "위험성이 매우 높으나 … 극소량 사용"). [[BT:9]]
 M: 슬라이드 11 단백질 클러스터: BoNT 150 kDa → +NTNHA → M-PTC 290 kDa → +HA70·HA17·HA33 → L-PTC 760 kDa / Heavy chain N-terminal(HN) = Translocation Domain, C-terminal(HC) = Binding Domain / HAP = 응집소 및 장에서 장벽을 통과 / 부형제 = 독소 안정화. [[BT:11]]
 M: 슬라이드 10: 유전자 배열 ha70 · ha17 · ha34 · botR · ntnh · bont [[BT:10]]
 M: 슬라이드 8: 연표의 Burgen(1949, ACh 분비 억제)·Schantz(정제)·1989 FDA Oculinum 승인도 변형 선지 후보. [[BT:8]]
 M: 필기(슬라이드 10): "bont : 독소를 직접적으로 코딩 … 나머지 부분 : 독소의 작용을 보조(안정성, 숙주 내 유입 보조 등)".
 N: 24·23년 2회 출제(JB 괄호 (24,23)). 선지 5 "Htnha"는 ntnha의 오기로 보임(JB 원문 그대로). JB 해설의 "MMP 역할"은 슬라이드에 없는 표현 — 슬라이드는 "Zn-의존적 단백분해효소".
 @BT04 | v=part | lec=BT:19
-A: 1) 슬라이드 18(대법원 판결 "치과의사의 안면 보톡스 시술이 의사의 경우와 비교하여 사람의 생명·신체나 일반 공중위생에 더 큰 위험을 발생시킬 수 있다고 보기 어렵습니다"), 필기 "두경부, 즉 목 위의 모든 부위 (예: 코, 이마)에 치과의사가 보톡스 시술하는 것은 합법" → "저작근 외에는 불법" ✗ — JB 답과 일치. [[BT:18]]
+A: 1) 슬라이드 18(대법원 판결): "치과의사의 안면 보톡스 시술이 의사의 경우와 비교하여 사람의 생명·신체나 일반 공중위생에 더 큰 위험을 발생시킬 수 있다고 보기 어렵습니다" [[BT:18]]
+A: 필기 "두경부, 즉 목 위의 모든 부위 (예: 코, 이마)에 치과의사가 보톡스 시술하는 것은 {r:합법}" → "저작근 외에는 불법" ✗ — JB 답과 일치. [[BT:18]]
 A: 2) 슬라이드 19 치과 허용 진료 영역 "교정치료중 근육 재훈련 / 치과 임플란트 시술 보조 / 악안면 골절 수술 보조" → ○('보철'이라는 단어 자체는 표에 없음). [[BT:19]]
-A: 3) 슬라이드 16 FDA 적응증(Cervical dystonia·Blepharospasm·Glabellar lines 등), 필기 "근육이 과하게 긴장하는 이러한 질환들에 효과적" → ○. [[BT:16]]
-A: 5) 필기(p.21) "실제 임상적으로 사용하는 보톡스의 용량은 보통 수십 unit, 많아봐야 300unit 정도이니 사실 굉장히 안전", 필기(p.22) "혈관에 직접 보톡스를 주입했을 때 나타날 수 있는 '원거리 확산'" → ○. [[BT:21]] [[BT:22]]
+A: 3) 슬라이드 16 FDA 적응증(Cervical dystonia·Blepharospasm·Glabellar lines 등) [[BT:16]]
+A: 필기 "근육이 과하게 긴장하는 이러한 질환들에 효과적" → ○. [[BT:16]]
+A: 5) 필기(p.21) "실제 임상적으로 사용하는 보톡스의 용량은 보통 수십 unit, 많아봐야 300unit 정도이니 사실 굉장히 안전" [[BT:21]]
+A: 필기(p.22) "혈관에 직접 보톡스를 주입했을 때 나타날 수 있는 '원거리 확산'" → ○. [[BT:22]]
 A: 6) 슬라이드 29 "교근비대증 25~50 U", 슬라이드 33 "25 ~50 U/side" → ○. [[BT:29]] [[BT:33]]
-A: ⚠ 4) "보통 4-6개월"을 ✗로 본 JB 근거(2주에 효과 시작·6주에 최대)는 옛 자료 p.47 — 26 자료엔 해당 슬라이드가 없고 슬라이드 32 "2주/6주 C/U", 필기(p.29) "일반적으로는 15-20U 정도만 투여해도 3-6개월은 효과"만 있음 → 부분 일치. [[BT:32]] [[BT:29]]
-M: 슬라이드 19: 표 15항목(Dentofacial aesthetics · Gummy smile · Mandibular spasm · Oromandibulr dystonia · Masseteric hypertrophy · TMD · Bruxism, pathologic clenching · 코골이 및 수면무호흡 · Sialorrhea · Persistent parotid sialocele, Ranula · 대상포진후 신경통 · Trigeminal Neuralgia · 교정 · 임플란트 · 악안면 골절) [[BT:19]]
+A: 부분 일치 — ⚠ 4) "보통 {r:4-6개월}"을 ✗로 본 JB 근거(2주에 효과 시작·6주에 최대)는 옛 자료 p.47 / 26 자료엔 해당 슬라이드가 없고 슬라이드 32 "2주/6주 C/U" [[BT:32]]
+A: 필기(p.29) "일반적으로는 15-20U 정도만 투여해도 {r:3-6개월}은 효과"만 있음. [[BT:29]]
+M: 슬라이드 19: 표(15항목): Dentofacial aesthetics · Gummy smile · Mandibular spasm · Oromandibulr dystonia · Masseteric hypertrophy · TMD · Bruxism, pathologic clenching · 코골이 및 수면무호흡 · Sialorrhea · Persistent parotid sialocele, Ranula · 대상포진후 신경통 · Trigeminal Neuralgia · 교정 · 임플란트 · 악안면 골절 [[BT:19]]
 M: 슬라이드 17: 허가된 범위(편두통·사시·주름·저작근긴장·경부근긴장·다한증·과민성방광) vs 임의 사용 범위(파킨슨·우울증·대상포진후 신경통·암치료 보조·혈행개선·부정맥·통증). [[BT:17]]
 M: 슬라이드 32 F/U: 4주 이내 재주사 금지·Muscle tone C/U·Rebounding C/U. [[BT:32]]
 M: 필기(슬라이드 19): "전체적으로 읽어주셨습니다".
 N: 24·23·22년 3회 출제(JB 괄호 (24,23,22)) — 24판 22년 칸은 "3번 문항과 중복복원으로 예상"(= 22·21년 '틀린 것' 문항 계열). 20년 5번 문항과 선지가 겹침(저작근 외 불법·4-6개월·혈관 유입). JB 참고 p.19·21·29는 25 자료 = 26 같은 쪽.
 @BT05 | v=ok | lec=BT:23
-A: 슬라이드 23 금기증 "주사부위감염 시" — 2) "감염부위에도 염증 치료와는 무관하므로 소독하고 진행할 수 있다" ✗ → JB 답 2)와 일치. 1) "임신 및 임신하고 있을 가능성이 있는 여성 및 수유부 — Class C" → 임산부 주의 ○. [[BT:23]]
+A: 슬라이드 23 금기증 "{r:주사부위감염 시}" — 2) "감염부위에도 염증 치료와는 무관하므로 소독하고 진행할 수 있다" ✗ → JB 답 2)와 일치. [[BT:23]]
+A: 1) "임신 및 임신하고 있을 가능성이 있는 여성 및 수유부 — Class C" → 임산부 주의 ○. [[BT:23]]
 A: 3) 슬라이드 24 약물상호작용 "항콜린제 — 전신적 anticholinergic 효과를 증폭" → ○. [[BT:24]]
 M: 같은 표의 나머지 금기: 과민증(약제, 보존제, 용제) · 전신성 신경근접합부 장애(중증근무력증, Lambert-Eaton 증후군, 근위축성측색경화증) · 중증의 호흡기능장애 · 근이완제 투여 중인 환자. [[BT:23]]
 M: 슬라이드 24 나머지 상호작용: 항생제(폴리믹신·테트라사이클린·린코마이신·스펙티노마이신) · 아미노글리코시드계(아미카신·겐타마이신·카나마이신·네오마이신·스트렙토마이신) · 근이완제(Baclofen·Tizanidine) · 칼슘채널차단제(verapamil·diltiazem) · 콜린성 약물(pyridostigmine·neostigmine) · 마약성 진통제 및 마취제 · 항경련제(gabapentin·pregabalin). [[BT:24]]
@@ -202,13 +213,16 @@ M: 슬라이드 27: 진단 7항목에도 '주사부위의 감염여부'·'복용
 M: 필기(슬라이드 24): 근이완제·칼슘채널차단제 = 상승작용, 콜린성 = 상쇄, 마약성·마취제 = 중추신경계 저하.
 N: 24·22·20년 3회 출제(JB 괄호 (24,22) + 24판·23판 22년 칸 "(2020년 7번 문항 중복)" → 23판 2020년 칸 7번). JB 해설 1) "FDA category class C" — 슬라이드는 "Class C"만 표기.
 @BT06 | v=ok | lec=BT:22
-A: 슬라이드 22 부작용 표 — 과민반응 · 원거리 확산 · 말초신경증 · 심혈관 장애 · 의인성 장애 · 신경 저하 · 보톡스 내성. 1) 원거리 확산 2) 보톡스 내성 3) 과민반응은 표에 있고, 4) 우울증 등 정신질환 5) 탈모증은 없음 → JB 답 4), 5)와 일치. [[BT:22]]
+A: 슬라이드 22 부작용 표 — 과민반응 · 원거리 확산 · 말초신경증 · 심혈관 장애 · 의인성 장애 · 신경 저하 · 보톡스 내성 [[BT:22]]
+A: 1) 원거리 확산 2) 보톡스 내성 3) 과민반응은 표에 있고 / 4) 우울증 등 정신질환 5) 탈모증은 {r:없음} → JB 답 4), 5)와 일치. [[BT:22]]
 A: 슬라이드 17 — 우울증은 부작용이 아니라 '임의 사용 범위'(아직 허가되지 않은 치료 시도 대상)에 있음. [[BT:17]]
 M: 표 상세: 과민반응 = 아나필락시스·두드러기·연조직부종·호흡곤란(아나필락시스 – 용제로 리도카인을 사용한 경우) / 원거리 확산 = 보톡스 중독 = 보툴리즘, 타액(근력쇠약·목쉼·언어장애·말더듬·호흡곤란·삼킴곤란·복시·눈꺼풀 처짐) / 심혈관 장애 = 부정맥·심근경색 / 의인성 장애 = 관통·출혈 / 신경 저하 = 삼차신경통·눈깜박임 감소. [[BT:22]]
-M: 필기: "부작용 중에 가장 흔한 것은 과민반응인데, 이는 보톨리눔 톡신 때문보다는 용제나 보존제 때문인 경우가 더 많습니다" / 원거리 확산 = 혈관에 직접 주입 시 순환계를 타고 타 부위에서. / 25 필기는 내성을 '가장 많이 나타나는 부작용'이라 적음(적은 양을 너무 자주 맞으면). [[BT:22]]
+M: 필기: "부작용 중에 가장 흔한 것은 과민반응인데, 이는 보톨리눔 톡신 때문보다는 용제나 보존제 때문인 경우가 더 많습니다" / 원거리 확산 = 혈관에 직접 주입 시 순환계를 타고 타 부위에서. [[BT:22]]
+M: 25 필기는 내성을 '가장 많이 나타나는 부작용'이라 적음(적은 양을 너무 자주 맞으면).
 N: 23·21·20년 3회 출제(25판 2023년 칸 3번, 24판·23판 21년 칸 6번, 23판 20년 칸 6번). 21·20년 판은 선지 4개(탈모증 없음), 답 4). 23년 판의 탈모증 선지 변형은 23년 '탈모증' 설명형 복원과 같은 시험.
 @BT07 | v=ok | lec=BT:33
-A: 슬라이드 33 "주의해야 할 부분 — 1. Parotid gland 2. Facial a." · 필기 "신경써야할 핵심 구조물은 parotid gland와 facial artery & vein" — 4) "submandibular gland와 facial artery 및 vein" ✗ → JB 답 4)와 일치. [[BT:33]]
+A: 슬라이드 33 "주의해야 할 부분 — 1. Parotid gland 2. Facial a." [[BT:33]]
+A: 필기 "신경써야할 핵심 구조물은 {r:parotid gland}와 facial artery & vein" — 4) "submandibular gland와 facial artery 및 vein" ✗ → JB 답 4)와 일치. [[BT:33]]
 A: 1) 슬라이드 33 "적용근육 1. Masseter m. 2. Temporalis m." ○ · 3) "6. Aspiration" ○ · 5) "2~3 point/0.5~1cm 간격" ○. [[BT:33]]
 A: 2) "근육 크기에 따라 20-50U을 양쪽에" — 슬라이드는 "25 ~50 U/side"(p.29 표 교근비대증 25~50 U). JB는 옳은 선지로 봄 — 숫자는 슬라이드와 약간 다름. [[BT:33]] [[BT:29]]
 M: 같은 쪽: Safety Margin 경계 = Earlobe-Mouth corner line · Mandibular border · Ant. Border line of Masseter · Post. border line of Masseter / "5. 수직 자입 후 bone touch 후 약간 후퇴" / 50 U 기준 1.1 ml 생리식염수, 0.5 ml/side 주사. [[BT:33]]
@@ -216,8 +230,9 @@ M: 대비되는 gummy smile(슬라이드 34): Levator labii superioris m.·Zygom
 M: 필기(같은 쪽): "뼈에 닿을 정도로 깊게 자입한 후 살짝 빼서 흡인하고 약을 주입합니다. 깊게 넣어도 큰 문제 없습니다".
 N: 23·22년 2회 출제(JB 괄호 (23,22)). JB 해설의 "p.33"은 25 자료 쪽수 = 26 같은 쪽(24판 해설 p.48은 옛 자료). 같은 문제의 22년 복원(22년 7번 문항), 21·20년 축약판(사각턱 보톡스 문항).
 @BT08 | v=ok | lec=BT:5
-A: 슬라이드 5 표 — Disease host: Group I Human · Group II Human · Group III Animal · Group IV – → 1) "인간에게만 감염된다" ✗ → JB 답 1과 일치. 4) 인간에게 병 ○(group I, II). [[BT:5]]
-A: 2) Group I~IV 네 가지 ○ · 3) Toxin Gene: Chromosome/Plasmid(I·II) · Bacteriophage(III) · Plasmid(IV) → "Plasmid/chromosome/phage로 전달" ○. 필기 "보톨리눔 균은 toxin의 종류, 단백질 분해능 등에 따라 네 가지 그룹으로 나눌 수 있습니다 … 사람에게 병원균으로 작용할 수 있는 것은 group I, II". [[BT:5]]
+A: 슬라이드 5 표 — Disease host: Group I Human · Group II Human · Group III Animal · Group IV – → 1) "인간에게만 감염된다" ✗ → JB 답 1과 일치 / 4) 인간에게 병 ○(group I, II). [[BT:5]]
+A: 2) Group I~IV 네 가지 ○ · 3) Toxin Gene: Chromosome/Plasmid(I·II) · Bacteriophage(III) · Plasmid(IV) → "Plasmid/chromosome/phage로 전달" ○. [[BT:5]]
+A: 필기 "보톨리눔 균은 toxin의 종류, 단백질 분해능 등에 따라 네 가지 그룹으로 나눌 수 있습니다 … 사람에게 병원균으로 작용할 수 있는 것은 group I, II". [[BT:5]]
 A: 5) 슬라이드 6 필기 "sporulation cycle … 그 초기 단계에서 toxin을 만들어냅니다" → ○. [[BT:6]]
 A: 22년 추가 선지 "Botulinum neurotoxin은 bont 유전자에서 만들어진다" — 필기(p.10) "bont : 독소를 직접적으로 코딩하는 부분" → ○. [[BT:10]]
 M: 같은 표: Toxin Type I = A, B, F · II = B, E, F · III = C, D · IV = G / Proteolysis I ++, II –, III +, IV – / Saccharolysis II만 +. [[BT:5]]
@@ -777,27 +792,28 @@ M: 같은 표의 다른 줄(변형 후보): Simple extraction — INR 2.5-3.5 "L
 M: 흐름도: INR >4.0 "No surgical treatment until INR is reduced", Significant bleeding "Modify anticoagulation to achieve an INR of <3.0". [[HM:25]]
 N: 20년 1회(23판 2020 칸 15번, 21학번 학습부 수정 답안). 원문 뒤의 15-1(simple extraction 국소 출혈 처치, 답 "ex_Oxycel", 해설 "Suturing, collagen plug, gauze pressure 등")은 22년 2번 국소 출혈 처치 문항과 같은 문제 — 그 문항의 출제연도에 2020 반영.
 @RX01 | v=ok | lec=RX:3
-A: 정답 ② — 슬라이드 정의: "처방전: 면허가 있는 의사, 치과의사가 환자의 진단, 예방, 치료에 약을 사용할 필요가 있을 때, 이에 대하여 약사에게 약물의 조제와 투여방법에 대하여 작성한 글로 쓴 지시", "Prescription is a legal document!" → '환자에게'가 틀림(약사에게). [[RX:3]]
+A: 정답 ② — 슬라이드 정의: "처방전: 면허가 있는 의사, 치과의사가 환자의 진단, 예방, 치료에 약을 사용할 필요가 있을 때, 이에 대하여 약사에게 약물의 조제와 투여방법에 대하여 작성한 글로 쓴 지시" / "Prescription is a legal document!" → '{r:환자에게}'가 틀림({r:약사에게}). [[RX:3]]
 A: 필기도 "더 본질적으로는 '약사'에게 약물과 관련된 지시 사항을 전달하는 서류". [[RX:3]]
-A: ③ 시행규칙 12조 ③ "환자를 치료하기 위하여 필요하다고 인정되면 다음 내원일에 사용할 의약품에 대하여 미리 처방전을 발급할 수 있다" 일치. [[RX:6]]
-A: ④ 12조 ① 5호 "처방 의약품의 명칭(일반명칭, 제품명이나 대한민국약전에서 정한 명칭)" 일치. [[RX:6]]
-A: ⑤ 약사법 23조의2 ② 1호 "식품의약품안전청장이 생물학적 동등성이 있다고 인정한 품목"은 사전 동의 없이 대체조제 가능 — 일치. [[RX:9]]
-A: ① "2부 발급"은 12조 ② "처방전 2부를 발급하여야 한다"와 일치, 단 "2년 보존"의 기간 수치는 26 슬라이드에 없음(의료법 18조 ② "서식, 기재사항, 보존 … 보건복지부령으로 정한다"만). [[RX:6]] [[RX:5]]
+A: 일치 — ③ 시행규칙 12조 ③ "환자를 치료하기 위하여 필요하다고 인정되면 다음 내원일에 사용할 의약품에 대하여 {r:미리 처방전을 발급}할 수 있다" [[RX:6]]
+A: 일치 — ④ 12조 ① 5호 "처방 의약품의 명칭(일반명칭, 제품명이나 대한민국약전에서 정한 명칭)" [[RX:6]]
+A: 일치 — ⑤ 약사법 23조의2 ② 1호 "식품의약품안전청장이 {r:생물학적 동등성}이 있다고 인정한 품목"은 사전 동의 없이 대체조제 가능. [[RX:9]]
+A: ① "2부 발급"은 12조 ② "처방전 2부를 발급하여야 한다"와 일치. [[RX:6]]
+A: 단 "{r:2년 보존}"의 기간 수치는 26 슬라이드에 없음(의료법 18조 ② "서식, 기재사항, 보존 … 보건복지부령으로 정한다"만). [[RX:5]]
 M: 같은 쪽 흐름: 처방에 대한 법적 책임은 처방의사와 약사 모두 · 치과 처방전은 사본 보관·차트 기록 [[RX:3]] → 발급은 '의료업에 종사하고 직접 진찰한' 의사·치과의사·한의사만(17조의2) [[RX:4]] → 약사 문의에 즉시 응해야 함(18조 ④). [[RX:5]]
 M: 변형 대비: '약사↔환자', '의사만↔의사와 약사 모두'처럼 주체를 바꾼 선지로 변형 가능.
 N: 출제 24·22(JB 괄호 (24,22), 22년 칸 중복). JB 참고 쪽 p.5·9·12는 25 자료 → 26 p.3·6·9. 2년 보존은 JB 기준으로 둔다(26 자료에 수치 없음).
 @RX02 | v=ok | lec=RX:12
 A: 의료법 18조의2 ①: "1. 환자에게 처방 또는 투여되고 있는 의약품과 동일한 성분의 의약품인지 여부 2. 식품의약품안전처장이 병용금기, 특정연령대 금기 또는 임부금기 등으로 고시한 성분이 포함되는지 여부" → 선지 ①②. [[RX:12]]
 A: 의료법 시행규칙 13조의2 ①: "1. 약사법 제39조 및 제71조에 따른 회수 또는 폐기 등의 대상이 되는 의약품인지 여부 2. 안전성 속보 또는 안전성 서한을 전파한 의약품인지 여부" → 선지 ③④. [[RX:13]]
-A: 환자의 과거 유해반응·알러지는 두 조항 어디에도 없음 → 정답 ⑤, JB와 일치.
+A: 환자의 {r:과거 유해반응·알러지}는 두 조항 어디에도 없음 → 정답 ⑤, JB와 일치.
 M: 같은 조항의 나머지: 확인 방법 = 의약품안전사용정보시스템(13조의2 ②) · 확인하지 않아도 되는 경우 = 급박한 응급의료상황·긴급한 재해구호상황(13조의2 ③, 18조의2 ②). [[RX:12]] [[RX:13]]
 M: 변형 대비: 이어지는 DUR 점검 성분(병용금기·특정연령대 금기·임부금기·용량·투여기간·효능군중복·노인·수유부·분할주의)과 DUR 흐름(처방기관·약국 이중 점검)도 변형 소재. [[RX:16]] [[RX:17]]
 N: 출제 24·23·22·21(4년 연속, 매번 같은 선지). JB 참고 p.14-15(25) → 26 p.12-13.
 @RX03 | v=ok | lec=RX:19
-A: 약어 표(Table 55-2): ad lib.: at pleasure / a.c.: before meals / stat.: immediately / p.r.n.: as needed / q.h.: every hour — 슬라이드 별표 "* q.d. (quaque die): once a day, daily". → ③ "q.d. → every one hour"가 틀림, JB 답과 일치. [[RX:19]]
+A: 약어 표(Table 55-2): ad lib.: at pleasure / a.c.: before meals / stat.: immediately / p.r.n.: as needed / q.h.: every hour — 슬라이드 별표 "* q.d. (quaque die): {r:once a day}, daily". → ③ "q.d. → every one hour"가 틀림, JB 답과 일치. [[RX:19]]
 M: 같은 표의 헷갈리는 짝: q.d.(once a day) · b.i.d.(twice a day) · t.i.d.(three times a day) · q.i.d.(four times a day) · q.h.(every hour) · q.4h.(every 4 hours) · h.s.(at bedtime) · p.c.(after meals) · non rep.(do not repeat). [[RX:19]]
-M: 박스 예문: "Sig: Tab 2 stat. Tab 1 or 2 q.4h. p.r.n. for relief of pain." = 라벨 문장 변환 문제로 변형 가능. [[RX:19]]
-M: 약어는 transcription(Signa/Label)에 쓰임. [[RX:18]]
+M: 슬라이드 19 박스 예문: "Sig: Tab 2 stat. Tab 1 or 2 q.4h. p.r.n. for relief of pain." = 라벨 문장 변환 문제로 변형 가능. [[RX:19]]
+M: 슬라이드 18: 약어는 transcription(Signa/Label)에 쓰임. [[RX:18]]
 M: 25 필기: "q.d. ≠ q.i.d." · "b.i.d., q.i.d., p.r.n. 정도 언급하심". [[RX5:4]]
 N: 출제 24·23. JB 참고 p.4(25) → 26 p.19.
 @RX04 | v=ok | lec=RX:70
@@ -808,29 +824,29 @@ M: 심혈관질환자 슬라이드: NRT는 교감신경 자극으로 HR·BP 상�
 M: 제형별 용량(껌 25개피·로젠즈 30개피·패치 10개피 기준)도 서술형 변형 소재. [[RX:69]]
 N: 출제 24(탈, 서술형). JB 참고 p.75(25) → 26 p.70. 청소년·임산부는 p.79와 상충해 JB가 괄호 처리 — 명확한 3개(심혈관·궤양·과민) 중 2개를 쓰는 것이 안전.
 @RX05 | v=part | lec=RX:79
-A: 슬라이드 p.79: "청소년의 경우 강력한 금연 권고가 필요. 금연보조약물의 안전성 평가가 미흡하여 권고하지 않으나 꼭 필요한 경우 NRT를 주의 깊게 사용" → NRT 일치. [[RX:79]]
+A: NRT 일치 — 슬라이드 p.79: "청소년의 경우 강력한 금연 권고가 필요. 금연보조약물의 안전성 평가가 미흡하여 권고하지 않으나 꼭 필요한 경우 {r:NRT}를 주의 깊게 사용" [[RX:79]]
 A: 바레니클린은 "18세 이하 청소년에서 안전성 확립되지 않아 청소년 투여 권장되지 않음"으로만 나와 '처방된다'는 근거는 없음 → JB 답의 "or 바레니클린"은 부분 일치. [[RX:73]]
 A: 부프로피온은 처방금기 "18세 이하 청소년". [[RX:71]]
 A: ⚠ 자료 내부 상충: NRT 금기자 목록에 "청소년"이 있음. [[RX:70]]
 M: 같은 슬라이드: 임신·수유부는 금연보조약물 치료 전에 금연상담으로 강력하게 금연 권고, 약물치료는 흡연의 피해가 훨씬 더 크다고 판단될 경우에만 · 임신 중에는 신진대사 항진으로 일반 용량 NRT는 금연효과 없음. [[RX:79]]
-M: 약물치료 원칙: 임산부·하루 흡연량이 적은 흡연자·청소년 등을 제외하고 모든 환자에게 약물치료 권장. [[RX:78]]
+M: 슬라이드 78 약물치료 원칙: 임산부·하루 흡연량이 적은 흡연자·청소년 등을 제외하고 모든 환자에게 약물치료 권장. [[RX:78]]
 N: 출제 23(탈). JB 참고 p.68·75·76·78·85(25) → 26 p.63·70·71·73·79. 24판 JB 답은 NRT만. 시험에서는 p.79 문장 그대로 'NRT'가 가장 근거가 분명.
 @RX06 | v=ok | lec=RX:54
-A: 담배금단 진단기준(DSM-5): "담배 사용의 갑작스러운 중단이나 양을 줄였을 때 아래의 증상 중 4개 이상이 24시간 이내에 나타남 — 짜증·욕구불만·분노 / 불안 / 집중하기 어려움 / 식욕증가 / 안절부절 / 우울감 / 불면" → 식욕 '증가'이므로 ③ 식욕감소가 틀림, JB와 일치. [[RX:54]]
-M: 니코틴의 중추 효과 중 NE(각성·식욕억제)·5-HT(기분전환·식욕억제) — 금단은 반대 방향(식욕증가)으로 연결해 기억. [[RX:45]]
-M: 금단의 특징: 이틀 이상 금연한 흡연자의 50%가 기준 만족, 가장 흔한 증상 불안·짜증·집중력 장애, 가장 드문 증상 우울·불면, 24시간 이내 시작 → 2~3일 후 절정 → 2~3주 지속. [[RX:55]]
+A: 담배금단 진단기준(DSM-5): "담배 사용의 갑작스러운 중단이나 양을 줄였을 때 아래의 증상 중 4개 이상이 24시간 이내에 나타남 — 짜증·욕구불만·분노 / 불안 / 집중하기 어려움 / 식욕증가 / 안절부절 / 우울감 / 불면" → 식욕 '{r:증가}'이므로 ③ 식욕감소가 틀림, JB와 일치. [[RX:54]]
+M: 슬라이드 45: 니코틴의 중추 효과 중 NE(각성·식욕억제)·5-HT(기분전환·식욕억제) — 금단은 반대 방향(식욕증가)으로 연결해 기억. [[RX:45]]
+M: 슬라이드 55 금단의 특징: 이틀 이상 금연한 흡연자의 50%가 기준 만족, 가장 흔한 증상 불안·짜증·집중력 장애, 가장 드문 증상 우울·불면, 24시간 이내 시작 → 2~3일 후 절정 → 2~3주 지속. [[RX:55]]
 M: p.49: 니코틴 금단 증상 박스(짜증·집중력 저하·안절부절 못함·우울감·불안 및 초조·불면). [[RX:49]]
 N: 출제 23·21. JB 참고 p.58(25) → 26 p.54.
 @RX07 | v=ok | lec=RX:6
-A: 의료법 시행규칙 12조 ①: "다만, 제3호의 사항은 환자가 요구한 경우에는 적지 아니한다." 제3호 = "질병분류기호" → 정답 ③, JB와 일치. [[RX:6]]
+A: 의료법 시행규칙 12조 ①: "다만, 제3호의 사항은 환자가 요구한 경우에는 적지 아니한다." 제3호 = "{r:질병분류기호}" → 정답 ③, JB와 일치. [[RX:6]]
 A: 환자의 주민등록번호는 1호로 필수 기재(가명·전산관리번호로 대신 가능), 주소는 기재사항에 없음. [[RX:6]]
-M: 서식에도 "※ 환자가 요구하면 질병분류기호를 적지 않습니다" 문구. [[RX:7]]
+M: 슬라이드 7: 서식에도 "※ 환자가 요구하면 질병분류기호를 적지 않습니다" 문구. [[RX:7]]
 M: 같은 조항: 면허종류·번호(4호), 분량·용법·용량(5호), 사용기간(6호), 2부 발급(②), 다음 내원일 약 미리 발급(③). [[RX:6]]
 M: 마약류 투약 보고의 환자정보에도 질병분류기호가 들어감. [[RX:2]]
 N: 출제 22(탈). JB 참고 p.9(25) → 26 p.6.
 @RX08 | v=ok | lec=RX:45
 A: 슬라이드 '중추신경계에서 니코틴의 약리효과': "뇌 보상센터에서의 작용: 니코틴 addiction 형성에 중요한 역할 — Mesocorticolimbic dopaminergic system 활성화, 도파민 분비 자극" → JB 답과 일치. [[RX:45]]
-M: 그 외 NE(각성·식욕억제)·ACh(각성·인지력 증가)·5-HT(기분전환·식욕억제)·GABA·Glutamate·Endorphin. [[RX:45]]
+M: 슬라이드 45: 그 외 NE(각성·식욕억제)·ACh(각성·인지력 증가)·5-HT(기분전환·식욕억제)·GABA·Glutamate·Endorphin. [[RX:45]]
 M: 경로(필기): nicotine이 BBB 통과 → VTA의 α4β2 nicotinic receptor → mesocorticolimbic dopaminergic system 활성화 → nucleus accumbens에서 dopamine 분비 → 보상/강화 → addiction. [[RX:46]]
 M: 변형 대비: 수용체 이름(α4β2)·부위(VTA·nucleus accumbens)를 묻는 빈칸으로 변형 가능.
 N: 출제 22(탈). JB 참고 p.49(25) → 26 p.45.
@@ -1005,7 +1021,7 @@ M: 강화: 긍정적 강화(보상) vs 부정적 강화(금단 회피) — 장�
 M: 반감기 2시간·금단 증상 신속 발생·악순환 도식. [[RX:49]]
 N: 출제 19·18·15(JB 괄호 (19’, 18’, 15’)). JB 참고 p.37(23 자료) → 26 p.45-46.
 @XE01 | v=ok | lec=XE:37
-A: 선지 1)~4)는 모두 슬라이드 37 '구강건조증 유발 약물' 목록에 있음: Narcotic Analgesic: Codeine / Anxiolytics and Sedatives: Diazepam (Valium) / Antihistamines: Diphenhydramine / NSAIDs: Naproxen, Ibuprofen. [[XE:37]]
+A: 선지 1)~4)는 모두 슬라이드 37 '구강건조증 유발 약물' 목록에 있음 / Narcotic Analgesic: Codeine / Anxiolytics and Sedatives: Diazepam (Valium) / Antihistamines: Diphenhydramine / NSAIDs: Naproxen, Ibuprofen. [[XE:37]]
 A: 5) Physostigmine은 슬라이드 24 'Indirect acting (reversible)' 목록(Ambenomium, Donepezil, Edrophonium, Galantamine, Neostigmine, Physostigmine …, Target: Acetylcholinesterase (AChE), ↑ACh)에 있음 — AChE를 막아 ACh 작용을 늘리므로 유발 약물이 아님 → JB 답 5)와 일치. [[XE:24]] [[XE:23]]
 M: 같은 목록의 나머지(변형 선지 후보): Antidepressant: TCAs / Mx for Urinary incontinence: Imipramine (TCA) / Antimuscarinics: Atropine / Antihypertensive: Clonidine / Muscle relaxants: Cyclobenzaprine / Anticonvulsant: Carbamazepine / Antidiarrhea / Bronchodilators / Alcohol. 오른쪽 TABLE 1에는 Diuretics, Antipsychotics, Anti-Parkinson agents, Proton pump inhibitors 등. [[XE:37]]
 M: 슬라이드 36: 전신상태 9가지 [[XE:36]]
@@ -1014,15 +1030,17 @@ M: 변형 대비: 슬라이드 24의 direct-acting(Acetylcholine, Bethanechol, C
 N: 24·22년 출제(JB 괄호 (24,22)). JB 해설의 "강의자료 38페이지"는 25년도 자료 쪽수(25 p.38 = 26 p.37). 24판 문구 'induced-drug'은 inducing의 오기로 추정(JB).
 @XE02 | v=part | lec=XE:40
 A: 슬라이드 40 표 — Normal Whole Saliva: Unstimulated 0.3 – 0.5 · Stimulated 1.0 – 3.0 / Parotid 0.04 · 0.70 / Submandibular/Sublingual 0.15 · 0.60 / Dry Mouth Whole Saliva < 0.1 · < 0.5 – 0.7 (mL/min). [[XE:40]]
-A: 3) "비자극 전체 타액 분비율 0.2 ml/min이면 정상"은 정상 범위(0.3 – 0.5) 밖이라 ✗ → JB 답 3)과 일치. 다만 0.2는 진단 기준(Unstimulated < 0.1)으로는 구강건조증도 아니고, 2) 자극 이하선 0.8·4) 비자극 이하선 0.05·5) 비자극 악하선·설하선 0.2도 표의 값(0.70·0.04·0.15)과 정확히 같지 않음 — 부분 일치. [[XE:40]]
-M: 같은 슬라이드: "개별 타액선 분비율 측정이 어렵고, 구강건조증 의심 환자의 타액 분비량 적어서 일반적으로 whole saliva로 측정", "주로 Unstimulated 타액분비율 기준으로 진단" [[XE:40]]
+A: 3) "비자극 전체 타액 분비율 0.2 ml/min이면 정상"은 정상 범위({r:0.3 – 0.5}) 밖이라 ✗ → JB 답 3)과 일치. [[XE:40]]
+A: 부분 일치 — 다만 0.2는 진단 기준(Unstimulated < 0.1)으로는 구강건조증도 아니고 / 2) 자극 이하선 0.8·4) 비자극 이하선 0.05·5) 비자극 악하선·설하선 0.2도 표의 값(0.70·0.04·0.15)과 정확히 같지 않음. [[XE:40]]
+M: 같은 슬라이드: "개별 타액선 분비율 측정이 어렵고, 구강건조증 의심 환자의 타액 분비량 적어서 일반적으로 whole saliva로 측정" / "주로 Unstimulated 타액분비율 기준으로 진단" [[XE:40]]
 M: Sjögren 진단표의 Salivary gland involvement도 "Unstimulated whole salivary flow rate ≤ 0.1mL/min". [[XE:39]]
 M: 2017년 공개 시험문제(슬라이드 55)는 정상·구강건조 whole saliva 4칸을 소수점 첫째자리로 묻는 빈칸. [[XE:55]]
 M: 필기(같은 슬라이드): "큰 별표! 이 표의 수치를 외우세요".
 N: 24년 첫 출제. JB 해설 스스로 "정상 수치에서 벗어나는 선지는 3번뿐이라 3번을 답으로 선택" — 선지 숫자가 복원 과정에서 달라졌을 수 있음. JB 참고 p.41은 25년도 쪽수(= 26 p.40).
 @XE03 | v=ok | lec=XE:56
-A: 슬라이드 56(2017년 시험문제) "Pilocarpine은 발한, 비뇨기 및 위장관계의 비정상적인 기능유도, 심혈관계 및 호흡기계의 위험 등의 전신적인 부작용때문에, 주로 ( 구강건조증 (Xerostomia) )과 ( 녹내장(glaucoma) ) 치료용으로만 사용한다." — JB 문제·답과 글자 그대로 일치. [[XE:56]]
-A: 슬라이드 30 표: Pilocarpine — Topical ocular → Glaucoma / Oral → Xerostomia / 필기 "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) -> 이 둘은 꼭 기억하세요!". [[XE:30]]
+A: 슬라이드 56(2017년 시험문제) "Pilocarpine은 발한, 비뇨기 및 위장관계의 비정상적인 기능유도, 심혈관계 및 호흡기계의 위험 등의 전신적인 부작용때문에, 주로 ( {r:구강건조증 (Xerostomia)} )과 ( {r:녹내장(glaucoma)} ) 치료용으로만 사용한다." — JB 문제·답과 글자 그대로 일치. [[XE:56]]
+A: 슬라이드 30 표: Pilocarpine — Topical ocular → Glaucoma / Oral → Xerostomia [[XE:30]]
+A: 필기(슬라이드 30): "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) -> 이 둘은 꼭 기억하세요!". [[XE:30]]
 M: 같은 2017 문제의 앞 빈칸: 1회 복용량 ( 10 mg ) 초과 금지, 방사선치료 두경부암 초기 1정(5㎎) 1일 ( 3 )회, Sjögren 1정(5㎎) 1일 ( 4 )회, 과량 시 ( Atropine ) 피하 또는 정맥투여. [[XE:56]] [[XE:44]]
 M: 슬라이드 31: "Pilocarpine and Cevimeline (an M1 and M3 agonist) are used to treat xerostomia in Sjögren's syndrome" [[XE:31]]
 M: 슬라이드 43: "구강건조증(쇼그렌 증후군, 방사선 치료), 개방각 녹내장(안압 증가) 치료, 경구투여, 국소도포(안약)" [[XE:43]]
@@ -1037,9 +1055,9 @@ M: 필기(슬라이드 38): "항체 이름이 시험에 나올 수 있습니다"
 M: 필기(슬라이드 39): "큰 별표! 이 표는 시험에 나옵니다!!"
 N: 23년 첫 출제. 복원 문제("무슨무슨 autoantibody Ro SSA, SSB..")라 원문 문구는 불완전. JB 참고 p.39는 25년도 쪽수(= 26 p.38).
 @XE05 | v=part | lec=XE:45
-A: ⚠ JB 답 4)(Cyp2d6 활성 낮은 사람)의 근거인 CYP 대사는 강의자료에 없음 — JB 해설도 "강의자료에 없는 내용이지만"이라 밝힘. 근거 없음.
+A: 근거 없음 — ⚠ JB 답 4)(Cyp2d6 활성 낮은 사람)의 근거인 {r:CYP 대사}는 강의자료에 없음 / JB 해설도 "강의자료에 없는 내용이지만"이라 밝힘.
 A: 나머지 선지가 부작용 위험군이라는 것은 자료로 확인됨:
-A: 천식·만성기관지염: 슬라이드 45 경고 "천식, 만성기관지염, COPD — 기도의 저항력, 기관지 평활근의 긴장, 기관지 분비증가", 슬라이드 32 "M3 수용체 자극 → 기관지 수축" [[XE:45]]
+A: 천식·만성기관지염: 슬라이드 45 경고 "천식, 만성기관지염, COPD — 기도의 저항력, 기관지 평활근의 긴장, 기관지 분비증가" / 슬라이드 32 "M3 수용체 자극 → 기관지 수축" [[XE:45]]
 A: 협심증: 슬라이드 32 "심혈관 질환 환자 (협심증, 심부전 등) (주의) — 미주신경(vagus) 흥분 → 서맥, 부정맥, 혈압저하 가능". [[XE:32]]
 A: 슬라이드 31 "Pilocarpine and Cevimeline (an M1 and M3 agonist)" [[XE:31]]
 A: 슬라이드 19 필기 "cevimeline은 M1,3에 작용합니다. 즉 cevimeline이 selectivity 높아 더 자주 씁니다". [[XE:19]]
@@ -1055,8 +1073,8 @@ M: 슬라이드 41: 다른 치료제 — Cevimeline (Evoxac cap [30mg]) [[XE:41]
 M: 필기: "최근에는 cevimeline이 pilocarpine보다 더 많이 쓰입니다. selectivity가 높고 부작용이 적기 때문". [[XE:1]]
 N: 23년 첫 출제 — 교수님이 공개한 2016년 문제가 수치만 바뀌어 재출제. JB 참고 p.54는 25·26 같은 쪽.
 @XE07 | v=part | lec=XE:49
-A: 슬라이드 49 — "BMS Diagnosis: 구강점막의 뚜렷한 변화 없이 구강 내의 타는 듯한 통증을 6개월 이상 느끼는 질환" / "Clonazepam: 0.5 mg orally once a day for 30 days (qd hs = daily at bedtime) or bid (아침, 저녁 식후). 국소적 효과를 증가시키기 위해, 3-5 분 정도 topical로 사용 후 삼킬 수도 있다." — JB 답 ①②④와 글자 그대로 일치. [[XE:49]]
-A: ⚠ ③ 작용기전 "Increases opening frequency of gaba channel"은 강의자료에 없음(슬라이드 49에 clonazepam 기전 문장 없음) — 근거 없음. [[XE:49]]
+A: 슬라이드 49: "BMS Diagnosis: 구강점막의 뚜렷한 변화 없이 구강 내의 타는 듯한 통증을 6개월 이상 느끼는 질환" / "Clonazepam: 0.5 mg orally once a day for 30 days (qd hs = daily at bedtime) or bid (아침, 저녁 식후). 국소적 효과를 증가시키기 위해, 3-5 분 정도 topical로 사용 후 삼킬 수도 있다." — JB 답 ①②④와 글자 그대로 일치. [[XE:49]]
+A: 근거 없음 — ⚠ ③ 작용기전 "Increases opening frequency of gaba channel"은 강의자료에 없음(슬라이드 49에 clonazepam 기전 문장 없음). [[XE:49]]
 M: 같은 슬라이드: Benzodiazepine 처방시 주의사항 — 약복용시 수면제와 같이 복용하지 말 것, 간기능이 떨어진 노인의 경우 Oxazepam·temazepam·lorazepam 처방 고려 / 추가약물 Alpha-lipoic acid (ALA) — natural heavy metal chelator, glutathione 증가 → 항산화 / 대체약물 Gabapentin, Steroid gargle (Dexamethasone 참조). [[XE:49]]
 M: 슬라이드 46: 타액분비이상을 동반한 통증 치료 = Benzodiazepines. [[XE:46]]
 M: p.1 필기: 구강건조증이 있는 경우 BMS도 동반하는 경우가 많은데 이때 통증 완화를 위해 씀. [[XE:1]]
@@ -1064,8 +1082,8 @@ N: 23·21년 출제(JB 괄호 (23,21)) — 21년 칸 복원판은 따로 있음(
 @XE09 | v=ok | lec=XE:20
 A: 슬라이드 20 "Adverse effects: muscarinic overstimulation typically manifest within 15–30 minutes and include nausea, vomiting, diarrhea, sweating, hypersalivation, cutaneous flushing, reflex tachycardia (sometimes bradycardia), and bronchoconstriction." — diarrhea·sweating·bradycardia는 부작용 ○. [[XE:20]]
 A: hypotension — 슬라이드 32 심혈관 질환 "미주신경(vagus) 흥분 → 서맥, 부정맥, 혈압저하 가능". [[XE:32]]
-A: urinary retention — 슬라이드 31 부작용은 반대로 "increased frequency of urination", 슬라이드 9 부교감 "Contraction of detrusor; relaxation of trigone and sphincter" → 배뇨 촉진이므로 부작용 아님 → JB 답 4)와 일치. [[XE:31]] [[XE:9]]
-M: 슬라이드 31 Carbachol·Bethanechol·Cevimeline·Pilocarpine의 Serious and Common Adverse Effects: Sweating, shivering, nausea, dizziness, increased frequency of urination, rhinitis [[XE:31]]
+A: urinary retention — 슬라이드 31 부작용은 반대로 "increased frequency of urination" / 슬라이드 9 부교감 "Contraction of detrusor; relaxation of trigone and sphincter" → 배뇨 {r:촉진}이므로 부작용 아님 → JB 답 4)와 일치. [[XE:31]] [[XE:9]]
+M: 슬라이드 31: Carbachol·Bethanechol·Cevimeline·Pilocarpine의 Serious and Common Adverse Effects: Sweating, shivering, nausea, dizziness, increased frequency of urination, rhinitis [[XE:31]]
 M: 슬라이드 43: 발한, 설사, 부정맥, 기도경련 등의 부작용. [[XE:43]]
 M: 슬라이드 54: 처음부터 허가 용량이면 땀이 많이 나거나 심계항진, 구역 등의 부작용 → 저용량 시작. [[XE:54]]
 M: 함정: ⚠ 슬라이드 32는 방광폐색·전립선비대증 환자에서 "방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화"를 주의 이유로 듦 — 일반 부작용(배뇨 촉진)과 구별. [[XE:32]]
@@ -1083,7 +1101,8 @@ M: 슬라이드 47 인공타액: Mimic the chemical and physical properties of n
 M: 슬라이드 20 필기: "pilocarpine은 bronchoconstriction 효과가 있기 때문에 조절되지 않는 천식에 쓰면 안 됩니다!". [[XE:20]]
 N: 22년 백정화 출제. JB 참고 p.43은 25년도 쪽수(= 26 p.42).
 @XE12 | v=ok | lec=XE:19
-A: 슬라이드 19 표 — Pilocarpine은 M1·M3·M5의 Agonists 칸에 있음(M2·M4엔 없음), 필기 "pilocarpine은 M1,3,5에 작용하고 cevimeline은 M1,3에 작용합니다". [[XE:19]]
+A: 슬라이드 19 표 — Pilocarpine은 M1·M3·M5의 Agonists 칸에 있음(M2·M4엔 없음) [[XE:19]]
+A: 필기 "pilocarpine은 {r:M1,3,5}에 작용하고 cevimeline은 M1,3에 작용합니다". [[XE:19]]
 A: 슬라이드 43 "Nonselective muscarinic agonist: Muscarinic Ach Receptor Subtype M1, M3, M5" — JB 답 M1,3,5와 일치. [[XE:43]]
 M: 같은 표 위치: M1 타액선·장(enteric) 신경 / M2 심장·평활근 / M3 타액선·평활근 / M4 뇌(전체적으로) / M5 뇌(substantia nigra)·눈. / M3 antagonist Solifenacin 등(비뇨기질환 치료제: 과민성 방광) [[XE:19]]
 M: 슬라이드 12: α1-adrenergic·M1, M3, M5 receptors(Gq protein) / β-adrenergic·α2-adrenergic·M2, M4 receptors(그림 라벨 Gs protein·Gi/Go, Inactive adenylyl cyclase) — "Oddly numbered tend to be Excitatory, while Evenly numbered subtypes tend to be Inhibitory". [[XE:12]]
@@ -1093,8 +1112,8 @@ N: 21년 출제. 복원 문제("M1-5" 이후 불완전) — JB는 agonist로 작
 @XE13 | v=ok | lec=XE:50
 A: 슬라이드 50 논문(Scientific Reports 2019, Se-Young Choi) "A 0.25% ZnCl2 solution evoked secretion of unstimulated and stimulated whole saliva in humans" [[XE:50]]
 A: 슬라이드 46 "3. ZnCl2 solution? (suggested by Se-Young Choi in 2019)" — JB 답 T와 일치. [[XE:46]]
-M: 기전: Zn2+ can evoke G-protein-coupled receptor signaling via activation of the metabotropic zinc receptor ZnR/GPR39, expressed in human submandibular glands — "independent of muscarinic or histamine receptor signaling". [[XE:50]]
-M: 그래프: Normal·Hyposalivation·Sjögren 군 모두 비자극·자극 분비율이 Vehicle보다 ZnCl2에서 증가. [[XE:50]]
+M: 슬라이드 50 기전: Zn2+ can evoke G-protein-coupled receptor signaling via activation of the metabotropic zinc receptor ZnR/GPR39, expressed in human submandibular glands — "independent of muscarinic or histamine receptor signaling". [[XE:50]]
+M: 슬라이드 50 그래프: Normal·Hyposalivation·Sjögren 군 모두 비자극·자극 분비율이 Vehicle보다 ZnCl2에서 증가. [[XE:50]]
 M: 슬라이드 사진: Zinc Chloride Mouthwash(Fresh-M).
 M: 필기(슬라이드 50): "ZnCl2의 수용체도 GPCR로, 이게 악하선에 있습니다".
 M: 필기(p.46): "ZnCl2를 구강건조증에 쓸 수 있다는 연구가 있는데 상당히 흥미롭습니다". [[XE:46]]
@@ -1112,14 +1131,14 @@ N: 21년 출제. JB 해설의 "작년 이윤실 교수님 자료에는 atropine 
 @XE17 | v=ok | lec=XE:41
 A: 슬라이드 41 구강건조증 치료제 "1. Pilocarpine (Salagen tab [5mg]) 2. Cevimeline (Evoxac cap [30mg])" [[XE:41]]
 A: 슬라이드 30 Cevimeline — Muscarinic, Oral, Xerostomia — JB 답 Cevimeline과 일치. [[XE:30]]
-M: 슬라이드 31 "Pilocarpine and Cevimeline (an M1 and M3 agonist) are used to treat xerostomia in Sjögren's syndrome" [[XE:31]]
+M: 슬라이드 31: "Pilocarpine and Cevimeline (an M1 and M3 agonist) are used to treat xerostomia in Sjögren's syndrome" [[XE:31]]
 M: 슬라이드 25 필기: "cevimeline과 varenicline은 synthetic drug". [[XE:25]]
 M: 필기(p.1·19): cevimeline이 selectivity가 높고 부작용이 적어 최근 더 많이 쓰임. [[XE:19]]
 N: 21년 출제. JB 참고 p.43은 25년도 쪽수(= 26 p.42).
 @XE18 | v=ok | lec=XE:30
 A: 슬라이드 30 Pilocarpine — Oral → Xerostomia [[XE:30]]
 A: 슬라이드 41 "구강건조증 치료제 1. Pilocarpine (Salagen tab [5mg])" — JB 답 T와 일치. [[XE:41]]
-M: 조절되지 않는 천식·축동이 해로운 안과질환은 금기, COPD는 주의("pilocarpine은 COPD에 절대 금기다 (X)"). [[XE:32]]
+M: 슬라이드 32: 조절되지 않는 천식·축동이 해로운 안과질환은 금기, COPD는 주의 — "pilocarpine은 COPD에 절대 금기다 (X)". [[XE:32]]
 M: 변형 대비: T/F 변형 후보 — pilocarpine의 다른 적응증은 Glaucoma(Topical ocular), Hydrolyzed by Cholinesterase: No, Receptor: Muscarinic. [[XE:30]]
 N: 21년 출제.
 @XE19 | v=ok | lec=XE:20
@@ -1131,8 +1150,8 @@ N: 22년 백정화 출제, 24판에서 선지 2)·5)가 비어 있는 불완전 
 @XE21 | v=part | lec=XE:49
 A: 정답 요지 — "구강작열감증후군에는 clonazepam 약제를 사용할 수 있고, 0.5mg orally once a day (qd hs) 이용한다. GABA A receptor potentiation 을 통해 작용하며, 국소적 효과를 증진시키기 위해 3-5 분 정도 topical 로 사용 후 삼킬 수 있다." [[XE:49]]
 A: JB 해설의 처방 "clonazepam 약제 … 0.5mg orally once a day (qd hs) … 국소적 효과를 증진시키기 위해 3-5 분 정도 topical로 사용 후 삼킬 수 있다"는 슬라이드 49 문장과 일치(슬라이드는 for 30 days, or bid (아침, 저녁 식후)까지). [[XE:49]]
-A: ⚠ "GABA A receptor potentiation을 통해 작용"은 강의자료에 없음 — 근거 없음. [[XE:49]]
-M: 슬라이드 49 BMS Diagnosis(구강점막의 뚜렷한 변화 없이 타는 듯한 통증 6개월 이상, 감각·미각 변화, 타액 분비 이상 동반), BZD 주의(수면제와 같이 복용 금지, 간기능이 떨어진 노인 Oxazepam·temazepam·lorazepam), 추가약물 ALA, 대체약물 Gabapentin·Steroid gargle. [[XE:49]]
+A: 근거 없음 — ⚠ "{r:GABA A receptor potentiation}을 통해 작용"은 강의자료에 없음. [[XE:49]]
+M: 슬라이드 49: BMS Diagnosis(구강점막의 뚜렷한 변화 없이 타는 듯한 통증 6개월 이상, 감각·미각 변화, 타액 분비 이상 동반), BZD 주의(수면제와 같이 복용 금지, 간기능이 떨어진 노인 Oxazepam·temazepam·lorazepam), 추가약물 ALA, 대체약물 Gabapentin·Steroid gargle. [[XE:49]]
 N: 21년 출제, 23·21년 BMS 증례 문항과 같은 증례 문제의 24판 21년 칸 복원.
 @DS30 | v=ok | lec=DS:10
 A: 슬라이드 10 Mode of Action — Antiplaque action "①Reduced protein adsorption by cationic property ②Interfering bacterial adsorption by binding to bacterial surface in sublethal amount ③Competing with Ca2+ for the acidic agglutination factor in plaque would be beneficial in addition to bactericidal action" → 선지 1)·2)·4) ○(1)은 슬라이드의 'Reduced'를 'Reduce'로 적은 복원). [[DS:10]]

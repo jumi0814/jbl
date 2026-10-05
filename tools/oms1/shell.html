@@ -1862,6 +1862,12 @@ details.ab.more .amg{margin:2px 0 0}details.ab.more .amg+.amg{margin-top:10px;pa
 details.ab.more .amgh{font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--sub);margin:0 0 3px}
 details.ab.more .amg>ul{margin:2px 0;padding-left:20px}details.ab.more .amg>ul>li{margin:5px 0}
 details.ab.more .amg-n>ul>li::marker{color:#9484C9}details.ab.more .amg-v>ul>li::marker{color:#B3261E}
+
+/* 10-05 사용자 '숫자를 일괄적으로 동그라미 1로 넘버링을 하고 적절한 들여쓰기도 없으니' — 하위 항목(원고 '  - ' → .li.l2)·머리말 아래 안쪽 번호 목록 들여쓰기 */
+.tbody .li.l2{margin:3px 0 3px 20px;font-size:calc(15px*var(--fs,1));padding-left:15px}.tbody .li.l2::before{width:5px;height:5px;background:transparent;border:1.3px solid #9C9284;box-sizing:border-box;top:.8em}
+.tbody .li.l2+.li:not(.l2){margin-top:9px}
+.tbody .li>.klead+ol.circ,.tbody .li>.klead+ul.klist{margin:3px 0 2px 6px;padding-left:12px;border-left:2px solid var(--line)}
+.ab .klead+ol.circ,.ab .klead+ul.klist{padding-left:12px;border-left:2px solid var(--line);margin-left:4px}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>

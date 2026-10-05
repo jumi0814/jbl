@@ -102,6 +102,7 @@ def parse(path):
             ids, _, txt = line[2:].partition('|'); card['body'].append(('E', ([i.strip() for i in ids.split(',') if i.strip()], txt.strip())))
         elif line.startswith('M:'): card['recall'].append(line[2:].strip())
         elif line[:2] in ('P:', 'U:'): card['body'].append((line[0], line[2:].strip()))
+        elif line.startswith('  - '): card['body'].append(('b2', line[4:].strip()))   # 10-05 사용자 '넘버링이나 살짝의 들여쓰기를 활용해서' — 두 칸 들여 쓴 '  - ' = 바로 위 항목의 하위 항목(들여 쓴 줄)
         elif line.startswith('- '): card['body'].append(('b', line[2:].strip()))
         else: raise ValueError(f'{path}: unknown line: ' + line[:60])
     return lec
@@ -166,6 +167,15 @@ def split_enum(s):
         pos = _marks(s, pat)
         if pat is PAT_CIRC:  # ux2 F10 원문자가 이어진 것(①②③)·바로 앞이 조/항/호/숫자인 것(12조 ②)은 나누는 자리가 아님
             pos = [(p, g) for p, g in pos if not (s[p + 1:p + 2] and s[p + 1] in CIRC) and not (p and s[p - 1] in CIRC) and not re.search(r'[조항호\d]\s*$', s[:p])]
+            # 10-05 사용자 '숫자를 일괄적으로 동그라미 1로 넘버링을 하고 적절한 들여쓰기도 없으니' — 줄이 '② 머리말: ① … ② … ③ …'처럼 바깥 번호로 시작하고 안에서 ①부터 다시 세면
+            # 바깥 번호 + 머리말은 머리(lead)로 두고 안쪽 ①②③만 들여 쓴 목록으로(같은 단계로 펼쳐지던 것)
+            if pos and pos[0][0] == len(s) - len(s.lstrip()) and s[pos[0][0]] != '①':
+                one = next((i for i, (p, g) in enumerate(pos) if s[p] == '①'), None)
+                if one:
+                    seq, want = [], 0
+                    for p, g in pos[one:]:
+                        if CIRC.index(s[p]) == want: seq.append((p, g)); want += 1
+                    if len(seq) >= 2 and len(seq) == len(pos) - one: pos = seq
         if pat is PAT_NUM:  # 1. 2. 3. 순서가 맞는 것만
             seq, want = [], 1
             for p, g in pos:

@@ -316,10 +316,11 @@ def aitem_lis(x, kind='A'):
     if kind == 'A' and m and VWORD.search(m.group(1)) and not re.search(r'["“(\[]', m.group(1)):
         tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
     qs = _qspan(raw); cr = cite_row(cites)
+    if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
     if qs and qs[0] <= 80 and qs[1] - qs[0] >= 30:
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
-        if mp and not aft[mp.end():].strip(): qt += mp.group(0); aft = ''   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
+        if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
         aft = re.sub(r'^/\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
         hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
         ah = ''
@@ -352,7 +353,7 @@ def mgroups(M):
     G = {k: [] for k, _ in MKIND}; prev = 'e'
     for x in M:
         pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', x)))).strip()
-        m = re.match(r'^([^:"“”]{1,40}?)[:：]\s', pl)
+        m = re.match(r'^([^:]{1,60}?)[:：]\s', pl)
         k = _mkind(m.group(1)) if m else prev
         G[k].append(x); prev = k
     used = [(k, t) for k, t in MKIND if G[k]]
@@ -648,7 +649,7 @@ def lec_card(L, j, c):
         exbuf.clear()
     for t, v in c['body']:
         if t != 'E': flush_ex()
-        if t != 'b': prevb = None
+        if t not in ('b', 'b2'): prevb = None
         if t == 'K':
             ks = lecparse.key_split(v)
             if len(v) > 180: KEYLONG[k] = KEYLONG.get(k, 0) + 1
@@ -663,6 +664,10 @@ def lec_card(L, j, c):
                 lc = [ch for ch in prevb if ch in C_]
                 if lc and C_.index(v0) == C_.index(lc[-1]) + 1 and C_.index(lc[-1]) >= 1: st_ = C_.index(v0) + 1
             h.append(lecparse.render_item(v, ctx, cont=st_)); prevb = v
+            if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
+            curb['items'].append(v)
+        elif t == 'b2':   # 10-05 하위 항목(원고 '  - ') — 바로 위 항목 아래 들여 쓴 줄
+            h.append(re.sub(r'^<div class="li', '<div class="li l2', lecparse.render_item(v, ctx), count=1))
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'T':
