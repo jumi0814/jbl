@@ -2003,7 +2003,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="ee2777fb",PV={"OMS1": "d6bd9b3c", "CONS": "d833ac49", "IMPL": "d09a2122", "ANAT": "9135b6f7", "GERI": "e0196388", "PHARM": "2fd558c9", "ESTH": "aefc5d35"},PSZ={"OMS1": 3.7, "CONS": 2.9, "IMPL": 3.0, "ANAT": 3.8, "GERI": 4.0, "PHARM": 5.4, "ESTH": 3.5};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="ee2777fb",PV={"OMS1": "d6bd9b3c", "CONS": "618753f7", "IMPL": "d09a2122", "ANAT": "9135b6f7", "GERI": "e0196388", "PHARM": "2fd558c9", "ESTH": "aefc5d35"},PSZ={"OMS1": 3.7, "CONS": 2.9, "IMPL": 3.0, "ANAT": 3.8, "GERI": 4.0, "PHARM": 5.4, "ESTH": 3.5};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
