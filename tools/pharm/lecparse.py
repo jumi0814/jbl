@@ -126,7 +126,7 @@ def _depth_iter(s):
         if ch in '(（[{': d += 1                 # {r:…}·{k:…} 안에서도 나누지 않음(예: {r:0.04 · 0.70})
         elif ch in ')）]}': d = max(0, d - 1)
         yield i, ch, d + (1 if q else 0)
-ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|esp|pt|pts|Tx|Mr|Mrs|Ms|Hx|Dx|Mx|Md|Max|Mand|resp|approx|incl|max|min|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
+ABBR = re.compile(r'(?:\b(?:n|a|v|m|nn|aa|vv|mm|N|A|V|M|br|lig|proc|gl|ant|post|sup|inf|lat|med|mid|ext|int|p|pp|vs|cf|e\.g|i\.e|Fig|fig|No|no|ex|al|etc|approx|Dr|Prof|Perio|Sig|Rx|esp|pt|pts|Tx|Mr|Hx|Dx|Ant|Post|Sup|Inf|Lat|Med|d|Mx|Md|Max|Mand|resp|approx|incl|max|min|q|b\.i\.d|t\.i\.d|q\.i\.d|q\.d|h\.s|p\.o|mg|ml|St)|\d)\.$')
 def sent_split(s):
     """10-04 줄바꿈 2차: 문장 단위 나누기 — 괄호·따옴표 안(깊이>0)·약어(n. a. lig. Perio. …)·번호(1.) 뒤는 나누지 않음 · 마침표 없는 끝맺음은 음·함·됨만(‘보다’ 같은 ‘다’는 아님)"""
     out, last = [], 0
@@ -146,7 +146,7 @@ def split_top(s, sep=' / '):
     for i, ch, d in _depth_iter(s):
         if i < skip: continue
         if d == 0 and s.startswith(sep, i):
-            if sep == ' / ' and not many and re.search(r'(?:^|[(]|(?:^|[\s(])[^\sA-Za-z]+\s)[a-z][a-z\-]{1,20}$', s[:i]) and re.match(r'[a-z][a-z\-]{1,20}(?:\s|$)', s[i + 3:]): continue   # 10-04 'frontal / posterior plagiocephaly'처럼 영어 낱말 둘 사이 ' / '는 '또는' — 줄을 나누지 않음
+            if sep == ' / ' and not many and re.search(r'(?:^|[(]|(?:^|[\s(])[^\sA-Za-z]+\s)[a-z][a-z\-]{1,20}$', s[:i]) and re.match(r'[a-z][a-z\-]{1,20}\s[a-z][a-z\-]{2,}', s[i + 3:]): continue   # 오른쪽 낱말 뒤에 영어 낱말이 이어질 때만(형용사 / 형용사 + 명사) — 'vaseline / light ='·'genetic / major' 같은 나열은 나눔   # 10-04 'frontal / posterior plagiocephaly'처럼 영어 낱말 둘 사이 ' / '는 '또는' — 줄을 나누지 않음
             out.append(s[last:i].strip()); last = i + len(sep); skip = last
     out.append(s[last:].strip())
     return [x for x in out if x]
@@ -315,7 +315,7 @@ def _lab_merge(top):
     """라벨 목록: 라벨 없는 조각은 앞 라벨 항목에 ' / '로 합침"""
     out = []
     for p in top:
-        if out and not LBL.match(p) and LBL.match(out[-1]): out[-1] = out[-1] + ' / ' + p
+        if out and not LBL.match(p) and LBL.match(out[-1]): out[-1] = out[-1] + '\u2029' + p   # 10-04 줄바꿈 3차: 라벨 없는 조각은 그 라벨 아래 다음 줄(예전엔 ' / '로 한 줄에 붙어 '/'가 보이고 다른 사실이 붙었음)
         else: out.append(p)
     return out
 def render_block(v, ctx, depth=0):
@@ -334,7 +334,8 @@ def render_block(v, ctx, depth=0):
             if lb.count('==') % 2 == 1: lb = lb.replace('==', ''); rest = '==' + rest
             if lb.count('{r:') > lb.count('}'): lb = lb + '}'; rest = '{r:' + rest
             if lb.count('**') % 2 == 1: lb = lb.replace('**', ''); rest = '**' + rest
-            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rest, ctx)
+            rs = rest.split('\u2029')
+            return f'<b class="lbl">{inline(lb, ctx)}</b> ' + _ip(rs[0], ctx) + ''.join(f'<span class="ksep kh"> / </span><br>' + _ip(x, ctx) for x in rs[1:])
         parts = _lab_merge(_rebalance(top))
         ls_ = sorted(_L(x) for x in parts)
         fl = _is_flow(parts) and not (_IP[0] and ls_[len(ls_) // 2] > 22)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 짧은 나열(중앙값 22자 이하, ux2 D09)은 가로 흐름 그대로
