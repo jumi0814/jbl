@@ -285,7 +285,8 @@ def cite_row(cites):
         else: gs.append((nm, [b_]))
     return '<div class="cites cz">' + ''.join(f'<span class="cg">{f"<span class=czk>{nm}</span>" if nm else ""}{"".join(bs)}</span>' for nm, bs in gs) + '</div>'
 def _qhtml(qt):
-    o, c_ = qt[0], qt[-1]; inner = qt[1:-1].strip()
+    tl = re.search(r'["”][.,;:)\]]*$', qt); tl = tl.group(0) if tl else qt[-1]
+    o, c_ = qt[0], tl; inner = qt[1:len(qt) - len(tl)].strip()
     ps = lecparse._rebalance(lecparse.split_top(inner, ' / ')) if ' / ' in inner else [inner]
     ps = [x for x in ps if x.strip()] or ['']
     ps[0] = o + ps[0]; ps[-1] = ps[-1] + c_
@@ -306,6 +307,9 @@ def aitem_lis(x, kind='A'):
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and qs[0] <= 80 and qs[1] - qs[0] >= 30:
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
+        mp = re.match(r'^[.,;:)\]]+', aft)
+        if mp and not aft[mp.end():].strip(): qt += mp.group(0); aft = ''   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
+        aft = re.sub(r'^/\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
         hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
         ah = ''
         if aft: ah = f'<div class="acm">{astruct(aft) if len(aft) > 190 else (lecparse.render_block(aft, ctx) if (len(aft) > 150 or lecparse._facts(lecparse.split_top(aft, " / "))) else lecparse.inline(aft, ctx))}</div>'
