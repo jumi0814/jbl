@@ -74,6 +74,8 @@ F: 7=후천 응고 이상과 응고인자 표
 M: 선천: {r:Hemophilia(VIII)} · {r:Christmas disease(IX)} / 후천: {r:Liver} · {r:Vit K 결핍} · {r:항응고제} · {r:DIC} · {r:primary fibrinogenolysis}
 M: Vit K 결핍 3: {r:biliary tract obstruction} · {r:malabsorption} · {r:broad-spectrum antibiotics 과다}
 M: vWD = {r:autosomal dominant} · vWF / Hemophilia A·B = {r:X-linked} · {r:VIII}·{r:IX} / vit K 결핍으로 ↓: {r:II·VII·IX·X · protein C·S}
+M: 장기 항생제 → 지혈 문제(6회 서술) = {r:장내 세균에 의해 합성되는 Vitamin K 감소} → vit K 의존 인자↓(혈소판 ✗)
+M: 항응고조절인자(23·22·21 빈칸) = {r:protein C · protein S · antithrombin III · tissue factor pathway inhibitor}(JB — 25 자료엔 C·S·AT III)
 
 ## Detecting the "Bleeder" — History · Examination | 병력 청취와 진찰 소견 | 8-9 | 기출 20~22 · 3회 | jb=HM08
 > 출혈 경향은 먼저 물어서 찾는다 — 가족력·수술 후 출혈·약·질환, 그리고 입안의 신호
@@ -102,6 +104,7 @@ F: 9=진찰 소견 — spontaneous oozing과 spider angioma
 M: 병력 — 약 3: {r:Aspirin} · {r:Anticoagulants} · {r:Long-term antibiotic therapy}
 M: 병력 — 질환 4: {r:Leukemia} · {r:Liver disease} · {r:Hemophilia} · {r:Congenital heart disease}
 M: 진찰 7: jaundice·pallor · {r:spider angiomas}(간) · {r:ecchymoses} · {r:petechiae} · oral ulcers · hyperplastic gingiva · hemarthrosis
+M: 질환 4의 이유(JB): leukemia = {r:혈소판 생성 이상} / 간질환 = {r:응고인자 생산 이상} / 혈우병 = {r:factor 8·9 이상} / 선천성 심장질환 = {r:심장수술 후 항응고제}
 
 ## Screening Tests — PT vs aPTT | 선별 검사 — 외인계 PT vs 내인계 aPTT | 10-12 | 검사 ★ · 기출 21 | jb=HM25
 > tissue factor를 넣으면 PT(외인계·warfarin), partial thromboplastin을 넣으면 aPTT(내인계·heparin·혈우병)
@@ -158,7 +161,7 @@ M: INR = (PT환자/PT정상)^{r:ISI} / 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0
 
 ## Lab Results by Condition — Table 9.4 | 치료·질환별 선별 검사 변화 | 14 | 표
 > 어디가 늘어나는지 보면 무슨 약·병인지 보인다 — aspirin은 BT, coumarin은 PT, heparin은 aPTT
-= Aspirin → {r:BT↑}(PT·aPTT 정상) / Coumarin → {r:PT/INR↑↑} / Heparin → {r:aPTT↑↑} / Hemophilia → {r:aPTT↑↑} / DIC → {r:전부 이상}
+= Aspirin = {r:BT↑}(PT·aPTT 정상) / Coumarin = {r:PT/INR↑↑} / Heparin·Hemophilia = {r:aPTT↑↑} / DIC = {r:전부 이상}
 # Table 9.4 — Relative levels of screening tests
 | Condition | Platelet count | BT/PFA-100 | PT/INR | aPTT | TT | Antifactor Xa |
 | {r:Aspirin} therapy | ↓ or ↔ | {r:↑} | ↔ | ↔ | ↔ | ↔ |
@@ -282,6 +285,7 @@ F: 21=JADA 2019 항응고제 적응증·상호작용 표
 M: 모니터링: VKA {r:Yes(INR)} / DOAC·LMWH {r:No}
 M: 적응증: VKA {r:mechanical heart valve}·rheumatic atrial fibrillation / DOAC {r:nonvalvular atrial fibrillation} / LMWH {r:pregnancy}·cancer
 M: VKA 상호작용: {r:antibiotics} · {r:azole antifungals} · {r:NSAIDs}·carbamazepine → warfarin + 항생제 = {r:출혈↑}
+M: warfarin + sulfonamide 출혈↑ 이유(4회 서술 · JB) = 장내 세균 {r:Vit K 합성 억제} → warfarin {r:potentiation} + {r:albumin 결합 warfarin 유리}
 
 @G ③ 치과 시술 결정
 ## Dental Procedure Algorithm · Low-risk Procedures | 항응고 환자의 치과 시술 알고리즘과 저위험 시술 | 22-23 | 기출 20~22 | jb=HM07,HM13
@@ -336,6 +340,7 @@ E: HM24 | 20년 서술 "Warfarin 투약 환자가 simple restorative dentistry �
 M: INR {r:>4.0} = 수술 × / 출혈 큰 수술 = {r:INR <3.0}로 조정 / 모든 경우 {r:local measures}
 M: INR {r:>3.5}: examination·radiographs·impressions만 △, 나머지 ×
 M: 단순 발치 {r:2.5–3.5 = local measures} · 단순 수복 {r:3.5까지 ○} · full mouth extraction {r:2.0 이상 ×}
+M: 20 서술(simple restorative) JB 답 = INR {r:2.0-3.0}으로 조절 · {r:modification 없이 local measure}
 
 @G ④ 국소 지혈
 ## Local Measures · Bleeding Control Measures | 국소 지혈법 총정리 — 기계적 vs 국소 지혈제 | 26·28-29·52 | 기출 20·22 · 교수 강조 | jb=HM07
@@ -589,6 +594,7 @@ F: 51=지혈 가글 처방
 M: aminocaproic = {r:lysine}과 닮은 구조(그림) → plasmin 작용↓ / aminocaproic·tranexamic = {r:plasminogen activation 경쟁 억제} → clot 유지
 M: 가글: {r:tranexamic acid 5% 100mL} · 전 {r:5 mL 5-10분} · 후 {r:5~10 mL 1-2분} {r:2시간마다} · {r:5일 냉장}
 M: aminocaproic target = {r:t-PA · plasminogen · plasmin} / t-PA = {r:plasminogen → plasmin}
+M: 💬 약을 {r:중단하기 어려운} 환자(warfarin 유지)의 치과 치료 = {r:anti-fibrinolytic} — plasmin의 fibrin clot 제거를 저해
 
 ## Topical Hemostatic Agents — TABLE 25-6 | 국소 지혈제 제품 요약표 | 53-54 | 표 · 정리
 > 제품 이름으로 물어도 답할 수 있게 — gauze부터 fibrin glue까지 한 장
@@ -646,6 +652,7 @@ F: 57=K1·K2·K3
 M: Vit K 의존 {r:II·VII·IX·X} — {r:γ-carboxylation} → {r:Ca2+ bridge}로 혈소판 인지질막 결합 (γ-carboxyglutamate {r:9-12개}: JB)
 M: 투여: {r:수술 4-7일 전} · 흡수 장애·{r:장내 세균 합성↓}에만 / 해독: {r:Phytonadione(K1) SC·IM} · {r:Kcentra}(II·VII·IX·X)
 M: K1 {r:plants} · K2 {r:gut bacteria} · K3 {r:Menadione} prodrug → {r:hemolytic anemia}
+M: 20 빈칸 vit K 의존 인자 = {r:II · VII · IX · X} — JB 첫 답 'II, V, VII, X' ✗(V가 아니라 {r:IX})
 
 ## Case Study — Mr. J on Dabigatran + Baby Aspirin | 증례 — 항응고 환자의 전악 발치 계획 | 58-59 | 기출 21~24 · 증례 | jb=HM10,HM03
 > 심장 병력 72세, warfarin에서 dabigatran으로 바꾸고 baby aspirin 복용 — 주치의 상의 → INR·aPTT → 나눠 뽑기 → 봉합·collagen plug·압박
