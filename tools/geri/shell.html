@@ -1869,6 +1869,16 @@ details.ab.more .amg-n>ul>li::marker{color:#9484C9}details.ab.more .amg-v>ul>li:
 .tbody .li>.klead+ol.circ,.tbody .li>.klead+ul.klist{margin:3px 0 2px 6px;padding-left:12px;border-left:2px solid var(--line)}
 .ab .klead+ol.circ,.ab .klead+ul.klist{padding-left:12px;border-left:2px solid var(--line);margin-left:4px}
 @media (max-width:860px){#sumtop table.stbl td button,#sumtop table.stbl th button{white-space:normal;max-width:100%;overflow-wrap:anywhere;text-align:left}#sumtop table.stbl td,#sumtop table.stbl th{overflow-wrap:anywhere}}   /* 10-05 ESTH 새 전체정리표(FUN·VEN) 820에서 기출 칩(nowrap)이 칸을 밀어 표가 16~22px 넘치던 것 */
+
+/* 10-05 강의 회독 표시(.lrd 카드 ☆ 아래 · .hrd 강의 머리) · 내 북마크 거르기 토글(.hbmf) */
+.lrd{position:absolute;top:50px;right:6px;z-index:1;min-width:44px;height:24px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px;border:1px dashed #C9C0B0;border-radius:999px;background:var(--surface,#fff);color:var(--faint,#8C857A);font:inherit;font-size:11px;font-weight:600;line-height:1;cursor:pointer;white-space:nowrap}
+.lrd:hover{border-style:solid;color:var(--ink)}.lrd.on{border:1px solid #6E9C7A;background:#EEF6F0;color:#2E6B44}
+@media (pointer:coarse){.lrd{top:54px;height:30px;min-width:50px}}
+.lcw>.lcard{min-height:92px}
+.hrd{margin-left:6px;display:inline-flex;align-items:center;min-height:28px;padding:0 8px;border:1px dashed var(--line);border-radius:6px;background:var(--surface,#fff);color:var(--sub);font:inherit;font-size:12px;cursor:pointer;vertical-align:middle;white-space:nowrap}.hrd.on{border:1px solid #6E9C7A;background:#EEF6F0;color:#2E6B44}
+@media (pointer:coarse){.hrd{min-height:44px;padding:0 12px}}
+.hbmf{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}.hbmf .tg{min-height:34px;padding:2px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface,#fff);font:inherit;font-size:13px;cursor:pointer}.hbmf .tg.on{border-color:var(--ink);font-weight:700}.hbmf .tg .qn{color:var(--sub);font-weight:500;margin-left:2px}
+@media print{.lrd,.hrd{display:none!important}}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -2656,16 +2666,21 @@ function lmLabel(j){const n=$('#lmn'),pre=$('#lmpre'),suf=$('#lmsuf');if(!n)retu
 const HMD={bk:false,mk:false};let HEXED='';   /* 더보기 details 열림 · 시험일 ✎ 편집 중인 과목(이 창만) */
 /* 10-04 사용자 '허브 홈에서 공부달력과 내 표시 사이에 내 북마크 라는 탭 … 과목별로 내가 북마크 표시한 강의자료를 모아볼 수 있게 … 전체 한번에 또는 과목별로 … 과목홈 강의자료 공부전략까지 표시된 그 형식 그대로'
    #/_bm(?s=과목) · 강의 북마크(LS lbm.<S>)를 과목 순서·각 과목 강의 순서로 · 위 탭 [전체 n][과목 n …] · 고른 탭 LS hbmtab(새 키) · 카드 = 과목 홈 강의 카드 그대로(☆로 빼면 바로 다시 그림) */
-function hbmList(){return SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const p=PACKS[id],B=lbmGet(id);return {p,ls:p.lect.filter(L=>B[L.k])};}).filter(x=>x.ls.length);}
+function hbmList(f){return SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const p=PACKS[id],B=lbmGet(id);return {p,ls:p.lect.filter(L=>!f||(f==='bm'?!!B[L.k]:lrdN(id,L.k)>0))};}).filter(x=>x.ls.length||!f);}
 function hbmN(){let n=0;SUBJECTS.forEach(([id])=>{if(PACKS[id])n+=PACKS[id].lect.filter(L=>lbmGet(id)[L.k]).length;});return n;}
+/* 10-05 사용자 '내 북마크에선 각 과목별로 모든 강의자료들이 보이고, 회독 표시 및 북마크 표시를 토글하면 해당 내역만 보이게끔' — 기본 = 과목별 모든 강의(과목 홈 카드 틀 그대로) · 위 토글 [모든 강의][★ 북마크 n][📖 회독 n](LS hbmf 새 키) · 과목 탭은 그대로(LS hbmtab) */
 function bmView(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==false&&VIEW!=='bm'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='bm';document.title='내 북마크 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
- let sel=opt.s!=null?opt.s:(LS.get('hbmtab','')||'');const L=hbmList();if(sel&&!L.some(x=>x.p.id===sel))sel='';
- const n=L.reduce((a,x)=>a+x.ls.length,0);
+ let f=opt.f!=null?opt.f:(LS.get('hbmf','')||'');if(!/^(|bm|rd)$/.test(f))f='';
+ let sel=opt.s!=null?opt.s:(LS.get('hbmtab','')||'');const L=hbmList(f);if(sel&&!L.some(x=>x.p.id===sel))sel='';
+ const n=L.reduce((a,x)=>a+x.ls.length,0),nb=hbmList('bm').reduce((a,x)=>a+x.ls.length,0),nr=hbmList('rd').reduce((a,x)=>a+x.ls.length,0),na=hbmList('').reduce((a,x)=>a+x.ls.length,0);
+ const fbar=`<div class="hbmf noann" role="tablist" aria-label="표시로 거르기"><button type="button" class="tg${f?'':' on'}" role="tab" aria-selected="${!f}" data-hbf="">모든 강의 <span class="qn">${na}</span></button><button type="button" class="tg${f==='bm'?' on':''}" role="tab" aria-selected="${f==='bm'}" data-hbf="bm">★ 북마크 <span class="qn">${nb}</span></button><button type="button" class="tg${f==='rd'?' on':''}" role="tab" aria-selected="${f==='rd'}" data-hbf="rd">📖 회독 <span class="qn">${nr}</span></button></div>`;
  const tabs=L.length>1?`<div class="cbmtabs hbmtabs noann" role="tablist" aria-label="과목별로 보기"><button type="button" class="tg${sel?'':' on'}" role="tab" aria-selected="${!sel}" data-hbt="">전체 <span class="qn">${n}</span></button>${L.map(x=>`<button type="button" class="tg${sel===x.p.id?' on':''}" role="tab" aria-selected="${sel===x.p.id}" data-hbt="${EH(x.p.id)}" title="${EH(sjName(x.p.id))}"><i class="cdot" style="--dc:${sjColor(x.p.id)}"></i>${EH(sjShort(x.p.id))} <span class="qn">${x.ls.length}</span></button>`).join('')}</div>`:'';
- const body=L.filter(x=>!sel||x.p.id===sel).map(x=>{const B=lbmGet(x.p.id),hot2=new Set((x.p.top||[]).map(t=>t.lk).filter(Boolean));return `<div class="hbmsub" data-hbs="${EH(x.p.id)}"><h3 class="hh hbmh"><i class="cdot" style="--dc:${sjColor(x.p.id)}"></i>${EH(sjName(x.p.id))} <small>★ ${x.ls.length}</small><button type="button" class="b3lk" data-hbhome="${EH(x.p.id)}">과목 홈 →</button></h3><div class="lgrid">${x.ls.map(Lc=>lcardHTML(x.p,Lc,B,hot2,1)).join('')}</div></div>`;}).join('');
- h.innerHTML=`<div class="hub hub4"><h2 class="vh">내 북마크</h2><section class="sh4" id="hlec"><h2 class="hh">★ 내 북마크 <small>강의 ${n} · 과목 홈 강의 카드 오른쪽 위 ☆로 북마크</small></h2>${tabs}${n?body:'<div class="panel noann">아직 북마크한 강의가 없어요 — 과목 홈 강의 카드 오른쪽 위 <b>☆</b>를 눌러 보세요.</div>'}</section></div>`;
+ const body=L.filter(x=>!sel||x.p.id===sel).map(x=>{const B=lbmGet(x.p.id),hot2=new Set((x.p.top||[]).map(t=>t.lk).filter(Boolean)),bn=x.p.lect.filter(Lc=>B[Lc.k]).length,rn=x.p.lect.filter(Lc=>lrdN(x.p.id,Lc.k)>0).length;return `<div class="hbmsub" data-hbs="${EH(x.p.id)}"><h3 class="hh hbmh"><i class="cdot" style="--dc:${sjColor(x.p.id)}"></i>${EH(sjName(x.p.id))} <small>강의 ${x.p.lect.length} · ★ ${bn} · 📖 ${rn}</small><button type="button" class="b3lk" data-hbhome="${EH(x.p.id)}">과목 홈 →</button></h3><div class="lgrid">${x.ls.map(Lc=>lcardHTML(x.p,Lc,B,hot2,1)).join('')}</div></div>`;}).join('');
+ const empty=f==='bm'?'아직 북마크한 강의가 없어요 — 강의 카드 오른쪽 위 <b>☆</b>를 눌러 보세요.':f==='rd'?'아직 회독 표시한 강의가 없어요 — 강의를 다 봤으면 카드의 <b>회독 +</b>를 눌러 보세요.':'과목 자료를 불러오는 중이에요.';
+ h.innerHTML=`<div class="hub hub4"><h2 class="vh">내 북마크</h2><section class="sh4" id="hlec"><h2 class="hh">★ 내 북마크 <small>과목별 모든 강의 · 카드 오른쪽 위 ☆ 북마크 · 그 아래 회독 +</small></h2>${fbar}${tabs}${n?body:'<div class="panel noann">'+empty+'</div>'}</section></div>`;
  histSet({bm:1,sj:sel},'#/_bm'+(sel?'?s='+sel:''),push);measure();window.scrollTo(0,opt.y||0);try{navRender();}catch(e){}}
-document.addEventListener('click',e=>{if(VIEW!=='bm')return;const t=e.target.closest&&e.target.closest('[data-hbt],[data-hbhome],.lcard[data-hbs]');if(!t)return;e.preventDefault();
+document.addEventListener('click',e=>{if(VIEW!=='bm')return;const t=e.target.closest&&e.target.closest('[data-hbt],[data-hbf],[data-hbhome],.lcard[data-hbs]');if(!t)return;e.preventDefault();
+ if(t.hasAttribute('data-hbf')){LS.set('hbmf',t.dataset.hbf);bmView({push:false,f:t.dataset.hbf,s:LS.get('hbmtab','')||''});return;}
  if(t.hasAttribute('data-hbt')){LS.set('hbmtab',t.dataset.hbt);bmView({push:false,s:t.dataset.hbt});return;}if(t.dataset.hbhome){openDoc(t.dataset.hbhome,'_home');return;}openDoc(t.dataset.hbs,t.dataset.d,'learn');});
 function home(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==false&&VIEW!=='home'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='home';document.title='JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
  h.innerHTML=`<div class="hub hub4">${whatsNew()}<div id="storewarn" class="noann"></div><h2 class="vh">JBL 허브 — 오늘</h2>${homeBand()}${homeResume()}<section class="hsec hduo noann">${homeTodo()}${homeRecent()}</section>${(homeTick.sj=homeSubjects())}${(homeTick.wk=homeWeek())}${homeMore()}</div>`;
@@ -2868,7 +2883,7 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  const L=p.lect.find(x=>x.k===d);
  const lat=t_=>{const a=String(t_||'').replace(/[\s\d\W_]/g,'');return a&&(a.match(/[A-Za-z]/g)||[]).length/a.length>=.5;},hdot=`<i class="hkdot" aria-hidden="true" style="background:${sjColor(s)}"></i>`;   /* ux4 B3-3·B3-4 종이 머리 = kicker(과목 점 · …) + h1(라틴 50%↑ 제목만 세리프 .ser) · hchip 줄 없음 */
  const pgN=L&&(/(\d+)\s*쪽/.exec(L.file||'')||[])[1];
- $('#hero').innerHTML=L?`<div class="kick">${hdot}${EH(sjShort(s))} · ${EH(L.prof)} 교수 · ${EH(L.yr)}년도 강의자료${pgN?' '+pgN+'쪽':''}<span class="hst" id="hstat"></span>${lbmBtn(s,L.k,'hbm')}</div><h1 class="${lat(L.title)?'ser':''}">${L.title}</h1>`
+ $('#hero').innerHTML=L?`<div class="kick">${hdot}${EH(sjShort(s))} · ${EH(L.prof)} 교수 · ${EH(L.yr)}년도 강의자료${pgN?' '+pgN+'쪽':''}<span class="hst" id="hstat"></span>${lbmBtn(s,L.k,'hbm')}${lrdBtn(s,L.k,'hrd')}</div><h1 class="${lat(L.title)?'ser':''}">${L.title}</h1>`
    :d==='_home'?`<div class="kick">${hdot}${EH(sjName(s))} · ${EH(p.profs)}</div><h1 class="${lat(p.en)?'ser':''}">${p.en}</h1><div class="hlead"><button type="button" data-hgo="_jb">${p.stats.ref?'현 교수 ':''}기출 ${p.stats.main!=null?p.stats.main:p.stats.cards}${p.stats.ref?' (+참고 '+p.stats.ref+')':''}</button><i>·</i><button type="button" data-hgo="rep">2회 이상 ${p.stats.rep}</button><i>·</i><button type="button" data-hgo="lec">강의 ${p.lect.length}</button><i>·</i><button type="button" data-hgo="_tbl">비교표 ${tblN(p)}</button><i>·</i><button type="button" data-hgo="_pred">예상 ${p.preds.length}</button></div>`
    :`<div class="dhrow"><div class="dht"><div class="kick">${hdot}${EH(sjName(s))}</div><h1>${EH(docLabel(d))}</h1></div><span class="ktools dhk noann">${ktoolsHTML(true,1)}</span></div>`;
  $('#hero').classList.toggle('home',d==='_home');$('#hero').classList.toggle('cmp',d!=='_home');$('#hero').classList.toggle('lec',!!L);document.title=(L?L.title+' · ':'')+p.title+' — JBL';
@@ -2906,7 +2921,7 @@ function actBtn(p,a,C){if(a==='resume'){const r=resumeTarget(p);if(!r)return '';
 const GUIDE0=[{b:'강의 정리본 → 학습',t:'‘이 강의의 틀’로 흐름 → 카드마다 🔑 → 세부 → ⭐ 시험포인트',act:'resume'},{b:'강의 → 기출',t:'그 강의 기출을 한 장씩 풀고 맞음/틀림 — 📖 칩으로 정리본과 오가기',act:'todo'},{b:'강의 → 플래시카드·⚡자동 빈칸',t:'암기 줄을 가리고 떠올리기',act:''},{b:'과목 → JB 문제',t:'출제 횟수 순으로 풀고 틀린 것만 다시 · 비교표 · 예상문제로 마무리',act:'rep'}];
 /* 과목 홈(ux4 B3-3 — CLAUDE.md 순서 유지: 공부 순서 → 진행률 → 교수별 출제 경향·📌 전략(build4 표) → 교수님이 예고·강조한 것 → 강의 → 2회 이상 출제)
    절 = 제목 17 굵게 + 선 하나 · 공부 순서 = 번호(과목색) · 굵은 단계 · 회색 설명 · 오른쪽 글자 링크, 지금 단계는 번호를 채운 원 · 진행률 한 줄 + 4px 막대 + 보조 버튼 2 · 시험일·읽음 % 없음 */
-function lcardHTML(p,L,BM,hot2,hub){return `<div class="lcw${BM[L.k]?' bm':''}">${lbmBtn(p.id,L.k,'lbm')}<button class="lcard ${L.heat}" data-d="${L.k}"${hub?` data-hbs="${EH(p.id)}"`:''}><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.tip?`<span class="lh ltip"><b>📌 공부 전략</b> ${EH(L.tip)}</span>`:''}</button></div>`;}   /* 과목 홈 강의 카드 — 허브 '내 북마크'도 같은 틀(hub = 누르면 그 과목 강의로) */
+function lcardHTML(p,L,BM,hot2,hub){const RD=lrdN(p.id,L.k);return `<div class="lcw${BM[L.k]?' bm':''}${RD?' rd':''}">${lbmBtn(p.id,L.k,'lbm')}${lrdBtn(p.id,L.k,'lrd')}<button class="lcard ${L.heat}" data-d="${L.k}"${hub?` data-hbs="${EH(p.id)}"`:''}><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.tip?`<span class="lh ltip"><b>📌 공부 전략</b> ${EH(L.tip)}</span>`:''}</button></div>`;}   /* 과목 홈 강의 카드 — 허브 '내 북마크'도 같은 틀(hub = 누르면 그 과목 강의로) */
 function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const MKh=getMK(p.id);const G=(p.guide&&p.guide.length?p.guide:GUIDE0),r0=resumeTarget(p);
  let now=G.findIndex(g=>g.act==='resume');if(!(r0&&r0.cont)&&!(nOk+nNg))now=0;if(now<0)now=0;
  const TJ=trendNoPct(p.trends||'').j;const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(String(g.t).replace(/짤 비율 평균 \d+%/,TJ?'짤 '+TJ+'문항':'짤이 많음'))}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');
@@ -3873,6 +3888,7 @@ function mergeData(data,opt){opt=opt||{};data=dcutData(data);   /* 10-04 D1 옛 
    else if(key.indexOf('mk.')===0){const pref={};for(const id in mkObj(a.ok))pref[id]='ok';for(const id in mkObj(a.ng))pref[id]=pref[id]?pref[id]:'ng';   /* 기록이 없으면 지금 기기의 채점을 따름 */
     ['ok','ng','bm'].forEach(t=>{a[t]=Object.assign({},mkObj(b[t]),mkObj(a[t]));});const la=mkObj(a.log),lb=mkObj(b.log);for(const id in lb){const u={};[].concat(Array.isArray(la[id])?la[id]:[],Array.isArray(lb[id])?lb[id]:[]).forEach(x=>{if(x&&x.t)u[x.t+x.r]=x;});la[id]=Object.values(u).sort((p,q)=>p.t-q.t).slice(-10);}if(Object.keys(la).length)a.log=la;fixGrades(a,pref);localStorage.setItem(k,JSON.stringify(a));n++;}
    else if(key.indexOf('done.')===0||key.indexOf('fc.')===0||key.indexOf('autoRule.')===0||key.indexOf('lbm.')===0||key.indexOf('cbm.')===0){if(!isObj(a)){localStorage.setItem(k,inc);n++;continue;}localStorage.setItem(k,JSON.stringify(Object.assign({},b,a)));n++;}
+   else if(key.indexOf('lrd.')===0){if(!isObj(a)){localStorage.setItem(k,inc);n++;continue;}const m=Object.assign({},a);for(const kk in b){const nb=+(b[kk]&&b[kk].n)||0,na=+(m[kk]&&m[kk].n)||0;if(nb>na){m[kk]=b[kk];}}localStorage.setItem(k,JSON.stringify(m));n++;}   /* 10-05 회독 수 = 큰 값 */
    else if(key==='time'||key==='timed'||key==='tadj'){const m=tMax(a,b);localStorage.setItem(k,JSON.stringify(m));n++;}
    else if(key==='tseg'||key==='trest'){localStorage.setItem(k,JSON.stringify(tMerge(key,a,b)));n++;}   /* ux3 I7 tseg (s|S|D|종류) 합집합·e 큰 값·x가 이김 · trest 큰 값 */
    else if(key.indexOf('memo.')===0){if(typeof a==='string'&&typeof b==='string'){if(b.indexOf(a)>=0&&b!==a){localStorage.setItem(k,JSON.stringify(b));n++;}else if(a.indexOf(b)<0){localStorage.setItem(k,JSON.stringify(a+(a?'\n\n— 백업에서 합침 —\n':'')+b));n++;}}}}
@@ -3886,7 +3902,7 @@ function tMax(a,b){const o=JSON.parse(JSON.stringify(tObj(a)));const B=tObj(b);f
    'drop' 버리기 전 3 · 'clear' 지우기 전 3 · 'misc' 그 밖의 이관·교체 전 3. 비교는 공부 기록 키만(bakSig의 FNV = meta.sig — 같으면 주기 백업을 또 쓰지 않음).
    처음 열 때 localStorage autobak.*를 IDB로 복사하고 다시 읽어 같은지 확인한 뒤에만 localStorage 사본을 지움 · IDB를 쓸 수 없으면 localStorage 방식 그대로(autoBakLS) ·
    autoBak(force, why, 과목) → Promise<성공 여부> (데이터는 부른 순간 dumpAll로 떠 둠 — 곧이은 쓰기와 섞이지 않음) · 백업은 차례로(BK.q) */
-const bakSig=d=>JSON.stringify(Object.keys(d).filter(k=>/^jblhub\.v1\.(ann|mk|done|memo|memoh|fc|autoRule|lbm|cbm)\./.test(k)).sort().map(k=>[k,d[k]]));
+const bakSig=d=>JSON.stringify(Object.keys(d).filter(k=>/^jblhub\.v1\.(ann|mk|done|memo|memoh|fc|autoRule|lbm|lrd|cbm)\./.test(k)).sort().map(k=>[k,d[k]]));
 function fnv1(t){let h=0x811c9dc5;for(let k=0;k<t.length;k++){h^=t.charCodeAt(k);h=Math.imul(h,0x01000193);}return (h>>>0).toString(36);}
 const BK={p:null,ok:null,db:null,q:null,lastAt:0};
 function bkDB(){if(BK.p)return BK.p;BK.p=new Promise(res=>{let done=false;const fin=v=>{if(done)return;done=true;BK.db=v||null;BK.ok=!!v;res(BK.db);};
@@ -3901,7 +3917,7 @@ function bkDel(db,ats){if(!ats.length)return Promise.resolve(true);return bkTx(d
 function bkCat(why){if(!why)return 'i';if(/원고 갱신/.test(why))return 'upd';if(/합치기 전|되돌리기 전|교체 전/.test(why))return 'rst';if(/버리기/.test(why))return 'drop';if(/지우기/.test(why))return 'clear';return 'misc';}   /* ux2 fixA V04: 합치기·되돌리기·교체 전은 따로 3칸(rst) */
 const BKCATN={i:'자동',upd:'원고 갱신·이관 전',rst:'합치기·되돌리기 전',drop:'버리기 전',clear:'지우기 전',misc:'그 밖의 정리 전'};
 function bkNow(){let t=Date.now();if(t<=BK.lastAt)t=BK.lastAt+1;BK.lastAt=t;return t;}
-const SUBKEY=s=>new RegExp('^'+NS.replace(/\./g,'\\.')+'(ann|done|mk|fc|autoRule|memo|memoh|lbm|cbm)\\.'+s+'(\\.|$)');
+const SUBKEY=s=>new RegExp('^'+NS.replace(/\./g,'\\.')+'(ann|done|mk|fc|autoRule|memo|memoh|lbm|lrd|cbm)\\.'+s+'(\\.|$)');
 function bkMeta(at,why,cat,data,sig,extra){let size=0;for(const k in data)size+=k.length+String(data[k]).length;return Object.assign({at,why:why||'',cat,size,sig},extra||{});}
 async function bkIdb(db,force,why,sub,data,s){const cat=force&&!why?'i':bkCat(why),sig=fnv1(s),M=await bkMetaAll(db);
  if(cat==='i'&&!force){const last=M.filter(m=>m.cat==='i').sort((a,b)=>b.at-a.at)[0];if(last&&last.sig===sig){autoBak.last=s;return true;}}
@@ -4085,7 +4101,7 @@ async function rstRender(p){let L=[];try{L=await bkList();}catch(e){}if(!p.class
 function mresHTML(r){const sk=Array.isArray(r.skip)?r.skip:[];return `<div class="mres panel"><b>백업 합치기 결과</b> — 합친 것 ${+r.n||0} · 건너뜀 ${sk.length}${sk.length?' <span class="small">('+sk.slice(0,6).map(x=>EH(x[0])+': '+EH(x[1])).join(' · ')+(sk.length>6?' …':'')+')</span>':''} <button class="btn sm" data-mresx="1">확인</button></div>`;}
 /* ---------- 되돌리기·교체(C05) — 공부 기록 키(ann·mk·done·memo·fc·autoRule)만 바꿈 · time·timed·tadj는 큰 값으로 합침 · 읽던 위치·설정은 지금 값 ----------
    ① 쓰기 전에 크기 계산(모자라면 멈춤) ② autoBak(true,'되돌리기 전')이 실패하면 '먼저 [백업 파일 받기]'만 보이고 멈춤 ③ 쓰다 실패하면 지우기 전 값으로 롤백·오류 띠(새로고침 안 함) */
-const STUDY=/^(ann|mk|done|memo|memoh|fc|autoRule|lbm|cbm)\./;   /* 10-05 memoh = 메모 서식(굵게·밑줄·형광·크기) — memo(글자)와 짝 */   /* ux4f lbm(강의 북마크)도 공부 기록 — 교체·되돌리기·자동 백업 대상 */
+const STUDY=/^(ann|mk|done|memo|memoh|fc|autoRule|lbm|lrd|cbm)\./;   /* 10-05 memoh = 메모 서식(굵게·밑줄·형광·크기) — memo(글자)와 짝 */   /* ux4f lbm(강의 북마크)도 공부 기록 — 교체·되돌리기·자동 백업 대상 */
 function studyPlan(data,dev){data=dcutData(data);const set={},del=[],cur=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf(NS)===0&&STUDY.test(k.slice(NS.length)))cur.push(k);}
  for(const k in data){if(k.indexOf(NS)!==0||!STUDY.test(k.slice(NS.length))||typeof data[k]!=='string')continue;set[k]=data[k];}cur.forEach(k=>{if(!(k in set))del.push(k);});
  ['time','timed','tadj','tseg','trest'].forEach(t=>{const k=NS+t;if(typeof data[k]!=='string')return;let b;try{b=JSON.parse(data[k]);}catch(e){return;}if(!b||typeof b!=='object'||Array.isArray(b))return;if(dev&&typeof devPlan==='function'){devPlan(set,dev,t,b);return;}const js=JSON.stringify(tMerge(t,LS.get(t,{}),b));if(js!==localStorage.getItem(k))set[k]=js;});
@@ -4973,6 +4989,21 @@ function lbmToggle(S,k,src){const y0=src&&src.getBoundingClientRect?src.getBound
  $$('[data-lbm="'+S+'|'+k+'"]').forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'북마크 빼기':'이 강의 북마크');b.title=on?'북마크 빼기':'이 강의 북마크';b.firstChild.nodeValue=on?'★':'☆';});
  try{navRender();}catch(e){}if(y0!=null){const b2=$$('#hlec [data-lbm="'+S+'|'+k+'"],#hero [data-lbm="'+S+'|'+k+'"]')[0];if(b2){const dy=b2.getBoundingClientRect().top-y0;if(Math.abs(dy)>1)window.scrollBy(0,dy);}}return on;}   /* ux4f ★ 줄이 생기거나 사라져도 누른 ☆이 손가락 아래 그대로 */
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lbm]');if(!b)return;e.preventDefault();e.stopPropagation();const [S,k]=b.dataset.lbm.split('|');lbmToggle(S,k,b);},true);
+/* 10-05 사용자 '북마크 표시 말고 1회독 표시를 추가해줄 수 있어? 내가 한번 보면 1회독부터 숫자 올릴 수 있게끔!' — 강의 회독 수 LS lrd.<S> = {강의키: {n: 회독 수, at: 마지막으로 올린 때}} 새 키
+   과목 홈 강의 카드 ☆ 아래 '회독 +' / 'n회독'(누르면 +1 · 길게 누르거나 오른쪽 클릭 = −1) · 강의 머리 ☆ 북마크 옆 같은 버튼 · 백업 합치기 = 큰 값 */
+function lrdGet(S){const o=LS.get('lrd.'+S,{});return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}
+function lrdN(S,k){const v=lrdGet(S)[k];return Math.max(0,+(v&&typeof v==='object'?v.n:v)||0);}
+function lrdLab(n){return n?n+'회독':'회독 +';}
+function lrdBtn(S,k,cls){const n=lrdN(S,k);return `<button type="button" class="${cls} noann${n?' on':''}" data-lrd="${EH(S)}|${EH(k)}" title="${n?n+'회독 — 누르면 '+(n+1)+'회독 · 길게 누르거나 오른쪽 클릭 = 하나 내리기':'다 봤으면 눌러 1회독 · 길게 누르거나 오른쪽 클릭 = 하나 내리기'}" aria-label="${n?n+'회독':'1회독 표시'}">${lrdLab(n)}</button>`;}
+function lrdSet(S,k,d){const B=lrdGet(S),n=Math.max(0,lrdN(S,k)+d);if(n)B[k]={n,at:Date.now()};else delete B[k];LS.set('lrd.'+S,B);
+ const p=PACKS[S],L=p&&p.lect.find(x=>x.k===k),nm=L?L.title:k;toast(d>0?('📖 '+n+'회독 — '+nm+' · 잘못 눌렀으면 길게 누르기(−1)'):(n?n+'회독으로 내렸어요 — '+nm:'회독 표시를 뺐어요 — '+nm),{replace:true});
+ $$('[data-lrd="'+S+'|'+k+'"]').forEach(b=>{b.classList.toggle('on',!!n);b.textContent=lrdLab(n);b.setAttribute('aria-label',n?n+'회독':'1회독 표시');const w=b.closest('.lcw');if(w)w.classList.toggle('rd',!!n);});
+ if(VIEW==='bm'){const y=scrollY;setTimeout(()=>{bmView({push:false,s:LS.get('hbmtab','')||'',y});},0);}return n;}
+let LRDP=null,LRDX=0;
+document.addEventListener('pointerdown',e=>{const b=e.target.closest&&e.target.closest('[data-lrd]');if(!b||e.button>0)return;clearTimeout(LRDP);LRDP=setTimeout(()=>{LRDP=null;LRDX=Date.now()+900;const [S,k]=b.dataset.lrd.split('|');lrdSet(S,k,-1);},600);},true);
+['pointerup','pointercancel','pointerleave'].forEach(t=>document.addEventListener(t,()=>{clearTimeout(LRDP);LRDP=null;},true));
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-lrd]');if(!b)return;e.preventDefault();e.stopPropagation();if(Date.now()<LRDX)return;const [S,k]=b.dataset.lrd.split('|');lrdSet(S,k,+1);},true);
+document.addEventListener('contextmenu',e=>{const b=e.target.closest&&e.target.closest('[data-lrd]');if(!b)return;e.preventDefault();if(Date.now()<LRDX)return;const [S,k]=b.dataset.lrd.split('|');lrdSet(S,k,-1);},true);
 /* B04 허브 화면에서 과목 전용 키를 누르면 한 번만 알림(상태는 바꾸지 않음) */
 let HUBKN=0;function hubKeyNote(){if(HUBKN)return;HUBKN=1;toast('H·B·E·N·T·V·Q는 과목 화면(강의·JB·표)에서 쓰는 키예요');}
 /* B15 / = 검색 — 집중 모드면 상단 막대를 잠시 내려(topshow) 바로 포커스, 검색칸을 떠나면 다시 숨김 */

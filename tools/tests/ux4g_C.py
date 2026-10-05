@@ -19,6 +19,8 @@ with sync_playwright() as p:
         ok(nav.index('cal') < nav.index('bm') < nav.index('marks'), f'{tag} 메뉴: 공부 달력 → 내 북마크 → 내 표시 {nav}')
         ok(pg.evaluate("document.querySelector('#nav [data-nv=bm] [data-nb=bma]').textContent") == '3', f'{tag} 메뉴 숫자 3')
         pg.evaluate("document.querySelector('#nav [data-nv=bm]').click()"); pg.wait_for_timeout(1500)
+        ok(len(pg.evaluate(CARDS)) > 20, f'{tag} (10-05) 기본 = 과목별 모든 강의 {len(pg.evaluate(CARDS))}')
+        pg.evaluate("document.querySelector('#home [data-hbf=bm]').click()"); pg.wait_for_timeout(800)   # 10-05 ★ 북마크 거르기
         ok(pg.evaluate("location.hash") == '#/_bm' and pg.evaluate(CARDS) == ['CONS:INL', 'PHARM:XE', 'PHARM:ACU'], f'{tag} 전체 = 과목·강의 순서 {pg.evaluate(CARDS)}')
         ok(pg.evaluate("[...document.querySelectorAll('#home [data-hbt]')].map(b=>b.dataset.hbt)") == ['', 'CONS', 'PHARM'], f'{tag} 탭 전체·과목')
         ok(pg.evaluate("document.querySelectorAll('#home #hlec .lgrid .lcw .lcard .ltip').length") == 3, f'{tag} 과목 홈 카드 틀 + 📌 공부 전략')
