@@ -37,9 +37,9 @@ U: 가장 강력한 진통제인 이유 = brain·brain stem·spinal cord·말초
 - Dorsal horn = 감각신경이 이차신경과 synapse를 형성하고, descending inhibitory neuron까지 합쳐져 신호가 integration 되는 곳(필기).
 E: PN15 | 21·20년 서술 "Opioid의 통증 완화 작용을 presynaptic & postsynaptic neuron으로 나누어" → pre = inhibit synaptic vesicle release from primary afferents(Ca influx↓) / post = hyperpolarize postsynaptic neurons(K+↑) ⚠ 함정: Ca·K 뒤바꾸기
 F: 3=μ 수용체의 pre와 post 작용
-M: 작용 부위 4 = {r:brain}(mood) · {r:brain stem}(하행 억제↑) · {r:spinal cord} · {r:peripheral terminals}
-M: Pre = {r:Ca2+ influx↓} → vesicle release↓ / Post = {r:K+ conductance↑} → {r:hyperpolarization}
+M: 작용 부위 4 = ① {r:brain}(mood) ② {r:brain stem}(하행 억제↑) ③ {r:spinal cord} ④ {r:peripheral terminals}
 M: 진통 수용체 = {r:μ(MOR)}·GPCR / {r:κ} = 부작용 쪽 / 길항제 = intoxication 역전
+M: 척수 기전(21·20 서술): Pre = {r:Ca2+ influx↓} → vesicle release↓ / Post = {r:K+ conductance↑} → {r:hyperpolarization} — Ca·K 뒤바꾸기 ✗
 
 ## Opioid Dosing — Basal + Breakthrough · Routes · Patient-Controlled Analgesia | Opioid 투여 원칙 — 바닥을 깔고 필요할 때 얹는다 | 5 | 투여
 > 지속되는 통증엔 바닥(basal)을 깔고 치솟을 때만 얹는다(PRN) — 가능하면 경구, 못 먹으면 비경구·패치
@@ -56,9 +56,9 @@ M: 진통 수용체 = {r:μ(MOR)}·GPCR / {r:κ} = 부작용 쪽 / 길항제 = i
 | **Patient-controlled analgesia** | postoperative or terminally ill patient — {r:enhancement in pain relief}·{r:decrease in anxiety} |
 U: Patient-controlled analgesia = baseline으로 일정량을 주고 환자가 버튼을 누르면 추가 투여되는 방식, 최근 술후에 사용(필기).
 F: 5=basal에 5-15% 추가
-M: Breakthrough PRN = daily basal dose의 {r:5-15%} / 가능하면 {r:oral}
-M: Transdermal·parenteral = {r:dysphagia·emesis·GI 흡수↓} / {r:patient-controlled analgesia} = 술후·말기, 통증↓·불안↓
-M: {r:short half-life}(morphine) · narcotic-naïve = {r:lowest possible dose}
+M: 용량: Constant pain = {r:basal} + PRN / Breakthrough PRN = daily basal dose의 {r:5-15%} / 가능하면 {r:oral}
+M: 약 선택: {r:short half-life}(morphine) · narcotic-naïve = {r:lowest possible dose}
+M: 경로: Transdermal·parenteral = {r:dysphagia·emesis·GI 흡수↓} / {r:patient-controlled analgesia} = 술후·말기, 통증↓·불안↓ / Continuous IV = {r:steady blood levels} · rapid dose adjustment
 
 ## Selected Opioids — Codeine · Morphine · Methadone · Fentanyl | 주요 opioid 약물 — 복합제·금단 대체·패치 | 6-8 | 기출 20 | jb=PN19,PN25
 > 치과에선 약한 opioid를 acetaminophen과 섞어 쓰고, 금단엔 반감기 긴 methadone, 패치는 fentanyl
@@ -96,7 +96,8 @@ F: 7
 U: 같은 효과에 fentanyl 0.1 mg vs morphine 10 mg — 펜타닐이 매우 potent(필기).
 F: 8=펜타닐이 매우 potent
 M: 복합제 = codeine·oxycodone·hydrocodone + {r:acetaminophen} → {r:acetaminophen overdose} 주의
-M: 금단 대체 = {r:methadone}(extended half-life · 최근 buprenorphine) / patch = {r:fentanyl}({r:72 h}·호흡억제↑)
+M: 기출(20 단답): 금단 대체 = {r:methadone}(extended half-life · 최근 buprenorphine) / patch = {r:fentanyl}({r:72 h}·호흡억제↑)
+M: 주의점: methadone = 반감기는 길어도 {r:진통 지속은 짧음} / mixed agonist-antagonist = {r:few advantages} · more adverse effects
 M: morphine = {r:renal insufficiency} 주의 / meperidine = {r:no longer recommended}(euphoria)
 M: 등가 용량(IM): fentanyl {r:0.1 mg} = morphine {r:10 mg} = codeine 120 mg → {r:fentanyl} 가장 potent
 
@@ -127,15 +128,16 @@ F: 9=Tramadol 대사와 CYP2D6 phenotype
 U: 한국 사람은 intermediate metabolizer가 50% 정도 → 대사가 천천히 일어나 약효가 더 약하게 나타남(필기).
 E: PN11 | 22·20년 객관식 "발목 골절로 코데인을 복용하는데 효과가 없다" → 1) Poor metabolism — codeine은 prodrug, CYP2D6 대사 후 효과(JB) ⚠ 함정: 흡수·제거가 아니라 {r:활성화 대사}
 F: 10=한국인은 intermediate가 약 50%
-M: Tramadol = {r:weak MOR agonist} + {r:SNRI} · 활성 대사체 {r:O-desmethyltramadol} ← {r:CYP2D6}
+M: 정의: Tramadol = {r:weak MOR agonist} + {r:SNRI} · 활성 대사체 {r:O-desmethyltramadol} ← {r:CYP2D6}
+M: CYP2D6 phenotype 4: ① {r:Ultrarapid}(>2 copies) ② Extensive ③ {r:Intermediate} ④ {r:Poor}(no functional alleles)
 M: Codeine이 CYP2D6 변이에 {r:가장 민감} → {r:poor·intermediate} = 효과↓ / {r:ultrarapid} = 효과↑↑
-M: 한국인 PM {r:0.2%}(매우 드묾) · 아시아 intermediate metabolizer {r:51%}
-M: 코데인이 효과 없음(22·20 객관식) = {r:Poor metabolism} — codeine = {r:prodrug} → CYP2D6 대사 후 효과(흡수·제거 문제 ✗)
+M: 인종 차: 한국인 PM {r:0.2%}(매우 드묾) · 아시아 intermediate metabolizer {r:51%}
+M: 기출: 코데인이 효과 없음(22·20 객관식) = {r:Poor metabolism} — codeine = {r:prodrug} → CYP2D6 대사 후 효과(흡수·제거 문제 ✗)
 
 @G ② Opioid — 조심할 것(주의·금단·부작용·과량)
 ## Precautions · Tolerance · Physical Dependence ★ | 주의 환자와 내성·신체 의존·금단 | 11 | 기출 20 | jb=PN23
 > 호흡기·내분비 질환자엔 조심, 오래 쓰면 내성과 신체 의존이 함께 오고 — 갑자기 끊으면 금단, 그래서 서서히 줄인다
-= 주의 = {r:respiratory disease}·hypothyroidism 등 · {r:hepatic} 용량 조절 / 금단 6증상 · {r:2 weeks} / 해결 = {r:tapering}
+= 주의 = {r:respiratory disease}·hypothyroidism 등 · {r:hepatic} 용량 조절 / 의존 {r:2 weeks}만에도 → 금단 6증상 / 해결 = {r:tapering}
 # Precautions — 누구에게 조심
 - Used with caution in: ① hypothyroidism ② Addison disease ③ hypopituitarism ④ anemia ⑤ {r:respiratory disease}(COPD, asthma, kyphoscoliosis, severe obesity) ⑥ severe malnutrition or debilitation.
 - Opioid dosage should be adjusted for patients with {r:impaired hepatic function}.
@@ -153,10 +155,11 @@ U: 진통 작용에 대한 tolerance가 side effect에 대한 tolerance보다 �
 P: 💬 "Physical dependence는 금단 증상과 함께 생각해야 하고 이때 어떻게 치료를 하는지 알아둡시다(Tapering 하는 방법)" — 약을 끊을 때 한 번에 끊지 않고 서서히 줄임(p.4·11 필기).
 E: PN23 | 20년 서술 "physical dependence의 일종인 withdrawal syndrome의 주요 증상" → anxiety, irritability, diaphoresis, tachycardia, GI distress, and temperature instability — 슬라이드 6개 그대로
 F: 11=금단은 tapering으로
-M: 금단 6 = {r:anxiety}·{r:irritability}·{r:diaphoresis}·{r:tachycardia}·{r:GI distress}·{r:temperature instability}
-M: 의존은 {r:2 weeks}만에도 · antagonist는 {r:3 days} 뒤에도 금단 유발 → {r:tapering}
+M: 주의 환자: ① {r:respiratory disease}(COPD·asthma) ② hypothyroidism·Addison disease·hypopituitarism ③ anemia ④ severe malnutrition / {r:impaired hepatic function} = 용량 조절
 M: 부작용 상승 = {r:phenothiazines·antidepressants·benzodiazepines·alcohol}
-M: 진통 tolerance가 부작용 tolerance보다 {r:훨씬 빨리} → 진통↓·부작용 남음 / tolerance는 physical dependence와 {r:coincide}
+M: 금단 6 = ① {r:anxiety} ② {r:irritability} ③ {r:diaphoresis} ④ {r:tachycardia} ⑤ {r:GI distress} ⑥ {r:temperature instability} — 20 서술(슬라이드 6개 그대로)
+M: 의존·해결: 의존은 {r:2 weeks}만에도 · antagonist는 {r:3 days} 뒤에도 금단 유발 → {r:tapering}(💬 한 번에 끊지 않고 서서히 줄임)
+M: 내성: 진통 tolerance가 부작용 tolerance보다 {r:훨씬 빨리} → 진통↓·부작용 남음 / tolerance는 physical dependence와 {r:coincide}
 
 ## Adverse & Toxic Effects | 부작용 — 가장 중요한 것은 호흡억제 | 12 | 부작용
 > 제제끼리 부작용 차이는 거의 없다 — 진정·축동, 호흡억제, 저혈압, 변비·구토, 요저류, 가려움
@@ -175,9 +178,9 @@ M: 진통 tolerance가 부작용 tolerance보다 {r:훨씬 빨리} → 진통↓
 P: 💬 "가장 중요한 부작용은 respiratory depression" · constipation도 매우 흔함 · nausea·vomiting·pruritus도 잘 생김(필기).
 U: 아편 중독에서 가장 먼저 생각할 것 = respiratory depression에 의한 사망(p.7 필기).
 F: 12=가장 중요한 부작용은 호흡억제
-M: 가장 중요 = {r:respiratory depression}(dose-related·IV) / 가장 일반적 = {r:sedation} / 흔함 = {r:constipation}
-M: 축동 = {r:pupillary constriction} / 요저류 = {r:sphincter tone↑} / 가려움 = {r:spinal}
-M: 변비 → {r:stool softeners·laxatives} / 구토 → {r:ondansetron}·metoclopramide·prochlorperazine
+M: 💬 가장 중요 = {r:respiratory depression}(dose-related·IV) / 가장 일반적 = {r:sedation} / 흔함 = {r:constipation}
+M: 계통별: 축동 = {r:pupillary constriction} / 요저류 = {r:sphincter tone↑} / 가려움 = {r:spinal} / 저혈압 = {r:peripheral vasodilation}(IV)
+M: 대처: 변비 → {r:stool softeners·laxatives} / 구토 → {r:ondansetron}·metoclopramide·prochlorperazine
 
 ## Overdose — Naloxone · Opioid Crisis | 과량 — 해독제 naloxone과 opioid 위기 | 13-15 | 기출 20 | jb=PN22
 > 과량엔 길항제 naloxone — 단 naloxone도 경련·부정맥을 부를 수 있다. 미국 과량 사망의 주범은 heroin과 fentanyl
@@ -204,9 +207,9 @@ F: 13=Antidote는 naloxone
 | Antidepressants | 5,064 | |
 U: Opioid overdose crisis와 가장 연관이 깊은 두 약물 = heroin과 fentanyl, fentanyl이 매우 급격하게 늘고 있음(필기).
 F: 14=heroin과 fentanyl, 15=fentanyl 급증
-M: 과량 해독제 = {r:Naloxone}(antagonist) — 부작용 {r:seizure}·{r:cardiac arrhythmias}
+M: 💬 기출(20 빈칸): 과량 해독제 = {r:Naloxone}(antagonist) — 부작용 {r:seizure}·{r:cardiac arrhythmias}
+M: 구별(함정): 과량 = {r:naloxone}(길항) / 금단 해소 = {r:methadone}(대체) / 금단 최소화 = {r:tapering}
 M: Crisis 두 약물 = {r:heroin}·{r:fentanyl}(급증)
-M: 과량 = {r:naloxone}(길항) / 금단 해소 = {r:methadone}(대체) / 금단 최소화 = {r:tapering}
 
 ## WHO Analgesic Ladder | WHO 진통 사다리 — 통증 세기대로 3단계 | 16 | 원칙
 > 통증 세기에 맞춰 한 칸씩 — mild는 비opioid, moderate는 중간 opioid, severe는 강한 opioid
@@ -218,8 +221,8 @@ M: 과량 = {r:naloxone}(길항) / 금단 해소 = {r:methadone}(대체) / 금�
 - Oxycodone은 Step 2·3 양쪽에 있음 / 치과 복합제의 opioid(codeine·hydrocodone·oxycodone, p.24)는 Step 2 목록.
 U: Mild pain = NSAID, moderate = efficacy와 potency가 낮은 opioid, severe pain = 좀 더 강력한 opioid(필기).
 F: 16=WHO 3단계 사다리
-M: WHO ladder: mild {r:nonopioid} → moderate {r:tramadol·codeine·hydrocodone·oxycodone} → severe {r:morphine·fentanyl} 등
-M: Step 2에는 {r:+ nonopioid adjuvants}
+M: WHO ladder: ① mild {r:nonopioid} ② moderate {r:tramadol·codeine·hydrocodone·oxycodone} ③ severe {r:morphine·fentanyl} 등
+M: 세부: Step 1 nonopioid = acetaminophen·aspirin·NSAIDs / Step 2에는 {r:+ nonopioid adjuvants} / oxycodone = Step 2·3 양쪽
 
 @G ③ 만성 신경병성 통증 — opioid보다 항경련제·항우울제
 ## Chronic Neuropathic Pain — IASP Treatment Lines ★ | 만성 신경병성 통증 약물 치료 단계 | 17 | 기출 20 | jb=PN21
@@ -250,14 +253,14 @@ F: 17=1차 gabapentin과 SNRI → 2차 capsaicin과 tramadol → 3차 strong opi
 - 이 강의에서도 같은 묘사: anticonvulsant = "intermittent lancinating quality"(p.18), trigeminal neuralgia = "sharp, lancinating (shooting), and electric shock–like pain"(p.25), Case 1 치통 = "dull, aching, and throbbing"(p.26).
 E: PN21 | 20년 빈칸(표) "Etiology·Descriptors × neuropathic·nociceptive" → Nerve injury / Tissue or potential tissue damage / Lancinating, shooting, electrical-like / Throbbing, aching, pressure-like — 표 원본은 급성통증 p.17
 F: ACU:17=어떻게 아프세요에 대한 묘사가 다름
-M: 1st = {r:gabapentin}·{r:pregabalin}·{r:SNRI}(duloxetine first choice)·{r:TCA}
+M: 왜 opioid가 아닌가: opioid도 효과는 비슷 → 그러나 항경련제·항우울제가 {r:abuse·long-term tolerance} 위험↓ → {r:long-standing noncancer pain}에 우선
+M: 1st = ① {r:gabapentin} ② {r:pregabalin} ③ {r:SNRI}(duloxetine first choice) ④ {r:TCA}
 M: 2nd = {r:capsaicin 8%}·{r:lidocaine patch}·{r:tramadol} / 3rd = {r:botulinum toxin A}·{r:strong opioids}
-M: Neuropathic = {r:nerve injury}·{r:lancinating·shooting·electrical} vs Nociceptive = {r:tissue damage}·{r:throbbing·aching·pressure}
-M: opioid도 효과는 비슷 → 그러나 항경련제·항우울제가 {r:abuse·long-term tolerance} 위험↓ → {r:long-standing noncancer pain}에 우선
+M: 기출(20 표): Neuropathic = {r:nerve injury}·{r:lancinating·shooting·electrical} vs Nociceptive = {r:tissue damage}·{r:throbbing·aching·pressure}
 
 ## Anticonvulsants — Gabapentin (Ca) · Carbamazepine (Na) ★ | 항경련제 — 막 안정화로 신경병성 통증을 | 18 | 기출 20~24 · 매년 | jb=PN01,PN03,PN24
 > 막을 안정화시켜 찌릿한 신경통을 누른다 — gabapentin은 Ca 채널, carbamazepine은 Na 채널(→ 삼차신경통)
-= {r:membrane stabilizing} / {r:Gabapentin} = {r:voltage-dependent Ca channels} / {r:Carbamazepine} = {r:Na channels} → {r:trigeminal neuralgia} / {r:Clonazepam} → {r:BMS}
+= 항경련제 = {r:membrane stabilizing} / {r:Gabapentin} = {r:voltage-dependent Ca channels} / {r:Carbamazepine} = {r:Na channels} → {r:trigeminal neuralgia} / {r:Clonazepam} → {r:BMS}
 # 무엇에 듣나
 - ==Anticonvulsants are effective for chronic, neuropathic pain by virtue of their membrane stabilizing properties.==
 - 약물: **gabapentin**, pregabalin, **carbamazepine**, lamotrigine, valproic acid, and **clonazepam**.
@@ -273,9 +276,9 @@ E: PN01 | 24·23·21년 빈칸 "( ) acts to block sodium channels and is used pr
 E: PN03 | 24·23·22·21년 빈칸 "( )은 Ca2+ 흐름을 차단해서 통증을 조절하는 항경련제" → Gabapentin — ⚠ 24년 '편두통 … Ca2+ voltage channel' 복원도: migraine은 항우울제(p.19) → 워딩(항경련제·Ca)으로
 E: PN24 | 20년 빈칸 "( )는 막전위 안정화효과가 있어 만성, 신경병성 통증에 효과적" → Anticonvulsants — p.18 첫 문장 ⚠ 함정: 약 이름이 아니라 약물군
 F: 18=항경련제는 막 안정화로 신경병성 통증에
-M: 항경련제 = {r:membrane stabilizing} → chronic neuropathic pain · {r:intermittent lancinating} + {r:continuous burning}
-M: {r:Gabapentin} = {r:Ca channel}(diabetic neuropathy·trigeminal neuralgia) / {r:Carbamazepine} = {r:Na channel}(trigeminal neuralgia)
-M: {r:Clonazepam} = {r:BMS}
+M: 항경련제 = {r:membrane stabilizing} → chronic neuropathic pain · {r:intermittent lancinating} + {r:continuous burning} — 20 빈칸 답 = 약물군 {r:Anticonvulsants}
+M: 약물: gabapentin · pregabalin · carbamazepine · lamotrigine · valproic acid · clonazepam / {r:Clonazepam} = {r:BMS}
+M: 약물별(매년 빈칸): {r:Gabapentin} = {r:Ca channel}(diabetic neuropathy·trigeminal neuralgia) / {r:Carbamazepine} = {r:Na channel}(trigeminal neuralgia)
 
 ## Antidepressants — Descending Inhibition · Na Channel Block | 항우울제 — 진통 보조제, 편두통에도 | 19 | 기출 연관 | jb=PN03
 > 우울증 약이지만 진통은 따로 — 더 빨리, 더 적은 용량에서 듣는다. 뇌→척수 하행 억제를 키우고 Na 채널을 막는다
@@ -297,13 +300,13 @@ M: {r:Clonazepam} = {r:BMS}
 U: brain에서 spinal cord로 가는 inhibitory input 증가 + sodium channel block 두 기전, anticonvulsant처럼 post-herpetic·diabetic에 쓰이고 migraine에도 사용할 수 있음(필기).
 E: PN03 | 24년 빈칸(복원 워딩) "편두통 등의 만성 통증 질병에 좋다 … Ca2+ voltage channel" → JB 답 Gabapentin(항경련제·Ca) — migraine은 이 슬라이드(antidepressant)지만 기전은 {r:Na channel}만
 F: 19=하행 억제 증가와 Na 채널 차단
-M: 항우울제 진통 = {r:noradrenergic·serotonergic descending↑} + {r:Na channel block} / 항우울 효과와 {r:독립}(더 빠르고 저용량)
-M: {r:migraine}·tension-type headache = 항우울제(TCA) / least selective {r:TCA}(amitriptyline·nortriptyline·imipramine) > {r:duloxetine}
-M: 24 복원 '편두통 … Ca2+ voltage channel' → JB 답 {r:Gabapentin}(항경련제·Ca) / 항우울제 기전은 {r:Na channel} block뿐
+M: 기전 2: 항우울제 진통 = ① {r:noradrenergic·serotonergic descending↑} + ② {r:Na channel block} / 항우울 효과와 {r:독립}(더 빠르고 저용량) · chronic pain의 {r:adjuvant}
+M: 적응증·약물: post-herpetic neuralgia·diabetic neuropathy / {r:migraine}·tension-type headache = 항우울제(TCA) / least selective {r:TCA}(amitriptyline·nortriptyline·imipramine) > {r:duloxetine}
+M: 기출 함정: 24 복원 '편두통 … Ca2+ voltage channel' → JB 답 {r:Gabapentin}(항경련제·Ca) / 항우울제 기전은 {r:Na channel} block뿐
 
 ## TCA Metabolism — CYP2C19 · CYP2D6 | TCA 대사 — 2C19는 활성화, 2D6는 불활성화 | 20-22 | 약물유전
 > 3차 아민은 CYP2C19가 활성 2차 아민으로 바꾸고, CYP2D6는 둘 다 덜 활성인 대사체로 치운다 — 2D6가 빠르면 안 듣고, 느리면 부작용
-= {r:CYP2C19}: tertiary → {r:active} secondary / {r:CYP2D6}: both → {r:less active} · 2D6 {r:ultrarapid} = 효과↓ · {r:poor} = 부작용↑
+= {r:CYP2C19}: tertiary → {r:active} secondary / {r:CYP2D6}: both → {r:less active} / 2D6 {r:ultrarapid} = 효과↓ · {r:poor} = 부작용↑
 # Tertiary vs secondary amine
 - {r:CYP2C19} metabolizes {r:tertiary amines} to {r:active metabolites}(secondary amines).
 - Both the tertiary and secondary amines are metabolized by {r:CYP2D6} to {r:less active metabolites}.
@@ -328,9 +331,11 @@ F: 21
 - CYP2D6가 하는 일은 약마다 방향이 반대: codeine·tramadol은 2D6가 {r:활성} 대사체를 만들고(p.9-10), TCA는 2D6가 {r:less active}로 만든다(p.20).
 U: 2D6에 대한 이야기는 아까(codeine·tramadol) 했으므로 넘어감(p.22 필기).
 F: 22
-M: {r:CYP2C19} = tertiary → {r:active} secondary / {r:CYP2D6} = 모두 → {r:less active}
-M: tertiary = {r:amitriptyline·imipramine} / secondary = {r:nortriptyline·desipramine}(2C19 이상 시 대체)
-M: 2D6 {r:ultrarapid} → 효과↓(avoid·higher dose) / {r:intermediate} → {r:25%}↓ / {r:poor} → 부작용↑(avoid·{r:50%}↓)
+M: 대사: {r:CYP2C19} = tertiary → {r:active} secondary / {r:CYP2D6} = 모두 → {r:less active}
+M: 구조: tertiary = {r:amitriptyline·imipramine} / secondary = {r:nortriptyline·desipramine}(2C19 이상 시 대체)
+M: CYP2C19 phenotype: {r:ultrarapid}·rapid = {r:avoid tertiary amine}(sub-optimal response) → nortriptyline·desipramine / {r:poor} = avoid · 쓰면 {r:50% reduction}
+M: CYP2D6 phenotype: 2D6 {r:ultrarapid} → 효과↓(avoid·higher dose) / {r:intermediate} → {r:25%}↓ / {r:poor} → 부작용↑(avoid·{r:50%}↓)
+M: CYP2D6 방향: codeine·tramadol = 2D6가 {r:활성} 대사체를 만듦 / TCA = 2D6가 {r:less active}로
 
 ## NMDA Receptor Antagonists | NMDA 길항제 — central sensitization을 막는 후보 | 23 | 미출제
 > 척수 후각의 glutamate–NMDA가 중추 감작의 시작 — ketamine·dextromethorphan이 막지만 부작용 때문에 잘 안 쓴다
@@ -344,7 +349,7 @@ M: 2D6 {r:ultrarapid} → 효과↓(avoid·higher dose) / {r:intermediate} → {
 - 그림(dorsal horn): C or Aδ primary afferent → {r:Glutamate}·substance P → spinothalamic tract projection neuron / descending pain-inhibitory tracts(serotonin·norepinephrine)와 enkephalin이 억제.
 U: glutamate가 매우 중요한 neurotransmitter, 그 receptor인 NMDA receptor가 central sensitization 초기에 중요 → glutamate가 시냅스 절후 신경에 전달되는 것을 막는 것이 ketamine·dextromethorphan(필기).
 F: 23=Glutamate와 NMDA 수용체
-M: NMDA = {r:central sensitization}의 induction·maintenance / 길항제 = {r:ketamine}·{r:dextromethorphan}
+M: 역할·약물: NMDA = {r:central sensitization}의 induction·maintenance / 길항제 = {r:ketamine}·{r:dextromethorphan} → chronic pain·postoperative pain↓(under investigation)
 M: 한계 = {r:psychomimetic effects}(둘 다) · dextromethorphan은 {r:dizziness·fatigue·confusion}도
 
 @G ④ 치과에서는 — Implications for Dentistry
@@ -369,10 +374,10 @@ U: NSAID는 efficacy에 천장 효과(ceiling effect)가 있어 통증이 심하
 E: PN26 | 20년 서술 "NSAIDs와 opioid를 함께 사용하면 더 효과가 좋은 이유" → different complementary central and peripheral mechanisms of pain relief — 슬라이드 그대로(p.24)
 E: PN17 | 20년 단답 "아편계 진통제 대신 주사할 수 있는 강력한 진통제" → Ketorolac — 근거는 급성통증 p.26 "can be given IM or IV and is often used postoperatively" · 5일 제한(nephrotoxicity)
 F: 24=치성 통증은 염증 NSAIDs 1차
-M: 치성 통증 = {r:INFLAMMATION} → {r:NSAIDs} first choice / opioid = {r:no anti-inflammatory properties}
+M: 정의: 치성 통증 = {r:INFLAMMATION} → {r:NSAIDs} first choice / opioid = {r:no anti-inflammatory properties}
 M: NSAIDs가 더 효과적인 이유(5회 서술): ① 치성 통증은 {r:염증성} ② opioid는 {r:항염 없음} ③ NSAIDs는 {r:염증과 통증을 모두} 조절
-M: 병용 이유 = {r:different complementary central and peripheral mechanisms}
-M: 치과 opioid = {r:codeine}·{r:hydrocodone}·{r:oxycodone} / 주사 NSAID = {r:ketorolac}(5일 이내)
+M: 기출(20 서술): 병용 이유 = {r:different complementary central and peripheral mechanisms} · NSAID {r:ceiling effect} → opioid를 더하면 additive(필기)
+M: 치과 병용: 비opioid = {r:aspirin}·{r:acetaminophen}·{r:ibuprofen} / 치과 opioid = {r:codeine}·{r:hydrocodone}·{r:oxycodone} / 주사 NSAID = {r:ketorolac}(5일 이내)
 
 ## Trigeminal Neuralgia — Carbamazepine ★ | 삼차신경통 — carbamazepine(Tegretol) first-line | 25 | 기출 20 | jb=PN20
 > 치과에도 신경병성 통증이 있다 — 전기 오듯 찌르는 삼차신경 분포 통증엔 carbamazepine, 대신 무과립구증 때문에 CBC를 본다
@@ -387,8 +392,8 @@ M: 치과 opioid = {r:codeine}·{r:hydrocodone}·{r:oxycodone} / 주사 NSAID = 
 U: nociceptive pain 외에도 trigeminal neuralgia 같은 neuropathic pain이 치과 영역에 존재 — 지속 투여는 agranulocytosis 때문에 지양, 투여 환자는 CBC를 routine하게 체크(필기).
 E: PN20 | 20년 빈칸 "( )는 trigeminal neuralgia의 firstline agent" → Carbamazepine(Tegretol) — p.18 문장으로 묻는 것이 {jb:PN01} · 세트: Tegretol·agranulocytosis·CBC
 F: 25=Tegretol 무과립구증 CBC
-M: 삼차신경통 = {r:sharp·lancinating(shooting)·electric shock–like} · V2 {r:cheek} · V3 {r:chin·lower teeth} · V1 {r:around the eye}
-M: 삼차신경통 first-line = {r:Carbamazepine}({r:Tegretol}) → {r:agranulocytosis} → {r:periodic CBC}
+M: 증상·분포: 삼차신경통 = {r:sharp·lancinating(shooting)·electric shock–like} / V2 {r:cheek} · V3 {r:chin·lower teeth} · V1 {r:around the eye}
+M: 기출(20 빈칸): 삼차신경통 first-line = {r:Carbamazepine}({r:Tegretol}) → {r:agranulocytosis} → {r:periodic CBC}
 
 ## Case Studies — Endodontic Pain · Pulpitis Patient Wanting Narcotics | 증례 1·2 — NSAID가 기본, opioid는 돌발통에 | 26-29 | 증례
 > 두 증례 모두 결론은 같다 — ibuprofen이 기본이고, hydrocodone/acetaminophen 같은 opioid 복합제는 필요할 때만 얹는다
@@ -414,9 +419,10 @@ F: 26, 27
 | 교훈 | ibuprofen으로 충분하면 계속 · opioid 복합제는 필요 시 추가 | NSAIDs = primary · opioid(oxycodone 5 mg)는 breakthrough backup |
 U: 케이스 스터디 3개 중 2개는 discussion까지 올려놨으니 확인(p.26 필기).
 F: 28, 29
-M: 치과 통증 처방 = {r:NSAIDs primary} · narcotics = {r:backup for breakthrough pain}
-M: Case 2: 먼저 {r:local anesthesia + pulpectomy/extraction} → {r:ibuprofen 400-600 mg q4-6h}·{r:aspirin 650 mg q4h} → 돌발통 {r:oxycodone 5 mg}
-M: 수술 후 = {r:hydrocodone/acetaminophen 5/325} + ibuprofen 보충 · {r:4 to 10 days}
+M: 결론: 치과 통증 처방 = {r:NSAIDs primary} · narcotics = {r:backup for breakthrough pain}
+M: Case 1: dull·aching·throbbing 치통 → {r:hydrocodone 5 mg + acetaminophen 325 mg} q6h PRN / 교훈 = {r:ibuprofen}으로 충분하면 계속 · opioid 복합제는 필요 시 추가
+M: Case 2: ① 먼저 {r:local anesthesia + pulpectomy/extraction} ② {r:ibuprofen 400-600 mg q4-6h}·{r:aspirin 650 mg q4h} ③ 돌발통 {r:oxycodone 5 mg}
+M: Case 2 수술 후 = {r:hydrocodone/acetaminophen 5/325} + ibuprofen 보충 · {r:4 to 10 days} · 목표 tolerable {r:2-3}(완전 무통 아님)
 
 ## Homework Case — Burn → Chronic Pain | 숙제 증례 — 화상 후 만성 통증에 gabapentin·amitriptyline(시험 예고) | 30-31 | 교수 예고
 > 급성 화상통 → 수술 → 환자 조절 진통(patient-controlled analgesia) → tapering → 몇 달 뒤 신경병성 통증 — 이 강의의 약이 한 환자에 순서대로 다 나온다
@@ -441,9 +447,9 @@ F: 30=숙제 증례 중간고사가 검사
 - ④ 약 → {r:gabapentin} = IASP 1st line·voltage-dependent Ca channel(p.17-18) · {r:amitriptyline} = TCA(p.19-20).
 - 수술 후 4일의 patient-controlled analgesia = postoperative pain 조절(p.5) · ①의 통증 발생 기전과 ②의 remifentanil은 이 자료에 설명 없음.
 F: 31
-M: JD 순서: {r:IV morphine} → 수술 {r:remifentanil}+morphine bolus → {r:patient-controlled analgesia} → {r:taper} → {r:codeine/acetaminophen} → {r:gabapentin} → +{r:amitriptyline}
-M: 몇 달 뒤 {r:tingling}·{r:sharp knife-like} = 신경병성 → 1st line {r:gabapentin}(Ca) + {r:TCA}
+M: 💬 시험 예고(중간고사가 숙제 검사) — JD 순서: ① {r:IV morphine} ② 수술 {r:remifentanil}+morphine bolus ③ {r:patient-controlled analgesia} ④ {r:taper} ⑤ {r:codeine/acetaminophen} ⑥ {r:gabapentin} ⑦ +{r:amitriptyline}
 M: 숙제 ③ morphine {r:tapering} = withdrawal 최소화 / codeine/acetaminophen = WHO {r:Step 2} moderate opioid
+M: 숙제 ④: 몇 달 뒤 {r:tingling}·{r:sharp knife-like} = 신경병성 → 1st line {r:gabapentin}(Ca) + {r:TCA}
 
 ## Dialysis Patients — Analgesics (Assigned Paper) | 투석 환자의 진통제 — 교수님 지정 논문 | 24 | 기출 24 · 슬라이드 밖 | jb=PN05,PN06,PN07
 > 신장이 망가진 환자에겐 paracetamol이 가장 무난 — NSAIDs는 prostaglandin을 막아 혈압을 올리고, opioid는 쌓여서 숨을 누른다
@@ -465,6 +471,6 @@ U: Paracetamol은 acetaminophen과 동의어(JB 해설).
 E: PN05 | 24년 빈칸(탈) "임플란트 식립 후 투석을 받는 사람에게 가장 추천되는 진통제" → Paracetamol(acetaminophen) — 교수님 지정 논문 문장 ⚠ 함정: 항염 때문에 NSAIDs를 쓰면 오답
 E: PN06 | 24년 빈칸(탈) "CKD 환자에서 NSAIDs가 억제해 hypertensive effect를 내는 것" → prostaglandin — 논문 영어 문장 빈칸
 E: PN07 | 24년 빈칸(탈) "… can cause central nervous system hypofunction and have ( ) due to accumulation in patients with CKD" → respiratory effects — 논문 문장
-M: 투석 환자 진통제 = {r:Paracetamol}(acetaminophen)
-M: CKD NSAIDs = {r:prostaglandin} 억제 → {r:hypertensive effect} · {r:nephrologist} 평가
+M: 기출 24 빈칸: 투석 환자 진통제 = {r:Paracetamol}(acetaminophen) — most frequently recommended(NSAIDs ✗)
+M: CKD NSAIDs = {r:prostaglandin} 억제 → {r:hypertensive effect} · {r:nephrologist} 평가 · {r:controversial}
 M: CKD opioid(meperidine·morphine·tramadol·codeine…) = {r:accumulation} → CNS hypofunction·{r:respiratory effects}

@@ -24,8 +24,9 @@ U: 보톡스는 과거부터 많이 사용 — 원리를 어느 정도 이해만
 - C. botulinum → {r:Neurotoxin}(신경독소) — 보톡스를 만드는 균이 C. botulinum(필기).
 E: BT01 | 24·23·21·20년 객관식(4회) "보톡스 균에 대한 설명으로 틀린 것" → 3) "구균과 간균으로 운동성이 없다" ✗ — {r:rod-shaped}·{r:motile bacterium} ⚠ 함정: 21·20년엔 "옳은 것" 형식(답 1)·2))
 F: 4=보톡스를 만드는 균 C. botulinum
-M: 균 5특성: {r:Gram-positive} · {r:rod-shaped} · {r:anaerobic} · {r:spore-forming} · {r:motile}
-M: "운동성이 없다" ✗ → {r:motile} / "구균" ✗ → {r:rod-shaped}(간균)
+M: 균 5특성: ① {r:Gram-positive} ② {r:rod-shaped} ③ {r:anaerobic} ④ {r:spore-forming} ⑤ {r:motile} → {r:Neurotoxin}(보톡스)
+M: 필기: 중요한 것은 {r:혐기성} 균주(절대 혐기 → Clostridium) / {r:spore-forming} = 생존이 어려운 환경에서 장기간 버팀 / motile = 섬모가 있어 움직임
+M: 기출 함정(4회): "운동성이 없다" ✗ → {r:motile} / "구균" ✗ → {r:rod-shaped}(간균)
 
 ## Four Groups · Life Cycle | 4 그룹과 생활사 — 사람은 I·II, 독소는 포자 형성 초기에 | 5-6 | 기출 20~23 | jb=BT08,BT14
 > 그룹은 독소 type·단백질 분해능으로 나누고, 독소는 살기 어려워져 포자를 만들기 시작할 때 나온다
@@ -54,10 +55,10 @@ F: 5=네 가지 그룹 표
 U: 독소를 언제·왜 만드느냐가 중요 — 이 사이클을 이용해 보톡스를 만들 수 있기 때문(25 필기).
 E: BT08,BT01 | 24·23·22년 객관식 선지 "포자 형성 시기에 neurotoxin을 생산·분비한다"(23·22년 '보톡스 균과 관련되어 옳지 않은 것' ⑤) → ○ — 24·23년 '보톡스 균에 대한 설명으로 틀린 것' ⑤ vegetative·sporulation cycle도 ○ ⚠ 함정: 독소는 {r:sporulation 초기}
 F: 6=두 cycle과 toxin 형성 시점
-M: Disease host: {r:I·II = Human} / {r:III = Animal} / IV = –(type {r:G} — 흙에 흔함·독성 없음)
+M: Toxin type: I {r:A·B·F} / II {r:B·E·F} / III {r:C·D} / IV {r:G} — toxin 종류·단백질 분해능으로 {r:4 그룹}
+M: Disease host: {r:I·II = Human} / {r:III = Animal} / IV = –(type {r:G} — 흙에 흔함·독성 없음) — "인간에게만 감염" ✗(기출)
 M: Toxin gene: I·II {r:Chromosome/Plasmid} · III {r:Bacteriophage} · IV {r:Plasmid}
-M: Toxin type: I {r:A·B·F} / II {r:B·E·F} / III {r:C·D} / IV {r:G}
-M: 독소 생성 = {r:sporulation cycle 초기} / 의료용 = {r:균주 배양}(합성 ✗)
+M: 생활사: 두 cycle = {r:vegetative}(정상 환경) + {r:sporulation}(생존이 어려운 환경) / 독소 생성 = {r:sporulation cycle 초기} / 의료용 = {r:균주 배양}(합성 ✗)
 
 @G ② 보툴리즘 · 역사 · 독성
 ## Botulism | 보툴리즘 — 원인 3·형태 5·가열로 예방·위장관 효소에 저항 | 7 | 기출 22·23·24 | jb=BT02,BT11
@@ -86,9 +87,9 @@ M: 독소 생성 = {r:sporulation cycle 초기} / 의료용 = {r:균주 배양}(
 E: BT02 | 24·23·22년 객관식(3회) "보톡스(보툴리즘)에 대한 설명 중 틀린 것" → "단백질이라 대부분 소화되나 소량 위장벽으로 흡수될 경우에 위험하다" ✗ — ==BoNT 위장관계 효소에 저항== · 동물 사체·꿀(영아)·100도씨 15분 가열 예방 ○ ⚠ 함정: 26 필기 "대부분 분해" · 22년 판은 선지 순서가 달라 답 4)
 E: BT11 | 22년 객관식(탈·첫 출제) "보톡스 균과 관련되어 잘못된 것" → 답 5) 미복원("틀린거 하나") — 썩은 고기(Zoonosis)·4 그룹·Plasmid/chromosome·영아는 주로 꿀 ○
 F: 7=보툴리즘의 원인과 형태와 체내 경로
-M: 원인 3: {r:Zoonosis} · {r:Plants/Honey}(영아) · {r:Environment}(wounds) / 형태 5: Food-borne · Infant · Wound · {r:Iatrogenic} · Inhalation
-M: BoNT {r:위장관계 효소에 저항}("대부분 소화" ✗) · 가열 {r:100도씨 15분}
-M: 경로: {r:Transcytosis} → Circulation → Synapse(분비 차단) → {r:Descending flaccid paralysis} → {r:Respiratory failure}
+M: 원인 3: ① {r:Zoonosis} ② {r:Plants/Honey}(영아) ③ {r:Environment}(wounds) / 형태 5: ① Food-borne ② Infant ③ Wound ④ {r:Iatrogenic} ⑤ Inhalation
+M: 경로: ① {r:Transcytosis} ② Circulation ③ Synapse(분비 차단) ④ {r:Descending flaccid paralysis} ⑤ {r:Respiratory failure}
+M: 기출(3회) 예방·소화: BoNT {r:위장관계 효소에 저항}("대부분 소화" ✗) · 가열 {r:100도씨 15분}
 
 ## History of Botulinum Toxin | 보툴리눔 톡신의 역사 — 햄에서 찾은 균이 안과 치료제가 되기까지 | 8 | 기출 선지 20·21·23·24
 > 1895 균 분리 → 1924 Clostridium 속 → 1946 정제 → 1949 ACh 억제 규명 → 1980 Scott 안과 치료 → 1989 FDA
@@ -108,8 +109,9 @@ M: 경로: {r:Transcytosis} → Circulation → Synapse(분비 차단) → {r:De
 E: BT03 | 24·23년 객관식 선지 ① "최초로 안과에서 사용되었다" → ○ — {r:Alan B. Scott} 안과의사(1980, 안검경련·사시)
 E: BT01 | 24·23·21·20년 객관식 선지 ① "Bacillus 속과는 다른 특성을 갖는다" → ○ — Bengtson: 절대 혐기조건 → Clostridium 속
 F: 8=보툴리눔 톡신 역사 연표
-M: {r:1895 Van Ermengem}(햄 → Bacillus botulinus) → {r:1924 Bengtson}(절대 혐기 → Clostridium) → {r:1949 Burgen}(ACh 분비 억제)
-M: {r:1980 Alan B. Scott}(안과) 안검경련·사시 → {r:Oculinum} → {r:1989 FDA} → Allergan {r:Botox}
+M: 균·기전 규명: ① {r:1895 Van Ermengem}(햄 → Bacillus botulinus) ② {r:1924 Bengtson}(절대 혐기 → Clostridium) ③ {r:1949 Burgen}(ACh 분비 억제)
+M: 치료제: {r:1980 Alan B. Scott}(안과) 안검경련·사시 → {r:Oculinum} → {r:1989 FDA} → Allergan {r:Botox}
+M: 기출 선지 ○: ① "최초로 {r:안과}에서 사용되었다" ② "{r:Bacillus 속과는 다른} 특성을 갖는다"
 
 ## Toxicity | 보툴리눔 톡신의 독성 — 알려진 독 중 1위 | 9 | 기출 선지 20·21·23·24 | 교수 강조
 > 청산가리보다, 복어 독보다 훨씬 센 독 — 그래도 먹으면 잘 흡수되지 않고, 극소량을 근육에 쓰니 약이 된다
@@ -145,8 +147,9 @@ U: 처음엔 전쟁 때 생화학 무기로 개발 — 약으로 쓸 수 있는 
 E: BT15 | 21·20년 객관식 선지 ① "보툴리눔은 비교적 독성이 약하다" → ✗ — 평균치사량 {r:0.0003 ㎍/kg}으로 독성 1위(JB)
 E: BT03 | 24·23년 객관식 선지 ③ "독성은 약하나 의료용으로 사용할 수 있다" → JB 해설 "위험성이 매우 높으나 기전을 알고 극소량 사용" — ⚠ 이 표로 보면 ③도 틀린 문장이지만 JB 답은 4)만
 F: 9=독성 순위표
-M: 보툴리눔 독소 = 독성 {r:1위} · 평균치사량 {r:0.0003 ㎍/kg} · 복어 독의 {r:6000배} 이상
+M: 독성: 보툴리눔 독소 = 독성 {r:1위} · 평균치사량 {r:0.0003 ㎍/kg} · 복어 독의 {r:6000배} 이상
 M: 경로별 치사량: 정맥·근육 {r:1.3–2.1} < 흡입 {r:10–13} < 경구 {r:1000} ng/kg
+M: 기출 함정: "비교적 독성이 약하다" ✗ / 약으로 쓰는 이유 = 위험성이 매우 높으나 기전을 알고 {r:극소량} 사용(JB 해설)
 
 @G ③ 독소의 구조와 작용 기전
 ## Toxin Genes · Structure | 독소 유전자와 구조 — bont = light chain(Zn protease) + heavy chain | 10 | 기출 20~24 | jb=BT03
@@ -169,9 +172,10 @@ M: 경로별 치사량: 정맥·근육 {r:1.3–2.1} < 흡입 {r:10–13} < 경�
 E: BT03 | 24·23년 객관식 "보튤리늄 톡신에 대해 틀린 것" → 4) "Heavy와 light를 분리하는 protease에 의해 독성을 가진다" ✗ — LC(Zn metalloprotease)가 독성 · ②⑤ ○ ⚠ 함정: p.10 protease는 progenitor를 활성화할 뿐
 E: BT14,BT08 | 22·21년 객관식 선지 "독소를 코딩하는 유전자는 bont이다"(21년 '보톡스 균에 관해 틀린 설명' ④) → ○ — 22년 '보톡스 균과 관련되어 옳지 않은 것' 추가 선지 "bont 유전자에서 만들어진다"도 ○
 F: 10=bont가 light chain과 heavy chain을 코딩
-M: {r:bont} → {r:LC}(Catalytic · {r:Zn} protease · 50 kDa) + {r:HC}(HN {r:Translocation} · HC {r:Binding} · 100 kDa)
-M: LC–HC = {r:disulfide(S-S)} 연결 / Progenitor(inactive) → {r:Bacterial·Gastric protease} → Active toxin
-M: 독성 = {r:LC}(Zn protease → SNARE 분해) — 'heavy·light를 분리하는 protease에 의해 독성' ✗(protease는 progenitor 활성화뿐)
+M: 유전자: {r:bont} = 독소를 직접 코딩 — "독소를 코딩하는 유전자는 bont" ○(기출) / 나머지(ha70·ha17·ha34·botR·ntnh) = 작용 보조·{r:안정성}
+M: 구조: {r:bont} → {r:LC}(Catalytic · {r:Zn} protease · 50 kDa) + {r:HC}(HN {r:Translocation} · HC {r:Binding} · 100 kDa)
+M: 연결·활성화: LC–HC = {r:disulfide(S-S)} 연결 / Progenitor(inactive) → {r:Bacterial·Gastric protease} → Active toxin
+M: 기출 함정(24·23): 독성 = {r:LC}(Zn protease → SNARE 분해) — 'heavy·light를 분리하는 protease에 의해 독성' ✗(protease는 progenitor 활성화뿐)
 
 ## Protein Cluster | 단백질 클러스터 — NTNHA·HA가 독소를 감싸 보호한다 | 11 | 기출 20·21·23·24 | jb=BT15
 > BoNT(150 kDa)에 NTNHA가 붙어 M-PTC, HA까지 붙어 L-PTC — 독은 없지만 독소를 지키고 장벽을 넘게 한다
@@ -196,9 +200,10 @@ U: ⚠ 25 필기는 "다른 domain이 더 붙는다고 약효가 더 좋아지�
 E: BT15 | 21·20년 객관식 "옳지 않은 것을 고르시오" → JB 답 1)·3) — ① "비교적 독성이 약하다" ✗ · ② 영유아 꿀 ○ · ④ ntnh 안정화 ○ · ⑤(21년) catalytic domain S-S ○ ⚠ ③은 21학번 학습부가 ○(p.14 2단계가 지지)
 E: BT03 | 24·23년 객관식 선지 ⑤ "Htnha나 ha70은 독성을 가지지는 않으나 생체 내에서 독성을 안정화시킨다" → ○ — NTNHA = 독소 안정화·보호(p.11)
 F: 11=BoNT에서 L-PTC까지 단백질 클러스터
-M: {r:NTNHA} = 독소 {r:안정화·보호} / {r:HAP} = 응집소 + {r:장벽 통과} / 부형제 = 안정화
-M: BoNT {r:150} → M-PTC {r:290}(+NTNHA) → L-PTC {r:760 kDa}(+HA70·17·33)
-M: LC·HC만 합성 → {r:반감기 짧음} → 부가 도메인 붙은 약제 사용
+M: 크기: BoNT {r:150} → M-PTC {r:290}(+NTNHA) → L-PTC {r:760 kDa}(+HA70·17·33)
+M: 구성: {r:NTNHA} = 독소 {r:안정화·보호} / {r:HAP} = 응집소 + {r:장벽 통과} / 부형제 = 안정화
+M: 기출 선지 ○: "Htnha나 ha70은 독성을 가지지는 않으나 생체 내에서 독성을 안정화"
+M: 약제: LC·HC만 합성 → {r:반감기 짧음} → 부가 도메인 붙은 약제 사용
 
 ## Mechanism — SNARE Complex · 3 Steps | 작용 기전 — SNARE를 잘라 아세틸콜린 분비를 막는다 | 12-14 | 기출 20·21 | jb=BT16
 > 독소는 신경전달물질을 부수지 않는다 — vesicle을 막에 붙이는 SNARE 단백질을 잘라 ACh가 못 나오게 한다
@@ -225,9 +230,10 @@ U: 25 필기(영상 설명): 차단이 오래가면 신경세포가 새로운 de
 E: BT16 | 21·20년 T/F "Botox는 신경전달물질을 파괴하여 직접적으로 차단한다" → {r:F} — 타깃은 {r:SNARE complex}, 분해해 ACh 분비를 간접 억제(JB)
 E: BT15 | 21·20년 객관식 선지 ③ "Light chain과 heavy chain 사이의 disulfide 결합이 끊어지면 light chain이 독소로 작용" → 2단계 문장과 같은 내용 — ⚠ JB 3) 해설은 "펩타이드 결합"(21학번은 1)만)
 F: 14=BoNT 작용 단계와 타입별 타깃
-M: 1 {r:Docking}(HC-C → {r:PSG}·{r:SV2}·{r:Syt}) → 2 {r:Endocytosis·fusion}({r:Thioredoxin reductase} → S-S 절단) → 3 {r:Proteolysis}(Zn)
-M: {r:B·D·F·G → VAMP} / {r:A·C·E → SNAP25} / {r:C → SNAP25 + syntaxin}
-M: 신경전달물질 '파괴' ✗ → {r:SNARE 분해} → {r:ACh 분비 억제}
+M: 정상 SNARE: {r:Synaptobrevin(VAMP)} = vesicle 쪽 / {r:SNAP-25} · {r:Syntaxin} = 막 쪽 → synaptic fusion complex
+M: 작용 3단계: 1 {r:Docking}(HC-C → {r:PSG}·{r:SV2}·{r:Syt}) → 2 {r:Endocytosis·fusion}({r:Thioredoxin reductase} → S-S 절단) → 3 {r:Proteolysis}(Zn)
+M: 타입별 타깃: {r:B·D·F·G → VAMP} / {r:A·C·E → SNAP25} / {r:C → SNAP25 + syntaxin}
+M: 기출 T/F(21·20): 신경전달물질 '파괴' ✗ → {r:SNARE 분해} → {r:ACh 분비 억제}
 
 @G ④ 임상 적용
 ## Clinical Indications | 임상적 적용 범위 — FDA 승인 적응증과 임의 사용 | 15-17 | 기출 20·22·23·24 | jb=BT18
@@ -265,8 +271,10 @@ F: 16=FDA 승인 적응증과 연도
 E: BT18 | 20년 객관식(기준선) "보톡스의 임상적 사용에 관하여 옳지 않은 것" → {r:1)·2)} — 저작근 외 불법 ✗(p.18) · 활성 4-6개월 ✗(JB: 2주 시작·6주 최대) ⚠ 26 자료엔 기간 슬라이드 없음(p.32 2주/6주 C/U) · ③ 다양한 적응증·④ 혈관 유입 시 위험(원거리 확산) ○
 E: BT04 | 24·23·22년 객관식 선지 ③ "저작근 외에도 경부근, 안검경련, 주름 등 다양하게 사용되고 … 다양한 적응증에 쓰인다" → ○ — FDA 적응증 확대(p.16-17)
 F: 17=허가된 범위와 임의 사용 범위
+M: 적응: 근육이 과하게 긴장하는 질환 → 적응증이 점점 확대
 M: FDA 첫 승인 {r:1989} = {r:사시(Strabismus)} + {r:안검경련(Blepharospasm)} / 침흘림 {r:Sialorrhea} 2018
 M: 허가: 편두통·사시·주름·{r:저작근긴장}·경부근긴장·다한증·과민성방광 / 임의: 파킨슨·{r:우울증}·대상포진후 신경통·암치료 보조·혈행개선·부정맥·통증
+M: 기출(20): "저작근 외 불법" ✗ · "활성 4-6개월" ✗ / "다양한 적응증" ○ · "혈관 유입 시 위험(원거리 확산)" ○
 
 ## Botox in Dental Practice | 치과 임상에서의 보톡스 — 목 위 모든 부위 합법·허용 진료 영역 | 18-19 | 기출 19~24 | jb=BT04,BT12,BT19
 > 치과의사는 입 안에만? 아니다 — 대법원 판결로 두경부(목 위) 모든 부위 시술이 합법
@@ -287,8 +295,8 @@ E: BT12 | 22·21년 객관식 "다음 중 틀린 것" → 1) "치과의사가 �
 E: BT19 | 20·19년 T/F "악하선이나 이하선 주변에 고농도 botulinum toxin을 투여하면 타액량이 증가한다" → {r:F} — 치과에서 {r:Sialorrhea} 치료에 사용(p.19 · FDA 침흘림 2018)
 F: 19=치과에서 허용된 보톡스 진료 영역
 M: 치과의사 보톡스 = {r:두경부(목 위) 모든 부위} 합법(대법원) — "저작근 외 불법" ✗
-M: 허용 영역: {r:Masseteric hypertrophy} · {r:Gummy smile} · {r:TMD} · {r:Bruxism} · {r:Sialorrhea} · 교정 근육 재훈련 · 임플란트 보조 · 악안면 골절 수술 보조
-M: 침샘 주변 투여 → Sialorrhea 치료 = 타액 {r:감소} — "증가" ✗
+M: 허용 영역: ① {r:Masseteric hypertrophy} ② {r:Gummy smile} ③ {r:TMD} ④ {r:Bruxism} ⑤ {r:Sialorrhea} ⑥ 교정 근육 재훈련 ⑦ 임플란트 보조, ⑧ 악안면 골절 수술 보조
+M: 기출 T/F(20·19): 침샘 주변 투여 → Sialorrhea 치료 = 타액 {r:감소} — "증가" ✗
 
 @G ⑤ 치료 시 주의점
 ## Unit · Toxic Risk | 보톡스의 정량 — 1 unit = 마우스 LD50 | 20-21 | 기출 21~24 | jb=BT09
@@ -307,12 +315,13 @@ M: 침샘 주변 투여 → Sialorrhea 치료 = 타액 {r:감소} — "증가" �
 E: BT09 | 22·21년 객관식 "보톡스 사용 시 주의사항으로 옳지 않은 것" → 2) "보톡스 용량은 회사마다 동일하므로 동일하게 희석하면 된다" ✗ — 회사·공정마다 약효가 달라 unit으로 표준화(JB)
 E: BT04 | 24·23·22년 객관식 선지 ⑤ "시판되는 보톡스는 위해 효과가 크지 않지만, 혈관에 유입되면 매우 위험하다" → ○ — 사용량(수십~300 U)은 안전, 혈관 주입 → 원거리 확산(p.22)
 F: 21=1 unit 정의와 사람 LD50
-M: {r:1 U} = {r:18~20g} 암컷 {r:Swiss-Webster} 마우스 {r:복강} 투여 {r:LD50} / 사람 ≈ {r:3,500 U}
-M: unit = '{r:효과}' 기준 표준화 — 회사마다 약효 {r:다름}("동일" ✗) / 임상 {r:수십~300 U} → 안전
+M: 정의: {r:1 U} = {r:18~20g} 암컷 {r:Swiss-Webster} 마우스 {r:복강} 투여 {r:LD50} / 사람 ≈ {r:3,500 U}
+M: 표준화·안전: unit = '{r:효과}' 기준 표준화 — 회사마다 약효 {r:다름}("동일" ✗) / 임상 {r:수십~300 U} → 안전
+M: 기출 선지 ○: "시판 보톡스는 위해 효과가 크지 않지만, {r:혈관에 유입}되면 매우 위험" → 원거리 확산
 
 ## Side Effects | 보톡스 치료의 부작용 7가지 | 22 | 기출 20·21·23 | jb=BT06,BT10
 > 가장 흔한 건 과민반응(주로 용제·보존제 탓), 혈관으로 들어가면 원거리 확산 = 보툴리즘
-= 부작용 7 = {r:과민반응} · {r:원거리 확산} · 말초신경증 · 심혈관 장애 · 의인성 장애 · 신경 저하 · {r:보톡스 내성}
+= 부작용 7: ① {r:과민반응} ② {r:원거리 확산} ③ 말초신경증 ④ 심혈관 장애 ⑤ 의인성 장애 ⑥ 신경 저하 ⑦ {r:보톡스 내성}
 # 부작용 표
 | 종류 | 부작용 | 상세 |
 | {r:과민반응} | 아나필락시스, 두드러기, 연조직부종, 호흡곤란 | 아나필락시스 – {r:용제로 리도카인}을 사용한 경우 |
@@ -329,13 +338,13 @@ M: unit = '{r:효과}' 기준 표준화 — 회사마다 약효 {r:다름}("동�
 E: BT06 | 23·21·20년 객관식(3회) "보톡스 치료의 부작용이 아닌 것" → {r:4) 우울증 등 정신질환}(+ 23년 {r:5) 탈모증}) — 표에 없음 ⚠ 함정: 우울증은 p.17 {r:임의 사용 범위}(치료 시도 질환)
 E: BT10 | 23년 객관식(탈·변형) "보톡스 치료의 부작용이 아닌 것" → {r:탈모증} — 같은 문제에서 기존 답 우울증 대신 탈모증
 F: 22=부작용 7가지 표
-M: 부작용 7: {r:과민반응} · {r:원거리 확산} · 말초신경증 · 심혈관 장애 · 의인성 장애 · 신경 저하 · {r:내성}
-M: 원거리 확산 = {r:보툴리즘}(목쉼·삼킴곤란·복시·눈꺼풀 처짐) / 부작용 아닌 것 = {r:우울증} · {r:탈모증}
-M: 과민반응 원인 = {r:용제(리도카인)·보존제} > 톡신
+M: 부작용 7: ① {r:과민반응} ② {r:원거리 확산} ③ 말초신경증 ④ 심혈관 장애 ⑤ 의인성 장애 ⑥ 신경 저하 ⑦ {r:내성}
+M: 가장 흔함 = {r:과민반응} / 과민반응 원인 = {r:용제(리도카인)·보존제} > 톡신
+M: {r:혈관에 직접 주입} → 원거리 확산 = {r:보툴리즘}(목쉼·삼킴곤란·복시·눈꺼풀 처짐) / 부작용 아닌 것 = {r:우울증} · {r:탈모증} — 기출 3회 · 우울증은 {r:임의 사용 범위}(치료 시도 질환)
 
 ## Contraindications · Drug Interactions | 금기증 6과 약물상호작용 8 | 23-24 | 기출 20·22·24 | jb=BT05
 > 과민·신경근접합부 병·호흡 장애·임신·주사부위 감염·근이완제면 쓰지 않는다 — 같은 방향 약은 상승, 반대 방향 약은 상쇄
-= 금기: {r:과민증} · {r:전신성 신경근접합부 장애} · {r:중증 호흡기능장애} · {r:임신·수유(C)} · {r:주사부위 감염} · {r:근이완제}
+= 금기 6: ① {r:과민증} ② {r:전신성 신경근접합부 장애} ③ {r:중증 호흡기능장애} ④ {r:임신·수유(C)} ⑤ {r:주사부위 감염} ⑥ {r:근이완제}
 # 금기증 6
 | 금기 | 상세 |
 | {r:과민증} | 약제, 보존제, 용제 |
@@ -361,7 +370,8 @@ F: 23=금기증 표
 - 26 필기(총론): 같이 쓰면 안 되는 약 = 보톡스에 의해 {r:대사가 저해되어 체내 고농도로 유지}될 위험이 있는 약들.
 E: BT05 | 24·22·20년 객관식 선지 ③ "항콜린성 약물 복용 시 전신적 항콜린 폭발이 일어날 수 있다" → ○ — 항콜린제: {r:전신적 anticholinergic 효과를 증폭}
 F: 24=약물상호작용 표
-M: 금기 6: {r:과민증} · {r:전신성 신경근접합부 장애}(중증근무력증·Lambert-Eaton) · {r:중증 호흡기능장애} · {r:임신·수유(Class C)} · {r:주사부위 감염} · {r:근이완제}
+M: 금기 6: ① {r:과민증} ② {r:전신성 신경근접합부 장애}(중증근무력증·Lambert-Eaton) ③ {r:중증 호흡기능장애} ④ {r:임신·수유(Class C)} ⑤ {r:주사부위 감염} ⑥ {r:근이완제}
+M: 기출(3회): "감염부위에도 소독하고 진행" ✗ → {r:주사부위 감염 시 금기} / "항콜린성 약물 복용 시 전신적 항콜린 폭발" ○
 M: 상승: {r:근이완제}·{r:칼슘채널차단제} / 상쇄: {r:콜린성}(pyridostigmine·neostigmine) / 증폭: {r:항콜린제} / 중추신경계 저하: 마약성·마취제
 M: 항생제: {r:polymyxin} · tetracycline · {r:lincomycin} · spectinomycin + {r:aminoglycoside}(gentamicin 등)
 
@@ -399,10 +409,11 @@ E: BT09 | 22·21년 객관식 선지 ① "정확한 진단이 중요하다" → 
 E: BT04,BT12 | 24·23·22·21년 객관식 선지 "교근비대증에는 25~50U를 투여한다(편측)"(24·23·22년 '다음 중 틀린 것' ⑥) → ○ — 22·21년 같은 계열 문제 ② "저작근은 크기에 따라 25-50U를 투여한다"도 ○
 E: BT17 | 21·20년 객관식 선지 ① "20-60 U의 보톡스를 사용한다" → JB 답은 2)만(해설 "일반적으로 25-50 U/side") ⚠ 함정: 선지 숫자는 슬라이드 25~50 U와 다름
 F: 29=부위별 주입 용량
-M: 6단계: {r:진단} → {r:부위}(촉진/시진·안전 지역) → {r:용량} → {r:희석} → {r:주입} → {r:F/U}
-M: 진단 7: 적응증 · {r:Bad Habit} · Medical History · {r:주사부위 감염여부} · {r:복용 약물} · {r:임신가능성} · 약물반응
-M: 용량: 눈꺼풀 {r:0.5~2.5} · Gummy {r:4~6} · Glabellar {r:5~20} · 교근 {r:25~50} · 다한증 {r:50~100} · 편두통·방광 {r:150~200 U}
+M: 6단계: ① {r:진단} ② {r:부위}(촉진/시진·안전 지역) ③ {r:용량} ④ {r:희석} ⑤ {r:주입} ⑥ {r:F/U}
 M: 💬 과다투여 위험은 적고 {r:어디에 주사할 것인가}가 중요 / 가장 중요한 첫 단계 = {r:정확한 진단}
+M: 진단 7: ① 적응증 ② {r:Bad Habit} ③ Medical History ④ {r:주사부위 감염여부} ⑤ {r:복용 약물} ⑥ {r:임신가능성} ⑦ 약물반응
+M: 용량: ① 눈꺼풀 {r:0.5~2.5} ② Gummy {r:4~6} ③ Glabellar {r:5~20} ④ 교근 {r:25~50} ⑤ 다한증 {r:50~100} ⑥ 편두통·방광 {r:150~200 U}
+M: 일반: {r:15-20U} → {r:3-6개월} 효과 / 기출 선지 ○ = "교근비대증에는 25~50U(편측)" · "정확한 진단이 중요"
 
 ## Preparation · Injection · Follow-up | 희석·주입·F/U — 거품 없이, 수직으로, 문지르지 말고 | 30-32 | 기출 선지 20~24
 > 단백질 약이라 미리 타 두지 않고 거품 없이, 원하는 곳에만 머물게 넣고, 4주 안에는 다시 놓지 않는다
@@ -426,10 +437,10 @@ F: 31=주입 6원칙
 - 25 필기: 4-8주 내의 재주사는 권장하지 않음(내성의 위험) · 적용 범위와 원거리 확산 예방을 위해 muscle tone F/U.
 E: BT04,BT18 | 24·23·22·20년 객관식 선지 "활성화되는 기간이 … 보통 4-6개월이다" → JB ✗(2주에 효과 시작·6주에 최대, 22·23 자료 p.47) — ⚠ 26 자료엔 '2주/6주 C/U'·필기 '3-6개월'만
 F: 32=F/U 4원칙
-M: 희석 4: {r:미리 조제 금지} · {r:생리식염수} · {r:거품금지} · {r:정확한 계량}
-M: 주입 6: 적정한 소독 · {r:수직 자입} · Intradermal · Intramuscular · {r:Aspiration} · {r:문지르지 말 것}(사우나 ✗)
-M: F/U: {r:2주/6주 C/U} · {r:4주 이내 재주사 금지} · Muscle tone · Rebounding
-M: '활성화 기간 보통 4-6개월' ✗ → JB: {r:2주}에 효과 시작 · {r:6주}에 최대(26 자료엔 2주/6주 C/U만)
+M: 희석 4: ① {r:미리 조제 금지} ② {r:생리식염수} ③ {r:거품금지} ④ {r:정확한 계량}
+M: 주입 6: ① 적정한 소독 ② {r:수직 자입} ③ Intradermal ④ Intramuscular ⑤ {r:Aspiration} ⑥ {r:문지르지 말 것}(사우나 ✗)
+M: F/U: ① {r:2주/6주 C/U} ② {r:4주 이내 재주사 금지} ③ Muscle tone ④ Rebounding
+M: 기출 함정: '활성화 기간 보통 4-6개월' ✗ → JB: {r:2주}에 효과 시작 · {r:6주}에 최대(26 자료엔 2주/6주 C/U만)
 
 ## Masseteric Hypertrophy | 저작근 비대증 — parotid gland와 facial a.를 피해 25~50 U | 33 | 기출 20~23 · 교수 강조 | jb=BT07,BT13,BT17
 > 귀 밑 이하선과 앞쪽 안면동맥 사이 네모 안에 — 뼈에 닿게 찌르고 살짝 빼서 흡인한 뒤 주입
@@ -451,9 +462,10 @@ E: BT07 | 23·22년 객관식 "저작근비대증에 보톡스 적용 시 옳지
 E: BT13 | 22년 객관식 "다음 중 틀린 것"(같은 문제, 선지 순서만 다름) → 3) {r:submandibular gland} ✗ — parotid gland
 E: BT17 | 21·20년 객관식 "사각턱 치료를 위한 보톡스 사용에 대해 잘못된 것" → 2) "Submandibular gland를 주의한다" ✗(parotid gland) ⚠ 함정: 선지 용량(20-50U·20-60U)은 슬라이드 25~50 U/side와 다르지만 JB는 정답으로 보지 않음
 F: 33=저작근 비대증 주사 부위와 안전 경계
-M: 교근: {r:25~50 U/side} · {r:2~3 point/side} · {r:0.5~1cm} 간격 · {r:수직 자입 → bone touch → 약간 후퇴} · {r:Aspiration}
-M: 주의 = {r:Parotid gland} + {r:Facial a.}(& vein) — {r:submandibular gland} ✗
-M: 50 U + {r:1.1 ml} 생리식염수 → {r:0.5 ml/side}
+M: 적용 근육 = {r:Masseter} · {r:Temporalis} / Safety margin 경계 = Earlobe-Mouth corner line · Mandibular border · Masseter 앞·뒤 border
+M: 주의 = {r:Parotid gland} + {r:Facial a.}(& vein) — {r:submandibular gland} ✗ — 💬 그 사이 사각형 영역에 주사
+M: 교근: ① {r:25~50 U/side} ② {r:2~3 point/side} ③ {r:0.5~1cm} 간격 ④ {r:수직 자입 → bone touch → 약간 후퇴} ⑤ {r:Aspiration}
+M: 희석 예: 50 U + {r:1.1 ml} 생리식염수 → {r:0.5 ml/side}
 
 ## Gummy Smile | Gummy smile — 윗입술 올림근에 소량, 흡인 없이 | 34-35 | 미출제
 > 잇몸이 드러나는 웃음은 윗입술을 올리는 근육을 약하게 — 상악 견치 위로 올라가 ala line과 만나는 곳에 2~6 U
@@ -477,5 +489,6 @@ M: 50 U + {r:1.1 ml} 생리식염수 → {r:0.5 ml/side}
 | 주입 | 수직 자입 → bone touch → 약간 후퇴 | Intramuscular injection |
 | 흡인 | {r:Aspiration} | {r:No aspiration} |
 F: 34=ala line과 만나는 gummy smile 주사 부위
-M: Gummy: {r:Levator labii superioris} + {r:Zygomaticus minor} · {r:2~6 U/side} · {r:1~2 point} · {r:0.2~0.5cm}
-M: 교근 = {r:Aspiration} / Gummy = {r:No aspiration}(Intramuscular) — 주의 {r:Orbicularis oris} · {r:Zygomaticus major} · {r:Hematoma}
+M: 적용 근육: {r:Levator labii superioris} + {r:Zygomaticus minor} / 주의 = {r:Orbicularis oris} · {r:Zygomaticus major} · {r:Hematoma}
+M: 술식: ① {r:2~6 U/side} ② {r:1~2 point} ③ {r:0.2~0.5cm} 간격 ④ Intramuscular ⑤ {r:No aspiration} / 부위 = 상악견치 부근에서 위로 {r:ala line}과 교차
+M: 교근 vs Gummy: 교근 = {r:Aspiration} / Gummy = {r:No aspiration}(Intramuscular)

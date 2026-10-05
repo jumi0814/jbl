@@ -34,9 +34,10 @@ U: acute한 pain은 생존을 위한 하나의 기능, chronic으로 진행하�
 P: 25 p.1 "집중해서 봐야 할 것은 어떤 약을 사용할 때의 그 기준과 작용, 부작용" / 논문 2개 — "논문에서 시험문제가 나올 수도 있다"(25 필기).
 F: ACU5:1=25 필기 — 논문에서 시험문제가 나올 수도 있다
 F: 2=환자의 통증 호소는 있는 그대로 받아들여야
-M: Pain(IASP) = {r:sensory} + {r:emotional} · {r:actual} or {r:potential} tissue damage
-M: 통증은 always {r:subjective} → 환자 말을 {r:face value}로 / chronic pain = {r:pathological}
-M: 정서도 통증 → {r:항우울제}가 진통에 쓰이는 이유
+M: 정의: Pain(IASP) = {r:sensory} + {r:emotional} · {r:actual} or {r:potential} tissue damage
+M: 2020 IASP 개정(26): 실제적 또는 잠재적 조직 손상과 연관되거나, {r:이와 유사한} 불쾌한 감각적·정서적 경험
+M: 정의에서 주목할 점: ① {r:잠재적인 것}도 통증(상처가 없어도 환자가 아프다면 아픈 것) / ② 정서도 통증 → {r:항우울제}가 진통에 쓰이는 이유
+M: 특징: ① 통증은 always {r:subjective} → 환자 말을 {r:face value}로 ② chronic pain = {r:pathological}(acute = {r:survival function}) ③ 진행 중인 조직 손상·{r:objective physical findings} 없이도 생김
 
 ## Pain Management — Goals · 4 Treatment Classes | 통증 관리의 목표와 치료 4가지 | 3-4 | 총론
 > 원인을 밝히고, 침해수용을 줄이고, 기능을 살리고, 고통을 덜어준다 — 약은 그중 하나
@@ -59,9 +60,9 @@ M: 정서도 통증 → {r:항우울제}가 진통에 쓰이는 이유
 # 강의 구성 (목차 — 넘어가심)
 - Drugs for Pain Management: ① Pain Pathobiology ② Drugs for Pain Management ③ Implications for Dentistry.
 F: 3=진통제는 말초에서 뇌까지 전 과정에 작용
-M: 관리 목표 4: {r:cause} 규명 · {r:nociception} 완화 · {r:function} 개선 · {r:suffering} 경감
-M: 치료 4: Conservative · {r:Pharmacotherapy} · {r:Procedural interventions} · Complementary
-M: 약의 작용 3지점: {r:primary sensory neurons} → {r:relaying} to brain → {r:perceptual response}
+M: 관리 목표 4: ① {r:cause} 규명 ② {r:nociception} 완화 ③ {r:function} 개선 ④ {r:suffering} 경감
+M: 치료 4: ① Conservative ② {r:Pharmacotherapy} ③ {r:Procedural interventions} ④ Complementary / 많이 사용 = {r:Pharmacotherapy}·{r:Procedural}(25 필기)
+M: 약의 작용 3지점: ① {r:primary sensory neurons} ② {r:relaying} to brain ③ {r:perceptual response}
 
 @G ② 통증은 어떻게 전달되나 — Pain Pathobiology
 ## Processing of Pain-Related Information | 통증 정보의 처리 — 변환·전도·전달·지각과 하행 조절 | 5 | 경로
@@ -84,8 +85,9 @@ M: 약의 작용 3지점: {r:primary sensory neurons} → {r:relaying} to brain 
 U: 상행 신호뿐 아니라 하행 신호로 다양한 modulation — 정서적인 것·경험적인 기억이 pain signal에 포함될 수 있는 이유(25 필기).
 U: 통증 정도의 조절을 대뇌에서만 한다고 착각하기 쉽지만 척수에서도 descending modulation으로 세기를 조절 — 큰 외상 때 말초의 통증 세기를 있는 그대로 느끼지 않게 함(26 필기).
 F: 5=척수에서도 하행성 조절로 통증 세기를 조절
-M: {r:Transduction} → {r:Conduction} → {r:Transmission} → {r:Perception} (+ descending {r:modulation})
-M: 말초 = peripheral sensitization / dorsal horn = {r:central sensitization} / 하행 조절 = {r:PAG} · {r:RVM}
+M: 흐름: ① {r:Transduction} ② {r:Conduction} ③ {r:Transmission} ④ {r:Perception} (+ descending {r:modulation})
+M: 부위별: 말초 = peripheral sensitization / dorsal horn = {r:central sensitization} / 하행 조절 = {r:PAG} · {r:RVM}
+M: 26: 척수 후각 = 신호를 얼마나 크게 올려보낼지 결정하는 {r:관문} → {r:PAG–RVM} 하행 경로가 관문을 조절
 
 ## Sensory Transduction — Nociceptors · Mediators | 감각 변환 — 손상 부위의 매개물질이 nociceptor를 깨운다 | 6-7 | 기전 · 교수 강조
 > 손상 조직·염증세포가 뿌린 물질이 nociceptor를 직접 때리거나(protons·ATP·K+·serotonin), PG처럼 역치를 낮춰 예민하게 만든다
@@ -113,9 +115,10 @@ F: 6=화학 기계 열 자극으로 막이 탈분극
 P: 25 p.7 "이 그림을 잘 기억했으면 좋겠습니다~(특히 prostaglandin!)" — prostaglandin은 voltage-gated sodium ch.의 역치를 낮추어 말초의 sensitization을 일으킨다(25 필기). PG 문항(20~24년 매년)은 아래 Sensitization 카드 ⭐.
 U: 말초에도 opioid receptor가 존재 — 신호 전달을 차단해 진통작용(25 필기).
 F: 7=substance P와 PG는 인접영역 역치를 낮춤, ACU5:7=25 필기 — 이 그림을 잘 기억(특히 prostaglandin)
-M: Nociceptor 세포체 = {r:dorsal root ganglia} / 구강안면 = {r:trigeminal nucleus caudalis} in medulla
-M: 직접 활성 = {r:protons} · {r:ATP} · {r:K+} · {r:serotonin} / 역치↓(간접) = {r:PGs} → Sensitization
-M: Capsaicin·열·proton → {r:TRPV1} / bradykinin → B2 / PG → prostanoid receptor(PKA)
+M: Nociceptor: 세포체 = {r:dorsal root ganglia} / 구강안면 = {r:trigeminal nucleus caudalis} in medulla
+M: Transduction: 자극 → {r:Na+/Ca2+ influx} → generator potential → {r:voltage-gated sodium channel threshold} → action potential
+M: 매개물질: 직접 활성 = {r:protons} · {r:ATP} · {r:K+} · {r:serotonin} / 역치↓(간접) = {r:PGs} → Sensitization(26 필기: {r:substance P}도 간접)
+M: 수용체(그림): Capsaicin·열·proton → {r:TRPV1} / bradykinin → B2 / PG → prostanoid receptor(PKA)
 
 ## Transmission in the Dorsal Horn | 척수 후각의 전달 — glutamate는 빠르게, 신경펩타이드는 느리게 | 8 | 기전
 > 1차 구심섬유가 2차 투사 뉴런에 넘길 때 빠른 성분(glutamate)과 느린 성분(substance P·CGRP·BDNF)이 함께 나온다
@@ -132,8 +135,9 @@ M: Capsaicin·열·proton → {r:TRPV1} / bradykinin → B2 / PG → prostanoid 
 - 공통 결과: Postsynaptic depolarization → Reach voltage-gated Na+ channel threshold → Action potential.
 U: 시냅스까지 신호가 오면 절전세포에서 칼슘 influx → synaptic vesicle이 세포막과 결합해 glutamate 유리 → 절후 receptor 중 AMPA·NMDA가 빠른 신호전달(25 필기).
 F: 8=빠른 성분 glutamate · 느린 성분 substance P·CGRP·BDNF
-M: fast excitatory = {r:Glutamate}(AMPA·NMDA) / slower = {r:substance P} · {r:CGRP} · {r:BDNF}
-M: Ca2+ influx → vesicle release → postsynaptic depolarization → {r:Na+ channel threshold} → action potential
+M: 성분: fast excitatory = {r:Glutamate}(AMPA·NMDA) / slower = {r:substance P} · {r:CGRP} · {r:BDNF} — glutamate와 {r:co-released}
+M: 수용체: AMPA = {r:rapid Na+ influx} / NMDA = {r:voltage-dependent Na+·Ca2+ influx} / mGluR·NK1·CGRP-R = {r:slow modulatory response}
+M: 흐름: Ca2+ influx → vesicle release → postsynaptic depolarization → {r:Na+ channel threshold} → action potential
 
 ## Descending & Local Inhibitory Regulation | 척수의 하행·국소 억제 — opioid·norepinephrine·GABA | 9 | 기전
 > dorsal horn은 올라가는 통증과 내려오는 억제가 만나는 통합 장소 — 앞 뉴런은 Ca 유입↓, 뒤 뉴런은 과분극
@@ -149,8 +153,10 @@ M: Ca2+ influx → vesicle release → postsynaptic depolarization → {r:Na+ ch
 - 25 필기: 절전에선 각 receptor에 붙어 칼슘의 inward current를 저해 → synaptic vesicle이 많이 유리되지 못함 / 절후에선 potassium outward current를 증가 → depolarization이 쉽게 일어나지 못함.
 U: spinal cord dorsal horn의 절전·절후 섬유 모두 descending inhibitory modulation을 받을 수 있다(25 필기) — opioid 진통 기전(만성통증 강의 {jb:PN15})과 같은 그림.
 F: 9
-M: DH 주 억제 전달물질 = {r:opioid peptides} · {r:norepinephrine} · {r:GABA}
+M: 정의: dorsal horn = 상행 통증 + 하행 억제의 {r:integration} 장소 · 조절 = {r:local inhibitory interneurons} + {r:brainstem}에서 하행
+M: DH 주 억제 전달물질 = ① {r:opioid peptides} ② {r:norepinephrine} ③ {r:GABA}
 M: 절전 = {r:Ca2+ influx↓} → vesicle release↓ / 절후 = {r:K+}(·Cl-) conductance↑ → {r:hyperpolarization}
+M: 수용체(그림): 절전 = α2 · GABA_B · μ / 절후 = GABA_A · GABA_B · μ · α2
 
 ## Sensitization — Peripheral & Central ★ | 감작 — 다친 뒤 통증이 과민해지는 이유 | 10-11 | 기출 20~24 · 매년 | jb=PN02
 > 다친 뒤엔 안 아플 자극도 아프고(allodynia) 아플 자극은 더 아프다(hyperalgesia) — 말초는 PG, 중추는 반복·고강도 자극의 가소성
@@ -182,9 +188,11 @@ F: 10=손상 후 통증 과민성은 원인이 없어진 후에도 통증이 잔
 U: Synapse 주변의 processing하는 protein의 양이나 arrangement 조절로 통증의 sensitization이 일어난다(25 필기).
 U: 급성 통증에 해당하는 염증성 통증 — A) glutamate에 의한 정상 통각 전달 → B) 수용체 인산화·{r:NMDA} 수용체 활성화(급성기) → C) {r:COX-2} induction으로 통증 심화(후기) → D) interneuron의 apoptosis로 탈억제(26 필기).
 F: 11=급성기 NMDA → 후기 COX-2 → 탈억제
-M: {r:Sensitization} = PG가 nociceptor {r:threshold↓} → {r:allodynia} · {r:hyperalgesia}
-M: 말초 = {r:prostaglandin} / 중추 = {r:activity-dependent plasticity}(반복·고강도)
-M: 중추 감작: acute {r:NMDA} → late {r:COX-2}(IL-1) → nerve injury {r:GABAergic interneuron apoptosis}(disinhibition)
+M: 정의: {r:Sensitization} = PG가 nociceptor {r:threshold↓} → {r:allodynia} · {r:hyperalgesia}
+M: 결과: ① {r:Allodynia} = 통증이 아닌 감각에 통증 / ② {r:Hyperalgesia} = 일반보다 더욱 크게 통증
+M: 기출 함정(20~24 매년 단답): threshold↓ 효과의 용어 = {r:Sensitization} — hyperalgesia·allodynia는 결과 현상(✗)
+M: 말초 vs 중추: 말초 = {r:prostaglandin} / 중추 = {r:activity-dependent plasticity}(반복·고강도)
+M: 중추 감작: ① acute {r:NMDA} ② late {r:COX-2}(IL-1) ③ nerve injury {r:GABAergic interneuron apoptosis}(disinhibition)
 
 @G ③ 통증의 분류 — 시기와 원인
 ## Acute vs Chronic Pain | 시기에 따른 분류 — 급성은 생존 가치, 만성은 질병 | 12 | 분류
@@ -200,9 +208,10 @@ M: 중추 감작: acute {r:NMDA} → late {r:COX-2}(IL-1) → nerve injury {r:GA
 U: Pain은 시기에 따라 acute·chronic, 원인에 따라 nociceptive(침해성)·neuropathic(신경병증성)으로 나눔 / chronic pain은 disease 상태 — 어떤 자극이나 손상이 없이도 지속(25 필기).
 U: 급성통증 = 원인이 명확하고 자극을 피할 필요성이 있을 때 · 만성통증 = 원인은 있는 경우도 없는 경우도 있으며 예상 치유기간을 넘어 지속 — 기간과 강도가 다양(26 필기).
 F: 12=통증은 양상에 따라 급성과 만성
+M: 분류: 시기 = {r:acute}·{r:chronic} / 원인 = {r:nociceptive}(침해성)·{r:neuropathic}(신경병증성)
 M: Acute = {r:injury or inflammation} · {r:survival value} · re-injury 최소화
 M: Chronic = {r:"disease"} · expected healing period 지나서 — 대개 {r:3-6개월}
-M: 세기: mild {r:1-3} / moderate {r:4-6} / severe {r:≥7}
+M: 세기: ① mild {r:1-3} ② moderate {r:4-6} ③ severe {r:≥7} — 26 기준(25 자료는 4-7)
 
 ## Transition from Acute to Chronic Pain · Psychosocial Factors | 급성에서 만성으로 — 급성통증을 잘 잡아야 한다 | 13-15 | 기전 · 교수 강조
 > 급성통증을 제대로 못 잡으면 말초·중추 감작을 거쳐 신경·신경교가 리모델링되어 만성통증이 된다
@@ -234,10 +243,11 @@ F: 14=급성기에 통증 조절을 적절히
 U: chronic pain에는 심리적인 요인 또한 매우 중요하게 작용한다(25 필기).
 U: 만성통증의 원인은 신경생리학적 근거로 설명 가능하지만 {r:강도}는 심리사회적 요인이 큰 영향 · 기존에 다양한 통증경험이 있었던 사람은 만성통증을 겪을 가능성이 높음(26 필기).
 F: 15=만성통증의 강도는 심리사회적 요인이 큰 영향
-M: Peripheral sensitization → {r:Primary} hyperalgesia / Central sensitization → {r:Secondary} hyperalgesia
+M: 시간표: ① {r:Seconds}(nociceptor) ② {r:Minutes}(NMDA·wind-up) ③ {r:Hours to Days}(long term potentiation) ④ {r:Months to Years}
+M: 감작 → 통각과민: Peripheral sensitization → {r:Primary} hyperalgesia / Central sensitization → {r:Secondary} hyperalgesia
 M: 급성 → 만성 = {r:Neural and Glial Remodeling} → long term plasticity → chronic pain
-M: 시간표: {r:Seconds}(nociceptor) → {r:Minutes}(NMDA·wind-up) → {r:Hours to Days}(long term potentiation) → {r:Months to Years}
 M: 💬 acute pain을 잘 control해야 chronic pain 예방(25) / 급성기 {r:적극적인 통증 조절}이 만성화 예방 — 통증을 참는 것이 좋은 것 아님(26)
+M: 심리사회적 요인: ① 만성통증의 {r:강도}에 큰 영향(26) ② 심리 = fear-avoidance·anxiety·depressed mood ③ 신체·습관 = obesity·smoking·older age
 
 ## Nociceptive vs Neuropathic Pain ★ | 원인에 따른 분류 — 침해성 vs 신경병성 | 16-17 | 기출 20~23 | jb=PN09,PN12
 > 조직이 다쳐서 아프면 침해성, 감각신경계 자체가 고장 나서 아프면 신경병성 — "어떻게 아프세요?"의 대답이 다르다
@@ -271,17 +281,18 @@ E: PN21 | 20년 빈칸(표) "Neuropathic vs Nociceptive — Etiology·Descriptor
 U: nociceptive와 neuropathic은 "어떻게 아프세요?"라고 물을 때 description 양상이 많이 다름 · autonomic sign은 nociceptive에선 흔치 않음(25 필기).
 U: 신경병성 통증 = 신경세포 자체의 손상 — {r:전기신호처럼 찌릿} / 체성 통증 = 신호전달경로는 정상이나 조직이 손상(26 필기).
 F: 17=신경병성은 전기신호처럼 찌릿 체성은 조직 손상
-M: 원인 분류 4 = {r:neuropathic} · {r:nociceptive} · {r:nociplastic} · {r:mixed}
-M: 신경병성 예: peripheral: {r:diabetic neuropathy} · {r:radicular pain} / central: {r:central post-stroke pain} / 25 필기: {r:trigeminal neuralgia}
-M: 23·22 빈칸 답: (2) 침해성 = {r:somatic} · {r:visceral}(JB 답 — visceral은 p.16에 없음) / (3)(4) 신경병성 = {r:central} · {r:peripheral}
+M: 원인 분류 4 = ① {r:neuropathic} ② {r:nociceptive} ③ {r:nociplastic} ④ {r:mixed}
+M: 정의: Nociceptive = {r:somatic structures}(skin·muscle·tendons·bone·joints) 손상 / Neuropathic = {r:somatosensory system}의 lesion or disease
+M: 신경병성 예: ① peripheral: {r:diabetic neuropathy} · {r:radicular pain} ② central: {r:central post-stroke pain} ③ 25 필기: {r:trigeminal neuralgia}
 M: 신경병성 예 JB 답에 더: {r:postherpetic neuralgia}(만성통증 p.18) / 20년 답은 분류 = {r:Peripheral} · {r:Central}
+M: 23·22 빈칸 답: (2) 침해성 = {r:somatic} · {r:visceral}(JB 답 — visceral은 p.16에 없음) / (3)(4) 신경병성 = {r:central} · {r:peripheral}
 M: Etiology: neuropathic {r:nerve injury} vs nociceptive {r:tissue or potential tissue damage}
 M: Descriptors: neuropathic {r:lancinating·shooting·electrical-like} vs nociceptive {r:throbbing·aching·pressure-like}
 
 @G ④ 약물 치료 원칙 — 급성·만성·신경병성
 ## Pharmacologic Treatment of Acute Pain | 급성통증 약물 치료 — 일시적으로, 세게 시작해 줄여간다 | 18 | 원칙
 > 급성통증은 잠깐만 치료하면 된다 — 염증이 있으면 NSAID, 아주 심하면 opioid, 술후·외상은 강한 약에서 약한 약으로
-= {r:only temporary therapy} / 염증 → {r:NSAID} / very severe(MI) → {r:morphine} parenterally / 술후·외상 → {r:powerful → less powerful}
+= 원칙 {r:only temporary therapy} / 염증 → {r:NSAID} / very severe(MI) → {r:morphine} parenterally / 술후·외상 → {r:powerful → less powerful}
 # 원칙 4
 - ① Acute pain usually requires {r:only temporary therapy}.
 - ② If there is an {r:inflammatory component}, then {r:NSAID} class will be useful.
@@ -290,12 +301,13 @@ M: Descriptors: neuropathic {r:lancinating·shooting·electrical-like} vs nocice
 U: Acute에는 주로 NSAID나 opioid, opioid는 매우 심한 통증(MI 등)에 / 원인을 정확히 아는 acute pain이면 처음에 큰 용량 → 통증이 줄면 용량을 줄여간다(25 필기).
 U: NSAIDs는 진통 효과도 있지만 진통제라기보다는 핵심은 {r:소염제} · 심한 급성 통증 등에서 진통효과만을 위해 opioid를 쓸 수도(26 필기).
 F: 18=NSAIDs는 진통제라기보다 핵심이 소염제
-M: Acute pain = {r:only temporary therapy} / 염증 성분 → {r:NSAID}
-M: very severe(MI) → {r:morphine} {r:parenterally} / 술후·외상 → {r:powerful → less powerful}
+M: 원칙: Acute pain = {r:only temporary therapy} / 염증 성분 → {r:NSAID}
+M: 심한 통증: very severe(MI) → {r:morphine} {r:parenterally} / 술후·외상 → {r:powerful → less powerful}
+M: 필기: NSAIDs = 진통제라기보다 핵심은 {r:소염제}(26) / 원인을 아는 acute pain = 처음 {r:큰 용량} → 통증이 줄면 용량을 줄여감(25)
 
 ## Pharmacologic Treatment of Chronic Pain ★ | 만성통증 약물 치료 — NSAIDs는 잘 안 듣고 항경련제·항우울제·capsaicin | 19 | 기출 21·22·23 | jb=PN10,PN14
 > 만성통증은 바닥 약에 필요할 때 얹는 조합 — NSAIDs는 거의 안 듣고, 항경련제·항우울제·tramadol이 잘 듣는다
-= basal + {r:bolus} / {r:NSAIDs 거의 무반응} / 잘 듣는 약 {r:gabapentin}·{r:TCA, SSRI}·{r:tramadol} / {r:Capsaicin} → substance P 고갈
+= basal + {r:bolus} · {r:NSAIDs 거의 무반응} / 잘 듣는 약 {r:gabapentin}·{r:TCA, SSRI}·{r:tramadol} / {r:Capsaicin} → substance P 고갈
 # 원칙
 - ① A combination of {r:basal pain medication} with {r:bolus as needed doses} may be needed.
 - ② {r:Largely unresponsive to NSAIDs} and only {r:occasionally respond to opioids}.
@@ -314,9 +326,9 @@ E: PN14 | 21년 8-1·8-2(복원) "morphine 증례 — 추가한 약(amitriptylin
 P: 25 p.20 "이러한 부작용을 기억해주시기 바랍니다" — opioid 장기 사용의 respiratory depression(25 필기).
 U: 만성 통증은 진통제로 조절하기 어렵고 다양한 사회심리적 요인 — 급성처럼 '며칠간 어떤 약을 얼만큼'을 확신·예측하기 어려움 · 원인이 불명확한 경우가 많아 NSAIDs에는 대체로 반응하지 않음 · 보조적 치료로 capsaicin(26 필기).
 F: 19=보조적 치료방법으로 캡사이신, ACU5:20=25 필기 — opioid 장기 사용 부작용을 기억
-M: Chronic = basal + {r:bolus as needed} · {r:NSAIDs에 거의 무반응} · opioid는 occasionally
-M: 잘 듣는 약: {r:gabapentin}(항경련제) · {r:TCA·SSRI}(항우울제) · {r:tramadol} + transcutaneous nerve stimulation·국소마취제
-M: {r:Capsaicin} → peripheral nociceptor 활성 → substance P {r:release↑} → CNS에서 {r:depletion}
+M: 원칙: Chronic = basal + {r:bolus as needed} · {r:NSAIDs에 거의 무반응} · opioid는 occasionally
+M: 잘 듣는 약: ① {r:gabapentin}(항경련제) ② {r:TCA·SSRI}(항우울제) ③ {r:tramadol} ④ + transcutaneous nerve stimulation·국소마취제(may help)
+M: 기출(23·22 빈칸): {r:Capsaicin} → peripheral nociceptor 활성 → substance P {r:release↑} → CNS에서 {r:depletion}
 M: opioid 내성(21 증례 JB 해설): 흥분효과(평활근 긴장·축동) = 내성 {r:×} / 억제효과(진통·도취감·기면·호흡 억제) = 내성 {r:○} / 25 필기: {r:respiratory depression}은 진통보다 내성이 잘 안 생김
 M: 21 morphine 증례: {r:서로 다른 기전} 병용 → 추가 진통 / {r:codeine}(physical dependence 적음) + 다른 경로의 {r:acetaminophen}
 
@@ -341,9 +353,10 @@ U: First, second, third line의 약물 class가 존재하며 first line을 가�
 E: PN13 | 21년 빈칸 "( ) are effective for chronic, neuropathic pain by virtue of their membrane stabilizing properties" → Anticonvulsants — 문장 출처 만성통증 p.18(20년 {jb:PN24}) ⚠ 함정: 약 이름이 아니라 약물군
 U: 만성 통증의 치료는 다음 시간(만성통증 강의)에 자세히 · 최근에는 {r:근육과 관련된 통증}에 보톡스를 쓰기도(26 필기).
 F: 20=근육과 관련된 통증에 보톡스
-M: 1st line: {r:gabapentin} · {r:pregabalin} · {r:SNRI}(duloxetine 1순위) · {r:TCA}
+M: 1st line: ① {r:gabapentin} ② {r:pregabalin} ③ {r:SNRI}(duloxetine 1순위) ④ {r:TCA}
 M: 2nd line: {r:capsaicin 8%} · {r:lidocaine} patches · {r:tramadol} / 3rd: {r:botulinum toxin A} · {r:strong opioids}
-M: {r:Anticonvulsants} = {r:membrane stabilizing} → chronic neuropathic pain(21 빈칸 — 약 이름 아닌 약물군)
+M: 권고 등급: First-line = {r:strong} / Second·Third-line = {r:weak} — {r:GRADE classification}
+M: 기출(21 빈칸): {r:Anticonvulsants} = {r:membrane stabilizing} → chronic neuropathic pain(21 빈칸 — 약 이름 아닌 약물군)
 
 @G ⑤ 진통제 — 종류와 COX 억제제
 ## Drugs for Pain Management · Mechanisms of Drug Actions | 진통제의 종류와 작용 부위 — 기전이 다른 약을 섞는다 | 21-22 | 총론
@@ -365,9 +378,9 @@ F: 21
 U: 각 nociceptive pathway의 step에서 어떤 약이 어느 부위에 어떻게 작용하는지 나타나 있음 — 확인해볼 것(25 필기).
 U: 약물은 말초자극 수용·척수 신호 전달·대뇌 신호 해석·중추 신호 강도 조절 등 다양한 과정에 작용 · 대뇌 수준에서는 인지행동치료나 placebo로 통증 경험 조절 시도(26 필기).
 F: 22=작용 기전이 다른 약물은 상가적 효과
-M: 진통제 5군: {r:NSAIDs} · {r:Opioids} · {r:Anti-depressant} · {r:Anti-convulsants}(·anti-arrythmics) · {r:NMDA antagonists}
-M: 병용 = {r:disparate actions} → {r:additive or synergistic} + 부작용↓
-M: NMDA blocker 예 = {r:ketamine} / descending modulation = {r:antidepressants} · opioids(tramadol)
+M: 진통제 5군: ① {r:NSAIDs} ② {r:Opioids} ③ {r:Anti-depressant} ④ {r:Anti-convulsants}(·anti-arrythmics) ⑤ {r:NMDA antagonists}
+M: 병용 원칙: {r:mechanisms of drug actions}로 선택 / 병용 = {r:disparate actions} → {r:additive or synergistic} + 부작용↓
+M: 작용 부위(그림): NMDA blocker 예 = {r:ketamine} / descending modulation = {r:antidepressants} · opioids(tramadol) / peripheral = {r:Anti-inflammatory drugs} · local anesthetic
 
 ## Inhibition of COXs — Role of PG in Pain | COX 억제 — PG의 말초·중추 역할을 끊는다 | 23 | 기전
 > NSAID는 COX를 막아 PG 합성을 줄인다 — 말초 감작(1차 통각과민)과 중추 감작(2차 통각과민)을 둘 다 막는다
@@ -385,13 +398,14 @@ M: NMDA blocker 예 = {r:ketamine} / descending modulation = {r:antidepressants}
 U: late phase central sensitization에서 IL-1 → COX-2 transcription↑ → PG↑(25 p.12 필기)와 같은 흐름.
 U: NSAIDs의 주요 타겟은 COX, COX는 PG pathway의 주된 요소 — "정리하자면 PG는 말초에서만 작용하는 게 아니라 {r:중추에서도} 작용하며, COX의 조절은 중추에서도 효과를 낼 수 있습니다"(26 필기) · 설명 상자 "※ PGE는 말초와 중추 모두에서 작용함".
 F: 23=PG는 말초와 중추 모두에서 작용
-M: NSAID = {r:COX} 억제 → {r:PG 합성↓} → 말초·중추 sensitization 모두↓
-M: {r:COX-1} = housekeeping / {r:COX-2} = inflammation으로 발현 · 통증 매개
-M: Peripheral → {r:Primary} hyperalgesia / Central → {r:Secondary} hyperalgesia · cytokine {r:IL-1B}
+M: 기전: NSAID = {r:COX} 억제 → {r:PG 합성↓} → 말초·중추 sensitization 모두↓
+M: 효소: {r:COX-1} = housekeeping / {r:COX-2} = inflammation으로 발현 · 통증 매개
+M: PG 경로: Peripheral → {r:Primary} hyperalgesia / Central → {r:Secondary} hyperalgesia · cytokine {r:IL-1B}
+M: 26: PG(PGE)는 말초뿐 아니라 {r:중추에서도} 작용 → COX 조절은 중추에서도 효과
 
 ## Acetaminophen ★ | 아세트아미노펜 — 해열·진통뿐, 과량이면 간독성 | 24 | 기출 21·22·24 | jb=PN08
 > 위는 편하지만 간이 문제 — 항염·항혈소판 작용은 없고, 과량이면 NAPQI가 쌓여 간이 망가진다
-= 해열·진통 O · {r:항염·항혈소판 X} / max {r:4 g/d}(간질환 {r:<2 g/d}) / 장점 {r:no gastric toxicity} · 주의 {r:Hepatic toxicity}(과량 → NAPQI) / 26 기전 {r:중추 COX}·{r:AM404}·하행성 세로토닌
+= 해열·진통 O · {r:항염·항혈소판 X} · max {r:4 g/d}(간질환 {r:<2 g/d}) / 장점 {r:no gastric toxicity} / 주의 {r:Hepatic toxicity}(과량 → NAPQI) / 26 기전 {r:중추 COX}·{r:AM404}·하행성 세로토닌
 # 작용
 - Acetaminophen has {r:antipyretic and analgesic} actions but {r:no anti-inflammatory or antiplatelet} properties.
 - CNS에 많이 작용한다고 알려져 있음(25 필기).
@@ -419,12 +433,12 @@ M: Peripheral → {r:Primary} hyperalgesia / Central → {r:Secondary} hyperalge
 E: PN08 | 24·22·21년 서술(증례) "Oxycodone+acetaminophen 증량 후 손·눈동자가 노랗게 — 그 이유" → Acetaminophen의 과다복용에 따른 간독성 — 복합제 증량 = acetaminophen도 증량 ⚠ 함정: oxycodone 탓 ✗
 U: 안전한 약물이지만 간 질환이 있거나 과량이면 간독성(25 필기).
 F: 24=최대용량은 간독성 때문
-M: Acetaminophen = {r:해열·진통} O · {r:항염·항혈소판} X / 장점 {r:위장 독성 없음}
-M: 용량 {r:325-1,000 mg q4-6h} · max {r:4 g/d} · 간질환 {r:<2 g/d} · {r:10-15 g} → fatal hepatic necrosis
-M: 간독성 = {r:NAPQI} ↔ {r:glutathione} 고갈 · {r:codeine 병용} 주의
-M: 26 기전: 중추 {r:COX} 억제 · {r:AM404}(TRPV1) · 하행성 {r:세로토닌} / {r:POX} 부위 → 염증성 통증에 약함
+M: 작용: Acetaminophen = {r:해열·진통} O · {r:항염·항혈소판} X / 장점 {r:위장 독성 없음}
+M: 26 기전: ① 중추 {r:COX} 억제 ② {r:AM404}(TRPV1) ③ 하행성 {r:세로토닌} / {r:POX} 부위 → 염증성 통증에 약함
+M: 용량: ① {r:325-1,000 mg q4-6h} ② max {r:4 g/d} ③ 간질환 {r:<2 g/d} ④ {r:10-15 g} → fatal hepatic necrosis
+M: 간독성: {r:NAPQI} ↔ {r:glutathione} 고갈 · {r:codeine 병용} 주의
 M: 증례(24·22·21): oxycodone+acetaminophen 증량 → 손·눈 노랗게 = {r:acetaminophen 과다복용 간독성}(oxycodone 탓 ✗)
-M: 26: acetaminophen = {r:NSAID 아님}(non-opioid analgesic) / 한계 = 효과 {r:개인차} 큼 · 간독성 약(항생제 등) {r:병행} 시 강한 간독성
+M: 26: acetaminophen = {r:NSAID 아님}(non-opioid analgesic) / 한계 = ① 효과 {r:개인차} 큼 ② 간독성 약(항생제 등) {r:병행} 시 강한 간독성
 
 ## Aspirin ★ | 아스피린 — 네 가지 효과 모두, 위장·천식·출혈 주의 | 25 | 기출 20 | jb=PN16
 > 진통·해열·항염·항혈소판 네 가지 다 — 대신 위장 출혈, 천식 환자의 기관지 연축, 단회 복용에도 1주 가는 항혈소판을 조심
@@ -448,12 +462,12 @@ U: GI irritation은 {r:COX-1} 저해 때문 / COX가 저해되면 {r:lipoxygenas
 P: 간과 신장 부작용 — "올려준 논문에 나와 있으니 확인해 보시면 됩니다"(25 필기).
 P: 26 p.25 "부작용이 중요합니다" — 소화불량, 위장관 출혈, 두드러기 · 아스피린은 진통효과보다는 {r:항염증·항혈소판} 작용이 큼 · 어린이 해열진통엔 라이 증후군 위험 → 아세트아미노펜이나 이부프로펜(26 필기).
 F: 25=어린이에게는 라이 증후군 위험
-M: Aspirin = 진통·해열·항염·{r:항혈소판} · {r:325-650 mg q4h} · max {r:4 g/d}
-M: 부작용: {r:GI bleeding}(COX-1) · {r:asthma·nasal polyps} → bronchospasm(leukotriene↑) · {r:interstitial nephritis·papillary necrosis}
-M: aspirin 과민 → {r:NSAIDs도 금지} / 항혈소판 단회에도 {r:up to 1 week}
-M: 가장 낮은 dose에서 나타나는 효과 = {r:Antiplatelet effect}(20 단답 — 저용량 aspirin)
-M: 주의 환자 = {r:hepatic·renal disease} · {r:bleeding disorders} · {r:pregnancy} · {r:anticoagulation therapy}
-M: 소아 바이러스 감염(인플루엔자·수두) + aspirin → {r:Reye syndrome}(간부전·뇌병증) → 소아는 {r:acetaminophen·ibuprofen}
+M: 작용·용량: Aspirin = 진통·해열·항염·{r:항혈소판} · {r:325-650 mg q4h} · max {r:4 g/d}
+M: 기출: 가장 낮은 dose에서 나타나는 효과 = {r:Antiplatelet effect}(20 단답 — 저용량 aspirin)
+M: 부작용: ① {r:GI bleeding}(COX-1) ② {r:asthma·nasal polyps} → bronchospasm(leukotriene↑) ③ {r:interstitial nephritis·papillary necrosis} — 💬 26 "부작용이 중요합니다"
+M: 금기·지속: aspirin 과민 → {r:NSAIDs도 금지} / 항혈소판 단회에도 {r:up to 1 week}
+M: 주의 환자: ① {r:hepatic·renal disease} ② {r:bleeding disorders} ③ {r:pregnancy} ④ {r:anticoagulation therapy}
+M: 26 Reye: 소아 바이러스 감염(인플루엔자·수두) + aspirin → {r:Reye syndrome}(간부전·뇌병증) → 소아는 {r:acetaminophen·ibuprofen}
 
 ## NSAIDs — Ketorolac · Cardiovascular Warning | NSAIDs — 효능·독성은 다 비슷, 신장·심혈관 주의 | 26 | 기출 20(만성통증 배정)
 > 모든 NSAID는 효능·독성이 비슷(aspirin과 같은 부작용 양상) — 주사용 ketorolac은 신독성 때문에 5일까지, 심혈관 혈전 위험은 박스 경고
@@ -473,13 +487,13 @@ E: PN17 | 20년 단답 "아편계 진통제 대신 주사할 수 있는 강력�
 - ④ NSAIDs are {r:contraindicated immediately postoperative from coronary artery bypass surgery} — 26: 관상동맥우회술(CABG) 직후 금기.
 P: 26 p.26 밑줄 — ketorolac은 IM·IV가 가능한 NSAID 진통제로 수술 후에 흔히 사용 · 모든 NSAID는 유사한 효능과 독성(부작용 양상은 아스피린과 유사) · FDA 박스 경고의 {r:심혈관계 혈전성 부작용 위험 증가} — "밑줄 친 내용 읽으셨습니다".
 F: 26=밑줄 친 내용 읽으심
-M: NSAIDs = {r:COX} 억제 → 진통·해열·항염 · 모두 {r:similar efficacy and toxicities}(aspirin과 비슷)
-M: {r:Ketorolac} = IM·IV 술후 · parenteral {r:5일 이내}({r:nephrotoxicity})
-M: FDA boxed warning = {r:cardiovascular thrombotic events}(MI·stroke) · aspirin의 {r:cardio-protective} 효과 둔화 · {r:coronary artery bypass 직후 금기}
+M: 작용: NSAIDs = {r:COX} 억제 → 진통·해열·항염 · 모두 {r:similar efficacy and toxicities}(aspirin과 비슷)
+M: 기출(20 단답 — 아편계 대신 주사하는 진통제): {r:Ketorolac} = IM·IV 술후 · parenteral {r:5일 이내}({r:nephrotoxicity})
+M: 부작용·금기: ① FDA boxed warning = {r:cardiovascular thrombotic events}(MI·stroke) ② aspirin의 {r:cardio-protective} 효과 둔화 ③ {r:coronary artery bypass 직후 금기} ④ impaired renal·hepatic function 주의
 
 ## COX-2 Inhibitors — Celecoxib ★ | COX-2 억제제 — 위는 편하지만 항혈소판이 없다 | 27 | 기출 20 | jb=PN18
 > 염증의 COX-2만 골라 막아 위가 편하지만 진통은 더 낫지 않고, aspirin처럼 혈소판을 막지 못해 심혈관 위험이 문제
-= {r:celecoxib} · 위 점막 영향 {r:little} · 진통 이점 {r:no} / 부작용 {r:cardiovascular events}·stent 후 {r:thrombotic risk} · 항혈소판 없음 → 심혈관 우려면 aspirin
+= {r:celecoxib} · 위 점막 영향 {r:little} · 진통 이점 {r:no} / 부작용 {r:cardiovascular events}·stent 후 {r:thrombotic risk} / 항혈소판 없음 → 심혈관 우려면 aspirin
 # 작용
 - COX-2 inhibitors act primarily on {r:COX-2}, an {r:inducible form} of cyclooxygenase and an important mediator of pain and inflammation.
 - COX-2 inhibitors have **little significant effect on the gastric mucosa**.
@@ -499,10 +513,11 @@ E: PN18 | 20년 단답 "Celecoxib보다 aspirin을 써야 하는 경우는?" →
 | COX-2 inhibitor | 진통 O — {r:no analgesic advantage} over other NSAIDs(해열은 슬라이드에 없음) | COX-2 = mediator of pain and inflammation | {r:없음}(25 필기) | {r:little effect} |
 U: COX-2 선택 억제제는 위장관 부작용이 없기에 NSAIDs의 대안으로 사용되기 시작 · 진통 효과는 NSAIDs와 큰 차이 없음 · 단 {r:스텐트 시술 환자}에 쓸 경우 혈전 증가 위험(26 필기).
 F: 27=스텐트 시술 환자에 혈전 증가 위험, ACU5:28=25 필기 — 가장 중요한 부작용은 심혈관계
-M: COX-2 inhibitor = {r:celecoxib} · 위 점막 영향 {r:적음} · 진통 이점 {r:없음}
+M: 특징: COX-2 inhibitor = {r:celecoxib} · 위 점막 영향 {r:적음} · 진통 이점 {r:없음}
 M: 핵심 부작용 = {r:cardiovascular events} · cardiac stenting 후 {r:thrombotic risk} — 항혈소판 효과 {r:없음}
-M: aspirin·NSAIDs에 {r:allergic·bronchospastic} → COX-2 inhibitor도 {r:금지}
-M: Celecoxib 대신 aspirin = {r:cardiovascular event 우려}가 있을 때(20 단답) / 위장 보호만 보면 celecoxib 유리
+M: 금기: aspirin·NSAIDs에 {r:allergic·bronchospastic} → COX-2 inhibitor도 {r:금지}
+M: 항혈소판 비교: aspirin = {r:O}(up to 1 week) / acetaminophen = {r:X} / COX-2 inhibitor = {r:없음}(25 필기)
+M: 기출: Celecoxib 대신 aspirin = {r:cardiovascular event 우려}가 있을 때(20 단답) / 위장 보호만 보면 celecoxib 유리
 
 ## Ceiling Effect — Analgesic Comparison | 천장 효과 — COX 억제제는 올려도 한계, opioid를 더한다 | 28 | 기전
 > COX 억제제는 용량을 아무리 올려도 효과에 천장이 있다 — 천장이 없는 opioid(codeine)를 더하면 진통이 더 올라간다
@@ -525,6 +540,6 @@ M: Celecoxib 대신 aspirin = {r:cardiovascular event 우려}가 있을 때(20 �
 U: 도표 1) acetaminophen 650·aspirin 600은 두어 시간만 지나도 높은 진통효과 2) aspirin 단독보다 codeine 병용이 좋음 3) ibuprofen은 aspirin·aspirin+codeine보다도 높음 4) ketoprofen은 ibuprofen보다도 높음(26 필기).
 U: 치과 통증에서 NSAID가 ceiling이면 opioid 복합제를 병용(만성통증 p.4 필기와 같은 논리).
 F: 28=aspirin 단독보다 codeine 병용이 효과적
-M: COX 억제제(NSAID·acetaminophen·aspirin) = {r:ceiling effect} — 용량↑해도 최대 효과 고정
-M: {r:Codeine}(opioid) = ceiling {r:없음} → aspirin 650 + codeine 60 > aspirin 단독
+M: 정의: COX 억제제(NSAID·acetaminophen·aspirin) = {r:ceiling effect} — 용량↑해도 최대 효과 고정
+M: 병용: {r:Codeine}(opioid) = ceiling {r:없음} → aspirin 650 + codeine 60 > aspirin 단독
 M: 발치 후(26): {r:ketoprofen 100} > ibuprofen 400 ≥ aspirin 650+codeine 60 > aspirin 단독 · acetaminophen 650 ≈ aspirin 600
