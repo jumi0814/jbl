@@ -54,14 +54,15 @@ def reflow(text, choices=False):
         prev_raw = l
     return out
 def same_chars(a, b): return re.sub(r'\s+', '', a) == re.sub(r'\s+', '', b)
+SRCREF = re.compile(r'\d{4,6}[_\s]|pf[_ ]|_p\.?\s?\d|\bp\.?\s?\d|\d+\s?pg\b|PPT|ppt|강의자료|교과서|슬라이드|핸드아웃|\.pdf')
 def render(text, first_bold=False, ans=False, choices=False):
     """논리 줄 단위 HTML. 글자는 원문 그대로, 라벨(답·해설·참고)만 굵게.
     ans=True(JB 답안 칸): 첫 '답' 라벨 줄에 .ans0(크게·흰 칸), 첫 '해설' 라벨부터 끝까지를 .exw로 감싸고
     해설이 6줄 또는 400자를 넘으면 .exw.clamp(허브가 높이를 줄이고 '해설 전체 보기'를 붙임)"""
     L = reflow(text, choices); assert same_chars(text, '\n'.join(L)), 'reflow changed characters'
-    h = []; a0 = None; ex_at = None; innum = False   # 번호 단계 아래 '-'·'·' 줄은 .sub(들여쓰기) — 클래스만, 글자 불변(V04)
+    h = []; a0 = None; ex_at = None; innum = False; insrc = False   # 번호 단계 아래 '-'·'·' 줄은 .sub(들여쓰기) — 클래스만, 글자 불변(V04)
     for i, s in enumerate(L):
-        m = LABEL.match(s)
+        m = LABEL.match(s); was_src = insrc; insrc = False
         if first_bold and i == 0:
             h.append(f'<div class="ln q1">{html.escape(s)}</div>')
         elif m:
@@ -70,7 +71,11 @@ def render(text, first_bold=False, ans=False, choices=False):
             extra = ''
             if ans and kind == 'a' and a0 is None: a0 = i; extra = ' ans0' if rest.strip() else ' lab0'   # 값 없는 '답:'은 빈 흰 칸 대신 라벨만
             if ans and kind == 'e' and ex_at is None: ex_at = i
+            srcl = kind == 'r' and (not rest.strip() or bool(SRCREF.search(rest))); insrc = srcl and not rest.strip()
+            if srcl: extra += ' lab-src'   # 10-05 사용자 'jb원문 해설에 달려있는 출처 표시란은 아예 없애줘' — 출처뿐인 '참고:' 줄은 화면에서 숨김(글자는 그대로 · 내용이 있는 참고 줄은 보임)
             h.append(f'<div class="ln lab lab-{kind}{extra}"><b>{html.escape(lab)}</b>{html.escape(rest)}</div>'); innum = False
+            continue
+        elif was_src and SRCREF.search(s) and len(s) < 160: h.append(f'<div class="ln lab-src">{html.escape(s)}</div>'); insrc = True; continue
         elif LISTM.match(s):
             if NUMM.match(s): cls = ' num'; innum = True
             elif innum and BULM.match(s): cls = ' sub'
