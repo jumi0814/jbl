@@ -274,10 +274,16 @@ def _vcls(v):
     if '부분' in v: return 'vp'
     if re.search(r'일치|○|정답|대응|옳음', v): return 'vk'
     return 'vi'
+def _pdepth(t):
+    d = 0
+    for ch in t:
+        if ch == '(': d += 1
+        elif ch == ')': d = max(0, d - 1)
+    return d
 def _qspan(s):
     """처음 나오는 큰따옴표 묶음 (여는 자리, 닫는 자리)"""
     for i, ch in enumerate(s):
-        if ch in '"“' and s[:i].count('(') > s[:i].count(')'): return None   # 10-05 괄호 안 인용은 상자로 떼지 않음(문장 속 덧말)
+        if ch in '"“' and _pdepth(s[:i]) > 0: return None   # 10-05 괄호 안 인용은 상자로 떼지 않음(문장 속 덧말) — '1)'처럼 짝 없는 닫는 괄호는 세지 않음
         if ch in '"“':
             j = s.find('"' if ch == '"' else '”', i + 1)
             return (i, j) if j > i else None
@@ -299,6 +305,7 @@ def cite_row(cites):
         else: gs.append((nm, [b_]))
     return '<div class="cites cz">' + ''.join(f'<span class="cg">{f"<span class=czk>{nm}</span>" if nm else ""}{"".join(bs)}</span>' for nm, bs in gs) + '</div>'
 def _qhtml(qt):
+    if '\u2029' in qt: return ''.join(_qhtml(x) for x in qt.split('\u2029'))
     tl = re.search(r'["”][.,;:)\]]*$', qt); tl = tl.group(0) if tl else qt[-1]
     o, c_ = qt[0], tl; inner = qt[1:len(qt) - len(tl)].strip()
     ps = lecparse._rebalance(lecparse.split_top(inner, ' / ')) if ' / ' in inner else [inner]
@@ -320,11 +327,19 @@ def aitem_lis(x, kind='A'):
         tag = f'<span class="vtag {_vcls(m.group(1))}">{back(esc(m.group(1)))}</span>'; raw = m.group(2)   # 10-05 ⚠ 자리표시(\ue000n\ue001)가 꼬리표에 그대로 보이던 것(사용자 사진 '⊠0⊠ 치료법은 부분')
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
-    if qs and qs[0] <= 80 and qs[1] - qs[0] >= 30:
+    if qs and qs[0] <= 80 and (qs[1] - qs[0] >= 30 or (qs[1] - qs[0] >= 6 and re.fullmatch(r'[^"“]{0,80}?[:：]?\s*', raw[:qs[0]] or ''))):   # 10-05 통일: 위치·라벨 뒤 첫 인용은 짧아도 상자
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
         if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
-        aft = re.sub(r'^[/—,·]\s+', '', aft)   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
+        aft = re.sub(r'^[/—,·]\s+', '', aft)
+        while True:   # 10-05 통일: 바로 이어지는 인용(" / "…")은 같은 상자에 한 줄 더
+            m4 = re.match(r'^(?:/\s*)?(["“])', aft)
+            if not m4: break
+            q2 = _qspan(aft[m4.start(1):])
+            if not q2: break
+            j_ = m4.start(1) + q2[1] + 1; mp2 = re.match(r'^[.,;:)\]]+', aft[j_:]); j2 = j_ + (mp2.end() if mp2 else 0)
+            if re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|라고|란|도)(?:\s|$)', aft[j2:]): break
+            qt += '\u2029' + aft[m4.start(1):j2]; aft = re.sub(r'^[/—,·]\s+', '', aft[j2:].strip())   # 다음 사실 앞 구분자 ' / '는 줄 머리에 남기지 않음
         hd = tag + (f'<span class="aloc">{lecparse.inline(loc, ctx)}</span>' if loc else '')
         ah = ''
         if aft: ah = f'<div class="acm">{astruct(aft) if len(aft) > 190 else (lecparse.render_block(aft, ctx) if (len(aft) > 150 or lecparse._facts(lecparse.split_top(aft, " / "))) else lecparse.inline(aft, ctx))}</div>'
@@ -403,7 +418,7 @@ def qcard(q, idx):
     if pk and pk[1]:
         lab, lines = pk; dv = 'wrong' if lab == '틀린 보기' else 'ok'
         for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
-        pick_ln = ''.join(f'<div class="ln pick noann"><b>{PICKLAB.get(lab, lab)}</b> {esc(x)}</div>' for x in lines)
+        pick_ln = ''   # 10-05 사용자 'jb 미리보기 및 jb 답안에 정답 보기 3) … 정답보기는 없애도 될 것 같아' — 답 칸의 '정답 보기 …' 줄은 없앰(문제 보기 줄 강조 data-ans는 그대로)
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{f'<span class="chip pf">{esc(q["prof"])}</span>' if (q["prof"] or "").strip() else ''}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
@@ -425,6 +440,8 @@ def qcard(q, idx):
     # 답 핵심이 비었거나 '해설 참조'뿐이면(excore) 1단계에도 해설(접힌 채)을 보임. 대조·주변부는 details(머리 = noann summary, 원래 h5는 글자 보존용으로 숨김)
     excore = not core_ or bool(ANS_REFONLY.fullmatch(core_))
     a = ['<div class="ans">', f'<section class="ab jbans{" excore" if excore else ""}"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{ansh}</div>{exbtn}{figa}</section>']
+    if q.get('K'):   # 10-05 사용자 'jb 문제들만 봐도 진짜 이해하고 암기할 수 있게' — annot 'K:' = 🎯 요점(왜 이 답인지·외울 축 — 강의자료 근거) · 1단계(답·해설)부터 보임
+        a.append('<section class="ab key1"><h5 class="noann">🎯 요점 <small>왜 이 답인지 · 외울 것</small></h5><ul>' + ''.join(f'<li>{y}</li>' for x in q['K'] for y in aitem_lis(x, 'M')) + '</ul></section>')
     a1 = ''
     if q['A'] and not q.get('auto'):
         pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', q['A'][0])))).strip()

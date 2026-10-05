@@ -85,21 +85,21 @@ for line in open(DIR + '/annot.txt', encoding='utf-8'):
     line = line.rstrip('\n')
     if line.startswith('@'):
         parts = [p.strip() for p in line[1:].split('|')]
-        cur = {'v': '', 'yrs': [], 'yrsnote': '', 'lec': [], 'rel': '', 'pair': '', 'A': [], 'M': [], 'N': []}; ANN[parts[0]] = cur
+        cur = {'v': '', 'yrs': [], 'yrsnote': '', 'lec': [], 'rel': '', 'pair': '', 'A': [], 'M': [], 'N': [], 'K': []}; ANN[parts[0]] = cur
         for p in parts[1:]:
             k, _, v = p.partition('=')
             if k == 'yrs': cur['yrs'] = [int(y) for y in v.split(',') if y.strip()]
             elif k == 'lec': cur['lec'] = [v] if v else []
             else: cur[k] = v
-    elif cur is not None and len(line) > 2 and line[1] == ':' and line[0] in 'AMN':
+    elif cur is not None and len(line) > 2 and line[1] == ':' and line[0] in 'AMNK':
         collect(line); cur[line[0]].append(cite_html(line[2:].strip()))
 for q in Q:
     a = ANN.get(q['id'])
     if a:
-        q.update({'v': a['v'], 'yrsnote': a['yrsnote'], 'rel': a['rel'], 'pair': a['pair'], 'A': a['A'], 'M': a['M'], 'N': a['N'], 'lk': a['lec'][0].split(':')[0] if a['lec'] else ''})
+        q.update({'v': a['v'], 'yrsnote': a['yrsnote'], 'rel': a['rel'], 'pair': a['pair'], 'A': a['A'], 'M': a['M'], 'N': a['N'], 'K': a.get('K', []), 'lk': a['lec'][0].split(':')[0] if a['lec'] else ''})
         q['yrs'] = sorted(set(q['base']) | set(a['yrs']), reverse=True); q['xtra'] = sorted(set(a['yrs']) - set(q['base']), reverse=True)
     else:
-        q.update({'v': 'na', 'yrsnote': '', 'rel': '', 'pair': '', 'A': [], 'M': [], 'N': [], 'lk': '', 'xtra': []}); q['yrs'] = sorted(q['base'], reverse=True)
+        q.update({'v': 'na', 'yrsnote': '', 'rel': '', 'pair': '', 'A': [], 'M': [], 'N': [], 'K': [], 'lk': '', 'xtra': []}); q['yrs'] = sorted(q['base'], reverse=True)
     o = []
     for (ed, num) in OTHER.get(q['id'], []):
         x = find(ed, num)
