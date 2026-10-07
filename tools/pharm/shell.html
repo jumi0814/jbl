@@ -2219,14 +2219,16 @@ function trState(){const ts=tsGet();if(ts)return ts.st;return T.run?'run':T.othe
 function trBlock(){return !!tsGet();}
 const H12=432e5,fmtMS=ms=>{const s=Math.max(0,Math.floor(ms/1000));return s>=3600?Math.floor(s/3600)+':'+('0'+Math.floor(s/60)%60).slice(-2)+':'+('0'+s%60).slice(-2):Math.floor(s/60)+':'+('0'+s%60).slice(-2);};
 const hmOf=ms=>{const t=new Date(ms);return ('0'+t.getHours()).slice(-2)+':'+('0'+t.getMinutes()).slice(-2);};
-function trSessMs(ts,now){ts=ts||tsGet();if(!ts||ts.st==='end')return 0;return (+ts.sum||0)+(ts.st==='sess'&&!T.closedQ?Math.max(0,Math.min(now||Date.now(),ts.t0+H12)-ts.seg):0);}
+function trSessMs(ts,now){ts=ts||tsGet();if(!ts||ts.st==='end')return 0;now=now||Date.now();const dk=day(),live=ts.st==='sess'&&!T.closedQ?tOvl(ts.seg,Math.min(now,ts.t0+H12),dk):0;
+ const done=('sdd' in ts)?(ts.sdd===dk?(+ts.sdv||0):0):(tOvl(ts.t0,ts.t0+1,dk)?(+ts.sum||0):0);return done+live;}   /* 10-07 사용자 '세션 공부시간 뜨는건 오늘 날짜로(오늘~다음날 아침 6시)까지 해당 세션을 공부한 양 — 전체 세션 총합이 아니라 · 시간:분:초' — 오늘(06시 경계) 몫만(sdd·sdv = 기록한 오늘 몫 · 옛 상태는 오늘 시작한 세션이면 sum) */
+function trSessTxt(ts,now){return fmtHMS(trSessMs(ts,now));}
 /* ux3 R1 지금 공부 구간(참고 HUB trFocusMs) — 세션: 시작·▶ 다시 뒤(f0, 옛 상태는 t0) · 자동 측정: T.f0부터 마지막 입력 1분 뒤까지(시계와 같은 규칙) · 그 밖 0 */
 function trFocusMs(st,ts,now){now=now||Date.now();st=st||trState();ts=ts||tsGet();if(st==='sess'&&ts&&!T.closedQ)return Math.max(0,Math.min(now,ts.t0+H12)-(+ts.f0||+ts.t0||now));if(st==='run'&&T.f0)return Math.max(0,Math.min(now,T.last+60000)-T.f0);return 0;}
 function trRestMs(ts,now){ts=ts||tsGet();return ts&&ts.st==='rest'?Math.max(0,Math.min(now||Date.now(),trCap(ts))-(+ts.r0||+ts.seg||now||Date.now())):0;}   /* 지금 휴식 구간 */
 const fmtHMS=ms=>{const s=Math.max(0,Math.floor(ms/1000));return Math.floor(s/3600)+':'+('0'+Math.floor(s/60)%60).slice(-2)+':'+('0'+s%60).slice(-2);};
 /* 메뉴 머리 둘째 줄(참고 HUB 트래커 위젯) — 공부 중: '집중 0:25:10'(지금 공부 구간) · 쉬는 중: '휴식 오늘 0:32 · 집중 76%' · 그 밖: '오늘 휴식 0:32'(1분 이상일 때) */
 function trk2Txt(st,ts,now){st=st||trState();if(st==='run'||st==='sess')return '집중 '+fmtHMS(trFocusMs(st,ts,now));const R=restStats();if(st==='rest')return '휴식 오늘 '+fmtH(R.ms);return R.ms>=60000?'오늘 휴식 '+fmtH(R.ms):'';}
-function trTime(st,ts,now){return st==='sess'?fmtH(trSessMs(ts,now)):st==='rest'&&ts?fmtMS(Math.min(now||Date.now(),trCap(ts))-(+ts.r0||+ts.seg||Date.now())):'';}
+function trTime(st,ts,now){return st==='sess'?trSessTxt(ts,now):st==='rest'&&ts?fmtMS(Math.min(now||Date.now(),trCap(ts))-(+ts.r0||+ts.seg||Date.now())):'';}
 /* 날짜 d와 [a,b) 구간이 겹치는 ms — 자정을 넘긴 진행 중 몫을 날짜별로 */
 function dayMs(d){const m=/^(\d{4})-(\d\d)-(\d\d)$/.exec(d||'');return m?new Date(+m[1],+m[2]-1,+m[3],d>DCUT?DAYH:0).getTime():0;}
 function dNext(d){const m=/^(\d{4})-(\d\d)-(\d\d)$/.exec(d||'');return m?calKey(new Date(+m[1],+m[2]-1,+m[3]+1,12)):'';}
@@ -2260,7 +2262,7 @@ function tUnrec(S,D,a,b,kind){kind=kind||'s';if(!(b>a))return;const P=tSplit(a,b
  if(E.length)teLog(E);LS.set('tseg',seg);}
 /* ---- I2 세션 기록(벽시계): 소유 창만 — 무활동 멈춤·1분 상한·화면 숨김 멈춤 없이 시각 차로 · 12시간 상한 ---- */
 function sessFlush(now){const ts=tsRead();TS=ts||0;if(!ts||ts.st==='end'||T.closedQ)return ts;if(ts.own&&ts.own!==TWID)return ts;now=now||Date.now();ts.own=TWID;
- const lim=Math.min(now,trCap(ts));if(lim>ts.seg&&!(ts.sw&&ts.seg===ts.sw&&lim-ts.sw<SWQ)){   /* 10-05 손으로 모드를 바꾼 뒤 5초 안 조각은 아직 쓰지 않음(곧바로 되돌리면 기록 없이 사라짐 — trSwBack) */if(ts.st==='sess'){tRec(ts.S,ts.D,ts.seg,lim,'s');ts.sum=(+ts.sum||0)+(lim-ts.seg);}else{tRec('','',ts.seg,lim,ts.ar?'ra':'r');ts.rsum=(+ts.rsum||0)+(lim-ts.seg);}ts.seg=lim;}
+ const lim=Math.min(now,trCap(ts));if(lim>ts.seg&&!(ts.sw&&ts.seg===ts.sw&&lim-ts.sw<SWQ)){   /* 10-05 손으로 모드를 바꾼 뒤 5초 안 조각은 아직 쓰지 않음(곧바로 되돌리면 기록 없이 사라짐 — trSwBack) */if(ts.st==='sess'){tRec(ts.S,ts.D,ts.seg,lim,'s');ts.sum=(+ts.sum||0)+(lim-ts.seg);const dk=day();if(ts.sdd!==dk){ts.sdd=dk;ts.sdv=0;}ts.sdv=(+ts.sdv||0)+tOvl(ts.seg,lim,dk);}else{tRec('','',ts.seg,lim,ts.ar?'ra':'r');ts.rsum=(+ts.rsum||0)+(lim-ts.seg);}ts.seg=lim;}
  ts.at=now;if((T.inp||0)>(+ts.li||0))ts.li=T.inp;tsWrite(ts);return ts;}
 function trTake(){const ts=tsRead();TS=ts||0;if(ts&&ts.st!=='end'&&ts.own!==TWID){ts.own=TWID;tsWrite(ts);}return ts;}   /* 이 창이 기록을 이어받음 — 기록 시작점(seg)은 LS에 있어 겹치거나 빠지지 않음 */
 function trAct(){const ts=tsGet();if(ts&&ts.st!=='end'&&ts.own!==TWID&&!T.closedQ)trFollow(trTake());}
@@ -2589,7 +2591,7 @@ function bigRun(){clearInterval(BIG.iv);BIG.iv=0;if(BIG.on&&!document.hidden)BIG
 document.addEventListener('visibilitychange',bigRun);
 function bigTick(){if(!BIG.on)return;BIG.n++;const st=trState(),ts=tsGet(),now=Date.now(),td=tToday(),g=tGoal()*60000;
  const aw=st==='run'&&now-T.last>60000/* ux4f L8 알약과 같은 '자리 비움 m:ss' */,fo=(st==='run'||st==='sess')&&!aw,lab=aw?ckLab(st,ts,now):fo?'● 집중 중':st==='rest'?'☕ 쉬는 중':'오늘 공부',v=fo||aw?trFocusMs(st,ts,now):st==='rest'?trRestMs(ts,now):td;   /* ux3 R1 참고 HUB 집중 모드 — 큰 시간 = 지금 구간(공부 중 이번 집중 · 쉬는 중 이번 휴식) · 멈춤이면 오늘 총 공부 */
- const a=$('#bcl'),b=$('#bct'),c=$('#bcs');if(!b)return;const el=$('#bigclock');if(el){el.classList.toggle('rest',st==='rest');el.classList.toggle('fo',fo);}if(a.textContent!==lab)a.textContent=lab;const bt=st==='rest'?fmtMS(v):ckFmt(v);if(b.textContent!==bt)b.textContent=bt;const R=restStats(),pc=' · 목표 '+fmtH(g),ss=st==='sess'?' · 세션 '+fmtH(trSessMs(ts,now)):'';   /* ux4c 1회차 알약과 같은 표기(공부 h:mm:ss 앞 0 없음 · 휴식 m:ss) · 목표는 %가 아니라 h:mm · ux4d 집중 %는 없앰(사용자 '퍼센트 필요 없어' · 참고 HUB도 화면엔 달성 %만) */
+ const a=$('#bcl'),b=$('#bct'),c=$('#bcs');if(!b)return;const el=$('#bigclock');if(el){el.classList.toggle('rest',st==='rest');el.classList.toggle('fo',fo);}if(a.textContent!==lab)a.textContent=lab;const bt=st==='rest'?fmtMS(v):ckFmt(v);if(b.textContent!==bt)b.textContent=bt;const R=restStats(),pc=' · 목표 '+fmtH(g),ss=st==='sess'?' · 세션 '+trSessTxt(ts,now):'';   /* ux4c 1회차 알약과 같은 표기(공부 h:mm:ss 앞 0 없음 · 휴식 m:ss) · 목표는 %가 아니라 h:mm · ux4d 집중 %는 없앰(사용자 '퍼센트 필요 없어' · 참고 HUB도 화면엔 달성 %만) */
  const s=st==='rest'?`오늘 휴식 ${fmtH(R.ms)} · 공부 ${fmtH(td)}${pc}`:`오늘 공부 ${fmtH(td)}${ss} · 휴식 ${fmtH(R.ms)}${pc}`;if(c.textContent!==s)c.textContent=s;}
 document.addEventListener('keydown',e=>{if(!BIG.on)return;if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();bigClose();return;}const inB=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('#bigclock button');if(e.key==='Tab'||((e.key==='Enter'||e.key===' ')&&inB))return;e.stopImmediatePropagation();if(/^(PageUp|PageDown|Home|End|ArrowUp|ArrowDown|ArrowLeft|ArrowRight| )$/.test(e.key))e.preventDefault();},true);   /* 10-04 D8 ⏱ 크게 뒤 화면이 PageDown·End·Space로 스크롤되던 것   /* 10-03 허브 점검: ⏱ 크게(대화상자)를 연 채 누른 V·H·2·J·M·/·? 등이 뒤 화면에서 동작하던 것 — Esc·Tab·Enter·Space만 */
 /* ---- J9 공부하다 멈추면 쉬는 시간 자동 측정(참고 HUB 휴식) — LS restAuto(기본 켬)·restMax(분, 기본 90) · 오늘 공부가 한 번이라도 측정된 뒤 자동 측정이
@@ -4404,7 +4406,7 @@ function ux2Mount(){peekClose();viewPrefs();const st=$('#stage');if(!st)return;u
 function rvRelabel(){const T=(q,t,ti)=>{const e=$(q);if(e){if(e.textContent!==t)e.textContent=t;if(ti!=null)e.title=ti;}};T('#grppills [data-rvs=x]','몰라요·✓ 안 한 것 먼저');T('#grppills [data-filt=unread]','안 본 카드만','✓ 다 봄 표시한 카드 숨기기');const l=$('#grppills .rvleg');if(l&&/안 읽은/.test(l.textContent))l.textContent=l.textContent.replace('몰라요·안 읽은 것 먼저','몰라요·✓ 안 한 것 먼저');}
 /* 클릭 — ⭐ 칩 미리보기·복습 머리는 기존 처리보다 먼저(capture) */
 $('#stage').addEventListener('click',e=>{const st=$('#stage');
- const jc=e.target.closest&&e.target.closest('.c-exam .jbchip[data-go],.tchips .chip.yr[data-go],.tc table .xjb[data-go]');if(jc&&ux2Learn()){   /* 10-03 허브 점검: 학습 탭 표 안 기출 칩도 그 자리 미리보기 */e.stopImmediatePropagation();e.preventDefault();if(PEEK===jc.dataset.go&&$('#jbpeek.on'))peekClose();else peekOpen(jc);return;}   /* ux4 B18 형광펜·빈칸 모드 중에도 미리보기(기출 탭으로 튀지 않게) */
+ const jc=e.target.closest&&e.target.closest('.c-exam .jbchip[data-go],.tchips .chip.yr[data-go],.tc table .xjb[data-go],.tblwrap .xjb[data-go],.tblwrap .jbchip[data-go],.tblwrap .chip.yr[data-go]');if(jc&&(ux2Learn()||jc.closest('.tblwrap'))){   /* 10-07 사용자 '비교표랑 전체정리표에서 기출문제 클릭할 때 마찬가지로 미리보기' — 정리표·비교표·전체정리표·과목 비교표 칩도 */   /* 10-03 허브 점검: 학습 탭 표 안 기출 칩도 그 자리 미리보기 */e.stopImmediatePropagation();e.preventDefault();if(PEEK===jc.dataset.go&&$('#jbpeek.on'))peekClose();else peekOpen(jc);return;}   /* ux4 B18 형광펜·빈칸 모드 중에도 미리보기(기출 탭으로 튀지 않게) */
  if(Kit.mode())return;
  if(st.classList.contains('review')){const hd=e.target.closest&&e.target.closest('.tc .thead');if(hd&&!e.target.closest('button,.chip')){e.stopImmediatePropagation();const c=hd.closest('.tc');reviewSet(false,true,true);goCard(+c.id.split('-').pop());toast('복습 보기를 끄고 이 카드 전체로 왔어요',{level:'result',action:{label:'↩ 복습 보기로',fn:()=>{reviewSet(true,true,true);settle(()=>goEl(c));}}});return;}   /* ux2 fixB flow V18: 잘못 누른 경우 한 번에 돌아가기 */}},true);
 $('#stage').addEventListener('click',e=>{const t=e.target;if(!t.closest||!ux2Learn())return;const d=(t.closest('button')||{}).dataset||{};
@@ -4431,7 +4433,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#jbpeek.on')){e.
 document.addEventListener('keydown',e=>{if(isTextField(e.target)||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||$('#imgmodal').classList.contains('on')||$('#help').classList.contains('on')||!ux2Learn())return;const K=keyOf(e);
  if(K==='r'){const on=!$('#stage').classList.contains('review');reviewSet(on);return;}
  if(K==='i'){const o=['big','small','hide'];figSet(o[(o.indexOf(LS.get('figmode','big'))+1)%3]);return;}});
-document.addEventListener('click',e=>{const p=$('#jbpeek.on');if(p&&!p.contains(e.target)&&!(e.target.closest&&e.target.closest('.c-exam .jbchip[data-go],.tchips .chip.yr[data-go],.tc table .xjb[data-go]')))peekClose();   /* 10-03 허브 점검: 머리 연도 칩을 다시 누르면 닫힘(⭐ 칩과 같게) */},true);
+document.addEventListener('click',e=>{const p=$('#jbpeek.on');if(p&&!p.contains(e.target)&&!(e.target.closest&&e.target.closest('.c-exam .jbchip[data-go],.tchips .chip.yr[data-go],.tc table .xjb[data-go],.tblwrap .xjb[data-go],.tblwrap .jbchip[data-go],.tblwrap .chip.yr[data-go]')))peekClose();   /* 10-03 허브 점검: 머리 연도 칩을 다시 누르면 닫힘(⭐ 칩과 같게) */},true);
 /* 글자 없는 버튼의 풀이(title)는 마우스를 올릴 때 붙임 — 팩 크기를 늘리지 않게 */
 const UXT={'[data-rv=o]':'알아요 (복습 보기 기록)','[data-rv=x]':'몰라요 — ‘몰라요 먼저’ 정렬에서 앞으로','.memqz':'이 ⚡ 블록의 빨간 글씨 가리기(저장 안 함) — 누르면 하나씩 열림','.exsrcb':'근거·대조 문장 펼치기/접기','.exj':'이 카드의 ⭐ 시험포인트로 (카드 안에서 이동)','.figchip':'이 카드 그림 펼치기/접기'};
 $('#stage').addEventListener('mouseover',e=>{const b=e.target.closest&&e.target.closest('button');if(!b||b.title)return;for(const k in UXT)if(b.matches(k)){b.title=UXT[k];break;}},{passive:true});
@@ -4818,13 +4820,13 @@ function tPopSeg(st,ts,now){return st==='run'||st==='sess'?fmtHMS(trFocusMs(st,t
 function tPopHTML(){const st=trState(),ts=tsGet(),now=Date.now(),g=tGoal()*60000,E=EH;
  const row=(a,lab,k,on,kt)=>`<button type="button" class="pi${on?' on':''}" data-tp="${a}">${lab}${k?`<span class="pk"${kt?` data-tpt="${kt}"`:''}>${E(k)}</span>`:''}</button>`;
  let r='';if(st==='run')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','자동 측정 중');   /* 10-04 사용자 '쉬기 버튼이 멈춤버튼 위에' */
- else if(st==='sess')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','세션 공부 '+fmtH(trSessMs(ts,now)),0,'sess');   /* 10-04 사용자 '멈춤 버튼에만 색칠되어있는 이거 없애줘' */
+ else if(st==='sess')r=row('rest','☕ 쉬기')+row('stop','■ 멈춤','세션 공부 '+trSessTxt(ts,now),0,'sess');   /* 10-04 사용자 '멈춤 버튼에만 색칠되어있는 이거 없애줘' */
  else if(st==='rest')r=row('resume','▶ 다시 공부','지금 휴식 '+fmtMS(trRestMs(ts,now)),1,'rest')+row('stop','■ 멈춤');
  else r=row('start','▶ 공부 시작',st==='end'?'멈춤 중':st==='other'?'다른 창에서 측정 중':st==='off'?'자동 측정 꺼짐':'자동 대기 — 화면 밖 공부도 셈',1)+(st==='end'?row('autoon','↻ 자동 측정 다시','멈춤 풀기 — 움직이면 잼'):st==='off'?row('autoon','↻ 자동 측정 켜기','과목을 열고 움직이면 잼'):'');   /* ux4f 멈춤·꺼짐에서 자동 측정으로 바로 돌아가는 길 */
  const sg=tPopSeg(st,ts,now);r+=row('big','⏱ 크게 보기',sg?'지금 구간 '+sg:'',0,sg?'seg':'');
  return `<div class="ph">오늘 <b data-tpt="td">${fmtH(tToday())}</b> / ${fmtH(g)} · 오늘 휴식 <span data-tpt="rv">${fmtH(restDay(day()))}</span></div>${trSjSel()}${r}<hr>${row('cal','공부 달력 · 오늘 기록 고치기')}${row('goal','하루 목표 '+fmtH(g)+' · 측정 설정')}${restLine()}`;}
 function tPopFill(p){p.innerHTML=tPopHTML();p.dataset.sig=trSig();const sj=$('#trsj',p);if(sj)sj.onchange=()=>trSetSubj(sj.value);}
-function tPopTick(p,st,ts,now){const v={td:fmtH(tToday()),rv:fmtH(restDay(day())),sess:'세션 공부 '+fmtH(trSessMs(ts,now)),rest:'지금 휴식 '+fmtMS(trRestMs(ts,now))};const sg=tPopSeg(st,ts,now);if(sg)v.seg='지금 구간 '+sg;
+function tPopTick(p,st,ts,now){const v={td:fmtH(tToday()),rv:fmtH(restDay(day())),sess:'세션 공부 '+trSessTxt(ts,now),rest:'지금 휴식 '+fmtMS(trRestMs(ts,now))};const sg=tPopSeg(st,ts,now);if(sg)v.seg='지금 구간 '+sg;
  $$('[data-tpt]',p).forEach(e=>{const x=v[e.dataset.tpt];if(x!=null&&e.textContent!==x)e.textContent=x;});}
 function tPop(anc){const p=$('#tpop');if(p.classList.contains('on')){p.classList.remove('on');return;}$$('.pop.on').forEach(x=>x.classList.remove('on'));tFlush();p.classList.add('ckpop');tPopFill(p);
  const ck=$('#clock'),c0=ck.getBoundingClientRect(),c=(anc&&anc.isConnected&&anc.getBoundingClientRect&&anc.getBoundingClientRect().width)?anc.getBoundingClientRect():(c0.width?c0:(($$('.fclock').find(x=>x.offsetParent)||ck).getBoundingClientRect()));p.style.top=Math.round(c.bottom+6)+'px';p.style.right=Math.max(8,Math.round(innerWidth-c.right))+'px';p.classList.add('on');const f=p.querySelector('button:not([disabled]),select');if(f)f.focus({preventScroll:true});}   /* ux4c 2회차 열면 창 안 첫 버튼에 포커스(키보드로 바로 고름) · Tab은 창 안에서 돎 · Esc·항목 뒤 포커스는 시계 알약으로 */
@@ -5149,7 +5151,7 @@ function chipShow(b){if(!b)return;const p=b.parentElement;if(!p||p.scrollWidth<=
 document.addEventListener('touchstart',e=>{const t=e.touches[0];if(e.touches.length===1&&t&&t.touchType==='stylus'&&!Kit.mode()&&Kit.pen()&&e.target.closest&&e.target.closest('#stage [data-aid]'))document.body.classList.add('pen-drag');},{passive:true,capture:true});
 ['touchend','touchcancel'].forEach(ev=>document.addEventListener(ev,()=>document.body.classList.remove('pen-drag'),{passive:true,capture:true}));
 // ux4 묶음1 끝
-window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},revealCard,Kit,getMK,autoBak,mergeInto,lkCut};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
+window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},revealCard,Kit,getMK,autoBak,mergeInto,lkCut,trSessTxt,day};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 Object.assign(window.__h,{bkLimit,storeProtect,bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});Object.assign(window.__h,{studyReplace,undoDrop});   /* ux4f E 회귀 고리 */
