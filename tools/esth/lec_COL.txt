@@ -159,7 +159,7 @@ E: S14 | 22·21·20·19년 서술 "하늘이 파랗게 보이는 이유와 노�
 F: 39=하늘이 파란 이유와 노을이 빨간 이유는 같다, 40=노을 — 푸른빛은 다 산란되고 남은 빨간색만 보임
 M: 원인: 하늘 파랑·노을 빨강 = {r:빛의 산란} — {r:짧은 파장}일수록 잘 산란
 M: 낮 vs 노을: 낮 = 경로 {r:짧음} → 푸른 산란광 / 노을 = {r:비스듬히} 경로 길어 → 푸른빛 다 산란 → {r:빨강}만
-M: JB 서술 답에 더: ① 산란 = 파동·입자선이 물체와 충돌해 {r:여러 방향으로 흩어짐} ② 대기 {r:질소·산소 분자}가 산란 ③ 붉은 빛(긴 파장)은 {r:산란이 적어} 남음
+M: JB 서술 답에 더: ① ‘산란’이란 파동이나 입자선이 물체와 충돌하여 {r:여러 방향으로 흩어지는} 현상 ② 가시광선은 대기를 통과하며 대기 중의 {r:질소, 산소 분자} 등에 의해 산란이 된다 ③ 파장이 긴 붉은 빛은 {r:산란이 적게} 되어 남는다
 M: 연결: 같은 원리 = 치아의 {r:opalescence}(p.89) — 반사광 bluish · 투과광 orange
 
 @G ③ 눈과 뇌 — 색 지각
@@ -410,7 +410,7 @@ F: 65=흰 타원 안이 우리가 같다고 느끼는 범위
 - 실제 사람의 치아 색상 범위 = 색 공간 속 {r:좁쌀만한} 영역 — 매우 좁다, 2000을 쓰나 마나 유의한 차이가 안 남(필기).
 F: 66=파장별로 구분할 수 있는 범위, 67=좁쌀만한 사람 치아 색상 범위
 M: 정의: 색차 {r:ΔE*ab} = {r:(ΔL*² + Δa*ab² + Δb*ab²)^1/2} — 3차원 공간의 {r:거리}
-M: 보정: ① {r:CMC}(ISO) ② {r:CIE94}(gray·blue 예측 오류) ③ {r:CIEDE2000}
+M: 보정: ① {r:CMC}(ISO) ② {r:CIE94}(Errors in predicting gray and blue — gray·blue 예측 오류) ③ {r:CIEDE2000}
 M: 치아 색 범위 = {r:매우 좁다}(좁쌀만) / 회색조는 구분 잘함 · 양 끝 파장은 구분 못 함
 
 @G ⑤ 측색 — 장비 4종과 조건등색
@@ -509,7 +509,7 @@ M: 정의: {r:Opacity} = 빛을 {r:막는} 능력 ↔ {r:Translucency} = 빛을 
 M: 치아 = {r:translucent}(반투명) / 측정 = {r:Transmittance} · {r:Contrast ratio}(흰/검은 배경)
 M: 관여 = {r:Reflectance} · {r:Thickness} / 나이↑ → translucency {r:↓}
 M: 반투명도가 낮아지는 데 관여하는 두 요소(24년 단답) = 안진수 {r:Reflectance · Thickness} / 이창하(심미수복재료 p.11) {r:Thickness · Saturation}
-M: 외관 속성(24년 탈 근거): ① Translucency·Opacity ② Gloss ③ Surface Roughness ④ Opalescence ⑤ Fluorescence ⑥ Phosphorescence / II: ① Areal ② Spatial ③ Successive contrast ④ Viewer-associated effects
+M: 외관 속성(24년 탈 근거): ① Translucency and Opacity ② Gloss ③ Surface Roughness ④ Opalescence ⑤ Fluorescence ⑥ Phosphorescence / II: ① Areal contrast ② Spatial contrast ③ Successive contrast ④ Viewer-associated effects
 
 ## Gloss · Surface Roughness | 광택(정반사)과 표면 거칠기 | 85-88 | GU · roughness·waviness·form
 > 광택은 색은 아니지만 인상을 바꾸는 정반사 — 각도를 정해 재고(GU), 표면 거칠기·형태도 색을 다르게 보이게 한다
@@ -642,6 +642,6 @@ F: 105=명도 채도 색상 세 요소를 잘 구분해야, 106=흑백으로 보
   - ④ Reproducibility.
 - p.107 Academic application 간지는 다루지 않으심 · p.108 뒤로 정은구 교수님(Univ. of Washington 보철과 교수) 특별강연 — 수업 내용 아님(필기).
 F: 108
-M: Viewer effects = ① {r:Age}(60↑ blues·purples) ② Fatigue(hue·chroma) ③ Nutrition ④ Emotions(pupil) ⑤ Medications
+M: Viewer effects = ① {r:Age}(after age 60 ⇒ difficulties in perceiving blues and purples) ② Fatigue(hue and chroma) ③ Nutrition ④ Emotions(pupillary diameter) ⑤ Medications
 M: 약물: ① 술·morphine {r:붉은 계열 밝게} ② caffeine {r:푸른 계열 밝게} ③ Viagra {r:blue tint} ④ 경구피임제 {r:blues·yellows↓}
 M: shade tab은 {r:위아래로}(binocular difference) / {r:3D master}가 명도·채도·색상을 구분 · vita classic은 그렇지 않음
