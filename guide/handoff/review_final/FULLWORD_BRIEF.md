@@ -1,5 +1,7 @@
 # ⚡ 암기·🎯 요점의 번호 항목 = 슬라이드 원문 풀 워딩(과목 하나 담당, 10-07)
 
+> ⚠ 10-07 사용자 정정 — 긴 문장까지 다 풀면 '복붙'이라 안 됨: **FWBAL_BRIEF.md와 RULES 6이 이김**(짧은 원문만 풀 워딩, 긴 문장은 핵심어 압축).
+
 사용자(10-07 원문): "* 얼굴 평가 * ① Soft tissue * ② Skeletal·dental * ③ static·functioning * ④ Growth·aging 암기 정리에선 넘버링처럼 서술형으로 나오는 항목들을 너가 단어를 압축해서 나열해놓는데, 이런 넘버링 항목들은 피피티 원어 압축하지 말고 써놨으면 좋겠어! 번역된 한국어가 함께 있는건 상관없지만, 위처럼 단어들을 생략하고 축약하는 것보다는 아래처럼 피피티 넘버링 원어가 압축 없이 그대로 나열되었으면 좋겠어. ① Soft tissue ② Skeletal and dental structures ③ Interrelationship between static and functioning positions ④ Growth and aging process 나머지는 그대로! 오로지 넘버링된 내용들에 한해서 압축버전 말고 풀 워딩을 써주는걸로 모든 강의자료 정리본 및 jb의 암기 정리 에서 다 바꿔줘! 너가 최적으로 판단해서 뭔가 서술형 넘버링 나올만한 내용들에 대해서만 풀워딩으로 바꿔주고 다른건 다 너무 좋으니까 그것만 바꿔줘!"
 
 ## 대상

@@ -1918,6 +1918,7 @@ b.mlab{font-weight:700;color:inherit}
 .ntw::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
 .ntw::after{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-left:2px;font-weight:400}
 .ntw .srcn::after{content:none}
+.srch+.ntw::before{content:none}
 .c-mem span.klh,.lrec span.klh,.fc span.klh{font-weight:700}
 .ab.lk .lrec{font-size:15px;list-style:none;padding-left:2px}
 .ab.lk .lrec li{font-weight:400;position:relative;padding:2px 0 2px 16px}
@@ -3474,7 +3475,15 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
    G.forEach(els=>els.forEach(unwrap));keep.forEach(k=>wrap(B,k.a,k.b,k.o.rt,k.o.c||color,k.g,false,k.o.bc));return other;}   /* ux4f C 56 겹친 부분만 지움 — 겹치지 않은 앞뒤 조각은 남김(앞 = 원래 묶음 · 뒤 = 새 묶음) · 다른 종류(빈칸↔형광펜)를 덮으면 그 수를 돌려줌 · ux4f O1 남기는 조각 = 그 묶음이 실제로 덮던 글자만(구멍 난 형광펜의 빈칸 자리를 형광펜으로 채우지 않음) · 가린 칸(👁) 안 표시는 새로 칠한 범위에 들어도 그대로 */
  /* 칠할 종류: 모드가 켜져 있으면 그것, 모드 없이 애플펜슬로 끌면(펜슬로 바로 칠하기 — LS penDirect) 형광펜 */
  const eff=d=>mode||(d&&d.pen?'h':null);
- function apply(B,a,b,t,quiet){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor,true);commit(B);if(ov&&!quiet)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',replace:true,action:undoBtn()});}
+ function unionSame(B,a,b,tt){   /* 10-07 사용자 '이미 하이라이트한 뭉텅이에 근처 단어에서부터 추가하면 기존 뭉텅이가 어절별로 풀리는 오류' — 같은 종류·같은 색 묶음과 겹치거나 맞닿으면 한 묶음으로(범위를 합침) */
+  if(tt!=='h'&&tt!=='b')return [a,b];const ix=index(B),R=new Map();
+  B.querySelectorAll('[data-rk="'+tt+'"]').forEach(el=>{if(el.hasAttribute('data-auto')||el.closest('.cov:not(.covo)'))return;if(tt==='h'?(el.getAttribute('data-c')||'y')!==color:(el.getAttribute('data-bc')||'n')!==bcolor)return;
+   const g=el.getAttribute('data-g')||'';const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let n;while(n=w.nextNode()){const m=ix.map.find(q=>q.n===n);if(!m)continue;const r=R.get(g)||[1e12,-1];r[0]=Math.min(r[0],m.start);r[1]=Math.max(r[1],m.start+m.len);R.set(g,r);}});
+  const a0=a,b0=b,use=new Set();let ch=true;while(ch){ch=false;R.forEach((r,g)=>{if(r[0]<=b&&r[1]>=a&&!use.has(g)){use.add(g);if(r[0]<a||r[1]>b){a=Math.min(a,r[0]);b=Math.max(b,r[1]);ch=true;}}});}
+  if(a===a0&&b===b0)return [a,b];
+  let clash=false;B.querySelectorAll('[data-rk]').forEach(el=>{if(clash)return;const g=el.getAttribute('data-g')||'';if(el.getAttribute('data-rk')===tt&&use.has(g)&&!el.hasAttribute('data-auto'))return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let n;while(n=w.nextNode()){const m=ix.map.find(q=>q.n===n);if(m&&m.start<b&&m.start+m.len>a&&(m.start+m.len>b0||m.start<a0)&&!(m.start<b0&&m.start+m.len>a0)){clash=true;break;}}});   /* 넓힌 자리에 다른 표시(빈칸·다른 색·자동 빈칸)가 끼면 합치지 않음 — 구멍 난 형광펜의 빈칸을 덮지 않게 */
+  return clash?[a0,b0]:[a,b];}
+ function apply(B,a,b,t,quiet){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');[a,b]=unionSame(B,a,b,tt);const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor,true);commit(B);if(ov&&!quiet)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',replace:true,action:undoBtn()});}
  function clearPre(B){(B?B:document).querySelectorAll('[data-pre]').forEach(unwrap);}
  function preview(B,a,b,t){clearPre(B);if(b>a)wrap(B,a,b,t||mode,color,null,true,undefined,true);}
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;if(el.closest('.cov:not(.covo)'))return null;if(el.closest('#stage.quiz .k.qzk:not(.show)'))return null;   /* 10-04 QUIZ 3 가리기(Q)로 가린 칸도 칠하기를 시작하지 않음(눌러 보면 안내) */   /* ux4f E 가린 칸(👁)에서는 칠하기를 시작하지 않음 — 누르면 열림 */

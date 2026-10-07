@@ -42,7 +42,7 @@
 ## D1 다듬기 — 🔑·⚡ (강의 하나 또는 묶음 · lec 파일의 `=`·`M:` 줄만)
 ```
 <공통 머리>
-과목 <SID> 강의 <KEY들>. guide/handoff/review_final/KEYMEM_BRIEF.md(누락·짝·기출·강조 보강, 요약 탭 금지) + KEYMEM2_BRIEF.md(라벨·논리 순서·①②③·= 최소) + FULLWORD_BRIEF.md(번호 항목 = 원문 풀 워딩 — 🎯 요점 포함) 모두 그대로 — 숫자(⚡ 줄 수 등)는 RULES 6절. 맡은 강의의 모든 카드.
+과목 <SID> 강의 <KEY들>. guide/handoff/review_final/KEYMEM_BRIEF.md(누락·짝·기출·강조 보강, 요약 탭 금지) + KEYMEM2_BRIEF.md(라벨·논리 순서·①②③·= 최소) + FWBAL_BRIEF.md(번호 항목: 짧은 원문은 풀 워딩·긴 문장은 핵심어 압축 — 🎯 요점 포함) 모두 그대로 — 숫자(⚡ 줄 수 등)는 RULES 6절. 맡은 강의의 모든 카드.
 검사: check_lec <SID> <KEY> ✗0 · ⚡ 줄마다 tools/<sid>/lecparse.py render_recall로 렌더해 라벨이 굵은 머리(b.mlab / klh)로 잡혔는지 · 본문 표의 짝·목록 칸 수 = ⚡ 번호 수 · 낱말 바꾼 줄 목록.
 보고 work/review_final2/KM2_<SID>_<묶음>.md(카드마다 ⚡ 전→후 줄 수 · 더한 사실 · 낱말 바꾼 줄).
 ```

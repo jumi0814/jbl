@@ -621,7 +621,7 @@ LB0, LB1, HX0, HX1 = '\ue010', '\ue011', '\ue012', '\ue013'   # lecparse.inline:
 def t_items(v):
     """ux2 E03 카드 안 작은 표 → 정리표 세부 칸 항목. 값 열이 3개↑면 표 그대로(('TBL', v)) · ○/× 기호표는 ○ 열 이름만 보임('— Intrinsic ○ · Extrinsic ○' — ×·— 칸은 숨김)
     · 값 열이 2개면 칸마다 열 이름 · 1개면 그대로. 칸 글자와 ' / ' 이음은 옛 빌드와 같게 두고 열 이름은 .noann(표시 위치 불변 — E01 이관)"""
-    hd = [re.sub(r'\*\*|\{r:|\}|==', '', x).strip() for x in v[0]]; nv = len(v[0]) - 1
+    hd = [re.sub(r'\*\*|\{r:|\{n:|\}|==', '', x).strip() for x in v[0]]; nv = len(v[0]) - 1
     vals = [c.strip() for r in v[1:] for c in r[1:] if c.strip() not in DASH]
     sym = bool(vals) and all(SYM_RE.fullmatch(c) for c in vals)
     if nv >= 3: return [('TBL', v)]

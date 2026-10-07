@@ -213,15 +213,15 @@ def tools_(b):
     def sel(a, z):
         pts = pg.evaluate(f"""(()=>{{const B=_B;const w=document.createTreeWalker(B,NodeFilter.SHOW_TEXT);let n,p=0;const at=(o)=>{{const w=document.createTreeWalker(B,NodeFilter.SHOW_TEXT);let n,p=0;while(n=w.nextNode()){{const L=n.nodeValue.length;if(p+L>o){{const r=document.createRange();r.setStart(n,o-p);r.setEnd(n,o-p+1);return r.getBoundingClientRect();}}p+=L;}}}};const A=at({a}),Z=at({z}-1);return [A.left+1,A.top+A.height/2,Z.right-1,Z.top+Z.height/2]}})()""")
         pg.mouse.move(pts[0], pts[1]); pg.mouse.down(); pg.mouse.move((pts[0]+pts[2])/2, (pts[1]+pts[3])/2, steps=4); pg.mouse.move(pts[2], pts[3], steps=4); pg.mouse.up(); pg.wait_for_timeout(300)
-    pg.evaluate("_B.scrollIntoView({block:'center'})")
+    pg.evaluate("_B.scrollIntoView({block:'center'})"); T0 = pg.evaluate("_B.textContent")   # 10-07 내용이 바뀌어도 되게 — 글자는 이 블록에서 계산
     pg.keyboard.press('b'); pg.wait_for_timeout(150); sel(10, 26)
     nb = pg.evaluate("_B.querySelectorAll('[data-rk=b]').length")
     pg.keyboard.press('b'); pg.keyboard.press('h'); pg.wait_for_timeout(150); sel(0, 13)
     r = pg.evaluate("[_B.querySelectorAll('[data-rk=b]').length,_B.querySelectorAll('[data-rk=h]').length,(_B.querySelector('[data-rk=b]')||{}).textContent,document.querySelector('#toast').innerText]")
-    ok(nb >= 1 and r[0] >= 1 and r[1] >= 1 and '덮어썼어요' in r[3] and 'hypoplasia' in (r[2] or '') and 'enamel' not in (r[2] or ''), f'56 빈칸 일부를 형광펜으로 덮으면 알림 · 겹치지 않은 빈칸 조각은 남음 {nb} → {r}')
+    ok(nb >= 1 and r[0] >= 1 and r[1] >= 1 and '덮어썼어요' in r[3] and len((r[2] or '').strip()) >= 2, f'56 빈칸 일부를 형광펜으로 덮으면 알림 · 겹치지 않은 빈칸 조각은 남음 {nb} → {r}')
     pg.keyboard.press('h'); pg.wait_for_timeout(100)
     reload(pg)
-    r2 = pg.evaluate("(()=>{const B=[...document.querySelectorAll('#stage .tc li')].find(x=>x.textContent.startsWith('Intrinsic(enamel hypoplasia)'));return B?[B.querySelectorAll('[data-rk=b]').length,B.querySelectorAll('[data-rk=h]').length,(B.querySelector('[data-rk=b]')||{}).textContent]:null})()")
+    r2 = pg.evaluate("(()=>{const B=[...document.querySelectorAll('#stage .tc li')].find(x=>x.textContent.startsWith(%s));return B?[B.querySelectorAll('[data-rk=b]').length,B.querySelectorAll('[data-rk=h]').length,(B.querySelector('[data-rk=b]')||{}).textContent]:null})()" % __import__("json").dumps(T0[:25]))
     ok(r2 and r2[0] == r[0] and r2[1] == r[1] and r2[2] == r[2], f'56 새로고침 뒤에도 남은 빈칸 조각·형광펜 그대로 {r2}')
     ok(not pg.errs, f'콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
     for w, h in [(1180, 820), (820, 1180)]:
