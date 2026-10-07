@@ -33,7 +33,10 @@
    - 원고 하나 점검: `tools/check_lec.py <SID> [키]`(문법·기출 ⭐ 연결·그림 쪽·쪽 범위 커버리지·밀도).
 5. 검증(아래) → playwright로 과목 홈·JB·정리본·이미지·도구 동작 확인 → 커밋·푸시.
 
-## 새 연도 강의자료(26년도 등)로 갱신할 때
+## 새 연도 강의자료(26년도 등)·새 강의·새 과목 — 스킬 `jbl-update`로 한 번에 완성본까지
+- **`.claude/skills/jbl-update/SKILL.md`를 따른다**("26년도 자료 반영해 줘"·"○○ 정리본 만들어 줘"·`/jbl-update [SID…]`): 받기 → 연결 → 작성(처음부터 최종형 `RULES.md`) → 독립 검토 3회 → 화면 다듬기(🔑⚡·JB 해설·줄바꿈·표·예상·공부 전략) → 사용자 눈 QA(`QA.md`) → `sh tools/full_check.sh` → 배포·보고. 사용자 피드백을 받으면 RULES.md·QA.md에도 규칙을 더한다.
+
+### (세부) 26년도 갱신 절차
 - `guide/handoff/26년도_업데이트_절차.md` 그대로: 맥은 materials/에 PDF를 넣고 `sh tools/push_materials.sh [SID…]` 한 줄 → 클라우드에서 `sh tools/cloud_materials.sh` 뒤 대조·수정·검토·빌드·배포. 사용자 표시(형광펜·빈칸·메모·북마크·채점·중요)는 반드시 유지 — `guide/정리본_원칙.md` '사용자 표시 보존' 절.
 
 ## 절대 규칙
