@@ -62,6 +62,7 @@
   - ✓ `M: 정의: Total-etch = 도말층 다 제거 → enamel에 best` · `M: 장점: ① micromechanical interlocking ② smear layer removal ③ best approach for enamel ④ separated hydrophobic adhesive layer ⑤ sufficiently thick film ⑥ stress-absorbing` · `M: 단점(dentin엔 too aggressive): ① thick hybrid layer ② deeply exposed collagen ③ leakage·biodegradation` · `M: 술식 순서: ① 인산 30-40% 15초(enamel → dentin) ② primer rubbing 15초(wet bonding) ③ hydrophobic bonding ④ immediate 광중합`
 - 빠진 정보는 **새 `M:` 줄로 더하는 것을 우선**(옛 줄 낱말을 바꾸면 플래시카드 기록이 끊김 — 12절).
 - **자료의 한 목록(같은 표 칸·같은 머리 아래 항목)은 ⚡에서도 한 라벨 아래 한 덩어리**(사용자 10-05 "장점이 줄바꿈되어서 끊겨있고") — 본문 표의 장점 칸 수 = ⚡ 장점 ① 개수. 너무 길면 같은 라벨 + (계속)으로 **바로 다음 줄**.
+- **번호 항목(①②③)은 슬라이드·JB 답 원문 풀 워딩**(사용자 10-07 — 서술형으로 나올 만한 나열): ✗ `얼굴 평가: ① Soft tissue ② Skeletal·dental ③ static·functioning ④ Growth·aging` → ✓ `얼굴 평가: ① Soft tissue ② Skeletal and dental structures ③ Interrelationship between static and functioning positions ④ Growth and aging process`. 한국어 풀이는 원문 뒤 괄호로 덧붙여도 됨. 번호가 아닌 줄·원래 낱말인 항목은 그대로(🎯 요점의 번호 나열도 같음).
 - 라벨 꼴(렌더러 lecparse MLAB): 콜론 앞 32자 이내(괄호 덧말 30자 이내), 라벨 안에 `=`·`→`·`/`·따옴표 금지(`{r:}`는 됨), 콜론 뒤 한 칸 — 어기면 굵게 안 보임.
 - 라벨 없이 되는 줄 = 정의·대응 한 줄(`A = B` — 그 카드의 정의)뿐. 나열·장단점·순서·함정·짝은 반드시 라벨. 짝은 `라벨: A = x / B = y`처럼 ` / ` 조각마다 `=` 하나까지(예 `M: 식립 적합 vs 부적합: 적합 = {r:B-2,3 / C-2,3} / 부적합 = {r:A-4 / D-1,2 / E-1,2}`).
 - `=`는 정의·대응(약어 = 풀이, 기호 = 값)일 때만, ` / ` 조각 하나에 하나.
