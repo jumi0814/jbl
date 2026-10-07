@@ -691,7 +691,7 @@ try:
             _tc = txt_of(_r['h']); _k = 'R:' + _L['k'] + ':' + fchash(_r['t'] + '|' + _tc)
             FCPREV.setdefault((_L['k'], fcnorm(_r['t'] + '|' + _tc)), []).extend([_k] + list(_r.get('ok') or []))
             FCBODY.setdefault((_L['k'], fcnorm(_r['t'])), []).append((fcnorm(_tc), [_k] + list(_r.get('ok') or [])))
-            FCBODY3.setdefault((_L['k'], fcnorm(_r['t'])), []).append((fcnorm(_tc), [_k] + list(_r.get('ok') or []), _tc))
+            FCBODY3.setdefault((_L['k'], fcnorm(_r['t'])), []).append((fcnorm(_tc), [_k] + list(_r.get('ok') or []), _r['h']))
 except Exception as _e: print('FCPREV 없음', _e)
 EXN = [0, 0]
 def lec_card(L, j, c):
@@ -923,21 +923,24 @@ for L in LEC:
     mxl = max([len(QMAP[i]['yrs']) for i in jb_ids] or [0])
     recall = [{'t': c['en'], 'h': lecparse.render_recall(x, ctx)} for c in L['cards'] for x in c['recall']]   # 플래시카드: ' / ' 줄은 <li>로(U28)
     for r_ in recall:   # 10-04 ⚡ 줄 구분 기호(/ ·)·띄어쓰기만 바뀌어도 플래시카드 기록(알아요·몰라요)이 이어지게 — 지난 팩의 같은 줄(기호·공백 뺀 글자가 같음) 키를 ok로 넘김(허브가 옮김)
-        tc_ = txt_of(r_['h']); nk_ = 'R:' + L['k'] + ':' + fchash(r_['t'] + '|' + tc_); old_ = FCPREV.get((L['k'], fcnorm(r_['t'] + '|' + tc_)), [])
+        tc_ = txt_of(r_['h']); nk_ = 'R:' + L['k'] + ':' + fchash(r_['t'] + '|' + tc_); old_ = [o for o in FCPREV.get((L['k'], fcnorm(r_['t'] + '|' + tc_)), []) if o != nk_]   # 10-07 지금 docs 팩의 자기 줄만 걸리면 '옛 줄 없음'으로 보고 아래 규칙으로
         if not old_:   # 10-05 사용자 '암기 … 구조화' — ⚡ 줄을 합치거나 라벨(장점:·단점:)을 붙여도: 같은 카드의 옛 줄 글자가 새 줄 안에 통째로 들어 있으면(기호·번호·공백 무시) 그 기록을 넘김
             nb_ = fcnorm(tc_)
             for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []):
-                if len(ob_) >= 10 and (ob_ in nb_ or (len(nb_) >= 10 and nb_ in ob_)): old_ = old_ + ks_
+                if ks_[0] != nk_ and len(ob_) >= 10 and (ob_ in nb_ or (len(nb_) >= 10 and nb_ in ob_)): old_ = old_ + ks_
             if not old_ and len(nb_) >= 10:   # 줄을 쪼개거나 라벨을 가운데 넣은 줄: 글자 두 개씩 겹침(Dice) 0.6↑인 옛 줄 하나
                 bg = lambda t: {t[i:i + 2] for i in range(len(t) - 1)}
-                B = bg(nb_); best = max(((2 * len(B & bg(ob_)) / (len(B) + len(bg(ob_)) or 1), ks_) for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []) if len(ob_) >= 10), default=(0, []), key=lambda z: z[0])
+                B = bg(nb_); best = max(((2 * len(B & bg(ob_)) / (len(B) + len(bg(ob_)) or 1), ks_) for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []) if len(ob_) >= 10 and ks_[0] != nk_), default=(0, []), key=lambda z: z[0])
                 if best[0] >= 0.6: old_ = old_ + best[1]
             if not old_:   # 10-07 사용자 '번호 항목은 원문 풀 워딩' — 낱말이 길어져도 같은 카드·같은 라벨(콜론 앞)·같은 번호 개수의 옛 줄이면 기록을 넘김
-                lab_ = lambda t: (lambda m: (m.group(1).strip(), len(re.findall('[①-⑳]', t))) if m else None)(re.match(r'^([^:：]{1,40})[:：]', t))
-                nl_ = lab_(tc_)
+                def lab_(h):   # 라벨 = 화면의 굵은 머리(b.mlab · span.klh — 콜론은 화면에서 빠지기도 함) 또는 글자 머리 '…:'
+                    t = txt_of(h); m = re.match(r'^(?:<li>)?<(?:b class="mlab"|span class="klh")>(.*?)</(?:b|span)>', h)
+                    l = fcnorm(txt_of(m.group(1))) if m else (lambda m2: fcnorm(m2.group(1)) if m2 else None)(re.match(r'^([^:：]{1,40})[:：]', t))
+                    return (l, len(re.findall('[①-⑳]', t))) if l else None
+                nl_ = lab_(r_['h'])
                 if nl_ and nl_[1] >= 2:
-                    cand = [ks_ for ob_, ks_, ot_ in FCBODY3.get((L['k'], fcnorm(r_['t'])), []) if lab_(ot_) == nl_]
-                    if len(cand) == 1: old_ = old_ + cand[0]
+                    cand = {ks_[0]: ks_ for ob_, ks_, oh_ in FCBODY3.get((L['k'], fcnorm(r_['t'])), []) if lab_(oh_) == nl_ and ks_[0] != nk_}   # 지금 docs 팩의 자기 줄은 빼고(배포 팩과 겹침)
+                    if len(cand) == 1: old_ = old_ + list(cand.values())[0]
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
