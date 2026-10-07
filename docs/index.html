@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"51377de4",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"f5db1661",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1914,6 +1914,11 @@ details.ab.chk>ul>li{padding:5px 0}
 @media (pointer:coarse){.ab .cites.cz .cite.cz{min-height:24px;padding:0 5px}}
 .lkey.lmem{margin-top:8px}
 b.mlab{font-weight:700;color:inherit}
+/* 10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} 구간 앞뒤 ✍(글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) */
+.ntw::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
+.ntw::after{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-left:2px;font-weight:400}
+.ntw .srcn::after{content:none}
+.srch+.ntw::before{content:none}
 .c-mem span.klh,.lrec span.klh,.fc span.klh{font-weight:700}
 .ab.lk .lrec{font-size:15px;list-style:none;padding-left:2px}
 .ab.lk .lrec li{font-weight:400;position:relative;padding:2px 0 2px 16px}
@@ -2007,7 +2012,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="51377de4",PV={"OMS1": "59e1db3b", "CONS": "2fffb833", "IMPL": "850abf05", "ANAT": "e7bd8877", "GERI": "8fa13fd0", "PHARM": "0a7cfe9a", "ESTH": "698c1d1c"},PSZ={"OMS1": 3.9, "CONS": 3.0, "IMPL": 3.1, "ANAT": 3.9, "GERI": 4.1, "PHARM": 5.6, "ESTH": 3.6};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="f5db1661",PV={"OMS1": "f77d846e", "CONS": "a760e9e6", "IMPL": "f163f4e1", "ANAT": "14bb316b", "GERI": "087b087a", "PHARM": "08ced6f4", "ESTH": "998e5e65"},PSZ={"OMS1": 3.9, "CONS": 3.1, "IMPL": 3.1, "ANAT": 4.0, "GERI": 4.2, "PHARM": 5.7, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3470,7 +3475,15 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
    G.forEach(els=>els.forEach(unwrap));keep.forEach(k=>wrap(B,k.a,k.b,k.o.rt,k.o.c||color,k.g,false,k.o.bc));return other;}   /* ux4f C 56 겹친 부분만 지움 — 겹치지 않은 앞뒤 조각은 남김(앞 = 원래 묶음 · 뒤 = 새 묶음) · 다른 종류(빈칸↔형광펜)를 덮으면 그 수를 돌려줌 · ux4f O1 남기는 조각 = 그 묶음이 실제로 덮던 글자만(구멍 난 형광펜의 빈칸 자리를 형광펜으로 채우지 않음) · 가린 칸(👁) 안 표시는 새로 칠한 범위에 들어도 그대로 */
  /* 칠할 종류: 모드가 켜져 있으면 그것, 모드 없이 애플펜슬로 끌면(펜슬로 바로 칠하기 — LS penDirect) 형광펜 */
  const eff=d=>mode||(d&&d.pen?'h':null);
- function apply(B,a,b,t,quiet){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor,true);commit(B);if(ov&&!quiet)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',replace:true,action:undoBtn()});}
+ function unionSame(B,a,b,tt){   /* 10-07 사용자 '이미 하이라이트한 뭉텅이에 근처 단어에서부터 추가하면 기존 뭉텅이가 어절별로 풀리는 오류' — 같은 종류·같은 색 묶음과 겹치거나 맞닿으면 한 묶음으로(범위를 합침) */
+  if(tt!=='h'&&tt!=='b')return [a,b];const ix=index(B),R=new Map();
+  B.querySelectorAll('[data-rk="'+tt+'"]').forEach(el=>{if(el.hasAttribute('data-auto')||el.closest('.cov:not(.covo)'))return;if(tt==='h'?(el.getAttribute('data-c')||'y')!==color:(el.getAttribute('data-bc')||'n')!==bcolor)return;
+   const g=el.getAttribute('data-g')||'';const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let n;while(n=w.nextNode()){const m=ix.map.find(q=>q.n===n);if(!m)continue;const r=R.get(g)||[1e12,-1];r[0]=Math.min(r[0],m.start);r[1]=Math.max(r[1],m.start+m.len);R.set(g,r);}});
+  const a0=a,b0=b,use=new Set();let ch=true;while(ch){ch=false;R.forEach((r,g)=>{if(r[0]<=b&&r[1]>=a&&!use.has(g)){use.add(g);if(r[0]<a||r[1]>b){a=Math.min(a,r[0]);b=Math.max(b,r[1]);ch=true;}}});}
+  if(a===a0&&b===b0)return [a,b];
+  let clash=false;B.querySelectorAll('[data-rk]').forEach(el=>{if(clash)return;const g=el.getAttribute('data-g')||'';if(el.getAttribute('data-rk')===tt&&use.has(g)&&!el.hasAttribute('data-auto'))return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);let n;while(n=w.nextNode()){const m=ix.map.find(q=>q.n===n);if(m&&m.start<b&&m.start+m.len>a&&(m.start+m.len>b0||m.start<a0)&&!(m.start<b0&&m.start+m.len>a0)){clash=true;break;}}});   /* 넓힌 자리에 다른 표시(빈칸·다른 색·자동 빈칸)가 끼면 합치지 않음 — 구멍 난 형광펜의 빈칸을 덮지 않게 */
+  return clash?[a0,b0]:[a,b];}
+ function apply(B,a,b,t,quiet){const tt=t||mode;push(tt==='b'?'빈칸 1개':'형광펜 1개');[a,b]=unionSame(B,a,b,tt);const ov=clearOverlap(B,a,b,tt);wrap(B,a,b,tt,color,'n'+(++GID),false,bcolor,true);commit(B);if(ov&&!quiet)toast((tt==='b'?'형광펜':'빈칸')+' '+ov+'개를 덮어썼어요 — ↶로 되돌리기',{level:'result',replace:true,action:undoBtn()});}
  function clearPre(B){(B?B:document).querySelectorAll('[data-pre]').forEach(unwrap);}
  function preview(B,a,b,t){clearPre(B);if(b>a)wrap(B,a,b,t||mode,color,null,true,undefined,true);}
  function targetOK(el){if(!el||!el.closest)return null;if(!el.closest('#stage'))return null;if(el.closest(SKIP))return null;if(el.closest('.cov:not(.covo)'))return null;if(el.closest('#stage.quiz .k.qzk:not(.show)'))return null;   /* 10-04 QUIZ 3 가리기(Q)로 가린 칸도 칠하기를 시작하지 않음(눌러 보면 안내) */   /* ux4f E 가린 칸(👁)에서는 칠하기를 시작하지 않음 — 누르면 열림 */
