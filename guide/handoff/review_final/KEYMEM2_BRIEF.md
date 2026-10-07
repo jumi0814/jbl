@@ -12,11 +12,11 @@
 2. **한 덩어리 = 한 `M:` 줄 + 라벨**: 같은 대상의 사실은 한 줄로 모으고 맨 앞에 라벨 `장점:`·`단점:`·`적응증:`·`금기:`·`술식 순서:`·`실패 원인:`·`특징:`·`정의:`·`분류:` 등(콜론 라벨 — 화면에서 굵은 머리). 라벨 없이 시작하는 줄이 앞 줄의 일부(예 '단점'인데 표시 없음)면 라벨을 붙여 제자리로.
    - 예(위 사용자 예, CONS Total-etch):
      - `M: 정의: Total-etch = 도말층 다 제거 → enamel에 best`
-     - `M: 장점: ① micromechanical interlocking ② smear layer removal ③ best approach for enamel`
+     - `M: 장점: ① micromechanical interlocking ② smear layer removal ③ best approach for enamel ④ separated hydrophobic adhesive layer ⑤ sufficiently thick film ⑥ stress-absorbing`
      - `M: 단점(dentin엔 too aggressive): ① thick hybrid layer ② deeply exposed collagen ③ leakage·biodegradation`
      - `M: 술식 순서: ① 인산 30-40% 15초(enamel → dentin) ② primer rubbing 15초(wet bonding) ③ hydrophobic bonding ④ immediate 광중합`
      - `M: 실패 원인: ① collagen 과건조 → collapse ② resin tag 부족 → 빈 공간 ③ 과노출 → MMP`
-     - `M: hydrophobic adhesive layer: ① separated ② sufficiently thick film ③ stress-absorbing`
+     - (10-07 정정 — 이 줄은 장점의 나머지 3개라 위 장점 줄에 ④⑤⑥으로 합침이 맞음: 자료의 한 목록은 ⚡에서도 한 라벨 아래 · RULES 6이 이김)
 3. **글머리·들여쓰기 = 기호로**(렌더러가 바꿔 줌):
    - 개수·순서·나열 3개↑ → `라벨: ① … ② … ③ …` (머리 + 들여 쓴 번호 목록)
    - 서로 다른 사실 → ` / `(줄마다 한 줄)

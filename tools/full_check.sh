@@ -37,5 +37,6 @@ if [ $UI = 1 ]; then
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
-say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]' $L | grep -v '^.*== ' | tee -a work/_tmp/full_check.fail || true
+say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]' $L | grep -v '== ' | tee -a work/_tmp/full_check.fail || true
+grep -E '^합계: 기록 이어짐' $L | awk -F'[(%]' '{ if ($2+0 < 95) print "  ✗ 플래시카드 기록 이어짐 95% 미만:", $0 }' | tee -a $L
 say "ALLDONE"

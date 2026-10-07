@@ -425,7 +425,7 @@ def _eol(x, ctx, mn=40):
     if not e or not e[2] or len(_plain(x)) < mn: return None
     ld, its, _ = e
     return (f'<span class="klh">{inline(ld, ctx)}</span>' if ld else '') + _list_html(its, ctx, 1, 'ol', 'circ')
-MLAB = re.compile(r'^([^:：{}"“”=→/]{1,24}(?:\([^(){}]{0,30}\))?[:：])\s+(.+)$')
+MLAB = re.compile(r'^((?:[^:：{}"“”=→/]|\{r:[^{}:：]*\}){1,32}(?:\([^(){}]{0,30}\))?[:：])\s+(.+)$')   # 10-07 라벨 안 {r:…}(예 '표정근 {r:14}:')·32자까지도 굵은 머리
 def render_recall(x, ctx):
     rows = split_top(x)
     def R(r):

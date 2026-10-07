@@ -15,7 +15,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 ## 진행 원칙
 - **묻는 것**: RULES 13절에 없는 새 결정만(강의 신설·삭제·교수 변경, pptx만 온 자료, 자료끼리 모순). B단계 직후 **한 번에 묶어**(2~3안씩) 묻고 답을 기다리는 동안 다른 강의를 진행. 답은 피드백기록·RULES 13에.
 - 단계마다 짧게 보고(한국어). "얼마나 남았어?"엔 단계·남은 담당 수로 분 단위 추정(작성·검토 회차 각 15~25분, 전 검사 40분).
-- **진행 파일** `guide/handoff/UPD_<MMDD>_진행.md`: 단계 체크(A~H) + 재개 메모(마지막 커밋·진행 중 담당·parts 상태·다음 할 일)를 단계 끝마다 갱신·커밋. 토큰·시간 한도로 멈춰도 새 세션이 이 파일부터 읽고 이어 감.
+- **진행 파일** `guide/handoff/UPD_<MMDD>_진행.md`: 단계 체크(A~H) + 재개 메모(마지막 커밋·진행 중 담당·parts 상태·다음 할 일)를 단계 끝마다 갱신·커밋. 토큰·시간 한도로 멈춰도 새 세션이 이 파일부터 읽고 이어 감. 긴 작업(D~G)을 시작할 때 `send_later`(약 5시간 뒤 · 메시지 '진행 파일 guide/handoff/UPD_<MMDD>_진행.md 읽고 이어서')로 재개를 예약하고, 끝나면 그 예약을 지운다(사용자 10-02·03·04 '리셋되면 바로 이어서').
 - 담당이 끝날 때마다 **그 담당 파일만** 커밋·푸시(작업 브랜치). parts(work/)는 커밋되지 않으니 회차 끝 `merge_parts` 뒤 `tools/<sid>/annot·tables·pred` 커밋. docs/는 빌드가 끝난 뒤에만. `work/`·`materials/`·`jb/`·`reference/`는 절대 커밋하지 않는다.
 - 오래 걸리는 명령은 Bash `run_in_background`로(`cmd &` 금지 — 호출이 끝나면 같이 죽음). 기다릴 땐 `until …; do sleep; done` 한 번.
 - 한 파일은 한 담당만. 담당 수: 바뀐 강의 ≤3이면 D1·D2도 강의마다 1명, 그보다 많으면 강의 묶음 2개(3~4강의씩).
@@ -37,7 +37,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 ## C. 연결(메인이 직접)
 - `tools/matx.py` SRC에 새 폴더(예 `'C10i': '260922_'`) · `tools/<sid>/subject.py` LECMAP `<KEY>`(새 파일)·`<KEY>5`(옛 25)·IMG_ALIAS `<KEY>5 → <KEY>` · 쪽 수가 바뀌면 FORCE_PAGES · 새 강의·새 과목은 LEC_ORDER·PROF_LEC·PROF_ORDER·COVER·TIERS(·TREND_NOTE)와 assemble.py의 문항 → 강의 연결.
 - 쪽 이미지 링크(클라우드엔 pymupdf가 없어 손으로): `ln -sfn ../mat/<파일id>/i work/<SID>/lec/<폴더>`.
-- 새 과목은 팩이 없어 dump_review·check_lec·merge_parts가 안 됨 → JB 분해·assemble 뒤 강의 원고 스텁(`#LEC` 줄 + 빈 카드 하나)으로 첫 build4 → docs/packs/<SID>.js 생성.
+- 새 과목은 팩이 없어 dump_review·check_lec·merge_parts가 안 됨 → JB 분해·assemble 뒤 강의 원고 스텁(`#LEC` 줄 + 빈 카드 하나)으로 첫 build4 → docs/packs/<SID>.js 생성(아직 검증된 적 없는 경로 — 실패하면 build4 오류를 보고 READY·LEC_ORDER부터 확인, 결과를 과목노트에).
 - `.venv/bin/python tools/dump_review.py <SID>` → questions.md(머리줄 '출제' = 확정 연도 전체)·materials.md·qids.json.
 - (보고용) 26 반영 전 원고 사본: `cp tools/<sid>/lec_<KEY>.txt work/<SID>/upd26/<KEY>_before.txt`.
 
@@ -61,7 +61,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 - 갱신 강의만 대상이어도 D1·D2는 그 강의의 **모든 카드**.
 
 ## G. 빌드·전 검사·QA
-1. `sh tools/full_check.sh`(run_in_background, 약 40분) → `work/_tmp/full_check.log` '== 요약'. 알려진 거짓 실패: file:// 표시 테스트는 JBL_HTTP=1로(full_check가 함), ux3_compat은 file://로.
+1. `sh tools/full_check.sh`(run_in_background, 약 40분) → `work/_tmp/full_check.log` '== 요약'(check_years/eyears/abbr/numbering/breaks_jb·fc_carry 95% 미만도 요약에 잡힘 — 알려진 거짓 양성 check_numbering ESTH 3 = 선지 번호 인용). 표시 보존: 갱신 전 `git rev-parse origin/main`을 진행 파일에 적어 두고, 원고를 크게 고친 과목은 `tests/legacy_restore.py`(옛 고정 판 기준) 결과와 함께 위치 잃음 수를 보고. 알려진 거짓 실패: file:// 표시 테스트는 JBL_HTTP=1로(full_check가 함), ux3_compat은 file://로.
 2. 스크린샷: `JBL_HTTP=1 .venv/bin/python tools/qa_shots.py <SID> <바뀐 KEY들>` → `work/_tmp/qa_<SID>_<KEY>_{card,mem,jb}.png`를 Read로 직접 본다(사용자가 예로 든 카드가 있으면 그 카드도). 넓은 화면은 PIL로 잘라 확대.
 3. **사용자 눈 QA**(과목 하나 1명, 찾기만 — AGENTS.md E) → 걸린 것을 해당 단계 담당에게 다시 보냄 → 고친 과목만 `tools/<sid>/build4.py` + 해당 검사 → QA 0이 될 때까지 → 마지막에 full_check 한 번.
 4. `tools/fc_carry.py <SID>` — 플래시카드 기록 이어짐 95%↑(끊긴 줄 `work/_tmp/fc_carry_<SID>.md`는 보고에).
@@ -75,6 +75,6 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 ## 사용자 피드백을 받으면(작업 중이든 끝난 뒤든 — 사용자 10-07: "별다른 지시사항 없어도 스킬파일을 가장 최신의 지시사항까지 모조리 다 업데이트")
 JB·강의자료 정리본·🔑⚡·표·예상문제·화면 모양에 대한 피드백은 **지시가 없어도 매번** 고친 뒤 이 스킬까지 갱신한다:
 1. 원문 그대로 `guide/피드백기록.md` → 2. 어느 파일을 어떻게 고칠지 한 문단(방향이 갈리면 2~3안) → 3. 고치고 빌드·검사·스크린샷 → 4. 같은 종류를 **모든 과목**에 적용(작으면 바로, 크면 묻기).
-5. **스킬 갱신(빠뜨리지 않음)**: RULES.md(새 규칙 — ✗/✓ 예는 사용자 원문 그대로) · QA.md(새 점검 항목 — 확인 방법까지) · RULES 13(새 결정) · AGENTS.md(그 규칙을 지켜야 할 담당 지시문) · 이번에 쓴 BRIEF가 있으면 `guide/handoff/review_final/`에 두고 AGENTS·SKILL에서 가리킴 · 새 검사 스크립트·테스트는 `tools/full_check.sh`에.
+5. **스킬 갱신(빠뜨리지 않음 — QA 새 번호는 늘 끝에 붙임)**: RULES.md(새 규칙 — ✗/✓ 예는 사용자 원문 그대로) · QA.md(새 점검 항목 — 확인 방법까지) · RULES 13(새 결정) · AGENTS.md(그 규칙을 지켜야 할 담당 지시문) · 이번에 쓴 BRIEF가 있으면 `guide/handoff/review_final/`에 두고 AGENTS·SKILL에서 가리킴 · 새 검사 스크립트·테스트는 `tools/full_check.sh`에.
 6. **스킬 자기점검**(커밋 전): 독립 담당 1명에게 "피드백기록.md 전체(특히 이번 것)와 지금 가장 최신 정리본(이번에 고친 강의)을 보고 — 이 스킬(RULES·QA·AGENTS·SKILL)만 따라 새 강의를 만들면 지금 품질이 나오는가, 빠진 지시·모순·틀린 경로는 없는가"를 보고만 하게 하고(`work/_tmp/skill_audit.md`), 걸린 것을 고친다.
 7. 사용자 보고 끝에 한 줄: "스킬에도 반영: RULES n절·QA n번 …".
