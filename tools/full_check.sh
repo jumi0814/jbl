@@ -6,25 +6,27 @@
 cd "$(dirname "$0")/.." || exit 1
 PY=.venv/bin/python; L=work/_tmp/full_check.log; mkdir -p work/_tmp; : > $L
 UI=1; [ "$1" = "--no-ui" ] && UI=0
+# 과목 목록(새 과목은 여기 두 줄에 더함)
+SIDS="OMS1 CONS IMPL ANAT GERI PHARM ESTH"; sids=$(echo $SIDS | tr A-Z a-z)
 say() { echo "$@" | tee -a $L; }
 say "== 동기화"; $PY tools/sync_common.py 2>&1 | tail -1 | tee -a $L
 say "== 빌드"
-for s in oms1 cons impl anat geri pharm esth; do
+for s in $sids; do
   $PY tools/$s/build4.py > work/_tmp/b_$s.log 2>&1; rc=$?
   say "$s rc=$rc $(grep -E '연결 안 된|없는 문항|되돌림' work/_tmp/b_$s.log | tr '\n' ' ' | cut -c1-200)"
 done
 $PY tools/rehub.py 2>&1 | tail -1 | cut -c1-80 | tee -a $L
 say "== verify";        $PY tools/verify.py 2>&1 | grep -E 'FAIL|RESULT' | tee -a $L
-say "== check_lec";     for s in OMS1 CONS IMPL ANAT GERI PHARM ESTH; do printf "%s ✗%s " $s "$($PY tools/check_lec.py $s 2>&1 | grep -c '✗')"; done | tee -a $L; echo | tee -a $L
+say "== check_lec";     for s in $SIDS; do printf "%s ✗%s " $s "$($PY tools/check_lec.py $s 2>&1 | grep -c '✗')"; done | tee -a $L; echo | tee -a $L
 say "== check_years";   $PY tools/check_years.py 2>&1 | tail -2 | tee -a $L
 say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail -3 | tee -a $L
-say "== check_abbr";    for s in OMS1 CONS IMPL ANAT GERI PHARM ESTH; do $PY tools/check_abbr.py $s 2>&1 | tail -1; done | tee -a $L
+say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | tail -1; done | tee -a $L
 say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
 say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
 say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
 say "== check_numbering"; $PY tools/check_numbering.py 2>&1 | tail -1 | tee -a $L
 say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L
-for s in OMS1 CONS IMPL ANAT GERI PHARM ESTH; do $PY tools/dump_jb.py $s >/dev/null 2>&1; done
+for s in $SIDS; do $PY tools/dump_jb.py $s >/dev/null 2>&1; done
 if [ $UI = 1 ]; then
   say "== tests"
   # 표시·북마크 테스트는 file:// 대신 로컬 http로(JBL_HTTP=1 — file://은 Chromium이 가끔 localStorage를 비워 거짓 실패). ux3_compat만 file://

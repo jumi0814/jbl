@@ -25,9 +25,9 @@ def run(sid):
     q = {}
     for cid, h in p['cards'].items():
         m = re.search(r'<article[^>]*>', h).group(0); a = dict(re.findall(r'data-([a-z0-9]+)="([^"]*)"', m))
-        yb = re.search(r'<span class="ybadge[^"]*"[^>]*><b>([^<]*)</b>', h)
+        yb = re.search(r'<span class="ybadge[^"]*"(?: title="([^"]*)")?[^>]*><b>([^<]*)</b>', h)   # 10-07 배지 글자는 5개 넘으면 줄임(…) → title(전체 연도) 우선
         q[cid] = {'tier': a.get('tier'), 'prof': html.unescape(a.get('prof', '')), 'lk': a.get('lec', ''), 'v': a.get('v', ''),
-                  'yrs': [int(y) % 100 for y in re.findall(r'20\d\d', yb.group(1))] if yb else []}
+                  'yrs': list(dict.fromkeys(int(y) % 100 for y in re.findall(r'20\d\d', yb.group(1) or yb.group(2)))) if yb else []}
     bylec = {L['k']: L['jb'] for L in p['lect']}
     json.dump({'q': q, 'bylec': bylec, 'order': p['order']}, open(f'{out}/qids.json', 'w'), ensure_ascii=False, indent=0)
     with open(f'{out}/questions.md', 'w', encoding='utf-8') as f:

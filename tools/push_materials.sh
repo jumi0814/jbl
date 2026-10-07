@@ -4,7 +4,7 @@
 #   sh tools/push_materials.sh CONS GERI     # 고른 과목만
 #   sh tools/push_materials.sh --dry         # 올릴 목록만 보기(올리지 않음)
 # '새 파일' = cloud-materials 브랜치에 아직 없는 work/<SID>/mat/<파일id>/ 폴더(이미 올린 25·26 추출본은 건드리지 않음) + 그 과목 index.json(파일 목록).
-# 원본 PDF(materials/)·JB(jb/)는 올리지 않는다. 정리본 키 연결(work/<SID>/lec)은 클라우드가 새 파일로 바꾼다.
+# 원본 PDF(materials/)·JB 원본(jb/)은 올리지 않는다(JB는 jbx 추출본 work/jb/<SID>_20xx만 — 새 과목·새 판본일 때). 정리본 키 연결(work/<SID>/lec)은 클라우드가 새 파일로 바꾼다.
 # 클라우드 세션은 sh tools/cloud_materials.sh 로 받아 정리본을 26년도 자료에 맞춰 고친다(guide/handoff/26년도_업데이트_절차.md).
 set -e
 cd "$(dirname "$0")/.."
@@ -37,11 +37,21 @@ for S in $SIDS; do
     fi
   done
 done
+for S in $SIDS; do   # 10-07 새 과목·새 JB 판본: work/jb/<SID>_20xx(jbx.py 추출본)도 cloud-materials에 없으면 올림
+  for D in "$ROOT/work/jb/${S}_"*/; do
+    [ -d "$D" ] || continue
+    F=$(basename "$D")
+    if ! git -C "$TMP" cat-file -e "$REV:work/jb/$F/manifest.json" 2>/dev/null; then
+      echo "  + JB  $F"; N=$((N+1))
+      if [ $DRY = 0 ]; then mkdir -p "$TMP/work/jb"; cp -R "${D%/}" "$TMP/work/jb/$F"; NEW="$NEW $S"; ADD="$ADD work/jb/$F"; JBN=1; fi
+    fi
+  done
+done
 if [ $N = 0 ]; then echo '새 파일 없음 — materials/<과목>/에 PDF를 넣었는지 확인'; exit 0; fi
 if [ $DRY = 1 ]; then echo "(--dry: ${N}개 — 올리지 않음)"; exit 0; fi
 echo "== 3) 올리기 (${N}개 파일)"
 cd "$TMP"
-for S in $(echo $NEW | tr ' ' '\n' | sort -u); do cp "$ROOT/work/$S/mat/index.json" "work/$S/mat/index.json"; ADD="$ADD work/$S/mat/index.json"; done
+for S in $(echo $NEW | tr ' ' '\n' | sort -u); do [ -f "$ROOT/work/$S/mat/index.json" ] || continue; mkdir -p "work/$S/mat"; cp "$ROOT/work/$S/mat/index.json" "work/$S/mat/index.json"; ADD="$ADD work/$S/mat/index.json"; done
 git add -f -- $ADD   # 새 폴더와 index.json만(다른 경로는 손대지 않음 · work/는 main의 .gitignore 대상이라 -f)
 git commit -q -m "새 강의자료 추출본: $(echo $NEW | tr ' ' '\n' | sort -u | tr '\n' ' ')($(date +%m-%d) · ${N}개)"
 git push -q origin HEAD:cloud-materials && echo "올림 — 클라우드 세션에 '26년도 자료 반영해 줘'라고 말하면 됨"

@@ -1,7 +1,7 @@
 """화면 줄바꿈 전수 덤프 2판(10-04 사용자 '정리본과 jb 등 모든 곳에서 줄바꿈 오류 전수조사') — 빌드된 팩(docs/packs/<SID>.js)의 HTML에서
 목록·조각으로 나뉘어 보이는 모든 덩어리(ul/ol 목록 · .kp 조각 줄 · 🔑 .kl/.ksi 줄 · .klead 머리)를 찾아 화면 그대로 조각을 적는다.
 정리본 학습(learn)·정리표(sum)·강의 비교표(tbl)·JB 카드(대조·해설·답·주변부)·예상문제·과목 비교표·기출 한눈표 전부.
-  .venv/bin/python tools/dump_breaks2.py <SID>   → work/review_breaks2/<SID>.md  (⚑ = 의심 표시가 붙은 덩어리 먼저)"""
+  .venv/bin/python tools/dump_breaks2.py <SID>   → work/review_breaks2/<SID>_lec.md(정리본 학습·정리표·강의 비교표) · <SID>_jb.md(JB·예상·과목 비교표·한눈표)  (⚑ = 의심 표시가 붙은 덩어리 먼저)"""
 import os, sys, re, json
 from bs4 import BeautifulSoup, NavigableString
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

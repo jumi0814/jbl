@@ -6,17 +6,20 @@
 - tables 머리줄(#TBL)의 src= 칩도 같은 규칙
 - annot에서 lec=KEY 블록의 A:/M:/N: 줄 · tables의 k=KEY 블록 · pred의 @KEY 블록 안 맨글 'p.n'(인용 칩 밖) → 'p.새쪽' · 없으면 '25 p.n'
 주의: 블록 안 맨글 p.n 중 다른 강의 쪽·JB 참고 쪽·25 필기 쪽까지 옮겨질 수 있다 → 옮긴 뒤 담당 검토자가 확인(25 필기 인용은 [[KEY5:n]]).
-사용: .venv/bin/python tools/apply_map26.py <SID> <KEY> [--dry]"""
+사용: .venv/bin/python tools/apply_map26.py <SID> <KEY> [--dry] [--old <옛 보조 키 — 기본 KEY5>] [--redo]
+  --old: 같은 해 개정판처럼 옛 판이 <KEY>5가 아닐 때(예 첫 26판을 보조 키 <KEY>6으로 둔 경우 --old <KEY>6)
+  --redo: 이미 옮긴 표시(.applied)를 .applied.<날짜>로 옮기고 새 map으로 다시(새 판이 또 올 때만 — map.json은 새 판 기준이어야 함)"""
 import os, re, sys, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
 
-def main(sid, key, dry):
+def main(sid, key, dry, old=None, redo=False):
     d = os.path.join(J.TOOLS, sid.lower()); m = json.load(open(J.work(sid, 'upd26', f'{key}_map.json'), encoding='utf-8'))
     mp = {int(k): v for k, v in m['map'].items()}; fix = {int(k): v for k, v in (m.get('lecfix') or {}).items()}
     done = J.work(sid, 'upd26', f'{key}.applied')
-    if os.path.exists(done) and not dry: print(sid, key, '이미 옮김(두 번 옮기면 쪽이 어긋남) —', done); return
-    old = key + '5'; st = {'cite': 0, 'cite5': 0, 'lec': 0, 'plain': 0, 'plain25': 0, 'warn': []}
+    if redo and os.path.exists(done) and not dry: import datetime; os.rename(done, done + '.' + datetime.date.today().strftime('%m%d'))
+    if os.path.exists(done) and not dry: print(sid, key, '이미 옮김(두 번 옮기면 쪽이 어긋남 — 새 판이면 --redo) —', done); return
+    old = old or key + '5'; st = {'cite': 0, 'cite5': 0, 'lec': 0, 'plain': 0, 'plain25': 0, 'warn': []}
     def cite(mm):
         n = int(mm.group(1)); v = mp.get(n)
         if v: st['cite'] += 1; return f'[[{key}:{v}]]'
@@ -54,5 +57,7 @@ def main(sid, key, dry):
     print(sid, key, {k: v for k, v in st.items() if k != 'warn'}); [print('  ⚠', w) for w in st['warn']]
 
 if __name__ == '__main__':
-    a = [x for x in sys.argv[1:] if not x.startswith('--')]
-    main(a[0].upper(), a[1].upper(), '--dry' in sys.argv)
+    av = sys.argv[1:]; old = None
+    if '--old' in av: i = av.index('--old'); old = av[i + 1].upper(); del av[i:i + 2]
+    a = [x for x in av if not x.startswith('--')]
+    main(a[0].upper(), a[1].upper(), '--dry' in av, old, '--redo' in av)
