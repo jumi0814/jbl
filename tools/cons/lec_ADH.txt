@@ -35,7 +35,7 @@ U: 접착강도, 즉 붙어 있는 정도를 떠나서 얼마나 오래 가느�
 E: Q17 | 23년 단답 "==접착이 오랜 시간 동안 결손 없이 공고하게 유지되는 상태는?==" → {r:Adhesive (Bonding) durability} — p.5 ⚠ 함정: strength(하중을 견디는 척도)와 혼동
 E: Q17_1 | 24년 객관식 "Bonding에 대한 용어 설명 중 옳은 것" → 4) durability만 ○ — 23년 단답(durability)의 변형 ⚠ 함정: 나머지는 정의를 바꿔 끼움(adherend↔연결 물질 · adhesive↔달라붙는 성질 · adhesion↔하중 척도 · bonding agent↔달라붙는 성질)
 F: 5=Strength와 달리 durability는 얼마나 오래 가느냐, ADH5:5=25 필기 — 접착 강도도 중요하지만 접착의 내구성도 중요함!!
-M: 기본 용어 3: ① {r:Adhesion} = 달라붙는 {r:성질} ② {r:Adherend} = 접착되는 물질의 {r:표면} ③ {r:Adhesive = bonding agent} = 연결시켜 주는 {r:물질}
+M: 기본 용어 3: ① {r:Adhesion (Bonding)} = 분자 사이의 힘에 의해 종류가 다른 두 물질이 달라붙는 {r:성질} ② {r:Adherend} = 접착되는 물질의 {r:표면} ③ {r:Adhesive = bonding agent} = 양쪽의 피착면을 연결시켜 주는 {r:물질}
 M: {r:Strength} = 계면에서 하중을 견디는 {r:척도} / {r:Durability} = 오랜 시간 결손 없이 공고하게 유지되는 {r:상태}
 M: 함정(24 객관식 — 정의 바꿔 끼우기): ① adherend ↔ 연결 물질 ② adhesive ↔ 달라붙는 성질 ③ adhesion ↔ 하중 척도 ④ bonding agent ↔ 달라붙는 성질 / 옳은 것 = {r:durability}만
 
@@ -72,7 +72,7 @@ F: 8
 M: 유리한 접착: 피착면 {r:표면에너지↑} > 접착제 {r:표면장력↓} → {r:접촉각↓}
 M: High surface energy(접착 유리) = hard · strong bond · crystalline solid · {r:pure surface} / Low surface energy = soft · weak bond · {r:collagen fiber}·레진 유기 성분 · {r:contaminated surface}(salivary protein·biofilm·smear layer)
 M: 함정(23·24 객관식): 표면에너지 {r:낮을수록} 유리 → × / 타액 단백질·유기물이 붙으면 표면에너지 {r:높아진다} → × / 접촉각이 {r:클수록} 유리 → ×
-M: 계면 결합 3: ① physical({r:electrostatic}) ② chemical({r:ionic·covalent}) ③ mechanical({r:micromechanical interlocking}) / 최근 = micromechanical interlocking + {r:functional monomer} 화학 결합
+M: 계면 결합 3: ① Physical bonding({r:electrostatic interaction}) ② Chemical bonding({r:ionic, covalent bonding}) ③ Mechanical bonding({r:micromechanical interlocking}) / 최근 = micromechanical interlocking + {r:functional monomer} 화학 결합
 
 @G ② 치질 — 법랑질·상아질·도말층·산부식
 ## Enamel vs Dentin · Smear Layer | 법랑질 vs 상아질, 도말층 | 9-11 | 기출 23·24 | jb=Q14
@@ -144,7 +144,7 @@ E: Q19 | 23년 서술 "==상아세관액 흐름에 영향을 주는 요인 4가�
 F: 14=밑에서 치수가 밀어올리는 힘 = pulpal pressure
 M: 산부식: 인산 {r:30~40%} · {r:15초} → 수세 {r:10초↑}(충분히·강하게) / 왜 30~40%: 고농도 → {r:치수에 악영향} · 저농도 → {r:탈회 안 됨}
 M: 부식 후 표면: ① enamel {r:micropore → resin tag} ② dentin intratubular {r:smear plug → resin tag} ③ intertubular {r:collagen fiber → hybrid layer} / 더 큰 기여 = {r:hybrid layer}(tubule 단면적 < intertubule 단면적)
-M: 세관액 흐름 6: ① {r:permeability} ② tubule {r:diameter} ③ fluid {r:viscosity} ④ {r:molecular weight} ⑤ {r:pulpal pressure} ⑥ tubule {r:surface area}
+M: 세관액 흐름 6: ① Dentin {r:permeability} ② {r:Diameter} of dentinal tubule ③ {r:Viscosity} of dentinal fluid ④ {r:Molecular weight} of substances in dentinal fluid ⑤ {r:Pulpal pressure} ⑥ {r:Surface area} of dentinal tubule
 M: Deep dentin(치수 근접): tubule이 크고 많음 → 수분 조절 더 어렵고 접착 실패 위험↑
 
 ## Hybrid Layer ★ | 상아질 접착의 핵심 — hybrid layer | 15-16 | 기출 23·24 | jb=Q18,Q14
@@ -197,7 +197,7 @@ P: 25 p.18 필기 "{r:10-MDP}는 기억해줬으면 좋겠다"(그림의 10-MDP 
 U: etch & rinse, self etch 이런 것들은 많이 들어봤을 것 — 그림의 두 갈래(a·b)가 바로 그 분류(필기).
 F: 18=Dentin adhesive system 6 성분 — 10-MDP는 기억, ADH5:18=25 필기 — 10-MDP 빨간 상자 기억해줬으면 좋겠다
 M: 인산: etching·{r:smear layer 제거} = etch & rinse / Acidic monomer(4-META·{r:10-MDP}·PENTA): etching·{r:HA와 화학 결합} = self-etch
-M: 그 외 성분: ① Solvent = {r:water·ethanol·acetone} ② Cross-linking = {r:Bis-GMA·UDMA·TEGDMA} ③ Co-monomer(HEMA) = miscibility·viscosity·{r:wetting}·water solubility
+M: 그 외 성분: ① Solvent = {r:water·ethanol·acetone} ② Cross-linking of monomers = {r:Bis-GMA·UDMA·TEGDMA} ③ Co-monomer(HEMA) = miscibility·viscosity·{r:wetting}·water solubility
 M: 단계: {r:etching} → {r:priming}(물이 많은 곳에 resin 침투 · primer = {r:친수성 선발대}) — priming이 따로 있거나 bonding에 같이
 M: 교수 강조: "{r:10-MDP}는 기억해줬으면 좋겠다"(그림의 10-MDP 구조식 빨간 상자)
 
@@ -282,7 +282,7 @@ F: 21=1~3세대 실패 → 4세대 비로소 쓸 만한 접착력
 - '세대 번호' 자체보다 각 시스템이 {r:smear layer와 dentin을 어떻게 처리}하는지 이해하는 것이 중요(26 필기 p.22).
 F: 22=Timeline of dental adhesion
 M: 4 mode: ① {r:Etch & Rinse} ② {r:Self-etch} ③ {r:Combined}(selective enamel etching + self-etch primer) ④ {r:Universal}
-M: 세대: ① {r:4세대} = 3-step E&R ② {r:5세대} = 2-step E&R ③ {r:6세대} = 2-step self-etch · 1-step 2-component ④ {r:7세대} = 1-step 1-component(all-in-one) — 문제 많아 사라짐 ⑤ {r:2012년 이후} universal(세대 구분 안 함)
+M: 세대: ① {r:4세대} = 3-step etch and rinse system ② {r:5세대} = 2-step etch and rinse system ③ {r:6세대} = 2-step self-etch system · 1-step, 2-component self-etch system ④ {r:7세대} = 1-step, 1-component self-etch system (All-in-one system) — 문제 많아 사라짐 ⑤ {r:2012년 이후} Universal adhesive 출시(세대 구분 안 함)
 M: 4세대: {r:total etch 상용화} · 3-step Etch & Rinse · {r:wet bonding 권장} — 1~3세대는 쓸 만한 접착력 X → 4세대에서 비로소
 M: 가장 많이 사용: Etch & Rinse 중 {r:3-step} · Self-etch 중 {r:2-step} / 현재 많이 사용 = {r:universal} · {r:2-step self-etch}(26 필기 p.21)
 
@@ -322,9 +322,9 @@ F: 25=다 걷어내고 resin tag와 hybrid layer를 만드는 컨셉
 - 이후 {r:10초 이상} 충분히 rinse → wet bonding 고려(26 필기 p.26).
 F: 26
 M: 정의: Total-etch = 도말층 {r:다 제거} → enamel에 {r:best}
-M: 장점: ① {r:micromechanical interlocking} ② {r:smear layer removal} ③ {r:best approach for enamel} ④ separated hydrophobic adhesive layer ⑤ sufficiently thick film ⑥ stress-absorbing
-M: 단점(dentin엔 {r:too aggressive}): ① thick hybrid layer ② deeply exposed collagen ③ {r:leakage·biodegradation}
-M: 술식 순서: ① 인산 {r:30-40%} {r:15초}(enamel → dentin) ② primer {r:rubbing 15초}(wet bonding) ③ {r:hydrophobic} bonding ④ {r:immediate} 광중합
+M: 장점: ① {r:micromechanical interlocking} ② {r:smear layer removal} ③ {r:best approach for enamel} ④ separated hydrophobic adhesive layer ⑤ sufficiently thick film thickness ⑥ stress-absorbing potential
+M: 단점(dentin엔 {r:too aggressive}): ① thick hybrid layer ② deeply exposed collagen ③ vulnerable to {r:leakage and biodegradation}
+M: 술식 순서: ① Etch enamel & dentin with {r:30-40%} phosphoric acid for {r:15 sec}(enamel → dentin) ② Actively {r:rubbing} primer for {r:15 sec}(consider wet bonding) ③ Separate {r:hydrophobic} bonding agent ④ {r:Immediate} light-curing
 M: 실패 원인: ① collagen {r:과건조} → {r:collapse} ② resin tag 부족 → 빈 공간 ③ 과노출 → {r:MMP}
 
 ## Self-etch | Self-etch 접착제의 특성과 protocol | 27-31 | protocol · keyword
@@ -372,10 +372,10 @@ F: 30
 - 26 필기 p.31: 10-MDP 같은 chemical bonding potential이 있는 mild self-etch primer를 {r:20초} 정도 active rubbing.
 F: 31, ADH5:31=25 필기 — 중요 primer를 active하게 rubbing하는 motion이 꼭 필요!!
 M: 정의: Self-etch = primer의 {r:약산성 물질}로 부식 · smear layer {r:유지}(씻어내지 않음)
-M: 특징: ① {r:shallow hybridization} ② partial demineralization ③ {r:limited collagen exposure} ④ {r:chemical interaction} 가능 ⑤ separated hydrophobic adhesive layer(2-step) ⑥ 수분 control에 민감하지 않음
-M: 단점: ① {r:selective enamel etching required} ② smear layer interference ③ functional monomer {r:hydrolytic degradation}
+M: 특징: ① {r:shallow hybridization} ② partial demineralization ③ {r:limited collagen exposure} ④ possibility of {r:chemical interaction} ⑤ separated hydrophobic adhesive layer(2-step) ⑥ 수분 control에 민감하지 않음
+M: 단점: ① {r:selective enamel etching required} ② potential smear layer interference ③ sensitive for {r:hydrolytic degradation}(functional monomer)
 M: Self-etch primer pH 4단계: ① {r:Strong} < 1 ② Intermediately strong 1~2 ③ {r:Mild} ≈ 2 ④ Ultra-mild > 2.5 / 산성 강할수록 탈회 깊고 resin tag 길어짐
-M: 술식 순서: ① enamel만 {r:selective etch}(30-40% 인산 15초) ② {r:mild} self-etch primer({r:10-MDP}) {r:active rubbing}({r:20초}) ③ hydrophobic bonding ④ 즉시 광중합
+M: 술식 순서: ① {r:Selectively etch} enamel with 30-40% phosphoric acid for 15 sec ② {r:Actively rubbing} {r:mild} self-etch primer with chemical bonding potential({r:10-MDP})({r:20초}) ③ Separate hydrophobic bonding agent ④ Immediate light-curing
 
 ## Universal Adhesive · Bonding Mechanism | Universal 접착제와 3 step의 통합 | 32-37 | 정리 · keyword
 > etching·priming·bonding 셋을 따로 하면 total-etch, 앞 둘을 합치면 self-etch, 셋 다 합치면 universal
@@ -400,7 +400,7 @@ F: 33=Universal adhesive 제품들
 | {r:Combined} | enamel만 selective etching + dentin은 self-etch | selective enamel etching을 동반한 self-etch = {r:gold standard} |
 | {r:Universal} | {r:Etching + Priming + Bonding} | 나아가 bonding까지 하나로 합친 것 — 대표 기능적 단량체 = 10-MDP |
 F: 35, 36=Self-etch = etching + priming, 37=Universal = bonding까지 하나로
-M: Universal 4: ① {r:single bottle} ② 3 mode 모두 ③ {r:metal·ceramic·composite} ④ {r:direct & indirect} / 가능하게 한 성분 = {r:10-MDP}
+M: Universal 4: ① {r:Single bottle} ② Etch & Rinse · Self-etch · Selective enamel etch 모두 ③ {r:Metal·Ceramic·Composite} ④ {r:Direct & Indirect} Restorative Materials / 가능하게 한 성분 = {r:10-MDP}
 M: 주의: '한 병' ≠ universal — {r:1-bottle Etch & Rinse}와 구분 · {r:phosphoric acid 필요 여부} 확인(26 필기)
 M: 3 step {r:Etching · Priming · Bonding}: ① total-etch = {r:따로} ② self-etch = {r:E+P} ③ universal = {r:E+P+B}
 M: Combined = {r:selective enamel etching} + dentin self-etch = {r:gold standard}
@@ -428,7 +428,7 @@ F: 39
 | 과건조 | {r:수축된 교원섬유망} — collapse |
 P: p.45 keyword "Wet bonding" — 기억해야 할 것.
 F: 40=수분 속 교원섬유 vs 수축된 교원섬유망, ADH5:40=25 필기 — 콜라겐이 무너지지 않는 선에서 적절히 날리는 게 중요
-M: 임상 고려 7: ① {r:wet bonding} ② {r:priming} ③ {r:water permeability} ④ self/dual-cured 호환 ⑤ {r:durability} ⑥ longevity ⑦ {r:biocompatibility}
+M: 임상 고려 7: ① {r:wet bonding} ② {r:priming} ③ simple-step adhesive – {r:water permeability} ④ compatibility with self-cured/dual-cured composite resin ⑤ {r:durability} – degeneration, biodegradation, hydrolysis ⑥ clinical longevity ⑦ {r:biocompatibility}
 M: Wet bonding: ① collagen이 {r:물에 떠 있어야} primer가 대체 ② 과건조 → {r:collapse} ③ cotton pellet으로 {r:다 마르지도 축축하지도 않게} ④ 물이 흥건해도 resin infiltration 방해
 M: 장기 접착 좌우: ① 수분 조절 ② primer 침투 ③ solvent 제거 ④ hydrophobic layer 확보(26 필기)
 
@@ -500,6 +500,6 @@ U: 25 학습부 필기 p.1: "p.45의 keyword 중심으로 공부하시면 좋을
 P: 26 필기 p.45 "제품명보다 각 adhesive의 타입과 원리, 적용법을 정확히 알고 상황에 맞게 사용하는 것이 더 중요".
 P: 26 필기 p.46 교수님이 가장 강조한 메시지 = "무슨 접착제를 쓰는가보다 각 접착제의 원리, 타입, 적용 범위를 알고 정확한 술식으로 사용하는 것이 성공에 더 중요".
 F: 45, ADH5:45=25 필기 — 오늘 얘기 중 기억해야 할 것 (p.1 필기 — p.45 keyword 중심으로 공부)
-M: Keyword 9: ① {r:surface energy} ② {r:smear layer} ③ {r:hybrid layer} ④ {r:resin tag} ⑤ {r:wet bonding} ⑥ {r:acidic functional monomer} ⑦ 3 방식 ⑧ {r:universal} ⑨ {r:10-MDP}
+M: Keyword 9: ① {r:surface energy} ② {r:smear layer} ③ {r:hybrid layer} ④ {r:resin tag} ⑤ {r:wet bonding} ⑥ {r:acidic functional monomer} ⑦ Total-etch·Self-etch·Selective enamel etch(3 방식) ⑧ {r:universal adhesive} ⑨ {r:10-MDP}
 M: 출제된 keyword: ① surface energy(객관식) ② hybrid layer(서술·객관식) ③ resin tag(객관식) ④ 10-MDP(단답 2) / keyword 밖 기출: 용어 정의(durability) · 상아세관액 흐름 6요인
 M: 미출제 keyword: ① {r:smear layer} ② {r:wet bonding} ③ {r:functional monomer 기능} ④ {r:3 적용 방식} ⑤ {r:universal 적용법}
