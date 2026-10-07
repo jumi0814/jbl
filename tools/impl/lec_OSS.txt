@@ -13,9 +13,9 @@
 > 임플란트는 뼈에 박히면서 잇몸을 뚫고 입안으로 나오는 특이한 구조 — 그 뼈는 유연한 유기질 + 단단한 무기질
 = Matrix = {r:Organic 30~40%}(flexibility) + {r:Inorganic 60~70%}(hardness, {r:hydroxyapatite}) / Bone cells {r:4}
 # Interface: Bone and Implant — 임플란트가 만나는 조직
-- **Bone-Implant Contact**: 임플란트는 상방 {r:gingiva}, 하방 {r:cortical bone}, 더 깊이 심으면 {r:bone marrow}(trabecular bone + 혈관)와 만난다.
-- 이 구조물들과 어떻게 결합하느냐가 임플란트를 안정적으로 쓸 수 있는지를 결정 → 표면처리·레이저 등의 시도(필기).
-- 치과 implant는 {r:뼈에 직접 결합}되면서도 {r:구외로 노출}되는 구조(transgingival part) — medical implant(인공관절 등)는 체외로 노출되지 않음.
+- **Bone-Implant Contact**: {n:임플란트는 상방 {r:gingiva}, 하방 {r:cortical bone}, 더 깊이 심으면 {r:bone marrow}(trabecular bone + 혈관)와 만난다.}
+- {n:이 구조물들과 어떻게 결합하느냐가 임플란트를 안정적으로 쓸 수 있는지를 결정 → 표면처리·레이저 등의 시도(필기).}
+- {n:치과 implant는 {r:뼈에 직접 결합}되면서도 {r:구외로 노출}되는 구조(transgingival part) — medical implant(인공관절 등)는 체외로 노출되지 않음.}
 U: osseointegration = 뼈와 임플란트의 contact 부분이 잘 결합되는 것(필기).
 F: 2=Bone-implant contact
 # Bone components — Matrix
@@ -23,8 +23,8 @@ F: 2=Bone-implant contact
 | 담당 | {r:Flexibility}(유연성) | {r:Hardness}(단단함) |
 | 구성 | Proteoglycans({r:compressive strength}) · Type I collagen({r:tensile strength}) · Osteocalcin/Osteonectin · Growth factors/Cytokines/Osteoid | Crystalline Ca-P: {r:Hydroxyapatite} Ca10(PO4)6(OH)2 · Amorphous(noncrystalline) calcium phosphates, bicarbonates, citrate, magnesium, potassium, sodium |
 - Proteoglycans = {r:compressive} strength(압축) / Type I collagen = {r:tensile} strength(인장) — 둘을 바꿔 묻기 쉬움.
-- Osteocalcin/Osteonectin = {r:glue between collagen and HA crystals}(collagen과 HA 결정을 이어주는 접착제, 필기).
-- 필기: collagen은 Type I 외에 Type 5도 있다 · 뼈는 {r:Ca과 P를 저장}하는 기능도 한다.
+- Osteocalcin/Osteonectin = {n:{r:glue between collagen and HA crystals}(collagen과 HA 결정을 이어주는 접착제, 필기)}.
+- {n:필기: collagen은 Type I 외에 Type 5도 있다 · 뼈는 {r:Ca과 P를 저장}하는 기능도 한다.}
 # Bone cells — 4가지
 - ① {r:Osteoblast} ② {r:Osteoclast} ③ {r:Osteocyte} ④ {r:Osteoprogenitor cell}.
 U: osteoblast는 뼈를 만드는 최전선, 뼈를 만들다 갇히면 osteocyte, osteoclast는 multinucleated cell(필기).
@@ -43,7 +43,7 @@ M: Bone cells 4: ① Osteo{r:blast} ② Osteo{r:clast} ③ Osteo{r:cyte} ④ {r:
 - Location: {r:bone surfaces} exhibiting active matrix deposition.
 - Active phase(during matrix synthesis): {r:cuboidal to columnar} shape and {r:basophilic} cytoplasm
 - Non-active phase: {r:flatten}.
-- TEM: osteoblast가 {r:vesicle}을 방출해 collagen 방향으로 matrix를 뿌림(osteoid → mineralizing front) · 일부는 갇혀 osteocyte, 일부는 apoptosis(필기).
+- TEM: {n:osteoblast가 {r:vesicle}을 방출해 collagen 방향으로 matrix를 뿌림(osteoid → mineralizing front)} · {n:일부는 갇혀 osteocyte, 일부는 apoptosis(필기).}
 U: 항상 뼈를 만드는 건 아니다 — 활성화된 곳은 동그랗고(cuboidal~columnar), 쉬는 곳은 납작(필기).
 F: 4=Osteoblasts, 5=TEM — osteoblast의 vesicle 방출
 # Osteocyte — 뼈에 갇힌 세포
@@ -54,7 +54,7 @@ F: 4=Osteoblasts, 5=TEM — osteoblast의 vesicle 방출
 - Function poorly understood — Regulating bone metabolism in response to {r:stress and strain}.
 F: 6=Osteocytes
 # Osteoclast — 뼈를 녹이는 세포
-- Derived from fusion of {r:hematopoietic stem cells}(monocyte precursor cells) — osteoblast와 기원이 다르다.
+- Derived from fusion of {r:hematopoietic stem cells}(monocyte precursor cells) — {n:osteoblast와 기원이 다르다.}
 - {r:Multinucleated giant cell} with about {r:50 nucleuses}.
 - Have the capacity to develop and adhere to bone matrix to then secrete {r:acid and lytic enzymes}.
 - Matrix degradation process → formation of a specialized extracellular compartment known as {r:Howship's lacuna}.
@@ -77,12 +77,12 @@ M: 기원 짝: Ob = {r:mesenchymal} ↔ Oc = {r:hematopoietic}(기원이 다르�
 - Osteocyte lacunae are connected by {r:canaliculi}.
 - A network of cytoplasmic processes known as {r:dendrites}.
 - Osteocytes are interconnected by long cell processes that project through the canaliculi.
-- Contact {r:blood vessels} and other osteocytes — 혈관과도 연결되어 영양 공급(필기).
+- Contact {r:blood vessels} and other osteocytes — {n:혈관과도 연결되어 영양 공급(필기).}
 - {r:Preosteoblasts} also have connections via canaliculi with the osteocytes.
 # 기능 — mechanotransduction
 - Network probably facilitates response of bone to {r:mechanical and chemical factors} — Translated into {r:biochemical mediators}.
-- 필기: {r:Mechanotransduction} — canaliculi 내의 액체가 자극을 받아 flow의 변화가 생기면서 발생.
-- 필기: force를 느끼면 osteoblast·osteoclast에 영향을 주어 뼈를 만들지 흡수할지 알려줌 → osteocyte network가 {r:리모델링 여부 결정}에 영향.
+- {n:필기: {r:Mechanotransduction} — canaliculi 내의 액체가 자극을 받아 flow의 변화가 생기면서 발생.}
+- {n:필기: force를 느끼면 osteoblast·osteoclast에 영향을 주어 뼈를 만들지 흡수할지 알려줌 → osteocyte network가 {r:리모델링 여부 결정}에 영향.}
 F: 7=Osteocytes network, 8=Lacunocanalicular network — confocal·SEM, 9=osteogenic cell에서 osteocyte까지
 # 그림 라벨 — 골모세포에서 골세포까지
 - 왼쪽: A- {r:Capillaries} · C- {r:Inactive osteoblast} · D- {r:Osteocyte embedded in cortical bone}.
@@ -111,7 +111,7 @@ F: 12=Types of bone
 P: Lamellar bone의 특징 "한 문장씩 모두 그대로 읽어 주셨습니다"(필기) — 6문장 전부가 선지 재료.
 U: 실제로는 1년까지 기다리지 않고 2~6개월(보통 3-4개월) 후 2차 수술·보철 → 뼈가 안 좋으면 loading 조심 · 70% 이상 층판골이면 임상적으로 크게 차이 없다(필기).
 F: 13=Lamellar bone
-# 임상 — 층판골이 되기 전의 하중
+# {n:임상 — 층판골이 되기 전의 하중}
 - 식립 후 임플란트 주변 빈 공간에 뼈가 자라 들어와야 함 — 뼈 대신 {r:연조직이 개재}되면 osseointegration 실패(필기).
 - 실패는 초기에 알 수 없음 → 2차 수술 때 나사를 돌리면 {r:스크류 드라이버와 fixture가 같이 나옴} = 실패(필기).
 - 필기: "임플란트 식립은 보통 6개월에 시행되므로 아직 {r:2차 광화 중}" → 지속적인 {r:recall check} 필요.
@@ -139,8 +139,8 @@ F: 15=Woven bone
 E: R06 | 23년 객관식 "다음 골에 대한 설명으로 옳은 것" → ③ woven bone은 초기에 하중을 받으면 빠르게 흡수 ○ ⚠ 함정: woven은 강하다(× 약함) · 성인 골격 90% 이상(× 99%는 lamellar) · lamellar 강도는 유기질(× 무기질) · 술 후 3개월 최대(× 1년)
 # 그림으로 구별 — 모식도와 조직 사진
 - 모식도: a {r:IMMATURE BONE}(정렬되어 있지 않음) · b {r:MATURE COMPACT BONE}(osteon · concentric lamella · interstitial lamellae · resorption canal) · c {r:MATURE SPONGY BONE}.
-- 조직 사진: a = 비성숙골 · b = 층판골(필기 라벨).
-- 필기: 가운데 혈관 같은 게 보이고 그 주변으로 {r:동심원}을 보이는 규칙적인 lamellar 형태 = lamellar bone — 성숙골은 {r:나이테}를 보이고 woven bone은 그렇지 않다.
+- 조직 사진: {n:a = 비성숙골 · b = 층판골(필기 라벨)}.
+- {n:필기: 가운데 혈관 같은 게 보이고 그 주변으로 {r:동심원}을 보이는 규칙적인 lamellar 형태 = lamellar bone — 성숙골은 {r:나이테}를 보이고 woven bone은 그렇지 않다.}
 F: 14=조직 사진 — 동심원(osteon) 있으면 층판골
 E: Q15 | 24년 그림 객관식 "다음 모식도와 조직도의 골 특징으로 옳은 것"(위 ⭐ 층판골·망상골 객관식의 변형) → ② 강도는 골내 무기질 ○ — 그림 = p.14 조직 사진 b(동심원 osteon = 층판골) ⚠ 함정: ①·③·④는 woven 문장 · ⑤ 4개월에 최대(× 1년)
 M: collagen: Lamellar = {r:parallel layers} / Woven = {r:randomly oriented}(무층골) / Woven 부위 = ① Immature bone during {r:fracture healing} ② {r:Tendon or ligament attachment} ③ {r:Pathological conditions}(정상 성인 골격엔 {r:없음})
@@ -157,7 +157,7 @@ M: 선지 함정: 99% 이상 = {r:lamellar}(woven ×·90% ×) / 강도 = {r:무�
 | 다른 이름 | {r:Dense bone or cortical bone} | {r:Cancellous bone or spongy bone} |
 | 위치 | {r:The hard outer layer} of bones | filling the interior organ(안쪽) |
 | 특징 | {r:Minimal gaps and spaces} | {r:Allowing room for blood vessels} |
-- 성숙골을 compact bone과 trabecular bone으로 나눔 · 뼈는 안({r:endosteum})과 밖({r:periosteum}) 모두 막으로 둘러싸임(필기).
+- {n:성숙골을 compact bone과 trabecular bone으로 나눔 · 뼈는 안({r:endosteum})과 밖({r:periosteum}) 모두 막으로 둘러싸임(필기).}
 - 그림(long bone): 겉 {r:compact bone} · 안쪽 {r:spongy bone} · marrow cavity · periosteum · epiphysis–metaphysis–diaphysis.
 U: 하악은 compact bone이라 침윤마취만으로 부족한 경우가 많음 → 사랑니 발치는 block 마취(필기).
 F: 16=Macrostructure of bone
@@ -165,13 +165,13 @@ F: 16=Macrostructure of bone
 - Composed of structural cylindrical units called {r:osteons}({r:Haversian systems}).
 - Osteons ① **Haversian canal**: {r:central canal} – vascular and nerve supply of the osteon ② {r:Concentric lamellae} ③ {r:Canaliculi system}.
 - Canaliculi system: Processes of osteocytes arranged a {r:radial pattern} with respect to the canal · serves for the passage of substances between the osteocytes and blood vessels.
-- Between the osteons: remnants of previous concentric lamellae called {r:interstitial lamellae} — 예전에 생겼던 lamella 구조(필기).
+- Between the osteons: remnants of previous concentric lamellae called {r:interstitial lamellae} — {n:예전에 생겼던 lamella 구조(필기).}
 - Also called {r:lamellar bone}.
 - 그림 라벨: osteonal artery · collagen fibers · interstitial lamellae · inner/outer {r:circumferential lamellae} · endosteum · {r:Volkmann canal} · lamellae of bone · osteonal endosteum · {r:Haversian canal} · lacuna with osteocyte · {r:periosteum}.
 P: ★ "‼시험‼에 이런 그림이 자주 나왔다!" · "단면모양임, 작년에 나왔으므로 올해도 나올 수 있다"(필기).
 E: Q17 | 24·23년 그림 빈칸 "아래 빈칸의 해부학적 용어" → 1) {r:periosteum} 2) {r:Haversian canal} 3) {r:Volkmann canal} — p.17 시험 예고 그림 ⚠ 함정: 장축 평행(세로) = Haversian, 직각 = Volkmann · 나머지 라벨(interstitial·circumferential lamellae)도 대비
 F: 17=Mature bone — osteon 단면 ★ 시험 그림
-# Haversian vs Volkmann canal
+# {n:Haversian vs Volkmann canal}
 - **Haversian canals**: 세로로 쭉 지나가는 canal, osteon 장축에 평행 — 중앙으로 동맥·정맥이 지나감(필기).
 - **Volkmann canals**: Haversian에 {r:직각}인 canal — Haversian끼리 수평으로 연결, 쭉 진행해 {r:periosteum}에 다다름 · 골막의 세포들이 이동할 수도 있음(필기).
 - 하나의 osteon 안 canaliculi는 서로 {r:평행}, 서로 다른 osteon의 canaliculi는 평행하지 않음(필기).
@@ -186,7 +186,7 @@ M: 시험 그림 빈칸: 1) {r:periosteum} 2) {r:Haversian canal} 3) {r:Volkmann
 > 구멍이 송송 뚫려도 해면골은 성숙골(lamella 있음) — 세포가 많고 층이 없는 것이 미성숙골
 = Spongy = {r:No osteons}·red marrow·{r:irregularly arranged lamellae} / Immature = {r:Nonlamellar}·bundle(woven) bone·{r:more cells}
 # Spongy bone
-- ① **No osteons**(osteon 구조를 띠지 않고 송송 뚫려 있음).
+- ① **No osteons**({n:osteon 구조를 띠지 않고 송송 뚫려 있음}).
 - ② Trabeculae surround {r:red marrow-filled spaces}.
 - ③ Trabeculae contain **irregularly arranged lamellae** and osteocytes connected by canaliculi.
 P: "spongy bone도 성숙골이다! 하지만 lamella의 형태는 가지고 있다" · "스펀지 본하고 미성숙 본은 잘 구분해야 한다"(필기).
@@ -239,14 +239,14 @@ M: Periosteum = {r:outer fibrous} + {r:inner cellular}(osteoprogenitor) + {r:Sha
 # Bone healing
 - **Physiologic cascade of events** — Complex regenerative processes restore original skeletal structure and function.
 | 구분 | Endochondral bone formation | Membranous bone formation |
-| 요지(필기) | {r:cartilage model} serves as the precursor of the bone | formed by a simpler method {r:without the intervention of cartilage} |
+| {n:요지(필기)} | {r:cartilage model} serves as the precursor of the bone | formed by a simpler method {r:without the intervention of cartilage} |
 | 부위·예 | {r:Epiphyseal plates} in long bones · {r:Condylar head of the mandible} | {r:Calvaria} · most of {r:facial bones} · {r:clavicle} · {r:mandible} |
 | 의미 | For {r:growth in length} | {r:Primary bone healing} |
 | 과정 | (자료 없음) | differentiation of {r:mesenchymal cells into osteoblasts} → osteoid → {r:mineralization of osteoid} |
-- 필기: long bone이 자라날 때 = endochondral / {r:골절 힐링} = membranous.
-- 임플란트 후 골생성 양상 = {r:membranous bone formation} = primary bone healing(필기).
-- 필기 흐름: MSC → Ob → osteoid → 광화 → woven bone → lamellar bone → {r:osseointegration}.
-- 하악은 대표적 막성골, 그중 {r:condyle}에서만 endochondral → 하악의 길이 성장(필기).
+- {n:필기: long bone이 자라날 때 = endochondral} / {n:{r:골절 힐링} = membranous.}
+- {n:임플란트 후 골생성 양상 = {r:membranous bone formation} = primary bone healing(필기).}
+- 필기 흐름: {n:MSC → Ob → osteoid → 광화 → woven bone → lamellar bone → {r:osseointegration}.}
+- {n:하악은 대표적 막성골, 그중 {r:condyle}에서만 endochondral → 하악의 길이 성장(필기).}
 F: 24=Bone healing 2 기전
 M: Endochondral: ① {r:cartilage model} serves as the precursor of the bone ② {r:Epiphyseal plates} in long bones ③ {r:Condylar head} of the mandible ④ For growth in length
 M: Membranous: ① {r:primary bone healing} ② differentiation of mesenchymal cells into osteoblasts → {r:osteoid} → mineralization of osteoid ③ Calvaria·most of facial bones·clavicle·{r:mandible} / 임플란트 주위 골생성 = {r:membranous}
@@ -270,11 +270,11 @@ F: 25=골유착 정의와 골친화기 ★
 - ⑤ ==식립 시 압축된 골의 초기 흡수가 일어나고 {r:BMP}가 유리되어 세포 이주 일어남==.
 - ⑥ ==이주한 골세포들은 유골(osteoid)를 형성하고, 이러한 미성숙 결합조직기질에 {r:woven bone}이 침착되는 {r:1달} 과정이 거침==.
 - ⑦ ==Wound bone formation: dominant for first {r:4 to 6 weeks}==.
-- 안정성: 아직 뼈가 완전하지 않아 {r:biological stability는 없고 mechanical stability만} 있음 → 시간이 지날수록 biological↑ · mechanical↓(필기).
+- {n:안정성: 아직 뼈가 완전하지 않아 {r:biological stability는 없고 mechanical stability만} 있음 → 시간이 지날수록 biological↑ · mechanical↓(필기).}
 E: R07 | 23년 서술 "골친화기에서 나타나는 특징" → 위 7줄 그대로(JB 답 1)~7)과 같은 순서) ⚠ 함정: 골전도기(woven → lamellar)·골적응기(3~4개월) 내용을 섞지 말 것
 E: Q16 | 24년 객관식 "골친화기에 대해 옳은 것" → ① 미성숙 결합조직에 woven bone 침착 ○ ② 생리적 하중 이하의 힘은 골밀도 증가 ○ ⚠ 함정: ③ lamellar → woven(반대) ④ 생물학적 > 기계적(반대) ⑤ 3-4개월 이후(골적응기) — ②는 JB 해설 근거(구강악안면외과학 한정준 'Loading protocol' p.7 — 이 강의자료엔 없음)
 # 골전도기 · 골적응기
-- **골전도기**: ① ==Woven bone이 더 강한 성숙골인 층판골(lamellar bone)으로 치환되는 과정== ② {r:2~3개월}에 걸쳐 진행 ③ 임플란트 표면에 {r:더 많은 양의 골}이 더해지는 단계(접촉이 좋아지는 과정).
+- **골전도기**: ① ==Woven bone이 더 강한 성숙골인 층판골(lamellar bone)으로 치환되는 과정== ② {r:2~3개월}에 걸쳐 진행 ③ 임플란트 표면에 {r:더 많은 양의 골}이 더해지는 단계({n:접촉이 좋아지는 과정}).
 - **골적응기**: ==식립 후 {r:3~4개월} 이후부터 더 이상의 골 접촉은 증가하거나 감소하지 않고 부하에 반응하여 골개조(bone remodeling)가 전 생애에 걸쳐 일어남==.
 U: 식립 직후엔 mechanical stability가 있지만 {r:3-4주}간 bone remodeling으로 안정성이 떨어지는 시기 → early loading 조심(필기).
 | 단계 | 시기 | 일어나는 일 | 안정성·임상 |
@@ -283,10 +283,10 @@ U: 식립 직후엔 mechanical stability가 있지만 {r:3-4주}간 bone remodel
 | {r:골적응기} | {r:3~4개월} 이후 | 골 접촉량 {r:불변} · 부하에 반응한 {r:remodeling} 평생 | 2차 수술·보철 준비 |
 # 그림 8-1과 실제 과정(필기)
 - 그림 8-1(동물실험): A {r:1주} 골형성이 이미 시작 → B {r:2주} → C 이미 성숙된 골들로 대부분의 공간이 채워짐 → D {r:12주} 임플란트의 표면을 따라 골의 재형성.
-- 필기: 1주 → 2주 → 6주쯤 뼈가 공간 사이로 완전히 들어와 연조직 개재 없음 = 골유착이 잘 됨(동물이라 조금 더 빠름).
-- 필기: woven bone이 만들어지기까지 {r:한 달} · 4-6주까지는 연한 bone, {r:6주부터 광화} → immediate loading은 뼈 성숙 전이라 주의(과하면 흡수).
-- 필기: 골적응기(3-4개월 후) = 뼈 접촉이 강해져 2차 수술·loading 준비 → 본 뜨고 보철물.
-- 필기: 골유착이 잘 되면 층판골, 안 되면 임플란트 주변에 {r:연조직 개재} → bone-implant contact(BIC)↓ → pocket depth 깊어지고 예후 불량.
+- {n:필기: 1주 → 2주 → 6주쯤 뼈가 공간 사이로 완전히 들어와 연조직 개재 없음 = 골유착이 잘 됨(동물이라 조금 더 빠름).}
+- {n:필기: woven bone이 만들어지기까지 {r:한 달} · 4-6주까지는 연한 bone, {r:6주부터 광화} → immediate loading은 뼈 성숙 전이라 주의(과하면 흡수).}
+- {n:필기: 골적응기(3-4개월 후) = 뼈 접촉이 강해져 2차 수술·loading 준비 → 본 뜨고 보철물.}
+- {n:필기: 골유착이 잘 되면 층판골, 안 되면 임플란트 주변에 {r:연조직 개재} → bone-implant contact(BIC)↓ → pocket depth 깊어지고 예후 불량.}
 F: 26=골전도기·골적응기와 그림 8-1, 27=필기 — 3단계 실제 과정
 M: 정의: ordered, {r:living bone}과 {r:load carrying implant} 표면의 {r:direct structural and functional connection}(Branemark {r:1960년대 초})
 M: 역사·분류: 1960년대 초 Branemark = {r:광학 현미경} 하 임플란트 표면–생활골 {r:직접적인 결합} / 골유착 = {r:primary bone healing}
@@ -300,28 +300,28 @@ M: 골친화기 안정성 = {r:mechanical}만(biological 없음) / 생리적 하
 = 성공 = titanium–bone {r:직접 결합} · 성공률 1·2·3 {r:≈95%}·4 낮음 · {r:Lekholm & Zarb}(1985 전치부) · {r:Misch}(1988 D1~D4)
 # 골유착 성공 vs 실패(그림 8-2)
 - **Osseointegrated**: Titanium과 Bone이 직접 맞닿음 / **Non-Integrated**: 사이에 {r:Connective Tissue}가 개입.
-- 전체적으로 osseointegration이 되지 않았다고 해도 임플란트가 흔들리지는 않는다(필기).
-- 필기: 골질별 성공률 — 1·2·3은 {r:약 95%}, 4는 상대적으로 안정성이 떨어짐 → bone quality에 따라 {r:drilling sequence}를 바꿈.
+- {n:전체적으로 osseointegration이 되지 않았다고 해도 임플란트가 흔들리지는 않는다(필기).}
+- {n:필기: 골질별 성공률 — 1·2·3은 {r:약 95%}, 4는 상대적으로 안정성이 떨어짐 → bone quality에 따라 {r:drilling sequence}를 바꿈.}
 F: 28=그림 8-2 골유착성 임플란트의 구조와 계면
 # Lekholm과 Zarb(1985) — 악골 전치부에서의 골질
 - Quality 1: {r:균등한 치밀골}.
 - Quality 2: 치밀한 망상골을 둘러싸는 {r:두꺼운} 층의 치밀골.
 - Quality 3: {r:강도가 좋은}, 치밀한 망상골을 둘러싸는 {r:얇은} 층의 피질골.
 - Quality 4: {r:밀도가 낮은} 망상골을 둘러싸는 얇은 층의 피질골.
-- 필기: 1이 가장 단단, 4가 가장 약함 · 4 = 골다공증·고령 → 초기 고정 매우 힘듦 → {r:immediate loading 피하고} 1·2차 수술을 나눠 충분한 치료기간.
-- 필기: 무턱대고 1번이 좋은 것 아님 — cortical이 너무 두꺼운 sclerosing(염증 반응) 뼈 → 드릴 저항·marrow 적어 혈액공급↓ → remodeling 불리 → 실패 확률↑.
+- {n:필기: 1이 가장 단단, 4가 가장 약함 · 4 = 골다공증·고령 → 초기 고정 매우 힘듦 → {r:immediate loading 피하고} 1·2차 수술을 나눠 충분한 치료기간.}
+- {n:필기: 무턱대고 1번이 좋은 것 아님 — cortical이 너무 두꺼운 sclerosing(염증 반응) 뼈 → 드릴 저항·marrow 적어 혈액공급↓ → remodeling 불리 → 실패 확률↑.}
 P: "2번이나 3번 정도의 골질이 임플란트하기에 가장 좋다" · sclerosing이 심하면 환자에게 미리 설명(필기).
 E: Q13 | 24년 객관식 "임플란트 수술과 관련하여 옳은 것"(조영단 강의) → Type 3 = thin cortical bone with dense trabecular bone of good strength → 적절 ○ ⚠ 함정: Type 1(단단한 cortical bone)이라 적절 × — 이 강의 p.29와 같은 분류
 F: 29=Lekholm과 Zarb 골질 1~4
 # Misch(1988) — 무치악 골밀도 D1~D4
-- **위치와는 별개로** 피질골과 망상골의 특성에 따라 {r:4가지} 골밀도 그룹으로 나눔(무치악 대상 — 필기).
-| 골밀도 | 설명 | 촉감 | 해부학적 위치 | CT(HU) | 필기 |
+- **위치와는 별개로** 피질골과 망상골의 특성에 따라 {r:4가지} 골밀도 그룹으로 나눔({n:무치악 대상 — 필기}).
+| 골밀도 | 설명 | 촉감 | 해부학적 위치 | CT(HU) | {n:필기} |
 | {r:D1} | Dense cortical | {r:Oak} or maple wood | Anterior mandible | {r:>1250} | 하악 전치부는 얇아 marrow 공간이 거의 없음 |
 | {r:D2} | Porous cortical and coarse trabecular | White pine or spruce wood | Anterior mandible · Posterior mandible · Anterior maxilla | 850 to 1250 | 보통 임플란트 식립에 {r:좋은 bone} |
 | {r:D3} | Porous cortical and fine trabecular | {r:Balsa} wood | Anterior maxilla · Posterior maxilla · Posterior mandible | 350 to 850 | 보통 임플란트 식립에 {r:좋은 bone} |
 | {r:D4} | Fine trabecular | {r:Styrofoam} | {r:Posterior maxilla} · Anterior maxilla | 0 to 350 | cortical bone 거의 없음(고령·골다공증, 지방조직), 상악 구치부에 많고 상악동 함기화로 양도 부족 |
 | D5 | Osteoid | Soft Styrofoam | Poorly mineralized bone graft | <0 | (자료 없음) |
-- BOX 18-1 "CT 판독에 의한 골질(밀도) 평가" — CT 상에서 측정된 {r:HU}로도 골질 평가(필기). 숫자를 외울 필요는 없고 상대적으로 구분(필기).
+- BOX 18-1 "CT 판독에 의한 골질(밀도) 평가" — {n:CT 상에서 측정된 {r:HU}로도 골질 평가(필기). 숫자를 외울 필요는 없고 상대적으로 구분(필기).}
 U: 초기 고정은 대부분 cortical bone에서 얻음 → cortical이 얇은 D4는 드릴링 중 임플란트가 이미 박혀 있는 경우가 많다(필기).
 F: 30=Misch 골밀도 분류 표 18-1과 CT HU
 M: 성공 vs 실패: Osseointegrated = Titanium–Bone {r:직접} 맞닿음 / Non-Integrated = 사이에 {r:Connective Tissue} 개입
@@ -332,22 +332,22 @@ M: 골질 성공률 {r:1·2·3 ≈ 95%} · 4 낮음 / 가장 좋은 뼈 = {r:2·
 ## Surgical Adjustment by Bone Quality | 골질에 따른 술식 조정 — underdrilling · cortical drill · ridge split | 31-33 | 임상 · 필기(수업 녹취)
 > 약한 뼈는 덜 뚫고(underdrilling), 너무 단단한 뼈는 더 넓히고 식힌다 — CT로 미리 판단
 = 약한 뼈(D4·sinus elevation 후) → {r:underdrilling} / 단단한 뼈(D1·sclerosis) → {r:cortical drill}·countersink·주수 / ridge split은 {r:D2·D3}
-# 약한 뼈 — underdrilling
+# {n:약한 뼈 — underdrilling}
 - D4처럼 초기고정이 어려우면 {r:underdrilling} — 예: {r:4.5 mm} 임플란트에 {r:3.8}까지만 드릴링.
 - 뼈가 약할 때, {r:sinus elevation} 후 걱정될 때도 underdrilling.
 - 뼈가 너무 약하면 드라이버로 mounter를 뺄 때 fixture가 딸려 나옴 → 식립 전 mounter를 렌치로 {r:한 번 풀었다가 살짝 조이고} 식립.
 - D4는 임플란트가 쑥 들어가 {r:marrow로 빠지면} nerve 손상 가능 — 꺼내려면 뼈를 깎거나 window를 따야 함(필기 p.32·33).
 - D4는 하악골이라도 "하악이니까 간단"하다며 cortical drill로 많이 넓혀 두면 임플란트가 그냥 쑥 들어감 → underdrilling·드릴링을 끝까지 하지 않기(필기 p.33).
-# 단단한 뼈 — cortical drill·열 관리
+# {n:단단한 뼈 — cortical drill·열 관리}
 - 단단한 뼈에서 3.8까지만 뚫고 손힘으로 돌리면 임계점을 넘어 {r:mounter가 부러지고} 압축 압력으로 {r:bone loss} → {r:cortical drill} 또는 {r:4.3}까지 드릴링.
 - 극단적 D1(CT가 하얗게): drilling 시 {r:열}이 많이 발생 → 골흡수 → 나중에 임플란트가 쑥 빠지기도 · 핸드피스 주수가 깊은 곳에는 잘 안 들어감.
 - D1처럼 된 이유: 부분적 osteosclerosis 또는 염증이 심해 {r:sclerotic osteomyelitis}처럼 됨 → 발치해도 그대로 · 혈액 공급 불량·과도한 열 → 환자에게 미리 설명.
 F: 32=위 극단적 D1 CT · 아래 D4 CT · 오른쪽 D1~D4 골 단면
-# Ridge split · GBR — marrow가 있어야
+# {n:Ridge split · GBR — marrow가 있어야}
 - **Ridge split**: alveolar crest ridge가 매우 얇을 때 뼈 가운데를 쪼개 벌리는 방법 — 작은 드릴 → 조금 더 두꺼운 것 순서로 wedge처럼 넓힘.
 - D1은 marrow가 없어 ridge split 시 {r:fracture} → ridge split에 좋은 뼈는 marrow가 있는 {r:D2·D3}.
 - GBR 시 피가 안 통할 것 같으면 구멍을 내 {r:marrow에서 blood supply}를 얻게 함 — CT로 평가.
-# 부위별 골질
+# {n:부위별 골질}
 | 부위 | 골질(필기) |
 | 상악 | D1이 거의 없음(상악 = D2·D3·D4) |
 | 일반 하악골 | {r:D2} |
@@ -367,13 +367,13 @@ M: 부위별 골질(필기): 일반 하악골 = {r:D2} / 상악 전치부·소�
 | 용어 | 성격 | 정의 |
 | {r:Rigid fixation} | {r:임상 용어} | 수직 또는 수평 방향으로 {r:500g} 미만의 힘으로 검사했을 때 임플란트의 임상적 동요도가 없는 상태 |
 | {r:Osseointegration}(골유착) | {r:조직학 용어} | 광학현미경상에서 골이 임플란트 표면과 {r:직접 접촉}하는 것으로 정의 |
-- 두 용어는 거의 비슷하지만 임상적 용어와 조직학적 용어라는 차이(필기) — osseointegration은 임상적으로 평가할 수 있는 것이 아님.
+- {n:두 용어는 거의 비슷하지만 임상적 용어와 조직학적 용어라는 차이(필기) — osseointegration은 임상적으로 평가할 수 있는 것이 아님.}
 - 그림 42-6: 골유착은 현미경 수준에서 직접적인 골–임플란트의 부착을 의미하는 조직학적 용어.
 F: 34=임플란트 동요도 — rigid fixation vs osseointegration
-# 평가 — ISQ·periotest(필기)
+# {n:평가 — ISQ·periotest(필기)}
 - 요즘은 비접촉식 {r:ISQ}로 동요도 평가 · 예전엔 접촉식 {r:periotest}(탕 쳐서 측정).
 - ISQ 값에 따라 {r:1-stage·2-stage·보철물 장착}을 결정 · sinus elevation 후 2차 수술 때 동요도 기록 → 6개월 기다려도 수치가 나쁘면 더 묻어두거나 2nd op까지만 하고 보철은 나중에.
-# 동요도 없음 ≠ 골유착 확신 · Success vs Survival(필기)
+# {n:동요도 없음 ≠ 골유착 확신 · Success vs Survival(필기)}
 - 동요도가 없어도 osseointegration을 {r:확신할 수는 없다} — 한쪽만 골유착되고 한쪽은 {r:fibrous tissue}여도 동요 없을 수 있음.
 - {r:Success} = implant 성공의 여러 criterion을 만족(BOP가 없는 등) / {r:Survival} = 단순히 빠지지 않은 것.
 F: 35=자연치 생리적 동요도와 골유착 조직 사진
@@ -386,9 +386,9 @@ M: 동요 없음 ≠ 골유착 확신(한쪽 {r:fibrous tissue} 가능) / {r:Suc
 = 자연치 생리적 동요 = 치근단 {r:28 µm}·수평 {r:108 µm} vs 임플란트 실질적으로 {r:동요 없음} → 자연치와 {r:splinting 금지}
 # 자연치 vs 임플란트(그림 42-4)
 - 그림 42-4: 자연치의 생리학적 동요도는 치근단 방향으로 {r:28µm}, 수평 방향으로 {r:108µm} 정도(Misch CE, An implant is not a tooth).
-- 자연치는 치주인대로 연결되어 생리적 미세 움직임 → 하중 부담에 유리 / 임플란트는 분산 없이 {r:집중} → 하중 분산에 더 신경(필기 p.36, 108 µm를 '치관 방향'으로 표현).
+- {n:자연치는 치주인대로 연결되어 생리적 미세 움직임 → 하중 부담에 유리} / {n:임플란트는 분산 없이 {r:집중} → 하중 분산에 더 신경}(필기 p.36, 108 µm를 '치관 방향'으로 표현).
 P: "임플란트와 자연치를 splinting하면 안됩니다!"(필기).
-# 흔들리는 임플란트 — 원인 구별과 제거
+# {n:흔들리는 임플란트 — 원인 구별과 제거}
 - 먼저 {r:fixture}가 흔들리는지 {r:abutment}(보철)가 흔들리는지 구별.
   - 임플란트 주변 {r:PD 증가} → 임플란트 자체의 동요 / {r:peri-implant soft tissue 건전}한데 흔들림 → 보철물 문제.
 - 보철물 제거 → 파절인지 {r:screw loosening}인지 판단 · screw 파절이 위쪽이면 반시계로 살살 돌려 제거, 아래쪽이면 잘 안 나옴(파절 스크루 제거 키트 → 안 되면 fixture 제거).
