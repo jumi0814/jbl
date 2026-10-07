@@ -32,7 +32,7 @@ F: 3=Bone components
 M: Bone-implant contact: ① 상방 {r:gingiva} ② 하방 {r:cortical bone} ③ 더 깊이 {r:bone marrow} / 치과 implant = {r:뼈에 직접 결합} + {r:구외로 노출}(medical implant는 노출 ×)
 M: Matrix: Organic {r:30~40%} = {r:flexibility} / Inorganic {r:60~70%} = {r:hardness}({r:HA} Ca10(PO4)6(OH)2)
 M: Organic 성분: Proteoglycan = {r:compressive} / Type I collagen = {r:tensile} / Osteocalcin·Osteonectin = collagen–HA {r:glue}
-M: Bone cells 4: ① Osteo{r:blast} ② Osteo{r:clast} ③ Osteo{r:cyte} ④ {r:Osteoprogenitor}
+M: Bone cells 4: ① Osteo{r:blast} ② Osteo{r:clast} ③ Osteo{r:cyte} ④ {r:Osteoprogenitor} cell
 
 ## Bone Cells — Osteoblast · Osteocyte · Osteoclast | 뼈를 만드는·갇힌·녹이는 세포 각론(목록 4 중 osteoprogenitor 제외) | 4-6·10-11 | 세포 각론
 > 만드는 세포(Ob) → 만들다 갇힌 세포(Ocy) / 녹이는 세포(Oc)는 기원부터 다르다(조혈모세포)
@@ -66,8 +66,8 @@ F: 10=Osteoclasts, 11
 | {r:Osteocyte} | matrix에 둘러싸인 osteoblast | stellate · {r:lacuna}에 하나씩 · gap junction | bone matrix 유지 · stress·strain에 따른 대사 조절 |
 | {r:Osteoclast} | {r:hematopoietic stem cells}(monocyte precursor) 융합 | 다핵 거대세포(핵 ~50) · {r:ruffled border} | acid·lytic enzyme → {r:Howship's lacuna} · tunnel 0.2~1.0 mm |
 M: Ob = {r:MSC} 기원 / active {r:cuboidal~columnar} · non-active {r:flat} / 기능: {r:organic matrix} 합성 + {r:mineralization} 매개
-M: Osteocyte: ① stellate ② {r:lacuna 하나에 하나} ③ {r:gap junction} ④ 죽으면 matrix 흡수 / 기능: matrix 유지 · {r:stress and strain}에 따른 대사 조절
-M: Oc: ① {r:HSC}(monocyte) 융합 ② 핵 {r:~50} ③ {r:ruffled border} ④ {r:Howship's lacuna} ⑤ tunnel {r:0.2~1.0 mm}
+M: Osteocyte: ① {r:Stellate}-shaped cells ② {r:Only one osteocyte in each lacuna} ③ Cell to cell contact — {r:gap junction} ④ Cell death is followed by {r:resorption} of this matrix / 기능: matrix 유지 · {r:stress and strain}에 따른 대사 조절
+M: Oc: ① Derived from fusion of {r:hematopoietic stem cells}(HSC·monocyte precursor cells) ② {r:Multinucleated giant cell} with about {r:50} nucleuses ③ {r:Ruffled border}(villous-like process) ④ {r:Howship's lacuna} ⑤ Formation of tunnel — diameter {r:0.2~1.0 mm}
 M: 기원 짝: Ob = {r:mesenchymal} ↔ Oc = {r:hematopoietic}(기원이 다르다)
 
 ## Osteocyte Network — Mechanotransduction | 골세포 네트워크 — 힘을 신호로 바꾼다 | 7-9 | lacunocanalicular network
@@ -143,10 +143,10 @@ E: R06 | 23년 객관식 "다음 골에 대한 설명으로 옳은 것" → ③ 
 - 필기: 가운데 혈관 같은 게 보이고 그 주변으로 {r:동심원}을 보이는 규칙적인 lamellar 형태 = lamellar bone — 성숙골은 {r:나이테}를 보이고 woven bone은 그렇지 않다.
 F: 14=조직 사진 — 동심원(osteon) 있으면 층판골
 E: Q15 | 24년 그림 객관식 "다음 모식도와 조직도의 골 특징으로 옳은 것"(위 ⭐ 층판골·망상골 객관식의 변형) → ② 강도는 골내 무기질 ○ — 그림 = p.14 조직 사진 b(동심원 osteon = 층판골) ⚠ 함정: ①·③·④는 woven 문장 · ⑤ 4개월에 최대(× 1년)
-M: collagen: Lamellar = {r:parallel layers} / Woven = {r:randomly oriented}(무층골) / Woven 부위 = ① {r:골절 치유} ② {r:건·인대 부착부} ③ {r:병적 상태}(정상 성인 골격엔 {r:없음})
-M: Lamellar: ① 성인 골격 {r:99%} ② 강도 = 골내 {r:무기질} ③ 임플란트 지지 층판골 최대 = 술 후 {r:1년} ④ 강하고 짜임새 있으며 {r:잘 광화}
+M: collagen: Lamellar = {r:parallel layers} / Woven = {r:randomly oriented}(무층골) / Woven 부위 = ① Immature bone during {r:fracture healing} ② {r:Tendon or ligament attachment} ③ {r:Pathological conditions}(정상 성인 골격엔 {r:없음})
+M: Lamellar: ① 성인 골격의 {r:99%} 이상을 구성 ② 골의 강도는 골내 {r:무기질} 성분과 직접적 관련 ③ 골내 임플란트를 지지하는 층판골은 술 후 {r:1년}이 될 때까지 최대에 도달하지 못함 ④ 강하고 짜임새 있으며, {r:잘 광화}되어 있는 조직
 M: 광화: {r:1차}(조골세포가 HA 침전) → {r:2차}(수개월 물리적 과정)
-M: Woven: ① 창상치유 {r:처음} 생성 ② {r:약하고 광화 안 됨} ③ {r:초기 연속성} ④ 성숙 전 하중 → {r:빠르게 흡수}
+M: Woven: ① 창상치유의 반응에 의해 {r:처음} 생성된 골 ② {r:약하고}, 비조직적, 거의 {r:광화 되어 있지 않음} ③ 골절과 골절단편 및 골내 임플란트에 {r:초기 연속성}을 제공 ④ {r:성숙되기 전 하중}을 받은 경우 {r:빠르게 흡수}됨
 M: 선지 함정: 99% 이상 = {r:lamellar}(woven ×·90% ×) / 강도 = {r:무기질}(유기질 ×) / 최대 도달 = 술 후 {r:1년}(3·4개월 ×) / woven = {r:약함}(강하다 ×)
 
 ## Compact · Spongy Bone · Osteon ★ | 치밀골·해면골과 osteon — Haversian·Volkmann canal | 16-19 | ★ 23·24 그림 빈칸 · 시험 예고 그림 | jb=Q17
@@ -201,8 +201,8 @@ F: 21=Immature bone
 | 공간 | minimal gaps | {r:red marrow-filled spaces} | (자료 없음) |
 | 다른 이름 | cortical bone | cancellous · trabecular | {r:bundle bone · woven bone} |
 | 세포 | (자료 없음) | osteocytes connected by canaliculi | {r:more cells per unit} |
-M: Spongy: ① {r:성숙골} ② {r:No osteons} ③ red marrow ④ irregular lamellae
-M: Immature: ① {r:Nonlamellar} ② {r:bundle bone} = woven bone ③ 세포가 {r:더 많다}
+M: Spongy: ① {r:성숙골} ② {r:No osteons} ③ Trabeculae surround red marrow-filled spaces ④ Trabeculae contain irregularly arranged lamellae
+M: Immature: ① {r:Nonlamellar} ② {r:Bundle bone} or woven bone ③ Contains relatively {r:more cells} per unit than mature bone
 
 ## Periosteum · Endosteum | 골막과 골내막 | 22-23 | 기능 2 · 층 구조
 > 뼈의 바깥 싸개(골막, 2층)와 안쪽 안감(골내막, 1층) — 둘 다 새 osteoblast의 공급원
@@ -248,8 +248,8 @@ M: Periosteum = {r:outer fibrous} + {r:inner cellular}(osteoprogenitor) + {r:Sha
 - 필기 흐름: MSC → Ob → osteoid → 광화 → woven bone → lamellar bone → {r:osseointegration}.
 - 하악은 대표적 막성골, 그중 {r:condyle}에서만 endochondral → 하악의 길이 성장(필기).
 F: 24=Bone healing 2 기전
-M: Endochondral: ① {r:cartilage model} ② long bone {r:epiphyseal plate} ③ 하악 {r:condylar head} ④ 길이 성장
-M: Membranous: ① {r:primary bone healing} ② MSC → osteoblast → {r:osteoid} → 광화 ③ calvaria·facial bones·clavicle·{r:mandible} / 임플란트 주위 골생성 = {r:membranous}
+M: Endochondral: ① {r:cartilage model} serves as the precursor of the bone ② {r:Epiphyseal plates} in long bones ③ {r:Condylar head} of the mandible ④ For growth in length
+M: Membranous: ① {r:primary bone healing} ② differentiation of mesenchymal cells into osteoblasts → {r:osteoid} → mineralization of osteoid ③ Calvaria·most of facial bones·clavicle·{r:mandible} / 임플란트 주위 골생성 = {r:membranous}
 
 ## Osseointegration — 3 Phases ★ | 골유착의 정의와 3단계 | 25-27 | ★ 교수 예고 · 23 서술 · 24 객관식 | jb=R07,Q16
 > 골친화기(혈병 → woven, 1달) → 골전도기(woven → lamellar, 2~3개월) → 골적응기(3~4개월 이후 remodeling)
@@ -290,7 +290,7 @@ U: 식립 직후엔 mechanical stability가 있지만 {r:3-4주}간 bone remodel
 F: 26=골전도기·골적응기와 그림 8-1, 27=필기 — 3단계 실제 과정
 M: 정의: ordered, {r:living bone}과 {r:load carrying implant} 표면의 {r:direct structural and functional connection}(Branemark {r:1960년대 초})
 M: 역사·분류: 1960년대 초 Branemark = {r:광학 현미경} 하 임플란트 표면–생활골 {r:직접적인 결합} / 골유착 = {r:primary bone healing}
-M: 골친화기 7: ① 창상 골치유 반응과 유사 ② 혈액이 차고 {r:혈병} ③ 혈병 분해 → {r:fibrin} network ④ {r:1주} 이내 골아세포 이주·골화 ⑤ 압축골 초기 흡수 → {r:BMP} 유리 ⑥ osteoid → {r:woven bone} 침착 {r:1달} ⑦ wound bone {r:4~6주} dominant
+M: 골친화기 7: ① 창상으로 인한 골 치유 반응과 유사 ② 임플란트와 골 사이에 혈액이 차고 {r:혈병}이 형성 ③ 혈병의 분해와 {r:fibrin} network이 형성 ④ 식립 {r:1주} 이내에 골아세포들이 이주하여 골화 시작 ⑤ 식립 시 압축된 골의 초기 흡수가 일어나고 {r:BMP}가 유리되어 세포 이주 일어남 ⑥ 이주한 골세포들은 유골(osteoid)를 형성하고, 이러한 미성숙 결합조직기질에 {r:woven bone}이 침착되는 {r:1달} 과정이 거침 ⑦ Wound bone formation — dominant for first {r:4 to 6 weeks}
 M: 골전도기 = woven → {r:lamellar}({r:2~3개월}) / 골적응기 = {r:3~4개월} 이후 접촉 불변·{r:remodeling} 평생
 M: 골친화기 안정성 = {r:mechanical}만(biological 없음) / 생리적 하중 이하의 힘 → 골밀도 {r:증가}(JB 해설) / 함정: lamellar → woven(반대) · 3-4개월 이후 = {r:골적응기}
 
@@ -325,7 +325,7 @@ F: 29=Lekholm과 Zarb 골질 1~4
 U: 초기 고정은 대부분 cortical bone에서 얻음 → cortical이 얇은 D4는 드릴링 중 임플란트가 이미 박혀 있는 경우가 많다(필기).
 F: 30=Misch 골밀도 분류 표 18-1과 CT HU
 M: 성공 vs 실패: Osseointegrated = Titanium–Bone {r:직접} 맞닿음 / Non-Integrated = 사이에 {r:Connective Tissue} 개입
-M: Lekholm·Zarb {r:1985} 전치부 골질: ① 균등한 치밀골 ② {r:두꺼운} 치밀골 ③ {r:얇은} 피질골+강도 좋은 망상골 ④ {r:밀도 낮은} 망상골
+M: Lekholm·Zarb {r:1985} 전치부 골질: ① 균등한 치밀골 ② 치밀한 망상골을 둘러싸는 {r:두꺼운} 층의 치밀골 ③ 강도가 좋은, 치밀한 망상골을 둘러싸는 {r:얇은} 층의 피질골 ④ {r:밀도가 낮은} 망상골을 둘러싸는 얇은 층의 피질골
 M: Misch {r:1988}: D1 {r:oak} · D2 {r:pine} · D3 {r:balsa} · D4 {r:styrofoam}(posterior maxilla) · D5 osteoid
 M: 골질 성공률 {r:1·2·3 ≈ 95%} · 4 낮음 / 가장 좋은 뼈 = {r:2·3}(1번 = sclerosing으로 오히려 불리) / 4 = 골다공증·고령 → {r:immediate loading 피하고} 1·2차 수술 나눔
 

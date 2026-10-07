@@ -50,7 +50,7 @@ F: 3=과거엔 금기 — 지금은 infection만으로는 금기 아님
 | **Etc.** | {r:Osteomyelitis} / {r:Fibro osseous lesion} | periapical pathosis를 넘어선 여러 악골 질환(예: cemento-ossifying fibroma) |
 U: infection은 괜찮지만 osteomyelitis까지 간 상태라면 심을 수 있는가? — 골수염은 녹는 것과 딱딱해지는 것이 있다(뒤 골수염 카드).
 F: 4=병적 상태 X인 bone defect vs 병적 상태 O
-M: 과거 금기 5: ① {r:Medically compromised} ② {r:Poor bone density} ③ {r:Infection} ④ {r:Systemic bone disease} ⑤ {r:Trauma}
+M: 과거 금기 5: ① {r:Medically compromised} state ② {r:Poor bone density} ③ {r:Infection}(Periapical pathoses, Periodontal disease) ④ {r:Systemic bone disease} ⑤ {r:Trauma}(dirty wound or fracture)
 M: 지금: {r:infection is controllable} → 금기 아님 / 문제는 {r:bone healing 능력} 저하(BRONJ·radiation·osteomyelitis)
 
 @G ② 병적 골이어도 심을 수 있다 — 상대적 금기
@@ -234,7 +234,7 @@ F: 47=Normal Bone Remodelling — 사라지는 순서 보기, 48=resorption 20 d
 F: 46=OP — not critical · 담배보다 영향 적음
 M: remodeling 순서 = {r:osteoclast} 흡수 → {r:growth factors} → {r:osteoblast} 형성 (흡수 {r:20일} · 형성 {r:160일})
 M: osteoclast 없으면 → resorption X → osteoblast 작동 X → {r:골형성 X}
-M: Bisphosphonate가 {r:bone turnover}↓: ① {r:Killing Osteoclasts} ② osteoclast {r:recruitment} 억제 ③ osteoclastic {r:activity} 억제
+M: Bisphosphonate가 {r:bone turnover}↓: ① {r:Killing Osteoclasts} ② Inhibition of osteoclast {r:recruitment} on the bone surface ③ Inhibition of osteoclastic {r:activity} on the bone surface
 M: OP = {r:not critical}(담배보다 영향 적음) / Osteocyte 수명 {r:50-80 days}
 
 ## Bisphosphonates — Function · Mechanism | 약의 기능과 기전 — 뼈는 단단해지지만 낫지 않는다 | 53-55·102-105 | 기전
@@ -256,7 +256,7 @@ F: 55=Mechanism — osteoclast가 먹고 죽는다, ONJ5:5
 - 25 도입 필기(p.2-3): 임플란트는 titanium을 뼈에 박아 {r:osseointegration}을 유도하는 것 → 이때 중요한 것은 {r:골질과 골의 양} → 뼈의 질에 bisphosphonate가 challenge → 흔히 말하는 MRONJ가 생긴다.
 F: 53=ONJ and Bisphosphonates — 현재는 MRONJ
 E: R12 | 23년 객관식 "다음 중 가장 강한 bisphosphonate는?" → zoledronate — 약물별 potency는 25 자료(아래 Potency 카드)
-M: Bisphosphonate 기능 4: ① {r:pyrophosphate analog} ② {r:hydroxyapatite 친화} ③ {r:osteoclast 억제} ④ {r:bone resorption 억제}
+M: Bisphosphonate 기능 4: ① Inorganic {r:pyrophosphate} analogs ② Affinity for {r:hydroxyapatite} crystals ③ Inhibitor of {r:osteoclast} activity ④ {r:Bone resorption} inhibition
 M: osteoclast가 bisphosphonate를 {r:먹고 죽음} → 흡수 X → 전이 억제 + {r:bone healing도 억제}
 
 ## Fellow Experiment — Bisphosphonate in Bone Graft | 교수님 fellow 실험 — 뼈도 안 붙는데 임플란트도 붙을 리 없다 | 56·106-108 | 실험
