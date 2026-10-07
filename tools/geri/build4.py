@@ -674,7 +674,7 @@ def fchash(t):
         if not h: return o
 def txt_of(h_): return html.unescape(re.sub(r'<[^>]+>', '', h_))
 def fcnorm(t): return re.sub(r'[\s/·•,;:|①-⑳=↔()]+', '', t)   # 10-05 번호(①)·= ·괄호만 바뀌어도 같은 줄
-FCPREV = {}; FCBODY = {}
+FCPREV = {}; FCBODY = {}; FCBODY3 = {}
 def _fc_packs():
     """지금 docs 팩 + 배포된 main 팩(git) — 중간 빌드가 docs를 덮어써도 사용자가 쓰던 키를 놓치지 않게(10-05)"""
     out = [J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))]
@@ -691,6 +691,7 @@ try:
             _tc = txt_of(_r['h']); _k = 'R:' + _L['k'] + ':' + fchash(_r['t'] + '|' + _tc)
             FCPREV.setdefault((_L['k'], fcnorm(_r['t'] + '|' + _tc)), []).extend([_k] + list(_r.get('ok') or []))
             FCBODY.setdefault((_L['k'], fcnorm(_r['t'])), []).append((fcnorm(_tc), [_k] + list(_r.get('ok') or [])))
+            FCBODY3.setdefault((_L['k'], fcnorm(_r['t'])), []).append((fcnorm(_tc), [_k] + list(_r.get('ok') or []), _tc))
 except Exception as _e: print('FCPREV 없음', _e)
 EXN = [0, 0]
 def lec_card(L, j, c):
@@ -931,6 +932,12 @@ for L in LEC:
                 bg = lambda t: {t[i:i + 2] for i in range(len(t) - 1)}
                 B = bg(nb_); best = max(((2 * len(B & bg(ob_)) / (len(B) + len(bg(ob_)) or 1), ks_) for ob_, ks_ in FCBODY.get((L['k'], fcnorm(r_['t'])), []) if len(ob_) >= 10), default=(0, []), key=lambda z: z[0])
                 if best[0] >= 0.6: old_ = old_ + best[1]
+            if not old_:   # 10-07 사용자 '번호 항목은 원문 풀 워딩' — 낱말이 길어져도 같은 카드·같은 라벨(콜론 앞)·같은 번호 개수의 옛 줄이면 기록을 넘김
+                lab_ = lambda t: (lambda m: (m.group(1).strip(), len(re.findall('[①-⑳]', t))) if m else None)(re.match(r'^([^:：]{1,40})[:：]', t))
+                nl_ = lab_(tc_)
+                if nl_ and nl_[1] >= 2:
+                    cand = [ks_ for ob_, ks_, ot_ in FCBODY3.get((L['k'], fcnorm(r_['t'])), []) if lab_(ot_) == nl_]
+                    if len(cand) == 1: old_ = old_ + cand[0]
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
