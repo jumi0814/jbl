@@ -34,7 +34,7 @@
 갱신 강의는 guide/handoff/UPD26_REVIEW_BRIEF.md(그 안의 '⚡ 2~3줄'·🔑 120자는 낡음 — RULES 6·10이 이김, ⚡을 줄이지 않음), 새 강의는 guide/handoff/ESTH_검토_BRIEF.md의 일반 절(ESTH 고유의 '다른 강의와 걸친 문항'·3회차 PLAN/MAT 담당 절은 빼고)을 따른다. 회차별 초점:
  1회차 = 작성자 보고의 'annot·tables·pred 고칠 것'을 parts에 반영 · 자료 → 원고 역대조(1쪽부터 끝까지 이미지 — 자료 사실 40개 이상 대조, 보고에 수) · ⭐ ↔ JB 답 낱말 · 대조 판정·인용·쪽(apply_map26이 잘못 옮긴 'JB 참고 p.N'·다른 강의 쪽·25 필기 쪽 되돌리기) · 26에서 바뀐 수치·용어.
  2회차 = 쪽 단위 역대조 한 번 더(앞 회차가 안 본 각도) · 학습 효과(🔑만으로 뼈대, ⚡이 답 그대로 떠오르나, 표 머리) · 원고 ↔ annot ↔ tables ↔ pred 일치.
- 3회차 = 빨강 비율(카드 ≤30%·평균 10~20%·항목 절반 이상) · 화면 문항 id 0 · 마지막 쪽 훑기 · RULES.md 전 절 대조(특히 6·10절).
+ 3회차 = 빨강 비율(카드 ≤30%·평균 10~20%·항목 절반 이상) · 화면 문항 id 0 · 마지막 쪽 훑기 · RULES.md 전 절 대조(특히 6·10절) · 필기 구간 {n:} 누락·남발(QA 29).
 다른 강의에 걸친 문항(교차 ⭐)·같은 그림은 두 강의 문구가 같은지 — 다른 강의 파일은 고치지 말고 보고에 '다른 강의 몫: 파일:줄 · 지금 → 제안'.
 고칠 파일: tools/<sid>/lec_<KEY>.txt · work/<SID>/parts/{annot,tables,pred}_<KEY>.txt. 보고 work/<SID>/upd26/R<n+1>_<KEY>.md(새 강의는 work/<SID>/parts/R<n+1>_<KEY>.md) — 고친 것(전→후·근거 쪽) · 다른 강의 몫 · 사용자 확인 필요 · 평가.
 ```
@@ -52,7 +52,7 @@
 <공통 머리>
 과목 <SID> 강의 <KEY들>. guide/handoff/review_final/BREAK2_BRIEF.md(lec 영역) + BREAK3_BRIEF.md + NEST_BRIEF.md 그대로, 규칙은 RULES 3·4절.
 덤프: work/review_breaks2/<SID>_lec.md(메인이 D1 뒤에 새로 만듦 — 처음부터 끝까지, 나뉘어야 하는데 안 나뉜 긴 줄도) + `tools/dump_breaks.py <SID> <키>`(원고 줄 ↔ 화면 조각).
-고칠 줄: lec의 `-`·`=`·`E:`·`P:`·`U:` 줄(구분 기호·들여쓰기·번호만 — 낱말 그대로) · tables.txt 칸(그 강의 k= 블록, D4 뒤 — 구분 기호만). `M:`은 D1 몫(보지 않음).
+고칠 줄: lec의 `-`·`=`·`E:`·`P:`·`U:` 줄(구분 기호·들여쓰기·번호만 — 낱말 그대로) · tables.txt 칸(그 강의 k= 블록, D4 뒤 — 구분 기호만). `M:`은 D1 몫(보지 않음). `{n:…}` 필기 표시는 그대로 — 구분 기호를 바꿀 때 ' / '·①②가 {n:…} 안에 들어가면 {n:}을 조각마다 나눠 감쌈(RULES 9).
 검사: text_diff tools/<sid>/lec_<KEY>.txt(빠진 글자 0) · check_lec. 보고 work/review_breaks2/R_<SID>_<묶음>.md.
 ```
 
@@ -76,6 +76,6 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## E QA — 사용자 눈 점검 (과목 하나 · 고치지 않고 찾기만, 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~29 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read).
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~31 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read).
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B/C/D1~D4) 몫. 보고 work/review_final2/QA_<SID>.md. 고치지 않는다.
 ```

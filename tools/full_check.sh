@@ -4,7 +4,7 @@
 #   sh tools/full_check.sh --no-ui    → 브라우저 테스트·디자인 감사 빼고(빠른 확인)
 # 오래 걸린다(전체 약 40분) — Claude는 Bash run_in_background로 돌린다('&'로 띄우면 호출이 끝날 때 같이 죽음).
 cd "$(dirname "$0")/.." || exit 1
-PY=.venv/bin/python; L=work/_tmp/full_check.log; mkdir -p work/_tmp; : > $L
+PY=.venv/bin/python; L=work/_tmp/full_check.log; mkdir -p work/_tmp; : > $L; : > work/_tmp/full_check.fail
 UI=1; [ "$1" = "--no-ui" ] && UI=0
 # 과목 목록(새 과목은 여기 두 줄에 더함)
 SIDS="OMS1 CONS IMPL ANAT GERI PHARM ESTH"; sids=$(echo $SIDS | tr A-Z a-z)
