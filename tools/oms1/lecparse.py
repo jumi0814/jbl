@@ -40,7 +40,31 @@ def _kcls(core):
             if n == c or (min(len(n), len(c)) >= 2 and (n in c or c in n)): return 'k'
         return 'k k2'
     return f
+NOTE_O, NOTE_C = '\ue030', '\ue031'
+def _note_marks(s):
+    """10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} = 필기 구간 → 짝 맞는 자리만 표시(짝이 없으면 표시 없이 글자만)"""
+    if '{n:' not in s: return s
+    out = []; i = 0
+    while True:
+        j = s.find('{n:', i)
+        if j < 0: out.append(s[i:]); break
+        d = 0; k = j + 3; end = -1
+        while k < len(s):
+            if s[k] == '{': d += 1
+            elif s[k] == '}':
+                if d == 0: end = k; break
+                d -= 1
+            k += 1
+        if end < 0: out.append(s[i:j] + s[j + 3:]); break
+        out.append(s[i:j] + NOTE_O + s[j + 3:end] + NOTE_C); i = end + 1
+    return ''.join(out)
 def inline(s, ctx, first=True):
+    s = _note_marks(s)
+    h = _inline0(s, ctx, first)
+    if NOTE_O in h or NOTE_C in h:   # 글자는 그대로 — 표시는 CSS(::before/::after ✍)라 형광펜·플래시카드 글자에 안 섞임
+        h = h.replace(NOTE_O, '<span class="ntw" title="필기">').replace(NOTE_C, '</span>')
+    return h
+def _inline0(s, ctx, first=True):
     out = []; core = ctx.get('RED'); kc = _kcls(core) if core is not None else None
     for ti, tok in enumerate(CITE.split(s)):
         if tok.startswith('[['):
@@ -247,7 +271,7 @@ def _rebalance(parts, hl0=False):
 LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
 _IP = [None]   # ux3 트랙3 N1 — key_lines가 도는 동안만 조각 렌더를 바꾸는 갈고리(평소에는 inline 그대로)
 def _ip(p, ctx, li=False): return _IP[0](p, ctx, li) if _IP[0] else inline(p, ctx)
-def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|==|\*\*|\}', '', p)
+def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|\{n:|==|\*\*|\}', '', p)
 def _is_flow(parts):
     """가로 흐름(ul.kflow): 4조각↑ 중앙값 24자 미만 · ux2 D09 2~3조각은 합 100자 이하이거나 3조각 중앙값 22자 이하"""
     if len(parts) < 2: return False

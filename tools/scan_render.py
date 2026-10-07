@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools')); import jblpaths as J
 SIDS = [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
 PUA = re.compile(r'[-�]')
-LEAK = re.compile(r'\{r:|\{jb:|\[\[|\*\*|(?<![=<>!])==(?!=)')
+LEAK = re.compile(r'\{r:|\{n:|\ue030|\ue031|\{jb:|\[\[|\*\*|(?<![=<>!])==(?!=)')
 BLK = ['li', 'div', 'td', 'th', 'blockquote', 'p']
 os.makedirs(os.path.join(ROOT, 'work', 'review_scan'), exist_ok=True)
 tot = 0
