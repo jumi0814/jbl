@@ -139,7 +139,7 @@ F: 14=분광측색기 — 파장별 반사를 측정
 # Models of spectral reflectance (넘어가심)
 - **Kubelka-Munk (K-M) theory** — The K-M theory characterizes **colorants** in a mixture.
 F: 15
-M: 투과도를 줄이는 두 과정 = {r:Absorption}(molecular interaction) / {r:Scattering}(particles·air bubbles) — 흡수된 빛은 {r:열}로 · 산란제 {r:titanium dioxide}·{r:calcium carbonate}
+M: 투과도를 줄이는 두 과정 = {r:Absorption}(molecular interaction) · {r:Scattering}(particles·air bubbles) — 흡수된 빛은 {r:열}로 · 산란제 {r:titanium dioxide}·{r:calcium carbonate}
 M: 큐브: 검정 = 모든 파장 {r:흡수} / 흰색 = 모든 파장 {r:산란} / 빨강 = {r:적색만 산란}
 M: 분광반사율: 물체의 색 = {r:body reflectance}(absorption·scattering) / 측정 = {r:reflectance spectrophotometer}
 M: 표면: 거칠거나 기포 → 산란 → {r:etching}하면 {r:chalky white}(명도↑ → 색상에 영향)
@@ -242,7 +242,7 @@ F: 21=공간적 대조와 시간적 대조
 | p.25 체스판 A·B | {r:같은 회색} | B는 원기둥 그림자 때문에 어두워진 것 → 원래 흰색이라 보정(착시) |
 | p.26 흑백 인물 사진 | — | 어떤 조명 하에서도 우리는 색상을 인식할 수 있다 |
 F: 22=어두운 배경의 회색 박스가 더 밝게 보인다, 23=조명이 달라도 같은 큐브로 인식, 24=잘라 보면 둘 다 회색, 25=그림자 속 B를 흰색이라고 뇌가 보정, 26
-M: Contrast = {r:Spatial}(옆 색·착시) / {r:Temporal}(직전 색·보색)
+M: Contrast = {r:Spatial}(옆 색·착시) · {r:Temporal}(직전 색·보색)
 M: Color constancy = 조명이 달라도 {r:뇌가 보정} — 카메라 {r:white balance}
 M: 예: 큐브·체스판 A와 B = 실제로는 {r:같은 회색}
 M: 이름 주의: p.21 Temporal = p.99 {r:Successive contrast} / p.98 Spatial contrast = {r:가까울수록 밝게}(p.21 Spatial과 다름)
@@ -442,7 +442,7 @@ F: 70=조건등색 — daylight에선 같고 tungsten에선 다름
 M: 측색 장비 4 = ① {r:Tristimulus colorimeter} ② {r:Spectroradiometer} ③ {r:Spectrophotometer} ④ {r:Digital camera}
 M: 색차계: 원리 = {r:필터}(RGB → XYZ) · {r:프리즘이 없어서} 파장별 반사율 ✗ / 장점 = {r:저렴}·간단 / 단점 = {r:metamerism 측정 불가} · {r:Repeatability is poor}(aging of detectors)
 M: 정의(21·20·19년 단답): {r:조건등색}({r:metamerism}) = {r:조명}이 달라지면 물체 색이 달라 보이는 현상 — {r:파장별 반사율}이 달라서
-M: 예: {r:daylight}에선 같은 빨간 공 두 개 → {r:tungsten}에선 빨강·자홍 / 색차계 = 측정 불가 ↔ 분광측색기 = {r:평가 가능}
+M: 색차계 = 측정 불가 ↔ 분광측색기 = {r:평가 가능} / 예: {r:daylight}에선 같은 빨간 공 두 개 → {r:tungsten}에선 빨강·자홍
 
 ## Spectrophotometer · Spectroradiometer · Digital Camera | 분광측색기(표준) · TSR(cross-media) · 카메라(측정 ✗) | 71-78 | 조건등색 평가 · cross-media
 > 프리즘으로 분광하는 spectrophotometer가 표준(조건등색까지 평가) — 멀리서 재는 TSR은 모니터 색까지, 카메라는 측정 장비로 못 쓴다
@@ -458,7 +458,7 @@ F: 71=프리즘이 있어 파장별 반사율을 알 수 있음, 72=Metamerism�
 # Spectroradiometer (TSR)
 - Intervals : 5, 10, or 20 nm · {r:Telespectroradiometer (TSR)}.
 - {n:원리는 같지만(프리즘 분광) spectrophotometer가 시편에 대고 찍는다면 spectroradiometer는 {r:멀리서} 자체조명 없이 현재 조명으로 측정(필기)}.
-- Advantage: {r:Actual condition} · {r:All forms of color} (surface and self-luminous) ⇒ {r:cross-media color reproduction} (e.g., monitor against print).
+- Advantage: {r:Actual condition} / {r:All forms of color} (surface and self-luminous) ⇒ {r:cross-media color reproduction} (e.g., monitor against print).
 - Caution : {r:position} — {n:위치가 틀어지면 안 돼서 정밀도는 좀 떨어짐(필기)}.
 - 필기: {n:실제 사람이 보는 것과 유사 · 액체·고체·프린팅된 것·모니터 색을 모두 측정 → 디스플레이 회사들이 갖고 있다 · 모니터의 노란 글씨를 spectrophotometer는 검게(스크린은 흰색), radiometer는 눈에 보이는 노란색으로 찍음}.
 P: "장점: Cross-media (중요)"(필기).
@@ -535,7 +535,8 @@ F: 87=조명의 위치에 따라 광택이 다르다
 - {n:표면 거칠기도 색상에 영향 — 표면이 거칠면 하얗게 보임(p.20 필기) · 이에 따라 색상이 달라 보임(필기)}.
 F: 88=표면 거칠기도 색상에 영향
 M: 정의: Gloss = {r:정반사} · angular selectivity of {r:reflectance} — physical·physiologic·psychological
-M: GU: nonreflected {r:0 GU} · perfect mirror {r:1000 GU at 60°} — 각도를 정해 측정 / 치아 = {r:조명의 위치}에 따라 광택이 다름
+M: GU: nonreflected {r:0 GU} · perfect mirror {r:1000 GU at 60°} — 각도를 정해 측정
+M: 치아 = {r:조명의 위치}에 따라 광택이 다름
 M: Surface texture = ① {r:Roughness}(미세) ② {r:Waviness}(마멜론) ③ {r:Form}(모양) / 표면이 거칠면 {r:하얗게} 보임 → 색에 영향
 
 ## Opalescence · Fluorescence · Phosphorescence | 치아가 빛을 바꾸는 세 현상 — 유백광·형광·인광 | 89-95 | 수복물에 재현 | jb=S14,R06,S04
@@ -577,7 +578,7 @@ F: 95=인광 — 우리가 말하는 야광
 M: Opalescence = {r:짧은 파장 산란} — 반사 {r:bluish} · 투과 {r:orange/brown}(하늘·노을과 같은 원리) / 치아 {r:HA}가 단파장 산란 → 수복물에 입자 조절로 재현
 M: Fluorescence = 흡수 후 {r:더 긴 파장}으로 방출 · {r:10⁻⁸ sec} 이내 · UV → bluish / 치아에도 있음 → {r:composite resin에 형광 물질}
 M: Phosphorescence = 소스 제거 후에도 지속 {r:0.001 s ~ 1 day}(야광)
-M: 함정(23년): ⚠ opalescence 정의 둘: 안진수 = {r:짧은 파장 산란} / 이창하 = enamel {r:transmit red-orange · reflect blue-violet} → 23년 JB 답 '빛의 산란으로 나타나는 현상' = 옳지 않은 것
+M: 함정(23년) ⚠ opalescence 정의 둘: 안진수 = {r:짧은 파장 산란} / 이창하 = enamel {r:transmit red-orange · reflect blue-violet} → 23년 JB 답 '빛의 산란으로 나타나는 현상' = 옳지 않은 것
 
 @G ⑦ 보는 조건 — 대조 효과·관찰자·shade 비교
 ## Areal · Spatial · Successive Contrast | 임상에서 치아가 달라 보이는 대조 효과 | 96-100 | shade 선택 · 푸른 에이프런 | jb=Q20
