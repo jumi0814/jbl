@@ -164,8 +164,8 @@ P: 💬 "Warfarin therapy를 받는 환자는 2-3 정도이고, 이보다 높을
 U: PT는 보통 INR이라는 숫자로 표현 — ISI는 제조 회사에 따라 달라지는 숫자(필기).
 F: 13=PT 측정과 INR
 M: PT 측정: ① blood drawn into liquid {r:sodium citrate}(anticoagulant · binding Ca2+) ② {r:Centrifuge} → separate blood cells from plasma ③ add {r:Ca2+} → reverse sodium citrate action ④ add {r:tissue factor (factor III)} → extrinsic pathway at 37°C ⑤ measure clotting time(PT {r:10 – 14 sec})
-M: INR = (PT환자/PT정상)^{r:ISI} / 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0}
-M: 함정: ISI는 곱 ✗ → {r:지수}(raised to the power · 제조사 값) / 💬 warfarin 2-3 "이 숫자를 기억"
+M: INR = (PT환자/PT정상)^{r:ISI} / 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0} / 💬 warfarin 2-3 "이 숫자를 기억"
+M: 함정: ISI는 곱 ✗ → {r:지수}(raised to the power · 제조사 값)
 
 ## Lab Results by Condition — Table 9.4 | 치료·질환별 선별 검사 변화 | 14 | 표
 > 어디가 늘어나는지 보면 무슨 약·병인지 보인다 — aspirin은 BT, coumarin은 PT, heparin은 aPTT
@@ -225,7 +225,8 @@ F: 16=VKA·DOAC·LMWH 작용 부위, 17
 | 모니터링 | {r:필수}(INR) | {n:{r:적게} · 예측 가능성↑} |
 E: HM03,HM11 | 24·23·22·20년 서술 "(1) Warfarin과 dabigatran의 작용기전 차이 (2) dabigatran의 장점" → gamma carboxylation 억제 vs 직접 factor II 저해 / ==예측 가능하고 용량이 정해져 있으며, 반감기가 짧은 장점== — ⚠ 25 근거는 '모니터링 적게'까지
 - 증례 Mr. J(p.58)의 "warfarin → dabigatran" 전환이 이 비교의 출처 — 22·21년 증례 문항은 마지막 카드.
-M: 적응증(thromboembolic events): ① {r:DVT} ② {r:PE} ③ {r:NVAF} ④ stroke ⑤ myocardial infarction / 부작용 = {r:prolonged bleeding}
+M: 적응증(thromboembolic events): ① {r:DVT} ② {r:PE} ③ {r:NVAF} ④ stroke ⑤ myocardial infarction
+M: 부작용 = {r:prolonged bleeding}
 M: 분류: VKA {r:warfarin} / DOAC {r:dabigatran = IIa} · {r:-xaban = Xa} / heparin + {r:AT III}
 M: 기전 차이(24·23·22·20 서술): warfarin = {r:γ-carboxylation 억제}(새 응고인자 생성 방해) ↔ dabigatran = {r:factor IIa 직접} 저해
 M: Warfarin 느린 이유: 기존 인자 {r:degradation 후} 개시 · 초기 {r:protein C·S} 먼저 → {r:pro-coagulation} → 모니터링 필수

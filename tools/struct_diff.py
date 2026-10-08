@@ -18,7 +18,11 @@ for f in sorted(os.listdir(D)):
     if old == new: continue
     A, B = collections.Counter(norm(old)), collections.Counter(norm(new))
     ch = sum(1 for x, y in zip(old.split('\n'), new.split('\n')) if x != y)
-    if A == B: print(f'✓ {f}: 글자 그대로(구조만) · 바뀐 줄 약 {ch}'); continue
+    TK = lambda t: collections.Counter(re.findall(r'[^\s/·•①-⑳:：]+', ''.join(PRE.sub(' ', l) + ' ' for l in t.split('\n'))))
+    if A == B:
+        ta, tb = TK(old), TK(new)
+        if ta != tb: print(f'⚠ {f}: 글자는 그대로지만 띄어쓰기가 바뀐 낱말 — 늘어남 {list((tb - ta).elements())[:6]} · 줄어듦 {list((ta - tb).elements())[:6]}'); continue
+        print(f'✓ {f}: 글자 그대로(구조만) · 바뀐 줄 약 {ch}'); continue
     bad += 1; plus, minus = B - A, A - B
     print(f'✗ {f}: 늘어난 글자 {dict(plus.most_common(12))} · 줄어든 글자 {dict(minus.most_common(12))}')
     ol, nl = old.split('\n'), new.split('\n')
