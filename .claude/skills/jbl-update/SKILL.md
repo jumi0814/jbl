@@ -57,6 +57,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 - 시작 전 메인: 빌드(`sh tools/full_check.sh --no-ui`, run_in_background) → 화면 덤프 `tools/dump_breaks2.py <SID>`(→ `work/review_breaks2/<SID>_lec.md`·`_jb.md`) · `tools/dump_jb.py <SID>`(→ `work/review_jb/<SID>.md`) · `tools/scan_render.py <SID>` → **기준본 다시 저장**: `tools/annot_diff.py <SID> --save` · 강의마다 `tools/text_diff.py tools/<sid>/lec_<KEY>.txt --save` · `text_diff tools/<sid>/tables.txt --save` · `pred.txt --save`.
 - 동시에(파일이 안 겹침): **D1 🔑⚡**(lec `=`·`M:`) · **D3 JB 해설**(과목 하나 — annot) · **D4 표·예상**(과목 하나 — tables·pred, pred 줄바꿈 포함).
 - D1이 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 → **D2 줄바꿈·번호·들여쓰기**(lec `-`·`=`·`E:`·`P:`·`U:` 줄 + tables.txt 칸의 구분 기호 — D4가 끝난 뒤 tables 차례).
+- D2·D3·D4가 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 → **D2b 구조 정돈**(과목 하나 — 위아래로 이어지는 내용이 떨어진 • 로 보이는 곳·엉뚱한 머리 아래 묶인 곳, `STRUCT_BRIEF.md`·RULES 6 '이어지는 내용은 한 줄에' · 검사 `tools/struct_diff.py` ✓).
 - 마지막에 메인이 `@TIP`(강의 박스 공부 전략 — `guide/handoff/TIP_BRIEF.md`)을 바뀐 강의마다 다시 씀(B1이 쓴 것은 덮어써도 됨).
 - 갱신 강의만 대상이어도 D1·D2는 그 강의의 **모든 카드**.
 

@@ -126,6 +126,16 @@ def yr_badge(q, big=True):
     if not n: return '<span class="ybadge n0">연도 표기 없음</span>'
     lab_ = " · ".join(YR(y) for y in ys) if (big and n <= 6) else (" · ".join(YR(y) for y in ys[:4]) + (f" … {YR(ys[-1])}" if n > 4 else ""))
     return f'<span class="ybadge n{min(n,3)}" title="{" · ".join(YR(y) for y in ys)}"><b>{lab_}</b><i>{n}회 출제</i></span>'
+def top_li(r_, fk=None):   # ux2 fixB flow V08(B안): ' / '로 나뉜 한 줄 = 한 판정(키 하나) — 여러 li를 한 묶음(.mg)으로 · 10-08 맨 바깥 li만(안쪽 ①② 목록·하위 목록 li에는 붙이지 않음 — 줄간격 층이 섞이던 것)
+    tops, d = [], 0
+    for m in re.finditer(r'<(/?)(ul|ol|li)\b([^>]*)>', r_):
+        if m.group(2) != 'li': d += -1 if m.group(1) else 1
+        elif not m.group(1) and d == 0: tops.append(m)
+    n, out, last = len(tops), '', 0
+    for j, m in enumerate(tops):
+        cm = re.search(r'class="([^"]*)"', m.group(3)); cl = ((' mg' + (' mg0' if j == 0 else (' mgz' if j == n - 1 else ''))) if n > 1 else '') + ((' ' + cm.group(1)) if cm else '')
+        out += r_[last:m.start()] + '<li' + (f' data-fk="{fk}"' if fk else '') + (f' class="{cl.strip()}"' if cl.strip() else '') + '>'; last = m.end()
+    return out + r_[last:]
 def go(i, txt, cls='link', src=''): return f'<button class="{cls}" data-go="{i}"{f" data-src=\"{src}\"" if src else ""}>{txt}</button>'
 
 CITE_BTN = re.compile(r'<button class="cite[^"]*" data-k="[^"]*" data-p="[^"]*">.*?</button>')
@@ -507,7 +517,7 @@ def qcard(q, idx):
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
         key_ = next((v for t, v in c_['body'] if t == 'K'), '')
         m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
-        rec_ = ''.join(lecparse.render_recall(x, ctx) for x in c_['recall'])
+        rec_ = ''.join(top_li(lecparse.render_recall(x, ctx)) for x in c_['recall'])   # 10-08 📖 카드 ⚡도 같은 줄 조각 = .mg 묶음(줄간격 층)
         a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{lecparse.render_keybox(key_, ctx) if key_ else esc(c_["gist"])}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
@@ -763,16 +773,6 @@ def lec_card(L, j, c):
         def mli(x):   # ux2 D03 ⚡ 줄마다 플래시카드와 같은 키(data-fk — 복습 정렬·플래시카드 기록 호환) · ux4 B1-5 줄 끝 ○✕는 없앰(카드 단위 알아요/몰라요·플래시카드는 그대로)
             r_ = lecparse.render_recall(x, ctx); fk = 'R:' + k + ':' + fchash(c['en'] + '|' + txt_of(r_))
             return top_li(r_, fk)
-        def top_li(r_, fk):   # ux2 fixB flow V08(B안): ' / '로 나뉜 한 줄 = 한 판정(키 하나) — 여러 li를 한 묶음(.mg)으로 · 10-08 맨 바깥 li만(안쪽 ①② 목록·하위 목록 li에는 붙이지 않음 — 줄간격 층이 섞이던 것)
-            tops, d = [], 0
-            for m in re.finditer(r'<(/?)(ul|ol|li)\b([^>]*)>', r_):
-                if m.group(2) != 'li': d += -1 if m.group(1) else 1
-                elif not m.group(1) and d == 0: tops.append(m)
-            n, out, last = len(tops), '', 0
-            for j, m in enumerate(tops):
-                cm = re.search(r'class="([^"]*)"', m.group(3)); cl = ((' mg' + (' mg0' if j == 0 else (' mgz' if j == n - 1 else ''))) if n > 1 else '') + ((' ' + cm.group(1)) if cm else '')
-                out += r_[last:m.start()] + f'<li data-fk="{fk}"' + (f' class="{cl.strip()}"' if cl.strip() else '') + '>'; last = m.end()
-            return out + r_[last:]
         h.append(f'<div class="co c-mem"><div class="ct">⚡ 암기{tip}<button class="memqz noann" data-memqz="1" aria-label="가리기"></button></div><ul>{"".join(mli(x) for x in c["recall"])}</ul></div>')
     h.append('<div class="rvj noann"><button data-rv="o" aria-label="알아요"></button><button data-rv="x" aria-label="몰라요"></button></div></div></article>')
     thumb = ''

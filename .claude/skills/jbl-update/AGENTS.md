@@ -56,6 +56,14 @@
 검사: text_diff tools/<sid>/lec_<KEY>.txt(빠진 글자 0) · check_lec. 보고 work/review_breaks2/R_<SID>_<묶음>.md.
 ```
 
+## D2b 구조 정돈 — 이어지는 내용이 떨어져 보이는 곳 (과목 하나 · D1·D2·D3 뒤, 메인이 빌드·덤프를 새로 만든 다음)
+```
+<공통 머리>
+과목 <SID>. guide/handoff/review_final/STRUCT_BRIEF.md 그대로(RULES 6 '이어지는 내용은 한 줄에', QA 33). 대상 lec_*.txt 모든 줄 · annot.txt · tables.txt · pred.txt.
+덤프 work/review_breaks2/<SID>_lec.md · <SID>_jb.md 전수 · 줄 미리 보기 tools/render_line.py.
+검사: tools/struct_diff.py <SID> 모든 파일 ✓(글자 그대로) · check_lec ✗0. 보고 work/review_final2/ST_<SID>.md.
+```
+
 ## D3 다듬기 — JB 해설 (과목 하나 · annot.txt만)
 ```
 <공통 머리>
@@ -76,6 +84,6 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## E QA — 사용자 눈 점검 (과목 하나 · 고치지 않고 찾기만, 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~31 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read).
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~33 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read).
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B/C/D1~D4) 몫. 보고 work/review_final2/QA_<SID>.md. 고치지 않는다.
 ```
