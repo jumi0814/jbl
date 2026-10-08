@@ -68,7 +68,8 @@ async def forward(b, tag, seed, oldu):
     dl = [d for d, o, n in zip([D1, D2, D3], old, new) if o[1] != n[1]]
     ok(not dl, f'{tag} 강의별 tLec 같음 {dl}')
     hm = lambda s: (lambda a: int(a[0]) * 60 + int(a[1]))(s.strip().split()[0].split(':'))   # ux4 묶음2 알약 '0:15:00 대기' ↔ 옛 '00:15:00'
-    ok(hm(clk_old) == hm(clk_new), f'{tag} 오늘 시계 {clk_old} → {clk_new}')
+    if datetime.datetime.now().hour < 6: print(f'  SKIP {tag} 오늘 시계 비교 — 새벽 0~6시엔 옛 허브(아침 6시 경계 없음, 10-03 전)와 새 허브의 오늘이 달라 비교하지 않음 ({clk_old} · {clk_new})')   # 10-08
+    else: ok(hm(clk_old) == hm(clk_new), f'{tag} 오늘 시계 {clk_old} → {clk_new}')
     if tag == '2차':
         band = await pg2.evaluate("(document.querySelector('.hband')||{}).textContent||''")
         nav = await pg2.evaluate("(document.querySelector('#nav')||{}).textContent||''")   # 병합: 묶음 2 메뉴에는 .nvdd가 없음 — 메뉴 전체 글자로

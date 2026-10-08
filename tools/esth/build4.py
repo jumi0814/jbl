@@ -136,6 +136,14 @@ def top_li(r_, fk=None):   # ux2 fixB flow V08(B안): ' / '로 나뉜 한 줄 = 
         cm = re.search(r'class="([^"]*)"', m.group(3)); cl = ((' mg' + (' mg0' if j == 0 else (' mgz' if j == n - 1 else ''))) if n > 1 else '') + ((' ' + cm.group(1)) if cm else '')
         out += r_[last:m.start()] + '<li' + (f' data-fk="{fk}"' if fk else '') + (f' class="{cl.strip()}"' if cl.strip() else '') + '>'; last = m.end()
     return out + r_[last:]
+def _top_pieces(h):
+    """⚡ 줄 HTML의 맨 바깥 li마다 안쪽 HTML(' / ' 조각) — 10-08 플래시카드 기록 잇기"""
+    out, d, st = [], 0, None
+    for m in re.finditer(r'<(/?)(ul|ol|li)\b[^>]*>', h):
+        if m.group(2) != 'li': d += -1 if m.group(1) else 1; continue
+        if d == 0 and not m.group(1): st = m.end()
+        elif d == 0 and m.group(1) and st is not None: out.append(h[st:m.start()]); st = None
+    return out
 def go(i, txt, cls='link', src=''): return f'<button class="{cls}" data-go="{i}"{f" data-src=\"{src}\"" if src else ""}>{txt}</button>'
 
 CITE_BTN = re.compile(r'<button class="cite[^"]*" data-k="[^"]*" data-p="[^"]*">.*?</button>')
@@ -948,6 +956,10 @@ for L in LEC:
                 if nl_ and nl_[1] >= 2:
                     cand = {ks_[0]: ks_ for ob_, ks_, oh_ in FCBODY3.get((L['k'], fcnorm(r_['t'])), []) if lab_(oh_) == nl_ and ks_[0] != nk_}   # 지금 docs 팩의 자기 줄은 빼고(배포 팩과 겹침)
                     if len(cand) == 1: old_ = old_ + list(cand.values())[0]
+        if True:   # 10-08 구조 정돈(앞 규칙과 상관없이 늘 봄 — 지난 빌드가 넘긴 키가 있어도): 두 ⚡ 줄을 합치며 조각 사이에 다른 조각이 끼어도 — 옛 줄의 ' / ' 조각(맨 바깥 li)이 모두 새 줄 안에 있으면 기록을 넘김
+            for ob_, ks_, oh_ in FCBODY3.get((L['k'], fcnorm(r_['t'])), []):
+                tops_ = [fcnorm(txt_of(h_)) for h_ in _top_pieces(oh_)]
+                if ks_[0] != nk_ and ks_[0] not in old_ and len(tops_) >= 2 and all(len(x) >= 4 and x in fcnorm(tc_) for x in tops_): old_ = old_ + ks_
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
