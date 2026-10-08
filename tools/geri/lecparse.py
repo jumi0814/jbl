@@ -226,7 +226,7 @@ def split_enum(s):
     return None
 def split_lead(s):
     m = re.match(r'^([^:：=/]{2,46}?)\s*[:：]\s+(.+)$', s)
-    if m and len(m.group(2)) > 60 and not re.search(r'https?$', m.group(1)): return m.group(1), m.group(2)
+    if m and len(m.group(2)) > 60 and not re.search(r'https?$', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'): return m.group(1), m.group(2)   # 10-08 괄호 안 콜론(…(필기: …)에서 머리를 자르지 않음
     return None
 def _facts(parts): return len(parts) >= 2 and min(len(_plain(p).strip()) for p in parts) >= 4 and sum(1 for p in parts if re.search(r' = | → |: ', _plain(p))) * 2 >= len(parts)
 def segments(s, min_len=14):

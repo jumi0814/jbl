@@ -177,7 +177,7 @@ def astruct(s, lvl=0):
     sub = lambda ps: _ul([astruct(x, lvl + 1) for x in _pmerge(lecparse._rebalance(ps))])
     blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in _pmerge(lecparse._rebalance(ps)))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
     # 1) 문장('. ' — p. 같은 약어 제외)
-    pos = [(i, 1) for i in _d0(s, '. ') if not lecparse.ABBR.search(s[max(0, i - 8):i + 1])]   # 10-04 해부 약어(n. a. lig. proc. …)·번호(1.)·Perio. 뒤에서 문장을 자르지 않음
+    pos = [(i, 1) for i in _d0(s, '. ') if not lecparse.ABBR.search(s[max(0, i - 8):i + 1]) and not re.search(r'(?:^|[\s(·,])[A-Z]$', s[max(0, i - 2):i])]   # 10-08 'C. Wax up · D. Putty'의 대문자 한 글자 + '.'는 문장 끝 아님   # 10-04 해부 약어(n. a. lig. proc. …)·번호(1.)·Perio. 뒤에서 문장을 자르지 않음
     ps = _cut(s, pos, 'L')
     if len(ps) >= 2 and min(len(x) for x in ps) >= 8: return blk(ps)
     # 1-2) 10-04 사용자 줄바꿈 전수(2차): 최상위 ' / '가 있으면 대시보다 먼저 — 'A — 설명 / B — 설명'이 대시에서 찢겨 'A' · '설명 / B' · '설명'으로 보이던 것
@@ -355,7 +355,7 @@ def _nopg_pre(t):
     i = min([k for k in (t.find('"'), t.find('“')) if k >= 0] or [-1])
     if 0 < i <= 40 and PGTOK.search(t[:i]): return _nopg(t[:i]) + ' ' + t[i:]
     return t
-QPART = re.compile(r'(?:은|는|이|가|을|를|에|의|로|도|와|과|면|고|며|서|게|인|한|된|던|할|될)$')
+QPART = re.compile(r'(?:은|는|이|가|을|를|에|의|로|도|와|과|면|고|며|서|게|인|한|된|던|할|될|므로)$')   # 10-08 '이므로' 뒤가 인용 상자와 떨어지던 것
 def _aitem_lis0(x, kind='A'):
     """대조(A)·주변부(M) 한 줄(HTML: 글자 + 인용 버튼 + ⚠💡) → li 안쪽 HTML 목록"""
     cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x)
