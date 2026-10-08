@@ -387,7 +387,7 @@ def render_block(v, ctx, depth=0):
     parts = segments(v)
     if parts and parts[0] != '→' and len(parts) >= 2 and parts == top:   # 10-08 사용자 '자가골 채취: 구내 … / 구외 …' — 첫 조각만 라벨(…:)이고 뒤 조각은 라벨 없음 = 그 라벨 아래 이어지는 내용 → 머리(klead) + 들여 쓴 목록(글자 그대로 — 라벨 뒤 띄어쓰기도 머리에 둠)
         m = MLAB.match(parts[0])
-        if m and not any(MLAB.match(p) for p in parts[1:]) and m.group(1).count('**') % 2 == 0 and m.group(1).count('==') % 2 == 0:
+        if m and not any(MLAB.match(p) or re.match(r'^[^=:：/(){}]{1,30}\s=\s', _plain(p)) for p in parts[1:]) and m.group(1).count('**') % 2 == 0 and m.group(1).count('==') % 2 == 0:   # 뒤 조각이 'X = …' 자기 머리면 짝(구강 내 6: … / 구강 외 = …)일 수 있어 묶지 않음(🔑·본문)
             return f'<div class="klead">{inline(m.group(1), ctx)} </div>' + _list_html(_rebalance([m.group(2)] + parts[1:]), ctx, depth, 'ul', 'klist kcont')   # 세로 목록(가로 흐름 kflow면 조각 안 '·'와 구분점이 섞여 보임)
     if parts: return _seg_html(parts, ctx, depth, v)
     return _ip(v, ctx)
