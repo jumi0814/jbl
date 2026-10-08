@@ -385,6 +385,10 @@ def render_block(v, ctx, depth=0):
             if inner:
                 return f'<div class="klead">{inline(lead, ctx)}</div>' + _seg_html(inner, ctx, depth, rest)
     parts = segments(v)
+    if parts and parts[0] != '→' and len(parts) >= 2 and parts == top:   # 10-08 사용자 '자가골 채취: 구내 … / 구외 …' — 첫 조각만 라벨(…:)이고 뒤 조각은 라벨 없음 = 그 라벨 아래 이어지는 내용 → 머리(klead) + 들여 쓴 목록(글자 그대로 — 라벨 뒤 띄어쓰기도 머리에 둠)
+        m = MLAB.match(parts[0])
+        if m and not any(MLAB.match(p) for p in parts[1:]) and m.group(1).count('**') % 2 == 0 and m.group(1).count('==') % 2 == 0:
+            return f'<div class="klead">{inline(m.group(1), ctx)} </div>' + _list_html(_rebalance([m.group(2)] + parts[1:]), ctx, depth)
     if parts: return _seg_html(parts, ctx, depth, v)
     return _ip(v, ctx)
 def _seg_html(parts, ctx, depth, raw=None):
@@ -458,9 +462,21 @@ def render_recall(x, ctx):
         m = MLAB.match(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게
         if m and m.group(2).strip(): return f'<b class="mlab">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
         return inline(r, ctx)
-    if len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14: return ''.join(f'<li>{R(r)}</li>' for r in rows)
-    if _facts(rows): return ''.join(f'<li>{R(r)}</li>' for r in rows)   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
-    return f'<li>{R(x)}</li>'
+    if not ((len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14) or _facts(rows)): return f'<li>{R(x)}</li>'   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
+    # 10-08 사용자 '자가골 채취: 구내 … / 구외 …가 다른 구분된 내용처럼 보인다' — 라벨(…:) 조각 뒤 라벨 없는 조각 = 그 라벨 아래 이어지는 내용 → 굵은 머리 + 들여 쓴 하위 목록(ul.msub · 글자 그대로)
+    groups = []
+    for r in rows:
+        if groups and not MLAB.match(r) and MLAB.match(groups[-1][0]): groups[-1].append(r)
+        else: groups.append([r])
+    out = ''
+    for g in groups:
+        if len(g) == 1: out += f'<li>{R(g[0])}</li>'; continue
+        sub = lambda rs: '<ul class="msub">' + ''.join(f'<li>{R(r)}</li>' for r in rs) + '</ul>'
+        e = _eol(g[0], ctx, 50)
+        if e: out += f'<li class="mhd">{e}{sub(g[1:])}</li>'; continue
+        m = MLAB.match(g[0])
+        out += f'<li class="mhd"><b class="mlab">{inline(m.group(1), ctx)}</b> {sub([m.group(2)] + g[1:])}</li>'
+    return out
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
 EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
 EXAM_FMT = re.compile(r'(?:서술형?|빈칸|객관식|단답형?|T/F|그림)(?:\s?(?:단답|빈칸|서술))?')

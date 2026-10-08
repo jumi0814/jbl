@@ -21,7 +21,7 @@ def flags(pieces):
         if i and re.match(r'^[a-z][a-z]+ [a-z]', q) and not re.search(r'[.:)!?]$', pieces[i-1].strip()): f.append(f'조각 {i+1}이 앞 조각 문장 중간(소문자로 이어짐)')
         if q.count('(') != q.count(')'): f.append(f'조각 {i+1} 괄호 짝 안 맞음')
         if q.count('"') % 2 or q.count('“') != q.count('”'): f.append(f'조각 {i+1} 따옴표 짝 안 맞음')
-        if len(q) <= 3 and not re.match(r'^[①-⑳\d]', q): f.append(f'조각 {i+1}이 너무 짧음({q!r})')
+        if len(q) <= 3 and not re.match(r'^[①-⑳\d]', q) and not q.endswith(':'): f.append(f'조각 {i+1}이 너무 짧음({q!r})')
         if i + 1 < len(pieces) and re.search(r'(각각|및|또는|와|과|의|에서|으로|로|을|를|이|가|은|는|—|→|,)$', q): f.append(f'조각 {i+1}이 이어질 말로 끝남')
     return f
 out_f, out_n = [], []

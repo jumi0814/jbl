@@ -762,12 +762,17 @@ def lec_card(L, j, c):
         tip = '' if MEMTIP.get(k) else ' <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small>'; MEMTIP[k] = 1
         def mli(x):   # ux2 D03 ⚡ 줄마다 플래시카드와 같은 키(data-fk — 복습 정렬·플래시카드 기록 호환) · ux4 B1-5 줄 끝 ○✕는 없앰(카드 단위 알아요/몰라요·플래시카드는 그대로)
             r_ = lecparse.render_recall(x, ctx); fk = 'R:' + k + ':' + fchash(c['en'] + '|' + txt_of(r_))
-            nli = r_.count('<li>')   # ux2 fixB flow V08(B안): ' / '로 나뉜 한 줄 = 한 판정(키 하나) — 여러 li를 한 묶음(.mg)으로 보이고 ○✕는 끝 줄에 하나
-            if nli > 1:
-                parts = r_.split('<li>'); r_ = parts[0] + ''.join(f'<li data-fk="{fk}" class="mg{" mg0" if j == 0 else (" mgz" if j == nli - 1 else "")}">' + t for j, t in enumerate(parts[1:]))
-            else:
-                r_ = r_.replace('<li>', f'<li data-fk="{fk}">')
-            return r_
+            return top_li(r_, fk)
+        def top_li(r_, fk):   # ux2 fixB flow V08(B안): ' / '로 나뉜 한 줄 = 한 판정(키 하나) — 여러 li를 한 묶음(.mg)으로 · 10-08 맨 바깥 li만(안쪽 ①② 목록·하위 목록 li에는 붙이지 않음 — 줄간격 층이 섞이던 것)
+            tops, d = [], 0
+            for m in re.finditer(r'<(/?)(ul|ol|li)\b([^>]*)>', r_):
+                if m.group(2) != 'li': d += -1 if m.group(1) else 1
+                elif not m.group(1) and d == 0: tops.append(m)
+            n, out, last = len(tops), '', 0
+            for j, m in enumerate(tops):
+                cm = re.search(r'class="([^"]*)"', m.group(3)); cl = ((' mg' + (' mg0' if j == 0 else (' mgz' if j == n - 1 else ''))) if n > 1 else '') + ((' ' + cm.group(1)) if cm else '')
+                out += r_[last:m.start()] + f'<li data-fk="{fk}"' + (f' class="{cl.strip()}"' if cl.strip() else '') + '>'; last = m.end()
+            return out + r_[last:]
         h.append(f'<div class="co c-mem"><div class="ct">⚡ 암기{tip}<button class="memqz noann" data-memqz="1" aria-label="가리기"></button></div><ul>{"".join(mli(x) for x in c["recall"])}</ul></div>')
     h.append('<div class="rvj noann"><button data-rv="o" aria-label="알아요"></button><button data-rv="x" aria-label="몰라요"></button></div></div></article>')
     thumb = ''
