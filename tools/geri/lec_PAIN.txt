@@ -99,7 +99,7 @@ U: 지역사회보다 병원에 있는 환자들이 통증을 더 많이 느끼�
 F: 10=1 in 5 elderly have pain, 12=만성통증은 75세 이후 감소, 13=Frailty index 추이, 14=구강안면통증 5증상, 15=Adjusted OR
 M: 전체(CDC 2006): ① {r:1 in 5} ② 65세↑ {r:18%} 진통제 상용 ③ {r:3/5}은 1년 이상 ④ 여:남 관절통 {r:10:7}
 M: 장소별: Community {r:25-56%} / Nursing home {r:45-80%} / 말기 질환 {r:>50%}
-M: 급성 vs 만성: Acute {r:5%} 일정 / Chronic {r:75세 이후↓}: ① 사망률도 높아져 건강한 노인만 남음 ② 인지 정도가 감소해 통증을 보고하는 경우가 적어짐
+M: 급성 vs 만성: Acute {r:5%} 일정 / Chronic {r:75세 이후↓} ① 사망률도 높아져 건강한 노인만 남음 ② 인지 정도가 감소해 통증을 보고하는 경우가 적어짐
 M: 구강안면 6개월: {r:toothache 26.8} > oral sores 26.2 > joint 15.5 > burning mouth 14.2 > face 9.3 / 모든 유형 {r:여 > 남} · {r:65-74세} 고점
 
 @G ② 평가가 어려운 이유 — 노인 통증의 틀
@@ -395,7 +395,7 @@ U: 젊은 사람이 일이 많아 밤에 못 자는 것과 별개로, 노인은 
 E: J13 | 20년 서술(탈) "노인이 되어 겪는 수면문제를 간략히 기술" → 5항목(circadian rhythm · primary sleep disorder · medical illness · medication/polypharmacy · dementia) — p.55 · 학습부: 다음 카드의 노인 수면 특징(증가·감소)을 써도 됨
 F: 55=Sleep problems of the elderly, 56=Sleep problems in older adults
 M: 수면 문제 5: ① {r:Circadian rhythm disorder} ② {r:Primary sleep disorder} ③ {r:Medical illness} ④ {r:Medication/polypharmacy} ⑤ {r:Dementia}
-M: 26: primary = ① {r:Insomnia} ② {r:Sleep-disordered breathing} ③ {r:Restless legs syndrome} / {r:Sleep disturbance ↔ Chronic pain}
+M: 26: {r:Sleep disturbance ↔ Chronic pain} / primary = ① {r:Insomnia} ② {r:Sleep-disordered breathing} ③ {r:Restless legs syndrome}
 
 ## Sleep Stage Distribution · The Sleep of the Elderly | 수면 단계 변화와 노인 수면의 특징 — 통증 역치 | 57-59,62-63 | 기출 ★ | jb=J04,J08
 > 좋은 건 줄고 나쁜 건 는다 — 침대엔 오래 있지만 덜 자고, 그만큼 통증 역치가 낮아진다
@@ -495,7 +495,7 @@ U: 잘 된 연구는 2-3회 반복해 first night 결과는 버리고 진행하�
 - Safety: 늘어진 전선에 넘어질 위험 · 배터리 기기의 감전 위험 · oximeter probe에 의한 화상 · 전극을 붙이고 운전할 경우 사고 위험 → {n:모든 주의사항을 설명}.
 F: 67=Epworth Sleepiness Scale, 68=Polysomnography, 69=First night effect, 70=Limitations of PSG, 71=Portable PSG 장단점, 72=고령이나 인지장애는 표준 PSG, 73=측정 채널, 74=Safety
 M: Epworth: {r:0-3 × 8 = 24} · {r:>10} 수면 문제 · critical = {r:TV 볼 때}
-M: PSG: {r:gold standard}(Dement·Raynal {r:1974}) / 한계: ① {r:First night effect} ② Technician, technology dependent ③ Episodic disorders may be missed ④ Night to night variability
+M: PSG: {r:gold standard}(Dement·Raynal {r:1974}) / 한계 ① {r:First night effect} ② Technician, technology dependent ③ Episodic disorders may be missed ④ Night to night variability
 M: Portable: 비용 {r:1/5-1/7} · 탈락 시 해결 불가 · {r:TST} 곤란 · 고령·인지장애 → {r:표준 PSG}
 M: 측정 채널: airflow는 {r:thermal + nasal pressure} 둘 다 / respiratory effort = {r:inductance plethysmography} / blood oxygen = {r:pulse oximetry}
 
@@ -574,7 +574,7 @@ M: COX-2: GI·platelet 부작용↓ 대신 {r:cardiovascular accident}
 > 신경병증성 통증에는 TCA·항경련제 — 잘 듣지만 구강건조·졸림·낙상이 따라온다
 = TCA(amitriptyline·desipramine) · {r:Duloxetine} · Anticonvulsants(gabapentin·pregabalin·{r:carbamazepine}) · SSRI {r:first line}
 # Tricyclic antidepressants
-- {r:amitriptyline, desipramine} — for neuropathic pain, depression, sleep disturbance · {r:not used often due to side-effects}.
+- {r:amitriptyline, desipramine} — for neuropathic pain, depression, sleep disturbance·{r:not used often due to side-effects}.
 - {r:Duloxetine}(Cymbalta) is newer antidepressant, FDA approved for neuropathic pain.
 P: TCA는 피하고 싶지만 유독 이 약이 잘 듣는 경우가 있다 — 그러나 {r:dry mouth} 때문에 왔거나 구강 내 궤양이 많으면 사용하지 말아야 한다(필기).
 U: 하루 종일 졸려도 크게 문제없다고 생각할 수 있지만 {r:낙상} 위험↑ → 약으로 인한 이차 외상 주의 · 처음 처방할 때는 짧은 주기로 처방해 event 확인.
