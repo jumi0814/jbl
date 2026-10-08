@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import jblpaths 
 a = sys.argv[1:]; ref = 'HEAD'
 if '--ref' in a: i = a.index('--ref'); ref = a[i + 1]; del a[i:i + 2]
 S = a[0].upper(); sid = S.lower(); D = os.path.join(J.TOOLS, sid)
-PRE = re.compile(r'^(?:[A-Z]{1,2}\d?:|=|-|#{1,3}|@[A-Z]+)\s?')
+PRE = re.compile(r'^\s*(?:[A-Z]{1,2}\d?:|=|-|#{1,3}|@[A-Z]+)\s?')
 STRUCT = re.compile(r'[\s/·•①-⑳:：]+')
 def norm(t): return STRUCT.sub('', ''.join(PRE.sub('', l) for l in t.split('\n')))
 bad = 0

@@ -6,7 +6,7 @@
 ## 1. 먼저 읽기 (전부)
 - `CLAUDE.md` — '절대 규칙'·'정리본 형식' 절
 - `guide/정리본_원칙.md` — 전체(사용자가 수십 번의 대화로 확정한 기준. 4번 반려/승인 예, 5번 카드 규칙, 7-1 색 절제, 7-4 점검 기준, 8번 체크리스트)
-- `tools/SPEC.md` 31~64행(`## lec_<키>.txt 문법`·`## 규칙`·`## 렌더링 규칙`)
+- `tools/SPEC.md`의 `## lec_<키>.txt 문법`·`## 규칙`·`## 렌더링 규칙` 절
 - 기준 원고(사용자 승인 — 이 밀도·형식보다 떨어지면 안 됨): `tools/oms1/lec_DD1.txt` 전체, `tools/cons/lec_FRC.txt` 앞 120줄
 - 같은 교수(이창하)의 다른 과목 원고 — 문체·밀도 참고: `tools/cons/lec_ADH.txt` 앞 80줄
 - 문항 대조 형식 예: `tools/cons/annot.txt` 앞 30줄 · 비교표 형식 예: `tools/cons/tables.txt` 앞 30줄 · 예상문제 형식 예: `tools/cons/pred.txt` 앞 20줄
