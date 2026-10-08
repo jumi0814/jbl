@@ -186,9 +186,11 @@ def astruct(s, lvl=0):
         m = re.match(r'^(.{4,80}?[:：])\s+(.+)$', ps[0])
         if m and not re.search(r'[()"“”]', m.group(1)): return f'<div class="klead">{lecparse.inline(m.group(1), ctx)}</div>' + blk([m.group(2)] + ps[1:])
         return blk(ps)
-    # 2) ' — ' (대시는 뒤 조각 첫머리에)
-    ps = _cut(s, [(i + 1, 1) for i in _d0(s, ' — ')], 'R')
-    if len(ps) >= 2 and min(len(x) for x in ps) >= 10: return blk(ps)
+    # 2) ' — ' (대시는 뒤 조각 첫머리에) — 10-08 ①②③ 나열 안의 대시에서는 자르지 않음(번호 목록이 가운데에서 찢기던 것 → 3) 나열로)
+    e0_ = lecparse.split_enum(s); c0_ = re.search(r'[①-⑳]', s); dp_ = _d0(s, ' — ')
+    if not (e0_ and e0_[2] and c0_ and dp_ and dp_[0] > c0_.start()):
+        ps = _cut(s, [(i + 1, 1) for i in dp_], 'R')
+        if len(ps) >= 2 and min(len(x) for x in ps) >= 10: return blk(ps)
     # 3) 나열
     e_ = lecparse.split_enum(s)
     if e_:
