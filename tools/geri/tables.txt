@@ -4,10 +4,12 @@ R: {r:Frailty}(노쇠) {jb:G11} | 노화에 따른 전반적인 기능저하로 
 R: Fried 5기준 {jb:G01} | {r:체중 감소} · {r:활력감소} · {r:허약} · {r:보행속도 감소} · {r:신체활동 감소} (한국형 노쇠측정 도구) | 24~20 매년 빈칸 — 24 신체활동 · 23 활력 · 22 보행속도 · 21 체중
 R: 노쇠의 종류 {jb:G07} | {r:Physical}({n:보통 노쇠}) · {r:Cognitive} · {r:Social} · Systemic/General ? · {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠 / {n:구강 노쇠 = 씹는/삼키는/말하는 기능이 떨어져 있는 어떤 상태(26 필기 p.3)}
 R: {r:Multimorbidity}(다중이환) | The coexistence of multiple chronic diseases / Prevalence {r:55 – 98%} / 결과 = disability and functional decline, poor quality of life, high health care cost | 노인 {r:90%} 1개↑ · 22% 2개 · {r:50%} 3개↑ / 최다 {r:고혈압·관절염} {jb:G06}
+R: Comorbidity(동반질환) | 세 원 diagram(p.1-5)의 한 원 — 동반질환 → 노쇠 → 장애(화살표) / {n:Multimorbidity(여러 질환 갖는 것)와 비슷한 용어(26 필기 p.1)} | —
 R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} / 약물 부작용 = 입원·사망의 주요 원인 | 21 빈칸 / {n:필기 5종류↑(super 10종류↑)} / 노인 37% 5개↑ 처방약
 R: 노인 만성질환 목록(p.7 그래프 순) {jb:G06} | {r:고혈압} · {r:관절염} · 고지혈증 · 요통 · 당뇨병 · 골다공증 · 위궤양 · 전립선비대증 · 백내장 · 뇌졸증/협심증 / 처방약: 노인 {r:60%} 3개↑ · {r:37%} 5개↑({n:필기: 노인의 1/3에서 5개 이상}) | 필기: {n:고혈압, 관절염 = 50% 이상이 갖고 있는 질환 · 정신질환은 조사 시 일부 빠져 있음 · 누워 있는 노인까지 합치면 훨씬 많음}
 R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 {r:모호·복잡} — 질병 다발성 + 다약제 복용 → 질환–질환 · 질환–약물 · 약물–약물 상호작용 | 20·19 "A와 B" = {r:질환 · 약물}
 R: {r:Geriatric syndrome}(노인증후군) {jb:G05} | 실금·우울·섬망·낙상·골다공증·감각변화·거동/보행장애·압창·수면장애·치매 — 여러 etiology/pathogenesis → {r:unified manifestation} | 24 서술(낙상 모식도 예) · 20 나열
+R: Disability(장애) | 세 원 diagram(p.1-5)의 한 원 — 노쇠 → 장애(화살표) / {n:Disorder = 질환 · Disability = 장애} | —
 R: {r:Sarcopenia}(근감소증) | 근육량 일정 이하 감소 + 근육 활동 일정 이하 감소가 동시에(필기) / {n:이와 같은 기준이 따로 있다(26 필기 p.1)} | {n:체중 감소 → 근육 소실 → sarcopenia(Fried 모식도)}
 R: Dependent · 노인 3분류 {jb:G02} | {n:자기 일상을 남에게 의존} / Functionally Independent · {r:Frail} · {r:Functionally Dependent} → 병원에 내원할 수 없는 환자의 증가 | 24·23·22 "한 집단으로 보면 안 되는 이유" = 치과 접근성이 다름
 N: 노쇠 · 동반질환 · 장애는 원래 각각 별개지만 겹친다(질환이 잦으면 노쇠 가능성↑, 노쇠가 심하면 장애 확률↑ — p.1 필기).
@@ -73,6 +75,7 @@ R: 타액선 기능의 50% 감소 | 0.20
 R: 타액선 기능의 75% 감소 | {r:0.10}
 N: Redundancy({n:여유 기능 — 26 필기}) = Biological backup · Overlapping functions · Multifunctionality. 필기 — 양쪽 이하선을 수술로 다 떼어도 매우 건조하지 않게 조절됨 · 비자극 시 타액분비율은 75%가 감소해야 문제 · 한 기능을 여러 물질이 수행(anti-fungal = peroxidase · Histatin · mucin · lysosyme) → 한 물질의 양이 적다고 질병의 원인으로 단정 ×.
 N: 26 형광(강조해 읽으신 칸) — 양측 악하선/설하선 비기능 0.10 · 편측 이하선, 양측 악하선/설하선 비기능 0.06 · 타액선 기능의 75% 감소 0.10 → 이하선(양측 0.32)보다 악하선/설하선 쪽이 분비율을 크게 떨어뜨림(p.13 이해 ③ '악하선 / 설하선 타액의 중요성'과 같은 줄기). [[SAL:11]] [[SAL:13]]
+N: Multifunctionality(p.11 원형 모식도) — 타액 성분들이 ① Anti-Bacterial ② Buffering ③ Digestion ④ Mineralization ⑤ Lubrication & Viscoelasticity ⑥ Tissue Coating ⑦ Anti-Fungal ⑧ Anti-Viral 기능을 겹쳐서 맡음. [[SAL:11]]
 
 #TBL 구강건조증 — 호소·관련 상태·좋은 문진 | k=SAL | src=[[SAL:12]]
 H: 구분 | 슬라이드 항목 | 포인트
@@ -248,9 +251,9 @@ R: **증례 교훈** | 20/F 외상 #21: {n:막혔다고 미백 → 통증·병�
 H: 항목 | 미백 중(산화) | 재변색 중(환원)
 R: 이름 | {r:Splotchy} {jb:K01} | {r:Dingy} (stage) {jb:K01}
 R: 무엇 | {n:치아 표면이 균일하게 밝아지지 않고 얼룩덜룩한 상태로 남아있는 것} | {n:재발도 radial surface가 한꺼번에가 아니라 부분적으로 staining}
-R: 기전 | incisal({n:dentin 가장 얇음}) → middle → cervical({n:가장 두꺼움}) 순으로 미백 진행(M. Lenhard 1996) · {u:그래프 x축 bleaching period · y축 E values(p.36)} | relapse(rebound) = {n:표면에 착색 물질이 다시 붙음} = {r:환원 과정} · {n:환원 = 재발(변색)(26 필기 p.51)}
-R: 대처 | 종료하지 말고 {r:continue bleaching}(p.67 item 9) · {n:4주에도 얼룩덜룩} → need more bleaching | {r:touch-up bleaching}으로 다시 산화 — 10년 후 재방문 증례 {r:1 week} touch-up {jb:K02}
-R: 끝·지속 | 종료 3 {jb:K01}: ① {r:No splotchy & no improvement of color for 2 weeks} ② {r:Mutual communication}(understanding of saturation point · Pt's vs Dr's expectation) ③ Shade shift {r:4-6 grades} more lighter than pre-Op / {n:1번 = even하게 미백 · 2번 = 우유같이 하얀 것은 불가능함을 설명(26 필기 p.42)} | initial color relapse {r:within 2 weeks} slightly · longevity {r:1~3 years} or permanent · {r:touch-up annual bleach}
+R: 기전 | incisal → middle → cervical 순으로 미백 진행(M. Lenhard 1996) · {u:그래프 x축 bleaching period · y축 E values(p.36)} / {n:incisal = dentin 가장 얇음 · cervical = 가장 두꺼움} | relapse(rebound) = {r:환원 과정} · {n:표면에 착색 물질이 다시 붙음 · 환원 = 재발(변색)(26 필기 p.51)}
+R: 대처 | 종료하지 말고 {r:continue bleaching}(p.67 item 9) · need more bleaching({n:4주에도 얼룩덜룩}) | {r:touch-up bleaching}으로 다시 산화 — 10년 후 재방문 증례 {r:1 week} touch-up {jb:K02}
+R: 끝·지속 | 종료 3 {jb:K01}: ① {r:No splotchy & no improvement of color for 2 weeks} ② {r:Mutual communication} is important(understanding of saturation point · Pt's expectation vs Dr's expectation) ③ Shade shift {r:4-6 grades} more lighter than pre-Op / {n:1번 = even하게 미백 · 2번 = 우유같이 하얀 것은 불가능함을 설명(26 필기 p.42)} | initial color relapse {r:within 2 weeks} slightly · longevity {r:1~3 years} or permanent · {r:touch-up annual bleach}
 R: 교수 강조 | {n:p.35 "굉장히 중요한 용어!"} | {n:p.51 "Splotchy, Dingy 둘 다 중요한 단어!!"}
 N: 20·19년 변형(괄호 (20,19))은 두 단어의 설명을 주고 명칭·기전·종료시점을 물었다. 23년 relapse 문항 JB 답의 '1-2주'는 JB 표현 — 슬라이드 증례는 1 week.
 N: 변형 대비 {jb:K01} — 설명 주고 명칭(20·19) ↔ 명칭 주고 설명: Splotchy = 미백(산화) 중 incisal → middle → cervical 순 부분 미백 / Dingy = 재변색(relapse = 환원) 중 부분 staining. 종료 시점 3의 숫자 ① 2 weeks(색 무변화 기간) ↔ ③ 4-6 grades(술전보다 밝아진 shade) 혼동 주의 · Home bleaching issues ⑨ Splotchy teeth → continue bleaching(p.67).
@@ -263,23 +266,23 @@ R: Exogenous(plaque·pellicle · 음식·음료·담배·차·chromogenic bacter
 R: Endogenous(TC·erythroblastosis fetalis·porphyria·sickle cell anemia·thalassemia) | {n:vital bleaching 반응↓} | {n:non-vital bleaching · 라미네이트·resin veneer · 잘 지워지지 않기에 bleaching보다는 restoration(26 필기 p.8)}
 R: {u:Amelogenesis imperfecta(Hypomaturation · Hypocalcification · Hypoplasia — p.9)} | — | {r:Esthetic restoration is recommended}
 R: TC Class I(light yellow·brown·gray · incisal 3/4 · no banding) | {r:good prognosis} | mild TC = ideal case
-R: TC Class II(deep yellow~brown·gray · no banding) | {r:variable prognosis} | banding이 없어 비교적 반응 잘함(필기) — {n:TC 변색 전반은 vital bleaching 6개월·15-20%(필기) · combination 각광} · {n:미백 기간에 따라 반응도가 달라짐(26 필기 p.15)}
+R: TC Class II(deep yellow~brown·gray · no banding) | {r:variable prognosis} | {n:banding이 없어 비교적 반응 잘함(필기) — TC 변색 전반은 vital bleaching 6개월·15-20%(필기) · combination 각광 · 미백 기간에 따라 반응도가 달라짐(26 필기 p.15)}
 R: TC Class III(dark gray or blue · {r:marked banding}) | {r:not response} | {r:laminate or walking bleaching}(단 1년 미백 C4→B3 성공 증례 p.48 · {u:같은 증례 p.39 Combination bleaching})
-R: Simple fluorosis(갈색) · brown fluorosis | {n:미백으로 어느 정도 해결} · fluorosis {r:about 80% response} | ideal case
-R: Opaque white(enamel dysmineralization) · white spots | {n:반응 ×} · white spots {r:not removed} | {n:home bleaching + microabrasion(HCl + abrasive) + 레진}
+R: Simple fluorosis(갈색) · brown fluorosis | fluorosis {r:about 80% response} · {n:미백으로 어느 정도 해결} | ideal case
+R: Opaque white(enamel dysmineralization) · white spots | white spots {r:not removed} · {n:반응 ×} | {n:home bleaching + microabrasion(HCl + abrasive) + 레진}
 R: Traumatic pulp necrosis | {n:walking bleaching 효과 좋음} | {n:교정적 정출 후 보철도 가능 · endo가 선행되어야 함(26 필기 p.23)}
 R: Secondary dentin by trauma(석회화 근관) | {n:vital bleaching 적응증} | {n:변색된 한 치아만 home bleaching}(single tooth · horizontal margin)
 R: Shade A(red-brown)·B(red-yellow) | {n:잘 반응} | {n:Shade guide 최명 {r:B1} · 최암 {r:C4}}
 R: Shade C(gray brown)·D(red-gray) · blue-gray | {n:반응 잘 안 함} | {n:전신질환 gray-blue → 전치부만 라미네이트 등}
-R: 나이·초기색 | {r:young & yellow > old with less yellow} / gender {r:similar} | {n:젊은이는 dentin tubule 직경이 커 미백제 침투 좋음} · 초기 a*(red)↑ → total color change↑
+R: 나이·초기색 | {r:young & yellow > old with less yellow} / gender {r:similar} | 초기 a*(red)↑ → total color change↑ · {n:젊은이는 dentin tubule 직경이 커 미백제 침투 좋음}
 N: 예후 한 줄 = Brown-orange-yellow than Blue-gray → Better prognosis(p.31). Ideal case = good dentition & OH · 2-5 shade shift · aging·smoking·food·mild TC·brown trauma·brown fluorosis(p.55).
 
 #TBL 미백의 종류 — home · office · combination · walking · microabrasion | k=BLE | src=[[BLE:47]] [[BLE:53]] [[BLE:56]] [[BLE:59]] [[BLE:61]] [[BLE:63]] [[BLE:71]] [[BLE:81]] [[BLE:87]] [[BLE:90]] [[BLE:92]] [[BLE:102]] [[BLE:103]] [[BLE:104]] [[BLE:109]] [[BLE:115]]
 H: 종류 | 약제·농도 | 방법·시간 | 핵심 주의
-R: Home bleaching(NGVB) | {r:10-15% carbamide peroxide} gel(safe & effective) · {u:제품(p.81-85): contrastpm 15% · Opalescence F 15% · Opalescence Regular 10% · VivaStyle 10% Carbamide Peroxide · NITE WHITE(Amorphous Calcium Phosphate)} | matrix(block-out reservoir · 소구치까지 · labial scalloped/lingual horizontal · 0.5-1 mm cover of gingival tissue(p.59)) · {r:1.5~2 hours / 2 times per day}({n:필기 2회/일 1-1.5시간}) · 1주 간격 {r:4~8 weeks} | overfilling·biting·양악 동시 × · overnight와 2 h/day 차이 없음 · {n:상악 먼저} · {n:과량 → 삼킬 수 있음 · 양악 동시 → TMJ 문제(26 필기 p.63)}
+R: Home bleaching(NGVB) | {r:10-15% carbamide peroxide} gel(safe & effective) · {u:제품(p.81-85): contrastpm 15% · Opalescence F 15% · Opalescence Regular 10% · VivaStyle 10% Carbamide Peroxide · NITE WHITE(Amorphous Calcium Phosphate)} | matrix(block-out reservoir · 소구치까지 · labial scalloped/lingual horizontal · 0.5-1 mm cover of gingival tissue(p.59)) · {r:1.5~2 hours / 2 times per day}({n:필기 2회/일 1-1.5시간}) · 1주 간격 {r:4~8 weeks} | overfilling·biting·양악 동시 × · overnight와 2 h/day 차이 없음 · {n:상악 먼저 · 과량 → 삼킬 수 있음 · 양악 동시 → TMJ 문제(26 필기 p.63)}
 R: In-office(power) bleaching | 35% H2O2 · {r:pre-mixed gels in syringe} | {r:light-cured dental dam}(1.5-2 mm · 4-6 mm · enamel 0.5 mm · 30초) + light·laser 촉매 | 35% H2O2 누출 시 gum toxicity → saline irrigation · 열원으로 통증 · {u:Toxicity to gum if leak: Liquid → gel type(p.90)}
 R: Combination approach | {r:35% H2O2 gel 30분}(power) + matrix | power = rapid initial change → matrix {r:2-4 weeks} = maintenance | decreased time · increased control·safety·compliance — {n:TC 변색에 각광}
-R: Laser bleaching | bleaching agents + laser energy | {n:보통 1시간} · oxygen radicals fast & more · {u:1 hour laser bleaching = Heat problem · TMJ trouble(p.92)} | {r:Laser on their own don't bleach}, merely catalyze oxidation
+R: Laser bleaching | bleaching agents + laser energy | oxygen radicals fast & more · {u:1 hour laser bleaching = Heat problem · TMJ trouble(p.92)} · {n:보통 1시간} | {r:Laser on their own don't bleach}, merely catalyze oxidation
 R: OTC | {n:마트 미백제} | {n:환자가 사서 낌} | {n:control이 안 돼 시림 → 요즘 추천 ×}
 R: Non-vital(walking) bleaching | 30% H2O2 + sodium perborate(2:1) → pH {r:7-8.7} | barrier {r:1-2 mm}(bobsled tunnel · sky slope) | barrier 없으면 {r:cervical root resorption}
 R: Microabrasion(Opalustre) | {r:6.6% HCl} + silicon carbide · {u:옛 기법 Kane (1918) · Cavanaugh (1986) 18% HCL(p.104)} | coat 1 mm → OpalCup → burnishing | 깊이 {r:0.2 mm} 이하 · 흰·갈색 탈회반점·fluorosis
@@ -294,17 +297,17 @@ R: {u:★ Barrier formation 5(p.116 — 26 시험 예고)} | ① Proximal area p
 R: 합병증·예방 | {r:cervical root resorption} due to lacking of barrier | 예방 5: low concentration · not too moist · good sealing · not too excess · check occlusion · {n:예방 5 = Leakage를 예방하기 위한 방법(26 필기 p.120)}
 R: 후처치 | light cured G-I layer toward labial wall(dentin shade) → minimal bulk of resin · opaque/light color resin | 변색 dentin 과삭제 → {r:high translucency after WB}
 R: Clinical tips | 잔존 치질이 reasonable → {r:non-posted acid-etching composite} (ant. tooth) | re-discoloration은 {r:externally} Power or Home bleach
-N: p.96(25 p.78) 이후는 25년 수업에서 따로 다루지 않은 쪽(25 필기) — 미출제 대비. / {u:26 수업은 끝까지 — p.116 barrier formation은 26 시험 예고(26 필기 p.1 · p.116)}.
+N: 미출제 대비 — p.96(25 p.78) 이후는 25년 수업에서 따로 다루지 않은 쪽(25 필기). / {u:26 수업은 끝까지 — p.116 barrier formation은 26 시험 예고(26 필기 p.1 · p.116)}.
 
 #TBL 미백의 부작용과 대처 | k=BLE | src=[[BLE:45]] [[BLE:65]] [[BLE:89]] [[BLE:90]] [[BLE:95]] [[BLE:97]] [[BLE:98]]
 H: 부작용 | 원인·설명 | 대처
-R: Color relapse {jb:K02} | {n:착색 재부착} = 환원(dingy) | {n:touch up bleaching}
+R: Color relapse {jb:K02} | 환원(dingy) · {n:착색 재부착} | {n:touch up bleaching}
 R: Gum & Lip irritation | 35% H2O2 누출 시 high toxicity to gum | ① Immediate saline irrigation ② Analgesics/Anti if necessary ③ Daily dressing with iodine ④ Vaseline coating / {u:Liquid → gel type(p.90)}
 R: Reduced bond strength | {n:oxygen radical이 dentin에 남아 polymerization 방해} | {n:미백 후 레진은 2주 뒤}
-R: Thermal sensitivity | {n:고농도 미백제 → fluid inward movement(hydrodynamic)} · {r:dentin hypersensitivity is inevitable} · lamp 열원 | passive: 농도·양·시간·빈도↓ / active severe: fluoride·5% potassium nitrate tray 10-30 min · 진통제 / mild: desensitizing tooth paste
+R: Thermal sensitivity | {r:dentin hypersensitivity is inevitable} · lamp 열원 · {n:고농도 미백제 → fluid inward movement(hydrodynamic)} | passive: 농도·양·시간·빈도↓ / active severe: fluoride·5% potassium nitrate tray 10-30 min · 진통제 / mild: desensitizing tooth paste
 R: Tooth dehydration | {n:물이 빠져 chalky} | 내일 아침 조금 어두워질 수 있음을 미리 설명
 N: 미백 후 주의사항(p.65): 시릴 수 있음(불소 도포) · 당분간 착색음료·담배 피할 것 · 탈수로 지금이 더 하얗게 보임. Light 자체는 pulp·gingiva에 추가 해 없음(p.94).
-N: 변형 대비 {jb:K02} — 부작용 5 중 color relapse의 대처 = touch up bleaching(p.95 필기) · 재방문 증례 = Dingy → 1 week touch-up management(p.52) / 나머지 4(gum & lip irritation · reduced bond strength · thermal sensitivity · tooth dehydration)도 같은 표 행에서 원인·대처를 바로.
+N: 변형 대비 {jb:K02} — 부작용 5 중 color relapse의 대처 = {n:touch up bleaching(p.95 필기)} · 재방문 증례 = Dingy → 1 week touch-up management(p.52) / 나머지 4(gum & lip irritation · reduced bond strength · thermal sensitivity · tooth dehydration)도 같은 표 행에서 원인·대처를 바로.
 
 #TBL Home bleaching issues 9 — 적응·문제와 예후 | k=BLE | src=[[BLE:66]] [[BLE:67]]
 H: Indication / Issues | Prognosis | 필기
@@ -327,18 +330,18 @@ R: **내인성(Endogenous)** | {r:Tetracycline}(minocycline) · erythroblastosis
 R: {u:**Amelogenesis imperfecta**} | Hypomaturation · Hypocalcification · Hypoplasia(p.9) | — | {r:Esthetic restoration is recommended} | —
 R: **TC 변색 기전** | orthophosphate(yellow) + {r:sunlight} → {r:quinone}(dark·gray·brown) | TC gray to brown · doxy yellow to brown·gray · mino {r:blue-gray} | {r:Time 4-6 months} · {n:필기 6개월 · 15-20% · 6개월 최대 후 plateau} | —
 R: **TC Class I~III** | I = incisal 3/4 · no banding / II = uniform deep yellow~gray · no banding | III = {r:dark gray or blue} · {r:marked banding} | I {r:good} · II {r:variable} · III {r:not response} → laminate·walking bleaching | —
-R: **Fluorosis** | simple · opaque · simple with pitting | 갈색(simple) vs {r:opaque white}(enamel dysmineralization) | {n:갈색 = 미백 O}(fluorosis {r:80%}) / {n:opaque white = × → home bleaching + microabrasion + 레진} | —
+R: **Fluorosis** | simple · opaque · simple with pitting | 갈색(simple) vs {r:opaque white}(enamel dysmineralization) | fluorosis {r:80%} · {n:갈색 = 미백 O} / {n:opaque white = × → home bleaching + microabrasion + 레진} | —
 R: **생리적·병적 변색 7** | traumatic pulp necrosis · canal filling · marginal leak · aging·caries · intracanal medicament · secondary dentin · decalcification after debanding | {n:외상 괴사 = 어둡게 · 석회화 근관 = 한 치아만 변색} | {n:외상 괴사 → walking bleaching} / {n:secondary dentin → single tooth home bleaching}(horizontal margin) | —
 R: **색에 영향 주는 요인** | Gender {r:similar} bleaching response | coffee/tea {r:different maintenance plan} / {r:young & yellow > old} | {n:젊은 치아는 dentin tubule 직경이 커서 잘 침투} | —
-R: **Shade·색 계열** | VITA 명도순: {n:최명 {r:B1} · 최암 {r:C4}} | A red-brown · B red-yellow / C gray brown({n:TC}) · D red-gray | {n:A·B 잘 반응 · C·D 반응↓} · {r:Brown-orange-yellow > Blue-gray} · initial {r:a*}↑ → 변화↑ | {n:교수 예고 "시험에 잘 나온다"(p.27)} — 기출 없음
+R: **Shade·색 계열** | VITA 명도순: {n:최명 {r:B1} · 최암 {r:C4}} | A red-brown · B red-yellow / C gray brown({n:TC}) · D red-gray | {r:Brown-orange-yellow > Blue-gray} · initial {r:a*}↑ → 변화↑ · {n:A·B 잘 반응 · C·D 반응↓} | {n:교수 예고 "시험에 잘 나온다"(p.27)} — 기출 없음
 R: **CIELab** | L* = 100 White ↔ L* = 0 Black · +a* Red ↔ −a* Green · +b* Yellow ↔ −b* Blue(p.29) | {n:수평선 하단 색조(아래 3개의 색 계열)는 미백 반응 좋음 · Blue-green-white 계열은 반응 ×} | Teeth with higher initial a* values(red) → greater total tooth color change(p.30) | {u:{n:26 강조 "이 부분 강조하셨습니다"(p.29)}} — 기출 없음
 
 #TBL 전체정리 ② — 미백 원리·종료·재발과 술식 | k=BLE | sum=1 | src=[[BLE:32]] [[BLE:33]] [[BLE:35]] [[BLE:42]] [[BLE:45]] [[BLE:47]] [[BLE:51]] [[BLE:52]] [[BLE:55]] [[BLE:56]] [[BLE:65]] [[BLE:67]] [[BLE:70]] [[BLE:87]] [[BLE:89]] [[BLE:90]] [[BLE:95]] [[BLE:101]] [[BLE:103]] [[BLE:104]] [[BLE:108]] [[BLE:116]] [[BLE:120]] [[BLE:121]]
 H: 항목 | 핵심 | 방법·수치 | 주의·함정 | ★ 시험
-R: **미백 화학** | {n:미백 = 산화}(free radical이 double bond 공격) | CP → urea + H2O2{n:(7 : 3) · 10% CP = 3% H2O2 · 30% CP = 9%} | strong free radical = {r:perhydroxyl} | —
-R: **Splotchy** | {n:균일하게 밝아지지 않고 얼룩덜룩} = {r:Splotchy} | {r:incisal → middle → cervical}({n:dentin 얇은 곳부터}) | 종료하지 말고 {r:continue bleaching} | {jb:K01} 24·22·21·20·19 서술 5회 — 정의 + 종료 시점
-R: **종료 시점 3** | ① {r:No splotchy & No improvement of color for 2 weeks} | ② {r:Mutual communication}(saturation point · Pt vs Dr expectation) / ③ {r:4-6 grades} lighter | {n:4주에 밝아져도 얼룩이면} need more bleaching · '2 weeks' ↔ '4-6 grades' 혼동 | {jb:K01} 후반부 — 3항목 번호째
-R: **Relapse·Dingy** | Relapse = {r:환원}({n:착색 재부착}) · {n:부분적 얼룩} = {r:Dingy} | 초기 relapse {r:2주 내} slightly · 지속 {r:1~3년} or permanent | splotchy = 산화 중 / dingy = 환원 중 | {jb:K01} 20·19 변형 — 명칭·기전·종료시점
+R: **미백 화학** | free radical이 double bond 공격 → {n:미백 = 산화} | CP → urea + H2O2{n:(7 : 3) · 10% CP = 3% H2O2 · 30% CP = 9%} | strong free radical = {r:perhydroxyl} | —
+R: **Splotchy** | {r:Splotchy} = {n:균일하게 밝아지지 않고 얼룩덜룩} | {r:incisal → middle → cervical}({n:dentin 얇은 곳부터}) | 종료하지 말고 {r:continue bleaching} | {jb:K01} 24·22·21·20·19 서술 5회 — 정의 + 종료 시점
+R: **종료 시점 3** | ① {r:No splotchy & No improvement of color for 2 weeks} | ② {r:Mutual communication}(saturation point · Pt vs Dr expectation) / ③ {r:4-6 grades} lighter | need more bleaching({n:4주에 밝아져도 얼룩이면}) · '2 weeks' ↔ '4-6 grades' 혼동 | {jb:K01} 후반부 — 3항목 번호째
+R: **Relapse·Dingy** | Relapse = {r:환원}({n:착색 재부착}) · {r:Dingy} = {n:부분적 얼룩} | 초기 relapse {r:2주 내} slightly · 지속 {r:1~3년} or permanent | splotchy = 산화 중 / dingy = 환원 중 | {jb:K01} 20·19 변형 — 명칭·기전·종료시점
 R: **Touch-up** | relapse → {r:touch-up}으로 재산화 | 증례 {r:1 week} touch-up · annual touch-up | JB '1-2주'는 JB 표현 | {jb:K02} 23 첫 출제 — relapse로 재방문한 노인 대처
 R: **상아질 미백** | home bleaching(10% CP) → outer·inner dentin {r:uniform rate}(McCaslin 1999) | TC·외상·aging 내인성 변색 치료 근거 | {r:dentin hypersensitivity is inevitable}({n:hydrodynamic}) | —
 R: **Combination** | {r:Power 30분}(35% H2O2 gel) = rapid initial change | {r:Matrix 2-4주} = maintenance | 시간↓ · control·safety·compliance↑ | —
@@ -348,7 +351,7 @@ R: **Office bleaching** | light-cured dental dam {r:1.5-2 mm} · gingiva {r:4-6 
 R: **Light·laser** | {r:catalyze oxidation}(스스로 bleach ×) · 용액을 더 빨리 가열 | 35% H2O2 누출 → ① {r:saline irrigation} ② analgesics ③ iodine ④ vaseline / {u:Liquid → gel type(p.90)} | light는 추가 해 × · efficacy↑ · {u:1 hour laser bleaching = Heat problem · TMJ trouble(p.92)} | {u:{n:누출 처치 넘버링 "수업 중에 2번 반복"(26 필기 p.90)}} · {u:{n:Flipo White 2 "설명을 자세히"(26 필기 p.78)}} — 기출 없음
 R: **부작용 5·시림** | color relapse · gum & lip irritation · {r:reduced bond strength} · thermal sensitivity · dehydration | {n:bond↓ = oxygen radical 잔존 → 레진 2주 뒤} | 시림: passive(농도·양·시간·빈도↓) · active(fluoride · 5% potassium nitrate) | —
 R: **Microabrasion** | {r:HCl} + disking → {r:superficial enamel stain} 제거 | Opalustre {r:6.6% HCl + silicon carbide} · {r:0.2 mm} 이하 · coat 1 mm · {u:옛 기법 Kane (1918) · Cavanaugh (1986) 18% HCL(p.104)} | 흰·갈색 탈회반점 · fluorosis · pulpal damage insignificant | — {u:(26 수업 포함)}
-R: **Walking bleaching** | 30% H2O2 {r:pH 2-3} · + S.P(2:1) {r:7-8.7} · water + S.P {r:9-11} | {r:Buffered alkaline} H2O2가 더 효과 | 대상: {n:traumatic pulp necrosis} · TC Class III | — {u:(26 수업 포함)}
+R: **Walking bleaching** | 30% H2O2 {r:pH 2-3} · + S.P(2:1) {r:7-8.7} · water + S.P {r:9-11} | {r:Buffered alkaline} H2O2가 더 효과 | 대상: TC Class III · {n:traumatic pulp necrosis} | — {u:(26 수업 포함)}
 R: **Barrier** | labial {r:bobsled tunnel} · proximal {r:sky slope} · {r:1-2 mm}(2 mm) | formation 5(p.116): ① Proximal area protection ② Labial "Bobsled tunnel" ③ Proximal "Sky slope" ④ 2 mm thickness ⑤ GI, resin, ZPC / G-Ionomer · IRM · ZPC · Cavit · resin · transfer barrier probing | 없으면 {r:cervical root resorption} · 예방 5(low concentration 등) | {u:★ 26 시험 예고 Barrier formation 5(p.116)} — 기출 없음
 R: **Walking bleaching 후 수복** | labial {r:light cured G-I}(dentin shade) + {r:opaque / light color resin} | 잔존 치질 충분 → non-posted acid-etching composite | 재변색 → {r:externally} Power·Home | —
 N: 변형 대비 {jb:K01} {jb:K02} — splotchy ↔ dingy(산화 중 ↔ 환원 중) · 대처(continue bleaching ↔ touch-up) · 종료 3의 숫자(2 weeks ↔ 4-6 grades) · relapse 숫자(within 2 weeks · 1 ~ 3 years) — Splotchy·종료 시점 3·Relapse·Dingy·Touch-up 행에서 바로.
@@ -356,11 +359,11 @@ N: 변형 대비 {jb:K01} {jb:K02} — splotchy ↔ dingy(산화 중 ↔ 환원 
 #TBL 진료실 미백 — 과거 vs 현재 · 광원과 laser | k=BLE | src=[[BLE:68]] [[BLE:69]] [[BLE:71]] [[BLE:72]] [[BLE:74]] [[BLE:75]] [[BLE:76]] [[BLE:77]] [[BLE:78]] [[BLE:79]] [[BLE:86]] [[BLE:87]] [[BLE:89]] [[BLE:90]] [[BLE:92]] [[BLE:94]]
 H: 항목 | 슬라이드 | 포인트
 R: 준비물 | Bleaching Agents · Catalysts: {r:Light, Laser} · Safety Glasses · 35-mm Camera | {n:고농도 과산화수소라 술자·환자 모두 보호(26 필기 p.68)}
-R: 과거 — rubber dam with floss | Time-consuming technique(p.69) · {n:radial surface에 30% H2O2 → 30 cm 떨어진 곳에서 red light} | time-consuming · {n:뜨거운 빛이 pulp에 흡수되어 통증} — Red light from lamp was {r:absorbed into reddish pulp} · {n:요새는 통증 유발로 잘 쓰지 않음(26 필기 p.75)}
+R: 과거 — rubber dam with floss | Time-consuming technique(p.69) · {n:radial surface에 30% H2O2 → 30 cm 떨어진 곳에서 red light} | time-consuming — Red light from lamp was {r:absorbed into reddish pulp} · {n:뜨거운 빛이 pulp에 흡수되어 통증 · 요새는 통증 유발로 잘 쓰지 않음(26 필기 p.75)}
 R: 현재 — light-cured dental dam | {r:1.5-2 mm} thick · {r:4-6 mm} wide in gingiva · enamel {r:0.5 mm} overlapped covering · light-curing for {r:30 secs} · {r:pre-mixed gels in syringe} instead of H2O2 liquid | {n:약제를 올려놓아도 흘러내리지 않아서 안전}
 R: 광원 6 | Halogen · Argon laser · Plasma arc lamps · {r:Xe-halogen} · LED light · Diode laser | Xe-halogen {n:15분/3 cycle}
 R: 장비 | White Cool {r:36 LED}(380-530 nm) · Elite White {r:80 LED} · Flipo White 2(Xenon arc · 2 modes) · Zoom2 {r:IR SYSTEM} · SmartLite {r:Nd-YAG: no heat generation} | {n:Flipo = light가 pulse로 꺼졌다 켜졌다 → 시린 사람을 위해 · Zoom2 = 환자가 머리를 움직여도 고정 · Flipo 버튼 — 가운데 전원 · 왼쪽 위 간헐적 · 오른쪽 위 항상(26 필기 p.78)} · {u:{n:26 수업 '설명을 자세히'(26 필기 p.78)}}
-R: Laser의 역할 | {r:Laser on their own don't bleach}, merely to catalyze oxidation reaction · 용액을 conventional heat source보다 더 빨리 가열 → oxygen radicals fast & more | {n:보통 1시간} · hypersensitivity↑
+R: Laser의 역할 | {r:Laser on their own don't bleach}, merely to catalyze oxidation reaction · 용액을 conventional heat source보다 더 빨리 가열 → oxygen radicals fast & more | hypersensitivity↑ · {n:보통 1시간}
 R: 위험과 대처 | High toxicity of {r:35% H2O2} to gum if leak · lamp 열원으로 pain↑ · {u:Toxicity to gum if leak: Liquid → gel type(p.90)} | ① Immediate {r:saline irrigation} ② Analgesics/Anti if necessary ③ Daily dressing with iodine ④ Vaseline coating
 R: {u:1 hour laser bleaching(p.92)} | Heat problem · TMJ trouble | 비교: Nd-YAG laser(SmartLite) = no heat generation(p.86)
 R: Light-augmented vs conventional | Light {r:does not cause additional harm} · use of light {r:significantly improved the whitening efficacy} | {n:light 자체는 미백제를 활성화 → 쏴 주는 것이 좋다(p.94) · 부분적으로 — 한꺼번에 40초 이상이면 고통 호소(26 필기 p.94)}
