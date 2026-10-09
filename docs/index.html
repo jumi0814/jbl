@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"d6fdaf1e",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"4ba1325e",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -390,7 +390,7 @@ details.scards{margin:2px 0 8px 14px;border-left:2px solid var(--line);padding-l
 .hero.cmp{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;padding:8px 20px 9px}#dtabs{padding-top:5px;padding-bottom:5px}#stage{padding-top:12px}.hero.cmp .kick{flex-basis:100%;font-size:11.5px;letter-spacing:.1em;line-height:1.35}.hero.cmp h1{font-size:20px;margin:1px 0 0;line-height:1.25}.hero.cmp .sub{display:none}.hero.cmp .hchips{margin:0}.hero.cmp .hchip:not(#hstat){display:none}
 /* 정리본 렌더 v7(U23) — 짧은 나열 가로 흐름 · 여러 조각에 걸친 기출 문장 블록 · 목록만 든 li 점 숨김(안전망) */
 ul.kflow{list-style:none;margin:2px 0;padding:0;line-height:1.66}ul.kflow>li{display:inline;padding:0}ul.kflow>li+li::before{content:" · ";color:var(--faint);font-weight:700}ul.kflow.lab b.lbl{margin-right:2px}
-.hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
+.hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock.cgrid::before,ol.hlblock::before,ul.hlblock::before{grid-column:1/-1}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
 li.hlb{box-shadow:inset 3px 0 0 #F2C94C}li.hlb0::after{content:"기출 문장";position:absolute;right:0;top:4px;font-size:11px;font-weight:800;color:#7C5E0E}.klist>li.hlb{padding-left:16px}
 /* 단계(ol.steps) 속 기출 문장 3개↑ 연속: 번호 원·이음선(::before·::after)과 겹치지 않게 칸 바탕 + 목록 머리 라벨 */
 ol.steps>li.hlb{box-shadow:none;background:#FFF4CC;border-radius:4px}ol.steps.hlsome::before{content:"기출 문장 = 노란 칸";display:block;font-size:11px;font-weight:800;color:#7C5E0E;margin-bottom:2px}
@@ -1915,7 +1915,7 @@ details.ab.chk>ul>li{padding:5px 0}
 .lkey.lmem{margin-top:8px}
 b.mlab{font-weight:700;color:inherit}
 /* 10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} 구간 앞뒤 ✍(글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) */
-.ntw::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
+.ntw::before{content:"✍\2060";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
 /* 10-09 사용자 '필기표시를 문장의 앞에만' — 끝 ✍ 없음 · 필기 뒤에 강의 내용이 같은 줄로 이어지면 줄바꿈(br.ntb) · ✍ 이해 상자·필기 소제목 아래 항목은 머리 ✍ 하나로 */
 .ntw::after{content:none}
 b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}b.mlab.nlab~.ntw::before,b.mlab.nlab~ul .ntw::before{content:none}
@@ -2048,7 +2048,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="d6fdaf1e",PV={"OMS1": "970c2a38", "CONS": "816e887e", "IMPL": "e576adfd", "ANAT": "99b3cb6a", "GERI": "4c457023", "PHARM": "8d06ba1d", "ESTH": "f8277f1d"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.4, "PHARM": 6.0, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="4ba1325e",PV={"OMS1": "ea4c4503", "CONS": "52c1f613", "IMPL": "44ba0558", "ANAT": "66bc83c4", "GERI": "c020dfb0", "PHARM": "909d7eaa", "ESTH": "984f0ac5"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.4, "PHARM": 6.0, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */

@@ -390,7 +390,7 @@ details.scards{margin:2px 0 8px 14px;border-left:2px solid var(--line);padding-l
 .hero.cmp{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;padding:8px 20px 9px}#dtabs{padding-top:5px;padding-bottom:5px}#stage{padding-top:12px}.hero.cmp .kick{flex-basis:100%;font-size:11.5px;letter-spacing:.1em;line-height:1.35}.hero.cmp h1{font-size:20px;margin:1px 0 0;line-height:1.25}.hero.cmp .sub{display:none}.hero.cmp .hchips{margin:0}.hero.cmp .hchip:not(#hstat){display:none}
 /* 정리본 렌더 v7(U23) — 짧은 나열 가로 흐름 · 여러 조각에 걸친 기출 문장 블록 · 목록만 든 li 점 숨김(안전망) */
 ul.kflow{list-style:none;margin:2px 0;padding:0;line-height:1.66}ul.kflow>li{display:inline;padding:0}ul.kflow>li+li::before{content:" · ";color:var(--faint);font-weight:700}ul.kflow.lab b.lbl{margin-right:2px}
-.hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
+.hlblock{border-left:3px solid #F2C94C;padding-left:10px!important;margin:4px 0}.hlblock.cgrid::before,ol.hlblock::before,ul.hlblock::before{grid-column:1/-1}.hlblock::before{content:"기출 문장";display:block;font-size:11px;font-weight:800;color:#7C5E0E;letter-spacing:.04em;margin-bottom:1px}
 li.hlb{box-shadow:inset 3px 0 0 #F2C94C}li.hlb0::after{content:"기출 문장";position:absolute;right:0;top:4px;font-size:11px;font-weight:800;color:#7C5E0E}.klist>li.hlb{padding-left:16px}
 /* 단계(ol.steps) 속 기출 문장 3개↑ 연속: 번호 원·이음선(::before·::after)과 겹치지 않게 칸 바탕 + 목록 머리 라벨 */
 ol.steps>li.hlb{box-shadow:none;background:#FFF4CC;border-radius:4px}ol.steps.hlsome::before{content:"기출 문장 = 노란 칸";display:block;font-size:11px;font-weight:800;color:#7C5E0E;margin-bottom:2px}
@@ -1915,7 +1915,7 @@ details.ab.chk>ul>li{padding:5px 0}
 .lkey.lmem{margin-top:8px}
 b.mlab{font-weight:700;color:inherit}
 /* 10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} 구간 앞뒤 ✍(글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) */
-.ntw::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
+.ntw::before{content:"✍\2060";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
 /* 10-09 사용자 '필기표시를 문장의 앞에만' — 끝 ✍ 없음 · 필기 뒤에 강의 내용이 같은 줄로 이어지면 줄바꿈(br.ntb) · ✍ 이해 상자·필기 소제목 아래 항목은 머리 ✍ 하나로 */
 .ntw::after{content:none}
 b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}b.mlab.nlab~.ntw::before,b.mlab.nlab~ul .ntw::before{content:none}

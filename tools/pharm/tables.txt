@@ -506,6 +506,21 @@ N: IASP 권고 — First: gabapentin(ER·enacarbil 포함)·pregabalin·SNRI·TC
 N: 변형 대비: 채널·약 짝을 바꿔 물으면 — blocks sodium channels = {r:carbamazepine}(trigeminal neuralgia first-line {jb:PN01} {jb:PN20}) / voltage-dependent calcium channels = {r:gabapentin}(diabetic neuropathy·trigeminal neuralgia {jb:PN03}) / membrane stabilizing properties = anticonvulsants 군 전체 {jb:PN24} {jb:PN13} / 하행 투사↑ + sodium channel block = antidepressants / NMDA 차단 = ketamine·dextromethorphan.
 N: 변형 대비(26 우리말 빈칸): 나트륨 통로 차단 → 주로 삼차신경통 = {r:카바마제핀} / 전압의존성 칼슘 통로({u:α2δ 소단위}) 결합 → 당뇨병성 신경병증·삼차신경통 = {r:가바펜틴} / 막 안정화 작용 = 항경련제 / 구강작열감증후군(BMS) = 클로나제팜 / 뇌에서 척수로 하행하는 노르아드레날린성 및 세로토닌성 투사 경로 활성 증가 + 나트륨 통로 차단 = 항우울제. [[CHR:20]] [[CHR:21]]
 
+#TBL IASP 신경병증성 통증 약물 치료 단계 — 1·2·3차 약과 1일 용량 | k=CHR | src=[[CHR:19]] [[CHR5:17]] [[CHR:4]]
+H: 약물 | 단계(권고 강도) | Total daily dose and regimen | 26 설명 상자(NeuPSIG 권고안) | 연결
+R: {r:Gabapentin} {jb:PN03} | {r:First}-line(strong recommendations) | {r:1200-3600 mg}, in three divided doses | 1차 약물(강한 권고) · 가바펜틴 1200–3600 mg/일, 3회 분할 | p.20 voltage-dependent calcium channels · diabetic neuropathy·trigeminal neuralgia
+R: Gabapentin extended release or enacarbil | First | 1200-3600 mg, in two divided doses | 가바펜틴 서방형/에나카르빌 1200–3600 mg/일, 2회 분할 | —
+R: {r:Pregabalin} | First | {r:300-600 mg}, in two divided doses | 프레가발린 300–600 mg/일, 2회 분할 | —
+R: Serotonin-noradrenaline reuptake inhibitors duloxetine or venlafaxine | First | 60-120 mg, once per day(duloxetine) / 150-225 mg, once per day(venlafaxine ER) | SNRI: 둘록세틴 60–120 mg 1일 1회 · 벤라팍신 150–225 mg 1일 1회 | {r:Duloxetine} is the most studied among the SNRIs → recommended as the first choice
+R: Tricyclic antidepressants | First | 25-150 mg, once per day or in two divided doses | 삼환계 항우울제(TCA) 25–150 mg/일, 1–2회 분할 | p.21-22 amitriptyline·nortriptyline·imipramine
+R: Capsaicin 8% patches(for peripheral neuropathic pain) | {r:Second}-line(weak recommendations) | 1-4 patches to the painful area for 30-60 min every 3 months | 2차 약물(약한 권고) · 캡사이신 8% 패치(말초 신경병증성 통증) | —
+R: Lidocaine patches(for peripheral neuropathic pain) | Second | 1-3 patches to the region of pain once per day for up to 12 h | 리도카인 패치 | —
+R: {r:Tramadol} | Second | 200-400 mg, in two(tramadol extended release) or three divided doses | 트라마돌 200–400 mg/일 | p.9 weak MOR agonist + SNRI
+R: Botulinum toxin A(subcutaneously) | {r:Third}-line(weak recommendations) | 50-200 units to the painful area every 3 months | 3차 약물(약한 권고) · 보툴리눔 독소 A(피하) | —
+R: {r:Strong opioids} | Third | Individual titration | 강력 오피오이드(개별 적정) | p.4 abuse·long-term tolerance 위험이 더 큼 → 맨 마지막
+N: 변형 대비: 1차가 아닌 것 = capsaicin 8% patches·lidocaine patches·tramadol(2차) · botulinum toxin A·strong opioids(3차) / 강한 권고 = 1차만(2·3차는 약한 권고) / in three divided doses = gabapentin · in two divided doses = gabapentin extended release or enacarbil·pregabalin / for peripheral neuropathic pain = capsaicin 8% patches·lidocaine patches / every 3 months = capsaicin 8% patches·botulinum toxin A / SNRI 중 first choice = duloxetine.
+N: 25 필기(25 p.17): {n:만성 통증에는 gabapentin과 SNRI를 일차적으로 · 일차로 잘 낫지 않으면 이차로 capsaicin·tramadol · 마지막 단계가 strong opioid}. 26 수업(p.19): {n:박스의 약물 이름을 쭉 읽으셨습니다}.
+
 #TBL CYP 효소와 통증약 — 누가 켜고 누가 끄나 | k=CHR | src=[[CHR:9]] [[CHR:10]] [[CHR:22]] [[CHR:23]] [[CHR:24]]
 H: 약물 | 효소의 역할 | 효소가 빠르면(ultrarapid) | 효소가 느리면(poor·intermediate)
 R: Codeine | CYP2D6 변이에 가장 민감(tramadol·hydrocodone도 영향) | 기대보다 큰 효과 주의(25 필기) | lower analgesic response — 발목 골절 codeine 무효 {jb:PN11} · 아시아 intermediate 51% · 한국인 PM 약 0.2%

@@ -107,12 +107,12 @@ def _ntw_close(h):
     """필기 구간 뒤에 강의 내용이 같은 줄로 이어지면 줄을 바꿈(10-09 '필기로 착각하지 않도록') — 뒤가 문장부호·인용 칩뿐이거나 조사로 이어지는 문장이면 그대로"""
     parts = h.split(NOTE_C); out = parts[0]
     for k, rest in enumerate(parts[1:]):
-        nxt = re.split(r'</?(?:td|th|tr|li|ul|ol|div|p|table)\b|<br\b', rest.split(NOTE_O)[0])[0]   # 같은 칸·같은 줄 안에서만 봄
+        nxt = re.split(r'</?(?:td|th|tr|li|ul|ol|div|p|table)\b|<br\b|<span class="ntw"', rest.split(NOTE_O)[0])[0]   # 같은 칸·같은 줄 안에서만 봄 · 10-09 바로 다음이 또 필기 구간이면 줄을 바꾸지 않음(NOTE_O는 이미 span으로 바뀜)
         t = html.unescape(re.sub(r'<[^>]+>', '', re.sub(r'<button\b.*?</button>', '', nxt, flags=re.S)))
         core = re.sub(r'^[\s.,;:·)\]}]+', '', t)
         brk = len(re.sub(r'[\s.,;:·)\](}—–\-→=!?\'"“”…/]+', '', core)) >= 2 and not _NTB_JOSA.match(t.lstrip())
         if brk:
-            m = re.match(r'^((?:\s|[.,;:·)\]/—–→]|</[^>]+>|<span class="nwd">[^<]*</span>|<wbr>|<button\b[^>]*>.*?</button>)*)', rest, re.S)   # 쪽 인용 칩·구분 기호(· — → /)는 앞 줄 끝에(10-09 다음 줄이 '·'·'→'로 시작하던 것)
+            m = re.match(r'^((?:\s|[.,;:·)\]/—–→=]|</[^>]+>|<span class="nwd">[^<]*</span>|<wbr>|<button\b[^>]*>.*?</button>)*)', rest, re.S)   # 쪽 인용 칩·구분 기호(· — → /)는 앞 줄 끝에(10-09 다음 줄이 '·'·'→'로 시작하던 것)
             out += '</span>' + m.group(1) + '<br class="ntb">' + rest[m.end():]   # 글자(띄어쓰기 포함) 그대로
         else: out += '</span>' + rest
     return out
@@ -588,7 +588,7 @@ def render_recall(x, ctx):
         out += f'<li class="mhd"><b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sub([m.group(2)] + g[1:])}</li>'
     return out
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
-EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
+EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\(?\d+회\)?)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
 EXAM_FMT = re.compile(r'(?:서술형?|빈칸|객관식|단답형?|T/F|그림)(?:\s?(?:단답|빈칸|서술))?')
 EXAM_SRC = re.compile(r'자료|p\.|JB 해설|JB 답|슬라이드|필기|원문|강의록')
 def _mk_ok(x):
