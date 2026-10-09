@@ -93,5 +93,5 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ```
 <공통 머리>
 과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~38 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
-덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B/C/D1~D4) 몫. 보고 work/review_final2/QA_<SID>.md. 고치지 않는다.
+덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). (메인이 허락하면) 글자 그대로인 작은 것 — 구분 기호·줄 나눔·{n:}/{u:}/{r:} 표시·라벨 — 은 그 강의 lec·parts에서 직접 고침(고치기 전 text_diff --save · 끝에 빠진 글자 0) · 허브·렌더러 몫은 보고만. 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B/C/D1~D4) 몫. 보고 work/review_final2/QA_<SID>.md. 고치지 않는다.
 ```

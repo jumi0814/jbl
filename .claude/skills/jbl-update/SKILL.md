@@ -66,7 +66,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 ## G. 빌드·전 검사·QA
 1. `sh tools/full_check.sh`(run_in_background, 약 40분) → 요약 = `work/_tmp/full_check.log` 끝 '== 요약'(= `work/_tmp/full_check.fail` — check_years/eyears/abbr/numbering/breaks_jb·fc_carry 95% 미만도 잡힘). **10-09 배포 기준값**(이 수보다 늘면 새 문제 — 갱신을 시작할 때 진행 파일에 다시 적음): check_years GERI 11(전부 '학번?' — +2 하면 배지에 있음) · check_abbr OMS1 5·CONS 11·IMPL 8·ANAT 8·GERI 7·PHARM 22·ESTH 6(확인된 그림 속 글자) · check_numbering ESTH 4(선지 번호 인용) · check_nred OMS1 18·CONS 75·IMPL 94·ANAT 72·GERI 34·PHARM 28·ESTH 60 · 빌드 impl '되돌림 2'. 표시 보존: 갱신 전 `git rev-parse origin/main`을 진행 파일에 적어 두고, 원고를 크게 고친 과목은 `tools/tests/legacy_restore.py`(옛 고정 판 기준) 결과와 함께 위치 잃음 수를 보고. 알려진 거짓 실패: file:// 표시 테스트는 JBL_HTTP=1로(full_check가 함), ux3_compat은 file://로.
 2. 스크린샷: `JBL_HTTP=1 .venv/bin/python tools/qa_shots.py <SID> <바뀐 KEY들>` → `work/_tmp/qa_<SID>_<KEY>_{card,mem,jb}.png`를 Read로 직접 본다(⭐가 가장 많은 카드 1장뿐 — 26 새 내용 카드·사용자가 예로 든 카드·정리표/비교표 탭·플래시카드는 playwright로 `#/<SID>/<KEY>/learn`에서 그 카드 `scrollIntoView` 뒤 따로 찍음). 넓은 화면은 PIL로 잘라 확대.
-3. **사용자 눈 QA**(과목 하나 1명, 찾기만 — AGENTS.md E) → 걸린 것을 해당 단계 담당에게 다시 보냄(보내기 전 그 담당 검사의 기준본 `text_diff --save`·`annot_diff --save`를 다시 저장) → 고친 과목만 `tools/<sid>/build4.py` + 해당 검사 → QA 0이 될 때까지 → 마지막에 full_check 한 번.
+3. **사용자 눈 QA**(과목 하나 1명, 찾기만 — AGENTS.md E · 사용 한도가 걱정되면 '글자 그대로인 작은 표시·구조 문제는 직접 고침'을 허락해 반려 회차를 줄임(10-09) — 그때도 낱말·사실 문제와 허브·렌더러 몫은 보고만) → 걸린 것을 해당 단계 담당에게 다시 보냄(보내기 전 그 담당 검사의 기준본 `text_diff --save`·`annot_diff --save`를 다시 저장) → 고친 과목만 `tools/<sid>/build4.py` + 해당 검사 → QA 0이 될 때까지 → 마지막에 full_check 한 번.
 4. `tools/fc_carry.py <SID>` — 플래시카드 기록 이어짐 95%↑(끊긴 줄 `work/_tmp/fc_carry_<SID>.md`는 보고에).
 
 ## H. 배포·보고
