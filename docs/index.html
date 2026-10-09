@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"83aa97c9",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"d6fdaf1e",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1921,6 +1921,7 @@ b.mlab{font-weight:700;color:inherit}
 b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}b.mlab.nlab~.ntw::before,b.mlab.nlab~ul .ntw::before{content:none}
 .und .ntw::before,.und .srcn::after,.li.nsec .ntw::before,.li.nsec .srcn::after{content:none}.und br.ntb,.li.nsec br.ntb{display:none}
 .ntw .srcn::after{content:none}
+td.ncol .ntw::before,td.ncol .srcn::after{content:none}td.ncol br.ntb{display:none}   /* 10-09 필기 열(머리 ✍) 칸 안의 '(26 필기 p.N)'·{n:}엔 ✍ 다시 안 붙임 */
 /* 10-09 사용자 '25년도 자료에 비해 26년도 자료에서 변동사항 … 사라진 페이지 또는 특히 26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조' — 원고 {u:…} = 26에 새로 생기거나 바뀐 내용(앞 배지·밑줄 = CSS, 글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) · (… 26에서 빠짐) = 회색 */
 :root{--u26:#1C8A4C;--u26fg:#fff;--u26l:rgba(28,138,76,.55);--u26bg:#ECF7EF}
 :root[data-theme="dark"]{--u26:#5BC98A;--u26fg:#0B1F12;--u26l:rgba(91,201,138,.6);--u26bg:#16291D}
@@ -2047,7 +2048,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="83aa97c9",PV={"OMS1": "901aa8c8", "CONS": "dd9c02ae", "IMPL": "5878ee0f", "ANAT": "cf8cb922", "GERI": "22ec7170", "PHARM": "c019c115", "ESTH": "19c9584b"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.4, "PHARM": 5.9, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="d6fdaf1e",PV={"OMS1": "75fc2362", "CONS": "e5a97d67", "IMPL": "5df38c88", "ANAT": "a9a2d137", "GERI": "dd9f2216", "PHARM": "34c49ad1", "ESTH": "f8277f1d"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.4, "PHARM": 5.9, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */

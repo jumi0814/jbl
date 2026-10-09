@@ -637,9 +637,11 @@ def hcell(c):
     """10-09 표 열 머리가 필기 열('필기 풀이'·'(p.3 필기)'·'요점(필기)')이면 머리 앞 ✍ — 그 열 칸은 머리 하나로(칸마다 붙이지 않음)"""
     if '{n:' not in c and not lecparse.SRCN.search(c) and re.search(r'(?:^|[\s(])(?:\d{2}\s)?필기', c): return '{n:' + c + '}'
     return c
+def ncols(hd):   # 10-09 필기 열(머리 ✍) 번호 — 그 열 칸 안의 '(26 필기 p.N)' 꼬리·{n:}엔 ✍를 또 붙이지 않음(td.ncol)
+    return {j for j, c in enumerate(hd) if j and (hcell(c) != c or '{n:' in c or lecparse.SRCN.search(c))}
 def mini_table(rows, cls='mini'):
-    head = ''.join(f'<th>{lecparse.inline(hcell(c), ctx)}</th>' for c in rows[0])
-    body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
+    head = ''.join(f'<th>{lecparse.inline(hcell(c), ctx)}</th>' for c in rows[0]); nc = ncols(rows[0])
+    body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td{" class=ncol" if j in nc else ""}>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
     return f'<div class="tscroll"><table class="{cls}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 SYM_RE = re.compile(r'[○×✓✗△◎OX✔\-—\s]+')
 DASH = ('', '—', '-', '–')
@@ -1000,7 +1002,7 @@ for line in open(DIR + '/tables.txt', encoding='utf-8'):
     elif line.startswith('H:') and cur:
         hh = [lecparse.inline(hcell(c.strip()), ctx) for c in line[2:].split('|')]
         while hh and not hh[-1]: hh.pop()
-        cur['head'] = hh
+        cur['head'] = hh; cur['ncol'] = ncols([c.strip() for c in line[2:].split('|')])
     elif line.startswith('R:') and cur:
         rr = [c.strip() for c in line[2:].split('|')]
         while len(rr) > len(cur['head']) and not rr[-1]: rr.pop()
@@ -1025,7 +1027,7 @@ TBL = []
 for i, t in enumerate(tables):
     head = ''.join(f'<th>{c}</th>' for c in t['head'])
     sm_ = t.get('sum'); nc_ = max([len(r) for r in t['rows']] + [len(t['head'])])
-    body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td{" class=keycell" if sm_ and j == nc_ - 1 else ""}>{cell(c)}</td>') for j, c in enumerate(r)) + '</tr>' for r in t['rows'])
+    body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td{(" class=" + chr(34) + " ".join(x_ for x_ in ("keycell" if sm_ and j == nc_ - 1 else "", "ncol" if j in t.get("ncol", ()) else "") if x_) + chr(34)) if (sm_ and j == nc_ - 1) or j in t.get("ncol", ()) else ""}>{cell(c)}</td>') for j, c in enumerate(r)) + '</tr>' for r in t['rows'])
     nj_ = len(set(re.findall(r'\{jb:([^}]+)\}', ' '.join(c for r in t['rows'] for c in r))) & set(QMAP))   # ux2 E09 표 안 기출 연결 수
     TBL.append({'k': t['k'], 'nj': nj_, **({'sum': 1} if sm_ else {}), 'html': merge_cites(f'<div class="tblwrap{" stbl" if sm_ else ""}" data-aid="{aid("T:" + slug(t["title"]))}" data-alt="{aid("T%d" % i)}" data-nj="{nj_}"><div class="tbt serif">{esc(t["title"])}</div><div class="tscroll"><table class="cmp{" stbl" if sm_ else ""}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>{"".join(f"<div class=note>{n}</div>" for n in t["notes"])}<div class="pgrow"><span class="small">출처</span>{t["src"]}</div></div>')})
 for L in lect: L['tbl'] = [i for i, t in enumerate(TBL) if t['k'] == L['k'] and not t.get('sum')]; L['sumt'] = [i for i, t in enumerate(TBL) if t['k'] == L['k'] and t.get('sum')]
