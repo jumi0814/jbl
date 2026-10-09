@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"eb0c22e2",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"83aa97c9",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1927,6 +1927,9 @@ b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--fai
 .u26{text-decoration:underline 2px var(--u26l);text-decoration-skip-ink:none;text-underline-offset:3px}
 .u26::before{content:"NEW 26";display:inline-block;font:700 calc(9.5px*var(--fs,1))/1.55 system-ui,-apple-system,sans-serif;letter-spacing:.02em;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 4px;margin-right:4px;vertical-align:.12em}
 .u26 .u26::before,.li.usec .u26::before{content:none}.li.usec .u26{text-decoration:none}
+.u26p::before{content:"NEW 26";display:inline-block;font:700 calc(9.5px*var(--fs,1))/1.55 system-ui,-apple-system,sans-serif;letter-spacing:.02em;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 4px;margin-right:4px;vertical-align:.12em}
+.u26.u26n::before,.u26l .u26::before,.u26l .u26p~* .u26p::before{content:none}.u26l .u26{text-decoration:none}
+li.u26l,.li.u26l{box-shadow:inset 3px 0 0 var(--u26);padding-left:6px}
 .li.usec{box-shadow:inset 3px 0 0 var(--u26)}
 .gone26{font-size:.9em;color:var(--sub);background:rgba(128,118,104,.14);border-radius:4px;padding:0 4px}
 .chip.u26chip{background:var(--u26);color:var(--u26fg);border-color:var(--u26);font-weight:700}
@@ -2044,7 +2047,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="eb0c22e2",PV={"OMS1": "a9b058ab", "CONS": "9beb42a0", "IMPL": "44f6f4d4", "ANAT": "f2e91057", "GERI": "9607d27d", "PHARM": "98e3dc25", "ESTH": "0672a490"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.3, "GERI": 4.4, "PHARM": 5.8, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="83aa97c9",PV={"OMS1": "35472fb0", "CONS": "2775e664", "IMPL": "f6226821", "ANAT": "7d7e3d76", "GERI": "acc97635", "PHARM": "21601e9d", "ESTH": "d7ffd31c"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.3, "GERI": 4.4, "PHARM": 5.8, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */

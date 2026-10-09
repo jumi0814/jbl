@@ -500,6 +500,10 @@ def _ncirc(v):
     return len(e[1]) if (e and e[2]) else 0
 def render_item(v, ctx, cont=None):
     """항목 한 줄 — 110자 초과 또는 ux2 D09 원문자 번호 3개↑(길이 무관)면 구조화. cont = 앞 줄 번호에 이어지는 시작 번호(⑤ 다음 ⑥ → 6)"""
+    w = _uwhole(v)
+    if w is not None and _nl(w) > 110 or w is not None and _ncirc(w) >= 3 or w is not None and _facts(split_top(w, ' / ')):   # 10-09 구조화되는 긴 줄 전체가 {u:…} → 안쪽을 그대로 구조화 + 왼쪽 초록 줄 + 앞 NEW 26 하나
+        h = render_item(w, ctx, cont)
+        return re.sub(r'^<div class="li([^"]*)">', lambda m: f'<div class="li{m.group(1)} u26l">{U26P}', h, count=1)
     if cont:
         pos = _marks(v, PAT_CIRC)
         if pos and pos[0][0] == 0:
@@ -518,19 +522,55 @@ def _eol(x, ctx, mn=40):
 MLAB = re.compile(r'^((?:[^:：{}"“”=→/]|\{r:[^{}:：]*\}){1,32}(?:\([^(){}]{0,30}\))?[:：])\s+(.+)$')   # 10-07 라벨 안 {r:…}(예 '표정근 {r:14}:')·32자까지도 굵은 머리
 def _nlab(lb):   # 10-09 ⚡ 머리 라벨이 '필기:'·'26 필기(p.4):'면 라벨 앞 ✍(뒤 {n:…}의 ✍는 숨김 — 두 번 안 보이게)
     return ' nlab' if re.fullmatch(r'\s*(?:\d{2}\s)?필기(?:\s?\((?:pp?\.\s?)?[\d\-~,·\s]+\))?\s*[:：]\s*', _plain(lb)) else ''
+def _uwhole(x):
+    """10-09 줄(또는 조각) 전체가 {u:…} 하나로 감싸였으면 안쪽 글자, 아니면 None"""
+    x = x.strip()
+    if not x.startswith('{u:') or not x.endswith('}'): return None
+    d = 0
+    for i in range(3, len(x)):
+        if x[i] == '{': d += 1
+        elif x[i] == '}':
+            if d == 0: return x[3:i] if i == len(x) - 1 else None
+            d -= 1
+    return None
+U26P = '<span class="u26p" title="26년도 자료에 새로 생기거나 바뀐 내용"></span>'
+def _mark_top(h, cls):
+    """맨 바깥 li(또는 div.li)에 class 더하기 — 줄 전체가 26 새 내용({u:…})일 때 왼쪽 초록 줄"""
+    out, d, last = '', 0, 0
+    for m in re.finditer(r'<(/?)(ul|ol|li)\b([^>]*)>', h):
+        if m.group(2) != 'li': d += -1 if m.group(1) else 1; continue
+        if m.group(1) or d: continue
+        a = m.group(3); cm = re.search(r'class="([^"]*)"', a)
+        a = (a[:cm.start()] + f'class="{cm.group(1)} {cls}"' + a[cm.end():]) if cm else a + f' class="{cls}"'
+        out += h[last:m.start()] + f'<li{a}>'; last = m.end()
+    return out + h[last:]
+def _ulab(r):
+    """10-09 '{u:라벨: 내용…} / …'처럼 {u:가 라벨 앞에서 열리고 조각 중간에서 닫히면 라벨 뒤로 옮김(라벨은 굵은 머리 그대로 · NEW 26은 내용 앞) — 글자 그대로"""
+    if not r.startswith('{u:') or _uwhole(r) is not None: return r
+    m = MLAB.match(r[3:])
+    return (m.group(1) + ' {u:' + m.group(2)) if m and '{' not in m.group(1) and '}' not in m.group(1) else r
+def _ml(r):
+    w = _uwhole(r); return MLAB.match(w if w is not None else r), w is not None
 def render_recall(x, ctx):
-    rows = split_top(x)
+    w = _uwhole(x)
+    if w is not None:   # 10-09 ⚡ 줄 전체가 26 새 내용 → 안쪽을 그대로 그리고(라벨·하위 묶음 그대로) 맨 바깥 줄마다 왼쪽 초록 줄 + 첫 줄 앞 NEW 26 하나
+        h = _mark_top(render_recall(w, ctx), 'u26l')
+        return re.sub(r'^(<li\b[^>]*>)', lambda m: m.group(1) + U26P, h, count=1)
+    x = _ulab(x); rows = [_ulab(r) for r in split_top(x)]
     def R(r):
-        e = _eol(r, ctx, 50)
-        if e: return e
-        m = MLAB.match(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게
-        if m and m.group(2).strip(): return f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
+        w_ = _uwhole(r)
+        e = _eol(w_ if w_ is not None else r, ctx, 50)
+        if e: return (U26P + f'<span class="u26 u26n">{e}</span>') if w_ is not None else e
+        m, uw = _ml(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게 · 10-09 조각 전체가 {u:라벨: …}여도 라벨은 굵은 머리(NEW 26은 라벨 앞)
+        if m and m.group(2).strip():
+            if uw: return U26P + f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> <span class="u26 u26n">{inline(m.group(2), ctx)}</span>'
+            return f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
         return inline(r, ctx)
     if not ((len(rows) >= 2 and _nl(x) > 60 and min(_nl(r) for r in rows) >= 14) or _facts(rows)): return f'<li>{R(x)}</li>'   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
     # 10-08 사용자 '자가골 채취: 구내 … / 구외 …가 다른 구분된 내용처럼 보인다' — 라벨(…:) 조각 뒤 라벨 없는 조각 = 그 라벨 아래 이어지는 내용 → 굵은 머리 + 들여 쓴 하위 목록(ul.msub · 글자 그대로)
     groups = []
     for r in rows:
-        if groups and not MLAB.match(r) and MLAB.match(groups[-1][0]): groups[-1].append(r)
+        if groups and not _ml(r)[0] and _ml(groups[-1][0])[0]: groups[-1].append(r)
         else: groups.append([r])
     out = ''
     for g in groups:
@@ -538,7 +578,10 @@ def render_recall(x, ctx):
         sub = lambda rs: '<ul class="msub">' + ''.join(f'<li>{R(r)}</li>' for r in rs) + '</ul>'
         e = _eol(g[0], ctx, 50)
         if e: out += f'<li class="mhd">{e}{sub(g[1:])}</li>'; continue
-        m = MLAB.match(g[0])
+        m, uw = _ml(g[0])
+        if uw:   # 10-09 머리 조각만 26 새 내용 — NEW 26은 라벨 앞, 첫 하위 조각에 초록 밑줄(뒤 조각은 그대로)
+            sh = sub([m.group(2)] + g[1:]); sh = re.sub(r'^(<ul class="msub"><li>)(.*?)(</li>)', lambda q: q.group(1) + '<span class="u26 u26n">' + q.group(2) + '</span>' + q.group(3), sh, count=1, flags=re.S)
+            out += f'<li class="mhd">{U26P}<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sh}</li>'; continue
         out += f'<li class="mhd"><b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sub([m.group(2)] + g[1:])}</li>'
     return out
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
