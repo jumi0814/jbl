@@ -4,7 +4,7 @@ SID, TITLE, EN, COLOR = 'GERI', '노인치과학', 'Geriatric Dentistry', '#6A6A
 PROFS = '유연지 · 한동헌 · 이우철 · 금기연 · 고홍섭 · 장지희 · 변민수'
 BUILT = '2026-09-26'
 LECMAP = {'HARD': ('G01i', '치아경조직 질환(25)'), 'OHQ': (None, '구강건강과 삶의 질(26·텍스트)'), 'OHQ5': ('G02i', '구강건강과 삶의 질(25)'),
-          'ENDO': ('G03i', '석회화된 근관치료(26)'), 'BLE': ('G04i', '노인치아 미백(25)'), 'SAL': ('G05i', '타액선 기능저하·구강점막질환(25)'),
+          'ENDO': ('G03i', '석회화된 근관치료(26)'), 'BLE': ('G09i', '노인치아 미백(26)'), 'BLE5': ('G04i', '노인치아 미백(25)'), 'SAL': ('G10i', '타액선 기능저하·구강점막질환(26)'), 'SAL5': ('G05i', '타액선 기능저하·구강점막질환(25)'),
           'PAIN': ('G06i', '고령자의 만성안면통증(26)'), 'PN5': ('G07i', '고령자의 만성안면통증(25)'), 'PSY': ('G08i', '노인행동심리학(25)')}
 LEC_ORDER = ['HARD', 'OHQ', 'ENDO', 'BLE', 'SAL', 'PAIN', 'PSY']
 LEC_IMG_ROOT = J.work('GERI', 'lec') + '/'     # 강의 쪽 이미지: work/GERI/lec/<폴더>/<쪽>.jpg
@@ -13,7 +13,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {}
-IMG_ALIAS = {'OHQ5': 'OHQ', 'PN5': 'PAIN'}
+IMG_ALIAS = {'OHQ5': 'OHQ', 'PN5': 'PAIN', 'BLE5': 'BLE', 'SAL5': 'SAL'}
 PROF_LEC = {'유연지': ['HARD'], '백승호': ['HARD'], '한동헌': ['OHQ'], '조현재': ['OHQ'], '이우철': ['ENDO'], '금기연': ['BLE'], '고홍섭': ['SAL'], '장지희': ['PAIN'], '변민수': ['PSY'], '박지은': ['PSY']}
 PROF_ORDER = ['유연지', '한동헌', '이우철', '금기연', '고홍섭', '장지희', '변민수', '백승호', '조현재', '박지은']
 COVER = {'유연지': 23, '백승호': 19, '한동헌': 24, '조현재': 19, '이우철': 19, '금기연': 19, '고홍섭': 9, '장지희': 19, '변민수': 22, '박지은': 11}

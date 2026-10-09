@@ -3,7 +3,7 @@ SID, TITLE, EN, COLOR = 'PHARM', '임상치과약물치료학', 'Clinical Dental
 PROFS = '백정화 · 이윤실 · 김우진 · 우경미 · 조영단'
 BUILT = '2026-09-27'
 LECMAP = {'RX': ('P01i', '처방전과 금연요법(26)'), 'RX5': ('P02i', '처방전과 금연요법(25)'), 'XE': ('P03i', '구강건조증 치료제(26)'), 'XE5': ('P04i', '구강건조증 치료제(25)'),
-          'BT': ('P05i', '보톡스(26)'), 'ACU': ('P11i', '급성통증 치료제(26)'), 'ACU5': ('P06i', '급성통증 치료제(25)'), 'CHR': ('P07i', '만성통증 치료제(25)'), 'HM': ('P08i', '지혈제와 수렴제(25)'), 'DS': ('P09i', '살균제와 소독제(25)'), 'BT5': ('P10i', '보톡스(25)')}
+          'BT': ('P05i', '보톡스(26)'), 'ACU': ('P11i', '급성통증 치료제(26)'), 'ACU5': ('P06i', '급성통증 치료제(25)'), 'CHR': ('P12i', '만성통증 치료제(26 김우진)'), 'CHR5': ('P07i', '만성통증 치료제(25 우경미)'), 'HM': ('P08i', '지혈제와 수렴제(25)'), 'DS': ('P09i', '살균제와 소독제(25)'), 'BT5': ('P10i', '보톡스(25)')}
 LEC_ORDER = ['RX', 'XE', 'BT', 'ACU', 'CHR', 'HM', 'DS']
 LEC_IMG_ROOT = J.work('PHARM', 'lec') + '/'     # 강의 쪽 이미지: work/PHARM/lec/<폴더>/<쪽>.jpg
 def lec_img_path(k, p):
@@ -11,7 +11,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {}
-IMG_ALIAS = {'RX5': 'RX', 'XE5': 'XE', 'BT5': 'BT', 'ACU5': 'ACU'}
+IMG_ALIAS = {'RX5': 'RX', 'XE5': 'XE', 'BT5': 'BT', 'ACU5': 'ACU', 'CHR5': 'CHR'}
 PROF_LEC = {'백정화': ['RX'], '이윤실': ['XE'], '김우진': ['BT'], '우경미': ['ACU', 'CHR', 'HM'], '조영단': ['DS']}
 PROF_ORDER = ['백정화', '이윤실', '김우진', '우경미', '조영단']
 COVER = {'백정화': 19, '이윤실': 20, '김우진': 20, '우경미': 20, '조영단': 20}
