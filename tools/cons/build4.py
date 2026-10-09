@@ -382,7 +382,8 @@ def _aitem_lis0(x, kind='A'):
     qs = _qspan(raw); cr = cite_row(cites)
     if qs and re.match(r'^(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|이란|란|도|만|처럼|보다|이며|이고|이다|라는|이라는)(?:\s|[,.)]|$)', raw[qs[1] + 1:].lstrip()): qs = None   # 10-05 인용 뒤가 조사로 이어지면 문장 속 인용 — 상자로 떼지 않음
     pre_ = raw[:qs[0]].strip() if qs else ''
-    if qs and qs[0] <= 80 and qs[1] - qs[0] >= 40 and re.fullmatch(r'[^"“]{0,80}?[:：]?', pre_) and not QPART.search(pre_.rstrip(':：')):   # 10-05 사용자 '"기억해줬으면 좋겠다" 이건 왜 굳이 줄바꿈하고 상자에' — 40자 이상 인용이 머리·라벨 바로 뒤에 올 때만 상자(짧은 인용·문장 속 인용은 같은 줄)
+    _bal = lambda t_: t_.count('{') == t_.count('}')   # 10-09 {n:…}·{u:…} 짝이 인용 상자 앞뒤로 갈라지면(떨어진 '}' — CONS Q25) 상자로 떼지 않음
+    if qs and qs[0] <= 80 and qs[1] - qs[0] >= 40 and re.fullmatch(r'[^"“]{0,80}?[:：]?', pre_) and not QPART.search(pre_.rstrip(':：')) and _bal(raw[:qs[0]]) and _bal(raw[qs[0]:qs[1] + 1]):   # 10-05 사용자 '"기억해줬으면 좋겠다" 이건 왜 굳이 줄바꿈하고 상자에' — 40자 이상 인용이 머리·라벨 바로 뒤에 올 때만 상자(짧은 인용·문장 속 인용은 같은 줄)
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
         if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)

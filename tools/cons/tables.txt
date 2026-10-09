@@ -615,14 +615,14 @@ R: Cement | {r:dual-cure resin cement}{n:(self-adhesive 말고 전처리를 다 
 R: Core 조합 ① | Adhesive (self-etch) + {r:Light-cure core} | {n:자가중합이 필요 없음(단점: 광조사 어려움)}
 R: Core 조합 ② | Adhesive (self-etch) + {r:Dual-cure activator} + Dual-cure core | {n:activator가 amine 추가 공급 → 산에 의한 방해를 막음(amine free 제품도 있음)}
 R: Core 조합 ③ | Adhesive ({r:no self-etch}) + Dual-cure/Light-cure core | {n:산이 없으면 아무거나(acidic monomer 없는 4세대)}
-R: Post cementation·core bonding ①(26 새 p.63) | Adhesive ({r:acidic monomer}) + {r:Light-cure core} | p.62 ①의 self-etch가 acidic monomer로
-R: Post cementation·core bonding ②(p.63) | Adhesive (acidic monomer) + {r:Dual-cure activator} + Dual-cure core {r:or cement} | {n:activator로 amine 보충(26 필기)}
-R: Post cementation·core bonding ③(p.63) | Adhesive (acidic monomer) + {r:Amine free} Dual-cure core or cement | 26에 슬라이드로 새로 들어감 — {n:amine 없이 다른 개시제(25 필기 · 제조사 영업비밀)}
-R: Post cementation·core bonding ④(p.63) | Adhesive ({r:no acidic monomer}) + Dual-cure/Light-cure core or cement | {n:산이 없으면 아무거나}
+R: Post cementation·core bonding ①(26 새 p.63) | {u:Adhesive ({r:acidic monomer}) + {r:Light-cure core}} | p.62 ①의 self-etch가 acidic monomer로
+R: Post cementation·core bonding ②(p.63) | {u:Adhesive (acidic monomer) + {r:Dual-cure activator} + Dual-cure core {r:or cement}} | {n:activator로 amine 보충(26 필기)}
+R: Post cementation·core bonding ③(p.63) | {u:Adhesive (acidic monomer) + {r:Amine free} Dual-cure core or cement} | 26에 슬라이드로 새로 들어감 — {n:amine 없이 다른 개시제(25 필기 · 제조사 영업비밀)}
+R: Post cementation·core bonding ④(p.63) | {u:Adhesive ({r:no acidic monomer}) + Dual-cure/Light-cure core or cement} | {n:산이 없으면 아무거나}
 R: 금지 | {r:RMGI} | {n:팽창 → post와 치근 사이 crack}
 N: 자가중합은 {r:amine}(염기) 계열로 개시 → self-etch의 {r:acidic monomer}와 만나 중화 → 중합 방해·접착력 저하. 회사가 추천한 조합(같은 회사 시리즈)으로 쓰면 편한 이유. 교수님 추천: total-etch + DC adhesive + DC resin cement(p.80). [[FRC:62]] [[FRC:80]]
-N: 26 새 슬라이드 p.63 = p.62 조합을 acidic monomer 기준으로 바꾸고 cement까지 넓힘 · {n:26 필기: acidic monomer가 든 adhesive는 dual-cure core/cement의 self-cure에 필요한 amine과 산-염기 반응 → 중합 방해}. [[FRC:63]]
-N: 변형 대비: "acidic monomer가 든 adhesive와 dual-cure core·cement를 함께 쓰려면?" → Dual-cure activator(amine 보충) 또는 Amine free Dual-cure core or cement / 아니면 Light-cure core · no acidic monomer adhesive — {n:26 필기 p.84 시험 키워드 'acidic monomer-amine compatibility'}. [[FRC:63]] [[FRC:84]]
+N: {u:26 새 슬라이드 p.63 = p.62 조합을 acidic monomer 기준으로 바꾸고 cement까지 넓힘} · {n:26 필기: acidic monomer가 든 adhesive는 dual-cure core/cement의 self-cure에 필요한 amine과 산-염기 반응 → 중합 방해}. [[FRC:63]]
+N: 변형 대비: "acidic monomer가 든 adhesive와 dual-cure core·cement를 함께 쓰려면?" → Dual-cure activator(amine 보충) 또는 Amine free Dual-cure core or cement / 아니면 Light-cure core · no acidic monomer adhesive — {u:{n:26 필기 p.84 시험 키워드 'acidic monomer-amine compatibility'}}. [[FRC:63]] [[FRC:84]]
 N: 변형 대비: 심는 과정(7회 서술) JB 답 3단계 = 1. Preparation of tooth(Root canal treatment · Post space preparation · Remove smear layer, debris, sealer, GP remnants · Irrigation with NaOCl or CHX, distilled water · Rinse with small endodontic needle · Dry with air and paper point) 2. Preparation of Post(Try-in · Trimming · Cleansing post with Alcohol sponge · {r:Silane (60s)} · Bonding agent) 3. Post Cementation with Resin Cement(Etching the canal {r:15s} → Rinse and dry → Apply {r:dual cure adhesive} with microbrush → Excess removal with paper point → Repeat bonding → Light curing → Mix resin cement → Cement application with Centrix syringe → Post installation → Light-curing). {jb:Q28}
 
 #TBL FRC post 전체정리 ① — post의 원칙(목적·적응·부위·길이·ferrule) | k=FRC | sum=1 | src=[[FRC:4]] [[FRC:5]] [[FRC:6]] [[FRC:7]] [[FRC:8]] [[FRC:9]] [[FRC:10]] [[FRC:11]] [[FRC:12]] [[FRC:13]] [[FRC:14]] [[FRC:15]] [[FRC:18]]
@@ -656,11 +656,11 @@ R: Resin cement | aesthetics · marginal sealing · low solubility · mechanical
 R: Self-adhesive resin cement(1 step) | no etching·priming·adhesive · {r:acidic phosphate group} | 편함 | {r:lower enamel bond strength} · {n:장기 데이터 부족} | —
 R: Post 전처리 | alcohol sponge → {r:silane}(60 s) → bonding | silane = hydrophilic glass ↔ hydrophobic resin {r:coupling agent} | silane 없으면 결합강도 크게↓ | {jb:Q28} ② pretreatment
 R: Root dentin 처리 | {r:total-etch} + {r:dual-cure adhesive} | {n:apical은 빛 부족 → DC} · ExciTE F DSC 가는 brush | {n:etchant 잔존 → paper point로 확인} | {jb:Q28} ③ cementation
-R: Core 조합(p.62) | self-etch + {r:LC core} / self-etch + {r:DC activator} + DC core / no self-etch + DC·LC core / 26 p.63: {r:acidic monomer} 기준 4조합(+ {r:Amine free} Dual-cure core or cement) | {n:산(acidic monomer)이 amine 자가중합 방해} | {n:universal도 self-etching 기능 → 주의} | 해당 없음(기출 없음 · 교수 강조)
+R: Core 조합(p.62) | self-etch + {r:LC core} / self-etch + {r:DC activator} + DC core / no self-etch + DC·LC core / {u:26 p.63: {r:acidic monomer} 기준 4조합(+ {r:Amine free} Dual-cure core or cement)} | {n:산(acidic monomer)이 amine 자가중합 방해} | {n:universal도 self-etching 기능 → 주의} | 해당 없음(기출 없음 · 교수 강조)
 R: Light-curing | DC여도 {r:광중합 필수} | self-cure만으론 결합강도 부족 | {r:Distance↑ → Irradiance↓}{n:(25 필기 1.5 cm에 절반 이상↓ · 26 필기 약 1 cm만 떨어져도 크게↓)} · {n:shield로 보며} | —
 R: Removal | {r:ultrasonic tip} · round bur · special kit · {r:guided endodontics} | 접착 계면 깨기·갈아내기 | {n:천공·치근 약화 위험 → routine 제거 ✗} | —
 R: Clinical procedure | ① {r:Preparation of tooth} ② {r:Pretreatment of post} ③ {r:Post cementation with resin cement} → core | {n:드릴은 색깔 순서} · paper point · Centrix syringe | {n:힘으로 드릴링 → root crack · 추천 = total-etch + DC adhesive + DC resin cement} | {jb:Q28} 7회 서술 — 심는 과정
-R: p.83 Summary — Keyword 5 | 교수님이 알아두라고 한 5가지(시험 범위 지도) | ① Purpose of Post ② Indication & Recommendation of Post ③ Important Factors for Success of Post ④ Concepts & Advantages of FRC Post ⑤ FRC Post Cementation & Core Restoration | ①~③ = 전체정리 ① · ④⑤ = 이 표 / 25 필기 요약의 {n:'포스트한 치아의 예후'} = Recommended but questionable 행 · {n:'접착 시 이슈(Dual-cure, resin cement와 acidic한 monomer)'} = Core 조합(p.62) 행 / {n:26 필기 p.84 시험·임상 키워드: post indication · ferrule · FRC full name과 장점 · favorable failure · dual-cure vs self-adhesive resin cement · acidic monomer-amine compatibility} | 목적 {jb:Q22} · 적응 {jb:Q21} · ferrule {jb:Q29} · 장점 {jb:Q26} · 심는 과정 {jb:Q28} [[FRC:83]]
+R: p.83 Summary — Keyword 5 | 교수님이 알아두라고 한 5가지(시험 범위 지도) | ① Purpose of Post ② Indication & Recommendation of Post ③ Important Factors for Success of Post ④ Concepts & Advantages of FRC Post ⑤ FRC Post Cementation & Core Restoration | ①~③ = 전체정리 ① · ④⑤ = 이 표 / 25 필기 요약의 {n:'포스트한 치아의 예후'} = Recommended but questionable 행 · {n:'접착 시 이슈(Dual-cure, resin cement와 acidic한 monomer)'} = Core 조합(p.62) 행 / {u:{n:26 필기 p.84 시험·임상 키워드: post indication · ferrule · FRC full name과 장점 · favorable failure · dual-cure vs self-adhesive resin cement · acidic monomer-amine compatibility}} | 목적 {jb:Q22} · 적응 {jb:Q21} · ferrule {jb:Q29} · 장점 {jb:Q26} · 심는 과정 {jb:Q28} [[FRC:83]]
 
 #TBL '목적'으로 묻는 세 목록 — Purpose of Post vs Concepts of FRC Post vs Advantages of FRC Post | k=FRC | src=[[FRC:7]] [[FRC:28]] [[FRC:37]] [[FRC:38]]
 H: 목록 | 슬라이드 원문 | 개수·쪽 | 기출·함정
@@ -669,7 +669,7 @@ R: Concepts of FRC Post {jb:Q24} | Mimic physical property of dentin of root / S
 R: Advantages of FRC Post {jb:Q26} | Aesthetics / One-appointment / No laboratory process / No corrosion / Negligible root fracture / Increased retention / Conserved tooth structure / Retrievable / Similar modulus of elasticity with dentin / Better stress distribution: not the apex, along the root / Tooth-resin cement-post-core: "Monoblock" | {r:11} · p.37 | 21·20·19·18·17·15·14·13년 서술 — 필기: {n:가장 중요한 장점 = modulus가 치아와 유사 → 응력 분포 유리 · monoblock} [[FRC:37]]
 R: Disadvantages of FRC Post | Technique sensitivity / Need for careful adhesive protocol | {r:2} · p.38 | 필기: {n:접착 단계가 많음 · 접착 실패 가능성} [[FRC:38]]
 N: 같은 '목적' 문장이라도 'Post 수복의 목적' = p.7(2개), 'FRC post의 목적' = p.28 Concepts(5개). 개수(2 · 5 · 11 · 2)로 먼저 구분.
-N: 변형 대비: 약자 full name — FRC = {r:Fiber Reinforced Composite}(p.27) · D.T. = Double Taper(p.34) · DC/LC/SC = Dual-cure/Light-cure/Self-cure(p.51) — {n:26 필기 p.27 '교수님이 과거 약어의 full name을 시험에 낸 적'} {jb:Q25}. [[FRC:27]] [[FRC:34]] [[FRC:51]]
+N: 변형 대비: 약자 full name — FRC = {r:Fiber Reinforced Composite}(p.27) · D.T. = Double Taper(p.34) · DC/LC/SC = Dual-cure/Light-cure/Self-cure(p.51) — {u:{n:26 필기 p.27 '교수님이 과거 약어의 full name을 시험에 낸 적'}} {jb:Q25}. [[FRC:27]] [[FRC:34]] [[FRC:51]]
 
 #TBL Shade 결정 3가지 방법 비교 | k=ANT | src=[[ANT:40]] [[ANT:41]] [[ANT:42]] [[ANT:43]] [[ANT:45]]
 H: 방법 | 무엇으로·어디서 | 핵심 | 필기 포인트
