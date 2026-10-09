@@ -35,7 +35,7 @@ def check_part(kind, text, sid, key, qids):
                     k_, _, v = f.strip().partition('=')
                     if k_ not in ('v', 'yrs', 'yrsnote', 'lec', 'rel', 'pair'): errs.append(f'{i}: 모르는 필드 {k_}')
                     if k_ == 'v' and v not in ('ok', 'part', 'diff', 'none', 'na'): errs.append(f'{i}: v={v}')
-            elif not re.match(r'^[AMN]:', l): errs.append(f'{i}: 알 수 없는 줄 {l[:40]}')
+            elif not re.match(r'^[AMNK]:', l): errs.append(f'{i}: 알 수 없는 줄 {l[:40]}')   # K: = 🎯 요점(10-05)
         elif kind == 'tables':
             if l.startswith('#TBL'):
                 if f'k={key}' not in l.replace(' ', ''): errs.append(f'{i}: k={key} 아님')

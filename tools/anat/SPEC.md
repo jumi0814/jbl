@@ -22,7 +22,7 @@
 
 ## 공통 코드 동기화·전 과목 빌드 (tools/sync_common.py · tools/build_all.sh)
 - 공통 생성 코드(shell.html·build4.py·lecparse.py·trend.py·reflow.py·emph.py·template2.html)는 **tools/cons/에서만 고친다**. SPEC.md는 tools/SPEC.md가 원본
-- `.venv/bin/python tools/sync_common.py` — cons → oms1·impl·anat·geri·pharm 복사(SPEC.md 사본 포함) · `--check` 사본끼리 다르면 종료 코드 1 · `--build` 복사 후 6과목 build4 → verify.py → audit_design.py
+- `.venv/bin/python tools/sync_common.py` — cons → oms1·impl·anat·geri·pharm·esth 복사(SPEC.md 사본 포함) · `--check` 사본끼리 다르면 종료 코드 1 · `--build` 복사 후 7과목 build4 → verify.py → audit_design.py
 - `tools/build_all.sh` = `sync_common.py --build --all`(tests/ux_all.py가 있으면 그것까지)
 - build2.py는 과목마다 마지막 출력 줄(`J.work('<SID>', 'build2_view.html')`)이 달라 복사하지 않는다 — 고칠 때는 과목별로
 - 과목별로 달라야 하는 설정은 subject.py의 선택 항목(`getattr(S, '이름', 기본값)`)으로 — 없으면 기존 동작

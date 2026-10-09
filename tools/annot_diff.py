@@ -6,14 +6,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SID = sys.argv[1].upper(); src = os.path.join(ROOT, 'tools', SID.lower(), 'annot.txt'); bak = os.path.join(ROOT, 'work', SID, 'annot_before.txt')
 if '--save' in sys.argv:
     open(bak, 'w', encoding='utf-8').write(open(src, encoding='utf-8').read()); print('saved', bak); sys.exit()
-SEP = re.compile(r'[\s/:：;·,—–\-=→"“”\'‘’.()]|^[AMN]:')
+SEP = re.compile(r'[\s/:：;·,—–\-=→"“”\'‘’.(){}*]')   # 강조 표기({r:}·**)를 빼도 빠진 글자로 안 잡힘(10-09 D5)
 def blocks(t):
     out, cur = {}, None
     for ln in t.splitlines():
         m = re.match(r'^@(\S+)', ln)
         if m: cur = m.group(1); out[cur] = collections.Counter(); continue
         if cur is None: continue
-        ln = re.sub(r'^[AMN]:\s*', '', ln)
+        if ln.startswith('K:'): continue   # K 🎯는 다시 쓰기 허용 — A·M·N만 셈(10-05) · K는 눈으로
+        ln = re.sub(r'^[AMN]:\s*|\{r:|\{n:|\{jb:', '', ln)
         out[cur].update(SEP.sub('', ln))
     return out
 A, B = blocks(open(bak, encoding='utf-8').read()), blocks(open(src, encoding='utf-8').read())

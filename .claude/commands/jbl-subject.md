@@ -1,3 +1,5 @@
+> 새 연도 자료·새 강의·새 과목 정리본은 `.claude/skills/jbl-update/SKILL.md`를 따른다(이 명령은 10-02 판 — RULES.md·QA.md가 없다).
+
 $ARGUMENTS 과목의 JBL 팩을 만들거나 갱신한다.
 
 1. `CLAUDE.md`, `guide/정리본_원칙.md`, `tools/SPEC.md`를 먼저 전부 읽는다. 기준 원고 `tools/oms1/lec_DD1.txt`와 `tools/cons/lec_FRC.txt`를 열어 형식·밀도를 확인한다.
