@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"5e4bc170",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"eb0c22e2",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1921,6 +1921,21 @@ b.mlab{font-weight:700;color:inherit}
 b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}b.mlab.nlab~.ntw::before,b.mlab.nlab~ul .ntw::before{content:none}
 .und .ntw::before,.und .srcn::after,.li.nsec .ntw::before,.li.nsec .srcn::after{content:none}.und br.ntb,.li.nsec br.ntb{display:none}
 .ntw .srcn::after{content:none}
+/* 10-09 사용자 '25년도 자료에 비해 26년도 자료에서 변동사항 … 사라진 페이지 또는 특히 26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조' — 원고 {u:…} = 26에 새로 생기거나 바뀐 내용(앞 배지·밑줄 = CSS, 글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) · (… 26에서 빠짐) = 회색 */
+:root{--u26:#1C8A4C;--u26fg:#fff;--u26l:rgba(28,138,76,.55);--u26bg:#ECF7EF}
+:root[data-theme="dark"]{--u26:#5BC98A;--u26fg:#0B1F12;--u26l:rgba(91,201,138,.6);--u26bg:#16291D}
+.u26{text-decoration:underline 2px var(--u26l);text-decoration-skip-ink:none;text-underline-offset:3px}
+.u26::before{content:"NEW 26";display:inline-block;font:700 calc(9.5px*var(--fs,1))/1.55 system-ui,-apple-system,sans-serif;letter-spacing:.02em;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 4px;margin-right:4px;vertical-align:.12em}
+.u26 .u26::before,.li.usec .u26::before{content:none}.li.usec .u26{text-decoration:none}
+.li.usec{box-shadow:inset 3px 0 0 var(--u26)}
+.gone26{font-size:.9em;color:var(--sub);background:rgba(128,118,104,.14);border-radius:4px;padding:0 4px}
+.chip.u26chip{background:var(--u26);color:var(--u26fg);border-color:var(--u26);font-weight:700}
+.frame .ol .o26{font:700 calc(9px*var(--fs,1))/1.5 system-ui,sans-serif;font-style:normal;color:var(--u26fg);background:var(--u26);border-radius:3px;padding:0 3px;margin-left:5px;vertical-align:.1em}
+.co.c-upd{background:var(--u26bg);border:1px solid var(--u26l);border-left:4px solid var(--u26)}.co.c-upd .ct{color:var(--u26);font-weight:800}
+.c-upd .fu{margin:3px 0}.c-upd .fuc b{margin-right:4px}.c-upd .fun{color:var(--sub);margin-top:6px}.c-upd .u26.demo{text-decoration:none}.c-upd .u26.demo::before{content:none}.c-upd .u26.demo{font:700 calc(9.5px*var(--fs,1))/1.55 system-ui,sans-serif;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 4px}
+.c-upd .ucj{font-size:calc(12.5px*var(--fs,1));border:1px solid var(--u26l);background:transparent;color:inherit;border-radius:999px;padding:1px 9px;margin:2px 4px 2px 0;cursor:pointer}.c-upd .ucj:hover{background:var(--u26);color:var(--u26fg)}
+.only-u26 .tc:not(.u26c){display:none}
+.lcard .lupd{color:var(--u26);font-weight:700}
 .srch+.ntw::before{content:none}
 .c-mem span.klh,.lrec span.klh,.fc span.klh{font-weight:700}
 .ab.lk .lrec{font-size:15px;list-style:none;padding-left:2px}
@@ -2029,7 +2044,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="5e4bc170",PV={"OMS1": "8cd824d7", "CONS": "f98ac243", "IMPL": "9bdd8a2b", "ANAT": "70284d57", "GERI": "75a00b36", "PHARM": "427e1792", "ESTH": "414fd037"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.0, "GERI": 4.2, "PHARM": 5.7, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="eb0c22e2",PV={"OMS1": "a9b058ab", "CONS": "b3837e37", "IMPL": "44f6f4d4", "ANAT": "1546ca33", "GERI": "34fd4810", "PHARM": "edfc6d2b", "ESTH": "0672a490"},PSZ={"OMS1": 4.0, "CONS": 3.2, "IMPL": 3.2, "ANAT": 4.0, "GERI": 4.3, "PHARM": 5.7, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2984,7 +2999,7 @@ function actBtn(p,a,C){if(a==='resume'){const r=resumeTarget(p);if(!r)return '';
 const GUIDE0=[{b:'강의 정리본 → 학습',t:'‘이 강의의 틀’로 흐름 → 카드마다 🔑 → 세부 → ⭐ 시험포인트',act:'resume'},{b:'강의 → 기출',t:'그 강의 기출을 한 장씩 풀고 맞음/틀림 — 📖 칩으로 정리본과 오가기',act:'todo'},{b:'강의 → 플래시카드·⚡자동 빈칸',t:'암기 줄을 가리고 떠올리기',act:''},{b:'과목 → JB 문제',t:'출제 횟수 순으로 풀고 틀린 것만 다시 · 비교표 · 예상문제로 마무리',act:'rep'}];
 /* 과목 홈(ux4 B3-3 — CLAUDE.md 순서 유지: 공부 순서 → 진행률 → 교수별 출제 경향·📌 전략(build4 표) → 교수님이 예고·강조한 것 → 강의 → 2회 이상 출제)
    절 = 제목 17 굵게 + 선 하나 · 공부 순서 = 번호(과목색) · 굵은 단계 · 회색 설명 · 오른쪽 글자 링크, 지금 단계는 번호를 채운 원 · 진행률 한 줄 + 4px 막대 + 보조 버튼 2 · 시험일·읽음 % 없음 */
-function lcardHTML(p,L,BM,hot2,hub){const RD=lrdN(p.id,L.k);return `<div class="lcw${BM[L.k]?' bm':''}${RD?' rd':''}">${lbmBtn(p.id,L.k,'lbm')}${lrdBtn(p.id,L.k,'lrd')}<button class="lcard ${L.heat}" data-d="${L.k}"${hub?` data-hbs="${EH(p.id)}"`:''}><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.tip?`<span class="lh ltip"><b>📌 공부 전략</b> ${EH(L.tip)}</span>`:''}</button></div>`;}   /* 과목 홈 강의 카드 — 허브 '내 북마크'도 같은 틀(hub = 누르면 그 과목 강의로) */
+function lcardHTML(p,L,BM,hot2,hub){const RD=lrdN(p.id,L.k);return `<div class="lcw${BM[L.k]?' bm':''}${RD?' rd':''}">${lbmBtn(p.id,L.k,'lbm')}${lrdBtn(p.id,L.k,'lrd')}<button class="lcard ${L.heat}" data-d="${L.k}"${hub?` data-hbs="${EH(p.id)}"`:''}><span class="lt"><b>${EH(L.title)}</b>${hot2.has(L.k)?'<span class="hot2" title="두 번 이상 나온 문제가 있는 강의">2회+</span>':''}</span><span class="lm">${EH(L.prof)} · ${EH(L.yr)}년도 자료 · 카드 ${L.nsec} · 기출 ${L.jb.length} · 예상 ${L.pred.length}${L.upd?' · <span class="lupd">🆕 26 바뀐 카드 '+L.upd+'</span>':''}</span>${L.tline?`<span class="tl">${EH(L.tline)}</span>`:''}${L.tip?`<span class="lh ltip"><b>📌 공부 전략</b> ${EH(L.tip)}</span>`:''}</button></div>`;}   /* 과목 홈 강의 카드 — 허브 '내 북마크'도 같은 틀(hub = 누르면 그 과목 강의로) */
 function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const MKh=getMK(p.id);const G=(p.guide&&p.guide.length?p.guide:GUIDE0),r0=resumeTarget(p);
  let now=G.findIndex(g=>g.act==='resume');if(!(r0&&r0.cont)&&!(nOk+nNg))now=0;if(now<0)now=0;
  const TJ=trendNoPct(p.trends||'').j;const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(String(g.t).replace(/짤 비율 평균 \d+%/,TJ?'짤 '+TJ+'문항':'짤이 많음'))}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');

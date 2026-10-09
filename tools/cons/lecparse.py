@@ -41,7 +41,26 @@ def _kcls(core):
         return 'k k2'
     return f
 NOTE_O, NOTE_C = '\ue030', '\ue031'
-def _nl(s): return len(s) - 4 * s.count('{n:')   # 10-09 길이 기준은 필기 표시 {n:…} 글자를 빼고(표시를 넣어도 줄 나눔이 그대로)
+def _nl(s): return len(s) - 4 * s.count('{n:') - 4 * s.count('{u:')   # 10-09 길이 기준은 필기 표시 {n:…}·26 새 내용 {u:…} 표시 글자를 빼고(표시를 넣어도 줄 나눔이 그대로)
+UPD_O, UPD_C = '\ue032', '\ue033'
+def _upd_marks(s):
+    """10-09 사용자 '26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조' — 원고 {u:…} = 25 대비 26에 새로 생기거나 바뀐 내용 → 화면 span.u26(앞 'NEW 26' 배지 = CSS, 글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로)"""
+    if '{u:' not in s: return s
+    out = []; i = 0
+    while True:
+        j = s.find('{u:', i)
+        if j < 0: out.append(s[i:]); break
+        d = 0; k = j + 3; end = -1
+        while k < len(s):
+            if s[k] == '{': d += 1
+            elif s[k] == '}':
+                if d == 0: end = k; break
+                d -= 1
+            k += 1
+        if end < 0: out.append(s[i:j] + s[j + 3:]); break
+        out.append(s[i:j] + UPD_O + s[j + 3:end] + UPD_C); i = end + 1
+    return ''.join(out)
+GONE26 = re.compile(r'\(([^()<>]{0,60}26에서 빠[짐졌][^()<>]{0,80})\)')   # '(25 자료 — 26에서 빠짐)' 꼴 → 회색 배지(글자 그대로)
 def _note_marks(s):
     """10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} = 필기 구간 → 짝 맞는 자리만 표시(짝이 없으면 표시 없이 글자만)"""
     if '{n:' not in s: return s
@@ -97,10 +116,13 @@ def _ntw_close(h):
         else: out += '</span>' + rest
     return out
 def inline(s, ctx, first=True):
-    s = _srcn_start(_note_marks(s))
+    s = _upd_marks(_srcn_start(_note_marks(s)))
     h = _inline0(s, ctx, first)
     if NOTE_O in h or NOTE_C in h:   # 글자는 그대로 — 표시는 CSS(::before ✍, 10-09 앞에만)라 형광펜·플래시카드 글자에 안 섞임
         h = _ntw_close(h.replace(NOTE_O, '<span class="ntw" title="필기">'))
+    if UPD_O in h: h = h.replace(UPD_O, '<span class="u26" title="26년도 자료에 새로 생기거나 바뀐 내용">').replace(UPD_C, '</span>')
+    elif UPD_C in h: h = h.replace(UPD_C, '')
+    if '26에서 빠' in h: h = GONE26.sub(r'<span class="gone26" title="25 자료에만 있음 — 26 자료에서 빠짐">(\1)</span>', h)
     return h
 def _inline0(s, ctx, first=True):
     out = []; core = ctx.get('RED'); kc = _kcls(core) if core is not None else None
@@ -129,11 +151,13 @@ def parse(path):
     for raw in open(path, encoding='utf-8'):
         line = raw.rstrip('\n')
         if not line.strip(): continue
+        if card is not None and '{u:' in line and not line.startswith('## '): card['u26'] = True   # 10-09 이 카드에 26 새 내용 있음(카드 머리 🆕 26 · 26 바뀐 카드만 거르기)
         if line.startswith('#LEC'):
             p = [x.strip() for x in line[4:].split('|')]
-            lec = {'k': p[0], 'title': p[1], 'prof': p[2], 'yr': p[3], 'file': p[4], 'pages': int(p[5]), 'notes': [], 'cards': [], 'map': '', 'tip': []}
+            lec = {'k': p[0], 'title': p[1], 'prof': p[2], 'yr': p[3], 'file': p[4], 'pages': int(p[5]), 'notes': [], 'cards': [], 'map': '', 'tip': [], 'upd': []}
         elif line.startswith('@MAP'): lec['map'] = line[4:].strip()
         elif line.startswith('@TIP'): lec['tip'].append(line[4:].strip())   # 10-03 사용자: 과목 홈 강의 박스 = 공부 전략·팁(교수 예고·필기는 정리본 안에서)
+        elif line.startswith('@UPD'): lec['upd'].append(line[4:].strip())   # 10-09 사용자 '25 대비 26 변동사항 표시' — 강의 틀 맨 위 '🆕 25 → 26 바뀐 점' 상자(새 쪽·바뀐 쪽·빠진 쪽 한 줄씩)
         elif line.startswith('@G'): grp = line[2:].strip()
         elif line.startswith('!'): lec['notes'].append(line[1:].strip())
         elif line.startswith('## '):
@@ -141,7 +165,7 @@ def parse(path):
             for x in p[3:]:
                 if x.startswith('jb='): jb = [j.strip() for j in x[3:].split(',') if j.strip()]
                 else: tag = x
-            card = {'en': p[0], 'ko': p[1], 'rng': p[2], 'tag': tag, 'jb': jb, 'gist': '', 'body': [], 'figs': [], 'grp': grp, 'recall': []}
+            card = {'en': p[0], 'ko': p[1], 'rng': p[2], 'tag': tag, 'jb': jb, 'gist': '', 'body': [], 'figs': [], 'grp': grp, 'recall': [], 'u26': '{u:' in line}
             lec['cards'].append(card)
         elif line.startswith('> '): card['gist'] = line[2:].strip()
         elif line.startswith('= '): card['body'].append(('K', line[2:].strip()))
@@ -309,7 +333,7 @@ def _rebalance(parts, hl0=False):
 LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
 _IP = [None]   # ux3 트랙3 N1 — key_lines가 도는 동안만 조각 렌더를 바꾸는 갈고리(평소에는 inline 그대로)
 def _ip(p, ctx, li=False): return _IP[0](p, ctx, li) if _IP[0] else inline(p, ctx)
-def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|\{n:|==|\*\*|\}', '', p)
+def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|\{n:|\{u:|==|\*\*|\}', '', p)
 def _is_flow(parts):
     """가로 흐름(ul.kflow): 4조각↑ 중앙값 24자 미만 · ux2 D09 2~3조각은 합 100자 이하이거나 3조각 중앙값 22자 이하"""
     if len(parts) < 2: return False
