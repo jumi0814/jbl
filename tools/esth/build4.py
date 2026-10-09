@@ -632,8 +632,12 @@ def sum_q(q):
     if len(bt) <= 160: return esc(stem), f'<div class="qbody">{esc(bt)}</div>'
     cut = bt[:160].rsplit(' ', 1)[0] if ' ' in bt[:160] else bt[:160]
     return esc(stem), f'<div class="qbody">{esc(cut)}<span class="qrest">{esc(bt[len(cut):])}</span><button class="qmore noann" data-qmore="1" aria-label="본문 더 보기"></button></div>'
+def hcell(c):
+    """10-09 표 열 머리가 필기 열('필기 풀이'·'(p.3 필기)'·'요점(필기)')이면 머리 앞 ✍ — 그 열 칸은 머리 하나로(칸마다 붙이지 않음)"""
+    if '{n:' not in c and not lecparse.SRCN.search(c) and re.search(r'(?:^|[\s(])(?:\d{2}\s)?필기', c): return '{n:' + c + '}'
+    return c
 def mini_table(rows, cls='mini'):
-    head = ''.join(f'<th>{lecparse.inline(c, ctx)}</th>' for c in rows[0])
+    head = ''.join(f'<th>{lecparse.inline(hcell(c), ctx)}</th>' for c in rows[0])
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
     return f'<div class="tscroll"><table class="{cls}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 SYM_RE = re.compile(r'[○×✓✗△◎OX✔\-—\s]+')
@@ -987,7 +991,7 @@ for line in open(DIR + '/tables.txt', encoding='utf-8'):
             elif x.replace(' ', '') == 'sum=1': cur['sum'] = 1   # ux2 E05 의미 축 전체정리표 → 정리표 탭 맨 위(비교표에는 싣지 않음)
         tables.append(cur)
     elif line.startswith('H:') and cur:
-        hh = [lecparse.inline(c.strip(), ctx) for c in line[2:].split('|')]
+        hh = [lecparse.inline(hcell(c.strip()), ctx) for c in line[2:].split('|')]
         while hh and not hh[-1]: hh.pop()
         cur['head'] = hh
     elif line.startswith('R:') and cur:
