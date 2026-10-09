@@ -59,6 +59,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 - 동시에(파일이 안 겹침): **D1 🔑⚡**(lec `=`·`M:`) · **D3 JB 해설**(과목 하나 — annot) · **D4 표·예상**(과목 하나 — tables·pred, pred 줄바꿈 포함).
 - D1이 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 + 강의마다 `text_diff tools/<sid>/lec_<KEY>.txt --save`(D1 뒤 기준본) → **D2 줄바꿈·번호·들여쓰기**(lec `-`·`=`·`E:`·`P:`·`U:` 줄 + tables.txt 칸의 구분 기호 — D4가 끝난 뒤 메인이 `text_diff tools/<sid>/tables.txt --save` 하고 그 과목 D2 담당 **한 명만** tables 차례).
 - D2·D3·D4가 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 → 기준본 다시 저장(lec마다·pred `text_diff --save` · `annot_diff --save`) → **D5 필기 ✍·강조 마무리**(과목 하나 — lec 모든 줄·annot·pred, tables는 D4가 함(TABLE3 6번 필기 칸 빨강 + NOTEMARK2 표 칸 `{n:}`) · `NOTEMARK_BRIEF`+`NOTEMARK2_BRIEF`+`REDNOTE_BRIEF` · RULES 7 끝·9 · QA 29·34) → 커밋 → build4 + `dump_breaks2 <SID>` 다시(D5의 ✍ 줄바꿈·빨강 변화 반영) → **D2b 구조 정돈**(`--ref` = 그 커밋)(과목 하나 — 위아래로 이어지는 내용이 떨어진 • 로 보이는 곳·엉뚱한 머리 아래 묶인 곳, `STRUCT_BRIEF.md`·RULES 6 '이어지는 내용은 한 줄에' · 검사 `tools/struct_diff.py` ✓).
+- **강의가 적거나(≤5) 사용 한도가 걱정되면**(10-09 — 한도로 담당 5명이 두 번 멈춤): 강의마다 F 담당 1명이 D1 → D3 → D4 → D2 → D5 → D2b → @TIP을 차례로(그 강의 lec + `work/<SID>/parts/{annot,tables,pred}_<KEY>.txt` — 같은 과목 다른 강의와 파일이 안 겹침, split은 E 때 것 그대로) · 메인은 시작 전 lec·parts `text_diff --save`, 끝나면 `merge_parts` → 빌드. 한도로 멈추면 같은 지시문으로 다시 띄움(손댄 곳은 기준본 diff로 이어 감).
 - 마지막에 메인이 `@TIP`(강의 박스 공부 전략 — `guide/handoff/TIP_BRIEF.md`)을 바뀐 강의마다 다시 씀(B1이 쓴 것은 덮어써도 됨).
 - 갱신 강의만 대상이어도 D1·D2는 그 강의의 **모든 카드**.
 
