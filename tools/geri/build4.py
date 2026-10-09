@@ -338,11 +338,12 @@ def _qhtml(qt):
     ps = [x for x in ps if x.strip()] or ['']
     ps[0] = o + ps[0]; ps[-1] = ps[-1] + c_
     return ''.join(f'<div class="ql">{_lbl(x) if (len(ps) > 1 and _lbl(x)) else lecparse.inline(x, ctx)}</div>' for x in ps)
-PGTOK = re.compile(r'\s*(?:—\s*)?\(?(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*|슬라이드\s?\d+(?:\s?[-~–,·]\s?\d+)*)\)?(?=$|[\s:：,)\]—])')
+_PGT = r'(?:pp?\.\s?\d+[a-z]?(?:\s?[-~–,·]\s?\d+)*|슬라이드\s?\d+(?:\s?[-~–,·]\s?\d+)*)'
+PGTOK = re.compile(r'\s*(?:—\s*)?(?:\(' + _PGT + r'\)|' + _PGT + r'(?=$|[\s:：,)\]—]))')   # 10-09 괄호는 짝째로만 뺌('결론(p.36)과' → '결론과' · '(p.10 필기)' → '(필기)') — 반쪽 괄호 남던 것
 def _nopg(s):
     """10-05 사용자 '선지마다 설명 앞에 어디 몇쪽 내용인지 나와있는건 없애고, 근거란에만 표시' — 항목 머리(위치·라벨)의 쪽 표기를 뺌(근거 줄이 있을 때만 부름)"""
-    t = PGTOK.sub(' ', s)
-    t = re.sub(r'\(\s*\)', '', t); t = re.sub(r'\s{2,}', ' ', t); t = re.sub(r'\s+([:：,)])', r'\1', t)
+    t = PGTOK.sub(lambda m: (' ' if m.group(0)[:1].isspace() and not m.group(0).strip().startswith('(') else '') if '(' in m.group(0) else ' ', s)   # 붙은 '(p.36)'은 빈자리 없이
+    t = re.sub(r'\(\s*\)', '', t); t = re.sub(r'\(\s+', '(', t); t = re.sub(r'\s{2,}', ' ', t); t = re.sub(r'\s+([:：,)])', r'\1', t)
     return re.sub(r'^[\s—·,:：]+|[\s—·,]+$', '', t)
 def _nopg_head(raw):
     """머리 라벨('5-1) ×(24): p.13 …', 'p.6: …', '26 필기(p.6) …')의 쪽 표기만 뺌 — 본문 글은 그대로"""
