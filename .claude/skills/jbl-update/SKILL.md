@@ -45,6 +45,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 - 작성자가 **처음부터 RULES.md 최종형으로** 쓰게 하는 것이 전체 시간을 가장 줄인다.
 - 갱신: **그 과목 작성자 전원이 끝난 뒤** 강의마다 `tools/apply_map26.py <SID> <KEY>`(다른 lec 파일도 고치므로 동시에 돌리지 않음 — 한 번만, .applied) → `tools/split_parts.py <SID> --force` → `tools/merge_parts.py <SID> --check`가 '검사 통과'인지 확인하고 담당을 보냄. apply_map26은 'JB 참고 p.N'·다른 강의 쪽·25 필기 쪽까지 옮기는 버릇 → E 1회차가 되돌림 확인. 다른 강의 파일이 바뀐 키를 가리키는 곳(맨글 p.N·F:·#TBL src)은 grep으로 손질.
 - 새 강의: 먼저 `split_parts <SID> --force`(낡은 조각 덮기) → `merge_parts <SID> --check` 통과 확인 → 담당이 parts에 씀 → `tools/merge_parts.py <SID>`.
+- 갱신 강의는 25 → 26 바뀐 곳 표시를 작성 단계부터(RULES 12 · `review_final/UPD26MARK_BRIEF.md` — `{u:}` 초록 NEW 26 · `@UPD` 상자 · 사용자 10-09).
 - 첫 빌드: `.venv/bin/python tools/<sid>/build4.py` → 연결 누락·없는 문항 0 → `dump_review.py <SID>` 다시.
 
 ## E. 독립 검토 3회(회차마다 다른 담당, 강의마다 1명 병렬) — AGENTS.md C
