@@ -257,7 +257,7 @@ M: 정상: Whole 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0} / Parotid 비자극
 M: 문제 기준: {n:비자극은 75% 감소(0.10)해야 문제}
 M: 생각할 기준값: {n:비자극 0.4 ml/min · 자극 0.7 ml/min}
 M: Redundancy: 양측 이하선 비기능도 {r:0.32} = {r:redundancy}(backup · overlapping · multifunctionality) → {n:한 물질 양이 적다고 질병 원인으로 단정 ×}
-M: 비기능 분비율(26 형광): 양측 악하선/설하선 비기능 {r:0.10} · 편측 이하선 + 양측 악하선/설하선 비기능 {r:0.06} · 타액선 기능의 75% 감소 {r:0.10}(정상 0.40)
+M: 비기능 분비율(26 형광): 양측 악하선/설하선 비기능 {r:0.10} / 편측 이하선 + 양측 악하선/설하선 비기능 {r:0.06} / 타액선 기능의 75% 감소 {r:0.10}(정상 0.40)
 M: 건조 약물 9: ① Anorectic drugs ② {r:Anticholinergics} ③ Antidepressants ④ Antipsychotics ⑤ {r:Diuretics} ⑥ Sedative & Hypnotics ⑦ {r:Antihistamines} ⑧ Antiparkinsonism drugs ⑨ {r:Antihypertensive drugs}
 
 ## Signs · Symptoms · Questions | 구강건조증의 증상·관련 상태와 좋은 문진 | 12 | 미출제
@@ -482,7 +482,7 @@ M: BMS 노인증후군: 당뇨 · 약물 · 영양결핍 · 신경질환 → {r:
 @G ⑤ 노인치과학 — 올 수 없는 노인을 위한 치의학
 ## Oral Health in Geriatric Care — Pathways | 노인 건강관리에서 구강건강의 중요성 — 구강이 전신 노쇠로 이어지는 경로 | 21 | 개념 · 미출제 · 26 ★ 도표
 > 입의 문제는 입에서 끝나지 않는다 — 폐렴·당뇨·치매·고립·근감소증으로 번지는 다섯 갈래
-= 위생불량·건조 → {r:흡인성 폐렴} / 만성염증 → {r:당뇨·심장질환} / 저작↓ → {r:뇌혈류량↓} / 기능↓ → {r:사회적 고립}·{r:근감소증}
+= 위생불량·건조 → {r:흡인성 폐렴} / 만성염증 → {r:당뇨·심장질환} / 저작↓ → {r:뇌혈류량↓} → 인지적 노쇠 / 기능↓ → {r:사회적 고립}(→ 사회적 노쇠)·{r:근감소증}(→ 신체 노쇠)
 # Association between Oral and Maxillofacial Dysfunctions
 - 바탕 = Aging · Multi-morbidity/Polypharmacy → ① Salivary gland hypofunction · ② Oral candidiasis · ③ Taste disorders · ④ Chronic oral mucosal pain disorders · ⑤ Swallowing disorders · ⑥ Oral and maxillofacial movement disorders · ⑦ Pneumonia가 서로 화살표로 연결.
 - 필기: {n:여러 약물이나 질환들이 문제를 악화시킬 수 있는 경로를 알아야 한다}.
@@ -499,10 +499,10 @@ M: BMS 노인증후군: 당뇨 · 약물 · 영양결핍 · 신경질환 → {r:
 P: {u:★ 26 필기 p.21-2 "이 슬라이드 꼭 기억해달라, 매우 중요한 도표"} — 5갈래 결과(JB 기출 없음): ① {r:흡인성 폐렴} ② {r:신체 노쇠}(구강 노쇠·근감소증 경유) ③ {r:당뇨 · 심장질환} ④ 알츠하이머 · {r:인지적 노쇠}(뇌혈류량 만성적 감소) ⑤ {r:사회적 노쇠}(사회적 고립)
 F: 21=구강·악안면 기능장애의 연관 · 구강건강의 중요성 5갈래 · 노인 3분류 · Dependent frail patients
 M: ① 위생불량·건조 → 흡인 → {r:흡인성 폐렴}
-M: ② 저작·삼킴↓ → {r:구강 노쇠} → 영양↓ → {r:근감소증} → 신체 노쇠 → 낙상·장애·사망
+M: ② 저작·삼킴↓ → {r:구강 노쇠} → 영양↓ → {r:근감소증} → {r:신체 노쇠} → 낙상·장애·사망
 M: ③ 만성염증(치주·점막) → {r:당뇨·심장질환}
 M: ④ 저작↓ → {r:뇌혈류량 만성 감소} → 알츠하이머·{r:인지적 노쇠}({n:뇌 기능 영향은 충분한 보고 없음})
-M: ⑤ 기능↓(저작·발음·심미) → {r:사회적 고립} → 사회적 노쇠
+M: ⑤ 기능↓(저작·발음·심미) → {r:사회적 고립} → {r:사회적 노쇠}
 
 ## Not a Single Group — 3 Categories · Home Visit ★ | 노인의 3분류와 방문진료 | 21-22 | 서술 · 교수 마무리 강조 · 기출 22·23·24 | jb=G02
 > {n:스스로 걸어오는 노인은 medically compromised일 뿐} — {n:올 수 없는 노인을 진료하는 것이 노인치과학}
@@ -516,11 +516,11 @@ M: ⑤ 기능↓(저작·발음·심미) → {r:사회적 고립} → 사회적 
 | 분류 | 영문 | 슬라이드·필기 |
 | 기능적으로 독립적인 노인 | {r:Functionally Independent} older adults | {n:병원에 스스로 와서 진료 — 단지 medically compromised(p.22 필기)} |
 | 노쇠(쇠약)한 노인 | {r:Frail} older adults | 아래 둘은 슬라이드에서 한 상자로 묶임 → {r:병원에 내원할 수 없는 환자의 증가} |
-| 기능적으로 의존적인 노인 | {r:Functionally Dependent} older adults | 매우 의존적인 상태의 노인 |
+| 기능적으로 의존적인 노인 | {r:Functionally Dependent} older adults | {n:매우 의존적인 상태의 노인(p.22 필기)} |
 - ==노인이 동일한 집단이 아니다== → 병원에 내원할 수 없는 환자의 증가(Ettinger RL and Beck JD 1984 · Ettinger RL 2010).
 - 필기: {n:Dependent frail older adults라는 용어를 들었을 때 의미를 알 수 있어야 한다}.
 E: G02 | 24·23·22년 서술 "노인치과학에서 노인을 하나의 집단으로 분류하면 안 되는 이유" → 세 집단(기능적으로 독립적인 노인 · 노쇠한 노인 · 기능적으로 의존적인 노인)은 치과적 치료에의 {r:접근성}이 다름 → 노쇠·의존적 노인은 내원이 어렵거나 불가 → 구분해 안정적 치료 방안 논의 = 노인치과학의 주 목표 — p.21 Ettinger · JB 답은 학습부 작성
-P: 26 형광 p.21-4 {r:Functionally Independent} · {r:Frail older} · {r:Functionally Dependent} — 3분류 영문 이름 그대로(24·23·22 서술 답의 뼈대) · p.21-6 Dependent · {r:Inaccessible to dental clinics}.
+P: 26 형광 p.21-4 {r:Functionally Independent} · {r:Frail older} · {r:Functionally Dependent} — 3분류 영문 이름 그대로(24·23·22 서술 답의 뼈대) / p.21-6 Dependent · {r:Inaccessible to dental clinics} / p.22 제15조 1호 진료서비스(가정과 사회복지시설) · 6호 방문 구강관리.
 # Dependent Frail Patients — 누가 어디서 진료하나
 - {r:Inaccessible to dental clinics} → 요양기관 · 가정({r:방문진료의 필요성}).
 - 촉탁의 제도 / Community care(= {n:지역사회가 돌보아야 하는 문제들}).
@@ -533,6 +533,7 @@ P: 26 형광 p.21-4 {r:Functionally Independent} · {r:Frail older} · {r:Functi
 - 제1조(목적): 노쇠, 장애, 질병, 사고 등으로 일상생활 수행에 어려움을 겪는 사람이 {r:살던 곳에서 계속하여} 건강한 생활을 영위할 수 있도록 의료·요양 등 돌봄 지원을 통합·연계하여 제공.
 - 제15조(보건의료) 중: 의사·치과의사·한의사가 의료기관 및 통합지원 대상자의 {r:가정과 사회복지시설}에서 제공하는 진료서비스 · {r:방문 구강관리}.
   - 제15조의 나머지 호: 2. 간호사의 간호서비스 · 3. 재활서비스 · 4. 요양병원 등의 의료서비스 · 5. 호스피스 사업 · 7. 약사의 복약지도(슬라이드 상자 = 1호 진료서비스 · 6호 방문 구강관리).
+  - ⚠ 4호는 "장기입원 및 급성기 치료 이후 회복이 필요한 환자를 위한 「의료법」 제3조제2항제3호라목에 따른 요양병원 등의 의료서비스" — p.5 26 메모(요양병원은 의료시설 X)와 다르게 적혀 있음(노쇠 카드).
 - 필기: {n:치과의사가 대상자의 가정과 사회복지시설에 방문해 진료할 수 있다 — 시범사업 준비 중 · 일본은 전체 치과의사의 23%가 가정에 가서 진료}.
 - 필기: {n:전혀 다른 진료 환경에서 어려운 환자들을 다른 개념을 가지고 진료하는 제도를 구축하고 있다}.
 P: 수업 마지막에 강의 목적 슬라이드로 돌아가 강조 — "병원에 스스로 와서 진료를 받을 수 있는 사람은 단지 medically compromised 상태. 그런 사람들이 아니라 매우 의존적인 상태에 있는 노인 분들을 진료하는 것에 필요한 지식들을 이해했으면 좋겠다"(p.22 필기).
