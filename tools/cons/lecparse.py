@@ -195,7 +195,7 @@ def sent_split(s):
         if not (prev.endswith('.') or prev[-1] in '음함됨'): continue
         if not prev.endswith('.') and re.search(r'(?:^|\s)(?:다음|처음|마음|이음|그다음|함께|이름)$', prev): continue   # '다음' 같은 낱말은 끝맺음 아님
         if prev.endswith('.') and ABBR.search(prev): continue
-        if not re.match(r'[A-Z가-힣\d(①"“]', s[i + 1:i + 2] or ''): continue
+        if not re.match(r'[A-Z가-힣\d(①"“{]', s[i + 1:i + 2] or ''): continue   # 10-09 '{n:' 로 시작하는 문장도
         out.append(s[last:i].strip()); last = i + 1
     out.append(s[last:].strip())
     return [x for x in out if x]
