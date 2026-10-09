@@ -31,9 +31,13 @@ def main(sid, key, dry, old=None, redo=False):
                 if re.search(r'(25|26)\s*$', parts[i][:mm.start()][-4:]): return mm.group(0)   # '25 p.n'·'26 p.n'은 그대로
                 n = int(mm.group(2)); v = mp.get(n)
                 if n not in mp: return mm.group(0)   # 이 강의 쪽 범위 밖(교과서·다른 자료 쪽) — 그대로
+                if mm.group(4):   # 'p.n-m' 범위 — 두 끝을 다 옮김(10-09: 앞 끝만 옮겨 'p.79-79'가 되던 것)
+                    e = int(mm.group(4)); ve = mp.get(e)
+                    if v and ve: st['plain'] += 1; return f'{mm.group(1)}{v}{mm.group(3)}{ve}'
+                    st['plain25'] += 1; return f'25 {mm.group(0)}'
                 if v: st['plain'] += 1; return f'{mm.group(1)}{v}'
                 st['plain25'] += 1; return f'25 {mm.group(1)}{n}'
-            parts[i] = re.sub(r'(?<![0-9A-Za-z])(p\.\s?)(\d+)(?![0-9])', rp, parts[i])
+            parts[i] = re.sub(r'(?<![0-9A-Za-z])(p\.\s?)(\d+)(?:([-~–])(\d+))?(?![0-9])', rp, parts[i])
         return ''.join(parts)
     CITE = re.compile(r'\[\[' + key + r':(\d+)\]\]')
     files = ['annot.txt', 'tables.txt', 'pred.txt'] + sorted(f for f in os.listdir(d) if f.startswith('lec_') and f != f'lec_{key}.txt')
@@ -44,6 +48,8 @@ def main(sid, key, dry, old=None, redo=False):
                 mm = re.search(r'lec=' + key + r':(\d+)(?:-(\d+))?', l); blk = bool(mm)
                 if mm:
                     n = int(mm.group(1)); v = mp.get(n) or fix.get(n)
+                    if v and mm.group(2):   # lec=KEY:n-m 범위는 끝도 옮김(옮길 쪽이 없으면 앞 끝 + 길이 그대로)
+                        e = int(mm.group(2)); ve = mp.get(e) or fix.get(e) or (v + e - n); v = f'{v}-{ve}'
                     if v: L[i] = l[:mm.start()] + f'lec={key}:{v}' + l[mm.end():]; st['lec'] += 1
                     else: st['warn'].append(f'{l[:40]} — lec 옮길 쪽 없음')
                 continue
