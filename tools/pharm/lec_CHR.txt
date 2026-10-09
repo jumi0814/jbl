@@ -38,7 +38,7 @@ U: 가장 강력한 진통제인 이유 = brain·brain stem·spinal cord·말초
 E: PN15 | 21·20년 서술 "Opioid의 통증 완화 작용을 presynaptic & postsynaptic neuron으로 나누어" → pre = inhibit synaptic vesicle release from primary afferents(Ca influx↓) / post = hyperpolarize postsynaptic neurons(K+↑) ⚠ 함정: Ca·K 뒤바꾸기
 F: 3=μ 수용체의 pre와 post 작용
 M: 작용 부위 4 = ① {r:brain}(alter mood and the reaction to pain) ② {r:brain stem}(descending inhibitory innervation cells activity↑ — 하행 억제↑) ③ {r:spinal cord}(primary afferents synaptic vesicle release 억제 · postsynaptic neurons hyperpolarize) ④ {r:peripheral terminals}(peripheral opioid receptor → primary afferents activation↓)
-M: 진통 수용체 = {r:μ(MOR)}·GPCR / {r:κ} = 부작용 쪽 / 길항제 = intoxication 역전
+M: 진통 수용체 = {r:μ(MOR)}·GPCR / {n:{r:κ} = 부작용 쪽} / 길항제 = intoxication 역전
 M: 척수 기전(21·20 서술): Pre = {r:Ca2+ influx↓} → vesicle release↓ / Post = {r:K+ conductance↑} → {r:hyperpolarization} — Ca·K 뒤바꾸기 ✗
 
 ## Opioid Dosing — Basal + Breakthrough · Routes · Patient-Controlled Analgesia | Opioid 투여 원칙 — 바닥을 깔고 필요할 때 얹는다 | 5 | 투여
@@ -96,12 +96,12 @@ F: 7
 U: 같은 효과에 fentanyl 0.1 mg vs morphine 10 mg — 펜타닐이 매우 potent(필기).
 F: 8=펜타닐이 매우 potent
 M: 복합제 = codeine·oxycodone·hydrocodone + {r:acetaminophen} → {r:acetaminophen overdose} 주의
-M: 기출(20 단답): 금단 대체 = {r:methadone}(extended half-life · 최근 buprenorphine) / patch = {r:fentanyl}({r:72 h}·호흡억제↑)
+M: 기출(20 단답): 금단 대체 = {r:methadone}(extended half-life · {n:최근 buprenorphine}) / patch = {r:fentanyl}({r:72 h}·호흡억제↑)
 M: 주의점: methadone = 반감기는 길어도 {r:진통 지속은 짧음} / mixed agonist-antagonist = {r:few advantages} · more adverse effects / morphine = {r:renal insufficiency} 주의 / meperidine = {r:no longer recommended}(euphoria)
 M: 등가 용량(IM): fentanyl {r:0.1 mg} = morphine {r:10 mg} = codeine 120 mg → {r:fentanyl} 가장 potent
 
 ## Tramadol · CYP2D6 Phenotype ★ | Tramadol과 CYP2D6 — codeine이 안 듣는 사람 | 9-10 | 기출 22·20 | jb=PN11
-> Codeine·tramadol은 CYP2D6가 만든 대사체가 일한다 — 효소가 적은 사람은 덜 듣고, 많은 사람(ultrarapid)은 과하게 듣는다
+> Codeine·tramadol은 CYP2D6가 만든 대사체가 일한다 — 효소가 적은 사람은 덜 듣고, {n:많은 사람(ultrarapid)은 과하게 듣는다}
 = Tramadol = {r:weak MOR agonist} + {r:SNRI} · 활성 대사체 {r:O-desmethyltramadol}(CYP2D6) / codeine이 2D6 영향 {r:최대} → poor = 효과 없음 / 한국인 PM {r:0.2%}
 # Tramadol — opioid이면서 SNRI
 - ==an opioid agonist (weak agonist for MOR), and a centrally acting non-opioid analgesic (SNRI)== that acts on pain processing pathways.
@@ -129,7 +129,7 @@ E: PN11 | 22·20년 객관식 "발목 골절로 코데인을 복용하는데 효
 F: 10=한국인은 intermediate가 약 50%
 M: 정의: Tramadol = {r:weak MOR agonist} + {r:SNRI} · 활성 대사체 {r:O-desmethyltramadol} ← {r:CYP2D6}
 M: CYP2D6 phenotype 4: ① {r:Ultrarapid}(>2 copies) ② Extensive ③ {r:Intermediate} ④ {r:Poor}(no functional alleles)
-M: Codeine이 CYP2D6 변이에 {r:가장 민감} → {r:poor·intermediate} = 효과↓ / {r:ultrarapid} = 효과↑↑
+M: Codeine이 CYP2D6 변이에 {r:가장 민감} → {r:poor·intermediate} = 효과↓ / {n:{r:ultrarapid} = 효과↑↑}
 M: 인종 차: 한국인 PM {r:0.2%}(매우 드묾) · 아시아 intermediate metabolizer {r:51%}
 M: 기출: 코데인이 효과 없음(22·20 객관식) = {r:Poor metabolism} — codeine = {r:prodrug} → CYP2D6 대사 후 효과(흡수·제거 문제 ✗)
 
@@ -158,11 +158,11 @@ M: 주의 환자: ① {r:respiratory disease}(COPD, asthma, kyphoscoliosis, seve
 M: 부작용 상승 = {r:phenothiazines·antidepressants·benzodiazepines·alcohol}
 M: 금단 6 = ① {r:anxiety} ② {r:irritability} ③ {r:diaphoresis} ④ {r:tachycardia} ⑤ {r:GI distress} ⑥ {r:temperature instability} — 20 서술(슬라이드 6개 그대로)
 M: 의존·해결: 의존은 {r:2 weeks}만에도 · antagonist는 {r:3 days} 뒤에도 금단 유발 → {r:tapering}(💬 한 번에 끊지 않고 서서히 줄임)
-M: 내성: 진통 tolerance가 부작용 tolerance보다 {r:훨씬 빨리} → 진통↓·부작용 남음 / tolerance는 physical dependence와 {r:coincide}
+M: 내성: {n:진통 tolerance가 부작용 tolerance보다 {r:훨씬 빨리} → 진통↓·부작용 남음} / tolerance는 physical dependence와 {r:coincide}
 
 ## Adverse & Toxic Effects | 부작용 — 가장 중요한 것은 호흡억제 | 12 | 부작용
 > 제제끼리 부작용 차이는 거의 없다 — 진정·축동, 호흡억제, 저혈압, 변비·구토, 요저류, 가려움
-= 최중요 {r:respiratory depression} / CNS {r:sedation·축동} · GI {r:constipation} · {r:urinary retention} · {r:pruritus}
+= {n:최중요 {r:respiratory depression}} / CNS {r:sedation·축동} · GI {r:constipation} · {r:urinary retention} · {r:pruritus}
 # 전반
 - Although individuals may tolerate some preparation better at equi-analgesic doses, {r:few differences in side effects} exist.
 - p.4 undesirable effects: sedation and somnolence, constipation, nausea and vomiting, respiratory depression, and urinary retention.
@@ -177,13 +177,13 @@ M: 내성: 진통 tolerance가 부작용 tolerance보다 {r:훨씬 빨리} → �
 P: 💬 "가장 중요한 부작용은 respiratory depression" · constipation도 매우 흔함 · nausea·vomiting·pruritus도 잘 생김(필기).
 U: 아편 중독에서 가장 먼저 생각할 것 = respiratory depression에 의한 사망(p.7 필기).
 F: 12=가장 중요한 부작용은 호흡억제
-M: 💬 가장 중요 = {r:respiratory depression}(dose-related·IV) / 가장 일반적 = {r:sedation} / 흔함 = {r:constipation}
+M: 💬 {n:가장 중요 = {r:respiratory depression}}(dose-related·IV) / {n:가장 일반적 = {r:sedation}} / {n:흔함 = {r:constipation}}
 M: 계통별: 축동 = {r:pupillary constriction} / 요저류 = {r:sphincter tone↑} / 가려움 = {r:spinal} / 저혈압 = {r:peripheral vasodilation}(IV)
 M: 대처: 변비 → {r:stool softeners·laxatives} / 구토 → {r:ondansetron}·metoclopramide·prochlorperazine
 
 ## Overdose — Naloxone · Opioid Crisis | 과량 — 해독제 naloxone과 opioid 위기 | 13-15 | 기출 20 | jb=PN22
-> 과량엔 길항제 naloxone — 단 naloxone도 경련·부정맥을 부를 수 있다. 미국 과량 사망의 주범은 heroin과 fentanyl
-= Overdose → {r:Naloxone}(opioid {r:antagonist}) · 부작용 {r:seizure}·{r:cardiac arrhythmias} · crisis = {r:heroin}·{r:fentanyl}
+> 과량엔 길항제 naloxone — 단 naloxone도 경련·부정맥을 부를 수 있다. {n:미국 과량 사망의 주범은 heroin과 fentanyl}
+= Overdose → {r:Naloxone}(opioid {r:antagonist}) · 부작용 {r:seizure}·{r:cardiac arrhythmias} · crisis = {n:{r:heroin}·{r:fentanyl}}
 # Naloxone
 - ==Naloxone, an opioid antagonist, should be readily available for administration in the case of accidental or intentional overdose.==
 - Side effects: hypertension or hypotension, irritability, anxiety, restlessness, tremulousness, nausea, and vomiting.
@@ -208,7 +208,7 @@ U: Opioid overdose crisis와 가장 연관이 깊은 두 약물 = heroin과 fent
 F: 14=heroin과 fentanyl, 15=fentanyl 급증
 M: 💬 기출(20 빈칸): 과량 해독제 = {r:Naloxone}(antagonist) — 부작용 {r:seizure}·{r:cardiac arrhythmias}
 M: 구별(함정): 과량 = {r:naloxone}(길항) / 금단 해소 = {r:methadone}(대체) / 금단 최소화 = {r:tapering}
-M: Crisis 두 약물 = {r:heroin}·{r:fentanyl}(급증)
+M: {n:Crisis 두 약물 = {r:heroin}·{r:fentanyl}(급증)}
 
 ## WHO Analgesic Ladder | WHO 진통 사다리 — 통증 세기대로 3단계 | 16 | 원칙
 > 통증 세기에 맞춰 한 칸씩 — mild는 비opioid, moderate는 중간 opioid, severe는 강한 opioid
@@ -353,7 +353,7 @@ M: 한계 = {r:psychomimetic effects}(둘 다) · dextromethorphan은 {r:dizzine
 
 @G ④ 치과에서는 — Implications for Dentistry
 ## Dental Pain = Inflammation → NSAIDs First ★ | 치성 통증은 염증 — NSAIDs가 1차, opioid는 병용 | 24 | 기출 20~24 · 매년 | jb=PN04,PN26,PN17
-> 치통은 대부분 염증에서 온다 → 항염 작용이 있는 NSAIDs가 먼저, 천장효과를 넘는 통증엔 약한 opioid를 더한다(기전이 달라 더해짐)
+> 치통은 대부분 염증에서 온다 → 항염 작용이 있는 NSAIDs가 먼저, {n:천장효과를 넘는 통증엔} 약한 opioid를 더한다(기전이 달라 더해짐)
 = ==Pain of dental origin frequently arises from INFLAMMATION → NSAIDs are often the first choice== · opioid = {r:항염 ×}
 # 왜 NSAIDs가 1차인가
 - ==Pain of dental origin frequently arises from INFLAMMATION → NSAIDs are often the first choice for relief of pain.==
@@ -375,7 +375,7 @@ E: PN17 | 20년 단답 "아편계 진통제 대신 주사할 수 있는 강력�
 F: 24=치성 통증은 염증 NSAIDs 1차
 M: 정의: 치성 통증 = {r:INFLAMMATION} → {r:NSAIDs} first choice / opioid = {r:no anti-inflammatory properties}
 M: NSAIDs가 더 효과적인 이유(5회 서술): ① 치성기원 통증은 대체로 {r:염증성}(Pain of dental origin frequently arises from INFLAMMATION) ② opioid는 {r:항염 효과가 없음}(no anti-inflammatory properties) ③ 항염 효과 있는 NSAIDs가 {r:염증과 통증을 모두} 조절 → 더욱 효과적
-M: 기출(20 서술): 병용 이유 = {r:different complementary central and peripheral mechanisms} · NSAID {r:ceiling effect} → opioid를 더하면 additive(필기)
+M: 기출(20 서술): 병용 이유 = {r:different complementary central and peripheral mechanisms} · {n:NSAID {r:ceiling effect} → opioid를 더하면 additive(필기)}
 M: 치과 병용: 비opioid = {r:aspirin}·{r:acetaminophen}·{r:ibuprofen} / 치과 opioid = {r:codeine}·{r:hydrocodone}·{r:oxycodone} / 주사 NSAID = {r:ketorolac}(5일 이내)
 
 ## Trigeminal Neuralgia — Carbamazepine ★ | 삼차신경통 — carbamazepine(Tegretol) first-line | 25 | 기출 20 | jb=PN20

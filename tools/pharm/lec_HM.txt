@@ -229,8 +229,8 @@ M: 적응증(thromboembolic events): ① {r:DVT} ② {r:PE} ③ {r:NVAF} ④ str
 M: 부작용 = {r:prolonged bleeding}
 M: 분류: VKA {r:warfarin} / DOAC {r:dabigatran = IIa} · {r:-xaban = Xa} / heparin + {r:AT III}
 M: 기전 차이(24·23·22·20 서술): warfarin = {r:γ-carboxylation 억제}(새 응고인자 생성 방해) ↔ dabigatran = {r:factor IIa 직접} 저해
-M: Warfarin 느린 이유: 기존 인자 {r:degradation 후} 개시 · 초기 {r:protein C·S} 먼저 → {r:pro-coagulation} → 모니터링 필수
-M: DOAC 장점: {r:모니터링 적게} · {r:예측 가능성↑} (JB: 용량 고정 · 반감기 짧음)
+M: Warfarin 느린 이유: {n:기존 인자 {r:degradation 후} 개시 · 초기 {r:protein C·S} 먼저 → {r:pro-coagulation} → 모니터링 필수}
+M: DOAC 장점: {r:모니터링 적게} · {n:{r:예측 가능성↑}} (JB: 용량 고정 · 반감기 짧음)
 
 ## Heparin·LMWH vs Warfarin | 주사 heparin vs 경구 warfarin — AT III vs vitamin K 순환 | 18 | 기출 20·21 · target | jb=HM16,HM21
 > heparin은 AT III를 켜서 바로·짧게, warfarin은 vitamin K 재활용을 막아 천천히·오래
@@ -252,13 +252,13 @@ E: HM16,HM21 | 21·20년 단답 "LMWH의 target 분자와 그 효과" → ==Anti
 - ⚠ 필기의 "Factor 2,7,10,11"은 p.55 슬라이드·JB의 {r:II·VII·IX·X}와 다름 — 시험 답은 II·VII·IX·X.
 F: 18=Heparin·LMWH의 AT III 결합과 warfarin의 vitamin K 순환 차단
 M: 비교: Heparin·LMWH = {r:주사} · {r:AT III 활성화} · 급성 단기 / Warfarin = {r:경구} · {r:vit K epoxide reductase} 차단 · 장기
-M: Heparin: AT III + {r:IIa·Xa} / LMWH: AT III + {r:Xa} · {r:예측 가능 · long lasting}
+M: Heparin: AT III + {r:IIa·Xa} / LMWH: AT III + {r:Xa} · {n:{r:예측 가능 · long lasting}}
 M: LMWH target = {r:Anti-thrombin III} (Xa 아님) — 효과: AT III 활성화 → factor Xa 억제(JB)
 M: Warfarin 기전: {r:Vitamin K Epoxide Reductase} 차단(Coumarins·Indanediones) → {r:γ-carboxyglutamic acid}↓ / 시험 인자 = {r:II·VII·IX·X}(필기 '2,7,10,11' ✗)
 
 ## Antiplatelet Drugs — Aspirin · P2Y12 · GPIIb/IIIa | 항혈소판제 — 혈소판 응집의 세 스위치 | 19-20 | 최다 출제 ★ | jb=HM04,HM15,HM17,HM02,HM19,HM23
 > 혈소판을 뭉치게 하는 세 스위치 — thromboxane(aspirin), ADP(clopidogrel), GP IIb/IIIa(tirofiban)
-= {r:Aspirin} → {r:COX}·{r:thromboxane}↓ / {r:Clopidogrel} → {r:P2Y12}(ADP) / {r:Tirofiban}·abciximab → {r:GPIIb/IIIa}
+= {r:Aspirin} → {n:{r:COX}·{r:thromboxane}↓} / {r:Clopidogrel} → {r:P2Y12}(ADP) / {r:Tirofiban}·abciximab → {r:GPIIb/IIIa}
 # 혈소판 응집의 흐름
 - {n:지혈 작용은 크게 2가지 — ① Blood clotting factor ② Platelet(필기)}.
 - {n:혈관의 연속성이 떨어지면 하부 결합조직에 platelet이 aggregation — 이 중 {r:thromboxane}의 작용이 가장 중요, 더불어 {r:ADP}와 {r:thrombin}의 작용(필기)}.
@@ -276,12 +276,12 @@ E: HM02 | 24·22년 빈칸(표 4칸) "Target molecule — E-aminocaproic acid·C
 E: HM19 | 20·16년 단답 "혈소판 수용체로 vWF·fibrinogen과 결합해 blood clot 형성" → ==glycoprotein IIb/IIIa== — 25 자료는 adhesion 주요 receptor(p.19)까지, vWF·fibrinogen 결합은 JB(22 자료 p.4)
 E: HM23 | 20년 빈칸 "GP Ib는 내피 손상 시 ( )를 매개로 교원섬유와 결합" → ==vWF (von Willebrand Factor)== — ⚠ GP Ib는 25 자료에 없음(vWD 정의의 vWF까지)
 F: 19=항혈소판제 3계열과 작용 지점, 20
-M: 응집 스위치: {r:thromboxane}(가장 중요) · {r:ADP} · {r:thrombin}
+M: 응집 스위치: {n:{r:thromboxane}(가장 중요) · {r:ADP} · {r:thrombin}}
 M: {r:Aspirin} = {r:COX} 비가역 저해 → {r:thromboxane}↓ → 응집 억제 (baby aspirin) — 5회 서술
 M: {r:Clopidogrel} = {r:P2Y12}(ADP receptor) / {r:Tirofiban·Abciximab} = {r:GP IIb/IIIa}
 M: GP IIb/IIIa ↔ {r:fibrinogen·vWF} / GP Ib ↔ {r:vWF} (JB)
 M: target 표(24·22 빈칸): ① E-aminocaproic = {r:t-PA·plasminogen·plasmin} ② Clopidogrel = {r:ADP receptor(P2Y12)} ③ LMWH = {r:Anti-thrombin III} ④ Tirofiban = {r:GP IIb/IIIa receptor}
-M: TXA2 synthesis inhibitors·receptor antagonists = {r:시판되지 않음}
+M: TXA2 synthesis inhibitors·receptor antagonists = {n:{r:시판되지 않음}}
 
 ## Anticoagulants — Indications · Monitoring · Dental Drug Interactions | 항응고제별 적응증·모니터링·치과 약물 상호작용 | 21 | 기출 16~21 | jb=HM18
 > INR 모니터링이 필요한 것은 warfarin뿐 — 그리고 치과에서 주는 항생제·진통제와 부딪힌다
@@ -599,7 +599,7 @@ M: 사용: topical only — 정맥에 들어가면 {r:embolism} · {r:Gelfoam}�
 M: 빈칸(24·22·21·20 · JB): 생리적 항응고제를 켜는 신호도 {r:thrombin}(t-PA ✗)
 
 ## Anti-fibrinolysis Agents — Aminocaproic · Tranexamic Acid | 항섬유소용해제와 지혈 가글 | 50-51 | 기출 20~24 · 교수 강조 | jb=HM14,HM12,HM02
-> clot을 녹이는 plasmin을 lysine 자리에서 막아 clot을 오래 유지 — warfarin을 끊을 수 없는 환자에게 가글로
+> {n:clot을 녹이는 plasmin을 lysine 자리에서 막아 clot을 오래 유지} — warfarin을 끊을 수 없는 환자에게 가글로
 = Aminocaproic·tranexamic = {r:competitive inhibitor of plasminogen activation} → clot 유지 / 가글 = {r:tranexamic acid 5%}, 전 5 mL·후 5~10 mL
 # 섬유소용해와 그 억제 (그림)
 - Plasminogen →(t-PA · u-PA · streptokinase)→ {r:Plasmin} → cross-linked fibrin polymer 분해 → D-dimer·FDPs.
@@ -621,7 +621,7 @@ U: 처음에는 낮은 concentration을 사용하여 시작하자(필기).
 F: 51=지혈 가글 처방
 M: 💬 약을 {r:중단하기 어려운} 환자(warfarin 유지)의 치과 치료 = {r:anti-fibrinolytic} — plasmin의 fibrin clot 제거를 저해
 M: 섬유소용해: plasminogen →(t-PA·u-PA·streptokinase) {r:plasmin} → fibrin 분해(D-dimer) / 억제: {r:α2-AP} ↔ plasmin · {r:PAI-1} ↔ t-PA
-M: 기전: aminocaproic = {r:lysine}과 닮은 구조(그림) → plasmin 작용↓ / aminocaproic·tranexamic = {r:plasminogen activation 경쟁 억제} → clot 유지
+M: 기전: aminocaproic = {r:lysine}과 닮은 구조(그림) → {n:plasmin 작용↓} / aminocaproic·tranexamic = {r:plasminogen activation 경쟁 억제} → clot 유지
 M: aminocaproic target = {r:t-PA · plasminogen · plasmin} / t-PA = {r:plasminogen → plasmin}
 M: 가글: ① {r:tranexamic acid 5% 100mL} ② 전 {r:5 mL 5-10분} ③ 후 {r:5~10 mL 1-2분} {r:2시간마다} ④ {r:5일 냉장}
 

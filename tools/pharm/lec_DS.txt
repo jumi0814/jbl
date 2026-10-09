@@ -34,10 +34,10 @@ F: 2=진료기구 소독과 수술과정 소독
 M: 구분(대상): Antiseptics(살균제) = {r:living tissue} / Disinfectants(소독제) = {r:inanimate objects or surfaces}
 M: 살균제 정의: biocides that {r:destroy or inhibit the growth} of microorganisms in or on living tissue — 예: {r:hand washes} · {r:surgical scrubs}
 M: 소독제 정의: {r:similar} but generally used on {r:inanimate objects or surfaces}
-M: 진료실: 히비탄 볼 = {r:CHX} / 포타딘 볼 = {r:povidone-iodine}
+M: 진료실: {n:히비탄 볼 = {r:CHX}} / {n:포타딘 볼 = {r:povidone-iodine}}
 
 ## Topical Antiseptics & Disinfectants — 10 Classes | 10가지 제제와 시험 범위 | 4 | 개관
-> 모두 주입이 아닌 topical — 1~5번은 진료에서 많이 쓰고, 6~10번은 주로 기구 소독
+> 모두 주입이 아닌 topical — {n:1~5번은 진료에서 많이 쓰고, 6~10번은 주로 기구 소독}
 = 1-5 = {r:Alcohols · Iodine · Bis-biguanides · Oxygenating · Hypochlorite} / 6-10 = Phenolic · ZOE · Aldehydes · Mercury · Quaternary ammonium
 # 10가지 분류 — 대표 제제와 주 용도(각 제제 슬라이드에서)
 | 번호 | 제제 | 대표 제제·제품 | 주 용도 |
@@ -98,7 +98,7 @@ E: DS16 | 21·20년 객관식 "Alcohol에 대해 옳지 않은 것" → "Spore�
 U: 실험실에서 adenovirus를 쓰고 alcohol만으로 소독했다면 말이 안 되는 실험 — "시험 가능(?)"(필기).
 F: 6=Clinical uses와 Precautions ★ 2023 별표
 M: 특징: Alcohol = ① Bactericidal against {r:vegetative form}(만) ② {r:Denaturation of bacterial proteins}(단백질 변성) ③ More effective with water → {r:60-70%} prep(100% ✗) ④ {r:colorless and non-staining} property
-M: 효과 없음(✗): ① {r:spore} ② {r:fungi} ③ {r:non-envelope virus}(adenovirus) — envelope virus(코로나)엔 효과
+M: 효과 없음(✗): ① {r:spore} ② {r:fungi} ③ {r:non-envelope virus}(adenovirus) — {n:envelope virus(코로나)엔 효과}
 M: 용도: ① {r:skin degermination for injection} ② {r:vehicle} for other antiseptic agents(iodine·hexachlorphene) ③ Preservation of presterilized items for {r:short duration}
 M: 제제: Ethanol {r:60-80%} · Isopropanol {r:70%}
 M: 주의: ① Irritation·{r:coagulum} formation → open wounds ✗ ② leather·plastic surface dental equipment의 cold sterilization ✗ ③ {r:flammability}
@@ -143,7 +143,7 @@ E: DS16 | 21년 객관식 "Iodine에 대해 옳지 않은 것" → 4-1 neither f
 E: DS21 | 20년 객관식 "Iodine에 대한 설명으로 옳지 않은 것" → ③ 착색을 일으키지 않는다 ✗ — sporicidal·fungicidal·virucidal·dermatitis·가장 강력한 antiseptic·allergy 주의 ○
 M: 특징: Iodine = ① {r:most valuable, powerful} antiseptic agent ② have {r:bactericidal, sporicidal, fungicidal and virucidal} effects ③ Have {r:relative low toxicity} ④ {r:rapid action} · high {r:penetrating} ability · wide range of pH
 M: 성질: ① water엔 {r:slightly} · alcohol·glycerin엔 {r:moderately} soluble ② {r:Not affected} by presence of organic matters ③ {r:incompatible} with alkali ④ Have {r:disclosing} activity
-M: 제제: {r:Povidone-iodine}(betadine) · {r:tincture}(alcohol solution) · Iodoform / Iodophors = {r:Iodine + Carrier}
+M: 제제: {r:Povidone-iodine}(betadine) · {r:tincture}(alcohol solution) · Iodoform / Iodophors = {n:{r:Iodine + Carrier}}
 M: 주의(단점): ① May be {r:allergenic} ② Irritation may induce {r:dermatitis} and {r:corrosive} ③ {r:staining} property → acrylic·silicate·porcelain restoration ✗
 
 ## Bis-biguanides — General Features | 클로르헥시딘 — 세균엔 넓고 결핵균·spore·virus엔 무력 | 9 | 3번 · 가장 중요 · 기출 24·23·22·20 | jb=DS02,DS09,DS22,DS30
@@ -243,12 +243,12 @@ F: 11=헥사메딘 0.1% → 0.12% 변경대비표
 - 필기: {n:구강 궤양 같은 게 생기면 중단 · 부작용 때문에 치아면만 치간칫솔로 묻혀서 닦으라고 함 · 맛없으면 효과가 떨어지지만 물로 헹구라고는 함(p.17)}.
 U: 착색이 생기면 지우고 사용 중단 ·구강내과는 구내염에 헥사메딘 대신 스테로이드/H2O2 mouthwash, 연조직 환자엔 CHX 대신 DM solution(필기).
 F: 17=Precautions — 필기: 가장 큰 단점은 착색
-M: CHX 농도: 술전·손 {r:4%}(히비탄) / aphthous ulcer {r:1%} / mouthwash {r:0.12%}(헥사메딘 · 과거 0.1% · 해외 0.2%)
+M: CHX 농도: 술전·손 {r:4%}(히비탄) / aphthous ulcer {r:1%} / mouthwash {r:0.12%}(헥사메딘 · 과거 0.1% · {n:해외 0.2%})
 M: 함정(2023 시험 예): 수술 scrub = 0.12% ✗ → {r:4%} / mouthwash = 4% ✗ → {r:0.12%}
-M: CHX 부작용: ① oral ulceration·soreness by {r:mucosal desquamation} ② yellowish-brown {r:discoloration} of tooth·tongue·anterior restoration(tar) ③ {r:taste} sensation↓ · bitter after-taste ④ erosive area {r:thrombosis or hemolysis} → erosion 있으면 처방 ✗
+M: CHX 부작용: ① oral ulceration·soreness by {r:mucosal desquamation} ② yellowish-brown {r:discoloration} of tooth·tongue·anterior restoration(tar) ③ {r:taste} sensation↓ · bitter after-taste ④ erosive area {r:thrombosis or hemolysis} → {n:erosion 있으면 처방 ✗}
 
 ## Oxygenating Agents — Features · Mode of Action | 과산화수소 — 살균보다 기계적 세정, 고농도에서 표백 | 18·20 | 4번 · 기출 24·23·22 | jb=DS01,DS10,DS30
-> H2O2 ball — 뽀글뽀글 거품으로 닦아내는 세정제, 살균력은 구강에서 미미
+> {n:H2O2 ball} — 뽀글뽀글 거품으로 닦아내는 세정제, 살균력은 구강에서 미미
 = 기전 = {r:molecular oxygen} by {r:peroxidase} / 역할 = 구강 살균 {r:negligible} → {r:mechanical cleanser} / 고농도 = {r:bleaching}
 # General features
 - ① ==Liberate molecular oxygen by peroxidase== — {n:기포 발생(뽀글뽀글)}.
@@ -273,7 +273,7 @@ F: 20=Hydrogen peroxide mouthwash — 필기: 업체의 상업적인 정보
 M: 특징: H2O2 = {r:molecular oxygen} 유리(peroxidase) → {r:mechanical cleanser} (구강 살균은 {r:negligible})
 M: 유기물: H2O2도 유기물이 효과를 {r:reduce} — CHX·iodine과 반대
 M: 고농도: {r:unstable·explosive} · {r:bleaching}
-M: 기전: ① {r:hydroxyl free radicals} → membrane lipids·DNA attack ② {r:antibacterial}: directly oxidize microbial constituents ③ {r:cleansing}: molecular oxygen 유리 → {r:bubble & foam} → inaccessible areas debris loosen(가장 많이 쓰는 작용)
+M: 기전: ① {r:hydroxyl free radicals} → membrane lipids·DNA attack ② {r:antibacterial}: directly oxidize microbial constituents ③ {r:cleansing}: molecular oxygen 유리 → {r:bubble & foam} → inaccessible areas debris loosen({n:가장 많이 쓰는 작용})
 M: 함정: liberate molecular {r:oxygen}(hydrogen ✗) / free radical → membrane lipids를 CHX 선지에 섞음(22년)
 
 ## Oxygenating Agents — Uses · Preparations · Precautions | 용도별 농도와 금기 — 30% 표백, 3% 상처, 1.5% 가글 | 19·21 | 4번 · 2023 별표 · 기출 24·23·22·21·20 | jb=DS10,DS15,DS18,DS01
@@ -308,11 +308,11 @@ E: DS01 | 24·23년 객관식 보기 ② "indicated for newly regenerative tissu
 F: 21=Preparations와 Precautions — 필기: 대표적인 부작용이 black hairy tongue
 M: H2O2 용도: ① Mouthwash for Tx. of {r:ANUG}(헥사메딘 ✗) ② denture cleanser ③ {r:bleaching} agent for discolored teeth
 M: H2O2 농도: {r:30%} tooth bleaching / {r:3%} wound cleaning / {r:1.5%} mouth wash
-M: H2O2 금기: {r:newly regenerating tissues}(s/o 환자) / 장기 사용: {r:tooth decalcification} + {r:black hairy tongue}
+M: H2O2 금기: {r:newly regenerating tissues}({n:s/o 환자}) / 장기 사용: {r:tooth decalcification} + {r:black hairy tongue}
 M: 함정: Bleaching 3% ✗(3%는 wound cleaning) · 구강 세정액 30% ✗(1.5%) / indicated for newly regenerative tissue ✗(contraindicated)
 
 ## Hypochlorite Substances | 차아염소산(NaOCl) — 근관 세척제, 유기물과 강하게 반응 | 22-24 | 5번 · 기출 24·23·22·21·20 | jb=DS04,DS11,DS23
-> 락스 — 엔도 irrigation 전용, 알칼리·고온에서 강하고 빛·방치·유기물에 약하다
+> {n:락스} — 엔도 irrigation 전용, 알칼리·고온에서 강하고 빛·방치·유기물에 약하다
 = 특징 = {r:Potent germicidal} · 유기물과 {r:highly reactive} / 조건 = {r:stable in alkali} · {r:high temperature}↑ · 고농도 {r:solvent} / 용도 = {r:Root canal irrigation}
 # General features
 - [{r:Sodium} or calcium or lithium] + {r:Hypochlorite (OCl-)} — NaOCl = {n:락스(유한 락스·Clorox)}.
@@ -397,7 +397,7 @@ M: Phenol 제제: ① {r:parachlorophenol}(Endotine) ② cresol({r:Lysol}) ③ {
 M: Phenol 주의: ① long-term mouthwash → {r:candida} infection ② Interfere polymerization of resin({r:resin 중합 방해}) ③ Can be absorbed from the skin ④ Can cause irritation and act as caustics
 
 ## Zinc Oxide-Eugenol Preparations | ZOE — eugenol의 진정·진통, 강도는 없다 | 28-30 | 7번 · 기출 22·21·20 | jb=DS12,DS19
-> 옛 치과 냄새의 주범 — 치수 통증을 일시적으로 가라앉히는 임시 충전재
+> {n:옛 치과 냄새의 주범} — 치수 통증을 일시적으로 가라앉히는 임시 충전재
 = 특징 = eugenol의 {r:sedative·analgesic·local anesthetic} · {r:low thermal conductivity} / 한계 = {r:no significant compressive strength} → {r:temporary}
 # General features
 - ① Compatible with both {r:soft and hard} tissues — {n:경조직·연조직 모두에 비슷한 수준으로 작용(필기)}.
@@ -434,7 +434,7 @@ M: 주의: ① root canal에 sealed → {r:prolonged contact} → severe tissue 
 M: 함정(✗): high thermal conductance · high compression strength · permanent restorative material
 
 ## Aldehydes | 알데하이드 — 금속을 부식시키지 않는 기구 소독제, 사람엔 금지 | 31-33 | 8번 · 기출 22·21·20 | jb=DS13,DS20
-> 공급실의 기구 소독액 — bacteria·fungus·virus를 다 잡지만 휘발성 자극제라 몸에는 못 쓴다
+> {n:공급실의 기구 소독액} — bacteria·fungus·virus를 다 잡지만 휘발성 자극제라 몸에는 못 쓴다
 = 범위 = {r:bacteria·fungus·virus} / 특징 = {r:Noncorrosive to metal} · {r:Volatile·powerful irritants} / 비호환 = {r:oxidizing agents·alkali} · 방치 → {r:30 days} 내
 # General features
 - ① Effective against {r:bacteria, fungus and virus}.
@@ -477,7 +477,7 @@ M: 주의: ① Highly irritant and toxic to skin and eye → 사람엔 ✗ ② {
 M: 함정: slow onset·prolonged · reversible -SH = {r:Mercury} 문장(Aldehyde ✗) / compatible with oxidizing agents ✗ · non-allergenic ✗
 
 ## Mercury Preparations | 수은 제제 — 죽이지 못하고 멈추게만, 백신 보존제 | 34-36 | 9번 · 기출 20 | jb=DS26,DS27
-> 빨간약(mercurochrome) — 위험한데 죽이지도 못해 점점 안 쓰는 제제
+> 빨간약(mercurochrome) — {n:위험한데 죽이지도 못해 점점 안 쓰는 제제}
 = 특징 = {r:Bacteriostatic} · {r:Therapeutic index low} · {r:slow onset·prolonged} / 기전 = {r:Reversible} -SH / {r:Thimerosal} = vaccine 보존제 · {r:sunlight} 불안정
 # General features
 - ① ==Bacteriostatic rather than bactericidal== — {n:잠시 행동을 못 하게(필기)}.
@@ -515,7 +515,7 @@ F: 36=Merbromin — 필기: 우리가 잘 알고 있는 빨간약
 | 용도 | cold sterilization · formocresol | preoperative · {r:vaccine 보존제}(Thimerosal) |
 M: 특징: Mercury = ① {r:bacteriostatic} rather than bactericidal ② {r:therapeutic index} is {r:low} ③ Exhibit relatively {r:slow onset} of action, but {r:prolonged activity}
 M: Mercury 기전: {r:reversible} interaction with {r:sulfhydryl}
-M: 용도: ① oral field disinfection prior to injection·endodontic procedures(위험해 안 씀) ② {r:preoperative preparation} for surgery ③ Preservative in vaccines(Thimerosal)
+M: 용도: ① oral field disinfection prior to injection·endodontic procedures({n:위험해 안 씀}) ② {r:preoperative preparation} for surgery ③ Preservative in vaccines(Thimerosal)
 M: 제제: {r:Thimerosal} = {r:vaccine 보존제} · {r:sunlight에 불안정} / {r:Merbromin} = 빨간약
 M: 주의: ① Active only against {r:vegetative form} ② May evoke {r:sensitization} ③ May develop mercurial stomatitis
 
@@ -570,7 +570,7 @@ M: 비교: CHX = {r:G(+)·G(−)} · 유기물 not reduced ↔ Quaternary ammoni
 
 @G ④ 정리
 ## Summary of Chemical Usages · Broadest Range | 용도 정리표와 항균 범위 — 가장 넓은 것은 aldehyde | 41-43 | 정리 · 2023 별표 · 기출 20 | jb=DS28
-> 1~5는 진료, 뒤로 갈수록 기구 닦는 용도 — 가장 강력한 건 iodine, 가장 넓은 범위는 aldehyde
+> {n:1~5는 진료, 뒤로 갈수록 기구 닦는 용도} — 가장 강력한 건 iodine, 가장 넓은 범위는 aldehyde
 = {r:Broadest range} = {r:Aldehydes}(표의 모든 칸 +) / 가장 powerful antiseptic = {r:Iodine} / Antiplaque = {r:Bis-biguanides}·{r:Phenolic}
 # Summary of chemical usages — 용도 5칸 정리표(필기: 오늘 배운 걸 정리한 것)
 | 제제 | Disinfection | Antisepsis | Preservation | Cleaning | Antiplaque |
@@ -636,7 +636,7 @@ F: 44=Iodophors = Iodine + Carrier (povidone-iodine)
 F: 45
 M: 표로 확인: CHX {r:4%}(surgical scrub) · {r:0.12%}(plaque control) / NaOCl {r:5%}(root canal irrigation)
 M: 표로 확인: H2O2 {r:30%} tooth bleaching · {r:3%} wound cleansing / Alcohol {r:70%}
-M: 특성 표: {r:Glutaraldehyde} = {r:sporicidal after 10 hours} / {r:Iodophors} = Iodine + Carrier · {r:residual antimicrobial activity}
+M: 특성 표: {r:Glutaraldehyde} = {r:sporicidal after 10 hours} / {r:Iodophors} = {n:Iodine + Carrier} · {r:residual antimicrobial activity}
 
 ## General Features Cross-check — Trap Axes | 선지 함정 축 — 미생물 범위·유기물·빛·온도·alkali | 5·7·9·18·22·25·31·34·37 | 정리 · 선지 대비 | jb=DS09,DS11,DS04
 > JB 선지는 '반대말 바꾸기'와 '다른 제제 문장 섞기' — 축별로 한 번에 비교하면 함정이 보인다
