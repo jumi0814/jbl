@@ -465,11 +465,11 @@ N: 26 필기: 변수 ① under-drilling·self-tapping = 기계적 고정 [[PRO:1
 
 #TBL Immediate Loading이 가능한 조건 4 (26 강조 p.30) | k=PRO | src=[[PRO:30]]
 H: 요인 | 항목
-R: {r:Surgery-related factor} | Primary stability · Surgical technique
-R: {r:Host-related factor} | Bone density · Wound healing
-R: {r:Implant-related factor} | Implant design · Surface textures · Implant length
-R: {r:Occlusion-related factor} | Prosthetic design · Quality and quantity of force
-N: 26 필기 p.30 "아래 그림 강조하셨습니다. immediate loading이 가능한 조건 4가지" — 위 6가지 변수 표와 함께 볼 것. [[PRO:30]]
+R: {u:{r:Surgery-related factor}} | Primary stability · Surgical technique
+R: {u:{r:Host-related factor}} | Bone density · Wound healing
+R: {u:{r:Implant-related factor}} | Implant design · Surface textures · Implant length
+R: {u:{r:Occlusion-related factor}} | Prosthetic design · Quality and quantity of force
+N: 26 필기 p.30 {u:"아래 그림 강조하셨습니다. immediate loading이 가능한 조건 4가지"} — 위 6가지 변수 표와 함께 볼 것. [[PRO:30]]
 
 #TBL 치아 vs 임플란트 — 움직임과 감각 | k=PRO | src=[[PRO:23]] [[PRO:24]] [[PRO:25]] [[PRO:26]]
 H: 항목 | Tooth | Implant
@@ -514,7 +514,7 @@ R: **과하중 요인 7** | cantilever · parafunction · premature contacts · 
 R: **Axial loading 형태 4** | flat area around centric contacts · cusp inclination↓ · diameter·distribution · {r:cross-bite} | 해당 없음 | Misch 1993 · Weinberg 1998 | {n:cross-bite = 골흡수가 많은 환자의 적응증} | —
 R: **교합 기본 원칙 6** | bilateral stability · evenly distributed · no interference retruded–centric · {r:wide freedom in centric} · {r:anterior guidance} · smooth lateral excursion | 해당 없음 | Beyron 1969 · Weinberg 1998 · Gibbs·Quirynen · Chapman·Engelman | {n:"☆ 중요" · 국소의치 교합과 유사 · wide centric = fossa를 평평하게} | {jb:R10} 23년 서술
 R: **Predictability**(추가 ppt) | {n:치아–임플란트 연결 = 성공률 최저 · screw loosening·veneer fracture 잦음} | {n:complication 88% minor · 심각 12%} | {n:systematic reviews} | {n:치아와 묶지 말 것 · biological은 10년에 급증 · 심각 = Bruxism} | —
-R: **즉시 부하 4 요인**(26 강조) | Immediate Loading이 가능한 조건 — {r:Surgery}-related(Primary stability · Surgical technique) · {r:Host}-related(Bone density · Wound healing) · {r:Implant}-related(Implant design · Surface textures · Implant length) · {r:Occlusion}-related(Prosthetic design · Quality and quantity of force) | 해당 없음 | 해당 없음 | 26 필기 {n:"아래 그림 강조하셨습니다"} · 변수 6 카드를 네 묶음으로 다시 봄 | —
+R: {u:**즉시 부하 4 요인**(26 강조)} | Immediate Loading이 가능한 조건 — {r:Surgery}-related(Primary stability · Surgical technique) · {r:Host}-related(Bone density · Wound healing) · {r:Implant}-related(Implant design · Surface textures · Implant length) · {r:Occlusion}-related(Prosthetic design · Quality and quantity of force) | 해당 없음 | 해당 없음 | 26 필기 {n:"아래 그림 강조하셨습니다"} · 변수 6 카드를 네 묶음으로 다시 봄 | —
 
 #TBL 인상 채득 — Pick-up vs Transfer vs Scan body | k=PART | src=[[PART:14]] [[PART:15]] [[PART:16]] [[PART:17]] [[PART:18]]
 H: 항목 | Pick-up coping {jb:R11} | Transfer coping | Scan body {jb:Q08}
@@ -589,7 +589,7 @@ R: {r:자가골}(Autograft) {jb:Q02} | 본인의 구강 내·구강 외 공여�
 R: {r:동종골}(Allograft) | 타인 골조직에서 채취 및 처리(FDBA·DFDBA·DBM) | X | {r:O}(탈회로 BMP 노출) | O | 생체적합성 우수 · 면역거부반응이 적음 | 감염의 위험 존재 · {r:고가}
 R: {r:이종골}(Xenograft) | 동물 골조직에서 채취 및 처리(Bio-Oss 등) | X | X | O | 공급이 쉽고 저렴 · {r:체적 유지 능력} | 자가골 대비 치유 능력↓ · 면역거부반응 가능
 R: {r:합성골}(Alloplast) | Bioceramic 계열 합성물질(HA·β-TCP·BCP 등) | X | X | O | 감염 위험성 적음 · 저렴 | 동종골·이종골 대비 {r:골생성 능력}↓
-N: 골치유 기전 정의(p.19 ★): 골형성 = 이식재 내 {r:세포 자체}가 골을 증식 / 골유도 = {r:BMP} 등 신호기전으로 줄기세포 → 조골세포 / 골전도 = 골 형성을 위한 {r:연결구조(비계구조)}. 물리적 형태: Powder(0.5-2.0 mm·가장 많이 사용) · Chip(volume 유지) · Block(재수화·고정 필요) · Putty/Gel(재수화 불필요). 26 PDF 별표(★): p.17 분류 3축 · p.19 기전 정의 · p.20 이 O/X 표(p.17·20은 26에 새로). [[GRAFT:19]] [[GRAFT:18]] [[GRAFT:17]] [[GRAFT:20]]
+N: 골치유 기전 정의(p.19 ★): 골형성 = 이식재 내 {r:세포 자체}가 골을 증식 / 골유도 = {r:BMP} 등 신호기전으로 줄기세포 → 조골세포 / 골전도 = 골 형성을 위한 {r:연결구조(비계구조)}. 물리적 형태: Powder(0.5-2.0 mm·가장 많이 사용) · Chip(volume 유지) · Block(재수화·고정 필요) · Putty/Gel(재수화 불필요). 26 PDF 별표(★): {u:p.17 분류 3축} · p.19 기전 정의 · {u:p.20 이 O/X 표}(p.17·20은 26에 새로). [[GRAFT:19]] [[GRAFT:18]] [[GRAFT:17]] [[GRAFT:20]]
 N: 변형 대비: 반대로 물으면 — 골형성까지 가진 것 = {r:자가골}뿐 / 골유도 O = 자가골·동종골(+ rhBMP 탑재 이식재) / 골전도만 = 이종골·합성골 · "자가골은 (4)(5)(6)가 모두 갖추어져 있는 재료" 꼴 · 동종골이 골유도성을 갖는 이유 = 탈회로 무기질에 싸인 {r:BMP} 노출. {jb:Q02} [[GRAFT:19]] [[GRAFT:20]]
 
 #TBL 골이식재 물리적 형태 4 — Powder · Chip · Block · Putty/Gel | k=GRAFT | src=[[GRAFT:18]]
@@ -644,7 +644,7 @@ R: {r:협골/관골} Zygoma, Malar bone | {r:작은 결손부} · 접근 쉬움(
 R: {r:상악결절} Maxillary tuberosity | 접근 쉬움(최후방 대구치 원심 치조정 절개) · 대부분 {r:해면골} | {r:상악동 위치 평가} · 골질 불량 가능
 R: {r:하악 골체부} Mandibular body | 이공과 하악 제3대구치 사이의 협측 피질골 | {r:합병증 거의 없음}
 R: {r:근돌기·오훼돌기} Coronoid process | 측두근건 박리 후 채취 | 출혈 · 종창 · 개구장애·턱관절장애
-N: 구강 외: Free iliac bone graft · Microvascular Fibula flap · Free rib bone graft(p.98) · Tibia(시술 용이 / 골단성장판 영향 — 성장기 금기 / Gerdy's tubercle, p.115). 발생 분류: Endochondral(iliac·tibia·rib) vs Intramembraneous(calvaria·mandible·maxilla). 26 필기는 "슬라이드 제목 7가지가 답"으로 ⑦ 구개부(hard palate)까지 셈 — 슬라이드 제목은 위 6개 + "기타 구강 내 채취 부위"(p.106 구개 그림). [[GRAFT:98]] [[GRAFT:99]] [[GRAFT:106]] [[GRAFT:115]]
+N: 구강 외: Free iliac bone graft · Microvascular Fibula flap · Free rib bone graft(p.98) · Tibia(시술 용이 / 골단성장판 영향 — 성장기 금기 / Gerdy's tubercle, p.115). 발생 분류: Endochondral(iliac·tibia·rib) vs Intramembraneous(calvaria·mandible·maxilla). {u:26 필기는 "슬라이드 제목 7가지가 답"으로 ⑦ 구개부(hard palate)까지 셈} — 슬라이드 제목은 위 6개 + "기타 구강 내 채취 부위"(p.106 구개 그림). [[GRAFT:98]] [[GRAFT:99]] [[GRAFT:106]] [[GRAFT:115]]
 N: 변형 대비: 이름 대신 특징으로 물으면 — 합병증 거의 없음 = {r:하악 골체부} / 합병증 적음·수평적 치조능증강술에 유리 = {r:하악지} / 작은 결손·국소마취하 접근 = {r:협골} / 대부분 해면골·상악동 위치 평가 = {r:상악결절} / Mental nerve·Incisive nerve·하악골 하연 골절 주의 = {r:정중부} / 측두근건 박리 = {r:근돌기}. {jb:Q03}
 
 #TBL 발치 후 치조골 흡수와 즉시 식립 | k=GRAFT | src=[[GRAFT:85]] [[GRAFT:94]] [[GRAFT:95]] [[GRAFT:96]]
