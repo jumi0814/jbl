@@ -5,7 +5,7 @@ R: Fried 5기준 {jb:G01} | {r:체중 감소} · {r:활력감소} · {r:허약} 
 R: 노쇠의 종류 {jb:G07} | {r:Physical}({n:보통 노쇠}) · {r:Cognitive} · {r:Social} · Systemic/General ? · {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠 / {n:구강 노쇠 = 씹는/삼키는/말하는 기능이 떨어져 있는 어떤 상태(26 필기 p.3)}
 R: {r:Multimorbidity}(다중이환) | The coexistence of multiple chronic diseases / Prevalence {r:55 – 98%} / 결과 = disability and functional decline, poor quality of life, high health care cost | 노인 {r:90%} 1개↑ · 22% 2개 · {r:50%} 3개↑ / 최다 {r:고혈압·관절염} {jb:G06}
 R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} / 약물 부작용 = 입원·사망의 주요 원인 | 21 빈칸 / {n:필기 5종류↑(super 10종류↑)} / 노인 37% 5개↑ 처방약
-R: 노인 만성질환 목록(p.7 그래프 순) {jb:G06} | {r:고혈압} · {r:관절염} · 고지혈증 · 요통 · 당뇨병 · 골다공증 · 위궤양 · 전립선비대증 · 백내장 · 뇌졸증/협심증 / 처방약: 노인 {r:60%} 3개↑ · {r:37%} 5개↑({n:필기: 노인의 1/3에서 5개 이상}) | 필기: 고혈압, 관절염 = {r:50% 이상}이 갖고 있는 질환 · 정신질환은 조사 시 일부 빠져 있음 · 누워 있는 노인까지 합치면 훨씬 많음
+R: 노인 만성질환 목록(p.7 그래프 순) {jb:G06} | {r:고혈압} · {r:관절염} · 고지혈증 · 요통 · 당뇨병 · 골다공증 · 위궤양 · 전립선비대증 · 백내장 · 뇌졸증/협심증 / 처방약: 노인 {r:60%} 3개↑ · {r:37%} 5개↑({n:필기: 노인의 1/3에서 5개 이상}) | 필기: {n:고혈압, 관절염 = 50% 이상이 갖고 있는 질환 · 정신질환은 조사 시 일부 빠져 있음 · 누워 있는 노인까지 합치면 훨씬 많음}
 R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 {r:모호·복잡} — 질병 다발성 + 다약제 복용 → 질환–질환 · 질환–약물 · 약물–약물 상호작용 | 20·19 "A와 B" = {r:질환 · 약물}
 R: {r:Geriatric syndrome}(노인증후군) {jb:G05} | 실금·우울·섬망·낙상·골다공증·감각변화·거동/보행장애·압창·수면장애·치매 — 여러 etiology/pathogenesis → {r:unified manifestation} | 24 서술(낙상 모식도 예) · 20 나열
 R: {r:Sarcopenia}(근감소증) | 근육량 일정 이하 감소 + 근육 활동 일정 이하 감소가 동시에(필기) / {n:이와 같은 기준이 따로 있다(26 필기 p.1)} | {n:체중 감소 → 근육 소실 → sarcopenia(Fried 모식도)}
@@ -76,8 +76,8 @@ N: 26 형광(강조해 읽으신 칸) — 양측 악하선/설하선 비기능 0
 
 #TBL 구강건조증 — 호소·관련 상태·좋은 문진 | k=SAL | src=[[SAL:12]]
 H: 구분 | 슬라이드 항목 | 포인트
-R: 환자가 호소하는 것(Signs & Symptoms 왼쪽 열) | Oral dryness · Burning sensation · {r:Difficulty of swallowing} · Difficulty of speech · Impairment of taste · Difficulty of the solubilization of ingested substances | —
-R: 진료실에서 만나는 것(오른쪽 열) | {r:Inc. dental caries} · Swelling of salivary gl. · Atrophy of oral mucosa · Fissure on tongue · {r:Candidiasis/Cheilitis} · Inc. severity of periodontal diseases · Halitosis · {r:Burning mouth syndrome} | —
+R: {n:환자가 호소하는 것}(Signs & Symptoms 왼쪽 열) | Oral dryness · Burning sensation · {r:Difficulty of swallowing} · Difficulty of speech · Impairment of taste · Difficulty of the solubilization of ingested substances | —
+R: {n:진료실에서 만나는 것(오른쪽 열)} | {r:Inc. dental caries} · Swelling of salivary gl. · Atrophy of oral mucosa · Fissure on tongue · {r:Candidiasis/Cheilitis} · Inc. severity of periodontal diseases · Halitosis · {r:Burning mouth syndrome} | —
 R: Xerostomia and its related Conditions 8 | ① Inc. dental caries ② Inc. periodontitis ③ Oral candidiasis & cheilitis ④ Burning mouth syndrome ⑤ Fissure on tongue ⑥ Oral malodor ⑦ Impairment of taste ⑧ {r:Dec. retention of denture} | —
 R: 좋은 문진 3(Fox PC 1987) | ① Do you {r:sip liquids to aid in swallowing dry foods}? ② Does your mouth feel {r:dry when eating a meal}? ③ Do you have {r:difficulties swallowing} any foods? | {n:"당신은 입 안이 건조한가요?"는 좋은 질문이 아니다}
 R: 6항목 설문 | Dry-PM(밤·기상 시 건조) · Dry-day(낮 시간 건조) · Dry-eat(식사 중 건조) · Dif-swal(삼키기 어려움) · Am-sal(평소 침의 양) · Eff-life(건조로 인한 일상 영향) | Dry Mouth Patients(n=78) vs Controls(n=88) — 6항목 모두 환자군이 높음
@@ -94,7 +94,7 @@ N: 전체 불편감 VAS {r:7.31}(n = 78) · CMC-based 인공타액 사용 전 VA
 
 #TBL 노화에 따른 피부·구강 조직 변화 | k=SAL | src=[[SAL:16]] [[SAL:17]]
 H: 조직 | 항목 → 변화 | 일관성(필기)
-R: {r:결합조직}(lamina propria) {jb:G03} | Cellular elements · Fibers · Mitotic activity · Collagen synthesis · Acid mucopolysaccharides → {r:모두 Decreased} / Width of periodontal ligament → {r:Increased / Decreased} / Gingival recession → {r:Increased / Stable} | 비교적 일관적 — 주로 여기에 변화
+R: {r:결합조직}({n:lamina propria}) {jb:G03} | Cellular elements · Fibers · Mitotic activity · Collagen synthesis · Acid mucopolysaccharides → {r:모두 Decreased} / Width of periodontal ligament → {r:Increased / Decreased} / Gingival recession → {r:Increased / Stable} | 비교적 일관적 — 주로 여기에 변화
 R: 상피(epithelium) | Width → {r:Thinned} / Keratinization → Decreased/Unchanged / Rete pegs → Heightened/Constant/Shortened / Mitotic activity → Increased/Constant/Decreased | 사람마다 차이 많음
 R: 피부 dermis | Atrophy · {r:Fewer} fibroblasts · mast cells · blood vessels · Shortened capillary loops · Abnormal nerve endings | 비교적 일관적
 R: 피부 epidermis | Flattened dermo-epidermal junction · Variable thickness · Variable cell size and shape · Occasional nuclear atypia · Fewer melanocytes · Fewer Langerhans cells | 매우 애매 = 개인별 차이
@@ -107,7 +107,7 @@ N: 변형 대비 {jb:G03} — 매년 '결합조직 7'이지만 같은 쪽의 상
 N: 26 ★ 결합조직 7 — {n:"암기하셔야합니다."(26 필기 p.16-6)} · 26 형광 lamina propria(16-2 필기). {jb:G03} [[SAL:16]]
 
 #TBL 노인 구강점막질환과 구강점막 통증 | k=SAL | src=[[SAL:17]] [[SAL:18]] [[SAL:19]] [[SAL:20]]
-H: 질환 | 슬라이드 부연 | 필기·포인트
+H: 질환 | 슬라이드 부연 | 포인트·필기
 R: ① {r:Herpes zoster} {jb:G04} | Postherpetic Neuralgia | {n:구강점막 zoster는 적음(thoracic·lumbar가 흔함)} / {n:secondary infection(26 필기 p.18)}
 R: ② {r:Candidiasis} {jb:G04} | Loss of immune vigor because of age | {n:진료실 최다 · 노인은 chronic atrophic type이 압도적} · denture stomatitis — partly plaque-associated?
 R: ③ {r:Inflammatory fibrous hyperplasia} {jb:G04} | (Epulis fissuratum) - Denture | —
@@ -299,7 +299,7 @@ N: p.96(25 p.78) 이후는 25년 수업에서 따로 다루지 않은 쪽(25 필
 #TBL 미백의 부작용과 대처 | k=BLE | src=[[BLE:45]] [[BLE:65]] [[BLE:89]] [[BLE:90]] [[BLE:95]] [[BLE:97]] [[BLE:98]]
 H: 부작용 | 원인·설명 | 대처
 R: Color relapse {jb:K02} | {n:착색 재부착} = 환원(dingy) | {n:touch up bleaching}
-R: Gum & Lip irritation | 35% H2O2 누출 시 high toxicity to gum | ① immediate saline irrigation ② analgesics ③ daily iodine dressing ④ vaseline coating / {u:Liquid → gel type(p.90)}
+R: Gum & Lip irritation | 35% H2O2 누출 시 high toxicity to gum | ① Immediate saline irrigation ② Analgesics/Anti if necessary ③ Daily dressing with iodine ④ Vaseline coating / {u:Liquid → gel type(p.90)}
 R: Reduced bond strength | {n:oxygen radical이 dentin에 남아 polymerization 방해} | {n:미백 후 레진은 2주 뒤}
 R: Thermal sensitivity | {n:고농도 미백제 → fluid inward movement(hydrodynamic)} · {r:dentin hypersensitivity is inevitable} · lamp 열원 | passive: 농도·양·시간·빈도↓ / active severe: fluoride·5% potassium nitrate tray 10-30 min · 진통제 / mild: desensitizing tooth paste
 R: Tooth dehydration | {n:물이 빠져 chalky} | 내일 아침 조금 어두워질 수 있음을 미리 설명
@@ -356,12 +356,12 @@ N: 변형 대비 {jb:K01} {jb:K02} — splotchy ↔ dingy(산화 중 ↔ 환원 
 #TBL 진료실 미백 — 과거 vs 현재 · 광원과 laser | k=BLE | src=[[BLE:68]] [[BLE:69]] [[BLE:71]] [[BLE:72]] [[BLE:74]] [[BLE:75]] [[BLE:76]] [[BLE:77]] [[BLE:78]] [[BLE:79]] [[BLE:86]] [[BLE:87]] [[BLE:89]] [[BLE:90]] [[BLE:92]] [[BLE:94]]
 H: 항목 | 슬라이드 | 포인트
 R: 준비물 | Bleaching Agents · Catalysts: {r:Light, Laser} · Safety Glasses · 35-mm Camera | {n:고농도 과산화수소라 술자·환자 모두 보호(26 필기 p.68)}
-R: 과거 — rubber dam with floss | {n:radial surface에 30% H2O2 → 30 cm 떨어진 곳에서 red light} | time-consuming · {n:뜨거운 빛이 pulp에 흡수되어 통증} — Red light from lamp was {r:absorbed into reddish pulp} · {n:요새는 통증 유발로 잘 쓰지 않음(26 필기 p.75)}
+R: 과거 — rubber dam with floss | Time-consuming technique(p.69) · {n:radial surface에 30% H2O2 → 30 cm 떨어진 곳에서 red light} | time-consuming · {n:뜨거운 빛이 pulp에 흡수되어 통증} — Red light from lamp was {r:absorbed into reddish pulp} · {n:요새는 통증 유발로 잘 쓰지 않음(26 필기 p.75)}
 R: 현재 — light-cured dental dam | {r:1.5-2 mm} thick · {r:4-6 mm} wide in gingiva · enamel {r:0.5 mm} overlapped covering · light-curing for {r:30 secs} · {r:pre-mixed gels in syringe} instead of H2O2 liquid | {n:약제를 올려놓아도 흘러내리지 않아서 안전}
 R: 광원 6 | Halogen · Argon laser · Plasma arc lamps · {r:Xe-halogen} · LED light · Diode laser | Xe-halogen {n:15분/3 cycle}
 R: 장비 | White Cool {r:36 LED}(380-530 nm) · Elite White {r:80 LED} · Flipo White 2(Xenon arc · 2 modes) · Zoom2 {r:IR SYSTEM} · SmartLite {r:Nd-YAG: no heat generation} | {n:Flipo = light가 pulse로 꺼졌다 켜졌다 → 시린 사람을 위해 · Zoom2 = 환자가 머리를 움직여도 고정} · {n:Flipo 버튼 — 가운데 전원 · 왼쪽 위 간헐적 · 오른쪽 위 항상(26 필기 p.78)} · {u:{n:26 수업 '설명을 자세히'(26 필기 p.78)}}
 R: Laser의 역할 | {r:Laser on their own don't bleach}, merely to catalyze oxidation reaction · 용액을 conventional heat source보다 더 빨리 가열 → oxygen radicals fast & more | {n:보통 1시간} · hypersensitivity↑
-R: 위험과 대처 | High toxicity of {r:35% H2O2} to gum if leak · lamp 열원으로 pain↑ · {u:Toxicity to gum if leak: Liquid → gel type(p.90)} | ① immediate {r:saline irrigation} ② analgesics ③ daily iodine dressing ④ vaseline coating
+R: 위험과 대처 | High toxicity of {r:35% H2O2} to gum if leak · lamp 열원으로 pain↑ · {u:Toxicity to gum if leak: Liquid → gel type(p.90)} | ① Immediate {r:saline irrigation} ② Analgesics/Anti if necessary ③ Daily dressing with iodine ④ Vaseline coating
 R: {u:1 hour laser bleaching(p.92)} | Heat problem · TMJ trouble | 비교: Nd-YAG laser(SmartLite) = no heat generation(p.86)
 R: Light-augmented vs conventional | Light {r:does not cause additional harm} · use of light {r:significantly improved the whitening efficacy} | {n:light 자체는 미백제를 활성화 → 쏴 주는 것이 좋다(p.94)} · {n:부분적으로 — 한꺼번에 40초 이상이면 고통 호소(26 필기 p.94)}
 N: 미출제 쪽 — 'Laser on their own don't bleach'(스스로 미백 ×, 산화 촉매)와 dental dam 숫자(1.5-2 · 4-6 · 0.5 · 30초)가 변형 대비 포인트.

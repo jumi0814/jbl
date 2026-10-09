@@ -68,15 +68,15 @@ F: 11=TC 개 치아 power bleaching, 12=TC 종류별 변색
 - {n:변색의 정도(degree)에 따라 분류(p.13 필기 · 26 필기)}.
 | Class | 색 | Banding | 예후·처치 |
 | {r:Class I} | light yellow or brown, gray — uniformly confined to {r:incisal 3/4} area | {r:No evidence of banding} | {r:good prognosis} to bleaching |
-| {r:Class II} | uniform deep yellow to brown, gray discoloration | {r:no banding} | {r:variable prognosis}({n:필기: banding이 없어 비교적 반응 잘함}) · {n:26 필기: 미백 기간에 따라 반응도가 달라짐} |
+| {r:Class II} | uniform deep yellow to brown, gray discoloration({n:필기: 변색이 조금 더 심하고 gray color가 나타남}) | {r:no banding} | {r:variable prognosis}({n:필기: banding이 없어 비교적 반응 잘함}) · {n:26 필기: 미백 기간에 따라 반응도가 달라짐} |
 | {r:Class III} | {r:dark gray or blue} discoloration | {r:marked banding} | {r:not response} to bleaching → {r:laminate or walking bleaching} |
 U: Class III는 horizontal banding 때문에 미백해도 잘 없어지지 않음 → endo 후 walking bleaching 또는 laminate(p.17 필기).
 F: 14=Mild TC stain — vital bleaching 반응 좋음, 16, 18
-M: {u:Age changes of pulp and dentin(Decrease 3)}: ① of {r:cellularity} gradually ② the number and size of {r:odontoblasts} ③ the {r:dentinal permeability}
-M: Dentinal sclerosis: {u:Partial or complete {r:obturation of dentinal tubules}} / {u:원인 = A result of {r:Aging} · Response to stimuli({r:attrition}, {r:caries})} / {u:특징 = {r:Translucency}(because of the homogeneity of the dentin) · Decreased {r:permeability}}
+M: {u:Age changes of pulp and dentin(Decrease 3): ① of {r:cellularity} gradually ② the number and size of {r:odontoblasts} ③ the {r:dentinal permeability}}
+M: {u:Dentinal sclerosis: Partial or complete {r:obturation of dentinal tubules} / 원인 = A result of {r:Aging} · Response to stimuli({r:attrition}, {r:caries}) / 특징 = {r:Translucency}(because of the homogeneity of the dentin) · Decreased {r:permeability}}
 M: 분류: 외인성 = {n:표면} → {r:positive response to vital bleaching} / 내인성(TC) = {n:dentin → non-vital bleaching·laminate}
 M: 내인성 원인 5: ① {r:Tetracycline (Minocycline) staining} ② {r:Erythroblastosis Fetalis} ③ {r:Porphyria} ④ {r:Sickle cell anemia} ⑤ {r:Thalassemia} / 외인성 원인: ① Deposit of plaque & pellicle by poor oral hygiene ② Stain from food, beverages, tobacco, chromogenic bacteria, tea ③ {r:post-orthodontic demineralization}
-M: Amelogenesis imperfecta 3: ① {u:{r:Hypomaturation}} ② {u:{r:Hypocalcification}} ③ {u:{r:Hypoplasia}} / {u:{r:Esthetic restoration is recommended}}
+M: {u:Amelogenesis imperfecta 3: ① {r:Hypomaturation} ② {r:Hypocalcification} ③ {r:Hypoplasia} / {r:Esthetic restoration is recommended}}
 M: TC 기전: orthophosphate(yellow) + {r:sunlight} → {r:quinone}(dark gray brown)
 M: TC 미백 기간·농도: Time factor {r:4-6 months} · Concentration factor / {n:필기 6개월 · 15-20%(dentin 안쪽이라 오래·고농도)}
 M: TC 종류별 색: Tetracycline = {r:gray to brown} / Doxycycline = {r:yellow to brown, gray} / Minocycline = {r:blue-gray}
@@ -135,7 +135,7 @@ M: 색에 영향 주는 요인: Gender {r:similar} / coffee/tea {r:different mai
 @G ② 색과 예후 — 무엇이 잘 하얘지나
 ## Shade · Color Science · Prognosis | 색조와 예후 — B1이 가장 밝고 C4가 가장 어둡다 | 27-31 | 교수 강조
 > {n:시험에 잘 나온다} — {n:B1이 가장 밝고 C4가 가장 어둡다, 붉은·노란 계열은 잘 되고 회색·파란 계열은 안 된다}
-= Shade: {n:{r:B1 최명} · {r:C4 최암}} / 4계열: {n:A·B(red) 잘 반응 · C·D(gray) 반응↓} / 예후: {r:Brown-orange-yellow > Blue-gray}
+= Shade: {n:{r:B1 최명} · {r:C4 최암}} / 4계열: {n:A·B(red) 잘 반응 · C·D(gray) 반응↓} / 예후: {r:Brown-orange-yellow > Blue-gray} / CIELab(26 강조): L* White↔Black · a* Red↔Green · b* Yellow↔Blue
 # Shade Guide — VITA 명도순 배열
 - 명도순(미백 ShadeScore 1 → 16): B1 · A1 · B2 · D2 · A2 · C1 · C2 · D4 · A3 · D3 · B3 · A3.5 · B4 · C3 · A4 · C4.
 - {n:가장 밝은 것이 {r:B1}, 가장 어두운 것이 {r:C4}(p.27 필기) · 26 필기도 B1 "제일 밝음" · C4 "제일 어두움"}.
@@ -152,6 +152,7 @@ F: 28=A~B 계열은 잘 반응 C~D 계열은 반응 안 함
 - {r:L*}: White(L* = 100) ↔ Black(L* = 0).
 - {r:a*}: +a* Red ↔ −a* Green.
 - {r:b*}: +b* Yellow ↔ −b* Blue.
+- 그림 왼쪽: **Prognosis** 점선 화살표(아래 방향) · 그 아래 **Total color change**.
 - {n:수평선에서 하단에 있는 색조일 때 미백에 반응을 잘 하고, Blue-green-white 계열 변색은 반응을 잘 하지 않음(p.29 필기)}.
 - Teeth with {r:higher initial a* values (red)} experienced a {r:greater total tooth color change}(M Lenhard 1996, JADA).
 P: {u:⭐ CIELab — "이 부분 강조하셨습니다"(26 필기 p.29, 별표) · "아래 3개의 색 계열은 미백에 반응을 잘한다"(26 필기)}.
@@ -258,6 +259,7 @@ F: 47=Combination approach
 - 증례(p.48): Pre-OP photo- {r:C4} → Post-1-year-{r:B3} → Post-7-year photo(슬라이드 가운데 글자: Treatment fee) — {n:1년간 미백한 TC 변색 · 1년 후 물이 빠져 chalky하고 창백 · 환자가 만족 → Class III TC 변색도 성공한 사례(필기)}.
 - {u:같은 증례가 p.39(26 새 쪽)에도 — 슬라이드 제목 {r:Combination bleaching} · 네 사진에 Pre-OP - C4 · Post-1-Yr · Post-2 Yrs · Post-7-Yrs 표기 + VITA shade guide 표} / {n:p.48 왼쪽 아래 사진 = post-2 Yrs(26 필기)}.
 - Compendium 2003(p.49): {n:TC 변색 치아에 CP 10·15·20% → 6개월에 최대로 미백 → 9개월까지 조금 떨어졌다가 plateau}.
+  - 그래프(슬라이드): ΔE × Weeks(0~104) · 10% · 15% · 20% 세 곡선 — 빨간 점선 24주 · 파란 점선 36주.
 - → {n:6개월 이상 미백할 필요 없음 — 그 이후엔 부작용만 생김(필기) · 26 필기: 이를 미리 알았더라면 앞에 치료에서도 굳이 더 하지 않았을 것(p.49)}.
 F: 48=Class III TC 1년 미백 C4에서 B3, 49=CP 농도별 6개월 최대 후 plateau
 M: McCaslin 1999: {r:10% CP} → outer·inner dentin {r:uniform rate} → {r:dentin hypersensitivity is inevitable}
@@ -284,7 +286,7 @@ E: K01 | 20·19년 서술(splotchy·dingy 설명 제시) "(1) 명칭 (2) 기전 
 F: 51=Oxidation과 reduction — dingy stage
 # Touch-up Management — 증례와 지속 기간
 - Post-10 years revisit: {r:Dingy} → {r:1 week touch-up management} → 개선(p.52).
-  - 같은 쪽 위 두 사진 = 96.10.30 → 96.11.16 · 아래 두 사진 = Post-10 years revisit — {n:위 두 사진 사이 2wks(26 필기 p.52)}.
+  - 같은 쪽 위 두 사진 = 96.10.30 → 96.11.16 — {n:위 두 사진 사이 2wks(26 필기 p.52)} · 아래 두 사진 = Post-10 years revisit(Dingy) → 1 week touch-up management.
 - Home bleaching issues(p.67): ⑦ Initial color relapse — {r:within 2 weeks, slightly color relapse}, no regular touch-up Tx / ⑧ Longevity of color change — {r:touch-up annual bleach}, {r:1 ~ 3 years duration or permanent}.
 - JB 23년 해설: stain이 표면에 달라붙으며 relapse(환원) → 미백(산화)처럼 부분적으로 일어나는 dingy stage.
 - JB 23년 해설 이어서: 빠른 시일 내에 1-2주 정도 touch-up management를 하면 원래대로 돌아감.
@@ -381,7 +383,7 @@ F: 64=External stain drink — home bleaching, 65=미백 후 주의사항
 - 필기: {n:10-15%에서는 SEM상 enamel 문제가 없었음 · sensitivity → 휴지기 또는 시린이 치약 · 1-3년 지속, 6개월이나 1년마다 내원해 dingy되면 touch-up}.
 F: 66=Home bleaching issues 1-6, 67=Home bleaching issues 7-9
 M: 미백 후: ① {r:시릴 수 있다} → 불소 도포 등 필요({n:센소다인}) ② 당분간 {r:착색음료, 담배} 등은 피할 것 ③ 내일 아침 조금 어두워질 가능성 — 현재 {r:탈수}로 더 하얗게 보임
-M: Issues: ① white spots {r:not removed}({n:microabrasion 필요}) ② fluorosis {r:80%} ③ hardness {r:no change} ④ sensitivity {r:transient/sporadic} ⑤ aging·smoking·single dark tooth = {r:good} / Issues 7~9: relapse {r:2주 내} slightly / {r:1~3 years} or permanent · {r:annual} touch-up / splotchy → {r:continue bleaching}
+M: Issues: ① aging·smoking·single dark tooth = {r:good} ② enamel surface change at 10-15%(SEM) {r:no clinical or reasonable changes} ③ hardness {r:no change} ④ white spots {r:not removed}({n:microabrasion 필요}) ⑤ fluorosis {r:80%} ⑥ sensitivity {r:transient/sporadic} / Issues 7~9: relapse {r:2주 내} slightly / {r:1~3 years} or permanent · {r:annual} touch-up / splotchy → {r:continue bleaching}
 
 @G ⑤ Office bleaching — dental dam · 광원 · 부작용
 ## Office Bleaching · Dental Dam | 진료실 미백 — rubber dam 대신 light-cured dental dam | 68-71 | 술식
@@ -409,7 +411,7 @@ M: Dental dam: ① {r:1.5-2 mm} thick ② {r:4-6 mm} wide in gingiva ③ enamel:
 
 ## Light · Laser Activation | 광원과 laser — 미백이 아니라 산화 촉매 | 72-80,86-94 | 술식
 > 빛·laser는 스스로 미백하지 않는다 — 미백제를 빨리 데워 산화를 촉진할 뿐, 해는 더하지 않는다
-= Laser {r:don't bleach, merely catalyze oxidation} / light = pulp·gingiva {r:추가 해 ×} + {r:efficacy↑}
+= Laser {r:don't bleach, merely catalyze oxidation} / light = pulp·gingiva {r:추가 해 ×} + {r:efficacy↑} / 누출 처치 4(26 강조): {r:saline irrigation} → analgesics → iodine → Vaseline
 # Light Activation Sources
 - Do we need the Lightening (Heating) Source during In-Office Bleaching Process?(p.72)
 - ① Conventional {r:Halogen} light curing ② {r:Argon laser} ③ {r:Plasma arc lamps} ④ {r:Xe-halogen} ⑤ {r:LED light} ⑥ {r:Diode laser}.
@@ -505,7 +507,7 @@ F: 104
 M: 정의: Microabrasion = {r:HCl} + disking → decalcification·softening → {r:superficial enamel stain} 제거
 M: Opalustre = {r:6.6% HCl + silicon carbide} / 적응증: ① 깊이 {r:0.2 mm} 이하 enamel surface 미세 탈회반점 제거·미백 ② 치면의 흰색 및 갈색 탈회반점 제거 ③ {r:Fluorosis}에 기인한 에나멜면 변색 제거 ④ 하부 색이 yellow·gray·dark → {r:Opalustre를 먼저} → vital bleaching agent
 M: 술식: Opalustre coat {r:1 mm} → OpalCup → burnishing / 안전: pulpal damage {r:insignificant} · total enamel loss {r:about 25%}
-M: Microabration Technique(역사): {u:Kane (1918) {r:18% HCL} → fluorosis · McInees technique (1966) · Cavanaugh (1986) {r:18% HCL + pumice}} / {u:Croll = {r:PREMA}(microabration kit)}
+M: {u:Microabration Technique(역사): Kane (1918) {r:18% HCL} → fluorosis · McInees technique (1966) · Cavanaugh (1986) {r:18% HCL + pumice} / Croll = {r:PREMA}(microabration kit)}
 M: 함정: HCl 농도 = Opalustre {r:6.6%} ↔ {u:Kane · Cavanaugh {r:18%}}
 
 ## Walking Bleaching — Agent pH · Cases | walking bleaching — 약제 pH와 증례 | 107-114 | 술식 · 26 수업 포함
@@ -537,7 +539,7 @@ M: {r:Buffered alkaline} H2O2 = 더 효과 / 대상: ① {n:traumatic pulp necro
 | Labial | Labial view: **"Bobsled tunnel"** outline | ② Labial: "Bobsled tunnel" |
 | Proximal | Proximal view: **Sky slope** | ③ Proximal: "Sky slope" |
 | 두께 | Location & shape of barrier: **1-2 mm thick** — by **transfer barrier probing** | ④ {r:2 mm thickness} |
-| 재료 | **G-Ionomer** · IRM · ZPC · Cavit | ⑤ GI · resin · ZPC |
+| 재료 | **G-Ionomer** · IRM · ZPC · Cavit | ⑤ GI, resin, ZPC |
 P: {u:⭐ Barrier formation — "이건 시험에 반드시 출제되니까 외우세요!!"(26 필기 p.116)} / {u:"금기연 교수님께서 올해는 barrier formation 116pg 시험 출제 예고하셨습니다"(26 필기 p.1)}
 F: 116=Barrier formation — 시험에 반드시 출제
 # Transfer barrier probing(그림 — 필기 설명 없음 · 26 필기 "하방으로"만)
