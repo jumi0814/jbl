@@ -18,7 +18,7 @@ def notes_ok():
             ft = SEP.sub('', html.unescape(re.sub(r'<[^>]+>', '', L['head'])))
             for n0 in [l[1:].strip() for l in src.splitlines() if l.startswith('!')]:
               for n in re.split(r'(?<=\.) ', n0):   # 문장 단위(📣·출처 줄로 나뉘어 들어감)
-                for chunk in re.split(r'\[\[[^\]]+\]\]|\{jb:[^}]+\}', re.sub(r'\*\*|==|\{r:|\{k:|\}', '', n)):
+                for chunk in re.split(r'\[\[[^\]]+\]\]|\{jb:[^}]+\}', re.sub(r'\*\*|==|\{r:|\{k:|\{n:|\{u:|\}', '', n)):
                     c = SEP.sub('', chunk)
                     if c and c not in ft: ok(False, f'{s}/{L["k"]} ! 줄 글자 누락: {chunk[:40]}'); break
     ok(True, '! 줄 글자 검사 끝')
