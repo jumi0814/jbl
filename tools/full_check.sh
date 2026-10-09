@@ -23,6 +23,7 @@ say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail 
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | tail -1; done | tee -a $L
 say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
 say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
+say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S 2>&1 | tail -1)"; done   # 10-09 표 빠짐(칩 없는 기출·없는 id·표 꼴)
 say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
 say "== check_numbering"; $PY tools/check_numbering.py 2>&1 | tail -1 | tee -a $L
 say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L
@@ -37,6 +38,6 @@ if [ $UI = 1 ]; then
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
-say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]' $L | grep -v '== ' | tee -a work/_tmp/full_check.fail || true
+say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]' $L | grep -v '== ' | tee -a work/_tmp/full_check.fail || true
 grep -E '^합계: 기록 이어짐' $L | awk -F'[(%]' '{ if ($2+0 < 95) print "  ✗ 플래시카드 기록 이어짐 95% 미만:", $0 }' | tee -a $L
 say "ALLDONE"
