@@ -1918,6 +1918,7 @@ b.mlab{font-weight:700;color:inherit}
 .ntw::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
 /* 10-09 사용자 '필기표시를 문장의 앞에만' — 끝 ✍ 없음 · 필기 뒤에 강의 내용이 같은 줄로 이어지면 줄바꿈(br.ntb) · ✍ 이해 상자·필기 소제목 아래 항목은 머리 ✍ 하나로 */
 .ntw::after{content:none}
+b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}b.mlab.nlab~.ntw::before,b.mlab.nlab~ul .ntw::before{content:none}
 .und .ntw::before,.und .srcn::after,.li.nsec .ntw::before,.li.nsec .srcn::after{content:none}.und br.ntb,.li.nsec br.ntb{display:none}
 .ntw .srcn::after{content:none}
 .srch+.ntw::before{content:none}

@@ -89,7 +89,7 @@ def _ntw_close(h):
         core = re.sub(r'^[\s.,;:·)\]}]+', '', t)
         brk = len(re.sub(r'[\s.,;:·)\](}—–\-→=!?\'"“”…/]+', '', core)) >= 2 and not _NTB_JOSA.match(t.lstrip())
         if brk:
-            m = re.match(r'^((?:\s|[.,;:·)\]]|</[^>]+>)*)', rest)
+            m = re.match(r'^((?:\s|[.,;:·)\]]|</[^>]+>|<button\b[^>]*>.*?</button>)*)', rest, re.S)   # 쪽 인용 칩은 앞 줄 끝에
             out += '</span>' + m.group(1) + '<br class="ntb">' + rest[m.end():]   # 글자(띄어쓰기 포함) 그대로
         else: out += '</span>' + rest
     return out
@@ -489,13 +489,15 @@ def _eol(x, ctx, mn=40):
     ld, its, _ = e
     return (f'<span class="klh">{inline(ld, ctx)}</span>' if ld else '') + _list_html(its, ctx, 1, 'ol', 'circ')
 MLAB = re.compile(r'^((?:[^:：{}"“”=→/]|\{r:[^{}:：]*\}){1,32}(?:\([^(){}]{0,30}\))?[:：])\s+(.+)$')   # 10-07 라벨 안 {r:…}(예 '표정근 {r:14}:')·32자까지도 굵은 머리
+def _nlab(lb):   # 10-09 ⚡ 머리 라벨이 '필기:'·'26 필기(p.4):'면 라벨 앞 ✍(뒤 {n:…}의 ✍는 숨김 — 두 번 안 보이게)
+    return ' nlab' if re.fullmatch(r'\s*(?:\d{2}\s)?필기(?:\s?\((?:pp?\.\s?)?[\d\-~,·\s]+\))?\s*[:：]\s*', _plain(lb)) else ''
 def render_recall(x, ctx):
     rows = split_top(x)
     def R(r):
         e = _eol(r, ctx, 50)
         if e: return e
         m = MLAB.match(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게
-        if m and m.group(2).strip(): return f'<b class="mlab">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
+        if m and m.group(2).strip(): return f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
         return inline(r, ctx)
     if not ((len(rows) >= 2 and _nl(x) > 60 and min(_nl(r) for r in rows) >= 14) or _facts(rows)): return f'<li>{R(x)}</li>'   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
     # 10-08 사용자 '자가골 채취: 구내 … / 구외 …가 다른 구분된 내용처럼 보인다' — 라벨(…:) 조각 뒤 라벨 없는 조각 = 그 라벨 아래 이어지는 내용 → 굵은 머리 + 들여 쓴 하위 목록(ul.msub · 글자 그대로)
@@ -510,7 +512,7 @@ def render_recall(x, ctx):
         e = _eol(g[0], ctx, 50)
         if e: out += f'<li class="mhd">{e}{sub(g[1:])}</li>'; continue
         m = MLAB.match(g[0])
-        out += f'<li class="mhd"><b class="mlab">{inline(m.group(1), ctx)}</b> {sub([m.group(2)] + g[1:])}</li>'
+        out += f'<li class="mhd"><b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sub([m.group(2)] + g[1:])}</li>'
     return out
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
 EXAM_RE = re.compile(r'^(?P<yr>[\d·]+년(?:\s*이전)?(?:\s*\d+회)?)(?P<mid>[^"“”→]{0,40}?)(?P<q>["“][^"“”]+?["”](?:의 \'[^\']+\')?)(?P<qx>(?:\s*\([^()]*\)|\s[^"“”→()]{1,14})?)(?P<arr>\s*→\s*)(?P<rest>.+)$')
