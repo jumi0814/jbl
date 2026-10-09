@@ -54,13 +54,13 @@ F: 4, CHR5:4=25 필기 — 카파는 다른 부작용과 더 관련된 리셉터
 | 결과 | {r:↓Synaptic vesicle release}(Glu·substance P·CGRP 덜 나옴) | {r:Postsynaptic hyperpolarization} → Na+ channel이 threshold에 덜 도달 |
 | 최종 | 통증 전달물질 방출↓ | {r:↓Action potential generation} |
 - 그림에서 μ 옆에 α2(norepinephrine)·GABA_B 수용체도 같은 자리(Ca2+ influx↓·K+ conductance↑)에 그려져 있음. / 시냅스 후 막엔 GABA_A → ↑Cl⁻ conductance도 밑줄(↑K⁺ conductance와 나란히 → Postsynaptic hyperpolarization).
-- 26 설명 상자(p.3) — 척수 후각 시냅스: {u:시냅스 전 억제 = 오피오이드(엔돌핀·엔케팔린)가 μ(뮤) 수용체로 일차 구심성 말단의 {r:Ca²⁺ 유입}과 글루탐산·P 물질 방출을 억제} / {u:시냅스 후 억제 = 이차 신경세포의 {r:K⁺ 전도도} 증가 → 과분극 → 통증 신호 전달 차단}.
+- {u:26 설명 상자(p.3) — 척수 후각 시냅스: 시냅스 전 억제 = 오피오이드(엔돌핀·엔케팔린)가 μ(뮤) 수용체로 일차 구심성 말단의 {r:Ca²⁺ 유입}과 글루탐산·P 물질 방출을 억제 / 시냅스 후 억제 = 이차 신경세포의 {r:K⁺ 전도도} 증가 → 과분극 → 통증 신호 전달 차단.}
 - {n:Dorsal horn = 감각신경이 이차신경과 synapse를 형성하고, descending inhibitory neuron까지 합쳐져 신호가 integration 되는 곳(25 필기)}.
 E: PN15 | 21·20년 서술 "Opioid의 통증 완화 작용을 presynaptic & postsynaptic neuron으로 나누어" → pre = inhibit synaptic vesicle release from primary afferents(Ca influx↓ — JB: mu receptor 결합 → calcium influx 저해) / post = hyperpolarize postsynaptic neurons(K+↑ — JB: potassium outward conductance 증가 → 활동전압 발생 방해) — p.3 척수 기전 ⚠ 함정: Ca·K 뒤바꾸기
 F: 3=μ 수용체의 pre와 post 작용
 M: 작용 부위 4: ① {r:brain}(alter mood and the reaction to pain) ② {r:brain stem}(descending inhibitory innervation cells activity↑ — 하행 억제↑) ③ {r:spinal cord}(primary afferents synaptic vesicle release 억제 · postsynaptic neurons hyperpolarize) ④ {r:peripheral terminals}(peripheral opioid receptor → primary afferents activation↓)
 M: 수용체: 진통 수용체 = {r:μ(MOR)}·GPCR / {n:{r:κ} = 부작용 쪽} / 길항제 = intoxication 역전
-M: 척수 기전(21·20 서술): Pre = {r:Ca2+ influx↓} → vesicle release↓ / Post = {r:K+ conductance↑} → {r:hyperpolarization} → ↓action potential generation — Ca·K 뒤바꾸기 ✗ / {u:26 설명 상자 = 시냅스 전 억제(Ca²⁺ 유입·글루탐산·P 물질 방출↓) · 시냅스 후 억제(K⁺ 전도도↑ → 과분극)}
+M: 척수 기전(21·20 서술): Pre = {r:Ca2+ influx↓} → vesicle release↓ / Post = {r:K+ conductance↑} → {r:hyperpolarization} → ↓action potential generation / Ca·K 뒤바꾸기 ✗ / {u:26 설명 상자 = 시냅스 전 억제(Ca²⁺ 유입·글루탐산·P 물질 방출↓) · 시냅스 후 억제(K⁺ 전도도↑ → 과분극)}
 
 ## Opioid Dosing — Basal + Breakthrough · Routes · Patient-Controlled Analgesia | Opioid 투여 원칙 — 바닥을 깔고 필요할 때 얹는다 | 5 | 투여
 > 지속되는 통증엔 바닥(basal)을 깔고 치솟을 때만 얹는다(PRN) — 가능하면 경구, 못 먹으면 비경구·패치
@@ -75,7 +75,7 @@ M: 척수 기전(21·20 서술): Pre = {r:Ca2+ influx↓} → vesicle release↓
 | **Oral** | should be used when possible(가능하면 경구) |
 | Parenteral·{r:Transdermal} | {r:dysphagia, emesis, or decreased GI absorption}(삼킴곤란·구토·위장 흡수↓) — {n:fentanyl은 transdermal이 가능해 사용에 용이(25 필기)} |
 | Continuous IV | {r:steady blood levels} + {r:rapid dose adjustment} |
-| **Patient-controlled analgesia**(26: 환자 자가조절 진통, PCA) | postoperative or terminally ill patient — {r:enhancement in pain relief}·{r:decrease in anxiety} |
+| **Patient-controlled analgesia**(26: 환자 자가조절 진통, {u:PCA}) | postoperative or terminally ill patient — {r:enhancement in pain relief}·{r:decrease in anxiety} |
 - 26 필기 — 왜 경구·짧은 반감기인가: {n:약효가 체내 농도에 의존적인 오피오이드의 부작용을 방지하기 위함 · 점막 투여·정맥 투여는 원치 않게 농도가 빠르게 상승할 위험 · 반감기가 짧은 약을 주로 쓰는 것도 부작용 방지}.
 U: Patient-controlled analgesia = baseline으로 일정량을 주고 환자가 버튼을 누르면 추가 투여되는 방식, 최근 술후에 사용(25 필기).
 F: 5=기본 투여 + 필요시 투여
@@ -202,8 +202,8 @@ E: PN23 | 20년 서술 "physical dependence의 일종인 withdrawal syndrome의 
 F: 11=의존을 줄이려 초반엔 대사가 빨리 되는 제형 후 tapering, CHR5:11=25 필기 — 금단 증상과 치료(Tapering 하는 방법) 알아둡시다
 M: 주의 환자: ① hypothyroidism ② Addison disease ③ hypopituitarism ④ anemia ⑤ {r:respiratory disease}(COPD, asthma, kyphoscoliosis, severe obesity) ⑥ severe malnutrition or debilitation / {r:impaired hepatic function} = 용량 조절 / {n:특히 호흡중추를 저하시키므로 주의(26 필기 p.11)}
 M: 부작용 상승 약물: ① {r:phenothiazines} ② {r:antidepressants} ③ {r:benzodiazepines} ④ {r:alcohol}
-M: 금단 6: ① {r:anxiety} ② {r:irritability} ③ {r:diaphoresis} ④ {r:tachycardia} ⑤ {r:GI distress} ⑥ {r:temperature instability} — 20 서술(슬라이드 6개 그대로)
-M: 금단 증후군(26 우리말): ① 불안 ② 과민성 ③ 발한 ④ 빈맥 ⑤ 위장관 장애 ⑥ 체온 불안정 — 약물을 갑자기 중단했을 때
+M: 금단 6: ① {r:anxiety} ② {r:irritability} ③ {r:diaphoresis} ④ {r:tachycardia} ⑤ {r:GI distress} ⑥ {r:temperature instability} / 20 서술(슬라이드 6개 그대로)
+M: 금단 증후군(26 우리말): ① 불안 ② 과민성 ③ 발한 ④ 빈맥 ⑤ 위장관 장애 ⑥ 체온 불안정 / 약물을 갑자기 중단했을 때
 M: 의존·해결: 의존은 {r:2 weeks}만에도 · antagonist는 {r:3 days} 뒤에도 금단 유발 → {r:tapering}(💬 {n:한 번에 끊지 않고 서서히 줄임}) / {n:의존을 줄이려면 초반엔 대사가 빨리 되는 제형 → 이후 tapering}
 M: 내성: {n:진통 tolerance가 부작용 tolerance보다 훨씬 빨리 → 진통↓·부작용 남음} / tolerance는 physical dependence와 {r:coincide}
 
@@ -235,7 +235,7 @@ M: 26 필기(p.12): {n:대표 부작용 = 구토 → 호흡기가 막혀 호흡�
 
 ## Overdose — Naloxone · Opioid Crisis | 과량 — 해독제 naloxone과 opioid 위기 | 13-17 | 기출 20 | jb=PN22
 > 과량엔 길항제 naloxone — 단 naloxone도 경련·부정맥을 부를 수 있다. {n:미국 과량 사망의 주범은 heroin과 fentanyl}
-= Overdose → {r:Naloxone}(opioid {r:antagonist}) · 부작용 {r:seizure}·{r:cardiac arrhythmias} · crisis = {n:heroin·fentanyl}
+= Overdose → {r:Naloxone}(opioid {r:antagonist}) · 부작용 {r:seizure}·{r:cardiac arrhythmias} / crisis = {n:heroin·fentanyl}
 # Naloxone
 - ==Naloxone, an opioid antagonist, should be readily available for administration in the case of accidental or intentional overdose.==
 - Side effects: hypertension or hypotension, irritability, anxiety, restlessness, tremulousness, nausea, and vomiting.
@@ -285,7 +285,7 @@ M: 구별(함정): 과량 = {r:naloxone}(길항) / 금단 해소 = {r:methadone}
 M: {n:Crisis 두 약물 = heroin·fentanyl(급증)}
 M: 사망 수치(26 설명 상자): 2013년 이후 메타돈 외 합성 마약(주로 {r:펜타닐}) {r:31,335명} — 처방 오피오이드 14,975명·헤로인 14,996명을 크게 앞지름
 M: Heroin(26 p.14): {u:{r:바이엘(Bayer)}의 화학자 {r:펠릭스 호프만}이 재합성} / {n:처음엔 기침 억제제·진통제로 광범위하게 쓰다가 중독 문제로 지양 · 호프만은 아스피린을 만든 사람이기도}
-M: 미국 오피오이드 위기(26 연표): ① {u:1990s 처방 증가('통증은 {r:제5의 활력징후}'·저위험 허위 마케팅)} ② {u:2000s 초 오남용·중독 → {r:헤로인} 등 불법 약물로 전환} ③ {u:2010s 사망 급증·처방 입수 곤란 → 강력한 합성 오피오이드 {r:펜타닐}로 이동} ④ {u:2020s 정부 대응·예방·치료 강화 — 위기 진행 중}
+M: {u:미국 오피오이드 위기(26 연표): ① 1990s 처방 증가('통증은 {r:제5의 활력징후}'·저위험 허위 마케팅) ② 2000s 초 오남용·중독 → {r:헤로인} 등 불법 약물로 전환 ③ 2010s 사망 급증·처방 입수 곤란 → 강력한 합성 오피오이드 {r:펜타닐}로 이동 ④ 2020s 정부 대응·예방·치료 강화 — 위기 진행 중}
 
 ## WHO Analgesic Ladder | WHO 진통 사다리 — 통증 세기대로 3단계 | 18 | 원칙
 > 통증 세기에 맞춰 한 칸씩 — mild는 비opioid, moderate는 중간 opioid, severe는 강한 opioid
@@ -398,7 +398,7 @@ M: 기출 함정: 24 복원 '편두통 … Ca2+ voltage channel' → JB 답 {r:G
 - Both the tertiary and secondary amines are metabolized by {r:CYP2D6} to {r:less active metabolites}.
 - 구조(그림): tertiary = {r:amitriptyline}·{r:imipramine} → secondary = {r:nortriptyline}·{r:desipramine} / chlorpromazine(phenothiazine) 비교 구조(25 자료 — 26에서 빠짐).
 - 대사 그림: amitriptyline·nortriptyline → [O] {r:CYP2D6}(CYP3A4·3A5·1A2) → 중간체 → H2O로 diol / GSH 결합 / {r:Protein-Nu 결합 → Toxicity} / amitriptyline → [O] {r:CYP2C19}(CYP3A4·1A2, 빨간 상자) → nortriptyline.
-- 26 설명 상자(p.22): {u:CYP2C19 등 = {r:N-탈메틸화}(3차 아민 → 진통 효과가 있는 2차 아민 대사체)} / {u:CYP2D6 등 = {r:에폭사이드 중간체} 형성 및 수산화} / {u:에폭사이드 = 글루타티온(GSH) 포합으로 해독되거나 단백질과 결합해 {r:독성}}.
+- {u:26 설명 상자(p.22): CYP2C19 등 = {r:N-탈메틸화}(3차 아민 → 진통 효과가 있는 2차 아민 대사체) / CYP2D6 등 = {r:에폭사이드 중간체} 형성 및 수산화 / 에폭사이드 = 글루타티온(GSH) 포합으로 해독되거나 단백질과 결합해 {r:독성}.}
 U: CYP2D6 rapid metabolizer일 경우 antidepressant의 효과는 기대보다 떨어질 것(25 p.20 필기).
 U: TCA는 대사되는 정도에 따라 활성이 달라짐 — amitriptyline이 CYP2C19로 대사된 nortriptyline이 최대 활성, 이후 CYP2D6로 대사되면 활성이 떨어짐(26 필기).
 F: 22=CYP2C19로 대사된 nortriptyline이 최대 활성 → CYP2D6로 활성 저하
@@ -422,7 +422,7 @@ F: 23
 U: 2D6에 대한 이야기는 아까(codeine·tramadol) 했으므로 넘어감(25 p.22 필기).
 F: 24
 M: 대사: {r:CYP2C19} = tertiary → {r:active} secondary / {r:CYP2D6} = 모두 → {r:less active} / {n:CYP2C19로 생긴 nortriptyline이 최대 활성}
-M: 대사 반응(26 설명 상자): {u:CYP2C19 등 = {r:N-탈메틸화}} / {u:CYP2D6 등 = {r:에폭사이드 중간체} 형성·수산화} / {u:에폭사이드 = GSH 포합(해독) 또는 단백질 결합({r:독성})}
+M: {u:대사 반응(26 설명 상자): CYP2C19 등 = {r:N-탈메틸화} / CYP2D6 등 = {r:에폭사이드 중간체} 형성·수산화 / 에폭사이드 = GSH 포합(해독) 또는 단백질 결합({r:독성})}
 M: 구조: tertiary = {r:amitriptyline·imipramine} / secondary = {r:nortriptyline·desipramine}(2C19 이상 시 대체)
 M: CYP2C19 phenotype: {r:ultrarapid}·rapid = {r:avoid tertiary amine}(sub-optimal response) → nortriptyline·desipramine / {r:poor} = avoid · 쓰면 {r:50% reduction}
 M: CYP2D6 phenotype: 2D6 {r:ultrarapid} → 효과↓(avoid·higher dose) / {r:intermediate} → {r:25%}↓ / {r:poor} → 부작용↑(avoid·{r:50%}↓)
@@ -439,7 +439,7 @@ M: CYP2D6 방향: codeine·tramadol = 2D6가 {r:활성} 대사체를 만듦 / TC
 | {r:Dextromethorphan} | antitussive(26 = 진해제) | dizziness, fatigue, confusion, {r:psychomimetic effects} · 26 = 어지러움·피로·혼동·정신이상 유발 효과 |
 - 표기: 25 슬라이드 'psychomimetic' ↔ {u:26 슬라이드 '정신이상 유발(psychotomimetic)'} — 26은 25 슬라이드를 우리말로 옮긴 판이라 같은 칸.
 - 그림(dorsal horn): C or Aδ primary afferent → {r:Glutamate}·substance P → spinothalamic tract projection neuron / Descending pain-inhibitory tracts(serotonin·norepinephrine)와 enkephalin이 억제.
-- 26 설명 상자(p.25): {u:척수 후각에서 C·Aδ 일차 구심성 섬유가 글루탐산(NMDA 수용체 작용)·P 물질 등을 방출해 척수시상로 투사 신경세포를 흥분} / {u:하행성 통증 억제로(세로토닌·노르에피네프린)와 엔케팔린 사이신경세포가 이를 억제} / {u:NMDA 수용체 길항제 = 글루탐산에 의한 흥분 전달과 {r:중추 감작}을 차단}.
+- {u:26 설명 상자(p.25): 척수 후각에서 C·Aδ 일차 구심성 섬유가 글루탐산(NMDA 수용체 작용)·P 물질 등을 방출해 척수시상로 투사 신경세포를 흥분 / 하행성 통증 억제로(세로토닌·노르에피네프린)와 엔케팔린 사이신경세포가 이를 억제 / NMDA 수용체 길항제 = 글루탐산에 의한 흥분 전달과 {r:중추 감작}을 차단.}
 U: glutamate가 매우 중요한 neurotransmitter, 그 receptor인 NMDA receptor가 central sensitization 초기에 중요 → glutamate가 시냅스 절후 신경에 전달되는 것을 막는 것이 ketamine·dextromethorphan(25 필기).
 U: NMDA 수용체 길항제도 통증 조절에 쓰일 것으로 기대되지만 아직 연구 중이고, 부작용 때문에 광범위하게 쓰이지는 않음(26 필기).
 F: 25=Glutamate와 NMDA 수용체
