@@ -68,9 +68,9 @@ U: 테트라사이클린 = 오염 치아엔 항생제 효과 있으나 탈구치
 F: 4=치주인대 발치 고정
 M: 적응 전제: 통법에 의한 {r:보존치료 불가능} + {r:일정기간} 유지가 바람직
 M: 적응증 6: ① 근관치료 중 {r:기구파절}(근단부를 넘어 제거 어렵고 통증 동반) ② 치근관 {r:협착, 만곡} 등으로 근관치료 불가능 ③ 근관충전재가 근단부를 넘은 상태에서 통증 동반 ④ 치근관벽 {r:천공}·근관 폐색으로 접근 불가(근단 병소) ⑤ 치근흡수가 진행될 때? ⑥ {r:상악동, 하악관, 이공} 근접 → 치근단절제술 어려움
-M: 옵션 순서: {r:Re-RCT} → {r:Apicoectomy} → 치아재식술
+M: 옵션 순서: {n:{r:Re-RCT} → {r:Apicoectomy} → 치아재식술}
 M: 수술 6단계: ① 치조벽/중격 골절 없이 발거 → {r:생리식염수}에 넣고 근단병소·이물 제거 ② 치근 병소 제거 → {r:테트라사이클린} 생리식염수 거즈로 싸서 근관치료 ③ 치조와 생리식염수 세척 → {r:가볍게} 재식 ④ 강선 결찰·강선-레진·국소수지상 고정 + {r:교합간섭 제거} ⑤ 항생제(감염·전신상태 불량 시) ⑥ 술후 1주일간 유동식·구강세척
-M: 술식 핵심 3: ① {r:치주인대}(재부착이 가장 중요) ② {r:발치}(부러지면 재식 못함) ③ {r:고정}(잘 못하면 실패)
+M: 술식 핵심 3: ① {r:치주인대}({n:재부착이 가장 중요}) ② {r:발치}({n:부러지면 재식 못함}) ③ {r:고정}({n:잘 못하면 실패})
 M: 기간: 재식 고정 약 {r:2주} 후 제거(치근유착 ↓) · 항생제 {r:4~5일} · 술후 {r:1주일} 유동식
 
 ## Prognosis ★ | 의도적 재식술의 예후 고려사항 (교수 강조) | 5 | 교수 강조 · 넘버링 | jb=Q37,Q49
@@ -105,8 +105,8 @@ M: 내원: {r:매주}(첫 1개월) → {r:2주에 한번}(다음 1개월) → {r
 M: 경과 불량: ① {r:초기고정의 불충분}으로 치근막의 재부착이 이루어지지 못함 ② 재부착이 이루어진 후 {r:치근흡수} 발생 / 예외: 강직 후 {r:대체성 치근흡수}는 동요 없어 양호한 경과
 
 ## Guest Lecture Slides | [별도 파일] 보존과 교수님 ppt | 101-106 | 촬영본 · 발치
-> 근관치료도 치근단 수술도 완벽하지 않다 — 뽑아서 보면 보인다, 발치는 감각
-= 근관치료는 {r:완벽한 치료가 될 수 없다} · 치근단 수술도 한계 → {r:근관 소독}이 중요하지 충전은 아니다 / 재식술 발치 {r:3분 ~ 15분}
+> {n:근관치료도 치근단 수술도 완벽하지 않다} — 뽑아서 보면 보인다, 발치는 감각
+= {n:근관치료는 {r:완벽한 치료가 될 수 없다} · 치근단 수술도 한계} → {r:근관 소독}이 중요하지 충전은 아니다 / 재식술 발치 {r:3분 ~ 15분}
 # 왜 의도적 재식술인가 — 보존과 교수님 사례 소개
 - {n:근관 조직은 굉장히 복잡하기 때문에 근관치료는 {r:완벽한 치료가 될 수 없다}}.
 - {n:특히 {r:X-ray}에 의존해야 하는데, 영상에서는 괜찮아 보여도 실제 {r:조직학적으로} 완벽히 진행되지 않은 경우가 많다}.
@@ -125,12 +125,12 @@ F: REP2:3
 - 발치 난이도(슬라이드 순서 그대로): {r:소구치} > 전치 > 하악 2대구치 > 상악 2대구치 > 상악 1대구치 > {r:하악 1대구치}.
 - {n:일반 포셉 쓰면 안 된다고 강의자료에 있지만, {r:윤필영 교수님은 동의하지 않음}(필기)}.
 F: REP2:5=의도적 재식술은 오래 전부터 있던 기술, REP2:6
-M: 근관치료 한계: 근관치료는 {r:완벽할 수 없고}(X-ray 한계) 치근단 수술도 한계 → {r:근관 소독}이 중요하지 충전은 아니다
+M: 근관치료 한계: {n:근관치료는 {r:완벽할 수 없고}(X-ray 한계) 치근단 수술도 한계} → {r:근관 소독}이 중요하지 충전은 아니다
 M: 재식술 발치 = {r:감각} · {r:3분 ~ 15분} · 난이도 {r:소구치} > 전치 > … > {r:하악 1대구치}
 
 ## Extraoral Endo · MTA · Fixation | 구강 외 처치와 MTA · 고정 (보존과 교수님) | 107-120 | 촬영본 · MTA · 고정
-> MTA는 최대한 깊게, 고정은 두세 달 — 교과서 재식(약 2주)과 기간이 다르다
-= {r:Grab with saline soaked gauze} → {r:Apical Cut} → 와동 → {r:MTA} {r:As Deep As Possible} / 고정 {r:2~3달} · 저작 {r:2~3주}부터
+> MTA는 최대한 깊게, {n:고정은 두세 달} — 교과서 재식(약 2주)과 기간이 다르다
+= {r:Grab with saline soaked gauze} → {r:Apical Cut} → 와동 → {r:MTA} {r:As Deep As Possible} / {n:고정 {r:2~3달} · 저작 {r:2~3주}부터}
 # 구강 외 처치 순서
 - ① {r:Grab with saline soaked gauze} — 생리식염수 적신 거즈로 치아를 잡는다.
 - ② {r:Apical Cut} — 치근단을 자른다.
@@ -157,10 +157,10 @@ F: REP2:14=녹아내리고 기계적 역할 못함, REP2:16=MTA를 깊게 채우
 | 식사·저작 | 술후 {r:1주일}간 유동식 | {n:술후 {r:2~3주}부터 저작} |
 F: REP2:20=고정 2~3달 저작 2~3주부터
 M: 구강 외 처치 순서: ① {r:Grab with saline soaked gauze} ② {r:Apical Cut} ③ 와동 형태 ④ {r:MTA} 충전(최대한 깊숙이) ⑤ Coronal Endo after Surgery
-M: MTA는 {r:As Deep As Possible} — 단점 ① {r:Dissolution} ② {r:Blood Infiltration} ③ No bonding ability → {r:super bond}
-M: 근관 소독은 {r:laser} → super bond / MTA = 치근단 조직 재생에 {r:가장 좋은 재료} · {r:Crack}에 대비 불가
-M: 보존과 교수님: 고정 {r:2~3달} · 저작 술후 {r:2~3주}부터 (교과서 재식 고정 약 {r:2주})
-M: 고정 실패 시: 해당 치아 수직 이동 · 후방치 {r:근심이동}
+M: MTA는 {r:As Deep As Possible} — 단점 ① {r:Dissolution} ② {r:Blood Infiltration} ③ {n:No bonding ability → {r:super bond}}
+M: {n:근관 소독은 {r:laser} → super bond} / MTA = 치근단 조직 재생에 {r:가장 좋은 재료} · {r:Crack}에 대비 불가
+M: 보존과 교수님: {n:고정 {r:2~3달} · 저작 술후 {r:2~3주}부터} (교과서 재식 고정 약 {r:2주})
+M: 고정 실패 시: {n:해당 치아 수직 이동 · 후방치 {r:근심이동}}
 
 @G ③ 치아이식술 — 다른 자리로 옮겨 심기
 ## Allogenic Tooth Transplantation | 이인자형 치아이식술 — 재부착 없이 강직·흡수 | 6 | 교수 강조 쪽 · 개념 | jb=Q24
@@ -293,8 +293,8 @@ M: 넷째 용어 = {r:외과적 정출술}(Surgical Extrusion · Intra-alveolar 
 
 @G ⑤ 증례 — 치관-치근 파절의 회전 재식 (보존과 전공의)
 ## Crown-Root Fracture — Level · Options | 치관-치근 파절선의 위치와 치료 옵션 4 | 21-23 | 증례 도입
-> 파절선이 치조골 아래까지 내려가면 가장 어렵다 — 그때 '돌려서 다시 심기'가 선택지
-= 파절선 {r:sub-alveolar level} = 제일 힘든 경우 → 옵션 4 중 {r:Replantation with rotation}
+> {n:파절선이 치조골 아래까지 내려가면 가장 어렵다} — 그때 '돌려서 다시 심기'가 선택지
+= 파절선 {r:sub-alveolar level} = {n:제일 힘든 경우} → 옵션 4 중 {r:Replantation with rotation}
 # 증례 발표
 - "Management of crown-root fracture by Intentional replantation" — Dpt of Conservative Dentistry({n:보존과 전공의 선생님 case}).
 # The location of crown-root fracture line
@@ -306,12 +306,12 @@ M: 넷째 용어 = {r:외과적 정출술}(Surgical Extrusion · Intra-alveolar 
 - "depending on the {r:type} or {r:complexity} of the fracture as well as {r:time} and {r:cost} considerations."
 - ① **Orthodontic Extrusion** ② **Surgical Extrusion** ③ **Crown Lengthening Procedure** ④ **Replantation with rotation**.
 F: 22=제일 힘든 경우, 23=4가지 치료 option
-M: 파절선 위치 3: ① gingival level ② sub-gingival level ③ {r:sub-alveolar level} = 제일 힘든 경우
+M: 파절선 위치 3: ① gingival level ② sub-gingival level ③ {r:sub-alveolar level} = {n:제일 힘든 경우}
 M: 치료 옵션 4: ① {r:Orthodontic Extrusion} ② {r:Surgical Extrusion} ③ {r:Crown Lengthening Procedure} ④ {r:Replantation with rotation}
 M: 선택 기준: fracture {r:type} · {r:complexity} · {r:time} · {r:cost}
 
 ## Case — IR with 90° Rotation | 증례: 9~10세 #11 치관-치근 파절의 90도 회전 재식 | 24-38 | 증례
-> 파절선을 90도 돌려 심는다 — 어린이라 임플란트 대신 재식
+> 파절선을 90도 돌려 심는다 — {n:어린이라 임플란트 대신 재식}
 = #11 {r:crown-root vertical fracture}(pulp exposure) → {r:IR w 90 degrees rotation} + {r:MTA} + splint {r:2 weeks}
 # 환자
 - Male 9~10세 · LDC referral, {r:Emergency}. (나이: p.24 'Male/9' · p.25 'Male, 10yrs')
@@ -335,7 +335,7 @@ F: 31=fracture line 90도 회전 후 MTA, 32
 | 28주 후 (2022.03.10) | final | initial ↔ final 비교 |
 F: 34, 36, 37
 M: 증례: #11 {r:crown-root vertical fracture} → {r:IR w 90 degrees rotation} + {r:MTA} + splint {r:2 weeks}
-M: 이유: 어린이 → 임플란트는 {r:성장 완료 후} → 임시 의치 · 옆 치아에 매달기 · {r:재식술}
+M: 이유: {n:어린이 → 임플란트는 {r:성장 완료 후} → 임시 의치 · 옆 치아에 매달기 · {r:재식술}}
 
 ## Pulp Treatment · Open Apex | 재식·이식 시 치수처치와 open apex | 39-40 | 증례 discussion
 > 미완성 치근은 스스로 회복될 수 있다 — 바로 근관치료하지 말고 3~6개월 관찰
@@ -394,7 +394,7 @@ F: 42
 U: suture는 단단하게 하자(필기).
 F: 43=suture는 단단하게
 M: 골 삭제 = ① 대개 안 함 ② 필요 시 {r:최소한}(Lindemann drill) ③ {r:치아는 절대 건드리지 않음}
-M: 봉합: 단면 {r:concavity} → 혈액 공급 X → {r:PDL cell 괴사} → {r:봉합}으로 사각지대 제거(단단하게)
+M: 봉합: 단면 {r:concavity} → 혈액 공급 X → {r:PDL cell 괴사} → {r:봉합}으로 사각지대 제거({n:단단하게})
 
 ## Conclusion · Impacted Canine | 증례 결론 3과 소아치과 매복 견치 | 44-45 | 정리
 > 뼈 아래까지 쪼개진 치아도 돌려 심을 수 있다 — 치근첨과 외흡수를 챙겨라
@@ -408,4 +408,4 @@ F: 44
 - ① 3번 발치하고 4번을 당겨서 canine처럼 쓰기 ② {r:3번을 뽑아서 다시 심기} ③ window opening, button bonding하여 {r:traction}.
   - ③은 잘 안 하려고 하는데 해보면 대부분 잘 된다(필기).
 M: 결론: ① 치조골 하방 파절 → {r:회전 재식} ② {r:치근첨 폐쇄 여부}·재혈관화 ③ 외상 재식 → {r:외흡수} 정기 체크
-M: 매복 견치 3: ① 3번 발치하고 {r:4번을 당겨서} canine처럼 쓰기 ② {r:3번을 뽑아서 다시 심기} ③ window opening, button bonding하여 {r:traction}
+M: 매복 견치 3: ① {n:3번 발치하고 {r:4번을 당겨서} canine처럼 쓰기} ② {n:{r:3번을 뽑아서 다시 심기}} ③ {n:window opening, button bonding하여 {r:traction}}
