@@ -23,7 +23,8 @@ say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail 
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | tail -1; done | tee -a $L
 say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
 say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
-say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S 2>&1 | tail -1)"; done   # 10-09 표 빠짐(칩 없는 기출·없는 id·표 꼴)
+say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S --md work/review_final2/TA_$S.md 2>&1 | tail -1)"; done
+say "== check_nred"; for S in $SIDS; do say "$($PY tools/check_nred.py $S 2>&1 | tail -1)"; done   # 10-09 필기 쪽 강조(정보 — 예외가 있어 0 목표 아님)   # 10-09 표 빠짐(칩 없는 기출·없는 id·표 꼴)
 say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
 say "== check_numbering"; $PY tools/check_numbering.py 2>&1 | tail -1 | tee -a $L
 say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L

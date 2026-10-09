@@ -59,20 +59,23 @@ def _note_marks(s):
         if end < 0: out.append(s[i:j] + s[j + 3:]); break
         out.append(s[i:j] + NOTE_O + s[j + 3:end] + NOTE_C); i = end + 1
     return ''.join(out)
+SRCN_ANY = re.compile(r'\((?:\d{2}\s)?(?:pp?\.\s?\d+[\d\-~,·\s]*?\s)?필기(?:\s?pp?\.\s?\d+[\d\-~,·]*)?\)')   # 10-09 '(필기)'·'(25 필기)'·'(p.13 필기)'·'(26 필기 p.4)'·'(필기 p.3)' 꼬리
 def _srcn_start(s):
     """10-09 사용자 '필기표시를 문장의 앞에만' — '(필기)'·'(25 필기)'(✍ 끝 표시, {n:} 밖)는 그 필기 문장 앞 ✍로: 앞 라벨·앞 문장·앞 필기 구간 뒤부터 그 표시까지를 필기 구간으로 감쌈(글자 그대로).
     라벨 꼴('이유(필기): …' — 뒤가 콜론)은 그대로(✍가 이미 내용 앞)"""
-    if '필기)' not in s: return s
-    for m in reversed(list(SRCN.finditer(s))):
+    if '필기' not in s: return s
+    for m in reversed(list(SRCN_ANY.finditer(s))):
         if re.match(r'\s*[:：]', s[m.end():]): continue
+        pre = s[:m.start()]
+        if pre.count('"') % 2 or pre.count('“') > pre.count('”'): continue   # 인용 안('JB 참고 "(필기) …"')은 그대로
         if s.rfind('\ue010', 0, m.start()) > s.rfind('\ue011', 0, m.start()): continue   # 작은 표를 펼친 줄의 열 이름(만나는 봉합(필기)) = 라벨
         o, c = s.rfind(NOTE_O, 0, m.start()), s.rfind(NOTE_C, 0, m.start())
         if o > c: continue   # 이미 {n:} 안
         st = c + 1 if c >= 0 else 0
-        prev = [x.end() for x in SRCN.finditer(s, st, m.start())]
+        prev = [x.end() for x in SRCN_ANY.finditer(s, st, m.start())]
         if prev: st = prev[-1]
         lb = MLAB.match(s[st:])
-        if lb and not SRCN.search(lb.group(1)): st += len(lb.group(1))
+        if lb and not SRCN_ANY.search(lb.group(1)): st += len(lb.group(1))
         for i, ch, d in _depth_iter(s):
             if st <= i < m.start() and d == 0 and (s.startswith('. ', i) and not ABBR.search(s[max(0, i - 8):i + 1]) or s.startswith(' / ', i) or s.startswith(' — ', i)): st = i + (2 if s[i] == '.' else 3)
         while st < m.start() and s[st] == ' ': st += 1

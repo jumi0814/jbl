@@ -54,15 +54,15 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 
 ## F. 화면 다듬기(지적받았던 회차를 미리) — AGENTS.md D1~D4
 - **F부터는 `tools/<sid>/` 파일을 직접 고친다**(parts는 낡음 — 다시 쓰려면 반드시 `split_parts --force` 뒤).
-- 시작 전 메인: 빌드(`sh tools/full_check.sh --no-ui`, run_in_background) → 화면 덤프 `tools/dump_breaks2.py <SID>`(→ `work/review_breaks2/<SID>_lec.md`·`_jb.md`) · `tools/dump_jb.py <SID>`(→ `work/review_jb/<SID>.md`) · `tools/scan_render.py <SID>` → **기준본 다시 저장**: `tools/annot_diff.py <SID> --save` · 강의마다 `tools/text_diff.py tools/<sid>/lec_<KEY>.txt --save` · `text_diff tools/<sid>/tables.txt --save` · `pred.txt --save`.
+- 시작 전 메인: 빌드(`sh tools/full_check.sh --no-ui`, run_in_background) → 화면 덤프 `tools/dump_breaks2.py <SID>`(→ `work/review_breaks2/<SID>_lec.md`·`_jb.md`) · `tools/dump_jb.py <SID>`(→ `work/review_jb/<SID>.md`) · `tools/scan_render.py <SID>` · `tools/table_audit.py <SID> --md work/review_final2/TA_<SID>.md`(D4가 읽음) → **기준본 다시 저장**: `tools/annot_diff.py <SID> --save` · 강의마다 `tools/text_diff.py tools/<sid>/lec_<KEY>.txt --save` · `text_diff tools/<sid>/tables.txt --save` · `pred.txt --save`.
 - 동시에(파일이 안 겹침): **D1 🔑⚡**(lec `=`·`M:`) · **D3 JB 해설**(과목 하나 — annot) · **D4 표·예상**(과목 하나 — tables·pred, pred 줄바꿈 포함).
 - D1이 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 → **D2 줄바꿈·번호·들여쓰기**(lec `-`·`=`·`E:`·`P:`·`U:` 줄 + tables.txt 칸의 구분 기호 — D4가 끝난 뒤 tables 차례).
-- D2·D3·D4가 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 → **D2b 구조 정돈**(과목 하나 — 위아래로 이어지는 내용이 떨어진 • 로 보이는 곳·엉뚱한 머리 아래 묶인 곳, `STRUCT_BRIEF.md`·RULES 6 '이어지는 내용은 한 줄에' · 검사 `tools/struct_diff.py` ✓).
+- D2·D3·D4가 끝나면 메인이 build4 + `dump_breaks2 <SID>` 다시 → 기준본 다시 저장(lec마다·pred `text_diff --save` · `annot_diff --save`) → **D5 필기 ✍·강조 마무리**(과목 하나 — lec 모든 줄·annot·pred, tables는 D4가 TABLE3 6번으로 함 · `NOTEMARK_BRIEF`+`NOTEMARK2_BRIEF`+`REDNOTE_BRIEF` · RULES 7 끝·9 · QA 29·34) → 커밋 → **D2b 구조 정돈**(과목 하나 — 위아래로 이어지는 내용이 떨어진 • 로 보이는 곳·엉뚱한 머리 아래 묶인 곳, `STRUCT_BRIEF.md`·RULES 6 '이어지는 내용은 한 줄에' · 검사 `tools/struct_diff.py` ✓).
 - 마지막에 메인이 `@TIP`(강의 박스 공부 전략 — `guide/handoff/TIP_BRIEF.md`)을 바뀐 강의마다 다시 씀(B1이 쓴 것은 덮어써도 됨).
 - 갱신 강의만 대상이어도 D1·D2는 그 강의의 **모든 카드**.
 
 ## G. 빌드·전 검사·QA
-1. `sh tools/full_check.sh`(run_in_background, 약 40분) → `work/_tmp/full_check.log` '== 요약'(check_years/eyears/abbr/numbering/breaks_jb·fc_carry 95% 미만도 요약에 잡힘 — 알려진 거짓 양성 check_numbering ESTH 3 = 선지 번호 인용). 표시 보존: 갱신 전 `git rev-parse origin/main`을 진행 파일에 적어 두고, 원고를 크게 고친 과목은 `tests/legacy_restore.py`(옛 고정 판 기준) 결과와 함께 위치 잃음 수를 보고. 알려진 거짓 실패: file:// 표시 테스트는 JBL_HTTP=1로(full_check가 함), ux3_compat은 file://로.
+1. `sh tools/full_check.sh`(run_in_background, 약 40분) → `work/_tmp/full_check.log` '== 요약'(check_years/eyears/abbr/numbering/breaks_jb·fc_carry 95% 미만도 요약에 잡힘 — 알려진 거짓 양성 check_numbering ESTH 3 = 선지 번호 인용). 표시 보존: 갱신 전 `git rev-parse origin/main`을 진행 파일에 적어 두고, 원고를 크게 고친 과목은 `tools/tests/legacy_restore.py`(옛 고정 판 기준) 결과와 함께 위치 잃음 수를 보고. 알려진 거짓 실패: file:// 표시 테스트는 JBL_HTTP=1로(full_check가 함), ux3_compat은 file://로.
 2. 스크린샷: `JBL_HTTP=1 .venv/bin/python tools/qa_shots.py <SID> <바뀐 KEY들>` → `work/_tmp/qa_<SID>_<KEY>_{card,mem,jb}.png`를 Read로 직접 본다(사용자가 예로 든 카드가 있으면 그 카드도). 넓은 화면은 PIL로 잘라 확대.
 3. **사용자 눈 QA**(과목 하나 1명, 찾기만 — AGENTS.md E) → 걸린 것을 해당 단계 담당에게 다시 보냄 → 고친 과목만 `tools/<sid>/build4.py` + 해당 검사 → QA 0이 될 때까지 → 마지막에 full_check 한 번.
 4. `tools/fc_carry.py <SID>` — 플래시카드 기록 이어짐 95%↑(끊긴 줄 `work/_tmp/fc_carry_<SID>.md`는 보고에).
