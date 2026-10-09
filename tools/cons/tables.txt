@@ -20,7 +20,7 @@ R: 대상 | 치수 생활력을 잃은 치아 — {r:adequate canal filling} 선
 R: 적응증 {jb:Q01} | {r:Adequate canal filling} / {r:Pulp remnants}·residual tissue·filling material·medicaments / {r:Internal hemorrhage} following trauma | 변색이 chemical dye에 의한 것일 때(yellow range·incisal 1/3이 예후 좋음)
 R: 금기 {jb:Q01} {jb:Q03} | {r:Extensively restored} teeth / {r:Cracks}·hypoplastic·undermined enamel / Discoloration from {r:metallic salts} | {r:Large pulps} / {r:Hypersensitivity} / {r:Severe loss of enamel} / {r:Extensive restoration} / {r:Pregnancy and nursing} / {r:Peroxide allergy}
 R: 약제 {jb:Q02} | {r:3% H2O2} + {r:sodium perborate}(또는 증류수), 10% CP — 30% H2O2 + sodium perborate는 ✗ | {r:10% carbamide peroxide}(≒3.5% H2O2) at-home / {r:30% H2O2}(chemical activation 38%) in-office
-R: 대표 합병증 {jb:Q05} | {r:External root resorption}(7%, young·large tubule) → cervical barrier 2 mm | {r:Tooth hypersensitivity}(passive/active 처치), gingival irritation 5-50%
+R: 대표 합병증 {jb:Q05} | {r:External root resorption}(7%, young·large tubule) → {n:cervical barrier 2 mm} | {r:Tooth hypersensitivity}(passive/active 처치), gingival irritation 5-50%
 R: 수복 시기 {jb:Q04} | {r:2주} 후 bonded composite(residual oxygen, shade 안정) | bonding은 24 h~2주 지연
 R: 결론 | Walking bleaching, 저농도 약제 | {r:10% CP + custom tray}가 가장 안전·효과적·경제적
 N: 슬라이드 21 표시: Non-vital in-office(heat activator) ✗ · Vital in-office(power) △ · Walking·Night guard ○. [[WHT:21]]
@@ -38,62 +38,62 @@ N: 결론(슬라이드 182): 10% carbamide peroxide in a custom-fitted tray is s
 #TBL Vital bleaching의 부작용·안전성과 대처 | k=WHT | src=[[WHT:114]] [[WHT:115]] [[WHT:116]] [[WHT:122]] [[WHT:123]] [[WHT:125]] [[WHT:126]] [[WHT:127]] [[WHT:178]] [[WHT:179]]
 H: 영역 | 슬라이드 내용 | 대처·결론
 R: Tooth sensitivity {jb:Q05} | commonly side effect, higher concentration → more sensitivity, usually mild and transient | Passive: reduce time·frequency·concentration of CP / Active: neutral fluoride in tray·{r:3-5% potassium nitrate}·pre-treat
-R: Gingiva | gingival irritation {r:5%~50%}, usually mild to moderate, tolerable | tray·사용량 조절, 연조직 보호
+R: Gingiva | gingival irritation {r:5%~50%}, usually mild to moderate, tolerable | {n:tray·사용량 조절, 연조직 보호}
 R: Enamel surface | SEM little or no morphological changes | {r:not clinically significant}
 R: Systemic | 50% swallowed within 1 hr · exposure ≈ {r:3.5 mg} vs oral cavity decompose > {r:29 mg}/1 min | limited to oral cavity · no evidence of carcinogenicity — but {r:not recommended pregnancy women}
 R: Bonding {jb:Q04} | shear bond strength {r:40%↓}(10% CP 24 h), residual peroxide·oxygen → polymerization 방해 | delay bonding {r:24 hours to 2 weeks}
-R: Restorative materials | increased mercury release from amalgams | difficult to relate clinical significance / 수복물 색은 안 변함 → 재수복
+R: Restorative materials | increased mercury release from amalgams | difficult to relate clinical significance / {n:수복물 색은 안 변함 → 재수복}
 
 #TBL Tooth whitening 전체정리 ① — 변색 원인 → 분류 → 미백 반응 → 치료 | k=WHT | sum=1 | src=[[WHT:3]] [[WHT:9]] [[WHT:16]] [[WHT:20]] [[WHT:26]] [[WHT:31]] [[WHT:129]] [[WHT:130]]
 H: 변색 원인 | 분류 | 미백 반응·예후 | 치료 방향 | ★ 시험
 R: 커피·차·담배·색소 침착·치석·치은 출혈·**Chlorhexidine** | {r:Extrinsic} / {r:Physical} surface adsorption | bleaching 대상 아님 — 표면 stain·pigment | {r:기계적 제거}: prophylaxis·air polisher·microabrasion(HCl)·macroabrasion | —
-R: 수복물 변색·금속수복물 | Extrinsic / {r:Physical} | 수복물 색은 bleaching으로 {r:안 변함} | 자연치 미백 후 {r:re-restoration}(crown·laminate 재제작) | —
+R: 수복물 변색·금속수복물 | Extrinsic / {r:Physical} | {n:수복물 색은 bleaching으로 {r:안 변함}} | 자연치 미백 후 {r:re-restoration}(crown·laminate 재제작) | —
 R: 치수 출혈·괴사(trauma) | Intrinsic / {r:Chemical dye} | NVB 적응 {r:Internal hemorrhage following trauma} · trauma 예후 {r:100%} | {r:Bleaching}(산화) — 실활치면 walking bleaching | {jb:Q06} 23년 T/F 1) — chemical은 치수 출혈뿐 / {jb:Q01} 적응증
 R: 근관 치료·pulp remnants·재료·약제 | Intrinsic / {r:Chemical dye} | NVB 적응 {r:Pulp remnants}·residual tissue·filling material·medicaments | {r:Adequate canal filling} 선행 → NVB(필요하면 re-endo) | {jb:Q01} 24·22년 — NVB 적응증 3
-R: **Tetracycline** | Intrinsic / {r:Chemical dye} | 예후 {r:75%} · gray·dark stain은 yellow보다 어려움 · 반응 느림 | bleaching — 더 긴 치료기간 예상 | —
+R: **Tetracycline** | Intrinsic / {r:Chemical dye} | 예후 {r:75%} · gray·dark stain은 yellow보다 어려움 · {n:반응 느림} | bleaching — {n:더 긴 치료기간 예상} | —
 R: Aging·Inherent discoloration | Type of discoloration(슬라이드 129) | 예후 {r:100%} · {r:yellow} range가 쉬움 | bleaching | —
 R: 과잉 불소증 | Intrinsic / {r:Structural change} | 예후 {r:80%}(슬라이드 129) / structural change의 optical characteristics는 {r:개선 불가}(슬라이드 26) | bleaching만으로 회복 불가 → composite veneer·porcelain veneer·crown | {jb:Q06} 23년 T/F 1) — 불소증은 chemical ✗
-R: 법랑질·상아질 형성 부전 | Intrinsic / {r:Structural change} | chemical dye 아님 → bleaching의 {r:한계} · white spot은 완전 해결 어려움 | 결함 제거 후 {r:direct composite veneer}·composite | {jb:Q06} 23년 T/F 3) — optical property ✗
+R: 법랑질·상아질 형성 부전 | Intrinsic / {r:Structural change} | chemical dye 아님 → bleaching의 {r:한계} · {n:white spot은 완전 해결 어려움} | 결함 제거 후 {r:direct composite veneer}·composite | {jb:Q06} 23년 T/F 3) — optical property ✗
 R: 치아 우식 | {r:Structural change} | bleaching으로 교정되지 않음 | {r:Composite restoration} | {jb:Q06} 23년 T/F 1) — 우식은 structural
-R: Metallic salts(아말감·금속 부식 산물) | NVB {r:금기}(슬라이드 31) | chemical로 안 됨 — 원인이 dye가 아님 | 원인을 {r:기계적 제거}(amalgam core 제거 후 re-endo) | {jb:Q01} 24·22년 — NVB 금기 3
+R: Metallic salts{n:(아말감·금속 부식 산물)} | NVB {r:금기}(슬라이드 31) | {n:chemical로 안 됨 — 원인이 dye가 아님} | {n:원인을 {r:기계적 제거}}(amalgam core 제거 후 re-endo) | {jb:Q01} 24·22년 — NVB 금기 3
 N: 한 치아에 extrinsic + intrinsic이 겹칠 수 있음(슬라이드 9) · 예후 인자 = type(위 %) · shade(yellow > gray·dark) · location(incisal 1/3 좋음, gingival 1/3 나쁨). [[WHT:9]] [[WHT:129]] [[WHT:130]]
 
 #TBL Tooth whitening 전체정리 ② — 미백 방법·약제 | k=WHT | sum=1 | src=[[WHT:21]] [[WHT:32]] [[WHT:36]] [[WHT:39]] [[WHT:40]] [[WHT:41]] [[WHT:43]] [[WHT:72]] [[WHT:78]] [[WHT:81]] [[WHT:90]] [[WHT:132]] [[WHT:134]] [[WHT:166]] [[WHT:182]]
 H: 방법·약제 | 대상·적응 | 약제·농도 | 술식·사용법 | 장단점·주의 | ★ 시험
 R: **Walking bleaching**(non-vital · home) | 실활치 · {r:adequate canal filling} · 내부 변색 | {r:Sodium perborate + 3% H2O2}(또는 증류수) · 10% CP | gutta percha {r:2-3 mm} 제거 → barrier 최소 {r:2 mm}(CEJ & 1 mm incisal) → 약제 → {r:2 mm} Caviton → {r:1주} recall | 슬라이드 21 ○ · 결론(69) 권장 / 최종 수복은 {r:2주} 후 | {jb:Q02} 11회 — agent·술식 그림 / {jb:Q04} 수복 시기
 R: Chair-side internal bleaching(non-vital · in-office) | 실활치 | 고농도 H2O2 + {r:heat activator} | 즉시 적용 — 슬라이드 42 취소선 · 슬라이드 21 ✗ | {r:High risk of external root resorption} → 권장 안 함 | {jb:Q06} 23년 T/F 4) — 30% H2O2 조합 추천 ✗
-R: Inside-outside bleaching | 실활치(open access) | {r:10% carbamide peroxide} gel | bleaching tray·reservoir + gutta percha seal · open access | for {r:rapid bleaching} — 기본은 원인치료·안전한 약제 | —
+R: Inside-outside bleaching | 실활치(open access) | {r:10% carbamide peroxide} gel | bleaching tray·reservoir + gutta percha seal · open access | for {r:rapid bleaching} — {n:기본은 원인치료·안전한 약제} | —
 R: **Night guard** vital bleaching(at-home) | 생활치 · 치과의사 관리 | {r:10% carbamide peroxide}(= 3.5% H2O2) | custom tray({r:reservoir} block-out) · {r:2-3방울} · 하루 {r:12시간} 이하 · {r:한쪽 악부터} | {r:Safest}·less expensive / compliance 필요·{r:3-4주} | {jb:Q05} 23·21·20년 — tray 미백 중 시림 처치
 R: **In-office power** bleaching | 생활치 · 즉시 효과 | {r:30% H2O2} ± light / chemical activation {r:38%} H2O2 | dental dam(light cured resin) → SiO2 catalyst + 30% H2O2 → light {r:10~15 min × 3회} | {r:Immediate}·compliance 무관 / multiple visits·chair time·costs · 장기 연구 {r:부족} | —
 R: Heat·light activation | power bleaching 보조 | catalyst·booster·activator | 온도↑(뜨거워 안 됨) · chemical catalyst · photo-activation | 빛은 gel 단독보다 {r:더 밝게 하지 않음} · 직후 밝기엔 {r:dehydration} 기여 | —
-R: Combined method | 생활치 | powered + at-home | 초진 C2 → 1회 시술 후 A1 → 2주 후 하악 | ΔE는 12주 내내 {r:at-home} > in-office → 시간을 두고 평가 | —
+R: Combined method | 생활치 | powered + at-home | 초진 C2 → 1회 시술 후 A1 → 2주 후 하악 | ΔE는 12주 내내 {r:at-home} > in-office → {n:시간을 두고 평가} | —
 R: OTC products | 진단·감독 없이 사용 | strips 6% HP 등 · brush-applicator 18% CP | tray-based · brush-applicator · strips · {r:dentifrice}({r:abrasion}) | {r:Absence of dentist supervision} · safety 연구 부족 · 치약은 intrinsic color 못 바꿈 | —
 R: 3% Hydrogen peroxide | NVB 기본 약제 | {r:Strong oxidizing agent} · release of oxygen | sodium perborate와 혼합 | 결론(슬라이드 69) 약제 | {jb:Q02} 14·10년 2-2 — agents
 R: 95% Sodium perborate | NVB 약제 | {r:10% of available oxygen} | 3% H2O2 또는 증류수와 혼합 | {r:Easier to control & safer} | {jb:Q02} 2-2 — agents
-R: 30% H2O2 + Sodium perborate | 슬라이드 40에서 ✗ | 고농도 | 해당 없음(현재 사용 안 함) | 필기: 합병증 위험 때문에 {r:피해야} | {jb:Q06} 23년 T/F 4) → F
+R: 30% H2O2 + Sodium perborate | 슬라이드 40에서 ✗ | 고농도 | 해당 없음{n:(현재 사용 안 함)} | 필기: {n:합병증 위험 때문에 {r:피해야}} | {jb:Q06} 23년 T/F 4) → F
 R: 10% Carbamide peroxide | night guard · NVB · inside-outside | H2O2 + {r:urea} ≒ {r:3.5% H2O2} | custom-fitted tray | 결론: {r:10% CP + custom tray} = safest·efficacious·cost efficient | —
 
 #TBL Tooth whitening 전체정리 ③ — 합병증·금기·안전 | k=WHT | sum=1 | src=[[WHT:31]] [[WHT:44]] [[WHT:45]] [[WHT:69]] [[WHT:114]] [[WHT:122]] [[WHT:123]] [[WHT:126]] [[WHT:127]] [[WHT:128]] [[WHT:165]] [[WHT:178]] [[WHT:179]] [[WHT:180]]
 H: 항목 | 원인·기전 | 수치·빈도 | 대처·기준 | ★ 시험
-R: {r:External root resorption}(NVB) | 고농도 H2O2 + 열 · 약제 누출 → denatured protein → immune rxn → osteoclast activated by {r:acidity} | 내부표백 치아의 {r:7%} · {r:young Pt·large dentinal tubule} | {r:cervical barrier}(2 mm) · 저농도 walking bleaching | {jb:Q02} 술식의 barrier 단계
+R: {r:External root resorption}(NVB) | 고농도 H2O2 + 열 · 약제 누출 → denatured protein → immune rxn → osteoclast activated by {r:acidity} | 내부표백 치아의 {r:7%} · {r:young Pt·large dentinal tubule} | {n:{r:cervical barrier}(2 mm)} · 저농도 walking bleaching | {jb:Q02} 술식의 barrier 단계
 R: Bonding 저하 | {r:residual oxygen}·peroxide가 resin 중합 방해 | 10% CP 24 h 후 shear bond strength {r:40%↓} | NVB 후 {r:2주}에 bonded composite / 일반: bonding {r:24 h~2주} 지연 | {jb:Q04} 7회 — 2 weeks·이유 2
-R: Shade 불안정 | 직후엔 {r:dehydration} 효과 → rehydration되며 되돌아옴 | (자료 없음) | {r:to stabilize shade} — 2주 뒤 최종 수복 · 평가는 시간을 두고 | {jb:Q04} 이유 ② stabilize shade
+R: Shade 불안정 | 직후엔 {r:dehydration} 효과 → {n:rehydration되며 되돌아옴} | (자료 없음) | {r:to stabilize shade} — 2주 뒤 최종 수복 · {n:평가는 시간을 두고} | {jb:Q04} 이유 ② stabilize shade
 R: {r:Tooth sensitivity}(vital) | peroxide가 pulp chamber 침투 · {r:higher concentration} → more sensitivity | commonly side effect · usually {r:mild and transient} | Passive: time·frequency·CP 농도↓ / Active: {r:neutral fluoride}·{r:3-5% potassium nitrate}·pre-treat | {jb:Q05} 23·21·20년 — passive·active 3+3
-R: Gingival irritation | 약제가 치은에 닿음 | {r:5%~50%} · mild to moderate · tolerable | tray·사용량 조절 · dental dam·cheek retractor로 보호 | —
+R: Gingival irritation | {n:약제가 치은에 닿음} | {r:5%~50%} · mild to moderate · tolerable | {n:tray·사용량 조절 · dental dam·cheek retractor로 보호} | —
 R: Enamel surface | SEM little or no morphological changes | (자료 없음) | {r:not clinically significant} | —
 R: Systemic effect | 50% swallowed within 1 hr · 구강 내에 국한 | 노출 {r:3.5 mg} < 구강 분해 {r:29 mg}/1 min | 발암 증거 없음 — 그래도 {r:임신부 비권장} | {jb:Q03} 금기 'Pregnancy and nursing'
-R: Restorative materials | amalgam의 {r:mercury release↑} | 임상적 의의 불명 | 수복물 색은 {r:안 변함} → 재수복 계획 | —
+R: Restorative materials | amalgam의 {r:mercury release↑} | 임상적 의의 불명 | {n:수복물 색은 {r:안 변함} → 재수복 계획} | —
 R: NVB 금기 | 치질이 약하거나 원인이 dye가 아님 | 3개 | {r:Extensively restored} · {r:Cracks}·hypoplastic·undermined enamel · {r:metallic salts} | {jb:Q01} 24·22년 — 적응증 3·금기증 3
 R: Vital bleaching 금기 | 치수·치질·전신 요인 | 6개 | {r:Large pulps} · {r:Hypersensitivity} · {r:Severe loss of enamel} · {r:Extensive restoration} · {r:Pregnancy and nursing} · {r:Peroxide allergy} | {jb:Q03} 24년 탈 — 비적응증 6
 R: 예후 인자 | type · shade · location | TC {r:75%} · fluorosis {r:80%} · aging·trauma {r:100%} | {r:yellow}·{r:incisal 1/3}이 유리 / gray·gingival 1/3은 불리 | —
 
 #TBL Longitudinal tooth fracture 5 categories 비교 | k=CRK | src=[[CRK:13]] [[CRK:15]] [[CRK:16]] [[CRK:17]] [[CRK:18]] [[CRK:19]] [[CRK:20]] [[CRK:61]] [[CR5:44]]
 H: 분류 | 정의(슬라이드 본문) | Location · Direction / Orientation | 진행·특징 | 증상 / Signs | 확인법 | 치료 / 예후
-R: {r:Craze line} {jb:Q07} | enamel에만 국한, dentin까지 연장 안 됨 / 광조사 시 얇은 line·빛 통과 | Crown(enamel only) · Variable / Orientation: Occlusal | 정상 구조물(질환 아님) / 빗살무늬 | None / Signs: None | Illumination | {r:None} / 예후 {r:Excellent}
-R: {r:Fractured cusp} | 균열로 한쪽 교두가 파절 / 크기·경계 위치로 치료계획 / 부가적 균열 검사 | Crown · M-D(25판 M-D &/or F-L) / Orientation: Occlusal | 상악 palatal cusp·소구치 / 원인 = excessive occlusal force·previous restoration·weakened tooth structure | Acute / Signs: Separable segment | Remove segment(육안) | Remove segment and restore — {r:margin 위치}가 관건 / 예후 {r:Fair}
+R: {r:Craze line} {jb:Q07} | enamel에만 국한, dentin까지 연장 안 됨 / 광조사 시 얇은 line·빛 통과 | Crown(enamel only) · Variable / Orientation: Occlusal | {n:정상 구조물(질환 아님)} / {n:빗살무늬} | None / Signs: None | Illumination | {r:None} / 예후 {r:Excellent}
+R: {r:Fractured cusp} | 균열로 한쪽 교두가 파절 / 크기·경계 위치로 치료계획 / 부가적 균열 검사 | Crown · M-D(25판 M-D &/or F-L) / Orientation: Occlusal | {n:상악 palatal cusp·소구치} / 원인 = excessive occlusal force·previous restoration·weakened tooth structure | Acute / Signs: Separable segment | Remove segment(육안) | Remove segment and restore — {r:margin 위치}가 관건 / 예후 {r:Fair}
 R: {r:Cracked tooth} | craze line에서 dentin으로 더 연장 / 주로 marginal ridge 포함 / 염색·transillumination으로 관찰 | Crown · {r:M-D &/or B-L}(교수님 데이터 M-D 40%·B-L 40%·복합 20%) / Orientation: Occlusal | {r:coronal → apical} / 5가지 중 가장 호발(약 80%) / 크고 깊은 금속 수복물 | Highly variable — bite pain 51%·bite+cold 31% / Signs: Variable | Illumination · {r:probing} · stain · biting · magnification | CEJ 하방 발치 / 대개 {r:Crown}(± endo) / 얕고 짧으면 레진 / Summary 표: Varied / 예후 {r:Varied}(unpredictable)
-R: {r:Split tooth} | 균열이 진행되어 둘로 완전히 갈라짐 / 방사선 사진만으로도 쉽게 발견 | Crown · M-D / Orientation: Occlusal | cracked tooth 또는 VRF가 진행된 말기 | Acute · mastication / Signs: Separable segments | Separable segments(육안·X-ray) | {r:Extraction}(Summary 표: Remove separable segment) / 예후 {r:Hopeless}
-R: {r:VRF} | 치근 장축방향을 따라 치근 쪽 균열 / 불편한 증상 없는 경우 많음 | {r:Roots} · {r:B-L}(F-L) / Orientation: {r:Root} | {r:apex → coronal} / 근관치료 치아 / disease의 약 15% | Usually none / Signs: Usually none | {r:Flap reflection}(diagnostic surgery·microscope) | {r:Extraction}(Summary 표: Removal) / 예후 {r:Hopeless}
+R: {r:Split tooth} | 균열이 진행되어 둘로 완전히 갈라짐 / 방사선 사진만으로도 쉽게 발견 | Crown · M-D / Orientation: Occlusal | {n:cracked tooth 또는 VRF가 진행된 말기} | Acute · mastication / Signs: Separable segments | Separable segments(육안·X-ray) | {r:Extraction}(Summary 표: Remove separable segment) / 예후 {r:Hopeless}
+R: {r:VRF} | 치근 장축방향을 따라 치근 쪽 균열 / 불편한 증상 없는 경우 많음 | {r:Roots} · {r:B-L}(F-L) / Orientation: {r:Root} | {n:{r:apex → coronal}} / 근관치료 치아 / {n:disease의 약 15%} | Usually none / Signs: Usually none | {r:Flap reflection}(diagnostic surgery·microscope) | {r:Extraction}(Summary 표: Removal) / 예후 {r:Hopeless}
 N: Orientation·Signs 칸과 Summary 표의 Treatment 원문은 26 p.61 Summary 표에서 더함(Fractured cusp = 표에서는 'Cuspal Fracture'). [[CRK:61]]
 N: 정의 칸은 슬라이드 본문 = JB 해설(2022 학습부 옛 서술 답). ⚠ Cracked tooth의 방향: 슬라이드 본문·AAE 표는 'mesio-distal'이지만 교수님 데이터와 26 Summary는 M-D &/or B-L. 26 필기 p.66 예고: 검사법 / 5가지 분류 / cracked tooth 특징 2~3가지. [[CRK:28]] [[CRK:66]]
 
@@ -110,14 +110,14 @@ N: 26 p.13~14 AAE "Five categories of longitudinal tooth fractures" 슬라이드
 
 #TBL Cracked tooth 진단법 — 무엇을 왜 쓰나 | k=CRK | src=[[CRK:29]] [[CRK:30]] [[CRK:42]] [[CRK:53]] [[CRK:54]] [[CRK:55]] [[CR5:20]]
 H: 검사 | 방법·요령 | 의미·한계
-R: {r:Bite test} | tooth sloth · wood stick · rubber roll · cotton roll — 아픈 음식과 비슷한 재료(빵 → cotton roll, 오돌뼈 → wood stick), 약한 솜부터 살살 | 증상의 {r:재현}이 진단의 기본
-R: {r:Cold test} | ice stick | cracked tooth는 cold에 더 민감
-R: {r:Periapical X-ray} | more than two in the different angle | 미세 crack은 거의 안 보임(cracked tooth엔 X-ray로 전혀 알 수 없음) · VRF·split tooth에는 도움
-R: {r:Probing} | 촘촘하게 | crack 부위에서 {r:한 곳만 쑥 깊게} — "아주 좋은 진단방법"
-R: {r:Transillumination} | fiber-optic light 밀착, 건조·확대, 여러 방향 | 깊은 crack은 빛을 막아 {r:shadow} → 잘 보이게 + {r:심도 가늠} — cracked tooth에 가장 효과적
+R: {r:Bite test} | tooth sloth · wood stick · rubber roll · cotton roll — 아픈 음식과 비슷한 재료(빵 → cotton roll, 오돌뼈 → wood stick), {n:약한 솜부터 살살} | {n:증상의 {r:재현}이 진단의 기본}
+R: {r:Cold test} | ice stick | {n:cracked tooth는 cold에 더 민감}
+R: {r:Periapical X-ray} | more than two in the different angle | {n:미세 crack은 거의 안 보임(cracked tooth엔 X-ray로 전혀 알 수 없음)} · VRF·split tooth에는 도움
+R: {r:Probing} | {n:촘촘하게} | crack 부위에서 {r:한 곳만 쑥 깊게} — "아주 좋은 진단방법"
+R: {r:Transillumination} | {n:fiber-optic light 밀착, 건조·확대, 여러 방향} | {n:깊은 crack은 빛을 막아 {r:shadow}} → 잘 보이게 + {r:심도 가늠} — cracked tooth에 가장 효과적
 R: Dye staining | 염색 | 효과 일정하지 않음 → transillumination과 병용
-R: Q-ray(QLF) | 405 nm visible light + filter | 형광 차이로 보조적 시각화(단독 확진 X)
-R: Microscope | 수복물 제거 후·endo 말미 pulp chamber | 육안으로 놓치는 crack line·pulp chamber extension — "훌륭한 보조 방법"
+R: Q-ray(QLF) | 405 nm visible light + filter | 형광 차이로 보조적 시각화{n:(단독 확진 X)}
+R: Microscope | {n:수복물 제거 후·endo 말미 pulp chamber} | 육안으로 놓치는 crack line·pulp chamber extension — "훌륭한 보조 방법"
 R: Diagnostic surgery | flap을 열고 microscope | VRF의 최종 확인
 R: CT | — | 미세 crack 확인에 {r:대안이 안 됨}
 N: 25 표(107례 진단 방법): Naked eye 47.7% · Transillumination 17.8% · Dye staining 16.8% · Microscope 9.3% · Diagnostic surgery 8.4%. 26 p.30 association plot: 육안 → fractured cusp, transillumination → cracked tooth, X-ray·surgery → VRF. 26 필기 p.66 "Cracked tooth의 검사법에 대해서 내겠습니다". [[CR5:20]] [[CRK:66]]
@@ -125,9 +125,9 @@ N: 25 표(107례 진단 방법): Naked eye 47.7% · Transillumination 17.8% · D
 #TBL Cracked tooth vs Vertical root fracture | k=CRK | src=[[CRK:18]] [[CRK:20]] [[CRK:27]] [[CRK:34]] [[CRK:40]] [[CRK:61]]
 H: 항목 | Cracked tooth | Vertical root fracture
 R: Location · Orientation(Summary 표) | Crown · {r:Occlusal}에서 시작 | {r:Roots} · {r:Root}에서 시작
-R: 진행 방향 | {r:coronal → apical}(위에서 아래로) | {r:apex → coronal}(아래에서 위로)
-R: 빈도 | 5가지 중 가장 호발(약 80%) | 4가지 disease 중 약 15%
-R: 호발 치아 | 자연치·수복치 모두 — 크고 깊은 금속(amalgam·gold) 수복물, Class I도 | {r:근관치료 치아}(14례 중 11례)
+R: 진행 방향 | {r:coronal → apical}(위에서 아래로) | {n:{r:apex → coronal}(아래에서 위로)}
+R: 빈도 | 5가지 중 가장 호발(약 80%) | {n:4가지 disease 중 약 15%}
+R: 호발 치아 | {n:자연치·수복치 모두} — 크고 깊은 금속(amalgam·gold) 수복물, Class I도 | {r:근관치료 치아}(14례 중 11례)
 R: 방향 | M-D &/or B-L(M-D 40% · B-L 40% · 복합 20%) | 주로 {r:B-L}(F-L)
 R: 증상 | Highly variable — bite pain·cold | Usually none(불편한 증상 없는 경우 많음)
 R: Signs(Summary 표) | Variable | Usually none
@@ -138,13 +138,13 @@ N: 25 필기 p.20: "longitudinal tooth fracture가 뭔지, 5가지 카테고리�
 
 #TBL Band vs Crown · 분류별 치료 흐름 | k=CRK | src=[[CRK:57]] [[CRK:58]] [[CRK:59]] [[CRK:60]] [[CR5:36]] [[CR5:42]]
 H: 구분 | 내용 | 결과
-R: Band의 한계 ① | Accurate adaptation is difficult enough to hold tightly | crack을 정밀하게 조율해 잡을 수 없음
-R: Band의 한계 ② | Expose to vertically applied occlusion pressure | 쐐기작용으로 crack에 힘이 전달 → 벌어짐("시간 허비")
-R: Crown ① | Cover it exactly like a circle | 뚜껑처럼 둘레를 감쌈
+R: Band의 한계 ① | Accurate adaptation is difficult enough to hold tightly | {n:crack을 정밀하게 조율해 잡을 수 없음}
+R: Band의 한계 ② | Expose to vertically applied occlusion pressure | {n:쐐기작용으로 crack에 힘이 전달 → 벌어짐("시간 허비")}
+R: Crown ① | Cover it exactly like a circle | {n:뚜껑처럼 둘레를 감쌈}
 R: Crown ② | The occlusion pressure does not generate opening force on occlusal surface | {r:Crown is the best choice!} · F/U가 더 필요하면 {r:Temp Cr} · Don't miss the time to treat!
-R: No detection or no reproducibility | More F/U & Re-eval | 재현되지 않는 증상은 치료하지 않음(의료분쟁)
+R: No detection or no reproducibility | More F/U & Re-eval | {n:재현되지 않는 증상은 치료하지 않음(의료분쟁)}
 R: Craze line | No Tx | Excellent
-R: Fractured cusp | Margin eval → Resin 또는 Cr(margin 깊으면 RCT + Crown이나 발치까지) | Fair
+R: Fractured cusp | Margin eval → Resin 또는 Cr{n:(margin 깊으면 RCT + Crown이나 발치까지)} | Fair
 R: Cracked tooth | Eval extension → Pulp involvement ✗ Cr · ○ RCT + Cr / CEJ 하방이면 hopeless | Varied & unpredictable
 R: Split tooth · VRF | Hopeless → Extraction | Hopeless
 N: 25 Q&A: crack이 깊어 제거 실익이 없으면 통상대로 prep하고 크라운(대부분), 얕으면 최대한 제거·레진 후 크라운. 크랙이 깊은데도 불편하면 신경치료는 원인 제거보다 증상 완화용(25 필기). [[CR5:46]] [[CR5:36]]
@@ -165,34 +165,34 @@ N: 26 p.22 논문: J Endod 2012 · J Dent 2020 · Eur J Oral Sci 2022 · Dent Ma
 
 #TBL Cracked tooth 전체정리 ① — longitudinal tooth fracture 5 분류 | k=CRK | sum=1 | src=[[CRK:7]] [[CRK:11]] [[CRK:13]] [[CRK:16]] [[CRK:17]] [[CRK:18]] [[CRK:19]] [[CRK:20]] [[CRK:27]] [[CRK:28]] [[CRK:60]] [[CRK:61]]
 H: 분류 | 정의·시작 | 방향·호발 | 증상·확인법 | 치료·예후 | ★ 시험
-R: Longitudinal tooth fracture(정의) | crack lines in the {r:vertical plane} {r:over a period of time} · stress concentration의 피로성 파절 | 넷은 {r:occlusal}에서 · VRF만 {r:root}에서 시작 | bite pain · cold 과민이 대표 단서 | 5 분류(AAE)로 나눠 판단 · 외상성 급성 파절은 제외 | {jb:Q07} 21년 "수직파절의 미국 분류 5가지"
-R: Cracked tooth syndrome(옛 용어) | syndrome = {r:인과관계를 모를 때} 쓰는 총칭 · Crack tooth syndrome(Cameron 1964) | 해당 없음 | 지금은 여러 방법으로 진단 가능 | {r:cracked tooth}로 부름 — syndrome은 잘못된 용어 | —
-R: {r:Craze line} | enamel에만 · {r:dentin 미연장} · 광조사 시 빛 통과 · 정상 구조물 | occlusogingival · marginal ridge에 흔함 | asymptomatic · 육안·transillumination | {r:No Tx} · {r:Excellent} | {jb:Q07} 10회 — 이름(20년 이전 설명까지)
-R: {r:Fractured cusp} | 한쪽 교두 파절 · 부가적 균열 검사 필요 · dentin support 부족 | 상악 {r:palatal cusp} · {r:소구치} | sharp pain with mastication·cold · 육안·remove segment | margin eval → resin·Cr · {r:Fair}(margin 위치) | {jb:Q07}
+R: Longitudinal tooth fracture(정의) | crack lines in the {r:vertical plane} {r:over a period of time} · stress concentration의 {n:피로성 파절} | 넷은 {r:occlusal}에서 · VRF만 {r:root}에서 시작 | bite pain · cold 과민이 대표 단서 | 5 분류(AAE)로 나눠 판단 · {n:외상성 급성 파절은 제외} | {jb:Q07} 21년 "수직파절의 미국 분류 5가지"
+R: Cracked tooth syndrome(옛 용어) | syndrome = {r:인과관계를 모를 때} 쓰는 총칭 · Crack tooth syndrome(Cameron 1964) | 해당 없음 | {n:지금은 여러 방법으로 진단 가능} | {n:{r:cracked tooth}로 부름 — syndrome은 잘못된 용어} | —
+R: {r:Craze line} | enamel에만 · {r:dentin 미연장} · 광조사 시 빛 통과 · {n:정상 구조물} | occlusogingival · marginal ridge에 흔함 | asymptomatic · 육안·transillumination | {r:No Tx} · {r:Excellent} | {jb:Q07} 10회 — 이름(20년 이전 설명까지)
+R: {r:Fractured cusp} | 한쪽 교두 파절 · 부가적 균열 검사 필요 · dentin support 부족 | {n:상악 {r:palatal cusp} · {r:소구치}} | sharp pain with mastication·cold · 육안·remove segment | margin eval → resin·Cr · {r:Fair}(margin 위치) | {jb:Q07}
 R: {r:Cracked tooth} | craze line에서 {r:dentin으로 연장} · {r:coronal → apical} · 가장 호발(약 {r:80%}) | {r:M-D &/or B-L}(40·40·20%) · 크고 깊은 금속 수복물 · Class I | highly variable(bite 51%·bite+cold 31%) · transillumination·probing·stain | CEJ 하방 {r:발치} · 대개 {r:Crown} ± RCT · {r:Varied} | {jb:Q07} · 26 예고 "특징 2~3가지"
-R: {r:Split tooth} | 둘로 {r:완전히 갈라짐} · cracked tooth·VRF가 진행된 말기 | M-D | 저작 시 통증 · 육안·{r:방사선}으로 쉽게 | {r:발치} · {r:Hopeless} | {jb:Q07}
-R: {r:VRF} | 치근 장축 균열 · {r:apex → coronal} · root(any level)에서 시작 | {r:B-L}(F-L) · {r:근관치료 치아}(14례 중 11) · wedging posts | usually none · {r:flap reflection}(diagnostic surgery)·microscope | {r:발치} · {r:Hopeless} | {jb:Q07}
-R: No detection · No reproducibility | crack line 없음 · 증상이 {r:재현 안 됨} | 해당 없음 | 의심 증상만 호소 | {r:More F/U & Re-eval} — 무턱대고 crown·RCT ✗(의료분쟁) | —
+R: {r:Split tooth} | 둘로 {r:완전히 갈라짐} · {n:cracked tooth·VRF가 진행된 말기} | M-D | 저작 시 통증 · 육안·{r:방사선}으로 쉽게 | {r:발치} · {r:Hopeless} | {jb:Q07}
+R: {r:VRF} | 치근 장축 균열 · {n:{r:apex → coronal}} · root(any level)에서 시작 | {r:B-L}(F-L) · {r:근관치료 치아}(14례 중 11) · wedging posts | usually none · {r:flap reflection}(diagnostic surgery)·microscope | {r:발치} · {r:Hopeless} | {jb:Q07}
+R: No detection · No reproducibility | crack line 없음 · 증상이 {r:재현 안 됨} | 해당 없음 | 의심 증상만 호소 | {r:More F/U & Re-eval} — {n:무턱대고 crown·RCT ✗(의료분쟁)} | —
 N: 25 필기: "crack의 정의와 5가지 카테고리, cracked tooth vs VRF 차이만 알면 된다" · 26 예고: 검사법 / 5가지 분류 / cracked tooth 특징 2~3가지. [[CRK:66]]
 
 #TBL Cracked tooth 전체정리 ② — 진단법·치료 | k=CRK | sum=1 | src=[[CRK:29]] [[CRK:30]] [[CRK:42]] [[CRK:46]] [[CRK:48]] [[CRK:51]] [[CRK:53]] [[CRK:54]] [[CRK:55]] [[CRK:56]] [[CRK:57]] [[CRK:58]] [[CRK:59]] [[CRK:60]] [[CR5:20]]
 H: 방법 | 원리·요령 | 잘 잡는 대상·적응 | 한계·주의 | ★ 시험
-R: {r:Bite test} | 증상 {r:재현} — tooth sloth·wood stick·rubber roll·cotton roll · 아픈 음식과 비슷한 재료 | cracked tooth(bite pain 51%) | 무조건 재현하지 말고 {r:약한 솜부터} | — (26 예고: 검사법)
-R: {r:Cold test} | ice stick | cracked tooth는 {r:cold에 더 민감}(bite + cold 31%) | 시림만으로 DH로 단정 ✗ | —
-R: Periapical X-ray | {r:more than two}, 다른 각도 | split tooth 분리 소견 · VRF 일부 | 실금은 X-ray로 잘 안 보임 — cracked tooth는 알 수 없음 | —
-R: {r:Probing} | 촘촘히 → {r:한 곳만 쑥 깊게} | cracked tooth · 결론 "probing" | "아주 좋은 진단방법" | —
-R: {r:Transillumination} | fiber-optic light 밀착 → 깊은 crack은 빛 차단 → {r:한쪽이 어둡게} · 건조·확대·여러 방향 | cracked tooth — 가장 유용 · {r:심도 가늠} | 107례 진단: naked eye 47.7% · transillumination 17.8% | —
-R: Dye staining | crack line을 드러냄 · 광조사 전후 비교 | 보조 | 효과가 일정하지 않음 → transillumination과 병용 | —
+R: {r:Bite test} | 증상 {r:재현} — tooth sloth·wood stick·rubber roll·cotton roll · 아픈 음식과 비슷한 재료 | cracked tooth(bite pain 51%) | {n:무조건 재현하지 말고 {r:약한 솜부터}} | — (26 예고: 검사법)
+R: {r:Cold test} | ice stick | {n:cracked tooth는 {r:cold에 더 민감}}(bite + cold 31%) | {n:시림만으로 DH로 단정 ✗} | —
+R: Periapical X-ray | {r:more than two}, 다른 각도 | split tooth 분리 소견 · VRF 일부 | {n:실금은 X-ray로 잘 안 보임 — cracked tooth는 알 수 없음} | —
+R: {r:Probing} | {n:촘촘히} → {r:한 곳만 쑥 깊게} | cracked tooth · 결론 "probing" | "아주 좋은 진단방법" | —
+R: {r:Transillumination} | {n:fiber-optic light 밀착 → 깊은 crack은 빛 차단 → {r:한쪽이 어둡게} · 건조·확대·여러 방향} | cracked tooth — 가장 유용 · {r:심도 가늠} | 107례 진단: naked eye 47.7% · transillumination 17.8% | —
+R: Dye staining | crack line을 드러냄 · {n:광조사 전후 비교} | 보조 | 효과가 일정하지 않음 → transillumination과 병용 | —
 R: Microscope | "봉사 눈 뜨기" · {r:pulp chamber} 쪽 extension | 수복물 제거 후·endo 말미 · VRF 확인 | 훌륭한 {r:보조} | —
-R: CT | 미세 crack 확인 시도 | 해당 없음 | "CT도 {r:대안은 안 된다}" — 큰 도움 안 됨 | —
-R: QLF(Q-ray) | {r:405 nm} 가시광 + filter · mineral + porphyrin red fluorescence | crack line 보조 관찰 | 단독 확진 ✗ — 보조수단 | —
-R: {r:Diagnostic surgery} | flap 열고 microscope로 확인 | {r:VRF} 확진 | 다른 질환 r/o 후 마지막 확인 | —
-R: Band | 과거 방식 | 해당 없음(비추천) | {r:adaptation 어려움} · 수직 교합압에 노출 · 쐐기작용 → "시간 허비" | —
-R: {r:Crown} | cover exactly like a circle · {r:no opening force}(뚜껑) | cracked tooth(CEJ 상방) · fractured cusp(기능교두) | {r:Crown is the best choice} · 확신 서면 바로 — "Don't miss the time" | —
+R: CT | 미세 crack 확인 시도 | 해당 없음 | "CT도 {r:대안은 안 된다}" — {n:큰 도움 안 됨} | —
+R: QLF(Q-ray) | {r:405 nm} 가시광 + filter · mineral + porphyrin red fluorescence | crack line 보조 관찰 | {n:단독 확진 ✗ — 보조수단} | —
+R: {r:Diagnostic surgery} | flap 열고 microscope로 확인 | {r:VRF} 확진 | {n:다른 질환 r/o 후 마지막 확인} | —
+R: Band | 과거 방식 | 해당 없음(비추천) | {r:adaptation 어려움} · 수직 교합압에 노출 · {n:쐐기작용 → "시간 허비"} | —
+R: {r:Crown} | cover exactly like a circle · {r:no opening force}{n:(뚜껑)} | cracked tooth(CEJ 상방) · fractured cusp(기능교두) | {r:Crown is the best choice} · {n:확신 서면 바로} — "Don't miss the time" | —
 R: Temporary crown | F/U가 더 필요할 때 | 진단 확신 전 | band보다 {r:Temp Cr} | —
 R: Resin 수복 | 얇고 아주 짧은 crack · margin eval 후 | CEJ 상방 cracked tooth · fractured cusp | 깊으면 crown으로 | —
-R: RCT + Crown | pulp involvement ○ | cracked tooth · 깊은 margin의 fractured cusp | 그래도 불편하면 신경치료는 {r:증상 완화}용 | —
-R: Extraction | 회복 불가 | {r:CEJ 하방} 연장 · split tooth · VRF | 세균 침투 → 골 흡수·pocket 깊어짐 → {r:Hopeless} | {jb:Q07} split·VRF 설명 "발치"
+R: RCT + Crown | pulp involvement ○ | cracked tooth · 깊은 margin의 fractured cusp | {n:그래도 불편하면 신경치료는 {r:증상 완화}용} | —
+R: Extraction | 회복 불가 | {r:CEJ 하방} 연장 · split tooth · VRF | {n:세균 침투 → 골 흡수·pocket 깊어짐} → {r:Hopeless} | {jb:Q07} split·VRF 설명 "발치"
 
 #TBL Hydrodynamic theory — flow 방향 | k=DHS | src=[[DHS:91]] [[DH5:13]] [[DH5:12]] [[DH5:14]]
 H: Flow | 방향 | 유발 자극 | 기출
@@ -202,23 +202,23 @@ N: 24·23·22·21·20·18·17년 7회 완짤. 25 필기 "시험을 위해 외워
 
 #TBL 시린 치아의 원인 감별 5 | k=DHS | src=[[DHS:73]] [[DHS:74]] [[DHS:79]] [[DHS:80]] [[DHS:81]] [[DHS:82]] [[DHS:84]] [[DHS:87]]
 H: 원인 | 단서 | 처치
-R: {r:치경부 노출} — abrasion / erosion / abfraction | 과도한 칫솔질 / 산성 음식·GERD(하악 lingual) / clenching(가장 많음) / 혼재 가능, history taking | {r:Composite resin restoration}(1차 목적 = 외형 회복)
+R: {r:치경부 노출} — abrasion / erosion / abfraction | {n:과도한 칫솔질} / {n:산성 음식·GERD(하악 lingual)} / {n:clenching(가장 많음)} / {n:혼재 가능, history taking} | {r:Composite resin restoration}{n:(1차 목적 = 외형 회복)}
 R: {r:깊은 우식} | caries·결손 | {r:Proper restoration}
-R: {r:접착실패·leakage} | 중합수축응력 > 접착력 → 치아-접착층 계면파괴 | flowable base · 적층 충전 · hydrophobic layer bonding · repair·re-restoration
-R: {r:Vital 치아 preparation} | 진료 중 생긴 iatrogenic sensitivity | {r:proper dentin sealing} — 접착 · cementation · {r:IDS}
+R: {r:접착실패·leakage} | 중합수축응력 > 접착력 → 치아-접착층 계면파괴 | flowable base · 적층 충전 · hydrophobic layer bonding · {n:repair·re-restoration}
+R: {r:Vital 치아 preparation} | {n:진료 중 생긴 iatrogenic sensitivity} | {r:proper dentin sealing} — 접착 · cementation · {r:IDS}
 R: {r:Cracked tooth} | 유독 한 치아 · bite and cold sensitivity 31% | transillumination → CEJ 상방 대개 {r:Crown}(± endo) · CEJ 하방 발치
 N: 위 5가지를 배제하고 남는 '짧고 날카로운 과민 반응'이 dentin hypersensitivity — 정의의 "cannot be ascribed to any other dental defect or pathology". [[DHS:87]] [[DHS:90]]
 
 #TBL Desensitizer 기전 비교 | k=DHS | src=[[DHS:92]] [[DHS:96]] [[DHS:97]] [[DH5:20]] [[DH5:21]] [[DH5:23]] [[DH5:24]] [[DH5:25]]
 H: 약제 | 기전 | 축 | 제품 예(자료 사진·필기)
-R: {r:Potassium nitrate} · potassium salts | Raising K+ concentration in the extracellular fluid → K+ induced excitatory burst → unresponsive to normal excitatory stimuli | {r:Nerve desensitization} | Dentifrices 슬라이드: potassium Nitrate = Colgate 사진(25 필기 "신경 감작 둔하게 하는 애들") [[DH5:18]] / 자가 사용 사진: Sensodyne · 시린메드 [[DH5:7]](p.7 사진에는 성분 표기 없음 — p.18에서 Sensodyne 사진 아래 표기는 {r:Strontium chloride}) / 전문가용 Super Seal(potassium & oxalates) [[DHS:92]] / 미백 중 시림 Active 처치: {r:3-5% potassium nitrate} [[WHT:114]]
-R: Strontium chloride(치약) | (슬라이드에 기전 문구 없음) | 25 필기 "신경 감작 둔하게 하는 애들"(potassium Nitrate와 같은 슬라이드) | Dentifrices 슬라이드: Sensodyne 사진 [[DH5:18]] / New Desensitizing Material ③ Strontium salts [[DH5:25]]
+R: {r:Potassium nitrate} · potassium salts | Raising K+ concentration in the extracellular fluid → K+ induced excitatory burst → unresponsive to normal excitatory stimuli | {r:Nerve desensitization} | Dentifrices 슬라이드: potassium Nitrate = Colgate 사진(25 필기 {n:"신경 감작 둔하게 하는 애들"}) [[DH5:18]] / 자가 사용 사진: Sensodyne · 시린메드 [[DH5:7]](p.7 사진에는 성분 표기 없음 — p.18에서 Sensodyne 사진 아래 표기는 {r:Strontium chloride}) / 전문가용 Super Seal(potassium & oxalates) [[DHS:92]] / 미백 중 시림 Active 처치: {r:3-5% potassium nitrate} [[WHT:114]]
+R: Strontium chloride(치약) | (슬라이드에 기전 문구 없음) | 25 필기 {n:"신경 감작 둔하게 하는 애들"}(potassium Nitrate와 같은 슬라이드) | Dentifrices 슬라이드: Sensodyne 사진 [[DH5:18]] / New Desensitizing Material ③ Strontium salts [[DH5:25]]
 R: {r:Oxalates}(ferric · dipotassium oxalate · oxalic acid) | Reacts with calcium ion → Ca-Oxalate crystal → Occlude dentinal tubule → Reduce dentin permeability | {r:Tubule occlusion} | BisBlock(Oxalic acid) / Super Seal(potassium & oxalates) [[DHS:92]]
-R: {r:Fluoride} | Forms insoluble calcium fluoride crystals or fluorapatite inside the dentinal tubule | Tubule occlusion | 불소 — 교수님 clinical tips(plaque control 기본 + 불소·민감성 치약·전문가 도포) [[DHS:95]]
+R: {r:Fluoride} | Forms insoluble calcium fluoride crystals or fluorapatite inside the dentinal tubule | Tubule occlusion | 불소 — 교수님 clinical tips{n:(plaque control 기본 + 불소·민감성 치약·전문가 도포)} [[DHS:95]]
 R: NovaMin | 타액과 반응 · sodium ↔ hydrogen ion 교환 → pH 상승(6.2-7.4 → 8.0-8.5) → calcium-phosphate 침전 → new hydroxyapatite-like layer | Tubule occlusion | (자료에 제품 사진 없음)
-R: {r:SDF}(silver diamine fluoride) | F⁻ 44,800 ppm remineralization + Ag⁺ anti-bacterial effect · 침전물로 tubule 폐쇄 | Tubule occlusion — 흑변·gingival chemical burn 주의 | Silver Diamine Fluoride 38% 제품 · RIVA STAR(STEP 1·STEP 2) [[DHS:96]]
-R: {r:Glutaraldehyde} | chemical burning · 단백질 응고 | 전문가용 | GLUMA Desensitizer [[DHS:92]]
-R: Bonding agent | resin tag가 짧고 마모 — 효과·지속성 부족 | routine first choice 아님 | 지각과민처치 '상아질접착제도포'(심평원 항목) [[DHS:71]]
+R: {r:SDF}(silver diamine fluoride) | F⁻ 44,800 ppm remineralization + Ag⁺ anti-bacterial effect · {n:침전물로 tubule 폐쇄} | Tubule occlusion — {n:흑변·gingival chemical burn 주의} | Silver Diamine Fluoride 38% 제품 · RIVA STAR(STEP 1·STEP 2) [[DHS:96]]
+R: {r:Glutaraldehyde} | chemical burning · {n:단백질 응고} | 전문가용 | GLUMA Desensitizer [[DHS:92]]
+R: Bonding agent | {n:resin tag가 짧고 마모 — 효과·지속성 부족} | {n:routine first choice 아님} | 지각과민처치 '상아질접착제도포'(심평원 항목) [[DHS:71]]
 N: 전문가용 Clinical products = Oxalic acid · Glutaraldehyde · potassium & oxalates. bonding agent·oxalate 모두 영구적 효과는 아니고(26 필기 p.109) 방법들의 효과가 지속적이지 못해 반복 도포(25 필기 p.22), 환자마다 response variation → 재평가·조합. [[DHS:92]] [[DHS:94]] [[DHS:109]] [[DH5:22]]
 N: New Desensitizing Material(25 p.25): ① potassium salts ② Fluorides ③ Strontium salts ④ Calcium Phosphate ⑤ Arg-Calcium Carbonate ⑥ Ca-Na-Phosphosilicate — 25 필기: 저농도로 집에서 할지 / 고농도로 진료실에서 할지, blocking할지 / desensitize할지. 26 p.101 '센소다인 치약 라인업' 슬라이드 옆 Robin 그림에 '2. Occlude the dentinal tubules'·'3. Decrease intradental nerve excitability' 두 축이 표시됨. [[DH5:25]] [[DHS:101]]
 
@@ -233,20 +233,20 @@ N: 위치 기준(p.84): CEJ 하방 → 발치 / CEJ 상방 얇고 아주 짧으�
 
 #TBL 치약 선택 — 연마도(RDA) | k=DHS | src=[[DHS:101]] [[DHS:102]] [[DH5:25]]
 H: 치약 | RDA | 장점 | 주의
-R: Whitening toothpaste | {r:200 이상} | 미백 | 연마제가 많아 {r:dentin wear}↑
-R: Hypersensitivity용(민감성) 치약 | {r:50-80 정도} | 저연마 · 시린 증상 예방과 완화 | {r:plaque 제거력↓} 가능 → 관리 균형 필요(26 필기 p.101)
+R: Whitening toothpaste | {n:{r:200 이상}} | 미백 | {n:연마제가 많아 {r:dentin wear}↑}
+R: Hypersensitivity용(민감성) 치약 | {n:{r:50-80 정도}} | 저연마 · 시린 증상 예방과 완화 | {n:{r:plaque 제거력↓} 가능 → 관리 균형 필요(26 필기 p.101)}
 N: 과도한 brushing 자체가 abrasion·dentin exposure를 악화. ★ Plaque control이 기본 중의 기본(26 필기 p.100). [[DHS:99]] [[DHS:100]]
 
 #TBL 시린 치아 전체정리 ① — 원인 감별과 원인 치료 | k=DHS | sum=1 | src=[[DHS:73]] [[DHS:74]] [[DHS:75]] [[DHS:76]] [[DHS:78]] [[DHS:79]] [[DHS:80]] [[DHS:81]] [[DHS:82]] [[DHS:84]] [[DHS:85]] [[DHS:89]] [[DHS:90]]
 H: 원인 | 기전·단서 | 진단 포인트 | 처치 | ★ 시험
-R: {r:Abrasion}(치경부 노출) | 과도한 칫솔질 = {r:기계적 마모} | 강박적 brushing history | {r:Composite resin restoration} · 칫솔질 교정 | —
-R: {r:Erosion}(치경부 노출) | 산성 음식·음료 · {r:GERD} | 문진으로 원인 찾기(파인애플 15년 · GERD는 하악 lingual) | composite 수복 + 원인 조절 | —
-R: {r:Abfraction}(치경부 노출) | {r:clenching}·occlusal stress → 반복 굴곡 → {r:microfracture} | {r:가장 많음} · 세 병소 {r:혼재} 가능 → history taking | composite 수복 — 1차 목적은 {r:외형 회복} | —
+R: {r:Abrasion}(치경부 노출) | {n:과도한 칫솔질 = {r:기계적 마모}} | {n:강박적 brushing history} | {r:Composite resin restoration} · {n:칫솔질 교정} | —
+R: {r:Erosion}(치경부 노출) | {n:산성 음식·음료 · {r:GERD}} | {n:문진으로 원인 찾기(파인애플 15년 · GERD는 하악 lingual)} | composite 수복 + 원인 조절 | —
+R: {r:Abfraction}(치경부 노출) | {n:{r:clenching}·occlusal stress → 반복 굴곡 → {r:microfracture}} | {n:{r:가장 많음} · 세 병소 {r:혼재} 가능 → history taking} | composite 수복 — {n:1차 목적은 {r:외형 회복}} | —
 R: 깊은 우식 | 결손 부위로 자극 전달 | caries 확인 | {r:Proper restoration} | —
-R: 접착실패·leakage | 중합수축 {r:1-4%} · 응력 {r:5~20 MPa} > 접착력 → {r:계면파괴} | 수복 후 시림 | flowable base · 적층 충전 · {r:hydrophobic layer} · repair·re-restoration | —
-R: Vital tooth preparation | 산 치아 삭제로 상아질 노출 | 진료 과정의 iatrogenic sensitivity | {r:proper dentin sealing} — 접착·cementation · {r:IDS} | —
+R: 접착실패·leakage | 중합수축 {r:1-4%} · 응력 {r:5~20 MPa} > 접착력 → {r:계면파괴} | 수복 후 시림 | flowable base · 적층 충전 · {r:hydrophobic layer} · {n:repair·re-restoration} | —
+R: Vital tooth preparation | 산 치아 삭제로 상아질 노출 | {n:진료 과정의 iatrogenic sensitivity} | {r:proper dentin sealing} — 접착·cementation · {r:IDS} | —
 R: Cracked tooth | 유독 한 치아 · {r:bite and cold 31%} | {r:transillumination} · 금속 수복물 · CEJ 하방 연장 여부 | CEJ 상방 대개 {r:Crown}(± endo) · 하방 {r:발치} · band보다 Temp Cr | —
-R: 미백 후 시림 | 처치 직후 시작 — {r:시간적 연관성} | 다른 pathology와 감별 | 레이저로 {r:악화} → 약 {r:1년여} 보존 치료로 회복 | —
+R: 미백 후 시림 | {n:처치 직후 시작 — {r:시간적 연관성}} | {n:다른 pathology와 감별} | 레이저로 {r:악화} → 약 {r:1년여} 보존 치료로 회복 | —
 R: {r:Dentin hypersensitivity}(일상) | 노출 상아질 + 자극 → {r:short, sharp pain} | 다른 defect·pathology {r:배제} 후 진단 | desensitizer · 민감성 치약 · plaque control · {r:인내} | {jb:Q08} 7회 — 기전(flow 방향)
 N: 26 필기 p.73·87: "'이가 시리다'고 바로 dentin hypersensitivity로 진단하지 말 것" — 원인이 있으면 desensitizer보다 원인 치료가 먼저(Back to the basic). [[DHS:73]] [[DHS:78]]
 
@@ -254,45 +254,45 @@ N: 26 필기 p.73·87: "'이가 시리다'고 바로 dentin hypersensitivity로 
 H: 항목 | 기전·원리 | 대표 예·수치 | 한계·주의 | ★ 시험
 R: DH 정의(Dowell & Addy 1983) | {r:exposed dentin} + 자극 → {r:short, sharp pain} · 다른 원인으로 설명 안 될 것 | 자극 5: thermal·evaporative·tactile·osmotic·chemical · incidence {r:4-74%} | too many options · {r:no standardized protocol} | —
 R: {r:Outward flow} | 세관액이 치수 반대쪽(에나멜 쪽)으로 | {r:Cooling} · {r:Evaporation, Drying} · {r:Hypertonic chemicals} | 치수 '반대쪽' = outward | {jb:Q08} 24년 outward 고르기
-R: {r:Inward flow} | 세관액이 치수 쪽으로 | {r:Heating} · {r:Probing} | 25 필기 "시험문제 낸다" | {jb:Q08} 23년 inward 쓰기
-R: Dentin permeability | 노출 부위(주로 치경부) tubule로 fluid movement | {r:2-50,000 tubules/mm²} · dia {r:1-3 um} | {r:1%}만 열려도 시림 → 완치보다 완화 | —
-R: {r:Occlude the dentinal tubules} | fluid movement 차단 — smear layer·plug · intratubular dentin · tertiary dentin | oxalate · fluoride · NovaMin · SDF | 반복 도포 · 환자별 response variation | —
+R: {r:Inward flow} | 세관액이 치수 쪽으로 | {r:Heating} · {r:Probing} | 25 필기 {n:"시험문제 낸다"} | {jb:Q08} 23년 inward 쓰기
+R: Dentin permeability | {n:노출 부위(주로 치경부)} tubule로 fluid movement | {r:2-50,000 tubules/mm²} · dia {r:1-3 um} | {n:{r:1%}만 열려도 시림 → 완치보다 완화} | —
+R: {r:Occlude the dentinal tubules} | fluid movement 차단 — smear layer·plug · intratubular dentin · tertiary dentin | oxalate · fluoride · NovaMin · SDF | {n:반복 도포 · 환자별 response variation} | —
 R: {r:Decrease nerve excitability} | 신경 둔감화 — 자극 역치↑ | potassium(nitrate·salts) | avoid stimulus는 {r:불가능} → 실제 2축 | —
-R: {r:Potassium nitrate} | {r:K+ concentration}↑ → K+ induced excitatory burst → {r:unresponsive} | 치약 — Dentifrices 슬라이드 사진: potassium Nitrate = {r:Colgate} [[DH5:18]] / 자가 사용 사진(성분 표기 없음): 센소다인·시린메드 [[DH5:7]] / 미백 중 시림에 {r:3-5%} 적용 [[WHT:114]] | 효과 지속 부족 | —
-R: Strontium chloride | 25 필기 "신경 감작 둔하게 하는 애들"(potassium Nitrate와 같은 슬라이드) | 치약 — Dentifrices 슬라이드 사진: Strontium chloride = {r:Sensodyne} [[DH5:18]] · New Desensitizing Material ③ Strontium salts [[DH5:25]] | (슬라이드에 기전 문구 없음) | —
-R: {r:Oxalate} | {r:calcium ion}과 반응 → {r:Ca-oxalate crystal} → tubule 폐쇄 → permeability↓ | Oxalic acid(BisBlock) · potassium & oxalates(Super Seal) | 바로 드라마틱하지 않음 · brushing·fluid로 소실 → 여러 번 | —
+R: {r:Potassium nitrate} | {r:K+ concentration}↑ → K+ induced excitatory burst → {r:unresponsive} | 치약 — Dentifrices 슬라이드 사진: potassium Nitrate = {r:Colgate} [[DH5:18]] / 자가 사용 사진(성분 표기 없음): 센소다인·시린메드 [[DH5:7]] / 미백 중 시림에 {r:3-5%} 적용 [[WHT:114]] | {n:효과 지속 부족} | —
+R: Strontium chloride | 25 필기 {n:"신경 감작 둔하게 하는 애들"}(potassium Nitrate와 같은 슬라이드) | 치약 — Dentifrices 슬라이드 사진: Strontium chloride = {r:Sensodyne} [[DH5:18]] · New Desensitizing Material ③ Strontium salts [[DH5:25]] | (슬라이드에 기전 문구 없음) | —
+R: {r:Oxalate} | {r:calcium ion}과 반응 → {r:Ca-oxalate crystal} → tubule 폐쇄 → permeability↓ | Oxalic acid(BisBlock) · potassium & oxalates(Super Seal) | {n:바로 드라마틱하지 않음 · brushing·fluid로 소실 → 여러 번} | —
 R: {r:Fluoride} | insoluble {r:calcium fluoride crystals}·fluorapatite 형성 | 불소도포 · 교수님 tip ① | tubule 폐쇄 축 | —
 R: NovaMin | 타액과 반응 → sodium ↔ hydrogen ion 교환 → calcium-phosphate 침전 → {r:new hydroxyapatite-like layer} | pH 6.2-7.4 → {r:8.0-8.5} | tubule 폐쇄 축 | —
-R: {r:Glutaraldehyde} | {r:chemical burning} — 단백질 응고 | GLUMA Desensitizer | 전문가용 | —
-R: {r:SDF} | F⁻ {r:44,800 ppm} remineralization + Ag⁺ {r:anti-bacterial} · 침전물로 tubule 폐쇄 | Silver Diamine Fluoride 38% | {r:흑변} · {r:gingival chemical burn} | —
-R: Bonding agent | resin으로 덮기 | 상아질접착제도포(심평원 항목) | resin tag 짧고 마모 → {r:first choice 아님} · 영구 효과 ✗ | —
-R: 민감성 치약(저연마) | 연마도 낮춰 dentin wear↓ | 지각과민용 {r:50-80} vs 미백 치약 {r:200 이상} | 저연마는 {r:plaque 제거력↓} 가능 | —
+R: {r:Glutaraldehyde} | {r:chemical burning} — {n:단백질 응고} | GLUMA Desensitizer | 전문가용 | —
+R: {r:SDF} | F⁻ {r:44,800 ppm} remineralization + Ag⁺ {r:anti-bacterial} · {n:침전물로 tubule 폐쇄} | Silver Diamine Fluoride 38% | {n:{r:흑변} · {r:gingival chemical burn}} | —
+R: Bonding agent | resin으로 덮기 | 상아질접착제도포(심평원 항목) | {n:resin tag 짧고 마모 → {r:first choice 아님} · 영구 효과 ✗} | —
+R: 민감성 치약(저연마) | {n:연마도 낮춰 dentin wear↓} | {n:지각과민용 {r:50-80} vs 미백 치약 {r:200 이상}} | {n:저연마는 {r:plaque 제거력↓} 가능} | —
 R: Laser | 시린 증상 완화 목적 | 미백 후 시림 증례 | 증례에서 {r:악화} · 교수님 tip "{r:No 레이저 치료}" | —
-R: {r:Plaque control} | 세균·자극원 제거 — 기본 중의 기본 | brushing instruction · 과도한 칫솔질 교정 | 약제보다 먼저 | —
-R: 교수님 연구(물질 α) | tubule 안에서 타액 {r:Ca/P} 흡착 → 결정 성장·연결 | 3개월 후 조밀한 구조 · 국내·미국 특허 출원 | 목표 = 효과 + {r:durability} | —
+R: {r:Plaque control} | 세균·자극원 제거 — 기본 중의 기본 | {n:brushing instruction · 과도한 칫솔질 교정} | {n:약제보다 먼저} | —
+R: 교수님 연구(물질 α) | tubule 안에서 타액 {r:Ca/P} 흡착 → 결정 성장·연결 | 3개월 후 조밀한 구조 · 국내·미국 특허 출원 | {n:목표 = 효과 + {r:durability}} | —
 
 #TBL Inlay vs Filling 비교 | k=INL | src=[[INL:7]] [[INL:21]] [[INL:22]] [[INL:23]] [[INL:24]] [[INL:25]] [[INL:26]] [[INL:31]] [[INL:35]] [[INL:36]] [[INL:76]] [[INL:77]]
 H: 항목 | Inlay (간접수복 · cementation) | Filling (직접수복 · composite resin)
-R: 접착 = 치질 강화 | cement는 {r:10 MPa}이 안 되는 경우도 · {r:cementation is the most critical step} | 가장 약한 접착제도 {r:15 MPa}↑(composite {r:20 MPa}↑) → {r:유리}
+R: 접착 = 치질 강화 | {n:cement는 {r:10 MPa}이 안 되는 경우도} · {r:cementation is the most critical step} | {n:가장 약한 접착제도 {r:15 MPa}↑(composite {r:20 MPa}↑) → {r:유리}}
 R: 해부학적 형태·contact | {r:유리} — Adequate proximal contours and contact | 불리 — Class 2는 {r:matrix 장착}·pre-wedging이 관건
-R: 중합률 | {r:90% 이상}(Initial LC polymerization → further polymerized with intense light) | {r:60~70%}(구내 중합)
+R: 중합률 | {n:{r:90% 이상}}(Initial LC polymerization → further polymerized with intense light) | {n:{r:60~70%}(구내 중합)}
 R: 물성 | 중합률이 높아도 물성은 {r:filler 함량}이 좌우 | filler가 많아 더 단단한 경우도 많음(D250 82 wt%)
-R: 와동형성 | 저항·유지형태 원칙을 다 지켜야 · 수복물 두께가 충분하도록 {r:충분히} prep | caries만 제거 — {r:보존적} prep
+R: 와동형성 | {n:저항·유지형태 원칙을 다 지켜야 · 수복물 두께가 충분하도록 {r:충분히} prep} | {n:caries만 제거 — {r:보존적} prep}
 R: 술자 요인 | {r:cavity preparation} · {r:cementation} | {r:Bonding} · {r:resin handling} · {r:Matrix application for class 2}
-R: 상대적 적응증 | {r:Large defect or previous restoration} · {r:Class 2 cavity} | 치질이 많이 남았을 때(11세 증례) · 큰 와동도 cusp별 build-up으로 가능
-R: 치아 수명 | — | 삭제가 적어 {r:치아 자체의 수명 연장}에 유리
+R: 상대적 적응증 | {r:Large defect or previous restoration} · {r:Class 2 cavity} | {n:치질이 많이 남았을 때(11세 증례) · 큰 와동도 cusp별 build-up으로 가능}
+R: 치아 수명 | — | {n:삭제가 적어 {r:치아 자체의 수명 연장}에 유리}
 R: 결정 기준 5 {jb:Q10} | Physical properties of materials / Remaining tooth structure / aesthetics / Preference of clinician/patient / Cost (income)-domestic dental fee-for-service | (같은 5가지로 판단)
 R: 성공 요소 4 {jb:Q09} | Luting cement / mechanical properties of inlay materials / operator skill / patient selection | —
 N: 교수님 요지 — "와동이 넓으면 inlay, 좁으면 filling?"이 아니라 위 5가지를 따진다. 접착은 filling, 형태·contact은 inlay. [[INL:25]] [[INL:21]] [[INL:22]]
 
 #TBL Direct resin vs Porcelain inlay vs Resin inlay | k=INL | src=[[INL:27]] [[INL:28]]
 H: 항목 | 슬라이드 순서 | 25 필기 한 줄
-R: Bonding(strengthening of remaining tooth structure) | {r:Direct resin} > Porcelain inlay > Resin inlay | direct resin이 강하고 porcelain·resin inlay는 서로 비슷
-R: Technique sensitivity(Cl 2 cavity) | Resin inlay·Porcelain inlay << {r:Direct resin} | direct가 좀 더 어려움 — 항상 그런 건 아님(cementation 때문에 inlay도 쉽지 않음)
-R: Esthetics | {r:Porcelain inlay} > resin inlay > direct resin | porcelain이 유리
-R: Abrasion effect(대합치 마모) | Direct resin < resin inlay ≤ Enamel ≤ {r:Porcelain inlay} | porcelain이 enamel보다 경도가 높아 대합치를 마모
-R: Wear(자기 마모) | Porcelain inlay < resin inlay ≤ {r:Direct resin} | direct resin이 경도가 약해 잘 닳음 · 포세린과 치아 사이 gap의 레진 시멘트도 잘 닳음
-R: Thermal expansion coefficient | {r:Enamel = Porcelain inlay} < resin inlay · direct resin | resin이 크고 porcelain은 enamel과 유사 / 26 필기: porcelain과 치아 계면에는 resin cement가 있어 장기적으로 {r:marginal discoloration}이 생길 수 있음 [[INL:28]]
+R: Bonding(strengthening of remaining tooth structure) | {r:Direct resin} > Porcelain inlay > Resin inlay | {n:direct resin이 강하고 porcelain·resin inlay는 서로 비슷}
+R: Technique sensitivity(Cl 2 cavity) | Resin inlay·Porcelain inlay << {r:Direct resin} | {n:direct가 좀 더 어려움 — 항상 그런 건 아님(cementation 때문에 inlay도 쉽지 않음)}
+R: Esthetics | {r:Porcelain inlay} > resin inlay > direct resin | {n:porcelain이 유리}
+R: Abrasion effect(대합치 마모) | Direct resin < resin inlay ≤ Enamel ≤ {r:Porcelain inlay} | {n:porcelain이 enamel보다 경도가 높아 대합치를 마모}
+R: Wear(자기 마모) | Porcelain inlay < resin inlay ≤ {r:Direct resin} | {n:direct resin이 경도가 약해 잘 닳음 · 포세린과 치아 사이 gap의 레진 시멘트도 잘 닳음}
+R: Thermal expansion coefficient | {r:Enamel = Porcelain inlay} < resin inlay · direct resin | {n:resin이 크고 porcelain은 enamel과 유사} / 26 필기: {n:porcelain과 치아 계면에는 resin cement가 있어 장기적으로 {r:marginal discoloration}이 생길 수 있음} [[INL:28]]
 N: Abrasion(상대를 깎음)과 Wear(자신이 닳음)는 순서가 반대 — porcelain은 대합치를 깎고, direct resin은 스스로 닳는다. [[INL:28]]
 
 #TBL Gold inlay vs Tooth-colored inlay — 와동형성 | k=INL | src=[[INL:20]] [[INL:35]] [[INL:36]] [[INL:37]] [[INL:38]] [[INL:39]] [[INL:40]] [[INL:42]] [[INL:43]]
@@ -309,31 +309,31 @@ N: bonded inlay에 gold의 2/3 원칙을 반드시 적용하자는 consensus는 
 
 #TBL 잔존 wall 두께와 cusp coverage (bonded inlay) | k=INL | src=[[INL:43]]
 H: 남은 wall | 결정 | 근거
-R: {r:0.5 mm} | 강화 의미 없음 → cusp capping | 25 필기 "enamel만 남아있는거라"
-R: {r:1 mm} 미만 | bonded inlay라도 {r:cusp capping} 추천 | 25 필기(대가들의 공통 의견)
+R: {r:0.5 mm} | {n:강화 의미 없음 → cusp capping} | 25 필기 {n:"enamel만 남아있는거라"}
+R: {r:1 mm} 미만 | {n:bonded inlay라도 {r:cusp capping} 추천} | 25 필기(대가들의 공통 의견)
 R: {r:1 mm} | ==minimal wall thickness for bonded reinforcement== {jb:Q12} | 슬라이드(Rocca 2015)
-R: {r:1-2 mm} | ==tooth position, parafunction, lateral guidance 등을 고려하여 bonded reinforcing or occlusal coverage를 결정== {jb:Q12} | 슬라이드 · 25 필기: bonded inlay / composite로 reinforce 후 inlay / 그냥 composite resin
+R: {r:1-2 mm} | ==tooth position, parafunction, lateral guidance 등을 고려하여 bonded reinforcing or occlusal coverage를 결정== {jb:Q12} | 슬라이드 · 25 필기: {n:bonded inlay} / {n:composite로 reinforce 후 inlay} / {n:그냥 composite resin}
 N: 25 필기 "최소 1~1.5mm는 남아있어야 접착으로 강화할 수 있음", "환자의 교합문제, lateral force가 세면 cusp capping을 하는 것이 나음". [[INL5:43]]
 
 #TBL 인접치 손상 방지 4방법 (2급 와동) | k=INL | src=[[INL:44]] [[INL:45]] [[INL:46]] [[INL:47]] [[INL:48]]
 H: 방법 | 요령 | 주의
-R: {r:Customized matrix & wedge} {jb:Q11} | matrix+wedge → wedge가 {r:치아 사이를 벌려} 인접치 보호(protection shield) | 삭제에 따라 loose해지면 wedge를 더 {r:tight}하게
-R: {r:Pre-fabricated wedge-guard} {jb:Q11} | wedge와 matrix {r:일체형}(Palodent Plus — sectional matrix system wedge guard) → 더 빠르게 | 처음부터 끼면 시야를 가림 → proximal wall {r:0.5 mm} 남을 때 장착
-R: {r:Hand instrument} {jb:Q11} | 인접면을 다 삭제하지 않고 바깥 wall을 남김 → 협설측 {r:ditch cut} → 수기구로 wall을 부숨 | enamel hatchet · gingival margin trimmer 등으로 정리
-R: {r:Sonic device for proximal box} {jb:Q11} | proximal wall 전용 · 4면 중 {r:3면만 diamond coating} → coating 없는 면을 {r:인접치로} | 오래 쓰면 {r:enamel rod} 파절 → 일반 bur 후 {r:finishing}에서 최소로
+R: {r:Customized matrix & wedge} {jb:Q11} | {n:matrix+wedge → wedge가 {r:치아 사이를 벌려} 인접치 보호(protection shield)} | {n:삭제에 따라 loose해지면 wedge를 더 {r:tight}하게}
+R: {r:Pre-fabricated wedge-guard} {jb:Q11} | {n:wedge와 matrix {r:일체형}(Palodent Plus — sectional matrix system wedge guard) → 더 빠르게} | {n:처음부터 끼면 시야를 가림 → proximal wall {r:0.5 mm} 남을 때 장착}
+R: {r:Hand instrument} {jb:Q11} | {n:인접면을 다 삭제하지 않고 바깥 wall을 남김 → 협설측 {r:ditch cut} → 수기구로 wall을 부숨} | enamel hatchet · gingival margin trimmer 등으로 정리
+R: {r:Sonic device for proximal box} {jb:Q11} | {n:proximal wall 전용 · 4면 중 {r:3면만 diamond coating} → coating 없는 면을 {r:인접치로}} | {n:오래 쓰면 {r:enamel rod} 파절 → 일반 bur 후 {r:finishing}에서 최소로}
 N: 24·21·20년 3회 출제. 24 필기 p.44-48 보라색 별표('시험문제'), 25 학습부 "과거에 강조하신 페이지는 p.43-48". [[INL5:1]] [[INL5:46]] · 26 필기: p.44-48 모두 '시험 출제 예고'. [[INL:44]]
 
 #TBL 인레이 내면 처리 · 접착 순서 | k=INL | src=[[INL:53]] [[INL:54]] [[INL:55]] [[INL:56]] [[INL:66]] [[INL:70]]
 H: 수복물 | 내면 처리 | 비고
 R: 장석계 porcelain(Empress) | HF {r:60초} → Silane {r:60초} | HF 적용시간 = porcelain manufacturer's instruction
-R: Lithium disilicate(e.max) | HF {r:20초} → Silane | glass matrix가 더 적어 짧게(불산은 glass matrix를 녹여 etching pattern)
-R: Composite inlay | {r:Sandblasting}(50 um Al₂O₃) | 울퉁불퉁한 면 → 접착강도↑ · 불산 처리해도 레진은 변화 없음
+R: Lithium disilicate(e.max) | HF {r:20초} → Silane | {n:glass matrix가 더 적어 짧게(불산은 glass matrix를 녹여 etching pattern)}
+R: Composite inlay | {r:Sandblasting}(50 um Al₂O₃) | {n:울퉁불퉁한 면 → 접착강도↑ · 불산 처리해도 레진은 변화 없음}
 N: 순서 = ① 수복물의 내면 처리 → ② 치아의 와동면 처리 → ③ cementation. 증례: Teflon tape로 인접치 보호 · tack curing · margin에 glycerin(oxygen inhibition layer 방지) · 각 방향 40-60초 광중합. [[INL:53]] [[INL:66]] [[INL:70]]
 
 #TBL 수복재별 수명 보고 | k=INL | src=[[INL:10]] [[INL:13]] [[INL:14]] [[INL:84]] [[INL:85]] [[INL:86]] [[INL:87]]
 H: 재료 | 수명 | 출처
 R: Amalgam | 고동아말감(Cu 12% 이상) 10년 생존 {r:90%}(25 필기) · High copper amalgam {r:70-90% in 10 yrs}(26 필기 p.10도 70-90%) | p.10 · Longevity reports
-R: Gold inlay | about {r:90% in 10 yrs}(annual failure rate {r:~1%}) · 1000개 이상 f/u 9년+ 90% · 20년+ 72% · 25~52년 45% | Donovan 2004 · Longevity reports
+R: Gold inlay | about {r:90% in 10 yrs}{n:(annual failure rate {r:~1%})} · 1000개 이상 f/u 9년+ 90% · 20년+ 72% · 25~52년 45% | Donovan 2004 · Longevity reports
 R: Composite resin | at least {r:60% survival in 10 yrs} · annual failure rates {r:1%-3%} | Jap Dent Sci Rev 2011 · Dent Mater 2012
 R: Composite inlay | ten years high success rate of approximately {r:90%} | Barabanti et al
 R: Ceramic inlay | 5년 11% 실패(Hayashi 2003) · 12년 10.4%(Beier 2012) · CEREC 10년 11%(Sjögren 2004) · 소구치 1% vs 대구치 5%(Fuzzi 1999) · inlay and only 10년 {r:90.4%}(Otto 2002) / 같은 슬라이드: Fuzzi는 over {r:11.5 years} · IPS Empress 10년 survival probability {r:80-95%}(Stroll 2007) · IPS Empress 8년 survival {r:92%}(Kramer 2005) [[INL:85]] | Ceramic longevity reports
@@ -343,30 +343,30 @@ N: p.84 Longevity reports 슬라이드 원문 = Amalgam: High copper amalgam - a
 
 #TBL Inlay vs Filling 전체정리 ① — 수복재별 성질·와동·접착·수명 | k=INL | sum=1 | src=[[INL:10]] [[INL:14]] [[INL:20]] [[INL:21]] [[INL:24]] [[INL:27]] [[INL:28]] [[INL:36]] [[INL:37]] [[INL:42]] [[INL:54]] [[INL:56]] [[INL:84]] [[INL:85]] [[INL:86]] [[INL:87]]
 H: 수복재 | 물성·접착 | 와동형성·두께 | 내면 처리·주의 | 수명·예후 | ★ 시험
-R: 고동아말감 | Cu {r:12%} 이상 · secondary caries 잘 안 생김 · 물성 훌륭 | (자료 없음) | 수은 handling·환경오염·심미성 문제로 사용 감소 | 10년 생존 {r:90%}(연 {r:1%} 실패) · 보고 {r:70-90%}/10년 | —
-R: **Gold** inlay·onlay | long history · easy handling · 깨지지 않음 → 치아가 대신 파절 | taper {r:6도} · 선명한 line angle · 얇게(~1 mm) 가능 · cusp capping {r:1/2~2/3} consider · {r:2/3~} capping | "{r:금 밑에 금}" — 쐐기 작용 · 하악 {r:DL cusp} 파절 | 10년 {r:90%} · 1000개 f/u 90%(9년+)·72%(20년+)·45%(25~52년) | —
-R: Direct composite(filling) | 접착 {r:15 MPa}↑(20 MPa↑) → {r:치질 강화} · 중합률 60~70%이나 {r:filler 함량}이 물성 좌우 | 보존적 prep · Class 2는 {r:matrix}·pre-wedging | technique sensitivity(Cl 2) · wear 최대 · 술자 요인 bonding·resin handling·matrix | 10년 {r:≥60%} · 연 {r:1-3%} 실패 · 10대·임신 → direct | {jb:Q10} 23·20년 — 결정 기준 5
-R: Composite(resin) inlay | 중합률 {r:90%↑} · bonding ≈ porcelain inlay · 형태·contact 유리 | 최소 두께 {r:1 mm} · no bevel · {r:12-15도} · 내각 rounded | 내면 {r:sandblasting}(50 um Al₂O₃) | 10년 약 {r:90%} · 기존 레진 수복·repair·setting 어려울 때 | {jb:Q12} cusp coverage 기준
-R: Porcelain inlay(장석계·Empress) | {r:esthetics} 최고 · 대합치 {r:abrasion} 최대 · 열팽창계수 = enamel | clearance {r:1.5-2.0 mm} · 최소 {r:2 mm}(low-strength ceramic) · width ≥1.5 mm | HF {r:60초} → silane {r:60초} · 파절 호발 {r:isthmus} · 내면 오염 → 탈락 | 연 ~{r:1%} 실패(소구치 1% vs 대구치 5%) · enamel margin이면 {r:8-10년} | {jb:Q12} 1 mm·1-2 mm 기준
-R: Resin cement(인레이 cementation) | cement 접착력은 {r:10 MPa} 미만인 경우도 · silane·adhesive monomer 포함 cement가 파절 하중 최대 | 해당 없음 | dual cured(광조사 세기·시간) · IDS · Teflon tape · glycerin | 탈락 원인 = cementation 시 {r:내면 오염} | {jb:Q09} 22년 — luting cement
-R: Lithium disilicate(e.max) inlay | glass matrix가 적음 | clearance possibly {r:1.0 mm}(실제 1.2~1.5 prep) · 최소 {r:1-1.2 mm} · width ≥1.0 mm | HF {r:20초} → silane | (자료 없음) | —
+R: 고동아말감 | {n:Cu {r:12%} 이상 · secondary caries 잘 안 생김 · 물성 훌륭} | (자료 없음) | {n:수은 handling·환경오염·심미성 문제로 사용 감소} | {n:10년 생존 {r:90%}(연 {r:1%} 실패)} · 보고 {r:70-90%}/10년 | —
+R: **Gold** inlay·onlay | long history · easy handling · {n:깨지지 않음 → 치아가 대신 파절} | taper {r:6도} · 선명한 line angle · 얇게(~1 mm) 가능 · cusp capping {r:1/2~2/3} consider · {r:2/3~} capping | {n:"{r:금 밑에 금}" — 쐐기 작용 · 하악 {r:DL cusp} 파절} | 10년 {r:90%} · 1000개 f/u 90%(9년+)·72%(20년+)·45%(25~52년) | —
+R: Direct composite(filling) | {n:접착 {r:15 MPa}↑(20 MPa↑)} → {r:치질 강화} · {n:중합률 60~70%}이나 {r:filler 함량}이 물성 좌우 | 보존적 prep · Class 2는 {r:matrix}·pre-wedging | technique sensitivity(Cl 2) · wear 최대 · 술자 요인 bonding·resin handling·matrix | 10년 {r:≥60%} · 연 {r:1-3%} 실패 · {n:10대·임신 → direct} | {jb:Q10} 23·20년 — 결정 기준 5
+R: Composite(resin) inlay | {n:중합률 {r:90%↑}} · {n:bonding ≈ porcelain inlay} · 형태·contact 유리 | 최소 두께 {r:1 mm} · no bevel · {r:12-15도} · 내각 rounded | 내면 {r:sandblasting}(50 um Al₂O₃) | 10년 약 {r:90%} · {n:기존 레진 수복·repair·setting 어려울 때} | {jb:Q12} cusp coverage 기준
+R: Porcelain inlay(장석계·Empress) | {r:esthetics} 최고 · 대합치 {r:abrasion} 최대 · 열팽창계수 = enamel | clearance {r:1.5-2.0 mm} · 최소 {r:2 mm}(low-strength ceramic) · width ≥1.5 mm | HF {r:60초} → silane {r:60초} · {n:파절 호발 {r:isthmus} · 내면 오염 → 탈락} | 연 ~{r:1%} 실패(소구치 1% vs 대구치 5%) · enamel margin이면 {r:8-10년} | {jb:Q12} 1 mm·1-2 mm 기준
+R: Resin cement(인레이 cementation) | {n:cement 접착력은 {r:10 MPa} 미만인 경우도} · silane·adhesive monomer 포함 cement가 파절 하중 최대 | 해당 없음 | dual cured(광조사 세기·시간) · IDS · Teflon tape · glycerin | {n:탈락 원인 = cementation 시 {r:내면 오염}} | {jb:Q09} 22년 — luting cement
+R: Lithium disilicate(e.max) inlay | {n:glass matrix가 적음} | clearance possibly {r:1.0 mm}{n:(실제 1.2~1.5 prep)} · 최소 {r:1-1.2 mm} · width ≥1.0 mm | HF {r:20초} → silane | (자료 없음) | —
 N: 접착은 filling이 유리(cement는 10 MPa 미만인 경우도), 형태·contact은 inlay가 유리 / Bonding direct > porcelain ≈ resin inlay · Esthetics porcelain > resin inlay > direct. [[INL:21]] [[INL:22]] [[INL:27]]
 
 #TBL Inlay vs Filling 전체정리 ② — 결정·술식·성공의 기준 | k=INL | sum=1 | src=[[INL:7]] [[INL:20]] [[INL:25]] [[INL:26]] [[INL:29]] [[INL:31]] [[INL:32]] [[INL:36]] [[INL:43]] [[INL:44]] [[INL:49]] [[INL:53]] [[INL:73]] [[INL:74]] [[INL:103]] [[INL:104]]
 H: 항목 | 기준·수치 | 방법·요령 | 이유·주의 | ★ 시험
-R: 인레이 성공 요소 | 4개 — 적당한 기간 유지(van Dijken 2003) | {r:Luting cement}(dual cured · cementation · IDS) · {r:mechanical properties} · {r:operator skill} · {r:patient selection} | {r:cementation is the most critical step} · patient selection 빠뜨리기 쉬움 | {jb:Q09} 22년 — 성공 요소(p.7)
-R: Inlay? Filling? 결정 기준 | 5개 — "넓으면 인레이?"가 아님 | {r:Physical properties} of materials · {r:Remaining tooth structure} · {r:aesthetics} · {r:Preference of clinician/patient} · {r:Cost} (income)-domestic dental fee-for-service | 치질이 많이 남으면 {r:direct}(치질 보존) | {jb:Q10} 23·20년 — 고려사항 5(p.25)
-R: Indirect tooth-colored 상대적 적응증 | composite inlay 또는 ceramic inlay | {r:Large defect or previous restoration} · {r:Class 2 cavity} | 물성 차이보다 defect 크기·위치 | —
-R: Gold cusp capping(저항형태) | margin 위치 = primary groove→cusp 거리의 ~1/2 no · {r:1/2~2/3} consider · {r:2/3~} capping | 응력 분산 위해 둘러싸기 | 악습관·치아 위치·functional cusp 고려 · 하악 {r:DL cusp} 주의 | —
-R: Tooth-colored 잔존 wall | {r:1 mm} = bonded reinforcement minimum · {r:1-2 mm} = 고려 · 0.5 mm는 강화 무의미 | tooth position · parafunction · lateral guidance → bonded reinforcing or {r:occlusal coverage} | gold 2/3 원칙을 그대로 적용하자는 consensus 없음 | {jb:Q12} 연도 미상 — cusp coverage 기준(p.43)
-R: Aesthetic inlay 와동형성 | clearance {r:1.5-2.0 mm} · width ≥{r:1.5 mm} · {r:12-15도} · 인접치 clearance {r:0.5 mm} | {r:No bevel} · rounded box·내각 · smooth floor · enamel margin | 얇으면 제작 중·cementation 중 {r:파절} · 복잡하면 CAD-CAM bur가 못 따라감 | —
-R: 인접치 보호(2급 와동) | 4방법 | {r:matrix & wedge}(tight하게) · {r:wedge-guard}(일체형, wall 0.5 mm 남을 때) · {r:hand instrument}(ditch cut) · {r:sonic device}(3면 coating) | sonic device는 오래 쓰면 enamel rod 파절 → finishing에서만 | {jb:Q11} 24·21·20년 — 4방법(p.45-48)
-R: Bonding | most critical procedure | {r:Isolation}(러버댐) · exact bonding procedure · dentin surface 관리 | 접착하면 치아 {r:파절강도↑} — silane·adhesive monomer 포함 cement | —
-R: Cementation 순서 | ① 수복물 내면 → ② 와동면 → ③ cementation | HF·silane(세라믹) / sandblasting(레진) / Teflon tape · tack curing · {r:glycerin} · 광중합 {r:40-60초}씩 | glycerin = oxygen inhibition layer 방지 | —
-R: Class 2 direct filling | matrix 장착이 관건 | {r:Pre-wedging}(different size of wedge) → {r:tight contact} · 큰 와동도 cusp별로 build-up | 삭제↓ → {r:치아 수명}↑ | —
-R: Occlusion check | 수복 {r:전} 교합점 기록 | 교합점에 {r:margin} 두지 않기 · 수복 후 재확인 | 환자 느낌에 의존한 교합조정은 피곤 | —
+R: 인레이 성공 요소 | 4개 — {n:적당한 기간 유지}(van Dijken 2003) | {r:Luting cement}(dual cured · cementation · IDS) · {r:mechanical properties} · {r:operator skill} · {r:patient selection} | {r:cementation is the most critical step} · patient selection 빠뜨리기 쉬움 | {jb:Q09} 22년 — 성공 요소(p.7)
+R: Inlay? Filling? 결정 기준 | 5개 — {n:"넓으면 인레이?"가 아님} | {r:Physical properties} of materials · {r:Remaining tooth structure} · {r:aesthetics} · {r:Preference of clinician/patient} · {r:Cost} (income)-domestic dental fee-for-service | {n:치질이 많이 남으면 {r:direct}(치질 보존)} | {jb:Q10} 23·20년 — 고려사항 5(p.25)
+R: Indirect tooth-colored 상대적 적응증 | composite inlay 또는 ceramic inlay | {r:Large defect or previous restoration} · {r:Class 2 cavity} | {n:물성 차이보다 defect 크기·위치} | —
+R: Gold cusp capping(저항형태) | margin 위치 = primary groove→cusp 거리의 ~1/2 no · {r:1/2~2/3} consider · {r:2/3~} capping | {n:응력 분산 위해 둘러싸기} | {n:악습관·치아 위치·functional cusp 고려 · 하악 {r:DL cusp} 주의} | —
+R: Tooth-colored 잔존 wall | {r:1 mm} = bonded reinforcement minimum · {r:1-2 mm} = 고려 · {n:0.5 mm는 강화 무의미} | tooth position · parafunction · lateral guidance → bonded reinforcing or {r:occlusal coverage} | {n:gold 2/3 원칙을 그대로 적용하자는 consensus 없음} | {jb:Q12} 연도 미상 — cusp coverage 기준(p.43)
+R: Aesthetic inlay 와동형성 | clearance {r:1.5-2.0 mm} · width ≥{r:1.5 mm} · {r:12-15도} · 인접치 clearance {r:0.5 mm} | {r:No bevel} · rounded box·내각 · smooth floor · enamel margin | 얇으면 제작 중·cementation 중 {r:파절} · {n:복잡하면 CAD-CAM bur가 못 따라감} | —
+R: 인접치 보호(2급 와동) | 4방법 | {r:matrix & wedge}{n:(tight하게)} · {r:wedge-guard}{n:(일체형, wall 0.5 mm 남을 때)} · {r:hand instrument}{n:(ditch cut)} · {r:sonic device}{n:(3면 coating)} | {n:sonic device는 오래 쓰면 enamel rod 파절 → finishing에서만} | {jb:Q11} 24·21·20년 — 4방법(p.45-48)
+R: Bonding | most critical procedure | {r:Isolation}{n:(러버댐)} · exact bonding procedure · dentin surface 관리 | {n:접착하면 치아 {r:파절강도↑}} — silane·adhesive monomer 포함 cement | —
+R: Cementation 순서 | ① 수복물 내면 → ② 와동면 → ③ cementation | HF·silane(세라믹) / sandblasting(레진) / {n:Teflon tape} · tack curing · {r:glycerin} · 광중합 {r:40-60초}씩 | {n:glycerin = oxygen inhibition layer 방지} | —
+R: Class 2 direct filling | matrix 장착이 관건 | {r:Pre-wedging}(different size of wedge) → {r:tight contact} · {n:큰 와동도 cusp별로 build-up} | {n:삭제↓ → {r:치아 수명}↑} | —
+R: Occlusion check | {n:수복 {r:전} 교합점 기록} | {n:교합점에 {r:margin} 두지 않기 · 수복 후 재확인} | {n:환자 느낌에 의존한 교합조정은 피곤} | —
 R: 술자 요인 | Operator 1 {r:97.4%} vs 2 {r:75.4%}(98 inlays · 51개월) | composite: bonding·resin handling·matrix / inlay: {r:cavity prep}·{r:cementation} | 재료보다 {r:술자} | —
-R: Reasonable longevity | 약 10년 사용 목표 | 재료(flexural·bond·fracture) · cavity prep · bonding · 술자(experience·skills·performance) · {r:case selection} | bad oral habit 환자는 수복물 파절 · 꼭 해야 할 때만 | {jb:Q09} 성공 요소의 결론판
+R: Reasonable longevity | 약 10년 사용 목표 | 재료(flexural·bond·fracture) · cavity prep · bonding · 술자(experience·skills·performance) · {r:case selection} | {n:bad oral habit 환자는 수복물 파절 · 꼭 해야 할 때만} | {jb:Q09} 성공 요소의 결론판
 
 #TBL 접착 용어 6개 짝짓기 | k=ADH | src=[[ADH:4]] [[ADH:5]]
 H: 용어 | 한글 | 끝말 | 정의
@@ -386,31 +386,31 @@ R: 구조·성분 | Crystalline solid | {r:Collagen fiber}, organic component of
 R: 표면 {jb:Q14} | {r:Pure surface} | {r:Contaminated surface}(salivary protein · biofilm · smear layer)
 R: 접착제 | 표면장력 {r:낮음} → 잘 퍼짐 · {r:접촉각 낮음} {jb:Q14} | 표면장력 큼 → 뭉침 · 접촉각 큼
 R: 조건 | {r:Surface energy of adherend > ST of adhesive} | 반대
-R: 치질 {jb:Q14} | {r:Enamel} — 무기질 95~98 wt% · 물 ~4 wt% · 유기질 1~2 wt% / vol%: 무기질 86 · 물 12 · 유기질 2 [[ADH:9]] | {r:Dentin} — 무기질 70 wt% · 물 12 wt% · 유기질 18 wt%, tubule로 물이 올라옴 / vol%: 무기질 50 · 물 25 · 유기질 25 [[ADH:9]]
+R: 치질 {jb:Q14} | {r:Enamel} — 무기질 95~98 wt% · 물 ~4 wt% · 유기질 1~2 wt% / vol%: 무기질 86 · 물 12 · 유기질 2 [[ADH:9]] | {r:Dentin} — 무기질 70 wt% · 물 12 wt% · 유기질 18 wt%, {n:tubule로 물이 올라옴} / vol%: 무기질 50 · 물 25 · 유기질 25 [[ADH:9]]
 N: 25 필기 "이를 높은 표면에너지 상태로 만들어주고 붙여야 오래 간다" · "접착제가 잘 퍼져나가야 접착에 유리하기 때문". [[ADH:6]] [[ADH:7]]
 
 #TBL 산부식 후 치질별 결과 — Resin tag vs Hybrid layer | k=ADH | src=[[ADH:12]] [[ADH:13]] [[ADH:15]] [[ADH:25]] [[ADH:28]]
 H: 항목 | Resin tag | Hybrid layer
 R: 어디에 | Enamel(micropore) · Dentin {r:intratubular}(세관 안) | Dentin {r:intertubular}(세관 사이)
 R: 무엇이 | smear plug 자리·micropore로 레진이 흘러듦 | 노출된 {r:collagen fiber} + {r:resin monomer}가 얼기설기 엮임
-R: 특성 {jb:Q18} | 상아세관에 도말층이 끼어들어가듯 생김 | {r:15 - 20 nm micropore} · {r:Penetration of resin monomer}
-R: 접착 기여 {jb:Q14} {jb:Q18} | 상대적으로 작음 — tubule 단면적이 작음 | {r:더 큼} — {r:Micromechanical interlocking} · Important layer for successful adhesion
+R: 특성 {jb:Q18} | {n:상아세관에 도말층이 끼어들어가듯 생김} | {r:15 - 20 nm micropore} · {r:Penetration of resin monomer}
+R: 접착 기여 {jb:Q14} {jb:Q18} | {n:상대적으로 작음 — tubule 단면적이 작음} | {n:{r:더 큼}} — {r:Micromechanical interlocking} · Important layer for successful adhesion
 R: Total-etch | 길게 형성 | {r:Thick} hybrid layer · deeply exposed collagen
-R: Self-etch | {r:짧음} — 그래도 큰 문제 안 됨 | {r:얇음}(Shallow hybridization)
+R: Self-etch | {r:짧음} — {n:그래도 큰 문제 안 됨} | {r:얇음}(Shallow hybridization)
 N: 25 p.13 필기 "tubule의 단면적 < intertubule의 단면적, 그래서 resin tag 자체가 얼마나 깊게 들어가느냐보다는 hybrid layer에서 얼마나 견고하게 결합 형성되는지 봐야" — p.45 keyword 25 필기에도 같은 질문. [[ADH:13]] [[ADH:45]]
 
 #TBL Total-etch vs Self-etch vs Universal | k=ADH | src=[[ADH:24]] [[ADH:25]] [[ADH:26]] [[ADH:28]] [[ADH:29]] [[ADH:30]] [[ADH:31]] [[ADH:33]] [[ADH:36]] [[ADH:37]]
 H: 항목 | Total-etch (Etch & Rinse) | Self-etch | Universal
 R: 합친 단계 | Etching / Priming / Bonding {r:각각} | {r:Etching + Priming}(산성 primer) / Bonding | {r:Etching + Priming + Bonding} 한 병
-R: Smear layer | {r:제거}(인산 부식 후 rinse) | {r:유지} — 도말층과 함께 문질러 hybrid layer에 포함 | Etch & Rinse · Self-etch · Selective enamel etch 모두 가능
+R: Smear layer | {r:제거}(인산 부식 후 rinse) | {r:유지} — {n:도말층과 함께 문질러 hybrid layer에 포함} | Etch & Rinse · Self-etch · Selective enamel etch 모두 가능
 R: Hybrid layer · resin tag | {r:Thick} hybrid layer · 긴 resin tag · deeply exposed collagen | {r:Shallow hybridization} · 짧은 resin tag · limited collagen exposure | —
 R: 장점·특징(슬라이드 원문) | {r:Micromechanical interlocking} · Smear layer removal · Separated hydrophobic adhesive layer · Sufficiently thick film thickness · {r:Stress-absorbing potential} [[ADH:25]] | Partial demineralization · Limited collagen exposure · {r:Possibility of chemical interaction} · Separated hydrophobic adhesive layer (2-step) [[ADH:30]] | Single bottle · Etch & Rinse/Self-etch/Selective enamel etch · Metal/Ceramic/Composite · Direct & Indirect Restorative Materials [[ADH:33]]
 R: 법랑질 | {r:Best approach for enamel} | 부식 부족 → {r:Selective enamel etching required} | Selective enamel etch 가능
-R: 상아질 | {r:(too) aggressive for dentin} · vulnerable to leakage and biodegradation | Partial demineralization · possibility of chemical interaction | 대표 functional monomer {r:10-MDP}
-R: 약점 | collagen 과건조 collapse · resin tag 부족 → 빈 공간 · MMP | Potential smear layer interference · {r:Sensitive for hydrolytic degradation} | 각 방법을 알고 써야(다른 접착제를 universal처럼 쓰면 안 됨) · '한 병'이라고 모두 universal은 아님 — 1-bottle Etch & Rinse와 혼동 금지(26 필기 p.33)
+R: 상아질 | {r:(too) aggressive for dentin} · vulnerable to leakage and biodegradation | Partial demineralization · possibility of chemical interaction | {n:대표 functional monomer {r:10-MDP}}
+R: 약점 | {n:collagen 과건조 collapse · resin tag 부족 → 빈 공간 · MMP} | Potential smear layer interference · {r:Sensitive for hydrolytic degradation} | {n:각 방법을 알고 써야(다른 접착제를 universal처럼 쓰면 안 됨) · '한 병'이라고 모두 universal은 아님 — 1-bottle Etch & Rinse와 혼동 금지(26 필기 p.33)}
 R: Protocol | 30-40% 인산 {r:15 sec}(enamel & dentin) → primer {r:active rubbing 15 sec}(wet bonding) → separate hydrophobic bonding agent → immediate light-curing | {r:Selectively etch enamel} 30-40% 인산 15 sec → {r:actively rubbing} mild self-etch primer(10-MDP) → separate hydrophobic bonding agent → immediate light-curing | —
 R: 범용성 | — | — | {r:Single bottle} · Metal·Ceramic·Composite · Direct & Indirect
-R: 산성도(self-etch primer) | — | {r:Strong} pH < 1 · Intermediately strong 1 < pH < 2 · {r:Mild} pH ≈ 2 · Ultra-mild pH > 2.5 — 보통 {r:pH 2~3}(필기) · 강할수록 resin tag 길고 탈회 깊음 | —
+R: 산성도(self-etch primer) | — | {r:Strong} pH < 1 · Intermediately strong 1 < pH < 2 · {r:Mild} pH ≈ 2 · Ultra-mild pH > 2.5 — 보통 {r:pH 2~3}(필기) · {n:강할수록 resin tag 길고 탈회 깊음} | —
 N: Combined(selective enamel etching + self-etch primer) = gold standard — enamel은 선택적으로 산부식, dentin에는 self-etch. 25 필기 조언: self-etch는 20초 이상 열심히 문지르고 용매를 충분히 날릴 것. [[ADH:20]] [[ADH:36]] [[ADH:34]]
 
 #TBL 접착제의 적용 방식과 세대 | k=ADH | src=[[ADH:20]] [[ADH:21]]
@@ -418,91 +418,91 @@ H: 세대 | 년도 | 도말층의 처리 | 주요 특징 · 적용 방식
 R: 1세대 | 1950~1960년대 | — | 상아질과의 화학적 결합 시도하였으나 실패 · 낮은 접착강도(슬라이드: 도말층의 존재 및 상아질에 대한 지식의 결여로)
 R: 2세대 | 1970~1980년대 | 도말층의 변형(modification) | Self-etch의 효시 · 치아와 화학적 결합 도모 · 도말층을 투과하지 못하므로 낮은 접착력
 R: 3세대 | 1980년대 후반 | 도말층의 변형(modification) | 약산으로 상아질 부식 시도 · 도말층을 투과하여 향상된 접착력
-R: {r:4세대} | 1990년대 초반 | 도말층 용해와 제거(etch and rinse) | {r:Total etch 상용화} · {r:3-step etch and rinse}(etch & rinse 중 가장 많이 사용) · {r:Wet bonding technique 권장} — 비로소 쓸 만한 접착력
-R: 5세대 | 1990년대 중반 | 도말층 용해와 제거(etch and rinse) | 2-step etch and rinse(priming·bonding 합침)
-R: 6세대 | 1990년대 후반 | 도말층 용해와 잔존(self-etch) | {r:2-step self-etch}(self-etch 중 가장 많이 사용) · 1-step, 2-component
-R: 7세대 | 2000년대 이후 | 도말층 용해와 잔존(self-etch) | 1-step, 1-component(All-in-one) — 임상에서 쓰기에 문제 많음
-R: Universal | {r:2012년 이후} | multi modes | {r:Universal adhesive 출시} · 새로운 기능적 단량체 · 세대 구분 안 함 · 현재 2-step self-etch와 함께 많이 사용(26 필기 p.21)
-R: Combined | — | selective enamel etching + self-etch primer | self-etch의 법랑질 부식 부족을 보완 = gold standard
+R: {r:4세대} | 1990년대 초반 | 도말층 용해와 제거(etch and rinse) | {r:Total etch 상용화} · {r:3-step etch and rinse}{n:(etch & rinse 중 가장 많이 사용)} · {r:Wet bonding technique 권장} — {n:비로소 쓸 만한 접착력}
+R: 5세대 | 1990년대 중반 | 도말층 용해와 제거(etch and rinse) | 2-step etch and rinse{n:(priming·bonding 합침)}
+R: 6세대 | 1990년대 후반 | 도말층 용해와 잔존(self-etch) | {r:2-step self-etch}{n:(self-etch 중 가장 많이 사용)} · 1-step, 2-component
+R: 7세대 | 2000년대 이후 | 도말층 용해와 잔존(self-etch) | 1-step, 1-component(All-in-one) — {n:임상에서 쓰기에 문제 많음}
+R: Universal | {r:2012년 이후} | multi modes | {r:Universal adhesive 출시} · {n:새로운 기능적 단량체 · 세대 구분 안 함 · 현재 2-step self-etch와 함께 많이 사용(26 필기 p.21)}
+R: Combined | — | selective enamel etching + self-etch primer | {n:self-etch의 법랑질 부식 부족을 보완 = gold standard}
 N: 25 필기: 1~3세대는 임상에서 쓸 수 있을 정도의 접착력을 얻지 못함 · 3-step이 번거롭고 technique-sensitive해 발전 · self-etch는 enamel 산부식이 충분치 못해 따로 산부식 필요하다는 결론. [[ADH:21]]
 
 #TBL 접착의 임상 고려사항과 중합수축 응력 줄이기 | k=ADH | src=[[ADH:39]] [[ADH:40]] [[ADH:41]] [[ADH:42]] [[ADH:44]]
 H: 항목 | 슬라이드 | 요점(필기)
-R: {r:Wet bonding} | Wet Bonding | 물 안에 collagen fiber가 떠 있어야 primer가 대체 · 과건조 → collapse · cotton pellet으로 다 마르지도 축축하지도 않게 · 물이 흥건해도 resin infiltration 방해(26 필기 p.40)
-R: {r:Priming} | Priming | 급격히 말리면 {r:resin globule}로 갇힘 → 약한 바람으로 서서히 · self-etch는 active rubbing
-R: {r:Water permeability} | Simple-step adhesive – water permeability | tubular fluid → water permeable adhesive layer → osmotic blistering → separate hydrophobic bonding layer가 있는 2-step system이 유리(26 필기 p.42)
+R: {r:Wet bonding} | Wet Bonding | {n:물 안에 collagen fiber가 떠 있어야 primer가 대체 · 과건조 → collapse · cotton pellet으로 다 마르지도 축축하지도 않게 · 물이 흥건해도 resin infiltration 방해(26 필기 p.40)}
+R: {r:Priming} | Priming | {n:급격히 말리면 {r:resin globule}로 갇힘 → 약한 바람으로 서서히 · self-etch는 active rubbing}
+R: {r:Water permeability} | Simple-step adhesive – water permeability | {n:tubular fluid → water permeable adhesive layer → osmotic blistering → separate hydrophobic bonding layer가 있는 2-step system이 유리(26 필기 p.42)}
 R: 호환성 | Compatibility with self-cured/dual-cured composite resin | —
-R: {r:Durability} | Durability – degeneration, biodegradation, hydrolysis | 붙여놓고 나중에 가수분해 등으로 오래 못 가는 경우 고려(p.44 필기)
-R: 수명·생체 | Clinical longevity · Biocompatibility | 레진·접착제에 맨손으로 닿지 않도록
-R: 응력 줄이기 — 레진 수복 | {r:Flowable composite application} · {r:Incremental filling} · {r:Modification of photopolymerization protocol} | lining · 적층 충전 · 광중합 출력·거리 조절로 서서히
-R: 응력 줄이기 — 접착제 | {r:Stress bearing potential} · {r:Prevention degeneration, biodegradation, hydrolysis} | 얇게 여러 번 펴 바르기 · 가수분해로 오래 못 가는 경우 고려
+R: {r:Durability} | Durability – degeneration, biodegradation, hydrolysis | {n:붙여놓고 나중에 가수분해 등으로 오래 못 가는 경우 고려(p.44 필기)}
+R: 수명·생체 | Clinical longevity · Biocompatibility | {n:레진·접착제에 맨손으로 닿지 않도록}
+R: 응력 줄이기 — 레진 수복 | {r:Flowable composite application} · {r:Incremental filling} · {r:Modification of photopolymerization protocol} | {n:lining · 적층 충전 · 광중합 출력·거리 조절로 서서히}
+R: 응력 줄이기 — 접착제 | {r:Stress bearing potential} · {r:Prevention degeneration, biodegradation, hydrolysis} | {n:얇게 여러 번 펴 바르기 · 가수분해로 오래 못 가는 경우 고려}
 N: 중합수축 = Double bond → Single bond ⇒ Shrinkage → Stress at the adhesion interface — 벽에서 생기는 응력이 접착을 방해하므로 접착제를 써야 함. [[ADH:43]]
 
 #TBL Dental adhesive 전체정리 ① — 용어·원리·치질 | k=ADH | sum=1 | src=[[ADH:4]] [[ADH:5]] [[ADH:6]] [[ADH:7]] [[ADH:8]] [[ADH:9]] [[ADH:10]] [[ADH:11]] [[ADH:12]] [[ADH:13]] [[ADH:14]] [[ADH:15]] [[ADH:16]]
 H: 용어·대상 | 정의·특징 | 수치·조건 | 접착에서의 의미 | ★ 시험
 R: {r:Adhesion}(Bonding) | 분자 사이의 힘으로 종류가 다른 두 물질이 달라붙는 {r:성질} | 해당 없음 | 끝말 = 성질 | {jb:Q17_1} 24년 — 용어 짝짓기
 R: {r:Adherend} | 접착되는 물질의 {r:표면}(피착면) | 해당 없음 | 끝말 = 표면 | {jb:Q17_1}
-R: {r:Adhesive} = bonding agent | 양쪽 피착면을 연결시켜 주는 {r:물질} | 해당 없음 | dentin에 붙으면 enamel에도 붙음 → dentin adhesive라고도 | {jb:Q17_1}
-R: {r:Adhesive (Bond) strength} | 접착 계면에서 하중을 견디는 능력의 {r:척도} | microtensile · shear stress로 측정 | 끝말 = 척도 | {jb:Q17_1}
-R: {r:Adhesive (Bonding) durability} | 오랜 시간 결손 없이 공고하게 유지되는 {r:상태} | 뜨겁고 찬 음식·칫솔질·저작을 견뎌야 | 끝말 = 상태 | {jb:Q17} 23년 단답 / {jb:Q17_1} 24년 4) ○
-R: {r:Surface energy}(피착면) | {r:높을수록} 유리 — hard·strong bond·crystalline·{r:pure surface} | low = collagen fiber·레진 유기 성분·{r:contaminated}(salivary protein·biofilm·smear layer) | 높은 표면에너지 상태로 만들고 붙여야 오래 감 | {jb:Q14} 24·23년 1)·4) ×
-R: Surface tension · Contact angle(접착제) | 표면장력 낮으면 퍼짐 → {r:접촉각↓} | surface energy of adherend > ST of adhesive | 페인트처럼 얇게 잘 퍼져야 유리 | {jb:Q14} 24·23년 2) ×
-R: 계면 결합 3 | physical(electrostatic) · chemical(ionic·covalent) · {r:mechanical}(micromechanical interlocking) | 치과용 접착제의 대부분 = mechanical | 최근 = interlocking + {r:functional monomer} 화학 결합 | —
-R: {r:Enamel} | 무기질 {r:95~98 wt%} · 물 ~4 wt% | 산부식 → {r:micropore} → resin tag | 붙이기 쉬움 · total-etch가 {r:best approach} | {jb:Q14} 3-1) 비교
-R: {r:Dentin} | 무기질 {r:70} · 물 {r:12} · 유기질 {r:18 wt%} · tubule로 치수압에 의해 물이 올라옴 | leakage·debonding·이차우식 위험 | 법랑질보다 접착 {r:불리} | {jb:Q14} 24년 3-1) ○ · 3) ×
+R: {r:Adhesive} = bonding agent | 양쪽 피착면을 연결시켜 주는 {r:물질} | 해당 없음 | {n:dentin에 붙으면 enamel에도 붙음 → dentin adhesive라고도} | {jb:Q17_1}
+R: {r:Adhesive (Bond) strength} | 접착 계면에서 하중을 견디는 능력의 {r:척도} | {n:microtensile · shear stress로 측정} | 끝말 = 척도 | {jb:Q17_1}
+R: {r:Adhesive (Bonding) durability} | 오랜 시간 결손 없이 공고하게 유지되는 {r:상태} | {n:뜨겁고 찬 음식·칫솔질·저작을 견뎌야} | 끝말 = 상태 | {jb:Q17} 23년 단답 / {jb:Q17_1} 24년 4) ○
+R: {r:Surface energy}(피착면) | {r:높을수록} 유리 — hard·strong bond·crystalline·{r:pure surface} | low = collagen fiber·레진 유기 성분·{r:contaminated}(salivary protein·biofilm·smear layer) | {n:높은 표면에너지 상태로 만들고 붙여야 오래 감} | {jb:Q14} 24·23년 1)·4) ×
+R: Surface tension · Contact angle(접착제) | 표면장력 낮으면 퍼짐 → {r:접촉각↓} | surface energy of adherend > ST of adhesive | {n:페인트처럼 얇게 잘 퍼져야 유리} | {jb:Q14} 24·23년 2) ×
+R: 계면 결합 3 | physical(electrostatic) · chemical(ionic·covalent) · {r:mechanical}(micromechanical interlocking) | {n:치과용 접착제의 대부분 = mechanical} | 최근 = interlocking + {r:functional monomer} 화학 결합 | —
+R: {r:Enamel} | 무기질 {r:95~98 wt%} · 물 ~4 wt% | 산부식 → {r:micropore} → resin tag | {n:붙이기 쉬움} · total-etch가 {r:best approach} | {jb:Q14} 3-1) 비교
+R: {r:Dentin} | 무기질 {r:70} · 물 {r:12} · 유기질 {r:18 wt%} · {n:tubule로 치수압에 의해 물이 올라옴} | {n:leakage·debonding·이차우식 위험} | 법랑질보다 접착 {r:불리} | {jb:Q14} 24년 3-1) ○ · 3) ×
 R: {r:Smear layer}·smear plug | HA 파편 + altered collagen + bacteria + salivary protein | 두께 {r:0.9~3.5 ㎛} · plug {r:1~10 ㎛} → permeability {r:86%↓} | total-etch = {r:다 제거} / self-etch = {r:남겨서} 접착층에 포함 | 해당 없음(기출 없음 · keyword)
-R: Acid-etching | 인산으로 탈회 → calcium phosphate 녹아 나옴 | {r:30~40%} · {r:15초} → 수세 {r:10초↑} | 고농도 = 치수 악영향 · 저농도 = 탈회 부족 | —
-R: {r:Resin tag} | 세관 안(intratubular) — smear plug 자리로 레진 | tubule 단면적 < intertubule 단면적 | 기여가 {r:상대적으로 작음} · self-etch는 짧아도 됨 | {jb:Q14} 24년 5-1) ×
+R: Acid-etching | 인산으로 탈회 → calcium phosphate 녹아 나옴 | {r:30~40%} · {r:15초} → 수세 {r:10초↑} | {n:고농도 = 치수 악영향 · 저농도 = 탈회 부족} | —
+R: {r:Resin tag} | 세관 안(intratubular) — smear plug 자리로 레진 | {n:tubule 단면적 < intertubule 단면적} | {n:기여가 {r:상대적으로 작음} · self-etch는 짧아도 됨} | {jb:Q14} 24년 5-1) ×
 R: {r:Hybrid layer} | {r:Collagen fiber + resin monomer} · 세관 사이(intertubular) | {r:15 - 20 nm micropore} · penetration of resin monomer | {r:Micromechanical interlocking} · important layer for successful adhesion | {jb:Q18} 24년 탈 서술 / {jb:Q14} 5) ○
-R: 상아세관액 흐름 6요인 | 올라오는 물의 양을 좌우 | {r:permeability} · tubule {r:diameter} · {r:viscosity} · {r:molecular weight} · {r:pulpal pressure} · tubule {r:surface area} | 2급 와동은 부위별 flow 차이 → bond 약한 부분 | {jb:Q19} 23년 — 4가지 이상
+R: 상아세관액 흐름 6요인 | 올라오는 물의 양을 좌우 | {r:permeability} · tubule {r:diameter} · {r:viscosity} · {r:molecular weight} · {r:pulpal pressure} · tubule {r:surface area} | {n:2급 와동은 부위별 flow 차이 → bond 약한 부분} | {jb:Q19} 23년 — 4가지 이상
 
 #TBL Dental adhesive 전체정리 ② — 접착제 방식·성분·임상 | k=ADH | sum=1 | src=[[ADH:17]] [[ADH:18]] [[ADH:19]] [[ADH:20]] [[ADH:21]] [[ADH:25]] [[ADH:26]] [[ADH:29]] [[ADH:30]] [[ADH:31]] [[ADH:32]] [[ADH:34]] [[ADH:37]] [[ADH:39]] [[ADH:40]] [[ADH:41]] [[ADH:42]] [[ADH:43]] [[ADH:44]] [[ADH:45]]
 H: 방식·성분 | 구성·단계 | 도말층·기전 | 장점·특징 | 단점·주의 | ★ 시험
-R: {r:3-step etch & rinse}(4세대) | Etchant → Primer → Adhesive resin | 도말층 {r:용해와 제거} | etch & rinse 중 {r:가장 많이 사용} · total etch 상용화 · enamel {r:best} | {r:wet bonding} 필요 · technique-sensitive | —
-R: 2-step etch & rinse(5세대) | Etchant → Self priming resin | 도말층 용해와 제거 | 뒤 과정(priming·bonding)을 합침 | 결합력이 잘 안 나와 특수한 경우만 | —
-R: {r:2-step self-etch}(6세대) | Self etching primer → Adhesive resin | 도말층 {r:용해와 잔존} · {r:shallow hybridization} | self-etch 중 {r:가장 많이 사용} · 수분 control에 덜 민감 | enamel은 {r:selective etching} 필요 | —
-R: 1-step self-etch(6·7세대) | 2-component(Bottle A + B mix) / 1-component {r:All-in-One} | 도말층 용해와 잔존 | 단계 단순 | 7세대 all-in-one은 임상에서 {r:문제가 많음} | —
-R: {r:Combined} | Selective enamel etching + Self-etch primer | enamel만 인산 · dentin은 self-etch | {r:gold standard} | 해당 없음 | 해당 없음(기출 없음 · keyword)
-R: {r:Universal}(2012년 이후) | {r:Etching + Priming + Bonding} 한 병 | etch & rinse · self-etch · selective enamel etch 모두 | metal·ceramic·composite · direct & indirect | mode를 정하고 그 방식대로 · 이전 접착제부터 익히기 | 해당 없음(기출 없음 · keyword)
+R: {r:3-step etch & rinse}(4세대) | Etchant → Primer → Adhesive resin | 도말층 {r:용해와 제거} | {n:etch & rinse 중 {r:가장 많이 사용}} · total etch 상용화 · enamel {r:best} | {r:wet bonding} 필요 · technique-sensitive | —
+R: 2-step etch & rinse(5세대) | Etchant → Self priming resin | 도말층 용해와 제거 | {n:뒤 과정(priming·bonding)을 합침} | {n:결합력이 잘 안 나와 특수한 경우만} | —
+R: {r:2-step self-etch}(6세대) | Self etching primer → Adhesive resin | 도말층 {r:용해와 잔존} · {r:shallow hybridization} | {n:self-etch 중 {r:가장 많이 사용} · 수분 control에 덜 민감} | enamel은 {r:selective etching} 필요 | —
+R: 1-step self-etch(6·7세대) | 2-component(Bottle A + B mix) / 1-component {r:All-in-One} | 도말층 용해와 잔존 | 단계 단순 | {n:7세대 all-in-one은 임상에서 {r:문제가 많음}} | —
+R: {r:Combined} | Selective enamel etching + Self-etch primer | enamel만 인산 · dentin은 self-etch | {n:{r:gold standard}} | 해당 없음 | 해당 없음(기출 없음 · keyword)
+R: {r:Universal}(2012년 이후) | {r:Etching + Priming + Bonding} 한 병 | etch & rinse · self-etch · selective enamel etch 모두 | metal·ceramic·composite · direct & indirect | {n:mode를 정하고 그 방식대로 · 이전 접착제부터 익히기} | 해당 없음(기출 없음 · keyword)
 R: Phosphoric acid vs Acidic monomer | 부식 주체 | 인산 = etching·{r:smear layer 제거} / acidic monomer = etching·{r:HA와 화학 결합} | etch & rinse vs self-etch를 가르는 성분 | 해당 없음 | —
-R: {r:10-MDP} | {r:10-methacryloyloxydecyl dihydrogen phosphate} | 칼슘이온과 결합 → 줄지어 {r:nano-layering} | 가수분해·leakage 차단 · universal을 가능하게 함 | 교수님 "하나만 기억한다면 MDP" | {jb:Q16} 23년 full name / {jb:Q15} 24년 숫자 10
-R: {r:4-META} | {r:4}-methacryloxyethyl trimellitic anhydride | acidic monomer | self-etching 능력 | 해당 없음 | {jb:Q15} 24년 탈 — 숫자 4
-R: Solvent · Cross-linker · Co-monomer | water·ethanol·acetone / Bis-GMA·UDMA·TEGDMA / HEMA | solvent = monomer가 collagen 속으로 스며들게 | cross-linking · miscibility·viscosity·wetting | primer의 solvent는 완전히 dry | —
-R: Total-etch protocol | 인산 {r:30-40%} {r:15초}(enamel → dentin) → primer {r:rubbing 15초} → hydrophobic bonding → 즉시 광중합 | smear layer 제거 · thick hybrid layer · deeply exposed collagen | micromechanical interlocking · stress-absorbing | dentin엔 {r:too aggressive} · collapse · {r:MMP} → leakage·biodegradation | —
-R: Self-etch protocol | enamel {r:selective etch} → {r:mild} self-etch primer(10-MDP) {r:active rubbing} → hydrophobic bonding → 즉시 광중합 | partial demineralization · limited collagen exposure · pH {r:2~3} | chemical interaction 가능 | smear layer interference · {r:hydrolytic degradation} · 20초 이상 문지르기 | —
-R: {r:Wet bonding} | cotton pellet으로 {r:다 마르지도 축축하지도 않게} | collagen이 물에 떠 있어야 primer가 대체 | 4세대 etch & rinse에 필요 | 과건조 → {r:collapse} · technique-sensitive | 해당 없음(기출 없음 · keyword)
-R: Priming · Water permeability | 약한 바람으로 {r:서서히} dry | 급격히 → {r:resin globule} / tubular fluid → water permeable adhesive layer → {r:osmotic blistering} | solvent·수분을 날려야 | 친수성 접착층으로 물이 올라와 내구성↓ | —
+R: {r:10-MDP} | {r:10-methacryloyloxydecyl dihydrogen phosphate} | 칼슘이온과 결합 → 줄지어 {r:nano-layering} | {n:가수분해·leakage 차단 · universal을 가능하게 함} | {n:교수님 "하나만 기억한다면 MDP"} | {jb:Q16} 23년 full name / {jb:Q15} 24년 숫자 10
+R: {r:4-META} | {r:4}-methacryloxyethyl trimellitic anhydride | acidic monomer | {n:self-etching 능력} | 해당 없음 | {jb:Q15} 24년 탈 — 숫자 4
+R: Solvent · Cross-linker · Co-monomer | water·ethanol·acetone / Bis-GMA·UDMA·TEGDMA / HEMA | {n:solvent = monomer가 collagen 속으로 스며들게} | cross-linking · miscibility·viscosity·wetting | {n:primer의 solvent는 완전히 dry} | —
+R: Total-etch protocol | 인산 {r:30-40%} {r:15초}{n:(enamel → dentin)} → primer {r:rubbing 15초} → hydrophobic bonding → 즉시 광중합 | smear layer 제거 · thick hybrid layer · deeply exposed collagen | micromechanical interlocking · stress-absorbing | dentin엔 {r:too aggressive} · collapse · {r:MMP} → leakage·biodegradation | —
+R: Self-etch protocol | enamel {r:selective etch} → {r:mild} self-etch primer(10-MDP) {r:active rubbing} → hydrophobic bonding → 즉시 광중합 | partial demineralization · limited collagen exposure · pH {r:2~3} | chemical interaction 가능 | smear layer interference · {r:hydrolytic degradation} · {n:20초 이상 문지르기} | —
+R: {r:Wet bonding} | cotton pellet으로 {r:다 마르지도 축축하지도 않게} | collagen이 물에 떠 있어야 primer가 대체 | {n:4세대 etch & rinse에 필요} | 과건조 → {r:collapse} · technique-sensitive | 해당 없음(기출 없음 · keyword)
+R: Priming · Water permeability | {n:약한 바람으로 {r:서서히} dry} | {n:급격히 → {r:resin globule}} / tubular fluid → water permeable adhesive layer → {r:osmotic blistering} | {n:solvent·수분을 날려야} | {n:친수성 접착층으로 물이 올라와 내구성↓} | —
 R: 중합수축 응력 | {r:double → single bond} ⇒ shrinkage → interface stress | cuspal deflection · microleakage · debonding · postoperative hypersensitivity | 레진: {r:flowable} · {r:incremental} · 광중합 조절 / 접착제: stress bearing | 분해(degeneration·biodegradation·hydrolysis) 방지 | —
 N: p.45 keyword 9 = Surface energy · Smear layer · Hybrid layer · Resin tag · Wet bonding · Acidic functional monomer · Total-etch / Self-etch / Selective enamel etch · Universal adhesive · 10-MDP. [[ADH:45]]
 
 #TBL Post가 필요한 경우 · 필요 없는 경우 · 부위별 권장 | k=FRC | src=[[FRC:8]] [[FRC:9]] [[FRC:10]] [[FRC:11]] [[FRC:12]]
 H: 구분 | 슬라이드 | 필기·이유
-R: {r:Indication for Post} {jb:Q21} | {r:Extensive loss} of tooth structure ({r:>1/2}) / Consider amount of remaining coronal tooth structure & {r:functional load} / {r:Evaluation after tooth preparation} | 1/2 이상 소실이 1차 적응증 · 면 4개 중 2개보다 적으면 고려 · cervical abrasion이 깊으면 prep 후 coronal이 다 없어짐
-R: {r:Post – Not required} {jb:Q21} {jb:Q23} | No missing tooth structure other than {r:endodontic access hole} / {r:Small portions} missing → {r:Composite, amalgam core without post} | crack·치수괴사·의도적 근관치료 · MO·DO 인레이 정도(세 wall 건전)
-R: Recommended but {r:Questionable} | Missing all coronal tooth structure(Level of gingival tissue) / Compromised {r:Crown-Root ratio} / Long-term service: Questionable | core 유지를 위해 해야 하지만 예후를 보장하지 않음
-R: Upper anterior {jb:Q23} | {r:Labial} direction force | 순면 우식이 심하면 post가 필요한 경우가 많음
-R: Lower anterior | {r:Lingual} direction force | 인접치가 버텨주고 치아가 작아 잘 안 함(정상교합 기준)
-R: Molar | {r:Less} recommended — Upper: {r:Palatal} canal / Lower: {r:Distal} canal | 다른 wall이 많이 남음 · 해야 하면 가장 크고 곧고 굵은 canal
-R: Premolar {jb:Q20} | {r:More} recommended — Possibility of {r:root perforation} | 근관이 가늘고·taper 적고·만곡 / 근원심 얇음·middle 함요 / 하악은 설측 경사
+R: {r:Indication for Post} {jb:Q21} | {r:Extensive loss} of tooth structure ({r:>1/2}) / Consider amount of remaining coronal tooth structure & {r:functional load} / {r:Evaluation after tooth preparation} | {n:1/2 이상 소실이 1차 적응증 · 면 4개 중 2개보다 적으면 고려 · cervical abrasion이 깊으면 prep 후 coronal이 다 없어짐}
+R: {r:Post – Not required} {jb:Q21} {jb:Q23} | No missing tooth structure other than {r:endodontic access hole} / {r:Small portions} missing → {r:Composite, amalgam core without post} | {n:crack·치수괴사·의도적 근관치료 · MO·DO 인레이 정도(세 wall 건전)}
+R: Recommended but {r:Questionable} | Missing all coronal tooth structure(Level of gingival tissue) / Compromised {r:Crown-Root ratio} / Long-term service: Questionable | {n:core 유지를 위해 해야 하지만 예후를 보장하지 않음}
+R: Upper anterior {jb:Q23} | {r:Labial} direction force | {n:순면 우식이 심하면 post가 필요한 경우가 많음}
+R: Lower anterior | {r:Lingual} direction force | {n:인접치가 버텨주고 치아가 작아 잘 안 함(정상교합 기준)}
+R: Molar | {r:Less} recommended — Upper: {r:Palatal} canal / Lower: {r:Distal} canal | {n:다른 wall이 많이 남음 · 해야 하면 가장 크고 곧고 굵은 canal}
+R: Premolar {jb:Q20} | {r:More} recommended — Possibility of {r:root perforation} | {n:근관이 가늘고·taper 적고·만곡} / {n:근원심 얇음·middle 함요} / {n:하악은 설측 경사}
 N: 필기 "상악이 하악보다 적응증이 되는 경우가 많다". 소구치는 가장 빈발하는 적응증이면서 천공도 가장 많음 — 22~24년 3회 연속 출제({jb:Q20}). [[FRC:10]] [[FRC:11]]
 
 #TBL Post 길이·폭·ferrule 수치 | k=FRC | src=[[FRC:13]] [[FRC:14]] [[FRC:15]] [[FRC:18]]
 H: 항목 | 기준 | 필기
-R: Length {jb:Q27} {jb:Q23} | {r:Longer post, better retention} / More than crown length ({r:1-1.5 times}) / More than {r:1/2-3/4} of root length / Leave {r:4-5 mm} gutta percha (Apical seal) | 4개 중 3개 이상 목표 · 실제로는 1/2 정도 · 기준은 bone level부터
-R: Width {jb:Q23} | {r:Not related to retention} / Reference: Root canal width after enlargement / No more than {r:1/3} of root diameter / More than {r:1 mm} around the tip of post | 두꺼우면 perforation만 늘어남
-R: Ferrule {jb:Q29} | {r:1.5~2 mm} ferrule height ({r:tooth structure, no core material}) above the margin / {r:'Bracing'} tooth — resistance to dislodgement, preventing fracture | post 유무보다 중요 · finite element analysis: ferrule↑ → displacement·rotation↓ · {r:2 mm}에서 compressive stress 최소
-R: 성공 요인 | {r:Amount of remaining tooth} / {r:Ferrule effect of crown} / {r:Magnitude and direction of functional loads} → Greater influence than type of post | 어떤 post를 심느냐보다 먼저 고려
+R: Length {jb:Q27} {jb:Q23} | {r:Longer post, better retention} / More than crown length ({r:1-1.5 times}) / More than {r:1/2-3/4} of root length / Leave {r:4-5 mm} gutta percha (Apical seal) | {n:4개 중 3개 이상 목표 · 실제로는 1/2 정도 · 기준은 bone level부터}
+R: Width {jb:Q23} | {r:Not related to retention} / Reference: Root canal width after enlargement / No more than {r:1/3} of root diameter / More than {r:1 mm} around the tip of post | {n:두꺼우면 perforation만 늘어남}
+R: Ferrule {jb:Q29} | {r:1.5~2 mm} ferrule height ({r:tooth structure, no core material}) above the margin / {r:'Bracing'} tooth — resistance to dislodgement, preventing fracture | {n:post 유무보다 중요 · finite element analysis: ferrule↑ → displacement·rotation↓ · {r:2 mm}에서 compressive stress 최소}
+R: 성공 요인 | {r:Amount of remaining tooth} / {r:Ferrule effect of crown} / {r:Magnitude and direction of functional loads} → Greater influence than type of post | {n:어떤 post를 심느냐보다 먼저 고려}
 N: 짧으면 post 끝이 치조정과 같은 높이 → 그 부위 fracture / 너무 길면 perforation → 옆쪽 lesion(p.13 필기 그림). [[FRC:13]]
 
 #TBL Post의 종류 비교 | k=FRC | src=[[FRC:20]] [[FRC:21]] [[FRC:22]] [[FRC:23]] [[FRC:25]] [[FRC:26]] [[FRC:37]] [[FRC:38]]
 H: 종류 | 특징 | 장점 | 단점
-R: Custom casted post & core | casting해서 core와 post가 하나 · Standard for many years | {r:Alteration of angle of core} · {r:Minimal reduction} · {r:Multiple posts}(한꺼번에 인상·기공) | {r:Two appointments} · {r:Temporization} · {r:Laboratory fee} — 당일 제작 불가, 최근 잘 안 씀
-R: Prefabricated metal — {r:Active}(Tapered) | Threaded, screw type — 스스로 engage | 돌리면 잘 나옴(필기) | {r:More stress into root canal} → VRF · {r:Limited usage}
-R: Prefabricated metal — {r:Passive} Paralleled | {r:Require luting cement} — 마찰력 + 합착력 / 필기: 근단부 cement space를 최소화해야 해서 prep을 좀 많이 · 심미성 필요 없는 경우·구치부 등에 사용 | {r:More retentive} · {r:Less stress} into the root, root fracture(wedging effect ↓) | {r:More preparation at apical area}
+R: Custom casted post & core | {n:casting해서 core와 post가 하나} · Standard for many years | {r:Alteration of angle of core} · {r:Minimal reduction} · {r:Multiple posts}{n:(한꺼번에 인상·기공)} | {r:Two appointments} · {r:Temporization} · {r:Laboratory fee} — {n:당일 제작 불가, 최근 잘 안 씀}
+R: Prefabricated metal — {r:Active}(Tapered) | Threaded, screw type — {n:스스로 engage} | 돌리면 잘 나옴(필기) | {r:More stress into root canal} → {n:VRF} · {r:Limited usage}
+R: Prefabricated metal — {r:Passive} Paralleled | {r:Require luting cement} — {n:마찰력 + 합착력} / 필기: {n:근단부 cement space를 최소화해야 해서 prep을 좀 많이 · 심미성 필요 없는 경우·구치부 등에 사용} | {r:More retentive} · {r:Less stress} into the root, root fracture(wedging effect ↓) | {r:More preparation at apical area}
 R: Prefabricated metal — {r:Passive} Tapered | luting cement로 유지 | {r:Less preparation} | {r:Less retentive} · {r:More stress}, root fracture
-R: 금속 공통 | Stainless Steel · Ni-Cr · Ti Alloy | Very rigid & strong(except Ti alloy) | {r:Non-aesthetic} · {r:Higher EM than tooth} → tip 부위 root crack
-R: Non-metal ceramic & zirconium | aesthetic post | | {r:Weaker}·{r:Thicker} than metal post · {r:Problem of adhesion} to core · {r:Difficult removal} — 거의 안 씀
-R: {r:Fiber (FRC) post} {jb:Q26} {jb:Q24} | Glass·carbon·quartz fibers + matrix · {r:passive} | {r:Similar elastic modulus} with tooth · {r:Stress distribution & absorption} · {r:Fatigue & corrosion resistant} (장점 11: p.37) | {r:Technique sensitivity} · {r:Need for careful adhesive protocol} · radiopacity 다양·부족
+R: 금속 공통 | Stainless Steel · Ni-Cr · Ti Alloy | Very rigid & strong(except Ti alloy) | {r:Non-aesthetic} · {r:Higher EM than tooth} → {n:tip 부위 root crack}
+R: Non-metal ceramic & zirconium | aesthetic post | | {r:Weaker}·{r:Thicker} than metal post · {r:Problem of adhesion} to core · {r:Difficult removal} — {n:거의 안 씀}
+R: {r:Fiber (FRC) post} {jb:Q26} {jb:Q24} | Glass·carbon·quartz fibers + matrix · {r:passive} | {r:Similar elastic modulus} with tooth · {r:Stress distribution & absorption} · {r:Fatigue & corrosion resistant} (장점 11: p.37) | {r:Technique sensitivity} · {r:Need for careful adhesive protocol} · {n:radiopacity 다양·부족}
 N: Active vs Passive = 스스로 engage되느냐 vs cement로 유지되느냐 / Tapered vs Paralleled = 끝으로 갈수록 좁아지느냐 vs 평행이냐(p.20 필기). [[FRC:20]]
 
 #TBL Stiff metal post vs Elastic FRC post — 응력과 실패 양상 | k=FRC | src=[[FRC:39]] [[FRC:40]] [[FRC:41]] [[FRC:42]] [[FRC:44]]
@@ -511,135 +511,135 @@ R: 강성 | 치아보다 높은 EM | stiffness {r:similar to dentin} → deflect
 R: 응력 | Forces {r:at the end of the post} — 첨단부에 stress 집중 | Tooth, post, and cement {r:all deform together} — middle 쪽 전반에 분포 {jb:Q26}
 R: 실패 위치 | Fatigue-caused failure at {r:higher stress bearing area} | Failure appears at {r:weakest point}: adhesive joints at Core-Dentin, Post-Cement-Dentin interfaces
 R: 실패 양상 | {r:Unfavorable} = Irreparable — {r:Crack below the bone level} · {r:Root fracture}(VRF) | {r:Favorable} = Reparable — Loss of marginal seal · Core or Post fracture · Loss of retention(complete debonding of post/core)
-R: 이후 | 발치밖에 남은 선택지가 없음 | 재접착·재수복, forced eruption·외과적 수술로 치아 사용
+R: 이후 | {n:발치밖에 남은 선택지가 없음} | {n:재접착·재수복, forced eruption·외과적 수술로 치아 사용}
 N: 필기 "탈락을 하느냐 안 하느냐보다 탈락했을 때 수정이 가능하냐가 더 중요" — FRC가 꼭 덜 떨어지는 건 아님. [[FRC:44]]
 
 #TBL 접착 4 틀과 resin cement 분류 | k=FRC | src=[[FRC:47]] [[FRC:48]] [[FRC:49]] [[FRC:50]] [[FRC:51]] [[FRC:55]] [[FRC:56]]
 H: 방식 | 합친 단계 | Resin cement로 보면 | 필기
-R: {r:Total-etch} | Etching / Priming / Bonding / Cement 각각 | {r:Total-etch resin cement (3 steps)} — conventional | etch and rinse system · 교수님 추천 post 조합의 바탕
-R: {r:Self-etch} | Etching + Priming | {r:Self-etch resin cement (2 steps)} — conventional | acidic monomer → DC 자가중합 방해 주의(p.62)
-R: {r:Universal} | Etching + Priming + Bonding | (다음에 resin cement 따로) | enamel은 selective etching · self-etching 기능이 있으니 주의
+R: {r:Total-etch} | Etching / Priming / Bonding / Cement 각각 | {r:Total-etch resin cement (3 steps)} — conventional | {n:etch and rinse system · 교수님 추천 post 조합의 바탕}
+R: {r:Self-etch} | Etching + Priming | {r:Self-etch resin cement (2 steps)} — conventional | {n:acidic monomer → DC 자가중합 방해 주의(p.62)}
+R: {r:Universal} | Etching + Priming + Bonding | (다음에 resin cement 따로) | {n:enamel은 selective etching · self-etching 기능이 있으니 주의}
 R: {r:Self-adhesive resin cement} | Etching + Priming + Bonding + Cement | {r:1 step} — No etching, No priming, No adhesive | {r:acidic phosphate group}으로 self-etching · {r:Lower enamel bond strength} · Much lower bond strength than total-etch + conventional
-R: 중합 방식(별개 축) | Bonding·Cement 각각 {r:DC}/{r:LC}/{r:SC} | post에는 {r:dual-cure} | self-etch adhesive이면서 dual-cure resin cement일 수 있음
+R: 중합 방식(별개 축) | Bonding·Cement 각각 {r:DC}/{r:LC}/{r:SC} | post에는 {r:dual-cure} | {n:self-etch adhesive이면서 dual-cure resin cement일 수 있음}
 N: Resin cement 장점 = Aesthetics · Improved marginal sealing · Low solubility · Superior mechanical properties / But technique sensitive — post에 {r:RMGI는 금지}(팽창 → crack). [[FRC:52]]
 
 #TBL Post cementation 조합 (p.62 교수 강조) | k=FRC | src=[[FRC:57]] [[FRC:58]] [[FRC:60]] [[FRC:61]] [[FRC:62]] [[FRC:63]] [[FRC:64]]
 H: 계면·단계 | 권장 | 이유
 R: 3계면 | {r:Post–Root Dentin} · {r:Post–Core Materials} · {r:Core Materials–Coronal Dentin} | 모두 고려해 cement·방식 선택
 R: Post 전처리 {jb:Q28} | {r:alcohol sponge} → {r:silane}(60 s) → bonding agent | silane = hydrophilic glass fiber와 hydrophobic adhesive resin을 잇는 {r:coupling agent}
-R: Root dentin {jb:Q28} | {r:total-etch} + {r:dual-cure adhesive}(ExciTE F DSC 같은 small brush) | apical은 광조사가 부족 · 좁고 깊어 바르기 어려움 → 특수 brush(catalyst)
-R: Cement | {r:dual-cure resin cement}(self-adhesive 말고 전처리를 다 하는 것) — 그래도 {r:광중합 필수} | self-cure만으로는 결합강도 부족 · tip에서 {r:1.5 cm} 떨어지면 광량 절반 이상↓
-R: Core 조합 ① | Adhesive (self-etch) + {r:Light-cure core} | 자가중합이 필요 없음(단점: 광조사 어려움)
-R: Core 조합 ② | Adhesive (self-etch) + {r:Dual-cure activator} + Dual-cure core | activator가 amine 추가 공급 → 산에 의한 방해를 막음(amine free 제품도 있음)
-R: Core 조합 ③ | Adhesive ({r:no self-etch}) + Dual-cure/Light-cure core | 산이 없으면 아무거나(acidic monomer 없는 4세대)
-R: 금지 | {r:RMGI} | 팽창 → post와 치근 사이 crack
+R: Root dentin {jb:Q28} | {r:total-etch} + {r:dual-cure adhesive}(ExciTE F DSC 같은 small brush) | {n:apical은 광조사가 부족 · 좁고 깊어 바르기 어려움 → 특수 brush(catalyst)}
+R: Cement | {r:dual-cure resin cement}{n:(self-adhesive 말고 전처리를 다 하는 것)} — 그래도 {r:광중합 필수} | self-cure만으로는 결합강도 부족 · {n:tip에서 {r:1.5 cm} 떨어지면 광량 절반 이상↓}
+R: Core 조합 ① | Adhesive (self-etch) + {r:Light-cure core} | {n:자가중합이 필요 없음(단점: 광조사 어려움)}
+R: Core 조합 ② | Adhesive (self-etch) + {r:Dual-cure activator} + Dual-cure core | {n:activator가 amine 추가 공급 → 산에 의한 방해를 막음(amine free 제품도 있음)}
+R: Core 조합 ③ | Adhesive ({r:no self-etch}) + Dual-cure/Light-cure core | {n:산이 없으면 아무거나(acidic monomer 없는 4세대)}
+R: 금지 | {r:RMGI} | {n:팽창 → post와 치근 사이 crack}
 N: 자가중합은 {r:amine}(염기) 계열로 개시 → self-etch의 {r:acidic monomer}와 만나 중화 → 중합 방해·접착력 저하. 회사가 추천한 조합(같은 회사 시리즈)으로 쓰면 편한 이유. 교수님 추천: total-etch + DC adhesive + DC resin cement(p.79). [[FRC:62]] [[FRC:79]]
 
 #TBL FRC post 전체정리 ① — post의 원칙(목적·적응·부위·길이·ferrule) | k=FRC | sum=1 | src=[[FRC:6]] [[FRC:7]] [[FRC:8]] [[FRC:9]] [[FRC:10]] [[FRC:11]] [[FRC:12]] [[FRC:13]] [[FRC:14]] [[FRC:15]] [[FRC:18]]
 H: 항목 | 기준·내용 | 이유·근거 | 주의·함정 | ★ 시험
-R: Concept of post | 과거 {r:Reinforce} → 현재 {r:Do not reinforce} · {r:Weaken} some teeth | stiff한 screw post는 apex 쪽 crack | 현재 개념 = {r:코어의 유지} | {jb:Q22} 목적 — 강화 ✗
-R: {r:Purpose of post} | ① {r:Connection} of replacement to remaining tooth structure ② {r:Retention} for core & crown | 교수님 "되게 중요 — 꼭 알아두세요" | FRC Concepts({jb:Q24})와 혼동 금지 | {jb:Q22} 23·22년 서술
-R: {r:Indication} | {r:Extensive loss}(>1/2) · remaining coronal structure & {r:functional load} · {r:evaluation after tooth preparation} | wall 4개 중 2개보다 적으면 고려 | 충분하면 오히려 crack 유발 | {jb:Q21} 24년 탈 서술
+R: Concept of post | 과거 {r:Reinforce} → 현재 {r:Do not reinforce} · {r:Weaken} some teeth | {n:stiff한 screw post는 apex 쪽 crack} | {n:현재 개념 = {r:코어의 유지}} | {jb:Q22} 목적 — 강화 ✗
+R: {r:Purpose of post} | ① {r:Connection} of replacement to remaining tooth structure ② {r:Retention} for core & crown | 교수님 {n:"되게 중요 — 꼭 알아두세요"} | FRC Concepts({jb:Q24})와 혼동 금지 | {jb:Q22} 23·22년 서술
+R: {r:Indication} | {r:Extensive loss}(>1/2) · remaining coronal structure & {r:functional load} · {r:evaluation after tooth preparation} | {n:wall 4개 중 2개보다 적으면 고려} | {n:충분하면 오히려 crack 유발} | {jb:Q21} 24년 탈 서술
 R: {r:Not required} | {r:access hole}만 · {r:small portions} missing | composite·amalgam core {r:without post} | 치관 파절에 무조건 post ✗ | {jb:Q21} / {jb:Q23} 22년 ②
-R: Upper anterior | post 권장 — {r:labial} direction force | labioversion → 순측으로 힘 | 순면부 이상이면 근관 와동만으로도 post 필요할 수 | {jb:Q23} 22년 ① ○
-R: Lower anterior | {r:lingual} direction force | 힘이 유해하지 않고 인접치가 버팀 · 치아가 작음 | class 2·3은 필요 시 | —
-R: Molar | {r:Less} recommended — 상악 {r:palatal} · 하악 {r:distal} canal | 크고 다른 wall이 많이 남음 | 해야 한다면 가장 크고 곧고 굵은 canal | —
-R: {r:Premolar} | {r:More} recommended — possibility of {r:root perforation} | 측방력·치경부 마모·굴곡 파절 | 근관 가늘고·taper 적고·만곡 · 근원심 얇고 {r:middle 함요} · 하악 {r:설측 경사} | {jb:Q20} 24·23·22년 — 천공 이유
-R: Recommended but questionable | all coronal 소실 · compromised {r:crown-root ratio} | long-term service {r:questionable} | post는 해도 모든 걸 보장 못 함 | —
-R: {r:Length} | crown {r:1-1.5 times} · root {r:1/2-3/4} · GP {r:4-5 mm}(apical seal) | {r:Longer post, better retention} · bone level 기준 | 짧으면 치조정 부위 fracture · 너무 길면 perforation | {jb:Q27} 21·19·18·17년 빈칸 / {jb:Q23} ③ ○
-R: {r:Width} | root 직경 {r:1/3} 이하 · tip 주위 {r:1 mm} 이상 · canal width after enlargement | {r:Not related to retention} | 두꺼우면 {r:perforation}·파절만↑ | {jb:Q23} 22년 ④ ×
-R: {r:Ferrule} | margin 위 {r:1.5~2 mm} {r:tooth structure}(no core material) | {r:Bracing} — dislodgement·fracture 저항 · finite element analysis: 2 mm에서 stress 최소 | 높이는 치질(core ✗) · 위치는 {r:above the margin} | {jb:Q29} 21·20·17·16·14·11년 서술
+R: Upper anterior | post 권장 — {r:labial} direction force | {n:labioversion → 순측으로 힘} | {n:순면부 이상이면 근관 와동만으로도 post 필요할 수} | {jb:Q23} 22년 ① ○
+R: Lower anterior | {r:lingual} direction force | {n:힘이 유해하지 않고 인접치가 버팀 · 치아가 작음} | {n:class 2·3은 필요 시} | —
+R: Molar | {r:Less} recommended — 상악 {r:palatal} · 하악 {r:distal} canal | {n:크고 다른 wall이 많이 남음} | {n:해야 한다면 가장 크고 곧고 굵은 canal} | —
+R: {r:Premolar} | {r:More} recommended — possibility of {r:root perforation} | {n:측방력·치경부 마모·굴곡 파절} | {n:근관 가늘고·taper 적고·만곡 · 근원심 얇고 {r:middle 함요} · 하악 {r:설측 경사}} | {jb:Q20} 24·23·22년 — 천공 이유
+R: Recommended but questionable | all coronal 소실 · compromised {r:crown-root ratio} | long-term service {r:questionable} | {n:post는 해도 모든 걸 보장 못 함} | —
+R: {r:Length} | crown {r:1-1.5 times} · root {r:1/2-3/4} · GP {r:4-5 mm}(apical seal) | {r:Longer post, better retention} · {n:bone level 기준} | {n:짧으면 치조정 부위 fracture · 너무 길면 perforation} | {jb:Q27} 21·19·18·17년 빈칸 / {jb:Q23} ③ ○
+R: {r:Width} | root 직경 {r:1/3} 이하 · tip 주위 {r:1 mm} 이상 · canal width after enlargement | {r:Not related to retention} | {n:두꺼우면 {r:perforation}·파절만↑} | {jb:Q23} 22년 ④ ×
+R: {r:Ferrule} | margin 위 {r:1.5~2 mm} {r:tooth structure}(no core material) | {r:Bracing} — dislodgement·fracture 저항 · finite element analysis: {n:2 mm에서 stress 최소} | 높이는 치질(core ✗) · 위치는 {r:above the margin} | {jb:Q29} 21·20·17·16·14·11년 서술
 R: 성공 요인 | {r:Amount of remaining tooth} · {r:Ferrule} · {r:Magnitude and direction of functional loads} | {r:Greater influence than type of post} | post 종류보다 이 3가지 | {jb:Q29} ferrule과 묶어 변형 대비
 
 #TBL FRC post 전체정리 ② — post 종류·FRC·접착·술식 | k=FRC | sum=1 | src=[[FRC:20]] [[FRC:21]] [[FRC:22]] [[FRC:25]] [[FRC:26]] [[FRC:28]] [[FRC:31]] [[FRC:37]] [[FRC:38]] [[FRC:44]] [[FRC:52]] [[FRC:55]] [[FRC:58]] [[FRC:60]] [[FRC:62]] [[FRC:63]] [[FRC:64]] [[FRC:66]] [[FRC:71]] [[FRC:72]]
 H: 종류·단계 | 특징·구성 | 장점 | 단점·주의 | ★ 시험
 R: Custom casted post & core | casting — core와 post가 하나 | angle 변경 · minimal reduction · multiple posts | {r:two appointments} · temporization · {r:laboratory fee} | —
-R: Prefabricated metal — Active | threaded, screw type · tapered | 돌리면 잘 나옴 | {r:More stress} into root canal → VRF · {r:limited usage} | —
-R: Prefabricated metal — Passive | {r:luting cement} + 마찰력으로 유지 · paralleled/tapered | paralleled = {r:more retentive}·less stress | metal = {r:non-aesthetic} · {r:higher EM than tooth} · paralleled는 apical prep↑ | —
-R: Ceramic & zirconium | non-metal · aesthetic | 심미 | {r:weaker}·{r:thicker} · core 접착 문제 · 제거 어려움 → 거의 안 씀 | —
-R: {r:FRC post} | Fiber(carbon or silica) + matrix(epoxy resin) · {r:Fiber Reinforced Composite} | Concepts: mimic dentin · stress distribution · root fracture↓ · {r:slightly weaker} · {r:passive} | radiopacity {r:다양하고 부족} → 이상 = dentin과 GP 사이 | {jb:Q25} 23·22년 약자 / {jb:Q24} 22년 concepts
+R: Prefabricated metal — Active | threaded, screw type · tapered | {n:돌리면 잘 나옴} | {r:More stress} into root canal → {n:VRF} · {r:limited usage} | —
+R: Prefabricated metal — Passive | {r:luting cement} + {n:마찰력으로 유지} · paralleled/tapered | paralleled = {r:more retentive}·less stress | metal = {r:non-aesthetic} · {r:higher EM than tooth} · paralleled는 apical prep↑ | —
+R: Ceramic & zirconium | non-metal · aesthetic | 심미 | {r:weaker}·{r:thicker} · core 접착 문제 · 제거 어려움 → {n:거의 안 씀} | —
+R: {r:FRC post} | Fiber(carbon or silica) + matrix(epoxy resin) · {r:Fiber Reinforced Composite} | Concepts: mimic dentin · stress distribution · root fracture↓ · {r:slightly weaker} · {r:passive} | {n:radiopacity {r:다양하고 부족} → 이상 = dentin과 GP 사이} | {jb:Q25} 23·22년 약자 / {jb:Q24} 22년 concepts
 R: FRC 장점 11 | similar {r:modulus of elasticity} with dentin · stress {r:along the root} · {r:Monoblock} | aesthetics · one-appointment · no lab · no corrosion · retrievable 등 / p.37 원문 11: ① {r:Aesthetics} ② One-appointment ③ No laboratory process ④ No corrosion ⑤ Negligible root fracture ⑥ {r:Increased retention} ⑦ Conserved tooth structure ⑧ Retrievable ⑨ {r:Similar modulus of elasticity with dentin} ⑩ {r:Better stress distribution}: not the apex, along the root ⑪ Tooth-resin cement-post-core: "{r:Monoblock}" [[FRC:37]] | 단점 2: {r:technique sensitivity} · careful adhesive protocol | {jb:Q26} 8회 서술 — 장점 11
-R: Failure mode | FRC = {r:all deform together} / metal = {r:end of the post}에 응력 | FRC = {r:favorable}(reparable · 치조정 상방) | metal = {r:unfavorable}(root fracture · bone level 하방 → 발치) | —
-R: Resin cement | aesthetics · marginal sealing · low solubility · mechanical properties | post의 {r:first option} | {r:technique sensitive} · {r:RMGI는 post에 ✗}(팽창 → crack) | —
-R: Self-adhesive resin cement(1 step) | no etching·priming·adhesive · {r:acidic phosphate group} | 편함 | {r:lower enamel bond strength} · 장기 데이터 부족 | —
+R: Failure mode | FRC = {r:all deform together} / metal = {r:end of the post}에 응력 | FRC = {r:favorable}(reparable · {n:치조정 상방}) | metal = {r:unfavorable}(root fracture · bone level 하방 → 발치) | —
+R: Resin cement | aesthetics · marginal sealing · low solubility · mechanical properties | {n:post의 {r:first option}} | {r:technique sensitive} · {n:{r:RMGI는 post에 ✗}(팽창 → crack)} | —
+R: Self-adhesive resin cement(1 step) | no etching·priming·adhesive · {r:acidic phosphate group} | 편함 | {r:lower enamel bond strength} · {n:장기 데이터 부족} | —
 R: Post 전처리 | alcohol sponge → {r:silane}(60 s) → bonding | silane = hydrophilic glass ↔ hydrophobic resin {r:coupling agent} | silane 없으면 결합강도 크게↓ | {jb:Q28} ② pretreatment
-R: Root dentin 처리 | {r:total-etch} + {r:dual-cure adhesive} | apical은 빛 부족 → DC · ExciTE F DSC 가는 brush | etchant 잔존 → paper point로 확인 | {jb:Q28} ③ cementation
-R: Core 조합(p.62) | self-etch + {r:LC core} / self-etch + {r:DC activator} + DC core / no self-etch + DC·LC core | 산(acidic monomer)이 {r:amine} 자가중합 방해 | universal도 self-etching 기능 → 주의 | 해당 없음(기출 없음 · 교수 강조)
-R: Light-curing | DC여도 {r:광중합 필수} | self-cure만으론 결합강도 부족 | {r:Distance↑ → Irradiance↓}(1.5 cm에 절반 이상↓) · shield로 보며 | —
-R: Removal | {r:ultrasonic tip} · round bur · special kit · {r:guided endodontics} | 접착 계면 깨기·갈아내기 | 천공·치근 약화 위험 → routine 제거 ✗ | —
-R: Clinical procedure | ① {r:Preparation of tooth} ② {r:Pretreatment of post} ③ {r:Post cementation with resin cement} → core | 드릴은 {r:색깔 순서} · paper point · Centrix syringe | 힘으로 드릴링 → root crack · 추천 = total-etch + DC adhesive + DC resin cement | {jb:Q28} 7회 서술 — 심는 과정
+R: Root dentin 처리 | {r:total-etch} + {r:dual-cure adhesive} | {n:apical은 빛 부족 → DC} · ExciTE F DSC 가는 brush | {n:etchant 잔존 → paper point로 확인} | {jb:Q28} ③ cementation
+R: Core 조합(p.62) | self-etch + {r:LC core} / self-etch + {r:DC activator} + DC core / no self-etch + DC·LC core | {n:산(acidic monomer)이 {r:amine} 자가중합 방해} | {n:universal도 self-etching 기능 → 주의} | 해당 없음(기출 없음 · 교수 강조)
+R: Light-curing | DC여도 {r:광중합 필수} | self-cure만으론 결합강도 부족 | {r:Distance↑ → Irradiance↓}{n:(1.5 cm에 절반 이상↓)} · shield로 보며 | —
+R: Removal | {r:ultrasonic tip} · round bur · special kit · {r:guided endodontics} | 접착 계면 깨기·갈아내기 | {n:천공·치근 약화 위험 → routine 제거 ✗} | —
+R: Clinical procedure | ① {r:Preparation of tooth} ② {r:Pretreatment of post} ③ {r:Post cementation with resin cement} → core | {n:드릴은 {r:색깔 순서}} · paper point · Centrix syringe | {n:힘으로 드릴링 → root crack · 추천 = total-etch + DC adhesive + DC resin cement} | {jb:Q28} 7회 서술 — 심는 과정
 
 #TBL Shade 결정 3가지 방법 비교 | k=ANT | src=[[ANT:40]] [[ANT:41]] [[ANT:42]] [[ANT:43]] [[ANT:45]]
 H: 방법 | 무엇으로·어디서 | 핵심 | 필기 포인트
-R: {r:Ready-made company shade guide} {jb:Q13} | 회사 기성 shade guide(Vitapan 등) | 회사별 shade, 명도별 재분류(Group Formation according to L* and C*) | 자연치는 cervical·middle·incisal 색이 달라 shade mapping 하는 눈이 필요
-R: {r:Customized shade tab} {jb:Q13} | 술자가 직접 만든 tab(mold) | mold에 {r:dentin shade}·{r:enamel shade}를 쌓아 바깥에서 보이는 색으로 제작 | incisal은 enamel↑·cervical은 dentin↑ 반영
-R: {r:Shade mock up} {jb:Q13} | {r:구강 내} 치아 위 — {r:접착 없이} | 같은 {r:A2}도 회사별로 미묘하게 다름 → 직접 올려 보고 가장 가까운 것 | dentin·enamel 두께 조합도 바꿔 봄 / 선택 폭을 좁혀 놓고 컨펌
+R: {r:Ready-made company shade guide} {jb:Q13} | 회사 기성 shade guide(Vitapan 등) | 회사별 shade, {n:명도별 재분류}(Group Formation according to L* and C*) | {n:자연치는 cervical·middle·incisal 색이 달라 shade mapping 하는 눈이 필요}
+R: {r:Customized shade tab} {jb:Q13} | 술자가 직접 만든 tab(mold) | mold에 {r:dentin shade}·{r:enamel shade}를 쌓아 바깥에서 보이는 색으로 제작 | {n:incisal은 enamel↑·cervical은 dentin↑ 반영}
+R: {r:Shade mock up} {jb:Q13} | {n:{r:구강 내} 치아 위 — {r:접착 없이}} | {n:같은 {r:A2}도 회사별로 미묘하게 다름 → 직접 올려 보고 가장 가까운 것} | {n:dentin·enamel 두께 조합도 바꿔 봄} / {n:선택 폭을 좁혀 놓고 컨펌}
 N: 세 쪽 모두 슬라이드에 '시험문제' 표시. 24 필기: 해마다 출제 예고. 모양 70%·색 30%(p.39) — 모양이 먼저. [[ANT:39]]
 
 #TBL Lingual wall build-up 방법과 Class 4 순서 | k=ANT | src=[[ANT:65]] [[ANT:66]] [[ANT:67]] [[ANT:68]]
 H: 방법 | 어떻게 | 비고
 R: ① {r:Manual buildup} | 손으로 build-up | —
 R: ② {r:Mylar strip with finger} | 손가락과 mylar strip으로 lingual wall | —
-R: ③ {r:Wax-up model} | wax-up 모델로 {r:putty index}를 만들어 lingual wall mold | 최근: wax-up → scan → index {r:printing}
-R: ④ {r:Intraoral mock-up} | 구강 내에서 mock-up한 뒤 putty(index) 제작 | 최근: 구강 scan → {r:virtual mock-up} → index printing
-R: ⑤ {r:Direct putty index technique} | 구강 내에서 바로 putty를 찍고 내면을 {r:덴처버}로 갈아 index(mold가 아직 없는 상태) | 경계는 explorer로 표현 / 외상 Class 4 당일 증례(p.88)
+R: ③ {r:Wax-up model} | wax-up 모델로 {r:putty index}를 만들어 lingual wall mold | 최근: {n:wax-up → scan → index {r:printing}}
+R: ④ {r:Intraoral mock-up} | 구강 내에서 mock-up한 뒤 putty(index) 제작 | 최근: {n:구강 scan → {r:virtual mock-up} → index printing}
+R: ⑤ {r:Direct putty index technique} | {n:구강 내에서 바로 putty를 찍고 내면을 {r:덴처버}로 갈아 index(mold가 아직 없는 상태)} | {n:경계는 explorer로 표현} / 외상 Class 4 당일 증례(p.88)
 N: 22년 교수님 "이건 시험문제입니다! 3가지 이상만 적으면 점수". Class 4·space closure 일반 순서: {r:lingual(palatal) wall} → {r:proximal wall} → {r:labial build-up}. [[ANT:65]]
 
 #TBL Large Class 4 layering과 레진 shade 성질 | k=ANT | src=[[ANT:83]] [[ANT:84]] [[ANT:90]]
 H: 층 | 슬라이드 shade | 두께·주의 | 광학 성질
-R: 1. {r:Lingual wall} | Enamel or Dentin shade | 어떤 shade도 되나 enamel 혹은 body shade가 무난 — 뼈대 | enamel = {r:translucent}
-R: 2. {r:Proximal wall} | — | lingual 다음(경우에 따라 labial과 동시) | —
-R: Body | {r:Dentin shade} or Opaque + Dentin shade | 실제 dentin보다 {r:조금 두껍게}·{r:좀 더 어둡게} — 자연스러운 모양엔 dentin 더 많이 | dentin = {r:opaque}
-R: 3. {r:Labial wall} | {r:Enamel shade} | {r:얇게} — 두꺼우면 치아가 어두워 보임(필기 '1/3' 또는 '2/3' 정도) | enamel = translucent
+R: 1. {r:Lingual wall} | Enamel or Dentin shade | {n:어떤 shade도 되나 enamel 혹은 body shade가 무난 — 뼈대} | enamel = {r:translucent}
+R: 2. {r:Proximal wall} | — | {n:lingual 다음(경우에 따라 labial과 동시)} | —
+R: Body | {r:Dentin shade} or Opaque + Dentin shade | {n:실제 dentin보다 {r:조금 두껍게}·{r:좀 더 어둡게} — 자연스러운 모양엔 dentin 더 많이} | dentin = {r:opaque}
+R: 3. {r:Labial wall} | {r:Enamel shade} | {n:{r:얇게} — 두꺼우면 치아가 어두워 보임(필기 '1/3' 또는 '2/3' 정도)} | enamel = translucent
 N: Body shade = 중간 정도의 translucency, A1·A2·A3처럼 universal 표기 — 두껍게 쓰면 opaque·얇게 쓰면 translucent. Bevel 상단을 넘어가야 경계가 안 보임. [[ANT:83]]
 
 #TBL Universal adhesive — 어디에 어떤 방식으로 | k=ANT | src=[[ANT:9]] [[ANT:10]] [[ANT:14]] [[ANT:15]] [[ANT:18]] [[ANT:22]] [[ANT:25]]
 H: 항목 | Etch-and-rinse | Self-etch
 R: 단계 | 3 step(Etch·Primer·Bonding) / 2 step(Etch·Bonding) | 2 step(Self-etching primer·Bonding) / 1 step(All-in-one)
 R: Where to use | anterior tooth · shallow cavity · mostly enamel surface(ex. {r:Diastema closure}) · core resin | deep cavity · {r:hypersensitivity hx} · mostly dentin surface(ex. {r:root caries}) · cervical abrasion
-R: 술식 팁 | {r:enamel 먼저} etching, dentin은 {r:10초} 후 바로 rinse — 과하면 {r:nanoleakage}·hypersensitivity | etching 없이 바르고 {r:rubbing 약 20초} — enamel은 {r:selective etching}(안 하면 변색)
+R: 술식 팁 | {n:{r:enamel 먼저} etching, dentin은 {r:10초} 후 바로 rinse — 과하면 {r:nanoleakage}·hypersensitivity} | {n:etching 없이 바르고 {r:rubbing 약 20초}} — enamel은 {r:selective etching}(안 하면 변색)
 R: Dentin bond strength | universal: 두 mode 간 {r:no difference}(Chen 2015) | (좌동)
 N: Shear bond strength enamel {r:40 MPa}(400 kgf/cm²) · dentin {r:20 MPa}(200 kgf/cm²). Clearfil SE Bond는 {r:2-8 °C} 보관·실온에서 사용. [[ANT:11]] [[ANT:23]]
 
 #TBL 전치부 형태 관찰 6요소 | k=ANT | src=[[ANT:56]] [[ANT:57]] [[ANT:59]] [[ANT:60]]
 H: 요소 | 관찰 포인트 | 수복에서의 의미
-R: ① {r:Vertical transitional line angle}(mesial·distal) | outline과 평행 · convex · 끝은 root 끝을 향함 | {r:치아 외형 결정} — diastema closure에서 center로 옮겨 길쭉하게(p.123)
-R: ② {r:Gingival embrasure} | 젊은이 tight한 V자 / 나이 들면 black triangle | black triangle은 clear matrix·flowable resin으로 충전
-R: ③ {r:Contact} | {r:두꺼우면서도 tight} | 실패하면 "치아 사이가 얇아 보임"·음식물·변색 → slip technique(p.69-82)
-R: ④ Incisal edge | 방향·인접치와 대칭 | —
-R: ⑤ Incisal embrasure | 넓은지 좁은지 | 좁으면 답답하고 남성적
-R: ⑥ Labial면 | mesial·distal {r:depression} · {r:cervical prominence} | 젊을수록 cervical prominence 두드러짐
+R: ① {r:Vertical transitional line angle}(mesial·distal) | {n:outline과 평행 · convex · 끝은 root 끝을 향함} | {n:{r:치아 외형 결정} — diastema closure에서 center로 옮겨 길쭉하게(p.123)}
+R: ② {r:Gingival embrasure} | {n:젊은이 tight한 V자} / {n:나이 들면 black triangle} | {n:black triangle은 clear matrix·flowable resin으로 충전}
+R: ③ {r:Contact} | {n:{r:두꺼우면서도 tight}} | {n:실패하면 "치아 사이가 얇아 보임"·음식물·변색 → slip technique(p.69-82)}
+R: ④ Incisal edge | {n:방향·인접치와 대칭} | —
+R: ⑤ Incisal embrasure | {n:넓은지 좁은지} | {n:좁으면 답답하고 남성적}
+R: ⑥ Labial면 | {n:mesial·distal {r:depression} · {r:cervical prominence}} | {n:젊을수록 cervical prominence 두드러짐}
 N: 필기(p.56): ①②③ 3가지 요소가 중요. Horizontal profile은 flat하지 않고 입체적 — mirror view로 incisal·profile까지 볼 것. [[ANT:56]] [[ANT:62]]
 
 #TBL 전치부 레진 전체정리 ① — 접착·레진 다루기·shade | k=ANT | sum=1 | src=[[ANT:9]] [[ANT:10]] [[ANT:11]] [[ANT:14]] [[ANT:15]] [[ANT:17]] [[ANT:21]] [[ANT:22]] [[ANT:24]] [[ANT:25]] [[ANT:33]] [[ANT:37]] [[ANT:39]] [[ANT:40]] [[ANT:41]] [[ANT:42]] [[ANT:43]] [[ANT:48]]
 H: 항목 | 원칙·정의 | 방법·요령 | 수치·주의 | ★ 시험
-R: 접착제 분류 | Etch & Rinse(3·2 step) · Self-etch(2·1 step) · {r:Universal} | universal = etching 하면 etch & rinse 방식, 안 하면 self-etch 방식 | dentin bond strength는 두 mode {r:차이 없음}(Chen 2015) | —
-R: 접착 강도 | shear test | enamel {r:40 MPa} · dentin {r:20 MPa}(= 200 kgf/cm²) | 반쯤 부러진 전치 파절면 ≈ {r:200 kgf} → Class 4 + {r:bevel}이면 버팀 | —
-R: Etch-and-rinse 선택 | {r:enamel} 많을 때 | anterior · shallow · diastema closure · core resin | etching {r:enamel 먼저} → dentin {r:10초} → rinse | —
+R: 접착제 분류 | Etch & Rinse(3·2 step) · Self-etch(2·1 step) · {r:Universal} | {n:universal = etching 하면 etch & rinse 방식, 안 하면 self-etch 방식} | dentin bond strength는 두 mode {r:차이 없음}(Chen 2015) | —
+R: 접착 강도 | shear test | enamel {r:40 MPa} · dentin {r:20 MPa}(= 200 kgf/cm²) | 반쯤 부러진 전치 파절면 ≈ {r:200 kgf} → {n:Class 4 + {r:bevel}이면 버팀} | —
+R: Etch-and-rinse 선택 | {r:enamel} 많을 때 | anterior · shallow · diastema closure · core resin | {n:etching {r:enamel 먼저} → dentin {r:10초} → rinse} | —
 R: Self-etch 선택 | {r:dentin} 많을 때 | deep cavity · hypersensitivity hx · root caries · cervical abrasion | selective enamel etching 안 하면 {r:변색} | —
-R: Nanoleakage | dentin 과 etching | 약 100 μm etching 중 접착제는 70 μm만 → {r:30 μm} 빈 collagen | 접착강도↓ · hypersensitivity → dentin etching 짧게 | —
-R: Rubbing·보관 | 문지를수록 접착강도↑ | {r:rubbing 약 20초} · 흠뻑 발라 saturation | Clearfil SE {r:2-8 °C} 냉장 → {r:실온}에서 사용 · 실온 방치 시 유효기간↓ | —
-R: Composite handling | viscoelastic property · slumping resistance | {r:damping}으로 매끈하게 → 필요한 양 · 와동엔 {r:wiping action} | 기포 방지 · adaptation↑ · hypersensitivity 예방 | —
-R: 심미의 두 축 | 모양 > shade | {r:모양 70%} + {r:색 30%} | 목표 = {r:natural} | —
-R: {r:Ready-made company shade guide} | 회사 기성 shade guide(Vitapan 등) | 명도별 재분류(L* · C*) · 자연치 cervical·middle·incisal {r:shade mapping} | 자연치는 부위마다 색이 다름 | {jb:Q13} 24·23·21·20년 — shade 결정 3방법
-R: {r:Customized shade tab} | 술자가 {r:직접 만든} tab | mold에 {r:dentin shade} + {r:enamel shade} 쌓기 | incisal은 enamel↑ · cervical은 dentin↑ | {jb:Q13}
-R: {r:Shade mock up} | {r:구강 내}에서 직접 | {r:접착 없이} 치아에 올려 봄 · 두께도 조절 | 같은 {r:A2}도 회사별로 다름 → 경험으로 좁히고 컨펌 | {jb:Q13}
-R: Intraoral mock-up(변색치 veneer) | 여러 layering을 입안에서 | {r:5번} 만에 결정 · 조합을 차트에 기록 → grinding → etching → bonding → curing → build-up | cervical은 {r:just}로 — overhanging 없이 | —
+R: Nanoleakage | {n:dentin 과 etching} | {n:약 100 μm etching 중 접착제는 70 μm만 → {r:30 μm} 빈 collagen} | {n:접착강도↓ · hypersensitivity → dentin etching 짧게} | —
+R: Rubbing·보관 | 문지를수록 접착강도↑ | {n:{r:rubbing 약 20초} · 흠뻑 발라 saturation} | Clearfil SE {r:2-8 °C} 냉장 → {r:실온}에서 사용 · {n:실온 방치 시 유효기간↓} | —
+R: Composite handling | viscoelastic property · slumping resistance | {n:{r:damping}으로 매끈하게 → 필요한 양 · 와동엔 {r:wiping action}} | {n:기포 방지 · adaptation↑ · hypersensitivity 예방} | —
+R: 심미의 두 축 | {n:모양 > shade} | {n:{r:모양 70%} + {r:색 30%}} | {n:목표 = {r:natural}} | —
+R: {r:Ready-made company shade guide} | 회사 기성 shade guide(Vitapan 등) | {n:명도별 재분류}(L* · C*) · {n:자연치 cervical·middle·incisal {r:shade mapping}} | {n:자연치는 부위마다 색이 다름} | {jb:Q13} 24·23·21·20년 — shade 결정 3방법
+R: {r:Customized shade tab} | 술자가 {r:직접 만든} tab | mold에 {r:dentin shade} + {r:enamel shade} 쌓기 | {n:incisal은 enamel↑ · cervical은 dentin↑} | {jb:Q13}
+R: {r:Shade mock up} | {r:구강 내}에서 직접 | {n:{r:접착 없이} 치아에 올려 봄 · 두께도 조절} | {n:같은 {r:A2}도 회사별로 다름 → 경험으로 좁히고 컨펌} | {jb:Q13}
+R: Intraoral mock-up(변색치 veneer) | {n:여러 layering을 입안에서} | {n:{r:5번} 만에 결정} · 조합을 차트에 기록 → grinding → etching → bonding → curing → build-up | {n:cervical은 {r:just}로 — overhanging 없이} | —
 
 #TBL 전치부 레진 전체정리 ② — 형태·build-up·마무리 | k=ANT | sum=1 | src=[[ANT:56]] [[ANT:57]] [[ANT:59]] [[ANT:65]] [[ANT:66]] [[ANT:75]] [[ANT:83]] [[ANT:88]] [[ANT:97]] [[ANT:99]] [[ANT:103]] [[ANT:123]] [[ANT:128]] [[ANT:131]] [[ANT:132]] [[ANT:134]] [[ANT:52]]
 H: 항목 | 원칙·정의 | 방법·요령 | 수치·주의 | ★ 시험
-R: Vertical transitional line angle | 외형 outline과 평행 · convex · root 끝을 향함 | {r:치아의 외형을 결정} · diastema에선 {r:center}로 옮김 | 3대 요소 ① | —
-R: Gingival embrasure | 젊으면 tight한 {r:V자} | 나이 들면 퇴축 → {r:black triangle} | clear matrix·flowable로 충전 테크닉 | —
-R: Contact | {r:두꺼우면서도 tight} | slip technique로 형성 | 얇으면 "치아 사이가 너무 얇아 보여요" · 음식물·변색 | —
-R: Incisal edge·embrasure·labial면 | edge 방향·{r:대칭} · embrasure 좁으면 {r:남성적} | labial depression · {r:cervical prominence}(젊을수록) | mirror view로 incisal·profile까지 | —
-R: Lingual wall build-up | 5방법 | {r:Manual} · {r:Mylar strip with finger} · {r:Wax-up}(putty index) · {r:Intraoral mock-up} · {r:Direct putty index} | 22년 "시험문제 — {r:3가지 이상}이면 점수" · 25 예고 p.65 | —
-R: Build-up 순서 | 뼈대부터 | {r:lingual(palatal) wall} → {r:proximal wall} → {r:labial} | direct putty index = 입안에서 찍어 {r:덴처버}로 내면 | —
-R: {r:Slip technique} | 두껍고 tight한 contact | 레진을 {r:mylar strip}으로 틈에 끌어옴 → strip 빼고 molding·curing | 인접치는 {r:polishing} 상태 · 붙으면 {r:finger pressure} | —
-R: Large Class 4 layering | 층별 shade | lingual({r:enamel or dentin}) → body({r:dentin} · 두껍고 약간 어둡게) → labial({r:enamel} · 얇게) | enamel 두꺼우면 {r:어두워 보임} · bevel 상단 넘어가게 | —
-R: 레진 shade 성질 | enamel {r:translucent} · dentin {r:opaque} | body = 중간(A1·A2·A3) | 두껍게 쓰면 opaque · 얇으면 translucent | —
+R: Vertical transitional line angle | {n:외형 outline과 평행 · convex · root 끝을 향함} | {n:{r:치아의 외형을 결정} · diastema에선 {r:center}로 옮김} | 3대 요소 ① | —
+R: Gingival embrasure | {n:젊으면 tight한 {r:V자}} | {n:나이 들면 퇴축 → {r:black triangle}} | {n:clear matrix·flowable로 충전 테크닉} | —
+R: Contact | {n:{r:두꺼우면서도 tight}} | slip technique로 형성 | 얇으면 "치아 사이가 너무 얇아 보여요" · {n:음식물·변색} | —
+R: Incisal edge·embrasure·labial면 | {n:edge 방향·{r:대칭} · embrasure 좁으면 {r:남성적}} | labial depression · {r:cervical prominence}{n:(젊을수록)} | {n:mirror view로 incisal·profile까지} | —
+R: Lingual wall build-up | 5방법 | {r:Manual} · {r:Mylar strip with finger} · {r:Wax-up}(putty index) · {r:Intraoral mock-up} · {r:Direct putty index} | 22년 {n:"시험문제 — {r:3가지 이상}이면 점수"} · 25 예고 p.65 | —
+R: Build-up 순서 | {n:뼈대부터} | {n:{r:lingual(palatal) wall} → {r:proximal wall} → {r:labial}} | direct putty index = {n:입안에서 찍어 {r:덴처버}로 내면} | —
+R: {r:Slip technique} | 두껍고 tight한 contact | {n:레진을 {r:mylar strip}으로 틈에 끌어옴 → strip 빼고 molding·curing} | {n:인접치는 {r:polishing} 상태 · 붙으면 {r:finger pressure}} | —
+R: Large Class 4 layering | 층별 shade | lingual({r:enamel or dentin}) → body({r:dentin} · {n:두껍고 약간 어둡게}) → labial({r:enamel} · {n:얇게}) | {n:enamel 두꺼우면 {r:어두워 보임} · bevel 상단 넘어가게} | —
+R: 레진 shade 성질 | enamel {r:translucent} · dentin {r:opaque} | body = 중간(A1·A2·A3) | {n:두껍게 쓰면 opaque · 얇으면 translucent} | —
 R: 외상 Class 4 당일 | 응급 build-up | direct putty index → bevel·etch·bond → lingual wall → dentin·enamel → slip → 교합 조정 | 첫날은 {r:finishing}까지 · incisal은 {r:disk} | —
-R: 변색치·ankylosis | non-vital 변색 · #11 ankylosis | {r:resin veneering} + {r:white tint} · whitish spot 재현 / 치아 {r:lengthening} | bleaching으로 불만족한 변색에 | —
-R: Diastema closure | 삭제 덜 하는 것 선호 | {r:grinding} 필수 · line angle을 {r:center}로 + distal filling · 작은 space는 {r:body shade mix} | grinding 안 하면 {r:접착력↓} | —
+R: 변색치·ankylosis | non-vital 변색 · #11 ankylosis | {r:resin veneering} + {r:white tint} · whitish spot 재현 / {n:치아 {r:lengthening}} | bleaching으로 불만족한 변색에 | —
+R: Diastema closure | {n:삭제 덜 하는 것 선호} | {n:{r:grinding} 필수 · line angle을 {r:center}로 + distal filling · 작은 space는 {r:body shade mix}} | {n:grinding 안 하면 {r:접착력↓}} | —
 R: Finishing & polishing | 두 번에 나눠 | {r:1st}: gross contouring·palatal / {r:2nd}: contour correction·final polish | strip은 {r:S-shape} — C-shape이면 {r:contact loose} | —
 R: Consistent success | 3요소 | {r:anatomy·materials 지식} · {r:determination(passion)} · {r:training} | 레진은 {r:1-2 brand}로 self-training · microhybrid + microfill · nanohybrid | —
 
@@ -655,28 +655,28 @@ N: Chief concerns of OTC(슬라이드 75): ① {r:Absence of dentist supervision
 
 #TBL Tooth-colored inlay 와동형성 원리 — 수치와 이유 (26 '시험 출제 예고' p.36-41) | k=INL | src=[[INL:36]] [[INL:37]] [[INL:38]] [[INL:39]] [[INL:40]] [[INL:41]] [[INL:43]] [[INL5:36]] [[INL5:37]] [[INL5:38]] [[INL5:39]] [[INL5:40]]
 H: 원리(슬라이드) | 수치·방법 | 이유(슬라이드·필기)
-R: {r:Occlusal clearance} | {r:1.5-2.0 mm} · possibly {r:1.0 mm for e.max} | Otherwise, {r:break during fabrication}; {r:fracture during cementation} · 25 필기: 1 mm 하면 시멘트 두께 때문에 실제로는 0.8 mm → 1.5 mm는 해야
+R: {r:Occlusal clearance} | {r:1.5-2.0 mm} · possibly {r:1.0 mm for e.max} | Otherwise, {r:break during fabrication}; {r:fracture during cementation} · 25 필기: {n:1 mm 하면 시멘트 두께 때문에 실제로는 0.8 mm → 1.5 mm는 해야}
 R: {r:No bevel} | — | (슬라이드 원문 — 이유는 자료에 없음)
-R: {r:Width} | {r:≥ 1.5 mm}(≥ 1.0 mm for e.max) | 26 필기: isthmus width ≥1.5 mm가 일반적, 너무 얇으면 fabrication/cementation 중 fracture 위험↑
-R: {r:Divergent, relatively less-retentive prep} | Tooth-colored {r:12도-15도} · Gold inlay {r:6도} ok | 25 필기: 그렇지 않으면 seating이 잘 안 돼서 resin cement로 많이 채워질 수밖에 없음
-R: {r:Proximal clearance} | 인접치와 {r:0.5 mm} | 26 필기: 기공·{r:cement removal}·{r:self-cleaning}에 유리 · 25 필기: 기공물 작업할 때 여유
-R: {r:Rounded proximal box} | 완만한 곡선 | 25 필기: 와동이 너무 복잡하면 {r:CAD-CAM milling bur}가 잘 따라가지 못함
-R: {r:Smooth and even walls and floors} | 적당한 사이즈의 bur로 한 번에 쭉 | 25 필기: 바닥이 찌글찌글하면 피팅할 때 어려움
-R: {r:Internal angle: rounded} | rounding된 inlay bur(resin inlay bur) | Otherwise, technician이 {r:block-out with die-spacer} · 26 필기: sharp angle은 {r:stress concentration} · 25 필기: 둥글어야 seating이 잘 되고 응력집중이 덜 됨
-R: {r:Uniform reduction} | — | 26 필기: uniform reduction + enamel margin 유지가 핵심
-R: {r:Enamel margin} | 가능한 한 enamel에 margin | 26 필기: {r:bonding}과 {r:prognosis}에 유리 · margin이 enamel이면 approximately {r:8–10 years}(p.87)
+R: {r:Width} | {r:≥ 1.5 mm}(≥ 1.0 mm for e.max) | 26 필기: {n:isthmus width ≥1.5 mm가 일반적, 너무 얇으면 fabrication/cementation 중 fracture 위험↑}
+R: {r:Divergent, relatively less-retentive prep} | Tooth-colored {r:12도-15도} · Gold inlay {r:6도} ok | 25 필기: {n:그렇지 않으면 seating이 잘 안 돼서 resin cement로 많이 채워질 수밖에 없음}
+R: {r:Proximal clearance} | 인접치와 {r:0.5 mm} | 26 필기: {n:기공·{r:cement removal}·{r:self-cleaning}에 유리} · 25 필기: {n:기공물 작업할 때 여유}
+R: {r:Rounded proximal box} | {n:완만한 곡선} | 25 필기: {n:와동이 너무 복잡하면 {r:CAD-CAM milling bur}가 잘 따라가지 못함}
+R: {r:Smooth and even walls and floors} | {n:적당한 사이즈의 bur로 한 번에 쭉} | 25 필기: {n:바닥이 찌글찌글하면 피팅할 때 어려움}
+R: {r:Internal angle: rounded} | rounding된 inlay bur(resin inlay bur) | Otherwise, technician이 {r:block-out with die-spacer} · 26 필기: {n:sharp angle은 {r:stress concentration}} · 25 필기: {n:둥글어야 seating이 잘 되고 응력집중이 덜 됨}
+R: {r:Uniform reduction} | — | 26 필기: {n:uniform reduction + enamel margin 유지가 핵심}
+R: {r:Enamel margin} | 가능한 한 enamel에 margin | 26 필기: {n:{r:bonding}과 {r:prognosis}에 유리} · margin이 enamel이면 approximately {r:8–10 years}(p.87)
 N: 26 필기 p.43 "★ 시험 가능: tooth-colored inlay cavity preparation 원리를 {r:5가지 이상} 설명할 수 있어야 함" — 이름 + 수치 + 이유 한 줄씩. 남은 wall 기준(1 mm · 1-2 mm)은 '잔존 wall 두께와 cusp coverage' 표 {jb:Q12}. [[INL:43]]
 
 #TBL Non-vital (walking) bleaching 술식 9단계 — 단계·수치·이유 (빈칸 대비) | k=WHT | src=[[WHT:32]] [[WHT:33]] [[WHT:34]] [[WHT:35]] [[WHT:36]] [[WHT:38]] [[WHT:45]]
 H: 단계 | 슬라이드 원문 | 수치·빈칸 | 이유·주의(26 필기)
-R: ① Perform examination {jb:Q02} | Photographs / Pulp test, palpation, percussion, trans-illumination / Radiographs / Evaluation of previous restorations and caries | — | 기본검사와 기존 수복·우식 상태 평가 · 초기 상태 기록 [[WHT:32]]
+R: ① Perform examination {jb:Q02} | Photographs / Pulp test, palpation, percussion, trans-illumination / Radiographs / Evaluation of previous restorations and caries | — | {n:기본검사와 기존 수복·우식 상태 평가 · 초기 상태 기록} [[WHT:32]]
 R: ② Prophylaxis | Prophylaxis | — | —
-R: ③ Determine CEJ | Determine CEJ | barrier 높이의 기준 | CEJ 위치를 명확히 확인 [[WHT:33]]
-R: ④ Rubber dam | Protect with rubber dam | — | 연조직 보호 [[WHT:33]]
-R: ⑤ Debride | Endodontic obturation / Pulpal remnants and debris / Remove 2-3 mm of obturating material from root canal | {r:2-3 mm} | cervical 부위보다 약간 하방까지 gutta-percha 제거 → barrier 공간 [[WHT:34]]
-R: ⑥ Fill(cement barrier) | Cement seal over gutta percha against leakage of bleaching agent / Following CEJ & 1 mm incisal / Minimum 2 mm (LC GIC) | {r:CEJ & 1 mm incisal} · 최소 {r:2 mm} · {r:LC GIC} | 표백제 누출 차단 — '충분한 두께로 확실하게 막는 것'이 핵심 [[WHT:35]] / cervical barrier = {r:external root resorption} 위험을 줄이는 안전장치 [[WHT:38]]
-R: ⑦ Mix | Sodium perborate and 3% H2O2 (Water) | {r:Sodium perborate} + {r:3% H2O2}(Water) | 저농도 walking bleaching — 30% H2O2 + sodium perborate는 슬라이드 40에서 ✗ {jb:Q06}
-R: ⑧ Seal | Seal with 2 mm thick Caviton, LC-GIC | {r:2 mm} Caviton · LC-GIC | 임시봉쇄 [[WHT:36]]
+R: ③ Determine CEJ | Determine CEJ | {n:barrier 높이의 기준} | {n:CEJ 위치를 명확히 확인} [[WHT:33]]
+R: ④ Rubber dam | Protect with rubber dam | — | {n:연조직 보호} [[WHT:33]]
+R: ⑤ Debride | Endodontic obturation / Pulpal remnants and debris / Remove 2-3 mm of obturating material from root canal | {r:2-3 mm} | {n:cervical 부위보다 약간 하방까지 gutta-percha 제거 → barrier 공간} [[WHT:34]]
+R: ⑥ Fill(cement barrier) | Cement seal over gutta percha against leakage of bleaching agent / Following CEJ & 1 mm incisal / Minimum 2 mm (LC GIC) | {r:CEJ & 1 mm incisal} · 최소 {r:2 mm} · {r:LC GIC} | {n:표백제 누출 차단 — '충분한 두께로 확실하게 막는 것'이 핵심} [[WHT:35]] / {n:cervical barrier = {r:external root resorption} 위험을 줄이는 안전장치} [[WHT:38]]
+R: ⑦ Mix | Sodium perborate and 3% H2O2 (Water) | {r:Sodium perborate} + {r:3% H2O2}(Water) | {n:저농도 walking bleaching} — 30% H2O2 + sodium perborate는 슬라이드 40에서 ✗ {jb:Q06}
+R: ⑧ Seal | Seal with 2 mm thick Caviton, LC-GIC | {r:2 mm} Caviton · LC-GIC | {n:임시봉쇄} [[WHT:36]]
 R: ⑨ Recall | Recall-check in 1 week / Repeat as needed | {r:1 week} | 재평가 후 필요하면 반복 [[WHT:36]]
 R: 최종 수복 {jb:Q04} | Recall patient in 2 weeks to place permanent, bonded composite restoration | {r:2 weeks} | 1. {r:Residual oxygen} interferes bonding / 2. To {r:stabilize shade} [[WHT:45]]
 N: {jb:Q02} 24·23·21·20·18·17·14·13·12·11·10년 서술·그림 — 24년은 빈칸 형식(수치·빈칸 열). 슬라이드 38 그림: 근관치료 된 상태 → Cement barrier → 표백제(3% H2O2 + Sodium Perborate). JB 답의 'pervious restorations'는 슬라이드 32 'previous'의 오타. [[WHT:38]]
@@ -689,8 +689,8 @@ N: 26 필기(슬라이드 21): 미백법은 ① vital/non-vital ② in-office/ho
 
 #TBL '목적'으로 묻는 세 목록 — Purpose of Post vs Concepts of FRC Post vs Advantages of FRC Post | k=FRC | src=[[FRC:7]] [[FRC:28]] [[FRC:37]] [[FRC:38]]
 H: 목록 | 슬라이드 원문 | 개수·쪽 | 기출·함정
-R: Purpose of Post {jb:Q22} | {r:Connection} of {r:replacement} for missing coronal portion to remaining {r:tooth structure} / {r:Retention} for core & crown restoration | {r:2} · p.7 | 23·22년 "Post 수복의 목적" — 치아 {r:강화}는 오답(필기 "포스트 자체가 치아를 강화하는 개념은 아니다 오해하지 않도록!") [[FRC:7]]
+R: Purpose of Post {jb:Q22} | {r:Connection} of {r:replacement} for missing coronal portion to remaining {r:tooth structure} / {r:Retention} for core & crown restoration | {r:2} · p.7 | 23·22년 "Post 수복의 목적" — 치아 {r:강화}는 오답(필기 {n:"포스트 자체가 치아를 강화하는 개념은 아니다 오해하지 않도록!"}) [[FRC:7]]
 R: Concepts of FRC Post {jb:Q24} | Mimic physical property of dentin of root / Stress distribution / Reduce root fracture / Slightly weaker than root (favorable fracture) / Passive type (Requirement of luting cement) | {r:5} · p.28 | 22년 "FRC post의 목적" — JB 해설: '목적'이라 명시된 슬라이드가 없어 가장 가까운 Concepts를 답으로 · 약자 FRC = Fiber Reinforced Composite {jb:Q25} [[FRC:28]]
-R: Advantages of FRC Post {jb:Q26} | Aesthetics / One-appointment / No laboratory process / No corrosion / Negligible root fracture / Increased retention / Conserved tooth structure / Retrievable / Similar modulus of elasticity with dentin / Better stress distribution: not the apex, along the root / Tooth-resin cement-post-core: "Monoblock" | {r:11} · p.37 | 21·20·19·18·17·15·14·13년 서술 — 필기: 가장 중요한 장점 = modulus가 치아와 유사 → 응력 분포 유리 · monoblock [[FRC:37]]
-R: Disadvantages of FRC Post | Technique sensitivity / Need for careful adhesive protocol | {r:2} · p.38 | 필기: 접착 단계가 많음 · 접착 실패 가능성 [[FRC:38]]
+R: Advantages of FRC Post {jb:Q26} | Aesthetics / One-appointment / No laboratory process / No corrosion / Negligible root fracture / Increased retention / Conserved tooth structure / Retrievable / Similar modulus of elasticity with dentin / Better stress distribution: not the apex, along the root / Tooth-resin cement-post-core: "Monoblock" | {r:11} · p.37 | 21·20·19·18·17·15·14·13년 서술 — 필기: {n:가장 중요한 장점 = modulus가 치아와 유사 → 응력 분포 유리 · monoblock} [[FRC:37]]
+R: Disadvantages of FRC Post | Technique sensitivity / Need for careful adhesive protocol | {r:2} · p.38 | 필기: {n:접착 단계가 많음 · 접착 실패 가능성} [[FRC:38]]
 N: 같은 '목적' 문장이라도 'Post 수복의 목적' = p.7(2개), 'FRC post의 목적' = p.28 Concepts(5개). 개수(2 · 5 · 11 · 2)로 먼저 구분.
