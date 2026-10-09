@@ -13,7 +13,7 @@
 ```
 <공통 머리>
 과목 <SID> 강의 <KEY>(새 파일 = 키 <KEY>, 옛 판 = 보조 키 <OLD — 보통 KEY5>). guide/handoff/UPD26_BRIEF.md + UPD26_FIG_BRIEF.md(25 필기 강조 쪽 그림 병기·수업이 중간에 끝난 강의 안내) 그대로 하되, 고치거나 덧붙이는 모든 줄은 RULES.md 최종형(카드 본문·⭐·🔑/⚡ 라벨·구조·`/`·`·`·들여쓰기·표·빨강)으로 쓴다.
-필기에서 온 본문 조각은 처음부터 `{n:…}`(RULES 9 — guide/handoff/review_final/NOTEMARK_BRIEF.md). 26이 메인, 25는 참고. 26 필기의 강조·시험 메모는 💬/⭐/⚡에 반영하고 예상문제 후보는 보고에.
+필기에서만 나온 조각(본문·🔑·⚡·요지·표 칸·🎯)은 처음부터 `{n:…}`(RULES 9 — ✍ 앞에만 · guide/handoff/review_final/NOTEMARK2_BRIEF.md). 26이 메인, 25는 참고. 26 필기의 강조·시험 메모는 💬/⭐/⚡에 반영하고 예상문제 후보는 보고에.
 사용자 표시 보존(RULES 12): 카드 나누기·합치기·제목 바꾸기 금지, 문장은 덧붙이기 > 낱말 고치기, ⚡ 옛 낱말은 새 줄 안에(빠진 독립 사실은 새 M: 줄 · 기존 줄 머리 아래 이어지는 조각은 그 줄 끝에 ` / ` — RULES 6 '이어지는 내용은 한 줄에'). 26 새 내용이 기존 줄 머리의 이어짐(구내 ↔ 구외처럼)이면 새 `-`·`M:` 줄로 떼지 않고 그 줄에 ` / `로(본문은 머리 줄 + `  - ` 하위).
 쓸 것: tools/<sid>/lec_<KEY>.txt · work/<SID>/upd26/<KEY>_map.json · 보고 work/<SID>/upd26/R_<KEY>.md('annot·tables·pred 고칠 것' 절 — 검토 1회차가 반영함)
 검사: check_lec <SID> <KEY> ✗0 · check_eyears 0 · check_abbr 새 약어 0 · dump_breaks <SID> <KEY> 조각 오류 0 · ⚡는 tools/<sid>/lecparse.py의 render_recall로 렌더해 확인 · ⚡·본문 줄은 tools/render_line.py <SID> <M|-> --file … --line n으로 머리 아래 ◦ 묶임 확인(따로 떨어진 • 0).
@@ -43,7 +43,7 @@
 ```
 <공통 머리>
 과목 <SID> 강의 <KEY들>. guide/handoff/review_final/KEYMEM_BRIEF.md(누락·짝·기출·강조 보강, 요약 탭 금지) + KEYMEM2_BRIEF.md(라벨·논리 순서·①②③·= 최소) + FWBAL_BRIEF.md(번호 항목: 짧은 원문은 풀 워딩·긴 문장은 핵심어 압축 — 🎯 요점 포함) 모두 그대로 — 숫자(⚡ 줄 수 등)는 RULES 6절. 맡은 강의의 모든 카드.
-검사: check_lec <SID> <KEY> ✗0 · ⚡ 줄마다 tools/<sid>/lecparse.py render_recall로 렌더해 라벨이 굵은 머리(b.mlab / klh)로 잡혔는지 · 본문 표의 짝·목록 칸 수 = ⚡ 번호 수 · 낱말 바꾼 줄 목록 · 라벨 뒤 조각이 ◦ 하위(ul.msub)로 묶였는지·하위 조각에 콜론 없음(render_line). 이어지는 조각은 한 줄(RULES 6 끝 항목): KEYMEM의 '새 M: 줄 우선'은 독립 사실일 때만, KEYMEM·KEYMEM2의 '서로 다른 사실 = ` / `'는 같은 라벨에 속하는 사실일 때만.
+검사: check_lec <SID> <KEY> ✗0 · ⚡ 줄마다 tools/<sid>/lecparse.py render_recall로 렌더해 라벨이 굵은 머리(b.mlab / klh)로 잡혔는지 · 본문 표의 짝·목록 칸 수 = ⚡ 번호 수 · 낱말 바꾼 줄 목록 · 라벨 뒤 조각이 ◦ 하위(ul.msub)로 묶였는지·하위 조각에 콜론 없음(render_line). 🔑·⚡의 `{n:…}`(필기에서만 나온 조각 — RULES 9)는 그대로 두고 줄을 합치거나 나눌 때도 조각마다 따로. 이어지는 조각은 한 줄(RULES 6 끝 항목): KEYMEM의 '새 M: 줄 우선'은 독립 사실일 때만, KEYMEM·KEYMEM2의 '서로 다른 사실 = ` / `'는 같은 라벨에 속하는 사실일 때만.
 보고 work/review_final2/KM2_<SID>_<묶음>.md(카드마다 ⚡ 전→후 줄 수 · 더한 사실 · 낱말 바꾼 줄).
 ```
 

@@ -745,6 +745,7 @@ def lec_card(L, j, c):
                 return f'<li class="exrow"><span class="ey">{ychips(v[0])}</span> {r_}</li>' if r_ else f'<li><span class="ey">{ychips(v[0])}</span> {lecparse.render_block(v[1], ctx) if len(v[1]) > 150 else lecparse.inline(v[1], ctx)}</li>'
             h.append('<div class="co c-exam"><div class="ct">⭐ 시험포인트 <small>이 카드에서 나온 문제 ' + str(len(exbuf)) + '개</small></div><ul class="exlist">' + ''.join(exli(v) for v in exbuf) + '</ul></div>')
         exbuf.clear()
+    nsec = False
     for t, v in c['body']:
         if t != 'E': flush_ex()
         if t not in ('b', 'b2'): prevb = None
@@ -755,17 +756,18 @@ def lec_card(L, j, c):
                 key = ks[0]; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_keybox(ks[0], ctx)}</div>' + lecparse.render_key_rest(ks[1], ctx))
                 curb = {'h': '', 'items': list(ks[1])}; blocks.append(curb)
             else: key = v; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_keybox(v, ctx)}</div>')
-        elif t == 'h': h.append(f'<h4 class="sh">{lecparse.inline(v, ctx)}</h4>'); curb = {'h': v, 'items': []}; blocks.append(curb)
+        elif t == 'h': h.append(f'<h4 class="sh">{lecparse.inline(v, ctx)}</h4>'); curb = {'h': v, 'items': []}; blocks.append(curb); nsec = bool(re.match(r'^\s*\{n:', v) or lecparse.SRCN.search(v) or re.match(r'^\s*필기', v))   # 10-09 소제목 전체가 필기 → 아래 항목은 ✍ 없이(머리 앞에만)
         elif t == 'b':
             st_ = None; C_ = lecparse.CIRC; v0 = v.lstrip()[:1]
             if prevb is not None and v0 and v0 in C_ and h and h[-1].startswith('<div class="li nolead'):   # ux2 D09 앞 줄이 ⑤로 끝나고 이 줄이 ⑥으로 시작 → 한 목록처럼(ol start=6) — fixB N1: 앞 줄이 실제로 번호 목록(ol)으로 그려졌을 때만(① ② 한 줄씩 쓴 나열은 끝까지 같은 모양)
                 lc = [ch for ch in prevb if ch in C_]
                 if lc and C_.index(v0) == C_.index(lc[-1]) + 1 and C_.index(lc[-1]) >= 1: st_ = C_.index(v0) + 1
             h.append(lecparse.render_item(v, ctx, cont=st_)); prevb = v
+            if nsec: h[-1] = re.sub(r'^<div class="li', '<div class="li nsec', h[-1], count=1)
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'b2':   # 10-05 하위 항목(원고 '  - ') — 바로 위 항목 아래 들여 쓴 줄
-            h.append(re.sub(r'^<div class="li', '<div class="li l2', lecparse.render_item(v, ctx), count=1))
+            h.append(re.sub(r'^<div class="li', '<div class="li l2' + (' nsec' if nsec else ''), lecparse.render_item(v, ctx), count=1))
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'T':

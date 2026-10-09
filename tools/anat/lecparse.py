@@ -58,11 +58,45 @@ def _note_marks(s):
         if end < 0: out.append(s[i:j] + s[j + 3:]); break
         out.append(s[i:j] + NOTE_O + s[j + 3:end] + NOTE_C); i = end + 1
     return ''.join(out)
+def _srcn_start(s):
+    """10-09 사용자 '필기표시를 문장의 앞에만' — '(필기)'·'(25 필기)'(✍ 끝 표시, {n:} 밖)는 그 필기 문장 앞 ✍로: 앞 라벨·앞 문장·앞 필기 구간 뒤부터 그 표시까지를 필기 구간으로 감쌈(글자 그대로).
+    라벨 꼴('이유(필기): …' — 뒤가 콜론)은 그대로(✍가 이미 내용 앞)"""
+    if '필기)' not in s: return s
+    for m in reversed(list(SRCN.finditer(s))):
+        if re.match(r'\s*[:：]', s[m.end():]): continue
+        if s.rfind('\ue010', 0, m.start()) > s.rfind('\ue011', 0, m.start()): continue   # 작은 표를 펼친 줄의 열 이름(만나는 봉합(필기)) = 라벨
+        o, c = s.rfind(NOTE_O, 0, m.start()), s.rfind(NOTE_C, 0, m.start())
+        if o > c: continue   # 이미 {n:} 안
+        st = c + 1 if c >= 0 else 0
+        prev = [x.end() for x in SRCN.finditer(s, st, m.start())]
+        if prev: st = prev[-1]
+        lb = MLAB.match(s[st:])
+        if lb and not SRCN.search(lb.group(1)): st += len(lb.group(1))
+        for i, ch, d in _depth_iter(s):
+            if st <= i < m.start() and d == 0 and (s.startswith('. ', i) and not ABBR.search(s[max(0, i - 8):i + 1]) or s.startswith(' / ', i) or s.startswith(' — ', i)): st = i + (2 if s[i] == '.' else 3)
+        while st < m.start() and s[st] == ' ': st += 1
+        if m.start() - st < 2 or s.count('{', st, m.start()) != s.count('}', st, m.start()) or s.count('==', st, m.start()) % 2 or s.count('**', st, m.start()) % 2: continue
+        s = s[:st] + NOTE_O + s[st:m.end()] + NOTE_C + s[m.end():]
+    return s
+_NTB_JOSA = re.compile(r'^(?:은|는|이|가|을|를|와|과|로|으로|에|에서|의|도|만|이나|나|처럼|보다|부터|까지|라|이라|란|인|일)(?:[\s.,)]|$)')
+def _ntw_close(h):
+    """필기 구간 뒤에 강의 내용이 같은 줄로 이어지면 줄을 바꿈(10-09 '필기로 착각하지 않도록') — 뒤가 문장부호·인용 칩뿐이거나 조사로 이어지는 문장이면 그대로"""
+    parts = h.split(NOTE_C); out = parts[0]
+    for k, rest in enumerate(parts[1:]):
+        nxt = re.split(r'</?(?:td|th|tr|li|ul|ol|div|p|table)\b|<br\b', rest.split(NOTE_O)[0])[0]   # 같은 칸·같은 줄 안에서만 봄
+        t = html.unescape(re.sub(r'<[^>]+>', '', re.sub(r'<button\b.*?</button>', '', nxt, flags=re.S)))
+        core = re.sub(r'^[\s.,;:·)\]}]+', '', t)
+        brk = len(re.sub(r'[\s.,;:·)\](}—–\-→=!?\'"“”…/]+', '', core)) >= 2 and not _NTB_JOSA.match(t.lstrip())
+        if brk:
+            m = re.match(r'^((?:\s|[.,;:·)\]]|</[^>]+>)*)', rest)
+            out += '</span>' + m.group(1) + '<br class="ntb">' + rest[m.end():]   # 글자(띄어쓰기 포함) 그대로
+        else: out += '</span>' + rest
+    return out
 def inline(s, ctx, first=True):
-    s = _note_marks(s)
+    s = _srcn_start(_note_marks(s))
     h = _inline0(s, ctx, first)
-    if NOTE_O in h or NOTE_C in h:   # 글자는 그대로 — 표시는 CSS(::before/::after ✍)라 형광펜·플래시카드 글자에 안 섞임
-        h = h.replace(NOTE_O, '<span class="ntw" title="필기">').replace(NOTE_C, '</span>')
+    if NOTE_O in h or NOTE_C in h:   # 글자는 그대로 — 표시는 CSS(::before ✍, 10-09 앞에만)라 형광펜·플래시카드 글자에 안 섞임
+        h = _ntw_close(h.replace(NOTE_O, '<span class="ntw" title="필기">'))
     return h
 def _inline0(s, ctx, first=True):
     out = []; core = ctx.get('RED'); kc = _kcls(core) if core is not None else None

@@ -1916,7 +1916,9 @@ details.ab.chk>ul>li{padding:5px 0}
 b.mlab{font-weight:700;color:inherit}
 /* 10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} 구간 앞뒤 ✍(글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) */
 .ntw::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-right:3px;font-weight:400}
-.ntw::after{content:"✍";font-size:calc(11px*var(--fs));color:var(--faint);margin-left:2px;font-weight:400}
+/* 10-09 사용자 '필기표시를 문장의 앞에만' — 끝 ✍ 없음 · 필기 뒤에 강의 내용이 같은 줄로 이어지면 줄바꿈(br.ntb) · ✍ 이해 상자·필기 소제목 아래 항목은 머리 ✍ 하나로 */
+.ntw::after{content:none}
+.und .ntw::before,.und .srcn::after,.li.nsec .ntw::before,.li.nsec .srcn::after{content:none}.und br.ntb,.li.nsec br.ntb{display:none}
 .ntw .srcn::after{content:none}
 .srch+.ntw::before{content:none}
 .c-mem span.klh,.lrec span.klh,.fc span.klh{font-weight:700}
