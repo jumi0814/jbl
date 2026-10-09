@@ -41,7 +41,7 @@ M: 함정(24년 객관식): ⚠ '사람의 눈은 380-780 {r:마이크로미터}
 
 ## Spectral Power Distribution (SPD) ★ | 빛의 속성 = 파장별 세기 그래프 | 6-9 | 기출 24·23·22·21 · 시험 예고 | jb=Q28
 > {n:빨간 빛에 빨간 파장만 있는 게 아니다} — {n:모든 파장이 섞여 있고 가장 센 파장의 색으로 보이며, 그 세기를 그린 것이 SPD}
-= SPD: x축 = {r:Wavelength λ (nm)}(파장) / y축 = {r:Relative radiant power}(세기) — 조명의 특성을 나타냄
+= SPD: x축 = {r:Wavelength λ (nm)}(파장) / y축 = {r:Relative radiant power}(세기) — {n:조명의 특성을 나타냄}
 # SPD란
 - **Spectral power distribution (SPD)**: {n:특정한 빛이 {r:파장별로 얼마나 세게} 들어 있느냐에 대한 그래프(필기)}.
 - {n:빛의 속성을 알기 위해서는 파장별 세기를 알아야 하고, 그래프로 표현하는 것이 중요(필기)}.
@@ -97,10 +97,10 @@ P: "이 중에서 '반사'를 아는 것이 중요해요"(읽어주심).
 F: 10=사람의 치아는 이 모든 특성이 섞여 있어 복잡함
 # 정반사 vs 난반사
 | | Specular reflection (정반사) | Diffuse reflection (난반사) |
-| 방향 | {r:입사각 = 반사각} | 모든 방향으로 빛이 나감 |
-| 보이는 것 | 원래 빛(조명)이 그대로 — {r:광택}에 가까운 개념 | 특정 파장이 일으키는 난반사 → 색 |
+| 방향 | {n:{r:입사각 = 반사각}} | {n:모든 방향으로 빛이 나감} |
+| 보이는 것 | {n:원래 빛(조명)이 그대로 — {r:광택}에 가까운 개념} | {n:특정 파장이 일으키는 난반사 → 색} |
 | {n:예(필기)} | 거울 — 실제로는 검은색인데 모두 정반사를 일으켜 색이 아니라 빛을 인지 | 세상 모든 물질은 거의 다 난반사 → 그래서 색을 볼 수 있음 |
-| 색 분석 시 | {r:없애야 함} | 측정 대상 |
+| 색 분석 시 | {n:{r:없애야 함}} | {n:측정 대상} |
 - {n:둘은 동시에 일어나지만 {r:난반사}가 중요하다(필기)}.
 - {n:우리가 보는 물체의 색상은 정반사가 아닌 {r:난반사}에 의한 것 — 굴절과 산란에 의해 나타난다(필기)}.
 P: "색상 - diffuse reflection 난반사에 의한 것!!! 정반사는 색상이 아님! 중요"(필기, 별표 2개).
@@ -124,9 +124,9 @@ M: 측정: {n:색을 잴 때는 {r:정반사}를 없앤다} → integrating sphe
   - 산란을 일으키기 위해 쓰는 것들 → {r:titanium dioxide}, {r:calcium carbonate}...
 - {n:이 두 가지가 아니면 투명하게 통과하는 것(필기)}.
 | 큐브 | 일어나는 일 | 보이는 모습 |
-| 검은 큐브 | 모든 파장을 {r:흡수} | 검게 보임 — 흡수된 빛은 열로 |
-| 흰 큐브 | 모든 파장을 {r:산란} | 희게 보이며 투과도는 없음(투명 ✗) — 하얗게 하면 뜨거워지지 않음 |
-| 빨간 큐브 | {r:적색}만 산란, 나머지는 흡수 | 적색 — 흡수하고 남은 빛이 보이는 것 |
+| 검은 큐브 | {n:모든 파장을 {r:흡수}} | {n:검게 보임 — 흡수된 빛은 열로} |
+| 흰 큐브 | {n:모든 파장을 {r:산란}} | {n:희게 보이며 투과도는 없음(투명 ✗) — 하얗게 하면 뜨거워지지 않음} |
+| 빨간 큐브 | {n:{r:적색}만 산란, 나머지는 흡수} | {n:적색 — 흡수하고 남은 빛이 보이는 것} |
 - {n:계면에 의해 산란·굴절이 일어남 → filler를 넣으면 투명도가 떨어짐(필기)}.
 - {n:표면이 거칠거나 기포가 있으면 빛의 굴절로 산란 → {r:etching}하면 표면이 거칠어져 하얗게 됨({r:chalky white}) → 명도가 올라가 색상에 영향(필기)}.
 F: 13=흡수하면 검게 산란하면 희게 적색만 산란하면 적색
@@ -224,7 +224,7 @@ M: 24년 '옳은 것' = 채도를 높이려면 {r:해당 색상을 더 첨가} /
 = Color Contrast = {r:Spatial}({n:착시}) · {r:Temporal}({n:보색 잔상}) / Color Constancy = {n:{r:뇌가 조명을 보정}(white balance)}
 # Color contrast — 공간적·시간적
 | | Spatial (공간적 대조) | Temporal (시간적 대조) |
-| 뜻 | {r:착시} — 옆에 있는 색의 영향 | 앞서 오래 본 색의 영향 — {r:눈의 적응}에 의함 |
+| 뜻 | {n:{r:착시} — 옆에 있는 색의 영향} | {n:앞서 오래 본 색의 영향 — {r:눈의 적응}에 의함} |
 | {n:예(필기)} | 옆에 초록색이 있으면 노란색이 약간 붉게, 옆에 빨간색이 있으면 노란색에 약간 초록끼(초록 바탕·빨강 바탕 위 같은 노랑) | 빨간 색을 한참 보다가 보면 세상이 녹색 / 초록색을 한참 보다 눈 감으면 빨간색 |
 U: 한 학번 필기는 공간적 대조를 반대로(좌측 푸르스름·우측 붉으스름) 적음 — 두 필기는 위 표와 같음.
 U: 같은 이름이 뒤에 또 나옴 — p.98 Spatial contrast는 "가까이 있을수록 밝게 느낀다"(필기), p.99 Successive contrast는 여기 Temporal과 같은 것(필기).
@@ -258,10 +258,10 @@ P: 간단히 넘어가심 · "재미로 한 번 보죠"(필기).
 F: 27=많은 색맹이 적록색맹
 # 종류 — 추상체에 변이가 생겨 색맹
 | 종류 | 안 보이는 색 | {n:감도 그래프(필기)} | 보이는 세상 |
-| {r:Protanope} | {r:적색} | L 곡선이 M 쪽으로 이동해 겹침(빨강이 이동) | 적색이 녹색으로 — 적색이 빠짐 |
-| {r:Deuteranope} | {r:녹색} | M 곡선이 L 쪽으로 이동해 겹침(초록이 이동) | 녹색이 적색으로 |
-| {r:Tritananope}(p.35·38 표기는 Tritanope) | {r:청색} | S 곡선이 없음 | 하늘이 약간 {r:녹색}으로 — 까맣게 보이는 것 ✗(파란 peak 다음으로 큰 peak가 녹색) |
-| {r:Rod Monochromat} | 전부 | 추상체 3종 모두 기능 ✗ | 간상체로만 → 세상이 {r:흑백} · {n:색상을 제대로 보려면 밝기가 제대로 갖춰져야 한다(필기)} |
+| {r:Protanope} | {n:{r:적색}} | L 곡선이 M 쪽으로 이동해 겹침(빨강이 이동) | {n:적색이 녹색으로 — 적색이 빠짐} |
+| {r:Deuteranope} | {n:{r:녹색}} | M 곡선이 L 쪽으로 이동해 겹침(초록이 이동) | {n:녹색이 적색으로} |
+| {r:Tritananope}(p.35·38 표기는 Tritanope) | {n:{r:청색}} | S 곡선이 없음 | {n:하늘이 약간 {r:녹색}으로 — 까맣게 보이는 것 ✗(파란 peak 다음으로 큰 peak가 녹색)} |
+| {r:Rod Monochromat} | {n:전부} | 추상체 3종 모두 기능 ✗ | {n:간상체로만 → 세상이 {r:흑백}} · {n:색상을 제대로 보려면 밝기가 제대로 갖춰져야 한다(필기)} |
 - {n:Protanope·Deuteranope는 둘 다 적록색맹이지만 다르게 보이는 것(필기)}.
 F: 28=색맹은 3가지 종류, 29=정상 추상체 감도 그래프, 30=Protanope — 빨강이 이동, 32=Deuteranope — 초록이 이동, 33=Tritananope — 청색이 안 보임, 34=Protanope — 적색이 빠짐, 35=Tritanope — 파란 하늘이 약간 녹색으로, 36=Rod Monochromat — 세상이 흑백
 # 검사
@@ -420,10 +420,10 @@ M: 치아 색 범위 = {n:{r:매우 좁다}(좁쌀만)} / {n:회색조는 구분
 # 4 types of color measuring instruments
 - ① **Tristimulus colorimeters** ② **Spectroradiometers** ③ **Spectrophotometers** ④ **Digital cameras**.
 | 장비 | 원리 | 장점 | 단점 · 조건등색 |
-| Tristimulus colorimeter (색차계) | RGB 필터(셀로판지) → XYZ · 프리즘 ✗ | 간단 · 저렴 | 재현성 나쁨(detector 노화) · 조건등색 {r:측정 불가} |
-| Spectrophotometer (분광측색기) | integrating sphere + 프리즘(monochromator) · 시편에 대고 측정 | 정확 · 재현성 · 제일 많이 씀 · 색상 측정의 표준 | 비쌈 · 조건등색 {r:평가 가능} |
-| Spectroradiometer (TSR) | 프리즘 · 멀리서 현재 조명으로 | actual condition · cross-media(모니터·인쇄·액체) | position 주의 · 정밀도 약간↓ |
-| Digital camera | RGB 센서 · 필터 | 물체 전체를 이미지로 | RGB ≠ CIE XYZ(observer metamerism) · 카메라마다 달라 측정 장비로 ✗ |
+| Tristimulus colorimeter (색차계) | {n:RGB 필터(셀로판지) → XYZ · 프리즘 ✗} | 간단 · 저렴 | 재현성 나쁨(detector 노화) · 조건등색 {r:측정 불가} |
+| Spectrophotometer (분광측색기) | integrating sphere + 프리즘(monochromator) · {n:시편에 대고 측정} | 정확 · 재현성 · 제일 많이 씀 · 색상 측정의 표준 | {n:비쌈} · 조건등색 {r:평가 가능} |
+| Spectroradiometer (TSR) | {n:프리즘 · 멀리서 현재 조명으로} | actual condition · cross-media(모니터·인쇄·액체) | position 주의 · {n:정밀도 약간↓} |
+| Digital camera | RGB 센서 · 필터 | 물체 전체를 이미지로 | RGB ≠ CIE XYZ(observer metamerism) · {n:카메라마다 달라 측정 장비로 ✗} |
 F: 68=색상 측정 장비 4가지
 # Tristimulus colorimeter (색차계)
 - Fixed set of illumination and observer conditions (e.g., {r:CIE D65 and 1931 observer}).
@@ -446,7 +446,7 @@ M: 색차계 = 측정 불가 ↔ 분광측색기 = {r:평가 가능} / 예: {r:d
 
 ## Spectrophotometer · Spectroradiometer · Digital Camera | 분광측색기(표준) · TSR(cross-media) · 카메라(측정 ✗) | 71-78 | 조건등색 평가 · cross-media
 > 프리즘으로 분광하는 spectrophotometer가 표준(조건등색까지 평가) — 멀리서 재는 TSR은 모니터 색까지, 카메라는 측정 장비로 못 쓴다
-= Spectrophotometer = {r:Monochromator}(프리즘) + integrating sphere → {r:metamerism} 평가 · 표준 / TSR = {r:멀리서} · {r:cross-media} / Digital camera = {r:observer metamerism} → {n:측정 장비 ✗}
+= Spectrophotometer = {r:Monochromator}(프리즘) + integrating sphere → {r:metamerism} 평가 · 표준 / TSR = {n:{r:멀리서}} · {r:cross-media} / Digital camera = {r:observer metamerism} → {n:측정 장비 ✗}
 # Spectrophotometer (분광측색기) — 색상 측정의 표준
 - {r:Most widely used} for measuring {r:surface colors} — {n:제일 많이 쓰임(필기)}.
 - Ratio of the light reflected from a sample to that reflected from a **reference white**.
