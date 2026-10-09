@@ -41,6 +41,7 @@ def _kcls(core):
         return 'k k2'
     return f
 NOTE_O, NOTE_C = '\ue030', '\ue031'
+def _nl(s): return len(s) - 4 * s.count('{n:')   # 10-09 길이 기준은 필기 표시 {n:…} 글자를 빼고(표시를 넣어도 줄 나눔이 그대로)
 def _note_marks(s):
     """10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} = 필기 구간 → 짝 맞는 자리만 표시(짝이 없으면 표시 없이 글자만)"""
     if '{n:' not in s: return s
@@ -260,7 +261,7 @@ def split_enum(s):
     return None
 def split_lead(s):
     m = re.match(r'^([^:：=/]{2,46}?)\s*[:：]\s+(.+)$', s)
-    if m and len(m.group(2)) > 60 and not re.search(r'https?$', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'): return m.group(1), m.group(2)   # 10-08 괄호 안 콜론(…(필기: …)에서 머리를 자르지 않음
+    if m and _nl(m.group(2)) > 60 and not re.search(r'https?$', m.group(1)) and m.group(1).count('(') == m.group(1).count(')'): return m.group(1), m.group(2)   # 10-08 괄호 안 콜론(…(필기: …)에서 머리를 자르지 않음
     return None
 def _facts(parts): return len(parts) >= 2 and min(len(_plain(p).strip()) for p in parts) >= 4 and sum(1 for p in parts if re.search(r' = | → |: ', _plain(p))) * 2 >= len(parts)
 def segments(s, min_len=14):
@@ -269,14 +270,14 @@ def segments(s, min_len=14):
     if _facts(ft): return ft   # 10-04 줄바꿈 2차: ' / ' 조각이 사실 문장(=·→·:)이면 짧아도 나눔
     for sep, mn in ((' / ', min_len), ('; ', 20), (' · ', 22)):
         parts = split_top(s, sep)
-        if len(parts) >= 2 and min(len(p) for p in parts) >= mn and (sep == ' / ' or len(s) > 110): return parts
-    if len(s) > 190:  # 문장 단위
+        if len(parts) >= 2 and min(_nl(p) for p in parts) >= mn and (sep == ' / ' or _nl(s) > 110): return parts
+    if _nl(s) > 190:  # 문장 단위
         parts = sent_split(s)
         if len(parts) >= 2 and parts[0] and len(parts[0]) < 25 and len(parts) >= 3: parts = [parts[0] + ' ' + parts[1]] + parts[2:]
         if len(parts) >= 2 and min(len(p) for p in parts) >= 25: return parts
         parts = split_top(s, '; ')
         if len(parts) >= 2 and min(len(p) for p in parts) >= 25: return parts
-    if s.count('→') >= 5 and len(s) > 170:
+    if s.count('→') >= 5 and _nl(s) > 170:
         parts = [p.strip() for p in split_top(s, ' → ')]
         if len(parts) >= 5: return ['→'] + parts
     return None
@@ -409,7 +410,7 @@ def render_block(v, ctx, depth=0):
         ls_ = sorted(_L(x) for x in parts)
         fl = _is_flow(parts) and not (_IP[0] and ls_[len(ls_) // 2] > 22)   # ux3 N1 🔑 상자·칸에서는 라벨 사실마다 줄(K2) — 짧은 나열(중앙값 22자 이하, ux2 D09)은 가로 흐름 그대로
         return _list_html(parts, ctx, depth, 'ul', 'kflow lab' if fl else 'klist lab', fmt=lab)
-    if len(v) > 90:
+    if _nl(v) > 90:
         sp = split_lead(v)
         if sp and depth <= 1:
             lead, rest = sp; inner = segments(rest)
@@ -442,7 +443,7 @@ def key_split(v):
     else:
         top = split_top(v)
         if len(top) >= 2 and sum(1 for p in top if LBL.match(p)) >= 2: pieces = _lab_merge(_rebalance(top))
-        elif len(v) > 90 and split_lead(v):
+        elif _nl(v) > 90 and split_lead(v):
             lead, rest = split_lead(v); inner = segments(rest)
             if not inner:
                 pr = split_top(rest)
@@ -453,7 +454,7 @@ def key_split(v):
             ps = segments(v)
             if ps and ps[0] != '→': pieces = _rebalance(ps)
     if not pieces or len(pieces) < 2: return None
-    if not (len(pieces) > 4 or len(v) > 180): return None
+    if not (len(pieces) > 4 or _nl(v) > 180): return None
     return pieces[0], pieces[1:]
 def render_key_rest(pieces, ctx):
     """상자 밖으로 내린 🔑 조각: '라벨: 내용'은 소제목(h4.sh) + 항목, 나머지는 항목 — ux2 D01 div.krest로 감쌈(압축 보기에서도 보임)"""
@@ -479,7 +480,7 @@ def render_item(v, ctx, cont=None):
             items = _rebalance([v[a:b].strip().rstrip('·/,;').strip() for a, b in zip(idx, idx[1:] + [len(v)])])
             body = _list_html(items, ctx, 0, 'ol', 'circ').replace('<ol class="circ', f'<ol start="{cont}" class="circ', 1)
             return f'<div class="li nolead cont">{body}</div>'
-    body = render_block(v, ctx) if (len(v) > 110 or _ncirc(v) >= 3 or _facts(split_top(v, ' / '))) else inline(v, ctx)   # 10-04 짧은 줄도 ' / ' 사실 조각이면 줄마다
+    body = render_block(v, ctx) if (_nl(v) > 110 or _ncirc(v) >= 3 or _facts(split_top(v, ' / '))) else inline(v, ctx)   # 10-04 짧은 줄도 ' / ' 사실 조각이면 줄마다
     return f'<div class="li{" nolead" if body.startswith("<ol") or body.startswith("<ul") else ""}">{body}</div>'
 def _eol(x, ctx, mn=40):
     """10-05 사용자 '핵심 및 암기탭에서도 줄바꿈이랑 들여쓰기, 넘버링 등을 적극적으로' — ①②③ 3개↑ 나열이 길면(40자↑) 머리 + 번호 목록(짧으면 None → 한 줄 그대로)"""
@@ -496,7 +497,7 @@ def render_recall(x, ctx):
         m = MLAB.match(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게
         if m and m.group(2).strip(): return f'<b class="mlab">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
         return inline(r, ctx)
-    if not ((len(rows) >= 2 and len(x) > 60 and min(len(r) for r in rows) >= 14) or _facts(rows)): return f'<li>{R(x)}</li>'   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
+    if not ((len(rows) >= 2 and _nl(x) > 60 and min(_nl(r) for r in rows) >= 14) or _facts(rows)): return f'<li>{R(x)}</li>'   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
     # 10-08 사용자 '자가골 채취: 구내 … / 구외 …가 다른 구분된 내용처럼 보인다' — 라벨(…:) 조각 뒤 라벨 없는 조각 = 그 라벨 아래 이어지는 내용 → 굵은 머리 + 들여 쓴 하위 목록(ul.msub · 글자 그대로)
     groups = []
     for r in rows:

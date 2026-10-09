@@ -179,8 +179,8 @@ def _pmerge(ps):
     return out
 def astruct(s, lvl=0):
     s = s.strip()
-    if lvl > 5 or len(s) <= 190:
-        if (len(s) > 150 or lecparse._facts(lecparse.split_top(s, ' / '))) and lvl == 0: return lecparse.render_block(s, ctx)   # 10-04 짧아도 ' / ' 사실 조각이면 줄마다
+    if lvl > 5 or lecparse._nl(s) <= 190:
+        if (lecparse._nl(s) > 150 or lecparse._facts(lecparse.split_top(s, ' / '))) and lvl == 0: return lecparse.render_block(s, ctx)   # 10-04 짧아도 ' / ' 사실 조각이면 줄마다
         return _lbl(s) or lecparse.inline(s, ctx)
     sub = lambda ps: _ul([astruct(x, lvl + 1) for x in _pmerge(lecparse._rebalance(ps))])
     blk = lambda ps: ''.join(f'<div class="kp">{astruct(x, lvl + 1)}</div>' for x in _pmerge(lecparse._rebalance(ps)))   # 문장·대시·쉼표로 나눈 조각은 점 없이 줄로
@@ -260,13 +260,13 @@ def _inl_html(x):
 def struct_item(x):
     """대조(A)·주변부(M)·메모(N) 항목(HTML): 150자를 넘거나 ' / '가 3개 이상이면 astruct로 점 목록화하고 인용 칩은 끝의 .cites 줄로 모음"""
     plain = html.unescape(re.sub(r'<[^>]+>', '', CITE_BTN.sub('', x)))
-    if len(plain) <= 150 and plain.count(' / ') < 3: return _inl_html(x) if re.search(r'\{r:|\{n:|==|\*\*|필기\)', plain) else x   # 10-09 {n:}·(필기)도 렌더(✍ 앞)
+    if lecparse._nl(plain) <= 150 and plain.count(' / ') < 3: return _inl_html(x) if re.search(r'\{r:|\{n:|==|\*\*|필기\)', plain) else x   # 10-09 {n:}·(필기)도 렌더(✍ 앞)
     cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x); keep = []   # 문장마다 같은 쪽을 인용한 원고 — .cites 줄에는 한 번만
     def ph(m): keep.append(m.group(0)); return f'\ue000{len(keep) - 1}\ue001'
     body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
     if '<' in body: return x
     raw = re.sub(r'\s+', ' ', html.unescape(body)).strip()
-    r = astruct(raw) if len(raw) > 190 else lecparse.render_block(raw, ctx)
+    r = astruct(raw) if lecparse._nl(raw) > 190 else lecparse.render_block(raw, ctx)
     r = re.sub('\ue000(\\d+)\ue001', lambda m: keep[int(m.group(1))], r)
     return r + (f'<div class="cites">{" ".join(cites)}</div>' if cites else '')
 def _top_lis(h):
@@ -783,7 +783,7 @@ def lec_card(L, j, c):
         elif t == 'E':
             exams.append(v); exbuf.append(v)
         elif t == 'P': h.append(f'<div class="co c-prof"><div class="ct">💬 교수님 강조</div>{lecparse.render_key(v, ctx)}</div>')
-        elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if (len(v) > 150 or lecparse._facts(lecparse.split_top(v, " / "))) else lecparse.inline(v, ctx)}</div>')
+        elif t == 'U': h.append(f'<div class="und"><span class="ui">✍ 이해</span>{lecparse.render_block(v, ctx) if (lecparse._nl(v) > 150 or lecparse._facts(lecparse.split_top(v, " / "))) else lecparse.inline(v, ctx)}</div>')
     flush_ex()
     if c['recall']:   # 안내문은 강의의 첫 ⚡ 블록에만(U27 — 카드마다 반복하지 않음)
         tip = '' if MEMTIP.get(k) else ' <small>빨간 글씨를 자동 빈칸으로 가리고 떠올리기</small>'; MEMTIP[k] = 1
