@@ -17,7 +17,7 @@ for s in $sids; do
 done
 $PY tools/rehub.py 2>&1 | tail -1 | cut -c1-80 | tee -a $L
 say "== verify";        $PY tools/verify.py 2>&1 | grep -E 'FAIL|RESULT' | tee -a $L
-say "== check_lec";     for s in $SIDS; do printf "%s ✗%s " $s "$($PY tools/check_lec.py $s 2>&1 | grep -c '✗')"; done | tee -a $L; echo | tee -a $L
+say "== check_lec";     for s in $SIDS; do o=$($PY tools/check_lec.py $s 2>&1); printf "%s ✗%s 경고 %s @UPD없음 %s " $s "$(echo "$o" | grep -c '✗')" "$(echo "$o" | grep -c '^   · ')" "$(echo "$o" | grep -c '@UPD 없음')"; done | tee -a $L; echo | tee -a $L   # 경고 수는 정보(기준과 견줌) · @UPD없음 = 26 갱신 강의 표시 빠짐(10-10)
 say "== check_years";   $PY tools/check_years.py 2>&1 | grep '^== ' | tee -a $L
 say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail -3 | tee -a $L
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | grep '^== '; done | tee -a $L
@@ -32,14 +32,14 @@ for s in $SIDS; do $PY tools/dump_jb.py $s >/dev/null 2>&1; $PY tools/dump_break
 if [ $UI = 1 ]; then
   say "== tests"
   # 표시·북마크 테스트는 file:// 대신 로컬 http로(JBL_HTTP=1 — file://은 Chromium이 가끔 localStorage를 비워 거짓 실패). ux3_compat만 file://
-  for t in legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap; do
+  for t in legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap ux7_u26; do
     [ -f tools/tests/$t.py ] || continue
-    say "$t $(JBL_HTTP=1 $PY tools/tests/$t.py 2>&1 | grep -E 'RESULT|FAIL' | tr '\n' ' ' | cut -c1-300)"
+    say "$t $(JBL_HTTP=1 $PY tools/tests/$t.py 2>&1 | grep -E 'RESULT|FAIL|lost rate|LOST_GONE [0-9]' | tr '\n' ' ' | cut -c1-300)"
   done
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
-say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
+say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
 grep -E '^합계: 기록 이어짐' $L | awk -F'[(%]' '{ if ($2+0 < 95) print "  ✗ 플래시카드 기록 이어짐 95% 미만:", $0 }' >> work/_tmp/full_check.fail
 cat work/_tmp/full_check.fail | tee -a $L   # 요약은 로그 끝에도(10-09 — 기준값은 SKILL G1)
 say "ALLDONE"

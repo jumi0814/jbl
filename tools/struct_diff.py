@@ -1,5 +1,5 @@
 """구조만 바꿨는지 검사(10-08 사용자 '내용은 절대 건드리지 말고 구조만 정돈') — 원고(lec_*.txt·annot.txt·tables.txt·pred.txt)의 글자를
-기준본(git, 기본 HEAD)과 비교한다. 띄어쓰기·구분 기호(' / '·' · '·•·①~⑳·콜론)·줄 머리(M: · - · = · K: …)·줄 나눔·조각 순서는 무시하고,
+기준본(git, 기본 HEAD)과 비교한다. 띄어쓰기·구분 기호(' / '·' · '·' — '·•·①~⑳·콜론)·줄 머리(M: · - · = · K: …)·줄 나눔·조각 순서는 무시하고,
 나머지 글자 수(글자마다 개수)가 하나라도 다르면 ✗ — 낱말을 바꾸거나 빼거나 더한 것.
   .venv/bin/python tools/struct_diff.py <SID> [--ref <커밋>]   → 파일마다 ✓/✗ · ✗이면 늘어난·줄어든 글자와 바뀐 줄 몇 개"""
 import os, sys, re, subprocess, collections, difflib
@@ -8,7 +8,7 @@ a = sys.argv[1:]; ref = 'HEAD'
 if '--ref' in a: i = a.index('--ref'); ref = a[i + 1]; del a[i:i + 2]
 S = a[0].upper(); sid = S.lower(); D = os.path.join(J.TOOLS, sid)
 PRE = re.compile(r'^\s*(?:[A-Z]{1,2}\d?:|=|-|#{1,3}|@[A-Z]+)\s?')
-STRUCT = re.compile(r'[\s/·•①-⑳:：]+')
+STRUCT = re.compile(r'[\s/·•①-⑳:：—]+')   # '—'(D2가 ' — ' → ' / '로 바꾸는 구분 기호 — 10-10)
 def norm(t): return STRUCT.sub('', ''.join(PRE.sub('', l) for l in t.split('\n')))
 bad = 0
 for f in sorted(os.listdir(D)):

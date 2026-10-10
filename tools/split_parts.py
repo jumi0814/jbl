@@ -6,7 +6,7 @@
 import os, sys, re, importlib.util
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
-from merge_parts import blocks, join
+from merge_parts import blocks, join, write_stamp
 
 def main(sid, force):
     d = os.path.join(J.TOOLS, sid.lower()); pd = J.work(sid, 'parts'); os.makedirs(pd, exist_ok=True)
@@ -29,6 +29,7 @@ def main(sid, force):
         if os.path.exists(p) and not force: print(f'  있음(건너뜀 — --force로 덮어씀): {os.path.relpath(p, J.ROOT)}'); continue
         t = join([], b); t = t.replace('\n#TBL', '\n\n#TBL') if kind == 'tables' else t
         open(p, 'w', encoding='utf-8').write(t); n += 1; print(f'  {kind}_{k}.txt  {len(b)}블록')
+    if force or n: write_stamp(sid)   # merge_parts가 낡은 조각을 알아보게(10-10)
     print(f'{sid}: 조각 {n}개 씀 → {os.path.relpath(pd, J.ROOT)}')
 
 if __name__ == '__main__':
