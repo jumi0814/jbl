@@ -75,12 +75,22 @@ async def main():
         await pg.reload(); await pg.wait_for_timeout(2500)
         st = await pg.evaluate("document.querySelectorAll('.nm-it')[2].querySelector('.nm-s .nm-c').innerHTML")
         ok('애디슨 첫 줄' in st and '<table>' in st and '<img' in st, "새로고침 뒤 스토리·표·그림 그대로")
+        # Word에서 복사한 글 붙여넣기 — 굵게·글자색·형광펜(mso-highlight)·표는 남고 취소선은 글자만
+        it4 = await pg.evaluate("document.querySelectorAll('.nm-it')[3].dataset.id")
+        await pg.evaluate("document.querySelectorAll('.nm-it')[3].querySelector('.nm-s .nm-c').scrollIntoView({block:'center'})")
+        await pg.evaluate("document.querySelectorAll('.nm-it')[3].querySelector('.nm-s .nm-c').click()"); await pg.wait_for_timeout(200)
+        await pg.keyboard.press('Control+End')
+        await pg.evaluate("""(()=>{const dt=new DataTransfer();dt.setData('text/html','<html><body><!--StartFragment--><p class=MsoNormal><b>워드굵게</b> <span style="color:#C00000;mso-highlight:yellow">빨강노랑</span> <s>취소선글자</s><o:p></o:p></p><table class=MsoTableGrid><tr><td><p>칸A</p></td><td><p>칸B</p></td></tr></table><!--EndFragment--></body></html>');dt.setData('text/plain','워드굵게 빨강노랑');const el=document.activeElement;el.dispatchEvent(new ClipboardEvent('paste',{clipboardData:dt,bubbles:true,cancelable:true}));})()""")
+        await pg.wait_for_timeout(1200); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(300)
+        r4 = await pg.evaluate(f"localStorage.getItem('jblhub.v1.num.i.OMED.{it4}')") or ''
+        ok('<b>워드굵게</b>' in r4 and 'color:#C00000' in r4 and 'background-color:#FFFF00' in r4 and '칸A' in r4 and '<table>' in r4 and '취소선글자' in r4 and '<s>' not in r4 and 'line-through' not in r4 and 'Mso' not in r4, f"Word 붙여넣기: 서식·표 유지 · 취소선은 글자만 · Word 꾸밈(class) 없음 {len(r4)}자")
         # 문제 수정 → 원본
         await pg.locator('.nm-it').nth(0).locator('.nm-q [data-act=edit]').click(); await pg.wait_for_timeout(200)
         await pg.keyboard.press('End'); await pg.keyboard.type(' (내 메모)'); await pg.wait_for_timeout(1000); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(300)
         seed0 = await pg.evaluate("JBLNUM_SEED.OMED.items[0].q")
         ok(await pg.evaluate("document.querySelectorAll('.nm-it')[0].querySelector('.nm-chip.ed')?.textContent") == '문제 고침' and '(내 메모)' not in seed0, "문제 '수정' = 작업본만(원본 seed 그대로) · '문제 고침' 표시")
         await pg.locator('.nm-it').nth(0).locator('[data-act=more]').click(); await pg.click('.nm-menu [data-mi=orig]'); await pg.wait_for_timeout(300)
+        if await pg.evaluate("!!document.querySelector('[data-ask]')"): await pg.click('[data-ask="1"]'); await pg.wait_for_timeout(300)   # 화면 안 확인 창(브라우저 confirm 안 씀)
         ok(await pg.evaluate("document.querySelectorAll('.nm-it')[0].querySelector('.nm-chip.ed')") is None and '(내 메모)' not in await pg.evaluate("document.querySelectorAll('.nm-it')[0].querySelector('.nm-q').innerText"), "'원본으로' 되돌리기")
         # 완성·상태
         c0 = await pg.evaluate("document.querySelector('[data-stf=\"2\"] b').textContent")

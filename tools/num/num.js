@@ -556,7 +556,8 @@ function itemAct(k, it, btn) {
   if (k === 'lec') { lecPick(btn, l => { it.lec = l; touch(it); put(it); render({ flash: it.id }); }); return; }
   if (k === 'copy') { const n = newItem({ s: it.s, lec: it.lec, q: it.q, a: it.a, st: it.st, note: it.note, tags: it.tags.slice(), yrs: it.yrs.slice(), src: it.src.map(s => Object.assign({}, s)), o: it.o + 0.5 }); renumber(); render({ flash: n.id }); H.toast('복사했어요 — 바로 아래에 새 문제로'); return; }
   if (k === 'prev') { const p = it.prev; const cur = it[p.f]; it[p.f] = p.h; it.prev = { f: p.f, h: cur, at: now() }; touch(it); it._ty = null; put(it); rerenderItem(it); H.toast('되돌렸어요 — 한 번 더 누르면 다시 앞으로'); return; }
-  if (k === 'orig') { if (!confirm('이 문제의 문제·답안을 원본 글로 되돌릴까요? (넘버링 스토리는 그대로)')) return; const oq = it.q, oa = it.a; if (it.kind === 'seed') { it.q = it.base.q; it.a = it.base.a; } else { if (it.q0 != null) { it.q = it.q0; it.q0 = undefined; } if (it.a0 != null) { it.a = it.a0; it.a0 = undefined; } } it.prev = oq !== it.q ? { f: 'q', h: oq, at: now() } : oa !== it.a ? { f: 'a', h: oa, at: now() } : it.prev; touch(it); it._ty = null; put(it); rerenderItem(it); H.toast('원본으로 되돌렸어요 — ⋯ 메뉴 \'마지막 수정 전으로\'로 고친 글을 다시 볼 수 있어요'); return; }
+  if (k === 'orig') { ask('이 문제의 문제·답안을 원본 글로 되돌릴까요?\n(넘버링 스토리는 그대로예요)', { ok: '원본으로' }).then(y => { if (y) itemAct('orig!', it, btn); }); return; }
+  if (k === 'orig!') { const oq = it.q, oa = it.a; if (it.kind === 'seed') { it.q = it.base.q; it.a = it.base.a; } else { if (it.q0 != null) { it.q = it.q0; it.q0 = undefined; } if (it.a0 != null) { it.a = it.a0; it.a0 = undefined; } } it.prev = oq !== it.q ? { f: 'q', h: oq, at: now() } : oa !== it.a ? { f: 'a', h: oa, at: now() } : it.prev; touch(it); it._ty = null; put(it); rerenderItem(it); H.toast('원본으로 되돌렸어요 — ⋯ 메뉴 \'마지막 수정 전으로\'로 고친 글을 다시 볼 수 있어요'); return; }
   if (k === 'open') { const s0 = it.src.find(s => s.t === 'jb' || s.t === 'pred'); jumpOrig(s0); return; }
   if (k === 'del') { it.del = true; touch(it); put(it); S.sel.delete(it.id); render({ pos: topItem() }); H.toast('목록에서 뺐어요 — 맨 아래 \'목록에서 뺀 문제\'에서 다시 넣을 수 있어요', { level: 'result', action: { label: '되돌리기', fn: () => { it.del = false; touch(it); put(it); render({ flash: it.id }); } } }); }
 }
@@ -572,10 +573,10 @@ function moveItem(it, d) {
 function lecPick(btn, cb) {
   const L = S.lecs.filter(l => l.k).map(l => [l.k, l.t]).concat([['__new', '+ 새 강의 만들기…'], ['', '강의 미분류']]);
   const m = menuOpen(btn, L); if (!m) return;
-  m.addEventListener('click', e => { const b = e.target.closest('[data-mi]'); if (!b) return; menuClose(); let k = b.dataset.mi; if (k === '__new') { k = newLecture(); if (k == null) return; } cb(k); });
+  m.addEventListener('click', async e => { const b = e.target.closest('[data-mi]'); if (!b) return; menuClose(); let k = b.dataset.mi; if (k === '__new') { k = await newLecture(); if (k == null) return; } cb(k); });
 }
-function newLecture(name) {
-  const t = name != null ? name : prompt('새 강의 이름');
+async function newLecture(name) {
+  const t = name != null ? name : await ask('새 강의 이름', { input: '', ph: '예: Space closure', ok: '만들기' });
   if (!t || !t.trim()) return null;
   const x = idx(S.sj); x.ul = x.ul || []; const k = 'U' + now().toString(36); x.ul.push({ k, t: t.trim() }); idxPut(S.sj, x); S.lecs = lectures(S.sj, S.seed); return k;
 }
@@ -590,7 +591,7 @@ function detOpen(it) {
   d.addEventListener('click', e => { const b = e.target.closest('[data-det]'); if (!b) return; const k = b.dataset.det, i = +b.dataset.i;
     if (k === 'close') { d.remove(); return; }
     if (k === 'open') { jumpOrig(it.src[i]); return; }
-    if (k === 'unsrc') { if (!confirm('이 출처 연결을 끊을까요? (원본 문제는 그대로)')) return; it.src.splice(i, 1); touch(it); put(it); refreshItem(it, true); return; }
+    if (k === 'unsrc') { ask('이 출처 연결을 끊을까요? (원본 문제는 그대로)', { ok: '끊기' }).then(y => { if (!y) return; it.src.splice(i, 1); touch(it); put(it); refreshItem(it, true); }); return; }
     if (k === 'srcadd') { const inp = d.querySelector('[data-det-in=srcadd]'); const v = inp.value.trim(); if (!v) return; it.src.push({ t: 'user', s: it.s, lab: v, yrs: parseYrs(v) }); it.yrs = [...new Set(it.yrs.concat(parseYrs(v)))].sort((p, q) => q - p); touch(it); put(it); refreshItem(it, true); return; }
     if (k === 'rvok' || k === 'rvundo') { it.rvok = k === 'rvok'; touch(it); put(it); refreshItem(it, true); applyFilter(); } });
 }
@@ -616,6 +617,18 @@ function dlg(title, body, foot) {
   return ov;
 }
 function dlgClose() { $$('.nm-ov').forEach(o => o.remove()); document.body.style.overflow = ''; S.formEd = null; }
+/* 화면 안 확인·입력 창 — 브라우저 confirm/prompt는 쓰지 않음(미리보기 틀·앱 보기에서 막힘) · Enter = 확인 · Esc = 취소 */
+function ask(msg, o) {
+  o = o || {}; const R = $('#numv'); if (!R) return Promise.resolve(o.input != null ? null : false);
+  return new Promise(res => {
+    const box = document.createElement('div'); box.className = 'nm-ov'; box.style.zIndex = 90; box.setAttribute('role', 'alertdialog'); box.setAttribute('aria-modal', 'true');
+    box.innerHTML = `<div class="nm-dlg" style="width:min(520px,100%)"><div class="bd"><div style="white-space:pre-wrap;font-size:15px;line-height:1.55">${esc(msg)}</div>${o.input != null ? `<input type="text" data-ask-in="1" value="${esc(o.input)}" placeholder="${esc(o.ph || '')}" aria-label="${esc(o.ph || msg)}">` : ''}</div><footer><span style="flex:1"></span>${o.only ? '' : `<button type="button" class="nm-btn" data-ask="0">${esc(o.no || '취소')}</button>`}<button type="button" class="nm-btn pri" data-ask="1">${esc(o.ok || '확인')}</button></footer></div>`;
+    const fin = v => { box.remove(); res(v); };
+    box.addEventListener('click', e => { const b = e.target.closest('[data-ask]'); if (b) { const inp = box.querySelector('[data-ask-in]'); fin(b.dataset.ask === '1' ? (inp ? inp.value : true) : (inp ? null : false)); } else if (e.target === box) fin(o.input != null ? null : false); });
+    box.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); fin(o.input != null ? null : false); } else if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); const inp = box.querySelector('[data-ask-in]'); fin(inp ? inp.value : true); } });
+    R.appendChild(box); const f = box.querySelector('[data-ask-in]') || box.querySelector('[data-ask="1"]'); if (f) f.focus();
+  });
+}
 function newForm(pre) {
   pre = pre || {};
   const subs = subjects(), sj = pre.s || S.sj;
@@ -628,7 +641,7 @@ function newForm(pre) {
   if (!ov) return;
   const sel = ov.querySelector('[data-nf=s]'), lsel = ov.querySelector('[data-nf=lec]');
   sel.addEventListener('change', async () => { if (sel.value !== S.sj) await seedOf(sel.value).catch(() => null); lsel.innerHTML = lecOpts(sel.value); });
-  lsel.addEventListener('change', () => { if (lsel.value === '__new') { const t = prompt('새 강의 이름'); if (t && t.trim()) { const x = idx(sel.value); x.ul = x.ul || []; const k = 'U' + now().toString(36); x.ul.push({ k, t: t.trim() }); idxPut(sel.value, x); if (sel.value === S.sj) S.lecs = lectures(S.sj, S.seed); lsel.innerHTML = lecOpts(sel.value); lsel.value = k; } else lsel.value = ''; } });
+  lsel.addEventListener('change', async () => { if (lsel.value === '__new') { const t = await ask('새 강의 이름', { input: '', ph: '예: Space closure', ok: '만들기' }); if (t && t.trim()) { const x = idx(sel.value); x.ul = x.ul || []; const k = 'U' + now().toString(36); x.ul.push({ k, t: t.trim() }); idxPut(sel.value, x); if (sel.value === S.sj) S.lecs = lectures(S.sj, S.seed); lsel.innerHTML = lecOpts(sel.value); lsel.value = k; } else lsel.value = ''; } });
   formRich(ov);
   ov.querySelector('[data-nfsave]').addEventListener('click', () => {
     const g = n => ov.querySelector(`[data-rich=${n}]`), val = n => { const h = toStore(g(n).innerHTML); return isEmpty(h) ? '' : h; };
@@ -854,14 +867,14 @@ function batch(k, btn) {
   if (k === 'none') { S.sel.clear(); $$('[data-ck]', S.root).forEach(c => c.checked = false); applyFilter(); return; }
   if (!L.length) return;
   if (k === 'done' || k === 'undone') { L.forEach(it => { it.done = k === 'done'; touch(it); put(it); }); render({ pos: topItem() }); return; }
-  if (k === 'del') { if (!confirm(L.length + '개 문제를 목록에서 뺄까요? (원본은 그대로 · 맨 아래에서 다시 넣을 수 있어요)')) return; L.forEach(it => { it.del = true; touch(it); put(it); }); S.sel.clear(); render({ pos: topItem() }); return; }
+  if (k === 'del') { ask(L.length + '개 문제를 목록에서 뺄까요?\n(원본은 그대로 · 맨 아래 \'목록에서 뺀 문제\'에서 다시 넣을 수 있어요)', { ok: '빼기' }).then(y => { if (!y) return; L.forEach(it => { it.del = true; touch(it); put(it); }); S.sel.clear(); render({ pos: topItem() }); }); return; }
   if (k === 'move') { lecPick(btn, l => { L.forEach(it => { it.lec = l; touch(it); put(it); }); render({ pos: topItem() }); H.toast(L.length + '개를 옮겼어요'); }); return; }
   if (k === 'merge') {
     const tgt = L.slice().sort((a, b) => a.o - b.o)[0], rest = L.filter(x => x !== tgt);
-    const withSt = L.filter(x => !isEmpty(x.st)); if (withSt.length > 1) { alert('스토리가 있는 문제가 ' + withSt.length + '개라 합칠 수 없어요 — 한 문제에는 스토리 하나만 둬요. 하나만 남기고 다시 해 주세요.'); return; }
-    if (!confirm(`${L.length}개를 첫 문제(${plain(tgt.q).slice(0, 40)}…) 하나로 합칠까요?\n출처·연도·태그를 모으고, 나머지는 목록에서 빼요(원본은 그대로).`)) return;
+    const withSt = L.filter(x => !isEmpty(x.st)); if (withSt.length > 1) { ask('스토리가 있는 문제가 ' + withSt.length + '개라 합칠 수 없어요 — 한 문제에는 스토리 하나만 둬요.\n하나만 남기고 다시 해 주세요.', { only: true, ok: '알겠어요' }); return; }
+    ask(`${L.length}개를 첫 문제(${plain(tgt.q).slice(0, 40)}…) 하나로 합칠까요?\n출처·연도·태그를 모으고, 나머지는 목록에서 빼요(원본은 그대로).`, { ok: '합치기' }).then(y => { if (!y) return;
     rest.forEach(x => { x.src.forEach(s => { if (!tgt.src.some(z => z.t === s.t && z.id === s.id && z.lab === s.lab)) tgt.src.push(s); }); tgt.yrs = [...new Set(tgt.yrs.concat(x.yrs))].sort((a, b) => b - a); tgt.tags = [...new Set((tgt.tags || []).concat(x.tags || []))]; if (isEmpty(tgt.st) && !isEmpty(x.st)) tgt.st = x.st; x.del = true; touch(x); put(x); });
-    touch(tgt); put(tgt); S.sel.clear(); render({ flash: tgt.id }); return;
+    touch(tgt); put(tgt); S.sel.clear(); render({ flash: tgt.id }); }); return;
   }
 }
 
@@ -915,7 +928,7 @@ function bind() {
     const c = e.target.dataset.cf;
     if (e.target.matches('[data-ck]')) { const id = e.target.closest('.nm-it').dataset.id; if (e.target.checked) S.sel.add(id); else S.sel.delete(id); const b = $('[data-batch]', S.root); if (b) b.innerHTML = batchHTML(); return; }
     if (!c || c === 'q') return;
-    if (c === 'sj') { if (e.target.value === '__new') { const t = prompt('새 과목 이름(예: 교정학 2)'); if (!t || !t.trim()) { e.target.value = S.sj; return; } const L = H.LS.get('num.subj', []) || []; const id = 'U' + now().toString(36).toUpperCase(); L.push({ id, t: t.trim() }); H.LS.set('num.subj', L); switchSubject(id); return; } switchSubject(e.target.value); return; }
+    if (c === 'sj') { if (e.target.value === '__new') { const sel = e.target; sel.value = S.sj; ask('새 과목 이름', { input: '', ph: '예: 교정학 2', ok: '만들기' }).then(t => { if (!t || !t.trim()) return; const L = H.LS.get('num.subj', []) || []; const id = 'U' + now().toString(36).toUpperCase(); L.push({ id, t: t.trim() }); H.LS.set('num.subj', L); switchSubject(id); }); return; } switchSubject(e.target.value); return; }
     if (c === 'sort') { S.cfg.sort = e.target.value; cfgSave(); render({ pos: topItem() }); return; }
     S.cfg.f[c] = e.target.value; cfgSave(); applyFilter();
     if (c === 'lec' && S.cfg.f.lec) window.scrollTo(0, Math.max(0, S.root.getBoundingClientRect().top + scrollY - 60));
