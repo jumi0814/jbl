@@ -1957,7 +1957,7 @@ li:has(.u26:not(.e26),.u26p:not(.e26p))+li:has(.u26:not(.e26),.u26p:not(.e26p)) 
 .only-e26 .tc:not(.e26c){display:none}
 .c-upd .ecj{border-color:var(--e26l)}.c-upd .ecj:hover{background:var(--e26);color:var(--e26fg)}.c-upd .u26.e26.demo{background:var(--e26)}
 .also25{color:var(--sub);font-size:calc(12px*var(--fs,1));white-space:nowrap}
-.hnum .hnumg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 2px}.hnumb{display:grid;gap:3px;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:12px 14px;cursor:pointer;font:inherit;min-height:44px}.hnumb b{font-size:calc(15.5px*var(--fs,1))}.hnumb small{color:var(--sub);font-size:calc(13px*var(--fs,1))}.hnumb:hover:not(.off),.hnumb:focus-visible{border-color:var(--acc,#0F5C5A);box-shadow:0 1px 6px rgba(0,0,0,.06)}.hnumb.off{cursor:not-allowed;background:transparent;border-style:dashed;color:var(--sub)}@media (max-width:560px){.hnum .hnumg{grid-template-columns:1fr}}   /* 10-10 홈 넘버링 탭 */
+.hnum .hnumg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 2px}.hnumb{display:grid;gap:3px;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:12px 14px;cursor:pointer;font:inherit;min-height:44px}.hnumb b{font-size:calc(15px*var(--fs,1))}.hnumb small{color:var(--sub);font-size:calc(13px*var(--fs,1))}.hnumb:hover:not(.off),.hnumb:focus-visible{border-color:var(--acc,#0F5C5A);box-shadow:0 1px 6px rgba(0,0,0,.06)}.hnumb.off{cursor:not-allowed;background:transparent;border-style:dashed;color:var(--sub)}@media (max-width:560px){.hnum .hnumg{grid-template-columns:1fr}}   /* 10-10 홈 넘버링 탭 */
 .lcard .lemp{color:var(--e26);font-weight:700}.lcard .lnew26{display:inline-block;font:700 calc(11px*var(--fs,1))/1.5 system-ui,sans-serif;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:.1em;white-space:nowrap}
 .gone26{color:var(--sub);background:rgba(128,118,104,.14);border-radius:4px;padding:0 4px}
 .chip.u26chip{background:var(--u26);color:var(--u26fg);border-color:var(--u26);font-weight:700}
@@ -2191,7 +2191,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='349f25f1';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='755a7427';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -4021,7 +4021,8 @@ function mergeData(data,opt){opt=opt||{};data=dcutData(data);   /* 10-04 D1 옛 
    else if(key.indexOf('lrd.')===0){if(!isObj(a)){localStorage.setItem(k,inc);n++;continue;}const m=Object.assign({},a);for(const kk in b){const nb=+(b[kk]&&b[kk].n)||0,na=+(m[kk]&&m[kk].n)||0;if(nb>na){m[kk]=b[kk];}}localStorage.setItem(k,JSON.stringify(m));n++;}   /* 10-05 회독 수 = 큰 값 */
    else if(key==='time'||key==='timed'||key==='tadj'){const m=tMax(a,b);localStorage.setItem(k,JSON.stringify(m));n++;}
    else if(key==='tseg'||key==='trest'){localStorage.setItem(k,JSON.stringify(tMerge(key,a,b)));n++;}   /* ux3 I7 tseg (s|S|D|종류) 합집합·e 큰 값·x가 이김 · trest 큰 값 */
-   else if(key.indexOf('num.i.')===0||key.indexOf('num.x.')===0){if(!isObj(a)||(+b.u||0)>(+a.u||0)){localStorage.setItem(k,inc);n++;}}   /* 10-10 넘버링: 문제마다 더 최근에 고친 것(u)이 이김 */
+   else if(key.indexOf('num.i.')===0){if(!isObj(a)||(+b.u||0)>(+a.u||0)){localStorage.setItem(k,inc);n++;}}   /* 10-10 넘버링: 문제마다 더 최근에 고친 것(u)이 이김 */
+   else if(key.indexOf('num.x.')===0){if(!isObj(a)){localStorage.setItem(k,inc);n++;continue;}const nw=(+b.u||0)>(+a.u||0),m=Object.assign({},nw?a:b,nw?b:a),U=[].concat(Array.isArray(a.ul)?a.ul:[],Array.isArray(b.ul)?b.ul:[]),seen={};m.ul=U.filter(l=>l&&l.k&&!seen[l.k]&&(seen[l.k]=1));m.lt=Object.assign({},nw?a.lt:b.lt,nw?b.lt:a.lt);m.u=Math.max(+a.u||0,+b.u||0);const sm=JSON.stringify(m);if(sm!==cur){localStorage.setItem(k,sm);n++;}}   /* 과목 정보: 내가 만든 강의는 두 기기 것을 합침(같은 k는 하나) · 이름 바꿈은 최근 것 */
    else if(key==='num.subj'){if(Array.isArray(a)&&Array.isArray(b)){const m=a.slice();b.forEach(x=>{if(x&&x.id&&!m.some(y=>y&&y.id===x.id))m.push(x);});if(m.length!==a.length){localStorage.setItem(k,JSON.stringify(m));n++;}}}
    else if(key.indexOf('memo.')===0){if(typeof a==='string'&&typeof b==='string'){if(b.indexOf(a)>=0&&b!==a){localStorage.setItem(k,JSON.stringify(b));n++;}else if(a.indexOf(b)<0){localStorage.setItem(k,JSON.stringify(a+(a?'\n\n— 백업에서 합침 —\n':'')+b));n++;}}}}
   catch(e){skip.push([key,e&&(e.name==='QuotaExceededError'||e.code===22)?'저장 공간 부족':'오류']);}}
