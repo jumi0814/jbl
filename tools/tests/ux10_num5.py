@@ -100,6 +100,14 @@ async def main():
         # ---- 사이드바 백업 ----
         await pg.click('.nm-side [data-bkpop]'); await pg.wait_for_timeout(400)
         ok(await pg.evaluate("document.getElementById('bkpop').classList.contains('on')"), "사이드바 [백업] → 백업 창")
+        # ---- JB 불러오기 다듬기(10-10 점검): 그림 문항 그림 · 해설은 참고사항으로 · '답:' 글머리 · 미복원 자리표 ----
+        await pg.evaluate("location.hash='#/_num/OMS1'"); await pg.wait_for_timeout(3000)
+        await pg.click('.nm-side [data-act=imp]'); await pg.wait_for_timeout(600); await pg.select_option('[data-if=ty]', ''); await pg.fill('[data-if=q]', 'D-1 골 단점'); await pg.wait_for_timeout(500)
+        await pg.click('.nm-irow >> nth=0 >> [data-iadd]'); await pg.wait_for_timeout(300); await pg.click('[data-cf2=ok]'); await pg.wait_for_timeout(800); await pg.click('.nm-ov [data-x]'); await pg.wait_for_timeout(600)
+        fg = await pg.evaluate("(async()=>{const im=document.querySelector('.nm-it[data-id=\"jb:OMS1:Q35\"] img[data-jbfig]');if(!im)return null;im.scrollIntoView();await new Promise(r=>setTimeout(r,600));return {w:im.naturalWidth,src:(im.getAttribute('src')||'').slice(0,15),stored:(localStorage.getItem('jblhub.v1.num.i.OMS1.jb:OMS1:Q35')||'').length}})()")
+        ok(fg and fg['w'] > 50 and fg['src'].startswith('data:image') and fg['stored'] < 3000, f"JB 그림 문항 = 그림이 보임(저장은 자리표만 — 기록 {fg and fg['stored']}자) {fg}")
+        L = await pg.evaluate("(()=>{const L=JBLNUM._jbList('ESTH').concat(JBLNUM._jbList('PHARM'));return {lab:L.filter(x=>x.t==='jb'&&/^\\s*답\\s*[:：)]/.test(JBLNUM._plain(x.a))).length,ex:L.filter(x=>/해설:/.test(x.note)).length,exInA:L.filter(x=>x.t==='jb'&&/^\\s*해설/m.test(JBLNUM._plain(x.a))).length,ph:L.filter(x=>x.ph).length,btn:L.filter(x=>/<button|class=/.test(x.a+x.q)).length}})()")
+        ok(L['lab'] == 0 and L['ex'] > 50 and L['ph'] > 5 and L['btn'] == 0, f"JB 답 = '답:' 글머리 없음 · 해설은 참고사항으로 · 미복원 자리표 표시 · 화면 단추 꾸밈 없음 {L}")
         ok(not errs, f'pageerror 0 {errs[:2]}')
         await pg.evaluate("(()=>{for(const k of Object.keys(localStorage))if(k.indexOf('jblhub.v1.num.')===0)localStorage.removeItem(k);})()")
         await b.close()

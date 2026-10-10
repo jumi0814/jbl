@@ -32,11 +32,11 @@ const stOf = it => it.done ? 2 : isEmpty(it.st) ? 0 : 1;
 function qType(q, a) {
   const Q = plain(q).trim(), A = plain(a).trim(), L = Q.split('\n'), head = L[0] || '', rest = L.slice(1).join('\n');
   const opts = (rest.match(/^\s*(?:\(?\d{1,2}\)|\d{1,2}\s*[.)]|[①-⑳]|[ㄱ-ㅎ]\s*[-.)]|[a-e]\s*[.)])\s*\S/gm) || []).length;   /* 둘째 줄부터의 보기 */
-  const write = /서술하|설명하시오|설명하라|설명하세요|기술하|논하|쓰시오|쓰고|적으시오|그리시오|도해|나열하|열거하/.test(Q);
-  if (/고르시오|고르면|고르고|고르세요|골라|옳은\s*것|옳지\s*않은|틀린\s*것|맞는\s*것|T\s*\/\s*F|O\s*\/\s*X|참\s*\/\s*거짓|선지|객관식|\[객\]/.test(Q) && !write) return 'mc';
+  const write = /서술|설명\s*(?:하|해)|기술하|논하|쓰시오|쓰고|적으시오|그리시오|그려|도해|모식도|나열하|열거하|넘버링/.test(Q), cnt = /\d+\s*가지|몇\s*가지/.test(Q);   /* 10-10 점검: '서술형'·'설명하고'·모식도·넘버링도 서술 · 'n가지'는 객관식·빈칸 표시가 있어도 넘버링 */
+  if (/고르시오|고르면|고르고|고르세요|골라|옳은\s*것|옳지\s*않은|틀린\s*것|맞는\s*것|T\s*\/\s*F|O\s*\/\s*X|참\s*\/\s*거짓|선지|객관식|\[객\]/.test(Q) && !write && !cnt) return 'mc';
+  if (/빈칸|채우시오|채워\s*넣|완성하시오|\(\s{0,3}\)|_{3,}/.test(Q) && !write && !cnt) return 'blank';   /* 보기 줄보다 먼저 — '다음 빈칸을 채우시오 1.…8.' */
   if (opts >= 3 && !write && (/\?\s*(?:\(|\[|$)|다음\s*중|것은|것을|적합한|해당하는/.test(head) || A.replace(/\s/g, '').length < 80)) return 'mc';
-  const n = (A.match(/^\s*(?:\d{1,2}\s*[.)]|[①-⑳]|\(\d{1,2}\)|[a-zA-Z]\s*[.)]|[-•▪◦➢*]|[가-하]\s*[.)])\s*\S/gm) || []).length;
-  if (/빈칸|채우시오|채워\s*넣|완성하시오|\(\s{0,3}\)|_{3,}/.test(Q) && !/\d+\s*가지/.test(Q)) return 'blank';
+  const n = Math.max((A.match(/^\s*(?:\d{1,2}\s*[.)]|[①-⑳]|\(\d{1,2}\)|[a-zA-Z]\s*[.)]|[-•▪◦➢*]|[가-하]\s*[.)])\s*\S/gm) || []).length, (A.match(/(?:^|[\s,;])(?:\d{1,2}\s*[.)]|[①-⑳])\s*\S/g) || []).length);   /* 한 줄에 '1. … 2. …'로 이어 쓴 답도 셈 */
   if (/\d+\s*가지|몇\s*가지|나열|열거|모두\s*(?:쓰|적|기술)|종류|분류|단계|순서|요소|조건|원인|증상|소견|합병증|적응증|금기|부작용|주의\s*사항|특징|방법|목표|이유|목적|고려\s*사항|변화/.test(Q) && n >= 2 || n >= 3) return 'num';
   if (write || /비교|이유|목적|기전|차이|정의|의의|어떻게|왜/.test(Q) || A.replace(/\s/g, '').length >= 150) return 'essay';
   return 'short';
@@ -68,16 +68,16 @@ function sanitize(html, opt) {
       let tg = c.tagName.toUpperCase();
       if (DROP.has(tg)) { c.remove(); c = nx; continue; }
       if (tg === 'IMG') {
-        const src = c.getAttribute('src') || '', ni = c.getAttribute('data-nimg');
-        if (!(ni && /^[\w.-]+$/.test(ni)) && !/^data:image\/(png|jpe?g|gif|webp);base64,/i.test(src)) { if (opt.paste && src) S.pasteLost = (S.pasteLost || 0) + 1; c.remove(); c = nx; continue; }
+        const src = c.getAttribute('src') || '', ni = c.getAttribute('data-nimg'), jf = c.getAttribute('data-jbfig'), jfOK = jf && JBFIG.test(jf);
+        if (!(ni && /^[\w.-]+$/.test(ni)) && !jfOK && !/^data:image\/(png|jpe?g|gif|webp);base64,/i.test(src)) { if (opt.paste && src) S.pasteLost = (S.pasteLost || 0) + 1; c.remove(); c = nx; continue; }
         const w = +c.getAttribute('width') || 0, h = +c.getAttribute('height') || 0;
         for (const a of [...c.attributes]) c.removeAttribute(a.name);
-        if (ni && /^[\w.-]+$/.test(ni)) c.setAttribute('data-nimg', ni); else c.setAttribute('src', src);
+        if (jfOK) c.setAttribute('data-jbfig', jf); else if (ni && /^[\w.-]+$/.test(ni)) c.setAttribute('data-nimg', ni); else c.setAttribute('src', src);   /* JB 그림 = 팩 카드를 가리키는 자리표만 저장(그림 글자를 이 기기 저장 공간에 넣지 않음) */
         if (w) c.setAttribute('width', String(Math.round(w))); if (h) c.setAttribute('height', String(Math.round(h))); c.setAttribute('alt', '');
         c = nx; continue;
       }
       if ((tg === 'OL' || tg === 'UL') && /\bcirc\b/.test(c.className || '')) {   /* 예상문제 답의 ①②③ 목록(번호가 글자에 이미 있음) → 문단 */
-        const f = document.createDocumentFragment(); for (const li of [...c.children]) { const p = document.createElement('p'); while (li.firstChild) p.appendChild(li.firstChild); f.appendChild(p); }
+        const f = document.createDocumentFragment(); for (const li of [...c.children]) { const p = document.createElement('p'); while (li.firstChild) p.appendChild(li.firstChild); walk(p); f.appendChild(p); }   /* 칸 안도 정리(인용 단추·꾸밈 span이 남지 않게) */
         c.replaceWith(f); c = nx; continue;
       }
       if (/:/.test(c.tagName) || tg === 'FONT' && false) { walk(c); c.replaceWith(...c.childNodes); c = nx; continue; }   /* o:p·v:shape 등 Word 이름표 */
@@ -115,7 +115,15 @@ function sanitize(html, opt) {
   return out;
 }
 const toStore = h => sanitize(h);
-const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) => '<img data-nimg="' + k + '" src="' + H.base + 'num/img/' + k + '" loading="lazy" decoding="async"');
+const JBFIG = /^[A-Za-z0-9]+\|[\w.-]+\|[qa]\|\d{1,2}$/;
+const FIGC = new Map();
+function jbFig(k) {   /* 'OMS1|Q35|q|0' → 그 JB 카드의 문제(q)·답(a) 그림 n번째 src(팩에서 · 한 번 풀면 기억) */
+  const [sj, key, part, i] = k.split('|'), ck = sj + '|' + key; let f = FIGC.get(ck);
+  if (!f) { const P = H.PACKS[sj], hh = P && P.cards[key]; if (!hh) return ''; const t = document.createElement('template'); t.innerHTML = hh; const a = t.content.querySelector('article'); if (!a) return ''; f = { q: figsOf(a, 'q').map(x => x.getAttribute('src') || ''), a: figsOf(a, 'a').map(x => x.getAttribute('src') || '') }; FIGC.set(ck, f); }
+  return f[part][+i] || '';
+}
+function figsOf(art, part) { return part === 'q' ? [...art.querySelectorAll('.qtext img')].concat([...art.querySelectorAll(':scope > img.fig')]) : [...art.querySelectorAll('section.ab.jbans img')]; }
+const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) => '<img data-nimg="' + k + '" src="' + H.base + 'num/img/' + k + '" loading="lazy" decoding="async"').replace(/<img data-jbfig="([^"]+)"/g, (m, k) => JBFIG.test(k) ? '<img data-jbfig="' + k + '" src="' + jbFig(k) + '" loading="lazy" decoding="async" title="JB 그림"' : m);
 
 /* ---------- 저장 ---------- */
 const keyI = (sj, id) => 'num.i.' + sj + '.' + id;
@@ -414,7 +422,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-chip.rv{color:#9A3412;border-color:#F0C9B0;background:#FFF4EC}
 #numv .nm-det{margin:10px 0 0 var(--nmind);padding:10px 12px;border:1px solid #E4DFD5;border-radius:6px;background:#FCFBF8;font-size:13.5px;display:grid;gap:8px}
 #numv .nm-det label{display:grid;grid-template-columns:7.5em 1fr;gap:8px;align-items:center}
-#numv .nm-det input{font:inherit;padding:5px 8px;border:1px solid #D8D0C2;border-radius:6px;background:#fff;color:#1F1D1A;min-height:32px}
+#numv .nm-det input,#numv .nm-det textarea{font:inherit;padding:5px 8px;border:1px solid #D8D0C2;border-radius:6px;background:#fff;color:#1F1D1A;min-height:32px}#numv .nm-det textarea{resize:vertical;font-size:13px;line-height:1.5}#numv .nm-det label:has(textarea){align-items:start}
 #numv .nm-det ul{margin:0;padding-left:1.2em}#numv .nm-det li{margin:2px 0}
 #numv .nm-det .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 #numv .nm-empty{padding:34px 10px;color:#6A6257;text-align:center;font-size:14.5px;line-height:1.6}
@@ -965,7 +973,7 @@ function detOpen(it) {
   const old = a.querySelector('.nm-det'); if (old) { old.remove(); return; }
   const rv = it.rv && it.rv.length ? `<div><b>Word 반영 검토</b><ul>${it.rv.map(r => `<li>${esc(r.m)}${r.d ? `<br><small style="white-space:pre-wrap">${esc(r.d)}</small>` : ''}</li>`).join('')}</ul>${it.rvok ? '<span class="nm-chip s2">검토 끝</span> <button type="button" class="nm-btn" data-det="rvundo">다시 검토 필요로</button>' : '<button type="button" class="nm-btn" data-det="rvok">✓ 확인했어요(검토 끝)</button>'}</div>` : '';
   const src = `<div><b>출처</b><ul>${it.src.map((s, i) => `<li>${esc(s.lab || KIND[s.t] || s.t)}${s.yrs && s.yrs.length ? ' · ' + esc(yrsTxt(s.yrs)) : ''}${s.id && (s.t === 'jb' || s.t === 'pred') ? ` <small>(${esc(s.id)})</small>` : ''} ${(s.t === 'jb' || s.t === 'pred') && H.PACKS[s.s] ? `<button type="button" class="nm-btn" data-det="open" data-i="${i}">원본 열기</button>` : ''}${it.src.length > 1 ? ` <button type="button" class="nm-btn" data-det="unsrc" data-i="${i}">연결 끊기</button>` : ''}</li>`).join('')}</ul><div class="row"><input type="text" data-det-in="srcadd" placeholder="출처 더하기(예: 25 수업 강조, 스터디 자료)" aria-label="출처 더하기"><button type="button" class="nm-btn" data-det="srcadd">더하기</button></div></div>`;
-  a.insertAdjacentHTML('beforeend', `<div class="nm-det"><label>출제 연도<input type="text" data-det-in="yrs" value="${esc(it.yrs.map(y => String(y).slice(2)).join(', '))}" placeholder="예: 25, 23, 16"></label><label>태그<input type="text" data-det-in="tags" value="${esc((it.tags || []).join(', '))}" placeholder="쉼표로 나눔"></label><label>참고사항<input type="text" data-det-in="note" value="${esc(it.note)}"></label>${src}${rv}<div class="row"><span style="color:#6A6257;font-size:12.5px">${esc(KIND[it.kind] || it.kind)} · 만든 때 ${it.c ? new Date(it.c).toLocaleString('ko-KR') : '—'} · 고친 때 ${it.u ? new Date(it.u).toLocaleString('ko-KR') : '—'}</span><span class="nm-sp" style="flex:1"></span><button type="button" class="nm-btn" data-det="close">닫기</button></div></div>`);
+  a.insertAdjacentHTML('beforeend', `<div class="nm-det"><label>출제 연도<input type="text" data-det-in="yrs" value="${esc(it.yrs.map(y => String(y).slice(2)).join(', '))}" placeholder="예: 25, 23, 16"></label><label>태그<input type="text" data-det-in="tags" value="${esc((it.tags || []).join(', '))}" placeholder="쉼표로 나눔"></label><label>참고사항<textarea data-det-in="note" rows="${Math.min(8, Math.max(2, (it.note || '').split('\n').length + 1))}">${esc(it.note)}</textarea></label>${src}${rv}<div class="row"><span style="color:#6A6257;font-size:12.5px">${esc(KIND[it.kind] || it.kind)} · 만든 때 ${it.c ? new Date(it.c).toLocaleString('ko-KR') : '—'} · 고친 때 ${it.u ? new Date(it.u).toLocaleString('ko-KR') : '—'}</span><span class="nm-sp" style="flex:1"></span><button type="button" class="nm-btn" data-det="close">닫기</button></div></div>`);
   const d = a.querySelector('.nm-det');
   d.addEventListener('change', e => { const k = e.target.dataset.detIn; if (!k || k === 'srcadd') return; const v = e.target.value; if (k === 'yrs') it.yrs = parseYrs(v); else if (k === 'tags') it.tags = v.split(/[,，]/).map(s => s.trim()).filter(Boolean); else if (k === 'note') it.note = v.trim(); touch(it); put(it); refreshItem(it, true); });
   d.addEventListener('click', e => { const b = e.target.closest('[data-det]'); if (!b) return; const k = b.dataset.det, i = +b.dataset.i;
@@ -1054,6 +1062,16 @@ function lnHTML(box, skip) {
   if (c.children.length && [...c.children].every(x => x.classList.contains('ln'))) return [...c.children].map(x => { const h = sanitize(x.innerHTML); return '<p>' + (x.classList.contains('hd') ? '<b>' + h + '</b>' : h) + '</p>'; }).join('');
   return sanitize(c.innerHTML);
 }
+function jbAns(lines) {   /* JB 답 칸 → 답(해설만 든 블록·참고 줄·첫 '답:' 글머리는 뺌) · 해설 글 · 참고(출처) 줄들 */
+  if (!lines) return { a: '', ex: '', src: [] };
+  const c = lines.cloneNode(true), src = [], ex = [];
+  $$('.lab-src', c).forEach(x => { const t = x.textContent.replace(/^\s*참고\s*[:：)]?\s*/, '').trim(); if (t) src.push(t); x.remove(); });
+  $$('.exw', c).forEach(w => { if (w.querySelector('.lab-a')) { w.replaceWith(...w.childNodes); return; }   /* 해설 안에 '답:'이 있으면 그대로 답 */
+    const t = [...w.querySelectorAll('.ln')].map(l => l.textContent.trim()).filter(Boolean).join('\n').replace(/^해설\s*[:：)]?\s*/, '').trim(); if (t) ex.push(t); w.remove(); });
+  $$('.lab0', c).forEach(x => x.remove());
+  const f = c.querySelector('.ln'); if (f && f.classList.contains('lab-a')) { const b = f.querySelector('b'); if (b && /^\s*답\s*[:：)]?\s*$/.test(b.textContent)) b.remove(); }
+  return { a: lnHTML(c, '.lab0'), ex: ex.join('\n'), src };
+}
 const PARSED = new Map();
 function jbList(sj) {
   if (PARSED.has(sj)) return PARSED.get(sj);
@@ -1061,9 +1079,13 @@ function jbList(sj) {
   const out = [], tpl = document.createElement('template');
   for (const id in P.cards) {
     tpl.innerHTML = P.cards[id]; const a = tpl.content.querySelector('article'); if (!a) continue;
-    const lines = a.querySelector('section.ab.jbans .lines'), srcl = lines && lines.querySelector('.lab-src');
-    const q = lnHTML(a.querySelector('.qtext')), an = lnHTML(lines, '.lab0,.lab-src');
-    out.push({ t: 'jb', s: sj, id: a.dataset.aid || (sj + ':' + id), lec: a.dataset.lec || '', yrs: (a.dataset.yrs || '').split(/\s+/).filter(Boolean).map(y => +y < 100 ? 2000 + +y : +y), prof: a.dataset.prof || '', q, a: an, note: srcl ? srcl.textContent.replace(/^\s*참고:\s*/, '참고: ').trim() : '' });
+    figsOf(a, 'q').forEach((im, i) => { im.setAttribute('data-jbfig', sj + '|' + id + '|q|' + i); im.removeAttribute('src'); });   /* 그림 = 자리표(화면에서 팩 그림으로) */
+    figsOf(a, 'a').forEach((im, i) => { im.setAttribute('data-jbfig', sj + '|' + id + '|a|' + i); im.removeAttribute('src'); });
+    const qfig = [...a.querySelectorAll(':scope > img.fig')].map(im => '<p>' + sanitize(im.outerHTML) + '</p>').join(''), afig = [...a.querySelectorAll('section.ab.jbans > img')].map(im => '<p>' + sanitize(im.outerHTML) + '</p>').join('');
+    const A = jbAns(a.querySelector('section.ab.jbans .lines')), fn = (a.querySelector(':scope > .small') || {}).textContent || '';
+    const q = lnHTML(a.querySelector('.qtext')) + qfig, an = A.a + afig, qp = plain(q).replace(/\s+/g, '');
+    const note = [A.src.length ? '참고: ' + A.src.join(' / ') : '', A.ex ? '해설: ' + A.ex : '', /그림 문항/.test(fn) ? fn.trim() : ''].filter(Boolean).join('\n');
+    out.push({ t: 'jb', s: sj, id: a.dataset.aid || (sj + ':' + id), lec: a.dataset.lec || '', yrs: (a.dataset.yrs || '').split(/\s+/).filter(Boolean).map(y => +y < 100 ? 2000 + +y : +y), prof: a.dataset.prof || '', q, a: an, note, ph: /미복원|복원\s*불충분|복원부실/.test(qp) && qp.length < 40 });
   }
   (P.preds || []).forEach(p => {
     tpl.innerHTML = p.html; const a = tpl.content.querySelector('article'); if (!a) return;
@@ -1115,7 +1137,7 @@ async function importDlg() {
   const draw = () => {
     list = filt();
     const box = ov.querySelector('[data-ilist]');
-    box.innerHTML = list.length ? list.map(x => { const d = dupOf(x, target); x.dup = d; return `<div class="nm-irow${d && (d.k === 'have' || d.k === 'same') ? ' dup' : ''}" data-ix="${esc(x.id)}"><input type="checkbox" data-ick="1"${st.chk.has(x.id) ? ' checked' : ''}${d && d.k === 'have' ? ' disabled' : ''} aria-label="고르기"><div><div class="t" data-iview="1" title="누르면 답안 보기">${esc(plain(x.q))}</div><div class="m"><button type="button" class="nm-ivb" data-iview="1" aria-expanded="false">답안 보기</button><span class="nm-chip k-${x.t}">${x.t === 'jb' ? 'JB 기출' + (x.prof ? ' · ' + esc(x.prof) : '') : '예상문제'}</span>${x.yrs.length ? `<span class="nm-chip yr">${esc(yrsTxt(x.yrs))}</span>` : ''}<span class="nm-chip">${esc(TYPES[x.ty])}</span><span class="nm-chip">${esc(lecT(x.lec))}</span>${d ? `<span class="nm-chip ${d.k === 'sim' ? 'rv' : 's2'}" title="${esc(plain(d.it.q).slice(0, 200))}">${d.k === 'have' ? '이미 있음' : d.k === 'back' ? '뺀 문제 → 다시 넣기' : d.k === 'same' ? '같은 문제 있음 → 출처만 연결' : '비슷한 문제 있음(' + Math.round(d.d * 100) + '%)'}</span>` : ''}</div></div><button type="button" class="nm-btn add" data-iadd="1"${d && d.k === 'have' ? ' disabled' : ''}>${d && d.k === 'same' ? '출처 연결' : d && d.k === 'back' ? '다시 넣기' : '추가'}</button></div>`; }).join('') : '<div class="nm-empty">조건에 맞는 문제가 없어요.</div>';
+    box.innerHTML = list.length ? list.map(x => { const d = dupOf(x, target); x.dup = d; return `<div class="nm-irow${d && (d.k === 'have' || d.k === 'same') ? ' dup' : ''}" data-ix="${esc(x.id)}"><input type="checkbox" data-ick="1"${st.chk.has(x.id) ? ' checked' : ''}${d && d.k === 'have' ? ' disabled' : ''} aria-label="고르기"><div><div class="t" data-iview="1" title="누르면 답안 보기">${esc(plain(x.q))}</div><div class="m"><button type="button" class="nm-ivb" data-iview="1" aria-expanded="false">답안 보기</button><span class="nm-chip k-${x.t}">${x.t === 'jb' ? 'JB 기출' + (x.prof ? ' · ' + esc(x.prof) : '') : '예상문제'}</span>${x.yrs.length ? `<span class="nm-chip yr">${esc(yrsTxt(x.yrs))}</span>` : ''}<span class="nm-chip">${esc(TYPES[x.ty])}</span><span class="nm-chip">${esc(lecT(x.lec))}</span>${x.ph ? '<span class="nm-chip rv" title="JB 원문이 복원되지 않은 문제 — 묶어 넣기(이 강의·거른 결과·과목 전체)에서는 빠져요. 직접 고르면 넣을 수 있어요">원문 미복원</span>' : ''}${d ? `<span class="nm-chip ${d.k === 'sim' ? 'rv' : 's2'}" title="${esc(plain(d.it.q).slice(0, 200))}">${d.k === 'have' ? '이미 있음' : d.k === 'back' ? '뺀 문제 → 다시 넣기' : d.k === 'same' ? '같은 문제 있음 → 출처만 연결' : '비슷한 문제 있음(' + Math.round(d.d * 100) + '%)'}</span>` : ''}</div></div><button type="button" class="nm-btn add" data-iadd="1"${d && d.k === 'have' ? ' disabled' : ''}>${d && d.k === 'same' ? '출처 연결' : d && d.k === 'back' ? '다시 넣기' : '추가'}</button></div>`; }).join('') : '<div class="nm-empty">조건에 맞는 문제가 없어요.</div>';
     sum();
   };
   const sum = () => { const n = list.length, nh = list.filter(x => x.dup && x.dup.k === 'have').length; ov.querySelector('[data-if-sum]').innerHTML = `보이는 ${n}문제(이미 있음 ${nh}) · 고른 것 <b>${st.chk.size}</b>`; ov.querySelector('[data-if-info]').textContent = st.ty === 'ess' ? '서술형·넘버링형만 보는 중 — 판정은 문제 글(서술·설명·~가지 등)과 답 모양으로 해요. 빠진 문제가 있으면 유형을 \'전체 문제\'로 바꿔 직접 고르세요.' : ''; };
@@ -1132,7 +1154,8 @@ async function importDlg() {
     const v = e.target.closest('[data-iview]'); if (v) { const row = v.closest('[data-ix]'), x = list.find(y => y.id === row.dataset.ix), nx = row.nextElementSibling, open = !(nx && nx.matches('[data-ians]')); if (!open) nx.remove(); else if (x) row.insertAdjacentHTML('afterend', `<div class="nm-ians" data-ians="1"><b>답안</b><div class="nm-c">${x.a || '<span class="nm-ph">답안 없음</span>'}</div></div>`); row.classList.toggle('open', open); const vb = row.querySelector('.nm-ivb'); if (vb) { vb.textContent = open ? '답안 접기' : '답안 보기'; vb.setAttribute('aria-expanded', String(open)); } return; }   /* 10-10 사용자 '문제들이 다 나열되어있는데 클릭하면 답안을 볼 수 있게' */
     const b = e.target.closest('[data-iadd]'); if (!b) return; const r = b.closest('[data-ix]'); const x = list.find(y => y.id === r.dataset.ix); if (x) confirmAdd([x], st.sj, ov, async () => { target = await itemsOfSubject(st.sj); draw(); }); });
   ov.querySelector('footer').addEventListener('click', e => { const b = e.target.closest('[data-ib]'); if (!b) return; const k = b.dataset.ib, all = jbList(st.sj);
-    const L = k === 'sel' ? all.filter(x => st.chk.has(x.id)) : k === 'lec' ? (st.lec ? all.filter(x => x.lec === st.lec && (!st.ty || (st.ty === 'ess' ? essayish(x.ty) : x.ty === st.ty))) : null) : k === 'flt' ? list : all;
+    const L0 = k === 'sel' ? all.filter(x => st.chk.has(x.id)) : k === 'lec' ? (st.lec ? all.filter(x => x.lec === st.lec && (!st.ty || (st.ty === 'ess' ? essayish(x.ty) : x.ty === st.ty))) : null) : k === 'flt' ? list : all;
+    const L = L0 && k !== 'sel' ? L0.filter(x => !x.ph) : L0;   /* '미복원' 자리표 문제는 묶어 넣기에서 뺌 */
     if (L == null) { H.toast('강의를 먼저 고르세요(강의 선택 칸)'); return; }
     if (!L.length) { H.toast(k === 'sel' ? '고른 문제가 없어요 — 왼쪽 네모를 눌러 고르세요' : '넣을 문제가 없어요'); return; }
     confirmAdd(L, st.sj, ov, async () => { st.chk.clear(); target = await itemsOfSubject(st.sj); draw(); }); });
