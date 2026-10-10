@@ -436,7 +436,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-dlg>header{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
 #numv .nm-dlg>header h3{margin:0;font-size:17px;font-family:inherit}
 #numv .nm-dlg>header .x{margin-left:auto}
-#numv .nm-dlg .bd{padding:12px 16px;display:grid;gap:10px}
+#numv .nm-dlg .bd{padding:12px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
 #numv .nm-dlg>footer{position:sticky;bottom:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 16px;border-top:1px solid var(--line);background:var(--card);border-radius:0 0 12px 12px}
 #numv .nm-dlg select,#numv .nm-dlg input[type=text],#numv .nm-dlg input[type=search]{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-height:34px;max-width:100%}
 #numv .nm-dlg .flt{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
@@ -997,7 +997,7 @@ function newItem(o) {
 function bumpIdx(sj) { const x = idx(sj); idxPut(sj, x); }
 function richField(name, label, html, ph) { return `<label class="nm-fld"><span>${esc(label)}</span><div class="nm-rich" contenteditable="true" data-rich="${name}" data-ph="${esc(ph || '')}">${disp(html || '') || '<p><br></p>'}</div></label>`; }
 function dlg(title, body, foot, o) {
-  const R = $('#numv'); if (!R) return null; endEdit(true); dlgClose(); o = o || {};
+  const R = $('#numv'); if (!R) return null; endEdit(true); dlgClose(); o = o || {}; if (H.toastOff) H.toastOff('nmresume');   /* 휴대폰에서 '이어서' 알림이 창 단추를 가리던 것 */
   R.insertAdjacentHTML('beforeend', `<div class="nm-ov" data-ov="1" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="nm-dlg"><header><h3>${esc(title)}</h3><button type="button" class="nm-btn x" data-x="1" aria-label="닫기">✕ 닫기</button></header><div class="bd">${body}</div><footer>${foot || ''}</footer></div></div>`);
   const ov = $('.nm-ov', R); document.body.style.overflow = 'hidden';
   const close = () => { if (o.dirty && o.dirty()) ask('쓴 내용이 저장되지 않았어요 — 닫을까요?', { ok: '닫기', no: '계속 쓰기' }).then(y => { if (y) dlgClose(); }); else dlgClose(); };

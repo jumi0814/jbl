@@ -1,5 +1,5 @@
 """10-05 화면 렌더 결함 스캐너 — 빌드된 팩(docs/packs/<SID>.js)의 모든 HTML(정리본 학습·정리표·비교표·JB 카드·예상·과목 비교표·한눈표)에서
-  글자 깨짐(사용 영역 자리표시 \\ue000~\\uf8ff·U+FFFD) · 원고 표기 누출({r: {jb: [[ ** ==) · 홀로 남은 문장부호 줄 · 빈 항목 · 인용 상자 따옴표 짝 · 괄호 짝(블록 단위) 을 찾음
+  글자 깨짐(사용 영역 자리표시 \\ue000~\\uf8ff·U+FFFD) · 원고 표기 누출({r: {jb: [[ ** == @MAP·@G…) · 홀로 남은 문장부호 줄 · 빈 항목 · 인용 상자 따옴표 짝 · 괄호 짝(블록 단위) 을 찾음
   .venv/bin/python tools/scan_render.py [SID…]   → 요약 + work/review_scan/<SID>.md(자리·글자)"""
 import os, sys, re, collections
 from bs4 import BeautifulSoup
@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools')); import jblpaths as J
 SIDS = [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
 PUA = re.compile(r'[-�]')
-LEAK = re.compile(r'\{r:|\{n:|\{u:|\{e:|\ue030|\ue031|\ue032|\ue033|\ue034|\ue035|\ue036|\ue037|\ue038|\ue039|\{jb:|\[\[|\*\*|(?<![=<>!])==(?!=)')
+LEAK = re.compile(r'\{r:|\{n:|\{u:|\{e:|\ue030|\ue031|\ue032|\ue033|\ue034|\ue035|\ue036|\ue037|\ue038|\ue039|\{jb:|\[\[|\*\*|(?<![=<>!])==(?!=)|@(?:MAP|TIP|UPD|LEC|TBL|G)\b')   # 10-10 원고 머리 표기(@MAP 등)가 화면 글에
 BLK = ['li', 'div', 'td', 'th', 'blockquote', 'p']
 os.makedirs(os.path.join(ROOT, 'work', 'review_scan'), exist_ok=True)
 tot = 0

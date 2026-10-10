@@ -44,7 +44,7 @@ async def main():
         reqs = []; pg.on('request', lambda r: reqs.append(r.url))
         # ---- 홈 ----
         await goto(pg, '#/', 2500)
-        h = await pg.evaluate("""(()=>{const s=document.querySelector('.hnum'),t=document.querySelector('.hsj'),b2=document.querySelector('.hnumb.off');return {s:!!s,above:!!(s&&t&&s.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING),dis:!!(b2&&b2.disabled),txt:b2?b2.textContent:''}})()""")
+        h = await pg.evaluate("""(()=>{const s=document.querySelector('.hnums'),t=document.querySelector('.hsj'),b2=document.querySelector('.hnumb.off');return {s:!!s,above:!!(s&&t&&s.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING),dis:!!(b2&&b2.disabled),txt:b2?b2.textContent:''}})()""")
         ok(h['s'] and h['above'], f"홈 '넘버링' 칸이 과목 표 위 {h}")
         ok(h['dis'] and '추후 업데이트 예정' in h['txt'], "② 넘버링 복습 = 비활성·'추후 업데이트 예정'")
         ok(not any('/num/' in r for r in reqs), f"홈에서는 넘버링 파일을 받지 않음 {[r for r in reqs if '/num/' in r][:2]}")
