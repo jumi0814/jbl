@@ -911,7 +911,7 @@ for L in LEC:
             rows.append(f'<tr class="grow" data-grp="{esc(curg)}"><td colspan="5">{esc(curg)}</td></tr>')
         cards.append(ch); rows.append(row)
         ys = sorted({y for x in ids for y in QMAP[x]['yrs']}, reverse=True)
-        outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}" title="{esc(lecparse._plain(c["gist"]))}"><b>{j+1}</b><span class="ot">{esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c["ko"]) or c["ko"])}{"<i class=o26>NEW 26</i>" if c.get("u26") else ""}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy><i>기출</i> " + ylab(ys) + "</span>") if ys else ""}</button>')
+        outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}" title="{esc(lecparse._plain(c["gist"]))}"><b>{j+1}</b><span class="ot">{esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c["ko"]) or c["ko"])}{"<i class=o26></i>" if c.get("u26") else ""}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy><i>기출</i> " + ylab(ys) + "</span>") if ys else ""}</button>')
     jb_ids = sorted([q['id'] for q in Q if q['tier'] != 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
     flow = ''.join(f'<span class="fl">{lecparse.inline(x.strip(), ctx)}</span>' for x in L['map'].split('→')) if L['map'] else ''
     LQ = [q for q in Q if q['tier'] != 'C' and q['lk'] == k and q.get('st')]
@@ -941,7 +941,7 @@ for L in LEC:
     ucards = [(j_, c_) for j_, c_ in enumerate(L['cards']) if c_.get('u26')]   # 10-09 사용자 '25년도 자료에 비해 26년도 자료에서 변동사항 … 사라진 페이지 또는 특히 26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조'
     ulabs = [re.split(r'\s*[:：]', lecparse._plain(x), 1)[0].strip() for x in L.get('upd') or []]; ulabs = [x for x in ulabs if 0 < len(x) <= 16][:4]
     usum = ' · '.join(ulabs + ([f'26 새 내용 카드 {len(ucards)}장'] if ucards else []))
-    upd_html = (f'<details class="co c-upd"><summary class="ct">🆕 25 → 26 바뀐 점 <span class="usum">{esc(usum)}</span><span class="umore">펼치기 ▸</span></summary>' + ''.join(f'<div class="fu">{lecparse.inline(x, ctx)}</div>' for x in L.get('upd') or [])
+    upd_html = (f'<details class="co c-upd"><summary class="ct">25 → 26 바뀐 점 <span class="usum">{esc(usum)}</span><span class="umore">펼치기 ▸</span></summary>' + ''.join(f'<div class="fu">{lecparse.inline(x, ctx)}</div>' for x in L.get('upd') or [])
                 + (f'<div class="fu fuc"><b>26 새 내용이 있는 카드</b> ' + ''.join(f'<button class="ucj noann" data-scroll="t-{k}-{j_}" title="{esc(c_["en"])}">{j_ + 1} {esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c_["ko"]) or c_["en"])}</button>' for j_, c_ in ucards) + '</div>' if ucards else '')
                 + '<div class="small fun">초록 <span class="u26 demo">NEW 26</span> = 26년도 자료에 새로 생기거나 바뀐 내용 · 회색 <span class="gone26">(26에서 빠짐)</span> = 25 자료에만 있던 내용(시험 대비로 남김)</div></details>') if (L.get('upd') or ucards) else ''   # 10-09 접힌 한 줄(강의 틀 한 화면 — ux_u24) · 누르면 펼침
     hint_html = f'<div class="co c-prof fhint"><div class="ct">📣 교수님 예고·강조</div>{"".join(f"<div class=fh>{lecparse.inline(x, ctx)}</div>" for x in NH)}</div>' if NH else ''
