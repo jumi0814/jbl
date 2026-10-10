@@ -128,12 +128,16 @@ function saveState(st, msg) {
   e.className = 'nm-save ' + st; e.textContent = st === 'ok' ? '저장됨 ✓' : st === 'ing' ? '저장 중…' : st === 'bad' ? '⚠ ' + (msg || '저장 실패') : '';
   if (st === 'ok') { clearTimeout(saveState.t); saveState.t = setTimeout(() => { if (S.saveSt !== 'ok') return; S.saveSt = ''; const e2 = S.root && $('.nm-save', S.root); if (e2) { e2.className = 'nm-save'; e2.textContent = '자동 저장'; } }, 2500); }
 }
+function lqDrop(keys) {   /* 허브 저장 실패 대기열(LSQ)에서 이제 제대로 쓴 키를 빼고, 그 IndexedDB 비춤도 맞춤(안 하면 다음 부팅 때 옛 값이 되살아남) */
+  if (!H.LSQ) return; let n = 0; for (const k of keys) if (H.LSQ.has(k)) { H.LSQ.delete(k); n++; }
+  if (n && H.lqSync) { try { H.lqSync(); } catch (e) {} }
+}
 function rawPut(k, v) {   /* 바로 쓰고 결과를 돌려줌(실패하면 허브 LS 대기열 — 다음에 다시 씀 · IndexedDB 비춤) */
   const s = JSON.stringify(v);
-  try { localStorage.setItem(H.NS + k, s); if (H.LSQ && H.LSQ.has(k)) H.LSQ.delete(k); return true; }
+  try { localStorage.setItem(H.NS + k, s); lqDrop([k]); return true; }
   catch (e) { try { H.LS.set(k, v); } catch (_) {} return false; }
 }
-function rawDel(k) { try { localStorage.removeItem(H.NS + k); } catch (e) {} if (H.LSQ && H.LSQ.has(k)) H.LSQ.delete(k); }
+function rawDel(k) { try { localStorage.removeItem(H.NS + k); } catch (e) {} lqDrop([k]); }
 const same = (a, b) => JSON.stringify(a || []) === JSON.stringify(b || []);
 function toRec(it) {
   const o = { id: it.id, k: it.kind };
@@ -224,6 +228,9 @@ const ICO = {
   filter: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 5.5h13M6 10h8M8.5 14.5h3"/></svg>',
   sel: '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3.5" y="3.5" width="13" height="13" rx="2.6"/><path d="m7 10.2 2.1 2.1L13.3 8"/></svg>',
   view: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.8 10s2.6-5 7.2-5 7.2 5 7.2 5-2.6 5-7.2 5-7.2-5-7.2-5z"/><circle cx="10" cy="10" r="2.2"/></svg>',
+  aiout: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 12.5V3.5M6.6 6.9 10 3.5l3.4 3.4M4 11.5v4.8h12v-4.8"/></svg>',
+  aiin: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 4h13v9h-5.6L7.6 16v-3H3.5z"/><path d="M10 6.2v4.3m-1.9-1.9L10 10.5l1.9-1.9"/></svg>',
+  print: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 7.5V3.5h8v4M6 14H4.2a.7.7 0 0 1-.7-.7V8.2a.7.7 0 0 1 .7-.7h11.6a.7.7 0 0 1 .7.7v5.1a.7.7 0 0 1-.7.7H14"/><path d="M6 11.5h8v5H6z"/></svg>',
 };
 const STYLE = `
 body.v-num #side,body.v-num #sideopen,body.v-num #navbg{display:none!important}
@@ -425,6 +432,29 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-warn{color:#9A3412;font-size:13px}
 #numv .nm-prog{font-size:14px;color:var(--sub);padding:40px 20px;text-align:center}
 #numv .nm-lecin{font:inherit;font-size:14px;padding:4px 8px;border:1px solid #D8D0C2;border-radius:6px;min-width:12em}
+#numv .nm-rads{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+#numv .nm-rad{display:inline-flex;align-items:center;gap:6px;font-size:14px;cursor:pointer;min-height:32px}#numv .nm-rad.off{color:var(--faint,#A39B8E);cursor:default}#numv .nm-rad small{color:var(--sub);font-variant-numeric:tabular-nums}#numv .nm-rad input{width:17px;height:17px;margin:0}
+#numv .nm-radl{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+#numv .nm-dlg .nm-radl select{min-height:32px;max-width:min(300px,70vw);font-size:13.5px;padding:2px 6px}
+#numv .nm-chk{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}#numv .nm-chk input{width:17px;height:17px;margin:0}#numv .nm-chk small{color:var(--sub)}
+#numv .nm-xsum{font-size:14px;line-height:1.6;padding:9px 12px;border-radius:8px;background:var(--tint,#F2EEE6)}#numv .nm-xsum small{color:var(--sub)}
+#numv .nm-xparts{display:grid;gap:6px}
+#numv .nm-xpart{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13.5px}
+#numv .nm-how{font-size:13.5px;color:var(--sub)}#numv .nm-how summary{cursor:pointer;font-weight:600}#numv .nm-how ol{margin:6px 0 0;padding-left:1.4em;line-height:1.6}
+#numv .nm-sub{font-size:12.5px;color:var(--sub);line-height:1.5}
+#numv .nm-dlg textarea{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--surface,#fff);color:var(--ink);resize:vertical}
+#numv .nm-atabs{display:flex;flex-wrap:wrap;gap:4px}
+#numv .nm-atabs button{border:1px solid var(--line);background:var(--surface,#fff);color:var(--ink);border-radius:999px;padding:0 11px;height:30px;font:inherit;font-size:12.5px;cursor:pointer}#numv .nm-atabs button.on{background:var(--ink);border-color:var(--ink);color:var(--card,#fff)}#numv .nm-atabs button:disabled{opacity:.45;cursor:default}
+#numv .nm-airow{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:8px;align-items:start;padding:8px 10px;border-bottom:1px solid #EEE9E0}
+#numv .nm-airow input{width:18px;height:18px;margin-top:2px}
+#numv .nm-airow .q{font-size:14px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+#numv .nm-airow .m{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px;font-size:12px;color:#6A6257;align-items:center}
+#numv .nm-aik{display:inline-block;border-radius:999px;padding:0 8px;line-height:20px;font-size:12px;font-weight:600;border:1px solid #E1D9CB;white-space:nowrap}
+#numv .nm-aik.ok{color:#1E6B3E;border-color:#B9DCC5;background:#EDF8F1}#numv .nm-aik.warn{color:#8A5A00;border-color:#EBD7A8;background:#FFF8E6}#numv .nm-aik.bad{color:#9A3412;border-color:#F0C9B0;background:#FFF4EC}#numv .nm-aik.mute{color:#6A6257;background:#F6F4EF}
+#numv .nm-cmp{display:grid;grid-template-columns:1fr 1fr;border:1px solid #E4DFD5;border-radius:6px;margin:0 10px 10px 46px;background:#fff;color:#1F1D1A}
+#numv .nm-cmp section{padding:6px 10px 8px;min-width:0}#numv .nm-cmp section+section{border-left:1px solid #E4DFD5;background:#F7FBF4}
+#numv .nm-cmp b{display:block;font-size:11px;color:#8C857A;margin:0 0 2px}
+#numv .nm-cmp .nm-c{font-size:13.5px}
 @container nmm (max-width:940px){
  #numv .nm-vbtn{display:inline-flex}
  #numv .nm-vopt{display:none;position:absolute;right:28px;top:calc(100% - 4px);z-index:30;flex-direction:column;align-items:stretch;gap:8px;background:var(--card,#fff);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.16);padding:10px;width:min(300px,calc(100vw - 24px))}
@@ -462,6 +492,8 @@ body.v-num #home{max-width:none;margin:0;padding:0}
  #numv .nm-doc{border-radius:0;border-left:0;border-right:0;margin:0 -12px}
  #numv .nm-irow{grid-template-columns:24px minmax(0,1fr)}#numv .nm-irow .add{grid-column:2;justify-self:start}
  #numv .nm-dlg{border-radius:10px}
+ #numv .nm-cmp{grid-template-columns:1fr;margin-left:10px}#numv .nm-cmp section+section{border-left:0;border-top:1px solid #E4DFD5}
+ #numv .nm-airow{grid-template-columns:24px minmax(0,1fr) auto}
 }
 @media print{#numv{display:block}#numv .nm-side,#numv .nm-stick,#numv .nm-info,#numv .nm-edb,#numv .nm-more{display:none}#numv .nm-it{content-visibility:visible}}
 `;
@@ -540,6 +572,7 @@ function sideHTML() {
   return `<div class="nm-sh"><button type="button" class="nm-si" data-sact="home" title="JBL 홈으로 — 모든 과목">${ICO.home}<span class="l">JBL 홈</span></button><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>`
     + `<div class="nm-sttl"><b>내 넘버링</b><span title="다음 업데이트에서 열려요" aria-disabled="true">넘버링 복습 · 추후 업데이트 예정</span></div>`
     + `<button type="button" class="nm-si pri" data-act="new" title="새 문제 만들기">${ICO.plus}<span class="l">새 문제</span></button><button type="button" class="nm-si" data-act="imp" title="JB 기출·강의 예상문제에서 불러오기">${ICO.imp}<span class="l">기존 문제 불러오기</span></button><button type="button" class="nm-si" data-act="file" title="Word(.docx) 넘버링 파일에서 가져오기 — 미리 보고 고른 뒤 넣음">${ICO.file}<span class="l">Word 파일 가져오기</span></button>`
+    + `<div class="nm-ssec">ChatGPT · 인쇄</div><button type="button" class="nm-si" data-act="aiout" title="ChatGPT에 넘버링 스토리를 맡길 문제를 파일(JSON)로 — 스토리 없는 문제만·고른 문제·강의·필터 결과">${ICO.aiout}<span class="l">ChatGPT로 내보내기</span></button><button type="button" class="nm-si" data-act="aiin" title="ChatGPT가 쓴 스토리 파일 넣기 — 바뀌는 것을 먼저 보고 고른 것만">${ICO.aiin}<span class="l">ChatGPT 결과 가져오기</span></button><button type="button" class="nm-si" data-act="print" title="인쇄 · PDF 저장(A4) — 범위·내용 고르기 (⌘/Ctrl P)">${ICO.print}<span class="l">인쇄 · PDF</span></button>`
     + `<div class="nm-ssec">과목</div><details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
     + `<div class="nm-ssec">강의 바로 가기<small>누르면 그 위치로</small></div><div class="nm-ljl">${ljl}</div>`
     + `<div class="nm-sfoot" data-sfoot="1">${footHTML(k)}</div>`;
@@ -584,7 +617,7 @@ function infoHTML(vis, k) {
   if (f.yr) ch.push(chip('yr', f.yr === 'none' ? '연도 없음' : f.yr + '년 출제'));
   return `<span>${ch.length ? `보이는 문제 <b>${vis}</b> / ${k.n}` : `<b>${k.n}</b>문제`}</span>${ch.join('')}${ch.length > 1 ? '<button type="button" class="nm-clr" data-act="fclr">모두 해제</button>' : ''}${C.sort !== 'lec' ? `<span class="nm-srt">정렬: ${esc(SORTN[C.sort] || C.sort)}</span>` : ''}`;
 }
-function batchHTML() { const n = S.sel.size; return `<b>${n}개 선택</b><button type="button" class="nm-btn" data-bat="all">보이는 것 모두 선택</button><button type="button" class="nm-btn" data-bat="none">선택 해제</button><span class="nm-sp"></span><button type="button" class="nm-btn" data-bat="done"${n ? '' : ' disabled'}>완성 표시</button><button type="button" class="nm-btn" data-bat="undone"${n ? '' : ' disabled'}>완성 해제</button><button type="button" class="nm-btn" data-bat="move"${n ? '' : ' disabled'}>강의 옮기기</button><button type="button" class="nm-btn" data-bat="merge"${n > 1 ? '' : ' disabled'} title="같은 문제를 하나로 — 출처·연도를 합침(스토리는 하나만)">합치기</button><button type="button" class="nm-btn" data-bat="del"${n ? '' : ' disabled'}>목록에서 빼기</button>`; }
+function batchHTML() { const n = S.sel.size; return `<b>${n}개 선택</b><button type="button" class="nm-btn" data-bat="all">보이는 것 모두 선택</button><button type="button" class="nm-btn" data-bat="none">선택 해제</button><span class="nm-sp"></span><button type="button" class="nm-btn" data-bat="done"${n ? '' : ' disabled'}>완성 표시</button><button type="button" class="nm-btn" data-bat="undone"${n ? '' : ' disabled'}>완성 해제</button><button type="button" class="nm-btn" data-bat="move"${n ? '' : ' disabled'}>강의 옮기기</button><button type="button" class="nm-btn" data-bat="merge"${n > 1 ? '' : ' disabled'} title="같은 문제를 하나로 — 출처·연도를 합침(스토리는 하나만)">합치기</button><button type="button" class="nm-btn" data-bat="del"${n ? '' : ' disabled'}>목록에서 빼기</button><button type="button" class="nm-btn" data-act="aiout" data-sc="sel"${n ? '' : ' disabled'} title="고른 문제를 ChatGPT용 파일로">ChatGPT로 내보내기</button><button type="button" class="nm-btn" data-act="print" data-sc="sel"${n ? '' : ' disabled'}>인쇄</button>`; }
 function refreshCounts(vis) {
   const R = S.root; if (!R) return; const k = counts(); if (vis == null) vis = S.visN != null ? S.visN : $$('.nm-it:not([hidden])', R).length;
   const c = $('[data-cnt]', R); if (c) c.innerHTML = infoHTML(vis, k);
@@ -690,7 +723,7 @@ function fClear(x) {   /* 조건 하나(x) 또는 모두 풀기 — 검색 포�
 /* ---------- 편집기(누른 칸 하나만) — 작은 떠 있는 도구 막대: 자주 쓰는 것(굵게·밑줄·글자색·형광펜·번호·글머리표)만, 나머지는 ⋯ ---------- */
 const COLORS = ['#000000', '#C00000', '#E36C09', '#BF4E14', '#00B050', '#0070C0', '#7030A0', '#7F7F7F'];
 const HILITE = ['#FFFF00', '#00FF00', '#00FFFF', '#FF99CC', '#FFD966', '#C6E0B4'];
-const curEd = () => S.ed || S.formEd;
+const curEd = () => S.formEd || S.ed;
 function tbHTML(form) {
   return `<div class="nm-tb" role="toolbar" aria-label="서식">`
     + `<button type="button" data-cmd="bold" title="굵게 (⌘/Ctrl B)"><b>B</b></button><button type="button" data-cmd="underline" title="밑줄 (⌘/Ctrl U)"><u>U</u></button>`
@@ -764,13 +797,15 @@ function edSave() {
   let h = toStore(E.el.innerHTML); if (isEmpty(h)) h = '';
   if (h === E.saved) { saveState('ok'); return; }
   const it = E.it;
+  if (it.stale) reloadIt(it);   /* 편집 중 다른 창에서 이 문제를 고쳤음 — 저장된 글을 다시 읽어 다른 칸은 그쪽 것으로(지금 칸만 내 글) */
   if (E.saved === E.norm0 && h !== E.norm0) it.prev = { f: E.f, h: E.orig, at: now() };   /* 이번 편집 전 글 = 되돌리기 한 칸 */
   if ((E.f === 'q' || E.f === 'a') && it.kind !== 'seed' && it.kind !== 'user' && it[E.f + '0'] == null) it[E.f + '0'] = E.orig;   /* JB·예상·Word 가져온 원본 사본(처음 고칠 때) */
   it[E.f] = h === E.norm0 ? E.orig : h; touch(it); E.saved = h; it._ty = null;   /* 원래 글로 되돌려 쓰면 원본 그대로(작업본 아님) */
   put(it);
 }
+function reloadIt(it) { it.stale = 0; let r = null; try { const v = localStorage.getItem(H.NS + keyI(it.s, it.id)); r = v ? JSON.parse(v) : null; } catch (_) {} if (r) Object.assign(it, it.kind === 'seed' ? mkSeed(it.s, it.base, r, it.oi, S.seed) : mkRec(it.s, r), { _t: null, _ty: null, _k: null, _qd: null }); }
 function endEdit(silent) {
-  const E = S.ed; if (!E) return; edSave(); S.ed = null;
+  const E = S.ed; if (!E) return; edSave(); S.ed = null; if (E.it.stale) reloadIt(E.it);   /* 고친 것 없이 닫아도 다른 창의 글로 맞춤 */
   try { E.el.contentEditable = 'false'; E.el.removeAttribute('contenteditable'); } catch (e) {}
   if (E.tb && E.tb.isConnected) E.tb.remove(); palClose(); if (!S.formEd) tbWatch(false);
   if (!silent && E.el.isConnected) rerenderItem(E.it);
@@ -795,13 +830,13 @@ async function shrinkFile(file, maxW) {
   let d = cv.toDataURL('image/webp', 0.8); if (!/^data:image\/webp/.test(d)) d = cv.toDataURL('image/jpeg', 0.82);
   return { d, w: Math.min(w, 640), h: Math.round(Math.min(w, 640) * h / w) };
 }
-function pickImage(cb) { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; i.onchange = async () => { const f = i.files && i.files[0]; if (!f) return; try { cb(await shrinkFile(f)); } catch (e) { H.toast('그림을 열지 못했어요 — 다른 형식(png·jpg)으로 해 주세요', { level: 'error', id: 'nmimg' }); } }; i.click(); }
+function pickImage(cb, onCancel) { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*'; if (onCancel) i.addEventListener('cancel', onCancel); i.onchange = async () => { const f = i.files && i.files[0]; if (!f) return; try { cb(await shrinkFile(f)); } catch (e) { H.toast('그림을 열지 못했어요 — 다른 형식(png·jpg)으로 해 주세요', { level: 'error', id: 'nmimg' }); } }; i.click(); }
 function runCmd(c) {
   const E = curEd(); if (!E) return; E.el.focus({ preventScroll: true });
   if (c === 'done') { if (S.ed) endEdit(); return; }
   if (c === 'img') { const sel = getSelection(), r = sel.rangeCount ? sel.getRangeAt(0).cloneRange() : null; E.busy = true;
     const back = () => { removeEventListener('focus', back); setTimeout(() => { if (curEd() === E && E.busy === true) { E.busy = false; E.el.focus({ preventScroll: true }); } }, 900); }; addEventListener('focus', back);
-    pickImage(im => { E.busy = false; if (curEd() !== E) return; E.el.focus({ preventScroll: true }); if (r) { sel.removeAllRanges(); sel.addRange(r); } document.execCommand('insertHTML', false, `<img src="${im.d}" width="${im.w}" height="${im.h}" alt="">`); edChanged(); }); return; }
+    pickImage(im => { E.busy = false; if (curEd() !== E) return; E.el.focus({ preventScroll: true }); if (r) { sel.removeAllRanges(); sel.addRange(r); } document.execCommand('insertHTML', false, `<img src="${im.d}" width="${im.w}" height="${im.h}" alt="">`); edChanged(); }, () => { E.busy = false; if (curEd() === E) E.el.focus({ preventScroll: true }); }); return; }
   try { document.execCommand(c, false, null); } catch (e) {}
   edChanged();
 }
@@ -901,12 +936,15 @@ function newItem(o) {
 }
 function bumpIdx(sj) { const x = idx(sj); idxPut(sj, x); }
 function richField(name, label, html, ph) { return `<label class="nm-fld"><span>${esc(label)}</span><div class="nm-rich" contenteditable="true" data-rich="${name}" data-ph="${esc(ph || '')}">${disp(html || '') || '<p><br></p>'}</div></label>`; }
-function dlg(title, body, foot) {
-  const R = $('#numv'); if (!R) return null; dlgClose();
+function dlg(title, body, foot, o) {
+  const R = $('#numv'); if (!R) return null; endEdit(true); dlgClose(); o = o || {};
   R.insertAdjacentHTML('beforeend', `<div class="nm-ov" data-ov="1" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="nm-dlg"><header><h3>${esc(title)}</h3><button type="button" class="nm-btn x" data-x="1" aria-label="닫기">✕ 닫기</button></header><div class="bd">${body}</div><footer>${foot || ''}</footer></div></div>`);
   const ov = $('.nm-ov', R); document.body.style.overflow = 'hidden';
-  ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('[data-x]')) dlgClose(); });
-  ov.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); dlgClose(); } });
+  const close = () => { if (o.dirty && o.dirty()) ask('쓴 내용이 저장되지 않았어요 — 닫을까요?', { ok: '닫기', no: '계속 쓰기' }).then(y => { if (y) dlgClose(); }); else dlgClose(); };
+  let downBg = false; ov.addEventListener('mousedown', e => { downBg = e.target === ov; });   /* 칸에서 끌다가 바깥에서 놓은 것은 닫지 않음 */
+  ov.addEventListener('click', e => { if (e.target.closest('[data-x]')) { close(); return; } if (e.target === ov && downBg) close(); downBg = false; });
+  ov.addEventListener('keydown', e => { if (e.key === 'Escape' && !e.defaultPrevented) { e.stopPropagation(); close(); } });
+  const dd = ov.querySelector('.nm-dlg'); dd.setAttribute('tabindex', '-1'); setTimeout(() => { if (dd.isConnected && !dd.contains(document.activeElement)) dd.focus({ preventScroll: true }); }, 0);
   return ov;
 }
 function dlgClose() { formEnd(); $$('.nm-ov').forEach(o => o.remove()); document.body.style.overflow = ''; }
@@ -918,7 +956,7 @@ function ask(msg, o) {
     box.innerHTML = `<div class="nm-dlg" style="width:min(520px,100%)"><div class="bd"><div style="white-space:pre-wrap;font-size:15px;line-height:1.55">${esc(msg)}</div>${o.input != null ? `<input type="text" data-ask-in="1" value="${esc(o.input)}" placeholder="${esc(o.ph || '')}" aria-label="${esc(o.ph || msg)}">` : ''}</div><footer><span style="flex:1"></span>${o.only ? '' : `<button type="button" class="nm-btn" data-ask="0">${esc(o.no || '취소')}</button>`}<button type="button" class="nm-btn pri" data-ask="1">${esc(o.ok || '확인')}</button></footer></div>`;
     const fin = v => { box.remove(); res(v); };
     box.addEventListener('click', e => { const b = e.target.closest('[data-ask]'); if (b) { const inp = box.querySelector('[data-ask-in]'); fin(b.dataset.ask === '1' ? (inp ? inp.value : true) : (inp ? null : false)); } else if (e.target === box) fin(o.input != null ? null : false); });
-    box.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); fin(o.input != null ? null : false); } else if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); const inp = box.querySelector('[data-ask-in]'); fin(inp ? inp.value : true); } });
+    box.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); fin(o.input != null ? null : false); } else if (e.key === 'Enter' && !e.isComposing) { const bb = e.target.closest && e.target.closest('[data-ask]'), inp = box.querySelector('[data-ask-in]'); e.preventDefault(); e.stopPropagation(); if (bb && bb.dataset.ask === '0') fin(inp ? null : false); else fin(inp ? inp.value : true); } });   /* 단추에 포커스면 그 단추의 기본 동작(Enter = 그 단추) — '취소'에서 Enter가 확인이 되지 않게 */
     R.appendChild(box); const f = box.querySelector('[data-ask-in]') || box.querySelector('[data-ask="1"]'); if (f) f.focus();
   });
 }
@@ -930,7 +968,8 @@ function newForm(pre) {
     + richField('q', '문제', pre.q, '예: ○○의 적응증 4가지를 쓰시오.') + `<div class="nm-g2">${richField('a', '답안', pre.a)}${richField('st', '넘버링 스토리 (비워 둬도 저장돼요)', pre.st)}</div>`
     + `<div class="nm-g2"><label class="nm-fld"><span>출처</span><input type="text" data-nf="src" value="직접 추가" placeholder="예: 25 수업 강조, 스터디 예상"></label><label class="nm-fld"><span>출제 연도(있으면)</span><input type="text" data-nf="yrs" placeholder="예: 25, 23"></label></div>`
     + `<div class="nm-g2"><label class="nm-fld"><span>태그</span><input type="text" data-nf="tags" placeholder="쉼표로 나눔"></label><label class="nm-fld"><span>참고사항</span><input type="text" data-nf="note"></label></div><div class="nm-warn" data-nf-msg="1"></div>`,
-    `<span style="font-size:13px;color:var(--sub)">칸을 누르면 작은 서식 도구가 떠요(⋯에 표·그림·실행 취소)</span><span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">취소</button><button type="button" class="nm-btn pri" data-nfsave="1">저장</button>`);
+    `<span style="font-size:13px;color:var(--sub)">칸을 누르면 작은 서식 도구가 떠요(⋯에 표·그림·실행 취소)</span><span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">취소</button><button type="button" class="nm-btn pri" data-nfsave="1">저장</button>`,
+    { dirty: () => { const o2 = document.querySelector('.nm-ov'); return !!o2 && [...o2.querySelectorAll('[data-rich]')].some(e => !isEmpty(toStore(e.innerHTML))); } });
   if (!ov) return;
   const sel = ov.querySelector('[data-nf=s]'), lsel = ov.querySelector('[data-nf=lec]');
   sel.addEventListener('change', async () => { if (sel.value !== S.sj) await seedOf(sel.value).catch(() => null); lsel.innerHTML = lecOpts(sel.value); });
@@ -1082,11 +1121,12 @@ function addMany(plan, sim, simMerge, sj) {   /* 한 번에 — 기록은 사본
     out.set(it.id, { c: it, fin: () => { delete it._new; if (live && !S.by.has(it.id)) { S.items.push(it); S.by.set(it.id, it); } } }); add++;
   }
   try {
-    for (const [id, e] of out) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k)); const r = toRec(e.c); delete r._new; localStorage.setItem(H.NS + k, JSON.stringify(r)); if (H.LSQ) H.LSQ.delete(k); }
+    for (const [id, e] of out) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k)); const r = toRec(e.c); delete r._new; localStorage.setItem(H.NS + k, JSON.stringify(r)); }
   } catch (e) {
     for (const [k, v] of before) { try { if (v == null) localStorage.removeItem(H.NS + k); else localStorage.setItem(H.NS + k, v); } catch (_) {} }
     return { err: e && (e.name === 'QuotaExceededError' || e.code === 22) ? '이 기기 저장 공간이 부족해요' : String(e && e.message || e) };
   }
+  lqDrop([...before.keys()]);   /* 다 쓴 뒤에만 대기열에서 뺌 */
   for (const e of out.values()) e.fin();
   if (live && S.root && document.getElementById('numv')) render({ pos: topItem() });
   bumpIdx(sj); saveState('ok');
@@ -1149,8 +1189,9 @@ function filePreview(fname, r) {
         const it = { id: 'w:' + t.toString(36) + ':' + y.i, s: sj, kind: 'word', lec: lmap[y.lec] || '', q, a, st, note: y.note || '', tags: y.tags || [], yrs: y.yrs || [], src: [src], ref: null, done: false, o: o++, c: t, u: t, del: false, rv: (y.rv || []).concat(qOnly ? [{ k: 'qsame', m: '문제 글이 같은 문제가 이미 있지만 답이 달라 따로 넣음 — 같은 문제면 \'여러 개 선택 → 합치기\'' }] : []), rvok: false, prev: null };
         recs.set(it.id, { it }); pool.push(it); add++;
       }
-      for (const [id, r] of recs) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k)); localStorage.setItem(H.NS + k, JSON.stringify(toRec(r.it))); if (H.LSQ) H.LSQ.delete(k); }
+      for (const [id, r] of recs) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k)); localStorage.setItem(H.NS + k, JSON.stringify(toRec(r.it))); }
       const xk = 'num.x.' + sj; before.set(xk, localStorage.getItem(H.NS + xk)); x.u = now(); localStorage.setItem(H.NS + xk, JSON.stringify(x));
+      lqDrop([...before.keys()]);
       dlgClose(); H.toast(`가져왔어요 — 새 문제 ${add}${link ? ' · 같은 문제 출처 연결 ' + link : ''}`, { level: 'result' });
       await switchSubject(sj, { force: sj === S.sj });
     } catch (e) {   /* 이번에 쓴 키는 쓰기 전 값으로 되돌림(기존 문제는 그대로) */
@@ -1159,6 +1200,269 @@ function filePreview(fname, r) {
       H.toast('가져오지 못했어요 — 기존 넘버링은 그대로예요: ' + (e && (e.name === 'QuotaExceededError' || e.code === 22) ? '이 기기 저장 공간이 부족해요(그림이 많은 파일은 나눠서)' : String(e && e.message || e)), { level: 'error', id: 'nmfile' });
     }
   });
+}
+
+/* ---------- ChatGPT 주고받기(파일 · JSON — 따로 AI 연결 없음) ----------
+   내보내기: 문제·답안 원문 글(줄바꿈·번호·표 칸 살린 맨글) + 문제마다 고유 id + 내보낼 때 스토리 지문 s0 · 강의로 묶음 · 기본은 스토리 빼고(토큰 절약) · 많으면 나눠 받기
+   가져오기: id로만 연결(번호·정렬과 무관) · 넘버링 스토리만 바꿈(문제·답안·출처·연도 그대로) · 바로 덮어쓰지 않고 미리 보기 → 고른 것만
+     새 스토리(지금 비어 있음) = 기본 선택 · 이미 있는 스토리 = 기본 보호(직접 골라야 바뀜) · 내보낸 뒤 JBL에서 고친 스토리(s0 ≠ 지금) = 충돌
+     ID 없음·중복·뺀 문제·문제 글 다름(ID 엉킴)·형식 오류 = 적용 안 됨 · 한 번에 쓰고 실패하면 전부 되돌림 · ⋯ '마지막 수정 전으로'와 알림 '되돌리기' */
+const AIF = 'jbl-numbering', AIV = 1;
+const AI_RULES = ['items마다 q(문제)와 a(정답)를 읽고, 정답 항목을 순서대로 떠올리게 하는 한국어 넘버링 스토리(앞글자 따기·연상 문장 등)를 story에 써 줘.', 'id·s0·q는 한 글자도 바꾸지 말고 그대로 돌려줘(q로 문제를 다시 확인해). a는 바꾸지 마(돌려줄 때 빼도 돼).', '정답에 없는 내용은 더하지 마. 정답 항목의 수와 순서를 그대로 따라가.', 'story는 줄바꿈(\\n)으로 나눈 맨글로 쓰고, 강조는 **굵게**만 써.', 'story가 이미 있으면 더 외우기 쉽게 다듬거나 그대로 둬.', '돌려줄 때는 format·v·sid·batch와 구조(lecs → items)를 그대로 두고, 설명 없이 JSON만 줘(가능하면 .json 파일로).'];
+const AI_PROMPT = '첨부한 JSON 파일은 치의학 시험 대비 넘버링 문제야. 파일 안 rules를 지켜서 각 문제(items)의 story(넘버링 스토리)를 채운 뒤, 같은 구조의 JSON 파일 하나로 돌려줘. 파일로 못 주면 JSON 전체를 코드 블록 하나로 줘.';
+function hsh(s) { s = String(s || ''); if (!s) return '0'; let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(36); }   /* 저장된 스토리 글의 지문(내보낸 뒤 고쳤는지 알아봄) */
+function toText(h) {   /* AI용 맨글 — 글자는 그대로, 줄바꿈·번호 목록(1. / •)·표(칸 ' | ')만 살림 · 그림은 [그림] */
+  if (!h) return '';
+  const t = document.createElement('template'); t.innerHTML = h; let out = '';
+  const nl = () => { if (out && !out.endsWith('\n')) out += '\n'; };
+  const walk = n => {
+    for (const c of n.childNodes) {
+      if (c.nodeType === 3) { out += c.data; continue; }
+      if (c.nodeType !== 1) continue;
+      const tg = c.tagName;
+      if (tg === 'BR') { out += '\n'; continue; }
+      if (tg === 'IMG') { out += '[그림]'; continue; }
+      if (tg === 'TABLE') { nl(); for (const tr of c.querySelectorAll('tr')) out += [...tr.children].map(td => toText(td.innerHTML).replace(/\s*\n\s*/g, ' ').trim()).join(' | ') + '\n'; continue; }
+      if (tg === 'OL' || tg === 'UL') { nl(); let i = 0; for (const li of c.children) { out += (tg === 'OL' ? (++i) + '. ' : '• '); walk(li); nl(); } continue; }
+      const blk = /^(P|DIV|LI|H[1-6]|TR|SECTION)$/.test(tg);
+      if (blk) nl(); walk(c); if (blk) nl();
+    }
+  };
+  walk(t.content);
+  return out.replace(/ /g, ' ').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+function storyHTML(s) {   /* ChatGPT 맨글 → 스토리 HTML(줄 = 문단 · **굵게** · ==형광펜==) */
+  const inl = x => esc(x).replace(/\*\*([^*\n]+?)\*\*/g, '<b>$1</b>').replace(/==([^=\n]+?)==/g, '<span style="background-color:#FFFF00">$1</span>');
+  const L = String(s).replace(/\r\n?/g, '\n').replace(/\\n/g, '\n').split('\n');
+  while (L.length && !L[0].trim()) L.shift(); while (L.length && !L[L.length - 1].trim()) L.pop();
+  const h = toStore(L.map(l => l.trim() ? '<p>' + inl(l.replace(/\s+$/, '')) + '</p>' : '<p><br></p>').join(''));
+  return isEmpty(h) ? '' : h;
+}
+const STF = [['', '모든 상태'], ['0', '미작성(스토리 없음)만'], ['1', '작성 중만'], ['n2', '완성 제외'], ['2', '완성만']];
+function scopeList(sc, lec, stf) {
+  const K = lecKeys(); let L = ordered();
+  if (sc === 'sel') L = L.filter(it => S.sel.has(it.id)); else if (sc === 'flt') L = L.filter(visible); else if (sc === 'lec') L = L.filter(it => (K.has(it.lec) ? it.lec : '') === lec);
+  if (stf === 'n2') L = L.filter(it => stOf(it) !== 2); else if (stf) L = L.filter(it => String(stOf(it)) === stf);
+  return L;
+}
+function scopeLab(sc, lec) { return sc === 'sel' ? '고른 문제' : sc === 'flt' ? '지금 보이는 문제' : sc === 'lec' ? lecOf(lec).t : '과목 전체'; }
+function scopeHTML(pre, name) {
+  const n = lecCounts(), nS = [...S.sel].filter(id => S.by.has(id) && !S.by.get(id).del).length, L = S.lecs.filter(l => n[l.k]);
+  if (pre === 'sel' && !nS) pre = 'all';
+  const r = (v, t, c, dis) => `<label class="nm-rad${dis ? ' off' : ''}"><input type="radio" name="${name}" value="${v}"${pre === v ? ' checked' : ''}${dis ? ' disabled' : ''}>${t}${c != null ? ` <small>${c}</small>` : ''}</label>`;
+  const cl = S.curLec != null && n[S.curLec] ? S.curLec : (L[0] || {}).k;
+  return `<div class="nm-fld"><span>범위</span><div class="nm-rads">${r('all', '과목 전체', counts().n)}${r('flt', '지금 보이는 문제(필터·검색)', S.visN || 0)}${r('sel', '고른 문제', nS, !nS)}<span class="nm-radl">${r('lec', '강의', null, !L.length)}<select data-sc-lec="1" aria-label="강의"${L.length ? '' : ' disabled'}>${L.map(l => `<option value="${esc(l.k)}"${l.k === cl ? ' selected' : ''}>${esc(l.t)} (${n[l.k]})</option>`).join('')}</select></span></div></div>`;
+}
+function scopeOf(ov, name) { const r = ov.querySelector(`input[name=${name}]:checked`), l = ov.querySelector('[data-sc-lec]'); return { sc: r ? r.value : 'all', lec: l ? l.value : '' }; }
+function scopeWire(ov, name, f) { ov.addEventListener('change', e => { if (e.target.matches('[data-sc-lec]')) { const r = ov.querySelector(`input[name=${name}][value=lec]`); if (r && !r.disabled) r.checked = true; } f(); }); }
+function saveFile(name, text, type) { const b = new Blob([text], { type: type || 'application/json;charset=utf-8' }), u = URL.createObjectURL(b), a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 5000); }
+function copyText(t, okMsg) {
+  const fb = () => { const a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.cssText = 'position:fixed;left:-9999px;top:0'; document.body.appendChild(a); a.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (e) {} a.remove(); H.toast(ok ? okMsg : '복사하지 못했어요 — [파일 받기]를 써 주세요', ok ? undefined : { level: 'error' }); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(() => H.toast(okMsg), fb); else fb();
+}
+const fsafe = s => String(s || '').replace(/[\\/:*?"<>|\s]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40);
+function aiPayload(L, inc, batch, part) {
+  const K = lecKeys(), gs = [], gm = new Map();
+  for (const it of L) {
+    const lk = K.has(it.lec) ? it.lec : ''; let g = gm.get(lk); if (!g) { g = { lec: lecOf(lk).t, items: [] }; gm.set(lk, g); gs.push(g); }
+    g.items.push({ id: it.id, q: toText(it.q), a: toText(it.a), story: inc && !isEmpty(it.st) ? toText(it.st) : '', s0: hsh(it.st) });
+  }
+  const o = { format: AIF, v: AIV, sid: S.sj, subject: subjT(S.sj), batch, part, n: L.length, rules: AI_RULES, lecs: gs };
+  return JSON.stringify(o).replace(/\[\{"id":/g, '[\n{"id":').replace(/\},\{"id":/g, '},\n{"id":').replace(/,"lecs":\[/, ',\n"lecs":[');   /* 문제 한 줄씩(사람이 열어 봐도 읽힘 · 공백 최소) */
+}
+function aiExportDlg(pre) {
+  endEdit(true);
+  const sc0 = pre || (S.sel.size ? 'sel' : 'all'), st0 = sc0 === 'sel' ? '' : '0';   /* 직접 고른 문제는 모두 · 그 밖에는 스토리 없는 문제만 */
+  const ov = dlg('ChatGPT로 내보내기 — 넘버링 스토리 맡기기', `${scopeHTML(sc0, 'xsc')}`
+    + `<div class="nm-g2"><label class="nm-fld"><span>제작 상태</span><select data-xo="st">${STF.map(([v, t]) => `<option value="${v}"${v === st0 ? ' selected' : ''}>${t}</option>`).join('')}</select></label><label class="nm-fld"><span>한 파일에 (ChatGPT 답이 잘리지 않게)</span><select data-xo="chunk"><option value="30">30문제씩</option><option value="50" selected>50문제씩</option><option value="100">100문제씩</option><option value="0">나누지 않음</option></select></label></div>`
+    + `<label class="nm-chk"><input type="checkbox" data-xo="inc">이미 쓴 스토리도 넣기 <small>— ChatGPT가 다듬게(기본은 빼서 토큰 절약)</small></label>`
+    + `<div class="nm-xsum" data-xsum="1"></div><div class="nm-xparts" data-xparts="1"></div>`
+    + `<details class="nm-how"><summary>쓰는 법</summary><ol><li>[파일 받기]로 .json 파일을 받아요(많으면 나눠서).</li><li>ChatGPT에 파일을 올리고 [안내문 복사]한 글을 붙여 보내요.</li><li>ChatGPT가 돌려준 파일(또는 답 글 전체)을 사이드바 [ChatGPT 결과 가져오기]에 넣어요 — 바뀌는 것을 먼저 보여 주고, 고른 것만 넣어요.</li></ol></details>`,
+    `<button type="button" class="nm-btn" data-xo="prompt" title="ChatGPT에 파일과 함께 보낼 짧은 안내문">안내문 복사</button><span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">닫기</button>`);
+  if (!ov) return;
+  const batch = now().toString(36); let parts = [];
+  const draw = () => {
+    const { sc, lec } = scopeOf(ov, 'xsc'), stf = ov.querySelector('[data-xo=st]').value, inc = ov.querySelector('[data-xo=inc]').checked, cs = +ov.querySelector('[data-xo=chunk]').value;
+    const L = scopeList(sc, lec, stf), nP = cs && L.length > cs ? Math.ceil(L.length / cs) : 1, sub = (subjects().find(s => s.id === S.sj) || {}).sh || S.sj;
+    parts = []; for (let i = 0; i < nP; i++) { const seg = cs ? L.slice(i * cs, (i + 1) * cs) : L; if (!seg.length) break; parts.push({ seg, from: i * (cs || 0) + 1, txt: null, name: `JBL넘버링_${fsafe(sub)}_${fsafe(scopeLab(sc, lec))}_${L.length}문제${nP > 1 ? `_${i + 1}of${nP}` : ''}.json`, part: nP > 1 ? (i + 1) + '/' + nP : '1/1' }); }
+    const chars = parts.reduce((m, p) => m + (p.txt = aiPayload(p.seg, inc, batch, p.part)).length, 0);
+    ov.querySelector('[data-xsum]').innerHTML = L.length ? `내보낼 문제 <b>${L.length}</b>개${nP > 1 ? ` · 파일 <b>${nP}</b>개` : ''} · 약 ${chars.toLocaleString()}자 <small>(문제·답안 원문 그대로 · 문제마다 고유 id)</small>` : '<span class="nm-warn">내보낼 문제가 없어요 — 범위·제작 상태를 바꿔 보세요.</span>';
+    ov.querySelector('[data-xparts]').innerHTML = parts.map((p, i) => `<div class="nm-xpart"><b>${nP > 1 ? (i + 1) + '번 파일' : '파일'}</b><span>${p.seg.length}문제${nP > 1 ? ` (${p.from}–${p.from + p.seg.length - 1})` : ''}</span><span style="flex:1"></span><button type="button" class="nm-btn pri" data-xget="${i}">파일 받기</button><button type="button" class="nm-btn" data-xcp="${i}" title="파일 대신 내용을 복사해 ChatGPT에 바로 붙여 넣기">내용 복사</button></div>`).join('');
+  };
+  scopeWire(ov, 'xsc', draw); draw();
+  ov.addEventListener('click', e => {
+    const g = e.target.closest('[data-xget]'), c = e.target.closest('[data-xcp]'), pr = e.target.closest('[data-xo=prompt]');
+    if (g) { const p = parts[+g.dataset.xget]; if (p) { saveFile(p.name, p.txt); H.toast('받았어요 — ChatGPT에 이 파일과 안내문을 보내세요', { level: 'result' }); } }
+    else if (c) { const p = parts[+c.dataset.xcp]; if (p) copyText(AI_PROMPT + '\n\n' + p.txt, '안내문과 함께 복사했어요 — ChatGPT에 붙여 넣으세요'); }
+    else if (pr) copyText(AI_PROMPT, '안내문을 복사했어요');
+  });
+}
+function aiParse(txt) {
+  let s = String(txt || '').replace(/^﻿/, '').trim();
+  const fc = /```(?:json)?\s*([\s\S]*?)```/i.exec(s); if (fc && /[{[]/.test(fc[1])) s = fc[1].trim();
+  if (!/^[[{]/.test(s)) { const i = s.search(/[[{]/); if (i >= 0) s = s.slice(i); }
+  const j = Math.max(s.lastIndexOf('}'), s.lastIndexOf(']')); if (j >= 0) s = s.slice(0, j + 1);
+  let o; try { o = JSON.parse(s); } catch (e) { throw new Error('JSON으로 읽지 못했어요 — ChatGPT가 준 파일(또는 답 글 전체)을 그대로 넣어 주세요'); }
+  if (o && !Array.isArray(o) && typeof o === 'object' && o.format != null && o.format !== AIF) throw new Error('JBL 넘버링 파일이 아니에요(format: ' + String(o.format).slice(0, 30) + ')');
+  if (o && !Array.isArray(o) && +o.v > AIV) throw new Error('더 새 판 형식(v' + o.v + ')이에요 — 사이트를 새로고침한 뒤 다시 해 주세요');
+  const list = [], take = a => { if (Array.isArray(a)) for (const x of a) if (x && typeof x === 'object' && !Array.isArray(x)) list.push(x); };
+  if (Array.isArray(o)) take(o); else if (o && typeof o === 'object') { take(o.items); if (Array.isArray(o.lecs)) o.lecs.forEach(g => { if (g && typeof g === 'object') take(g.items); }); }
+  if (!list.length) throw new Error('문제(items)가 없어요 — 내보낸 파일 구조(lecs → items)를 그대로 돌려받았는지 확인해 주세요');
+  if (list.length > 5000) throw new Error('한 번에 5000문제까지만 가져올 수 있어요 — 나눠서 넣어 주세요');
+  return { meta: Array.isArray(o) ? {} : o, list };
+}
+const AIK = { new: ['새 스토리', 'ok'], upd: ['이미 있는 스토리 바꿈', 'warn'], cf: ['충돌 — 내보낸 뒤 JBL에서 고친 스토리', 'bad'], same: ['변경 없음', 'mute'], empty: ['ChatGPT 스토리가 비어 있음', 'mute'], miss: ['맞는 문제 없음(ID)', 'bad'], dup: ['파일 안에 같은 ID가 여러 번', 'bad'], del: ['목록에서 뺀 문제', 'mute'], qdiff: ['문제 글이 달라요 — ID가 엉켰을 수 있어요', 'bad'], bad: ['스토리 형식 오류', 'bad'] };
+const aiCan = k => k === 'new' || k === 'upd' || k === 'cf';
+function aiPlan(P) {
+  const idOf = x => typeof x.id === 'string' ? x.id.trim() : (typeof x.id === 'number' ? String(x.id) : ''), cnt = new Map();
+  P.list.forEach(x => { const id = idOf(x); if (id) cnt.set(id, (cnt.get(id) || 0) + 1); });
+  return P.list.map((x, i) => {
+    const id = idOf(x), r = { i, id, x, k: '', it: null, html: '', on: false, cur: '' };
+    const raw = x.story != null ? x.story : x.st, sv = typeof raw === 'string' ? raw : Array.isArray(raw) && raw.every(v => typeof v === 'string') ? raw.join('\n') : raw == null ? '' : null;
+    if (!id) { r.k = 'miss'; return r; }
+    if (cnt.get(id) > 1) { r.k = 'dup'; return r; }
+    const it = S.by.get(id); if (!it) { r.k = 'miss'; return r; } r.it = it; r.cur = hsh(it.st);
+    if (it.del) { r.k = 'del'; return r; }
+    if (sv == null) { r.k = 'bad'; return r; }
+    if (!sv.trim()) { r.k = 'empty'; return r; }
+    if (typeof x.q === 'string' && x.q.trim()) { const a = norm(x.q).slice(0, 200), b = norm(toText(it.q)).slice(0, 200); if (a && b && a !== b && dice(a, b) < 0.6) { r.k = 'qdiff'; return r; } }
+    r.html = storyHTML(sv); if (!r.html) { r.k = 'empty'; return r; }
+    if (norm(plain(r.html)) === norm(plain(it.st)) || norm(sv) === norm(toText(it.st))) { r.k = 'same'; return r; }   /* 내보낸 글(번호·표 칸·[그림]) 그대로 돌아와도 '변경 없음' — 서식 그대로 둠 */
+    const s0 = typeof x.s0 === 'string' ? x.s0.trim() : null;
+    if (isEmpty(it.st)) r.k = s0 && s0 !== '0' ? 'cf' : 'new';   /* 내보낼 땐 있던 스토리를 그 뒤 지웠으면 충돌 */
+    else r.k = s0 && s0 === r.cur ? 'upd' : 'cf';   /* 지문이 없거나 다르면(내보낸 뒤 고침) 충돌 */
+    r.noq = !(typeof x.q === 'string' && x.q.trim());   /* 문제 글이 안 돌아오면 ID만으로는 확인 못 함 — 미리 고르지 않음 */
+    r.on = r.k === 'new' && !r.noq; return r;
+  });
+}
+function aiImportDlg() {
+  endEdit(true);
+  const ov = dlg('ChatGPT 결과 가져오기', `<div class="nm-fld"><span>ChatGPT가 돌려준 파일(.json · .txt)</span><div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button type="button" class="nm-btn pri" data-ai="file">파일 고르기</button><span class="nm-sub" data-ai-fn="1"></span></div></div>`
+    + `<div class="nm-fld"><span>또는 ChatGPT 답 글 전체를 붙여 넣기</span><textarea data-ai="txt" rows="6" placeholder='{"format":"jbl-numbering", … }' aria-label="ChatGPT 답 붙여 넣기"></textarea></div><div class="nm-warn" data-ai-msg="1" role="alert"></div>`
+    + `<div class="nm-sub">바로 바뀌지 않아요 — 다음 화면에서 무엇이 어떻게 바뀌는지 보고 고른 것만 넣어요. 문제·답안·출처·연도는 그대로 두고 넘버링 스토리만 바꿔요.</div>`,
+    `<span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">취소</button><button type="button" class="nm-btn pri" data-ai="go">미리 보기</button>`);
+  if (!ov) return;
+  let fileTxt = null; const msg = m => { ov.querySelector('[data-ai-msg]').textContent = m || ''; };
+  const go = async txt => {
+    let P; try { P = aiParse(txt); } catch (e) { msg('⚠ ' + e.message + ' (기존 넘버링은 그대로예요)'); return; }
+    const sid = typeof P.meta.sid === 'string' ? P.meta.sid : '';
+    if (sid && sid !== S.sj) { if (!subjects().some(s => s.id === sid)) { msg('⚠ 이 파일의 과목(' + sid + ')이 이 기기 내 넘버링에 없어요'); return; } dlgClose(); await switchSubject(sid); }
+    aiPreview(P);
+  };
+  ov.addEventListener('click', e => {
+    const b = e.target.closest('[data-ai]'); if (!b) return;
+    if (b.dataset.ai === 'file') { const i = document.createElement('input'); i.type = 'file'; i.accept = '.json,.txt,application/json,text/plain'; i.onchange = async () => { const f = i.files && i.files[0]; if (!f) return; if (f.size > 20e6) { msg('⚠ 파일이 너무 커요(20MB까지)'); return; } try { fileTxt = await f.text(); } catch (_) { msg('⚠ 파일을 읽지 못했어요'); return; } ov.querySelector('[data-ai-fn]').textContent = f.name; go(fileTxt); }; i.click(); }
+    else if (b.dataset.ai === 'go') { const t = ov.querySelector('[data-ai=txt]').value.trim() || fileTxt; if (!t) { msg('파일을 고르거나 ChatGPT 답을 붙여 넣어 주세요'); return; } go(t); }
+  });
+}
+function aiPreview(P) {
+  const R = aiPlan(P), n = k => R.filter(r => r.k === k).length, skip = R.filter(r => !aiCan(r.k)).length;
+  const qline = r => r.it ? plain(qDisp(r.it)).replace(/\s+/g, ' ').trim().slice(0, 140) : (typeof r.x.q === 'string' ? r.x.q.replace(/\s+/g, ' ').slice(0, 140) : '(문제 글 없음)') + (r.id ? ' · id ' + r.id.slice(0, 40) : '');
+  const cmp = r => `<div class="nm-cmp" data-cmp="${r.i}"><section><b>지금 스토리</b><div class="nm-c">${disp(r.it.st) || '<span class="nm-ph">없음</span>'}</div></section><section><b>ChatGPT 스토리</b><div class="nm-c">${r.html}</div></section></div>`;
+  const row = r => { const [t, c] = AIK[r.k] || [r.k, 'mute'], can = aiCan(r.k); return `<div class="nm-airow" data-ar="${r.i}" data-k="${r.k}"><input type="checkbox" data-ack="1"${r.on ? ' checked' : ''}${can ? '' : ' disabled'} aria-label="적용"><div><div class="q">${esc(qline(r))}</div><div class="m"><span class="nm-aik ${c}">${esc(t)}</span>${r.noq && can ? '<span class="nm-aik warn" title="ChatGPT가 문제 글(q)을 돌려주지 않아 ID만으로 연결했어요 — 비교해 보고 고르세요">문제 글 없음 · 확인 필요</span>' : ''}${r.it ? `<span>${esc(lecOf(lecKeys().has(r.it.lec) ? r.it.lec : '').t)}</span>` : ''}</div></div>${can ? `<button type="button" class="nm-btn" data-acmp="1">${r.k === 'new' ? '보기' : '비교'}</button>` : '<span></span>'}</div>${can && r.k !== 'new' ? cmp(r) : ''}`; };
+  const ov = dlg('ChatGPT 결과 — 바뀌는 것 확인', `<div class="nm-xsum">${esc(subjT(S.sj))} · 파일 문제 <b>${R.length}</b> · <span class="nm-aik ok">새 스토리 ${n('new')}</span> <span class="nm-aik warn">바꿈 ${n('upd')}</span> <span class="nm-aik bad">충돌 ${n('cf')}</span> · 적용 안 됨 ${skip}<br><small>새 스토리는 미리 골라 뒀어요. 이미 있는 스토리(바꿈·충돌)는 보호돼요 — 비교해 보고 직접 고른 것만 바뀌어요.</small></div>`
+    + `<div class="nm-atabs" role="tablist">${[['all', '전체', R.length], ['new', '새 스토리', n('new')], ['upd', '바꿈', n('upd')], ['cf', '충돌', n('cf')], ['skip', '적용 안 됨', skip]].map(([k, t, c], i) => `<button type="button" data-atab="${k}" class="${i ? '' : 'on'}"${c || !i ? '' : ' disabled'}>${t} <b>${c}</b></button>`).join('')}</div>`
+    + `<div class="nm-ilist" data-alist="1" style="max-height:54vh">${R.map(row).join('')}</div>`,
+    `<span data-asum="1" style="font-size:13.5px"></span><span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">취소</button>${n('new') ? `<button type="button" class="nm-btn" data-aapply="new">새 스토리 ${n('new')}개만 적용</button>` : ''}<button type="button" class="nm-btn pri" data-aapply="sel">고른 것 적용</button>`);
+  if (!ov) return;
+  const sum = () => { const k = R.filter(r => r.on).length, kn = R.filter(r => r.on && r.k === 'new').length; ov.querySelector('[data-asum]').innerHTML = `고른 것 <b>${k}</b>개`; const b = ov.querySelector('[data-aapply=sel]'); b.disabled = !k; b.textContent = `고른 ${k}개 적용`; const bn = ov.querySelector('[data-aapply=new]'); if (bn) { bn.disabled = !kn; bn.textContent = `새 스토리 ${kn}개만 적용`; } };
+  sum();
+  const list = ov.querySelector('[data-alist]');
+  list.addEventListener('change', e => { if (!e.target.matches('[data-ack]')) return; const r = R[+e.target.closest('[data-ar]').dataset.ar]; r.on = e.target.checked; sum(); });
+  list.addEventListener('click', e => { const b = e.target.closest('[data-acmp]'); if (!b) return; const row = b.closest('[data-ar]'), r = R[+row.dataset.ar], nx = row.nextElementSibling; if (nx && nx.matches('[data-cmp]')) nx.remove(); else row.insertAdjacentHTML('afterend', cmp(r)); });
+  ov.querySelector('.nm-atabs').addEventListener('click', e => { const b = e.target.closest('[data-atab]'); if (!b || b.disabled) return; const k = b.dataset.atab; $$('[data-atab]', ov).forEach(x => x.classList.toggle('on', x === b)); $$('[data-ar]', list).forEach(row => { const rk = row.dataset.k, v = k === 'all' || (k === 'skip' ? !aiCan(rk) : rk === k); row.hidden = !v; const nx = row.nextElementSibling; if (nx && nx.matches('[data-cmp]')) nx.hidden = !v; }); });
+  ov.querySelector('footer').addEventListener('click', e => {
+    const b = e.target.closest('[data-aapply]'); if (!b) return;
+    const sel = b.dataset.aapply === 'new' ? R.filter(r => r.k === 'new' && r.on) : R.filter(r => r.on && aiCan(r.k)); if (!sel.length) return;
+    const risky = sel.filter(r => r.k !== 'new');
+    const run = () => {
+      const ok = sel.filter(r => hsh(r.it.st) === r.cur && !r.it.del && !storedNewer(r.it)), moved = sel.length - ok.length;   /* 미리 보는 사이 이 창·다른 창에서 바뀐 문제는 건너뜀 */
+      const sj0 = S.sj, res = applyStories(ok.map(r => ({ it: r.it, html: r.html })));
+      if (res.err) { H.toast('적용하지 못했어요 — 기존 넘버링은 그대로예요: ' + res.err, { level: 'error', id: 'nmai' }); return; }
+      dlgClose(); render({ pos: topItem() });
+      H.toast(`넘버링 스토리 ${res.n}개를 넣었어요${moved ? ` · 그사이 바뀐 ${moved}개는 건너뜀` : ''}`, { level: 'result', action: res.n ? { label: '되돌리기', fn: () => { if (S.sj !== sj0 || !S.root) { H.toast('과목을 옮겨서 한꺼번에 되돌리지 못해요 — 문제마다 ⋯ \'마지막 수정 전으로\'를 써 주세요'); return; } const back = res.done.map(([it, h, old]) => [S.by.get(it.id), h, old]).filter(([it, h]) => it && it.st === h).map(([it, , old]) => ({ it, html: old })); const r2 = applyStories(back); if (!r2.err) { render({ pos: topItem() }); H.toast('되돌렸어요 — 스토리 ' + r2.n + '개'); } } } : null });
+    };
+    if (risky.length) ask(`이미 있는 스토리 ${risky.length}개를 ChatGPT 스토리로 바꿔요.${risky.some(r => r.k === 'cf') ? '\n(그중 내보낸 뒤 JBL에서 고친 스토리도 있어요)' : ''}\n바뀌기 전 스토리는 문제 ⋯ 메뉴 '마지막 수정 전으로 되돌리기'로 돌릴 수 있어요.`, { ok: '바꾸기' }).then(y => { if (y) run(); }); else run();
+  });
+}
+function storedNewer(it) {   /* 저장된 기록이 이 화면의 것보다 새것(다른 창에서 고침 · 아직 못 받음) */
+  if (H.LSQ && H.LSQ.has(keyI(it.s, it.id))) return false;
+  try { const v = localStorage.getItem(H.NS + keyI(it.s, it.id)); if (!v) return false; const r = JSON.parse(v); return (+r.u || 0) > (+it.u || 0); } catch (e) { return false; }
+}
+function applyStories(list) {   /* 넘버링 스토리만 한 번에 — 사본으로 먼저 쓰고, 하나라도 실패하면 이번에 쓴 키를 모두 쓰기 전 값으로 · 저장 실패 대기열은 다 쓴 뒤에만 비움 */
+  endEdit(true);
+  const t = now(), before = new Map(), done = [];
+  try {
+    for (const { it, html } of list) {
+      const k = keyI(it.s, it.id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k));
+      const c = Object.assign({}, it, { st: html, prev: { f: 'st', h: it.st, at: t }, u: t });
+      localStorage.setItem(H.NS + k, JSON.stringify(toRec(c))); done.push([it, html, it.st]);
+    }
+  } catch (e) {
+    let bad = 0; for (const [k, v] of before) { try { if (v == null) localStorage.removeItem(H.NS + k); else localStorage.setItem(H.NS + k, v); } catch (_) { bad++; } }
+    return { err: (e && (e.name === 'QuotaExceededError' || e.code === 22) ? '이 기기 저장 공간이 부족해요' : String(e && e.message || e)) + (bad ? ` — ${bad}개는 되돌리지 못했어요(새로고침해 확인해 주세요)` : '') };
+  }
+  lqDrop([...before.keys()]);
+  for (const [it, html, old] of done) { it.st = html; it.prev = { f: 'st', h: old, at: t }; it.u = t; it._t = null; }
+  if (done.length) { [...new Set(done.map(([it]) => it.s))].forEach(bumpIdx); saveState('ok'); }
+  return { n: done.length, done };
+}
+
+/* ---------- 인쇄 · PDF(브라우저 인쇄 · A4) — 고른 범위만 따로 짜서 인쇄하고 바로 치움 ---------- */
+const PCSS = `@page{size:A4;margin:12mm 12mm 14mm}
+@media print{body.nm-printing>*:not(#nm-print){display:none!important}html,body.nm-printing{background:#fff!important}}
+@media screen{#nm-print{position:fixed;left:-10000px;top:0;width:186mm;visibility:hidden}}
+#nm-print{color:#111;background:#fff;font:10pt/1.5 system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#nm-print .np-h{display:flex;justify-content:space-between;align-items:baseline;gap:8mm;border-bottom:1.2pt solid #111;padding:0 0 2mm;margin:0 0 2mm;font-size:8.5pt;color:#444}#nm-print .np-h b{font-size:12pt;color:#111}
+#nm-print h2{font-family:inherit;font-size:11.5pt;font-weight:700;line-height:1.35;color:#111;margin:5mm 0 1mm;padding:0 0 1mm;border-bottom:.8pt solid #111;break-after:avoid;page-break-after:avoid}#nm-print h2 small{font-size:8.5pt;font-weight:400;color:#555;margin-left:2mm}
+#nm-print h2.np-k{break-before:page;page-break-before:always;margin-top:0}
+#nm-print .np-i{padding:2.2mm 0 2.6mm;border-bottom:.4pt solid #bbb;break-inside:avoid;page-break-inside:avoid}
+#nm-print .np-q{display:flex;gap:2mm;align-items:baseline;font-weight:700;font-size:10.5pt;break-after:avoid}
+#nm-print .np-q .np-n{flex:none;min-width:7mm}#nm-print .np-q .np-t{flex:1;min-width:0}#nm-print .np-q .np-g{flex:none;font-size:8pt;font-weight:500;color:#444;white-space:nowrap}
+#nm-print .np-b{display:grid;grid-template-columns:1fr 1.1fr;border:.6pt solid #999;margin:1.4mm 0 0 9mm}
+#nm-print .np-b.np-v,#nm-print .np-b.np-1{grid-template-columns:1fr}
+#nm-print .np-b section{padding:1.1mm 2.2mm 1.5mm;min-width:0}
+#nm-print .np-b.np-2 section+section{border-left:.6pt solid #999}#nm-print .np-b.np-v section+section{border-top:.6pt solid #999}
+#nm-print .np-l{font-size:7.5pt;font-weight:700;color:#666;margin:0 0 .5mm}
+#nm-print .np-c{white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere}#nm-print .np-s .np-c:empty{min-height:14mm}
+#nm-print p{margin:0}#nm-print table{border-collapse:collapse;margin:1mm 0;font-size:9pt;max-width:100%}#nm-print td,#nm-print th{border:.5pt solid #888;padding:.6mm 1.4mm;vertical-align:top}
+#nm-print img{max-width:100%;height:auto}#nm-print ul,#nm-print ol{margin:.5mm 0;padding-left:5mm;white-space:normal}#nm-print li{white-space:pre-wrap}`;
+function printHTML(L, o, lab) {
+  const K = lecKeys(), grp = S.cfg.sort === 'lec' || S.cfg.sort === 'own'; let cur = null, n = 0;
+  let h = `<header class="np-h"><b>${esc(subjT(S.sj))} — 내 넘버링</b><span>${esc(lab)} · ${L.length}문제 · ${esc(new Date().toLocaleDateString('ko-KR'))}</span></header>`;
+  for (const it of L) {
+    const lk = K.has(it.lec) ? it.lec : '';
+    if (grp && lk !== cur) { const l = lecOf(lk); h += `<h2${o.brk && cur !== null ? ' class="np-k"' : ''}>${esc(l.t)}${l.prof ? `<small>${esc(l.prof)}</small>` : ''}</h2>`; cur = lk; }
+    const tg = [profOf(it), yrs2(it.yrs)].filter(Boolean).join(' · ');
+    h += `<article class="np-i"><div class="np-q"><span class="np-n">${++n}.</span><div class="np-t">${qDisp(it)}</div>${tg ? `<span class="np-g">${esc(tg)}</span>` : ''}</div>`
+      + (o.what === 'q' ? '' : `<div class="np-b ${o.what === 'qa' ? 'np-1' : o.lay === 'stack' ? 'np-v' : 'np-2'}"><section><div class="np-l">답안</div><div class="np-c">${disp(it.a)}</div></section>${o.what === 'qas' ? `<section class="np-s"><div class="np-l">넘버링 스토리</div><div class="np-c">${disp(it.st)}</div></section>` : ''}</div>`) + `</article>`;
+  }
+  return h;
+}
+function printRun(L, o, lab) {
+  printClean();
+  const st = document.createElement('style'); st.id = 'nm-pcss'; st.textContent = PCSS; document.head.appendChild(st);
+  const d = document.createElement('div'); d.id = 'nm-print'; d.innerHTML = printHTML(L, o, lab); document.body.appendChild(d);
+  d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+  document.body.classList.add('nm-printing');
+  addEventListener('afterprint', printClean, { once: true });
+  const wait = [...d.querySelectorAll('img')].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; }));
+  Promise.race([Promise.all(wait), new Promise(r => setTimeout(r, 2500))]).then(() => requestAnimationFrame(() => { try { window.print(); } catch (e) { printClean(); H.toast('인쇄 창을 열지 못했어요 — 브라우저 메뉴의 인쇄를 써 주세요', { level: 'error' }); } }));
+}
+function printClean() { document.body.classList.remove('nm-printing'); const a = document.getElementById('nm-print'), b = document.getElementById('nm-pcss'); if (a) a.remove(); if (b) b.remove(); }
+function printDlg(pre) {
+  endEdit(true);
+  const dflt = pre || (S.sel.size ? 'sel' : (S.visN != null && S.visN < counts().n ? 'flt' : 'all'));
+  const ov = dlg('인쇄 · PDF 저장', `${scopeHTML(dflt, 'psc')}`
+    + `<div class="nm-g2"><label class="nm-fld"><span>넣을 내용</span><select data-po="what"><option value="qas">문제 + 답안 + 스토리</option><option value="qa">문제 + 답안</option><option value="q">문제만</option></select></label><label class="nm-fld"><span>답안 · 스토리 배치</span><select data-po="lay"><option value="side">나란히(왼쪽 답안 | 오른쪽 스토리)</option><option value="stack">위아래</option></select></label></div>`
+    + `<div class="nm-g2"><label class="nm-fld"><span>제작 상태</span><select data-po="st">${STF.map(([v, t]) => `<option value="${v}">${t}</option>`).join('')}</select></label><label class="nm-chk" style="align-self:end;min-height:34px"><input type="checkbox" data-po="brk">강의마다 새 쪽에서 시작</label></div>`
+    + `<div class="nm-xsum" data-psum="1"></div><div class="nm-sub">A4에 맞춰 인쇄해요(메뉴·단추는 빠져요). PDF는 인쇄 창의 '대상'에서 'PDF로 저장'을 고르세요. 문제 순서는 지금 정렬 그대로예요.</div>`,
+    `<span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">취소</button><button type="button" class="nm-btn pri" data-po="go">인쇄 / PDF 저장</button>`);
+  if (!ov) return;
+  const get = () => { const { sc, lec } = scopeOf(ov, 'psc'); return { sc, lec, L: scopeList(sc, lec, ov.querySelector('[data-po=st]').value), o: { what: ov.querySelector('[data-po=what]').value, lay: ov.querySelector('[data-po=lay]').value, brk: ov.querySelector('[data-po=brk]').checked } }; };
+  const draw = () => { const g = get(); ov.querySelector('[data-psum]').innerHTML = g.L.length ? `인쇄할 문제 <b>${g.L.length}</b>개` : '<span class="nm-warn">인쇄할 문제가 없어요 — 범위·제작 상태를 바꿔 보세요.</span>'; ov.querySelector('[data-po=lay]').disabled = g.o.what !== 'qas'; ov.querySelector('[data-po=go]').disabled = !g.L.length; };
+  scopeWire(ov, 'psc', draw); draw();
+  ov.querySelector('[data-po=go]').addEventListener('click', () => { const g = get(); if (!g.L.length) return; dlgClose(); printRun(g.L, g.o, scopeLab(g.sc, g.lec)); });
 }
 
 /* ---------- 여러 개 선택 ---------- */
@@ -1234,7 +1538,10 @@ function bind() {
       if (k === 'vopt') { voOpen(!S.vo); return; }
       if (k === 'fclr') { fClear(); return; }
       if (k === 'ctx') { if (innerWidth <= 860) drawer(true); else lecMenu(a); return; }
-      if (S.drawer && (k === 'new' || k === 'imp' || k === 'file')) drawer(false);
+      if (S.drawer && (k === 'new' || k === 'imp' || k === 'file' || k === 'aiout' || k === 'aiin' || k === 'print')) drawer(false);
+      if (k === 'aiout') { aiExportDlg(a.dataset.sc); return; }
+      if (k === 'aiin') { aiImportDlg(); return; }
+      if (k === 'print') { printDlg(a.dataset.sc); return; }
       if (k === 'new') { newForm(); return; }
       if (k === 'imp') { importDlg(); return; }
       if (k === 'file') { fileImport(); return; }
@@ -1265,6 +1572,7 @@ function bind() {
   document.addEventListener('focusout', e => { const E = S.ed; if (!E || e.target !== E.el) return; setTimeout(() => { if (S.ed !== E || E.busy || now() - (S.tbAt || 0) < 600) return; const ae = document.activeElement; if (ae && (E.el.contains(ae) || (E.tb && E.tb.contains(ae)) || ae.closest && ae.closest('.nm-pal'))) return; if (document.hidden) { edSave(); return; } endEdit(); }, 150); });
   document.addEventListener('keydown', e => {
     if (!S.root || !document.getElementById('numv')) return;
+    if ((e.metaKey || e.ctrlKey) && !e.altKey && (e.key === 'p' || e.key === 'P' || e.code === 'KeyP') && !$('.nm-ov')) { e.preventDefault(); e.stopPropagation(); printDlg(); return; }   /* 내 넘버링에서 ⌘/Ctrl P = 인쇄 범위·내용 고르기 */
     if (!S.ed) { if (e.key === 'Escape' && !$('.nm-ov') && (S.fp || S.vo || S.drawer || $('.nm-menu'))) { e.preventDefault(); e.stopPropagation(); menuClose(); if (S.fp) fpOpen(false); if (S.vo) voOpen(false); if (S.drawer) drawer(false); } return; }
     if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); endEdit(); return; } const mod = e.metaKey || e.ctrlKey; if (mod && e.shiftKey && (e.key === 'x' || e.key === 'X' || e.key === '5')) { e.preventDefault(); }
   }, true);
@@ -1281,7 +1589,7 @@ function syncOther() {
   const ids = [...SQ]; SQ.clear(); if (!S.root || !document.getElementById('numv')) return;
   let added = false; const re = [];
   for (const id of ids) {
-    if (S.ed && S.ed.it.id === id) { H.toast('다른 창에서 지금 고치는 문제를 바꿨어요 — 편집을 끝낸 뒤 새로고침하면 그 글이 보여요', { level: 'result', id: 'nmother' }); continue; }
+    if (S.ed && S.ed.it.id === id) { S.ed.it.stale = 1; H.toast('다른 창에서 지금 고치는 문제를 바꿨어요 — 지금 고치는 칸만 이 글로 저장하고, 나머지 칸은 그 창의 글로 맞춰요', { level: 'result', id: 'nmother' }); continue; }
     let r = null; try { const v = localStorage.getItem(H.NS + keyI(S.sj, id)); r = v ? JSON.parse(v) : null; } catch (_) {}
     const it = S.by.get(id);
     if (it && it.kind === 'seed') { Object.assign(it, mkSeed(S.sj, it.base, r, it.oi, S.seed), { _t: null, _ty: null, _k: null, _qd: null }); re.push(it); }
@@ -1291,7 +1599,7 @@ function syncOther() {
   re.forEach(rerenderItem); applyFilter();
 }
 function flush() { if (S.ed) edSave(); }
-function leave() { if (!S.root) return; try { endEdit(true); formEnd(); if (S.sj && document.getElementById('numv')) H.LS.set('num.pos.' + S.sj, topItem()); } catch (e) {} menuClose(); dlgClose(); palClose(); tbWatch(false); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
+function leave() { if (!S.root) return; try { endEdit(true); formEnd(); if (S.sj && document.getElementById('numv')) H.LS.set('num.pos.' + S.sj, topItem()); } catch (e) {} menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
 async function open(root, o, host) {
   H = host; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
   S.drawer = false; S.fp = false; S.vo = false; S.curLec = null;
@@ -1308,5 +1616,5 @@ async function open(root, o, host) {
   H.histSet({ num: 1, sj }, '#/_num/' + sj, !!o.push);
   render({ pos: o.y != null ? null : H.LS.get('num.pos.' + sj, null), y: o.y });
 }
-window.JBLNUM = { open, leave, flush, side, state: () => ({ num: 1, sj: S.sj }), _S: S, _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
+window.JBLNUM = { open, leave, flush, side, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => ({ num: 1, sj: S.sj }), _S: S, _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
 })();

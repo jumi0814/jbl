@@ -2191,7 +2191,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='9180d9ab';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='7e108aaf';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -2796,7 +2796,7 @@ document.addEventListener('click',e=>{if(VIEW!=='bm')return;const t=e.target.clo
  if(t.hasAttribute('data-hbt')){LS.set('hbmtab',t.dataset.hbt);bmView({push:false,s:t.dataset.hbt});return;}if(t.dataset.hbhome){openDoc(t.dataset.hbhome,'_home');return;}openDoc(t.dataset.hbs,t.dataset.d,'learn');});
 /* 10-10 내 넘버링(처음 이름 '넘버링 따기') — 모듈(num/num.js)은 이 화면을 열 때만 불러옴(홈·과목 화면 첫 로딩에 부담 없음) · 화면은 #home 안에 · 저장은 같은 LS(NS) — 문제마다 num.i.<과목>.<id> */
 function numView(o){o=o||{};leaveView();kitAway();const push=o.push!==false&&VIEW!=='num'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='num';document.title='내 넘버링 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');document.body.classList.remove('d-home');navOpen(false);const h=$('#home');h.hidden=false;
- const host={LS,NS,LSQ,toast,PACKS,SUBJECTS,sjColor,openDoc,histSet,base:'',v:NUMV};let pushed=false;
+ const host={LS,NS,LSQ,lqSync,toast,PACKS,SUBJECTS,sjColor,openDoc,histSet,base:'',v:NUMV};let pushed=false;
  const go=()=>{if(VIEW!=='num')return;JBLNUM.open(h,{sj:o.sj||'',y:o.y,push:push&&!pushed},host).then(()=>{pushed=true;measure();try{navRender();}catch(e){}}).catch(e=>{h.innerHTML='<div class="hub hub4"><div class="panel">⚠ 넘버링을 열지 못했어요 — '+EH(String(e&&e.message||e))+'</div></div>';});};
  if(window.JBLNUM){go();return;}
  h.innerHTML='<div class="hub hub4"><div class="panel">넘버링 불러오는 중…</div></div>';histSet({num:1,sj:o.sj||''},'#/_num'+(o.sj?'/'+o.sj:''),push);pushed=true;

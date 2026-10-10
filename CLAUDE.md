@@ -12,7 +12,7 @@
 | `tools/<sid>/` (oms1·cons·impl·anat·geri·pharm·esth) | 과목별 빌드 파이프라인. 모든 과목이 같은 스크립트, `subject.py`·`assemble.py`·`parse_<sid>.py`·원고만 다름 | O |
 | `guide/` | 정리본 원칙·피드백기록·과목노트 — **작업 전 반드시 읽을 것** | O |
 | `tools/SPEC.md` | 파이프라인 상세 스펙 — 작업 전 반드시 읽을 것 | O |
-| `tools/num/` → `docs/num/` | 넘버링 따기(10-10) — 화면 모듈 num.js·Word 읽기 docx.js(파일 가져오기)·기본 자료 seed(지금 비어 있음 — 첨부 Word는 참고용 예시라 뺌). 고친 뒤 `tools/num/build_num.py` · 자세히 `guide/넘버링_따기.md` | O |
+| `tools/num/` → `docs/num/` | 내 넘버링(10-10 · 처음 이름 넘버링 따기) — 화면 모듈 num.js·Word 읽기 docx.js(파일 가져오기)·기본 자료 seed(지금 비어 있음 — 첨부 Word는 참고용 예시라 뺌). 고친 뒤 `tools/num/build_num.py` · 자세히 `guide/넘버링_따기.md` | O |
 | `materials/<과목명>/` | 사용자가 넣는 강의자료(PDF 등) | X |
 | `jb/` | JB 파일(`2025 3Q <과목> JB.pdf` 등 — 실제 PDF. `tools/jbx.py`가 `work/jb/<SID>_20xx/`에 N.txt·N.jpeg·manifest.json으로 풂. ZIP판도 처리) | X |
 | `reference/` | 승인된 형식 예시(윤혜정 정리본 HTML, 지난 학기 HUB) | X |
@@ -58,7 +58,7 @@
 
 ## 페이지 구성 (바꾸지 말고 유지)
 과목 홈(공부 순서 → 진행률 → 교수별 출제 경향·📌 공부 전략 → 강의 카드 → 2회 이상 출제) / 강의 탭(학습·정리표·비교표·기출·예상·플래시카드) / JB 문제(연도 배지 → 짤/탈 칩 → 📖 정리본 칩 → 대조 → 문제 → 답·해설·대조·주변부·다른 판본) / 비교표 / 기출 한눈표 / 기출 대장. 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음. 자료 시작 해는 '기준선'.
-허브 홈 과목 표 위 '넘버링'(① 넘버링 따기 `#/_num/<과목>` · ② 넘버링 복습 = 추후) — 문제·답안·스토리를 Word처럼 한 문서로. 저장 키 `num.*`(백업·합치기 포함) · 회귀 `tools/tests/ux8_num.py`.
+허브 홈 과목 표 위 '넘버링'(① 내 넘버링 `#/_num/<과목>` · ② 넘버링 복습 = 추후) — 문제·답안·스토리를 Word처럼 한 문서로 · 들어가면 JBL 메뉴 대신 넘버링 전용 사이드바 · ChatGPT 주고받기(JSON 내보내기 → 미리 보기 뒤 스토리만 가져오기) · 인쇄·PDF. 저장 키 `num.*`(백업·합치기 포함) · 회귀 `tools/tests/ux8_num.py`·`ux9_numai.py` · 자세히 `guide/넘버링_따기.md`.
 
 ## 검증 (빌드 후 매번)
 - 현 교수 기출 전부가 어느 카드의 ⭐ 시험포인트에 연결됨(누락 0), 정리본이 가리키는 문항 id가 실제 존재 — build4 출력 + `tools/check_lec.py <SID>`
