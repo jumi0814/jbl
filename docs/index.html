@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"3e5c76bb",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"e76d8ec7",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2077,7 +2077,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="3e5c76bb",PV={"OMS1": "417a0a37", "CONS": "fe25698b", "IMPL": "435a4799", "ANAT": "d960b3fd", "GERI": "f0a8492e", "PHARM": "a32cd924", "ESTH": "0ce159cd"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="e76d8ec7",PV={"OMS1": "acc4ada7", "CONS": "2ef71446", "IMPL": "a26c9d7a", "ANAT": "e2aa3672", "GERI": "0cf3c4a4", "PHARM": "b5036b9e", "ESTH": "18d80cbb"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2191,7 +2191,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='e686838d';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='9180d9ab';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -2794,14 +2794,14 @@ function bmView(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==fal
 document.addEventListener('click',e=>{if(VIEW!=='bm')return;const t=e.target.closest&&e.target.closest('[data-hbt],[data-hbf],[data-hbhome],.lcard[data-hbs]');if(!t)return;e.preventDefault();
  if(t.hasAttribute('data-hbf')){LS.set('hbmf',t.dataset.hbf);bmView({push:false,f:t.dataset.hbf,s:LS.get('hbmtab','')||''});return;}
  if(t.hasAttribute('data-hbt')){LS.set('hbmtab',t.dataset.hbt);bmView({push:false,s:t.dataset.hbt});return;}if(t.dataset.hbhome){openDoc(t.dataset.hbhome,'_home');return;}openDoc(t.dataset.hbs,t.dataset.d,'learn');});
-/* 10-10 넘버링 따기 — 모듈(num/num.js)은 이 화면을 열 때만 불러옴(홈·과목 화면 첫 로딩에 부담 없음) · 화면은 #home 안에 · 저장은 같은 LS(NS) — 문제마다 num.i.<과목>.<id> */
-function numView(o){o=o||{};leaveView();kitAway();const push=o.push!==false&&VIEW!=='num'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='num';document.title='넘버링 따기 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');document.body.classList.remove('d-home');navOpen(false);const h=$('#home');h.hidden=false;
+/* 10-10 내 넘버링(처음 이름 '넘버링 따기') — 모듈(num/num.js)은 이 화면을 열 때만 불러옴(홈·과목 화면 첫 로딩에 부담 없음) · 화면은 #home 안에 · 저장은 같은 LS(NS) — 문제마다 num.i.<과목>.<id> */
+function numView(o){o=o||{};leaveView();kitAway();const push=o.push!==false&&VIEW!=='num'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='num';document.title='내 넘버링 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');document.body.classList.remove('d-home');navOpen(false);const h=$('#home');h.hidden=false;
  const host={LS,NS,LSQ,toast,PACKS,SUBJECTS,sjColor,openDoc,histSet,base:'',v:NUMV};let pushed=false;
  const go=()=>{if(VIEW!=='num')return;JBLNUM.open(h,{sj:o.sj||'',y:o.y,push:push&&!pushed},host).then(()=>{pushed=true;measure();try{navRender();}catch(e){}}).catch(e=>{h.innerHTML='<div class="hub hub4"><div class="panel">⚠ 넘버링을 열지 못했어요 — '+EH(String(e&&e.message||e))+'</div></div>';});};
  if(window.JBLNUM){go();return;}
  h.innerHTML='<div class="hub hub4"><div class="panel">넘버링 불러오는 중…</div></div>';histSet({num:1,sj:o.sj||''},'#/_num'+(o.sj?'/'+o.sj:''),push);pushed=true;
  const s=document.createElement('script');s.src='num/num.js?v='+NUMV;s.onload=go;s.onerror=()=>{s.remove();if(VIEW==='num')h.innerHTML='<div class="hub hub4"><div class="panel">⚠ 넘버링 화면을 불러오지 못했어요 — 인터넷 연결을 확인하고 다시 눌러 주세요.</div></div>';};document.head.appendChild(s);}
-function homeNum(){return `<section class="sh4 hnum noann" aria-label="넘버링"><h2 class="hh">넘버링 <small>문제·답안·넘버링 스토리를 Word 문서처럼 한눈에</small></h2><div class="hnumg"><button type="button" class="hnumb" data-hnum="take"><b>① 넘버링 따기</b><small>JB 기출·예상문제·Word 자료를 모아 스토리 쓰고 고치기</small></button><button type="button" class="hnumb off" disabled aria-disabled="true" title="다음 업데이트에서 열려요"><b>② 넘버링 복습</b><small>추후 업데이트 예정</small></button></div></section>`;}
+function homeNum(){return `<section class="sh4 hnum noann" aria-label="넘버링"><h2 class="hh">넘버링 <small>문제·답안·넘버링 스토리를 Word 문서처럼 한눈에</small></h2><div class="hnumg"><button type="button" class="hnumb" data-hnum="take"><b>① 내 넘버링</b><small>JB 기출·예상문제·내 Word를 한 문서로 — 스토리 쓰고 고치기</small></button><button type="button" class="hnumb off" disabled aria-disabled="true" title="다음 업데이트에서 열려요"><b>② 넘버링 복습</b><small>추후 업데이트 예정</small></button></div></section>`;}
 document.addEventListener('click',e=>{if(VIEW!=='home')return;const t=e.target.closest&&e.target.closest('[data-hnum]');if(!t)return;e.preventDefault();numView({});});
 function home(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==false&&VIEW!=='home'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='home';document.title='JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
  h.innerHTML=`<div class="hub hub4">${whatsNew()}<div id="storewarn" class="noann"></div><h2 class="vh">JBL 허브 — 오늘</h2>${homeBand()}${homeResume()}<section class="hsec hduo noann">${homeTodo()}${homeRecent()}</section>${homeNum()}${(homeTick.sj=homeSubjects())}${(homeTick.wk=homeWeek())}${homeMore()}</div>`;
@@ -2920,7 +2920,7 @@ function navOpen(on){const B=document.body.classList,was=B.contains('navopen'),v
  ['#main','#top','#kit'].forEach(q=>{const e=$(q);if(e&&e.inert!==dr)e.inert=dr;});if(v&&typeof navShowCur==='function')navShowCur();
  if(dr&&!was){const ff=()=>{if(!document.body.classList.contains('navopen'))return;const f=$('#nav .ni[aria-current]')||$('#nav .ni')||$('#nav button');if(f&&!$('#side').contains(document.activeElement))try{f.focus({preventScroll:true});}catch(e){}};requestAnimationFrame(()=>requestAnimationFrame(ff));setTimeout(ff,120);}   /* 서랍이 보이게 된 뒤(visibility 전환) 포커스 */
  else if(!v&&was&&innerWidth<=860){const ae=document.activeElement;if(!ae||ae===document.body||$('#side').contains(ae))try{$('#navbtn').focus({preventScroll:true});}catch(e){}}}   /* ux4c 1회차 좁은 폭 서랍: 뒤 화면(#main·#top·#kit)은 inert — Tab이 서랍 안에서만 · 열면 지금 항목(없으면 첫 항목)에 포커스 · 닫으면 ☰로 */   /* ux4 묶음2 서랍이 열린 동안 뒤 페이지 스크롤 잠금(html.navlock) · 열면 지금 강의·카드가 보이게 */
-$('#navbtn').onclick=()=>{if(innerWidth<=860)navOpen();else sideToggle();};$('#navbg').onclick=()=>navOpen(false);
+$('#navbtn').onclick=()=>{if(VIEW==='num'&&window.JBLNUM&&JBLNUM.side){JBLNUM.side();return;}if(innerWidth<=860)navOpen();else sideToggle();};$('#navbg').onclick=()=>navOpen(false);
 /* ---------- 주소·뒤로가기(history) · 읽던 위치 · 돌아가기 알약 ----------
    화면 = VIEW('home'|'search'|'doc') · 문서·탭이 바뀌면 pushState({s,d,t,aid}), 같은 화면이면 replaceState.
    떠나는 항목에는 {y, pos:{aid,off}}를 적어 두고(stampHist) 뒤로가기(popstate)·해시 직접 수정(hashchange)은 route()가 복원 */
@@ -3919,7 +3919,7 @@ function sideSave(on){if(sideWideAuto()){LS.set('wideSide',on?0:1);SIDEAUTO=!!on
 function sideApply(){const wa=sideWideAuto();SIDEAUTO=wa&&!LS.get('wideSide',0);document.body.classList.toggle('v-home',VIEW==='home');
  const B=document.body.classList,on=wa?SIDEAUTO:sidePref();if(B.contains('sidefold')!==on){B.add('sfnt');B.toggle('sidefold',on);void document.body.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(()=>B.remove('sfnt')));}}
 /* note = 처음 M(옛 사용자) — 결과 알림 하나에 'M은 이제 메뉴' 안내를 붙임(flow V12 알림 두 개 연달아 X) · F8 좁은 폭(서랍)에서도 집중 모드면 먼저 끔 */
-function sideToggle(note){popsClose();const B=document.body.classList,nar=innerWidth<=860,nt=note?(nar?' — 메뉴는 이제 Shift+M(M은 메모)':' — 메뉴 숨기기는 이제 Shift+M(M은 메모)'):'';
+function sideToggle(note){if(VIEW==='num'&&window.JBLNUM&&JBLNUM.side){JBLNUM.side();return;}   /* 10-10 내 넘버링: JBL 메뉴 대신 넘버링 사이드바(Shift+M·☰) */popsClose();const B=document.body.classList,nar=innerWidth<=860,nt=note?(nar?' — 메뉴는 이제 Shift+M(M은 메모)':' — 메뉴 숨기기는 이제 Shift+M(M은 메모)'):'';
  if(B.contains('focus')&&!B.contains('at-home')){focusSet(false,false);LS.set('focus',false);if(nar)navOpen(true);else if(B.contains('sidefold')){sideSave(false);B.remove('sidefold');}measure();toast('집중 모드를 끄고 메뉴를 '+(nar?'열었어요':'펼쳤어요')+nt);return;}   /* 집중 모드 중 M = 메뉴 보이기(집중 모드 끔) */
  if(nar){navOpen();if(note)toast('메뉴는 이제 Shift+M — M은 메모',3500);return;}
  const on=!B.contains('sidefold');sideSave(on);B.toggle('sidefold',on);measure();toast((on?'메뉴를 숨겼어요 — Shift+M으로 다시 보기':'메뉴를 펼쳤어요')+nt,note?4000:undefined);}
@@ -4815,7 +4815,7 @@ function navHub(V){const E=EH,cur=on=>on?' aria-current="page"':'';
  let h=`<div class="nvsec">허브</div><button type="button" class="ni nvr1" data-nv="home"${cur(VIEW==='home')} title="허브 홈 — 이어서·오늘 할 일·과목 표">오늘</button>`
   +`<button type="button" class="ni nvr1" data-nv="cal"${cur(VIEW==='cal')} title="공부 달력 — 날짜별 공부 시간·기록 고치기·목표"><span class="el">공부 달력</span><span class="r" data-nb="wk">${E(V.wk)}</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="bm"${cur(VIEW==='bm')} title="북마크한 강의 모아보기 — 전체·과목별"><span class="el">내 북마크</span><span class="r" data-nb="bma">${E(V.bma)}</span></button>`
-  +`<button type="button" class="ni nvr1" data-nv="num"${cur(VIEW==='num')} title="넘버링 따기 — 문제·답안·넘버링 스토리를 Word처럼 한 문서로"><span class="el">넘버링 따기</span></button>`
+  +`<button type="button" class="ni nvr1" data-nv="num"${cur(VIEW==='num')} title="내 넘버링 — 문제·답안·넘버링 스토리를 Word처럼 한 문서로"><span class="el">내 넘버링</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="rev"${V.rv?'':' hidden'} title="오늘 복습할 기출(전 과목) — 가장 많은 과목부터"><span class="el">오늘 복습</span><span class="r" data-nb="rv">${E(V.rv)}</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="marks" title="형광펜·빈칸 모아보기(최근 과목부터)"><span class="el">내 표시</span><span class="r" data-nb="mka">${E(V.mka)}</span></button><div class="nvsec">과목</div>`;
  h+=SUBJECTS.map(([id,ko])=>{const p=PACKS[id],sh=sjShort(id);
@@ -4880,7 +4880,7 @@ function crumbRender(){const c=$('#crumb');if(!c)return;const E=EH,sl='<span cla
   if(CUR.d==='_home')h+=sl+`<b class="ccur" aria-current="page">${sj}</b>`;
   else h+=sl+`<button type="button" class="cbs" data-cs="${CUR.s}" title="${E(p.title)} — 과목 홈">${sj}</button>`+sl+`<b class="ccur" aria-current="page" title="${E(L?L.title:DOCNM[CUR.d]||CUR.d)}">${E(L?sname(p,L.k):DOCNM[CUR.d]||CUR.d)}</b>`;}
  else if(VIEW==='search'&&navS()){const S=navS();h+=sl+`<button type="button" class="cbs" data-cs="${S}" title="${E(PACKS[S].title)} — 과목 홈"><i class="cdot" style="--dc:${sjColor(S)}"></i>${E(sjShort(S))}</button>`+sl+`<b class="ccur" aria-current="page">검색</b>`;}
- else h+=sl+`<b class="ccur" aria-current="page">${VIEW==='cal'?(CAL.tab==='stats'?'공부 통계':'공부 달력'):VIEW==='search'?'검색':VIEW==='bm'?'내 북마크':VIEW==='num'?'넘버링 따기':'오늘'}</b>`;
+ else h+=sl+`<b class="ccur" aria-current="page">${VIEW==='cal'?(CAL.tab==='stats'?'공부 통계':'공부 달력'):VIEW==='search'?'검색':VIEW==='bm'?'내 북마크':VIEW==='num'?'내 넘버링':'오늘'}</b>`;
  if(c.innerHTML!==h)c.innerHTML=h;
  const g=$('#gsearch'),S=VIEW==='doc'&&CUR.s&&PACKS[CUR.s]?CUR.s:VIEW==='search'&&SQ.s?SQ.s:'',ph=S?'과목 검색':'전체 검색',al=(S?sjName(S)+'에서 검색':ph)+' (/)';if(g&&(g.placeholder!==ph||g.getAttribute('aria-label')!==al)){g.placeholder=ph;g.setAttribute('aria-label',al);g.title=al;}}   /* ux4e 좁은 검색 칸에서 과목 이름이 잘리지 않게 — 칸 글자는 '과목 검색'(아이패드 세로 110px 칸에도 다 보임), 과목 정식 이름은 aria-label·title */
 $('#crumb').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(!b)return;if(b.id==='gohome'){navOpen(false);home();return;}if(b.dataset.cs&&PACKS[b.dataset.cs])openDoc(b.dataset.cs,'_home');});
