@@ -260,7 +260,7 @@ def _inl_html(x):
 def struct_item(x):
     """대조(A)·주변부(M)·메모(N) 항목(HTML): 150자를 넘거나 ' / '가 3개 이상이면 astruct로 점 목록화하고 인용 칩은 끝의 .cites 줄로 모음"""
     plain = html.unescape(re.sub(r'<[^>]+>', '', CITE_BTN.sub('', x)))
-    if lecparse._nl(plain) <= 150 and plain.count(' / ') < 3: return _inl_html(x) if re.search(r'\{r:|\{n:|\{u:|==|\*\*|필기\)|26에서 빠', plain) else x   # 10-09 {n:}·(필기)도 렌더(✍ 앞)
+    if lecparse._nl(plain) <= 150 and plain.count(' / ') < 3: return _inl_html(x) if re.search(r'\{r:|\{n:|\{u:|\{e:|==|\*\*|필기\)|26에서 빠|에도 강조', plain) else x   # 10-09 {n:}·(필기)도 렌더(✍ 앞)
     cites = list(dict.fromkeys(CITE_BTN.findall(x))); body = CITE_BTN.sub(' ', x); keep = []   # 문장마다 같은 쪽을 인용한 원고 — .cites 줄에는 한 번만
     def ph(m): keep.append(m.group(0)); return f'\ue000{len(keep) - 1}\ue001'
     body = re.sub(r'<b class="(?:warn|bulb)">[^<]*</b>', ph, body)
@@ -649,7 +649,7 @@ LB0, LB1, HX0, HX1 = '\ue010', '\ue011', '\ue012', '\ue013'   # lecparse.inline:
 def t_items(v):
     """ux2 E03 카드 안 작은 표 → 정리표 세부 칸 항목. 값 열이 3개↑면 표 그대로(('TBL', v)) · ○/× 기호표는 ○ 열 이름만 보임('— Intrinsic ○ · Extrinsic ○' — ×·— 칸은 숨김)
     · 값 열이 2개면 칸마다 열 이름 · 1개면 그대로. 칸 글자와 ' / ' 이음은 옛 빌드와 같게 두고 열 이름은 .noann(표시 위치 불변 — E01 이관)"""
-    hd = [re.sub(r'\*\*|\{r:|\{n:|\{u:|\}|==', '', x).strip() for x in v[0]]; nv = len(v[0]) - 1
+    hd = [re.sub(r'\*\*|\{r:|\{n:|\{u:|\{e:|\}|==', '', x).strip() for x in v[0]]; nv = len(v[0]) - 1
     vals = [c.strip() for r in v[1:] for c in r[1:] if c.strip() not in DASH]
     sym = bool(vals) and all(SYM_RE.fullmatch(c) for c in vals)
     if nv >= 3: return [('TBL', v)]
@@ -737,7 +737,8 @@ def lec_card(L, j, c):
     prof = any(b[0] == 'P' for b in c['body'])
     tg = ' · '.join(x for x in c['tag'].split(' · ') if not x.strip().startswith('기출'))
     tagc = f'<span class="chip tagc">{esc(tg)}</span>' if tg else ''
-    u26c = ' u26c' if c.get('u26') else ''; u26chip = '<span class="chip u26chip" title="이 카드에 26년도 자료에서 새로 생기거나 바뀐 내용이 있음(초록 NEW 26 표시)">🆕 26 바뀜</span>' if u26c else ''   # 10-09 사용자 '26년도 올해 추가된 … 꼭!! 강조'
+    u26c = ' u26c' if c.get('u26') else ''; u26chip = '<span class="chip u26chip" title="이 카드에 26년도 자료에서 새로 생기거나 바뀐 내용이 있음(초록 NEW 26 표시)">🆕 26 바뀜</span>' if u26c else ''
+    if c.get('e26'): u26c += ' e26c'; u26chip += '<span class="chip e26chip" title="이 카드에 26년도 수업에서 교수님이 강조·시험 예고한 내용이 있음(보라 26 강조 표시)">26 강조</span>'   # 10-10 사용자 '26년도 강조와 26년도 피피티에 새로 추가된 내용 표시는 확실히 구분'   # 10-09 사용자 '26년도 올해 추가된 … 꼭!! 강조'
     h = [f'<article class="tc {heat(mx)}{u26c} open" id="t-{k}-{j}" data-n="{dn}" data-grp="{esc(c["grp"])}" data-aid="{AIDS[(k, j)]}" data-alt="{card_alt(k, j)}"><div class="thead"><span class="badge" data-ttog>{j+1}</span><div class="tt" data-aid="{AIDS[(k, j)]}~h"><div class="en serif" data-ttog>{esc(c["en"])}</div><div class="ko">{esc(c["ko"])}{(" <span class=" + chr(34) + "pg" + chr(34) + ">· " + lab + "</span>") if lab else ""}</div><div class="one">{lecparse.gist_html(c["gist"], ctx)}</div><div class="tchips">{u26chip}{tagc}{ych}{exj}{"<span class=\'chip emc\'>💬 교수 강조</span>" if prof else ""}</div></div><button class="dn noann" data-done="1" title="이해함 표시">✓</button><button class="car noann" data-ttog title="접기/펼치기" aria-label="접기/펼치기">▶</button></div><div class="tbody">']
     blocks = []; curb = None; key = ''; exams = []; exbuf = []; prevb = None
     def exhtml(v):
@@ -765,7 +766,7 @@ def lec_card(L, j, c):
                 key = ks[0]; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_keybox(ks[0], ctx)}</div>' + lecparse.render_key_rest(ks[1], ctx))
                 curb = {'h': '', 'items': list(ks[1])}; blocks.append(curb)
             else: key = v; h.append(f'<div class="co c-key"><div class="ct">🔑 핵심</div>{lecparse.render_keybox(v, ctx)}</div>')
-        elif t == 'h': h.append(f'<h4 class="sh">{lecparse.inline(v, ctx)}</h4>'); curb = {'h': v, 'items': []}; blocks.append(curb); nsec = bool(re.match(r'^\s*\{n:', v) or lecparse.SRCN.search(v) or re.match(r'^\s*필기', v)); usec = bool(re.match(r'^\s*(?:\{n:)?\{u:', v))   # 10-09 소제목 전체가 26 새 내용 → 아래 항목 왼쪽 초록 줄(배지는 머리 앞에만)   # 10-09 소제목 전체가 필기 → 아래 항목은 ✍ 없이(머리 앞에만)
+        elif t == 'h': h.append(f'<h4 class="sh">{lecparse.inline(v, ctx)}</h4>'); curb = {'h': v, 'items': []}; blocks.append(curb); nsec = bool(re.match(r'^\s*\{n:', v) or lecparse.SRCN.search(v) or re.match(r'^\s*필기', v)); usec = ('usec' if re.match(r'^\s*(?:\{n:)?\{u:', v) else 'usec esec' if re.match(r'^\s*(?:\{n:)?\{e:', v) else '')   # 10-09 소제목 전체가 26 새 내용 → 아래 항목 왼쪽 초록 줄(배지는 머리 앞에만)   # 10-09 소제목 전체가 필기 → 아래 항목은 ✍ 없이(머리 앞에만)
         elif t == 'b':
             st_ = None; C_ = lecparse.CIRC; v0 = v.lstrip()[:1]
             if prevb is not None and v0 and v0 in C_ and h and h[-1].startswith('<div class="li nolead'):   # ux2 D09 앞 줄이 ⑤로 끝나고 이 줄이 ⑥으로 시작 → 한 목록처럼(ol start=6) — fixB N1: 앞 줄이 실제로 번호 목록(ol)으로 그려졌을 때만(① ② 한 줄씩 쓴 나열은 끝까지 같은 모양)
@@ -773,11 +774,11 @@ def lec_card(L, j, c):
                 if lc and C_.index(v0) == C_.index(lc[-1]) + 1 and C_.index(lc[-1]) >= 1: st_ = C_.index(v0) + 1
             h.append(lecparse.render_item(v, ctx, cont=st_)); prevb = v
             if nsec: h[-1] = re.sub(r'^<div class="li', '<div class="li nsec', h[-1], count=1)
-            if usec: h[-1] = re.sub(r'^<div class="li', '<div class="li usec', h[-1], count=1)
+            if usec: h[-1] = re.sub(r'^<div class="li', '<div class="li ' + usec, h[-1], count=1)
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'b2':   # 10-05 하위 항목(원고 '  - ') — 바로 위 항목 아래 들여 쓴 줄
-            h.append(re.sub(r'^<div class="li', '<div class="li l2' + (' nsec' if nsec else '') + (' usec' if usec else ''), lecparse.render_item(v, ctx), count=1))
+            h.append(re.sub(r'^<div class="li', '<div class="li l2' + (' nsec' if nsec else '') + (' ' + usec if usec else ''), lecparse.render_item(v, ctx), count=1))
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'T':
@@ -911,7 +912,7 @@ for L in LEC:
             rows.append(f'<tr class="grow" data-grp="{esc(curg)}"><td colspan="5">{esc(curg)}</td></tr>')
         cards.append(ch); rows.append(row)
         ys = sorted({y for x in ids for y in QMAP[x]['yrs']}, reverse=True)
-        outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}" title="{esc(lecparse._plain(c["gist"]))}"><b>{j+1}</b><span class="ot">{esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c["ko"]) or c["ko"])}{"<i class=o26></i>" if c.get("u26") else ""}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy><i>기출</i> " + ylab(ys) + "</span>") if ys else ""}</button>')
+        outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}" title="{esc(lecparse._plain(c["gist"]))}"><b>{j+1}</b><span class="ot">{esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c["ko"]) or c["ko"])}{"<i class=o26></i>" if c.get("u26") else ""}{"<i class=o26e></i>" if c.get("e26") else ""}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy><i>기출</i> " + ylab(ys) + "</span>") if ys else ""}</button>')
     jb_ids = sorted([q['id'] for q in Q if q['tier'] != 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
     flow = ''.join(f'<span class="fl">{lecparse.inline(x.strip(), ctx)}</span>' for x in L['map'].split('→')) if L['map'] else ''
     LQ = [q for q in Q if q['tier'] != 'C' and q['lk'] == k and q.get('st')]
@@ -938,14 +939,17 @@ for L in LEC:
         return f'<li{" class=tmore" if n_ >= 5 else ""}{(" data-cj=" + chr(34) + str(cj) + chr(34)) if cj is not None else ""}>{ychips([i])} <span class="tq">{body}</span></li>'
     ltop = ''.join(ltop_li(n_, i) for n_, i in enumerate(top_ids))
     NH = [x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)]; NO = [x for n in L['notes'] for x in split_note(n) if not HINT_RE.search(x)]
-    ucards = [(j_, c_) for j_, c_ in enumerate(L['cards']) if c_.get('u26')]   # 10-09 사용자 '25년도 자료에 비해 26년도 자료에서 변동사항 … 사라진 페이지 또는 특히 26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조'
+    ucards = [(j_, c_) for j_, c_ in enumerate(L['cards']) if c_.get('u26')]
+    ecards = [(j_, c_) for j_, c_ in enumerate(L['cards']) if c_.get('e26')]   # 10-10 26 수업 강조 카드
+    new26 = any(re.match(r'\s*26 새 강의', lecparse._plain(x)) for x in L.get('upd') or [])   # 10-10 사용자 C안 — 26에 새로 생긴 강의: @UPD '26 새 강의 …' 줄 + 과목 홈 강의 카드 'NEW 26 강의' 칩   # 10-09 사용자 '25년도 자료에 비해 26년도 자료에서 변동사항 … 사라진 페이지 또는 특히 26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조'
     ulabs = [re.split(r'\s*[:：]', lecparse._plain(x), 1)[0].strip() for x in L.get('upd') or []]; ulabs = [x for x in ulabs if 0 < len(x) <= 16][:4]
-    usum = ' · '.join(ulabs + ([f'26 새 내용 카드 {len(ucards)}장'] if ucards else []))
+    usum = ' · '.join(ulabs + ([f'26 새 내용 카드 {len(ucards)}장'] if ucards else []) + ([f'26 강조 카드 {len(ecards)}장'] if ecards else []))
     upd_html = (f'<details class="co c-upd"><summary class="ct">25 → 26 바뀐 점 <span class="usum">{esc(usum)}</span><span class="umore">펼치기 ▸</span></summary>' + ''.join(f'<div class="fu">{lecparse.inline(x, ctx)}</div>' for x in L.get('upd') or [])
                 + (f'<div class="fu fuc"><b>26 새 내용이 있는 카드</b> ' + ''.join(f'<button class="ucj noann" data-scroll="t-{k}-{j_}" title="{esc(c_["en"])}">{j_ + 1} {esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c_["ko"]) or c_["en"])}</button>' for j_, c_ in ucards) + '</div>' if ucards else '')
-                + '<div class="small fun">초록 <span class="u26 demo">NEW 26</span> = 26년도 자료에 새로 생기거나 바뀐 내용 · 회색 <span class="gone26">(26에서 빠짐)</span> = 25 자료에만 있던 내용(시험 대비로 남김)</div></details>') if (L.get('upd') or ucards) else ''   # 10-09 접힌 한 줄(강의 틀 한 화면 — ux_u24) · 누르면 펼침
+                + (f'<div class="fu fuc fue"><b>26 수업 강조가 있는 카드</b> ' + ''.join(f'<button class="ucj ecj noann" data-scroll="t-{k}-{j_}" title="{esc(c_["en"])}">{j_ + 1} {esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c_["ko"]) or c_["en"])}</button>' for j_, c_ in ecards) + '</div>' if ecards else '')
+                + '<div class="small fun">초록 <span class="u26 demo">NEW 26</span> = 26년도 자료(PPT)에 새로 생기거나 바뀐 내용 · 보라 <span class="u26 e26 demo">26 강조</span> = 26년도 수업에서 교수님이 강조·시험 예고(25에도 강조했으면 <span class="also25">(25년도에도 강조함)</span>) · 회색 <span class="gone26">(26에서 빠짐)</span> = 25 자료에만 있던 내용(시험 대비로 남김)</div></details>') if (L.get('upd') or ucards or ecards) else ''   # 10-09 접힌 한 줄(강의 틀 한 화면 — ux_u24) · 누르면 펼침
     hint_html = f'<div class="co c-prof fhint"><div class="ct">📣 교수님 예고·강조</div>{"".join(f"<div class=fh>{lecparse.inline(x, ctx)}</div>" for x in NH)}</div>' if NH else ''
-    gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><span class="rvsort" title="복습 보기 정렬"><button class="tg on" data-rvs="">강의 순</button><button class="tg" data-rvs="n">기출 많은 순</button><button class="tg" data-rvs="x">몰라요·✓ 안 한 것 먼저</button></span><span class="rvleg">카드 [알아요○][몰라요✕] → ‘몰라요·✓ 안 한 것 먼저’ 정렬 · ✓ = 다 봄 · 🔁 오늘 복습은 JB 채점 기준</span><button class="tg" data-filt="unread" title="✓ 다 봄 표시한 카드 숨기기">안 본 카드만</button><button class="tg" data-filt="jb" title="⭐ 기출이 걸린 카드만">⭐ 기출 카드만</button><button class="tg" data-filt="rep2" title="2회 이상 나온 기출이 걸린 카드만">2회↑만</button><button class="tg" data-filt="mine" title="내 형광펜·빈칸이 있는 카드만">내 표시만</button>' + ('<button class="tg u26f" data-filt="u26" title="26년도 자료에서 새로 생기거나 바뀐 내용이 있는 카드만">🆕 26 바뀐 카드만</button>' if ucards else '') + '<details class="pmore"><summary class="tg" title="보기 설정 — ✓하면 접기 · 압축 보기 · 모두 펼치기/접기">⋯</summary><div class="pmenu"><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="tg" id="lexfirst" title="⭐ 시험포인트를 🔑 핵심 바로 뒤에 (모든 강의)">⭐ 먼저</button><div class="pseg" title="빨간 글씨 — 시험 핵심만(🔑·⭐·⚡에도 나오는 것) · 전부"><b>빨강</b><button class="tg" data-redm="core">시험 핵심만</button><button class="tg" data-redm="all">전부</button></div><div class="pseg" title="카드 그림 (I로 바꾸기)"><b>그림</b><button class="tg" data-figm="big">크게</button><button class="tg" data-figm="small">작게</button><button class="tg" data-figm="hide">숨김</button></div><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button><span class="fsz" title="글자 크기(모든 과목·화면 공통)"><button class="btn sm" id="fsdn" title="글자 작게">A−</button><b id="fsv">100%</b><button class="btn sm" id="fsup" title="글자 크게">A+</button></span></div></details></div>'
+    gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(g)}</button>' for g in grps) + '<span class="sp"></span><span class="rvsort" title="복습 보기 정렬"><button class="tg on" data-rvs="">강의 순</button><button class="tg" data-rvs="n">기출 많은 순</button><button class="tg" data-rvs="x">몰라요·✓ 안 한 것 먼저</button></span><span class="rvleg">카드 [알아요○][몰라요✕] → ‘몰라요·✓ 안 한 것 먼저’ 정렬 · ✓ = 다 봄 · 🔁 오늘 복습은 JB 채점 기준</span><button class="tg" data-filt="unread" title="✓ 다 봄 표시한 카드 숨기기">안 본 카드만</button><button class="tg" data-filt="jb" title="⭐ 기출이 걸린 카드만">⭐ 기출 카드만</button><button class="tg" data-filt="rep2" title="2회 이상 나온 기출이 걸린 카드만">2회↑만</button><button class="tg" data-filt="mine" title="내 형광펜·빈칸이 있는 카드만">내 표시만</button>' + ('<button class="tg u26f" data-filt="u26" title="26년도 자료에서 새로 생기거나 바뀐 내용이 있는 카드만">🆕 26 바뀐 카드만</button>' if ucards else '') + ('<button class="tg e26f" data-filt="e26" title="26년도 수업에서 교수님이 강조·시험 예고한 내용이 있는 카드만">26 강조 카드만</button>' if ecards else '') + '<details class="pmore"><summary class="tg" title="보기 설정 — ✓하면 접기 · 압축 보기 · 모두 펼치기/접기">⋯</summary><div class="pmenu"><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="tg" id="lexfirst" title="⭐ 시험포인트를 🔑 핵심 바로 뒤에 (모든 강의)">⭐ 먼저</button><div class="pseg" title="빨간 글씨 — 시험 핵심만(🔑·⭐·⚡에도 나오는 것) · 전부"><b>빨강</b><button class="tg" data-redm="core">시험 핵심만</button><button class="tg" data-redm="all">전부</button></div><div class="pseg" title="카드 그림 (I로 바꾸기)"><b>그림</b><button class="tg" data-figm="big">크게</button><button class="tg" data-figm="small">작게</button><button class="tg" data-figm="hide">숨김</button></div><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button><span class="fsz" title="글자 크기(모든 과목·화면 공통)"><button class="btn sm" id="fsdn" title="글자 작게">A−</button><b id="fsv">100%</b><button class="btn sm" id="fsup" title="글자 크게">A+</button></span></div></details></div>'
     head = (f'<section class="frame" data-aid="{aid(k + ":frame")}" data-k="{k}"><div class="frt">이 강의의 틀{upd_html}<button class="frtog noann" data-frtog="1" title="이 강의의 틀 접기/펼치기 (강의마다 기억)"></button></div><div class="fsrc" data-fsrc="1" title="눌러서 출처 전체 보기"><span class="fs0">{fsrc_short(L["file"])}</span><span class="fs1"> — 출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</span></div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
             f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div></div></section>{gp}')
     mgp = ''.join(f'<button class="tg" data-mgrp="{esc(g)}" title="{esc(g)}">{esc(g)}</button>' for g in grps)
@@ -980,10 +984,10 @@ for L in LEC:
                 if ks_[0] != nk_ and ks_[0] not in old_ and len(tops_) >= 2 and all(len(x) >= 4 and x in fcnorm(tc_) for x in tops_): old_ = old_ + ks_
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
-    lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP})] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수]
+    lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP}), (1 if c_.get('u26') else 0) | (2 if c_.get('e26') else 0)] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수, 26 표시(1 = NEW 26 · 2 = 26 강조 — 10-10 사용자 '메뉴탭에서 … 별표 … 옆에 조그맣게 26 new랑 26 강조')]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
-                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
+                 'jb': jb_ids, 'pred': [i for i, p in enumerate(PRED) if p['k'] == k], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
 print('⭐ 시험포인트 구조화(ux2 D04):', f'{lecparse.EXAM_N[0]}/{lecparse.EXAM_N[1]}줄')
 print('🔑 줄 나누기(ux3 N1 key_lines):', f'상자·칸 {lecparse.KL[0]} · 새 구조 {lecparse.KL[1]} · 글자가 달라 옛 렌더로 되돌림 {lecparse.KL[2]}')

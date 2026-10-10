@@ -104,7 +104,7 @@ def main(sid, keys, also):
         if src25 and '26' in str(LM.get(k, ('', ''))[1]) and not L.get('upd'):
             warns.append(f'26 갱신 강의(25 = {"·".join(src25)})인데 @UPD 없음 — 25 ↔ 26 바뀐 곳 표시(UPD26MARK_BRIEF · 대조표 없으면 끝 절 · AGENTS B3)')
         for u_ in L.get('upd', []):
-            n_ = len(re.sub(r'\[\[[^\]]*\]\]|\{u:|\{n:|\{r:|[{}]', '', u_).strip())
+            n_ = len(re.sub(r'\[\[[^\]]*\]\]|\{u:|\{e:|\{n:|\{r:|[{}]', '', u_).strip())
             if n_ > 150: warns.append(f'@UPD {n_}자(150자 넘음): "{u_[:40]}…"')
         C = len(L['cards']); B = sum(1 for c in L['cards'] for b in c['body'] if b[0] == 'b'); T = sum(1 for c in L['cards'] for b in c['body'] if b[0] == 'T')
         E = sum(1 for c in L['cards'] for b in c['body'] if b[0] == 'E'); F = sum(len(c['figs']) for c in L['cards']); M = sum(len(c['recall']) for c in L['cards'])

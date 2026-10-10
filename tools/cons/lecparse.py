@@ -41,15 +41,20 @@ def _kcls(core):
         return 'k k2'
     return f
 NOTE_O, NOTE_C = '\ue030', '\ue031'
-def _nl(s): return len(s) - 4 * s.count('{n:') - 4 * s.count('{u:')   # 10-09 길이 기준은 필기 표시 {n:…}·26 새 내용 {u:…} 표시 글자를 빼고(표시를 넣어도 줄 나눔이 그대로)
+def _nl(s): return len(s) - 4 * s.count('{n:') - 4 * s.count('{u:') - 4 * s.count('{e:')   # 10-09 길이 기준은 필기 표시 {n:…}·26 새 내용 {u:…} 표시 글자를 빼고(표시를 넣어도 줄 나눔이 그대로)
 UPD_O, UPD_C = '\ue032', '\ue033'
+EMP_O, EMP_C = '\ue036', '\ue037'   # 10-10 사용자 '26년도 강조와 26년도 피피티에 새로 추가된 내용 표시는 확실히 구분' — {e:…} = 26 수업 강조·시험 예고
+ALSO25 = re.compile(r'\(25(?:년도)?에도 (?:같이 )?강조(?:함|했음|하심)?\)')   # 10-10 '(25년도에도 강조함)' → 작은 회색 덧말
+ALS_O, ALS_C = '\ue038', '\ue039'
 def _upd_marks(s):
     """10-09 사용자 '26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조' — 원고 {u:…} = 25 대비 26에 새로 생기거나 바뀐 내용 → 화면 span.u26(앞 'NEW 26' 배지 = CSS, 글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로)"""
-    if '{u:' not in s: return s
+    if '{u:' not in s and '{e:' not in s: return s
     out = []; i = 0
     while True:
-        j = s.find('{u:', i)
+        ju, je = s.find('{u:', i), s.find('{e:', i)
+        j = min(x for x in (ju, je) if x >= 0) if max(ju, je) >= 0 else -1
         if j < 0: out.append(s[i:]); break
+        O_, C_ = (EMP_O, EMP_C) if j == je else (UPD_O, UPD_C)   # 10-10 {e:…} = 26 수업 강조(보라 '26 강조') — {u:}와 같은 자리 규칙
         d = 0; k = j + 3; end = -1
         while k < len(s):
             if s[k] == '{': d += 1
@@ -58,7 +63,7 @@ def _upd_marks(s):
                 d -= 1
             k += 1
         if end < 0: out.append(s[i:j] + s[j + 3:]); break
-        out.append(s[i:j] + UPD_O + s[j + 3:end] + UPD_C); i = end + 1
+        out.append(s[i:j] + O_ + s[j + 3:end] + C_); i = end + 1
     return ''.join(out)
 GONE26 = re.compile(r'\(([^()]{0,200}?26에서 빠[짐졌][^()]{0,200}?)\)')   # '(25 자료 — 26에서 빠짐)' 꼴 → 회색 배지(글자 그대로) · 10-09 원고 글자에서 찾아 표시 자리만 남김(괄호 안 p.N·' · '가 태그로 바뀌어도 걸림)
 GONE_O, GONE_C = '\ue034', '\ue035'
@@ -118,12 +123,17 @@ def _ntw_close(h):
     return out
 def inline(s, ctx, first=True):
     s = _upd_marks(_srcn_start(_note_marks(s)))
+    if '에도' in s and '강조' in s: s = ALSO25.sub(lambda m: ALS_O + m.group(0) + ALS_C, s)
     if '26에서 빠' in s: s = GONE26.sub(lambda m: GONE_O + m.group(0) + GONE_C if m.group(0).count('{') == m.group(0).count('}') and m.group(0).count('[[') == m.group(0).count(']]') else m.group(0), s)
     h = _inline0(s, ctx, first)
     if NOTE_O in h or NOTE_C in h:   # 글자는 그대로 — 표시는 CSS(::before ✍, 10-09 앞에만)라 형광펜·플래시카드 글자에 안 섞임
         h = _ntw_close(h.replace(NOTE_O, '<span class="ntw" title="필기">'))
     if UPD_O in h: h = h.replace(UPD_O, '<span class="u26" title="26년도 자료에 새로 생기거나 바뀐 내용">').replace(UPD_C, '</span>')
     elif UPD_C in h: h = h.replace(UPD_C, '')
+    if EMP_O in h: h = h.replace(EMP_O, '<span class="u26 e26" title="26 수업 강조 — 26년도 수업에서 교수님이 강조·시험 예고">').replace(EMP_C, '</span>')
+    elif EMP_C in h: h = h.replace(EMP_C, '')
+    if ALS_O in h: h = h.replace(ALS_O, '<span class="also25" title="25년도 수업에서도 같은 강조">').replace(ALS_C, '</span>')
+    elif ALS_C in h: h = h.replace(ALS_C, '')
     if GONE_O in h: h = h.replace(GONE_O, '<span class="gone26" title="25 자료에만 있음 — 26 자료에서 빠짐">').replace(GONE_C, '</span>')
     elif GONE_C in h: h = h.replace(GONE_C, '')
     return h
@@ -154,7 +164,8 @@ def parse(path):
     for raw in open(path, encoding='utf-8'):
         line = raw.rstrip('\n')
         if not line.strip(): continue
-        if card is not None and '{u:' in line and not line.startswith('## '): card['u26'] = True   # 10-09 이 카드에 26 새 내용 있음(카드 머리 🆕 26 · 26 바뀐 카드만 거르기)
+        if card is not None and '{u:' in line and not line.startswith('## '): card['u26'] = True
+        if card is not None and '{e:' in line and not line.startswith('## '): card['e26'] = True   # 10-10 26 수업 강조 카드(머리 '26 강조' 칩)   # 10-09 이 카드에 26 새 내용 있음(카드 머리 🆕 26 · 26 바뀐 카드만 거르기)
         if line.startswith('#LEC'):
             p = [x.strip() for x in line[4:].split('|')]
             lec = {'k': p[0], 'title': p[1], 'prof': p[2], 'yr': p[3], 'file': p[4], 'pages': int(p[5]), 'notes': [], 'cards': [], 'map': '', 'tip': [], 'upd': []}
@@ -168,7 +179,7 @@ def parse(path):
             for x in p[3:]:
                 if x.startswith('jb='): jb = [j.strip() for j in x[3:].split(',') if j.strip()]
                 else: tag = x
-            card = {'en': p[0], 'ko': p[1], 'rng': p[2], 'tag': tag, 'jb': jb, 'gist': '', 'body': [], 'figs': [], 'grp': grp, 'recall': [], 'u26': '{u:' in line}
+            card = {'en': p[0], 'ko': p[1], 'rng': p[2], 'tag': tag, 'jb': jb, 'gist': '', 'body': [], 'figs': [], 'grp': grp, 'recall': [], 'u26': '{u:' in line, 'e26': '{e:' in line}
             lec['cards'].append(card)
         elif line.startswith('> '): card['gist'] = line[2:].strip()
         elif line.startswith('= '): card['body'].append(('K', line[2:].strip()))
@@ -336,7 +347,7 @@ def _rebalance(parts, hl0=False):
 LBL = re.compile(r'^([^:：/]{1,34})[:：]\s+(.*)$')
 _IP = [None]   # ux3 트랙3 N1 — key_lines가 도는 동안만 조각 렌더를 바꾸는 갈고리(평소에는 inline 그대로)
 def _ip(p, ctx, li=False): return _IP[0](p, ctx, li) if _IP[0] else inline(p, ctx)
-def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|\{n:|\{u:|==|\*\*|\}', '', p)
+def _plain(p): return re.sub(r'\{jb:[^}]*\}|\{r:|\{k:|\{n:|\{u:|\{e:|==|\*\*|\}', '', p)
 def _is_flow(parts):
     """가로 흐름(ul.kflow): 4조각↑ 중앙값 24자 미만 · ux2 D09 2~3조각은 합 100자 이하이거나 3조각 중앙값 22자 이하"""
     if len(parts) < 2: return False
@@ -505,8 +516,8 @@ def render_item(v, ctx, cont=None):
     """항목 한 줄 — 110자 초과 또는 ux2 D09 원문자 번호 3개↑(길이 무관)면 구조화. cont = 앞 줄 번호에 이어지는 시작 번호(⑤ 다음 ⑥ → 6)"""
     w = _uwhole(v)
     if w is not None and _nl(w) > 110 or w is not None and _ncirc(w) >= 3 or w is not None and _facts(split_top(w, ' / ')):   # 10-09 구조화되는 긴 줄 전체가 {u:…} → 안쪽을 그대로 구조화 + 왼쪽 초록 줄 + 앞 NEW 26 하나
-        h = render_item(w, ctx, cont)
-        return re.sub(r'^<div class="li([^"]*)">', lambda m: f'<div class="li{m.group(1)} u26l">{U26P}', h, count=1)
+        h = render_item(w, ctx, cont); P_, L_, _ = _uk(v)
+        return re.sub(r'^<div class="li([^"]*)">', lambda m: f'<div class="li{m.group(1)} {L_}">{P_}', h, count=1)
     if cont:
         pos = _marks(v, PAT_CIRC)
         if pos and pos[0][0] == 0:
@@ -528,7 +539,7 @@ def _nlab(lb):   # 10-09 ⚡ 머리 라벨이 '필기:'·'26 필기(p.4):'면 �
 def _uwhole(x):
     """10-09 줄(또는 조각) 전체가 {u:…} 하나로 감싸였으면 안쪽 글자, 아니면 None"""
     x = x.strip()
-    if not x.startswith('{u:') or not x.endswith('}'): return None
+    if not (x.startswith('{u:') or x.startswith('{e:')) or not x.endswith('}'): return None
     d = 0
     for i in range(3, len(x)):
         if x[i] == '{': d += 1
@@ -537,6 +548,10 @@ def _uwhole(x):
             d -= 1
     return None
 U26P = '<span class="u26p" title="26년도 자료에 새로 생기거나 바뀐 내용"></span>'
+E26P = '<span class="u26p e26p" title="26 수업 강조 — 26년도 수업에서 교수님이 강조·시험 예고"></span>'
+def _uk(x):
+    """10-10 줄·조각 전체 표시의 종류 — {e:…}(26 수업 강조)면 (보라 배지, 'u26l e26l'), 아니면 {u:…}(NEW 26)"""
+    return (E26P, 'e26l', ' e26') if x.strip().startswith('{e:') else (U26P, 'u26l', '')
 def _mark_top(h, cls):
     """맨 바깥 li(또는 div.li)에 class 더하기 — 줄 전체가 26 새 내용({u:…})일 때 왼쪽 초록 줄"""
     out, d, last = '', 0, 0
@@ -549,24 +564,25 @@ def _mark_top(h, cls):
     return out + h[last:]
 def _ulab(r):
     """10-09 '{u:라벨: 내용…} / …'처럼 {u:가 라벨 앞에서 열리고 조각 중간에서 닫히면 라벨 뒤로 옮김(라벨은 굵은 머리 그대로 · NEW 26은 내용 앞) — 글자 그대로"""
-    if not r.startswith('{u:') or _uwhole(r) is not None: return r
+    if not (r.startswith('{u:') or r.startswith('{e:')) or _uwhole(r) is not None: return r
     m = MLAB.match(r[3:])
-    return (m.group(1) + ' {u:' + m.group(2)) if m and '{' not in m.group(1) and '}' not in m.group(1) else r
+    return (m.group(1) + ' ' + r[:3] + m.group(2)) if m and '{' not in m.group(1) and '}' not in m.group(1) else r
 def _ml(r):
     w = _uwhole(r); return MLAB.match(w if w is not None else r), w is not None
 def render_recall(x, ctx):
     w = _uwhole(x)
     if w is not None:   # 10-09 ⚡ 줄 전체가 26 새 내용 → 안쪽을 그대로 그리고(라벨·하위 묶음 그대로) 맨 바깥 줄마다 왼쪽 초록 줄 + 첫 줄 앞 NEW 26 하나
-        h = _mark_top(render_recall(w, ctx), 'u26l')
-        return re.sub(r'^(<li\b[^>]*>)', lambda m: m.group(1) + U26P, h, count=1)
+        P_, L_, _ = _uk(x); h = _mark_top(render_recall(w, ctx), L_)
+        return re.sub(r'^(<li\b[^>]*>)', lambda m: m.group(1) + P_, h, count=1)
     x = _ulab(x); rows = [_ulab(r) for r in split_top(x)]
     def R(r):
         w_ = _uwhole(r)
         e = _eol(w_ if w_ is not None else r, ctx, 50)
-        if e: return (U26P + f'<span class="u26 u26n">{e}</span>') if w_ is not None else e
+        P_, _, E_ = _uk(r)
+        if e: return (P_ + f'<span class="u26{E_} u26n">{e}</span>') if w_ is not None else e
         m, uw = _ml(r)   # 10-05 사용자 '단점이라고 표시도 안되어있고' — 줄 머리 라벨(장점:·단점(…):·술식 순서:)은 늘 굵게 · 10-09 조각 전체가 {u:라벨: …}여도 라벨은 굵은 머리(NEW 26은 라벨 앞)
         if m and m.group(2).strip():
-            if uw: return U26P + f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> <span class="u26 u26n">{inline(m.group(2), ctx)}</span>'
+            if uw: return P_ + f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> <span class="u26{E_} u26n">{inline(m.group(2), ctx)}</span>'
             return f'<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> ' + inline(m.group(2), ctx)
         return inline(r, ctx)
     if not ((len(rows) >= 2 and _nl(x) > 60 and min(_nl(r) for r in rows) >= 14) or _facts(rows)): return f'<li>{R(x)}</li>'   # 10-04 줄바꿈 2차: ⚡ 줄 조각이 사실 문장(=·→·:)이면 짧아도 줄마다
@@ -583,8 +599,8 @@ def render_recall(x, ctx):
         if e: out += f'<li class="mhd">{e}{sub(g[1:])}</li>'; continue
         m, uw = _ml(g[0])
         if uw:   # 10-09 머리 조각만 26 새 내용 — NEW 26은 라벨 앞, 첫 하위 조각에 초록 밑줄(뒤 조각은 그대로)
-            sh = sub([m.group(2)] + g[1:]); sh = re.sub(r'^(<ul class="msub"><li>)(.*?)(</li>)', lambda q: q.group(1) + '<span class="u26 u26n">' + q.group(2) + '</span>' + q.group(3), sh, count=1, flags=re.S)
-            out += f'<li class="mhd">{U26P}<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sh}</li>'; continue
+            P_, _, E_ = _uk(g[0]); sh = sub([m.group(2)] + g[1:]); sh = re.sub(r'^(<ul class="msub"><li>)(.*?)(</li>)', lambda q: q.group(1) + f'<span class="u26{E_} u26n">' + q.group(2) + '</span>' + q.group(3), sh, count=1, flags=re.S)
+            out += f'<li class="mhd">{P_}<b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sh}</li>'; continue
         out += f'<li class="mhd"><b class="mlab{_nlab(m.group(1))}">{inline(m.group(1), ctx)}</b> {sub([m.group(2)] + g[1:])}</li>'
     return out
 # ---- ux2 D04 ⭐ 시험포인트 구조화: '<연도>년 <n회>(…) <형식> "<문제>" → <답> — <근거> ⚠ 함정: …' 한 줄을 나눔(글자는 그대로 — 감싸기만)
