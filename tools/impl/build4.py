@@ -774,11 +774,11 @@ def lec_card(L, j, c):
                 if lc and C_.index(v0) == C_.index(lc[-1]) + 1 and C_.index(lc[-1]) >= 1: st_ = C_.index(v0) + 1
             h.append(lecparse.render_item(v, ctx, cont=st_)); prevb = v
             if nsec: h[-1] = re.sub(r'^<div class="li', '<div class="li nsec', h[-1], count=1)
-            if usec: h[-1] = re.sub(r'^<div class="li', '<div class="li ' + usec, h[-1], count=1)
+            if usec and not re.match(r'^\s*\{n:', v): h[-1] = re.sub(r'^<div class="li', '<div class="li ' + usec, h[-1], count=1)   # 10-10 필기 줄은 NEW 26 묶음 왼쪽 줄 밖(사용자 '필기 아님!!')
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'b2':   # 10-05 하위 항목(원고 '  - ') — 바로 위 항목 아래 들여 쓴 줄
-            h.append(re.sub(r'^<div class="li', '<div class="li l2' + (' nsec' if nsec else '') + (' ' + usec if usec else ''), lecparse.render_item(v, ctx), count=1))
+            h.append(re.sub(r'^<div class="li', '<div class="li l2' + (' nsec' if nsec else '') + (' ' + usec if usec and not re.match(r'^\s*\{n:', v) else ''), lecparse.render_item(v, ctx), count=1))
             if curb is None: curb = {'h': '', 'items': []}; blocks.append(curb)
             curb['items'].append(v)
         elif t == 'T':
