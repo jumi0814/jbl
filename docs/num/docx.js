@@ -3,7 +3,7 @@
    tools/num/build_seed.py가 크롬(playwright)에서 같은 코드로 첨부 Word를 읽어 docs/num/seed.js를 만든다 — 읽는 방법은 한 곳에만.
    JBLDOCX.parse(ArrayBuffer, {img:'inline'|'id', maxW, q, onProgress}) → {title, legend, sections, items, images, flags, layout}
    원칙: 글자는 Word 그대로(번호 목록의 번호도 글자로 넣음) · 서식은 굵게·밑줄·기울임·글자색·형광펜·위/아래 첨자·표·그림만 · 취소선은 글자만 남김
-   표 모양 두 가지: ① 머리 줄에 '문제·정답·암기법'이 있는 3칸 표(임상구강내과학) ② 문제 줄(왼·오 같은 글) 뒤에 왼쪽 스토리·오른쪽 답 줄이 오는 2칸 표(교정과)
+   표 모양 두 가지: ① 머리 줄에 '문제·정답·암기법'이 있는 3칸 표 ② 문제 줄(왼·오 같은 글) 뒤에 왼쪽 스토리·오른쪽 답 줄이 오는 2칸 표
    어느 쪽도 아니면 '첫 칸 문제 · 둘째 칸 답 · 셋째 칸 스토리'로 읽고 모두 검토 대상으로 둔다. */
 (function () {
 'use strict';
@@ -346,7 +346,7 @@ async function parse(buf, opt) {
     if (ncol === 2 && (dupRows >= 2 || (layout === 'qrow' && dupRows >= 1))) {
       layout = layout || 'qrow';
       /* 문제 줄 = 왼·오 첫 문단이 같고(띄어쓰기·괄호 무시) 그 글이 문제처럼 보이거나 앞 문제에 이미 내용이 있을 때
-         (앞 문제 줄 바로 뒤의 '보기만 있는 왼쪽 + 보기·답이 있는 오른쪽' 줄은 내용 줄 — 교정과 16번) */
+         (앞 문제 줄 바로 뒤의 '보기만 있는 왼쪽 + 보기·답이 있는 오른쪽' 줄은 내용 줄) */
       const QL = /(시오|하라|하세요|는가|인가|\?|쓰기|하기|그리기|서술|설명|기술|나열|열거|비교|채우|완성|고르|도해|표시|매칭|가지|이유|목적|방법|원인|특징|정의|종류|차이|단계|순서|기전|분류|적응증|금기|합병증|주의|빈칸|\(\d{2}\s*[,)탈짤]|\(탈)/;
       const firstP = bl => bl.find(x => !x.empty);
       const sameFirst = r => { const fa = firstP(r.cells[0].blocks), fb = firstP(r.cells[1].blocks); return !!(fa && fb && fa.k === 'p' && fb.k === 'p' && norm(fa.text).length >= 6 && (norm(fa.text) === norm(fb.text) || dice(fa.text, fb.text) > 0.88 || (norm(fb.text).length > 10 && norm(fa.text).startsWith(norm(fb.text))) || (norm(fa.text).length > 10 && norm(fb.text).startsWith(norm(fa.text))))); };
@@ -371,7 +371,7 @@ async function parse(buf, opt) {
             const d = L.slice(0, k).map((b, i) => [b.text.trim(), R[i] && R[i].k === 'p' ? R[i].text.trim() : '']).filter(([x, y]) => norm(x) !== norm(y));
             if (d.length) rv.push({ k: 'qdiff', m: '왼쪽·오른쪽 문제 글이 조금 달라 왼쪽 글로 넣음', d: d.map(([x, y]) => '왼쪽: ' + x + '\n오른쪽: ' + y).join('\n') });
           }
-          /* 문제 줄 오른쪽에만 있는 그림(답 그림 — 교정과 Biomechanics 3번)은 답으로: 글이 같아도 그림은 버리지 않음 */
+          /* 문제 줄 오른쪽에만 있는 그림(답 그림)은 답으로: 글이 같아도 그림은 버리지 않음 */
           const ph = b => [...b.html.matchAll(/⟦IMG(\d+)⟧/g)].map(m => +m[1]), lt8 = new Set(L.flatMap(ph).map(i => pend[i].target));
           const ex = R.filter(b => !ax.includes(b)).flatMap(ph).filter(i => !lt8.has(pend[i].target));
           if (ex.length) { ax.unshift({ k: 'p', html: '<p>' + ex.map(i => '⟦IMG' + i + '⟧').join(' ') + '</p>', text: ' ', col: {}, hl: {}, img: ex.length, empty: false }); rv.push({ k: 'qimg', m: '문제 줄 오른쪽 칸에만 있는 그림 ' + ex.length + '개를 답 맨 앞에 넣음' }); }

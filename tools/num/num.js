@@ -193,7 +193,12 @@ function lectures(sj, seed) {
   L.push({ k: '', t: '강의 미분류' });
   return L;
 }
+function waitPack(sj) {   /* JB 과목이면 그 과목 팩(강의 목록)이 올 때까지 — 주소로 바로 열 때(팩은 허브가 부팅 때 차례로 받음) */
+  if (!H.SUBJECTS.some(x => x[0] === sj) || H.PACKS[sj]) return Promise.resolve();
+  return new Promise(res => { const t0 = now(), iv = setInterval(() => { if (H.PACKS[sj] || now() - t0 > 15000) { clearInterval(iv); res(); } }, 120); });
+}
 async function loadSubject(sj) {
+  await waitPack(sj);
   const seed = await seedOf(sj).catch(e => { H.toast(e.message, { level: 'error', id: 'nmseed' }); return null; });
   const R = loadRecs(sj), items = [];
   if (seed) seed.items.forEach((b, i) => { items.push(mkSeed(sj, b, R.get(b.id), i, seed)); R.delete(b.id); });
