@@ -17,7 +17,7 @@ for s in $sids; do
 done
 $PY tools/rehub.py 2>&1 | tail -1 | cut -c1-80 | tee -a $L
 say "== verify";        $PY tools/verify.py 2>&1 | grep -E 'FAIL|RESULT' | tee -a $L
-say "== check_lec";     for s in $SIDS; do o=$($PY tools/check_lec.py $s 2>&1); printf "%s ✗%s 경고 %s @UPD없음 %s " $s "$(echo "$o" | grep -c '✗')" "$(echo "$o" | grep -c '^   · ')" "$(echo "$o" | grep -c '@UPD 없음')"; done | tee -a $L; echo | tee -a $L   # 경고 수는 정보(기준과 견줌) · @UPD없음 = 26 갱신 강의 표시 빠짐(10-10)
+say "== check_lec";     for s in $SIDS; do o=$($PY tools/check_lec.py $s 2>&1); sl=$(echo $s | tr A-Z a-z); fn=$(( $(echo "$o" | grep -c '필기에 NEW 26') + $(cat tools/$sl/annot.txt tools/$sl/tables.txt tools/$sl/pred.txt | grep -oE '\{u:\s*\{n:|\{n:\s*\{u:' | wc -l) )); printf "%s ✗%s 경고 %s @UPD없음 %s 필기NEW26 %s " $s "$(echo "$o" | grep -c '✗')" "$(echo "$o" | grep -c '^   · ')" "$(echo "$o" | grep -c '@UPD 없음')" "$fn"; done | tee -a $L; echo | tee -a $L   # 경고 수는 정보(기준과 견줌) · @UPD없음 = 26 갱신 강의 표시 빠짐(10-10)
 say "== check_years";   $PY tools/check_years.py 2>&1 | grep '^== ' | tee -a $L
 say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail -3 | tee -a $L
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | grep '^== '; done | tee -a $L
@@ -39,7 +39,7 @@ if [ $UI = 1 ]; then
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
-say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
+say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]|필기NEW26 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
 grep -E '^합계: 기록 이어짐' $L | awk -F'[(%]' '{ if ($2+0 < 95) print "  ✗ 플래시카드 기록 이어짐 95% 미만:", $0 }' >> work/_tmp/full_check.fail
 cat work/_tmp/full_check.fail | tee -a $L   # 요약은 로그 끝에도(10-09 — 기준값은 SKILL G1)
 say "ALLDONE"

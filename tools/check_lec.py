@@ -103,6 +103,9 @@ def main(sid, keys, also):
         LM = getattr(S, 'LECMAP', {}); src25 = [a5 for a5, kk in getattr(S, 'IMG_ALIAS', {}).items() if kk == k and '25' in str(LM.get(a5, ('', ''))[1])]
         if src25 and '26' in str(LM.get(k, ('', ''))[1]) and not L.get('upd'):
             warns.append(f'26 갱신 강의(25 = {"·".join(src25)})인데 @UPD 없음 — 25 ↔ 26 바뀐 곳 표시(UPD26MARK_BRIEF · 대조표 없으면 끝 절 · AGENTS B3)')
+        src_ = open(path, encoding='utf-8').read()
+        nu_ = len(re.findall(r'\{u:\s*\{n:|\{u:\s*(?:\d{2}\s)?필기|\{n:\s*\{u:(?!.*^#)', src_))
+        if nu_: warns.append(f'필기에 NEW 26 {nu_}곳(\x7bu:\x7bn:… · \x7bu:26 필기…) — 10-10 사용자 \'필기 아님!! 슬라이드 원문 내용\' → 26 수업 강조면 \x7be:…\x7d, 아니면 표시 없음')
         for u_ in L.get('upd', []):
             n_ = len(re.sub(r'\[\[[^\]]*\]\]|\{u:|\{e:|\{n:|\{r:|[{}]', '', u_).strip())
             if n_ > 150: warns.append(f'@UPD {n_}자(150자 넘음): "{u_[:40]}…"')
