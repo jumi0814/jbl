@@ -6,7 +6,7 @@
 - 과목 홈 강의 카드 '🆕 26 바뀐 카드 n' = lect.upd · pageerror 0
 - 10-10 26 수업 강조 {e:…}: article.tc.e26c 수 = lect.emp · 머리 칩 '26 강조' 보임 · 배지 글자 '26 강조'(NEW 26과 다름 — 색도 다름) · '26 강조 카드만' 거르기 · 알약 안 강조 카드 바로가기(button.ecj) 수 = emp · 과목 홈 '26 강조 카드 n' · 26 새 강의(lect.new26)는 과목 홈 'NEW 26 강의' 칩"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
-import asyncio, json
+import asyncio, json, re
 from playwright.async_api import async_playwright
 U = J.HUB_URL; fails = []
 TOOLS = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
@@ -40,6 +40,11 @@ async def main():
                 src = open(f'{TOOLS}/{s.lower()}/lec_{k}.txt', encoding='utf-8').read()
                 await pg.goto('about:blank'); await pg.goto(U + f'#/{s}/{k}/learn'); await pg.wait_for_timeout(500)
                 r = await pg.evaluate(LEARN)
+                await pg.evaluate("typeof lpopOpen==='function'&&lpopOpen()"); await pg.wait_for_timeout(150)   # 10-10 카드 목록 메뉴 ⭐ 옆 NEW 26·26 강조(QA 40)
+                mb = await pg.evaluate("({u:document.querySelectorAll('#lpop small.lpu').length,e:document.querySelectorAll('#lpop small.lpe').length,a25:document.querySelectorAll('#stage .also25').length})")
+                await pg.evaluate("document.querySelector('#lpop')&&document.querySelector('#lpop').classList.remove('on')")
+                ok(mb['u'] == (L.get('upd') or 0) and mb['e'] == (L.get('emp') or 0), f"{s}/{k} 카드 목록 메뉴 NEW 26 {mb['u']} = upd {L.get('upd')} · 26 강조 {mb['e']} = emp {L.get('emp')}")
+                if re.search(r'\(25(?:년도)?에도 (?:같이 )?강조', src): ok(mb['a25'] > 0, f"{s}/{k} '(25년도에도 강조함)' 회색 덧말 {mb['a25']}")
                 if L.get('emp'): ok(r['e'] == L['emp'] and not r['ebad'] and r['ebadge'] > 0 and r['ecj'] == L['emp'] and (not r['ucol'] or r['ecol'] != r['ucol']), f"{s}/{k} 26 강조 카드 {r['e']} = emp {L['emp']} · 칩 안 보임 {r['ebad'][:3]} · '26 강조' 배지 {r['ebadge']} · 바로가기 {r['ecj']} · 색 {r['ecol']} ≠ {r['ucol']}")
                 if not L.get('upd'): continue
                 ok(r['u'] == L['upd'] and not r['bad'] and r['badge'] > 0, f"{s}/{k} 26 바뀐 카드 {r['u']} = upd {L['upd']} · 칩 안 보임 {r['bad'][:3]} · NEW 26 배지 {r['badge']}")

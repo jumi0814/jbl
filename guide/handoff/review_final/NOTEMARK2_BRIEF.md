@@ -22,7 +22,7 @@
 - 빌드·커밋·git stash·브라우저 금지. 맡은 과목 파일 밖 수정 금지. scratchpad 이름 `<SID>_NM2_` 접두어.
 
 ## 검사
-- 메인이 시작 전 기준본 저장(work/_before/…): 고친 파일마다 `.venv/bin/python tools/text_diff.py <파일>` → 빠진 글자 0 · 더한 글자는 `n`뿐(`{`·`:`·`}`는 구분자로 빠짐).
+- 메인이 시작 전 기준본 저장(work/_before/…): 고친 파일마다 `.venv/bin/python tools/text_diff.py <파일>` → 빠진 글자 0 · 더한 글자 0(`{n:`·`{u:`·`{e:`는 text_diff 비교에서 빠짐)(`{`·`:`·`}`는 구분자로 빠짐).
 - `.venv/bin/python tools/check_lec.py <SID>` ✗ 0 · 고친 ⚡·🔑 줄은 `.venv/bin/python tools/render_line.py <SID> <M|=> --file … --line n`으로 ✍가 그 사실 앞에 하나, 머리·목록 구조는 그대로인지.
 
 ## 보고 `work/review_final2/NM2_<SID>.md`

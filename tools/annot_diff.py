@@ -14,7 +14,7 @@ def blocks(t):
         if m: cur = m.group(1); out[cur] = collections.Counter(); continue
         if cur is None: continue
         if ln.startswith('K:'): continue   # K 🎯는 다시 쓰기 허용 — A·M·N만 셈(10-05) · K는 눈으로
-        ln = re.sub(r'^[AMN]:\s*|\{r:|\{n:|\{jb:', '', ln)
+        ln = re.sub(r'^[AMN]:\s*|\{r:|\{n:|\{u:|\{e:|\{jb:', '', ln)
         out[cur].update(SEP.sub('', ln))
     return out
 A, B = blocks(open(bak, encoding='utf-8').read()), blocks(open(src, encoding='utf-8').read())

@@ -17,7 +17,7 @@ for s in $sids; do
 done
 $PY tools/rehub.py 2>&1 | tail -1 | cut -c1-80 | tee -a $L
 say "== verify";        $PY tools/verify.py 2>&1 | grep -E 'FAIL|RESULT' | tee -a $L
-say "== check_lec";     for s in $SIDS; do o=$($PY tools/check_lec.py $s 2>&1); sl=$(echo $s | tr A-Z a-z); fn=$(( $(echo "$o" | grep -c '필기에 NEW 26') + $(cat tools/$sl/annot.txt tools/$sl/tables.txt tools/$sl/pred.txt | grep -oE '\{u:\s*\{n:|\{n:\s*\{u:' | wc -l) )); printf "%s ✗%s 경고 %s @UPD없음 %s 필기NEW26 %s " $s "$(echo "$o" | grep -c '✗')" "$(echo "$o" | grep -c '^   · ')" "$(echo "$o" | grep -c '@UPD 없음')" "$fn"; done | tee -a $L; echo | tee -a $L   # 경고 수는 정보(기준과 견줌) · @UPD없음 = 26 갱신 강의 표시 빠짐(10-10)
+say "== check_lec";     for s in $SIDS; do o=$($PY tools/check_lec.py $s 2>&1); sl=$(echo $s | tr A-Z a-z); fn=$($PY tools/check_unote.py $s | tail -1 | awk '{print $NF}'); printf "%s ✗%s 경고 %s @UPD없음 %s 필기NEW26 %s " $s "$(echo "$o" | grep -c '✗')" "$(echo "$o" | grep -c '^   · ')" "$(echo "$o" | grep -c '@UPD 없음')" "$fn"; done | tee -a $L; echo | tee -a $L   # 경고 수는 정보(기준과 견줌) · @UPD없음 = 26 갱신 강의 표시 빠짐(10-10)
 say "== check_years";   $PY tools/check_years.py 2>&1 | grep '^== ' | tee -a $L
 say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail -3 | tee -a $L
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | grep '^== '; done | tee -a $L

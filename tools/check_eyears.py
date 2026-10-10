@@ -14,7 +14,7 @@ def badges(sid):
 
 def years_in(txt):
     ys = set()
-    for m in re.finditer(r'((?:20)?\d\d(?:\s*[·,/]\s*(?:20)?\d\d)*)\s*년', txt):
+    for m in re.finditer(r'((?:20)?\d\d(?:\s*[·,/]\s*(?:20)?\d\d)*)\s*년(?!도에도)', txt):
         ys |= {int(x) % 100 for x in re.findall(r'(?:20)?(\d\d)', m.group(1))}
     return {y for y in ys if 5 <= y <= 26}
 

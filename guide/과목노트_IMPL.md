@@ -40,3 +40,4 @@
 ## 10-09 25 → 26 바뀐 곳 표시(사용자 10-09) — GRAFT·PRO
 - GRAFT {u:} 17 · PRO 16 · @UPD 각 4줄 · GRAFT p.19·61·98 26 시험 예고(25와 같은 별표 쪽이지만 26 수업 새 메모라 표시 — 과하면 💬 3·annot 2 벗김).
 - 10-10 25→26 표시(대조표 없이 쪽 대조 — work/IMPL/upd26/<KEY>_cmp26.md·MARK_<KEY>.md): HIS 55쪽 같은 슬라이드(@UPD만 · p.35·38·53 26 PDF 빨간 상자는 판단 불가 — 확인 필요) · BIO 바뀐 쪽 2(그림 제목만) + 26 교수 강조 2(p.23·36) NEW 26 · PATH 26 'Implant in Pathologic Bone' 56쪽 ↔ 25 받은 자료 'ONJ and bisphosphonate' 59쪽 — 겹침 p.53-56뿐, 25 p.7-59는 회색 '26에서 빠짐'(R12·R14 근거 포함) · 25년 pathologic bone 파일을 받으면 PATH p.1-52 다시 대조.
+- 10-10 표시 규칙 바뀜(사용자 '26년도 강조와 26년도 피피티에 새로 추가된 내용 표시는 확실히 구분'·'필기 아님!! 슬라이드 원문'): 위에 적힌 '26 교수 강조·시험 예고 → NEW 26'은 옛 방식 — 지금은 `{e:}` 26 강조(강의별 수 work/<SID>/upd26/EMP_<KEY>.md) · NEW 26 = 슬라이드 원문 새·바뀐 내용만 · 필기에 NEW 26 없음(RULES 12·13 · `tools/check_unote.py`).

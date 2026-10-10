@@ -7,7 +7,7 @@ f = os.path.abspath(sys.argv[1]); rel = os.path.relpath(f, ROOT); bak = os.path.
 if '--save' in sys.argv:
     os.makedirs(os.path.dirname(bak), exist_ok=True); open(bak, 'w', encoding='utf-8').write(open(f, encoding='utf-8').read()); print('saved', bak); sys.exit()
 SEP = re.compile(r'[\s/:：;·,—–\-=→"“”\'‘’.()|#*{}\[\]]')
-def cnt(t): return collections.Counter(SEP.sub('', re.sub(r'(?m)^[A-Z]{1,3}:\s*|\{r:|\{jb:', '', t)))
+def cnt(t): return collections.Counter(SEP.sub('', re.sub(r'(?m)^[A-Z]{1,3}:\s*|\{r:|\{jb:|\{[nue]:', '', t)))
 a, b = cnt(open(bak, encoding='utf-8').read()), cnt(open(f, encoding='utf-8').read())
 lost, add = a - b, b - a
 print('빠진 글자', sum(lost.values()), ''.join(sorted(lost.elements()))[:300])
