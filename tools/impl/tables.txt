@@ -312,7 +312,7 @@ R: B | {r:Lingual force} | {r:Occlusal height} | {r:Lingual moment}(mesiodistal 
 R: C | {r:Mesial force} | {r:Occlusal height} | {r:Apical moment}(faciolingual axis)
 R: D | {r:Lingual force} | {r:Cantilever length} | {r:Lingual-transverse moment}(vertical axis)
 R: E | {r:Occlusal force} | {r:Cantilever length} | {r:Occlusal moment}
-N: 임상적 모멘트 암 3 = 교합면의 높이 · cantilever의 길이 · 교합면의 넓이(p.22). Moment = 수직거리(moment arm) × 힘의 크기 = torque 혹은 비틀림 하중(p.21). {u:필기 p.23 "그림을 잘 기억하세요. 어떤 힘이 작용하는지"}. 피로실패 요인 4 {jb:T04}는 다음 슬라이드(p.24). [[BIO:21]] [[BIO:24]]
+N: 임상적 모멘트 암 3 = 교합면의 높이 · cantilever의 길이 · 교합면의 넓이(p.22). Moment = 수직거리(moment arm) × 힘의 크기 = torque 혹은 비틀림 하중(p.21). {e:필기 p.23 "그림을 잘 기억하세요. 어떤 힘이 작용하는지"}. 피로실패 요인 4 {jb:T04}는 다음 슬라이드(p.24). [[BIO:21]] [[BIO:24]]
 
 #TBL 부하 시 자연치 vs 임플란트 특성 비교 | k=BIO | src=[[BIO:26]]
 H: 기준 | 자연치아 | 임플란트
@@ -340,7 +340,7 @@ R: ④ | 고정체의 식립 방향 및 작용하는 하중 | 임플란트 자�
 R: ⑤ | {r:고정체의 배치 (offset)} | 배치와 보철 설계 | {n:{r:설명}} — 33% · 67% · 200%(아래 offset 표)
 R: ⑥ | {r:캔틸레버의 길이} | 배치와 보철 설계 | {n:{r:설명}} — {n:AP distance × 2.5}
 R: ⑦ | 임플랜트 보철물의 교합면 설계 및 수복 재료에 대한 고려 | 배치와 보철 설계 | —
-R: ⑧ | {r:하악의 휨(Mandibular flexure)} | 악골·부품·대합치 | {n:{r:설명}} — {u:{n:3번 반복}} {jb:Q06}
+R: ⑧ | {r:하악의 휨(Mandibular flexure)} | 악골·부품·대합치 | {n:{r:설명}} — {e:{n:3번 반복}} {jb:Q06}
 R: ⑨ | 상부구조의 적합 정밀도 | 악골·부품·대합치 | —
 R: ⑩ | 나사 풀림과 파절 | 악골·부품·대합치 | —
 R: ⑪ | Condition of the opposing arch (prosthesis versus natural dentition) | 악골·부품·대합치 | —
@@ -371,7 +371,7 @@ R: Mandibular flexure {jb:Q06} | {n:없음 — 고정되어 있음} | 개폐구�
 R: 하나로 묶기 | {n:12개씩 묶어도 이상 없음 · 최소 6개 식립 후 하나의 arch} | {r:1 piece 금지} — {n:묶은 피개의치가 flexure로 골절(p.41)}
 R: 설계 | arch form별 6·7·8개({n:범위 6~10}) {jb:T02} | {r:2 piece} · {r:3 piece} · {n:1 piece면 {r:적어도 한쪽 cantilever}}
 R: 후방 식립 | 구치부 2개씩({n:이상 3개씩}) | {n:뼈가 많은 한 쪽에만(반대쪽 cantilever) · 또는 mental foramen 전방에만 + cantilever}
-N: JB 답 "하악의 경우 이공 후방부 보철물까지 1개로 묶으면 안 되고, 2-3piece로 제작". {u:필기 "교수님께서 3번정도 반복"}. [[BIO:46]]
+N: JB 답 "하악의 경우 이공 후방부 보철물까지 1개로 묶으면 안 되고, 2-3piece로 제작". {e:필기 "교수님께서 3번정도 반복"}. [[BIO:46]]
 N: 변형 대비: 23년 꼴 "하악골의 휨 현상 + 관련 근육 2가지" = {r:내측 익돌근}·{r:교근} / 방향을 물으면 JB 답 "{r:설측}"(슬라이드 그림엔 0.8 mm만) / 결론 = 이공 후방부 보철물까지 1개로 묶지 말고 {r:2-3 piece} · 상악은 flexure 없음(짝으로). {jb:Q06} [[BIO:36]] [[BIO:44]]
 
 #TBL 상악 무치악 임플란트 개수 — arch form | k=BIO | src=[[BIO:46]] [[BIO:47]] [[BIO:48]] [[BIO:49]] [[BIO:50]]
@@ -417,7 +417,7 @@ R: **고려사항 11** | 1-4 geometry·number·length·diameter·angulation · l
 R: **Offset**(고정체 배치) | 세 크라운을 수복할 때의 임플란트 배치 — 2개(기준 100%·cantilever) → 3개(일자·offset) | cantilever {r:200%} · 일자 {r:67%} · 약간 어긋나게 {r:33%} | {n:약간 offset → 보철물 loading 감소} | "너무 붙어 있으면 문제가 생겨"(25 필기) | —
 R: **Cantilever·AP distance** | {n:AP distance가 길수록 cantilever를 길게} | {n:≤ AP distance × {r:2.5}(최소 1.6·2배) · 하악 20 mm 이하(뷰머·루이스)} | {n:tapered arch가 유리 · 나란히 심으면 AP가 짧음} | {n:상악 cantilever는 더 주의(뷰머·루이스: 상악 ✗)} | {jb:U09} 20년 빈칸 2.5배
 R: **하악 overdenture** | {n:교합력이 앞 임플란트를 뒤로 당김 → 처음부터 움직임 허용} | {n:2개 = {r:canine보다 약간 안쪽} · 3개↑ = bar 상부 attachment} · 5개 = Hader clip·O-ring | stud = two independent implants · {n:bar도 전후 움직임} | 멀면 fixture load↑ · 안 움직이면 금방 박살(25 필기) | {jb:T02} 21년 과거 해설 하악 부분
-R: **Mandibular flexure** | {r:개폐구·전방운동} 시 {r:이공 후방}에서 하악의 굴절 | M1 사이 {r:0.8 mm} · 근육 {r:내측 익돌근·교근} | 하악 {r:1 piece 금지} → 2·3 piece · {n:상악은 flexure가 없어 12개도 묶음} | {n:교수님 3번 반복 · 원피스 피개의치 골절 증례(p.41)} | {jb:Q06} 24·23·22·20년 4회 서술
+R: **Mandibular flexure** | {r:개폐구·전방운동} 시 {r:이공 후방}에서 하악의 굴절 | M1 사이 {r:0.8 mm} · 근육 {r:내측 익돌근·교근} | 하악 {r:1 piece 금지} → 2·3 piece · {n:상악은 flexure가 없어 12개도 묶음} | {n:{e:교수님 3번 반복} · 원피스 피개의치 골절 증례(p.41)} | {jb:Q06} 24·23·22·20년 4회 서술
 R: **하악 전악 고정성** | {n:하나로 묶는다면 후방은 뼈가 많은 한 쪽에만} | {r:3 piece} · {r:2 piece} · {n:1 piece면 {r:적어도 한쪽 cantilever}} | {n:mental foramen 전방에만 식립 + cantilever도 선택지} | 25 필기: {n:결국 2피스 또는 3피스} | {jb:Q06} JB 답 결론 "2-3piece"
 R: **무치악 상악 개수** | arch form이 개수를 정함 — premaxilla 2 canines + incisor 0·1·2 | Square {r:6} · Ovoid {r:7} · Tapering {r:8} · {n:이상 {r:9} · 범위 {r:6~10}} | 구치부는 2개씩 · {n:전치부 최소 2} | {n:상악은 flexure가 없어 하나의 arch로 묶을 수 있음} | {jb:T02} 21년 표 빈칸(상악 개수)
 R: **증례 — 힘의 균형** | {n:하악 5개를 나란히 → AP가 짧아 cantilever 길어짐} | {n:상악 골이식 후 8개} | {n:아래가 덴처면 {r:위도 덴처}로 균형} | {n:약한 쪽이 망가진다 · 26 수업에선 언급 없음} | {jb:T01} 21년 가철식 적응증(JB 과거답의 논리)
@@ -469,7 +469,7 @@ R: {u:{r:Surgery-related factor}} | Primary stability · Surgical technique
 R: {u:{r:Host-related factor}} | Bone density · Wound healing
 R: {u:{r:Implant-related factor}} | Implant design · Surface textures · Implant length
 R: {u:{r:Occlusion-related factor}} | Prosthetic design · Quality and quantity of force
-N: 26 필기 p.30 {u:"아래 그림 강조하셨습니다. immediate loading이 가능한 조건 4가지"} — 위 6가지 변수 표와 함께 볼 것. [[PRO:30]]
+N: 26 필기 p.30 {e:"아래 그림 강조하셨습니다. immediate loading이 가능한 조건 4가지"} — 위 6가지 변수 표와 함께 볼 것. [[PRO:30]]
 
 #TBL 치아 vs 임플란트 — 움직임과 감각 | k=PRO | src=[[PRO:23]] [[PRO:24]] [[PRO:25]] [[PRO:26]]
 H: 항목 | Tooth | Implant
@@ -514,7 +514,7 @@ R: **과하중 요인 7** | cantilever · parafunction · premature contacts · 
 R: **Axial loading 형태 4** | flat area around centric contacts · cusp inclination↓ · diameter·distribution · {r:cross-bite} | 해당 없음 | Misch 1993 · Weinberg 1998 | {n:cross-bite = 골흡수가 많은 환자의 적응증} | —
 R: **교합 기본 원칙 6** | bilateral stability · evenly distributed · no interference retruded–centric · {r:wide freedom in centric} · {r:anterior guidance} · smooth lateral excursion | 해당 없음 | Beyron 1969 · Weinberg 1998 · Gibbs·Quirynen · Chapman·Engelman | {n:"☆ 중요" · 국소의치 교합과 유사 · wide centric = fossa를 평평하게} | {jb:R10} 23년 서술
 R: **Predictability**(추가 ppt) | {n:치아–임플란트 연결 = 성공률 최저 · screw loosening·veneer fracture 잦음} | {n:complication 88% minor · 심각 12%} | {n:systematic reviews} | {n:치아와 묶지 말 것 · biological은 10년에 급증 · 심각 = Bruxism} | —
-R: {u:**즉시 부하 4 요인**(26 강조)} | Immediate Loading이 가능한 조건 — {r:Surgery}-related(Primary stability · Surgical technique) · {r:Host}-related(Bone density · Wound healing) · {r:Implant}-related(Implant design · Surface textures · Implant length) · {r:Occlusion}-related(Prosthetic design · Quality and quantity of force) | 해당 없음 | 해당 없음 | 26 필기 {n:"아래 그림 강조하셨습니다"} · 변수 6 카드를 네 묶음으로 다시 봄 | —
+R: {u:**즉시 부하 4 요인**}({e:26 강조}) | Immediate Loading이 가능한 조건 — {r:Surgery}-related(Primary stability · Surgical technique) · {r:Host}-related(Bone density · Wound healing) · {r:Implant}-related(Implant design · Surface textures · Implant length) · {r:Occlusion}-related(Prosthetic design · Quality and quantity of force) | 해당 없음 | 해당 없음 | 26 필기 {n:"아래 그림 강조하셨습니다"} · 변수 6 카드를 네 묶음으로 다시 봄 | —
 
 #TBL 인상 채득 — Pick-up vs Transfer vs Scan body | k=PART | src=[[PART:14]] [[PART:15]] [[PART:16]] [[PART:17]] [[PART:18]]
 H: 항목 | Pick-up coping {jb:R11} | Transfer coping | Scan body {jb:Q08}
@@ -589,7 +589,7 @@ R: {r:자가골}(Autograft) {jb:Q02} | 본인의 구강 내·구강 외 공여�
 R: {r:동종골}(Allograft) | 타인 골조직에서 채취 및 처리(FDBA·DFDBA·DBM) | X | {r:O}(탈회로 BMP 노출) | O | 생체적합성 우수 · 면역거부반응이 적음 | 감염의 위험 존재 · {r:고가}
 R: {r:이종골}(Xenograft) | 동물 골조직에서 채취 및 처리(Bio-Oss 등) | X | X | O | 공급이 쉽고 저렴 · {r:체적 유지 능력} | 자가골 대비 치유 능력↓ · 면역거부반응 가능
 R: {r:합성골}(Alloplast) | Bioceramic 계열 합성물질(HA·β-TCP·BCP 등) | X | X | O | 감염 위험성 적음 · 저렴 | 동종골·이종골 대비 {r:골생성 능력}↓
-N: 골치유 기전 정의(p.19 ★): 골형성 = 이식재 내 {r:세포 자체}가 골을 증식 / 골유도 = {r:BMP} 등 신호기전으로 줄기세포 → 조골세포 / 골전도 = 골 형성을 위한 {r:연결구조(비계구조)}. 물리적 형태: Powder(0.5-2.0 mm·가장 많이 사용) · Chip(volume 유지) · Block(재수화·고정 필요) · Putty/Gel(재수화 불필요). 26 PDF 별표(★): {u:p.17 분류 3축} · p.19 기전 정의 · {u:p.20 이 O/X 표}(p.17·20은 26에 새로). [[GRAFT:19]] [[GRAFT:18]] [[GRAFT:17]] [[GRAFT:20]]
+N: 골치유 기전 정의(p.19 ★): 골형성 = 이식재 내 {r:세포 자체}가 골을 증식 / 골유도 = {r:BMP} 등 신호기전으로 줄기세포 → 조골세포 / 골전도 = 골 형성을 위한 {r:연결구조(비계구조)}. 물리적 형태: Powder(0.5-2.0 mm·가장 많이 사용) · Chip(volume 유지) · Block(재수화·고정 필요) · Putty/Gel(재수화 불필요). 26 PDF 별표(★): {e:p.17 분류 3축} · {e:p.19 기전 정의}(25년도에도 강조함) · {e:p.20 이 O/X 표}(p.17·20은 26에 새로). [[GRAFT:19]] [[GRAFT:18]] [[GRAFT:17]] [[GRAFT:20]]
 N: 변형 대비: 반대로 물으면 — 골형성까지 가진 것 = {r:자가골}뿐 / 골유도 O = 자가골·동종골(+ rhBMP 탑재 이식재) / 골전도만 = 이종골·합성골 · "자가골은 (4)(5)(6)가 모두 갖추어져 있는 재료" 꼴 · 동종골이 골유도성을 갖는 이유 = 탈회로 무기질에 싸인 {r:BMP} 노출. {jb:Q02} [[GRAFT:19]] [[GRAFT:20]]
 
 #TBL 골이식재 물리적 형태 4 — Powder · Chip · Block · Putty/Gel | k=GRAFT | src=[[GRAFT:18]]
@@ -644,7 +644,7 @@ R: {r:협골/관골} Zygoma, Malar bone | {r:작은 결손부} · 접근 쉬움(
 R: {r:상악결절} Maxillary tuberosity | 접근 쉬움(최후방 대구치 원심 치조정 절개) · 대부분 {r:해면골} | {r:상악동 위치 평가} · 골질 불량 가능
 R: {r:하악 골체부} Mandibular body | 이공과 하악 제3대구치 사이의 협측 피질골 | {r:합병증 거의 없음}
 R: {r:근돌기·오훼돌기} Coronoid process | 측두근건 박리 후 채취 | 출혈 · 종창 · 개구장애·턱관절장애
-N: 구강 외: Free iliac bone graft · Microvascular Fibula flap · Free rib bone graft(p.98) · Tibia(시술 용이 / 골단성장판 영향 — 성장기 금기 / Gerdy's tubercle, p.115). 발생 분류: Endochondral(iliac·tibia·rib) vs Intramembraneous(calvaria·mandible·maxilla). {u:26 필기는 "슬라이드 제목 7가지가 답"으로 ⑦ 구개부(hard palate)까지 셈} — 슬라이드 제목은 위 6개 + "기타 구강 내 채취 부위"(p.106 구개 그림). [[GRAFT:98]] [[GRAFT:99]] [[GRAFT:106]] [[GRAFT:115]]
+N: 구강 외: Free iliac bone graft · Microvascular Fibula flap · Free rib bone graft(p.98) · Tibia(시술 용이 / 골단성장판 영향 — 성장기 금기 / Gerdy's tubercle, p.115). 발생 분류: Endochondral(iliac·tibia·rib) vs Intramembraneous(calvaria·mandible·maxilla). {e:26 필기는 "슬라이드 제목 7가지가 답"으로 ⑦ 구개부(hard palate)까지 셈} — 슬라이드 제목은 위 6개 + "기타 구강 내 채취 부위"(p.106 구개 그림). [[GRAFT:98]] [[GRAFT:99]] [[GRAFT:106]] [[GRAFT:115]]
 N: 변형 대비: 이름 대신 특징으로 물으면 — 합병증 거의 없음 = {r:하악 골체부} / 합병증 적음·수평적 치조능증강술에 유리 = {r:하악지} / 작은 결손·국소마취하 접근 = {r:협골} / 대부분 해면골·상악동 위치 평가 = {r:상악결절} / Mental nerve·Incisive nerve·하악골 하연 골절 주의 = {r:정중부} / 측두근건 박리 = {r:근돌기}. {jb:Q03}
 
 #TBL 발치 후 치조골 흡수와 즉시 식립 | k=GRAFT | src=[[GRAFT:85]] [[GRAFT:94]] [[GRAFT:95]] [[GRAFT:96]]
