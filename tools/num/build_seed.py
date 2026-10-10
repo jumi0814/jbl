@@ -57,10 +57,21 @@ async def main():
                 open(os.path.join(IMG, fn), 'wb').write(base64.b64decode(m.group(2))); keep_img.add(fn)
                 for it in items:
                     for k in ('q', 'a', 'st'): it[k] = it[k].replace(f'data-nimg="{h}"', f'data-nimg="{h}.{ext}"')
+            lk = {}   # 강의 키 = 강의 이름 해시(문서에 강의가 끼어들어도 '강의 옮기기' 기록이 엉뚱한 강의로 가지 않게)
+            for s_ in r['sections']:
+                k0 = 'L' + hashlib.md5(re.sub(r'\s+', '', s_['title']).encode()).hexdigest()[:6]; k1 = k0; n = 2
+                while k1 in lk.values(): k1 = f'{k0}-{n}'; n += 1
+                lk[s_['k']] = k1
+            for it in items: it['lec'] = lk.get(it['lec'], it['lec'])
+            for s_ in r['sections']: s_['k'] = lk[s_['k']]
             lecs = [{'k': s['k'], 't': s['title'], 'raw': s['raw'], 'lab': s['lab'], 'prof': s['prof'], 'date': s['date']} for s in r['sections'] if s['n']]
-            out = []
+            out = []; used_id = {}
             for i, it in enumerate(items):
-                o = {'id': f'sd:{sid}:{i + 1:03d}', 'lec': it['lec'], 'q': it['q'], 'a': it['a'], 'st': it['st'], 'yrs': it['yrs'], 'tags': it['tags'], 'lab': it['lab'], 'pos': it['pos']}
+                # id = 강의 이름 + 문제 글(띄어쓰기·꾸밈 빼고)의 해시 — Word를 다시 만들어 문제가 끼어들어도 작업본이 엉뚱한 문제에 붙지 않음(같은 글이 두 번이면 -2)
+                lt = next((s['title'] for s in r['sections'] if s['k'] == it['lec']), '')
+                h = hashlib.md5((re.sub(r'\s+', '', lt) + '|' + re.sub(r'\s+', '', TXT(it['q']))).encode()).hexdigest()[:8]
+                n = used_id.get(h, 0) + 1; used_id[h] = n; sid8 = h if n == 1 else f'{h}-{n}'
+                o = {'id': f'sd:{sid}:{sid8}', 'lec': it['lec'], 'q': it['q'], 'a': it['a'], 'st': it['st'], 'yrs': it['yrs'], 'tags': it['tags'], 'lab': it['lab'], 'pos': it['pos']}
                 if it.get('note'): o['note'] = it['note']
                 if it['rv']: o['rv'] = it['rv']
                 out.append(o)

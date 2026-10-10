@@ -230,7 +230,7 @@ async function shrink(u8, mime, maxW, q) {
 }
 
 /* ---------- 연도·꼬리표 ---------- */
-const YTOK = /^(\d{2})\s*(?:년도?)?\s*(탈|짤|매칭|객관식|객|빈칸|서술|~)?\s*(\?)?$/;
+const YTOK = /^(?:20)?(\d{2})\s*(?:년도?)?\s*[’']?\s*(탈|짤|매칭|객관식|객|빈칸|서술|기출|~)?\s*(\?)?$/;   /* 24 · 2024 · 24’ · 25탈 · 25 기출 · 20~ */
 function yearsTags(text) {   /* 문제 글의 괄호 '(24,22)·(25탈)·(26출제예고,25,…)·(24,과거)'와 줄머리 '25년도:'·'25 빈칸' — 적힌 해만(추측 금지) */
   const yrs = new Set(), tags = new Set(), notes = [];
   const re = /\(([^()]{1,60})\)/g; let m;
@@ -240,11 +240,13 @@ function yearsTags(text) {   /* 문제 글의 괄호 '(24,22)·(25탈)·(26출�
     for (const t of toks) {
       let x;
       if ((x = /^(\d{2})\s*(?:년도?)?\s*(출제\s*예고|탈\s*대비|수업\s*강조|강조)$/.exec(t))) { tt.push(x[1] + ' ' + x[2].replace(/\s+/g, '').replace('출제예고', '출제 예고').replace('탈대비', '탈 대비').replace('수업강조', '수업 강조')); continue; }
-      if ((x = YTOK.exec(t)) && +x[1] >= 5 && +x[1] <= 30) { yy.push(+x[1]); if (x[2] && x[2] !== '~') tt.push(x[2] === '객' ? '객관식' : x[2]); if (x[3]) nn.push('연도 뒤 물음표 (' + m[1] + ')'); if (x[2] === '~') nn.push('연도 범위 표기 (' + m[1] + ')'); continue; }
+      if ((x = YTOK.exec(t)) && +x[1] >= 5 && +x[1] <= 26) { yy.push(+x[1]); if (x[2] && x[2] !== '~' && x[2] !== '기출') tt.push(x[2] === '객' ? '객관식' : x[2]); if (x[3]) nn.push('연도 뒤 물음표 (' + m[1] + ')'); if (x[2] === '~') nn.push('연도 범위 표기 (' + m[1] + ')'); continue; }
       if (/^(과거|옛날)\s*(기출|객관식|객|서술|필기)?(\s*따옴)?$/.test(t)) { tt.push('과거기출'); continue; }
       if (/^(탈|짤|매칭|탈\s*대비\??)$/.test(t)) { tt.push(t.replace(/\s+/g, '').replace('탈대비', '탈 대비')); continue; }
       ok = false; break;
     }
+    if (ok && yy.length === 1 && toks.length === 1 && /^\d{1,2}$/.test(toks[0]) && yy[0] < 12) nn.push("괄호 안 숫자 하나 '(" + m[1] + ")'를 " + (2000 + yy[0]) + '년 출제로 읽음 — 확인');   /* (10) 같은 것 — 연도가 아닐 수도 */
+    if (ok && yy.includes(26)) nn.push("'26'을 2026년 출제로 읽음 — 확인(출제 예고면 '26출제예고'로)");
     if (ok) { yy.forEach(y => yrs.add(y)); tt.forEach(t => tags.add(t)); nn.forEach(n => notes.push(n)); }
   }
   for (const ln of text.split('\n')) {

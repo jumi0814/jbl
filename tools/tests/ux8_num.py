@@ -75,6 +75,14 @@ async def main():
         await pg.reload(); await pg.wait_for_timeout(2500)
         st = await pg.evaluate("document.querySelectorAll('.nm-it')[2].querySelector('.nm-s .nm-c').innerHTML")
         ok('애디슨 첫 줄' in st and '<table>' in st and '<img' in st, "새로고침 뒤 스토리·표·그림 그대로")
+        # 열었다 닫기만(글자 안 바꿈) = 작업본·'고침' 표시가 생기지 않음(표가 있는 Word 답 칸 포함)
+        ix = await pg.evaluate("[...document.querySelectorAll('.nm-it')].findIndex(a=>a.querySelector('.nm-a table'))")
+        if ix >= 0:
+            idx_id = await pg.evaluate(f"document.querySelectorAll('.nm-it')[{ix}].dataset.id")
+            await pg.evaluate(f"(()=>{{const a=document.querySelectorAll('.nm-it')[{ix}];a.scrollIntoView({{block:'center'}});a.querySelector('.nm-a [data-act=edit]').click();}})()"); await pg.wait_for_timeout(900)
+            await pg.keyboard.press('Escape'); await pg.wait_for_timeout(300)
+            rr = await pg.evaluate(f"localStorage.getItem('jblhub.v1.num.i.OMED.{idx_id}')")
+            ok(rr is None or '"a"' not in rr, f"표 있는 답 칸을 열었다 닫기만 = 작업본 안 생김 {(rr or '')[:80]}")
         # Word에서 복사한 글 붙여넣기 — 굵게·글자색·형광펜(mso-highlight)·표는 남고 취소선은 글자만
         it4 = await pg.evaluate("document.querySelectorAll('.nm-it')[3].dataset.id")
         await pg.evaluate("document.querySelectorAll('.nm-it')[3].querySelector('.nm-s .nm-c').scrollIntoView({block:'center'})")
@@ -187,6 +195,8 @@ async def main():
         await pg.click('[data-act=imp]'); await pg.wait_for_timeout(600); await pg.select_option('[data-if=ty]', ''); await pg.wait_for_timeout(300)
         await pg.click('[data-ib=all]'); await pg.wait_for_timeout(500)
         bt = await pg.evaluate("""new Promise(res=>{const t0=performance.now();document.querySelector('[data-cf2=ok]').click();const iv=setInterval(()=>{const n=document.querySelectorAll('.nm-it').length;if(n>200){clearInterval(iv);res({ms:Math.round(performance.now()-t0),n});}},5);setTimeout(()=>{clearInterval(iv);res({ms:-1,n:document.querySelectorAll('.nm-it').length})},10000);})""")
+        dq = await pg.evaluate("(()=>{const c={};JBLNUM._S.items.filter(i=>!i.del).forEach(i=>{const k=JBLNUM._qKey(i.q);if(k.length>=8&&!/미복원|복원불충분/.test(k))c[k]=(c[k]||0)+1;});return Object.values(c).filter(n=>n>1).length})()")
+        ok(dq == 0, f"과목 전체를 한 번에 넣어도 같은 문제 글이 두 번 생기지 않음(묶음 안 중복 {dq})")
         PERF['bulk'] = bt; ok(bt['n'] > 200 and 0 <= bt['ms'] < 4000, f"대량 추가(PHARM 과목 전체 {bt['n']}문제) {bt['ms']}ms")
         await pg.click('.nm-ov [data-x]'); await pg.wait_for_timeout(300)
         # 모바일
