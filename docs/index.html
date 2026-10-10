@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"cbf1f493",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"d98675ed",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2077,7 +2077,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="cbf1f493",PV={"OMS1": "de8102a3", "CONS": "58dee3f0", "IMPL": "686e6da3", "ANAT": "75308df3", "GERI": "c8acff15", "PHARM": "c90ebc14", "ESTH": "5ab7e630"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="d98675ed",PV={"OMS1": "69be0faf", "CONS": "b6de5c56", "IMPL": "d69e82e1", "ANAT": "548d0a0a", "GERI": "3983c3dd", "PHARM": "2ba4c82d", "ESTH": "39e5ac60"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2191,7 +2191,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='56398731';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='e4c60699';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */

@@ -1686,5 +1686,5 @@ async function open(root, o, host) {
   H.histSet({ num: 1, sj }, '#/_num/' + sj, !!o.push);
   render({ pos: o.y != null ? null : H.LS.get('num.pos.' + sj, null), y: o.y, resume: o.y == null });
 }
-window.JBLNUM = { open, leave, flush, side, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => ({ num: 1, sj: S.sj }), _S: S, _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
+window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => ({ num: 1, sj: S.sj }), _S: S, _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
 })();
