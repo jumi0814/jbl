@@ -98,7 +98,7 @@ N: 상담 가능·참여 가능 의료인·처방 주체(한의사·간호사·�
 H: 항목 | 근거 | 핵심 내용 | 수치·예외 | 함정 | ★ 시험
 R: **약의 법적 분류** | 마약류 관리에 관한 법률 | {r:일반의약품}({n:처방 없이}) · {r:전문의약품}({n:처방 필요}) · {r:마약류}(마약·향정신성의약품·대마) | 마약류 처방 = {r:마약류취급의료업자}만 → {r:마약류통합관리시스템}에 물품·환자·처방·수량 보고 | {n:의사 면허만으로 마약류 처방 ✗} | —
 R: **처방전 정의**(Prescription Definition) | p.3 정의 | 의사·치과의사가 {r:약사에게} 조제·투여방법을 쓴 지시 · **legal document** | 책임 = {r:처방의사와 약사 모두} · 사본 보관·차트 기록 | '환자에게' ✗ / '의사에게만' ✗ | {jb:RX01} 24·22년 '환자에게 쓴 법적문서' ✗ / {jb:RX19} 20년 T/F 책임 의사만 → F
-R: **발급 주체** | 의료법 17조의2 | 의료업 종사 + {r:직접 진찰}한 의사·치과의사·{r:한의사}만 작성·교부 | 예외 = {r:대리수령자}(의식 없음 · 거동 곤란 + 장기 동일 처방) · 신청서 {r:1년} 보관 | ⚠ JB 답은 '의사·치과의사에 한함'(한의사 ✗) | {jb:RX18} 20년 T/F 발급 주체에 한의사 → JB F
+R: **발급 주체** | 의료법 17조의2 | 의료업 종사 + {r:직접 진찰}한 의사·치과의사·{r:한의사}만 작성·교부 | 예외 = {r:대리수령자}(의식 없음 · 거동 곤란 + 장기 동일 처방) · 신청서 {r:1년} 보관(26에서 빠짐) | ⚠ JB 답은 '의사·치과의사에 한함'(한의사 ✗) | {jb:RX18} 20년 T/F 발급 주체에 한의사 → JB F
 R: **작성·교부 의무** | 의료법 18조 | 투여 필요 시 처방전 작성·교부(전자처방전 포함) · 약사 문의에 {r:즉시} 응답 | 서식·기재사항·{r:보존} = {r:보건복지부령} · 응급·수술 중이면 끝난 즉시 | 기재사항 목록은 실제로 시행규칙 12조 | {jb:RX14} 20년 '18조 기재사항' 빈칸
 R: **기재사항** | 시행규칙 12조 ① | 성명·주민번호 / 기관 명칭·전화 / {r:질병분류기호} / {r:면허종류·번호} / 명칭·{r:분량·용법·용량} / 발급일·{r:사용기간} / 조제 참고 / 본인부담 기호 | {r:질병분류기호} = 환자가 요구하면 적지 않음 · 명칭 = 일반명칭·제품명·약전 명칭 | 주소·주민번호는 생략 대상 ✗ | {jb:RX07} 22년 환자 요구로 안 적는 것 / {jb:RX21} 20년 T/F → T
 R: **발급 원칙·보존** | 시행규칙 12조 ②③ | {r:2부} 발급({n:환자 보관용·약국 제출용}) · 필요하면 {r:다음 내원일} 약 미리 발급 | 보존 기간 수치는 26 슬라이드에 없음 → JB 답 {r:2년} | 보존 '10년' ✗ | {jb:RX20} 20년 T/F 보존 10년 → F / {jb:RX01} 선지 ①·③ ○
@@ -167,7 +167,7 @@ R: M2 | 심장·평활근 | Gi(억제) | Methacholine | Atropine·Scopolamine·I
 R: M3 | 타액선·평활근 | Gq(흥분) | Bethanechol·Pilocarpine·Cevimeline | Atropine·Ipratropium·Solifenacin 등(과민성 방광) | Hexahydrosiladifenidol
 R: M4 | 뇌(전체적으로) | Gi(억제) | ACh·Carbachol | Atropine·Scopolamine·Doxepin | Himbacine
 R: M5 | 뇌(substantia nigra)·눈 | Gq(흥분) | Pilocarpine | Atropine·Scopolamine·Doxepin | —
-N: Pilocarpine = M1·3·5, Cevimeline = M1·3(선택성↑, 더 자주 씀). Atropine = M1–M5 competitive antagonist, 극성이라 말초에서만 — 필기 "주관식으로 잘 나옴", "M3의 antagonist인 solifenacin은 기억해두세요". p.19 표 전체: {r:Acetylcholine·Carbachol} = M1–M5 모두 agonist · M1·M2 antagonist에 Diphenhydramine·Dimenhydrinate도 · M1 = Telenzepine·Olanzapine도 · M3 antagonist(비뇨기질환 치료제: 과민성 방광) = Oxybutynin·Trospium·Darifenacin·{r:Solifenacin}·Tolterodine·Propiverine · M4·M5 = Benzquiamide·Dosulepin도.
+N: Pilocarpine = M1·3·5, Cevimeline = M1·3(선택성↑, 더 자주 씀). Atropine = M1–M5 competitive antagonist, 극성이라 말초에서만 — 필기 "주관식으로 잘 나옴", {u:"M3의 antagonist인 solifenacin은 기억해두세요"}. p.19 표 전체: {r:Acetylcholine·Carbachol} = M1–M5 모두 agonist · M1·M2 antagonist에 Diphenhydramine·Dimenhydrinate도 · M1 = Telenzepine·Olanzapine도 · M3 antagonist(비뇨기질환 치료제: 과민성 방광) = Oxybutynin·Trospium·Darifenacin·{r:Solifenacin}·Tolterodine·Propiverine · M4·M5 = Benzquiamide·Dosulepin도.
 
 #TBL 직접 작용 콜린성 작용제 비교 | k=XE | src=[[XE:25]] [[XE:27]] [[XE:29]] [[XE:30]] [[XE:31]]
 H: 약물 | 분류 | 수용체 | AChE 분해 | 투여 | 임상 용도
@@ -178,7 +178,7 @@ R: Carbachol | Choline ester(carbamate) | Muscarinic & Nicotinic | No | Topical 
 R: Pilocarpine | Natural alkaloid(tertiary) | Muscarinic(M1·3·5) | No | Topical ocular / Oral | Glaucoma / Xerostomia {jb:XE03} {jb:XE18}
 R: Cevimeline | Synthetic | Muscarinic(M1·3) | No | Oral | Xerostomia {jb:XE17}
 R: Nicotine / Varenicline | Alkaloid / Synthetic | Nicotinic | No | Oral·transdermal / Oral | Smoking cessation
-N: 필기 "pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) -> 이 둘은 꼭 기억하세요!" · 부작용(Sweating, shivering, nausea, dizziness, increased frequency of urination, rhinitis).
+N: 필기 {u:"pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) -> 이 둘은 꼭 기억하세요!"} · 부작용(Sweating, shivering, nausea, dizziness, increased frequency of urination, rhinitis).
 
 #TBL Choline ester·Alkaloid 약리 활성 비교 (Table 9-1) | k=XE | src=[[XE:27]] [[XE:29]]
 H: 성질 | Acetylcholine | Methacholine | Carbachol | Bethanechol | Muscarine | Pilocarpine
@@ -193,16 +193,16 @@ N: Muscarine = Not used therapeutically(표 주). 필기(p.27) — methacholine�
 
 #TBL Pilocarpine 금기·주의와 과량 처치 | k=XE | src=[[XE:32]] [[XE:45]] [[XE:42]]
 H: 환자군 | 구분 | 이유
-R: 조절되지 않는 천식 | 금기 | M3 수용체 자극 → 기관지 수축 → 기도 폐쇄·발작 악화 — 인공타액으로 대체 {jb:XE11}
-R: COPD·만성기관지염 | 주의(경고) | 기도의 저항력·기관지 평활근 긴장·기관지 분비 증가 {jb:XE05}
-R: 심혈관 질환(협심증·심부전) | 주의(경고) | 미주신경 흥분 → 서맥·부정맥·혈압저하, 박동이상 보정 불가
+R: {u:조절되지 않는 천식} | 금기 | M3 수용체 자극 → 기관지 수축 → 기도 폐쇄·발작 악화 — 인공타액으로 대체 {jb:XE11}
+R: COPD·만성기관지염 | {u:주의}(경고) | 기도의 저항력·기관지 평활근 긴장·기관지 분비 증가 {jb:XE05}
+R: 심혈관 질환(협심증·심부전) | {u:주의}(경고) | 미주신경 흥분 → 서맥·부정맥·혈압저하, 박동이상 보정 불가
 R: 위장관 질환(소화성 궤양·장폐색) | — | 위산 분비·장운동 촉진 → 증상 악화
 R: 비뇨기계 질환(방광폐색·전립선비대증) | — | 방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화
-R: 축동으로 악화되는 안과 질환(급성 홍채염·angle-closure glaucoma) | 금기 | 동공수축 유발
+R: {u:축동으로 악화되는 안과 질환}(급성 홍채염·angle-closure glaucoma) | 금기 | 동공수축 유발
 R: 과민증 / 갈락토오스 불내성 등 | 금기 | anaphylaxis / 약물 내 유당
 R: 눈에 투여한 경우(특히 야간 또는 시력교정을 받은 환자) | 주의(경고) | 시야 혼탁 발생 [[XE:45]]
 R: 과량(100 mg 이상 치명적) | 처치 | Atropine 0.5–1.0 mg 피하·정맥 {jb:XE16} / 심혈관 저하·기관지 수축엔 Epinephrine 0.3–1.0 mg
-N: 교수님 강조(p.32) — 금기: 조절되지 않는 천식·축동 / 주의: COPD. / 시험 예) "pilocarpine은 COPD에 절대 금기다 (X)", "조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다 (X)".
+N: {u:교수님 강조(p.32) — 금기: 조절되지 않는 천식·축동 / 주의: COPD. / 시험 예) "pilocarpine은 COPD에 절대 금기다 (X)", "조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다 (X)"}.
 
 #TBL Aceclidine(VIZZ) vs Pilocarpine — 안과 작용 비교(FYI) | k=XE | src=[[XE:33]] [[XE:34]] [[XE:35]]
 H: 구분 | VIZZ(Aceclidine) | Pilocarpine
@@ -238,16 +238,16 @@ R: Objective — Exocrine dysfunction | 3. Ocular signs | Decreased tear product
 R: Objective — Exocrine dysfunction | 4. Salivary gland Involvement (Oral signs) | Reduced saliva production | Unstimulated whole salivary flow rate {r:≤0.1mL/min} / Salivary gland scintigraphy
 R: Objective — Autoimmunity | 5. Histopathology | {r:Focal lymphocytic inflammation} | (p.38: the most specific diagnostic test requires {r:lip biopsy})
 R: Objective — Autoimmunity | 6. Autoantibodies (Serology) | {r:Anti-Ro/SSA} · {r:Anti-La/SSB} | SSA = Sjögren's-syndrome-related antigen A {jb:XE04}
-N: 진단 = 6항목 중 {r:≥4}(histopathology or serology 포함) 또는 objective 4항목 중 {r:≥3}. Criteria by American European Consensus Group(2002). 필기 "큰 별표! 이 표는 시험에 나옵니다!!"(p.39) · "항체 이름이 시험에 나올 수 있습니다"(p.38).
+N: 진단 = 6항목 중 {r:≥4}(histopathology or serology 포함) 또는 objective 4항목 중 {r:≥3}. Criteria by American European Consensus Group(2002). 필기 {u:"큰 별표! 이 표는 시험에 나옵니다!!"}(p.39) · {u:"항체 이름이 시험에 나올 수 있습니다"}(p.38).
 
 #TBL 교수님 예고·공개 시험 문장 — 한 장(필기·공개 시험문제) | k=XE | src=[[XE:1]] [[XE:30]] [[XE:32]] [[XE:36]] [[XE:38]] [[XE:39]] [[XE:40]] [[XE:54]] [[XE:55]] [[XE:56]]
 H: 쪽 | 교수님 말씀·시험 예시(그대로) | 답·외울 것 | 기출
-R: p.1·40 | {n:"이 숫자가 굉장히 중요하고 주관식으로 나올 수 있습니다" · "큰 별표! 이 표의 수치를 외우세요"} | dry mouth whole saliva unstimulated {r:< 0.1 ml/min} · stimulated {r:< 0.5 – 0.7} · 정상 whole {r:0.3 – 0.5} / {r:1.0 – 3.0} | {jb:XE02} {jb:XE08} {jb:XE15}
-R: p.30 | {n:pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) "이 둘은 꼭 기억하세요!"} | Pilocarpine = {r:Glaucoma}(점안) · {r:Xerostomia}(경구) / Cevimeline = {r:Xerostomia} | {jb:XE03} {jb:XE17} {jb:XE18}
-R: p.32 | {n:시험 예) pilocarpine은 COPD에 절대 금기다} | {r:X} — COPD는 {r:주의} | {jb:XE05}
-R: p.32 | {n:시험 예) 조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다} | {r:X} — 조절되지 않는 천식은 {r:금기} | {jb:XE05}
-R: p.36 | {n:"1,2번 시험 잘 나옵니다!"} | 구강건조증을 유발하는 전신상태 1. {r:약물복용} 2. 자가면역질환: {r:Sjögren's syndrome} | {jb:XE01}
-R: p.38·39 | {n:"항체 이름이 시험에 나올 수 있습니다" · "큰 별표! 이 표는 시험에 나옵니다!!"} | {r:Anti-Ro/SSA · Anti-La/SSB} · 6항목 중 {r:≥4}(histopathology or serology 포함) 또는 객관 4항목 중 {r:≥3} | {jb:XE04}
+R: p.1·40 | {u:{n:"이 숫자가 굉장히 중요하고 주관식으로 나올 수 있습니다" · "큰 별표! 이 표의 수치를 외우세요"}} | dry mouth whole saliva unstimulated {r:< 0.1 ml/min} · stimulated {r:< 0.5 – 0.7} · 정상 whole {r:0.3 – 0.5} / {r:1.0 – 3.0} | {jb:XE02} {jb:XE08} {jb:XE15}
+R: p.30 | {u:{n:pilocarpine의 적응증 (glaucoma, xerostomia), cevimeline은 적응증 (xerostomia) "이 둘은 꼭 기억하세요!"}} | Pilocarpine = {r:Glaucoma}(점안) · {r:Xerostomia}(경구) / Cevimeline = {r:Xerostomia} | {jb:XE03} {jb:XE17} {jb:XE18}
+R: p.32 | {u:{n:시험 예) pilocarpine은 COPD에 절대 금기다}} | {r:X} — COPD는 {r:주의} | {jb:XE05}
+R: p.32 | {u:{n:시험 예) 조절되지 않는 천식 환자에 대해 pilocarpine을 조절해서 쓸 수 있다}} | {r:X} — 조절되지 않는 천식은 {r:금기} | {jb:XE05}
+R: p.36 | {u:{n:"1,2번 시험 잘 나옵니다!"}} | 구강건조증을 유발하는 전신상태 1. {r:약물복용} 2. 자가면역질환: {r:Sjögren's syndrome} | {jb:XE01}
+R: p.38·39 | {u:{n:"항체 이름이 시험에 나올 수 있습니다" · "큰 별표! 이 표는 시험에 나옵니다!!"}} | {r:Anti-Ro/SSA · Anti-La/SSB} · 6항목 중 {r:≥4}(histopathology or serology 포함) 또는 객관 4항목 중 {r:≥3} | {jb:XE04}
 R: p.54 | 2016년 시험문제: 81세 여성 · 비자극 0.1 mL/min 미만 · 자극 0.5 mL/min 미만 → Primary Diagnosis·치료 약물·작용 기전·사용법 | {r:구강건조증} · {r:Pilocarpine} — 무스카린 수용체에 직접 결합 · 5mg 하루 한 번 혹은 두 번 시작 → 최종 {r:20mg/day}(5mg 하루 네 번) | {jb:XE06}
 R: p.55 | 2017년 시험문제: 정상군·구강건조증군 자극·비자극 타액분비율 표 빈칸(소수점 첫째자리) | 위 p.40 수치 | {jb:XE15}
 R: p.56 | 2017년 시험문제: Pilocarpine 적정 용량 빈칸 · 과량 시 길항제 · 주로 ( )과 ( ) 치료용 | 1회 {r:10 mg} 초과 ✗ · 두경부암 방사선 {r:3}회 · Sjögren {r:4}회 · 과량 {r:Atropine} · {r:구강건조증 (Xerostomia)}·{r:녹내장(glaucoma)} | {jb:XE03} {jb:XE16}
@@ -273,10 +273,10 @@ N: 핵심 한 줄 — 침샘은 부교감(ACh → M1·M3)이 주도 → 구강�
 
 #TBL 구강건조증 치료제 ② — 원인·진단 전체정리표 | k=XE | sum=1 | src=[[XE:36]] [[XE:37]] [[XE:38]] [[XE:39]] [[XE:40]] [[XE:44]] [[XE:49]] [[XE:52]] [[XE:53]] [[XE:54]] [[XE:55]]
 H: 항목 | 정의·원인 | 진단·수치 | 치료·대처 | ★ 시험
-R: **구강건조증 원인** | ① {r:약물복용} ② {r:Sjögren's syndrome} ③ 종양 + {r:방사선치료} ④ 신경손상 ⑤ 노화 ⑥ 구강호흡 ⑦ 알코올 ⑧ 흡연 ⑨ 스트레스 | 1·2번 "시험 잘 나옵니다"(p.36) | 잔존 타액선 기능이 있으면 pilocarpine·cevimeline | —
+R: **구강건조증 원인** | ① {r:약물복용} ② {r:Sjögren's syndrome} ③ 종양 + {r:방사선치료} ④ 신경손상 ⑤ 노화 ⑥ 구강호흡 ⑦ 알코올 ⑧ 흡연 ⑨ 스트레스 | {u:1·2번 "시험 잘 나옵니다"}(p.36) | 잔존 타액선 기능이 있으면 pilocarpine·cevimeline | —
 R: **유발 약물** | 항우울 {r:TCA}·imipramine · 항무스카린 {r:atropine} · {r:diazepam} · {r:diphenhydramine} · NSAIDs {r:ibuprofen·naproxen} · {r:codeine} · {r:clonidine} · 근이완제 {r:cyclobenzaprine} · 항경련제 {r:carbamazepine} · antidiarrhea · bronchodilators · alcohol(p.37) | 요실금 약·NSAIDs처럼 다른 목적의 약도 구강건조 유발 | 항무스카린제 복용 중이면 muscarinic agonist {r:피함} · ⚠ physostigmine은 침↑(유발 ✗) | {jb:XE01} 24·22년 유발 약물 아닌 것 = Physostigmine
 R: **Sjögren's syndrome** | 눈물샘·침샘을 공격하는 {r:autoimmune} 질환 · 여성 {r:~10배}·중년 · {r:0.2-1.2%} · lymphoma {r:5%} | 가장 특이한 검사 = {r:lip biopsy}({n:minor gland}) · 항체 {r:Anti-Ro/SSA·Anti-La/SSB} | pilocarpine {r:5 mg × 4회}·6주 · cevimeline(Sjögren 적응증) | {jb:XE04} 23년 빈칸 자가항체 Ro SSA·SSB → 쇼그렌
-R: **Sjögren 진단 6항목** | 주관 2 = dry eye·dry mouth {r:> 3개월} / 객관 4 = 눈물·타액·조직·항체 | Schirmer {r:≤5 mm/5분} · 비자극 whole {r:≤0.1 mL/min} · {r:focal lymphocytic inflammation} · 항체 | 6개 중 {r:≥4}(조직 또는 항체 포함) 또는 객관 4개 중 {r:≥3} · "큰 별표 — 시험에 나옵니다" | {jb:XE04} 23년 항체 이름
+R: **Sjögren 진단 6항목** | 주관 2 = dry eye·dry mouth {r:> 3개월} / 객관 4 = 눈물·타액·조직·항체 | Schirmer {r:≤5 mm/5분} · 비자극 whole {r:≤0.1 mL/min} · {r:focal lymphocytic inflammation} · 항체 | 6개 중 {r:≥4}(조직 또는 항체 포함) 또는 객관 4개 중 {r:≥3} · {u:"큰 별표 — 시험에 나옵니다"} | {jb:XE04} 23년 항체 이름
 R: **정상 타액 분비율** | whole saliva로 측정(개별 선은 측정 어려움) | 정상 whole 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0} / Parotid {r:0.04 · 0.70} / Submandibular/Sublingual {r:0.15 · 0.60} | {n:비자극 = 가만히} / 자극 = 껌 씹으며(25 필기) | {jb:XE02} 24년 비자극 0.2면 정상 ✗ / {jb:XE15} 21년 분비율 표 빈칸
 R: **Dry mouth 진단 기준** | 주로 {r:Unstimulated} 분비율로 진단 | 비자극 {r:< 0.1} · 자극 {r:< 0.5-0.7} mL/min | "이 숫자가 굉장히 중요, 주관식으로 나올 수 있습니다"(p.1) | {jb:XE08} {jb:XE20} 22년 A 0.1 = 비자극 · B 0.7 = 자극
 R: **방사선치료 두경부암** | 종양 + {r:방사선치료} → 타액선 손상 | 잔존 타액선 기능이 있어야 약 효과 | pilocarpine 1정(5 mg) {r:3회}/day · {r:12주↑} · 일반 15-30 mg/day · 1회 {r:10 mg} 초과 ✗ | —
@@ -286,7 +286,7 @@ R: **2016 공개 증례** | 81세 여성 · 평소·식사 때 구강건조 | �
 
 #TBL 구강건조증 치료제 ③ — 치료 약물 전체정리표 | k=XE | sum=1 | src=[[XE:25]] [[XE:27]] [[XE:30]] [[XE:31]] [[XE:32]] [[XE:35]] [[XE:41]] [[XE:42]] [[XE:44]] [[XE:45]] [[XE:46]] [[XE:47]] [[XE:49]] [[XE:50]] [[XE:56]]
 H: 약물 | 기전·수용체 | 적응증 | 용법·용량 | 부작용·금기 | ★ 시험
-R: **Pilocarpine** | tertiary natural {r:alkaloid} · nonselective muscarinic agonist {r:M1·M3·M5} · AChE 분해 {r:안 됨} | 점안 {r:녹내장} · 경구 {r:구강건조증}(Sjögren·방사선) | Salagen {r:5 mg} · 식전 {r:30분} 하루 {r:3번} · 1회 {r:10 mg} 초과 ✗ | 발한·설사·부정맥·기도경련 · 금기 {r:조절 안 되는 천식}·{r:축동}(급성 홍채염) · 주의 {r:COPD}·심혈관 | {jb:XE03} 24·23·21년 적응증 빈칸 / {jb:XE18} 21년 T/F / {jb:XE12} 21년 M1·3·5
+R: **Pilocarpine** | tertiary natural {r:alkaloid} · nonselective muscarinic agonist {r:M1·M3·M5} · AChE 분해 {r:안 됨} | 점안 {r:녹내장} · 경구 {r:구강건조증}(Sjögren·방사선) | Salagen {r:5 mg} · 식전 {r:30분} 하루 {r:3번} · 1회 {r:10 mg} 초과 ✗ | 발한·설사·부정맥·기도경련 · {u:금기 {r:조절 안 되는 천식}·{r:축동}(급성 홍채염)} · {u:주의 {r:COPD}·심혈관} | {jb:XE03} 24·23·21년 적응증 빈칸 / {jb:XE18} 21년 T/F / {jb:XE12} 21년 M1·3·5
 R: **Cevimeline** | synthetic · {r:M1·M3} agonist → {n:선택성↑·부작용↓} | {r:구강건조증}(Sjögren)만 | Evoxac {r:30 mg} cap · 식전 30분 하루 3번 | muscarinic 부작용(발한 등) · ⚠ CYP 대사는 자료에 없음 | {jb:XE17} 21년 유사 치료제 / {jb:XE05} 23년 부작용 없을 사람 / {jb:XE10} 22년 치료제 2개
 R: **Pilocarpine 용법** | 효과는 {r:잔존 타액선 기능}에 달림 | 방사선 두경부암 · Sjögren · 간장애 | 방사선 {r:5 mg × 3회}(12주↑) · Sjögren {r:5 mg × 4회}(6주) · 중등도 간장애 {r:× 2회} · 중증 간장애 {r:비권장} | 허가 용량(5 mg × 4회)을 처음부터 → 땀·심계항진·구역 → {r:저용량 시작} | {jb:XE06} 23년 복용법(→ 20 mg/day)
 R: **Pilocarpine 과량** | muscarinic 과자극({r:15-30분} 내) | {r:100 mg↑} 투여 시 치명적 | {r:Atropine 0.5-1.0 mg} 피하·정맥 · 심혈관 저하·기관지 수축 → {r:Epinephrine 0.3-1.0 mg} | 구역·구토·설사·발한·타액과다·홍조·서맥·기관지 수축 | {jb:XE16} 21년 과량 길항제 = Atropine / {jb:XE09} {jb:XE19} 22년 부작용 아닌 것
