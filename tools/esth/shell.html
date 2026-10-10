@@ -1924,7 +1924,7 @@ b.mlab.nlab::before{content:"✍";font-size:calc(11px*var(--fs));color:var(--fai
 .ntw .srcn::after{content:none}
 td.ncol .ntw::before,td.ncol .srcn::after{content:none}td.ncol br.ntb{display:none}   /* 10-09 필기 열(머리 ✍) 칸 안의 '(26 필기 p.N)'·{n:}엔 ✍ 다시 안 붙임 */
 /* 10-09 사용자 '25년도 자료에 비해 26년도 자료에서 변동사항 … 사라진 페이지 또는 특히 26년도 올해 추가된 페이지나 추가된 내용은 꼭!! 강조' — 원고 {u:…} = 26에 새로 생기거나 바뀐 내용(앞 배지·밑줄 = CSS, 글자 아님 — 형광펜·빈칸·플래시카드 글자 그대로) · (… 26에서 빠짐) = 회색 */
-:root{--u26:#1C8A4C;--u26fg:#fff;--u26l:rgba(28,138,76,.55);--u26bg:#ECF7EF}
+:root{--u26:#17773F;--u26fg:#fff;--u26l:rgba(23,119,63,.55);--u26bg:#ECF7EF}   /* 10-09 작은 배지·알약 글자 명암 4.5↑(audit_design) */
 :root[data-theme="dark"]{--u26:#5BC98A;--u26fg:#0B1F12;--u26l:rgba(91,201,138,.6);--u26bg:#16291D}
 .u26{text-decoration:underline 2px var(--u26l);text-decoration-skip-ink:none;text-underline-offset:3px}
 .u26::before{content:"NEW 26";display:inline-block;white-space:nowrap;font:700 calc(9.5px*var(--fs,1))/1.55 system-ui,-apple-system,sans-serif;letter-spacing:.02em;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 4px;margin-right:4px;vertical-align:.12em}
