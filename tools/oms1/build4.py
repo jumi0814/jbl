@@ -236,7 +236,9 @@ def astruct(s, lvl=0):
     gs = [g for g in _groups(s) if g[1] - g[0] > 80 and not (g[0] == 0 and s[0] in '"“' and not s[g[1] + 1:].strip(' .,;')) and not re.match(r'^\s*(?:은|는|이|가|을|를|과|와|의|로|으로|에|에서|라고|이라고|란|도|만)(?:\s|$)', s[g[1] + 1:])]   # 10-05 인용·괄호 뒤가 조사로 이어지면 그 묶음에서 자르지 않음(" 한 글자 줄·조사로 시작하는 줄)
     if gs:
         a_, b_ = max(gs, key=lambda g: g[1] - g[0]); head = s[:a_ + 1].strip(); inner = s[a_ + 1:b_ + 1]; tail = s[b_ + 1:].strip()
-        if s[a_] in '"“' and head[:-1].strip(): head = head[:-1].strip(); inner = s[a_] + inner   # 여는 따옴표는 안쪽 첫머리에
+        if s[a_] in '"“([（' and head[:-1].strip(): head = head[:-1].strip(); inner = s[a_] + inner   # 여는 따옴표·괄호는 안쪽 첫머리에(10-10 '…않음(' + 다음 줄 '…)'로 괄호가 갈리던 것 — 우리말(영어) 긴 괄호)
+        if head[-1:] in '(（' and head[:-1].strip(): head = head[:-1].strip(); inner = '(' + inner   # 10-10 '…(' + 다음 줄 '"인용")' — 여는 괄호도 인용과 같은 줄에
+        if head in ('(', '（'): inner = '(' + inner; head = ''
         if re.fullmatch(r'[.,;:)\]·/]+', tail): inner += tail; tail = ''   # 10-05 꼬리가 문장부호뿐이면 안쪽 끝에(홀로 남은 '.' 줄)
         if re.fullmatch(r'[.,;:)\]·/—]+', head): inner = head + ' ' + inner; head = ''
         return (f'<div class="klead">{astruct(head, lvl + 1)}</div>' if head else '') + f'<div class="kin">{astruct(inner, lvl + 1)}</div>' + (f'<div class="ktail">{astruct(tail, lvl + 1)}</div>' if tail else '')
