@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"7f8510cc",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"6193ad32",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1957,6 +1957,7 @@ li:has(.u26:not(.e26),.u26p:not(.e26p))+li:has(.u26:not(.e26),.u26p:not(.e26p)) 
 .only-e26 .tc:not(.e26c){display:none}
 .c-upd .ecj{border-color:var(--e26l)}.c-upd .ecj:hover{background:var(--e26);color:var(--e26fg)}.c-upd .u26.e26.demo{background:var(--e26)}
 .also25{color:var(--sub);font-size:calc(12px*var(--fs,1));white-space:nowrap}
+.hnum .hnumg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 2px}.hnumb{display:grid;gap:3px;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:12px 14px;cursor:pointer;font:inherit;min-height:44px}.hnumb b{font-size:calc(15.5px*var(--fs,1))}.hnumb small{color:var(--sub);font-size:calc(13px*var(--fs,1))}.hnumb:hover:not(.off),.hnumb:focus-visible{border-color:var(--acc,#0F5C5A);box-shadow:0 1px 6px rgba(0,0,0,.06)}.hnumb.off{cursor:not-allowed;background:transparent;border-style:dashed;color:var(--sub)}@media (max-width:560px){.hnum .hnumg{grid-template-columns:1fr}}   /* 10-10 홈 넘버링 탭 */
 .lcard .lemp{color:var(--e26);font-weight:700}.lcard .lnew26{display:inline-block;font:700 calc(11px*var(--fs,1))/1.5 system-ui,sans-serif;color:var(--u26fg);background:var(--u26);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:.1em;white-space:nowrap}
 .gone26{color:var(--sub);background:rgba(128,118,104,.14);border-radius:4px;padding:0 4px}
 .chip.u26chip{background:var(--u26);color:var(--u26fg);border-color:var(--u26);font-weight:700}
@@ -2076,7 +2077,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="7f8510cc",PV={"OMS1": "6940b6dd", "CONS": "d84552b7", "IMPL": "cc54a50a", "ANAT": "8eb56f5a", "GERI": "bed4debe", "PHARM": "fa980238", "ESTH": "fe9699e9"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="6193ad32",PV={"OMS1": "a140b0d5", "CONS": "d6f076fc", "IMPL": "ca1a704b", "ANAT": "40c60280", "GERI": "f5c36d71", "PHARM": "583543dc", "ESTH": "72551bcf"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2190,6 +2191,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
+const NUMV='349f25f1';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -2682,7 +2684,7 @@ addEventListener('pagehide',()=>{T.unl=1;});addEventListener('pageshow',()=>{T.u
 /* ux4c 1회차 허브로 나가면(홈·달력) 자동 측정을 멈추고 그 시각(T.hubLeft)을 남김 — 허브에서 1분 입력이 없거나 화면이 숨으면 그 시각부터 ☕ 자동 휴식(trAutoRest와 같은 모양, why 'hub').
    허브를 쓰는 동안(입력)은 휴식을 시작하지 않음 — 시작 뒤 입력이 오면 restBack이 [☕ 쉬었어요][📖 공부했어요] 띠 · 문서를 다시 열면 지움(2분 안이면 집중 구간 이어 감) */
 /* ux4c 2회차 허브 화면(홈·달력·검색)은 공부 화면이 아님 — 쉬는 중 허브에서 움직이거나 화면이 돌아와도 휴식은 이어짐. 과목 문서를 열 때(openDoc)·▶ 다시 공부·■ 멈춤에서만 끝남 */
-function hubV(){return VIEW==='home'||VIEW==='cal'||VIEW==='search'||VIEW==='bm';}
+function hubV(){return VIEW==='home'||VIEW==='cal'||VIEW==='search'||VIEW==='bm'||VIEW==='num';}
 function hubLeave(){if(!(T.run&&T.autoRun))return;const s=CUR.s,d=CUR.d;tStop();T.hubLeft=Math.min(Date.now(),T.fEnd||Date.now());T.hubS=s||'기타';T.hubD=s&&d?d:'';}
 function hubRest(why){const h=T.hubLeft;if(!h||T.run||VIEW==='doc'||VIEW==='none'||!restOn()||tsGet())return;if(T.other){T.hubLeft=0;return;}   /* 다른 창에서 재는 중이면 쉬는 것이 아님 */T.hubLeft=0;const now=Date.now(),r0=Math.min(h,now);
  if(!(tSum(tDay(day(new Date(r0))))>0)){tBtn();return;}
@@ -2792,8 +2794,17 @@ function bmView(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==fal
 document.addEventListener('click',e=>{if(VIEW!=='bm')return;const t=e.target.closest&&e.target.closest('[data-hbt],[data-hbf],[data-hbhome],.lcard[data-hbs]');if(!t)return;e.preventDefault();
  if(t.hasAttribute('data-hbf')){LS.set('hbmf',t.dataset.hbf);bmView({push:false,f:t.dataset.hbf,s:LS.get('hbmtab','')||''});return;}
  if(t.hasAttribute('data-hbt')){LS.set('hbmtab',t.dataset.hbt);bmView({push:false,s:t.dataset.hbt});return;}if(t.dataset.hbhome){openDoc(t.dataset.hbhome,'_home');return;}openDoc(t.dataset.hbs,t.dataset.d,'learn');});
+/* 10-10 넘버링 따기 — 모듈(num/num.js)은 이 화면을 열 때만 불러옴(홈·과목 화면 첫 로딩에 부담 없음) · 화면은 #home 안에 · 저장은 같은 LS(NS) — 문제마다 num.i.<과목>.<id> */
+function numView(o){o=o||{};leaveView();kitAway();const push=o.push!==false&&VIEW!=='num'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='num';document.title='넘버링 따기 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');document.body.classList.remove('d-home');navOpen(false);const h=$('#home');h.hidden=false;
+ const host={LS,NS,LSQ,toast,PACKS,SUBJECTS,sjColor,openDoc,histSet,base:'',v:NUMV};let pushed=false;
+ const go=()=>{if(VIEW!=='num')return;JBLNUM.open(h,{sj:o.sj||'',y:o.y,push:push&&!pushed},host).then(()=>{pushed=true;measure();try{navRender();}catch(e){}}).catch(e=>{h.innerHTML='<div class="hub hub4"><div class="panel">⚠ 넘버링을 열지 못했어요 — '+EH(String(e&&e.message||e))+'</div></div>';});};
+ if(window.JBLNUM){go();return;}
+ h.innerHTML='<div class="hub hub4"><div class="panel">넘버링 불러오는 중…</div></div>';histSet({num:1,sj:o.sj||''},'#/_num'+(o.sj?'/'+o.sj:''),push);pushed=true;
+ const s=document.createElement('script');s.src='num/num.js?v='+NUMV;s.onload=go;s.onerror=()=>{s.remove();if(VIEW==='num')h.innerHTML='<div class="hub hub4"><div class="panel">⚠ 넘버링 화면을 불러오지 못했어요 — 인터넷 연결을 확인하고 다시 눌러 주세요.</div></div>';};document.head.appendChild(s);}
+function homeNum(){return `<section class="sh4 hnum noann" aria-label="넘버링"><h2 class="hh">넘버링 <small>문제·답안·넘버링 스토리를 Word 문서처럼 한눈에</small></h2><div class="hnumg"><button type="button" class="hnumb" data-hnum="take"><b>① 넘버링 따기</b><small>JB 기출·예상문제·Word 자료를 모아 스토리 쓰고 고치기</small></button><button type="button" class="hnumb off" disabled aria-disabled="true" title="다음 업데이트에서 열려요"><b>② 넘버링 복습</b><small>추후 업데이트 예정</small></button></div></section>`;}
+document.addEventListener('click',e=>{if(VIEW!=='home')return;const t=e.target.closest&&e.target.closest('[data-hnum]');if(!t)return;e.preventDefault();numView({});});
 function home(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==false&&VIEW!=='home'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='home';document.title='JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
- h.innerHTML=`<div class="hub hub4">${whatsNew()}<div id="storewarn" class="noann"></div><h2 class="vh">JBL 허브 — 오늘</h2>${homeBand()}${homeResume()}<section class="hsec hduo noann">${homeTodo()}${homeRecent()}</section>${(homeTick.sj=homeSubjects())}${(homeTick.wk=homeWeek())}${homeMore()}</div>`;
+ h.innerHTML=`<div class="hub hub4">${whatsNew()}<div id="storewarn" class="noann"></div><h2 class="vh">JBL 허브 — 오늘</h2>${homeBand()}${homeResume()}<section class="hsec hduo noann">${homeTodo()}${homeRecent()}</section>${homeNum()}${(homeTick.sj=homeSubjects())}${(homeTick.wk=homeWeek())}${homeMore()}</div>`;
  histSet({home:1},'#/',push);measure();window.scrollTo(0,opt.y||0);storeWarn();a2hsNote();homeTick.d=day();}
 const hDate=dt=>(dt.getMonth()+1)+'월 '+dt.getDate()+'일 '+'일월화수목금토'[dt.getDay()]+'요일';
 const hMd=dt=>(dt.getMonth()+1)+'/'+dt.getDate();
@@ -2918,7 +2929,7 @@ try{history.scrollRestoration='manual';}catch(e){}
 const SS={get(k,d){try{const v=sessionStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{sessionStorage.setItem(NS+k,JSON.stringify(v));}catch(e){}}};
 const isJBv=()=>VIEW==='doc'&&(CUR.d==='_jb'||CUR.t==='jb');
 const sname=(p,k)=>{const L=p.lect.find(x=>x.k===k);return L?String(L.title):String((p.lecname&&p.lecname[k])||k).replace(/\s*\([^)]*\)\s*$/,'');};   /* ux4e 강의 이름 = 팩의 원래 강의 제목 그대로(p.lecname 짧은 이름은 강의가 아닌 보조 키에만) */
-function curState(){return VIEW==='doc'?{s:CUR.s,d:CUR.d,t:CUR.t}:VIEW==='search'?Object.assign({q:SQ.q},SQ.s?{sj:SQ.s}:{},SQ.k?{k:SQ.k}:{},{from:SQ.from||null},SQ.pushed?{pd:1}:{}):VIEW==='cal'?calState():VIEW==='bm'?{bm:1,sj:LS.get('hbmtab','')||''}:{home:1};}
+function curState(){return VIEW==='doc'?{s:CUR.s,d:CUR.d,t:CUR.t}:VIEW==='search'?Object.assign({q:SQ.q},SQ.s?{sj:SQ.s}:{},SQ.k?{k:SQ.k}:{},{from:SQ.from||null},SQ.pushed?{pd:1}:{}):VIEW==='cal'?calState():VIEW==='bm'?{bm:1,sj:LS.get('hbmtab','')||''}:VIEW==='num'?(window.JBLNUM?JBLNUM.state():{num:1}):{home:1};}
 function histSet(st,url,push){try{if(push)history.pushState(st,'',url);else history.replaceState(st,'',url);}catch(e){}LASTH=location.hash;if(VIEW!=='search'){const g=$('#gsearch');if(g&&g.value&&document.activeElement!==g)g.value='';}navAfter();}   /* ux4 B23 검색 화면을 떠나면 검색칸을 비움 */   /* ux3 G2 화면이 바뀔 때마다 메뉴(aria-current·펼침) */
 /* 떠나기 직전: 지금 항목에 스크롤 위치를 적어 둠(뒤로가기 복원용) */
 function stampHist(){try{const hs=history.state;const im=$('#imgmodal');const o=Object.assign(curState(),hs&&hs.ret?{ret:hs.ret}:{},hs&&hs.modal&&im&&im.classList.contains('on')?{modal:1}:{},{y:Math.round(scrollY)});   /* ux4f O4 그림 크게 보기 중 위치 저장(스크롤 0.8초 뒤·화면 전환)이 modal 표시를 지우지 않음 — 닫을 때 history.back()으로 빈 항목을 남기지 않음 */if(VIEW==='doc'){const P=probePos();if(P)o.pos={aid:P.aid,off:P.off};}history.replaceState(o,'',location.href);}catch(e){}}
@@ -2927,10 +2938,10 @@ function hTxt(h){if(!h)return '';const c=h.cloneNode(true);c.querySelectorAll('.
 function tiClean(t){return String(t||'').replace(/\s*(카드 \d+ · \d+묶음|기출 \d+)$/,'').trim();}
 /* ux4c 2회차 형광펜·빈칸 모드는 그 과목의 문서 안에서만 — 과목이 바뀌거나 과목 홈·허브(홈·달력·검색)로 가면 끔(막대가 없는 화면에 켜진 채 남아 다른 과목 첫 드래그가 칠해지던 것) */
 function kitAway(){try{if(Kit.mode())Kit.off();}catch(e){}}
-function leaveView(){try{if(window.memoFlush)memoFlush();}catch(e){}if(document.body.classList.contains('rk-reveal')){document.body.classList.remove('rk-reveal');const ke=$('#k-eye');if(ke)ke.classList.remove('on');}   /* 10-04 QUIZ 2: 전체 보기(E)는 지금 화면에만 — 탭·강의를 옮기면 끔(옮겨 간 곳 빈칸이 다 열린 채 시작하던 것) */   /* ux4f E 메모 대기 글을 이 문서 키로 먼저 저장 */document.body.classList.remove('jbone');jbSpyOff();$('#lpop').classList.remove('on');peekClose();if(LIO){LIO.disconnect();LIO=null;}if(STL)STL();if(VIEW==='doc'&&CUR.s){clearTimeout(spT);savePos();if(isJBv())JB.save();}}
-function parseHash(){const h=location.hash||'';if(/^#\/_time\/?$/.test(h))return {cal:1,tab:'stats'};{const b=/^#\/_bm\/?(?:\?s=([A-Z0-9]+))?$/.exec(h);if(b)return {bm:1,sj:b[1]||''};}{const c=/^#\/_cal(?:\/(\d{4}-\d\d-\d\d))?\/?(?:\?([^#]*))?$/.exec(h);if(c){const o={cal:1,tab:'cal'};if(c[1])o.dt=c[1];(c[2]||'').split('&').forEach(kv=>{const [k,v]=kv.split('=');if(k==='s'&&/^[A-Z0-9]+$/.test(v||''))o.sj=v;if(k==='m'&&/^\d{4}-\d\d$/.test(v||''))o.ym=v;});return o;}}   /* ux3 J1 #/_cal · #/_cal/YYYY-MM-DD · ?s=SID · 옛 #/_time = 통계 탭 */let m=/^#\/\?q=([^&]*)(?:&s=([A-Z0-9]+))?(?:&k=(learn|jb|tbl|pred))?/.exec(h);if(m){let q='';try{q=decodeURIComponent(m[1]);}catch(e){q=m[1];}const o=m[2]?{q,sj:m[2]}:{q};if(m[3])o.k=m[3];return o;}
+function leaveView(){try{if(window.memoFlush)memoFlush();}catch(e){}if(VIEW==='num'&&window.JBLNUM){try{JBLNUM.leave();}catch(e){}}   /* 10-10 넘버링: 편집 중 글 저장·위치 기억 */if(document.body.classList.contains('rk-reveal')){document.body.classList.remove('rk-reveal');const ke=$('#k-eye');if(ke)ke.classList.remove('on');}   /* 10-04 QUIZ 2: 전체 보기(E)는 지금 화면에만 — 탭·강의를 옮기면 끔(옮겨 간 곳 빈칸이 다 열린 채 시작하던 것) */   /* ux4f E 메모 대기 글을 이 문서 키로 먼저 저장 */document.body.classList.remove('jbone');jbSpyOff();$('#lpop').classList.remove('on');peekClose();if(LIO){LIO.disconnect();LIO=null;}if(STL)STL();if(VIEW==='doc'&&CUR.s){clearTimeout(spT);savePos();if(isJBv())JB.save();}}
+function parseHash(){const h=location.hash||'';if(/^#\/_time\/?$/.test(h))return {cal:1,tab:'stats'};{const n=/^#\/_num(?:\/([A-Za-z0-9]+))?\/?$/.exec(h);if(n)return {num:1,sj:n[1]||''};}   /* 10-10 넘버링 따기 #/_num · #/_num/<과목> */{const b=/^#\/_bm\/?(?:\?s=([A-Z0-9]+))?$/.exec(h);if(b)return {bm:1,sj:b[1]||''};}{const c=/^#\/_cal(?:\/(\d{4}-\d\d-\d\d))?\/?(?:\?([^#]*))?$/.exec(h);if(c){const o={cal:1,tab:'cal'};if(c[1])o.dt=c[1];(c[2]||'').split('&').forEach(kv=>{const [k,v]=kv.split('=');if(k==='s'&&/^[A-Z0-9]+$/.test(v||''))o.sj=v;if(k==='m'&&/^\d{4}-\d\d$/.test(v||''))o.ym=v;});return o;}}   /* ux3 J1 #/_cal · #/_cal/YYYY-MM-DD · ?s=SID · 옛 #/_time = 통계 탭 */let m=/^#\/\?q=([^&]*)(?:&s=([A-Z0-9]+))?(?:&k=(learn|jb|tbl|pred))?/.exec(h);if(m){let q='';try{q=decodeURIComponent(m[1]);}catch(e){q=m[1];}const o=m[2]?{q,sj:m[2]}:{q};if(m[3])o.k=m[3];return o;}
  m=/^#\/([^\/?]+)\/([^\/]+)\/?([^\/]*)/.exec(h);if(m){let d=m[2];try{d=decodeURIComponent(d);}catch(e){}return {s:m[1],d,t:m[3]};}return {home:1};}
-function route(st){overlaysClose();st=st||parseHash();   /* ux4 B16 뒤로가기(가장자리 스와이프 포함) = 떠 있는 그림·창을 닫고 이동 */if(st.q!=null&&String(st.q).trim().length>=2){search(st.q,{push:false,y:st.y,s:st.sj,k:st.k,from:st.from,pd:st.pd});return;}   /* 10-04 허브 점검 2차 NAV N1: 뒤로로 돌아온 검색은 기록에 적어 둔 '검색 전 화면'(from)·push 여부(pd)를 그대로 — ✕·Esc가 방금 본 결과 문서로 가던 것 */if(st.bm){bmView({push:false,y:st.y,s:st.sj||''});return;}if(st.cal||st.time){calView({push:false,y:st.y,dt:st.dt,ym:st.ym,s:st.sj||'',tab:st.tab||(st.time?'stats':null)});return;}   /* F10 주소에 ?s가 없으면 과목 필터 없음 */
+function route(st){overlaysClose();st=st||parseHash();   /* ux4 B16 뒤로가기(가장자리 스와이프 포함) = 떠 있는 그림·창을 닫고 이동 */if(st.q!=null&&String(st.q).trim().length>=2){search(st.q,{push:false,y:st.y,s:st.sj,k:st.k,from:st.from,pd:st.pd});return;}   /* 10-04 허브 점검 2차 NAV N1: 뒤로로 돌아온 검색은 기록에 적어 둔 '검색 전 화면'(from)·push 여부(pd)를 그대로 — ✕·Esc가 방금 본 결과 문서로 가던 것 */if(st.bm){bmView({push:false,y:st.y,s:st.sj||''});return;}if(st.num){numView({push:false,y:st.y,sj:st.sj||''});return;}if(st.cal||st.time){calView({push:false,y:st.y,dt:st.dt,ym:st.ym,s:st.sj||'',tab:st.tab||(st.time?'stats':null)});return;}   /* F10 주소에 ?s가 없으면 과목 필터 없음 */
  if(st.s&&PACKS[st.s]){openDoc(st.s,st.d,st.t,(st.y==null&&!st.pos)?st.aid:null,{push:false,y:st.y,pos:st.pos});return;}home({push:false,y:st.y});}
 (function(){try{if(!matchMedia('(hover:none)').matches)return;const OK=/^(background|color$|border(-[a-z]+)?-color|text-decoration|text-underline|box-shadow|outline-color)/;
  const walk=(L,own)=>{for(let i=L.length-1;i>=0;i--){const r=L[i];if(r.cssRules&&r.type!==1){walk(r.cssRules,r);continue;}if(r.type!==1)continue;if(!r.selectorText.split(',').every(p=>p.indexOf(':hover')>=0))continue;const ps=[...r.style];if(ps.length&&ps.every(p=>OK.test(p)))own.deleteRule(i);}};
@@ -3995,6 +4006,7 @@ function mergeData(data,opt){opt=opt||{};data=dcutData(data);   /* 10-04 D1 옛 
    const b=J(inc);if(b===undefined){skip.push([key,'깨진 값']);continue;}
    if(/^(ann|mk|done|fc|autoRule|lbm|cbm)\./.test(key)&&!isObj(b)){skip.push([key,'깨진 값']);continue;}
    if(/^ann\./.test(key)&&Object.keys(b).some(a=>!Array.isArray(b[a]))){skip.push([key,'깨진 값']);continue;}
+   if(/^num\.[ix]\./.test(key)&&!isObj(b)){skip.push([key,'깨진 값']);continue;}
    if((key==='time'||key==='timed'||key==='tadj')&&!isObj(b)){skip.push([key,'깨진 값']);continue;}
    if((key==='time'||key==='timed'||key==='tadj')&&opt.dev){n+=devTimeMerge(opt.dev,key,b);continue;}   /* C10 다른 기기 시간은 timeDev로(이 기기 time은 그대로) */
    if(key==='tedit'){if(!Array.isArray(b)){skip.push([key,'깨진 값']);continue;}const r=teMerge(J(localStorage.getItem(k)),b);if(r.n){localStorage.setItem(k,JSON.stringify(r.L));TEDIT=null;n+=r.n;}continue;}   /* ux3 I7 고친 기록 = i 합집합(x가 이김) — 기기와 상관없이 이 원장에 한 번만 */
@@ -4009,6 +4021,8 @@ function mergeData(data,opt){opt=opt||{};data=dcutData(data);   /* 10-04 D1 옛 
    else if(key.indexOf('lrd.')===0){if(!isObj(a)){localStorage.setItem(k,inc);n++;continue;}const m=Object.assign({},a);for(const kk in b){const nb=+(b[kk]&&b[kk].n)||0,na=+(m[kk]&&m[kk].n)||0;if(nb>na){m[kk]=b[kk];}}localStorage.setItem(k,JSON.stringify(m));n++;}   /* 10-05 회독 수 = 큰 값 */
    else if(key==='time'||key==='timed'||key==='tadj'){const m=tMax(a,b);localStorage.setItem(k,JSON.stringify(m));n++;}
    else if(key==='tseg'||key==='trest'){localStorage.setItem(k,JSON.stringify(tMerge(key,a,b)));n++;}   /* ux3 I7 tseg (s|S|D|종류) 합집합·e 큰 값·x가 이김 · trest 큰 값 */
+   else if(key.indexOf('num.i.')===0||key.indexOf('num.x.')===0){if(!isObj(a)||(+b.u||0)>(+a.u||0)){localStorage.setItem(k,inc);n++;}}   /* 10-10 넘버링: 문제마다 더 최근에 고친 것(u)이 이김 */
+   else if(key==='num.subj'){if(Array.isArray(a)&&Array.isArray(b)){const m=a.slice();b.forEach(x=>{if(x&&x.id&&!m.some(y=>y&&y.id===x.id))m.push(x);});if(m.length!==a.length){localStorage.setItem(k,JSON.stringify(m));n++;}}}
    else if(key.indexOf('memo.')===0){if(typeof a==='string'&&typeof b==='string'){if(b.indexOf(a)>=0&&b!==a){localStorage.setItem(k,JSON.stringify(b));n++;}else if(a.indexOf(b)<0){localStorage.setItem(k,JSON.stringify(a+(a?'\n\n— 백업에서 합침 —\n':'')+b));n++;}}}}
   catch(e){skip.push([key,e&&(e.name==='QuotaExceededError'||e.code===22)?'저장 공간 부족':'오류']);}}
  return {n,skip};}
@@ -4020,7 +4034,7 @@ function tMax(a,b){const o=JSON.parse(JSON.stringify(tObj(a)));const B=tObj(b);f
    'drop' 버리기 전 3 · 'clear' 지우기 전 3 · 'misc' 그 밖의 이관·교체 전 3. 비교는 공부 기록 키만(bakSig의 FNV = meta.sig — 같으면 주기 백업을 또 쓰지 않음).
    처음 열 때 localStorage autobak.*를 IDB로 복사하고 다시 읽어 같은지 확인한 뒤에만 localStorage 사본을 지움 · IDB를 쓸 수 없으면 localStorage 방식 그대로(autoBakLS) ·
    autoBak(force, why, 과목) → Promise<성공 여부> (데이터는 부른 순간 dumpAll로 떠 둠 — 곧이은 쓰기와 섞이지 않음) · 백업은 차례로(BK.q) */
-const bakSig=d=>JSON.stringify(Object.keys(d).filter(k=>/^jblhub\.v1\.(ann|mk|done|memo|memoh|fc|autoRule|lbm|lrd|cbm)\./.test(k)).sort().map(k=>[k,d[k]]));
+const bakSig=d=>JSON.stringify(Object.keys(d).filter(k=>/^jblhub\.v1\.(ann|mk|done|memo|memoh|fc|autoRule|lbm|lrd|cbm|num)\./.test(k)).sort().map(k=>[k,d[k]]));
 function fnv1(t){let h=0x811c9dc5;for(let k=0;k<t.length;k++){h^=t.charCodeAt(k);h=Math.imul(h,0x01000193);}return (h>>>0).toString(36);}
 const BK={p:null,ok:null,db:null,q:null,lastAt:0};
 function bkDB(){if(BK.p)return BK.p;BK.p=new Promise(res=>{let done=false;const fin=v=>{if(done)return;done=true;BK.db=v||null;BK.ok=!!v;res(BK.db);};
@@ -4800,6 +4814,7 @@ function navHub(V){const E=EH,cur=on=>on?' aria-current="page"':'';
  let h=`<div class="nvsec">허브</div><button type="button" class="ni nvr1" data-nv="home"${cur(VIEW==='home')} title="허브 홈 — 이어서·오늘 할 일·과목 표">오늘</button>`
   +`<button type="button" class="ni nvr1" data-nv="cal"${cur(VIEW==='cal')} title="공부 달력 — 날짜별 공부 시간·기록 고치기·목표"><span class="el">공부 달력</span><span class="r" data-nb="wk">${E(V.wk)}</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="bm"${cur(VIEW==='bm')} title="북마크한 강의 모아보기 — 전체·과목별"><span class="el">내 북마크</span><span class="r" data-nb="bma">${E(V.bma)}</span></button>`
+  +`<button type="button" class="ni nvr1" data-nv="num"${cur(VIEW==='num')} title="넘버링 따기 — 문제·답안·넘버링 스토리를 Word처럼 한 문서로"><span class="el">넘버링 따기</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="rev"${V.rv?'':' hidden'} title="오늘 복습할 기출(전 과목) — 가장 많은 과목부터"><span class="el">오늘 복습</span><span class="r" data-nb="rv">${E(V.rv)}</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="marks" title="형광펜·빈칸 모아보기(최근 과목부터)"><span class="el">내 표시</span><span class="r" data-nb="mka">${E(V.mka)}</span></button><div class="nvsec">과목</div>`;
  h+=SUBJECTS.map(([id,ko])=>{const p=PACKS[id],sh=sjShort(id);
@@ -4850,7 +4865,7 @@ $('#side').addEventListener('click',e=>{const t=e.target;if(!t.closest)return;
  if(t.closest('[data-nvsw]')){navSwTog();return;}
  const sj=t.closest('[data-nvsj]');if(sj){const S=sj.dataset.nvsj;navSwTog(false);if(!PACKS[S])return;if(S===CUR.s&&CUR.d==='_home'){navOpen(false);return;}navGo(()=>openDoc(S,'_home'));return;}
  const lj=t.closest('[data-lj]');if(lj){navOpen(false);goCard(+lj.dataset.lj);return;}
- const nv=t.closest('[data-nv]');if(nv){const k=nv.dataset.nv;if(k==='home')navGo(()=>home());else if(k==='cal')navGo(()=>calView({tab:'cal'}));else if(k==='bm')navGo(()=>bmView({s:LS.get('hbmtab','')||''}));else if(k==='rev'){const R=navRevAll();if(R.S)navGo(()=>revGo(R.S));}else if(k==='marks'){const S=navMarksS();if(S)navGo(()=>openDoc(S,'_marks'));}return;}
+ const nv=t.closest('[data-nv]');if(nv){const k=nv.dataset.nv;if(k==='home')navGo(()=>home());else if(k==='cal')navGo(()=>calView({tab:'cal'}));else if(k==='bm')navGo(()=>bmView({s:LS.get('hbmtab','')||''}));else if(k==='num')navGo(()=>numView({}));else if(k==='rev'){const R=navRevAll();if(R.S)navGo(()=>revGo(R.S));}else if(k==='marks'){const S=navMarksS();if(S)navGo(()=>openDoc(S,'_marks'));}return;}
  const sb=t.closest('[data-nvs]');if(sb){const S=sb.dataset.nvs;if(PACKS[S])navGo(()=>openDoc(S,'_home'));return;}
  const d=t.closest('.nvd,.nvl');if(d&&d.dataset.d){navGo(()=>{openDoc(d.dataset.s,d.dataset.d);if(d.dataset.d==='_jb')jbPlain();});}});
 /* 다른 창·백업 합치기로 바뀐 기록 → 메뉴(모아서 한 번) */
@@ -4864,7 +4879,7 @@ function crumbRender(){const c=$('#crumb');if(!c)return;const E=EH,sl='<span cla
   if(CUR.d==='_home')h+=sl+`<b class="ccur" aria-current="page">${sj}</b>`;
   else h+=sl+`<button type="button" class="cbs" data-cs="${CUR.s}" title="${E(p.title)} — 과목 홈">${sj}</button>`+sl+`<b class="ccur" aria-current="page" title="${E(L?L.title:DOCNM[CUR.d]||CUR.d)}">${E(L?sname(p,L.k):DOCNM[CUR.d]||CUR.d)}</b>`;}
  else if(VIEW==='search'&&navS()){const S=navS();h+=sl+`<button type="button" class="cbs" data-cs="${S}" title="${E(PACKS[S].title)} — 과목 홈"><i class="cdot" style="--dc:${sjColor(S)}"></i>${E(sjShort(S))}</button>`+sl+`<b class="ccur" aria-current="page">검색</b>`;}
- else h+=sl+`<b class="ccur" aria-current="page">${VIEW==='cal'?(CAL.tab==='stats'?'공부 통계':'공부 달력'):VIEW==='search'?'검색':VIEW==='bm'?'내 북마크':'오늘'}</b>`;
+ else h+=sl+`<b class="ccur" aria-current="page">${VIEW==='cal'?(CAL.tab==='stats'?'공부 통계':'공부 달력'):VIEW==='search'?'검색':VIEW==='bm'?'내 북마크':VIEW==='num'?'넘버링 따기':'오늘'}</b>`;
  if(c.innerHTML!==h)c.innerHTML=h;
  const g=$('#gsearch'),S=VIEW==='doc'&&CUR.s&&PACKS[CUR.s]?CUR.s:VIEW==='search'&&SQ.s?SQ.s:'',ph=S?'과목 검색':'전체 검색',al=(S?sjName(S)+'에서 검색':ph)+' (/)';if(g&&(g.placeholder!==ph||g.getAttribute('aria-label')!==al)){g.placeholder=ph;g.setAttribute('aria-label',al);g.title=al;}}   /* ux4e 좁은 검색 칸에서 과목 이름이 잘리지 않게 — 칸 글자는 '과목 검색'(아이패드 세로 110px 칸에도 다 보임), 과목 정식 이름은 aria-label·title */
 $('#crumb').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(!b)return;if(b.id==='gohome'){navOpen(false);home();return;}if(b.dataset.cs&&PACKS[b.dataset.cs])openDoc(b.dataset.cs,'_home');});
