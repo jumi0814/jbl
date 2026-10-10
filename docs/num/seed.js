@@ -1,0 +1,1 @@
+window.JBLNUM_INDEX=[];
