@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"754f267c",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"cbf1f493",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2077,7 +2077,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="754f267c",PV={"OMS1": "015d87c2", "CONS": "d703ac09", "IMPL": "a0ca82e8", "ANAT": "754dce77", "GERI": "6497cf6f", "PHARM": "4d744c39", "ESTH": "cf1afd9c"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="cbf1f493",PV={"OMS1": "de8102a3", "CONS": "58dee3f0", "IMPL": "686e6da3", "ANAT": "75308df3", "GERI": "c8acff15", "PHARM": "c90ebc14", "ESTH": "5ab7e630"},PSZ={"OMS1": 4.0, "CONS": 3.3, "IMPL": 3.2, "ANAT": 4.4, "GERI": 4.5, "PHARM": 6.1, "ESTH": 3.7};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2191,7 +2191,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='7e108aaf';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='56398731';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -2781,7 +2781,7 @@ const HMD={bk:false,mk:false};let HEXED='';   /* 더보기 details 열림 · 시
 function hbmList(f){return SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>{const p=PACKS[id],B=lbmGet(id);return {p,ls:p.lect.filter(L=>!f||(f==='bm'?!!B[L.k]:lrdN(id,L.k)>0))};}).filter(x=>x.ls.length||!f);}
 function hbmN(){let n=0;SUBJECTS.forEach(([id])=>{if(PACKS[id])n+=PACKS[id].lect.filter(L=>lbmGet(id)[L.k]).length;});return n;}
 /* 10-05 사용자 '내 북마크에선 각 과목별로 모든 강의자료들이 보이고, 회독 표시 및 북마크 표시를 토글하면 해당 내역만 보이게끔' — 기본 = 과목별 모든 강의(과목 홈 카드 틀 그대로) · 위 토글 [모든 강의][★ 북마크 n][📖 회독 n](LS hbmf 새 키) · 과목 탭은 그대로(LS hbmtab) */
-function bmView(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==false&&VIEW!=='bm'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='bm';document.title='내 북마크 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
+function bmView(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==false&&VIEW!=='bm'&&VIEW!=='none';if(push)stampHist();tFlush();hubLeave();CUR={s:null,d:null,t:null};VIEW='bm';document.title='내 강의목록 — JBL 허브';RET=null;retPill();$('#subj').hidden=true;document.body.classList.add('at-home');navOpen(false);const h=$('#home');h.hidden=false;
  let f=opt.f!=null?opt.f:(LS.get('hbmf','')||'');if(!/^(|bm|rd)$/.test(f))f='';
  let sel=opt.s!=null?opt.s:(LS.get('hbmtab','')||'');const L=hbmList(f);if(sel&&!L.some(x=>x.p.id===sel))sel='';
  const n=L.reduce((a,x)=>a+x.ls.length,0),nb=hbmList('bm').reduce((a,x)=>a+x.ls.length,0),nr=hbmList('rd').reduce((a,x)=>a+x.ls.length,0),na=hbmList('').reduce((a,x)=>a+x.ls.length,0);
@@ -2789,7 +2789,7 @@ function bmView(opt){opt=opt||{};leaveView();kitAway();const push=opt.push!==fal
  const tabs=L.length>1?`<div class="cbmtabs hbmtabs noann" role="tablist" aria-label="과목별로 보기"><button type="button" class="tg${sel?'':' on'}" role="tab" aria-selected="${!sel}" data-hbt="">전체 <span class="qn">${n}</span></button>${L.map(x=>`<button type="button" class="tg${sel===x.p.id?' on':''}" role="tab" aria-selected="${sel===x.p.id}" data-hbt="${EH(x.p.id)}" title="${EH(sjName(x.p.id))}"><i class="cdot" style="--dc:${sjColor(x.p.id)}"></i>${EH(sjShort(x.p.id))} <span class="qn">${x.ls.length}</span></button>`).join('')}</div>`:'';
  const body=L.filter(x=>!sel||x.p.id===sel).map(x=>{const B=lbmGet(x.p.id),hot2=new Set((x.p.top||[]).map(t=>t.lk).filter(Boolean)),bn=x.p.lect.filter(Lc=>B[Lc.k]).length,rn=x.p.lect.filter(Lc=>lrdN(x.p.id,Lc.k)>0).length;return `<div class="hbmsub" data-hbs="${EH(x.p.id)}"><h3 class="hh hbmh"><i class="cdot" style="--dc:${sjColor(x.p.id)}"></i>${EH(sjName(x.p.id))} <small>강의 ${x.p.lect.length} · ★ ${bn} · 📖 ${rn}</small><button type="button" class="b3lk" data-hbhome="${EH(x.p.id)}">과목 홈 →</button></h3><div class="lgrid">${x.ls.map(Lc=>lcardHTML(x.p,Lc,B,hot2,1)).join('')}</div></div>`;}).join('');
  const empty=f==='bm'?'아직 북마크한 강의가 없어요 — 강의 카드 오른쪽 위 <b>☆</b>를 눌러 보세요.':f==='rd'?'아직 회독 표시한 강의가 없어요 — 강의를 다 봤으면 카드의 <b>회독 +</b>를 눌러 보세요.':'과목 자료를 불러오는 중이에요.';
- h.innerHTML=`<div class="hub hub4"><h2 class="vh">내 북마크</h2><section class="sh4" id="hlec"><h2 class="hh">★ 내 북마크 <small>과목별 모든 강의 · 카드 오른쪽 위 ☆ 북마크 · 그 아래 회독 +</small></h2>${fbar}${tabs}${n?body:'<div class="panel noann">'+empty+'</div>'}</section></div>`;
+ h.innerHTML=`<div class="hub hub4"><h2 class="vh">내 강의목록</h2><section class="sh4" id="hlec"><h2 class="hh">내 강의목록 <small>과목별 모든 강의 · 카드 오른쪽 위 ☆ 북마크 · 그 아래 회독 +</small></h2>${fbar}${tabs}${n?body:'<div class="panel noann">'+empty+'</div>'}</section></div>`;
  histSet({bm:1,sj:sel},'#/_bm'+(sel?'?s='+sel:''),push);measure();window.scrollTo(0,opt.y||0);try{navRender();}catch(e){}}
 document.addEventListener('click',e=>{if(VIEW!=='bm')return;const t=e.target.closest&&e.target.closest('[data-hbt],[data-hbf],[data-hbhome],.lcard[data-hbs]');if(!t)return;e.preventDefault();
  if(t.hasAttribute('data-hbf')){LS.set('hbmf',t.dataset.hbf);bmView({push:false,f:t.dataset.hbf,s:LS.get('hbmtab','')||''});return;}
@@ -3993,7 +3993,7 @@ $('#gsearch').addEventListener('keydown',e=>{if(e.key!=='Escape')return;e.preven
 function dumpAll(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.indexOf(NS)===0&&k.indexOf(NS+'autobak')!==0)o[k]=localStorage.getItem(k);}
  if(LSQ.size){LSQ.forEach((v,k)=>{o[NS+k]=v;});try{const ks=Kit.sub();if(ks)o[NS+'ann.'+ks]=JSON.stringify(Kit.all());if(CUR.s)o[NS+'mk.'+CUR.s]=JSON.stringify(MK);}catch(e){}}   /* C01: 저장하지 못한 값(메모리의 ANN·MK)까지 */
  return o;}
-function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
+function dl(name,obj){const b=new Blob([JSON.stringify(obj)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.rel='noopener';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1500);setTimeout(()=>URL.revokeObjectURL(a.href),60000);}   /* 10-10 사용자 '백업 버튼이 안먹히는' — 사파리·아이패드는 내려받기를 늦게 시작해 0.8초 만에 주소를 지우면 파일이 안 받아짐 → 60초 뒤에 지움 */
 document.addEventListener('click',e=>{if(e.target.closest('#bkup')){navOpen(false);bkPop();$('#bkpop').classList.toggle('nvpop',innerWidth>860);}});   /* C10 [백업] = 기기 옮기기 창 · ux3 G2 메뉴 바닥 💾(다시 그려지므로 위임) */
 /* 합치기 v3(C05) — 키마다 따로(try): 깨진 값·형식이 다른 값은 건너뛰고 이유를 모음 → {n: 합친 것, skip: [[키, 이유]]} · mergeInto(옛 호출)는 n만
    기기 키(devId·devName·timeDev·devMerged)·백업 관리 키(autobak*·lastBackup·bakWarnDay)는 합치지 않음 · 메모: 백업 메모가 지금 메모를 품으면 백업 것으로 */
@@ -4176,8 +4176,10 @@ function bkPop(){const p=$('#bkpop');if(p.classList.contains('on')){p.classList.
  p.innerHTML=`<div class="bt">💾 백업 · 기기 옮기기</div><label class="devn small">이 기기 이름 <input id="devname" value="${EH(me.name)}" maxlength="20" aria-label="이 기기 이름"></label><div class="small" id="bkst">${bkStatus()}</div>
  <div class="row"><button class="btn pri" id="bksend">⬆ 보내기</button><button class="btn" id="bkrecv">⬇ 받기(합치기)</button><button class="btn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기, 저장 공간">↺ 복원·되돌리기</button></div><div class="small">보내기 = 표시·채점·메모·공부 시간을 파일 하나로 — 아이패드는 공유 시트(AirDrop·iCloud·메모)로, 맥은 내려받기 · 받기 = 다른 기기의 파일을 골라 합침(지금 기록은 그대로, 공부 시간은 기기별로 더함)</div><div id="bkgotrow"></div><button class="btn" id="bkclose" style="margin-top:8px">닫기</button>`;
  p.classList.add('on');$('#devname').onchange=e=>{const v=e.target.value.trim().slice(0,20);if(v){LS.set('devName',v);toast('이 기기 이름: '+v);const s=$('#bkst');if(s)s.innerHTML=bkStatus();}};$('#devname').onkeydown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();e.target.blur();p.classList.remove('on');const b=$('#bkup');if(b&&b.offsetParent)b.focus({preventScroll:true});}else if(e.key==='Enter'){e.preventDefault();e.target.blur();}};   /* ux4f 새 오류: Esc = 저장하고 창 닫기 · 이름을 바꾸면 상태 줄도 바로 */$('#bksend').onclick=bkSend;$('#bkrecv').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#bkclose').onclick=()=>p.classList.remove('on');}
-async function bkSend(){try{tFlush();}catch(e){}const j=bakFile(),name='JBL허브_'+(j.dev.name||'기기').replace(/\s+/g,'')+'_'+day()+'.json';let file=null;try{file=new File([JSON.stringify(j)],name,{type:'application/json'});}catch(e){}
- if(file&&navigator.canShare&&navigator.share){let can=false;try{can=navigator.canShare({files:[file]});}catch(e){}if(can){try{await navigator.share({files:[file],title:'JBL 백업'});LS.set('lastBackup',Date.now());toast('보냈어요 — 다른 기기에서 [백업] → [⬇ 받기]로 합치세요',{level:'result'});bkRefresh();}catch(e){toast('보내기를 취소했어요');}return;}}
+async function bkSend(){try{tFlush();}catch(e){}const j=bakFile(),name='JBL허브_'+(j.dev.name||'기기').replace(/\s+/g,'')+'_'+day()+'.json';let file=null;
+ const touch=/iPad|iPhone|iPod|Android/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);   /* 공유 시트는 아이패드·폰만 — 맥·PC는 바로 내려받기(맥 사파리도 공유 시트가 떠 '안 받아진다'로 보였음) */
+ if(touch){try{file=new File([JSON.stringify(j)],name,{type:'application/json'});}catch(e){}}
+ if(file&&navigator.canShare&&navigator.share){let can=false;try{can=navigator.canShare({files:[file]});}catch(e){}if(can){try{await navigator.share({files:[file],title:'JBL 백업'});LS.set('lastBackup',Date.now());toast('보냈어요 — 다른 기기에서 [백업] → [⬇ 받기]로 합치세요',{level:'result'});bkRefresh();return;}catch(e){if(e&&e.name==='AbortError'){toast('보내기를 취소했어요');return;}}}}   /* 공유가 막히면(권한·시간 초과) 내려받기로 */
  dl(name,j);const r=$('#bkgotrow');const ask=`<div class="bkgot small">파일을 받았나요? <button class="btn sm pri" data-bkgot="1">받았어요 ✓</button></div>`;if(r&&$('#bkpop').classList.contains('on'))r.innerHTML=ask;else toast('백업 파일을 내려받았어요 — 받았으면 [받았어요]',{level:'result',ms:9000,action:{label:'받았어요',fn:bkGot}});}
 function bkGot(){LS.set('lastBackup',Date.now());const r=$('#bkgotrow');if(r)r.innerHTML='';toast('마지막 백업을 오늘로 적었어요',{level:'result'});bkRefresh();}
 function bkRefresh(){if(VIEW==='home'){const y=scrollY;home({push:false,y});}const b=$('#bkband');if(b)b.remove();}
@@ -4814,7 +4816,7 @@ function navVals(){const V={};let wk=0;try{wk=tWeek(tMon(pDate(day())||new Date(
 function navHub(V){const E=EH,cur=on=>on?' aria-current="page"':'';
  let h=`<div class="nvsec">허브</div><button type="button" class="ni nvr1" data-nv="home"${cur(VIEW==='home')} title="허브 홈 — 이어서·오늘 할 일·과목 표">오늘</button>`
   +`<button type="button" class="ni nvr1" data-nv="cal"${cur(VIEW==='cal')} title="공부 달력 — 날짜별 공부 시간·기록 고치기·목표"><span class="el">공부 달력</span><span class="r" data-nb="wk">${E(V.wk)}</span></button>`
-  +`<button type="button" class="ni nvr1" data-nv="bm"${cur(VIEW==='bm')} title="북마크한 강의 모아보기 — 전체·과목별"><span class="el">내 북마크</span><span class="r" data-nb="bma">${E(V.bma)}</span></button>`
+  +`<button type="button" class="ni nvr1" data-nv="bm"${cur(VIEW==='bm')} title="내 강의목록 — 과목별 모든 강의 · 북마크·회독으로 거르기"><span class="el">내 강의목록</span><span class="r" data-nb="bma">${E(V.bma)}</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="num"${cur(VIEW==='num')} title="내 넘버링 — 문제·답안·넘버링 스토리를 Word처럼 한 문서로"><span class="el">내 넘버링</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="rev"${V.rv?'':' hidden'} title="오늘 복습할 기출(전 과목) — 가장 많은 과목부터"><span class="el">오늘 복습</span><span class="r" data-nb="rv">${E(V.rv)}</span></button>`
   +`<button type="button" class="ni nvr1" data-nv="marks" title="형광펜·빈칸 모아보기(최근 과목부터)"><span class="el">내 표시</span><span class="r" data-nb="mka">${E(V.mka)}</span></button><div class="nvsec">과목</div>`;
@@ -4880,7 +4882,7 @@ function crumbRender(){const c=$('#crumb');if(!c)return;const E=EH,sl='<span cla
   if(CUR.d==='_home')h+=sl+`<b class="ccur" aria-current="page">${sj}</b>`;
   else h+=sl+`<button type="button" class="cbs" data-cs="${CUR.s}" title="${E(p.title)} — 과목 홈">${sj}</button>`+sl+`<b class="ccur" aria-current="page" title="${E(L?L.title:DOCNM[CUR.d]||CUR.d)}">${E(L?sname(p,L.k):DOCNM[CUR.d]||CUR.d)}</b>`;}
  else if(VIEW==='search'&&navS()){const S=navS();h+=sl+`<button type="button" class="cbs" data-cs="${S}" title="${E(PACKS[S].title)} — 과목 홈"><i class="cdot" style="--dc:${sjColor(S)}"></i>${E(sjShort(S))}</button>`+sl+`<b class="ccur" aria-current="page">검색</b>`;}
- else h+=sl+`<b class="ccur" aria-current="page">${VIEW==='cal'?(CAL.tab==='stats'?'공부 통계':'공부 달력'):VIEW==='search'?'검색':VIEW==='bm'?'내 북마크':VIEW==='num'?'내 넘버링':'오늘'}</b>`;
+ else h+=sl+`<b class="ccur" aria-current="page">${VIEW==='cal'?(CAL.tab==='stats'?'공부 통계':'공부 달력'):VIEW==='search'?'검색':VIEW==='bm'?'내 강의목록':VIEW==='num'?'내 넘버링':'오늘'}</b>`;
  if(c.innerHTML!==h)c.innerHTML=h;
  const g=$('#gsearch'),S=VIEW==='doc'&&CUR.s&&PACKS[CUR.s]?CUR.s:VIEW==='search'&&SQ.s?SQ.s:'',ph=S?'과목 검색':'전체 검색',al=(S?sjName(S)+'에서 검색':ph)+' (/)';if(g&&(g.placeholder!==ph||g.getAttribute('aria-label')!==al)){g.placeholder=ph;g.setAttribute('aria-label',al);g.title=al;}}   /* ux4e 좁은 검색 칸에서 과목 이름이 잘리지 않게 — 칸 글자는 '과목 검색'(아이패드 세로 110px 칸에도 다 보임), 과목 정식 이름은 aria-label·title */
 $('#crumb').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(!b)return;if(b.id==='gohome'){navOpen(false);home();return;}if(b.dataset.cs&&PACKS[b.dataset.cs])openDoc(b.dataset.cs,'_home');});

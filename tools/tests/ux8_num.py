@@ -121,7 +121,7 @@ async def main():
         await pg.keyboard.type('스토리 첫 줄'); await pg.keyboard.down('Shift'); await pg.keyboard.press('Home'); await pg.keyboard.up('Shift')
         await pg.click('.nm-tb [data-cmd=bold]'); await pg.click('.nm-tb [data-cmd=underline]')
         await pg.click('.nm-tb [data-pal=fc]'); await pg.click('.nm-pal [data-fc="#C00000"]')
-        await pg.click('.nm-tb [data-pal=hl]'); await pg.click('.nm-pal [data-hl="#FFFF00"]')
+        await pg.click('.nm-tb [data-pal=more]'); await pg.click('.nm-pal [data-hl="#FFFF00"]')
         await pg.keyboard.press('End'); await pg.keyboard.press('Enter'); await pg.keyboard.type('둘째 줄 표 아래')
         await pg.click('.nm-tb [data-pal=more]'); await pg.click('.nm-pal [data-tb=ins2]'); await pg.keyboard.type('칸1')
         await pg.click('.nm-tb [data-pal=more]')

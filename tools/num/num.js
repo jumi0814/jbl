@@ -119,7 +119,7 @@ const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) 
 
 /* ---------- 저장 ---------- */
 const keyI = (sj, id) => 'num.i.' + sj + '.' + id;
-function cfg() { if (!S.cfg) { const c = H.LS.get('num.cfg', null) || {}; S.cfg = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '' }; } return S.cfg; }
+function cfg() { if (!S.cfg) { const c = H.LS.get('num.cfg', null) || {}; S.cfg = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc }; } return S.cfg; }
 function cfgSave() { H.LS.set('num.cfg', S.cfg); }
 function idx(sj) { const x = H.LS.get('num.x.' + sj, null); return x && typeof x === 'object' ? x : { v: 1, ul: [], lt: {} }; }
 function idxPut(sj, x) { x.u = now(); H.LS.set('num.x.' + sj, x); }
@@ -230,6 +230,9 @@ const ICO = {
   view: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.8 10s2.6-5 7.2-5 7.2 5 7.2 5-2.6 5-7.2 5-7.2-5-7.2-5z"/><circle cx="10" cy="10" r="2.2"/></svg>',
   aiout: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 12.5V3.5M6.6 6.9 10 3.5l3.4 3.4M4 11.5v4.8h12v-4.8"/></svg>',
   aiin: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 4h13v9h-5.6L7.6 16v-3H3.5z"/><path d="M10 6.2v4.3m-1.9-1.9L10 10.5l1.9-1.9"/></svg>',
+  shuf: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3.2c1.6 0 2.6.7 3.5 2l1.6 2.6c.9 1.4 1.9 2.1 3.5 2.1H17M3 13.7h3.2c1.2 0 2-.4 2.7-1.1M17 6h-2.2c-1.2 0-2 .4-2.7 1.1M14.8 4 17 6l-2.2 2M14.8 11.7l2.2 2-2.2 2"/></svg>',
+  list: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 5.5h9M7.5 10h9M7.5 14.5h9"/><circle cx="4" cy="5.5" r=".9"/><circle cx="4" cy="10" r=".9"/><circle cx="4" cy="14.5" r=".9"/></svg>',
+  up: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4.5M5 9.5l5-5 5 5"/></svg>',
   print: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 7.5V3.5h8v4M6 14H4.2a.7.7 0 0 1-.7-.7V8.2a.7.7 0 0 1 .7-.7h11.6a.7.7 0 0 1 .7.7v5.1a.7.7 0 0 1-.7.7H14"/><path d="M6 11.5h8v5H6z"/></svg>',
 };
 const STYLE = `
@@ -248,7 +251,17 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-si small{color:var(--sub);font-size:12px;font-variant-numeric:tabular-nums;flex:none}
 #numv .nm-si.pri{color:var(--acc,#0F5C5A);font-weight:700}
 #numv .nm-si.on{font-weight:700}
-#numv .nm-sh .nm-si{flex:1 1 auto;width:auto;color:var(--sub)}
+#numv .nm-sh .nm-home{flex:none;width:34px;padding:0;justify-content:center;color:var(--sub)}
+#numv .nm-ttl{flex:1 1 auto;font-size:15.5px;letter-spacing:-.01em;padding-left:4px;white-space:nowrap}
+#numv .nm-rail{display:none}
+#numv .nm-rsj .ab{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:24px;border:1.5px solid;border-radius:6px;font-size:11.5px;font-weight:700;padding:0 3px}
+#numv button.nm-ssec{border:0;background:none;font-family:inherit;text-align:left;cursor:pointer;padding:4px 0;width:calc(100% - 20px);border-radius:4px}
+#numv button.nm-ssec .cv{margin-left:auto;font-size:11px;transition:transform .15s}#numv button.nm-ssec[aria-expanded=false] .cv{transform:rotate(-90deg)}
+#numv button.nm-ssec:hover{color:var(--ink)}
+#numv .nm-sf2{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11.5px;color:var(--faint,#8C857A)}#numv .nm-sf2 span{flex:1 1 auto;min-width:0}
+#numv .nm-bk{flex:none;border:1px solid var(--line);background:var(--surface,#fff);color:var(--ink);border-radius:6px;font-family:inherit;font-size:12px;padding:0 9px;min-height:28px;cursor:pointer}#numv .nm-bk:hover{background:var(--tint,#F2EEE6)}
+#numv .nm-top{position:fixed;right:20px;bottom:22px;z-index:24;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 3px 12px rgba(0,0,0,.14);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}#numv .nm-top[hidden]{display:none}#numv .nm-top:hover{background:#fff}
+#numv .nm-shf button{display:inline-flex;align-items:center;gap:4px}#numv .nm-shf svg{width:15px;height:15px}
 #numv .nm-fold{flex:none;width:32px;height:32px;border:1px solid var(--line);border-radius:6px;background:var(--surface,#fff);color:var(--ink);font-size:14px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
 #numv .nm-fold::before{content:'«'}#numv.sidec .nm-fold::before{content:'»'}
 #numv .nm-sttl{padding:6px 10px 10px;margin:0 0 6px;border-bottom:1px solid var(--line)}
@@ -257,7 +270,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-ssec{font-size:12px;color:#6F685D;font-weight:600;letter-spacing:.04em;margin:14px 10px 4px;display:flex;align-items:baseline;gap:6px;flex:none}
 #numv .nm-ssec small{font-weight:400;letter-spacing:0;color:var(--faint,#8C857A)}
 #numv .nm-si .d{width:8px;height:8px;border-radius:50%;flex:none}
-#numv .nm-sjd{flex:none}#numv .nm-sjd>summary{list-style:none;background:var(--surface,#fff);box-shadow:inset 0 0 0 1px var(--line)}#numv .nm-sjd>summary::-webkit-details-marker{display:none}
+#numv .nm-sjd{flex:none;margin:2px 0 4px}#numv .nm-sjd>summary{list-style:none;background:var(--surface,#fff);box-shadow:inset 0 0 0 1px var(--line)}#numv .nm-sjd>summary::-webkit-details-marker{display:none}
 #numv .nm-sjd .cv{margin-left:auto;color:var(--sub);font-size:11px;transition:transform .15s}#numv .nm-sjd[open] .cv{transform:rotate(180deg)}
 #numv .nm-sjl{padding:4px 0 2px}
 #numv .nm-sjl .nm-si.on{background:var(--tint,#F2EEE6)}
@@ -273,7 +286,8 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sbg{display:none}
 @media (min-width:861px){
  #numv.sidec .nm-side{padding:10px 8px 0;align-items:center}
- #numv.sidec .nm-side .l,#numv.sidec .nm-side small,#numv.sidec .nm-sttl,#numv.sidec .nm-ssec,#numv.sidec .nm-sjd,#numv.sidec .nm-ljl,#numv.sidec .nm-sfoot{display:none}
+ #numv.sidec .nm-side .l,#numv.sidec .nm-side small,#numv.sidec .nm-ttl,#numv.sidec .nm-ssec,#numv.sidec .nm-sjd,#numv.sidec .nm-ljl,#numv.sidec .nm-sfoot{display:none}
+ #numv.sidec .nm-rail{display:flex}
  #numv.sidec .nm-sh{flex-direction:column-reverse;gap:6px;margin-bottom:8px}
  #numv.sidec .nm-si{width:40px;min-height:40px;padding:0;justify-content:center}
  #numv.sidec .nm-fold{width:40px;height:34px}
@@ -281,8 +295,9 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-main{grid-column:2;grid-row:1;min-width:0;width:100%;max-width:1360px;justify-self:center;padding:0 28px 120px;container:nmm/inline-size}
 #numv .nm-stick{position:sticky;top:var(--toph,52px);z-index:18;background:var(--bg,#F7F5F0);margin:0 -28px;padding:10px 28px 8px}
 #numv .nm-bar{display:flex;align-items:center;gap:8px;min-height:36px}
-#numv .nm-ctx{display:none;align-items:center;gap:6px;flex:0 1 auto;max-width:32%;min-width:0;height:36px;border:1px solid var(--line);background:var(--surface,#fff);border-radius:8px;padding:0 10px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
-#numv .nm-ctx b{white-space:nowrap;flex:none}#numv .nm-ctx span{color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#numv .nm-ctx{display:none;align-items:stretch;flex:0 1 auto;max-width:34%;min-width:0;height:36px;border:1px solid var(--line);background:var(--surface,#fff);border-radius:8px;overflow:hidden}
+#numv .nm-ctx button{border:0;background:none;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;padding:0 9px;min-width:0;display:flex;align-items:center}#numv .nm-ctx button:hover{background:var(--tint,#F2EEE6)}
+#numv .nm-ctx b{white-space:nowrap}#numv .nm-ctx button+button{padding-left:2px;flex:0 1 auto}#numv .nm-ctx span{color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 #numv.sidec .nm-ctx{display:inline-flex}
 #numv .nm-sch{flex:1 1 220px;min-width:110px;display:flex;align-items:center;gap:7px;height:36px;border:1px solid var(--line);border-radius:8px;background:var(--surface,#fff);padding:0 10px;color:var(--sub)}
 #numv .nm-sch:focus-within{border-color:var(--acc,#0F5C5A);box-shadow:0 0 0 2px rgba(15,92,90,.12)}
@@ -372,18 +387,20 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 @media (prefers-reduced-motion:reduce){#numv .nm-c,#numv .nm-edb{transition:none}}
 #numv .nm-note{font-size:12px;color:#8C857A;margin:6px 0 0 var(--nmind);white-space:pre-wrap;overflow-wrap:anywhere}
 #numv [contenteditable=true]{background:#FFFDF6;outline:1.5px solid #E8C766;outline-offset:3px;border-radius:3px;cursor:text}
-#numv .nm-tb{position:fixed;left:0;top:0;z-index:58;display:flex;align-items:center;gap:1px;background:#2F2A24;color:#fff;border-radius:8px;padding:2px;height:32px;box-shadow:0 4px 14px rgba(0,0,0,.22);visibility:hidden;will-change:transform}
-#numv .nm-tb button{border:0;background:transparent;color:#fff;border-radius:6px;min-width:28px;height:28px;padding:0 6px;font-family:inherit;font-size:13px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-#numv .nm-tb button:hover,#numv .nm-tb button:focus-visible,#numv .nm-tb button.on{background:rgba(255,255,255,.16)}
-#numv .nm-tb i.sep{width:1px;height:16px;background:rgba(255,255,255,.22);margin:0 2px}
-#numv .nm-tb .done{background:#E8C766;color:#2F2A24;font-weight:700;margin-left:2px;padding:0 8px}
-#numv .nm-tb .done:hover{background:#F0D27F}
+#numv .nm-tb{position:fixed;left:0;top:0;z-index:58;display:flex;align-items:center;gap:1px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:saturate(1.5) blur(10px);backdrop-filter:saturate(1.5) blur(10px);color:#2F2A24;border:1px solid rgba(31,29,26,.12);border-radius:8px;padding:2px;height:30px;box-shadow:0 3px 12px rgba(31,29,26,.12),0 1px 2px rgba(31,29,26,.06);visibility:hidden;will-change:transform}
+#numv .nm-tb button{border:0;background:transparent;color:#3A342D;border-radius:5px;min-width:26px;height:24px;padding:0 6px;font-family:inherit;font-size:13px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+#numv .nm-tb button:hover,#numv .nm-tb button:focus-visible,#numv .nm-tb button.on{background:rgba(31,29,26,.08)}
+#numv .nm-tb .fcA{border-bottom:2.5px solid #E5484D;line-height:1.05;font-weight:700}
+#numv .nm-tb i.sep{width:1px;height:14px;background:rgba(31,29,26,.14);margin:0 2px}
+#numv .nm-tb .done{color:#0F5C5A;font-weight:800;font-size:14px}
+#numv .nm-tb .done:hover{background:rgba(15,92,90,.1)}
 #numv .nm-pal{position:fixed;z-index:59;background:#fff;color:#1F1D1A;border:1px solid #D8D0C2;border-radius:8px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;width:176px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
 #numv .nm-pal button{width:26px;height:26px;border-radius:6px;border:1px solid #D8D0C2;cursor:pointer}
 #numv .nm-pal .wide{width:100%;height:30px;text-align:left;padding:0 9px;font-family:inherit;font-size:13px;background:#fff;border:0;border-radius:6px;color:#1F1D1A}
 #numv .nm-pal .wide:hover,#numv .nm-pal .wide:focus-visible{background:#F2EEE6}
 #numv .nm-pal hr{width:100%;border:0;border-top:1px solid #EEE9E0;margin:2px 0}
-#numv .nm-pal.more{width:196px;gap:0;padding:4px}
+#numv .nm-pal.more{width:208px;gap:0;padding:4px}
+#numv .nm-pal .hlr{display:flex;align-items:center;gap:4px;padding:4px 6px 5px;width:100%}#numv .nm-pal .hlr span{font-size:12.5px;color:#6A6257;margin-right:auto}#numv .nm-pal .hlr button{width:20px;height:20px;border-radius:5px}#numv .nm-pal .hlr .x{background:#fff;font-size:10px;color:#6A6257;line-height:1}
 #numv .nm-pal.more small{color:#8C857A;font-size:11.5px;margin-left:4px}
 #numv .nm-menu{position:absolute;z-index:40;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:4px;min-width:220px;max-width:min(320px,92vw);max-height:70vh;overflow:auto;box-shadow:0 8px 28px rgba(0,0,0,.18)}
 #numv .nm-menu button{display:block;width:100%;text-align:left;border:0;background:none;color:inherit;padding:8px 10px;border-radius:7px;font-family:inherit;font-size:14px;cursor:pointer;min-height:36px}
@@ -422,6 +439,9 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-irow .m{display:flex;flex-wrap:wrap;gap:4px;margin:3px 0 0;font-size:12px}
 #numv .nm-irow.dup{background:#F6F4EF}#numv .nm-irow.dup .t{color:#6A6257}
 #numv .nm-irow .add{font-size:12.5px;padding:3px 9px;min-height:30px}
+#numv .nm-irow .t[data-iview]{cursor:pointer}#numv .nm-irow .t[data-iview]:hover{color:var(--acc,#0F5C5A)}#numv .nm-irow.open .t{-webkit-line-clamp:unset;display:block}
+#numv .nm-ivb{border:1px solid #C9D9E8;background:#F0F5FA;color:#24466B;border-radius:999px;font-family:inherit;font-size:12px;font-weight:600;line-height:19px;padding:0 8px;cursor:pointer}
+#numv .nm-ians{margin:0 10px 8px 46px;padding:6px 10px 8px;border:1px solid #E4DFD5;border-radius:6px;background:#FCFBF8;font-size:13.5px}#numv .nm-ians>b{display:block;font-size:11px;color:#8C857A;margin:0 0 2px}#numv .nm-ians .nm-c{font-size:13.5px;line-height:1.55}
 #numv .nm-fld{display:grid;gap:4px}#numv .nm-fld>span{font-size:12.5px;font-weight:700;color:var(--sub)}
 #numv .nm-rich{border:1px solid #D8D0C2;border-radius:6px;background:#fff;color:#1F1D1A;padding:6px 8px;min-height:3.2em;font-size:14.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 #numv .nm-rich[contenteditable=true]{outline:0}#numv .nm-rich:focus{border-color:#E8C766;box-shadow:0 0 0 2px rgba(232,199,102,.35)}
@@ -489,8 +509,9 @@ body.v-num #home{max-width:none;margin:0;padding:0}
  #numv .nm-tbtn span{display:none}#numv .nm-tbtn{padding:0 9px}
  #numv .nm-save{position:absolute;right:12px;top:100%;min-width:0;font-size:11px;pointer-events:none;background:var(--bg,#F7F5F0);padding:0 4px;border-radius:4px}
  #numv .nm-save:not(.ok):not(.ing):not(.bad){display:none}
+ #numv .nm-top{right:14px;bottom:16px}
  #numv .nm-doc{border-radius:0;border-left:0;border-right:0;margin:0 -12px}
- #numv .nm-irow{grid-template-columns:24px minmax(0,1fr)}#numv .nm-irow .add{grid-column:2;justify-self:start}
+ #numv .nm-irow{grid-template-columns:24px minmax(0,1fr)}#numv .nm-irow .add{grid-column:2;justify-self:start}#numv .nm-ians{margin-left:10px}
  #numv .nm-dlg{border-radius:10px}
  #numv .nm-cmp{grid-template-columns:1fr;margin-left:10px}#numv .nm-cmp section+section{border-left:0;border-top:1px solid #E4DFD5}
  #numv .nm-airow{grid-template-columns:24px minmax(0,1fr) auto}
@@ -523,9 +544,8 @@ function profOf(it) {   /* 교수 태그 — JB 출처의 교수(여럿이면 �
   if (!P.length) { const l = lecOf(it.lec); if (l && l.prof) P.push(l.prof); }
   return P.join('·');
 }
-function noteTxt(n) { let s = String(n || '').trim(), p; do { p = s; s = s.replace(/^참고\s*[:：]\s*/, ''); } while (s !== p); return /^참고\s*[:：]?$/.test(s) ? '' : s; }   /* '참고: 참고: …' → '참고: …' 한 번 · 빈 '참고'는 안 보임 */
 function itemHTML(it, no, hid) {
-  const st = stOf(it), rv = it.rv && it.rv.length && !it.rvok, pf = profOf(it), note = noteTxt(it.note);
+  const st = stOf(it), rv = it.rv && it.rv.length && !it.rvok, pf = profOf(it);
   const edq = it.kind === 'seed' ? it.q !== it.base.q : it.q0 != null, eda = it.kind === 'seed' ? it.a !== it.base.a : it.a0 != null;
   return `<article class="nm-it${st === 2 ? ' ok' : ''}" data-id="${esc(it.id)}" data-st="${st}"${hid ? ' hidden' : ''}><header class="nm-h"><label class="nm-ck"><input type="checkbox" data-ck="1"${S.sel.has(it.id) ? ' checked' : ''} aria-label="선택"></label><span class="nm-no"${st === 2 ? ' title="완성"' : ''}>${no}.</span>`
     + `<div class="nm-q"><div class="nm-c" data-f="q">${qDisp(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정(작업본만 — 원본은 그대로 · 원래 번호·연도 괄호까지 원문 전체가 보여요)">수정</button></div>`
@@ -533,7 +553,7 @@ function itemHTML(it, no, hid) {
     + `<button type="button" class="nm-more" data-act="more" aria-haspopup="true" title="이 문제 메뉴 — 완성·수정·출처·순서·강의 옮기기·복사·되돌리기·빼기" aria-label="이 문제 메뉴">⋯</button></header>`
     + `<div class="nm-body"><section class="nm-col nm-a"><div class="nm-lab">답안 <button type="button" class="nm-edb" data-act="edit" data-f="a" title="답안 수정(작업본만 — 원본은 그대로)">수정</button></div><div class="nm-c" data-f="a">${disp(it.a) || '<span class="nm-ph">답안 없음 — 수정을 눌러 쓰기</span>'}</div></section>`
     + `<section class="nm-col nm-s"><div class="nm-lab">넘버링 스토리</div><div class="nm-c" data-f="st" tabindex="0" role="textbox" aria-label="넘버링 스토리 — 누르면 바로 편집">${disp(it.st) || '<span class="nm-ph">눌러서 스토리 쓰기</span>'}</div></section></div>`
-    + (note ? `<div class="nm-note">참고: ${esc(note)}</div>` : '') + `</article>`;
+    + `</article>`;   /* 10-10 사용자 '각 문제마다 아래 참고: 출처 … 아예 없애줘' — 참고사항은 ⋯ '출처·연도·태그·참고'에서만 */
 }
 function visible(it) {
   const f = S.cfg.f;
@@ -551,7 +571,12 @@ function cmp() {
   const by = { lec: (a, b) => L(a) - L(b) || a.o - b.o, own: (a, b) => a.o - b.o, yr: (a, b) => Y(b) - Y(a) || b.yrs.length - a.yrs.length || L(a) - L(b) || a.o - b.o, freq: (a, b) => b.yrs.length - a.yrs.length || Y(b) - Y(a) || L(a) - L(b) || a.o - b.o, upd: (a, b) => (b.u || 0) - (a.u || 0) || a.o - b.o, st: (a, b) => stOf(a) - stOf(b) || L(a) - L(b) || a.o - b.o };
   return by[s] || by.lec;
 }
-function ordered() { const live = S.items.filter(it => !it.del); return live.sort(cmp()); }
+function ordered() {   /* 전체 목록 + 섞기 = 화면에서만 무작위 순서(S.shuf: id → 자리) — 저장된 순서(o)·정렬 설정은 그대로 */
+  const live = S.items.filter(it => !it.del);
+  if (S.shuf && S.cfg.mode === 'all') { const M = S.shuf, r = it => M.has(it.id) ? M.get(it.id) : 1e9 + (it.o || 0); return live.sort((a, b) => r(a) - r(b)); }
+  return live.sort(cmp());
+}
+function shuffle() { const ids = S.items.filter(it => !it.del).map(it => it.id), u = new Uint32Array(ids.length); try { crypto.getRandomValues(u); } catch (e) { for (let i = 0; i < u.length; i++) u[i] = Math.random() * 4294967296 >>> 0; } for (let i = ids.length - 1; i > 0; i--) { const j = u[i] % (i + 1); [ids[i], ids[j]] = [ids[j], ids[i]]; } S.shuf = new Map(ids.map((id, i) => [id, i])); }
 function counts() { const c = [0, 0, 0], live = S.items.filter(it => !it.del); live.forEach(it => c[stOf(it)]++); return { n: live.length, c, rv: live.filter(it => it.rv && it.rv.length && !it.rvok).length }; }
 const lecKeys = () => new Set(S.lecs.filter(l => l.k).map(l => l.k));
 function lecCounts() { const K = lecKeys(), n = {}; for (const it of S.items) if (!it.del) { const lk = K.has(it.lec) ? it.lec : ''; n[lk] = (n[lk] || 0) + 1; } return n; }
@@ -569,13 +594,15 @@ function sideHTML() {
   const sjl = subs.map(s => { const n = s.id === S.sj ? k.n : (C[s.id] || 0); return `<button type="button" class="nm-si${s.id === S.sj ? ' on' : ''}" data-sj="${esc(s.id)}"${s.id === S.sj ? ' aria-current="true"' : ''}>${dot(s.id)}<span class="l">${esc(s.t)}</span>${n ? `<small>${n}</small>` : ''}</button>`; }).join('') + `<button type="button" class="nm-si" data-sj="__new">${ICO.plus}<span class="l">새 과목 만들기</span></button>`;
   const L = S.lecs.filter(l => ln[l.k]);
   const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.t + (l.prof ? ' · ' + l.prof : ''))} — 누르면 그 위치로"><span class="l">${esc(l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
-  return `<div class="nm-sh"><button type="button" class="nm-si" data-sact="home" title="JBL 홈으로 — 모든 과목">${ICO.home}<span class="l">JBL 홈</span></button><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>`
-    + `<div class="nm-sttl"><b>내 넘버링</b><span title="다음 업데이트에서 열려요" aria-disabled="true">넘버링 복습 · 추후 업데이트 예정</span></div>`
-    + `<button type="button" class="nm-si pri" data-act="new" title="새 문제 만들기">${ICO.plus}<span class="l">새 문제</span></button><button type="button" class="nm-si" data-act="imp" title="JB 기출·강의 예상문제에서 불러오기">${ICO.imp}<span class="l">기존 문제 불러오기</span></button><button type="button" class="nm-si" data-act="file" title="Word(.docx) 넘버링 파일에서 가져오기 — 미리 보고 고른 뒤 넣음">${ICO.file}<span class="l">Word 파일 가져오기</span></button>`
+  const sh = (subjects().find(s => s.id === S.sj) || {}).sh || cur.t, lc = !!S.cfg.ljc;
+  return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">내 넘버링</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>`
+    + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
+    + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>`
+    + `<button type="button" class="nm-ssec nm-ljh" data-act="ljt" aria-expanded="${!lc}" title="강의 목록 접기·펼치기">강의 바로 가기<small>누르면 그 위치로</small><span class="cv" aria-hidden="true">▾</span></button><div class="nm-ljl"${lc ? ' hidden' : ''}>${ljl}</div>`
+    + `<button type="button" class="nm-si nm-rail" data-act="ctx" title="강의 바로 가기" aria-label="강의 바로 가기">${ICO.list}</button>`
     + `<div class="nm-ssec">ChatGPT · 인쇄</div><button type="button" class="nm-si" data-act="aiout" title="ChatGPT에 넘버링 스토리를 맡길 문제를 파일(JSON)로 — 스토리 없는 문제만·고른 문제·강의·필터 결과">${ICO.aiout}<span class="l">ChatGPT로 내보내기</span></button><button type="button" class="nm-si" data-act="aiin" title="ChatGPT가 쓴 스토리 파일 넣기 — 바뀌는 것을 먼저 보고 고른 것만">${ICO.aiin}<span class="l">ChatGPT 결과 가져오기</span></button><button type="button" class="nm-si" data-act="print" title="인쇄 · PDF 저장(A4) — 범위·내용 고르기 (⌘/Ctrl P)">${ICO.print}<span class="l">인쇄 · PDF</span></button>`
-    + `<div class="nm-ssec">과목</div><details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
-    + `<div class="nm-ssec">강의 바로 가기<small>누르면 그 위치로</small></div><div class="nm-ljl">${ljl}</div>`
-    + `<div class="nm-sfoot" data-sfoot="1">${footHTML(k)}</div>`;
+    + `<div class="nm-ssec">문제</div><button type="button" class="nm-si pri" data-act="new" title="새 문제 만들기">${ICO.plus}<span class="l">새 문제</span></button><button type="button" class="nm-si" data-act="imp" title="JB 기출·강의 예상문제에서 불러오기">${ICO.imp}<span class="l">기존 문제 불러오기</span></button><button type="button" class="nm-si" data-act="file" title="Word(.docx) 넘버링 파일에서 가져오기 — 미리 보고 고른 뒤 넣음">${ICO.file}<span class="l">Word 파일 가져오기</span></button>`
+    + `<div class="nm-sfoot"><div data-sfoot="1">${footHTML(k)}</div><div class="nm-sf2"><span title="다음 업데이트에서 열려요" aria-disabled="true">넘버링 복습 · 추후 업데이트 예정</span><button type="button" class="nm-bk" data-bkpop="1" title="백업 · 기기 옮기기 — 넘버링도 백업 파일에 함께 들어가요">백업</button></div></div>`;
 }
 function footHTML(k) { const p = k.n ? Math.round(k.c[2] / k.n * 100) : 0; return `완성 <b>${k.c[2]}</b> / ${k.n}${k.n ? ` · ${p}%` : ''}<div class="nm-pg" aria-hidden="true"><i style="width:${p}%"></i></div>작성 중 ${k.c[1]} · 미작성 ${k.c[0]}`; }
 function sideRender() { const a = S.root && $('.nm-side', S.root); if (!a) return; const y = a.scrollTop; a.innerHTML = sideHTML(); a.scrollTop = y; }
@@ -583,10 +610,11 @@ function saveTxt() { const st = S.saveSt; return st === 'ok' ? '저장됨 ✓' :
 function barHTML() {
   const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null;
   return `<div class="nm-stick"><div class="nm-bar">`
-    + `<button type="button" class="nm-ctx" data-act="ctx" title="강의 바로 가기"><b>${esc(sub ? sub.sh : S.sj)}</b><span>${l ? '› ' + esc(l.t) : ''}</span></button>`
+    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.t) : '› 강의'}</span></button></span>`
     + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·답안·스토리 검색" value="${esc(S.q)}" aria-label="넘버링 검색"></label>`
     + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="필터·정렬 — 강의·제작 상태·유형·출처·연도·정렬">${ICO.filter}<span>필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
     + `<div class="nm-vopt${S.vo ? ' open' : ''}"><span class="nm-seg" role="group" aria-label="보기"><button type="button" data-mode="grp" class="${C.mode === 'grp' ? 'on' : ''}" aria-pressed="${C.mode === 'grp'}" title="강의마다 머리를 두고 보기">강의별</button><button type="button" data-mode="all" class="${C.mode === 'all' ? 'on' : ''}" aria-pressed="${C.mode === 'all'}" title="강의 머리 없이 한 줄로 이어 보기">전체 목록</button></span>`
+    + (C.mode === 'all' ? `<span class="nm-seg nm-shf" role="group" aria-label="무작위 순서"><button type="button" data-act="shuf" class="${S.shuf ? 'on' : ''}" aria-pressed="${!!S.shuf}" title="${S.shuf ? '한 번 더 무작위로 섞기' : '문제 순서를 무작위로 섞기(화면에서만 — 저장된 순서는 그대로)'}">${ICO.shuf}${S.shuf ? '다시 섞기' : '섞기'}</button>${S.shuf ? '<button type="button" data-act="unshuf" title="원래 정렬로">원래대로</button>' : ''}</span>` : '')
     + `<span class="nm-seg" role="group" aria-label="가리고 떠올리기 — 누르면 그 문제만 보임"><button type="button" data-hide="a" class="${C.hide.a ? 'on' : ''}" aria-pressed="${!!C.hide.a}" title="답안을 가려 두고 떠올린 뒤 눌러서 확인">답안 가리기</button><button type="button" data-hide="st" class="${C.hide.st ? 'on' : ''}" aria-pressed="${!!C.hide.st}" title="넘버링 스토리를 가려 두고 떠올린 뒤 눌러서 확인">스토리 가리기</button></span>`
     + `<button type="button" class="nm-sel${S.selMode ? ' on' : ''}" data-act="selm" aria-pressed="${S.selMode}" title="여러 문제를 골라 한 번에 — 완성 표시·강의 옮기기·합치기·빼기">${ICO.sel}${S.selMode ? '선택 끝' : '선택'}</button></div>`
     + `<button type="button" class="nm-tbtn nm-vbtn" data-act="vopt" aria-expanded="${!!S.vo}" aria-haspopup="true" title="보기 — 강의별/전체 목록 · 답안/스토리 가리기 · 여러 개 선택">${ICO.view}<span>보기</span></button>`
@@ -615,6 +643,7 @@ function infoHTML(vis, k) {
   if (f.type) ch.push(chip('type', '유형: ' + (f.type === 'ess' ? '서술형·넘버링형' : TYPES[f.type] || f.type)));
   if (f.src) ch.push(chip('src', '출처: ' + (KIND[f.src] || f.src)));
   if (f.yr) ch.push(chip('yr', f.yr === 'none' ? '연도 없음' : f.yr + '년 출제'));
+  if (S.shuf && C.mode === 'all') ch.push(`<button type="button" class="nm-fchip" data-act="unshuf" title="원래 정렬로"><span>순서: 무작위</span><i aria-hidden="true">✕</i></button>`);
   return `<span>${ch.length ? `보이는 문제 <b>${vis}</b> / ${k.n}` : `<b>${k.n}</b>문제`}</span>${ch.join('')}${ch.length > 1 ? '<button type="button" class="nm-clr" data-act="fclr">모두 해제</button>' : ''}${C.sort !== 'lec' ? `<span class="nm-srt">정렬: ${esc(SORTN[C.sort] || C.sort)}</span>` : ''}`;
 }
 function batchHTML() { const n = S.sel.size; return `<b>${n}개 선택</b><button type="button" class="nm-btn" data-bat="all">보이는 것 모두 선택</button><button type="button" class="nm-btn" data-bat="none">선택 해제</button><span class="nm-sp"></span><button type="button" class="nm-btn" data-bat="done"${n ? '' : ' disabled'}>완성 표시</button><button type="button" class="nm-btn" data-bat="undone"${n ? '' : ' disabled'}>완성 해제</button><button type="button" class="nm-btn" data-bat="move"${n ? '' : ' disabled'}>강의 옮기기</button><button type="button" class="nm-btn" data-bat="merge"${n > 1 ? '' : ' disabled'} title="같은 문제를 하나로 — 출처·연도를 합침(스토리는 하나만)">합치기</button><button type="button" class="nm-btn" data-bat="del"${n ? '' : ' disabled'}>목록에서 빼기</button><button type="button" class="nm-btn" data-act="aiout" data-sc="sel"${n ? '' : ' disabled'} title="고른 문제를 ChatGPT용 파일로">ChatGPT로 내보내기</button><button type="button" class="nm-btn" data-act="print" data-sc="sel"${n ? '' : ' disabled'}>인쇄</button>`; }
@@ -629,13 +658,13 @@ function refreshCounts(vis) {
 function vClass() { return (S.selMode ? 'selm ' : '') + (S.cfg.hide.a ? 'hideA ' : '') + (S.cfg.hide.st ? 'hideS ' : '') + (S.cfg.side === 'c' ? 'sidec ' : '') + (S.drawer ? 'sideo' : ''); }
 function frame() {   /* #numv 뼈대 — 사이드바·본문(대화창·메뉴는 #numv 바로 아래에 붙어 다시 그려도 남음) */
   let V = document.getElementById('numv');
-  if (!V || !S.root.contains(V) || !$('.nm-main', V)) { S.root.innerHTML = '<div id="numv"><aside class="nm-side" aria-label="내 넘버링 메뉴"></aside><div class="nm-sbg" data-sact="close"></div><div class="nm-main"></div></div>'; V = document.getElementById('numv'); }
+  if (!V || !S.root.contains(V) || !$('.nm-main', V)) { S.root.innerHTML = '<div id="numv"><aside class="nm-side" aria-label="내 넘버링 메뉴"></aside><div class="nm-sbg" data-sact="close"></div><div class="nm-main"></div><button type="button" class="nm-top" data-act="top" title="맨 위로" aria-label="맨 위로" hidden>' + ICO.up + '</button></div>'; V = document.getElementById('numv'); }
   V.className = vClass(); return V;
 }
 function emptyHTML() { return `<div class="nm-empty">아직 이 과목에 넘버링 문제가 없어요.<div class="row"><button type="button" class="nm-btn pri" data-act="imp">기존 문제 불러오기</button><button type="button" class="nm-btn" data-act="new">+ 새 문제</button><button type="button" class="nm-btn" data-act="file">Word 파일 가져오기</button></div><small>JB 기출·강의 예상문제를 골라 넣거나, 직접 만들거나, 내 Word(.docx)에서 가져올 수 있어요.</small></div>`; }
 
 function render(o) {
-  o = o || {}; const tok = ++S.tok, R = S.root; if (!R) return;
+  o = o || {}; const tok = ++S.tok, R = S.root; if (!R) return; if (S.shuf && S.cfg.mode !== 'all') S.shuf = null;
   endEdit(true);
   const L = ordered(), C = S.cfg, K = lecKeys();
   const chunks = [];   /* [html, ...] — 첫 묶음은 바로, 나머지는 쉬는 틈에 */
@@ -653,7 +682,12 @@ function render(o) {
   sideRender();
   const doc = $('[data-doc]', R);
   const rest = chunks.slice(1);
-  const done = () => { if (tok !== S.tok) return; applyFilter(); if (o.pos) restorePos(o.pos); else if (o.y != null) window.scrollTo(0, o.y); if (o.flash) flash(o.flash); spy(); };
+  const done = () => {
+    if (tok !== S.tok) return; applyFilter();
+    const back = o.pos ? restorePos(o.pos) : false; if (!back && o.y != null) window.scrollTo(0, o.y);
+    if (o.flash) flash(o.flash); S.posOK = true; spy(); topBtn();
+    if (o.resume && back && scrollY > 300) H.toast('마지막으로 보던 문제부터 이어서 보여 드려요', { level: 'result', id: 'nmresume', action: { label: '맨 위로', fn: () => window.scrollTo(0, 0) } });
+  };
   applyFilter(true);
   if (!rest.length) { done(); return; }
   let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); if (i < rest.length) setTimeout(step, 0); else done(); };
@@ -677,8 +711,24 @@ function rerenderItem(it) {
 function toph() { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--toph')) || 52; }
 function stuckBottom() { const s = S.root && $('.nm-stick', S.root); if (!s) return toph(); return Math.max(s.getBoundingClientRect().bottom, toph()); }
 function flash(id) { const a = S.root && $(`.nm-it[data-id="${CSS.escape(id)}"]`, S.root); if (!a) return; a.hidden = false; a.scrollIntoView({ block: 'center' }); a.classList.remove('flash'); void a.offsetWidth; a.classList.add('flash'); }
-function topItem() { const y = stuckBottom(), arts = $$('.nm-it:not([hidden])', S.root); for (const a of arts) { const r = a.getBoundingClientRect(); if (r.bottom > y + 4) return { id: a.dataset.id, off: Math.round(r.top) }; } return null; }
-function restorePos(p) { const a = S.root && $(`.nm-it[data-id="${CSS.escape(p.id)}"]`, S.root); if (!a) return; a.scrollIntoView({ block: 'start' }); window.scrollBy(0, -(p.off || 0) + 0); requestAnimationFrame(() => { const r = a.getBoundingClientRect(); if (Math.abs(r.top - (p.off || 0)) > 4) window.scrollBy(0, r.top - (p.off || 0)); }); }
+function topItem() { if (!S.root) return null; const y = stuckBottom(), arts = $$('.nm-it:not([hidden])', S.root); for (const a of arts) { const r = a.getBoundingClientRect(); if (r.bottom > y + 4) return { id: a.dataset.id, off: Math.round(r.top) }; } return null; }
+function restorePos(p) {   /* 그 문제 자리로 — 필터에 걸려 숨었으면 바로 뒤(없으면 앞)의 보이는 문제로 */
+  if (!p || !p.id || !S.root) return false;
+  let a = $(`.nm-it[data-id="${CSS.escape(p.id)}"]`, S.root); if (!a) return false;
+  if (a.hidden) { const vis = n => n && n.classList.contains('nm-it') && !n.hidden; let n = a.nextElementSibling; while (n && !vis(n)) n = n.nextElementSibling; if (!n) { n = a.previousElementSibling; while (n && !vis(n)) n = n.previousElementSibling; } if (!n) return false; a = n; }
+  const off = Math.max(p.off || 0, stuckBottom() + 4);
+  window.scrollTo(0, Math.max(0, a.getBoundingClientRect().top + scrollY - off)); requestAnimationFrame(() => { const r = a.getBoundingClientRect(); if (Math.abs(r.top - off) > 4) window.scrollBy(0, r.top - off); });
+  return true;
+}
+function posNow() {   /* 지금 화면 맨 위 문제(한 점만 짚어 봄 — 빠름) · 문서 맨 위면 null */
+  const R = S.root, doc = R && $('[data-doc]', R); if (!doc) return null; const y = stuckBottom() + 6, r = doc.getBoundingClientRect(); if (r.top > y - 2) return null;
+  const el = document.elementFromPoint(Math.max(r.left + 48, 0), y), a = el && el.closest && el.closest('.nm-it');
+  if (a && doc.contains(a) && !a.hidden) return { id: a.dataset.id, off: Math.round(a.getBoundingClientRect().top) };
+  return topItem();
+}
+function posSave() { if (S.root && S.sj && S.posOK && document.getElementById('numv')) H.LS.set('num.pos.' + S.sj, posNow()); }
+function keepPos(fn) { const p = posNow(); fn(); if (p) restorePos(p); }   /* 거르기를 바꿔도 보던 자리 근처 그대로 */
+function topBtn() { const b = document.querySelector('#numv .nm-top'); if (!b) return; const on = scrollY > 900; if (b.hidden === on) b.hidden = !on; }
 /* 강의 바로 가기(문서는 그대로 두고 그 강의 첫 자리로) — '강의만 보기'(필터)와 다름 */
 function jumpLec(k) {
   const R = S.root; if (!R) return; let el = null;
@@ -693,7 +743,7 @@ function setCur(k) {
   if (k === S.curLec) return; S.curLec = k; const R = S.root; if (!R) return;
   $$('.nm-lj.cur', R).forEach(b => b.classList.remove('cur'));
   const b = $(`.nm-lj[data-lj="${CSS.escape(k)}"]`, R); if (b) { b.classList.add('cur'); const sd = b.closest('.nm-side'); if (sd && sd.scrollHeight > sd.clientHeight) { const t = b.offsetTop, h = sd.clientHeight; if (t < sd.scrollTop + 40 || t > sd.scrollTop + h - 120) sd.scrollTop = Math.max(0, t - h / 2); } }
-  const c = $('.nm-ctx span', R); if (c) { const l = lecOf(k); c.textContent = l ? '› ' + l.t : ''; }
+  const c = $('.nm-ctx [data-act=ctx] span', R); if (c) { const l = lecOf(k); c.textContent = l ? '› ' + l.t : '› 강의'; }
 }
 function spy() {   /* 지금 화면 맨 위 문제의 강의 → 사이드바 '강의 바로 가기'에 표시(스크롤 중 0.12초마다 한 번 · 한 점만 짚어 봄) */
   spyT = 0; const R = S.root; if (!R || !document.getElementById('numv')) return;
@@ -727,10 +777,9 @@ const curEd = () => S.formEd || S.ed;
 function tbHTML(form) {
   return `<div class="nm-tb" role="toolbar" aria-label="서식">`
     + `<button type="button" data-cmd="bold" title="굵게 (⌘/Ctrl B)"><b>B</b></button><button type="button" data-cmd="underline" title="밑줄 (⌘/Ctrl U)"><u>U</u></button>`
-    + `<button type="button" data-pal="fc" title="글자색" aria-label="글자색"><span style="border-bottom:2.5px solid #F05252;line-height:1.05;font-weight:700">가</span></button><button type="button" data-pal="hl" title="형광펜" aria-label="형광펜"><span style="background:#FFF066;color:#1F1D1A;padding:1px 4px;border-radius:3px;font-size:12px;font-weight:600">형</span></button><i class="sep"></i>`
-    + `<button type="button" data-cmd="insertOrderedList" title="번호 목록">1.</button><button type="button" data-cmd="insertUnorderedList" title="글머리표">•</button>`
-    + `<button type="button" data-pal="more" title="더보기 — 기울임·서식 지우기·표·그림·실행 취소" aria-label="서식 더보기">⋯</button>`
-    + (form ? '' : `<button type="button" class="done" data-cmd="done" title="편집 끝 (Esc) — 자동 저장됨">완료</button>`) + `</div>`;
+    + `<button type="button" data-pal="fc" title="글자색" aria-label="글자색"><span class="fcA">가</span></button>`
+    + `<button type="button" data-pal="more" title="더보기 — 형광펜·번호·글머리표·기울임·표·그림·실행 취소" aria-label="서식 더보기">⋯</button>`
+    + (form ? '' : `<i class="sep"></i><button type="button" class="done" data-cmd="done" title="편집 끝 (Esc · 바깥 누르기) — 자동 저장됨" aria-label="편집 끝">✓</button>`) + `</div>`;
 }
 let tbRaf = 0;
 function tbKick() { if (!tbRaf) tbRaf = requestAnimationFrame(() => { tbRaf = 0; tbPlace(); palPlace(); }); }
@@ -758,7 +807,9 @@ function palOpen(btn, kind) {
   const p = document.createElement('div'); p.className = 'nm-pal' + (kind === 'more' ? ' more' : ''); p.dataset.k = kind; p.setAttribute('role', 'menu');
   if (kind === 'fc') p.innerHTML = COLORS.map(c => `<button type="button" data-fc="${c}" title="${c}" style="background:${c}"></button>`).join('') + `<button type="button" class="wide" data-fc="">기본색</button>`;
   else if (kind === 'hl') p.innerHTML = HILITE.map(c => `<button type="button" data-hl="${c}" title="${c}" style="background:${c}"></button>`).join('') + `<button type="button" class="wide" data-hl="">형광펜 지우기</button>`;
-  else p.innerHTML = [['cmd', 'italic', '<i>기울임</i><small>⌘/Ctrl I</small>'], ['cmd', 'removeFormat', '서식 지우기'], '-', ['tb', 'ins2', '표 넣기 2×2'], ['tb', 'ins3', '표 넣기 3×3'], ['tb', 'row', '표: 아래에 줄 더하기'], ['tb', 'col', '표: 오른쪽에 칸 더하기'], ['tb', 'drow', '표: 이 줄 빼기'], ['tb', 'dcol', '표: 이 칸 빼기'], ['tb', 'dtbl', '표 지우기'], '-', ['cmd', 'img', '그림 넣기'], '-', ['cmd', 'undo', '↶ 실행 취소<small>⌘/Ctrl Z</small>'], ['cmd', 'redo', '↷ 다시 실행']].map(x => x === '-' ? '<hr>' : `<button type="button" class="wide" data-${x[0]}="${x[1]}">${x[2]}</button>`).join('');
+  else { const inT = !!cellAt();   /* 표 안이면 줄·칸 고치기, 밖이면 표 넣기만 */
+    p.innerHTML = `<div class="hlr"><span>형광펜</span>${HILITE.map(c => `<button type="button" data-hl="${c}" title="형광펜" aria-label="형광펜 ${c}" style="background:${c}"></button>`).join('')}<button type="button" class="x" data-hl="" title="형광펜 지우기" aria-label="형광펜 지우기">✕</button></div><hr>`
+      + [['cmd', 'insertOrderedList', '1.  번호 목록'], ['cmd', 'insertUnorderedList', '•  글머리표'], ['cmd', 'italic', '<i>기울임</i><small>⌘/Ctrl I</small>'], ['cmd', 'removeFormat', '서식 지우기'], '-'].concat(inT ? [['tb', 'row', '표: 아래에 줄 더하기'], ['tb', 'col', '표: 오른쪽에 칸 더하기'], ['tb', 'drow', '표: 이 줄 빼기'], ['tb', 'dcol', '표: 이 칸 빼기'], ['tb', 'dtbl', '표 지우기']] : [['tb', 'ins2', '표 넣기 2×2'], ['tb', 'ins3', '표 넣기 3×3']], [['cmd', 'img', '그림 넣기'], '-', ['cmd', 'undo', '↶ 실행 취소<small>⌘/Ctrl Z</small>'], ['cmd', 'redo', '↷ 다시 실행']]).map(x => x === '-' ? '<hr>' : `<button type="button" class="wide" data-${x[0]}="${x[1]}">${x[2]}</button>`).join(''); }
   box.appendChild(p); S.palBtn = btn; palPlace();
   p.addEventListener('mousedown', e => e.preventDefault());
   p.addEventListener('click', e => {
@@ -891,6 +942,7 @@ function itemAct(k, it, btn) {
 function jumpOrig(s0) { if (!s0) return; leave(); if (s0.t === 'jb') H.openDoc(s0.s, '_jb', null, s0.id); else H.openDoc(s0.s, s0.lec || (H.PACKS[s0.s].lect[0] || {}).k, 'pred', s0.id); }
 function renumber() { /* o 값이 겹치거나 소수가 쌓이면 정수로 다시 매김(바뀐 문제만 저장) */ const L = S.items.slice().sort((a, b) => a.o - b.o); L.forEach((it, i) => { if (it.o !== i) { it.o = i; it.u = it.u || now(); put(it); } }); }
 function moveItem(it, d) {
+  if (S.shuf && S.cfg.mode === 'all') { H.toast('섞은 순서에서는 옮길 수 없어요 — [원래대로]로 섞기를 끈 뒤 옮겨 주세요'); return; }
   if (S.cfg.sort !== 'lec' && S.cfg.sort !== 'own') { S.cfg.sort = 'own'; cfgSave(); }
   const L = ordered().filter(x => visible(x) && (S.cfg.mode !== 'grp' || S.cfg.sort !== 'lec' || x.lec === it.lec)); const i = L.indexOf(it), j = i + d;
   if (i < 0 || j < 0 || j >= L.length) { H.toast(d < 0 ? '맨 위예요' : '맨 아래예요'); return; }
@@ -1063,7 +1115,7 @@ async function importDlg() {
   const draw = () => {
     list = filt();
     const box = ov.querySelector('[data-ilist]');
-    box.innerHTML = list.length ? list.map(x => { const d = dupOf(x, target); x.dup = d; return `<div class="nm-irow${d && (d.k === 'have' || d.k === 'same') ? ' dup' : ''}" data-ix="${esc(x.id)}"><input type="checkbox" data-ick="1"${st.chk.has(x.id) ? ' checked' : ''}${d && d.k === 'have' ? ' disabled' : ''} aria-label="고르기"><div><div class="t">${esc(plain(x.q))}</div><div class="m"><span class="nm-chip k-${x.t}">${x.t === 'jb' ? 'JB 기출' + (x.prof ? ' · ' + esc(x.prof) : '') : '예상문제'}</span>${x.yrs.length ? `<span class="nm-chip yr">${esc(yrsTxt(x.yrs))}</span>` : ''}<span class="nm-chip">${esc(TYPES[x.ty])}</span><span class="nm-chip">${esc(lecT(x.lec))}</span>${d ? `<span class="nm-chip ${d.k === 'sim' ? 'rv' : 's2'}" title="${esc(plain(d.it.q).slice(0, 200))}">${d.k === 'have' ? '이미 있음' : d.k === 'back' ? '뺀 문제 → 다시 넣기' : d.k === 'same' ? '같은 문제 있음 → 출처만 연결' : '비슷한 문제 있음(' + Math.round(d.d * 100) + '%)'}</span>` : ''}</div></div><button type="button" class="nm-btn add" data-iadd="1"${d && d.k === 'have' ? ' disabled' : ''}>${d && d.k === 'same' ? '출처 연결' : d && d.k === 'back' ? '다시 넣기' : '추가'}</button></div>`; }).join('') : '<div class="nm-empty">조건에 맞는 문제가 없어요.</div>';
+    box.innerHTML = list.length ? list.map(x => { const d = dupOf(x, target); x.dup = d; return `<div class="nm-irow${d && (d.k === 'have' || d.k === 'same') ? ' dup' : ''}" data-ix="${esc(x.id)}"><input type="checkbox" data-ick="1"${st.chk.has(x.id) ? ' checked' : ''}${d && d.k === 'have' ? ' disabled' : ''} aria-label="고르기"><div><div class="t" data-iview="1" title="누르면 답안 보기">${esc(plain(x.q))}</div><div class="m"><button type="button" class="nm-ivb" data-iview="1" aria-expanded="false">답안 보기</button><span class="nm-chip k-${x.t}">${x.t === 'jb' ? 'JB 기출' + (x.prof ? ' · ' + esc(x.prof) : '') : '예상문제'}</span>${x.yrs.length ? `<span class="nm-chip yr">${esc(yrsTxt(x.yrs))}</span>` : ''}<span class="nm-chip">${esc(TYPES[x.ty])}</span><span class="nm-chip">${esc(lecT(x.lec))}</span>${d ? `<span class="nm-chip ${d.k === 'sim' ? 'rv' : 's2'}" title="${esc(plain(d.it.q).slice(0, 200))}">${d.k === 'have' ? '이미 있음' : d.k === 'back' ? '뺀 문제 → 다시 넣기' : d.k === 'same' ? '같은 문제 있음 → 출처만 연결' : '비슷한 문제 있음(' + Math.round(d.d * 100) + '%)'}</span>` : ''}</div></div><button type="button" class="nm-btn add" data-iadd="1"${d && d.k === 'have' ? ' disabled' : ''}>${d && d.k === 'same' ? '출처 연결' : d && d.k === 'back' ? '다시 넣기' : '추가'}</button></div>`; }).join('') : '<div class="nm-empty">조건에 맞는 문제가 없어요.</div>';
     sum();
   };
   const sum = () => { const n = list.length, nh = list.filter(x => x.dup && x.dup.k === 'have').length; ov.querySelector('[data-if-sum]').innerHTML = `보이는 ${n}문제(이미 있음 ${nh}) · 고른 것 <b>${st.chk.size}</b>`; ov.querySelector('[data-if-info]').textContent = st.ty === 'ess' ? '서술형·넘버링형만 보는 중 — 판정은 문제 글(서술·설명·~가지 등)과 답 모양으로 해요. 빠진 문제가 있으면 유형을 \'전체 문제\'로 바꿔 직접 고르세요.' : ''; };
@@ -1076,7 +1128,9 @@ async function importDlg() {
   on('[data-if=ty]', 'change', e => { st.ty = e.target.value; draw(); });
   let qt = 0; on('[data-if=q]', 'input', e => { clearTimeout(qt); qt = setTimeout(() => { st.q = e.target.value; draw(); }, 200); });
   ov.querySelector('[data-ilist]').addEventListener('change', e => { const r = e.target.closest('[data-ix]'); if (!r || !e.target.matches('[data-ick]')) return; if (e.target.checked) st.chk.add(r.dataset.ix); else st.chk.delete(r.dataset.ix); sum(); });
-  ov.querySelector('[data-ilist]').addEventListener('click', e => { const b = e.target.closest('[data-iadd]'); if (!b) return; const r = b.closest('[data-ix]'); const x = list.find(y => y.id === r.dataset.ix); if (x) confirmAdd([x], st.sj, ov, async () => { target = await itemsOfSubject(st.sj); draw(); }); });
+  ov.querySelector('[data-ilist]').addEventListener('click', e => {
+    const v = e.target.closest('[data-iview]'); if (v) { const row = v.closest('[data-ix]'), x = list.find(y => y.id === row.dataset.ix), nx = row.nextElementSibling, open = !(nx && nx.matches('[data-ians]')); if (!open) nx.remove(); else if (x) row.insertAdjacentHTML('afterend', `<div class="nm-ians" data-ians="1"><b>답안</b><div class="nm-c">${x.a || '<span class="nm-ph">답안 없음</span>'}</div></div>`); row.classList.toggle('open', open); const vb = row.querySelector('.nm-ivb'); if (vb) { vb.textContent = open ? '답안 접기' : '답안 보기'; vb.setAttribute('aria-expanded', String(open)); } return; }   /* 10-10 사용자 '문제들이 다 나열되어있는데 클릭하면 답안을 볼 수 있게' */
+    const b = e.target.closest('[data-iadd]'); if (!b) return; const r = b.closest('[data-ix]'); const x = list.find(y => y.id === r.dataset.ix); if (x) confirmAdd([x], st.sj, ov, async () => { target = await itemsOfSubject(st.sj); draw(); }); });
   ov.querySelector('footer').addEventListener('click', e => { const b = e.target.closest('[data-ib]'); if (!b) return; const k = b.dataset.ib, all = jbList(st.sj);
     const L = k === 'sel' ? all.filter(x => st.chk.has(x.id)) : k === 'lec' ? (st.lec ? all.filter(x => x.lec === st.lec && (!st.ty || (st.ty === 'ess' ? essayish(x.ty) : x.ty === st.ty))) : null) : k === 'flt' ? list : all;
     if (L == null) { H.toast('강의를 먼저 고르세요(강의 선택 칸)'); return; }
@@ -1488,22 +1542,32 @@ async function switchSubject(sj, o) {
   o = o || {};
   if (!S.root || !document.getElementById('numv')) { location.hash = '#/_num/' + sj; return; }   /* 넘버링 화면을 떠난 뒤(알림의 '보기') = 그 과목으로 다시 열기 */
   endEdit(true); const tok = S.swTok = (S.swTok || 0) + 1, R0 = S.root;
-  if (S.sj && S.sj !== sj) H.LS.set('num.pos.' + S.sj, topItem());
-  S.sj = sj; S.cfg.sj = sj; if (!o.keepF && !o.force) S.cfg.f.lec = ''; cfgSave(); S.sel.clear(); S.curLec = null; S.fp = false; S.vo = false; if (S.drawer) drawer(false);
+  if (S.sj && S.sj !== sj && S.posOK) H.LS.set('num.pos.' + S.sj, posNow());
+  S.sj = sj; S.cfg.sj = sj; if (!o.keepF && !o.force) S.cfg.f.lec = ''; cfgSave(); S.sel.clear(); S.curLec = null; S.fp = false; S.vo = false; S.shuf = null; S.posOK = false; if (S.drawer) drawer(false);
   const V = frame(); $('.nm-main', V).innerHTML = '<div class="nm-prog">넘버링 불러오는 중…</div>';
   await loadSubject(sj);
   if (tok !== S.swTok || S.root !== R0 || !S.root) return;   /* 기다리는 사이 다른 과목·화면으로 옮겼으면 그만 */
   if (S.cfg.f.lec && !S.lecs.some(l => l.k === S.cfg.f.lec) && S.cfg.f.lec !== '__none') S.cfg.f.lec = '';
   S.sjc = sjCounts();
   H.histSet({ num: 1, sj }, '#/_num/' + sj, false);
-  render({ pos: o.flash ? null : (o.pos || H.LS.get('num.pos.' + sj, null)), flash: o.flash });
+  render({ pos: o.flash ? null : (o.pos || H.LS.get('num.pos.' + sj, null)), flash: o.flash, resume: !o.flash && !o.pos });
 }
 function newSubject() { ask('새 과목 이름', { input: '', ph: '예: 교정학 2', ok: '만들기' }).then(t => { if (!t || !t.trim()) return; const L = H.LS.get('num.subj', []) || []; const id = 'U' + now().toString(36).toUpperCase(); L.push({ id, t: t.trim() }); H.LS.set('num.subj', L); switchSubject(id); }); }
 function lecMenu(btn) {   /* 사이드바를 접었을 때 위 막대의 '과목 › 강의'를 누르면 — 강의 바로 가기 */
   const n = lecCounts(), L = S.lecs.filter(l => n[l.k]).map(l => [l.k, l.t + ' (' + n[l.k] + ')']);
   if (!L.length) { H.toast('아직 이 과목에 문제가 없어요'); return; }
-  const m = menuOpen(btn, L); if (!m) return; m.style.left = Math.max(0, btn.getBoundingClientRect().left - document.getElementById('numv').getBoundingClientRect().left) + 'px';
+  const m = menuOpen(btn, L); if (!m) return; menuBeside(m, btn);
   m.addEventListener('click', e => { const b = e.target.closest('[data-mi]'); if (!b) return; menuClose(); jumpLec(b.dataset.mi); });
+}
+function menuBeside(m, btn) {   /* 사이드바(아이콘 줄)에서 연 메뉴는 단추 오른쪽에, 위 막대에서 연 메뉴는 단추 아래 왼쪽 맞춤 */
+  const V = document.getElementById('numv'), r = btn.getBoundingClientRect(), rr = V.getBoundingClientRect();
+  if (btn.closest('.nm-side')) { m.style.left = Math.round(r.right - rr.left + 6) + 'px'; m.style.top = Math.round(r.top - rr.top) + 'px'; }
+  else m.style.left = Math.max(0, Math.round(r.left - rr.left)) + 'px';
+}
+function sjMenu(btn) {   /* 과목 바꾸기(사이드바를 접었을 때 · 위 막대의 과목 이름) */
+  const C = S.sjc || {}, k = counts(), L = subjects().map(s => [s.id, (s.id === S.sj ? '✓ ' : '') + s.t + ((s.id === S.sj ? k.n : C[s.id]) ? ' (' + (s.id === S.sj ? k.n : C[s.id]) + ')' : '')]).concat(['-', ['__new', '+ 새 과목 만들기']]);
+  const m = menuOpen(btn, L); if (!m) return; menuBeside(m, btn);
+  m.addEventListener('click', e => { const b = e.target.closest('[data-mi]'); if (!b) return; menuClose(); const id = b.dataset.mi; if (id === '__new') newSubject(); else if (id !== S.sj) switchSubject(id); });
 }
 let bound = false;
 function bind() {
@@ -1511,7 +1575,7 @@ function bind() {
   document.addEventListener('click', e => {
     if (!S.root || !S.root.isConnected || !document.getElementById('numv')) return;
     const t = e.target; if (!t.closest) return;
-    if (!t.closest('.nm-menu') && !t.closest('[data-act=more]') && !t.closest('[data-act=ctx]') && !t.closest('[data-mi]')) menuClose();
+    if (!t.closest('.nm-menu') && !t.closest('[data-act=more]') && !t.closest('[data-act=ctx]') && !t.closest('[data-act=sjm]') && !t.closest('[data-mi]')) menuClose();
     if (!t.closest('.nm-pal') && !t.closest('[data-pal]')) palClose();
     if (S.fp && !t.closest('[data-fpan]') && !t.closest('[data-act=flt]') && S.root.contains(t) && !t.closest('.nm-ov')) fpOpen(false);
     if (S.vo && !t.closest('.nm-vopt') && !t.closest('[data-act=vopt]')) voOpen(false);
@@ -1521,12 +1585,12 @@ function bind() {
     const sj = t.closest('[data-sj]'); if (sj) { const id = sj.dataset.sj; S.sjOpen = false; if (id === '__new') newSubject(); else if (id !== S.sj) switchSubject(id); else { const d = t.closest('details'); if (d) d.open = false; if (S.drawer) drawer(false); } return; }
     if (t.closest('.nm-sjd > summary')) { setTimeout(() => { const d = $('.nm-sjd', S.root); S.sjOpen = !!(d && d.open); }, 0); return; }
     const lj = t.closest('[data-lj]'); if (lj) { jumpLec(lj.dataset.lj); return; }
-    const fx = t.closest('[data-fx]'); if (fx) { fClear(fx.dataset.fx); return; }
-    const md = t.closest('[data-mode]'); if (md) { S.cfg.mode = md.dataset.mode; cfgSave(); render({ pos: topItem() }); return; }
+    const fx = t.closest('[data-fx]'); if (fx) { keepPos(() => fClear(fx.dataset.fx)); return; }
+    const md = t.closest('[data-mode]'); if (md) { S.cfg.mode = md.dataset.mode; if (S.cfg.mode !== 'all') S.shuf = null; cfgSave(); render({ pos: posNow() }); return; }
     const hd = t.closest('[data-hide]'); if (hd) { const k = hd.dataset.hide; S.cfg.hide[k] = !S.cfg.hide[k]; cfgSave(); $$('.nm-it.revA,.nm-it.revS', S.root).forEach(a => a.classList.remove('revA', 'revS')); const V = document.getElementById('numv'); V.classList.toggle('hideA', !!S.cfg.hide.a); V.classList.toggle('hideS', !!S.cfg.hide.st); $$('[data-hide]', S.root).forEach(b => { const on = !!S.cfg.hide[b.dataset.hide]; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }); return; }
     { const hc = t.closest('.nm-a .nm-c, .nm-s .nm-c'), art = hc && hc.closest('.nm-it'), isA = hc && !!hc.closest('.nm-a');   /* 가린 칸을 누르면 그 문제 그 칸만 보임(편집은 한 번 더 누를 때) */
       if (art && (isA ? S.cfg.hide.a && !art.classList.contains('revA') : S.cfg.hide.st && !art.classList.contains('revS'))) { art.classList.add(isA ? 'revA' : 'revS'); return; } }
-    const sf = t.closest('[data-stf]'); if (sf) { S.cfg.f.st = sf.dataset.stf; cfgSave(); applyFilter(); return; }
+    const sf = t.closest('[data-stf]'); if (sf) { S.cfg.f.st = sf.dataset.stf; cfgSave(); keepPos(applyFilter); return; }
     const bt = t.closest('[data-bat]'); if (bt) { batch(bt.dataset.bat, bt); return; }
     const a = t.closest('[data-act]');
     if (a) {
@@ -1535,9 +1599,14 @@ function bind() {
       if (k === 'det' && it) { detOpen(it); return; }
       if (k === 'edit' && it) { const el = art.querySelector(`.nm-c[data-f="${a.dataset.f}"]`); if (el) startEdit(el, it, a.dataset.f); return; }
       if (k === 'flt') { fpOpen(!S.fp); return; }
+      if (k === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (k === 'shuf') { shuffle(); S.vo = false; render({ y: 0 }); H.toast(`${counts().n}문제를 무작위로 섞었어요 — 화면에서만(저장된 순서는 그대로)`, { id: 'nmshuf' }); return; }
+      if (k === 'unshuf') { S.shuf = null; render({ y: 0 }); return; }
+      if (k === 'sjm') { sjMenu(a); return; }
+      if (k === 'ljt') { S.cfg.ljc = !S.cfg.ljc; cfgSave(); const l = $('.nm-ljl', S.root); if (l) l.hidden = S.cfg.ljc; a.setAttribute('aria-expanded', String(!S.cfg.ljc)); return; }
       if (k === 'vopt') { voOpen(!S.vo); return; }
-      if (k === 'fclr') { fClear(); return; }
-      if (k === 'ctx') { if (innerWidth <= 860) drawer(true); else lecMenu(a); return; }
+      if (k === 'fclr') { keepPos(() => fClear()); return; }
+      if (k === 'ctx') { if (innerWidth <= 860 && !a.closest('.nm-side')) drawer(true); else lecMenu(a); return; }
       if (S.drawer && (k === 'new' || k === 'imp' || k === 'file' || k === 'aiout' || k === 'aiin' || k === 'print')) drawer(false);
       if (k === 'aiout') { aiExportDlg(a.dataset.sc); return; }
       if (k === 'aiin') { aiImportDlg(); return; }
@@ -1557,15 +1626,15 @@ function bind() {
     const c = e.target.dataset.cf;
     if (e.target.matches('[data-ck]')) { const id = e.target.closest('.nm-it').dataset.id; if (e.target.checked) S.sel.add(id); else S.sel.delete(id); const b = $('[data-batch]', S.root); if (b) b.innerHTML = batchHTML(); return; }
     if (!c || c === 'q') return;
-    if (c === 'sort') { S.cfg.sort = e.target.value; cfgSave(); render({ pos: topItem() }); return; }
-    S.cfg.f[c] = e.target.value; cfgSave(); applyFilter();
+    if (c === 'sort') { S.cfg.sort = e.target.value; cfgSave(); render({ pos: posNow() }); return; }
+    S.cfg.f[c] = e.target.value; cfgSave(); if (c === 'lec') applyFilter(); else keepPos(applyFilter);
     if (c === 'lec' && S.cfg.f.lec) { const d = $('[data-doc]', S.root); if (d) window.scrollTo(0, Math.max(0, d.getBoundingClientRect().top + scrollY - stuckBottom() - 8)); }
   });
   let qt = 0;
   document.addEventListener('input', e => {
     if (!S.root || !S.root.contains(e.target)) return;
     if (S.ed && S.ed.el.contains(e.target)) { edInput(); return; }
-    if (e.target.dataset && e.target.dataset.cf === 'q') { clearTimeout(qt); qt = setTimeout(() => { S.q = e.target.value.trim(); applyFilter(); }, 200); }
+    if (e.target.dataset && e.target.dataset.cf === 'q') { clearTimeout(qt); qt = setTimeout(() => { S.q = e.target.value.trim(); applyFilter(); const d = $('[data-doc]', S.root); if (d && d.getBoundingClientRect().top < stuckBottom()) window.scrollTo(0, Math.max(0, d.getBoundingClientRect().top + scrollY - stuckBottom() - 8)); }, 200); }   /* 검색 = 결과 맨 위부터 */
   });
   document.addEventListener('paste', e => { if (S.ed && S.ed.el.contains(e.target)) onPaste(e); });
   document.addEventListener('pointerdown', e => { if (S.ed && e.target.closest && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal'))) S.tbAt = now(); }, true);
@@ -1576,7 +1645,8 @@ function bind() {
     if (!S.ed) { if (e.key === 'Escape' && !$('.nm-ov') && (S.fp || S.vo || S.drawer || $('.nm-menu'))) { e.preventDefault(); e.stopPropagation(); menuClose(); if (S.fp) fpOpen(false); if (S.vo) voOpen(false); if (S.drawer) drawer(false); } return; }
     if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); endEdit(); return; } const mod = e.metaKey || e.ctrlKey; if (mod && e.shiftKey && (e.key === 'x' || e.key === 'X' || e.key === '5')) { e.preventDefault(); }
   }, true);
-  addEventListener('scroll', () => { if (!spyT && S.root) spyT = setTimeout(spy, 120); }, { passive: true });
+  let posT = 0;
+  addEventListener('scroll', () => { if (!S.root) return; if (!spyT) spyT = setTimeout(() => { spy(); topBtn(); }, 120); clearTimeout(posT); posT = setTimeout(posSave, 900); }, { passive: true });   /* 마지막 위치 = 스크롤이 멈추고 0.9초 뒤 과목마다(num.pos.<과목>) */
   addEventListener('resize', () => { if (S.drawer && innerWidth > 860) drawer(false); });
   addEventListener('pagehide', flush); document.addEventListener('visibilitychange', () => { if (document.hidden) flush(); });
   addEventListener('storage', e => {   /* 다른 창에서 고친 문제 — 모았다가 한 번에(고치는 중인 문제는 건드리지 않음) */
@@ -1598,11 +1668,11 @@ function syncOther() {
   if (added || re.length > 20) { if (!S.ed) render({ pos: topItem() }); return; }
   re.forEach(rerenderItem); applyFilter();
 }
-function flush() { if (S.ed) edSave(); }
-function leave() { if (!S.root) return; try { endEdit(true); formEnd(); if (S.sj && document.getElementById('numv')) H.LS.set('num.pos.' + S.sj, topItem()); } catch (e) {} menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
+function flush() { if (S.ed) edSave(); try { posSave(); } catch (e) {} }
+function leave() { if (!S.root) return; try { endEdit(true); formEnd(); posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
 async function open(root, o, host) {
   H = host; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
-  S.drawer = false; S.fp = false; S.vo = false; S.curLec = null;
+  S.drawer = false; S.fp = false; S.vo = false; S.curLec = null; S.shuf = null; S.posOK = false;
   root.innerHTML = ''; frame(); $('.nm-main', root).innerHTML = '<div class="nm-prog">넘버링 불러오는 중…</div>';
   await index();
   const subs = subjects(), has = new Set(); for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), m = k && /^jblhub\.v1\.num\.i\.([^.]+)\./.exec(k); if (m) has.add(m[1]); }
@@ -1614,7 +1684,7 @@ async function open(root, o, host) {
   if (S.cfg.f.lec && !S.lecs.some(l => l.k === S.cfg.f.lec) && S.cfg.f.lec !== '__none') S.cfg.f.lec = '';
   S.sjc = sjCounts();
   H.histSet({ num: 1, sj }, '#/_num/' + sj, !!o.push);
-  render({ pos: o.y != null ? null : H.LS.get('num.pos.' + sj, null), y: o.y });
+  render({ pos: o.y != null ? null : H.LS.get('num.pos.' + sj, null), y: o.y, resume: o.y == null });
 }
 window.JBLNUM = { open, leave, flush, side, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => ({ num: 1, sj: S.sj }), _S: S, _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
 })();

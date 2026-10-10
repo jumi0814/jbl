@@ -28,7 +28,7 @@ async def main():
         await pg.locator('.nm-it').nth(0).locator('.nm-s .nm-c').click(); await pg.keyboard.type('내가 쓴 A 스토리'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(500)
         # G에 번호 목록 스토리(도구 막대 '1.')
         await pg.evaluate("document.querySelectorAll('.nm-it')[10].querySelector('.nm-s .nm-c').scrollIntoView({block:'center'})")
-        await pg.locator('.nm-it').nth(10).locator('.nm-s .nm-c').click(); await pg.click('.nm-tb [data-cmd=insertOrderedList]'); await pg.keyboard.type('alpha'); await pg.keyboard.press('Enter'); await pg.keyboard.type('beta'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(500)
+        await pg.locator('.nm-it').nth(10).locator('.nm-s .nm-c').click(); await pg.click('.nm-tb [data-pal=more]'); await pg.click('.nm-pal [data-cmd=insertOrderedList]'); await pg.keyboard.type('alpha'); await pg.keyboard.press('Enter'); await pg.keyboard.type('beta'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(500)
         # ---- 내보내기 ----
         await pg.click('.nm-side [data-act=aiout]'); await pg.wait_for_timeout(400)
         s1 = await pg.evaluate("document.querySelector('[data-xsum]').textContent")
