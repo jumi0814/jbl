@@ -119,7 +119,7 @@ const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) 
 
 /* ---------- 저장 ---------- */
 const keyI = (sj, id) => 'num.i.' + sj + '.' + id;
-function cfg() { if (!S.cfg) { const c = H.LS.get('num.cfg', null) || {}; S.cfg = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}) }; } return S.cfg; }
+function cfg() { if (!S.cfg) { const c = H.LS.get('num.cfg', null) || {}; S.cfg = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}) }; } return S.cfg; }
 function cfgSave() { H.LS.set('num.cfg', S.cfg); }
 function idx(sj) { const x = H.LS.get('num.x.' + sj, null); return x && typeof x === 'object' ? x : { v: 1, ul: [], lt: {} }; }
 function idxPut(sj, x) { x.u = now(); H.LS.set('num.x.' + sj, x); }
@@ -272,6 +272,9 @@ body.v-num #home{max-width:1440px}
 #numv .nm-s .nm-c{cursor:text;border-radius:4px;transition:background .15s}
 #numv .nm-s .nm-c:not([contenteditable=true]):hover{background:#FBF8F2}
 #numv .nm-ph{color:#A39B8E;font-weight:400}
+#numv.hideA .nm-it:not(.revA) .nm-a .nm-c,#numv.hideS .nm-it:not(.revS) .nm-s .nm-c{filter:blur(7px);opacity:.55;user-select:none;cursor:pointer;transition:filter .15s}
+#numv.hideA .nm-it:not(.revA) .nm-a .nm-lab::after,#numv.hideS .nm-it:not(.revS) .nm-s .nm-lab::after{content:'가림 · 눌러서 보기';font-weight:600;color:#8A5A00;margin-left:auto}
+@media (prefers-reduced-motion:reduce){#numv .nm-c{transition:none}}
 #numv .nm-note{font-size:12.5px;color:#6A6257;margin:8px 0 0;white-space:pre-wrap}
 #numv [contenteditable=true]{background:#FFFDF6;box-shadow:inset 0 0 0 2px #E8C766;border-radius:4px;padding:2px 4px;cursor:text}
 #numv .nm-tb{position:sticky;top:calc(var(--toph,52px) + 2px);z-index:8;display:flex;flex-wrap:wrap;gap:3px;align-items:center;background:#2F2A24;color:#fff;border-radius:8px;padding:4px 6px;margin:0 0 6px;box-shadow:0 3px 12px rgba(0,0,0,.18)}
@@ -374,7 +377,7 @@ function barHTML() {
     + `<div class="nm-bar"><select data-cf="sj" aria-label="과목">${subs.map(s => opt(s.id, s.t + (s.jbl ? '' : s.seed ? ' (Word 자료)' : ' (내 과목)'), S.sj)).join('')}<option value="__new">+ 새 과목 만들기…</option></select>`
     + `<select data-cf="lec" aria-label="강의">${opt('', '모든 강의', f.lec)}${S.lecs.filter(l => l.k && lecN[l.k]).map(l => opt(l.k, l.t + ' (' + lecN[l.k] + ')', f.lec)).join('')}${lecN[''] ? opt('__none', '강의 미분류 (' + lecN[''] + ')', f.lec) : ''}</select>`
     + `<input type="search" data-cf="q" placeholder="문제·답안·스토리·출처·강의 검색" value="${esc(S.q)}" aria-label="넘버링 검색">`
-    + `<span class="nm-seg" role="group" aria-label="보기"><button type="button" data-mode="grp" class="${C.mode === 'grp' ? 'on' : ''}" aria-pressed="${C.mode === 'grp'}">강의별</button><button type="button" data-mode="all" class="${C.mode === 'all' ? 'on' : ''}" aria-pressed="${C.mode === 'all'}">전체 목록</button></span></div>`
+    + `<span class="nm-seg" role="group" aria-label="보기"><button type="button" data-mode="grp" class="${C.mode === 'grp' ? 'on' : ''}" aria-pressed="${C.mode === 'grp'}">강의별</button><button type="button" data-mode="all" class="${C.mode === 'all' ? 'on' : ''}" aria-pressed="${C.mode === 'all'}">전체 목록</button></span><span class="nm-seg" role="group" aria-label="가리고 떠올리기 — 누르면 그 문제만 보임"><button type="button" data-hide="a" class="${C.hide.a ? 'on' : ''}" aria-pressed="${!!C.hide.a}" title="답안을 가려 두고 떠올린 뒤 눌러서 확인">답안 가리기</button><button type="button" data-hide="st" class="${C.hide.st ? 'on' : ''}" aria-pressed="${!!C.hide.st}" title="넘버링 스토리를 가려 두고 떠올린 뒤 눌러서 확인">스토리 가리기</button></span></div>`
     + `<div class="nm-bar"><select data-cf="type" aria-label="문제 유형">${opt('', '모든 유형', f.type)}${opt('ess', '서술형·넘버링형만', f.type)}${Object.keys(TYPES).map(k => opt(k, TYPES[k], f.type)).join('')}</select>`
     + `<select data-cf="st" aria-label="제작 상태">${opt('', '모든 상태', f.st)}${STN.map((t, i) => opt(String(i), t, f.st)).join('')}${opt('rv', '⚠ 검토 필요', f.st)}</select>`
     + `<select data-cf="src" aria-label="출처">${opt('', '모든 출처', f.src)}${Object.keys(KIND).map(k => opt(k, KIND[k], f.src)).join('')}</select>`
@@ -407,7 +410,7 @@ function render(o) {
   const hid = S.items.filter(it => it.del);
   let V = document.getElementById('numv'), main = V && R.contains(V) && $('.nm-main', V);   /* 대화창·메뉴(#numv 바로 아래)는 그대로 두고 본문만 다시 */
   if (!main) { R.innerHTML = '<div id="numv"><div class="nm-main"></div></div>'; V = document.getElementById('numv'); main = $('.nm-main', V); }
-  V.className = S.selMode ? 'selm' : '';
+  V.className = (S.selMode ? 'selm ' : '') + (S.cfg.hide.a ? 'hideA ' : '') + (S.cfg.hide.st ? 'hideS' : '');
   main.innerHTML = `${barHTML()}<div class="nm-doc" data-doc="1">${chunks[0] || ''}${L.length ? '' : `<div class="nm-empty">아직 이 과목에 넘버링 문제가 없어요.<br><b>기존 문제 불러오기</b>로 JB 기출·예상문제를 넣거나 <b>+ 새 문제</b>로 직접 만들어 보세요.</div>`}</div>${hid.length ? hidHTML(hid) : ''}`;
   const doc = $('[data-doc]', R);
   const rest = chunks.slice(1);
@@ -429,7 +432,7 @@ function applyFilter(initial) {
 }
 function rerenderItem(it) {
   const a = S.root && $(`.nm-it[data-id="${CSS.escape(it.id)}"]`, S.root); if (!a) return;
-  const no = a.querySelector('.nm-no').textContent; const t = document.createElement('div'); t.innerHTML = itemHTML(it, no, a.hidden); const n = t.firstElementChild; a.replaceWith(n);
+  const no = a.querySelector('.nm-no').textContent; const t = document.createElement('div'); t.innerHTML = itemHTML(it, no, a.hidden); const n = t.firstElementChild; ['revA', 'revS'].forEach(c => { if (a.classList.contains(c)) n.classList.add(c); }); a.replaceWith(n);
   const c = $('[data-cnt]', S.root); if (c) c.innerHTML = cntHTML();
 }
 function flash(id) { const a = S.root && $(`.nm-it[data-id="${CSS.escape(id)}"]`, S.root); if (!a) return; a.hidden = false; a.scrollIntoView({ block: 'center' }); a.classList.remove('flash'); void a.offsetWidth; a.classList.add('flash'); }
@@ -449,6 +452,7 @@ function tbHTML() {
 }
 function startEdit(el, it, f, ev) {
   if (S.ed && S.ed.el === el) return;
+  { const art = el.closest && el.closest('.nm-it'); if (art) art.classList.add(f === 'st' ? 'revS' : 'revA'); }
   endEdit();
   if (!el.isConnected) { el = S.root && $(`.nm-it[data-id="${CSS.escape(it.id)}"] .nm-c[data-f="${f}"]`, S.root); if (!el) return; }   /* 같은 문제의 다른 칸을 고치다 왔으면 그 문제가 새로 그려짐 */
   const orig = it[f] || '';
@@ -936,6 +940,9 @@ function bind() {
     if (hl && S.ed) { S.ed.el.focus(); document.execCommand('hiliteColor', false, hl.dataset.hl || 'transparent'); palClose(); edInput(); return; }
     if (tbo && S.ed) { S.ed.el.focus(); tblOp(tbo.dataset.tb); palClose(); return; }
     const md = t.closest('[data-mode]'); if (md) { S.cfg.mode = md.dataset.mode; cfgSave(); render({ pos: topItem() }); return; }
+    const hd = t.closest('[data-hide]'); if (hd) { const k = hd.dataset.hide; S.cfg.hide[k] = !S.cfg.hide[k]; cfgSave(); $$('.nm-it.revA,.nm-it.revS', S.root).forEach(a => a.classList.remove('revA', 'revS')); const V = document.getElementById('numv'); V.classList.toggle('hideA', !!S.cfg.hide.a); V.classList.toggle('hideS', !!S.cfg.hide.st); $$('[data-hide]', S.root).forEach(b => { const on = !!S.cfg.hide[b.dataset.hide]; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }); return; }
+    { const hc = t.closest('.nm-a .nm-c, .nm-s .nm-c'), art = hc && hc.closest('.nm-it'), isA = hc && !!hc.closest('.nm-a');   /* 가린 칸을 누르면 그 문제 그 칸만 보임(편집은 한 번 더 누를 때) */
+      if (art && (isA ? S.cfg.hide.a && !art.classList.contains('revA') : S.cfg.hide.st && !art.classList.contains('revS'))) { art.classList.add(isA ? 'revA' : 'revS'); return; } }
     const sf = t.closest('[data-stf]'); if (sf) { S.cfg.f.st = sf.dataset.stf; cfgSave(); const s = $('[data-cf=st]', S.root); if (s) s.value = S.cfg.f.st; applyFilter(); return; }
     const bt = t.closest('[data-bat]'); if (bt) { batch(bt.dataset.bat, bt); return; }
     const a = t.closest('[data-act]');
@@ -1000,7 +1007,8 @@ async function open(root, o, host) {
   H = host; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
   root.innerHTML = '<div id="numv"><div class="nm-prog">넘버링 불러오는 중…</div></div>';
   await index();
-  const subs = subjects(); let sj = o.sj && subs.some(s => s.id === o.sj) ? o.sj : (S.cfg.sj && subs.some(s => s.id === S.cfg.sj) ? S.cfg.sj : (subs.find(s => s.seed) || subs[0]).id);
+  const subs = subjects(), has = new Set(); for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), m = k && /^jblhub\.v1\.num\.i\.([^.]+)\./.exec(k); if (m) has.add(m[1]); }
+  let sj = o.sj && subs.some(s => s.id === o.sj) ? o.sj : (S.cfg.sj && subs.some(s => s.id === S.cfg.sj) ? S.cfg.sj : (subs.find(s => has.has(s.id)) || subs.find(s => s.seed) || subs[0]).id);   /* 주소 → 마지막 과목 → 문제가 있는 과목 → 첫 과목 */
   if (S.root !== root) return;
   S.sj = sj; S.cfg.sj = sj; cfgSave();
   await loadSubject(sj);

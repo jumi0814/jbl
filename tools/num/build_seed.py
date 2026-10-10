@@ -1,4 +1,4 @@
-"""넘버링 따기 — 첨부 Word(넘버링 자료)를 사이트 기본 자료(docs/num/seed*.js · docs/num/img/)로 (10-10)
+"""넘버링 따기 — Word(넘버링 자료)를 사이트 기본 자료(docs/num/seed*.js · docs/num/img/)로 (10-10) · 지금은 기본 자료 없음(seed_src.json = [] — 10-10 사용자: 첨부 Word는 참고용 예시라 사이트에서 뺌)
 읽는 방법은 허브 '파일 가져오기'와 같은 tools/num/docx.js를 크롬(playwright)에서 그대로 돌린다(따로 만든 파서 없음).
   .venv/bin/python -I tools/num/build_seed.py          # tools/num/seed_src.json의 Word 전부
 원본 Word는 work/num/src/(커밋 안 함). 결과:
@@ -93,6 +93,9 @@ async def main():
         if errs: sys.exit('pageerror ' + '; '.join(errs[:3]))
     for fn in os.listdir(IMG):
         if fn not in keep_img: os.remove(os.path.join(IMG, fn))
+    if not os.listdir(IMG): os.rmdir(IMG)
+    for fn in os.listdir(OUT):   # 목록에서 빠진 과목의 seed 파일은 지움
+        if fn.startswith('seed.') and fn.count('.') == 2 and fn.split('.')[1] not in {x['id'] for x in index}: os.remove(os.path.join(OUT, fn))
     open(os.path.join(OUT, 'seed.js'), 'w', encoding='utf-8').write('window.JBLNUM_INDEX=' + js(index) + ';\n')
     print('seed.js:', [(x['id'], x['n']) for x in index], '그림', len(keep_img), '개', round(sum(os.path.getsize(os.path.join(IMG, f)) for f in keep_img) / 1e6, 2), 'MB')
 

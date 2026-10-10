@@ -12,7 +12,7 @@
 | `tools/<sid>/` (oms1·cons·impl·anat·geri·pharm·esth) | 과목별 빌드 파이프라인. 모든 과목이 같은 스크립트, `subject.py`·`assemble.py`·`parse_<sid>.py`·원고만 다름 | O |
 | `guide/` | 정리본 원칙·피드백기록·과목노트 — **작업 전 반드시 읽을 것** | O |
 | `tools/SPEC.md` | 파이프라인 상세 스펙 — 작업 전 반드시 읽을 것 | O |
-| `tools/num/` → `docs/num/` | 넘버링 따기(10-10, feature/numbering) — 화면 모듈 num.js·Word 읽기 docx.js·기본 자료 seed(첨부 Word 2개)·그림. 고친 뒤 `tools/num/build_num.py` · 자세히 `guide/넘버링_따기.md` | O |
+| `tools/num/` → `docs/num/` | 넘버링 따기(10-10) — 화면 모듈 num.js·Word 읽기 docx.js(파일 가져오기)·기본 자료 seed(지금 비어 있음 — 첨부 Word는 참고용 예시라 뺌). 고친 뒤 `tools/num/build_num.py` · 자세히 `guide/넘버링_따기.md` | O |
 | `materials/<과목명>/` | 사용자가 넣는 강의자료(PDF 등) | X |
 | `jb/` | JB 파일(`2025 3Q <과목> JB.pdf` 등 — 실제 PDF. `tools/jbx.py`가 `work/jb/<SID>_20xx/`에 N.txt·N.jpeg·manifest.json으로 풂. ZIP판도 처리) | X |
 | `reference/` | 승인된 형식 예시(윤혜정 정리본 HTML, 지난 학기 HUB) | X |
