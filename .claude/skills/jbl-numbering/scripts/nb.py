@@ -168,6 +168,9 @@ def check_story(story, it, allow=()):
         err.append(f'너무 길어요({len(s)}자) — 짧은 장면으로 다시(승인 예시는 100~200자)')
     elif len(s) > 380:
         warn.append(f'길어요({len(s)}자) — 승인 예시(100~200자)보다 많이 김: 정말 필요한지 검토')
+    first = s.split('\n', 1)[0]
+    if re.match(r'^\s*\[', first) and re.search(r'(=|＝|\bvs\b|VS|↔|대\s*결)', first):
+        err.append("장면 제목이 'A = B'·'A vs B' 비유 대입 틀이에요 — 답을 다른 소재에 대응시키는 체크리스트는 금지(10-11 사용자 '비유형 체크리스트'). 답의 말·소리가 일어나는 장면으로")
     A = norm(it['a']); allowN = {norm(x) for x in allow}
     K = kws(s)
     if not K:
@@ -240,7 +243,7 @@ def cmd_start(a):
         bak = d / f"state.bak.{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"; atomic(bak, load(d / 'state.json')); print(f'덮기 전 기록을 남겼어요: {bak}')
     if st is None:
         rv = set() if not a.revise else ({'*'} if a.revise == 'all' else {x.strip() for x in a.revise.split(',') if x.strip()})
-        st = {'format': 'jbl-numbering-state', 'v': 1, 'name': name, 'c': NOW(), 'sid': src.get('sid'), 'subject': src.get('subject', ''), 'batch': src.get('batch'), 'items': {}}
+        st = {'format': 'jbl-numbering-state', 'v': 1, 'name': name, 'c': NOW(), 'sid': src.get('sid'), 'subject': src.get('subject', ''), 'batch': src.get('batch'), 'items': {}, 'grade_mode': True, 'lessons': []}   # 10-11~ 채점 모드: 독립 채점(nb grade) 통과만 결과에
         ids = set()
         for lec, it in items_of(src):
             ids.add(it['id']); ex = has_story(it); rev = '*' in rv or it['id'] in rv
@@ -362,11 +365,21 @@ def cmd_save(a):
         g2 = next((l for l in review.splitlines() if l.strip().startswith('G2')), '')
         if g2.count('→') < len(kws(story)):
             raise Bad(f"검수 기록 G2 줄에 '단서→항목' 짝이 괄호 수({len(kws(story))})만큼 있어야 해요 — 실제로 복원해 본 목록")
-        tags = re.findall(r'\[(소리|외래어|행동|비유|숫자|번역)\]', g2)
+        tags = re.findall(r'\[(소리|그대로|숫자|대입|번역)\]', g2)
         if len(tags) < len(kws(story)):
-            raise Bad(f"G2 짝마다 단서 종류를 [소리]·[외래어]·[행동]·[비유]·[숫자]·[번역] 중 하나로 달아 주세요({len(tags)}/{len(kws(story))}) — 정답 뜻을 우리말로 옮긴 것은 [번역]")
-        if tags.count('번역') > 0.4 * len(tags):
-            raise Bad(f"[번역] 단서가 {tags.count('번역')}/{len(tags)} — 정답 뜻 옮기기가 너무 많아 키워드 나열이 돼요(G3 · 10-11 사용자 지적). 소리·외래어·장면 속 물리적 결과로 바꾸기")
+            raise Bad(f"G2 짝마다 단서 종류를 [소리](답 말의 소리)·[그대로](답의 말·그 물건 자체가 장면에 나옴)·[숫자]·[번역](영어 답을 우리말 뜻으로 옮김)·[대입](다른 소재의 대응물 — 기둥=임플란트 같은 것) 중 하나로({len(tags)}/{len(kws(story))})")
+        if tags.count('대입') > 1:
+            raise Bad(f"[대입] 단서 {tags.count('대입')}개 — 답을 다른 소재의 대응물로 바꾼 비유형 체크리스트(10-11 사용자 거절: SUV·브릿지·클립). 소재부터 버리고 답의 말·소리로")
+        if tags.count('번역') + tags.count('대입') > 0.5 * len(tags):
+            raise Bad(f"[번역]+[대입] {tags.count('번역') + tags.count('대입')}/{len(tags)} — 뜻 옮기기 나열(키워드 덩어리). 소리 단서나 답의 말이 그대로 일어나는 장면으로")
+        last = next((t for t in reversed(x['attempts']) if t.get('status') == 'grade-fail'), None)
+        if last and last.get('structural'):
+            ttl = lambda z: z.strip().split('\n', 1)[0]
+            ws = lambda z: set(re.findall(r'[가-힣]{2,}', strip_paren(z)))
+            A0, B0 = ws(last['story']), ws(story)
+            ov = len(A0 & B0) / max(1, min(len(A0), len(B0)))
+            if ttl(last['story']) == ttl(story) or ov > 0.35:
+                raise Bad(f"구조 결함으로 떨어진 이야기({last.get('review','')[:60]})와 소재·사건이 거의 같아요(겹침 {ov:.0%}) — 표현 다듬기 말고 소재와 사건 전개를 버리고 새 발상으로(10-11 사용자)")
         if not re.search(r'^G1[^\n]*(→|흐름)', review, re.M):
             raise Bad("G1 줄에 장면 흐름(앞 줄 → 다음 줄이 왜 이어지는지)을 한 줄로 — 개연성 확인")
         if any(t.get('status') in ('user-rejected', 'blind-fail') and t.get('story', '').strip() == story for t in x['attempts']):
@@ -412,6 +425,59 @@ def cmd_blindres(a):
     write_state(d, st)
 
 
+def cmd_gradein(a):
+    """채점 담당 입력: 문제 · 정답 · 괄호 있는 스토리 · 괄호 뺀 스토리(채점 담당은 블라인드 복원 결과 파일도 함께 읽음)"""
+    d, src, st = read_state(a.name); S = items_of(src)
+    want = {x.strip() for x in a.ids.split(',')} if a.ids else None
+    for lec, it in S:
+        x = st['items'][it['id']]
+        if (want and it['id'] not in want) or (not want and (x['status'] != 'pass' or x.get('grade') == 'pass')) or not x['story']:
+            continue
+        print(f"■ {it['id']}\n문제: {it['q']}\n정답:\n{it['a']}\n스토리(괄호 있음):\n{x['story']}\n")
+
+
+def cmd_grade(a):
+    """채점 결과(JSON)를 규칙대로 판정 — 통과 여부는 도구가 정함(작성자가 덮지 못함 · 조건부 통과 없음)."""
+    d, src, st = read_state(a.name)
+    G = json.loads(Path(a.file).read_text(encoding='utf-8'))
+    G = G if isinstance(G, list) else G.get('items', [])
+    st.setdefault('lessons', [])
+    for g in G:
+        i = g.get('id'); x = st['items'].get(i)
+        if not x:
+            print(f'없는 id 건너뜀: {i}'); continue
+        if x['status'] != 'pass':
+            print(f'{i}: 통과 후보가 아니라 건너뜀({x["status"]})'); continue
+        its = g.get('items') or []
+        miss = [t.get('answer', '?') for t in its if not t.get('recalled')]
+        mech = [t.get('mech', '') for t in its]
+        n = max(1, len(its)); sub = mech.count('대입'); tr = mech.count('번역')
+        why = []
+        if not its: why.append('채점 항목 없음')
+        if miss: why.append('복원 실패: ' + ', '.join(miss)[:160])
+        if g.get('natural') is False: why.append('괄호 없이 읽으면 개연성 깨짐')
+        if g.get('analog_checklist'): why.append('비유형 체크리스트(답을 다른 소재에 대입)')
+        if g.get('keyword_list'): why.append('키워드 덩어리·뜻 옮기기 나열')
+        if sub >= 2: why.append(f'대입 단서 {sub}개')
+        if (sub + tr) / n > 0.5: why.append(f'번역·대입 {sub + tr}/{n}')
+        structural = bool(g.get('analog_checklist') or g.get('keyword_list') or g.get('natural') is False or sub >= 2 or len(miss) >= 2)
+        if not why:
+            x['grade'] = 'pass'; x['grade_note'] = g.get('notes', ''); x['blind'] = 'ok'
+            print(f'{i}: 채점 통과')
+            continue
+        note = ' · '.join(why) + (f" | {g.get('notes','')}" if g.get('notes') else '')
+        x['attempts'].append({'at': NOW(), 'status': 'grade-fail', 'story': x['story'], 'review': note, 'structural': structural})
+        st['lessons'].append({'at': NOW(), 'id': i, 'why': note, 'structural': structural, 'story': x['story']})
+        fails = sum(1 for t in x['attempts'] if t.get('status') == 'grade-fail')
+        if fails >= a.max_fail:
+            x['status'] = 'hold'; x['review'] = f'채점 {fails}번 실패 — 미완성으로 남김: ' + note; x['grade'] = 'fail'
+            print(f'{i}: 채점 {fails}번째 실패 → 보류(미완성 · 원인 기록) — {note[:120]}')
+        else:
+            x['status'] = 'todo'; x['grade'] = 'fail'; x['story'] = ''
+            print(f"{i}: 채점 실패({'구조 결함 → 소재·사건부터 새로' if structural else '국소 결함 → 그 단서만 다른 방식으로'}) — {note[:140]}")
+    write_state(d, st)
+
+
 def cmd_status(a):
     d, src, st = read_state(a.name)
     print(summary(src, st))
@@ -449,6 +515,8 @@ def build_out(src, st, no_blind=False):
         x = st['items'][it['id']]
         if x['status'] != 'pass' or not x['story'].strip():
             continue
+        if st.get('grade_mode') and x.get('grade') != 'pass':
+            continue   # 채점 모드(10-11~): 독립 채점 통과만 — --no-blind로도 못 넘김
         if x.get('blind') != 'ok':
             if not no_blind:
                 continue
@@ -474,7 +542,7 @@ def dump_compact(o):   # JBL 내보내기와 같은 꼴(문제 한 줄씩)
 def cmd_export(a):
     d, src, st = read_state(a.name)
     out, n = build_out(src, st, a.no_blind)
-    pend = sum(1 for x in st['items'].values() if x['status'] == 'pass' and x.get('blind') != 'ok')
+    pend = sum(1 for x in st['items'].values() if x['status'] == 'pass' and (x.get('grade') != 'pass' if st.get('grade_mode') else x.get('blind') != 'ok'))
     if not n:
         raise Bad('낼 스토리가 없어요' + (f' — 통과 {pend}개가 독립 블라인드 검수 전(blind → blindres · 정말 검수 없이 내려면 --no-blind)' if pend else ' — 통과한 스토리가 없음'))
     if pend and not a.no_blind:
@@ -486,7 +554,10 @@ def cmd_export(a):
     H = [(i, x) for i, x in st['items'].items() if x['status'] == 'hold']
     hp = d / 'out' / 'hold.md'
     atomic(hp, '# 보류 — JBL에 넣지 않은 문제\n\n' + ('\n'.join(f"## {i}\n- 이유: {x['review']}\n- 최선안(검수 미통과 · 넣지 말 것): {x['story'] or '없음'}\n" for i, x in H) or '없음\n'), text=True)
-    print(f'결과 {p} · 통과 {n}문제 · 보류 {len(H)} → {hp}')
+    L = st.get('lessons') or []
+    if L:
+        atomic(d / 'out' / 'lessons.md', '# 채점 실패 원인(다음 작업에 반영 — FEEDBACK.md로 옮길 것)\n\n' + '\n'.join(f"- {l['id']}{' [구조]' if l.get('structural') else ''}: {l['why']}\n  - 떨어진 글: {l['story'].replace(chr(10), ' / ')[:300]}" for l in L) + '\n', text=True)
+    print(f'결과 {p} · 통과 {n}문제 · 보류 {len(H)} → {hp}' + (f' · 실패 원인 {len(L)} → out/lessons.md' if L else ''))
     if a.print:
         print('----- 아래 JSON 전체를 JBL [ChatGPT 결과 가져오기]에 붙여 넣기 -----')
         print(txt)
@@ -559,6 +630,8 @@ def main():
     s = c.add_parser('show'); s.add_argument('name'); s.add_argument('id')
     s = c.add_parser('save'); s.add_argument('name'); s.add_argument('id'); s.add_argument('--status', required=True, choices=('pass', 'hold', 'todo'))
     s.add_argument('--story'); s.add_argument('--story-file'); s.add_argument('--review'); s.add_argument('--review-file'); s.add_argument('--allow-kw', action='append')
+    s = c.add_parser('gradein'); s.add_argument('name'); s.add_argument('--ids')
+    s = c.add_parser('grade'); s.add_argument('name'); s.add_argument('file'); s.add_argument('--max-fail', type=int, default=3)
     s = c.add_parser('status'); s.add_argument('name')
     s = c.add_parser('blind'); s.add_argument('name'); s.add_argument('--ids')
     s = c.add_parser('blindres'); s.add_argument('name'); s.add_argument('ids'); g = s.add_mutually_exclusive_group(required=True); g.add_argument('--ok', action='store_true'); g.add_argument('--fail', action='store_true'); s.add_argument('--note')
@@ -570,7 +643,7 @@ def main():
     if a.cmd == 'start' and not a.src and not a.frm:
         p.error('start에는 내보내기 JSON 경로나 --from 체크포인트가 필요해요')
     {'start': cmd_start, 'next': cmd_next, 'show': cmd_show, 'save': cmd_save, 'status': cmd_status, 'blind': cmd_blind, 'blindres': cmd_blindres,
-     'export': cmd_export, 'verify': cmd_verify, 'checkpoint': cmd_checkpoint, 'feedback': cmd_feedback}[a.cmd](a)
+     'export': cmd_export, 'verify': cmd_verify, 'checkpoint': cmd_checkpoint, 'feedback': cmd_feedback, 'gradein': cmd_gradein, 'grade': cmd_grade}[a.cmd](a)
 
 
 if __name__ == '__main__':
