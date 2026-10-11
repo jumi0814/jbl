@@ -550,13 +550,16 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-lab small{font-weight:500;color:#A39B8E;letter-spacing:0;margin-left:6px}
 #numv .nm-wt{display:block;width:100%;box-sizing:border-box;min-height:5.4em;border:1px solid #D5DDE6;border-radius:6px;background:#fff;color:#1F1D1A;font:inherit;font-size:14px;line-height:1.6;padding:6px 8px;resize:vertical;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere}
 #numv .nm-wt:focus{outline:0;border-color:#5B8DB8;box-shadow:0 0 0 2px rgba(91,141,184,.2)}
-#numv .nm-wt.big{min-height:300px;height:calc(100vh - 340px);max-height:680px;overflow:auto}
+#numv .nm-wt.big{min-height:220px;height:calc(100vh - 250px);max-height:760px;overflow:auto}
 #numv .nm-eye{border:1px solid #E1D9CB;background:#fff;color:#6A6257;border-radius:5px;font-family:inherit;font-size:11px;font-weight:500;line-height:18px;padding:0 6px;cursor:pointer;letter-spacing:0}
 #numv .nm-eye::after{content:'가리기'}#numv .nm-it.hA .nm-a .nm-eye::after,#numv .nm-it.hS .nm-s .nm-eye::after{content:'보기'}
 #numv .nm-it.hA .nm-a .nm-c,#numv .nm-it.hS .nm-s .nm-c{filter:blur(7px);opacity:.5;user-select:none;cursor:pointer}
 #numv .nm-it.hA .nm-a .nm-lab::after,#numv .nm-it.hS .nm-s .nm-lab::after{content:'눌러서 보기';margin-left:auto;font-weight:600;color:#8A5A00;letter-spacing:0}
 #numv.rv .nm-a .nm-c,#numv.rv .nm-s .nm-c{cursor:default}#numv.rv .nm-s .nm-c:not([contenteditable=true]):hover{background:none}
-#numv .nm-rf{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:8px 0 0 var(--nmind);font-size:12.5px;color:var(--sub)}
+#numv .nm-rf{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:6px 0 0 var(--nmind);font-size:11.5px;color:var(--sub)}
+#numv .nm-rf .nm-mks{border-radius:6px}#numv .nm-rf .nm-mks button{height:22px;padding:0 8px;font-size:11.5px;font-weight:600}
+#numv .nm-rf .nm-pm{font-size:11px}#numv .nm-rf .nm-lnk,#numv .nm-crf .nm-lnk{font-size:11px;color:#8C857A;padding:1px 3px;text-decoration-color:#D8D0C2}#numv .nm-rf .nm-lnk:hover,#numv .nm-crf .nm-lnk:hover{color:var(--acc,#0F5C5A)}
+@media (pointer:coarse){#numv .nm-rf .nm-mks button{height:28px;padding:0 10px}}
 #numv .nm-mks{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;flex:none}
 #numv .nm-mks button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:600;color:#5A5247;padding:0 11px;height:28px;cursor:pointer;white-space:nowrap}
 #numv .nm-mks button+button{border-left:1px solid var(--line)}
@@ -569,26 +572,28 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-pw{border-left:3px solid #C9D9E8;padding:2px 8px;margin:6px 0}#numv .nm-pw b{font-size:11.5px;color:#6A6257;font-weight:600}#numv .nm-pw div{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13.5px;line-height:1.55}
 #numv .nm-mkc i{margin-left:4px}
 #numv .nm-info .nm-btn.sm{margin-left:auto}
-#numv .nm-cardv{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:20px;align-items:start;margin-top:4px}
-#numv .nm-cpos{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:var(--sub);margin:0 0 8px}#numv .nm-cpos b{font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}#numv .nm-cpos .lt{margin-left:6px;max-width:22em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#numv .nm-card{position:relative;background:#fff;color:#1F1D1A;border:1px solid var(--line);border-top:4px solid #DCD3C3;border-radius:12px;box-shadow:0 2px 10px rgba(31,29,26,.06);padding:12px 18px 10px;min-height:280px;cursor:pointer;display:flex;flex-direction:column;outline:none;transition:box-shadow .12s}
+#numv .nm-cardv{display:grid;grid-template-columns:minmax(0,var(--wc,56%)) 14px minmax(0,1fr);column-gap:6px;row-gap:12px;align-items:start;margin-top:2px}
+#numv .nm-cardv.nowr{grid-template-columns:minmax(0,1fr)}
+#numv .nm-cardv>.nm-crf0,#numv .nm-cardv>.nm-hist{grid-column:1/-1}
+#numv .nm-crz{align-self:stretch;position:relative;cursor:col-resize;touch-action:none;min-height:120px}#numv .nm-crz::after{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;border-radius:1px;background:#E6E0D5;transition:background .12s}#numv .nm-crz:hover::after,#numv .nm-crz.drag::after{background:var(--acc,#0F5C5A)}
+#numv .nm-cpos{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);margin:0 0 6px}#numv .nm-cpos b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}#numv .nm-cpos .lt{margin-left:6px;max-width:22em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#numv .nm-card{position:relative;background:#fff;color:#1F1D1A;border:1px solid var(--line);border-top:4px solid #DCD3C3;border-radius:12px;box-shadow:0 2px 10px rgba(31,29,26,.06);padding:10px 16px 12px;min-height:150px;cursor:pointer;display:flex;flex-direction:column;outline:none;transition:box-shadow .12s}
 #numv .nm-card:focus-visible{box-shadow:0 0 0 3px rgba(15,92,90,.25)}
 #numv .nm-card.back{background:#FFFEF7;border-color:#E8DCB8;border-top-color:#E8C766}
 #numv .nm-card.mk0{border-top-color:#E5A49C}#numv .nm-card.mk1{border-top-color:#E8C766}#numv .nm-card.mk2{border-top-color:#8CC8A0}
-#numv .nm-cfh{display:flex;align-items:center;gap:8px;margin:0 0 8px;min-height:22px}#numv .nm-cft{font-size:11.5px;font-weight:700;color:#9A9286;letter-spacing:.03em}
+#numv .nm-cfh{display:flex;align-items:center;gap:8px;margin:0 0 6px;min-height:22px}#numv .nm-cft{font-size:11.5px;font-weight:700;color:#9A9286;letter-spacing:.03em}
 #numv .nm-cfh .nm-edb{opacity:1;margin-left:auto}
 #numv .nm-cq{font-size:13px;color:#6A6257;border-bottom:1px dashed #E4DFD5;padding:0 0 6px;margin:0 0 8px;line-height:1.5}
 #numv .nm-cfc{flex:1 1 auto;font-size:15.5px;line-height:1.72;cursor:inherit}
 #numv .nm-card:not(.back) .nm-cfc[data-f=q]{font-weight:650;font-size:16.5px}
-#numv .nm-cfoot{font-size:11.5px;color:#A39B8E;text-align:center;margin-top:10px}
-#numv .nm-cnav{display:flex;gap:8px;justify-content:center;margin:12px 0 0}#numv .nm-cnav .nm-btn{min-height:38px;min-width:92px}
-#numv .nm-cmk{display:flex;flex-direction:column;align-items:center;gap:4px;margin:12px 0 0}#numv .nm-cmk small{font-size:11.5px;color:#8C857A}
-#numv .nm-cmk .nm-mks button{height:40px;padding:0 18px;font-size:14px}
-#numv .nm-c3b{display:block;margin:12px auto 0;border:0;background:none;color:var(--acc,#0F5C5A);font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px}
+#numv .nm-cctl{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin:8px 0 0}
+#numv .nm-cnav{display:inline-flex;gap:4px}#numv .nm-cnav .nm-btn{min-height:28px;padding:0 10px;font-size:12.5px}#numv .nm-cnav .nm-btn.pri{padding:0 14px}
+#numv .nm-cmk{display:inline-flex}#numv .nm-cmk .nm-mks button{height:28px;padding:0 10px;font-size:12.5px}
+#numv .nm-c3b{border:1px solid var(--line);background:#fff;color:var(--acc,#0F5C5A);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:0 10px;height:28px;border-radius:8px;white-space:nowrap}#numv .nm-c3b.on{background:var(--tint,#F2EEE6)}
 #numv kbd{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid #D8D0C2;border-bottom-width:2px;border-radius:4px;padding:0 4px;color:#6A6257;background:#fff}
-#numv .nm-c3{margin:8px 0 0;background:#fff;color:#1F1D1A;border:1px solid #E4DFD5;border-radius:10px;padding:10px 14px}#numv .nm-c3 .nm-cfc{font-size:14.5px}
-#numv .nm-cr{position:sticky;top:calc(var(--toph,52px) + 76px)}
-#numv .nm-crf{display:flex;gap:8px;margin:6px 0 0}
+#numv .nm-c3{margin:8px 0 0;background:#fff;color:#1F1D1A;border:1px solid #E4DFD5;border-radius:10px;padding:8px 14px 10px}#numv .nm-c3 .nm-cfc{font-size:14.5px}
+#numv .nm-cr{position:sticky;top:calc(var(--toph,52px) + 76px);min-width:0}
+#numv .nm-crf{display:flex;gap:6px;margin:4px 0 0}#numv .nm-crf0{justify-content:flex-end;margin:-4px 0 0}
 #numv .nm-cr .nm-hist{margin-left:0;grid-template-columns:1fr}
 #numv .nm-sum{background:#fff;color:#1F1D1A;border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:12px;max-width:760px}
 #numv .nm-dlg .nm-sum{border:0;padding:0;max-width:none}
@@ -601,11 +606,11 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-hbody{padding:0 12px 10px}#numv .nm-hit{border-top:1px solid #EEE9E0;padding:6px 0}#numv .nm-hit .q{font-size:13px;color:#4A4339;margin-bottom:2px}
 @media (min-width:861px){#numv.sidec .nm-app,#numv.sidec .nm-rses{display:none}}
 @media (max-width:860px){
- #numv .nm-cardv{grid-template-columns:minmax(0,1fr);gap:12px}
+ #numv .nm-cardv{grid-template-columns:minmax(0,1fr);gap:10px}#numv .nm-crz{display:none}
  #numv .nm-cr{position:static}#numv .nm-wt.big{height:auto;min-height:150px}
- #numv .nm-card{min-height:200px;padding:10px 14px}
- #numv .nm-cmk{position:sticky;bottom:0;z-index:5;background:var(--bg,#F7F5F0);padding:8px 0 calc(8px + env(safe-area-inset-bottom));margin:6px -12px 0}
- #numv .nm-cmk .nm-mks button{padding:0 14px}
+ #numv .nm-card{min-height:150px;padding:10px 14px}
+ #numv .nm-cctl{position:sticky;bottom:0;z-index:5;background:var(--bg,#F7F5F0);padding:6px 0 calc(6px + env(safe-area-inset-bottom));margin:6px -12px 0;gap:6px}
+ #numv .nm-cnav .nm-btn,#numv .nm-cmk .nm-mks button,#numv .nm-c3b{height:34px;min-height:34px}
  #numv .nm-rvw button{padding:0 9px}
 }
 @container nmm (max-width:640px){
@@ -1670,7 +1675,7 @@ const FN = { q: '문제', a: '정답', st: '넘버링 스토리' };
 const RV = { rr: new Map(), sj: '', ses: null, dr: null, drT: 0, drDirty: false, face: 0, third: false, sum: false, idset: new Set(), rndM: null, hint: new Set(), hist: new Set(), deck: null, tx: null, swiped: false };
 function rcfgLoad() {
   const c = H.LS.get('num.rcfg', null) || {}, w3 = Array.isArray(c.w3) && c.w3.length === 2 && c.w3.every(x => +x >= 12) && c.w3[0] + c.w3[1] <= 88 ? c.w3.map(Number) : [34, 33];
-  return { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: SORTN[c.sort] ? c.sort : 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc, view: c.view === 'card' ? 'card' : 'scroll', dir: DIRS[c.dir] ? c.dir : 'qs', write: !!c.write, w2: +c.w2 >= 15 && +c.w2 <= 85 ? +c.w2 : 45, w3, sc: RSC[c.sc] ? c.sc : 'all', rord: !!c.rord };
+  return { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: SORTN[c.sort] ? c.sort : 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc, view: c.view === 'card' ? 'card' : 'scroll', dir: DIRS[c.dir] ? c.dir : 'qs', write: !!c.write, w2: +c.w2 >= 15 && +c.w2 <= 85 ? +c.w2 : 45, w3, sc: RSC[c.sc] ? c.sc : 'all', rord: !!c.rord, cw: c.cw !== false, wc: +c.wc >= 30 && +c.wc <= 80 ? +c.wc : 56 };   /* cw 카드 복습 내 답안 칸 · wc 카드 칸 너비(%) */
 }
 const hst = () => S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj };
 const hpath = sj => (S.app === 'rev' ? '#/_numr/' : '#/_num/') + sj;
@@ -1788,6 +1793,7 @@ function wApply() {
   const V = document.getElementById('numv'); if (!V) return;
   if (S.app !== 'rev') { V.style.removeProperty('--wa'); V.style.removeProperty('--ws'); return; }
   if (S.cfg.write) { V.style.setProperty('--wa', S.cfg.w3[0] + '%'); V.style.setProperty('--ws', S.cfg.w3[1] + '%'); } else { V.style.setProperty('--wa', S.cfg.w2 + '%'); V.style.removeProperty('--ws'); }
+  V.style.setProperty('--wc', S.cfg.wc + '%');
 }
 function rzStart(e, h) {   /* 열 경계 끌기 — 모든 문제가 같은 너비(#numv의 --wa·--ws) · 놓으면 기억(num.rcfg) */
   const body = h.closest('.nm-body'); if (!body) return; e.preventDefault();
@@ -1802,6 +1808,16 @@ function rzStart(e, h) {   /* 열 경계 끌기 — 모든 문제가 같은 너�
   h.addEventListener('pointermove', mv); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
 }
 function rzReset() { if (S.cfg.write) S.cfg.w3 = [34, 33]; else S.cfg.w2 = 45; cfgSave(); wApply(); }
+function crzStart(e, h) {   /* 카드 | 내 답안 경계 끌기 — 카드 칸 30~80% · 놓으면 기억 */
+  const box = h.closest('.nm-cardv'); if (!box) return; e.preventDefault();
+  const r = box.getBoundingClientRect(), V = document.getElementById('numv'); let raf = 0, last = null;
+  h.classList.add('drag'); V.classList.add('rzing'); try { h.setPointerCapture(e.pointerId); } catch (_) {}
+  const apply = () => { raf = 0; if (last == null) return; S.cfg.wc = Math.round(Math.max(30, Math.min(80, (last - r.left) / r.width * 100)) * 10) / 10; wApply(); };
+  const mv = ev => { last = ev.clientX; if (!raf) raf = requestAnimationFrame(apply); };
+  const up = () => { h.classList.remove('drag'); V.classList.remove('rzing'); h.removeEventListener('pointermove', mv); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); if (raf) { cancelAnimationFrame(raf); apply(); } cfgSave(); };
+  h.addEventListener('pointermove', mv); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
+}
+function cwSync() { $$('[data-rcw]', S.root).forEach(b => { b.classList.toggle('on', !!S.cfg.cw); b.setAttribute('aria-pressed', String(!!S.cfg.cw)); }); }
 function revBarHTML() {
   const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null, card = C.view === 'card', rnd = !!(RV.ses && RV.ses.rnd);
   const tg = (attr, on, t, ti) => `<button type="button" ${attr} class="${on ? 'on' : ''}" aria-pressed="${!!on}" title="${esc(ti)}">${t}</button>`;
@@ -1811,7 +1827,7 @@ function revBarHTML() {
     + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·정답·스토리 검색" value="${esc(S.q)}" aria-label="복습 검색"></label>`
     + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="복습 범위(전체·미복습·취약…) · 강의·유형·출처·연도 · 정렬">${ICO.filter}<span>범위·필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
     + `<div class="nm-vopt${S.vo ? ' open' : ''}">`
-    + (card ? `<span class="nm-seg" role="group" aria-label="카드 방향 — 앞 → 뒤">${Object.keys(DIRS).map(d => tg(`data-rdir="${d}"`, C.dir === d, DIRS[d][3], '카드 앞 → 뒤: ' + DIRS[d][3] + ' · 남은 하나(' + FN[DIRS[d][2]] + ')는 따로 보기')).join('')}</span>`
+    + (card ? `<span class="nm-seg" role="group" aria-label="카드 방향 — 앞 → 뒤">${Object.keys(DIRS).map(d => tg(`data-rdir="${d}"`, C.dir === d, DIRS[d][3], '카드 앞 → 뒤: ' + DIRS[d][3] + ' · 남은 하나(' + FN[DIRS[d][2]] + ')는 따로 보기')).join('')}</span><button type="button" class="nm-sel${C.cw ? ' on' : ''}" data-rcw="1" aria-pressed="${!!C.cw}" title="오른쪽 내 답안 칸 켜기·끄기 — 끄면 카드가 넓게 (W) · 경계를 끌어 너비 조절">✍ 내 답안 쓰기</button>`
       : (rnd ? '' : `<span class="nm-seg" role="group" aria-label="보기">${tg('data-mode="grp"', C.mode === 'grp', '강의별', '강의마다 머리를 두고 보기')}${tg('data-mode="all"', C.mode === 'all', '전체 목록', '강의 머리 없이 한 줄로 이어 보기')}</span>`)
         + `<span class="nm-seg" role="group" aria-label="모두 가리기 — 문제마다 눌러서 따로 보기·가리기">${tg('data-rhide="a"', C.hide.a, '정답 가리기', '정답을 모두 가리기·보기 — 문제마다 눌러서 따로')}${tg('data-rhide="st"', C.hide.st, '스토리 가리기', '스토리를 모두 가리기·보기 — 문제마다 눌러서 따로')}</span>`
         + `<button type="button" class="nm-sel${C.write ? ' on' : ''}" data-rwrite="1" aria-pressed="${!!C.write}" title="정답 | 스토리 | 내 답안 3칸으로 — 칸 경계를 끌어 너비 조절(기억)">✍ 내 답안 쓰기</button>`)
@@ -1863,18 +1879,18 @@ function cardPaint() {
   const it = S.by.get(D[i]), [ff, fb, f3] = DIRS[S.cfg.dir], f = RV.face ? fb : ff, m = s.mk[it.id], pf = profOf(it), l = lecOf(it.lec), dr = (RV.dr && RV.dr.a[it.id]) || '', r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, last = i === D.length - 1;
   const ctx = RV.face && ff === 'q' ? `<div class="nm-cq" title="앞면(문제)">${esc(plain(qDisp(it)).replace(/\s+/g, ' ').trim().slice(0, 160))}</div>` : '';
   box.innerHTML = `<div class="nm-cl"><div class="nm-cpos"><b>${i + 1}</b><span>/ ${D.length}</span><span class="lt">${esc(l.k ? l.t : '강의 미분류')}</span>${pf ? `<span class="nm-tag pf">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr">${esc(yrs2(it.yrs))}</span>` : ''}<span class="nm-sp"></span>${pmHTML(prevMark(it.id))}</div>`
-    + `<div class="nm-card${RV.face ? ' back' : ''}${m != null ? ' mk' + m : ''}" data-flip="1" tabindex="0" role="button" aria-label="${RV.face ? '뒷면' : '앞면'} ${FN[f]} — 눌러서 뒤집기(Space)"><div class="nm-cfh"><span class="nm-cft">${RV.face ? '뒷면' : '앞면'} · ${FN[f]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f}" title="${FN[f]} 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div>${ctx}<div class="nm-c nm-cfc" data-f="${f}">${faceHTML(it, f)}</div><div class="nm-cfoot">${RV.face ? '눌러서 앞면으로' : '눌러서 뒤집기'}${innerWidth <= 860 ? ' · 옆으로 밀면 다음·이전' : ' · Space'}</div></div>`
-    + `<div class="nm-cnav"><button type="button" class="nm-btn" data-cnav="-1"${i ? '' : ' disabled'} title="이전 카드 (←)">◀ 이전</button><button type="button" class="nm-btn pri" data-cnav="0" title="뒤집기 (Space)">뒤집기</button><button type="button" class="nm-btn" data-cnav="1" title="${last ? '회차 정리' : '다음 카드'} (→)">${last ? '정리 ▶' : '다음 ▶'}</button></div>`
-    + `<div class="nm-cmk">${mksHTML(it.id, m)}<small>평가하면 다음 카드로${innerWidth <= 860 ? '' : ' · 키 1 · 2 · 3'}</small></div>`
-    + `<button type="button" class="nm-c3b" data-ract="third" aria-expanded="${RV.third}">${RV.third ? '▾' : '▸'} ${FN[f3]} 보기 <kbd>T</kbd></button>${RV.third ? `<div class="nm-c3"><div class="nm-cfh"><span class="nm-cft">${FN[f3]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f3}" title="${FN[f3]} 수정">수정</button></div><div class="nm-c nm-cfc" data-f="${f3}">${faceHTML(it, f3)}</div></div>` : ''}</div>`
-    + `<div class="nm-cr"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로 · ⌘/Ctrl+Enter 뒤집기 · Esc 나가기</small></div><textarea class="nm-wt big" data-w="${esc(it.id)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만) — 뒤집어서 정답과 견줘 보기" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea><div class="nm-crf"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}</div>`;
-  box.dataset.id = it.id; refreshCounts(D.length); sesSave();
+    + `<div class="nm-card${RV.face ? ' back' : ''}${m != null ? ' mk' + m : ''}" data-flip="1" tabindex="0" role="button" aria-label="${RV.face ? '뒷면' : '앞면'} ${FN[f]} — 눌러서 뒤집기(Space)"><div class="nm-cfh"><span class="nm-cft">${RV.face ? '뒷면' : '앞면'} · ${FN[f]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f}" title="${FN[f]} 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div>${ctx}<div class="nm-c nm-cfc" data-f="${f}">${faceHTML(it, f)}</div></div>`
+    + `<div class="nm-cctl"><span class="nm-cnav"><button type="button" class="nm-btn" data-cnav="-1"${i ? '' : ' disabled'} title="이전 카드 (←)" aria-label="이전 카드">◀</button><button type="button" class="nm-btn pri" data-cnav="0" title="뒤집기 (Space·카드 누르기${innerWidth <= 860 ? ' · 옆으로 밀면 다음·이전' : ''})">뒤집기</button><button type="button" class="nm-btn" data-cnav="1" title="${last ? '회차 정리' : '다음 카드'} (→)" aria-label="${last ? '회차 정리' : '다음 카드'}">${last ? '정리 ▶' : '▶'}</button></span>`
+    + `<span class="nm-cmk" title="평가하면 다음 카드로 (1 · 2 · 3)">${mksHTML(it.id, m)}</span>`
+    + `<button type="button" class="nm-c3b${RV.third ? ' on' : ''}" data-ract="third" aria-expanded="${RV.third}" title="${FN[f3]} 따로 보기 (T)">${RV.third ? '−' : '+'} ${FN[f3] === '넘버링 스토리' ? '스토리' : FN[f3]}</button></div>${RV.third ? `<div class="nm-c3"><div class="nm-cfh"><span class="nm-cft">${FN[f3]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f3}" title="${FN[f3]} 수정">수정</button></div><div class="nm-c nm-cfc" data-f="${f3}">${faceHTML(it, f3)}</div></div>` : ''}</div>`
+    + (S.cfg.cw ? `<i class="nm-crz" data-crz="1" title="끌어서 카드·내 답안 너비 조절 · 두 번 누르면 처음대로" aria-hidden="true"></i><div class="nm-cr"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로</small></div><textarea class="nm-wt big" data-w="${esc(it.id)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만) — 뒤집어서 정답과 견줘 보기" title="⌘/Ctrl+Enter 뒤집기 · Esc 칸에서 나가기" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea><div class="nm-crf"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}</div>` : `<div class="nm-crf nm-crf0"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}`);
+  box.classList.toggle('nowr', !S.cfg.cw); box.dataset.id = it.id; refreshCounts(D.length); sesSave();
 }
 function focusCard() { const c = S.root && $('.nm-card', S.root); if (c) c.focus({ preventScroll: true }); }
 function cnav(d) {
   const s = RV.ses; if (!s) return; const D = deckIds(); if (!D.length) return; drSave();
   if (RV.sum) { if (d < 0) { RV.sum = false; s.i = D.length - 1; s.cur = D[s.i]; RV.face = 0; cardPaint(); focusCard(); } return; }
-  if (d === 0) { RV.face = RV.face ? 0 : 1; cardPaint(); focusCard(); return; }
+  if (d === 0) { const inTa = !!(document.activeElement && document.activeElement.matches && document.activeElement.matches('textarea[data-w]')); RV.face = RV.face ? 0 : 1; cardPaint(); const ta = inTa && S.root && $('.nm-cr textarea', S.root); if (ta) { ta.focus({ preventScroll: true }); const n = ta.value.length; ta.setSelectionRange(n, n); } else focusCard(); return; }   /* 내 답안 칸에서 ⌘/Ctrl+Enter로 뒤집으면 계속 그 칸에서 쓰기 */
   let i = D.indexOf(s.cur); if (i < 0) i = s.i || 0; const j = i + d; if (j < 0) return;
   if (j >= D.length) { RV.sum = true; cardPaint(); const b = S.root && $('.nm-sum [data-ract=retry]:not([disabled]), .nm-sum [data-ract=renew]', S.root); if (b) b.focus({ preventScroll: true }); return; }
   s.i = j; s.cur = D[j]; RV.face = 0; RV.third = false; cardPaint(); focusCard();
@@ -1894,7 +1910,7 @@ function cardKey(e) {   /* 카드 복습 단축키 — Space·Enter 뒤집기 ·
   if (k === ' ' || k === 'Enter') cnav(0); else if (k === 'ArrowRight') cnav(1); else if (k === 'ArrowLeft') cnav(-1);
   else if ((k === '1' || k === '2' || k === '3') && !RV.sum) { const b = S.root && $(`.nm-cmk [data-mk="${+k - 1}"]`, S.root); if (b) b.click(); else h = false; }
   else if ((k === 't' || k === 'T') && !RV.sum) { RV.third = !RV.third; cardPaint(); focusCard(); }
-  else if ((k === 'w' || k === 'W') && !RV.sum) { const ta = S.root && $('.nm-cr textarea', S.root); if (ta) ta.focus(); else h = false; }
+  else if ((k === 'w' || k === 'W') && !RV.sum) { if (!S.cfg.cw) { S.cfg.cw = true; cfgSave(); cardPaint(); cwSync(); } const ta = S.root && $('.nm-cr textarea', S.root); if (ta) ta.focus(); else h = false; }
   else h = false;
   if (h) { e.preventDefault(); e.stopPropagation(); } return h;
 }
@@ -1978,6 +1994,7 @@ function revClick(e, t) {   /* 넘버링 복습 화면의 누르기 — 처리�
   const rv = t.closest('[data-rview]'); if (rv) { if (S.drawer) drawer(false); viewSet(rv.dataset.rview); return true; }
   const rd = t.closest('[data-rdir]'); if (rd) { S.cfg.dir = rd.dataset.rdir; cfgSave(); RV.face = 0; RV.third = false; S.vo = false; revRender(); return true; }
   const rh = t.closest('[data-rhide]'); if (rh) { hideAll(rh.dataset.rhide === 'a' ? 'a' : 's'); return true; }
+  const rcw = t.closest('[data-rcw]'); if (rcw) { drSave(); S.cfg.cw = !S.cfg.cw; cfgSave(); S.vo = false; const v = $('.nm-vopt', S.root); if (v) v.classList.remove('open'); cardPaint(); cwSync(); return true; }
   const rw = t.closest('[data-rwrite]'); if (rw) { const p = posNow(); drSave(); S.cfg.write = !S.cfg.write; cfgSave(); S.vo = false; revRender({ pos: p }); return true; }
   const sc = t.closest('[data-rsc]'); if (sc) { scopeSet(sc.dataset.rsc); return true; }
   const mk = t.closest('[data-mk]'); if (mk) {
@@ -2121,8 +2138,8 @@ function bind() {
   document.addEventListener('paste', e => { if (S.ed && S.ed.el.contains(e.target)) onPaste(e); });
   document.addEventListener('pointerdown', e => { if (S.ed && e.target.closest && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal'))) S.tbAt = now(); }, true);
   document.addEventListener('focusout', e => { if (e.target && e.target.matches && e.target.matches('textarea[data-w]')) drSave(); }, true);
-  document.addEventListener('pointerdown', e => { const h = e.target.closest && e.target.closest('#numv [data-rz]'); if (h && S.app === 'rev' && e.button === 0) rzStart(e, h); });
-  document.addEventListener('dblclick', e => { if (S.app === 'rev' && e.target.closest && e.target.closest('#numv [data-rz]')) rzReset(); });
+  document.addEventListener('pointerdown', e => { if (S.app !== 'rev' || e.button !== 0 || !e.target.closest) return; const h = e.target.closest('#numv [data-rz]'); if (h) { rzStart(e, h); return; } const c = e.target.closest('#numv [data-crz]'); if (c) crzStart(e, c); });
+  document.addEventListener('dblclick', e => { if (S.app !== 'rev' || !e.target.closest) return; if (e.target.closest('#numv [data-rz]')) rzReset(); else if (e.target.closest('#numv [data-crz]')) { S.cfg.wc = 56; cfgSave(); wApply(); } });
   document.addEventListener('touchstart', e => { const c = S.app === 'rev' && e.target.closest && e.target.closest('#numv .nm-card[data-flip]'); if (!c || e.touches.length !== 1) { RV.tx = null; return; } const p = e.touches[0]; RV.tx = { x: p.clientX, y: p.clientY, t: now() }; }, { passive: true });
   document.addEventListener('touchend', e => { const s0 = RV.tx; RV.tx = null; if (!s0 || S.app !== 'rev' || S.ed) return; const p = e.changedTouches[0], dx = p.clientX - s0.x, dy = p.clientY - s0.y; if (Math.abs(dx) > 60 && Math.abs(dy) < 50 && now() - s0.t < 800) { RV.swiped = true; setTimeout(() => { RV.swiped = false; }, 450); cnav(dx < 0 ? 1 : -1); } }, { passive: true });   /* 카드 옆으로 밀기 = 다음·이전 */
   document.addEventListener('focusout', e => { const E = S.ed; if (!E || e.target !== E.el) return; setTimeout(() => { if (S.ed !== E || E.busy || now() - (S.tbAt || 0) < 600) return; const ae = document.activeElement; if (ae && (E.el.contains(ae) || (E.tb && E.tb.contains(ae)) || ae.closest && ae.closest('.nm-pal'))) return; if (document.hidden) { edSave(); return; } endEdit(); }, 150); });
