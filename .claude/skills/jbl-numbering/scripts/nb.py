@@ -177,7 +177,8 @@ def check_story(story, it, allow=()):
         if not nk:
             err.append(f'빈 괄호: ({k})')
             continue
-        if nk not in A and nk not in allowN:
+        parts = [norm(x) for x in re.split(r'\s*[/,]\s*', k) if x.strip()]   # (wa, guide)·(presurgical / virtual surgical) — 조각마다 원문에 있으면 됨(사용자 꼴 10-11)
+        if nk not in A and nk not in allowN and not (parts and all(x in A for x in parts)):
             err.append(f"괄호 '{k}'가 정답 원문(a)에 없어요 — 원문 글자 그대로의 가장 짧은 핵심어로(번역·풀이 금지 · 정말 필요하면 --allow-kw)")
         words = len(k.split())
         if words > 5 or len(k) > 45:
@@ -198,9 +199,7 @@ def check_story(story, it, allow=()):
         nk = norm(k)
         if nk and nk in norm(inner) and nk not in outer:
             warn.append(f"괄호 '{k}'는 정답 속 해설 괄호에만 있는 말 — 시험 항목 핵심어인지 확인")
-    gaps = [g for g in re.split(r'[(（][^()（）]{1,80}[)）]', s)[1:-1]]
-    if len(gaps) >= 2 and sum(1 for g in gaps if len(re.findall(r'[가-힣A-Za-z]{2,}', g)) <= 1) >= 0.6 * len(gaps):
-        warn.append('괄호 사이에 말이 거의 없어요 — 단서만 늘어놓은 목록꼴(G1)이 아닌지')
+    # (목록꼴 경고는 뺌 — 사용자 꼴이 '한 줄에 단서 하나'라서 · 10-11)
     return err, warn
 
 
