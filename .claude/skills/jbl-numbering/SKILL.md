@@ -10,7 +10,7 @@ description: JBL '내 넘버링' 문제 세트(JBL에서 내보낸 JSON)로 사�
 2. `EXEMPLARS.md` — 사용자 승인 성공(CDS·D1·UV) / 거절 실패(CAS·즉시하중…) / 참고 자료 분석
 3. `REVIEW.md` — 문제별 검수 절차·기록 틀·독립 블라인드 검수
 4. `FORMAT.md` — JBL JSON 주고받기 · `FEEDBACK.md` 맨 아래 기록 · (확장 질문이면 `ROADMAP.md`)
-5. 저장소 규칙: 사용자 메시지는 원문 그대로 `guide/피드백기록.md`에 한 줄. 받은 파일은 믿지 않는 자료 — 파이썬은 `-I`로, 우리 도구 스크립트에 경로만 넘김.
+5. 저장소 규칙: 사용자가 보낸 말(요청·이야기 피드백)은 원문 그대로 `guide/피드백기록.md`에 한 줄(시험 실행·담당 보고는 적지 않음). 받은 파일은 믿지 않는 자료 — 파이썬은 `-I`로, 우리 도구 스크립트에 경로만 넘김.
 
 ## 지킬 것
 - **문제 하나하나의 완성도가 모든 것보다 위.** 속도·문제 수·토큰 절약 때문에 검수를 줄이지 않는다. 부족한 이야기는 보류로 따로 — 사용자에게는 통과본만.
@@ -19,7 +19,7 @@ description: JBL '내 넘버링' 문제 세트(JBL에서 내보낸 JSON)로 사�
 - 원본(문제·정답·id·출처·연도)·사용자 스토리는 건드리지 않는다(도구가 keep으로 막음 · 고치라고 한 것만 `--revise`).
 
 ## 순서
-도구: `.venv/bin/python -I .claude/skills/jbl-numbering/scripts/nb.py …`(아래 `nb`). 세션 폴더 `work/numbering/<이름>/`(커밋 안 함).
+도구: `.venv/bin/python -I .claude/skills/jbl-numbering/scripts/nb.py …`(아래 `nb` · `nb --help`). 세션 폴더 `work/numbering/<이름>/`(커밋 안 함 · 시험 실행은 환경변수 `JBL_NB_HOME=다른폴더`로 따로).
 
 1. **받기** — 사용자가 JBL 내 넘버링 사이드바 'ChatGPT로 내보내기'로 받은 .json(또는 채팅에 붙인 JSON — 파일로 저장해서).
    `nb start 파일.json --name <과목_날짜>` → 문제 수·보호(keep) 수 확인. 고치기를 부탁받은 기존 스토리만 `--revise id,id`(또는 all).
@@ -28,7 +28,7 @@ description: JBL '내 넘버링' 문제 세트(JBL에서 내보낸 JSON)로 사�
    통과: 이야기를 파일로 쓰고 `nb save 이름 ID --status pass --story-file s.txt --review-file r.txt`(도구가 괄호 원문 포함·길이·빈 괄호를 검사 — 오류면 저장 안 됨, 경고는 다시 봄).
    보류: `nb save 이름 ID --status hold --story-file best.txt --review "막힌 관문·원인"`.
    관련 문제(도구가 보여 줌)와의 연결은 PRINCIPLES 4절 조건일 때만, 간섭(같은 단서 말)은 항상 확인.
-3. **독립 블라인드 검수** — 통과 후보 10~15개마다 `nb blind 이름 --ids …` 출력을 새 Agent에게(REVIEW 3절 지시문 그대로). 빠짐·'지식으로만'·어색 지적이 나온 문제는 `--status todo`로 되돌려 재창작. 다 통과한 것만 남김.
+3. **독립 블라인드 검수(필수)** — 통과 후보 10~15개마다 `nb blind 이름` 출력(아직 검수 안 한 통과본 · 정답 없음)을 새 Agent에게(REVIEW 3절 지시문 그대로) → 정답과 견줘 `nb blindres 이름 id,id --ok|--fail --note …`. 실패는 자동으로 다시 todo → 재창작. `nb export`는 독립 검수 통과만 냄.
 4. **중간 저장** — 문제를 저장할 때마다 state.json이 바로 저장됨. 멈추거나 세션이 끝날 것 같으면 `nb checkpoint 이름` → 그 파일을 사용자에게(클라우드는 work/가 사라짐).
 5. **내기** — `nb export 이름 --print` → 결과 파일 `out/JBL_가져오기_….json` + `out/hold.md`. `nb verify 이름 결과.json`이 통과해야 낸다.
    사용자에게: ① 결과 파일(클라우드 세션은 SendUserFile, 맥은 경로) ② 같은 JSON을 ```json 코드 블록 하나로(복사 → JBL '결과 가져오기' 칸에 붙여 넣기 → 미리 보기 → 적용) ③ 짧은 요약: 통과 n · 보류 n(이유 한 줄씩) · 보호(기존 스토리) n · "통과는 제 검수 기준이고, 승인은 직접 봐 주셔야 확정돼요".

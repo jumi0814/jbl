@@ -21,7 +21,8 @@ def nb(*args, expect=0):
     return r.returncode, out
 def wr(name, txt):
     p = TMP / name; p.write_text(txt, encoding='utf-8'); return str(p)
-REV = 'G1 자연성: 통과\nG2 복원: 1 단서→항목 (테스트)\nG3~G8: 통과(테스트)'
+REV = 'G1 자연성: 통과\nG2 복원: 1 단서→항목 · 2 단서→항목 · 3 단서→항목 (테스트)\nG3~G8: 통과(테스트)'
+REV1 = 'G1 자연성: 통과\nG2 복원: 단서→항목 (테스트)\nG3~G8: 통과(테스트)'
 
 def part_a():
     print('A. 도구 단독')
@@ -35,6 +36,7 @@ def part_a():
     rc, o = nb('start', sp, '--name', 't1'); ok(rc == 0 and 'todo) 2' in o and 'keep — 이미 스토리 있음) 2' in o, '시작 — todo 2 · 보호 2(story 있음 + s0≠0)')
     rc, o = nb('save', 't1', 'q3', '--status', 'pass', '--story', '[테스트] 장면(Delta)', '--review', REV, expect=1); ok(rc != 0 and '보호' in o, '보호 문제 저장 거부')
     rc, o = nb('save', 't1', 'q1', '--status', 'pass', '--story', '[테스트] 크루즈(Crouzon) 타고 갔어', '--review', 'G1만', expect=1); ok(rc != 0 and 'G2' in o, '검수 기록(G2) 없으면 통과 저장 거부')
+    rc, o = nb('save', 't1', 'q1', '--status', 'pass', '--story', '[테스트] 크루즈(Crouzon) 타고 가다 앞에(Apert) 멈췄어', '--review', REV1, expect=1); ok(rc != 0 and '짝' in o, 'G2 줄의 단서→항목 짝이 괄호 수보다 적으면 거부')
     rc, o = nb('save', 't1', 'q1', '--status', 'pass', '--story', '[테스트] 크루즈(크루존 증후군) 타고 앞에(Apert)', '--review', REV, expect=1); ok(rc != 0 and '정답 원문' in o, '괄호가 정답 원문에 없으면 거부(번역 금지)')
     rc, o = nb('save', 't1', 'q1', '--status', 'pass', '--story', '[테스트] 크루즈(Crouzon) 타고 가다 앞에(Apert) 멈췄어', '--review', REV); ok(rc == 0 and '통과 저장' in o and '크루즈 타고 가다 앞에 멈췄어' in o, '통과 저장 + 괄호 뺀 글 보여 줌')
     rc, o = nb('save', 't1', 'q2', '--status', 'hold', '--story', '[테스트] 최선안(Alpha)', expect=1); ok(rc != 0, '보류는 이유 필수')
@@ -43,6 +45,9 @@ def part_a():
     rc, o = nb('next', 't1'); ok('제작할 문제가 없어요' in o, '남은 todo 0(보호 문제는 내지 않음)')
     rc, o = nb('checkpoint', 't1', '--out', str(TMP / 'cp.json')); rc2, o2 = nb('start', '--from', str(TMP / 'cp.json'), '--name', 't1b'); rc3, o3 = nb('status', 't1b')
     ok(rc == 0 and rc2 == 0 and '통과(pass) 1' in o3 and '보류(hold) 1' in o3, '체크포인트 → 다른 세션 복원')
+    rc, o = nb('export', 't1', expect=1); ok(rc != 0 and '블라인드' in o, '독립 블라인드 검수 전 통과본은 내지 않음')
+    rc, o = nb('blind', 't1'); ok('크루즈 타고 가다 앞에 멈췄어' in o and 'Crouzon' not in o and 'Apert' not in o, 'blind 출력 = 문제 + 괄호 뺀 이야기(정답 없음)')
+    rc, o = nb('blindres', 't1', 'q1', '--ok', '--note', '[테스트] 2/2'); rc2, o2 = nb('blind', 't1'); ok(rc == 0 and '보여 줄 통과 스토리가 없어요' in o2, '블라인드 통과 기록 · 같은 이야기를 다시 보이지 않음')
     outp = TMP / 'out.json'; rc, o = nb('export', 't1', '--out', str(outp), '--print')
     out = json.loads(outp.read_text(encoding='utf-8')); its = [it for g in out['lecs'] for it in g['items']]
     ok(rc == 0 and [it['id'] for it in its] == ['q1'] and its[0]['q'] == src['lecs'][0]['items'][0]['q'] and its[0]['s0'] == '0' and 'a' not in its[0] and out['format'] == 'jbl-numbering' and out['sid'] == 'TEST', '결과 = 통과만 · id/q/s0 원본 그대로 · 답안 칸 없음')
@@ -54,6 +59,10 @@ def part_a():
     ok(rc == 0 and rc2 != 0, '사용자 거절 → 다시 todo · 결과에서 빠짐')
     rc, o = nb('start', sp, '--name', 't2', '--revise', 'q3'); ok(rc == 0 and 'todo) 3' in o and '고치기 허락받은 기존 스토리: q3' in o, '--revise로 허락한 기존 스토리만 다시 엶')
     rc, o = nb('start', sp, '--name', 't1', expect=1); ok(rc != 0 and '이미 있는 세션' in o, '같은 이름 세션 덮어쓰기 막음')
+    rc, o = nb('start', sp, '--name', 't1', '--force'); ok(rc == 0 and '덮기 전 기록을 남겼어요' in o and list((TMP / 'home' / 't1').glob('state.bak.*.json')), '--force는 덮기 전 기록을 남김')
+    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma) 끝', '--review', REV); ok('목록꼴' in o, '괄호만 늘어놓은 목록꼴 경고')
+    rc, o = nb('blindres', 't2', 'q2', '--fail', '--note', '[테스트] 감마 안 떠오름'); rc2, o2 = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma) 끝', '--review', REV, expect=1)
+    ok(rc == 0 and rc2 != 0 and '전제부터 새로' in o2, '블라인드 실패 → 다시 todo · 같은 글은 다시 통과 저장 안 됨')
 
 async def part_b():
     print('B. 실제 JBL 왕복')
@@ -84,6 +93,7 @@ async def part_b():
         for i in (ids[0], ids[2], ids[3]):
             k = kw(S[i]['a']); rc, o = nb('save', 'web', i, '--status', 'pass', '--story', f'[테스트] 그 장면에서 떠오른 말({k})이 이어졌어', '--review', REV)
             ok(rc == 0, f'{i} 테스트 통과 저장(괄호 {k})')
+        rc, o = nb('blindres', 'web', ','.join((ids[0], ids[2], ids[3])), '--ok', '--note', '[테스트]')
         rc, o = nb('export', 'web', '--print'); txt = o.split('-----\n', 1)[1] if '-----\n' in o else ''
         ok(rc == 0 and txt.strip().startswith('{'), '결과 JSON(붙여 넣기용) 만듦')
         # 내보낸 뒤 JBL에서 ids[2]에 스토리를 씀 → 가져오기 때 충돌이어야

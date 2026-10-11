@@ -14,7 +14,8 @@
   … save 이름 ID --status pass|hold|todo [--story-file F | --story S] [--review-file F | --review S] [--allow-kw 키워드]
   … status 이름                    상태별 수 · 보류 이유
   … blind 이름 [--ids a,b]         독립 검수용 — 문제 + 괄호를 뺀 스토리만(정답 없음)
-  … export 이름 [--out 경로] [--print]   통과 스토리만 JBL 가져오기 JSON(+ hold.md)
+  … blindres 이름 id,id --ok|--fail [--note]   독립 검수 결과 기록(실패 = 다시 todo)
+  … export 이름 [--out 경로] [--print] [--no-blind]   독립 검수까지 통과한 스토리만 JBL 가져오기 JSON(+ hold.md)
   … verify 이름 결과.json          결과 JSON을 원본과 견주기
   … checkpoint 이름 [--out 경로]    이어하기용 한 파일
   … start --from 체크포인트.json [--name 이름]
@@ -189,10 +190,23 @@ def check_story(story, it, allow=()):
     n = est_items(it['a'])
     if K and n and len(K) < n:
         warn.append(f'정답 항목(추정 {n}개)보다 괄호({len(K)}개)가 적어요 — 빠진 항목이 없는지(묶음·해설 줄이면 괜찮음)')
-    bare = strip_paren(s)
-    if len(norm(bare)) < len(norm(s)) * 0.45:
-        warn.append('괄호를 빼면 남는 글이 너무 적어요 — 괄호가 단서를 대신하고 있지 않은지')
+    bare = strip_paren(s); nb_ = len(re.sub(r'\s', '', bare)); lim = max(150, n * 24)
+    if nb_ > lim:
+        warn.append(f'괄호 뺀 글 {nb_}자 — 기준(대개 60~140자 · 이 문제는 {lim}자까지)보다 김: 줄일 곳')
+    inner = ' '.join(re.findall(r'\(([^()]*)\)', it['a'])); outer = norm(re.sub(r'\([^()]*\)', ' ', it['a']))
+    for k in K:
+        nk = norm(k)
+        if nk and nk in norm(inner) and nk not in outer:
+            warn.append(f"괄호 '{k}'는 정답 속 해설 괄호에만 있는 말 — 시험 항목 핵심어인지 확인")
+    gaps = [g for g in re.split(r'[(（][^()（）]{1,80}[)）]', s)[1:-1]]
+    if len(gaps) >= 2 and sum(1 for g in gaps if len(re.findall(r'[가-힣A-Za-z]{2,}', g)) <= 1) >= 0.6 * len(gaps):
+        warn.append('괄호 사이에 말이 거의 없어요 — 단서만 늘어놓은 목록꼴(G1)이 아닌지')
     return err, warn
+
+
+def cues(story):
+    """괄호 바로 앞 말(단서) → 괄호 키워드"""
+    return [(m.group(1), m.group(2).strip()) for m in re.finditer(r'([가-힣A-Za-z0-9]{2,})[^\s(（]*\s*[(（]([^()（）]{1,80})[)）]', story)]
 
 
 # ---------- 명령 ----------
@@ -209,15 +223,17 @@ def cmd_start(a):
         name = a.name or ('s' + datetime.now().strftime('%m%d_%H%M') + '_' + re.sub(r'[^\w]', '', str(src.get('sid')))[:12])
         st = None
     d = sdir(name)
-    if (d / 'state.json').exists() and not a.force:
-        raise Bad(f'이미 있는 세션이에요: {name} — 이어서 하려면 next/status, 새로 시작하려면 다른 --name')
+    if (d / 'state.json').exists():
+        if not a.force:
+            raise Bad(f'이미 있는 세션이에요: {name} — 이어서 하려면 next/status, 새로 시작하려면 다른 --name')
+        bak = d / f"state.bak.{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"; atomic(bak, load(d / 'state.json')); print(f'덮기 전 기록을 남겼어요: {bak}')
     if st is None:
         rv = set() if not a.revise else ({'*'} if a.revise == 'all' else {x.strip() for x in a.revise.split(',') if x.strip()})
         st = {'format': 'jbl-numbering-state', 'v': 1, 'name': name, 'c': NOW(), 'sid': src.get('sid'), 'subject': src.get('subject', ''), 'batch': src.get('batch'), 'items': {}}
         ids = set()
         for lec, it in items_of(src):
             ids.add(it['id']); ex = has_story(it); rev = '*' in rv or it['id'] in rv
-            st['items'][it['id']] = {'lec': lec, 'status': 'todo' if (not ex or rev) else 'keep', 'had': ex, 'revise': bool(ex and rev), 'story': '', 'review': '', 'attempts': [], 'user': []}
+            st['items'][it['id']] = {'lec': lec, 'status': 'todo' if (not ex or rev) else 'keep', 'had': ex, 'revise': bool(ex and rev), 'story': '', 'review': '', 'attempts': [], 'user': [], 'blind': None}
         miss = rv - ids - {'*'}
         if miss:
             raise Bad('--revise에 없는 id: ' + ', '.join(sorted(miss)))
@@ -237,6 +253,9 @@ def summary(src, st):
         lines.append('  보호(건드리지 않음): ' + ', '.join(keep[:12]) + (' …' if len(keep) > 12 else ''))
     if rev:
         lines.append('  고치기 허락받은 기존 스토리: ' + ', '.join(rev))
+    bp = sum(1 for x in st['items'].values() if x['status'] == 'pass' and x.get('blind') != 'ok')
+    if bp:
+        lines.append(f'  독립 블라인드 검수 전 통과 {bp}개 — blind로 검수 → blindres로 기록(검수 전 통과는 결과에 안 들어감)')
     lines.append(f'  폴더: {sdir(st["name"])}')
     return '\n'.join(lines)
 
@@ -275,6 +294,11 @@ def item_text(src_items, st, it, full=False):
         for o in R:
             y = st['items'][o['id']]
             out.append(f"  - {o['id']} [{y['status']}] {re.sub(r'\s+', ' ', o['q'])[:90]}" + (f" ⇒ {re.sub(r'\s+', ' ', y['story'])[:80]}" if y['story'] else ''))
+    P = [(i, y) for i, y in st['items'].items() if y['status'] == 'pass' and i != it['id']]
+    if P:
+        out.append('이 세션 통과 이야기(장면 겹침·같은 단서 말 확인):')
+        for i, y in P[-8:]:
+            out.append(f"  - {i}: {strip_paren(y['story']).strip()[:46]}… · 단서 " + ', '.join(c for c, k in cues(y['story']))[:90])
     if full and x['attempts']:
         out.append('시도 기록:')
         for t in x['attempts']:
@@ -324,6 +348,18 @@ def cmd_save(a):
             raise Bad('통과로 저장하지 않았어요(형식 오류):\n  - ' + '\n  - '.join(err) + ('\n경고:\n  - ' + '\n  - '.join(warn) if warn else ''))
         if not review or 'G2' not in review:
             raise Bad('통과로 저장하려면 검수 기록(--review)이 필요해요 — REVIEW.md 틀(G1~G8 · 특히 G2 블라인드 복원 목록)')
+        g2 = next((l for l in review.splitlines() if l.strip().startswith('G2')), '')
+        if g2.count('→') < len(kws(story)):
+            raise Bad(f"검수 기록 G2 줄에 '단서→항목' 짝이 괄호 수({len(kws(story))})만큼 있어야 해요 — 실제로 복원해 본 목록")
+        if any(t.get('status') in ('user-rejected', 'blind-fail') and t.get('story', '').strip() == story for t in x['attempts']):
+            raise Bad('사용자가 거절했거나 블라인드 검수에서 떨어진 이야기와 같은 글이에요 — 전제부터 새로')
+        mine = {c: k for c, k in cues(story)}
+        for i, y in st['items'].items():
+            if i == a.id or y['status'] != 'pass':
+                continue
+            for c, k in cues(y['story']):
+                if c in mine and norm(mine[c]) != norm(k):
+                    warn.append(f"단서 말 '{c}'를 {i}에서 다른 답({k})에 썼어요 — 간섭(헷갈림) 확인")
         for w in warn:
             print('경고:', w)
     elif a.status == 'hold' and not review:
@@ -331,7 +367,7 @@ def cmd_save(a):
     x['attempts'].append({'at': NOW(), 'status': a.status, 'story': story, 'review': review})
     x['status'] = a.status
     x['story'] = story if a.status == 'pass' else (story if a.status == 'hold' else '')
-    x['review'] = review; x['allow'] = list(a.allow_kw or []) if a.status == 'pass' else []
+    x['review'] = review; x['allow'] = list(a.allow_kw or []) if a.status == 'pass' else []; x['blind'] = None
     write_state(d, st)
     if a.status == 'pass':
         print(f'{a.id} 통과 저장 · 괄호 뺀 글(G1 확인용):\n  ' + strip_paren(story).replace('\n', '\n  '))
@@ -339,6 +375,23 @@ def cmd_save(a):
         print(f'{a.id} → {a.status} 저장')
     left = sum(1 for v in st['items'].values() if v['status'] == 'todo')
     print(f'남은 todo {left}')
+
+
+def cmd_blindres(a):
+    d, src, st = read_state(a.name)
+    for i in [x.strip() for x in a.ids.split(',') if x.strip()]:
+        if i not in st['items']:
+            raise Bad(f'없는 id: {i}')
+        x = st['items'][i]
+        if x['status'] != 'pass':
+            raise Bad(f'{i}: 통과(pass) 문제만 블라인드 결과를 적어요(지금 {x["status"]})')
+        if a.ok:
+            x['blind'] = 'ok'; x['blind_note'] = a.note or ''
+        else:
+            x['attempts'].append({'at': NOW(), 'status': 'blind-fail', 'story': x['story'], 'review': a.note or ''})
+            x['status'] = 'todo'; x['blind'] = 'fail'; x['blind_note'] = a.note or ''; x['story'] = ''
+        print(f"{i}: 블라인드 {'통과' if a.ok else '실패 → 다시 todo(같은 글은 다시 통과 저장 안 됨)'}")
+    write_state(d, st)
 
 
 def cmd_status(a):
@@ -362,7 +415,7 @@ def cmd_blind(a):
     n = 0
     for lec, it in S:
         x = st['items'][it['id']]
-        if (want and it['id'] not in want) or (not want and x['status'] != 'pass'):
+        if (want and it['id'] not in want) or (not want and (x['status'] != 'pass' or x.get('blind') == 'ok')):   # 기본 = 아직 독립 검수 안 한 통과본만(같은 이야기를 두 번 보이지 않게)
             continue
         if not x['story']:
             continue
@@ -372,12 +425,16 @@ def cmd_blind(a):
         print('보여 줄 통과 스토리가 없어요')
 
 
-def build_out(src, st):
-    S = items_of(src); groups, gm, n = [], {}, 0
+def build_out(src, st, no_blind=False):
+    S = items_of(src); groups, gm, n, nb_ = [], {}, 0, 0
     for lec, it in S:
         x = st['items'][it['id']]
         if x['status'] != 'pass' or not x['story'].strip():
             continue
+        if x.get('blind') != 'ok':
+            if not no_blind:
+                continue
+            nb_ += 1
         if x['had'] and not x.get('revise'):
             continue   # 이중 안전 — 보호 문제는 절대 넣지 않음
         g = gm.get(lec)
@@ -386,7 +443,7 @@ def build_out(src, st):
         g['items'].append({'id': it['id'], 'q': it['q'], 'story': x['story'], 's0': it['s0']}); n += 1
     out = {'format': FMT, 'v': V, 'sid': src['sid'], 'subject': src.get('subject', ''), 'batch': src['batch'], 'part': src.get('part', ''), 'n': n,
            'made_by': 'claude:jbl-numbering', 'session': st['name'],
-           'note': '검수 통과 스토리만 · JBL 내 넘버링 → ChatGPT 결과 가져오기에 파일을 넣거나 이 글 전체를 붙여 넣기 → 미리 보기에서 고른 것만 적용',
+           'note': '검수 통과 스토리만' + (f' (그중 {nb_}개는 독립 블라인드 검수 안 함)' if nb_ else '') + ' · JBL 내 넘버링 → ChatGPT 결과 가져오기에 파일을 넣거나 이 글 전체를 붙여 넣기 → 미리 보기에서 고른 것만 적용',
            'lecs': groups}
     return out, n
 
@@ -398,9 +455,12 @@ def dump_compact(o):   # JBL 내보내기와 같은 꼴(문제 한 줄씩)
 
 def cmd_export(a):
     d, src, st = read_state(a.name)
-    out, n = build_out(src, st)
+    out, n = build_out(src, st, a.no_blind)
+    pend = sum(1 for x in st['items'].values() if x['status'] == 'pass' and x.get('blind') != 'ok')
     if not n:
-        raise Bad('통과한 스토리가 없어요 — 넣을 게 없음')
+        raise Bad('낼 스토리가 없어요' + (f' — 통과 {pend}개가 독립 블라인드 검수 전(blind → blindres · 정말 검수 없이 내려면 --no-blind)' if pend else ' — 통과한 스토리가 없음'))
+    if pend and not a.no_blind:
+        print(f'알림: 독립 블라인드 검수 전 통과 {pend}개는 빼고 냄')
     txt = dump_compact(out)
     verify_obj(src, st, load_json_text(txt))
     p = Path(a.out) if a.out else d / 'out' / f"JBL_가져오기_{st['name']}_{n}문제.json"
@@ -433,6 +493,8 @@ def verify_obj(src, st, out):
                 raise Bad(f'{i}: q 또는 s0가 원본과 달라요(문제 확인·충돌 방지용 — 한 글자도 바꾸면 안 됨)')
             if set(it) - {'id', 'q', 'story', 's0'}:
                 raise Bad(f'{i}: 스토리 말고 다른 칸이 들어 있어요: {sorted(set(it) - {"id", "q", "story", "s0"})}')
+            if x.get('blind') != 'ok' and '블라인드 검수 안 함' not in str(out.get('note', '')):
+                raise Bad(f'{i}: 독립 블라인드 검수를 거치지 않은 통과본이에요')
             if x['status'] != 'pass' or it.get('story') != x['story']:
                 raise Bad(f'{i}: 검수 통과(pass) 스토리가 아니에요')
             if x['had'] and not x.get('revise'):
@@ -481,14 +543,15 @@ def main():
     s.add_argument('--story'); s.add_argument('--story-file'); s.add_argument('--review'); s.add_argument('--review-file'); s.add_argument('--allow-kw', action='append')
     s = c.add_parser('status'); s.add_argument('name')
     s = c.add_parser('blind'); s.add_argument('name'); s.add_argument('--ids')
-    s = c.add_parser('export'); s.add_argument('name'); s.add_argument('--out'); s.add_argument('--print', action='store_true')
+    s = c.add_parser('blindres'); s.add_argument('name'); s.add_argument('ids'); g = s.add_mutually_exclusive_group(required=True); g.add_argument('--ok', action='store_true'); g.add_argument('--fail', action='store_true'); s.add_argument('--note')
+    s = c.add_parser('export'); s.add_argument('name'); s.add_argument('--out'); s.add_argument('--print', action='store_true'); s.add_argument('--no-blind', action='store_true')
     s = c.add_parser('verify'); s.add_argument('name'); s.add_argument('file')
     s = c.add_parser('checkpoint'); s.add_argument('name'); s.add_argument('--out')
     s = c.add_parser('feedback'); s.add_argument('name'); s.add_argument('id'); s.add_argument('--verdict', required=True, choices=('approve', 'reject')); s.add_argument('--text', required=True)
     a = p.parse_args()
     if a.cmd == 'start' and not a.src and not a.frm:
         p.error('start에는 내보내기 JSON 경로나 --from 체크포인트가 필요해요')
-    {'start': cmd_start, 'next': cmd_next, 'show': cmd_show, 'save': cmd_save, 'status': cmd_status, 'blind': cmd_blind,
+    {'start': cmd_start, 'next': cmd_next, 'show': cmd_show, 'save': cmd_save, 'status': cmd_status, 'blind': cmd_blind, 'blindres': cmd_blindres,
      'export': cmd_export, 'verify': cmd_verify, 'checkpoint': cmd_checkpoint, 'feedback': cmd_feedback}[a.cmd](a)
 
 
