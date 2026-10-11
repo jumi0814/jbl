@@ -21,8 +21,13 @@ def nb(*args, expect=0):
     return r.returncode, out
 def wr(name, txt):
     p = TMP / name; p.write_text(txt, encoding='utf-8'); return str(p)
-REV = 'G1 흐름: 장면 → 이어짐(테스트)\nG2 복원: 1 단서→항목[소리] · 2 단서→항목[외래어] · 3 단서→항목[행동] (테스트)\nG3~G8: 통과(테스트)'
+REV = 'G1 흐름: 장면 → 이어짐(테스트)\nG2 복원: 1 단서→항목[소리] · 2 단서→항목[그대로] · 3 단서→항목[소리] (테스트)\nG3~G8: 통과(테스트)'
 REV1 = 'G1 흐름: 장면 → 이어짐(테스트)\nG2 복원: 단서→항목[소리] (테스트)\nG3~G8: 통과(테스트)'
+
+def grade(sess, ids, recalled=True, mech='소리', **flags):
+    G = [dict({'id': i, 'items': [{'answer': 'x', 'cue': 'y', 'recalled': recalled, 'mech': mech}], 'natural': True, 'notes': '[테스트]'}, **flags) for i in ids]
+    p = TMP / f'grade_{sess}.json'; p.write_text(json.dumps(G, ensure_ascii=False), encoding='utf-8')
+    return nb('grade', sess, str(p))
 
 def part_a():
     print('A. 도구 단독')
@@ -48,6 +53,8 @@ def part_a():
     rc, o = nb('export', 't1', expect=1); ok(rc != 0 and '블라인드' in o, '독립 블라인드 검수 전 통과본은 내지 않음')
     rc, o = nb('blind', 't1'); ok('크루즈 타고 가다 앞에 멈췄어' in o and 'Crouzon' not in o and 'Apert' not in o, 'blind 출력 = 문제 + 괄호 뺀 이야기(정답 없음)')
     rc, o = nb('blindres', 't1', 'q1', '--ok', '--note', '[테스트] 2/2'); rc2, o2 = nb('blind', 't1'); ok(rc == 0 and '보여 줄 통과 스토리가 없어요' in o2, '블라인드 통과 기록 · 같은 이야기를 다시 보이지 않음')
+    rc, o = nb('export', 't1', expect=1); ok(rc != 0, '채점 모드: 블라인드만 통과하고 채점(nb grade) 전이면 결과에 안 넣음(10-11)')
+    rc, o = grade('t1', ['q1']); ok(rc == 0 and '채점 통과' in o, '독립 채점 통과 기록(nb grade)')
     outp = TMP / 'out.json'; rc, o = nb('export', 't1', '--out', str(outp), '--print')
     out = json.loads(outp.read_text(encoding='utf-8')); its = [it for g in out['lecs'] for it in g['items']]
     ok(rc == 0 and [it['id'] for it in its] == ['q1'] and its[0]['q'] == src['lecs'][0]['items'][0]['q'] and its[0]['s0'] == '0' and 'a' not in its[0] and out['format'] == 'jbl-numbering' and out['sid'] == 'TEST', '결과 = 통과만 · id/q/s0 원본 그대로 · 답안 칸 없음')
@@ -65,6 +72,14 @@ def part_a():
     nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma)가 이어졌어', '--review', REV)
     rc, o = nb('blindres', 't2', 'q2', '--fail', '--note', '[테스트] 감마 안 떠오름'); rc2, o2 = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma)가 이어졌어', '--review', REV, expect=1)
     ok(rc == 0 and rc2 != 0 and '전제부터 새로' in o2, '블라인드 실패 → 다시 todo · 같은 글은 다시 통과 저장 안 됨')
+    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[알파 = 베타 비교]\n알파(Alpha)가 오고 베타(Beta)가 가고 감마(Gamma)가 남았어', '--review', REV, expect=1); ok(rc != 0 and '대입 틀' in o, "'A = B' 비유 대입 제목은 저장 거부(10-11)")
+    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha)가 오고 베타(Beta)가 가더니 감마(Gamma)만 남았어', '--review', 'G1 흐름: 장면 → 이어짐\nG2 복원: 알파→Alpha[대입] · 베타→Beta[소리] · 감마→Gamma[소리]', expect=1); ok(rc != 0 and '[대입]' in o, '[대입] 단서가 하나라도 있으면 저장 거부(10-11)')
+    nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha)가 오고 베타(Beta)가 가더니 감마(Gamma)만 남았어', '--review', REV)
+    rc, o = grade('t2', ['q2'], mech='대입', analog_checklist=True); ok(rc == 0 and '채점 실패' in o and '구조 결함' in o, '채점: 대입·비유형 체크리스트면 실패(구조 결함)')
+    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha)가 오고 베타(Beta)가 떠나더니 감마(Gamma)만 남았어', '--review', REV, expect=1); ok(rc != 0 and '소재와 사건' in o, '구조 결함 뒤 소재·사건이 거의 같은 재제출은 거부')
+    nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 새벽 시장에서 알파(Alpha) 할머니가 베타(Beta) 떡을 감마(Gamma) 봉지에 담아 줬지', '--review', REV)
+    grade('t2', ['q2'], recalled=False); nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 한밤 노래방에서 알파(Alpha)송 부르다 베타(Beta) 박자 놓치고 감마(Gamma) 마이크 떨굼', '--review', REV)
+    rc, o = grade('t2', ['q2'], recalled=False); rc2, o2 = nb('status', 't2'); ok('보류' in o and '미완성' in o2, '채점 3번 실패면 자동 보류(미완성) + 원인 기록')
 
 async def part_b():
     print('B. 실제 JBL 왕복')
@@ -96,6 +111,7 @@ async def part_b():
             k = kw(S[i]['a']); rc, o = nb('save', 'web', i, '--status', 'pass', '--story', f'[테스트] 그 장면에서 떠오른 말({k})이 이어졌어', '--review', REV)
             ok(rc == 0, f'{i} 테스트 통과 저장(괄호 {k})')
         rc, o = nb('blindres', 'web', ','.join((ids[0], ids[2], ids[3])), '--ok', '--note', '[테스트]')
+        grade('web', [ids[0], ids[2], ids[3]])
         rc, o = nb('export', 'web', '--print'); txt = o.split('-----\n', 1)[1] if '-----\n' in o else ''
         ok(rc == 0 and txt.strip().startswith('{'), '결과 JSON(붙여 넣기용) 만듦')
         # 내보낸 뒤 JBL에서 ids[2]에 스토리를 씀 → 가져오기 때 충돌이어야

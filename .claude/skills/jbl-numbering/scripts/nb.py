@@ -368,7 +368,7 @@ def cmd_save(a):
         tags = re.findall(r'\[(소리|그대로|숫자|대입|번역)\]', g2)
         if len(tags) < len(kws(story)):
             raise Bad(f"G2 짝마다 단서 종류를 [소리](답 말의 소리)·[그대로](답의 말·그 물건 자체가 장면에 나옴)·[숫자]·[번역](영어 답을 우리말 뜻으로 옮김)·[대입](다른 소재의 대응물 — 기둥=임플란트 같은 것) 중 하나로({len(tags)}/{len(kws(story))})")
-        if tags.count('대입') > 1:
+        if tags.count('대입') >= 1:
             raise Bad(f"[대입] 단서 {tags.count('대입')}개 — 답을 다른 소재의 대응물로 바꾼 비유형 체크리스트(10-11 사용자 거절: SUV·브릿지·클립). 소재부터 버리고 답의 말·소리로")
         if tags.count('번역') + tags.count('대입') > 0.5 * len(tags):
             raise Bad(f"[번역]+[대입] {tags.count('번역') + tags.count('대입')}/{len(tags)} — 뜻 옮기기 나열(키워드 덩어리). 소리 단서나 답의 말이 그대로 일어나는 장면으로")
@@ -457,10 +457,12 @@ def cmd_grade(a):
         if miss: why.append('복원 실패: ' + ', '.join(miss)[:160])
         if g.get('natural') is False: why.append('괄호 없이 읽으면 개연성 깨짐')
         if g.get('analog_checklist'): why.append('비유형 체크리스트(답을 다른 소재에 대입)')
+        if g.get('explains_mechanism'): why.append('이야기가 답의 원리를 다른 재료로 다시 설명(재연)')
+        if g.get('title_map'): why.append('제목·틀이 답 항목 = 물건 대응표')
         if g.get('keyword_list'): why.append('키워드 덩어리·뜻 옮기기 나열')
-        if sub >= 2: why.append(f'대입 단서 {sub}개')
+        if sub >= 1: why.append(f'대입(두 걸음) 단서 {sub}개: ' + ', '.join(t.get('cue', '') for t in its if t.get('mech') == '대입')[:120])
         if (sub + tr) / n > 0.5: why.append(f'번역·대입 {sub + tr}/{n}')
-        structural = bool(g.get('analog_checklist') or g.get('keyword_list') or g.get('natural') is False or sub >= 2 or len(miss) >= 2)
+        structural = bool(g.get('analog_checklist') or g.get('explains_mechanism') or g.get('title_map') or g.get('keyword_list') or g.get('natural') is False or sub >= 2 or len(miss) >= 2 or (sub + tr) / n > 0.5)
         if not why:
             x['grade'] = 'pass'; x['grade_note'] = g.get('notes', ''); x['blind'] = 'ok'
             print(f'{i}: 채점 통과')
