@@ -361,6 +361,23 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-lec:first-child{margin-top:14px}
 #numv .nm-it{content-visibility:auto;contain-intrinsic-size:auto 260px;padding:15px 0 16px;border-bottom:1px solid #EAE5DB;scroll-margin-top:calc(var(--toph,52px) + 62px)}
 #numv .nm-it.flash{animation:nmfl 1.6s ease-out}@keyframes nmfl{0%{background:#FFF3C8}100%{background:transparent}}
+#numv:not(.rv) .nm-it{--nmg:22px;position:relative;margin-left:calc(-1 * var(--nmg));padding-left:var(--nmg);border-bottom:0;padding-bottom:17px}
+#numv:not(.rv) .nm-it::after{content:'';position:absolute;left:var(--nmg);right:0;bottom:0;border-bottom:1px solid #EAE5DB;pointer-events:none}
+#numv .nm-drag{position:absolute;left:0;top:14px;width:var(--nmg,22px);height:24px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border-radius:5px;opacity:0;transition:opacity .12s,background-color .12s}
+#numv .nm-drag::before{content:'';position:absolute;left:50%;top:50%;width:10px;height:15px;margin:-7.5px 0 0 -5px;background:radial-gradient(circle,#8C857A 1.2px,transparent 1.5px) 0 0/5px 5px}
+#numv .nm-it:hover .nm-drag{opacity:.4}
+#numv .nm-h:hover .nm-drag,#numv .nm-drag:hover{opacity:1}
+#numv .nm-drag:hover{background-color:#F2EEE6}
+@media (hover:none){#numv .nm-drag{opacity:.35}}
+#numv .nm-it.nm-dsrc{opacity:.45}
+#numv.nm-dg,#numv.nm-dg *{cursor:grabbing!important;user-select:none!important;-webkit-user-select:none!important}
+#numv.nm-dg .nm-it:hover .nm-drag{opacity:0}#numv.nm-dg .nm-dsrc .nm-drag{opacity:1}
+#numv .nm-dline{position:fixed;left:0;top:0;height:3px;margin-top:-1.5px;border-radius:2px;background:var(--acc,#0F5C5A);box-shadow:0 0 0 2px rgba(255,255,255,.85);z-index:57;pointer-events:none;will-change:transform}
+#numv .nm-dline::before{content:'';position:absolute;left:-5px;top:-3.5px;width:10px;height:10px;border-radius:50%;background:var(--acc,#0F5C5A);box-shadow:0 0 0 2px #fff}
+#numv .nm-dline[hidden]{display:none}
+#numv .nm-dghost{position:fixed;left:0;top:0;z-index:58;pointer-events:none;max-width:min(360px,70vw);background:#fff;color:#1F1D1A;border:1px solid #D8D0C2;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.16);padding:4px 10px;font-size:12.5px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;will-change:transform}
+#numv .nm-dghost b{margin-right:6px;font-variant-numeric:tabular-nums}
+#numv .nm-dghost.out{border-color:#F0C9B0;background:#FFF4EC;color:#9A3412}
 #numv .nm-h{display:flex;align-items:flex-start;gap:8px;margin:0 0 8px}
 #numv .nm-no{flex:none;min-width:28px;font-weight:800;font-size:15px;line-height:1.5;color:#1F1D1A;font-variant-numeric:tabular-nums;white-space:nowrap}
 #numv .nm-it.ok .nm-no{color:#2E7D4F}#numv .nm-it.ok .nm-no::after{content:'✓';font-size:11px;margin-left:2px;vertical-align:2px}
@@ -399,12 +416,13 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 @media (prefers-reduced-motion:reduce){#numv .nm-c,#numv .nm-edb{transition:none}}
 #numv .nm-note{font-size:12px;color:#8C857A;margin:6px 0 0 var(--nmind);white-space:pre-wrap;overflow-wrap:anywhere}
 #numv [contenteditable=true]{background:#FFFDF6;outline:1.5px solid #E8C766;outline-offset:3px;border-radius:3px;cursor:text}
-#numv .nm-tb{position:fixed;left:0;top:0;z-index:58;display:flex;align-items:center;gap:1px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:saturate(1.5) blur(10px);backdrop-filter:saturate(1.5) blur(10px);color:#2F2A24;border:1px solid rgba(31,29,26,.12);border-radius:8px;padding:2px;height:30px;box-shadow:0 3px 12px rgba(31,29,26,.12),0 1px 2px rgba(31,29,26,.06);visibility:hidden;will-change:transform}
-#numv .nm-tb button{border:0;background:transparent;color:#3A342D;border-radius:5px;min-width:26px;height:24px;padding:0 6px;font-family:inherit;font-size:13px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+#numv .nm-tb{position:fixed;left:0;top:0;z-index:58;display:flex;align-items:center;gap:0;background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(1.5) blur(10px);backdrop-filter:saturate(1.5) blur(10px);color:#2F2A24;border:1px solid rgba(31,29,26,.12);border-radius:6px;padding:1px;height:24px;box-sizing:border-box;box-shadow:0 2px 8px rgba(31,29,26,.12),0 1px 2px rgba(31,29,26,.06);visibility:hidden;will-change:transform}
+#numv .nm-tb button{border:0;background:transparent;color:#3A342D;border-radius:4px;min-width:20px;height:20px;padding:0 4px;font-family:inherit;font-size:11.5px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 #numv .nm-tb button:hover,#numv .nm-tb button:focus-visible,#numv .nm-tb button.on{background:rgba(31,29,26,.08)}
-#numv .nm-tb .fcA{border-bottom:2.5px solid #E5484D;line-height:1.05;font-weight:700}
-#numv .nm-tb i.sep{width:1px;height:14px;background:rgba(31,29,26,.14);margin:0 2px}
-#numv .nm-tb .done{color:#0F5C5A;font-weight:800;font-size:14px}
+#numv .nm-tb .fcA{border-bottom:2px solid #E5484D;line-height:1.05;font-weight:700}
+#numv .nm-tb i.sep{width:1px;height:11px;background:rgba(31,29,26,.14);margin:0 2px}
+#numv .nm-tb .done{color:#0F5C5A;font-weight:800;font-size:12px}
+@media (pointer:coarse){#numv .nm-tb{height:30px;padding:2px;border-radius:8px}#numv .nm-tb button{min-width:26px;height:24px;padding:0 6px;font-size:13px}}
 #numv .nm-tb .done:hover{background:rgba(15,92,90,.1)}
 #numv .nm-pal{position:fixed;z-index:59;background:#fff;color:#1F1D1A;border:1px solid #D8D0C2;border-radius:8px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;width:176px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
 #numv .nm-pal button{width:26px;height:26px;border-radius:6px;border:1px solid #D8D0C2;cursor:pointer}
@@ -496,6 +514,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 }
 @container nmm (max-width:640px){
  #numv .nm-doc{padding:0 14px 28px}
+ #numv:not(.rv) .nm-it{--nmg:14px}
  #numv .nm-body{grid-template-columns:minmax(0,1fr);margin-left:0}
  #numv .nm-col+.nm-col{border-left:0;border-top:1px solid #E6E0D5}
  #numv .nm-s{border-radius:0 0 6px 6px}
@@ -619,7 +638,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
  #numv .nm-w{border-radius:0 0 6px 6px}#numv.rvw .nm-s{border-radius:0}
  #numv .nm-rf,#numv .nm-hist{margin-left:0}#numv .nm-hist{grid-template-columns:1fr}
 }
-@media print{#numv{display:block}#numv .nm-side,#numv .nm-stick,#numv .nm-info,#numv .nm-edb,#numv .nm-more{display:none}#numv .nm-it{content-visibility:visible}}
+@media print{#numv{display:block}#numv .nm-side,#numv .nm-stick,#numv .nm-info,#numv .nm-edb,#numv .nm-more,#numv .nm-drag{display:none}#numv .nm-it{content-visibility:visible}}
 `;
 function css() { const o = document.getElementById('nm-css'); if (o && o.dataset.v === H.v) return; if (o) o.remove(); const s = document.createElement('style'); s.id = 'nm-css'; s.dataset.v = H.v; s.textContent = STYLE; document.head.appendChild(s); }
 
