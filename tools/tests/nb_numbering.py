@@ -21,8 +21,8 @@ def nb(*args, expect=0):
     return r.returncode, out
 def wr(name, txt):
     p = TMP / name; p.write_text(txt, encoding='utf-8'); return str(p)
-REV = 'G1 자연성: 통과\nG2 복원: 1 단서→항목 · 2 단서→항목 · 3 단서→항목 (테스트)\nG3~G8: 통과(테스트)'
-REV1 = 'G1 자연성: 통과\nG2 복원: 단서→항목 (테스트)\nG3~G8: 통과(테스트)'
+REV = 'G1 흐름: 장면 → 이어짐(테스트)\nG2 복원: 1 단서→항목[소리] · 2 단서→항목[외래어] · 3 단서→항목[행동] (테스트)\nG3~G8: 통과(테스트)'
+REV1 = 'G1 흐름: 장면 → 이어짐(테스트)\nG2 복원: 단서→항목[소리] (테스트)\nG3~G8: 통과(테스트)'
 
 def part_a():
     print('A. 도구 단독')
@@ -60,8 +60,10 @@ def part_a():
     rc, o = nb('start', sp, '--name', 't2', '--revise', 'q3'); ok(rc == 0 and 'todo) 3' in o and '고치기 허락받은 기존 스토리: q3' in o, '--revise로 허락한 기존 스토리만 다시 엶')
     rc, o = nb('start', sp, '--name', 't1', expect=1); ok(rc != 0 and '이미 있는 세션' in o, '같은 이름 세션 덮어쓰기 막음')
     rc, o = nb('start', sp, '--name', 't1', '--force'); ok(rc == 0 and '덮기 전 기록을 남겼어요' in o and list((TMP / 'home' / 't1').glob('state.bak.*.json')), '--force는 덮기 전 기록을 남김')
-    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma) 끝', '--review', REV); ok('목록꼴' in o, '괄호만 늘어놓은 목록꼴 경고')
-    rc, o = nb('blindres', 't2', 'q2', '--fail', '--note', '[테스트] 감마 안 떠오름'); rc2, o2 = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma) 끝', '--review', REV, expect=1)
+    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트]\n알파(Alpha)\n베타(Beta)\n감마(Gamma)', '--review', REV, expect=1); ok(rc != 0 and '키워드 덩어리' in o, '명사만 늘어놓은 키워드 덩어리는 저장 거부(10-11)')
+    rc, o = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma)가 이어졌어', '--review', 'G1 흐름: 장면 → 이어짐\nG2 복원: 알파→Alpha[번역] · 베타→Beta[번역] · 감마→Gamma[소리]', expect=1); ok(rc != 0 and '[번역]' in o, '뜻 옮긴 단서([번역])가 40% 넘으면 저장 거부(10-11)')
+    nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma)가 이어졌어', '--review', REV)
+    rc, o = nb('blindres', 't2', 'q2', '--fail', '--note', '[테스트] 감마 안 떠오름'); rc2, o2 = nb('save', 't2', 'q2', '--status', 'pass', '--story', '[테스트] 알파(Alpha) 베타(Beta) 감마(Gamma)가 이어졌어', '--review', REV, expect=1)
     ok(rc == 0 and rc2 != 0 and '전제부터 새로' in o2, '블라인드 실패 → 다시 todo · 같은 글은 다시 통과 저장 안 됨')
 
 async def part_b():

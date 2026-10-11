@@ -178,7 +178,8 @@ def check_story(story, it, allow=()):
             err.append(f'빈 괄호: ({k})')
             continue
         parts = [norm(x) for x in re.split(r'\s*[/,]\s*', k) if x.strip()]   # (wa, guide)·(presurgical / virtual surgical) — 조각마다 원문에 있으면 됨(사용자 꼴 10-11)
-        if nk not in A and nk not in allowN and not (parts and all(x in A for x in parts)):
+        toks_ = [norm(x) for x in re.split(r'[\s/,]+', k) if x.strip()]
+        if nk not in A and nk not in allowN and not (parts and all(x in A for x in parts)) and not (toks_ and all(x in A for x in toks_)):
             err.append(f"괄호 '{k}'가 정답 원문(a)에 없어요 — 원문 글자 그대로의 가장 짧은 핵심어로(번역·풀이 금지 · 정말 필요하면 --allow-kw)")
         words = len(k.split())
         if words > 5 or len(k) > 45:
@@ -200,6 +201,17 @@ def check_story(story, it, allow=()):
         if nk and nk in norm(inner) and nk not in outer:
             warn.append(f"괄호 '{k}'는 정답 속 해설 괄호에만 있는 말 — 시험 항목 핵심어인지 확인")
     # (목록꼴 경고는 뺌 — 사용자 꼴이 '한 줄에 단서 하나'라서 · 10-11)
+    lines = [l for l in s.split('\n') if l.strip() and not re.match(r'^\s*\[[^\]]*\]\s*$', strip_paren(l))]
+    if len(lines) >= 3:
+        bare_l = [re.sub(r'[\s.,!?…~→·:;"\'’‘“”-]+$', '', strip_paren(l)).strip() for l in lines]
+        def pred(t):   # 서술(동작·결과·이음말)이 있는 줄 — 사용자 판(A0)은 줄 대부분이 '~고·~서·~는데·~함'
+            if re.search(r'[!?]', t): return True
+            return any(re.search(r'(고|서|데|니|면|며|어|아|야|지|요|다|네|래|게|해|돼|줘|함|음|짐|림|봄|옴|감|둠|됨|했|겠|라|까|죠|군|랑|쭉|쏙|꽉|톡|쿡|쑥|끝|와|자|든|던|은|는|을|를|에|로|도|만|짝|쫙|뚝)$', w) for w in t.split())
+        noun = sum(1 for t in bare_l if t and not pred(t))
+        if noun > 0.5 * len(lines):
+            err.append(f'키워드 덩어리 — 줄 {len(lines)}개 중 {noun}개가 명사만(이어지는 동작·결과·이음말 없음). 사용자 판 A0처럼 한 장면 안에서 이어지는 문장으로(10-11 사용자 지적)')
+        elif noun > 0.34 * len(lines):
+            warn.append(f'명사만 있는 줄 {noun}/{len(lines)} — 이어지는 행동으로 바꿀 곳')
     return err, warn
 
 
@@ -350,6 +362,13 @@ def cmd_save(a):
         g2 = next((l for l in review.splitlines() if l.strip().startswith('G2')), '')
         if g2.count('→') < len(kws(story)):
             raise Bad(f"검수 기록 G2 줄에 '단서→항목' 짝이 괄호 수({len(kws(story))})만큼 있어야 해요 — 실제로 복원해 본 목록")
+        tags = re.findall(r'\[(소리|외래어|행동|비유|숫자|번역)\]', g2)
+        if len(tags) < len(kws(story)):
+            raise Bad(f"G2 짝마다 단서 종류를 [소리]·[외래어]·[행동]·[비유]·[숫자]·[번역] 중 하나로 달아 주세요({len(tags)}/{len(kws(story))}) — 정답 뜻을 우리말로 옮긴 것은 [번역]")
+        if tags.count('번역') > 0.4 * len(tags):
+            raise Bad(f"[번역] 단서가 {tags.count('번역')}/{len(tags)} — 정답 뜻 옮기기가 너무 많아 키워드 나열이 돼요(G3 · 10-11 사용자 지적). 소리·외래어·장면 속 물리적 결과로 바꾸기")
+        if not re.search(r'^G1[^\n]*(→|흐름)', review, re.M):
+            raise Bad("G1 줄에 장면 흐름(앞 줄 → 다음 줄이 왜 이어지는지)을 한 줄로 — 개연성 확인")
         if any(t.get('status') in ('user-rejected', 'blind-fail') and t.get('story', '').strip() == story for t in x['attempts']):
             raise Bad('사용자가 거절했거나 블라인드 검수에서 떨어진 이야기와 같은 글이에요 — 전제부터 새로')
         mine = {c: k for c, k in cues(story)}
