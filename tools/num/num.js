@@ -669,7 +669,7 @@ function profOf(it) {   /* 교수 태그 — JB 출처의 교수(여럿이면 �
 function itemHTML(it, no, hid) {
   const st = stOf(it), rv = it.rv && it.rv.length && !it.rvok, pf = profOf(it);
   const edq = it.kind === 'seed' ? it.q !== it.base.q : it.q0 != null, eda = it.kind === 'seed' ? it.a !== it.base.a : it.a0 != null;
-  return `<article class="nm-it${st === 2 ? ' ok' : ''}" data-id="${esc(it.id)}" data-st="${st}"${hid ? ' hidden' : ''}><header class="nm-h"><label class="nm-ck"><input type="checkbox" data-ck="1"${S.sel.has(it.id) ? ' checked' : ''} aria-label="선택"></label><span class="nm-no"${st === 2 ? ' title="완성"' : ''}>${no}.</span>`
+  return `<article class="nm-it${st === 2 ? ' ok' : ''}" data-id="${esc(it.id)}" data-st="${st}"${hid ? ' hidden' : ''}><header class="nm-h"><span class="nm-drag" data-drag="1" title="끌어서 순서 바꾸기 — 다른 문제 위·아래에 놓기(손가락은 길게 누른 뒤) · ⋯ 메뉴 '위로/아래로 옮기기'와 같음" aria-hidden="true"></span><label class="nm-ck"><input type="checkbox" data-ck="1"${S.sel.has(it.id) ? ' checked' : ''} aria-label="선택"></label><span class="nm-no"${st === 2 ? ' title="완성"' : ''}>${no}.</span>`
     + `<div class="nm-q"><div class="nm-c" data-f="q">${qDisp(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정(작업본만 — 원본은 그대로 · 원래 번호·연도 괄호까지 원문 전체가 보여요)">수정</button></div>`
     + `<span class="nm-tags">${pf ? `<span class="nm-tag pf" title="교수">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr" title="출제 연도 ${esc(yrsTxt(it.yrs))}">${esc(yrs2(it.yrs))}</span>` : ''}${edq || eda ? `<span class="nm-edm" title="원본에서 고친 작업본(${edq && eda ? '문제·답안' : edq ? '문제' : '답안'}) — ⋯ 메뉴 '원본으로'로 되돌림" aria-label="고친 작업본">✎</span>` : ''}${rv ? `<button type="button" class="nm-rvb" data-act="det" title="${esc(it.rv.map(r => r.m).join('\n'))}" aria-label="검토 필요">⚠</button>` : ''}</span>`
     + `<button type="button" class="nm-more" data-act="more" aria-haspopup="true" title="이 문제 메뉴 — 완성·수정·출처·순서·강의 옮기기·복사·되돌리기·빼기" aria-label="이 문제 메뉴">⋯</button></header>`
@@ -791,6 +791,7 @@ function emptyHTML() { return `<div class="nm-empty">아직 이 과목에 넘버
 function render(o) {
   if (S.app === 'rev') { revRender(o); return; }
   o = o || {}; const tok = ++S.tok, R = S.root; if (!R) return; if (S.shuf && S.cfg.mode !== 'all') S.shuf = null;
+  if (DG.s) dragEnd();   /* 끄는 중에 다시 그리면(다른 창 등) 끌기는 취소 */
   endEdit(true);
   const L = ordered(), C = S.cfg, K = lecKeys();
   const chunks = [];   /* [html, ...] — 첫 묶음은 바로, 나머지는 쉬는 틈에 */
@@ -811,7 +812,7 @@ function render(o) {
   const done = () => {
     if (tok !== S.tok) return; applyFilter();
     const back = o.pos ? restorePos(o.pos) : false; if (!back && o.y != null) window.scrollTo(0, o.y);
-    if (o.flash) flash(o.flash); S.posOK = true; spy(); topBtn();
+    if (o.flash) flash(o.flash); if (o.hl) flash(o.hl, true); S.posOK = true; spy(); topBtn();
     if (o.resume && back && scrollY > 300) H.toast('마지막으로 보던 문제부터 이어서 보여 드려요', { level: 'result', id: 'nmresume', action: { label: '맨 위로', fn: () => window.scrollTo(0, 0) } });
   };
   applyFilter(true);
@@ -838,7 +839,7 @@ function rerenderItem(it) {
 }
 function toph() { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--toph')) || 52; }
 function stuckBottom() { const s = S.root && $('.nm-stick', S.root); if (!s) return toph(); return Math.max(s.getBoundingClientRect().bottom, toph()); }
-function flash(id) { const a = S.root && $(`.nm-it[data-id="${CSS.escape(id)}"]`, S.root); if (!a) return; a.hidden = false; a.scrollIntoView({ block: 'center' }); a.classList.remove('flash'); void a.offsetWidth; a.classList.add('flash'); }
+function flash(id, stay) { const a = S.root && $(`.nm-it[data-id="${CSS.escape(id)}"]`, S.root); if (!a) return; a.hidden = false; if (!stay) a.scrollIntoView({ block: 'center' }); a.classList.remove('flash'); void a.offsetWidth; a.classList.add('flash'); }   /* stay = 화면은 그대로(끌어서 옮긴 자리) */
 function topItem() { if (!S.root) return null; const y = stuckBottom(), arts = $$('.nm-it:not([hidden])', S.root); for (const a of arts) { const r = a.getBoundingClientRect(); if (r.bottom > y + 4) return { id: a.dataset.id, off: Math.round(r.top) }; } return null; }
 function restorePos(p) {   /* 그 문제 자리로 — 필터에 걸려 숨었으면 바로 뒤(없으면 앞)의 보이는 문제로 */
   if (!p || !p.id || !S.root) return false;
@@ -1069,13 +1070,118 @@ function itemAct(k, it, btn) {
 }
 function jumpOrig(s0) { if (!s0) return; leave(); if (s0.t === 'jb') H.openDoc(s0.s, '_jb', null, s0.id); else H.openDoc(s0.s, s0.lec || (H.PACKS[s0.s].lect[0] || {}).k, 'pred', s0.id); }
 function renumber() { /* o 값이 겹치거나 소수가 쌓이면 정수로 다시 매김(바뀐 문제만 저장) */ const L = S.items.slice().sort((a, b) => a.o - b.o); L.forEach((it, i) => { if (it.o !== i) { it.o = i; it.u = it.u || now(); put(it); } }); }
-function moveItem(it, d) {
-  if (S.shuf && S.cfg.mode === 'all') { H.toast('섞은 순서에서는 옮길 수 없어요 — [원래대로]로 섞기를 끈 뒤 옮겨 주세요'); return; }
+/* 순서 옮기기 — ⋯ 메뉴 '위로/아래로 옮기기'와 끌어서 옮기기가 같은 함수(moveOK → moveList → moveSteps)·같은 저장(문제마다 o · put)을 씀 */
+function moveOK() { if (S.shuf && S.cfg.mode === 'all') { H.toast('섞은 순서에서는 옮길 수 없어요 — [원래대로]로 섞기를 끈 뒤 옮겨 주세요', { id: 'nmmove' }); return false; } return true; }
+const moveSame = () => S.cfg.sort === 'lec';   /* 강의 순서 정렬 = 같은 강의 안에서만(강의가 먼저 정렬돼 다른 강의 문제와 바꿔도 화면이 안 바뀜) */
+function moveList(it) {   /* 옮길 수 있는 줄(지금 보이는 문제 · 저장 순서) — 정렬이 강의/사용자 지정이 아니면 '사용자 지정 순서'로 바꿈 */
   if (S.cfg.sort !== 'lec' && S.cfg.sort !== 'own') { S.cfg.sort = 'own'; cfgSave(); }
-  const L = ordered().filter(x => visible(x) && (S.cfg.mode !== 'grp' || S.cfg.sort !== 'lec' || x.lec === it.lec)); const i = L.indexOf(it), j = i + d;
+  const li = lecIdx(it.lec); return ordered().filter(x => visible(x) && (!moveSame() || lecIdx(x.lec) === li));
+}
+function moveSteps(it, L, n) {   /* 이웃과 o를 한 칸씩 n번 바꿈(위로 = 음수) → 바뀐 문제만 한 번씩 저장 · 바뀐 문제 수 */
+  const ch = new Set(), d = n < 0 ? -1 : 1; let i = L.indexOf(it);
+  for (let s = 0; i >= 0 && s < Math.abs(n); s++) {
+    const j = i + d; if (j < 0 || j >= L.length) break;
+    const o = L[j]; const t = it.o; it.o = o.o; o.o = t; if (it.o === o.o) { it.o += d * 0.5; }
+    L[i] = o; L[j] = it; i = j; ch.add(it); ch.add(o);
+  }
+  for (const x of ch) { touch(x); put(x); }
+  return ch.size;
+}
+function moveItem(it, d) {
+  if (!moveOK()) return;
+  const L = moveList(it); const i = L.indexOf(it), j = i + d;
   if (i < 0 || j < 0 || j >= L.length) { H.toast(d < 0 ? '맨 위예요' : '맨 아래예요'); return; }
-  const o = L[j]; const t = it.o; it.o = o.o; o.o = t; if (it.o === o.o) { it.o += d * 0.5; }
-  touch(it); touch(o); put(it); put(o); render({ flash: it.id });
+  moveSteps(it, L, d); render({ flash: it.id });
+}
+/* ---------- 끌어서 순서 바꾸기(10-11 사용자: '메뉴 눌러서 위로 옮기기 누르지 않아도 … 번호 앞에 커서 올리면 직접 드래그해서') ----------
+   번호 앞 손잡이(⋮⋮)를 끌어 다른 문제 위·아래에 놓기 · 놓일 자리 선 · 화면 끝 근처 자동 스크롤 · Esc = 취소 · 손가락은 길게(0.3초) 누른 뒤
+   놓으면 moveSteps(메뉴와 같은 한 칸씩 바꾸기)를 여러 칸 · 섞은 순서는 막음(메뉴와 같은 안내) · 강의 순서 정렬은 같은 강의 안에서만 · 알림 '되돌리기' */
+const DG = { s: null, noclick: 0 };
+function dragDown(e, h) {
+  if (S.app === 'rev' || DG.s || (e.pointerType === 'mouse' && e.button !== 0)) return;
+  const art = h.closest('.nm-it'), it = art && S.by.get(art.dataset.id); if (!it || art.hidden) return;
+  const touchy = e.pointerType === 'touch';   /* 마우스: 글 선택·포커스 이동은 아래 mousedown(잡기)에서 막음 — 고치던 칸은 그대로 */
+  const s = DG.s = { it, art, h, id: e.pointerId, x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, on: false, touch: touchy, tm: 0, raf: 0, tgt: null, out: false };
+  try { h.setPointerCapture(e.pointerId); } catch (_) {}
+  addEventListener('pointermove', dragMove, true); addEventListener('pointerup', dragUp, true); addEventListener('pointercancel', dragCancel, true);
+  if (touchy) s.tm = setTimeout(() => { if (DG.s === s && !s.on) { if (dragBegin()) { if (navigator.vibrate) try { navigator.vibrate(8); } catch (_) {} dragKick(); } else dragEnd(); } }, 300);
+}
+function dragMove(e) {
+  const s = DG.s; if (!s || e.pointerId !== s.id) return;
+  s.x = e.clientX; s.y = e.clientY;
+  if (!s.on) {
+    const far = Math.abs(s.x - s.x0) + Math.abs(s.y - s.y0);
+    if (s.touch) { if (far > 10) dragEnd(); return; }   /* 손가락: 길게 누르기 전에 움직이면 끌기 아님 */
+    if (far < 5) return;
+    if (!dragBegin()) { dragEnd(); return; }
+  }
+  e.preventDefault(); dragKick();
+}
+function dragBegin() {
+  const s = DG.s; if (!s) return false;
+  if (!moveOK()) return false;
+  const li = lecIdx(s.it.lec), same = moveSame();
+  s.cands = $$('.nm-it:not([hidden])', S.root).filter(a => { if (!same) return true; const x = S.by.get(a.dataset.id); return !!x && lecIdx(x.lec) === li; });
+  s.si = s.cands.indexOf(s.art); if (s.si < 0) return false;
+  const V = document.getElementById('numv'); if (!V) return false;
+  menuClose(); palClose();
+  s.on = true; V.classList.add('nm-dg'); s.art.classList.add('nm-dsrc');
+  const ln = document.createElement('div'); ln.className = 'nm-dline'; ln.hidden = true; V.appendChild(ln); s.ln = ln;
+  const g = document.createElement('div'); g.className = 'nm-dghost'; g.innerHTML = `<b>${esc(s.art.querySelector('.nm-no').textContent)}</b>${esc(plain(s.it.q).replace(/\s+/g, ' ').trim().slice(0, 60) || '문제')}`; V.appendChild(g); s.g = g;
+  try { getSelection().removeAllRanges(); } catch (_) {}
+  return true;
+}
+function dragKick() { const s = DG.s; if (s && s.on && !s.raf) s.raf = requestAnimationFrame(dragFrame); }
+function dragFrame() {
+  const s = DG.s; if (!s || !s.on) return; s.raf = 0;
+  const top = stuckBottom(), y = s.y, zone = 56; let v = 0;   /* 화면 위·아래 끝 근처 = 자동 스크롤(끝에 가까울수록 빠르게) */
+  if (y < top + zone) v = -Math.min(28, Math.ceil((top + zone - y) / 2.5)); else if (y > innerHeight - zone) v = Math.min(28, Math.ceil((y - innerHeight + zone) / 2.5));
+  if (v) { const y0 = scrollY; window.scrollBy(0, v); if (scrollY === y0) v = 0; }
+  const C = s.cands, n = C.length; let lo = 0, hi = n;   /* 손가락·마우스 위치 아래 첫 문제(가운데 기준) — 보이는 순서라 반씩 좁혀 찾음 */
+  while (lo < hi) { const m = (lo + hi) >> 1, r = C[m].getBoundingClientRect(); if (r.top + r.height / 2 > y) hi = m; else lo = m + 1; }
+  const f = C[0].getBoundingClientRect(), l = C[n - 1].getBoundingClientRect();
+  s.out = moveSame() && (y < f.top - 40 || y > l.bottom + 40);   /* 강의 순서 정렬에서 다른 강의 쪽으로 끌면 놓을 곳 없음 */
+  const noop = lo === s.si || lo === s.si + 1;
+  s.tgt = s.out || noop ? null : lo < n ? { el: C[lo], before: true, i: lo } : { el: C[n - 1], before: false, i: lo };
+  const ref = lo < n ? C[lo].getBoundingClientRect() : l, ly = lo < n ? ref.top + 4 : ref.bottom - 3, g0 = parseFloat(getComputedStyle(s.art).getPropertyValue('--nmg')) || 22;
+  s.ly = ly;
+  if (s.tgt) { s.ln.hidden = false; s.ln.style.width = Math.max(40, Math.round(ref.width - g0)) + 'px'; s.ln.style.transform = `translate(${Math.round(ref.left + g0)}px,${Math.round(ly)}px)`; } else s.ln.hidden = true;
+  const gw = s.g.offsetWidth; s.g.style.transform = `translate(${Math.round(Math.min(s.x + 14, innerWidth - gw - 8))}px,${Math.round(y - 30)}px)`;
+  s.g.classList.toggle('out', s.out);
+  if (v) s.raf = requestAnimationFrame(dragFrame);
+}
+function dragEnd() {
+  const s = DG.s; if (!s) return; DG.s = null;
+  clearTimeout(s.tm); if (s.raf) cancelAnimationFrame(s.raf);
+  removeEventListener('pointermove', dragMove, true); removeEventListener('pointerup', dragUp, true); removeEventListener('pointercancel', dragCancel, true);
+  try { if (s.h.hasPointerCapture && s.h.hasPointerCapture(s.id)) s.h.releasePointerCapture(s.id); } catch (_) {}
+  if (s.ln) s.ln.remove(); if (s.g) s.g.remove(); s.art.classList.remove('nm-dsrc');
+  const V = document.getElementById('numv'); if (V) V.classList.remove('nm-dg');
+  return s;
+}
+function dragCancel(e) { if (DG.s && (!e || e.pointerId === DG.s.id)) dragEnd(); }
+function dragUp(e) {
+  const s0 = DG.s; if (!s0 || e.pointerId !== s0.id) return;
+  if (s0.on) { s0.x = e.clientX; s0.y = e.clientY; dragFrame(); }   /* 놓은 자리로 마지막 계산 */
+  const s = dragEnd(); if (!s.on) return;
+  e.preventDefault(); DG.noclick = now();
+  if (s.out) { H.toast('강의 순서 정렬에서는 같은 강의 안에서만 옮겨요 — 다른 강의로는 ⋯ 메뉴 \'다른 강의로 옮기기\'', { id: 'nmmove' }); return; }
+  if (!s.tgt) return;
+  const X = S.by.get(s.tgt.el.dataset.id); if (!X || X === s.it) return;
+  dropMove(s.it, X, s.tgt.before, s.tgt.i > s.si ? s.ly - s.art.getBoundingClientRect().height : s.ly);
+}
+function dropMove(it, X, before, off) {   /* it을 X 바로 위(before)·아래에 — 메뉴 '위로/아래로 옮기기'를 그 칸 수만큼 */
+  if (!moveOK()) return false;
+  if (S.ed && S.ed.it === it) endEdit(true);
+  const sort0 = S.cfg.sort, L = moveList(it), snap = new Map(L.map(x => [x, x.o])), i = L.indexOf(it), R = L.filter(x => x !== it), k = R.indexOf(X);
+  if (i < 0 || k < 0) { if (sort0 !== S.cfg.sort) render({ pos: posNow() }); return false; }
+  const n = (before ? k : k + 1) - i;
+  const nch = n ? moveSteps(it, L, n) : 0;
+  render({ pos: { id: it.id, off: Math.round(off) }, hl: it.id });
+  if (!nch) return false;
+  const sw = sort0 !== S.cfg.sort;
+  H.toast(sw ? `정렬을 '사용자 지정 순서'로 바꿔 옮겼어요` : '순서를 옮겼어요', { level: 'result', id: 'nmdrag', replace: true, action: { label: '되돌리기', fn: () => { for (const [x, o] of snap) if (x.o !== o) { x.o = o; touch(x); put(x); } if (sw && S.cfg.sort === 'own') { S.cfg.sort = sort0; cfgSave(); } if (S.root && document.getElementById('numv') && S.app !== 'rev') render({ pos: posNow(), hl: it.id }); } } });
+  return true;
 }
 function lecPick(btn, cb) {
   const L = S.lecs.filter(l => l.k).map(l => [l.k, l.t]).concat([['__new', '+ 새 강의 만들기…'], ['', '강의 미분류']]);
@@ -2137,7 +2243,11 @@ function bind() {
     const st = t.closest('.nm-s .nm-c[data-f=st]');
     if (st && S.app !== 'rev' && !(S.ed && S.ed.el === st) && !t.closest('a')) { const art = st.closest('.nm-it'), it = S.by.get(art.dataset.id); if (it) startEdit(st, it, 'st', e); return; }
   });
-  document.addEventListener('mousedown', e => { if (S.ed && e.target.closest && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal'))) e.preventDefault(); }, true);
+  document.addEventListener('mousedown', e => { if (!e.target.closest) return; if (e.target.closest('#numv .nm-drag') || (S.ed && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal')))) e.preventDefault(); }, true);   /* 끌기 손잡이 = 글 선택·포커스 이동 없음(고치던 칸 그대로) */
+  document.addEventListener('pointerdown', e => { const h = e.target.closest && e.target.closest('#numv .nm-drag'); if (h && S.root && S.root.contains(h)) dragDown(e, h); });
+  document.addEventListener('contextmenu', e => { if ((e.target.closest && e.target.closest('#numv .nm-drag')) || (DG.s && DG.s.on)) e.preventDefault(); });   /* 손가락 길게 누르기 = 끌기(메뉴 안 뜸) */
+  document.addEventListener('click', e => { if (now() - DG.noclick < 400) { DG.noclick = 0; e.preventDefault(); e.stopPropagation(); } }, true);   /* 끌어 놓은 뒤 따라오는 누르기는 버림 */
+  document.addEventListener('selectstart', e => { if (DG.s && DG.s.on) e.preventDefault(); }, true);
   document.addEventListener('change', e => {
     if (!S.root || !S.root.contains(e.target) || e.target.closest('.nm-ov')) return;
     const c = e.target.dataset.cf;
@@ -2164,6 +2274,7 @@ function bind() {
   document.addEventListener('focusout', e => { const E = S.ed; if (!E || e.target !== E.el) return; setTimeout(() => { if (S.ed !== E || E.busy || now() - (S.tbAt || 0) < 600) return; const ae = document.activeElement; if (ae && (E.el.contains(ae) || (E.tb && E.tb.contains(ae)) || ae.closest && ae.closest('.nm-pal'))) return; if (document.hidden) { edSave(); return; } endEdit(); }, 150); });
   document.addEventListener('keydown', e => {
     if (!S.root || !document.getElementById('numv')) return;
+    if (DG.s && e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); const s = dragEnd(); if (s && s.on) DG.noclick = now(); return; }   /* 끄는 중 Esc = 취소(순서 그대로) */
     if ((e.metaKey || e.ctrlKey) && !e.altKey && (e.key === 'p' || e.key === 'P' || e.code === 'KeyP') && !$('.nm-ov')) { e.preventDefault(); e.stopPropagation(); printDlg(); return; }   /* 내 넘버링에서 ⌘/Ctrl P = 인쇄 범위·내용 고르기 */
     if (S.app === 'rev' && S.cfg.view === 'card' && !S.ed && !$('.nm-ov') && !$('.nm-menu') && !S.fp && cardKey(e)) return;
     if (!S.ed) { if (e.key === 'Escape' && !$('.nm-ov') && (S.fp || S.vo || S.drawer || $('.nm-menu'))) { e.preventDefault(); e.stopPropagation(); menuClose(); if (S.fp) fpOpen(false); if (S.vo) voOpen(false); if (S.drawer) drawer(false); } return; }
@@ -2181,19 +2292,20 @@ function bind() {
 const SQ = new Set(); let sqT = 0;
 function syncOther() {
   const ids = [...SQ]; SQ.clear(); if (!S.root || !document.getElementById('numv')) return;
-  let added = false; const re = [];
+  let added = false, moved = false; const re = [];
   for (const id of ids) {
     if (S.ed && S.ed.it.id === id) { S.ed.it.stale = 1; H.toast('다른 창에서 지금 고치는 문제를 바꿨어요 — 지금 고치는 칸만 이 글로 저장하고, 나머지 칸은 그 창의 글로 맞춰요', { level: 'result', id: 'nmother' }); continue; }
     let r = null; try { const v = localStorage.getItem(H.NS + keyI(S.sj, id)); r = v ? JSON.parse(v) : null; } catch (_) {}
-    const it = S.by.get(id);
+    const it = S.by.get(id), o0 = it ? it.o + '|' + it.lec : '';
     if (it && it.kind === 'seed') { Object.assign(it, mkSeed(S.sj, it.base, r, it.oi, S.seed), { _t: null, _ty: null, _k: null, _qd: null }); re.push(it); }
     else if (r) { const n = mkRec(S.sj, r); if (it) { Object.assign(it, n, { _t: null, _ty: null, _k: null, _qd: null }); re.push(it); } else { S.items.push(n); S.by.set(n.id, n); added = true; } }
+    if (it && o0 !== it.o + '|' + it.lec) moved = true;   /* 다른 창에서 순서(o)·강의를 바꿈 → 이 창도 순서를 다시 */
   }
-  if (added || re.length > 20) { if (!S.ed) render({ pos: topItem() }); return; }
+  if (added || re.length > 20 || (moved && !S.ed && S.app !== 'rev')) { if (!S.ed) render({ pos: topItem() }); return; }
   re.forEach(rerenderItem); applyFilter();
 }
 function flush() { if (S.ed) edSave(); try { if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} }
-function leave() { if (!S.root) return; try { endEdit(true); formEnd(); if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
+function leave() { if (!S.root) return; if (DG.s) dragEnd(); try { endEdit(true); formEnd(); if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
 async function open(root, o, host) {
   H = host; S.app = o.rev ? 'rev' : 'make'; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
   if (S.app === 'rev' && o.fresh && S.cfg.view !== 'scroll') { S.cfg.view = 'scroll'; cfgSave(); RV.face = 0; RV.sum = false; }   /* 허브 홈·메뉴에서 들어오면 늘 스크롤 복습부터(새로고침·뒤로·화면 안 바꾸기는 마지막 방식 그대로) */
