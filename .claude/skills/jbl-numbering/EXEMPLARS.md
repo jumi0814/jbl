@@ -25,6 +25,19 @@
 - 햇볕에 탄 생일 → 담배로 초 → 거울 속 엄마 주름 → 케이크 대신 샐러드: 짧고 낯선 행동 하나하나가 단서.
 - 의미 단서(햇볕·생일·담배·엄마·샐러드)도 **한 장면 안에서 일어나는 행동**이면 통과 — 단, 정답 번역 나열과는 다름(행동이 비틀려 있고 서로 이어짐).
 
+### A4. OMS1 서병무 8문제(2026-10-11 · 사용자 "너무 좋아!") — 이 스킬로 만든 첫 승인
+| 문제 | 스토리(그대로) | 왜 먹혔나 |
+|---|---|---|
+| initial STO 목적 | 교정기 낀 동생이 데뷔전에서 첫 골(orthodontic goals)을 넣은 스토리. 외과 의사 엄마는 수술(surgical) 끝나자마자 달려와 그 공을 거실 오브제(objectives)로 모셨고, 아빠는 '10년 뒤 국가대표 얼굴' 예측 필터로 동생 프로필 사진(predicted facial profile)을 바꿨어. | 문제어 고리(initial → 첫, STO → 스토리) · 한 가족이 자랑하는 행동 사슬 · 일상 외래어(골·오브제·프로필) |
+| 모형 수술 목적 | 입원한 동생 주려고 트랜스포머(Transfer) 모형을 설명서대로 변신시켰어. 윗몸을 맥스(maxilla)까지 3D로 비틀어(3D movements) 완성! 그 자세 그대로 병실에 들고 가 동생한테 직접 건넸지(directly to the patient). | 문제어 '모형' = 장난감 모형 · 소리(트랜스→Transfer, 맥스→maxilla) + 실제로 옮기는 행동 = 답 문장 한 줄 |
+| Final STO 한계 | 파이널 세일 스토어에서 평면(2D) 카탈로그 사진만 보고 식탁을 샀는데, 집에 오니 의자가 식탁 다리에 맞물려 걸려(occlusal interference). 사진으론 전혀 몰랐지. 3D VR로 미리 배치(3D virtual surgical planning)해 볼걸! | Final STO → 파이널 세일 스토어(소리 고리) · D1형 물리적 결과(평면 사진 → 안 보이던 걸림 → VR 후회) |
+| Final STO 설명 | 교정 애프터(After active orthodontic treatment) 사진이 곧 수술 비포(Before surgery) 사진이 되는 날, 회복할 방 꾸미러 파이널 세일 스토어로! 버티컬(vertical) 블라인드 길이랑 앞뒤(AP) 폭은 정확히(exact) 쟀는데, … (위 한계 장면 그대로) | 같은 답(한계)은 같은 장면으로 이어 붙임(연결이 도움 될 때) · '비포/애프터' 한 장 사진 = 시기 두 개 |
+| CAS 장점(전에 4번 거절된 문제) | 카스 한 캔 하고 간 점집, 내 연애 예언(Precise prediction)이 소름 돋게 정확했어. '키 차이 나는 짝짝이(asymmetric) 커플이라 결말이 최고(Excellent end results)야.' 시킨 대로 맥시(maxilla) 원피스 입고 찍어 준 자리(predetermined location)에 쏙 앉으니 근심(proximal segments)이 덜어지고 턱(TMJ) 괴고 웃을 여유까지! 썸남한테 얼마나 뺄지(mandibular setback) 고민할 새도 없이 바로 고백했지. | CAS → 카스 · 첫 항목(정확한 예측)이 장면 자체(점집)를 정함 · 조언 → 따라 함 → 결과 → 고백 펀치라인 · 근심(근위)·뺄지(setback) 같은 뜻+소리 겹말 |
+| CAS 단점 | 그 카스 점집 다시 가려니, 2~3일 전부터 목욕재계(preoperative procedure)하고 3주 전엔(3 weeks before surgery) 운명 교정 철사(Orthodontic surgical wire) 부적을 미리 지갑에 끼워 두래. 한 명씩만 봐서 대량(mass production)으론 못 보고, 고화질 3D 사진(high quality 3D CT images)도 내야 해. 겨우 받은 부적은 획 하나까지 정밀(precise)해서 고칠 여지(less room for modification)가 없대. | 장점과 같은 장소의 '까다로운 조건'(장점/단점 짝 연결) · 숫자 그대로(2~3일·3주) · 답이 아닌 숫자는 넣지 않음 |
+| Axis-orbital ↔ FH | 프랑크 소시지는 접시에 수평으로 눕히고, 꼬치는 OB 맥주 캔을 축 삼아 딱 7도(7°)만 기울여 세우는 게 우리 집 국룰. | 답 하나짜리는 짧게 · 문제어 고리(FH → 프랑크·수평, orbital → OB, axis → 축) |
+| virtual computer surgery(CAS · 13항목) | 컴퓨터가 데이트를 미리 짜 주고(presurgical planning) 안내하거나(guiding) 직접 해 주는(performing) 가상 연애 게임. / 캐릭터 만들 땐 3D 스캔(CBCT data)…첫인상(impression) 보고 모델 캐스팅(dental cast model)… / 플레이는 시뮬레이션(simulation surgery)…웨하스(surgical wafer)…내비(surgical navigation)… | 항목 많으면 짧은 장면 둘(캐릭터 만들기 → 플레이)로 · 일상 외래어(웨하스·캐스팅·내비) |
+공통: 문제어를 비튼 첫 장면 · 학생 일상(연애·점집·쇼핑·가족) · 괄호는 답안 글자 그대로 · 괄호 뺀 글 65~150자(13항목만 235자).
+
 ## B. 사용자 거절 실패 사례(같은 기제를 되풀이하지 말 것)
 
 | 사례 | 무엇이 문제였나(기제) | 고치는 방향 |
