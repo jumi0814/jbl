@@ -13,7 +13,7 @@ const now = () => Date.now();
 const TYPES = { num: '넘버링형', essay: '서술형', blank: '빈칸형', mc: '객관식', short: '단답형' };
 const STN = ['미작성', '작성 중', '완성'];
 const KIND = { seed: 'Word 자료', jb: 'JB 기출', pred: '예상문제', user: '직접 추가', word: 'Word 가져옴' };
-const S = { root: null, sj: '', cfg: null, items: [], by: new Map(), lecs: [], seed: null, ed: null, q: '', sel: new Set(), selMode: false, tok: 0, saveSt: '', idxLoaded: null };
+const S = { root: null, app: 'make', sj: '', cfg: null, items: [], by: new Map(), lecs: [], seed: null, ed: null, q: '', sel: new Set(), selMode: false, tok: 0, saveSt: '', idxLoaded: null };
 
 /* ---------- 글 ---------- */
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', nbsp: ' ', '#39': "'" };
@@ -127,8 +127,8 @@ const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) 
 
 /* ---------- 저장 ---------- */
 const keyI = (sj, id) => 'num.i.' + sj + '.' + id;
-function cfg() { if (!S.cfg) { const c = H.LS.get('num.cfg', null) || {}; S.cfg = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc }; } return S.cfg; }
-function cfgSave() { H.LS.set('num.cfg', S.cfg); }
+function cfg() { if (!S.mkc) { const c = H.LS.get('num.cfg', null) || {}; S.mkc = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc }; } if (!S.rvc) S.rvc = rcfgLoad(); S.cfg = S.app === 'rev' ? S.rvc : S.mkc; return S.cfg; }   /* 내 넘버링(num.cfg)·넘버링 복습(num.rcfg) 보기 설정은 따로 */
+function cfgSave() { H.LS.set(S.app === 'rev' ? 'num.rcfg' : 'num.cfg', S.cfg); }
 function idx(sj) { const x = H.LS.get('num.x.' + sj, null); return x && typeof x === 'object' ? x : { v: 1, ul: [], lt: {} }; }
 function idxPut(sj, x) { x.u = now(); H.LS.set('num.x.' + sj, x); }
 function saveState(st, msg) {
@@ -242,6 +242,10 @@ const ICO = {
   list: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 5.5h9M7.5 10h9M7.5 14.5h9"/><circle cx="4" cy="5.5" r=".9"/><circle cx="4" cy="10" r=".9"/><circle cx="4" cy="14.5" r=".9"/></svg>',
   up: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4.5M5 9.5l5-5 5 5"/></svg>',
   print: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 7.5V3.5h8v4M6 14H4.2a.7.7 0 0 1-.7-.7V8.2a.7.7 0 0 1 .7-.7h11.6a.7.7 0 0 1 .7.7v5.1a.7.7 0 0 1-.7.7H14"/><path d="M6 11.5h8v5H6z"/></svg>',
+  pen: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16l.8-3.4L13 4.4a1.6 1.6 0 0 1 2.3 0l.3.3a1.6 1.6 0 0 1 0 2.3l-8.2 8.2z"/><path d="M11.6 5.8l2.6 2.6"/></svg>',
+  cards: '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="5.5" width="11" height="11" rx="1.8"/><path d="M6.5 3.5h8.7A1.8 1.8 0 0 1 17 5.3V14"/></svg>',
+  check: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6.8"/><path d="m7 10.2 2.1 2.1L13.2 8"/></svg>',
+  hist: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.6 10a6.4 6.4 0 1 0 1.9-4.5M3.5 3.8v2.6h2.6"/><path d="M10 6.6V10l2.4 1.6"/></svg>',
 };
 const STYLE = `
 body.v-num #side,body.v-num #sideopen,body.v-num #navbg{display:none!important}
@@ -524,6 +528,92 @@ body.v-num #home{max-width:none;margin:0;padding:0}
  #numv .nm-cmp{grid-template-columns:1fr;margin-left:10px}#numv .nm-cmp section+section{border-left:0;border-top:1px solid #E4DFD5}
  #numv .nm-airow{grid-template-columns:24px minmax(0,1fr) auto}
 }
+/* 넘버링 복습(10-11) */
+#numv .nm-app{display:flex;gap:2px;padding:3px;margin:0 0 6px;border-radius:9px;background:#EFEAE0;flex:none}
+#numv .nm-app button{flex:1 1 0;min-width:0;border:0;background:none;border-radius:7px;font:inherit;font-size:13px;font-weight:600;color:#6A6257;padding:6px 4px;cursor:pointer;white-space:nowrap}
+#numv .nm-app button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+#numv .nm-app button:not(.on):hover{color:var(--ink)}
+#numv .nm-rail.on{background:var(--tint,#F2EEE6);color:var(--acc,#0F5C5A)}
+#numv .nm-rses{font-size:12.5px;color:var(--sub);line-height:1.6;padding:2px 10px 6px;flex:none}#numv .nm-rses b{color:var(--ink)}#numv .nm-rses i,#numv .nm-mkc i,#numv .nm-hrow i{font-style:normal}
+#numv i.m0,#numv b.m0{color:#A3231B}#numv i.m1,#numv b.m1{color:#8A5A00}#numv i.m2,#numv b.m2{color:#1C5B33}
+#numv .nm-lnk{border:0;background:none;color:var(--acc,#0F5C5A);font:inherit;font-size:12.5px;cursor:pointer;padding:2px 4px;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+#numv .nm-btn.sm{min-height:28px;font-size:12.5px;padding:0 10px}
+#numv.rv .nm-body{position:relative;grid-template-columns:var(--wa,45%) minmax(0,1fr)}
+#numv.rv.rvw .nm-body{grid-template-columns:var(--wa,34%) var(--ws,33%) minmax(0,1fr)}
+#numv .nm-rz{display:none}
+#numv.rv .nm-rz{display:block;position:absolute;top:0;bottom:0;left:calc(var(--wa,45%) - 6px);width:12px;cursor:col-resize;z-index:3;touch-action:none}
+#numv.rv.rvw .nm-rz{left:calc(var(--wa,34%) - 6px)}#numv.rv.rvw .nm-rz.r2{left:calc(var(--wa,34%) + var(--ws,33%) - 6px)}
+#numv.rv .nm-rz::after{content:'';position:absolute;left:5px;top:4px;bottom:4px;width:2px;border-radius:1px;background:transparent;transition:background .12s}
+#numv.rv .nm-rz:hover::after,#numv.rv .nm-rz.drag::after{background:var(--acc,#0F5C5A)}
+#numv.rzing,#numv.rzing *{cursor:col-resize!important;user-select:none}
+#numv .nm-w{background:#F7FAFD;border-radius:0 6px 6px 0}#numv.rvw .nm-s{border-radius:0}
+#numv .nm-lab small{font-weight:500;color:#A39B8E;letter-spacing:0;margin-left:6px}
+#numv .nm-wt{display:block;width:100%;box-sizing:border-box;min-height:5.4em;border:1px solid #D5DDE6;border-radius:6px;background:#fff;color:#1F1D1A;font:inherit;font-size:14px;line-height:1.6;padding:6px 8px;resize:vertical;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere}
+#numv .nm-wt:focus{outline:0;border-color:#5B8DB8;box-shadow:0 0 0 2px rgba(91,141,184,.2)}
+#numv .nm-wt.big{min-height:300px;height:calc(100vh - 340px);max-height:680px;overflow:auto}
+#numv .nm-eye{border:1px solid #E1D9CB;background:#fff;color:#6A6257;border-radius:5px;font-family:inherit;font-size:11px;font-weight:500;line-height:18px;padding:0 6px;cursor:pointer;letter-spacing:0}
+#numv .nm-eye::after{content:'가리기'}#numv .nm-it.hA .nm-a .nm-eye::after,#numv .nm-it.hS .nm-s .nm-eye::after{content:'보기'}
+#numv .nm-it.hA .nm-a .nm-c,#numv .nm-it.hS .nm-s .nm-c{filter:blur(7px);opacity:.5;user-select:none;cursor:pointer}
+#numv .nm-it.hA .nm-a .nm-lab::after,#numv .nm-it.hS .nm-s .nm-lab::after{content:'눌러서 보기';margin-left:auto;font-weight:600;color:#8A5A00;letter-spacing:0}
+#numv.rv .nm-a .nm-c,#numv.rv .nm-s .nm-c{cursor:default}#numv.rv .nm-s .nm-c:not([contenteditable=true]):hover{background:none}
+#numv .nm-rf{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:8px 0 0 var(--nmind);font-size:12.5px;color:var(--sub)}
+#numv .nm-mks{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;flex:none}
+#numv .nm-mks button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:600;color:#5A5247;padding:0 11px;height:28px;cursor:pointer;white-space:nowrap}
+#numv .nm-mks button+button{border-left:1px solid var(--line)}
+#numv .nm-mks button:hover{background:var(--tint,#F2EEE6)}
+#numv .nm-mks button.m0.on{background:#FDECEA;color:#A3231B}#numv .nm-mks button.m1.on{background:#FFF4D6;color:#8A5A00}#numv .nm-mks button.m2.on{background:#E6F4EA;color:#1C5B33}
+#numv .nm-pm{font-size:12px;color:#8C857A;white-space:nowrap}#numv .nm-pm.m0{color:#A3231B}#numv .nm-pm.m1{color:#8A5A00}#numv .nm-pm.m2{color:#1C5B33}
+#numv.rv .nm-it.mk0 .nm-no{color:#A3231B}#numv.rv .nm-it.mk1 .nm-no{color:#8A5A00}#numv.rv .nm-it.mk2 .nm-no{color:#1C5B33}
+#numv .nm-hist{margin:8px 0 0 var(--nmind);padding:8px 12px;border:1px solid #E4DFD5;border-radius:6px;background:#FCFBF8;color:#1F1D1A;font-size:13px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:12px}
+#numv .nm-hist ul{margin:4px 0 0;padding-left:1.1em}#numv .nm-hist li{margin:1px 0}#numv .nm-hist .k{font-size:11.5px;color:#8C857A}
+#numv .nm-pw{border-left:3px solid #C9D9E8;padding:2px 8px;margin:6px 0}#numv .nm-pw b{font-size:11.5px;color:#6A6257;font-weight:600}#numv .nm-pw div{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13.5px;line-height:1.55}
+#numv .nm-mkc i{margin-left:4px}
+#numv .nm-info .nm-btn.sm{margin-left:auto}
+#numv .nm-cardv{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:20px;align-items:start;margin-top:4px}
+#numv .nm-cpos{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:var(--sub);margin:0 0 8px}#numv .nm-cpos b{font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}#numv .nm-cpos .lt{margin-left:6px;max-width:22em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#numv .nm-card{position:relative;background:#fff;color:#1F1D1A;border:1px solid var(--line);border-top:4px solid #DCD3C3;border-radius:12px;box-shadow:0 2px 10px rgba(31,29,26,.06);padding:12px 18px 10px;min-height:280px;cursor:pointer;display:flex;flex-direction:column;outline:none;transition:box-shadow .12s}
+#numv .nm-card:focus-visible{box-shadow:0 0 0 3px rgba(15,92,90,.25)}
+#numv .nm-card.back{background:#FFFEF7;border-color:#E8DCB8;border-top-color:#E8C766}
+#numv .nm-card.mk0{border-top-color:#E5A49C}#numv .nm-card.mk1{border-top-color:#E8C766}#numv .nm-card.mk2{border-top-color:#8CC8A0}
+#numv .nm-cfh{display:flex;align-items:center;gap:8px;margin:0 0 8px;min-height:22px}#numv .nm-cft{font-size:11.5px;font-weight:700;color:#9A9286;letter-spacing:.03em}
+#numv .nm-cfh .nm-edb{opacity:1;margin-left:auto}
+#numv .nm-cq{font-size:13px;color:#6A6257;border-bottom:1px dashed #E4DFD5;padding:0 0 6px;margin:0 0 8px;line-height:1.5}
+#numv .nm-cfc{flex:1 1 auto;font-size:15.5px;line-height:1.72;cursor:inherit}
+#numv .nm-card:not(.back) .nm-cfc[data-f=q]{font-weight:650;font-size:16.5px}
+#numv .nm-cfoot{font-size:11.5px;color:#A39B8E;text-align:center;margin-top:10px}
+#numv .nm-cnav{display:flex;gap:8px;justify-content:center;margin:12px 0 0}#numv .nm-cnav .nm-btn{min-height:38px;min-width:92px}
+#numv .nm-cmk{display:flex;flex-direction:column;align-items:center;gap:4px;margin:12px 0 0}#numv .nm-cmk small{font-size:11.5px;color:#8C857A}
+#numv .nm-cmk .nm-mks button{height:40px;padding:0 18px;font-size:14px}
+#numv .nm-c3b{display:block;margin:12px auto 0;border:0;background:none;color:var(--acc,#0F5C5A);font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px}
+#numv kbd{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid #D8D0C2;border-bottom-width:2px;border-radius:4px;padding:0 4px;color:#6A6257;background:#fff}
+#numv .nm-c3{margin:8px 0 0;background:#fff;color:#1F1D1A;border:1px solid #E4DFD5;border-radius:10px;padding:10px 14px}#numv .nm-c3 .nm-cfc{font-size:14.5px}
+#numv .nm-cr{position:sticky;top:calc(var(--toph,52px) + 76px)}
+#numv .nm-crf{display:flex;gap:8px;margin:6px 0 0}
+#numv .nm-cr .nm-hist{margin-left:0;grid-template-columns:1fr}
+#numv .nm-sum{background:#fff;color:#1F1D1A;border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:12px;max-width:760px}
+#numv .nm-dlg .nm-sum{border:0;padding:0;max-width:none}
+#numv .nm-sum h3{margin:0;font-size:18px;font-family:inherit}
+#numv .nm-sumc{display:flex;gap:10px;flex-wrap:wrap}#numv .nm-sumc span{border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:14px;display:inline-flex;align-items:baseline;gap:6px}#numv .nm-sumc b{font-size:20px;font-variant-numeric:tabular-nums}
+#numv .nm-sumc .m0 b{color:#A3231B}#numv .nm-sumc .m1 b{color:#8A5A00}#numv .nm-sumc .m2 b{color:#1C5B33}
+#numv .nm-sum .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#numv .nm-hrow{border:1px solid var(--line);border-radius:8px;margin:0 0 6px;background:#fff;color:#1F1D1A}#numv .nm-hrow>summary{cursor:pointer;padding:8px 12px;font-size:13.5px;line-height:1.5}
+#numv .nm-hrow .nm-now{color:var(--acc,#0F5C5A)}
+#numv .nm-hbody{padding:0 12px 10px}#numv .nm-hit{border-top:1px solid #EEE9E0;padding:6px 0}#numv .nm-hit .q{font-size:13px;color:#4A4339;margin-bottom:2px}
+@media (min-width:861px){#numv.sidec .nm-app,#numv.sidec .nm-rses{display:none}}
+@media (max-width:860px){
+ #numv .nm-cardv{grid-template-columns:minmax(0,1fr);gap:12px}
+ #numv .nm-cr{position:static}#numv .nm-wt.big{height:auto;min-height:150px}
+ #numv .nm-card{min-height:200px;padding:10px 14px}
+ #numv .nm-cmk{position:sticky;bottom:0;z-index:5;background:var(--bg,#F7F5F0);padding:8px 0 calc(8px + env(safe-area-inset-bottom));margin:6px -12px 0}
+ #numv .nm-cmk .nm-mks button{padding:0 14px}
+ #numv .nm-rvw button{padding:0 9px}
+}
+@container nmm (max-width:640px){
+ #numv.rv .nm-body,#numv.rv.rvw .nm-body{grid-template-columns:minmax(0,1fr)}
+ #numv.rv .nm-rz{display:none}
+ #numv .nm-w{border-radius:0 0 6px 6px}#numv.rvw .nm-s{border-radius:0}
+ #numv .nm-rf,#numv .nm-hist{margin-left:0}#numv .nm-hist{grid-template-columns:1fr}
+}
 @media print{#numv{display:block}#numv .nm-side,#numv .nm-stick,#numv .nm-info,#numv .nm-edb,#numv .nm-more{display:none}#numv .nm-it{content-visibility:visible}}
 `;
 function css() { const o = document.getElementById('nm-css'); if (o && o.dataset.v === H.v) return; if (o) o.remove(); const s = document.createElement('style'); s.id = 'nm-css'; s.dataset.v = H.v; s.textContent = STYLE; document.head.appendChild(s); }
@@ -566,6 +656,7 @@ function itemHTML(it, no, hid) {
 function visible(it) {
   const f = S.cfg.f;
   if (it.del) return false;
+  if (S.app === 'rev' && !inSes(it)) return false;
   if (f.lec) { const known = S.lecs.some(l => l.k && l.k === it.lec); if (f.lec === '__none' ? known : it.lec !== f.lec) return false; }
   if (f.type) { const t = tyOf(it); if (f.type === 'ess' ? !essayish(t) : t !== f.type) return false; }
   if (f.st !== '') { if (f.st === 'rv') { if (!(it.rv && it.rv.length && !it.rvok)) return false; } else if (String(stOf(it)) !== f.st) return false; }
@@ -581,6 +672,7 @@ function cmp() {
 }
 function ordered() {   /* 전체 목록 + 섞기 = 화면에서만 무작위 순서(S.shuf: id → 자리) — 저장된 순서(o)·정렬 설정은 그대로 */
   const live = S.items.filter(it => !it.del);
+  if (S.app === 'rev') { const r = RV.ses && RV.ses.rnd; if (!r) return live.sort(cmp()); const M = RV.rndM || (RV.rndM = new Map(r.map((id, i) => [id, i]))), f = it => M.has(it.id) ? M.get(it.id) : 1e9 + (it.o || 0); return live.sort((a, b) => f(a) - f(b)); }   /* 넘버링 복습: 회차의 섞은 순서 */
   if (S.shuf && S.cfg.mode === 'all') { const M = S.shuf, r = it => M.has(it.id) ? M.get(it.id) : 1e9 + (it.o || 0); return live.sort((a, b) => r(a) - r(b)); }
   return live.sort(cmp());
 }
@@ -597,20 +689,21 @@ function sjCounts() {   /* 과목마다 문제 수(뺀 것 빼고) — 저장 �
 }
 
 function sideHTML() {
+  if (S.app === 'rev') return revSideHTML();
   const subs = subjects(), cur = subs.find(s => s.id === S.sj) || { id: S.sj, t: S.sj }, C = S.sjc || {}, k = counts(), ln = lecCounts();
   const dot = id => `<i class="d" style="background:${esc(H.sjColor ? H.sjColor(id) : '#9A9288')}"></i>`;
   const sjl = subs.map(s => { const n = s.id === S.sj ? k.n : (C[s.id] || 0); return `<button type="button" class="nm-si${s.id === S.sj ? ' on' : ''}" data-sj="${esc(s.id)}"${s.id === S.sj ? ' aria-current="true"' : ''}>${dot(s.id)}<span class="l">${esc(s.t)}</span>${n ? `<small>${n}</small>` : ''}</button>`; }).join('') + `<button type="button" class="nm-si" data-sj="__new">${ICO.plus}<span class="l">새 과목 만들기</span></button>`;
   const L = S.lecs.filter(l => ln[l.k]);
   const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.t + (l.prof ? ' · ' + l.prof : ''))} — 누르면 그 위치로"><span class="l">${esc(l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
   const sh = (subjects().find(s => s.id === S.sj) || {}).sh || cur.t, lc = !!S.cfg.ljc;
-  return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">내 넘버링</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>`
+  return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">내 넘버링</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>` + appSwHTML()
     + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
     + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>`
     + `<button type="button" class="nm-ssec nm-ljh" data-act="ljt" aria-expanded="${!lc}" title="강의 목록 접기·펼치기">강의 바로 가기<small>누르면 그 위치로</small><span class="cv" aria-hidden="true">▾</span></button><div class="nm-ljl"${lc ? ' hidden' : ''}>${ljl}</div>`
     + `<button type="button" class="nm-si nm-rail" data-act="ctx" title="강의 바로 가기" aria-label="강의 바로 가기">${ICO.list}</button>`
     + `<div class="nm-ssec">ChatGPT · 인쇄</div><button type="button" class="nm-si" data-act="aiout" title="ChatGPT에 넘버링 스토리를 맡길 문제를 파일(JSON)로 — 스토리 없는 문제만·고른 문제·강의·필터 결과">${ICO.aiout}<span class="l">ChatGPT로 내보내기</span></button><button type="button" class="nm-si" data-act="aiin" title="ChatGPT가 쓴 스토리 파일 넣기 — 바뀌는 것을 먼저 보고 고른 것만">${ICO.aiin}<span class="l">ChatGPT 결과 가져오기</span></button><button type="button" class="nm-si" data-act="print" title="인쇄 · PDF 저장(A4) — 범위·내용 고르기 (⌘/Ctrl P)">${ICO.print}<span class="l">인쇄 · PDF</span></button>`
     + `<div class="nm-ssec">문제</div><button type="button" class="nm-si pri" data-act="new" title="새 문제 만들기">${ICO.plus}<span class="l">새 문제</span></button><button type="button" class="nm-si" data-act="imp" title="JB 기출·강의 예상문제에서 불러오기">${ICO.imp}<span class="l">기존 문제 불러오기</span></button><button type="button" class="nm-si" data-act="file" title="Word(.docx) 넘버링 파일에서 가져오기 — 미리 보고 고른 뒤 넣음">${ICO.file}<span class="l">Word 파일 가져오기</span></button>`
-    + `<div class="nm-sfoot"><div data-sfoot="1">${footHTML(k)}</div><div class="nm-sf2"><span title="다음 업데이트에서 열려요" aria-disabled="true">넘버링 복습 · 추후 업데이트 예정</span><button type="button" class="nm-bk" data-bkpop="1" title="백업 · 기기 옮기기 — 넘버링도 백업 파일에 함께 들어가요">백업</button></div></div>`;
+    + `<div class="nm-sfoot"><div data-sfoot="1">${footHTML(k)}</div><div class="nm-sf2"><span>자동 저장 · 원본은 그대로</span><button type="button" class="nm-bk" data-bkpop="1" title="백업 · 기기 옮기기 — 넘버링도 백업 파일에 함께 들어가요">백업</button></div></div>`;
 }
 function footHTML(k) { const p = k.n ? Math.round(k.c[2] / k.n * 100) : 0; return `완성 <b>${k.c[2]}</b> / ${k.n}${k.n ? ` · ${p}%` : ''}<div class="nm-pg" aria-hidden="true"><i style="width:${p}%"></i></div>작성 중 ${k.c[1]} · 미작성 ${k.c[0]}`; }
 function sideRender() { const a = S.root && $('.nm-side', S.root); if (!a) return; const y = a.scrollTop; a.innerHTML = sideHTML(); a.scrollTop = y; }
@@ -629,12 +722,12 @@ function barHTML() {
     + `<span class="nm-save ${esc(S.saveSt || '')}" aria-live="polite">${saveTxt()}</span></div>`
     + (S.selMode ? `<div class="nm-batch" data-batch="1"></div>` : '') + fpanHTML() + `</div><div class="nm-info" data-cnt="1"></div>`;
 }
-function stgHTML(k) { const f = S.cfg.f, b = (v, t, n) => `<button type="button" data-stf="${v}" class="${f.st === v ? 'on' : ''}" aria-pressed="${f.st === v}">${t} <b>${n}</b></button>`; return `${b('', '전체', k.n)}${b('0', '미작성', k.c[0])}${b('1', '작성 중', k.c[1])}${b('2', '완성', k.c[2])}${k.rv ? b('rv', '⚠ 검토', k.rv) : ''}`; }
+function stgHTML(k) { if (S.app === 'rev') return rscHTML(); const f = S.cfg.f, b = (v, t, n) => `<button type="button" data-stf="${v}" class="${f.st === v ? 'on' : ''}" aria-pressed="${f.st === v}">${t} <b>${n}</b></button>`; return `${b('', '전체', k.n)}${b('0', '미작성', k.c[0])}${b('1', '작성 중', k.c[1])}${b('2', '완성', k.c[2])}${k.rv ? b('rv', '⚠ 검토', k.rv) : ''}`; }
 function fpanHTML() {
   const C = S.cfg, f = C.f, ln = lecCounts(), yrs = [...new Set(S.items.filter(i => !i.del).flatMap(i => i.yrs))].sort((a, b) => b - a);
   const opt = (v, t, cur) => `<option value="${esc(v)}"${String(cur) === String(v) ? ' selected' : ''}>${esc(t)}</option>`;
   return `<div class="nm-fpan" data-fpan="1"${S.fp ? '' : ' hidden'} role="group" aria-label="필터·정렬">`
-    + `<span class="k">제작 상태</span><div class="nm-stg">${stgHTML(counts())}</div>`
+    + `<span class="k">${S.app === 'rev' ? '복습 범위' : '제작 상태'}</span><div class="nm-stg">${stgHTML(counts())}</div>`
     + `<span class="k">강의만 보기</span><select data-cf="lec" aria-label="강의만 보기(그 강의 문제만)">${opt('', '모든 강의', f.lec)}${S.lecs.filter(l => l.k && ln[l.k]).map(l => opt(l.k, l.t + ' (' + ln[l.k] + ')', f.lec)).join('')}${ln[''] ? opt('__none', '강의 미분류 (' + ln[''] + ')', f.lec) : ''}</select>`
     + `<span class="k">문제 유형</span><select data-cf="type" aria-label="문제 유형">${opt('', '모든 유형', f.type)}${opt('ess', '서술형·넘버링형만', f.type)}${Object.keys(TYPES).map(k => opt(k, TYPES[k], f.type)).join('')}</select>`
     + `<span class="k">출처</span><select data-cf="src" aria-label="출처">${opt('', '모든 출처', f.src)}${Object.keys(KIND).map(k => opt(k, KIND[k], f.src)).join('')}</select>`
@@ -657,21 +750,22 @@ function infoHTML(vis, k) {
 function batchHTML() { const n = S.sel.size; return `<b>${n}개 선택</b><button type="button" class="nm-btn" data-bat="all">보이는 것 모두 선택</button><button type="button" class="nm-btn" data-bat="none">선택 해제</button><span class="nm-sp"></span><button type="button" class="nm-btn" data-bat="done"${n ? '' : ' disabled'}>완성 표시</button><button type="button" class="nm-btn" data-bat="undone"${n ? '' : ' disabled'}>완성 해제</button><button type="button" class="nm-btn" data-bat="move"${n ? '' : ' disabled'}>강의 옮기기</button><button type="button" class="nm-btn" data-bat="merge"${n > 1 ? '' : ' disabled'} title="같은 문제를 하나로 — 출처·연도를 합침(스토리는 하나만)">합치기</button><button type="button" class="nm-btn" data-bat="del"${n ? '' : ' disabled'}>목록에서 빼기</button><button type="button" class="nm-btn" data-act="aiout" data-sc="sel"${n ? '' : ' disabled'} title="고른 문제를 ChatGPT용 파일로">ChatGPT로 내보내기</button><button type="button" class="nm-btn" data-act="print" data-sc="sel"${n ? '' : ' disabled'}>인쇄</button>`; }
 function refreshCounts(vis) {
   const R = S.root; if (!R) return; const k = counts(); if (vis == null) vis = S.visN != null ? S.visN : $$('.nm-it:not([hidden])', R).length;
-  const c = $('[data-cnt]', R); if (c) c.innerHTML = infoHTML(vis, k);
+  const c = $('[data-cnt]', R); if (c) c.innerHTML = S.app === 'rev' ? revInfoHTML(vis) : infoHTML(vis, k);
   const g = $('.nm-stg', R); if (g) g.innerHTML = stgHTML(k);
-  const ft = $('[data-sfoot]', R); if (ft) ft.innerHTML = footHTML(k);
+  const ft = $('[data-sfoot]', R); if (ft) ft.innerHTML = S.app === 'rev' ? revFootHTML() : footHTML(k);
   const bt = $('[data-batch]', R); if (bt) bt.innerHTML = batchHTML();
   const fb = $('.nm-tbtn[data-act=flt]', R); if (fb) { const n = fCount(); let e = fb.querySelector('.n'); if (n) { if (!e) { e = document.createElement('b'); e.className = 'n'; fb.appendChild(e); } e.textContent = n; } else if (e) e.remove(); }
 }
-function vClass() { return (S.selMode ? 'selm ' : '') + (S.cfg.hide.a ? 'hideA ' : '') + (S.cfg.hide.st ? 'hideS ' : '') + (S.cfg.side === 'c' ? 'sidec ' : '') + (S.drawer ? 'sideo' : ''); }
+function vClass() { return (S.app === 'rev' ? 'rv ' + (S.cfg.write ? 'rvw ' : '') + (S.cfg.view === 'card' ? 'rvc ' : '') : (S.selMode ? 'selm ' : '') + (S.cfg.hide.a ? 'hideA ' : '') + (S.cfg.hide.st ? 'hideS ' : '')) + (S.cfg.side === 'c' ? 'sidec ' : '') + (S.drawer ? 'sideo' : ''); }
 function frame() {   /* #numv 뼈대 — 사이드바·본문(대화창·메뉴는 #numv 바로 아래에 붙어 다시 그려도 남음) */
   let V = document.getElementById('numv');
   if (!V || !S.root.contains(V) || !$('.nm-main', V)) { S.root.innerHTML = '<div id="numv"><aside class="nm-side" aria-label="내 넘버링 메뉴"></aside><div class="nm-sbg" data-sact="close"></div><div class="nm-main"></div><button type="button" class="nm-top" data-act="top" title="맨 위로" aria-label="맨 위로" hidden>' + ICO.up + '</button></div>'; V = document.getElementById('numv'); }
-  V.className = vClass(); return V;
+  V.className = vClass(); if (S.app !== 'rev') wApply(); return V;
 }
 function emptyHTML() { return `<div class="nm-empty">아직 이 과목에 넘버링 문제가 없어요.<div class="row"><button type="button" class="nm-btn pri" data-act="imp">기존 문제 불러오기</button><button type="button" class="nm-btn" data-act="new">+ 새 문제</button><button type="button" class="nm-btn" data-act="file">Word 파일 가져오기</button></div><small>JB 기출·강의 예상문제를 골라 넣거나, 직접 만들거나, 내 Word(.docx)에서 가져올 수 있어요.</small></div>`; }
 
 function render(o) {
+  if (S.app === 'rev') { revRender(o); return; }
   o = o || {}; const tok = ++S.tok, R = S.root; if (!R) return; if (S.shuf && S.cfg.mode !== 'all') S.shuf = null;
   endEdit(true);
   const L = ordered(), C = S.cfg, K = lecKeys();
@@ -704,6 +798,7 @@ function render(o) {
 function hidHTML(hid) { return `<details class="nm-hid"><summary>목록에서 뺀 문제 ${hid.length}개 — 다시 넣을 수 있어요(원본은 그대로)</summary>${hid.map(it => `<div class="row" data-id="${esc(it.id)}"><span class="nm-chip k-${esc(it.kind)}">${esc(KIND[it.kind] || it.kind)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(plain(it.q).slice(0, 90))}</span><button type="button" class="nm-btn" data-act="undel">다시 넣기</button></div>`).join('')}</details>`; }
 function applyFilter(initial) {   /* 숨김·표시 번호(지금 보이는 순서대로 1, 2, 3…)·강의 머리·개수만 고침 — 다시 그리지 않음 */
   const R = S.root; if (!R) return;
+  if (S.app === 'rev' && S.cfg.view === 'card') { RV.deck = null; if (!initial) cardPaint(); return; }   /* 카드 복습 = 거르기를 바꾸면 카드 묶음을 다시 */
   const arts = $$('.nm-it', R), K = lecKeys(), vl = {}; let no = 0;
   for (const a of arts) { const it = S.by.get(a.dataset.id); const v = !!it && visible(it); if (a.hidden === v) a.hidden = !v; if (v) { const nb = a.querySelector('.nm-no'); const t = (++no) + '.'; if (nb.textContent !== t) nb.textContent = t; vl[K.has(it.lec) ? it.lec : ''] = 1; } }
   $$('.nm-lec', R).forEach(h => { const any = !!vl[h.dataset.lec]; if (h.hidden === any) h.hidden = !any; });
@@ -712,8 +807,9 @@ function applyFilter(initial) {   /* 숨김·표시 번호(지금 보이는 순�
   if (!initial) { const e = $('.nm-empty2', R); if (e) e.remove(); if (!no && S.items.some(it => !it.del)) $('[data-doc]', R).insertAdjacentHTML('beforeend', '<div class="nm-empty nm-empty2">조건에 맞는 문제가 없어요 — 위의 조건(✕)을 풀거나 검색어를 바꿔 보세요.</div>'); }
 }
 function rerenderItem(it) {
+  if (S.app === 'rev' && S.cfg.view === 'card') { if (S.root && $('[data-cardv]', S.root)) cardPaint(); return; }
   const a = S.root && $(`.nm-it[data-id="${CSS.escape(it.id)}"]`, S.root); if (!a) return;
-  const no = parseInt(a.querySelector('.nm-no').textContent, 10) || 0; const t = document.createElement('div'); t.innerHTML = itemHTML(it, no, a.hidden); const n = t.firstElementChild; ['revA', 'revS'].forEach(c => { if (a.classList.contains(c)) n.classList.add(c); }); a.replaceWith(n);
+  const no = parseInt(a.querySelector('.nm-no').textContent, 10) || 0; const t = document.createElement('div'); t.innerHTML = S.app === 'rev' ? revItemHTML(it, no, a.hidden) : itemHTML(it, no, a.hidden); const n = t.firstElementChild; if (S.app !== 'rev') ['revA', 'revS'].forEach(c => { if (a.classList.contains(c)) n.classList.add(c); }); else { const hp = a.querySelector('[data-hist]'); if (hp) n.insertAdjacentHTML('beforeend', histHTML(it.id)); } a.replaceWith(n);
   refreshCounts();
 }
 function toph() { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--toph')) || 52; }
@@ -734,7 +830,7 @@ function posNow() {   /* 지금 화면 맨 위 문제(한 점만 짚어 봄 — 
   if (a && doc.contains(a) && !a.hidden) return { id: a.dataset.id, off: Math.round(a.getBoundingClientRect().top) };
   return topItem();
 }
-function posSave() { if (S.root && S.sj && S.posOK && document.getElementById('numv')) H.LS.set('num.pos.' + S.sj, posNow()); }
+function posSave() { if (S.root && S.sj && S.posOK && document.getElementById('numv') && !(S.app === 'rev' && S.cfg.view === 'card')) H.LS.set(posKey(S.sj), posNow()); }   /* 내 넘버링 num.pos · 넘버링 복습 num.rpos(스크롤 복습만) */
 function keepPos(fn) { const p = posNow(); fn(); if (p) restorePos(p); }   /* 거르기를 바꿔도 보던 자리 근처 그대로 */
 function topBtn() { const b = document.querySelector('#numv .nm-top'); if (!b) return; const on = scrollY > 900; if (b.hidden === on) b.hidden = !on; }
 /* 강의 바로 가기(문서는 그대로 두고 그 강의 첫 자리로) — '강의만 보기'(필터)와 다름 */
@@ -832,7 +928,7 @@ function palPlace() { const p = $('.nm-pal'), b = S.palBtn; if (!p || !b || !b.i
 function edChanged() { if (S.ed) edInput(); tbKick(); }
 function startEdit(el, it, f, ev) {
   if (S.ed && S.ed.el === el) return;
-  { const art = el.closest && el.closest('.nm-it'); if (art) art.classList.add(f === 'st' ? 'revS' : 'revA'); }
+  { const art = el.closest && el.closest('.nm-it'); if (art) { art.classList.add(f === 'st' ? 'revS' : 'revA'); if (S.app === 'rev' && f !== 'q' && art.classList.contains(f === 'st' ? 'hS' : 'hA')) hidSet(f === 'st' ? 's' : 'a', it.id, false); } }   /* 복습에서 가린 칸을 고치면 그 칸은 보임 */
   endEdit();
   if (!el.isConnected) { el = S.root && $(`.nm-it[data-id="${CSS.escape(it.id)}"] .nm-c[data-f="${f}"]`, S.root); if (!el) return; }   /* 같은 문제의 다른 칸을 고치다 왔으면 그 문제가 새로 그려짐 */
   const orig = it[f] || '';
@@ -1560,20 +1656,380 @@ function batch(k, btn) {
   }
 }
 
+/* ---------- 넘버링 복습(10-11 · 피드백기록 넘버링 6) ----------
+   원본(문제·정답·스토리) = 내 넘버링과 같은 S.items·같은 저장(num.i.*) — 어느 쪽에서 고쳐도 같은 글 · 고칠 때도 같은 편집기(startEdit — 같은 도구 막대·서식·자동 저장)
+   복습 기록은 원본과 따로(원본 키를 건드리지 않음):
+     num.r.<과목>.<id> = {id, m 최근 평가(0 모름·1 애매함·2 암기 완료), d 최근 복습 때, h [{t,m,s}] 평가 이력(최근 30 · s = 회차), w [{t,s,x}] 지난 회차에 쓴 내 답안(최근 10), u}
+     num.rs.<과목> = 진행 중인 회차 {sid, t0, sc 범위, ids 이 회차 문제, rnd 섞은 순서(없으면 null), cur·i 카드 자리, mk {id: 평가}, ov {a:{id:1 보임·0 가림}, s:{…}} 문제마다 가리기, retry}
+     num.rd.<과목> = 이 회차에 쓰는 중인 내 답안 {sid, a:{id: 글}} — 입력이 멈추고 0.5초 뒤·칸을 떠날 때·화면을 떠날 때 저장 · 회차가 끝나면 문제마다 w로 옮기고 새 회차는 빈 칸
+     num.rl.<과목> = 끝낸 회차 기록 [{sid, t0, t1, sc, n, c:[모름,애매함,암기], w 쓴 답안 수, retry}] · 보기 설정 num.rcfg(내 넘버링 num.cfg와 따로) · 스크롤 위치 num.rpos.<과목> */
+const MKN = ['모름', '애매함', '암기 완료'];
+const RSC = { all: '전체', new: '미복습', weak: '취약(모름·애매함)', m0: '모름', m1: '애매함', m2: '암기 완료' };
+const DIRS = { qs: ['q', 'st', 'a', '문제 → 스토리'], sa: ['st', 'a', 'q', '스토리 → 정답'], qa: ['q', 'a', 'st', '문제 → 정답'] };
+const FN = { q: '문제', a: '정답', st: '넘버링 스토리' };
+const RV = { rr: new Map(), sj: '', ses: null, dr: null, drT: 0, drDirty: false, face: 0, third: false, sum: false, idset: new Set(), rndM: null, hint: new Set(), hist: new Set(), deck: null, tx: null, swiped: false };
+function rcfgLoad() {
+  const c = H.LS.get('num.rcfg', null) || {}, w3 = Array.isArray(c.w3) && c.w3.length === 2 && c.w3.every(x => +x >= 12) && c.w3[0] + c.w3[1] <= 88 ? c.w3.map(Number) : [34, 33];
+  return { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: SORTN[c.sort] ? c.sort : 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc, view: c.view === 'card' ? 'card' : 'scroll', dir: DIRS[c.dir] ? c.dir : 'qs', write: !!c.write, w2: +c.w2 >= 15 && +c.w2 <= 85 ? +c.w2 : 45, w3, sc: RSC[c.sc] ? c.sc : 'all', rord: !!c.rord };
+}
+const hst = () => S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj };
+const hpath = sj => (S.app === 'rev' ? '#/_numr/' : '#/_num/') + sj;
+const posKey = sj => (S.app === 'rev' ? 'num.rpos.' : 'num.pos.') + sj;
+function appTitle() { document.title = (S.app === 'rev' ? '넘버링 복습' : '내 넘버링') + ' — JBL 허브'; if (H.ui) { try { H.ui(); } catch (e) {} } }
+function appSet(a, o) {   /* 내 넘버링 ⇄ 넘버링 복습 — 같은 과목·같은 원본(다시 읽지 않음) · 보기 설정·검색·위치는 화면마다 */
+  o = o || {}; a = a === 'rev' ? 'rev' : 'make';
+  if (a === S.app) { if (o.flash) flash(o.flash); return; }
+  endEdit(true); formEnd(); menuClose(); palClose(); dlgClose(); if (S.app === 'rev') { drSave(); sesSave(); } try { posSave(); } catch (e) {}
+  const side = S.cfg.side, ljc = S.cfg.ljc; S[S.app === 'rev' ? 'qr' : 'qm'] = S.q;
+  S.app = a; cfg(); S.cfg.side = side; S.cfg.ljc = ljc; S.cfg.sj = S.sj; cfgSave(); S.q = S[a === 'rev' ? 'qr' : 'qm'] || '';
+  S.fp = false; S.vo = false; S.sel.clear(); S.selMode = false; S.shuf = null; S.posOK = false; S.curLec = null; if (S.drawer) drawer(false);
+  if (a === 'rev') revEnter();
+  H.histSet(hst(), hpath(S.sj), true); appTitle();
+  render({ pos: o.flash ? null : H.LS.get(posKey(S.sj), null), flash: o.flash, y: o.flash ? null : 0 });
+}
+function revEnter() { if (RV.sj !== S.sj) rLoad(S.sj); sesLoad(); if (!RV.ses) sesNew({ sc: S.cfg.sc }); }
+/* 기록 */
+function rLoad(sj) {
+  const P = 'num.r.' + sj + '.', M = new Map();
+  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.indexOf(H.NS + P) === 0) { try { const r = JSON.parse(localStorage.getItem(k)); if (r && r.id) M.set(r.id, r); } catch (e) {} } }
+  if (H.LSQ) for (const [k, v] of H.LSQ) if (k.indexOf(P) === 0) { try { const r = JSON.parse(v); if (r && r.id) M.set(r.id, r); } catch (e) {} }
+  RV.rr = M; RV.sj = sj;
+}
+const rOf = id => RV.rr.get(id) || null;
+const lastM = id => { const r = RV.rr.get(id); return r && (r.m === 0 || r.m === 1 || r.m === 2) ? r.m : -1; };
+function rPut(r) {
+  r.u = now(); RV.rr.set(r.id, r); const ok = rawPut('num.r.' + S.sj + '.' + r.id, r);
+  saveState(ok ? 'ok' : 'bad', ok ? '' : '이 기기 저장 공간이 부족해요 — 백업 파일을 받아 두세요'); if (!ok) H.toast('복습 기록을 저장할 공간이 부족해요 — 백업 파일을 받아 두세요', { level: 'error', id: 'nmquota' });
+  return ok;
+}
+function prevMark(id) { const r = rOf(id), sid = RV.ses && RV.ses.sid; if (!r || !Array.isArray(r.h)) return null; for (let i = r.h.length - 1; i >= 0; i--) if (r.h[i].s !== sid && r.h[i].m >= 0) return r.h[i]; return null; }
+function markSet(id, m) {   /* 이 회차 평가 — 다시 누르면 고침(이력의 이 회차 칸을 바꿈) · 같은 것을 또 누르면 지움 */
+  const s = RV.ses; if (!s) return; const r = rOf(id) || { id, h: [], w: [] }; r.h = Array.isArray(r.h) ? r.h : [];
+  const li = r.h.length && r.h[r.h.length - 1].s === s.sid ? r.h.length - 1 : -1;
+  if (s.mk[id] === m) { if (li >= 0) r.h.splice(li, 1); delete s.mk[id]; const p = r.h[r.h.length - 1]; r.m = p ? p.m : undefined; r.d = p ? p.t : undefined; }
+  else { const e = { t: now(), m, s: s.sid }; if (li >= 0) r.h[li] = e; else r.h.push(e); if (r.h.length > 30) r.h = r.h.slice(-30); r.m = m; r.d = e.t; s.mk[id] = m; }
+  rPut(r); sesSave();
+}
+/* 회차 */
+const sesK = () => 'num.rs.' + S.sj, drK = () => 'num.rd.' + S.sj;
+function sesLoad() {
+  const s = H.LS.get(sesK(), null);
+  RV.ses = s && s.sid && Array.isArray(s.ids) ? Object.assign({ mk: {}, i: 0, cur: null, rnd: null }, s) : null;
+  if (RV.ses) { RV.ses.ov = Object.assign({ a: {}, s: {} }, RV.ses.ov || {}); RV.ses.mk = RV.ses.mk || {}; if (RV.ses.rnd && !Array.isArray(RV.ses.rnd)) RV.ses.rnd = null; }
+  const d = H.LS.get(drK(), null); RV.dr = RV.ses ? (d && d.sid === RV.ses.sid && d.a && typeof d.a === 'object' ? d : { sid: RV.ses.sid, a: {} }) : null; RV.drDirty = false;
+  RV.hint = new Set(); RV.hist = new Set(); RV.face = 0; RV.third = false; RV.sum = false; sesIdx();
+}
+function sesIdx() { RV.idset = new Set(RV.ses ? RV.ses.ids : []); RV.rndM = null; RV.deck = null; }
+function sesSave() { if (RV.ses && S.sj) { RV.ses.u = now(); H.LS.set(sesK(), RV.ses); } }
+function drSave() { clearTimeout(RV.drT); RV.drT = 0; if (!RV.dr || !RV.ses || !RV.drDirty) return; RV.drDirty = false; RV.dr.sid = RV.ses.sid; RV.dr.u = now(); const ok = rawPut(drK(), RV.dr); saveState(ok ? 'ok' : 'bad', ok ? '' : '이 기기 저장 공간이 부족해요 — 백업 파일을 받아 두세요'); }
+function drInput(ta) { if (!RV.dr || !RV.ses) return; const id = ta.dataset.w, v = ta.value; if (v) RV.dr.a[id] = v; else delete RV.dr.a[id]; RV.drDirty = true; saveState('ing'); clearTimeout(RV.drT); RV.drT = setTimeout(drSave, 500); grow(ta); }
+function grow(ta) { if (ta.classList.contains('big')) return; ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight + 2, 1200) + 'px'; }
+function shufIds(ids) { const a = ids.slice(), u = new Uint32Array(a.length); try { crypto.getRandomValues(u); } catch (e) { for (let i = 0; i < u.length; i++) u[i] = Math.random() * 4294967296 >>> 0; } for (let i = a.length - 1; i > 0; i--) { const j = u[i] % (i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const scopeHas = (sc, m) => sc === 'new' ? m < 0 : sc === 'weak' ? m === 0 || m === 1 : sc === 'm0' ? m === 0 : sc === 'm1' ? m === 1 : sc === 'm2' ? m === 2 : true;
+function scopeIds(sc) { return ordered().filter(it => scopeHas(sc, lastM(it.id))).map(it => it.id); }
+const inSes = it => { const s = RV.ses; return !s || RV.idset.has(it.id) || (s.sc === 'all' && (it.c || 0) > s.t0); };   /* 범위 '전체'면 회차 중에 새로 만든 문제도 */
+const scLab = s => s ? (s.retry ? '재복습' : RSC[s.sc] || '전체') : '';
+function sesBusy() { const s = RV.ses; return !!s && (Object.keys(s.mk).length > 0 || !!(RV.dr && Object.values(RV.dr.a).some(x => String(x || '').trim()))); }
+function sesNew(o) {
+  o = o || {}; sesArchive();
+  const sc = o.sc || S.cfg.sc || 'all', ids = o.ids || scopeIds(sc);
+  RV.ses = { sid: 's' + now().toString(36) + Math.random().toString(36).slice(2, 5), t0: now(), sc, ids, rnd: o.rand ? shufIds(ids) : null, i: 0, cur: null, mk: {}, ov: { a: {}, s: {} }, retry: !!o.retry, from: o.from || '' };
+  RV.dr = { sid: RV.ses.sid, a: {} }; RV.drDirty = false; sesSave();
+  RV.hint = new Set(); RV.hist = new Set(); RV.face = 0; RV.third = false; RV.sum = false; sesIdx();
+}
+function sesArchive() {   /* 끝난 회차: 쓴 답안 → 문제마다 지난 답안(w) · 회차 기록 한 줄 — 평가는 이미 문제마다 저장됨 */
+  const s = RV.ses; if (!s) return; RV.drDirty = true; drSave();
+  const A = (RV.dr && RV.dr.sid === s.sid && RV.dr.a) || {}, wn = [];
+  for (const id in A) { const x = String(A[id] || '').trim(); if (!x) continue; wn.push(id); const r = rOf(id) || { id, h: [], w: [] }; r.w = (Array.isArray(r.w) ? r.w : []).filter(w => w.s !== s.sid); r.w.push({ t: now(), s: s.sid, x: x.slice(0, 20000) }); if (r.w.length > 10) r.w = r.w.slice(-10); rPut(r); }
+  const mk = Object.values(s.mk || {});
+  if (mk.length || wn.length) { const L = H.LS.get('num.rl.' + S.sj, []) || []; L.push({ sid: s.sid, t0: s.t0, t1: now(), sc: s.sc, n: s.ids.length, c: [0, 1, 2].map(m => mk.filter(v => v === m).length), w: wn.length, retry: s.retry ? 1 : 0 }); H.LS.set('num.rl.' + S.sj, L.slice(-200)); }
+  rawDel(drK()); rawDel(sesK()); RV.ses = null; RV.dr = null;
+}
+function sesStat() { const s = RV.ses, ids = s ? s.ids.filter(id => { const it = S.by.get(id); return it && !it.del; }) : [], c = [0, 0, 0]; let n = 0; for (const id of ids) { const m = s.mk[id]; if (m === 0 || m === 1 || m === 2) { c[m]++; n++; } } return { ids, c, n, weak: ids.filter(id => s.mk[id] === 0 || s.mk[id] === 1) }; }
+function rCounts() { const c = [0, 0, 0], live = S.items.filter(it => !it.del); let nw = 0; for (const it of live) { const m = lastM(it.id); if (m < 0) nw++; else c[m]++; } return { n: live.length, c, nw }; }
+/* 가리기 — 전체(설정) + 문제마다 따로(이 회차 동안 유지 · 전체 단추를 누르면 그 칸은 다시 전체를 따름) */
+function hidOf(f, id) { const o = RV.ses && RV.ses.ov[f]; return o && Object.prototype.hasOwnProperty.call(o, id) ? !o[id] : !!S.cfg.hide[f === 'a' ? 'a' : 'st']; }
+const artOf = id => S.root && $(`.nm-it[data-id="${CSS.escape(id)}"]`, S.root);
+function hidSet(f, id, hide) { if (!RV.ses) return; RV.ses.ov[f][id] = hide ? 0 : 1; sesSave(); const a = artOf(id); if (a) a.classList.toggle(f === 'a' ? 'hA' : 'hS', hide); }
+function hideAll(f) {
+  const k = f === 'a' ? 'a' : 'st', on = !S.cfg.hide[k]; S.cfg.hide[k] = on; cfgSave(); if (RV.ses) { RV.ses.ov[f] = {}; sesSave(); }
+  $$('.nm-it', S.root).forEach(a => a.classList.toggle(f === 'a' ? 'hA' : 'hS', on));
+  $$(`[data-rhide="${k}"]`, S.root).forEach(b => { b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+}
+/* 화면 — 스크롤 복습 */
+const mksHTML = (id, m) => `<span class="nm-mks" role="group" aria-label="암기 평가">${[0, 1, 2].map(k => `<button type="button" data-mk="${k}" class="m${k}${m === k ? ' on' : ''}" aria-pressed="${m === k}" title="${MKN[k]}${S.cfg.view === 'card' ? ' (' + (k + 1) + ')' : ''}${m === k ? ' — 한 번 더 누르면 평가 지움' : ''}">${MKN[k]}</button>`).join('')}</span>`;
+const wRows = t => Math.min(14, Math.max(3, String(t || '').split('\n').length + 1));
+const dtS = t => { const d = new Date(t); return (d.getMonth() + 1) + '/' + d.getDate(); };
+const dtTxt = t => new Date(t).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+const pmHTML = pm => pm ? `<span class="nm-pm m${pm.m}" title="지난 회차 평가 ${esc(dtTxt(pm.t))}">지난 ${MKN[pm.m]} · ${esc(dtS(pm.t))}</span>` : '<span class="nm-pm">처음 복습</span>';
+function revItemHTML(it, no, hid) {
+  const pf = profOf(it), s = RV.ses, m = s.mk[it.id], W = S.cfg.write, r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, dr = (RV.dr && RV.dr.a[it.id]) || '';
+  const rz = '<i class="nm-rz" data-rz="1" title="끌어서 칸 너비 조절 · 두 번 누르면 처음대로"></i>' + (W ? '<i class="nm-rz r2" data-rz="2" title="끌어서 칸 너비 조절 · 두 번 누르면 처음대로"></i>' : '');
+  return `<article class="nm-it${hidOf('a', it.id) ? ' hA' : ''}${hidOf('s', it.id) ? ' hS' : ''}${m != null ? ' mk' + m : ''}" data-id="${esc(it.id)}"${hid ? ' hidden' : ''}><header class="nm-h"><span class="nm-no">${no}.</span>`
+    + `<div class="nm-q"><div class="nm-c" data-f="q">${qDisp(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정 — 내 넘버링과 같은 원본(바로 양쪽에 반영)">수정</button></div>`
+    + `<span class="nm-tags">${pf ? `<span class="nm-tag pf" title="교수">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr" title="출제 연도 ${esc(yrsTxt(it.yrs))}">${esc(yrs2(it.yrs))}</span>` : ''}</span></header>`
+    + `<div class="nm-body"><section class="nm-col nm-a"><div class="nm-lab">정답<button type="button" class="nm-eye" data-eye="a" aria-label="이 문제 정답 가리기·보기"></button><button type="button" class="nm-edb" data-act="edit" data-f="a" title="정답 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div><div class="nm-c" data-f="a">${disp(it.a) || '<span class="nm-ph">정답 없음</span>'}</div></section>`
+    + `<section class="nm-col nm-s"><div class="nm-lab">넘버링 스토리<button type="button" class="nm-eye" data-eye="s" aria-label="이 문제 스토리 가리기·보기"></button><button type="button" class="nm-edb" data-act="edit" data-f="st" title="스토리 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div><div class="nm-c" data-f="st">${disp(it.st) || '<span class="nm-ph">스토리 없음</span>'}</div></section>`
+    + (W ? `<section class="nm-col nm-w"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로</small></div><textarea class="nm-wt" data-w="${esc(it.id)}" rows="${wRows(dr)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만)" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea></section>` : '')
+    + rz + `</div><footer class="nm-rf">${mksHTML(it.id, m)}${pmHTML(prevMark(it.id))}<span class="nm-sp"></span><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="false">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></footer></article>`;
+}
+function histHTML(id) {
+  const r = rOf(id), s = RV.ses, Hh = (r && Array.isArray(r.h) ? r.h : []).slice().reverse(), Wl = (r && Array.isArray(r.w) ? r.w : []).slice().reverse();
+  const lock = !!s && s.mk[id] == null && !RV.hint.has(id);   /* 이번 회차에 평가하기 전에는 지난 답안을 가림(힌트가 되지 않게) */
+  const hh = Hh.length ? `<ul>${Hh.slice(0, 12).map(e => `<li><b class="m${e.m}">${MKN[e.m] || '—'}</b> · ${esc(dtTxt(e.t))}${s && e.s === s.sid ? ' <small>(이번 회차)</small>' : ''}</li>`).join('')}</ul>` : '<p class="nm-sub">아직 평가가 없어요</p>';
+  const ww = !Wl.length ? '<p class="nm-sub">지난 회차에 쓴 답안이 없어요</p>' : lock ? `<p class="nm-sub">지난 회차에 쓴 답안 ${Wl.length}개 — 이번 회차에서 평가하면 보여요(힌트가 되지 않게). <button type="button" class="nm-lnk" data-ract="hint">지금 보기</button></p>` : Wl.map(w => `<div class="nm-pw"><b>${esc(dtTxt(w.t))}</b><div>${esc(w.x)}</div></div>`).join('');
+  return `<div class="nm-hist" data-hist="1"><div><b class="k">평가 이력</b>${hh}</div><div><b class="k">지난 회차에 쓴 내 답안</b>${ww}</div></div>`;
+}
+function revEmptyHTML() {
+  if (!S.items.some(it => !it.del)) return `<div class="nm-empty">아직 이 과목에 넘버링 문제가 없어요.<div class="row"><button type="button" class="nm-btn pri" data-app="make">내 넘버링에서 문제 넣기</button></div></div>`;
+  return `<div class="nm-empty">이 회차 범위(${esc(scLab(RV.ses))})에 문제가 없어요.<div class="row">${Object.keys(RSC).map(k => `<button type="button" class="nm-btn${k === 'all' ? ' pri' : ''}" data-rsc="${k}">${esc(RSC[k])}</button>`).join('')}</div><small>복습 범위를 고르면 그 범위로 새 회차를 시작해요.</small></div>`;
+}
+function wApply() {
+  const V = document.getElementById('numv'); if (!V) return;
+  if (S.app !== 'rev') { V.style.removeProperty('--wa'); V.style.removeProperty('--ws'); return; }
+  if (S.cfg.write) { V.style.setProperty('--wa', S.cfg.w3[0] + '%'); V.style.setProperty('--ws', S.cfg.w3[1] + '%'); } else { V.style.setProperty('--wa', S.cfg.w2 + '%'); V.style.removeProperty('--ws'); }
+}
+function rzStart(e, h) {   /* 열 경계 끌기 — 모든 문제가 같은 너비(#numv의 --wa·--ws) · 놓으면 기억(num.rcfg) */
+  const body = h.closest('.nm-body'); if (!body) return; e.preventDefault();
+  const r = body.getBoundingClientRect(), V = document.getElementById('numv'), k = h.dataset.rz, w3 = S.cfg.write; let raf = 0, last = null;
+  h.classList.add('drag'); V.classList.add('rzing'); try { h.setPointerCapture(e.pointerId); } catch (_) {}
+  const rd = x => Math.round(x * 10) / 10;
+  const apply = () => { raf = 0; if (last == null) return; let p = (last - r.left) / r.width * 100;
+    if (!w3) { S.cfg.w2 = rd(Math.max(18, Math.min(82, p))); } else { const [a, s] = S.cfg.w3; if (k === '1') { p = Math.max(14, Math.min(a + s - 14, p)); S.cfg.w3 = [rd(p), rd(a + s - p)]; } else { p = Math.max(a + 14, Math.min(86, p)); S.cfg.w3 = [a, rd(p - a)]; } }
+    wApply(); };
+  const mv = ev => { last = ev.clientX; if (!raf) raf = requestAnimationFrame(apply); };
+  const up = () => { h.classList.remove('drag'); V.classList.remove('rzing'); h.removeEventListener('pointermove', mv); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); if (raf) { cancelAnimationFrame(raf); apply(); } cfgSave(); };
+  h.addEventListener('pointermove', mv); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
+}
+function rzReset() { if (S.cfg.write) S.cfg.w3 = [34, 33]; else S.cfg.w2 = 45; cfgSave(); wApply(); }
+function revBarHTML() {
+  const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null, card = C.view === 'card', rnd = !!(RV.ses && RV.ses.rnd);
+  const tg = (attr, on, t, ti) => `<button type="button" ${attr} class="${on ? 'on' : ''}" aria-pressed="${!!on}" title="${esc(ti)}">${t}</button>`;
+  return `<div class="nm-stick"><div class="nm-bar">`
+    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.t) : '› 강의'}</span></button></span>`
+    + `<span class="nm-seg nm-rvw" role="group" aria-label="복습 방식">${tg('data-rview="scroll"', !card, '스크롤', '스크롤 복습 — Word처럼 이어서 · 가리기 · 내 답안 쓰기')}${tg('data-rview="card"', card, '카드', '카드 복습 — 한 장씩 뒤집고 평가(Space·←→·1 2 3)')}</span>`
+    + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·정답·스토리 검색" value="${esc(S.q)}" aria-label="복습 검색"></label>`
+    + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="복습 범위(전체·미복습·취약…) · 강의·유형·출처·연도 · 정렬">${ICO.filter}<span>범위·필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
+    + `<div class="nm-vopt${S.vo ? ' open' : ''}">`
+    + (card ? `<span class="nm-seg" role="group" aria-label="카드 방향 — 앞 → 뒤">${Object.keys(DIRS).map(d => tg(`data-rdir="${d}"`, C.dir === d, DIRS[d][3], '카드 앞 → 뒤: ' + DIRS[d][3] + ' · 남은 하나(' + FN[DIRS[d][2]] + ')는 따로 보기')).join('')}</span>`
+      : (rnd ? '' : `<span class="nm-seg" role="group" aria-label="보기">${tg('data-mode="grp"', C.mode === 'grp', '강의별', '강의마다 머리를 두고 보기')}${tg('data-mode="all"', C.mode === 'all', '전체 목록', '강의 머리 없이 한 줄로 이어 보기')}</span>`)
+        + `<span class="nm-seg" role="group" aria-label="모두 가리기 — 문제마다 눌러서 따로 보기·가리기">${tg('data-rhide="a"', C.hide.a, '정답 가리기', '정답을 모두 가리기·보기 — 문제마다 눌러서 따로')}${tg('data-rhide="st"', C.hide.st, '스토리 가리기', '스토리를 모두 가리기·보기 — 문제마다 눌러서 따로')}</span>`
+        + `<button type="button" class="nm-sel${C.write ? ' on' : ''}" data-rwrite="1" aria-pressed="${!!C.write}" title="정답 | 스토리 | 내 답안 3칸으로 — 칸 경계를 끌어 너비 조절(기억)">✍ 내 답안 쓰기</button>`)
+    + `<span class="nm-seg nm-shf" role="group" aria-label="무작위 순서">${tg('data-ract="shuf"', rnd, ICO.shuf + (rnd ? '다시 섞기' : '섞기'), rnd ? '한 번 더 무작위로' : '이 회차 순서를 무작위로(저장된 순서는 그대로)')}${rnd ? '<button type="button" data-ract="unshuf" title="원래 순서로">원래대로</button>' : ''}</span>`
+    + `</div><button type="button" class="nm-tbtn nm-vbtn" data-act="vopt" aria-expanded="${!!S.vo}" aria-haspopup="true" title="보기 — ${card ? '카드 방향·섞기' : '강의별/전체 · 가리기 · 내 답안 쓰기 · 섞기'}">${ICO.view}<span>보기</span></button>`
+    + `<span class="nm-save ${esc(S.saveSt || '')}" aria-live="polite">${saveTxt()}</span></div>` + fpanHTML() + `</div><div class="nm-info" data-cnt="1"></div>`;
+}
+function rscHTML() {
+  const n = {}; Object.keys(RSC).forEach(k => { n[k] = 0; }); for (const it of S.items) if (!it.del) { const m = lastM(it.id); for (const k in RSC) if (scopeHas(k, m)) n[k]++; }
+  const cur = RV.ses ? (RV.ses.retry ? 'retry' : RV.ses.sc) : S.cfg.sc;
+  return Object.keys(RSC).map(k => `<button type="button" data-rsc="${k}" class="${cur === k ? 'on' : ''}" aria-pressed="${cur === k}" title="${cur === k ? '지금 회차 범위 — 다시 누르면 같은 범위로 새 회차' : '이 범위로 새 회차'}">${RSC[k]} <b>${n[k]}</b></button>`).join('') + (cur === 'retry' ? `<button type="button" class="on" disabled>재복습 <b>${RV.ses.ids.length}</b></button>` : '');
+}
+function revInfoHTML(vis) {
+  const s = RV.ses, f = S.cfg.f, st = sesStat(), ch = [];
+  const chip = (x, t) => `<button type="button" class="nm-fchip" data-fx="${x}" title="이 조건 풀기"><span>${esc(t)}</span><i aria-hidden="true">✕</i></button>`;
+  if (S.q) ch.push(chip('q', '검색: ' + S.q)); if (f.lec) ch.push(chip('lec', '강의: ' + (f.lec === '__none' ? '강의 미분류' : lecOf(f.lec).t))); if (f.type) ch.push(chip('type', '유형: ' + (f.type === 'ess' ? '서술형·넘버링형' : TYPES[f.type] || f.type))); if (f.src) ch.push(chip('src', '출처: ' + (KIND[f.src] || f.src))); if (f.yr) ch.push(chip('yr', f.yr === 'none' ? '연도 없음' : f.yr + '년 출제'));
+  if (s && s.rnd) ch.push(`<button type="button" class="nm-fchip" data-ract="unshuf" title="원래 순서로"><span>순서: 무작위</span><i aria-hidden="true">✕</i></button>`);
+  return `<span><b>${esc(scLab(s))}</b> 회차 · ${ch.length ? `보이는 문제 <b>${vis}</b> / ${st.ids.length}` : `<b>${st.ids.length}</b>문제`} · 평가 <b>${st.n}</b>${st.n ? ` <span class="nm-mkc"><i class="m0">모름 ${st.c[0]}</i> <i class="m1">애매함 ${st.c[1]}</i> <i class="m2">암기 ${st.c[2]}</i></span>` : ''}</span>${ch.join('')}${ch.length > 1 ? '<button type="button" class="nm-clr" data-act="fclr">모두 해제</button>' : ''}<span class="nm-sp"></span><button type="button" class="nm-btn sm" data-ract="end" title="이 회차 정리 — 모름·애매함만 다시 · 새 회차">회차 끝내기</button>`;
+}
+function revFootHTML() { const k = rCounts(), p = k.n ? Math.round(k.c[2] / k.n * 100) : 0; return `암기 완료 <b>${k.c[2]}</b> / ${k.n}${k.n ? ` · ${p}%` : ''}<div class="nm-pg" aria-hidden="true"><i style="width:${p}%"></i></div>애매함 ${k.c[1]} · 모름 ${k.c[0]} · 미복습 ${k.nw}`; }
+function revRender(o) {
+  o = o || {}; const tok = ++S.tok, Rt = S.root; if (!Rt) return; endEdit(true);
+  if (!RV.ses) sesNew({ sc: S.cfg.sc });
+  RV.deck = null; const V = frame(), main = $('.nm-main', V); wApply();
+  if (S.cfg.view === 'card') { main.innerHTML = revBarHTML() + '<div class="nm-cardv" data-cardv="1"></div>'; sideRender(); cardPaint(); S.posOK = false; topBtn(); if (o.y != null) window.scrollTo(0, 0); return; }
+  const L = ordered(), K = lecKeys(), grp = S.cfg.mode === 'grp' && !RV.ses.rnd, chunks = []; let cur = '', curLec = null, n = 0;
+  const fl = () => { if (cur) { chunks.push(cur); cur = ''; } };
+  for (const it of L) { if (!inSes(it)) continue; if (grp) { const lk = K.has(it.lec) ? it.lec : ''; if (lk !== curLec) { curLec = lk; const l = lecOf(lk); cur += `<h2 class="nm-lec" data-lec="${esc(lk)}">${esc(l.t)}<small>${esc([l.prof, l.lab].filter(Boolean).join(' · '))}</small></h2>`; } } cur += revItemHTML(it, 0, !visible(it)); n++; if (n % 30 === 0) fl(); }
+  fl();
+  main.innerHTML = `${revBarHTML()}<div class="nm-doc" data-doc="1">${chunks[0] || ''}${n ? '' : revEmptyHTML()}</div>`;
+  sideRender();
+  const doc = $('[data-doc]', Rt), rest = chunks.slice(1);
+  const done = () => { if (tok !== S.tok) return; applyFilter(); const back = o.pos ? restorePos(o.pos) : false; if (!back && o.y != null) window.scrollTo(0, o.y); if (o.flash) flash(o.flash); S.posOK = true; spy(); topBtn(); };
+  applyFilter(true);
+  if (!rest.length) { done(); return; }
+  let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); if (i < rest.length) setTimeout(step, 0); else done(); };
+  setTimeout(step, 0);
+}
+/* 화면 — 카드 복습 */
+function deckIds() { if (!RV.deck) RV.deck = ordered().filter(visible).map(it => it.id); return RV.deck; }
+function faceHTML(it, f) { const h = f === 'q' ? qDisp(it) : disp(it[f]); return h || `<span class="nm-ph">${FN[f]} 없음 — 수정을 눌러 쓰기</span>`; }
+function cardPaint() {
+  if (S.ed) endEdit(true);
+  const box = S.root && $('[data-cardv]', S.root); if (!box || !RV.ses) return;
+  const D = deckIds(), s = RV.ses;
+  if (RV.sum) { box.innerHTML = sumHTML(false); box.dataset.id = ''; refreshCounts(D.length); sideRender(); return; }
+  if (!D.length) { box.innerHTML = s.ids.length || !S.items.some(it => !it.del) ? `<div class="nm-empty">${S.items.some(it => !it.del) ? '이 조건에 맞는 카드가 없어요 — 위의 조건(✕)을 풀거나 검색어를 바꿔 보세요.' : '아직 이 과목에 넘버링 문제가 없어요.'}</div>` : revEmptyHTML(); box.dataset.id = ''; refreshCounts(0); return; }
+  let i = D.indexOf(s.cur); if (i < 0) i = Math.max(0, Math.min(s.i || 0, D.length - 1)); s.i = i; s.cur = D[i];
+  const it = S.by.get(D[i]), [ff, fb, f3] = DIRS[S.cfg.dir], f = RV.face ? fb : ff, m = s.mk[it.id], pf = profOf(it), l = lecOf(it.lec), dr = (RV.dr && RV.dr.a[it.id]) || '', r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, last = i === D.length - 1;
+  const ctx = RV.face && ff === 'q' ? `<div class="nm-cq" title="앞면(문제)">${esc(plain(qDisp(it)).replace(/\s+/g, ' ').trim().slice(0, 160))}</div>` : '';
+  box.innerHTML = `<div class="nm-cl"><div class="nm-cpos"><b>${i + 1}</b><span>/ ${D.length}</span><span class="lt">${esc(l.k ? l.t : '강의 미분류')}</span>${pf ? `<span class="nm-tag pf">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr">${esc(yrs2(it.yrs))}</span>` : ''}<span class="nm-sp"></span>${pmHTML(prevMark(it.id))}</div>`
+    + `<div class="nm-card${RV.face ? ' back' : ''}${m != null ? ' mk' + m : ''}" data-flip="1" tabindex="0" role="button" aria-label="${RV.face ? '뒷면' : '앞면'} ${FN[f]} — 눌러서 뒤집기(Space)"><div class="nm-cfh"><span class="nm-cft">${RV.face ? '뒷면' : '앞면'} · ${FN[f]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f}" title="${FN[f]} 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div>${ctx}<div class="nm-c nm-cfc" data-f="${f}">${faceHTML(it, f)}</div><div class="nm-cfoot">${RV.face ? '눌러서 앞면으로' : '눌러서 뒤집기'}${innerWidth <= 860 ? ' · 옆으로 밀면 다음·이전' : ' · Space'}</div></div>`
+    + `<div class="nm-cnav"><button type="button" class="nm-btn" data-cnav="-1"${i ? '' : ' disabled'} title="이전 카드 (←)">◀ 이전</button><button type="button" class="nm-btn pri" data-cnav="0" title="뒤집기 (Space)">뒤집기</button><button type="button" class="nm-btn" data-cnav="1" title="${last ? '회차 정리' : '다음 카드'} (→)">${last ? '정리 ▶' : '다음 ▶'}</button></div>`
+    + `<div class="nm-cmk">${mksHTML(it.id, m)}<small>평가하면 다음 카드로${innerWidth <= 860 ? '' : ' · 키 1 · 2 · 3'}</small></div>`
+    + `<button type="button" class="nm-c3b" data-ract="third" aria-expanded="${RV.third}">${RV.third ? '▾' : '▸'} ${FN[f3]} 보기 <kbd>T</kbd></button>${RV.third ? `<div class="nm-c3"><div class="nm-cfh"><span class="nm-cft">${FN[f3]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f3}" title="${FN[f3]} 수정">수정</button></div><div class="nm-c nm-cfc" data-f="${f3}">${faceHTML(it, f3)}</div></div>` : ''}</div>`
+    + `<div class="nm-cr"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로 · ⌘/Ctrl+Enter 뒤집기 · Esc 나가기</small></div><textarea class="nm-wt big" data-w="${esc(it.id)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만) — 뒤집어서 정답과 견줘 보기" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea><div class="nm-crf"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}</div>`;
+  box.dataset.id = it.id; refreshCounts(D.length); sesSave();
+}
+function focusCard() { const c = S.root && $('.nm-card', S.root); if (c) c.focus({ preventScroll: true }); }
+function cnav(d) {
+  const s = RV.ses; if (!s) return; const D = deckIds(); if (!D.length) return; drSave();
+  if (RV.sum) { if (d < 0) { RV.sum = false; s.i = D.length - 1; s.cur = D[s.i]; RV.face = 0; cardPaint(); focusCard(); } return; }
+  if (d === 0) { RV.face = RV.face ? 0 : 1; cardPaint(); focusCard(); return; }
+  let i = D.indexOf(s.cur); if (i < 0) i = s.i || 0; const j = i + d; if (j < 0) return;
+  if (j >= D.length) { RV.sum = true; cardPaint(); const b = S.root && $('.nm-sum [data-ract=retry]:not([disabled]), .nm-sum [data-ract=renew]', S.root); if (b) b.focus({ preventScroll: true }); return; }
+  s.i = j; s.cur = D[j]; RV.face = 0; RV.third = false; cardPaint(); focusCard();
+  const c = S.root && $('.nm-cardv', S.root); if (c && c.getBoundingClientRect().top < stuckBottom() - 4) window.scrollTo(0, Math.max(0, c.getBoundingClientRect().top + scrollY - stuckBottom() - 6));
+}
+function cardKey(e) {   /* 카드 복습 단축키 — Space·Enter 뒤집기 · ←→ 이동 · 1 2 3 평가 · T 남은 하나 보기 · W 내 답안 칸 · (칸 안) Esc 나가기 · ⌘/Ctrl+Enter 뒤집기 */
+  if (e.isComposing || e.altKey) return false; const t = e.target;
+  if (t && t.matches && t.matches('textarea, input, select, [contenteditable=true]')) {
+    if (!t.matches('textarea[data-w]')) return false;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); drSave(); t.blur(); focusCard(); return true; }
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); e.stopPropagation(); cnav(0); return true; }
+    return false;
+  }
+  if (e.metaKey || e.ctrlKey) return false;
+  const k = e.key; if ((k === ' ' || k === 'Enter') && t && t.closest && t.closest('button, a, summary, label')) return false;
+  let h = true;
+  if (k === ' ' || k === 'Enter') cnav(0); else if (k === 'ArrowRight') cnav(1); else if (k === 'ArrowLeft') cnav(-1);
+  else if ((k === '1' || k === '2' || k === '3') && !RV.sum) { const b = S.root && $(`.nm-cmk [data-mk="${+k - 1}"]`, S.root); if (b) b.click(); else h = false; }
+  else if ((k === 't' || k === 'T') && !RV.sum) { RV.third = !RV.third; cardPaint(); focusCard(); }
+  else if ((k === 'w' || k === 'W') && !RV.sum) { const ta = S.root && $('.nm-cr textarea', S.root); if (ta) ta.focus(); else h = false; }
+  else h = false;
+  if (h) { e.preventDefault(); e.stopPropagation(); } return h;
+}
+/* 회차 정리·재복습·새 회차 */
+function sumHTML(inDlg) {
+  const s = RV.ses, k = sesStat(), un = k.ids.length - k.n;
+  return `<div class="nm-sum"><h3>${esc(scLab(s))} 회차 정리</h3><p class="nm-sub">${esc(dtTxt(s.t0))}에 시작 · ${k.ids.length}문제 중 <b>${k.n}</b>문제 평가${un ? ` · 아직 평가 안 한 문제 ${un}` : ''}</p>`
+    + `<div class="nm-sumc"><span class="m0">모름<b>${k.c[0]}</b></span><span class="m1">애매함<b>${k.c[1]}</b></span><span class="m2">암기 완료<b>${k.c[2]}</b></span></div>`
+    + `<div class="row"><button type="button" class="nm-btn pri" data-ract="retry"${k.weak.length ? '' : ' disabled'}>모름·애매함 ${k.weak.length}문제 다시 복습</button><label class="nm-chk"><input type="checkbox" data-rord="1"${S.cfg.rord ? ' checked' : ''}> 기존 순서로 <small>(기본은 무작위)</small></label></div>`
+    + `<div class="row"><button type="button" class="nm-btn" data-ract="renew">같은 범위(${esc(RSC[S.cfg.sc] || '전체')})로 새 회차</button>${inDlg ? '' : `<button type="button" class="nm-btn" data-ract="again">이 회차 처음 카드로</button><button type="button" class="nm-btn" data-cnav="-1">◀ 마지막 카드</button>`}<button type="button" class="nm-btn" data-ract="hdlg">복습 이력</button></div>`
+    + `<p class="nm-sub">새 회차는 내 답안 칸이 빈 채로 시작해요 — 이번에 쓴 답안은 '복습 이력'과 문제마다 '이력'에 남아요. 암기 완료한 문제도 범위 '전체'·'암기 완료'로 언제든 다시 볼 수 있어요.</p></div>`;
+}
+function sesEnd() {
+  drSave();
+  if (S.cfg.view === 'card') { RV.sum = true; cardPaint(); window.scrollTo(0, 0); return; }
+  const ov = dlg('회차 정리', sumHTML(true), '<button type="button" class="nm-btn" data-x="1">닫기</button>'); if (!ov) return;
+  ov.addEventListener('click', e => { const b = e.target.closest('[data-ract]'); if (b) ractDo(b.dataset.ract, b); });
+  ov.addEventListener('change', e => { if (e.target.matches('[data-rord]')) { S.cfg.rord = e.target.checked; cfgSave(); } });
+}
+function retry() {
+  if (!RV.ses) return; const k = sesStat(), ord = !!S.cfg.rord; if (!k.weak.length) return;
+  const keep = ord ? deckOrder(k.weak) : k.weak;
+  sesNew({ sc: 'retry', ids: keep, rand: !ord, retry: true, from: RV.ses.sid }); dlgClose(); revRender({ y: 0 });
+  H.toast(`모름·애매함 ${k.weak.length}문제로 새 회차 — ${ord ? '기존 순서' : '무작위 순서'} · 내 답안 칸은 빈 채로 시작해요`, { id: 'nmretry' });
+}
+function deckOrder(ids) { const set = new Set(ids); return ordered().filter(it => set.has(it.id)).map(it => it.id); }
+function renew() { const sc = S.cfg.sc; sesNew({ sc }); dlgClose(); revRender({ y: 0 }); H.toast(`'${RSC[sc] || '전체'}' 범위로 새 회차 — ${RV.ses.ids.length}문제`, { id: 'nmretry' }); }
+function scopeSet(sc) {
+  if (!RSC[sc]) return;
+  const go = () => { S.cfg.sc = sc; cfgSave(); sesNew({ sc }); S.fp = false; revRender({ y: 0 }); H.toast(`복습 범위 '${RSC[sc]}' — 새 회차 ${RV.ses.ids.length}문제`, { id: 'nmretry' }); };
+  if (sesBusy()) ask('복습 범위를 고르면 그 범위로 새 회차를 시작해요.\n지금 회차의 평가·쓴 답안은 복습 이력에 남아요.', { ok: '새 회차로' }).then(y => { if (y) go(); }); else go();
+}
+function rShuf(on) {
+  const s = RV.ses; if (!s) return;
+  s.rnd = on ? shufIds(ordered().filter(inSes).map(it => it.id)) : null; RV.rndM = null; RV.deck = null; sesSave();
+  if (S.cfg.view === 'card') { s.i = 0; s.cur = null; RV.face = 0; RV.sum = false; }
+  S.vo = false; revRender({ y: 0 }); if (on) H.toast('이 회차 순서를 무작위로 섞었어요 — 화면에서만(저장된 순서는 그대로)', { id: 'nmshuf' });
+}
+function viewSet(v) {
+  v = v === 'card' ? 'card' : 'scroll'; if (v === S.cfg.view || !RV.ses) return;
+  endEdit(true); drSave(); let id = null;
+  if (v === 'card') { posSave(); const p = posNow(); id = p && p.id; if (id) RV.ses.cur = id; RV.face = 0; RV.third = false; RV.sum = false; }
+  else id = RV.ses.cur;
+  S.cfg.view = v; cfgSave(); sesSave(); S.vo = false;
+  revRender(v === 'scroll' && id && S.by.get(id) && visible(S.by.get(id)) ? { flash: id } : { pos: v === 'scroll' ? H.LS.get(posKey(S.sj), null) : null, y: 0 });
+}
+function histDlg() {
+  drSave(); const L = (H.LS.get('num.rl.' + S.sj, []) || []).slice().reverse(), s = RV.ses, st = s && sesStat();
+  const row = (x, cur) => `<details class="nm-hrow" data-sid="${esc(x.sid)}"><summary><b>${esc(dtTxt(x.t0))}</b>${cur ? ' · <b class="nm-now">진행 중</b>' : x.t1 ? ' ~ ' + esc(dtTxt(x.t1)) : ''} · ${esc(x.retry ? '재복습' : RSC[x.sc] || '전체')} ${x.n}문제 · <i class="m0">모름 ${x.c[0]}</i> · <i class="m1">애매함 ${x.c[1]}</i> · <i class="m2">암기 ${x.c[2]}</i>${x.w ? ` · 쓴 답안 ${x.w}` : ''}</summary><div class="nm-hbody" data-hbody="1"></div></details>`;
+  const cw = s && RV.dr ? Object.values(RV.dr.a).filter(x => String(x || '').trim()).length : 0;
+  const body = `<p class="nm-sub">회차마다 평가와 그때 쓴 내 답안 — 펼치면 문제별로 보여요(문제마다 '이력'에서도).</p>${s ? row({ sid: s.sid, t0: s.t0, sc: s.sc, n: st.ids.length, c: st.c, w: cw, retry: s.retry }, true) : ''}${L.map(x => row(x, false)).join('') || (s ? '' : '<p class="nm-sub">아직 기록이 없어요</p>')}`;
+  const ov = dlg('복습 이력 — ' + subjT(S.sj), body, '<button type="button" class="nm-btn" data-x="1">닫기</button>'); if (!ov) return;
+  ov.addEventListener('toggle', e => { const d = e.target; if (!d.matches || !d.matches('details.nm-hrow') || !d.open) return; const b = d.querySelector('[data-hbody]'); if (b.dataset.done) return; b.dataset.done = '1'; b.innerHTML = sesItemsHTML(d.dataset.sid); }, true);
+}
+function sesItemsHTML(sid) {
+  const cur = !!RV.ses && RV.ses.sid === sid, out = [];
+  for (const it of ordered()) {
+    const r = rOf(it.id), h = r && Array.isArray(r.h) ? r.h.find(e => e.s === sid) : null, w = r && Array.isArray(r.w) ? r.w.find(x => x.s === sid) : null, x = cur ? String((RV.dr && RV.dr.a[it.id]) || '') : w ? w.x : '';
+    if (!h && !x.trim()) continue;
+    out.push(`<div class="nm-hit"><div class="q">${esc(plain(qDisp(it)).replace(/\s+/g, ' ').trim().slice(0, 140))}</div>${h ? `<b class="m${h.m}">${MKN[h.m]}</b>` : '<b>평가 안 함</b>'}${x.trim() ? `<div class="nm-pw"><div>${esc(x)}</div></div>` : ''}</div>`);
+  }
+  return out.join('') || '<p class="nm-sub">이 회차에 평가하거나 쓴 문제가 없어요(그 문제를 목록에서 뺐을 수 있어요)</p>';
+}
+function ractDo(k, b) {
+  const host = b.closest('.nm-it') || b.closest('[data-cardv]'), id = host && host.dataset.id, it = id && S.by.get(id);
+  if (k === 'hist') { if (!id) return; if (S.cfg.view === 'card') { if (RV.hist.has(id)) RV.hist.delete(id); else RV.hist.add(id); cardPaint(); return; } const a = artOf(id), p = a && a.querySelector('[data-hist]'); if (p) { p.remove(); b.setAttribute('aria-expanded', 'false'); } else if (a) { a.insertAdjacentHTML('beforeend', histHTML(id)); b.setAttribute('aria-expanded', 'true'); } return; }
+  if (k === 'hint') { if (!id) return; RV.hint.add(id); if (S.cfg.view === 'card') cardPaint(); else { const p = artOf(id) && artOf(id).querySelector('[data-hist]'); if (p) p.outerHTML = histHTML(id); } return; }
+  if (k === 'src') { if (it) appSet('make', { flash: id }); return; }
+  if (k === 'cedit') { const box = b.closest('.nm-card, .nm-c3'), el = box && box.querySelector('.nm-c[data-f]'), it2 = RV.ses && S.by.get(RV.ses.cur); if (el && it2) startEdit(el, it2, el.dataset.f); return; }
+  if (k === 'third') { RV.third = !RV.third; cardPaint(); return; }
+  if (k === 'shuf') { rShuf(true); return; }
+  if (k === 'unshuf') { rShuf(false); return; }
+  if (k === 'end') { if (S.drawer) drawer(false); sesEnd(); return; }
+  if (k === 'hdlg') { if (S.drawer) drawer(false); histDlg(); return; }
+  if (k === 'retry') { retry(); return; }
+  if (k === 'renew') { renew(); return; }
+  if (k === 'again') { RV.sum = false; RV.ses.i = 0; RV.ses.cur = null; RV.face = 0; RV.third = false; cardPaint(); focusCard(); }
+}
+function revClick(e, t) {   /* 넘버링 복습 화면의 누르기 — 처리했으면 true(원본 칸은 읽기 전용: 누르면 가린 칸만 보임 · 고치기는 '수정') */
+  if (S.ed && S.ed.el.contains(t)) return true;
+  const rv = t.closest('[data-rview]'); if (rv) { if (S.drawer) drawer(false); viewSet(rv.dataset.rview); return true; }
+  const rd = t.closest('[data-rdir]'); if (rd) { S.cfg.dir = rd.dataset.rdir; cfgSave(); RV.face = 0; RV.third = false; S.vo = false; revRender(); return true; }
+  const rh = t.closest('[data-rhide]'); if (rh) { hideAll(rh.dataset.rhide === 'a' ? 'a' : 's'); return true; }
+  const rw = t.closest('[data-rwrite]'); if (rw) { const p = posNow(); drSave(); S.cfg.write = !S.cfg.write; cfgSave(); S.vo = false; revRender({ pos: p }); return true; }
+  const sc = t.closest('[data-rsc]'); if (sc) { scopeSet(sc.dataset.rsc); return true; }
+  const mk = t.closest('[data-mk]'); if (mk) {
+    const host = mk.closest('.nm-it') || mk.closest('[data-cardv]'), id = host && host.dataset.id; if (!id || !RV.ses) return true;
+    const m = +mk.dataset.mk; markSet(id, m); const now2 = RV.ses.mk[id];
+    if (S.cfg.view === 'card') { cardPaint(); sideRender(); if (now2 === m) setTimeout(() => { if (RV.ses && RV.ses.cur === id && S.cfg.view === 'card' && !RV.sum && !S.ed) cnav(1); }, 170); }
+    else { const a = artOf(id); if (a) { a.classList.remove('mk0', 'mk1', 'mk2'); if (now2 != null) a.classList.add('mk' + now2); $$('[data-mk]', a).forEach(x => { const on = +x.dataset.mk === now2; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); }); const hp = a.querySelector('[data-hist]'); if (hp) hp.outerHTML = histHTML(id); const hb = a.querySelector('[data-ract=hist]'); if (hb) { const r = rOf(id), n = r && r.h ? r.h.length : 0; hb.textContent = '이력' + (n ? ' ' + n : ''); } } refreshCounts(); sideRender(); }
+    return true;
+  }
+  const ey = t.closest('[data-eye]'); if (ey) { const a = ey.closest('.nm-it'); if (a) { const f = ey.dataset.eye; hidSet(f, a.dataset.id, !a.classList.contains(f === 'a' ? 'hA' : 'hS')); } return true; }
+  const ra = t.closest('[data-ract]'); if (ra) { ractDo(ra.dataset.ract, ra); return true; }
+  const cn = t.closest('[data-cnav]'); if (cn) { cnav(+cn.dataset.cnav); return true; }
+  const cd = t.closest('.nm-card[data-flip]'); if (cd) { if (RV.swiped) { RV.swiped = false; return true; } const sl = getSelection(); if (sl && !sl.isCollapsed && cd.contains(sl.anchorNode)) return true; cnav(0); return true; }
+  const hc = t.closest('.nm-it .nm-a .nm-c, .nm-it .nm-s .nm-c'); if (hc) { const a = hc.closest('.nm-it'), f = hc.closest('.nm-a') ? 'a' : 's'; if (a.classList.contains(f === 'a' ? 'hA' : 'hS')) hidSet(f, a.dataset.id, false); return true; }
+  if (t.closest('.nm-it .nm-q .nm-c')) return true;
+  return false;
+}
+function appSwHTML() {
+  const r = S.app === 'rev';
+  return `<div class="nm-app" role="tablist" aria-label="넘버링"><button type="button" role="tab" data-app="make" aria-selected="${!r}" class="${r ? '' : 'on'}" title="내 넘버링 — 문제·정답·스토리 만들고 고치기">내 넘버링</button><button type="button" role="tab" data-app="rev" aria-selected="${r}" class="${r ? 'on' : ''}" title="넘버링 복습 — 스크롤·카드로 떠올리고 평가">넘버링 복습</button></div>`
+    + `<button type="button" class="nm-si nm-rail${r ? '' : ' on'}" data-app="make" title="내 넘버링" aria-label="내 넘버링">${ICO.pen}</button><button type="button" class="nm-si nm-rail${r ? ' on' : ''}" data-app="rev" title="넘버링 복습" aria-label="넘버링 복습">${ICO.cards}</button>`;
+}
+function revSideHTML() {
+  const subs = subjects(), cur = subs.find(s => s.id === S.sj) || { id: S.sj, t: S.sj }, C = S.sjc || {}, k = counts(), ln = lecCounts(), card = S.cfg.view === 'card', s = RV.ses, st = s ? sesStat() : null;
+  const dot = id => `<i class="d" style="background:${esc(H.sjColor ? H.sjColor(id) : '#9A9288')}"></i>`;
+  const sjl = subs.map(x => { const n = x.id === S.sj ? k.n : (C[x.id] || 0); return `<button type="button" class="nm-si${x.id === S.sj ? ' on' : ''}" data-sj="${esc(x.id)}"${x.id === S.sj ? ' aria-current="true"' : ''}>${dot(x.id)}<span class="l">${esc(x.t)}</span>${n ? `<small>${n}</small>` : ''}</button>`; }).join('');
+  const L = S.lecs.filter(l => ln[l.k]), lc = !!S.cfg.ljc, sh = cur.sh || cur.t;
+  const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.t + (l.prof ? ' · ' + l.prof : ''))} — 누르면 그 위치로"><span class="l">${esc(l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
+  return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">넘버링 복습</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>` + appSwHTML()
+    + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
+    + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>`
+    + `<div class="nm-ssec">복습</div><button type="button" class="nm-si${card ? '' : ' on'}" data-rview="scroll" title="스크롤 복습 — Word처럼 이어서 · 정답|스토리(|내 답안)">${ICO.list}<span class="l">스크롤 복습</span></button><button type="button" class="nm-si${card ? ' on' : ''}" data-rview="card" title="카드 복습 — 한 장씩 뒤집고 평가">${ICO.cards}<span class="l">카드 복습</span></button>`
+    + `<div class="nm-ssec">이번 회차</div><div class="nm-rses">${s ? `<b>${esc(scLab(s))}</b> · ${st.ids.length}문제 · 평가 ${st.n}<br><i class="m0">모름 ${st.c[0]}</i> · <i class="m1">애매함 ${st.c[1]}</i> · <i class="m2">암기 ${st.c[2]}</i><br><small>${esc(dtTxt(s.t0))} 시작</small>` : ''}</div>`
+    + `<button type="button" class="nm-si" data-ract="end" title="회차 정리 — 모름·애매함만 다시 · 새 회차">${ICO.check}<span class="l">회차 끝내기 · 정리</span></button><button type="button" class="nm-si" data-act="flt" title="복습 범위 — 전체·미복습·취약…(고르면 새 회차)">${ICO.filter}<span class="l">복습 범위 바꾸기</span></button><button type="button" class="nm-si" data-ract="hdlg" title="회차마다 평가·쓴 답안">${ICO.hist}<span class="l">복습 이력</span></button>`
+    + (card ? '' : `<button type="button" class="nm-ssec nm-ljh" data-act="ljt" aria-expanded="${!lc}" title="강의 목록 접기·펼치기">강의 바로 가기<small>누르면 그 위치로</small><span class="cv" aria-hidden="true">▾</span></button><div class="nm-ljl"${lc ? ' hidden' : ''}>${ljl}</div><button type="button" class="nm-si nm-rail" data-act="ctx" title="강의 바로 가기" aria-label="강의 바로 가기">${ICO.list}</button>`)
+    + `<div class="nm-sfoot"><div data-sfoot="1">${revFootHTML()}</div><div class="nm-sf2"><span>복습 기록은 원본과 따로 저장</span><button type="button" class="nm-bk" data-bkpop="1" title="백업 · 기기 옮기기 — 복습 기록도 백업 파일에 함께 들어가요">백업</button></div></div>`;
+}
+
 /* ---------- 열기·과목 바꾸기 ---------- */
 async function switchSubject(sj, o) {
   o = o || {};
   if (!S.root || !document.getElementById('numv')) { location.hash = '#/_num/' + sj; return; }   /* 넘버링 화면을 떠난 뒤(알림의 '보기') = 그 과목으로 다시 열기 */
-  endEdit(true); const tok = S.swTok = (S.swTok || 0) + 1, R0 = S.root;
-  if (S.sj && S.sj !== sj && S.posOK) H.LS.set('num.pos.' + S.sj, posNow());
+  endEdit(true); if (S.app === 'rev') { drSave(); sesSave(); } const tok = S.swTok = (S.swTok || 0) + 1, R0 = S.root;
+  if (S.sj && S.sj !== sj && S.posOK && !(S.app === 'rev' && S.cfg.view === 'card')) H.LS.set(posKey(S.sj), posNow());
   S.sj = sj; S.cfg.sj = sj; if (!o.keepF && !o.force) S.cfg.f.lec = ''; cfgSave(); S.sel.clear(); S.curLec = null; S.fp = false; S.vo = false; S.shuf = null; S.posOK = false; if (S.drawer) drawer(false);
   const V = frame(); $('.nm-main', V).innerHTML = '<div class="nm-prog">넘버링 불러오는 중…</div>';
   await loadSubject(sj);
   if (tok !== S.swTok || S.root !== R0 || !S.root) return;   /* 기다리는 사이 다른 과목·화면으로 옮겼으면 그만 */
   if (S.cfg.f.lec && !S.lecs.some(l => l.k === S.cfg.f.lec) && S.cfg.f.lec !== '__none') S.cfg.f.lec = '';
-  S.sjc = sjCounts();
-  H.histSet({ num: 1, sj }, '#/_num/' + sj, false);
-  render({ pos: o.flash ? null : (o.pos || H.LS.get('num.pos.' + sj, null)), flash: o.flash, resume: !o.flash && !o.pos });
+  S.sjc = sjCounts(); if (S.app === 'rev') { rLoad(sj); sesLoad(); if (!RV.ses) sesNew({ sc: S.cfg.sc }); }
+  H.histSet(hst(), hpath(sj), false);
+  render({ pos: o.flash ? null : (o.pos || H.LS.get(posKey(sj), null)), flash: o.flash, resume: !o.flash && !o.pos });
 }
 function newSubject() { ask('새 과목 이름', { input: '', ph: '예: 교정학 2', ok: '만들기' }).then(t => { if (!t || !t.trim()) return; const L = H.LS.get('num.subj', []) || []; const id = 'U' + now().toString(36).toUpperCase(); L.push({ id, t: t.trim() }); H.LS.set('num.subj', L); switchSubject(id); }); }
 function lecMenu(btn) {   /* 사이드바를 접었을 때 위 막대의 '과목 › 강의'를 누르면 — 강의 바로 가기 */
@@ -1604,6 +2060,8 @@ function bind() {
     if (S.vo && !t.closest('.nm-vopt') && !t.closest('[data-act=vopt]')) voOpen(false);
     if (!S.root.contains(t)) return;
     if (t.closest('.nm-ov') || t.closest('.nm-tb') || t.closest('.nm-pal')) return;   /* 대화창·도구 막대는 따로 */
+    { const ap = t.closest('[data-app]'); if (ap) { if (S.drawer) drawer(false); appSet(ap.dataset.app); return; } }   /* 내 넘버링 ⇄ 넘버링 복습 */
+    if (S.app === 'rev') { if (t.closest('.nm-side [data-act=flt]')) { if (S.drawer) drawer(false); fpOpen(true); window.scrollTo(0, Math.min(scrollY, 0)); return; } if (revClick(e, t)) return; }
     const sa = t.closest('[data-sact]'); if (sa) { const k = sa.dataset.sact; if (k === 'home') { const g = document.getElementById('gohome'); if (g) g.click(); else location.hash = '#/'; } else if (k === 'fold') side(); else if (k === 'close') drawer(false); return; }
     const sj = t.closest('[data-sj]'); if (sj) { const id = sj.dataset.sj; S.sjOpen = false; if (id === '__new') newSubject(); else if (id !== S.sj) switchSubject(id); else { const d = t.closest('details'); if (d) d.open = false; if (S.drawer) drawer(false); } return; }
     if (t.closest('.nm-sjd > summary')) { setTimeout(() => { const d = $('.nm-sjd', S.root); S.sjOpen = !!(d && d.open); }, 0); return; }
@@ -1641,7 +2099,7 @@ function bind() {
       if (k === 'undel') { const id = a.closest('[data-id]').dataset.id, x = S.by.get(id); if (x) { x.del = false; touch(x); put(x); render({ flash: x.id }); } return; }
     }
     const st = t.closest('.nm-s .nm-c[data-f=st]');
-    if (st && !(S.ed && S.ed.el === st) && !t.closest('a')) { const art = st.closest('.nm-it'), it = S.by.get(art.dataset.id); if (it) startEdit(st, it, 'st', e); return; }
+    if (st && S.app !== 'rev' && !(S.ed && S.ed.el === st) && !t.closest('a')) { const art = st.closest('.nm-it'), it = S.by.get(art.dataset.id); if (it) startEdit(st, it, 'st', e); return; }
   });
   document.addEventListener('mousedown', e => { if (S.ed && e.target.closest && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal'))) e.preventDefault(); }, true);
   document.addEventListener('change', e => {
@@ -1656,15 +2114,22 @@ function bind() {
   let qt = 0;
   document.addEventListener('input', e => {
     if (!S.root || !S.root.contains(e.target)) return;
+    if (e.target.matches && e.target.matches('textarea[data-w]')) { drInput(e.target); return; }   /* 복습 내 답안(맨글 · 원본과 따로) */
     if (S.ed && S.ed.el.contains(e.target)) { edInput(); return; }
     if (e.target.dataset && e.target.dataset.cf === 'q') { clearTimeout(qt); qt = setTimeout(() => { S.q = e.target.value.trim(); applyFilter(); const d = $('[data-doc]', S.root); if (d && d.getBoundingClientRect().top < stuckBottom()) window.scrollTo(0, Math.max(0, d.getBoundingClientRect().top + scrollY - stuckBottom() - 8)); }, 200); }   /* 검색 = 결과 맨 위부터 */
   });
   document.addEventListener('paste', e => { if (S.ed && S.ed.el.contains(e.target)) onPaste(e); });
   document.addEventListener('pointerdown', e => { if (S.ed && e.target.closest && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal'))) S.tbAt = now(); }, true);
+  document.addEventListener('focusout', e => { if (e.target && e.target.matches && e.target.matches('textarea[data-w]')) drSave(); }, true);
+  document.addEventListener('pointerdown', e => { const h = e.target.closest && e.target.closest('#numv [data-rz]'); if (h && S.app === 'rev' && e.button === 0) rzStart(e, h); });
+  document.addEventListener('dblclick', e => { if (S.app === 'rev' && e.target.closest && e.target.closest('#numv [data-rz]')) rzReset(); });
+  document.addEventListener('touchstart', e => { const c = S.app === 'rev' && e.target.closest && e.target.closest('#numv .nm-card[data-flip]'); if (!c || e.touches.length !== 1) { RV.tx = null; return; } const p = e.touches[0]; RV.tx = { x: p.clientX, y: p.clientY, t: now() }; }, { passive: true });
+  document.addEventListener('touchend', e => { const s0 = RV.tx; RV.tx = null; if (!s0 || S.app !== 'rev' || S.ed) return; const p = e.changedTouches[0], dx = p.clientX - s0.x, dy = p.clientY - s0.y; if (Math.abs(dx) > 60 && Math.abs(dy) < 50 && now() - s0.t < 800) { RV.swiped = true; setTimeout(() => { RV.swiped = false; }, 450); cnav(dx < 0 ? 1 : -1); } }, { passive: true });   /* 카드 옆으로 밀기 = 다음·이전 */
   document.addEventListener('focusout', e => { const E = S.ed; if (!E || e.target !== E.el) return; setTimeout(() => { if (S.ed !== E || E.busy || now() - (S.tbAt || 0) < 600) return; const ae = document.activeElement; if (ae && (E.el.contains(ae) || (E.tb && E.tb.contains(ae)) || ae.closest && ae.closest('.nm-pal'))) return; if (document.hidden) { edSave(); return; } endEdit(); }, 150); });
   document.addEventListener('keydown', e => {
     if (!S.root || !document.getElementById('numv')) return;
     if ((e.metaKey || e.ctrlKey) && !e.altKey && (e.key === 'p' || e.key === 'P' || e.code === 'KeyP') && !$('.nm-ov')) { e.preventDefault(); e.stopPropagation(); printDlg(); return; }   /* 내 넘버링에서 ⌘/Ctrl P = 인쇄 범위·내용 고르기 */
+    if (S.app === 'rev' && S.cfg.view === 'card' && !S.ed && !$('.nm-ov') && !$('.nm-menu') && !S.fp && cardKey(e)) return;
     if (!S.ed) { if (e.key === 'Escape' && !$('.nm-ov') && (S.fp || S.vo || S.drawer || $('.nm-menu'))) { e.preventDefault(); e.stopPropagation(); menuClose(); if (S.fp) fpOpen(false); if (S.vo) voOpen(false); if (S.drawer) drawer(false); } return; }
     if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); endEdit(); return; } const mod = e.metaKey || e.ctrlKey; if (mod && e.shiftKey && (e.key === 'x' || e.key === 'X' || e.key === '5')) { e.preventDefault(); }
   }, true);
@@ -1691,23 +2156,25 @@ function syncOther() {
   if (added || re.length > 20) { if (!S.ed) render({ pos: topItem() }); return; }
   re.forEach(rerenderItem); applyFilter();
 }
-function flush() { if (S.ed) edSave(); try { posSave(); } catch (e) {} }
-function leave() { if (!S.root) return; try { endEdit(true); formEnd(); posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
+function flush() { if (S.ed) edSave(); try { if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} }
+function leave() { if (!S.root) return; try { endEdit(true); formEnd(); if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
 async function open(root, o, host) {
-  H = host; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
+  H = host; S.app = o.rev ? 'rev' : 'make'; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
+  if (S.app === 'rev' && o.fresh && S.cfg.view !== 'scroll') { S.cfg.view = 'scroll'; cfgSave(); RV.face = 0; RV.sum = false; }   /* 허브 홈·메뉴에서 들어오면 늘 스크롤 복습부터(새로고침·뒤로·화면 안 바꾸기는 마지막 방식 그대로) */
   S.drawer = false; S.fp = false; S.vo = false; S.curLec = null; S.shuf = null; S.posOK = false;
   root.innerHTML = ''; frame(); $('.nm-main', root).innerHTML = '<div class="nm-prog">넘버링 불러오는 중…</div>';
   await index();
   const subs = subjects(), has = new Set(); for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), m = k && /^jblhub\.v1\.num\.i\.([^.]+)\./.exec(k); if (m) has.add(m[1]); }
-  let sj = o.sj && subs.some(s => s.id === o.sj) ? o.sj : (S.cfg.sj && subs.some(s => s.id === S.cfg.sj) ? S.cfg.sj : (subs.find(s => has.has(s.id)) || subs.find(s => s.seed) || subs[0]).id);   /* 주소 → 마지막 과목 → 문제가 있는 과목 → 첫 과목 */
+  const lsj = S.cfg.sj || (S.app === 'rev' ? S.mkc.sj : S.rvc.sj);
+  let sj = o.sj && subs.some(s => s.id === o.sj) ? o.sj : (lsj && subs.some(s => s.id === lsj) ? lsj : (subs.find(s => has.has(s.id)) || subs.find(s => s.seed) || subs[0]).id);   /* 주소 → 마지막 과목 → 문제가 있는 과목 → 첫 과목 */
   if (S.root !== root) return;
   S.sj = sj; S.cfg.sj = sj; cfgSave();
   await loadSubject(sj);
   if (S.root !== root) return;
   if (S.cfg.f.lec && !S.lecs.some(l => l.k === S.cfg.f.lec) && S.cfg.f.lec !== '__none') S.cfg.f.lec = '';
-  S.sjc = sjCounts();
-  H.histSet({ num: 1, sj }, '#/_num/' + sj, !!o.push);
-  render({ pos: o.y != null ? null : H.LS.get('num.pos.' + sj, null), y: o.y, resume: o.y == null });
+  S.sjc = sjCounts(); if (S.app === 'rev') { RV.sj = ''; revEnter(); }
+  H.histSet(hst(), hpath(sj), !!o.push); appTitle();
+  render({ pos: o.y != null ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null });
 }
-window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => ({ num: 1, sj: S.sj }), _S: S, _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
+window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => (S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }), _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
 })();

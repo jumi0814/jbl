@@ -1,6 +1,6 @@
 """UX8 내 넘버링(10-10 · 처음 이름 넘버링 따기) — 홈 탭·전용 사이드바·한 줄 머리·작은 편집 도구·Word형 연속 화면·편집/자동 저장·불러오기·새 문제·파일 가져오기·검색/정렬/상태·가리기·성능(300문제+).
 기본 자료(Word)는 없음(10-10 사용자: 첨부 Word는 참고용 예시 — 사이트에서 뺌) → 시험은 JB 기출·예상문제 불러오기와, 이 시험이 직접 만드는 작은 Word(.docx)로.
-- 홈: '넘버링' 칸(과목 표 위) · ① 넘버링 따기 → #/_num · ② 넘버링 복습 = 비활성(추후 업데이트 예정) · 홈에서는 넘버링 파일을 받지 않음 · 예시 Word 과목·그림 없음
+- 홈: '넘버링' 칸(과목 표 위) · ① 넘버링 따기 → #/_num · ② 넘버링 복습 = 열림(10-11) · 홈에서는 넘버링 파일을 받지 않음 · 예시 Word 과목·그림 없음
 - 기존 문제 불러오기(CONS): 서술형·넘버링형만/전체 · 고른 것·이 강의 전체·과목 전체 · 중복 다시 안 만듦 · 새로고침 뒤 그대로 · 예상문제 문제 글
 - 연속 문서: 모두 펼침(문제 + 왼쪽 답안 | 오른쪽 스토리) · 강의별/전체 목록 · 새로고침 뒤 기억
 - 스토리 누르면 그 자리 편집(도구 막대는 편집 중에만 · 취소선 없음) → 0.7초 뒤 그 문제 키 하나만 저장 → 새로고침 뒤 그대로 · 서식(굵게·밑줄·글자색·형광펜·표·그림) · Word 붙여넣기
@@ -44,9 +44,9 @@ async def main():
         reqs = []; pg.on('request', lambda r: reqs.append(r.url))
         # ---- 홈 ----
         await goto(pg, '#/', 2500)
-        h = await pg.evaluate("""(()=>{const s=document.querySelector('.hnums'),t=document.querySelector('.hsj'),b2=document.querySelector('.hnumb.off');return {s:!!s,above:!!(s&&t&&s.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING),dis:!!(b2&&b2.disabled),txt:b2?b2.textContent:''}})()""")
+        h = await pg.evaluate("""(()=>{const s=document.querySelector('.hnums'),t=document.querySelector('.hsj'),b2=document.querySelector('.hnumb[data-hnum=rev]');return {s:!!s,above:!!(s&&t&&s.compareDocumentPosition(t)&Node.DOCUMENT_POSITION_FOLLOWING),dis:!b2||b2.disabled,txt:b2?b2.textContent:''}})()""")
         ok(h['s'] and h['above'], f"홈 '넘버링' 칸이 과목 표 위 {h}")
-        ok(h['dis'] and '추후 업데이트 예정' in h['txt'], "② 넘버링 복습 = 비활성·'추후 업데이트 예정'")
+        ok(not h['dis'] and '넘버링 복습' in h['txt'], "② 넘버링 복습 = 열림(10-11 — 회귀 ux12_numrev)")
         ok(not any('/num/' in r for r in reqs), f"홈에서는 넘버링 파일을 받지 않음 {[r for r in reqs if '/num/' in r][:2]}")
         await pg.click('[data-hnum=take]'); await pg.wait_for_timeout(2500)
         ok((await pg.evaluate('location.hash')).startswith('#/_num'), f"① 내 넘버링 → {await pg.evaluate('location.hash')}")

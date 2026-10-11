@@ -1,0 +1,183 @@
+"""UX12 넘버링 복습(10-11) — 내 넘버링과 같은 원본 · 복습 기록은 따로.
+- 허브 홈 ② 넘버링 복습 → #/_numr/<과목> · 기본 = 스크롤 복습 · 사이드바 '내 넘버링 ⇄ 넘버링 복습' · 메뉴 표시
+- 스크롤: 정답 | 스토리 2칸 → 내 답안 쓰기 = 3칸(맨글 textarea) · 칸 경계 끌기(기억) · 전체 가리기 + 문제마다 따로(새로고침 뒤에도) · 원본은 읽기 전용 → '수정' = 같은 편집기 · 고친 글이 내 넘버링에도
+- 내 답안: 자동 저장(새로고침 뒤 그대로) · 원본(num.i)과 따로(num.rd) · 스크롤·카드가 같은 글
+- 평가: 모름·애매함·암기 완료 → num.r.<과목>.<id> (최근 평가·이력·날짜) · 카드: 평가 → 다음 카드 · 이전 카드 평가 고치기(이력 칸을 바꿈)
+- 카드: 방향 3가지 · Space 뒤집기 · ←→ · 1 2 3 · T 남은 하나 · 회차 정리 → 모름·애매함 재복습(무작위 · 빈 칸 · 지난 답안 가림) · 회차 기록
+- 범위: 미복습 → 새 회차 · 섞기/원래대로 · 복습 이력 창 · 휴대폰(390) 카드 화면 가로 넘침 없음 · pageerror 0"""
+import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
+import asyncio, json
+from playwright.async_api import async_playwright
+U = J.HUB_URL; fails = []
+def ok(c, m):
+    print(('  OK   ' if c else '  FAIL ') + m)
+    if not c: fails.append(m)
+LSG = "(k=>{const v=localStorage.getItem('jblhub.v1.'+k);return v?JSON.parse(v):null})"
+async def main():
+    async with async_playwright() as p:
+        b = await p.chromium.launch(); ctx = await b.new_context(viewport={'width': 1366, 'height': 900}); pg = await ctx.new_page(); errs = []
+        pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
+        await pg.goto(U + '#/'); await pg.wait_for_timeout(2500)
+        await pg.evaluate("(()=>{for(const k of Object.keys(localStorage))if(k.indexOf('jblhub.v1.num.')===0)localStorage.removeItem(k);})()")
+        # 문제 넣기(내 넘버링) + 스토리 두 개
+        await pg.evaluate("location.hash='#/_num/CONS'"); await pg.wait_for_timeout(3500)
+        await pg.click('.nm-side [data-act=imp]'); await pg.wait_for_timeout(700); await pg.click('[data-ib=flt]'); await pg.wait_for_timeout(400); await pg.click('[data-cf2=ok]'); await pg.wait_for_timeout(1200); await pg.click('.nm-ov [data-x]'); await pg.wait_for_timeout(500)
+        ids = await pg.evaluate("[...document.querySelectorAll('.nm-it')].slice(0,4).map(a=>a.dataset.id)")
+        for i in (0, 1):
+            await pg.evaluate(f"document.querySelectorAll('.nm-it')[{i}].querySelector('.nm-s .nm-c').scrollIntoView({{block:'center'}})")
+            await pg.locator('.nm-it').nth(i).locator('.nm-s .nm-c').click(); await pg.wait_for_timeout(200); await pg.keyboard.type(f'스토리{i}'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(900)
+        side = await pg.evaluate("!!document.querySelector('.nm-side .nm-app [data-app=rev]') && !document.querySelector('.nm-sf2 [aria-disabled]')")
+        ok(side, "내 넘버링 사이드바에 '내 넘버링 ⇄ 넘버링 복습' 바꾸기 · '추후' 글 없음")
+        # 허브 홈 ② → 복습
+        await pg.evaluate("location.hash='#/'"); await pg.wait_for_timeout(1200)
+        h2 = await pg.evaluate("(()=>{const b=document.querySelector('[data-hnum=rev]');return b?{dis:b.disabled,t:b.textContent}:null})()")
+        ok(h2 and not h2['dis'], f"허브 홈 ② 넘버링 복습 열림 {h2}")
+        await pg.click('[data-hnum=rev]'); await pg.wait_for_timeout(3000)
+        st = await pg.evaluate("({h:location.hash,rv:document.getElementById('numv').classList.contains('rv'),card:!!document.querySelector('.nm-card'),tt:document.title,nav:(document.querySelector('[data-nv=numr]')||{}).getAttribute&&document.querySelector('[data-nv=numr]').getAttribute('aria-current'),on:(document.querySelector('.nm-app .on')||{}).dataset?.app,cols:getComputedStyle(document.querySelector('.nm-it .nm-body')).gridTemplateColumns.split(' ').length,ta:document.querySelectorAll('textarea[data-w]').length})")
+        ok(st['h'].startswith('#/_numr/CONS') and st['rv'] and not st['card'] and st['tt'].startswith('넘버링 복습') and st['on'] == 'rev' and st['cols'] == 2 and st['ta'] == 0, f"기본 = 스크롤 복습 · 정답|스토리 2칸 · 제목·주소·탭 {st}")
+        ok(st['nav'] in ('page', 'true'), f"허브 메뉴 '넘버링 복습' 표시 ({st['nav']})")
+        # 읽기 전용: 스토리 눌러도 편집 안 됨
+        await pg.locator('.nm-it').nth(0).locator('.nm-s .nm-c').click(); await pg.wait_for_timeout(200)
+        ro = await pg.evaluate("!document.querySelector('#numv [contenteditable=true]')")
+        ok(ro, "원본은 읽기 전용 — 스토리를 눌러도 편집기가 열리지 않음")
+        # 수정 → 같은 편집기 → 내 넘버링에도
+        await pg.evaluate("document.querySelectorAll('.nm-it')[0].querySelector('[data-act=edit][data-f=st]').click()"); await pg.wait_for_timeout(250)
+        ed = await pg.evaluate("({ce:!!document.querySelector('.nm-it .nm-s .nm-c[contenteditable=true]'),tb:[...document.querySelectorAll('.nm-tb button')].map(b=>b.dataset.cmd||b.dataset.pal)})")
+        ok(ed['ce'] and ed['tb'][:4] == ['bold', 'underline', 'fc', 'more'], f"'수정' = 내 넘버링과 같은 편집기·도구 막대 {ed}")
+        await pg.keyboard.press('End'); await pg.keyboard.type('수정함'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(900)
+        rec = await pg.evaluate(f"{LSG}('num.i.CONS.{ids[0]}')")
+        ok(rec and '수정함' in (rec.get('st') or ''), "복습에서 고친 스토리 = 원본(num.i) 저장")
+        await pg.click('.nm-side [data-app=make]'); await pg.wait_for_timeout(1500)
+        mk = await pg.evaluate(f"(document.querySelector('.nm-it[data-id=\"{ids[0]}\"] .nm-s .nm-c')||{{}}).textContent||''")
+        ok('수정함' in mk and (await pg.evaluate("location.hash")).startswith('#/_num/CONS'), f"내 넘버링에도 바로 반영 ({mk[:30]!r})")
+        await pg.click('.nm-side [data-app=rev]'); await pg.wait_for_timeout(1500)
+        # 내 답안 쓰기 = 3칸
+        await pg.click('[data-rwrite]'); await pg.wait_for_timeout(1200)
+        c3 = await pg.evaluate("({cols:getComputedStyle(document.querySelector('.nm-it .nm-body')).gridTemplateColumns.split(' ').length,ta:document.querySelectorAll('textarea[data-w]').length,tb:document.querySelectorAll('.nm-w .nm-tb,.nm-w [contenteditable]').length})")
+        ok(c3['cols'] == 3 and c3['ta'] > 3 and c3['tb'] == 0, f"내 답안 쓰기 = 정답|스토리|내 답안 3칸 · 맨글 칸(도구 막대 없음) {c3}")
+        await pg.locator('textarea[data-w]').nth(0).click(); await pg.keyboard.type('내가 쓴 답 1\n둘째 줄'); await pg.wait_for_timeout(900)
+        dr = await pg.evaluate(f"{LSG}('num.rd.CONS')"); r0 = await pg.evaluate(f"{LSG}('num.i.CONS.{ids[0]}')")
+        ok(dr and dr['a'].get(ids[0]) == '내가 쓴 답 1\n둘째 줄' and '내가 쓴' not in json.dumps(r0, ensure_ascii=False), "내 답안 자동 저장(num.rd) · 원본(num.i)에는 안 들어감")
+        # 칸 너비 끌기
+        w0 = await pg.evaluate("JBLNUM._S.cfg.w3.slice()")
+        hb = await pg.evaluate("(()=>{const h=document.querySelectorAll('.nm-it')[0].querySelector('[data-rz=\"1\"]').getBoundingClientRect();return {x:h.x+h.width/2,y:h.y+h.height/2}})()")
+        await pg.mouse.move(hb['x'], hb['y']); await pg.mouse.down(); await pg.mouse.move(hb['x'] + 90, hb['y'], steps=6); await pg.mouse.up(); await pg.wait_for_timeout(300)
+        w1 = await pg.evaluate(f"{LSG}('num.rcfg').w3")
+        ok(w1 and w1[0] > w0[0] + 5 and abs((w1[0] + w1[1]) - (w0[0] + w0[1])) < 0.6, f"칸 경계 끌기 → 너비 바뀜·기억(num.rcfg) {w0} → {w1}")
+        # 가리기: 전체 + 문제마다
+        await pg.click('[data-rhide=a]'); await pg.wait_for_timeout(200)
+        await pg.evaluate("document.querySelectorAll('.nm-it')[1].querySelector('.nm-a .nm-c').click()"); await pg.wait_for_timeout(200)
+        await pg.evaluate("document.querySelectorAll('.nm-it')[2].querySelector('[data-eye=s]').click()"); await pg.wait_for_timeout(200)
+        await pg.reload(); await pg.wait_for_timeout(3500)
+        hd = await pg.evaluate("[...document.querySelectorAll('.nm-it')].slice(0,4).map(a=>(a.classList.contains('hA')?'A':'-')+(a.classList.contains('hS')?'S':'-'))")
+        ta0 = await pg.evaluate("(document.querySelector('textarea[data-w]')||{}).value")
+        ok(hd[0] == 'A-' and hd[1] == '--' and hd[2] == 'AS' and hd[3] == 'A-', f"정답 모두 가리기 + 문제마다 보기·가리기 — 새로고침 뒤에도 그대로 {hd}")
+        ok(ta0 == '내가 쓴 답 1\n둘째 줄', "새로고침 뒤에도 쓰던 내 답안 그대로")
+        await pg.click('[data-rhide=a]'); await pg.wait_for_timeout(200)
+        hd2 = await pg.evaluate("[...document.querySelectorAll('.nm-it')].slice(0,4).map(a=>a.classList.contains('hA'))")
+        ok(not any(hd2), f"정답 모두 보기 = 문제마다 가린 것도 다시 보임 {hd2}")
+        # 평가(스크롤)
+        for i, m in ((0, 0), (1, 1), (2, 2)):
+            await pg.evaluate(f"document.querySelectorAll('.nm-it')[{i}].querySelector('[data-mk=\"{m}\"]').click()"); await pg.wait_for_timeout(120)
+        rr = await pg.evaluate(f"[{','.join(repr(x) for x in ids[:3])}].map(id=>{LSG}('num.r.CONS.'+id))")
+        ok([r and r['m'] for r in rr] == [0, 1, 2] and all(r and r['d'] and len(r['h']) == 1 for r in rr), f"평가 → 문제마다 최근 상태·이력·날짜(num.r) {[r and r.get('m') for r in rr]}")
+        inf = await pg.evaluate("document.querySelector('[data-cnt]').textContent")
+        ok('평가 3' in inf.replace('\xa0', ' '), f"회차 줄 = 평가 3 ({inf[:60]!r})")
+        # 카드 복습
+        await pg.click('.nm-rvw [data-rview=card]'); await pg.wait_for_timeout(800)
+        cd = await pg.evaluate("({c:!!document.querySelector('.nm-card'),f:document.querySelector('.nm-cft').textContent,ta:(document.querySelector('.nm-cr textarea')||{}).value,id:document.querySelector('[data-cardv]').dataset.id})")
+        ok(cd['c'] and '앞면 · 문제' in cd['f'], f"카드 복습 — 왼쪽 카드(앞면 문제) · 오른쪽 내 답안 {cd['f']!r}")
+        await pg.evaluate(f"JBLNUM._RV.ses.cur={json.dumps(ids[0])};"); await pg.click('[data-cnav=\"0\"]'); await pg.click('[data-cnav=\"0\"]'); await pg.wait_for_timeout(200)
+        await pg.focus('.nm-card'); await pg.keyboard.press('Space'); await pg.wait_for_timeout(200)
+        bk = await pg.evaluate("({f:document.querySelector('.nm-cft').textContent,t:document.querySelector('.nm-cfc').textContent,ta:document.querySelector('.nm-cr textarea').value})")
+        ok('뒷면 · 넘버링 스토리' in bk['f'] and '스토리0' in bk['t'] and bk['ta'] == '내가 쓴 답 1\n둘째 줄', f"Space = 뒤집기(문제 → 스토리) · 같은 내 답안 {bk['f']!r}")
+        await pg.keyboard.press('t'); await pg.wait_for_timeout(150)
+        ok(await pg.evaluate("(document.querySelector('.nm-c3 .nm-cft')||{}).textContent==='정답'"), "T = 남은 하나(정답) 따로 보기")
+        await pg.keyboard.press('2'); await pg.wait_for_timeout(500)
+        nx = await pg.evaluate("({id:document.querySelector('[data-cardv]').dataset.id,face:document.querySelector('.nm-cft').textContent})")
+        r0 = await pg.evaluate(f"{LSG}('num.r.CONS.{ids[0]}')")
+        ok(nx['id'] != ids[0] and '앞면' in nx['face'] and r0['m'] == 1 and len(r0['h']) == 1, f"2 = 애매함 → 다음 카드(앞면) · 같은 회차 평가는 고침(이력 1칸) m={r0['m']} h={len(r0['h'])}")
+        await pg.keyboard.press('ArrowLeft'); await pg.wait_for_timeout(200)
+        pv = await pg.evaluate("({id:document.querySelector('[data-cardv]').dataset.id,on:(document.querySelector('.nm-cmk .on')||{}).dataset?.mk})")
+        ok(pv['id'] == ids[0] and pv['on'] == '1', f"← 이전 카드 = 앞의 평가가 보임 {pv}")
+        await pg.keyboard.press('1'); await pg.wait_for_timeout(450)
+        r0 = await pg.evaluate(f"{LSG}('num.r.CONS.{ids[0]}')")
+        ok(r0['m'] == 0 and len(r0['h']) == 1, f"이전 평가 고치기(애매함 → 모름) m={r0['m']} h={len(r0['h'])}")
+        # 카드에서 원본 고치기(같은 편집기) → 카드·원본에 바로
+        await pg.wait_for_timeout(300); await pg.evaluate(f"JBLNUM._RV.ses.cur={json.dumps(ids[0])};"); await pg.click('[data-cnav=\"0\"]'); await pg.click('[data-cnav=\"0\"]'); await pg.wait_for_timeout(150)
+        await pg.click('.nm-card [data-ract=cedit]'); await pg.wait_for_timeout(250)
+        ce = await pg.evaluate("({ce:!!document.querySelector('.nm-card .nm-cfc[contenteditable=true]'),tb:!!document.querySelector('.nm-tb')})")
+        await pg.keyboard.press('End'); await pg.keyboard.type('카드수정'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(900)
+        cq = await pg.evaluate("document.querySelector('.nm-card .nm-cfc').textContent"); rq = await pg.evaluate(f"{LSG}('num.i.CONS.{ids[0]}')")
+        ok(ce['ce'] and ce['tb'] and '카드수정' in cq and rq and '카드수정' in (rq.get('q') or ''), f"카드 앞면(문제) '수정' = 같은 편집기 → 카드·원본(num.i)에 바로 {ce}")
+        # 방향
+        await pg.click('[data-rdir=sa]'); await pg.wait_for_timeout(300)
+        ok('앞면 · 넘버링 스토리' in await pg.evaluate("document.querySelector('.nm-cft').textContent"), "방향 '스토리 → 정답'")
+        await pg.click('[data-rdir=qs]'); await pg.wait_for_timeout(200)
+        # 회차 정리 → 재복습
+        await pg.click('[data-cnt] [data-ract=end]'); await pg.wait_for_timeout(300)
+        sm = await pg.evaluate("(()=>{const b=document.querySelector('.nm-sum [data-ract=retry]');return b?{t:b.textContent,d:b.disabled}:null})()")
+        ok(sm and '2문제' in sm['t'] and not sm['d'], f"회차 정리 — 모름·애매함 다시 복습 {sm}")
+        old = await pg.evaluate("JBLNUM._RV.ses.sid")
+        await pg.click('.nm-sum [data-ract=retry]'); await pg.wait_for_timeout(800)
+        ns = await pg.evaluate("(()=>{const s=JBLNUM._RV.ses;return {sid:s.sid,retry:s.retry,n:s.ids.length,rnd:!!s.rnd,ta:(document.querySelector('.nm-cr textarea')||{}).value}})()")
+        rl = await pg.evaluate(f"{LSG}('num.rl.CONS')"); r0 = await pg.evaluate(f"{LSG}('num.r.CONS.{ids[0]}')")
+        ok(ns['sid'] != old and ns['retry'] and ns['n'] == 2 and ns['rnd'] and ns['ta'] == '', f"재복습 = 새 회차 2문제 · 무작위 · 빈 내 답안 {ns}")
+        ok(rl and len(rl) == 1 and rl[0]['c'] == [1, 1, 1] and r0['w'] and r0['w'][0]['x'] == '내가 쓴 답 1\n둘째 줄', f"끝난 회차 기록(num.rl) · 쓴 답안은 문제 이력(w)으로 {rl and rl[0].get('c')}")
+        await pg.evaluate(f"JBLNUM._RV.ses.cur={json.dumps(ids[0])};"); await pg.click('[data-cnav=\"0\"]'); await pg.click('[data-cnav=\"0\"]'); await pg.wait_for_timeout(150)
+        await pg.click('.nm-cr [data-ract=hist]'); await pg.wait_for_timeout(200)
+        hl = await pg.evaluate("(document.querySelector('.nm-cr [data-hist]')||{}).textContent||''")
+        ok('평가하면 보여요' in hl and '내가 쓴 답' not in hl, "재복습 회차: 지난 답안은 평가 전엔 가림(힌트 아님)")
+        await pg.click('.nm-cr [data-ract=hint]'); await pg.wait_for_timeout(150)
+        ok('내가 쓴 답 1' in await pg.evaluate("document.querySelector('.nm-cr [data-hist]').textContent"), "'지금 보기'를 누르면 지난 답안 확인")
+        # 기존 순서로 다시
+        await pg.click('[data-cnt] [data-ract=end]'); await pg.wait_for_timeout(300)
+        # 범위: 미복습
+        await pg.click('.nm-rvw [data-rview=scroll]'); await pg.wait_for_timeout(1500)
+        await pg.click('[data-act=flt]'); await pg.wait_for_timeout(200)
+        await pg.click('.nm-fpan [data-rsc=new]'); await pg.wait_for_timeout(300)
+        if await pg.evaluate("!!document.querySelector('.nm-ask, [data-ask]')"):
+            await pg.click('[data-ask=ok], [data-ask="1"]'); await pg.wait_for_timeout(1500)
+        sc = await pg.evaluate("(()=>{const s=JBLNUM._RV.ses;return {sc:s.sc,n:s.ids.length,has:s.ids.includes(arguments[0])}})()".replace('arguments[0]', json.dumps(ids[0])))
+        tot = await pg.evaluate("JBLNUM._S.items.filter(i=>!i.del).length")
+        ok(sc['sc'] == 'new' and sc['n'] == tot - 3 and not sc['has'], f"범위 '미복습' = 새 회차(평가한 3문제 빠짐) {sc} / {tot}")
+        # 섞기 · 원래대로
+        o0 = await pg.evaluate("[...document.querySelectorAll('.nm-it:not([hidden])')].slice(0,12).map(a=>a.dataset.id).join()")
+        await pg.click('[data-ract=shuf]'); await pg.wait_for_timeout(1500)
+        o1 = await pg.evaluate("[...document.querySelectorAll('.nm-it:not([hidden])')].slice(0,12).map(a=>a.dataset.id).join()")
+        await pg.click('.nm-shf [data-ract=unshuf]'); await pg.wait_for_timeout(1500)
+        o2 = await pg.evaluate("[...document.querySelectorAll('.nm-it:not([hidden])')].slice(0,12).map(a=>a.dataset.id).join()")
+        ok(o1 != o0 and o2 == o0, "섞기 → 순서 바뀜 · 원래대로 → 처음 순서")
+        # 복습 이력 창
+        await pg.click('.nm-side [data-ract=hdlg]'); await pg.wait_for_timeout(300)
+        n_h = await pg.evaluate("document.querySelectorAll('.nm-ov .nm-hrow').length")
+        await pg.evaluate("[...document.querySelectorAll('.nm-ov .nm-hrow')].slice(-1)[0].open=true"); await pg.wait_for_timeout(200)
+        hit = await pg.evaluate("document.querySelectorAll('.nm-ov .nm-hit').length")
+        ok(n_h >= 2 and hit >= 3, f"복습 이력 — 회차 {n_h}줄 · 펼치면 문제별 평가·답안 {hit}")
+        await pg.click('.nm-ov [data-x]'); await pg.wait_for_timeout(200)
+        # 백업 합치기: 복습 기록 이력은 합집합 · 최근 평가 = 가장 늦은 것
+        mg = await pg.evaluate("""(()=>{const k='jblhub.v1.num.r.CONS.zz';localStorage.setItem(k,JSON.stringify({id:'zz',m:0,d:1000,h:[{t:1000,m:0,s:'a'}],w:[],u:1000}));__h.mergeInto({[k]:JSON.stringify({id:'zz',m:2,d:2000,h:[{t:2000,m:2,s:'b'}],w:[{t:2000,s:'b',x:'백업 답'}],u:2000})});const r=JSON.parse(localStorage.getItem(k));localStorage.removeItem(k);return {n:r.h.length,m:r.m,w:r.w.length}})()""")
+        ok(mg == {'n': 2, 'm': 2, 'w': 1}, f"백업 합치기 — 평가 이력 합집합·최근 평가·지난 답안 {mg}")
+        # 원본 넘버링으로 이동
+        fid = await pg.evaluate("document.querySelectorAll('.nm-it:not([hidden])')[1].dataset.id")
+        await pg.evaluate("document.querySelectorAll('.nm-it:not([hidden])')[1].querySelector('[data-ract=src]').click()"); await pg.wait_for_timeout(1500)
+        jm = await pg.evaluate(f"({{h:location.hash,rv:document.getElementById('numv').classList.contains('rv'),fl:!!document.querySelector('.nm-it.flash[data-id=\"{fid}\"]')}})")
+        ok(jm['h'].startswith('#/_num/CONS') and not jm['rv'] and jm['fl'], f"'내 넘버링에서 보기' = 내 넘버링 그 문제로 {jm}")
+        await pg.go_back(); await pg.wait_for_timeout(2500)
+        ok((await pg.evaluate("location.hash")).startswith('#/_numr/CONS') and await pg.evaluate("document.getElementById('numv').classList.contains('rv')"), "뒤로 = 다시 넘버링 복습")
+        # 내 넘버링 기능 그대로(원본 수·스토리)
+        await pg.click('.nm-side [data-app=make]'); await pg.wait_for_timeout(1500)
+        mk2 = await pg.evaluate("({n:document.querySelectorAll('.nm-it').length,rv:document.getElementById('numv').classList.contains('rv'),ta:document.querySelectorAll('textarea[data-w]').length,hdr:!!document.querySelector('[data-act=aiout]')})")
+        ok(mk2['n'] == tot and not mk2['rv'] and mk2['ta'] == 0 and mk2['hdr'], f"내 넘버링 화면은 그대로(ChatGPT·인쇄 · 내 답안 칸 없음) {mk2}")
+        # 휴대폰(같은 저장 공간 — 창 크기만 390)
+        await pg.set_viewport_size({'width': 390, 'height': 844}); await pg.evaluate("location.hash='#/_numr/CONS'"); await pg.reload(); await pg.wait_for_timeout(3500)
+        await pg.evaluate("document.querySelector('.nm-rvw [data-rview=card]').click()"); await pg.wait_for_timeout(800)
+        mob = await pg.evaluate("({sw:document.documentElement.scrollWidth,card:(document.querySelector('.nm-card')||{getBoundingClientRect:()=>({right:999})}).getBoundingClientRect().right,mk:document.querySelectorAll('.nm-cmk [data-mk]').length,ta:!!document.querySelector('.nm-cr textarea')})")
+        ok(mob['sw'] <= 391 and mob['card'] <= 390 and mob['mk'] == 3 and mob['ta'], f"휴대폰 카드 복습 — 가로 넘침 없음·평가 단추·내 답안 {mob}")
+        await pg.evaluate("document.querySelector('.nm-rvw [data-rview=scroll]').click()"); await pg.wait_for_timeout(1200)
+        mob2 = await pg.evaluate("({sw:document.documentElement.scrollWidth,cols:getComputedStyle(document.querySelector('.nm-it .nm-body')).gridTemplateColumns.split(' ').length})")
+        ok(mob2['sw'] <= 391 and mob2['cols'] == 1, f"휴대폰 스크롤 복습 — 칸은 위아래로 {mob2}")
+        await ctx.close(); await b.close()
+        ok(not errs, f"pageerror 0 {errs[:3]}")
+    print('RESULT', 'PASS' if not fails else f'FAIL {len(fails)}')
+asyncio.run(main())
