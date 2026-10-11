@@ -386,6 +386,10 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tags{flex:none;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;max-width:40%;padding-top:1px}
 #numv .nm-tag{display:inline-block;border:1px solid #E1D9CB;border-radius:5px;padding:0 6px;line-height:19px;font-size:11.5px;font-weight:500;color:#5A5247;background:#FAF7F1;white-space:nowrap}
 #numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
+#numv .nm-qt{margin-left:7px;font-size:12px;font-weight:500;color:#78716A;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0;user-select:none;-webkit-user-select:none}
+#numv .nm-qt .p{margin-left:6px}
+#numv .nm-jbb{flex:none;border:1px solid #D8C9E8;background:#F6F1FB;color:#4F2F78;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}
+#numv .nm-jbb:hover,#numv .nm-jbb:focus-visible{background:#EDE3F8;border-color:#BFA8DA}
 #numv .nm-edm{font-size:12px;color:#8C857A;line-height:21px;padding:0 1px;cursor:help}
 #numv .nm-rvb{border:1px solid #F0C9B0;background:#FFF4EC;color:#9A3412;border-radius:5px;font-size:11.5px;line-height:19px;padding:0 5px;cursor:pointer}
 #numv .nm-more{flex:none;border:1px solid transparent;background:none;color:#6A6257;border-radius:6px;padding:0;width:30px;height:24px;font-size:17px;line-height:20px;cursor:pointer}
@@ -666,12 +670,53 @@ function profOf(it) {   /* 교수 태그 — JB 출처의 교수(여럿이면 �
   if (!P.length) { const l = lecOf(it.lec); if (l && l.prof) P.push(l.prof); }
   return P.join('·');
 }
+/* 10-11 사용자 '각 문제의 끝나는 음절 오른쪽에 순서대로 연도 표기, 그리고 교수 이름' — 화면에서만 문제 글 끝에 붙이는 작은 회색 꼬리표(저장 글·인쇄·ChatGPT 내보내기에는 안 들어감 · 고치는 동안은 빠짐) */
+const yrsAsc = y => (y || []).slice().sort((a, b) => a - b).map(x => String(x % 100).padStart(2, '0')).join('·');
+function qTail(it) {
+  const y = yrsAsc(it.yrs), p = profOf(it); if (!y && !p) return '';
+  const ti = [y ? '출제 연도 ' + it.yrs.slice().sort((a, b) => a - b).join(' · ') : '', p ? '교수 ' + p : ''].filter(Boolean).join(' · ');
+  return `<span class="nm-qt" title="${esc(ti)}">${y ? `<span class="y">${esc(y)}</span>` : ''}${p ? `<span class="p"${y ? '' : ' style="margin-left:0"'}>${esc(p)}</span>` : ''}</span>`;
+}
+const TINL = new Set(['B', 'I', 'U', 'SPAN', 'SUP', 'SUB', 'A', 'STRONG', 'EM', 'FONT']);
+function qView(it) {   /* 문제 글(qDisp) + 마지막 음절 바로 오른쪽 꼬리표 — 굵게 등 꾸밈 밖, 표 안이면 표 뒤 */
+  const h = qDisp(it), tl = qTail(it); if (!tl || !h) return h;
+  if (it._qv && it._qv[0] === h && it._qv[1] === tl) return it._qv[2];
+  const t = document.createElement('template'); t.innerHTML = h; const R = t.content;
+  let last = null; const w = document.createTreeWalker(R, NodeFilter.SHOW_TEXT); for (let n = w.nextNode(); n; n = w.nextNode()) if (n.data.trim()) last = n;
+  const sp = document.createElement('template'); sp.innerHTML = tl; const tn = sp.content.firstChild;
+  if (!last || (last.parentElement && last.parentElement.closest('table'))) { let tb = last && last.parentElement && last.parentElement.closest('table'); while (tb && tb.parentNode !== R && tb.parentNode) tb = tb.parentNode; if (tb && tb.parentNode === R) tb.after(tn); else R.appendChild(tn); }
+  else { let n = last; while (n.parentNode && n.parentNode !== R && n.parentNode.nodeType === 1 && TINL.has(n.parentNode.tagName)) n = n.parentNode; n.after(tn); }
+  const out = t.innerHTML; it._qv = [h, tl, out]; return out;
+}
+/* 10-11 사용자 '수정 버튼 옆에 jb문제 바로가는 버튼 … 넘버링문제에서 Jb 문제로 바로가면 해당 답안이 (간단히 상태로) 펼쳐지고, 다시 넘버링 따는 곳으로 돌아갈 수 있었으면' */
+const JBR = new Map();   /* 과목 → {card: JB aid 모음, pred: 예상문제 aid → 관련 기출 JB aid} (팩에서 한 번만) */
+function jbMaps(sj) {
+  let m = JBR.get(sj); const P = H.PACKS[sj]; if (m && m.P === P) return m; if (!P) return null;
+  m = { P, card: new Set(), pred: new Map() }; const AID = /data-aid="([^"]+)"/;
+  for (const k in P.cards) { const x = AID.exec(String(P.cards[k]).slice(0, 600)); if (x) m.card.add(x[1]); }
+  for (const p of P.preds || []) { const h = String(p.html || ''), a = AID.exec(h.slice(0, 800)), g = /class="jbchip"[^>]*\sdata-go="([^"]+)"/.exec(h); if (!a || !g || !P.cards[g[1]]) continue; const ca = AID.exec(String(P.cards[g[1]]).slice(0, 600)); if (ca) m.pred.set(a[1], ca[1]); }
+  JBR.set(sj, m); return m;
+}
+function jbRef(it) {   /* 이 문제의 JB 기출 문항 { s: 과목, aid } — JB 출처 우선, 예상문제면 '관련 기출'(짤 변형) · 없으면 null */
+  for (const s of it.src) if (s.t === 'jb' && s.s && s.id) { const m = jbMaps(s.s); if (m && m.card.has(s.id)) return { s: s.s, aid: s.id }; }
+  for (const s of it.src) if (s.t === 'pred' && s.s && s.id) { const m = jbMaps(s.s), a = m && m.pred.get(s.id); if (a) return { s: s.s, aid: a }; }
+  return null;
+}
+const jbBtn = it => jbRef(it) ? `<button type="button" class="nm-jbb" data-act="jbgo" title="JB 기출 문항으로 — 답(간단히)을 펼쳐 보여 주고, 아래 '↩ 돌아가기'로 이 문제로 돌아와요">JB 문제</button>` : '';
+function jbGo(it, btn) {
+  const r = jbRef(it); if (!r) { H.toast('이 문제와 이어진 JB 기출이 없어요'); return; }
+  const a = (btn && btn.closest('.nm-it')) || artOf(it.id), no = a ? (a.querySelector('.nm-no') || {}).textContent || '' : '';
+  S.npos = { id: it.id, off: a ? Math.round(a.getBoundingClientRect().top) : 0 };   /* 돌아올 자리(이 문제) — 허브 기록(history)에도 같이 적힘(state) */
+  const label = (S.app === 'rev' ? '넘버링 복습' : '내 넘버링') + (no ? ' ' + no.replace(/\.$/, '') + '번' : '');
+  if (H.jbGo) { if (!H.jbGo(r.s, r.aid, { label, sj: S.sj, rev: S.app === 'rev', npos: S.npos })) { S.npos = null; H.toast('JB 기출을 열지 못했어요 — 과목 자료를 불러온 뒤 다시 눌러 주세요'); } return; }
+  leave(); H.openDoc(r.s, '_jb', null, r.aid, { open: 1 });
+}
 function itemHTML(it, no, hid) {
-  const st = stOf(it), rv = it.rv && it.rv.length && !it.rvok, pf = profOf(it);
+  const st = stOf(it), rv = it.rv && it.rv.length && !it.rvok;
   const edq = it.kind === 'seed' ? it.q !== it.base.q : it.q0 != null, eda = it.kind === 'seed' ? it.a !== it.base.a : it.a0 != null;
   return `<article class="nm-it${st === 2 ? ' ok' : ''}" data-id="${esc(it.id)}" data-st="${st}"${hid ? ' hidden' : ''}><header class="nm-h"><span class="nm-drag" data-drag="1" title="끌어서 순서 바꾸기 — 다른 문제 위·아래에 놓기(손가락은 길게 누른 뒤) · ⋯ 메뉴 '위로/아래로 옮기기'와 같음" aria-hidden="true"></span><label class="nm-ck"><input type="checkbox" data-ck="1"${S.sel.has(it.id) ? ' checked' : ''} aria-label="선택"></label><span class="nm-no"${st === 2 ? ' title="완성"' : ''}>${no}.</span>`
-    + `<div class="nm-q"><div class="nm-c" data-f="q">${qDisp(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정(작업본만 — 원본은 그대로 · 원래 번호·연도 괄호까지 원문 전체가 보여요)">수정</button></div>`
-    + `<span class="nm-tags">${pf ? `<span class="nm-tag pf" title="교수">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr" title="출제 연도 ${esc(yrsTxt(it.yrs))}">${esc(yrs2(it.yrs))}</span>` : ''}${edq || eda ? `<span class="nm-edm" title="원본에서 고친 작업본(${edq && eda ? '문제·답안' : edq ? '문제' : '답안'}) — ⋯ 메뉴 '원본으로'로 되돌림" aria-label="고친 작업본">✎</span>` : ''}${rv ? `<button type="button" class="nm-rvb" data-act="det" title="${esc(it.rv.map(r => r.m).join('\n'))}" aria-label="검토 필요">⚠</button>` : ''}</span>`
+    + `<div class="nm-q"><div class="nm-c" data-f="q">${qView(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정(작업본만 — 원본은 그대로 · 원래 번호·연도 괄호까지 원문 전체가 보여요)">수정</button></div>`
+    + `<span class="nm-tags">${jbBtn(it)}${edq || eda ? `<span class="nm-edm" title="원본에서 고친 작업본(${edq && eda ? '문제·답안' : edq ? '문제' : '답안'}) — ⋯ 메뉴 '원본으로'로 되돌림" aria-label="고친 작업본">✎</span>` : ''}${rv ? `<button type="button" class="nm-rvb" data-act="det" title="${esc(it.rv.map(r => r.m).join('\n'))}" aria-label="검토 필요">⚠</button>` : ''}</span>`
     + `<button type="button" class="nm-more" data-act="more" aria-haspopup="true" title="이 문제 메뉴 — 완성·수정·출처·순서·강의 옮기기·복사·되돌리기·빼기" aria-label="이 문제 메뉴">⋯</button></header>`
     + `<div class="nm-body"><section class="nm-col nm-a"><div class="nm-lab">답안 <button type="button" class="nm-edb" data-act="edit" data-f="a" title="답안 수정(작업본만 — 원본은 그대로)">수정</button></div><div class="nm-c" data-f="a">${disp(it.a) || '<span class="nm-ph">답안 없음 — 수정을 눌러 쓰기</span>'}</div></section>`
     + `<section class="nm-col nm-s"><div class="nm-lab">넘버링 스토리</div><div class="nm-c" data-f="st" tabindex="0" role="textbox" aria-label="넘버링 스토리 — 누르면 바로 편집">${disp(it.st) || '<span class="nm-ph">눌러서 스토리 쓰기</span>'}</div></section></div>`
@@ -1065,7 +1110,7 @@ function itemAct(k, it, btn) {
   if (k === 'prev') { const p = it.prev; const cur = it[p.f]; if ((p.f === 'q' || p.f === 'a') && it.kind !== 'seed' && it.kind !== 'user' && it[p.f + '0'] == null) it[p.f + '0'] = cur;   /* 원본으로 → 되돌리기: 원본 사본을 다시 남김 */ it[p.f] = p.h; it.prev = { f: p.f, h: cur, at: now() }; touch(it); it._ty = null; put(it); rerenderItem(it); H.toast('되돌렸어요 — 한 번 더 누르면 다시 앞으로'); return; }
   if (k === 'orig') { ask('이 문제의 문제·답안을 원본 글로 되돌릴까요?\n(넘버링 스토리는 그대로예요)', { ok: '원본으로' }).then(y => { if (y) itemAct('orig!', it, btn); }); return; }
   if (k === 'orig!') { const oq = it.q, oa = it.a; if (it.kind === 'seed') { it.q = it.base.q; it.a = it.base.a; } else { if (it.q0 != null) { it.q = it.q0; it.q0 = undefined; } if (it.a0 != null) { it.a = it.a0; it.a0 = undefined; } } it.prev = oq !== it.q ? { f: 'q', h: oq, at: now() } : oa !== it.a ? { f: 'a', h: oa, at: now() } : it.prev; touch(it); it._ty = null; put(it); rerenderItem(it); H.toast('원본으로 되돌렸어요 — ⋯ 메뉴 \'마지막 수정 전으로\'로 고친 글을 다시 볼 수 있어요'); return; }
-  if (k === 'open') { const s0 = it.src.find(s => s.t === 'jb' || s.t === 'pred'); jumpOrig(s0); return; }
+  if (k === 'open') { const s0 = it.src.find(s => s.t === 'jb' || s.t === 'pred'); if (s0 && s0.t === 'jb' && jbRef(it)) { jbGo(it, btn); return; } jumpOrig(s0); return; }   /* JB 원본 = 'JB 문제' 단추와 같이(답 펼침 · ↩ 돌아가기) */
   if (k === 'del') { it.del = true; touch(it); put(it); S.sel.delete(it.id); render({ pos: topItem() }); H.toast('목록에서 뺐어요 — 맨 아래 \'목록에서 뺀 문제\'에서 다시 넣을 수 있어요', { level: 'result', action: { label: '되돌리기', fn: () => { it.del = false; touch(it); put(it); render({ flash: it.id }); } } }); }
 }
 function jumpOrig(s0) { if (!s0) return; leave(); if (s0.t === 'jb') H.openDoc(s0.s, '_jb', null, s0.id); else H.openDoc(s0.s, s0.lec || (H.PACKS[s0.s].lect[0] || {}).k, 'pred', s0.id); }
@@ -1893,11 +1938,11 @@ const dtS = t => { const d = new Date(t); return (d.getMonth() + 1) + '/' + d.ge
 const dtTxt = t => new Date(t).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 const pmHTML = pm => pm ? `<span class="nm-pm m${pm.m}" title="지난 회차 평가 ${esc(dtTxt(pm.t))}">지난 ${MKN[pm.m]} · ${esc(dtS(pm.t))}</span>` : '<span class="nm-pm">처음 복습</span>';
 function revItemHTML(it, no, hid) {
-  const pf = profOf(it), s = RV.ses, m = s.mk[it.id], W = S.cfg.write, r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, dr = (RV.dr && RV.dr.a[it.id]) || '';
+  const s = RV.ses, m = s.mk[it.id], W = S.cfg.write, r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, dr = (RV.dr && RV.dr.a[it.id]) || '';
   const rz = '<i class="nm-rz" data-rz="1" title="끌어서 칸 너비 조절 · 두 번 누르면 처음대로"></i>' + (W ? '<i class="nm-rz r2" data-rz="2" title="끌어서 칸 너비 조절 · 두 번 누르면 처음대로"></i>' : '');
   return `<article class="nm-it${hidOf('a', it.id) ? ' hA' : ''}${hidOf('s', it.id) ? ' hS' : ''}${m != null ? ' mk' + m : ''}" data-id="${esc(it.id)}"${hid ? ' hidden' : ''}><header class="nm-h"><span class="nm-no">${no}.</span>`
-    + `<div class="nm-q"><div class="nm-c" data-f="q">${qDisp(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정 — 내 넘버링과 같은 원본(바로 양쪽에 반영)">수정</button></div>`
-    + `<span class="nm-tags">${pf ? `<span class="nm-tag pf" title="교수">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr" title="출제 연도 ${esc(yrsTxt(it.yrs))}">${esc(yrs2(it.yrs))}</span>` : ''}</span></header>`
+    + `<div class="nm-q"><div class="nm-c" data-f="q">${qView(it) || '<span class="nm-ph">문제 없음</span>'}</div><button type="button" class="nm-edb" data-act="edit" data-f="q" title="문제 수정 — 내 넘버링과 같은 원본(바로 양쪽에 반영)">수정</button></div>`
+    + `<span class="nm-tags">${jbBtn(it)}</span></header>`
     + `<div class="nm-body"><section class="nm-col nm-a"><div class="nm-lab">정답<button type="button" class="nm-eye" data-eye="a" aria-label="이 문제 정답 가리기·보기"></button><button type="button" class="nm-edb" data-act="edit" data-f="a" title="정답 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div><div class="nm-c" data-f="a">${disp(it.a) || '<span class="nm-ph">정답 없음</span>'}</div></section>`
     + `<section class="nm-col nm-s"><div class="nm-lab">넘버링 스토리<button type="button" class="nm-eye" data-eye="s" aria-label="이 문제 스토리 가리기·보기"></button><button type="button" class="nm-edb" data-act="edit" data-f="st" title="스토리 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div><div class="nm-c" data-f="st">${disp(it.st) || '<span class="nm-ph">스토리 없음</span>'}</div></section>`
     + (W ? `<section class="nm-col nm-w"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로</small></div><textarea class="nm-wt" data-w="${esc(it.id)}" rows="${wRows(dr)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만)" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea></section>` : '')
@@ -2219,6 +2264,7 @@ function bind() {
     if (a) {
       const k = a.dataset.act, art = a.closest('.nm-it'), it = art && S.by.get(art.dataset.id);
       if (k === 'more' && it) { itemMenu(a, it); return; }
+      if (k === 'jbgo' && it) { jbGo(it, a); return; }
       if (k === 'det' && it) { detOpen(it); return; }
       if (k === 'edit' && it) { const el = art.querySelector(`.nm-c[data-f="${a.dataset.f}"]`); if (el) startEdit(el, it, a.dataset.f); return; }
       if (k === 'flt') { fpOpen(!S.fp); return; }
@@ -2322,7 +2368,9 @@ async function open(root, o, host) {
   if (S.cfg.f.lec && !S.lecs.some(l => l.k === S.cfg.f.lec) && S.cfg.f.lec !== '__none') S.cfg.f.lec = '';
   S.sjc = sjCounts(); if (S.app === 'rev') { RV.sj = ''; revEnter(); }
   H.histSet(hst(), hpath(sj), !!o.push); appTitle();
+  const np = o.npos && o.npos.id && S.by.has(o.npos.id) && !(S.app === 'rev' && S.cfg.view === 'card') ? o.npos : null; S.npos = null;   /* JB 문제에서 돌아옴 = 떠난 그 문제 자리로 */
+  if (np) { render({ pos: np, hl: np.id }); return; }
   render({ pos: o.y != null ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null });
 }
-window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => (S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }), _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
+window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => Object.assign(S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }, S.npos ? { npos: S.npos } : {}),   /* npos = JB 문제로 가기 전 이 문제(뒤로·↩ 돌아가기 = 그 문제로) */ _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
 })();
