@@ -21,7 +21,7 @@ def page_img(sid, key, pg):
 def ocr_lines(f, z=3):
     """작은 라벨도 잡게 z배 키워 흑백으로 OCR(psm 11 = 흩어진 글자) — 상자는 원래 크기로 되돌림"""
     im = Image.open(f).convert('L'); im = im.resize((im.width * z, im.height * z), Image.LANCZOS)
-    tmp = os.path.join(J.WORK, '_tmp', 'figmask', f'_ocr_in_{os.getpid()}.png')   # 담당 여럿이 동시에 돌려도 섞이지 않게; os.makedirs(os.path.dirname(tmp), exist_ok=True); im.save(tmp)
+    tmp = os.path.join(J.WORK, '_tmp', 'figmask', f'_ocr_in_{os.getpid()}.png'); os.makedirs(os.path.dirname(tmp), exist_ok=True); im.save(tmp)   # 파일 이름 = 프로세스마다(담당 여럿이 동시에 돌려도 섞이지 않게)
     out = subprocess.run(['tesseract', tmp, '-', '-l', 'eng+kor', '--psm', '11', 'tsv'], capture_output=True, text=True).stdout
     try: os.remove(tmp)
     except OSError: pass
