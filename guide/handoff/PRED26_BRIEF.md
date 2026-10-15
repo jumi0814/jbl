@@ -53,7 +53,7 @@ CLAUDE.md 절대 규칙 · .claude/skills/jbl-update/RULES.md 0·9·10·11·12·
 - `.venv/bin/python tools/pred_check.py <SID>`(문법·필드·oid가 pred_before에 있는지·b id가 있는지·f 쪽 이미지가 있는지·m 상자 범위·보관/활성 수 — 메인이 만듦) ✗0.
 - `tools/check_abbr.py <SID>` 새 약어 0 · `tools/check_eyears.py <SID>`(why·t에 연도를 쓰면 배지에 있는 해만).
 - 답 근거 쪽을 쪽 이미지로 다시 확인(문항마다 — 보고에 확인 수).
-- 빌드는 메인(담당은 build4 금지 — 같은 과목 여러 담당이 동시에 pred.txt의 다른 강의 블록을 고침: **자기 강의 블록만**, 파일을 통째로 다시 쓰지 말고 Edit로 블록 단위).
+- **쓰는 곳 = 조각 파일** `work/<SID>/pred26/pred_<맡은 강의 키들>.txt`(예 pred_DD1_DD2_DD3.txt): 맡은 강의의 블록 **전부**(유지·개선·보관·새)를 pred.txt 꼴 그대로 — tools/<sid>/pred.txt는 직접 고치지 않음(같은 과목 여러 담당이 동시에 일함). 메인이 `tools/pred_merge.py <SID> <조각…>`으로 합침(옛 문항이 조각에서 빠지면 합치기가 멈춤 — 반드시 x=1로 남길 것). 검사는 `tools/pred_check.py <SID> --file <조각>`. 빌드는 메인.
 
 ## 4. 보고(work/<SID>/pred26/R_<KEY…>.md)
 강의마다: 유지 n · 개선 n(oid) · 보관 n(사유) · 새 n(상/중/하) · 그림 첨부 n · 그림빵 n · 교수 경향 근거 요약 · 확인 필요.

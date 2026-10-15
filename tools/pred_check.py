@@ -1,5 +1,5 @@
 """예상문제(pred.txt) 문법·필드 검사 — guide/handoff/PRED26_BRIEF.md 2-3·2-4절
-사용: .venv/bin/python tools/pred_check.py <SID> [--keys K1,K2] [--loose]
+사용: .venv/bin/python tools/pred_check.py <SID> [--keys K1,K2] [--loose] [--file 조각.txt]
 ✗ = 고쳐야 함(종료 코드 1) · △ = 확인 권장. --loose = pr 없는 블록 허용(개선 전 파일 점검용)."""
 import os, sys, re, json, importlib.util, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -8,9 +8,9 @@ CIRC = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
 def subject(sid):
     p = os.path.join(J.TOOLS, sid.lower(), 'subject.py')
     sp = importlib.util.spec_from_file_location('subject_' + sid, p); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m); return m
-def blocks(sid):
+def blocks(sid, fn=None):
     out = []; cur = None
-    for n, line in enumerate(open(os.path.join(J.TOOLS, sid.lower(), 'pred.txt'), encoding='utf-8'), 1):
+    for n, line in enumerate(open(fn or os.path.join(J.TOOLS, sid.lower(), 'pred.txt'), encoding='utf-8'), 1):
         line = line.rstrip('\n')
         if line.startswith('@'):
             p = [x.strip() for x in (line[3:] if line.startswith('@P ') else line[1:]).split('|')]
@@ -23,14 +23,14 @@ def blocks(sid):
         elif cur and line.strip() and not line.startswith('#'): cur.setdefault('extra', []).append((n, line[:40]))
     return out
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('sid'); ap.add_argument('--keys'); ap.add_argument('--loose', action='store_true'); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('sid'); ap.add_argument('--keys'); ap.add_argument('--loose', action='store_true'); ap.add_argument('--file', help='pred.txt 대신 검사할 조각 파일(work/<SID>/pred26/pred_<묶음>.txt)'); a = ap.parse_args()
     sid = a.sid.upper(); S = subject(sid); keys = set(a.keys.split(',')) if a.keys else None
     qids = set(json.load(open(J.work(sid, 'review', 'qids.json'), encoding='utf-8')).get('q', {}).keys()) if os.path.exists(J.work(sid, 'review', 'qids.json')) else set()
     if not qids:
         try: qids = set(json.load(open(J.work(sid, 'review', 'qids.json'), encoding='utf-8')).keys())
         except Exception: qids = set()
     pb = J.work(sid, 'pred26', 'pred_before.json'); old = {r['aid'] for r in json.load(open(pb, encoding='utf-8'))} if os.path.exists(pb) else set()
-    B = blocks(sid); bad = warn = 0; seen_oid = {}; seen_q = {}; stat = {}
+    B = blocks(sid, a.file); bad = warn = 0; seen_oid = {}; seen_q = {}; stat = {}
     def X(b, m):
         nonlocal bad; bad += 1; print(f'✗ {b["k"]} 줄 {b["n"]}: {m}')
     def W(b, m):
