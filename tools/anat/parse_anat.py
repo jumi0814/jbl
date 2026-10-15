@@ -2,11 +2,21 @@ import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dir
 import re, json
 BASE = J.JBX
 def rd(p): return open(p, 'rb').read().decode('utf-8', 'replace').replace('\r', '').replace('\x02', '')
+FIGLAB = re.compile(r'^\s*(?:\(?[A-E]\)?|\(\d\)|[*+]|RV)\s*$')   # 26판: 그림 위 상자 글자(A·B·C·(1)…) — 쪽 끝에 몰려 나옴(그림은 JB 원본 쪽 이미지로)
+def strip26(ls):
+    """26판(2026 JB) 쪽 머리 '임상두경부 해부학' + 쪽 번호 줄 · 쪽 끝에 몰린 그림 상자 글자 줄을 뺌 — 23·24·25판은 쓰지 않음(기존 블록 불변)"""
+    ls = list(ls); nz = [j for j, l in enumerate(ls) if l.strip() and '무단인쇄' not in l]
+    drop = set()
+    if len(nz) >= 2 and ls[nz[0]].strip() == '임상두경부 해부학' and re.fullmatch(r'\s*\d{1,3}\s*', ls[nz[1]]): drop |= {nz[0], nz[1]}
+    for j in reversed(nz):
+        if j in drop or not FIGLAB.match(ls[j]): break
+        drop.add(j)
+    return [l for j, l in enumerate(ls) if j not in drop]
 def load(ed, n):
     lines = []
     for i in range(1, n + 1):
         t = rd(f'{BASE}ANAT_20{ed}/{i}.txt'); first = True
-        for l in t.split('\n'):
+        for l in (strip26(t.split('\n')) if ed == '26' else t.split('\n')):
             if '무단인쇄' in l: continue
             if first and re.fullmatch(r'\s*\d{1,3}\s*', l): first = False; continue
             if l.strip(): first = False
@@ -47,10 +57,13 @@ def parse(ed, n):
         if cur is not None:
             cur['lines'].append(l); cur['pg2'] = pg
             if ANS.match(s): inans = True
+    if ed == '26':   # 26판 2025 칸 17~20번은 '박주영 교수님' 머리가 빠진 채 권익재(이하선) 아래에 실림 — 참고 쪽이 모두 251027 박주영 TMJ·SMAS(24판·25판 2024 칸도 박주영)
+        for b in blocks:
+            if b['sec'] == '2025' and b['num'] in ('17', '18', '19', '20'): b['prof'] = '박주영'
     return blocks
 if __name__ == '__main__':
     allb = {}
-    for ed, n in (('25', 22), ('24', 6), ('23', 26)):
+    for ed, n in (('25', 22), ('24', 6), ('23', 26), ('26', 29)):
         b = parse(ed, n); allb[ed] = b
         print(f'=== {ed}판: {len(b)} blocks')
         for x in b:

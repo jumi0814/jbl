@@ -66,9 +66,40 @@ def parse(ed,n):
                 cur={'ed':ed,'sec':sec,'prof':prof,'num':num,'pg':pg,'lines':[l]}; blocks.append(cur); exp=num+1; continue
         if cur is not None: cur['lines'].append(l); cur['pg2']=pg
     return blocks
+# ---- 26판(2026 3Q JB — 2025년 시험까지): 쪽 머리 '구강악안면외과학 1' + 쪽 번호 줄 · 연도 칸 '20NN-3Q' · '[○○○ 교수님]' · 문항 = 'N. …'(점 있는 번호)
+# 2025-3Q 칸은 1번부터 차례(N = 앞 번호+1), 2024·2023·2022 칸은 25판 번호 그대로(25 칸으로 옮긴 문항은 빠져 번호가 띔 → 앞 번호보다 큰 번호만)
+# 머리말(1~2쪽 멘트·'[24 년도 JB 구성] 1. 23 년도 기출 …'·수업 표)과 해설 안 번호 줄('1. 두경부영역에 …' — 앞 번호보다 작음)은 문항 아님(RULES 0-1)
+def load26(n):
+    lines=[]
+    for i in range(1,n+1):
+        L=rd(f'{BASE}OMS1_2026/{i}.txt').split('\n'); k=0
+        if k<len(L) and L[k].strip()=='구강악안면외과학 1': k+=1
+        if k<len(L) and re.fullmatch(r'\s*\d{1,3}\s*',L[k]): k+=1
+        for l in L[k:]:
+            if '무단인쇄' in l: continue
+            lines.append((i,l.rstrip()))
+    return lines
+def parse26(n=16):
+    blocks=[]; cur=None; sec='머리말'; prof=''; last=0
+    for pg,l in load26(n):
+        m=re.match(r'^\s*(20\d\d)-3Q\s*$',l)
+        if m: sec=m.group(1)+'-3Q'; prof=''; last=0; cur=None; continue
+        if sec=='머리말': continue
+        mp=re.match(r'^\[(.+?)\s*교수님\]\s*$',l)
+        if mp: prof=mp.group(1); cur=None; continue
+        mq=re.match(r'^\s*(\d{1,2})\.\s*(\S.*)$',l)
+        if mq:
+            num=int(mq.group(1))
+            if (num==last+1) if sec=='2025-3Q' else (num>last):
+                cur={'ed':'26','sec':sec,'prof':prof,'num':num,'pg':pg,'lines':[l]}; blocks.append(cur); last=num; continue
+        if cur is not None: cur['lines'].append(l); cur['pg2']=pg
+    return blocks
+_parse_old=parse
+def parse(ed,n):
+    return parse26(n) if ed=='26' else _parse_old(ed,n)
 if __name__=='__main__':
     allb={}
-    for ed,n in (('25',16),('24',20),('23',28)):
+    for ed,n in (('25',16),('24',20),('23',28),('26',16)):
         b=parse(ed,n); allb[ed]=b
         print(f'=== {ed}판: {len(b)} blocks')
         for x in b:

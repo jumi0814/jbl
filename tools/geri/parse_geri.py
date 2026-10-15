@@ -8,6 +8,7 @@ def load(ed, n):
         t = rd(f'{BASE}GERI_20{ed}/{i}.txt'); first = True
         for l in t.split('\n'):
             if '무단인쇄' in l: continue
+            if first and ed == '26' and l.strip() == '노인치과학': continue   # 26판 쪽 머리 '노인치과학' + 쪽 번호
             if first and re.fullmatch(r'\s*\d{1,3}\s*', l): first = False; continue
             if l.strip(): first = False
             lines.append((i, l.rstrip()))
@@ -15,21 +16,25 @@ def load(ed, n):
 SEC25 = re.compile(r'^\s*(20\d\d)\s*-\s*3Q\s*$')
 SEC24 = re.compile(r'^\s*<\s*(\d\d)\s*학번\s*기출\s*\(\s*(20\d\d)\s*년도\s*\)\s*>\s*$')
 PROF = re.compile(r'^\s*\[\s*([가-힣]{2,3})\s*교수님\s*\]\s*$')
+PROF26 = re.compile(r'^\s*\[\s*([가-힣]{2,3})\s*교수님\s*\]')   # 26판: '[유연지 교수님] 올해 들어오지 않으심.'처럼 뒤에 메모가 붙음
 CUE = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰기|쓰시|서술|설명|나열|비교|기술|채우|기입|빈칸|무엇|어떤|이유|차이|특징|구조|명칭|이름|기능|고르|골라|옳|맞는|중복|미복원|\(\s*\d\d|\(탈|\(짤|\[서술|\[단답|\[객|예상|정의|관련|키워드|객관식|서술형|단답형|확률|방법|얼마|고르시오|들어갈|증가|감소|틀린|아닌|질환|것은|것을|경우|사진|그림|\(\s*\)|적기|계획|치료|법 |상관|원인|요소|요인')
 STRONG = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰시|쓰기|고르|골라|옳|맞는|서술|설명|나열|중복|미복원|\[서술|\[단답|\[객|\(탈|\(\s*\d\d\s*[,)\-]|\(짤|객관식|빈칸|예상|유사복원|틀린|아닌|얼마|확률')
 ANS = re.compile(r'^\s*\[?답\]?\s*[:：)]|^\s*답\s*$')
 def parse(ed, n):
-    L = load(ed, n); blocks = []; cur = None; sec = None; prof = ''; last = 0; inans = False
+    L = load(ed, n); blocks = []; cur = None; sec = None; prof = ''; last = 0; inans = False; opt = False   # opt(26판만): 답 앞 '1. …' 선지 목록 안
     for idx, (pg, l) in enumerate(L):
         s = l.strip()
         m = SEC25.match(s)
         if m: sec = m.group(1); last = 0; cur = None; inans = False; prof = ''; continue
         m = SEC24.match(s)
         if m: sec = m.group(2); last = 0; cur = None; inans = False; prof = ''; continue
-        mp = PROF.match(s)
-        if mp and sec: prof = mp.group(1); cur = None; inans = False; last = 0 if ed == '25' else last; continue
+        mp = (PROF26 if ed == '26' else PROF).match(s)
+        if mp and sec: prof = mp.group(1); cur = None; inans = False; opt = False; last = 0 if ed in ('25', '26') else last; continue
         if not sec: continue
         mq = re.match(r'^(\d{1,2})(-\d)?\s*[.．]\s*(\S.*)?$', s)
+        if mq and ed == '26' and cur is not None and not inans:   # 26판: 문제 줄 뒤 '1. …'부터 답 앞까지는 선지(2025 한동헌 2·5·6·7번)
+            if int(mq.group(1)) == 1 and not mq.group(2): opt = True
+            if opt: mq = None
         if mq:
             base_ = mq.group(1); sub = mq.group(2) or ''; num = base_ + sub; nn = int(base_)
             nxt = [x[1] for x in L[idx + 1:idx + 5]]; near2 = s
@@ -47,11 +52,11 @@ def parse(ed, n):
                 continue
         if cur is not None:
             cur['lines'].append(l); cur['pg2'] = pg
-            if ANS.match(s): inans = True
+            if ANS.match(s): inans = True; opt = False
     return blocks
 if __name__ == '__main__':
     allb = {}
-    for ed, n in (('25', 16), ('24', 24), ('23', 26)):
+    for ed, n in (('26', 21), ('25', 16), ('24', 24), ('23', 26)):
         b = parse(ed, n); allb[ed] = b
         print(f'=== {ed}판: {len(b)} blocks')
         for x in b:

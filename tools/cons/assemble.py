@@ -4,7 +4,7 @@ from PIL import Image
 DIR = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, DIR)
 import parse_cons as P, subject as S
 BASE = J.JBX; SUB = 'CONS'
-NPAGES = {'25': 14, '24': 16, '23': 12}
+NPAGES = {'26': 33, '25': 14, '24': 16, '23': 12}
 LECMAP = S.LECMAP
 
 # ---------- 1. JB blocks ----------
@@ -34,7 +34,7 @@ def tag_years(text):
     return ys, raw
 def find(ed, num):
     for x in blocks[ed]:
-        if str(x['num']) == str(num): return x
+        if str(x.get('key', x['num'])) == str(num): return x   # 26판 뒷부분(과거 기출)은 key 'P<번호>' — 앞쪽 번호와 겹쳐서
     return None
 
 # ---------- 2. canonical questions ----------
@@ -46,20 +46,41 @@ OTHER = {'Q01': [('24', 1), ('23', 1)], 'Q02': [('24', 2), ('23', 2)], 'Q04': [(
          'Q22': [('24', 18), ('23', 6)], 'Q23': [('24', 17), ('23', 5)], 'Q24': [('24', 19), ('23', 7)], 'Q25': [('24', 21), ('23', 9)],
          'Q26': [('24', 22), ('23', 10)], 'Q27': [('24', 23), ('23', 11)], 'Q28': [('24', 24), ('23', 12)], 'Q29': [('24', 25), ('23', 13)],
          'C01': [('23', 21)], 'C02': [('23', 22)]}
+# 26판(2026 3Q JB) — 앞쪽 '2025-3Q'에서 연도가 병합된 기존 문항 + 뒷부분 '과거 기출'(key P<번호>) → 기존 id의 다른 판본(맨 앞에)
+OTHER26 = {'Q01': ['1'], 'Q03': ['2'], 'Q04': ['3'], 'Q06': ['4-1'], 'Q07': ['7'], 'Q08': ['40', '41'], 'Q10': ['42'], 'Q14': ['45', '45-2'],
+           'Q22': ['47'], 'Q20': ['48'],
+           'Q02': ['P2'], 'Q05': ['P5'], 'Q09': ['P9'], 'Q11': ['P11'], 'Q12': ['P12'], 'Q13': ['P13'], 'Q15': ['P15'], 'Q16': ['P16'],
+           'Q17': ['P17'], 'Q17_1': ['P17-1'], 'Q18': ['P18'], 'Q19': ['P19'], 'Q21': ['P21'], 'Q23': ['P23'], 'Q24': ['P24'],
+           'Q25': ['P25'], 'Q26': ['P26'], 'Q27': ['P27'], 'Q28': ['P28'], 'Q29': ['P29']}
+for _c, _l in OTHER26.items(): OTHER[_c] = [('26', n_) for n_ in _l] + OTHER.get(_c, [])
+# 26판 새 문항(25년 시험 — 이전 판에 없던 복원) → 새 id Q30~(jb_lock에 없는 번호, 26판 번호 순) · 놓을 자리 = 같은 강의 묶음의 기존 마지막 문항 뒤
+NEW26 = [('Q30', '4'), ('Q31', '5'),
+         ('Q32', '6'), ('Q33', '8'), ('Q34', '9'), ('Q35', '10'), ('Q36', '11'), ('Q37', '12'), ('Q38', '13'), ('Q39', '14'), ('Q40', '14-1'),
+         ('Q41', '15'), ('Q42', '18'), ('Q43', '19'), ('Q44', '20'), ('Q45', '21'), ('Q46', '21+'), ('Q47', '22'), ('Q48', '23'), ('Q49', '24'),
+         ('Q50', '25'), ('Q51', '26'), ('Q52', '27'), ('Q53', '28'), ('Q54', '29'), ('Q55', '30'), ('Q56', '31'), ('Q57', '32'), ('Q58', '33'),
+         ('Q59', '34'), ('Q60', '34+'), ('Q61', '35'), ('Q62', '36'), ('Q63', '37'), ('Q64', '38'), ('Q65', '39'),
+         ('Q66', '43'),
+         ('Q67', '44'), ('Q68', '46')]
+NEW26_AFTER = {'이인복': 'Q06', '서덕규': 'Q08', '김선영': 'Q13', '이창하': 'Q19'}
 CROPS = {}
 Q = []
-def add(cid, ed, x, tier, prof, label):
+def add(cid, ed, x, tier, prof, label, secy=None):
     t = x['text']; head = ' '.join(t.split('\n')[:3])
     ty, raw = tag_years(t)
     short = re.sub(r'^\s*(20\d\d\s*년\s*교수님\s*(강조|pick)[^\n]*\n)?', '', t).split('\n')[0]
     short = re.sub(r'^\s*\d{1,2}(-\d)?(\([^)]*\))?\s*[.．]?\s*', '', short).strip()
     Q.append({'id': cid, 'ed': ed, 'sec': x['sec'], 'num': x['num'], 'pg': x['pg'], 'pg2': x['pg2'], 'text': t,
               'tier': tier, 'prof': prof, 'src': label, 'short': short[:52], 'jbtag': ' '.join(dict.fromkeys(raw)),
-              'base': sorted(ty, reverse=True), 'secy': None, 'tal': bool(re.search(r'\(\s*\d\d\s*,\s*탈\s*\)|\(탈\)', head)),
+              'base': sorted(ty | ({secy} if secy else set()), reverse=True), 'secy': secy, 'tal': bool(re.search(r'\(\s*\d\d\s*,\s*탈\s*\)|\(탈\)', head)) or (ed == '26' and '[탈]' in stem_of(t)),
               'pick': '\n'.join(l for l in t.split('\n')[:2] if re.match(r'^\s*20\d\d\s*년\s*교수님', l)).strip()})
 for x in blocks['25']:
     cid = 'Q%02d' % int(x['num']) if '-' not in str(x['num']) else 'Q' + str(x['num']).replace('-', '_').zfill(4)
     add(cid, '25', x, 'A', x['prof'], f"JB 25판 · {x['prof']} {x['num']}번")
+for cid, num in NEW26:   # 26판 앞쪽 = '2025-3Q' 칸(25년 출제 문항만 — 26판 머리 멘트) → 칸 연도 25(괄호가 없는 11·26·30·38·추가 복원도)
+    x = find('26', num); lab = f"{num[:-1]}번 뒤 추가 복원" if num.endswith('+') else f"{num}번"
+    add(cid, '26', x, 'A', x['prof'], f"JB 26판 · 2025년 칸 · {x['prof']} {lab}", secy=25)
+    _new = Q.pop(); _at = max(i for i, q_ in enumerate(Q) if q_['id'] == NEW26_AFTER[x['prof']] or (q_['ed'] == '26' and q_['prof'] == x['prof']))
+    Q.insert(_at + 1, _new)
 for i, num in enumerate((26, 27), 1):
     x = find('24', num); add(f'C{i:02d}', '24', x, 'C', '손호현', f'JB 24판 · 손호현 기출 {num}번')
 
@@ -94,6 +115,13 @@ for line in open(DIR + '/annot.txt', encoding='utf-8'):
     elif cur is not None and len(line) > 2 and line[1] == ':' and line[0] in 'AMNK':
         collect(line); cur[line[0]].append(cite_html(line[2:].strip()))
 for q in Q:
+    oy = set()   # 출제연도 ∪ 다른 판본 같은 문제의 괄호(26판에서 25년 시험에 '명확히 같은' 문항으로 연도 병합 → 25)
+    for (ed, num) in OTHER.get(q['id'], []):
+        x = find(ed, num)
+        if x:
+            oy |= tag_years(x['text'])[0]
+            if ed == '26' and not q['pick']: q['pick'] = '\n'.join(l for l in x['text'].split('\n')[:2] if re.match(r'^\s*20\d\d\s*년\s*교수님', l)).strip()   # 26판 뒷부분 '2025 년 교수님 강조'(11번에 새로)
+    q['base'] = sorted(set(q['base']) | oy, reverse=True)
     a = ANN.get(q['id'])
     if a:
         q.update({'v': a['v'], 'yrsnote': a['yrsnote'], 'rel': a['rel'], 'pair': a['pair'], 'A': a['A'], 'M': a['M'], 'N': a['N'], 'K': a.get('K', []), 'lk': a['lec'][0].split(':')[0] if a['lec'] else ''})
@@ -135,13 +163,13 @@ for ed, n in NPAGES.items():
         else: IMG['jb'][f'{ed}-{i}'] = b64(im.convert('L').resize((860, int(im.size[1] * 860 / im.size[0]))), 32)
 # ---------- 7. ledger ----------
 LEDGER = []
-idmap = {(q['ed'], str(q['num'])): q['id'] for q in Q}
+idmap = {(q['ed'], str(q['num'])): q['id'] for q in Q}   # 정식 문항은 26판 앞쪽 블록뿐(뒷부분 key P…는 모두 다른 판본)
 rev = {}
 for cid, lst in OTHER.items():
     for (ed, num) in lst: rev.setdefault((ed, str(num)), []).append(cid)
 for ed in NPAGES:
     for x in blocks[ed]:
-        key = (ed, str(x['num'])); first = re.sub(r'^\s*20\d\d\s*년\s*교수님[^\n]*\n', '', x['text']).split('\n')[0][:70]
+        key = (ed, str(x.get('key', x['num']))); first = re.sub(r'^\s*20\d\d\s*년\s*교수님[^\n]*\n', '', x['text']).split('\n')[0][:70]
         if key in idmap: st, to = 'card', [idmap[key]]
         elif key in rev: st, to = 'dup', rev[key]
         else: st, to = 'ref', []
@@ -151,7 +179,7 @@ def ment(ed, pages):
     for p in pages:
         s = P.rd(f'{BASE}{SUB}_20{ed}/{p}.txt'); t += '\n'.join(l for l in s.split('\n') if '무단인쇄' not in l and l.strip()) + '\n'
     return t.strip()
-MENT = {'25': ment('25', [1, 2]), '24': ment('24', [1, 2, 3]), '23': ment('23', [1, 2])}
+MENT = {'26': ment('26', [1, 2]), '25': ment('25', [1, 2]), '24': ment('24', [1, 2, 3]), '23': ment('23', [1, 2])}
 if __name__ == '__main__':
     print('Q', len(Q), [(q['id'], q['prof'], q['yrs'], q['jbtag'], q['tal']) for q in Q])
     print('ledger', {s_: sum(1 for r in LEDGER if r['st'] == s_) for s_ in ('card', 'dup', 'ref')}, [ (r['ed'], r['num'], r['first'][:20]) for r in LEDGER if r['st'] == 'ref'])

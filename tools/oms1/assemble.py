@@ -6,7 +6,7 @@ sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 import parse_jb
 
 BASE = J.JBX
-NPAGES = {'25': 16, '24': 20, '23': 28}
+NPAGES = {'26': 16, '25': 16, '24': 20, '23': 28}   # 26판 = 2026 3Q JB(2025년 시험까지 — 학습부가 2026년에 만든 판)
 LEC = J.work('OMS1', 'lec') + '/'
 import subject as _S
 LECMAP = _S.LECMAP
@@ -81,6 +81,14 @@ OTHER = {  # canonical -> [(ed, sec, num)]
  'J1': [('23','정필훈 기출',1)], 'J2': [('23','정필훈 기출',3)], 'J3': [('23','정필훈 기출',8)], 'J4': [('23','정필훈 기출',10),('23','정필훈 기출',2)],
  'J5': [('23','정필훈 기출',18)], 'J6': [('23','정필훈 기출',20)], 'J7': [('23','정필훈 기출',21)], 'J8': [('23','정필훈 기출',23)],
 }
+# 26판(10-15 JB26): 2025-3Q 칸에 다시 실린 기존 문항(같은 문제 — 괄호 (25,…)) → 맨 앞에 · 24·23·22 칸 블록(25판과 글자 같음) → 같은 번호 Q의 끝에
+OTHER26 = {'Q01': 1, 'Q03': 2, 'Q39': 3, 'S20-3': 4, 'Q26': 5, 'Q12': 7, 'S20-7': 8, 'Q16': 9, 'Q23': 12, 'Q22': 14,
+           'Q35': 18, 'Q32': 19, 'Q31': 20, 'Q17': 21, 'Q24': 22, 'Q37': 23}
+for cid, num in OTHER26.items(): OTHER.setdefault(cid, []).insert(0, ('26', '2025-3Q', num))
+for x in blocks['26']:
+    if x['sec'] != '2025-3Q': OTHER.setdefault('Q%02d' % x['num'], []).append(('26', x['sec'], x['num']))
+# 26판 2025-3Q 칸의 새 문항(이전 판에 없던 25년 시험 문항) — 새 id Q50~(jb_lock에 없는 번호 · 기존 id 재사용·당기기 금지)
+NEW26 = {6: 'Q50', 10: 'Q51', 11: 'Q52', 13: 'Q53', 15: 'Q54', 16: 'Q55', 17: 'Q56'}
 CROPS = {'Q35': {'q': ['Q35_q']}, 'J3': {'q': ['J3_q']}, 'J4': {'a': ['J4_a1', 'J4_a2']}, 'J6': {'q': ['J6_q']}, 'J7': {'q': ['J7_q']}}
 
 used = set()
@@ -97,6 +105,8 @@ def add(cid, ed, x, tier, prof, label):
               'tier': tier, 'prof': prof, 'src': label, 'short': short[:52], 'jbtag': ' '.join(raw),
               'base': sorted(base, reverse=True), 'secy': sy, 'tal': bool(re.search(r'\(탈\)', head))})
 
+for num, cid in NEW26.items():
+    x = find('26', '2025-3Q', num); add(cid, '26', x, 'A', x['prof'], f"JB 26판 · {x['sec']} {x['num']}번")
 for x in blocks['25']:
     add('Q%02d' % x['num'], '25', x, 'A', x['prof'], f"JB 25판 · {x['sec']} {x['num']}번")
 for num in (2, 3, 4, 5, 9):
@@ -158,6 +168,9 @@ for line in open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'an
     elif cur is not None and len(line) > 2 and line[1] == ':' and line[0] in 'AMNK':
         collect(line); cur[line[0]].append(cite_html(line[2:].strip()))
 for q in Q:
+    for (ed_, sec_, num_) in OTHER.get(q['id'], []):   # 26판 같은 문제의 괄호·연도 칸(2025-3Q → 25)도 출제연도에(CLAUDE.md '다른 연도 칸의 같은 문제')
+        x_ = find(ed_, sec_, num_) if ed_ == '26' else None
+        if x_: q['base'] = sorted(set(q['base']) | tag_years(x_['text'])[0] | ({sec_year(sec_)} if sec_year(sec_) else set()), reverse=True)
     a = ANN.get(q['id'])
     if a:
         q.update({'v': a['v'], 'yrsnote': a['yrsnote'], 'rel': a['rel'], 'pair': a['pair'],
@@ -179,7 +192,7 @@ for q in Q:
             if m: lab = m.group(1)
     q['lab24'] = lab
     q['crops'] = CROPS.get(q['id'], {})
-    q['fig'] = bool(re.search(r'그림|(?<!경)사진|도해', ' '.join(q['text'].split('\n')[:4]))) and q['id'] not in ('S20-4',)   # S20-4 = '방사선 사진 종류'를 묻는 글 문항(그림 없음 — 10-03 맥 확인)
+    q['fig'] = bool(re.search(r'그림|(?<!경)사진|도해', ' '.join(q['text'].split('\n')[:4]))) and q['id'] not in ('S20-4', 'Q50')   # S20-4 = '방사선 사진 종류'를 묻는 글 문항(그림 없음 — 10-03 맥 확인) · Q50 = '두부방사선규격사진' 글 문항(26판 4쪽 — 그림 없음)
 
 # ---------- 4. lectures ----------
 LECT = []
@@ -286,7 +299,7 @@ idmap = {(q['ed'], q['sec'], str(q['num'])): q['id'] for q in Q}
 rev = {}
 for cid, lst in OTHER.items():
     for (ed, sec, num) in lst: rev.setdefault((ed, sec, str(num)), []).append(cid)
-for ed in ('25', '24', '23'):
+for ed in ('26', '25', '24', '23'):
     for x in blocks[ed]:
         key = (ed, x['sec'], str(x['num']))
         first = x['text'].split('\n')[0][:70]
@@ -308,5 +321,5 @@ def ment(ed, pages):
         s = '\n'.join(l for l in s.split('\n') if '무단인쇄' not in l and l.strip())
         t += s + '\n'
     return t.strip()
-MENT = {'25': ment('25', [1, 2]), '24': ment('24', [1, 2]), '23': ment('23', [1, 2])}
+MENT = {'26': ment('26', [1, 2]), '25': ment('25', [1, 2]), '24': ment('24', [1, 2]), '23': ment('23', [1, 2])}
 

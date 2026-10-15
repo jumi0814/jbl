@@ -5,15 +5,20 @@ import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dir
 #  - 24판 2023 칸에 '4.'가 두 번(두 번째 = 25판 2023 칸 6번 용어 문제), 2022 칸에 '6.'이 두 번(두 번째 = 치관 폭/길이 비율) → 두 번째는 num '4b'·'6b'
 #  - 해설 안의 번호 줄(25판 2024 칸 11번 해설의 '3. Tooth axis' … '12. Incisal edge configuration' · '13. Lower lipline', 23번 해설 '1.~6.')은 문항이 아님
 #  - 각 판 끝의 'Wider space를 좁게 보이게 …' 대비표(JB 해설이 'JB맨뒤에 표로 정리'라고 가리킴)는 블록 num '표'(칸 '부록')
+#  - 26판(10-15 추가 · 2025·2024·2023 칸, 2022 칸·끝 대비표 없음): 쪽 머리가 '심미치과학' + 쪽 번호(옛 판은 '※…※' + 쪽 번호) → 26판만 첫 줄 '심미치과학'을 뺌 ·
+#    2025 칸 3번 보기가 '1. proportionality … 4. embrassure 5. facets'(점 번호) → NOTQ_ED['26']로 문항이 아님
 import re, json
 BASE = J.JBX
-NPAGES = {'25': 16, '24': 21, '23': 20}
+NPAGES = {'26': 19, '25': 16, '24': 21, '23': 20}
+HEAD_TITLE = {'26': '심미치과학'}   # 26판 쪽 첫 줄(과목명 머리) — 그 뒤 쪽 번호 줄은 아래 first 규칙이 뺌
 def rd(p): return open(p, 'rb').read().decode('utf-8', 'replace').replace('\r', '').replace('\x02', '')
 def load(ed, n):
     lines = []
     for i in range(1, n + 1):
         t = rd(f'{BASE}ESTH_20{ed}/{i}.txt'); first = True
-        for l in t.split('\n'):
+        ls = t.split('\n')
+        if ed in HEAD_TITLE and ls and ls[0].strip() == HEAD_TITLE[ed]: ls = ls[1:]
+        for l in ls:
             if '무단인쇄' in l: continue
             if first and re.fullmatch(r'\s*\d{1,3}\s*', l): first = False; continue
             if l.strip(): first = False
@@ -23,6 +28,7 @@ SEC = re.compile(r'^\s*(20\d\d)\s*-\s*3Q\s*$')
 QRE = re.compile(r'^★?\s*(\d{1,2})(?:\s*-\s*(\d{1,2}))?\s*[.．]\s*(\S.*)?$')
 NOTQ = {'3. Tooth axis', '4. Zenith of the gingiva contour', '5. Balance of gingival levels', '6. level of interdental contact',
         '12. Incisal edge configuration', '13. Lower lipline'}
+NOTQ_ED = {'26': {'4. embrassure', '5. facets'}}   # 판본별 — 보기 줄이 '번호. '꼴인 것(26판 2025 칸 3번)
 DUP = {('24', '2023-3Q', 4): '4b', ('24', '2022-3Q', 6): '6b'}   # 같은 번호가 두 번 — 두 번째 문항의 num
 TABLE = re.compile(r'^(\*\s*아래는 예전부터|Wider space를 좁게 보이게)')
 def parse(ed, n=None):
@@ -36,7 +42,7 @@ def parse(ed, n=None):
             cur = {'ed': ed, 'sec': '부록', 'prof': '', 'num': '표', 'pg': pg, 'pg2': pg, 'lines': [l]}; blocks.append(cur); sec = '부록'; continue
         if s.startswith('수고하셨습니다'): cur = None; continue
         mq = QRE.match(s)
-        if mq and sec != '부록' and s not in NOTQ:
+        if mq and sec != '부록' and s not in NOTQ and s not in NOTQ_ED.get(ed, ()):
             a = int(mq.group(1)); b = int(mq.group(2)) if mq.group(2) else None
             num = None
             if a > last and a <= last + 6: num = f'{a}-{b}' if b else str(a)
@@ -51,7 +57,7 @@ def parse(ed, n=None):
     return blocks
 if __name__ == '__main__':
     allb = {}
-    for ed in ('25', '24', '23'):
+    for ed in ('26', '25', '24', '23'):
         b = parse(ed); allb[ed] = b
         print(f'=== {ed}판: {len(b)} blocks')
         for x in b:
