@@ -530,61 +530,78 @@ R: 주의(필기) | 너무 세게 잠그면 인상체 내에서 돌아감 — �
 R: 종류 | Hex/Non-hex | Hex/Non-hex · Bite impression coping({n:위아래 한번에}) | Hex/Non-hex · {n:메탈/peek/혼합}
 N: 기출 형식 = 그림을 보고 이름 쓰기 — 23년 11번 구멍 뚫린 개인 트레이 사진 → Pick up impression / 23·24년 구강 스캔 그림 → Scan body. 헷갈리는 짝: open = pick-up = direct / closed = transfer = indirect.
 
-#TBL 상부 보철물 연결 방식 | k=PART | src=[[PART:4]] [[PART:5]] [[PART:6]] [[PART:6]] [[PART:8]]
-H: 방식 | 보철물 ↔ 지대주 | 지대주 ↔ 임플란트 | 특징(필기)
-R: {r:나사 유지형} 2-piece (Between restoration and abutment) | {r:gold screw 또는 prosthetic screw} | abutment screw | 전통적인 나사 유지형 — "나사에 나사"
-R: {r:나사 유지형} 1-piece (Between restoration and implant itself) | 한 덩어리({n:왁스업 → 캐스팅}) | abutment screw 하나로 {r:직접} | = "{r:UCLA abutment}"(colloquially)
-R: {r:시멘트 유지형} (cement-retained) | {r:시멘트} | abutment screw | 시멘트 유지형도 보시게 될 것
-R: {r:SCRP} (screw- and cement-retained prosthesis) | {r:시멘트} + 보철물의 screw hole | abutment screw — {n:붙인 뒤 한 번에 체결} | 요즘 많이 봄 · 지대주는 cement type과 동일 · 다 연결하면 나사유지형과 차이가 없어지는 꼴 · multi-unit에서 뺄 때 안 빠지기도
-N: UCLA vs SCRP — 둘 다 나사 하나로 한 번에 연결되지만 UCLA는 abutment-crown을 한 덩어리로 주조, SCRP는 cement type 지대주에 보철물을 시멘트로 붙이고 구멍으로 체결. [[PART:6]] [[PART:6]]
+#TBL 상부 보철물 연결 방식 | k=PART | src=[[PART:4]] [[PART:5]] [[PART:6]] [[PART:8]]
+H: 방식 | 보철물 ↔ 지대주 | 지대주 ↔ 임플란트 | 특징(필기) | 26 유지 방식(p.4)
+R: {r:나사 유지형} 2-piece (Between restoration and abutment) | {r:gold screw 또는 prosthetic screw} | abutment screw | 전통적인 나사 유지형 — "나사에 나사" | {u:{r:Abutment-level}: restoration screw-retained to an intermediate abutment} · {u:MUA · Esthetic Abutment(+ HINIS · DR)} {jb:P09}
+R: {r:나사 유지형} 1-piece (Between restoration and implant itself) | 한 덩어리({n:왁스업 → 캐스팅}) | abutment screw 하나로 {r:직접} | = "{r:UCLA abutment}"(colloquially) | {u:{r:Implant-level}: restoration screw-retained directly to the implant — UCLA-type restoration} {jb:P09}
+R: {u:{r:나사 유지형} Ti-base–bonded restoration} | {n:지르코니아를 Ti base에 붙여 소결}(26 필기) | {u:directly to the implant} | 26 필기: 지르코니아는 한 덩어리로 못 만듦 → 이 전체를 탈착 | {u:{r:Implant-level} — Ti-base–bonded restoration} {jb:P09}
+R: {r:시멘트 유지형} (cement-retained) | {r:시멘트} | abutment screw | 시멘트 유지형도 보시게 될 것 | {u:Restoration cemented to a screw-retained abutment}
+R: {r:SCRP} (screw- and cement-retained prosthesis) | {r:시멘트} + 보철물의 screw hole | abutment screw — {n:붙인 뒤 한 번에 체결} | 요즘 많이 봄 · 지대주는 cement type과 동일 · 다 연결하면 나사유지형과 차이가 없어지는 꼴 · multi-unit에서 뺄 때 안 빠지기도 | {u:Restoration cemented to the abutment} / {u:The entire restoration–abutment complex is {r:screw-retrievable} as a single unit}
+N: UCLA vs SCRP — 둘 다 나사 하나로 한 번에 연결되지만 UCLA는 abutment-crown을 한 덩어리로 주조, SCRP는 cement type 지대주에 보철물을 시멘트로 붙이고 구멍으로 체결. [[PART:6]]
+N: 행 이름의 Between restoration and abutment / implant itself는 25 자료 문구(25 자료 — 26에서 빠짐) — 26은 Abutment-level / Implant-level(25년 9번 답 문구 그대로) {jb:P09} [[PART5:4]] [[PART:4]]
 
-#TBL 어버트먼트 종류 — 만드는 방식과 용도 | k=PART | src=[[PART:17]] [[PART:19]] [[PART:20]] [[PART:22]] [[PART:23]] [[PART:24]] [[PART:26]] [[PART:27]] [[PART:28]] [[PART:29]]
+#TBL 어버트먼트 종류 — 만드는 방식과 용도 | k=PART | src=[[PART:17]] [[PART:18]] [[PART:19]] [[PART:20]] [[PART:22]] [[PART:23]] [[PART:24]] [[PART:26]] [[PART:27]] [[PART:28]] [[PART:29]]
 H: 지대주 | 만드는 방식·구조 | 예·쓰는 상황 | 필기 포인트
 R: {r:Combi abutment} | {n:지대주+나사 원바디 · hex 없음(안에서 돌아야 하니까)} | abutment-level 인상(closed tray) | {n:흔들려 와도 구멍이 없어 두꺼운 보철물을 갈아야}
 R: {r:Dual abutment} | Hex/Non-hex · 나사 따로 | abutment-level 인상(closed tray) | {n:non-hex는 모든 각 가능 · 체결이 어려워 교수님 비선호}
-R: {r:Ready-made}(기성) | 기성품 그대로 · hex/non-hex | {n:Osstem Transfer · Angled Abutment} | {n:hex는 들어가면 안 흔들림 · 원바디가 한 번씩 나타남}
+R: {r:Ready-made}(기성) | 기성품 그대로 · hex/non-hex · {u:26 이름 Prefabricated abutment}(p.22) | {n:Osstem Transfer · Angled Abutment} {jb:P08} | {n:hex는 들어가면 안 흔들림 · 원바디가 한 번씩 나타남}
+R: {u:{r:Rigid Abutment}} | 나사와 몸통이 한 덩어리(One-piece · solid screw-in) — {n:non-hex 구조}(26 필기) | {u:Osstem 카탈로그 왼쪽 새 그림}(p.19) · p.22 왼쪽 위 도면(solid type) {jb:P08} | {n:one piece → non-engaging · 'rigid' 용어는 중요하지 않음 · one body면 보철물 제거 때 구멍을 파도파도 없을 수 있음}(26 필기)
 R: {r:Custom} | {n:판봉 밀링 — 아래는 임플란트 규격 호환, 위만 깎음} | {n:OneFit Abutment(Ti / TiN coating)} | {n:요즘 제일 많이 봄}
 R: {r:UCLA}(cast) | {n:왁스업 → 캐스팅(골드 · 비귀금속) → 포세린 빌드업} | 1-piece screw-retained abutment-crown | {n:Osstem GoldCast · NP-Cast = UCLA type}
 R: {r:Link} | {n:체결부만 기성} | {n:잇몸 통과 부위도 보철물이 담당} | {n:우리나라보다 유럽에서 많이 씀}
 R: {r:Temporary} | {n:레진으로 채워 기계적 유지} · Ti screw | {n:temp shell 리라이닝 → temp crown} | {n:실습 때 써봄}
 R: {r:Multi-unit} | {n:연결부를 잇몸 레벨 이상으로} · straight/angled(20°) | {n:multiple case · 위에 crown·fixed hybrid} | {n:전용 드라이버로 통째 체결 · 위는 prosthetic screw}
-R: {r:Screw-retained 2-piece} | {n:지대주 outer driver · abutment screw 안쪽 홈에 prosthetic screw} | {n:전통적 나사 유지형} | {n:복잡해 많이 안 하지만 multi-unit을 하려면 알아야}
-R: {r:Convertible} | {r:Internal type → External-like structure} | {n:internal을 external처럼 쓰고 싶을 때} | {n:outer driver로 체결 → prosthetic screw로 보철 연결}
-N: "이름은 너무 신경쓰지 마세요! 회사마다 달라요" [[PART:19]] — 이름보다 만드는 방식(기성·밀링·주조·임시)과 쓰임으로 기억.
+R: {r:Screw-retained 2-piece} | {n:지대주 outer driver · abutment screw 안쪽 홈에 prosthetic screw} · 26 제목 {u:Abutment-level screw-retained prosthesis}(p.28) | {n:전통적 나사 유지형} | {n:복잡해 많이 안 하지만 multi-unit을 하려면 알아야}
+R: {r:Convertible} | {r:Internal type → External-like structure}(25 문구 — 26에서 빠짐) / {u:26: Internal implant connection → {r:external-type prosthetic platform}}(p.29) | {n:internal을 external처럼 쓰고 싶을 때} | {n:outer driver로 체결 → prosthetic screw로 보철 연결}
+N: 25 필기 "이름은 너무 신경쓰지 마세요! 회사마다 달라요" [[PART5:20]] — 이름보다 만드는 방식(기성·밀링·주조·임시)과 쓰임으로 기억.
 
 #TBL 인상 수준 — Implant-level vs Abutment-level | k=PART | src=[[PART:12]] [[PART:13]] [[PART:17]]
 H: 항목 | Implant(fixture)-level impression | Abutment-level impression
-R: 무엇 위에서 뜨나 | 임플란트에 impression coping을 끼워서 | 임플란트에 지대주(Combi · Dual abutment)를 올린 상태에서
+R: 무엇 위에서 뜨나 | 임플란트에 impression coping을 끼워서 | 임플란트에 지대주(Combi · Dual abutment)를 올린 상태에서 / {u:Prefabricated or custom abutment in place → VPS or digital impression}(p.17)
 R: 트레이 | {r:Open tray}(pick-up) 또는 {r:Closed tray}(transfer) | {r:Closed Tray Technique}
-R: 부품 | Fixture Pick-up · Transfer · Bite Impression Coping + {r:Fixture Lab Analog} | {r:Combi Abutment}({n:원바디}) · {r:Dual Abutment}(Hex / Non-hex)
+R: 부품 | Fixture Pick-up · Transfer · Bite Impression Coping + {r:Fixture Lab Analog} | {r:Combi Abutment}({n:원바디}) · {r:Dual Abutment}(Hex / Non-hex) · {u:Custom Abutment}(26 새 그림)
 R: 직경(Dentium) | Ø4.0 / Ø4.5 / Ø5.5 / Ø6.5 | Ø4.5 / Ø5.5 / Ø6.5
 N: 기출({jb:R11} {jb:Q08})은 모두 implant-level 인상과 디지털 인상 쪽 — abutment-level은 미출제.
 
-#TBL PART 전체정리 — 부품·연결 방식·인상의 종류·명칭·용도 | k=PART | sum=1 | src=[[PART:2]] [[PART:3]] [[PART:4]] [[PART:6]] [[PART:6]] [[PART:9]] [[PART:10]] [[PART:11]] [[PART:12]] [[PART:14]] [[PART:15]] [[PART:17]] [[PART:19]] [[PART:20]] [[PART:22]] [[PART:23]] [[PART:24]] [[PART:26]] [[PART:27]] [[PART:28]] [[PART:29]] [[PART:30]]
+#TBL Abutment engagement — Engaging vs Non-engaging | k=PART | src=[[PART:18]]
+H: 항목 | {r:Engaging} | {r:Non-engaging}
+R: {u:rotational index} | Engages the implant's {r:rotational index}(회전 방지 구조에 맞물림) | Does not engage the implant's rotational index
+R: {u:Two-piece (separate-screw) type} | {r:applicable} | {r:applicable}
+R: {u:One-piece (solid screw-in) type} | generally {r:not applicable} | {r:applicable}
+R: {u:장점} | Provides {r:anti-rotation} and defined rotational positioning | Allows {r:rotational freedom}, which may facilitate seating and accommodate minor positional or fabrication discrepancies / Depending on connection design, may provide a broader, more continuous contact surface by bypassing the rotational index
+R: {u:한계} | — | In {r:single-unit} restorations, precise repositioning may be difficult without a positioning/indexing aid
+N: 26 새 쪽(p.18) — 그림 Rigid Abutment · Transfer Abutment(Hex · Non-hex) {jb:P08} · 26 필기 '나의 이해' "Engaging은 결국 hex가 있어서 abutment랑 fixture이 꼭 맞물리는 상태임" · "rigid abutment = one piece abutment => non-engaging 구조로 non-hex일 것!!" — hex/non-hex 쓰임은 lec 'Hex vs Non-hex' 표 · '어버트먼트 종류' 표 Dual·Rigid 행. [[PART:18]]
+N: 변형 대비: one-piece(solid screw-in)는 Engaging에 generally not applicable → one-piece Rigid = non-engaging / Two-piece는 둘 다 applicable / Non-engaging의 한계 = single-unit에서 positioning/indexing aid 없이 정확한 재위치 어려움. [[PART:18]]
+
+#TBL PART 전체정리 — 부품·연결 방식·인상의 종류·명칭·용도 | k=PART | sum=1 | src=[[PART:2]] [[PART:3]] [[PART:4]] [[PART:6]] [[PART:9]] [[PART:10]] [[PART:11]] [[PART:12]] [[PART:14]] [[PART:15]] [[PART:17]] [[PART:18]] [[PART:19]] [[PART:20]] [[PART:22]] [[PART:23]] [[PART:24]] [[PART:26]] [[PART:27]] [[PART:28]] [[PART:29]] [[PART:30]]
 H: 부품·방식 | 정의·구조 | 용도·언제 | 체결·연결 | 필기 포인트 | ★ 시험
 R: **임플란트 시스템 3부분** | 임플란트({n:옛 fixture}) · 지대주({n:transmucosal}) · 상부 보철물({n:suprastructure}) | 아래에서 위로 쌓는 구조 | {n:지대주는 abutment screw로 임플란트에} | {n:'고정체(fixture)'라는 용어는 쓰지 말자고 함} | —
-R: **Bone-level·Tissue-level** | bone-level = {r:External Hex}·{r:Internal Hex} · tissue-level = {r:Internal Octa} | 옛 대표: {n:Branemark(bone-level external)·Straumann(tissue-level)} | 해당 없음 | {n:지금은 회사별 구분이 의미 없음} · 장단점은 조영단 강의 p.23-24 | {jb:Q10} 24년(조영단 강의) internal 특징
-R: **나사 유지형 2-piece** | {n:지대주 + 상부 보철물이 따로} | {n:전통적 screw-retained} | 보철물 → {r:prosthetic(gold) screw} → 지대주 → abutment screw → 임플란트 | {n:"나사에 나사"} | —
-R: **UCLA abutment**(1-piece) | abutment-crown 한 덩어리 — {n:왁스업 → 캐스팅 → 포세린 빌드업} | 임플란트에 {r:직접} 연결하는 나사 유지형 | {n:지대주 나사 하나로 한 번에} | {n:Osstem {r:GoldCast}(골드)·NP-Cast(비귀금속)가 UCLA type} | —
-R: **시멘트 유지형** | {n:상부 구조물을 지대주에 시멘트로 붙임} | {n:앞으로 보게 될 방식} | abutment screw로 지대주 → 보철물은 시멘트 | cement type 지대주 {n:"많이 보는 거죠?"} | —
-R: **SCRP** | screw- and cement-retained — 보철물을 지대주에 시멘트 + {r:screw hole} | {n:요즘 많이 봄} | {n:구멍 뚫어 붙인 뒤 한 번에 체결 · 지대주는 cement type과 동일} | {n:multiple case에선 뺄 때 안 빠지기도} | —
-R: **전악 고정성 2종** | {r:implant-supported fixed}({n:세 피스로 나눠 고정}) · {r:fixed hybrid}({n:치은 포함 덴처 형태}) | 전악 수복 | 임플란트에 {r:직접}(screw 1) 또는 {r:multi-unit abutment} 경유(screw 2) | {n:임플란트가 평행하지 않거나 3차원적으로 꼬이면 한 덩어리가 안 들어감} | —
-R: **Healing abutment** | {n:수술 후 잇몸을 뚫고 바깥으로 연결} | 최종 abutment 전 {r:치은 개방 유지}·연조직 치유 | {r:1.2 Hex driver} · 윗면에 직경·높이 표시 | {n:{r:직경·높이} 선택이 중요(잘못 고르면 잇몸 몰딩·통증) · 힐링 겸 스캔바디} | {jb:Q13} 24년(조영단 강의) 역할 문장 선지
+R: **Bone-level·Tissue-level** | bone-level = {r:External Hex}·{r:Internal Hex} · tissue-level = {r:Internal Octa}(25 그림 이름 — 26에서 빠짐) / {u:26 bone-level = Internal conical · Internal butt-joint · External butt-joint} / {u:26 tissue-level = Internal conical · External conical}(Hex-indexed · Octa-indexed) | 옛 대표: {n:Branemark(bone-level external)·Straumann(tissue-level)} | 해당 없음 | {n:지금은 회사별 구분이 의미 없음} · 장단점은 조영단 강의 p.24-25 | {jb:Q10} 24년(조영단 강의) internal 특징
+R: **나사 유지형 2-piece** | {n:지대주 + 상부 보철물이 따로} / {u:26 Abutment-level: restoration screw-retained to an intermediate abutment}(MUA · Esthetic Abutment) | {n:전통적 screw-retained} | 보철물 → {r:prosthetic(gold) screw} → 지대주 → abutment screw → 임플란트 | {n:"나사에 나사"} | {jb:P09} 25년 두 형태 서술 — Abutment level
+R: **UCLA abutment**(1-piece) | abutment-crown 한 덩어리 — {n:왁스업 → 캐스팅 → 포세린 빌드업} / {u:26 Implant-level: UCLA-type restoration} | 임플란트에 {r:직접} 연결하는 나사 유지형 | {n:지대주 나사 하나로 한 번에} | {n:Osstem {r:GoldCast}(골드)·NP-Cast(비귀금속)가 UCLA type} | {jb:P09} 25년 두 형태 서술 — Implant level
+R: {u:**Ti-base–bonded restoration**} | {u:Implant-level — restoration screw-retained directly to the implant} | {n:지르코니아는 한 덩어리로 못 만듦}(26 필기) | {n:바깥에서 Ti base에 지르코니아를 붙여 소결 → 이 전체를 탈착}(26 필기) | {n:abutment + prosthesis 한 덩어리 → implant level에만 나사}(26 필기 — UCLA·Ti-base) | {jb:P09} Implant level의 예
+R: **시멘트 유지형** | {n:상부 구조물을 지대주에 시멘트로 붙임} / {u:26: Restoration cemented to a screw-retained abutment} | {n:앞으로 보게 될 방식} | abutment screw로 지대주 → 보철물은 시멘트 | cement type 지대주 {n:"많이 보는 거죠?"} | —
+R: **SCRP** | screw- and cement-retained — 보철물을 지대주에 시멘트 + {r:screw hole} / {u:26: The entire restoration–abutment complex is screw-retrievable as a single unit} | {n:요즘 많이 봄} | {n:구멍 뚫어 붙인 뒤 한 번에 체결 · 지대주는 cement type과 동일} | {n:multiple case에선 뺄 때 안 빠지기도} | —
+R: **전악 고정성 2종** | {r:implant-supported fixed}({n:세 피스로 나눠 고정}) · {r:fixed hybrid}({n:치은 포함 덴처 형태}) | 전악 수복 | 임플란트에 {r:직접}(screw 1) 또는 {r:multi-unit abutment} 경유(screw 2) / {u:26 Prosthesis connection: Direct-to-implant · Abutment-level using MUAs} | {n:임플란트가 평행하지 않거나 3차원적으로 꼬이면 한 덩어리가 안 들어감} | —
+R: **Healing abutment** | {n:수술 후 잇몸을 뚫고 바깥으로 연결} | 최종 abutment 전 {r:치은 개방 유지}·연조직 치유 | {r:1.2 Hex driver} · 윗면에 직경·높이 표시({r:Φ5} = Diameter · {r:5H} = Height) | {n:{r:직경·높이} 선택이 중요(잘못 고르면 잇몸 몰딩·통증) · 힐링 겸 스캔바디} | {jb:Q13} 24년(조영단 강의) 역할 문장 선지 / {jb:P10} 25년 윗면 A·B = Diameter · Height
 R: **Pick-up coping** | {r:Open tray}(Direct) — 트레이에 구멍 | {r:Complicated case} | 나사를 풀고 트레이를 떼면 코핑이 {r:인상체에 딸려 나옴} → analog 연결 | {n:너무 세게 잠그면 인상체 안에서 돌아감} | {jb:R11} 23년 구멍 뚫린 트레이 = Pick up impression
 R: **Transfer coping** | {r:Closed tray}(Indirect) — 막힌 트레이 | {r:Simple case} | 코핑이 {r:입에 남음} → 풀어 analog 달고 인상체에 {r:다시 끼움} | {n:저항감이 있어 덜 끼우면 보철물이 높게} | {jb:R11} 23년 오답 짝(closed = transfer)
 R: **Lab analog** | Fixture Lab Analog | {n:모델상에서 임플란트를 재현} | 인상체 속 코핑에 연결 → {n:gum} → 스톤 | {n:모델엔 약간의 탄성이 필요해 gum을 먼저 쏨} | —
 R: **Scan body** | {r:digital impression}용 · Hex/Non-hex · {n:메탈·peek} | 구강 스캔 때 {r:fixture에 끼움} | {n:안 꽂고 1번 + 꽂고 1번 → 정합} | {n:peek 연결부는 세게 돌리면 뭉개지며 계속 들어가는 느낌} | {jb:Q08} 24·23년 그림 → Scan body
-R: **Abutment-level 인상** | {r:Closed tray} · Combi({n:one-body}) vs Dual(hex/non-hex) | 지대주를 먼저 올린 뒤 인상 | {n:Combi는 hex 없음·나사 구멍도 없음} | {n:원바디가 흔들리면 두꺼운 보철물을 갈아야} | —
+R: **Abutment-level 인상** | {r:Closed tray} · Combi({n:one-body}) vs Dual(hex/non-hex) / {u:Prefabricated or custom abutment in place → VPS or digital impression} | 지대주를 먼저 올린 뒤 인상 | {n:Combi는 hex 없음·나사 구멍도 없음} | {n:원바디가 흔들리면 두꺼운 보철물을 갈아야} | —
+R: {u:**Abutment engagement**} | {u:Engaging = engages the implant's {r:rotational index} → {r:anti-rotation}} / {u:Non-engaging = {r:rotational freedom}} | {u:Two-piece = 둘 다 applicable} / {u:One-piece(solid screw-in) = Engaging generally {r:not applicable} · Non-engaging applicable} | 해당 없음 | {n:rigid abutment = one piece → non-engaging 구조로 non-hex}(26 필기) | —
 R: **Hex vs Non-hex** | {n:hex = 딱 맞는 위치에서만 · non-hex = 모든 각 가능} | {n:multiple case에서 뺐다 꼈다 할 때 non-hex} | 해당 없음 | {n:non-hex는 체결이 어려움 → 교수님 비선호 · hex는 안 흔들림} | —
-R: **기성**(Ready-made) | 공장 기성품 — {n:Osstem Transfer·Angled} / Dentium Dual·Angled(15°/25°) | 일반 수복 | EbonyGold screw | {n:one-body가 한 번씩 나타남 — 알아둘 것} | —
+R: **기성**(Ready-made) | 공장 기성품 — {n:Osstem Transfer·Angled} / Dentium Dual·Angled(15°/25°) / {u:26 이름 Prefabricated abutment} | 일반 수복 | EbonyGold screw | {n:one-body가 한 번씩 나타남 — 알아둘 것} | {jb:P08} 25년 그림 → Rigid abutment / Transfer Abutment
+R: {u:**Rigid Abutment**} | 나사와 몸통이 한 덩어리(One-piece · solid screw-in) — {n:non-hex 구조}(26 필기) | {u:Osstem 카탈로그 왼쪽 새 그림}(p.19) · p.22 왼쪽 위 도면 | {n:abutment 전체를 돌리면서 맞물림}(26 필기) | {n:'rigid' 용어는 중요하지 않음 · one body면 보철물 제거 때 구멍을 파도파도 없을 수 있음}(26 필기) | {jb:P08} 25년 문제 그림 = Rigid abutment
 R: **Custom**(밀링) | {n:판봉 밀링 — 아래는 임플란트 규격 호환, 위만 깎음} | {n:요즘 제일 많이 봄} | {n:Osstem {r:OneFit}(Ti·TiN coating)} | {n:호환되는 부품을 많이 이용} | —
 R: **Link abutment** | {n:체결부만 기성} | {n:유럽에서 많이 씀} | {n:잇몸 통과부도 보철물이 담당} | {n:우리나라에선 많이 안 씀} | —
 R: **Temporary abutment** | {n:레진으로 채워 기계적 유지} | {n:temp crown(temp shell 리라이닝)} | {r:Ti screw} | Dentium: Ti-Temporary·Plastic Temporary | —
-R: **Multi-unit abutment** | {n:깊은 연결부를 잇몸 레벨 이상으로 끌어올림} | {n:multiple case·전악} | {n:전용 드라이버로 통째 → 위는 prosthetic screw} | straight = 높이↑ · angled({r:20°}) = 높이↑ + {r:각도 보정} | —
-R: **Screw-retained 2-piece 지대주** | {n:지대주에 상부 보철물이 나사로 유지} | {n:전통적 나사 유지형} | {n:지대주 outer driver · 보철물 prosthetic screw → abutment screw 안쪽 홈} | {n:"복잡하죠?" — multi-unit abutment를 하려면 알아야} | —
-R: **Convertible abutment** | {r:Internal → External-like structure} | {n:internal을 external처럼 쓰고 싶을 때} | {n:outer driver + prosthetic screw} | {n:완전히 바뀌는 건 아님} | —
+R: **Multi-unit abutment** | {n:깊은 연결부를 잇몸 레벨 이상으로 끌어올림} | {n:multiple case·전악} / {u:Functions of MUAs: Raise and level · visibility and seating · Correct implant angulation · screw-access hole position} | {n:전용 드라이버로 통째 → 위는 prosthetic screw} | straight = 높이↑ · angled({r:20°}) = 높이↑ + {r:각도 보정} | —
+R: **Screw-retained 2-piece 지대주** | {n:지대주에 상부 보철물이 나사로 유지} / 26 제목 {u:Abutment-level screw-retained prosthesis} | {n:전통적 나사 유지형} | {n:지대주 outer driver · 보철물 prosthetic screw → abutment screw 안쪽 홈} | {n:"복잡하죠?" — multi-unit abutment를 하려면 알아야} | —
+R: **Convertible abutment** | {r:Internal → External-like structure}(25 문구 — 26에서 빠짐) / {u:26: Internal implant connection → external-type prosthetic platform} | {n:internal을 external처럼 쓰고 싶을 때} | {n:outer driver + prosthetic screw} | {n:완전히 바뀌는 건 아님} | —
 R: **Overdenture attachment** | {n:ball · locator · 자석 · bar} | 임플란트 위에서 덴처를 유지 | {n:ball도 전용 outer driver} | {n:locator가 요즘 가장 많이 · 종류가 별로 없음} | —
-N: 이름은 회사마다 다르다("이름은 너무 신경쓰지 마세요") — 만드는 방식(기성·밀링·주조·임시)과 쓰임으로 묶어 기억. 기출({jb:Q08} {jb:R11})은 이재현 교수님 23·24년 — 그림 보고 이름 쓰기. [[PART:19]]
+N: 이름은 회사마다 다르다("이름은 너무 신경쓰지 마세요") — 만드는 방식(기성·밀링·주조·임시)과 쓰임으로 묶어 기억. 기출({jb:Q08} {jb:R11})은 이재현 교수님 23·24년 — 그림 보고 이름 쓰기. [[PART5:20]]
+N: 조준호 25년 3문항(모두 탈) = 그림을 주고 이름·치수 라벨을 묻는 단답 2(p.22 도면 → Rigid/Transfer {jb:P08} · p.11 healing abutment 윗면 → Diameter/Height {jb:P10}) + p.4 목록 서술 1(나사 유지형 Abutment level/Implant level {jb:P09}) — 변형 대비: 같은 쪽의 다른 그림 이름(Angled · GoldCast · NP-Cast) · 다른 라벨(G/H · Fixture level) · 나머지 유지 방식(시멘트 · SCRP). [[PART:19]] [[PART:22]] [[PART:11]] [[PART:4]]
 
 #TBL 골이식재 분류 3축과 종별 특성 | k=GRAFT | src=[[GRAFT:17]] [[GRAFT:18]] [[GRAFT:19]] [[GRAFT:20]] [[GRAFT:21]]
 H: 종류 | 출처 | 골형성 | 골유도 | 골전도 | 장점 | 단점

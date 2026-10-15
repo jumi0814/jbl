@@ -115,7 +115,6 @@ MAPQ4 = {
     ('AX', '2020', '1'): ('NEW', 'AX19'), ('AX', '2020', '2'): ('NEW', 'AX20'), ('AX', '2020', '3'): ('NEW', 'AX21'), ('AX', '2020', '4'): 'AX12', ('AX', '2020', '5'): ('NEW', 'AX22'),
     ('AX', '2020', '6'): 'AX03', ('AX', '2020', '7'): ('NEW', 'AX23'), ('AX', '2020', '8'): 'AX05', ('AX', '2020', '9'): ('NEW', 'AX24'),
 }
-_LOCK = set(json.load(open(DIR + '/jb_lock.json', encoding='utf-8')))
 LOST = set(); NEW26 = []
 for ed_, M_ in (('26', MAP26), ('23q4', MAPQ4)):
     assert len(M_) == len(blocks[ed_]), (ed_, len(M_), len(blocks[ed_]))
@@ -123,7 +122,7 @@ for ed_, M_ in (('26', MAP26), ('23q4', MAPQ4)):
         k_ = (x['topic'], x['sec'], str(x['num'])); v_ = M_[k_]; key = (ed_, x['topic'], x['sec'], x['num'])   # KeyError = 연결 안 정한 블록
         if v_ == 'LOST': LOST.add(key); continue
         if isinstance(v_, tuple):
-            cid = v_[1]; assert cid not in _LOCK and all(c[0] != cid for c in CANON), cid   # 새 id = 잠금에 없는 새 번호(기존 id 재사용 금지)
+            cid = v_[1]; assert all(c[0] != cid for c in CANON), cid   # 새 id = 10-15 처음 빌드 때 jb_lock.json에 없던 새 번호(기존 id 재사용 금지 — 이후 빌드에선 잠금에 이 id·해시가 있음)
             CANON.append((cid, x['topic'], ed_, x['sec'], x['num'], sig(x['text']))); ptr[key] = cid; NEW26.append(cid); continue
         for cid in ([v_] if isinstance(v_, str) else v_):
             assert any(c[0] == cid for c in CANON), cid
