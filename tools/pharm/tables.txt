@@ -913,3 +913,44 @@ R: **아스피린(Aspirin)** | 진통·해열·항염·{r:항혈소판} | {r:325
 R: **케토롤락(Ketorolac)** | 주사 가능한 NSAID | {r:IM·IV} · 술후 | 비경구(parenteral) {r:5일 이내}({r:신독성} nephrotoxicity) | {jb:PN17} 20년 아편계 대신 주사 진통제
 R: **COX-2 억제제**(셀레콕시브 celecoxib) | {r:COX-2}(유도형 inducible form)만 | 위 점막 영향 {r:적음} · 진통 이점 {r:없음} | {r:심혈관계 부작용}(cardiovascular events) · 스텐트(stent) 후 {r:혈전 위험}(thrombotic risk) · {n:항혈소판 없음} · aspirin·NSAIDs 과민이면 금지 | {jb:PN18} 20년 celecoxib 대신 aspirin = 심혈관 우려
 R: **Ceiling effect** | {n:COX 억제제(NSAID·acetaminophen·aspirin) = 용량↑해도 최대 효과 고정} | {n:codeine(opioid) = ceiling 없음} → {r:아스피린 650 + 코데인 60}(aspirin 650 + codeine 60) > 아스피린(aspirin) 단독 | 치과 통증도 NSAID + opioid 복합제 논리 · ceiling effect 설명은 25 필기(26에서 빠짐) — 26 p.28 사랑니 발치 후 비교: 케토프로펜(ketoprofen) 100 > 이부프로펜(ibuprofen) 400 ≥ 아스피린+코데인(aspirin+codeine) > 아스피린(aspirin) | —
+
+#TBL 항불안제 — BZD vs Barbiturate | k=ANX
+H: 약 | GABA A receptor에서 | 조건·덧말 | 함정
+R: GABA | opens Cl- channel | 억제성 신경전달물질 → Cl- influx | —
+R: **Benzodiazepine** | {r:increase frequency}(열리는 빈도↑) {jb:AX20} | {r:GABA 있을 때만}(BZDs work only in presence of GABA) {jb:AX01} | "GABA 없이도 Cl- 채널 개방기간↑" ✗
+R: **Barbiturate** | {r:delay channel closing} {jb:AX14} | BZD 결합 자리와 다름 | "opening frequency 증가" = BZD → barbiturate와 가장 관련 없음 {jb:AX16}
+N: 근거 = 23 4Q JB 2022년 2·4번·2020년 2번 해설 · 26 JB 2025년 1번 해설(옛 이윤실 강의록 인용).
+
+#TBL 항불안제 — BZ1 vs BZ2 | k=ANX
+H: 구분 | BZ1 | BZ2
+R: GABAAR 구성 | {r:α1 subunit} & variable β, γ | α1 subunit {r:미포함}
+R: 작용 | Linked to sleep → {r:Sedation}(but amnesia↓, muscle relaxation↓) | Linked to cognition and motor function → {r:Anxiolysis}, {r:muscle relaxation}
+R: 선택적 약물 | Quazepam (BZ) · Zolpidem · Zaleplon · Eszopiclone | 밝혀지지 않음 → 모든 BZD는 진정작용 {jb:AX01}
+R: 기출 | {jb:AX04} 25년 서술 | T/F "BZ1에 작용하여 항불안" → F {jb:AX05}
+N: 변형 대비: 짝 바꾸기 — 진정 = BZ1 · 항불안 = BZ2 · BZ1 선택 약을 BZ2로(✗) · "BZ2 선택 BZD가 있다"(✗ — 밝혀지지 않음).
+
+#TBL 항불안제 — 대사(phase II · CYP3A4)와 길항제 | k=ANX
+H: 항목 | 약물 | 결과 | 기출
+R: Phase II conjugation만 | {r:Oxazepam · Temazepam · Lorazepam}(+ Lormetazepam — 26 JB) | — | {jb:AX12}
+R: CYP3A4 억제제 | diltiazem · {r:erythromycin} · fluconazole · itraconazole · ketoconazole · saquinavir · {r:verapamil} | oral midazolam Conc. {r:significantly increase} → 부작용 | {jb:AX02}
+R: CYP450 유도제 | {r:rifampin} · {r:carbamazepine} · {r:phenytoin} | oral midazolam Conc. {r:markedly decreased} → 효과↓ | {jb:AX09}
+R: 길항제 | {r:Flumazenil}(nonselective BZD antagonist) | acute overdose · BZ1 작용제의 CNS depression 역전 · 진정·마취 종료 | {jb:AX06} {jb:AX22}
+N: 함정: 같은 보기가 반대로 나옴 — "억제해 부작용" = erythromycin / "증가시켜 효과 감소" = carbamazepine.
+
+#TBL 항불안제 — 4Q 기출 전체정리표 | k=ANX | sum=1
+H: 항목 | 핵심 | 수치·짝 | 함정 | ★ 시험
+R: **GABA_A 수용체** | 소단위 5개(α 2 · β 2 · γ 1) · 소단위마다 TM1-4 · CNS ligand-gated ion channel | pore = {r:TM2} | "TM 4 번째가 pore" ✗ | {jb:AX13} 22년 구조
+R: **BZD 기전** | GABAA receptor 결합 → GABA 결합 시 열리는 {r:frequency}↑ → Cl- channel → inhibitory effect | GABA 있을 때만 | "GABA 없이도 개방기간↑" ✗ | {jb:AX20} 20년 서술 / {jb:AX01} 25·24년 선지 4)
+R: **Barbiturate** | {r:delay channel closing} | BZD = increase frequency | BZD 결합 자리 ✗ · opening frequency ✗ | {jb:AX14} 22년 옳은 것 / {jb:AX16} 22년 관련 없는 것
+R: **BZ1 · BZ2** | BZ1 = α1 + β·γ → sleep → {r:Sedation} / BZ2 = α1 없음 → {r:Anxiolysis}·muscle relaxation | BZ1 선택 = Quazepam·Zolpidem·Zaleplon·Eszopiclone / BZ2 선택 = 밝혀지지 않음 | "BZ1에 작용해 항불안" ✗ · 모든 BZD 진정 ○ | {jb:AX04} 25년 서술 / {jb:AX05} 21·20년 T/F / {jb:AX01} 25·24년 정답 3)
+R: **약리 효과 5** | anxiety·aggression↓ · sleep·sedation(고농도) · {r:Anterograde amnesia} · {r:Anticonvulsant} · acute {r:alcohol withdrawal} | 알코올 금단 이유 = {r:cross-tolerance} · 항경련 · 호흡기 억제 효과 없음 | — | {jb:AX08} 24년 Lorazepam / {jb:AX21} 20년 서술
+R: **Diazepam** | 항불안·진정(GABAA 빈도↑) · 항경련({r:Sodium channel} inactivated) · 근이완(spinal cord {r:poly synaptic reflex} 억제) | 소량 근이완 → 시술 전 안정제 | Lorazepam·Oxazepam·Clonazepam·Midazolam ✗ | {jb:AX15} 22년 근육 경련 / {jb:AX17} 22년 시술 전 안정제
+R: **안전성·내성** | 단독 경구 → 호흡억제·coma 드묾(CNS depressant·alcohol 병용 시 위험) · 내성·의존 = {r:all BDZs} | 장기 사용 → {r:sedative-hypnotic}에만 내성 | "내성 잘 안 일어남" ✗ · "단독 과량 시 호흡 억제·coma" ✗ | {jb:AX01} 25·24년 선지 2)·5)
+R: **반감기와 금단** | {r:shorter elimination half-life} → withdrawal 심함 | Clonazepam = {r:long-acting} | — | {jb:AX18} 21년 T/F / {jb:AX24} 20년 T/F / {jb:AX23} 20년 T/F
+R: **Phase II만** | {r:Oxazepam · Temazepam · Lorazepam}(+ Lormetazepam — 26 JB) | — | — | {jb:AX12} 23·21·20·17년
+R: **CYP3A4** | 억제제(diltiazem·{r:erythromycin}·fluconazole·itraconazole·ketoconazole·saquinavir·{r:verapamil}) → midazolam {r:↑} | 유도제({r:rifampin}·{r:carbamazepine}·{r:phenytoin}) → midazolam {r:↓} | 억제 ↔ 유도 바꾸기 | {jb:AX02} 25·24·23년 억제 = erythromycin / {jb:AX09} 24·23년 증가 = Carbamazepine
+R: **Flumazenil** | {r:nonselective BZD antagonist} · acute overdose · BZ1 작용제의 CNS depression 역전 · 진정·마취 종료 | 우윳빛깔 약 = {r:Propofol} | — | {jb:AX06} 25·23년 Midazolam 과용량 / {jb:AX22} 20년 antagonist / {jb:AX07} 25년 Propofol
+R: **용량** | Clonazepam(항불안) {r:0.5 mg}/일 · qd hs 30일 or bid | Midazolam(수면진정 경구) {r:5-20 mg}(24 답) · 시술 전 {r:10 to 20 mg}(20 답) | 두 답이 다름 | {jb:AX11} 24·18년 빈칸 / {jb:AX19} 20년
+R: **BZD 외 항불안제** | {r:Buspirone} · Antihistamines(hydroxyzine) · Chloral hydrate(not recommended) · b-adrenoceptor antagonist(propranolol) · Antidepressants | — | — | {jb:AX03} 25·21·20년
+R: **Buspirone** | {r:5HT1A partial agonist} · long lasting anxiety(generalized anxiety disorders) | onset {r:1~2 weeks} · half-life 2~3 hrs | panic attacks ✗ · amnesia·anticonvulsant·muscle relaxant·sedative 없음 · less tolerance·dependence · rebound 없음 | {jb:AX10} 24·23년
+N: 근거 = 4Q JB(23 4Q JB · 26 JB [7] 항불안제) 답·해설 — 26 김우진 교수님 PPT 아님(자료가 오면 다시 씀).
