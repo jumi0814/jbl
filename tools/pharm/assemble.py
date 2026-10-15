@@ -136,6 +136,7 @@ for c in _new:
     _at = next(i for i, c2 in enumerate(CANON) if c2[1] == c[1] and c2[0] not in NEW26)
     CANON.insert(_at, c)
 FIGQ = {'RX42'}   # 문제 쪽에 표(그림)가 있는 26판 새 문항 — 'JB 원본에서 그림 확인' 안내(그림 붙이기는 다음 단계)
+FIGNO = {'PN27'}   # 낱말 속 '사진'(마약유사진통제)이 그림 단서로 잘못 잡힌 새 문항
 Q = []
 CROPS = {}
 for cid, topic, ed, sec, num, _s in CANON:
@@ -200,7 +201,7 @@ for q in Q:
         e2, tp2, s2, n2 = o_; x2 = find(e2, tp2, s2, n2)
         if x2: o.append({'ed': e2, 'sec': s2 + '년 칸', 'num': n2, 'pg': x2['pg'], 'pg2': x2['pg2'], 'text': x2['text']})
     q['other'] = o; q['lab24'] = ''; q['crops'] = CROPS.get(q['id'], {})
-    q['fig'] = bool(re.search(r'그림|모식도|사진|아래와 같이|빈칸빵|가리키는|표시', ' '.join(q['text'].split('\n')[:3]))) or q['id'] in FIGQ
+    q['fig'] = bool(re.search(r'그림|모식도|사진|아래와 같이|빈칸빵|가리키는|표시', ' '.join(q['text'].split('\n')[:3]))) and q['id'] not in FIGNO or q['id'] in FIGQ
 LECT = []; TABLES = []
 PRED = []; cur = None
 for line in open(DIR + '/pred.txt', encoding='utf-8'):
