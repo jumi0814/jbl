@@ -160,7 +160,7 @@ def view_led():
         seen.add(q['id']); rep.append(q)
     profs = S.PROF_ORDER; yrs = sorted({y for q in Q if q['tier'] != 'C' for y in q['yrs']}, reverse=True)[:8]
     h = [f'<div class="panel"><div class="bt">수록 현황</div><div>카드 <b>{len(Q)}</b>개 = {" + ".join(f"{lb} {n_}" for lb, n_ in [("현 교수 기출", len(A_)), (S.TIERS['B'], sum(1 for q in Q if q["tier"]=="B")), (S.TIERS['C'], sum(1 for q in Q if q["tier"]=="C"))] if n_)}. 아래 대조표의 모든 JB 블록은 ‘카드’ 또는 ‘중복(같은 문제의 다른 수록본)’으로 연결되어 있고, ‘미복원’은 JB 원문 표기 그대로입니다.</div></div>',
-         '<div class="panel"><div class="bt">연도 표기 규칙</div><div class="small">① 문제 옆 괄호의 연도를 모두 넣습니다. ② 괄호에 빠져 있어도 그 문항이 실린 <b>연도 칸</b>은 반드시 넣습니다. ③ 다른 연도 칸에 같은 문제가 또 있으면 그 연도도 더합니다. ④ 실리지 않은 해는 절대 붙이지 않습니다. ⑤ 2025년 시험 문항은 아직 없습니다 — 받은 JB 중 가장 최신본(25판)이 2025년 시험 전에 만들어졌기 때문입니다.</div></div>']
+         '<div class="panel"><div class="bt">연도 표기 규칙</div><div class="small">① 문제 옆 괄호의 연도를 모두 넣습니다. ② 괄호에 빠져 있어도 그 문항이 실린 <b>연도 칸</b>은 반드시 넣습니다. ③ 다른 연도 칸에 같은 문제가 또 있으면 그 연도도 더합니다. ④ 실리지 않은 해는 절대 붙이지 않습니다. ⑤ 가장 최근 시험은 2025년입니다 — 받은 JB 중 가장 최신본이 2025년 시험 문항까지 담고 있습니다(2026년 시험 문항은 아직 없음).</div></div>']
     # ux4 B48 0문항 교수 행은 빼고, 참고(등급 B) 교수 행을 회색 '(참고)'로 — 반복 출제 표에 나오는 교수가 이 표에도 있게
     B_ = [q for q in Q if q['tier'] == 'B']; pB = [p for p in dict.fromkeys(q['prof'] for q in B_) if p and p not in profs]
     row = lambda p, L, ref: (f'<tr class="ref"><th>{p} <span class="small">(참고)</span></th>' if ref else f'<tr><th>{p}</th>') + ''.join(f'<td>{sum(1 for q in L if q["prof"]==p and y in q["yrs"]) or ""}</td>' for y in yrs) + f'<td>{sum(1 for q in L if q["prof"]==p and len(q["yrs"])>=2)}</td></tr>'

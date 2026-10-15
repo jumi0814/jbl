@@ -200,7 +200,8 @@ R: 머리 | — | {r:FH plane parallel to the floor} ({n:필기: natural head po
 R: 턱·교합 | {r:Centric occlusion (CO)} — significant CO-CR discrepancy면 CR 추가 촬영 | {r:Jaws in CR}
 R: 치아 | — | {r:Teeth in lightly touching}
 R: 입술 | {r:Lip in repose} | {r:Lips relaxed}
-R: 기출 | — | {jb:Q42} 22년 — 네 줄 그대로
+R: 분석할 관계 (p.34-35) | — | {r:Soft tissue} · {r:Skeletal} · {r:Dental}(dentoalveolar) relations — AP·vertical {jb:Q50}
+R: 기출 | — | {jb:Q42} 22년 — 네 줄 그대로 / {jb:Q50} 25년 — 관계 3
 N: CR 추가 촬영 이유: to document CR · to study freeway space · to assess upper tooth to lip relations · to study true relations of the maxilla and mandible [[DD2:33]]. 필기: 대부분 CO, discrepancy가 심한 경우는 대개 class II.
 N: Lateral ceph 목적: To analyse skeletal, dentoalveolar, and soft tissue relationships in the AP and vertical dimensions [[DD2:34]].
 
@@ -250,7 +251,7 @@ R: **Gold standard** | =={r:Cephalometric evaluation}: gold standard== | 해당 
 R: **영상 6종** | {r:Cone beam} · {r:Lateral ceph} · {r:Panoramic} · {r:Periapical} · {r:PA ceph} · {r:Transcranial} | 해당 없음 | {n:lateral = 1차 평가} / {n:pano = pathology · periapical = 치아 단위} / {n:PA ceph = 좌우 대칭} / {n:transcranial = 요즘 안 씀} | JB '보조적으로 PA, transcranial, panorama' 묶음은 자료에 없음 | {jb:Q41} 6종 / {jb:S20-4} 
 R: Cephalometry 쓰임 4 | {r:quantifying·classifying·communicating} · orthodontic phase 계획 · {r:Prediction tracing} · 목표 | 목표 = {r:normal facial appearance} | prediction tracing = orthognathic surgery 세부 결정에 필수 | ceph 수치를 정상으로 만드는 게 목표 ✗ | {jb:S20-5} — 다른 판본 답
 R: Ceph 촬영 — 기본 | {r:Lip in repose} + {r:Centric occlusion (CO)} | discrepancy 크면 {r:CR} ceph 추가({n:대개 class II}) | CR 추가 이유 = CR 기록 · {r:freeway space} · upper tooth to lip · 상하악 true relations | 기본은 CO | —
-R: **Lateral ceph 자세** | ==FH plane parallel to the floor== · ==Jaws in CR== · ==Teeth in lightly touching== · ==Lips relaxed== | 해당 없음 | skeletal·dentoalveolar·soft tissue를 AP·vertical로 분석 → soft·skeletal·dental relations | 기본 CO ↔ 자세는 {r:Jaws in CR} | {jb:Q42} — head / tooth relation
+R: **Lateral ceph 자세** | ==FH plane parallel to the floor== · ==Jaws in CR== · ==Teeth in lightly touching== · ==Lips relaxed== | 해당 없음 | skeletal·dentoalveolar·soft tissue를 AP·vertical로 분석 → soft·skeletal·dental relations | 기본 CO ↔ 자세는 {r:Jaws in CR} | {jb:Q42} — head / tooth relation / {jb:Q50} — 관계 3(soft tissue·skeletal·dental)
 R: **Ceph vs 임상** | ==Clinical evaluation is far more important== · ceph = ==only an aid== | 해당 없음 | 분석법이 많고 수술 결정과 {r:not correlated well} → {n:norm에 맞추는 수술 ✗} | Corrected FH: Po·Or 수직·Na AP 이상 → reference line 조정 | {jb:Q08} 서술 — 임상 + 이유
 R: 1~3 각도 | Maxillary depth FH∠NA · Mandibular depth FH∠NB · FH∠Me-Go | {r:90 ±3°} · {r:88 ±3°} · {r:25 ±5°} | {n:수치는 레퍼런스 — range 안에서 계획} | Maxillary depth 90 ±3°는 p.47에도 | {jb:Q09} 단답 — 90±3°
 R: 4~7 교합평면·전치 | Occlusal plane FH∠occlusal plane · Esthetic line · U1 to NA · L1 to NB | {r:8 ±4°} · {r:90°} · {r:22 ±2°} · {r:20 ±2°}(tip 4 ±2 mm) | {n:occlusal plane = chin을 뒤로 넣을 때 바꿀 수 있는 범주} | FH∠Me-Go 25 ±5° · Mandibular plane angle 24 ±4°와 혼동 | {jb:Q43} 단답 — 8 ±4°
@@ -281,7 +282,7 @@ N: 26 필기(p.25): 골다공증 환자는 푸석한 뼈라서 고정이 잘 안
 
 #TBL 임플란트 적응증 · 절대적 vs 상대적 금기증 (교수 강조 쪽) | k=DX | src=[[DX:16]] [[DX:15]] [[DX:18]]
 H: 구분 | 항목 | 헷갈리는 선지
-R: 절대적 금기증 {jb:Q33} {jb:Q46} | 1. 두경부 영역에 방사선치료를 받은 환자 ({r:5000 rads} 이상) / 2. {r:정신과적 질환}(만성 약물이나 알코올 중독, 재발성의 심한 우울증, 정신분열증, 편집증, 뇌질환, 조기 치매, body dysmorphic disorder) / 3. {r:혈액질환}: 백혈병, 혈우병, 혈소판감소성자반병 | 6000 rads 이상 → 절대 1 / 뇌질환 → 절대 2 / 백혈병 → 절대 3
+R: 절대적 금기증 {jb:Q33} {jb:Q46} {jb:Q51} | 1. 두경부 영역에 방사선치료를 받은 환자 ({r:5000 rads} 이상) / 2. {r:정신과적 질환}(만성 약물이나 알코올 중독, 재발성의 심한 우울증, 정신분열증, 편집증, 뇌질환, 조기 치매, body dysmorphic disorder) / 3. {r:혈액질환}: 백혈병, 혈우병, 혈소판감소성자반병 | 6000 rads 이상 → 절대 1 / 뇌질환 → 절대 2 / 백혈병 → 절대 3 / '5000 rads 이상 = 상대적 금기증' → {r:F}(절대 1 — 25년 T/F)
 R: 상대적 금기증 ({n:25 필기: 지금은 불가능하지만 control되면 할 수 있는 경우}) | 1. 경·연조직 종양, 낭종성 병소 / 2. 발치창에 감염성 병소 / 3. 약물남용 환자 / 4. 알코올 중독자 / 5. 흡연환자 / 6. 잘 조절되지 않는 전신질환 보유환자: {r:당뇨, 고혈압} / 7. 적은 양의 방사선 조사 경력 | 약물남용 · 조절되지 않는 당뇨 → {r:상대} / 깨끗하지 못한 발치 ≈ 상대 2 / 불량한 구강위생상태 → 상대(p.18)
 R: 적응증 9 (p.15) | 인접치아 삭제 싫어함 / 가철성 의치 거부 / 심한 구토 / 지대치 개수·위치 부적합 / 총의치에 대한 지나친 기대감 / 나쁜 습관 / 심한 치조골 흡수 / 구강내외 근육의 부조화 / {r:부착치은의 양이 절대적으로 부족한 경우} | 부착치은 부족 → 금기증 아님, {r:적응증}
 N: 절대적 적응증 = 임플란트 이외의 다른 대체 치료 방법이 없는 경우 · 상대적 적응증 = 대체 방법이 있지만 두드러진 향상이 기대되거나 임플란트를 선호. [[DX:15]]
@@ -329,19 +330,19 @@ R: 표면처리 1~4세대 | {r:Machined} → {r:Rough} → {r:Bioactive} → {r:
 R: 형태 | 현재 {r:골내 식립형} · 대부분 {r:나사형} | 과거 endosteal · subperiosteal · transmandibular / {n:나사형 straight·tapered} | 나사형 = {r:초기 고정력 우수}·골접촉 넓음 | 원통형 = {r:초기 안정성 감소} · {n:골막하는 3D printing으로 재조명} | —
 R: 치료 목적 · 성공률 | 궁극적 목적 = {r:기능적, 심미적으로 치아를 대체} | 계획 순서: ① 치아(최종보철)의 {r:바람직한 위치를 설정} ② {r:연조직과 경조직 평가} ③ 임시 수복물로 기능적 평가 ④ 진단을 위한 영상 평가 ⑤ 최종 치아 위치에 상응하는 조직 평가 → {r:증대술} 필요 여부 ⑥ 해부학적 구조물을 침범하지 않는 위치에 식립({r:surgical template}) ⑦ {r:즉시, 조기 혹은 지연 하중} 여부 결정 / 성공률 좌우 = 술식의 {r:침습도} · 환자의 {r:전신 및 구강 상태} · {r:술자의 기술과 경험} | 해당 없음 | 계획의 출발점 = 수술 부위가 아니라 치아(최종보철)의 위치 · {n:하중 시기는 뼈의 quality나 insertion torque에 따라 결정} | —
 R: 적응증 | 절대 = {r:다른 대체 치료 방법이 없는 경우} / 상대 = 대체 있어도 {r:두드러진 향상} | 9 = 인접치 삭제 거부 · 가철성 의치 거부 · 구토 · 나쁜 습관 · 치조골 흡수 · … · {r:부착치은 부족} | 해당 없음 | 부착치은 부족 = {r:적응증 ⑨}(금기증 아님) | {jb:Q33} — 오답 선지
-R: **절대 금기증 3** | {r:두경부 방사선} · {r:정신과적 질환} · {r:혈액질환} | 정신과 = 만성 약물·알코올 중독·우울증·{r:뇌질환} 등 / 혈액 = {r:백혈병}·혈우병·혈소판감소성자반병 | 방사선 {r:5000 rads} 이상 | {n:"교과서적인 절대적 금기증을 외워두자!"} | {jb:Q33} 객관식 / {jb:Q46} 
+R: **절대 금기증 3** | {r:두경부 방사선} · {r:정신과적 질환} · {r:혈액질환} | 정신과 = 만성 약물·알코올 중독·우울증·{r:뇌질환} 등 / 혈액 = {r:백혈병}·혈우병·혈소판감소성자반병 | 방사선 {r:5000 rads} 이상 | {n:"교과서적인 절대적 금기증을 외워두자!"} | {jb:Q33} 객관식 / {jb:Q46} / {jb:Q51} T/F — 상대 ✗(F)
 R: 상대 금기증 7 | {n:지금은 불가능하지만 control되면 가능} | 종양·낭종 · 발치창 감염 · {r:약물남용} · {r:알코올 중독} · {r:흡연} · {r:조절 안 되는 당뇨·고혈압} · 적은 방사선 | 불량한 구강위생 = 상대(p.18) | 약물남용(상대) ↔ 만성 약물 중독(절대 ②) | {jb:Q46} — 당뇨 = 금기증 아닌 것(상대)
 R: 병력청취·상담 | 병력 = 전신질환·투약·상호반응·알레르기·{r:항응고제}·{r:악골괴사증 위험} | 심리 4 = {r:이성적}(무난) · {r:꼼꼼한}(논리적 설명) · {r:신경질적}(예후 불량) · {r:무관심한}(비협조) | 해당 없음 | 선입견이 성패 좌우 → {r:신뢰관계} | {jb:Q34} — 술전평가 항목
-R: 머리·목·구강검사 | 얼굴형태·{r:안면비대칭} · 정중선·교합평면·미소선 · {r:턱관절} | 구강위생 관리 · 예후 불량 잔존치 → {r:조기 발치 고려} | 해당 없음 | 불량한 구강위생 = {r:상대적 금기증} | {jb:Q34} — ① 조기 발치(○)
+R: 머리·목·구강검사 | 얼굴형태·{r:안면비대칭} · 정중선·교합평면·미소선 · {r:턱관절} | 구강위생 관리 · 예후 불량 잔존치 → {r:조기 발치 고려} | 해당 없음 | 불량한 구강위생 = {r:상대적 금기증} | {jb:Q34} — ① 조기 발치(○) / {jb:Q52} T/F — T
 R: 파노라마 | {n:기본 영상} · 고경·간단·시간 절약·피폭↓ | 단점 = 확대율이 {r:전치/구치·수평/수직}으로 다름 · {r:협설 X} · {r:상 겹침} | 해당 없음 | {n:pano 길이로 임플란트 높이 결정 ✗} | {jb:Q34} — "확대율 없음" ×
 R: CT · CBCT | 선명·{r:단면}·겹침 없음·저장·3차원 | 단점 = {r:방사선↑} · 금속 {r:artifact} · 움직임 오류 · {r:고가} | CBCT = {r:가격 저렴} · {r:조사량 감소} | {n:상악동 위 안 나옴 → sinusitis 의심 시 PNS CT} | —
 R: 측방두개촬영 | 상·하악의 {r:전후방 및 수직} 악관계 | 구내표준·교합촬영 · 파노라마와 함께 | 해당 없음 | 무치악 → 치조골 흡수로 Class III 관계 평가(25 필기) | —
 
 #TBL 전체정리표 진단·치료계획 ② 교합·골·식립 계획 | k=DX | sum=1 | src=[[DX:22]] [[DX:25]] [[DX:26]] [[DX:27]] [[DX:31]] [[DX:32]] [[DX:35]] [[DX:39]] [[DX:40]] [[DX:42]] [[DX:43]]
 H: 항목 | 핵심 | 세부·목록 | 수치·기준 | 함정·주의 | ★ 시험
-R: 교합관계 평가 6 | 악간관계 · {r:대합치 정출} · 인접치 마모·교모 · 최소 수직 공간 · 전치부 · 하악운동 | {n:정출 → skeletal anchorage + 교정적 intrusion} / 전치부 {r:외상성 수직 피개} 피하기 | 최소 수직 공간 {r:7mm} | 마모·교모 = {r:기계적 실패} 원인 | —
+R: 교합관계 평가 6 | 악간관계 · {r:대합치 정출} · 인접치 마모·교모 · 최소 수직 공간 · 전치부 · 하악운동 | {n:정출 → skeletal anchorage + 교정적 intrusion} / 전치부 {r:외상성 수직 피개} 피하기 | 최소 수직 공간 {r:7mm} | 마모·교모 = {r:기계적 실패} 원인 | {jb:Q55} 서술 — 6항목
 R: **수평력 vs 수직력** | 임플란트는 {r:수직력}에 잘 견딤 | 지속적 수평력 → {r:변연골 소실} · {r:나사 풀림} · {r:파절} · {r:보철물 파손·탈락} | 해당 없음 | 수직력 문항 JB 답은 Loading p.7 문장(오복원 가능) | {jb:Q19} 수평력 / {jb:Q20} 수직력
-R: 골량 | 초기 {r:1년} 흡수가 가장 심함 | 형태 A~E(Lekholm·Zarb 1985): A 대부분 남음 → C 기저골만 → E 기저골 심한 흡수 | 상악 {r:2-3mm} · 하악 {r:4-5mm}/1년 | 하악이 더 흡수 · 식립 적합 {r:B-2,3 / C-2,3} | {jb:Q30} — 선지 근거
+R: 골량 | 초기 {r:1년} 흡수가 가장 심함 | 형태 A~E(Lekholm·Zarb 1985): A 대부분 남음 → C 기저골만 → E 기저골 심한 흡수 | 상악 {r:2-3mm} · 하악 {r:4-5mm}/1년 | 하악이 더 흡수 · 식립 적합 {r:B-2,3 / C-2,3} | {jb:Q30} — 선지 근거 / {jb:Q53} T/F — 초기 1년 T
 R: 골질 1~4형 | 피질골 두께 × 해면골 밀도 | 1형 두꺼운 피질 · 2형 적당 · 3형 얇은 피질+치밀 해면 · 4형 {r:얇은 피질+성긴 해면} | A-4/D-1,2/E-1,2 = 부정적 | 상악 {r:4형}은 좋지 않다(25 필기) | {jb:Q47} — 상악구치부 골질 불량(○)
 R: **D-1** | 두꺼운 피질골 + 얇고 치밀한 해면골 | 장점 = {r:접촉면적 넓음} · {r:일차 안정성} · {r:짧은 임플란트} / 단점 = {r:혈액공급 감소} · {r:과도한 열} · {r:Drill hole 어려움} | 해당 없음 | 사진에서 두꺼운 피질골 = D-1 알아보기 | {jb:Q18} 장단점 / {jb:Q35} 단점
 R: D-2 · D-3 · D-4 | D-2 {r:특별한 단점 없음} · D-4 {r:장점 별로 없음} | D-2 안정성·혈액공급 양호 / D-3 혈액공급 양호, drill 어려움 / D-4 {r:불량한 일차 안정성} | 해당 없음 | D-4는 너무 성겨 hole 자체가 안 만들어짐(25 필기) | —
@@ -358,7 +359,7 @@ R: 언제 {jb:Q30} | 발치 후 {r:3~6개월 이내}에 volume과 형태의 변�
 R: 얼마나 (6개월) | Width의 63%까지 · original height의 22%까지 흡수 / mean bone loss {r:3.87mm} horizontally · {r:1.25~1.67mm} vertically (p.4) | width {r:63%} · height {r:22%} · {n:수평 흡수가 3배 정도(필기)} · {n:26 필기: 수평 3-4mm · 수직 1-2mm}
 R: 폭 vs 높이 {jb:Q31} | width 3.87 mm / mid-buccal height 1.67 mm / crestal height (radiograph) 1.53 mm — the clinical loss in width to be greater than the loss in height (p.5) | {r:폭 > 높이}
 R: 협측 vs 설측 {jb:Q30} {jb:Q31} {jb:Q45} | Bone reduction is more pronounced at buccal side (> lingual side) (p.4) | {r:협측 > 설측} — 22·23년 3문항 정답 선지
-R: 상악 vs 하악 {jb:Q30} | (한정준 진단 p.25 — 25 자료 p.26) 초기 1년동안 치조골 흡수가 가장 심함 · 상악 1년 2-3mm · 하악 1년 4-5mm | {r:하악 > 상악} — 이 강의에는 없음
+R: 상악 vs 하악 {jb:Q30} {jb:Q53} | (한정준 진단 p.25 — 25 자료 p.26) 초기 1년동안 치조골 흡수가 가장 심함 · 상악 1년 2-3mm · 하악 1년 4-5mm | {r:하악 > 상악} — 이 강의에는 없음 · 25년 T/F "발치 후 초기 1년 이내의 치조골 흡수가 가장 심하다" = T
 R: 악간관계 {jb:Q30} | {n:상악 폭경 감소 · 하악 폭경 증가 → 악간관계 cross (p.7 필기)} | {n:{r:Class 3 관계처럼} → 수복 어려움}
 R: 흡수 단계 | A Good → B Moderate → C Advanced resorption / Basal bone only → D {r:Basal bone resorption} → E Extreme resorption (p.6) | {n:alveolar bone 흡수 후 기저골도 흡수(오랜 무치악·denture)}
 R: 부위 | {n:상악 전치부 = 발치 후 volume 변화를 가장 많이 겪는 부위 (p.9 필기)} | {n:labial bone 얇음 → 6개월이면 매우 얇아짐}
@@ -418,6 +419,7 @@ R: 상악이 하악보다 심하다 / 상악이 4-5mm, 하악은 3-4mm 씩 흡�
 R: 골이식재는 그 종류에 관계없이(23년: 그 종류와 관계없이) 비슷한 속도로 흡수된다 {jb:Q45} {jb:Q31} | {r:X} | p.25 xenograft·alloplast slower / allograft more rapidly
 R: 발치와 보존술을 위해서는 자가골이 가장 이상적이다 {jb:Q45} | {r:X} | p.25 no evidence for superiority of 1 material
 R: 체적 유지를 위해 동종골이 선호된다 {jb:Q31} | {r:X} | p.25 allograft = short-term (26 필기 p.23은 반대 멘트 — JB 답 X 유지)
+R: 체적 유지를 위해 이종골(?)이 선호된다(25년 복원 — 23년 '동종골' 자리) {jb:Q31} | ⚠ 두 해석 | p.25 xenograft·alloplast more-suitable for long-term(○ 쪽) / does not provide evidence for superiority of 1 material(× 쪽) — JB 답은 협측 선지만
 R: 발치와 보존술에서는 연조직 피개가 가능하므로 membrane은 필요 없다 {jb:Q45} | {r:X} | p.57 Membrane으로 상방을 커버 · p.20 space maintenance
 R: 즉시 임플란트 식립 시 시행하는 골이식은 발치와 보존술이다 {jb:Q45} | {r:X} | p.14 delayed implant placement를 위한 술식
 R: 연조직을 최대한 당겨서 봉합해야 한다 {jb:Q31} | {r:X} | p.66·68·71 tension-free primary closure
@@ -435,7 +437,7 @@ R: **골재생 조건 3** | {r:Space maintenance}(grafts·membranes) · {r:blood
 R: 이식재 요건 9 | Biocompatibility · Porosity · Osteoconductivity · Surface · Biodegradability · Mechanical · Angiogenecity · Handling · Manufacturing | 해당 없음 | Mechanical = 흡수가 안 될 만큼 강하면 ✗(필기) | {n:수업: "모두 읽으셨습니다"} | —
 R: 자가골 (Autogenous) | The patient — 떼어 쓸 수 있으면 가장 좋음(필기) | intraoral = symphysis·{r:ramus}·tuberosity / extraoral = {r:iliac}·rib·fibula·tibia | {n:symphysis는 Incisive n. 손상 → routine ✗ · 흔히 ramal bone} | "자가골이 가장 이상적" × — 우열 근거 없음 | {jb:Q45} 선지 ① ×
 R: **동종골 (Allograft)** | same species, different individual | {r:more rapidly} 흡수 · {r:3 months} 후 new bone 더 많음 | {r:short-term} ridge preservation | "체적 유지를 위해 동종골 선호" × | {jb:Q31} 선지 ① ×
-R: **이종골·합성골** | Xenograft = bovine·equine·porcine / Alloplast = HA·calcium sulfate·calcium phosphate·bioglass | {r:slower} 흡수 · 입자 {r:7 months}+ 잔존 | {r:long-term} — {n:지연 식립·브릿지 하방} | "종류와 관계없이 비슷한 속도로 흡수" × | {jb:Q45} ② · {jb:Q31} ④ ×
+R: **이종골·합성골** | Xenograft = bovine·equine·porcine / Alloplast = HA·calcium sulfate·calcium phosphate·bioglass | {r:slower} 흡수 · 입자 {r:7 months}+ 잔존 | {r:long-term} — {n:지연 식립·브릿지 하방} | "종류와 관계없이 비슷한 속도로 흡수" × | {jb:Q45} ② · {jb:Q31} ④ × / {jb:Q31} 25년 "이종골(?)" ⚠ 두 해석
 R: Membrane | Resorbable {r:collagen}({n:최다}) · Nonresorbable polytetrafluoroethylene·titanum mesh | {n:cross-linked = 강하고 천천히 흡수} | Bio-Gide · Key point "Membrane으로 상방을 커버" | membrane 필요 없음 × | {jb:Q45} 선지 ③ ×
 R: 보존술 효과 · 골질 | GBR·{r:sinus elevation}↓ · 심미↑ | 상악 대구치 6개월 volume NT {r:8.0%} vs RG {r:35.5%} | DBBM → new bone {r:↓}이나 초기 고정·insertion torque {r:영향 없음} | new bone이 적어도 식립엔 문제없음 | —
 R: **Key point 4** | {r:Atraumatic extraction}(buccal wall 보존) · {r:Curettage} · {r:overfilling} · ==Membrane으로 상방을 커버하자== | {n:26 필기: 이식재 70% 정도 줄어듦 → 오버필} | 이점 = 광범위한 GBR↓ + 심미적 결과 | {n:overfilling = 이식재가 흡수되니까} | {jb:Q45} 선지 ③ ×
@@ -485,9 +487,9 @@ N: 필기: "immediate loading protocol의 장점 기억하셔야 합니다" — 
 
 #TBL 즉시하중 — 성공 요소 4 vs 전제조건 5 (둘을 구별) | k=LOAD | src=[[LOAD:16]] [[LOAD:17]] [[LOAD:18]] [[LOAD:19]] [[LOAD:20]] [[LOAD:21]]
 H: 묶음 | 쪽 | 항목 | 핵심 수치·내용 | 출제
-R: 성공적인 골유착 및 초기 안정성을 위한 중요한 요소 (4요인) | p.16-17 | ① 외과적 요인 ② 환자요인 ③ 임플란트 요인 ④ 보철적 요인 | 외과: {r:초기 안정성}(가장 중요) — 100 μm↑ 섬유성 유착 / 28 μm↓ 무영향 / 150 μm↑ 연조직 개입 / 회전력 최소 32~40N/cm2 / 술기 {r:1분간 47도} / 임플란트: 나사형 · 거친 표면 5배 · 길고 굵게 / 환자: 골 양과 질 · 치유 / 보철: 수평·측방력 제거 · cross-arch splinting | 24 T/F(47도) {jb:Q23}
-R: Prerequisites for immediate-loading protocol (5) {jb:Q22} | p.18 | ① Adequate {r:bone density} and sufficient bone dimensions ② Ideal {r:insertion torque} ③ Ideal {r:resonance frequency analysis} readings ④ Ability to achieve an adequate {r:anteroposterior spread} ⑤ Control of {r:occlusal force} | — | 22·24 서술 ({n:필기: JB에 있을 것})
-R: ① 골밀도·골량 | p.19 | 부위 · 환자 | 상악 구치부 = {r:제일 불리} / 하악 이공 사이 = {r:가장 유리} / 골다공증·당뇨·흡연자·방사선 치료 환자는 피함 → 2단계 또는 연장된 치유 | 24 T/F(이공 사이) {jb:Q23}
+R: 성공적인 골유착 및 초기 안정성을 위한 중요한 요소 (4요인) | p.16-17 | ① 외과적 요인 ② 환자요인 ③ 임플란트 요인 ④ 보철적 요인 | 외과: {r:초기 안정성}(가장 중요) — 100 μm↑ 섬유성 유착 / 28 μm↓ 무영향 / 150 μm↑ 연조직 개입 / 회전력 최소 32~40N/cm2 / 술기 {r:1분간 47도} · 열발생 영향 = 골 형성 양과 정도·Drill의 sharpness·골 제거의 깊이·피질골의 두께 / 임플란트: 나사형 · 거친 표면 5배 · 길고 굵게 / 환자: 골 양과 질 · 치유 / 보철: 수평·측방력 제거 · cross-arch splinting | 24 T/F(47도) {jb:Q23} · 25 서술(열발생 영향 4) {jb:Q56}
+R: Prerequisites for immediate-loading protocol (5) {jb:Q22} | p.18 | ① Adequate {r:bone density} and sufficient bone dimensions ② Ideal {r:insertion torque} ③ Ideal {r:resonance frequency analysis} readings ④ Ability to achieve an adequate {r:anteroposterior spread} ⑤ Control of {r:occlusal force} | — | 22·24·25 서술 ({n:필기: JB에 있을 것})
+R: ① 골밀도·골량 | p.19 | 부위 · 환자 | 상악 구치부 = {r:제일 불리} / 하악 이공 사이 = {r:가장 유리} / 골다공증·당뇨·흡연자·방사선 치료 환자는 피함 → 2단계 또는 연장된 치유 | 24 T/F(이공 사이) {jb:Q23} · 25 T/F(상악구치부 가장 유리 → F) {jb:Q54}
 R: ② insertion torque | p.20 | greater than {r:35 Ncm} | 부족하면 underpreparation / osteotomes / osseodensification | —
 R: ③ RFA | p.20 | 60 to 65 / 65 to 70 / {r:70 or greater} in ISQ | 필기: 70 이상이 제일 좋음 | —
 R: ④ A-P spread | p.21 | 최전방 임플란트 중앙 ~ 후방 임플란트 distal 거리 | 클수록 {r:greater force distribution} / {n:긴 캔틸레버는 불리} | —
@@ -499,7 +501,7 @@ H: 골밀도 | 설명 | 촉감 | 해부학적 위치 | 즉시하중 (p.19 슬라
 R: D1 | {r:Dense cortical} | Oak or maple wood | Anterior mandible | 하악의 이공 사이 부위가 {r:가장 유리} — {n:필기: 하악 전치부가 즉시식립하기에 가장 유리 · cortical bone(D1~3) 안에 들어옴} {jb:Q23}
 R: D2 | Porous cortical and coarse trabecular | White pine or spruce wood | Anterior mandible / Posterior mandible / Anterior maxilla | —
 R: D3 | Porous cortical and fine trabecular | Balsa wood | Anterior maxilla / Posterior maxilla / Posterior mandible | —
-R: D4 | {r:Fine trabecular} | Styrofoam | {r:Posterior maxilla} / Anterior maxilla | 상악 구치부는 가장 불량한 골질로 조기 또는 즉시 하중에 {r:제일 불리} — {n:필기: post.mx가 D4}
+R: D4 | {r:Fine trabecular} | Styrofoam | {r:Posterior maxilla} / Anterior maxilla | 상악 구치부는 가장 불량한 골질로 조기 또는 즉시 하중에 {r:제일 불리} — {n:필기: post.mx가 D4} {jb:Q54}
 R: D5 | Osteoid | Soft Styrofoam | Poorly mineralized bone graft | —
 N: 1988, Misch — 위치와는 별개로 피질골과 망상골의 특성에 따라 4가지 골밀도 그룹으로 나눔(표 18-1 Misch의 골밀도 분류체계 · Carl Misch's contemporary implant dentistry, 4th Ed). [[LOAD:19]]
 N: ⚠ 같은 교수의 진단·치료계획 강의 골질은 Lekholm과 Zarb(1985) 1~4형 — 골질의 피질골의 두께나 골수질의 치밀도에 따라 4종으로 분류하고 장단점 표에서 D-1~D-4로 적음(1형 두꺼운 피질골과 얇고 치밀한 해면골 · 4형 얇은 피질골과 성긴 해면골). 두 분류를 섞지 말 것 — 상악 구치부가 불량(4형·D4)이라는 결론은 같음. [[DX:25]] [[DX:26]]
@@ -549,10 +551,10 @@ R: 식립 Type (Hammerle 2004) | Type 1 즉시 · 2 soft tissue coverage · 3 bo
 R: 식립 × 부하 (Gallucci 2018) | SCV = clinically validated / CD = documented / CID = insufficiently documented | 1C {r:SCV} · 2-3A·2-3B {r:CID} | 발치 즉시 식립 → {r:conventional loading} | conventional 열은 모두 SCV | —
 R: 성공 요소 4 | {r:외과적} · {r:환자} · {r:임플란트} · {r:보철적} 요인 | 해당 없음 | 외과적 = {r:초기 안정성}(가장 중요) + 술기 | 문제 문구는 이 쪽, JB 답은 전제조건 5 | {jb:Q22} — 문제 문구
 R: 초기 안정성 | 동요 없는 초기 부하 = 골유착의 필수 조건 | {r:100 μm}↑ 섬유성 유착 · {r:28 μm}↓ 무영향 · {r:150 μm}↑ 연조직 개입 | 적합도 · 마찰력 · 회전력 {r:32~40N/cm2} | 해당 없음 | —
-R: 열 발생 | ==섬유성 결합을 피하기 위해 1분간 47도 이상의 열발생을 피해야함.== | {r:1분간 47도} | 골 형성 양 · drill sharpness · 골 제거 깊이 · 피질골 두께 | p.16·p.23에 같은 문장 | {jb:Q23} T/F(2) — T
+R: 열 발생 | ==섬유성 결합을 피하기 위해 1분간 47도 이상의 열발생을 피해야함.== | {r:1분간 47도} | 골 형성 양 · drill sharpness · 골 제거 깊이 · 피질골 두께 | p.16·p.23에 같은 문장 | {jb:Q23} T/F(2) — T / {jb:Q56} 서술 — 영향 4
 R: 임플란트·환자·보철 요인 | 임플란트 {r:나사형}·거친 표면·길고 굵게 / 환자 골 {r:양과 질}·치유 / 보철 수평·측방력 제거 | 거친 표면 전단 저항 {r:5배} | {r:cross-arch splinting} · 치유 중 동요 피함 | {n:뼈 폭 무시하고 굵게 → bone loss·신경 침범} | —
 R: **전제조건 5** | ① bone density·dimensions ② insertion torque ③ RFA readings ④ A-P spread ⑤ occlusal force control | torque > {r:35 Ncm} · ISQ {r:70}↑ | {n:"JB에 있을 것"}(p.18) | ④는 'Ability to achieve'로 시작 · ③은 'readings'까지 | {jb:Q22} 서술 — 5개
-R: 골밀도 · 부위 | 즉시하중 {r:제일 불리} = {r:상악 구치부}(D4) / {r:가장 유리} = 하악 {r:이공 사이} | Misch D1 oak … D4 styrofoam · D5 osteoid | 피할 환자 = 골다공증·당뇨·흡연자·방사선 치료 → 2단계 | "이공 사이 가장 불리" × | {jb:Q23} T/F(3) — F
+R: 골밀도 · 부위 | 즉시하중 {r:제일 불리} = {r:상악 구치부}(D4) / {r:가장 유리} = 하악 {r:이공 사이} | Misch D1 oak … D4 styrofoam · D5 osteoid | 피할 환자 = 골다공증·당뇨·흡연자·방사선 치료 → 2단계 | "이공 사이 가장 불리" × · "상악구치부 가장 유리" × | {jb:Q23} T/F(3) — F / {jb:Q54} T/F — F
 R: torque · ISQ · A-P spread | insertion torque {r:> 35 Ncm} · ISQ {r:70 이상} · A-P spread↑ → 힘 분산↑ | ISQ 60–65 / 65–70 / 70↑ | torque 부족 시 underpreparation · osteotomes · {r:osseodensification} | 과도한 torque → pressure necrosis → 계면 강도↓ | —
 R: 취약 시기 | 식립 당일이 3개월 뒤보다 강함 | {r:3~6주} 가장 취약 · {r:4개월}에도 {r:60%} mineralized | remodeling(lamellar → woven) | 줄일 것 = thermal injury · microfracture · osteonecrosis · fibrous encapsulation | —
 R: 위험 줄이기 3 (참고) | overload↓ · functional surface area↑ · noxious forces↓ | 길이 {r:3 mm}↑ → 표면적 {r:20%}↑ | axial load · cantilever 제거 · cross-arch splint | {n:"시험과 관련 없고, 참고사항"} | —

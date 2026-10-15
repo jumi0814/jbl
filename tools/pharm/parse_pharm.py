@@ -20,9 +20,11 @@ TOPIC26 = re.compile(r'^\s*\[\s*\d(?:\s*,\s*\d)*\s*\]\s*(금연.*|구강건조�
 YEAR26 = re.compile(r'^\s*\[\s*(20\d\d)\s*년\s*[-–]\s*[Pp]f\.?\s*([가-힣]{2,3})\s*\]\s*$')
 # 23 4Q JB(work/jb/PHARM_2023q4): '<항불안제>'만 — 다른 4Q 주제(구강건조증·진정수면제·국소마취제 …)는 건너뜀
 TOPICQ4 = re.compile(r'^\s*<\s*(항불안제|구강건조증 치료제|진정수면제|국소마취제|약물상호작용|치과약물유전학)\s*>\s*$')
-# 26판 소문항 중 따로 블록으로 떼는 것(제 괄호 연도가 머리 문항과 다른 것): 통증 2025-3의 (3-2) [과거 복원](23,22) · 항불안제 2025-4의 4-1 (T/F)(21)
-SUB26 = {('PN', '2025', '3-2'), ('AX', '2025', '4-1')}
-SUBL = re.compile(r'^\(?\s*(\d{1,2})\s*-\s*(\d)\s*\)?\s*[.．]?(?=\s|$)')
+# 26판 소문항 중 따로 블록으로 떼는 것(제 괄호 연도가 머리 문항과 다르고 묻는 것도 다른 새 문항): 항불안제 2025-4 밑 '4-1. (T/F) …(21)' · 통증 2025-7 밑 '(2) … 마약유사진통제의 특성 …(25)'
+#  (통증 2025-3의 (3-1)·(3-2), 지혈 2023-3의 3-1·3-2는 같은 문제의 두 복원이라 떼지 않음)
+SUB26 = {('AX', '2025', '4-1'), ('PN', '2025', '7-2')}
+SUBL = re.compile(r'^\(?\s*(\d{1,2})\s*-\s*(\d)\s*\)?\s*[.．]?(?=\s|$)')   # '4-1.' · '(3-2)'
+SUBP = re.compile(r'^\(\s*(\d)\s*\)\s*\S')   # '(2) …' — 머리 번호 + '-2'
 YEAR = re.compile(r'^\s*[\[<]\s*(20\d\d)\s*년\s*(?:도)?\s*(?:[-–]\s*Pf\.?\s*([가-힣]{2,3})|([가-힣]{2,3})\s*교수님)?\s*[\]>]\s*$')
 CUE = re.compile(r'[?？]|시오|하시오|하라|쓰기|쓰시|서술|설명|나열|비교|기술|채우|기입|빈칸|무엇|어떤|이유|차이|특징|기전|고르|골라|옳|맞는|틀린|아닌|중복|미복원|\(\s*\d\d|\(탈|\(짤|T/F|\(\s*\)|약은|약물|용어|효과|정의|경우|것은|것을|사용|치료|적응증|부작용|목적|복원|짤|표\s|보여주|이다\.|한다\.|should|because|used|rate|effect')
 STRONG = re.compile(r'[?？]|시오|하시오|하라|쓰시|쓰기|고르|골라|옳|맞는|틀린|아닌|서술|설명|나열|중복|미복원|\[서술|\[단답|\(탈|\(\s*\d\d\s*[,)\-’\']|\(짤|T/F|\(\s*\)')
@@ -46,9 +48,11 @@ def parse(ed, n):
         if m and topic:
             sec = m.group(1); prof = m.group(2); last = 0; cur = None; inans = False; continue
         if not topic or not sec or topic == 'SX': continue
-        ms = SUBL.match(s) if ed == '26' and cur is not None else None
-        if ms and (topic, sec, f'{ms.group(1)}-{ms.group(2)}') in SUB26:
-            cur = {'ed': ed, 'topic': topic, 'sec': sec, 'prof': prof, 'num': f'{ms.group(1)}-{ms.group(2)}', 'pg': pg, 'pg2': pg, 'lines': [l], 'sub': True}; blocks.append(cur); inans = False; continue
+        if ed == '26' and cur is not None:
+            ms = SUBL.match(s); mp = None if ms else SUBP.match(s)
+            sk = f'{ms.group(1)}-{ms.group(2)}' if ms else (f"{str(cur['num']).split('-')[0]}-{mp.group(1)}" if mp else '')
+            if sk and (topic, sec, sk) in SUB26:
+                cur = {'ed': ed, 'topic': topic, 'sec': sec, 'prof': prof, 'num': sk, 'pg': pg, 'pg2': pg, 'lines': [l], 'sub': True}; blocks.append(cur); inans = False; continue
         mq = re.match(r'^(\d{1,2})\s*[.．]\s*(\S.*)?$', s)
         if mq:
             nn = int(mq.group(1)); num = mq.group(1)
