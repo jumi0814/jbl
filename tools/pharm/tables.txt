@@ -194,7 +194,7 @@ N: Muscarine = Not used therapeutically(표 주). 필기(p.27) — methacholine�
 #TBL Pilocarpine 금기·주의와 과량 처치 | k=XE | src=[[XE:32]] [[XE:45]] [[XE:42]]
 H: 환자군 | 구분 | 이유
 R: {u:조절되지 않는 천식} | 금기 | M3 수용체 자극 → 기관지 수축 → 기도 폐쇄·발작 악화 — 인공타액으로 대체 {jb:XE11}
-R: COPD·만성기관지염 | {u:주의}(경고) | 기도의 저항력·기관지 평활근 긴장·기관지 분비 증가 {jb:XE05}
+R: COPD·만성기관지염 | {u:주의}(경고) | 기도의 저항력·기관지 평활근 긴장·기관지 분비 증가 {jb:XE05} · 만성기관지염 "금기" ✗ {jb:XE25}
 R: 심혈관 질환(협심증·심부전) | {u:주의}(경고) | 미주신경 흥분 → 서맥·부정맥·혈압저하, 박동이상 보정 불가
 R: 위장관 질환(소화성 궤양·장폐색) | — | 위산 분비·장운동 촉진 → 증상 악화
 R: 비뇨기계 질환(방광폐색·전립선비대증) | — | 방광근 수축 + 괄약근 저이완 → 배뇨 곤란 악화
@@ -273,28 +273,28 @@ N: 핵심 한 줄 — 침샘은 부교감(ACh → M1·M3)이 주도 → 구강�
 
 #TBL 구강건조증 치료제 ② — 원인·진단 전체정리표 | k=XE | sum=1 | src=[[XE:36]] [[XE:37]] [[XE:38]] [[XE:39]] [[XE:40]] [[XE:44]] [[XE:49]] [[XE:52]] [[XE:53]] [[XE:54]] [[XE:55]]
 H: 항목 | 정의·원인 | 진단·수치 | 치료·대처 | ★ 시험
-R: **구강건조증 원인** | ① {r:약물복용} ② {r:Sjögren's syndrome} ③ 종양 + {r:방사선치료} ④ 신경손상 ⑤ 노화 ⑥ 구강호흡 ⑦ 알코올 ⑧ 흡연 ⑨ 스트레스 | {e:1·2번 "시험 잘 나옵니다"}(p.36) | 잔존 타액선 기능이 있으면 pilocarpine·cevimeline | —
-R: **유발 약물** | 항우울 {r:TCA}·imipramine · 항무스카린 {r:atropine} · {r:diazepam} · {r:diphenhydramine} · NSAIDs {r:ibuprofen·naproxen} · {r:codeine} · {r:clonidine} · 근이완제 {r:cyclobenzaprine} · 항경련제 {r:carbamazepine} · antidiarrhea · bronchodilators · alcohol(p.37) | 요실금 약·NSAIDs처럼 다른 목적의 약도 구강건조 유발 | 항무스카린제 복용 중이면 muscarinic agonist {r:피함} · ⚠ physostigmine은 침↑(유발 ✗) | {jb:XE01} 24·22년 유발 약물 아닌 것 = Physostigmine
-R: **Sjögren's syndrome** | 눈물샘·침샘을 공격하는 {r:autoimmune} 질환 · 여성 {r:~10배}·중년 · {r:0.2-1.2%} · lymphoma {r:5%} | 가장 특이한 검사 = {r:lip biopsy}({n:minor gland}) · 항체 {r:Anti-Ro/SSA·Anti-La/SSB} | pilocarpine {r:5 mg × 4회}·6주 · cevimeline(Sjögren 적응증) | {jb:XE04} 23년 빈칸 자가항체 Ro SSA·SSB → 쇼그렌
+R: **구강건조증 원인** | ① {r:약물복용} ② {r:Sjögren's syndrome} ③ 종양 + {r:방사선치료} ④ 신경손상 ⑤ 노화 ⑥ 구강호흡 ⑦ 알코올 ⑧ 흡연 ⑨ 스트레스 | {e:1·2번 "시험 잘 나옵니다"}(p.36) | 잔존 타액선 기능이 있으면 pilocarpine·cevimeline | {jb:XE22} 25년 유발하지 않는 전신상태 = JB 갑상선 기능 항진증(목록 밖 · 당뇨는 함께 먹는 약)
+R: **유발 약물** | 항우울 {r:TCA}·imipramine · 항무스카린 {r:atropine} · {r:diazepam} · {r:diphenhydramine} · NSAIDs {r:ibuprofen·naproxen} · {r:codeine} · {r:clonidine} · 근이완제 {r:cyclobenzaprine} · 항경련제 {r:carbamazepine} · antidiarrhea · bronchodilators · alcohol(p.37) | 요실금 약·NSAIDs처럼 다른 목적의 약도 구강건조 유발 | 항무스카린제 복용 중이면 muscarinic agonist {r:피함} · ⚠ physostigmine은 침↑(유발 ✗) | {jb:XE01} 24·22년 유발 약물 아닌 것 = Physostigmine / {jb:XE23} 25년 유발하지 않는 약물(선지 이름 미복원)
+R: **Sjögren's syndrome** | 눈물샘·침샘을 공격하는 {r:autoimmune} 질환 · 여성 {r:~10배}·중년 · {r:0.2-1.2%} · lymphoma {r:5%} | 가장 특이한 검사 = {r:lip biopsy}({n:minor gland}) · 항체 {r:Anti-Ro/SSA·Anti-La/SSB} | pilocarpine {r:5 mg × 4회}·6주 · cevimeline(Sjögren 적응증) | {jb:XE04} 25·23년 빈칸 자가항체 Ro SSA·SSB → 쇼그렌
 R: **Sjögren 진단 6항목** | 주관 2 = dry eye·dry mouth {r:> 3개월} / 객관 4 = 눈물·타액·조직·항체 | Schirmer {r:≤5 mm/5분} · 비자극 whole {r:≤0.1 mL/min} · {r:focal lymphocytic inflammation} · 항체 | 6개 중 {r:≥4}(조직 또는 항체 포함) 또는 객관 4개 중 {r:≥3} · {e:"큰 별표 — 시험에 나옵니다"} | {jb:XE04} 23년 항체 이름
-R: **정상 타액 분비율** | whole saliva로 측정(개별 선은 측정 어려움) | 정상 whole 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0} / Parotid {r:0.04 · 0.70} / Submandibular/Sublingual {r:0.15 · 0.60} | {n:비자극 = 가만히} / 자극 = 껌 씹으며(25 필기) | {jb:XE02} 24년 비자극 0.2면 정상 ✗ / {jb:XE15} 21년 분비율 표 빈칸
+R: **정상 타액 분비율** | whole saliva로 측정(개별 선은 측정 어려움) | 정상 whole 비자극 {r:0.3-0.5} · 자극 {r:1.0-3.0} / Parotid {r:0.04 · 0.70} / Submandibular/Sublingual {r:0.15 · 0.60} | {n:비자극 = 가만히} / 자극 = 껌 씹으며(25 필기) | {jb:XE02} 25·24년 비자극 0.2면 정상 ✗ / {jb:XE15} 21년 분비율 표 빈칸
 R: **Dry mouth 진단 기준** | 주로 {r:Unstimulated} 분비율로 진단 | 비자극 {r:< 0.1} · 자극 {r:< 0.5-0.7} mL/min | {e:"이 숫자가 굉장히 중요, 주관식으로 나올 수 있습니다"}(p.1) | {jb:XE08} {jb:XE20} 22년 A 0.1 = 비자극 · B 0.7 = 자극
 R: **방사선치료 두경부암** | 종양 + {r:방사선치료} → 타액선 손상 | 잔존 타액선 기능이 있어야 약 효과 | pilocarpine 1정(5 mg) {r:3회}/day · {r:12주↑} · 일반 15-30 mg/day · 1회 {r:10 mg} 초과 ✗ | —
 R: **BMS**(burning mouth syndrome) | 점막 변화 없이 {r:타는 통증 6개월↑} · 감각·미각 변화·타액 분비 이상 동반 | {n:구강건조 장기화 → 통증 동반} | Clonazepam {r:0.5 mg} {r:qd hs × 30일} or bid · {r:3-5분} 물고 삼킴 · 추가 ALA · 대체 gabapentin | {jb:XE07} 23·21년 증례 / {jb:XE21} 21년 병명·약·기전·복용법
 R: **항무스카린제 증례**(solifenacin) | 과민성 방광 {r:Solifenacin}(M3 선택 antagonist) → 구강건조·dry eyes | 구강 연조직 건조 · {r:root caries} | {r:muscarinic agonist 피함}(서로 효과 상쇄) → 수분·인공타액·{r:불소}·무설탕 사탕 | —
-R: **2016 공개 증례** | 81세 여성 · 평소·식사 때 구강건조 | 비자극 < 0.1 · 자극 < 0.5 mL/min | {r:Pilocarpine}: 무스카린 수용체 직접 결합 → {r:잔존 선포} 분비 촉진 · 저용량 시작 → {r:20 mg/day} | {jb:XE06} 23년 같은 증례(0.05·0.1) 재출제
+R: **2016 공개 증례** | 81세 여성 · 평소·식사 때 구강건조 | 비자극 < 0.1 · 자극 < 0.5 mL/min | {r:Pilocarpine}: 무스카린 수용체 직접 결합 → {r:잔존 선포} 분비 촉진 · 저용량 시작 → {r:20 mg/day} | {jb:XE06} 23·16년 같은 증례(0.05·0.1) 재출제
 
 #TBL 구강건조증 치료제 ③ — 치료 약물 전체정리표 | k=XE | sum=1 | src=[[XE:25]] [[XE:27]] [[XE:30]] [[XE:31]] [[XE:32]] [[XE:35]] [[XE:41]] [[XE:42]] [[XE:44]] [[XE:45]] [[XE:46]] [[XE:47]] [[XE:49]] [[XE:50]] [[XE:56]]
 H: 약물 | 기전·수용체 | 적응증 | 용법·용량 | 부작용·금기 | ★ 시험
-R: **Pilocarpine** | tertiary natural {r:alkaloid} · nonselective muscarinic agonist {r:M1·M3·M5} · AChE 분해 {r:안 됨} | 점안 {r:녹내장} · 경구 {r:구강건조증}(Sjögren·방사선) | Salagen {r:5 mg} · 식전 {r:30분} 하루 {r:3번} · 1회 {r:10 mg} 초과 ✗ | 발한·설사·부정맥·기도경련 · {u:금기 {r:조절 안 되는 천식}·{r:축동}(급성 홍채염)} · {u:주의 {r:COPD}·심혈관} | {jb:XE03} 24·23·21년 적응증 빈칸 / {jb:XE18} 21년 T/F / {jb:XE12} 21년 M1·3·5
-R: **Cevimeline** | synthetic · {r:M1·M3} agonist → {n:선택성↑·부작용↓} | {r:구강건조증}(Sjögren)만 | Evoxac {r:30 mg} cap · 식전 30분 하루 3번 | muscarinic 부작용(발한 등) · ⚠ CYP 대사는 자료에 없음 | {jb:XE17} 21년 유사 치료제 / {jb:XE05} 23년 부작용 없을 사람 / {jb:XE10} 22년 치료제 2개
+R: **Pilocarpine** | tertiary natural {r:alkaloid} · nonselective muscarinic agonist {r:M1·M3·M5} · AChE 분해 {r:안 됨} | 점안 {r:녹내장} · 경구 {r:구강건조증}(Sjögren·방사선) | Salagen {r:5 mg} · 식전 {r:30분} 하루 {r:3번} · 1회 {r:10 mg} 초과 ✗ | 발한·설사·부정맥·기도경련 · {u:금기 {r:조절 안 되는 천식}·{r:축동}(급성 홍채염)} · {u:주의 {r:COPD}·심혈관} | {jb:XE03} 24·23·21년 적응증 빈칸 / {jb:XE18} 21년 T/F / {jb:XE12} 21년 M1·3·5 / {jb:XE24} 25년 기전 = 무스카린성 수용체 자극 / {jb:XE25} 25년 천식 금기 ○ · 체온↑·만성기관지염 금기·solifenacin ✗
+R: **Cevimeline** | synthetic · {r:M1·M3} agonist → {n:선택성↑·부작용↓} | {r:구강건조증}(Sjögren)만 | Evoxac {r:30 mg} cap · 식전 30분 하루 3번 | muscarinic 부작용(발한 등) · ⚠ CYP 대사는 자료에 없음 | {jb:XE17} 25·21년 유사 치료제 / {jb:XE05} 23년 부작용 없을 사람(26판 답 "없음") / {jb:XE10} 22년 치료제 2개
 R: **Pilocarpine 용법** | 효과는 {r:잔존 타액선 기능}에 달림 | 방사선 두경부암 · Sjögren · 간장애 | 방사선 {r:5 mg × 3회}(12주↑) · Sjögren {r:5 mg × 4회}(6주) · 중등도 간장애 {r:× 2회} · 중증 간장애 {r:비권장} | 허가 용량(5 mg × 4회)을 처음부터 → 땀·심계항진·구역 → {r:저용량 시작} | {jb:XE06} 23년 복용법(→ 20 mg/day)
-R: **Pilocarpine 과량** | muscarinic 과자극({r:15-30분} 내) | {r:100 mg↑} 투여 시 치명적 | {r:Atropine 0.5-1.0 mg} 피하·정맥 · 심혈관 저하·기관지 수축 → {r:Epinephrine 0.3-1.0 mg} | 구역·구토·설사·발한·타액과다·홍조·서맥·기관지 수축 | {jb:XE16} 21년 과량 길항제 = Atropine / {jb:XE09} {jb:XE19} 22년 부작용 아닌 것
+R: **Pilocarpine 과량** | muscarinic 과자극({r:15-30분} 내) | {r:100 mg↑} 투여 시 치명적 | {r:Atropine 0.5-1.0 mg} 피하·정맥 · 심혈관 저하·기관지 수축 → {r:Epinephrine 0.3-1.0 mg} | 구역·구토·설사·발한·타액과다·홍조·서맥·기관지 수축 | {jb:XE16} 25·21년 과량 길항제 = Atropine / {jb:XE09} {jb:XE19} 22년 부작용 아닌 것
 R: **Choline esters** | ACh·methacholine·carbachol·bethanechol · {r:hydrophilic}(흡수·CNS↓) · {r:carbamate} = AChE 저항 · {r:β-methyl} = 니코틴 작용↓ | methacholine 천식 진단 · carbachol 녹내장 · bethanechol GI·요로 자극 | bethanechol 경구·피하 · carbachol 점안 | ACh 자체는 {r:짧고 비선택} → 치료 불가 | —
 R: **Aceclidine**(FYI) | synthetic · {r:M3 selective} · 홍채 조임근 수축 → 동공 {r:2 mm↓} → {r:pinhole effect} | {r:노안}·녹내장(안과) | VIZZ 1.44% 점안 하루 1회 · 30분 내 효과 · 최대 10시간 | 야간 시력↓·눈부심·점안 부위 자극·두통 | —
-R: **인공타액** | {r:carboxymethylcellulose + glycerin}(점성) + calcium·phosphate — {n:점막에 오래 남음} | 불내성·{r:조절 안 되는 천식}·{r:타액 기능 완전 소실} 시 pilocarpine 대신 | rinse·spray·gel·lozenge·gum · 무설탕 껌·얼음 = 일시 완화 | 한계 = {r:IgA} 등 보호 기능 없음 | {jb:XE11} 22년 인공타액 대체 조건 3 / {jb:XE10} 22년 JB 답 나열
+R: **인공타액** | {r:carboxymethylcellulose + glycerin}(점성) + calcium·phosphate — {n:점막에 오래 남음} | 불내성·{r:조절 안 되는 천식}·{r:타액 기능 완전 소실} 시 pilocarpine 대신 | rinse·spray·gel·lozenge·gum · 무설탕 껌·얼음 = 일시 완화 | 한계 = {r:IgA} 등 보호 기능 없음 | {jb:XE11} 22년 인공타액 대체 조건 3 / {jb:XE10} 22년 JB 답 나열 / {jb:XE26} 25년 점도·물성으로 일시 완화 ○ · IgA ✗
 R: **Clonazepam** | benzodiazepine · ⚠ 기전(GABA)은 슬라이드에 없음 | {r:BMS}(구강건조 동반 통증) | {r:0.5 mg} {r:qd hs × 30일} or {r:bid} · {r:3-5분} topical 후 삼킴 | 수면제 병용 × · 간기능 저하 노인 = oxazepam·temazepam·lorazepam | {jb:XE07} 23·21년 / {jb:XE21} 21년 BMS 처방
-R: **ZnCl2** | Zn2+ → {r:ZnR/GPR39}(GPCR) · {r:악하선} · muscarinic·histamine과 {r:무관} | 구강건조 완화(연구) | {r:0.25%} 가글 → 비자극·자극 whole saliva 모두↑ | 연구 단계(Se-Young Choi 2019) | {jb:XE13} 21년 T/F 침분비 촉진 연구 → T
+R: **ZnCl2** | Zn2+ → {r:ZnR/GPR39}(GPCR) · {r:악하선} · muscarinic·histamine과 {r:무관} | 구강건조 완화(연구) | {r:0.25%} 가글 → 비자극·자극 whole saliva 모두↑ | 연구 단계(Se-Young Choi 2019) | {jb:XE13} 21년 T/F 침분비 촉진 연구 → T / {jb:XE26} 25년 콜린성 수용체 직접 ✗
 R: **Solifenacin**(유발 약) | {r:M3 selective} competitive antagonist | 과민성 방광 | 5 → 10 mg/day | 구강건조·dry eyes·{r:root caries} · pilocarpine과 서로 효과 상쇄 | —
 
 #TBL 보톡스 — 균·독소·임상·주의 한눈에 | k=BT | src=[[BT:4]] [[BT:5]] [[BT:7]] [[BT:9]] [[BT:10]] [[BT:14]] [[BT:18]] [[BT:21]] [[BT:22]] [[BT:23]] [[BT:33]]
@@ -305,7 +305,7 @@ R: 생활사 | 독소는 sporulation cycle 초기에 생성, {n:의료용은 균
 R: 보툴리즘 {jb:BT02} | BoNT 위장관계 효소에 저항 · 가열비활성화 100도씨 15분 · 꿀 → 영아 (p.7) | "단백질이라 대부분 소화되나 소량 흡수 시 위험" (⚠ 26 필기는 '대부분 소화'라고 말함)
 R: 독성 {jb:BT15} | 평균치사량 0.0003 ㎍/kg — 독성 순위 1위 (p.9) | "보툴리눔은 비교적 독성이 약하다"
 R: 독소 구조 {jb:BT03} | bont = LC(Catalytic · Zn protease) + HC(Translocation · Binding), S-S 연결 · NTNHA = 독소 안정화 및 보호 (p.10-11) | "Heavy와 light를 분리하는 protease에 의해 독성을 가진다"
-R: 기전 {jb:BT16} | 타깃 = 신경말단의 SNARE complex, Zn-의존적 단백분해 → ACh 분비 억제 (p.13-14) | "신경전달물질을 파괴하여 직접적으로 차단"
+R: 기전 {jb:BT16} {jb:BT20} | 타깃 = 신경말단의 SNARE complex, Zn-의존적 단백분해 → ACh 분비 억제 (p.13-14) | "신경전달물질을 파괴하여 직접적으로 차단" · "아세틸콜린을 직접 분해"
 R: 치과 진료 범위 {jb:BT04} {jb:BT12} {jb:BT18} | 대법원 판결 — {n:두경부(목 위 모든 부위)} 시술 합법 · 교정·임플란트·골절 수술 보조 (p.18-19) | "저작근 외에는 불법" / "활성화 기간 보통 4-6개월"(JB 기준 ✗)
 R: 침샘 {jb:BT19} | 치과 허용 영역·FDA 적응증에 Sialorrhea (p.16·19) | "악하선·이하선 주변 고농도 투여 → 타액량 증가"
 R: 용량 단위 {jb:BT09} | 1 U = 마우스 복강 LD50, {n:공장마다 약효가 달라 '효과'로 표준화} (p.21) | "용량은 회사마다 동일하므로 동일하게 희석"
@@ -417,15 +417,15 @@ N: 변형 대비: 짝의 반대편으로 물으면 — 교근 = {r:Aspiration} �
 
 #TBL 보톡스 ① — 균·독소·기전 전체정리표 | k=BT | sum=1 | src=[[BT:4]] [[BT:5]] [[BT:6]] [[BT:7]] [[BT:8]] [[BT:9]] [[BT:10]] [[BT:11]] [[BT:13]] [[BT:14]]
 H: 항목 | 핵심 사실 | 수치·분류 | 틀린 선지(함정) | ★ 시험
-R: **C. botulinum** | {r:Gram-positive}·{r:rod-shaped}·{r:anaerobic}·{r:spore-forming}·{r:motile} → neurotoxin | 절대 혐기 → Bacillus와 다른 {r:Clostridium} 속(1924 Bengtson) | "구균과 간균으로 운동성이 없다" ✗ | {jb:BT01} 24·23·21·20년 균 설명 틀린 것
-R: **4 group** | {n:독소 type·단백질 분해능으로 분류} | I {r:A·B·F} · II {r:B·E·F} → {r:Human} / III {r:C·D} → {r:Animal} / IV {r:G} → – · gene: I·II chromosome/plasmid · III bacteriophage · IV plasmid | "인간에게만 감염" ✗ | {jb:BT08} 23·22년 / {jb:BT14} 21·20년 인간에서만 ✗
+R: **C. botulinum** | {r:Gram-positive}·{r:rod-shaped}·{r:anaerobic}·{r:spore-forming}·{r:motile} → neurotoxin | 절대 혐기 → Bacillus와 다른 {r:Clostridium} 속(1924 Bengtson) | "구균과 간균으로 운동성이 없다" ✗ | {jb:BT01} 25·24·23·21·20년 균 설명 틀린 것
+R: **4 group** | {n:독소 type·단백질 분해능으로 분류} | I {r:A·B·F} · II {r:B·E·F} → {r:Human} / III {r:C·D} → {r:Animal} / IV {r:G} → – · gene: I·II chromosome/plasmid · III bacteriophage · IV plasmid | "인간에게만 감염" ✗ | {jb:BT08} 25·23·22년 / {jb:BT14} 21·20년 인간에서만 ✗
 R: **생활사** | {r:vegetative cycle}({n:분열}) + {r:sporulation cycle}({n:버티기}) | 독소 = {r:sporulation 초기} · {n:의료용 = 균주 배양(합성 ✗)} | vegetative 때 독소 생산 ✗ | {jb:BT08} 선지 포자 형성 시기 독소 ○ / {jb:BT01} 선지 ⑤ ○
-R: **보툴리즘** | 원인 {r:Zoonosis}·{r:Plants/Honey}(영아)·{r:wounds} · 형태 5(food-borne·infant·wound·iatrogenic·inhalation) | 가열 {r:100도씨 15분} · transcytosis → 순환 → 시냅스 차단 → {r:descending flaccid paralysis} → 호흡부전 | "대부분 소화된다" ✗ → {r:BoNT 위장관계 효소에 저항} | {jb:BT02} 24·23·22년 틀린 것 / {jb:BT11} 22년 탈
+R: **보툴리즘** | 원인 {r:Zoonosis}·{r:Plants/Honey}(영아)·{r:wounds} · 형태 5(food-borne·infant·wound·iatrogenic·inhalation) | 가열 {r:100도씨 15분} · transcytosis → 순환 → 시냅스 차단 → {r:descending flaccid paralysis} → 호흡부전 | "대부분 소화된다" ✗ → {r:BoNT 위장관계 효소에 저항} | {jb:BT02} 25·24·23·22년 틀린 것 / {jb:BT11} 22년 탈
 R: **역사** | 1895 Van Ermengem(햄) → 1924 Bengtson(Clostridium) → 1949 Burgen(ACh 분비 억제) | {r:1980 Alan B. Scott}(안과) 안검경련·사시 → Oculinum → {r:1989 FDA} → Botox | 최초 사용 = {r:안과} ○ | {jb:BT03} 선지 ① 안과 ○
-R: **독성** | 알려진 독 중 {r:1위} · {n:복어 독의 6000배↑} | 평균치사량 {r:0.0003 ㎍/kg} · 정맥·근육 1.3–2.1 < 흡입 10–13 < 경구 {r:1000} ng/kg | "비교적 독성이 약하다" ✗ | {jb:BT15} 21·20년 선지 ① ✗ / {jb:BT03} 선지 ③
-R: **독소 구조**(bont) | {r:bont} → light chain + heavy chain · 둘을 {r:S-S} 결합이 연결 · progenitor → protease → active | LC {r:Catalytic}·{r:Zn} protease 50 kDa / HN {r:Translocation} · HC {r:Binding} 100 kDa | "Heavy·light를 분리하는 protease에 의해 독성" ✗ | {jb:BT03} 24·23년 틀린 것 4) / {jb:BT14} 선지 bont ○
+R: **독성** | 알려진 독 중 {r:1위} · {n:복어 독의 6000배↑} | 평균치사량 {r:0.0003 ㎍/kg} · 정맥·근육 1.3–2.1 < 흡입 10–13 < 경구 {r:1000} ng/kg | "비교적 독성이 약하다" ✗ | {jb:BT15} 21·20년 선지 ① ✗ / {jb:BT03} 선지 ③(26판 25년 답 = 3) ✗)
+R: **독소 구조**(bont) | {r:bont} → light chain + heavy chain · 둘을 {r:S-S} 결합이 연결 · progenitor → protease → active | LC {r:Catalytic}·{r:Zn} protease 50 kDa / HN {r:Translocation} · HC {r:Binding} 100 kDa | "Heavy·light를 분리하는 protease에 의해 독성" ✗ | {jb:BT03} 24·23년 틀린 것 4)(26판 25년 답 3) — ④ "peptide digestion에 의해 활성화" ○) / {jb:BT14} 선지 bont ○
 R: **단백질 클러스터** | {r:NTNHA} = 독소 안정화·보호 · {r:HAP} = 응집소 + 장벽 통과 · 부형제 = 안정화 | BoNT {r:150} → (+NTNHA) {r:290} → (+HAP) {r:760 kDa} | "ntnh·ha는 독성 없이 안정화" ○ | {jb:BT15} 선지 ④ ○ / {jb:BT03} 선지 ⑤ ○
-R: **작용 3단계** | ① {r:Docking}(HC-C → PSG·SV2·Syt) ② {r:Endocytosis·fusion}(Thioredoxin reductase → S-S 절단) ③ {r:Proteolysis}(Zn → SNARE) | 결과 = {r:ACh 분비 억제} — 독소가 신경전달물질을 직접 부수지 않음 | "신경전달물질을 파괴해 직접 차단" ✗ | {jb:BT16} 21·20년 T/F → F / {jb:BT15} 선지 ③
+R: **작용 3단계** | ① {r:Docking}(HC-C → PSG·SV2·Syt) ② {r:Endocytosis·fusion}(Thioredoxin reductase → S-S 절단) ③ {r:Proteolysis}(Zn → SNARE) | 결과 = {r:ACh 분비 억제} — 독소가 신경전달물질을 직접 부수지 않음 | "신경전달물질을 파괴해 직접 차단" ✗ | {jb:BT16} 21·20년 T/F → F / {jb:BT15} 선지 ③ / {jb:BT20} 25년 "아세틸콜린을 직접 분해" ✗
 R: **타입별 SNARE 타깃** | SNARE = VAMP(vesicle 쪽) · SNAP-25·syntaxin(막 쪽) | {r:B·D·F·G → VAMP} · {r:A·C·E → SNAP25} · {r:C → + syntaxin} | 타입마다 자르는 단백질이 다름 | —
 
 #TBL 보톡스 ② — 임상 적용·주의·술식 전체정리표 | k=BT | sum=1 | src=[[BT:16]] [[BT:17]] [[BT:18]] [[BT:19]] [[BT:21]] [[BT:22]] [[BT:23]] [[BT:24]] [[BT:26]] [[BT:27]] [[BT:29]] [[BT:30]] [[BT:31]] [[BT:32]] [[BT:33]] [[BT:34]]
@@ -433,15 +433,15 @@ H: 항목 | 핵심 원칙 | 수치·목록 | 함정 | ★ 시험
 R: **FDA 적응증** | {n:근육이 과하게 긴장하는 질환 · 적응증 확대 추세} | 첫 승인 {r:1989} = 사시·안검경련 · 2002 미간주름 · 2010 편두통 · 2018 침흘림 | 우울증 = {r:임의 사용 범위}(부작용 아님) | {jb:BT18} 20년 옳지 않은 것 1)·2)
 R: **허가 vs 임의 사용** | 허가 = 편두통·사시·주름·{r:저작근긴장}·경부근긴장·다한증·과민성방광 | 임의 = 파킨슨·{r:우울증}·대상포진후 신경통·암치료 보조·혈행개선·부정맥·통증 | 근육 수축 억제 효과로 다양한 적응증 ○ | {jb:BT04} 선지 ③ ○
 R: **치과 보톡스** | {r:대법원 판결} → {n:두경부(목 위 모든 부위)} 시술 {r:합법} | 허용 영역 {r:15}: gummy smile·교근 비대·TMD·bruxism·{r:sialorrhea}·교정·임플란트 보조 등 | "저작근 외 불법" ✗ · 침샘 주입 → 타액 증가 ✗ | {jb:BT04} 24·23·22년 / {jb:BT12} 22·21년 / {jb:BT19} 20·19년 T/F → F
-R: **1 Unit** | {n:무게가 아닌 '{r:효과}' 기준} | {r:18~20g} 암컷 Swiss-Webster 마우스 {r:복강} {r:LD50} · 사람 70 kg ≈ {r:3,500 U} · {n:임상 수십~300 U} | "회사마다 동일하니 동일 희석" ✗ | {jb:BT09} 22·21년 옳지 않은 것 2)
-R: **부작용 7** | {r:과민반응}({n:가장 흔함 — 용제·보존제}) · {r:원거리 확산}(= 보툴리즘) · 말초신경증 · 심혈관 · 의인성 · 신경 저하 · {r:내성} | 원거리 확산 = 목쉼·삼킴곤란·{r:복시}·눈꺼풀 처짐 | 우울증·{r:탈모증}은 부작용 ✗ | {jb:BT06} 23·21·20년 아닌 것 = 우울증 / {jb:BT10} 23년 탈모증
-R: **금기 6** | {r:과민증}·{r:전신성 신경근접합부 장애}(중증근무력증·Lambert-Eaton)·{r:중증 호흡기능장애}·{r:임신·수유}·{r:주사부위 감염}·{r:근이완제} | 임신 = FDA {r:Class C} | 감염 부위도 소독 후 진행 ✗ | {jb:BT05} 24·22·20년 틀린 것 2)
+R: **1 Unit** | {n:무게가 아닌 '{r:효과}' 기준} | {r:18~20g} 암컷 Swiss-Webster 마우스 {r:복강} {r:LD50} · 사람 70 kg ≈ {r:3,500 U} · {n:임상 수십~300 U} | "회사마다 동일하니 동일 희석" ✗ | {jb:BT09} 25·22·21년 옳지 않은 것 2)
+R: **부작용 7** | {r:과민반응}({n:가장 흔함 — 용제·보존제}) · {r:원거리 확산}(= 보툴리즘) · 말초신경증 · 심혈관 · 의인성 · 신경 저하 · {r:내성} | 원거리 확산 = 목쉼·삼킴곤란·{r:복시}·눈꺼풀 처짐 | 우울증·{r:탈모증}은 부작용 ✗ | {jb:BT06} 25·23·21·20년 아닌 것 = 우울증(25 답 4)·5)) / {jb:BT10} 23년 탈모증
+R: **금기 6** | {r:과민증}·{r:전신성 신경근접합부 장애}(중증근무력증·Lambert-Eaton)·{r:중증 호흡기능장애}·{r:임신·수유}·{r:주사부위 감염}·{r:근이완제} | 임신 = FDA {r:Class C} | 감염 부위도 소독 후 진행 ✗ | {jb:BT05} 25·24·22·20년 틀린 것 2)
 R: **약물상호작용 8** | 상승 = {n:근이완제·칼슘채널차단제} / 상쇄 = {n:콜린성(pyridostigmine·neostigmine)} / 증폭 = {r:항콜린제} | 항생제 polymyxin·tetracycline·lincomycin·{r:aminoglycoside} · {n:마약성·마취제 = 중추 저하} | 항콜린제 → 전신 항콜린 폭발 ○ | {jb:BT05} 선지 ③ ○
 R: **치료 순서 6단계** | {r:진단} → {r:부위}(촉진/시진·안전 지역) → {r:용량} → {r:희석} → {r:주입} → {r:F/U} | 진단 7 = 적응증·Bad Habit·병력·{r:주사부위 감염}·복용 약물·{r:임신가능성}·약물반응 | {n:과다투여보다 '{r:어디에}' 놓느냐가 중요} | {jb:BT09} 선지 ① 정확한 진단 ○
 R: **부위별 용량** | {n:부위·증상 정도에 따라 다름} | 눈꺼풀 {r:0.5~2.5} · Gummy {r:4~6} · Glabellar 5~20 · 교근 {r:25~50} · 다한증 50~100 · 편두통·방광 150~200 U | 선지 20-60 U는 슬라이드 25~50과 다름 | {jb:BT04} {jb:BT12} 선지 25~50U ○ / {jb:BT17} 선지 20-60U
 R: **희석·주입** | 희석 = {r:미리 조제 금지}·{r:생리식염수}·{r:거품금지}·정확한 계량 | 주입 = 소독·{r:수직 자입}·Intradermal·Intramuscular·{r:Aspiration}·{r:문지르지 말 것}({n:사우나 ✗}) | {n:단백질 약이라 거품·미리 조제 → 활성↓} | {jb:BT09} 선지 ③ 수직 자입 ○
 R: **F/U** | {r:2주/6주 C/U} · {r:4주 이내 재주사 금지} · Muscle tone·Rebounding C/U | 필기: {n:15-20U로 3-6개월 효과} | ⚠ "활성 보통 4-6개월"은 JB ✗(2주 시작·6주 최대 — 26 자료엔 없음) | {jb:BT04} {jb:BT18} 선지 4-6개월 ✗
-R: **저작근 비대증** | 적용 {r:Masseter}·Temporalis · 주의 {r:Parotid gland}·{r:Facial a.}({n:& vein}) | {r:25~50 U/side} · {r:2~3 point} · {r:0.5~1cm} · 50 U + 1.1 ml → 0.5 ml/side | submandibular gland ✗ · 수직 자입 → bone touch → 약간 후퇴 → aspiration | {jb:BT07} 23·22년 / {jb:BT13} 22년 / {jb:BT17} 21·20년 submandibular ✗
+R: **저작근 비대증** | 적용 {r:Masseter}·Temporalis · 주의 {r:Parotid gland}·{r:Facial a.}({n:& vein}) | {r:25~50 U/side} · {r:2~3 point} · {r:0.5~1cm} · 50 U + 1.1 ml → 0.5 ml/side | submandibular gland ✗ · 수직 자입 → bone touch → 약간 후퇴 → aspiration | {jb:BT07} 25·23·22년 / {jb:BT13} 22년 / {jb:BT17} 21·20년 submandibular ✗
 R: **Gummy smile** | 적용 {r:Levator labii superioris}·{r:Zygomaticus minor} · 주의 Orbicularis oris·Zygomaticus major·Hematoma | {r:2~6 U/side} · {r:1~2 point} · 0.2~0.5cm · ala line 교차점 | 교근과 달리 {r:No aspiration} | —
 
 #TBL 주요 opioid 약물 한눈에 — 제형·특징·주의 | k=CHR | src=[[CHR:6]] [[CHR:7]] [[CHR:8]] [[CHR:9]] [[CHR:18]] [[CHR:26]]
