@@ -59,8 +59,8 @@ def main():
         for fp in [x for x in f.get('f', '').split(',') if x.strip()]:
             m = re.fullmatch(r'\s*([A-Z0-9]+):(\d+)\s*', fp)
             if not m: X(b, f'f={fp}: <KEY>:<쪽> 꼴'); continue
-            k, p = m.group(1), int(m.group(2)); d = S.LECMAP.get(k, (None,))[0]
-            if not d or not os.path.exists(os.path.join(J.work(sid, 'lec'), d, f'{p}.jpg')): X(b, f'f={fp}: 쪽 이미지 없음')
+            k, p = m.group(1), int(m.group(2)); f_ = S.lec_img_path(k, p) if k in S.LECMAP else None   # 과목마다 폴더 규칙이 다름(OMS1은 끝에 i) — subject.lec_img_path
+            if not f_ or not os.path.exists(f_): X(b, f'f={fp}: 쪽 이미지 없음')
             st['그림'] += 1
         if 'm' in f or '그림빵' in f.get('t', ''):
             st['그림빵'] += 1

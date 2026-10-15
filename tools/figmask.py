@@ -14,9 +14,8 @@ def subject(sid):
     p = os.path.join(J.TOOLS, sid.lower(), 'subject.py')
     sp = importlib.util.spec_from_file_location('subject_' + sid, p); m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m); return m
 def page_img(sid, key, pg):
-    S = subject(sid); d = S.LECMAP[key][0]
-    if not d: raise SystemExit(f'{key}: 쪽 이미지 폴더 없음')
-    f = os.path.join(J.work(sid, 'lec'), d, f'{pg}.jpg')
+    S = subject(sid); f = S.lec_img_path(key, pg)   # 과목마다 폴더 규칙이 다름(OMS1은 끝에 i)
+    if not f: raise SystemExit(f'{key}: 쪽 이미지 폴더 없음')
     if not os.path.exists(f): raise SystemExit(f'없음: {f}')
     return f
 def ocr_lines(f, z=3):
