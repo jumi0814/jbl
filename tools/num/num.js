@@ -1,6 +1,7 @@
 /* JBL 내 넘버링 (10-10 · 처음 이름 '넘버링 따기') — 허브(index.html)가 '#/_num' 화면을 열 때만 불러오는 모듈. 홈·과목 화면의 첫 로딩에는 들어가지 않는다.
    화면: Word 문서처럼 한 과목의 문제가 모두 펼쳐진 채 위에서 아래로 — 문제 머리(번호·출처·연도) → 문제 → 왼쪽 답안 | 오른쪽 넘버링 스토리.
    저장: 허브와 같은 localStorage 이름 공간(jblhub.v1.) — 문제마다 한 키 'num.i.<과목>.<id>'(고친 문제만 다시 씀) · 과목 정보 'num.x.<과목>' · 보기 설정 'num.cfg' · 내가 만든 과목 'num.subj'
+     (10-15 저장 2단: num.i.*·num.r.*는 이 브라우저가 차면 허브가 기기 저장소(IndexedDB 'jblhub-xs')로 옮김 — 키·값 글은 그대로, 읽기·쓰기는 sGet·sSet·sDel·sKeys(허브 H.st))
      → 허브 백업 파일·자동 백업(dumpAll)에 그대로 들어가고, 백업 합치기(mergeData)는 문제마다 더 최근 것(u)이 이김.
    원본 보존: JB 기출·예상문제·Word 기본 자료(docs/num/seed.*.js)는 읽기만 — 고친 글은 작업본으로만 저장, '원본으로'로 언제든 되돌림. 목록에서 빼도 원본은 그대로.
    빠르게: 읽을 때는 가벼운 HTML만(content-visibility로 화면 밖 문제는 그리지 않음) · 편집기는 누른 칸 하나만 · 저장은 입력이 멈춘 뒤(0.7초) 그 문제만 · 검색은 0.2초 기다렸다가 숨김만 바꿈. */
@@ -127,6 +128,12 @@ const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) 
 
 /* ---------- 저장 ---------- */
 const keyI = (sj, id) => 'num.i.' + sj + '.' + id;
+/* 10-15 저장 2단 — 키는 NS를 뺀 것 · 허브의 H.st가 이 브라우저(localStorage)·기기 저장소(IndexedDB) 어느 쪽에 있든 같은 키로 읽고 씀 · 옛 허브(st 없음)면 localStorage 그대로 · sSet은 못 쓰면 예외(부르는 쪽이 되돌림) */
+const sGet = k => { if (H.st) return H.st.get(k); try { return localStorage.getItem(H.NS + k); } catch (e) { return null; } };
+const sSet = (k, s) => { if (H.st) H.st.set(k, s); else localStorage.setItem(H.NS + k, s); };
+const sDel = k => { if (H.st) H.st.del(k); else { try { localStorage.removeItem(H.NS + k); } catch (e) {} } };
+const sPut = (k, v) => { if (v == null) sDel(k); else sSet(k, v); };   /* 되돌리기 — 쓰기 전 값(없었으면 지움) */
+const sKeys = pre => { if (H.st) return H.st.keys(pre); const o = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.indexOf(H.NS + pre) === 0) o.push(k.slice(H.NS.length)); } } catch (e) {} return o; };
 function cfg() { if (!S.mkc) { const c = H.LS.get('num.cfg', null) || {}; S.mkc = { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: c.sort || 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc }; } if (!S.rvc) S.rvc = rcfgLoad(); S.cfg = S.app === 'rev' ? S.rvc : S.mkc; return S.cfg; }   /* 내 넘버링(num.cfg)·넘버링 복습(num.rcfg) 보기 설정은 따로 */
 function cfgSave() { H.LS.set(S.app === 'rev' ? 'num.rcfg' : 'num.cfg', S.cfg); }
 function idx(sj) { const x = H.LS.get('num.x.' + sj, null); return x && typeof x === 'object' ? x : { v: 1, ul: [], lt: {} }; }
@@ -142,10 +149,10 @@ function lqDrop(keys) {   /* 허브 저장 실패 대기열(LSQ)에서 이제 �
 }
 function rawPut(k, v) {   /* 바로 쓰고 결과를 돌려줌(실패하면 허브 LS 대기열 — 다음에 다시 씀 · IndexedDB 비춤) */
   const s = JSON.stringify(v);
-  try { localStorage.setItem(H.NS + k, s); lqDrop([k]); return true; }
+  try { sSet(k, s); lqDrop([k]); return true; }
   catch (e) { try { H.LS.set(k, v); } catch (_) {} return false; }
 }
-function rawDel(k) { try { localStorage.removeItem(H.NS + k); } catch (e) {} lqDrop([k]); }
+function rawDel(k) { sDel(k); lqDrop([k]); }
 const same = (a, b) => JSON.stringify(a || []) === JSON.stringify(b || []);
 function toRec(it) {
   const o = { id: it.id, k: it.kind };
@@ -184,7 +191,7 @@ function subjects() {
 const subjT = sj => { const x = subjects().find(o => o.id === sj); return x ? x.t : sj; };
 function loadRecs(sj) {
   const P = H.NS + 'num.i.' + sj + '.', out = new Map();
-  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.indexOf(P) === 0) { try { const r = JSON.parse(localStorage.getItem(k)); if (r && r.id) out.set(r.id, r); } catch (e) {} } }
+  for (const k of sKeys(P.slice(H.NS.length))) { try { const r = JSON.parse(sGet(k)); if (r && r.id) out.set(r.id, r); } catch (e) {} }
   if (H.LSQ) for (const [k, v] of H.LSQ) if (k.indexOf('num.i.' + sj + '.') === 0) { try { const r = JSON.parse(v); if (r && r.id) out.set(r.id, r); } catch (e) {} }
   return out;
 }
@@ -752,8 +759,8 @@ function lecCounts() { const K = lecKeys(), n = {}; for (const it of S.items) if
 const fKeys = ['lec', 'st', 'type', 'src', 'yr'];
 const fCount = () => fKeys.filter(k => S.cfg.f[k] !== '').length;
 function sjCounts() {   /* 과목마다 문제 수(뺀 것 빼고) — 저장 글을 풀지 않고 키·글자로만 셈 */
-  const c = {}, P = H.NS + 'num.i.';
-  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (!k || k.indexOf(P) !== 0) continue; const j = k.indexOf('.', P.length); if (j < 0) continue; const v = localStorage.getItem(k) || ''; if (v.indexOf('"del":1') < 0 && v.indexOf('"del":true') < 0) { const sj = k.slice(P.length, j); c[sj] = (c[sj] || 0) + 1; } }
+  const c = {}, P = 'num.i.';
+  for (const k of sKeys(P)) { const j = k.indexOf('.', P.length); if (j < 0) continue; const v = sGet(k) || ''; if (v.indexOf('"del":1') < 0 && v.indexOf('"del":true') < 0) { const sj = k.slice(P.length, j); c[sj] = (c[sj] || 0) + 1; } }
   return c;
 }
 
@@ -1028,7 +1035,7 @@ function edSave() {
   it[E.f] = h === E.norm0 ? E.orig : h; touch(it); E.saved = h; it._ty = null;   /* 원래 글로 되돌려 쓰면 원본 그대로(작업본 아님) */
   put(it);
 }
-function reloadIt(it) { it.stale = 0; let r = null; try { const v = localStorage.getItem(H.NS + keyI(it.s, it.id)); r = v ? JSON.parse(v) : null; } catch (_) {} if (r) Object.assign(it, it.kind === 'seed' ? mkSeed(it.s, it.base, r, it.oi, S.seed) : mkRec(it.s, r), { _t: null, _ty: null, _k: null, _qd: null }); }
+function reloadIt(it) { it.stale = 0; let r = null; try { const v = sGet(keyI(it.s, it.id)); r = v ? JSON.parse(v) : null; } catch (_) {} if (r) Object.assign(it, it.kind === 'seed' ? mkSeed(it.s, it.base, r, it.oi, S.seed) : mkRec(it.s, r), { _t: null, _ty: null, _k: null, _qd: null }); }
 function endEdit(silent) {
   const E = S.ed; if (!E) return; edSave(); S.ed = null; if (E.it.stale) reloadIt(E.it);   /* 고친 것 없이 닫아도 다른 창의 글로 맞춤 */
   try { E.el.contentEditable = 'false'; E.el.removeAttribute('contenteditable'); } catch (e) {}
@@ -1469,9 +1476,9 @@ function addMany(plan, sim, simMerge, sj) {   /* 한 번에 — 기록은 사본
     out.set(it.id, { c: it, fin: () => { delete it._new; if (live && !S.by.has(it.id)) { S.items.push(it); S.by.set(it.id, it); } } }); add++;
   }
   try {
-    for (const [id, e] of out) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k)); const r = toRec(e.c); delete r._new; localStorage.setItem(H.NS + k, JSON.stringify(r)); }
+    for (const [id, e] of out) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, sGet(k)); const r = toRec(e.c); delete r._new; sSet(k, JSON.stringify(r)); }
   } catch (e) {
-    for (const [k, v] of before) { try { if (v == null) localStorage.removeItem(H.NS + k); else localStorage.setItem(H.NS + k, v); } catch (_) {} }
+    for (const [k, v] of before) { try { sPut(k, v); } catch (_) {} }
     return { err: e && (e.name === 'QuotaExceededError' || e.code === 22) ? '이 기기 저장 공간이 부족해요' : String(e && e.message || e) };
   }
   lqDrop([...before.keys()]);   /* 다 쓴 뒤에만 대기열에서 뺌 */
@@ -1517,9 +1524,9 @@ function filePreview(fname, r) {
     let sj = ov.querySelector('[data-fp=s]').value; const sw = ov.querySelector('[data-fp=swap]').value === '1';
     const names = {}; $$('[data-lecname]', ov).forEach(i => { names[i.dataset.lecname] = i.value.trim() || i.dataset.lecname; });
     const pick = it2.filter(x => x.on); if (!pick.length) { H.toast('넣을 문제를 하나 이상 고르세요'); return; }
-    const t = now(), before = new Map(), subjBefore = localStorage.getItem(H.NS + 'num.subj');
+    const t = now(), before = new Map(), subjBefore = sGet('num.subj');
     try {
-      if (sj === '__new') { const L = H.LS.get('num.subj', []) || []; sj = 'U' + t.toString(36).toUpperCase(); L.push({ id: sj, t: title.slice(0, 40) }); localStorage.setItem(H.NS + 'num.subj', JSON.stringify(L)); }
+      if (sj === '__new') { const L = H.LS.get('num.subj', []) || []; sj = 'U' + t.toString(36).toUpperCase(); L.push({ id: sj, t: title.slice(0, 40) }); sSet('num.subj', JSON.stringify(L)); }
       const target = await itemsOfSubject(sj), pool = target.filter(it => !it.del), x = JSON.parse(JSON.stringify(idx(sj))); x.ul = x.ul || []; const lmap = {};
       const exist = lectures(sj, (window.JBLNUM_SEED || {})[sj]);
       for (const s of secs) { const nm = names[s.k]; const hit = exist.find(l => l.t === nm) || x.ul.find(l => l.t === nm); if (hit) lmap[s.k] = hit.k; else { const k = 'U' + t.toString(36) + s.k; x.ul.push({ k, t: nm }); lmap[s.k] = k; } }
@@ -1537,14 +1544,14 @@ function filePreview(fname, r) {
         const it = { id: 'w:' + t.toString(36) + ':' + y.i, s: sj, kind: 'word', lec: lmap[y.lec] || '', q, a, st, note: y.note || '', tags: y.tags || [], yrs: y.yrs || [], src: [src], ref: null, done: false, o: o++, c: t, u: t, del: false, rv: (y.rv || []).concat(qOnly ? [{ k: 'qsame', m: '문제 글이 같은 문제가 이미 있지만 답이 달라 따로 넣음 — 같은 문제면 \'여러 개 선택 → 합치기\'' }] : []), rvok: false, prev: null };
         recs.set(it.id, { it }); pool.push(it); add++;
       }
-      for (const [id, r] of recs) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k)); localStorage.setItem(H.NS + k, JSON.stringify(toRec(r.it))); }
-      const xk = 'num.x.' + sj; before.set(xk, localStorage.getItem(H.NS + xk)); x.u = now(); localStorage.setItem(H.NS + xk, JSON.stringify(x));
+      for (const [id, r] of recs) { const k = keyI(sj, id); if (!before.has(k)) before.set(k, sGet(k)); sSet(k, JSON.stringify(toRec(r.it))); }
+      const xk = 'num.x.' + sj; before.set(xk, sGet(xk)); x.u = now(); sSet(xk, JSON.stringify(x));
       lqDrop([...before.keys()]);
       dlgClose(); H.toast(`가져왔어요 — 새 문제 ${add}${link ? ' · 같은 문제 출처 연결 ' + link : ''}`, { level: 'result' });
       await switchSubject(sj, { force: sj === S.sj });
     } catch (e) {   /* 이번에 쓴 키는 쓰기 전 값으로 되돌림(기존 문제는 그대로) */
-      for (const [k, v] of before) { try { if (v == null) localStorage.removeItem(H.NS + k); else localStorage.setItem(H.NS + k, v); } catch (_) {} }
-      try { if (subjBefore == null) localStorage.removeItem(H.NS + 'num.subj'); else localStorage.setItem(H.NS + 'num.subj', subjBefore); } catch (_) {}
+      for (const [k, v] of before) { try { sPut(k, v); } catch (_) {} }
+      try { sPut('num.subj', subjBefore); } catch (_) {}
       H.toast('가져오지 못했어요 — 기존 넘버링은 그대로예요: ' + (e && (e.name === 'QuotaExceededError' || e.code === 22) ? '이 기기 저장 공간이 부족해요(그림이 많은 파일은 나눠서)' : String(e && e.message || e)), { level: 'error', id: 'nmfile' });
     }
   });
@@ -1735,19 +1742,19 @@ function aiPreview(P) {
 }
 function storedNewer(it) {   /* 저장된 기록이 이 화면의 것보다 새것(다른 창에서 고침 · 아직 못 받음) */
   if (H.LSQ && H.LSQ.has(keyI(it.s, it.id))) return false;
-  try { const v = localStorage.getItem(H.NS + keyI(it.s, it.id)); if (!v) return false; const r = JSON.parse(v); return (+r.u || 0) > (+it.u || 0); } catch (e) { return false; }
+  try { const v = sGet(keyI(it.s, it.id)); if (!v) return false; const r = JSON.parse(v); return (+r.u || 0) > (+it.u || 0); } catch (e) { return false; }
 }
 function applyStories(list) {   /* 넘버링 스토리만 한 번에 — 사본으로 먼저 쓰고, 하나라도 실패하면 이번에 쓴 키를 모두 쓰기 전 값으로 · 저장 실패 대기열은 다 쓴 뒤에만 비움 */
   endEdit(true);
   const t = now(), before = new Map(), done = [];
   try {
     for (const { it, html } of list) {
-      const k = keyI(it.s, it.id); if (!before.has(k)) before.set(k, localStorage.getItem(H.NS + k));
+      const k = keyI(it.s, it.id); if (!before.has(k)) before.set(k, sGet(k));
       const c = Object.assign({}, it, { st: html, prev: { f: 'st', h: it.st, at: t }, u: t });
-      localStorage.setItem(H.NS + k, JSON.stringify(toRec(c))); done.push([it, html, it.st]);
+      sSet(k, JSON.stringify(toRec(c))); done.push([it, html, it.st]);
     }
   } catch (e) {
-    let bad = 0; for (const [k, v] of before) { try { if (v == null) localStorage.removeItem(H.NS + k); else localStorage.setItem(H.NS + k, v); } catch (_) { bad++; } }
+    let bad = 0; for (const [k, v] of before) { try { sPut(k, v); } catch (_) { bad++; } }
     return { err: (e && (e.name === 'QuotaExceededError' || e.code === 22) ? '이 기기 저장 공간이 부족해요' : String(e && e.message || e)) + (bad ? ` — ${bad}개는 되돌리지 못했어요(새로고침해 확인해 주세요)` : '') };
   }
   lqDrop([...before.keys()]);
@@ -1866,7 +1873,7 @@ function revEnter() { if (RV.sj !== S.sj) rLoad(S.sj); sesLoad(); if (!RV.ses) s
 /* 기록 */
 function rLoad(sj) {
   const P = 'num.r.' + sj + '.', M = new Map();
-  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.indexOf(H.NS + P) === 0) { try { const r = JSON.parse(localStorage.getItem(k)); if (r && r.id) M.set(r.id, r); } catch (e) {} } }
+  for (const k of sKeys(P)) { try { const r = JSON.parse(sGet(k)); if (r && r.id) M.set(r.id, r); } catch (e) {} }
   if (H.LSQ) for (const [k, v] of H.LSQ) if (k.indexOf(P) === 0) { try { const r = JSON.parse(v); if (r && r.id) M.set(r.id, r); } catch (e) {} }
   RV.rr = M; RV.sj = sj;
 }
@@ -2330,10 +2337,12 @@ function bind() {
   addEventListener('scroll', () => { if (!S.root) return; if (!spyT) spyT = setTimeout(() => { spy(); topBtn(); }, 120); clearTimeout(posT); posT = setTimeout(posSave, 900); }, { passive: true });   /* 마지막 위치 = 스크롤이 멈추고 0.9초 뒤 과목마다(num.pos.<과목>) */
   addEventListener('resize', () => { if (S.drawer && innerWidth > 860) drawer(false); });
   addEventListener('pagehide', flush); document.addEventListener('visibilitychange', () => { if (document.hidden) flush(); });
-  addEventListener('storage', e => {   /* 다른 창에서 고친 문제 — 모았다가 한 번에(고치는 중인 문제는 건드리지 않음) */
-    if (!S.root || !document.getElementById('numv') || !e.key || e.key.indexOf(H.NS + 'num.i.' + S.sj + '.') !== 0) return;
-    SQ.add(e.key.slice((H.NS + 'num.i.' + S.sj + '.').length)); clearTimeout(sqT); sqT = setTimeout(syncOther, 400);
-  });
+  const other = key => {   /* 다른 창에서 고친 문제 — 모았다가 한 번에(고치는 중인 문제는 건드리지 않음) */
+    if (!S.root || !document.getElementById('numv') || !key || key.indexOf(H.NS + 'num.i.' + S.sj + '.') !== 0) return;
+    SQ.add(key.slice((H.NS + 'num.i.' + S.sj + '.').length)); clearTimeout(sqT); sqT = setTimeout(syncOther, 400);
+  };
+  addEventListener('storage', e => { if (H && !H.st) other(e.key || ''); });   /* 옛 허브 */
+  addEventListener('jblxs', e => { if (H && H.st) other((e.detail && e.detail.key) || ''); });   /* 10-15 허브가 다른 창의 쓰기(기기 저장소·이 브라우저)를 알림 */
 }
 const SQ = new Set(); let sqT = 0;
 function syncOther() {
@@ -2341,7 +2350,7 @@ function syncOther() {
   let added = false, moved = false; const re = [];
   for (const id of ids) {
     if (S.ed && S.ed.it.id === id) { S.ed.it.stale = 1; H.toast('다른 창에서 지금 고치는 문제를 바꿨어요 — 지금 고치는 칸만 이 글로 저장하고, 나머지 칸은 그 창의 글로 맞춰요', { level: 'result', id: 'nmother' }); continue; }
-    let r = null; try { const v = localStorage.getItem(H.NS + keyI(S.sj, id)); r = v ? JSON.parse(v) : null; } catch (_) {}
+    let r = null; try { const v = sGet(keyI(S.sj, id)); r = v ? JSON.parse(v) : null; } catch (_) {}
     const it = S.by.get(id), o0 = it ? it.o + '|' + it.lec : '';
     if (it && it.kind === 'seed') { Object.assign(it, mkSeed(S.sj, it.base, r, it.oi, S.seed), { _t: null, _ty: null, _k: null, _qd: null }); re.push(it); }
     else if (r) { const n = mkRec(S.sj, r); if (it) { Object.assign(it, n, { _t: null, _ty: null, _k: null, _qd: null }); re.push(it); } else { S.items.push(n); S.by.set(n.id, n); added = true; } }
@@ -2357,8 +2366,9 @@ async function open(root, o, host) {
   if (S.app === 'rev' && o.fresh && S.cfg.view !== 'scroll') { S.cfg.view = 'scroll'; cfgSave(); RV.face = 0; RV.sum = false; }   /* 허브 홈·메뉴에서 들어오면 늘 스크롤 복습부터(새로고침·뒤로·화면 안 바꾸기는 마지막 방식 그대로) */
   S.drawer = false; S.fp = false; S.vo = false; S.curLec = null; S.shuf = null; S.posOK = false;
   root.innerHTML = ''; frame(); $('.nm-main', root).innerHTML = '<div class="nm-prog">넘버링 불러오는 중…</div>';
+  if (H.xsReady) { const xr = await H.xsReady(); if (S.root !== root) return; if (xr && xr.lost) { $('.nm-main', root).innerHTML = '<div class="nm-prog">⚠ 넘버링 기록이 든 기기 저장소(IndexedDB)를 읽지 못했어요 — 기록은 기기에 그대로 있어요. 새로고침해 주세요.</div>'; return; } }   /* 10-15 옮긴 넘버링 기록(기기 저장소)을 다 읽은 뒤에 그림 · 못 읽으면 아무것도 쓰지 않음 */
   await index();
-  const subs = subjects(), has = new Set(); for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), m = k && /^jblhub\.v1\.num\.i\.([^.]+)\./.exec(k); if (m) has.add(m[1]); }
+  const subs = subjects(), has = new Set(); for (const k of sKeys('num.i.')) { const m = /^num\.i\.([^.]+)\./.exec(k); if (m) has.add(m[1]); }
   const lsj = S.cfg.sj || (S.app === 'rev' ? S.mkc.sj : S.rvc.sj);
   let sj = o.sj && subs.some(s => s.id === o.sj) ? o.sj : (lsj && subs.some(s => s.id === lsj) ? lsj : (subs.find(s => has.has(s.id)) || subs.find(s => s.seed) || subs[0]).id);   /* 주소 → 마지막 과목 → 문제가 있는 과목 → 첫 과목 */
   if (S.root !== root) return;
