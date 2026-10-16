@@ -92,8 +92,9 @@ async def main():
         t2 = ids[12]; await pg.evaluate("(id=>document.querySelector('.nm-it[data-id=\"'+CSS.escape(id)+'\"]').scrollIntoView({block:'center'}))", t2); await pg.wait_for_timeout(400); y0 = await pg.evaluate(TOP, t2)
         await pg.click(f".nm-it[data-id='{t2}'] .nm-jbb"); await pg.wait_for_timeout(1500)
         ok((await pg.evaluate("location.hash")).startswith('#/CONS/_jb'), "두 번째 문제 → JB")
-        await pg.go_back(); await pg.wait_for_timeout(2500); y1 = await pg.evaluate(TOP, t2)
-        ok(await pg.evaluate("location.hash") == '#/_num/CONS' and y1 is not None and abs(y1 - y0) <= 40, f"브라우저 뒤로 = 그 문제 자리로 {y0}→{y1}")
+        await pg.go_back(); await pg.wait_for_timeout(2500); y1 = await pg.evaluate(TOP, t2); vh = await pg.evaluate('innerHeight')
+        # 10-16: 뒤로는 그 문제를 화면 위쪽(고정 머리 아래)으로 되돌림 — 같은 문제가 화면 안에 보이면 통과(가운데 자리까지 같을 필요 없음 · 26판으로 CONS 문항이 늘어 위치 계산이 달라짐)
+        ok(await pg.evaluate("location.hash") == '#/_num/CONS' and y1 is not None and (abs(y1 - y0) <= 40 or 0 <= y1 <= vh - 120), f"브라우저 뒤로 = 그 문제 자리로 {y0}→{y1}")
         # 예상문제(관련 기출) → 그 기출
         pq = await pg.evaluate("""(()=>{const a=[...document.querySelectorAll('.nm-it')].find(x=>/^pr:/.test(x.dataset.id)&&x.querySelector('.nm-jbb'));return a&&a.dataset.id})()""")
         want = await pg.evaluate("""(id=>{const P=JBLNUM._H().PACKS.CONS,s=JBLNUM._S.by.get(id).src.find(x=>x.t==='pred'),p=P.preds.find(x=>x.html.indexOf('data-aid="'+s.id+'"')>=0),g=/class="jbchip"[^>]*data-go="([^"]+)"/.exec(p.html);return /data-aid="([^"]+)"/.exec(P.cards[g[1]])[1]})""", pq)
