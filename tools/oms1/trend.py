@@ -25,14 +25,19 @@ def fmt_of(q):
     if re.search(r'\[\s*객\s*\]|[\[(]\s*객관식\s*[\])]', src): return '객관식'
     if re.search(r'T/F|(?<![A-Za-z])TF(?![A-Za-z])|O\s*/\s*X|\(T\)|\(F\)|옳으면 T', src): return 'T/F'
     if re.search(r'주관식', stem): return '단답형'   # '보기 12개 중 하나 고르는 주관식'
-    if re.search(r'빈칸을?\s*채우|괄호를?\s*채우|빈칸에\s*(알맞|들어갈)', stem) and '고르' not in stem: return '빈칸'
-    if re.search(r'\(\s*\d\s*\)\s*(은|는|이|가|와|과|의|을|를|에|로|으로)(?![가-힣])', qp) or re.search(r'\(\s+\d\s+\)', qp): return '빈칸'   # 번호 빈칸 '( 1 ) 돌출'·'(2)가 있고'
+    if re.search(r'빈칸을?\s*채우|괄호를?\s*채우|빈칸에\s*(알맞|들어갈)|알맞은\s*[^.?]{0,12}(써\s*넣|채우)', stem) and '고르' not in stem: return '빈칸'
+    if len(re.findall(r'\(\s*(?:[ㄱ-ㅎ]|[A-E])\s*\)', qp)) >= 2 and not CHOICE.search(qp[:0]): return '빈칸'   # 10-16 '(ㄱ)mm'·'(A)mm' 글자 빈칸
+    if re.search(r'\(\s*\d\s*\)\s*(은|는|이|가|와|과|의|을|를|에|로|으로)(?![가-힣])', qp) or re.search(r'\(\s+\d\s+\)|\[\s*\d\s*\]', qp) or qp.count('@') >= 2: return '빈칸'   # 번호 빈칸 '( 1 ) 돌출'·'(2)가 있고'
+    if len(set(re.findall(r'(?<![A-Za-z0-9])([A-D])(?=\s*(?:는|은|이며|이고|가|이|와|과|를|을|에|,|\s등))', qp))) >= 2 and not re.search(r'설명|서술|기술', qp): return '빈칸'   # 10-16 'A는 … B, C 등' 글자 빈칸(그림 A·B를 '설명하시오'는 서술)
     if mc_choices(L): return '객관식'   # '다음 중 …는?' + 보기 줄(①~⑤·1.~5.)
     body = re.sub(r'^\s*(?:추\s*)?\d+(?:-\d+)?\s*[.)]\s*', '', qp)   # 문항 번호 '8. '·'추 1. '은 보기가 아님
     if len(re.findall(r'(?:^|\s)\(?[1-5][.)]\s?', body)) >= 3 and not re.search(r'시오|하라|서술|설명|쓰고', body): return '객관식'   # 같은 줄에 이어 쓴 보기 '(1) … (2) … (3) …'
-    if re.search(r'옳지\s*않은|선지|보기\s*(\d+\s*개|미복원|에\s*주어진|들?\s*중)', qp): return '객관식'
+    if re.search(r'올바로\s*(쓰여진|짝지어진|나열된)|바르게\s*(짝지어진|나열|연결)|올바른\s*것|옳게\s*(묶인|짝)|옳지\s*않은|관련이?\s*없는|해당하지\s*않는|적절하지\s*않은|거리가\s*먼|선지|보기\s*(\d+\s*개|미복원|에\s*주어진|들?\s*중)', qp): return '객관식'
     if re.search(r'빈칸|괄호|\(\s*\)|\(\d\.\s*\)', src) and '고르' not in src: return '빈칸'
     if re.search(r'객관식|고르(시오|세요|라)|모두 골라|맞는\s*것|옳은\s*것|아닌\s*것|틀린\s*것|지\s*선다|가장\s*(적절|옳)', src): return '객관식'   # 띄어쓰기 없는 '아닌것'·'5 지 선다'·'가장 적절한 것'
+    body2 = re.sub(r'\s*\([^()]*\d{2}[^()]*\)\s*$', '', body).strip()   # 끝 연도 괄호 '(20’, 19’)' 떼고
+    if body2 and re.search(r'다\.?$', body2) and not re.search(r'\?|시오|하라|쓰|서술|설명|나열|무엇|어떤|몇', body2): return 'T/F'   # 10-16 평서문 한 문장 = O/X 판정 문항('…증가한다.')
+    src = lab + ' ' + qp   # 10-16 단답/서술은 문제 부분 전체로(긴 증례 문제의 '…설명하시오'가 5번째 줄에 있음 — 답은 q_lines가 이미 뺌)
     if re.search(r'단답|쓰시오|쓰세요|쓰고|약자|무엇|몇|시기는|각도', src) and not re.search(r'서술|설명|나열|기술|장단점|이유|비교', src): return '단답형'
     if re.search(r'서술|설명|나열|기술|장단점|이유|과정|목적|한계|단점|장점|특징|종류|비교', src): return '서술형'   # 10-16 '비교하시오'
     return '단답형'
