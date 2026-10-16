@@ -28,7 +28,7 @@ with sync_playwright() as p:
     go(pg, '#/ANAT/_jb', 2500)
     c = pg.evaluate("""(()=>{const a=document.querySelector('#c-Q03');if(!a)return null;const ch=a.querySelector('.qhead .chip.pf'),B=ch?[...ch.querySelectorAll('b')]:[];
       const yp=(a.dataset.yp||'').split(/\\s+(?=\\d{2}:)/).map(t=>t.split(':')[1]);return {n:B.length,names:B.map(x=>x.textContent),fw:B[0]?+getComputedStyle(B[0]).fontWeight:0,yp:[...new Set(yp)],prof:a.dataset.prof,yrs:a.dataset.yrs,txt:ch?ch.textContent:''}})()""")
-    ok(bool(c) and c['n'] == 2 and c['names'] == c['yp'] and c['names'][0] == c['prof'] and c['fw'] >= 700, f"ANAT Q03 교수 칩 = 굵은 교수 2명 · 최근 출제 해 교수 먼저(data-yp 순서) {c}")
+    ok(bool(c) and c['n'] == 2 and [x for i, x in enumerate(c['names']) if x not in c['names'][:i]] == c['yp'] and c['names'][0] == c['prof'] and c['fw'] >= 700, f"ANAT Q03 교수 칩 = 굵은 교수 2명 · 최근 출제 해 교수 먼저(data-yp 순서) {c}")
     ok(bool(c) and '25' in c['txt'] and c['txt'].index(c['names'][0]) < c['txt'].index(c['names'][1]), f"칩 글 = '교수 연도 · 교수 연도'(최근 해 먼저) {c and c['txt']!r}")
     nb = pg.evaluate("[...document.querySelectorAll('#cards .qc .qhead .chip.pf')].filter(x=>x.offsetParent&&!x.querySelector('b')).length")
     ok(nb == 0, f"모든 JB 카드 교수 칩이 굵음(<b> 없는 칩 {nb})")

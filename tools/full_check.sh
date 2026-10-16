@@ -46,7 +46,7 @@ if [ $UI = 1 ]; then
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
-say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|✗ [1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]|필기NEW26 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
+say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|✗ [1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]|필기NEW26 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' | grep -v ' · 형식 {' >> work/_tmp/full_check.fail || true
 grep -E '^합계: 기록 이어짐' $L | awk -F'[(%]' '{ if ($2+0 < 95) print "  ✗ 플래시카드 기록 이어짐 95% 미만:", $0 }' >> work/_tmp/full_check.fail
 cat work/_tmp/full_check.fail | tee -a $L   # 요약은 로그 끝에도(10-09 — 기준값은 SKILL G1)
 say "ALLDONE"

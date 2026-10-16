@@ -719,16 +719,16 @@ function profBase(it) {   /* 교수 태그(연도별 표가 없을 때) — JB �
   return P.join('·');
 }
 /* 10-16 사용자 '출제연도 기준의 교수님 이름을 적었으면 … 강의자료는 같더라도 출제 교수님이 다르면 그걸 알 수 있게 … 출제연도는 가장 최신순(25,23,22)' —
-   연도(최근 해 먼저)마다 그 해 출제 교수: JB 출처 문항의 팩 카드 data-yp(subject.py YEAR_PROF) · 없는 해는 profBase · [[교수, [연도…]], …](처음 나온 순 = 최근 해 순) */
+   연도(최근 해 먼저)마다 그 해 출제 교수: JB 출처 문항의 팩 카드 data-yp(subject.py YEAR_PROF) · 없는 해는 profBase · [[교수, [연도…]], …](최근 해부터 이어진 해끼리) */
 function profYrs(it) {
   const Y = new Map();
   for (const s of it.src) if (s.t === 'jb' && s.s && s.id) { const m = jbMaps(s.s), v = m && m.yp.get(s.id); if (v) for (const t of v.split(/\s+(?=\d{2}:)/)) { const i = t.indexOf(':'), y = +t.slice(0, i), p = t.slice(i + 1).trim(); if (p && !Y.has(y)) Y.set(y, p); } }
   const base = profBase(it), ys = (it.yrs || []).slice().sort((a, b) => b - a), G = [];
-  for (const y of ys) { const p = Y.get(y % 100) || base, g = G.find(x => x[0] === p); if (g) g[1].push(y); else G.push([p, [y]]); }
+  for (const y of ys) { const p = Y.get(y % 100) || base, g = G[G.length - 1]; if (g && g[0] === p) g[1].push(y); else G.push([p, [y]]); }   /* 이어진 해끼리만 묶음 — 교수가 오갔다 돌아와도 연도는 최근 해 먼저 그대로 */
   if (!G.length && base) G.push([base, []]);
   return G;
 }
-function profOf(it) { return profYrs(it).map(g => g[0]).filter(Boolean).join('·'); }   /* 교수(최근 출제 해 순 · 여럿이면 모두) */
+function profOf(it) { return [...new Set(profYrs(it).map(g => g[0]).filter(Boolean))].join('·'); }   /* 교수(최근 출제 해 순 · 여럿이면 모두) */
 function profTagH(it) { const G = profYrs(it).filter(g => g[0]); return G.length > 1 ? G.map(g => `<b>${esc(g[0])}</b> ${esc(yrs2(g[1]))}`).join(' · ') : (G[0] ? `<b>${esc(G[0][0])}</b>` : ''); }   /* 10-16 굵은 교수(해마다 다르면 연도와 묶음) — 복습 카드·인쇄 */
 function profTxt(it) { const G = profYrs(it).filter(g => g[0]); return G.length > 1 ? G.map(g => g[0] + ' ' + yrs2(g[1])).join(' · ') : (G[0] ? G[0][0] : ''); }   /* 카드·인쇄 꼬리표 — 해마다 교수가 다르면 '교수 25·24 · 교수 22' */
 /* 10-11 사용자 '각 문제의 끝나는 음절 오른쪽에 순서대로 연도 표기, 그리고 교수 이름' — 화면에서만 문제 글 끝에 붙이는 작은 회색 꼬리표(저장 글·인쇄·ChatGPT 내보내기에는 안 들어감 · 고치는 동안은 빠짐)

@@ -240,7 +240,7 @@ def main(argv):
         K = fmt_keys(R['cnt'])
         lines.append(f"{sid}: 문항 {len(R['live'])} · 형식 {{{', '.join(f'{k} {R['cnt'][k]}' for k in K if R['cnt'].get(k))}}} · 의심 {len(R['sus'])}" + (f" (참고 {len(R['soft'])})" if R['soft'] else ''))
     for l in lines: print(l)
-    for p in sorted(written): print('  md →', os.path.relpath(p, J.ROOT))
+    for p in sorted(written): ap = os.path.abspath(p); print('  md →', os.path.relpath(ap, J.ROOT) if ap.startswith(J.ROOT + os.sep) else ap)
     print('RESULT PASS')
     return 0
 

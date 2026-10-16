@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"cd849cb0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"c308e62a",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1205,6 +1205,7 @@ details.parch>summary .arw::after{content:" ▸"}details.parch[open]>summary .ar
 .gbx .qhead{display:flex;flex-wrap:wrap;gap:5px 6px;align-items:center;margin-bottom:6px}.gbx .qhead .chip{min-height:22px}
 .gbtag{font-weight:800;font-size:12.5px;color:#5A4300;background:#FFF1C2;border:1px solid #E3C66E;border-radius:6px;padding:1px 8px;white-space:nowrap}.gbtag.pr{color:#1E4E8C;background:#E6EEF8;border-color:#BCD0EA}
 .chip.gbold{background:#EFECE6;color:#57514A;border:1px solid #DAD4CA}.chip.gbpast{background:#F8ECEA;color:#7E2A20;border:1px dashed #D9A39B;white-space:nowrap}
+.chip.pf b{font-weight:800;color:var(--ink)}i.ypy{font-style:normal;margin-left:4px}i.yps{font-style:normal;margin:0 5px;opacity:.6}.toplist .p b,.cmp td b.yb{font-weight:800}.chip.pf.pfy{white-space:normal}   /* 10-16 출제 교수 굵게 · 해마다 다르면 '교수 25·24 · 교수 22' */
 .chip.pgo{background:#E6EEF8;color:#1E4E8C;border:1px solid #BCD0EA;cursor:pointer;font-weight:700;white-space:nowrap}.chip.pgo:hover{background:#D5E2F3}   /* 10-16 JB 카드 → 관련 예상문제 */
 .gbx .gbq{margin:4px 0}.gbfigs img.fig{max-width:min(100%,760px);height:auto}
 .gbsc{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}.gbfig.zoom{max-width:none;width:min(1100px,240%)}.gbfig{position:relative;display:inline-block;max-width:min(100%,760px);margin:10px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;line-height:0;vertical-align:top}.gbfig img{display:block;width:100%;height:auto;min-height:120px;background:#F1ECE1}
@@ -2109,7 +2110,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="cd849cb0",PV={"OMS1": "a6cbd20e", "CONS": "3986c519", "IMPL": "7372fa3f", "ANAT": "d93daed4", "GERI": "7c1dd7cd", "PHARM": "cc819b0b", "ESTH": "33cd1ed5"},PSZ={"OMS1": 4.5, "CONS": 4.3, "IMPL": 3.8, "ANAT": 5.6, "GERI": 5.1, "PHARM": 7.3, "ESTH": 4.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="c308e62a",PV={"OMS1": "32635476", "CONS": "76ab4c16", "IMPL": "01c42e78", "ANAT": "f842a63b", "GERI": "7cacd272", "PHARM": "7a3fb4e9", "ESTH": "b405410e"},PSZ={"OMS1": 4.7, "CONS": 4.4, "IMPL": 3.9, "ANAT": 5.8, "GERI": 5.1, "PHARM": 7.5, "ESTH": 4.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2223,7 +2224,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='8c663aaa';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='a17b2f6e';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -3091,7 +3092,7 @@ function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C
  const hot2=new Set((p.top||[]).map(t=>t.lk).filter(Boolean));
  const BM=lbmGet(p.id),lecs=p.lect.map(L=>lcardHTML(p,L,BM,hot2)).join('');
  const T=p.top||[],y4=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return a.length>4?a.slice(0,4).join('·')+' +'+(a.length-4):a.join('·');};
- const TN=5,top=T.map((t,i)=>{const st=(MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'')+(i>=TN?' tmr':'');return `<li class="${st.trim()}"><span class="c">${t.yrs.length}회</span><span class="yr">${y4(t.yrs)}</span><button class="q" data-go="${t.id}" title="${EH(yrsLab(t.yrs))} — JB 문제로">${EH(t.short)}</button><span class="p">${EH(t.prof)}</span></li>`;}).join('');
+ const TN=5,top=T.map((t,i)=>{const st=(MKh.ok[t.id]?'ok':MKh.ng[t.id]?'ng':'')+(i>=TN?' tmr':'');return `<li class="${st.trim()}"><span class="c">${t.yrs.length}회</span><span class="yr">${y4(t.yrs)}</span><button class="q" data-go="${t.id}" title="${EH(yrsLab(t.yrs))} — JB 문제로">${EH(t.short)}</button><span class="p">${t.pfh||EH(t.prof)}</span></li>`;}).join('');
  const HA=!!SS.get('hintAll.'+p.id,0),TA=!!SS.get('htopAll.'+p.id,0);const hints=(p.hints&&p.hints.length)?`<section class="hints sh4${HA?' all':''}" id="hhint"><h2 class="hh">교수님이 예고·강조한 것${p.hints.length>3&&!HA?`<button class="more" data-hmore="1">모두 보기 ${p.hints.length}</button>`:''}</h2><ul class="hlist">${p.hints.map((x,i)=>`<li class="hq${i>=3?' hmore':''}"><button class="lec" data-golec="${x.k}:0">${EH(x.t)}</button><p>${x.h}</p></li>`).join('')}</ul></section>`:'';
  const rvb=revBtn(p.id,'b3lk');
  return `<section class="guide sh4" id="hguide"><h2 class="hh gt">공부 순서</h2><ol class="steps">${rvb?`<li class="rvli"><span class="stx"><b>오늘 복습</b> <span class="d">틀렸던 기출을 1·3·7일 간격으로 다시</span></span>${rvb}</li>`:''}${guide}</ol></section>
@@ -3159,7 +3160,7 @@ function gbJB(p,id,L){const h=p.cards[id];if(!h)return '';gbT.innerHTML=h;const 
  const yb=a.querySelector('.qhead .ybadge'),pf=gbProf(a.dataset.prof),lc=a.querySelector('.qhead .chip.lec[data-golec]'),qt=a.querySelector('.qtext'),ln=a.querySelector('section.ab.jbans .lines');
  const old=a.dataset.tier==='C'||(!!pf&&!!L.prof&&gbProf(L.prof)!==pf),gone=/^(none|na)$/.test(a.dataset.v||'');
  let ans='';if(ln){const c=ln.cloneNode(true);c.querySelectorAll('.exw,.lab-src,button').forEach(x=>x.remove());ans=[...c.children].filter(x=>x.textContent.trim()).map(x=>{x.classList.add('gbl');x.setAttribute('role','button');x.setAttribute('tabindex','0');return x.outerHTML;}).join('');}
- return `<article class="gbx gbj" data-id="${EH(id)}" data-gk="j" data-k="${EH(L.k)}" data-gprof="${EH(pf||gbProf(L.prof))}"><div class="qhead"><span class="gbtag">기출 그림빵</span>${yb?yb.outerHTML:''}${pf?`<span class="chip pf">${EH(pf)}</span>`:''}${old?'<span class="chip gbold" title="지금 강의 교수님이 아닌 교수님의 기출">옛 교수 기출</span>':''}${old||gone?'<span class="chip gbpast" title="26년도 강의자료에 없거나 옛 교수님 출제 — 과거 JB 대비용">과거 JB 대비용</span>':''}${lc?`<button class="chip lec" data-golec="${EH(lc.dataset.golec)}">📖 정리본</button>`:''}<button class="chip lec" data-go="${EH(id)}">JB 문제</button></div>`
+ return `<article class="gbx gbj" data-id="${EH(id)}" data-gk="j" data-k="${EH(L.k)}" data-gprof="${EH(pf||gbProf(L.prof))}"><div class="qhead"><span class="gbtag">기출 그림빵</span>${yb?yb.outerHTML:''}${(a.querySelector('.qhead .chip.pf')||{}).outerHTML||(pf?`<span class="chip pf"><b>${EH(pf)}</b></span>`:'')}${old?'<span class="chip gbold" title="지금 강의 교수님이 아닌 교수님의 기출">옛 교수 기출</span>':''}${old||gone?'<span class="chip gbpast" title="26년도 강의자료에 없거나 옛 교수님 출제 — 과거 JB 대비용">과거 JB 대비용</span>':''}${lc?`<button class="chip lec" data-golec="${EH(lc.dataset.golec)}">📖 정리본</button>`:''}<button class="chip lec" data-go="${EH(id)}">JB 문제</button></div>`
   +`<div class="qtext gbq">${qt?qt.innerHTML:''}</div><div class="gbfigs">${figs}</div>`
   +`<div class="acts noann"><button class="btn pri" data-gball="1">답 모두 펼치기</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div>`
   +`<div class="gbans jbans"><div class="gbh noann">JB 답 — 줄을 누르면 하나씩</div><div class="lines">${ans||'<div class="ln">(JB에 답 표기가 따로 없음)</div>'}</div></div></article>`;}
@@ -3203,9 +3204,9 @@ document.addEventListener('change',e=>{if(e.target.closest&&e.target.closest('#g
    둘째 줄(b2): 검색(공백 무시) + 범위 [문제만][문제+답][전체] + 결과 수 · 상세 필터(등급·출제 횟수·강의·대조) */
 function jbBar(p,o){o=o||{};const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>({'<':'&lt;','&':'&amp;','"':'&quot;'}[c]));const T=p.tiers||{};
  const L=o.lec?p.lect.find(x=>x.k===o.lec):null,ids=L?L.jb:p.order,pr=[],yr=new Set(),nt={A:0,B:0,C:0};
- ids.forEach(i=>{const h=p.cards[i]||'';let m=/data-prof="([^"]*)"/.exec(h);if(m&&m[1]&&pr.indexOf(m[1])<0)pr.push(m[1]);m=/data-yrs="([^"]*)"/.exec(h);if(m)m[1].split(' ').forEach(v=>v&&yr.add(v));m=/data-tier="(\w)"/.exec(h);if(m)nt[m[1]]=(nt[m[1]]||0)+1;});
- const profs=(p.jbprofs||pr).filter(x=>pr.indexOf(x)>=0),yrs=[...yr].sort((a,b)=>b-a);
- const refOnly=x=>ids.every(i=>{const h=p.cards[i]||'';return !h.includes('data-prof="'+x)||/data-tier="C"/.test(h);});   /* 10-16 그 교수 문항이 모두 참고 기출(옛 교수·다른 쿼터)이면 '(참고 기출)' */
+ ids.forEach(i=>{const h=p.cards[i]||'';let m=/data-prof="([^"]*)"/.exec(h);if(m&&m[1]&&pr.indexOf(m[1])<0)pr.push(m[1]);m=/data-profs="([^"]*)"/.exec(h);if(m)m[1].split('|').forEach(x=>{if(x&&pr.indexOf(x)<0)pr.push(x);});   /* 10-16 해마다 다른 출제 교수도 거르기에 */m=/data-yrs="([^"]*)"/.exec(h);if(m)m[1].split(' ').forEach(v=>v&&yr.add(v));m=/data-tier="(\w)"/.exec(h);if(m)nt[m[1]]=(nt[m[1]]||0)+1;});
+ const J0=p.jbprofs||[],profs=J0.filter(x=>pr.indexOf(x)>=0).concat(pr.filter(x=>J0.indexOf(x)<0)),yrs=[...yr].sort((a,b)=>b-a);
+ const refOnly=x=>ids.every(i=>{const h=p.cards[i]||'';const m=/data-profs="([^"]*)"/.exec(h);return !(h.includes('data-prof="'+x+'"')||(m&&('|'+m[1]+'|').includes('|'+x+'|')))||/data-tier="C"/.test(h);});   /* 10-16 그 교수 문항이 모두 참고 기출(옛 교수·다른 쿼터)이면 '(참고 기출)' */
  const tier=k=>nt[k]?`<button class="tg${k==='C'?'':' on'}" data-tier="${k}">${E(T[k]||k)} ${nt[k]}</button>`:'';
  return `<div id="jbsent"></div><div class="bar noann" id="jbbar"><div class="brow b1"><button class="tg" id="fexp" title="필터 펼치기·접기">필터 ▾</button><span class="qf"><button class="tg on" data-qf="">전체<span class="qn"></span></button><button class="tg" data-qf="todo">안 푼<span class="wl"> 것</span><span class="qn"></span></button><button class="tg" data-qf="ng">틀린<span class="wl"> 것</span><span class="qn"></span></button><button class="tg" data-qf="bm" title="북마크">★<span class="qn"></span></button>${revQf(p,ids)}</span>`
   +(profs.length>1?`<select id="fprof" aria-label="교수"><option value="">교수 전체</option>${profs.map(x=>`<option value="${E(x)}">${E(x)}${refOnly(x)?' (참고 기출)':''}</option>`).join('')}</select>`:'')
@@ -4922,8 +4923,8 @@ function qOpen(c){if(!c)return;c.classList.add('open');if(c.classList.contains('
 function qClose(c){if(c)c.classList.remove('open','deep');}
 function qStep(c){if(!c)return;if(!c.classList.contains('open'))qOpen(c);else if(c.classList.contains('qc')&&!c.classList.contains('deep')&&c.querySelector('[data-deep]'))qDeep(c,true);else qClose(c);togLabel(c);}
 /* F06 필터 범위(교수·강의·연도·짤탈·등급·횟수·대조 — '안 푼 것' 같은 내 기록 필터와 검색어는 뺀 것) · 버튼 개수 '안 푼 것 153' */
-function jbBase(c,F){const d=c.dataset;let ok=F.tiers[d.tier]&&(!F.prof||d.prof===F.prof)&&(!F.lec||d.lec===F.lec)&&(+d.n>=F.n);
- if(ok&&F.ver==='flag')ok=(d.v==='diff'||d.v==='part');if(ok&&F.ver==='none')ok=d.v==='none';if(ok&&F.yr)ok=(' '+(d.yrs||'')+' ').indexOf(' '+F.yr+' ')>=0;if(ok&&F.st)ok=d.st===F.st;return !!ok;}
+function jbBase(c,F){const d=c.dataset;let ok=F.tiers[d.tier]&&(!F.prof||d.prof===F.prof||('|'+(d.profs||'')+'|').includes('|'+F.prof+'|'))&&(!F.lec||d.lec===F.lec)&&(+d.n>=F.n);
+ if(ok&&F.ver==='flag')ok=(d.v==='diff'||d.v==='part');if(ok&&F.ver==='none')ok=d.v==='none';if(ok&&F.yr)ok=(' '+(d.yrs||'')+' ').indexOf(' '+F.yr+' ')>=0;if(ok&&F.yr&&F.prof&&d.yp)ok=(' '+d.yp+' ').indexOf(' '+F.yr+':'+F.prof+' ')>=0;/* 10-16 교수+연도 = 그 해 그 교수가 낸 문항(출제 연도별 교수 data-yp) */if(ok&&F.st)ok=d.st===F.st;return !!ok;}
 function qfCnt(){const F=JB.F;if(!F||!$('#jbbar'))return;let all=0,td=0,ng=0,bm=0;$$('#cards .qc').forEach(c=>{if(!jbBase(c,F))return;const id=c.dataset.id;all++;if(MK.bm[id])bm++;if(MK.ng[id])ng++;else if(!MK.ok[id]&&!c.dataset.unrec)td++;});
  const N={'':all,todo:td,ng,bm};$$('#jbbar [data-qf] .qn').forEach(q=>{const k=q.parentElement.dataset.qf;if(k in N)q.textContent=' '+N[k];});revQfUpd();}
 /* F06 회차 요약: [이번 회차 틀린 것 n 다시](이번 회차 ✗만 새 회차) · [전체 틀린 것 n](필터 '틀린 것' — 과목 기록) · [안 푼 것 n](이번 회차에서 안 매긴 것) · [처음부터](같은 목록) */

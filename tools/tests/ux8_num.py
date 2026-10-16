@@ -214,7 +214,7 @@ async def main():
         await pg.select_option('[data-fp=s]', '__new'); await pg.click('[data-fpgo]'); await pg.wait_for_timeout(2500)
         fi = await pg.evaluate("[...document.querySelectorAll('.nm-it')].map(a=>[a.querySelector('.nm-q').textContent,a.querySelector('.nm-a .nm-c').textContent,a.querySelector('.nm-s .nm-c').innerHTML,a.querySelector('.nm-qt .y')?.textContent||''])")
         lh = await pg.evaluate("document.querySelector('.nm-lec')?.textContent||''")
-        ok(len(fi) == 2 and '1. 첫째 원인' in fi[0][1] and '첫둘셋 스토리' in fi[0][2] and 'C00000' in fi[0][2] and fi[0][3] == '22·24' and fi[1][3] == '25' and '시험 강의' in lh, f"Word 가져오기 → 새 과목 2문제(답·빨간 스토리·연도·강의) {fi} · {lh}")
+        ok(len(fi) == 2 and '1. 첫째 원인' in fi[0][1] and '첫둘셋 스토리' in fi[0][2] and 'C00000' in fi[0][2] and fi[0][3] == '24·22' and fi[1][3] == '25' and '시험 강의' in lh, f"Word 가져오기 → 새 과목 2문제(답·빨간 스토리·연도·강의) {fi} · {lh}")
         # 백업·합치기
         bk = await pg.evaluate("(()=>{const d=window.__h&&window.__h.dumpAll?window.__h.dumpAll():null;return d?Object.keys(d).filter(k=>k.indexOf('jblhub.v1.num.i.')===0).length:-1})()")
         ok(bk > 100, f"백업 파일(dumpAll)에 넘버링 문제 키 {bk}개")

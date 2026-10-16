@@ -165,12 +165,12 @@ def prof_inline(q):
     칩·목록이 flex라 글 앞뒤 빈칸이 사라짐 → 연도·구분은 따로 상자(i.ypy·i.yps)"""
     yp = [(y, p) for y, p in yp_of(q) if p]; base = (q.get('prof') or '').split('(')[0].strip()
     if not yp: return f'<b>{esc(base)}</b>' if base else ''
-    order, grp = [], {}
+    runs = []   # 최근 해부터 이어진 해끼리(교수가 오갔다 돌아와도 연도 순서 그대로 — CONS Q07 서덕규 25…17 · 손원준 16 · 서덕규 14·13)
     for y, p in yp:
-        if p not in grp: order.append(p)
-        grp.setdefault(p, []).append(y)
-    if len(order) == 1: return f'<b>{esc(order[0])}</b>'
-    return '<i class="yps">·</i>'.join(f'<b>{esc(p_)}</b><i class="ypy">{"·".join(str(y % 100).zfill(2) for y in grp[p_])}</i>' for p_ in order)
+        if runs and runs[-1][0] == p: runs[-1][1].append(y)
+        else: runs.append((p, [y]))
+    if len(runs) == 1: return f'<b>{esc(runs[0][0])}</b>'
+    return '<i class="yps">·</i>'.join(f'<b>{esc(p_)}</b><i class="ypy">{"·".join(str(y % 100).zfill(2) for y in ys_)}</i>' for p_, ys_ in runs)
 def prof_chip(q):
     """교수 칩(굵게) — 해마다 교수가 다르면 '교수 25·24 · 교수 22'(최근 해 먼저)"""
     h = prof_inline(q)
