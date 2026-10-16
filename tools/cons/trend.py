@@ -33,8 +33,8 @@ def fmt_of(q):
     if re.search(r'옳지\s*않은|선지|보기\s*(\d+\s*개|미복원|에\s*주어진|들?\s*중)', qp): return '객관식'
     if re.search(r'빈칸|괄호|\(\s*\)|\(\d\.\s*\)', src) and '고르' not in src: return '빈칸'
     if re.search(r'객관식|고르(시오|세요|라)|모두 골라|맞는\s*것|옳은\s*것|아닌\s*것|틀린\s*것|지\s*선다|가장\s*(적절|옳)', src): return '객관식'   # 띄어쓰기 없는 '아닌것'·'5 지 선다'·'가장 적절한 것'
-    if re.search(r'단답|쓰시오|쓰세요|쓰고|약자|무엇|몇|시기는|각도', src) and not re.search(r'서술|설명|나열|기술|장단점|이유', src): return '단답형'
-    if re.search(r'서술|설명|나열|기술|장단점|이유|과정|목적|한계|단점|장점|특징|종류', src): return '서술형'
+    if re.search(r'단답|쓰시오|쓰세요|쓰고|약자|무엇|몇|시기는|각도', src) and not re.search(r'서술|설명|나열|기술|장단점|이유|비교', src): return '단답형'
+    if re.search(r'서술|설명|나열|기술|장단점|이유|과정|목적|한계|단점|장점|특징|종류|비교', src): return '서술형'   # 10-16 '비교하시오'
     return '단답형'
 def jb_mark(q):
     src = (q.get('lab24') or '') + ' ' + ' '.join(q['text'].split('\n')[:4])

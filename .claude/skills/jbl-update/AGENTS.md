@@ -113,7 +113,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## E QA — 사용자 눈 점검 (과목 하나 · 찾기 — 메인이 허락하면 글자 그대로인 작은 표시만 직접 고침 · 나머지는 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~48 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~49 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). (메인이 허락하면) 글자 그대로인 작은 것 — 구분 기호·줄 나눔·{n:}/{u:}/{e:}/{r:} 표시·라벨 — 은 그 강의 lec + annot·tables·pred의 메인이 지시문에 적은 쪽(merge·split 직후면 parts, 아니면 tools/<sid>/의 그 강의 블록 — 그 과목 QA 1명만)에서 직접 고침(고치기 전 text_diff --save · 끝에 빠진 글자 0) · 허브·렌더러 몫은 보고만. 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B1·B2·B3/C/D1~D5·D2b/메인 = 허브·렌더러) 몫. 보고 work/review_final2/QA_<SID>.md. (직접 고침을 허락받지 않았으면) 고치지 않는다 — 허락받았어도 낱말·사실 문제와 허브·렌더러 몫은 보고만.
 ```
 
@@ -147,6 +147,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 과목 <SID> 강의 <KEY들>. PRED26_BRIEF 2~4절 + RULES 11 + TREND_<SID>.md의 그 강의 줄 · 기준 aid work/<SID>/pred<YY>/pred_before.{md,json}.
 옛 블록마다 유지(글자 그대로 + pr·why·b · 이미 있는 oid·x·m 그대로) / 개선(고쳐 쓰고 oid=<pred_before aid>) / 보관(x=1 · why에 사유) — 지우지 않음. 새 문항은 가치 높은 것만 · 형식 = 현 교수 기출 꼴 · 그림이 필요하면 f=(그림에 답이 보이면 f 대신 답에 [[KEY:쪽]] 또는 그림빵) · 그림빵은 TREND '함' 강의만(figmask → --pick → _mask.png Read · 답 = 쪽 이미지 글자 · 기출 그림 반복 금지 · 26에서 빠진 그림 = t에 '26에서 빠짐 · JB 대비').
 쓸 것: work/<SID>/pred<YY>/pred_<KEY들>.txt(맡은 강의 블록 전부 · OMS1은 '@P <KEY>') · 보고 R_<KEY들>.md(강의마다 유지·개선·보관·새(상/중/하)·그림·그림빵 수 · 교수 경향 근거 · 확인 필요). tools/<sid>/pred.txt 직접 수정·빌드 금지.
+최신 해(25년 시험) 기출마다 그 문항을 b=로 건 예상문제 ≥1(RULES 11 '최신 해 기출마다 예상문제 연결') · 형식은 work/_tmp/fmt26/<SID>.md(문제 부분 판정)와 questions.md 원문으로 확인(guide/handoff/FMT26_BRIEF.md 선례).
 검사: pred_check <SID> --file <조각> ✗0 · pred_merge <SID> <조각> --dry 통과 · check_abbr · check_eyears · 답 근거 쪽 이미지 확인 수.
 ```
 

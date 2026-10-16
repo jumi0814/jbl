@@ -133,6 +133,14 @@ with sync_playwright() as p:
       const A=[...document.querySelectorAll('#stage .pc:not(.px) .qhead')];const bad=A.filter(h=>!one(h)).map(h=>h.closest('.pc').dataset.aid.slice(-10));const P=document.querySelector('#ppills');return {n:A.length,bad,pp:one(P),ph:Math.round(P.getBoundingClientRect().height),over:document.documentElement.scrollWidth>innerWidth+1}})()""")
     ok(not r['bad'] and r['pp'] and not r['over'], f"820: 태그 줄 한 줄 {r['n'] - len(r['bad'])}/{r['n']} {r['bad'][:4]} · 필터 막대 한 줄 {r['pp']}({r['ph']}px) · 가로 넘침 없음")
     pg.screenshot(path=_os.path.join(OUT, 'ux16_820.png'))
+    # ---- JB 카드 → 관련 예상문제 칩 '예상 n ▸'(10-16 — 사용자 '기출에는 반영 … 예상문제에는 반영이 안된') ----
+    pg.set_viewport_size({'width': 1280, 'height': 900}); go(pg, f'#/{SID}/_jb', 3000)
+    r = pg.evaluate("(()=>{const c=document.querySelector('#stage .qc .chip.pgo');if(!c)return null;const [k,a]=c.dataset.gopred.split('|');return {k,a,t:c.textContent,n:document.querySelectorAll('#stage .qc .chip.pgo').length}})()")
+    ok(bool(r) and r['t'].startswith('예상 '), f"JB 카드에 '예상 n ▸' 칩 {r and r['n']}개")
+    if r:
+        pg.evaluate("document.querySelector('#stage .qc .chip.pgo').click()"); pg.wait_for_timeout(2500)
+        h = pg.evaluate("location.hash"); v = pg.evaluate(f"(()=>{{const c=document.querySelector('#stage .pc[data-aid={json.dumps(r['a'], ensure_ascii=False)}]');if(!c)return null;const b=c.getBoundingClientRect();return {{top:Math.round(b.top),vis:b.bottom>0&&b.top<innerHeight}}}})()")
+        ok(h == f"#/{SID}/{r['k']}/pred" and v and v['vis'] and pg.evaluate("!!document.querySelector('#retpill')"), f"누르면 그 강의 예상 탭의 그 문제로 {h} {v} · ↩ 알약")
     ok(not errs, f"pageerror 0 {errs[:3]}")
     b.close()
 print('RESULT', 'PASS' if not fails else f'FAIL {len(fails)}')

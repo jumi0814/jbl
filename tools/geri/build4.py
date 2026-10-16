@@ -1312,6 +1312,20 @@ for L in LEC:
     if hs: HINTS.append({'k': L['k'], 't': L['title'], 'h': lecparse.inline(' '.join(hs), ctx)})
 pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
         'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
+# 10-16 JB 카드 → 관련 예상문제 칩 '예상 n ▸'(그 기출을 b=로 건 활성 예상 · 누르면 그 강의 예상 탭의 첫 문제로 — 사용자 '과목별 기출 및 예상문제에는 반영이 안된 것 같거든')
+_PB = {}
+for _x in preds:
+    if _x.get('x'): continue
+    for _b in _x.get('b') or []: _PB.setdefault(_b, []).append(_x)
+for _q, _xs in _PB.items():
+    _h = pack['cards'].get(_q)
+    if not _h or 'data-gopred=' in _h: continue
+    _i = _h.find('<div class="qhead">'); _e = _h.find('</div>', _i) if _i >= 0 else -1
+    if _e < 0: continue
+    _ks = sorted({_x['k'] for _x in _xs}, key=lambda k_: [L_['k'] for L_ in lect].index(k_) if k_ in [L_['k'] for L_ in lect] else 99)
+    _chip = f'<button type="button" class="chip pgo noann" data-gopred="{esc(_xs[0]["k"])}|{esc(_xs[0]["aid"])}" title="이 기출을 관련 기출로 건 예상문제 {len(_xs)}개({esc(" · ".join(LECNAME.get(k_, k_) for k_ in _ks))}) — 누르면 그 강의 예상 탭의 첫 문제로">예상 {len(_xs)} ▸</button>'
+    pack['cards'][_q] = _h[:_e] + _chip + _h[_e:]
+print('JB 카드 → 예상 칩:', len([q_ for q_ in _PB if q_ in pack['cards']]), '문항')
 # JB 문항 id 잠금(C09, tools/jblock.py) — 새 id만 잠금에 추가 · 팩에 이번 해시(jbhash, verify가 비교)와 옮김 표(jbmove·jbmovev, 허브가 기록을 옮김)
 import jblock as _JL
 _QH = {q['id']: _JL.qhash(split_qa(q)[0]) for q in Q}
