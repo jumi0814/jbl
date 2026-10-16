@@ -1,9 +1,11 @@
 """예상문제(pred.txt) 문법·필드 검사 — guide/handoff/PRED26_BRIEF.md 2-3·2-4절
 사용: .venv/bin/python tools/pred_check.py <SID> [--keys K1,K2] [--loose] [--file 조각.txt]
-✗ = 고쳐야 함(종료 코드 1) · △ = 확인 권장. --loose = pr 없는 블록 허용(개선 전 파일 점검용)."""
+✗ = 고쳐야 함(종료 코드 1) · △ = 확인 권장. --loose = pr 없는 블록 허용(개선 전 파일 점검용).
+10-16(스킬 점검 ✗9·△6): pred_before.json(그 갱신 전 aid)의 옛 문항이 지금 블록(Q 글자 aid 또는 oid)에 없으면 ✗(지우지 말고 x=1) · OMS1은 '@P <KEY>' 꼴만(@KEY는 assemble이 안 읽음)."""
 import os, sys, re, json, importlib.util, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
+from pred_merge import slug as pslug
 CIRC = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
 def subject(sid):
     p = os.path.join(J.TOOLS, sid.lower(), 'subject.py')
@@ -14,7 +16,7 @@ def blocks(sid, fn=None):
         line = line.rstrip('\n')
         if line.startswith('@'):
             p = [x.strip() for x in (line[3:] if line.startswith('@P ') else line[1:]).split('|')]
-            cur = {'k': p[0], 'n': n, 'f': {}, 'q': '', 'a': '', 'raw': line}
+            cur = {'k': p[0], 'n': n, 'f': {}, 'q': '', 'a': '', 'raw': line, 'atp': line.startswith('@P ')}
             for x in p[1:]:
                 k, _, v = x.partition('='); cur['f'][k.strip()] = v.strip()
             out.append(cur)
@@ -77,6 +79,17 @@ def main():
         qk = re.sub(r'\s+', '', b['q'])[:60]
         if qk and qk in seen_q and not arch: W(b, f'같은 문제 글(줄 {seen_q[qk]})')
         seen_q.setdefault(qk, b['n'])
+    if sid == 'OMS1':
+        for b in B:
+            if not b['atp'] and (not keys or b['k'] in keys): X(b, "OMS1은 '@P <KEY> | …' 꼴(@KEY는 빌드가 안 읽어 빠짐)")
+    if old and not a.file:   # 옛 문항이 사라졌는지(지우지 않음 — 보관은 x=1)
+        now = set()
+        for b in B:
+            now.add(f'{sid}:P:{pslug(b["q"])}')
+            if b['f'].get('oid'): now.add(b['f']['oid'])
+        pbk = {r['aid']: r.get('k', '') for r in json.load(open(pb, encoding='utf-8'))}
+        lost = sorted(x for x in old - now if not keys or pbk.get(x, '') in keys or not pbk.get(x))
+        for x in lost: bad += 1; print(f'✗ 사라진 옛 문항 {x} (pred_before) — 블록을 지우지 말고 x=1, Q를 고쳤으면 oid={x}')
     for k, s in stat.items(): print(f'  {k}: ' + ' · '.join(f'{a_} {v}' for a_, v in s.items()))
     print(f'✗ {bad} · △ {warn}'); return 1 if bad else 0
 if __name__ == '__main__': sys.exit(main())
