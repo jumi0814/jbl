@@ -8,6 +8,34 @@ from PIL import Image
 SID, TITLE, EN, COLOR, PROFS = S.SID, S.TITLE, S.EN, S.COLOR, S.PROFS
 esc = lambda s: html.escape(str(s), quote=True)
 Q = A.Q; QMAP = {q['id']: q for q in Q}; PRED = A.PRED; IMG = A.IMG
+# ---- JB 그림 조각(SPEC 'JB 그림 조각' · tools/jbfig.py → tools/<sid>/jb_crops.json): 상자로 JB 쪽 이미지를 잘라 IMG['crop']·q['crops']에 덧붙임
+# assemble의 기존 CROPS가 있는 종류(q/a)는 건너뜀(같은 그림 두 번 금지) · 쪽 이미지가 없으면(클라우드) 지금 팩의 같은 조각 · 파일이 없으면 출력 그대로
+JBC_P = os.path.join(DIR, 'jb_crops.json'); JBC = json.load(open(JBC_P, encoding='utf-8')) if os.path.exists(JBC_P) else {}
+def _jbc_img(d):
+    p = f'{J.JBX}{SID}_20{d["ed"]}/{d["pg"]}.jpeg'
+    if not os.path.exists(p): return None
+    im = Image.open(p).convert('RGB').crop(tuple(int(v) for v in d['box']))
+    if im.width > 760: im = im.resize((760, round(im.height * 760 / im.width)), Image.LANCZOS)
+    tw_ = min(256, im.width); hs = im.resize((tw_, max(1, round(tw_ * im.height / im.width)))).convert('HSV').split()
+    if sum(1 for s_, v_ in zip(hs[1].tobytes(), hs[2].tobytes()) if s_ > 40 and v_ > 50) <= 0.0005 * hs[1].width * hs[1].height: im = im.convert('L')   # 색이 사실상 없는 그림만 L(빨간 절개선·화살표·강조 같은 가는 색 표시는 색 그대로)
+    b = io.BytesIO(); im.save(b, 'JPEG', quality=65, optimize=True); return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
+_jbc_need = {}
+for _qid, _v in JBC.items():
+    _q = QMAP.get(_qid)
+    if not _q: continue
+    _q['crops'] = {k_: list(x_) for k_, x_ in (_q.get('crops') or {}).items()}
+    for _kind in ('q', 'a'):
+        if _q['crops'].get(_kind) or not _v.get(_kind): continue
+        _q['crops'][_kind] = [f'{_qid}_jb{_kind}{i_}' for i_ in range(1, len(_v[_kind]) + 1)]
+        for k_, d_ in zip(_q['crops'][_kind], _v[_kind]):
+            u_ = _jbc_img(d_)
+            if u_: IMG['crop'][k_] = u_
+            else: _jbc_need.setdefault(_qid, {}).setdefault(_kind, _q['crops'][_kind])
+    _q['jbc'] = _v.get('nofig') or 'crop'
+if _jbc_need:
+    for k_, u_ in J.prev_crops(SID, _jbc_need).items(): IMG['crop'].setdefault(k_, u_)
+    for _qid in _jbc_need:
+        for _kind in ('q', 'a'): QMAP[_qid]['crops'][_kind] = [k_ for k_ in QMAP[_qid]['crops'].get(_kind, []) if k_ in IMG['crop']]
 YR = lambda y: '20%02d' % y
 LECNAME = {k: v[1] for k, v in A.LECMAP.items()}
 VNAME = {'ok': '강의자료와 일치', 'part': '부분 일치·부분 근거', 'diff': '⚠ 강의자료와 불일치', 'none': '강의자료에 근거 없음', 'na': '대응 강의자료 없음'}
@@ -492,7 +520,9 @@ def qcard(q, idx):
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{f'<span class="chip pf">{esc(q["prof"])}</span>' if (q["prof"] or "").strip() else ''}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
-    if q['fig'] and not figq: h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
+    if q.get('jbc') == 'absent' and not figq: h.append('<div class="small">🖼 그림 문항 — 문제의 사진·그림은 JB에 실려 있지 않습니다(문제 글만 복원됨).</div>')   # jb_crops.json nofig (tools/jbfig.py 검수)
+    elif q.get('jbc') == 'crop' and q['fig'] and not figq and figa: h.append('<div class="small">🖼 그림 문항 — JB의 그림은 답 쪽에 실려 있어(답이 함께 보임) ‘답·해설’ 안에 붙였습니다.</div>')
+    elif q['fig'] and not figq and q.get('jbc') != 'text': h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
     sd = [f'<div class="qsub"><span class="prov noann" title="{esc(q["src"] or "")}">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>']
     if q['yrsnote']: sd.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
     if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(r["short"]))}</div>')
