@@ -1101,6 +1101,26 @@ for i, p in enumerate(PRED):
     if figs: ent['f'] = [f'{fk}-{pg}' for fk, pg in figs]
     if fb and pred_boxes(p): ent['m'] = pred_boxes(p)
     preds.append(ent)
+# S3 그림빵(S3_BRIEF 4) — 근거 있는 강의만: L.gbj = 그 강의 JB 기출 중 문제 쪽 그림 조각(crops q)이 있는 것(현 교수 먼저, 옛 교수(tier C)는 뒤 — '과거 JB 대비용') · L.gbp = t=그림빵 + m 상자가 있는 활성 예상문제
+#   탭·모아 풀기는 현 교수 그림 기출이나 그림빵 예상이 있을 때만(옛 교수 그림만 있는 강의는 탭 없음 — JB 문제에서) · 예상 그림빵의 '📖 정리본' = 그 쪽 그림이 든 학습 카드(lc)
+PG2CARD = {}
+for L_ in LEC:
+    for j_, c_ in enumerate(L_['cards']):
+        for p_, fk_ in c_['figs']: PG2CARD.setdefault((fk_ or L_['k'], int(p_)), (L_['k'], j_))
+for x_ in preds:
+    for fk_ in x_.get('f', []):
+        k_, p_ = fk_.rsplit('-', 1); hit = PG2CARD.get((k_, int(p_))) or next((v_ for (kk_, pp_), v_ in PG2CARD.items() if pp_ == int(p_) and getattr(S, 'IMG_ALIAS', {}).get(kk_, kk_) == k_), None)
+        if hit: x_['lc'] = f'{hit[0]}:{hit[1]}'; break
+_gbn = [0, 0, 0]
+for L_ in lect:
+    cur_ = [i for i in L_['jb'] if (QMAP[i].get('crops') or {}).get('q')]
+    gp_ = [i for i in L_['pred'] if preds[i].get('m')]
+    if cur_ or gp_:
+        old_ = [q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == L_['k'] and (q.get('crops') or {}).get('q')]
+        if cur_ or old_: L_['gbj'] = cur_ + old_
+        if gp_: L_['gbp'] = gp_
+        _gbn[0] += 1; _gbn[1] += len(cur_ + old_); _gbn[2] += len(gp_)
+print('그림빵(S3):', f'강의 {_gbn[0]} · 기출 {_gbn[1]} · 예상 {_gbn[2]}', '|', ' '.join(f"{L_['k']}({len(L_.get('gbj', []))}+{len(L_.get('gbp', []))})" for L_ in lect if L_.get('gbj') or L_.get('gbp')))
 _pa = [x for x in preds if not x.get('x')]
 print('예상문제(S3):', f'활성 {len(_pa)} · 보관 {len(preds) - len(_pa)} · 우선 상/중/하 {sum(1 for x in _pa if x.get("pr") == "상")}/{sum(1 for x in _pa if x.get("pr") == "중")}/{sum(1 for x in _pa if x.get("pr") == "하")} · oid {sum(1 for p in PRED if p.get("oid"))} · 그림 {sum(1 for x in preds if x.get("f"))} · 그림빵 {sum(1 for x in preds if x.get("m"))}',
       '| ⚠ 없는 b id: ' + ' '.join(sorted({x for p in PRED for x in re.split(r'[,\s]+', p.get('b', '') or '') if x and x not in QMAP})) if any(x and x not in QMAP for p in PRED for x in re.split(r'[,\s]+', p.get('b', '') or '')) else '')
