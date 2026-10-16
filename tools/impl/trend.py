@@ -1,14 +1,38 @@
 import re, html
 esc = lambda s: html.escape(str(s), quote=True)
 YR = lambda y: '20%02d' % y
+CHOICE = re.compile(r'^\s*(?:[①②③④⑤⑥]|\(?[1-6][.)](?!\d)|\(?[a-eA-E][.)]\s|[A-E]\s|[ㄱㄴㄷㄹㅁ][.)])')
+ANS = re.compile(r'\s*(?:\[\s*(?:답|해설|참고)\s*\]|(?:답|참고|해설|정답)\s*[:：)])')
+def q_lines(q):
+    """문제 부분 줄(첫 줄부터 답 표시 앞까지 — text에는 JB 답도 들어 있음 · 판마다 '답:'·'[답]'·'답)' 꼴이 다름)"""
+    L = []
+    for l in q['text'].split('\n'):
+        if L and ANS.match(l): break
+        if l.strip(): L.append(l.strip())
+    return L
+def q_part(q): return ' '.join(q_lines(q))
+def mc_choices(L):
+    """보기 줄이 4개 이상(짧고 '…시오'·'?'로 끝나지 않음 — 하위 질문 아님)이거나 '다음 중' + 보기 3개 이상 = 객관식"""
+    ch = [l for l in L[1:] if CHOICE.match(l) and not re.search(r'(시오|하라|\?|쓰고)\s*\.?$', l) and len(l) <= 90]
+    return len(ch) >= 4 or (len(ch) >= 3 and '다음 중' in (L[0] if L else ''))
 def fmt_of(q):
-    """문제 형식: JB 24판 라벨 → 문두 단서 순으로 판정"""
+    """문제 형식(문제 부분만 봄): 명시 라벨([서술형]·(단답형)·[객]) → T/F → 번호 빈칸 → 보기(줄·한 줄) → 문두 단서 (10-16 — 26판 25년 객관식·T/F가 단답형으로 세어지던 것 고침)"""
     lab = (q.get('lab24') or '')
-    stem = ' '.join(q['text'].split('\n')[:4])
+    L = q_lines(q); stem = ' '.join(L[:4]); qp = ' '.join(L)
     src = lab + ' ' + stem
-    if re.search(r'T/F|\(T\)|\(F\)|옳으면 T', src): return 'T/F'
+    if re.search(r'[\[(]\s*서술형\s*[\])]', src): return '서술형'
+    if re.search(r'[\[(]\s*단답형\s*[\])]', src): return '단답형'
+    if re.search(r'\[\s*객\s*\]|[\[(]\s*객관식\s*[\])]', src): return '객관식'
+    if re.search(r'T/F|(?<![A-Za-z])TF(?![A-Za-z])|O\s*/\s*X|\(T\)|\(F\)|옳으면 T', src): return 'T/F'
+    if re.search(r'주관식', stem): return '단답형'   # '보기 12개 중 하나 고르는 주관식'
+    if re.search(r'빈칸을?\s*채우|괄호를?\s*채우|빈칸에\s*(알맞|들어갈)', stem) and '고르' not in stem: return '빈칸'
+    if re.search(r'\(\s*\d\s*\)\s*(은|는|이|가|와|과|의|을|를|에|로|으로)(?![가-힣])', qp) or re.search(r'\(\s+\d\s+\)', qp): return '빈칸'   # 번호 빈칸 '( 1 ) 돌출'·'(2)가 있고'
+    if mc_choices(L): return '객관식'   # '다음 중 …는?' + 보기 줄(①~⑤·1.~5.)
+    body = re.sub(r'^\s*(?:추\s*)?\d+(?:-\d+)?\s*[.)]\s*', '', qp)   # 문항 번호 '8. '·'추 1. '은 보기가 아님
+    if len(re.findall(r'(?:^|\s)\(?[1-5][.)]\s?', body)) >= 3 and not re.search(r'시오|하라|서술|설명|쓰고', body): return '객관식'   # 같은 줄에 이어 쓴 보기 '(1) … (2) … (3) …'
+    if re.search(r'옳지\s*않은|선지|보기\s*(\d+\s*개|미복원|에\s*주어진|들?\s*중)', qp): return '객관식'
     if re.search(r'빈칸|괄호|\(\s*\)|\(\d\.\s*\)', src) and '고르' not in src: return '빈칸'
-    if re.search(r'객관식|고르(시오|세요|라)|모두 골라|맞는 것|옳은 것|아닌 것|틀린 것', src): return '객관식'
+    if re.search(r'객관식|고르(시오|세요|라)|모두 골라|맞는\s*것|옳은\s*것|아닌\s*것|틀린\s*것|지\s*선다|가장\s*(적절|옳)', src): return '객관식'   # 띄어쓰기 없는 '아닌것'·'5 지 선다'·'가장 적절한 것'
     if re.search(r'단답|쓰시오|쓰세요|쓰고|약자|무엇|몇|시기는|각도', src) and not re.search(r'서술|설명|나열|기술|장단점|이유', src): return '단답형'
     if re.search(r'서술|설명|나열|기술|장단점|이유|과정|목적|한계|단점|장점|특징|종류', src): return '서술형'
     return '단답형'

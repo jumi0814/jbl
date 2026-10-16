@@ -41,7 +41,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(); ctx = b.new_context(viewport={'width': 1280, 'height': 900}); pg = ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     pg.goto(U + '#/'); pg.wait_for_timeout(2500)
-    P = pg.evaluate(f"(()=>{{const P=__h.PACKS.{SID};return {{preds:P.preds.map(x=>({{k:x.k,aid:x.aid,x:x.x||0,pr:x.pr||'',f:x.f||[],why:x.why||'',b:x.b||[]}})),lect:P.lect.map(L=>({{k:L.k,pred:L.pred,parch:L.parch||[]}}))}}}})()")
+    P = pg.evaluate(f"(()=>{{const P=__h.PACKS.{SID};return {{preds:P.preds.map(x=>({{k:x.k,aid:x.aid,x:x.x||0,pr:x.pr||'',f:x.f||[],why:x.why||'',b:x.b||[],m:x.m||null}})),lect:P.lect.map(L=>({{k:L.k,pred:L.pred,parch:L.parch||[]}}))}}}})()")
     PR = P['preds']; ok(len(PR) == len(BL), f"팩 예상 {len(PR)} = pred.txt 블록 {len(BL)}")
     # ---- oid: 옛 aid로 기록을 먼저 저장(사이트 갱신 전 ✓·★) ----
     oids = [(i, b_['oid']) for i, b_ in enumerate(BL) if b_.get('oid')]
@@ -105,7 +105,7 @@ with sync_playwright() as p:
     hn = pg.evaluate("(document.querySelector('#hero [data-hgo=_pred]')||{}).textContent||''")
     ok(hn == f'예상 {act}', f"과목 머리 '{hn}' = 활성 {act}")
     # ---- f 그림 ----
-    fi = next((i for i, x in enumerate(PR) if x['f'] and not x['x']), None)
+    fi = next((i for i, x in enumerate(PR) if x['f'] and not x['x'] and not x.get('m')), None)   # 10-16 그림빵(m)은 아래 따로 — 예상 탭에서도 번호 가림막
     if fi is not None:
         go(pg, f"#/{SID}/{PR[fi]['k']}/pred", 2500)
         sel = f"#stage .pc[data-aid={json.dumps(PR[fi]['aid'], ensure_ascii=False)}]"
@@ -117,6 +117,16 @@ with sync_playwright() as p:
         ok(r[0], f"그림 누르면 그림 창 '{r[1]}'")
         pg.keyboard.press('Escape'); pg.wait_for_timeout(400)
         pg.screenshot(path=_os.path.join(OUT, 'ux16_fig.png'))
+    # ---- 그림빵 예상 = 예상 탭 카드에서도 라벨을 번호 가림막으로(10-16 — 그림을 그대로 보이면 답이 보임) ----
+    gi = next((i for i, x in enumerate(PR) if x.get('m') and x['f'] and not x['x']), None)
+    if gi is not None:
+        go(pg, f"#/{SID}/{PR[gi]['k']}/pred", 2500)
+        sel = f"#stage .pc[data-aid={json.dumps(PR[gi]['aid'], ensure_ascii=False)}]"
+        pg.evaluate(f"document.querySelector({json.dumps(sel, ensure_ascii=False)}).scrollIntoView({{block:'center'}})"); pg.wait_for_timeout(2500)
+        r = pg.evaluate(f"(()=>{{const c=document.querySelector({json.dumps(sel, ensure_ascii=False)});const im=c.querySelector('.gbfig img[data-img]');return {{m:c.querySelectorAll('.gbfig .gbm').length,plain:c.querySelectorAll('.figs figure img[data-img=\"'+(im&&im.dataset.img)+'\"]').length,src:!!(im&&/^data:image/.test(im.src||''))}}}})()")
+        ok(r['m'] == len(PR[gi]['m']) and r['plain'] == 0 and r['src'], f"그림빵 예상(예상 탭) = 가림막 {r['m']}/{len(PR[gi]['m'])} · 맨 그림 없음 · 지연 로드 {r['src']}")
+        pg.evaluate(f"document.querySelector({json.dumps(sel + ' .gbm', ensure_ascii=False)}).click()"); pg.wait_for_timeout(300)
+        ok(pg.evaluate(f"document.querySelectorAll({json.dumps(sel + ' .gbm.open', ensure_ascii=False)}).length") == 1, "가림막 누르면 하나만 열림")
     # ---- 좁은 화면 820 — 태그 줄·필터 막대 한 줄 ----
     pg.set_viewport_size({'width': 820, 'height': 900}); go(pg, f'#/{SID}/{K}/pred', 2000)
     r = pg.evaluate("""(()=>{const one=e=>{const k=[...e.children].filter(x=>getComputedStyle(x).display!=='none'&&x.offsetWidth);if(!k.length)return true;const t=k.map(x=>x.getBoundingClientRect().top);return Math.max(...t)-Math.min(...t)<8;};

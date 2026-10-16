@@ -65,7 +65,7 @@ def _upd_marks(s):
         if end < 0: out.append(s[i:j] + s[j + 3:]); break
         out.append(s[i:j] + O_ + s[j + 3:end] + C_); i = end + 1
     return ''.join(out)
-GONE26 = re.compile(r'\(([^()]{0,200}?26에서 빠[짐졌][^()]{0,200}?)\)')   # '(25 자료 — 26에서 빠짐)' 꼴 → 회색 배지(글자 그대로) · 10-09 원고 글자에서 찾아 표시 자리만 남김(괄호 안 p.N·' · '가 태그로 바뀌어도 걸림)
+GONE26 = re.compile(r'\(([^()]{0,200}?26(?: 자료)?에서 빠[짐졌][^()]{0,200}?)\)')   # 10-16 '(26 자료에서 빠짐 · JB 짤 대비용)'(사용자 10-15 원문 꼴)도   # '(25 자료 — 26에서 빠짐)' 꼴 → 회색 배지(글자 그대로) · 10-09 원고 글자에서 찾아 표시 자리만 남김(괄호 안 p.N·' · '가 태그로 바뀌어도 걸림)
 GONE_O, GONE_C = '\ue034', '\ue035'
 def _note_marks(s):
     """10-07 사용자 '필기 파트 앞뒤로 필기 이모티콘' — 원고 {n:…} = 필기 구간 → 짝 맞는 자리만 표시(짝이 없으면 표시 없이 글자만)"""
@@ -124,7 +124,7 @@ def _ntw_close(h):
 def inline(s, ctx, first=True):
     s = _upd_marks(_srcn_start(_note_marks(s)))
     if '에도' in s and '강조' in s: s = ALSO25.sub(lambda m: ALS_O + m.group(0) + ALS_C, s)
-    if '26에서 빠' in s: s = GONE26.sub(lambda m: GONE_O + m.group(0) + GONE_C if m.group(0).count('{') == m.group(0).count('}') and m.group(0).count('[[') == m.group(0).count(']]') else m.group(0), s)
+    if '26에서 빠' in s or '26 자료에서 빠' in s: s = GONE26.sub(lambda m: GONE_O + m.group(0) + GONE_C if m.group(0).count('{') == m.group(0).count('}') and m.group(0).count('[[') == m.group(0).count(']]') else m.group(0), s)
     h = _inline0(s, ctx, first)
     if NOTE_O in h or NOTE_C in h:   # 글자는 그대로 — 표시는 CSS(::before ✍, 10-09 앞에만)라 형광펜·플래시카드 글자에 안 섞임
         h = _ntw_close(h.replace(NOTE_O, '<span class="ntw" title="필기">'))
