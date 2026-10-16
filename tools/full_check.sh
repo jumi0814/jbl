@@ -23,6 +23,8 @@ say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail 
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | grep '^== '; done | tee -a $L
 say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
 say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
+say "== pred_check";    for S in $SIDS; do say "$S $($PY tools/pred_check.py $S 2>&1 | tail -1)"; done   # 10-16 예상문제 문법·사라진 옛 문항(pred_before) ✗
+say "== link_audit";    $PY tools/link_audit.py --md work/_tmp/link_audit.md 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 JB ↔ 강의·⭐·표·예상 연결 전수
 say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S --md work/review_final2/TA_$S.md 2>&1 | tail -1)"; done
 say "== check_nred"; for S in $SIDS; do say "$($PY tools/check_nred.py $S 2>&1 | tail -1)"; done   # 10-09 필기 쪽 강조(정보 — 예외가 있어 0 목표 아님 · 기준값 SKILL G1)
 say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
@@ -39,7 +41,7 @@ if [ $UI = 1 ]; then
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
-say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]|필기NEW26 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
+say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|✗ [1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]|필기NEW26 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' >> work/_tmp/full_check.fail || true
 grep -E '^합계: 기록 이어짐' $L | awk -F'[(%]' '{ if ($2+0 < 95) print "  ✗ 플래시카드 기록 이어짐 95% 미만:", $0 }' >> work/_tmp/full_check.fail
 cat work/_tmp/full_check.fail | tee -a $L   # 요약은 로그 끝에도(10-09 — 기준값은 SKILL G1)
 say "ALLDONE"
