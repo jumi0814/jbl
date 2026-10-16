@@ -599,14 +599,19 @@ def img_dims(key):
     except Exception: wh = None
     _DIMS[key] = (740, round(wh[1] * 740 / wh[0])) if wh and wh[0] else None
     return _DIMS[key]
-def figgrid(kk, fl):
+GBPG = {}   # S3 (KEY, 쪽) → 'KEY:예상 번호' — 그 쪽 그림으로 낸 그림빵 예상(활성)이 있으면 학습 카드 그림 설명 줄에 '🖼 그림빵' 단추(그림빵 탭 그 문제로)
+for _i, _p in enumerate(PRED):
+    if '그림빵' in (_p.get('t') or '') and _p.get('m') and (_p.get('x') or '').strip() != '1':
+        _m = re.match(r'\s*([A-Z0-9]+):(\d+)', _p.get('f') or '')
+        if _m: GBPG.setdefault((_m.group(1), int(_m.group(2))), f"{_p['k']}:{_i}")
+def figgrid(kk, fl, gb=True):
     """카드 그림 — ux2 D10: 1장 .one(넓게)·2장 .two(반씩)·3장↑ 격자 · img에 width·height(자리 미리 잡기)·lazy · data-n(그림 숨김 칩 '🖼 n')"""
     out = []
     for p, cap, fk in fl:
         k2 = fk or kk; ctx['cited'].add((k2, p)); lab_ = getattr(S, 'PAGE_LABEL', {}).get(k2, 'p.')
         nm = (' <i>' + esc(LECNAME.get(k2, k2).split('(')[-1].rstrip(')')) + '</i>') if fk else ''
         wh = img_dims(f'{k2}-{p}'); wa = f' width="{wh[0]}" height="{wh[1]}"' if wh else ''
-        out.append(f'<figure data-fig="{k2}-{p}"><img data-img="{k2}-{p}" alt=""{wa} loading="lazy" decoding="async"><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}</figcaption></figure>')
+        out.append(f'<figure data-fig="{k2}-{p}"><img data-img="{k2}-{p}" alt=""{wa} loading="lazy" decoding="async"><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}{f'<button type="button" class="gbgo noann" data-gbgo="{GBPG[(k2, p)]}" title="이 그림의 그림빵(번호 가림막)으로 — ↩ 알약으로 돌아옴">🖼 그림빵</button>' if gb and (k2, p) in GBPG else ""}</figcaption></figure>')
     n = len(out); cl = ' one' if n == 1 else (' two' if n == 2 else '')
     return f'<button class="figchip noann" data-figopen="1" data-n="{n}" aria-label="그림 {n}장 보기"></button><div class="figs noann{cl}" data-n="{n}">' + ''.join(out) + '</div>'
 def yl(yrs, full=False):
@@ -1118,7 +1123,11 @@ for i, p in enumerate(PRED):
     whyb = f'<button type="button" class="chip pwhy noann" data-pwhy="1" aria-expanded="false" title="이 문제를 고른 근거">근거</button>' if why else ''
     whyt = f'<div class="pwhyt noann" hidden><b>{"보관 사유" if arch else "근거"}</b> {esc(why)}</div>' if why else ''
     figs = pred_figs(p); fb = '그림빵' in p['t'] and bool(figs)
-    fg = figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs]) if figs else ''
+    fg = figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs], gb=False) if figs else ''
+    if fb and pred_boxes(p):   # 10-16 그림빵 예상은 예상 탭에서도 라벨을 번호 가림막으로(그림을 그대로 보이면 답이 보이고 문제의 ①②가 그림에 없음) — 그림빵 탭과 같은 .gbfig·.gbm(누르면 하나씩 · '답 보기' = 답 목록)
+        _k0, _p0 = figs[0]; ctx['cited'].add((_k0, _p0)); _kk = f'{_k0}-{_p0}'; _cn = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
+        _ms = ''.join(f'<button type="button" class="gbm" data-gbi="{j}" data-gbn="{_cn[j] if j < len(_cn) else j + 1}" style="left:{b[0]}%;top:{b[1]}%;width:{b[2] - b[0]:.2f}%;height:{b[3] - b[1]:.2f}%" aria-label="{j + 1}번 가림 — 누르면 보임">{_cn[j] if j < len(_cn) else j + 1}</button>' for j, b in enumerate(pred_boxes(p)))
+        _wh = img_dims(_kk); fg = f'<div class="gbsc noann"><div class="gbfig" data-gbk="{_kk}"><img data-img="{_kk}" alt=""{f' width="{_wh[0]}" height="{_wh[1]}"' if _wh else ''}>{_ms}</div></div>' + (figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs[1:]], gb=False) if len(figs) > 1 else '')
     attrs = f' data-pr="{pr}"' if pr in PRCL else ''
     attrs += ' data-x="1"' if arch else ''
     attrs += ' data-fb="1"' if fb else ''
@@ -1131,6 +1140,26 @@ for i, p in enumerate(PRED):
     if figs: ent['f'] = [f'{fk}-{pg}' for fk, pg in figs]
     if fb and pred_boxes(p): ent['m'] = pred_boxes(p)
     preds.append(ent)
+# S3 그림빵(S3_BRIEF 4) — 근거 있는 강의만: L.gbj = 그 강의 JB 기출 중 문제 쪽 그림 조각(crops q)이 있는 것(현 교수 먼저, 옛 교수(tier C)는 뒤 — '과거 JB 대비용') · L.gbp = t=그림빵 + m 상자가 있는 활성 예상문제
+#   탭·모아 풀기는 현 교수 그림 기출이나 그림빵 예상이 있을 때만(옛 교수 그림만 있는 강의는 탭 없음 — JB 문제에서) · 예상 그림빵의 '📖 정리본' = 그 쪽 그림이 든 학습 카드(lc)
+PG2CARD = {}
+for L_ in LEC:
+    for j_, c_ in enumerate(L_['cards']):
+        for p_, fk_ in c_['figs']: PG2CARD.setdefault((fk_ or L_['k'], int(p_)), (L_['k'], j_))
+for x_ in preds:
+    for fk_ in x_.get('f', []):
+        k_, p_ = fk_.rsplit('-', 1); hit = PG2CARD.get((k_, int(p_))) or next((v_ for (kk_, pp_), v_ in PG2CARD.items() if pp_ == int(p_) and getattr(S, 'IMG_ALIAS', {}).get(kk_, kk_) == k_), None)
+        if hit: x_['lc'] = f'{hit[0]}:{hit[1]}'; break
+_gbn = [0, 0, 0]
+for L_ in lect:
+    cur_ = [i for i in L_['jb'] if (QMAP[i].get('crops') or {}).get('q')]
+    gp_ = [i for i in L_['pred'] if preds[i].get('m')]
+    if cur_ or gp_:
+        old_ = [q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == L_['k'] and (q.get('crops') or {}).get('q')]
+        if cur_ or old_: L_['gbj'] = cur_ + old_
+        if gp_: L_['gbp'] = gp_
+        _gbn[0] += 1; _gbn[1] += len(cur_ + old_); _gbn[2] += len(gp_)
+print('그림빵(S3):', f'강의 {_gbn[0]} · 기출 {_gbn[1]} · 예상 {_gbn[2]}', '|', ' '.join(f"{L_['k']}({len(L_.get('gbj', []))}+{len(L_.get('gbp', []))})" for L_ in lect if L_.get('gbj') or L_.get('gbp')))
 _pa = [x for x in preds if not x.get('x')]
 print('예상문제(S3):', f'활성 {len(_pa)} · 보관 {len(preds) - len(_pa)} · 우선 상/중/하 {sum(1 for x in _pa if x.get("pr") == "상")}/{sum(1 for x in _pa if x.get("pr") == "중")}/{sum(1 for x in _pa if x.get("pr") == "하")} · oid {sum(1 for p in PRED if p.get("oid"))} · 그림 {sum(1 for x in preds if x.get("f"))} · 그림빵 {sum(1 for x in preds if x.get("m"))}',
       '| ⚠ 없는 b id: ' + ' '.join(sorted({x for p in PRED for x in re.split(r'[,\s]+', p.get('b', '') or '') if x and x not in QMAP})) if any(x and x not in QMAP for p in PRED for x in re.split(r'[,\s]+', p.get('b', '') or '')) else '')

@@ -215,7 +215,7 @@ async def main():
         for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],'hub'))
         for s,ls in SUBJ.items():
             await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/_home'); await pg.wait_for_timeout(2400)
-            for view in ['_home','_jb','_sum','_tbl','_pred','_led']:
+            for view in ['_home','_jb','_sum','_tbl','_pred','_fig','_led']:   # S3 _fig = 그림빵 모아 풀기(메뉴에 있을 때만 눌림)
                 await pg.evaluate('d=>document.querySelector(`#side .dbtn[data-d="${d}"]`)?.click()', view); await pg.wait_for_timeout(700)
                 if view=='_jb':
                     # 대조·주변부 덩어리 검사 — 모든 카드의 답을 펼쳐 .ab.chk li·.ab.chk .note·.ab.more li
@@ -228,7 +228,7 @@ async def main():
                 if r['ov']: print('OVERFLOW',s,view); errs.append(f'OVERFLOW 1280 {s}/{view}')
             for k in ls:
                 await pg.evaluate('d=>document.querySelector(`#side .dbtn[data-d="${d}"]`)?.click()', k); await pg.wait_for_timeout(900)
-                for t in ['learn','sum','tbl','jb','pred','flash']:
+                for t in ['learn','sum','tbl','jb','pred','flash','fig']:   # S3 fig = 그림빵 탭(근거 있는 강의만)
                     await pg.evaluate('d=>document.querySelector(`#dtabs button[data-t="${d}"]`)?.click()', t); await pg.wait_for_timeout(350)
                     r=await pg.evaluate(JS); acc(r, f'{s}/{k}/{t}')
                     for x in r['bad']: allbad.setdefault(x[0],(x[1],x[2],f'{s}/{k}/{t}'))
