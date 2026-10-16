@@ -47,6 +47,8 @@ with sync_playwright() as p:
         ok(r2[0] == 0 and r2[1] == '전체 가리기' and r3 == 0, f"'전체 보기' → 모두 열림 · '전체 가리기' → 모두 닫힘 {r2} {r3}")
         pg.evaluate("document.querySelector('#stage .gbx.gbp [data-gbans]').click()"); pg.wait_for_timeout(200)
         ok(pg.evaluate("!document.querySelector('#stage .gbx.gbp .gbans').hidden && document.querySelector('#stage .gbx.gbp .gbans').textContent.trim().length>3"), "'답 목록' 펼침")
+        z = pg.evaluate("(()=>{const c=document.querySelector('#stage .gbx.gbp'),f=c.querySelector('.gbfig'),w0=f.getBoundingClientRect().width;c.querySelector('[data-gbzoom]').click();const w1=f.getBoundingClientRect().width,m=c.querySelector('.gbm').getBoundingClientRect().width;c.querySelector('[data-gbzoom]').click();return {w0,w1,back:f.getBoundingClientRect().width,m}})()")
+        ok(z['w1'] > z['w0'] * 1.2 and abs(z['back'] - z['w0']) < 2 and z['m'] > 0, f"'크게' = 그림·가림막 함께 커짐 → '원래 크기' {z}")
         pg.screenshot(path=_os.path.join(OUT, 'ux17_pred.png'))
         pg.evaluate("document.querySelector('#stage .gbx.gbp [data-mk=ok]').click()"); pg.wait_for_timeout(300)
         m = pg.evaluate(MK(s)); pid = r['id']
@@ -97,6 +99,14 @@ with sync_playwright() as p:
     want = next(L['j'] + L['p'] for L in I[s] if L['k'] == k2)
     ok(len(v) == want and all(x == k2 for x in v), f"강의 필터 {k2} {len(v)}/{want}")
     pg.screenshot(path=_os.path.join(OUT, 'ux17_all.png'))
+    # ---- 학습 카드 그림 → 그림빵 ----
+    gl = pg.evaluate("""(()=>{for(const s of Object.keys(__h.PACKS)){const L=__h.PACKS[s].lect.find(L=>/data-gbgo=/.test(L.learn));if(L)return [s,L.k,/data-gbgo="([^"]+)"/.exec(L.learn)[1]];}return null})()""")
+    ok(bool(gl), f"학습 카드 그림에 '🖼 그림빵' 단추 {gl}")
+    if gl:
+        go(pg, f'#/{gl[0]}/{gl[1]}/learn', 2500)
+        pg.evaluate(f"(()=>{{const b=document.querySelector('#stage [data-gbgo=\"{gl[2]}\"]');b.closest('.tc').classList.add('open');b.scrollIntoView({{block:'center'}});b.click();}})()"); pg.wait_for_timeout(2000)
+        r = pg.evaluate(f"(()=>{{const c=document.getElementById('gb-p{gl[2].split(':')[1]}'),r=c&&c.getBoundingClientRect();return {{h:location.hash,vis:!!r&&r.top<innerHeight&&r.bottom>0,pill:document.getElementById('retpill').classList.contains('on')}}}})()")
+        ok(r['h'].endswith('/fig') and r['vis'] and r['pill'], f"그림 단추 → 그림빵 탭 그 문제 · ↩ 알약 {r}")
     # ---- 일반 빈칸빵에서 카드 그림 ----
     fl = pg.evaluate("""(()=>{for(const s of Object.keys(__h.PACKS)){const L=__h.PACKS[s].lect.find(L=>/<figure data-fig=/.test(L.learn));if(L)return [s,L.k];}return null})()""")
     if fl:

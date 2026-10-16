@@ -569,14 +569,19 @@ def img_dims(key):
     except Exception: wh = None
     _DIMS[key] = (740, round(wh[1] * 740 / wh[0])) if wh and wh[0] else None
     return _DIMS[key]
-def figgrid(kk, fl):
+GBPG = {}   # S3 (KEY, 쪽) → 'KEY:예상 번호' — 그 쪽 그림으로 낸 그림빵 예상(활성)이 있으면 학습 카드 그림 설명 줄에 '🖼 그림빵' 단추(그림빵 탭 그 문제로)
+for _i, _p in enumerate(PRED):
+    if '그림빵' in (_p.get('t') or '') and _p.get('m') and (_p.get('x') or '').strip() != '1':
+        _m = re.match(r'\s*([A-Z0-9]+):(\d+)', _p.get('f') or '')
+        if _m: GBPG.setdefault((_m.group(1), int(_m.group(2))), f"{_p['k']}:{_i}")
+def figgrid(kk, fl, gb=True):
     """카드 그림 — ux2 D10: 1장 .one(넓게)·2장 .two(반씩)·3장↑ 격자 · img에 width·height(자리 미리 잡기)·lazy · data-n(그림 숨김 칩 '🖼 n')"""
     out = []
     for p, cap, fk in fl:
         k2 = fk or kk; ctx['cited'].add((k2, p)); lab_ = getattr(S, 'PAGE_LABEL', {}).get(k2, 'p.')
         nm = (' <i>' + esc(LECNAME.get(k2, k2).split('(')[-1].rstrip(')')) + '</i>') if fk else ''
         wh = img_dims(f'{k2}-{p}'); wa = f' width="{wh[0]}" height="{wh[1]}"' if wh else ''
-        out.append(f'<figure data-fig="{k2}-{p}"><img data-img="{k2}-{p}" alt=""{wa} loading="lazy" decoding="async"><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}</figcaption></figure>')
+        out.append(f'<figure data-fig="{k2}-{p}"><img data-img="{k2}-{p}" alt=""{wa} loading="lazy" decoding="async"><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}{f'<button type="button" class="gbgo noann" data-gbgo="{GBPG[(k2, p)]}" title="이 그림의 그림빵(번호 가림막)으로 — ↩ 알약으로 돌아옴">🖼 그림빵</button>' if gb and (k2, p) in GBPG else ""}</figcaption></figure>')
     n = len(out); cl = ' one' if n == 1 else (' two' if n == 2 else '')
     return f'<button class="figchip noann" data-figopen="1" data-n="{n}" aria-label="그림 {n}장 보기"></button><div class="figs noann{cl}" data-n="{n}">' + ''.join(out) + '</div>'
 def yl(yrs, full=False):
@@ -1088,7 +1093,7 @@ for i, p in enumerate(PRED):
     whyb = f'<button type="button" class="chip pwhy noann" data-pwhy="1" aria-expanded="false" title="이 문제를 고른 근거">근거</button>' if why else ''
     whyt = f'<div class="pwhyt noann" hidden><b>{"보관 사유" if arch else "근거"}</b> {esc(why)}</div>' if why else ''
     figs = pred_figs(p); fb = '그림빵' in p['t'] and bool(figs)
-    fg = figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs]) if figs else ''
+    fg = figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs], gb=False) if figs else ''
     attrs = f' data-pr="{pr}"' if pr in PRCL else ''
     attrs += ' data-x="1"' if arch else ''
     attrs += ' data-fb="1"' if fb else ''
