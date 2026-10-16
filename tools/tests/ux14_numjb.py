@@ -29,7 +29,8 @@ async def main():
         # ---- 꼬리표 ----
         tl = await pg.evaluate("""(()=>{const S=JBLNUM._S,P=JBLNUM._H().PACKS.CONS,A=[...document.querySelectorAll('.nm-it')];let bad=[],jbN=0,yrOK=0,pfOK=0,place=0,gray=0,small=0;
           for(const a of A){const it=S.by.get(a.dataset.id),c=a.querySelector('.nm-q .nm-c'),t=c.querySelector('.nm-qt');if(!t){if(it.yrs.length)bad.push(it.id);continue;}
-            if(c.lastElementChild!==t&&!(c.lastElementChild&&c.lastElementChild.lastElementChild===t)&&!(t.parentElement&&t.parentElement.parentElement===c&&t.parentElement===c.lastElementChild))bad.push('pos:'+it.id);
+            let le=c.lastElementChild;while(le&&le!==t&&!le.contains(t)&&le.querySelector('img')&&!le.textContent.trim())le=le.previousElementSibling;   /* S3 문제 끝 그림 문단(JB·예상 그림)은 건너뜀 — 꼬리표는 글 끝 */
+            if(le!==t&&!(le&&le.lastElementChild===t)&&!(t.parentElement&&t.parentElement.parentElement===c&&t.parentElement===le))bad.push('pos:'+it.id);
             const y=(t.querySelector('.y')||{}).textContent||'',want=it.yrs.slice().sort((x,z)=>x-z).map(v=>String(v%100).padStart(2,'0')).join('·');if(y===want)yrOK++;else bad.push('yr:'+it.id+':'+y+'≠'+want);
             if(/^jb:/.test(it.id)){jbN++;const k=it.id.split(':').pop(),m=/data-prof="([^"]*)"/.exec(P.cards[k]||'');if(m&&(t.querySelector('.p')||{}).textContent===m[1])pfOK++;else bad.push('pf:'+it.id);}
             const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let last=null;for(let x=w.nextNode();x;x=w.nextNode())if(x.data.trim()&&!t.contains(x))last=x;

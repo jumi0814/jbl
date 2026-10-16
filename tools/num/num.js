@@ -485,7 +485,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-prt{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border:1px solid;border-radius:6px;font-size:11.5px;font-weight:700;line-height:1;margin-right:4px;cursor:help;user-select:none;-webkit-user-select:none}
 #numv .nm-iwhy{grid-column:2/-1;font-size:12.5px;color:#4A4339;background:#FAF7F1;border:1px solid #EEE7DA;border-radius:6px;padding:3px 8px;margin-top:3px;line-height:1.5}#numv .nm-iwhy b{margin-right:5px;color:#1F1D1A}#numv .nm-iwhy .nm-iwy{color:#6A6257}
 #numv .nm-ivb.on{border-color:#8C857A;color:#1F1D1A}
-#numv .nm-c img[data-lecimg]:not([src]){min-height:80px;min-width:160px;background:#F1ECE1;border-radius:6px}   /* S3 강의 그림을 받는 동안 자리 */
+#numv .nm-c img[data-lecimg]:not([src]){background:#F1ECE1;border-radius:6px}#numv .nm-c img[data-lecimg]:not([src]):not([height]){min-height:80px;min-width:160px}   /* S3 강의 그림을 받는 동안 자리(폭·높이가 있으면 그 비율로) */
 #numv .nm-det{margin:10px 0 0 var(--nmind);padding:10px 12px;border:1px solid #E4DFD5;border-radius:6px;background:#FCFBF8;font-size:13.5px;display:grid;gap:8px}
 #numv .nm-det label{display:grid;grid-template-columns:7.5em 1fr;gap:8px;align-items:center}
 #numv .nm-det input,#numv .nm-det textarea{font:inherit;padding:5px 8px;border:1px solid #D8D0C2;border-radius:6px;background:#fff;color:#1F1D1A;min-height:32px}#numv .nm-det textarea{resize:vertical;font-size:13px;line-height:1.5}#numv .nm-det label:has(textarea){align-items:start}
@@ -1435,7 +1435,7 @@ function jbList(sj) {
   (P.preds || []).forEach(p => {
     if (p.x) return;   /* S3 보관(x=1)된 예상문제는 불러오기 목록에서 뺌(이미 넣은 것은 그대로) */
     tpl.innerHTML = p.html; const a = tpl.content.querySelector('article'); if (!a) return;
-    const fig = (p.f || []).map((k, i) => sanitize(`<p><img data-lecimg="${sj}|${k}"${i === 0 && p.m && p.m.length ? ` data-gbm="${p.m.map(b => b.join(',')).join(';')}"` : ''}></p>`)).join('');   /* S3 예상 f= 쪽 그림 · 그림빵(가림 상자) — 문제 쪽에 자리표로 */
+    const fig = (p.f || []).map((k, i) => { const im = a.querySelector('img[data-img="' + k + '"]'), wh = im && im.getAttribute('width') && im.getAttribute('height') ? ` width="${+im.getAttribute('width')}" height="${+im.getAttribute('height')}"` : ''; return sanitize(`<p><img data-lecimg="${sj}|${k}"${i === 0 && p.m && p.m.length ? ` data-gbm="${p.m.map(b => b.join(',')).join(';')}"` : ''}${wh}></p>`); }).join('');   /* S3 예상 f= 쪽 그림 · 그림빵(가림 상자) — 문제 쪽에 자리표로(폭·높이 = 자리 미리 잡기 — 그림이 늦게 와도 화면이 밀리지 않게) */
     const q = lnHTML(a.querySelector('.pq')) + fig, box = a.querySelector('section.ab.jbans .pre2') || a.querySelector('section.ab.jbans');
     const kind = p.t || (a.querySelector('.ybadge i') || {}).textContent || '';
     out.push({ t: 'pred', s: sj, id: p.aid || a.dataset.aid, lec: p.k, yrs: [], prof: '', q, a: box ? lnHTML(box, 'h5') : '', note: kind ? '예상문제 · ' + kind : '예상문제', pm: pmOf(sj, p) });
