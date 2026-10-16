@@ -428,7 +428,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tag{display:inline-block;border:1px solid #E1D9CB;border-radius:5px;padding:0 6px;line-height:19px;font-size:11.5px;font-weight:500;color:#5A5247;background:#FAF7F1;white-space:nowrap}
 #numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
 #numv .nm-qt{margin-left:7px;font-size:12px;font-weight:500;color:#78716A;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0;user-select:none;-webkit-user-select:none}
-#numv .nm-qt .p{margin-left:6px}
+#numv .nm-qt .p{margin-left:5px;font-weight:800;color:#3A342C}#numv .nm-qt .sep{margin:0 5px;color:#A39A8C}   /* 10-16 교수 태그 굵게(사용자 '지금은 잘 안 보여') */
 #numv .nm-jbb{flex:none;border:1px solid #D8C9E8;background:#F6F1FB;color:#4F2F78;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}
 #numv .nm-jbb:hover,#numv .nm-jbb:focus-visible{background:#EDE3F8;border-color:#BFA8DA}
 #numv .nm-edm{font-size:12px;color:#8C857A;line-height:21px;padding:0 1px;cursor:help}
@@ -712,18 +712,31 @@ function qDisp(it) {   /* 화면에 보이는 문제 글 — 앞머리의 원래
   }
   return (it._qd = t.innerHTML);
 }
-function profOf(it) {   /* 교수 태그 — JB 출처의 교수(여럿이면 모두), 없으면 그 강의 교수 */
+function profBase(it) {   /* 교수 태그(연도별 표가 없을 때) — JB 출처의 교수(여럿이면 모두), 없으면 그 강의 교수 */
   const P = [];
   for (const s of it.src) if (s.t === 'jb' && s.lab) { const m = /·\s*([^·]+)$/.exec(s.lab); const p = m && m[1].trim(); if (p && !P.includes(p)) P.push(p); }
   if (!P.length) { const l = lecOf(it.lec); if (l && l.prof) P.push(l.prof); }
   return P.join('·');
 }
-/* 10-11 사용자 '각 문제의 끝나는 음절 오른쪽에 순서대로 연도 표기, 그리고 교수 이름' — 화면에서만 문제 글 끝에 붙이는 작은 회색 꼬리표(저장 글·인쇄·ChatGPT 내보내기에는 안 들어감 · 고치는 동안은 빠짐) */
-const yrsAsc = y => (y || []).slice().sort((a, b) => a - b).map(x => String(x % 100).padStart(2, '0')).join('·');
+/* 10-16 사용자 '출제연도 기준의 교수님 이름을 적었으면 … 강의자료는 같더라도 출제 교수님이 다르면 그걸 알 수 있게 … 출제연도는 가장 최신순(25,23,22)' —
+   연도(최근 해 먼저)마다 그 해 출제 교수: JB 출처 문항의 팩 카드 data-yp(subject.py YEAR_PROF) · 없는 해는 profBase · [[교수, [연도…]], …](처음 나온 순 = 최근 해 순) */
+function profYrs(it) {
+  const Y = new Map();
+  for (const s of it.src) if (s.t === 'jb' && s.s && s.id) { const m = jbMaps(s.s), v = m && m.yp.get(s.id); if (v) for (const t of v.split(/\s+(?=\d{2}:)/)) { const i = t.indexOf(':'), y = +t.slice(0, i), p = t.slice(i + 1).trim(); if (p && !Y.has(y)) Y.set(y, p); } }
+  const base = profBase(it), ys = (it.yrs || []).slice().sort((a, b) => b - a), G = [];
+  for (const y of ys) { const p = Y.get(y % 100) || base, g = G.find(x => x[0] === p); if (g) g[1].push(y); else G.push([p, [y]]); }
+  if (!G.length && base) G.push([base, []]);
+  return G;
+}
+function profOf(it) { return profYrs(it).map(g => g[0]).filter(Boolean).join('·'); }   /* 교수(최근 출제 해 순 · 여럿이면 모두) */
+function profTxt(it) { const G = profYrs(it).filter(g => g[0]); return G.length > 1 ? G.map(g => g[0] + ' ' + yrs2(g[1])).join(' · ') : (G[0] ? G[0][0] : ''); }   /* 카드·인쇄 꼬리표 — 해마다 교수가 다르면 '교수 25·24 · 교수 22' */
+/* 10-11 사용자 '각 문제의 끝나는 음절 오른쪽에 순서대로 연도 표기, 그리고 교수 이름' — 화면에서만 문제 글 끝에 붙이는 작은 회색 꼬리표(저장 글·인쇄·ChatGPT 내보내기에는 안 들어감 · 고치는 동안은 빠짐)
+   10-16 연도는 최근 해 먼저(25·23·22) · 교수는 굵게 · 해마다 출제 교수가 다르면 '25·24 교수 · 22 교수' */
 function qTail(it) {
-  const y = yrsAsc(it.yrs), p = profOf(it); if (!y && !p) return '';
-  const ti = [y ? '출제 연도 ' + it.yrs.slice().sort((a, b) => a - b).join(' · ') : '', p ? '교수 ' + p : ''].filter(Boolean).join(' · ');
-  return `<span class="nm-qt" title="${esc(ti)}">${y ? `<span class="y">${esc(y)}</span>` : ''}${p ? `<span class="p"${y ? '' : ' style="margin-left:0"'}>${esc(p)}</span>` : ''}</span>`;
+  const G = profYrs(it), any = G.some(g => g[1].length || g[0]); if (!any) return '';
+  const one = G.length === 1, ti = [it.yrs.length ? '출제 연도 ' + it.yrs.slice().sort((a, b) => b - a).join(' · ') : '', G.some(g => g[0]) ? (one ? '교수 ' + G[0][0] : '출제 교수 ' + G.map(g => g[0] + '(' + g[1].join('·') + ')').join(' · ')) : ''].filter(Boolean).join(' · ');
+  const part = (g, k) => { const y = yrs2(g[1]); return `${k ? '<span class="sep">·</span>' : ''}${y ? `<span class="y">${esc(y)}</span>` : ''}${g[0] ? `<b class="p"${y ? '' : ' style="margin-left:0"'}>${esc(g[0])}</b>` : ''}`; };
+  return `<span class="nm-qt" title="${esc(ti)}">${G.map(part).join('')}</span>`;
 }
 const TINL = new Set(['B', 'I', 'U', 'SPAN', 'SUP', 'SUB', 'A', 'STRONG', 'EM', 'FONT']);
 function qView(it) {   /* 문제 글(qDisp) + 마지막 음절 바로 오른쪽 꼬리표 — 굵게 등 꾸밈 밖, 표 안이면 표 뒤 */
@@ -740,8 +753,8 @@ function qView(it) {   /* 문제 글(qDisp) + 마지막 음절 바로 오른쪽 
 const JBR = new Map();   /* 과목 → {card: JB aid 모음, pred: 예상문제 aid → 관련 기출 JB aid} (팩에서 한 번만) */
 function jbMaps(sj) {
   let m = JBR.get(sj); const P = H.PACKS[sj]; if (m && m.P === P) return m; if (!P) return null;
-  m = { P, card: new Set(), pred: new Map() }; const AID = /data-aid="([^"]+)"/;
-  for (const k in P.cards) { const x = AID.exec(String(P.cards[k]).slice(0, 600)); if (x) m.card.add(x[1]); }
+  m = { P, card: new Set(), pred: new Map(), yp: new Map() }; const AID = /data-aid="([^"]+)"/, YP = /\sdata-yp="([^"]*)"/;
+  for (const k in P.cards) { const h = String(P.cards[k]).slice(0, 1600), x = AID.exec(h); if (!x) continue; m.card.add(x[1]); const y = YP.exec(h.slice(0, h.indexOf('>') + 1 || 1600));   /* 10-16 출제 연도별 출제 교수 '25:교수 24:교수' */ if (y && y[1]) m.yp.set(x[1], y[1]); }
   for (const p of P.preds || []) { const h = String(p.html || ''), a = p.aid ? [0, p.aid] : AID.exec(h.slice(0, 800)), g = p.b && p.b.length ? [0, p.b[0]] : /class="jbchip"[^>]*\sdata-go="([^"]+)"/.exec(h); if (!a || !g || !P.cards[g[1]]) continue;   /* S3 팩 preds의 aid·b(관련 기출) 우선 */ const ca = AID.exec(String(P.cards[g[1]]).slice(0, 600)); if (ca) m.pred.set(a[1], ca[1]); }
   JBR.set(sj, m); return m;
 }
@@ -1886,7 +1899,7 @@ function printHTML(L, o, lab) {
   for (const it of L) {
     const lk = K.has(it.lec) ? it.lec : '';
     if (grp && lk !== cur) { const l = lecOf(lk); h += `<h2${o.brk && cur !== null ? ' class="np-k"' : ''}>${esc(l.t)}${l.prof ? `<small>${esc(l.prof)}</small>` : ''}</h2>`; cur = lk; }
-    const tg = [profOf(it), yrs2(it.yrs)].filter(Boolean).join(' · ');
+    const tg = profYrs(it).filter(g => g[0]).length > 1 ? profTxt(it) : [profOf(it), yrs2(it.yrs)].filter(Boolean).join(' · ');   /* 10-16 해마다 출제 교수가 다르면 '교수 25·24 · 교수 22' */
     h += `<article class="np-i"><div class="np-q"><span class="np-n">${++n}.</span><div class="np-t">${qDisp(it)}</div>${tg ? `<span class="np-g">${esc(tg)}</span>` : ''}</div>`
       + (o.what === 'q' ? '' : `<div class="np-b ${o.what === 'qa' ? 'np-1' : o.lay === 'stack' ? 'np-v' : 'np-2'}"><section><div class="np-l">답안</div><div class="np-c">${disp(it.a)}</div></section>${o.what === 'qas' ? `<section class="np-s"><div class="np-l">넘버링 스토리</div><div class="np-c">${disp(it.st)}</div></section>` : ''}</div>`) + `</article>`;
   }

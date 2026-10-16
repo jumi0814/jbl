@@ -49,7 +49,7 @@ async def run(b, vp, touch, tag):
     # 교수
     prof = await pg.evaluate("(()=>{const o=document.querySelectorAll('#fprof option');return o.length>1?o[1].value:''})()")
     await pg.evaluate("document.querySelector('#jbbar [data-stf=\"tt\"]').click()"); await pg.select_option('#fyr', ''); await pg.select_option('#fprof', prof); await pg.wait_for_timeout(300)
-    r = await pg.evaluate(f"(()=>{{const v={VIS};return {{n:v.length,bad:v.filter(c=>c.dataset.prof!=={json.dumps(prof)}).length}}}})()")
+    r = await pg.evaluate(f"(()=>{{const v={VIS};return {{n:v.length,bad:v.filter(c=>c.dataset.prof!=={json.dumps(prof)}&&!('|'+(c.dataset.profs||'')+'|').includes('|'+{json.dumps(prof)}+'|')).length}}}})()")
     ok(r['n'] > 0 and r['bad'] == 0, f'교수 필터 {prof} {r}')
     # 상태 저장: 다른 문서 다녀오기
     await pg.select_option('#fyr', '23'); await pg.evaluate("document.querySelector('#jbbar [data-stf=\"jj\"]').click()"); await pg.fill('#fq', 'NSAID'); await pg.wait_for_timeout(300)

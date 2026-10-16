@@ -149,6 +149,28 @@ def split_qa(q):
         if reflow.LABEL.match(l) and '참고' not in l.split(':')[0] and mode == 'q' and re.match(r'^\s*(\[답\]|답)', l): mode = 'a'
         (qs if mode == 'q' else as_).append(l)
     return '\n'.join(qs), '\n'.join(as_)
+def yp_of(q):
+    """10-16 출제 연도별 출제 교수 [(연도, 교수)] — subject.py YEAR_PROF(강의 키 → {연도: 교수})·YEAR_PROF_Q(문항 id → {연도: 교수}) · 없는 해는 q['prof'](강의 연결 교수)
+    사용자 10-16 '출제연도 기준의 교수님 이름 … 강의자료는 같더라도 출제 교수님이 다르면 그걸 알 수 있게'"""
+    base = (q.get('prof') or '').split('(')[0].strip()
+    Ld = getattr(S, 'YEAR_PROF', {}).get(q.get('lk') or '', {}) or {}; Qd = getattr(S, 'YEAR_PROF_Q', {}).get(q['id'], {}) or {}
+    g = lambda d, y: d.get(y) or d.get(2000 + y if y < 100 else y) or d.get(y % 100)
+    return [(y, g(Qd, y) or g(Ld, y) or base) for y in q['yrs']]
+def prof_main(q):
+    """카드 data-prof = 가장 최근 출제 해의 출제 교수(연도별 표가 있으면) · 없으면 강의 연결 교수"""
+    yp = [p for _, p in yp_of(q) if p]
+    return yp[0] if yp else (q.get('prof') or '').split('(')[0].strip()
+def prof_chip(q):
+    """교수 칩(굵게) — 해마다 교수가 다르면 '교수 25·24 · 교수 22'(최근 해 먼저)"""
+    yp = [(y, p) for y, p in yp_of(q) if p]; base = (q.get('prof') or '').strip()
+    if not yp: return f'<span class="chip pf"><b>{esc(base)}</b></span>' if base else ''
+    order, grp = [], {}
+    for y, p in yp:
+        if p not in grp: order.append(p)
+        grp.setdefault(p, []).append(y)
+    if len(order) == 1: return f'<span class="chip pf" title="출제 교수 {esc(order[0])}"><b>{esc(order[0])}</b></span>'
+    inner = ' · '.join(f'<b>{esc(p_)}</b> {"·".join(str(y % 100).zfill(2) for y in grp[p_])}' for p_ in order)
+    return f'<span class="chip pf pfy" title="출제 연도별 출제 교수(최근 해 먼저)">{inner}</span>'
 def yr_badge(q, big=True):
     ys = q['yrs']; n = len(ys)
     if not n: return '<span class="ybadge n0">연도 표기 없음</span>'
@@ -517,8 +539,8 @@ def qcard(q, idx):
         lab, lines = pk; dv = 'wrong' if lab == '틀린 보기' else 'ok'
         for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
         pick_ln = ''   # 10-05 사용자 'jb 미리보기 및 jb 답안에 정답 보기 3) … 정답보기는 없애도 될 것 같아' — 답 칸의 '정답 보기 …' 줄은 없앰(문제 보기 줄 강조 data-ans는 그대로)
-    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc((q["prof"] or "").split("(")[0])}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
-         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{f'<span class="chip pf">{esc(q["prof"])}</span>' if (q["prof"] or "").strip() else ''}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
+    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
+         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{prof_chip(q)}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
     if q.get('jbc') == 'absent' and not figq: h.append('<div class="small">🖼 그림 문항 — 문제의 사진·그림은 JB에 실려 있지 않습니다(문제 글만 복원됨).</div>')   # jb_crops.json nofig (tools/jbfig.py 검수)
     elif q.get('jbc') == 'crop' and q['fig'] and not figq and figa: h.append('<div class="small">🖼 그림 문항 — JB의 그림은 답 쪽에 실려 있어(답이 함께 보임) ‘답·해설’ 안에 붙였습니다.</div>')
@@ -962,7 +984,7 @@ for L in LEC:
     strat_ = PSTRAT.get(pk_) or tstrat
     trend_html = (f'<details class="trend"><summary><b>출제 경향</b> <span class="tsl">{esc(trend.short_line(SM))}</span></summary><div class="small tnote">JB 자료에서 산출 — 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음</div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}'
                   + (f'<div class="small">이 강의 기출만으로 본 전략: {tstrat}</div>' if strat_ != tstrat else '') + f'</details><div class="tstr"><div class="tsh">📌 공부 전략{(" (" + esc(pk_) + ")") if strat_ != tstrat else ""}</div>{strat_list([(x.strip(), []) for x in strat_.split(" · ") if x.strip()], 3)}</div>')
-    top_ids = sorted(jb_ids, key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
+    top_ids = sorted(jb_ids + [q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
     def ltop_li(n_, i):   # ux2 D11 '연결 카드 국문 제목 — 문제 요지' · 줄 = 그 카드로(data-cj) · 연도 칩 = JB
         cj = next((j_ for j_, c_ in enumerate(L['cards']) if Q2CARD.get(i) == (k, j_)), None)
         if cj is None: cj = next((j_ for j_, c_ in enumerate(L['cards']) if i in c_['jb'] or any(b_[0] == 'E' and i in b_[1][0] for b_ in c_['body'])), None)

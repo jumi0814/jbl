@@ -31,13 +31,13 @@ async def main():
           for(const a of A){const it=S.by.get(a.dataset.id),c=a.querySelector('.nm-q .nm-c'),t=c.querySelector('.nm-qt');if(!t){if(it.yrs.length)bad.push(it.id);continue;}
             let le=c.lastElementChild;while(le&&le!==t&&!le.contains(t)&&le.querySelector('img')&&!le.textContent.trim())le=le.previousElementSibling;   /* S3 문제 끝 그림 문단(JB·예상 그림)은 건너뜀 — 꼬리표는 글 끝 */
             if(le!==t&&!(le&&le.lastElementChild===t)&&!(t.parentElement&&t.parentElement.parentElement===c&&t.parentElement===le))bad.push('pos:'+it.id);
-            const y=(t.querySelector('.y')||{}).textContent||'',want=it.yrs.slice().sort((x,z)=>x-z).map(v=>String(v%100).padStart(2,'0')).join('·');if(y===want)yrOK++;else bad.push('yr:'+it.id+':'+y+'≠'+want);
+            const y=[...t.querySelectorAll('.y')].map(e=>e.textContent).join('·'),want=it.yrs.slice().sort((x,z)=>z-x).map(v=>String(v%100).padStart(2,'0')).join('·');   /* 10-16 최근 해 먼저(25·23·22) — 해마다 교수가 다르면 묶음마다 .y */if(y===want)yrOK++;else bad.push('yr:'+it.id+':'+y+'≠'+want);
             if(/^jb:/.test(it.id)){jbN++;const k=it.id.split(':').pop(),m=/data-prof="([^"]*)"/.exec(P.cards[k]||'');if(m&&(t.querySelector('.p')||{}).textContent===m[1])pfOK++;else bad.push('pf:'+it.id);}
             const w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT);let last=null;for(let x=w.nextNode();x;x=w.nextNode())if(x.data.trim()&&!t.contains(x))last=x;
             if(last&&!last.parentElement.closest('table')){const r=document.createRange();r.setStart(last,Math.max(0,last.data.trimEnd().length-1));r.setEnd(last,last.data.trimEnd().length);const R=r.getClientRects(),q=R[R.length-1],T=t.getClientRects()[0];if(q&&T&&Math.abs((q.top+q.bottom)/2-(T.top+T.bottom)/2)<12&&T.left>=q.right-1&&T.left-q.right<16)place++;else if(q&&T&&T.top>q.bottom-2&&T.left<q.left)place++;else bad.push('place:'+it.id);}else place++;
             const cs=getComputedStyle(t);if(parseFloat(cs.fontSize)<=12.5)small++;const rgb=cs.color.match(/\\d+/g).map(Number);if(Math.max(...rgb)-Math.min(...rgb)<40&&rgb[0]>100)gray++;}
           return {n:A.length,tails:A.filter(a=>a.querySelector('.nm-qt')).length,jbN,yrOK,pfOK,place,small,gray,bad:bad.slice(0,6),old:document.querySelectorAll('.nm-tags .nm-tag, .nm-tags .nm-tag.yr, .nm-tags .nm-tag.pf').length}})()""")
-        ok(tl['tails'] > 100 and not tl['bad'] and tl['yrOK'] == tl['tails'] and tl['jbN'] > 20 and tl['pfOK'] == tl['jbN'], f"문제 글 끝 꼬리표 = 연도 옛날→최근 · JB 교수 {tl['tails']}문제 {tl['bad']}")
+        ok(tl['tails'] > 100 and not tl['bad'] and tl['yrOK'] == tl['tails'] and tl['jbN'] > 20 and tl['pfOK'] == tl['jbN'], f"문제 글 끝 꼬리표 = 연도 최근→옛날 · JB 교수(가장 최근 출제 해 교수 = data-prof) {tl['tails']}문제 {tl['bad']}")
         ok(tl['place'] == tl['tails'], f"꼬리표 = 마지막 음절 바로 오른쪽(줄이 넘치면 다음 줄 처음) {tl['place']}/{tl['tails']}")
         ok(tl['small'] == tl['tails'] and tl['gray'] == tl['tails'], f"작은 회색 글씨 {tl['small']}·{tl['gray']}")
         ok(tl['old'] == 0, f"오른쪽 옛 연도·교수 태그 없음 ({tl['old']})")
