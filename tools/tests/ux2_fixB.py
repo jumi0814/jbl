@@ -162,7 +162,7 @@ async def ipad(b, w, h):
     # ---- VIS14 미복원
     await open_(pg, '#/IMPL/_jb/_jb')
     r = await pg.evaluate("[[...document.querySelectorAll('#cards .qc .chip.pf')].filter(c=>c.offsetParent&&!c.textContent.trim()).length,document.querySelectorAll('#cards .qc[data-unrec]').length,+document.querySelector('#jbbar [data-qf=todo] .qn').textContent,document.querySelectorAll('#cards .qc').length]")
-    ok(r[0] == 0 and r[1] == 3 and r[2] == r[3] - 3, f'VIS14 IMPL 빈 교수 칩 {r[0]} · 미복원 {r[1]} · 안 푼 것 {r[2]} = 전체 {r[3]} − 3')
+    ok(r[0] == 0 and r[1] >= 3 and r[2] == r[3] - r[1], f'VIS14 IMPL 빈 교수 칩 {r[0]} · 미복원 {r[1]} · 안 푼 것 {r[2]} = 전체 {r[3]} − 미복원')   # 10-16 26판 P13 미복원 더해져 4
     await pg.evaluate("document.querySelector('#fone').click()"); await pg.wait_for_timeout(400)
     r = await pg.evaluate("__h.JB.vis.filter(c=>c.dataset.unrec).length"); ok(r == 0, f'VIS14 한 장씩 회차에 미복원 {r}')
     await pg.evaluate("document.querySelector('#fone').click()"); await pg.wait_for_timeout(300)

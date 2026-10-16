@@ -1215,8 +1215,8 @@ pack['jbhash'] = _QH
 if _jmove: pack['jbmove'] = _jmove; pack['jbmovev'] = _hl.md5(json.dumps(_jmove, sort_keys=True).encode('utf-8')).hexdigest()[:8]
 _jerr = _JL.check(SID, _QH, _jlock, _jmove)
 print('JB id 잠금:', len(_jlock), '| 새로 잠금', len(_jadd), '| 옮김 표', len(_jmove), ('| ⚠ ' + ' · '.join(_jerr[:5]) + ' → ' + _JL.need_msg(SID)) if _jerr else '')
-SYMPUA = {'\uf0b0': '°', '\uf0b1': '±', '\uf0b4': '×', '\uf0ae': '→', '\uf0ac': '←', '\uf0b3': '≥', '\uf0a3': '≤'}   # 10-05 PDF Symbol 글꼴의 사용 영역 글자(JB OMS1 Q44 '7\uf0b0' = 7°) → 원래 기호(화면 □ 깨짐)
-js = lambda o: re.sub('[\uf0a3\uf0ac\uf0ae\uf0b0\uf0b1\uf0b3\uf0b4]', lambda m: SYMPUA[m.group(0)], json.dumps(o, ensure_ascii=False)).replace('</', '<\\/')
+SYMPUA = {'\uf0b0': '°', '\uf0b1': '±', '\uf0b4': '×', '\uf0ae': '→', '\uf0ac': '←', '\uf0b3': '≥', '\uf0a3': '≤', '\uf0ad': '↑', '\uf0d7': '·', '\uf0a7': '♣', '\uf0f3': '⇔'}   # 10-16 26판 PHARM: SymbolMT ↑·♣(글머리)·⋅ · Wingdings ⇔(PDF 쪽 그림으로 확인)   # 10-05 PDF Symbol 글꼴의 사용 영역 글자(JB OMS1 Q44 '7\uf0b0' = 7°) → 원래 기호(화면 □ 깨짐)
+js = lambda o: re.sub('[' + ''.join(SYMPUA) + ']', lambda m: SYMPUA[m.group(0)], json.dumps(o, ensure_ascii=False)).replace('</', '<\\/')
 import hashlib as _hl
 _h8 = lambda t: _hl.md5(t.encode('utf-8')).hexdigest()[:8]
 shell = open(DIR + '/shell.html', encoding='utf-8').read()

@@ -1,5 +1,6 @@
 """허브 검증 (빌드 후 매번: .venv/bin/python tools/verify.py) — 홈 과목 목록 · 모든 문서/탭 렌더 · 강의/JB 이미지 로딩 · 형광펜·빈칸·실행취소·새로고침 복원 · 콘솔 오류 0"""
 import sys, os, json, io, base64, threading, http.server, functools, socketserver
+NOMAT = {'PHARM': ('ANX',)}   # 강의자료 없이 JB 답으로만 만든 강의(26 자료가 오면 빼기)
 from PIL import Image
 from playwright.sync_api import sync_playwright
 DOCS = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'docs'))
@@ -93,6 +94,8 @@ with sync_playwright() as p:
         for d in lk:
             pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(150)
             pgb = pg.evaluate('[...document.querySelectorAll("#stage .tc .thead .ko")].filter(k=>{const g=k.querySelector(".pg");return !g||!g.textContent.replace(/[·\\s]/g,"")||/·\\s*$/.test(g.textContent);}).map(k=>k.textContent.trim().slice(0,30))')
+            ncard = pg.evaluate('document.querySelectorAll("#stage .tc .thead .ko").length')
+            if pgb and len(pgb) == ncard and d in NOMAT.get(s, ()): pgb = []   # 강의자료가 아직 없는 강의(카드 전부 JB 답 기반 — PHARM ANX 10-16)는 쪽 번호 없음이 정상
             ok(not pgb, f'{s}/{d}: 카드 머리 쪽 번호 빈 카드 {len(pgb)} {pgb[:2]}')   # ux2 D08
             inl = pg.evaluate('(async()=>{window.__h&&__h.fillAll&&__h.fillAll();const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
             ok(inl[0] == inl[1], f'{s}/{d}: 본문 그림 {inl[1]}/{inl[0]} 표시')
