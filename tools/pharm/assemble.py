@@ -245,7 +245,8 @@ def ment(ed, pages):
     for p in pages:
         s = P.rd(f'{BASE}{SUB}_20{ed}/{p}.txt'); t += '\n'.join(l for l in s.split('\n') if '무단인쇄' not in l and l.strip()) + '\n'
     return t.strip()
-MENT = {'26': ment('26', [1]), '25': ment('25', [1]), '24': ment('24', [1]), '23': ment('23', [1]), '23q4': ment('23q4', [1])}   # 26판 1쪽 = 26 멘트·수업 표 · 23q4 1쪽 = 23 4Q 멘트(항불안제 이윤실·류현모)
+MENT = {'26': ment('26', [1]), '25': ment('25', [1]), '24': ment('24', [1]), '23': ment('23', [1]), '23q4': ment('23q4', [1])}
+MENT = {k_: v_.replace('**', '＊＊') for k_, v_ in MENT.items()}   # 26판 멘트 '(** 작년 …)' — 화면 굵게 표기(**)로 읽히지 않게(글자 모양만)   # 26판 1쪽 = 26 멘트·수업 표 · 23q4 1쪽 = 23 4Q 멘트(항불안제 이윤실·류현모)
 if __name__ == '__main__':
     print('Q', len(Q))
     for q in Q: print(q['id'], q['tier'], q['prof'], q['yrs'], q['jbtag'], q['short'][:36])
