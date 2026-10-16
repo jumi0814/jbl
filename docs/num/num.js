@@ -893,20 +893,30 @@ function toph() { return parseFloat(getComputedStyle(document.documentElement).g
 function stuckBottom() { const s = S.root && $('.nm-stick', S.root); if (!s) return toph(); return Math.max(s.getBoundingClientRect().bottom, toph()); }
 function flash(id, stay) { const a = S.root && $(`.nm-it[data-id="${CSS.escape(id)}"]`, S.root); if (!a) return; a.hidden = false; if (!stay) a.scrollIntoView({ block: 'center' }); a.classList.remove('flash'); void a.offsetWidth; a.classList.add('flash'); }   /* stay = 화면은 그대로(끌어서 옮긴 자리) */
 function topItem() { if (!S.root) return null; const y = stuckBottom(), arts = $$('.nm-it:not([hidden])', S.root); for (const a of arts) { const r = a.getBoundingClientRect(); if (r.bottom > y + 4) return { id: a.dataset.id, off: Math.round(r.top) }; } return null; }
+function posEl(p) {   /* 그 문제 — 필터에 걸려 숨었으면 바로 뒤(없으면 앞)의 보이는 문제 */
+  if (!p || !p.id || !S.root) return null;
+  let a = $(`.nm-it[data-id="${CSS.escape(p.id)}"]`, S.root); if (!a) return null;
+  if (a.hidden) { const vis = n => n && n.classList.contains('nm-it') && !n.hidden; let n = a.nextElementSibling; while (n && !vis(n)) n = n.nextElementSibling; if (!n) { n = a.previousElementSibling; while (n && !vis(n)) n = n.previousElementSibling; } if (!n) return null; a = n; }
+  return a;
+}
+const posOff = p => Math.max(p.off || 0, stuckBottom() + 4);
 function restorePos(p) {   /* 그 문제 자리로 — 필터에 걸려 숨었으면 바로 뒤(없으면 앞)의 보이는 문제로 */
-  if (!p || !p.id || !S.root) return false;
-  let a = $(`.nm-it[data-id="${CSS.escape(p.id)}"]`, S.root); if (!a) return false;
-  if (a.hidden) { const vis = n => n && n.classList.contains('nm-it') && !n.hidden; let n = a.nextElementSibling; while (n && !vis(n)) n = n.nextElementSibling; if (!n) { n = a.previousElementSibling; while (n && !vis(n)) n = n.previousElementSibling; } if (!n) return false; a = n; }
-  const off = Math.max(p.off || 0, stuckBottom() + 4);
+  const a = posEl(p); if (!a) return false;
+  const off = posOff(p);
   window.scrollTo(0, Math.max(0, a.getBoundingClientRect().top + scrollY - off)); requestAnimationFrame(() => { const r = a.getBoundingClientRect(); if (Math.abs(r.top - off) > 4) window.scrollBy(0, r.top - off); });
   return true;
 }
 let PIN = null;
 function unpin() { if (PIN) { PIN.ro.disconnect(); PIN = null; } }
-function pinPos(p) {   /* 10-16 그림(JB·예상 그림 자리표)이 늦게 들어와 위 문제가 길어져도 그 문제 자리 그대로 — 사용자가 스크롤·입력하기 전까지 6초 */
+function pinPos(p) {   /* 10-16 그림(JB·예상 그림 자리표)이 늦게 들어와 위 문제가 길어져도 그 문제 자리 그대로 — 사용자가 스크롤·입력하기 전까지 6초 · 다른 곳(이동·찾기)이 화면을 옮겼으면 놓음 */
   unpin(); const doc = S.root && $('[data-doc]', S.root); if (!p || !doc || !window.ResizeObserver) return;
-  const ro = new ResizeObserver(() => { if (PIN && PIN.ro === ro && Date.now() < PIN.until && S.root && doc.isConnected) restorePos(PIN.p); else if (PIN && PIN.ro === ro) unpin(); });
-  PIN = { p, ro, until: Date.now() + 6000 }; ro.observe(doc);
+  const ro = new ResizeObserver(() => {
+    if (!PIN || PIN.ro !== ro) return;
+    if (Date.now() > PIN.until || !S.root || !doc.isConnected) { unpin(); return; }
+    if (Math.abs(scrollY - PIN.y) > 4) { const a = posEl(PIN.p); if (!a || Math.abs(a.getBoundingClientRect().top - posOff(PIN.p)) > 8) { unpin(); return; } }   /* 스크롤이 바뀌었는데 그 문제가 제자리가 아님 = 다른 곳이 옮김 */
+    restorePos(PIN.p); PIN.y = scrollY; requestAnimationFrame(() => { if (PIN && PIN.ro === ro) PIN.y = scrollY; });
+  });
+  PIN = { p, ro, until: Date.now() + 6000, y: scrollY }; ro.observe(doc); requestAnimationFrame(() => { if (PIN && PIN.ro === ro) PIN.y = scrollY; });
   ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(ev => addEventListener(ev, unpin, { once: true, passive: true, capture: true }));
 }
 function posNow() {   /* 지금 화면 맨 위 문제(한 점만 짚어 봄 — 빠름) · 문서 맨 위면 null */
