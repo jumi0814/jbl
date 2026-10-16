@@ -67,6 +67,7 @@
 - JB 원문 글자 불변, 대조표 연결 안 된 블록 0
 - 출제연도: `tools/check_years.py`(문항·다른 판본 괄호의 해가 배지에 다 있는지 — 노인치과학 24·23판은 학번 +2), `tools/check_eyears.py`(⭐ 문구에 배지에 없는 해를 쓰지 않았는지)
 - 자료에 없는 약어: `tools/check_abbr.py` — 걸린 약어는 쪽 이미지로 확인해 자료에 없으면 원래 용어로
+- JB ↔ 강의·⭐·예상 연결 `tools/link_audit.py` ✗0(△ 최근 해 예상 연결 없음 0) · 예상문제 `tools/pred_check.py <SID>` ✗0 · 출제 연도별 교수 `tools/check_yearprof.py` 0 · 문제 형식 판정 `tools/fmt_audit.py <SID>`(형식 = 그 교수 꼴) — 10-16
 - playwright: `tools/verify.py`(허브 홈에 모든 과목, 이미지 로딩, 형광펜·빈칸·실행취소·새로고침 후 복원, 콘솔 오류 0) + `tools/audit_design.py`(명암·긴 덩어리·가로 넘침) + `tools/tests/*.py`
 
 ## 사용자 피드백을 받았을 때 (매번 이 순서)

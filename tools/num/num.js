@@ -426,7 +426,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-q>.nm-c{flex:1 1 0;min-width:0;font-size:inherit;line-height:inherit;min-height:0}
 #numv .nm-tags{flex:none;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;max-width:40%;padding-top:1px}
 #numv .nm-tag{display:inline-block;border:1px solid #E1D9CB;border-radius:5px;padding:0 6px;line-height:19px;font-size:11.5px;font-weight:500;color:#5A5247;background:#FAF7F1;white-space:nowrap}
-#numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
+#numv .nm-tag.pf b{font-weight:800;color:#2F2A24}#numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
 #numv .nm-qt{margin-left:7px;font-size:12px;font-weight:500;color:#78716A;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0;user-select:none;-webkit-user-select:none}
 #numv .nm-qt .p{margin-left:5px;font-weight:800;color:#3A342C}#numv .nm-qt .sep{margin:0 5px;color:#A39A8C}   /* 10-16 교수 태그 굵게(사용자 '지금은 잘 안 보여') */
 #numv .nm-jbb{flex:none;border:1px solid #D8C9E8;background:#F6F1FB;color:#4F2F78;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}
@@ -729,6 +729,7 @@ function profYrs(it) {
   return G;
 }
 function profOf(it) { return profYrs(it).map(g => g[0]).filter(Boolean).join('·'); }   /* 교수(최근 출제 해 순 · 여럿이면 모두) */
+function profTagH(it) { const G = profYrs(it).filter(g => g[0]); return G.length > 1 ? G.map(g => `<b>${esc(g[0])}</b> ${esc(yrs2(g[1]))}`).join(' · ') : (G[0] ? `<b>${esc(G[0][0])}</b>` : ''); }   /* 10-16 굵은 교수(해마다 다르면 연도와 묶음) — 복습 카드·인쇄 */
 function profTxt(it) { const G = profYrs(it).filter(g => g[0]); return G.length > 1 ? G.map(g => g[0] + ' ' + yrs2(g[1])).join(' · ') : (G[0] ? G[0][0] : ''); }   /* 카드·인쇄 꼬리표 — 해마다 교수가 다르면 '교수 25·24 · 교수 22' */
 /* 10-11 사용자 '각 문제의 끝나는 음절 오른쪽에 순서대로 연도 표기, 그리고 교수 이름' — 화면에서만 문제 글 끝에 붙이는 작은 회색 꼬리표(저장 글·인쇄·ChatGPT 내보내기에는 안 들어감 · 고치는 동안은 빠짐)
    10-16 연도는 최근 해 먼저(25·23·22) · 교수는 굵게 · 해마다 출제 교수가 다르면 '25·24 교수 · 22 교수' */
@@ -1884,7 +1885,7 @@ const PCSS = `@page{size:A4;margin:12mm 12mm 14mm}
 #nm-print h2.np-k{break-before:page;page-break-before:always;margin-top:0}
 #nm-print .np-i{padding:2.2mm 0 2.6mm;border-bottom:.4pt solid #bbb;break-inside:avoid;page-break-inside:avoid}
 #nm-print .np-q{display:flex;gap:2mm;align-items:baseline;font-weight:700;font-size:10.5pt;break-after:avoid}
-#nm-print .np-q .np-n{flex:none;min-width:7mm}#nm-print .np-q .np-t{flex:1;min-width:0}#nm-print .np-q .np-g{flex:none;font-size:8pt;font-weight:500;color:#444;white-space:nowrap}
+#nm-print .np-q .np-n{flex:none;min-width:7mm}#nm-print .np-q .np-t{flex:1;min-width:0}#nm-print .np-q .np-g{flex:none;font-size:8pt;font-weight:500;color:#444;white-space:nowrap}#nm-print .np-q .np-g b{font-weight:800;color:#111}
 #nm-print .np-b{display:grid;grid-template-columns:1fr 1.1fr;border:.6pt solid #999;margin:1.4mm 0 0 9mm}
 #nm-print .np-b.np-v,#nm-print .np-b.np-1{grid-template-columns:1fr}
 #nm-print .np-b section{padding:1.1mm 2.2mm 1.5mm;min-width:0}
@@ -1899,8 +1900,8 @@ function printHTML(L, o, lab) {
   for (const it of L) {
     const lk = K.has(it.lec) ? it.lec : '';
     if (grp && lk !== cur) { const l = lecOf(lk); h += `<h2${o.brk && cur !== null ? ' class="np-k"' : ''}>${esc(l.t)}${l.prof ? `<small>${esc(l.prof)}</small>` : ''}</h2>`; cur = lk; }
-    const tg = profYrs(it).filter(g => g[0]).length > 1 ? profTxt(it) : [profOf(it), yrs2(it.yrs)].filter(Boolean).join(' · ');   /* 10-16 해마다 출제 교수가 다르면 '교수 25·24 · 교수 22' */
-    h += `<article class="np-i"><div class="np-q"><span class="np-n">${++n}.</span><div class="np-t">${qDisp(it)}</div>${tg ? `<span class="np-g">${esc(tg)}</span>` : ''}</div>`
+    const multi = profYrs(it).filter(g => g[0]).length > 1, tg = multi ? profTagH(it) : [profTagH(it), esc(yrs2(it.yrs))].filter(Boolean).join(' · ');   /* 10-16 해마다 출제 교수가 다르면 '교수 25·24 · 교수 22' */
+    h += `<article class="np-i"><div class="np-q"><span class="np-n">${++n}.</span><div class="np-t">${qDisp(it)}</div>${tg ? `<span class="np-g">${tg}</span>` : ''}</div>`
       + (o.what === 'q' ? '' : `<div class="np-b ${o.what === 'qa' ? 'np-1' : o.lay === 'stack' ? 'np-v' : 'np-2'}"><section><div class="np-l">답안</div><div class="np-c">${disp(it.a)}</div></section>${o.what === 'qas' ? `<section class="np-s"><div class="np-l">넘버링 스토리</div><div class="np-c">${disp(it.st)}</div></section>` : ''}</div>`) + `</article>`;
   }
   return h;
@@ -2166,7 +2167,7 @@ function cardPaint() {
   let i = D.indexOf(s.cur); if (i < 0) i = Math.max(0, Math.min(s.i || 0, D.length - 1)); s.i = i; s.cur = D[i];
   const it = S.by.get(D[i]), [ff, fb, f3] = DIRS[S.cfg.dir], f = RV.face ? fb : ff, m = s.mk[it.id], pf = profOf(it), l = lecOf(it.lec), dr = (RV.dr && RV.dr.a[it.id]) || '', r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, last = i === D.length - 1;
   const ctx = RV.face && ff === 'q' ? `<div class="nm-cq" title="앞면(문제)">${esc(plain(qDisp(it)).replace(/\s+/g, ' ').trim().slice(0, 160))}</div>` : '';
-  box.innerHTML = `<div class="nm-cl"><div class="nm-cpos"><b>${i + 1}</b><span>/ ${D.length}</span><span class="lt">${esc(l.k ? l.t : '강의 미분류')}</span>${pf ? `<span class="nm-tag pf">${esc(pf)}</span>` : ''}${it.yrs.length ? `<span class="nm-tag yr">${esc(yrs2(it.yrs))}</span>` : ''}<span class="nm-sp"></span>${pmHTML(prevMark(it.id))}</div>`
+  box.innerHTML = `<div class="nm-cl"><div class="nm-cpos"><b>${i + 1}</b><span>/ ${D.length}</span><span class="lt">${esc(l.k ? l.t : '강의 미분류')}</span>${pf ? `<span class="nm-tag pf">${profTagH(it)}</span>` : ''}${it.yrs.length && profYrs(it).filter(g => g[0]).length < 2 ? `<span class="nm-tag yr">${esc(yrs2(it.yrs))}</span>` : ''}<span class="nm-sp"></span>${pmHTML(prevMark(it.id))}</div>`
     + `<div class="nm-card${RV.face ? ' back' : ''}${m != null ? ' mk' + m : ''}" data-flip="1" tabindex="0" role="button" aria-label="${RV.face ? '뒷면' : '앞면'} ${FN[f]} — 눌러서 뒤집기(Space)"><div class="nm-cfh"><span class="nm-cft">${RV.face ? '뒷면' : '앞면'} · ${FN[f]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f}" title="${FN[f]} 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div>${ctx}<div class="nm-c nm-cfc" data-f="${f}">${faceHTML(it, f)}</div></div>`
     + `<div class="nm-cctl"><span class="nm-cnav"><button type="button" class="nm-btn" data-cnav="-1"${i ? '' : ' disabled'} title="이전 카드 (←)" aria-label="이전 카드">◀</button><button type="button" class="nm-btn pri" data-cnav="0" title="뒤집기 (Space·카드 누르기${innerWidth <= 860 ? ' · 옆으로 밀면 다음·이전' : ''})">뒤집기</button><button type="button" class="nm-btn" data-cnav="1" title="${last ? '회차 정리' : '다음 카드'} (→)" aria-label="${last ? '회차 정리' : '다음 카드'}">${last ? '정리 ▶' : '▶'}</button></span>`
     + `<span class="nm-cmk" title="평가하면 다음 카드로 (1 · 2 · 3)">${mksHTML(it.id, m)}</span>`

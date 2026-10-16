@@ -10,6 +10,7 @@ UI=1; [ "$1" = "--no-ui" ] && UI=0
 SIDS="OMS1 CONS IMPL ANAT GERI PHARM ESTH"; sids=$(echo $SIDS | tr A-Z a-z)
 say() { echo "$@" | tee -a $L; }
 say "== 동기화"; $PY tools/sync_common.py 2>&1 | tail -1 | tee -a $L
+o=$($PY tools/num/build_num.py --check 2>&1 | tail -1); say "$o"; echo "$o" | grep -q OK || say "  ✗ 넘버링 모듈 사본(docs/num ↔ tools/num · NUMV) 다름 — tools/num/build_num.py"
 say "== 빌드"
 for s in $sids; do
   $PY tools/$s/build4.py > work/_tmp/b_$s.log 2>&1; rc=$?
@@ -25,6 +26,10 @@ say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
 say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
 say "== pred_check";    for S in $SIDS; do say "$S $($PY tools/pred_check.py $S 2>&1 | tail -1)"; done   # 10-16 예상문제 문법·사라진 옛 문항(pred_before) ✗
 say "== link_audit";    $PY tools/link_audit.py --md work/_tmp/link_audit.md 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 JB ↔ 강의·⭐·표·예상 연결 전수
+n=$(grep -c '예상 연결 없음' work/_tmp/link_audit.md 2>/dev/null); [ "${n:-0}" -gt 0 ] && say "  ✗ link_audit 최근 해 문항 예상 연결 없음 $n"   # QA 49 — △도 0이어야 함
+say "== check_yearprof"; $PY tools/check_yearprof.py 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 출제 연도별 출제 교수 표(YEAR_PROF) 키·id·해
+[ -f tools/fmt_audit.py ] && { say "== fmt_audit"; $PY tools/fmt_audit.py 2>&1 | grep -E "^[A-Z0-9]+:|RESULT" | tee -a $L; }   # 10-16 형식 판정 표·의심(정보) → work/_tmp/fmt<YY>/<SID>.md
+[ -f tools/tests/fmt_cases.py ] && say "fmt_cases $($PY tools/tests/fmt_cases.py 2>&1 | grep -E 'RESULT' | tail -1)"   # 형식 판정 회귀(브라우저 없음)
 say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S --md work/review_final2/TA_$S.md 2>&1 | tail -1)"; done
 say "== check_nred"; for S in $SIDS; do say "$($PY tools/check_nred.py $S 2>&1 | tail -1)"; done   # 10-09 필기 쪽 강조(정보 — 예외가 있어 0 목표 아님 · 기준값 SKILL G1)
 say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
@@ -34,7 +39,7 @@ for s in $SIDS; do $PY tools/dump_jb.py $s >/dev/null 2>&1; $PY tools/dump_break
 if [ $UI = 1 ]; then
   say "== tests"
   # 표시·북마크 테스트는 file:// 대신 로컬 http로(JBL_HTTP=1 — file://은 Chromium이 가끔 localStorage를 비워 거짓 실패). ux3_compat만 file://
-  for t in legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap ux7_u26 ux8_num ux9_numai ux10_num5 ux11_fix ux12_numrev ux13_numdrag ux14_numjb ux15_storage ux16_pred ux17_fig ux18_numpred nb_numbering; do
+  for t in legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap ux7_u26 ux8_num ux9_numai ux10_num5 ux11_fix ux12_numrev ux13_numdrag ux14_numjb ux15_storage ux16_pred ux17_fig ux18_numpred ux19_yearprof nb_numbering; do
     [ -f tools/tests/$t.py ] || continue
     say "$t $(JBL_HTTP=1 $PY tools/tests/$t.py 2>&1 | grep -E 'RESULT|FAIL|lost rate|LOST_GONE [0-9]' | tr '\n' ' ' | cut -c1-300)"
   done

@@ -47,7 +47,7 @@
  2회차(·3회차) = 26 표시 확인(`{u:}` 슬라이드 원문만 · `{e:}` 강조만 · check_unote 0) + 쪽 단위 역대조 한 번 더(앞 회차가 안 본 각도) · 학습 효과(🔑만으로 뼈대, ⚡이 답 그대로 떠오르나, 표 머리) · 원고 ↔ annot ↔ tables ↔ pred 일치.
  3회차 = 빨강 비율(카드 ≤30%·평균 10~20%·항목 절반 안팎 — check_lec 계산, 빨강은 원문 낱말에·필기 쪽엔 붙이지 않음) · 필기 쪽 강조(QA 34 — RULES 7 끝 예외 3가지만, `tools/check_nred.py <SID> --list`) · 표(QA 35 — 전체정리표 모든 주제·★ 기출 전부·비교 축 빠짐없이·변형 대비 N:·빈 칸 —) · 화면 문항 id 0 · 마지막 쪽 훑기 · RULES.md 전 절 대조(특히 6·10절) · 필기 구간 {n:} 누락·남발(QA 29).
 다른 강의에 걸친 문항(교차 ⭐)·같은 그림은 두 강의 문구가 같은지 — 다른 강의 파일은 고치지 말고 보고에 '다른 강의 몫: 파일:줄 · 지금 → 제안'.
-고칠 파일: tools/<sid>/lec_<KEY>.txt · work/<SID>/parts/{annot,tables,pred}_<KEY>.txt. 보고 work/<SID>/upd26/R<n+1>_<KEY>.md(새 강의는 work/<SID>/parts/R<n+1>_<KEY>.md) — 고친 것(전→후·근거 쪽) · 다른 강의 몫 · 사용자 확인 필요 · 평가.
+고칠 파일: tools/<sid>/lec_<KEY>.txt · work/<SID>/parts/{annot,tables,pred}_<KEY>.txt. 연결 확인: `tools/link_audit.py <SID>`의 이 강의(✗ 기출 탭 빠짐·⭐ 없음 0 — 메인의 마지막 빌드 기준). 보고 work/<SID>/upd26/R<n+1>_<KEY>.md(새 강의는 work/<SID>/parts/R<n+1>_<KEY>.md) — 고친 것(전→후·근거 쪽) · 다른 강의 몫 · 사용자 확인 필요 · 평가.
 ```
 
 ## D1 다듬기 — 🔑·⚡ (강의 하나 또는 묶음 · lec 파일의 `=`·`M:` 줄만)
@@ -113,7 +113,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## E QA — 사용자 눈 점검 (과목 하나 · 찾기 — 메인이 허락하면 글자 그대로인 작은 표시만 직접 고침 · 나머지는 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~50 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~51 — 새 번호가 생겨도 끝까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). (메인이 허락하면) 글자 그대로인 작은 것 — 구분 기호·줄 나눔·{n:}/{u:}/{e:}/{r:} 표시·라벨 — 은 그 강의 lec + annot·tables·pred의 메인이 지시문에 적은 쪽(merge·split 직후면 parts, 아니면 tools/<sid>/의 그 강의 블록 — 그 과목 QA 1명만)에서 직접 고침(고치기 전 text_diff --save · 끝에 빠진 글자 0) · 허브·렌더러 몫은 보고만. 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B1·B2·B3/C/D1~D5·D2b/메인 = 허브·렌더러) 몫. 보고 work/review_final2/QA_<SID>.md. (직접 고침을 허락받지 않았으면) 고치지 않는다 — 허락받았어도 낱말·사실 문제와 허브·렌더러 몫은 보고만.
 ```
 
@@ -121,8 +121,8 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ```
 <공통 머리>
 과목 <SID> 새 판본 <YY>판(work/jb/<SID>_20<YY>/ · 다른 쿼터 JB가 있으면 <경로> = tier C 참고). guide/handoff/JB26_BRIEF.md 1~8 그대로('26판' = <YY>판 · '25년 시험' = <YY-1>년 시험 · work/<SID>/jb26/ = work/<SID>/jb<YY>/로 읽음) · RULES 0-1 '새 판본'. 갱신 중 강의 <KEY들>의 lec·annot 블록은 건드리지 않고 work/<SID>/jb<YY>/E_<KEY>.md에(그 강의 검토 담당이 넣음).
-쓸 것: tools/<sid>/{parse_*·assemble·subject·annot·tables·lec_*(갱신 중 제외)·jb_lock.json} · 보고 work/<SID>/jb<YY>/R_JB<YY>.md(새 문항 표 · 그림 문항 표 · 사용자 확인 필요). 공통 파일(build4 SYMPUA 포함 — 깨지는 기호 글자는 보고에 쪽·글자)·pred.txt·커밋 금지. 멘트 원문의 `**`는 `＊＊`(scan_render 누출 — PHARM 선례).
-검사: 기존 판 블록 동일 ✓ · LEDGER 미연결 0 · build4 'JB id 잠금 새로 잠금 k' = 새 문항 수 · jblock.lock_errors 0 · 기존 문항 표시 원문 불변 · check_years 새 경고 0 · check_eyears·check_lec ✗0 · check_abbr 새 0.
+쓸 것: tools/<sid>/{parse_*·assemble·subject·annot·tables·lec_*(갱신 중 제외)·jb_lock.json} · 보고 work/<SID>/jb<YY>/R_JB<YY>.md(새 문항 표 = 문항마다 'id · 연도 · 출제 교수(YEAR_PROF) · fmt_of 형식 · 강의' · 그림 문항 표 · 사용자 확인 필요). 공통 파일(build4 SYMPUA 포함 — 깨지는 기호 글자는 보고에 쪽·글자)·pred.txt·커밋 금지. 멘트 원문의 `**`는 `＊＊`(scan_render 누출 — PHARM 선례). subject.py `YEAR_PROF`에 <YY-1>년 칸(판 교수 머리·수업 표·멘트 근거 — guide/handoff/YEARPROF_BRIEF.md · 교수 바뀐 강의는 옛 해도 확인).
+검사: 기존 판 블록 동일 ✓ · LEDGER 미연결 0 · build4 'JB id 잠금 새로 잠금 k' = 새 문항 수 · jblock.lock_errors 0 · 기존 문항 표시 원문 불변 · check_years 새 경고 0 · check_eyears·check_lec ✗0 · check_abbr 새 0 · `tools/link_audit.py <SID>` ✗0(강의 없음·기출 탭 빠짐·⭐ 없음) · `tools/check_yearprof.py <SID>` 0 · 새 문항 형식 = trend.fmt_of 판정(`tools/fmt_audit.py <SID>`)과 문제 원문 꼴 대조(어긋나면 보고에 'fmt_of 몫' — 공통 파일은 메인).
 ```
 
 ## JF JB 그림 조각 검수 — 과목 하나(새 문항 · 10-15 S1c)
@@ -137,6 +137,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ```
 <공통 머리>
 과목 <SID>. guide/handoff/PRED26_BRIEF.md 0·1절(1~7) 그대로 — 모든 문장에 기출 id·쪽·멘트 인용 · 교수 변경 강의는 '형식 = 현 교수(같은 과목 다른 강의의 그 교수 기출)' / '내용 축 = 옛 교수 기출'을 두 줄로 나눠 쓰고, 근거가 1~2문항이면 '불확실' · 다른 쿼터 JB <경로>는 tier C 참고 · JB 멘트의 'NN년' = 그 전해 시험 평.
+형식 횟수는 `tools/fmt_audit.py <SID>` 표에서(guide/handoff/FMT26_BRIEF.md 선례) · 교수 × 연도는 subject.py `YEAR_PROF`·`YEAR_PROF_Q`(출제 연도 기준 — guide/handoff/YEARPROF_BRIEF.md · 과목 홈 '교수별 출제 경향'은 강의 연결 교수라 다를 수 있음, 그 차이를 TREND에 한 줄) · 표와 원문이 어긋나는 문항은 보고에.
 쓸 것: work/<SID>/pred<YY>/TREND_<SID>.md 하나(요약표 교수 × 강의 · 형식 횟수 · 짤/탈 · 그림 기출 · 그림빵 함/안 함 · 강의별 상/중/하 기준·피할 꼴). 먼저 지난 분석 guide/handoff/trend26/TREND_<SID>.md(·<SID>_R_*.md)를 읽고 이어 씀. 끝나면 메인이 TREND·PRED 보고·JB 보고를 guide/handoff/trend<YY>/에 복사(work/는 커밋 안 됨 — 10-16 trend26 선례).
 검사: 연도 = questions.md '출제'·qids yrs와 대조(보고에 대조 수).
 ```
@@ -144,10 +145,11 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## P 예상문제 — 강의 묶음(10-15 · TREND 뒤)
 ```
 <공통 머리>
-과목 <SID> 강의 <KEY들>. PRED26_BRIEF 2~4절 + RULES 11 + TREND_<SID>.md의 그 강의 줄 · 기준 aid work/<SID>/pred<YY>/pred_before.{md,json}.
-옛 블록마다 유지(글자 그대로 + pr·why·b · 이미 있는 oid·x·m 그대로) / 개선(고쳐 쓰고 oid=<pred_before aid>) / 보관(x=1 · why에 사유) — 지우지 않음. 새 문항은 가치 높은 것만 · 형식 = 현 교수 기출 꼴 · 그림이 필요하면 f=(그림에 답이 보이면 f 대신 답에 [[KEY:쪽]] 또는 그림빵) · 그림빵은 TREND '함' 강의만(figmask → --pick → _mask.png Read · 답 = 쪽 이미지 글자 · 기출 그림 반복 금지 · 26에서 빠진 그림 = t에 '26에서 빠짐 · JB 대비').
+과목 <SID> 강의 <KEY들>. guide/handoff/PRED26_BRIEF.md 2~4절 + guide/handoff/PRED_MORE_BRIEF.md 할 일 1·2 + RULES 11 + TREND_<SID>.md의 그 강의 줄 · 기준 aid work/<SID>/pred<YY>/pred_before.{md,json}.
+옛 블록마다 유지(글자 그대로 + pr·why·b · 이미 있는 oid·x·m 그대로) / 개선(고쳐 쓰고 oid=<pred_before aid>) / 보관(x=1 · why에 사유) — 지우지 않음. 새 문항은 가치 높은 것만 · 형식 = 현 교수 기출 꼴 · 그림이 필요하면 f=(그림에 답이 보이면 f 대신 답에 [[KEY:쪽]] 또는 그림빵) · 그림빵은 RULES 11 그림빵 ①·② 강의만(figmask → --pick → _mask.png Read · 답 = 쪽 이미지 글자 · 기출 그림 반복 금지 · 26에서 빠진 그림 = t에 '26에서 빠짐 · JB 대비').
+옛 블록 판정 뒤 **빠진 문제 찾기**(guide/handoff/PRED_MORE_BRIEF.md 할 일 1·2 — 맡은 강의 26 쪽 이미지를 처음부터 끝까지 넘겨 교수 강조·`{e:}`·`{u:}`·굵은/빨간 글씨·표 행/열·n가지·수치·술식 순서·기출 축 변형 중 활성 예상과 JB가 덮지 않는 것을 그 교수 꼴로 · 근거 약한 '하'로 채우지 않음 · 보고에 '본 쪽 n/N · 후보 k · 넣음 m · 뺀 이유').
 쓸 것: work/<SID>/pred<YY>/pred_<KEY들>.txt(맡은 강의 블록 전부 · OMS1은 '@P <KEY>') · 보고 R_<KEY들>.md(강의마다 유지·개선·보관·새(상/중/하)·그림·그림빵 수 · 교수 경향 근거 · 확인 필요). tools/<sid>/pred.txt 직접 수정·빌드 금지.
-최신 해(25년 시험) 기출마다 그 문항을 b=로 건 예상문제 ≥1(RULES 11 '최신 해 기출마다 예상문제 연결') · 형식은 work/_tmp/fmt26/<SID>.md(문제 부분 판정)와 questions.md 원문으로 확인(guide/handoff/FMT26_BRIEF.md 선례).
+최신 해(<YY-1>년 시험 — 27 갱신이면 26년) 기출마다 그 문항을 b=로 건 예상문제 ≥1(RULES 11 '최신 해 기출마다 예상문제 연결') · 형식은 `tools/fmt_audit.py <SID>` 표(문제 부분 판정 — 옛 tools/fmt_audit.py <SID> → work/_tmp/fmt<YY>/<SID>.md와 같은 표)와 questions.md 원문으로 확인(guide/handoff/FMT26_BRIEF.md 선례).
 검사: pred_check <SID> --file <조각> ✗0 · pred_merge <SID> <조각> --dry 통과 · check_abbr · check_eyears · 답 근거 쪽 이미지 확인 수.
 ```
 
@@ -156,5 +158,5 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 <공통 머리>
 과목 <SID> 강의 <KEY>. 작성 보고 work/<SID>/upd<YY>/R_<KEY>.md의 'annot·tables·pred 고칠 것' + work/<SID>/jb<YY>/E_<KEY>.md(새 기출 ⭐·jb=·annot 블록·`!`)를 넣고, cmp 대조표의 바뀐·새 쪽만 C 1회차 초점으로(같은 쪽은 쪽 번호만) · apply_map이 잘못 옮긴 쪽('JB 참고 p.N'·다른 강의 쪽·25 필기 쪽) 되돌림.
 쓸 것: lec_<KEY> · (메인이 적은 쪽) parts 또는 tools/<sid>/{annot,tables,pred}의 이 강의 블록 · 보고 R2_<KEY>.md.
-검사: C 1회차 검사 + build4 '연결 안 된' 0 · check_eyears 0 · check_unote 0 · pred_check ✗0.
+검사: C 1회차 검사 + build4 '연결 안 된' 0 · check_eyears 0 · check_unote 0 · pred_check ✗0 · `tools/link_audit.py <SID>`의 이 강의(✗ 기출 탭 빠짐·⭐ 없음 0).
 ```

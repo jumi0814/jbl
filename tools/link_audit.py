@@ -38,7 +38,9 @@ def audit(SID, year=None):
     for q, h in P['cards'].items():
         a = re.search(r'<article[^>]*>', h); A = a.group(0) if a else ''
         g = lambda k: (re.search(k + r'="([^"]*)"', A) or [None, ''])[1]
-        tier, lec, prof, yrs, unrec = g('data-tier'), g('data-lec'), g('data-prof').split('(')[0], [int(y) for y in g('data-yrs').split() if y.isdigit()], 'data-unrec' in A
+        # 10-16 data-prof = 최근 출제 해 교수(YEAR_PROF) → '현 교수' 판정은 강의 연결 교수 data-lprof
+        tier, lec, prof = g('data-tier'), g('data-lec'), (g('data-lprof') or g('data-prof')).split('(')[0]
+        yrs, unrec = [int(y) for y in g('data-yrs').split() if y.isdigit()], 'data-unrec' in A
         _qe = BeautifulSoup(h, 'html.parser').select_one('.qtext'); qt = re.sub(r'\s+', ' ', _qe.get_text(' ', strip=True)) if _qe else ''   # 10-16 문제 글 전체(첫 줄이 '2025 년 교수님 강조' 같은 머리면 첫 div만 보고 '짧은 문제'로 빠지던 것 — CONS INL 25년 42번)
         qt = re.sub(r'^\s*20\d\d\s*년\s*교수님\s*강조\s*', '', qt)
         qtext[q] = qt
@@ -52,7 +54,7 @@ def audit(SID, year=None):
         if curp and not refs(S_(L.get('learn')), q): out['x'].append((q, f'{lec} 정리본 ⭐ 없음', qt[:60]))
         if curp and not refs(tbl_all, q): out['w'].append((q, f'{lec} 표 없음', qt[:60]))
         if 'data-golec' not in h: out['w'].append((q, f'{lec} 정리본 칩 없음', qt[:60]))
-        if ymax and ymax in yrs and curp and not predb.get(q): out['w'].append((q, f'{lec} {ymax}년 문항 예상 연결 없음', qt[:60]))
+        if ymax and ymax in yrs and not predb.get(q): out['w'].append((q, f'{lec} {ymax}년 문항 예상 연결 없음', qt[:60]))   # 최신 해 문항은 교수와 상관없이(RULES 11)
     # 예상 = 기출(이미 나온 문제)인데 b=에 없음 · '미출제' 모순
     jbn = {q: NORM(t)[:90] for q, t in qtext.items() if len(NORM(t)) >= 16}
     for i, x in enumerate(P['preds']):

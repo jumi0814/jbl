@@ -152,6 +152,7 @@ def cutw(q, n=60):
     if len(s) <= n: return s
     c = s[:n]; i = c.rfind(' ')
     return (c[:i] if i >= n * 0.6 else c).rstrip(' ·,') + '…'
+YPF = None; PINL = None   # 10-16 build4가 넣음(출제 연도별 교수 · 굵은 교수 글)
 def view_led():
     A_ = [q for q in Q if q['tier'] == 'A']
     seen = set(); rep = []
@@ -163,10 +164,15 @@ def view_led():
          '<div class="panel"><div class="bt">연도 표기 규칙</div><div class="small">① 문제 옆 괄호의 연도를 모두 넣습니다. ② 괄호에 빠져 있어도 그 문항이 실린 <b>연도 칸</b>은 반드시 넣습니다. ③ 다른 연도 칸에 같은 문제가 또 있으면 그 연도도 더합니다. ④ 실리지 않은 해는 절대 붙이지 않습니다. ⑤ 가장 최근 시험은 2025년입니다 — 받은 JB 중 가장 최신본이 2025년 시험 문항까지 담고 있습니다(2026년 시험 문항은 아직 없음).</div></div>']
     # ux4 B48 0문항 교수 행은 빼고, 참고(등급 B) 교수 행을 회색 '(참고)'로 — 반복 출제 표에 나오는 교수가 이 표에도 있게
     B_ = [q for q in Q if q['tier'] == 'B']; pB = [p for p in dict.fromkeys(q['prof'] for q in B_) if p and p not in profs]
-    row = lambda p, L, ref: (f'<tr class="ref"><th>{p} <span class="small">(참고)</span></th>' if ref else f'<tr><th>{p}</th>') + ''.join(f'<td>{sum(1 for q in L if q["prof"]==p and y in q["yrs"]) or ""}</td>' for y in yrs) + f'<td>{sum(1 for q in L if q["prof"]==p and len(q["yrs"])>=2)}</td></tr>'
-    t = ''.join(row(p, A_, False) for p in profs if any(q['prof'] == p for q in A_)) + ''.join(row(p, B_, True) for p in pB)
+    # 10-16 출제 연도 기준(build4가 YPF = yp_of를 넣음 — 그 해 그 교수가 낸 문항 수) · 없으면 예전처럼 문항 교수
+    YPd = (lambda q: dict(YPF(q))) if YPF else (lambda q: {y: q['prof'] for y in q['yrs']})
+    pyr = lambda q, p, y: y in q['yrs'] and (YPd(q).get(y) or q['prof']) == p
+    pany = lambda q, p: any((YPd(q).get(y) or q['prof']) == p for y in q['yrs'])
+    pX = [p for p in dict.fromkeys(v for q in A_ for v in YPd(q).values()) if p and p not in profs and p not in pB] if YPF else []
+    row = lambda p, L, ref: (f'<tr class="ref"><th>{p} <span class="small">({"참고" if ref == 1 else "옛 출제"})</span></th>' if ref else f'<tr><th>{p}</th>') + ''.join(f'<td>{sum(1 for q in L if pyr(q, p, y)) or ""}</td>' for y in yrs) + f'<td>{sum(1 for q in L if pany(q, p) and len(q["yrs"])>=2)}</td></tr>'
+    t = ''.join(row(p, A_, False) for p in profs if any(pany(q, p) for q in A_)) + ''.join(row(p, A_, 2) for p in pX if any(pany(q, p) and any(y in yrs for y in q['yrs']) for q in A_)) + ''.join(row(p, B_, 1) for p in pB)
     h.append(f'<div class="tblwrap"><div class="tbt serif">교수별 × 출제연도 문항 수</div><table class="cmp"><thead><tr><th>교수</th>{"".join(f"<th>{YR(y)}</th>" for y in yrs)}<th>2회 이상 반복</th></tr></thead><tbody>{t}</tbody></table></div>')
-    t = ''.join(f'<tr><th>{" · ".join(YR(y) for y in q["yrs"])}</th><td>{len(q["yrs"])}회</td><td>{esc(q["prof"])}</td><td>{golink(q["id"], esc(cutw(q)))}</td><td>{esc(q["jbtag"] or "없음")}</td></tr>' for q in rep)
+    t = ''.join(f'<tr><th>{" · ".join(YR(y) for y in q["yrs"])}</th><td>{len(q["yrs"])}회</td><td>{PINL(q) if PINL else esc(q["prof"])}</td><td>{golink(q["id"], esc(cutw(q)))}</td><td>{esc(q["jbtag"] or "없음")}</td></tr>' for q in rep)
     h.append(f'<div class="tblwrap"><div class="tbt serif">반복 출제 문항 {len(rep)}개</div><table class="cmp"><thead><tr><th>출제연도</th><th>횟수</th><th>교수</th><th>문항</th><th>JB 괄호</th></tr></thead><tbody>{t}</tbody></table></div>')
     for ed in A.NPAGES:
         R = [r for r in LEDGER if r['ed'] == ed]

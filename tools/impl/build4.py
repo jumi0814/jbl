@@ -160,17 +160,23 @@ def prof_main(q):
     """카드 data-prof = 가장 최근 출제 해의 출제 교수(연도별 표가 있으면) · 없으면 강의 연결 교수"""
     yp = [p for _, p in yp_of(q) if p]
     return yp[0] if yp else (q.get('prof') or '').split('(')[0].strip()
-def prof_chip(q):
-    """교수 칩(굵게) — 해마다 교수가 다르면 '교수 25·24 · 교수 22'(최근 해 먼저)"""
-    yp = [(y, p) for y, p in yp_of(q) if p]; base = (q.get('prof') or '').strip()
-    if not yp: return f'<span class="chip pf"><b>{esc(base)}</b></span>' if base else ''
+def prof_inline(q):
+    """교수 글(굵게) — 해마다 교수가 다르면 '<b>교수</b> 25·24 · <b>교수</b> 22'(최근 해 먼저) · 칩·과목 홈 2회 이상 출제·기출 대장이 같이 씀
+    칩·목록이 flex라 글 앞뒤 빈칸이 사라짐 → 연도·구분은 따로 상자(i.ypy·i.yps)"""
+    yp = [(y, p) for y, p in yp_of(q) if p]; base = (q.get('prof') or '').split('(')[0].strip()
+    if not yp: return f'<b>{esc(base)}</b>' if base else ''
     order, grp = [], {}
     for y, p in yp:
         if p not in grp: order.append(p)
         grp.setdefault(p, []).append(y)
-    if len(order) == 1: return f'<span class="chip pf" title="출제 교수 {esc(order[0])}"><b>{esc(order[0])}</b></span>'
-    inner = ' · '.join(f'<b>{esc(p_)}</b> {"·".join(str(y % 100).zfill(2) for y in grp[p_])}' for p_ in order)
-    return f'<span class="chip pf pfy" title="출제 연도별 출제 교수(최근 해 먼저)">{inner}</span>'
+    if len(order) == 1: return f'<b>{esc(order[0])}</b>'
+    return '<i class="yps">·</i>'.join(f'<b>{esc(p_)}</b><i class="ypy">{"·".join(str(y % 100).zfill(2) for y in grp[p_])}</i>' for p_ in order)
+def prof_chip(q):
+    """교수 칩(굵게) — 해마다 교수가 다르면 '교수 25·24 · 교수 22'(최근 해 먼저)"""
+    h = prof_inline(q)
+    if not h: return ''
+    if 'class="ypy"' in h: return f'<span class="chip pf pfy" title="출제 연도별 출제 교수(최근 해 먼저)">{h}</span>'
+    return f'<span class="chip pf" title="출제 교수 {esc(prof_main(q))}">{h}</span>'
 def yr_badge(q, big=True):
     ys = q['yrs']; n = len(ys)
     if not n: return '<span class="ybadge n0">연도 표기 없음</span>'
@@ -539,7 +545,7 @@ def qcard(q, idx):
         lab, lines = pk; dv = 'wrong' if lab == '틀린 보기' else 'ok'
         for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
         pick_ln = ''   # 10-05 사용자 'jb 미리보기 및 jb 답안에 정답 보기 3) … 정답보기는 없애도 될 것 같아' — 답 칸의 '정답 보기 …' 줄은 없앰(문제 보기 줄 강조 data-ans는 그대로)
-    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
+    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-lprof="{esc((q.get("prof") or "").split("(")[0].strip())}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{prof_chip(q)}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
     if q.get('jbc') == 'absent' and not figq: h.append('<div class="small">🖼 그림 문항 — 문제의 사진·그림은 JB에 실려 있지 않습니다(문제 글만 복원됨).</div>')   # jb_crops.json nofig (tools/jbfig.py 검수)
@@ -955,7 +961,7 @@ PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not
 trends_html = (f'<section class="ptrend sh4"><h2 class="hh">교수별 출제 경향 <small>짤 = 이전 해에 한 번이라도 나온 문제 · 탈 = 그 해 처음</small></h2><div class="tscroll"><table class="ttab"><thead><tr><th>교수</th><th>최근 해</th><th>짤 / 탈</th><th>유형</th><th>짤 / 문항</th><th>탈의 성격 · 형식</th></tr></thead><tbody>{trow}</tbody></table></div>'   # ux4 B3-3 문장 목록 → 표(행 = 최근 2개 시험 해에 문항이 있는 교수)
                + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
                + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></section>')
-top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_top(q), 'prof': q['prof'], 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
+top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_top(q), 'prof': prof_main(q), 'pfh': prof_inline(q), 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 lect = []; KEYLONG = {}; MEMTIP = {}
 def fsrc_short(f):
     """강의 틀 첫 줄(V11) — '26년도 슬라이드 · 75쪽'처럼 짧게. 파일 이름·자료 안내는 눌러서 펼침"""
@@ -1291,6 +1297,10 @@ profs = []
 for q in Q:
     p_ = (q['prof'] or '').split('(')[0]
     if p_ and p_ not in profs: profs.append(p_)
+for q in Q:   # 10-16 출제 연도별 교수(YEAR_PROF — 손원준·이재현·'이전 교수' 등)도 거르기에(강의 연결 교수 뒤)
+    for _, p_ in yp_of(q):
+        if p_ and p_ not in profs: profs.append(p_)
+B.YPF = yp_of; B.PINL = prof_inline   # 기출 대장 교수 × 연도 표·반복 출제 교수 칸 = 출제 연도 기준
 # JB 필터 막대는 허브(shell.html jbBar)가 pack.jbprofs·jbyears·tcount로 그림 — 과목 JB 문제와 강의 기출 탭이 같이 씀
 ledger = B.view_led()
 ledger = re.sub(r'(?<!<div class="tscroll">)(<table class="cmp">.*?</table>)', r'<div class="tscroll">\1</div>', ledger, flags=re.S)   # 기출 대장 표는 가로 스크롤 상자 안에(F6 — 페이지 전체가 옆으로 밀리지 않게)
