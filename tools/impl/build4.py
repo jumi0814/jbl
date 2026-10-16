@@ -1124,6 +1124,10 @@ for i, p in enumerate(PRED):
     whyt = f'<div class="pwhyt noann" hidden><b>{"보관 사유" if arch else "근거"}</b> {esc(why)}</div>' if why else ''
     figs = pred_figs(p); fb = '그림빵' in p['t'] and bool(figs)
     fg = figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs], gb=False) if figs else ''
+    if fb and pred_boxes(p):   # 10-16 그림빵 예상은 예상 탭에서도 라벨을 번호 가림막으로(그림을 그대로 보이면 답이 보이고 문제의 ①②가 그림에 없음) — 그림빵 탭과 같은 .gbfig·.gbm(누르면 하나씩 · '답 보기' = 답 목록)
+        _k0, _p0 = figs[0]; ctx['cited'].add((_k0, _p0)); _kk = f'{_k0}-{_p0}'; _cn = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
+        _ms = ''.join(f'<button type="button" class="gbm" data-gbi="{j}" data-gbn="{_cn[j] if j < len(_cn) else j + 1}" style="left:{b[0]}%;top:{b[1]}%;width:{b[2] - b[0]:.2f}%;height:{b[3] - b[1]:.2f}%" aria-label="{j + 1}번 가림 — 누르면 보임">{_cn[j] if j < len(_cn) else j + 1}</button>' for j, b in enumerate(pred_boxes(p)))
+        _wh = img_dims(_kk); fg = f'<div class="gbsc noann"><div class="gbfig" data-gbk="{_kk}"><img data-img="{_kk}" alt=""{f' width="{_wh[0]}" height="{_wh[1]}"' if _wh else ''}>{_ms}</div></div>' + (figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs[1:]], gb=False) if len(figs) > 1 else '')
     attrs = f' data-pr="{pr}"' if pr in PRCL else ''
     attrs += ' data-x="1"' if arch else ''
     attrs += ' data-fb="1"' if fb else ''
