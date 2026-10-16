@@ -1,246 +1,300 @@
-@HIS | t=짤 변형 | b=R02
-Q: Internal connection과 external connection을 '보철물과 fixture 중 무엇이 무엇을 감싸는가'로 구분하고, internal에서 교합조정이 다시 필요한 이유를 쓰시오.
-A: 보철물이 놓이는 부분을 기준으로 나눈다 — External: {n:보철물이 fixture를 감싼다} / Internal: {n:Fixture가 보철물을 감싼다} / {n:Internal은 교합할수록 내려가는 sinking-down이 일어날 수 있어(cold-welding) internal을 쓰다보면 교합조정이 다시 필요함}. [[HIS:25]]
-@HIS | t=짤 변형 | b=Q13
-Q: Healing abutment와 cover screw의 역할을 각각 쓰시오.
-A: Healing Abutment(One-stage implant) — 최종 abutment 선택 전까지 치은조직의 개방을 유지하고 연조직의 완전한 치유를 돕는 역할 / Cover Screw(Two-stage implant): Fixture가 뼈에 붙는 동안 fixture 내부로 연조직 및 치조골이 성장하여 들어가는 것 방지 — {n:1st Op에 cover screw 고정시킨 후 잇몸으로 완전히 덮음}. [[HIS:22]] [[HIS:23]]
-@HIS | t=짤 변형 | b=Q14
-Q: One-stage와 two-stage 임플란트 수술의 방식과 장단점을 비교하시오.
-A: 수술 방식 — One stage: Fixture 식립 시 바로 healing abutment(지대주)를 연결하거나 매식체의 일부를 잇몸 바깥으로 노출시켜 2차 수술이 필요치 않다 / Two stage: Fixture를 식립하고 soft tissue를 덮은 뒤 Osseointegration(상악: 6개월, 하악: 3개월)이 충분히 이루어진 후에 flap을 열어 healing abutment를 연결 / 장점 — One stage: 수술횟수 감소 · Soft tissue의 이차적 감염 예방 · Fixture의 예후 인지 용이 · 실패 시 조기진단으로 골손실이 적다 / Two stage: 수술 후 flap을 덮어줌으로써 초기고정에 도움 / 단점 — One stage: Loading 부하의 가능성, abutment looseness로 인한 infection의 위험성 / Two stage: 2회의 수술로 환자에게 불편 · 조직의 손상 · 치료기간이 길다 · 실패가 유발되면 골손상이 클 수 있다. [[HIS:21]]
-@HIS | t=교수 강조 | b=Q11
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=P11,Q10,R02 | why=23·24·25 연속 p.25 표 · 25 external의 반대편 | oid=IMPL:P:internalconnection과exter_8f6170
+Q: Internal type implant에 대해 옳은 것을 모두 고르시오. 1) Fixture가 보철물을 감싼다 2) Abutment sinking이 발생하여, internal을 쓰다 보면 교합조정이 다시 필요하다 3) 교합에 의한 응력이 connection, screw로 전달되어 screw 풀림 현상이 많다 4) Platform 주변 골소실이 많다
+A: 1), 2) — 1) ○ {n:보철물이 놓이는 부분을 기준으로 internal과 external을 나눈다 — Internal : Fixture가 보철물을 감싼다(External : 보철물이 fixture를 감싼다)} / 2) ○ Internal "1) Abut sinking 발생 : cold welding으로 인해.. -> abut 분리 어려움" · {n:교합할수록 내려가는 sinking-down이 일어날 수 있음(cold-welding) -> internal을 쓰다보면 교합조정이 다시 필요함} / 3) × External 칸 "2) 교합에 의한 응력전달 : connection, screw -> screw풀림 현상이 많음"(Internal = screw, abut, fixture -> 응력분산에 유리하나 fixture 찢어지는 현상 발생 가능) / 4) × External 칸 "3) Platform 주변 골소실 많음"(Internal = 적음). [[HIS:25]]
+@HIS | t=그림빵·짤 변형 | pr=상 | b=Q10,P11,R02 | why=3년 연속 연결 방식 축 · p.24 말풍선 = 24 정답 선지 | f=HIS:24 | m=23.0,81.3,41.2,84.8;52.5,81.3,71.0,84.8;36.4,34.6,54.2,42.1;69.4,42.3,84.9,57.7
+Q: 그림 [[HIS:24]]의 ①·②에 해당하는 연결 방식 이름과, ③·④ 말풍선의 내용을 쓰시오.
+A: ① Internal Connection ② External Connection ③ 지대주 내부 연결 · No gap & movement ④ 지대주 외부 연결 · Hexagon이 주류 · 다양한 보철 가능 · Joint Stability 문제. [[HIS:24]]
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=P14,P15,Q13 | why=24·25 healing abutment↔cover screw 바꿔치기 | oid=IMPL:P:healingabutment와coverscr_a99b9f
+Q: Healing abutment와 cover screw에 대한 설명으로 옳은 것을 모두 고르시오. 1) Healing abutment는 One-stage implant에서 사용하며, 최종 abutment 선택 전까지 치은조직의 개방을 유지하고 연조직의 완전한 치유를 돕는다 2) Cover screw는 최종 abutment 선택 전까지 치은조직의 개방을 유지한다 3) Cover screw는 fixture가 뼈에 붙는 동안 fixture 내부로 연조직 및 치조골이 성장하여 들어가는 것을 방지한다 4) Two-stage implant에서는 1st Op에 healing abutment를 고정시킨 후 잇몸으로 완전히 덮는다
+A: 1), 3) — 1) ○ One-stage implant "Healing Abutment 사용 : 최종 abutment 선택 전까지 치은조직의 개방을 유지하고 연조직의 완전한 치유를 돕는 역할" / 2) × Healing abutment의 문장에 주어만 cover screw로 바꿈 / 3) ○ Two-stage implant "Cover Screw 이용 : Fixture가 뼈에 붙는 동안 fixture 내부로 연조직 및 치조골이 성장하여 들어가는 것 방지" / 4) × {n:1st Op에 cover screw 고정시킨 후 잇몸으로 완전히 덮음} — healing abutment는 2nd op에 Cover screw removal 뒤 Healing abutment connection. [[HIS:22]] [[HIS:23]] [[HIS:52]]
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=P15,Q14 | why=24·25 two-stage 출제 · p.21 표 단점 칸 | oid=IMPL:P:onestage와twostage임플란트수술의_02cbe8
+Q: 일회법(One-stage)과 이회법(Two-stage)에 대한 설명으로 옳은 것을 고르시오. 1) One stage는 2회의 수술로 환자에게 불편을 주고 치료기간이 길다 2) Two stage는 실패시 조기진단으로 골손실이 적다 3) One stage는 Loading 부하의 가능성이 있으며 abutment looseness로 인한 infection의 위험성이 있다 4) Two stage는 Soft tissue의 이차적 감염이 예방되고 Fixture의 예후 인지가 용이하다 5) One stage는 수술 후 flap을 덮어 줌으로써 초기고정에 도움을 준다
+A: 3) — 3) ○ One stage 단점 "Loading 부하의 가능성이 있으며 abutment looseness로 인한 infection의 위험성이 있다" / 1) × Two stage 단점 "2회의 수술로 환자에게 불편을 줌 · 조직의 손상을 초래 · 치료기간이 길다 · 실패가 유발되면 골 손상이 클 수 있다" / 2) × One stage 장점 "실패시 조기진단으로 골손실이 적다"(Two stage는 실패 시 골 손상이 클 수 있다) / 4) × One stage 장점 "수술횟수가 감소 · Soft tissue의 이차적 감염이 예방 · Fixture의 예후 인지가 용이" / 5) × Two stage 장점 "수술 후 flap을 덮어 줌으로써 초기고정에 도움을 줌" / 수술 방식 — One stage: Fixture 식립시 바로 healing abutment(지대주)를 연결하거나 매식체의 일부를 잇몸 바깥으로 노출시켜 2차 수술이 필요치 않다 · Two stage: Fixture를 식립하고 soft tissue를 덮은 뒤 Osseointegration(상악 : 6개월, 하악 : 3개월)이 충분히 이루어진 후에 flap을 열어 healing abutment(지대주)를 연결하는 방식. [[HIS:21]]
+@HIS | t=교수 강조 | pr=중 | b=Q11 | why=25 필기 p.42 예시 문제 '사용 순서로 배열'
 Q: 다음 드릴들을 사용하는 순서대로 배열하시오: Countersink, Depth gauge, Lance drill, Pilot drill(2.0/3.0), Tap, Ø2.0 Twist drill, Ø3.0 Twist drill, Ø3.3 Twist drill.
 A: Lance Drill → Ø2.0 Twist Drill → Depth Gauge → Pilot Drill(2.0/3.0) → Ø3.0 Twist Drill → Ø3.3 Twist Drill → Countersink → Tap (USII Fixture Ø4.0mm Regular). 필기: {n:depth gauge = 뚫린 깊이 측정, pilot = 3mm로 넓히는 과정}. [[HIS:48]]
-@HIS | t=짤 변형 | b=Q13
-Q: Lekholm과 Zarb의 치조골 분류 4가지를 쓰고, 임플란트 식립에 가장 안 좋은 type과 그 이유를 쓰시오.
-A: Type 1 Homogeneous cortical bone / Type 2 Thick cortical bone with marrow cavity / Type 3 Thin cortical bone with dense trabecular bone of good strength / Type 4 Very thin cortical bone with low density trabecular bone of poor strength / {n:Type 1이 가장 심기 안 좋다(통뼈) — cortical bone이 두꺼워 초기 기계적 고정은 좋을 수 있으나 뚫는 과정에서 열 발생 · 혈관 및 영양분 공급이 적기 때문에 osseointegration이 잘 되지 않음} / {n:Type 4도 initial 기계적 고정이 없기 때문에 심기 안 좋다}. [[HIS:35]]
-@HIS | t=짤 변형 | b=Q13
-Q: Straight body와 tapered body 임플란트가 각각 초기고정력 획득에 유리한 상황을 쓰시오.
-A: Straight Body: 식립이 편하고, 구치부 발치와에서 초기고정력 획득에 유리 / Tapered Body: 치조골의 경사가 심한 경우, Soft Bone에서 초기고정력 획득에 유리 — 필기: {n:보통 taper body를 많이 쓴다(식립하면서 방향을 바꿀 때 더 유리), 뼈를 뚫고 나올 우려로 tapered body가 더 선호됨}. [[HIS:30]] [[HIS:31]]
-@HIS | t=미출제
-Q: 골유착(osseointegration)의 정의를 쓰고, 시간 경과(Wang 2015)를 4단계로 쓰시오.
-A: Direct structural and functional connection between living bone and the surface of a load-bearing artificial implant. 1. 24시간 이내: primary mechanical stability 획득({n:골유착 아닌 기계적 고정}) 2. 4일차: 혈관 개재 3. 4주차: 일시적 loosening 4. 6-8주차: osseointegration. [[HIS:5]] [[HIS:6]]
-@HIS | t=미출제
-Q: 치과 임플란트의 발전사에서 4가지 종류를 쓰고 각각을 간단히 설명하시오.
-A: 1. 치내임플란트(Endodontic implant): 치근관 내를 통하여 치근단 골조직으로 뻗어있는 금속성 매식체로 실활치근을 연장시켜 안정성을 도모함 2. 점막하임플란트(Subdermal implant): 1943년 스웨덴의 Dahl에 의해 고안, Base, cervix, head로 구성된 stud type 구조체, 주로 총의치 조직면에 위치시켜 구강점막 부위에 head가 위치되어 유지력을 얻음 3. 골막하임플란트(Subperiosteal implant): 1949년 미국의 Goldberg와 Gershkoff, 말 안장 형태의 Framework가 치조골 위에 안착되도록 제작, 무치악 환자 4. 골내임플란트(Intraosseous implant): 현재 사용되고 있는 형태, 크게 blade형, root form. [[HIS:7]] [[HIS:8]] [[HIS:9]] [[HIS:10]]
-@HIS | t=미출제
-Q: 임플란트 치료기간을 줄이는 두 가지 방법과, 표면처리 SA·CA·HA의 공정을 쓰시오.
-A: Alveolar bone healing(3M) → Immediate implant placement({n:임상차원의 과제}), Osseointegration(3M) → Implant surface modification({n:연구차원의 과제}) / SA(Sand blast with alumina and Acid etching): Blasting: 큰 알갱이(Alumina)로 쳐서 거친 표면 구현 · Etching: 산 부식(염산, 황산) 처리, Roughness: Macro + Micro / CA(Calcium SA): Blasting · Etching · 칼슘 이온 포장, Roughness: Macro + Micro + Calcium / HA(hydroxyapatite Coated Implant): RBM 처리 · Coating: hydroxyapatite, Roughness: Macro. [[HIS:15]] [[HIS:27]]
-@HIS | t=미출제
-Q: 임플란트 안정성 평가에서 ISQ의 기준값과, 임플란트 수술 전 고려해야 할 해부학적 구조(상악·하악)를 쓰시오.
-A: 55-80 ISQ(Implant Stability Quotient) Value is okay for the implant stability(필기: {n:70-80이 좋다}) / Anatomy — Mx) Nasal cavity, Maxillary sinus, Incisive canal · Mn) Mandibular canal, Mental foramen. [[HIS:53]] [[HIS:33]]
-@HIS | t=짤 변형 | b=R01
-Q: 자연치와 임플란트의 가장 큰 차이를 쓰고, PDL의 역할 3가지와 'PDL 없이 뼈와 유착된 치아'·'뼈와 유착된 임플란트'를 각각 무엇이라 부르는지 쓰시오.
-A: {n:가장 큰 차이는 "PDL 여부"} / PDL의 역할: {n:교합압을 완충, 재생세포, 혈관을 통한 영양공급} / PDL 없이 뼈와 유착된 치아: {n:골유합(ankylosis)} / 뼈와 유착된 임플란트: {n:골유착(osseointegration)} / 그림(Wang et al., 2015): 자연치 = Dentogingival fibers · Fiber attached to the root surface / 임플란트 = Circumferential fibers · No fiber attachment. [[HIS:4]]
-@HIS | t=교수 강조 | b=Q11
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q11 | why=23·24 드릴 그림 서술 · 25 필기 '시험문제!!!'
+Q: 임플란트 드릴에 대한 설명으로 옳은 것을 모두 고르시오. 1) Initial drill: 피질골 천공 및 표시 2) Pilot drill: 나사산 형성 3) Tapping drill은 cortical bone이 두꺼울 때만 사용한다 4) Countersink drill: twist drill의 진입이 쉽도록 피질골 넓힘
+A: 1), 3) — 1) ○ "A) Initial drill: 피질골 천공 및 표시" / 2) × "D) Tapping drill: 나사산 형성"의 문장 — Pilot drill = "twist drill의 진입이 쉽도록 피질골 넓힘" / 3) ○ {n:Cortical bone이 두꺼울 때만 tapping drill 사용}(그림에서 tapping은 Dense bone 쪽에만) / 4) × Pilot drill의 문장 — "E) Countersink drill: 임플란트 shoulder가 넓은 경우"({n:shoulder가 들어갈 자리를 미리 만들어준다}) · "B) Twist drill: 수직, 수평적 확대". [[HIS:38]]
+@HIS | t=그림빵·교수 강조 | pr=상 | b=Q11 | why=25 필기 p.42 별표 '그림 보고 이름 쓰게' | f=HIS:42 | m=9.1,35.2,18.0,40.3;20.9,35.2,34.8,40.4;39.3,35.2,63.5,40.4
+Q: 그림 [[HIS:42]](Implant Surgical Kit — Component)의 ①~③ 드릴 이름을 쓰시오.
+A: ① Lance Drill({n:=initial drill}) ② Long Pilot Drill({n:앞에는 얇고 뒤에 뚱뚱}) ③ Long Countersink({n:앞이 두껍고 뒤에 얇았다가 마지막에 shoulder}). [[HIS:42]]
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=P14,Q13 | why=24·25 Type 선지 출제 · 같은 표 다른 행 | oid=IMPL:P:lekholm과zarb의치조골분류4가지를쓰고_403951
+Q: Lekholm과 Zarb의 치조골 분류에 대한 설명으로 옳은 것을 고르시오. 1) Type 1은 Homogeneous cortical bone으로 초기 기계적 고정이 좋아 임플란트 식립에 가장 좋은 조건이다 2) Type 2는 Thick cortical bone with marrow cavity이다 3) Type 3는 Very thin cortical bone with low density trabecular bone of poor strength이다 4) Type 4는 thin cortical bone with dense trabecular bone of good strength로, 임플란트 식립에 적절하다 5) Type 1은 혈관 및 영양분 공급이 많아 osseointegration이 잘 된다
+A: 2) — 2) ○ "Type 2 Thick cortical bone with marrow cavity" / 1)·5) × {n:Type 1 : 가장 심기 안좋다(통뼈) -> cortical bone이 두꺼워 초기 기계적 고정은 좋을 수 있으나 -> 뚫는 과정에서 열 발생 / 혈관 및 영양분 공급이 적기 때문에 osseointegration이 잘 되지 않음 -> 임플란트 식립에 가장 안좋은 조건} / 3) × Type 4의 문장 — Type 3 = "Thin cortical bone with dense trabecular bone of good strength" / 4) × Type 3의 문장 — Type 4 = "Very thin cortical bone with low density trabecular bone of poor strength", {n:Type 4 : 심기 안좋다 -> initial 기계적 고정이 없기 때문에}. [[HIS:35]]
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q13,P14 | why=24·25 같은 머리·다섯 주제 · 정답 자리만 바꿈 | oid=IMPL:P:straightbody와taperedbody_b5ae85
+Q: 임플란트 수술과 관련하여 옳은 것을 고르시오. 1) Lekholm과 Zarb의 치조골 분류에 따르면 Type 3는 thin cortical bone with dense trabecular bone of good strength로, 임플란트 식립에 가장 안좋은 조건이다 2) Type 2는 very thin cortical bone with low density trabecular bone of poor strength이다 3) Straight body는 식립이 편하고, 구치부 발치와에서 초기고정력 획득에 유리하다 4) Tapered body는 식립이 편하고, 구치부 발치와에서 초기고정력 획득에 유리하다 5) Healing abutment는 fixture가 뼈에 붙는 동안 fixture 내부로 연조직 및 치조골이 성장하여 들어가는 것을 방지한다
+A: 3) — 3) ○ "Straight Body ; 식립이 편하고, 구치부 발치와에서 초기고정력 획득에 유리" / 4) × 같은 문장의 주어를 Tapered로 바꿈 — "Tapered Body : 치조골의 경사가 심한 경우, Soft Bone에서 초기고정력 획득에 유리" / 1) × Type 2·3이 적절(JB 해설 "D2, D3 가 가장 적절하다") — {n:가장 안좋은 조건은 Type 1(통뼈)} / 2) × Type 4의 문장 — Type 2 = "Thick cortical bone with marrow cavity" / 5) × Cover screw의 역할 "Cover Screw 이용 : Fixture가 뼈에 붙는 동안 fixture 내부로 연조직 및 치조골이 성장하여 들어가는 것 방지" — Healing abutment = "최종 abutment 선택 전까지 치은조직의 개방을 유지하고 연조직의 완전한 치유를 돕는 역할" / 필기: {n:보통 taper body를 많이 쓴다(식립하면서 방향을 바꿀 때 더 유리함) · 뼈를 뚫고 나올 우려로 인해 tapered body가 더 선호됨}. [[HIS:30]] [[HIS:31]] [[HIS:35]] [[HIS:22]] [[HIS:23]]
+@HIS | t=그림빵·짤 변형 | pr=중 | b=Q13,P14 | why=24·25 straight↔tapered 주어 바꾸기 축 | f=HIS:31 | m=24.0,31.7,36.8,35.4;58.3,31.7,99.0,37.7;15.8,83.2,84.2,86.8
+Q: 그림 [[HIS:31]]의 ①·②에 해당하는 임플란트 디자인 이름과, ③에 들어갈 문장(①이 유리한 경우)을 쓰시오.
+A: ① Tapered Body ② Straight Body({n:뼈를 뚫고 나올 우려로 인해 tapered body가 더 선호됨}) ③ Tapered Body : 치조골의 경사가 심한 경우, Soft Bone에서 초기고정력 획득에 유리 / 짝(p.30): Straight Body ; 식립이 편하고, 구치부 발치와에서 초기고정력 획득에 유리. [[HIS:31]] [[HIS:30]]
+@HIS | t=미출제·교수 형식(객관식) | pr=중 | why=미출제 · 정의·timeline 그림(교수 객관식 꼴) | oid=IMPL:P:골유착osseointegration의정의를쓰_c32918
+Q: 골유착(osseointegration)에 대한 설명으로 옳은 것을 모두 고르시오. 1) Direct structural and functional connection between living bone and the surface of a load-bearing artificial implant이다 2) 식립 후 24시간 이내의 고정은 골유착에 의한 고정이다 3) 4주차에 일시적 loosening(Temporary loosening)이 나타난다 4) 4일차에 Secondary stability를 얻어 골유착이 완성된다
+A: 1), 3) — 1) ○ 정의 "Direct structural and functional connection between living bone and the surface of a load-bearing artificial implant" / 2) × In 24 hours = "Primarily mechanical stability"({n:primary mechanical stability 획득 — 골유착 아닌 기계적 고정}) / 3) ○ On the 4th week = "Temporary loosening"({n:4주차 : 일시적 loosening}) / 4) × On the 4th day = "New vessel formation"({n:4일차 : 혈관 개재}) · After 6-8 weeks = "Secondary stability"({n:6-8주차 : osseointegration}). [[HIS:5]] [[HIS:6]]
+@HIS | t=미출제·교수 형식(객관식) | pr=중 | why=미출제 · 4종 짝 문장 바꾸기 꼴 | oid=IMPL:P:치과임플란트의발전사에서4가지종류를쓰고각각을간_953d57
+Q: 치과 임플란트의 발전사에 대한 설명으로 옳은 것을 고르시오. 1) 치내임플란트(Endodontic implant)는 1943년 스웨덴의 Dahl에 의해 고안되었다 2) 점막하임플란트(Subdermal implant)는 말안장 형태의 Framework가 치조골 위에 안착되도록 제작되었다 3) 골막하임플란트(Subperiosteal implant)는 Base, cervix, head로 구성된 stud type의 구조체이다 4) 골내임플란트(Intraosseous implant)는 현재 사용되고 있는 임플란트의 형태로 크게 blade형, root form으로 나뉜다 5) 치내임플란트는 주로 총의치 조직면에 위치시켜 구강점막 부위에 head가 위치되어 유지력을 얻는다
+A: 4) — 4) ○ "현재 사용되고 있는 임플란트의 형태로 크게 blade 형, root form으로 나뉨" / 1)·3)·5) × 점막하임플란트의 문장 "1943년 스웨덴의 Dahl에 의해 고안된 장치로 Base, cervix, head로 구성된 stud type의 구조체임. 주로 총의치 조직면에 위치시켜 구강점막 부위에 head가 위치되어 유지력을 얻음" — 치내임플란트 = "치근관 내를 통하여 치근단 골조직으로 뻗어있는 금속성 매식체로 실활치근을 연장시켜 안정성을 도모함" / 2) × 골막하임플란트의 문장 "1949년 미국의 Goldberg와 Gershkoff에 의해 초기 디자인이 제안되었던 말안장 형태의 Framework가 치조골 위에 안착되도록 제작된 임플란트로 무치악 환자에게 시술됨" / 필기: {n:골내 — 과거에는 blade를 망치로 두들겨 넣었고, 이후 기계적 고정 획득·골유착을 위해 screw type으로 바뀜}. [[HIS:7]] [[HIS:8]] [[HIS:9]] [[HIS:10]]
+@HIS | t=미출제·교수 형식(객관식) | pr=중 | why=미출제 · 표면 분류 표(SA·CA·HA) | oid=IMPL:P:임플란트치료기간을줄이는두가지방법과표면처리sa_39c542
+Q: 임플란트 치료기간 단축과 표면처리에 대한 설명으로 옳은 것을 모두 고르시오. 1) SA(Sand blast with alumina and Acid etching)는 큰 알갱이(Alumina)로 쳐서 거친 표면을 구현하는 Blasting과 산 부식(염산, 황산) Etching 처리를 거친다 2) CA(Calcium SA)는 SA의 공정에 칼슘 이온 포장을 더한 것으로 Roughness는 Macro + Micro + Calcium이다 3) HA(hydroxyapatite Coated Implant)는 Blasting 후 Etching 처리하며 Roughness는 Macro + Micro이다 4) Alveolar bone healing(3M)은 implant surface modification으로, osseointegration(3M)은 immediate implant placement로 줄인다
+A: 1), 2) — 1) ○ "SA : Sand blast with alumina and Acid etching — ① Blasting : 큰 알갱이(Alumina)로 쳐서 거친 표면 구현 ② Etching : 산 부식(염산, 황산) 처리 · Roughness : Macro + Micro" / 2) ○ "CA : Calcium SA — Blasting · Etching · 칼슘 이온 포장 · Roughness : Macro + Micro + Calcium" / 3) × HA = RBM 처리 → Coating : hydroxyapatite · Roughness : Macro / 4) × 짝이 바뀜 — Alveolar bone healing(3M) → Immediate implant placement({n:임상차원의 과제}) · Osseointegration(3M) → Implant surface modification({n:연구차원의 과제}). [[HIS:27]] [[HIS:15]]
+@HIS | t=미출제·교수 형식(객관식) | pr=중 | why=미출제 · 해부·환자 4축 표·ISQ 55-80 | oid=IMPL:P:임플란트안정성평가에서isq의기준값과임플란트수_2e7e10
+Q: 임플란트 수술 시 고려사항과 안정성 평가에 대한 설명으로 옳은 것을 모두 고르시오. 1) 상악(Mx)에서 고려할 해부학적 구조는 Nasal cavity, Maxillary sinus, Incisive canal이다 2) 하악(Mn)에서 고려할 해부학적 구조는 Incisive canal, Maxillary sinus이다 3) 55-80 ISQ(Implant Stability Quotient) value is okay for the implant stability 4) Patient's health에서 흡연·악습관은 의학적 고려에 속한다
+A: 1), 3) — 1) ○ "Mx) Nasal cavity, Maxillary sinus, Incisive canal" / 2) × "Mn) Mandibular canal, Mental foramen" / 3) ○ "55-80 ISQ(Implant Stability Quotient) Value is okay for the implant stability"({n:70-80이 좋다고 언급하심}) / 4) × 흡연·악습관·알코올 및 약물중독 = 습관 — 의학적 고려 = 당뇨·골대사이상·방사선치료·면역억제요법·면역관련질환·골대사약물치료 · 정신적 고려 = 정신질환·비현실적 치료기대 심리 · 구강내 위험요소 = 악골흡수·염증상태·치주질환. [[HIS:33]] [[HIS:53]] [[HIS:36]]
+@HIS | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q12,R01 | why=23 서술 → 24·25 객관식 p.4 축 · 필기 다른 문장 | oid=IMPL:P:자연치와임플란트의가장큰차이를쓰고pdl의역할3_db3645
+Q: 자연치와 임플란트의 차이에 대한 설명으로 옳은 것을 모두 고르시오. 가) 자연치와 임플란트의 가장 큰 차이는 PDL 여부이다 나) PDL의 역할은 교합압을 완충, 재생세포, 혈관을 통한 영양공급이다 다) PDL 없이 뼈와 유착된 치아를 골유착(osseointegration)이라 한다 라) 뼈와 유착된 임플란트를 골유합(ankylosis)이라 한다
+A: 가), 나) — 가) ○ {n:가장 큰 차이는 "PDL 여부"} / 나) ○ {n:PDL의 역할 : 교합압을 완충, 재생세포, 혈관을 통한 영양공급} / 다)·라) × 짝이 바뀜 — {n:PDL 없이 뼈와 유착된 치아 : 골유합(ankylosis) · 뼈와 유착된 임플란트 : 골유착(osseointegration)} / 그림(Wang et al., 2015): 자연치 = Dentogingival fibers · Fiber attached to the root surface · 임플란트 = Circumferential fibers · No fiber attachment. [[HIS:4]]
+@HIS | t=그림빵·짤 변형 | pr=상 | b=Q12,R01 | why=23·24·25 p.4 축 · 25 객관식 나)의 그림 라벨 | f=HIS:4 | m=17.8,39.9,26.6,44.3;14.7,46.3,24.8,50.3;14.8,57.7,22.0,61.5;66.5,49.2,75.6,52.7;67.3,53.0,74.9,56.5
+Q: 그림 [[HIS:4]](자연치 vs. 임플란트, Wang et al., 2015)의 ①~⑤에 해당하는 이름을 쓰시오.
+A: ① Dentogingival fibers ② Fiber attached to the root surface ③ Periodontal ligament ④ Circumferential fibers ⑤ No fiber attachment — {n:가장 큰 차이는 "PDL 여부"}. [[HIS:4]]
+@HIS | t=교수 강조 | b=Q11 | x=1 | why=필기만 근거 · 키트 그림은 p.42 그림빵으로
 Q: 수술 키트(Implant Surgical Kit)에서 Lance drill, Long stopper drill, No stopper drill, Depth gauge, Parallel pin의 역할·특징을 쓰시오.
 A: Lance drill = initial drill(필기) / Long stopper drill: {n:stopper = 길이 맞추는 것, 초보들이 쓴다 — 위험한 해부학적 구조물을 피하기 위해(25 필기)} · {n:짬 차면 stopper 안 쓴다(옆치아에 걸려서 불편 — 26 필기)} / No stopper drill: 고수의 드릴(필기) — 거리에 대해서 여유가 있거나 자신이 있을 때 stopper가 없는 드릴(25 필기) / Depth gauge: {n:depth 측정 — 깊이 측정하는 것(25 필기)} / Parallel pin: {n:평행 확인용(여러 개 심을 때 — 25 필기)}. [[HIS:40]] [[HIS:41]] [[HIS:42]] [[HIS5:40]] [[HIS5:41]] [[HIS5:45]] [[HIS5:46]]
-@OSS | t=짤 변형 | b=R07
-Q: 골유착의 골전도기와 골적응기의 특징을 각각 쓰시오.
-A: 골전도기: Woven bone이 더 강한 성숙골인 층판골(lamellar bone)으로 치환되는 과정 · 2~3개월에 걸쳐 진행 · 임플란트 표면에 더 많은 양의 골이 더해지는 단계 / 골적응기: 식립 후 3~4개월 이후부터 더 이상의 골 접촉은 증가하거나 감소하지 않고 부하에 반응하여 골개조(bone remodeling)가 전 생애에 걸쳐 일어남. [[OSS:26]]
-@OSS | t=짤 변형 | b=Q15
-Q: Woven bone(망상골)의 특징을 5가지 이상 쓰시오.
-A: 창상치유의 반응에 의해 처음 생성된 골 · 무층골 / 약하고, 비조직적, 거의 광화 되어 있지 않음 / 창상치유에 있어서 중요한 역할 · 빠르게 골 병소를 채우고 / 골절과 골절단편 및 골내 임플란트에 초기 연속성을 제공 / 외과수술이나 외상으로 약해진 골을 강화 / 성인 골격의 정상적이고 안정된 상태에서는 나타나지 않음 / 치밀골을 형성하기 위해 굳게 결속되거나 층판골로 개조되거나, 성숙되기 전 하중을 받은 경우 빠르게 흡수됨. [[OSS:15]]
-@OSS | t=짤 변형 | b=R06
+@OSS | t=짤 변형 | pr=상 | b=R06,Q15 | why=23·24·25 해마다 층판골 객관식 · 숫자·성질 바꾸기
 Q: Lamellar bone(층판골)에 대한 설명으로 옳은 것을 모두 고르시오. ① 성인 골격의 90% 이상을 구성한다 ② 새로운 층판골이 형성될 때 조골세포에 의해 무기질(HA)의 한 부분이 1차 광화 과정에서 침전된다 ③ 2차 광화는 수일이면 끝나는 화학적 과정이다 ④ 골의 강도는 골내 무기질 성분과 직접적 관련이 있다 ⑤ Collagen fibers가 randomly oriented 되어 있다
 A: ②, ④. ① 성인 골격의 99% 이상을 구성 ③ 2차 광화: 광물질들을 완성하는 과정으로, 수개월이 필요한 물리적 과정임 ⑤ Lamellar는 Collagen fibers arranged in parallel layers(randomly oriented는 woven bone). [[OSS:13]] [[OSS:12]]
-@OSS | t=짤 변형 | b=Q17
+@OSS | t=짤 변형·교수 형식(객관식) | pr=상 | b=R06,Q15 | why=23·24·25 망상골 vs 층판골 객관식 · 주어 바꾸기 | oid=IMPL:P:wovenbone망상골의특징을5가지이상쓰시오_e6e6fe
+Q: 다음 중 woven bone(망상골)에 대한 설명으로 옳은 것은? 1) 성인 골격의 99% 이상을 구성한다 2) Collagen fibers가 parallel layers로 배열되어 있다 3) 골절과 골절단편 및 골내 임플란트에 초기 연속성을 제공한다 4) 2차 광화를 거치며, 이는 광물질들을 완성하는 과정으로 수개월이 필요한 물리적 과정이다 5) 강하고 짜임새 있으며, 잘 광화되어 있는 조직이다
+A: 3) — 3) ○ Woven Bone "골절과 골절단편 및 골내 임플란트에 초기 연속성을 제공" / 1) × Lamellar "성인 골격의 99% 이상을 구성" — woven은 "성인 골격의 정상적이고 안정된 상태에서는 나타나지 않음" / 2) × Lamellar "Collagen fibers arranged in parallel layers" — Woven = "Randomly oriented collagen fibers" / 4) × Lamellar "2차 광화: 광물질들을 완성하는 과정으로, 수개월이 필요한 물리적 과정임" / 5) × Lamellar "강하고 짜임새 있으며, 잘 광화되어 있는 조직" — Woven = "약하고, 비조직적, 거의 광화 되어 있지 않음" / Woven 나머지 문장: 창상치유의 반응에 의해 처음 생성된 골 · 무층골 · 창상치유에 있어서 중요한 역할 · 빠르게 골 병소를 채우고 · 외과수술이나 외상으로 약해진 골을 강화 · 치밀골을 형성하기 위해 굳게 결속되거나 층판골로 개조되거나, 성숙되기 전 하중을 받은 경우 빠르게 흡수됨. [[OSS:15]] [[OSS:13]] [[OSS:12]]
+@OSS | t=짤 변형 | pr=상 | b=Q17 | why=23·24·25 osteon 그림 축 · 같은 쪽 글 목록
 Q: 치밀골(compact bone)의 기본 단위인 osteon(Haversian system)의 구성 요소 3가지와, osteon 사이를 채우는 구조의 이름을 쓰시오.
 A: Osteons — Haversian canal(central canal – vascular and nerve supply of the osteon) / Concentric lamellae / Canaliculi system / Between the osteons: remnants of previous concentric lamellae called interstitial lamellae. [[OSS:17]]
-@OSS | t=교수 강조 | b=Q17
+@OSS | t=교수 강조 | pr=중 | b=Q17 | why=osteon 그림 해설 '수직·직각' · 필기
 Q: Haversian canal과 Volkmann canal의 주행 방향과 관계를 설명하시오.
 A: {n:Haversian canal은 osteon의 중앙을 세로로 쭉 지나가는 canal(osteon 장축에 평행, 혈관·신경 공급)}. {n:Volkmann canal은 Haversian canal에 직각으로 주행하며 이들을 수평적으로 연결하고, 내측으로는 periosteum에 다다름}. [[OSS:17]] [[OSS:19]]
-@OSS | t=미출제 | b=Q17
-Q: 골막(periosteum)의 기능 2가지와 층 구조를 쓰고, endosteum과의 차이를 쓰시오.
-A: 기능: 1. Osseous tissue의 nutrition 2. Continuous supply of new osteoblasts for repair or growth bone / Periosteum: Outer fibrous layer + Inner cellular layer(osteoprogenitor cells — capable of undergoing division and becoming osteoblasts under appropriate stimulus), Sharpey's fiber: periosteal collagen fibers penetrating bone matrix / Endosteum: A layer of connective cells that contains osteoprogenitor cells(only one cell layer) — osteoblasts와 bone-lining cells로 분화. [[OSS:22]] [[OSS:23]]
-@OSS | t=미출제
-Q: Osteoblast와 osteoclast의 기원과 형태적 특징을 비교하시오.
-A: Osteoblast: Derived from mesenchymal stem cells(Immediate precursor: fibroblast-like preosteoblasts) · Active phase: cuboidal to columnar shape and basophilic cytoplasm, Non-active phase: flatten · Synthesis of the organic matrix components, Mediate the mineralization of the matrix / Osteoclast: Derived from fusion of hematopoietic stem cells(monocyte precursor cells) · Multinucleated giant cell with about 50 nucleuses · Ruffled border(Villous-like process) · secrete acid and lytic enzymes → Howship's lacuna. [[OSS:4]] [[OSS:10]]
-@OSS | t=미출제
+@OSS | t=그림빵·짤 변형 | pr=상 | b=Q17 | why=23·24·25 osteon 그림 축 · 같은 구조 다른 그림 | f=OSS:19 | m=21.5,76.4,30.4,80.0;39.9,76.4,49.7,80.0;72.9,15.5,84.5,19.4;71.5,76.0,83.5,79.7
+Q: 그림 [[OSS:19]]의 ①~④에 해당하는 이름을 쓰시오.
+A: ① spongy bone ② compact bone ③ Volkmann canals ④ Haversian canals — {n:compact bone을 확대해보면 수직적으로 지나는 통로인 haversian canal이 있으며 이들을 수평적으로 연결해주는 것을 volkmann canal이라고 합니다}. [[OSS:19]]
+@OSS | t=그림빵 | pr=중 | b=Q17 | why=osteon 축 인접 · 성숙골 = compact + trabecular | f=OSS:16 | m=53.2,30.9,62.3,35.6;52.8,35.9,63.3,40.9;53.1,42.7,60.3,45.9;53.1,49.7,59.3,52.7
+Q: 그림 [[OSS:16]](Macrostructure of bone — long bone)의 ①~④에 해당하는 이름을 쓰시오.
+A: ① spongy bone ② compact bone ③ marrow cavity ④ periosteum / Compact bone = The hard outer layer of bones · Minimal gaps and spaces · Dense bone or cortical bone · Trabecular bone = Cancellous bone or spongy bone · Allowing room for blood vessels. [[OSS:16]]
+@OSS | t=교수 강조·교수 형식(객관식) | pr=중 | why=필기 '잘 구분해야 한다' · 미출제 | oid=IMPL:P:spongybone과immaturebone의_5c9f83
+Q: Spongy bone과 immature bone에 대한 설명으로 옳은 것을 모두 고르시오. 1) Spongy bone은 성숙골이며, No osteons이다 2) Spongy bone의 trabeculae는 red marrow-filled spaces를 둘러싸고, irregularly arranged lamellae를 가진다 3) Immature bone은 mature bone보다 단위당 세포가 적다 4) Immature bone은 lamellar 구조이다
+A: 1), 2) — 1) ○ "No osteons" · {n:spongy bone도 성숙골이다! 하지만 lamella의 형태는 가지고 있다} / 2) ○ "Trabeculae surround red marrow-filled spaces · Trabeculae contain irregularly arranged lamellae and osteocytes connected by canaliculi" / 3) × Immature bone "Contains relatively more cells per unit than mature bone" / 4) × Immature bone "Nonlamellar · Bundle bone or woven bone" / 필기: {n:스펀지 본하고 미성숙 본은 잘 구분해야 한다}. [[OSS:20]] [[OSS:21]]
+@OSS | t=미출제·교수 형식(객관식) | pr=중 | b=Q17 | why=필기 '다음 두 가지 기능은 중요하다' · 미출제 | oid=IMPL:P:골막periosteum의기능2가지와층구조를쓰_3d84df
+Q: Periosteum과 endosteum에 대한 설명으로 옳은 것을 모두 고르시오. 1) Bone membranes의 기능은 Osseous tissue의 nutrition과 Continuous supply of new osteoblasts for repair or growth bone이다 2) Periosteum은 Outer fibrous layer와 Inner cellular layer(osteoprogenitor cells)로 구성된다 3) Endosteum은 두 층으로 구성되며 Sharpey's fiber를 가진다 4) Sharpey's fiber는 endosteal collagen fibers penetrating bone matrix이다
+A: 1), 2) — 1) ○ "Function 1. Osseous tissue의 nutrition 2. Continuous supply of new osteoblasts for repair or growth bone"({n:다음 두 가지 기능은 중요하다}) / 2) ○ Periosteum = Outer fibrous layer · Inner cellular layer (osteoprogenitor cells) — Periosteal cells: capable of undergoing division and becoming osteoblasts under appropriate stimulus / 3) × Endosteum = "A layer of connective cells that contains osteoprogenitor cells (only one cell layer)" — Sharpey's fiber는 periosteum / 4) × "Sharpey's fiber: periosteal collagen fibers penetrating bone matrix" / Endosteum: Line bone cavities – facing both the marrow cavity and trabecular of spongy bone · Differentiate into the bone matrix-secreting cells (osteoblasts), and bone-lining cells · Called endosteal cells. [[OSS:22]] [[OSS:23]]
+@OSS | t=미출제 | pr=중 | why=미출제 · 골치유 2기전 표(임플란트 = 막성)
 Q: Endochondral bone formation과 membranous bone formation을 비교하고, 임플란트 식립 후 골생성은 어느 쪽인지 쓰시오.
 A: Endochondral: cartilage model serves as the precursor of the bone — Epiphyseal plates in long bones · Condylar head of the mandible · For growth in length / Membranous: Primary bone healing — Requires differentiation of mesenchymal cells into osteoblasts, which produces osteoid · Mineralization of osteoid to form bone · Calvaria, most of facial bones, clavicle, mandible / {n:임플란트 후 골생성 양상 = membranous bone formation(primary bone healing)}. [[OSS:24]]
-@OSS | t=미출제
+@OSS | t=짤 변형 | pr=상 | b=R07,Q16,P18 | why=23·24·25 해마다 3단계 축 · 25 서술의 둘째·셋째 단계
+Q: 골유착의 골전도기와 골적응기의 특징을 각각 쓰시오.
+A: 골전도기: Woven bone이 더 강한 성숙골인 층판골(lamellar bone)으로 치환되는 과정 · 2~3개월에 걸쳐 진행 · 임플란트 표면에 더 많은 양의 골이 더해지는 단계 / 골적응기: 식립 후 3~4개월 이후부터 더 이상의 골 접촉은 증가하거나 감소하지 않고 부하에 반응하여 골개조(bone remodeling)가 전 생애에 걸쳐 일어남. [[OSS:26]]
+@OSS | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q16,P18,R07 | why=24 골친화기 객관식의 다른 단계 · 숫자·단계 바꾸기
+Q: 임플란트 식립 후 골유착 단계에 대한 설명으로 옳은 것을 고르시오. 1) 골전도기에는 lamellar bone이 woven bone으로 치환된다 2) 골전도기에는 식립 1주 이내에 골아세포들이 이주하여 골화가 시작된다 3) 골적응기에는 식립 후 3~4개월 이후부터 골 접촉이 계속 증가한다 4) 골전도기는 2~3개월에 걸쳐 진행되며, 임플란트 표면에 더 많은 양의 골이 더해지는 단계이다 5) 골적응기에는 wound bone formation이 dominant for first 4 to 6 weeks이다
+A: 4) — 4) ○ 골전도기 "Woven bone이 더 강한 성숙골인 층판골(lamellar bone)으로 치환되는 과정 · 2~3개월에 걸쳐 진행 · 임플란트 표면에 더 많은 양의 골이 더해지는 단계" / 1) × 방향이 반대(woven → lamellar) / 2) × 골친화기의 문장 "식립 1주 이내에 골아세포들이 이주하여 골화 시작" / 3) × 골적응기 "식립 후 3~4개월 이후부터 더 이상의 골 접촉은 증가하거나 감소하지 않고 부하에 반응하여 골개조(bone remodeling)가 전 생애에 걸쳐 일어남" / 5) × 골친화기의 문장 "Wound bone formation: dominant for first 4 to 6 weeks" / 순서: {n:골친화기 -> 골전도기 -> 골적응기}. [[OSS:25]] [[OSS:26]]
+@OSS | t=미출제 | pr=중 | why=필기 '쭉 읽어주셨습니다' · Misch 표 미출제
 Q: Misch의 골밀도 분류(D1~D4)를 설명·촉감·해부학적 위치와 함께 쓰시오.
 A: D1 Dense cortical · Oak or maple wood · Anterior mandible / D2 Porous cortical and coarse trabecular · White pine or spruce wood · Anterior mandible, Posterior mandible, Anterior maxilla / D3 Porous cortical and fine trabecular · Balsa wood · Anterior maxilla, Posterior maxilla, Posterior mandible / D4 Fine trabecular · Styrofoam · Posterior maxilla, Anterior maxilla (D5 Osteoid · Soft Styrofoam · Poorly mineralized bone graft). [[OSS:30]]
-@OSS | t=미출제
+@OSS | t=미출제 | x=1 | why=세포 각론 세부 · 23~25 출제 축(3축) 밖
+Q: Osteoblast와 osteoclast의 기원과 형태적 특징을 비교하시오.
+A: Osteoblast: Derived from mesenchymal stem cells(Immediate precursor: fibroblast-like preosteoblasts) · Active phase: cuboidal to columnar shape and basophilic cytoplasm, Non-active phase: flatten · Synthesis of the organic matrix components, Mediate the mineralization of the matrix / Osteoclast: Derived from fusion of hematopoietic stem cells(monocyte precursor cells) · Multinucleated giant cell with about 50 nucleuses · Ruffled border(Villous-like process) · secrete acid and lytic enzymes → Howship's lacuna. [[OSS:4]] [[OSS:10]]
+@OSS | t=미출제 | x=1 | why=동요도 용어 세부 · 출제 축 밖(근거 약함)
 Q: 임상 용어 rigid fixation과 조직학 용어 osseointegration을 각각 정의하시오.
 A: Rigid fixation(임상 용어): 수직 또는 수평 방향으로 500g 미만의 힘으로 검사했을 때 임플란트의 임상적 동요도가 없는 상태 / Osseointegration(골유착, 조직학 용어): 광학현미경상에서 골이 임플란트 표면과 직접 접촉하는 것으로 정의. [[OSS:34]]
-@OSS | t=교수 강조
-Q: Spongy bone과 immature bone의 특징을 각각 쓰고, spongy bone이 성숙골인지 미성숙골인지 쓰시오.
-A: Spongy bone: No osteons · Trabeculae surround red marrow-filled spaces · Trabeculae contain irregularly arranged lamellae and osteocytes connected by canaliculi / Immature bone: Nonlamellar · Bundle bone or woven bone · Contains relatively more cells per unit than mature bone / 필기: {n:"spongy bone도 성숙골이다! 하지만 lamella의 형태는 가지고 있다" · "스펀지 본하고 미성숙 본은 잘 구분해야 한다"}. [[OSS:20]] [[OSS:21]]
-@PATH | t=짤 변형 | b=R12
-Q: 다음 bisphosphonate를 relative potency가 약한 것부터 강한 것 순으로 배열하시오: Alendronate, Etidronate, Pamidronate, Risedronate, Zolendronic acid.
-A: Etidronate (Didronel) 1 → Pamidronate (Aredia) 100 → Alendronate (Fosamax) 1,000 → Risedronate (Actonel) 10,000 → Zolendronic acid (Zometa) >100,000. 필기: {n:IV로 맞게 되는 경우 potency가 더 커진다}. (25 자료 — 26에서 빠짐) [[ONJ5:14]]
-@PATH | t=짤 변형 | b=R12
+@PATH | t=짤 변형·교수 형식(객관식) | pr=상 | b=R13 | why=23 공개 문항 ORN 축(26 = 23 자료) · 이후 출제 없음 | oid=IMPL:P:골방사선괴사orn가임플란트식립의절대적금기증인_8b4c4a
+Q: Osteoradionecrosis(ORN)에 대한 설명으로 옳은 것은? 1) 두경부 종양의 chemotherapy 도입과 함께 알려졌다 2) Radiation creates hard and soft tissue hypoxia, hypo-cellularity and hypo-vascularity 3) 방사선치료를 하면 vascularity가 늘어나 healing이 빨라진다 4) 케이스에 따라 임플란트 식립이 가능한 상대적 금기증이다 5) Bone의 necrosis와는 관계가 없다
+A: 2) — 2) ○ "Radiation creates hard and soft tissue hypoxia, hypo-cellularity and hypo-vascularity"(hypo-vascularity에 별표 · {n:피가 없음 → healing이 잘 되지 않는다}) / 1) × "Noted with the introduction of radiation therapy to tumors of the head and neck" / 3) × {n:방사선치료하면 vascularity가 줄어든다. 피가 없으면 생명이 없다} / 4) × 절대적 금기증 — 공개 시험문항 "다음 중 임플란트 식립의 절대적 금기증은?" {n:답-4(4만 극복못함)} = osteoradionecrosis(나머지 cemento ossifying dysplasia·periapical cemental dysplasia·fibrous dysplasia·osteogenesis imperfect는 상대적) / 5) × "Results in a significant decrease in healing and necrosis of bone" · ON of the jaws → ONJ. [[PATH:35]] [[PATH:1]]
+@PATH | t=짤 변형·교수 형식(객관식)·26에서 빠짐 · JB 대비 | pr=상 | b=R14 | why=23 공개 문항 undersized 축 · 근거 쪽 26에서 빠짐 | oid=IMPL:P:lowbonequalityd4opoope에서_d3935b
+Q: Low bone quality(D4, OPo, OPe)에 대한 설명으로 옳은 것은? 1) Systemic review상 initial stability와 implant survival에 유의한 차이가 있다 2) Marginal bone loss에는 차이가 없다 3) Tapping은 골질이 불량하여 초기고정력을 얻기 어려울 때 사용한다 4) Modification of surgical technique — undersized drilling, stepwise drilling, bone condensation, implant designs modification 5) Low bone density는 임플란트의 절대적 금기증이다
+A: 4) — 4) ○ "Modification of surgical technique. Such as undersized drilling, stepwise drilling, bone condensation, implant designs modification" / 1) × "Systemic review.: no sig difference between them in terms of initial stability, implant survival"({n:osseointegration에도 큰 차이를 보이지 않는다}) / 2) × "Difference in terms of marginal bone loss." / 3) × {n:2번(tapping)은 너무 단단한 뼈에 임플란트가 안들어갈 때 나사선을 세기는 것 — 공개 시험문항 답 1번 undersized drilling} / 5) × {n:D4, osteopenia와 같은 약한 뼈에도 … 실제로 큰 문제는 없었다}. (25 자료 — 26에서 빠짐 · 공개 문항과 답은 26 p.1 필기) [[ONJ5:36]] [[PATH:1]]
+@PATH | t=짤 변형·교수 강조·교수 형식(객관식) | pr=중 | b=R13 | why=23 절대 금기 문항의 반대 방향 · 26·25 필기 | oid=IMPL:P:병적골pathologicstate중임플란트를_f8fb66
+Q: 다음 중 임플란트를 심어도 성공할 수 있는 병적 골 상태는? 1) Osteoradionecrosis 2) BRONJ 3) Suppurative osteomyelitis 4) Paget's disease
+A: 4) — {n:pathologic state: osteomyelitis, osteoradionecrosis, BRONJ 등은 확실히 심으면 안된다. 그러나 paget disease, fibrodysplasia 등은 임플란트를 심어도 성공할 수 있다 · 기본적인 bone quality가 보장되면 clinical success도 보장된다}(25 자료 — 26에서 빠짐) / 26 필기: {n:Paget — 본 형성과 본 분해가 비전형적으로 일어나는 것인데 결국 본 remodeling이 일어나기 때문에 임플란트 식립이 가능은 하다} · {n:suppurative type은 식립이 안 된다}(젊은 사람의 sclerosing osteomyelitis만 가능) · ORN = 절대적 금기증. [[ONJ5:38]] [[PATH:9]] [[PATH:39]]
+@PATH | t=미출제·교수 형식(객관식) | pr=중 | why=26 PDF(= 23 자료) 금기 축 · 미출제 | oid=IMPL:P:골수염osteomyelitis의두유형을쓰고각_2333ae
+Q: 골수염(osteomyelitis)에 대한 설명으로 옳은 것은? 1) Viral infection of the bone이다 2) 단순한 endo나 curettage로 해결된다 3) Sclerosing osteomyelitis(Garre type)는 젊은 사람에서 방어막을 형성해 responsive한 bone을 형성하며, 임플란트가 가능하다 4) Suppurative osteomyelitis는 임플란트 식립이 가능하다 5) Dental or other oral infections와 무관하게 primary로만 생긴다
+A: 3) — 3) ○ {n:아직 젊어서 방어막 형성 → 하얗게 responsive한 bone 형성해서 저항 = Garre type sclerosing osteomyelitis · 젊은 사람에서 발생하는 sclerosing osteomyelitis는 임플란트가 가능하다} / 1)·5) × "Bacterial infection of the bone · Primary or secondary to dental or other oral infections" / 2) × {n:단순한 pathosis를 제거하는 endo나 curettage 등으로는 해결이 되지 않는다} / 4) × {n:그저 하염없이 파괴만 되는 type — suppurative type은 식립이 안 된다}. [[PATH:37]] [[PATH:38]] [[PATH:39]]
+@PATH | t=미출제·교수 형식(객관식) | pr=중 | b=R12 | why=26 PDF 기능·기전 쪽 · 23 bisphosphonate 출제 축 인접 | oid=IMPL:P:bisphosphonate의기능4가지와ost_017a4f
+Q: Bisphosphonate에 대한 설명으로 옳은 것은? 1) Inorganic pyrophosphates analogs이며 hydroxyapatite crystals에 affinity가 있다 2) Osteoblast activity를 억제한다 3) Osteoclasts가 bisphosphonate를 ingest하면 resorption cavities가 더 많이 형성된다 4) Cancer secretes RANKL to inhibit osteoclasts 5) Bone turnover를 증가시킨다
+A: 1) — 1) ○ "Bisphosphonates의 기능 — Inorganic pyrophosphates analogs · Affinity for hydroxyapatite crystals · Inhibitor of osteoclast activity · Bone resorption inhibition" / 2) × Inhibitor of osteoclast activity / 3) × "Osteoclasts ingest bisphosphonate and die. No resorption cavities form"({n:osteoclast가 biphosphonate 먹고 죽는다 · 꽉 차 있는 biphosphonate → 뼈가 녹지 않는다}) / 4) × "Cancer secretes RANKL to activate osteoclasts" → "Cancer cannot invade into or through bone without osteoclastic resorption" / 5) × "They reduce bone turnover by: Killing Osteoclasts · Inhibition of osteoclast recruitment on the bone surface · Inhibition of osteoclastic activity on the bone surface"({n:osteoporosis는 improve되지만, bone remodelling이 제대로 되지 않는다}). [[PATH:54]] [[PATH:55]] [[PATH:44]]
+@PATH | t=짤 변형·교수 형식(객관식)·26에서 빠짐 · JB 대비 | pr=중 | b=R12 | why=23 potency 객관식(가장 강한 것) · 표 26에서 빠짐 | oid=IMPL:P:다음bisphosphonate를relativ_aa68fa
+Q: 다음 중 bisphosphonate와 상품명, relative potency의 연결이 옳은 것은? 1) Etidronate – Zometa – >100,000 2) Alendronate – Fosamax – 1,000 3) Pamidronate – Didronel – 1 4) Risedronate – Boniva – 100 5) Zolendronic acid – Actonel – 10,000
+A: 2) — RELATIVE POTENCY 표: Etidronate (Didronel) 1 · Tiludronate (Skelide) 10 · Pamidronate (Aredia) 100 · Alendronate (Fosamax) 1,000 · Risedronate (Actonel) 10,000 · Ibandronate (Boniva) 10,000 · Zolendronic acid (Zometa) >100,000 → 가장 약한 것 = Etidronate · 가장 강한 것 = Zolendronic acid({n:Zometa — 가장 많이 쓰는 약물}) / 필기: {n:IV로 맞게 되는 경우 potency가 더 커진다}. (25 자료 — 26에서 빠짐) [[ONJ5:14]]
+@PATH | t=미출제·교수 형식(객관식) | pr=중 | why=26 PDF(= 23 자료) 금기 축 p.3 · 미출제 | oid=IMPL:P:과거에임플란트의contraindication_e5dc1f
+Q: 임플란트의 contraindication에 대한 설명으로 옳은 것은? 1) Infection(periapical pathoses, periodontal disease)은 지금도 절대적 금기증이다 2) 과거에는 contraindication이라 보았지만 현재는 infection만으로는 contraindication이라 생각하지 않는다 3) Systemic bone disease는 과거의 contraindication 목록에 없었다 4) Trauma(dirty wound or fracture)로 발치한 경우는 지금도 식립하지 않는다 5) 당뇨 환자는 지금도 식립하지 않는다
+A: 2) — 2) ○ {n:과거에는 contraindication이라 보았지만 현재는 infection만으로는 contraindication이라 생각하지 않는다 — infection is controllable, 감염원만 관리가 된다면(eradication of bacteria) 괜찮다} / 1) × 위 필기 / 3) × 과거 contraindication 슬라이드 = Medically compromised state · Poor bone density · Infection(Periapical pathoses, Periodontal disease) · Systemic bone disease · Trauma(dirty wound or fracture) / 4) × {n:fracture는 하등의 문제가 되지 않는다: extraction후 immediate하게 식립한다} / 5) × {n:금기증이 절대적이지는 않다 … ex- 당뇨 지금은 다 심죠}. [[PATH:3]] [[PATH:16]]
+@PATH | t=미출제·교수 형식(객관식) | pr=중 | why=26 PDF(= 23 자료) 발치와 쪽 · 미출제 | oid=IMPL:P:우식치주질환파절로발치한발치와에임플란트를식립할_de33a1
+Q: 우식·치주질환·파절로 발치한 발치와의 임플란트 식립에 대한 설명으로 옳은 것은? 1) 우식이나 치주질환으로 발치한 발치와는 임플란트의 금기증이다 2) 파절로 발치한 경우는 반드시 지연 식립한다 3) 당시 bone level을 어떻게 clear하게 prep했는가가 성공에 더 중요하다 4) 슬라이드 그래프상 success는 fracture < periodontal disease < caries 순으로 높다 5) Periapical lesion 실험에서 계면에 큰 차이를 보여 periodontal lesion은 금기증이다
+A: 3) — 3) ○ {n:당시 bone level을 어떻게 clear하게 prep했는가가 성공에 더 중요하다 · bone만 남아있다면 전혀 금기증 x} / 1) × {n:infection에서 caries/periodontal disease의 경우 크게 문제가 되지 않는다} / 2) × {n:fracture는 하등의 문제가 되지 않는다: extraction후 immediate하게 식립한다} / 4) × 그래프 Success = Caries → Periodontal disease → Fracture 순으로 높아짐 / 5) × {n:계면에서는 큰 차이를 보이지 않는다 → periodontal lesion은 금기증이 아니다} / 필기: {n:implant를 잘 심는 것보다 발치를 잘 하는 것이 중요하다}. [[PATH:16]] [[PATH:23]] [[PATH:34]]
+@PATH | t=교수 강조·교수 형식(객관식) | pr=중 | why=필기 '브론즈 기준에 대해서 알아야한다' · 미출제 | oid=IMPL:P:chemotherapyinducedonj증례_ef4891
+Q: 약물 관련 악골괴사(ONJ)에 대한 설명으로 옳은 것은? 1) Chemotherapy induced ONJ는 출혈이 많고 통증이 심하다 2) BRONJ는 1기만 되더라도 손대면 안 된다 3) Chemotherapy induced ONJ는 적극적인 소파로 치유된다 4) 여러 medication이 연관되기 때문에 현재는 ORN이라는 말을 사용한다
+A: 2) — 2) ○ {n:브론즈 기준에 대해서 알아야한다 — 1기만 되더라도 손대면 안된다} / 1) × {n:피는 잘 나지 않는다(hypo-vascularity) · 통증도 없다(피가 없어서 생명력을 잃은 것)} / 3) × {n:깔끔하게 죽어있는 뼈라서 해줄 수 있는 건 없다 — 백혈병 치료를 하는 동안 plaque control 등을 하는 것 밖에는 없음} / 4) × {n:여러 medication이 연관되기 때문에 현재는 MRONJ라는 말을 사용한다} · AAOMS 2014 update — BRONJ에서 medication-related osteonecrosis of the jaw(MRONJ)로(25 자료 — 26에서 빠짐). [[PATH:40]] [[PATH:41]] [[PATH:53]] [[ONJ5:11]]
+@PATH | t=짤 변형 | b=R12 | x=1 | why=25 ONJ 각론 세부 · 26에서 빠짐(근거 약함)
 Q: Oral bisphosphonate 복용 환자의 임플란트 결과와, IV bisphosphonate가 예정된 환자에서 침습적 치조골 수술의 시점을 쓰시오.
 A: Oral: 468개 중 466개(99.6%) integrated fully — Oral bisphosphonate therapy did not significantly affect implant success(단 3 years 초과 복용·prednisone 병용은 additional testing과 alternative treatment 고려) / IV: Guidelines of dental treatment should be different — 항골흡수제의 정맥내 주사가 예정된 경우는 침습적인 치조골 수술은 주사 3주 전에 시행하거나, 수술부위가 치유될 때까지 투약을 연기. (25 자료 — 26에서 빠짐) [[ONJ5:17]] [[ONJ5:12]]
-@PATH | t=짤 변형 | b=R13
-Q: 골방사선괴사(ORN)가 임플란트 식립의 절대적 금기증인 이유를 방사선이 조직에 만드는 세 가지 변화로 설명하시오.
-A: Noted with the introduction of radiation therapy to tumors of the head and neck — Radiation creates hard and soft tissue hypoxia, hypo-cellularity and hypo-vascularity → Results in a significant decrease in healing and necrosis of bone. 필기: {n:피가 없음 → healing이 잘 되지 않는다(임플란트의 가장 큰 난관, "4만 극복못함")}. [[PATH:35]] [[PATH:1]]
-@PATH | t=교수 강조 | b=R13
-Q: 병적 골(pathologic state) 중 임플란트를 확실히 심으면 안 되는 것 3가지와, 병적 골이어도 심어서 성공할 수 있는 질환 2가지를 쓰시오.
-A: 확실히 심으면 안 되는 것: {n:osteomyelitis, osteoradionecrosis, BRONJ} / 심어도 성공할 수 있는 것: {n:paget disease, fibrodysplasia — 기본적인 bone quality가 보장되면 clinical success도 보장된다}. (25 자료 — 26에서 빠짐) [[ONJ5:38]]
-@PATH | t=짤 변형 | b=R14
-Q: Low bone quality(D4, OPo, OPe)에서 초기 고정을 얻기 위한 surgical technique의 modification 4가지를 쓰고, tapping은 어떤 경우에 쓰는지 쓰시오.
-A: Modification of surgical technique — undersized drilling, stepwise drilling, bone condensation, implant designs modification (25 자료 — 26에서 빠짐). {n:Tapping은 너무 단단한 뼈에 임플란트가 안 들어갈 때 나사선을 세기는 것(잘 들어가지 않을 때 사용)}. [[ONJ5:36]] [[ONJ5:1]] [[PATH:1]]
-@PATH | t=짤 변형 | b=R14
+@PATH | t=짤 변형 | b=R14 | x=1 | why=26에서 빠짐 · OSS Misch 표와 겹침
 Q: Misch 골밀도 분류에서 임플란트 식립 기준 골질과, 초기 고정이 어려운 골질 및 그 호발 부위를 쓰시오.
 A: D2(다공성의 피질골과 거친 망상골, 850-1250 HU): 우수한 골치유력·골유착, 혈액 공급 좋음 — 임플란트 식립 기준 골질 / D4(가는 망상골, 150-350 HU, 상악 구치부): 초기 고정이 어려움, 천공 주의, 굵은 직경의 임플란트 사용 추천, 충분한 치유 시간 필요. (25 자료 — 26에서 빠짐) [[ONJ5:32]] [[ONJ5:33]]
-@PATH | t=미출제
-Q: 골수염(osteomyelitis)의 두 유형을 쓰고 각각의 임플란트 식립 가능 여부를 쓰시오.
-A: Osteomyelitis = Bacterial infection of the bone, Primary or secondary to dental or other oral infections. Sclerosing osteomyelitis(Garre type): {n:아직 젊어서 방어막을 형성해 하얗게 responsive한 bone을 형성해서 저항 — 젊은 사람에서 발생하는 sclerosing osteomyelitis는 임플란트가 가능}. Suppurative osteomyelitis: {n:그저 하염없이 파괴만 되는 type — 식립이 안 된다}. [[PATH:37]] [[PATH:39]]
-@PATH | t=미출제
-Q: Bisphosphonate의 기능 4가지와, osteoclast에 작용하는 기전 및 그 결과를 쓰시오.
-A: Inorganic pyrophosphates analogs / Affinity for hydroxyapatite crystals / Inhibitor of osteoclast activity / Bone resorption inhibition. Cancer secretes RANKL to activate osteoclasts → Osteoclasts ingest bisphosphonate and die(no resorption cavities form) → Cancer cannot invade into or through bone without osteoclastic resorption. 필기: {n:osteoclast를 죽이므로 bone turnover가 약해진다 → osteoporosis는 improve되지만, bone remodelling이 제대로 되지 않는다}. [[PATH:54]] [[PATH:55]] [[PATH:44]]
-@PATH | t=미출제
-Q: 과거에 임플란트의 contraindication으로 여겨졌던 5가지를 쓰고, 이 중 현재 금기로 보지 않는 것과 그 이유를 쓰시오.
-A: Medically compromised state / Poor bone density / Infection — Periapical pathoses, Periodontal disease / Systemic bone disease / Trauma — dirty wound or fracture / {n:현재는 infection만으로는 contraindication이라 생각하지 않는다 — infection is controllable, 감염원만 관리가 된다면(eradication of bacteria) 괜찮다}. [[PATH:3]]
-@PATH | t=미출제
+@PATH | t=미출제 | x=1 | why=26에서 빠짐 · ORN 3 hypo 문항과 겹침
 Q: ONJ의 문제점(What are the problems associated with ONJ?)과 필기의 '3H'를 쓰시오.
 A: Very difficult to treat / Typical presentation is that of an area of exposed bone which may be asymptomatic, but which can become infected secondarily and then become painful / Tissue will not heal over the "dead" bone / 3H: {n:hypovascularization, hypocellularity, hypooxygen — 그래서 기본적으로 ONJ는 치료가 불가능하다}. (25 자료 — 26에서 빠짐) [[ONJ5:9]]
-@PATH | t=미출제
-Q: 우식·치주질환·파절로 발치한 발치와에 임플란트를 식립할 수 있는지와 성공에 더 중요한 것을 쓰고, 슬라이드 그래프의 성공률 순서를 쓰시오.
-A: {n:infection에서 caries·periodontal disease의 경우 크게 문제가 되지 않고, fracture는 하등의 문제가 되지 않는다 — extraction 후 immediate하게 식립} / {n:당시 bone level을 어떻게 clear하게 prep했는가가 성공에 더 중요하다 · bone만 남아있다면 전혀 금기증 x} / 그래프: Success가 Caries → Periodontal disease → Fracture 순으로 높아짐 / 필기: {n:implant를 잘 심는 것보다 발치를 잘 하는 것이 중요하다}. [[PATH:16]] [[PATH:23]]
-@PATH | t=교수 강조
-Q: Chemotherapy induced ONJ 증례의 특징과 할 수 있는 처치를 쓰고, 필기에서 강조한 BRONJ 기준과 지금 쓰는 용어(MRONJ)를 쓰시오.
-A: {n:혈관이 노출된 경우도 있음} / {n:피는 잘 나지 않는다(hypo-vascularity)} / {n:통증도 없다(피가 없어서 생명력을 잃은 것)} / {n:깔끔하게 죽어있는 뼈라서 해줄 수 있는 건 없다 — 백혈병 치료를 하는 동안 plaque control 등을 하는 것 밖에는 없음} / 필기: {n:"브론즈 기준에 대해서 알아야 한다 — 1기만 되더라도 손대면 안 된다"} / 용어: AAOMS 2014 update — nomenclature를 BRONJ에서 medication-related osteonecrosis of the jaw(MRONJ)로 바꾸기를 권고(26에서 빠짐) · 26 필기: {n:여러 medication이 연관되기 때문에 현재는 MRONJ라는 말을 사용}. [[PATH:40]] [[PATH:41]] [[ONJ5:11]] [[PATH:53]]
-@BIO | t=짤 변형 | b=Q06
-Q: 하악 full-arch 고정성 보철에서 mandibular flexure에 대비한 설계 방법을 쓰고, 상악은 왜 하나로 묶어도 되는지 쓰시오.
-A: 3 piece 또는 2 piece로 나눠 제작 / {n:1 piece로 만든다면 적어도 한쪽에는 cantilever — 후방부에 식립한다면 좌우 중 뼈가 많은 한 쪽에만 식립(반대쪽은 cantilever)} / {n:Mental foramen 전방부에만 식립해서 cantilever 형태로} / {n:상악은 고정되어 있어 flexure가 일어나지 않기 때문에 12개씩 묶어도 이상이 없다}. [[BIO:44]] [[BIO:42]] [[BIO:36]]
-@BIO | t=짤 변형 | b=R03
-Q: 부하 시 자연치아와 임플란트의 특성 비교에서 동요도, 횡단면, 하방 이동, 측방 이동을 각각 쓰시오.
-A: 동요도: 다양(전치>구치) · 없음 / 횡단면: 둥글지 않다 · 둥글다 / 하방: 즉시 28㎛ 이동 · 초기운동 없음 / 측방: 50~108㎛ · 10~50㎛. [[BIO:26]]
-@BIO | t=짤 변형 | b=Q18
-Q: PDL이 없는 임플란트에서 달라지는 수복 시 고려사항(restorative modification with implants)을 쓰시오.
-A: Patient feedback less reliable for occlusal adjustment(perception of force stimulation duller and more difficult to locate) / Ankylosed and rigid forces passed to crestal bone, so consider a rigid framework for better stress distribution and progressive loading / Few warning signs or symptoms of overload — see screw loosening, screw fracture / Ankylosed implant makes it more time consuming for adjustment of contacts, and non allowance for supereruption. [[BIO:14]]
-@BIO | t=짤 변형 | b=R04
-Q: 세 개의 크라운을 임플란트 2개로 수복할 때 고정체 배치(offset)에 따른 응력 차이를 쓰시오.
-A: 1. Cantilever: {n:응력 분포가 2배로 안좋음}(200%) 2. 일자로 배치: {n:2/3로 응력이 분포}(67%) 3. 약간 어긋나게(offset을 부여): {n:1/3로 응력이 분산됨}(33%) — {n:이러한 식립 위치가 보철물의 loading을 줄인다}. [[BIO:28]] [[BIO5:28]]
-@BIO | t=짤 변형 | b=U09
-Q: AP distance를 정의하고, AP distance와 cantilever 길이의 관계를 쓰시오.
-A: {n:AP = 가장 처음(전방)에 있는 임플란트의 중심을 지나는 선과 가장 후방에 있는 임플란트의 distal을 연결하는 선 사이 거리}. {n:구치부 식립이 어려운 경우 AP distance에 따라 cantilever 길이가 결정되며 AP가 길어질수록 cantilever를 길게 만들 수 있다 — 이 distance의 2.5배까지 가능}. {n:테이퍼한 아치가 유리하고, 나란히 심으면 AP가 짧아 cantilever도 짧게}. [[BIO:34]] [[BIO5:34]]
-@BIO | t=짤 변형 | b=T02
-Q: 무치악 상악에서 arch form에 따른 최소 임플란트 개수와 premaxilla 식립 위치를 쓰시오.
-A: {n:6-10개 정도로 상악 전악수복, premaxilla 3개 + 양 구치부 3개씩 총 9개가 가장 이상적} / Square arch form: 2 Canines → 6 implants / Ovoid arch form: 2 Canines & 1 Incisor → 7 implants / Tapering arch form: 2 Canines & 2 Incisor → 8 implants(구치부는 각각 2개). [[BIO:46]] [[BIO:47]] [[BIO:48]] [[BIO:49]] [[BIO:50]]
-@BIO | t=짤 변형 | b=T02
-Q: Implant-assisted mandibular overdenture에서 임플란트를 canine보다 약간 안쪽에 두고 움직임을 허용하는 이유를 쓰시오.
-A: {n:교합력이 앞쪽의 임플란트를 계속 뒤로 당기는 힘을 부여하기 때문에 처음부터 움직일 수 있도록 여유(offset)를 주어야 한다}. {n:임플란트 위치가 멀면 오버덴처의 움직임이 제한되면서 fixture에 더 많은 load가 가해진다}. {n:2개는 bar type으로 움직임을 어느정도 허용하여 응력을 분산, 3개는 bar 상부에 어태치먼트를 달아 전후의 움직임이 가능하도록}. [[BIO:29]] [[BIO:30]] [[BIO:31]] [[BIO:32]]
-@BIO | t=교수 강조 | b=T04
-Q: 임플란트보철에서 torsional(moment) load를 만드는 임상적 모멘트 암 3가지를 쓰고, 모멘트를 정의하시오.
-A: 모멘트는 회전(rotation)이나 굽힘(bending)을 야기하려는 경향(Vector로 정의), Moment = 수직거리(moment arm) X 힘의 크기(force magnitude), torque 혹은 비틀림 하중(torsional load)으로 표현. 임상적 모멘트 암 = 교합면의 높이, cantilever의 길이, 교합면의 넓이. {n:모멘트가 임플란트 축과 일치하지 않으면 lateral force — biomechanics에서 가장 중요한 것은 lateral force를 최소화}. [[BIO:21]] [[BIO:22]]
-@BIO | t=미출제
-Q: 임플란트에 가해지는 하중(loads applied to dental implant)을 쓰고 passive fit을 정의하시오.
-A: Occlusal loads — magnitude, frequency, duration / Mechanical load — cased by nonpassive prostheses, perioral forces of the tongue & circumoral musculature / {n:Passive fit = stress나 strain 없이 보철물이 삽입되는 것 — passive fit이 아니라면 implant fixture에 하중을 가해 osseointegration에 영향}. [[BIO:15]]
-@BIO | t=미출제
-Q: 힘의 유형 3가지를 피질골 강도가 큰 순서로 쓰고, 임플란트에서 overload를 장시간 받을 때 골흡수가 시작되는 부위를 쓰시오.
-A: Compression 193 MPa(100%) > Tension 133 MPa(70%) > Shear 68 MPa(35%) — {n:compression이 가장 양호, shear에 가장 취약}. {n:Overload를 장시간 받으면 치조골 가장 상부(crestal) 부위가 가장 영향을 많이 받고 여기부터 뼈가 녹기 시작}. [[BIO:18]] [[BIO:19]]
-@BIO | t=짤 변형 | b=Q07
-Q: 생역학적 관점에서 과부하가 걸렸을 때 자연치에서 나타나는 전구증상과, 임플란트에서 경고 증상 없이 발생하는 것 및 그 결과를 쓰시오. 이렇게 다른 이유는?
-A: 자연치에서의 전구증상 — # 가역적, 과민 반응, 치수 충혈(hyperemia), 치아의 동요도 증가. 임플랜트 어떠한 경고 증상 없이 발생으로 — # Microscopic stress fracture, fatique(슬라이드 표기) → 상부구조물의 파절, 나사 풀림, 주위 치조골의 흡수. 이유: 필기 {n:"WHY? PDL이 없기 때문에"}(치주인대 유무로 인한 응력 흡수 기전). [[BIO:25]]
-@BIO | t=교수 강조
+@BIO | t=교수 강조 | pr=하 | why=정의 쪽(26 필기 '전체적으로 읽어주셨습니다') · 미출제
 Q: 생역학(biomechanics)과 치료 생역학(therapeutic biomechanics)을 정의하고, implant-supported prosthesis에서 biomechanics가 중요한 이유를 쓰시오.
 A: 생역학: 생체 조직에 힘을 가했을 때 이에 대한 생체의 반응을 연구하는 학문 — 임플랜트 보철에서 골유착된 고정체와 지대주를 포함한 상부구조에 작용되는 응력과 부담의 관계를 분석하는 분야 / 치료 생역학: 과부하를 야기시키는 각각의 생역학적 요소를 변경시키는 임상적 과정 / 중요한 이유: No PDL-like structure on implant-bone interface = No PDL-like shock absorbing element → Induced strains and stresses is transferred to the peri-implant bone tissue directly · Late implant failure(상부구조물 연결 및 보철물 연결 후 발생)는 mainly related to biomechanical complications. 26 필기 p.11 {n:"전체적으로 읽어주셨습니다"}. [[BIO:11]] [[BIO:12]] [[BIO:13]]
-@PRO | t=짤 변형 | b=R09
+@BIO | t=짤 변형·교수 형식(T/F) | pr=상 | b=S01,Q18 | why=22 T/F → 24 나열 PDL 표 · 두 열 섞은 T/F
+Q: 다음은 The Advantages of a Periodontal Ligament 표(Table I)에 관한 설명이다. 맞으면 T, 틀리면 F를 쓰시오. 1) PDL이 있는 자연치는 better tactile and sensory proprioception, 10X better acuity at low levels of biting force를 가진다 2) 임플란트에서는 ankylosed and rigid forces가 crestal bone으로 전달되므로 rigid framework를 고려한다 3) 임플란트에서는 overload의 warning signs or symptoms가 많다 4) Ankylosed implant는 supereruption을 허용하므로 contacts 조정이 쉽다
+A: 1) T 2) T 3) F 4) F — 1) T "Better tactile and sensory proprioception, 10X better acuity at low levels of biting force" / 2) T "Ankylosed and rigid forces passed to crestal bone, so consider a rigid framework for better stress distribution and progressive loading" / 3) F "Few warning signs or symptoms of overload. See screw loosening, screw fracture" / 4) F "Ankylosed implant makes it more time consuming for adjustment of contacts, and non allowance for supereruption" / 필기: {n:자연치와 가장 큰 차이는 PDL의 유무 — 1. 감각 2. PDL에 의한 완충작용/힘 분산 3. 외부 스트레스에 대한 생리적 반응 4. 보철물 delivery에서 고려사항}. [[BIO:14]]
+@BIO | t=짤 변형 | pr=상 | b=Q18,S01 | why=22 T/F·24 나열 PDL 표 · 같은 표 반대 열
+Q: PDL이 없는 임플란트에서 달라지는 수복 시 고려사항(restorative modification with implants)을 쓰시오.
+A: Patient feedback less reliable for occlusal adjustment(perception of force stimulation duller and more difficult to locate) / Ankylosed and rigid forces passed to crestal bone, so consider a rigid framework for better stress distribution and progressive loading / Few warning signs or symptoms of overload — see screw loosening, screw fracture / Ankylosed implant makes it more time consuming for adjustment of contacts, and non allowance for supereruption. [[BIO:14]]
+@BIO | t=미출제 | pr=중 | why=미출제 표(피질골 강도 100·70·35%)
+Q: 힘의 유형 3가지를 피질골 강도가 큰 순서로 쓰고, 임플란트에서 overload를 장시간 받을 때 골흡수가 시작되는 부위를 쓰시오.
+A: Compression 193 MPa(100%) > Tension 133 MPa(70%) > Shear 68 MPa(35%) — {n:compression이 가장 양호, shear에 가장 취약}. {n:Overload를 장시간 받으면 치조골 가장 상부(crestal) 부위가 가장 영향을 많이 받고 여기부터 뼈가 녹기 시작}. [[BIO:18]] [[BIO:19]]
+@BIO | t=미출제·교수 강조 | pr=중 | why=필기 '해당 슬라이드 텍스트 모두 읽으심' · 미출제
+Q: Richter(1998)의 in vivo bending moment study에서 임상적으로 임플란트에 가해지는 load를 분석한 결과와 그로 인해 생기는 것을 쓰고, 필기의 '이상적 조건' 3가지를 쓰시오.
+A: 정확히 장축방향으로의 absolute axial loading은 거의 없고 대부분의 occlusal force는 여러가지 다른 방향으로 작용 → Create lever arm reacting forces and bending moment / Fig 2: Vertical forces on the abutment tooth (Fv) cause a bending moment in the implant in a mesial or distal direction, transverse forces (Fh) in a buccolingual direction / 필기: {n:1. 임플란트가 정확한 위치에 위치하며 2. 보철물의 passive fit 3. load가 가해지는 힘의 벡터가 임플란트 지대주의 방향과(absolute axial loading) 일치하도록} · {n:결국 교합점을 어디에 형성하고 어디의 overloading을 피해야 하는지 설정하는 것이 가장 중요함}. [[BIO:17]]
+@BIO | t=교수 강조 | pr=중 | b=T04 | why=미출제 목록(모멘트 암 3) · p.23 강조 그림의 바탕
+Q: 임플란트보철에서 torsional(moment) load를 만드는 임상적 모멘트 암 3가지를 쓰고, 모멘트를 정의하시오.
+A: 모멘트는 회전(rotation)이나 굽힘(bending)을 야기하려는 경향(Vector로 정의), Moment = 수직거리(moment arm) X 힘의 크기(force magnitude), torque 혹은 비틀림 하중(torsional load)으로 표현. 임상적 모멘트 암 = 교합면의 높이, cantilever의 길이, 교합면의 넓이. {n:모멘트가 임플란트 축과 일치하지 않으면 lateral force — biomechanics에서 가장 중요한 것은 lateral force를 최소화}. [[BIO:21]] [[BIO:22]]
+@BIO | t=그림빵·26 강조 | pr=상 | why=26 수업 '그림을 잘 기억하세요. 어떤 힘이 작용하는지' | f=BIO:23 | m=22.2,29.3,26.7,32.6;0.1,31.5,8.7,33.8;35.7,49.0,39.4,52.4;14.3,67.5,18.4,70.8;59.2,30.7,62.6,34.2;43.8,12.1,52.5,15.5;63.5,38.6,68.0,42.4;72.0,40.8,76.3,44.4
+Q: 그림 [[BIO:23]](모멘트 암 — B·C는 occlusal height, D·E는 cantilever length)에서 작용하는 힘(①·③·⑤·⑦)과 그 힘이 만드는 모멘트(②·④·⑥·⑧)의 이름을 쓰시오.
+A: B ① Lingual force ② Lingual moment / C ③ Mesial force ④ Apical moment / D ⑤ Lingual force ⑥ Lingual-transverse moment / E ⑦ Occlusal force ⑧ Occlusal moment — {e:{n:그림을 잘 기억하세요. 어떤 힘이 작용하는지}} / Moment = 수직거리(moment arm) X 힘의 크기(force magnitude). [[BIO:23]] [[BIO:21]]
+@BIO | t=짤 변형 | pr=상 | b=Q07 | why=21·22·24·25 출제 7문장 중 셋 + 'WHY?' 필기
+Q: 생역학적 관점에서 과부하가 걸렸을 때 자연치에서 나타나는 전구증상과, 임플란트에서 경고 증상 없이 발생하는 것 및 그 결과를 쓰시오. 이렇게 다른 이유는?
+A: 자연치에서의 전구증상 — # 가역적, 과민 반응, 치수 충혈(hyperemia), 치아의 동요도 증가. 임플랜트 어떠한 경고 증상 없이 발생으로 — # Microscopic stress fracture, fatique(슬라이드 표기) → 상부구조물의 파절, 나사 풀림, 주위 치조골의 흡수. 이유: 필기 {n:"WHY? PDL이 없기 때문에"}(치주인대 유무로 인한 응력 흡수 기전). [[BIO:25]]
+@BIO | t=짤 변형·교수 강조·교수 형식(빈칸) | pr=상 | b=Q07 | why=21·22·24·25 출제 7문장 · 형식만 빈칸으로
+Q: 생역학적 관점에서의 자연치 VS 임플란트의 비교 슬라이드의 빈칸 (1)~(9)를 채우시오. ① ( 1 ) 유무로 인한 응력 흡수 기전 ② 측방 하중이 가해 질 때 회전 중심이 ( 2 ) 보다 상방인 ( 3 ) 상방에 존재 ③ 자연치에서의 전구증상 # 가역적, 과민 반응, ( 4 ), 치아의 동요도 증가 ④ 임플랜트 ( 5 ) 발생으로 # Microscopic stress fracture, fatique ⑤ 상부구조물의 파절, ( 6 ), 주위 치조골의 흡수 ⑥ 임플랜트 보철물의 장기적인 성공을 위해서는 교합압으로 인한 임플랜트 지지골에 가해지는 압력이 ( 7 ) 이내에서 가해지도록 임플랜트의 기계적 및 물리적 성질을 중요한 요소로 고려 ⑦ 즉 임플랜트 보철의 ( 8 )와 적절한 ( 9 )의 형성이 중요
+A: (1) 치주인대 (2) 자연치 (3) 치조골 (4) 치수 충혈(hyperemia) (5) 어떠한 경고 증상 없이 (6) 나사 풀림 (7) 생체의 지지 능력 (8) 생역학적 고려 (9) 교합 — WHY? {n:PDL이 없기 때문에} · {n:전부 읽으셨습니다} / ⚠ JB 답의 '상체의지지 능력'·'생역학성'은 JB 표기(슬라이드: 생체의 지지 능력·생역학적). [[BIO:25]]
+@BIO | t=짤 변형 | pr=중 | b=R03 | why=23 표 빈칸의 다른 행 · '표 전부 읽으셨습니다'
+Q: 부하 시 자연치아와 임플란트의 특성 비교에서 동요도, 횡단면, 하방 이동, 측방 이동을 각각 쓰시오.
+A: 동요도: 다양(전치>구치) · 없음 / 횡단면: 둥글지 않다 · 둥글다 / 하방: 즉시 28㎛ 이동 · 초기운동 없음 / 측방: 50~108㎛ · 10~50㎛. [[BIO:26]]
+@BIO | t=짤 변형·교수 강조 | pr=중 | b=R04 | why=고려사항 11 중 직접 설명한 5 offset
+Q: 세 개의 크라운을 임플란트 2개로 수복할 때 고정체 배치(offset)에 따른 응력 차이를 쓰시오.
+A: 1. Cantilever: {n:응력 분포가 2배로 안좋음}(200%) 2. 일자로 배치: {n:2/3로 응력이 분포}(67%) 3. 약간 어긋나게(offset을 부여): {n:1/3로 응력이 분산됨}(33%) — {n:이러한 식립 위치가 보철물의 loading을 줄인다}. [[BIO:28]] [[BIO5:28]]
+@BIO | t=짤 변형 | pr=중 | b=U09 | why=20 빈칸(2.5배) 축 · 26 필기는 원리만
+Q: AP distance를 정의하고, AP distance와 cantilever 길이의 관계를 쓰시오.
+A: {n:AP = 가장 처음(전방)에 있는 임플란트의 중심을 지나는 선과 가장 후방에 있는 임플란트의 distal을 연결하는 선 사이 거리}. {n:구치부 식립이 어려운 경우 AP distance에 따라 cantilever 길이가 결정되며 AP가 길어질수록 cantilever를 길게 만들 수 있다 — 이 distance의 2.5배까지 가능}. {n:테이퍼한 아치가 유리하고, 나란히 심으면 AP가 짧아 cantilever도 짧게}. [[BIO:34]] [[BIO5:34]]
+@BIO | t=짤 변형 | pr=하 | b=T02 | why=필기 위주 · 관련 기출은 교과서 근거(part)
+Q: Implant-assisted mandibular overdenture에서 임플란트를 canine보다 약간 안쪽에 두고 움직임을 허용하는 이유를 쓰시오.
+A: {n:교합력이 앞쪽의 임플란트를 계속 뒤로 당기는 힘을 부여하기 때문에 처음부터 움직일 수 있도록 여유(offset)를 주어야 한다}. {n:임플란트 위치가 멀면 오버덴처의 움직임이 제한되면서 fixture에 더 많은 load가 가해진다}. {n:2개는 bar type으로 움직임을 어느정도 허용하여 응력을 분산, 3개는 bar 상부에 어태치먼트를 달아 전후의 움직임이 가능하도록}. [[BIO:29]] [[BIO:30]] [[BIO:31]] [[BIO:32]]
+@BIO | t=짤 변형·26 강조 | pr=상 | b=Q06 | why=flexure 5회 출제 축 · 26 수업 '3번 반복'(p.36)
+Q: 하악 full-arch 고정성 보철에서 mandibular flexure에 대비한 설계 방법을 쓰고, 상악은 왜 하나로 묶어도 되는지 쓰시오.
+A: 3 piece 또는 2 piece로 나눠 제작 / {n:1 piece로 만든다면 적어도 한쪽에는 cantilever — 후방부에 식립한다면 좌우 중 뼈가 많은 한 쪽에만 식립(반대쪽은 cantilever)} / {n:Mental foramen 전방부에만 식립해서 cantilever 형태로} / {n:상악은 고정되어 있어 flexure가 일어나지 않기 때문에 12개씩 묶어도 이상이 없다}. [[BIO:44]] [[BIO:42]] [[BIO:36]]
+@BIO | t=짤 변형 | pr=중 | b=T02 | why=21 무치악 개수 표 빈칸 축 · 필기 '6-10개'
+Q: 무치악 상악에서 arch form에 따른 최소 임플란트 개수와 premaxilla 식립 위치를 쓰시오.
+A: {n:6-10개 정도로 상악 전악수복, premaxilla 3개 + 양 구치부 3개씩 총 9개가 가장 이상적} / Square arch form: 2 Canines → 6 implants / Ovoid arch form: 2 Canines & 1 Incisor → 7 implants / Tapering arch form: 2 Canines & 2 Incisor → 8 implants(구치부는 각각 2개). [[BIO:46]] [[BIO:47]] [[BIO:48]] [[BIO:49]] [[BIO:50]]
+@BIO | t=미출제 | x=1 | why=근거 약함 · passive fit은 필기뿐(Richter 문항에 담음)
+Q: 임플란트에 가해지는 하중(loads applied to dental implant)을 쓰고 passive fit을 정의하시오.
+A: Occlusal loads — magnitude, frequency, duration / Mechanical load — cased by nonpassive prostheses, perioral forces of the tongue & circumoral musculature / {n:Passive fit = stress나 strain 없이 보철물이 삽입되는 것 — passive fit이 아니라면 implant fixture에 하중을 가해 osseointegration에 영향}. [[BIO:15]]
+@PRO | t=짤 변형 | pr=중 | b=R09 | why=R09(23·22) 같은 카드 p.14 · 26 필기 구치부/전치부
 Q: World congress consensus meeting(Barcelona 2002)에 따른 functional loading과 non-functional loading을 각각 무엇이라 부르는지 쓰고, 둘의 차이를 설명하시오.
 A: Functional loading = Immediate loading: contact with opposing dentition in centric occ.(CO에서 대합치와 교합 ○ — {n:거의 하지 않음}). Non-functional loading = Immediate restoration: {n:수복은 하지만 CO에서 대합치와 교합되지 않게 만듦(교합 × — 대부분 이 경우, 주로 전치부)}. 26 필기: {n:functional loading = immediate loading = 구치부} · {n:전치부는 치아가 45도 각도로 접촉해 immediate loading이 아닌 restoration}. [[PRO:14]] [[PRO5:18]]
-@PRO | t=짤 변형 | b=U10
+@PRO | t=짤 변형 | pr=중 | b=U10 | why=U10(20) 3~6개월 옆 · 상·하악 나눠 묻기 대비
 Q: Brånemark(1977)의 Classic implant loading protocol에서 하악·상악의 치유 기간과, conventional healing period의 요구 조건을 쓰시오.
 A: "One of the most emphasized requirements was a stress-free healing period of 3 to 6 months to achieve the predictability of implant osseointegration" — Premature loading was jeopardizing the process of osseointegration / Mandible: 3 to 4 months / Maxilla: 6 to 8 months. [[PRO:3]] [[PRO:4]]
-@PRO | t=미출제 | b=U10
+@PRO | t=미출제 | pr=중 | b=U10 | why=목록 p.5 미출제 · U10 3~6개월의 근거
 Q: Conventional concept에서 3~6개월의 치유 기간이 필요하다고 본 근거(possible biological events)를 쓰시오.
 A: ① Early loading would result in fibrous encapsulation of the implant and no osseointegration ② The overheated bone tissue, which undergoes necrosis from the osteotomy preparation, needs to be replaced and during this time the tissue is not capable of supporting the implant ③ The necrotic bone created during osteotomy preparation is rapidly remodeled and turned over and during the remodeling, the strength of the bone to implant contact is compromised → it was speculated that the 3- to 6-month healing period(Szmukler-Moncler, Salama 1998). [[PRO:5]]
-@PRO | t=미출제
-Q: 임플란트 초기 micromotion이 과도할 때 계면에서 일어나는 일과, 문헌에서 제시한 micromotion의 역치를 쓰시오.
-A: If excessive micromotion is present early after implantation, the hematoma and tissue scaffold will be repeatedly damaged, thereby inducing repair by fibrous scar tissue rather than regeneration by bone at the interface(Brunski 1992). 역치: 500·150 μm 모두 fibrous membrane, threshold for bone in-growth is between 20 and 150 μm(Sobelle 1993) / 50 μm loading은 문제 없음(Vandamme 2007) / Threshold 100~150 μm(Tettamanti 2017) → Possible threshold lies somewhere between 50 and 150 μm, however this threshold should be determined according to surface state and implants design(Szmukler-Moncler 1998). [[PRO:6]] [[PRO:7]] [[PRO:8]] [[PRO:9]]
-@PRO | t=교수 강조 | b=R08
+@PRO | t=미출제 | pr=중 | why=교수 세 포인트 ① 견뎌낼 힘 · p.9 결론 2줄 | oid=IMPL:P:임플란트초기micromotion이과도할때계면_48550a
+Q: 임플란트 식립 초기에 micromotion이 과도할 때 계면에서 일어나는 일을 쓰고, 결론 슬라이드의 possible threshold와 그 threshold를 결정하는 요인을 쓰시오.
+A: "If excessive micromotion is present early after implantation, the hematoma and tissue scaffold … will be repeatedly damaged, thereby inducing repair by fibrous scar tissue rather than regeneration by bone at the interface"(Brunski 1992) / 결론: ① Possible threshold lies somewhere between 50 and 150 μm ② However, this threshold should be determined according to surface state and implants design(Szmukler-Moncler, Salama, Reingewirtz 1998) / 근거 실험: Sobelle 1993 — 500·150 μm 모두 fibrous membrane, threshold for bone in-growth 20~150 μm · Vandamme & Naert 2007 — 50 μm loading은 큰 문제 없음 · Tettamanti 2017 — Threshold 100~150 μm / 필기: {n:loading = micromotion을 주는 것 → "어느 정도의 micromotion을 견뎌낼 수 있느냐가 key!"}. [[PRO:6]] [[PRO:9]] [[PRO:7]] [[PRO:8]]
+@PRO | t=미출제 | pr=중 | b=R08 | why=R08 정의 다음 쪽 · 2요인 목록 · 25 필기 '시험에 나오는 정의'
 Q: Dynamic equilibrium 관점에서 초기 골질이 좋은 경우와 나쁜 경우의 dip 차이를 설명하고, dip을 결정하는 두 요인을 쓰시오.
 A: 초기 골질이 좋으면(1° bone contact high quality bone) dip이 얕아 {n:바로 stress가 가해져도 됨 → immediate loading 가능}, 골질이 나쁘면(low quality bone) dip이 깊어 {n:osseointegration이 완성되지 못한 상태로 초기 stress를 가하면 안 됨} / dip 결정 요인: 1. Primary Stability(높이고) 2. Minimize trauma(낮추고 — over heating → bone necrosis) → {n:dip의 정도에 따라 loading 시기 조절}. [[PRO:11]] [[PRO:12]]
-@PRO | t=미출제 | b=R09
+@PRO | t=교수 강조 | pr=중 | b=R08 | why=25 필기 세 포인트 ② '정의가 왜 바뀌었는지' · R08 옆
+Q: 골유착(osseointegration)의 정의가 Brånemark의 정의에서 Cochran의 새 정의로 바뀐 이유를 예전과 지금의 식립(드릴링) 차이로 설명하시오.
+A: Brånemark — Bone-to-implant contact at the light microscopic level · Direct structural and functional connection between ordered living bone and the surface of a load-carrying implant / 25 필기: {n:예전에는 4 mm 직경 임플란트에 4.1·4.2 mm 구덩이를 파고 뼈가 자라면서 붙음 → 광학현미경에서 soft tissue의 개재 없이 bone에 direct하게 붙은 것이 골유착} / 25 필기: {n:요즘은 임플란트 자체가 나사라 4.0 mm를 심으면 골질에 따라 3.6~3.8 mm 정도만 파고 밀고 들어감 → 처음 심긴 상태도 접촉 → 접촉만으로 osseointegration을 말할 수 없음} · {n:초기 정의로는 처음에는 고정이 됐는데 힘을 가해서 섬유성 조직이 생겨 골유착에 실패하는 경우가 설명이 안 됨} / → Cochran('Chocran' — 슬라이드 철자) — Stability of an implant in bone that represents a dynamic equilibrium between existing native bone (primary contact) and remodeling and new bone formation (secondary contact) · It's maintenance at the bone-implant interface — 25 필기: {n:primary contact이 점차 osteoclast의 작용으로 사라지고 secondary contact이 osteoblast에 의해서 발생, 그러나 이 변화 사이에 계면이 사라지는 경우는 없음}. [[PRO:10]] [[PRO5:12]] [[PRO5:13]]
+@PRO | t=미출제 | pr=중 | b=R09 | why=목록 p.15 미출제(김성균 목록 꼴) · 26 강조 p.30과 짝
 Q: 즉시 부하(immediate loading)에 영향을 미치는 6가지 변수를 쓰시오.
 A: Extraction socket / Implant surface / Number of implants, occlusion / Bone density, quality / Implant surface/geometry / Stability(of immediate loading). [[PRO:15]]
-@PRO | t=미출제 | b=R09
+@PRO | t=미출제 | pr=중 | b=R09 | why=목록 p.16 미출제 · 26 필기 under-drilling 풀이
 Q: 발치와(extraction socket)에 임플란트를 식립할 때 높은 성공률을 얻기 위한 공통 전략(common strategies) 3가지를 쓰시오.
 A: ① macro-geometric features ② under-drilling and self-tapping ③ provisional restoration left out of occlusion(Wohrle 1998, Hui 2001, Glauser 2003, Malo 2000·2003). [[PRO:16]]
-@PRO | t=짤 변형 | b=S03
+@PRO | t=미출제 | pr=중 | why=수치 2 p.19 · 26 필기 'ISQ 70 이상이면 immediate loading'
 Q: 즉시 부하를 위한 primary stability 측정 방법 2가지와 기준 수치를 쓰시오.
 A: ① Minimum insertion torque: 30-35 Ncm(Andersen 2002, Malo 2003, Degidi & Piattelli 2003, Lorezoni 2003) ② Resonance frequency analysis — mean ISQ≥70(Calandriello 2003, Glauser 2003). [[PRO:19]]
-@PRO | t=짤 변형 | b=R10
+@PRO | t=짤 변형 | pr=중 | b=R10 | why=R10(25·23) 앞 쪽 목록 4 · 26 수업 넘어가심
 Q: Axial loading을 유도하기 위한 치아 형태(tooth morphology to induce axial loading) 4가지를 쓰시오.
 A: Flat area around centric contacts / Cusp inclination({n:줄임}) / Diameter and distribution of implants and harmonization to natural teeth / Cross-bite occlusion(Misch 1993; Weinberg 1998 — {n:골흡수가 많은 환자}). [[PRO:28]]
-@PRO | t=짤 변형 | b=S03
+@PRO | t=짤 변형 | b=S03 | why=감각 역치 수치 세부(경향 하) · 26 수업 넘어가심 · 목록 꼴 아님 | x=1
 Q: 치아와 임플란트의 movement phase와 tactile sensitivity(interference perception, mean threshold value)를 비교하시오.
 A: Tooth: Two-phase — Primary(non-linear and complex), Secondary(linear and elastic), Immediate & gradual movement / Implant: One phase — Linear and elastic, Gradual movement / Interference perception: Tooth 20 um vs Implant 48 um(Jacobs & van Steenberghe 1993) / Mean threshold value: Tooth 11.5 g vs Implant 100.6 g, 8.75 times(Hammerle 1995) — {n:implant는 PDL·neurophysiological receptor가 없어 overloading을 주어도 인지하지 못함}. [[PRO:23]] [[PRO:24]] [[PRO:25]] [[PRO:26]]
-@PRO | t=교수 강조
+@PRO | t=26 새 내용 · 26 강조 | pr=상 | why=26 새 쪽 p.30 + 26 필기 '강조하셨습니다'
 Q: Immediate loading이 가능한 조건을 네 가지 요인(factor)으로 묶어 쓰고, 각 요인에 속하는 항목을 쓰시오.
 A: {u:Surgery-related factor: Primary stability · Surgical technique} / {u:Host-related factor: Bone density · Wound healing} / {u:Implant-related factor: Implant design · Surface textures · Implant length} / {u:Occlusion-related factor: Prosthetic design · Quality and quantity of force} / (26 필기 {e:{n:"아래 그림 강조하셨습니다. immediate loading이 가능한 조건 4가지"}}) [[PRO:30]]
-@PRO | t=교수 강조 | b=S03
+@PRO | t=짤 변형 · 교수 강조 | pr=상 | b=S03 | why=S03 3회 축 수치 · 24 필기 '외웁시다!'
 Q: 임플란트 교합의 과하중 요인 중 overextended cantilever와 excessive premature contacts의 기준 수치를 상·하악(또는 연구 대상)별로 쓰시오.
 A: Overextended cantilever — >15mm in the mandible(Shackleton et al. 1994) · >10-12mm in the Mx.(Rangert et al. 1989; Taylor 1991) / Excessive premature contacts — >180um in monkey studies(Miyaata et al. 2000) · >100 um in human(Falk et al. 1990) / 24 필기: {n:"cantilever는 웬만한 보철에 좋지 않습니다. 임플란트의 경우 하악은 15, 상악은 10~12 정도만 견딥니다. 외웁시다!"} [[PRO:27]] [[PRO5:31]]
-@PART | t=짤 변형 | b=R11
-Q: Closed tray(indirect) impression에 쓰는 impression coping의 이름과 인상 순서, 주의점을 쓰시오.
-A: Fixture Transfer Impression Coping(Closed tray technique, Simple case). ① Indirect Transfers를 1.25mmD Hex Tool로 임플란트에 연결 ② transfer 높이에 맞는 retaining screw 사용 ③ 나사 위 구멍을 wax 등으로 block out ④ light~medium body로 transfer 주위, medium body로 full-arch 인상 ⑤ 입에 남은 transfer를 풀어 같은 retaining screw로 implant replica 연결 ⑥ replica가 붙은 transfer를 인상재에 다시 끼워 기공소로 / 주의: {n:코핑 끼울 때 생각보다 저항감이 있고 빡빡 — 덜 끼우면 보철물이 높게 나옴}. [[PART:13]] [[PART:14]]
-@PART | t=짤 변형 | b=R11
+@PART | t=짤 변형 | pr=중 | b=R11 | why=이재현 R11 축(조준호 25엔 안 냄) · 짝 비교 | oid=IMPL:P:closedtrayindirectimpres_a15f38
+Q: Closed tray(indirect)와 Open tray(direct) 임플란트 수준 인상에 쓰는 impression coping의 이름을 각각 쓰고, 적응 case · 코핑이 나오는 방식 · 주의점을 비교하시오.
+A: Closed tray(Indirect) = Fixture Transfer Impression Coping(Impression Coping Transfer — Closed tray technique, Simple case) / 26 필기: {n:환자 입안에서 체결 후 인상체에 딸려가지 않고 인상체 뺀 뒤에 별도로 뺌} → Unscrew each transfer from the implant bodies … and attach the appropriate implant replica with the same retaining screw · Place the transfers back into the impression material with the replicas attached / 주의(25 필기): {n:코핑 끼울 때 생각보다 저항감이 있고 빡빡 — 덜 끼우면 보철물이 높게 나옴} / Open tray(Direct) = Fixture Pick-up Impression Coping(Impression Coping Pick-up — Open tray technique, Complicated case) / Use a custom tray and prepare holes that will line up with the transfers → With the tray still in place, unscrew and remove all the retaining screws. Then remove tray, capturing the transfers in the impression material — 26 필기: {n:인상체에 딸려서 빠짐, 대신 인상체 뜨기 전에 pick-up coping 나사를 풀어야 함} / 주의(25 필기): {n:너무 세게 잠그면 인상체 내에서 돌아갈 수 있어 적당히 잠금}. [[PART:12]] [[PART:13]] [[PART:14]] [[PART5:16]]
+@PART | t=그림빵 | pr=중 | b=R11,Q08 | why=이재현 R11·Q08 인상 축 · 기출 안 된 카탈로그 그림 | f=PART:12 | m=41.8,44.6,54.4,48.7;16.2,80.4,31.4,85.0;39.6,80.4,61.2,85.0;62.0,80.4,83.6,85.0
+Q: 그림 [[PART:12]](Impression copings & Lab analogs for implant-level impressions)의 ①~④에 해당하는 부품 이름을 쓰시오.
+A: ① Fixture Lab Analog ② Bite Impression Coping ③ Fixture Pick-up Impression Coping ④ Fixture Transfer Impression Coping — 26 필기: {n:Bite Impression Coping = 한쪽으로 편한 쪽으로 물어서 위아래 인상 뜰 수 있도록, 일종의 transfer coping} · {n:Pick-up = 인상체에 딸려서 빠짐(인상체 뜨기 전에 나사를 풀어야)} · {n:Transfer = 인상체에 딸려가지 않고 인상체 뺀 뒤 별도로 뺌}. [[PART:12]]
+@PART | t=짤 변형 | b=R11 | why=위 Pick-up vs Transfer 비교(개선)와 중복 | x=1
 Q: Pick-up(open tray) impression에서 트레이를 떼기 전에 해야 할 일과, 코핑을 너무 세게 잠그면 생기는 문제를 쓰시오.
 A: With the tray still in place, unscrew and remove all the retaining screws. Then remove tray, capturing the transfers in the impression material — 트레이를 문 채로 나사를 모두 풀어 제거한 뒤 트레이를 떼면 코핑이 인상체에 딸려 나오고, 거기에 아날로그를 연결해 스톤. {n:너무 세게 잠그면 인상체 내에서 돌아갈 수 있어 적당히 잠궈야 함}. [[PART:14]]
-@PART | t=짤 변형 | b=Q08
+@PART | t=짤 변형 | pr=중 | b=Q08 | why=이재현 Q08(24·23) 축 · 조준호 25엔 안 냄
 Q: 스캔바디를 이용한 디지털 인상의 채득 순서와 원리를 쓰고, peek 스캔바디 사용 시 주의점을 쓰시오.
 A: {n:스캔바디를 꽂지 않은 상태에서 한 번 뜨고, 꽂고 한 번 떠서 정합하는 과정에서 임플란트 위치를 디지털 상에서 시뮬레이션} / {n:스캔바디는 Hex/Non-hex, 메탈·peek(레진 플라스틱)·혼합 등 형태와 재료가 다양 — 연결부도 peek로 제작하면 세게 돌릴 때 뭉개지면서 계속 들어가는 느낌}. [[PART:15]] [[PART:16]]
-@PART | t=교수 강조
+@PART | t=교수 강조 | pr=중 | b=P10 | why=P10(25) 같은 쪽 · 25 필기 '직경·높이 선택 중요'
 Q: Healing abutment의 역할과 선택 시 고려할 점을 쓰시오.
 A: {n:임플란트 수술 후 잇몸을 뚫고 바깥으로 연결해 주는 부품}. {n:직경이나 높이를 잘 선택하는 게 중요 — 이상한 선택을 하면 나중에 잇몸 몰딩을 따로 해야 하고 환자가 아파함, 너무 작은 것도 별로이고 적당하게 벌어져야 하며 나중에 어떻게 보철할지를 생각해서 선택}. {n:요즘은 힐링이면서 스캔바디로 쓰는 제품도 있음(한쪽 면을 깎아 위치를 잡음)}. [[PART:11]]
-@PART | t=미출제
-Q: 상부 보철물 연결 방식 3가지를 쓰고 SCRP를 설명하시오.
-A: 나사 유지형(screw-retained: between restoration and abutment — 2-piece / between restoration and implant itself — 1-piece UCLA abutment) · 시멘트 유지형(cement-retained) · 나사·시멘트 유지형(screw- and cement-retained prosthesis; SCRP) / SCRP: {n:지대주는 임플란트에 지대주 나사로 연결되고 상부 보철물과 어버트먼트를 시멘트로 붙임 — 보철물에 구멍을 뚫어 붙인 다음 한 번에 연결, 다 연결하면 나사유지형과 차이가 없어지는 꼴, 쓰이는 지대주는 cement type과 동일}. [[PART:4]] [[PART:6]] [[PART5:4]]
-@PART | t=미출제
-Q: UCLA abutment란 무엇이며 어떻게 제작하는가?
-A: 1-piece, screw-retained abutment-crown restoration that was attached directly to the implant — this abutment-crown combination was colloquially described as a "UCLA abutment". {n:왁스업 후 캐스팅(Osstem GoldCast = 골드 / NP-Cast = 비귀금속) → 포세린 빌드업 → abutment와 crown이 한 덩어리가 되고 hole을 통해 지대주 나사로 임플란트에 한 번에 연결}. [[PART:6]] [[PART:19]] [[PART:25]] [[PART5:6]] [[PART5:26]]
-@PART | t=미출제
-Q: Multi-unit abutment의 용도를 쓰고 straight와 angled의 차이를 쓰시오.
-A: {n:Multiple case에서 연결부가 깊어 나사 하나로 안쪽에 접근하기 힘들 때 잇몸 레벨 높이나 그 이상으로 끌어올린 후 prosthetic screw로 연결 — 전용 드라이버로 바깥쪽에서 잡아 통째로 체결, 위에 크라운·fixed hybrid 등}. The straight multi-unit abutments raise the height of the prosthetic connections, while the angled multi-unit abutments do the same and also correct for angulation. [[PART:27]] [[PART:10]] [[PART5:12]]
-@PART | t=미출제
+@PART | t=그림빵 · 26 새 내용 | pr=중 | why=26 바뀐 쪽 p.3 새 라벨 · 조준호 그림 단답 꼴 | f=PART:3 | m=22.8,73.8,34.2,81.2;54.8,73.8,67.0,81.6;76.4,73.8,86.0,81.2;86.8,52.0,96.8,58.6
+Q: 그림 [[PART:3]](임플란트 구조 및 연결 방식)의 ①~④에 해당하는 연결 방식(connection)과 index 형태를 쓰시오.
+A: ① Internal Cornical / Hex-indexed(슬라이드 철자 그대로 — Bone-level의 Internal conical connection) ② External Butt-joint / Hex-indexed(Bone-level) ③ Internal Conical / Octa-indexed(Tissue-level) ④ External Conical / Hex-indexed(Tissue-level) — 26 필기: {n:tissue-level 같은 경우에는 넓게 보면 internal connection인데 안쪽 구조는 보통 octa 구조로 되어있는 경우가 많음}. [[PART:3]]
+@PART | t=짤 변형 · 26 새 내용 | pr=중 | b=P09 | why=P09(25) 같은 쪽 목록의 나머지 2방식 · 26 바뀐 문구 | oid=IMPL:P:상부보철물연결방식3가지를쓰고scrp를설명하시_6d332b
+Q: 임플란트 보철물 유지 방식 3가지를 쓰고, 시멘트 유지형과 나사·시멘트 유지형(SCRP)을 26 슬라이드 정의로 설명하시오.
+A: ① 나사 유지형(screw-retained) — {u:Abutment-level: restoration screw-retained to an intermediate abutment / Implant-level: restoration screw-retained directly to the implant} ② 시멘트 유지형(cement-retained) — {u:Restoration cemented to a screw-retained abutment} ③ 나사·시멘트 유지형(screw- and cement-retained prosthesis; SCRP) — {u:Restoration cemented to the abutment · The entire restoration–abutment complex is screw-retrievable as a single unit} / SCRP 풀이(25 필기): {n:지대주는 임플란트에 지대주 나사로 연결되고 상부 보철물과 어버트먼트를 시멘트로 붙임 — 보철물에 구멍을 뚫어 붙인 다음 한 번에 연결, 다 연결하면 나사유지형과 차이가 없어지는 꼴, 쓰이는 지대주는 cement type과 동일} · 26 필기: {n:구멍을 뚫는 이유 = cement retained보다 임플란트에서 abutment + prosthesis complex를 빼는 것이 쉽기 때문}. [[PART:4]] [[PART:6]]
+@PART | t=짤 변형 · 26 새 내용 | pr=중 | b=P09 | why=P09(25) Implant-level의 예 · 26 새 문구·필기 p.6 | oid=IMPL:P:uclaabutment란무엇이며어떻게제작하는_1564cd
+Q: UCLA abutment란 무엇이며 어떻게 제작하는지 쓰고, 26 슬라이드에서 UCLA-type과 함께 Implant-level 나사 유지형의 예로 든 것과 그 방식을 쓰시오.
+A: {u:Implant-level(restoration screw-retained directly to the implant)의 예 = ① UCLA-type restoration ② Ti-base–bonded restoration} / UCLA: 1-piece, screw-retained abutment-crown restoration that was attached directly to the implant — this abutment-crown combination was colloquially described as a "UCLA abutment"(25 자료 — 26에서 빠짐) · 26 필기: {n:abutment + prosthesis가 한 덩어리(UCLA) → abutment level이 아닌 implant level에만 나사가 존재} · 제작: {n:왁스업 후 캐스팅(Osstem GoldCast = 골드 / NP-Cast = 비귀금속) → 포세린 빌드업 → abutment와 crown이 한 덩어리가 되고 hole을 통해 지대주 나사로 임플란트에 한 번에 연결} / Ti-base–bonded — 26 필기: {n:지르코니아는 한 덩어리로 만들지 못함 → 바깥에서 미리 Ti base에 지르코니아를 붙여서 소결한 다음에 이 전체를 탈착하는 방식}. [[PART:4]] [[PART:6]] [[PART:24]] [[PART:19]] [[PART5:6]]
+@PART | t=그림빵 | pr=중 | b=P09 | why=P09(25) 유지 방식 쪽 SCRP 단면 · 25 필기 'SCRP로 많이 보실' | f=PART:6 | m=70.4,68.2,77.4,71.8;70.4,73.6,74.8,76.9;70.4,79.6,79.4,83.0;70.4,82.9,76.6,86.0;70.4,87.0,80.4,90.4
+Q: 그림 [[PART:6]] 가운데 오른쪽 나사·시멘트 유지형(SCRP) 단면 그림의 ①~⑤ 이름을 쓰시오.
+A: ① Screw hole ② Crown ③ Cement space ④ Abutment ⑤ Abutment screw — 26 필기: {n:결국 cement로 SCRP의 abutment + prosthesis를 붙인 다음에는 위의 나사 유지형과 동일한 방식으로 작동}. [[PART:6]]
+@PART | t=26 새 내용 | pr=중 | b=P09 | why=26 바뀐 쪽 p.10 목록 4 · P09 Abutment-level 예 MUA | oid=IMPL:P:multiunitabutment의용도를쓰고s_9abbeb
+Q: Multi-unit abutment(MUAs)의 기능(Functions of MUAs) 4가지를 쓰고, straight와 angled multi-unit abutment의 차이를 쓰시오.
+A: {u:Functions of MUAs: ① Raise and level the prosthetic platform ② Improve visibility and seating of the prosthesis ③ Correct implant angulation ④ Optimize screw-access hole position} / straight vs angled: The straight multi-unit abutments raise the height of the prosthetic connections, while the angled multi-unit abutments do the same and also correct for angulation(25 자료 — 26에서 빠짐) — 그림: Straight(Diameter Ø5.5 · G/H 2.5) · Angled(20° · Diameter Ø5.5 · G/H 2.0) / 용도(25 필기): {n:Multiple case에서 연결부가 깊어 나사 하나로 안쪽에 접근하기 힘들 때 잇몸 레벨 높이나 그 이상으로 끌어올린 후 prosthetic screw로 연결 — 전용 드라이버로 바깥쪽에서 잡아 통째로 체결, 위에 크라운·fixed hybrid 등} · {u:Prosthesis connection: Direct-to-implant / Abutment-level using multi-unit abutments (MUAs)}. [[PART:10]] [[PART:27]] [[PART5:12]]
+@PART | t=미출제 | pr=하 | why=목록 p.9 2종 미출제 · 강조 없음(조준호 새 카드 대비)
 Q: 임플란트 전악 보철물의 종류 2가지를 쓰고 형태를 비교하시오.
 A: 고정성 임플란트지지 보철물(implant-supported fixed prosthesis): {n:가장 쉬운 고정 임플란트 수복 형태, 보통 전치부와 양 구치부 세 피스 정도로 나눠 고정} / 고정성 하이브리드 보철물(fixed hybrid prosthesis): {n:치은 부위를 가진 덴처 형태, 구멍을 뚫어 연결}. [[PART:9]]
-@PART | t=미출제
+@PART | t=교수 강조 · 26 강조 | pr=상 | b=P08 | why=26·25 수업 강조 'one body' p.17-18 · P08 Rigid 짝 | oid=IMPL:P:abutmentlevelimpression에_930935
 Q: Abutment-level impression에 쓰는 지대주 2가지를 쓰고, 원바디 지대주에 hex가 없는 이유와 임상적 문제를 쓰시오.
-A: Abutment Level Impression(Closed Tray Technique) — Combi Abutment({n:원바디}) · Dual Abutment(Hex / Non-hex) / {n:원바디는 안에서 돌아야 하니까 hex가 있을 수 없음. 밖에서 한 임플란트가 흔들린다고 오면 구멍도 없어 찾을 수가 없어 두꺼운 상부보철물을 갈아야 할 일이 생김}. [[PART:17]]
-@PART | t=미출제
+A: Abutment Level Impression(Closed Tray Technique) — Combi Abutment({n:원바디}) · Dual Abutment(Hex / Non-hex) / {u:Prefabricated or custom abutment in place → VPS or digital impression} / {n:원바디는 안에서 돌아야 하니까 hex가 있을 수 없음. 밖에서 한 임플란트가 흔들린다고 오면 구멍도 없어 찾을 수가 없어 두꺼운 상부보철물을 갈아야 할 일이 생김} / 26 필기(p.18): {e:one body라면 나중에 임플란트 보철물 제거할 때 구멍을 파도파도 없을 수 있다는 점을 유념해야 한다}(25년도에도 강조함). [[PART:17]] [[PART:18]]
+@PART | t=26 새 내용 · 26 강조 | pr=상 | b=P08 | why=26 새 쪽 p.18 + 26 강조 'one body' · P08 그림 짝
+Q: 26 슬라이드 'Abutment engagement'에서 engaging과 non-engaging을 각각 정의하고, two-piece(separate-screw) type과 one-piece(solid screw-in) type에 적용되는지와 각각의 장점·한계를 쓰시오.
+A: {u:Engaging — Engages the implant's rotational index · Two-piece (separate-screw) type: applicable · One-piece (solid screw-in) type: generally not applicable · Provides anti-rotation and defined rotational positioning} / {u:Non-engaging — Does not engage the implant's rotational index · Two-piece (separate-screw) type: applicable · One-piece (solid screw-in) type: applicable · Allows rotational freedom, which may facilitate seating and accommodate minor positional or fabrication discrepancies · In single-unit restorations, precise repositioning may be difficult without a positioning/indexing aid · Depending on connection design, may provide a broader, more continuous contact surface by bypassing the rotational index} / 그림: Rigid Abutment · Transfer Abutment(Hex · Non-hex) — 26 필기: {n:rigid abutment = one piece abutment → non-engaging 구조로 non-hex} · {n:rigid 용어가 중요하지는 않음} · {e:one body라면 나중에 임플란트 보철물 제거할 때 구멍을 파도파도 없을 수 있다는 점을 유념해야 한다}(25년도에도 강조함). [[PART:18]]
+@PART | t=미출제 | why=슬라이드에 글자 없음(필기만) · 강조·기출 없음 | x=1
 Q: 임플란트 오버덴처 어태치먼트의 종류를 쓰시오.
 A: {n:Ball type attachment(전용 outer driver) · Locator(가장 많이 쓰는 것 같음) · 자석 형태 · Bar 형태(종종)}. {n:요즘에는 종류가 별로 없음}. [[PART:30]]
-@PART | t=미출제
+@PART | t=짤 변형 | pr=중 | b=P08 | why=P08(25) 기성 지대주 쪽 축 · 25 필기 '원바디 알아두세요' | oid=IMPL:P:지대주abutment를만드는방식3가지를쓰고각_0a7075
 Q: 지대주(abutment)를 만드는 방식 3가지를 쓰고 각각의 제작 방법을 쓰시오. 요즘 제일 많이 보는 것은 무엇인가?
-A: Ready-made abutment(기성): 기성품 그대로 — non-hex/hex({n:hex는 "들어가면 안 흔들려요"}), {n:원바디 형태가 있을 수 있다는 걸 알아둘 것} / Custom abutment(밀링): {n:판봉을 밀링해서 만듦 — 아랫부분은 임플란트 규격과 호환되게 나오고 윗부분만 깎아서 만듦, 요즘 제일 많이 보는 것(필기)} / UCLA abutment(주조): {n:왁스업해서 캐스팅 → 그 위에 포세린 빌드업 — Osstem GoldCast(골드)·NP-Cast(비귀금속)가 UCLA type}. [[PART:22]] [[PART:23]] [[PART:24]] [[PART:25]] [[PART:20]] [[PART:19]]
-@GRAFT | t=짤 변형 | b=Q02
+A: Ready-made abutment(기성 — 26 이름: {u:Prefabricated abutment}): 기성품 그대로 — non-hex/hex({n:hex는 "들어가면 안 흔들려요"}), {n:원바디 형태가 있을 수 있다는 걸 알아둘 것} / Custom abutment(밀링): {n:판봉을 밀링해서 만듦 — 아랫부분은 임플란트 규격과 호환되게 나오고 윗부분만 깎아서 만듦, 요즘 제일 많이 보는 것(필기)} / UCLA abutment(주조): {n:왁스업해서 캐스팅 → 그 위에 포세린 빌드업 — Osstem GoldCast(골드)·NP-Cast(비귀금속)가 UCLA type}. [[PART:22]] [[PART:23]] [[PART:24]] [[PART:25]] [[PART:20]] [[PART:19]]
+@GRAFT | t=짤 변형 · 26 강조 | pr=상 | b=Q02 | why=26 새 별표 p.20 · Q02 '자가골은 모두 갖춘' 바로 옆
 Q: 골이식재를 공여 종별로 4가지로 분류하고, 각각의 골형성·골유도·골전도 능력 유무(O/X)를 표시하시오.
 A: 자가골(Autograft): O/O/O / 동종골(Allograft): X/O/O / 이종골(Xenograft): X/X/O / 합성골(Alloplast): X/X/O. [[GRAFT:20]]
-@GRAFT | t=짤 변형 | b=Q02
+@GRAFT | t=짤 변형 | pr=상 | b=Q02 | why=Q02 별표 p.19 정의 · 26 필기 '시험 예고'
 Q: 골유도(Osteoinduction)의 정의를 쓰고, 골유도성 재료의 예를 드시오. 동종골이 골유도성을 갖게 되는 가공 과정은 무엇인가?
 A: 골의 재생을 유도하기 위해 일종의 신호기전을 이용하는 방식, BMP나 기타 성장인자 등을 이용하여 골전구세포(줄기세포)가 조골세포로 분화되어 골형성을 이루도록 조성하는 것. 재료: Allogenic bone graft material(동종골), rhBMP를 탑재한 이식재. BMP는 무기질로 싸여 있어 활성화되도록 무기질을 벗겨내는 탈회(Decalcification)가 필요 — DFDBA는 cortical bone을 탈회 과정을 거쳐 가공해 growth factor 및 BMP 등이 보전되어 Osteoinductivity 및 Osteoconductivity를 가짐. [[GRAFT:19]] [[GRAFT:29]]
-@GRAFT | t=짤 변형 | b=Q01
+@GRAFT | t=짤 변형 | pr=상 | b=Q01 | why=Q01 바로 다음 쪽 비교 · 24 필기 '치유기간 추가'
 Q: 임플란트 술 후 창상치유의 필요 요건을 쓰시오.
 A: 무균처치 및 감염 방지 / 연조직 피개: 일차 치유 / 적절한 치유 기간 / 이식편의 고정 / 출혈 조절 / 수용부의 혈행 상태 / 환자의 전신 건강. [[GRAFT:62]]
-@GRAFT | t=짤 변형 | b=Q01
+@GRAFT | t=미출제 | pr=중 | why=목록 p.63 미출제 · 26 필기 '주요 실패 원인'
 Q: GBR 실패의 주원인과 그 수치, 창상열개의 주원인을 쓰시오.
 A: Wound dehiscence and membrane exposure: 7-80% / Decreased bone formation 7 times compared with cases without wound dehiscence / Postop infection: 3-15% / Main cause of wound dehiscence: inadequate flap design. [[GRAFT:63]]
-@GRAFT | t=짤 변형 | b=Q03
+@GRAFT | t=짤 변형 | pr=중 | b=Q03 | why=Q03 공여부별 세부 · 완짤 교수라 세부 변형은 중
 Q: 하악골 정중부(symphysis)와 하악지(ascending ramus)에서 자가골을 채취할 때의 주의점·단점을 각각 쓰시오.
 A: 정중부 — 절개: Mental nerve 이신경 손상 주의, Mentalis muscle 이근 포함 / 골채취 부위 선택: 치근 손상 주의, 하악골 하연 골절 주의 / 단점: Incisive nerve 절치신경 손상, 공여부 지혈 및 처치 필요 / 하악지 — 제약 요소: 많은 양 채취 어려움(하악골의 폭, 근돌기, 대구치, 하치조신경) / 절개: 외사선 상방, 협동맥·협지방대 주의 / 단점: 하치조신경 손상 가능성, 개구장애·턱관절장애(측두근건의 과도한 외상). [[GRAFT:100]] [[GRAFT:101]]
-@GRAFT | t=미출제 | b=Q02
+@GRAFT | t=짤 변형 · 26 강조 | pr=상 | b=Q03 | why=26 필기 p.98 '제목 7가지가 답' · Q03 완짤 3회
+Q: 자가골 공여가 가능한 구강 내 부위를 7가지 열거하시오(26 수업 필기 기준).
+A: ① 하악골 정중부(Symphysis) ② 하악지, 하악골 상행지부(Ascending Ramus — External oblique ridge) ③ 협골/관골(Zygoma, Malar bone) ④ 상악결절(Maxillary tuberosity) ⑤ 하악 골체부(Mandibular body) ⑥ 근돌기, 오훼돌기(Coronoid process) ⑦ 26 필기: {n:구개부(hard palate)} — ①~⑥ = 슬라이드 제목(p.100-105 · JB 답 6개 그대로) · ⑦은 슬라이드 제목이 아니라 '기타 구강 내 채취 부위'(p.106 구개 그림 · 필기 "구개측은 좋은지 잘 모르겠어요") / 26 필기(p.98): {e:"자가골 공여가 가능한 구강 내 부위를 열거하시오 → 뒤 슬라이드에 나오는 슬라이드 제목 7가지가 답이다"}(25년도에도 강조함) ⚠ 구강 외(Free rib bone graft · Free iliac bone graft · Microvascular Fibula flap)는 쓰지 말 것. [[GRAFT:98]] [[GRAFT:100]] [[GRAFT:106]]
+@GRAFT | t=미출제 | pr=중 | b=Q01 | why=26 필기 '모두 읽어주셨습니다' p.16 · 성공 요건과 혼동 주의
 Q: 이상적인 골이식재의 조건을 쓰시오.
 A: 우수한 골형성 능력 보유 – 골전도성과 골유도성이 있을 것 / 감염 위험성이 없어야 함 / 조작의 용이성(Easy handling) / 항원성(Antigenicity)이 없어야 함 / 오랜 기간 사용을 통해 검증되고 신뢰성이 있어야 함 / 생체친화성(흡수되어 뼈로 대체될 것, 독성이 없어야 함) / 이식 후 예지성이 높아야 함 / 일정 강도를 유지하면서 전성(Malleability) / 필요한 만큼 충분한 양 / 멸균 / 가격 경쟁력. [[GRAFT:16]]
-@GRAFT | t=미출제 | b=Q01
+@GRAFT | t=미출제 | pr=중 | b=Q01 | why=26 필기 '표시한 부분 읽어주셨습니다' p.15 · 목록 4
 Q: 골이식 예후를 불량하게 하는 외상의 종류 4가지와 각각의 예를 쓰시오.
 A: Surgical trauma(부적절한 피판 설계, 주요 혈관 손상, 드릴·전기소작기에 의한 골조직 열손상, 과도한 피판 견인에 의한 조직 압박) / Mechanical trauma(과도한 교합력, 과도한 압박 드레싱, 구강악습관: 이갈이·이악물기) / Chemical trauma(세균감염, 이식재의 부적절한 조작 및 오염) / Cellular Injury(국소적 산소 공급 부족, 전신 건강 불량·영양결핍). [[GRAFT:15]]
-@GRAFT | t=미출제 | b=Q02
+@GRAFT | t=미출제 | pr=중 | b=Q02 | why=목록 p.22-23 미출제 · 자가골 O O O의 쓰임
 Q: 자가골 이식이 꼭 필요한 경우를 쓰시오.
 A: ① 거대 결손부 ② 혈행 상태가 매우 안 좋은 부위(수차례 수술 실패, 흉터 조직: 외상·치조열) ③ 상악동(상악동병변, 구강상악동누공, 수차례 수술 실패, 상악동점막 거대 천공) ④ In larger defects: 1-wall bony defect(vertical or horizontal alveolar ridge augmentation). [[GRAFT:22]] [[GRAFT:23]]
-@GRAFT | t=교수 강조 | b=Q02
+@GRAFT | t=교수 강조 | pr=중 | why=필기 '요것만 잘 기억 · 금기도 잘 알아둘 것' p.27
 Q: 골이식편의 보관 원칙과 금기를 쓰시오.
 A: 가능하면 채취 후 바로 이식할 것 / 식염수 적신 거즈, 등장성 혈장(?), PRP 적신 거즈 / 식염수에 담가두는 것은 용해 가속화 / 금기: 증류수(저삼투압으로 세포용해), 혈액(세포독성) / 조작 원칙: 필요한 만큼만 채취(수용부 크기 확인: 본왁스, 틴포일), 신속한 채취 및 이식, 다양한 기구 사용. [[GRAFT:27]]
-@GRAFT | t=미출제 | b=Q01
+@GRAFT | t=미출제 | pr=중 | why=목록 p.68·78 미출제 · 노출 원인 7
 Q: 차폐막(membrane)의 기능을 쓰고, 차폐막 노출의 원인을 쓰시오.
 A: 기능: 결손부위에 격리 공간을 만들어 Soft Tissue가 결손 부위로 자라 들어오지 못하게 하고 충분한 혈류 공급을 통해 골이 자라날 수 있도록 유도(Soft Tissue의 세포가 Bone의 세포보다 자라는 속도가 빠름) / 노출 원인: 부적절한 피판 설계 / 혈액공급 장애 / 절개선이 차폐막 변연부와 일치하는 경우 / 차폐막 상방의 연조직 괴사 / 차폐막 변연부가 날카로운 경우 / 긴장성 봉합 / 임시 보철물에 의한 압박. [[GRAFT:68]] [[GRAFT:78]]
-@GRAFT | t=교수 강조 | b=Q02
+@GRAFT | t=26 강조 | pr=상 | b=Q02 | why=26 새 별표 p.17 · Q02 JB 해설 '분류법 3가지'
 Q: 골이식재의 분류법 3가지를 쓰고, 각 분류에 속하는 종류를 쓰시오.
 A: 골치유 기전에 따른 분류: 골전도 · 골유도 · 골형성 / 물리적 형태에 따른 분류: Powder(분말)·Particle(입자), Granule·Chip, Block, Putty(퍼티)·Gel(겔), Strip(스트립) / 공여 종별에 따른 분류: 자가골(Autograft) · 동종골(Allograft) · 이종골(Xenograft, Heterograft) · 합성골(Alloplastic material, Synthetic bone). [[GRAFT:17]]
-@GRAFT | t=미출제
+@GRAFT | t=미출제 | pr=중 | why=26 필기 '전부 읽어주셨습니다' p.96 · 목록 4
 Q: 발치 후 즉시 임플란트 식립(immediate implant placement)의 적응증(Indication)·금기증(Contraindication)과 장단점을 쓰시오.
 A: Indication: No acute infection · Prolonged retention of deciduous tooth, trauma, caries · Minimum 3 walls intact · Apical area of extracted tooth: minimum 5 mm bone · Thick socket bone wall · Healthy soft tissue / Contraindication: Acute infection · Deficiency of residual bone · Progressive periodontitis with suppuration · Severe soft tissue defect · Nearby important anatomic structure / Advantages: Decreased treatment period · Decreased surgical procedures · Prevention of soft and hard tissue loss · Good esthetic results (?) / Disadvantages: Increased failure rate · Increased complication · No prevention of bone loss · gingival recession: esthetic problem (?) / 필기: {n:3면 이상 멀쩡해야 하고 염증이나 defect가 있으면 안 하는 게 좋다} · 다른 필기: {n:적어도 3개의 벽이 있어야 즉시 임플란트 식립이 가능합니다}. [[GRAFT:95]] [[GRAFT:96]]

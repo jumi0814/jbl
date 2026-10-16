@@ -1,354 +1,375 @@
-@COL | t=짤 변형 | b=Q28
+@COL | t=짤 변형 | pr=상 | b=Q28 | why=SPD x축 해마다(25~21년) · p.6 '시험에 나옵니다!'
 Q: SPD(spectral power distribution)의 x축과 y축이 각각 나타내는 것을 쓰고, 650 nm 빛이 빨간색으로 보이는 이유를 SPD로 설명하시오.
 A: x축 = Wavelength λ (nm)(파장) / y축 = Relative radiant power(세기). / 650 파장을 가진 빛도 빨~보를 모두 갖고 있는데 그중 가장 높은 세기를 갖고 있는 것이 빨간색이어서 빨간색으로 보인다(필기). [[COL:6]]
-@COL | t=짤 변형 | b=Q28
+@COL | t=짤 변형 | b=Q28 | why=p.8 필기만(시험 표시 없음) · SPD 축은 x·y축 문항이 맡음 | x=1
 Q: 흰색 LED의 SPD 특징과 그것이 눈에 좋지 않은 이유를 쓰시오.
 A: 흰색 LED = {n:파란색 LED에 형광물질을 넣어 분산} → 청색 파장 peak가 매우 높고 형광 물질로 퍼뜨린 파장이 함께 보임. 전기 효율이 좋고 수명이 길고 열이 덜 나지만 청색 peak 때문에 눈에 안 좋다(필기). [[COL:8]]
-@COL | t=짤 변형 | b=Q26
+@COL | t=짤 변형 | pr=상 | b=Q26 | why=CIELAB 7회 완짤 · p.59 '방향 잘 기억할 것 (음양 구분)'
 Q: CIELAB에서 +a*, −a*, +b*, −b* 방향의 색을 쓰고, 채도(C*ab)와 색상각(hab)을 구하는 식을 쓰시오.
 A: +a* = Red · −a* = Green · +b* = Yellow · −b* = Blue. C*_ab = (a*² + b*²)^1/2(거리 = 채도) · h_ab = tan⁻¹(b*/a*)(각도 = 색상). [[COL:59]] [[COL:60]]
-@COL | t=짤 변형 | b=Q26
+@COL | t=짤 변형 | pr=중 | b=Q26 | why=CIELAB 기출 쪽 p.59 다른 줄 · ΔE p.62
 Q: CIE L*a*b*와 CIE L*u*v*는 각각 무엇에 쓰이는지, 두 색의 색차(ΔE*ab)는 어떻게 구하는지 쓰시오.
 A: CIE L*a*b* (CIELAB) : Munsell spacing, colorant / CIE L*u*v* (CIELUV) : additive mixing. ΔE*ab = (ΔL*² + Δa*ab² + Δb*ab²)^1/2 — 3차원 공간상의 거리(필기). [[COL:59]] [[COL:62]]
-@COL | t=짤 변형 | b=R22
+@COL | t=짤 변형 | pr=상 | b=R22 | why=23년 단답 · p.19 '시험 필출!!' · 교수 '같은 것 냄'
 Q: 인간의 색 지각이 three-dimensional이라는 뜻을 슬라이드의 세 용어와 한글 뜻으로 쓰시오.
 A: Hue(색상 — red, green, blue...) / Colorfulness(채도 — {n:얼마나 진한가}) / Brightness(명도 — {n:얼마나 밝나}). / 세 가지를 조합하면 모든 색을 3차원 공간에 찍을 수 있다(필기). [[COL:19]]
-@COL | t=짤 변형 | b=S14
+@COL | t=짤 변형 | pr=상 | b=P27,S14 | why=25년 유백광 이유(답 미상) · p.89 정의 그대로
 Q: 치아의 opalescence를 정의하고, 반사광과 투과광의 색, 이를 일으키는 입자의 조건을 쓰시오.
 A: Scattering of the shorter wavelengths of the visible spectrum of light (opal effect). / Reflected light : bluish / Transmitted light : orange/brown. / Particles : smaller than the wavelength of visible light and have a much higher refractive index than the matrix material. [[COL:89]]
-@COL | t=짤 변형 | b=T20
+@COL | t=짤 변형 | pr=상 | b=T20 | why=조건등색 3회(21·20·19년) · p.70 '국시에 맨날 나오죠'
 Q: Tristimulus colorimeter가 조건등색(metamerism)을 측정할 수 없는 이유와, 조건등색을 평가할 수 있는 장비를 쓰시오.
 A: {n:색차계는 RGB를 셀로판지 같은 필터로 XYZ로 나타낼 뿐 프리즘이 없어서 각 파장별 반사율은 계측 불가} — Cannot be used to quantify metamerism. Spectrophotometer(분광측색기)는 {n:프리즘으로 분광해 파장별 반사율을 알 수 있어} Can also evaluate metamerism. [[COL:69]] [[COL:70]] [[COL:72]]
-@COL | t=미출제
+@COL | t=미출제 | pr=중 | b=T20 | why=p.68 장비 4종 · p.74 cross-media '(중요)'
 Q: 색 측정 장비 4가지를 쓰고, spectroradiometer의 장점을 쓰시오.
 A: Tristimulus colorimeters · Spectroradiometers · Spectrophotometers · Digital cameras. Spectroradiometer (TSR) Advantage: Actual condition · All forms of color (surface and self-luminous) ⇒ cross-media color reproduction (e.g., monitor against print). [[COL:68]] [[COL:74]]
-@COL | t=미출제
+@COL | t=미출제 | why=p.49·51 시험 표시·기출 없음(하) | x=1
 Q: CIE system이 규정한 색 지각의 세 요소와 CIE 표준광원 A·B·C·D65를 쓰시오.
 A: Illuminant · Object · observer. A : incandescent light · B : direct sunlight · C : average daylight · D65 : surface color(D: newly recommended in 1964, 6500K). [[COL:49]] [[COL:51]]
-@COL | t=교수 강조 | b=
+@COL | t=교수 강조 | pr=중 | why=p.11 '정반사는 색상이 아님! 중요**' · 미출제
 Q: 정반사와 난반사를 구분하고, 물체의 색은 어느 것에 의한 것인지 쓰시오.
 A: Specular reflection(정반사) = 입사각=반사각, {n:조명이 그대로 보이는 광택 → 색이 아님} / Diffuse reflection(난반사) = 모든 방향으로 빛이 나감 → {n:우리가 보는 물체의 색상은 난반사에 의한 것(필기 "정반사는 색상이 아님! 중요", 별표 2개)}. [[COL:11]] [[COL:12]]
-@COL | t=짤 변형 | b=Q13
+@COL | t=그림빵 · 교수 강조 | pr=중 | why=p.11 '정반사는 색상이 아님! 중요**' · 그림 미출제 | f=COL:11 | m=24.5,23.9,36.9,45.9;38.1,29.1,59.5,45.9;60.5,35.4,68.0,45.9;39.5,86.0,54.9,91.4
+Q: 그림 [[COL:11]]의 ①~④에 해당하는 이름을 쓰고, 물체의 색상은 이 중 어느 반사에 의한 것인지 쓰시오.
+A: ① Specular reflection ② Diffuse reflection ③ Incident light ④ Reflecting surface / {n:정반사 = 입사각=반사각 · 난반사 = 모든 방향으로 빛이 나가는 것(필기)} / {n:색상 = diffuse reflection 난반사에 의한 것 — 정반사는 색상이 아님(필기 "중요**")}. [[COL:11]]
+@COL | t=짤 변형 | pr=중 | b=Q13 | why=p.17 별표 · 24·25년 객관 보기④(교수 불확실)
 Q: 망막의 두 수용체가 담당하는 정보와, 추상체 세 종류가 각각 인식하는 색을 쓰시오.
 A: Rods(간상체) : Rhodopsin, no color information — 흑백 / Cones(추상체) : 3 cone classes — 색 정보, Long = 적색 · Middle = 녹색 · Short = 청색(필기). [[COL:17]]
-@COL | t=미출제
-Q: Opacity·Translucency·Transparency를 정의하고, 치아의 반투명도를 구내에서 간접적으로 측정하는 방법을 쓰시오.
-A: Opacity : The ability of a material to block the passage of light / Translucency : The ability of the material to allow light to pass thorough it / Transparency : extreme value of high translucency. {n:흰색 배경과 검정 배경에서 각각 찍어 비교 — 같으면 불투명, 다르면 그만큼 투명}(필기, Transmittance · Contrast ratio). [[COL:80]] [[COL:81]]
-@COL | t=교수 강조 | b=
+@COL | t=그림빵 · 교수 강조 | pr=중 | b=Q13 | why=p.17 별표 · 그래프 축 묻기(SPD 축 문항 꼴) | f=COL:17 | m=39.6,53.0,41.3,56.3;46.4,62.1,47.8,65.1;49.2,66.0,50.5,69.0;32.5,63.1,34.4,81.3;42.7,91.4,50.7,95.3
+Q: 그림 [[COL:17]]은 Cones(3 cone classes)의 감도 그래프이다. ①~③ 곡선의 이름과 ④ y축 · ⑤ x축의 이름을 쓰시오.
+A: ① S ② M ③ L ④ Relative sensitivity ⑤ Wavelength (nm) / {n:Long = 적색 · Middle = 녹색 · Short = 청색 — 빛의 3원색 RGB에 해당하는 크기의 추상체가 빛을 감지(필기)} / Rods : Rhodopsin, no color information. [[COL:17]]
+@COL | t=짤 변형 | pr=중 | b=Q27 | why=24년 27번 반투명도(안진수 칸 자리·교수 불확실) · p.82 | oid=ESTH:P:opacitytranslucencytrans_aa7127
+Q: Opacity·Translucency·Transparency를 정의하고, 슬라이드 Translucency and Opacity에서 반투명도에 관여하는 두 요소와 치아의 반투명도를 구내에서 간접적으로 측정하는 방법을 쓰시오.
+A: Opacity : The ability of a material to block the passage of light / Translucency : The ability of the material to allow light to pass thorough it / Transparency : extreme value of high translucency. / 관여하는 두 요소 = Reflectance · Thickness [[COL:82]] — 24년 27번 JB 답 "Thickness, Saturation (이창하pf) Reflectance, Thickness (안진수pf)" · {n:투명도는 나이가 들수록 줄어듦(필기)} [[COL:84]] / 측정: {n:흰색 배경과 검정 배경에서 각각 찍어 비교 — 같으면 불투명, 다르면 그만큼 투명}(필기, Transmittance · Contrast ratio). [[COL:80]] [[COL:81]]
+@COL | t=교수 강조 | pr=중 | b=P20 | why=p.103 '임상적으로 중요' · 25년 20번 축(교수 불확실)
 Q: Shade 선택 시 binocular difference와 successive contrast를 고려한 비교 방법을 쓰시오.
 A: Binocular difference — {n:좌우 눈이 인식하는 양이 달라 shade tab은 좌우로 두지 말고 위아래로 놓고 비교(필기 "임상적으로 중요")}. Successive contrast — 오래 보면 눈이 적응하므로 처음 고른 것이 가장 정확, 푸른 에이프런을 보면 치아 색 구분이 쉬워짐(필기). [[COL:103]] [[COL:104]] [[COL:100]]
-@COL | t=미출제
+@COL | t=미출제 | pr=중 | b=P27 | why=25년 유백광과 같은 표 다른 행(p.92 형광)
 Q: Fluorescence와 phosphorescence를 비교하고, 수복물에 형광 물질을 넣는 이유를 쓰시오.
 A: Fluorescence = Absorption of light by a material and the spontaneous emission of light in a longer wavelength(UV ⇒ visible light in the bluish spectrum), Emission must take place within 10⁻⁸ sec / Phosphorescence = Persists after the exciting source is removed, lasts from 0.001 second to 1 day. 사람의 치아에도 형광 특성이 있어 composite resin에 형광 물질을 조금 넣음(필기). [[COL:92]] [[COL:93]] [[COL:94]] [[COL:95]]
-@COL | t=미출제
+@COL | t=미출제 | why=p.85-86 시험 표시·기출 없음 · 긴 정의문 | x=1
 Q: Gloss의 정의와 GU(Gloss Units)의 두 기준값을 쓰고, 광택은 어떤 반사에 해당하는지 쓰시오.
 A: "Angular selectivity of reflectance, involving surface-reflected light, responsible for the degree to which reflected highlights or images of objects may be seen as superimposed on a surface." · GU: Nonreflected surface : 0 GU / Perfect mirror : 1000 GU at 60 degrees. / {n:광택은 정반사 영역 — 조명이 그대로 보이는 것, 측정 시 각도가 중요(필기)}. [[COL:85]] [[COL:86]]
-@COL | t=교수 강조 | b=
+@COL | t=교수 강조 | pr=중 | why=p.105 '이게 중요하다~' · 미출제
 Q: Shade 선택에서 "제일 헷갈리는 것"은 무엇이며, 이 점에서 어떤 shade guide가 좋은지 쓰시오.
 A: {n:명도, 채도, 색상을 분리하는 것(필기 "이게 중요하다~") — 칩을 흑백으로 보면 명도만 다른 줄만 다르게 보이고 채도만 다른 줄·색상만 다른 줄은 똑같이 보임}. / {n:3D master guide가 좋다 — 명도, 채도, 색상을 구분하기 때문 · 흔히 쓰는 vita classic은 그렇지 않음(필기)}. [[COL:105]] [[COL:106]]
-@COL | t=짤 변형 | b=Q20
+@COL | t=짤 변형 | b=Q20 | why=p.101-102 강조 없음 · 24년 20번 답 미상·교수 불확실 | x=1
 Q: Viewer-associated effects에 드는 항목을 쓰고, Age와 Medications(Alcohol or morphine · Caffeine)가 색 지각에 주는 영향을 쓰시오.
 A: Age · Fatigue · Nutrition · Emotions · Medications(+ Binocular difference). / Age : after age 60 ⇒ difficulties in perceiving blues and purples / Fatigue : hue and chroma / Emotions : pupillary diameter. Effect of Chemicals on Color Perception — Alcohol or morphine: red/orange/yellow Lighter · blue/green/purple Darker / Caffeine: red/orange/yellow Darker · blue/green/purple Lighter. [[COL:101]] [[COL:102]] [[COL:103]]
-@COL | t=미출제
+@COL | t=미출제 | pr=중 | why=p.47 '꼭 알기!! cielab 시험에 나온다' · Munsell 최초
 Q: Munsell color order system의 세 요소를 쓰고, 최초의 color order system(연도)과 Munsell 색공간에서 chroma·value가 어떻게 배열되는지 쓰시오.
 A: Munsell Color Order System (1905) — Hue (Y, R, P, B, G) · Value (0~10) · Chroma. The chronicle of main color order systems의 첫 줄 1905 Munsell System({n:필기 "Munsell이 가장 처음 만들었고 유지되고 있어서 아직까지 Munsell 분류를 사용함"}). 원 모양으로 돌아가며(hue) 바깥으로 갈수록 색이 진해지고 안으로 오면 무채색(chroma) · Z축은 명도(value)(필기). [[COL:45]] [[COL:47]]
-@COL | t=미출제
+@COL | t=그림빵 · 교수 강조 | pr=중 | b=Q26 | why=p.47 '꼭 알기!! cielab 시험에 나온다' · 그림 미출제 | f=COL:47 | m=49.4,56.7,53.2,59.5;49.4,68.8,54.0,71.6;59.8,68.8,64.7,71.6;63.5,77.8,75.6,86.0
+Q: 그림 [[COL:47]] Munsell Color Order System (1905)의 ①~④에 해당하는 이름을 쓰시오.
+A: ① Hue circle ② Weak chroma ③ Strong chroma ④ Value / 슬라이드: Hue (Y, R, P, B, G) · Value (0~10) · Chroma / {n:원모양으로 돌아가며, 바깥으로 갈수록 색이 진해짐 · Z축은 명도 · |X| 커질수록 색이 진해진다(필기)}. [[COL:47]]
+@COL | t=미출제 | why=p.21-25 시험 표시·기출 없음 · 필기 설명 위주 | x=1
 Q: Color constancy(색의 항속성)를 설명하고, color contrast와의 차이를 슬라이드 예와 함께 쓰시오.
 A: Color Constancy — One of the great mysteries of color vision (Bright scene vs dimly lit scene · One colored light vs another colored light): {n:조명이 달라도 실제로 어떤 색을 띠고 있을지 머릿속에서 예측해 자동 보정 — 카메라의 white balance와 같은 기능(필기)}. 노랑·파랑 조명 아래 큐브의 동그라미 친 칸, 체스판 A·B는 실제로 같은 회색(필기). Color Contrast는 Spatial(착시 — 옆 색의 영향)·Temporal(빨간 색을 한참 보다 보면 세상이 녹색)(필기). [[COL:21]] [[COL:22]] [[COL:23]] [[COL:25]]
-@COL | t=짤 변형 | b=Q13
+@COL | t=짤 변형 | pr=중 | b=Q13 | why=p.5 '단위가 나노미터라는 것이 중요!!' · 24·25년 보기②
 Q: 사람 눈이 볼 수 있는 가시광선의 범위를 단위와 함께 쓰고, 보라색 밖과 빨간색 밖의 빛 이름, 광중합기 파랑빛의 파장을 쓰시오.
 A: (360~400 to 700~780 nm) — {n:필기 "380-700 nm 정도 - 단위가 나노미터라는 것이 중요!!"}(마이크로미터 ✗). / 보라색 밖 = 자외선(ultraviolet) — {n:파장이 짧아지면 에너지가 커지고 몸에 안 좋아짐} / 빨간색 밖 = 적외선(infrared) — {n:적외선은 해롭지 않음}. / 광중합기의 파랑빛 = {n:450-470 nm 정도(다른 해 필기: 보존과의 광중합기 480~490nm)}. [[COL:5]]
-@COL | t=짤 변형 | b=S14
+@COL | t=짤 변형 | pr=상 | b=S14,P27 | why=하늘·노을 4회(22~19년) → 25년 유백광 짝으로 변형
 Q: 빛의 산란이 없다면 하늘은 어떻게 보이는지 쓰고, 낮과 해 질 때(뜰 때) 빛의 이동거리가 하늘의 색을 어떻게 바꾸는지, 사람 치아에서 같은 원리로 나타나는 현상을 쓰시오.
 A: {n:산란이 없다면 까맣게만 보일 것(모든 파장의 빛이 흡수되므로)}. / {n:파장이 짧을수록 산란이 잘 되는데, 낮에는 빛의 이동거리가 짧아 산란이 잘되는 푸른빛들이 지표에 도달} / 해가 질 때나 뜰 때는 빛이 비스듬히 들어오며 공기를 지나는데, 빛의 이동거리가 길어지며 푸른빛이 계속 산란되어 없어지고 남은 빨간색만 보임(필기). / {n:같은 원리 = 사람 치아의 유백광(opalescence)} — Reflected light : bluish · Transmitted light : orange/brown. [[COL:40]] [[COL:89]]
-@COL | t=미출제
+@COL | t=미출제 | why=p.13 필기 위주·시험 표시 없음 · 산란은 하늘·유백광 문항이 맡음 | x=1
 Q: 빛의 투과도(transparency)를 줄이는 두 과정을 슬라이드 용어로 쓰고, 검게·희게·빨갛게 보이는 물체에서 각각 일어나는 일과 etching한 치면이 하얗게 보이는 이유를 쓰시오.
 A: Two processes reduce transparency – Absorption : molecular interaction / Scattering : particles or air bubbles. / {n:검다 = 모든 파장을 흡수(흡수된 빛은 열로 바뀜) · 희다 = 모든 파장을 산란(투명 x) · 빨강 = 적색 빛만 산란시키고 나머지는 흡수 — 흡수하고 남은 빛이 보이는 것}. etching하면 표면이 거칠어져 산란때문에 하얗게 됨(chalky white) → 명도가 올라가서 색상에 영향(필기). [[COL:13]]
-@FUN | t=짤 변형 | b=R03
-Q: 심미에 영향을 주는 요인(Baratieri) 중 '수복할 치아(Teeth to be restored)' 요인 6가지와 General factors 4가지를 쓰시오.
-A: Teeth to be restored: Size · Shape · Color · Surface Texture · Facets (shape, size, and location) · Grooves and developmental ridges [[FUN:3]] / General factors: Gingival contour · Form and thickness of lips · Smile line · Relationship between midline of teeth and midline of face and lips [[FUN:5]] — 인접치 요인(Proportionality · Balance · Alignment · Contact relationships · Embrassure)과 구별. [[FUN:4]]
-@FUN | t=짤 변형 | b=Q08
-Q: Gingival zenith의 정의와 위치의 특징 3가지를 쓰시오.
-A: 정의: the most apical point of the gingival outline. / 특징: Usually lies distal to the center of the tooth / Eccentric triangular tooth neck / Mx. lateral and Mn. incisors – not always. + Must be respected during tooth preparation. [[FUN:15]]
-@FUN | t=짤 변형 | b=Q11
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=R03,P03 | why=23·22·21·20·25 인접치 모두 고르기 · 다른 범주 섞기 | oid=ESTH:P:심미에영향을주는요인baratieri중수복할치_03965c
+Q: 인접한 치아들에 의하여 심미에 영향을 주는 요인들(Factors Related to Adjacent Teeth)을 모두 고르시오. ① Balance ② Contact relationships (shape, size, location) ③ Gingival contour ④ Embrassure ⑤ Grooves and developmental ridges
+A: ①, ②, ④ — p.4 Factors Related to Adjacent Teeth = Proportionality · Balance · Alignment · Contact relationships (shape, size, location) · Embrassure [[FUN:4]] / ③ ✗ Gingival contour = p.5 General Factors(Gingival contour · Form and thickness of lips · Smile line · Relationship between midline of teeth and midline of face and lips) [[FUN:5]] / ⑤ ✗ Grooves and developmental ridges = p.3 Factors Related to the Teeth to be Restored(Size · Shape · Color · Surface Texture · Facets (shape, size, and location) · Grooves and developmental ridges) [[FUN:3]] / 함정: 23·22·21·20년 보기 Surface texture · 25년 보기 facets처럼 p.3·p.5 항목을 섞어 냄.
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q08,P11,Q11 | why=24·22 zenith · 25 '틀린 것' 보기 · 방향어 바꾸기 | oid=ESTH:P:gingivalzenith의정의와위치의특징3_c90fec
+Q: Gingival zenith(Criterion 4: Zenith of the Gingival Contour)에 관한 설명으로 옳지 않은 것은? ① the most apical point of the gingival outline ② Usually lies mesial to the center of the tooth ③ Eccentric triangular tooth neck ④ Mx. lateral and Mn. incisors – not always ⑤ Must be respected during tooth preparation
+A: ② — 슬라이드 "Usually lies distal to the center of the tooth"(distal을 mesial로 바꿈) — {n:필기: 아치 정확히 절반에 있지 않고 약간 distal에 치우쳐져 있어야 자연스럽다} [[FUN:15]] / ①·③·④·⑤ ○ p.15 슬라이드 문장 그대로 — 치은에서 가장 cervical한 점의 이름 = Gingival zenith(24·22년 단답 답) [[FUN:15]]
+@FUN | t=짤 변형 | b=Q11 | why=Class I·II는 상악 전치 배열 객관식 보기로 · 해결법 세부 | x=1
 Q: Balance of gingival levels에서 측절치 gingival height의 Class I과 Class II를 구분하고, Class II의 해결 방법 2가지를 쓰시오.
 A: Class I: Coronal({n:보통의 경우}) / Class II: Apical(Lateral incisor with more apical gingiva). / 해결: Shorter incisal edge + overlap the central incisors · Plastic periodontal surgery. / 필기: {n:측절치를 짧게 만들 방법은 거의 없어 나머지를 길게 만들되, 똑같은 길이에 대한 강박은 버릴 것}. [[FUN:16]]
-@FUN | t=짤 변형 | b=Q11
-Q: O/X — (1) Distal inclination of tooth axis는 central incisor에서 canine으로 갈수록 감소한다. (2) Interdental contact의 위치는 incisors에서 posterior dentition으로 갈수록 apical로 간다. (3) 상악 측절치의 gingival height는 Class I에서 apical이다.
-A: (1) X — Increases from the central incisor to the canines [[FUN:14]] (2) O — Progress apically from the incisors toward the posterior dentition [[FUN:17]] (3) X — Class I: Coronal, Class II: Apical [[FUN:16]]
-@FUN | t=짤 변형 | b=T03
-Q: Black triangle을 줄이기 위해 contact point를 정할 때의 기준과 그 한계를 쓰시오.
-A: 기준: Contact point ~ alveolar crest(+ Inter-radicular distance) — {n:X-ray로 bone level을 보고 alveolar crest~contact 거리를 5 mm 이내로(26 필기: 5mm까지는 치은이 차오르고 그 이상은 1mm마다 차오르는 양이 매우 줄어듦)}. 한계: {n:억지로 채우면 overhang → 치주 건강·우식 위험} · {n:contact을 무한정 내리면 중절치의 모양과 비율이 비심미적 → 타협, 환자에게 한계를 설명}. [[FUN:13]]
-@FUN | t=짤 변형 | b=R07
-Q: 상악 중절치·측절치·견치의 width/height ratio(p.20)와 폭 차이(mm)를 쓰시오.
-A: Width/height ratio: Central 86% · Lateral 79% · Canine 77%(p.19 그림: Men 85·76·77% / Women 86·79·81%). / Width: Central > Lateral 2-3 mm · Central > Canine 1 - 1.5 mm · Canine > Lateral 1 - 1.5 mm. / Height: Central = Canine > Lateral 1 - 1.5 mm. [[FUN:19]] [[FUN:20]]
-@FUN | t=짤 변형 | b=R07
-Q: Golden proportion의 수치와 슬라이드의 하위 항목 3가지를 쓰시오. 크기 비율의 '안정적인 기준'은 무엇인가?
-A: 1.618 : 1.0 : 0.618 — {n:정면에서 본 상악 중절치·측절치·견치의 M-D 폭}. ① Too strong in dentistry – excessive narrowness of arch ② Tooth height, width/length ratio, line angle ③ Dominance: related to personality. 안정적인 기준은 width/height ratio("stable reference in dimension"). [[FUN:18]] [[FUN:19]]
-@FUN | t=미출제
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q11,P11 | why=24 탈★·25 '틀린 것' 같은 축 · 짝 바꾸기 | oid=ESTH:P:ox1distalinclinationofto_b4b5ff
+Q: 상악 전치 배열과 관련된 것 중 틀린 것은? ① Distal inclination of tooth axis: Increases from the central incisor to the canines ② Gingival height of lateral incisor: Class I – Apical ③ Position of interdental contact: Progress apically from the incisors toward the posterior dentition ④ Incisal edge configuration: "Gull" shape – Young patient · Aging → Straight line or inverted curve ⑤ Lower lipline: Coincidence of incisal edges with the lower lip is essential for a pleasing smile
+A: ② — 슬라이드 "Class I: Coronal · Class II: Apical"(짝 바꿈) — {n:26 필기: class I이 보통의 경우} · Class II = Lateral incisor with more apical gingiva [[FUN:16]] / ① ○ p.14 — 25년 '중절치에서 견치로 멀어질수록 치아 장축이 원심 방향을 향한다' ○ [[FUN:14]] / ③ ○ p.17 [[FUN:17]] / ④ ○ p.28 [[FUN:28]] / ⑤ ○ p.29 [[FUN:29]] / 24년 JB 해설이 정리한 기준(tooth axis · zenith · gingival levels · interdental contact · incisal edge · lower lipline)에서 방향어(distal·coronal·apical·gull)를 바꾼 보기를 대비.
+@FUN | t=짤 변형·교수 형식(객관식) | pr=중 | b=T03,U03 | why=21·20 거리 축(전임 교수) · 26 필기 5 mm·한계 | oid=ESTH:P:blacktriangle을줄이기위해conta_4358b4
+Q: Criterion 2 Interdental closure(black triangle)에 관한 강의 내용으로 옳지 않은 것은? ① Loss of attachment and opened embrassures → Restoration ② 기준: Contact point ~ alveolar crest · Inter-radicular distance ③ alveolar crest~contact point 거리를 5 mm 이내로 하는 것이 가장 좋다 ④ 억지로 채우면 overhang이 생겨 치주 건강·우식 위험 문제가 생긴다 ⑤ papillae가 차오르도록 contact point는 제한 없이 최대한 내리는 것이 가장 심미적이다
+A: ⑤ — {n:필기 "But, contact을 무한정 내리면 중절치의 모양과 비율이 심미적이지 않게 됨. 적당히 타협해주는게 중요"}(반대로 바꿈) [[FUN:13]] / ①·② ○ p.13 슬라이드 [[FUN:13]] / ③ ○ {n:필기 "이 거리를 5mm 이내로 하는 것이 가장 좋다" · 26 필기 "5mm까지는 치은이 차오르고, 그 이상은 1mm가 늘어날 때마다 치은이 차오르는 양이 매우 줄어든다는 논문이 있다"} — 21·20년 '완전히 채워지는 거리' 답 1~5 mm [[FUN:13]] / ④ ○ {n:필기 "억지로 채우면 overhang 생기고 치주 건강, 우식 위험 등 문제"} [[FUN:13]]
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=R07,R19 | why=23·22·21·20 폭/길이 비율 쪽 · 짝 뒤집기 | oid=ESTH:P:상악중절치측절치견치의widthheightra_696c0f
+Q: 상악 전치의 Relative tooth dimensions(Criterion 7)에 관한 설명으로 옳지 않은 것은? ① "width/height ratio": stable reference in dimension ② Width/height ratio of central incisor: Men 85% · Women 86% ③ Width: Central > Lateral : 2-3 mm ④ Height: Central = Canine > Lateral : 1 - 1.5 mm ⑤ Tooth size: Darker tooth > lighter tooth
+A: ⑤ — 슬라이드 "Tooth size: Male >…> female · Lighter tooth > darker tooth"(짝 뒤집음) — {n:필기 "밝은 치아가 커보이고 어두운 치아가 작아보임"} · p.27 Brighter teeth appears closer & larger와 같은 방향 [[FUN:19]] [[FUN:27]] / ② ○ p.19 그림(중절치 Men 85% · Women 86% — 23·22·21·20년 답 85%) · p.20 Central : 86% [[FUN:19]] [[FUN:20]] / ①·③·④ ○ p.19·20 [[FUN:19]] [[FUN:20]] / ⚠ 23년 환영 문항 JB 답(밝은 면은 어두운 면보다 넓게 보인다 = 틀림)은 이 슬라이드와 어긋남 — 자료대로 판단.
+@FUN | t=짤 변형·교수 형식(객관식) | pr=중 | b=P14,R07 | why=25 황금 비율(교과서 근거) · p.18·19 기준 바꾸기 | oid=ESTH:P:goldenproportion의수치와슬라이드_59cea4
+Q: Relative tooth dimensions의 "Golden proportion"에 관한 설명으로 옳지 않은 것은? ① "Golden proportion", "Golden percentage" in M-D dimension ② 1.618 : 1.0 : 0.618 ③ Too strong in dentistry – excessive narrowness of arch ④ Dominance: related to personality ⑤ 크기 비율의 stable reference in dimension이다
+A: ⑤ — "stable reference in dimension"은 p.19 "width/height ratio"(기준 바꿈) [[FUN:19]] / ①~④ ○ p.18 — {n:필기: 황금비율 = 정면에서 본(실제 폭 X) 상악 중절치, 측절치, 견치의 MD폭} · {n:26 필기: 황금비율이 안 맞으면 안 예쁘다고 할 수는 없는게 이것도 서양 기준이고 우리나라 사람들에서는 맞추기 어렵다} [[FUN:18]] / 25년 '황금 비율 옳은 것'(보기 전부 ○)은 교과서 문장 — 자료로는 1.618 : 1.0 : 0.618과 서양 기준이라는 한계까지.
+@FUN | t=미출제 | why=견치 '크게 중요하지는 않다'(26 필기 p.24) · 미출제 | x=1
 Q: 상악 견치(canine)의 형태 특징을 쓰시오.
 A: Series of curves or arcs / Thick labiolingual width (wedge shape): resist non-axial load / Mesial outline: convex, ≅ Lateral / Well-developed mesial transition line angle with small mesial lobe / Distal outline: flat / Worn canine: incisal line angle — distal slope: convex · mesial slope: shorter and concave. [[FUN:24]]
-@FUN | t=미출제
+@FUN | t=미출제 | why=미출제 · 측절치 차이는 중절치 형태 문항 보기로 | x=1
 Q: 상악 측절치가 중절치와 다른 점 4가지를 쓰시오.
 A: Reduced size · More rounded mesioincisal angle · Inclined mesial transitional line angle · V-shaped incisal edge(Resemblance to central incisor). [[FUN:23]]
-@FUN | t=교수 강조 | b=Q10
-Q: 상악 중절치 순면 윤곽(Features of central incisors)의 특징 5가지를 쓰시오.
-A: Mesial outline: straight or slightly convex / Rounded mesioincisal angle, esp Lateral / Distal outline: convex / Distoincisal angle: more rounded / Incisal outline: more regular and straight by wear and aging — {n:필기 ⭐ "이번 학기 수업에서 이것만 기억해도 좋다라고 할 만큼 중요한 내용"}. [[FUN:21]]
-@FUN | t=짤 변형 | b=Q06
-Q: Incisal edge configuration의 세 components와 각 특징을 쓰시오.
-A: General Contour: "Gull" shape: Young patient → Aging → Straight line or inverted curve / Interincisal angles: Inverted V, dark negative space / Thickness: Thick incisal edge: look old, artificial, and bulky. [[FUN:28]]
-@FUN | t=짤 변형 | b=Q06
-Q: O/X — (1) Horizontal(Perikymata)은 치아를 longer or narrower로 보이게 한다. (2) Aging → texture ↓ → light reflection ↓ → darker. (3) Opalescence: Enamel transmit blue-violet tone and reflect red-orange tones. (4) Fluorescence: Enamel > dentin. (5) Thick incisal edge: look young.
-A: (1) X — Horizontal: Look shorter or wider · Vertical(Superficial segmentation of developmental lobes): Look longer or narrower [[FUN:26]] (2) O [[FUN:26]] (3) X — Enamel transmit red-orange tone and reflect blue-violet tones [[FUN:25]] (4) X — Dentin > enamel [[FUN:27]] (5) X — Thick incisal edge: look old, artificial, and bulky [[FUN:28]]
-@FUN | t=짤 변형 | b=U05
-Q: Criterion 11 Color에서 Value의 특징 4가지와 Fluorescence의 특징을 쓰시오.
-A: Value: Most important · Correlated to surface texture · Middle third: brightest · Brighter teeth appears closer & larger. / Fluorescence: Dentin > enamel · Luminophore (Europium, Cerium, Ytterbium). / Other criteria > color : Minor effect. [[FUN:27]]
-@FUN | t=미출제
+@FUN | t=교수 강조·짤 변형·교수 형식(객관식) | pr=상 | b=Q06,Q10 | why=p.21 ⭐ '이것만 기억해도 좋다' · 나이 변화 4) 같은 쪽 | oid=ESTH:P:상악중절치순면윤곽featuresofcentr_b69a42
+Q: 상악 중절치·측절치의 형태(Criterion 8: Basic Features of Tooth Form)에 관한 설명으로 옳지 않은 것은? ① Central incisor – Mesial outline: straight or slightly convex ② Central incisor – Distal outline: straight ③ Central incisor – Distoincisal angle: more rounded ④ Central incisor – Incisal outline: more regular and straight by wear and aging ⑤ Lateral incisor – Differences: Reduced size · More rounded mesioincisal angle · Inclined mesial transitional line angle · V-shaped incisal edge
+A: ② — 슬라이드 "Distal outline: convex"(Mesial outline의 straight와 바꿈) [[FUN:21]] / ①·③·④ ○ p.21 Features of Central Incisors — ④는 '나이에 따른 치아변화 옳지 않은 것'(25·24·23·22·21·20년) 보기 4)(○)와 같은 문장 [[FUN:21]] / ⑤ ○ p.23 Features of lateral incisor [[FUN:23]] / {n:p.21 필기 ⭐ "이번 학기 수업에서 이것만 기억해도 좋다라고 할 만큼 중요한 내용이 지금부터 나온다" · 26 필기 "mesial 쪽에 embrasure가 적고 distal 쪽은 큰 것 기억하자"}
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q10 | why=25·24·22·21·20 세 형태 짝 · 반대 방향(옳은 것)
+Q: 상악 중절치 순면의 세 가지 typical form과 그 특징이 옳게 짝지어진 것은? ① Square – Rounded outline ② Ovoid – Barrel shape (incisal and cervical convergence) ③ Triangular – Rounded outline ④ Ovoid – Marked and parellel transition line angles and lobes ⑤ Square – Cervical convergence
+A: ② — p.22 Ovoid: Rounded outline · Barrel shape (incisal and cervical convergence) [[FUN:22]] / ① ✗ Square = Straight outline · Marked and parellel transition line angles and lobes / ③ ✗ Triangular = Straight outline · Cervical convergence — 25·24·22·21·20년 '잘못 짝지어진 것' 정답 'triangular- rounded outline'과 같은 함정 / ④ ✗ Marked and parellel transition line angles and lobes는 Square / ⑤ ✗ Cervical convergence는 Triangular [[FUN:22]] / {n:26 필기: square와 triangular는 모서리가 다 각져 있고 ovoid는 다 둥그렇다는 차이점이 있다}
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q06,Q11 | why=25·24·23·22·21·20 나이 변화 정답 쪽 · 다른 줄 반대로 | oid=ESTH:P:incisaledgeconfiguration_b3a236
+Q: Criterion 12 Incisal Edge Configuration에 관한 설명으로 옳지 않은 것은? ① Three components: General Contour · Interincisal angles · Thickness ② General Contour: "Gull" shape – Young patient ③ General Contour: Aging → Straight line or inverted curve ④ Interincisal angles: Inverted V, dark negative space ⑤ Thickness: Thick incisal edge – look young and natural
+A: ⑤ — 슬라이드 "Thick incisal edge: look old, artificial, and bulky"(반대로 바꿈) [[FUN:28]] / ①~④ ○ p.28 — ③이 '나이에 따른 치아변화 옳지 않은 것'의 정답 자리(보기 'converted curve' ✗ · 슬라이드 'inverted curve') [[FUN:28]] / {n:필기: 보통 1번이 제일 내려와 있고, 2번이 제일 올라가 있고 3번이 그 사이 — 갈매기 모양, young한 느낌}
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q06,S12,P11 | why=나이 변화 1)·2) · 발육 융선 25·22 · 짝 바꾸기 | oid=ESTH:P:ox1horizontalperikymata은_f11fa1
+Q: Criterion 10 Surface Texture에 관한 설명으로 옳은 것을 모두 고르시오. ① Texture → brightness → color ② Aging → texture ↓ → light reflection ↓ → darker ③ Horizontal(Perikymata: Line of Retzius) – Look shorter or wider ④ Vertical(Superficial segmentation of developmental lobes) – Look shorter or wider ⑤ Vertical – Perikymata: Line of Retzius
+A: ①, ②, ③ — p.26 슬라이드 그대로(②는 '나이에 따른 치아변화' 보기 1) texture: decreasing, darker ○의 근거) [[FUN:26]] / ④ ✗ Vertical = Look longer or narrower(Horizontal의 shorter or wider와 짝 바꿈 — 25년 '발육 융선을 치아를 넓어 보이게 한다' ✗ · 25·22년 '발육융선이 있으면 넓어보인다' ✗) [[FUN:26]] / ⑤ ✗ Perikymata(Line of Retzius)는 Horizontal · Vertical은 Superficial segmentation of developmental lobes(구조 짝 바꿈) [[FUN:26]] / {n:26 필기: 옆으로 넓은 치아는 수직선을 강조하면 좁아보이고, 수직으로 긴 치아는 수평선을 강조하면 짧아보일 수 있다}
+@FUN | t=짤 변형·교수 강조·교수 형식(객관식) | pr=상 | b=Q12,U05 | why=25·24·23 명도 · 26 필기 '명도가 가장 중요' | oid=ESTH:P:criterion11color에서value의_6999ba
+Q: Criterion 11 Color에 관한 설명으로 옳지 않은 것은? ① Other criteria > color : Minor effect ② Value: Most important ③ Value: Correlated to surface texture ④ Value: Cervical third: brightest ⑤ Fluorescence: Dentin > enamel · Luminophore (Europium, Cerium, Ytterbium)
+A: ④ — 슬라이드 "Middle third: brightest"(부위 바꿈) — {n:필기: 가장 튀어나오고 넓은 부위가 밝아보이고 cervical 쪽은 상대적으로 어두워보임} [[FUN:27]] / ①·②·③·⑤ ○ p.27 — Value = 명도(25·24·23년 '밝음과 어두움을 나타내는 용어' 답) · {n:26 필기 "명도가 자연스러움을 유지하는데 가장 중요한 요소이다"} · Brighter teeth appears closer & larger [[FUN:27]]
+@FUN | t=미출제 | why=미출제 · 강조 표시 없음(p.12 목록) | x=1
 Q: Criterion 1 Gingival health에서 부위별 정상 소견 3가지와 Atraumatic clinical procedures 3가지를 쓰시오.
 A: Free gingiva: Coral pink and dull surface / Attached gingiva: Orange-peel appearance / Alveolar mucosa: Dark red. / Atraumatic: Biologic width – preparation margin · Axial contour · Nature of restorative material. [[FUN:12]]
-@FUN | t=짤 변형 | b=T09
+@FUN | t=짤 변형 | b=T09 | why=객관·주관 기준 섞기 문항과 같은 축(p.11·31) | x=1
 Q: Subjective esthetic integration을 위한 항목 4가지와, global harmony가 객관적 기준을 무엇과 관련지어 통합하는지 쓰시오.
 A: Variations in tooth form · Tooth arrangement and positioning · Relative crown length · Negative space (incisal embrassure). Global harmony ← Patient's smile · Face shape · Age · Character (+ Technical and Artistic effort of the operator). [[FUN:11]] [[FUN:31]]
-@FUN | t=짤 변형 | b=R09
-Q: O/X — (1) Lower lipline은 상악 incisal edges와 lower lip의 coincidence가 pleasing smile에 essential하다는 기준이다. (2) Smile symmetry를 이루는 세 선은 mouth corners · occlusal line · interpupilary line이다. (3) 수복할 때 동공 위치와 mouth corner를 교합평면에 맞춰 바꿔 줄 수 있다.
-A: (1) O — Coincidence of incisal edges with the lower lip is essential for a pleasing smile [[FUN:29]] / (2) O — Symmetric placement of the mouth corners, occlusal line, & interpupilary line [[FUN:30]] / (3) X — {n:필기 "동공의 위치나 mouth corner를 바꿀 수는 없고" · 26 필기 "우리는 수복할 때 교합평면 정도를 신경써줄 수 있다"} [[FUN:30]]
-@FUN | t=미출제
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=R09,T09 | why=25·23·22 smile symmetry · p.29·30 짝 섞기 | oid=ESTH:P:ox1lowerlipline은상악incisa_4e395d
+Q: Criterion 13 Lower Lipline과 Criterion 14 Smile Symmetry에 관한 설명으로 옳지 않은 것은? ① Lower lipline: Coincidence of incisal edges with the lower lip is essential for a pleasing smile ② Smile symmetry: Symmetric placement of the mouth corners ③ Smile symmetry: Symmetric placement of the occlusal line ④ Smile symmetry: Symmetric placement of the interpupilary line ⑤ Smile symmetry: Coincidence of incisal edges with the lower lip
+A: ⑤ — incisal edges ↔ lower lip은 Criterion 13 Lower Lipline(두 기준 섞기) [[FUN:29]] / ①~④ ○ p.29·30 — Symmetric placement of the mouth corners, occlusal line, & interpupilary line(23·22년 '1,2,3 전부' · 25년 세 선의 조합) [[FUN:29]] [[FUN:30]] / {n:필기: 동공의 위치나 mouth corner를 바꿀 수는 없고, 상악 전치의 절단연 level을 맞추어줄 때 참고 포인트로 사용 · 26 필기: 우리는 수복할 때 교합평면 정도를 신경써줄 수 있다}
+@FUN | t=미출제 | why=미출제 · 14 기준과 겹치는 묶음 이름(p.6-8) | x=1
 Q: Magne & Belser의 Fundamental esthetic criteria에서 Dental esthetics 4항목과 Gingival esthetics 2항목을 쓰고, 둘이 조화를 이룬 결과를 쓰시오.
 A: Dental esthetics: Form and dimension · Characterization · Surface texture · Color [[FUN:7]] / Gingival esthetics: Gingival health · Gingival morphology [[FUN:8]] → A smile with harmony and balance. [[FUN:6]]
-@FUN | t=짤 변형 | b=T08
-Q: Fundamental objective esthetic criteria 가운데 치아 자체와 절단연에 관한 기준 6가지(크기 비율 · 형태 · 광학 특성 · 표면 · 색 · 절단연)를 슬라이드 영어 이름으로 쓰시오.
-A: Relative tooth dimensions · Basic features of tooth form · Tooth characterization · Surface texture · Color · Incisal edge configuration(슬라이드 목록 7~12번). 필기 {n:"이걸 넘버링 내진 않습니다 … 각각의 세부 사항들에서 기억할만한 것들만 기억해주시면 됩니다"} — 번호보다 이름과 기준마다의 한 줄. [[FUN:10]]
-@FUN | t=짤 변형 | b=S04
-Q: Criterion 9 Tooth characterization의 네 항목을 쓰고, 슬라이드의 Opalescence 설명과 Dentin effect 두 가지를 쓰시오.
-A: Opalescence · Fluorescence · Translucency · Dentin effect. Opalescence: Enamel transmit red-orange tone and reflect blue-violet tones. Dentin effect: Dentin mamelons · Dentin infiltration (external dentin staining). 투명도·유백광 등은 주로 에나멜, 덴틴은 색 자체(필기). [[FUN:25]]
-@FUN | t=짤 변형 | b=Q12
+@FUN | t=짤 변형·교수 형식(객관식) | pr=중 | b=T08,T09 | why=21·20 criteria 고르기 · 26 넘버링 X → 이름·범주 | oid=ESTH:P:fundamentalobjectiveesth_c12225
+Q: Fundamental Objective Esthetic Criteria(Magne & Belser)에 해당하지 않는 것은? ① Tooth axis ② Zenith of the gingival contour ③ Negative space ④ Lower lip line ⑤ Smile symmetry
+A: ③ — Negative space는 Subjective Esthetic Integration Criteria(Variations in tooth form · Tooth arrangement and positioning · Relative crown length · Negative space — p.31 'Negative space (incisal embrassure)') [[FUN:11]] [[FUN:31]] / ①·②·④·⑤ ○ p.10 목록(14가지) [[FUN:10]] / {n:필기 "Objective한 criteria들이 무수히 많은데, 이걸 넘버링 내진 않습니다" · 26 필기 "저는 이걸 넘버링으로 내지 않습니다!"} — 번호보다 이름과 범주(objective ↔ subjective)로 대비.
+@FUN | t=짤 변형·교수 형식(객관식) | pr=상 | b=S04,R06,P05 | why=22·21·20·23·25 용어 정의 · 정의 서로 바꾸기 | oid=ESTH:P:criterion9toothcharacter_802703
+Q: Criterion 9 Tooth Characterization의 용어 설명으로 옳지 않은 것은? ① Opalescence: Enamel transmit red-orange tone and reflect blue-violet tones ② Dentin effect: Dentin mamelons · Dentin infiltration (external dentin staining) ③ Translucency: 반투명 ④ Transparency: 반투명 ⑤ Fluorescence: 빛을 흡수하여 다른 파장의 빛으로 방출하는 것
+A: ④ — Transparency = 투명(색 강의 p.80 "extreme value of high translucency") — 25년 보기처럼 translucency(반투명)와 바꾼 것 [[COL:80]] / ①·② ○ p.25 — dentin infiltration = 25년 정답 '외인성으로 stain 된 경우에 dentin 처럼 보이는 것' [[FUN:25]] / ③ ○ 색 강의 p.80 "Translucency: The ability of the material to allow light to pass thorough it" [[COL:80]] / ⑤ ○ 색 강의 p.92 "Absorption of light by a material and the spontaneous emission of light in a longer wavelength"(22·21·20년 보기 4) ○) [[COL:92]] / ⚠ opalescence를 '빛의 산란으로 나타나는 현상'으로 쓴 보기는 23년 JB 답이 ✗(이 강의 p.25는 투과·반사) — 색 강의 p.89는 "Scattering of the shorter wavelengths"라 두 정의를 함께 알아 둘 것 [[COL:89]]
+@FUN | t=짤 변형 | b=Q12 | why=명도 축은 Color 문항으로 · 한글 짝·순서는 필기 | x=1
 Q: Criterion 11 Color에서 Value·Chroma·Hue의 한글 용어를 쓰고, 이 중 가장 중요한 것과 필기의 '눈에 거슬리는 순서'를 쓰시오.
 A: Value = 명도 · Chroma = 채도 · Hue = 색상({n:필기 "명도/채도/색상 으로 구분"}). Value: Most important — "명도가 자연스러움을 유지하는데 가장 중요한 요소이다"(26 필기). 눈에 거슬리는 순서: 치아 형태가 1순위, 그 다음 명도, 채도, 색상(필기) · Other criteria > color : Minor effect. [[FUN:27]]
-@INT | t=짤 변형 | b=Q02
-Q: 심미치과학의 세부구성 다섯 가지를 쓰시오.
-A: 치아형태학 / 치과생체재료학 / 색상학 및 광학 / 색, 형태, 질감을 표현해내는 치과의사의 예술적 재능 / 환자의 기대수준(주관적 관점). [[INT:8]]
-@INT | t=짤 변형 | b=Q02
+@INT | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q02,R04 | why=25·24·23·22·21·20 구성요소 · 목표와 섞기 | oid=ESTH:P:심미치과학의세부구성다섯가지를쓰시오_e4f3e2
+Q: 심미치과학의 세부구성에 해당하는 것을 모두 고르시오. ① 치아형태학 ② 색상학 및 광학 ③ 환자의 기대수준(주관적 관점) ④ 환자의 재정상태 ⑤ 치아, 치아주위조직, 입술 및 안모의 조화
+A: ①, ②, ③ — p.8 세부구성: 치아형태학, 치과생체재료학, 색상학 및 광학, 색, 형태, 질감을 표현해내는 치과의사의 예술적 재능, 환자의 기대수준(주관적 관점) [[INT:8]] / ④ ✗ 세부구성에 없음 — 25·24·23·22·21·20년 '구성요소가 아닌 것' 정답 / ⑤ ✗ p.8 '목표'(치아, 치아주위조직, 입술 및 안모의 조화) — 세부구성과 섞은 함정 [[INT:8]] / ⚠ ③ 환자의 기대수준은 주관적 관점이어도 세부구성 ○(슬라이드에서 이 항목만 붉은 글씨) · ② 색상학 및 광학은 기출 보기에 한 번도 없던 세부구성.
+@INT | t=짤 변형 | b=Q02 | why=세부구성 모두 고르기와 같은 축 · T/F 꼴 | x=1
 Q: T/F — (1) '환자의 기대수준'은 주관적 관점이므로 심미치과학의 세부구성에 들어가지 않는다. (2) 색상학 및 광학은 심미치과학의 세부구성이다. (3) 환자의 재정상태는 심미치과학의 세부구성이다.
 A: (1) F — 세부구성 "환자의 기대수준(주관적 관점)" (2) T (3) F — 세부구성에 없음. [[INT:8]]
-@INT | t=짤 변형 | b=Q02
-Q: 심미치과학의 정의를 쓰시오.
-A: 치의학 지식을 바탕으로 치아 및 치아주위조직의 자연스러움을 재현 또는 개선하는 예술적 요소를 포함하는 치의학의 한 분야. [[INT:8]]
-@INT | t=짤 변형 | b=R04
+@INT | t=짤 변형·교수 형식(객관식) | pr=상 | b=Q02,R04,Q01 | why=구성요소·목표 출제 쪽(p.8)의 정의 줄 · 낱말 바꾸기 | oid=ESTH:P:심미치과학의정의를쓰시오_641590
+Q: 심미치과학에 관한 설명으로 옳지 않은 것은? ① 정의: 치의학 지식을 바탕으로 치아 및 치아주위조직의 자연스러움을 재현 또는 개선하는 객관적 기준을 포함하는 치의학의 한 분야 ② 목표: 치아, 치아주위조직, 입술 및 안모의 조화 ③ 세부구성 중 '(주관적 관점)'이 붙은 것은 환자의 기대수준이다 ④ Esthetic Dentistry: "the skills and techniques used to improve the art and symmetry of the teeth and face to enhance the appearance as well as the function of the teeth, oral cavity, and face" ⑤ 심미치과학(審美齒科學): 審(살필 심) · 美(아름다울 미)
+A: ① — 슬라이드 정의는 "자연스러움을 재현 또는 개선하는 예술적 요소를 포함"('예술적 요소'를 '객관적 기준'으로 바꿈 — p.4 "visualizing beauty is a subjective experience"와도 반대) [[INT:8]] [[INT:4]] / ②·③ ○ p.8 [[INT:8]] / ④ ○ p.7(Esthetics in Dentistry 3rd ed. 2018, Wiley) [[INT:7]] / ⑤ ○ p.7 — {n:필기: 아름다움을 살피다 라는 의미를 가지고 있다 · 아름다움 그 자체의 객관적인 것을 떠나 주관적인 것을 고려해야 함} [[INT:7]]
+@INT | t=짤 변형 | pr=상 | b=R04,Q02 | why=23·22·21·20 궁극적 목표 · 목표/세부구성 섞기
 Q: 다음 중 강의자료(p.8)의 심미치과학의 "목표"에 들어 있지 않은 것은? 1) 치아 2) 치아주위조직 3) 입술 4) 안모 5) 환자의 기대수준
 A: 5) — 목표: 치아, 치아주위조직, 입술 및 안모의 조화({n:필기: 목표는 치아 뿐 아니라 주위조직, 얼굴 안모까지 조화를 이루는 아름다움}) / 환자의 기대수준(주관적 관점)은 목표가 아니라 세부구성. [[INT:8]]
-@INT | t=짤 변형 | b=Q01
-Q: 빈칸을 채우시오: Because beauty is primarily a matter of (   ) modified by (   ), visualizing beauty is a (   ).
-A: personal taste / social norms / subjective experience (Fundamentals of operative dentistry 4th ed. 2013). [[INT:4]]
-@INT | t=짤 변형 | b=Q01
+@INT | t=짤 변형·교수 형식(객관식) | pr=중 | b=Q01,P01 | why=25·24·23·22 p.4 문장 · 빈칸을 짝 고르기로 | oid=ESTH:P:빈칸을채우시오becausebeautyispr_f07d01
+Q: 다음 문장의 (가)·(나)·(다)에 들어갈 말로 옳게 짝지어진 것은? "Because beauty is primarily a matter of (가) modified by (나), visualizing beauty is a (다)." ① personal taste – social norms – subjective experience ② social norms – personal taste – subjective experience ③ personal taste – social norms – objective experience ④ Culture – Self-image – subjective experience ⑤ social norms – personal taste – objective experience
+A: ① — p.4(Fundamentals of operative dentistry 4th ed. 2013, Quintessence publishing) [[INT:4]] / ② ✗ (가)·(나) 뒤바꿈 — 개인 취향(personal taste)이 사회 규범(social norms)에 의해 바뀜(25년 '심미와 관련된 키워드' 보기 1) 규범 ✗ 함정과 같은 자리) / ③·⑤ ✗ objective는 반대말 — 24·23·22년 '가장 거리가 먼 것' 정답 = 객관성 / ④ ✗ Culture · Self-image는 p.6 깔때기(Culture · Social norm · Self-image → Beauty (Subjective experience)) [[INT:6]] / {n:필기: 심미 = 한 마디로 주관적인 것}
+@INT | t=짤 변형 | b=Q01 | why=p.6 세 요소는 짝 고르기·제시되지 않은 것 문항 보기로 | x=1
 Q: 아름다움(Beauty)을 이루는 세 요소를 쓰고, 그 결과 아름다움은 어떤 경험인지 쓰시오.
 A: Culture(문화적) · Social norm(사회적) · Self-image(자기자신의 생각) → Beauty (Subjective experience). {n:과거 필기: 가장 중요한 것은 Self-image(환자 스스로 봤을 때 좋아 보이는 것)}. [[INT:6]]
-@INT | t=미출제
+@INT | t=미출제 | why=p.7 영문 정의는 '옳지 않은 것' 문항 보기로 · 빈칸 꼴 | x=1
 Q: Esthetics in Dentistry(3rd ed. 2018, Wiley)의 Esthetic Dentistry 정의에서 빈칸을 채우시오: "the (   ) used to improve the (   ) of the teeth and face to enhance the (   ) as well as the (   ) of the teeth, oral cavity, and face"
 A: skills and techniques / art and symmetry / appearance / function. [[INT:7]]
-@INT | t=미출제
+@INT | t=미출제 | why=審美는 '옳지 않은 것' 문항 보기로 · 미출제 | x=1
 Q: 심미치과학(審美齒科學)의 '審'과 '美'의 뜻을 쓰고, 한자가 뜻하는 바를 쓰시오.
 A: 審 (살필 심) · 美 (아름다울 미) → {n:아름다움을 살피다 — 아름다움 그 자체의 객관적인 것을 떠나 주관적인 것을 고려(필기)}. [[INT:7]]
-@INT | t=미출제
+@INT | t=미출제 | why=미출제 · Wikipedia 정의(근거 약함) · 쓰기 꼴 | x=1
 Q: Wikipedia에 제시된 Aesthetics(esthetics)의 정의를 쓰시오.
 A: Aesthetics, or esthetics, is a branch of philosophy that deals with the nature of beauty and taste, as well as the philosophy of art. [[INT:4]]
-@INT | t=교수 강조
+@INT | t=교수 강조 | why=필기 사례(p.9) · 기출 0 · 쓰기 꼴 | x=1
 Q: 이상적인 smile line을 설명하고, 심미적으로 좋지 않은 smile의 예 세 가지를 쓰시오.
 A: {n:상악 전치가 보이고 하순이 incisal 끝에 위치 — 상악 전치의 절단연이 하순과 비슷한 높이}. 좋지 않은 예: {n:잇몸이 너무 많이 보임 / 하순이 하악을 너무 덮음 / 하악이 너무 많이 보임 — 필기 "어떻게 조화를 이룰 것인가가 이 과목의 목표이다!"}. [[INT:9]]
-@INT | t=교수 강조
+@INT | t=교수 강조 | why=p.16 예고 쪽 · shape 3은 FUN 중절치 형태 문항 | x=1
 Q: 상악 전치부가 심미 수복에서 특히 중요한 이유를 쓰고, 치아 shape 세 가지를 쓰시오.
 A: 웃고 이야기할 때 가장 자주 보이며 잘 보이기 때문에 심미가 매우 중요하고(구치부는 잘 보이지 않아 크게 중요하지 않음), 제일 외상이 많이 일어나는 곳이라 손상에 취약해 심미 수복의 빈도가 높음(26 필기). Shape: Square / Ovoid / Triangular. [[INT:16]]
-@INT | t=미출제
+@INT | t=미출제 | why=사진 사례 필기(p.17) · 서술 꼴 | x=1
 Q: 다음 사진에서 심미적인 문제(problem list)를 찾으시오 — 강의 p.17의 세 증례.
 A: {n:위 #11이 내려와 있음 / 가운데 중절치의 폭경이 안 맞고 gingival line도 안 맞음 / 아래 gingival line이 너무 올라가 있고 두 중절치의 incisor edge 형태가 다름(26 필기)}. [[INT:17]]
-@INT | t=짤 변형 | b=Q01
+@INT | t=짤 변형 | pr=상 | b=Q01,P01 | why=24·23·22 '가장 거리가 먼 것' 같은 방향 · 보기 바꿈
 Q: 다음 중 강의자료에서 아름다움(Beauty)을 이루는 것으로 제시되지 않은 것은? 1) personal taste 2) social norms 3) 객관적으로 정형화된 기준 4) Culture 5) Self-image
 A: 3) — p.4 "beauty is primarily a matter of personal taste modified by social norms, visualizing beauty is a subjective experience" · p.6 Culture · Social norm · Self-image → Beauty (Subjective experience) · {n:필기 "객관적으로 정형화된 것이 아닌 내가 보는 것, 환자1이 보는 것, 환자2가 보는 것이 모두 다를 수 있다"}. [[INT:4]] [[INT:6]]
-@INT | t=미출제
+@INT | t=미출제 | why=26 필기만 · 쓰기 꼴 | x=1
 Q: 26 필기에서 말한 심미치과학의 본질과, 일반적으로 가장 심미적인 수복은 무엇인지 쓰시오.
 A: 본질 — {n:기능적인 것은 기본이고, 기능을 넘어서 아름다운 측면까지 고려해서 수복하는 것} / 가장 심미적 — {n:일반적으로 기존의 치아의 모습과 동일하게 만들어주는 것(기존 치아랑 비교하기 어렵다면 치아형태학 등 기초지식이 있어야 심미적인 수복이 가능)}. [[INT:7]]
-@MAT | t=짤 변형 | b=Q15
-Q: 직접수복재 비교표(Amalgam·Glass Ionomer·RMGI·Compomer·Resin Composite)에서 ① Esthetics가 OO인 재료 ② Low cost가 OO인 재료 ③ Adequate flexural strength가 X인 재료 ④ Ease of mixing and placement가 X인 재료를 쓰시오.
-A: ① Resin Composite ② Amalgam ③ Glass Ionomer ④ Resin Composite. [[MAT:7]]
-@MAT | t=짤 변형 | b=Q15
-Q: 간접수복재(Indirect resin composite·Ceramic·Cast Gold) 중 열팽창계수가 치아와 유사한 것과, Bonding to tooth substance가 X인 것은?
-A: 열팽창계수 유사(Coefficient of thermal expansion similar to tooth O) = Ceramic / Bonding to tooth substance X = Cast Gold. / 필기: {n:세라믹은 치아의 열팽창계수와 비슷하다는 장점, 심미적으로 가장 좋음}. [[MAT:9]]
-@MAT | t=교수 강조 | b=Q15
-Q: Glass ionomer의 열팽창계수가 치아와 비슷하다는 것이 왜 장점인지 쓰시오.
-A: {n:수복재료와 치아가 온도변화가 있을 때 따로 수축하고 팽창하면 계면이 깨짐 → GI는 열팽창계수가 치아와 가장 비슷한 재료 중 하나라서 계면에서의 실패가 적음(필기 "중요!!"). [[MAT:7]]}
-@MAT | t=짤 변형 | b=Q19
-Q: 다음 심미수복재의 Applicable Range를 쓰시오: ① Hybrid composite ② Microfilled composite ③ Polyacid-modified CR (compomer) ④ Self-cure Glass ionomer ⑤ Resin-modified GI ⑥ All ceramic. 또 microfilled composite를 주로 쓰는 경우(필기)는?
-A: ① Class I, II, III, IV, V, veneer, inlay ② Class III, IV, V, veneer ③ Class I, II (deciduous), III, V ④ Class III, V (high caries risk) ⑤ Class III, V (base/liner) ⑥ Class I, II inlay & onlay, veneer, crown. 필기: {n:하이브리드는 못 쓰는 게 없다} / {n:microfilled는 폴리싱이 좀 중요한, 심미성 요구되는 3·4·5급}. [[MAT:24]]
-@MAT | t=짤 변형 | b=Q18
-Q: Special enamel shade 세 묶음의 이름과 각각의 특징·약자를 쓰시오.
-A: Opalescent enamel(translucent, incisal, trans-enamel) — High translucency, several hues (I, T, ST, SL, TB, TG, TO) / Generic enamels(pearled enamel, value enamel) — Opalescence, translucency, luminosity, white pigment - thick - value (A, B, C, D x 1~4, P, EV) / Intense white enamels(opaque) — Opaque, no alteration of value (WE). [[MAT:12]]
-@MAT | t=짤 변형 | b=Q18
-Q: 복합레진 제품의 shade 약자 ① OA3 ② XL ③ WE ④ A2-O(또는 A2O)는 각각 무엇이며 dentin 쪽인가 enamel 쪽인가?
-A: ① {n:opaque → dentin 쪽(필기 "opaque (ex. OA3) - dentin")} ② extra light → enamel 쪽({n:필기 "XL ; extra light", 투명한 쪽 = enamel} · Premisa는 Enamel shade 칸에 XL1, XL2) ③ Intense white enamels(opaque, no alteration of value) → special enamel shade ④ Opaque shade(Point 4 'Opaque shade: A2O …') → dentin 쪽(증례 표기도 'D shade A2-O' · 슬라이드 16 dentin용 shade = 'O or Dentin'). [[MAT:13]] [[MAT:14]] [[MAT:12]] [[MAT:10]] [[MAT:25]] [[MAT:16]]
-@MAT | t=짤 변형 | b=Q17
-Q: Filtek Z350XT shade reference에서 가장 불투명한 것부터 순서대로 쓰고, dentin 층과 enamel 층이 각각 맡는 역할을 쓰시오. 또 근관치료 후 치질을 광범위하게 잃은 전치를 universal shade만으로 수복하면 생기는 문제와 해결은?
-A: More Opaque 순서: Dentin → Body → Enamel → Translucent. / Dentin = {n:색상을 결정, 적절한 불투명도로 안쪽의 까만 oral cavity 차단} / Enamel = {n:색상보다 투명도 담당} / Body = {n:중간, 기존의 universal composite}. / 증례: {n:universal shade로만 하면 너무 투명해서 안쪽 oral cavity가 비춰 보일 수 있음 → 적당한 opaque shade를 적용}(Premisa: E shade A2 + D shade A2-O + E shade A2 + T + E shade B2). [[MAT:19]] [[MAT:11]] [[MAT:25]]
-@MAT | t=짤 변형 | b=Q27
-Q: 복합레진의 translucency를 높이는 두 가지 조건을 쓰시오.
-A: Thickness, saturation ↓ → Translucency ↑ — {n:두께가 줄어들수록, 채도가 낮아질수록 투명해짐(같은 셰이드로 두께만 달라도 투명도 많이 차이 남)}. [[MAT:11]]
-@MAT | t=교수 강조 | b=Q17
-Q: Shade wheel로 A1을 목표로 여러 층(multi shade)을 쌓을 때 안쪽 dentin shade는 무엇을 쓰는가? 그 이유(원칙)는?
-A: A2D(Multi Shade: A2D + A1B + WE + C) — {n:섞을 때는 a1이라고 되어 있으면 안쪽에 들어가는 body나 dentin shade는 하나 어두운 것(a2)을 씀}. [[MAT:20]] [[MAT:23]]
-@MAT | t=미출제
-Q: 전치부 직접수복에서 high caries activity일 때 쓰는 재료 두 가지와 각각의 설명을 쓰고, 간접수복 Metal Ceramic과 All-Ceramic의 설명을 쓰시오.
-A: Glass Ionomer — As interim restoration, pulp protection / Compomer — Easy handling, F release(분홍: lack of esthetics, wear). Indirect: Metal Ceramic — Fracture resistance(분홍: poor esthetics) / All-Ceramic — esthetics(분홍: Long-term, fracture resistance). [[MAT:6]]
-@MAT | t=미출제
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=상 | b=Q15 | why=열팽창계수 줄 4회(25~22년) · p.7 같은 표 다른 행 | oid=ESTH:P:직접수복재비교표amalgamglassiono_b321ce
+Q: 직접수복재 비교표(Comparison of Direct Restorative Materials)에 대한 설명으로 옳지 않은 것은? ① Fluoride release가 O인 것은 Glass Ionomer와 RMGI이다 ② Esthetics가 OO인 재료는 Resin Composite이다 ③ Low cost가 OO인 재료는 Amalgam이다 ④ Radiopacity greater than or equal to enamel이 X인 것은 Glass Ionomer와 Compomer이다 ⑤ Resin Composite는 Ease of mixing and placement가 O이다
+A: ⑤ — 표의 Ease of mixing and placement 줄: Amalgam O · Glass Ionomer O · RMGI O · Compomer O · Resin Composite X / ①②③④는 표 그대로(Fluoride release: Compomer ? · Amalgam·Resin Composite X) / 기출 줄: Coefficient of thermal expansion similar to tooth = Glass Ionomer·RMGI만 O. [[MAT:7]] [[MAT:8]]
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=상 | b=Q15 | why=열팽창계수 축 4회 · p.9 필기 '중요한건 세라믹이…' | oid=ESTH:P:간접수복재indirectresincompos_a9aec3
+Q: 간접수복재 비교표(Indirect resin composite · Ceramic · Cast Gold)에 대한 설명으로 옳은 것은? ① 세 재료 모두 Bonding to tooth substance가 O이다 ② Ceramic은 Adequate flexural strength가 O이다 ③ Coefficient of thermal expansion similar to tooth가 O인 것은 Ceramic뿐이다 ④ Indirect resin composite는 Cariostatic이 O이다 ⑤ Cast Gold는 Low thermal diffusivity가 O이다
+A: ③ — Coefficient of thermal expansion similar to tooth: Indirect resin composite X · Ceramic O · Cast Gold X / {n:필기 "중요한건 세라믹이 치아의 열팽창계수와 비슷하다는 장점!, 심미적으로 가장 좋음"} / ① Cast Gold는 Bonding X · ② Ceramic은 flexural X · ④ Cariostatic은 셋 다 X · ⑤ Cast Gold는 Low thermal diffusivity X. [[MAT:9]]
+@MAT | t=교수 강조 · 교수 형식(객관식) | pr=중 | b=Q15 | why=p.7 필기 GI 열팽창 '중요!!' · 열팽창계수 축 | oid=ESTH:P:glassionomer의열팽창계수가치아와비슷_34c8e3
+Q: Glass Ionomer에 대한 설명으로 옳지 않은 것은? ① 직접수복재 비교표에서 Coefficient of thermal expansion similar to tooth가 O이다 ② Fluoride release가 O이다 ③ Adequate flexural strength가 X이다 ④ Low cost가 X이다 ⑤ 열팽창계수가 치아와 비슷해 온도 변화가 있을 때 계면에서의 실패가 적다
+A: ④ — 표의 Low cost 줄: Amalgam OO · Glass Ionomer O · RMGI X · Compomer ? · Resin Composite X / ⑤ {n:필기 "수복재료와 치아가 온도변화가 있을 때 따로 수축하고 팽창하면 계면에 깨지겠죠 -> 중요!!" · GI는 열팽창계수가 치아와 가장 비슷한 재료 중 하나 · 불소 방출이 최대 장점 중 하나}. [[MAT:7]]
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=상 | b=Q19 | why=2급 와동 재료 4회(25~22년) · p.24 필기 '3,4,5급들!!' | oid=ESTH:P:다음심미수복재의applicablerange를_271a9f
+Q: 심미수복재(Esthetic Restorative Material Type)와 Applicable Range의 연결로 옳지 않은 것은? ① Self-cure Glass ionomer – Class III, V (high caries risk) ② Resin-modified GI – Class III, V (base/liner) ③ Polyacid-modified CR (compomer) – Class I, II (deciduous), III, V ④ Composite Microfilled – Class I, II, III, IV, V, veneer, inlay ⑤ Porcelain All ceramic – Class I, II inlay & onlay, veneer, crown
+A: ④ — Microfilled = Class III, IV, V, veneer({n:필기 "microfilled는 폴리싱이 좀 중요한, 심미성 요구되는 3,4,5급들!!"}) / Class I, II, III, IV, V, veneer, inlay는 Hybrid({n:하이브리드는 못 쓰는 게 없다(필기)}) / 기출(2급 와동 치아색 수복에 적절한 재료)의 답 = Hybrid composite. [[MAT:24]]
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=상 | b=Q18 | why=special enamel shade 3회(24·23·22년) · p.12 다른 칸 | oid=ESTH:P:specialenamelshade세묶음의이름_4c78ca
+Q: Special enamel shade에 대한 설명으로 옳지 않은 것은? ① Opalescent enamel(translucent, incisal, trans-enamel)은 High translucency, several hues가 특징이다 ② Opalescent enamel의 약자는 I, T, ST, SL, TB, TG, TO이다 ③ Generic enamels(pearled enamel, value enamel)는 Opalescence, translucency, luminosity가 특징이다 ④ Intense white enamels(opaque)는 value를 바꾸는(alteration of value) shade이다 ⑤ Intense white enamels의 약자는 WE이다
+A: ④ — 슬라이드 Intense white enamels (opaque): "Opaque, no alteration of value (WE)" / Generic enamels: Opalescence, translucency, luminosity, white pigment - thick - value (A, B, C, D x 1~4, P, EV) / {n:필기 "약자로 이런 약자들 보이면 에나멜 쪽의 특수 셰이드구나 알 수 있다"}. [[MAT:12]]
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=중 | b=Q18 | why=special enamel shade 3회 · 기출 답(XL·OA)을 뒤집은 꼴 | oid=ESTH:P:복합레진제품의shade약자oa3xlwea2o_7838a4
+Q: 복합레진 shade 약자에 대한 설명으로 옳지 않은 것은? ① OA3처럼 opaque(O)가 붙은 shade는 dentin 쪽이다 ② XL은 extra light이다 ③ WE는 Special enamel shade 중 Intense white enamels의 약자이다 ④ Filtek Z350 XT의 A2D · A2B · A2E는 각각 Dentin · Body · Enamel shade이다 ⑤ XL과 OA는 Special enamel shade 세 묶음의 약자에 들어 있다
+A: ⑤ — p.12 약자 목록(I, T, ST, SL, TB, TG, TO / A, B, C, D x 1~4, P, EV / WE)에 XL·OA 없음(기출 답 3), 4)) / ① {n:필기 "opaque (ex. OA3) - dentin"} / ② {n:필기 "XL ; extra light"} · Point 4 "Extra-Light shade: XL1, XL2, XL3" / ④ Shade Reference for Z350XT: Dentin · Body · Enamel · Translucent. [[MAT:12]] [[MAT:13]] [[MAT:14]] [[MAT:19]]
+@MAT | t=미출제 · 교수 형식(객관식) | pr=중 | b=Q18 | why=p.16 목록 · 필기 '덴틴 쪽 = 색상!' · 26 자료 대기
+Q: Selection of Composite의 Composite for dentin과 Composite for enamel에 대한 설명으로 옳지 않은 것은? ① Composite for dentin은 Hue and chroma를 담당한다 ② Composite for dentin의 shade는 O or Dentin이다 ③ Composite for enamel은 Translucency, white hue, opalescence를 담당한다 ④ Composite for enamel의 shade는 Generic or Opalescent이다 ⑤ Microfilled는 Composite for dentin의 재료로 제시되어 있다
+A: ⑤ — Composite for dentin: Microhybrid or Nanoparticle of body type · Microhybrid or Nanoparticle of dentin type · Combination of body and dentin types / Composite for enamel: Microhybrid · Nanoparticle · Microfilled / {n:필기 "덴틴 쪽에 해당하는 게 색상과 관련된 것!" · "에나멜 쪽에는 가끔 microfilled - 폴리싱 용이, 유지 잘 된다"}. [[MAT:16]]
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=상 | b=Q17 | why=3층 순서 4회(25·24·21·20년) · p.11·19 | oid=ESTH:P:filtekz350xtshadereferen_332953
+Q: 복합레진의 세 층(Three different layer of composite)에 대한 설명으로 옳지 않은 것은? ① 치수로부터 치아 표면 방향으로 dentin – body – enamel 순이다 ② Filtek Z350 XT shade reference에서 가장 불투명한(More Opaque) 쪽은 Enamel이다 ③ Dentin 층은 색상을 결정하고 적절한 불투명도로 안쪽의 까만 oral cavity를 차단한다 ④ Enamel 층은 색상보다 투명도를 담당한다 ⑤ Body는 중간에 들어가는 층으로 기존의 universal composite에 해당한다
+A: ② — Shade Reference for Z350XT: ← More Opaque — Dentin · Body · Enamel · Translucent(가장 불투명 = Dentin) / ③④⑤ {n:필기 "실제 덴틴은 덴틴의 역할 하는 컴포짓으로 - 색상을 결정; 적절한 불투명도를 제공해 안쪽의 까만 oral cavity 차단" · "실제 에나멜 층은 에나멜 효과 있는 컴포짓으로 - 색상 보다 투명도 담당" · "body는 중간에 기존의 universal composite에 해당하는 것"} / 기출 답: 3번 dentin-body-enamel shade. [[MAT:19]] [[MAT:11]]
+@MAT | t=짤 변형 · 교수 형식(객관식) | pr=중 | b=Q27 | why=24년 27번 반투명도(교수 불확실) · p.11 첫 줄 | oid=ESTH:P:복합레진의translucency를높이는두가지_30dfed
+Q: 복합레진의 반투명도(translucency)에 대한 설명으로 옳은 것은? ① 두께가 두꺼워질수록 반투명도가 높아진다 ② 채도(saturation)가 높아질수록 반투명도가 높아진다 ③ 같은 shade라면 두께가 달라도 투명도 차이는 거의 없다 ④ Thickness, saturation이 줄어들면 Translucency가 높아진다 ⑤ Bulk-fill은 불투명해야 4 mm 정도 깊이까지 한 번에 광중합할 수 있다
+A: ④ — 슬라이드 "Thickness, saturation ↓ → Translucency ↑" / ③ {n:필기 "같은 셰이드로 두께만 달라도 투명도 많이 차이난다"} / ⑤ {n:필기: Bulk-fill은 깊게 4 mm 정도까지 한 번에 충전하고 광중합 가능 = 투명해야 가능}. [[MAT:11]] [[MAT:10]]
+@MAT | t=교수 강조 · 교수 형식(객관식) | pr=중 | b=Q17 | why=p.23 필기 'a2를 쓴다는 걸 알아두기' · 미출제 | oid=ESTH:P:shadewheel로a1을목표로여러층mult_dec1b8
+Q: Shade wheel for Z350XT(Class III and IV Selection Guide)에서 A1을 목표로 할 때의 조합으로 옳은 것은? ① Single Shade: A1D ② Two Shade: A1D + A1E ③ Two Shade: A2D + A1E ④ Multi Shade: A1D + A1B + WE + C ⑤ Multi Shade: A2B + A2E + WE + C
+A: ③ — 바퀴(A1): Multi Shade A2D + A1B + WE + C · Two Shade A2D + A1E · Single Shade A1B / {n:필기 "섞을 때는 a1 이라고 되어있으면 안쪽에 들어가는 body나 dentin shade는 하나 어두운 것 ! a2를 쓴다는 걸 알아두기"} · {n:하나로 할 땐 바디로(필기)}. [[MAT:20]] [[MAT:23]]
+@MAT | t=미출제 · 교수 형식(객관식) | pr=중 | why=p.6 흐름도 · 분홍 글씨(약점) 짝 바꾸기 | oid=ESTH:P:전치부직접수복에서highcariesactiv_4a7d44
+Q: Selection of Restorative Materials(재료 선택 흐름도)에 대한 설명으로 옳지 않은 것은? ① 전치부 Direct의 기본 재료는 Resin Composite이다 ② 전치부 High caries activity에서 Glass Ionomer는 As interim restoration, pulp protection으로 쓴다 ③ 전치부 Indirect의 Metal Ceramic에는 Fracture resistance와 함께 poor esthetics가 적혀 있다 ④ 구치부 Stress-bearing 부위의 Compomer, RMGI는 Less technique sensitive, cost effective하다 ⑤ 전치부 High caries activity에서 Compomer는 esthetics와 wear가 장점이다
+A: ⑤ — 슬라이드 Compomer: "Easy handling, F release" + 분홍 "lack of esthetics, wear" / 구치부 Compomer, RMGI: "Less technique sensitive, cost effective" + 분홍 "lack of wear resistance" / {n:필기: 실제로는 복합레진 or GI or RMGI 정도지 compomer는 요즘 잘 안 씀}. [[MAT:6]]
+@MAT | t=미출제 | why=넘버링형(이창하 교수님 X) · p.5 강조·기출 없음 | x=1
 Q: 재료 선택 시 고려하는 Patient Factors 6가지를 쓰시오.
 A: 1. Dental status(well-supported dentition — Well-distribution of occlusal loads) 2. Oral hygiene(poor oral hygiene — Cariostatic restorative, Restorative resistant to plaque accumulation) 3. Size and nature of the caries(wide cavity — Need mechanical consideration) 4. Function of the tooth(position of the tooth — Need mechanical consideration) 5. Access to the cavity(patient compliance/cooperation — Need restoratives insensitive to technique) 6. Isolation. [[MAT:5]]
-@MAT | t=미출제
+@MAT | t=미출제 | why=같은 표가 Direct veneer 강의 문항에 · 쓰기형 · bulk-fill은 반투명도 문항 보기로 | x=1
 Q: Opacity 쪽과 Translucency 쪽에 해당하는 층과 복합레진 종류를 쓰고, bulk-fill이 투명해야 하는 이유를 쓰시오.
 A: Opacity = Dentin - Opaque(Microhybrid, Macrofilled) / Translucency = Enamel - Translucent(Microfilled, Nanofilled). / {n:Bulk-fill은 깊게 4 mm 정도까지 한 번에 충전하고 광중합하므로 투명해야 가능(투명하지 않으면 4 mm 정도 깊이를 얻기 어려움) — 전치부에서는 과도하게 투명해질 수 있음}. [[MAT:10]]
-@MAT | t=미출제
+@MAT | t=미출제 | why=필기 위주(p.27·30·31) · 강조·기출 없음 · 쓰기형 | x=1
 Q: 기성 shade guide의 단점 2가지와 shade mismatch를 극복하는 방법 2가지를 쓰시오.
 A: 단점: {n:실제 내가 쓰는 복합레진의 셰이드와 같지 않음} / {n:인공치 모양이라 두께가 있는 편 — 충전하는 두께에 따라 달라짐}. 극복: 1) Customized shade guide({n:내가 쓰는 레진으로 셰이드 가이드를 채워 넣어 만듦}) 2) Spectrophotometer({n:체어사이드 portable — 치아의 middle, cervical, incisal 쪽을 구분해서 색 추천}). [[MAT:27]] [[MAT:30]] [[MAT:31]]
-@MAT | t=미출제
+@MAT | t=미출제 | why=p.17 필기 '이런게 등장했다 정도만 알기' | x=1
 Q: Single-shade composite가 한 셰이드로 여러 치아 색에 맞는 원리와, simplified composite의 세 가지 shade를 쓰시오.
 A: {n:색 자체가 바뀌는 게 아니라 안의 필러 입자 크기나 형태를 조절해 주변 치질·인접치를 따라 셰이드가 맞춰짐}(chameleon effect — {n:일종의 착시}). / Simplified: Bright(Bleach, A1, B1, B2, C1, D2) · Natural(A2, A3, C2, D3, D4) · Warm(A3.5, A4, B3, B4, C3, C4). [[MAT:17]] [[MAT:18]]
-@MAT | t=미출제
+@MAT | t=미출제 | why=넘버링형(이창하 교수님 X) · p.4 강조·기출 없음 | x=1
 Q: 수복재료 선택에서 재료와 맞대어 보는 성질 7가지와, 그 밖의 판단 요소 6가지(슬라이드 분홍 글씨)를 쓰시오.
 A: 성질 7: Biologic properties · Interfacial properties · Chemical properties · Mechanical properties · Esthetic properties · Practicability · Ease of use. 판단 요소 6: In vitro testing · In vivo performance · Esthetic considerations · Patients' need · Patient and operator's preferences · Cost effectiveness. 필기: {n:아무리 좋은 재료라도 비용 여건이 안 되면 타협이 필요}. [[MAT:4]]
-@PLAN | t=짤 변형 | b=R20
-Q: 심미 치료의 9단계 중 Initial therapy 단계에 해당하는 항목을 모두 쓰고, 미백 치료를 언제 끝내야 하는지 쓰시오.
-A: Orthodontic treatment · Endodontic treatment, bleaching · Periodontic treatment · Surgical treatment (Extraction, alveoloplasty). {n:근관치료나 미백 치료 등은 먼저 시행 — 특히 미백 치료는 보철물 색 정하기 전에 완료해야 한다(26 필기)}. [[PLAN:8]]
-@PLAN | t=짤 변형 | b=R20
+@PLAN | t=짤 변형·교수 형식(객관식) | pr=중 | b=R20 | why=25·23 9단계 도표 · 같은 도표 다른 칸 | oid=ESTH:P:심미치료의9단계중initialtherapy단_a7b4e6
+Q: 심미 치료 9단계 도표에서 4. Initial therapy에 해당하지 않는 것은? ① Orthodontic treatment ② Endodontic treatment, bleaching ③ Periodontic treatment ④ Surgical treatment (Extraction, alveoloplasty) ⑤ Preventive modality
+A: ⑤ — Preventive modality는 5. Diagnostic phase(Diagnostic mock-up (shade selection) · Tooth preparation · Provisionalization · Preventive modality) [[PLAN:8]] / ①~④ ○ p.8 4. Initial therapy — {n:26 필기: 근관치료나 미백 치료 등은 먼저 시행해야 한다. 특히 미백 치료는 보철물 색 정하기 전에 완료해야 한다} · {n:Special Effects 강의 필기: 진단단계에 다 끝내야 함!! 기억할것} [[PLAN:8]] [[SPE:7]] / 25·23년 'provisionalization, diagnostic mock up에 해당되는 단계' 정답 = diagnostic phase.
+@PLAN | t=짤 변형 | pr=상 | b=R20 | why=25·23 단계 고르기 · 도표 ↔ 차트 함정
 Q: 다음 중 diagnostic wax-up과 orthodontic setup이 속한 단계는? (p.8 9단계 도표 기준) 1) Understanding patient 2) Laboratory technician 3) Consultation 4) Diagnostic phase 5) Restorative phase
 A: 2) Laboratory technician — 2. Laboratory technician = Orthodontic setup · Diagnostic wax-up · Shade documentation. 단 p.24 심미 차트의 단계별 치료계획(5단계)에서는 Orthodontic setup·Diagnostic wax-up이 2. Diagnostic phase 아래에 있음. [[PLAN:8]] [[PLAN:24]]
-@PLAN | t=짤 변형 | b=R20
-Q: 9단계 중 Restorative phase에 해당하는 항목을 쓰고, Restorative phase와 Laboratory technician 사이에 오가는 서류의 이름을 쓰시오.
-A: Finishing preparation · Impression · (Master cast) · Shade documentation · Restoration · Adhesive luting · Presentation of progress / "Work Authorization Form"({n:필기: 기공소하고는 기공지시서, 환자의 데이터 등의 정보를 활발하게 주고받는다}). [[PLAN:8]]
-@PLAN | t=교수 강조
-Q: 전치부 심미 재건(anterior esthetic reconstructions)에서 진단 과정의 목적(Objectives) 5가지를 쓰시오.
-A: 1. Systemic approach in anterior esthetic reconstructions 2. Treatment with expected goal 3. Scheduled approach with planned step-by-step treatment 4. Consultation with patient 5. Legal protection — 슬라이드 별표 · {n:필기 "진단과정이 가지는 의미 잘 알아두자!"} [[PLAN:23]]
-@PLAN | t=교수 강조
-Q: Present illness에서 일반적으로 보는 항목 외에 심미치료에서 추가로 보는 항목 7가지를 쓰시오.
-A: Occlusion check · Shape · Color · Shade · Asymmetry · Gingival contour · Smile line — {n:필기 "Present illness가 가장 중요함" · "심미치료에서 추가적으로 더 보는 것들! -> systemic하게 이런것들을 다 봐줘야 한다~"}. [[PLAN:4]] [[PLAN:7]]
-@PLAN | t=미출제
-Q: Initial Patient Management의 5단계를 순서대로 쓰고, Final phase의 Summary에 들어가는 항목을 쓰시오.
-A: Know the patient → Initial documentation → Inform patient → Sequential treatment plan → Final phase of initial patient management. Summary – objective, sequence, duration, costs, limitations, prognosis, and alternatives + Informed consent (Check the treatment modality selected). [[PLAN:9]] [[PLAN:15]]
-@PLAN | t=미출제
-Q: Diagnostic stage에서 acrylic mock-up으로 얻을 수 있는 것 4가지와, communication among dentist, patient, and technician으로 얻는 것 3가지를 쓰시오.
-A: Acrylic mock-up: Diagnostic information · Tooth preservation · In vivo evaluation (enamel spot etching, 1 – 2 wks, stain) · Prognosis of final restoration / Communication: Control of esthetic parameters · Adequate therapeutic choices · Mastering of restorative technique. [[PLAN:18]] [[PLAN:19]]
-@PLAN | t=짤 변형 | b=T12
+@PLAN | t=짤 변형·교수 형식(객관식) | pr=중 | b=R20 | why=25·23 9단계 도표 · preparation 두 칸 구별 | oid=ESTH:P:9단계중restorativephase에해당하_789388
+Q: 심미 치료 9단계 도표에서 7. Restorative phase에 해당하지 않는 것은? ① Finishing preparation ② Impression ③ Adhesive luting ④ Presentation of progress ⑤ Tooth preparation
+A: ⑤ — Tooth preparation은 5. Diagnostic phase(Restorative phase는 Finishing preparation) [[PLAN:8]] / ①~④ ○ p.8 7. Restorative phase = Finishing preparation · Impression · (Master cast) · Shade documentation · Restoration · Adhesive luting · Presentation of progress — Restorative phase → 8. Laboratory technician 사이 "Work Authorization Form"({n:26 필기: 기공소하고는 기공지시서, 환자의 데이터 등의 정보를 활발하게 주고 받는다}) [[PLAN:8]]
+@PLAN | t=교수 강조·교수 형식(객관식) | pr=상 | why=p.23 ★ '진단과정이 가지는 의미 잘 알아두자!' · 전부 ○ 함정 | oid=ESTH:P:전치부심미재건anteriorestheticr_caab22
+Q: Diagnostic Procedures in Anterior Esthetic Reconstructions의 목적(Objectives)에 해당하는 것을 모두 고르시오. ① Systemic approach in anterior esthetic reconstructions ② Treatment with expected goal ③ Scheduled approach with planned step-by-step treatment ④ Consultation with patient ⑤ Legal protection
+A: ①, ②, ③, ④, ⑤ 전부 — p.23 Objectives 1~5 그대로(슬라이드 별표 ★) — {n:필기 "진단과정이 가지는 의미 잘 알아두자!" · 26 필기 "쭉 읽어주셨습니다"} [[PLAN:23]] / ⑤ Legal protection — {n:필기: protection - 논쟁이 생겼을 때 이전에 서류를 남겨두고 해야 본인을 보호할 수 있다} · {n:26 필기(p.24): 환자와 상의하고 서명을 받아놓으면 나중에 생기는 법적 문제에 대비할 수 있다} [[PLAN:23]] [[PLAN:24]] / 함정: 답이 보기 전부인 꼴(이 교수 객관식에서 되풀이됨).
+@PLAN | t=교수 강조·교수 형식(객관식) | pr=중 | why=필기 'Present illness가 가장 중요함' · 목록 섞기 | oid=ESTH:P:presentillness에서일반적으로보는항_e47672
+Q: Present illness에서 일반적으로 보는 항목 외에 심미치료에서 추가로 보는 항목이 아닌 것은? ① Occlusion check ② Shade ③ Asymmetry ④ Smile line ⑤ Pulp vitality test
+A: ⑤ — Pulp vitality test는 p.6 일반 Present illness 항목(Tooth status (Caries, fracture, non-caries lesion) · Perio. Status (PPD) · Percussion · Mobility · Palpation · Pulp vitality test · Bite test · Radiographic examination) [[PLAN:6]] / ①~④ ○ p.7 심미 추가 항목 = Occlusion check · Shape · Color · Shade · Asymmetry · Gingival contour · Smile line — {n:필기: 심미치료에서 추가적으로 더 보는 것들! -> systemic하게 이런것들을 다 봐줘야 한다~} [[PLAN:7]] / {n:필기(p.4): chief complaint, PMH, PDH는 많이 해봐서 다들 할 수 있을 것이고, Present illness가 가장 중요함} [[PLAN:4]]
+@PLAN | t=미출제·교수 형식(객관식) | pr=중 | why=초진 환자 관리 5단계 목록 · 단계·내용 짝 섞기 | oid=ESTH:P:initialpatientmanagement_add607
+Q: Initial Patient Management의 단계와 그 내용이 잘못 짝지어진 것은? ① Know the patient – Patient's primary request – main expectations ② Initial documentation – Radiographs · Clinical examination · Photographs · Study casts (mounted in articulator) ③ Inform patient – Possibilities and limitations of treatment ④ Sequential treatment plan – Treatment plan with possible alternatives · Duration and costs ⑤ Know the patient – Informed consent (Check the treatment modality selected)
+A: ⑤ — Informed consent (Check the treatment modality selected)는 Final phase of initial patient management(Summary – objective, sequence, duration, costs, limitations, prognosis, and alternatives와 함께) [[PLAN:15]] / ① ○ p.11(+ Do not sit in dental chair · Models of intact dentitions, photographs, fashion magazine) [[PLAN:11]] / ② ○ p.12 [[PLAN:12]] / ③ ○ p.13 [[PLAN:13]] / ④ ○ p.14 [[PLAN:14]] / 5단계 = Know the patient → Initial documentation → Inform patient → Sequential treatment plan → Final phase of initial patient management [[PLAN:9]]
+@PLAN | t=미출제·교수 형식(객관식) | pr=중 | b=R20 | why=mock-up = 25·23 정답 단계 · 진단 단계 목록 낱말 바꾸기 | oid=ESTH:P:diagnosticstage에서acrylic_cd2e44
+Q: Diagnostic stage에 관한 설명으로 옳지 않은 것은? ① Diagnostic stage = Diagnostic wax-up · Acrylic mock-up · Communication among dentist, patient, and technician ② Diagnostic wax-up: Patient consultation · Treatment options · Substantiate Objectiveness – silicon index (reference for tooth reduction) ③ Acrylic mock-up: Diagnostic information · Tooth preservation · In vivo evaluation (enamel spot etching, 1 – 2 wks, stain) · Prognosis of final restoration ④ Communication among dentist, patient, and technician → Control of esthetic parameters · Adequate therapeutic choices · Mastering of restorative technique ⑤ Composite mock-up: Determining the incisal edge position · Determining the gingival line · Long-term provisionals
+A: ⑤ — 슬라이드 "Short-term provisionals"(낱말 바꿈 · + Transferring the mock-ups) [[PLAN:20]] / ①·③ ○ p.16·18 — {n:26 필기: mock-up은 시제품이라고 생각하면 된다} [[PLAN:16]] [[PLAN:18]] / ② ○ p.17 [[PLAN:17]] / ④ ○ p.19 [[PLAN:19]] / 9단계 도표에서 Diagnostic mock-up · Provisionalization = 5. Diagnostic phase(25·23년 '단계' 문항 정답) [[PLAN:8]]
+@PLAN | t=짤 변형 | b=T12 | why=진단 단계 객관식 보기로(p.17) · 쓰기 꼴 | x=1
 Q: Diagnostic wax-up의 용도 3가지를 쓰고, silicon index가 무엇의 기준(reference)이 되는지 쓰시오.
 A: Patient consultation · Treatment options · Substantiate Objectiveness – silicon index → reference for tooth reduction({n:필기: 크라운 프렙 등에서 입안에서 두께 파악이 힘드므로 기존 치아에 비해 얼마나 삭제되었는지 확인}). [[PLAN:17]]
-@PLAN | t=미출제
+@PLAN | t=미출제 | why=진단 단계 객관식 보기로(p.20) · 쓰기 꼴 | x=1
 Q: Mock-up technique 3가지를 쓰고, Composite mock-up 아래에 제시된 항목 4가지를 쓰시오.
 A: Diagnostic wax-up · Silicon index · Composite mock-up / Determining the incisal edge position · Determining the gingival line · Short-term provisionals · Transferring the mock-ups. [[PLAN:20]]
-@PLAN | t=짤 변형 | b=T16
-Q: 54세 남성의 상악 전치 순면이 심하게 손상된 사진이다. 마모·교모가 아니라 산성 물질에 의한 것으로 보는 이유와, 제시할 수 있는 치료 옵션 3가지를 각각의 Advantage·Disadvantage와 함께 쓰시오.
-A: 마모나 교모이면 구치부에 더 두드러지게 나타났을 것 → 전치부 순면은 산성 물질이나 음식에 의한 것일 확률이 높다(26 필기). ① Full mouth rehabilitation with increasing vertical dimension — Bite elevation, fracture of anterior teeth↓ / Excessive treatments, cost ② Anterior esthetic restoration with all ceramic crown and laminate veneer — Shape and shade adjustment / Intentional root canal treatment, excessive reduction ③ Anterior esthetic restoration with all ceramic crown and composite filling — Minimally invasive, minimal reduction / Difficulty in shape or shade matching, Intentional root canal treatment. [[PLAN:25]] [[PLAN:26]] [[PLAN:27]] [[PLAN:28]]
-@PLAN | t=짤 변형 | b=T17
+@PLAN | t=짤 변형·교수 형식(객관식) | pr=하 | b=T16 | why=증례 옵션 표(p.26-28) · 서술 기출은 전임 교수 | oid=ESTH:P:54세남성의상악전치순면이심하게손상된사진이다마_7a5c9a
+Q: 54세 남성(상악 전치 erosion·abrasion·abfraction) 증례의 치료 옵션과 장단점이 잘못 짝지어진 것은? ① Full mouth rehabilitation with increasing vertical dimension – Advantage: Bite elevation, fracture of anterior teeth↓ ② Full mouth rehabilitation with increasing vertical dimension – Disadvantage: Excessive treatments, cost ③ Anterior esthetic restoration with all ceramic crown and laminate veneer – Advantage: Shape and shade adjustment ④ Anterior esthetic restoration with all ceramic crown and laminate veneer – Disadvantage: Difficulty in shape or shade matching ⑤ Anterior esthetic restoration with all ceramic crown and composite filling – Advantage: Minimally invasive, minimal reduction
+A: ④ — 옵션 2의 Disadvantage는 "Intentional root canal treatment, excessive reduction" · Difficulty in shape or shade matching은 옵션 3(composite filling)의 Disadvantage(짝 바꿈) [[PLAN:27]] [[PLAN:28]] / ①·② ○ p.26 [[PLAN:26]] / ③ ○ p.27 — {n:26 필기: 두번째 옵션의 장점은 심미성이 높다는 것이고, 단점은 근관치료를 꼭 해야 한다는 것} [[PLAN:27]] / ⑤ ○ p.28 [[PLAN:28]] / {n:26 필기(p.25): 만약 이게 마모나 교모이면 구치부에 더 두드러지게 나타났을 것이다. 전치부 순면이 이렇게 된 것은 산성 물질이나 음식에 의한 것일 확률이 높다} [[PLAN:25]] · 21·20·18년 erosion 사진 서술은 전임 교수 출제(JB 답의 '하악 lingual 호발'·'의과적 refer'는 이 강의에 없음).
+@PLAN | t=짤 변형 | b=T17 | why=증례 세부(p.33-34) · 21년 기출 JB 답 없음 · 서술 꼴 | x=1
 Q: 18세 여성 환자(#11 거대치, 교정 일부 시행)의 Problem lists 4가지를 쓰고, 전체 교정을 원하지 않는 이 환자에게 세운 Treatment plan을 쓰시오.
 A: Problem lists: 1) Abnormal size & shape of #11 2) Gingiva zenith discrepancy 3) Incisal edge configuration 4) Crowding / Treatment plan: 1) #11, 21 root canal treatment 2) Forced eruption of #11 3) #11, 21 full crown restoration. [[PLAN:33]] [[PLAN:34]]
-@PLAN | t=미출제
+@PLAN | t=미출제 | why=필기만(p.35) · 기출 0 | x=1
 Q: Forced eruption에서 bone도 함께 내려오게 하고 싶을 때와 치아만 내려오게 하고 싶을 때 각각 어떻게 하는지 쓰시오.
 A: bone이 낮아져 있어 같이 내려오는 게 좋으면 천천히 끌어당기고, bone은 그대로 치아만 쏙 끌어당기고 싶으면 좀 강한 힘으로 빨리 끌어당긴다(필기). [[PLAN:35]]
-@PLAN | t=짤 변형 | b=U02
+@PLAN | t=짤 변형 | b=U02 | why=증례 서술(p.41-43) · 20·18 서술은 전임 교수 꼴 | x=1
 Q: 외상으로 #11 horizontal root fracture(palatal 쪽 깊은 사선 파절선)와 #21 oblique crown fracture(치수 침범 없음)가 생긴 23세 여성(요청: Save teeth · No extraction · Esthetics)의 치료 옵션을 치아별로 쓰고, 최종 치료와 그 이유를 쓰시오.
 A: 옵션 — #11: Surgical repositioning · Extraction & implant · Forced eruption / #21: Direct composite restoration · Laminate veneer · Full crown. 최종 — #11 교정적 정출 후 All ceramic crown({n:repositioning하기에도 너무 깊은 파절선, 근관장 23mm 정도로 치근이 매우 길어 교정적 정출에 이로움}) · #21 Class IV direct composite({n:환자가 크라운 수복까지는 피하고 싶어 함}) · #12 Diastema closure with composite. 기준: {n:정답은 없지만 비용, 기간, 환자의 선호도를 고려}. [[PLAN:41]] [[PLAN:42]] [[PLAN:43]]
-@PLAN | t=미출제
+@PLAN | t=미출제 | why=미출제 · 강조 없음(p.3 개요) | x=1
 Q: Systemic Patient Management의 흐름 5가지를 쓰고, Communication with Patient & Technician에 해당하는 2가지를 쓰시오.
 A: Diagnosis - Systemic approach(Patient evaluation · Initial documentation · Consultation) → Treatment Plan → Communication with Patient & Technician → Esthetic Rehabilitation → Treatment Outcome. Communication with Patient & Technician = Diagnostic mock-up · Laboratory prescription / Work authorization. 필기: {n:systemic은 전신적이라는 뜻도 있지만 여기선 좀 더 체계적, 전체를 본다는 뜻}. [[PLAN:3]]
-@SPE | t=짤 변형 | b=T15
-Q: 상악 중절치가 상대적으로 narrower space를 가질 경우 넓어 보이게 하는 Shaping과 Staining 방법을 쓰시오.
-A: Shaping — Vertical line, edge, characterization – avoid / Horizontal ones – incorporate / 1) Place the contact areas more labially and incisally: Lengthening of incisal edge · Widening of the reflective surface – make the tooth appear wider / 2) Flat and horizontal incisal edge / 3) Cuspids: move the labial ridge distally · move the contact area labially and incisally / 4) Others: move the developmental grooves more apart · curve of CEJ – flatter. / Staining — Lighter body color at mesial and distal 1/3 of labial surface / Accentuate horizontal lines with light stain / Dark stain simulating cervical abrasion / Light stain, white opaque, yellow, thin orange, or brown stain – horizontally. [[SPE:18]] [[SPE:19]]
-@SPE | t=짤 변형 | b=S12
-Q: Developmental grooves를 Wider space와 Narrower space에서 각각 어떻게 옮기는가? 발육구가 보이면 치아가 어떻게 보이는지(필기)와 함께 쓰시오.
-A: Wider space: move the developmental grooves closer together (gingival) / Narrower space: move the developmental grooves more apart — {n:필기: 수직적 성분 texture 등을 가해주면 상대적으로 치아 길어보일 수 있고, 발육구가 보이거나 끝에 형태 만들어주면 시야를 수직적으로 분산시켜 덜 넓어보이게 할 수 있다}. [[SPE:15]] [[SPE:18]]
-@SPE | t=짤 변형 | b=S12
+@SPE | t=짤 변형·교수 형식(객관식) | pr=중 | b=S12,R19,Q21 | why=환영 25·24·23·22 · Wider ↔ Narrower 짝 바꾸기 | oid=ESTH:P:상악중절치가상대적으로narrowerspace_c96e68
+Q: 상악 중절치가 상대적으로 narrower space를 가질 때 넓어 보이게 하는 Shaping으로 옳지 않은 것은? ① Vertical line, edge, characterization – avoid · Horizontal ones – incorporate ② Place the contact areas more labially and incisally: Widening of the reflective surface ③ Flat and horizontal incisal edge ④ Cuspids: move the labial ridge distally ⑤ Rounded incisal edge, incisal notch
+A: ⑤ — Rounded incisal edge, incisal notch는 Wider space(좁아 보이게)의 Shaping 2) · Narrower space는 Flat and horizontal incisal edge [[SPE:14]] [[SPE:18]] / ①~④ ○ p.18 Techniques for Narrower Space (Shaping) — {n:필기: 옆으로 좁은 치아 넓어보이게 하는 방법 : 다 반대로!} · ②는 25·22년 '환영 옳지 않은 것' 보기 2) 'contact point를 순측, 절단연 측으로 이동시킬 경우, 치아가 넓어보임' ○ [[SPE:18]] / 원리: {n:26 필기(p.13): 크게 4가지 technique이 있다. 2가지씩 대비 되는 효과라 큰 법칙만 알고 있으면 이해할 수 있다} [[SPE:13]]
+@SPE | t=짤 변형·교수 형식(객관식) | pr=상 | b=S12,Q21,R19 | why=25·22 같은 보기 묶음 · 환영 해마다 · 방향 바꾸기 | oid=ESTH:P:developmentalgrooves를wid_6ce7ff
+Q: 환영에 해당하는 것 중 옳지 않은 것은? ① 어두운 색은 들어가 보이고 밝은 색은 도드라져 보인다 ② contact point를 순측, 절단연 측으로 이동시키면 치아가 넓어 보인다 ③ developmental grooves(발육구)를 서로 가깝게(closer together) 옮기면 치아가 덜 넓어 보인다 ④ 견치에서 순측융선(labial ridge)을 원심(distally)으로 이동시키면 치아가 좁아 보인다 ⑤ 수직 성분을 부각시키면 길어 보이고, 수평 성분을 부각시키면 넓어 보인다
+A: ④ — 견치 labial ridge를 distally = Narrower space(넓어 보이게) · 좁아 보이게는 move the labial ridge mesially(Wider space) [[SPE:15]] [[SPE:18]] — {n:26 필기(p.15): 견치의 ridge 부위를 mesial 쪽으로 가져오면 견치의 distal 부분이 덜 보이기 때문에 치아가 좁아보이고, 견치의 ridge 부위를 distal 쪽으로 두면 견치의 mesial 부분이 더 보이기 때문에 치아가 더 넓어보인다} / ① ○ {n:p.11 필기: 진하게 보이고 싶은 부위에 진하게 - 작아보이고 들어가보임 · 밝게 하면 - 튀어나와보이고 커보인다} [[SPE:11]] / ② ○ p.18 Place the contact areas more labially and incisally: Widening of the reflective surface – make the tooth appear wider [[SPE:18]] / ③ ○ p.15 Wider space: move the developmental grooves closer together (gingival) — {n:필기: 발육구가 보이거나 끝에 형태 만들어주면 시야를 수직적으로 분산시켜 덜 넓어보이게 할 수 있다} [[SPE:15]] / ⑤ ○ {n:p.6 필기: 수평성분을 부각시키면 넓어보이고 수직성분 부각시키면 길어보임} · Fundamentals p.26 Horizontal → Look shorter or wider · Vertical → Look longer or narrower [[SPE:6]] [[FUN:26]] / 25·22년 정답은 '발육융선이 있으면 넓어보인다'(✗) — 같은 보기 묶음에서 방향만 바꾼 변형.
+@SPE | t=짤 변형 | b=S12 | why=견치 방향은 '환영 옳지 않은 것' 변형 보기로 · 쓰기 꼴 | x=1
 Q: 견치를 좁아 보이게 할 때와 넓어 보이게 할 때 labial ridge와 contact area를 각각 어느 방향으로 옮기는가?
 A: 좁아 보이게(Wider space): move the labial ridge mesially · move the contact area lingually and gingivally / 넓어 보이게(Narrower space): move the labial ridge distally · move the contact area labially and incisally. [[SPE:15]] [[SPE:18]]
-@SPE | t=짤 변형 | b=R19
+@SPE | t=짤 변형 | pr=상 | b=R19,S12 | why=23 '환영 틀린 것' · staining 짝 · 자료 기준 판정
 Q: 환영에 대해 옳은 것을 모두 고르시오. (1) 진하게 착색한 부위는 작아 보이고 들어가 보인다 (2) Narrower space에서는 labial surface의 mesial and distal 1/3에 darker body color를 쓴다 (3) Wider space에서는 vertical lines를 light stain으로 강조한다 (4) Narrower space에서는 cervical abrasion을 흉내 낸 dark stain을 쓴다 (5) 수평 성분을 부각시키면 길어 보인다
 A: (1)·(3)·(4) — (2)는 Lighter body color(darker는 Wider space) · (5) {n:수평성분은 넓어 보이고 수직성분이 길어 보임}. [[SPE:11]] [[SPE:16]] [[SPE:19]] [[SPE:6]]
-@SPE | t=짤 변형 | b=S12
+@SPE | t=짤 변형 | b=S12 | why=수평·수직 원리는 '환영 옳지 않은 것' 변형 보기로 · 목록 쓰기 | x=1
 Q: Shaping and Contouring의 수단 4가지를 쓰고, 수평 성분과 수직 성분을 부각시켰을 때 치아가 각각 어떻게 보이는지 쓰시오.
 A: Angles · Curved lines and surfaces · Vertical and Horizontal line · Shadow add depth / {n:수평성분을 부각시키면 넓어 보이고, 수직성분을 부각시키면 길어 보임}. [[SPE:6]]
-@SPE | t=미출제
-Q: Techniques for Shorter Teeth를 Shaping·Staining·Arrangement로 나누어 쓰시오.
-A: 1. Shaping: narrow gingival third mesiodistally → make the tooth taper and longer / flat labial middle third vertically → increase vertical reflecting surface / mesial and distal halves of incisal edge → slope toward gingiva from midline - longer. 2. Staining: stain of higher value make the area more noticeable / white stain from body to incisal edge accentuate the height / ex) white decalcification spot at incisal edge - increase height. 3. Arrangement: shortening laterals slightly, reopen incisal embrasure. [[SPE:20]]
-@SPE | t=미출제
+@SPE | t=26 강조·짤 변형·교수 형식(객관식) | pr=상 | b=Q21,S12 | why=26 p.21 '큰 원리만 알면' · 환영 해마다 | oid=ESTH:P:techniquesforshorterteet_ee7d9f
+Q: 환영으로 치아 길이를 조절하는 원리에 관한 설명으로 옳지 않은 것은? ① 짧아 보이는 치아를 길어 보이게 하는 방법은 넓어 보이는 치아를 좁아 보이게 하는 방법과 유사하다 ② 길어 보이는 치아를 짧게 보이게 하는 방법은 좁은 치아를 넓어 보이게 하는 방법과 유사하다 ③ Shorter teeth: stain of higher value make the area more noticeable ④ Longer teeth: dark stain or deep shade at cervical portion → decrease height ⑤ Longer teeth: cervical and incisal 1/5를 labially 기울여 → increase vertical reflecting surface
+A: ⑤ — 슬라이드 "cervical and incisal 1/5: incline lingually → decrease vertical reflecting surface"(방향 반대로 · 'increase vertical reflecting surface'는 Shorter teeth의 flat labial middle third vertically) [[SPE:21]] [[SPE:20]] / ① ○ {n:필기(p.20): 넓어보이는 치아 수정 방법과 유사!} [[SPE:20]] / ② ○ {n:26 필기(p.21): 길어보이는 걸 짧게 하는 건 좁은 치아를 어떻게 더 넓게 보이게 하는가랑 동일하다} [[SPE:21]] / ③ ○ p.20 [[SPE:20]] / ④ ○ p.21 [[SPE:21]] / {n:26 필기(p.21): 큰 원리만 알면 다 이해된다. 하나하나 외우는 건 시험 문제에도 안 나올 거다.} — 기법을 하나하나 외우기보다 Shorter ≈ Wider 수정 · Longer ≈ Narrower 수정의 반대 짝으로 판단.
+@SPE | t=미출제 | why=길이 원리 객관식과 같은 축 · 26 p.21 '외우는 건 안 나올 것' | x=1
 Q: Techniques for Longer Teeth를 Shaping·Staining·Arrangement로 나누어 쓰시오.
 A: 1. Shaping: long contact / cervical and incisal 1/5: incline lingually → decrease vertical reflecting surface / incisal edge: notch at center / two adjacent teeth: converge gingivally at proximal contact. 2. Staining: dark stain or deep shade at cervical portion → decrease height. 3. Arrangement: Rotate distal aspect labially. [[SPE:21]] [[SPE:22]]
-@SPE | t=미출제
+@SPE | t=미출제 | why=p.10 필기 '참고만' · 미출제 | x=1
 Q: Lombardi's guide에서 중절치·측절치·견치가 각각 반영하는 것은?
 A: 1. Central: Age · 2. Lateral: Sex · 3. Canine: Personality. [[SPE:10]]
-@SPE | t=미출제
-Q: Principle of Illusion에서 shadow(depth)를 simulate하는 방법 3가지와 edge line을 바꾸는 방법을 쓰시오.
-A: To simulate shadow (depth): Changing contour · Arrangement of teeth · Staining / To change edge line: Combination of lines. [[SPE:5]]
-@SPE | t=미출제
+@SPE | t=미출제·교수 형식(객관식) | pr=중 | b=Q21 | why=환영 원리 쪽(p.5) · 26 p.21 '큰 원리' · 갈래 섞기 | oid=ESTH:P:principleofillusion에서sha_2a756a
+Q: Principle of Illusion에 관한 설명으로 옳지 않은 것은? ① Light → Form → Shadow · Line → Illusion ② To simulate shadow (depth): Changing contour ③ To simulate shadow (depth): Arrangement of teeth ④ To simulate shadow (depth): Staining ⑤ To simulate shadow (depth): Combination of lines
+A: ⑤ — Combination of lines는 To change edge line(두 갈래 섞기) [[SPE:5]] / ①~④ ○ p.5 — {n:필기: staining 섀딩 같이 - 어둡게 해서 들어가보이게 / 나와보이고 싶은 부분 밝게} [[SPE:5]]
+@SPE | t=미출제 | why=staining 효과는 '옳은 것 모두' 문항으로 · 기법 목록 세부 | x=1
 Q: Staining의 목적 2가지와 Techniques for surface staining 3가지를 쓰시오.
 A: 목적: Duplicate the natural variations · Create illusions / 기법: Glaze the crown first: Apply stain over the glaze · Cut into the porcelain · Combine glaze with stains. [[SPE:11]]
-@SPE | t=미출제
+@SPE | t=미출제 | why=미출제 · 강조 없음(p.9 목록) | x=1
 Q: Surface Characterization에서 참고할 것과, 젊은 환자와 나이 든 환자의 surface texture 차이를 쓰시오.
 A: Surface texture – Convexity, concavity, groove, fissure, stain, shadow, highlight / Study model, photographs / Reference – Adjacent teeth / Young pt. – textured surface · Older pt. – smoother texture, flat incisal edge. [[SPE:9]]
-@SPE | t=교수 강조
-Q: 심미 치료 단계 중 initial therapy는 언제까지 끝내야 하며, 환영(special effect)은 어느 단계들에서 적용하는가?
-A: Initial therapy(Orthodontic treatment · Endodontic treatment, bleaching · Periodontic treatment · Surgical treatment (Extraction, alveoloplasty))는 {n:진단 단계에 다 끝내야 함(필기 "기억할것")} / 환영: {n:diagnostic phase의 목업에서 적용해 보고 → 실제 수복 단계에서 적용 → 유지관리 단계에서도 마지막에 수정 가능}. [[SPE:7]]
-@SPE | t=교수 강조
+@SPE | t=교수 강조·교수 형식(객관식) | pr=중 | b=R20 | why=p.7 필기 '진단단계에 다 끝내야 함!! 기억할것' | oid=ESTH:P:심미치료단계중initialtherapy는언제_b1b5e6
+Q: 환영(special effect)과 심미 치료 단계에 관한 강의 내용으로 옳지 않은 것은? ① Initial therapy(Orthodontic treatment · Endodontic treatment, bleaching · Periodontic treatment · Surgical treatment)는 진단 단계에 다 끝내야 한다 ② 환영은 diagnostic phase에서 레진 등으로 만든 임시 목업에 적용해 본다 ③ 환영은 실제 수복 단계(restorative phase)에서 적용한다 ④ 유지관리 단계(maintenance phase)에서도 마지막에 수정할 수 있다 ⑤ 환영(special effect)이 진단, 치료계획, 상담을 통한 치료보다 치료의 핵심이다
+A: ⑤ — {n:26 필기(p.7): side effect는 말그대로 약간의 착시 효과일 뿐 기본적으로는 저번 시간에 다룬 진단, 치료계획, 상담 등을 통한 치료가 핵심이다}(반대로 바꿈) [[SPE:7]] / ① ○ {n:필기: initial therapy … 진단단계에 다 끝내야 함!! 기억할것} [[SPE:7]] / ②~④ ○ {n:필기: 환영은 diagnostic phase에서 … 레진 등으로 임시로 목업 해놓는 진단 단계 목업에서 special effecct 적용해보고 · 실제 수복단계에서 적용 · 유지관리 단계에서도 마지막에 수정 가능! 각 단계에서 할 수 있는 것을 기억하자} [[SPE:7]] / 9단계 도표의 Diagnostic mock-up · Provisionalization = 5. Diagnostic phase(25·23년 '단계' 문항 정답) [[PLAN:8]]
+@SPE | t=교수 강조 | why=필기만(p.23) · 적용 시점 문항 보기와 겹침 | x=1
 Q: 환영에서 가장 많이 조정하는 부위와, 그 조정을 언제 정해야 하는지 쓰시오.
 A: {n:line angle(주로 mesial), 주로 mesial 쪽의 incisal embrasure — 0.1 mm 단위로 약간만 조정해도 굉장히 큰 차이} / {n:mesial transition line angle은 충전 과정에서 미리 계획, 진단 단계·왁스업·목업에서 거의 다 정해 놓아야 함 → final touch 단계에서 전체 틀 바꾸지 않는 수준에서 미세하게 조정(필기 "기억하자!")}. [[SPE:23]]
-@SPE | t=교수 강조
+@SPE | t=교수 강조 | why=필기만(p.12) · 슬라이드 근거는 FUN 중절치 형태 문항 | x=1
 Q: 환영을 응용하기 전에 "기억해둬야 할것들"(필기)로 꼽은 전치 형태의 특징 4가지를 쓰시오.
 A: {n:MD에 있는 transition line angle이 어디에 있느냐가 매우 중요} / {n:flat한 surface가 기본이지만 경우에 따라 약간 convex/concave — convex하면 부자연스러워질 수 있어 미세하게 줘야 함} / {n:incisal edge 마모 정도 등에 따라 특성이 다르므로 조정을 잘 해 줘야 함} / {n:incisal embrasure: 특히 mesial 쪽은 작고 line이 직각 혹은 예각, distal 쪽 line angle은 둔각에 가깝다}. [[SPE:12]]
-@SPE | t=짤 변형 | b=Q21
+@SPE | t=짤 변형 | pr=중 | b=Q21,S12 | why=24 '환영 옳지 않은 것' 꼴 · CEJ·길이 보기
 Q: 환영(illusion)에 관해 옳지 않은 것은? (1) Wider space에서는 curve of CEJ를 more pronounced and move incisally 한다 (2) Narrower space에서는 curve of CEJ를 flatter 하게 한다 (3) Longer teeth는 incisal edge 중앙에 notch를 준다 (4) Shorter teeth는 laterals를 slightly shortening 하고 incisal embrasure를 reopen 한다 (5) Longer teeth는 cervical portion에 white stain을 넣어 height를 줄인다
 A: (5) — Longer teeth Staining은 dark stain or deep shade at cervical portion → decrease height. white stain은 Shorter teeth(white stain from body to incisal edge accentuate the height · white decalcification spot at incisal edge – increase height). [[SPE:15]] [[SPE:18]] [[SPE:20]] [[SPE:21]]
-@SPE | t=미출제
+@SPE | t=미출제 | why=미출제 · 환영 정의는 필기(p.4)뿐 · 쓰기 꼴 | x=1
 Q: 심미 수복(Esthetics of Dental Restorations)에서 고려할 것 6가지를 쓰고, 기본 원칙(Reference)과 환영(illusion)이 필요한 경우를 쓰시오.
 A: Form · Size · Alignment · Contour · Surface texture · Color. 기본 = Duplication of Remaining Natural Teeth (Reference) — 정반대 위치에 있는 치아를 거울상으로 참고삼아 재현해 주는게 가장 좋다(필기). 배열, 아치, 크기가 ideal 하지 않거나 Patient Need(예: 비대칭을 원함)로 크기, 배열 등을 마음대로 할 수 없을 때 우선 해놓고 마지막 단계에서 조정해줄 수 있는 과정 = illusion, 환영(필기). [[SPE:3]] [[SPE:4]]
-@VEN | t=짤 변형 | b=Q23
+@VEN | t=짤 변형 | pr=상 | b=Q23,T23 | why=p.23 필기 '주의해야 할 것 한두가지!' · 계면 처리 축
 Q: 간접 composite resin inlay를 접착할 때(Clinical Procedures) 수복물 내면 처리 순서로 옳은 것은? ① Etching → Priming → Bonding ② Roughening → Silanization → Bonding ③ Silanization → Roughening → Bonding ④ Etching → Silanization → Bonding
 A: ② — 수복물 내면: Roughening → Silanization → Bonding / ①은 치아 쪽(Etching → Priming → Bonding) / 둘 사이는 Adhesive Cementation: Dual-cured resin cement(붙인 뒤 충분한 광조사). [[VEN:23]]
-@VEN | t=짤 변형 | b=T23
+@VEN | t=짤 변형 | pr=상 | b=T23,Q23 | why=p.23 필기 '인산, 불산 같은걸로 에칭 불가능!'
 Q: 다음 중 composite resin inlay 내면 처리에 대한 설명으로 옳지 않은 것은? ① 파우더 같은 것으로 sandblasting해 표면을 거칠게 한다 ② silane 처리 후 접착제를 바른다 ③ 인산이나 불산으로 에칭한다 ④ 붙이기 전 접착제를 광중합하지 않고 setting한 뒤 충분히 광조사한다
 A: ③ — 필기: {n:컴포짓 레진 인레이는 인산·불산 같은 걸로 에칭 불가능, 표면 거칠게(sandblasting) 하는 방식뿐} / {n:붙이기 전 광중합을 하면 film thickness 때문에 passive하게 장착이 안 됨 → 광중합 없이 setting하고 이후 충분한 광 세기로 오래 조사}. [[VEN:23]]
-@VEN | t=교수 강조 | b=Q25
+@VEN | t=교수 강조 | pr=상 | b=Q25 | why=p.23 필기 '붙이고 나서 광조사 충분히 해줘야 함!!'
 Q: Dual-cured resin cement에 대한 설명으로 옳지 않은 것은? ① 화학중합(자가중합)을 한다 ② 광조사가 동반되었을 때와 접착력·강도가 많이 차이 난다 ③ 자가중합되므로 장착 후 광조사는 생략해도 된다 ④ 20초 normal mode로 1000 밀리와트/제곱센티미터 이상 강도로 충분히 광조사한다
 A: ③ — {n:필기 "붙이고 나서 광조사 충분히 해줘야 함!!"} · {n:dual curing resin cement는 화학중합·자가중합을 하지만 광조사가 동반되었을 때와 접착력·강도가 많이 차이 남} · 슬라이드 "충분한 광조사!". [[VEN:23]]
-@VEN | t=교수 강조 | b=T23
-Q: 치아 쪽 priming·bonding 때 inlay box의 코너에서 주의할 점은?
-A: {n:box의 코너에 프라이머나 본딩이 고여 있으면 나중에 장착할 때 안 들어갈 수 있음 → 접착제를 바를 때 고여 있지 않게, 바르고 나서도 dry 해주면서 얇은 한 층으로. [[VEN:23]]}
-@VEN | t=짤 변형 | b=Q23
-Q: T/F — (1) Porcelain은 Enamel-like stiffness, composite resin은 Dentin-like stiffness를 가진다. (2) Composite resin의 단점은 Brittleness와 Wear properties이다. (3) 에나멜의 대응 재료는 Feldspathic ceramics, 덴틴의 대응 재료는 Hybrid composites이다.
-A: (1) T (2) F — Composite Resins의 단점은 Curing contraction · Thermal expansion / Brittleness · Wear properties는 Porcelain의 단점 (3) T. [[VEN:5]] [[VEN:3]]
-@VEN | t=미출제
+@VEN | t=짤 변형 · 교수 형식(객관식) | pr=중 | b=Q25,T22 | why=24년 25번 시멘트 축 · p.23 · 26 자료 대기
+Q: Indirect composite resin inlay의 Adhesive Cementation(Clinical Procedures)에 쓰는 시멘트로 옳은 것은? ① Zinc phosphate cement ② Polycarboxylate cement ③ Glass ionomer cement ④ Dual-cured resin cement ⑤ Zinc oxide-eugenol cement
+A: ④ — 슬라이드 "Adhesive Cementation" · "Dual-cured resin cement" · "충분한 광조사!" / JB 해설(24년 25번): Laminate veneer는 adhesive type restoration으로 직접 치아와 화학적 bonding을 하는 Resin cement가 유일하게 사용 · ①②③(+ Resin-modified glass ionomer cement)는 retentive type restoration에 쓰이는 시멘트 · ⑤ 산화아연-유지놀계 시멘트는 임시접착용. [[VEN:23]]
+@VEN | t=교수 강조 · 교수 형식(객관식) | pr=중 | b=T23 | why=p.23 필기 '주의할 점: box의 코너…' | oid=ESTH:P:치아쪽primingbonding때inlayb_99353d
+Q: Indirect composite resin inlay 접착 때 치아 쪽 처리(Clinical Procedures)에 대한 설명으로 옳지 않은 것은? ① 치아는 Etching → Priming → Bonding 순으로 처리한다 ② 접착제가 inlay box의 코너에 고여 있지 않게 바른다 ③ 접착제를 바르고 나서 dry 해 주면서 얇은 한 층으로 만든다 ④ box의 코너에 프라이머나 본딩이 고여 있으면 나중에 장착할 때 안 들어갈 수 있다 ⑤ 치아 쪽 본딩은 여러 겹 두껍게 쌓아야 수복물이 잘 맞는다
+A: ⑤ — {n:필기 "주의할 점: box의 코너에 프라이머나 본딩 고여있으면 치아는 광중합 해야하는데, 나중에 장착할 때 안들어갈 수 있다 / 접착제 바를 때 고여 있지 않게, 바르고 나서도 dry 해주면서 얇은 한층으로 되게!"} / 슬라이드 그림 아랫줄 Etching → Priming → Bonding. [[VEN:23]]
+@VEN | t=그림빵 · 교수 강조 | pr=중 | b=P23,Q23,T23 | why=그림 기출 1문항뿐(25년 23번)·불확실 · p.23 강조 | f=VEN:23 | m=11.6,51.3,21.8,54.7;34.0,51.3,43.4,54.7;56.7,51.3,64.1,54.7;5.5,84.6,65.9,96.4;70.7,70.2,99.9,99.6;88.9,52.8,95.1,59.5
+Q: 그림 [[VEN:23]] Clinical Procedures(indirect composite resin inlay 접착)의 ①~⑥에 들어갈 말을 쓰시오.
+A: ① Roughening ② Silanization ③ Bonding ④ Etching → Priming → Bonding ⑤ Dual-cured resin cement ⑥ 충분한 광조사! / 윗줄 = 수복물 내면 · 아랫줄 = 치아 → Adhesive Cementation / {n:필기: 컴포짓 레진 인레이는 인산, 불산 같은걸로 에칭 불가능 → 표면 거칠게(sandblasting) · 붙이고 나서 광조사 충분히 해줘야 함!!}. [[VEN:23]]
+@VEN | t=짤 변형 · 교수 형식(객관식) | pr=중 | b=P16 | why=25년 16번 레진 vs 도재 축 · p.5 비교표 | oid=ESTH:P:tf1porcelain은enamellikes_8d363d
+Q: Composite Resin vs. Porcelain 비교표에 대한 설명으로 옳지 않은 것은? ① Composite Resins의 Advantages는 Bonding, Economy of tooth substrates, Dentin-like stiffness이다 ② Composite Resins의 Disadvantages는 Curing contraction, Thermal expansion이다 ③ Porcelain의 Advantages는 Esthetics, Durability, Enamel-like stiffness이다 ④ Porcelain의 Disadvantages는 Brittleness, Wear properties이다 ⑤ Composite Resins는 Enamel-like stiffness, Porcelain은 Dentin-like stiffness를 가진다
+A: ⑤ — 슬라이드: Composite Resins = Dentin-like stiffness · Porcelain = Enamel-like stiffness(p.3 Corresponding material: Enamel – Feldspathic ceramics · Dentin – Hybrid composites) / {n:필기 "우선적으론 포세린 비니어 하는게 맞다 … 컴포짓도 고려해볼 수 있다! 정도로 생각하자"} / 25년 16번(레진이 도재보다 나은 점) 답 Repair potentiality는 교과서 표 근거. [[VEN:5]] [[VEN:3]]
+@VEN | t=미출제 | pr=중 | why=p.3 표 · 필기 '덴틴이 에나멜보다 훨씬 작다!' · 미출제
 Q: Rationale for laminate veneer에 대한 설명으로 옳지 않은 것은? ① Enamel: stiffness, wear resistance ② Dentin: compliance, flexibility ③ Elastic modulus는 dentin이 enamel보다 크다 ④ 순측 에나멜이 소실되면 로딩 시 flexibility가 증가해 치아에 해로운 힘이 가해질 수 있다
 A: ③ — Elastic modulus: Enamel 80 GPa, Dentin 14 GPa({n:필기 "덴틴이 에나멜보다 훨씬 작다!"}) / ④는 {n:필기의 rationale "순측 에나멜 소실 시 로딩 있을 때 flexibility증가해 치아에 해로운 힘 가할 수 있으므로 수복해줘야한다"}. [[VEN:3]]
-@VEN | t=미출제
+@VEN | t=미출제 | pr=중 | why=p.6-7 장단점 목록 · '단점 같은 장점' 함정
 Q: 슬라이드의 Direct composite veneer(DCV) 장점(Advantages)이 아닌 것은? ① One visit placement ② No laboratory fees ③ Little or no enamel removal ④ Premature wear of the opposing dentition ⑤ Relatively poor esthetic outcome
 A: ⑤ — Disadvantages 항목(Do not maintain their appearance over time · Relatively poor esthetic outcome · Considerable chair time · Experience required to consistently achieve optimal results) / ④는 슬라이드 Advantages 목록에 있음({n:필기: 포세린 아니므로 대합치 wear 측면에서 좀 낫다}) — 함정. [[VEN:6]] [[VEN:7]]
-@VEN | t=미출제
+@VEN | t=짤 변형 | pr=상 | b=P24 | why=25년 24번 DCV 삭제 축 · p.8 다른 항목(변색 치아)
 Q: DCV의 치아 삭제(Tooth Preparation for DCV)에 대한 설명으로 옳은 것은? ① Lingually positioned 치아는 두께만큼 삭제해야 한다 ② Facially positioned 치아는 rarely require any preparation ③ Discolored teeth는 순측에 masking agent와 composite resin을 둘 공간(about 1 mm)이 부족할 때만 삭제한다 ④ 삭제가 필요 없는 치아는 표면 처리도 필요 없다
 A: ③ — Lingually positioned or short cervicoincisally: rarely require any preparation / Facially positioned: some degree of preparation to allow space for the thickness / {n:필기 "삭제까지 아니라도 표면 전처치 필요!"(Biofilm 등이 접착 방해)}. [[VEN:8]]
-@VEN | t=짤 변형 | b=T12
+@VEN | t=짤 변형 | pr=중 | b=T12 | why=p.9 7항목 목록 · 필기 'incisal에 투명한 셰이드'
 Q: Clinical considerations for DCV 항목이 아닌 것은? ① Layering various shades and opacities ② Masking effect – opaque shade ③ Color modifications – tints ④ Translucency – cervical areas ⑤ PVS custom matrix from the wax-up model
 A: ④ — 슬라이드는 Translucency – incisal edges({n:필기: incisal에 투명한 셰이드}) / 7항목: Single shade · Layering various shades and opacities · Masking effect – opaque shade · Color modifications – tints · Translucency – incisal edges · Diagnostic wax-up · PVS custom matrix from the wax-up model. [[VEN:9]]
-@VEN | t=짤 변형 | b=T12
+@VEN | t=짤 변형 | b=P23,T12 | why=25년 23번 그림·축 그대로(기출 그림 반복) · 쓰기형 | x=1
 Q: Opaque composite의 masking effect 그림에서 치면(A) 위에 올리는 층을 순서대로 쓰시오.
 A: A: stain/fluorosis → B: opaque shade → C: cervical shade → D: body shade → E: translucent shade({n:필기: 변색·불소증이 있으면 opaque shade로 꼭 가리고 그 다음 cervical, body, translucent한 enamel shade 순}). [[VEN:11]]
-@VEN | t=미출제
+@VEN | t=미출제 | pr=중 | why=p.10 필기 '나왔던 슬라이드 - 복습' · 표 칸
 Q: Selection of composite에서 Enamel – Translucent 층에 쓰는 composite로 짝지어진 것은? ① Microhybrid, Macrofilled ② Microfilled, Nanofilled ③ Microhybrid, Nanofilled ④ Macrofilled, Microfilled
 A: ② — Opacity: Dentin – Opaque — Microhybrid, Macrofilled / Translucency: Enamel – Translucent — Microfilled, Nanofilled. [[VEN:10]]
-@VEN | t=미출제
+@VEN | t=짤 변형 | pr=상 | b=P25 | why=25년 25번 레진 인레이 축 · p.16-17 다른 항목
 Q: Indirect composite resin inlay에 대한 설명으로 옳지 않은 것은? ① Indirect ceramic restoration의 prognosis가 의심스럽거나(questionable prognosis) financial problem이 있을 때 대안 ② Direct composite restoration에서 cusp capping·multiple restorations·large & proximal surface involved일 때 대안 ③ Heavy occlusal force는 절대 금기이다 ④ Impossible isolation & moisture control이면 금기이다
 A: ③ — {n:필기 "교합력 너무 센 경우 (포세린에 비해 강도 떨어짐) -> 절대 금기는 아니고 상대 금기!"} / Contra-indication: Heavy occlusal force · Parafunctional habit · Impossible isolation & moisture control. [[VEN:16]] [[VEN:17]]
-@VEN | t=미출제
+@VEN | t=짤 변형 | pr=상 | b=P25 | why=25년 25번 축 · p.18-19 장단점 다른 항목
 Q: 직접 레진 수복과 비교한 indirect composite resin inlay의 장점이 아닌 것은? ① Improved mechanical properties ② Reduced polymerization shrinkage ③ Anatomical reproduction ④ 치아 삭제량이 적다
 A: ④ — Increased tooth preparation은 단점({n:필기: 장착·path 등 얻기 위해 삭제량 늘어남}) / 직접에 비한 단점: Multiple visit · High cost · Increased tooth preparation · Technique sensitivity / 포세린에 비한 장점: Contact modification(Composite adding & adjusting) · Wear, laboratory process, elastic modulus, 단점: Mechanical properties. [[VEN:18]] [[VEN:19]]
-@VEN | t=미출제
+@VEN | t=미출제 | why=증례 세부(p.32 필기) · 쓰기형 · '케이스 몇개 보고 마칠 것' | x=1
 Q: 고2 환자의 소구치 인접면 다발성 우식 증례에서 골드·포세린 대신 간접 레진 인레이를 선택한 이유를 쓰시오.
 A: {n:처음 내원 시 고2 — 전장관 수복은 애매, 포세린 인레이를 모두 하면 비용 문제} / {n:인접면 다발성 우식 → 구강위생이 잘 안 되고 우식활성도가 높은 환자일 가능성이 높아 골드의 적응증이 안 됨} / {n:여러 개를 해야 하고 해부학적 형태를 고려 → 간접수복·심미 레진 인레이}. [[VEN:32]]
-@VEN | t=짤 변형 | b=T12
+@VEN | t=짤 변형 | b=T12 | why=증례 세부(p.13 필기) · 쓰기형 | x=1
 Q: 10세 미만 외상 환자의 전치 파절 증례(Case – Direct Composite Veneer)에서 포세린 라미네이트 비니어·전장관 대신 direct composite veneer를 한 이유와 술식 순서를 쓰시오.
 A: {n:포세린 라미네이트 비니어나 전장관 수복을 할 수 있는 나이가 아님 — 성장이 일어나고 치열이 바뀌고 맹출도 일어날 나이(DCV는 파절·탈락이 있을 수 있고 좀 비심미적이지만 해볼 수 있다)} / {n:모델 제작해 왁스업 후 찍은 퍼티 인덱스 이용 → palatal 쪽에 plate를 미리 만들어주고 그 위에 라미네이트 비니어 → incisal 쪽은 투명한 shade로 cervical 부위와 색·투명도 차이}. [[VEN:13]]
-@VEN | t=미출제
+@VEN | t=미출제 | why=p.20 필기 세부 · 강조·기출 없음 | x=1
 Q: 전통적 방식의 indirect composite resin inlay 제작 과정에 대한 설명으로 옳지 않은 것은? ① 인상 채득 후 margin을 표시한다 ② 복합레진을 적층법으로 채워 넣는다 ③ 구외에서 하므로 해부학적 형태·인접면·groove 재현이 가능하다 ④ 광조사 후 열을 가해 추가 중합하므로 수축이 없어 조정이 필요 없다
 A: ④ — 필기: {n:빼서 중합시키면 미세하게 좀 더 수축 → 찌고 나서 넣으면 안 들어갈 때가 있어 조정 필요} / 슬라이드 18 Improved mechanical properties — Additional polymerization: heat, pressure, light. [[VEN:20]] [[VEN:18]]
-@VEN | t=미출제
+@VEN | t=미출제 | why=증례 세부(p.14 필기) · 쓰기형 · 필기 '꼭 정답은 x' | x=1
 Q: 21번에 큰 기존 5급 수복물·변색이 있고 다른 전치도 erosive, abrasive한 변색이 있는 증례에서, 6전치 porcelain laminate veneer 대신 직접 수복부터 한 이유와 21번을 최종적으로 어떻게 했는지 쓰시오.
 A: 6전치 다 프렙하고 porcelain laminate veneer 하면 심미적으로는 뛰어나지만, cervical 쪽에만 문제 있는 치아들을 전부 프렙하는 것은 치질 보존 측면에서 문제 → 직접 수복(12,13 → 21 → 11,22,23 순차적으로) → 21번 심미가 너무 떨어져 다시 프렙하고 porcelain laminate veneer로 바꿈(필기). "이건 예시지 무조건 맞는 치료계획은 아님 … dcv를 하나의 치료계획 옵션으로 생각하자"(필기). [[VEN:14]]
