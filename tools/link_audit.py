@@ -14,6 +14,7 @@
 import os, sys, re, json, difflib, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
+from bs4 import BeautifulSoup
 SIDS = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
 TXT = lambda h: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', h or '')).strip()
 NORM = lambda s: re.sub(r'[^0-9a-z가-힣]+', '', (s or '').lower())
@@ -38,7 +39,8 @@ def audit(SID, year=None):
         a = re.search(r'<article[^>]*>', h); A = a.group(0) if a else ''
         g = lambda k: (re.search(k + r'="([^"]*)"', A) or [None, ''])[1]
         tier, lec, prof, yrs, unrec = g('data-tier'), g('data-lec'), g('data-prof').split('(')[0], [int(y) for y in g('data-yrs').split() if y.isdigit()], 'data-unrec' in A
-        m = re.search(r'class="qtext[^"]*"[^>]*>(.*?)</div>', h, re.S); qt = TXT(m.group(1)) if m else ''
+        _qe = BeautifulSoup(h, 'html.parser').select_one('.qtext'); qt = re.sub(r'\s+', ' ', _qe.get_text(' ', strip=True)) if _qe else ''   # 10-16 문제 글 전체(첫 줄이 '2025 년 교수님 강조' 같은 머리면 첫 div만 보고 '짧은 문제'로 빠지던 것 — CONS INL 25년 42번)
+        qt = re.sub(r'^\s*20\d\d\s*년\s*교수님\s*강조\s*', '', qt)
         qtext[q] = qt
         weak = unrec or re.search(r'복원\s*불충분|복원부실|미복원', qt) or len(NORM(qt)) < 12
         if tier == 'C' or weak: continue
