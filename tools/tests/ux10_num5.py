@@ -59,7 +59,8 @@ async def main():
         await pg.click('[data-sact=fold]'); await pg.wait_for_timeout(300)
         # ---- 마지막 위치 ----
         tgt = await pg.evaluate("document.querySelectorAll('.nm-it')[30].dataset.id")
-        await pg.evaluate("(id=>{const a=document.querySelector('.nm-it[data-id=\"'+id+'\"]');window.scrollTo(0,a.getBoundingClientRect().top+scrollY-150);})", tgt); await pg.wait_for_timeout(1500)
+        for _w in (900, 1500):   # 10-16 위 문제 그림(지연 로드)이 들어와 자리가 밀리면 한 번 더 — 사용자가 스크롤을 멈춘 자리
+            await pg.evaluate("(id=>{const a=document.querySelector('.nm-it[data-id=\"'+id+'\"]');const s=document.querySelector('.nm-stick').getBoundingClientRect().bottom;window.scrollTo(0,a.getBoundingClientRect().top+scrollY-Math.round(s)-2);})", tgt); await pg.wait_for_timeout(_w)   # 위 막대 바로 아래 = 그 문제가 맨 위(전엔 -150 → 앞 문제 끝이 맨 위에 걸려 저장 id가 앞 문제)
         saved = await pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.num.pos.CONS')||'null')")
         await pg.reload(); await pg.wait_for_timeout(3500)
         top = await pg.evaluate("(()=>{const s=document.querySelector('.nm-stick').getBoundingClientRect().bottom;const a=[...document.querySelectorAll('.nm-it:not([hidden])')].find(x=>x.getBoundingClientRect().bottom>s+6);return a&&a.dataset.id})()")

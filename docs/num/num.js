@@ -863,7 +863,7 @@ function render(o) {
   const rest = chunks.slice(1);
   const done = () => {
     if (tok !== S.tok) return; applyFilter();
-    const back = o.pos ? restorePos(o.pos) : false; if (!back && o.y != null) window.scrollTo(0, o.y);
+    const back = o.pos ? restorePos(o.pos) : false; if (back) pinPos(o.pos); else if (o.y != null) window.scrollTo(0, o.y);
     if (o.flash) flash(o.flash); if (o.hl) flash(o.hl, true); S.posOK = true; spy(); topBtn();
     if (o.resume && back && scrollY > 300) H.toast('마지막으로 보던 문제부터 이어서 보여 드려요', { level: 'result', id: 'nmresume', action: { label: '맨 위로', fn: () => window.scrollTo(0, 0) } });
   };
@@ -900,6 +900,14 @@ function restorePos(p) {   /* 그 문제 자리로 — 필터에 걸려 숨었�
   const off = Math.max(p.off || 0, stuckBottom() + 4);
   window.scrollTo(0, Math.max(0, a.getBoundingClientRect().top + scrollY - off)); requestAnimationFrame(() => { const r = a.getBoundingClientRect(); if (Math.abs(r.top - off) > 4) window.scrollBy(0, r.top - off); });
   return true;
+}
+let PIN = null;
+function unpin() { if (PIN) { PIN.ro.disconnect(); PIN = null; } }
+function pinPos(p) {   /* 10-16 그림(JB·예상 그림 자리표)이 늦게 들어와 위 문제가 길어져도 그 문제 자리 그대로 — 사용자가 스크롤·입력하기 전까지 6초 */
+  unpin(); const doc = S.root && $('[data-doc]', S.root); if (!p || !doc || !window.ResizeObserver) return;
+  const ro = new ResizeObserver(() => { if (PIN && PIN.ro === ro && Date.now() < PIN.until && S.root && doc.isConnected) restorePos(PIN.p); else if (PIN && PIN.ro === ro) unpin(); });
+  PIN = { p, ro, until: Date.now() + 6000 }; ro.observe(doc);
+  ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(ev => addEventListener(ev, unpin, { once: true, passive: true, capture: true }));
 }
 function posNow() {   /* 지금 화면 맨 위 문제(한 점만 짚어 봄 — 빠름) · 문서 맨 위면 null */
   const R = S.root, doc = R && $('[data-doc]', R); if (!doc) return null; const y = stuckBottom() + 6, r = doc.getBoundingClientRect(); if (r.top > y - 2) return null;
@@ -2037,7 +2045,7 @@ function revRender(o) {
   main.innerHTML = `${revBarHTML()}<div class="nm-doc" data-doc="1">${chunks[0] || ''}${n ? '' : revEmptyHTML()}</div>`;
   sideRender();
   const doc = $('[data-doc]', Rt), rest = chunks.slice(1);
-  const done = () => { if (tok !== S.tok) return; applyFilter(); const back = o.pos ? restorePos(o.pos) : false; if (!back && o.y != null) window.scrollTo(0, o.y); if (o.flash) flash(o.flash); S.posOK = true; spy(); topBtn(); };
+  const done = () => { if (tok !== S.tok) return; applyFilter(); const back = o.pos ? restorePos(o.pos) : false; if (back) pinPos(o.pos); else if (o.y != null) window.scrollTo(0, o.y); if (o.flash) flash(o.flash); S.posOK = true; spy(); topBtn(); };
   applyFilter(true);
   if (!rest.length) { done(); return; }
   let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); if (i < rest.length) setTimeout(step, 0); else done(); };
@@ -2360,7 +2368,7 @@ function syncOther() {
   re.forEach(rerenderItem); applyFilter();
 }
 function flush() { if (S.ed) edSave(); try { if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} }
-function leave() { if (!S.root) return; if (DG.s) dragEnd(); try { endEdit(true); formEnd(); if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
+function leave() { if (!S.root) return; unpin(); if (DG.s) dragEnd(); try { endEdit(true); formEnd(); if (S.app === 'rev') { drSave(); sesSave(); } posSave(); } catch (e) {} S.posOK = false; menuClose(); dlgClose(); palClose(); tbWatch(false); printClean(); S.fp = false; S.vo = false; S.drawer = false; document.body.classList.remove('v-num'); S.root = null; }
 async function open(root, o, host) {
   H = host; S.app = o.rev ? 'rev' : 'make'; css(); bind(); cfg(); S.root = root; document.body.classList.add('v-num');
   if (S.app === 'rev' && o.fresh && S.cfg.view !== 'scroll') { S.cfg.view = 'scroll'; cfgSave(); RV.face = 0; RV.sum = false; }   /* 허브 홈·메뉴에서 들어오면 늘 스크롤 복습부터(새로고침·뒤로·화면 안 바꾸기는 마지막 방식 그대로) */
