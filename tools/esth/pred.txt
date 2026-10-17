@@ -4,13 +4,13 @@ A: x축 = Wavelength λ (nm)(파장) / y축 = Relative radiant power(세기). / 
 @COL | t=짤 변형 | b=Q28 | why=p.8 필기만(시험 표시 없음) · SPD 축은 x·y축 문항이 맡음 | x=1
 Q: 흰색 LED의 SPD 특징과 그것이 눈에 좋지 않은 이유를 쓰시오.
 A: 흰색 LED = {n:파란색 LED에 형광물질을 넣어 분산} → 청색 파장 peak가 매우 높고 형광 물질로 퍼뜨린 파장이 함께 보임. 전기 효율이 좋고 수명이 길고 열이 덜 나지만 청색 peak 때문에 눈에 안 좋다(필기). [[COL:8]]
-@COL | t=짤 변형 | pr=상 | b=Q26 | why=CIELAB 7회 완짤 · p.59 '방향 잘 기억할 것 (음양 구분)'
+@COL | t=짤 변형 | pr=상 | b=Q26 | why=CIELAB 7회 완짤 · p.59 '방향 잘 기억할 것 (음양 구분)' · 26 예고 p.59
 Q: CIELAB에서 +a*, −a*, +b*, −b* 방향의 색을 쓰고, 채도(C*ab)와 색상각(hab)을 구하는 식을 쓰시오.
 A: +a* = Red · −a* = Green · +b* = Yellow · −b* = Blue. C*_ab = (a*² + b*²)^1/2(거리 = 채도) · h_ab = tan⁻¹(b*/a*)(각도 = 색상). [[COL:59]] [[COL:60]]
 @COL | t=짤 변형 | pr=중 | b=Q26 | why=CIELAB 기출 쪽 p.59 다른 줄 · ΔE p.62
 Q: CIE L*a*b*와 CIE L*u*v*는 각각 무엇에 쓰이는지, 두 색의 색차(ΔE*ab)는 어떻게 구하는지 쓰시오.
 A: CIE L*a*b* (CIELAB) : Munsell spacing, colorant / CIE L*u*v* (CIELUV) : additive mixing. ΔE*ab = (ΔL*² + Δa*ab² + Δb*ab²)^1/2 — 3차원 공간상의 거리(필기). [[COL:59]] [[COL:62]]
-@COL | t=짤 변형 | pr=상 | b=R22 | why=23년 단답 · p.19 '시험 필출!!' · 교수 '같은 것 냄'
+@COL | t=짤 변형 | pr=상 | b=R22 | why=23년 단답 · p.19 '시험 필출!!' · 교수 '같은 것 냄' · 26 p.19 시험 언급
 Q: 인간의 색 지각이 three-dimensional이라는 뜻을 슬라이드의 세 용어와 한글 뜻으로 쓰시오.
 A: Hue(색상 — red, green, blue...) / Colorfulness(채도 — {n:얼마나 진한가}) / Brightness(명도 — {n:얼마나 밝나}). / 세 가지를 조합하면 모든 색을 3차원 공간에 찍을 수 있다(필기). [[COL:19]]
 @COL | t=짤 변형 | pr=상 | b=P27,S14,P05 | why=25년 유백광 이유(답 미상) · p.89 정의 그대로
@@ -18,10 +18,10 @@ Q: 치아의 opalescence를 정의하고, 반사광과 투과광의 색, 이를 
 A: Scattering of the shorter wavelengths of the visible spectrum of light (opal effect). / Reflected light : bluish / Transmitted light : orange/brown. / Particles : smaller than the wavelength of visible light and have a much higher refractive index than the matrix material. [[COL:89]]
 @COL | t=짤 변형 | pr=상 | b=T20 | why=조건등색 3회(21·20·19년) · p.70 '국시에 맨날 나오죠'
 Q: Tristimulus colorimeter가 조건등색(metamerism)을 측정할 수 없는 이유와, 조건등색을 평가할 수 있는 장비를 쓰시오.
-A: {n:색차계는 RGB를 셀로판지 같은 필터로 XYZ로 나타낼 뿐 프리즘이 없어서 각 파장별 반사율은 계측 불가} — Cannot be used to quantify metamerism. Spectrophotometer(분광측색기)는 {n:프리즘으로 분광해 파장별 반사율을 알 수 있어} Can also evaluate metamerism. [[COL:69]] [[COL:70]] [[COL:72]]
+A: {n:색차계는 RGB를 셀로판지 같은 필터로 XYZ로 나타낼 뿐 프리즘이 없어서 각 파장별 반사율은 계측 불가} — Cannot be used to quantify metamerism. Spectrophotometer(분광측색기)는 {n:프리즘으로 분광해 파장별 반사율을 알 수 있어} Can also evaluate metamerism. / {n:셀로판지가 빛에 노출되면 색이 변하고, 조명이 바뀌었을 때 색이 달라 보인다 — 조건등색에 취약(26 필기 p.70)} [[COL:69]] [[COL:70]] [[COL:72]]
 @COL | t=미출제 | pr=중 | b=T20 | why=p.68 장비 4종 · p.74 cross-media '(중요)'
 Q: 색 측정 장비 4가지를 쓰고, spectroradiometer의 장점을 쓰시오.
-A: Tristimulus colorimeters · Spectroradiometers · Spectrophotometers · Digital cameras. Spectroradiometer (TSR) Advantage: Actual condition · All forms of color (surface and self-luminous) ⇒ cross-media color reproduction (e.g., monitor against print). [[COL:68]] [[COL:74]]
+A: Tristimulus colorimeters · Spectroradiometers · Spectrophotometers · Digital cameras. Spectroradiometer (TSR) Advantage: Actual condition · All forms of color (surface and self-luminous) ⇒ cross-media color reproduction (e.g., monitor against print). / {n:가장 중요한 장점은 현재 조명에서 분석하기 때문에 사람의 눈과 유사(26 필기 p.74)} [[COL:68]] [[COL:74]]
 @COL | t=미출제 | why=p.49·51 시험 표시·기출 없음(하) | x=1
 Q: CIE system이 규정한 색 지각의 세 요소와 CIE 표준광원 A·B·C·D65를 쓰시오.
 A: Illuminant · Object · observer. A : incandescent light · B : direct sunlight · C : average daylight · D65 : surface color(D: newly recommended in 1964, 6500K). [[COL:49]] [[COL:51]]
@@ -73,7 +73,7 @@ A: (360~400 to 700~780 nm) — {n:필기 "380-700 nm 정도 - 단위가 나노�
 @COL | t=짤 변형 · 기출 꼴(객관식) | pr=상 | b=Q13 | why=24·25 '색 옳은 것' 2회 축 · 교수 불확실
 Q: 색에 대한 설명으로 옳지 않은 것은? ① 사람 눈이 볼 수 있는 가시광선의 범위는 360~400 to 700~780 nm이다 ② Rods(간상체)는 Rhodopsin을 가지며 색 정보가 없다(no color information) ③ Cones(추상체)는 3 cone classes로 색 정보를 담당한다 ④ 파장이 곧 색상(Hue)을 의미한다 ⑤ Munsell 색공간에서 바깥쪽으로 갈수록 무채색에 가까워진다
 A: ⑤ — {n:필기(p.47): 바깥쪽으로 가면 색이 진해짐 · 안으로 오면 무채색이 됨} — 그림 Weak chroma → Strong chroma [[COL:47]] / ① ○ The range of human visual system (360~400 to 700~780 nm) — {n:필기 "단위가 나노미터라는 것이 중요!!"}(24·25년 보기 '380-780 마이크로미터' ✗) [[COL:5]] / ② ○ Rods : Rhodopsin, no color information — {n:간상체 - 흑백으로 보는 것(필기)}(24·25년 보기 '간상체 세포는 색상과 채도를 인식한다' ✗) [[COL:17]] / ③ ○ Cones : 3 cone classes — {n:Long = 적색 · Middle = 녹색 · Short = 청색(필기)} [[COL:17]] / ④ ○ {n:필기(p.4): 햇빛 안에는 빨주노초파남보의 색이 있다. 이는 파장에 의해 나뉘며, 파장이 곧 색상을 의미한다}(24·25년 보기 '같은 파장의 색은 항상 밝기로 느낀다' ✗) [[COL:4]] / 24·25년 정답 '수복물의 채도를 높이기 위해서는 해당 색상을 더 첨가'(JB 근거 교과서)와 같은 방향 = 바깥쪽(진함)이 채도 ↑.
-@COL | t=짤 변형 | pr=상 | b=S14,P27 | why=하늘·노을 4회(22~19년) → 25년 유백광 짝으로 변형
+@COL | t=짤 변형 | pr=상 | b=S14,P27 | why=하늘·노을 4회(22~19년) → 25년 유백광 짝으로 변형 · 26 강조 p.40
 Q: 빛의 산란이 없다면 하늘은 어떻게 보이는지 쓰고, 낮과 해 질 때(뜰 때) 빛의 이동거리가 하늘의 색을 어떻게 바꾸는지, 사람 치아에서 같은 원리로 나타나는 현상을 쓰시오.
 A: {n:산란이 없다면 까맣게만 보일 것(모든 파장의 빛이 흡수되므로)}. / {n:파장이 짧을수록 산란이 잘 되는데, 낮에는 빛의 이동거리가 짧아 산란이 잘되는 푸른빛들이 지표에 도달} / 해가 질 때나 뜰 때는 빛이 비스듬히 들어오며 공기를 지나는데, 빛의 이동거리가 길어지며 푸른빛이 계속 산란되어 없어지고 남은 빨간색만 보임(필기). / {n:같은 원리 = 사람 치아의 유백광(opalescence)} — Reflected light : bluish · Transmitted light : orange/brown. [[COL:40]] [[COL:89]]
 @COL | t=미출제 | why=p.13 필기 위주·시험 표시 없음 · 산란은 하늘·유백광 문항이 맡음 | x=1
