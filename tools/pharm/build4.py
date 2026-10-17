@@ -911,16 +911,21 @@ def lec_card(L, j, c):
     ctx['RED'] = None
     return ''.join(h), mx, ids, lab, row
 
-profS = {}
-for q in Q:
+profS = {}; YSEL = {}
+for q in Q:   # 10-17 A안(사용자 "A안으로 해주고") — 교수별 출제 경향 = 출제 연도 기준 교수(YEAR_PROF · yp_of): 그 해 그 교수가 낸 문항으로 셈
     if q['tier'] == 'C' or not q.get('st') or not (q['prof'] or '').strip(): continue
-    profS.setdefault((q['prof'] or '').split('(')[0], []).append(q)
+    for y_, p_ in yp_of(q):
+        p_ = (p_ or q['prof'] or '').split('(')[0].strip()
+        if not p_: continue
+        if q['id'] not in YSEL.setdefault(p_, {}): profS.setdefault(p_, []).append(q)
+        YSEL[p_].setdefault(q['id'], set()).add(y_)
 # 교수별 요약(U21): 한 줄 요약 · 📌 전략(여러 교수에 공통인 항목은 '공통:'으로 한 번만, 교수별로는 다른 부분만) · 연도별 칸은 접힘
-PSM = {p_: trend.summarize(qs) for p_, qs in profS.items()}
+PSM = {p_: trend.summarize(qs, ysel=YSEL[p_]) for p_, qs in profS.items()}
 PPARTS = {p_: trend.tendency_parts(PSM[p_], p_, MENT_PROF.get(p_, '')) for p_ in profS}
 # 최근 2개 시험 해에 한 문항도 없는 교수(예전 담당)는 요약·전략에서 빼고 세부(접힘)에만
 _ymax = max((y for q in Q for y in q['yrs']), default=0)
-PCUR = [p_ for p_ in profS if max((y for q in profS[p_] for y in q['yrs']), default=0) >= _ymax - 1] or list(profS)
+CURP = {x.strip().split('(')[0] for L_ in LEC for x in re.split(r'[·,/]', L_.get('prof') or '') if x.strip()}   # 지금(26) 강의 담당 — 요약·📌 전략은 이 교수들(옛 출제 교수는 세부 '예전 담당')
+PCUR = [p_ for p_ in profS if p_ in CURP] or [p_ for p_ in profS if max((y for ys_ in YSEL[p_].values() for y in ys_), default=0) >= _ymax - 1] or list(profS)
 POLD = [p_ for p_ in profS if p_ not in PCUR]
 _sl = [PPARTS[p_][1] for p_ in PCUR]
 SCOMMON = [x for x in _sl[0] if all(x in l_ for l_ in _sl[1:])] if len(_sl) >= 2 else []
@@ -937,6 +942,7 @@ for p_, qs in profS.items():
     SM = PSM[p_]; t_ = ' / '.join(PPARTS[p_][0])
     lecs = sorted({lname(q['lk']) for q in qs if q['lk']})
     note = S.PROF_NOTE.get(p_, '')
+    if p_ not in CURP: note = (note + ' · ' if note else '') + '옛 출제 교수(지금 담당 아님 — 그 해 출제분만 셈)'   # 10-17 A안
     prow += f'<tr><th>{esc(p_)}<div class="small">{esc(" · ".join(lecs))}{("<br>" + esc(note)) if note else ""}</div></th><td><div class="yrow">{trend.years_html(SM)}</div></td><td><div class="tlines">{"".join(f"<div>{x}</div>" for x in t_.split(" / "))}</div></td></tr>'
     if p_ not in PCUR: continue
     tags = [t for t in (strat_tag(x) for x in PPARTS[p_][1] if x not in SCOMMON) if t]

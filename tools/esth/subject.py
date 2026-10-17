@@ -5,7 +5,7 @@ PROFS = '이창하 · 안진수'
 BUILT = '2026-10-03'
 LECMAP = {'INT': ('E01i', 'Introduction(26)'), 'FUN': ('E02i', 'Fundamentals of esthetic dentistry(26)'),
           'PLAN': ('E03i', '심미수복에서의 진단 및 치료계획(26)'), 'SPE': ('E11i', 'Special Effects(26)'), 'SPE5': ('E04i', 'Special Effects(25)'),
-          'COL': ('E05i', '색(25)'), 'MAT': ('E06i', '심미수복재료(25)'),
+          'COL': ('E12i', '색(26)'), 'COL5': ('E05i', '색(25)'), 'MAT': ('E06i', '심미수복재료(25)'),
           'VEN': ('E07i', 'Direct veneer, Indirect composite resin inlay(25)'),
           'INT5': ('E08i', 'Introduction(25)'), 'FUN5': ('E09i', 'Fundamentals of esthetic dentistry(25)'),
           'PLAN5': ('E10i', '심미수복에서의 진단 및 치료계획(25)')}
@@ -16,7 +16,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {}
-IMG_ALIAS = {'SPE5': 'SPE', 'INT5': 'INT', 'FUN5': 'FUN', 'PLAN5': 'PLAN'}
+IMG_ALIAS = {'SPE5': 'SPE', 'INT5': 'INT', 'FUN5': 'FUN', 'PLAN5': 'PLAN', 'COL5': 'COL'}
 PROF_LEC = {'이창하': ['INT', 'FUN', 'PLAN', 'SPE', 'MAT', 'VEN'], '안진수': ['COL'], '서덕규': [], '여인성': []}
 PROF_ORDER = ['이창하', '안진수']
 COVER = {'이창하': 18, '안진수': 18, '서덕규': 18, '여인성': 18}   # JB 괄호 연도가 18년까지 → 2018년이 기준선

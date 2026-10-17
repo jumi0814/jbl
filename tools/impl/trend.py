@@ -69,12 +69,18 @@ def analyze(Q, Q2CARD, LEC, PROF_COVER):
             app.append({'y': y, 'kind': '탈', 'tal': '변형' if prior else '새영역', 'emph': bool(c and cardP.get(c))})
         q['st'] = {'fmt': fmt_of(q), 'mark': jb_mark(q), 'app': app, 'latest': app[-1]}
     return
-def summarize(qs, prof=None):
-    """문항 목록 → 연도별 짤/탈·형식 집계"""
+def summarize(qs, prof=None, ysel=None):
+    """문항 목록 → 연도별 짤/탈·형식 집계
+    ysel = {문항 id: {그 교수가 낸 해}}(10-17 A안 — 출제 연도 기준 교수 집계: 그 해 출제분만 · 형식은 그 교수가 낸 가장 최근 해)"""
     years = {}
     for q in qs:
         if not q.get('st'): continue
-        for a in q['st']['app']:
+        apps = q['st']['app']
+        if ysel is not None:
+            ys_ = ysel.get(q['id']) or set(); apps = [a for a in apps if a['y'] in ys_]
+            if not apps: continue
+        ly = max(a['y'] for a in apps) if ysel is not None else q['st']['latest']['y']
+        for a in apps:
             d = years.setdefault(a['y'], {'n': 0, 'jjal': 0, 'tal': 0, 'base': 0, 'var': 0, 'new': 0, 'emph': 0, 'fmt': {}})
             d['n'] += 1
             if a['kind'] == '짤': d['jjal'] += 1
@@ -82,7 +88,7 @@ def summarize(qs, prof=None):
                 d['tal'] += 1; d['var' if a['tal'] == '변형' else 'new'] += 1
                 if a.get('emph'): d['emph'] += 1
             else: d['base'] += 1
-            if a['y'] == q['st']['latest']['y']: d['fmt'][q['st']['fmt']] = d['fmt'].get(q['st']['fmt'], 0) + 1
+            if a['y'] == ly: d['fmt'][q['st']['fmt']] = d['fmt'].get(q['st']['fmt'], 0) + 1
     return dict(sorted(years.items(), reverse=True))
 def ratio_word(r):
     if r is None: return '판정 불가'
