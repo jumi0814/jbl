@@ -990,6 +990,7 @@ for L in LEC:
         jb_ids += sorted(dict.fromkeys(i for i in _xr if i not in jb_ids), key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
     flow = ''.join(f'<span class="fl">{lecparse.inline(x.strip(), ctx)}</span>' for x in L['map'].split('→')) if L['map'] else ''
     LQ = [q for q in Q if q['tier'] != 'C' and q['lk'] == k and q.get('st')]
+    if k in getattr(S, 'XREF_LECS', ()): LQ = [QMAP[i] for i in jb_ids if QMAP[i].get('st')]   # 10-17 참고 강의(교과서)는 ⭐로 건 기출로 경향
     SM = trend.summarize(LQ); ttxt, tstrat = trend.tendency_text(SM, L['title'])
     tal_list = ''
     for q in sorted(LQ, key=lambda q: -q['st']['latest']['y']):
