@@ -115,7 +115,7 @@ F: 11=정반사는 입사각과 반사각이 같고 난반사는 모든 방향
 - {n:책을 볼 때 하얗게 빛이 반사된 부분은 안 보이는 것을 예로 드심(필기)}.
 - {n:사람의 치아는 투과도를 가짐(필기)} → p.80 translucency.
 F: 12=조명이 그대로 비치는 부분은 정반사 — 색이 아니다
-M: 빛의 거동 5: ① {r:Reflected} ② {r:Refracted} ③ {r:Absorbed} ④ {r:Scattered} ⑤ {r:transmitted} — {n:그중 반사가 중요}
+M: 빛의 거동 5: ① {r:Reflected} ② {r:Refracted} ③ {r:Absorbed} ④ {r:Scattered} ⑤ {r:transmitted} / {n:그중 반사가 중요}
 M: 정반사 vs 난반사: 색 = {n:{r:난반사}(diffuse)} / {r:정반사}(specular·입사각=반사각) = {n:광택 → 색 아님}
 M: 치아: {n:흰색으로 보이는 부분 = 조명이 그대로 비치는 정반사 → 치아색 아님} / {n:나머지 부분의 난반사 = 치아의 색}
 M: 측정: {n:색을 잴 때는 정반사를 없앤다} → integrating sphere·gloss trap(p.54)
@@ -483,7 +483,7 @@ F: 73=멀리서 현재 조명으로 분광, 74=cross-media — 모니터 색도 
 - p.75 겹친 캡처: Spectroradiometer — 303-1호 실험실에 있다(1초 만에 지나가심).
 F: 75=필터를 거쳐 오므로 카메라로 완벽한 색 측정은 불가능, 76=카메라마다 필터가 달라 측정 장비로 쓸 수 없다, 77, 78=카메라 측정 표준은 안 됨
 M: 특징·구조: 분광측색기 = {r:Most widely used} for {r:surface colors} · {r:5, 10, or 20 nm} 간격 · Can also evaluate {r:metamerism} / 구조 = integrating sphere + {r:Monochromator}(프리즘) · 정확·{n:재현성 좋음 · 비쌈}
-M: 측정 방식: TSR = {n:멀리서 현재 조명} / Advantage: {r:Actual condition} · {r:cross-media} / Caution: {r:position}
+M: 측정 방식: TSR = {n:멀리서 현재 조명} / Advantage = {r:Actual condition} · {r:cross-media} / Caution = {r:position}
 M: 특징·한계: Digital camera = {r:whole object} 이미지 / RGB ≠ XYZ({r:observer metamerism}) → {r:camera characterization} / {n:카메라마다 필터가 달라 측정 장비로 ✗}
 
 @G ⑥ 색 이외의 외관 속성 — Other appearance attributes

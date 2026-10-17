@@ -60,7 +60,7 @@ def slug(*xs):
     return base + '_' + _hl.md5(t.encode('utf-8')).hexdigest()[:6]
 def card_aid(k, c): return aid(k + ':' + slug(c['en'], c['ko']))
 heat = lambda n: 'h2' if n >= 2 else ('h1' if n == 1 else 'h0')
-ctx = {'QMAP': QMAP, 'YR': YR, 'LECNAME': LECNAME, 'cited': set()}
+ctx = {'QMAP': QMAP, 'YR': YR, 'LECNAME': LECNAME, 'cited': set(), 'figs': set()}   # figs = 그림(F:)·예상 그림으로 실제로 보이는 쪽(10-17 FIG_ONLY_LECS)
 LEC = lecparse.load_all()
 # ux4e 사용자 '과목명·강의자료 이름은 줄이지 말고 원래 그대로' — 화면에 보이는 강의 이름 = 정리본 원고의 강의 제목(L['title']) 그대로. LECNAME(LECMAP 짧은 이름)은 두고 화면에는 쓰지 않음
 LECT = {L_['k']: L_['title'] for L_ in LEC}
@@ -636,7 +636,7 @@ def figgrid(kk, fl, gb=True):
     """카드 그림 — ux2 D10: 1장 .one(넓게)·2장 .two(반씩)·3장↑ 격자 · img에 width·height(자리 미리 잡기)·lazy · data-n(그림 숨김 칩 '🖼 n')"""
     out = []
     for p, cap, fk in fl:
-        k2 = fk or kk; ctx['cited'].add((k2, p)); lab_ = getattr(S, 'PAGE_LABEL', {}).get(k2, 'p.')
+        k2 = fk or kk; ctx['cited'].add((k2, p)); ctx['figs'].add((k2, p)); lab_ = getattr(S, 'PAGE_LABEL', {}).get(k2, 'p.')
         nm = (' <i>' + esc(LECNAME.get(k2, k2).split('(')[-1].rstrip(')')) + '</i>') if fk else ''
         wh = img_dims(f'{k2}-{p}'); wa = f' width="{wh[0]}" height="{wh[1]}"' if wh else ''
         out.append(f'<figure data-fig="{k2}-{p}"><img data-img="{k2}-{p}" alt=""{wa} loading="lazy" decoding="async"><figcaption><b>{lab_}{p}</b>{nm}{(" · " + esc(cap)) if cap else ""}{f'<button type="button" class="gbgo noann" data-gbgo="{GBPG[(k2, p)]}" title="이 그림의 그림빵(번호 가림막)으로 — ↩ 알약으로 돌아옴">🖼 그림빵</button>' if gb and (k2, p) in GBPG else ""}</figcaption></figure>')
@@ -990,7 +990,9 @@ for L in LEC:
         jb_ids += sorted(dict.fromkeys(i for i in _xr if i not in jb_ids), key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
     flow = ''.join(f'<span class="fl">{lecparse.inline(x.strip(), ctx)}</span>' for x in L['map'].split('→')) if L['map'] else ''
     LQ = [q for q in Q if q['tier'] != 'C' and q['lk'] == k and q.get('st')]
-    if k in getattr(S, 'XREF_LECS', ()): LQ = [QMAP[i] for i in jb_ids if QMAP[i].get('st')]   # 10-17 참고 강의(교과서)는 ⭐로 건 기출로 경향
+    if k in getattr(S, 'XREF_LECS', ()):   # 10-17 참고 강의(교과서)는 ⭐로 건 기출 중 이 강의 교수가 낸 것으로 경향(다른 교수 문항은 기출 탭에만)
+        _lp = {x.strip().split('(')[0] for x in re.split(r'[·,/]', L['prof'] or '') if x.strip()}
+        LQ = [QMAP[i] for i in jb_ids if QMAP[i].get('st') and (not _lp or _lp & {p_ for _, p_ in yp_of(QMAP[i])})]
     SM = trend.summarize(LQ); ttxt, tstrat = trend.tendency_text(SM, L['title'])
     tal_list = ''
     for q in sorted(LQ, key=lambda q: -q['st']['latest']['y']):
@@ -1163,7 +1165,7 @@ for i, p in enumerate(PRED):
     figs = pred_figs(p); fb = '그림빵' in p['t'] and bool(figs)
     fg = figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs], gb=False) if figs else ''
     if fb and pred_boxes(p):   # 10-16 그림빵 예상은 예상 탭에서도 라벨을 번호 가림막으로(그림을 그대로 보이면 답이 보이고 문제의 ①②가 그림에 없음) — 그림빵 탭과 같은 .gbfig·.gbm(누르면 하나씩 · '답 보기' = 답 목록)
-        _k0, _p0 = figs[0]; ctx['cited'].add((_k0, _p0)); _kk = f'{_k0}-{_p0}'; _cn = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
+        _k0, _p0 = figs[0]; ctx['cited'].add((_k0, _p0)); ctx['figs'].add((_k0, _p0)); _kk = f'{_k0}-{_p0}'; _cn = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
         _ms = ''.join(f'<button type="button" class="gbm" data-gbi="{j}" data-gbn="{_cn[j] if j < len(_cn) else j + 1}" style="left:{b[0]}%;top:{b[1]}%;width:{b[2] - b[0]:.2f}%;height:{b[3] - b[1]:.2f}%" aria-label="{j + 1}번 가림 — 누르면 보임">{_cn[j] if j < len(_cn) else j + 1}</button>' for j, b in enumerate(pred_boxes(p)))
         _wh = img_dims(_kk); fg = f'<div class="gbsc noann"><div class="gbfig" data-gbk="{_kk}"><img data-img="{_kk}" alt=""{f' width="{_wh[0]}" height="{_wh[1]}"' if _wh else ''}>{_ms}</div></div>' + (figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs[1:]], gb=False) if len(figs) > 1 else '')
     attrs = f' data-pr="{pr}"' if pr in PRCL else ''
@@ -1339,7 +1341,9 @@ LECW, LECQ = 1100, 72
 def webp64(im):
     b = io.BytesIO(); im.save(b, 'WEBP', quality=LECQ, method=6); return 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
 lecimg = {}; PREV = J.prev_images(SID)   # 강의 원본 이미지가 없으면 지금 docs/에 올라가 있는 이미지를 그대로 씀
+FIG_ONLY = set(getattr(S, 'FIG_ONLY_LECS', ()))   # 10-17 교과서처럼 공개 사이트에 그림만 싣는 강의 — 쪽 칩만 걸린 쪽은 이미지 없이 글자로(아래 nolink)
 for (k, p) in sorted(ctx['cited'] | {(k_, p_) for k_, r_ in S.FORCE_PAGES.items() for p_ in r_}):
+    if k in FIG_ONLY and (k, p) not in ctx['figs']: continue
     f = S.lec_img_path(k, p)
     if not f or not os.path.exists(f):
         if f and f'{k}-{p}' in PREV: lecimg[f'{k}-{p}'] = PREV[f'{k}-{p}']
@@ -1397,6 +1401,14 @@ if os.path.exists(LXF):
     lx_js = "JBLHUB.legacy('%s',%s,%s);" % (SID, js(_lx['txt']), js(_lx.get('rev', '')))
     pack['lx'] = _h8(lx_js)
 # 옛 허브(JBLHUB.build 없음)가 이 팩을 받으면 새 index로 바꿔 엶(?v= 붙여 캐시 우회) — 같은 판을 이미 붙였으면 그냥 등록
+if FIG_ONLY:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩(이미지가 없어 열면 빈 창)
+    _NOL = re.compile(r'<button class="cite" data-k="(' + '|'.join(map(re.escape, FIG_ONLY)) + r')" data-p="(\d+)">(.*?)</button>')
+    def _nol(o):
+        if isinstance(o, str): return _NOL.sub(lambda m: m.group(0) if (m.group(1), int(m.group(2))) in ctx['figs'] else f'<span class="cite nolink" title="교과서 쪽 — 공개 사이트라 쪽 그림은 싣지 않음">{m.group(3)}</span>', o)
+        if isinstance(o, list): return [_nol(x) for x in o]
+        if isinstance(o, dict): return {k_: _nol(v_) for k_, v_ in o.items()}
+        return o
+    pack = _nol(pack)
 pack_js = ("window.JBLHUB&&!JBLHUB.build&&location.search.indexOf('v=%s')<0&&/^https?:/.test(location.protocol)&&location.replace(location.pathname+'?v=%s'+location.hash);"   # 중괄호 없는 한 줄(팩 파서는 첫 '{'부터 읽음)
            "JBLHUB.register(%s);") % (BUILD, BUILD, js(pack))
 OUT = J.DOCS; os.makedirs(OUT + '/packs', exist_ok=True)
