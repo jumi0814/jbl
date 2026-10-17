@@ -137,7 +137,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ```
 <공통 머리>
 과목 <SID>. guide/handoff/PRED26_BRIEF.md 0·1절(1~7) 그대로 — 모든 문장에 기출 id·쪽·멘트 인용 · 교수 변경 강의는 '형식 = 현 교수(같은 과목 다른 강의의 그 교수 기출)' / '내용 축 = 옛 교수 기출'을 두 줄로 나눠 쓰고, 근거가 1~2문항이면 '불확실' · 다른 쿼터 JB <경로>는 tier C 참고 · JB 멘트의 'NN년' = 그 전해 시험 평.
-형식 횟수는 `tools/fmt_audit.py <SID>` 표에서(guide/handoff/FMT26_BRIEF.md 선례) · 교수 × 연도는 subject.py `YEAR_PROF`·`YEAR_PROF_Q`(출제 연도 기준 — guide/handoff/YEARPROF_BRIEF.md · 과목 홈 '교수별 출제 경향'은 강의 연결 교수라 다를 수 있음, 그 차이를 TREND에 한 줄) · 표와 원문이 어긋나는 문항은 보고에.
+형식 횟수는 `tools/fmt_audit.py <SID>` 표에서(guide/handoff/FMT26_BRIEF.md 선례) · 교수 × 연도는 subject.py `YEAR_PROF`·`YEAR_PROF_Q`(출제 연도 기준 — guide/handoff/YEARPROF_BRIEF.md · 과목 홈 '교수별 출제 경향'도 10-17부터 출제 연도 기준(A안 — RULES 13)) · 표와 원문이 어긋나는 문항은 보고에.
 쓸 것: work/<SID>/pred<YY>/TREND_<SID>.md 하나(요약표 교수 × 강의 · 형식 횟수 · 짤/탈 · 그림 기출 · 그림빵 함/안 함 · 강의별 상/중/하 기준·피할 꼴). 먼저 지난 분석 guide/handoff/trend26/TREND_<SID>.md(·<SID>_R_*.md)를 읽고 이어 씀. 끝나면 메인이 TREND·PRED 보고·JB 보고를 guide/handoff/trend<YY>/에 복사(work/는 커밋 안 됨 — 10-16 trend26 선례).
 검사: 연도 = questions.md '출제'·qids yrs와 대조(보고에 대조 수).
 ```
