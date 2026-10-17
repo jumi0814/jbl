@@ -5,11 +5,11 @@ PROFS = '이창하 · 안진수'
 BUILT = '2026-10-03'
 LECMAP = {'INT': ('E01i', 'Introduction(26)'), 'FUN': ('E02i', 'Fundamentals of esthetic dentistry(26)'),
           'PLAN': ('E03i', '심미수복에서의 진단 및 치료계획(26)'), 'SPE': ('E11i', 'Special Effects(26)'), 'SPE5': ('E04i', 'Special Effects(25)'),
-          'COL': ('E12i', '색(26)'), 'COL5': ('E05i', '색(25)'), 'MAT': ('E06i', '심미수복재료(25)'),
+          'COL': ('E12i', '색(26)'), 'COL5': ('E05i', '색(25)'), 'BOOK': ('E13i', '교과서 — 치과보존학 6장 심미 수복의 개요(이창하 출제 참고)'), 'MAT': ('E06i', '심미수복재료(25)'),
           'VEN': ('E07i', 'Direct veneer, Indirect composite resin inlay(25)'),
           'INT5': ('E08i', 'Introduction(25)'), 'FUN5': ('E09i', 'Fundamentals of esthetic dentistry(25)'),
           'PLAN5': ('E10i', '심미수복에서의 진단 및 치료계획(25)')}
-LEC_ORDER = ['INT', 'FUN', 'PLAN', 'SPE', 'COL', 'MAT', 'VEN']
+LEC_ORDER = ['INT', 'FUN', 'PLAN', 'SPE', 'COL', 'MAT', 'VEN', 'BOOK']
 LEC_IMG_ROOT = J.work('ESTH', 'lec') + '/'     # 강의 쪽 이미지: work/ESTH/lec/<폴더>/<쪽>.jpg (tools/matx.py가 mat/<파일>/i로 연결)
 def lec_img_path(k, p):
     d = LECMAP[k][0]
@@ -17,7 +17,7 @@ def lec_img_path(k, p):
 FORCE_PAGES = {}
 PAGE_LABEL = {}
 IMG_ALIAS = {'SPE5': 'SPE', 'INT5': 'INT', 'FUN5': 'FUN', 'PLAN5': 'PLAN', 'COL5': 'COL'}
-PROF_LEC = {'이창하': ['INT', 'FUN', 'PLAN', 'SPE', 'MAT', 'VEN'], '안진수': ['COL'], '서덕규': [], '여인성': []}
+PROF_LEC = {'이창하': ['INT', 'FUN', 'PLAN', 'SPE', 'MAT', 'VEN', 'BOOK'], '안진수': ['COL'], '서덕규': [], '여인성': []}
 PROF_ORDER = ['이창하', '안진수']
 COVER = {'이창하': 18, '안진수': 18, '서덕규': 18, '여인성': 18}   # JB 괄호 연도가 18년까지 → 2018년이 기준선
 TIERS = {'A': '현 강의 담당 교수 파트(전임 서덕규 교수 퀴즈에서 이어진 문항 포함)',
@@ -50,3 +50,6 @@ YEAR_PROF = {'INT': {2025: '이창하', 2024: '이창하', 2023: '이창하', 20
 #   — 강의 연결은 VEN(이창하·21/20 = 서덕규)이라 문항 단위로. Q25(24년 포세린 비니어 시멘트 — JB 참고 240927_여인성pf)·Q27(24년 반투명도 — JB "아마 이창하 교수님께서 출제하신 문제가 아닐까")·
 #   색 교과서 문항 Q13·Q20·P20·P27(TREND_NOTE — JB 출제 교수 표기 없음)은 근거가 없어 넣지 않음(강의 연결 교수 그대로 — 사용자 확인)
 YEAR_PROF_Q = {'T21': {2021: '여인성', 2020: '여인성'}, 'T22': {2021: '여인성', 2020: '여인성'}, 'T23': {2021: '여인성', 2020: '여인성'}}
+
+# 10-17 사용자 '해당 파트가 이창하 교수님이 시험 출제에 참고하시는 교과서 부분' — BOOK = 기출을 직접 갖지 않는 참고 강의: 기출 탭 = 카드 ⭐가 가리키는 기출(원래 강의는 그대로 · build4 XREF_LECS)
+XREF_LECS = ['BOOK']

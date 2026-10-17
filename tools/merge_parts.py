@@ -47,7 +47,8 @@ def check_part(kind, text, sid, key, qids):
             if l.startswith('@'):
                 if re.sub(r'^@P ', '@', l)[1:].split('|')[0].strip() != key: errs.append(f'{i}: @{key} 아님')
                 m = re.search(r'b=([^|\s]*)', l)
-                if m and m.group(1) and m.group(1) not in qids: errs.append(f'{i}: b={m.group(1)} 없는 문항')
+                for b_ in (m.group(1).split(',') if m and m.group(1) else []):   # 10-17 b= 여러 기출(쉼표 — PRED26)
+                    if b_.strip() and b_.strip() not in qids: errs.append(f'{i}: b={b_.strip()} 없는 문항')
             elif not re.match(r'^[QA]:', l): errs.append(f'{i}: 알 수 없는 줄 {l[:40]}')
         for m in re.finditer(r'\{jb:([^}]+)\}', l):
             if m.group(1) not in qids: errs.append(f'{i}: {{jb:{m.group(1)}}} 없는 문항')

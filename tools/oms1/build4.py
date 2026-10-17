@@ -985,6 +985,9 @@ for L in LEC:
         ys = sorted({y for x in ids for y in QMAP[x]['yrs']}, reverse=True)
         outline.append(f'<button class="ol {heat(mx)}" data-scroll="t-{k}-{j}" title="{esc(lecparse._plain(c["gist"]))}"><b>{j+1}</b><span class="ot">{esc(re.sub(r"\s*\((?:\d{2}[·,~\s]*)+\)\s*$", "", c["ko"]) or c["ko"])}{"<i class=o26></i>" if c.get("u26") else ""}{"<i class=o26e></i>" if c.get("e26") else ""}</span><span class="og2">{lecparse.inline(c["gist"], ctx)}</span>{("<span class=oy><i>기출</i> " + ylab(ys) + "</span>") if ys else ""}</button>')
     jb_ids = sorted([q['id'] for q in Q if q['tier'] != 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
+    if k in getattr(S, 'XREF_LECS', ()):   # 10-17 교과서처럼 기출을 직접 갖지 않는 참고 강의 — 기출 탭 = 카드 ⭐·jb=가 가리키는 기출(그 문항의 원래 강의는 그대로)
+        _xr = [i for c_ in L['cards'] for i in list(c_['jb']) + [x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0]] if i in QMAP and QMAP[i]['tier'] != 'C']
+        jb_ids += sorted(dict.fromkeys(i for i in _xr if i not in jb_ids), key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))
     flow = ''.join(f'<span class="fl">{lecparse.inline(x.strip(), ctx)}</span>' for x in L['map'].split('→')) if L['map'] else ''
     LQ = [q for q in Q if q['tier'] != 'C' and q['lk'] == k and q.get('st')]
     SM = trend.summarize(LQ); ttxt, tstrat = trend.tendency_text(SM, L['title'])

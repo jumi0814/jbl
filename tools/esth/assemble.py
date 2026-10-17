@@ -36,7 +36,7 @@ def find(ed, sec, num):
         if x['sec'] == sec and str(x['num']) == str(num): return x
     return None
 # 강의별 교수 (annot lec= 의 강의키로 정함)
-LK_PROF = {'INT': '이창하', 'FUN': '이창하', 'PLAN': '이창하', 'SPE': '이창하', 'MAT': '이창하', 'VEN': '이창하', 'COL': '안진수'}
+LK_PROF = {'INT': '이창하', 'FUN': '이창하', 'PLAN': '이창하', 'SPE': '이창하', 'MAT': '이창하', 'VEN': '이창하', 'COL': '안진수', 'BOOK': '이창하'}
 # 정본 문항: (id, 판, 칸, 번호) — 25판이 기준, 25판에 없는 2021 칸은 24판, 2020 칸은 23판
 C24 = ['1', '2', '3-5', '6', '7', '8', '9'] + [str(i) for i in range(10, 29)]
 CANON = [('Q%02d' % int(n.split('-')[0]), '25', '2024-3Q', n) for n in C24] + \
