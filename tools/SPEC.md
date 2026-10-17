@@ -5,7 +5,7 @@
 - 공통: `tools/jblpaths.py`(저장소 기준 경로 — 스크립트는 여기서만 경로를 얻음) · `tools/jbx.py`(JB PDF → `work/jb/<SID>_20xx/`) · `tools/verify.py`(playwright 허브 검증)
 - 경로: 과목 작업 폴더 `work/<SID>/`(jb_blocks.json·강의 쪽 이미지 `lec/`·OCR) · JB 추출 `work/jb/<SID>_20xx/` · 출력 `docs/`(허브 `docs/index.html` + `docs/packs/`) · 단일 파일판 `work/<과목>_JBL.html`(커밋 안 함)
 - 파이썬은 3.12 이상(저장소 `.venv/`, f-string 문법 때문에 3.11 불가)
-- `subject.py` 과목 설정 — SID·제목·색·교수, LECMAP(강의키 → 이미지 폴더·표시명), LEC_ORDER, PROF_LEC, COVER(기준선 연도), TIERS, MENT_PROF/MENT_ALL(학습부 멘트), PAGE_LABEL, IMG_ALIAS
+- `subject.py` 과목 설정 — SID·제목·색·교수, LECMAP(강의키 → 이미지 폴더·표시명), LEC_ORDER, PROF_LEC, COVER(기준선 연도), TIERS, MENT_PROF/MENT_ALL(학습부 멘트), PAGE_LABEL, IMG_ALIAS · 선택: YEAR_PROF·YEAR_PROF_Q(출제 연도별 교수 — 10-16, 아래 '출제 연도별 교수' 절) · XREF_LECS(참고 강의 — 기출 탭 = 카드 ⭐·jb=가 가리키는 기출 · 강의 틀 경향 = 그중 그 강의 교수 출제분 · 10-17) · FIG_ONLY_LECS(F:·예상 그림 쪽만 이미지 팩에 · 나머지 쪽 칩은 누를 수 없는 점선 글자 칩 · 10-17)
 - `parse_<과목>.py` JB(23·24·25판 ZIP 텍스트) → 문항 블록 (`jb_blocks.json`). JB 구조가 과목마다 달라 여기만 새로 씀
 - `assemble.py` 문항 정규화·연도 괄호 파싱·OTHER(판본 간 같은 문제)·주석 병합·JB 쪽 이미지·대장·멘트·예상문제 파싱
 - `reflow.py` JB 원문 줄바꿈 정리(글자 불변) · `emph.py` 빨간 핵심어 · `lecparse.py` 정리본 원고 파서 · `trend.py` 짤/탈·형식·전략
@@ -24,13 +24,14 @@
 - 공통 생성 코드(shell.html·build4.py·lecparse.py·trend.py·reflow.py·emph.py·template2.html)는 **tools/cons/에서만 고친다**. SPEC.md는 tools/SPEC.md가 원본
 - `.venv/bin/python tools/sync_common.py` — cons → oms1·impl·anat·geri·pharm·esth 복사(SPEC.md 사본 포함) · `--check` 사본끼리 다르면 종료 코드 1 · `--build` 복사 후 7과목 build4 → verify.py → audit_design.py
 - `tools/build_all.sh` = `sync_common.py --build --all`(tests/ux_all.py가 있으면 그것까지)
+- 중간 배포(10-17): `JBL_SKIP_LECS=<KEY>[,<KEY>]` — lecparse ORDER에서 강의 · build4 SKIPL로 그 강의 예상(PRED k)·표(tables k)를 뺌(전 과목에 걸림 · 다른 강의 파일의 `[[<KEY>:n]]` 칩은 안 빠짐) · build4·full_check 모두 같은 값(export) — 절차 SKILL '단계별 배포'
 - build2.py는 과목마다 마지막 출력 줄(`J.work('<SID>', 'build2_view.html')`)이 달라 복사하지 않는다 — 고칠 때는 과목별로
 - 과목별로 달라야 하는 설정은 subject.py의 선택 항목(`getattr(S, '이름', 기본값)`)으로 — 없으면 기존 동작
 - 기준선: work/는 메인 저장소와 공유되어 강의 이미지·강의 이름이 바뀔 수 있으므로, 코드 변경 전후 비교는 "지금 work/로 HEAD 코드를 빌드한 docs/"를 기준으로 한다(빌드는 결정적 — 같은 입력이면 같은 출력)
 
 ## lec_<키>.txt 문법
 ```
-#LEC 키 | 제목 | 교수 | 연도 | 파일 설명 | 쪽수
+#LEC 키 | 제목 | 교수 | 연도(글자도 됨 — 참고 강의 '교과서'면 화면 'NN년도' 대신 그 글자) | 파일 설명 | 쪽수
 ! 머리말(자료 출처·강조 쪽·주의)
 @MAP 흐름 → 흐름 → 흐름
 @TIP 공부 전략 한 줄(90~150자 — 과목 홈 강의 카드 📌)
@@ -109,7 +110,7 @@ M: ⚡ 암기 줄({r:} 포함)
 - 강의 안 위치(U13): 학습 탭에서만 #dtabs 오른쪽 끝(sticky right:0)에 미니바 #lmini = '카드 7/19 ▾'(#lmcur) · 압축(#lmcond, 정리본의 '압축 보기'와 같은 상태 — condSet) · '↑ 틀'(이 강의의 틀로). 미니바가 있으면 .dtname(강의명)은 숨김. 지금 카드 = 화면 위 30% 선에 걸친 .tc(IntersectionObserver rootMargin '-30% 0px -70% 0px', learnSpy/setLCur) — 목록·J/K로 옮긴 직후 0.9초는 관찰 무시(LHOLD). ▾ = #lpop(.pop 재사용): 번호·국문 제목·✓읽음·⭐기출 수, 지금 카드 강조, 누르면 goCard(j)(숨은 카드면 revealCard, 아니면 펼치고 탭 아래로). 넓은 화면(>860)은 사이드바의 지금 강의 아래 접이식 카드 목록(details.scards, LS 'sidecards' 기본 펼침 · 스크롤 스파이로 .on 굵게 · 다른 탭에서 누르면 학습 탭 그 카드). 키보드 J/K = 다음/이전 카드(입력칸 포커스면 무시). 데이터: pack.lect[].cards = [[aid, 번호, 국문 제목, 기출 수]](build4). 테스트: tools/tests/ux_u13.py
 
 ## 과목 홈·강의 틀·정리본 렌더·도구 v5 (2026-09-28, U21~U31 — shell.html·build4.py·lecparse.py·trend.py)
-- 과목 홈(U21, 순서 유지: 공부 순서 → 강의 바로가기 → 진행률(+최근 읽던 곳 한 줄) → 교수별 경향·📌 → 📣 → 강의 카드 → 2회 이상): 공부 순서는 pack.guide(subject.py 선택 항목 `GUIDE = [(굵은 제목, 설명, 실행 키)]`, 없으면 자동 — 최근 2개 시험 해에 출제한 교수들의 최근 해 짤 비율 평균 ≥ 60%면 1단계 '⭐ 2회 이상 n문항 · 한눈표로 답부터'). 실행 키 resume('▶ 이어서/시작: 강의 학습(읽음 a/b)' = lastBy가 강의면 그곳, 아니면 읽음 덜 된 첫 강의) · todo(_jb 안 푼 것) · rep(_jb 출제 2회↑, data-jbn) · sumrep(한눈표 2회 이상만). 교수별 = trend.prof_line 한 줄('서병무 · 최근 2024 16문항 짤 11/탈 5 → 완짤형 · 짤 비율 69%' + 형식·탈 성격 꼬리표) · 📌 전략은 모든 교수 공통 항목 '공통:' 한 번 + 나머지 문장도 한 번씩(해당 교수 괄호) · 연도별 칸·경향 문장·학습부 멘트는 details.trd(기본 접힘, 펼침 기억 LS homeTrendOpen.<S>) · 최근 2개 시험 해에 출제 없는 교수는 '예전 담당'으로 세부에만. 📣 = ! 줄에서 예고·강조 문장만(build4 split_note·HINT_RE, 한 줄 말줄임·3개 + 모두 보기). 2회 이상 = 출제 횟수별 묶음(3회↑ 펼침·2회 접힘)·맞음/틀림 점(.mdot)·'▶ n문항 한 장씩 풀기'. 테스트 tools/tests/ux_u21.py(1280 강의 카드 시작 y ≤ 1200)
+- 과목 홈(U21, 순서 유지: 공부 순서 → 강의 바로가기 → 진행률(+최근 읽던 곳 한 줄) → 교수별 경향·📌 → 📣 → 강의 카드 → 2회 이상): 공부 순서는 pack.guide(subject.py 선택 항목 `GUIDE = [(굵은 제목, 설명, 실행 키)]`, 없으면 자동 — 최근 2개 시험 해에 출제한 교수들의 최근 해 짤 비율 평균 ≥ 60%면 1단계 '⭐ 2회 이상 n문항 · 한눈표로 답부터'). 실행 키 resume('▶ 이어서/시작: 강의 학습(읽음 a/b)' = lastBy가 강의면 그곳, 아니면 읽음 덜 된 첫 강의) · todo(_jb 안 푼 것) · rep(_jb 출제 2회↑, data-jbn) · sumrep(한눈표 2회 이상만). 교수별 = trend.prof_line 한 줄('서병무 · 최근 2024 16문항 짤 11/탈 5 → 완짤형 · 짤 비율 69%' + 형식·탈 성격 꼬리표) · 📌 전략은 모든 교수 공통 항목 '공통:' 한 번 + 나머지 문장도 한 번씩(해당 교수 괄호) · 연도별 칸·경향 문장·학습부 멘트는 details.trd(기본 접힘, 펼침 기억 LS homeTrendOpen.<S>) · 지금 강의 담당(#LEC 교수 칸 — build4 CURP)이 아닌 교수는 '예전 담당'으로 세부에만(CURP와 겹치는 출제 교수가 없으면 최근 2개 시험 해 기준 · 10-17 A안 — 아래 '출제 연도별 교수' 절). 📣 = ! 줄에서 예고·강조 문장만(build4 split_note·HINT_RE, 한 줄 말줄임·3개 + 모두 보기). 2회 이상 = 출제 횟수별 묶음(3회↑ 펼침·2회 접힘)·맞음/틀림 점(.mdot)·'▶ n문항 한 장씩 풀기'. 테스트 tools/tests/ux_u21.py(1280 강의 카드 시작 y ≤ 1200)
 - 허브 홈(U22): 과목 카드 = 두 줄 진행(정리본 읽음 %, 기출 맞음/틀림) + [↪ 이어서: 강의 · 탭](lastBy) [📝 안 푼 기출 n](_jb 안 푼 것). 사이드바·서랍 맨 위 과목 전환 select(#sjsel, 과목색 점). document.title = '강의명 · 과목 — JBL' / 'JBL 허브'. build4가 docs/packs에 있는 <SID>.js 목록을 `const READY=null/*READY*/` 자리에 넣고 셸은 그 팩만 불러옴(ESTH 404 없음, 단일 파일판은 []). 과목 홈 외 hero는 압축형(.hero.cmp — 과목·교수 한 줄 + 제목 20px + ✓✗ 칩, 약 62px), 출처 파일명은 틀 머리(.fsrc)로. 테스트 ux_u22.py(1180×820 학습 본문 시작 y ≤ 170)
 - 정리본 렌더 v7(U23, 원고 문법 그대로): 🔑(=)이 최상위 항목 4개 초과 또는 180자 초과면 lecparse.key_split → 첫 조각만 .c-key, 나머지는 상자 밖(render_key_rest: '라벨: 내용' = h4.sh + 항목, 그 외 항목)·정리표 세부 칸(blocks) — 빌드 로그 '🔑 180자 초과 카드'. _list_html: 조각 4개↑·중앙값 24자 미만이면 ul.kflow(가로 흐름, CSS ' · '), ==…==로 통째 감싼 조각이 3개↑ 연속(또는 2개↑·합 120자↑)이면 == 떼고 .hlblock(목록 전체)/li.hlb(일부) — 왼쪽 노란 선 + CSS '기출 문장' 라벨, 안쪽이 목록 하나뿐인 조각은 li에 목록만 들지 않게(klist·circ는 바깥 목록에 풀어 넣고, steps·kflow는 바깥 목록을 잠시 닫고 블록). '→' 단계(ol.steps)도 _list_html을 거쳐 같은 규칙 — 일부만이면 ol.steps.hlsome: 번호 원·이음선(::before·::after)과 안 겹치게 li.hlb는 칸 바탕(#FFF4CC) + 목록 머리 '기출 문장 = 노란 칸'. 라벨 목록에서 라벨 없는 조각은 앞 라벨에 ' / '로 합침. split_lead는 depth 1까지. 글자 검사 tools/tests/card_text.py(--save 전/후), 테스트 ux_u23.py(🔑 평균 ≤ 140px)
 - 이 강의의 틀(U24): 출처 줄(.fsrc — 파일 + 예고·강조가 아닌 ! 문장, 1줄 말줄임·누르면 전체) → @MAP 흐름(납작한 칩) → 📣 교수님 예고·강조(.co.c-prof.fhint, ! 줄 문장 중 HINT_RE) → 출제 경향 details.trend(summary = trend.short_line) → 📌 공부 전략(그 강의 교수의 PSTRAT, 없으면 강의 전략) → 목차(두 단 column-count:2, 넓으면 제목·연도 + 요지 한 줄, 860px 이하 한 줄 말줄임, 600px 이하 한 단) → ⭐ 많이 나온 순(상위 5 + 더 보기, 최대 8 그대로, 두 칸 격자, 끝의 JB 괄호 연도는 short_clean). 연도 표기 통일 ylab '24·23·21 (3회)'(4개 초과 '+n'). 테스트 ux_u24.py(820×1180 틀 높이(목차 제외) ≤ 한 화면 = 창 높이 − 상단 막대 − 탭 줄 − 아래 도구 막대 ≈ 1009px — 옛 고정 800px은 📣 줄이 늘어난 2026-09 새 원고(PHARM 908px)에 맞지 않아 화면 기준으로)
@@ -557,7 +558,7 @@ M: ⚡ 암기 줄({r:} 포함)
 ## 출제 연도별 교수·강의 참고 기출 (2026-10-16 — RULES 13 · guide/handoff/YEARPROF_BRIEF.md · build4 yp_of·prof_main·prof_inline · shell 교수 거르기 · num.js qTail·profTxt · 검사 tools/check_yearprof.py · tests/ux19_yearprof.py)
 - **subject.py**: `YEAR_PROF = {강의 키: {연도: '교수'}}`(그 해 그 강의 문항을 낸 교수) · `YEAR_PROF_Q = {문항 id: {연도: '교수'}}`(예외 — YEAR_PROF보다 먼저) · 연도는 2025·25 둘 다 읽음 · 없는 해 = q['prof'](강의 연결 교수 — assemble LK_PROF) · 이름 근거 없이 지금 교수가 아님만 확실 = '이전 교수' · yp_of(q)는 q['lk']로 강의를 찾음(문항이 강의를 옮기면 키도 옮김).
 - **JB 카드 속성**: `data-prof` = 가장 최근 출제 해의 교수(prof_main — 10-16 전엔 강의 연결 교수) · `data-lprof` = 강의 연결 교수('현 교수' 판정 — link_audit·dump_review는 tier A·data-lprof로) · `data-profs` = 출제 교수 전부(`|` 구분) · `data-yp` = `YY:교수`(빈칸 구분 — 교수+연도 거르기).
-- **교수 칩**: `.chip.pf` 안 `<b>` 굵게 · 해마다 교수가 다르면 `<b>교수</b> 25·24 · <b>교수</b> 22`(최근 해 먼저 — prof_inline · 과목 홈 '2회 이상 출제'·기출 대장 교수 칸도 같은 함수) · 과목 홈 '교수별 출제 경향' 집계는 강의 연결 교수 그대로.
+- **교수 칩**: `.chip.pf` 안 `<b>` 굵게 · 해마다 교수가 다르면 `<b>교수</b> 25·24 · <b>교수</b> 22`(최근 해 먼저 — prof_inline · 과목 홈 '2회 이상 출제'·기출 대장 교수 칸도 같은 함수) · 과목 홈 '교수별 출제 경향' 집계 = **출제 연도 기준 교수**(10-17 A안 — build4 profS·YSEL = yp_of: 그 해 그 교수가 낸 문항만 · 형식은 그 교수의 가장 최근 해) · 요약 줄·📌 = 지금 강의 담당(PCUR = #LEC 교수 칸 CURP) · 옛 출제 교수는 세부 '예전 담당' + 주석 '옛 출제 교수(지금 담당 아님 — 그 해 출제분만 셈)'.
 - **강의 참고 기출**: `lect[].jb` = 그 강의 tier A·B + lk가 그 강의인 tier C(뒤쪽 — 출제 횟수·최근 해 순) · 강의 통계·히트는 현 자료만 · '⭐ 많이 나온 순' top_ids = 현 자료 먼저, 참고 기출 뒤(8개까지) · 강의 기출 탭은 참고 기출 기본 보임(과목 JB 문제 화면은 기본 꺼짐 그대로).
 - **교수 거르기**: pack.jbprofs = 강의 연결 교수 + yp_of의 교수 전부 · 교수 2명↑면 `#fprof`(선택지 = 그 강의 카드 data-profs 전부 · 그 교수 문항이 모두 tier C면 '(참고 기출)').
 - **넘버링**: 문제 끝 꼬리표 qTail = 연도 최근 먼저 + 굵은 교수(`.nm-qt .p`) · 해마다 다르면 profTxt '교수 25·24 · 교수 22' — 내 넘버링 문서·넘버링 복습 스크롤·복습 카드·인쇄 같은 꼴.

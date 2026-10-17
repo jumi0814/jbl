@@ -7,7 +7,8 @@ import reflow, lecparse, subject as S
 from PIL import Image
 SID, TITLE, EN, COLOR, PROFS = S.SID, S.TITLE, S.EN, S.COLOR, S.PROFS
 esc = lambda s: html.escape(str(s), quote=True)
-Q = A.Q; QMAP = {q['id']: q for q in Q}; PRED = A.PRED; IMG = A.IMG
+SKIPL = set(os.environ.get('JBL_SKIP_LECS', '').split(',')) - {''}   # 10-17 중간 배포 — 작성 중인 강의는 강의·예상문제·표 모두 빼고 빌드(lecparse ORDER와 같은 값)
+Q = A.Q; QMAP = {q['id']: q for q in Q}; PRED = [p_ for p_ in A.PRED if p_['k'] not in SKIPL]; IMG = A.IMG
 # ---- JB 그림 조각(SPEC 'JB 그림 조각' · tools/jbfig.py → tools/<sid>/jb_crops.json): 상자로 JB 쪽 이미지를 잘라 IMG['crop']·q['crops']에 덧붙임
 # assemble의 기존 CROPS가 있는 종류(q/a)는 건너뜀(같은 그림 두 번 금지) · 쪽 이미지가 없으면(클라우드) 지금 팩의 같은 조각 · 파일이 없으면 출력 그대로
 JBC_P = os.path.join(DIR, 'jb_crops.json'); JBC = json.load(open(JBC_P, encoding='utf-8')) if os.path.exists(JBC_P) else {}
@@ -1106,6 +1107,7 @@ def merge_cites(h):
         lab = f'{ps[0]}–{ps[-1]}' if ps == list(range(ps[0], ps[0] + len(ps))) else '·'.join(map(str, ps))
         return f'<button class="cite" data-k="{cs[0][0]}" data-p="{ps[0]}" data-pp="{",".join(map(str, ps))}">{cs[0][2]} p.{lab}</button>'
     return re.sub(r'(?:<button class="cite" data-k="([A-Z0-9]+)" data-p="\d+">[^<]*?</button>)(?:[\s,·]*<button class="cite" data-k="\1" data-p="\d+">[^<]*?</button>)+', run, h)
+tables = [t for t in tables if t['k'] not in SKIPL]   # 10-17 JBL_SKIP_LECS
 TBL = []
 for i, t in enumerate(tables):
     head = ''.join(f'<th>{c}</th>' for c in t['head'])
@@ -1401,10 +1403,18 @@ if os.path.exists(LXF):
     lx_js = "JBLHUB.legacy('%s',%s,%s);" % (SID, js(_lx['txt']), js(_lx.get('rev', '')))
     pack['lx'] = _h8(lx_js)
 # 옛 허브(JBLHUB.build 없음)가 이 팩을 받으면 새 index로 바꿔 엶(?v= 붙여 캐시 우회) — 같은 판을 이미 붙였으면 그냥 등록
-if FIG_ONLY:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩(이미지가 없어 열면 빈 창)
-    _NOL = re.compile(r'<button class="cite" data-k="(' + '|'.join(map(re.escape, FIG_ONLY)) + r')" data-p="(\d+)">(.*?)</button>')
+if FIG_ONLY:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩(이미지가 없어 열면 빈 창) — 모든 꼴(cite · cite cz(title) · data-pp 범위)
+    _CB = re.compile(r'<button class="cite[^"]*"([^>]*)>(.*?)</button>', re.S)
+    _AT = lambda a, n: (re.search(n + r'="([^"]*)"', a) or [None, None])[1]
+    def _nol1(m):
+        a = m.group(1); k_ = _AT(a, 'data-k')
+        if k_ not in FIG_ONLY: return m.group(0)
+        ps = [int(x) for x in re.findall(r'\d+', _AT(a, 'data-pp') or _AT(a, 'data-p') or '')]
+        if ps and all((k_, x) in ctx['figs'] for x in ps): return m.group(0)
+        ti = _AT(a, 'title'); ti = (ti + ' · ' if ti else '') + '공개 사이트라 쪽 그림은 싣지 않음'
+        return f'<span class="cite nolink" title="{ti}">{m.group(2)}</span>'
     def _nol(o):
-        if isinstance(o, str): return _NOL.sub(lambda m: m.group(0) if (m.group(1), int(m.group(2))) in ctx['figs'] else f'<span class="cite nolink" title="교과서 쪽 — 공개 사이트라 쪽 그림은 싣지 않음">{m.group(3)}</span>', o)
+        if isinstance(o, str): return _CB.sub(_nol1, o) if 'class="cite' in o else o
         if isinstance(o, list): return [_nol(x) for x in o]
         if isinstance(o, dict): return {k_: _nol(v_) for k_, v_ in o.items()}
         return o
