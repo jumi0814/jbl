@@ -207,7 +207,7 @@ def parse(path):
         else: raise ValueError(f'{path}: unknown line: ' + line[:60])
     return lec
 import subject as S
-ORDER = S.LEC_ORDER
+ORDER = [k for k in S.LEC_ORDER if k not in os.environ.get('JBL_SKIP_LECS', '').split(',')]   # 10-17 중간 배포 — 작성 중인 강의를 빼고 빌드(JBL_SKIP_LECS=BOOK)
 def load_all():
     DIR = os.path.dirname(os.path.abspath(__file__))
     return [parse(f'{DIR}/lec_{k}.txt') for k in ORDER if os.path.exists(f'{DIR}/lec_{k}.txt')]
