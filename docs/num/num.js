@@ -260,6 +260,23 @@ async function loadSubject(sj) {
   for (const r of orphan) { const it = mkRec(sj, Object.assign({}, r, { k: 'user', q: r.q || '<p>' + esc(r.bq || '(원래 문제 글을 찾지 못함)') + '</p>', rv: [{ k: 'orphan', m: '기본 자료(Word)가 바뀌어 원래 문제를 찾지 못했어요 — 내가 쓴 스토리·고친 글은 그대로 남겨 둠' }] })); it.orphan = 1; items.push(it); }
   if (!seed && (window.JBLNUM_INDEX || []).some(x => x.id === sj)) H.toast('Word 기본 자료를 불러오지 못했어요 — 인터넷 연결을 확인하고 새로고침해 주세요(쓴 글은 그대로 있어요)', { level: 'error', id: 'nmseed' });
   S.seed = seed; S.items = items; S.by = new Map(items.map(it => [it.id, it])); S.lecs = lectures(sj, seed);
+  jbYrsSync(items);
+}
+/* 10-18 사용자 '넘버링 문제 가져올 때 25년도 연도 표기가 누락되고 빠지는데, 원본 jb문제 가면 또 연도 표시는 잘 되어있거든' —
+   가져온 문제의 연도는 가져온 그때의 사본이라, 그 뒤 사이트에 새 해가 붙으면(26 JB 통합으로 25 추가 등) 빠져 보였음 → 열 때마다 JB 출처 문제의 연도를 지금 팩(data-yrs)에 맞춤.
+   내가 넣은 연도(그 JB 출처에 없던 해)·다른 출처의 해는 그대로 · 팩에서 못 찾는 JB 출처는 손대지 않음 · 고쳐 쓴 시각(u)은 바꾸지 않음 */
+function jbYrsSync(items) {
+  for (const it of items) {
+    if (!it.src || !it.src.length) continue;
+    const F = [], oth = new Set(), live = new Set();
+    for (const s of it.src) { const m = s.t === 'jb' && s.s && s.id ? jbMaps(s.s) : null, y = m && m.yr.get(s.id); if (y) { F.push([s, y]); y.forEach(v => live.add(v)); } else (s.yrs || []).forEach(v => oth.add(v)); }
+    if (!F.length) continue;
+    const old = new Set(F.flatMap(([s]) => s.yrs || [])), ys = [...new Set((it.yrs || []).filter(v => !old.has(v) || oth.has(v) || live.has(v)).concat([...live]))].sort((a, b) => b - a);
+    let ch = !same(ys, it.yrs);
+    for (const [s, y] of F) if (!same(s.yrs, y)) { s.yrs = y.slice(); ch = true; }
+    if (!ch) continue;
+    it.yrs = ys; it._t = null; it._qd = null; it._qv = null; put(it);
+  }
 }
 const lecOf = k => S.lecs.find(l => l.k === k) || S.lecs[S.lecs.length - 1];
 const lecIdx = k => { const i = S.lecs.findIndex(l => l.k === k); return i < 0 ? S.lecs.length - 1 : i; };
@@ -754,8 +771,9 @@ function qView(it) {   /* 문제 글(qDisp) + 마지막 음절 바로 오른쪽 
 const JBR = new Map();   /* 과목 → {card: JB aid 모음, pred: 예상문제 aid → 관련 기출 JB aid} (팩에서 한 번만) */
 function jbMaps(sj) {
   let m = JBR.get(sj); const P = H.PACKS[sj]; if (m && m.P === P) return m; if (!P) return null;
-  m = { P, card: new Set(), pred: new Map(), yp: new Map() }; const AID = /data-aid="([^"]+)"/, YP = /\sdata-yp="([^"]*)"/;
-  for (const k in P.cards) { const h = String(P.cards[k]).slice(0, 1600), x = AID.exec(h); if (!x) continue; m.card.add(x[1]); const y = YP.exec(h.slice(0, h.indexOf('>') + 1 || 1600));   /* 10-16 출제 연도별 출제 교수 '25:교수 24:교수' */ if (y && y[1]) m.yp.set(x[1], y[1]); }
+  m = { P, card: new Set(), pred: new Map(), yp: new Map(), yr: new Map(), yk: new Map() }; const AID = /data-aid="([^"]+)"/, YP = /\sdata-yp="([^"]*)"/, YR = /\sdata-yrs="([^"]*)"/;
+  for (const k in P.cards) { const h = String(P.cards[k]).slice(0, 1600), x = AID.exec(h); if (!x) continue; m.card.add(x[1]); const tg = h.slice(0, h.indexOf('>') + 1 || 1600), y = YP.exec(tg), r = YR.exec(tg);   /* 10-16 출제 연도별 출제 교수 '25:교수 24:교수' */ if (y && y[1]) m.yp.set(x[1], y[1]);
+    if (r) { const v = r[1].split(/\s+/).filter(Boolean); m.yr.set(x[1], v.map(z => +z < 100 ? 2000 + +z : +z).sort((a, b) => b - a)); m.yk.set(k, v); } }   /* 10-18 출제 연도(data-yrs) — 넘버링 JB 문제 연도를 지금 팩에 맞출 때 · yk = 카드 id → 원래 값(예상문제 관련 기출) */
   for (const p of P.preds || []) { const h = String(p.html || ''), a = p.aid ? [0, p.aid] : AID.exec(h.slice(0, 800)), g = p.b && p.b.length ? [0, p.b[0]] : /class="jbchip"[^>]*\sdata-go="([^"]+)"/.exec(h); if (!a || !g || !P.cards[g[1]]) continue;   /* S3 팩 preds의 aid·b(관련 기출) 우선 */ const ca = AID.exec(String(P.cards[g[1]]).slice(0, 600)); if (ca) m.pred.set(a[1], ca[1]); }
   JBR.set(sj, m); return m;
 }
@@ -768,7 +786,7 @@ function jbRef(it) {   /* 이 문제의 JB 기출 문항 { s: 과목, aid } — 
 const PRN = { '상': 3, '중': 2, '하': 1 }, PRCL = { '상': 'p3', '중': 'p2', '하': 'p1' };
 const PMC = new Map();
 function pmOf(sj, p) {
-  const P = H.PACKS[sj], yr = id => { const h = P && P.cards && P.cards[id], m = h && /data-yrs="([^"]*)"/.exec(String(h).slice(0, 900)); return m ? m[1].split(/\s+/).filter(Boolean) : []; };
+  const M = jbMaps(sj), yr = id => (M && M.yk.get(id) || []).slice();   /* 10-18 글자 수로 자르지 않고 카드 머리(article 태그) 전체에서 */
   const o = {}; if (p.pr) o.pr = p.pr; if (p.t) o.t = p.t; if (p.why) o.why = p.why; if (p.b && p.b.length) o.b = p.b.map(id => ({ id, y: yr(id) })); if (p.f && p.f.length) o.f = p.f.slice(); if (p.m && p.m.length) o.gb = 1;
   return o;
 }
@@ -2615,5 +2633,5 @@ async function open(root, o, host) {
   if (np) { render({ pos: np, hl: np.id }); return; }
   render({ pos: o.y != null ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null });
 }
-window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => Object.assign(S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }, S.npos ? { npos: S.npos } : {}),   /* npos = JB 문제로 가기 전 이 문제(뒤로·↩ 돌아가기 = 그 문제로) */ _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp };
+window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => Object.assign(S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }, S.npos ? { npos: S.npos } : {}),   /* npos = JB 문제로 가기 전 이 문제(뒤로·↩ 돌아가기 = 그 문제로) */ _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp, _put: put };
 })();
