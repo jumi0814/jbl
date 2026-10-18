@@ -1906,9 +1906,12 @@ function printHTML(L, o, lab) {
   }
   return h;
 }
+const PFS = { s: [0.88, '작게'], m: [1, '보통'], l: [1.15, '크게'], xl: [1.3, '아주 크게'] }, PMG = { n: [6, '좁게 6 mm'], m: [12, '보통 12 mm'], w: [20, '넓게 20 mm'] };   /* 10-18 사용자 'pdf으로 추출할 때 글씨 크기 및 페이지 여백을 조절' — Word 저장에도 같이 */
+const pcfg = (v) => { try { if (v) localStorage.setItem('jblhub.v1.num.pcfg', JSON.stringify(v)); return JSON.parse(localStorage.getItem('jblhub.v1.num.pcfg') || '{}'); } catch (e) { return v || {}; } };
 function printRun(L, o, lab) {
   printClean();
-  const st = document.createElement('style'); st.id = 'nm-pcss'; st.textContent = PCSS; document.head.appendChild(st);
+  const mg = (PMG[o.mg] || PMG.m)[0], z = (PFS[o.fs] || PFS.m)[0];
+  const st = document.createElement('style'); st.id = 'nm-pcss'; st.textContent = PCSS.replace('@page{size:A4;margin:12mm 12mm 14mm}', `@page{size:A4;margin:${mg}mm ${mg}mm ${mg + 2}mm}`) + (z !== 1 ? `#nm-print{zoom:${z}}` : ''); document.head.appendChild(st);
   const d = document.createElement('div'); d.id = 'nm-print'; d.innerHTML = printHTML(L, o, lab); document.body.appendChild(d);
   d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
   document.body.classList.add('nm-printing');
@@ -2019,9 +2022,10 @@ async function docxRun(L, o, lab) {
         B.push(`<w:tbl><w:tblPr><w:tblW w:w="${cw.reduce((a, b) => a + b, 0)}" w:type="dxa"/><w:tblInd w:w="300" w:type="dxa"/><w:tblBorders>${bd}</w:tblBorders><w:tblLayout w:type="fixed"/><w:tblCellMar><w:top w:w="40" w:type="dxa"/><w:left w:w="100" w:type="dxa"/><w:bottom w:w="60" w:type="dxa"/><w:right w:w="100" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid>${cw.map(w => `<w:gridCol w:w="${w}"/>`).join('')}</w:tblGrid>${rows}</w:tbl>`, DX.para('', '<w:spacing w:after="60"/>'));
       }
     }
+    const TW = Math.round((PMG[o.mg] || PMG.m)[0] * 56.7), SZ = Math.round(20 * (PFS[o.fs] || PFS.m)[0]);
     const NS = 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"';
-    const doc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document ${NS}><w:body>${B.join('')}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>`;
-    const sty = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Malgun Gothic" w:hAnsi="Malgun Gothic" w:eastAsia="Malgun Gothic" w:cs="Malgun Gothic"/><w:sz w:val="20"/><w:szCs w:val="20"/><w:lang w:val="ko-KR" w:eastAsia="ko-KR"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style></w:styles>`;
+    const doc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document ${NS}><w:body>${B.join('')}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="${TW}" w:right="${TW}" w:bottom="${TW}" w:left="${TW}" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+    const sty = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Malgun Gothic" w:hAnsi="Malgun Gothic" w:eastAsia="Malgun Gothic" w:cs="Malgun Gothic"/><w:sz w:val="${SZ}"/><w:szCs w:val="${SZ}"/><w:lang w:val="ko-KR" w:eastAsia="ko-KR"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style></w:styles>`;
     const rel = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rIdS" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>${files.map(f => `<Relationship Id="rIdI${f.n}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${f.n}.jpeg"/>`).join('')}</Relationships>`;
     const Z = [{ name: '[Content_Types].xml', data: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpeg" ContentType="image/jpeg"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>' },
       { name: '_rels/.rels', data: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>' },
@@ -2037,15 +2041,16 @@ function printDlg(pre) {
   const dflt = pre || (S.sel.size ? 'sel' : (S.visN != null && S.visN < counts().n ? 'flt' : 'all'));
   const ov = dlg('인쇄 · PDF · Word 저장', `${scopeHTML(dflt, 'psc')}`
     + `<div class="nm-g2"><label class="nm-fld"><span>넣을 내용</span><select data-po="what"><option value="qas">문제 + 답안 + 스토리</option><option value="qa">문제 + 답안</option><option value="q">문제만</option></select></label><label class="nm-fld"><span>답안 · 스토리 배치</span><select data-po="lay"><option value="side">나란히(왼쪽 답안 | 오른쪽 스토리)</option><option value="stack">위아래</option></select></label></div>`
+    + `<div class="nm-g2"><label class="nm-fld"><span>글씨 크기</span><select data-po="fs">${Object.entries(PFS).map(([k, v]) => `<option value="${k}"${(pcfg().fs || 'm') === k ? ' selected' : ''}>${v[1]}${v[0] !== 1 ? ` (${Math.round(v[0] * 100)}%)` : ''}</option>`).join('')}</select></label><label class="nm-fld"><span>페이지 여백</span><select data-po="mg">${Object.entries(PMG).map(([k, v]) => `<option value="${k}"${(pcfg().mg || 'm') === k ? ' selected' : ''}>${v[1]}</option>`).join('')}</select></label></div>`
     + `<div class="nm-g2"><label class="nm-fld"><span>제작 상태</span><select data-po="st">${STF.map(([v, t]) => `<option value="${v}">${t}</option>`).join('')}</select></label><label class="nm-chk" style="align-self:end;min-height:34px"><input type="checkbox" data-po="brk">강의마다 새 쪽에서 시작</label></div>`
     + `<div class="nm-xsum" data-psum="1"></div><div class="nm-sub">A4에 맞춰 인쇄해요(메뉴·단추는 빠져요). PDF는 인쇄 창의 '대상'에서 'PDF로 저장'을 고르세요. [Word 저장]은 같은 내용을 .docx 파일로 받아요(Word·한글·Pages·구글 문서에서 열고 고치기 — 굵게·색·표·그림 유지). 문제 순서는 지금 정렬 그대로예요.</div>`,
     `<span style="flex:1"></span><button type="button" class="nm-btn" data-x="1">취소</button><button type="button" class="nm-btn" data-po="docx" title="같은 범위·내용을 Word(.docx) 파일로 저장">Word(.docx) 저장</button><button type="button" class="nm-btn pri" data-po="go">인쇄 / PDF 저장</button>`);
   if (!ov) return;
-  const get = () => { const { sc, lec } = scopeOf(ov, 'psc'); return { sc, lec, L: scopeList(sc, lec, ov.querySelector('[data-po=st]').value), o: { what: ov.querySelector('[data-po=what]').value, lay: ov.querySelector('[data-po=lay]').value, brk: ov.querySelector('[data-po=brk]').checked } }; };
+  const get = () => { const { sc, lec } = scopeOf(ov, 'psc'); return { sc, lec, L: scopeList(sc, lec, ov.querySelector('[data-po=st]').value), o: { what: ov.querySelector('[data-po=what]').value, lay: ov.querySelector('[data-po=lay]').value, brk: ov.querySelector('[data-po=brk]').checked, fs: ov.querySelector('[data-po=fs]').value, mg: ov.querySelector('[data-po=mg]').value } }; };
   const draw = () => { const g = get(); ov.querySelector('[data-psum]').innerHTML = g.L.length ? `인쇄할 문제 <b>${g.L.length}</b>개` : '<span class="nm-warn">인쇄할 문제가 없어요 — 범위·제작 상태를 바꿔 보세요.</span>'; ov.querySelector('[data-po=lay]').disabled = g.o.what !== 'qas'; ov.querySelector('[data-po=go]').disabled = !g.L.length; ov.querySelector('[data-po=docx]').disabled = !g.L.length; };
   scopeWire(ov, 'psc', draw); draw();
-  ov.querySelector('[data-po=go]').addEventListener('click', () => { const g = get(); if (!g.L.length) return; dlgClose(); printRun(g.L, g.o, scopeLab(g.sc, g.lec)); });
-  ov.querySelector('[data-po=docx]').addEventListener('click', () => { const g = get(); if (!g.L.length) return; dlgClose(); docxRun(g.L, g.o, scopeLab(g.sc, g.lec)); });
+  ov.querySelector('[data-po=go]').addEventListener('click', () => { const g = get(); if (!g.L.length) return; pcfg({ fs: g.o.fs, mg: g.o.mg }); dlgClose(); printRun(g.L, g.o, scopeLab(g.sc, g.lec)); });
+  ov.querySelector('[data-po=docx]').addEventListener('click', () => { const g = get(); if (!g.L.length) return; pcfg({ fs: g.o.fs, mg: g.o.mg }); dlgClose(); docxRun(g.L, g.o, scopeLab(g.sc, g.lec)); });
 }
 
 /* ---------- 여러 개 선택 ---------- */

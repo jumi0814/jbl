@@ -29,11 +29,14 @@ with sync_playwright() as p:
     ttl = pg.evaluate("(document.querySelector('.nm-ov h3, .nm-ov .hd, .nm-ov [class*=tt]')||{}).textContent||''")
     has = pg.evaluate("!!document.querySelector('.nm-ov [data-po=docx]')"); ok(has, f"인쇄 창에 [Word(.docx) 저장] 단추 ({ttl.strip()[:30]})")
     want = pg.evaluate("(()=>{const t=document.querySelector('[data-psum]');return t?+((t.textContent.match(/\\d+/)||[0])[0]):0})()")
+    sel = pg.evaluate("[!!document.querySelector('.nm-ov [data-po=fs]'),!!document.querySelector('.nm-ov [data-po=mg]')]"); ok(all(sel), f"인쇄 창에 글씨 크기·페이지 여백 칸 {sel}")
+    pg.select_option('.nm-ov [data-po=fs]', 'l'); pg.select_option('.nm-ov [data-po=mg]', 'n')
     with pg.expect_download(timeout=30000) as dl:
         pg.click('.nm-ov [data-po=docx]')
     d = dl.value; f = _os.path.join(TMP, 'out.docx'); d.save_as(f)
     ok(d.suggested_filename.endswith('.docx'), f"파일 이름 {d.suggested_filename}")
     pg.wait_for_timeout(500)
+    ok(pg.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.num.pcfg')||'{}').fs") == 'l', "고른 글씨 크기·여백 기억")
     ok(not errs, f"pageerror 0 {errs[:3]}")
     pg.evaluate(CLEAR); b.close()
 z = zipfile.ZipFile(f); names = z.namelist()
@@ -70,6 +73,7 @@ body = doc.find(W + 'body'); ok(body is not None and body[-1].tag == W + 'sectPr
 xml = z.read('word/document.xml').decode('utf-8')
 ok('빨강 스토리 확인' in xml and 'w:val="C00000"' in xml, "스토리 빨간 글씨 → w:color C00000")
 ok('<w:b/>' in xml, "굵게 → w:b")
+sty = z.read('word/styles.xml').decode('utf-8'); ok('w:sz w:val="23"' in sty and 'w:top="340"' in xml, "글씨 크게(115% → 11.5pt) · 여백 좁게(6 mm) 반영")
 ok('넘버링 스토리' in xml and '답안' in xml, "답안 | 넘버링 스토리 칸")
 media = [x for x in names if x.startswith('word/media/')]
 rels = z.read('word/_rels/document.xml.rels').decode('utf-8')
