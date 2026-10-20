@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"db96d18e",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"9e7265d2",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2110,7 +2110,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="db96d18e",PV={"OMS1": "63a24416", "CONS": "a2a6c723", "IMPL": "ab0cfecb", "ANAT": "a34448a4", "GERI": "7efda85f", "PHARM": "a6e1b3f3", "ESTH": "c19f01a6"},PSZ={"OMS1": 4.7, "CONS": 4.4, "IMPL": 3.9, "ANAT": 5.8, "GERI": 5.1, "PHARM": 7.5, "ESTH": 5.1};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="9e7265d2",PV={"OMS1": "3cedd6d3", "CONS": "38204b35", "IMPL": "23266866", "ANAT": "77fd03cf", "GERI": "6bcc7bb9", "PHARM": "de1356ab", "ESTH": "801f950a"},PSZ={"OMS1": 4.7, "CONS": 4.4, "IMPL": 3.9, "ANAT": 5.8, "GERI": 5.1, "PHARM": 7.5, "ESTH": 5.1};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3589,7 +3589,14 @@ const Kit=(function(){let mode=null,color='y',S=null,ANN={},U=[],R=[],PEND=null,
   if(best<need)return null;const i=o.i||0;bi.sort((u,v)=>Math.abs(u-i)-Math.abs(v-i));return L[bi[0]];}
  const HINT='빨간글씨를자동빈칸으로가리고떠올리기';
  function fz(t){let u='',m=[];for(let k=0;k<t.length;k++){const ch=t[k];if(!/[\p{L}\p{N}]/u.test(ch))continue;u+=ch.toLowerCase();m.push(k);}return{t:u,m};}
- function resolve(t,o,hv){if(!o||!o.x||t==null)return null;const x=String(o.x),i=o.i||0;
+ /* 10-20 사용자 '강의자료 업데이트하면서 기존의 메모가 날라간 것 같은데 … 복구 가능하면 복구해줘' — 마지막 수단(못 찾은 표시만): 저장된 앞뒤 글자(p·s)의 끝·첫 4~8자(글자·숫자만)가
+    한 곳에서만 붙어 있으면 그 사이를 같은 자리로 봄(원고가 'p.13' → 'p.10'·'fascia 상부' → 'fascia · 상부'처럼 바뀐 자리) · same = 사이 글자가 표시 글자와 같을 때만(글자가 여러 곳에 있어 문맥으로 못 고른 표시) */
+ function bridge(t,o,same){if(o.p==null||o.s==null)return null;const F=fz(t),P=fz(o.p).t,Q=fz(o.s).t,X=fz(String(o.x)).t;if(P.length<4||Q.length<4||!X)return null;
+  const pk=P.slice(-Math.min(8,P.length)),qk=Q.slice(0,Math.min(8,Q.length)),lim=Math.max(4,Math.ceil(X.length*1.5)+2),L=[];
+  for(const q of occ(F.t,pk)){const st=q+pk.length,e=F.t.indexOf(qk,st);if(e<=st||e-st>lim)continue;if(same&&F.t.slice(st,e)!==X)continue;L.push([st,e]);}
+  return L.length===1?[F.m[L[0][0]],F.m[L[0][1]-1]+1]:null;}
+ function resolve(t,o,hv){const r=resolve0(t,o,hv);if(r||!o||!o.x||t==null)return r;return bridge(t,o,fz(t).t.indexOf(fz(String(o.x)).t)>=0);}
+ function resolve0(t,o,hv){if(!o||!o.x||t==null)return null;const x=String(o.x),i=o.i||0;
   if(o.xl&&o.xh){const L=occ(t,x).filter(a=>fnv(t.slice(a,a+o.xl))===o.xh).map(a=>[a,a+o.xl]);if(!L.length)return null;if(o.v&&L.length>i&&(hv||fnv(t))===o.v)return L[i];return L.length===1?L[0]:pick(t,L,o);}   /* C03 긴 빈칸 */
   const ex=occ(t,x).map(a=>[a,a+x.length]);
   if(o.v&&ex.length>i&&(hv||fnv(t))===o.v)return ex[i];
