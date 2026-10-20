@@ -3,7 +3,7 @@ import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dir
 SID, TITLE, EN, COLOR = 'IMPL', '치과임플란트학', 'Dental Implantology', '#93561A'
 PROFS = '조영단 · 한정준 · 명훈 · 임영준 · 김성균 · 조준호 · 윤필영'
 BUILT = '2026-09-25'
-LECMAP = {'HIS': ('I01i', '역사·용어·설계·표면(26)'), 'OSS': ('I02i', 'Osseointegration·bone physiology(25)'),
+LECMAP = {'HIS': ('I01i', '역사·용어·설계·표면(26)'), 'OSS': ('I14i', 'Osseointegration·bone physiology(26)'), 'OSS5': ('I02i', 'Osseointegration·bone physiology(25)'),
           'PATH': ('I03i', 'Implant in pathologic bone(26)'), 'ONJ5': ('I04i', 'ONJ and bisphosphonate(25)'),
           'BIO': ('I06i', '진단과 치료계획·biomechanics(26)'), 'PRO': ('I12i', '임플란트 보철의 이해(26)'), 'PRO5': ('I07i', '임플란트 보철의 이해(25)'),
           'PART': ('I13i', '보철 부품의 종류·명칭·용도(26)'), 'PART5': ('I08i', '보철 부품의 종류·명칭·용도(25)'), 'GRAFT': ('I11i', '치과 임플란트를 위한 골이식(26)'), 'GRAFT5': ('I09i', '치과 임플란트를 위한 골이식(25)'), 'HIS5': ('I10i', '역사·용어·설계·표면(25)'), 'BIO5': ('I05i', '진단과 치료계획(25)')}
@@ -14,7 +14,7 @@ def lec_img_path(k, p):
     return f'{LEC_IMG_ROOT}{d}/{p}.jpg' if d else None
 FORCE_PAGES = {}
 PAGE_LABEL = {}
-IMG_ALIAS = {'PART5': 'PART', 'ONJ5': 'PATH', 'HIS5': 'HIS', 'BIO5': 'BIO', 'PRO5': 'PRO', 'GRAFT5': 'GRAFT'}
+IMG_ALIAS = {'OSS5': 'OSS', 'PART5': 'PART', 'ONJ5': 'PATH', 'HIS5': 'HIS', 'BIO5': 'BIO', 'PRO5': 'PRO', 'GRAFT5': 'GRAFT'}
 PROF_LEC = {'조영단': ['HIS'], '한정준': ['OSS'], '명훈': ['PATH'], '임영준': ['BIO'], '김성균': ['PRO'], '조준호': ['PART'], '이재현': ['PART'], '윤필영': ['GRAFT']}
 PROF_ORDER = ['조영단', '한정준', '명훈', '임영준', '김성균', '조준호', '윤필영']
 COVER = {'조영단': 22, '한정준': 22, '윤필영': 22, '명훈': 22, '임영준': 20, '김성균': 20, '조준호': 22, '이재현': 22}
