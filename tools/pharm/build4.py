@@ -630,7 +630,7 @@ def img_dims(key):
     return _DIMS[key]
 GBPG = {}   # S3 (KEY, 쪽) → 'KEY:예상 번호' — 그 쪽 그림으로 낸 그림빵 예상(활성)이 있으면 학습 카드 그림 설명 줄에 '🖼 그림빵' 단추(그림빵 탭 그 문제로)
 for _i, _p in enumerate(PRED):
-    if '그림빵' in (_p.get('t') or '') and _p.get('m') and (_p.get('x') or '').strip() != '1':
+    if '그림빵' in (_p.get('t') or '') and (_p.get('m') or '그림 보고' in (_p.get('t') or '')) and _p.get('f') and (_p.get('x') or '').strip() != '1':   # 10-20 '그림 보고 답하기'(그림을 주고 술식·구조·질환을 묻는 그림빵 — 가릴 라벨이 없어도 됨)
         _m = re.match(r'\s*([A-Z0-9]+):(\d+)', _p.get('f') or '')
         if _m: GBPG.setdefault((_m.group(1), int(_m.group(2))), f"{_p['k']}:{_i}")
 def figgrid(kk, fl, gb=True):
@@ -1181,6 +1181,7 @@ for i, p in enumerate(PRED):
     if bids: ent['b'] = bids
     if figs: ent['f'] = [f'{fk}-{pg}' for fk, pg in figs]
     if fb and pred_boxes(p): ent['m'] = pred_boxes(p)
+    if fb and '그림 보고' in p['t']: ent['gk'] = 'id'   # 10-20 사용자 '그림빵에는 단순히 빈칸빵 뿐만 아니라 … 그림을 주고 이게 어떤 술식인지 말하는 등 그런 문제들도 그림빵으로' — m 없이도 그림빵 탭(답이 보이는 제목·글자만 m으로 가림)
     preds.append(ent)
 # S3 그림빵(S3_BRIEF 4) — 근거 있는 강의만: L.gbj = 그 강의 JB 기출 중 문제 쪽 그림 조각(crops q)이 있는 것(현 교수 먼저, 옛 교수(tier C)는 뒤 — '과거 JB 대비용') · L.gbp = t=그림빵 + m 상자가 있는 활성 예상문제
 #   탭·모아 풀기는 현 교수 그림 기출이나 그림빵 예상이 있을 때만(옛 교수 그림만 있는 강의는 탭 없음 — JB 문제에서) · 예상 그림빵의 '📖 정리본' = 그 쪽 그림이 든 학습 카드(lc)
@@ -1195,7 +1196,7 @@ for x_ in preds:
 _gbn = [0, 0, 0]
 for L_ in lect:
     cur_ = [i for i in L_['jb'] if (QMAP[i].get('crops') or {}).get('q')]
-    gp_ = [i for i in L_['pred'] if preds[i].get('m')]
+    gp_ = [i for i in L_['pred'] if preds[i].get('m') or preds[i].get('gk') == 'id']
     if cur_ or gp_:
         old_ = [q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == L_['k'] and (q.get('crops') or {}).get('q')]
         if cur_ or old_: L_['gbj'] = cur_ + old_

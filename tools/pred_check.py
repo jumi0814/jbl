@@ -68,7 +68,7 @@ def main():
             st['그림빵'] += 1
             if not f.get('f'): X(b, '그림빵인데 f= 없음')
             boxes = [x for x in f.get('m', '').split(';') if x.strip()]
-            if not boxes: X(b, '그림빵인데 m= 없음')
+            if not boxes and '그림 보고' not in f.get('t', ''): X(b, '그림빵인데 m= 없음(그림 보고 답하기면 t에 \'그림 보고\')')   # 10-20 그림 보고 답하기 = m 없어도 됨
             for bx in boxes:
                 try:
                     v = [float(t) for t in bx.split(',')]

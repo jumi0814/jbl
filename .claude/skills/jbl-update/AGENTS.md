@@ -143,6 +143,8 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 검사: 연도 = questions.md '출제'·qids yrs와 대조(보고에 대조 수).
 ```
 
+## GBID 그림 보고 답하기 그림빵 — 과목 하나(10-20 · tools/<sid>/pred.txt만 · guide/handoff/GBID_BRIEF.md 그대로 · 보고 work/<SID>/pred26/R_GBID_<SID>.md)
+
 ## P 예상문제 — 강의 묶음(10-15 · TREND 뒤)
 ```
 <공통 머리>
