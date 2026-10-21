@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"d1a44cb5",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"7913b9a1",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1217,7 +1217,7 @@ details.parch>summary .arw::after{content:" ▸"}details.parch[open]>summary .ar
 @media (pointer:coarse){.gbm{min-width:22px;min-height:18px}}
 .figs figcaption .gbgo{margin-left:6px;border:1px solid #E3C66E;background:#FFF8DD;color:#5A4300;border-radius:999px;font-size:11.5px;font-weight:700;padding:0 7px;line-height:1.6;cursor:pointer;white-space:nowrap}.figs figcaption .gbgo:hover{background:#FFF1C2}
 @media (pointer:coarse){.figs figcaption .gbgo{min-height:30px;padding:0 10px}}
-#ppills .pds{display:none}#ppills.hasp .pdl{display:none}#ppills.hasp .pds{display:inline;white-space:nowrap}@media (max-width:1100px){#ppills .pdl{display:none}#ppills .pds{display:inline;white-space:nowrap}}   /* 우선순위 칸이 있으면 안내는 짧게(한 줄 — 전체 글은 title) */
+#ppills .pds{display:none}@media (max-width:1100px){#ppills .pnl{display:none}}#ppills.hasp .pdl{display:none}#ppills.hasp .pds{display:inline;white-space:nowrap}@media (max-width:1100px){#ppills .pdl{display:none}#ppills .pds{display:inline;white-space:nowrap}}   /* 우선순위 칸이 있으면 안내는 짧게(한 줄 — 전체 글은 title) */
 h3.pgh{margin:22px 0 8px;font-size:16px}#tbltoc [data-tgk].z,#sumbar [data-sgo].z{opacity:.5}#tbltoc [data-tgk].cur,#sumbar [data-sgo].cur{border-color:var(--acc);color:var(--acc)}#tbllist{max-height:40vh;overflow:auto}h3.pgh:first-of-type{margin-top:6px}
 /* B08 정리표 '자세히' 세부 칸 안 작은 표 — 칸 밖으로 넘치지 않게(넘치면 그 표만 가로 스크롤) */
 .msum td .mfull table.mini,.msum td table.mini{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -2110,7 +2110,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="d1a44cb5",PV={"OMS1": "3a28bd62", "CONS": "e809af60", "IMPL": "0209939b", "ANAT": "f486566f", "GERI": "2e7ca5c0", "PHARM": "93e9dc3e", "ESTH": "48ee00cc"},PSZ={"OMS1": 4.7, "CONS": 4.4, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.1, "PHARM": 7.5, "ESTH": 5.1};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="7913b9a1",PV={"OMS1": "1df26222", "CONS": "29c49d87", "IMPL": "0ffe3e68", "ANAT": "4a2b4ad9", "GERI": "fbe1b46f", "PHARM": "59d6d874", "ESTH": "e825cc8a"},PSZ={"OMS1": 4.7, "CONS": 4.4, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.1, "PHARM": 7.5, "ESTH": 5.1};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3143,7 +3143,7 @@ function homeTrend(p){const dt=$('#stage details.trd');if(!dt)return;const k='ho
 function paintMarks(st){st=st||$('#stage');$$('.qc,.pc[data-id],.gbx[data-id]',st).forEach(paintQ);
  const DN=mkObj(LS.get('done.'+CUR.s,{}));$$('.tc',st).forEach(c=>c.classList.toggle('done',!!DN[c.dataset.aid]));$$('.ol[data-scroll]',st).forEach(b=>{const c=document.getElementById(b.dataset.scroll);b.classList.toggle('done',!!(c&&c.classList.contains('done')));});}
 /* S3 예상문제 필터 막대 — 유형(전체·짤 변형·미출제) · 우선순위(상 · 상+중 — 다시 누르면 전체, 우선순위가 있는 강의만) · 답 모두 펼치기 · 안 푼 것·틀린 것. 안내 글은 좁은 폭에서 줄임(한 줄) */
-const predBar=ids=>{const P=PACKS[CUR.s]||{},pr=(ids||[]).some(i=>((P.preds||[])[i]||{}).pr);return '<div class="pills noann'+(pr?' hasp':'')+'" id="ppills"><button class="tg on" data-ptype="">전체</button><button class="tg" data-ptype="v">짤 변형</button><button class="tg" data-ptype="n">미출제·교수 강조</button>'+(pr?'<span class="qf ppri" title="출제 우선순위로 거르기 — 다시 누르면 전체"><span class="ppl">우선</span><button class="tg" data-ppr="상" title="우선순위 상만">상</button><button class="tg" data-ppr="상중" title="우선순위 상·중">상+중</button></span>':'')+'<button class="tg" id="frev">답 모두 펼치기</button><span class="qf"><button class="tg" data-pf="todo" title="맞음·틀림을 아직 안 매긴 예상문제">안 푼 것</button><button class="tg" data-pf="ng">틀린 것</button><button class="tg" data-pf="bm" title="★ 표시한 예상문제만 — 다시 누르면 전체">★</button></span><span class="small pdis" title="실제 기출이 아닙니다 — 문제·답 모두 강의자료 문장으로만 구성"><span class="pdl">실제 기출이 아닙니다 — 문제·답 모두 강의자료 문장으로만 구성</span><span class="pds" aria-hidden="true">실제 기출 아님</span></span></div>';};
+const predBar=ids=>{const P=PACKS[CUR.s]||{},pr=(ids||[]).some(i=>((P.preds||[])[i]||{}).pr);return '<div class="pills noann'+(pr?' hasp':'')+'" id="ppills"><button class="tg on" data-ptype="">전체</button><button class="tg" data-ptype="v">짤 변형</button><button class="tg" data-ptype="n" title="미출제·교수 강조">미출제·<span class="pnl">교수 </span>강조</button>'+(pr?'<span class="qf ppri" title="출제 우선순위로 거르기 — 다시 누르면 전체"><span class="ppl">우선</span><button class="tg" data-ppr="상" title="우선순위 상만">상</button><button class="tg" data-ppr="상중" title="우선순위 상·중">상+중</button></span>':'')+'<button class="tg" id="frev">답 모두 펼치기</button><span class="qf"><button class="tg" data-pf="todo" title="맞음·틀림을 아직 안 매긴 예상문제">안 푼 것</button><button class="tg" data-pf="ng">틀린 것</button><button class="tg" data-pf="bm" title="★ 표시한 예상문제만 — 다시 누르면 전체">★</button></span><span class="small pdis" title="실제 기출이 아닙니다 — 문제·답 모두 강의자료 문장으로만 구성"><span class="pdl">실제 기출이 아닙니다 — 문제·답 모두 강의자료 문장으로만 구성</span><span class="pds" aria-hidden="true">실제 기출 아님</span></span></div>';};
 const predN=p=>((p&&p.preds)||[]).filter(x=>!x.x).length;   /* S3 활성 예상문제 수(보관 x=1 뺌) — 과목 머리·메뉴 */
 function predArch(p,L){const A=(L&&L.parch)||[];if(!A.length)return '';return `<details class="parch" id="parch"><summary class="noann">보관된 예상문제 ${A.length}개<i class="arw" aria-hidden="true"></i></summary><div class="small noann pxnote">근거가 약하거나 같은 축이 겹쳐 보관한 문제 — 플래시카드·개수에서 빠지고, 채점·표시 기록은 그대로예요.</div>${A.map(i=>p.preds[i].html).join('')}</details>`;}
 /* ---------- S3 그림빵(10-16 · guide/handoff/S3_BRIEF 4) — 근거 있는 강의만: 그림 조각이 있는 그 강의 JB 기출(L.gbj) · t=그림빵 예상(L.gbp, 가림 상자 m) ----------
