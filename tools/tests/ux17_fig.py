@@ -5,6 +5,7 @@
 - 과목 메뉴 '그림빵 모아 풀기'(#/<S>/_fig) — 그림빵이 없는 과목은 메뉴 없음 · 모아 풀기 = 그 과목 전부(강의·종류 필터)
 - 옛 교수·26에서 빠진 그림 = '과거 JB 대비용' 칩(있을 때) · 표시(형광펜) 대상 아님(data-aid 없음)
 - 일반 빈칸빵: 학습 탭 가리기(Q)·빈칸 도구(B)를 켜도 카드 그림(F:)이 보임
+- (10-20) 예상 그림빵 종류 칩 '라벨 빈칸'/'그림 보고 답하기' · 그림 보고 답하기(t=그림빵·그림 보고 → gk=id)는 m 없이도 탭에
 - pageerror 0 · 스크린샷 work/_tmp/s3/ux17_*.png(없으면 work/_tmp/)"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import json
@@ -118,6 +119,11 @@ with sync_playwright() as p:
         k = pg.evaluate("(()=>{const f=document.querySelector('#stage .tc .figs figure');return {mode:__h.Kit.mode(),vis:f.getBoundingClientRect().height>40&&getComputedStyle(f.parentElement).display!=='none'}})()")
         pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
         ok(q['qz'] and q['vis'] and k['vis'], f"일반 빈칸빵(가리기 Q {q} · 빈칸 도구 B {k})에서 카드 그림 보임")
+    # 10-20 그림빵 두 종류 — 예상 그림빵마다 '라벨 빈칸'/'그림 보고 답하기' 칩 · 그림 보고 답하기(gk=id)는 m 없이도 그림빵 탭·모아 풀기에
+    ids = pg.evaluate("(()=>{let n=0,nm=0;for(const s of Object.keys(__h.PACKS))for(const x of __h.PACKS[s].preds||[])if(x.gk==='id'&&!x.x){n++;if(!x.m)nm++;}return [n,nm]})()")
+    go(pg, '#/ANAT/_fig', 4000)
+    kd = pg.evaluate("(()=>{const A=[...document.querySelectorAll('#stage .gbx.gbp')];return [A.length,A.filter(a=>a.querySelector('.chip.gbkd')).length,A.filter(a=>a.querySelector('.chip.gbkd.id')).length]})()")
+    ok(ids[0] >= 5 and kd[0] > 0 and kd[0] == kd[1] and kd[2] >= 3, f"그림 보고 답하기 그림빵 {ids[0]}개(가림 없는 것 {ids[1]}) · ANAT 모아 풀기 예상 {kd[0]} 모두 종류 칩 · 그림 보고 {kd[2]}")
     ok(not errs, f"pageerror 0 {errs[:3]}")
     for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']: pg.evaluate(f"localStorage.removeItem('jblhub.v1.mk.{s}')")
     b.close()
