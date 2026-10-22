@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"5ebee172",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"93963856",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -890,7 +890,8 @@ body.jbone #jbbar.mini #jbrec{display:inline-flex;border:1px dashed var(--accb);
 /* F08 플래시카드 기출 카드 */
 .fcard .fcq .ln.q1{font-weight:800}.fcard .fcq{font-size:inherit}.fcard img.fig{max-height:45vh;width:auto;max-width:100%}
 .fcard .fca{text-align:left}.fcard .fcex{margin-top:8px;padding-top:6px;border-top:1px dashed var(--line);font-size:.92em}.fcard .fcex .alab{font-size:11.5px;color:var(--sub);font-weight:800;margin-right:6px}
-.fcard .fclk{margin-top:8px;font-size:.92em;font-weight:600;color:#3B5F78}.fclinks{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0 2px}.fclinks .chip{cursor:pointer}.fcard .fcgo{margin-top:10px}.fcard .fcwarn{color:#9A2019;font-weight:700;margin-bottom:6px}
+.fcard .fclk{margin-top:8px;font-size:.92em;font-weight:600;color:#3B5F78}#stage .pc.prelh{display:none}.prelc{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-4px 0 12px;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--acc) 8%,#fff);font-size:13.5px;color:var(--ink)}.prelc .tg{margin-left:auto}
+.fclinks{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0 2px}.fclinks .chip{cursor:pointer}.fcard .fcgo{margin-top:10px}.fcard .fcwarn{color:#9A2019;font-weight:700;margin-bottom:6px}
 /* F10 예상문제 보기 줄·채점 */
 .pq .ln.q1{margin-bottom:4px}.pq .ln.li{font-weight:500}.pc.pfh{display:none}
 /* F11 인쇄 */
@@ -2116,7 +2117,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="5ebee172",PV={"OMS1": "8bb41ca6", "CONS": "92454c22", "IMPL": "f05eef57", "ANAT": "8418b4e8", "GERI": "8bff3430", "PHARM": "b2f7f1c4", "ESTH": "186be263"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="93963856",PV={"OMS1": "6b708ec5", "CONS": "e4ad1271", "IMPL": "d7b50fd3", "ANAT": "417938e0", "GERI": "27fe6fad", "PHARM": "53e3caa4", "ESTH": "06d026b1"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3180,7 +3181,7 @@ function mount(p,d,t){const st=$('#stage');st.className=(d==='_sum'||d==='_tbl'|
   else if(t==='flash')h='<div class="fcwrap noann" id="fc"></div>';
   else if(t==='fig')h=gbTab(p,L);}
  st.innerHTML=h;
- paintMarks(st);cbEnd(st);
+ paintMarks(st);cbEnd(st);prelApply();
  if(d==='_jb'||t==='jb')JB.init();if(t==='flash')Flash.init(p,p.lect.find(x=>x.k===d));fillThumbs(st);
  if(d==='_home')homeTrend(p);fsApply();if(t==='learn'&&$('#stage .tc')){foldRestore();condSet(!!LS.get('cond',false),false);const af=$('#lautofold');if(af)af.classList.toggle('on',!!LS.get('autofold',true));}Kit.restore(st);learnSpy();
  if(QZ.on&&QZ.doc!==CUR.s+'/'+d)QZ.on=false;if(QZ.sus&&(QZ.sus!==CUR.s+'/'+d||QZ.on))QZ.sus=null;if(!QZ.on&&QZ.sus&&t==='learn'){QZ.on=true;QZ.sus=null;}   /* ux4f 정리표에 들렀다 학습 탭으로 돌아오면 멈춰 둔 가리기를 다시(ux2 '탭을 옮겼다 와도 가리기 유지') */if(QZ.on&&QZ.scope==='card')QZ.card=QZ.cardAid?findAid(QZ.cardAid):null;qzApply();if(QZ.on&&!RVQZ&&!$$('#stage .k.qzk').length){QZ.on=false;QZ.sus=QZ.doc;qzApply();}   /* ux4f D 학습 탭에서 켠 가리기(이 카드)가 정리표·비교표에 가린 칸 0개로 보이지 않게 남던 것 — 이 탭에 가린 칸이 없으면 끔 */
@@ -3234,7 +3235,10 @@ function gbFilt(){const st=$('#stage'),gk=($('#gbpills [data-gbkind].on')||{data
  $$('#stage .gbx').forEach(c=>{const h=(gk&&c.dataset.gk!==gk)||(k&&c.dataset.k!==k)||(pf&&c.dataset.gprof!==pf);c.classList.toggle('hid',!!h);if(!h)n++;});
  $$('#stage h3[data-gbhk]').forEach(h=>{let e=h.nextElementSibling,v=0;while(e&&!e.matches('h3')){if(e.matches('.gbx:not(.hid)'))v++;e=e.nextElementSibling;}h.hidden=!v;});const em=$('#gbempty');if(em)em.hidden=!!n;}
 function gbAllShow(root,on){$$('.gbm',root).forEach(m=>m.classList.toggle('open',on));$$('.gbl',root).forEach(l=>l.classList.toggle('show',on));$$('[data-gbshow]',root).forEach(b=>b.textContent=on?'전체 가리기':'전체 보기');$$('[data-gball]',root).forEach(b=>b.textContent=on?'답 모두 가리기':'답 모두 펼치기');}
-$('#stage').addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('[data-gopred]');if(!g||Kit.mode())return;e.preventDefault();e.stopImmediatePropagation();const v=g.dataset.gopred.split('|');PENDRET=retFrom(g);openDoc(CUR.s,v[0],'pred',v[1]);},true);   /* 10-16 JB 카드 '예상 n ▸' → 그 기출을 관련 기출(b=)로 건 예상문제(↩ 알약으로 돌아옴) */
+$('#stage').addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('[data-gopred]');if(!g||Kit.mode())return;e.preventDefault();e.stopImmediatePropagation();const v=g.dataset.gopred.split('|');{const q=g.closest('.qc'),jid=q&&q.dataset.id,pp=PACKS[CUR.s],ids=new Set(((pp&&pp.preds)||[]).filter(x=>x.k===v[0]&&!x.x&&(x.b||[]).indexOf(jid)>=0).map(x=>x.aid)),yb=q&&q.querySelector('.ybadge b');PREL=ids.size>1?{s:CUR.s,k:v[0],ids,lab:'기출 '+(yb?yb.textContent.replace(/\s+/g,''):(jid||''))}:null;}PENDRET=retFrom(g);openDoc(CUR.s,v[0],'pred',v[1]);},true);   /* 10-22d 감사 P14 — 관련 예상만 거른 채로(전체 보기 ✕) */
+let PREL=null;
+function prelApply(){if(!PREL||VIEW!=='doc'||CUR.t!=='pred'||CUR.s!==PREL.s||CUR.d!==PREL.k){PREL=null;return;}$$('#stage .pc').forEach(c=>c.classList.toggle('prelh',!PREL.ids.has(c.dataset.aid)));const bar=$('#ppills');if(bar&&!$('#prelc')){const x=document.createElement('div');x.id='prelc';x.className='prelc noann';x.innerHTML=`<b>${EH(PREL.lab)}</b> 관련 예상 ${PREL.ids.size}개만 보는 중<button type="button" class="tg" data-prelx="1">전체 예상 보기 ✕</button>`;bar.after(x);}}
+$('#stage').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-prelx]');if(!b)return;PREL=null;$$('#stage .pc.prelh').forEach(c=>c.classList.remove('prelh'));const x=$('#prelc');if(x)x.remove();});   /* 10-16 JB 카드 '예상 n ▸' → 그 기출을 관련 기출(b=)로 건 예상문제(↩ 알약으로 돌아옴) */
 $('#stage').addEventListener('click',e=>{const g0=e.target.closest&&e.target.closest('[data-gbgo]');if(g0&&!Kit.mode()){e.preventDefault();e.stopImmediatePropagation();const v=g0.dataset.gbgo.split(':');PENDRET=retFrom(g0);openDoc(CUR.s,v[0],'fig',null,{id:'gb-p'+v[1]});return;}   /* 학습 카드 그림 → 그 그림빵(↩ 알약으로 돌아옴) */
  const t=e.target.closest&&e.target.closest('.gbm,.gbl,[data-gbshow],[data-gball],[data-gbans],[data-gbsa],[data-gbkind],[data-gbzoom]');if(!t||Kit.mode())return;const c=t.closest('.gbx');
  if(t.classList.contains('gbm')){t.classList.toggle('open');return;}
