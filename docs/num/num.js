@@ -2384,7 +2384,7 @@ function cardPaint() {
   let i = D.indexOf(s.cur); if (i < 0) i = Math.max(0, Math.min(s.i || 0, D.length - 1)); s.i = i; s.cur = D[i];
   const it = S.by.get(D[i]), [ff, fb, f3] = DIRS[S.cfg.dir], f = RV.face ? fb : ff, m = s.mk[it.id], pf = profOf(it), l = lecOf(it.lec), dr = (RV.dr && RV.dr.a[it.id]) || '', r = rOf(it.id), hn = r && Array.isArray(r.h) ? r.h.length : 0, last = i === D.length - 1;
   const ctx = RV.face && ff === 'q' ? `<div class="nm-cq" title="앞면(문제)">${esc(plain(qDisp(it)).replace(/\s+/g, ' ').trim().slice(0, 160))}</div>` : '';
-  box.innerHTML = `<div class="nm-cl"><div class="nm-cpos"><b>${i + 1}</b><span>/ ${D.length}</span><span class="lt">${esc(l.k ? l.t : '강의 미분류')}</span>${pf ? `<span class="nm-tag pf">${profTagH(it)}</span>` : ''}${it.yrs.length && profYrs(it).filter(g => g[0]).length < 2 ? `<span class="nm-tag yr">${esc(yrs2(it.yrs))}</span>` : ''}<span class="nm-sp"></span>${pmHTML(prevMark(it.id))}</div>`
+  box.innerHTML = `<div class="nm-cl"><div class="nm-cpos"><b>${i + 1}</b><span>/ ${D.length}</span><span class="lt">${esc(l.k ? l.t : '강의 미분류')}</span>${pf ? `<span class="nm-tag pf">${profTagH(it)}</span>` : ''}${it.yrs.length && profYrs(it).filter(g => g[0]).length < 2 ? `<span class="nm-tag yr">${esc(yrs2(it.yrs))}</span>` : ''}<span class="nm-tags">${jbBtn(it)}${lcBtn(it)}</span><span class="nm-sp"></span>${pmHTML(prevMark(it.id))}</div>`
     + `<div class="nm-card${RV.face ? ' back' : ''}${m != null ? ' mk' + m : ''}" data-flip="1" tabindex="0" role="button" aria-label="${RV.face ? '뒷면' : '앞면'} ${FN[f]} — 눌러서 뒤집기(Space)"><div class="nm-cfh"><span class="nm-cft">${RV.face ? '뒷면' : '앞면'} · ${FN[f]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f}" title="${FN[f]} 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div>${ctx}<div class="nm-c nm-cfc" data-f="${f}">${faceHTML(it, f)}</div></div>`
     + `<div class="nm-cctl"><span class="nm-cnav"><button type="button" class="nm-btn" data-cnav="-1"${i ? '' : ' disabled'} title="이전 카드 (←)" aria-label="이전 카드">◀</button><button type="button" class="nm-btn pri" data-cnav="0" title="뒤집기 (Space·카드 누르기${innerWidth <= 860 ? ' · 옆으로 밀면 다음·이전' : ''})">뒤집기</button><button type="button" class="nm-btn" data-cnav="1" title="${last ? '회차 정리' : '다음 카드'} (→)" aria-label="${last ? '회차 정리' : '다음 카드'}">${last ? '정리 ▶' : '▶'}</button></span>`
     + `<span class="nm-cmk" title="평가하면 다음 카드로 (1 · 2 · 3)">${mksHTML(it.id, m)}</span>`
@@ -2608,7 +2608,7 @@ function bind() {
     const bt = t.closest('[data-bat]'); if (bt) { batch(bt.dataset.bat, bt); return; }
     const a = t.closest('[data-act]');
     if (a) {
-      const k = a.dataset.act, art = a.closest('.nm-it'), it = art && S.by.get(art.dataset.id);
+      const k = a.dataset.act, art = a.closest('.nm-it'), cv = !art && a.closest('[data-cardv]'), it = art ? S.by.get(art.dataset.id) : (cv && cv.dataset.id ? S.by.get(cv.dataset.id) : null);   /* 10-22d 카드 복습에서도 JB 문제·정리본 */
       if (k === 'more' && it) { itemMenu(a, it); return; }
       if (k === 'jbgo' && it) { jbGo(it, a); return; }
       if (k === 'lecgo' && it) { lecGo(it, a); return; }
