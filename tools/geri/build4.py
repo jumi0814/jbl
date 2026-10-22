@@ -1193,6 +1193,26 @@ for x_ in preds:
     for fk_ in x_.get('f', []):
         k_, p_ = fk_.rsplit('-', 1); hit = PG2CARD.get((k_, int(p_))) or next((v_ for (kk_, pp_), v_ in PG2CARD.items() if pp_ == int(p_) and getattr(S, 'IMG_ALIAS', {}).get(kk_, kk_) == k_), None)
         if hit: x_['lc'] = f'{hit[0]}:{hit[1]}'; break
+# 10-22 사용자 '예상문제도 해당 예상문제를 출제한 강의자료 정리본 카드로 바로가는 버튼이 있고, 다시 돌아올 수 있었으면 … 각 강의자료정리본의 예상문제란에서도' —
+#   모든 예상문제에 lc(그림 쪽 카드 → 답·근거가 인용한 그 강의 쪽이 든 카드(rng) → 관련 기출의 정리본 카드) · 예상 탭 카드 머리에 '📖 정리본'(data-golec — ↩ 알약으로 돌아옴) · 넘버링도 같은 lc
+RNG2CARD = {}
+for L_ in LEC:
+    for j_, c_ in enumerate(L_['cards']):
+        for a_, b_ in re.findall(r'(\d+)(?:\s*[-~–]\s*(\d+))?', c_.get('rng', '') or ''):
+            for pp_ in range(int(a_), int(b_ or a_) + 1): RNG2CARD.setdefault((L_['k'], pp_), (L_['k'], j_))
+for i_, x_ in enumerate(preds):
+    if not x_.get('lc'):
+        hit = None
+        for ck_, cp_ in re.findall(r'class="cite[^"]*" data-k="([A-Z0-9]+)" data-p="(\d+)"', x_['html']):
+            if ck_ == x_['k']: hit = RNG2CARD.get((ck_, int(cp_)))
+            if hit: break
+        if not hit:
+            for b_ in (x_.get('b') or []):
+                if b_ in Q2CARD and Q2CARD[b_][0] == x_['k']: hit = Q2CARD[b_]; break
+        if hit: x_['lc'] = f'{hit[0]}:{hit[1]}'
+    if x_.get('lc'):
+        _h = x_['html']; _i = _h.find('<div class="qhead">'); _j = _h.find('</div>', _i)
+        if _i >= 0 and _j > 0: x_['html'] = _h[:_j] + f'<button class="chip lec plc noann" data-golec="{x_["lc"]}" title="이 예상문제가 나온 정리본 카드로 — ↩ 돌아가기로 다시 여기">📖 정리본</button>' + _h[_j:]
 _gbn = [0, 0, 0]
 for L_ in lect:
     cur_ = [i for i in L_['jb'] if (QMAP[i].get('crops') or {}).get('q')]
