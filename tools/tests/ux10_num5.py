@@ -30,7 +30,7 @@ async def main():
         await pg.evaluate("document.querySelectorAll('.nm-it')[2].querySelector('.nm-s .nm-c').scrollIntoView({block:'center'})")
         await pg.locator('.nm-it').nth(2).locator('.nm-s .nm-c').click(); await pg.wait_for_timeout(250)
         tb = await pg.evaluate("(()=>{const t=document.querySelector('.nm-tb'),cs=getComputedStyle(t);return {btn:[...t.querySelectorAll('button')].map(b=>b.dataset.cmd||b.dataset.pal),bg:cs.backgroundColor,h:Math.round(t.getBoundingClientRect().height)}})()")
-        ok(tb['btn'] == ['bold', 'underline', 'fc', 'more', 'done'] and 'rgba(255, 255, 255' in tb['bg'] and tb['h'] <= 32, f"흰 반투명 미니 막대 — 굵게·밑줄·글자색·⋯·✓ {tb}")
+        ok(tb['btn'] == ['bold', 'underline', 'insertUnorderedList', 'insertOrderedList', 'fc', 'more', 'done'] and 'rgba(255, 255, 255' in tb['bg'] and tb['h'] <= 32, f"흰 반투명 미니 막대 — 굵게·밑줄·글머리 기호·번호(10-22)·글자색·⋯·✓ {tb}")
         await pg.click('.nm-tb [data-pal=more]'); await pg.wait_for_timeout(150)
         mo = await pg.evaluate("[...document.querySelectorAll('.nm-pal [data-hl],.nm-pal [data-cmd],.nm-pal [data-tb]')].map(b=>b.dataset.hl!=null?'hl':(b.dataset.cmd||b.dataset.tb))")
         ok('hl' in mo and 'insertOrderedList' in mo and 'insertUnorderedList' in mo and 'ins2' in mo and 'img' in mo and 'undo' in mo, f"⋯ = 형광펜·번호·글머리표·표·그림·실행 취소 {sorted(set(mo))}")

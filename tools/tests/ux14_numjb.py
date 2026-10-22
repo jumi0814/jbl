@@ -116,7 +116,7 @@ async def main():
         rv = await pg.evaluate("""(()=>{const A=[...document.querySelectorAll('.nm-it')];return {rv:document.getElementById('numv').classList.contains('rv'),n:A.length,tail:A.filter(a=>a.querySelector('.nm-q .nm-c .nm-qt')).length,btn:A.filter(a=>a.querySelector('.nm-tags .nm-jbb')).length,old:document.querySelectorAll('.nm-tags .nm-tag').length}})()""")
         ok(rv['rv'] and rv['tail'] > 100 and rv['btn'] > 20 and rv['old'] == 0, f"넘버링 복습도 같은 꼬리표·'JB 문제' 단추 {rv}")
         r1 = await pg.evaluate("[...document.querySelectorAll('.nm-it')].map(a=>a.dataset.id).filter(x=>/^jb:/.test(x))[5]")
-        await pg.evaluate("(id=>document.querySelector('.nm-it[data-id=\"'+CSS.escape(id)+'\"]').scrollIntoView({block:'center'}))", r1); await pg.wait_for_timeout(300); y0 = await pg.evaluate(TOP, r1)
+        await pg.evaluate("(id=>{const a=document.querySelector('.nm-it[data-id=\"'+CSS.escape(id)+'\"]');a.scrollIntoView({block:'start'});window.scrollBy(0,-200);})", r1); await pg.wait_for_timeout(300); y0 = await pg.evaluate(TOP, r1)   # 10-22 머리(JB 단추)가 화면 안에 — 긴 문제를 가운데로 두면 머리가 위로 숨어 누를 때 화면이 따로 움직임
         await pg.click(f".nm-it[data-id='{r1}'] .nm-jbb"); await pg.wait_for_timeout(1500)
         v4 = await pg.evaluate(JBV, await pg.evaluate("(id=>id.slice(3))", r1))
         ok(v4['found'] and v4['open'] and v4['pill'] and '넘버링 복습' in v4['pt'], f"복습 → JB · 알약 '{v4['pt']}'")

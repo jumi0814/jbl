@@ -127,7 +127,7 @@ async def main():
         await pg.locator('.nm-it[data-id=d2] .nm-s .nm-c').click(); await pg.wait_for_timeout(250)
         await pg.keyboard.type(' 덧붙임')
         tb = await pg.evaluate("(()=>{const t=document.querySelector('.nm-tb'),B=[...t.querySelectorAll('button')];return {btn:B.map(b=>b.dataset.cmd||b.dataset.pal),h:Math.max(...B.map(b=>b.getBoundingClientRect().height)),fs:Math.max(...B.map(b=>parseFloat(getComputedStyle(b).fontSize))),bar:Math.round(t.getBoundingClientRect().height),w:Math.round(t.getBoundingClientRect().width)}})()")
-        ok(tb['btn'] == ['bold', 'underline', 'fc', 'more', 'done'] and tb['h'] <= 22 and tb['fs'] <= 12 and tb['bar'] <= 26, f"편집 도구 막대 더 작게 — 단추 높이 {tb['h']}px · 글자 {tb['fs']}px · 막대 {tb['bar']}×{tb['w']} · 기능 그대로 {tb['btn']}")
+        ok(tb['btn'] == ['bold', 'underline', 'insertUnorderedList', 'insertOrderedList', 'fc', 'more', 'done'] and tb['h'] <= 22 and tb['fs'] <= 12 and tb['bar'] <= 26, f"편집 도구 막대 더 작게 — 단추 높이 {tb['h']}px · 글자 {tb['fs']}px · 막대 {tb['bar']}×{tb['w']} · 기능 그대로 {tb['btn']}")
         h3 = await pg.evaluate(HRECT, 'd3'); await pg.mouse.move(h3['x'], h3['y']); await pg.wait_for_timeout(200)
         await pg.screenshot(path=J.TMP + '/ux13_toolbar.png')
         await pg.mouse.down(); await pg.mouse.up(); await pg.wait_for_timeout(400)

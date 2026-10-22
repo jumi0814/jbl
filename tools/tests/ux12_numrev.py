@@ -43,7 +43,7 @@ async def main():
         # 수정 → 같은 편집기 → 내 넘버링에도
         await pg.evaluate("document.querySelectorAll('.nm-it')[0].querySelector('[data-act=edit][data-f=st]').click()"); await pg.wait_for_timeout(250)
         ed = await pg.evaluate("({ce:!!document.querySelector('.nm-it .nm-s .nm-c[contenteditable=true]'),tb:[...document.querySelectorAll('.nm-tb button')].map(b=>b.dataset.cmd||b.dataset.pal)})")
-        ok(ed['ce'] and ed['tb'][:4] == ['bold', 'underline', 'fc', 'more'], f"'수정' = 내 넘버링과 같은 편집기·도구 막대 {ed}")
+        ok(ed['ce'] and ed['tb'][:6] == ['bold', 'underline', 'insertUnorderedList', 'insertOrderedList', 'fc', 'more'], f"'수정' = 내 넘버링과 같은 편집기·도구 막대 {ed}")
         await pg.keyboard.press('End'); await pg.keyboard.type('수정함'); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(900)
         rec = await pg.evaluate(f"{LSG}('num.i.CONS.{ids[0]}')")
         ok(rec and '수정함' in (rec.get('st') or ''), "복습에서 고친 스토리 = 원본(num.i) 저장")
