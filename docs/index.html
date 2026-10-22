@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"52b8306b",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"7e4e0823",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2033,8 +2033,8 @@ ul.msub{padding-left:18px!important;list-style:circle}ul.msub>li::marker{color:#
 /* ===== 10-22d 디자인·편의성 개편(감사 work/_tmp/design_audit.md) — 내용 불변 · 덮어쓰기는 이 묶음 안에만 ===== */
 /* P3·R1·T8 사용자 결정 '이름 줄이지 않기 · 빵부스러기 강의 제목 자르지 않음' — 아이패드 세로·폰의 말줄임(…)을 없애고 줄바꿈(최대 둘째 줄) */
 @media (min-width:601px) and (max-width:860px){#top .crumb,body:not(.focus) #top .crumb{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block;font-size:12.5px;line-height:14px;padding:1px 0}#top .crumb .ccur{display:inline!important;white-space:normal}}   /* 제목은 자르지 않고 3줄까지 — 위 막대 높이 52 그대로(ux4f G5) */
-@media (min-width:861px){#top .crumb .ccur{line-height:15px}}@media (max-width:1300px){#top #qjb kbd{display:none}}   /* 넓은 화면도 긴 제목 3줄까지 52 안에 · 바로 가기 단추는 좁으면 Ctrl K 표시 빼기 */
-@media (max-width:480px){#top .crumb{flex-wrap:wrap;white-space:normal;overflow:visible}#top .crumb button.cbs{max-width:none;overflow:visible;text-overflow:clip;white-space:nowrap}#top .crumb .ccur{flex:1 1 auto;white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;overflow-wrap:break-word;line-height:1.35;padding-top:2px}}
+@media (min-width:861px){#top .crumb .ccur{line-height:15px}body.focus #dtabs,body.focus #dtabs.haslm{padding-right:12px;flex-wrap:wrap;row-gap:4px}body.focus #dtabs .dtrow{flex-shrink:0;max-width:100%}body.focus #dtabs .dtnm{display:none}}   /* 집중 모드: 탭 줄이 줄어 탭이 가려지지 않게(모자라면 오른쪽 미니바가 둘째 줄로) · 집중 중엔 ✎ 넘버링 숨김(ux4f N4) */@media (max-width:1300px){#top #qjb kbd{display:none}}   /* 넓은 화면도 긴 제목 3줄까지 52 안에 · 바로 가기 단추는 좁으면 Ctrl K 표시 빼기 */
+@media (max-width:480px){#top .crumb,body:not(.focus) #top .crumb{display:block;white-space:normal;overflow:visible;font-size:12.5px;line-height:15px;padding:0 0 6px;word-break:keep-all;overflow-wrap:break-word}#top .crumb>*{vertical-align:baseline}#top .crumb button,body:not(.focus) #top .crumb button{display:inline;min-height:0;padding:9px 3px;margin:-9px 0;line-height:15px}#top .crumb button.cbs{max-width:none;overflow:visible;text-overflow:clip;white-space:nowrap}#top .crumb .sl{display:inline;margin:0 2px}#top .crumb .ccur{display:inline;white-space:normal;overflow:visible;text-overflow:clip;padding:0 0 0 2px;line-height:15px}}   /* 휴대폰: 강의 제목은 과목 이름 뒤에 이어서 흐름(자르지 않음 · 두 줄이면 위 막대 ≤100px — ux4f N3) */
 #memot{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;overflow-wrap:break-word}
 /* P2·U3 폰 플래시카드: ◀ ▶·몰라요/알아요 막대가 카드 글 위에 겹치던 것 → 카드 바로 아래(고정 안 함) */
 @media (max-width:600px){#fc .fcdock{position:static!important;margin-top:10px}}
@@ -2141,7 +2141,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="52b8306b",PV={"OMS1": "15b51f54", "CONS": "e07ecbe4", "IMPL": "d4ffe5ce", "ANAT": "589c4e63", "GERI": "1f0e39a3", "PHARM": "bb336fa0", "ESTH": "1a9bf09d"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="7e4e0823",PV={"OMS1": "46354e39", "CONS": "055bd924", "IMPL": "f46cf5c2", "ANAT": "c44c9966", "GERI": "9644d989", "PHARM": "b8bb0ad3", "ESTH": "ae82874e"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3018,9 +3018,9 @@ function route(st){overlaysClose();st=st||parseHash();   /* ux4 B16 뒤로가기
 addEventListener('popstate',e=>{if(MPOP>0){MPOP--;LASTH=location.hash;return;}if($('#imgmodal').classList.contains('on')){mclose(true);LASTH=location.hash;return;}   /* ux4f E 그림 창만 닫기 */route(e.state||parseHash());LASTH=location.hash;});
 addEventListener('hashchange',()=>{if(location.hash===LASTH)return;route(parseHash());LASTH=location.hash;});
 /* 위치 맞춤 뒤 그림이 늦게 뜨며 밀리는 것을 1.4초 동안 다시 맞춤 — 사용자가 스크롤·터치·키를 쓰거나 다른 곳에서 스크롤이 바뀌면 즉시 멈춤 */
-function settle(fn){if(STL)STL();let dead=false;const evs=['wheel','touchstart','keydown','mousedown'],de=document.documentElement;de.style.overflowAnchor='none';   /* 맞추는 동안 브라우저 스크롤 고정(anchoring)은 끔 */
+function settle(fn,force){if(STL)STL();let dead=false;const evs=['wheel','touchstart','keydown','mousedown'],de=document.documentElement;de.style.overflowAnchor='none';   /* 맞추는 동안 브라우저 스크롤 고정(anchoring)은 끔 */
  const stop=()=>{if(dead)return;dead=true;de.style.overflowAnchor='';evs.forEach(ev=>removeEventListener(ev,stop,true));if(STL===stop)STL=null;};
- evs.forEach(ev=>addEventListener(ev,stop,{capture:true,passive:true}));STL=stop;let y0;const run=()=>{if(dead)return;if(y0!=null&&Math.abs(scrollY-y0)>2){stop();return;}fn();y0=scrollY;};run();[80,300,700,1300].forEach(ms=>setTimeout(run,ms));setTimeout(stop,1400);}
+ evs.forEach(ev=>addEventListener(ev,stop,{capture:true,passive:true}));STL=stop;let y0;const run=()=>{if(dead)return;if(!force&&y0!=null&&Math.abs(scrollY-y0)>2){stop();return;}fn();y0=scrollY;};run();[80,300,700,1300].forEach(ms=>setTimeout(run,ms));setTimeout(stop,1400);}
 function findAid(aid){if(!aid)return null;const L=$$('#stage [data-aid]').filter(b=>!b.classList.contains('res'));return L.find(b=>b.dataset.aid===aid)||L.find(b=>b.dataset.alt&&b.dataset.alt.split(' ').indexOf(aid)>=0)||null;}
 /* 지금 화면의 기준 카드 = 상단 막대+탭 아래 첫 [data-aid] · off = 그 카드 윗변이 기준선(topOff)에서 올라간 거리 */
 function probePos(){const line=topOff(),line0=line-12;for(const b of $$('#stage [data-aid]')){if(b.classList.contains('res')||b.offsetParent===null)continue;const r=b.getBoundingClientRect();if(r.height>0&&r.bottom>line0+4){
@@ -5437,7 +5437,7 @@ function keepAnchor(fn){const a=scrollY>8?anchorNow():null;fn();if(!a)return;con
 let ROTA=null,ROTW=innerWidth;
 addEventListener('scroll',()=>{clearTimeout(ROTA&&ROTA.t);const tm=setTimeout(()=>{if(innerWidth!==ROTW)return;const a=scrollY>8?anchorNow():null;ROTA=a?Object.assign(a,{t:0}):null;},160);ROTA=ROTA?Object.assign(ROTA,{t:tm}):{t:tm,none:1};},{passive:true});
 addEventListener('resize',()=>{if(innerWidth===ROTW)return;ROTW=innerWidth;popsClose();const a=ROTA&&!ROTA.none&&ROTA.el?ROTA:null;if(!a)return;clearTimeout(a.t);const s0=STL;
- requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off));else if(vis(a.c))settle(()=>goEl(a.c,a.coff));}));});
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off),1);else if(vis(a.c))settle(()=>goEl(a.c,a.coff),1);}));});   /* 10-22d: 돌린 직후 브라우저가 스크롤을 몇 프레임 옮겨도(그림·글자 다시 배치) 되돌리기를 멈추지 않음 — 손 입력이 있을 때만 멈춤(ux4f F2) */
 /* ux4f 새 오류: 과목 홈 교수별 출제 경향 표·공부 순서의 '짤 비율 n%'를 개수로(사용자 '퍼센트 필요 없어') — 팩(trend.py)은 그대로, 화면에 낼 때만 바꿈 · 맥 빌드에서 trend.py도 개수로 바꿀 것(로컬에서_할_일) */
 function trendNoPct(h){if(trendNoPct.k===h)return trendNoPct.v;let J=0,N=0;
  const o=String(h).replace(/<th>짤 비율<\/th>/g,'<th>짤 / 문항</th>').replace(/ · 짤 비율 \d+%/g,'')

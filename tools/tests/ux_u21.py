@@ -1,5 +1,5 @@
 """U21 회귀: 과목 홈 압축·실행 버튼 — 순서 유지(공부 순서 → 진행률 → 교수별 경향·📌 → 📣 → 강의 카드 → 2회 이상),
-1280에서 강의 카드 시작 y ≤ 1800(6과목 · ux4 B3-3 시안 기준), 2회 이상 목록 항목 수 = 제목의 N(처음 5줄 + 더 보기 · 닫히지 않은 괄호 없음), 실행 버튼(이어서·안 푼 것·2회 이상·한눈표)이 맞는 문서·필터로 열림.
+1280에서 강의 카드 시작 y ≤ 1000(6과목 · 10-22d 개편 — 진행률 바로 아래), 2회 이상 목록 항목 수 = 제목의 N(처음 5줄 + 더 보기 · 닫히지 않은 괄호 없음), 실행 버튼(이어서·안 푼 것·2회 이상·한눈표)이 맞는 문서·필터로 열림.
 스크린샷 work/_tmp/ux_u21_*.png (맥 1280×900 · 아이패드 세로 820×1180)"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, re
@@ -10,7 +10,7 @@ def ok(c, m):
     if not c: fails.append(m)
 async def open_(pg, h, w=1000):
     await pg.goto('about:blank'); await pg.goto(U + h); await pg.wait_for_timeout(w)
-ORDER = """()=>{const st=document.querySelector('#stage');const ids=['#hguide','#hprog','.ptrend','.hints','.lgrid','#htop'];const ys=ids.map(s=>{const e=st.querySelector(s);return e?Math.round(e.getBoundingClientRect().top+scrollY):null;});return ys;}"""
+ORDER = """()=>{const st=document.querySelector('#stage');const ids=['#hguide','#hprog','.lgrid','.ptrend','.hints','#htop'];   /* 10-22d 개편: 강의 카드를 진행률 바로 아래로(원칙 7-2) */const ys=ids.map(s=>{const e=st.querySelector(s);return e?Math.round(e.getBoundingClientRect().top+scrollY):null;});return ys;}"""
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
@@ -20,8 +20,8 @@ async def main():
             await open_(pg, f'#/{s}/_home/_home')
             ys = await pg.evaluate(ORDER)
             seq = [y for y in ys if y is not None]
-            ok(seq == sorted(seq) and ys[0] is not None and ys[4] is not None, f'{s} 섹션 순서 {ys}')
-            ok(ys[4] <= 1800, f'{s} 강의 카드 시작 y={ys[4]} ≤ 1800')   # ux4 B3-3 최종 시안(v2_subject_1280_full) 절 사이 48·경향 표·전략 4줄·예고 3 — 시안의 강의 절 시작 ≈1565
+            ok(seq == sorted(seq) and ys[0] is not None and ys[2] is not None, f'{s} 섹션 순서 {ys}')
+            ok(ys[2] <= 1000, f'{s} 강의 카드 시작 y={ys[2]} ≤ 1000(10-22d — 첫 화면 끝에 걸침)')   # ux4 B3-3 최종 시안(v2_subject_1280_full) 절 사이 48·경향 표·전략 4줄·예고 3 — 시안의 강의 절 시작 ≈1565
             n, t = await pg.evaluate("[document.querySelectorAll('#htop .toplist li').length, document.querySelector('#htop .bt').textContent]")
             N = int(re.search(r'(\d+)문항', t).group(1))
             ok(n == N, f'{s} 2회 이상 항목 {n} = 제목 N {N}')
