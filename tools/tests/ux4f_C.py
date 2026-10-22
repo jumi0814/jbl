@@ -176,7 +176,7 @@ def jb(b):
     seq = []
     for i in range(3): pg.keyboard.press(' '); pg.wait_for_timeout(250); seq.append(pg.evaluate(LB))
     for i in range(3): pg.evaluate("document.querySelector('#cards .qc[data-id=Q01] .acts:not(.acts2) [data-tog]').click()"); pg.wait_for_timeout(250); seq.append(pg.evaluate(LB))
-    want = [[True, False, '답 가리기 ▲'], [False, False]] * 3
+    want = [[True, False, '답 접기 ▲'], [False, False]] * 3   # 10-23 이름 통일 A
     ok(all(s[:len(w_)] == w_ for s, w_ in zip(seq, want)) and seq[1][2] == seq[3][2] and '가리기' not in seq[1][2], f'54 목록: Space·카드 버튼 모두 열기 ↔ 가리기(글자 = 다음 동작) {seq}')
     ok(not pg.errs, f'콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
 

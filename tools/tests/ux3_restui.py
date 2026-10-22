@@ -100,8 +100,8 @@ async def part_view(b, vp, touch, tag):
     ok(not r, f'R3 팩 color = SJC = 메뉴 점 = 홈 과목표 점 {r}')
     for s in ['OMS1', 'PHARM']:
         await pg.evaluate(f"location.hash='#/{s}/_home'"); await pg.clock.run_for(900)
-        h = await pg.evaluate("s=>[getComputedStyle(document.documentElement).getPropertyValue('--hero1').trim().toUpperCase(),getComputedStyle(document.documentElement).getPropertyValue('--acc').trim().toUpperCase(),__h.sjColor(s).toUpperCase()]", s)
-        ok(h[0] == h[1] == h[2], f'R3 {s} 과목 홈 hero·--acc = sjColor {h}')
+        h = await pg.evaluate("s=>[getComputedStyle(document.documentElement).getPropertyValue('--hero1').trim().toUpperCase(),getComputedStyle(document.documentElement).getPropertyValue('--sj').trim().toUpperCase(),__h.sjColor(s).toUpperCase()]", s)
+        ok(h[0] == h[1] == h[2], f'R3 {s} 과목 홈 hero·--sj = sjColor {h} (10-23 과목 색은 --sj)')
     if tag == 'mac':
         await pg.evaluate("location.hash='#/PHARM/_home'"); await pg.clock.run_for(900)
         await pg.screenshot(path=J.TMP + '/ux3p_t_hero_pharm.png', clip={'x': 0, 'y': 0, 'width': 1280, 'height': 400})

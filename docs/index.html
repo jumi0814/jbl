@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"7e4e0823",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"dd169d89",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -734,7 +734,7 @@ table.mtx tbody tr.h2>th{box-shadow:inset 4px 0 0 var(--acc)}table.mtx tbody tr.
 .msum .mych{margin-top:5px;display:flex;flex-wrap:wrap;gap:4px}.msum .mych .chip.yr{cursor:pointer;font:inherit;font-size:12px;font-weight:700}.msum .mych .m0{font-size:11.5px;color:#6B6358;border:1px solid var(--line);border-radius:999px;padding:0 8px;line-height:1.6;background:#fff}
 #stage.mf-hit .msum tbody tr.h0,#stage.mf-rep2 .msum tbody tr.h0,#stage.mf-rep2 .msum tbody tr.h1,.msum tbody tr.hid{display:none}
 .msbar{row-gap:6px}.msbar .pseg{display:inline-flex;gap:4px;flex-wrap:wrap;align-items:center;padding-right:8px;margin-right:4px;border-right:1px solid var(--line2)}.msbar .pseg:last-of-type{border-right:0}.msbar .mgrp .tg{max-width:15em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.msbar .mshelp{flex-basis:100%}
-/* E05 ★ 시험 칸: 문항마다 연도 칩 + 문제 → 답(3줄 말줄임 · 누르면 펼침 · 형광펜이 든 칸은 줄이지 않음) · 전체정리표 */
+/* E05 ⭐ 시험 칸: 문항마다 연도 칩 + 문제 → 답(3줄 말줄임 · 누르면 펼침 · 형광펜이 든 칸은 줄이지 않음) · 전체정리표 */
 .msum td.mt .mex{margin:0 0 7px;cursor:pointer;font-size:calc(13px*var(--fs));line-height:1.5}.msum td.mt .mex:last-child{margin-bottom:0}
 .msum td.mt .mexb{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 /* ux2 fixB VIS01·VIS03 ★ 칸(접힘): 줄 높이 제한(max-height)으로 셋째 줄이 반쯤 잘리던 것(터치 칩 32px) 없앰 · 구조화된 ⭐는 연도 칩 | 문제(2줄) + → 답(3줄)을 따로 줄여 답이 늘 보임 */
@@ -946,7 +946,7 @@ details.ab.chk>h5.rkshow,details.ab.more>h5.rkshow{display:block!important}
    메뉴를 숨기면 .msum이 넓어져 표로 바뀌고 열 폭(colFit)도 다시 맞춤 */
 .msum{container:msum/inline-size}
 @media (max-width:1000px){.tblwrap.wide{padding:10px 10px}}
-/* L3 2단 카드 — 왼쪽 38% 주제+🔑 · 오른쪽 62% 세부 → ★ 시험 → ⚡ 암기(DOM 순서 그대로 — float) */
+/* L3 2단 카드 — 왼쪽 38% 주제+🔑 · 오른쪽 62% 세부 → ⭐ 시험 → ⚡ 암기(DOM 순서 그대로 — float) */
 @container msum (min-width:600px) and (max-width:859px){
  .msum table.mtx tbody tr:not(.grow){display:flow-root;padding:10px 14px 10px}
  .msum table.mtx tbody tr:not(.grow)>th,.msum table.mtx tbody tr:not(.grow)>td.mk{float:left;clear:left;width:38%!important;padding-right:14px!important}
@@ -2050,6 +2050,66 @@ ul.msub{padding-left:18px!important;list-style:circle}ul.msub>li::marker{color:#
 @media (hover:none),(pointer:coarse){.jbkeys,.fckeys,.okeys,.kbdhint{display:none!important}}
 /* #25 과목 메뉴 머리(‹ 허브 홈·과목 이름·과목 바꾸기)가 굴러 사라지지 않게 */
 #nav[data-mode=subj] .nvsc>.nvback,#nav[data-mode=subj] .nvsc>.nvsjh{position:sticky;z-index:2;background:#FBF8F1}#nav[data-mode=subj] .nvsc>.nvback{top:0}#nav[data-mode=subj] .nvsc>.nvsjh{top:36px;padding-bottom:6px}
+/* ===== 10-23 디자인 시스템 v2 — 깔끔·편안·한 가지 꼴 (사용자 10-23 "전반적인 인터페이스·ui·디자인 … 깔끔하면서도 디자인적으로 편안하게, 지금은 너무 중구난방" · 결정 1~3 = A안)
+   색 — 바탕 종이 · 글자 먹 · 누르는 것(주 버튼·링크·켜진 칸) = --brand 한 가지 · 과목 색(--sj)은 메뉴 점·지금 탭 밑줄·선택 막대에만
+        의미 색은 과목과 상관없이 고정: 빨강 핵심 · 초록 NEW 26 · 보라 26 강조 · 금색 ⭐ 기출(연도 칩 전부) · 파랑 예상
+   글꼴 — 제목까지 한 가지 고딕(세리프 없음) · 부품 — 버튼 3종(주 채움 · 보조 흰 바탕 선 · 조용 글자만) · 칩 1종(변형은 색만) · 모서리 8 / 12 / 999
+   이 묶음은 shell.html 끝 — 앞의 층층이 덮어쓴 꼴을 여기서 한 번 더 고정(앞 규칙이 !important면 여기서도) ===== */
+:root{--brand:#2F5470;--brand-h:#264760;--brand-w:#EDF2F6;--brand-l:#B9CAD8;
+ --sans:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;--serif:var(--sans);
+ --exam-fg:#6E5000;--exam-b:#E3C267;--exam-bg:#FFF7DC;--exam-bg0:#FFFDF5;
+ --pred-fg:#1E4E8C;--pred-b:#B8CCE6;--pred-bg:#EEF3FA;
+ --rad-s:8px;--rad-m:12px;--rad-p:999px;--sh1:0 1px 2px rgba(35,33,29,.05);--sh2:0 10px 28px rgba(35,33,29,.14);
+ --acc:var(--brand)}
+/* ① 글꼴 — 강의·과목 제목·표 제목의 세리프(Georgia+대체 명조) → 고딕 700 하나 */
+.ser,#hero .ser,#stage .ser,.serif,.tbt.serif,#stage .tc .tt .en,#stage .tc>.thead .badge{font-family:var(--sans)!important}
+.ser,#hero .ser{font-weight:700!important;letter-spacing:-.015em}
+#hero h1.ser{font-size:26px;line-height:1.3}
+#stage .tc .tt .en{font-weight:700;letter-spacing:-.01em}
+/* 남은 세리프(허브 날짜·틀 제목·플래시카드 제목·옛 hero) → 고딕 */
+.fcard .fct,.gt,.frt,.hdate,.hero h1,#home h2{font-family:var(--sans)!important}
+/* ② 과목 색은 지금 탭 밑줄·메뉴 점·선택 막대에만(메뉴 점·선택 막대는 --dc·--nc 그대로) */
+#dtabs button[data-t].on::after{background:var(--sj,var(--brand))}
+#nav .nvgrid .nvn .el,#top #qjb .qji{color:var(--brand)}
+/* ③ 제목·소제목 = 먹색(과목 색 대신) — 위계는 크기·굵기·선으로 */
+#stage .tc h4.sh,h4.sh{color:#2B2722!important;border-bottom-color:var(--line2)!important}
+#stage .tc>.thead .badge{color:var(--faint)!important;font-weight:700}
+.c-key .ct{color:#3A342D}
+.tbt{color:#1F1D1A}
+/* ④ 버튼 3종 — 주(채움 1개) · 보조(흰 바탕 선) · 조용(글자만) */
+.btn{border-radius:var(--rad-s);border-color:var(--line);color:var(--ink)}
+.btn:hover{background:#F6F3EC}
+.btn.pri,#stage .btn.pri,.onebar .btn.ob.pri,#home .btn.pri{background:var(--brand)!important;border-color:var(--brand)!important;color:#fff!important}
+.btn.pri:hover,#stage .btn.pri:hover,.onebar .btn.ob.pri:hover{background:var(--brand-h)!important;border-color:var(--brand-h)!important}
+.btn.pri:disabled{opacity:.45}
+/* 켜진 칸(분절·거르기·도구) = 옅은 brand 바탕 + brand 글자 하나(검정 채움·과목색 채움 없앰) */
+.tg.on,#stage .tg.on,#home .tg.on{background:var(--brand-w)!important;border-color:var(--brand-l)!important;color:var(--brand)!important}
+.tg.on .qn,#stage .tg.on .qn{color:var(--brand)!important}
+/* ⑤ 칩 1종 — 22~24px · 999 · 12px · 변형은 색만 */
+.chip{border-radius:var(--rad-p)}
+/* 연도 칩 = 금색(⭐ 기출) 한 가지 — 한 번 나옴 = 흰 바탕 금테 · 2회 이상 = 옅은 금 바탕 진한 금테 */
+.jbchip,.xjb,.chip.yr,#stage .frame .ftop .jbchip{background:var(--exam-bg0)!important;border:1px solid var(--exam-b)!important;color:var(--exam-fg)!important;border-radius:var(--rad-p)!important;font-weight:700}
+.jbchip.rep,.xjb.rep,.chip.yr.n2,.chip.yr.n3,#stage .frame .ftop .jbchip.rep{background:var(--exam-bg)!important;border-color:#C9A23F!important;color:#5C4200!important}
+.jbchip:hover,.xjb:hover,.chip.yr:hover{background:#FFF0C2!important}
+/* 예상 카드 '관련 기출 …' 칩도 같은 금색 계열(글이 길어 모서리만 8) */
+.pc .jbchip{border-radius:var(--rad-s)!important;font-weight:500}
+/* 출처 쪽 칩(강의자료 p.N) = 중립 테두리(과목색 대신) */
+.cite{border-color:var(--line)!important;color:#4A453E!important;background:#fff}
+.cite:hover{border-color:#BFB5A4!important;background:#FAF7F1}
+.cite b{color:inherit!important}
+/* 정리표 번호 알약(.mn) — 기출 2회↑는 금색, 1회는 짙은 회색 */
+table.mtx tr.h1 .mn,table.mtx tr.h2 .mn,tr.h1 .mn,tr.h2 .mn{background:#B5851A!important;color:#fff!important}
+/* ⑥ 카드 — 모서리 12 · 옅은 그림자 하나 · 왼쪽 띠는 의미(기출 횟수) 그대로 */
+.qc,.pc,.tc{border-radius:var(--rad-m)}
+.lcard{border-radius:var(--rad-m)}
+/* ⑦ 링크 — brand 글자 · 누를 수 있다는 표시로 마우스를 올리면 밑줄 */
+.link,a.link,button.link{color:var(--brand)}
+.link:hover,button.link:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--brand-l)}
+/* 과목 홈 강의 카드 '2회+'(두 번 이상 나온 문제가 있는 강의) = 금색 ⭐ 기출 */
+#hlec .lcard .hot2{color:var(--exam-fg)!important}
+/* ⑧ 표 머리 — 과목색 채움 대신 따뜻한 회색(이미 대부분 덮였지만 남은 곳 고정) */
+table.mtx thead th,table.cmp thead th{background:#F2EEE6;color:#3D362E;border-color:var(--line)}
+@media print{:root{--brand:#222}}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><button type="button" id="qjb" title="바로 가기 — 과목·화면·강의 탭·넘버링을 글자로 골라 바로 (⌘K · Ctrl+K)" aria-label="바로 가기 (Ctrl+K)" aria-haspopup="dialog"><span class="qji" aria-hidden="true">⇥</span><span class="qjl">바로 가기</span><kbd class="qjk">⌘K</kbd></button><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -2094,16 +2154,16 @@ ul.msub{padding-left:18px!important;list-style:circle}ul.msub>li::marker{color:#
 <tr><th>이동·화면</th><td>모든 키는 맨 위 <button class="link" data-wnh="⌨ 모든 단축키">⌨ 모든 단축키</button> · 상단 왼쪽 <b>빵부스러기</b> ‘JBL / ● 보존 / Tooth whitening’ — <b>JBL</b> = 허브 홈 · 과목 이름 = 과목 홈 · 과목 메뉴의 <b>‹ 허브 홈</b>도 같음(아이패드 세로는 ☰ 서랍) · <b>1~6</b> 탭 · <b>G</b> 과목 홈 · <b>/</b> 검색창 · <b>Shift+M</b> 메뉴 숨기기/보이기(메모는 <b>M</b>) · <b>T</b> 도구 막대 숨기기 · <b>Esc</b> 한 단계씩(팝업·도움말 닫기 → 모드 끄기) · <b>?</b> 도움말 · 아이패드 세로 탭 줄은 짧게(‘🃏 카드’ = 플래시카드, 비교표·예상 숫자 생략)</td></tr>
 <tr><th>집중 모드 V</th><td>탭 줄 [⤢ 집중] 또는 <b>V</b> — 상단 막대·왼쪽 메뉴·머리를 숨기고 탭 줄을 맨 위에 · 본문과 도구 막대는 화면 가운데(좌우 여백 같음) · 켜진 동안 버튼이 <b>[집중 끝]</b>이 되고 옆에 공부 시계(쉬는 중이면 ☕ 휴식 m:ss)가 작게 · 끄기 = [집중 끝]·V·Esc · 켜고 끌 때 읽던 자리 그대로 · 집중 중 <b>/</b> = 상단 막대를 잠깐 내려 검색 · 도구 막대 켜짐·꺼짐은 바뀌지 않음 · 새로고침·강의를 옮겨도 유지 · 글자 크기는 학습 탭 ⋯ 보기 설정의 A−/A+(90~120%, 모든 과목 공통)</td></tr>
 <tr><th>왼쪽 메뉴 Shift+M</th><td>과목·강의 이름은 줄이지 않고 <b>원래 이름 그대로</b>(구강악안면외과학 1 · 강의 제목 전체 — 자리가 좁으면 말줄임 대신 다음 줄로) · 메뉴는 두 단계 — <b>허브 메뉴</b>(허브 홈·📅 달력·검색 결과): 오늘 · 공부 달력(이번 주 합계) · 오늘 복습(있을 때만) · 내 표시(개수) · <b>과목 7줄</b>(과목 색 점 · 이름 · 현 교수 기출 수 — 누르면 그 과목 홈) / <b>과목 메뉴</b>(과목에 들어가면 바로 바뀜 — 과목 홈·정리본 모든 탭·JB·한눈표·비교표·예상·대장·내 표시): 맨 위 <b>‹ 허브 홈</b> · 과목 이름과 <b>[과목 바꾸기 ▾]</b>(7과목 — 고르면 그 과목 홈) · <b>이 과목</b> 7개(과목 홈 · JB 문제 · 기출 한눈표 · 비교표 · 예상문제 · 기출 대장 · 내 표시, 흐린 숫자 = 개수) · <b>강의</b> 줄(오른쪽 흐린 글자 = 교수) · 지금 강의 바로 아래 <b>카드 목차</b>(노란 점 = 기출 카드 · 읽는 카드가 흰 바탕으로 따라옴 · 누르면 그 카드로) · 지금 보는 곳은 흰 바탕 + 왼쪽 막대 · 허브 메뉴로 돌아오면 보던 자리 그대로, 과목을 바꾸면 맨 위부터 · 맨 아래 <b>백업</b>(오래되면 빨간 글자 · 창 안에 ↺ 복원) · <b>Shift+M 숨기기</b>(도움말은 상단 <b>?</b>) · <b>Shift+M</b>(한/영 상관없이 · <b>\</b>)로 숨기기/보이기 — 설정 하나(허브·과목 어디서 숨겨도 같음 · 새로고침해도 유지) · 숨기면 본문·표가 넓어지고 상단 왼쪽 <b>☰</b>로 다시 · 집중 모드(V) 중에 Shift+M = 집중 모드를 끄고 메뉴 보임 · 메모는 <b>M</b> · 정리표·비교표·한눈표는 화면 폭 1440 이하면 저절로 숨김(그 화면에서 펼치면 다음에도 펼친 채) · 아이패드 세로는 ☰ <b>서랍</b>(머리 ‘JBL 허브 ✕’ · 배경·✕·Esc·항목을 누르면 닫힘 · 열린 동안 뒤 화면은 스크롤 안 됨 · 가로로 돌리면 닫힘)</td></tr>
-<tr><th>표 폭</th><td>메뉴를 숨기면 정리표·비교표가 <b>저절로 넓어지고</b> 열 폭을 다시 맞춤 — 정리표는 내용량을 보고 <b>표 전체 높이가 가장 낮아지게</b>(강의·보기·폭마다 기억) · 비교표·전체정리표는 글이 많은 열에 폭을 더 줌 · 열마다 끊을 수 없는 가장 긴 조각(긴 영어 낱말·🔑 짧은 사실)보다 좁게 만들지 않아 낱말이 글자 중간에서 끊기거나 칸 밖으로 넘치지 않음 · 열이 모자라면 첫 열 고정 가로 스크롤, 아이패드 세로의 5열 이상 표는 행 카드 · 정리표는 받은 폭이 좁으면(아이패드 세로·메뉴를 펼친 가로) <b>2단 카드</b>(왼쪽 주제·🔑 | 오른쪽 세부·★ 시험·⚡ 암기)</td></tr>
+<tr><th>표 폭</th><td>메뉴를 숨기면 정리표·비교표가 <b>저절로 넓어지고</b> 열 폭을 다시 맞춤 — 정리표는 내용량을 보고 <b>표 전체 높이가 가장 낮아지게</b>(강의·보기·폭마다 기억) · 비교표·전체정리표는 글이 많은 열에 폭을 더 줌 · 열마다 끊을 수 없는 가장 긴 조각(긴 영어 낱말·🔑 짧은 사실)보다 좁게 만들지 않아 낱말이 글자 중간에서 끊기거나 칸 밖으로 넘치지 않음 · 열이 모자라면 첫 열 고정 가로 스크롤, 아이패드 세로의 5열 이상 표는 행 카드 · 정리표는 받은 폭이 좁으면(아이패드 세로·메뉴를 펼친 가로) <b>2단 카드</b>(왼쪽 주제·🔑 | 오른쪽 세부·⭐ 시험·⚡ 암기)</td></tr>
 <tr><th>★ 카드 북마크</th><td>강의 학습 화면 카드 맨 아래 <b>☆ 북마크</b>(또는 <b>D</b>)를 누르면 ★ — 카드 왼쪽에 금색 줄 · 강의 하나만: <b>[보기 ▾] → ⭐★ 강조 카드만</b>(⭐ 기출 카드 + ★ 북마크 — 위 작은 토글로 하나만) · 과목 전체: 과목 메뉴 <b>★ 북마크 카드</b>(또는 과목 홈 강의 절의 '★ 북마크 카드 n장') — 강의 순서로 카드 그대로 모아 빠르게 훑어보기 · 새로고침·백업에 남음</td></tr><tr><th>☆ 강의 북마크</th><td>과목 홈 강의 카드 오른쪽 위 <b>☆</b>(또는 강의 머리 [☆ 북마크])를 누르면 ★ — 과목 홈 강의 절 위에 <b>★ 북마크</b> 줄(누르면 그 강의), 강의 바로가기 칩·과목 메뉴 강의 줄 앞에 ★ · 다시 누르면 빠짐 · 이 기기에 저장(백업에 들어가고 받기는 합침)</td></tr><tr><th>학습 탭</th><td><b>J/K</b> 다음/이전 카드 · <b>Shift+J/K</b> 기출이 걸린 다음/이전 카드 · <b>D</b> 지금 카드 ★ 북마크(카드 끝 버튼) · <b>F</b> 지금 카드 접기/펼치기 · <b>C</b> 압축 보기(🔑·⭐·⚡만 — 🔑는 한 줄 흐름으로 전부, 내가 형광펜·빈칸 친 줄도 남음) · <b>R</b> ⚡ 복습 보기 · <b>I</b> 그림 크게/작게/숨김</td></tr>
 <tr><th>⚡ 복습 보기 R</th><td>탭 줄 [보기 ▾]의 ‘복습’ 또는 <b>R</b> — 카드마다 번호·제목·기출 칩 + 🔑 한 줄 흐름 + ⭐ 문제 한 줄 + ⚡ 암기 줄만(한 강의 몇 화면) · 빨간 글씨는 가려짐(누르면 열림, 저장 안 함) · 카드마다 [알아요 ○][몰라요 ✕](정렬 ‘몰라요·✓ 안 한 것 먼저’에 씀) · 🔁 오늘 복습은 JB 채점 기준(맨 위 범례 한 줄) · 정렬 [강의 순][기출 많은 순][몰라요·✓ 안 한 것 먼저] · 카드 제목을 누르면 복습 보기를 끄고 그 카드 전체로 — 잘못 눌렀으면 알림의 [↩ 복습 보기로] · 끄기 = [보기 ▾] 전체 또는 R · 새로고침 뒤에도 유지</td></tr>
 <tr><th>⭐ 시험포인트</th><td>한 줄 = [형식] <b>문제</b> → 답 · ⚠ 함정은 다음 줄 · 자료 대조·근거는 ‘근거 ▸’를 눌러 펼침(연도는 옆 칩) · 연도 칩을 누르면 <b>그 자리에서 JB 미리보기</b>(문제 첫 3줄 + 답 핵심은 눌러서 · [JB에서 풀기 →][✓ 맞음][✗ 틀림] · Esc·바깥으로 닫기) · 카드 머리 <b>‘기출 연도’</b> 칩 = 이 카드의 ⭐가 나온 해 · 카드 목록(▾)의 ⭐ 숫자 = 그 카드의 ⭐로</td></tr>
 <tr><th>⚡ 암기 줄</th><td>⚡ 머리 [가리기] = 이 블록의 빨간 글씨만 가림(저장 안 함 · 누르면 하나씩, N도 됨) · 알아요/몰라요 기록은 플래시카드 탭에서(카드 단위)</td></tr>
 <tr><th>학습 보기 설정 ⋯</th><td><b>필터</b> 안 본 카드만·⭐ 기출 카드만·2회↑만·내 표시만(탭 줄 ‘카드 n/N’은 보이는 카드 기준) · <b>⋯</b> ✓하면 접기·압축 보기·⭐ 먼저(⭐를 🔑 바로 뒤로)·빨강 [시험 핵심만 = 🔑·⭐·⚡에도 나오는 것만 빨강, 나머지는 굵게 | 전부]·그림 [크게|작게|숨김]·모두 펼치기/접기·글자 크기 · 가리기·자동 빈칸의 ‘빨간 핵심어’는 빨간 것만(⚡ 창에서 ‘본문 굵은 핵심어까지’ 고를 수 있음) · <b>이 강의의 틀</b>은 [접기 ▴]/[틀 펼치기 ▾](강의마다 기억, 처음에는 ✓한 카드가 없을 때만 펼침) — 접으면 흐름 한 줄 + ⭐ 많이 나온 순 3개 · 목록 줄을 누르면 그 카드로 · ✍ = 필기에서 온 줄, 회색 p.NN = 슬라이드 쪽</td></tr>
-<tr><th>🗂 정리표</th><td>맨 위 <b>📋 전체정리표</b> = 강의 전체를 의미 축으로 한 표(처음엔 첫 표가 펼쳐져 있음 · 칩으로 다른 표 · 접으면 강의마다 기억 · 아이패드 세로에서 화면보다 넓은 표는 카드형 — 항목 → ★ 시험 → 나머지 열, 칸마다 열 이름) · 아래 카드별 표: 보기 <b>[요약]</b>(기본 — 세부는 소제목마다 시험 핵심어 한 줄, ‘세부 ▸’로 그 자리 펼침 · ⚡ 암기는 전부) · <b>[자세히]</b>(세부 전부) · 주제 [모든 주제][기출 나온 주제][2회↑만] · 묶음(①②…) · ★ 시험 칸 = 연도 칩 + 문제(2줄) + → 답(3줄 — 답은 늘 보임, 누르면 펼침 · 4문항부터 ‘+n문항 ▸’) · ‘—’ = 해당 없음 · 주제 칸 연도 칩 = 기출로 · 왼쪽 굵은 선 = 2회↑, 얇은 선 = 1회, 회색 번호 = 미출제 · <b>J/K</b> 다음/이전 행(왼쪽 메뉴 카드 목차도 그 행으로) · 아이패드 세로는 카드형(세부는 ‘세부 n줄 ▸’) · 좁은 칸의 영어는 ‘(’ 앞·‘→’·‘/’ 뒤에서 줄이 바뀌고, 칸보다 긴 낱말만 하이픈(-)으로 나눔</td></tr>
-<tr><th>👁 열 가리기</th><td>정리표·비교표·기출 한눈표의 열 머리 👁 = 그 열을 덮개로 가리고 떠올리기(저장형 빈칸이 아니라 보기 상태 — 표시는 그대로) · 칸을 누르면 그 칸만 열리고 다시 누르면 닫힘 · 표 위 [가린 열 n개 — 모두 열기] · 가린 열은 새로고침 뒤에도 유지(연 칸은 다시 가려짐) · 아이패드 세로 카드형은 칸 이름 칩(⚡ 암기 👁·★ 시험 👁…)을 누르면 그 칸을 모든 주제에서 가림 — 잘못 눌렀으면 알림의 [되돌리기] · 가린 칸은 내용 높이를 차지하지 않음(한 화면에 여러 문항)</td></tr>
+<tr><th>🗂 정리표</th><td>맨 위 <b>📋 전체정리표</b> = 강의 전체를 의미 축으로 한 표(처음엔 첫 표가 펼쳐져 있음 · 칩으로 다른 표 · 접으면 강의마다 기억 · 아이패드 세로에서 화면보다 넓은 표는 카드형 — 항목 → ⭐ 시험 → 나머지 열, 칸마다 열 이름) · 아래 카드별 표: 보기 <b>[요약]</b>(기본 — 세부는 소제목마다 시험 핵심어 한 줄, ‘세부 ▸’로 그 자리 펼침 · ⚡ 암기는 전부) · <b>[자세히]</b>(세부 전부) · 주제 [모든 주제][기출 나온 주제][2회↑만] · 묶음(①②…) · ⭐ 시험 칸 = 연도 칩 + 문제(2줄) + → 답(3줄 — 답은 늘 보임, 누르면 펼침 · 4문항부터 ‘+n문항 ▸’) · ‘—’ = 해당 없음 · 주제 칸 연도 칩 = 기출로 · 왼쪽 굵은 선 = 2회↑, 얇은 선 = 1회, 회색 번호 = 미출제 · <b>J/K</b> 다음/이전 행(왼쪽 메뉴 카드 목차도 그 행으로) · 아이패드 세로는 카드형(세부는 ‘세부 n줄 ▸’) · 좁은 칸의 영어는 ‘(’ 앞·‘→’·‘/’ 뒤에서 줄이 바뀌고, 칸보다 긴 낱말만 하이픈(-)으로 나눔</td></tr>
+<tr><th>👁 열 가리기</th><td>정리표·비교표·기출 한눈표의 열 머리 👁 = 그 열을 덮개로 가리고 떠올리기(저장형 빈칸이 아니라 보기 상태 — 표시는 그대로) · 칸을 누르면 그 칸만 열리고 다시 누르면 닫힘 · 표 위 [가린 열 n개 — 모두 열기] · 가린 열은 새로고침 뒤에도 유지(연 칸은 다시 가려짐) · 아이패드 세로 카드형은 칸 이름 칩(⚡ 암기 👁·⭐ 시험 👁…)을 누르면 그 칸을 모든 주제에서 가림 — 잘못 눌렀으면 알림의 [되돌리기] · 가린 칸은 내용 높이를 차지하지 않음(한 화면에 여러 문항)</td></tr>
 <tr><th>📊 비교표 · 📝 한눈표</th><td><b>과목 비교표</b>: 강의별로 묶음 · 위 목차 칩(강의 → 표 제목 → 그 표로) · [기출 연결 표만] · 표 제목 옆 ‘기출 n’ · 넓은 표만 가로 스크롤(첫 열 고정), 나머지는 머리행이 위에 붙음 · <b>기출 한눈표</b>: 위 막대 = 강의 칩(n문항) · 2회↑만 · ✗ 틀린 것만 · 안 푼 것만 · [답 가리기](기억) · 행 왼쪽 점 = 채점(초록 맞음·빨강 틀림·회색 안 푼 것)과 ✓ ✗ ★(JB 문제와 같은 기록) · 문제 본문 ‘…▸’ 펼침 · 📖 카드 · <b>J/K</b> 다음/이전 문항(예상문제도 J/K)</td></tr>
-<tr><th>JB 답 두 단계</th><td>[답·해설]·Space 한 번 = <b>1단계</b>: JB 답 핵심(‘답:’ 줄) + <b>정답 보기</b>(답이 보기 번호뿐이면 문제의 그 보기 줄이 초록으로 — ‘✓ 정답’, 부정 발문(틀린 것을 고르시오)이면 ‘✓ 정답 · 틀린 설명’ — 초록은 늘 ‘이 문제의 정답’ — 답 아래 ‘정답 보기 2) …’ 한 줄) + 대조 첫 항목의 ‘정답 …’ 한 줄 + 📖 ⚡ 첫 줄 · <b>[자세히 ▾]</b>·Space 한 번 더 = <b>2단계</b>: 해설 전체·🔎 강의자료 대조·🧭 주변부·다른 판본(대조·주변부는 머리를 눌러 접고 펼 수 있음) · 한 번 더 = 닫기 · [자세히 ▾]/[간단히 ▴]를 누르면 그 선호를 기억(다음부터 열 때 바로 2단계) · 카드 앞면은 연도·짤/탈·교수·📖 + 문제만 — 출처 줄·연도 표기 근거·관련 문항은 답 끝 ‘출처·연도 근거’ ▸ · 대조 칩(✓ 대조·부분 일치 등)도 답을 연 뒤에</td></tr>
+<tr><th>JB 답 두 단계</th><td>[답 보기]·Space 한 번 = <b>1단계</b>: JB 답 핵심(‘답:’ 줄) + <b>정답 보기</b>(답이 보기 번호뿐이면 문제의 그 보기 줄이 초록으로 — ‘✓ 정답’, 부정 발문(틀린 것을 고르시오)이면 ‘✓ 정답 · 틀린 설명’ — 초록은 늘 ‘이 문제의 정답’ — 답 아래 ‘정답 보기 2) …’ 한 줄) + 대조 첫 항목의 ‘정답 …’ 한 줄 + 📖 ⚡ 첫 줄 · <b>[해설 더 ▾]</b>·Space 한 번 더 = <b>2단계</b>: 해설 전체·🔎 강의자료 대조·🧭 주변부·다른 판본(대조·주변부는 머리를 눌러 접고 펼 수 있음) · 한 번 더 = 닫기 · [해설 더 ▾]/[해설 접기 ▴]를 누르면 그 선호를 기억(다음부터 열 때 바로 2단계) · 카드 앞면은 연도·짤/탈·교수·📖 + 문제만 — 출처 줄·연도 표기 근거·관련 문항은 답 끝 ‘출처·연도 근거’ ▸ · 대조 칩(✓ 대조·부분 일치 등)도 답을 연 뒤에</td></tr>
 <tr><th>JB 목록 키보드</th><td>목록에서도 화면 위 30% 선에 걸친 카드가 <b>지금 카드</b>(왼쪽 옅은 선) — <b>J/K</b> 다음/이전 문항을 막대 아래로 · <b>Space</b> 그 카드 답(1단계 → 2단계 → 닫기) · <b>O/X</b> 맞음/틀림(다시 누르면 해제) · <b>S</b> ★ · 맨 위에서처럼 지금 카드가 없으면 첫 J·Space·O·X·S = 선 아래 첫 문항 · 카드 머리 회색 칩 ‘12/157’ = 지금 보이는 순서의 순번(JB 원래 번호는 제목에 그대로) · 스크롤해서 막대가 위에 붙으면 오른쪽 <b>지금 23/157</b> — 누르고 번호를 넣으면 그 문항으로 · 필터 버튼의 숫자 = 지금 교수·강의·연도 범위에서 안 푼 것·틀린 것·★ 개수</td></tr>
 <tr><th>압축 목록·인쇄</th><td>필터 막대 둘째 줄 <b>⋯</b> — <b>☰ 압축 목록 보기</b>(문제 한 줄 + 답 한 줄 + 출제 연도 · 누르면 그 카드 펼침, 머리를 누르면 다시 한 줄 · 선호 기억) · <b>🖨 압축 인쇄</b>(문제·보기 + JB 답 핵심·정답 보기, 두 단 — 대조·주변부 빼고) · <b>🖨 시험지</b>(답 없이 두 단) — 모두 지금 필터·순서 그대로 · 일반 인쇄(⌘P)는 해설·대조·주변부까지 잘리지 않게</td></tr>
 <tr><th>한 장씩 풀기</th><td>아래 풀이 막대 [◀][답 보기][✗ 틀림][✓ 맞음][★][▶] + 🖍 ▣(형광펜·빈칸) · 키 ←/→(Enter = 다음), Space 답(1단계 → 2단계 → 닫기), O 맞음 · X 틀림(누르면 그 상태로 — 해제는 카드의 버튼), <b>S ★</b>, H 형광펜 · B 빈칸 · 손가락 좌우 스와이프로 넘기기(<b>애플펜슬로 가로로 그어도 넘어가지 않음</b> — 펜슬은 칠하기 전용) · <b>카드를 위로 쓸기 = 답 보기</b> · ‘자동 넘김’이 켜져 있으면 <b>✓는 0.25초 뒤 다음 문제, ✗는 답을 펼치고 머묾</b>(‘틀려도 넘김’을 켜면 ✗도 넘김) · 한 장씩 동안 위 막대는 한 줄(글자를 줄여 ‘안 푼 63’·‘🔁 5’ · 아이패드 세로는 교수·연도·정렬을 필터 ▾ 안으로 — 고른 값은 막대에 남음 · 오른쪽 ‘회차 68 고정 ↻’ = 확인 뒤 지금 필터로 새 회차 · <b>[한 장씩 끝]</b>)·hero 숨김·도구 막대는 ✎ 하나(누르면 이 탭 동안 펼침 · ✎ 자리는 비워 둠) · <b>답을 열기 전에는 지난 채점(✗ 채움·‘✗2’ 칩)을 숨김</b> — 떠올린 뒤 답을 열면 보임(필터 ▾ 안 ‘답을 열기 전엔 이전 채점 숨기기’로 끄기) · ‘미복원’ 문항(문제가 복원되지 않음)은 회차·안 푼 것에서 빠짐 · 한 장씩을 켜면 ‘답 모두 펼치기’는 꺼짐 · 마지막 다음은 회차 요약([이번 회차 틀린 것 n 다시][전체 틀린 것 n][안 푼 것 n][처음부터]) · 카드 머리의 ‘✗2 ✓1’은 최근 채점 기록</td></tr>
@@ -2141,7 +2201,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="7e4e0823",PV={"OMS1": "46354e39", "CONS": "055bd924", "IMPL": "f46cf5c2", "ANAT": "c44c9966", "GERI": "9644d989", "PHARM": "b8bb0ad3", "ESTH": "ae82874e"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="dd169d89",PV={"OMS1": "e3a54ed3", "CONS": "f4ce8b40", "IMPL": "197709e5", "ANAT": "d44aa424", "GERI": "43cfccbe", "PHARM": "c5496848", "ESTH": "2654149f"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2255,7 +2315,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='3c89d8de';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='e5ae9baf';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -2488,7 +2548,7 @@ function trkInner(w){const st=trState(),ts=tsGet(),now=Date.now(),ic=w==='nav',t
  const B=(a,txt,icon,pri)=>`<button type="button" class="btn sm trb${pri?' pri':''}" data-trb="${a}" title="${txt}"${ic?` aria-label="${txt}"`:''}>${ic?icon:icon+' '+txt}</button>`;
  const bd=w==='band';let bs=bd?(st==='run'||st==='sess'?B('stop','멈춤','■')+B('rest','쉬기','☕'):st==='rest'?B('resume','다시 공부','▶')+B('stop','멈춤','■'):B('start','공부 시작','▶')):st==='run'||st==='sess'?B('rest','쉬기','☕')+B('stop','멈춤','■'):st==='rest'?B('resume','다시 공부','▶',1)+B('stop','멈춤','■'):B('start','공부 시작','▶',1);   /* ux4c 1회차 같은 동작은 어디서나 같은 이름(■ 멈춤 · ▶ 다시 공부 · ☕ 쉬기)  · ux4 B3-2 허브 홈 머리 = 보조 버튼 둘([■ 멈춤/▶ 시작][☕ 쉬기] — 주 버튼은 '계속하기' 하나) */
  if(w==='card')bs+=B('big','크게','⏱');   /* ux4 묶음2 ⏱ 크게는 달력 카드와 시계 팝오버만 */const rv=w==='band'?restDay(day()):0;const k2=w==='nav'?trk2Txt(st,ts,now):'';   /* J9 홈 오늘 띠 = 짧게 '휴식 0:25' */
- return `<span class="trs trs-${st}" title="${st==='sess'?'공부 세션 — 화면 밖 공부도 셈':st==='end'?ENDTXT:''}"><span class="trl">${lab}</span>${tt?` <span class="trt">${tt}</span>`:''}</span>${rv>=60000?`<span class="trrs small">오늘 휴식 <span class="trrv">${fmtH(rv)}</span></span>`:''}<span class="trbs">${bs}</span>${w==='nav'?`<span class="trk2 trk2-${st}" title="${st==='run'||st==='sess'?'집중 = 마지막 휴식·멈춤 뒤 이어서 공부한 시간':'휴식 = 오늘 쉰 시간 합계 · 집중 % = 공부 ÷ (공부+휴식)'}">${k2}</span>`:''}`;}
+ return `<span class="trs trs-${st}" title="${st==='sess'?'공부 세션 — 화면 밖 공부도 셈':st==='end'?ENDTXT:''}"><span class="trl">${lab}</span>${tt?` <span class="trt">${tt}</span>`:''}</span>${rv>=60000?`<span class="trrs small">오늘 휴식 <span class="trrv">${fmtH(rv)}</span></span>`:''}<span class="trbs">${bs}</span>${w==='nav'?`<span class="trk2 trk2-${st}" title="${st==='run'||st==='sess'?'공부 중 = 마지막 휴식·멈춤 뒤 이어서 공부한 시간':'휴식 = 오늘 쉰 시간 합계 · 집중 % = 공부 ÷ (공부+휴식)'}">${k2}</span>`:''}`;}
 function trkAll(){$$('[data-trk]').forEach(el=>{el.innerHTML=trkInner(el.dataset.trk);});trPaint.sig=trSig();}
 function trSig(){const ts=tsGet();return trState()+'|'+(ts&&ts.S||'')+'|'+(T.closedQ?1:0);}
 function trPaint(){if(trSig()!==trPaint.sig){tBtn();return;}const rvs=$$('.trrv');if(rvs.length){const v=fmtH(restDay(day()));rvs.forEach(e=>{if(e.textContent!==v)e.textContent=v;});}const st=trState(),k2=$$('.trk2');if(k2.length&&(st==='run'||st==='sess'||st==='rest')){const v=trk2Txt(st,tsGet(),Date.now());k2.forEach(e=>{if(e.textContent!==v)e.textContent=v;});}const rc=$('#clock');if(rc&&st==='rest'){const v=fmtMS(trRestMs(tsGet(),Date.now()));if(rc.dataset.rest!==v)rc.dataset.rest=v;}if(st!=='sess'&&st!=='rest')return;const t=trTime(st,tsGet(),Date.now());$$('.trt').forEach(e=>{if(e.textContent!==t)e.textContent=t;});}
@@ -3116,7 +3176,7 @@ function openDoc(s,d,t,aid,opt){opt=opt||{};const p=PACKS[s];if(!p)return;const 
  else while(RET){if(RET.s===s&&RET.d===d&&RET.t===t){RSTK.pop();retTop();continue;}if(s+'/'+d!==RET.arr)retClear();break;}   /* 출발점으로 직접 돌아오면 그 칸만 빼고 · 도착한 곳을 벗어나면 모두 지움 */
  const tgt=aid||opt.qid||opt.id;
  const fromHub=hubV();CUR={s,d,t};VIEW='doc';T.hubLeft=0;if(fromHub&&trAR()&&!document.hidden)restBack(Date.now(),'open');$('#home').hidden=true;$('#subj').hidden=false;document.body.classList.remove('at-home');document.body.classList.toggle('d-home',d==='_home');document.body.classList.toggle('kitnone',t==='flash'||d==='_led');   /* 10-22d 감사 3-4·#24 — 형광펜을 쓰지 않는 화면(플래시카드·기출 대장)엔 도구 막대 없음 */
- document.documentElement.style.setProperty('--hero1',sjColor(s));document.documentElement.style.setProperty('--acc',sjColor(s));
+ document.documentElement.style.setProperty('--hero1',sjColor(s));document.documentElement.style.setProperty('--sj',sjColor(s));document.documentElement.style.removeProperty('--acc');   /* 10-23 결정 3 A안 — 과목 색(--sj)은 메뉴 점·지금 탭·선택 막대에만 · --acc = 공통 brand */
  sideRender();
  const L=p.lect.find(x=>x.k===d);
  const lat=t_=>{const a=String(t_||'').replace(/[\s\d\W_]/g,'');return a&&(a.match(/[A-Za-z]/g)||[]).length/a.length>=.5;},hdot=`<i class="hkdot" aria-hidden="true" style="background:${sjColor(s)}"></i>`;   /* ux4 B3-3·B3-4 종이 머리 = kicker(과목 점 · …) + h1(라틴 50%↑ 제목만 세리프 .ser) · hchip 줄 없음 */
@@ -3303,7 +3363,7 @@ function jbBar(p,o){o=o||{};const E=x=>String(x==null?'':x).replace(/[<&"]/g,c=>
   +`<div class="brow" id="jbmore" hidden>${tier('A')}${tier('B')}${tier('C')}<label>출제 <select id="fn"><option value="0">횟수 전체</option><option value="2">2회 이상</option><option value="3">3회 이상</option></select></label>`
   +(L?'':`<label>강의 <select id="flec"><option value="">전체</option>${p.lect.map(l=>`<option value="${l.k}">${E(l.title)}</option>`).join('')}</select></label>`)
   +`<label>대조 <select id="fver"><option value="">전체</option><option value="flag">불일치·부분 일치</option><option value="none">근거 없음</option></select></label></div>`
-  +`<div class="prog" id="jbprog"></div></div><div class="onebar noann" id="onebar"><button class="btn ob" id="oprev" title="이전 (←)" aria-label="이전">◀</button><button class="btn ob pri" id="otog" title="답 보기/가리기 (Space)">답 보기</button><button class="btn ob ng" id="ong" title="틀림 (X)">✗ 틀림</button><button class="btn ob ok" id="ook" title="맞음 (O)">✓ 맞음</button><button class="btn ob bm" id="obm" title="북마크 (S)">★</button><button class="btn ob" id="onext" title="다음 (→)" aria-label="다음">▶</button><span id="opos"></span>`
+  +`<div class="prog" id="jbprog"></div></div><div class="onebar noann" id="onebar"><button class="btn ob" id="oprev" title="이전 (←)" aria-label="이전">◀</button><button class="btn ob pri" id="otog" title="답 보기 → 해설 더 → 답 접기 (Space)">답 보기</button><button class="btn ob ng" id="ong" title="틀림 (X)">✗ 틀림</button><button class="btn ob ok" id="ook" title="맞음 (O)">✓ 맞음</button><button class="btn ob bm" id="obm" title="북마크 (S)">★</button><button class="btn ob" id="onext" title="다음 (→)" aria-label="다음">▶</button><span id="opos"></span>`
   +`<span class="oautos"><label class="oauto" title="✓를 누르면 0.25초 뒤 다음 문제로 (✗면 답을 펼치고 머묾)"><input type="checkbox" id="oauto"${LS.get('jbauto',true)?' checked':''}> 자동 넘김</label><label class="oauto oang" title="✗를 눌러도 다음 문제로 넘김"><input type="checkbox" id="oautong"${LS.get('jbautoNg',false)?' checked':''}> 틀려도 넘김</label></span><span class="otool">${ktoolsHTML(true,1)}<button class="btn otk" id="okh" title="형광펜 (H)" aria-label="형광펜">🖍</button><button class="btn otk" id="okb" title="빈칸 (B)" aria-label="빈칸">▣</button></span><span class="small okeys">O 맞음 · X 틀림 · S ★ · Space 답 · ←/→ · H 형광펜 · B 빈칸</span></div>`;}
 /* 스크롤해서 막대가 위에 붙으면 첫 줄 + 3px 진행 막대만(.mini) — 검색 중(입력·결과)에는 검색 줄 유지 */
 let jbMiniQ=0;function jbMini(){jbMiniQ=0;const b=$('#jbbar'),s=$('#jbsent');if(!b||!s)return;const one=document.body.classList.contains('jbone'),on=one?!b.classList.contains('fopen'):(scrollY>0&&s.getBoundingClientRect().top<LAY.toph+LAY.tabh-1+(b.classList.contains('mini')?(b._dh||0)+2:0));   /* ux2 F03 한 장씩 = 늘 첫 줄 + 진행 막대(필터 ▾로 펼침) · ux4f E 목록: 붙을 때 줄어든 높이(_dh)만큼 여유 — 줄어든 만큼 스크롤 고정(anchoring)이 되돌려 붙음·풀림이 번갈아 깜빡이던 것(91↔158) */if(on!==b.classList.contains('mini')){const h0=b.offsetHeight;b.classList.toggle('mini',on);if(on&&!one)b._dh=Math.max(0,h0-b.offsetHeight);}
@@ -3372,8 +3432,8 @@ function mark(id,k,how,src){if(STALE){toast('새로고침 후에 채점할 수 �
 /* 카드 한 장의 채점 색·'✗2 ✓1' 기록 칩 */
 function paintQ(c){const id=c.dataset.id;['ok','ng','bm'].forEach(k=>c.classList.toggle('mk-'+k,!!MK[k][id]));const L=Array.isArray(MK.log[id])?MK.log[id]:[];let a=0,b=0;L.forEach(x=>{if(x&&x.r==='ok')a++;else if(x&&x.r==='ng')b++;});
  let r=c.querySelector('.qhead .chip.rec');if(!a&&!b){if(r)r.remove();return;}if(!r){r=document.createElement('span');r.className='chip rec noann';const h=c.querySelector('.qhead');if(!h)return;h.appendChild(r);}r.textContent=(b?'✗'+b:'')+(a&&b?' ':'')+(a?'✓'+a:'');r.title='채점 기록(최근 10번): 틀림 '+b+' · 맞음 '+a+revTitle(id);}
-/* 답 토글 버튼 글자: 펼치면 '답 가리기 ▲' */
-function togLabel(c){const b=c&&c.querySelector('.acts:not(.acts2) [data-tog]');if(!b)return;if(!b.dataset.l0)b.dataset.l0=b.textContent;b.textContent=c.classList.contains('open')?'답 가리기 ▲':b.dataset.l0;if(JB.one&&JB.vis&&JB.vis[JB.cur]===c)JB.bar();}
+/* 답 토글 버튼 글자: 펼치면 '답 접기 ▲' */
+function togLabel(c){const b=c&&c.querySelector('.acts:not(.acts2) [data-tog]');if(!b)return;if(!b.dataset.l0)b.dataset.l0=b.textContent;b.textContent=c.classList.contains('open')?'답 접기 ▲':b.dataset.l0;if(JB.one&&JB.vis&&JB.vis[JB.cur]===c)JB.bar();}
 /* 답 칸의 📖 정리본 절: 🔑 목록이 5항목을 넘으면 앞 5개만 + '더 보기 (+N)' */
 function lkCut(root){$$('details.ab.lk .kb',root).forEach(kb=>{if(kb.dataset.cut)return;kb.dataset.cut='1';const l=kb.querySelector(':scope>ul,:scope>ol');if(!l||l.children.length<=5)return;kb.classList.add('cut');
  const b=document.createElement('button');b.className='btn sm lkmore noann';b.dataset.lkmore='1';b.textContent='더 보기 (+'+(l.children.length-5)+')';l.after(b);});}
@@ -3425,7 +3485,7 @@ const JB={F:null,one:false,cur:0,vis:[],shuf:null,saved:null,key(){return 'jbst.
   else if(sm)sm.hidden=true;
   jbMini();measure();jbSpyOn();if(!ns)this.save();},
  /* 풀이 막대 버튼 상태(답 보기/가리기·맞음·틀림·★) */
- bar(){const c=this.one?this.vis[this.cur]:null,id=c&&c.dataset.id;const t=$('#otog');if(!t)return;t.textContent=!c||!c.classList.contains('open')?'답 보기':c.classList.contains('deep')?'답 가리기 ▲':'자세히 ▾';
+ bar(){const c=this.one?this.vis[this.cur]:null,id=c&&c.dataset.id;const t=$('#otog');if(!t)return;t.textContent=!c||!c.classList.contains('open')?'답 보기':c.classList.contains('deep')?'답 접기 ▲':'해설 더 ▾';
   const pv=!!(c&&c.classList.contains('pvh'));[['ook','ok'],['ong','ng'],['obm','bm']].forEach(([b,k])=>{const e=document.getElementById(b);if(e){e.classList.toggle('on',!!(id&&MK[k][id])&&!(pv&&k!=='bm'));e.disabled=!c;}});t.disabled=!c;},
  visitShow(c){this.visitEnd(true);const back=Math.min(this.cur,this.vis.length);c.classList.remove('hid');this.vis.splice(back,0,c);this.visit={c,back};this.cur=back;this.show(true);goEl(c);toast('이번 회차 밖 문항이에요 — ◀ ▶를 누르면 회차 '+(back<this.sess.ids.length?(back+1)+'/'+this.sess.ids.length:'요약')+'로 돌아가요');},
  visitEnd(quiet){const v=this.visit;if(!v)return false;this.visit=null;const i=this.vis.indexOf(v.c);if(i>=0)this.vis.splice(i,1);if(this.sess&&Array.isArray(this.sess.ids)&&this.sess.ids.indexOf(v.c.dataset.id)<0){v.c.classList.add('hid');v.c.classList.remove('cur','open','deep');}this.cur=v.back;return true;},
@@ -3451,7 +3511,7 @@ const Flash={deck:[],all:[],i:0,back:false,kind:'',st:'',ord:null,s:'',k:'',
   const T2J={};{const re=/id="t-[^"]*?-(\d+)"[\s\S]*?<div class="en[^"]*"[^>]*>([^<]*)</g;let m;while((m=re.exec(L.learn||''))){const t=m[2].trim();if(t&&T2J[t]==null)T2J[t]=+m[1];}}   /* 10-22d 감사 P9 — 암기 카드 → 그 정리본 카드(영문 제목으로 카드 자리) */
   (L.recall||[]).forEach(r=>{tmp.innerHTML=r.h;const h=/^\s*<li/.test(r.h)?'<ul class="fcl">'+r.h+'</ul>':'<ul class="fcl"><li>'+r.h+'</li></ul>';const hasK=/class="k"/.test(r.h);
    const key='R:'+L.k+':'+fcHash(r.t+'|'+tmp.textContent);if(Array.isArray(r.ok)&&r.ok.length){const M=mkObj(LS.get('fc.'+p.id,{}));if(!M[key]){const o=r.ok.find(x=>M[x]);if(o){M[key]=M[o];LS.set('fc.'+p.id,M);}}}   /* 10-04 ⚡ 줄 구분 기호만 바뀐 경우 옛 키 기록을 새 키로(옛 키는 지우지 않음) */
-   this.all.push({key,tag:'암기',kind:'암기',cloze:hasK,lc:T2J[String(r.t).trim()]!=null?L.k+':'+T2J[String(r.t).trim()]:'',q:'<div class="fct">'+E(r.t)+'</div>'+h,a:'<div class="fct">'+E(r.t)+'</div>'+h});});
+   this.all.push({key,tag:'암기',kind:'암기',cloze:hasK,lc:T2J[String(r.td||r.t).trim()]!=null?L.k+':'+T2J[String(r.td||r.t).trim()]:'',q:'<div class="fct">'+E(r.td||r.t)+'</div>'+h,a:'<div class="fct">'+E(r.td||r.t)+'</div>'+h});});
   L.jb.forEach(id=>{tmp.innerHTML=p.cards[id];const q=$('.qtext',tmp),a=$('.jbans .lines',tmp),y=$('.ybadge b',tmp);const v=($('.qc',tmp)||{dataset:{}}).dataset.v;const qc=$('.qc',tmp),gl=$('[data-golec]',tmp);if(q&&a)this.all.push(Object.assign({key:'J:'+id,tag:'기출 '+(y?y.textContent:''),kind:'기출',aid:qc?qc.dataset.aid:'',jb:id,lc:gl?gl.dataset.golec:''},fcJB(tmp,id,v)));});   /* ux2 F08 앞면 = 문제 원문 그대로(그림 포함) · 뒷면 = 답 핵심·정답 보기·해설 2줄·⚡ 첫 줄·문제 카드로 */
   L.pred.forEach(i=>{tmp.innerHTML=p.preds[i].html;const q=$('.pq',tmp),a=$('.pre2',tmp),pc=$('.pc',tmp);if(q&&a)this.all.push({key:'P:'+((pc&&pc.dataset.aid)||i),tag:'예상',kind:'예상',aid:pc?pc.dataset.aid:'',lc:p.preds[i].lc||'',q:E(q.textContent),a:E(a.textContent)});});
   const ps=mkObj(LS.get('fcpos.'+this.s+'.'+this.k,{}));this.kind=typeof ps.kind==='string'?ps.kind:'';this.st=typeof ps.st==='string'?ps.st:'';this.ord=Array.isArray(ps.ord)?ps.ord:null;this.back=false;this.build(ps.key);},
@@ -4813,7 +4873,7 @@ function peekOpen(chip,pick){const P=PACKS[CUR.s],id=pick||chip.dataset.go,h=P&&
  let core='';{const a=tmp.querySelector('.jbans .lines');if(a){const out=[];let tx='';for(const ln of a.children){if(ln.matches('.lab-r'))break;if(ln.matches('.exw')){const c=ln.cloneNode(true);c.classList.remove('clamp');$$('.lab-r',c).forEach(x=>{let n=x;while(n){const nx=n.nextElementSibling;n.remove();n=nx;}});out.push(c.outerHTML);break;}tx+=ln.textContent;out.push(ln.outerHTML);}   /* 10-05 사용자 'jb 미리보기에서 답 보기할 때 어떤건 해설이 뜨는데 어떤건 안 뜨거덩. 일괄적으로 해설까지만은 함께' — 답 + 해설 전부(참고 줄부터는 뺌) · 옛: 답이 '해설 참고'일 때만 해설 */core=out.join('');   /* 답이 '해설 참고'면 답이 해설 안에 있으므로 해설을 접지 않고 함께 */const sec=a.closest('.jbans');if(sec)$$(':scope>img.fig',sec).forEach(i=>{core+=i.outerHTML;});}}if(!core)core=sumCore(P,id);const yb=tmp.querySelector('.ybadge');const qx=tmp.querySelector('.qtext');const qimg=$$('img.fig',tmp).filter(i=>!i.closest('.jbans,.qtext,.ans,details')).map(i=>i.outerHTML).join('');   /* 10-03 허브 점검: 문제 그림(.qc>img.fig)도 미리보기에 */
  let p=$('#jbpeek');if(!p){p=document.createElement('div');p.id='jbpeek';p.className='jbpeek noann';document.body.appendChild(p);
   p.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
-   if(b.classList.contains('jpx')){peekClose();return;}if(d.jppick){if(PEEKA&&PEEKA.isConnected)peekOpen(PEEKA,d.jppick);return;}if(b.classList.contains('jpshow')){const a=p.querySelector('.jpa');a.hidden=!a.hidden;b.textContent=a.hidden?'답 보기':'답 가리기';if(!a.hidden){try{fillThumbs(p);}catch(e){}const pr=p.getBoundingClientRect();if(pr.bottom>innerHeight-LAY.kith)window.scrollBy({top:Math.min(pr.bottom-innerHeight+LAY.kith+12,pr.top-topOff()),behavior:'smooth'});}return;}   /* 10-03 허브 점검: 답을 펼친 뒤에도 [JB에서 풀기]가 화면 안에 */
+   if(b.classList.contains('jpx')){peekClose();return;}if(d.jppick){if(PEEKA&&PEEKA.isConnected)peekOpen(PEEKA,d.jppick);return;}if(b.classList.contains('jpshow')){const a=p.querySelector('.jpa');a.hidden=!a.hidden;b.textContent=a.hidden?'답 보기':'답 접기';if(!a.hidden){try{fillThumbs(p);}catch(e){}const pr=p.getBoundingClientRect();if(pr.bottom>innerHeight-LAY.kith)window.scrollBy({top:Math.min(pr.bottom-innerHeight+LAY.kith+12,pr.top-topOff()),behavior:'smooth'});}return;}   /* 10-03 허브 점검: 답을 펼친 뒤에도 [JB에서 풀기]가 화면 안에 */
    if(d.jpmk){const q=PEEK;if(!q)return;mark(q,d.jpmk,'toggle');$$('#jbpeek [data-jpmk]').forEach(x=>x.classList.toggle('on',!!MK[x.dataset.jpmk][q]));toast(MK[d.jpmk][q]?(d.jpmk==='ok'?'맞음으로 기록했어요':'틀림으로 기록했어요'):'기록을 지웠어요');return;}   /* ux4f C 53 JB 카드 버튼처럼 다시 누르면 지움 */
    if(d.jpgo){const q=d.jpgo;peekClose();PENDRET=retFrom();queueMicrotask(()=>{PENDRET=null;});go(q,{});}});}
  p.innerHTML=`<div class="jph">${yb?yb.outerHTML:''}<b>JB 미리보기</b>${gos.length>1?`<span class="jppk">${gos.map((g,i)=>`<button type="button" class="btn sm${g===id?' on':''}" data-jppick="${E(g)}" title="이 카드에 걸린 기출 ${i+1}/${gos.length}">${i+1}</button>`).join('')}</span>`:''}<button class="jpx" aria-label="닫기" title="닫기 (Esc)">✕</button></div><div class="jpq">${qx?qx.innerHTML:ls.map(x=>`<div class="ln">${E(x)}</div>`).join('')}${qimg?qimg:(fig&&!(qx&&qx.querySelector('img'))?'<div class="jpfig">🖼 그림 문항 — 그림은 JB에서</div>':'')}</div>`
@@ -4897,7 +4957,7 @@ function stLabel(t){t=String(t||'');const cut=(x,n)=>x.trim();   /* ux4f 새 오
  if(m){const r=m[2].replace(/^[—–-]\s*/,'');return m[1]+' '+cut(r.split(/\s+[—–]\s+/)[0].split(/\s*→\s*/)[0],16);}const k=t.split(/\s+[—–]\s+/);return cut(k.length>1?k.slice(1).join(' — '):t.replace(/^.*?전체\s*정리표?\s*/,''),16);}
 function sumHTML(p,L){const st=(L.sumt||[]).map(i=>p.tables[i]).filter(Boolean);if(!st.length)return L.sum;
  const tt=st.map(x=>{const m=/<div class="tbt serif">([^<]*)<\/div>/.exec(x.html);return m?m[1]:'';});
- return `<section class="sumtop" id="sumtop"><div class="sth noann"><b>📋 전체정리표</b> <span class="small">강의 전체를 의미 축으로 한 표에 — 마지막 열 ★ = 시험</span><div class="stchips">${tt.map((t,i)=>`<button class="tg" data-sttab="${i}" title="${t}">${stLabel(t)}</button>`).join('')}${st.length>1?'<button class="tg" data-sttab="all">모두 펼치기</button>':''}</div></div>${st.map((x,i)=>x.html.replace('<div class="tblwrap stbl"','<div data-sti="'+i+'" class="tblwrap stbl"')).join('')}</section>`+L.sum;}
+ return `<section class="sumtop" id="sumtop"><div class="sth noann"><b>📋 전체정리표</b> <span class="small">강의 전체를 의미 축으로 한 표에 — 마지막 열 ⭐ = 시험</span><div class="stchips">${tt.map((t,i)=>`<button class="tg" data-sttab="${i}" title="${t}">${stLabel(t)}</button>`).join('')}${st.length>1?'<button class="tg" data-sttab="all">모두 펼치기</button>':''}</div></div>${st.map((x,i)=>x.html.replace('<div class="tblwrap stbl"','<div data-sti="'+i+'" class="tblwrap stbl"')).join('')}</section>`+L.sum;}
 function stApply(v,save){const f=$('#sumtop');if(!f)return;const k='sumtop.'+CUR.s+'.'+CUR.d;if(v===undefined){v=LS.get(k,'__unset');if(v==='__unset')v=innerWidth<=860?'none':0;}   /* ux4 B26 아이패드 세로는 처음엔 접힌 칩 막대(본 정리표가 네 화면 아래로 밀리지 않게) */if(save)LS.set(k,v);   /* ux2 fixB N2: 처음(기록 없음)엔 첫 표를 펼침 · 접으면 'none'으로 기억(옛 null도 접힘) */
  $$('#sumtop .stbl[data-sti]').forEach(t=>t.classList.toggle('stoff',!(v==='all'||String(v)===t.dataset.sti)));$$('#sumtop [data-sttab]').forEach(b=>b.classList.toggle('on',v!=null&&String(v)===b.dataset.sttab));f.classList.toggle('stclosed',v==null||v==='none');const ab=$('#sumtop [data-sttab="all"]');if(ab)ab.textContent=v==='all'?'모두 접기':'모두 펼치기';stCard();}   /* ux4c 1회차 펼친 뒤에는 '모두 접기' */
 {let w0=innerWidth<=860;addEventListener('resize',()=>{const w=innerWidth<=860;if(w===w0)return;w0=w;if(!CUR.s||!$('#sumtop'))return;if(LS.get('sumtop.'+CUR.s+'.'+CUR.d,'__unset')==='__unset')stApply();msbarPlace();});}   /* ux4f C 45 돌리면 요약/자세히 막대 자리도 그 폭의 처음 상태로 */
@@ -4914,7 +4974,7 @@ function tblListOpen(k){const box=$('#tbllist');if(!box)return;if(box.dataset.k=
 function tocH(){const t=$('#tbltoc')||$('#sumbar');const h=t&&t.offsetParent!==null?t.offsetHeight:0;$('#stage').style.setProperty('--tocH',h+'px');return h;}
 function tblFit(){const ts=$$('#stage .tblwrap:not(.msum) > .tscroll').filter(x=>x.querySelector('table.cmp:not(.led),table.sum'));   /* ux4 B11 기출 대장(숫자 몇 개) 표는 열 최소 90px 계산에서 뺌 — 원래 폭 */ts.forEach(x=>{const t=x.querySelector('table');if(!x.clientWidth)return;const hasOwn=t.querySelector('colgroup:not([data-tw])');if(!hasOwn){twApply(x,t);t.classList.add('tw');return;}x.classList.remove('fit');const fit=t.scrollWidth<=x.clientWidth+1;x.classList.toggle('fit',fit);x.classList.toggle('ovx',!fit);});
  $$('#stage .tblwrap > .tscroll').filter(x=>x.querySelector(':scope>table.led')).forEach(x=>{if(!x.clientWidth)return;x.classList.remove('fit');const fit=x.querySelector(":scope>table.led").scrollWidth<=x.clientWidth+1;x.classList.toggle('fit',fit);});}   /* ux4f C 42 기출 대장 표도 폭이 맞으면 .fit(겉 스크롤 없음) — 열 머리가 위 막대 아래에 붙음 · ux3 L4 열 폭 = twApply(√글자량) · 표에 원래 colgroup이 있으면 옛 방식(넘치면 가로 스크롤) */
-/* ux2 fixB VIS02·N2 아이패드 세로(≤860): 전체정리표가 화면 폭을 넘으면 그 표만 카드형(행 = 카드 · 항목 → ★ 시험 → 나머지 열, 칸마다 열 이름) — DOM 순서·글자는 그대로(CSS order), 열 이름은 data-h 속성 */
+/* ux2 fixB VIS02·N2 아이패드 세로(≤860): 전체정리표가 화면 폭을 넘으면 그 표만 카드형(행 = 카드 · 항목 → ⭐ 시험 → 나머지 열, 칸마다 열 이름) — DOM 순서·글자는 그대로(CSS order), 열 이름은 data-h 속성 */
 function stCard(){$$('#sumtop .stbl:not(.stoff)').forEach(w=>{const t=w.querySelector('table'),x=w.querySelector('.tscroll');if(t&&x&&x.clientWidth){twApply(x,t);t.classList.add('tw');}});}   /* ux3 L4 전체정리표 = 펼친 표만 열 폭·카드형 판정(twApply — 5열↑·폭 760 미만에서 열이 모자라면 카드) */
 let TRO=null;function tblMount(){if(TRO){TRO.disconnect();TRO=null;}const on=VIEW==='doc'&&(CUR.d==='_tbl'||CUR.t==='tbl'||CUR.t==='sum'||CUR.d==='_sum'||CUR.d==='_led');if(!on)return;
  $$('#stage .tblwrap[data-nj]').forEach(w=>{const n=+w.dataset.nj,t=w.querySelector('.tbt');if(n&&t&&!t.querySelector('.tnj')){const b=document.createElement('span');b.className='tnj noann';b.textContent='기출 '+n;t.appendChild(b);}});
@@ -5015,7 +5075,7 @@ addEventListener('storage',e=>{if(e.key===NS+'mk.'+CUR.s&&VIEW==='doc'&&CUR.d===
 
 /* ===================== ux2 묶음 6 — JB 문제 화면(F01~F12): 떠올리기·암기 최적 =====================
    F02 답 두 단계: .open = 1단계(JB 답 핵심·정답 보기·대조 첫 항목의 '정답 …' 한 줄·📖 ⚡ 첫 줄) · .open.deep = 2단계(해설 전체·🔎 대조·🧭 주변부·다른 판본)
-       카드 [답·해설] = 열기/닫기(LS jbdeep=1이면 열 때 바로 2단계) · [자세히 ▾] = 2단계 토글(선호를 jbdeep에 저장) · Space(한 장씩·목록의 지금 카드) = 1단계 → 2단계 → 닫기 */
+       카드 [답 보기] = 열기/닫기(LS jbdeep=1이면 열 때 바로 2단계) · [해설 더 ▾] = 2단계 토글(선호를 jbdeep에 저장) · Space(한 장씩·목록의 지금 카드) = 1단계 → 2단계 → 닫기 */
 function qDeep(c,on){if(!c)return;c.classList.toggle('deep',!!on);if(on)$$('details.ab.chk,details.ab.more',c).forEach(d=>d.open=true);}
 function qOpen(c){if(!c)return;c.classList.add('open');if(c.classList.contains('pvh')){c.classList.remove('pvh');(JB.pvOk=JB.pvOk||new Set()).add(c.dataset.id);if(JB.one)JB.bar();}if(c.classList.contains('qc'))qDeep(c,!!LS.get('jbdeep',0));}
 function qClose(c){if(c)c.classList.remove('open','deep');}
@@ -5050,7 +5110,7 @@ function jbListKey(e,K,isSpace){if(e.shiftKey&&K!=='j'&&K!=='k')return false;
  let c=JB.lc&&JB.lc.isConnected&&!JB.lc.classList.contains('hid')?JB.lc:null;
  if(!c&&(isSpace||K==='o'||K==='x'||K==='s')&&JB.vis&&JB.vis.length){const line=topOff();c=JB.vis.find(x=>x.getBoundingClientRect().bottom>line)||null;if(c){JB.hold=Date.now()+900;jbCur(c);}}   /* flow V06: 맨 위(지금 카드 없음)에서도 Space·O·X·S = 선 아래 첫 카드 */
  if(!c)return false;
- if(isSpace){e.preventDefault();const a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();if($('#stage').classList.contains('jblist')&&!c.classList.contains('lx')){c.classList.add('lx');if(c.classList.contains('open')){togLabel(c);return true;}}   /* ux4 B30 압축 목록에서는 먼저 카드를 원래 모양으로 */if(c.classList.contains('open'))qClose(c);else qOpen(c);togLabel(c);   /* ux4f C 54 목록의 Space = 카드의 [답·해설 ↔ 답 가리기 ▲] 버튼과 같은 두 단계(자세히는 카드의 [자세히 ▾]) — 한 장씩은 아래 막대 글자대로 세 단계 */if(c.getBoundingClientRect().top<topOff()-2)goEl(c);return true;}
+ if(isSpace){e.preventDefault();const a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();if($('#stage').classList.contains('jblist')&&!c.classList.contains('lx')){c.classList.add('lx');if(c.classList.contains('open')){togLabel(c);return true;}}   /* ux4 B30 압축 목록에서는 먼저 카드를 원래 모양으로 */if(c.classList.contains('open'))qClose(c);else qOpen(c);togLabel(c);   /* ux4f C 54 목록의 Space = 카드의 [답 보기 ↔ 답 접기 ▲] 버튼과 같은 두 단계(자세히는 카드의 [해설 더 ▾]) — 한 장씩은 아래 막대 글자대로 세 단계 */if(c.getBoundingClientRect().top<topOff()-2)goEl(c);return true;}
  if(K==='o'||K==='x'){e.preventDefault();mark(c.dataset.id,K==='o'?'ok':'ng','toggle');return true;}
  if(K==='s'){e.preventDefault();mark(c.dataset.id,'bm','toggle');return true;}return false;}
 function nowAsk(){const b=$('#fnow'),i=$('#fnowi');if(!b||!i)return;const n=JB.vis.length;i.max=n;i.value=JB.lc?JB.vis.indexOf(JB.lc)+1:'';b.hidden=true;i.hidden=false;i.focus();i.select();}
@@ -5239,7 +5299,7 @@ function ckMeasure(){const c=$('#clock');if(!c||!c.querySelector('.ckt'))return;
 /* 10-04 사용자 '현재 공부하고 있으면 현재 집중시간이 크게 뜨고 오른쪽에 총공부시간 및 총 쉬는시간 … 쉬고 있으면 휴식이 크게 … 총공부시간이 그래도 총쉬는시간보단 살짝 더 진하게'
    큰 칸(.ckt) = [작은 이름 .ckk] + 숫자(.ckv): 공부 중 '집중 h:mm:ss'(이번 집중 — ▶·다시 공부부터) · 쉬는 중 '휴식 h:mm:ss'(이번 휴식) · 자리 비움 · 그 밖(대기·멈춤·다른 창·꺼짐) '오늘 h:mm:ss'(오늘 합계)
    오른쪽 작은 칸(.ckl) = 두 줄: '공부 h:mm:ss'(오늘 합계 .ck1 — 조금 진하게) · '휴식 h:mm'(오늘 휴식 .ck2) — 대기·멈춤이면 첫 줄이 상태 이름 */
-function ckBig(st,ts,now){if(st==='rest')return ['휴식',fmtHMS(trRestMs(ts,now))];if(st==='run'&&now-T.last>60000)return ['비움',fmtHMS(now-T.last-60000)];   /* 이름 칸은 두 글자로 같은 폭(집중·휴식·오늘·비움 — 알약 폭 흔들림 없음) · 보조 글자(aria)는 '자리 비움' */if(st==='run'||st==='sess')return ['집중',fmtHMS(trFocusMs(st,ts,now))];if(T.idleGap)return ['비움',fmtHMS(Math.max(0,now-T.last-60000))];return ['오늘',ckFmt(tToday())];}
+function ckBig(st,ts,now){if(st==='rest')return ['휴식',fmtHMS(trRestMs(ts,now))];if(st==='run'&&now-T.last>60000)return ['비움',fmtHMS(now-T.last-60000)];   /* 이름 칸은 두 글자로 같은 폭(집중·휴식·오늘·비움 — 알약 폭 흔들림 없음) · 보조 글자(aria)는 '자리 비움' */if(st==='run'||st==='sess')return ['공부 중',fmtHMS(trFocusMs(st,ts,now))];if(T.idleGap)return ['비움',fmtHMS(Math.max(0,now-T.last-60000))];return ['오늘',ckFmt(tToday())];}
 function ckSmall(st,ts,now){const act=st==='run'||st==='sess'||st==='rest'||T.idleGap;const a=act?'공부 '+ckFmt(tToday()):({end:'멈춤',other:'다른 창',wait:'대기',off:'꺼짐'}[st]||'대기'),b='휴식 '+ckFmt(restDay(day()));return [a,b];}   /* 10-04 사용자 '총휴식도 공부시간처럼 초단위까지' */
 function ckPaint(full){const c=$('#clock');if(!c)return;const st=trState(),ts=tsGet(),now=Date.now(),t=ckFmt(tToday()),lab=ckLab(st,ts,now),G=ckBig(st,ts,now),M=ckSmall(st,ts,now);
  if(!c.querySelector('.ckt')){c.innerHTML='<i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk"></small><span class="ckv"></span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small>';ckMeasure();try{document.fonts&&document.fonts.ready.then(ckMeasure);}catch(e){}}else if(full&&!c.style.getPropertyValue('--ckt'))ckMeasure();

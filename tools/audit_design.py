@@ -181,10 +181,10 @@ async def subj_color(b):
         bad+=[f'{h} {x}' for x in await pg.evaluate(SJCOL)]
     for s in ids:
         await pg.goto('about:blank'); await pg.goto(f'{U}#/{s}/_home'); await pg.wait_for_timeout(900)
-        r=await pg.evaluate("""s=>{const c=__h.sjColor(s).toUpperCase(),cs=getComputedStyle(document.documentElement),h1=cs.getPropertyValue('--hero1').trim().toUpperCase(),ac=cs.getPropertyValue('--acc').trim().toUpperCase();
+        r=await pg.evaluate("""s=>{const c=__h.sjColor(s).toUpperCase(),cs=getComputedStyle(document.documentElement),h1=cs.getPropertyValue('--hero1').trim().toUpperCase(),ac=cs.getPropertyValue('--sj').trim().toUpperCase();   /* 10-23 결정 3 A안 — 과목 색은 --sj(메뉴 점·지금 탭·선택 막대) · --acc = 공통 brand */
           const lin=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)},L=h=>{const n=parseInt(h.slice(1),16);return 0.2126*lin(n>>16&255)+0.7152*lin(n>>8&255)+0.0722*lin(n&255)},cr=(a,b)=>{const x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
           return {c,h1,ac,w:cr(c,'#FFFFFF'),p:cr(c,'#F1EDE5')};}""", s)
-        if not (r['h1']==r['c']==r['ac']): bad.append(f'{s} 과목 홈 --hero1 {r["h1"]} · --acc {r["ac"]} ≠ {r["c"]}')
+        if not (r['h1']==r['c']==r['ac']): bad.append(f'{s} 과목 홈 --hero1 {r["h1"]} · --sj {r["ac"]} ≠ {r["c"]}')
         if r['w']<4.5 or r['p']<4.5: bad.append(f'{s} {r["c"]} 대비 흰 글자 {r["w"]:.2f} · 종이 {r["p"]:.2f} (<4.5)')
         bad+=[f'{s}/_home {x}' for x in await pg.evaluate(SJCOL)]
     await pg.close(); return bad

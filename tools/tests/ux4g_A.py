@@ -136,7 +136,7 @@ async def main():
         ok(lab.startswith('공부 2:0'), f'세션 10분 → 쉬기 5분 → 다시 2분: 알약 {lab!r} (공부 2:0x — 세션 합계 12분 아님)')
         # (10-04) 알약 큰 칸 = 이번 집중 · 오른쪽 작은 칸 = 오늘 공부(진하게)·오늘 휴식
         ck = await pg.evaluate("(c=>({k:c.querySelector('.ckk').textContent,v:c.querySelector('.ckv').textContent,a:c.querySelector('.ck1').textContent,b:c.querySelector('.ck2').textContent,fa:+getComputedStyle(c.querySelector('.ck1')).fontWeight,fb:+getComputedStyle(c.querySelector('.ck2')).fontWeight,bv:parseFloat(getComputedStyle(c.querySelector('.ckv')).fontSize),sa:parseFloat(getComputedStyle(c.querySelector('.ck1')).fontSize)}))(document.querySelector('#clock'))")
-        ok(ck['k'] == '집중' and ck['v'].startswith('0:02:0') and ck['a'].startswith('공부 0:1') and ck['b'].startswith('휴식 0:0') and ck['fa'] > ck['fb'] and ck['bv'] > ck['sa'], f'공부 중 알약 큰 칸 집중 · 오른쪽 공부(진하게)·휴식 {ck}')
+        ok(ck['k'] == '공부 중' and ck['v'].startswith('0:02:0') and ck['a'].startswith('공부 0:1') and ck['b'].startswith('휴식 0:0') and ck['fa'] > ck['fb'] and ck['bv'] > ck['sa'], f'공부 중 알약 큰 칸 집중 · 오른쪽 공부(진하게)·휴식 {ck}')
         await pg.evaluate("__h.trRest()"); await pg.clock.run_for(65000)
         ck = await pg.evaluate("(c=>[c.querySelector('.ckk').textContent,c.querySelector('.ckv').textContent,c.querySelector('.ck1').textContent,c.querySelector('.ck2').textContent])(document.querySelector('#clock'))")
         ok(ck[0] == '휴식' and ck[1].startswith('0:01:0') and ck[2].startswith('공부 ') and ck[3].startswith('휴식 '), f'쉬는 중 알약 큰 칸 휴식 · 오른쪽 공부·휴식 {ck}')

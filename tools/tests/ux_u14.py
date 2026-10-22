@@ -23,10 +23,10 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/PHARM/_jb/_jb')
     await pg.evaluate(JS('#fone')); await pg.wait_for_timeout(300)
     id0 = await pg.evaluate(CUR)
-    await pg.evaluate(JS('#otog')); await pg.wait_for_timeout(150)   # ux2 F02 답 두 단계: 답 보기 → 1단계(자세히 ▾) → 2단계(답 가리기 ▲)
-    ok(await pg.inner_text('#otog') == '자세히 ▾' and await pg.evaluate("document.querySelector('#cards .qc.cur [data-tog]').textContent") == '답 가리기 ▲', '답 토글 문구 → 1단계 자세히 ▾')
+    await pg.evaluate(JS('#otog')); await pg.wait_for_timeout(150)   # ux2 F02 답 두 단계: 답 보기 → 1단계(해설 더 ▾) → 2단계(답 접기 ▲) — 10-23 이름 통일 A
+    ok(await pg.inner_text('#otog') == '해설 더 ▾' and await pg.evaluate("document.querySelector('#cards .qc.cur [data-tog]').textContent") == '답 접기 ▲', '답 토글 문구 → 1단계 자세히 ▾')
     await pg.evaluate(JS('#otog')); await pg.wait_for_timeout(150)
-    ok(await pg.inner_text('#otog') == '답 가리기 ▲' and await pg.evaluate("document.querySelector('#cards .qc.cur').classList.contains('deep')"), '한 번 더 → 2단계 답 가리기 ▲')
+    ok(await pg.inner_text('#otog') == '답 접기 ▲' and await pg.evaluate("document.querySelector('#cards .qc.cur').classList.contains('deep')"), '한 번 더 → 2단계 답 가리기 ▲')
     await pg.evaluate("scrollBy(0,600)"); await pg.wait_for_timeout(300)
     r = await pg.evaluate("(()=>{const b=document.querySelector('#onebar').getBoundingClientRect(),k=document.querySelector('#kit').getBoundingClientRect();const bs=[...document.querySelectorAll('#onebar .ob')].map(x=>{const r=x.getBoundingClientRect();return [Math.round(r.width),Math.round(r.height)]});return {bottom:Math.round(b.bottom),ih:innerHeight,pos:getComputedStyle(document.querySelector('#onebar')).position,kitAbove:k.bottom<=b.top,bs}})()")
     ok(r['pos'] == 'fixed' and abs(r['bottom'] - r['ih']) <= 1 and r['kitAbove'], f"답 펼치고 스크롤해도 풀이 막대가 화면 아래·도구 막대는 그 위 {r['bottom']}/{r['ih']}")

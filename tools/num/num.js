@@ -323,7 +323,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-si:hover,#numv .nm-si:focus-visible{background:var(--tint,#F2EEE6)}
 #numv .nm-si .l{min-width:0;overflow:hidden;text-overflow:ellipsis;flex:1 1 auto}
 #numv .nm-si small{color:var(--sub);font-size:12px;font-variant-numeric:tabular-nums;flex:none}
-#numv .nm-si.pri{color:var(--acc,#0F5C5A);font-weight:700}
+#numv .nm-si.pri{color:var(--acc,var(--brand,#2F5470));font-weight:700}
 #numv .nm-si.on{font-weight:700}
 #numv .nm-sh .nm-home{flex:none;width:34px;padding:0;justify-content:center;color:var(--sub)}
 #numv .nm-ttl{flex:1 1 auto;font-size:15.5px;letter-spacing:-.01em;padding-left:4px;white-space:nowrap}
@@ -342,7 +342,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sttl b{display:block;font-size:17px;letter-spacing:-.01em}
 #numv .nm-sttl span{display:block;font-size:12px;color:var(--faint,#8C857A);margin-top:3px}
 #numv .nm-ssec{font-size:12px;color:#6F685D;font-weight:600;letter-spacing:.04em;margin:14px 10px 4px;display:flex;align-items:baseline;gap:6px;flex:none}
-#numv .nm-jbl{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:0 8px 2px;flex:none}#numv .nm-jbl button{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line,#E2DCD0);border-radius:8px;background:#fff;color:#3B372F;cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#numv .nm-jbl button:hover{border-color:var(--acc,#0F5C5A);color:var(--acc,#0F5C5A)}#numv.sidec .nm-jbl{display:none}   /* 10-22d JBL 이 과목 바로 가기 */
+#numv .nm-jbl{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:0 8px 2px;flex:none}#numv .nm-jbl button{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line,#E2DCD0);border-radius:8px;background:#fff;color:#3B372F;cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#numv .nm-jbl button:hover{border-color:var(--acc,var(--brand,#2F5470));color:var(--acc,var(--brand,#2F5470))}#numv.sidec .nm-jbl{display:none}   /* 10-22d JBL 이 과목 바로 가기 */
 #numv .nm-ssec small{font-weight:400;letter-spacing:0;color:var(--faint,#8C857A)}
 #numv .nm-si .d{width:8px;height:8px;border-radius:50%;flex:none}
 #numv .nm-sjd{flex:none;margin:2px 0 4px}#numv .nm-sjd>summary{list-style:none;background:var(--surface,#fff);box-shadow:inset 0 0 0 1px var(--line)}#numv .nm-sjd>summary::-webkit-details-marker{display:none}
@@ -352,7 +352,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-ljl{flex:none}
 #numv .nm-lj{min-height:32px;padding-top:5px;padding-bottom:5px;white-space:normal;margin:1px 0}
 #numv .nm-lj .l{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal}
-#numv .nm-lj.cur{background:var(--surface,#fff);box-shadow:inset 3px 0 0 var(--acc,#0F5C5A),inset 0 0 0 1px var(--line);font-weight:700}
+#numv .nm-lj.cur{background:var(--surface,#fff);box-shadow:inset 3px 0 0 var(--acc,var(--brand,#2F5470)),inset 0 0 0 1px var(--line);font-weight:700}
 #numv .nm-lj.off{color:var(--faint,#A39B8E)}
 #numv .nm-sempty{font-size:12.5px;color:var(--faint,#8C857A);padding:4px 10px}
 #numv .nm-sfoot{position:sticky;bottom:0;margin-top:auto;background:#FBF8F1;border-top:1px solid var(--line);padding:10px 10px 12px;font-size:12.5px;color:var(--sub);flex:none}
@@ -375,23 +375,23 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-ctx b{white-space:nowrap}#numv .nm-ctx button+button{padding-left:2px;flex:0 1 auto}#numv .nm-ctx span{color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 #numv.sidec .nm-ctx{display:inline-flex}
 #numv .nm-sch{flex:1 1 220px;min-width:110px;display:flex;align-items:center;gap:7px;height:36px;border:1px solid var(--line);border-radius:8px;background:var(--surface,#fff);padding:0 10px;color:var(--sub)}
-#numv .nm-sch:focus-within{border-color:var(--acc,#0F5C5A);box-shadow:0 0 0 2px rgba(15,92,90,.12)}
+#numv .nm-sch:focus-within{border-color:var(--acc,var(--brand,#2F5470));box-shadow:0 0 0 2px rgba(15,92,90,.12)}
 #numv .nm-sch svg{width:16px;height:16px}
 #numv .nm-sch input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:14px;color:var(--ink);height:100%;padding:0}
 #numv .nm-tbtn{display:inline-flex;align-items:center;gap:5px;height:36px;padding:0 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none}
 #numv .nm-tbtn svg{width:16px;height:16px}
 #numv .nm-tbtn:hover{background:var(--tint,#F2EEE6)}
 #numv .nm-tbtn.on{border-color:var(--ink);background:var(--ink);color:var(--card,#fff)}
-#numv .nm-tbtn .n{display:inline-block;min-width:18px;height:18px;line-height:18px;border-radius:9px;background:var(--acc,#0F5C5A);color:#fff;font-size:11px;text-align:center;padding:0 5px}
+#numv .nm-tbtn .n{display:inline-block;min-width:18px;height:18px;line-height:18px;border-radius:9px;background:var(--acc,var(--brand,#2F5470));color:#fff;font-size:11px;text-align:center;padding:0 5px}
 #numv .nm-tbtn.on .n{background:#fff;color:var(--ink)}
 #numv .nm-seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex:none;background:var(--surface,#fff)}
 #numv .nm-seg button{border:0;background:none;color:var(--ink);padding:0 10px;font:inherit;font-size:13px;height:34px;cursor:pointer;white-space:nowrap}
 #numv .nm-seg button+button{border-left:1px solid var(--line)}
-#numv .nm-seg button.on{background:var(--ink);color:var(--card,#fff);font-weight:600}
+#numv .nm-seg button.on{background:var(--brand-w,#EDF2F6);border-color:var(--brand-l,#B9CAD8);color:var(--brand,#2F5470);font-weight:600}
 #numv .nm-vopt{display:flex;align-items:center;gap:8px;flex:none}
 #numv .nm-sel{height:34px;padding:0 8px;border:1px solid transparent;border-radius:8px;background:none;color:var(--sub);font:inherit;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
 #numv .nm-sel:hover{background:var(--tint,#F2EEE6);color:var(--ink)}
-#numv .nm-sel.on{color:var(--acc,#0F5C5A);border-color:var(--acc,#0F5C5A);font-weight:700}
+#numv .nm-sel.on{color:var(--acc,var(--brand,#2F5470));border-color:var(--acc,var(--brand,#2F5470));font-weight:700}
 #numv .nm-sel svg{width:15px;height:15px}
 #numv .nm-vbtn{display:none}
 #numv .nm-save{font-size:12px;color:var(--faint,#8C857A);white-space:nowrap;min-width:5.4em;text-align:right;flex:none}
@@ -403,7 +403,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-stg{display:flex;flex-wrap:wrap;gap:4px}
 #numv .nm-stg button{border:1px solid var(--line);background:var(--surface,#fff);color:var(--ink);border-radius:999px;padding:0 10px;height:30px;font:inherit;font-size:12.5px;cursor:pointer}
 #numv .nm-stg button b{font-weight:700;margin-left:2px;font-variant-numeric:tabular-nums}
-#numv .nm-stg button.on{background:var(--ink);border-color:var(--ink);color:var(--card,#fff)}
+#numv .nm-stg button.on{background:var(--brand-w,#EDF2F6);border-color:var(--brand-l,#B9CAD8);color:var(--brand,#2F5470)}
 #numv .nm-fpan .ft{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
 #numv .nm-info{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);min-height:26px;margin:0 0 8px}
 #numv .nm-info b{color:var(--ink)}
@@ -414,7 +414,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-clr{border:0;background:none;color:var(--sub);font:inherit;font-size:12.5px;text-decoration:underline;cursor:pointer;padding:0 4px}
 #numv .nm-srt{margin-left:auto;color:var(--faint,#8C857A)}
 #numv .nm-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:0 11px;font-family:inherit;font-size:13px;min-height:32px;font-weight:600;cursor:pointer}
-#numv .nm-btn.pri{background:var(--acc,#0F5C5A);border-color:var(--acc,#0F5C5A);color:#fff}
+#numv .nm-btn.pri{background:var(--acc,var(--brand,#2F5470));border-color:var(--acc,var(--brand,#2F5470));color:#fff}
 #numv .nm-btn:disabled{opacity:.5;cursor:default}
 #numv .nm-sp{flex:1 1 0}
 #numv .nm-batch{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 0;padding:6px 8px;border:1px solid var(--line);border-radius:10px;background:var(--card,#fff);font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
@@ -435,8 +435,8 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-it.nm-dsrc{opacity:.45}
 #numv.nm-dg,#numv.nm-dg *{cursor:grabbing!important;user-select:none!important;-webkit-user-select:none!important}
 #numv.nm-dg .nm-it:hover .nm-drag{opacity:0}#numv.nm-dg .nm-dsrc .nm-drag{opacity:1}
-#numv .nm-dline{position:fixed;left:0;top:0;height:3px;margin-top:-1.5px;border-radius:2px;background:var(--acc,#0F5C5A);box-shadow:0 0 0 2px rgba(255,255,255,.85);z-index:57;pointer-events:none;will-change:transform}
-#numv .nm-dline::before{content:'';position:absolute;left:-5px;top:-3.5px;width:10px;height:10px;border-radius:50%;background:var(--acc,#0F5C5A);box-shadow:0 0 0 2px #fff}
+#numv .nm-dline{position:fixed;left:0;top:0;height:3px;margin-top:-1.5px;border-radius:2px;background:var(--acc,var(--brand,#2F5470));box-shadow:0 0 0 2px rgba(255,255,255,.85);z-index:57;pointer-events:none;will-change:transform}
+#numv .nm-dline::before{content:'';position:absolute;left:-5px;top:-3.5px;width:10px;height:10px;border-radius:50%;background:var(--acc,var(--brand,#2F5470));box-shadow:0 0 0 2px #fff}
 #numv .nm-dline[hidden]{display:none}
 #numv .nm-dghost{position:fixed;left:0;top:0;z-index:58;pointer-events:none;max-width:min(360px,70vw);background:#fff;color:#1F1D1A;border:1px solid #D8D0C2;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.16);padding:4px 10px;font-size:12.5px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;will-change:transform}
 #numv .nm-dghost b{margin-right:6px;font-variant-numeric:tabular-nums}
@@ -451,9 +451,9 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tag.pf b{font-weight:800;color:#2F2A24}#numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
 #numv .nm-qt{margin-left:7px;font-size:12px;font-weight:500;color:#78716A;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0;user-select:none;-webkit-user-select:none}
 #numv .nm-qt .p{margin-left:5px;font-weight:800;color:#3A342C}#numv .nm-qt .sep{margin:0 5px;color:#A39A8C}   /* 10-16 교수 태그 굵게(사용자 '지금은 잘 안 보여') */
-#numv .nm-lcb{flex:none;border:1px solid #CFE0D2;background:#F0F7F1;color:#24563A;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}#numv .nm-lcb:hover,#numv .nm-lcb:focus-visible{background:#E2F0E5;border-color:#A9CBB1}
-#numv .nm-jbb{flex:none;border:1px solid #D8C9E8;background:#F6F1FB;color:#4F2F78;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}
-#numv .nm-jbb:hover,#numv .nm-jbb:focus-visible{background:#EDE3F8;border-color:#BFA8DA}
+#numv .nm-lcb{flex:none;border:1px solid var(--line,#E4DFD5);background:#fff;color:var(--brand,#2F5470);border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}#numv .nm-lcb:hover,#numv .nm-lcb:focus-visible{background:var(--brand-w,#EDF2F6);border-color:var(--brand-l,#B9CAD8)}
+#numv .nm-jbb{flex:none;border:1px solid var(--exam-b,#E3C267);background:var(--exam-bg0,#FFFDF5);color:var(--exam-fg,#6E5000);border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}
+#numv .nm-jbb:hover,#numv .nm-jbb:focus-visible{background:#FFF0C2;border-color:#C9A23F}
 #numv .nm-edm{font-size:12px;color:#8C857A;line-height:21px;padding:0 1px;cursor:help}
 #numv .nm-rvb{border:1px solid #F0C9B0;background:#FFF4EC;color:#9A3412;border-radius:5px;font-size:11.5px;line-height:19px;padding:0 5px;cursor:pointer}
 #numv .nm-more{flex:none;border:1px solid transparent;background:none;color:#6A6257;border-radius:6px;padding:0;width:30px;height:24px;font-size:17px;line-height:20px;cursor:pointer}
@@ -477,7 +477,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-c ul,#numv .nm-c ol{margin:2px 0;padding-left:1.6em;white-space:normal}
 #numv .nm-c li{white-space:normal}#numv .nm-c li>p{margin:0}#numv .nm-c li:has(>ul:first-child,>ol:first-child){list-style:none}   /* 10-22 글머리 기호 쓸 때 갑자기 줄이 바뀌고 줄 간격이 생기던 것(li 안 줄바꿈 글자·문단 여백) · 안쪽 목록만 든 줄은 JBL처럼 기호 없음 */
 #numv .nm-tb .lsi{font-size:12px;font-weight:700;letter-spacing:-.5px}
-#numv .nm-c img.nm-isel{outline:2px solid var(--acc,#0F5C5A);outline-offset:1px}#numv .nm-irh{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:3px;background:#fff;border:2px solid var(--acc,#0F5C5A);box-shadow:0 1px 3px rgba(0,0,0,.25);cursor:nwse-resize;z-index:58;touch-action:none}
+#numv .nm-c img.nm-isel{outline:2px solid var(--acc,var(--brand,#2F5470));outline-offset:1px}#numv .nm-irh{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:3px;background:#fff;border:2px solid var(--acc,var(--brand,#2F5470));box-shadow:0 1px 3px rgba(0,0,0,.25);cursor:nwse-resize;z-index:58;touch-action:none}
 #numv .nm-s .nm-c{cursor:text;border-radius:4px;transition:background .15s;margin:0 -4px;padding:0 4px}
 #numv .nm-s .nm-c:not([contenteditable=true]):hover{background:#FBF5E6}
 #numv .nm-ph{color:#A39B8E;font-weight:400}
@@ -491,7 +491,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tb button:hover,#numv .nm-tb button:focus-visible,#numv .nm-tb button.on{background:rgba(31,29,26,.08)}
 #numv .nm-tb .fcA{border-bottom:2px solid #E5484D;line-height:1.05;font-weight:700}
 #numv .nm-tb i.sep{width:1px;height:11px;background:rgba(31,29,26,.14);margin:0 2px}
-#numv .nm-tb .done{color:#0F5C5A;font-weight:800;font-size:12px}
+#numv .nm-tb .done{color:var(--brand,#2F5470);font-weight:800;font-size:12px}
 @media (pointer:coarse){#numv .nm-tb{height:30px;padding:2px;border-radius:8px}#numv .nm-tb button{min-width:26px;height:24px;padding:0 6px;font-size:13px}}
 #numv .nm-tb .done:hover{background:rgba(15,92,90,.1)}
 #numv .nm-pal{position:fixed;z-index:59;background:#fff;color:#1F1D1A;border:1px solid #D8D0C2;border-radius:8px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;width:176px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
@@ -546,7 +546,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-irow .m{display:flex;flex-wrap:wrap;gap:4px;margin:3px 0 0;font-size:12px;align-items:center}
 #numv .nm-irow.dup{background:#F6F4EF}#numv .nm-irow.dup .t{color:#6A6257}
 #numv .nm-irow .add{font-size:12.5px;padding:3px 9px;min-height:30px}
-#numv .nm-irow .t[data-iview]{cursor:pointer}#numv .nm-irow .t[data-iview]:hover{color:var(--acc,#0F5C5A)}#numv .nm-irow.open .t{-webkit-line-clamp:unset;display:block}
+#numv .nm-irow .t[data-iview]{cursor:pointer}#numv .nm-irow .t[data-iview]:hover{color:var(--acc,var(--brand,#2F5470))}#numv .nm-irow.open .t{-webkit-line-clamp:unset;display:block}
 #numv .nm-ivb{border:1px solid #C9D9E8;background:#F0F5FA;color:#24466B;border-radius:999px;font-family:inherit;font-size:12px;font-weight:600;line-height:19px;padding:0 8px;cursor:pointer}
 #numv .nm-ians{margin:0 10px 8px 46px;padding:6px 10px 8px;border:1px solid #E4DFD5;border-radius:6px;background:#FCFBF8;font-size:13.5px}#numv .nm-ians>b{display:block;font-size:11px;color:#8C857A;margin:0 0 2px}#numv .nm-ians .nm-c{font-size:13.5px;line-height:1.55}
 #numv .nm-fld{display:grid;gap:4px}#numv .nm-fld>span{font-size:12.5px;font-weight:700;color:var(--sub)}
@@ -571,7 +571,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sub{font-size:12.5px;color:var(--sub);line-height:1.5}
 #numv .nm-dlg textarea{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--surface,#fff);color:var(--ink);resize:vertical}
 #numv .nm-atabs{display:flex;flex-wrap:wrap;gap:4px}
-#numv .nm-atabs button{border:1px solid var(--line);background:var(--surface,#fff);color:var(--ink);border-radius:999px;padding:0 11px;height:30px;font:inherit;font-size:12.5px;cursor:pointer}#numv .nm-atabs button.on{background:var(--ink);border-color:var(--ink);color:var(--card,#fff)}#numv .nm-atabs button:disabled{opacity:.45;cursor:default}#numv .nm-atabs .nm-aall{margin-left:auto;border-style:dashed}
+#numv .nm-atabs button{border:1px solid var(--line);background:var(--surface,#fff);color:var(--ink);border-radius:999px;padding:0 11px;height:30px;font:inherit;font-size:12.5px;cursor:pointer}#numv .nm-atabs button.on{background:var(--brand-w,#EDF2F6);border-color:var(--brand-l,#B9CAD8);color:var(--brand,#2F5470)}#numv .nm-atabs button:disabled{opacity:.45;cursor:default}#numv .nm-atabs .nm-aall{margin-left:auto;border-style:dashed}
 #numv .nm-airow{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:8px;align-items:start;padding:8px 10px;border-bottom:1px solid #EEE9E0}
 #numv .nm-airow input{width:18px;height:18px;margin-top:2px}
 #numv .nm-airow .q{font-size:14px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
@@ -629,10 +629,10 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-app button{flex:1 1 0;min-width:0;border:0;background:none;border-radius:7px;font:inherit;font-size:13px;font-weight:600;color:#6A6257;padding:6px 4px;cursor:pointer;white-space:nowrap}
 #numv .nm-app button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.1)}
 #numv .nm-app button:not(.on):hover{color:var(--ink)}
-#numv .nm-rail.on{background:var(--tint,#F2EEE6);color:var(--acc,#0F5C5A)}
+#numv .nm-rail.on{background:var(--tint,#F2EEE6);color:var(--acc,var(--brand,#2F5470))}
 #numv .nm-rses{font-size:12.5px;color:var(--sub);line-height:1.6;padding:2px 10px 6px;flex:none}#numv .nm-rses b{color:var(--ink)}#numv .nm-rses i,#numv .nm-mkc i,#numv .nm-hrow i{font-style:normal}
 #numv i.m0,#numv b.m0{color:#A3231B}#numv i.m1,#numv b.m1{color:#8A5A00}#numv i.m2,#numv b.m2{color:#1C5B33}
-#numv .nm-lnk{border:0;background:none;color:var(--acc,#0F5C5A);font:inherit;font-size:12.5px;cursor:pointer;padding:2px 4px;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+#numv .nm-lnk{border:0;background:none;color:var(--acc,var(--brand,#2F5470));font:inherit;font-size:12.5px;cursor:pointer;padding:2px 4px;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
 #numv .nm-btn.sm{min-height:28px;font-size:12.5px;padding:0 10px}
 #numv.rv .nm-body{position:relative;grid-template-columns:var(--wa,45%) minmax(0,1fr)}
 #numv.rv.rvw .nm-body{grid-template-columns:var(--wa,34%) var(--ws,33%) minmax(0,1fr)}
@@ -640,7 +640,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv.rv .nm-rz{display:block;position:absolute;top:0;bottom:0;left:calc(var(--wa,45%) - 6px);width:12px;cursor:col-resize;z-index:3;touch-action:none}
 #numv.rv.rvw .nm-rz{left:calc(var(--wa,34%) - 6px)}#numv.rv.rvw .nm-rz.r2{left:calc(var(--wa,34%) + var(--ws,33%) - 6px)}
 #numv.rv .nm-rz::after{content:'';position:absolute;left:5px;top:4px;bottom:4px;width:2px;border-radius:1px;background:transparent;transition:background .12s}
-#numv.rv .nm-rz:hover::after,#numv.rv .nm-rz.drag::after{background:var(--acc,#0F5C5A)}
+#numv.rv .nm-rz:hover::after,#numv.rv .nm-rz.drag::after{background:var(--acc,var(--brand,#2F5470))}
 #numv.rzing,#numv.rzing *{cursor:col-resize!important;user-select:none}
 #numv .nm-w{background:#F7FAFD;border-radius:0 6px 6px 0}#numv.rvw .nm-s{border-radius:0}
 #numv .nm-lab small{font-weight:500;color:#A39B8E;letter-spacing:0;margin-left:6px}
@@ -654,7 +654,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv.rv .nm-a .nm-c,#numv.rv .nm-s .nm-c{cursor:default}#numv.rv .nm-s .nm-c:not([contenteditable=true]):hover{background:none}
 #numv .nm-rf{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:6px 0 0 var(--nmind);font-size:11.5px;color:var(--sub)}
 #numv .nm-rf .nm-mks{border-radius:6px}#numv .nm-rf .nm-mks button{height:22px;padding:0 8px;font-size:11.5px;font-weight:600}
-#numv .nm-rf .nm-pm{font-size:11px}#numv .nm-rf .nm-lnk,#numv .nm-crf .nm-lnk{font-size:11px;color:#8C857A;padding:1px 3px;text-decoration-color:#D8D0C2}#numv .nm-rf .nm-lnk:hover,#numv .nm-crf .nm-lnk:hover{color:var(--acc,#0F5C5A)}
+#numv .nm-rf .nm-pm{font-size:11px}#numv .nm-rf .nm-lnk,#numv .nm-crf .nm-lnk{font-size:11px;color:#8C857A;padding:1px 3px;text-decoration-color:#D8D0C2}#numv .nm-rf .nm-lnk:hover,#numv .nm-crf .nm-lnk:hover{color:var(--acc,var(--brand,#2F5470))}
 @media (pointer:coarse){#numv .nm-rf .nm-mks button{height:28px;padding:0 10px}}
 #numv .nm-mks{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;flex:none}
 #numv .nm-mks button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:600;color:#5A5247;padding:0 11px;height:28px;cursor:pointer;white-space:nowrap}
@@ -671,7 +671,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-cardv{display:grid;grid-template-columns:minmax(0,var(--wc,56%)) 14px minmax(0,1fr);column-gap:6px;row-gap:12px;align-items:start;margin-top:2px}
 #numv .nm-cardv.nowr{grid-template-columns:minmax(0,1fr)}
 #numv .nm-cardv>.nm-crf0,#numv .nm-cardv>.nm-hist{grid-column:1/-1}
-#numv .nm-crz{align-self:stretch;position:relative;cursor:col-resize;touch-action:none;min-height:120px}#numv .nm-crz::after{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;border-radius:1px;background:#E6E0D5;transition:background .12s}#numv .nm-crz:hover::after,#numv .nm-crz.drag::after{background:var(--acc,#0F5C5A)}
+#numv .nm-crz{align-self:stretch;position:relative;cursor:col-resize;touch-action:none;min-height:120px}#numv .nm-crz::after{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;border-radius:1px;background:#E6E0D5;transition:background .12s}#numv .nm-crz:hover::after,#numv .nm-crz.drag::after{background:var(--acc,var(--brand,#2F5470))}
 #numv .nm-cpos{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);margin:0 0 6px}#numv .nm-cpos b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}#numv .nm-cpos .lt{margin-left:6px;max-width:22em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #numv .nm-card{position:relative;background:#fff;color:#1F1D1A;border:1px solid var(--line);border-top:4px solid #DCD3C3;border-radius:12px;box-shadow:0 2px 10px rgba(31,29,26,.06);padding:10px 16px 12px;min-height:150px;cursor:pointer;display:flex;flex-direction:column;outline:none;transition:box-shadow .12s}
 #numv .nm-card:focus-visible{box-shadow:0 0 0 3px rgba(15,92,90,.25)}
@@ -685,7 +685,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-cctl{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;margin:8px 0 0}
 #numv .nm-cnav{display:inline-flex;gap:4px}#numv .nm-cnav .nm-btn{min-height:28px;padding:0 10px;font-size:12.5px}#numv .nm-cnav .nm-btn.pri{padding:0 14px}
 #numv .nm-cmk{display:inline-flex}#numv .nm-cmk .nm-mks button{height:28px;padding:0 10px;font-size:12.5px}
-#numv .nm-c3b{border:1px solid var(--line);background:#fff;color:var(--acc,#0F5C5A);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:0 10px;height:28px;border-radius:8px;white-space:nowrap}#numv .nm-c3b.on{background:var(--tint,#F2EEE6)}
+#numv .nm-c3b{border:1px solid var(--line);background:#fff;color:var(--acc,var(--brand,#2F5470));font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:0 10px;height:28px;border-radius:8px;white-space:nowrap}#numv .nm-c3b.on{background:var(--tint,#F2EEE6)}
 #numv kbd{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid #D8D0C2;border-bottom-width:2px;border-radius:4px;padding:0 4px;color:#6A6257;background:#fff}
 #numv .nm-c3{margin:8px 0 0;background:#fff;color:#1F1D1A;border:1px solid #E4DFD5;border-radius:10px;padding:8px 14px 10px}#numv .nm-c3 .nm-cfc{font-size:14.5px}
 #numv .nm-cr{position:sticky;top:calc(var(--toph,52px) + 76px);min-width:0}
@@ -698,7 +698,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sumc .m0 b{color:#A3231B}#numv .nm-sumc .m1 b{color:#8A5A00}#numv .nm-sumc .m2 b{color:#1C5B33}
 #numv .nm-sum .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 #numv .nm-hrow{border:1px solid var(--line);border-radius:8px;margin:0 0 6px;background:#fff;color:#1F1D1A}#numv .nm-hrow>summary{cursor:pointer;padding:8px 12px;font-size:13.5px;line-height:1.5}
-#numv .nm-hrow .nm-now{color:var(--acc,#0F5C5A)}
+#numv .nm-hrow .nm-now{color:var(--acc,var(--brand,#2F5470))}
 #numv .nm-hbody{padding:0 12px 10px}#numv .nm-hit{border-top:1px solid #EEE9E0;padding:6px 0}#numv .nm-hit .q{font-size:13px;color:#4A4339;margin-bottom:2px}
 @media (min-width:861px){#numv.sidec .nm-app,#numv.sidec .nm-rses{display:none}}
 @media (max-width:860px){

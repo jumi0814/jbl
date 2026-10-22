@@ -163,7 +163,7 @@ with sync_playwright() as p:
     l0 = x.ev("document.querySelector('#bcl').textContent"); x.run(150000)
     l1 = x.ev("document.querySelector('#bcl').textContent"); ck = x.ev("document.querySelector('#clock').dataset.lab")
     sec = lambda t: (lambda m: int(m.group(1)) * 60 + int(m.group(2)) if m else -99)(re.search(r'자리 비움 (\d+):(\d\d)', t))
-    ok(x.st() == 'run' and '집중' in l0 and l1.startswith('자리 비움') and abs(sec(l1) - sec(ck)) <= 1, f'L8 ⏱ 크게 {l0} → 2분 30초 입력 없음 {l1} · 알약 {ck}')
+    ok(x.st() == 'run' and '공부 중' in l0 and l1.startswith('자리 비움') and abs(sec(l1) - sec(ck)) <= 1, f'L8 ⏱ 크게 {l0} → 2분 30초 입력 없음 {l1} · 알약 {ck}')
     x.ctx.close()
     # ---- L9 아이패드 44px
     SZ = "(sel=>[...document.querySelectorAll(sel)].filter(e=>e.offsetParent).map(e=>{const r=e.getBoundingClientRect();return [(e.textContent.trim()||e.tagName).slice(0,6),Math.round(r.width),Math.round(r.height)]}))"

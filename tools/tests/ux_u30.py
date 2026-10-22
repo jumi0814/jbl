@@ -19,7 +19,7 @@ async def main():
             y0 = await pg.evaluate("scrollY")
             await pg.fill('#gsearch', 'fontanel'); await pg.wait_for_timeout(900)
             r = await pg.evaluate("""()=>{const rs=[...document.querySelectorAll('#home .sres')];return {n:rs.length,titles:rs.slice(0,6).map(x=>x.querySelector('.stl').innerText),sn:rs.map(x=>x.querySelector('.ssn').innerText).join(' || '),first:(document.querySelector('#home .sgt')||{}).innerText,more:document.querySelectorAll('#home [data-smore]').length}}""")
-            ok(r['n'] > 0 and not any(w in r['sn'] for w in ['맞음틀림', '틀림★', '답·해설']), f'스니펫에 버튼 글자 없음 ({r["n"]}건)')
+            ok(r['n'] > 0 and not any(w in r['sn'] for w in ['맞음틀림', '틀림★', '답·해설', '답 보기해설']), f'스니펫에 버튼 글자 없음 ({r["n"]}건)')
             ok(all(('카드 ' in t) or ('JB ' in t) or ('비교표' in t) or ('예상' in t) or ('틀' in t) for t in r['titles']), f'제목에 카드/JB 번호 {r["titles"][:3]}')
             ok('구강악안면외과학' in (r['first'] or ''), f'지금 과목 먼저 ({r["first"]})')
             await pg.screenshot(path=J.TMP + f'/ux_u30_search_{tag}.png')
