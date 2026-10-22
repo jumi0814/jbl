@@ -342,6 +342,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sttl b{display:block;font-size:17px;letter-spacing:-.01em}
 #numv .nm-sttl span{display:block;font-size:12px;color:var(--faint,#8C857A);margin-top:3px}
 #numv .nm-ssec{font-size:12px;color:#6F685D;font-weight:600;letter-spacing:.04em;margin:14px 10px 4px;display:flex;align-items:baseline;gap:6px;flex:none}
+#numv .nm-jbl{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:0 8px 2px;flex:none}#numv .nm-jbl button{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line,#E2DCD0);border-radius:8px;background:#fff;color:#3B372F;cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#numv .nm-jbl button:hover{border-color:var(--acc,#0F5C5A);color:var(--acc,#0F5C5A)}#numv.sidec .nm-jbl{display:none}   /* 10-22d JBL 이 과목 바로 가기 */
 #numv .nm-ssec small{font-weight:400;letter-spacing:0;color:var(--faint,#8C857A)}
 #numv .nm-si .d{width:8px;height:8px;border-radius:50%;flex:none}
 #numv .nm-sjd{flex:none;margin:2px 0 4px}#numv .nm-sjd>summary{list-style:none;background:var(--surface,#fff);box-shadow:inset 0 0 0 1px var(--line)}#numv .nm-sjd>summary::-webkit-details-marker{display:none}
@@ -779,8 +780,8 @@ function qView(it) {   /* 문제 글(qDisp) + 마지막 음절 바로 오른쪽 
 const JBR = new Map();   /* 과목 → {card: JB aid 모음, pred: 예상문제 aid → 관련 기출 JB aid} (팩에서 한 번만) */
 function jbMaps(sj) {
   let m = JBR.get(sj); const P = H.PACKS[sj]; if (m && m.P === P) return m; if (!P) return null;
-  m = { P, card: new Set(), cid: new Map(), pred: new Map(), yp: new Map(), yr: new Map(), yk: new Map() }; const AID = /data-aid="([^"]+)"/, YP = /\sdata-yp="([^"]*)"/, YR = /\sdata-yrs="([^"]*)"/;
-  for (const k in P.cards) { const h = String(P.cards[k]).slice(0, 1600), x = AID.exec(h); if (!x) continue; m.card.add(x[1]); m.cid.set(x[1], k); const tg = h.slice(0, h.indexOf('>') + 1 || 1600), y = YP.exec(tg), r = YR.exec(tg);   /* 10-16 출제 연도별 출제 교수 '25:교수 24:교수' */ if (y && y[1]) m.yp.set(x[1], y[1]);
+  m = { P, card: new Set(), cid: new Map(), pred: new Map(), yp: new Map(), yr: new Map(), yk: new Map(), lc: new Map() }; const AID = /data-aid="([^"]+)"/, YP = /\sdata-yp="([^"]*)"/, YR = /\sdata-yrs="([^"]*)"/;
+  for (const k in P.cards) { const h = String(P.cards[k]).slice(0, 1600), x = AID.exec(h); if (!x) continue; m.card.add(x[1]); m.cid.set(x[1], k); { const g = /\sdata-golec="([^"]+)"/.exec(h); if (g) m.lc.set(x[1], g[1]); }   /* 10-22d JB 문제 → 그 정리본 카드(JB 카드 머리 '정리본 →'과 같은 곳) */ const tg = h.slice(0, h.indexOf('>') + 1 || 1600), y = YP.exec(tg), r = YR.exec(tg);   /* 10-16 출제 연도별 출제 교수 '25:교수 24:교수' */ if (y && y[1]) m.yp.set(x[1], y[1]);
     if (r) { const v = r[1].split(/\s+/).filter(Boolean); m.yr.set(x[1], v.map(z => +z < 100 ? 2000 + +z : +z).sort((a, b) => b - a)); m.yk.set(k, v); } }   /* 10-18 출제 연도(data-yrs) — 넘버링 JB 문제 연도를 지금 팩에 맞출 때 · yk = 카드 id → 원래 값(예상문제 관련 기출) */
   for (const p of P.preds || []) { const h = String(p.html || ''), a = p.aid ? [0, p.aid] : AID.exec(h.slice(0, 800)), g = p.b && p.b.length ? [0, p.b[0]] : /class="jbchip"[^>]*\sdata-go="([^"]+)"/.exec(h); if (!a || !g || !P.cards[g[1]]) continue;   /* S3 팩 preds의 aid·b(관련 기출) 우선 */ const ca = AID.exec(String(P.cards[g[1]]).slice(0, 600)); if (ca) m.pred.set(a[1], ca[1]); }
   JBR.set(sj, m); return m;
@@ -828,8 +829,10 @@ function prTag(it) {   /* 넘버링 문제 머리 오른쪽 작은 우선순위 
   return `<span class="nm-prt ${PRCL[m.pr] || ''}" title="${esc(ti)}">${esc(m.pr)}</span>`;
 }
 /* 10-22 사용자 '예상문제도 해당 예상문제를 출제한 강의자료 정리본 카드로 바로가는 버튼이 있고, 다시 돌아올 수 있었으면' — 팩 preds의 lc(build4 — 그림·인용 쪽·관련 기출의 정리본 카드) · 길은 JB 문제와 같음(↩ 알약) */
-function lcRef(it) { for (const s of it.src || []) if (s.t === 'pred' && s.s && s.id && H.PACKS[s.s]) { predMeta(s.s, s.id); const m = PMC.get(s.s), p = m && m.by.get(s.id); if (p && p.lc) return { s: s.s, lc: p.lc }; } return null; }
-const lcBtn = it => lcRef(it) ? `<button type="button" class="nm-lcb" data-act="lecgo" title="이 예상문제가 나온 정리본 카드로 — 아래 '↩ 돌아가기'로 이 문제로 돌아와요">정리본</button>` : '';
+function lcRef(it) { for (const s of it.src || []) if (s.t === 'pred' && s.s && s.id && H.PACKS[s.s]) { predMeta(s.s, s.id); const m = PMC.get(s.s), p = m && m.by.get(s.id); if (p && p.lc) return { s: s.s, lc: p.lc }; }
+  for (const s of it.src || []) if (s.t === 'jb' && s.s && s.id && H.PACKS[s.s]) { const m = jbMaps(s.s), g = m && m.lc.get(s.id); if (g) return { s: s.s, lc: g }; }   /* 10-22d 사용자 '탭 간의 연계' — JB 기출 문제도 정리본 카드로 */
+  return null; }
+const lcBtn = it => lcRef(it) ? `<button type="button" class="nm-lcb" data-act="lecgo" title="이 문제가 나온 정리본 카드로 — 아래 '↩ 돌아가기'로 이 문제로 돌아와요">정리본</button>` : '';
 function lecGo(it, btn) {
   const r = lcRef(it); if (!r) { H.toast('이 문제와 이어진 정리본 카드가 없어요'); return; }
   const a = (btn && btn.closest('.nm-it')) || artOf(it.id), no = a ? (a.querySelector('.nm-no') || {}).textContent || '' : '';
@@ -904,7 +907,7 @@ function sideHTML() {
   const sh = (subjects().find(s => s.id === S.sj) || {}).sh || cur.t, lc = !!S.cfg.ljc;
   return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">내 넘버링</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>` + appSwHTML()
     + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
-    + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>`
+    + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>` + jblHTML()
     + `<button type="button" class="nm-ssec nm-ljh" data-act="ljt" aria-expanded="${!lc}" title="강의 목록 접기·펼치기">강의 바로 가기<small>누르면 그 위치로</small><span class="cv" aria-hidden="true">▾</span></button><div class="nm-ljl"${lc ? ' hidden' : ''}>${ljl}</div>`
     + `<button type="button" class="nm-si nm-rail" data-act="ctx" title="강의 바로 가기" aria-label="강의 바로 가기">${ICO.list}</button>`
     + `<div class="nm-ssec">ChatGPT · 인쇄</div><button type="button" class="nm-si" data-act="aiout" title="ChatGPT에 넘버링 스토리를 맡길 문제를 파일(JSON)로 — 스토리 없는 문제만·고른 문제·강의·필터 결과">${ICO.aiout}<span class="l">ChatGPT로 내보내기</span></button><button type="button" class="nm-si" data-act="aiin" title="ChatGPT가 쓴 스토리 파일 넣기 — 바뀌는 것을 먼저 보고 고른 것만">${ICO.aiin}<span class="l">ChatGPT 결과 가져오기</span></button><button type="button" class="nm-si" data-act="print" title="인쇄 · PDF 저장(A4) · Word(.docx) 저장 — 범위·내용 고르기 (⌘/Ctrl P)">${ICO.print}<span class="l">인쇄 · PDF · Word</span></button>`
@@ -1582,11 +1585,22 @@ function planOf(L, target) {   /* 고른 순서대로 — 앞에서 새로 넣�
   for (const x of L) { const d = dupOf(x, pool), p = { x, d }; if (!d) { p.ni = { id: (x.t === 'jb' ? 'jb:' : 'pr:') + x.id, q: x.q, _k: x.key, src: [{ t: x.t, id: x.id }], del: false, yrs: [], _plan: true }; pool.push(p.ni); } plan.push(p); }
   return plan;
 }
-async function importDlg() {
-  const jbl = subjects().filter(s => s.jbl && H.PACKS[s.id]);
+/* 10-22d 사용자 '기출을 보다가 기출에 해당하는 넘버링으로 가고 싶으면 다 홈페이지로 나가서 다시 넘버링으로 가야' — JBL 카드의 '✎ 넘버링'
+   f = { t: 'jb'|'pred', id: aid } → 이 과목 넘버링에서 그 출처를 가진 문제 · 없으면 하나만 넣음(같은 문제 = 출처만 잇기 · 뺀 문제 = 다시 넣기 · 비슷한 Word 문제(0.75↑) = 그 문제에 출처 잇기) */
+function findSrc(f) { let d = null; for (const it of S.items) if ((it.src || []).some(z => z.t === f.t && z.id === f.id)) { if (!it.del) return it; d = d || it; } return d; }
+function addOne(sj, f) {
+  const x = jbList(sj).find(z => z.t === f.t && z.id === f.id); if (!x) return null;
+  const plan = planOf([x], S.items), p = plan[0];
+  if (p.d && p.d.k === 'have') return p.d.it;
+  const sim = p.d && p.d.k === 'sim' ? [p] : [], r = addMany(plan, sim, new Set(sim.length ? [0] : []), sj);
+  if (r.err) { H.toast('넘버링에 넣지 못했어요 — ' + r.err, { level: 'error', id: 'nmone' }); return null; }
+  const it = findSrc(f); if (it) it._added = r.add ? 'add' : 'link'; return it;
+}
+async function importDlg(o0) {
+  o0 = o0 || {}; const jbl = subjects().filter(s => s.jbl && H.PACKS[s.id]);
   if (!jbl.length) { H.toast('과목 자료(JB)를 아직 불러오는 중이에요 — 잠시 뒤 다시 눌러 주세요'); return; }
   let sj = jbl.some(s => s.id === S.sj) ? S.sj : jbl[0].id;
-  const st = { sj, lec: '', src: '', yr: '', ty: 'ess', pr: '', bm: '', so: 'prof', q: '', chk: new Set() };
+  const st = { sj, lec: o0.lec && H.PACKS[sj] && H.PACKS[sj].lect.some(l => l.k === o0.lec) ? o0.lec : '', src: '', yr: '', ty: 'ess', pr: '', bm: '', so: 'prof', q: '', chk: new Set() };   /* 10-22d 강의 탭 '넘버링'에서 = 그 강의를 골라 둔 채 */
   const ov = dlg('기존 문제 불러오기 — JB 기출 · 강의 예상문제', `<div class="flt"><select data-if="sj" aria-label="과목">${jbl.map(s => `<option value="${s.id}"${s.id === sj ? ' selected' : ''}>${esc(s.t)}</option>`).join('')}</select><select data-if="lec" aria-label="강의"></select><select data-if="src" aria-label="출처"><option value="">JB 기출 + 예상문제</option><option value="jb">JB 기출만</option><option value="pred">강의 예상문제만</option></select><select data-if="yr" aria-label="출제 연도"></select><select data-if="ty" aria-label="문제 유형"><option value="ess" selected>서술형·넘버링형만</option><option value="">전체 문제</option>${Object.keys(TYPES).map(k => `<option value="${k}">${TYPES[k]}만</option>`).join('')}</select><select data-if="pr" aria-label="출제 우선순위(예상문제)" title="예상문제 출제 우선순위 — 상·중을 고르면 예상문제만 보여요"><option value="">우선순위 전체</option><option value="상">우선 상만</option><option value="상중">우선 상+중</option></select><select data-if="bm" aria-label="★ 표시" title="JBL JB 기출·예상문제 카드에서 ★ 표시한 문제"><option value="">★ 상관없이</option><option value="1">★ 표시한 것만</option></select><select data-if="so" aria-label="정렬" title="가져오는 순서도 이대로"><option value="prof" selected>교수별 · 최근 출제 순</option><option value="">자료 순서</option><option value="pr">우선순위 높은 순</option></select><input type="search" data-if="q" placeholder="문제·답 검색" aria-label="검색"></div><div class="nm-warn" data-if-info="1"></div><div class="nm-ilist" data-ilist="1"></div>`,
     `<span data-if-sum="1" style="font-size:13.5px"></span><span style="flex:1"></span><button type="button" class="nm-btn" data-ib="sel">고른 것 추가</button><button type="button" class="nm-btn" data-ib="lec">이 강의 전체</button><button type="button" class="nm-btn" data-ib="flt">거른 결과 전체</button><button type="button" class="nm-btn" data-ib="all">과목 전체</button>`);
   if (!ov) return;
@@ -2504,6 +2518,15 @@ function revClick(e, t) {   /* 넘버링 복습 화면의 누르기 — 처리�
   if (t.closest('.nm-it .nm-q .nm-c')) return true;
   return false;
 }
+/* 10-22d 사용자 '각종 탭들의 구조 … 탭 간의 연계' — 넘버링 사이드바에서 이 과목 JBL(과목 홈·JB·예상·강의)로 바로 · ↩ 알약 = 이 넘버링 자리로 */
+function jblHTML() { if (!H.PACKS || !H.PACKS[S.sj]) return '';
+  return `<div class="nm-ssec nm-jblh">JBL 이 과목<small>↩로 돌아와요</small></div><div class="nm-jbl"><button type="button" data-jbl="_home" title="이 과목 홈 — 공부 순서·진행률·강의">과목 홈</button><button type="button" data-jbl="_jb" title="이 과목 JB 기출 전체">JB 문제</button><button type="button" data-jbl="_pred" title="이 과목 예상문제 전체">예상문제</button><button type="button" data-jbl="lec" aria-haspopup="true" title="강의 정리본 고르기">강의 ▾</button></div>`; }
+function jblGo(btn) { const d = btn.dataset.jbl, P = H.PACKS && H.PACKS[S.sj]; if (!P) return;
+  if (d === 'lec') { const m = menuOpen(btn, P.lect.map(l => [l.k, lecDisp(l.prof, l.title)])); if (m) m.addEventListener('click', e => { const b = e.target.closest('[data-mi]'); if (!b) return; menuClose(); jblOpen(b.dataset.mi, 'learn'); }); return; }
+  jblOpen(d); }
+function jblOpen(d, t) { if (S.drawer) drawer(false); endEdit(true); const p = posNow(); S.npos = p && p.id ? p : null;
+  const r = { label: S.app === 'rev' ? '넘버링 복습' : '내 넘버링', sj: S.sj, rev: S.app === 'rev', npos: S.npos };
+  if (H.docGo && H.docGo(S.sj, d, t, r)) return; S.npos = null; leave(); H.openDoc(S.sj, d, t); }
 function appSwHTML() {
   const r = S.app === 'rev';
   return `<div class="nm-app" role="tablist" aria-label="넘버링"><button type="button" role="tab" data-app="make" aria-selected="${!r}" class="${r ? '' : 'on'}" title="내 넘버링 — 문제·정답·스토리 만들고 고치기">내 넘버링</button><button type="button" role="tab" data-app="rev" aria-selected="${r}" class="${r ? 'on' : ''}" title="넘버링 복습 — 스크롤·카드로 떠올리고 평가">넘버링 복습</button></div>`
@@ -2517,7 +2540,7 @@ function revSideHTML() {
   const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.d || l.t)} — 누르면 그 위치로"><span class="l">${esc(l.d || l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
   return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">넘버링 복습</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>` + appSwHTML()
     + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
-    + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>`
+    + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>` + jblHTML()
     + `<div class="nm-ssec">복습</div><button type="button" class="nm-si${card ? '' : ' on'}" data-rview="scroll" title="스크롤 복습 — Word처럼 이어서 · 정답|스토리(|내 답안)">${ICO.list}<span class="l">스크롤 복습</span></button><button type="button" class="nm-si${card ? ' on' : ''}" data-rview="card" title="카드 복습 — 한 장씩 뒤집고 평가">${ICO.cards}<span class="l">카드 복습</span></button>`
     + `<div class="nm-ssec">이번 회차</div><div class="nm-rses">${s ? `<b>${esc(scLab(s))}</b> · ${st.ids.length}문제 · 평가 ${st.n}<br><i class="m0">모름 ${st.c[0]}</i> · <i class="m1">애매함 ${st.c[1]}</i> · <i class="m2">암기 ${st.c[2]}</i><br><small>${esc(dtTxt(s.t0))} 시작</small>` : ''}</div>`
     + `<button type="button" class="nm-si" data-ract="end" title="회차 정리 — 모름·애매함만 다시 · 새 회차">${ICO.check}<span class="l">회차 끝내기 · 정리</span></button><button type="button" class="nm-si" data-act="flt" title="복습 범위 — 전체·미복습·취약…(고르면 새 회차)">${ICO.filter}<span class="l">복습 범위 바꾸기</span></button><button type="button" class="nm-si" data-ract="hdlg" title="회차마다 평가·쓴 답안">${ICO.hist}<span class="l">복습 이력</span></button>`
@@ -2571,6 +2594,7 @@ function bind() {
     if (t.closest('.nm-ov') || t.closest('.nm-tb') || t.closest('.nm-pal')) return;   /* 대화창·도구 막대는 따로 */
     { const ap = t.closest('[data-app]'); if (ap) { if (S.drawer) drawer(false); appSet(ap.dataset.app); return; } }   /* 내 넘버링 ⇄ 넘버링 복습 */
     if (S.app === 'rev') { if (t.closest('.nm-side [data-act=flt]')) { if (S.drawer) drawer(false); fpOpen(true); window.scrollTo(0, Math.min(scrollY, 0)); return; } if (revClick(e, t)) return; }
+    const jl = t.closest('[data-jbl]'); if (jl) { jblGo(jl); return; }
     const sa = t.closest('[data-sact]'); if (sa) { const k = sa.dataset.sact; if (k === 'home') { const g = document.getElementById('gohome'); if (g) g.click(); else location.hash = '#/'; } else if (k === 'fold') side(); else if (k === 'close') drawer(false); return; }
     const sj = t.closest('[data-sj]'); if (sj) { const id = sj.dataset.sj; S.sjOpen = false; if (id === '__new') newSubject(); else if (id !== S.sj) switchSubject(id); else { const d = t.closest('details'); if (d) d.open = false; if (S.drawer) drawer(false); } return; }
     if (t.closest('.nm-sjd > summary')) { setTimeout(() => { const d = $('.nm-sjd', S.root); S.sjOpen = !!(d && d.open); }, 0); return; }
@@ -2699,7 +2723,21 @@ async function open(root, o, host) {
   H.histSet(hst(), hpath(sj), !!o.push); appTitle();
   const np = o.npos && o.npos.id && S.by.has(o.npos.id) && !(S.app === 'rev' && S.cfg.view === 'card') ? o.npos : null; S.npos = null;   /* JB 문제에서 돌아옴 = 떠난 그 문제 자리로 */
   if (np) { render({ pos: np, hl: np.id }); return; }
-  render({ pos: o.y != null ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null });
+  if (o.find && S.app !== 'rev') {   /* 10-22d JBL 카드 '✎ 넘버링' — 그 문제 자리로(없으면 하나 넣고) */
+    let it = findSrc(o.find); const was = it && !it.del;
+    if (!was) it = addOne(sj, o.find);
+    if (it) { if (it.del) { it.del = false; touch(it); put(it); }
+      if (S.cfg.f.lec && S.cfg.f.lec !== (lecKeys().has(it.lec) ? it.lec : '')) { S.cfg.f.lec = ''; cfgSave(); }
+      render({ pos: { id: it.id, off: Math.round(innerHeight * 0.22) }, hl: it.id });
+      if (!was) H.toast(it._added === 'link' ? '비슷한 넘버링 문제에 이 출처를 이었어요 — 그 문제로 왔어요' : '이 문제를 넘버링에 넣었어요 — 스토리를 바로 써 보세요', { level: 'result', id: 'nmone' });
+      delete it._added; return; }
+    H.toast('이 문제를 넘버링에서 찾지 못했어요');
+  }
+  render({ pos: o.y != null || o.lec ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null && !o.lec });
+  if (o.lec) {   /* 10-22d 강의 탭 '넘버링' — 그 강의 묶음으로(없으면 불러오기 안내) */
+    if ((lecCounts()[o.lec] || 0) > 0) { if (S.cfg.f.lec && S.cfg.f.lec !== o.lec) { S.cfg.f.lec = ''; cfgSave(); render({}); } requestAnimationFrame(() => jumpLec(o.lec)); }
+    else H.toast('이 강의는 아직 넘버링 문제가 없어요', { level: 'result', id: 'nmlec', action: { label: '이 강의 문제 불러오기', fn: () => importDlg({ lec: o.lec }) } });
+  }
 }
 window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => Object.assign(S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }, S.npos ? { npos: S.npos } : {}),   /* npos = JB 문제로 가기 전 이 문제(뒤로·↩ 돌아가기 = 그 문제로) */ _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp, _put: put };
 })();
