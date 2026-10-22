@@ -999,7 +999,7 @@ function render(o) {
   const done = () => {
     if (tok !== S.tok) return; applyFilter();
     const back = o.pos ? restorePos(o.pos) : false; if (back) pinPos(o.pos); else if (o.y != null) window.scrollTo(0, o.y);
-    if (o.flash) flash(o.flash); if (o.hl) flash(o.hl, true); S.posOK = true; spy(); topBtn();
+    if (o.flash) flash(o.flash); if (o.hl) flash(o.hl, true); if (o.lec) lecSettle(o.lec); S.posOK = true; spy(); topBtn();   /* 10-22d 강의 탭 '✎ 넘버링' — 나눠 그리기가 다 끝난 뒤 그 강의로(아래쪽 강의가 아직 없을 때 맨 위에 떨어지던 것) */
     if (o.resume && back && scrollY > 300) H.toast('마지막으로 보던 문제부터 이어서 보여 드려요', { level: 'result', id: 'nmresume', action: { label: '맨 위로', fn: () => window.scrollTo(0, 0) } });
   };
   applyFilter(true);
@@ -1072,6 +1072,12 @@ function jumpLec(k) {
   if (!el) { H.toast('이 강의 문제는 지금 필터·검색에 걸려 안 보여요 — 위의 조건(✕)을 풀어 보세요'); return; }
   const s = S.root && $('.nm-stick', S.root), y = el.getBoundingClientRect().top + scrollY - toph() - (s ? s.offsetHeight : 0) - 6;
   window.scrollTo(0, Math.max(0, y)); setCur(k);
+}
+function lecSettle(k) {   /* 10-22d 그 강의 머리로 — 위 그림이 늦게 들어와 밀리면 1.5초 동안 다시 맞춤(사용자가 스크롤·터치·키를 쓰면 멈춤) */
+  let dead = false; const ev = ['wheel', 'touchstart', 'keydown', 'mousedown'], stop = () => { dead = true; ev.forEach(e => removeEventListener(e, stop, true)); };
+  ev.forEach(e => addEventListener(e, stop, { capture: true, passive: true }));
+  const run = () => { if (dead || !S.root) return; const h = $(`.nm-lec[data-lec="${CSS.escape(k)}"]`, S.root); if (h && !h.hidden && Math.abs(h.getBoundingClientRect().top - (toph() + (($('.nm-stick', S.root) || {}).offsetHeight || 0) + 6)) < 8) return; jumpLec(k); };
+  run(); [200, 600, 1100, 1600].forEach(ms => setTimeout(run, ms)); setTimeout(stop, 1700);
 }
 function setCur(k) {
   if (k === S.curLec) return; S.curLec = k; const R = S.root; if (!R) return;
@@ -2733,11 +2739,10 @@ async function open(root, o, host) {
       delete it._added; return; }
     H.toast('이 문제를 넘버링에서 찾지 못했어요');
   }
-  render({ pos: o.y != null || o.lec ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null && !o.lec });
-  if (o.lec) {   /* 10-22d 강의 탭 '넘버링' — 그 강의 묶음으로(없으면 불러오기 안내) */
-    if ((lecCounts()[o.lec] || 0) > 0) { if (S.cfg.f.lec && S.cfg.f.lec !== o.lec) { S.cfg.f.lec = ''; cfgSave(); render({}); } requestAnimationFrame(() => jumpLec(o.lec)); }
-    else H.toast('이 강의는 아직 넘버링 문제가 없어요', { level: 'result', id: 'nmlec', action: { label: '이 강의 문제 불러오기', fn: () => importDlg({ lec: o.lec }) } });
-  }
+  const hasL = o.lec && (lecCounts()[o.lec] || 0) > 0;   /* 10-22d 강의 탭 '✎ 넘버링' — 그 강의 묶음으로(없으면 불러오기 안내) */
+  if (hasL && S.cfg.f.lec && S.cfg.f.lec !== o.lec) { S.cfg.f.lec = ''; cfgSave(); }
+  render({ pos: o.y != null || o.lec ? null : H.LS.get(posKey(sj), null), y: o.y, resume: o.y == null && !o.lec, lec: hasL ? o.lec : '' });
+  if (o.lec && !hasL) H.toast('이 강의는 아직 넘버링 문제가 없어요', { level: 'result', id: 'nmlec', action: { label: '이 강의 문제 불러오기', fn: () => importDlg({ lec: o.lec }) } });
 }
 window.JBLNUM = { open, leave, flush, side, _jbList: jbList, _aiParse: aiParse, _toText: toText, _hsh: hsh, _printHTML: printHTML, state: () => Object.assign(S.app === 'rev' ? { num: 1, rev: 1, sj: S.sj } : { num: 1, sj: S.sj }, S.npos ? { npos: S.npos } : {}),   /* npos = JB 문제로 가기 전 이 문제(뒤로·↩ 돌아가기 = 그 문제로) */ _S: S, _RV: RV, _app: a => appSet(a), _H: () => H, _qType: qType, _sanitize: sanitize, _plain: plain, _qKey: qKey, _qDisp: qDisp, _put: put };
 })();
