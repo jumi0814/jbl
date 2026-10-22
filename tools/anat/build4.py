@@ -1364,9 +1364,11 @@ LECW, LECQ = 1100, 72
 def webp64(im):
     b = io.BytesIO(); im.save(b, 'WEBP', quality=LECQ, method=6); return 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
 lecimg = {}; PREV = J.prev_images(SID)   # 강의 원본 이미지가 없으면 지금 docs/에 올라가 있는 이미지를 그대로 씀
-FIG_ONLY = set(getattr(S, 'FIG_ONLY_LECS', ()))   # 10-17 교과서처럼 공개 사이트에 그림만 싣는 강의 — 쪽 칩만 걸린 쪽은 이미지 없이 글자로(아래 nolink)
+FIG_ONLY = set(getattr(S, 'FIG_ONLY_LECS', ()))
+NOIMG = {(k_, int(p_)) for k_, ps_ in getattr(S, 'NOIMG_PAGES', {}).items() for p_ in ps_}   # 10-22 개인정보(교수 생년월일·연락처 등)가 보이는 쪽 — 공개 사이트에 쪽 그림을 싣지 않음(쪽 칩은 글자로)
+for _k, _p in sorted(NOIMG & ctx['figs']): print(f'  ⚠ NOIMG_PAGES {_k} p.{_p}가 그림(F:·예상 f=)으로 쓰임 — 그림 줄을 빼야 함')   # 10-17 교과서처럼 공개 사이트에 그림만 싣는 강의 — 쪽 칩만 걸린 쪽은 이미지 없이 글자로(아래 nolink)
 for (k, p) in sorted(ctx['cited'] | {(k_, p_) for k_, r_ in S.FORCE_PAGES.items() for p_ in r_}):
-    if k in FIG_ONLY and (k, p) not in ctx['figs']: continue
+    if (k in FIG_ONLY and (k, p) not in ctx['figs']) or (k, p) in NOIMG: continue
     f = S.lec_img_path(k, p)
     if not f or not os.path.exists(f):
         if f and f'{k}-{p}' in PREV: lecimg[f'{k}-{p}'] = PREV[f'{k}-{p}']
@@ -1424,14 +1426,14 @@ if os.path.exists(LXF):
     lx_js = "JBLHUB.legacy('%s',%s,%s);" % (SID, js(_lx['txt']), js(_lx.get('rev', '')))
     pack['lx'] = _h8(lx_js)
 # 옛 허브(JBLHUB.build 없음)가 이 팩을 받으면 새 index로 바꿔 엶(?v= 붙여 캐시 우회) — 같은 판을 이미 붙였으면 그냥 등록
-if FIG_ONLY:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩(이미지가 없어 열면 빈 창) — 모든 꼴(cite · cite cz(title) · data-pp 범위)
+if FIG_ONLY or NOIMG:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩(이미지가 없어 열면 빈 창) — 모든 꼴(cite · cite cz(title) · data-pp 범위)
     _CB = re.compile(r'<button class="cite[^"]*"([^>]*)>(.*?)</button>', re.S)
     _AT = lambda a, n: (re.search(n + r'="([^"]*)"', a) or [None, None])[1]
     def _nol1(m):
         a = m.group(1); k_ = _AT(a, 'data-k')
-        if k_ not in FIG_ONLY: return m.group(0)
         ps = [int(x) for x in re.findall(r'\d+', _AT(a, 'data-pp') or _AT(a, 'data-p') or '')]
-        if ps and all((k_, x) in ctx['figs'] for x in ps): return m.group(0)
+        if k_ not in FIG_ONLY and not any((k_, x) in NOIMG for x in ps): return m.group(0)
+        if k_ in FIG_ONLY and ps and all((k_, x) in ctx['figs'] and (k_, x) not in NOIMG for x in ps): return m.group(0)
         ti = _AT(a, 'title'); ti = (ti + ' · ' if ti else '') + '공개 사이트라 쪽 그림은 싣지 않음'
         return f'<span class="cite nolink" title="{ti}">{m.group(2)}</span>'
     def _nol(o):
