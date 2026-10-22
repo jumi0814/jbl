@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"6b25e717",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"52b8306b",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -1308,8 +1308,8 @@ body.navopen #top #navbtn{background:var(--tint,#F2EEE6);color:var(--ink)}
 #nav .nvswp .pi{display:flex;align-items:center;gap:10px;width:100%;min-height:36px;padding:0 10px;border:0;border-radius:6px;background:none;font-size:13.5px;color:var(--ink);text-align:left;cursor:pointer}
 #nav .nvswp .pi:hover{background:var(--tint,#F2EEE6)}#nav .nvswp .pi.on{background:color-mix(in srgb,var(--nc,#2F4F45) 9%,#fff);color:var(--nc,#2F4F45);font-weight:600}
 #nav .nvswp .pi[aria-disabled]{color:#6F685D;cursor:default}#nav .nvswp .pi[aria-disabled]:hover{background:none}#nav .nvswp .pk{margin-left:auto;font-size:12px;color:#6F685D}
-#nav .nvgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 4px}
-#nav .nvgrid .ni{padding:0 10px;gap:6px}#nav .nvgrid .nvwide{grid-column:1/-1}#nav .nvgl{grid-column:1/-1;font-size:11px;font-weight:650;color:var(--mut,#8A8275);margin:9px 10px 1px;letter-spacing:.02em}#nav .nvgrid .nvn .el{color:var(--nc,var(--acc));font-weight:650}#nav .nvgrid .nvn .r{font-size:11.5px;color:var(--mut,#8A8275)}
+#nav .nvgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px}
+#nav .nvgrid .ni{padding:0 5px 0 8px;gap:4px}#nav .nvgrid .nvwide{grid-column:1/-1}#nav .nvgl{grid-column:1/-1;font-size:11px;font-weight:650;color:var(--mut,#8A8275);margin:9px 10px 1px;letter-spacing:.02em}#nav .nvgrid .nvn .el{color:var(--nc,var(--acc));font-weight:650}#nav .nvgrid .nvn .r{font-size:11.5px;color:var(--mut,#8A8275)}
 #nav .nvtoc{margin:2px 0 6px 18px;padding-left:10px;border-left:1px solid var(--line)}
 #nav .nvtoc .scard2{position:relative;display:flex;align-items:center;gap:8px;width:100%;min-height:30px;margin:0;padding:0 8px;border:0;border-radius:6px;background:none;font-size:12px;font-weight:400;line-height:1.3;color:var(--sub);text-align:left;cursor:pointer}
 #nav .nvtoc .scard2:hover{background:var(--tint,#F2EEE6)}
@@ -2032,7 +2032,8 @@ ul.msub{padding-left:18px!important;list-style:circle}ul.msub>li::marker{color:#
 
 /* ===== 10-22d 디자인·편의성 개편(감사 work/_tmp/design_audit.md) — 내용 불변 · 덮어쓰기는 이 묶음 안에만 ===== */
 /* P3·R1·T8 사용자 결정 '이름 줄이지 않기 · 빵부스러기 강의 제목 자르지 않음' — 아이패드 세로·폰의 말줄임(…)을 없애고 줄바꿈(최대 둘째 줄) */
-@media (min-width:601px) and (max-width:860px){#top .crumb,body:not(.focus) #top .crumb{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block}#top .crumb .ccur{display:inline!important;white-space:normal}}
+@media (min-width:601px) and (max-width:860px){#top .crumb,body:not(.focus) #top .crumb{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block;font-size:12.5px;line-height:14px;padding:1px 0}#top .crumb .ccur{display:inline!important;white-space:normal}}   /* 제목은 자르지 않고 3줄까지 — 위 막대 높이 52 그대로(ux4f G5) */
+@media (min-width:861px){#top .crumb .ccur{line-height:15px}}@media (max-width:1300px){#top #qjb kbd{display:none}}   /* 넓은 화면도 긴 제목 3줄까지 52 안에 · 바로 가기 단추는 좁으면 Ctrl K 표시 빼기 */
 @media (max-width:480px){#top .crumb{flex-wrap:wrap;white-space:normal;overflow:visible}#top .crumb button.cbs{max-width:none;overflow:visible;text-overflow:clip;white-space:nowrap}#top .crumb .ccur{flex:1 1 auto;white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;overflow-wrap:break-word;line-height:1.35;padding-top:2px}}
 #memot{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;overflow-wrap:break-word}
 /* P2·U3 폰 플래시카드: ◀ ▶·몰라요/알아요 막대가 카드 글 위에 겹치던 것 → 카드 바로 아래(고정 안 함) */
@@ -2040,7 +2041,7 @@ ul.msub{padding-left:18px!important;list-style:circle}ul.msub>li::marker{color:#
 /* P15·T3·R5 폰 표: 영어 낱말이 글자 가운데에서 끊기던 것 → 낱말 단위 · 칸 최소 폭 + 표 칸만 가로 밀기 */
 @media (max-width:600px){#stage td,#stage th{overflow-wrap:break-word;word-break:keep-all;hyphens:auto}#stage .tblwrap table td,#stage .tblwrap table th{min-width:6.5em}#stage .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}}
 /* P19·C14 과목 메뉴 2칸: 숫자는 줄바꿈하지 않음(‘그림빵 풀기 11’ 한 줄) */
-#nav .nvgrid .ni .r{flex:none;margin-left:auto;white-space:nowrap}#nav .nvgrid .ni .el{white-space:nowrap}
+#nav .nvgrid .ni .r{flex:none;margin-left:auto;white-space:nowrap}#nav .nvgrid .ni .el{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all}
 /* P18·T7 작은 글자 명암(4.5 미달 3곳) */
 #numv .nm-lab{color:#6A645B}#numv .nm-pm,#numv .nm-lnk{color:#6A645B}
 /* P16·H6 허브 '넘버링' 구역 위 여백(다른 구역과 같게) */
@@ -2140,7 +2141,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="6b25e717",PV={"OMS1": "ad567907", "CONS": "caedca5a", "IMPL": "13bce3f2", "ANAT": "c235c0d0", "GERI": "29a0cf11", "PHARM": "a446e899", "ESTH": "b740d3cf"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="52b8306b",PV={"OMS1": "15b51f54", "CONS": "e07ecbe4", "IMPL": "d4ffe5ce", "ANAT": "589c4e63", "GERI": "1f0e39a3", "PHARM": "bb336fa0", "ESTH": "1a9bf09d"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
