@@ -34,13 +34,13 @@ async def main():
         pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
             P = (lambda t__: json.loads(t__[t__.index('JBLHUB.register(')+16:-2]))(open(J.DOCS + f'/packs/{s}.js', encoding='utf-8').read())
-            mx = 0; lim = 0
+            mx = 0; lim = 9999; over = -9999   # 강의마다 한 화면 높이가 다름(10-22d 빵부스러기가 긴 강의 제목을 자르지 않고 두 줄로 — 위 막대 52→67px) → 강의마다 비교
             for L in P['lect']:
                 await pg.goto('about:blank'); await pg.goto(U + f'#/{s}/{L["k"]}/learn'); await pg.wait_for_timeout(450)
-                r = await pg.evaluate(JS); mx = max(mx, r['h']); lim = r['lim']
+                r = await pg.evaluate(JS); mx = max(mx, r['h']); lim = min(lim, r['lim']); over = max(over, r['h'] - r['lim'])
                 want = min(8, len(L['jb']))
                 if r['h'] > r['lim'] or r['ol2'] or not r['trend'] or not r['strat'] or r['top'] != want or r['vis'] != min(5, want): ok(False, f'{s}/{L["k"]} {r} (⭐ 기대 {want})')
-            ok(lim >= 900 and mx <= lim, f'{s} 틀 최대 높이 {mx}px ≤ 한 화면 {lim}px · 경향 접힘 · 📌 보임 · ⭐ 개수')
+            ok(lim >= 900 and over <= 0, f'{s} 틀 최대 높이 {mx}px · 한 화면(가장 낮은 {lim}px)보다 넘친 강의 없음(최대 {over}px) · 경향 접힘 · 📌 보임 · ⭐ 개수')
         await pg.goto('about:blank'); await pg.goto(U + '#/OMS1/DD1/learn'); await pg.wait_for_timeout(600)
         await pg.click('#stage .ftop [data-tmore]'); await pg.wait_for_timeout(200)
         ok(await pg.evaluate("[...document.querySelectorAll('#stage .ftop li')].every(l=>l.offsetParent!==null)"), '⭐ 더 보기 → 전부 보임')
