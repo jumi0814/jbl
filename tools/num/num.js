@@ -1179,6 +1179,14 @@ function palOpen(btn, kind) {
 }
 function palPlace() { const p = $('.nm-pal'), b = S.palBtn; if (!p || !b || !b.isConnected) return; const r = b.getBoundingClientRect(), w = p.offsetWidth, h = p.offsetHeight; let y = r.bottom + 4; if (y + h > innerHeight - 8) y = Math.max(8, r.top - h - 4); p.style.left = Math.round(Math.max(8, Math.min(r.right - w, innerWidth - w - 8))) + 'px'; p.style.top = Math.round(y) + 'px'; }
 function edChanged() { if (S.ed) edInput(); tbKick(); }
+function edNext(d) {   /* 지금 칸을 저장하고 보이는 다음(이전) 문제의 같은 칸으로 — 넘버링 스토리를 연달아 쓰기 */
+  const E = S.ed; if (!E) return; const f = E.f, id = E.it.id; endEdit();
+  const arts = $$('.nm-it:not([hidden])', S.root), i = arts.findIndex(a => a.dataset.id === id), a = arts[i + d];
+  if (!a) { H.toast(d > 0 ? '마지막 문제예요' : '첫 문제예요', { id: 'nmnext', replace: true }); return; }
+  const it = S.by.get(a.dataset.id), el = a.querySelector(`.nm-c[data-f="${f}"]`); if (!it || !el) return;
+  const r = a.getBoundingClientRect(); if (r.top < toph() + 40 || r.top > innerHeight * 0.55) window.scrollTo(0, Math.max(0, r.top + scrollY - toph() - 90));
+  startEdit(el, it, f);
+}
 function startEdit(el, it, f, ev) {
   if (S.ed && S.ed.el === el) return;
   { const art = el.closest && el.closest('.nm-it'); if (art) { art.classList.add(f === 'st' ? 'revS' : 'revA'); if (S.app === 'rev' && f !== 'q' && art.classList.contains(f === 'st' ? 'hS' : 'hA')) hidSet(f === 'st' ? 's' : 'a', it.id, false); } }   /* 복습에서 가린 칸을 고치면 그 칸은 보임 */
@@ -2680,7 +2688,8 @@ function bind() {
     if ((e.metaKey || e.ctrlKey) && !e.altKey && (e.key === 'p' || e.key === 'P' || e.code === 'KeyP') && !$('.nm-ov')) { e.preventDefault(); e.stopPropagation(); printDlg(); return; }   /* 내 넘버링에서 ⌘/Ctrl P = 인쇄 범위·내용 고르기 */
     if (S.app === 'rev' && S.cfg.view === 'card' && !S.ed && !$('.nm-ov') && !$('.nm-menu') && !S.fp && cardKey(e)) return;
     if (!S.ed) { if (e.key === 'Escape' && !$('.nm-ov') && (S.fp || S.vo || S.drawer || $('.nm-menu'))) { e.preventDefault(); e.stopPropagation(); menuClose(); if (S.fp) fpOpen(false); if (S.vo) voOpen(false); if (S.drawer) drawer(false); } return; }
-    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); endEdit(); return; } const mod = e.metaKey || e.ctrlKey; if (mod && e.shiftKey && (e.key === 'x' || e.key === 'X' || e.key === '5')) { e.preventDefault(); }
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); endEdit(); return; } const mod = e.metaKey || e.ctrlKey;
+    if (mod && e.key === 'Enter' && !e.isComposing && S.ed && S.app !== 'rev') { e.preventDefault(); e.stopPropagation(); edNext(e.shiftKey ? -1 : 1); return; }   /* 10-22d 감사 U5 — ⌘/Ctrl+Enter = 저장하고 다음 문제 같은 칸(Shift = 이전) */ if (mod && e.shiftKey && (e.key === 'x' || e.key === 'X' || e.key === '5')) { e.preventDefault(); }
   }, true);
   let posT = 0;
   addEventListener('scroll', () => { if (!S.root) return; if (!spyT) spyT = setTimeout(() => { spy(); topBtn(); }, 120); clearTimeout(posT); posT = setTimeout(posSave, 900); }, { passive: true });   /* 마지막 위치 = 스크롤이 멈추고 0.9초 뒤 과목마다(num.pos.<과목>) */
