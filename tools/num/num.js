@@ -77,6 +77,9 @@ function sanitize(html, opt) {
         if (w) c.setAttribute('width', String(Math.round(w))); if (h) c.setAttribute('height', String(Math.round(h))); c.setAttribute('alt', '');
         c = nx; continue;
       }
+      if (tg === 'UL' && /\bkflow\b/.test(c.className || '')) {   /* 10-22 JBL에서 ' · '로 한 줄에 이어 보이던 목록(kflow) → 한 문단(글머리 기호가 갑자기 붙지 않게) */
+        const p = document.createElement('p'); [...c.children].forEach((li, i) => { if (i) p.appendChild(document.createTextNode(' · ')); while (li.firstChild) p.appendChild(li.firstChild); }); walk(p); c.replaceWith(p); c = nx; continue;
+      }
       if ((tg === 'OL' || tg === 'UL') && /\bcirc\b/.test(c.className || '')) {   /* 예상문제 답의 ①②③ 목록(번호가 글자에 이미 있음) → 문단 */
         const f = document.createDocumentFragment(); for (const li of [...c.children]) { const p = document.createElement('p'); while (li.firstChild) p.appendChild(li.firstChild); walk(p); f.appendChild(p); }   /* 칸 안도 정리(인용 단추·꾸밈 span이 남지 않게) */
         c.replaceWith(f); c = nx; continue;
@@ -237,13 +240,14 @@ function mkSeed(sj, b, r, i, seed) {
 const RISK = /<(?:script|iframe|object|embed|style|link|meta|svg|math|form|input|textarea|button|select|base|frame)\b|\son[a-z]+\s*=|javascript:|data:(?!image\/(?:png|jpe?g|gif|webp);base64,)/i;
 const safe = h => (h && RISK.test(h) ? sanitize(h) : (h || ''));   /* 저장·백업에서 읽은 글은 위험한 꼴이 보이면 정리해서 보여 줌 */
 function mkRec(sj, r) { return { id: r.id, s: sj, kind: r.k || 'user', lec: r.lec || '', q: safe(r.q), a: safe(r.a), st: safe(r.st), note: r.note || '', tags: r.tags || [], yrs: r.yrs || [], src: r.src || [], ref: r.ref || null, q0: r.q0, a0: r.a0, pm: r.pm && typeof r.pm === 'object' ? r.pm : null, done: !!r.done, o: r.o != null ? r.o : 1e6, c: r.c || 0, u: r.u || 0, del: !!r.del, rv: r.rv || [], rvok: !!r.rvok, prev: r.prev || null }; }
+function lecDisp(prof, t) { const p = String(prof || '').split('(')[0].trim(); return p ? p + ' - ' + t : t; }
 function lectures(sj, seed) {
   const L = [], P = H.PACKS[sj], X = idx(sj);
   if (P) P.lect.forEach(l => L.push({ k: l.k, t: l.title, prof: l.prof || '' }));
   if (seed) seed.lecs.forEach(l => L.push({ k: l.k, t: l.t, prof: l.prof || '', lab: l.lab || '' }));
   (X.ul || []).forEach(l => { if (l && l.k && !L.some(x => x.k === l.k)) L.push({ k: l.k, t: l.t, user: 1 }); });
-  for (const l of L) if (X.lt && X.lt[l.k]) l.t = X.lt[l.k];
-  L.push({ k: '', t: '강의 미분류' });
+  for (const l of L) { if (X.lt && X.lt[l.k]) { l.t = X.lt[l.k]; l.d = l.t; } else l.d = lecDisp(l.prof, l.t); }   /* 10-22 사용자 '강의자료 이름이 아니라 교수님 이름 - 강의 제목 으로 … 임영준 - 진단과 치료~~' — 화면 이름 d(바꾼 이름은 그대로) · t = 원래 이름(Word 가져오기 맞춤) */
+  L.push({ k: '', t: '강의 미분류', d: '강의 미분류' });
   return L;
 }
 function waitPack(sj) {   /* JB 과목이면 그 과목 팩(강의 목록)이 올 때까지 — 주소로 바로 열 때(팩은 허브가 부팅 때 차례로 받음) */
@@ -446,6 +450,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tag.pf b{font-weight:800;color:#2F2A24}#numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
 #numv .nm-qt{margin-left:7px;font-size:12px;font-weight:500;color:#78716A;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0;user-select:none;-webkit-user-select:none}
 #numv .nm-qt .p{margin-left:5px;font-weight:800;color:#3A342C}#numv .nm-qt .sep{margin:0 5px;color:#A39A8C}   /* 10-16 교수 태그 굵게(사용자 '지금은 잘 안 보여') */
+#numv .nm-lcb{flex:none;border:1px solid #CFE0D2;background:#F0F7F1;color:#24563A;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}#numv .nm-lcb:hover,#numv .nm-lcb:focus-visible{background:#E2F0E5;border-color:#A9CBB1}
 #numv .nm-jbb{flex:none;border:1px solid #D8C9E8;background:#F6F1FB;color:#4F2F78;border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}
 #numv .nm-jbb:hover,#numv .nm-jbb:focus-visible{background:#EDE3F8;border-color:#BFA8DA}
 #numv .nm-edm{font-size:12px;color:#8C857A;line-height:21px;padding:0 1px;cursor:help}
@@ -469,7 +474,9 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tw{overflow-x:auto;max-width:100%}
 #numv .nm-c img{max-width:100%;height:auto;vertical-align:top;margin:2px 0}
 #numv .nm-c ul,#numv .nm-c ol{margin:2px 0;padding-left:1.6em;white-space:normal}
-#numv .nm-c li{white-space:pre-wrap}
+#numv .nm-c li{white-space:normal}#numv .nm-c li>p{margin:0}#numv .nm-c li:has(>ul:first-child,>ol:first-child){list-style:none}   /* 10-22 글머리 기호 쓸 때 갑자기 줄이 바뀌고 줄 간격이 생기던 것(li 안 줄바꿈 글자·문단 여백) · 안쪽 목록만 든 줄은 JBL처럼 기호 없음 */
+#numv .nm-tb .lsi{font-size:12px;font-weight:700;letter-spacing:-.5px}
+#numv .nm-c img.nm-isel{outline:2px solid var(--acc,#0F5C5A);outline-offset:1px}#numv .nm-irh{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:3px;background:#fff;border:2px solid var(--acc,#0F5C5A);box-shadow:0 1px 3px rgba(0,0,0,.25);cursor:nwse-resize;z-index:58;touch-action:none}
 #numv .nm-s .nm-c{cursor:text;border-radius:4px;transition:background .15s;margin:0 -4px;padding:0 4px}
 #numv .nm-s .nm-c:not([contenteditable=true]):hover{background:#FBF5E6}
 #numv .nm-ph{color:#A39B8E;font-weight:400}
@@ -822,7 +829,7 @@ function prTag(it) {   /* 넘버링 문제 머리 오른쪽 작은 우선순위 
 }
 /* 10-22 사용자 '예상문제도 해당 예상문제를 출제한 강의자료 정리본 카드로 바로가는 버튼이 있고, 다시 돌아올 수 있었으면' — 팩 preds의 lc(build4 — 그림·인용 쪽·관련 기출의 정리본 카드) · 길은 JB 문제와 같음(↩ 알약) */
 function lcRef(it) { for (const s of it.src || []) if (s.t === 'pred' && s.s && s.id && H.PACKS[s.s]) { predMeta(s.s, s.id); const m = PMC.get(s.s), p = m && m.by.get(s.id); if (p && p.lc) return { s: s.s, lc: p.lc }; } return null; }
-const lcBtn = it => lcRef(it) ? `<button type="button" class="nm-jbb" data-act="lecgo" title="이 예상문제가 나온 정리본 카드로 — 아래 '↩ 돌아가기'로 이 문제로 돌아와요">정리본</button>` : '';
+const lcBtn = it => lcRef(it) ? `<button type="button" class="nm-lcb" data-act="lecgo" title="이 예상문제가 나온 정리본 카드로 — 아래 '↩ 돌아가기'로 이 문제로 돌아와요">정리본</button>` : '';
 function lecGo(it, btn) {
   const r = lcRef(it); if (!r) { H.toast('이 문제와 이어진 정리본 카드가 없어요'); return; }
   const a = (btn && btn.closest('.nm-it')) || artOf(it.id), no = a ? (a.querySelector('.nm-no') || {}).textContent || '' : '';
@@ -893,7 +900,7 @@ function sideHTML() {
   const dot = id => `<i class="d" style="background:${esc(H.sjColor ? H.sjColor(id) : '#9A9288')}"></i>`;
   const sjl = subs.map(s => { const n = s.id === S.sj ? k.n : (C[s.id] || 0); return `<button type="button" class="nm-si${s.id === S.sj ? ' on' : ''}" data-sj="${esc(s.id)}"${s.id === S.sj ? ' aria-current="true"' : ''}>${dot(s.id)}<span class="l">${esc(s.t)}</span>${n ? `<small>${n}</small>` : ''}</button>`; }).join('') + `<button type="button" class="nm-si" data-sj="__new">${ICO.plus}<span class="l">새 과목 만들기</span></button>`;
   const L = S.lecs.filter(l => ln[l.k]);
-  const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.t + (l.prof ? ' · ' + l.prof : ''))} — 누르면 그 위치로"><span class="l">${esc(l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
+  const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.d || l.t)} — 누르면 그 위치로"><span class="l">${esc(l.d || l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
   const sh = (subjects().find(s => s.id === S.sj) || {}).sh || cur.t, lc = !!S.cfg.ljc;
   return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">내 넘버링</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>` + appSwHTML()
     + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
@@ -910,7 +917,7 @@ function saveTxt() { const st = S.saveSt; return st === 'ok' ? '저장됨 ✓' :
 function barHTML() {
   const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null;
   return `<div class="nm-stick"><div class="nm-bar">`
-    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.t) : '› 강의'}</span></button></span>`
+    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.d || l.t) : '› 강의'}</span></button></span>`
     + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·답안·스토리 검색" value="${esc(S.q)}" aria-label="넘버링 검색"></label>`
     + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="필터·정렬 — 강의·제작 상태·유형·출처·연도·정렬">${ICO.filter}<span>필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
     + `<div class="nm-vopt${S.vo ? ' open' : ''}"><span class="nm-seg" role="group" aria-label="보기"><button type="button" data-mode="grp" class="${C.mode === 'grp' ? 'on' : ''}" aria-pressed="${C.mode === 'grp'}" title="강의마다 머리를 두고 보기">강의별</button><button type="button" data-mode="all" class="${C.mode === 'all' ? 'on' : ''}" aria-pressed="${C.mode === 'all'}" title="강의 머리 없이 한 줄로 이어 보기">전체 목록</button></span>`
@@ -927,7 +934,7 @@ function fpanHTML() {
   const opt = (v, t, cur) => `<option value="${esc(v)}"${String(cur) === String(v) ? ' selected' : ''}>${esc(t)}</option>`;
   return `<div class="nm-fpan" data-fpan="1"${S.fp ? '' : ' hidden'} role="group" aria-label="필터·정렬">`
     + `<span class="k">${S.app === 'rev' ? '복습 범위' : '제작 상태'}</span><div class="nm-stg">${stgHTML(counts())}</div>`
-    + `<span class="k">강의만 보기</span><select data-cf="lec" aria-label="강의만 보기(그 강의 문제만)">${opt('', '모든 강의', f.lec)}${S.lecs.filter(l => l.k && ln[l.k]).map(l => opt(l.k, l.t + ' (' + ln[l.k] + ')', f.lec)).join('')}${ln[''] ? opt('__none', '강의 미분류 (' + ln[''] + ')', f.lec) : ''}</select>`
+    + `<span class="k">강의만 보기</span><select data-cf="lec" aria-label="강의만 보기(그 강의 문제만)">${opt('', '모든 강의', f.lec)}${S.lecs.filter(l => l.k && ln[l.k]).map(l => opt(l.k, (l.d || l.t) + ' (' + ln[l.k] + ')', f.lec)).join('')}${ln[''] ? opt('__none', '강의 미분류 (' + ln[''] + ')', f.lec) : ''}</select>`
     + `<span class="k">문제 유형</span><select data-cf="type" aria-label="문제 유형">${opt('', '모든 유형', f.type)}${opt('ess', '서술형·넘버링형만', f.type)}${Object.keys(TYPES).map(k => opt(k, TYPES[k], f.type)).join('')}</select>`
     + `<span class="k">출처</span><select data-cf="src" aria-label="출처">${opt('', '모든 출처', f.src)}${Object.keys(KIND).map(k => opt(k, KIND[k], f.src)).join('')}</select>`
     + `<span class="k">출제 연도</span><select data-cf="yr" aria-label="출제 연도">${opt('', '모든 연도', f.yr)}${yrs.map(y => opt(String(y), y + '년 출제', f.yr)).join('')}${opt('none', '연도 없음', f.yr)}</select>`
@@ -939,7 +946,7 @@ function infoHTML(vis, k) {
   const C = S.cfg, f = C.f, ch = [];
   const chip = (x, t) => `<button type="button" class="nm-fchip" data-fx="${x}" title="이 조건 풀기"><span>${esc(t)}</span><i aria-hidden="true">✕</i></button>`;
   if (S.q) ch.push(chip('q', '검색: ' + S.q));
-  if (f.lec) ch.push(chip('lec', '강의: ' + (f.lec === '__none' ? '강의 미분류' : lecOf(f.lec).t)));
+  if (f.lec) ch.push(chip('lec', '강의: ' + (f.lec === '__none' ? '강의 미분류' : (lecOf(f.lec).d || lecOf(f.lec).t))));
   if (f.st !== '') ch.push(chip('st', '상태: ' + (f.st === 'rv' ? '⚠ 검토 필요' : STN[+f.st] || f.st)));
   if (f.type) ch.push(chip('type', '유형: ' + (f.type === 'ess' ? '서술형·넘버링형' : TYPES[f.type] || f.type)));
   if (f.src) ch.push(chip('src', '출처: ' + (KIND[f.src] || f.src)));
@@ -975,7 +982,7 @@ function render(o) {
   let cur = '', curLec = null, n = 0;
   const flush = () => { if (cur) { chunks.push(cur); cur = ''; } };
   for (const it of L) {
-    if (C.mode === 'grp') { const lk = K.has(it.lec) ? it.lec : ''; if (lk !== curLec) { curLec = lk; const l = lecOf(lk); cur += `<h2 class="nm-lec" data-lec="${esc(lk)}">${esc(l.t)}<small>${esc([l.prof, l.lab].filter(Boolean).join(' · '))}</small></h2>`; } }
+    if (C.mode === 'grp') { const lk = K.has(it.lec) ? it.lec : ''; if (lk !== curLec) { curLec = lk; const l = lecOf(lk); cur += `<h2 class="nm-lec" data-lec="${esc(lk)}">${esc(l.d || l.t)}<small>${esc([l.lab].filter(Boolean).join(' · '))}</small></h2>`; } }
     const v = visible(it); cur += itemHTML(it, 0, !v); n++;
     if (n % 40 === 0) flush();
   }
@@ -1101,12 +1108,13 @@ const curEd = () => S.formEd || S.ed;
 function tbHTML(form) {
   return `<div class="nm-tb" role="toolbar" aria-label="서식">`
     + `<button type="button" data-cmd="bold" title="굵게 (⌘/Ctrl B)"><b>B</b></button><button type="button" data-cmd="underline" title="밑줄 (⌘/Ctrl U)"><u>U</u></button>`
+    + `<button type="button" data-cmd="insertUnorderedList" title="글머리 기호 목록" aria-label="글머리 기호 목록"><span class="lsi">•≡</span></button><button type="button" data-cmd="insertOrderedList" title="번호 목록" aria-label="번호 목록"><span class="lsi">1.</span></button>`
     + `<button type="button" data-pal="fc" title="글자색" aria-label="글자색"><span class="fcA">가</span></button>`
     + `<button type="button" data-pal="more" title="더보기 — 형광펜·번호·글머리표·기울임·표·그림·실행 취소" aria-label="서식 더보기">⋯</button>`
     + (form ? '' : `<i class="sep"></i><button type="button" class="done" data-cmd="done" title="편집 끝 (Esc · 바깥 누르기) — 자동 저장됨" aria-label="편집 끝">✓</button>`) + `</div>`;
 }
 let tbRaf = 0;
-function tbKick() { if (!tbRaf) tbRaf = requestAnimationFrame(() => { tbRaf = 0; tbPlace(); palPlace(); }); }
+function tbKick() { if (!tbRaf) tbRaf = requestAnimationFrame(() => { tbRaf = 0; tbPlace(); palPlace(); irPlace(); }); }
 function tbWatch(on) { if (on) { addEventListener('scroll', tbKick, { capture: true, passive: true }); addEventListener('resize', tbKick); } else { removeEventListener('scroll', tbKick, { capture: true }); removeEventListener('resize', tbKick); } }
 function tbMount(E, box) {
   const t = document.createElement('div'); t.innerHTML = tbHTML(!!E.form); const tb = t.firstElementChild; box.appendChild(tb); E.tb = tb;
@@ -1123,6 +1131,22 @@ function tbPlace() {   /* 편집 칸 오른쪽 위(문제 칸은 오른쪽 아�
   const vis = fr.bottom > minT + 4 && fr.top < innerHeight - 10;
   const x = Math.max(8, Math.min(right - w, innerWidth - w - 8));
   tb.style.transform = `translate(${Math.round(x)}px,${Math.round(y)}px)`; tb.style.visibility = vis ? 'visible' : 'hidden';
+}
+/* 10-22 사용자 '내가 사진 넣으면 사진 크기 비율 유지되돼 그냥 크기만 조정 가능' — 편집 중 그림을 누르면 오른쪽 아래 손잡이 · 끌면 너비만(높이 = 원래 비율) · 놓으면 width·height 저장 */
+const IR = { img: null, h: null };
+function irClose() { if (IR.h) IR.h.remove(); if (IR.img) IR.img.classList.remove('nm-isel'); IR.img = null; IR.h = null; }
+function irPlace() { if (!IR.img || !IR.h) return; if (!IR.img.isConnected) { irClose(); return; } const r = IR.img.getBoundingClientRect(); IR.h.style.transform = `translate(${Math.round(r.right - 8)}px,${Math.round(r.bottom - 8)}px)`; }
+function irOpen(img) {
+  irClose(); const root = document.getElementById('numv'); if (!root) return; IR.img = img; img.classList.add('nm-isel');
+  const h = document.createElement('div'); h.className = 'nm-irh'; h.title = '끌어서 크기 조절 — 비율 그대로'; h.setAttribute('aria-label', '그림 크기 조절'); root.appendChild(h); IR.h = h; irPlace();
+  h.addEventListener('mousedown', e => e.preventDefault());
+  h.addEventListener('pointerdown', e => {
+    e.preventDefault(); e.stopPropagation(); const E = curEd(), r0 = img.getBoundingClientRect(), x0 = e.clientX, w0 = r0.width, ratio = (img.naturalHeight && img.naturalWidth) ? img.naturalHeight / img.naturalWidth : (r0.height / Math.max(1, r0.width)), max = Math.max(60, (E && E.el.clientWidth) || 2000);
+    try { h.setPointerCapture(e.pointerId); } catch (_) {}
+    const mv = ev => { const w = Math.max(40, Math.min(max, Math.round(w0 + ev.clientX - x0))); img.style.width = w + 'px'; img.setAttribute('width', String(w)); img.setAttribute('height', String(Math.round(w * ratio))); irPlace(); };
+    const up = () => { h.removeEventListener('pointermove', mv); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); img.style.width = ''; if (curEd()) edChanged(); irPlace(); };
+    h.addEventListener('pointermove', mv); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
+  });
 }
 function palClose() { $$('.nm-pal').forEach(p => p.remove()); S.palBtn = null; }
 function palOpen(btn, kind) {
@@ -1166,7 +1190,7 @@ function startEdit(el, it, f, ev) {
   if (!r || !el.contains(r.startContainer)) { r = document.createRange(); r.selectNodeContents(el); r.collapse(false); }
   sel.removeAllRanges(); sel.addRange(r);
 }
-function edInput() { const E = S.ed; if (!E) return; saveState('ing'); clearTimeout(E.t); E.t = setTimeout(edSave, 700); if (E.f === 'q') tbKick(); }
+function edInput() { const E = S.ed; if (!E) return; irPlace(); saveState('ing'); clearTimeout(E.t); E.t = setTimeout(edSave, 700); if (E.f === 'q') tbKick(); }
 function edSave() {
   const E = S.ed; if (!E) return; clearTimeout(E.t); E.t = 0;
   let h = toStore(E.el.innerHTML); if (isEmpty(h)) h = '';
@@ -1182,7 +1206,7 @@ function reloadIt(it) { it.stale = 0; let r = null; try { const v = sGet(keyI(it
 function endEdit(silent) {
   const E = S.ed; if (!E) return; edSave(); S.ed = null; if (E.it.stale) reloadIt(E.it);   /* 고친 것 없이 닫아도 다른 창의 글로 맞춤 */
   try { E.el.contentEditable = 'false'; E.el.removeAttribute('contenteditable'); } catch (e) {}
-  if (E.tb && E.tb.isConnected) E.tb.remove(); palClose(); if (!S.formEd) tbWatch(false);
+  if (E.tb && E.tb.isConnected) E.tb.remove(); palClose(); irClose(); if (!S.formEd) tbWatch(false);
   if (!silent && E.el.isConnected) rerenderItem(E.it);
 }
 function cellAt() { const s = getSelection(), E = curEd(); if (!s.rangeCount || !E) return null; let n = s.anchorNode; while (n && n !== E.el) { if (n.nodeType === 1 && (n.tagName === 'TD' || n.tagName === 'TH')) return n; n = n.parentNode; } return null; }
@@ -1444,7 +1468,7 @@ function ask(msg, o) {
 function newForm(pre) {
   pre = pre || {};
   const subs = subjects(), sj = pre.s || S.sj;
-  const lecOpts = sjv => { const L = sjv === S.sj ? S.lecs : lectures(sjv, (window.JBLNUM_SEED || {})[sjv]); return L.filter(l => l.k).map(l => `<option value="${esc(l.k)}"${l.k === (pre.lec != null ? pre.lec : S.cfg.f.lec) ? ' selected' : ''}>${esc(l.t)}</option>`).join('') + '<option value="">강의 미분류</option><option value="__new">+ 새 강의 만들기…</option>'; };
+  const lecOpts = sjv => { const L = sjv === S.sj ? S.lecs : lectures(sjv, (window.JBLNUM_SEED || {})[sjv]); return L.filter(l => l.k).map(l => `<option value="${esc(l.k)}"${l.k === (pre.lec != null ? pre.lec : S.cfg.f.lec) ? ' selected' : ''}>${esc(l.d || l.t)}</option>`).join('') + '<option value="">강의 미분류</option><option value="__new">+ 새 강의 만들기…</option>'; };
   const ov = dlg('새 문제 만들기', `<div class="nm-g2"><label class="nm-fld"><span>과목</span><select data-nf="s">${subs.map(s => `<option value="${esc(s.id)}"${s.id === sj ? ' selected' : ''}>${esc(s.t)}</option>`).join('')}</select></label><label class="nm-fld"><span>강의</span><select data-nf="lec">${lecOpts(sj)}</select></label></div>`
     + richField('q', '문제', pre.q, '예: ○○의 적응증 4가지를 쓰시오.') + `<div class="nm-g2">${richField('a', '답안', pre.a)}${richField('st', '넘버링 스토리 (비워 둬도 저장돼요)', pre.st)}</div>`
     + `<div class="nm-g2"><label class="nm-fld"><span>출처</span><input type="text" data-nf="src" value="직접 추가" placeholder="예: 25 수업 강조, 스터디 예상"></label><label class="nm-fld"><span>출제 연도(있으면)</span><input type="text" data-nf="yrs" placeholder="예: 25, 23"></label></div>`
@@ -1570,11 +1594,11 @@ async function importDlg() {
   const P = () => H.PACKS[st.sj];
   const fill = () => {
     const L = jbList(st.sj), lecs = P().lect;
-    ov.querySelector('[data-if=lec]').innerHTML = `<option value="">모든 강의</option>` + lecs.map(l => `<option value="${esc(l.k)}"${l.k === st.lec ? ' selected' : ''}>${esc(l.title)}</option>`).join('');
+    ov.querySelector('[data-if=lec]').innerHTML = `<option value="">모든 강의</option>` + lecs.map(l => `<option value="${esc(l.k)}"${l.k === st.lec ? ' selected' : ''}>${esc(lecDisp(l.prof, l.title))}</option>`).join('');
     const ys = [...new Set(L.flatMap(x => x.yrs))].sort((a, b) => b - a);
     ov.querySelector('[data-if=yr]').innerHTML = `<option value="">모든 연도</option>` + ys.map(y => `<option value="${y}"${String(y) === st.yr ? ' selected' : ''}>${y}년 출제</option>`).join('');
   };
-  const lecT = k => { const l = P().lect.find(x => x.k === k); return l ? l.title : k; };
+  const lecT = k => { const l = P().lect.find(x => x.k === k); return l ? lecDisp(l.prof, l.title) : k; };
   const filt = () => { const ws = st.q.toLowerCase().split(/\s+/).filter(Boolean), BM = bmSet(st.sj); const r = jbList(st.sj).filter(x => (!st.bm || !!BM[x.mk]) && (!st.lec || x.lec === st.lec) && (!st.src || x.t === st.src) && (!st.yr || x.yrs.includes(+st.yr)) && (!st.ty || (st.ty === 'ess' ? essayish(x.ty) : x.ty === st.ty)) && (!st.pr || (x.pm && st.pr.indexOf(x.pm.pr || '-') >= 0)) && ws.every(w => x.txt.indexOf(w) >= 0)); return ord(r); };
   const ord = L => st.so === 'prof' ? sortPY(L, st.sj) : st.so === 'pr' ? L.map((x, i) => [x, i]).sort((a, b) => ((PRN[(b[0].pm || {}).pr] || 0) - (PRN[(a[0].pm || {}).pr] || 0)) || a[1] - b[1]).map(z => z[0]) : L;
   const draw = () => {
@@ -1770,13 +1794,13 @@ function scopeList(sc, lec, stf) {
   if (stf === 'n2') L = L.filter(it => stOf(it) !== 2); else if (stf) L = L.filter(it => String(stOf(it)) === stf);
   return L;
 }
-function scopeLab(sc, lec) { return sc === 'sel' ? '고른 문제' : sc === 'flt' ? '지금 보이는 문제' : sc === 'lec' ? lecOf(lec).t : '과목 전체'; }
+function scopeLab(sc, lec) { return sc === 'sel' ? '고른 문제' : sc === 'flt' ? '지금 보이는 문제' : sc === 'lec' ? (lecOf(lec).d || lecOf(lec).t) : '과목 전체'; }
 function scopeHTML(pre, name) {
   const n = lecCounts(), nS = [...S.sel].filter(id => S.by.has(id) && !S.by.get(id).del).length, L = S.lecs.filter(l => n[l.k]);
   if (pre === 'sel' && !nS) pre = 'all';
   const r = (v, t, c, dis) => `<label class="nm-rad${dis ? ' off' : ''}"><input type="radio" name="${name}" value="${v}"${pre === v ? ' checked' : ''}${dis ? ' disabled' : ''}>${t}${c != null ? ` <small>${c}</small>` : ''}</label>`;
   const cl = S.curLec != null && n[S.curLec] ? S.curLec : (L[0] || {}).k;
-  return `<div class="nm-fld"><span>범위</span><div class="nm-rads">${r('all', '과목 전체', counts().n)}${r('flt', '지금 보이는 문제(필터·검색)', S.visN || 0)}${r('sel', '고른 문제', nS, !nS)}<span class="nm-radl">${r('lec', '강의', null, !L.length)}<select data-sc-lec="1" aria-label="강의"${L.length ? '' : ' disabled'}>${L.map(l => `<option value="${esc(l.k)}"${l.k === cl ? ' selected' : ''}>${esc(l.t)} (${n[l.k]})</option>`).join('')}</select></span></div></div>`;
+  return `<div class="nm-fld"><span>범위</span><div class="nm-rads">${r('all', '과목 전체', counts().n)}${r('flt', '지금 보이는 문제(필터·검색)', S.visN || 0)}${r('sel', '고른 문제', nS, !nS)}<span class="nm-radl">${r('lec', '강의', null, !L.length)}<select data-sc-lec="1" aria-label="강의"${L.length ? '' : ' disabled'}>${L.map(l => `<option value="${esc(l.k)}"${l.k === cl ? ' selected' : ''}>${esc(l.d || l.t)} (${n[l.k]})</option>`).join('')}</select></span></div></div>`;
 }
 function scopeOf(ov, name) { const r = ov.querySelector(`input[name=${name}]:checked`), l = ov.querySelector('[data-sc-lec]'); return { sc: r ? r.value : 'all', lec: l ? l.value : '' }; }
 function scopeWire(ov, name, f) { ov.addEventListener('change', e => { if (e.target.matches('[data-sc-lec]')) { const r = ov.querySelector(`input[name=${name}][value=lec]`); if (r && !r.disabled) r.checked = true; } f(); }); }
@@ -2290,7 +2314,7 @@ function revBarHTML() {
   const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null, card = C.view === 'card', rnd = !!(RV.ses && RV.ses.rnd);
   const tg = (attr, on, t, ti) => `<button type="button" ${attr} class="${on ? 'on' : ''}" aria-pressed="${!!on}" title="${esc(ti)}">${t}</button>`;
   return `<div class="nm-stick"><div class="nm-bar">`
-    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.t) : '› 강의'}</span></button></span>`
+    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.d || l.t) : '› 강의'}</span></button></span>`
     + `<span class="nm-seg nm-rvw" role="group" aria-label="복습 방식">${tg('data-rview="scroll"', !card, '스크롤', '스크롤 복습 — Word처럼 이어서 · 가리기 · 내 답안 쓰기')}${tg('data-rview="card"', card, '카드', '카드 복습 — 한 장씩 뒤집고 평가(Space·←→·1 2 3)')}</span>`
     + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·정답·스토리 검색" value="${esc(S.q)}" aria-label="복습 검색"></label>`
     + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="복습 범위(전체·미복습·취약…) · 강의·유형·출처·연도 · 정렬">${ICO.filter}<span>범위·필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
@@ -2311,7 +2335,7 @@ function rscHTML() {
 function revInfoHTML(vis) {
   const s = RV.ses, f = S.cfg.f, st = sesStat(), ch = [];
   const chip = (x, t) => `<button type="button" class="nm-fchip" data-fx="${x}" title="이 조건 풀기"><span>${esc(t)}</span><i aria-hidden="true">✕</i></button>`;
-  if (S.q) ch.push(chip('q', '검색: ' + S.q)); if (f.lec) ch.push(chip('lec', '강의: ' + (f.lec === '__none' ? '강의 미분류' : lecOf(f.lec).t))); if (f.type) ch.push(chip('type', '유형: ' + (f.type === 'ess' ? '서술형·넘버링형' : TYPES[f.type] || f.type))); if (f.src) ch.push(chip('src', '출처: ' + (KIND[f.src] || f.src))); if (f.yr) ch.push(chip('yr', f.yr === 'none' ? '연도 없음' : f.yr + '년 출제'));
+  if (S.q) ch.push(chip('q', '검색: ' + S.q)); if (f.lec) ch.push(chip('lec', '강의: ' + (f.lec === '__none' ? '강의 미분류' : (lecOf(f.lec).d || lecOf(f.lec).t)))); if (f.type) ch.push(chip('type', '유형: ' + (f.type === 'ess' ? '서술형·넘버링형' : TYPES[f.type] || f.type))); if (f.src) ch.push(chip('src', '출처: ' + (KIND[f.src] || f.src))); if (f.yr) ch.push(chip('yr', f.yr === 'none' ? '연도 없음' : f.yr + '년 출제'));
   if (s && s.rnd) ch.push(`<button type="button" class="nm-fchip" data-ract="unshuf" title="원래 순서로"><span>순서: 무작위</span><i aria-hidden="true">✕</i></button>`);
   return `<span><b>${esc(scLab(s))}</b> 회차 · ${ch.length ? `보이는 문제 <b>${vis}</b> / ${st.ids.length}` : `<b>${st.ids.length}</b>문제`} · 평가 <b>${st.n}</b>${st.n ? ` <span class="nm-mkc"><i class="m0">모름 ${st.c[0]}</i> <i class="m1">애매함 ${st.c[1]}</i> <i class="m2">암기 ${st.c[2]}</i></span>` : ''}</span>${ch.join('')}${ch.length > 1 ? '<button type="button" class="nm-clr" data-act="fclr">모두 해제</button>' : ''}<span class="nm-sp"></span><button type="button" class="nm-btn sm" data-ract="end" title="이 회차 정리 — 모름·애매함만 다시 · 새 회차">회차 끝내기</button>`;
 }
@@ -2323,7 +2347,7 @@ function revRender(o) {
   if (S.cfg.view === 'card') { main.innerHTML = revBarHTML() + '<div class="nm-cardv" data-cardv="1"></div>'; sideRender(); cardPaint(); S.posOK = false; topBtn(); if (o.y != null) window.scrollTo(0, 0); return; }
   const L = ordered(), K = lecKeys(), grp = S.cfg.mode === 'grp' && !RV.ses.rnd, chunks = []; let cur = '', curLec = null, n = 0;
   const fl = () => { if (cur) { chunks.push(cur); cur = ''; } };
-  for (const it of L) { if (!inSes(it)) continue; if (grp) { const lk = K.has(it.lec) ? it.lec : ''; if (lk !== curLec) { curLec = lk; const l = lecOf(lk); cur += `<h2 class="nm-lec" data-lec="${esc(lk)}">${esc(l.t)}<small>${esc([l.prof, l.lab].filter(Boolean).join(' · '))}</small></h2>`; } } cur += revItemHTML(it, 0, !visible(it)); n++; if (n % 30 === 0) fl(); }
+  for (const it of L) { if (!inSes(it)) continue; if (grp) { const lk = K.has(it.lec) ? it.lec : ''; if (lk !== curLec) { curLec = lk; const l = lecOf(lk); cur += `<h2 class="nm-lec" data-lec="${esc(lk)}">${esc(l.d || l.t)}<small>${esc([l.lab].filter(Boolean).join(' · '))}</small></h2>`; } } cur += revItemHTML(it, 0, !visible(it)); n++; if (n % 30 === 0) fl(); }
   fl();
   main.innerHTML = `${revBarHTML()}<div class="nm-doc" data-doc="1">${chunks[0] || ''}${n ? '' : revEmptyHTML()}</div>`;
   sideRender();
@@ -2490,7 +2514,7 @@ function revSideHTML() {
   const dot = id => `<i class="d" style="background:${esc(H.sjColor ? H.sjColor(id) : '#9A9288')}"></i>`;
   const sjl = subs.map(x => { const n = x.id === S.sj ? k.n : (C[x.id] || 0); return `<button type="button" class="nm-si${x.id === S.sj ? ' on' : ''}" data-sj="${esc(x.id)}"${x.id === S.sj ? ' aria-current="true"' : ''}>${dot(x.id)}<span class="l">${esc(x.t)}</span>${n ? `<small>${n}</small>` : ''}</button>`; }).join('');
   const L = S.lecs.filter(l => ln[l.k]), lc = !!S.cfg.ljc, sh = cur.sh || cur.t;
-  const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.t + (l.prof ? ' · ' + l.prof : ''))} — 누르면 그 위치로"><span class="l">${esc(l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
+  const ljl = L.length ? L.map(l => `<button type="button" class="nm-si nm-lj${S.curLec === l.k ? ' cur' : ''}" data-lj="${esc(l.k)}" title="${esc(l.d || l.t)} — 누르면 그 위치로"><span class="l">${esc(l.d || l.t)}</span><small>${ln[l.k]}</small></button>`).join('') : '<div class="nm-sempty">아직 문제가 없어요</div>';
   return `<div class="nm-sh"><button type="button" class="nm-si nm-home" data-sact="home" title="JBL 홈으로 — 모든 과목" aria-label="JBL 홈">${ICO.home}</button><b class="nm-ttl">넘버링 복습</b><button type="button" class="nm-fold" data-sact="fold" title="메뉴 접기·펼치기 (Shift+M)" aria-label="메뉴 접기·펼치기"></button></div>` + appSwHTML()
     + `<details class="nm-sjd"${S.sjOpen ? ' open' : ''}><summary class="nm-si on" title="과목 바꾸기">${dot(cur.id)}<span class="l">${esc(cur.t)}</span><span class="cv" aria-hidden="true">▾</span></summary><div class="nm-sjl">${sjl}</div></details>`
     + `<button type="button" class="nm-si nm-rail nm-rsj" data-act="sjm" title="과목 바꾸기 — 지금 ${esc(cur.t)}" aria-label="과목 바꾸기"><span class="ab" style="border-color:${esc(H.sjColor ? H.sjColor(S.sj) : '#9A9288')}">${esc(String(sh).slice(0, 2))}</span></button>`
@@ -2518,7 +2542,7 @@ async function switchSubject(sj, o) {
 }
 function newSubject() { ask('새 과목 이름', { input: '', ph: '예: 교정학 2', ok: '만들기' }).then(t => { if (!t || !t.trim()) return; const L = H.LS.get('num.subj', []) || []; const id = 'U' + now().toString(36).toUpperCase(); L.push({ id, t: t.trim() }); H.LS.set('num.subj', L); switchSubject(id); }); }
 function lecMenu(btn) {   /* 사이드바를 접었을 때 위 막대의 '과목 › 강의'를 누르면 — 강의 바로 가기 */
-  const n = lecCounts(), L = S.lecs.filter(l => n[l.k]).map(l => [l.k, l.t + ' (' + n[l.k] + ')']);
+  const n = lecCounts(), L = S.lecs.filter(l => n[l.k]).map(l => [l.k, (l.d || l.t) + ' (' + n[l.k] + ')']);
   if (!L.length) { H.toast('아직 이 과목에 문제가 없어요'); return; }
   const m = menuOpen(btn, L); if (!m) return; menuBeside(m, btn);
   m.addEventListener('click', e => { const b = e.target.closest('[data-mi]'); if (!b) return; menuClose(); jumpLec(b.dataset.mi); });
@@ -2585,9 +2609,12 @@ function bind() {
       if (k === 'selm') { S.selMode = !S.selMode; S.vo = false; if (!S.selMode) S.sel.clear(); render({ pos: topItem() }); return; }
       if (k === 'undel') { const id = a.closest('[data-id]').dataset.id, x = S.by.get(id); if (x) { x.del = false; touch(x); put(x); render({ flash: x.id }); } return; }
     }
+    const qa = t.closest('.nm-it .nm-c[data-f=q], .nm-it .nm-c[data-f=a]');   /* 10-22 사용자 '문제랑 답안도 굳이 수정 안 눌러도 클릭만 해도 바로 수정' — 가린 칸(흐림)·그림·링크·글 고르기 중이면 아님 */
+    if (qa && S.app !== 'rev' && !(S.ed && S.ed.el === qa) && !t.closest('a, img, button, .nm-qt') && getComputedStyle(qa).filter === 'none' && getSelection().isCollapsed) { const art = qa.closest('.nm-it'), it = art && S.by.get(art.dataset.id); if (it) startEdit(qa, it, qa.dataset.f, e); return; }
     const st = t.closest('.nm-s .nm-c[data-f=st]');
     if (st && S.app !== 'rev' && !(S.ed && S.ed.el === st) && !t.closest('a')) { const art = st.closest('.nm-it'), it = S.by.get(art.dataset.id); if (it) startEdit(st, it, 'st', e); return; }
   });
+  document.addEventListener('mousedown', e => { const E = curEd(); if (!e.target.closest || e.target.closest('.nm-irh')) return; const im = E && e.target.tagName === 'IMG' && E.el.contains(e.target) ? e.target : null; if (im) irOpen(im); else if (IR.img) irClose(); }, true);   /* 10-22 편집 중 그림 누르기 = 크기 손잡이 */
   document.addEventListener('mousedown', e => { if (!e.target.closest) return; if (e.target.closest('#numv .nm-drag') || (S.ed && (e.target.closest('.nm-tb') || e.target.closest('.nm-pal')))) e.preventDefault(); }, true);   /* 끌기 손잡이 = 글 선택·포커스 이동 없음(고치던 칸 그대로) */
   document.addEventListener('pointerdown', e => { const h = e.target.closest && e.target.closest('#numv .nm-drag'); if (h && S.root && S.root.contains(h)) dragDown(e, h); });
   document.addEventListener('contextmenu', e => { if ((e.target.closest && e.target.closest('#numv .nm-drag')) || (DG.s && DG.s.on)) e.preventDefault(); });   /* 손가락 길게 누르기 = 끌기(메뉴 안 뜸) */

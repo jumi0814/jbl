@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"fc6db97a",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"96aa7e4c",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2110,7 +2110,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="fc6db97a",PV={"OMS1": "cdab9be9", "CONS": "0758064f", "IMPL": "245247f1", "ANAT": "f5a6d082", "GERI": "7c51eb80", "PHARM": "1910b9ea", "ESTH": "5078635f"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.2, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="96aa7e4c",PV={"OMS1": "3d3fa6f9", "CONS": "a2444236", "IMPL": "bca4947b", "ANAT": "4043be36", "GERI": "eed7b751", "PHARM": "78604730", "ESTH": "b386d23a"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.2, "PHARM": 7.5, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2224,7 +2224,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='6d605ff3';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='20b6ce33';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC={OMS1:'#0F6E6C',CONS:'#6B3FA0',IMPL:'#93561A',ANAT:'#2F5DA8',GERI:'#6A6A1C',PHARM:'#8E3B78',ESTH:'#2F7A3E'};
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#9A9288';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -2591,7 +2591,7 @@ function calAddHTML(d,o){const ks=Object.keys(o).sort((a,b)=>o[b]-o[a]),def=CAL.
  <div class="carow"><span class="small">길이</span><label><input type="number" id="caH" min="0" max="24" value="0" inputmode="numeric" aria-label="시간"> 시간</label><label><input type="number" id="caM" min="0" max="59" value="30" inputmode="numeric" aria-label="분"> 분</label>
  <span class="caq">${[15,30,60,90].map(m=>`<button type="button" class="btn sm" data-caq="${m}">+${m}</button>`).join('')}<button type="button" class="btn sm" data-caq="0">0으로</button></span></div>
  <div class="carow"><button type="button" class="btn pri" data-cago="1">추가</button></div><div id="cawarn" class="cawarn" hidden></div></div></details>`;}
-function calLecOpts(S,cur){const p=PACKS[S];return `<option value="">과목 전체</option>`+(p?p.lect.map(L=>`<option value="${EH(L.k)}"${L.k===cur?' selected':''}>${EH(sname(p,L.k))}</option>`).join(''):'');}
+function calLecOpts(S,cur){const p=PACKS[S];return `<option value="">과목 전체</option>`+(p?p.lect.map(L=>`<option value="${EH(L.k)}"${L.k===cur?' selected':''}>${EH(lpn(p,L))}</option>`).join(''):'');}
 function calEditHTML(d,r){const S=r.S,D=r.D;const sjo=SUBJECTS.filter(([id])=>PACKS[id]).map(([id])=>`<option value="${id}"${id===S?' selected':''}>${EH(sjShort(id))}</option>`).join('')+`<option value="기타"${S==='기타'?' selected':''}>기타</option>`;
  return `<li class="cedit" data-ce="${r.i}">${r.r?'':`<label>과목 <select id="ceS">${sjo}</select></label><label>강의 <select id="ceD">${calLecOpts(S,r.nD>1?'':D)}</select></label>`}<label>시작 <input type="time" id="ceA" step="60" value="${hmsD(d,r.s)}"></label><label>끝 <input type="time" id="ceB" step="60" value="${hmsD(d,Math.min(r.e,dayLen(d)-60))}"></label><button type="button" class="btn sm pri" data-cesave="${r.i}">저장</button><button type="button" class="btn sm" data-cex="1">취소</button>${r.nD>1?'<div class="small">강의가 여러 개인 줄 — 강의를 고르면 한 강의로 합쳐요(과목 전체 = 그대로)</div>':''}<div id="cewarn" class="cawarn" hidden></div></li>`;}
 const tmSec=v=>{const m=/^(\d\d):(\d\d)$/.exec(v||'');return m?(+m[1])*3600+(+m[2])*60:null;};
@@ -2962,6 +2962,7 @@ let VIEW='none',LASTH='',RET=null,PENDRET=null,RETN=0,STL=null;
 try{history.scrollRestoration='manual';}catch(e){}
 const SS={get(k,d){try{const v=sessionStorage.getItem(NS+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{sessionStorage.setItem(NS+k,JSON.stringify(v));}catch(e){}}};
 const isJBv=()=>VIEW==='doc'&&(CUR.d==='_jb'||CUR.t==='jb');
+const lpn=(p,L)=>{const pf=String((L&&L.prof)||'').split('(')[0].trim();return (pf?pf+' - ':'')+sname(p,L.k);};   /* 10-22 사용자 '강의자료 이름이 아니라 교수님 이름 - 강의 제목 으로 … 임영준 - 진단과 치료~~' — 왼쪽 메뉴·강의 고르기 칸 */
 const sname=(p,k)=>{const L=p.lect.find(x=>x.k===k);return L?String(L.title):String((p.lecname&&p.lecname[k])||k).replace(/\s*\([^)]*\)\s*$/,'');};   /* ux4e 강의 이름 = 팩의 원래 강의 제목 그대로(p.lecname 짧은 이름은 강의가 아닌 보조 키에만) */
 function curState(){return VIEW==='doc'?{s:CUR.s,d:CUR.d,t:CUR.t}:VIEW==='search'?Object.assign({q:SQ.q},SQ.s?{sj:SQ.s}:{},SQ.k?{k:SQ.k}:{},{from:SQ.from||null},SQ.pushed?{pd:1}:{}):VIEW==='cal'?calState():VIEW==='bm'?{bm:1,sj:BMS}:VIEW==='num'?(window.JBLNUM?JBLNUM.state():{num:1}):{home:1};}
 function histSet(st,url,push){try{if(push)history.pushState(st,'',url);else history.replaceState(st,'',url);}catch(e){}LASTH=location.hash;if(VIEW!=='search'){const g=$('#gsearch');if(g&&g.value&&document.activeElement!==g)g.value='';}navAfter();}   /* ux4 B23 검색 화면을 떠나면 검색칸을 비움 */   /* ux3 G2 화면이 바뀔 때마다 메뉴(aria-current·펼침) */
@@ -3089,7 +3090,7 @@ function lcardHTML(p,L,BM,hot2,hub){const RD=lrdN(p.id,L.k);return `<div class="
 function subjHome(p){const C=jbCount(p);const nOk=C.ok,nNg=C.ng,nBm=C.bm,total=C.main;const MKh=getMK(p.id);const G=(p.guide&&p.guide.length?p.guide:GUIDE0),r0=resumeTarget(p);
  let now=G.findIndex(g=>g.act==='resume');if(!(r0&&r0.cont)&&!(nOk+nNg))now=0;if(now<0)now=0;
  const TJ=trendNoPct(p.trends||'').j;const guide=G.map((g,i)=>`<li${i===now?' class="now"':''}><span class="stx"><b>${EH(String(g.b).replace(/^\p{Extended_Pictographic}️?\s*/u,''))}</b> <span class="d">${EH(String(g.t).replace(/짤 비율 평균 \d+%/,TJ?'짤 '+TJ+'문항':'짤이 많음'))}</span></span>${g.act?actBtn(p,g.act,C):'<span></span>'}</li>`).join('');
- const BMJ=lbmGet(p.id),jump=p.lect.map(L=>`<button class="chip ljc${BMJ[L.k]?' bm':''}" data-d="${L.k}" title="${EH(L.title)}${BMJ[L.k]?' · ★ 북마크':''}">${BMJ[L.k]?'<i class="bmk" aria-label="북마크">★</i>':''}<span>${EH(sname(p,L.k))}</span></button>`).join('');
+ const BMJ=lbmGet(p.id),jump=p.lect.map(L=>`<button class="chip ljc${BMJ[L.k]?' bm':''}" data-d="${L.k}" title="${EH(L.title)}${BMJ[L.k]?' · ★ 북마크':''}">${BMJ[L.k]?'<i class="bmk" aria-label="북마크">★</i>':''}<span>${EH(lpn(p,L))}</span></button>`).join('');
  const hot2=new Set((p.top||[]).map(t=>t.lk).filter(Boolean));
  const BM=lbmGet(p.id),lecs=p.lect.map(L=>lcardHTML(p,L,BM,hot2)).join('');
  const T=p.top||[],y4=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return a.length>4?a.slice(0,4).join('·')+' +'+(a.length-4):a.join('·');};
@@ -3180,7 +3181,7 @@ function gbTab(p,L){const J=(L.gbj||[]).map(id=>gbJB(p,id,L)).filter(Boolean),P=
   +(P.length?`<h3 class="pgh gbh3 noann">예상 그림빵 <span class="small pgn">· ${P.length}문항 · 26 PPT 그림 — 실제 기출이 아님</span></h3>${P.join('')}`:'')+nextLine(p,L);}
 function gbAll(p){const it=[];p.lect.forEach(L=>{(L.gbj||[]).forEach(id=>{const h=gbJB(p,id,L);if(h)it.push([L,h]);});(L.gbp||[]).forEach(i=>{const h=gbPR(p,i);if(h)it.push([L,h]);});});
  const pf=[...new Set(it.map(([L,h])=>(/data-gprof="([^"]*)"/.exec(h)||[])[1]).filter(Boolean))];let k0=null;
- return `<div class="pills noann gbbar" id="gbpills"><select data-gbf="k" aria-label="강의"><option value="">모든 강의</option>${p.lect.filter(L=>gbN(L)).map(L=>`<option value="${EH(L.k)}">${EH(sname(p,L.k))}</option>`).join('')}</select>${pf.length>1?`<select data-gbf="prof" aria-label="교수"><option value="">모든 교수</option>${pf.map(x=>`<option value="${x}">${x}</option>`).join('')}</select>`:''}<button type="button" class="tg on" data-gbkind="">전체</button><button type="button" class="tg" data-gbkind="j">기출</button><button type="button" class="tg" data-gbkind="p">예상</button><button type="button" class="tg" data-gbsa="1">모두 보기</button><span class="small">근거 있는 강의만</span></div>`
+ return `<div class="pills noann gbbar" id="gbpills"><select data-gbf="k" aria-label="강의"><option value="">모든 강의</option>${p.lect.filter(L=>gbN(L)).map(L=>`<option value="${EH(L.k)}">${EH(lpn(p,L))}</option>`).join('')}</select>${pf.length>1?`<select data-gbf="prof" aria-label="교수"><option value="">모든 교수</option>${pf.map(x=>`<option value="${x}">${x}</option>`).join('')}</select>`:''}<button type="button" class="tg on" data-gbkind="">전체</button><button type="button" class="tg" data-gbkind="j">기출</button><button type="button" class="tg" data-gbkind="p">예상</button><button type="button" class="tg" data-gbsa="1">모두 보기</button><span class="small">근거 있는 강의만</span></div>`
   +it.map(([L,h])=>{let o='';if(L.k!==k0){k0=L.k;o=`<h3 class="pgh gbh3 noann" data-gbhk="${EH(L.k)}">${EH(sname(p,L.k))} <span class="small pgn">· ${EH(L.prof)}</span></h3>`;}return o+h;}).join('')
   +'<div class="panel noann" id="gbempty" hidden>조건에 맞는 그림빵이 없어요.</div>';}
 function gbFilt(){const st=$('#stage'),gk=($('#gbpills [data-gbkind].on')||{dataset:{}}).dataset.gbkind||'',k=($('#gbpills [data-gbf=k]')||{}).value||'',pf=($('#gbpills [data-gbf=prof]')||{}).value||'';let n=0;
@@ -5074,7 +5075,7 @@ function navSubj(S,V){const p=PACKS[S],E=EH,d=VIEW==='doc'?CUR.d:'',cur=on=>on?'
   +`<div class="nvsjh" style="--dc:${sjColor(S)}"><i class="nvdot"></i><b class="nvsjn">${E(sjShort(S))}</b><button type="button" class="nvsw" data-nvsw="1" aria-haspopup="true" aria-expanded="false" title="다른 과목으로 — 고르면 그 과목 홈">과목 바꾸기 ▾</button><div class="nvswp pop2" role="menu" hidden>${sw}</div></div>`
   +`<div class="nvgrid">${SUBJDOCS.filter(x=>x[0]!=='_fig'||gbHas(PACKS[S])).map(x=>{const on=d===x[0],n=N[x[0]];return `<button type="button" class="ni nvd dbtn${on?' cur':''}" data-s="${S}" data-d="${x[0]}"${cur(on)} title="${E(x[1].replace(/^\S+\s/,''))} — ${E(x[0]==='_tbl'?'강의별 '+n+'개 표':x[2])}"><span class="el">${DOCNM[x[0]]||E(x[1])}</span>${n!==''||x[0]==='_marks'?`<span class="r"${x[0]==='_marks'?` data-nb="mk.${S}"`:''}>${E(n)}</span>`:''}</button>`;}).join('')}</div>`
   +`<div class="nvsec">강의 ${p.lect.length}</div>`;
- const BMN=lbmGet(S);h+=p.lect.map(L=>{const on=d===L.k;return `<button type="button" class="ni nvl dbtn${on?' cur':''}${BMN[L.k]?' bm':''}" data-s="${S}" data-d="${L.k}"${cur(on)} title="${E(L.title)} · ${E(L.prof)} · 기출 ${L.jb.length} · 카드 ${L.nsec}${BMN[L.k]?' · ★ 북마크':''}"><span class="el">${BMN[L.k]?'<i class="bmk" aria-label="북마크">★</i>':''}${E(sname(p,L.k))}</span><span class="r">${E(L.prof)}</span></button>`+(on?navToc(p,L):'');}).join('');
+ const BMN=lbmGet(S);h+=p.lect.map(L=>{const on=d===L.k;return `<button type="button" class="ni nvl dbtn${on?' cur':''}${BMN[L.k]?' bm':''}" data-s="${S}" data-d="${L.k}"${cur(on)} title="${E(L.title)} · ${E(L.prof)} · 기출 ${L.jb.length} · 카드 ${L.nsec}${BMN[L.k]?' · ★ 북마크':''}"><span class="el">${BMN[L.k]?'<i class="bmk" aria-label="북마크">★</i>':''}${E(lpn(p,L))}</span></button>`+(on?navToc(p,L):'');}).join('');
  return h;}
 function navRender(){const nav=$('#nav');if(!nav)return;const mode=navMode(),S=navS(),sc0=$('#navsc'),top0=sc0?sc0.scrollTop:0,V=navVals(),E=EH,col=navColor();
  if(NAVM.mode==='hub'&&mode==='subj')NAVM.hubTop=top0;
