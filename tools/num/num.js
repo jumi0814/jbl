@@ -2560,7 +2560,7 @@ async function switchSubject(sj, o) {
   if (!S.root || !document.getElementById('numv')) { location.hash = '#/_num/' + sj; return; }   /* 넘버링 화면을 떠난 뒤(알림의 '보기') = 그 과목으로 다시 열기 */
   endEdit(true); if (S.app === 'rev') { drSave(); sesSave(); } const tok = S.swTok = (S.swTok || 0) + 1, R0 = S.root;
   if (S.sj && S.sj !== sj && S.posOK && !(S.app === 'rev' && S.cfg.view === 'card')) H.LS.set(posKey(S.sj), posNow());
-  S.sj = sj; S.cfg.sj = sj; if (!o.keepF && !o.force) S.cfg.f.lec = ''; cfgSave(); S.sel.clear(); S.curLec = null; S.fp = false; S.vo = false; S.shuf = null; S.posOK = false; if (S.drawer) drawer(false);
+  S.sj = sj; S.cfg.sj = sj; if (H.onSubj) H.onSubj(sj, S.app === 'rev'); if (!o.keepF && !o.force) S.cfg.f.lec = ''; cfgSave(); S.sel.clear(); S.curLec = null; S.fp = false; S.vo = false; S.shuf = null; S.posOK = false; if (S.drawer) drawer(false);
   const V = frame(); $('.nm-main', V).innerHTML = '<div class="nm-prog">넘버링 불러오는 중…</div>';
   await loadSubject(sj);
   if (tok !== S.swTok || S.root !== R0 || !S.root) return;   /* 기다리는 사이 다른 과목·화면으로 옮겼으면 그만 */
@@ -2721,7 +2721,7 @@ async function open(root, o, host) {
   const lsj = S.cfg.sj || (S.app === 'rev' ? S.mkc.sj : S.rvc.sj);
   let sj = o.sj && subs.some(s => s.id === o.sj) ? o.sj : (lsj && subs.some(s => s.id === lsj) ? lsj : (subs.find(s => has.has(s.id)) || subs.find(s => s.seed) || subs[0]).id);   /* 주소 → 마지막 과목 → 문제가 있는 과목 → 첫 과목 */
   if (S.root !== root) return;
-  S.sj = sj; S.cfg.sj = sj; cfgSave();
+  S.sj = sj; S.cfg.sj = sj; cfgSave(); if (H.onSubj) H.onSubj(sj, S.app === 'rev');
   await loadSubject(sj);
   if (S.root !== root) return;
   if (S.cfg.f.lec && !S.lecs.some(l => l.k === S.cfg.f.lec) && S.cfg.f.lec !== '__none') S.cfg.f.lec = '';
