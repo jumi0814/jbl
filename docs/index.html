@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#0F4B4A"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"31e94cbd",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"a0ef3a26",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F5F1E9;--card:#FFFEFB;--ink:#1F1D1A;--sub:#6A6257;--line:#E4DCCD;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EDE5;--accb:#DCD5C8;--acct:#3A342D;
@@ -2193,6 +2193,11 @@ th:hover .coveye,th:focus-within .coveye,th .coveye.on{opacity:.7}
 /* 5b 카드 머리 NEW 26·26 강조 칩도 사이드바와 같은 옅은 알약(칩 한 꼴 — 진한 채움 없앰 · 글자 색으로 구분은 그대로) */
 #stage .tc .tchips .chip.u26chip,.chip.u26chip{background:#ECF7EF!important;color:#17773F!important;border:1px solid #BFE0C9!important;border-radius:var(--rad-p)!important}
 #stage .tc .tchips .chip.e26chip,.chip.e26chip{background:#F1EEF9!important;color:#5B4B9A!important;border:1px solid #CFC6EA!important;border-radius:var(--rad-p)!important}
+/* 5c 카드 목록(사이드바·카드 ▾) — 배지가 둘(NEW 26 + 26 강조)이어도 제목이 두 글자로 줄지 않게: 제목 칸 최소 폭, 모자라면 배지가 다음 줄로(10-23 QA PHARM HM) */
+.lpi,.scard2{flex-wrap:wrap;row-gap:2px}.lpi span,.scard2 span{min-width:7.5em}
+/* 5d 📣 교수님 예고·강조 접힘 — 3줄 자르기 규칙(#stage .frame .fhint .fh{display:-webkit-box})이 접힌 줄(.fhx)을 다시 보이게 하던 것(10-23 — '더 보기 n ▾'인데 다 펼쳐져 있었음) */
+#stage .frame .co.fhint.fcol>.fh.fhx{display:none!important}
+#nav .nvtoc .scard2:has(small){flex-wrap:wrap;row-gap:1px;padding-top:4px;padding-bottom:4px}#nav .nvtoc .scard2:has(small) .el{flex:1 1 calc(100% - 40px)}#nav .nvtoc .scard2 .el+small{margin-left:26px}
 /* 8 거르기 막대 한 문법 — 예상 탭 회색 알약 그릇 없앰(묶음은 앞 구분선) · 고르기 칸(select)도 .tg와 같은 높이·모서리·선 */
 #ppills .qf,#stage #ppills .qf{background:transparent!important;border-radius:0!important;padding:0 0 0 8px!important;margin-left:4px;box-shadow:inset 1px 0 0 var(--line)}
 #stage #jbbar select,#stage #ppills select,#stage #sumbar select{-webkit-appearance:none;appearance:none;height:32px;min-height:32px;border:1px solid var(--line)!important;border-radius:var(--rad-s)!important;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236A645B' stroke-width='1.5'/%3E%3C/svg%3E") right 8px center/10px 6px no-repeat!important;padding:0 24px 0 10px!important;color:var(--ink)!important;font-size:13.5px}
@@ -2294,7 +2299,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="31e94cbd",PV={"OMS1": "ea6135a9", "CONS": "462765be", "IMPL": "e1927d43", "ANAT": "dc44453b", "GERI": "274a58c3", "PHARM": "586ebf44", "ESTH": "5c69a4df"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="a0ef3a26",PV={"OMS1": "604c3d53", "CONS": "f1da6620", "IMPL": "5a0626f7", "ANAT": "ca78e437", "GERI": "d46e4f9d", "PHARM": "bb02e759", "ESTH": "967f8ccd"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */

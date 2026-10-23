@@ -2197,6 +2197,7 @@ th:hover .coveye,th:focus-within .coveye,th .coveye.on{opacity:.7}
 .lpi,.scard2{flex-wrap:wrap;row-gap:2px}.lpi span,.scard2 span{min-width:7.5em}
 /* 5d 📣 교수님 예고·강조 접힘 — 3줄 자르기 규칙(#stage .frame .fhint .fh{display:-webkit-box})이 접힌 줄(.fhx)을 다시 보이게 하던 것(10-23 — '더 보기 n ▾'인데 다 펼쳐져 있었음) */
 #stage .frame .co.fhint.fcol>.fh.fhx{display:none!important}
+#nav .nvtoc .scard2:has(small){flex-wrap:wrap;row-gap:1px;padding-top:4px;padding-bottom:4px}#nav .nvtoc .scard2:has(small) .el{flex:1 1 calc(100% - 40px)}#nav .nvtoc .scard2 .el+small{margin-left:26px}
 /* 8 거르기 막대 한 문법 — 예상 탭 회색 알약 그릇 없앰(묶음은 앞 구분선) · 고르기 칸(select)도 .tg와 같은 높이·모서리·선 */
 #ppills .qf,#stage #ppills .qf{background:transparent!important;border-radius:0!important;padding:0 0 0 8px!important;margin-left:4px;box-shadow:inset 1px 0 0 var(--line)}
 #stage #jbbar select,#stage #ppills select,#stage #sumbar select{-webkit-appearance:none;appearance:none;height:32px;min-height:32px;border:1px solid var(--line)!important;border-radius:var(--rad-s)!important;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236A645B' stroke-width='1.5'/%3E%3C/svg%3E") right 8px center/10px 6px no-repeat!important;padding:0 24px 0 10px!important;color:var(--ink)!important;font-size:13.5px}
