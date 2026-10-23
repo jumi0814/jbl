@@ -5,7 +5,7 @@
 - 공통: `tools/jblpaths.py`(저장소 기준 경로 — 스크립트는 여기서만 경로를 얻음) · `tools/jbx.py`(JB PDF → `work/jb/<SID>_20xx/`) · `tools/verify.py`(playwright 허브 검증)
 - 경로: 과목 작업 폴더 `work/<SID>/`(jb_blocks.json·강의 쪽 이미지 `lec/`·OCR) · JB 추출 `work/jb/<SID>_20xx/` · 출력 `docs/`(허브 `docs/index.html` + `docs/packs/`) · 단일 파일판 `work/<과목>_JBL.html`(커밋 안 함)
 - 파이썬은 3.12 이상(저장소 `.venv/`, f-string 문법 때문에 3.11 불가)
-- `subject.py` 과목 설정 — SID·제목·색·교수, LECMAP(강의키 → 이미지 폴더·표시명), LEC_ORDER, PROF_LEC, COVER(기준선 연도), TIERS, MENT_PROF/MENT_ALL(학습부 멘트), PAGE_LABEL, IMG_ALIAS · 선택: YEAR_PROF·YEAR_PROF_Q(출제 연도별 교수 — 10-16, 아래 '출제 연도별 교수' 절) · XREF_LECS(참고 강의 — 기출 탭 = 카드 ⭐·jb=가 가리키는 기출 · 강의 틀 경향 = 그중 그 강의 교수 출제분 · 10-17) · FIG_ONLY_LECS(F:·예상 그림 쪽만 이미지 팩에 · 나머지 쪽 칩은 누를 수 없는 점선 글자 칩 · 10-17) · NOIMG_PAGES(`{'<KEY>': [쪽…]}` — 개인정보 쪽은 이미지 팩에 넣지 않고 쪽 칩은 점선 글자 칩 · F:·예상 f=로 쓰면 빌드 ⚠ · 10-22)
+- `subject.py` 과목 설정 — SID·제목·색·교수, LECMAP(강의키 → 이미지 폴더·표시명), LEC_ORDER, PROF_LEC, COVER(기준선 연도), TIERS, MENT_PROF/MENT_ALL(학습부 멘트), PAGE_LABEL, IMG_ALIAS · 선택: YEAR_PROF·YEAR_PROF_Q(출제 연도별 교수 — 10-16, 아래 '출제 연도별 교수' 절) · XREF_LECS(참고 강의 — 기출 탭 = 카드 ⭐·jb=가 가리키는 기출 · 강의 틀 경향 = 그중 그 강의 교수 출제분 · 10-17) · FIG_ONLY_LECS(F:·예상 그림 쪽만 이미지 팩에 · 나머지 쪽 칩은 누를 수 없는 점선 글자 칩 · 10-17) · NOIMG_PAGES(`{'<KEY>': [쪽…]}` — 교수님 본인 연락처 쪽만(10-23 — 얼굴·환자 사진·환자 이름 쪽은 공개) 이미지 팩에 넣지 않고 쪽 칩은 점선 글자 칩 · F:·예상 f=로 쓰면 빌드 ⚠ · 10-22)
 - `parse_<과목>.py` JB(23·24·25판 ZIP 텍스트) → 문항 블록 (`jb_blocks.json`). JB 구조가 과목마다 달라 여기만 새로 씀
 - `assemble.py` 문항 정규화·연도 괄호 파싱·OTHER(판본 간 같은 문제)·주석 병합·JB 쪽 이미지·대장·멘트·예상문제 파싱
 - `reflow.py` JB 원문 줄바꿈 정리(글자 불변) · `emph.py` 빨간 핵심어 · `lecparse.py` 정리본 원고 파서 · `trend.py` 짤/탈·형식·전략
