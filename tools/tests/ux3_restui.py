@@ -1,6 +1,6 @@
 """ux3 R1·R3 회귀 — 쉬는 시간 타이머 표시(참고 HUB 트래커 위젯·집중 모드)와 과목 색 한 가지. (ux4 묶음2: 메뉴 트래커·#tmr → 상단 시계 알약 #clock·팝오버 #tpop)
 R1 ① 시계 팝오버 '⏱ 크게 보기 · 지금 구간': 공부 중 = 이번 집중 h:mm:ss(세션 f0·자동 T.f0 — 1초마다 흐름) · 쉬는 중 = 이번 휴식 m:ss
-   ② ⏱ 크게 → #bigclock: 쉬는 중 = 큰 휴식 구간·휴식 색(.rest) · 공부 중 = '● 집중 중' 큰 집중 구간 · 작은 줄 오늘 공부·휴식·목표 %
+   ② ⏱ 크게 → #bigclock: 쉬는 중 = 큰 휴식 구간·휴식 색(.rest) · 공부 중 = '● 공부 중' 큰 집중 구간 · 작은 줄 오늘 공부·휴식·목표 %
    ③ 쉬는 중 시계 알약 #clock.rest — 금색 점 · 글자 '휴식 m:ss'(지금 휴식 구간, 흐름) · 숫자는 오늘 공부 합계 그대로 · 홈·과목·자동 휴식(무활동) 모두 같음
    ④ 홈 오늘 띠·달력 상태 카드·팝오버 머리·휴식 요약 줄의 휴식 = restStats() ⑤ 자동 휴식에서 돌아와 띠 10초 뒤 '☕ 휴식 n분으로 기록했어요 [📖 공부로 바꾸기]'
 R3 팩 color = SJC = sjColor · 메뉴 점·홈 과목표 점·과목 홈 --hero1·--acc 같은 색 · 흰 글자 대비 ≥4.5
@@ -39,7 +39,7 @@ async def part_view(b, vp, touch, tag):
     await pg.screenshot(path=J.TMP + f'/ux3p_t_study_{tag}.png', clip={'x': 0, 'y': 0, 'width': vp['width'], 'height': 360})
     await pg.evaluate("document.querySelector('#tpop [data-tp=big]').click()"); await pg.clock.run_for(1100)
     bl, bt, bs = await pg.inner_text('#bcl'), await pg.inner_text('#bct'), await pg.inner_text('#bcs')
-    ok(bl == '● 집중 중' and bt.startswith('0:25:') and '오늘 공부 0:25' in bs and '세션 0:25' in bs and '목표' in bs, f'⏱ 크게(공부 중) {bl!r} {bt!r} {bs!r}')
+    ok(bl == '● 공부 중' and bt.startswith('0:25:') and '오늘 공부 0:25' in bs and '세션 0:25' in bs and '목표' in bs, f'⏱ 크게(공부 중) {bl!r} {bt!r} {bs!r}')
     await pg.evaluate("document.querySelector('[data-bigx]').click()"); await pg.clock.run_for(200)
     # ② ☕ 쉬기 4분
     await pg.evaluate("__h.trRest()"); await pg.clock.run_for(4 * MIN + 10000)
