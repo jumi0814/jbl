@@ -630,7 +630,8 @@ def exam_parts(v):
         else:
             js = [x for x in (_d0pos(rest, ' ⚠', i + 3), _d0pos(rest, '⚠', i + 3)) if x > 0]; j = min(js) if js else len(rest)
             kind = 'src' if EXAM_SRC.search(rest[i:j]) else 'more'
-        tail.append((kind, rest[i:j])); i = j
+        if not (kind == 'more' and not rest[i:j].strip(' —-·')): tail.append((kind, rest[i:j]))   # 10-23 QA — ⚠ 바로 앞 ' — '만 남은 조각(줄 끝 홀로 '—')은 버림
+        i = j
     d = {'yr': m.group('yr'), 'mid': m.group('mid'), 'q': m.group('q'), 'qx': m.group('qx') or '', 'arr': m.group('arr'), 'a': a, 'tail': tail}
     if not all(_mk_ok(x) for x in [d['mid'], d['q'], d['qx'], d['a']] + [t for _, t in tail]) or not a.strip(): return None
     return d

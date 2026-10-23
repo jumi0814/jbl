@@ -595,10 +595,10 @@ def qcard(q, idx):
         a.append(f'<details class="ab more"><summary class="noann">{hd_}</summary><h5>{hd_}</h5>{mgroups(q["M"])}</details>')
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
-        key_ = next((v for t, v in c_['body'] if t == 'K'), '')
+        keys_ = [v for t, v in c_['body'] if t == 'K']; key_ = keys_[0] if keys_ else ''   # 10-23 QA — 카드의 🔑 줄이 둘 이상(26 줄 '= 26:' 등)이면 📖 상자에도 다
         m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
         rec_ = ''.join(top_li(lecparse.render_recall(x, ctx)) for x in c_['recall'])   # 10-08 📖 카드 ⚡도 같은 줄 조각 = .mg 묶음(줄간격 층)
-        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{lecparse.render_keybox(key_, ctx) if key_ else lecparse.inline(c_["gist"], ctx)}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
+        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{''.join(lecparse.render_keybox(x_, ctx) for x_ in keys_) if keys_ else lecparse.inline(c_["gist"], ctx)}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
         o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
@@ -1029,7 +1029,7 @@ for L in LEC:
         if a['kind'] == '탈': tal_list += f'<li><button class="jbchip" data-go="{q["id"]}">{YR(a["y"])}</button> {esc(q["short"][:44])} <span class="small">— {a["tal"]}{" · 교수 강조" if a.get("emph") else ""} · {esc(q["st"]["fmt"])}</span></li>'
     pk_ = re.split(r'[(·,/]', L['prof'])[0].strip()
     strat_ = PSTRAT.get(pk_) or tstrat
-    trend_html = (f'<details class="trend"><summary><b>출제 경향</b> <span class="tsl">{esc(trend.short_line(SM))}</span></summary><div class="small tnote">JB 자료에서 산출 — 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음</div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}'
+    trend_html = (f'<details class="trend"><summary><b>출제 경향</b> <span class="tsl">{esc(trend.short_line(SM) if SM or not sum(1 for q_ in Q if q_['tier'] == 'C' and q_['lk'] == k) else '현 교수 기출 없음 · 참고 기출 ' + str(sum(1 for q_ in Q if q_['tier'] == 'C' and q_['lk'] == k)) + '문항(옛 교수·다른 쿼터 — 기출 탭)')}</span></summary><div class="small tnote">JB 자료에서 산출 — 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음</div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}'
                   + (f'<div class="small">이 강의 기출만으로 본 전략: {tstrat}</div>' if strat_ != tstrat else '') + f'</details><div class="tstr"><div class="tsh">📌 공부 전략{(" (" + esc(pk_) + ")") if strat_ != tstrat else ""}</div>{strat_list([(x.strip(), []) for x in strat_.split(" · ") if x.strip()], 3)}</div>')
     top_ids = sorted(jb_ids + [q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
     def ltop_li(n_, i):   # ux2 D11 '연결 카드 국문 제목 — 문제 요지' · 줄 = 그 카드로(data-cj) · 연도 칩 = JB
