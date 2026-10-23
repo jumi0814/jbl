@@ -554,14 +554,14 @@ def qcard(q, idx):
         for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
         pick_ln = ''   # 10-05 사용자 'jb 미리보기 및 jb 답안에 정답 보기 3) … 정답보기는 없애도 될 것 같아' — 답 칸의 '정답 보기 …' 줄은 없앰(문제 보기 줄 강조 data-ans는 그대로)
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-lprof="{esc((q.get("prof") or "").split("(")[0].strip())}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
-         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{prof_chip(q)}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(TIERS.get(q["tier"], ""))[:22]}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
+         f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{prof_chip(q)}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(cut_bal(TIERS.get(q["tier"], ""), 22))}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
     if q.get('jbc') == 'absent' and not figq: h.append('<div class="small">🖼 그림 문항 — 문제의 사진·그림은 JB에 실려 있지 않습니다(문제 글만 복원됨).</div>')   # jb_crops.json nofig (tools/jbfig.py 검수)
     elif q.get('jbc') == 'crop' and q['fig'] and not figq and figa: h.append('<div class="small">🖼 그림 문항 — JB의 그림은 답 쪽에 실려 있어(답이 함께 보임) ‘답·해설’ 안에 붙였습니다.</div>')
     elif q['fig'] and not figq and q.get('jbc') != 'text': h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
     sd = [f'<div class="qsub"><span class="prov noann" title="{esc(q["src"] or "")}">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>']
     if q['yrsnote']: sd.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
-    if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(r["short"]))}</div>')
+    if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(cut_bal(r["short"], 78)))}</div>')
     if q.get('pair') and q['pair'] in QMAP: sd.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(q["pair"], esc(QMAP[q["pair"]]["src"]))}</div>')
     h.append(f'<details class="srcd"><summary class="noann">출처·연도 근거</summary>{"".join(sd)}</details>')
     jbb = ''.join(f'<button class="btn sm" data-jb="{q["ed"]}-{p}">JB 원본 {p}쪽</button>' for p in range(q['pg'], q['pg2'] + 1))
@@ -750,6 +750,15 @@ def mkey_html(key):
     r = lecparse.key_lines(key, ctx); lb = '<b class="mkl">🔑</b> '   # ux3 N3 — 🔑 상자와 같은 줄 나누기(key_lines)
     m = re.match(r'^(<div class="klead">|<div class="kl(?: klh)?">|<(?:ul|ol) class="[^"]*"><li(?: class="[^"]*")?>)', r)
     return (r[:m.end()] + lb + r[m.end():]) if m else lb + r
+def cut_bal(t, n):
+    """10-23 칩·짧은 글 자르기 — n자에서 자르되 괄호가 열린 채 끝나지 않게(열린 '(' 앞에서 자름) · 잘랐으면 '…'"""
+    t = t or ''
+    if len(t) <= n: return t
+    c = t[:n]
+    for o_, z_ in (('(', ')'), ('[', ']'), ('「', '」'), ('"', None)):
+        if z_ and c.count(o_) > c.count(z_): c = c[:c.rfind(o_)]
+        elif not z_ and c.count(o_) % 2: c = c[:c.rfind(o_)]
+    return c.rstrip(' ·,—-') + '…'
 def pg_label(k, rng, npages):
     """ux2 D08 카드 쪽 범위 — '1-3·12'·'17-18,23' 여러 조각도 'p.1–3·12'로. 100 넘는 조각은 별도 파일(ALT_KEY 강의거나 강의 쪽수보다 클 때), 0은 필기본
     → (표시, 첫 조각 시작 쪽 | None)"""

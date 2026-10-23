@@ -26,7 +26,7 @@
 @G ① 출혈 위험 환자와 검사
 ## Perioperative Anticoagulation Management | 항응고 환자 관리의 대원칙 — 약 중단보다 local measure | 1·12-15 | 개요 · ADA
 > 약을 끊으면 혈전, 계속 먹으면 출혈 — 이 시소의 균형을 local measure로 맞춘다
-= 치과의사의 선택지 3 = {r:stop} · {r:continue} · {r:bridge with heparin (LMWH)} → typical dental procedure = {r:중단 불필요 + local measures}
+= 치과의사의 선택지 3(25) = {r:stop} · {r:continue} · {r:bridge with heparin (LMWH)} → typical dental procedure = {r:중단 불필요 + local measures}
 = 26: {u:continue antithrombotic therapy · LMWH bridging is not routine}
 # 왜 어려운가 — 두 위험의 저울질
 - Patients on chronic anti-coagulation often need to undergo procedures that pose risk of bleeding — providing optimal anticoagulation treatment is {r:challenging}.
@@ -60,7 +60,7 @@ F: 14=시소 — local measure로 균형, HM5:4=25 필기 — ADA 문헌 잘 숙
 - **The ADA Practical Guide to Patients with Medical Conditions** Second Edition — Edited by Lauren L. Patton · Michael Glick.
   - 표지 글: PRACTICAL GUIDE SERIES.
 F: 15=교과서와 ADA 가이드라인
-M: 수술 전후 혈전↑ 이유 2: ① {r:rebound hypercoagulable} state from cessation of anticoagulants(약 중단 후 반동) ② hypercoagulability due to {r:surgical trauma} — {e:{n:26 "빨간색 글씨 중요"}}
+M: 수술 전후 혈전↑ 이유 2: {e:{n:26 "빨간색 글씨 중요"}} ① {r:rebound hypercoagulable} state from cessation of anticoagulants(약 중단 후 반동) ② hypercoagulability due to {r:surgical trauma}
 M: 선택지 3: ① {r:stop} anticoagulation ② {r:continue} it ③ {r:bridge with heparin(LMWH)}(25 자료 — 26에서 빠짐)
 M: {u:26 원칙: most routine dental procedures → {r:continue antithrombotic therapy} + local hemostasis / drug interruption = individualized medical advice / {r:LMWH bridging is not routine}}
 M: ADA 권고: typical procedure는 {r:중단 없이 local measures} / higher risk of bleeding은 {r:주치의 consultation} 후 조정
@@ -120,13 +120,13 @@ F: 10
 - Inhibitors: α2-AP vs. Plasmin · PAI-1 vs. t-PA · PAI-2 vs. u-PA / Lysine과 Aminocaproic acid 구조.
   - 확대 그림: Activated Plasmin 옆 VIII·V가 조각남 · 혈소판의 GP IIb/IIIa가 Cross-linked Fibrin Polymer에 붙음 · t-PA가 fibrin 위에.
 F: 11
-M: 지혈 5단계: ① Vascular Constriction ② Platelet Adhesion, Activation, and Aggregation ③ Cross-Linking of Fibrin by the Coagulation Cascade ④ Limitation of the Blood Clot to the Area of Damage Only ⑤ Controlled Breakdown of the Clot(Repair and Remodeling)
-M: 혈관 수축: 평소 {r:NO·prostacyclin} → relaxation · luminal patency / injury → 분비 끊김 → {r:unopposed muscle layer} constricts
-M: 혈소판: 부착 = {r:GP Ib/IX/V} ↔ {r:vWF}(collagen) / 응집 = {r:GP IIb/IIIa} ↔ vWF·fibrinogen / p.5 빨간 글씨 = {r:Thrombin · ADP · TXA2}
-M: 응고 cascade: proteolytic enzymes and cofactors의 cascade = "{r:Mechanism of Amplification}" / IIa → fibrin · {r:XIIIa} cross-link / extrinsic {r:in vivo} · intrinsic(contact) {r:in vitro} → {r:factor X activation}에서 합류(Xa + Va → thrombin)
-M: Gla domain: glutamic acid residues의 {r:γ-carboxylation} → {r:II·VII·IX·X} + {r:proteins C and S}
-M: 혈전 국한 3: ① {r:TFPI}:Xa → VIIa·TF ② heparan/heparin + {r:Antithrombin III} → IIa·IXa·Xa·XIIa ③ IIa + {r:thrombomodulin} → {r:Protein C}(aPC)·{r:Protein S}
-M: 섬유소용해: plasminogen →(t-PA·u-PA·streptokinase) {r:plasmin} → D-dimer·FDPs / 억제: α2-AP ↔ plasmin · PAI-1 ↔ t-PA · PAI-2 ↔ u-PA
+M: {u:지혈 5단계: ① Vascular Constriction ② Platelet Adhesion, Activation, and Aggregation ③ Cross-Linking of Fibrin by the Coagulation Cascade ④ Limitation of the Blood Clot to the Area of Damage Only ⑤ Controlled Breakdown of the Clot(Repair and Remodeling)}
+M: {u:혈관 수축: 평소 {r:NO·prostacyclin} → relaxation · luminal patency / injury → 분비 끊김 → {r:unopposed muscle layer} constricts}
+M: {u:혈소판: 부착 = {r:GP Ib/IX/V} ↔ {r:vWF}(collagen) / 응집 = {r:GP IIb/IIIa} ↔ vWF·fibrinogen / 활성화 = AA → {r:COX} → PGG2·PGH2 → TS → {r:TxA2} / p.5 빨간 글씨 = {r:Thrombin · ADP · TXA2}}
+M: {u:응고 cascade: proteolytic enzymes and cofactors의 cascade = "{r:Mechanism of Amplification}" / IIa → fibrin · {r:XIIIa} cross-link / extrinsic {r:in vivo} · intrinsic(contact) {r:in vitro} → {r:factor X activation}에서 합류(Xa + Va → thrombin)}
+M: {u:Gla domain: glutamic acid residues의 {r:γ-carboxylation} → {r:II·VII·IX·X} + {r:proteins C and S}}
+M: {u:혈전 국한 3: ① {r:TFPI}:Xa → VIIa·TF ② heparan/heparin + {r:Antithrombin III} → IIa·IXa·Xa·XIIa ③ IIa + {r:thrombomodulin} → {r:Protein C}(aPC)·{r:Protein S}}
+M: {u:섬유소용해: plasminogen →(t-PA·u-PA·streptokinase) {r:plasmin} → D-dimer·FDPs / 억제: α2-AP ↔ plasmin · PAI-1 ↔ t-PA · PAI-2 ↔ u-PA}
 
 ## Bleeding Disorders — Platelet vs Coagulation | 출혈 질환의 두 축 — 혈소판 이상 vs 응고 이상 | 16-17 | 분류 · 기출 17~23 | jb=HM09,HM06
 > 지혈 = 혈소판 + 응고인자 — 어느 쪽이 무너졌는지로 출혈 질환을 나눈다
@@ -249,7 +249,7 @@ M: 선별 검사 5: ① {r:PT} ② {r:aPTT} ③ {r:TT} ④ {r:BT}(Ivy) ⑤ plate
 M: {r:PT} = ① tissue factor ② {r:extrinsic} ③ {r:10-14초} ④ {r:I·II·V·VII·X} ⑤ {r:warfarin}↑
 M: {r:aPTT} = ① partial thromboplastin ② {r:intrinsic} ③ {r:30-40초} ④ {r:VIII·IX·XI·XII} ⑤ {r:heparin·혈우병}↑
 M: 혈우병(VIII·IX 농도): ① mild {r:5-50%} ② moderate {r:1-5%} ③ severe {r:<1%}
-M: 21 서술(수술 전 검사): {r:INR(PT)} · {r:aPTT} — 함정: 인자·정상치를 PT↔aPTT로 뒤바꾸기
+M: 21 서술(수술 전 검사): {r:INR(PT)} · {r:aPTT} / 함정: 인자·정상치를 PT↔aPTT로 뒤바꾸기
 
 ## PT Measurement · INR | PT 측정 절차와 INR — 0.8-1.2 vs 2.0-3.0 | 23 | 교수 강조 · 수치 · 기출 21 | jb=HM25
 > 제조사마다 다른 tissue factor 차이(ISI)를 보정해 PT를 국제 표준 숫자로 만든 것이 INR
@@ -276,8 +276,8 @@ F: 23=PT 측정과 INR, HM5:13=25 필기 — 이 숫자를 기억
 M: PT 정의: *The time that takes {r:plasma} to clot after addition of {r:tissue factor}(JB 해설 "tissue factor 추가 시 응고 시간")
 M: PT 측정: ① blood drawn into liquid {r:sodium citrate}(anticoagulant · binding Ca2+) ② {r:Centrifuge} → separate blood cells from plasma ③ add {r:Ca2+} → reverse sodium citrate action ④ add {r:tissue factor (factor III)} → extrinsic pathway at 37°C ⑤ measure clotting time(PT {r:10 – 14 sec})
 M: INR = (PT환자/PT정상)^{r:ISI} / 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0} / 💬 warfarin 2-3 "이 숫자를 기억"
-M: 함정: ISI는 곱 ✗ → {r:지수}(raised to the power · 제조사 값)
 M: {u:INR 쓰임(26): 주로 {r:vitamin K antagonists}(warfarin) 모니터링 / INR does not measure {r:DOAC} activity}
+M: 함정: ISI는 곱 ✗ → {r:지수}(raised to the power · 제조사 값)
 
 ## Lab Results by Condition — Table 9.4 | 치료·질환별 선별 검사 변화 | 24 | 표
 > 어디가 늘어나는지 보면 무슨 약·병인지 보인다 — aspirin은 BT, coumarin은 PT, heparin은 aPTT
@@ -343,12 +343,13 @@ F: 26=VKA·DOAC·LMWH 작용 부위, HM5:17
 | 모니터링 | {r:필수}(INR) | {n:적게 · {r:예측 가능성↑}} |
 E: HM03,HM11 | 25·24·23·22·20년 서술 "(1) Warfarin과 dabigatran의 작용기전 차이 (2) dabigatran의 장점" → gamma carboxylation 억제 vs 직접 factor II 저해 / ==예측 가능하고 용량이 정해져 있으며, 반감기가 짧은 장점== — ⚠ 25 근거는 '모니터링 적게'까지 · ⚠ 26 p.27 warfarin = {u:Inhibits VKORC1 (vitamin K recycling)}(25: Inhibition of γ-glutamylcarboxylase) — JB 답 'glutamate gamma carboxylase에 의한 gamma carboxylation 억제'와 효소 표현이 다름 → 서술엔 JB 답 + 26 문구 둘 다
 - 증례 Mr. J(25 p.58 — 26에서 빠짐)의 "warfarin → dabigatran" 전환이 이 비교의 출처 — 22·21년 증례 문항은 마지막 카드.
-M: 적응증(thromboembolic events): ① {r:DVT} ② {r:PE} ③ {r:NVAF} ④ stroke ⑤ myocardial infarction — {e:{n:26 "위 그룹 잘 기억"}}(25년도에도 강조함)
+M: 적응증(thromboembolic events): {e:{n:26 "위 그룹 잘 기억"}}(25년도에도 강조함) ① {r:DVT} ② {r:PE} ③ {r:NVAF} ④ stroke ⑤ myocardial infarction
 M: 부작용 = {r:prolonged bleeding}
 M: 분류: VKA {r:warfarin} / DOAC {r:dabigatran = IIa} · {r:-xaban = Xa} / heparin + {r:AT III}
 M: 기전 차이(24·23·22·20 서술): warfarin = {r:γ-carboxylation 억제}(새 응고인자 생성 방해) ↔ dabigatran = {r:factor IIa 직접} 저해
 M: Warfarin 느린 이유: {n:기존 인자 {r:degradation 후} 개시 · 초기 protein C·S 먼저 → pro-coagulation → 모니터링 필수} / {e:{n:26 필기 — 새로 생성되는 인자에만 작용 → 개인차 큼 → PT 모니터링이 중요}}
 M: DOAC 장점: {r:모니터링 적게} · {n:{r:예측 가능성↑}} (JB: 용량 고정 · 반감기 짧음)
+M: 장점(최신 JB 답 · 25년 시험): warfarin = 기존 carboxylated factors가 degradation되는 데 시간 → {r:onset of action 며칠} · 여러 {r:약물 상호작용} · 약효 개인차 → {r:INR 지속 모니터링} / dabigatran = anticoagulation 효과가 더 {r:consistent} · {r:예측가능성}↑
 
 ## Heparin·LMWH vs Warfarin | 주사 heparin vs 경구 warfarin — AT III vs vitamin K 순환 | 27 | 기출 20·21 · target | jb=HM16,HM21
 > heparin은 AT III를 켜서 바로·짧게, warfarin은 vitamin K 재활용을 막아 천천히·오래
@@ -401,9 +402,11 @@ U: 26 필기(p.28): 조직손상에서부터 혈소판 응집까지 일어나는
 F: 28=항혈소판제 3계열과 작용 지점, HM5:20
 M: 응집 스위치: {n:thromboxane(가장 중요) · ADP · thrombin}
 M: {r:Aspirin} = {r:COX} 비가역 저해 → {r:thromboxane}↓ → 응집 억제 (baby aspirin) — 5회 서술
+M: 저용량 aspirin(최신 JB 답): {r:COX-1} 비가역 억제 · 진통소염 용량의 {r:1/4~1/3}(baby aspirin) / {r:PGI2} 합성엔 큰 영향 없이 {r:TxA2} 합성만 선택적↓ / 혈관 내피세포는 효소를 새로 합성 ○ ↔ 혈소판은 새 혈소판이 형성되지 않는 이상 ✗
 M: {r:Clopidogrel} = {r:P2Y12}(ADP receptor) / {r:Tirofiban·Abciximab} = {r:GP IIb/IIIa}
 M: GP IIb/IIIa ↔ {r:fibrinogen·vWF} / GP Ib ↔ {r:vWF} (JB) — {u:26 p.4 그림에 둘 다}
 M: target 표(24·22 빈칸): ① E-aminocaproic = {r:t-PA·plasminogen·plasmin} ② Clopidogrel = {r:ADP receptor(P2Y12)} ③ LMWH = {r:Anti-thrombin III} ④ Tirofiban = {r:GP IIb/IIIa receptor}
+M: E-aminocaproic target 최신 JB 답(25년 시험): {r:plasminogen & plasminogen activators} — 이전 답 t-PA · plasminogen · plasmin
 M: TXA2 synthesis inhibitors·receptor antagonists = {n:시판되지 않음}
 
 ## Anticoagulants — Indications · Monitoring · Dental Drug Interactions | 항응고제별 적응증·모니터링·치과 약물 상호작용 | 29 | 기출 16~21 | jb=HM18
@@ -541,6 +544,7 @@ E: HM07 | 22·20년 서술 "warfarin 환자 단순 발치 국소 출혈 처치" 
 E: HM03 | 25년 서술(증례 (3) — 26판에 새로) "홍길동씨가 치과 진료 중 출혈이 발생했을 때 사용할 수 있는 국소지혈제/지혈방법 나열" → local pressure with gauze compression · suture · electro-cauterization · mechanical matrix such as oxidized regenerative cellulose (Surgicel), microfibrillar collagen (Avitene), and fibrin glue — p.34 목록에서 심혈관·혈전 위험 옵션을 뺀 JB 답(JB도 "문제가 애매")
 F: 34=Local measures, HM5:26=25 필기 — 또 기억해야 할 anti-fibrinolytic, 35=Mechanical aids vs Local hemostatics, 36=분류별 상품명, 59=Local measures 다시 — 26 필기 최근 지침
 M: Local measures 6: ① local pressure with {r:gauze} compression(압박) ② {r:suture} ③ {r:electro-cauterization} ④ {r:mechanical matrix}(Surgicel·Gelfoam·Avitene·fibrin glue) ⑤ {r:thrombin}, vasoconstrictor({r:epinephrine}) ⑥ {r:anti-fibrinolytic} medications(tranexamic acid·ε-aminocaproic acid)
+M: 25 서술(증례 국소지혈 나열 · JB 답): ① local pressure with {r:gauze compression} ② {r:suture} ③ {r:electro-cauterization} ④ {r:mechanical matrix} — Surgicel · Avitene · fibrin glue / p.34 중 JB 답에서 뺀 것 = Gelfoam · thrombin · epinephrine · anti-fibrinolytic
 M: 💬 약 중단 어려운 환자: {r:anti-fibrinolytic medication}(tranexamic acid·ε-aminocaproic acid) — plasmin 작용 저해
 M: 26 필기(p.59): 권장 = anticoagulant·antiplatelet 복용 환자는 가급적 약물복용을 중단하지 말고 local measure로 지혈(최근 지침)
 M: 비교: Mechanical aids = {r:large vessel}의 rapid·profuse / Local hemostatics = {r:oozing} — {r:artificial clot} 또는 {r:mechanical matrix}
@@ -641,7 +645,7 @@ M: Topical hemostatic agents 7: ① {r:Gelatin} ② {r:Cellulose} ③ {r:Collage
 M: 특징: Gelfoam = {r:gelatin} · {r:absorbable}·water-insoluble sponge · {r:4-6주} 흡수 · {r:149°C 4시간} / {e:absorb and hold blood and other fluids within its interstices}
 M: 기전: 물리적 → {r:platelet 파괴 + fibrin 뼈대} · {r:thrombin}으로 강화 / {u:26 슬라이드 — physical matrix for {r:platelet adhesion}·fibrin clot formation}(25 — disruption of platelets)
 M: 사용: capillary·venous·arteriolar 출혈 · {r:minimum amount} · dry 또는 saline · thrombin 유무 모두
-M: 금지: ① {r:skin incisions} closure ✗(봉합) ② {r:intravascular} compartments ✗(embolization) ③ known allergies to {r:porcine collagen} ✗(알레르기) ④ sterile product — {r:re-sterilized} ✗(재멸균 ×) ⑤ closed space implantation site → {r:giant-cell granuloma} — {e:{n:26 "precautions는 중요"}}
+M: 금지: {e:{n:26 "precautions는 중요"}} ① {r:skin incisions} closure ✗(봉합) ② {r:intravascular} compartments ✗(embolization) ③ known allergies to {r:porcine collagen} ✗(알레르기) ④ sterile product — {r:re-sterilized} ✗(재멸균 ×) ⑤ closed space implantation site → {r:giant-cell granuloma}
 M: 25 객관식: 색전(intravascular)·{r:4-6주} 흡수·thrombin 강화·platelet 파괴 + fibrin 뼈대 = 모두 ○ / 4) "표면 창상 치유" 선지 = JB 답 "4) or 없음"(skin incision ✗ ↔ bleeding surface ○)
 M: 함정(25 ↔ 26 기전): 25 = {r:promote disruption of platelets} · framework for fibrin strands / {u:26 = physical matrix for {r:platelet adhesion} and fibrin clot formation}
 
@@ -892,7 +896,7 @@ M: 20 빈칸 vit K 의존 인자 = {r:II · VII · IX · X} — JB 첫 답 'II, 
 M: 23·20 빈칸: N terminal 9-12개 ( ) 잔기 = {r:Gamma-carboxyglutamate}(첫 답 Glutamic acid ✗)
 M: 투여: {r:수술 4-7일 전}(oral·parenteral) · 흡수 장애·{r:장내 세균 합성↓}에만(25 자료 — 26에서 빠짐)
 M: 해독(warfarin toxicity): {r:Phytonadione(K1) SC·IM} · {r:Kcentra}(II·VII·IX·X — 더 빠름)(25 자료 — 26에서 빠짐)
-M: {u:26 임상 사용: key indications = {r:vitamin K deficiency} · {r:warfarin-associated excessive anticoagulation} / {r:Do not routinely administer} before dental surgery(INR·bleeding risk·indication으로 결정) / warfarin reversal → {r:oral vitamin K} · major bleeding → {r:IV vitamin K plus 4-factor PCC} / Subcutaneous or intramuscular → generally not preferred / diet → consistent vitamin K intake during warfarin}
+M: {u:26 역할·임상 사용: reduced vitamin K → {r:γ-carboxylation} of II·VII·IX·X + {r:proteins C and S} / key indications ={r:vitamin K deficiency} · {r:warfarin-associated excessive anticoagulation} / {r:Do not routinely administer} before dental surgery(INR·bleeding risk·indication으로 결정) / warfarin reversal → {r:oral vitamin K} · major bleeding → {r:IV vitamin K plus 4-factor PCC} / Subcutaneous or intramuscular → generally not preferred / diet → consistent vitamin K intake during warfarin}
 M: 함정(25 ↔ 26): 25 = 수술 {r:4-7일 전} 투여 · Phytonadione {r:SC or IM} / {u:26 = 술전 routine 투여 ✗ · Subcutaneous or intramuscular {r:not preferred} · oral 또는 IV + 4-factor PCC}
 M: 종류: ① K1 {r:plants} ② K2 {r:gut bacteria} ③ K3 {r:Menadione} prodrug → {r:hemolytic anemia}
 
