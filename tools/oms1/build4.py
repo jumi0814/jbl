@@ -755,6 +755,9 @@ def pg_label(k, rng, npages):
     → (표시, 첫 조각 시작 쪽 | None)"""
     pl_ = getattr(S, 'PAGE_LABEL', {}).get(k, 'p.'); nums, spec, first = [], [], None
     for sg in [x.strip() for x in re.split(r'[,·]', rng or '') if x.strip()]:
+        m25 = re.fullmatch(r'(2\d)\s*p\.\s*(\d+)(?:\s*[-–~]\s*(\d+))?', sg)   # 10-23 26에서 빠진 옛 판 쪽만 있는 카드(PHARM HM 증례 Mr. J) — '25 p.58-59' → '25 자료 p.58–59'
+        if m25:
+            a_, b_ = m25.group(2), m25.group(3) or m25.group(2); spec.append(f'{m25.group(1)} 자료 p.{a_}' + ('' if a_ == b_ else f'–{b_}')); continue
         m = re.fullmatch(r'(\d+)(?:\s*[-–~]\s*(\d+))?', sg)
         if not m: continue
         a, b = int(m.group(1)), int(m.group(2) or m.group(1))
