@@ -1631,92 +1631,190 @@ M: 슬라이드 25 수치로 시술 결정: 흐름도 INR >4.0 "No surgical trea
 M: 필기: "Heparin 투여 환자, 혈우병 환자에게서 aPTT가 증가" / "임상적으로 가장 많이 사용되는 것이 PT인데, warfarin을 복용하고 있는 환자에게서 늘어난다". [[HM:21]]
 M: 필기: "Bleeding이 많이 일어날 것 같은 procedure의 경우 INR이 3.0 이하가 되도록 해야 하며, 이를 위해 처방을 해준 내과의에게 consult".
 N: 21년 1회 — 24판·23판 2021년 칸 14번(괄호 연도 없음). 두 판본 모두 앞 문항(13번 저용량 아스피린 문항의 21년 원문) 답안 뒤에 붙어 있어 이번에 분리. JB 해설 "이전 기출문제를 참고하여 검사는 두 가지만 적었습니다". JB 참고 "221006_우경미_지혈제와 수렴제, 25 p.25-28, 73"은 22 자료 쪽수 — 25 자료 p.20-23·59.
-@AX01 | v=part | lec=ANX
-A: 보충 — 3) ○(JB 답): JB 해설 인용(251106_이윤실_항불안제 p.8) "Sedation 을 유발하는 BZ1 rec.에만 특이적으로 binding 하는 BZD(e.g. Quazepam)는 있지만, anxiolysis 를 유발하는 BZ2 rec.에만 특이적으로 binding 하는 BZD 는 아직 알려져있지 않다. 따라서 모든 BZD 는 진정작용을 가진다고 볼 수 있다."
-A: 보충 — 2) ✗: JB 해설 인용(p.27) "Tolerance (gradual increase of dose needed for effect) occurs, as does dependence, with all BDZs." / "With long-term use, tolerance develops to sedative-hypnotic, but not to anxiolytic effect."
-A: 보충 — 4) ✗: JB 해설 인용(p.11) "BZDs work only in presence of GABA released by neurons."
-A: 보충 — 5) ✗: JB 해설 인용(p.11) "Oral BZDs do not produce significant respiratory depression, coma, or death unless co-administered with another CNS depressants such as alcohol." / 1) 복원 미흡.
-M: 변형 대비: 같은 해설의 짝 — 내성은 sedative-hypnotic에만(anxiolytic ✗) · BZ1 선택 약물(Quazepam·Zolpidem·Zaleplon·Eszopiclone — 25년 4번) · GABA 없이는 작용 ✗.
-N: 4Q 시험 25·24년 2회(26판 2025년 칸 1번 (25,24) · 2024년 칸 2번 "2025 년 1 번 중복") · 이윤실 출제(26 3Q는 김우진 새 강의 — 참고 기출). 우리 강의자료 없음 — 근거는 JB 해설이 옮긴 251106 강의록 문장.
-@AX02 | v=part | lec=ANX | rel=AX09
-A: 보충 — 4) erythromycin ○(JB 답): JB 해설 인용(251106 p.19) "Inhibitors of CYP3A4, such as diltiazem, erythromycin, fluconazole, itraconazole, ketoconazole, saquinavir, and verapamil, were shown to significantly increase the Conc. of orally administered midazolam."
-A: 보충 — 1)·2)·3) rifampin·phenytoin·carbamazepine ✗: 24년 해설 "Cytochrome P450 inducers, such as rifampin, carbamazepine, and phenytoin, can cause a markedly decreased Conc. of oral midazolam" — 억제가 아니라 유도 / 5) phenobarbital은 JB 해설에 언급 없음.
-M: 변형 대비: 같은 대사 축의 반대 문제(24·23년) "CYP3A4를 증가시켜 약물효과를 감소시키는 것" = Carbamazepine.
-N: 4Q 시험 25·24·23년 3회(26판 2025년 칸 2번 (25,24,23) · 2024년 칸 3번 "2025 년 2 번 중복") · 이윤실 출제 · 근거 = JB 해설(251106 p.19).
-@AX03 | v=part | lec=ANX
-A: 보충 — JB 답(25년): "Buspirone, Antihistamines (hydroxyzine), Chloral hydrate (*not recommended), b-adrenoceptor antagonist (propranolol), Antidepressants" — 참고 251106 p.3 / 20년 답도 같은 다섯(20201126 p.3) / 21년 답은 "Buspirone, Antihistamines, Chloral hydrate, Antidepressants"(221110 류현모 p.38-42).
-M: 변형 대비: buspirone 자세히(24·23년) — 5HT1A partial agonist · onset 1~2 weeks · less tolerance and dependence.
+@AX01 | v=ok | lec=ANX:13
+K: 정답: 3) — BZ2에만 붙는 BZD가 아직 없고 BZD 용량이 올라가면 진정·수면까지 가므로 {r:모든 BZD는 진정작용}을 가진다. [[ANX:13]] [[ANX:9]]
+K: 나머지 ✗: ① 내성 — {r:모든 BZD}에서 내성·의존성 ② GABA — {r:신경세포가 분비한 GABA가 있을 때만} 작용 ③ 단독 과량 — 다른 중추신경 억제제와 {r:병용하지 않는 한} 유의한 호흡억제·혼수·사망 없음. [[ANX:29]] [[ANX:13]]
+A: 일치 — 3) ○(25·24): 슬라이드 13 "BZD 용량: 항불안(anxiolysis) < {r:진정(sedation)} < 수면(hypnosis)" / 슬라이드 9 "BZ2 선택적 약물: {r:아직 없음}" · 슬라이드 5 BZD = "진정·수면제(sedative-hypnotics)" / JB 해설 인용(251106_이윤실_항불안제 p.8) "Sedation 을 유발하는 BZ1 rec.에만 특이적으로 binding 하는 BZD(e.g. Quazepam)는 있지만, anxiolysis 를 유발하는 BZ2 rec.에만 특이적으로 binding 하는 BZD 는 아직 알려져있지 않다. 따라서 모든 BZD 는 진정작용을 가진다고 볼 수 있다." [[ANX:13]] [[ANX:9]] [[ANX:5]]
+A: 일치 — 2) ×: 슬라이드 29 "{r:모든 BZD}에서 내성(tolerance; 효과를 얻기 위해 필요한 용량이 점차 증가)과 의존성(dependence)이 생긴다" · "장기간 사용 시 진정·수면 효과에는 내성이 생기지만, 항불안 효과에는 내성이 생기지 않는다" / JB 해설 인용(p.27) "Tolerance (gradual increase of dose needed for effect) occurs, as does dependence, with all BDZs." · "With long-term use, tolerance develops to sedative-hypnotic, but not to anxiolytic effect." [[ANX:29]]
+A: 일치 — 4) ×: 슬라이드 13 "BZD는 {r:신경세포가 분비한 GABA가 있을 때만 작용} → 중추신경 억제의 깊이가 제한됨" / JB 해설 인용(p.11) "BZDs work only in presence of GABA released by neurons." [[ANX:13]]
+A: 일치 — 5) ×: 슬라이드 13 상자 "경구 BZD는 알코올 등 다른 중추신경 억제제와 {r:병용하지 않는 한}, 유의한 호흡억제, 혼수 또는 사망을 일으키지 않는다" · 슬라이드 26 "과다복용 시 BZD는 호흡이나 심혈관 기능의 심각한 억제 없이 긴 수면을 유발" / JB 해설 인용(p.11) "Oral BZDs do not produce significant respiratory depression, coma, or death unless co-administered with another CNS depressants such as alcohol." / 1) 복원 미흡. [[ANX:13]] [[ANX:26]]
+M: 슬라이드 26: "그러나 {r:비경구(parenteral)} 투여하거나 다른 억제제와 병용하면, 모든 BZD가 심각한 호흡억제와 사망을 일으킬 수 있다" — 5) 변형 대비(단독 경구 ↔ 비경구·병용). [[ANX:26]]
+M: 26 필기(p.7): "BZD는 GABA와 다른 위치에 결합하여 간접적으로 GABA에 의한 효과를 증폭시킵니다. => 다른 말로, BZD는 GABA가 있는 상태에서만 효과가 있습니다." [[ANX:7]]
+M: 변형 대비: 같은 해설의 짝 — 내성은 sedative-hypnotic에만(anxiolytic ✗) · BZ1 선택 약물(Quazepam·Zolpidem·Zaleplon·Eszopiclone — 25년 4번) · GABA 없이는 작용 ✗ · 26 슬라이드 13 "BZD는 {r:항우울 효과가 없다}". [[ANX:13]] [[ANX:9]]
+N: 4Q 시험 25·24년 2회(26판 2025년 칸 1번 (25,24) · 2024년 칸 2번 "2025 년 1 번 중복") · 이윤실 출제(26 3Q는 김우진 새 강의 — 참고 기출). 10-23 전엔 우리 강의자료 없음 — 근거는 JB 해설이 옮긴 251106 강의록 문장이었음 → 26 김우진 PPT p.5·9·13·26·29로 다시 대조.
+@AX02 | v=ok | lec=ANX:22 | rel=AX09
+K: 정답: 4) {r:erythromycin}(에리스로마이신) — CYP3A4 억제제라 경구 midazolam 농도를 {r:유의하게 높인다}(→ 부작용). [[ANX:22]]
+K: ⚠ 함정: 1) rifampin·2) phenytoin·3) carbamazepine은 반대편 = {r:사이토크롬 P450 유도제}(midazolam 농도를 현저히 낮춤). [[ANX:22]]
+A: 일치 — 4) ○(25·24·23): 슬라이드 22 "CYP3A4 억제제 — 딜티아젬(diltiazem), {r:에리스로마이신(erythromycin)}, 플루코나졸(fluconazole), 이트라코나졸(itraconazole), 케토코나졸(ketoconazole), 사퀴나비르(saquinavir), 베라파밀(verapamil) — 은 경구 미다졸람의 농도를 유의하게 높인다" / JB 해설 인용(251106 p.19) "Inhibitors of CYP3A4, such as diltiazem, erythromycin, fluconazole, itraconazole, ketoconazole, saquinavir, and verapamil, were shown to significantly increase the Conc. of orally administered midazolam." [[ANX:22]]
+A: 일치 — 1)·2)·3) ×: 슬라이드 22 "사이토크롬 P450 유도제 — 리팜핀(rifampin), 카르바마제핀(carbamazepine), 페니토인(phenytoin) — 은 경구 미다졸람 농도를 {r:현저히 낮출 수 있다}" / 24년 해설 "Cytochrome P450 inducers, such as rifampin, carbamazepine, and phenytoin, can cause a markedly decreased Conc. of oral midazolam" — 억제가 아니라 유도. [[ANX:22]]
+A: 보강 — 5) phenobarbital ×: 슬라이드 22 목록에 없음(JB 해설에도 언급 없음) — 26 PPT에선 슬라이드 26 치료지수 그림의 '페노바르비탈(바르비투르산염)'으로만 나옴. [[ANX:26]]
+M: 슬라이드 22: "많은 약물이 CYP3A4/5와 CYP2C19에 의해 대사되고 이를 억제하기도 하므로, 많은 BZD에서 약물–약물 상호작용이 나타난다" · 디아제팜은 CYP3A4·CYP2C19 억제제(시메티딘·케토코나졸·플루복사민·플루옥세틴·오메프라졸)와 진정이 강해지고 길어질 수 있음. [[ANX:22]]
+M: 26 필기(p.22): "BZD를 대사시키는 효소에 의해 대사되는 다른 약물들을 병용할 경우 BZD의 약효에 변화를 일으킬 수 있습니다." [[ANX:22]]
+M: 변형 대비: 같은 대사 축의 반대 문제(24·23년) "CYP3A4를 증가시켜 약물효과를 감소시키는 것" = Carbamazepine · 26 슬라이드 30 대사 억제 = {r:시메티딘}·경구피임약(소실 반감기 연장). [[ANX:30]]
+N: 4Q 시험 25·24·23년 3회(26판 2025년 칸 2번 (25,24,23) · 2024년 칸 3번 "2025 년 2 번 중복") · 이윤실 출제 · 근거 = JB 해설(251106 p.19) = 26 PPT p.22.
+@AX03 | v=ok | lec=ANX:33
+K: 정답: 아래 중 2가지 이상 — ① {r:Buspirone}(부스피론) ② {r:Antihistamines}(항히스타민제 — hydroxyzine) ③ {r:Chloral hydrate}(포수클로랄 — not recommended) ④ {r:b-adrenoceptor antagonist}(β 차단제 — propranolol) ⑤ {r:Antidepressants}(항우울제). [[ANX:3]] [[ANX:33]]
+K: 외울 것: 26 PPT 목록은 6가지 = ① 벤조디아제핀 + 위 다섯(②~⑥) — 순서 그대로. [[ANX:3]]
+A: 일치 — JB 답(25년): 슬라이드 3·33 '불안 치료에 사용하는 약물' ② 부스피론(Buspirone) ③ 항히스타민제(Antihistamines) — 히드록시진(hydroxyzine) / ④ 포수클로랄(Chloral hydrate) — "{r:권장되지 않음}(not recommended)" ⑤ β-아드레날린수용체 차단제(β-adrenoceptor antagonist) — 프로프라놀롤(propranolol) ⑥ 항우울제(Antidepressants) / JB 답 "Buspirone, Antihistamines (hydroxyzine), Chloral hydrate (*not recommended), b-adrenoceptor antagonist (propranolol), Antidepressants" — 참고 251106 p.3. [[ANX:3]] [[ANX:33]]
+A: 일치 — 20·21년 답: 20년 답도 같은 다섯(20201126 p.3) / 21년 답은 "Buspirone, Antihistamines, Chloral hydrate, Antidepressants"(221110 류현모 p.38-42) — 26 PPT 목록의 부분집합. [[ANX:3]]
+M: 슬라이드 3: ② 부스피론 "작용 발현이 느림 · 세로토닌 5-HT1A 수용체 작용제 · 범불안장애에는 효과적이나 공포증(phobia)에는 효과 없음(효과 1~2주)" · ③ "소아 진정" · ④ "효과 강력, {r:안전역이 좁고 길항제가 없음}" · ⑤ "말초 교감신경 반응 … 발한, 떨림, 빈맥" · ⑥ "범불안장애, 공포증, 사회불안장애, PTSD, 소아 불안". [[ANX:3]]
+M: 26 필기(p.3): "불안치료에 사용되는 대표적인 약물 6가지입니다. 오늘은 벤조디아제핀 위주로 보겠습니다." [[ANX:3]]
+M: 변형 대비: buspirone 자세히(24·23년) — 5HT1A partial agonist · onset 1~2 weeks · less tolerance and dependence(26 슬라이드 34) · '아닌 것' 꼴이면 플루마제닐(BZD 길항제)·프로포폴(정맥마취제)은 목록에 없음. [[ANX:34]]
 N: 4Q 시험 25·21·20년 3회(26판 2025년 칸 3번 괄호 (25,21) + 23 4Q JB 2021년 칸 4번·2020년 칸 6번 — 같은 질문·같은 답이라 연결, 20은 2020년 칸 기준) · 이윤실 출제.
-@AX04 | v=part | lec=ANX
-A: 보충 — JB 답 원문(251106 p.8): BZ1 "GABAAR 구성: α1 subunit & variable β, γ · 작용: Linked to sleep → Sedation (but amnesia↓, muscle relaxation↓) · BZ1 선택적 약물: Quazepam (BZ), Zolpidem, Zaleplon, Eszopiclone" / BZ2 "GABAAR 구성: α1 subunit 미포함 · 작용: Linked to cognition and motor function → Anxiolysis, muscle relaxation · BZ2 선택적 약물: 밝혀지지 않음".
-M: 변형 대비: 같은 25년 4-1 T/F "BZ1에 작용하여 항불안효과" → F · 25년 1번 "모든 BZD 약물은 진정작용" ○.
+@AX04 | v=ok | lec=ANX:9
+K: 정답: BZ1 = {r:α1} 포함 → 수면 → {r:진정}(기억상실↓·근이완↓) · 선택 약 Quazepam·Zolpidem·Zaleplon·Eszopiclone / BZ2 = α1 {r:없음} → 인지·운동 기능 → {r:항불안}·근이완 · 선택 약 없음. [[ANX:9]]
+K: 구별: 26 PPT 'BZ2 선택적 약물: 아직 없음' = JB 답 '밝혀지지 않음'(같은 뜻). [[ANX:9]]
+A: 일치 — BZ1: 슬라이드 9 "GABAAR에 {r:α1 소단위}와 다양한 β, γ를 포함 · 수면과 연관 → 진정(sedation) (단, 기억상실↓, 근이완↓) · BZ1 선택적 약물: 쿠아제팜(Quazepam, BZD), 졸피뎀(Zolpidem), 잘레플론(Zaleplon), 에스조피클론(Eszopiclone)" / JB 답 원문(251106 p.8) BZ1 "GABAAR 구성: α1 subunit & variable β, γ · 작용: Linked to sleep → Sedation (but amnesia↓, muscle relaxation↓) · BZ1 선택적 약물: Quazepam (BZ), Zolpidem, Zaleplon, Eszopiclone". [[ANX:9]]
+A: 일치 — BZ2: 슬라이드 9 "GABAAR에 {r:α1 소단위가 없음} · 인지 및 운동 기능과 연관 → 항불안(anxiolysis), 근이완(muscle relaxation)에 기능 · BZ2 선택적 약물: 아직 없음" / JB 답 BZ2 "GABAAR 구성: α1 subunit 미포함 · 작용: Linked to cognition and motor function → Anxiolysis, muscle relaxation · BZ2 선택적 약물: 밝혀지지 않음". [[ANX:9]]
+M: 슬라이드 9: 예) BZ1 = α1α2β2, α1α3β2 등 · BZ2 = α2α3β2, α3α3β2 등 · BZ1 선택 약은 "α1 수용체에 선택적으로 작용하므로 수면제로는 쓰이되 항불안·근이완·항경련 효과는 약함". [[ANX:9]]
+M: 26 필기(p.9): "BZ1 수용체는 수면과도 관련이 있어 많은 수면제들이 이를 타겟합니다. a1 소단위가 없는 BZ2의 경우 수면유도보다는 오히려 항불안 효과가 큽니다." [[ANX:9]]
+M: 변형 대비: 같은 25년 4-1 T/F "BZ1에 작용하여 항불안효과" → F · 25년 1번 "모든 BZD 약물은 진정작용" ○ · 짝 바꾸기(α1 포함 ↔ 없음 · 수면 ↔ 인지·운동). [[ANX:9]]
 N: 4Q 시험 25년 1회(탈 — 26판 2025년 칸 4번, 괄호 (25)) · 이윤실 출제 · 서술형.
-@AX05 | v=part | lec=ANX
-A: 보충 — F(JB 답): 26판 해설 "BZ1 은 진정효과, BZ2 는 항불안효과"(251106 p.8) / 23 4Q JB 21년 해설 "BZ1 receptor binding site 는 sedation, BZ2 receptor binding site 는 anxiolysis(항불안), muscle relaxation 에 관여"(211104 이윤실 p9) / 20년 해설 "GABAA receptor 가 주가 된다. BZ1 수용체는 sedative effect."(20201126 p.6).
-M: 변형 대비: 25년 서술 BZ1·BZ2 각각의 GABAAR 구성·작용·선택적 약물.
+@AX05 | v=ok | lec=ANX:9 | rel=AX04
+K: 정답: {r:F} — 항불안은 {r:BZ2}(α1 없음), BZ1(α1 포함)은 수면과 연관된 {r:진정}. [[ANX:9]]
+A: 일치 — F(21·20): 슬라이드 9 BZ1 "수면과 연관 → {r:진정(sedation)}" · BZ2 "인지 및 운동 기능과 연관 → {r:항불안(anxiolysis)}, 근이완" / 26판 해설 "BZ1 은 진정효과, BZ2 는 항불안효과"(251106 p.8) / 23 4Q JB 21년 해설 "BZ1 receptor binding site 는 sedation, BZ2 receptor binding site 는 anxiolysis(항불안), muscle relaxation 에 관여"(211104 이윤실 p9) / 20년 해설 "GABAA receptor 가 주가 된다. BZ1 수용체는 sedative effect."(20201126 p.6). [[ANX:9]]
+M: 26 필기(p.9): "a1 소단위가 없는 BZ2의 경우 수면유도보다는 오히려 항불안 효과가 큽니다." [[ANX:9]]
+M: 변형 대비: 25년 서술 BZ1·BZ2 각각의 GABAAR 구성·작용·선택적 약물 · 함정: 'BZ2 선택적 BZD가 있다' ✗(아직 없음). [[ANX:9]]
 N: 4Q 시험 21·20년 2회 — 26판 2025년 칸 4-1(괄호 (21) · 25년 4번 밑 관련 문제로 실림 → 25 배지 없음) = 23 4Q JB 2021년 칸 1번 · 2020년 칸 8번("BZDs 의 항불안 작용은 BZ1 수용체에 의해 나타난다" — 같은 명제·같은 답 F라 연결) · 이윤실 출제.
-@AX06 | v=part | lec=ANX | rel=AX22
-A: 보충 — Flumazenil(JB 답): JB 해설 인용(251106 p.24·25) "Flumazenil (nonselective BZD antagonist) can counteract acute overdose cases. It effectively reverses the CNS depression produced by the selective BZ1 receptor agonists." / "Flumazenil: Used to treat overdose or terminate sedative or anesthetic effect of BZDs."
-M: 변형 대비: 20년 단답 "Benzodiazepine 의 antagonist 는?" → Flumazenil · 같은 25년 보기 12개 중 "우윳빛깔 약" = Propofol.
+@AX06 | v=ok | lec=ANX:26 | rel=AX22
+K: 정답: {r:Flumazenil}(플루마제닐) — {r:비선택적 BZD 길항제}로 급성 과다복용에 대응하고 BZD의 진정·마취 효과를 종료. [[ANX:26]] [[ANX:27]]
+K: 외울 것: BZD 수용체 부위 {r:경쟁적 길항제} · 작용 1~2분·최고 10분·지속 약 2시간 · 정맥 0.2 mg → 최대 누적 1.0 mg. [[ANX:27]]
+A: 일치 — Flumazenil(25·23): 슬라이드 26 "{r:플루마제닐(Flumazenil, 비선택적 BZD 길항제)}은 급성 과다복용에 대응할 수 있으며, 선택적 BZ1 수용체 작용제에 의한 중추신경 억제도 효과적으로 역전시킨다" / JB 해설 인용(251106 p.24·25) "Flumazenil (nonselective BZD antagonist) can counteract acute overdose cases. It effectively reverses the CNS depression produced by the selective BZ1 receptor agonists." [[ANX:26]]
+A: 일치 — 쓰임: 슬라이드 27 "{r:과다복용 치료} 또는 BZD의 진정·마취 효과 종료에 사용한다" / JB 해설 "Flumazenil: Used to treat overdose or terminate sedative or anesthetic effect of BZDs." · Midazolam = BZD(슬라이드 5 이미다졸 고리가 융합된 미다졸람). [[ANX:27]] [[ANX:5]]
+M: 슬라이드 27: "BZD 수용체 부위의 경쟁적 길항제(competitive antagonist)로 밝혀졌다" · "작용이 빠르다: 1~2분 내 작용, 10분 내 최고 활성, 지속 약 2시간" · 투여법 "처음 15초 동안 0.2 mg을 정맥 투여 → 60초 후에도 의식이 돌아오지 않으면 0.1 mg 추가 투여 → 이후 60초마다 0.1 mg씩 추가하여 최대 누적 투여량 {r:1.0 mg}까지". [[ANX:27]]
+M: 슬라이드 27: BDZ 구조의 차이 — "5번 위치의 페닐 고리(C 고리)가 없어 수용체를 활성화하지 못한다" · 슬라이드 11 표 플루마제닐 = BZD 결합 부위 · 경쟁적 길항제 · BZD 효과 차단. [[ANX:27]] [[ANX:11]]
+M: 변형 대비: 20년 단답 "Benzodiazepine 의 antagonist 는?" → Flumazenil · 같은 25년 보기 12개 중 "우윳빛깔 약" = Propofol · 26 '오늘의 핵심' ③ "플루마제닐을 준비한다". [[ANX:40]]
 N: 4Q 시험 25·23년 2회(26판 2025년 칸 5번 (25,23) · 2023년 칸 1번 "2025 년 5 번 중복") · 이윤실 출제 · 보기 12개 중 고르는 주관식.
-@AX07 | v=part | lec=ANX
-A: 보충 — Propofol(JB 답 — 해설 없음, 참고 251106 p.36): "위의 보기들"은 같은 25년 5번의 보기 12개.
+@AX07 | v=ok | lec=ANX:39
+K: 정답: {r:Propofol}(프로포폴) — 물에 녹지 않아 {r:유백색 지질 유제}(lipid emulsion; 1%, 10 mg/mL)로 정맥 투여하는 GABA_A 정맥마취제. [[ANX:39]]
+A: 일치 — Propofol(25): 슬라이드 39 "프로포폴(2,6-디이소프로필페놀)의 구조식과 실제 제형. 물에 녹지 않아 {r:유백색 지질 유제}(lipid emulsion; 1%, 10 mg/mL)로 정맥 투여한다" / JB 답(해설 없음, 참고 251106 p.36) · "위의 보기들"은 같은 25년 5번의 보기 12개. [[ANX:39]]
+M: 슬라이드 39: GABA_A 수용체에 작용하는 대표적인 정맥마취제 · 전신마취의 유도와 유지·기계환기 중인 성인의 진정·시술 진정 · "β 소단위의 두 번째 막관통 도메인(TM2)에 결합(통로가 닫히는 시간 늦춤)" · 작용기전 ① 통로가 닫히는 시간을 늦춰 GABAA 수용체 활성을 증강 ② {r:나트륨 통로 차단제}. [[ANX:39]]
+M: 26 필기(p.39): "분자구조 상 지용성이서 계면활성제를 써서 용매에 녹입니다. 그러나 지용성 약물인만큼 주입 통증이 심해서 국소마취제를 같이 쓰기도 합니다." [[ANX:39]]
+M: 함정: 슬라이드 39 "사건에 대한 기억을 없애는" ↔ 26 필기 "BZD와는 달리 전향성 기억상실이 없고" — 슬라이드 기준. [[ANX:39]]
 N: 4Q 시험 25년 1회(탈 — 26판 2025년 칸 6번, 괄호 (25)) · 이윤실 출제.
-@AX08 | v=part | lec=ANX | rel=AX21
-A: 보충 — 4) Lorazepam(JB 답 — 답만 복원): JB 해설 인용(251106 p.16) "BZDs: Pharmacologic Effects 1) Reduction of anxiety and aggression 2) Induction of sleep and sedation (at high concentrations) 3) Anterograde amnesia 4) Anticonvulsant effect 5) Treatment of acute alcohol withdrawal symptoms".
-M: 변형 대비: 20년 서술 "BZD가 알코올 금단증상의 치료에 사용될 수 있는 이유" — cross-tolerance · 항경련 · 호흡기 억제 효과 없음.
+@AX08 | v=part | lec=ANX:18 | rel=AX21
+K: 정답: 4) {r:Lorazepam}(로라제팜 — 답만 복원) — BZD의 약리작용 ① 불안·공격성 감소 + ⑤ 급성 알코올 금단 증상 치료. [[ANX:13]] [[ANX:18]]
+K: ⚠ 함정: 보기 미복원 · 왜 로라제팜인지(다른 BZD와 견주는 근거)는 26 PPT에 없음 → v=part. [[ANX:18]]
+A: 부분 일치 — 4) Lorazepam(24): 슬라이드 13 약리작용 "① 불안·공격성 감소 … ⑤ {r:급성 알코올 금단 증상 치료}" / 슬라이드 18 "알코올과 교차내성(cross-tolerance)을 보인다(BZD가 대체제 역할을 하여 → 금단 증상의 중증도 감소)" · 로라제팜 = BZD(슬라이드 5) · Anxiolytic, hypnotic(슬라이드 24 표) — 로라제팜을 고를 근거 문장은 26 PPT에 없음. [[ANX:13]] [[ANX:18]] [[ANX:24]]
+A: 보강 — JB 해설 인용(251106 p.16): "BZDs: Pharmacologic Effects 1) Reduction of anxiety and aggression 2) Induction of sleep and sedation (at high concentrations) / 3) Anterograde amnesia 4) Anticonvulsant effect 5) Treatment of acute alcohol withdrawal symptoms" / ⚠ 26 슬라이드 13의 ③은 "근긴장·협조운동 감소(Reduction of muscle tone and coordination)" — 전향성 기억상실은 ② 아래(슬라이드 15). [[ANX:13]] [[ANX:15]]
+M: 슬라이드 18: 알코올 금단 증상 — 마지막 음주 후 빠르면 2시간 만에 시작 · 수 주간 지속 · 발작(seizure)·진전섬망(delirium tremens) · 교차내성 = 기능이나 효과가 비슷한 두 약물 사이에서 흔함. [[ANX:18]]
+M: 26 필기(p.18): "BZD는 알코올을 대신하여 결합부위에 작용하여 금단치료증상 치료에 쓰일 수 있습니다. 이처럼 다른 치료에 사용될 수 있는 것은 호흡억제 등 심각한 부작용이 없기 때문입니다." [[ANX:18]]
+M: 변형 대비: 20년 서술 "BZD가 알코올 금단증상의 치료에 사용될 수 있는 이유" — cross-tolerance · 항경련 · 호흡기 억제 효과 없음 · 26 슬라이드 20 로라제팜 = 지용성 낮고 단백 결합 85–90% → 최고 효과 비교적 오래. [[ANX:20]]
 N: 4Q 시험 24년 1회(26판 2024년 칸 1번 "(객관식, 답만 복원)", 괄호 (24)) · 이윤실 출제 · 보기 미복원.
-@AX09 | v=part | lec=ANX | rel=AX02
-A: 보충 — 5) Carbamazepine ○(JB 답): JB 해설 인용(251106 p.16) "Cytochrome P450 inducers, such as rifampin, carbamazepine, and phenytoin, can cause a markedly decreased Conc. of oral midazolam."
-A: 보충 — 1) Verapamil·4) Erythromycin ✗: 25년 해설 "Inhibitors of CYP3A4, such as diltiazem, erythromycin, … and verapamil … significantly increase the Conc. of orally administered midazolam" — 증가가 아니라 억제 / 2) Cevimeline·3) Ketamine은 JB 해설에 언급 없음.
-M: 변형 대비: 반대 문제(25·24·23년) "CYP3A4를 억제해 부작용이 생기는 약" = erythromycin.
+@AX09 | v=ok | lec=ANX:22 | rel=AX02
+K: 정답: 5) {r:Carbamazepine}(카르바마제핀) — 사이토크롬 P450 {r:유도제}라 경구 midazolam 농도를 현저히 낮춤(약물효과↓). [[ANX:22]]
+K: ⚠ 함정: 1) Verapamil·4) Erythromycin은 반대편 = {r:CYP3A4 억제제}(농도↑) · 2) Cevimeline·3) Ketamine은 26 PPT p.22에 없음. [[ANX:22]]
+A: 일치 — 5) ○(24·23): 슬라이드 22 "사이토크롬 P450 유도제 — 리팜핀(rifampin), {r:카르바마제핀(carbamazepine)}, 페니토인(phenytoin) — 은 경구 미다졸람 농도를 현저히 낮출 수 있다" / JB 해설 인용(251106 p.16) "Cytochrome P450 inducers, such as rifampin, carbamazepine, and phenytoin, can cause a markedly decreased Conc. of oral midazolam." [[ANX:22]]
+A: 일치 — 1)·4) ×: 슬라이드 22 CYP3A4 억제제 "딜티아젬, 에리스로마이신, … {r:베라파밀(verapamil)} — 은 경구 미다졸람의 농도를 유의하게 높인다" / 25년 해설 "Inhibitors of CYP3A4, such as diltiazem, erythromycin, … and verapamil … significantly increase the Conc. of orally administered midazolam" — 증가가 아니라 억제. [[ANX:22]]
+A: 보강 — 2)·3) ×: 2) Cevimeline·3) Ketamine은 JB 해설에 언급 없음 · 26 PPT p.22 목록에도 없음. [[ANX:22]]
+M: 슬라이드 21: 제1상 산화 = CYP3A4 · CYP2C19 → 활성 대사물 · 옥사제팜·테마제팜·로라제팜은 제1상 없이 바로 포합(CYP 영향 적음). [[ANX:21]]
+M: 변형 대비: 반대 문제(25·24·23년) "CYP3A4를 억제해 부작용이 생기는 약" = erythromycin · 시메티딘 = 강력·비선택적 CYP 억제제(슬라이드 30). [[ANX:30]]
 N: 4Q 시험 24·23년 2회(26판 2024년 칸 4번, 괄호 (24,23)) · 이윤실 출제.
-@AX10 | v=part | lec=ANX
-A: 보충 — JB 답 "5) ?"(선지 미복원) — 1)~4)는 모두 해설로 ○: JB 해설 인용(251106 p.31) "Used to treat long lasting anxiety such as generalized anxiety disorders. → 3)" / "Ineffective in controlling panic attacks or severe anxiety states because onset of anxiolytic activity takes 1~2 weeks to develop. → 1)" / "A partial agonist at 5HT1A receptors → 2)" / "When administered chronically, buspirone causes less tolerance and dependence than BDZs → less potential for abuse. Also, it does not produce rebound effect after cessation. → 4)".
-M: 변형 대비: 같은 해설의 나머지 — "Effective anxiolytic as BDZs but does not have amnesia, anticonvulsant, muscle relaxant or sedative effects" · first pass metabolism · plasma protein 결합↑ · active metabolite · half-life 2~3 hrs · 미변화 소변 배설 50% 미만.
+@AX10 | v=part | lec=ANX:34
+K: 정답: 5)(선지 미복원 — JB 답 "5) ?") — 1)~4)는 모두 26 슬라이드 34·3에 있는 옳은 문장. [[ANX:34]]
+K: 외울 것: 부스피론 = {r:5-HT1A 부분 작용제} · 발현 {r:1~2주} → 공황발작 ✗ · {r:기억상실·항경련·근이완·진정 없음} · 내성·의존 적음 · 반동 효과 없음 · 반감기 2~3시간. [[ANX:34]]
+A: 일치 — 1) ○(24·23): 슬라이드 3 "부스피론 · {r:작용 발현이 느림}" · 슬라이드 34 "단점: 항불안 작용 발현에 1~2주가 걸리므로 공황발작(panic attack)이나 심한 불안 상태의 조절에는 효과 없음" / JB 해설 "Ineffective in controlling panic attacks or severe anxiety states because onset of anxiolytic activity takes 1~2 weeks to develop. → 1)". [[ANX:3]] [[ANX:34]]
+A: 일치 — 2) ○: 슬라이드 34 "5-HT1A 수용체의 {r:부분 작용제(partial agonist)}" / JB 해설 "A partial agonist at 5HT1A receptors → 2)" (슬라이드 3·33은 '작용제(agonist)'). [[ANX:34]]
+A: 일치 — 3) ○: 슬라이드 34 "범불안장애처럼 {r:오래 지속되는 불안}의 치료에 사용" / JB 해설 "Used to treat long lasting anxiety such as generalized anxiety disorders. → 3)". [[ANX:34]]
+A: 일치 — 4) ○: 슬라이드 34 상자 "장기 투여 시 BZD보다 {r:내성과 의존성이 적음} → 남용 가능성 낮음. 또한 중단 후 반동 효과가 없음" / JB 해설 "When administered chronically, buspirone causes less tolerance and dependence than BDZs → less potential for abuse. Also, it does not produce rebound effect after cessation. → 4)". [[ANX:34]]
+A: 부분 일치 — 5) 미복원: 정답 선지를 알 수 없음 → v=part. [[ANX:34]]
+M: 슬라이드 34: "BZD만큼 효과적인 항불안제이지만 {r:기억상실, 항경련, 근이완, 진정 작용이 없다}" · "세로토닌 분비의 되먹임 억제(feedback inhibition)를 통해 작용할 수 있다" · "중등도의 D2 수용체 친화성이 있으나, GABAA 수용체에는 친화성이 없다". [[ANX:34]]
+M: 슬라이드 34: 약동학 — 빠르게 흡수되며 광범위한 초회통과 대사(first-pass metabolism) · 혈장 단백 결합률 높음 · 산화되어 활성 대사물 생성 · 소실 반감기 2~3시간 · 50% 미만이 미변화체로 소변 배설. [[ANX:34]]
+M: 26 필기(p.34): "오래 지속되는 불안의 치료에 사용할 뿐, 우리가 치료에 쓰지는 않습니다. 작용 발현에 1--2주가 걸려 급성일 경우 쓰기는 힘듭니다." [[ANX:34]]
+M: 변형 대비: 같은 해설의 나머지 — "Effective anxiolytic as BDZs but does not have amnesia, anticonvulsant, muscle relaxant or sedative effects" / first pass metabolism · plasma protein 결합↑ · active metabolite · half-life 2~3 hrs · 미변화 소변 배설 50% 미만 — 5)가 이 중 하나를 뒤집은 선지였을 수 있음(근거 없음 · 추측하지 않음).
 N: 4Q 시험 24·23년 2회(26판 2024년 칸 5번, 괄호 (24,23)) · 이윤실 출제 · 정답 선지 미복원(⚠ 사용자 확인).
-@AX11 | v=part | lec=ANX | rel=AX19
-A: 보충 — JB 답 "A = 0.5 , B = 5-20"(참고 251106 p.49 — 해설 없음).
+@AX11 | v=part | lec=ANX:15 | rel=AX19
+K: 정답: {r:A = 0.5}(clonazepam 항불안 · 하루 mg) · {r:B = 5-20}(midazolam 수면진정 · 경구 mg) — JB 답 그대로(26 PPT에 약별 용량 없음). [[ANX:15]]
+K: ⚠ 함정: 26 슬라이드 15는 약 이름 없이 '고농도에서 — 정맥(IV) 최대 5 mg, 경구 최대 20 mg' · 20년 JB 답의 midazolam은 '10 to 20 mg one time before procedure'. [[ANX:15]]
+A: 부분 일치 — B(24·18): 슬라이드 15 "2. 수면 유도·진정 Induction of sleep and sedation (at high concentrations) — 고농도에서 — 정맥(IV) 최대 5 mg, {r:경구 최대 20 mg}" — 약 이름이 없고 '5-20'이라는 범위 표기도 없음 · "정맥 미다졸람(intravenous midazolam)은 마취 유도에 사용". [[ANX:15]]
+A: 보강 — A(24·18): 26 PPT에 clonazepam 용량 없음 — 클로나제팜은 슬라이드 17 뇌전증 치료 · 슬라이드 24 표 50 h · Long · Anticonvulsant, anxiolytic · JB 답 "A = 0.5 , B = 5-20"(참고 251106 p.49 — 해설 없음). [[ANX:17]] [[ANX:24]]
 M: 변형 대비: 20년 단답은 "Midazolam: 10 to 20 mg one time before procedure" — 같은 약 용량을 다르게 답함 ⚠ / Clonazepam 0.5 mg orally once a day for 30 days(qd hs) or bid.
+M: 슬라이드 15: BZD 용량 순서(슬라이드 13) = 항불안 < 진정 < 수면 — 문제 머리 "BDZ 는 항불안/진정에 따라 용량이 다르다"와 같은 축. [[ANX:13]]
 N: 4Q 시험 24·18년(26판 2024년 칸 6번, 괄호 (24,18)) · 이윤실 출제 · 빈칸.
-@AX12 | v=part | lec=ANX
-A: 보충 — JB 답: 26판(23년) "Oxazepam, Temazepam, Lorazepam, Lormetazepam"(251106 p.48) / 23 4Q JB 21년 "Oxazepam, Temazepam, Lorazepam" + 해설 "Oxazepam, Temazepam, Lorazepam are metabolized only by phase II conjugation."(221110 류현모 p17) / 20년 같은 셋(20201126 p.16).
+@AX12 | v=part | lec=ANX:21
+K: 정답: {r:Oxazepam, Temazepam, Lorazepam}(옥사제팜·테마제팜·로라제팜) — 제1상 없이 바로 제2상 포합 → {r:노인 환자에게 더 안전}(26 JB 23년 답 + Lormetazepam). [[ANX:21]]
+K: ⚠ 함정: Lormetazepam은 26 슬라이드 21의 '제2상 포합으로만' 목록에 없음 — 슬라이드 24 표의 같은 행(활성 대사물 No · Short)에만 → v=part. [[ANX:21]] [[ANX:24]]
+A: 일치 — 셋(23·21·20·17): 슬라이드 21 "{r:옥사제팜(Oxazepam), 테마제팜(Temazepam), 로라제팜(Lorazepam)}은 제2상 포합(phase II conjugation)으로만 대사 → 노인 환자에게 더 안전. 나이가 들어도 포합 능력은 산화 능력만큼 감소하지 않기 때문" / 23 4Q JB 21년 "Oxazepam, Temazepam, Lorazepam" + 해설 "Oxazepam, Temazepam, Lorazepam are metabolized only by phase II conjugation."(221110 류현모 p17) / 20년 같은 셋(20201126 p.16). [[ANX:21]]
+A: 부분 일치 — Lormetazepam(23): JB 답 26판(23년) "Oxazepam, Temazepam, Lorazepam, Lormetazepam"(251106 p.48) / 슬라이드 24 Table 43.1 "Lorazepam, oxazepam, temazepam, {r:lormetazepam} — Active metabolite No · Short (12–18 h)" — 'phase II만' 문구는 26 PPT에 셋만. [[ANX:24]]
+M: 슬라이드 21: "최종적으로 {r:글루쿠론산(glucuronic acid)}과 포합되어 소변으로 배설된다" · 흐름도 BZD → 제1상 산화(CYP3A4·CYP2C19) → 활성 대사물 → 제2상 포합(글루쿠론산) → 소변 배설. [[ANX:21]]
+M: 26 필기(p.21): "글루쿠론산과 포합되어 배설되는 점은 기억해주세요!" · "phase I conjugation을 건너뛰는 약물들이 개발되었습니다. 이들은 더 예측 가능하고 안전한 편입니다."(필기 글자 그대로). [[ANX:21]]
+M: 변형 대비: 슬라이드 22 그림 — {r:로라제팜}은 CYP를 거치지 않고 바로 포합 · 클로나제팜은 NAT2에 의한 아세틸화 · '아닌 것' 꼴이면 미다졸람·디아제팜(CYP3A4 대사)은 셋이 아님. [[ANX:22]]
 N: 4Q 시험 23·21·20·17년 4회(26판 2023년 칸 2번 괄호 (23,17) + 23 4Q JB 2021년 칸 3번·2020년 칸 4번 — 같은 질문) · 이윤실 출제. 23년 답에 Lormetazepam이 더해짐.
-@AX13 | v=part | lec=ANX
-A: 보충 — 3) ✗(JB 복원 답 "3)TM2 가 채널 구성"): JB 해설 "GABA A receptor 의 subunit 은 4 개의 hydrophobic transmembrane domain 으로 구성되어 있고(TM1-4), TM2 가 채널의 pore 를 lining 하고 있습니다. 이러한 subunit 이 다양한 조합으로 5 개가 모여(2 개의 알파, 2 개의 베타, 1 개의 감마 subunit) GABA A receptor 를 이룹니다."(231102_이윤실_항불안제 p.10) → 1)·2) ○.
+@AX13 | v=ok | lec=ANX:7
+K: 정답: 3) ✗ — 통로 구멍(pore)은 {r:TM2}(TM4 ✗) · 1) 소단위 = TM1–4 ○ · 2) α 2·β 2·γ 1 ○. [[ANX:7]]
+A: 일치 — 3) ×(22): 슬라이드 7 "GABAAR 소단위는 4개의 소수성 막관통 도메인(transmembrane domain, TM1–4)으로 이루어지며, {r:TM2가 통로의 구멍(pore)을 형성}하는 것으로 여겨진다" / JB 복원 답 "3)TM2 가 채널 구성" · JB 해설 "GABA A receptor 의 subunit 은 4 개의 hydrophobic transmembrane domain 으로 구성되어 있고(TM1-4), TM2 가 채널의 pore 를 lining 하고 있습니다."(231102_이윤실_항불안제 p.10). [[ANX:7]]
+A: 일치 — 1)·2) ○: 슬라이드 7 "뇌에 발현하는 대부분의 GABAAR은 {r:α(1–6) 2개, β(1–4) 2개, γ(1–3) 1개}로 구성" / JB 해설 "이러한 subunit 이 다양한 조합으로 5 개가 모여(2 개의 알파, 2 개의 베타, 1 개의 감마 subunit) GABA A receptor 를 이룹니다." [[ANX:7]]
+M: 슬라이드 7: GABA = α–β 경계면 · BZD = α–γ 경계면(또는 α 소단위) · 큰 세포외 아미노 말단에 결합 부위 · γ는 δ·ε·θ·π·ρ로 대체 가능. [[ANX:7]]
+M: 슬라이드 6: 8종의 소단위(α, β, γ, δ, ε, θ, π, ρ)로 구성된 {r:5량체(pentamer)} · 이온통로형·리간드 개폐 이온통로 · Cl⁻ 빠르게 유입. [[ANX:6]]
+M: 변형 대비: 슬라이드 39 프로포폴은 "β 소단위의 두 번째 막관통 도메인(TM2)"에 결합 — 같은 TM2를 다른 약으로 묻는 꼴. [[ANX:39]]
 N: 4Q 시험 22년 1회(23 4Q JB 2022년 칸 1번) · 류현모 출제 · 객관식(선지 3개만 복원).
-@AX14 | v=part | lec=ANX | rel=AX16
-A: 보충 — 3) Delay channel closing ○(JB 답): JB 해설 "GABA A receptor 에 대하여 GABA 는 opens Cl- channel, Benzodiazepine 은 increase frequency, Barbiturate 은 delay channel closing 의 작용을 한다."(231102 p.11) → 1) BZD가 결합하는 곳 ✗ · 2) Increase channel opening frequency ✗(BZD).
+@AX14 | v=ok | lec=ANX:8 | rel=AX16
+K: 정답: 3) {r:Delay channel closing} — 바르비투르산염은 통로가 닫히는 것을 지연(duration↑) · 2) frequency 증가는 BZD · 1) BZD 결합 자리와 다른 부위. [[ANX:8]] [[ANX:11]]
+A: 일치 — 3) ○(22): 슬라이드 8 그림 "Barbiturates {r:delay channel closing}" · 상자 "GABA는 Cl⁻ 통로를 열고, BZD는 통로가 열리는 빈도(frequency)를, 바르비투르산염은 통로가 닫히는 것을 지연(duration↑)시킨다" / JB 해설 "GABA A receptor 에 대하여 GABA 는 opens Cl- channel, Benzodiazepine 은 increase frequency, Barbiturate 은 delay channel closing 의 작용을 한다."(231102 p.11). [[ANX:8]]
+A: 일치 — 2) ×: 슬라이드 8 "Benzodiazepines {r:increase frequency}" — opening frequency 증가는 BZD. [[ANX:8]]
+A: 일치 — 1) ×: 슬라이드 11 표 작용 부위가 'BZD 결합 부위'와 '{r:바르비투르산염 결합 부위}'로 따로 · 26 필기(p.8) "barbiturates는 BZD와는 또 다른 부분에 붙어서 Cl- 채널이 닫히는 것을 지연시킵니다". [[ANX:11]] [[ANX:8]]
+M: 슬라이드 11: 바르비투르산염 = 바르비투르산염 결합 부위 · 알로스테릭 작용제 · GABA 효과 증강 / 슬라이드 14 그래프 약물 A(바르비투르산염) = 용량에 비례해 마취·혼수까지. [[ANX:11]] [[ANX:14]]
+M: 변형 대비: 슬라이드 39 프로포폴도 "통로가 닫히는 시간을 늦춰" GABAA 활성 증강 — 닫힘 지연 = 바르비투르산염·프로포폴, 개방 빈도 = BZD. [[ANX:39]]
 N: 4Q 시험 22년 1회(23 4Q JB 2022년 칸 2번) · 류현모 출제.
-@AX15 | v=part | lec=ANX | rel=AX17
-A: 보충 — diazepam(복원 답안): JB 해설 "Diazepam 의 효과 및 작용기전 1. 항불안, 진정 작용 … 2. 항경련 작용 Sodium channel 에 결합: inactivated 상태로 유지시킴 -> firing 억제 3. 근육 이완 작용 Spinal cord 에서 poly synaptic reflex 억제"(231102 p.46).
+@AX15 | v=ok | lec=ANX:16 | rel=AX17
+K: 정답: {r:diazepam}(디아제팜) — BZD는 척수 반사를 억제해 골격근 연축(spasm)·강직 완화에 쓰이고, {r:진정을 일으키지 않는 용량}에서 골격근 이완은 디아제팜만. [[ANX:16]]
+A: 일치 — diazepam(22): 슬라이드 16 "척수의 다시냅스 반사(polysynaptic reflex)와 단시냅스 반사(monosynaptic reflex)를 모두 억제 · 골격근 {r:연축(spasm)}과 강직(spasticity) 완화에 사용 · BZD 중 디아제팜(diazepam)만이 진정을 일으키지 않는 용량에서 골격근 이완" (복원 답안). [[ANX:16]]
+A: 부분 일치 — 해설의 세 작용: JB 해설 "Diazepam 의 효과 및 작용기전 1. 항불안, 진정 작용 … 2. 항경련 작용 Sodium channel 에 결합: inactivated 상태로 유지시킴 -> firing 억제 3. 근육 이완 작용 Spinal cord 에서 poly synaptic reflex 억제"(231102 p.46) / 1·3은 26 슬라이드 8·16과 같고, 2의 Sodium channel 기전은 26 PPT에 없음(슬라이드 17 항경련은 기전 없이 '클로나제팜과 디아제팜은 뇌전증 치료'). [[ANX:8]] [[ANX:16]] [[ANX:17]]
+M: 슬라이드 16: "근긴장 증가는 불안의 흔한 특징" · "척수의 GABAA 수용체에 대한 중추 작용으로 근긴장을 감소". [[ANX:16]]
+M: 변형 대비: 슬라이드 24 표 Diazepam = Anxiolytic, muscle relaxant · Diazepam used as anticonvulsant · 장시간형(노르다제팜 60 h). [[ANX:24]]
 N: 4Q 시험 22년 1회(23 4Q JB 2022년 칸 3번) · 류현모 출제 · 보기 미복원.
-@AX16 | v=part | lec=ANX | rel=AX14
-A: 보충 — JB 복원 답 "GABA-A receptor 의 opening frequency 를 증가" — 해설 "Benzodiazepine 은 increase frequency, Barbiturate 은 delay channel closing … (2 번문제와 해설 동일)"(231102 p.11) → frequency 증가는 BZD 작용이라 barbiturate와 가장 관련이 없음.
+@AX16 | v=ok | lec=ANX:8 | rel=AX14
+K: 정답: "GABA-A receptor 의 {r:opening frequency} 를 증가" — 이건 BZD 작용이라 바르비투르산염(닫힘 지연)과 가장 관련이 없음. [[ANX:8]]
+A: 일치 — 복원 답(22): 슬라이드 8 "Benzodiazepines {r:increase frequency}" · "Barbiturates delay channel closing" / JB 해설 "Benzodiazepine 은 increase frequency, Barbiturate 은 delay channel closing … (2 번문제와 해설 동일)"(231102 p.11) → frequency 증가는 BZD 작용이라 barbiturate와 가장 관련이 없음. [[ANX:8]]
+M: 슬라이드 8 상자: GABA 결합 부위는 α–β 사이 · BZD 결합 부위는 α–γ 사이. [[ANX:8]]
+M: 변형 대비: '가장 관련 없는 것'이 BZD 쪽으로 나오면 = 닫힘 지연(duration↑) · 26 '오늘의 핵심' ① "BZD는 … Cl⁻ 통로 개방 빈도를 높인다". [[ANX:40]]
 N: 4Q 시험 22년 1회(23 4Q JB 2022년 칸 4번) · 류현모 출제 · 선지 미복원.
-@AX17 | v=part | lec=ANX | rel=AX15
-A: 보충 — 1) Diazepam ○(JB 답): JB 해설 "Diazepam 의 작용으로 항불안, 진정작용, 항경련작용, 근육 이완 작용이 이윤실 교수님 강의자료에 제시되어 있습니다."(231102 p.46).
+@AX17 | v=ok | lec=ANX:16 | rel=AX15
+K: 정답: 1) {r:Diazepam} — BZD 중 {r:디아제팜만} 진정을 일으키지 않는 용량에서 골격근 이완. [[ANX:16]]
+K: ⚠ 함정: 4) Clonazepam = 뇌전증(항경련) · 5) Midazolam = 정맥 마취 유도 · 2) Lorazepam·3) Oxazepam = 제2상 포합만. [[ANX:17]] [[ANX:15]] [[ANX:21]]
+A: 일치 — 1) ○(22): 슬라이드 16 상자 "BZD 중 {r:디아제팜(diazepam)만}이 진정을 일으키지 않는 용량에서 골격근 이완을 일으킨다" · 슬라이드 15 진정제로 "수술이나 진단 시술에 따른 불안, 스트레스, 긴장을 줄임" / JB 해설 "Diazepam 의 작용으로 항불안, 진정작용, 항경련작용, 근육 이완 작용이 이윤실 교수님 강의자료에 제시되어 있습니다."(231102 p.46). [[ANX:16]] [[ANX:15]]
+A: 일치 — 2)~5) ×: 슬라이드 16 '디아제팜만' — 다른 넷은 해당 없음 / 슬라이드 17 클로나제팜 = 뇌전증 치료 · 슬라이드 15 정맥 미다졸람 = 마취 유도. [[ANX:16]] [[ANX:17]]
+M: 슬라이드 20: 디아제팜 = 지용성 매우 높음 → 빠르게 흡수 → 지방으로 재분포 → 같은 용량의 로라제팜보다 중추신경 억제 시간이 짧음 · 반복 투여 시 축적. [[ANX:20]]
 N: 4Q 시험 22년 1회(23 4Q JB 2022년 칸 5번) · 류현모 출제.
-@AX18 | v=part | lec=ANX | rel=AX24
-A: 보충 — T(JB 답): JB 해설 "BZDs with a shorter elimination half-life induce more severe withdrawal reactions."(221110_류현모_항불안제 p25).
+@AX18 | v=ok | lec=ANX:29 | rel=AX24
+K: 정답: {r:T} — 소실 반감기가 짧은 BZD일수록 더 심한 {r:금단 반응}. [[ANX:29]]
+A: 일치 — T(21): 슬라이드 29 "금단 증상의 발현은 소실 반감기와 관련: {r:소실 반감기가 짧은 BZD일수록 더 심한 금단 반응}을 유발한다" / JB 해설 "BZDs with a shorter elimination half-life induce more severe withdrawal reactions."(221110_류현모_항불안제 p25). [[ANX:29]]
+M: 슬라이드 29: 그림 9.5 — 강력하고 빠르게 제거되는 약물(예: 트리아졸람)은 금단 문제가 잦고 심함 · 덜 강력하고 천천히 제거되는 약물(예: 플루라제팜)은 중단 후에도 수면 개선 유지 · 갑자기 중단하면 반동성 불안 + 떨림, 과민성, 어지러움, 체중 감소, 수면장애. [[ANX:29]]
 N: 4Q 시험 21년 1회(23 4Q JB 2021년 칸 2번) · 이윤실 출제 · 20년 'dependence' T/F와 묻는 말이 달라(부작용 ↔ dependence) 별개로 둠.
-@AX19 | v=part | lec=ANX | rel=AX11
-A: 보충 — JB 답(20201126 p.29-30): "Clonazepam: 0.5 mg orally once a day for 30 days (qd hs: one a day at bedtime) or bid (아침, 저녁 식후). 국소적 효과를 증가시키기 위해, 3-5 분 정도 topical 로 사용 후 삼킬 수도 있다. / Midazolam: 10 to 20 mg one time before procedure".
-M: 변형 대비: 24·18년 빈칸은 "수면진정제로 Midazolam … ( B )mg" → 5-20 — ⚠ 수치가 다름(두 답 병기).
+@AX19 | v=part | lec=ANX:15 | rel=AX11
+K: 정답: JB 답 그대로 — Clonazepam 0.5 mg orally once a day for 30 days(qd hs) or bid · 3-5분 topical 후 삼킬 수도 / Midazolam {r:10 to 20 mg} one time before procedure(26 PPT에 약별 용량 없음). [[ANX:15]]
+A: 보강 — JB 답(20201126 p.29-30): "Clonazepam: 0.5 mg orally once a day for 30 days (qd hs: one a day at bedtime) or bid (아침, 저녁 식후). 국소적 효과를 증가시키기 위해, 3-5 분 정도 topical 로 사용 후 삼킬 수도 있다. / Midazolam: 10 to 20 mg one time before procedure" — 26 PPT에 없음.
+A: 부분 일치 — Midazolam: 슬라이드 15 "고농도에서 — 정맥(IV) 최대 5 mg, {r:경구 최대 20 mg}"(약 이름 없음) · "수술이나 진단 시술에 따른 불안, 스트레스, 긴장을 줄임" · "정맥 미다졸람(intravenous midazolam)은 마취 유도에 사용". [[ANX:15]]
+M: 변형 대비: 24·18년 빈칸은 "수면진정제로 Midazolam … ( B )mg" → 5-20 — ⚠ 수치가 다름(두 답 병기) · 26 PPT 숫자는 '정맥 최대 5 mg · 경구 최대 20 mg'과 플루마제닐 '0.2 mg → 최대 누적 1.0 mg'(슬라이드 27). [[ANX:27]]
 N: 4Q 시험 20년 1회(23 4Q JB 2020년 칸 1번) · 이윤실 출제.
-@AX20 | v=part | lec=ANX
-A: 보충 — JB 답 "해설 참조": "중추신경계의 ligand-gated ion channel 인 GABAA receptor 에 결합하여 GABA 결합 시 receptor 가 열리는 frequency 를 증가시킨다. 이 때, GABA 에 의해 열리는 receptor 는 Cl- channel 로 작용하여 inhibitory effect 를 갖는다."(20201126 p.5).
-M: 변형 대비: barbiturate = delay channel closing(22년) · BZD는 GABA가 있어야만(25년 선지 4).
+@AX20 | v=ok | lec=ANX:8
+K: 정답: BZD는 중추신경계의 {r:GABAA 수용체}(ligand-gated ion channel)에 결합해 GABA가 결합할 때 통로가 열리는 {r:빈도(frequency)}를 높이고 → Cl⁻ 유입 → 억제(inhibitory effect). [[ANX:6]] [[ANX:8]]
+A: 일치 — 서술 답(20): 슬라이드 6 "BZD(및 바르비투르산염 barbiturates 등)는 중추신경계의 GABAA 수용체에 결합한다 · GABAA 수용체는 이온통로형 수용체(ionotropic receptor)이자 {r:리간드 개폐 이온통로(ligand-gated ion channel)}이다 · GABA에 의해 활성화된 리간드 개폐 Cl⁻ 통로가 열리면 Cl⁻이 세포 안으로 빠르게 유입된다" / 슬라이드 8 "BZD는 통로가 열리는 {r:빈도(frequency)}를" / JB 답 "해설 참조": "중추신경계의 ligand-gated ion channel 인 GABAA receptor 에 결합하여 GABA 결합 시 receptor 가 열리는 frequency 를 증가시킨다. 이 때, GABA 에 의해 열리는 receptor 는 Cl- channel 로 작용하여 inhibitory effect 를 갖는다."(20201126 p.5). [[ANX:6]] [[ANX:8]]
+M: 슬라이드 7: "BZD는 α와 γ 소단위 사이 경계면(또는 α 소단위)에 결합하여 GABA에 의한 Cl⁻ 유입을 증강(potentiate)시킨다" · 슬라이드 11 BZD = 알로스테릭 작용제(Allosteric agonist) · GABA 효과 증강. [[ANX:7]] [[ANX:11]]
+M: 26 필기(p.10): "BZD는 기본적으로 allosteric 기전으로 작용합니다." [[ANX:10]]
+M: 변형 대비: barbiturate = delay channel closing(22년) · BZD는 GABA가 있어야만(25년 선지 4) · 26 '오늘의 핵심' ① "α–γ 경계면에 결합해 Cl⁻ 통로 개방 빈도를 높인다". [[ANX:40]]
 N: 4Q 시험 20년 1회(23 4Q JB 2020년 칸 2번) · 이윤실 출제 · 서술.
-@AX21 | v=part | lec=ANX | rel=AX08
-A: 보충 — JB 답 "해설 참조": "1. Alcohol 과 cross-tolerance 를 갖기 때문에 알코올의 금단증상을 완화시키는 역할을 한다. 2. 항경련제로서의 기능을 갖는다. 3. 호흡기 억제 효과가 없다."(20201126 p.14).
+@AX21 | v=ok | lec=ANX:18 | rel=AX08
+K: 정답: ① 알코올과 {r:교차내성}(cross-tolerance) → 금단 증상 완화 ② {r:항경련} 활성 ③ 주요 {r:호흡억제 효과가 없다}. [[ANX:18]]
+A: 일치 — 서술 답(20): 슬라이드 18 "알코올과 {r:교차내성(cross-tolerance)}을 보인다(BZD가 대체제 역할을 하여 → 금단 증상의 중증도 감소) · 항경련 활성이 있다 · 주요 호흡억제 효과가 없다" / JB 답 "해설 참조": "1. Alcohol 과 cross-tolerance 를 갖기 때문에 알코올의 금단증상을 완화시키는 역할을 한다. 2. 항경련제로서의 기능을 갖는다. 3. 호흡기 억제 효과가 없다."(20201126 p.14). [[ANX:18]]
+M: 슬라이드 18: 교차내성 = "어떤 약물의 효과에 대한 내성이 다른 약물에 대한 내성을 함께 일으키는 현상" · 알코올 금단 증상 = 마지막 음주 후 빠르면 2시간 · 발작(seizure)·진전섬망(delirium tremens). [[ANX:18]]
+M: 26 필기(p.18): "BZD는 알코올을 대신하여 결합부위에 작용하여 금단치료증상 치료에 쓰일 수 있습니다." [[ANX:18]]
+M: 변형 대비: 24년 객관식 "알코올 금단증상과 치과 불안증세" → Lorazepam · 슬라이드 17 항경련 = 모든 BZD(내성 주의). [[ANX:17]]
 N: 4Q 시험 20년 1회(23 4Q JB 2020년 칸 3번) · 이윤실 출제 · 서술.
-@AX22 | v=part | lec=ANX | rel=AX06
-A: 보충 — Flumazenil(JB 답 — 해설 없음, 참고 20201126 p.1) / 25년 해설: "Flumazenil (nonselective BZD antagonist) can counteract acute overdose cases."
+@AX22 | v=ok | lec=ANX:27 | rel=AX06
+K: 정답: {r:Flumazenil}(플루마제닐) — BZD 수용체 부위의 {r:경쟁적 길항제}(비선택적 BZD 길항제). [[ANX:27]] [[ANX:11]]
+A: 일치 — Flumazenil(20): 슬라이드 27 "BZD 수용체 길항제: 플루마제닐(Flumazenil) · BZD 수용체 부위의 {r:경쟁적 길항제(competitive antagonist)}로 밝혀졌다" · 슬라이드 11 표 "플루마제닐(Flumazenil) — 경쟁적 길항제 — BZD 효과 차단" / JB 답(해설 없음, 참고 20201126 p.1) / 25년 해설 "Flumazenil (nonselective BZD antagonist) can counteract acute overdose cases." [[ANX:27]] [[ANX:11]]
+M: 슬라이드 11: 같은 '경쟁적 길항제'라도 GABA 결합 부위는 {r:비쿠쿨린}(GABA 효과 차단) · Cl⁻ 통로의 피크로톡신은 비경쟁적 길항제 · β-카볼린은 알로스테릭 역작용제(경련). [[ANX:11]]
+M: 변형 대비: 25·23년 'Midazolam 과용량 약' = Flumazenil · 슬라이드 27 플루마제닐은 C 고리가 없어 수용체를 활성화하지 못함. [[ANX:27]]
 N: 4Q 시험 20년 1회(23 4Q JB 2020년 칸 5번) · 이윤실 출제 · 25·23년 'Midazolam 과용량 약'과 묻는 말이 달라 별개.
-@AX23 | v=part | lec=ANX
-A: 보충 — T(JB 답 — 해설 없음, 참고 20201126 p.20).
+@AX23 | v=ok | lec=ANX:24
+K: 정답: {r:T} — 클로나제팜 = 반감기 {r:50 h} · Long · 항경련제(Anticonvulsant). [[ANX:24]]
+A: 일치 — T(20): 슬라이드 24 Table 43.1 "Clonazepam — {r:50} — No — — — {r:Long} — Anticonvulsant, anxiolytic (especially mania)" · 오른쪽 상자 "클로나제팜(50 h): 항경련제" / JB 답(해설 없음, 참고 20201126 p.20). [[ANX:24]]
+M: 슬라이드 23: 장시간형 목록(프라제팜·클로라제페이트·디아제팜·쿠아제팜·플루라제팜)에는 클로나제팜이 없음 — 장시간 근거는 슬라이드 24 표. [[ANX:23]]
+M: 변형 대비: 슬라이드 24 표 — 초단시간형(<6 h) 트리아졸람·미다졸람 · 단시간형(12–18 h) 로라·옥사·테마·로르메타제팜 · 장시간형 디아제팜(노르다제팜 60 h)·플루라제팜 · 슬라이드 17 클로나제팜·디아제팜 = 뇌전증 치료. [[ANX:24]] [[ANX:17]]
 N: 4Q 시험 20년 1회(23 4Q JB 2020년 칸 7번) · 이윤실 출제.
-@AX24 | v=part | lec=ANX | rel=AX18
-A: 보충 — T(JB 답): JB 해설 "BZDs with a shorter elimination half-life induce more severe withdrawal reaction"(20201126 p.25).
+@AX24 | v=ok | lec=ANX:29 | rel=AX18
+K: 정답: {r:T} — 소실 반감기가 짧은 BZD일수록 금단 반응·의존 문제가 더 심함(예: 트리아졸람). [[ANX:29]]
+A: 일치 — T(20): 슬라이드 29 "{r:신체적 의존성(physical dependence)}이 주요 문제 · 금단 증상의 발현은 소실 반감기와 관련: 소실 반감기가 짧은 BZD일수록 더 심한 금단 반응을 유발" / 그림 9.5 "The drugs that are more potent and rapidly eliminated (for example, triazolam) have more frequent and severe withdrawal problems" / JB 해설 "BZDs with a shorter elimination half-life induce more severe withdrawal reaction"(20201126 p.25). [[ANX:29]]
+M: 슬라이드 29: "모든 BZD에서 내성과 의존성이 생긴다" · "장기간 사용 시 진정·수면 효과에는 내성이 생기지만, 항불안 효과에는 내성이 생기지 않는다". [[ANX:29]]
 N: 4Q 시험 20년 1회(23 4Q JB 2020년 칸 9번) · 이윤실 출제.
