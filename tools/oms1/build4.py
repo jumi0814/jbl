@@ -713,7 +713,7 @@ def hcell(c):
 def ncols(hd):   # 10-09 필기 열(머리 ✍) 번호 — 그 열 칸 안의 '(26 필기 p.N)' 꼬리·{n:}엔 ✍를 또 붙이지 않음(td.ncol)
     return {j for j, c in enumerate(hd) if j and (hcell(c) != c or '{n:' in c or lecparse.SRCN.search(c))}
 def mini_table(rows, cls='mini'):
-    head = ''.join(f'<th>{lecparse.inline(hcell(c), ctx)}</th>' for c in rows[0]); nc = ncols(rows[0])
+    head = ''.join(f'<th>{lecparse.inline(re.sub(r"^(\s*)★(?=\s*시험)", r"\1⭐", hcell(c)), ctx)}</th>' for c in rows[0]); nc = ncols(rows[0])   # 10-23 ⭐ = 기출 — 원고 표 머리 '★ 시험'은 화면에서 ⭐(열 가리기 키는 셸 covName이 ★로 맞춤)
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td{" class=ncol" if j in nc else ""}>{lecparse.inline(c, ctx)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
     return f'<div class="tscroll"><table class="{cls}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 SYM_RE = re.compile(r'[○×✓✗△◎OX✔\-—\s]+')
@@ -1123,7 +1123,7 @@ def merge_cites(h):
 tables = [t for t in tables if t['k'] not in SKIPL]   # 10-17 JBL_SKIP_LECS
 TBL = []
 for i, t in enumerate(tables):
-    head = ''.join(f'<th>{c}</th>' for c in t['head'])
+    head = ''.join(f'<th>{re.sub(r"^(\s*)★(?=\s*시험)", r"\1⭐", c)}</th>' for c in t['head'])   # 10-23 ⭐ = 기출 — 원고 표 머리 '★ 시험' → 화면 ⭐(열 가리기 키는 셸 covName이 ★로 맞춤)
     sm_ = t.get('sum'); nc_ = max([len(r) for r in t['rows']] + [len(t['head'])])
     body = ''.join('<tr>' + ''.join((f'<th>{lecparse.inline(c, ctx)}</th>' if j == 0 else f'<td{(" class=" + chr(34) + " ".join(x_ for x_ in ("keycell" if sm_ and j == nc_ - 1 else "", "ncol" if j in t.get("ncol", ()) else "") if x_) + chr(34)) if (sm_ and j == nc_ - 1) or j in t.get("ncol", ()) else ""}>{cell(c)}</td>') for j, c in enumerate(r)) + '</tr>' for r in t['rows'])
     nj_ = len(set(re.findall(r'\{jb:([^}]+)\}', ' '.join(c for r in t['rows'] for c in r))) & set(QMAP))   # ux2 E09 표 안 기출 연결 수
