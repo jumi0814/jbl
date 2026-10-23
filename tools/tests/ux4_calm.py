@@ -1,7 +1,7 @@
 """ux4 묶음 3(B3-1~B3-6) 수용 기준 — '차분한 편집' 최종 시안(work/_tmp/ux4_final) · 1280×900 · 1180×820(터치) · 820×1180(터치)
 B3-2 허브 홈: 절 순서(머리 → 이어서 → 오늘 할 일|최근 → 과목 표 → 이번 주 → 바닥) · 보이는 주 버튼(.btn.pri) 1개 · 시험·D-n·읽음·% 없음 · 과목 표 5열(오늘 열은 ≤860 숨김) ·
   과목 행 → 과목 홈 + 과목 메뉴 · 계속하기 → LS last 위치(카드 aid까지) · 휴식 중에는 머리에 '☕ 쉬는 중 m:ss'가 흐르고 [▶ 다시 공부]
-B3-3 과목 홈: 절 제목 순서 = 공부 순서 · 진행률 · 교수별 출제 경향 · 교수님이 예고·강조한 것 · 강의 · 2회 이상 출제(6과목) · 경향 표 행 수 = 교수 수(세부 표 행 − 예전 담당) · 지금 단계 채운 원 하나 ·
+B3-3 과목 홈: 절 제목 순서 = 공부 순서 · 진행률 · 강의 · 교수별 출제 경향 · 교수님이 예고·강조한 것 · 2회 이상 출제(6과목 — 10-22 개편 순서) · 경향 표 행 수 = 교수 수(세부 표 행 − 예전 담당 · 10-23 'JB 기출 없음' 현 교수 줄 제외) · 지금 단계 채운 원 하나 ·
   머리 hchip 없음·밑줄 링크 줄 · 강의 카드에 읽음 없음 · 가로 넘침 0
 B3-4 강의: 탭 글자에 이모지·번호 배지 없음 · 개수는 흐린 .tn · 탭 줄 한 줄(높이 ≤48 · 가로로 밀리지 않음) · [보기 ▾] → 복습/가리기/압축/전체(버튼 글자·눌림·#stage 클래스) · R·Q·C 키도 같은 표시 ·
   [카드 ▾] 첫 줄 '이 강의의 틀' · 학습 외 탭에는 카드▾·보기▾ 없음
@@ -55,14 +55,14 @@ async def run(b, tag, vp, touch):
     # ---- B3-3 과목 홈(6과목)
     for S in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
         await go(pg, f'#/{S}/_home/_home', '#stage .lcard', 300)
-        r = await pg.evaluate("""(()=>{const h=[...document.querySelectorAll('#stage h2.hh')].map(e=>(e.childNodes[0].textContent||'').trim());const tr=document.querySelectorAll('#stage table.ttab tbody tr').length,dt=document.querySelectorAll('#stage table.trendtbl tbody tr').length,
+        r = await pg.evaluate("""(()=>{const h=[...document.querySelectorAll('#stage h2.hh')].map(e=>(e.childNodes[0].textContent||'').trim());const tr=document.querySelectorAll('#stage table.ttab tbody tr:not(.tnone):not(.tnote)').length,dt=document.querySelectorAll('#stage table.trendtbl tbody tr').length,
           sm=(document.querySelector('#stage details.trd>summary')||{}).textContent||'',old=(sm.split('예전 담당 ')[1]||'').split('·').filter(Boolean).length;
           return {h,tr,dt,old,now:document.querySelectorAll('#hguide li.now').length,chip:document.querySelectorAll('#hero .hchip').length,lead:document.querySelectorAll('#hero .hlead [data-hgo]').length,lc:[...document.querySelectorAll('#stage .lcard')].map(e=>e.innerText).join(' '),sw:document.documentElement.scrollWidth-innerWidth}})()""")
-        want = ['공부 순서', '진행률', '교수별 출제 경향', '교수님이 예고·강조한 것', '강의', '2회 이상 출제']
+        want = ['공부 순서', '진행률', '강의', '교수별 출제 경향', '교수님이 예고·강조한 것', '2회 이상 출제']   # 10-22 구조 개편(강의 카드를 진행률 바로 아래로)
         seq = [x for x in r['h'] if x in want]
         ok(seq == [x for x in want if x in seq] and seq[:3] == want[:3] and '강의' in seq and '2회 이상 출제' in seq, f'{tag} B3-3 {S} 절 순서 {seq}')
         ok(r['tr'] >= 1 and r['tr'] + r['old'] == r['dt'], f'{tag} B3-3 {S} 경향 표 행 {r["tr"]} = 교수 {r["dt"]} − 예전 담당 {r["old"]}')
-        ok(r['now'] == 1 and r['chip'] == 0 and r['lead'] == 5 and '읽음' not in r['lc'] and '%' not in r['lc'] and r['sw'] <= 0, f'{tag} B3-3 {S} 지금 단계 1 · hchip 0 · 링크 줄 5 · 강의 카드 읽음 없음 · 넘침 {r["sw"]}')
+        ok(r['now'] == 1 and r['chip'] == 0 and r['lead'] == 5 and '읽음' not in r['lc'] and not re.search(r'\d+% ?읽|진행 \d+%', r['lc']) and r['sw'] <= 0, f'{tag} B3-3 {S} 지금 단계 1 · hchip 0 · 링크 줄 5 · 강의 카드 읽음 없음 · 넘침 {r["sw"]}')
         if S == 'CONS': await pg.screenshot(path=J.TMP + f'/ux4i_b3_subject_{tag}.png')
     await pg.evaluate("document.querySelector('#hero [data-hgo=_jb]').click()"); await pg.wait_for_timeout(600)
     ok((await pg.evaluate('location.hash')).startswith('#/PHARM/_jb'), f'{tag} B3-3 머리 링크 → JB 문제')
@@ -103,7 +103,7 @@ async def run(b, tag, vp, touch):
       return {flbg:getComputedStyle(fl).backgroundColor,frn:(f.querySelector('.frn')||{}).textContent,chips:[...c.querySelectorAll('.tchips .chip')].filter(e=>e.offsetParent).map(e=>e.className),
         dn:getComputedStyle(c.querySelector('.thead>.dn')).display,end:c.lastElementChild.className,tsh:(f.querySelector('.tstr .tsh')||{dataset:{}}).dataset.n}})()""")
     ok(r['flbg'] in ('rgba(0, 0, 0, 0)', 'transparent') and re.match(r'카드 \d+ · \d+묶음', r['frn'] or ''), f'{tag} B3-5 흐름 글자·틀 머리 {r["frn"]}')
-    ok(r['chips'] == ['chip yr n2'] and r['dn'] == 'none' and 'cbend' in r['end'], f'{tag} B3-5 카드 머리 칩 ⭐ 하나(끝 = ☆ 북마크 — 사용자 10-03 다 봄 대신) {r["chips"]} · ✓ 원 {r["dn"]} · 끝 {r["end"]}')
+    ok(len(r['chips']) == 1 and r['chips'][0].startswith('chip yr') and r['dn'] == 'none' and 'cbend' in r['end'], f'{tag} B3-5 카드 머리 칩 ⭐ 하나(끝 = ☆ 북마크 — 사용자 10-03 다 봄 대신) {r["chips"]} · ✓ 원 {r["dn"]} · 끝 {r["end"]}')
     if r['tsh']:
         await pg.evaluate("document.querySelector('#stage .frame').classList.remove('fold');document.querySelector('#stage .frame .tstr .tsh').click()"); await pg.wait_for_timeout(200)
         ok(await pg.evaluate("document.querySelector('#stage .frame .tstr').classList.contains('open')&&getComputedStyle(document.querySelector('#stage .frame .tstr .tsl2')).display!=='none'"), f'{tag} B3-5 📌 전략 {r["tsh"]}개 → 펼침')

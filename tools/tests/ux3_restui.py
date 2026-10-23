@@ -1,7 +1,7 @@
 """ux3 R1·R3 회귀 — 쉬는 시간 타이머 표시(참고 HUB 트래커 위젯·집중 모드)와 과목 색 한 가지. (ux4 묶음2: 메뉴 트래커·#tmr → 상단 시계 알약 #clock·팝오버 #tpop)
 R1 ① 시계 팝오버 '⏱ 크게 보기 · 지금 구간': 공부 중 = 이번 집중 h:mm:ss(세션 f0·자동 T.f0 — 1초마다 흐름) · 쉬는 중 = 이번 휴식 m:ss
    ② ⏱ 크게 → #bigclock: 쉬는 중 = 큰 휴식 구간·휴식 색(.rest) · 공부 중 = '● 공부 중' 큰 집중 구간 · 작은 줄 오늘 공부·휴식·목표 %
-   ③ 쉬는 중 시계 알약 #clock.rest — 금색 점 · 글자 '휴식 m:ss'(지금 휴식 구간, 흐름) · 숫자는 오늘 공부 합계 그대로 · 홈·과목·자동 휴식(무활동) 모두 같음
+   ③ 쉬는 중 시계 알약 #clock.rest — 회색 점(10-23 v2 — 금색은 ⭐ 기출 전용) · 글자 '휴식 m:ss'(지금 휴식 구간, 흐름) · 숫자는 오늘 공부 합계 그대로 · 홈·과목·자동 휴식(무활동) 모두 같음
    ④ 홈 오늘 띠·달력 상태 카드·팝오버 머리·휴식 요약 줄의 휴식 = restStats() ⑤ 자동 휴식에서 돌아와 띠 10초 뒤 '☕ 휴식 n분으로 기록했어요 [📖 공부로 바꾸기]'
 R3 팩 color = SJC = sjColor · 메뉴 점·홈 과목표 점·과목 홈 --hero1·--acc 같은 색 · 흰 글자 대비 ≥4.5
 맥 1280×900 · 아이패드 세로 820×1180 · 가로 1180×820(터치). 스크린샷 work/_tmp/ux3p_*.png"""
@@ -45,7 +45,7 @@ async def part_view(b, vp, touch, tag):
     await pg.evaluate("__h.trRest()"); await pg.clock.run_for(4 * MIN + 10000)
     R = await pg.evaluate("__h.restStats()")
     ck = await pg.evaluate("(c=>[c.classList.contains('rest'),c.dataset.lab,getComputedStyle(c.querySelector('.ckd')).backgroundColor,c.dataset.today])(document.querySelector('#clock'))")
-    ok(ck[0] and re.fullmatch(r'휴식 4:[0-2]\d', ck[1]) and ck[2] == 'rgb(183, 121, 31)' and ck[3].startswith('0:25:'), f'알약 휴식 — 금색 점·지금 휴식 구간·공부 합계 그대로 {ck}')
+    ok(ck[0] and re.fullmatch(r'휴식 4:[0-2]\d', ck[1]) and ck[2] == 'rgb(154, 143, 126)' and ck[3].startswith('0:25:'), f'알약 휴식 — 회색 점(v2)·지금 휴식 구간·공부 합계 그대로 {ck}')
     await pg.clock.run_for(2000); ok((await lab(pg)) != ck[1], f'쉬는 동안 휴식 타이머가 흐름 {ck[1]!r} → {await lab(pg)!r}')
     P = await pop(pg)
     ok(P['rows'][:2] == ['resume', 'stop'] and P['seg'] == '' and re.fullmatch(r'지금 휴식 4:[0-2]\d', P['rest']) and P['rv'] == fmtH(R['ms']) and '오늘 휴식' in P['rl'] and '%' not in P['rl'],   # ux4d 집중 % 없음

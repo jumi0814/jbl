@@ -17,12 +17,13 @@ async def run(b, vp, touch, tag):
     await pg.evaluate("localStorage.setItem('jblhub.v1.mk.OMS1', JSON.stringify({ok:{Q01:1,Q02:1},ng:{Q03:1},bm:{}}))")
     await open_(pg, '#/')
     ST = await pg.evaluate("({O:__h.PACKS.OMS1.stats,P:__h.PACKS.PHARM.stats})"); M, R, PM = ST['O']['main'], ST['O']['ref'], ST['P']['main']
-    ok(R > 0 and ST['P']['ref'] == 0 and ST['P']['cards'] == PM, f'픽스처: OMS1 현 교수 {M}·참고 {R} / PHARM {PM}(참고 0)')
+    PR = ST['P']['ref']   # 10-16부터 PHARM에도 참고 기출(ANX — 4Q JB)이 있음 → OMS1처럼 '현 교수 기출 n + 참고 따로'
+    ok(R > 0 and (PR > 0 or ST['P']['cards'] == PM), f'픽스처: OMS1 현 교수 {M}·참고 {R} / PHARM {PM}(참고 {PR})')
     hub = await pg.evaluate("(()=>{const r=document.querySelector('.hsj[data-s=\"OMS1\"]');return r.querySelector('.hcj').title+' | '+r.innerText})()")   # ux3 H4 과목 표 기출 칸 title
     r_ng = await pg.evaluate("document.querySelector('.hsj[data-s=\"OMS1\"] .hcng').textContent")
     ok(f'현 교수 기출 {M}문항' in hub and f'참고 {R}' in hub and '맞음 2 · 틀림 1' in hub and f'안 푼 것 {M - 3}' in hub and f'3 / {M}' in hub and r_ng == '1', f'허브 과목 표 OMS1 푼 것 3 / 분모 {M} · 틀림 1 · 참고 {R}(title) ({hub[:90]!r})')   # ux4 B3-2 '기출 푼 것 n / 전체' + 틀림 열
     ph = await pg.evaluate("document.querySelector('.hsj[data-s=\"PHARM\"] .hcj').title")
-    ok(f'기출 {PM}문항' in ph and '참고' not in ph and '현 교수' not in ph, f'PHARM 허브 과목 표 {PM} · 참고 없음 ({ph!r})')
+    ok(f'기출 {PM}문항' in ph and (('참고' not in ph and '현 교수' not in ph) if not PR else (f'참고 {PR}문항' in ph and '현 교수' in ph)), f'PHARM 허브 과목 표 {PM} · 참고 {PR} ({ph!r})')
     await pg.screenshot(path=J.TMP + f'/ux_u16_hub_{tag}.png')
     await open_(pg, '#/OMS1/_home/_home')
     t = await pg.evaluate("document.querySelector('#hprog').innerText")
@@ -40,7 +41,7 @@ async def run(b, vp, touch, tag):
     ok('맞음 1' in t.split('참고')[1] and '맞음 2' in t.split('참고')[0], f'참고 카드 채점은 참고 칩에 따로 ({t[:120]})')
     await pg.screenshot(path=J.TMP + f'/ux_u16_jb_{tag}.png')
     await open_(pg, '#/PHARM/_jb/_jb')
-    t = await pg.inner_text('#jbprog'); ok(f'기출 {PM}문항' in t and '참고' not in t, f'PHARM JB 진행 줄 {PM} ({t[:60]})')
+    t = await pg.inner_text('#jbprog'); ok(f'기출 {PM}문항' in t and (('참고' not in t) if not PR else ('현 교수' in t)), f'PHARM JB 진행 줄 {PM} ({t[:60]})')
     for s in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM']:
         await open_(pg, f'#/{s}/_led/_led', 700)
         t = await pg.evaluate("document.querySelector('#stage .panel').innerText")
