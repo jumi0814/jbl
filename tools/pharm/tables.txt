@@ -578,7 +578,7 @@ R: **증례 1·2**(치성 통증) | NSAIDs primary · opioid = breakthrough back
 R: **숙제 증례**(화상) | 급성 → 만성 신경병증성 전환 | 정맥 모르핀(IV morphine) → 레미펜타닐(remifentanil) + 모르핀 일시 주입(bolus) → 환자 자가조절 진통(patient-controlled analgesia) → 서서히 감량(taper) → 코데인/아세트아미노펜(codeine/acetaminophen) → {r:가바펜틴(gabapentin)} + {r:아미트립틸린(amitriptyline)} | 시험 예고("중간고사가 숙제 검사") — 25 예고 · 26 자료엔 없음({n:어떤 치료를 할 수 있을지 한번 생각해보세요(26 필기)}) · 모범답은 자료에 없음 | {jb:PN14} 21년 8-1·8-2(급성통증 강의 배정)
 R: **투석(CKD) 환자** | 교수님 지정 논문(슬라이드 밖) | {r:Paracetamol} = most frequently recommended | NSAIDs {r:controversial} → {r:prostaglandin} 억제 → hypertensive / opioid {r:accumulation} → {r:respiratory effects} | {jb:PN05} {jb:PN06} {jb:PN07} 25·24년 빈칸 3(24년 탈)
 
-#TBL 항응고·항혈소판·항섬유소용해 — 약물별 target 표 | k=HM | src=[[HM:16]] [[HM:18]] [[HM:19]] [[HM:50]] [[HM:51]] [[HM:55]]
+#TBL 항응고·항혈소판·항섬유소용해 — 약물별 target 표 | k=HM | src=[[HM:26]] [[HM:27]] [[HM:28]] [[HM:57]] [[HM:58]] [[HM:62]]
 H: 분류 | 약물 | Target · 기전 | 특징
 R: VKA(경구) | Warfarin (Coumarin) {jb:HM03} | vit K epoxide reductase 차단 → II·VII·IX·X의 γ-carboxylation 억제(슬라이드: Inhibition of γ-glutamylcarboxylase) | {n:개시 느림(기존 인자 degradation 후) · 초기 protein C·S 먼저 → pro-coagulation} · INR 모니터링 필수 · prolonged therapy
 R: DOAC(경구) | Dabigatran (+ hirudin) {jb:HM11} | factor IIa (thrombin) 직접 억제 | 모니터링 적게 · {n:예측 가능성↑} (JB: 용량 고정 · 반감기 짧음) · 증례 Mr. J의 A {jb:HM10}
@@ -593,15 +593,15 @@ R: 비타민 | Vitamin K (Phytonadione K1) {jb:HM22} | II·VII·IX·X의 γ-carb
 N: 24·22년 표 빈칸은 aminocaproic → t-PA·plasminogen·plasmin / clopidogrel → P2Y12 / LMWH → AT III / tirofiban → GP IIb/IIIa. 함정: LMWH의 target은 Xa가 아니라 AT III.
 N: 변형 대비: target을 주고 약을 물으면 — vit K epoxide reductase = warfarin / factor IIa(thrombin) = dabigatran(+ hirudin) / factor Xa = apixaban·edoxaban·rivaroxaban / AT III = heparin·LMWH {jb:HM16} / COX(thromboxane) = aspirin / P2Y12 = ticlopidine·clopidogrel·prasugrel·ticagrelor / GP IIb/IIIa = tirofiban·abciximab / plasminogen activation = ε-aminocaproic acid·tranexamic acid {jb:HM02}.
 
-#TBL 혈소판 응집 스위치 — 수용체·결합 상대·차단 약 | k=HM | src=[[HM:6]] [[HM:14]] [[HM:19]]
+#TBL 혈소판 응집 스위치 — 수용체·결합 상대·차단 약 | k=HM | src=[[HM:16]] [[HM:24]] [[HM:28]]
 H: 스위치(수용체) | 무엇이 작용하나 | 차단 약 | 결과·검사 | 기출
 R: Thromboxane(COX 경로) | thromboxane의 작용이 가장 중요(필기) | {r:Aspirin}(baby aspirin) — {n:COX enzyme 저해} | {n:thromboxane 생성 저해 → 응집 억제} / Table 9.4: {r:BT↑} · PT·aPTT ↔ | {jb:HM04}
 R: ADP receptor ({r:P2Y12}) | {n:release된 ADP가 여러 작용을 modulation} | Ticlopidine · {r:Clopidogrel} · Prasugrel · Ticagrelor | {n:ADP 작용 차단} / JB: ADP에 의한 GP IIb/IIIa 발현을 막음 | {jb:HM15} {jb:HM02}
 R: {r:GP IIb/IIIa} receptor | {n:adhesion 때 platelet에 존재하는 주요 receptor} / JB: {r:fibrinogen}·{r:vWF}와 결합 | {r:Tirofiban} · {r:Abciximab}({n:-mab = monoclonal antibody}) | JB: 부착 방해 → 혈소판 응집 저해 | {jb:HM17} {jb:HM19} {jb:HM02}
-R: GP Ib(25 자료에 없음 — JB 답) | 내피 손상 시 {r:vWF}를 매개로 교원섬유와 결합 | — | vWF 결핍·결함 = von Willebrand disease(autosomal dominant, p.6) | {jb:HM23}
-N: 필기(p.19) — 지혈 작용은 크게 2가지(Blood clotting factor · Platelet), 혈소판 응집에는 thromboxane이 가장 중요하고 ADP와 thrombin의 작용도 중요. Thromboxane synthesis inhibitor·receptor antagonist는 개발되고 있지만 시판 안 됨. 짝 외우기: GP IIb/IIIa ↔ fibrinogen·vWF / GP Ib ↔ vWF. 위 'target 표'의 항혈소판 3행을 수용체 축으로 다시 본 것.
+R: GP Ib(25 자료에 없음 — JB 답) | 내피 손상 시 {r:vWF}를 매개로 교원섬유와 결합 | — | vWF 결핍·결함 = von Willebrand disease(autosomal dominant, p.16) | {jb:HM23}
+N: 필기(p.28) — 지혈 작용은 크게 2가지(Blood clotting factor · Platelet), 혈소판 응집에는 thromboxane이 가장 중요하고 ADP와 thrombin의 작용도 중요. Thromboxane synthesis inhibitor·receptor antagonist는 개발되고 있지만 시판 안 됨. 짝 외우기: GP IIb/IIIa ↔ fibrinogen·vWF / GP Ib ↔ vWF. 위 'target 표'의 항혈소판 3행을 수용체 축으로 다시 본 것.
 
-#TBL 응고인자 표 — 이름·결핍 원인 | k=HM | src=[[HM:7]]
+#TBL 응고인자 표 — 이름·결핍 원인 | k=HM | src=[[HM:17]]
 H: Factor | 이름(Alternative names) | Cause or description of deficiency | 기출
 R: I | Fibrinogen | Liver disease | —
 R: II | Prothrombin | Liver disease or {r:vitamin K deficiency} | {jb:HM22}
@@ -618,10 +618,10 @@ R: XII | Hageman factor | Generally no clinical symptoms but may have thromboses
 R: XIII | Fibrin-stabilizing factor, Laki-Lorand factor, fibrinase | Delayed bleeding, defective healing, rare | —
 R: PF3 | Platelet factor 3 | Thrombocytopenia | —
 R: Protein C · Protein S | — | Liver disease or {r:vitamin K deficiency} | {jb:HM06}
-N: 같은 쪽 분류(p.7) — Inherited = Hemophilia(deficiency of Factor VIII) · Christmas disease(deficiency of Factor IX) / Acquired = Liver disease · Vitamin deficiency(biliary tract obstruction · malabsorption · excessive use of broad-spectrum antibiotics {jb:HM09}) · Anticoagulation drugs(heparin · coumarin · aspirin and NSAIDs) · DIC · primary fibrinogenolysis.
+N: 같은 쪽 분류(p.17) — Inherited = Hemophilia(deficiency of Factor VIII) · Christmas disease(deficiency of Factor IX) / Acquired = Liver disease · Vitamin deficiency(biliary tract obstruction · malabsorption · excessive use of broad-spectrum antibiotics {jb:HM09}) · Anticoagulation drugs(heparin · coumarin · aspirin and NSAIDs) · DIC · primary fibrinogenolysis.
 N: 변형 대비: vitamin K deficiency로 줄어드는 것 = {r:II·VII·IX·X} + protein C·S({jb:HM22}) — 'V' ✗(parahemophilia) / 혈우병 A = {r:VIII}(80%) · B(Christmas) = {r:IX} · C = XI / 항응고조절인자(JB 답) = protein C·S·AT III·tissue factor pathway inhibitor({jb:HM06}).
 
-#TBL 선별 검사 — PT vs aPTT vs BT | k=HM | src=[[HM:10]] [[HM:11]] [[HM:13]] [[HM:14]]
+#TBL 선별 검사 — PT vs aPTT vs BT | k=HM | src=[[HM:20]] [[HM:21]] [[HM:23]] [[HM:24]]
 H: 항목 | PT (INR) | aPTT | Bleeding time
 R: 넣는 시약 | Tissue factor (factor III) — extrinsic | Partial thromboplastin — intrinsic | — (혈소판 기능)
 R: 정상 | 10-14 seconds · INR 0.8-1.2 | 30-40 seconds | —
@@ -631,7 +631,7 @@ R: 정상으로 남는 경우 | hemophilia A·B · heparin · aspirin | aspirin 
 R: 임상 | {n:가장 많이 사용} — warfarin 모니터링(INR = (PT환자/PT정상)^ISI · warfarin 2.0-3.0) | heparin 투여·혈우병 | antiplatelet 작용 확인
 N: 필기 — "Aspirin therapy를 받으면 blood clotting time에는 크게 변화가 없지만, bleeding time은 증가한다. Coumarin therapy를 받으면 PT가 증가한다." 혈우병 중증도(factor VIII·IX): mild 5-50% · moderate 1-5% · severe <1%. 2021년 14번(검사 종류·기준·산출방법 {jb:HM25})의 답.
 
-#TBL Table 9.4 — 상태별 선별 검사 결과 | k=HM | src=[[HM:14]]
+#TBL Table 9.4 — 상태별 선별 검사 결과 | k=HM | src=[[HM:24]]
 H: Condition | Platelet Count | Bleeding Time/PFA-100 | PT/INR | aPTT | TT | Antifactor Xa
 R: {r:Aspirin} therapy | ↓ or ↔ | {r:↑} | ↔ | ↔ | ↔ | ↔
 R: {r:Coumarin} therapy | ↔ | ↔ | {r:↑↑} | ↑ | ↔ | ↓↓
@@ -650,14 +650,14 @@ R: DIC | ↓↓ | ↑↑ | ↑↑ | ↑↑ | ↑↑ | ↓↓
 N: ↑ mild increase · ↑↑ moderate to marked increase · ↓ mild decrease · ↓↓ moderate to marked decrease · ↔ normal level · PFA-100 = platelet function analyzer 100 · DIC = disseminated intravascular coagulation · DTI = direct thrombin inhibitor(ADA Practical Guide 2nd Ed). 필기 "Aspirin therapy를 받으면 … bleeding time은 증가한다. Coumarin therapy를 받으면 PT가 증가한다. 다른 것들도 확인을 해주시면 좋겠습니다."
 N: 변형 대비: 검사 결과를 주고 상태를 물으면 — BT ↑ · PT/INR·aPTT ↔ = aspirin(platelet ↓ or ↔)·vessel wall defect·leukemia(platelet ↓) / platelet ↓↓ · BT ↑↑ = thrombocytopenia / PT/INR ↑↑ = coumarin / aPTT ↑↑ = heparin(TT ↑ · antifactor Xa ↓↓도)·hemophilia A or B(나머지 ↔)·DTI(TT ↑↑도) / LMWH = TT ↑ · antifactor Xa ↓↓만 / 거의 전부 이상 = DIC·severe liver disease.
 
-#TBL 항응고제 3계열 — 적응증·모니터링·치과 약물 상호작용 (JADA 2019) | k=HM | src=[[HM:21]]
+#TBL 항응고제 3계열 — 적응증·모니터링·치과 약물 상호작용 (JADA 2019) | k=HM | src=[[HM:29]]
 H: Drug class | Usual indication | Need for routine monitoring | Drug interactions with common dental medications
 R: {r:Vitamin K Antagonists} / Warfarin (Coumadin) · Acenocoumarol (Sintrom) {jb:HM18} | Rheumatic atrial fibrillation / {r:Mechanical heart valve} / Thrombosis with anti-phospholipid antibodies / Contraindication to alternative agents | {r:Yes (international normalized ratio)} | {r:Antibiotics}: Clindamycin · Amoxicillin · Amoxicillin clavulanate · Cephalexin · Doxycycline · Metronidazole · Macrolides / {r:Azole antifungals} / Analgesics: Carbamazepine · Oxcarbazepine · {r:NSAIDs}
 R: {r:Direct Oral Anticoagulants} / Apixaban (Eliquis) · Rivaroxaban (Xarelto) · Dabigatran (Pradaxa) · Edoxaban (Savaysa, Lixiana) | {r:Nonvalvular atrial fibrillation} / Venous thrombosis without cancer or severe thrombophilia | {r:No} | Antibiotics: Clarithromycin · Erythromycin / Azole antifungals / Analgesics: Carbamazepine · NSAIDs
 R: {r:Low-Molecular-Weight Heparins} / Tinzaparin (Innohep) · Dalteparin (Fragmin) · Enoxaparin (Lovenox) | Thrombosis or prophylaxis in {r:pregnancy} / Thrombosis in cancer | {r:No} | Analgesics: {r:NSAIDs}
-N: 필기(p.21) "빨간색으로 색칠해 둔 곳(drug interactions)은 여러분이 찾아봐서 확인하면 좋을 것들". 세 계열 모두 NSAIDs와 상호작용 · INR 모니터링은 VKA뿐 → 새 약 처방 후 INR 2-4일 내(p.22 알고리즘). ⚠ 21·20·17·16년 sulfonamide 문항({jb:HM18})의 sulfonamide는 이 표에 없음.
+N: 필기(p.29) "빨간색으로 색칠해 둔 곳(drug interactions)은 여러분이 찾아봐서 확인하면 좋을 것들". 세 계열 모두 NSAIDs와 상호작용 · INR 모니터링은 VKA뿐 → 새 약 처방 후 INR 2-4일 내(p.30 알고리즘). ⚠ 21·20·17·16년 sulfonamide 문항({jb:HM18})의 sulfonamide는 이 표에 없음.
 
-#TBL INR 구간별 치과 시술 — 할 수 있는 것 | k=HM | src=[[HM:24]] [[HM:25]]
+#TBL INR 구간별 치과 시술 — 할 수 있는 것 | k=HM | src=[[HM5:24]] [[HM5:25]]
 H: 시술 | ≤3.0 | >3.0–3.5 | >3.5
 R: Examination · radiographs · impressions · orthodontics | 가능 | 가능 | 주의
 R: Simple restorative dentistry · supragingival prophylaxis {jb:HM24} | 가능 | 가능 | 금지
@@ -669,7 +669,7 @@ R: Full mouth · full arch extractions | 2.0 미만만(1.5–<2.0 local measures
 R: Extensive flap · multiple bony impactions · multiple implants | 1.5 미만만 probably safe | 금지 | 금지
 N: INR >4.0 → No surgical treatment until INR is reduced. 흐름도(INR <4.0): minimal bleeding → No modifications, local measures / moderate(multiple extractions·third molars) → consider reducing INR / significant(full mouth clearance) → INR <3.0으로 modify. 모든 경우 local measures(§ sutures·oxidized cellulose·microfibrillar collagen·topical thrombin·aminocaproic·tranexamic acid). 치료 목표 INR 2.0–3.0(atrial fibrillation·venous thrombosis·pulmonary or systemic embolism·acute MI), 2.5–3.5(mechanical prosthetic heart valves).
 
-#TBL 국소 지혈제 비교 — 원료·기전·흡수·주의 | k=HM | src=[[HM:32]] [[HM:34]] [[HM:36]] [[HM:37]] [[HM:40]] [[HM:42]] [[HM:43]] [[HM:45]] [[HM:46]] [[HM:47]] [[HM:49]]
+#TBL 국소 지혈제 비교 — 원료·기전·흡수·주의 | k=HM | src=[[HM:39]] [[HM:41]] [[HM:43]] [[HM:44]] [[HM:47]] [[HM:49]] [[HM:50]] [[HM:52]] [[HM:53]] [[HM:54]] [[HM:56]]
 H: 제제(상품명) | 원료·성질 | 기전 | 흡수·사용 | 주의(금지)
 R: Epinephrine (bosmin) {jb:HM20} | 1:1000 racemic · potent vasoactive · levorotatory 15배 | 혈관수축 — capillaries·arterioles만 | impregnated retraction cord · superficial bleeding만 | serious cardiovascular reactions · retard wound healing · ischemia → tissue necrosis
 R: Gelatin sponge (Gelfoam) {jb:HM26} | absorbable · water-insoluble gelatin · 149°C 4 hrs 견딤 | more physical — platelet 파괴 + fibrin framework · thrombin으로 강화 | 4-6 weeks 흡수 · dry 또는 saline · minimum amount | skin incision 봉합 × · intravascular ×(embolization) · porcine collagen 알레르기 × · 재멸균 × · giant-cell granuloma
@@ -678,9 +678,9 @@ R: Oxidized cellulose (Oxycel, Novocell) {jb:HM07} | plant material, nitrogen di
 R: Oxidized regenerated cellulose (Surgicel) {jb:HM07} {jb:HM28} | alpha-cellulose → viscose → spun·oxidized · less friable · less stick | 혈액 포화 → gelatinous mass → stable clot | 하치조동맥 골내 출혈 · surface dressing ○(상피화 방해 ×) · 성형 가능 | socket 깊숙이 → 치유 지연 · 골결손·골절 ×(callus·cyst) · inferior alveolar nerve 노출 시 neurotoxic
 R: Microfibrillar collagen (Avitene) | active absorbable collagen | platelets adhere → release → aggregation | dry로 · sheets·flour(arterial bleeding)·sponge | No autoclave · skin 봉합 × · methylmethacrylate 접착력↓ · 감염 potentiation · dry socket↑
 R: Topical thrombin {jb:HM01} | activated factor II (bovine·human·recombinant) | fibrinogen → fibrin · XIII 활성 · 혈소판 응집 · 평활근 수축(PAR) | capillaries·small venules oozing · Gelfoam과 병용 · powder/saline | topically only — 정맥 내 embolism · human plasma 유래 infectious risk · Oxycel·Surgicel·Avitene과는 무효(pH)
-N: 필기 — p.30-47은 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인" 하며 넘어간 부분(기출은 epinephrine·Oxycel/Surgicel 정도) → 변형·미출제 대비. TABLE 25-6: Gelfoam "useful for most patients taking an antithrombotic agent", Colla-Cote·Tape·Plug 10-14일 흡수, Instat 2-5분.
+N: 필기 — p.37-54은 "중요하지 않아서 넘어가는 것이 아니기 때문에 꼭 확인" 하며 넘어간 부분(기출은 epinephrine·Oxycel/Surgicel 정도) → 변형·미출제 대비. TABLE 25-6: Gelfoam "useful for most patients taking an antithrombotic agent", Colla-Cote·Tape·Plug 10-14일 흡수, Instat 2-5분.
 
-#TBL 지혈제와 수렴제 ① — 출혈 질환·선별 검사 전체정리표 | k=HM | sum=1 | src=[[HM:4]] [[HM:6]] [[HM:7]] [[HM:8]] [[HM:9]] [[HM:10]] [[HM:11]] [[HM:12]] [[HM:13]] [[HM:14]]
+#TBL 지혈제와 수렴제 ① — 출혈 질환·선별 검사 전체정리표 | k=HM | sum=1 | src=[[HM:14]] [[HM:16]] [[HM:17]] [[HM:18]] [[HM:19]] [[HM:20]] [[HM:21]] [[HM:22]] [[HM:23]] [[HM:24]]
 H: 항목 | 정의·원인 | 검사·수치 | 치과 의미 | ★ 시험
 R: **대원칙**(ADA) | 혈전 위험 vs 출혈 위험 시소 · 선택지 {r:stop}·{r:continue}·{r:bridge with heparin (LMWH)} | 수술 전후 혈전↑ = 중단 후 {r:rebound hypercoagulable} + 수술 외상 | typical procedure = {r:중단 불필요} + {r:local measures} · 고위험 = 주치의 상의 | —
 R: **Thrombocytopenia** | 혈소판 수 감소(생산↓·파괴↑) · immune thrombocytopenic purpura = 자가항체 | platelet count↓↓ · BT↑↑ · PT·aPTT 정상 | spontaneous gingival oozing(leukemia·severe thrombocytopenia) | —
@@ -694,7 +694,7 @@ R: **aPTT** | partial thromboplastin · {r:intrinsic} | 정상 {r:30-40초} · �
 R: **INR** | (PT환자/PT정상)의 {r:ISI} 제곱 · ISI = 제조사별 | 정상 {r:0.8-1.2} · warfarin {r:2.0-3.0} | "이 숫자를 기억" · 치과 시술 판단 기준 | {jb:HM25} 21년 산출방법
 R: **Table 9.4** | 혈소판 이상 → {r:BT↑}(PT·aPTT 정상) / 응고 이상 → PT·aPTT↑ | aspirin {r:BT↑} · coumarin {r:PT/INR↑↑} · heparin {r:aPTT↑↑} · LMWH = TT↑·antifactor Xa↓↓ | 둘 다 이상 = severe liver disease·DIC | —
 
-#TBL 지혈제와 수렴제 ② — 항응고·항혈소판·지혈 약물 전체정리표 | k=HM | sum=1 | src=[[HM:16]] [[HM:18]] [[HM:19]] [[HM:21]] [[HM:47]] [[HM:49]] [[HM:50]] [[HM:51]] [[HM:55]] [[HM:56]] [[HM:57]] [[HM:58]]
+#TBL 지혈제와 수렴제 ② — 항응고·항혈소판·지혈 약물 전체정리표 | k=HM | sum=1 | src=[[HM:26]] [[HM:27]] [[HM:28]] [[HM:29]] [[HM:54]] [[HM:56]] [[HM:57]] [[HM:58]] [[HM:62]] [[HM:63]] [[HM:64]] [[HM5:58]]
 H: 약물 | 분류 | 표적·기전 | 모니터링·특징 | 치과 주의 | ★ 시험
 R: **Warfarin** | {r:VKA}(경구) | {r:vit K epoxide reductase} 차단 → II·VII·IX·X {r:γ-carboxylation}↓ | {r:INR} 필수 · {n:개시 느림 · 초기 protein C·S 먼저 → pro-coagulation} | 항생제·azole·NSAIDs 상호작용 → 새 약 처방 후 INR {r:2-4일} 내 · 해독 = vit K | {jb:HM03} 25·24·23·22년 / {jb:HM11} 22·20년 / {jb:HM18} 21·20·17·16년 sulfonamide
 R: **Dabigatran** | {r:DOAC} | factor {r:IIa(thrombin)} 직접 억제 | 모니터링 {r:적게}·{n:예측 가능성↑} (JB: 용량 고정·반감기 짧음) | Mr. J — 주치의 OK면 {r:2-3일} 중단 | {jb:HM03} {jb:HM11} 장점 / {jb:HM10} 22년 증례 A
@@ -708,7 +708,7 @@ R: **Aminocaproic·Tranexamic acid** | 항섬유소용해 | {r:plasminogen activ
 R: **Thrombin** | 국소 지혈제 · 응고인자 IIa | {r:fibrinogen → fibrin} · XIII 활성 · 혈소판 응집 · {r:smooth muscle contraction} · 수용체 {r:PAR} | {r:topically only} — 정맥에 들어가면 {r:embolism} · Gelfoam과 병용 | 산성 cellulose(Oxycel·Surgicel)·Avitene과는 무효 | {jb:HM01} 24·22·21·20년 생리적 항응고제가 인지 = thrombin
 R: **Vitamin K** | 보조인자 | 간에서 II·VII·IX·X {r:γ-carboxylation} → {r:Ca2+ bridge}로 혈소판 막 결합 | 수술 {r:4-7일 전} · 흡수장애·장내 세균 합성↓에만 · K3 menadione → 용혈성 빈혈 | warfarin 해독 = {r:Phytonadione} SC·IM · {r:Kcentra}(II·VII·IX·X) | {jb:HM05} 23·20년 γ-carboxyglutamate / {jb:HM22} 20년 / {jb:HM09}
 
-#TBL 지혈제와 수렴제 ③ — 치과 시술 결정·국소 지혈 전체정리표 | k=HM | sum=1 | src=[[HM:22]] [[HM:23]] [[HM:24]] [[HM:25]] [[HM:26]] [[HM:30]] [[HM:32]] [[HM:34]] [[HM:37]] [[HM:40]] [[HM:43]] [[HM:45]] [[HM:53]] [[HM:59]]
+#TBL 지혈제와 수렴제 ③ — 치과 시술 결정·국소 지혈 전체정리표 | k=HM | sum=1 | src=[[HM:30]] [[HM:31]] [[HM5:24]] [[HM5:25]] [[HM:34]] [[HM:37]] [[HM:39]] [[HM:41]] [[HM:44]] [[HM:47]] [[HM:50]] [[HM:52]] [[HM:60]] [[HM5:59]]
 H: 방법·재료 | 성분·원리 | 용도 | 주의·금기 | ★ 시험
 R: **저위험 시술·알고리즘** | JADA 2019 · class 확인 → low risk면 계속 + local measures | scaling·연조직 수복·{r:3개 미만} 단순 발치·biopsy·endo·implant placement·보철 | 새 약: VKA {r:INR 2-4일} / DOAC·LMWH 상호작용만 | {jb:HM07} 22·20년 단순 발치 출혈 처치 / {jb:HM13} 21년
 R: **INR 구간** | ADA Coumadin 표 · 흐름도 | {r:>4.0} 수술 × · 큰 출혈 수술 = {r:INR <3.0}로 조정 · 단순 수복 3.5까지 ○ · 단순 발치 2.5–3.5 local measures | 모든 경우 {r:local measures} · >3.5 = 검사·인상만 | {jb:HM24} 20년 simple restorative 복약 조절
