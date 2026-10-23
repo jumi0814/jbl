@@ -590,7 +590,7 @@ R: 항혈소판 | Ticlopidine · Clopidogrel · Prasugrel · Ticagrelor {jb:HM15
 R: 항혈소판 | Tirofiban · Abciximab {jb:HM17} {jb:HM02} | GP IIb/IIIa receptor antagonist | {n:adhesion 때 주요 receptor · -mab = monoclonal antibody} · JB: fibrinogen·vWF 결합 방해 {jb:HM19}
 R: 항섬유소용해 | ε-Aminocaproic acid (Amicar) · Tranexamic acid (Cyklokapron) {jb:HM14} | competitive inhibitor of plasminogen activation · aminocaproic은 lysine과 닮은 구조(그림) (JB: t-PA · plasminogen · plasmin) | 지혈 가글 tranexamic acid 5% 100mL — warfarin을 끊을 수 없을 때(25) / {u:26: tranexamic acid 5% mouthwash — anticoagulant therapy 계속하며 local hemostasis 보조 · validated local protocol}
 R: 비타민 | Vitamin K (Phytonadione K1) {jb:HM22} | II·VII·IX·X의 γ-carboxylation cofactor(간) {jb:HM05} | 수술 4-7일 전 · warfarin 해독제(SC·IM) · Kcentra(II·VII·IX·X)(25 자료 — 26에서 빠짐) / {u:26: 술전 routine 투여 ✗ · warfarin reversal = oral vitamin K · major bleeding = IV vitamin K plus 4-factor PCC · SC·IM not preferred}
-N: 24·22년 표 빈칸은 aminocaproic → t-PA·plasminogen·plasmin / clopidogrel → P2Y12 / LMWH → AT III / tirofiban → GP IIb/IIIa. 함정: LMWH의 target은 Xa가 아니라 AT III.
+N: 24·22년 표 빈칸은 aminocaproic → t-PA·plasminogen·plasmin / clopidogrel → P2Y12 / LMWH → AT III / tirofiban → GP IIb/IIIa. 함정: LMWH의 target은 Xa가 아니라 AT III. 25년 시험(최신 JB {jb:HM02}) aminocaproic 답은 plasminogen & plasminogen activators로 바뀜(t-PA = plasminogen activator · 자료 "competitive inhibitor of plasminogen activation").
 N: 변형 대비: target을 주고 약을 물으면 — vit K epoxide reductase = warfarin / factor IIa(thrombin) = dabigatran(+ hirudin) / factor Xa = apixaban·edoxaban·rivaroxaban / AT III = heparin·LMWH {jb:HM16} / COX(thromboxane) = aspirin / P2Y12 = ticlopidine·clopidogrel·prasugrel·ticagrelor / GP IIb/IIIa = tirofiban·abciximab / plasminogen activation = ε-aminocaproic acid·tranexamic acid {jb:HM02}.
 
 #TBL 혈소판 응집 스위치 — 수용체·결합 상대·차단 약 | k=HM | src=[[HM:16]] [[HM:24]] [[HM:28]] [[HM:4]] [[HM:5]] [[HM5:19]]
@@ -976,7 +976,7 @@ R: ① 불안·공격성 감소 | {r:항우울 효과 없음} · 용량 의존�
 R: ② 수면 유도·진정(고농도) | 잠들기까지 시간↓ · 진정·마취 유도·유지 · {r:전향성 기억상실} | 고농도 정맥 최대 {r:5 mg} · 경구 최대 {r:20 mg} · 기억상실 = {r:α5} 소단위(α5 녹아웃 생쥐 학습·기억↑) · 저용량 진정 / 고용량 수면 | {r:정맥 미다졸람} = 마취 유도 | {jb:AX11} {jb:AX19}(JB 약별 용량 — 26에 없음)
 R: ③ 근긴장·협조운동 감소 | 근긴장↑ = 불안의 흔한 특징 · 척수 GABAA 중추 작용 | {r:다시냅스·단시냅스 반사} 모두 억제 · 연축(spasm)·강직(spasticity) | 진정 없는 용량의 골격근 이완 = {r:디아제팜만} | {jb:AX15} {jb:AX17} 22년
 R: ④ 항경련 | 동물실험에서 {r:모든 BZD} 항경련 활성 | 주의 = {r:내성} 발생 가능 · (JB 해설 — 26에 없음) diazepam Sodium channel inactivated | {r:클로나제팜}·디아제팜 = 뇌전증(epilepsy) | —
-R: ⑤ 급성 알코올 금단 치료 | 알코올과 {r:교차내성}(대체제 → 금단 중증도↓) · 항경련 활성 · {r:주요 호흡억제 효과 없음} | 금단 = 마지막 음주 후 빠르면 {r:2시간} · 수 주 · 발작·진전섬망 | (JB 답) Lorazepam — 26에 약 이름 없음 | {jb:AX21} 20년 · {jb:AX08} 24년
+R: ⑤ 급성 알코올 금단 치료 | 알코올과 {r:교차내성}(대체제 → 금단 중증도↓) · 항경련 활성 · {r:주요 호흡억제 효과 없음} | 금단 = 마지막 음주 후 빠르면 {r:2시간} · 수 주 · 발작·진전섬망 / 교차내성 = 어떤 약물 효과의 내성이 다른 약물에 대한 내성도 함께 일으킴(기능·효과가 비슷한 두 약물 사이 · p.18 상자) | (JB 답) Lorazepam — 26에 약 이름 없음 | {jb:AX21} 20년 · {jb:AX08} 24년
 N: ⚠ JB 24년 해설(옛 4Q 강의록)의 효과 5는 ③ = Anterograde amnesia — 26 PPT ③ = 근긴장·협조운동 감소(전향성 기억상실은 ②). 변형 대비: "BZD는 항우울 효과가 있다" ✗ · "모든 BZD 중 진정 없이 근이완 = 클로나제팜" ✗(디아제팜) · "항경련 작용에는 내성이 없다" ✗ · "알코올 금단엔 호흡억제가 강해 못 쓴다" ✗.
 
 #TBL 항불안제 — 대사(phase II · CYP3A4)와 길항제 | k=ANX | src=[[ANX:21]] [[ANX:22]] [[ANX:26]] [[ANX:27]] [[ANX:30]]
