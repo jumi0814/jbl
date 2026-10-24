@@ -171,10 +171,10 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 
 ## H. 허브 화면 담당(새 화면·새 막대·화면 고침 — 10-24 디자인 v3)
 ```
-먼저 읽기: CLAUDE.md · guide/정리본_원칙.md 7-1 첫 줄(디자인 v3) · tools/SPEC.md '디자인 v3' 절 · .claude/skills/jbl-update/QA.md 21·23·64·65·70·71.
+먼저 읽기: CLAUDE.md · guide/정리본_원칙.md 7-1 첫 줄(디자인 v3) · tools/SPEC.md '디자인 v3' 절 · .claude/skills/jbl-update/QA.md 21·23·64·65·70·71·72(컴퓨터 화면이 기준 — v3.2).
 - 새 CSS는 tools/cons/shell.html <style> 맨 끝 '10-24 디자인 v3' 묶음 뒤에. 옛 규칙이 더 구체적이면 `html body …`로 한 단계 올리되, 표시 상태(.qc.mk-ok 등)는 더 구체적이라 그대로 이기게.
 - 토큰만: --v-bg·--v-tone·--v-line·--v-ink(1~4)·--brand(=먹 #1A1815)·--exam-*(금색 = ⭐ 기출)·--pred-*(파랑 = 예상)·--e26(보라)·과목 색 --sj(메뉴 점·지금 탭 밑줄·선택 막대만). 대비 값(fallback)도 #1A1815(#2F5470·#2F4F45 금지). 따뜻한 베이지·갈색·크림 금지.
 - 부품: 보조 단추 = 옅은 면(테 없음) · 주 단추 = 먹 채움 · 거르기 = `.pills` 그릇 + `.tg`(켜짐 먹 채움) · 분절 = `.pseg`(회색 그릇 위 흰 칸) · 칩 = 알약 · 상자 = 옅은 면 + 안쪽 그림자 선 + 모서리 12(높이를 바꾸는 border 금지 — ux_u23·ux_u24).
 - 폰(≤600): 위에 붙는 것은 앱바·탭 줄·JB 작은 막대뿐 — 새 sticky 막대는 shell.html 폰 묶음 static 목록에 더함 · 이름 말줄임 0.
-- 끝나면: sync_common → rehub → 1280·820·393 스크린샷 직접 보기 → tools/tests/ux_v3phone.py(새 주소 더함)·ux_u27·ux_u23·ux_u24·ux4f_G·ux3_fixes·audit_design·verify → v3_palette --check 0.
+- 끝나면: sync_common → rehub → 1440·1280(일반·집중)·820·393 스크린샷 직접 보기 → tools/tests/ux_v3phone.py(새 주소 더함)·ux_u27·ux_u23·ux_u24·ux4f_G·ux3_fixes·audit_design·verify → v3_palette --check 0.
 ```

@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"f4aee0b0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"76282bb0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2401,6 +2401,54 @@ html body select{-webkit-appearance:none;appearance:none;background:var(--v-tone
 /* 넓은 쪽(정리표·비교표·한눈표·과목 비교표) — 제목·탭 줄 시작을 내용과 같게 */
 #subj:has(>#stage.wide)>#hero,#subj:has(>#stage.wide)>#dtabs{padding-left:16px!important;padding-right:16px!important;max-width:none!important}
 html body #nav .nvclose{border-color:transparent!important;background:transparent!important;border-radius:10px!important}html body #nav .nvclose:hover{background:var(--v-tone)!important}
+/* ===== 10-24 디자인 v3.2 — 컴퓨터 화면 중심 · 눈 편안·집중(사용자 10-24 "가장 메인은 컴퓨터 화면 … 눈도 편안하고 집중 잘되는 그런 색감 디자인 인터페이스")
+   ① 진한 덩어리 줄이기: 주 단추 = 부드러운 숯색 · 카드 안 '답 보기' = 옅은 면 + 굵은 글자(카드마다 검은 덩어리 없음)
+   ② 한 면: 강의 머리·탭 줄·본문 = 같은 미색 바탕(흰 띠 없음) · 구역은 흰 카드로 묶음(과목 홈·허브 홈)
+   ③ 읽는 칸 비우기: 형광펜·빈칸 도구 막대 = 오른쪽 아래 작은 밝은 알약(가운데 글줄을 가리지 않음)
+   ④ 크롬 가볍게: 위 막대 시계·검색·바로 가기 = 옅게 · 본문 글자는 아주 조금 부드러운 먹 ===== */
+:root{--v-pri:#2B2824;--v-pri-h:#1A1815;--v-soft:#ECE7DF;--v-soft-h:#E2DCD2;--v-read:#2A2723}
+/* ① 단추 */
+.btn.pri,#stage .btn.pri,.onebar .btn.ob.pri,#home .btn.pri,html body .tg.on,html body #stage .tg.on,html body #stage #jbbar .tg.on,html body #stage #jbbar .qf .tg.on,html body #dtabs .ktog.on,html body #dtabs .ktog[aria-pressed=true]{background:var(--v-pri)!important;border-color:var(--v-pri)!important}
+.btn.pri:hover,#stage .btn.pri:hover,#home .btn.pri:hover{background:var(--v-pri-h)!important;border-color:var(--v-pri-h)!important}
+html body #stage .qc .acts .btn.pri,html body #stage .pc .acts .btn.pri{background:var(--v-soft)!important;color:var(--v-ink)!important;font-weight:700!important}
+html body #stage .qc .acts .btn.pri:hover,html body #stage .pc .acts .btn.pri:hover{background:var(--v-soft-h)!important}
+/* 본문 글자 — 아주 조금 부드러운 먹(제목·핵심어는 그대로 진하게) */
+#stage .tc .tbody,#stage .qc .qtext,#stage .qc .lines,#stage .pc .pq,#stage .fcard{color:var(--v-read)}
+@media (min-width:861px){
+ /* ② 한 면 — 탭 줄도 미색 바탕(흰 띠 없앰) */
+ #dtabs{background:rgba(247,244,239,.94)!important;-webkit-backdrop-filter:saturate(160%) blur(14px)!important;backdrop-filter:saturate(160%) blur(14px)!important;border-bottom:1px solid var(--v-line)!important}
+ #dtabs .lmini,#dtabs .lmini2{background:transparent!important}
+ /* 과목 홈 구역 = 흰 카드(강의 카드 묶음 #hlec은 그대로) */
+ #stage>section.sh4:not(#hlec){background:#fff;border:1px solid var(--v-line);border-radius:16px;padding:18px 24px 20px;box-shadow:var(--sh1);margin-top:24px;margin-bottom:0}
+ #stage>#hlec.sh4{margin-top:40px}
+ #stage>section.sh4:not(#hlec)>h2.hh:first-child{margin-top:0!important}
+ #stage .ljump{background:#fff;border:1px solid var(--v-line);border-radius:16px;padding:14px 20px;box-shadow:var(--sh1)}
+ /* 허브 홈 구역 = 흰 카드 */
+ #home .hub4 .hduo>.htodo,#home .hub4 .hduo>.hrecent,#home .hub4 .hsubj,#home .hub4 .hweek{background:#fff;border:1px solid var(--v-line);border-radius:16px;padding:18px 22px;box-shadow:var(--sh1)}
+ #home .hub4 .hsubj>h2.hh:first-child,#home .hub4 .hweek>h2.hh:first-child,#home .hub4 .hduo h2.hh,#home .hub4 .hduo h3{margin-top:0!important}
+ /* ③ 도구 막대 — 오른쪽 아래 작은 밝은 알약 */
+ html body #kit{left:auto!important;right:20px!important;margin:0!important;max-width:calc(100vw - 40px)!important;background:rgba(255,255,255,.97)!important;border:1px solid var(--v-line)!important;box-shadow:0 8px 28px -10px rgba(28,25,22,.28),0 2px 6px -2px rgba(28,25,22,.10)!important;color:var(--v-ink2)!important;border-radius:14px!important;padding:4px 6px!important;gap:2px!important}
+ html body #kit button{color:var(--v-ink2)!important;background:transparent!important}
+ html body #kit button:hover{background:var(--v-tone)!important;color:var(--v-ink)!important}
+ html body #kit button.on,html body #kit button[aria-pressed=true]{background:var(--v-soft)!important;color:var(--v-ink)!important}
+ html body #kit button:disabled{color:#B9B4AC!important;background:transparent!important}
+ html body #kit .sep{background:var(--v-line)!important;border-color:var(--v-line)!important}
+ html body #kit #k-auto .lbl,html body #kit #k-undo .lbl,html body #kit #k-redo .lbl{display:none}
+ /* ④ 위 막대 — 시계·검색·바로 가기 옅게 */
+ #top #clock{background:transparent!important;border:1px solid var(--v-line)!important}
+ #top #clock:hover{background:var(--v-tone)!important}
+ #top #qjb{background:transparent!important;border:1px solid var(--v-line)!important}
+ #top #qjb:hover{background:var(--v-tone)!important}
+ #top #helpb{background:transparent!important}
+ #top #helpb:hover{background:var(--v-tone)!important}
+ /* 사이드바 — 붙는 머리(허브 홈·과목 이름) 위·사이 틈으로 목록 글자가 비치지 않게(그림자 = 바탕색, 크기 그대로) */
+ #nav .nvback{box-shadow:0 -24px 0 0 #FDFBF7}
+ #nav .nvsjh{box-shadow:0 -8px 0 0 #FDFBF7}
+ /* 사이드바 — 카드 목록 배지 작게 */
+ #nav .nvtoc .scard2 small.lpu,#nav .nvtoc .scard2 small.lpe{font-size:10px!important;line-height:1.5!important;padding:0 5px!important}
+ /* 카드 — 그림자 더 옅게 · 선 하나 */
+ .tc,#stage .tc,.qc,#stage .qc,.pc,#stage .pc,.lcard,#hlec .lcard{box-shadow:0 1px 2px rgba(28,25,22,.04)!important}
+}
 /* --- 폰(≤600): 위 고정 영역 = 앱바 한 줄 + 탭 한 줄 --- */
 @media (max-width:600px){
  #top{display:grid!important;grid-template-columns:auto auto auto minmax(0,1fr) auto auto auto;grid-template-areas:'nav logo dot title srch clock help';align-items:center;padding:6px 10px!important;column-gap:6px!important;row-gap:0!important;min-height:52px}
@@ -2554,7 +2602,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="f4aee0b0",PV={"OMS1": "9cea24e1", "CONS": "d7b26d52", "IMPL": "cc140650", "ANAT": "830ef8e0", "GERI": "d4a4aff2", "PHARM": "913de6ac", "ESTH": "ed4c2c48"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="76282bb0",PV={"OMS1": "0be5cfd3", "CONS": "3909c86a", "IMPL": "256a4c02", "ANAT": "fc953524", "GERI": "95936185", "PHARM": "c254a205", "ESTH": "345e04c5"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
