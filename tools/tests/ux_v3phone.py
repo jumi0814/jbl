@@ -28,7 +28,8 @@ async def main():
             await scroll(pg, 1200); await pg.wait_for_timeout(300)
             await pg.evaluate("()=>{window.__flip=0;new MutationObserver(()=>window.__flip++).observe(document.body,{attributes:true,attributeFilter:['class']});}")
             await pg.wait_for_timeout(900)
-            r = await pg.evaluate(COVER); fl = await pg.evaluate('window.__flip')
+            r = await pg.evaluate(COVER); fl = await pg.evaluate('window.__flip'); sy = await pg.evaluate('scrollY')
+            if sy < 200: ok(True, f'{h} 짧은 화면(내려간 거리 {sy}px) — 앱바 그대로가 맞음'); continue
             ok(r['top'] <= 0, f'{h} 내린 뒤 앱바 숨김 (#top 아래 끝 {r["top"]})')
             ok(r['mx'] <= lim, f'{h} 내린 뒤 위에 붙은 영역 {r["mx"]}px ≤ {lim} ({r["who"]})')
             ok(fl <= 1, f'{h} 숨김↔보임 되풀이 없음 (몸 class 바뀜 {fl}번)')

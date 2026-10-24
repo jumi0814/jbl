@@ -2364,9 +2364,9 @@ html body .u26.e26::before,html body .u26p.e26p::before{background:#EFEAFB!impor
 html body .frame .ol .o26e{background:#EFEAFB!important;color:#5B3FB0!important;border-radius:4px!important}
 html body .u26.demo{background:#E3F5EA!important;color:#11643A!important}
 /* 상자 — 왼쪽 굵은 막대 대신 옅은 면 + 모서리 12(높이·안쪽 여백은 그대로) */
-html body #stage .tc .c-key{border-left:0!important;border-radius:12px!important;background:#F3F5F8!important;border:1px solid #E7EBF0!important}
-html body #stage .c-exam,html body #stage .tc .c-exam{border-left:0!important;border-radius:12px!important;background:#FFF8E6!important;border:1px solid #F5E3B3!important}
-html body #stage .c-mem,html body #stage .tc .c-mem{border-left:0!important;border-radius:12px!important;background:#F6F8FB!important;border:1px solid #E7EBF0!important}
+html body #stage .tc .c-key{border:0!important;border-radius:12px!important;background:#F3F5F8!important;box-shadow:inset 0 0 0 1px #E7EBF0!important}
+html body #stage .c-exam,html body #stage .tc .c-exam{border:0!important;border-radius:12px!important;background:#FFF8E6!important;box-shadow:inset 0 0 0 1px #F5E3B3!important}
+html body #stage .c-mem,html body #stage .tc .c-mem{border:0!important;border-radius:12px!important;background:#F6F8FB!important;box-shadow:inset 0 0 0 1px #E7EBF0!important}
 html body #stage .tc .und,html body #stage .und{border-left:0!important;border-radius:10px!important;background:#F7F9FC!important}
 html body #stage .co.c-prof,html body #stage .frame .co.fhint{border-left:0!important;border-radius:12px!important;background:#F6F8FB!important}
 html body #stage .ex-trap{border-left:0!important;padding-left:0!important}
@@ -2400,8 +2400,8 @@ html body select{-webkit-appearance:none;appearance:none;background:var(--v-tone
 /* 아래 도구 막대 — 불투명 · 아이폰 아래 여백 */
 #kit{background:#111827!important;-webkit-backdrop-filter:none;backdrop-filter:none;margin-bottom:env(safe-area-inset-bottom,0px)}
 /* 넓은 쪽(정리표·비교표·한눈표·과목 비교표) — 제목·탭 줄 시작을 내용과 같게 */
-#subj:has(>#stage.wide)>#hero,#subj:has(>#stage.wide)>#dtabs{padding-left:24px!important;padding-right:24px!important;max-width:none!important}
-#subj>#stage.wide{padding-left:24px!important;padding-right:24px!important}
+#subj:has(>#stage.wide)>#hero,#subj:has(>#stage.wide)>#dtabs{padding-left:16px!important;padding-right:16px!important;max-width:none!important}
+html body #nav .nvclose{border-color:transparent!important;background:transparent!important;border-radius:10px!important}html body #nav .nvclose:hover{background:var(--v-tone)!important}
 /* --- 폰(≤600): 위 고정 영역 = 앱바 한 줄 + 탭 한 줄 --- */
 @media (max-width:600px){
  #top{flex-wrap:nowrap!important;padding:6px 10px!important;gap:6px!important;min-height:52px}
@@ -2441,6 +2441,9 @@ html body select{-webkit-appearance:none;appearance:none;background:var(--v-tone
  html body #stage .acts .btn.mk::before,html body #stage .acts .btn.nmgo::before{font-size:16px;font-weight:700;line-height:1}
  html body #stage .acts .btn.mk.ok::before{content:"✓"}html body #stage .acts .btn.mk.ng::before{content:"✗"}html body #stage .acts .btn.mk.bm::before{content:"★"}html body #stage .acts .btn.nmgo::before{content:"✎"}
  #stage .tc .thead .tt .en{font-size:clamp(19px,5.4vw,23px)!important;line-height:1.25}
+ html body #stage table.sum th .ybadge.sm{display:inline-flex;max-width:100%;white-space:normal}html body #stage table.sum th .ybadge.sm b{white-space:normal!important;overflow-wrap:anywhere;word-break:normal}
+ html body #stage table.sum th .smk{display:flex!important;flex-wrap:wrap;gap:4px;width:auto!important}html body #stage table.sum th .smk button{flex:0 0 32px!important;width:32px!important;min-width:32px!important;height:32px!important;min-height:32px!important;padding:0!important;border-radius:50%!important;display:inline-flex;align-items:center;justify-content:center}
+ html body #kit{flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;padding:5px 6px!important}html body #kit::-webkit-scrollbar{display:none}html body #kit>*{flex:none}html body #kit .lbl{display:none!important}html body #kit .sep{display:inline-block}
  html body #stage #jbbar .b1{flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}
  html body #stage #jbbar .b1::-webkit-scrollbar{display:none}
  html body #stage #jbbar .b1>*,html body #stage #jbbar .b1 .qf{flex:none!important}
