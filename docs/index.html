@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"256c75d1",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"31cc43f0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2225,7 +2225,7 @@ html,body{background:var(--v-bg)!important}
 body{font-family:var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:var(--v-ink);text-rendering:optimizeLegibility}
 ::selection{background:#E5E2DC}
 /* --- 앱바 --- */
-#top{background:rgba(255,255,255,.94)!important;-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);color:var(--v-ink)!important;border-bottom:1px solid var(--v-line)!important;box-shadow:none!important;gap:8px!important;padding:8px 16px!important;transition:transform .22s ease}
+#top{background:rgba(255,255,255,.94)!important;-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);color:var(--v-ink)!important;border-bottom:1px solid var(--v-line)!important;box-shadow:none!important;transition:transform .22s ease}   /* 높이·여백은 옛 규칙 그대로(820·1180·1280 52px — ux4f_G G5) */
 #top #gohome{font-weight:800!important;font-size:17px!important;letter-spacing:-.04em;color:var(--v-ink)!important;display:inline-flex;align-items:center;gap:8px}
 #top #gohome::before{content:"";width:22px;height:22px;border-radius:7px;flex:none;background:linear-gradient(140deg,#1A1815 0%,#48453F 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 1px 2px rgba(26,24,21,.2)}
 #top #crumb{color:var(--v-ink4)}#top #crumb .ccur{color:var(--v-ink);font-weight:700}#top #crumb .sl{color:#CCC8C1}
@@ -2403,9 +2403,13 @@ html body select{-webkit-appearance:none;appearance:none;background:var(--v-tone
 html body #nav .nvclose{border-color:transparent!important;background:transparent!important;border-radius:10px!important}html body #nav .nvclose:hover{background:var(--v-tone)!important}
 /* --- 폰(≤600): 위 고정 영역 = 앱바 한 줄 + 탭 한 줄 --- */
 @media (max-width:600px){
- #top{flex-wrap:nowrap!important;padding:6px 10px!important;gap:6px!important;min-height:52px}
- #top #crumb{display:flex!important;align-items:center;flex:1 1 auto;min-width:0;flex-wrap:nowrap!important;order:0!important;width:auto!important}
- #top #crumb>*{flex:none}#top #crumb .ccur{flex:1 1 auto;min-width:0;overflow:visible;text-overflow:clip;white-space:normal!important;word-break:keep-all;overflow-wrap:anywhere;line-height:1.25!important}   /* 이름 말줄임 0(QA 21·64) — 긴 제목은 두세 줄로(앱바 ≤100px · 내리면 숨음) */
+ #top{display:grid!important;grid-template-columns:auto auto auto minmax(0,1fr) auto auto auto;grid-template-areas:'nav logo dot title srch clock help';align-items:center;padding:6px 10px!important;column-gap:6px!important;row-gap:0!important;min-height:52px}
+ #top.tl2{grid-template-areas:'nav logo dot . srch clock help' 'title title title title title title title'}   /* 제목이 첫 줄에 한 줄로 안 들어가면(JS topFit) 둘째 줄 전체 폭 — 말줄임 0 */
+ #top #navbtn{grid-area:nav}#top #gohome{grid-area:logo}#top #crumb .cbs{grid-area:dot}#top #crumb .ccur{grid-area:title}#top #gsearch{grid-area:srch}#top #clock{grid-area:clock}#top #helpb{grid-area:help}
+ #top #crumb{display:contents!important}   /* 제목이 한 줄에 들어가면 앱바 첫 줄에, 안 들어가면 둘째 줄 전체 폭으로(말줄임 0 · 앱바 ≤100px) */
+ #top #crumb>*{flex:none}#top #crumb .ccur{flex:1 1 auto;min-width:0;overflow:visible;text-overflow:clip;white-space:normal!important;word-break:keep-all;overflow-wrap:anywhere;line-height:1.3!important;padding:2px 2px 6px!important;align-self:center}
+ #top #gsearch{margin-left:0!important;justify-self:end}
+ #top.tl2 #crumb .ccur{padding:0 2px 5px!important}   /* 이름 말줄임 0(QA 21·64) — 긴 제목은 두세 줄로(앱바 ≤100px · 내리면 숨음) */
  #top #crumb .sl{display:none!important}#top #crumb .cbs{font-size:0!important;min-width:24px;padding:0 4px!important;justify-content:center}#top #crumb .cbs .cdot{width:9px;height:9px}
  #top #crumb .ccur{font-size:14px!important;font-weight:700!important;letter-spacing:-.02em;padding-left:2px}
  #top .sp{display:none!important}
@@ -2543,7 +2547,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="256c75d1",PV={"OMS1": "937eb49c", "CONS": "39054fb5", "IMPL": "2f7a04df", "ANAT": "d20a4087", "GERI": "03391347", "PHARM": "59b5c9e0", "ESTH": "87f8e369"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="31cc43f0",PV={"OMS1": "cef89917", "CONS": "b12cb23d", "IMPL": "f3de0e4f", "ANAT": "9a54c159", "GERI": "e05fc7a3", "PHARM": "137a4b96", "ESTH": "1bc20df4"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3382,6 +3386,9 @@ function measure(){const t=$('#top'),d=$('#dtabs'),k=$('#kit'),BC=document.body.
  if(th!==LAY.toph||bh!==LAY.tabh||kh!==LAY.kith){LAY.toph=th;LAY.tabh=bh;LAY.kith=kh;const r=document.documentElement.style;r.setProperty('--toph',th+'px');r.setProperty('--tabh',bh+'px');r.setProperty('--kith',kh+'px');}}
 if(window.ResizeObserver){const ro=new ResizeObserver(measure);ro.observe($('#top'));ro.observe($('#dtabs'));ro.observe($('#kit'));}addEventListener('resize',measure);measure();
 const topOff=()=>{measure();return LAY.toph+LAY.tabh+LAY.jbh+12;};
+/* 10-24 v3.1 폰 앱바 제목: 첫 줄 칸에 한 줄로 들어가면 그대로, 넘치면 #top.tl2 → 둘째 줄 전체 폭(이름 말줄임 0 — QA 21·64) */
+function topFit(){const t=$('#top'),c=t&&t.querySelector('.ccur');if(!t)return;if(innerWidth>600||!c){t.classList.remove('tl2');return;}t.classList.remove('tl2');const lh=parseFloat(getComputedStyle(c).lineHeight)||18;if(c.getBoundingClientRect().height>lh*1.5)t.classList.add('tl2');}
+{let q=0;const f=()=>{if(q)return;q=requestAnimationFrame(()=>{q=0;topFit();measure();});};new MutationObserver(f).observe($('#crumb'),{childList:true,subtree:true,characterData:true});addEventListener('resize',f);f();}
 /* 10-24 v3 폰 앱바: 아래로 밀면 숨김 · 위로 조금 밀면 다시(위 고정 영역 = 탭 한 줄 — 사용자 '폰 화면 상단 절반을 위 탭으로 가리고 있는 오류') · 코드가 옮기는 스크롤(goEl → NOBAR)·서랍·검색 중에는 그대로 */
 {let ly=scrollY,acc=0,guard=0;const BL=()=>document.body.classList,flip=on=>{if(BL().contains('hdrhide')===on)return;BL().toggle('hdrhide',on);measure();guard=Date.now()+450;acc=0;},show=()=>flip(false);
  /* 숨기면 탭 아래 도구 줄도 접혀 높이가 줄고 브라우저가 스크롤을 그만큼 보정함 → 바꾼 직후(guard)의 스크롤은 사람 손이 아니므로 무시(숨김↔보임 되풀이 막기) */

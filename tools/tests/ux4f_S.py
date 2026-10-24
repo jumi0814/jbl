@@ -118,7 +118,7 @@ with sync_playwright() as p:
     ctx, pg = new(b, 390, 844, True)
     for route in ('/ESTH/FUN/learn', '/ESTH/_home/_home', '/', '/PHARM/_jb', '/ESTH/FUN/tbl', '/CONS/_tbl', '/PHARM/_tbl'):
         go(pg, route, 1200)
-        r = pg.evaluate("""[Math.round(document.querySelector('#top').getBoundingClientRect().height),Math.round(document.querySelector('#crumb').getBoundingClientRect().width),Math.round((document.querySelector('#crumb .ccur')||{getBoundingClientRect:()=>({height:0})}).getBoundingClientRect().height),
+        r = pg.evaluate("""[Math.round(document.querySelector('#top').getBoundingClientRect().height),(()=>{const cr=document.querySelector('#crumb');const w=Math.round(cr.getBoundingClientRect().width);if(getComputedStyle(cr).display!=='contents')return w;const c=cr.querySelector('.ccur');return c&&c.getBoundingClientRect().width>=Math.min(300,c.scrollWidth)-1?999:0;})(),   /* 10-24 v3.1 격자 앱바(#crumb display:contents) — 이름 칸이 제 글자 폭만큼 펴져 있으면 통과 */Math.round((document.querySelector('#crumb .ccur')||{getBoundingClientRect:()=>({height:0})}).getBoundingClientRect().height),
           document.documentElement.scrollWidth-innerWidth,(()=>{const k=document.querySelector('#kit');if(!k||!k.offsetParent)return 0;return [...k.querySelectorAll('button')].filter(e=>e.offsetParent&&(e.getBoundingClientRect().right>innerWidth+1||e.getBoundingClientRect().left<-1)).length})()]""")
         ok(r[0] <= 100 and r[1] >= 300 and r[2] <= 30 and r[3] <= 0 and r[4] == 0, f'N3 390 {route} 상단 {r[0]}px · 빵부스러기 폭 {r[1]} · 지금 이름 높이 {r[2]} · 가로 넘침 {r[3]} · 도구 막대 밖 버튼 {r[4]}')
     ok(not pg.errs, f'390 콘솔 오류 없음 {pg.errs[:2]}'); ctx.close()
