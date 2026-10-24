@@ -35,7 +35,7 @@ if _JBFIX_MISS: print('⚠ JBFIX 못 찾음:', _JBFIX_MISS)
 def _qpart(q_):
     out = []
     for l in q_['text'].split('\n'):
-        if out and re.match(r'^\s*(\[답\]|답)\s*[:：)]?', l): break
+        if out and re.match(r'^\s*(\[답\]|답)\s*[:：)]?', l.replace('\u2063', '')): break
         out.append(l)
     return '\n'.join(out).strip()
 _YRTAG = re.compile(r'\(([^()]*?(?:\d{2}|20\d\d)[^()]*?)\)')
@@ -171,7 +171,7 @@ def card_alt(k, j): return ' '.join([aid(k + ':c%d' % j)] + [a for a in ALTS[(k,
 
 for q in Q:
     L0 = reflow.reflow(q['text'])
-    if L0: q['stem'] = re.sub(r'^\s*\d{1,3}(-\d)?\s?[.)]?\s*', '', L0[0]).strip(); q['short'] = q['stem'][:78]
+    if L0: q['stem'] = re.sub(r'^\s*\d{1,3}(-\d)?(?:\s?[.)]\s*|\s+)', '', L0[0]).strip(); q['short'] = q['stem'][:78]   # 10-25 번호 뒤 . ) 빈칸이 있을 때만 뗌(ANAT V01 '18,19년도에는' 보존)
 # ---- 문항 → 강의 카드 위치
 PROF_LEC = S.PROF_LEC
 cand = {}
@@ -247,11 +247,12 @@ def vchip(v):
     return f'<span class="chip v-{v}{" vsm" if short else ""}" title="{VNAME[v]}">{short or VNAME[v]}</span>'
 def split_qa(q):
     qs, as_, mode = [], [], 'q'; sq_ = _SUBQ.get(q['id'], []); an_ = _ANSAT.get(q['id'], [])
-    for l in q['text'].split('\n'):
-        if an_ and mode == 'q' and any(l.strip().startswith(p_) for p_ in an_): mode = 'a'; as_.append(l); continue
+    for l0_ in q['text'].split('\n'):
+        l = l0_.replace('\u2063', '')   # 강제 줄바꿈 표시(reflow용)는 판정에서 빼고 줄에는 남김
+        if an_ and mode == 'q' and any(l.strip().startswith(p_) for p_ in an_): mode = 'a'; as_.append(l0_); continue
         if re.match(r'^\s*(유사복원\)|추가복원\)|\*?비슷한 복원|복원 원문)', l) or (q['id'] == 'Q23' and re.match(r'^\s*\(\d\)\s', l)) or (sq_ and any(l.strip().startswith(p_) for p_ in sq_)): mode = 'q'
         if reflow.LABEL.match(l) and '참고' not in l.split(':')[0] and mode == 'q' and re.match(r'^\s*(\[답\]|답)', l): mode = 'a'
-        (qs if mode == 'q' else as_).append(l)
+        (qs if mode == 'q' else as_).append(l0_)
     return '\n'.join(qs), '\n'.join(as_)
 def yp_of(q):
     """10-16 출제 연도별 출제 교수 [(연도, 교수)] — subject.py YEAR_PROF(강의 키 → {연도: 교수})·YEAR_PROF_Q(문항 id → {연도: 교수}) · 없는 해는 q['prof'](강의 연결 교수)
@@ -708,7 +709,7 @@ def qcard(q, idx):
         a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{''.join(lecparse.render_keybox(x_, ctx) for x_ in keys_) if keys_ else lecparse.inline(c_["gist"], ctx)}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
-        o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
+        o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])}{"년 칸" if re.fullmatch(r"20[0-9][0-9]", str(v["sec"])) else ""} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
         a.append(f'<details class="oth"><summary>다른 연도 칸·다른 판본에 실린 같은 문제 {len(q["other"])}건 (원문 그대로)</summary>{o}</details>')
     a.append('</div>'); h.append(''.join(a)); h.append('</article>')
     return ''.join(h)

@@ -4,6 +4,7 @@ LABEL = re.compile(r'^\s*(\[답\]|답\s*[:：)]?|해설\s*[:：)]?|참고\s*[:�
 LISTM = re.compile(r'^\s*(?:\d{1,2}\s?[\).]|\(\s?\d{1,2}\s?\)|[①-⑳㉠-㉭]|[-•·▶▷→※*✓◆■□○●]|[가-하]\.|[a-zA-Z][\).])\s?')
 NUMM = re.compile(r'^\s*(?:\d{1,2}\s?[\).]|\(\s?\d{1,2}\s?\)|[①-⑳]|[가-하]\.)')   # 번호 단계
 BULM = re.compile(r'^\s*[-•·▶▷→※*✓◆■□○●]')                                         # 그 아래 세부 항목
+HARD = '\u2063'   # 10-25 JBFIX 강제 줄바꿈 표시(INVISIBLE SEPARATOR) — reflow가 지움
 def width(s): return sum(2 if unicodedata.east_asian_width(c) in 'WF' else 1 for c in s)
 CHOICE = re.compile(r'^\s*(?:\d{1,2}(?:\s?[~-]\s?\d{1,2})?\s?\)|\(\s?\d{1,2}\s?\)|[①-⑳])')   # 보기 번호 줄(n) · n~m) · (n) · 원문자)
 def stray(prev, s, W):
@@ -27,6 +28,8 @@ def reflow(text, choices=False):
     out = []; prev_full = False; prev_raw = ''; tbl = False
     for l in lines:
         s = l.strip()
+        if s.startswith(HARD):   # 10-25 강제 줄바꿈(subject.py JBFIX가 줄 앞에 넣는 보이지 않는 표시 U+2063) — 앞 줄에 잇지 않고 표시는 지움
+            s = s.lstrip(HARD).strip(); tbl = False; out.append(s); prev_full = False; prev_raw = l; continue
         single = len(s) == 1 and '가' <= s <= '힣'
         if tbl and (STARTER.match(s) or LABEL.match(s) or not TROW.match(s)): tbl = False
         if tbl and out:   # ux2 fixB VIS10 영문 표 블록: 소문자 한 낱말 줄(skull) = 앞 칸의 끝 · 앞 행이 3낱말 미만이면 아직 한 행 · 그 밖에 대문자로 시작하면 새 행(앞 줄이 넓어도 붙이지 않음)
@@ -53,7 +56,7 @@ def reflow(text, choices=False):
         prev_full = width(l) >= W * 0.74
         prev_raw = l
     return out
-def same_chars(a, b): return re.sub(r'\s+', '', a) == re.sub(r'\s+', '', b)
+def same_chars(a, b): return re.sub(r'[\s\u2063]+', '', a) == re.sub(r'[\s\u2063]+', '', b)
 SRCREF = re.compile(r'\d{4,6}[_\s]|pf[_ ]|_p\.?\s?\d|\bp\.?\s?\d|\d+\s?pg\b|PPT|ppt|강의자료|교과서|슬라이드|핸드아웃|\.pdf')
 def render(text, first_bold=False, ans=False, choices=False):
     """논리 줄 단위 HTML. 글자는 원문 그대로, 라벨(답·해설·참고)만 굵게.

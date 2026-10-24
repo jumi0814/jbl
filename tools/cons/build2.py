@@ -14,7 +14,7 @@ ANSRE = re.compile(r'^\s*\[?답\]?\s*[:：)]|^\s*답\s*$|^\s*\[답\]')
 
 def split_text(q):
     qs, as_, mode = [], [], 'q'
-    for l in q['text'].split('\n'):
+    for l in q['text'].replace('\u2063', '').split('\n'):
         if re.match(r'^\s*(유사복원\)|추가복원\)|\*?비슷한 복원|복원 원문)', l) or (q['id'] == 'Q23' and re.match(r'^\s*\(\d\)\s', l)): mode = 'q'
         if ANSRE.match(l): mode = 'a'
         (qs if mode == 'q' else as_).append(l)

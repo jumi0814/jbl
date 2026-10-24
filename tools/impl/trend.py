@@ -6,7 +6,7 @@ ANS = re.compile(r'\s*(?:\[\s*(?:답|해설|참고)\s*\]|(?:답|참고|해설|�
 def q_lines(q):
     """문제 부분 줄(첫 줄부터 답 표시 앞까지 — text에는 JB 답도 들어 있음 · 판마다 '답:'·'[답]'·'답)' 꼴이 다름)"""
     L = []
-    for l in q['text'].split('\n'):
+    for l in q['text'].replace('\u2063', '').split('\n'):   # 10-25 강제 줄바꿈 표시 빼고
         if L and ANS.match(l): break
         if l.strip(): L.append(l.strip())
     return L

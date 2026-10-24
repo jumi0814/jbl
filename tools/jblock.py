@@ -5,7 +5,7 @@ tools/<sid>/jb_lock.json = {id: md5(공백 뺀 문제 글자 앞 80자)[:12]} �
 같은 id인데 문제 글자만 고친 것이면 {id: id}로 적어 확인만 함(옮길 것 없음)."""
 import os, re, json, hashlib
 TOOLS = os.path.dirname(os.path.abspath(__file__))
-def qhash(qt): return hashlib.md5(re.sub(r'\s+', '', qt or '')[:80].encode('utf-8')).hexdigest()[:12]
+def qhash(qt): return hashlib.md5(re.sub(r'[\s\u2063]+', '', qt or '')[:80].encode('utf-8')).hexdigest()[:12]   # 10-25 강제 줄바꿈 표시(U+2063)는 글자가 아님
 def paths(sid):
     d = os.path.join(TOOLS, sid.lower()); return os.path.join(d, 'jb_lock.json'), os.path.join(d, 'jb_move.json')
 def load(p, d=None):
