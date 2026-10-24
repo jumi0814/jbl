@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"e3200ac7",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"3990b515",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2352,7 +2352,7 @@ html body #stage .tc .c-key .ct{color:var(--v-ink3)!important}
 html body #stage .qc .qhead .ybadge,html body #stage .qc .qhead .ybadge.n1{border:1px solid transparent!important;background:#FFF4D6!important;color:#7A5300!important}html body #stage .qc .qhead .ybadge.n2,html body #stage .qc .qhead .ybadge.n3{border:1px solid transparent!important;background:#FFE7A0!important;color:#5C3D00!important}
 .ybadge b,.ybadge i{color:inherit}
 /* 예상 카드 머리 칩 — 높이 맞춤 · 여러 줄 칩은 모서리 8 · 근거·정리본은 조용한 칩 */
-#stage .pc .qhead,#stage .qc .qhead{align-items:flex-start;row-gap:6px}
+#stage .pc .qhead,#stage .qc .qhead{align-items:center;row-gap:6px}summary.tg{display:inline-flex;align-items:center}h2.hh .more{white-space:nowrap;flex-shrink:0}@media (max-width:600px){html body h2.hh{align-items:center!important}}.gbbar .gbprl{margin-left:6px;padding-left:12px;border-left:1px solid var(--v-line,#E9E5DF)}   /* 10-24 사용자 '같은 줄 안에 일렬이 아니라 위아래 삐뚤빼뚤' — 카드 머리 줄 = 가운데 맞춤(키 큰 연도 배지 옆 글자가 위로 붙던 것) · 접힘 알약 ⋯ 글자 가운데 */
 #stage .pc .qhead>.ybadge{flex-shrink:0;white-space:nowrap;flex-wrap:nowrap}#stage .pc .qhead>.jbchip{min-width:0;flex:0 1 auto}   /* 820 폭: 배지가 줄어 '예상/짤 변형' 두 줄 되던 것 — 긴 관련 기출 칩이 대신 줄바꿈(ux16_pred) */
 #stage .pc .qhead>*{min-height:24px}
 .pc .jbchip,#stage .pc .jbchip{border-radius:8px!important}
@@ -2610,7 +2610,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="e3200ac7",PV={"OMS1": "273236ec", "CONS": "cc4928af", "IMPL": "acb0731d", "ANAT": "02a6a24a", "GERI": "61787c2a", "PHARM": "6d1261b2", "ESTH": "dc66aa42"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="3990b515",PV={"OMS1": "3eb1cc3c", "CONS": "c261e7a3", "IMPL": "854dc5b7", "ANAT": "2f7b9c7b", "GERI": "74202e64", "PHARM": "08fc9e82", "ESTH": "9f498ee1"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3724,22 +3724,25 @@ function gbPR(p,i){const x=p.preds[i];if(!x||!x.f||!(x.m||x.gk==='id'))return ''
  const keep=hd?[...hd.querySelectorAll('.chip.ppr,.pjbl,.jbchip,.chip.pwhy')].map(e=>e.outerHTML).join(''):'',wy=a.querySelector('.pwhyt');
  const past=GBOLD.test((x.t||'')+' '+(x.why||'')),k0=x.f[0];
  const ms=(x.m||[]).map((b,j)=>`<button type="button" class="gbm" data-gbi="${j}" data-gbn="${GBC[j]||j+1}" style="left:${b[0]}%;top:${b[1]}%;width:${(b[2]-b[0]).toFixed(2)}%;height:${(b[3]-b[1]).toFixed(2)}%" aria-label="${j+1}번 가림 — 누르면 보임">${GBC[j]||j+1}</button>`).join('');
- return `<article class="gbx gbp" id="gb-p${i}" data-id="${EH('P:'+x.aid)}" data-gk="p" data-k="${EH(x.k)}" data-gprof="${EH(gbProf(L.prof))}"><div class="qhead"><span class="gbtag pr">예상 그림빵</span><span class="chip gbkd${gid?' id':''}" title="${gid?'그림을 보고 술식·구조·질환 이름을 답하는 문제(교수님 그림 출제 꼴)':'그림 속 가린 라벨을 떠올리는 문제'}">${gid?'그림 보고 답하기':'라벨 빈칸'}</span>${keep}${past?'<span class="chip gbpast" title="26년도 강의자료에서 빠진 그림 — 과거 JB 대비용">과거 JB 대비용</span>':''}${x.lc?`<button class="chip lec" data-golec="${EH(x.lc)}">📖 정리본</button>`:''}</div>${wy?wy.outerHTML:''}`
+ return `<article class="gbx gbp" id="gb-p${i}" data-id="${EH('P:'+x.aid)}" data-gk="p" data-gpr="${EH(x.pr||'')}" data-k="${EH(x.k)}" data-gprof="${EH(gbProf(L.prof))}"><div class="qhead"><span class="gbtag pr">예상 그림빵</span><span class="chip gbkd${gid?' id':''}" title="${gid?'그림을 보고 술식·구조·질환 이름을 답하는 문제(교수님 그림 출제 꼴)':'그림 속 가린 라벨을 떠올리는 문제'}">${gid?'그림 보고 답하기':'라벨 빈칸'}</span>${keep}${past?'<span class="chip gbpast" title="26년도 강의자료에서 빠진 그림 — 과거 JB 대비용">과거 JB 대비용</span>':''}${x.lc?`<button class="chip lec" data-golec="${EH(x.lc)}">📖 정리본</button>`:''}</div>${wy?wy.outerHTML:''}`
   +`<div class="pq">${q?q.innerHTML:''}</div><div class="gbsc"><div class="gbfig" data-gbk="${EH(k0)}"><img data-img="${EH(k0)}" alt="">${ms}</div></div>`
   +`<div class="acts noann">${ms?'<button class="btn pri" data-gbshow="1">전체 보기</button>':''}<button class="btn${ms?'':' pri'}" data-gbans="1" aria-expanded="false">${gid?'답 보기':'답 목록'}</button><button class="btn" data-gbzoom="1" aria-pressed="false" title="그림 크게(가로로 밀어 보기) — 다시 누르면 원래 크기">크게</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div>`
   +`<div class="gbans jbans" hidden><div class="gbh noann">${gid?'답 — 강의자료 글 그대로':'답 — 강의자료 라벨 그대로'} · 실제 기출이 아님</div><div class="pre2">${an?an.innerHTML:''}</div></div></article>`;}
+/* 10-24 사용자 '그림빵에서도 예상 상중 우선순위에 따른 분류' — 예상 그림빵만 거름(기출 그림빵 = 실제 기출이라 늘 보임) · 다시 누르면 전체 */
+const gbPrBar=on=>on?'<span class="small gbprl">예상 우선</span><button type="button" class="tg" data-gbpr="상" title="우선순위 상인 예상 그림빵만(기출 그림빵은 늘 보임)">상</button><button type="button" class="tg" data-gbpr="상중" title="우선순위 상·중인 예상 그림빵만(기출 그림빵은 늘 보임)">상+중</button>':'';
+const gbHasPr=(p,Ls)=>Ls.some(L=>(L.gbp||[]).some(i=>((p.preds||[])[i]||{}).pr));
 function gbTab(p,L){const J=(L.gbj||[]).map(id=>gbJB(p,id,L)).filter(Boolean),P=(L.gbp||[]).map(i=>gbPR(p,i)).filter(Boolean);
- return `<div class="gbbar noann" id="gbbar"><span class="small">그림·빈칸 출제 근거가 있는 문제만 — 상자·줄을 누르면 하나씩</span><button type="button" class="tg" data-gbsa="1">모두 보기</button></div>`
+ return `<div class="gbbar noann" id="gbbar"><span class="small">그림·빈칸 출제 근거가 있는 문제만 — 상자·줄을 누르면 하나씩</span>${gbPrBar(P.length&&gbHasPr(p,[L]))}<button type="button" class="tg" data-gbsa="1">모두 보기</button></div>`
   +(J.length?`<h3 class="pgh gbh3 noann">기출 그림빵 <span class="small pgn">· ${J.length}문항 · JB 그림 그대로</span></h3>${J.join('')}`:'')
-  +(P.length?`<h3 class="pgh gbh3 noann">예상 그림빵 <span class="small pgn">· ${P.length}문항 · 26 PPT 그림 — 실제 기출이 아님</span></h3>${P.join('')}`:'')+nextLine(p,L);}
+  +(P.length?`<h3 class="pgh gbh3 noann">예상 그림빵 <span class="small pgn">· ${P.length}문항 · 26 PPT 그림 — 실제 기출이 아님</span></h3>${P.join('')}`:'')+'<div class="panel noann" id="gbempty" hidden>이 우선순위의 예상 그림빵이 없어요 — 다시 누르면 전체.</div>'+nextLine(p,L);}
 function gbAll(p){const it=[];p.lect.forEach(L=>{(L.gbj||[]).forEach(id=>{const h=gbJB(p,id,L);if(h)it.push([L,h]);});(L.gbp||[]).forEach(i=>{const h=gbPR(p,i);if(h)it.push([L,h]);});});
  const pf=[...new Set(it.map(([L,h])=>(/data-gprof="([^"]*)"/.exec(h)||[])[1]).filter(Boolean))];let k0=null;
- return `<div class="pills noann gbbar" id="gbpills"><select data-gbf="k" aria-label="강의"><option value="">모든 강의</option>${p.lect.filter(L=>gbN(L)).map(L=>`<option value="${EH(L.k)}">${EH(lpn(p,L))}</option>`).join('')}</select>${pf.length>1?`<select data-gbf="prof" aria-label="교수"><option value="">모든 교수</option>${pf.map(x=>`<option value="${x}">${x}</option>`).join('')}</select>`:''}<button type="button" class="tg on" data-gbkind="">전체</button><button type="button" class="tg" data-gbkind="j">기출</button><button type="button" class="tg" data-gbkind="p">예상</button><button type="button" class="tg" data-gbsa="1">모두 보기</button><span class="small">근거 있는 강의만</span></div>`
+ return `<div class="pills noann gbbar" id="gbpills"><select data-gbf="k" aria-label="강의"><option value="">모든 강의</option>${p.lect.filter(L=>gbN(L)).map(L=>`<option value="${EH(L.k)}">${EH(lpn(p,L))}</option>`).join('')}</select>${pf.length>1?`<select data-gbf="prof" aria-label="교수"><option value="">모든 교수</option>${pf.map(x=>`<option value="${x}">${x}</option>`).join('')}</select>`:''}<button type="button" class="tg on" data-gbkind="">전체</button><button type="button" class="tg" data-gbkind="j">기출</button><button type="button" class="tg" data-gbkind="p">예상</button>${gbPrBar(gbHasPr(p,p.lect))}<button type="button" class="tg" data-gbsa="1">모두 보기</button><span class="small">근거 있는 강의만</span></div>`
   +it.map(([L,h])=>{let o='';if(L.k!==k0){k0=L.k;o=`<h3 class="pgh gbh3 noann" data-gbhk="${EH(L.k)}">${EH(sname(p,L.k))} <span class="small pgn">· ${EH(L.prof)}</span></h3>`;}return o+h;}).join('')
   +'<div class="panel noann" id="gbempty" hidden>조건에 맞는 그림빵이 없어요.</div>';}
-function gbFilt(){const st=$('#stage'),gk=($('#gbpills [data-gbkind].on')||{dataset:{}}).dataset.gbkind||'',k=($('#gbpills [data-gbf=k]')||{}).value||'',pf=($('#gbpills [data-gbf=prof]')||{}).value||'';let n=0;
- $$('#stage .gbx').forEach(c=>{const h=(gk&&c.dataset.gk!==gk)||(k&&c.dataset.k!==k)||(pf&&c.dataset.gprof!==pf);c.classList.toggle('hid',!!h);if(!h)n++;});
- $$('#stage h3[data-gbhk]').forEach(h=>{let e=h.nextElementSibling,v=0;while(e&&!e.matches('h3')){if(e.matches('.gbx:not(.hid)'))v++;e=e.nextElementSibling;}h.hidden=!v;});const em=$('#gbempty');if(em)em.hidden=!!n;}
+function gbFilt(){const st=$('#stage'),pr=($('#stage [data-gbpr].on')||{dataset:{}}).dataset.gbpr||'',gk=($('#gbpills [data-gbkind].on')||{dataset:{}}).dataset.gbkind||'',k=($('#gbpills [data-gbf=k]')||{}).value||'',pf=($('#gbpills [data-gbf=prof]')||{}).value||'';let n=0;
+ $$('#stage .gbx').forEach(c=>{const h=(gk&&c.dataset.gk!==gk)||(k&&c.dataset.k!==k)||(pf&&c.dataset.gprof!==pf)||(pr&&c.dataset.gk==='p'&&!(c.dataset.gpr&&pr.includes(c.dataset.gpr)));c.classList.toggle('hid',!!h);if(!h)n++;});
+ $$('#stage h3.gbh3').forEach(h=>{let e=h.nextElementSibling,v=0;while(e&&!e.matches('h3')){if(e.matches('.gbx:not(.hid)'))v++;e=e.nextElementSibling;}h.hidden=!v;});const em=$('#gbempty');if(em)em.hidden=!!n;}
 function gbAllShow(root,on){$$('.gbm',root).forEach(m=>m.classList.toggle('open',on));$$('.gbl',root).forEach(l=>l.classList.toggle('show',on));$$('[data-gbshow]',root).forEach(b=>b.textContent=on?'전체 가리기':'전체 보기');$$('[data-gball]',root).forEach(b=>b.textContent=on?'답 모두 가리기':'답 모두 펼치기');}
 $('#stage').addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('[data-gopred]');if(!g||Kit.mode())return;e.preventDefault();e.stopImmediatePropagation();const v=g.dataset.gopred.split('|');{const q=g.closest('.qc'),jid=q&&q.dataset.id,pp=PACKS[CUR.s],ids=new Set(((pp&&pp.preds)||[]).filter(x=>x.k===v[0]&&!x.x&&(x.b||[]).indexOf(jid)>=0).map(x=>x.aid)),yb=q&&q.querySelector('.ybadge b');PREL=ids.size>1?{s:CUR.s,k:v[0],ids,lab:'기출 '+(yb?yb.textContent.replace(/\s+/g,''):(jid||''))}:null;}PENDRET=retFrom(g);openDoc(CUR.s,v[0],'pred',v[1]);},true);   /* 10-22d 감사 P14 — 관련 예상만 거른 채로(전체 보기 ✕) */
 let PREL=null;
@@ -3755,7 +3758,7 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
 function prelApply(){if(!PREL||VIEW!=='doc'||CUR.t!=='pred'||CUR.s!==PREL.s||CUR.d!==PREL.k){PREL=null;return;}$$('#stage .pc').forEach(c=>c.classList.toggle('prelh',!PREL.ids.has(c.dataset.aid)));const bar=$('#ppills');if(bar&&!$('#prelc')){const x=document.createElement('div');x.id='prelc';x.className='prelc noann';x.innerHTML=`<b>${EH(PREL.lab)}</b> 관련 예상 ${PREL.ids.size}개만 보는 중<button type="button" class="tg" data-prelx="1">전체 예상 보기 ✕</button>`;bar.after(x);}}
 $('#stage').addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-prelx]');if(!b)return;PREL=null;$$('#stage .pc.prelh').forEach(c=>c.classList.remove('prelh'));const x=$('#prelc');if(x)x.remove();});   /* 10-16 JB 카드 '예상 n ▸' → 그 기출을 관련 기출(b=)로 건 예상문제(↩ 알약으로 돌아옴) */
 $('#stage').addEventListener('click',e=>{const g0=e.target.closest&&e.target.closest('[data-gbgo]');if(g0&&!Kit.mode()){e.preventDefault();e.stopImmediatePropagation();const v=g0.dataset.gbgo.split(':');PENDRET=retFrom(g0);openDoc(CUR.s,v[0],'fig',null,{id:'gb-p'+v[1]});return;}   /* 학습 카드 그림 → 그 그림빵(↩ 알약으로 돌아옴) */
- const t=e.target.closest&&e.target.closest('.gbm,.gbl,[data-gbshow],[data-gball],[data-gbans],[data-gbsa],[data-gbkind],[data-gbzoom]');if(!t||Kit.mode())return;const c=t.closest('.gbx');
+ const t=e.target.closest&&e.target.closest('.gbm,.gbl,[data-gbshow],[data-gball],[data-gbans],[data-gbsa],[data-gbkind],[data-gbpr],[data-gbzoom]');if(!t||Kit.mode())return;const c=t.closest('.gbx');
  if(t.classList.contains('gbm')){t.classList.toggle('open');return;}
  if(t.classList.contains('gbl')){t.classList.toggle('show');return;}
  if(t.dataset.gbshow){const on=!c.querySelector('.gbm:not(.open)')?false:true;gbAllShow(c,on);return;}
@@ -3763,6 +3766,7 @@ $('#stage').addEventListener('click',e=>{const g0=e.target.closest&&e.target.clo
  if(t.dataset.gbans){const a=c.querySelector('.gbans');a.hidden=!a.hidden;t.setAttribute('aria-expanded',String(!a.hidden));t.textContent=a.hidden?'답 목록':'답 접기';return;}
  if(t.dataset.gbsa){const on=t.classList.toggle('on');gbAllShow($('#stage'),on);$$('#stage .gbans').forEach(a=>a.hidden=!on);$$('#stage [data-gbans]').forEach(b=>{b.textContent=on?'답 접기':'답 목록';b.setAttribute('aria-expanded',String(on));});t.textContent=on?'모두 가리기':'모두 보기';return;}
  if(t.dataset.gbzoom){const f=c.querySelector('.gbfig'),on=!f.classList.contains('zoom');f.classList.toggle('zoom',on);t.setAttribute('aria-pressed',String(on));t.textContent=on?'원래 크기':'크게';return;}
+ if(t.dataset.gbpr!==undefined){const on=!t.classList.contains('on');$$('#stage [data-gbpr]').forEach(b=>b.classList.toggle('on',on&&b===t));gbFilt();return;}
  if(t.dataset.gbkind!==undefined){$$('#gbpills [data-gbkind]').forEach(b=>b.classList.toggle('on',b===t));gbFilt();return;}});
 $('#stage').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('gbl')){e.preventDefault();e.target.classList.toggle('show');}});
 document.addEventListener('change',e=>{if(e.target.closest&&e.target.closest('#gbpills'))gbFilt();});
