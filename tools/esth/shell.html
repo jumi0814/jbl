@@ -630,7 +630,7 @@ details.tvadj>summary{cursor:pointer;font-weight:700;list-style:none}details.tva
 /* C07 '필터 다시 적용 ↻' 알약 · ↪ 이어서 풀기 */
 #jbbar .jbrerow{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;margin:6px 0 2px}#jbbar .tg.jbre{border:1px dashed var(--accb);color:var(--acct);white-space:nowrap}#jbbar.mini .jbrerow{display:none}.btn.jbres{white-space:normal;text-align:left}
 /* C10 기기 옮기기 창·노란 백업 띠 */
-#home .a2hs:not(:empty){background:#FFF6DA;border:1px solid #E8D49A;border-radius:8px;padding:6px 10px;margin:6px 0;color:#4A3B12}#bkpop .devn{display:flex;align-items:center;gap:8px;margin:6px 0}#bkpop .devn input{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;min-height:36px;width:9em}.bkgot{margin-top:8px}
+#home .a2hs:not(:empty){background:#FFF6DA;border:1px solid #E8D49A;border-radius:8px;padding:6px 10px;margin:6px 0;color:#4A3B12}#bkpop .devn{display:flex;align-items:center;gap:8px;margin:6px 0}#bkpop .syncbox{margin-top:12px;padding:12px 14px;border:1px solid var(--v-line,#E9E5DF);border-radius:12px;background:var(--v-tone,#F4F1ED)}#bkpop .syncbox .bt{font-weight:700;display:flex;align-items:center;gap:8px}#bkpop .syncon{font-size:11.5px;font-weight:700;color:#11643A;background:#E3F5EA;border-radius:999px;padding:2px 8px}#bkpop .syncerr{color:#B42318}#bkpop .syncsteps{margin:6px 0 8px;padding-left:18px;line-height:1.6}#bkpop .syncsteps code{font-size:12px}#bkpop .syncin{display:flex;gap:6px}#bkpop .syncin input{flex:1;min-width:0;font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--v-line,#E9E5DF);border-radius:8px;background:#fff}#bkpop .syncpri{display:flex;align-items:center;gap:6px;margin:6px 0}#bkpop #synccodev{width:100%;margin-top:6px;font-size:12px;padding:6px 8px;border:1px solid var(--v-line,#E9E5DF);border-radius:8px}   /* 10-24 기기 자동 동기화 칸 */#bkpop .devn input{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;min-height:36px;width:9em}.bkgot{margin-top:8px}
 .bkband{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#FFF6DA;border-bottom:1px solid #E8D49A;color:#4A3B12;padding:6px 12px;font-size:14px}.bkband span{flex:1;min-width:12em}.bkband .tx{border:0;background:none;min-width:36px;min-height:36px;border-radius:8px;font-size:15px;color:#4A3B12}
 /* C01 공간 정리 · C02 저장 공간 줄·홈 경고 · C05 합치기 결과 */
 .rstore{background:var(--tint);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;margin:6px 0 4px;font-size:13.5px;line-height:1.55}.storewarn{background:#FFF6DA;border-color:#E8D49A;font-size:14px}.mres{background:#F2F7F3;border-color:#CFE3D5;font-size:13.5px;margin:6px 0}
@@ -2556,7 +2556,7 @@ html body #stage .qc .acts .btn.pri:hover,html body #stage .pc .acts .btn.pri:ho
 <tr><th>화면 정리(4차)</th><td>종이 바탕에 선 하나로 나누고, 색은 과목색 하나와 빨강(핵심어·틀림)·형광 노랑(⭐ 기출)만 · 버튼·메뉴·탭의 이모지는 없고 정리본 표지(🔑⭐💬✍⚡)만 남김 · <b>허브 홈</b>은 [계속하기 →] 하나가 주 버튼 · <b>과목 홈</b> 순서 그대로(공부 순서 → 진행률 → 교수별 출제 경향 표·📌 전략 → 교수님이 예고·강조한 것 → 강의 → 2회 이상 출제), 지금 단계는 번호를 채운 원 · <b>강의</b> 머리 = 과목 · 교수 · 자료 연도·쪽 + 제목 · 탭 줄 = 글자 탭(개수는 흐리게 · 1~6 키) + [카드 n/N ▾](첫 줄 ‘이 강의의 틀’) [보기 ▾](전체 · 압축 C · 복습 R · 가리기 Q — 켜진 보기 이름이 버튼에) | [✎ 도구 T] [⤢ 집중 V] · 카드 머리 = 번호 · 영문 제목 · 국문 부제 · 요지 · ⭐ 기출 칩 하나 · 오른쪽 ⌄ 접기 · 끝 ‘☆ 북마크’(★ 북마크 카드 — 강의 [보기 ▾]·과목 메뉴에서 모아 보기) · <b>JB</b> 필터는 한 줄 + [필터 ▾](검색·상세 필터) · 맞음 = 굵은 글자 · 틀림 = 빨간 글자 · ★ = 노란 선</td></tr>
 <tr><th>🔁 오늘 복습</th><td>(시험일 표시는 4차에서 뺐어요 — 예전에 넣은 날짜는 지우지 않고 보관) · <b>🔁 오늘 복습</b>: 틀렸던 기출을 틀린 뒤 맞힌 날 수로 1·3·7일 간격으로 다시(같은 날 여러 번 맞혀도 하루로 셈 · 20초 안에 ✗→✓로 고치면 한 번 채점 · ✗를 다시 눌러 끄면 복습에서도 빠짐)(허브 홈 ✅ 할 일·과목 표 🔁·과목 홈 공부 순서·JB 필터 ‘🔁 복습’ — 누르면 한 장씩) · 채점 칩에 마우스를 올리면 ‘다음 복습 9/30’</td></tr>
 <tr><th>백업·저장 공간</th><td>5분마다 자동 백업(바뀌었을 때만 · 마지막 성공 <b id="hbakat">—</b>) · 저장 공간 <b id="hstore">—</b>(넘버링 기록은 이 브라우저가 반을 넘게 차면 기기 저장소(IndexedDB)로 옮겨 자리를 비움 — 기록·백업 파일은 그대로) · <span id="hpers">저장소 보호: 확인 중</span>(안 됨이면 아이패드는 공유 → 홈 화면에 추가로 열기) · 저장이 안 되면(저장 공간 부족) 닫을 때까지 남는 빨간 띠 <b>‘⚠ 저장되지 않았어요 — 기록 n건을 이 기기에 임시 보관 중’</b> — 임시 보관은 창을 닫아도 남아 다음에 열 때 다시 저장해 봐요(맥은 닫기 전에 확인) · [지금 백업 파일 받기]로 파일을 받고 [공간 정리]로 자리를 비우면 30초 안에 다시 저장해요(‘저장됐어요’)</td></tr>
-<tr><th>백업 · 기기 옮기기</th><td>왼쪽 메뉴 맨 아래 <b>💾 백업</b> → <b>⬆ 보내기</b>(아이패드 = 공유 시트로 AirDrop·iCloud·메모, 맥 = 내려받기 뒤 [받았어요]) · <b>⬇ 받기</b>(다른 기기 파일을 골라 합치기 — 지금 기록은 그대로) · 처음 한 번 <b>이 기기 이름</b>(맥·아이패드) · 다른 기기의 공부 시간은 기기별로 따로 두고 <b>합계에 더함</b>(같은 파일을 두 번 합쳐도 한 번만 · 이 판을 처음 연 날 전의 날짜는 1차 판 합치기가 이미 큰 값으로 합쳐 두었을 수 있어 더하지 않고 큰 값으로) · 표시·채점이 바뀐 지 3일이 넘도록 보내지 않으면 과목을 열 때 노란 띠(하루 한 번, ✕로 닫기) · 허브 홈 맨 아래 접힌 ‘백업 — … · 기기 옮기기 ›’(기한을 넘기면 노랑·✅ 할 일에 💾 줄) ‘이 기기 마지막 보내기 · 다른 기기와 합친 때’</td></tr>
+<tr><th>기기 자동 동기화</th><td>💾 백업 창의 <b>☁ 기기 자동 동기화</b> — 컴퓨터에서 GitHub 토큰(gist 권한)을 한 번 붙여 넣고, 휴대폰엔 [연결 코드 복사]로 받은 코드를 붙여 넣으면 ★ 문제·★ 카드·넘버링·채점·형광펜·메모·공부 시간을 열 때·돌아올 때·1분마다 주고받음 · 처음 합칠 땐 기준 기기(컴퓨터) 기록 우선 · 한쪽에서 지운 것도 다른 쪽에서 지워짐 · 공부 중엔 [지금 반영] 알림</td></tr><tr><th>백업 · 기기 옮기기</th><td>왼쪽 메뉴 맨 아래 <b>💾 백업</b> → <b>⬆ 보내기</b>(아이패드 = 공유 시트로 AirDrop·iCloud·메모, 맥 = 내려받기 뒤 [받았어요]) · <b>⬇ 받기</b>(다른 기기 파일을 골라 합치기 — 지금 기록은 그대로) · 처음 한 번 <b>이 기기 이름</b>(맥·아이패드) · 다른 기기의 공부 시간은 기기별로 따로 두고 <b>합계에 더함</b>(같은 파일을 두 번 합쳐도 한 번만 · 이 판을 처음 연 날 전의 날짜는 1차 판 합치기가 이미 큰 값으로 합쳐 두었을 수 있어 더하지 않고 큰 값으로) · 표시·채점이 바뀐 지 3일이 넘도록 보내지 않으면 과목을 열 때 노란 띠(하루 한 번, ✕로 닫기) · 허브 홈 맨 아래 접힌 ‘백업 — … · 기기 옮기기 ›’(기한을 넘기면 노랑·✅ 할 일에 💾 줄) ‘이 기기 마지막 보내기 · 다른 기기와 합친 때’</td></tr>
 <tr><th>복원·되돌리기</th><td>💾 백업 창의 <b>↺ 복원·되돌리기</b> — 맨 위 <b>저장 공간</b>(기록 n MB / 한도 — 한도는 기기마다 한 번 재어 둠: 맥 크롬 약 5MB, 아이패드 사파리 약 2.5MB · 백업 크기 · 과목별 · 마지막 자동 백업) — 70%를 넘으면 허브 홈에 경고 · 자동 백업은 이 기기의 IndexedDB에 주기 5개 + <b>이유별 보관</b>(원고 갱신·이관 전 = 새 판에서 처음 기록을 옮기기 직전 전 과목 한 개, 빌드마다 · 합치기·되돌리기·교체 전 3 · 버리기 전 3 · 지우기 전 3 · 그 밖의 정리 전 3 — 이관 전 백업이 안 되면 옮기지 않음) · <b>되돌리기·교체는 공부 기록(표시·채점·✓ 다 봄·메모·플래시카드·자동 빈칸 규칙)만</b> 바꾸고 공부 시간은 줄지 않으며 읽던 위치·설정은 그대로 — 확인창에 ‘바뀐 표시 N개·채점 M개가 사라집니다’ · 바꾸기 전 상태를 먼저 백업하고, 백업이 안 되면 멈춤 · 쓰다 실패하면 원래대로 · 파일 합치기 뒤에는 ‘합친 것 n · 건너뜀 k(이유)’</td></tr>
 <tr><th>검색·알림</th><td><b>/</b> 검색(<b>Esc</b> = 검색칸 비우고 나오기) — 허브에서는 전체, <b>과목 안에서는 그 과목만</b>(검색 칸 ‘과목 검색’ · 결과 머리 <b>[전체로 넓히기]</b>) → 결과 위 [전체][정리본][JB][표][예상]으로 좁히기(주소에 남아 새로고침해도 유지) · JB 결과의 ‘답 바로 보기’ · 알림은 화면 아래 도구 막대 위에 하나씩 차례로, 오류는 ✕로 닫을 때까지 빨간 띠 · 지나간 알림은 백업 → ↺ 복원 창 ‘최근 알림’</td></tr>
 <tr><th>저장·백업</th><td>모든 표시·메모·채점·시간은 이 브라우저에 바로 저장 · 5분마다 자동 백업(최근 5개) · 왼쪽 메뉴 맨 아래 <b>💾 백업</b>(또는 허브 홈 맨 아래 ‘백업 — … · 기기 옮기기 ›’) = ⬆ 보내기(파일로 저장) · ⬇ 받기(합치기) · <b>↺ 복원·되돌리기</b>(합치기 권장/덮어쓰기/자동 백업 시점으로) · 허브와 단일 파일판을 함께 열어도 표시가 서로 반영됨</td></tr>
@@ -4870,8 +4870,8 @@ function bkStatus(){const me=devMine(),lb=+LS.get('lastBackup',0),M=mkObj(LS.get
 function bkPanel(){const lb=+LS.get('lastBackup',0),dd=lb?Math.floor((Date.now()-lb)/864e5):null;return `<div class="panel bkp ${bkDue()?'warn':''}"><div class="bt">💾 백업 · 기기 옮기기</div><div class="small">${bkStatus()}</div><div class="small">표시·메모·채점·시간은 이 브라우저에 저장되고 5분마다 자동 백업(마지막 성공 ${bakAtTxt()})도 남지만, 브라우저 데이터를 지우면 함께 사라집니다. 일주일에 한 번 [보내기]를 권해요 — 다른 기기에서 [받기]로 합치면 공부 시간도 기기별로 더해져요.</div><div class="small a2hs" id="a2hs"></div><div class="row"><button class="btn sm pri" data-bksend="1">⬆ 보내기</button><button class="btn sm" data-bkpop="1">기기 옮기기 창</button></div></div>`;}
 function bkPop(){const p=$('#bkpop');if(p.classList.contains('on')){p.classList.remove('on');return;}$$('.pop.on').forEach(x=>x.classList.remove('on'));const me=devMine();
  p.innerHTML=`<div class="bt">💾 백업 · 기기 옮기기</div><label class="devn small">이 기기 이름 <input id="devname" value="${EH(me.name)}" maxlength="20" aria-label="이 기기 이름"></label><div class="small" id="bkst">${bkStatus()}</div><div class="small" id="bkstore">저장 공간: ${storeLine()}${lsUsed()>=lsCap()*.7?' — 거의 참 <button class="link" data-openclean="1">공간 정리</button>':''}</div>
- <div class="row"><button class="btn pri" id="bksend">⬆ 보내기</button><button class="btn" id="bkrecv">⬇ 받기(합치기)</button><button class="btn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기, 저장 공간">↺ 복원·되돌리기</button></div><div class="small">보내기 = 표시·채점·메모·공부 시간을 파일 하나로 — 아이패드는 공유 시트(AirDrop·iCloud·메모)로, 맥은 내려받기 · 받기 = 다른 기기의 파일을 골라 합침(지금 기록은 그대로, 공부 시간은 기기별로 더함)</div><div id="bkgotrow"></div><button class="btn" id="bkclose" style="margin-top:8px">닫기</button>`;
- p.classList.add('on');$('#devname').onchange=e=>{const v=e.target.value.trim().slice(0,20);if(v){LS.set('devName',v);toast('이 기기 이름: '+v);const s=$('#bkst');if(s)s.innerHTML=bkStatus();}};$('#devname').onkeydown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();e.target.blur();p.classList.remove('on');const b=$('#bkup');if(b&&b.offsetParent)b.focus({preventScroll:true});}else if(e.key==='Enter'){e.preventDefault();e.target.blur();}};   /* ux4f 새 오류: Esc = 저장하고 창 닫기 · 이름을 바꾸면 상태 줄도 바로 */$('#bksend').onclick=bkSend;{const oc=p.querySelector('[data-openclean]');if(oc)oc.onclick=()=>{p.classList.remove('on');$('#rpop').classList.toggle('nvpop',p.classList.contains('nvpop')&&innerWidth>860);openClean();};}$('#bkrecv').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#bkclose').onclick=()=>p.classList.remove('on');}
+ <div class="row"><button class="btn pri" id="bksend">⬆ 보내기</button><button class="btn" id="bkrecv">⬇ 받기(합치기)</button><button class="btn" id="rstr" title="백업 파일 합치기·덮어쓰기, 자동 백업 시점으로 되돌리기, 저장 공간">↺ 복원·되돌리기</button></div><div class="small">보내기 = 표시·채점·메모·공부 시간을 파일 하나로 — 아이패드는 공유 시트(AirDrop·iCloud·메모)로, 맥은 내려받기 · 받기 = 다른 기기의 파일을 골라 합침(지금 기록은 그대로, 공부 시간은 기기별로 더함)</div><div id="bkgotrow"></div><div class="syncbox" id="syncbox"></div><button class="btn" id="bkclose" style="margin-top:8px">닫기</button>`;
+ p.classList.add('on');syncBoxRender();$('#devname').onchange=e=>{const v=e.target.value.trim().slice(0,20);if(v){LS.set('devName',v);toast('이 기기 이름: '+v);const s=$('#bkst');if(s)s.innerHTML=bkStatus();}};$('#devname').onkeydown=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();e.target.blur();p.classList.remove('on');const b=$('#bkup');if(b&&b.offsetParent)b.focus({preventScroll:true});}else if(e.key==='Enter'){e.preventDefault();e.target.blur();}};   /* ux4f 새 오류: Esc = 저장하고 창 닫기 · 이름을 바꾸면 상태 줄도 바로 */$('#bksend').onclick=bkSend;{const oc=p.querySelector('[data-openclean]');if(oc)oc.onclick=()=>{p.classList.remove('on');$('#rpop').classList.toggle('nvpop',p.classList.contains('nvpop')&&innerWidth>860);openClean();};}$('#bkrecv').onclick=()=>{$('#rfile').dataset.how='merge';$('#rfile').click();};$('#bkclose').onclick=()=>p.classList.remove('on');}
 async function bkSend(){try{tFlush();}catch(e){}if(!XS.ready)await xsReady();   /* 10-15 기기 저장소 몫까지 — 이미 읽혔으면 기다리지 않음(공유 시트는 누른 그 순간에 열어야 함) */const j=bakFile(),name='JBL허브_'+(j.dev.name||'기기').replace(/\s+/g,'')+'_'+day()+'.json';let file=null;
  const touch=/iPad|iPhone|iPod|Android/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);   /* 공유 시트는 아이패드·폰만 — 맥·PC는 바로 내려받기(맥 사파리도 공유 시트가 떠 '안 받아진다'로 보였음) */
  if(touch){try{file=new File([JSON.stringify(j)],name,{type:'application/json'});}catch(e){}}
@@ -4879,6 +4879,104 @@ async function bkSend(){try{tFlush();}catch(e){}if(!XS.ready)await xsReady();   
  dl(name,j);const r=$('#bkgotrow');const ask=`<div class="bkgot small">파일을 받았나요? <button class="btn sm pri" data-bkgot="1">받았어요 ✓</button></div>`;if(r&&$('#bkpop').classList.contains('on'))r.innerHTML=ask;else toast('백업 파일을 내려받았어요 — 받았으면 [받았어요]',{level:'result',ms:9000,action:{label:'받았어요',fn:bkGot}});}
 function bkGot(){LS.set('lastBackup',Date.now());const r=$('#bkgotrow');if(r)r.innerHTML='';toast('마지막 백업을 오늘로 적었어요',{level:'result'});bkRefresh();}
 function bkRefresh(){if(VIEW==='home'){const y=scrollY;home({push:false,y});}const b=$('#bkband');if(b)b.remove();}
+/* ---------- 10-24 기기 자동 동기화(사용자 '모바일에서 볼 때랑 컴퓨터에서 볼 때랑 넘버링 내역, 별표 카드, 별표 문제 등등이 다 연동 · 지금 데이터를 합칠 땐 컴퓨터 기준') ----------
+   저장소 = 내 GitHub 비밀 Gist 하나(설명 SYNC_DESC) · 기기마다 파일 dev-<기기id>.json(머리: 언제·기기·기준 여부·조각 수·sig) + dev-<id>.<n>.part(gzip+base64 조각 · 900K자) — 한 번의 PATCH로 함께 바뀜
+   주고받는 것 = 공부 기록(SYNCK: 형광펜·빈칸 ann · 채점·★ 문제 mk · ✓ done · 메모 · 플래시카드 fc · 자동 빈칸 규칙 · 강의 북마크 lbm · ★ 카드 cbm · 회독 lrd · 넘버링 num.*) + 공부 시간(기기별 — 백업 받기와 같은 devTimeMerge)
+   합치는 법(키마다 3방향): 지난번 그 기기 파일을 반영했을 때의 [그 기기 값 해시, 이 기기 값 해시]를 base에 기억 →
+     그 기기에서 안 바뀜 = 이 기기 것 그대로 · 이 기기에서 안 바뀜 = 그 기기 것으로(★ 지움·형광펜 지움도 전해짐) · 둘 다 바뀜·처음 = mergeData 합치기(합집합)
+     처음 합칠 때 그 기기가 '기준'(컴퓨터)이고 이 기기는 아니면 = 기준 기기 값 위에 이 기기 것을 합침(겹치면 기준 기기 것)
+   반영 시점: 연 직후·돌아온 직후(아직 아무것도 누르지 않았을 때)는 바로 반영하고 새로고침(읽던 자리 그대로) · 공부 중이면 알림 [지금 반영](화면에 든 표시가 옛 값으로 덮지 않게)
+   토큰·Gist 주소는 localStorage 'jblsync'(허브 키 NS 밖 — 백업 파일·동기화 파일에 들어가지 않음) */
+const SYNC_DESC='JBL 허브 동기화 (자동 — 지우지 마세요)',SYNC_CH=900000,SYNC_KEY='jblsync';
+const SYNCK=/^(ann|mk|done|memo|memoh|fc|autoRule|lbm|lrd|cbm|num)\./,SYNCT=/^(time|timed|tadj|tseg|trest|tedit|timeDev|devCut)$/;
+const SYNC={busy:false,vis:Date.now(),inp:0,pend:null,lastPull:0,tick:0,err:''};
+function syncS(){try{const s=JSON.parse(localStorage.getItem(SYNC_KEY)||'null');return s&&s.tok&&s.gid?s:null;}catch(e){return null;}}
+function syncSave(s){try{if(s)localStorage.setItem(SYNC_KEY,JSON.stringify(s));else localStorage.removeItem(SYNC_KEY);return true;}catch(e){return false;}}
+const syncTouch=()=>/iPad|iPhone|iPod|Android/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+async function gh(m,p,body,tok){const h={'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'};if(body)h['Content-Type']='application/json';
+ const r=await fetch('https://api.github.com'+p,{method:m,cache:'no-store',headers:h,body:body?JSON.stringify(body):undefined});
+ if(!r.ok){const e=new Error('GitHub '+r.status);e.status=r.status;throw e;}return r.status===204?null:r.json();}
+async function gz64(s){if(typeof CompressionStream==='undefined')return null;try{const u=new Uint8Array(await new Response(new Blob([s]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer());let b='';for(let i=0;i<u.length;i+=0x8000)b+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(b);}catch(e){return null;}}
+async function ungz64(b){const t=atob(b),u=new Uint8Array(t.length);for(let i=0;i<t.length;i++)u[i]=t.charCodeAt(i);return await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream('gzip'))).text();}
+function syncData(){const all=dumpAll(),o={};for(const K in all){const k=K.slice(NS.length);if(SYNCK.test(k)||SYNCT.test(k))o[K]=all[K];}return o;}
+const syncCode=s=>'JBL1.'+btoa(unescape(encodeURIComponent(JSON.stringify({t:s.tok,g:s.gid})))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+function syncParse(v){v=String(v||'').trim();if(/^JBL1\./.test(v)){try{let b=v.slice(5).replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';const o=JSON.parse(decodeURIComponent(escape(atob(b))));if(o&&o.t)return {tok:String(o.t),gid:o.g?String(o.g):''};}catch(e){}return null;}
+ return /^(gh[pousr]_|github_pat_)[A-Za-z0-9_]{20,}$/.test(v)?{tok:v,gid:''}:null;}
+/* 그 기기 파일을 이 기기에 — dry = 몇 개가 바뀔지만 셈(아무것도 쓰지 않음) */
+function syncApplyFile(f,S,dry){const D=f.dev.id,B=S.base[D]||(S.base[D]={k:{}}),rWin=!Object.keys(B.k).length&&f.primary&&!S.primary,H=v=>v==null?'-':fnv1(v);let n=0;const seen=new Set(),td={};
+ for(const K in f.data){if(K.indexOf(NS)!==0)continue;const k=K.slice(NS.length),r=f.data[K];if(typeof r!=='string')continue;
+  if(SYNCT.test(k)){td[K]=r;continue;}if(!SYNCK.test(k))continue;seen.add(k);
+  const l=stGet(k),hr=fnv1(r),hl=H(l),b=B.k[k];
+  if(l===r){if(!dry)B.k[k]=[hr,hr];continue;}
+  if(b&&b[0]===hr)continue;   /* 그 기기에서 안 바뀜 → 이 기기 것 그대로(이 기기에서 지운 것도 지운 채로) */
+  if(dry){if(b&&b[1]===hl||l==null||rWin||mergeData({[K]:r},{dry:true}).n)n++;continue;}
+  n++;if(b&&b[1]===hl||l==null)stSet(k,r);   /* 이 기기에서 안 바뀜 → 그 기기 것으로 */
+  else if(rWin){stSet(k,r);if(!/^(num\.(i|rs|rd)|lrd)\./.test(k))mergeData({[K]:l});}   /* 처음 · 그 기기가 기준(컴퓨터) → 기준 값 위에 이 기기 것을 합침(겹치면 기준 것 · 넘버링 문제처럼 통째인 값은 기준 것 그대로) */
+  else mergeData({[K]:r});   /* 둘 다 바뀜·처음 → 합집합(겹치면 이 기기 것) */
+  B.k[k]=[hr,H(stGet(k))];}
+ for(const k in B.k){if(seen.has(k))continue;const l=stGet(k);if(l==null){if(!dry)delete B.k[k];continue;}if(B.k[k][1]===H(l)){n++;if(!dry){stDel(k);delete B.k[k];}}}   /* 그 기기에서 통째로 지운 키 */
+ if(!dry){const dev={id:D,name:String(f.dev.name||'다른 기기').slice(0,20),cut:cutIn(f.data)};try{mergeData(td,{dev});devTimeDevIn(f.data);devMerged(dev);}catch(e){}B.sig=f.sig;B.name=dev.name;B.at=f.at;}
+ return n;}
+async function syncPull(S){const g=await gh('GET','/gists/'+S.gid,null,S.tok),me=devMine().id,F=g.files||{},out=[];S.devs={};
+ for(const nm in F){const m=/^dev-([A-Za-z0-9]+)\.json$/.exec(nm);if(!m||m[1]===me)continue;let h;try{h=JSON.parse(F[nm].content);}catch(e){continue;}if(!h||h.app!=='jblhub-sync')continue;
+  S.devs[m[1]]={name:h.dev&&h.dev.name||'다른 기기',at:h.at,primary:!!h.primary};if(S.base[m[1]]&&S.base[m[1]].sig===h.sig)continue;
+  let txt='';for(let i=0;i<h.n;i++){const p=F['dev-'+m[1]+'.'+i+'.part'];if(!p)throw new Error('조각 없음');txt+=p.truncated?await (await fetch(p.raw_url,{cache:'no-store'})).text():p.content;}
+  const j=JSON.parse(h.enc==='gz64'?await ungz64(txt):txt);if(!j||!j.data||!j.dev)continue;out.push({dev:{id:m[1],name:j.dev.name},primary:!!h.primary,data:j.data,sig:h.sig,at:h.at});}
+ S.lastPull=Date.now();return out;}
+async function syncPush(S,force){try{tFlush();}catch(e){}const data=syncData(),sig=fnv1(JSON.stringify(data));if(!force&&sig===S.pushSig)return false;
+ const me=devMine(),body=JSON.stringify({app:'jblhub',v:2,at:new Date().toISOString(),dev:me,data}),z=await gz64(body),txt=z==null?body:z,parts=[];
+ for(let i=0;i<txt.length;i+=SYNC_CH)parts.push(txt.slice(i,i+SYNC_CH));if(!parts.length)parts.push('{}');
+ const files={['dev-'+me.id+'.json']:{content:JSON.stringify({app:'jblhub-sync',v:1,at:Date.now(),dev:me,primary:!!S.primary,enc:z==null?'json':'gz64',n:parts.length,sig})}};
+ parts.forEach((p,i)=>files['dev-'+me.id+'.'+i+'.part']={content:p});for(let i=parts.length;i<(+S.pushN||0);i++)files['dev-'+me.id+'.'+i+'.part']=null;
+ await gh('PATCH','/gists/'+S.gid,{files},S.tok);S.pushSig=sig;S.pushN=parts.length;S.lastPush=Date.now();return true;}
+const syncFresh=()=>SYNC.inp<SYNC.vis&&Date.now()-SYNC.vis<12000&&!(document.activeElement&&(document.activeElement.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)));
+/* 받아 둔 다른 기기 기록을 반영 → 새로고침(읽던 자리 그대로) */
+async function syncApplyNow(){const S=syncS(),P=SYNC.pend;if(!S||!P)return;SYNC.pend=null;
+ if(P.first&&!await autoBak(true,'동기화 첫 연결 전')){bakFirst();return;}
+ let n=0;try{P.files.forEach(f=>{n+=syncApplyFile(f,S,false);});}catch(e){toast('다른 기기 기록을 반영하지 못했어요',{level:'error',id:'syncerr'});return;}
+ syncSave(S);migFlagsReset();undoDrop();SS.set('syncRes',{n,at:Date.now(),who:P.files.map(f=>f.dev.name).join('·')});try{posNow();}catch(e){}try{await xsFlush();}catch(e){}location.reload();}
+async function syncTick(o){o=o||{};const S=syncS();if(!S||SYNC.busy||!navigator.onLine)return;SYNC.busy=true;const fresh=o.fresh&&syncFresh();
+ try{if(!XS.ready)await xsReady();
+  if(o.pull!==false){const files=await syncPull(S);let n=0;files.forEach(f=>{n+=syncApplyFile(f,S,true);});
+   if(n){const ps=files.map(f=>f.sig).join('|'),same=SYNC.pend&&SYNC.pend.ps===ps;SYNC.pend={files,n,ps,first:files.some(f=>!Object.keys((S.base[f.dev.id]||{k:{}}).k).length)};syncSave(S);
+    if(fresh||o.now){SYNC.busy=false;await syncApplyNow();return;}
+    if(!same)toast('다른 기기('+files.map(f=>EH(f.dev.name)).join('·')+')에서 바뀐 기록 '+n+'곳이 있어요',{level:'result',ms:20000,id:'syncask',actions:[{label:'지금 반영',fn:syncApplyNow}]});}
+   else if(files.length){files.forEach(f=>syncApplyFile(f,S,false));}}   /* 바뀐 것 없음 = 기억(base)·공부 시간만 */
+  await syncPush(S,o.force);SYNC.err='';syncSave(S);}   /* 반영을 미뤄 둔 동안에도 이 기기 기록은 보냄(3방향 합치기라 안전) */
+ catch(e){SYNC.err=e&&e.status===401?'토큰이 만료·취소됐어요 — 다시 연결해 주세요':e&&(e.status===403||e.status===404)?'Gist에 접근할 수 없어요(토큰 권한 gist 확인)':'연결 안 됨 — 잠시 뒤 다시';if(e&&e.status===401&&!SYNC.warned){SYNC.warned=1;toast('동기화: '+SYNC.err,{level:'error',id:'syncerr'});}}
+ finally{SYNC.busy=false;syncBoxRender();}}
+async function syncConnect(v){const c=syncParse(v);if(!c){toast('토큰(ghp_… · github_pat_…) 또는 연결 코드(JBL1.…)를 붙여 넣어 주세요',{level:'error',id:'syncerr'});return;}
+ const b=$('#syncgo');if(b){b.disabled=true;b.textContent='연결 중…';}
+ try{let gid=c.gid;if(!gid){const L=await gh('GET','/gists?per_page=100',null,c.tok);const f=(L||[]).find(x=>x&&x.description===SYNC_DESC);gid=f?f.id:'';}
+  if(!gid){const g=await gh('POST','/gists',{description:SYNC_DESC,public:false,files:{'README.md':{content:'JBL 허브(공부 사이트)의 기기 간 자동 동기화 파일입니다. 지우면 동기화가 끊겨요.\n각 기기 파일 = dev-<기기>.json + 조각(.part).\n'}}},c.tok);gid=g.id;}
+  else await gh('GET','/gists/'+gid,null,c.tok);
+  const S={tok:c.tok,gid,primary:!syncTouch(),base:{},at:Date.now()};if(!syncSave(S))throw new Error('저장 실패');
+  toast('☁ 동기화를 켰어요 — '+(S.primary?'이 기기가 기준(겹치면 이 기기 것)':'기준 기기(컴퓨터) 기록을 우선해 합쳐요'),{level:'result'});
+  SYNC.inp=0;SYNC.vis=Date.now();await syncTick({now:true,force:true});}
+ catch(e){toast('연결하지 못했어요 — '+(e&&e.status===401?'토큰이 맞지 않아요':e&&(e.status===403||e.status===404)?'토큰에 gist 권한이 없어요':'인터넷 연결을 확인해 주세요'),{level:'error',id:'syncerr'});}
+ finally{syncBoxRender();}}
+const syncHM=t=>{if(!t)return '없음';const d=new Date(t);return (Date.now()-t<864e5?'':(d.getMonth()+1)+'/'+d.getDate()+' ')+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);};
+function syncBoxHTML(){const S=syncS();
+ if(!S)return `<div class="bt">☁ 기기 자동 동기화</div><div class="small">컴퓨터·휴대폰의 ★ 문제·★ 카드·넘버링·채점·형광펜·메모·공부 시간을 내 GitHub 비밀 Gist로 자동으로 주고받아요(처음 합칠 땐 컴퓨터 기록 기준).</div>
+ <ol class="small syncsteps"><li>컴퓨터: <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=JBL%20%EB%8F%99%EA%B8%B0%ED%99%94" target="_blank" rel="noopener">GitHub 토큰 만들기</a> — <b>gist</b>만 체크 · 만료는 원하는 대로 → 생긴 <code>ghp_…</code>를 아래에 붙여 넣고 [연결]</li><li>휴대폰: 컴퓨터에서 [연결 코드 복사] → 휴대폰 JBL의 이 칸에 붙여 넣고 [연결]</li></ol>
+ <div class="row syncin"><input id="synctok" type="password" autocomplete="off" spellcheck="false" placeholder="ghp_… 토큰 또는 JBL1.… 연결 코드" aria-label="GitHub 토큰 또는 연결 코드"><button class="btn sm pri" id="syncgo">연결</button></div>`;
+ const D=Object.values(S.devs||{});
+ return `<div class="bt">☁ 기기 자동 동기화 <span class="syncon">켜짐</span></div><div class="small">${SYNC.err?'<b class="syncerr">'+EH(SYNC.err)+'</b> · ':''}받기 ${syncHM(S.lastPull)} · 보내기 ${syncHM(S.lastPush)}${D.length?' · 다른 기기: '+D.map(x=>EH(x.name)+(x.primary?'(기준)':'')+' '+syncHM(x.at)).join(', '):' · 아직 다른 기기 없음'}</div>
+ <label class="small syncpri"><input type="checkbox" id="syncpri" ${S.primary?'checked':''}> 이 기기가 기준(처음 합칠 때 겹치면 이 기기 것 — 컴퓨터에 켜 두세요)</label>
+ <div class="row"><button class="btn sm pri" id="syncnow">지금 동기화</button><button class="btn sm" id="synccode">연결 코드 복사</button><button class="btn sm" id="syncoff">끊기</button></div><input id="synccodev" class="small" readonly hidden aria-label="연결 코드">`;}
+function syncBoxRender(){const x=$('#syncbox');if(!x)return;x.innerHTML=syncBoxHTML();const S=syncS();
+ const go=$('#syncgo');if(go)go.onclick=()=>syncConnect($('#synctok').value);const ti=$('#synctok');if(ti)ti.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();syncConnect(ti.value);}};
+ const nw=$('#syncnow');if(nw)nw.onclick=()=>{SYNC.inp=0;SYNC.vis=Date.now();nw.textContent='동기화 중…';syncTick({now:true,force:true});};
+ const cd=$('#synccode');if(cd)cd.onclick=async()=>{const v=syncCode(S),f=$('#synccodev');if(f){f.hidden=false;f.value=v;f.select();}let ok=false;try{await navigator.clipboard.writeText(v);ok=true;}catch(e){}toast(ok?'연결 코드를 복사했어요 — 휴대폰 JBL의 같은 칸에 붙여 넣으세요(남에게 보내지 마세요)':'아래 칸의 연결 코드를 복사해 휴대폰에 붙여 넣으세요',{level:'result'});};
+ const pr=$('#syncpri');if(pr)pr.onchange=()=>{const s=syncS();if(s){s.primary=pr.checked;s.pushSig='';syncSave(s);syncTick({pull:false});}};
+ const off=$('#syncoff');if(off)off.onclick=()=>{if(!confirm('이 기기의 자동 동기화를 끌까요?\n\n이 기기 기록은 그대로 남고, 다른 기기와 더는 주고받지 않아요.'))return;syncSave(null);SYNC.pend=null;toast('동기화를 껐어요');syncBoxRender();};}
+{const mark=()=>{SYNC.inp=Date.now();};['pointerdown','keydown','wheel','touchstart'].forEach(t=>addEventListener(t,mark,{capture:true,passive:true}));
+ document.addEventListener('visibilitychange',()=>{if(!syncS())return;if(document.hidden){syncTick({pull:false});}else{SYNC.vis=Date.now();if(Date.now()-SYNC.lastPull>20000)syncTick({fresh:true});}});
+ setInterval(()=>{if(document.hidden||!syncS())return;SYNC.tick++;syncTick({pull:SYNC.tick%3===0});},60000);
+ const init=async()=>{const r=SS.get('syncRes',null);if(r&&Date.now()-r.at<60000){SS.set('syncRes',null);toast('☁ 다른 기기('+EH(r.who||'')+') 기록 '+r.n+'곳을 반영했어요',{level:'result'});}
+  if(!syncS())return;let w=0;while(!(typeof PL!=='undefined'&&PL.booted)&&w++<60)await new Promise(z=>setTimeout(z,250));SYNC.vis=Math.max(SYNC.vis,Date.now()-4000);syncTick({fresh:true});};
+ setTimeout(init,600);}
+window.JBLSYNC={connect:syncConnect,tick:syncTick,applyNow:syncApplyNow,code:()=>{const s=syncS();return s?syncCode(s):'';},state:()=>{const s=syncS();return s?{gid:s.gid,primary:!!s.primary,lastPull:s.lastPull||0,lastPush:s.lastPush||0}:null;},busy:()=>SYNC.busy,pend:()=>!!SYNC.pend,get:k=>stGet(k),backup:()=>JSON.stringify(bakFile()),vis:t=>{SYNC.vis=t;},box:()=>{bkPop();}};   /* 진단·회귀(tools/tests/ux_sync.py) — 토큰은 내보내지 않음 */
 document.addEventListener('click',e=>{const t=e.target.closest('[data-bkgot],[data-bksend],[data-bkpop],[data-bkx]');if(!t)return;e.stopPropagation();if(t.dataset.bkgot)bkGot();else if(t.dataset.bksend)bkSend();else if(t.dataset.bkpop){$('#bkpop').classList.remove('nvpop');bkPop();}else if(t.dataset.bkx){const b=$('#bkband');if(b)b.remove();}},true);
 function lastChange(){let t=0,t0=Infinity;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!k||k.indexOf(NS)!==0)continue;const key=k.slice(NS.length);
   if(key.indexOf('annAt.')===0){const v=+LS.get(key,0);if(v){t=Math.max(t,v);t0=Math.min(t0,v);}}else if(key.indexOf('mk.')===0){const m=getMK(key.slice(3));for(const id in m.log)(Array.isArray(m.log[id])?m.log[id]:[]).forEach(x=>{const v=+(x&&x.t)||0;if(v){t=Math.max(t,v);t0=Math.min(t0,v);}});}}
