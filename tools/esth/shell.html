@@ -2456,6 +2456,13 @@ html body #nav .nvclose{border-color:transparent!important;background:transparen
  #ppills::-webkit-scrollbar{display:none}
  #ppills>*,#ppills .qf{flex:none!important}
 }
+
+/* 481~600(폰 가로·200% 확대): 탭이 도구 단추 밑에 깔리지 않게 — 도구는 탭 아래 둘째 줄(ux4f_S N5) · 세로 폰(≤480)은 한 줄 그대로 */
+@media (min-width:481px) and (max-width:600px){
+ #dtabs{flex-wrap:wrap!important}
+ #dtabs .dtrow{flex:1 0 100%!important}
+ body #dtabs .lmini,body #dtabs .lmini2,body:not(.focus) #dtabs .lmini,body:not(.focus) #dtabs .lmini2,body.focus #dtabs .lmini,body.focus #dtabs .lmini2{flex:1 1 100%!important;justify-content:flex-end;margin:0!important;padding:0 0 4px!important;box-shadow:none!important}
+}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><button type="button" id="qjb" title="바로 가기 — 과목·화면·강의 탭·넘버링을 글자로 골라 바로 (⌘K · Ctrl+K)" aria-label="바로 가기 (Ctrl+K)" aria-haspopup="dialog"><span class="qji" aria-hidden="true">⇥</span><span class="qjl">바로 가기</span><kbd class="qjk">⌘K</kbd></button><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
