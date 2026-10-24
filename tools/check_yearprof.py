@@ -31,6 +31,7 @@ def audit(SID):
     def chk_val(where, y, p):
         if not isinstance(y, int): X.append(f'{where} 해 {y!r} — 숫자 아님')
         if not isinstance(p, str) or not p.strip(): X.append(f'{where} {y} — 교수 글 빈칸/문자열 아님 {p!r}')
+        # 10-25 '-' = 그 해 출제 교수 근거 없음(build4 yp_of가 비움) — 허용
     for k, d in YP.items():
         if k not in keys: X.append(f'YEAR_PROF[{k!r}] — 강의 키 없음(LECMAP·팩 강의 {len(keys)}개)'); continue
         qs = [c for c in cards.values() if c['lec'] == k]
@@ -38,7 +39,7 @@ def audit(SID):
             chk_val(f'YEAR_PROF[{k}]', y, p)
             if isinstance(y, int) and not any(y2(y) in c['yrs'] for c in qs): W.append(f'YEAR_PROF[{k}] {y} — 이 강의에 그 해 문항 없음')
             elif isinstance(y, int) and isinstance(p, str):
-                bad = [q for q, c in cards.items() if c['lec'] == k and y2(y) in c['yrs'] and q not in YQ and c['yp'] and c['yp'].get(y2(y)) != p.strip()]
+                bad = [] if p.strip() == '-' else [q for q, c in cards.items() if c['lec'] == k and y2(y) in c['yrs'] and q not in YQ and c['yp'] and c['yp'].get(y2(y)) != p.strip()]
                 if bad: W.append(f'YEAR_PROF[{k}] {y} {p} — 카드 data-yp가 다름 {bad[:4]}(빌드 전 팩?)')
     for q, d in YQ.items():
         if q not in cards: X.append(f'YEAR_PROF_Q[{q!r}] — 문항 없음'); continue

@@ -244,14 +244,17 @@ def yp_of(q):
     Ld = getattr(S, 'YEAR_PROF', {}).get(q.get('lk') or '', {}) or {}; Qd = getattr(S, 'YEAR_PROF_Q', {}).get(q['id'], {}) or {}
     g = lambda d, y: d.get(y) or d.get(2000 + y if y < 100 else y) or d.get(y % 100)
     return [(y, '' if (g(Qd, y) or g(Ld, y)) == '-' else (g(Qd, y) or g(Ld, y) or base)) for y in q['yrs']]   # 10-25 '-' = 그 해 출제 교수 근거 없음(비움 — ESTH 18~22년 색 문항)
+def _prof_unknown(q): return bool(q['yrs']) and not any(p for _, p in yp_of(q))   # 10-25 출제한 해가 모두 '-'(교수 근거 없음 — ESTH S14·T20)
 def prof_main(q):
-    """카드 data-prof = 가장 최근 출제 해의 출제 교수(연도별 표가 있으면) · 없으면 강의 연결 교수"""
+    """카드 data-prof = 가장 최근 출제 해의 출제 교수(연도별 표가 있으면) · 없으면 강의 연결 교수 · 출제 해가 모두 근거 없음이면 ''"""
+    if _prof_unknown(q): return ''
     yp = [p for _, p in yp_of(q) if p]
     return yp[0] if yp else (q.get('prof') or '').split('(')[0].strip()
 def prof_inline(q):
     """교수 글(굵게) — 해마다 교수가 다르면 '<b>교수</b> 25·24 · <b>교수</b> 22'(최근 해 먼저) · 칩·과목 홈 2회 이상 출제·기출 대장이 같이 씀
     칩·목록이 flex라 글 앞뒤 빈칸이 사라짐 → 연도·구분은 따로 상자(i.ypy·i.yps)"""
     yp = [(y, p) for y, p in yp_of(q) if p]; base = (q.get('prof') or '').split('(')[0].strip()
+    if _prof_unknown(q): return ''
     if not yp: return f'<b>{esc(base)}</b>' if base else ''
     runs = []   # 최근 해부터 이어진 해끼리(교수가 오갔다 돌아와도 연도 순서 그대로 — CONS Q07 서덕규 25…17 · 손원준 16 · 서덕규 14·13)
     for y, p in yp:
@@ -262,6 +265,7 @@ def prof_inline(q):
 def prof_chip(q):
     """교수 칩(굵게) — 해마다 교수가 다르면 '교수 25·24 · 교수 22'(최근 해 먼저)"""
     h = prof_inline(q)
+    if not h and _prof_unknown(q): return '<span class="chip pf pfn" title="그 해 출제 교수 — JB 근거 없음">교수 미상</span>'
     if not h: return ''
     if 'class="ypy"' in h: return f'<span class="chip pf pfy" title="출제 연도별 출제 교수(최근 해 먼저)">{h}</span>'
     return f'<span class="chip pf" title="출제 교수 {esc(prof_main(q))}">{h}</span>'
@@ -1023,7 +1027,7 @@ profS = {}; YSEL = {}
 for q in Q:   # 10-17 A안(사용자 "A안으로 해주고") — 교수별 출제 경향 = 출제 연도 기준 교수(YEAR_PROF · yp_of): 그 해 그 교수가 낸 문항으로 셈
     if q['tier'] == 'C' or not q.get('st') or not (q['prof'] or '').strip(): continue
     for y_, p_ in yp_of(q):
-        p_ = (p_ or q['prof'] or '').split('(')[0].strip()
+        p_ = (p_ or '').split('(')[0].strip()   # 10-25 yp_of가 ''를 주는 해 = 그 해 교수 근거 없음('-') — 강의 연결 교수로 다시 세지 않음
         if not p_: continue
         if q['id'] not in YSEL.setdefault(p_, {}): profS.setdefault(p_, []).append(q)
         YSEL[p_].setdefault(q['id'], set()).add(y_)
