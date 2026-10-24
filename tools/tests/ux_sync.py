@@ -1,13 +1,16 @@
-"""10-24 기기 자동 동기화 회귀(사용자 '모바일에서 볼 때랑 컴퓨터에서 볼 때랑 넘버링 내역, 별표 카드, 별표 문제 등등이 다 연동 · 지금 데이터를 합칠 땐 컴퓨터 기준').
-GitHub Gist API를 가짜 서버(page.route)로 흉내 내고 컴퓨터(1280)·휴대폰(393 터치) 두 창으로:
- ① 컴퓨터가 토큰으로 연결 → Gist 만들고 기기 파일 보냄 ② 휴대폰이 연결 코드로 연결 → 컴퓨터 기록을 받아 합침(★ 카드 합집합 · 넘버링 문제 = 컴퓨터 것 · 휴대폰에만 있던 ★ 유지)
- ③ 컴퓨터가 휴대폰 파일을 받아 합침 ④ 휴대폰에서 ★ 하나를 지우면 컴퓨터에서도 지워짐 ⑤ 컴퓨터에서 넘버링을 고치면 휴대폰에 들어감
- ⑥ 토큰은 백업 파일·Gist 파일에 들어가지 않음 ⑦ 틀린 토큰 = 오류 알림만(페이지 오류 0) ⑧ 공부 중(입력 뒤)에 받은 변경은 바로 덮지 않고 [지금 반영] 알림."""
+"""10-24 기기 자동 동기화 v2 회귀(사용자 '모바일·컴퓨터 넘버링·★ 카드·★ 문제 연동 · 합칠 땐 컴퓨터 기준' + '꼭 데이터가 날라가지 않게 · 실시간 · 가장 최근 기록 · 덮어씌우지 않고 누락 없게').
+GitHub Gist API를 가짜 서버(page.route — 목록 since·updated_at·내용 없는 목록·PATCH/POST)로 흉내 내고 컴퓨터(1280)·휴대폰(393 터치) 두 창:
+ ① 컴퓨터 연결 = 기준 · 과목별 Gist ② 휴대폰 연결 = 컴퓨터 기준 첫 합치기(★ 카드 합집합 · 넘버링 = 컴퓨터 것 · 메모 둘 다 · 휴대폰 플래시카드 유지 · 공부 시간 기기별 · 합치기 전 자동 백업)
+ ③ 컴퓨터가 휴대폰 기록을 새로고침 없이 반영 ④ 화면 메모리의 옛 채점이 새로 받은 ★ 문제를 덮지 않음(JB 카드 ★ 누른 뒤에도 둘 다)
+ ⑤ 지운 ★ 전파 ⑥ 두 기기가 같은 때 고친 ★ 카드 = 둘 다 남음 ⑦ 같은 넘버링 문제를 둘 다 고침 = 더 최근 것
+ ⑧ 바뀐 과목 묶음만 보냄 · 바뀐 게 없으면 목록 1번만(내용 받기 0) ⑨ 토큰이 백업·Gist에 없음 ⑩ 틀린 토큰 ⑪ 끊으면 더는 안 보냄 · 페이지 오류 0"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
-import asyncio, json
+import asyncio, json, datetime
 from playwright.async_api import async_playwright
 U = J.HUB_URL; fails = []; TOK = 'ghp_TESTTOKEN0123456789abcdefABCDEF'; NS = 'jblhub.v1.'
-G = {}   # 가짜 Gist 저장소 id → {description, files{name: content}}
+G = {}; CLK = [0]; LOG = []   # 가짜 Gist {id: {description, files, updated_at}} · 서버 시계 · 요청 기록
+def now_iso():
+    CLK[0] += 1; return (datetime.datetime(2026, 10, 24) + datetime.timedelta(seconds=CLK[0])).strftime('%Y-%m-%dT%H:%M:%SZ')
 def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
@@ -15,29 +18,41 @@ CORS = {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Aut
 async def gh(route):
     rq = route.request; m = rq.method; path = rq.url.split('api.github.com', 1)[1]
     if m == 'OPTIONS': return await route.fulfill(status=204, headers=CORS)
+    LOG.append((m, path.split('?')[0], len(rq.post_data or '')))
     if (rq.headers.get('authorization') or '') != 'Bearer ' + TOK: return await route.fulfill(status=401, headers=CORS, body='{"message":"Bad credentials"}')
-    if m == 'GET' and path.startswith('/gists?'): return await route.fulfill(status=200, headers=CORS, body=json.dumps([{'id': k, 'description': v['description']} for k, v in G.items()]))
+    if m == 'GET' and path.startswith('/gists?'):
+        q = dict(x.split('=', 1) for x in path.split('?', 1)[1].split('&')); since = q.get('since', '').replace('%3A', ':')
+        L = [{'id': k, 'description': v['description'], 'updated_at': v['updated_at'], 'files': {f: {'filename': f, 'size': len(c)} for f, c in v['files'].items()}} for k, v in G.items() if not since or v['updated_at'] >= since]
+        L.sort(key=lambda x: x['updated_at'], reverse=True); pp = int(q.get('per_page', 30)); pg = int(q.get('page', 1))
+        return await route.fulfill(status=200, headers=CORS, body=json.dumps(L[(pg - 1) * pp: pg * pp]))
     if m == 'POST' and path == '/gists':
-        b = json.loads(rq.post_data); gid = 'g%d' % (len(G) + 1); G[gid] = {'description': b['description'], 'files': {k: v['content'] for k, v in b['files'].items()}}
+        b = json.loads(rq.post_data); gid = 'g%d' % (len(G) + 1)
+        G[gid] = {'description': b['description'], 'files': {k: v['content'] for k, v in b['files'].items() if v}, 'updated_at': now_iso()}
         return await route.fulfill(status=201, headers=CORS, body=json.dumps({'id': gid}))
-    gid = path.split('/')[2] if path.startswith('/gists/') else ''
+    gid = path.split('/')[2].split('?')[0] if path.startswith('/gists/') else ''
     if gid not in G: return await route.fulfill(status=404, headers=CORS, body='{}')
-    if m == 'GET': return await route.fulfill(status=200, headers=CORS, body=json.dumps({'id': gid, 'files': {k: {'content': v, 'truncated': False, 'raw_url': ''} for k, v in G[gid]['files'].items()}}))
+    if m == 'GET': return await route.fulfill(status=200, headers=CORS, body=json.dumps({'id': gid, 'updated_at': G[gid]['updated_at'], 'files': {k: {'content': v, 'truncated': False, 'raw_url': ''} for k, v in G[gid]['files'].items()}}))
     if m == 'PATCH':
-        for k, v in json.loads(rq.post_data)['files'].items():
+        b = json.loads(rq.post_data)
+        if 'description' in b: G[gid]['description'] = b['description']
+        for k, v in b.get('files', {}).items():
             if v is None: G[gid]['files'].pop(k, None)
             else: G[gid]['files'][k] = v['content']
+        G[gid]['updated_at'] = now_iso()
         return await route.fulfill(status=200, headers=CORS, body=json.dumps({'id': gid}))
     await route.fulfill(status=400, headers=CORS, body='{}')
-async def setv(pg, k, v): await pg.evaluate("([k,v])=>localStorage.setItem(k,v)", [NS + k, json.dumps(v)])
-async def getv(pg, k): return await pg.evaluate("k=>{const v=JBLSYNC.get(k);return v==null?null:JSON.parse(v)}", k)
-async def settle(pg, ms=1500):
-    for _ in range(40):
-        await pg.wait_for_timeout(250)
+async def setv(pg, k, v): await pg.evaluate("([k,v])=>localStorage.setItem(k,v)", [NS + k, v if isinstance(v, str) else json.dumps(v)])
+async def getv(pg, k): return await pg.evaluate("k=>{const v=JBLSYNC.get(k);try{return v==null?null:JSON.parse(v)}catch(e){return v}}", k)
+async def settle(pg, ms=400):
+    for _ in range(80):
+        await pg.wait_for_timeout(150)
         try:
-            if not await pg.evaluate("window.JBLSYNC&&JBLSYNC.busy()"): break
+            if not await pg.evaluate("JBLSYNC.busy()"): break
         except Exception: pass
     await pg.wait_for_timeout(ms)
+async def tick(pg, o='{}'): await pg.evaluate(f"JBLSYNC.tick({o})"); await settle(pg)
+async def idb_whys(pg):
+    return await pg.evaluate("""()=>new Promise(r=>{const q=indexedDB.open('jblhub-bak');q.onsuccess=()=>{try{const t=q.result.transaction('meta','readonly').objectStore('meta').getAll();t.onsuccess=()=>r(t.result.map(x=>x.why||''));t.onerror=()=>r([]);}catch(e){r([])}};q.onerror=()=>r([]);})""")
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
@@ -48,60 +63,82 @@ async def main():
         for pg in (dk, ph): pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         for pg in (dk, ph):
             await pg.goto(U + '#/'); await pg.wait_for_timeout(800); await pg.evaluate("localStorage.clear();sessionStorage.clear()")
-        await setv(dk, 'cbm.IMPL', {'A1': 1000, 'A2': 1000}); await setv(dk, 'num.i.IMPL.n1', {'u': 1000, 's': '컴퓨터 스토리'}); await setv(dk, 'lbm.IMPL', {'PART': 1000})
-        await setv(ph, 'cbm.IMPL', {'A3': 1000}); await setv(ph, 'num.i.IMPL.n1', {'u': 5000, 's': '휴대폰 스토리(더 최근)'})
+        T0 = {'2026-10-24': {'IMPL|PART': 600000}}
+        await setv(dk, 'cbm.IMPL', {'A1': 1000, 'A2': 1000}); await setv(dk, 'num.i.IMPL.n1', {'u': 1000, 's': '컴퓨터 스토리'}); await setv(dk, 'lbm.CONS', {'X': 1000})
+        await setv(dk, 'memo.IMPL.PART', json.dumps('컴퓨터 메모')); await setv(dk, 'time', T0)
+        await setv(ph, 'cbm.IMPL', {'A3': 1000}); await setv(ph, 'num.i.IMPL.n1', {'u': 5000, 's': '휴대폰 스토리(더 최근)'}); await setv(ph, 'memo.IMPL.PART', json.dumps('휴대폰 메모')); await setv(ph, 'fc.IMPL', {'k1': {'s': 'o', 't': 1}})
         for pg in (dk, ph): await pg.reload(); await pg.wait_for_timeout(1500)
+        dev_d = await dk.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.devId'))")
         # ① 컴퓨터 연결
         await dk.evaluate(f"JBLSYNC.connect('{TOK}')"); await settle(dk)
-        files = list(G.get('g1', {}).get('files', {}))
-        ok(len(G) == 1 and any(f.endswith('.json') and f.startswith('dev-') for f in files), f'① 컴퓨터 연결 → Gist 만들고 기기 파일 보냄 {files}')
-        ok(await dk.evaluate("JBLSYNC.state().primary===true"), '① 컴퓨터 = 기준 기기')
-        # ② 휴대폰 연결(연결 코드)
+        descs = sorted(v['description'] for v in G.values())
+        ok(any(' · IMPL · ' in d and d.endswith(' · 기준') for d in descs) and any(' · CONS · ' in d for d in descs) and any(' · T · ' in d for d in descs), f'① 컴퓨터 = 기준 · 과목별 Gist(IMPL·CONS·T) {len(G)}개')
+        # ② 휴대폰 연결 — 컴퓨터 기준 첫 합치기(새로고침 1번)
         code = await dk.evaluate("JBLSYNC.code()")
-        async with ph.expect_navigation(timeout=15000): await ph.evaluate(f"JBLSYNC.connect('{code}')")
-        await settle(ph)
-        cb = await getv(ph, 'cbm.IMPL'); ni = await getv(ph, 'num.i.IMPL.n1')
-        ok(cb is not None and set(cb) == {'A1', 'A2', 'A3'}, f'② 휴대폰 ★ 카드 = 컴퓨터 것 + 휴대폰에만 있던 것 {cb}')
-        ok(ni is not None and ni.get('s') == '컴퓨터 스토리', f'② 넘버링 문제는 컴퓨터 기준 {ni}')
-        ok((await getv(ph, 'lbm.IMPL') or {}).get('PART') == 1000, '② 강의 북마크도 받음')
-        ok(await ph.evaluate("JBLSYNC.state().primary===false"), '② 휴대폰 = 기준 아님')
-        # ③ 컴퓨터가 휴대폰 파일 받기(지금 동기화 = 바로 반영 → 새로고침)
-        async with dk.expect_navigation(timeout=15000): await dk.evaluate("JBLSYNC.tick({now:true})")
-        await settle(dk)
+        async with ph.expect_navigation(timeout=20000, wait_until='load'): await ph.evaluate(f"JBLSYNC.connect('{code}')")
+        await ph.wait_for_timeout(2000); await settle(ph)
+        cb = await getv(ph, 'cbm.IMPL'); ni = await getv(ph, 'num.i.IMPL.n1'); mm = await getv(ph, 'memo.IMPL.PART')
+        ok(cb is not None and set(cb) == {'A1', 'A2', 'A3'}, f'② ★ 카드 = 컴퓨터 + 휴대폰에만 있던 것 {cb}')
+        ok(ni is not None and ni.get('s') == '컴퓨터 스토리', f'② 넘버링 = 컴퓨터 기준 {ni}')
+        ok(isinstance(mm, str) and '컴퓨터 메모' in mm and '휴대폰 메모' in mm, f'② 메모 = 둘 다 남음 {mm!r}')
+        ok((await getv(ph, 'fc.IMPL') or {}).get('k1'), '② 휴대폰 플래시카드 그대로')
+        ok((await getv(ph, 'lbm.CONS') or {}).get('X') == 1000, '② 다른 과목(CONS) 북마크도 받음')
+        td = await getv(ph, 'timeDev') or {}
+        ok(dev_d in td and td[dev_d].get('time', {}).get('2026-10-24'), f'② 컴퓨터 공부 시간 = 기기별로 받음 {list(td)}')
+        ok('동기화 반영 전' in await idb_whys(ph), '② 첫 합치기 전 자동 백업(동기화 반영 전)')
+        # ③ 컴퓨터가 휴대폰 기록을 새로고침 없이
+        await dk.goto(U + '#/IMPL/PART/jb'); await dk.wait_for_timeout(1500); await settle(dk); await dk.evaluate("window.__keep=1")
+        await tick(dk)
         cb = await getv(dk, 'cbm.IMPL'); ok(cb is not None and set(cb) == {'A1', 'A2', 'A3'}, f'③ 컴퓨터에도 휴대폰 ★ 카드 {cb}')
-        # ④ 휴대폰에서 ★ A1 지움 → 컴퓨터에서도 지워짐
-        await ph.evaluate("JBLSYNC.tick({now:true})"); await settle(ph, 500)
-        await setv(ph, 'cbm.IMPL', {'A2': 1000, 'A3': 1000}); await ph.evaluate("JBLSYNC.tick({pull:false})"); await settle(ph, 500)
-        async with dk.expect_navigation(timeout=15000): await dk.evaluate("JBLSYNC.tick({now:true})")
-        await settle(dk)
-        cb = await getv(dk, 'cbm.IMPL'); ok(cb is not None and set(cb) == {'A2', 'A3'}, f'④ 휴대폰에서 지운 ★가 컴퓨터에서도 지워짐 {cb}')
-        # ⑤ 컴퓨터에서 넘버링 고침 → 휴대폰
-        await setv(dk, 'num.i.IMPL.n1', {'u': 9000, 's': '컴퓨터에서 고침'}); await dk.evaluate("JBLSYNC.tick({pull:false})"); await settle(dk, 500)
-        async with ph.expect_navigation(timeout=15000): await ph.evaluate("JBLSYNC.tick({now:true})")
-        await settle(ph)
-        ni = await getv(ph, 'num.i.IMPL.n1'); ok(ni is not None and ni.get('s') == '컴퓨터에서 고침', f'⑤ 컴퓨터 넘버링 수정이 휴대폰에 {ni}')
-        cb = await getv(ph, 'cbm.IMPL'); ok(cb is not None and set(cb) == {'A2', 'A3'}, f'⑤ 휴대폰 ★ 그대로(지운 A1 안 살아남) {cb}')
-        # ⑥ 토큰이 백업·Gist에 없음
-        dump = await dk.evaluate("JBLSYNC.backup()")
-        ok(TOK not in dump and 'jblsync' not in dump, '⑥ 백업 파일에 토큰 없음')
-        ok(all(TOK not in v for v in G['g1']['files'].values()), '⑥ Gist 파일에 토큰 없음(조각은 gzip — 머리 파일 검사)')
-        # ⑧ 공부 중(입력 뒤)에 받은 변경 = 알림만
-        await setv(ph, 'cbm.IMPL', {'A2': 1000, 'A3': 1000, 'A9': 1}); await ph.evaluate("JBLSYNC.tick({pull:false})"); await settle(ph, 500)
-        await dk.mouse.click(600, 400); await dk.wait_for_timeout(200)
-        await dk.evaluate("JBLSYNC.vis(Date.now()-60000);JBLSYNC.tick({})"); await settle(dk, 500)
-        cb = await getv(dk, 'cbm.IMPL'); pend = await dk.evaluate("JBLSYNC.pend()")
-        ok(cb is not None and 'A9' not in cb and pend, f'⑧ 공부 중엔 바로 덮지 않고 대기 {cb} pend={pend}')
-        async with dk.expect_navigation(timeout=15000): await dk.evaluate("JBLSYNC.applyNow()")
-        await settle(dk)
-        cb = await getv(dk, 'cbm.IMPL'); ok(cb is not None and 'A9' in cb, f'⑧ [지금 반영] 뒤 들어옴 {cb}')
-        # 💾 창 UI
-        await dk.evaluate("JBLSYNC.box()"); await dk.wait_for_timeout(300)
-        t = await dk.inner_text('#syncbox'); ok('켜짐' in t and '아이폰' in t, f'💾 창 동기화 칸 {t[:120]!r}')
-        await dk.screenshot(path=J.TMP + '/ux_sync_desk.png')
-        # ⑦ 틀린 토큰
+        ok(await dk.evaluate("window.__keep===1"), '③ 새로고침 없이 반영(실시간)')
+        # ④ 화면 메모리의 옛 채점이 새로 받은 ★ 문제를 덮지 않음
+        ids = await dk.evaluate("[...document.querySelectorAll('#stage .qc[data-id]')].map(e=>e.dataset.id).slice(0,2)")
+        mk = await getv(ph, 'mk.IMPL') or {}; mk.setdefault('ok', {}); mk.setdefault('ng', {}); mk.setdefault('bm', {}); mk['bm'][ids[1]] = 1
+        await setv(ph, 'mk.IMPL', mk); await tick(ph, '{pull:false,force:true}')
+        await tick(dk)
+        await dk.click(f'#stage .qc[data-id="{ids[0]}"] .btn.mk.bm'); await dk.wait_for_timeout(300)
+        bm = (await getv(dk, 'mk.IMPL') or {}).get('bm', {})
+        ok(ids[0] in bm and ids[1] in bm, f'④ 컴퓨터 ★ 누른 뒤에도 휴대폰 ★ 문제 남음 {list(bm)}')
+        await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        bm = (await getv(ph, 'mk.IMPL') or {}).get('bm', {})
+        ok(ids[0] in bm and ids[1] in bm, f'④ 휴대폰에도 둘 다 {list(bm)}')
+        # ⑤ 지운 ★ 전파
+        await setv(ph, 'cbm.IMPL', {'A2': 1000, 'A3': 1000}); await tick(ph, '{pull:false,force:true}'); await tick(dk)
+        cb = await getv(dk, 'cbm.IMPL'); ok(cb is not None and set(cb) == {'A2', 'A3'}, f'⑤ 휴대폰에서 지운 ★가 컴퓨터에서도 지워짐 {cb}')
+        await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        cb = await getv(ph, 'cbm.IMPL'); ok(cb is not None and set(cb) == {'A2', 'A3'}, f'⑤ 휴대폰에서 지운 ★ 안 살아남 {cb}')
+        # ⑥ 같은 때 고친 ★ 카드 = 둘 다
+        await setv(dk, 'cbm.IMPL', {'A2': 1000, 'A3': 1000, 'A7': 1}); await setv(ph, 'cbm.IMPL', {'A2': 1000, 'A3': 1000, 'A8': 1})
+        await tick(dk, '{pull:false,force:true}'); await tick(ph, '{force:true}'); await tick(dk); await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        c1 = set(await getv(dk, 'cbm.IMPL') or {}); c2 = set(await getv(ph, 'cbm.IMPL') or {})
+        ok({'A7', 'A8'} <= c1 and {'A7', 'A8'} <= c2, f'⑥ 같은 때 고친 ★ 둘 다 남음 컴퓨터 {sorted(c1)} 휴대폰 {sorted(c2)}')
+        # ⑦ 같은 넘버링 문제를 둘 다 고침 → 더 최근 것
+        await setv(dk, 'num.i.IMPL.n1', {'u': 9000, 's': '컴퓨터 수정'}); await setv(ph, 'num.i.IMPL.n1', {'u': 9500, 's': '휴대폰 수정(더 최근)'})
+        await dk.reload(); await ph.reload(); await dk.wait_for_timeout(1500); await ph.wait_for_timeout(1500); await settle(dk); await settle(ph)
+        await tick(dk, '{pull:false,force:true}'); await tick(ph, '{force:true}'); await tick(dk); await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        a = (await getv(dk, 'num.i.IMPL.n1') or {}).get('s'); c = (await getv(ph, 'num.i.IMPL.n1') or {}).get('s')
+        ok(a == c == '휴대폰 수정(더 최근)', f'⑦ 넘버링 = 가장 최근 수정 컴퓨터 {a!r} 휴대폰 {c!r}')
+        # ⑧ 바뀐 과목만 · 바뀐 게 없으면 목록만
+        await tick(dk, '{pull:false,force:true}'); await tick(ph); LOG.clear()
+        await setv(dk, 'cbm.IMPL', {'A2': 1000, 'A3': 1000, 'A7': 1, 'A8': 1, 'A9': 1}); await tick(dk, '{pull:false}')
+        pat = [x for x in LOG if x[0] == 'PATCH']; ok(len(pat) == 1, f'⑧ 바뀐 묶음(IMPL)만 보냄 PATCH {len(pat)}')
+        await tick(ph, '{push:false}'); LOG.clear(); await tick(ph, '{push:false}')
+        ok([x[0] for x in LOG] == ['GET'] and LOG[0][1] == '/gists', f'⑧ 바뀐 게 없으면 목록 1번만 {LOG}')
+        ok('A9' in (await getv(ph, 'cbm.IMPL') or {}), '⑧ 바뀐 묶음은 받음')
+        # ⑨ 토큰 없음
+        dump = await dk.evaluate("JBLSYNC.backup()"); ok(TOK not in dump and 'jblsync' not in dump, '⑨ 백업 파일에 토큰 없음')
+        ok(all(TOK not in v['description'] and all(TOK not in c for c in v['files'].values()) for v in G.values()), '⑨ Gist에 토큰 없음')
+        # ⑩ 틀린 토큰
         e3 = await b.new_context(viewport={'width': 1280, 'height': 900}); await e3.route('https://api.github.com/**', gh); x = await e3.new_page(); x.on('pageerror', lambda e: errs.append(str(e)[:200]))
         await x.goto(U + '#/'); await x.wait_for_timeout(1000); await x.evaluate("JBLSYNC.connect('ghp_WRONGTOKEN0123456789abcdefXYZ')"); await x.wait_for_timeout(800)
-        ok(await x.evaluate("JBLSYNC.state()===null"), '⑦ 틀린 토큰 = 연결 안 됨')
+        ok(await x.evaluate("JBLSYNC.state()===null"), '⑩ 틀린 토큰 = 연결 안 됨')
+        # 💾 창
+        await dk.evaluate("JBLSYNC.box()"); await dk.wait_for_timeout(300); t = await dk.inner_text('#syncbox')
+        ok('켜짐' in t and '아이폰' in t, f'💾 창 동기화 칸 {t[:100]!r}'); await dk.screenshot(path=J.TMP + '/ux_sync_desk.png')
+        # ⑪ 끊기
+        dk.on('dialog', lambda d: asyncio.ensure_future(d.accept())); await dk.click('#syncoff'); await dk.wait_for_timeout(300); LOG.clear()
+        await setv(dk, 'cbm.IMPL', {'Z': 1}); await dk.evaluate("JBLSYNC.tick({})"); await dk.wait_for_timeout(500)
+        ok(await dk.evaluate("JBLSYNC.state()===null") and not LOG, f'⑪ 끊으면 더는 안 보냄 {LOG}')
         ok(not errs, f'페이지 오류 0 {errs[:3]}')
         await b.close()
     print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
