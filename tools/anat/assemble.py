@@ -83,7 +83,7 @@ def secyear(sec): return int(sec) % 100
 for cid, ed, sec, num, tier in CANON:
     x = find(ed, sec, num); assert x, (cid, ed, sec, num)
     t = x['text']; ty, raw = tag_years(t)
-    short = re.sub(r'^\s*(추가복원\s*\d|\d{1,2}(-\d)?)\s*[.．)]\s*', '', t.split('\n')[0]).strip()
+    short = re.sub(r'^\s*(추가복원\s*\d|\d{1,2}(-\d)?)(?:\s*[.．)]\s*|\s+)', '', t.split('\n')[0]).strip()   # 10-25 번호 뒤 . ) 빈칸이 있을 때만 뗌('18,19년도에는' 보존)
     yrs = set(ty) | {secyear(sec)}
     for (e2, s2, n2) in OTHER.get(cid, []):
         yrs.add(secyear(s2)); x2 = find(e2, s2, n2)
