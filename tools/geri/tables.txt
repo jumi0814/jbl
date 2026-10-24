@@ -5,7 +5,7 @@ R: Fried 5기준 {jb:G01} | {r:체중 감소} · {r:활력감소} · {r:허약} 
 R: 노쇠의 종류 {jb:G07} | {r:Physical}({n:보통 노쇠}) · {r:Cognitive} · {r:Social} · Systemic/General ? · {r:Oral} | 23 "우리가 생각하는 노쇠는 ( )" = 신체적 노쇠 / {n:구강 노쇠 = 씹는/삼키는/말하는 기능이 떨어져 있는 어떤 상태(26 필기 p.3)}
 R: {r:Multimorbidity}(다중이환) | The coexistence of multiple chronic diseases / Prevalence {r:55 – 98%} / 결과 = disability and functional decline, poor quality of life, high health care cost | 노인 {r:90%} 1개↑ · 22% 2개 · {r:50%} 3개↑ / 최다 {r:고혈압·관절염} {jb:G06}
 R: Comorbidity(동반질환) | 세 원 diagram(p.1-5)의 한 원 — 동반질환 → 노쇠 → 장애(화살표) / {n:Multimorbidity(여러 질환 갖는 것)와 비슷한 용어(26 필기 p.1)} | —
-R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} / 약물 부작용 = 입원·사망의 주요 원인 | 21 빈칸 / {n:필기 5종류↑(super 10종류↑)} / 노인 37% 5개↑ 처방약
+R: {r:Polypharmacy}(다약제복용) {jb:G10} | more medications than are clinically indicated → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} / 약물 부작용 = 입원·사망의 주요 원인 | 25·21 빈칸 / {n:필기 5종류↑(super 10종류↑)} / 노인 37% 5개↑ 처방약
 R: 노인 만성질환 목록(p.7 그래프 순) {jb:G06} | {r:고혈압} · {r:관절염} · 고지혈증 · 요통 · 당뇨병 · 골다공증 · 위궤양 · 전립선비대증 · 백내장 · 뇌졸증/협심증 / 처방약: 노인 {r:60%} 3개↑ · {r:37%} 5개↑({n:필기: 노인의 1/3에서 5개 이상}) | 필기: {n:고혈압, 관절염 = 50% 이상이 갖고 있는 질환 · 정신질환은 조사 시 일부 빠져 있음 · 누워 있는 노인까지 합치면 훨씬 많음}
 R: {r:Geriatric diseases}(노인병) {jb:G12} | 증상·진단·치료·예후 모두 {r:모호·복잡} — 질병 다발성 + 다약제 복용 → 질환–질환 · 질환–약물 · 약물–약물 상호작용 | 20·19 "A와 B" = {r:질환 · 약물}
 R: {r:Geriatric syndrome}(노인증후군) {jb:G05} | 실금·우울·섬망·낙상·골다공증·감각변화·거동/보행장애·압창·수면장애·치매 — 여러 etiology/pathogenesis → {r:unified manifestation} | 24 서술(낙상 모식도 예) · 20 나열
@@ -141,7 +141,7 @@ H: 개념·대상 | 정의·핵심 | 세부·수치 | 임상 의미 | ★ 시험
 R: **Frailty(노쇠)** | 노화에 따른 {r:기능저하} → 생리적 {r:예비능력↓} → 자극 반응↓ → {r:항상성} 유지 능력 감퇴 | 이환 · {r:기능의존} · {r:입원}↑ / {r:Robust → Pre-frailty → Frailty} | frail은 minor illness 뒤 baseline으로 회복 못 함 | {jb:G11} 20·19·18 빈칸 = frailty(노쇠) · {jb:G13} 25 빈칸 = 기능저하 · 기능의존
 R: **Fried 5기준** | {r:체중 감소} · {r:활력 감소} · {r:허약} · {r:보행속도 감소} · {r:신체활동 감소} | {n:허약 = 악력 · 활력 = depression 포함} / {n:3개 이상 노쇠 · 2개 정도 전노쇠(26 필기 p.3)} | {n:체중↓ → sarcopenia · 구강 문제 → chronic undernutrition} | {jb:G01} 24~20 매년 빈칸 — 24 신체활동 · 23 활력 · 22 보행속도 · 21 체중 · {e:26 ★} {n:"이 5가지는 암기하셔라"}
 R: **노쇠의 종류** | {r:Physical}({n:보통 노쇠}) · {r:Cognitive} · {r:Social} | Systemic/General({n:구강 노쇠의 대칭 개념}) · {r:Oral} | {n:구강노쇠 = 건조 · 주름 · 잇몸질환 · 기능↓} / {n:씹는/삼키는/말하는 기능↓(26 필기 p.3)} | {jb:G07} 23 빈칸 = 신체적 노쇠
-R: **다중이환·다약제복용** | Multimorbidity = {r:multiple chronic diseases} 공존({r:55-98%}) | Polypharmacy = {n:5종류↑(super 10↑)} → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} | 약물 부작용 = {r:입원·사망}의 주요 원인 | {jb:G10} 21 빈칸 = Polypharmacy · {jb:G14} 25 빈칸 = multimorbidity · polypharmacy
+R: **다중이환·다약제복용** | Multimorbidity = {r:multiple chronic diseases} 공존({r:55-98%}) | Polypharmacy = {n:5종류↑(super 10↑)} → {r:inappropriate use}(drug-drug interactions) · {r:adverse effects} | 약물 부작용 = {r:입원·사망}의 주요 원인 | {jb:G10} 25·21 빈칸 = Polypharmacy · {jb:G14} 25 빈칸 = multimorbidity · polypharmacy
 R: **노인 만성질환·처방약** | 최다 {r:고혈압 · 관절염}({n:노인 50%↑}) | 질환 {r:90%} 1개↑ · {r:50%} 3개↑ / 처방약 60% 3개↑ · {r:37%} 5개↑ | {n:노인실태조사는 올 수 없는 dependent 노인 정보 누락} | {jb:G06} 24 객관식 = 2) 고혈압
 R: **노인병** | 증상·진단·치료·예후가 {r:모호·복잡} | 질병 다발성 + 다약제 → {r:질환–질환 · 질환–약물 · 약물–약물} 상호작용 | {n:전형적 증상이 안 나타남} | {jb:G12} 20·19 A = 질환 · B = 약물
 R: **노인증후군** | 여러 etiology/pathogenesis → {r:unified manifestation} | 실금 · 우울 · 섬망 · 낙상 · 골다공증 · 감각변화 · 거동/보행장애 · 압창 · 수면장애 · 치매 | 낙상 = 당뇨 · 약물(어지러움·기립성 저혈압) · 백내장 · 관절염 | {jb:G05} 25·24·20 서술 — 10 나열 + 개념·낙상 예
@@ -190,7 +190,7 @@ N: 변형 대비 — 정의 주고 이름(24) ↔ 이름 주고 정의: {jb:E05}
 H: 구분 | 슬라이드 | 수치 · 필기 | 기출
 R: When {r:not} to treat | calcification cases without — Symptoms · PAR · Deep decay · Severe periodontal disease · Pulp exposure | {n:26 수업에선 넘어감 · 아프지 않은데 굳이?} | —
 R: When to treat | Discoloration and patient's demand · Longstanding deep caries · Pulp exposure · PA lesion · Signs & Symptoms | {n:증상이 없는 경우에는 굳이 치료하지 않아도 된다} | —
-R: 치료하지 않은 석회화 근관 | 881명의 선원 · 7-22 years follow up | {r:51%} EPT normal · {r:40%} EPT negative but no PAR · {r:8.5%} PAR — {n:절반 정도 necrosis, 병소는 10% 미만} | {jb:E03}(40%, 8.5%)
+R: 치료하지 않은 석회화 근관 | 881명의 선원 · 7-22 years follow up | {r:51%} EPT normal · {r:40%} EPT negative but no PAR · {r:8.5%} PAR — {n:절반 정도 necrosis, 병소는 10% 미만} | {jb:E15}(40%, 8.5%)
 R: Prognosis (Akerblom 1988) | 64 obliterated roots(X-ray에서 root 1/3 이상 canal 안 보임) · non-surgical endo · 2-12 yrs | Lesion {r:62.5%} · No lesion {r:97.9%} · Total {r:89%} | {jb:E03}(89%)
 N: '병소 유무에 상관없이' = Total 89% · '병소가 없으면' ≈ 98% · 괴사는 40%(EPT negative but no PAR), 51%(EPT normal)와 혼동 금지.
 
@@ -243,7 +243,7 @@ R: **Buckling resistance activation** | 초기 {r:access dimple} → file tip에
 R: **Negotiation** | {r:Do 100 strokes} · {r:small files}(8·10번) → {r:initial patency} | Small K-file(watch-winding) · C+ file(pyramid tip·stiffer) · precurve {r:1-2mm 60-90°} | {n:{e:skip할 방법 없음}} · 10번 안 되면 8번, {n:8번도 안 되면 포기(80세 #47)} | {jb:E09} 23 마모로 시큰 — 진단법(자료에 직접 근거 없음)
 R: **Glide path** | canal orifice → {r:physiologic terminus} smooth radicular tunnel | {n:8·10번 파일로 만들어야 NiTi 사용} | 한글 풀이 = 종말점까지 이어지는 부드럽고 반복적인 근관 통로 | {jb:E02} 24 첫 출제 — 한글 풀이 주고 이름
 R: **치료할까 말까** | Not to treat = without {r:Symptoms · PAR · Deep decay · Severe perio · Pulp exposure} | To treat = discoloration·demand · deep caries · pulp exposure · {r:PA lesion} · {r:signs & symptoms} | {n:증상 없으면 굳이 치료 ×(26 수업은 넘어감)} | —
-R: **Untreated 추적** | 선원 {r:881명} · {r:7-22년} | {r:51%} EPT normal · {r:40%} EPT(−) no PAR · {r:8.5%} PAR | {n:괴사 절반 · 병소 10% 미만} · 51%는 괴사 아님 | {jb:E03} 22 괴사·병소 확률 = 40% · 8.5%
+R: **Untreated 추적** | 선원 {r:881명} · {r:7-22년} | {r:51%} EPT normal · {r:40%} EPT(−) no PAR · {r:8.5%} PAR | {n:괴사 절반 · 병소 10% 미만} · 51%는 괴사 아님 | {jb:E15} 22 괴사·병소 확률 = 40% · 8.5%
 R: **Prognosis(Akerblom 1988)** | {r:64} obliterated roots · non-surgical endo · 2-12년 | lesion {r:62.5%} · no lesion {r:97.9%} · total {r:89%} | '병소 유무에 상관없이' = total | {jb:E03} 24·20·18 survival = 89%
 R: **증례 교훈** | 20/F 외상 #21: {n:막혔다고 미백 → 통증·병소 → 근관치료} | 김치 환자 #16: {n:1주 약·재평가 → 입구 못 찾아 충전 → 증상 없어 중단 → 2년 양호} | {n:막혀 있어도 무조건 괜찮은 건 아님 · 증상 없으면 더 치료 ×} | —
 
@@ -255,8 +255,8 @@ R: 기전 | incisal → middle → cervical 순으로 미백 진행(M. Lenhard 1
 R: 대처 | 종료하지 말고 {r:continue bleaching}(p.67 item 9) · need more bleaching({n:4주에도 얼룩덜룩}) | {r:touch-up bleaching}으로 다시 산화 — 10년 후 재방문 증례 {r:1 week} touch-up {jb:K02}
 R: 끝·지속 | 종료 3 {jb:K01}: ① {r:No splotchy & no improvement of color for 2 weeks} ② {r:Mutual communication} is important(understanding of saturation point · Pt's expectation vs Dr's expectation) ③ Shade shift {r:4-6 grades} more lighter than pre-Op / {n:1번 = even하게 미백 · 2번 = 우유같이 하얀 것은 불가능함을 설명(26 필기 p.42)} | initial color relapse {r:within 2 weeks} slightly · longevity {r:1~3 years} or permanent · {r:touch-up annual bleach}
 R: 교수 강조 | {n:p.35 "굉장히 중요한 용어!"} | {n:p.51 "Splotchy, Dingy 둘 다 중요한 단어!!"}
-N: 20·19년 변형(괄호 (20,19))은 두 단어의 설명을 주고 명칭·기전·종료시점을 물었다. 23년 relapse 문항 JB 답의 '1-2주'는 JB 표현 — 슬라이드 증례는 1 week.
-N: 변형 대비 {jb:K01} — 설명 주고 명칭(20·19) ↔ 명칭 주고 설명: Splotchy = 미백(산화) 중 incisal → middle → cervical 순 부분 미백 / Dingy = 재변색(relapse = 환원) 중 부분 staining. 종료 시점 3의 숫자 ① 2 weeks(색 무변화 기간) ↔ ③ 4-6 grades(술전보다 밝아진 shade) 혼동 주의 · Home bleaching issues ⑨ Splotchy teeth → continue bleaching(p.67).
+N: 20년 변형(괄호 (20,19) = 학번)은 두 단어의 설명을 주고 명칭·기전·종료시점을 물었다. 23년 relapse 문항 JB 답의 '1-2주'는 JB 표현 — 슬라이드 증례는 1 week.
+N: 변형 대비 {jb:K01} — 설명 주고 명칭(20) ↔ 명칭 주고 설명: Splotchy = 미백(산화) 중 incisal → middle → cervical 순 부분 미백 / Dingy = 재변색(relapse = 환원) 중 부분 staining. 종료 시점 3의 숫자 ① 2 weeks(색 무변화 기간) ↔ ③ 4-6 grades(술전보다 밝아진 shade) 혼동 주의 · Home bleaching issues ⑨ Splotchy teeth → continue bleaching(p.67).
 N: 변형 대비 {jb:K02} — 재방문 대처를 물으면 touch-up(환원 → 재산화, p.51) / 기간을 바꿔 물으면 증례 1 week(JB '1-2주') · initial color relapse within 2 weeks · longevity 1 ~ 3 years duration or permanent · touch-up annual bleach(p.52 · p.67) / 'relapse는 산화·환원 중?' → 환원.
 
 #TBL 변색의 원인·색과 미백 반응 — 잘 되는 것 vs 안 되는 것 | k=BLE | src=[[BLE:3]] [[BLE:4]] [[BLE:5]] [[BLE:8]] [[BLE:9]] [[BLE:13]] [[BLE:15]] [[BLE:17]] [[BLE:20]] [[BLE:21]] [[BLE:23]] [[BLE:28]] [[BLE:31]] [[BLE:55]] [[BLE:66]]
@@ -339,9 +339,9 @@ R: **CIELab** | L* = 100 White ↔ L* = 0 Black · +a* Red ↔ −a* Green · +b
 #TBL 전체정리 ② — 미백 원리·종료·재발과 술식 | k=BLE | sum=1 | src=[[BLE:32]] [[BLE:33]] [[BLE:35]] [[BLE:42]] [[BLE:45]] [[BLE:47]] [[BLE:51]] [[BLE:52]] [[BLE:55]] [[BLE:56]] [[BLE:65]] [[BLE:67]] [[BLE:70]] [[BLE:87]] [[BLE:89]] [[BLE:90]] [[BLE:95]] [[BLE:101]] [[BLE:103]] [[BLE:104]] [[BLE:108]] [[BLE:116]] [[BLE:120]] [[BLE:121]]
 H: 항목 | 핵심 | 방법·수치 | 주의·함정 | ★ 시험
 R: **미백 화학** | free radical이 double bond 공격 → {n:미백 = 산화} | CP → urea + H2O2{n:(7 : 3) · 10% CP = 3% H2O2 · 30% CP = 9%} | strong free radical = {r:perhydroxyl} | —
-R: **Splotchy** | {r:Splotchy} = {n:균일하게 밝아지지 않고 얼룩덜룩} | {r:incisal → middle → cervical}({n:dentin 얇은 곳부터}) | 종료하지 말고 {r:continue bleaching} | {jb:K01} 25·24·22·21·20·19 서술 6회 — 정의 + 종료 시점
+R: **Splotchy** | {r:Splotchy} = {n:균일하게 밝아지지 않고 얼룩덜룩} | {r:incisal → middle → cervical}({n:dentin 얇은 곳부터}) | 종료하지 말고 {r:continue bleaching} | {jb:K01} 25·24·22·21·20 서술 5회 — 정의 + 종료 시점
 R: **종료 시점 3** | ① {r:No splotchy & No improvement of color for 2 weeks} | ② {r:Mutual communication}(saturation point · Pt vs Dr expectation) / ③ {r:4-6 grades} lighter | need more bleaching({n:4주에 밝아져도 얼룩이면}) · '2 weeks' ↔ '4-6 grades' 혼동 | {jb:K01} 후반부 — 3항목 번호째
-R: **Relapse·Dingy** | Relapse = {r:환원}({n:착색 재부착}) · {r:Dingy} = {n:부분적 얼룩} | 초기 relapse {r:2주 내} slightly · 지속 {r:1~3년} or permanent | splotchy = 산화 중 / dingy = 환원 중 | {jb:K01} 20·19 변형 — 명칭·기전·종료시점
+R: **Relapse·Dingy** | Relapse = {r:환원}({n:착색 재부착}) · {r:Dingy} = {n:부분적 얼룩} | 초기 relapse {r:2주 내} slightly · 지속 {r:1~3년} or permanent | splotchy = 산화 중 / dingy = 환원 중 | {jb:K01} 20 변형 — 명칭·기전·종료시점
 R: **Touch-up** | relapse → {r:touch-up}으로 재산화 | 증례 {r:1 week} touch-up · annual touch-up | JB '1-2주'는 JB 표현 | {jb:K02} 23 첫 출제 — relapse로 재방문한 노인 대처
 R: **상아질 미백** | home bleaching(10% CP) → outer·inner dentin {r:uniform rate}(McCaslin 1999) | TC·외상·aging 내인성 변색 치료 근거 | {r:dentin hypersensitivity is inevitable}({n:hydrodynamic}) | —
 R: **Combination** | {r:Power 30분}(35% H2O2 gel) = rapid initial change | {r:Matrix 2-4주} = maintenance | 시간↓ · control·safety·compliance↑ | —
@@ -681,7 +681,7 @@ N: 학습목표 ③ "노인환자의 치과치료 시 고려하여야 할 행동
 H: 대상 | 정의·특징 | 세부·수치 | 진료 시사점 | ★ 시험
 R: **노화의 세 축** | {r:뇌} · {r:신체} · {r:심리사회적} {n:변화가 복합적으로} | 뇌노화 = {r:Adaptive} vs {r:Accelerating}(cardiovascular risk · stress · depression · obesity) 균형 | → Normal aged 또는 Pathological | —
 R: **정상 vs 병적 노화** | 정상 = {n:또래 평균(normal distribution mean)} | 병적 = 또래 평균보다도 확연히 저하(ex {r:치매}) | 모든 지적 능력이 떨어지지는 않음 · {n:개인차 큼} | {jb:B01} ⑤ "개인차가 크다" ○
-R: **지능 두 분류** | 유지·증가: {r:언어성}(어휘·이해·상식) · {r:결정지능}(경험·지식) | 감소: {r:동작성}(시각·운동) · {r:유동지능}(새 정보·{n:순발력}) | {n:감소하는 지능의 공통점 = 속도} | {jb:B01} 24·23 "결정지능 감소" ✗ · {jb:B05} 25 "옳게 묶인 것" = 유동지능 감소
+R: **지능 두 분류** | 유지·증가: {r:언어성}(어휘·이해·상식) · {r:결정지능}(경험·지식) | 감소: {r:동작성}(시각·운동) · {r:유동지능}(새 정보·{n:순발력}) | {n:감소하는 지능의 공통점 = 속도} | {jb:B01} 25 "옳게 묶인 것" = 유동지능 감소 · 24·23 "결정지능 감소" ✗
 R: **인지기능 변화** | ↓ {r:처리속도} · {r:선택/분할주의력} · {r:실행기능} · {r:이름대기} | 기억: {r:삽화기억}↓(최근) · 의미·절차기억은 유지 | {n:천천히 입력·기다리기} · {r:반복 설명} · {r:큰 글씨} 유인물 | {jb:B02} 23 "의미기억 저하" ✗
 R: **치매 정의** | {r:이전에 비해} · {r:기억력+α} 저하 · {r:일상생활 지장} · {r:의식장애 ×} | ≠ intellectual disability(stable) · ≠ delirium·coma · = {r:증후군} | {n:섬망 중엔 치매 진단 ×} | {jb:B03} ㄹ 섬망 ○ · {jb:P03} ① 치매 = 알츠하이머 ✗
 R: **치매 유병률** | 65세↑ {r:9~10%} · {r:5세}마다 {r:2배} | 85세↑ 30-40%(필기) · 2050 {r:302.7만} | {n:우울증이 치매보다 더 흔함} | {jb:P03} 21 ③ 9-10% ○ · ② 5배 ✗
@@ -725,7 +725,7 @@ N: Table 1.1 Point and 5-year prevalence of BPSD in the community(Steinberg et a
 #TBL OHRQoL 측정도구 3 — GOHAI · OHIP-14 · OIDP | k=OHQ | src=[[OHQ:13]] [[OHQ:14]]
 H: 도구 | 문항 | 영역 | 개발·특징 | 주 대상(필기)
 R: {u:{r:GOHAI} Geriatric Oral Health Assessment Index} | {r:12} | 신체기능 · 통증/불편 · 심리사회적 기능({r:3개 영역}) | {r:Atchison & Dolan} · 노년층 특화 · 한국어판 타당도 검증 | 노인
-R: {u:{r:OHIP-14} Oral Health Impact Profile {jb:C04}} | {r:14}({r:OHIP-49의 축약판}) {jb:C12} | 기능제한 · 신체통증 · 정신불편 · 신체/정신/사회적 능력저하 · handicap({r:7개 차원}) | {r:Slade & Spencer} {jb:C14} · 심리·행동 결과에 비중 | 일반 성인
+R: {u:{r:OHIP-14} Oral Health Impact Profile {jb:C04}} | {r:14}({r:OHIP-49의 축약판}) | 기능제한 · 신체통증 · 정신불편 · 신체/정신/사회적 능력저하 · handicap({r:7개 차원}) | {r:Slade & Spencer} {jb:C14} · 심리·행동 결과에 비중 | 일반 성인
 R: {u:{r:OIDP} Oral Impacts on Daily Performance} | 일상수행 중심 | 식사 · 대화 · 수면 등 일상 수행에 미치는 실질적 영향 | 기능적 영향의 실생활 반영 | —
 R: {u:개념(도구 아님) {jb:C07}} | — | OHRQoL = 임상 지표(DMFT·치주낭 깊이)로 포착되지 않는 환자 경험 · patient-centered · 측정 범위 = 기능적 제한 · 통증과 불편감 · 심리사회적 영향 | QoL → HRQoL → OHRQoL | —
 N: {u:2025 메타연구 — 세 도구 모두 양호한 측정 성능, GOHAI–OHIP-14 강한 상관이나 동시 시행 시 피로효과 → 무작위 순서 배치 권장}. 함정: 12는 GOHAI, 14는 OHIP-14, 49는 원판 OHIP. DMFT는 임상 지표(슬라이드 13).
@@ -783,7 +783,7 @@ R: **노인 빈곤** | 빈곤율 = 중위소득 {r:50% 이하} · 여성 {r:60.3
 R: {u:**치아 상실 연쇄효과 5**} | {r:저작 → 영양 → 발음·심미 → 사회활동 → 삶의 만족도} | 영양 = {r:단백질·섬유질}↓ · 전신 = {r:ADL·IADL} 저하와 연관 | 늙어 보이는 원인 = 수직고경 감소(필기) | {jb:H05} 24 사회적 관계망 · {jb:H06} 24 채소 — 상식형
 R: {u:**OHRQoL 개념**} | {r:QoL → HRQoL → OHRQoL} · 임상 지표(DMFT)로 못 잡는 {r:patient-centered} 경험 | 측정 3 = {r:기능적 제한 · 통증과 불편감 · 심리사회적 영향} | 의의 = 치료 효과 평가 · 정책 우선순위 · 연구 outcome | {jb:C13} 20 주관적 평가도 중요 ○ · {jb:C07} 22 측정 지표 = OHIP
 R: {u:**GOHAI**} | {r:12문항} · 3영역(신체기능 · 통증/불편 · 심리사회적 기능) | {r:Atchison & Dolan} 개발 · 노년층 특화 · 한국어판 검증 | 주 대상 {r:노인} | {jb:H16} 25 학습부 예상 — GOHAI 12 < OHIP-14 14
-R: {u:**OHIP-14**} | {r:14문항} · {r:7개 차원}(기능제한 ~ handicap) | {r:Slade & Spencer} · {r:OHIP-49의 축약판} | 주 대상 일반 성인 · GOHAI와 강한 상관 → 피로효과 · 무작위 순서 | {jb:C04} 23·21 49 → 14 · {jb:C14} 20 빈칸 OHIP · {jb:C12} 21 7개 분류 49문항
+R: {u:**OHIP-14**} | {r:14문항} · {r:7개 차원}(기능제한 ~ handicap) | {r:Slade & Spencer} · {r:OHIP-49의 축약판} | 주 대상 일반 성인 · GOHAI와 강한 상관 → 피로효과 · 무작위 순서 | {jb:C04} 23·21 49 → 14(21 다른 판본: 7개 분류 49문항) · {jb:C14} 20 빈칸 OHIP
 R: {u:**OIDP**} | 일상수행 중심 | 식사·대화·수면 등 일상 수행에 미치는 실질적 영향 | 기능적 영향의 {r:실생활 반영} | —
 R: **삶의 질 영향요인(EQ-5D)** | 공통: 교육·경제활동·우울·스트레스·{r:주기적 걷기}·자기평가 구강건강·{r:발음문제}·{r:미충족 치과치료} | 전기 특이: 결혼·소득·전신질환 수·수면·{r:저작불편} / 후기 특이: {r:비만·음주} | 기대수명–건강수명 {r:15.17 → 16.6년} | {jb:H07} 24 운동 · {jb:H08} 24 음주 — 상식형 · {jb:H14} 25 ㄱ·ㄹ(공통·전기·후기 구분)
 R: {u:**급여화**} | {r:틀니}(재제작 {r:7년} · 부분 포괄수가) · {r:임플란트}(만 {r:65세}↑ 부분 무치악 · 평생 {r:2개} · 본인부담 {r:30%}) | {r:스케일링} {r:2013년} · 재질 지르코니아 확대 · 완전 무치악 포함 검토 | 25 필기: {n:임플란트 매년 5.5~5.8% · 레진상 완전틀니 0.5%} | {jb:C08} 22 정부 사업 = 노인의치 · 불소도포·스케일링

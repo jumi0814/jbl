@@ -17,9 +17,11 @@ SEC25 = re.compile(r'^\s*(20\d\d)\s*-\s*3Q\s*$')
 SEC24 = re.compile(r'^\s*<\s*(\d\d)\s*학번\s*기출\s*\(\s*(20\d\d)\s*년도\s*\)\s*>\s*$')
 PROF = re.compile(r'^\s*\[\s*([가-힣]{2,3})\s*교수님\s*\]\s*$')
 PROF26 = re.compile(r'^\s*\[\s*([가-힣]{2,3})\s*교수님\s*\]')   # 26판: '[유연지 교수님] 올해 들어오지 않으심.'처럼 뒤에 메모가 붙음
-CUE = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰기|쓰시|서술|설명|나열|비교|기술|채우|기입|빈칸|무엇|어떤|이유|차이|특징|구조|명칭|이름|기능|고르|골라|옳|맞는|중복|미복원|\(\s*\d\d|\(탈|\(짤|\[서술|\[단답|\[객|예상|정의|관련|키워드|객관식|서술형|단답형|확률|방법|얼마|고르시오|들어갈|증가|감소|틀린|아닌|질환|것은|것을|경우|사진|그림|\(\s*\)|적기|계획|치료|법 |상관|원인|요소|요인')
+CUE = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰기|쓰시|서술|설명|나열|비교|기술|채우|기입|빈칸|무엇|어떤|이유|차이|특징|구조|명칭|이름|기능|고르|골라|옳|맞는|중복|미복원|\(\s*\d\d|\(탈|\(짤|\[서술|\[단답|\[객|예상|정의|관련|키워드|객관식|서술형|단답형|확률|방법|얼마|고르시오|들어갈|증가|감소|틀린|아닌|질환|것은|것을|경우|사진|그림|\(\s*\)|적기|계획|치료|법 |상관|원인|요소|요인|\[\s*\d\s*\]')   # 10-25 '[ 1 ]' 꼴 번호 빈칸(24판 2023 칸 장지희 20번 Nonverbal pain indicator)
 STRONG = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰시|쓰기|고르|골라|옳|맞는|서술|설명|나열|중복|미복원|\[서술|\[단답|\[객|\(탈|\(\s*\d\d\s*[,)\-]|\(짤|객관식|빈칸|예상|유사복원|틀린|아닌|얼마|확률')
 ANS = re.compile(r'^\s*\[?답\]?\s*[:：)]|^\s*답\s*$')
+SPLIT_SUB = {('25', '2024', '이우철', '3-1'), ('26', '2024', '이우철', '3-1')}   # 10-25 B1 — 하위 문항이지만 다른 물음(3 = 89% · 3-1 = 미치료 40%·8.5%, JB 괄호 (22))이라 따로 블록(E15)
+NOTQ = {('23', 19, '5. 개인별로')}   # 10-25 문항 머리가 아닌 번호 줄(판, 쪽, 글 앞머리) — 23판 2020 칸 조현재 4번 답 해설 '1.~5.'의 5번(진짜 5번 '5. 2012년 구강 질환 유병률'은 바로 아래)
 def parse(ed, n):
     L = load(ed, n); blocks = []; cur = None; sec = None; prof = ''; last = 0; inans = False; opt = False   # opt(26판만): 답 앞 '1. …' 선지 목록 안
     for idx, (pg, l) in enumerate(L):
@@ -35,6 +37,7 @@ def parse(ed, n):
         if mq and ed == '26' and cur is not None and not inans:   # 26판: 문제 줄 뒤 '1. …'부터 답 앞까지는 선지(2025 한동헌 2·5·6·7번)
             if int(mq.group(1)) == 1 and not mq.group(2): opt = True
             if opt: mq = None
+        if mq and any(ed == e_ and pg == p_ and s.startswith(t_) for e_, p_, t_ in NOTQ): mq = None
         if mq:
             base_ = mq.group(1); sub = mq.group(2) or ''; num = base_ + sub; nn = int(base_)
             nxt = [x[1] for x in L[idx + 1:idx + 5]]; near2 = s
@@ -44,7 +47,7 @@ def parse(ed, n):
             near = s + ' ' + ' '.join(x[1] for x in L[idx + 1:idx + 4])
             cue = ((STRONG.search(near2) if nn != last + 1 else CUE.search(near2)) if inans else CUE.search(near)) is not None
             ok = (nn > last or (sub and nn == last) or (nn == 1 and prof and ed == '25' and last == 0)) and cue
-            if ok and sub and cur is not None and nn == last:  # 하위 문항(10-1, 3-1)은 상위 블록에 합침
+            if ok and sub and cur is not None and nn == last and (ed, sec, prof, num) not in SPLIT_SUB:  # 하위 문항(10-1, 3-1)은 상위 블록에 합침
                 cur['lines'].append(l); cur['pg2'] = pg; inans = False; continue
             if ok:
                 cur = {'ed': ed, 'sec': sec, 'prof': prof, 'num': num, 'pg': pg, 'pg2': pg, 'lines': [l]}; blocks.append(cur); inans = False

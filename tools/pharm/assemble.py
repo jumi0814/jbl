@@ -4,7 +4,8 @@ from PIL import Image
 DIR = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, DIR)
 import parse_pharm as P, subject as S
 BASE = J.JBX; SUB = 'PHARM'
-NPAGES = {'26': 26, '25': 26, '24': 40, '23': 54, '23q4': 5}   # 26판 = 2026 3Q JB(2025년 시험까지 · 10-15 통합) · 23q4 = 2023 4Q JB 1~5쪽(멘트 + <항불안제>만 — 26 3Q 새 강의 ANX의 참고 기출)
+NPAGES = {'26': 26, '25': 26, '24': 40, '23': 54, '23q4': 23}   # 26판 = 2026 3Q JB(2025년 시험까지 · 10-15 통합) · 23q4 = 2023 4Q JB 1~23쪽(멘트 + <항불안제> · 10-25 <구강건조증 치료제> p.6-10 · <진정수면제> p.11-16·<약물상호작용> p.21-23 중 26 ANX와 겹치는 문항만 — parse_pharm.Q4KEEP)
+Q4SKIP = {17, 18, 19, 20}   # 23q4 원본 쪽 그림에서 뺄 쪽(국소마취제 — 쓰는 블록 없음)
 LECMAP = S.LECMAP
 blocks = {}
 for ed, n in NPAGES.items():
@@ -24,6 +25,8 @@ def tag_years(text, ed='25', sec='2024'):
     secy = int(sec) % 100
     for m in re.finditer(r'\(([^()]*)\)', stem_of(text)):
         g = m.group(1)
+        mq_ = re.fullmatch(r'\s*(20\d\d)\s*년?\s*\d{1,2}(?:\s*-\s*\d)?\s*번\s*문항(?:\s*중복)?\s*', g)   # 10-25 결정 D2 '(2019 1 번 문항)'('년' 없음)·'(2020 년 15-1 번 문항)' = 그 해 출제(네 자리 연도 — 학번 아님)
+        if mq_: ys.add(int(mq_.group(1)) % 100); raw.append('(' + g.strip() + ')'); continue
         g2 = re.sub(r'(반짤반탈|짤 변형|짤|탈|년도|년|NEW|’|\'|~|\.|번과 유사|유사|학번)', ' ', g).replace('，', ',')
         if not re.fullmatch(r'\s*(20\d\d|\d\d)(\s*[,、\-]\s*(20\d\d|\d\d)?)*\s*', g2): continue
         vs = [int(v) % 100 for v in re.findall(r'20\d\d|\d\d', g2)]
@@ -39,8 +42,10 @@ def tag_years(text, ed='25', sec='2024'):
 
 def secyear(sec): return int(sec) % 100
 LK_PROF = {'RX': '백정화', 'XE': '이윤실', 'BT': '김우진', 'ACU': '우경미', 'CHR': '우경미', 'HM': '우경미', 'DS': '조영단', 'ANX': '김우진'}   # ANX = 26 3Q 새 강의(김우진) — JB 기출은 4Q 이윤실·류현모(tier C)
-TOPIC_LK = {'RX': 'RX', 'XE': 'XE', 'BT': 'BT', 'PN': 'CHR', 'HM': 'HM', 'DS': 'DS', 'AX': 'ANX'}
-TOPIC_PROF = {'RX': '백정화', 'XE': '이윤실', 'BT': '김우진', 'PN': '우경미', 'HM': '우경미', 'DS': '조영단', 'AX': '이윤실'}
+TOPIC_LK = {'RX': 'RX', 'XE': 'XE', 'BT': 'BT', 'PN': 'CHR', 'HM': 'HM', 'DS': 'DS', 'AX': 'ANX', 'SD': 'ANX', 'DI': 'ANX'}   # SD·DI = 23 4Q JB 진정수면제(서광석)·약물상호작용 — 26 ANX와 겹치는 문항(10-25 결정 A13·A14, 참고)
+TOPIC_PROF = {'RX': '백정화', 'XE': '이윤실', 'BT': '김우진', 'PN': '우경미', 'HM': '우경미', 'DS': '조영단', 'AX': '이윤실', 'SD': '서광석', 'DI': '이윤실'}
+Q4NAME = {'AX': '항불안제', 'XE': '구강건조증 치료제', 'SD': '진정수면제', 'DI': '약물상호작용'}   # 23 4Q JB 장 이름(출처 줄)
+TIER_C = {'AX', 'SD', 'DI', 'DS'}   # 참고(⭐ 연결 의무 없음): 4Q 항불안제·진정수면제·약물상호작용 + 10-25 결정 F7 DS 살균제와 소독제(조영단 — 26 3Q 범위 아님, 26 JB 멘트 '7 차시 … → pf.김우진 <항불안제>')
 import difflib
 DUP = re.compile(r'(20\d\d)\s*년?\s*(\d{1,2})\s*번\s*(?:문항\s*)?중복|^\s*\d{1,2}\s*[.．]\s*(\d{1,2})\s*번\s*문항\s*중복')
 def sig(t):
@@ -56,7 +61,7 @@ def find(ed, topic, sec, num):
 CANON, OTHER, ptr = [], {}, {}
 counter = {}
 # 1차: 원래 블록 / 2차: 답안에서 분리된 블록(split) — 분리 블록의 새 id는 기존 번호 뒤에 붙어 기존 id(채점·표시 키)가 바뀌지 않음
-for ed, x in [(e, x) for e in ('25', '24', '23') for x in blocks[e] if not x.get('split')] + [(e, x) for e in ('25', '24', '23') for x in blocks[e] if x.get('split')]:
+for ed, x in [(e, x) for e in ('25', '24', '23') for x in blocks[e] if not x.get('split') and not x.get('cut')] + [(e, x) for e in ('25', '24', '23') for x in blocks[e] if x.get('split')]:   # cut(10-25 parse_pharm.CUT) = MAPCUT으로 따로
     if True:
         key = (ed, x['topic'], x['sec'], x['num']); t = '\n'.join(x['lines'])
         m = DUP.search(t.split('\n')[0] + ' ' + (t.split('\n')[1] if '\n' in t else ''))
@@ -97,7 +102,7 @@ MAP26 = {
     ('BT', '2025', '6'): 'BT05', ('BT', '2025', '7'): 'BT06', ('BT', '2025', '8'): 'LOST', ('BT', '2025', '9'): 'BT09', ('BT', '2025', '10'): 'BT07',
     ('BT', '2024', '1'): 'BT01', ('BT', '2024', '2'): 'BT02', ('BT', '2024', '3'): 'BT03', ('BT', '2024', '4'): 'BT04', ('BT', '2024', '5'): 'BT05',
     ('BT', '2023', '1'): 'BT01', ('BT', '2023', '2'): 'BT04', ('BT', '2023', '3'): 'BT06', ('BT', '2023', '4'): 'BT07', ('BT', '2023', '5'): 'BT02', ('BT', '2023', '6'): 'BT03', ('BT', '2023', '7'): 'BT08',
-    ('PN', '2025', '1'): ['PN05', 'PN06', 'PN07'], ('PN', '2025', '2'): 'LOST', ('PN', '2025', '3'): 'PN09', ('PN', '2025', '4'): 'PN03', ('PN', '2025', '5'): 'LOST',
+    ('PN', '2025', '1'): ['PN05', 'PN06', 'PN07'], ('PN', '2025', '2'): 'LOST', ('PN', '2025', '3'): 'PN12', ('PN', '2025', '3-2'): 'PN09', ('PN', '2025', '4'): 'PN03', ('PN', '2025', '5'): 'LOST',   # 10-25 결정 B3/B4/B9/E5 — 3(머리 + (3-1) 25년 복원 '삼차신경통과 ____' = 신경병성 질환명) → PN12 · (3-2) 과거 복원(통증 분류 빈칸) → PN09
     ('PN', '2025', '6'): 'PN04', ('PN', '2025', '7'): 'PN08', ('PN', '2025', '7-2'): ('NEW', 'PN27'),
     ('PN', '2024', '1'): 'PN01', ('PN', '2024', '2'): 'PN02', ('PN', '2024', '3'): 'PN03', ('PN', '2024', '4'): 'PN04', ('PN', '2024', '5'): 'PN05', ('PN', '2024', '6'): 'PN06', ('PN', '2024', '7'): 'PN07', ('PN', '2024', '8'): 'PN08',
     ('PN', '2023', '1'): 'PN01', ('PN', '2023', '2'): 'PN09', ('PN', '2023', '3'): 'PN02', ('PN', '2023', '4'): 'PN03', ('PN', '2023', '5'): 'PN04', ('PN', '2023', '6'): 'PN10',
@@ -114,43 +119,95 @@ MAPQ4 = {
     ('AX', '2021', '1'): 'AX05', ('AX', '2021', '2'): ('NEW', 'AX18'), ('AX', '2021', '3'): 'AX12', ('AX', '2021', '4'): 'AX03',
     ('AX', '2020', '1'): ('NEW', 'AX19'), ('AX', '2020', '2'): ('NEW', 'AX20'), ('AX', '2020', '3'): ('NEW', 'AX21'), ('AX', '2020', '4'): 'AX12', ('AX', '2020', '5'): ('NEW', 'AX22'),
     ('AX', '2020', '6'): 'AX03', ('AX', '2020', '7'): ('NEW', 'AX23'), ('AX', '2020', '8'): 'AX05', ('AX', '2020', '9'): ('NEW', 'AX24'),
+    # 10-25 결정 A5~A10·F4 — <구강건조증 치료제>(p.6-10 · 22 백정화 · 21·20 이윤실): 22·21 칸 = 24판 같은 칸과 같은 글(다른 판본) · 20 칸 1·2·5 = 같은 문제(다른 판본) · 3·4·6 = 새 문항
+    ('XE', '2022', '1'): 'XE08', ('XE', '2022', '2'): 'XE09', ('XE', '2022', '3'): 'XE08', ('XE', '2022', '4'): 'XE01', ('XE', '2022', '5'): 'XE09', ('XE', '2022', '6'): 'XE10', ('XE', '2022', '7'): 'XE11',
+    ('XE', '2021', '1'): 'XE12', ('XE', '2021', '2'): 'XE13', ('XE', '2021', '3'): 'XE14', ('XE', '2021', '4'): 'XE15', ('XE', '2021', '5'): 'XE03', ('XE', '2021', '6'): 'XE16', ('XE', '2021', '7'): 'XE17',
+    ('XE', '2021', '8'): 'XE07', ('XE', '2021', '9'): 'XE18',
+    ('XE', '2020', '1'): 'XE17', ('XE', '2020', '2'): 'XE03', ('XE', '2020', '3'): ('NEW', 'XE27'), ('XE', '2020', '4'): ('NEW', 'XE28'), ('XE', '2020', '5'): 'XE15', ('XE', '2020', '6'): ('NEW', 'XE29'),
+    # 10-25 결정 A13 — <진정수면제>(서광석) 중 26 ANX가 다루는 문항(참고 C · 같은 문제는 한 카드 + 다른 판본)
+    ('SD', '2022', '1'): ('NEW', 'AX25'),   # 프로포폴 기전 — β 소단위 TM2(ANX p.39)
+    ('SD', '2022', '2'): ('NEW', 'AX26'), ('SD', '2021', '1'): 'AX26',   # BZD 가역제 = flumazenil(ANX p.11·26-27)
+    ('SD', '2022', '3'): ('NEW', 'AX27'), ('SD', '2020', '1'): 'AX27', ('SD', '2020', '16'): 'AX27',   # 정주 통증 = propofol(ANX p.39 26 필기 '주입 통증')
+    ('SD', '2022', '4'): ('NEW', 'AX34'),   # 경구 진정·항구토 = antihistamine(ANX p.35)
+    ('SD', '2022', '10'): ('NEW', 'AX28'),   # 가역제가 있는 것 = midazolam(ANX p.27)
+    ('SD', '2021', '2'): ('NEW', 'AX29'), ('SD', '2020', '10'): 'AX29',   # 우유 같은 흰색 = propofol(ANX p.39)
+    ('SD', '2021', '3'): ('NEW', 'AX30'),   # 경구수면제·소아 = chloral hydrate(ANX p.36)
+    ('SD', '2021', '5'): ('NEW', 'AX31'), ('SD', '2020', '13'): 'AX31',   # 선행성 기억상실 = midazolam(ANX p.15)
+    ('SD', '2020', '2'): ('NEW', 'AX33'),   # 경구진정 항히스타민제 = hydroxyzine(ANX p.3·35)
+    ('SD', '2020', '5'): ('NEW', 'AX32'),   # GABA 수용체 = midazolam·propofol(ANX p.6·39)
+    ('SD', '2020', '12'): ('NEW', 'AX35'),   # 항불안 = midazolam(ANX p.4·12)
+    # 10-25 결정 A14 — <약물상호작용>
+    ('DI', '2021', '1'): ('NEW', 'AX36'),   # diazepam 대사·cimetidine(ANX p.22·30-31)
+    ('DI', '2022', '7'): ('NEW', 'AX37'),   # diazepam–flumazenil 경쟁적 길항(ANX p.11)
 }
-LOST = set(); NEW26 = []
-for ed_, M_ in (('26', MAP26), ('23q4', MAPQ4)):
-    assert len(M_) == len(blocks[ed_]), (ed_, len(M_), len(blocks[ed_]))
-    for x in blocks[ed_]:
-        k_ = (x['topic'], x['sec'], str(x['num'])); v_ = M_[k_]; key = (ed_, x['topic'], x['sec'], x['num'])   # KeyError = 연결 안 정한 블록
+# 10-25 결정 A1~A4·A11·A12 — 앞 문항 블록에서 떼어 낸 블록(parse_pharm.CUT): 키 (판, 주제, 칸, 번호) · 값은 MAP26과 같은 꼴
+MAPCUT = {
+    ('24', 'DS', '2021', '4'): 'DS21', ('23', 'DS', '2021', '4'): 'DS21',   # 2021 4번 Iodine(4-1·4-2) — 4-2 선지 5개가 DS21(2020 2번)과 같은 글 → DS21 다른 판본(+21)
+    ('24', 'PN', '2021', '8-1'): ('NEW', 'PN28'), ('23', 'PN', '2021', '8-1'): 'PN28',   # 2021 8-1·8-2 만성통증 증례(숙제 증례) — 새 문항(8-2는 annot subq=)
+    ('24', 'XE', '2023', '4'): 'XE06',   # 24판 2023 4번(증례) — 3번 블록에 삼켜졌던 것
+    ('23', 'HM', '2020', '15-1'): 'HM07',   # 23판 2020 15-1 — HM24 답 칸에 삼켜졌던 것(24·23판 2022 2번 '(2020 년 15-1 번 문항)')
+}
+# 10-25 결정 B5~B15 — 같은 문제가 두 카드로 갈라진 것 합치기 {없어지는 id: 남는 id} — 없어지는 카드의 표시 원문·다른 판본은 남는 카드의 다른 판본으로(jb_move.json 같은 짝)
+MERGE = {'XE21': 'XE07', 'BT10': 'BT06', 'XE19': 'XE09', 'XE20': 'XE08', 'BT11': 'BT08', 'BT12': 'BT04', 'BT13': 'BT07', 'HM11': 'HM03', 'HM21': 'HM16', 'PN24': 'PN13'}
+# 10-25 결정 B1·B3·B9 — 다른 판본을 옮김 {(판, 주제, 칸, 번호): 새 id 또는 ('NEW', 새 id)}
+MOVE = {('23', 'PN', '2020', '8'): 'PN09',   # 2020 8번 '신경병성 통증에는 ( )과 ( )' 답 Peripheral, Central = 통증 분류(PN09 꼴)
+        ('24', 'DS', '2021', '5'): ('NEW', 'DS31'), ('23', 'DS', '2021', '5'): 'DS31'}   # 2021 5번 Hypochlorite '옳지 않은 것'(답 4) — DS04('맞는 것', 답 1)와 다른 문제
+# 26판 다른 판본 괄호 중 그 카드 연도로 세지 않는 해(블록 → 해 집합): PN 2025 3번 머리 '통증의 분류에 관한 문제 (25,23,22)'의 23·22 = (3-2) 과거 복원(통증 분류 → PN09) — PN12에는 25만(22는 PN12 제 칸에 있음)
+TAGX = {('26', 'PN', '2025', '3'): {23}}
+LOST = set(); NEW26 = []; NEWX = []
+_cutb = [(e, x) for e in ('25', '24', '23') for x in blocks[e] if x.get('cut')]
+assert len(_cutb) == len(MAPCUT), (len(_cutb), len(MAPCUT))
+for ed_, M_, xs_ in (('26', MAP26, None), ('23q4', MAPQ4, None), ('cut', MAPCUT, sorted(_cutb, key=lambda t: not isinstance(MAPCUT[(t[0], t[1]['topic'], t[1]['sec'], str(t[1]['num']))], tuple)))):
+    if xs_ is None: assert len(M_) == len(blocks[ed_]), (ed_, len(M_), len(blocks[ed_])); xs_ = [(ed_, x) for x in blocks[ed_]]
+    for e_, x in xs_:
+        k_ = (x['topic'], x['sec'], str(x['num'])) if ed_ != 'cut' else (e_, x['topic'], x['sec'], str(x['num'])); v_ = M_[k_]; key = (e_, x['topic'], x['sec'], x['num'])   # KeyError = 연결 안 정한 블록
         if v_ == 'LOST': LOST.add(key); continue
         if isinstance(v_, tuple):
             cid = v_[1]; assert all(c[0] != cid for c in CANON), cid   # 새 id = 10-15 처음 빌드 때 jb_lock.json에 없던 새 번호(기존 id 재사용 금지 — 이후 빌드에선 잠금에 이 id·해시가 있음)
-            CANON.append((cid, x['topic'], ed_, x['sec'], x['num'], sig(x['text']))); ptr[key] = cid; NEW26.append(cid); continue
+            CANON.append((cid, x['topic'], e_, x['sec'], x['num'], sig(x['text']))); ptr[key] = cid; (NEW26 if ed_ == '26' or x['topic'] in ('AX', 'SD', 'DI') else NEWX).append(cid); continue
         for cid in ([v_] if isinstance(v_, str) else v_):
             assert any(c[0] == cid for c in CANON), cid
             OTHER.setdefault(cid, []).append(key)
         ptr[key] = v_ if isinstance(v_, str) else v_[0]
-# 목록 순서: 26판 2025 칸 새 문항은 그 주제 첫 기존 카드 앞(JB 26판 순서) · 통증 2025-7 (2)는 같은 증례 PN08 바로 뒤 · 항불안제(AX)는 맨 끝(새 강의 ANX)
-_new = [c for c in CANON if c[0] in NEW26]; CANON[:] = [c for c in CANON if c[0] not in NEW26]
+# 10-25 합치기(MERGE) — 없어지는 카드의 정식 블록 + 그 다른 판본 → 남는 카드의 다른 판본(뒤에 덧붙임)
+for r_, s_ in MERGE.items():
+    c_ = next(c for c in CANON if c[0] == r_); assert any(c[0] == s_ for c in CANON), s_
+    OTHER.setdefault(s_, []).extend([(c_[2], c_[1], c_[3], c_[4])] + OTHER.pop(r_, [])); CANON.remove(c_)
+    for k__, v__ in list(ptr.items()):
+        if v__ == r_: ptr[k__] = s_
+# 10-25 다른 판본 옮기기(MOVE) — 새 id는 그 블록이 정식 원문
+for k__, v__ in MOVE.items():
+    old_ = next(c for c, lst in OTHER.items() if k__ in lst); OTHER[old_].remove(k__)
+    x_ = find(*k__); assert x_, k__
+    if isinstance(v__, tuple): CANON.append((v__[1], k__[1], k__[0], k__[2], k__[3], sig(x_['text']))); NEWX.append(v__[1]); ptr[k__] = v__[1]
+    else: assert any(c[0] == v__ for c in CANON), v__; OTHER.setdefault(v__, []).append(k__); ptr[k__] = v__
+# 목록 순서: 26판 2025 칸 새 문항은 그 주제 첫 기존 카드 앞(JB 26판 순서) · 통증 2025-7 (2)는 같은 증례 PN08 바로 뒤 · 항불안제(AX — 4Q 진정수면제·약물상호작용 포함)는 맨 끝(새 강의 ANX)
+# · 10-25 새 문항(NEWX — 23q4 구강건조증 2020·떼어 낸 블록·옮긴 블록)은 가장 가까운 카드 바로 뒤(AFTER)
+AFTER = {'XE27': 'XE04', 'XE28': 'XE06', 'XE29': 'XE01', 'PN28': 'PN14', 'DS31': 'DS04'}
+_new = sorted([c for c in CANON if c[0] in NEW26], key=lambda c: c[0]); CANON[:] = [c for c in CANON if c[0] not in NEW26]
+_newx = [c for c in CANON if c[0] in NEWX]; CANON[:] = [c for c in CANON if c[0] not in NEWX]
 for c in _new:
-    if c[1] == 'AX': CANON.append(c); continue
+    if c[1] in ('AX', 'SD', 'DI'): CANON.append(c); continue
     if c[0] == 'PN27': CANON.insert(next(i for i, c2 in enumerate(CANON) if c2[0] == 'PN08') + 1, c); continue
     _at = next(i for i, c2 in enumerate(CANON) if c2[1] == c[1] and c2[0] not in NEW26)
     CANON.insert(_at, c)
+for c in _newx: CANON.insert(next(i for i, c2 in enumerate(CANON) if c2[0] == AFTER[c[0]]) + 1, c)
 FIGQ = {'RX42'}   # 문제 쪽에 표(그림)가 있는 26판 새 문항 — 'JB 원본에서 그림 확인' 안내(그림 붙이기는 다음 단계)
 FIGNO = {'PN27'}   # 낱말 속 '사진'(마약유사진통제)이 그림 단서로 잘못 잡힌 새 문항
 Q = []
 CROPS = {}
 for cid, topic, ed, sec, num, _s in CANON:
-    tier, pf = ('C' if topic == 'AX' else 'A'), None   # AX = 4Q 항불안제(이윤실·류현모 출제) — 참고(⭐ 연결 의무 없음)
+    tier, pf = ('C' if topic in TIER_C else 'A'), None   # AX = 4Q 항불안제(이윤실·류현모 출제)·SD·DI(23 4Q 진정수면제·약물상호작용) · DS(26 3Q 범위 아님) — 참고(⭐ 연결 의무 없음)
     x = find(ed, topic, sec, num); assert x, (cid, ed, sec, num)
-    t = x['text']; ty, raw = tag_years(t, ed, sec)
+    t = x['text']; ty, raw = tag_years(t, ed, sec); ty -= TAGX.get((ed, topic, sec, num), set())
     short = next((re.sub(r'^\s*(\d{1,2}(-\d)?)\s*[.．)]\s*', '', l).strip() for l in t.split('\n') if re.sub(r'^\s*(\d{1,2}(-\d)?)\s*[.．)]\s*', '', l).strip()), '')
     yrs = set(ty) | ({secyear(sec)} if not (x.get('sub') and ty) else set())   # 26판 소문항(4-1 등)은 제 괄호 연도만(머리 문항 칸 해를 붙이지 않음)
     for o_ in OTHER.get(cid, []):
-        e2, tp2, s2, n2 = o_; x2 = find(e2, tp2, s2, n2); t2 = tag_years(x2['text'], e2, s2)[0] if x2 else set()
+        e2, tp2, s2, n2 = o_; x2 = find(e2, tp2, s2, n2); t2 = (tag_years(x2['text'], e2, s2)[0] - TAGX.get(o_, set())) if x2 else set()
         if not (x2 and x2.get('sub') and t2): yrs.add(secyear(s2))
         yrs |= t2
     lname_ = S.LECMAP[TOPIC_LK[topic]][1].split("(")[0]
-    if ed == '23q4': src = f'JB 23판 · {sec}년 칸 · 4Q JB {lname_} {num}번'   # 23 4Q JB(판 연도는 화면에 쓰지 않음 — src_short가 '2022년 칸 1번'만)
+    if ed == '23q4': src = f'JB 23q4판 · {sec}년 칸 · 4Q JB {Q4NAME[topic]} {num}번'   # 23 4Q JB — 10-25 결정 F5 다른 판본 줄과 같은 이름 '23q4판'(3Q 23판과 구별)
     elif '-' in str(num): src = f'JB {ed}판 · {sec}년 칸 · {lname_} {str(num).split("-")[0]}번 소문항({num})'
     else: src = f'JB {ed}판 · {sec}년 칸 · {lname_} {num}번'
     Q.append({'id': cid, 'ed': ed, 'sec': sec, 'num': num, 'pg': x['pg'], 'pg2': x['pg2'], 'text': t, 'tier': tier, 'prof': x['prof'] or TOPIC_PROF[topic],
@@ -221,6 +278,7 @@ for ed, n in NPAGES.items():
     man = json.load(open(f'{BASE}{SUB}_20{ed}/manifest.json'))
     vis = {p['page_number'] for p in man['pages'] if p.get('has_visual_content')}
     for i in range(1, n + 1):
+        if ed == '23q4' and i in Q4SKIP: continue
         if not os.path.exists(f'{BASE}{SUB}_20{ed}/{i}.jpeg'):   # JB 쪽 이미지가 없는 환경(클라우드 세션) — 지금 docs/packs의 쪽 이미지를 그대로(tools/jblpaths.prev_jb_pages)
             IMG['jb'][f'{ed}-{i}'] = J.prev_jb_pages(SUB)[f'{ed}-{i}']; continue
         im = Image.open(f'{BASE}{SUB}_20{ed}/{i}.jpeg').convert('RGB')

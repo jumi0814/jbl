@@ -27,6 +27,7 @@ PROF = re.compile(r'^\s*\[?\s*([가-힣]{2,3})\s*교수님\s*\]?\s*$')
 CUE = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰기|쓰시|서술|설명|나열|비교|기술|채우|기입|빈칸|무엇|어떤|이유|차이|특징|구조|명칭|이름|위치|기능|분지|경계|골라|고르|옳|맞는|중복|미복원|\(\s*\d\d|\(탈|\(짤|\[서술|\[단답|\[객|추가복원|정의|관련|키워드|객관식|서술형|단답형')
 STRONG = re.compile(r'[?？]|시오|하시오|하라|하여라|쓰시|쓰기|적기|골라|고르|옳|맞는|서술하|설명하|나열|열거|중복|미복원|추가복원|\[서술|\[단답|\[객|\(탈\)|\(\s*\d\d\s*[,)]|\(짤|절개법|접근법|객관식|서술형|단답형|빈칸빵|넘버링|임상양상|해부학적 특징|그림 주고|그림을 보고|경계쓰고|키워드')
 ANS = re.compile(r'^\s*\[?답\]?\s*[:：)]|^\s*답\s*$')
+SPLIT_SUB = {('23', '2020', '22-2')}   # 10-25 결정 B3/E1 — 하위 문항을 따로 블록으로(23판 2020 칸 22번: 22-1 TMJ 절개법 그림 → 22번 블록 그대로 · 22-2 안면신경 가지 → '22-2' 블록) · 나머지 하위 문항은 상위 블록에 합침(그대로)
 def parse(ed, n):
     L = load(ed, n); blocks = []; cur = None; sec = '머리말'; prof = ''; last = 0; inans = False
     for idx, (pg, l) in enumerate(L):
@@ -47,7 +48,7 @@ def parse(ed, n):
             if base_.isdigit():
                 nn = int(base_); cue = (STRONG.search(near2) if inans else CUE.search(near)) is not None
                 ok = (nn > last or (sub and nn == last)) and cue
-                if ok and sub and cur is not None and nn == last:  # 하위 문항은 상위 블록에 합침
+                if ok and sub and cur is not None and nn == last and (ed, sec, num) not in SPLIT_SUB:  # 하위 문항은 상위 블록에 합침
                     cur['lines'].append(l); cur['pg2'] = pg; continue
             else: ok = True; nn = last
             if ok:

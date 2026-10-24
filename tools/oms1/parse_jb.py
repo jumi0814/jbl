@@ -55,6 +55,11 @@ def parse(ed,n):
                 cur={'ed':ed,'sec':sec,'prof':prof,'num':'추가','pg':pg,'lines':[l]}; blocks.append(cur); continue
             cur=None; continue
         if mp and ed=='25': prof=mp.group(1); cur=None; continue
+        # 10-25 결정 11(F1): 23판 서병무 DD 2020 1번 답 목록 '2. Developmental origin / 3. Trauma / 4. Tumors'(한 줄씩)는 문항이 아님 → 1번 답으로 이어 붙임
+        # (전에는 이 셋을 2·3·4번으로 읽어 진짜 2번 CDS 종류·3번 상중하 구조물·4번 방사선 사진 종류(12쪽)가 '4. Tumors' 블록에 묶였음 — 24판은 한 줄 'Developmental origin 3. Trauma 4. Tumors'라 assemble 병합 그대로)
+        if ed=='23' and sec=='서병무 DD 2020' and re.match(r'^\s*[234]\.\s*(Developmental origin|Trauma|Tumors)\s*$',l):
+            if cur is not None: cur['lines'].append(l); cur['pg2']=pg
+            continue
         if idx in candset and sec!='머리말':
             num=candset[idx]
             near=' '.join(x[1] for x in L[idx:idx+3])
