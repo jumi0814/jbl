@@ -1,7 +1,7 @@
 """디자인 v3 색 바꾸기(10-24 사용자 '밤티 · old fashioned — 색감·탭·배치 전면 개편, 내용은 그대로').
 따뜻한 저채도 색(종이 베이지·갈색 글자·크림 바탕)을 같은 밝기의 차가운 회색으로 바꾼다 — 명암비는 그대로 유지(밝기 L 보존).
 의미 색(빨강 핵심 · 초록 NEW 26 · 보라 26 강조 · 금색 ⭐ 기출 · 파랑 예상 · 형광펜·과목 색)은 채도가 높아 건드리지 않음.
-  .venv/bin/python tools/design/v3_palette.py <파일…> [--dry]   (한 번만 — 두 번 돌려도 같은 결과: 이미 차가운 회색은 그대로)"""
+  .venv/bin/python tools/design/v3_palette.py <파일…> [--dry]   (한 번만 — shell.html은 '10-24 디자인 v3' 묶음을 건너뜀)"""
 import os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from oklch import hex2rgb, rgb2oklch, oklch2rgb, rgb2hex
@@ -43,6 +43,11 @@ def transform(t, log):
         if (r, g, b) != nr: log.append((m.group(0), out))
         return out if (r, g, b) != nr else m.group(0)
     t = HEX.sub(fh, t)
+    def fu(m):   # data: URI 안의 %23RRGGBB(검색 돋보기 선 색 등 — 10-24 검토 8)
+        o = hex2rgb(m.group(1)); nr = remap(o)
+        if nr is None or nr == o: return m.group(0)
+        out = '%23' + rgb2hex(nr)[1:]; log.append((m.group(0), out)); return out
+    t = re.sub(r'%23([0-9A-Fa-f]{6})\b', fu, t)
     return RGB.sub(fr, t)
 
 if __name__ == '__main__':
@@ -51,7 +56,11 @@ if __name__ == '__main__':
         s = open(p, encoding='utf-8').read(); log = []
         # HTML이면 <style>…</style>와 <script>…</script>만(본문 글자는 손대지 않음) — js는 파일 전체
         if p.endswith('.html'):
-            out = re.sub(r'(<style>.*?</style>|<script>.*?</script>)', lambda m: transform(m.group(0), log), s, flags=re.S)
+            # '10-24 디자인 v3' 묶음부터 </style>까지는 이미 v3 색 — 건너뜀(다시 돌려도 v3 색이 바뀌지 않게)
+            def fs(m):
+                t = m.group(0); k = t.find('/* ===== 10-24 디자인 v3')
+                return transform(t, log) if k < 0 else transform(t[:k], log) + t[k:]
+            out = re.sub(r'(<style>.*?</style>|<script>.*?</script>)', fs, s, flags=re.S)
         else:
             out = transform(s, log)
         uniq = {}

@@ -563,6 +563,16 @@ M: ⚡ 암기 줄({r:} 포함)
 - **교수 거르기**: pack.jbprofs = 강의 연결 교수 + yp_of의 교수 전부 · 교수 2명↑면 `#fprof`(선택지 = 그 강의 카드 data-profs 전부 · 그 교수 문항이 모두 tier C면 '(참고 기출)').
 - **넘버링**: 문제 끝 꼬리표 qTail = 연도 최근 먼저 + 굵은 교수(`.nm-qt .p`) · 해마다 다르면 profTxt '교수 25·24 · 교수 22' — 내 넘버링 문서·넘버링 복습 스크롤·복습 카드·인쇄 같은 꼴.
 
+## 디자인 v3 (2026-10-24 — 이 절이 아래 v2보다 이김)
+- 사용자 10-24: 폰에서 위 탭이 화면 절반을 가림 + "색감 탭, 배치 구조 인터페이스 등 모든게 다 … old fashioned … 내용은 그대로 … 전면적 획기적으로". 진행 기록 `guide/handoff/UX_1024_디자인v3.md` · 원칙 `guide/정리본_원칙.md` 7-1 첫 줄.
+- 색 바꾸기(한 번, 이미 적용): `tools/design/v3_palette.py <파일…>` — 따뜻한 저채도(OKLCH C<0.03 · h 45~110 · L>0.94는 C<0.018)·순수 회색 → 같은 L의 차가운 회색(h 255) · L≥0.985 → 흰색 · 흰·검정·의미 색은 그대로. 대상 shell.html(style·script)·tools/num/num.js. 새 CSS에 따뜻한 회색을 쓰지 말 것.
+- 위치: `tools/cons/shell.html` `<style>` 맨 끝 '10-24 디자인 v3' 묶음(v2 묶음 뒤) — 새 화면 CSS도 이 묶음 뒤에. 옛 규칙이 더 구체적이면 `html body …`로 한 단계 올려 덮되, 표시 상태(.qc.mk-ok·.mk-ng·.mk-bm …)는 그보다 더 구체적이라 그대로 이기게 둔다.
+- 토큰: `--v-bg #F3F4F6` · `--v-surf #FFF` · `--v-tone #F0F2F5`(보조 단추·꺼진 칸) · `--v-tone-h` · `--v-line #E3E6EA` · `--v-line2` · `--v-ink #111827`·`--v-ink2/3/4` · `--brand = 먹`(`--brand-w #EBEEF2`) · 옛 이름(--paper·--bg·--card·--surface·--line·--ink·--acc)도 v3 값으로 · `--rad-s 10 · --rad-m 16 · --rad-p 999` · `--sh1·--sh2·--sh3`.
+- 부품: 앱바 #top(흰 .94 + blur · #gohome::before 먹 사각 로고) · 사이드바 #FAFBFC(지금 항목 흰 카드 + 가는 선) · 탭 #dtabs(꺼짐 회색 · 켜짐 먹 + `--sj` 밑줄 2px) · `.btn` 옅은 면 · `.btn.pri`·카드 '답 보기' 먹 채움 · `.tg` 꺼짐 옅은 면 / 켜짐 먹 채움 · 연도 칩 #FFF7E0(2회↑ #FFEDB8) · 카드 흰 + 선 + --sh1 · 🔑 #F5F7FA + 먹 띠 · ⭐ 시험포인트 #FFFBEF · #kit 어두운 알약(rgba(17,24,39,.92)).
+- 폰(≤600): 앱바 한 줄(로고 글자 숨김 · 과목 점만 · 지금 화면 이름 15px · 검색 = 돋보기, :focus면 앱바 폭으로) · **앱바 숨김** = 스크롤 JS(measure() 옆 '10-24 v3 폰 앱바') → `body.hdrhide`(#top translateY(-102%) · measure()의 th = 0 → --toph 0) · 맨 위 64px·서랍·집중·검색 중엔 보임 · 바꾼 직후 450ms 스크롤 무시(도구 줄 접힘 → 브라우저 스크롤 보정 → 되풀이 막기) · goEl(NOBAR) 이동 중엔 그대로 · 탭 줄 = `.dtrow` 한 줄 가로 밀기(지금 탭 가운데 — openDoc 끝) · `.lmini/.lmini2` = 둘째 줄(오른쪽 정렬), `body.hdrhide`면 숨김 · #ppills·.sumbar·.tbltoc·.hlbar·.cbmtabs·#jbbar(.mini 아닐 때) = static · #ppills·#jbbar .b1 = 한 줄 가로 밀기.
+- 글꼴: `--sans` 첫머리 "Pretendard Variable"(설치된 기기만 — 외부 CDN 없음: 클라우드 브라우저 프록시 인증서 오류로 콘솔 오류가 났음) → 시스템 고딕.
+- 검사: 폰 위 고정 높이 — 393×852에서 1200px 내린 뒤 #top이 화면 밖·#dtabs 아래 끝 ≤ 60px(JB 화면은 #jbbar.mini 아래 끝 ≤ 90px) · `tools/tests/ux_v3phone.py`.
+
 ## 디자인 시스템 v2 (2026-10-23 — 이 절이 위 U27·R3·ux4 묶음 등의 색·글꼴·단추 글자보다 이김)
 - 사용자 10-23: 결정 1~3 A안 + "전반적인 인터페이스·ui·디자인 … 깔끔하면서도 디자인적으로 편안하게, 지금은 너무 중구난방". 원칙 해설 `guide/정리본_원칙.md` 7-1 · 진행 기록 `guide/handoff/UX_1023_디자인.md`.
 - 위치: `tools/cons/shell.html` `<style>` 맨 끝 두 묶음('10-23 디자인 시스템 v2' · '— 2단계') · 넘버링 `tools/num/num.js`(같은 토큰).

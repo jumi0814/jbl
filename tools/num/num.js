@@ -448,7 +448,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-q>.nm-c{flex:1 1 0;min-width:0;font-size:inherit;line-height:inherit;min-height:0}
 #numv .nm-tags{flex:none;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;max-width:40%;padding-top:1px}
 #numv .nm-tag{display:inline-block;border:1px solid #D6DAE0;border-radius:5px;padding:0 6px;line-height:19px;font-size:11.5px;font-weight:500;color:#4B5460;background:#F6F7FA;white-space:nowrap}
-#numv .nm-tag.pf b{font-weight:800;color:#252C34}#numv .nm-tag.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600;font-variant-numeric:tabular-nums}
+#numv .nm-tag.pf b{font-weight:800;color:#252C34}#numv .nm-tag.yr{border-color:transparent;background:#FFF4D6;color:#7A5300;font-weight:600;font-variant-numeric:tabular-nums}
 #numv .nm-qt{margin-left:7px;font-size:12px;font-weight:500;color:#687382;white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:0;user-select:none;-webkit-user-select:none}
 #numv .nm-qt .p{margin-left:5px;font-weight:800;color:#2E363F}#numv .nm-qt .sep{margin:0 5px;color:#939CA8}   /* 10-16 교수 태그 굵게(사용자 '지금은 잘 안 보여') */
 #numv .nm-lcb{flex:none;border:1px solid var(--line,#DCE0E5);background:#fff;color:var(--brand,#2F5470);border-radius:5px;font-family:inherit;font-size:11.5px;font-weight:600;padding:0 6px;line-height:19px;cursor:pointer;white-space:nowrap}#numv .nm-lcb:hover,#numv .nm-lcb:focus-visible{background:var(--brand-w,#EDF2F6);border-color:var(--brand-l,#B9CAD8)}
@@ -508,9 +508,9 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-menu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
 #numv .nm-menu .warn{color:#B3261E}
 #numv .nm-chip{display:inline-block;border:1px solid #D6DAE0;border-radius:999px;padding:0 7px;line-height:19px;font-size:12px;color:#3D4550;background:#F6F7FA;white-space:nowrap}
-#numv .nm-chip.yr{border-color:#C9D9E8;background:#F0F5FA;color:#24466B;font-weight:600}
+#numv .nm-chip.yr{border-color:transparent;background:#FFF4D6;color:#7A5300;font-weight:600}
 #numv .nm-chip.bm{border-color:#EBD08A;background:#FFF6D9;color:#8A5A00;font-weight:700}#numv .nm-bm{font-size:13px;color:#B07A00;line-height:21px;padding:0 1px;cursor:help}
-#numv .nm-chip.k-jb{border-color:#D8C9E8;background:#F6F1FB;color:#4F2F78}#numv .nm-chip.k-pred{border-color:#E8D9C1;background:#F4F6F8;color:#6B4A12}#numv .nm-chip.k-seed,#numv .nm-chip.k-word{border-color:#C8DFD3;background:#EFF7F2;color:#1E5A3B}
+#numv .nm-chip.k-jb{border-color:transparent;background:#F0F2F5;color:#2F3846}#numv .nm-chip.k-pred{border-color:#E8D9C1;background:#F4F6F8;color:#6B4A12}#numv .nm-chip.k-seed,#numv .nm-chip.k-word{border-color:#C8DFD3;background:#EFF7F2;color:#1E5A3B}
 #numv .nm-chip.s0{color:#7D8794}#numv .nm-chip.s1{color:#8A5A00;border-color:#EBD7A8;background:#FFF8E6}#numv .nm-chip.s2{color:#1E6B3E;border-color:#B9DCC5;background:#EDF8F1;font-weight:700}
 #numv .nm-chip.rv{color:#9A3412;border-color:#F0C9B0;background:#F4F6F9}
 #numv .nm-chip.pr{font-weight:700}#numv .nm-chip.pr.p3,#numv .nm-prt.p3{background:#FBE4E1;color:#8A1C14;border-color:#E9B8B2}#numv .nm-chip.pr.p2,#numv .nm-prt.p2{background:#FFF0D1;color:#6B4500;border-color:#E8C987}#numv .nm-chip.pr.p1,#numv .nm-prt.p1{background:#EAEDEF;color:#4A535F;border-color:#D0D5DC}
@@ -547,7 +547,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-irow.dup{background:#F2F4F7}#numv .nm-irow.dup .t{color:#5A6471}
 #numv .nm-irow .add{font-size:12.5px;padding:3px 9px;min-height:30px}
 #numv .nm-irow .t[data-iview]{cursor:pointer}#numv .nm-irow .t[data-iview]:hover{color:var(--acc,var(--brand,#2F5470))}#numv .nm-irow.open .t{-webkit-line-clamp:unset;display:block}
-#numv .nm-ivb{border:1px solid #C9D9E8;background:#F0F5FA;color:#24466B;border-radius:999px;font-family:inherit;font-size:12px;font-weight:600;line-height:19px;padding:0 8px;cursor:pointer}
+#numv .nm-ivb{border:1px solid transparent;background:#F0F2F5;color:#2F3846;border-radius:999px;font-family:inherit;font-size:12px;font-weight:600;line-height:19px;padding:0 8px;cursor:pointer}
 #numv .nm-ians{margin:0 10px 8px 46px;padding:6px 10px 8px;border:1px solid #DCE0E5;border-radius:6px;background:#FFFFFF;font-size:13.5px}#numv .nm-ians>b{display:block;font-size:11px;color:#7D8794;margin:0 0 2px}#numv .nm-ians .nm-c{font-size:13.5px;line-height:1.55}
 #numv .nm-fld{display:grid;gap:4px}#numv .nm-fld>span{font-size:12.5px;font-weight:700;color:var(--sub)}
 #numv .nm-rich{border:1px solid #CCD1D8;border-radius:6px;background:#fff;color:#181E25;padding:6px 8px;min-height:3.2em;font-size:14.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
@@ -556,7 +556,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 #numv .nm-prev{border:1px solid #DCE0E5;border-radius:6px;padding:8px 10px;background:#fff;color:#181E25;margin:4px 0 0}
 #numv .nm-prev .nm-body{margin-left:0}#numv .nm-prev .nm-note{margin-left:0}
-#numv .nm-warn{color:#9A3412;font-size:13px}
+#numv .nm-warn{color:#B45309;font-size:13px}
 #numv .nm-prog{font-size:14px;color:var(--sub);padding:40px 20px;text-align:center}
 #numv .nm-lecin{font:inherit;font-size:14px;padding:4px 8px;border:1px solid #CCD1D8;border-radius:6px;min-width:12em}
 #numv .nm-rads{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
