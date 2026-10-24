@@ -23,6 +23,7 @@ def check(sid, cur, lock, move):
     err = []
     for i, h in lock.items():
         if i in move:
+            if move[i] == '': continue   # 10-25 일부러 뺀 카드(미복원 자리 카드 숨김 — 기출 대장에만) · 허브 jbMove는 빈 값을 건너뜀
             if move[i] not in cur: err.append(f'{i}→{move[i]}: 새 id가 팩에 없음')
             continue
         if i not in cur: err.append(f'{i}: id가 사라짐')

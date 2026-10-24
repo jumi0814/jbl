@@ -9,6 +9,77 @@ SID, TITLE, EN, COLOR, PROFS = S.SID, S.TITLE, S.EN, S.COLOR, S.PROFS
 esc = lambda s: html.escape(str(s), quote=True)
 SKIPL = set(os.environ.get('JBL_SKIP_LECS', '').split(',')) - {''}   # 10-17 중간 배포 — 작성 중인 강의는 강의·예상문제·표 모두 빼고 빌드(lecparse ORDER와 같은 값)
 Q = A.Q; QMAP = {q['id']: q for q in Q}; PRED = [p_ for p_ in A.PRED if p_['k'] not in SKIPL]; IMG = A.IMG
+# ---- 10-25 JB 전수 검토 결정(사용자 10-24 결정표 — guide/handoff/jb_audit_1024) · annot 머리 지시(@ID | 키=값)를 과목 공통으로:
+#  front=26[#n]  앞면 = 그 판(26판)의 n번째 사본(가장 최근 해 출제 꼴) · 옛 앞면은 '이전 출제 꼴'로 문제 바로 아래(펼친 채) + 다른 판본(공통-3)
+#  prev=n        다른 판본 앞쪽 n개를 '이전 출제 꼴'로 펼쳐 보임(합친 카드의 다른 꼴 — OMS1 Q37 서술·객관식)
+#  subq=2-2.,10-1.  그 글로 시작하는 줄부터 다시 문제(답 칸 속에 묻힌 하위 문항 — 공통-4) · ans=글  그 글로 시작하는 줄부터 답 칸
+#  subject.py YEAR_PROF·YEAR_PROF_Q 값 '-' = 그 해 출제 교수 근거 없음(칩에서 뺌)
+#  st=짤변형|짤|탈변형|탈  짤/탈 칩을 JB 표기대로 · kind=예고|예상  출제 아님(배지·집계에서 뺌) · hide=1|0  카드 숨김 강제/해제
+#  rel=Q01,Q02   관련 문항 여러 개(반대쪽 카드에도 자동으로 보임 — 공통-2)
+#  subject.py JBFIX = {카드 id 또는 '판|칸|번호': [(옛, 새), …]} — 줄바꿈이 띄어쓰기로 남은 것·뭉친 나열·답 끝에 붙은 다음 문항 머리글(공통-8·9 — 공백 말고 JB 글자는 그대로)
+ANNX = getattr(A, 'ANN', {}) or {}
+def _ax(i, k): return str((ANNX.get(i) or {}).get(k, '') or '').strip()
+_JBFIX_MISS = []
+for _k, _subs in (getattr(S, 'JBFIX', {}) or {}).items():
+    if '|' in _k:
+        _ed, _sec, _num = _k.split('|', 2)
+        _tg = [q_ for q_ in Q if q_['ed'] == _ed and str(q_['sec']) == _sec and str(q_['num']) == _num] + [v_ for q_ in Q for v_ in q_.get('other', []) if v_['ed'] == _ed and str(v_['sec']) == _sec and str(v_['num']) == _num]
+    else: _tg = [QMAP[_k]] if _k in QMAP else []
+    if not _tg: _JBFIX_MISS.append(f'{_k}: 대상 없음'); continue
+    for _o, _n in _subs:
+        _hit = 0
+        for _t in _tg:
+            if _o in _t['text']: _t['text'] = _t['text'].replace(_o, _n); _hit += 1
+        if not _hit: _JBFIX_MISS.append(f'{_k}: {_o[:30]!r} 없음')
+if _JBFIX_MISS: print('⚠ JBFIX 못 찾음:', _JBFIX_MISS)
+def _qpart(q_):
+    out = []
+    for l in q_['text'].split('\n'):
+        if out and re.match(r'^\s*(\[답\]|답)\s*[:：)]?', l): break
+        out.append(l)
+    return '\n'.join(out).strip()
+_YRTAG = re.compile(r'\(([^()]*?(?:\d{2}|20\d\d)[^()]*?)\)')
+for q in Q:   # front= · prev=
+    f_ = _ax(q['id'], 'front')
+    if f_:
+        ed_, _, n_ = f_.partition('#'); cands = [v_ for v_ in q.get('other', []) if v_['ed'] == ed_]
+        if len(cands) < int(n_ or 1): print(f'⚠ front={f_}: {q["id"]}에 그 판 사본 없음'); continue
+        v_ = cands[int(n_ or 1) - 1]
+        old = {'ed': q['ed'], 'sec': q['sec'], 'num': q['num'], 'pg': q['pg'], 'pg2': q.get('pg2', q['pg']), 'text': q['text'], 'src': q.get('src', '')}
+        q['other'] = [old] + [x for x in q['other'] if x is not v_]
+        head_ = ' '.join(_qpart(v_).split('\n'))   # 새 앞면의 문제 부분 전체(괄호가 마지막 보기 끝에 붙은 판 — CONS Q14 '(25,24,23)')
+        newtag = [m_.group(0) for m_ in _YRTAG.finditer(head_) if len(m_.group(1)) <= 30 and re.search(r'(?<!\d)(?:20)?\d{2}(?!\d)', m_.group(1))]   # 표시용 'JB 괄호 …'(연도는 assemble이 이미 셈)
+        q['jbtag'] = ' '.join(dict.fromkeys([t_ for t_ in newtag if t_ not in (q.get('jbtag') or '')] + ([q['jbtag']] if q.get('jbtag') else [])))
+        q.update(ed=v_['ed'], sec=v_['sec'], num=v_['num'], pg=v_['pg'], pg2=v_.get('pg2', v_['pg']), text=v_['text'], src=f'JB {v_["ed"]}판 · {v_["sec"]} {v_["num"]}번', fronted=True)
+        q['short'] = re.sub(r'^\s*\d{1,3}(-\d)?\.?\s*', '', v_['text'].split('\n')[0]).strip()[:52] or q['short']
+        q['tal'] = bool(q.get('tal')) or bool(re.search(r'\(탈\)', ' '.join(v_['text'].split('\n')[:3])))
+    np_ = int(_ax(q['id'], 'prev') or (1 if q.get('fronted') else 0))
+    for v_ in q.get('other', [])[:np_]: v_['prev'] = True
+for q in Q:   # kind= (예고·학습부 예상 — 출제 연도·집계에서 뺌)
+    k_ = _ax(q['id'], 'kind')
+    if k_: q['kind'] = k_; q['yrs_k'] = list(q['yrs']); q['yrs'] = []; q['xtra'] = []
+_SUBQ = {q['id']: [p_.strip() for p_ in _ax(q['id'], 'subq').split(',') if p_.strip()] for q in Q if _ax(q['id'], 'subq')}
+_ANSAT = {q['id']: [p_.strip() for p_ in _ax(q['id'], 'ans').split(',') if p_.strip()] for q in Q if _ax(q['id'], 'ans')}   # ans=글 — 그 글로 시작하는 줄부터 답 칸(JB에 '답' 표시 없이 문제 칸에 붙은 해설·편집자 답 — CONS Q46·Q60 · ANAT U06)
+_HIDE = re.compile(r'^\s*\d+(\s*-\s*\d+)?\s*[.)]?\s*\(?\s*(미복원|복원\s*불충분)\s*\)?\s*\.?\s*$')
+HIDDEN = []
+for q in list(Q):   # 공통-5 미복원·복원 불충분 자리 카드 → 숨김(기출 대장에만 '미복원')
+    h_ = _ax(q['id'], 'hide')
+    if h_ == '1' or (h_ != '0' and _HIDE.match(_qpart(q))): HIDDEN.append(q['id']); Q.remove(q); QMAP.pop(q['id'], None)
+if HIDDEN:
+    for r_ in getattr(A, 'LEDGER', []):
+        if any(t_ in HIDDEN for t_ in r_.get('to', [])):
+            r_['to'] = [t_ for t_ in r_['to'] if t_ not in HIDDEN]
+            if not r_['to']: r_['st'] = 'lost'
+    print('미복원 자리 카드 숨김(기출 대장에만):', HIDDEN)
+RELS = {q['id']: [r_ for r_ in re.split(r'[,\s·]+', q.get('rel') or '') if r_ in QMAP and r_ != q['id']] for q in Q}
+REVREL = {}
+for i_, rs_ in RELS.items():
+    for r_ in rs_: REVREL.setdefault(r_, [])
+    for r_ in rs_:
+        if i_ not in REVREL[r_]: REVREL[r_].append(i_)
+PAIRS = {q['id']: q['pair'] for q in Q if q.get('pair') in QMAP}
+REVPAIR = {}
+for i_, p_ in PAIRS.items(): REVPAIR.setdefault(p_, []).append(i_)
 # ---- JB 그림 조각(SPEC 'JB 그림 조각' · tools/jbfig.py → tools/<sid>/jb_crops.json): 상자로 JB 쪽 이미지를 잘라 IMG['crop']·q['crops']에 덧붙임
 # assemble의 기존 CROPS가 있는 종류(q/a)는 건너뜀(같은 그림 두 번 금지) · 쪽 이미지가 없으면(클라우드) 지금 팩의 같은 조각 · 파일이 없으면 출력 그대로
 JBC_P = os.path.join(DIR, 'jb_crops.json'); JBC = json.load(open(JBC_P, encoding='utf-8')) if os.path.exists(JBC_P) else {}
@@ -132,13 +203,21 @@ for q in Q:
 import trend
 COVER = S.COVER
 trend.analyze(Q, Q2CARD, LEC, COVER)
+for q in Q:   # annot st= — JB가 적은 짤/탈 표기로(OMS1 Q28 '반짤반탈' → 탈 · 변형 · IMPL Q18 '(짤 변형)' → 짤 · 변형 등)
+    o_ = _ax(q['id'], 'st')
+    if not o_ or not q.get('st'): continue
+    a_ = q['st']['latest']
+    if o_.startswith('짤'): a_.update(kind='짤', var='변형' in o_, jbmark=True); a_.setdefault('from', None); a_.pop('tal', None)
+    elif o_.startswith('탈'): a_.update(kind='탈', tal='변형' if '변형' in o_ else '새영역'); a_.pop('var', None)
 MENT_PROF = S.MENT_PROF
 MENT_ALL = S.MENT_ALL
 def st_chip(q):
     st = q.get('st')
     if not st or (q.get('v') == 'na' and not q.get('lk')): return ''
     a = st['latest']
-    if a['kind'] == '짤': return f'<span class="chip jj" title="짤 — {YR(a["from"])}년에도 출제된 문제">짤</span>'   # 연도는 배지에 이미 있음(V06)
+    if a['kind'] == '짤':   # 연도는 배지에 이미 있음(V06) · 10-25 '짤 · 변형'(JB 표기) · '짤 · 교수 바뀜'(사용자 10-24 '괄호에 더 이른 해가 있으면 짤로, 다만 교수님 바뀌었음 표기')
+        ttl = (f'{YR(a["from"])}년에도 출제된 문제' if a.get('from') else 'JB에 짤(이전 기출의 변형)로 표기') + (' — 그때는 다른 교수님 출제' if a.get('pc') else '')
+        return f'<span class="chip jj" title="짤 — {ttl}">짤{" · 변형" if a.get("var") else ""}{" · 교수 바뀜" if a.get("pc") else ""}</span>'
     if a['kind'] == '탈': return f'<span class="chip tt" title="탈 — 이 해에 처음 출제 · {"같은 카드에서 이전 기출이 있음(변형)" if a["tal"] == "변형" else "이전 기출이 없던 카드(새 영역)"}{", 교수 강조 쪽" if a.get("emph") else ""}">탈 · {"변형" if a["tal"] == "변형" else "새 영역"}{" · 💬" if a.get("emph") else ""}</span>'
     return f'<span class="chip base">{YR(a["y"])}년 — 기준선(이전 자료 없음)</span>'
 def st_kind(q):
@@ -151,9 +230,10 @@ def vchip(v):
     short = {'ok': '✓ 대조', 'none': '근거 없음', 'na': '자료 없음'}.get(v)
     return f'<span class="chip v-{v}{" vsm" if short else ""}" title="{VNAME[v]}">{short or VNAME[v]}</span>'
 def split_qa(q):
-    qs, as_, mode = [], [], 'q'
+    qs, as_, mode = [], [], 'q'; sq_ = _SUBQ.get(q['id'], []); an_ = _ANSAT.get(q['id'], [])
     for l in q['text'].split('\n'):
-        if re.match(r'^\s*(유사복원\)|추가복원\)|\*?비슷한 복원|복원 원문)', l) or (q['id'] == 'Q23' and re.match(r'^\s*\(\d\)\s', l)): mode = 'q'
+        if an_ and mode == 'q' and any(l.strip().startswith(p_) for p_ in an_): mode = 'a'; as_.append(l); continue
+        if re.match(r'^\s*(유사복원\)|추가복원\)|\*?비슷한 복원|복원 원문)', l) or (q['id'] == 'Q23' and re.match(r'^\s*\(\d\)\s', l)) or (sq_ and any(l.strip().startswith(p_) for p_ in sq_)): mode = 'q'
         if reflow.LABEL.match(l) and '참고' not in l.split(':')[0] and mode == 'q' and re.match(r'^\s*(\[답\]|답)', l): mode = 'a'
         (qs if mode == 'q' else as_).append(l)
     return '\n'.join(qs), '\n'.join(as_)
@@ -163,7 +243,7 @@ def yp_of(q):
     base = (q.get('prof') or '').split('(')[0].strip()
     Ld = getattr(S, 'YEAR_PROF', {}).get(q.get('lk') or '', {}) or {}; Qd = getattr(S, 'YEAR_PROF_Q', {}).get(q['id'], {}) or {}
     g = lambda d, y: d.get(y) or d.get(2000 + y if y < 100 else y) or d.get(y % 100)
-    return [(y, g(Qd, y) or g(Ld, y) or base) for y in q['yrs']]
+    return [(y, '' if (g(Qd, y) or g(Ld, y)) == '-' else (g(Qd, y) or g(Ld, y) or base)) for y in q['yrs']]   # 10-25 '-' = 그 해 출제 교수 근거 없음(비움 — ESTH 18~22년 색 문항)
 def prof_main(q):
     """카드 data-prof = 가장 최근 출제 해의 출제 교수(연도별 표가 있으면) · 없으면 강의 연결 교수"""
     yp = [p for _, p in yp_of(q) if p]
@@ -187,6 +267,9 @@ def prof_chip(q):
     return f'<span class="chip pf" title="출제 교수 {esc(prof_main(q))}">{h}</span>'
 def yr_badge(q, big=True):
     ys = q['yrs']; n = len(ys)
+    if q.get('kind'):   # 10-25 kind=예고·예상 — 출제 연도로 세지 않음(실린 칸 연도는 title)
+        lab_ = {'예고': '수업 예고 문항', '예상': '학습부 예상문제'}.get(q['kind'], q['kind'])
+        return f'<span class="ybadge n0 kd" title="출제 아님 — JB {"·".join(YR(y) for y in q.get("yrs_k", []))}년 칸에 실림"><b>{esc(lab_)}</b><i>출제 아님</i></span>'
     if not n: return '<span class="ybadge n0">연도 표기 없음</span>'
     lab_ = " · ".join(YR(y) for y in ys) if (big and n <= 6) else (" · ".join(YR(y) for y in ys[:4]) + (f" … {YR(ys[-1])}" if n > 4 else ""))
     return f'<span class="ybadge n{min(n,3)}" title="{" · ".join(YR(y) for y in ys)}"><b>{lab_}</b><i>{n}회 출제</i></span>'
@@ -556,13 +639,17 @@ def qcard(q, idx):
     h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-lprof="{esc((q.get("prof") or "").split("(")[0].strip())}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{prof_chip(q)}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(cut_bal(TIERS.get(q["tier"], ""), 22))}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
+    for v_ in [v_ for v_ in q.get('other', []) if v_.get('prev')]:   # 10-25 공통-3 '이전 출제 꼴' — 앞면이 가장 최근 판이면 옛 앞면의 문제·보기를 바로 아래(펼친 채) · 답은 '다른 판본'에
+        pq_, _ = split_qa({'id': q['id'], 'text': v_['text']})
+        h.append(f'<div class="qprev"><div class="qph noann">이전 출제 꼴 · JB {v_["ed"]}판 · {esc(v_["sec"])} {esc(v_["num"])}번 <small>답은 ‘다른 판본’에</small></div><div class="lines">{reflow.render(pq_, True, choices=True)}</div></div>')
     if q.get('jbc') == 'absent' and not figq: h.append('<div class="small">🖼 그림 문항 — 문제의 사진·그림은 JB에 실려 있지 않습니다(문제 글만 복원됨).</div>')   # jb_crops.json nofig (tools/jbfig.py 검수)
     elif q.get('jbc') == 'crop' and q['fig'] and not figq and figa: h.append('<div class="small">🖼 그림 문항 — JB의 그림은 답 쪽에 실려 있어(답이 함께 보임) ‘답·해설’ 안에 붙였습니다.</div>')
     elif q['fig'] and not figq and q.get('jbc') != 'text': h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
     sd = [f'<div class="qsub"><span class="prov noann" title="{esc(q["src"] or "")}">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>']
     if q['yrsnote']: sd.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
-    if q.get('rel') and q['rel'] in QMAP: r = QMAP[q['rel']]; sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], "·".join(YR(y) for y in r["yrs"]) + "년 · " + esc(cut_bal(r["short"], 78)))}</div>')
-    if q.get('pair') and q['pair'] in QMAP: sd.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(q["pair"], esc(QMAP[q["pair"]]["src"]))}</div>')
+    _rl = RELS.get(q['id'], []) + [x_ for x_ in REVREL.get(q['id'], []) if x_ not in RELS.get(q['id'], [])]   # 10-25 공통-2 관련 문항 양방향(적은 쪽 + 가리킨 쪽)
+    for r in (QMAP[x_] for x_ in _rl): sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], ("·".join(YR(y) for y in r["yrs"]) + "년 · " if r["yrs"] else "") + esc(cut_bal(r["short"], 78)))}</div>')
+    for p_ in ([PAIRS[q['id']]] if q['id'] in PAIRS else []) + [x_ for x_ in REVPAIR.get(q['id'], []) if x_ != PAIRS.get(q['id'])]: sd.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(p_, esc(QMAP[p_]["src"]))}</div>')
     h.append(f'<details class="srcd"><summary class="noann">출처·연도 근거</summary>{"".join(sd)}</details>')
     jbb = ''.join(f'<button class="btn sm" data-jb="{q["ed"]}-{p}">JB 원본 {p}쪽</button>' for p in range(q['pg'], q['pg2'] + 1))
     deep = bool(q['A'] or q['M'] or q['N'] or q['other'] or 'class="exw' in at_h or q['tier'] == 'C')
@@ -956,7 +1043,7 @@ def strat_tag(x):
     if x.startswith('기출이 걸린 카드'): return '탈=변형'
     if x.startswith('아직 안 나온 카드'): return '탈=새 영역'
     if x.startswith('💬'): return '💬 강조 카드'
-    m = re.match(r'^(서술형|객관식|빈칸|T/F|단답형):', x)
+    m = re.match(r'^(넘버링|서술형|객관식|빈칸|T/F|단답형):', x)
     return m.group(1) if m else ''
 prow = ''; psum = ''; trow = ''; SUSE = {}
 for p_, qs in profS.items():
@@ -971,7 +1058,7 @@ for p_, qs in profS.items():
         if x not in SCOMMON: SUSE.setdefault(x, []).append(p_)
     psum += f'<li title="{esc(t_)}"><span class="tsl">{esc(trend.prof_line(p_, SM))}</span>{(" <span class=tk>· " + esc(" · ".join(tags)) + "</span>") if tags else ""}</li>'
     # ux4 B3-3 경향 표 한 행(교수 | 최근 해 | 짤/탈 | 유형 | 짤 비율 | 탈의 성격·형식) — 탈 성격은 전략 항목 전체에서(공통 항목 포함), 형식은 최근 해 최다
-    _nat = [t.replace('탈=', '') for t in dict.fromkeys(strat_tag(x) for x in PPARTS[p_][1]) if t and t not in ('서술형', '객관식', '빈칸', 'T/F', '단답형')]
+    _nat = [t.replace('탈=', '') for t in dict.fromkeys(strat_tag(x) for x in PPARTS[p_][1]) if t and t not in ('넘버링', '서술형', '객관식', '빈칸', 'T/F', '단답형')]
     _pc = trend.prof_cells(SM); _fm = max(_pc[4].split(' · '), key=lambda z: int(z.rsplit(' ', 1)[-1]) if z.rsplit(' ', 1)[-1].isdigit() else 0).rsplit(' ', 1)[0] if _pc[4] and _pc[4] != '—' else ''
     trow += f'<tr class="tsl" title="{esc(trend.prof_line(p_, SM))}"><th>{esc(p_)}</th><td class="n">{_pc[0]}</td><td class="n">{_pc[1]}</td><td>{_pc[2]}</td><td class="n">{_pc[3]}</td><td>{esc(" · ".join(_nat + ([_fm] if _fm else [])))}</td></tr>'
     if getattr(S, 'TREND_NOTE', {}).get(p_): trow += f'<tr class="tnote"><td colspan="6"><small>※ {esc(S.TREND_NOTE[p_])}</small></td></tr>'   # ux4f 맥 인계 10-03 — 강의 연결만으로 그 교수에 들어간 문항 등 집계 주석(subject.py PROF_NOTE)

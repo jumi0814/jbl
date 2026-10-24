@@ -13,7 +13,7 @@ TOOLS = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, TOOLS)
 import jblpaths as J
 
 SIDS = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
-FMTS = ['객관식', 'T/F', '빈칸', '단답형', '서술형']   # fmt_of가 돌려주는 값(이 밖의 값이 나오면 뒤에 덧붙임)
+FMTS = ['객관식', 'T/F', '빈칸', '단답형', '넘버링', '서술형']   # fmt_of가 돌려주는 값(이 밖의 값이 나오면 뒤에 덧붙임)
 SUBDIRS = {os.path.join(TOOLS, s.lower()) for s in SIDS}
 
 # ---------- 불러오기 ----------

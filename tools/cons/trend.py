@@ -20,6 +20,7 @@ def fmt_of(q):
     lab = (q.get('lab24') or '')
     L = q_lines(q); stem = ' '.join(L[:4]); qp = ' '.join(L)
     src = lab + ' ' + stem
+    if re.search(r'넘버링', src) or re.search(r'넘버링\s*문제', q['text']): return '넘버링'   # 10-25 사용자 공통-7 — JB가 '넘버링'이라 적은 문항(문제 머리·답 해설 '넘버링 문제입니다')
     if re.search(r'[\[(]\s*서술형\s*[\])]', src): return '서술형'
     if re.search(r'[\[(]\s*단답형\s*[\])]', src): return '단답형'
     if re.search(r'\[\s*객\s*\]|[\[(]\s*객관식\s*[\])]', src): return '객관식'
@@ -38,8 +39,10 @@ def fmt_of(q):
     body2 = re.sub(r'\s*\([^()]*\d{2}[^()]*\)\s*$', '', body).strip()   # 끝 연도 괄호 '(20’, 19’)' 떼고
     if body2 and re.search(r'다\.?$', body2) and not re.search(r'\?|시오|하라|쓰|서술|설명|나열|무엇|어떤|몇', body2): return 'T/F'   # 10-16 평서문 한 문장 = O/X 판정 문항('…증가한다.')
     src = lab + ' ' + qp   # 10-16 단답/서술은 문제 부분 전체로(긴 증례 문제의 '…설명하시오'가 5번째 줄에 있음 — 답은 q_lines가 이미 뺌)
-    if re.search(r'단답|쓰시오|쓰세요|쓰고|약자|무엇|몇|시기는|각도', src) and not re.search(r'서술|설명|나열|기술|장단점|이유|비교', src): return '단답형'
-    if re.search(r'서술|설명|나열|기술|장단점|이유|과정|목적|한계|단점|장점|특징|종류|비교', src): return '서술형'   # 10-16 '비교하시오'
+    if re.search(r'나열|열거|(?:\d+|두|세|네|다섯|여섯)\s*(?:가지|개)\s*(?:이상)?\s*(?:을|를|만|씩|와|과)?\s*(?:\S+\s*){0,3}?(?:쓰|적|서술|기술|설명|말|나열|열거)', src) and not re.search(r'\[\s*단답형?\s*\]|\(\s*단답형?\s*\)', src): return '넘버링'   # 10-25 사용자 공통-7 — 항목 n가지·나열 = 넘버링(번호 붙여 나열하는 서술)
+    if re.search(r'단답|쓰시오|쓰세요|쓰고|약자|무엇|몇|시기는|각도', src) and not re.search(r'서술|설명|나열|기술|장단점|이유|비교|말하|어떻게|방법|대처|처치|해결', src): return '단답형'
+    if re.search(r'서술|설명|나열|기술|장단점|이유|과정|목적|한계|단점|장점|특징|종류|비교|말하|어떻게|방법|대처|처치|해결', src): return '서술형'   # 10-16 '비교하시오' · 10-25 '말하시오'·'어떻게 할 것인가'·'해결 방법'(GERI J07·K02·E12)
+    if re.search(r'치료|관리|예방', stem) and not re.search(r'\?|쓰시오|무엇|몇', src): return '서술형'   # 10-25 GERI J12 '악안면 통증의 비약물적 치료'(동사 없이 주제만)
     return '단답형'
 def jb_mark(q):
     src = (q.get('lab24') or '') + ' ' + ' '.join(q['text'].split('\n')[:4])
@@ -60,8 +63,8 @@ def analyze(Q, Q2CARD, LEC, PROF_COVER):
         prof = (q['prof'] or '').split('(')[0]; base = PROF_COVER.get(prof, 0)
         app = []
         for y in sorted(q['yrs']):
+            if any(y2 < y for y2 in q['yrs']): app.append({'y': y, 'kind': '짤', 'from': max(y2 for y2 in q['yrs'] if y2 < y), 'pc': y <= base}); continue   # 10-25 사용자 '괄호에 더 이른 해가 있으면 짤로, 다만 교수님 바뀌었음 표기' — 지금 교수 자료가 커버하는 첫 해 이하의 짤 = 이전 교수 시절 기출(pc)
             if y <= base: app.append({'y': y, 'kind': '기준선'}); continue
-            if any(y2 < y for y2 in q['yrs']): app.append({'y': y, 'kind': '짤', 'from': max(y2 for y2 in q['yrs'] if y2 < y)}); continue
             c = Q2CARD.get(q['id']); prior = False
             if c:
                 for q2 in by_card.get(c, []):
@@ -179,7 +182,7 @@ def tendency_parts(S, name, ment=''):
     fm = L['fmt']
     if fm:
         top = max(fm, key=fm.get)
-        strat.append({'서술형': '서술형: 항목 수와 번호(①②③)를 정확히 — 암기 줄을 소리 내어 나열', '객관식': '객관식: 절대/상대·이상/이하 같은 대비 쌍이 함정 — 비교표로', '빈칸': '빈칸: 정의 문장을 통째로 — 용어↔정의 양방향', 'T/F': 'T/F: 한 문제에 여러 카드가 섞임 — 수치·조건(mm, 주, %)을 정확히', '단답형': '단답형: 수치·시기·이름을 즉답 — ⚡ 암기 줄 반복'}[top])
+        strat.append({'넘버링': '넘버링: 항목 수를 먼저 외우고 번호대로 — ✎ 내 넘버링 스토리로', '서술형': '서술형: 항목 수와 번호(①②③)를 정확히 — 암기 줄을 소리 내어 나열', '객관식': '객관식: 절대/상대·이상/이하 같은 대비 쌍이 함정 — 비교표로', '빈칸': '빈칸: 정의 문장을 통째로 — 용어↔정의 양방향', 'T/F': 'T/F: 한 문제에 여러 카드가 섞임 — 수치·조건(mm, 주, %)을 정확히', '단답형': '단답형: 수치·시기·이름을 즉답 — ⚡ 암기 줄 반복'}[top])
     if ment: parts.append('학습부 멘트 — ' + ment)
     return (parts, strat)
 def short_line(S):

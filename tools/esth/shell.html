@@ -2519,6 +2519,11 @@ html body #stage .qc .acts .btn.pri:hover,html body #stage .pc .acts .btn.pri:ho
  #dtabs .dtrow{flex:1 0 100%!important}
  body #dtabs .lmini,body #dtabs .lmini2,body:not(.focus) #dtabs .lmini,body:not(.focus) #dtabs .lmini2,body.focus #dtabs .lmini,body.focus #dtabs .lmini2{flex:1 1 100%!important;justify-content:flex-end;margin:0!important;padding:0 0 4px!important;box-shadow:none!important}
 }
+/* 10-25 JB 결정표(공통-3·사용자 '앞면 대표 판을 가장 최근 판으로, 그리고 기존 선지들 또한 아래에 표시') — 이전 출제 꼴 상자 · 예고·학습부 예상 배지(출제 아님) */
+.qc .qprev{margin:10px 0 2px;padding:8px 12px 6px;border:1px dashed var(--line);border-radius:10px;background:var(--tint)}
+.qc .qprev .qph{font-size:12.5px;color:var(--sub);font-weight:600;margin-bottom:4px;line-height:1.4}.qc .qprev .qph small{font-weight:400;margin-left:6px;color:var(--faint)}
+.qc .qprev .lines{font-size:15px;line-height:1.65}.qc .qprev .ln.q1{font-weight:600;font-size:15px}
+.ybadge.kd,.ybadge.n0.kd{background:var(--tint);color:var(--sub);border:1px dashed var(--line)}
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><button type="button" id="qjb" title="바로 가기 — 과목·화면·강의 탭·넘버링을 글자로 골라 바로 (⌘K · Ctrl+K)" aria-label="바로 가기 (Ctrl+K)" aria-haspopup="dialog"><span class="qji" aria-hidden="true">⇥</span><span class="qjl">바로 가기</span><kbd class="qjk">⌘K</kbd></button><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>

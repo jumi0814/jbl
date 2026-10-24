@@ -178,3 +178,9 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 - 폰(≤600): 위에 붙는 것은 앱바·탭 줄·JB 작은 막대뿐 — 새 sticky 막대는 shell.html 폰 묶음 static 목록에 더함 · 이름 말줄임 0.
 - 끝나면: sync_common → rehub → 1440·1280(일반·집중)·820·393 스크린샷 직접 보기 → tools/tests/ux_v3phone.py(새 주소 더함)·ux_align(새 화면 주소 더함)·ux_u27·ux_u23·ux_u24·ux4f_G·ux3_fixes·audit_design·verify → v3_palette --check 0.
 ```
+
+## JD JB 결정 반영 — 과목 하나(10-25 · guide/handoff/jb_audit_1024/AGENT_BRIEF.md 그대로)
+- 입력: 과목 결정 목록(결정표 번호 → 할 일) · `guide/handoff/jb_audit_1024/<SID>_review.md`(근거·쪽). 고칠 곳은 tools/<sid>/ 과목 파일만(공통 build4·trend·shell 금지).
+- 쓸 수 있는 annot 지시: front=26[#n] · prev=n · subq= · ans= · st= · kind= · hide= · rel=여럿 · subject.py JBFIX · YEAR_PROF_Q 값 '-'(근거 없음).
+- 합치기 = 남는 카드 OTHER에 옮기고 jb_move {없어진: 남는} · 숨김 {id: ""} · 앞면 바뀜 {id: id} · 새 카드 id는 jb_lock에 없는 번호.
+- 끝: build4 ⚠ 0 · 연결 누락 3줄 [] · check_lec·check_years·check_eyears·check_yearprof·link_audit·pred_check·fmt_audit·jb_cover · 결정마다 팩에서 확인 → 한국어 보고.
