@@ -36,6 +36,8 @@ for f in sorted(os.listdir(DOCS + '/packs')):
     ok(not hits, f'{f}: 답안에 삼켜진 문항 {len(hits)}건 {hits[:3]}')
 # ---- 1b2. ux2 F12 문제 보기 줄 중간 끊김 — 보기(번호 줄) 사이·끝에 번호 없는 짧은 줄이 끼인 곳(tools/cons/reflow.py stray와 같은 규칙) 0
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cons')); import reflow as _RF
+# 10-25 확인한 예외(보기가 아닌 줄): ANAT Q13 앞면(26판 2025 19번) '( 1 )'은 빈칸이고 다음 줄은 새 물음 · GERI C16(23판 2020 5번) 끝 줄은 JB 복원자 메모('그 외 선지는 완전히 벗어난 값들')
+STRAY_OK = {('ANAT.js', 'Q13'), ('GERI.js', 'C16')}
 for f in sorted(os.listdir(DOCS + '/packs')):
     if '.img.' in f or not f.endswith('.js') or f.endswith('.lx.js'): continue
     t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1]); hits = []
@@ -44,6 +46,7 @@ for f in sorted(os.listdir(DOCS + '/packs')):
         if not m: continue
         L = [_html.unescape(_re.sub('<[^>]+>', '', x)) for x in _re.findall(r'<div class="ln[^>]*>(.*?)</div>', m.group(1))]
         for i in range(1, len(L)):
+            if (f, cid) in STRAY_OK: continue
             if _RF.stray(L[i - 1], L[i], 10 ** 6) and (i == len(L) - 1 or _RF.CHOICE.match(L[i + 1])): hits.append(f'{cid}: {L[i][:30]}')
     ok(not hits, f'{f}: 보기 사이에 끼인 번호 없는 짧은 줄 {len(hits)}건 {hits[:3]}')
 # ---- 1c. JB 문항 id 잠금(C09) — 있던 id의 문제 글자가 바뀌거나 id가 사라지면 실패(옮김 표 tools/<sid>/jb_move.json 필요)
