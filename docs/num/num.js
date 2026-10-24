@@ -2221,6 +2221,7 @@ function rLoad(sj) {
   RV.rr = M; RV.sj = sj;
 }
 const rOf = id => RV.rr.get(id) || null;
+function rFresh(id) { try { const v = sGet('num.r.' + S.sj + '.' + id); if (v != null) { const r = JSON.parse(v); if (r && r.id) { RV.rr.set(r.id, r); return r; } } } catch (e) {} return rOf(id); }   /* 10-24 기기 동기화 — 쓰기 직전엔 저장소에서 다시(다른 기기에서 받은 이력을 화면 메모리의 옛 판이 덮지 않게) */
 const lastM = id => { const r = RV.rr.get(id); return r && (r.m === 0 || r.m === 1 || r.m === 2) ? r.m : -1; };
 function rPut(r) {
   r.u = now(); RV.rr.set(r.id, r); const ok = rawPut('num.r.' + S.sj + '.' + r.id, r);
@@ -2229,7 +2230,7 @@ function rPut(r) {
 }
 function prevMark(id) { const r = rOf(id), sid = RV.ses && RV.ses.sid; if (!r || !Array.isArray(r.h)) return null; for (let i = r.h.length - 1; i >= 0; i--) if (r.h[i].s !== sid && r.h[i].m >= 0) return r.h[i]; return null; }
 function markSet(id, m) {   /* 이 회차 평가 — 다시 누르면 고침(이력의 이 회차 칸을 바꿈) · 같은 것을 또 누르면 지움 */
-  const s = RV.ses; if (!s) return; const r = rOf(id) || { id, h: [], w: [] }; r.h = Array.isArray(r.h) ? r.h : [];
+  const s = RV.ses; if (!s) return; const r = rFresh(id) || { id, h: [], w: [] }; r.h = Array.isArray(r.h) ? r.h : [];
   const li = r.h.length && r.h[r.h.length - 1].s === s.sid ? r.h.length - 1 : -1;
   if (s.mk[id] === m) { if (li >= 0) r.h.splice(li, 1); delete s.mk[id]; const p = r.h[r.h.length - 1]; r.m = p ? p.m : undefined; r.d = p ? p.t : undefined; }
   else { const e = { t: now(), m, s: s.sid }; if (li >= 0) r.h[li] = e; else r.h.push(e); if (r.h.length > 30) r.h = r.h.slice(-30); r.m = m; r.d = e.t; s.mk[id] = m; }
@@ -2265,7 +2266,7 @@ function sesNew(o) {
 function sesArchive() {   /* 끝난 회차: 쓴 답안 → 문제마다 지난 답안(w) · 회차 기록 한 줄 — 평가는 이미 문제마다 저장됨 */
   const s = RV.ses; if (!s) return; RV.drDirty = true; drSave();
   const A = (RV.dr && RV.dr.sid === s.sid && RV.dr.a) || {}, wn = [];
-  for (const id in A) { const x = String(A[id] || '').trim(); if (!x) continue; wn.push(id); const r = rOf(id) || { id, h: [], w: [] }; r.w = (Array.isArray(r.w) ? r.w : []).filter(w => w.s !== s.sid); r.w.push({ t: now(), s: s.sid, x: x.slice(0, 20000) }); if (r.w.length > 10) r.w = r.w.slice(-10); rPut(r); }
+  for (const id in A) { const x = String(A[id] || '').trim(); if (!x) continue; wn.push(id); const r = rFresh(id) || { id, h: [], w: [] }; r.w = (Array.isArray(r.w) ? r.w : []).filter(w => w.s !== s.sid); r.w.push({ t: now(), s: s.sid, x: x.slice(0, 20000) }); if (r.w.length > 10) r.w = r.w.slice(-10); rPut(r); }
   const mk = Object.values(s.mk || {});
   if (mk.length || wn.length) { const L = H.LS.get('num.rl.' + S.sj, []) || []; L.push({ sid: s.sid, t0: s.t0, t1: now(), sc: s.sc, n: s.ids.length, c: [0, 1, 2].map(m => mk.filter(v => v === m).length), w: wn.length, retry: s.retry ? 1 : 0 }); H.LS.set('num.rl.' + S.sj, L.slice(-200)); }
   rawDel(drK()); rawDel(sesK()); RV.ses = null; RV.dr = null;
@@ -2696,6 +2697,7 @@ function bind() {
   addEventListener('resize', () => { if (S.drawer && innerWidth > 860) drawer(false); });
   addEventListener('pagehide', flush); document.addEventListener('visibilitychange', () => { if (document.hidden) flush(); });
   const other = key => {   /* 다른 창에서 고친 문제 — 모았다가 한 번에(고치는 중인 문제는 건드리지 않음) */
+    if (key && RV.sj && key.indexOf(H.NS + 'num.r.' + RV.sj + '.') === 0) { const id = key.slice((H.NS + 'num.r.' + RV.sj + '.').length); try { const v = sGet('num.r.' + RV.sj + '.' + id); if (v == null) RV.rr.delete(id); else { const r = JSON.parse(v); if (r && r.id) RV.rr.set(r.id, r); } } catch (e) {} return; }   /* 10-24 다른 창·다른 기기의 복습 기록 → 화면 메모리도 */
     if (!S.root || !document.getElementById('numv') || !key || key.indexOf(H.NS + 'num.i.' + S.sj + '.') !== 0) return;
     SQ.add(key.slice((H.NS + 'num.i.' + S.sj + '.').length)); clearTimeout(sqT); sqT = setTimeout(syncOther, 400);
   };

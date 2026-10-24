@@ -2,7 +2,7 @@
 GitHub Gist API를 가짜 서버(page.route — 목록 since·updated_at·내용 없는 목록·PATCH/POST)로 흉내 내고 컴퓨터(1280)·휴대폰(393 터치) 두 창:
  ① 컴퓨터 연결 = 기준 · 과목별 Gist ② 휴대폰 연결 = 컴퓨터 기준 첫 합치기(★ 카드 합집합 · 넘버링 = 컴퓨터 것 · 메모 둘 다 · 휴대폰 플래시카드 유지 · 공부 시간 기기별 · 합치기 전 자동 백업)
  ③ 컴퓨터가 휴대폰 기록을 새로고침 없이 반영 ④ 화면 메모리의 옛 채점이 새로 받은 ★ 문제를 덮지 않음(JB 카드 ★ 누른 뒤에도 둘 다)
- ⑤ 지운 ★ 전파 ⑥ 두 기기가 같은 때 고친 ★ 카드 = 둘 다 남음 ⑦ 같은 넘버링 문제를 둘 다 고침 = 더 최근 것
+ ⑤ 지운 ★ 전파 ⑥ 두 기기가 같은 때 고친 ★ 카드 = 둘 다 남음 ⑦ 같은 넘버링 문제를 둘 다 고침 = 더 최근 것 ⑫ 한쪽 지움·한쪽 더함 = 지운 채·더한 것 남음 ⑬ 복습 이력 둘 다 ⑭ 되풀이 없음 ⑮ 기기 전용 값 안 넘어감 ⑯ 토큰 바꿔도 기억 ⑰ 기기 지우기
  ⑧ 바뀐 과목 묶음만 보냄 · 바뀐 게 없으면 목록 1번만(내용 받기 0) ⑨ 토큰이 백업·Gist에 없음 ⑩ 틀린 토큰 ⑪ 끊으면 더는 안 보냄 · 페이지 오류 0"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import asyncio, json, datetime
@@ -14,11 +14,11 @@ def now_iso():
 def ok(c, m):
     print(('  OK   ' if c else '  FAIL ') + m)
     if not c: fails.append(m)
-CORS = {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Authorization, Content-Type, Accept', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, OPTIONS', 'Content-Type': 'application/json'}
-async def gh(route):
+CORS = {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Authorization, Content-Type, Accept', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS', 'Content-Type': 'application/json'}
+async def gh(route, tag=''):
     rq = route.request; m = rq.method; path = rq.url.split('api.github.com', 1)[1]
     if m == 'OPTIONS': return await route.fulfill(status=204, headers=CORS)
-    LOG.append((m, path.split('?')[0], len(rq.post_data or '')))
+    LOG.append((m, path.split('?')[0], len(rq.post_data or ''), tag))
     if (rq.headers.get('authorization') or '') != 'Bearer ' + TOK: return await route.fulfill(status=401, headers=CORS, body='{"message":"Bad credentials"}')
     if m == 'GET' and path.startswith('/gists?'):
         q = dict(x.split('=', 1) for x in path.split('?', 1)[1].split('&')); since = q.get('since', '').replace('%3A', ':')
@@ -40,6 +40,7 @@ async def gh(route):
             else: G[gid]['files'][k] = v['content']
         G[gid]['updated_at'] = now_iso()
         return await route.fulfill(status=200, headers=CORS, body=json.dumps({'id': gid}))
+    if m == 'DELETE': G.pop(gid, None); return await route.fulfill(status=204, headers=CORS)
     await route.fulfill(status=400, headers=CORS, body='{}')
 async def setv(pg, k, v): await pg.evaluate("([k,v])=>localStorage.setItem(k,v)", [NS + k, v if isinstance(v, str) else json.dumps(v)])
 async def getv(pg, k): return await pg.evaluate("k=>{const v=JBLSYNC.get(k);try{return v==null?null:JSON.parse(v)}catch(e){return v}}", k)
@@ -58,7 +59,7 @@ async def main():
         b = await p.chromium.launch()
         dc = await b.new_context(viewport={'width': 1280, 'height': 900}); pc = await b.new_context(viewport={'width': 393, 'height': 852}, is_mobile=True, has_touch=True,
             user_agent='Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1')
-        for c in (dc, pc): await c.route('https://api.github.com/**', gh)
+        await dc.route('https://api.github.com/**', lambda r: gh(r, 'dk')); await pc.route('https://api.github.com/**', lambda r: gh(r, 'ph'))
         dk = await dc.new_page(); ph = await pc.new_page(); errs = []
         for pg in (dk, ph): pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         for pg in (dk, ph):
@@ -79,7 +80,7 @@ async def main():
         await ph.wait_for_timeout(2000); await settle(ph)
         cb = await getv(ph, 'cbm.IMPL'); ni = await getv(ph, 'num.i.IMPL.n1'); mm = await getv(ph, 'memo.IMPL.PART')
         ok(cb is not None and set(cb) == {'A1', 'A2', 'A3'}, f'② ★ 카드 = 컴퓨터 + 휴대폰에만 있던 것 {cb}')
-        ok(ni is not None and ni.get('s') == '컴퓨터 스토리', f'② 넘버링 = 컴퓨터 기준 {ni}')
+        ok(ni is not None and ni.get('s') == '휴대폰 스토리(더 최근)', f'② 같은 넘버링 문제 = 더 최근에 고친 것 {ni}')
         ok(isinstance(mm, str) and '컴퓨터 메모' in mm and '휴대폰 메모' in mm, f'② 메모 = 둘 다 남음 {mm!r}')
         ok((await getv(ph, 'fc.IMPL') or {}).get('k1'), '② 휴대폰 플래시카드 그대로')
         ok((await getv(ph, 'lbm.CONS') or {}).get('X') == 1000, '② 다른 과목(CONS) 북마크도 받음')
@@ -112,6 +113,27 @@ async def main():
         await tick(dk, '{pull:false,force:true}'); await tick(ph, '{force:true}'); await tick(dk); await tick(dk, '{pull:false,force:true}'); await tick(ph)
         c1 = set(await getv(dk, 'cbm.IMPL') or {}); c2 = set(await getv(ph, 'cbm.IMPL') or {})
         ok({'A7', 'A8'} <= c1 and {'A7', 'A8'} <= c2, f'⑥ 같은 때 고친 ★ 둘 다 남음 컴퓨터 {sorted(c1)} 휴대폰 {sorted(c2)}')
+        # ⑫ 한쪽은 ★ 지우고 한쪽은 같은 과목에 ★ 더함(둘 다 바뀜) → 지운 건 지운 채 · 더한 건 남음
+        await setv(ph, 'cbm.IMPL', {'A3': 1000, 'A7': 1, 'A8': 1}); await setv(dk, 'cbm.IMPL', {'A2': 1000, 'A3': 1000, 'A7': 1, 'A8': 1, 'A10': 1})
+        await tick(dk, '{pull:false,force:true}'); await tick(ph, '{force:true}'); await tick(dk); await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        c1 = set(await getv(dk, 'cbm.IMPL') or {}); c2 = set(await getv(ph, 'cbm.IMPL') or {})
+        ok(c1 == c2 == {'A3', 'A7', 'A8', 'A10'}, f'⑫ 지운 ★ 안 살아남 + 더한 ★ 남음 컴퓨터 {sorted(c1)} 휴대폰 {sorted(c2)}')
+        # ⑬ 복습 이력 = 둘 다
+        base = {'id': 'n1', 'h': [{'t': 1, 'm': 1, 's': 'a'}], 'w': [], 'u': 1}
+        await setv(dk, 'num.r.IMPL.n1', base); await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        await setv(ph, 'num.r.IMPL.n1', dict(base, h=base['h'] + [{'t': 2, 'm': 2, 's': 'b'}], u=2)); await setv(dk, 'num.r.IMPL.n1', dict(base, h=base['h'] + [{'t': 3, 'm': 0, 's': 'c'}], u=3))
+        await tick(dk, '{pull:false,force:true}'); await tick(ph, '{force:true}'); await tick(dk); await tick(dk, '{pull:false,force:true}'); await tick(ph)
+        h1 = sorted(e['s'] for e in (await getv(dk, 'num.r.IMPL.n1') or {}).get('h', [])); h2 = sorted(e['s'] for e in (await getv(ph, 'num.r.IMPL.n1') or {}).get('h', []))
+        ok(h1 == h2 == ['a', 'b', 'c'], f'⑬ 복습 이력 둘 다 남음 컴퓨터 {h1} 휴대폰 {h2}')
+        # ⑭ 같은 때 고친 뒤 서로 주고받기가 멈춤(되풀이 0)
+        for _ in range(2): await tick(dk, '{force:false}'); await tick(ph, '{force:false}')
+        LOG.clear()
+        for _ in range(2): await tick(dk); await tick(ph)
+        ok(not [y for y in LOG if y[0] != 'GET'], f'⑭ 다 맞춘 뒤엔 보내기 0(되풀이 없음) {[y for y in LOG if y[0] != "GET"]}')
+        # ⑮ 기기 전용 값(복습 진행 중·쓰는 중 답안·스크롤 위치)은 안 넘어감
+        await setv(dk, 'num.rs.IMPL', {'sid': 's1', 'ids': ['n1'], 'u': 1}); await setv(dk, 'num.pos.IMPL', {'y': 100}); await setv(dk, 'cbm.IMPL', {'A3': 1000, 'A7': 1, 'A8': 1, 'A10': 1, 'A11': 1})
+        await tick(dk, '{pull:false}'); await tick(ph)
+        ok(await getv(ph, 'num.rs.IMPL') is None and await getv(ph, 'num.pos.IMPL') is None and 'A11' in (await getv(ph, 'cbm.IMPL') or {}), '⑮ 기기 전용 값은 안 넘어가고 ★는 넘어감')
         # ⑦ 같은 넘버링 문제를 둘 다 고침 → 더 최근 것
         await setv(dk, 'num.i.IMPL.n1', {'u': 9000, 's': '컴퓨터 수정'}); await setv(ph, 'num.i.IMPL.n1', {'u': 9500, 's': '휴대폰 수정(더 최근)'})
         await dk.reload(); await ph.reload(); await dk.wait_for_timeout(1500); await ph.wait_for_timeout(1500); await settle(dk); await settle(ph)
@@ -121,24 +143,31 @@ async def main():
         # ⑧ 바뀐 과목만 · 바뀐 게 없으면 목록만
         await tick(dk, '{pull:false,force:true}'); await tick(ph); LOG.clear()
         await setv(dk, 'cbm.IMPL', {'A2': 1000, 'A3': 1000, 'A7': 1, 'A8': 1, 'A9': 1}); await tick(dk, '{pull:false}')
-        pat = [x for x in LOG if x[0] == 'PATCH']; ok(len(pat) == 1, f'⑧ 바뀐 묶음(IMPL)만 보냄 PATCH {len(pat)}')
+        pat = [x for x in LOG if x[0] == 'PATCH' and x[3] == 'dk']; ok(len(pat) == 1, f'⑧ 바뀐 묶음(IMPL)만 보냄 PATCH {len(pat)}')
         await tick(ph, '{push:false}'); LOG.clear(); await tick(ph, '{push:false}')
-        ok([x[0] for x in LOG] == ['GET'] and LOG[0][1] == '/gists', f'⑧ 바뀐 게 없으면 목록 1번만 {LOG}')
+        PL = [x for x in LOG if x[3] == 'ph']; ok([x[0] for x in PL] == ['GET'] and PL[0][1] == '/gists', f'⑧ 바뀐 게 없으면 목록 1번만 {PL}')
         ok('A9' in (await getv(ph, 'cbm.IMPL') or {}), '⑧ 바뀐 묶음은 받음')
         # ⑨ 토큰 없음
         dump = await dk.evaluate("JBLSYNC.backup()"); ok(TOK not in dump and 'jblsync' not in dump, '⑨ 백업 파일에 토큰 없음')
         ok(all(TOK not in v['description'] and all(TOK not in c for c in v['files'].values()) for v in G.values()), '⑨ Gist에 토큰 없음')
         # ⑩ 틀린 토큰
-        e3 = await b.new_context(viewport={'width': 1280, 'height': 900}); await e3.route('https://api.github.com/**', gh); x = await e3.new_page(); x.on('pageerror', lambda e: errs.append(str(e)[:200]))
+        e3 = await b.new_context(viewport={'width': 1280, 'height': 900}); await e3.route('https://api.github.com/**', lambda r: gh(r, 'x')); x = await e3.new_page(); x.on('pageerror', lambda e: errs.append(str(e)[:200]))
         await x.goto(U + '#/'); await x.wait_for_timeout(1000); await x.evaluate("JBLSYNC.connect('ghp_WRONGTOKEN0123456789abcdefXYZ')"); await x.wait_for_timeout(800)
         ok(await x.evaluate("JBLSYNC.state()===null"), '⑩ 틀린 토큰 = 연결 안 됨')
         # 💾 창
         await dk.evaluate("JBLSYNC.box()"); await dk.wait_for_timeout(300); t = await dk.inner_text('#syncbox')
         ok('켜짐' in t and '아이폰' in t, f'💾 창 동기화 칸 {t[:100]!r}'); await dk.screenshot(path=J.TMP + '/ux_sync_desk.png')
+        # ⑯ 토큰 바꾸기 = 기억 그대로
+        st0 = await dk.evaluate("JBLSYNC.state()"); await dk.evaluate(f"JBLSYNC.connect('{TOK}')"); await settle(dk); st1 = await dk.evaluate("JBLSYNC.state()")
+        ok(st0 and st1 and st0['devs'] == st1['devs'] and st1['fd'] == st0['fd'], f'⑯ 토큰 바꿔도 동기화 기억 그대로 {st1}')
+        # ⑰ 기기 지우기
+        dev_p = await ph.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.devId'))"); dk.once('dialog', lambda d: asyncio.ensure_future(d.accept()))
+        await dk.evaluate(f"JBLSYNC.forget('{dev_p}')"); await settle(dk)
+        ok(not any(dev_p in v['description'] for v in G.values()) and dev_p not in ((await dk.evaluate("JBLSYNC.state()")) or {}).get('devs', []), '⑰ 기기 지우기 = 그 기기 Gist·기억 지움')
         # ⑪ 끊기
         dk.on('dialog', lambda d: asyncio.ensure_future(d.accept())); await dk.click('#syncoff'); await dk.wait_for_timeout(300); LOG.clear()
         await setv(dk, 'cbm.IMPL', {'Z': 1}); await dk.evaluate("JBLSYNC.tick({})"); await dk.wait_for_timeout(500)
-        ok(await dk.evaluate("JBLSYNC.state()===null") and not LOG, f'⑪ 끊으면 더는 안 보냄 {LOG}')
+        DL = [x for x in LOG if x[3] == 'dk']; ok(await dk.evaluate("JBLSYNC.state()===null") and not DL, f'⑪ 끊으면 더는 안 보냄 {DL}')
         ok(not errs, f'페이지 오류 0 {errs[:3]}')
         await b.close()
     print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))
