@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"76282bb0",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"4b1642cd",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2406,7 +2406,7 @@ html body #nav .nvclose{border-color:transparent!important;background:transparen
    ② 한 면: 강의 머리·탭 줄·본문 = 같은 미색 바탕(흰 띠 없음) · 구역은 흰 카드로 묶음(과목 홈·허브 홈)
    ③ 읽는 칸 비우기: 형광펜·빈칸 도구 막대 = 오른쪽 아래 작은 밝은 알약(가운데 글줄을 가리지 않음)
    ④ 크롬 가볍게: 위 막대 시계·검색·바로 가기 = 옅게 · 본문 글자는 아주 조금 부드러운 먹 ===== */
-:root{--v-pri:#2B2824;--v-pri-h:#1A1815;--v-soft:#ECE7DF;--v-soft-h:#E2DCD2;--v-read:#2A2723}
+:root{--v-pri:#2B2824;--v-pri-h:#1A1815;--v-soft:#EBE7E1;--v-soft-h:#E0DCD7;--v-read:#2A2723}
 /* ① 단추 */
 .btn.pri,#stage .btn.pri,.onebar .btn.ob.pri,#home .btn.pri,html body .tg.on,html body #stage .tg.on,html body #stage #jbbar .tg.on,html body #stage #jbbar .qf .tg.on,html body #dtabs .ktog.on,html body #dtabs .ktog[aria-pressed=true]{background:var(--v-pri)!important;border-color:var(--v-pri)!important}
 .btn.pri:hover,#stage .btn.pri:hover,#home .btn.pri:hover{background:var(--v-pri-h)!important;border-color:var(--v-pri-h)!important}
@@ -2602,7 +2602,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="76282bb0",PV={"OMS1": "0be5cfd3", "CONS": "3909c86a", "IMPL": "256a4c02", "ANAT": "fc953524", "GERI": "95936185", "PHARM": "c254a205", "ESTH": "345e04c5"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="4b1642cd",PV={"OMS1": "9c1c6e4d", "CONS": "1162e4a8", "IMPL": "c2df5bab", "ANAT": "56508957", "GERI": "81db82dd", "PHARM": "40b73f7c", "ESTH": "ee98b913"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
