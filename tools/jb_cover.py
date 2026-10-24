@@ -20,7 +20,8 @@ NP = eval(m.group(1)) if m else dict(PM.NPAGES)
 P = J._load_js(os.path.join(ROOT, 'docs', 'packs', SID + '.js'))
 norm = lambda t: re.sub(r'[\s ·•\-–—_:;,.()\[\]{}<>「」"\'“”‘’?!~/]+', '', t or '').lower()
 TAG = re.compile(r'<[^>]+>')
-def untag(h): return re.sub(r'\s+', ' ', TAG.sub(' ', h)).replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&').strip()
+import html as _html
+def untag(h): return re.sub(r'\s+', ' ', _html.unescape(_html.unescape(TAG.sub(' ', h)))).strip()   # 10-25 &amp;#x27; 같은 엔티티도 풂(ANAT R14)
 # 사이트 카드: 출처들·문제 글·교수·그림
 cards = {}
 for cid, h in P['cards'].items():

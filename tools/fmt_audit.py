@@ -71,6 +71,22 @@ def pack_text(card_html, T):
     if al and not T.ANS.match(al[0]): al = ['답: ' + al[0]] + al[1:]
     return '\n'.join(ql + al)
 
+_FR = {}
+def _front_text(sid, q0):
+    """10-25 annot front=26[#n](build4가 앞면을 그 판 사본으로 바꿈) — 화면과 같은 글로 판정"""
+    if sid not in _FR:
+        _FR[sid] = {}
+        try:
+            for l in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), sid.lower(), 'annot.txt'), encoding='utf-8'):
+                if l.startswith('@'):
+                    ps = [x.strip() for x in l[1:].split('|')]
+                    for x in ps[1:]:
+                        if x.startswith('front='): _FR[sid][ps[0]] = x[6:].strip()
+        except Exception: pass
+    f = _FR[sid].get(q0['id'])
+    if not f: return q0['text']
+    ed, _, n = f.partition('#'); c = [v for v in (q0.get('other') or []) if v.get('ed') == ed]
+    return c[int(n or 1) - 1]['text'] if len(c) >= int(n or 1) else q0['text']
 def load(sid, T):
     pp = os.path.join(J.DOCS, 'packs', f'{sid}.js')
     P = J._load_js(pp); C = P.get('cards', {}); LN = P.get('lecname', {}) or {}
@@ -84,7 +100,7 @@ def load(sid, T):
     if extra: notes.append(f'assemble에만 있는 문항 {len(extra)}개(팩에 없음 — 빌드 전?): {" ".join(extra[:12])}')
     for cid, h in C.items():
         a = _attrs(h); q0 = QM.get(cid)
-        q = {'id': cid, 'text': q0['text'], 'lab24': q0.get('lab24') or ''} if q0 else {'id': cid, 'text': pack_text(h, T), 'lab24': ''}
+        q = {'id': cid, 'text': _front_text(sid, q0), 'lab24': q0.get('lab24') or ''} if q0 else {'id': cid, 'text': pack_text(h, T), 'lab24': ''}
         yrs = sorted({int(y) for y in (a.get('data-yrs') or '').split() if y.isdigit()}, reverse=True)
         yp = year_profs(a); prof = (a.get('data-prof') or (q0 or {}).get('prof') or '').strip()
         rows.append({'id': cid, 'q': q, 'from': 'assemble' if q0 else 'pack', 'tier': a.get('data-tier') or (q0 or {}).get('tier', ''),
