@@ -1,0 +1,61 @@
+"""디자인 v3 색 바꾸기(10-24 사용자 '밤티 · old fashioned — 색감·탭·배치 전면 개편, 내용은 그대로').
+따뜻한 저채도 색(종이 베이지·갈색 글자·크림 바탕)을 같은 밝기의 차가운 회색으로 바꾼다 — 명암비는 그대로 유지(밝기 L 보존).
+의미 색(빨강 핵심 · 초록 NEW 26 · 보라 26 강조 · 금색 ⭐ 기출 · 파랑 예상 · 형광펜·과목 색)은 채도가 높아 건드리지 않음.
+  .venv/bin/python tools/design/v3_palette.py <파일…> [--dry]   (한 번만 — 두 번 돌려도 같은 결과: 이미 차가운 회색은 그대로)"""
+import os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from oklch import hex2rgb, rgb2oklch, oklch2rgb, rgb2hex
+
+def cool_chroma(L):
+    if L >= 0.95: return 0.004
+    if L >= 0.85: return 0.004 + (0.95 - L) / 0.10 * 0.008
+    if L >= 0.55: return 0.012 + (0.85 - L) / 0.30 * 0.014
+    return max(0.016, 0.026 - (0.55 - L) / 0.35 * 0.010)
+
+def is_warm_neutral(L, C, h):
+    if C < 0.003: return True                       # 순수 회색(채도 0)도 같은 차가운 회색 줄로
+    lim = 0.018 if L > 0.94 else 0.030              # 아주 밝은 색은 복숭아·크림 바탕(의미 바탕)과 종이 베이지를 가름
+    return C < lim and 45 <= h <= 110
+
+def remap(rgb):
+    if rgb in ((255, 255, 255), (0, 0, 0)): return None
+    L, C, h = rgb2oklch(*rgb)
+    if not is_warm_neutral(L, C, h): return None
+    if L >= 0.985: return (255, 255, 255)          # 크림 흰 바탕 → 흰색
+    return oklch2rgb(L, cool_chroma(L), 255)
+
+HEX = re.compile(r'#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})\b')
+RGB = re.compile(r'rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(,\s*[\d.]+\s*)?\)')
+
+def transform(t, log):
+    def fh(m):
+        h = m.group(0)
+        # '#1a', '#fff' 같은 3자 — 흰·검정·회색만 (따뜻한 3자 색 거의 없음)
+        o = hex2rgb(h); nr = remap(o)
+        if nr is None or nr == o: return h
+        out = rgb2hex(nr); log.append((h, out)); return out
+    def fr(m):
+        r, g, b = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        nr = remap((r, g, b))
+        if nr is None: return m.group(0)
+        a = m.group(4) or ''
+        out = (f'rgba({nr[0]},{nr[1]},{nr[2]}{a.replace(" ", "")})' if a else f'rgb({nr[0]},{nr[1]},{nr[2]})')
+        if (r, g, b) != nr: log.append((m.group(0), out))
+        return out if (r, g, b) != nr else m.group(0)
+    t = HEX.sub(fh, t)
+    return RGB.sub(fr, t)
+
+if __name__ == '__main__':
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]; dry = '--dry' in sys.argv
+    for p in args:
+        s = open(p, encoding='utf-8').read(); log = []
+        # HTML이면 <style>…</style>와 <script>…</script>만(본문 글자는 손대지 않음) — js는 파일 전체
+        if p.endswith('.html'):
+            out = re.sub(r'(<style>.*?</style>|<script>.*?</script>)', lambda m: transform(m.group(0), log), s, flags=re.S)
+        else:
+            out = transform(s, log)
+        uniq = {}
+        for a, b in log: uniq.setdefault(a.upper(), b)
+        print(f'{p}: 바꾼 곳 {len(log)} · 서로 다른 색 {len(uniq)}')
+        for a, b in list(uniq.items())[:12]: print('   ', a, '→', b)
+        if not dry and out != s: open(p, 'w', encoding='utf-8').write(out)
