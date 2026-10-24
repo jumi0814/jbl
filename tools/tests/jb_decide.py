@@ -20,7 +20,7 @@ for s in SIDS:
     ok(not unrec, f'{s} ① 미복원 자리 카드 0 {unrec[:5]}')
     links = {}
     for i, h in C.items():
-        for kind, rx in (('rel', r'다른 해의 관련 문항\(별개 출제\): (.*?)</div>'), ('pair', r'같은 내용이 JB의 다른 연도 칸에도 실려 있음: (.*?)</div>')):
+        for kind, rx in (('rel', r'(?:다른 해|같은 해)의 관련 문항\([^)]*\): (.*?)</div>'), ('pair', r'같은 내용이 JB의 다른 연도 칸에도 실려 있음: (.*?)</div>')):
             for m in re.finditer(rx, h, re.S):
                 for t in re.findall(r'data-go="([^"]+)"', m.group(1)): links.setdefault((kind, i), set()).add(t)
     oneway = [f'{a}→{b}' for (k, a), bs in links.items() for b in bs if a not in links.get((k, b), set())]

@@ -51,6 +51,10 @@ for q in Q:   # front= · prev=
         newtag = [m_.group(0) for m_ in _YRTAG.finditer(head_) if len(m_.group(1)) <= 30 and re.search(r'(?<!\d)(?:20)?\d{2}(?!\d)', m_.group(1))]   # 표시용 'JB 괄호 …'(연도는 assemble이 이미 셈)
         q['jbtag'] = ' '.join(dict.fromkeys([t_ for t_ in newtag if t_ not in (q.get('jbtag') or '')] + ([q['jbtag']] if q.get('jbtag') else [])))
         q.update(ed=v_['ed'], sec=v_['sec'], num=v_['num'], pg=v_['pg'], pg2=v_.get('pg2', v_['pg']), text=v_['text'], src=f'JB {v_["ed"]}판 · {v_["sec"]} {v_["num"]}번', fronted=True)
+        def _lrow(ed__, sec__, num__): return [r_ for r_ in getattr(A, 'LEDGER', []) if r_['ed'] == ed__ and str(r_['num']) == str(num__) and str(r_['sec']) in (str(sec__), str(sec__) + '년')]
+        for r_ in _lrow(v_['ed'], v_['sec'], v_['num']): r_['st'] = 'card'; r_['to'] = [q['id']]   # 기출 대장: 새 앞면 블록 = 카드 · 옛 앞면 블록 = 중복(CONS 담당 10-25)
+        for r_ in _lrow(old['ed'], old['sec'], old['num']):
+            if r_['st'] == 'card': r_['st'] = 'dup'; r_['to'] = [q['id']]
         q['short'] = re.sub(r'^\s*\d{1,3}(-\d)?\.?\s*', '', v_['text'].split('\n')[0]).strip()[:52] or q['short']
         q['tal'] = bool(q.get('tal')) or bool(re.search(r'\(탈\)', ' '.join(v_['text'].split('\n')[:3])))
     np_ = int(_ax(q['id'], 'prev') or (1 if q.get('fronted') else 0))
@@ -652,7 +656,7 @@ def qcard(q, idx):
     sd = [f'<div class="qsub"><span class="prov noann" title="{esc(q["src"] or "")}">{" · ".join(x for x in prov if x)}</span>{"".join(sub)}</div>']
     if q['yrsnote']: sd.append(f'<div class="note">연도 표기 근거: {esc(q["yrsnote"])}</div>')
     _rl = RELS.get(q['id'], []) + [x_ for x_ in REVREL.get(q['id'], []) if x_ not in RELS.get(q['id'], [])]   # 10-25 공통-2 관련 문항 양방향(적은 쪽 + 가리킨 쪽)
-    for r in (QMAP[x_] for x_ in _rl): sd.append(f'<div class="note">다른 해의 관련 문항(별개 출제): {go(r["id"], ("·".join(YR(y) for y in r["yrs"]) + "년 · " if r["yrs"] else "") + esc(cut_bal(r["short"], 78)))}</div>')
+    for r in (QMAP[x_] for x_ in _rl): sd.append(f'<div class="note">{"같은 해의 관련 문항(별개 카드 — 같은 문항의 다른 복원일 수 있음)" if set(r["yrs"]) & set(q["yrs"]) and r["yrs"][:1] == q["yrs"][:1] else "다른 해의 관련 문항(별개 출제)"}: {go(r["id"], ("·".join(YR(y) for y in r["yrs"]) + "년 · " if r["yrs"] else "") + esc(cut_bal(r["short"], 78)))}</div>')   # 10-25 같은 해끼리(CONS Q57·Q63·Q64)는 '같은 해'
     for p_ in ([PAIRS[q['id']]] if q['id'] in PAIRS else []) + [x_ for x_ in REVPAIR.get(q['id'], []) if x_ != PAIRS.get(q['id'])]: sd.append(f'<div class="note">같은 내용이 JB의 다른 연도 칸에도 실려 있음: {go(p_, esc(QMAP[p_]["src"]))}</div>')
     h.append(f'<details class="srcd"><summary class="noann">출처·연도 근거</summary>{"".join(sd)}</details>')
     jbb = ''.join(f'<button class="btn sm" data-jb="{q["ed"]}-{p}">JB 원본 {p}쪽</button>' for p in range(q['pg'], q['pg2'] + 1))

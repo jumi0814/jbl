@@ -24,7 +24,7 @@ def main(sids):
             h = p['cards'][cid]
             yb = re.search(r'<span class="ybadge[^"]*"(?: title="([^"]*)")?[^>]*><b>([^<]*)</b>', h)
             yrs = {int(y) % 100 for y in re.findall(r'20\d\d', (yb.group(1) or yb.group(2)) if yb else '')}
-            q = re.search(r'<div class="qtext">(.*?)</div>\s*(?:<img|<div class="small"|<div class="qsub")', h, re.S)
+            q = re.search(r'<div class="qtext">(.*?)</div>\s*(?=<img|<div class="small"|<div class="qprev"|<details class="srcd"|<div class="qsub")', h, re.S)   # 10-25 문제 칸만(이전 출제 꼴·출처 줄의 관련 문항 글은 빼고 — 이전 꼴은 다른 판본으로 봄)
             stem = html.unescape(re.sub(r'<[^>]+>', '\n', q.group(1) if q else ''))
             heads = [('본문', stem)]
             for o in re.findall(r'<div class="lines box0">(.*?)</div></div>', h, re.S):   # 다른 판본에 실린 같은 문제(첫 3줄)
