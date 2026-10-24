@@ -27,7 +27,8 @@ for cid, h in P['cards'].items():
     refs = set((e, s.strip(), n) for e, s, n in re.findall(r'JB (\d\d(?:q4)?)판 · ([^"<]*?) (\S+?)번', h))
     q = re.search(r'<div class="qtext">(.*?)</div></div>', h, re.S)
     profs = (re.search(r'data-profs="([^"]*)"', h) or re.search(r'data-prof="([^"]*)"', h))
-    cards[cid] = {'refs': refs, 'q': untag(q.group(1)) if q else '', 'all': untag(h), 'profs': [x for x in (profs.group(1) if profs else '').split('|') if x], 'fig': 'class="fig' in h or 'img class="fig' in h or '<img' in h}
+    cards[cid] = {'refs': refs, 'q': untag(q.group(1)) if q else '', 'all': untag(re.sub(r'<details class="srcd">.*?</details>', '', h, flags=re.S)),   # 10-25 출처·관련 문항 줄은 빼고(관련 링크 글이 다른 카드 문제로 잡히던 것)
+                 'profs': [x for x in (profs.group(1) if profs else '').split('|') if x], 'fig': 'class="fig' in h or 'img class="fig' in h or '<img' in h}
 REFS = collections.defaultdict(list)
 for cid, c in cards.items():
     for r in c['refs']: REFS[r].append(cid)

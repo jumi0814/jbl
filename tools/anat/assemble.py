@@ -88,9 +88,9 @@ for cid, ed, sec, num, tier in CANON:
     for (e2, s2, n2) in OTHER.get(cid, []):
         yrs.add(secyear(s2)); x2 = find(e2, s2, n2)
         if x2: yrs |= tag_years(x2['text'])[0]
-    _ad = re.fullmatch(r'추가복원(\d)', str(num))   # 10-25 결정 F1 — '추가복원 1·2'는 출처 줄에 그대로(예전 '2023년 칸 1번'으로 보여 R01·R02와 겹쳐 보임)
+    _ad = re.fullmatch(r'추가복원(\d)', str(num))   # 10-25 결정 F1 — 출처 줄 '2023년 칸 추가복원1번'(예전 '2023년 칸 1번'으로 보여 R01·R02와 겹쳐 보임 · '칸 · 교수' 없이 써야 출처 줄이 번호만 떼지 않음 · 다른 판본 줄 '추가복원1번'과 같은 꼴 — jb_cover 출처 대조도 이 꼴)
     Q.append({'id': cid, 'ed': ed, 'sec': sec, 'num': num, 'pg': x['pg'], 'pg2': x['pg2'], 'text': t, 'tier': tier, 'prof': x['prof'],
-              'src': f'JB {ed}판 · {sec}년 칸 추가복원 {_ad.group(1)}' if _ad else f'JB {ed}판 · {sec}년 칸 · {x["prof"]} {num}번', 'short': short[:52], 'jbtag': ' '.join(dict.fromkeys(raw)), 'base': sorted(yrs, reverse=True),
+              'src': f'JB {ed}판 · {sec}년 칸 추가복원{_ad.group(1)}번' if _ad else f'JB {ed}판 · {sec}년 칸 · {x["prof"]} {num}번', 'short': short[:52], 'jbtag': ' '.join(dict.fromkeys(raw)), 'base': sorted(yrs, reverse=True),
               'secy': secyear(sec), 'tal': bool(re.search(r'\(\s*탈\s*\)', stem_of(t))), 'pick': ''})
 # 10-25 결정 A2/D3 — JB 해설 속 "18,19년도에는 'Unilateral cleft lip에 대한 옳지 않은 설명은?'으로 객관식 출제" → 별도 카드 V01(문항 블록 없음 · 문제 = 그 해설 문장 그대로 · 보기·답 복원 없음)
 # 연도는 annot yrs=19,18(블록 칸 연도·괄호 연도를 더하지 않음) · 앞면 = 25판 2024 칸 2번 해설(p.3) · 다른 판본 = 같은 문장(26판 2024 칸 2번 해설 p.10 · 23판 2020 칸 10번 해설 p.19)

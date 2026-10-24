@@ -311,7 +311,7 @@ M: 읽는 법: 혈소판 쪽 이상 = {r:BT↑} / 응고 쪽 이상 = {r:PT·aPT
 M: 약·질환별: ① aspirin {r:BT↑} ② coumarin {r:PT/INR↑↑} ③ heparin {r:aPTT↑↑} ④ hemophilia {r:aPTT↑↑} ⑤ thrombocytopenia {r:platelet↓↓·BT↑↑}
 
 @G ② 항응고제·항혈소판제
-## Anticoagulant Drugs — VKA · DOAC · LMWH | 항응고제 분류와 작용 부위 — warfarin vs dabigatran | 25-26 | 기출 20~24 ★ | jb=HM03,HM11
+## Anticoagulant Drugs — VKA · DOAC · LMWH | 항응고제 분류와 작용 부위 — warfarin vs dabigatran | 25-26 | 기출 20~24 ★ | jb=HM03
 > 옛 약 warfarin은 인자를 '만드는' 단계를 막아 느리고, 새 약 DOAC은 Xa·IIa를 '직접' 막아 예측 가능하다
 = VKA = {r:Warfarin} / DOAC = {r:Dabigatran}(IIa) · {r:Apixaban·Edoxaban·Rivaroxaban}(Xa) / Heparin·{r:LMWH} = + {r:AT III}
 # 누가 먹나 — 적응증과 부작용
@@ -341,7 +341,7 @@ F: 26=VKA·DOAC·LMWH 작용 부위, HM5:17
 | 작용 개시 | {n:{r:느림} — 기존 인자 degradation 후} | (자료 없음) |
 | 복용 초기 | {n:protein C·S 먼저 → pro-coagulation} | (자료 없음) |
 | 모니터링 | {r:필수}(INR) | {n:적게 · {r:예측 가능성↑}} |
-E: HM03,HM11 | 25·24·23·22·20년 서술 "(1) Warfarin과 dabigatran의 작용기전 차이 (2) dabigatran의 장점" → gamma carboxylation 억제 vs 직접 factor II 저해 / ==예측 가능하고 용량이 정해져 있으며, 반감기가 짧은 장점== — ⚠ 25 근거는 '모니터링 적게'까지 · ⚠ 26 p.27 warfarin = {u:Inhibits VKORC1 (vitamin K recycling)}(25: Inhibition of γ-glutamylcarboxylase) — JB 답 'glutamate gamma carboxylase에 의한 gamma carboxylation 억제'와 효소 표현이 다름 → 서술엔 JB 답 + 26 문구 둘 다
+E: HM03 | 25·24·23·22·20년 서술 "(1) Warfarin과 dabigatran의 작용기전 차이 (2) dabigatran의 장점" → gamma carboxylation 억제 vs 직접 factor II 저해 / ==예측 가능하고 용량이 정해져 있으며, 반감기가 짧은 장점== — ⚠ 25 근거는 '모니터링 적게'까지 · ⚠ 26 p.27 warfarin = {u:Inhibits VKORC1 (vitamin K recycling)}(25: Inhibition of γ-glutamylcarboxylase) — JB 답 'glutamate gamma carboxylase에 의한 gamma carboxylation 억제'와 효소 표현이 다름 → 서술엔 JB 답 + 26 문구 둘 다
 - 증례 Mr. J(25 p.58 — 26에서 빠짐)의 "warfarin → dabigatran" 전환이 이 비교의 출처 — 22·21년 증례 문항은 마지막 카드.
 M: 적응증(thromboembolic events): {e:{n:26 "위 그룹 잘 기억"}}(25년도에도 강조함) ① {r:DVT} ② {r:PE} ③ {r:NVAF} ④ stroke ⑤ myocardial infarction
 M: 부작용 = {r:prolonged bleeding}
@@ -351,7 +351,7 @@ M: Warfarin 느린 이유: {n:기존 인자 {r:degradation 후} 개시 · 초기
 M: DOAC 장점: {r:모니터링 적게} · {n:{r:예측 가능성↑}} (JB: 용량 고정 · 반감기 짧음)
 M: 장점(최신 JB 답 · 25년 시험): warfarin = 기존 carboxylated factors가 degradation되는 데 시간 → {r:onset of action 며칠} · 여러 {r:약물 상호작용} · 약효 개인차 → {r:INR 지속 모니터링} / dabigatran = anticoagulation 효과가 더 {r:consistent} · {r:예측가능성}↑
 
-## Heparin·LMWH vs Warfarin | 주사 heparin vs 경구 warfarin — AT III vs vitamin K 순환 | 27 | 기출 20·21 · target | jb=HM16,HM21
+## Heparin·LMWH vs Warfarin | 주사 heparin vs 경구 warfarin — AT III vs vitamin K 순환 | 27 | 기출 20·21 · target | jb=HM16
 > heparin은 AT III를 켜서 바로·짧게, warfarin은 vitamin K 재활용을 막아 천천히·오래
 = Heparin·LMWH = {r:주사} · {r:AT III 활성화} · 급성 단기 / Warfarin = {r:경구} · {u:{r:VKORC1} 억제(vitamin K recycling)}(25: {r:γ-glutamylcarboxylase} 억제) · 장기
 # 두 약의 비교
@@ -363,7 +363,7 @@ M: 장점(최신 JB 답 · 25년 시험): warfarin = 기존 carboxylated factors
 # Heparin vs LMWH
 - 그림: Heparin은 AT III와 함께 {r:IIa}·{r:Xa} 모두에 결합 / {r:LMW Hep}은 AT III + {r:Xa}.
 - {n:LMWH = heparin에서 function을 하는 부분을 잘라서 사용 → 더 예측가능하고 long lasting이라는 장점(필기)}.
-E: HM16,HM21 | 21·20년 단답 "LMWH의 target 분자와 그 효과" → ==Anti-thrombin III== — AT-III 활성화로 factor Xa 억제 ⚠ 함정: target은 Xa가 아니라 {r:AT III} · 24·22년 target 표 빈칸 (3)도 같은 답 · JB 효과 문장 끝: 내인성 경로를 통한 혈액 응고를 저해
+E: HM16 | 21·20년 단답 "LMWH의 target 분자와 그 효과" → ==Anti-thrombin III== — AT-III 활성화로 factor Xa 억제 ⚠ 함정: target은 Xa가 아니라 {r:AT III} · 24·22년 target 표 빈칸 (3)도 같은 답 · JB 효과 문장 끝: 내인성 경로를 통한 혈액 응고를 저해
 # Warfarin — vitamin K 순환 차단
 - Glutamic acid → {r:γ-Carboxyglutamic acid}: γ-Glutamylcarboxylase가 vitamin K hydroquinone을 vitamin K epoxide로 바꾸며 carboxylation(O2·CO2).
 - Vitamin K epoxide를 다시 되돌리는 {r:Vitamin K Epoxide Reductase}를 {r:Coumarins·Indanediones}가 막음.
@@ -913,7 +913,7 @@ M: 종류: ① K1 {r:plants} ② K2 {r:gut bacteria} ③ K3 {r:Menadione} prodru
 P: 💬 "시간이 부족해 건너뛴 부분은 직접 꼭 확인해주시고, case study도 확인해주세요"(25 p.58 필기).
 F: HM5:58=증례 Mr. J
 E: HM10 | 22·21년 빈칸(증례·2회) "He used to take warfarin … switched to A. He also takes B every day" → ==A. Dabigatran, B. aspirin== — 25 슬라이드 원문(26에서 빠짐) · DOAC + 항혈소판(다른 기전 항응고제 동시 사용 ×)
-E: HM03 | 25·24·23·22년 서술(증례 복원 '홍길동 씨') "(1) warfarin vs dabigatran 기전 차이 (2) dabigatran 장점" → 항응고제 카드의 비교표
+E: HM03 | 25·24·23·22·20년 서술(증례 복원 '홍길동 씨') "(1) warfarin vs dabigatran 기전 차이 (2) dabigatran 장점" → 항응고제 카드의 비교표
 # 해설 — 단계별 관리(25 자료 — 26에서 빠짐 · JB 짤 대비용)
 - ① consult with his medical doctor — 외래에서 다수 발치 stress를 감당할 수 있는지 확인, 안 되면 cardiac anesthesiologist가 있는 operating room(oral surgeon·hospital dentist)으로 referral.
 - ② conservatively 관리 가능하면 {r:INR and aPTT tests} — If both of these tests come back within therapeutic limits (INR < 3.0 and aPTT normal), then no alteration to his anticoagulation may be necessary.
