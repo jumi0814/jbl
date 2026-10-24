@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"4b1642cd",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"e3200ac7",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2449,6 +2449,14 @@ html body #stage .qc .acts .btn.pri:hover,html body #stage .pc .acts .btn.pri:ho
  /* 카드 — 그림자 더 옅게 · 선 하나 */
  .tc,#stage .tc,.qc,#stage .qc,.pc,#stage .pc,.lcard,#hlec .lcard{box-shadow:0 1px 2px rgba(28,25,22,.04)!important}
 }
+/* ===== 10-24 컴퓨터 앱 창 제목 줄 없애기(사용자 '첫번째 위 크롬줄은 아예 없앨 수 있을까 … 가장 최소화') — 매니페스트 display_override window-controls-overlay:
+   Chrome 앱 창 제목 줄 자리를 우리 위 막대(#top · 집중 모드는 탭 줄)가 씀 · 창 단추(맥 왼쪽 신호등·오른쪽 ⋮/확장, 윈도 오른쪽 _□✕) 자리만 여백으로 비움 · 막대 빈 곳을 끌면 창 이동 ===== */
+@media (display-mode: window-controls-overlay){
+ :root{--wco-l:env(titlebar-area-x,0px);--wco-r:calc(100vw - env(titlebar-area-x,0px) - env(titlebar-area-width,100vw))}
+ html body #top{padding-left:calc(var(--wco-l) + 20px)!important;padding-right:calc(var(--wco-r) + 16px)!important;-webkit-app-region:drag;app-region:drag}
+ html body.focus #dtabs,html body.focus #dtabs.haslm{padding-left:max(calc(var(--wco-l) + 12px),min(50% - 470px,100% - 1260px))!important;padding-right:calc(var(--wco-r) + 12px)!important;-webkit-app-region:drag;app-region:drag}
+ #top :is(button,a,input,select,label,[tabindex]),#crumb *,#dtabs :is(button,a,input,select,label,[tabindex]),#dtabs .lmini *,#dtabs .lmini2 *{-webkit-app-region:no-drag;app-region:no-drag}
+}
 /* --- 폰(≤600): 위 고정 영역 = 앱바 한 줄 + 탭 한 줄 --- */
 @media (max-width:600px){
  #top{display:grid!important;grid-template-columns:auto auto auto minmax(0,1fr) auto auto auto;grid-template-areas:'nav logo dot title srch clock help';align-items:center;padding:6px 10px!important;column-gap:6px!important;row-gap:0!important;min-height:52px}
@@ -2602,7 +2610,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="4b1642cd",PV={"OMS1": "9c1c6e4d", "CONS": "1162e4a8", "IMPL": "c2df5bab", "ANAT": "56508957", "GERI": "81db82dd", "PHARM": "40b73f7c", "ESTH": "ee98b913"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="e3200ac7",PV={"OMS1": "273236ec", "CONS": "cc4928af", "IMPL": "acb0731d", "ANAT": "02a6a24a", "GERI": "61787c2a", "PHARM": "6d1261b2", "ESTH": "dc66aa42"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.5, "PHARM": 8.5, "ESTH": 5.3};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
