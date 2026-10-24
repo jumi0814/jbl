@@ -631,7 +631,7 @@ def first_sent(t):
     return t
 def src_short(q):
     """ux2 F04 출처 한 줄: 'JB 25판 · 2024년 칸 · 처방전과 금연요법 1번' → '2024년 칸 1번'(판 연도는 표시하지 않음 — 전체는 title)"""
-    s_ = re.sub(r'^\s*JB\s*\d{2}\s*판\s*·?\s*', '', q['src'] or '').strip()
+    s_ = re.sub(r'^\s*JB\s*\d{2}(?:q4)?\s*판\s*·?\s*', '', q['src'] or '').strip()   # 10-25 '23q4판'(PHARM 4Q JB)도
     m = re.match(r'^(\d{4}년 칸)\s*·\s*.*?(\d+번)\s*$', s_)
     return f'{m.group(1)} {m.group(2)}' if m else s_
 def qcard(q, idx):
