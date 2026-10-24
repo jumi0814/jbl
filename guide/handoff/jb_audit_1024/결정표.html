@@ -1,0 +1,571 @@
+<title>JB 전수 검토 결정표</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* 레이아웃: 가운데 한 줄 목록 — 위에 붙는 거르기 막대, 아래로 과목별 결정 카드(사이트 v3 색: 따뜻한 회색 바탕·흰 카드·먹색 단추) */
+:root{
+  --bg:#F1EFEB;--surface:#FFFFFF;--sunk:#F6F5F2;--ink:#22211F;--muted:#67635C;--line:#E2DED8;
+  --btn:#2B2A28;--btn-ink:#FFFFFF;--rec:#8C6200;--recb:#FBF1D6;--ok:#2F6B3A;
+  --s1:#A1262E;--s1b:#FBEDEE;--s2:#AD4E18;--s2b:#FCEFE5;--s3:#7F6208;--s3b:#FAF3DC;--s4:#4C6073;--s4b:#ECF0F4;--s5:#67635C;--s5b:#EFEDE9;
+  --c-X:#55524C;--c-OMS1:#0F6E6C;--c-CONS:#6B3FA0;--c-IMPL:#93561A;--c-ANAT:#2F5DA8;--c-GERI:#6A6A1C;--c-PHARM:#8E3B78;--c-ESTH:#2F7A3E;
+  --sans:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#191917;--surface:#242422;--sunk:#1F1F1D;--ink:#ECEAE6;--muted:#A9A59D;--line:#383633;
+  --btn:#ECEAE6;--btn-ink:#1B1B19;--rec:#E2B652;--recb:#3A3018;--ok:#8FCB98;
+  --s1:#F28D92;--s1b:#3B2022;--s2:#F2A577;--s2b:#3A291D;--s3:#E2C35E;--s3b:#353019;--s4:#A2B7CB;--s4b:#23303B;--s5:#B6B2AA;--s5b:#2D2C29;
+  --c-X:#B6B2AA;--c-OMS1:#4FB3AF;--c-CONS:#A887D6;--c-IMPL:#D39A5E;--c-ANAT:#7FA3E0;--c-GERI:#B4B45A;--c-PHARM:#CE82B8;--c-ESTH:#74BE84;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191917;--surface:#242422;--sunk:#1F1F1D;--ink:#ECEAE6;--muted:#A9A59D;--line:#383633;
+  --btn:#ECEAE6;--btn-ink:#1B1B19;--rec:#E2B652;--recb:#3A3018;--ok:#8FCB98;
+  --s1:#F28D92;--s1b:#3B2022;--s2:#F2A577;--s2b:#3A291D;--s3:#E2C35E;--s3b:#353019;--s4:#A2B7CB;--s4b:#23303B;--s5:#B6B2AA;--s5b:#2D2C29;
+  --c-X:#B6B2AA;--c-OMS1:#4FB3AF;--c-CONS:#A887D6;--c-IMPL:#D39A5E;--c-ANAT:#7FA3E0;--c-GERI:#B4B45A;--c-PHARM:#CE82B8;--c-ESTH:#74BE84;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 14px}
+h1{font-size:24px;line-height:1.3;margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:65ch}
+.lede b{color:var(--ink);font-weight:650}
+.sum{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+.sum table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums;min-width:520px}
+.sum th,.sum td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+.sum tr:last-child td{border-bottom:0}
+.sum th{font-weight:600;color:var(--muted);font-size:12.5px}
+.sum td.n{text-align:right}
+.sum td.miss{color:var(--s1);font-weight:650}
+.sum td.zero{color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row+.row{margin-top:8px}
+.chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:13px;line-height:1;padding:7px 11px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip .k{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px}
+.chip[aria-pressed="true"]{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.chip[aria-pressed="true"] .k{color:inherit;opacity:.75}
+.chip:focus-visible,.opt:focus-visible,.act:focus-visible,select:focus-visible,.note:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+select{font:inherit;font-size:13px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.sp{flex:1 1 0}
+.act{appearance:none;font:inherit;font-size:13px;padding:7px 12px;border-radius:8px;cursor:pointer;border:1px solid var(--line);background:var(--sunk);color:var(--ink)}
+.act.main{background:var(--btn);color:var(--btn-ink);border-color:var(--btn);font-weight:600}
+.prog{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.track{flex:1 1 auto;height:6px;border-radius:3px;background:var(--line);overflow:hidden;min-width:80px}
+.fill{height:100%;background:var(--ink);width:0}
+.mode{font-size:12.5px;color:var(--muted)}
+.mode.on{color:var(--ok)}
+section.sj{margin-top:26px}
+.sjh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.sjh h2{font-size:18px;margin:0;line-height:1.35}
+.sjh .cnt{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.ov{color:var(--muted);font-size:13.5px;margin:0 0 12px;max-width:72ch}
+.list{display:grid;gap:10px}
+.it{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;min-width:0}
+.it.done{background:var(--sunk)}
+.ih{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:12px}
+.iid{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:600}
+.cat{color:var(--muted)}
+.cat::before{content:"·";margin-right:8px}
+.sure{font-weight:650;padding:2px 8px;border-radius:999px;line-height:1.5}
+.s1{color:var(--s1);background:var(--s1b)}.s2{color:var(--s2);background:var(--s2b)}.s3{color:var(--s3);background:var(--s3b)}.s4{color:var(--s4);background:var(--s4b)}.s5{color:var(--s5);background:var(--s5b)}
+.picked{margin-left:auto;font-size:12px;color:var(--ok);font-weight:600}
+.it h3{font-size:15.5px;line-height:1.45;margin:6px 0 4px;font-weight:650;text-wrap:pretty}
+.det{margin:0;color:var(--muted);font-size:13.5px;line-height:1.65;overflow-wrap:anywhere}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.opt{appearance:none;font:inherit;font-size:13.5px;line-height:1.35;text-align:left;padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;max-width:100%;display:inline-flex;gap:8px;align-items:baseline}
+.opt .no{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.opt .rc{font-size:11px;font-weight:700;color:var(--rec);background:var(--recb);padding:1px 6px;border-radius:5px;white-space:nowrap}
+.opt[aria-checked="true"]{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.opt[aria-checked="true"] .no{color:inherit;opacity:.7}
+.note{display:block;width:100%;margin-top:8px;font:inherit;font-size:13px;padding:7px 10px;border-radius:8px;border:1px dashed var(--line);background:transparent;color:var(--ink)}
+.note::placeholder{color:var(--muted)}
+details.info{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+details.info summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted)}
+details.info ul{margin:8px 0 2px;padding-left:18px;font-size:13.5px;color:var(--muted)}
+details.info li{margin:3px 0;overflow-wrap:anywhere}
+.empty{color:var(--muted);font-size:14px;padding:20px 0}
+.panel{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.panel textarea{width:100%;min-height:160px;font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--sunk);color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--btn);color:var(--btn-ink);padding:8px 14px;border-radius:999px;font-size:13px;z-index:20}
+@media (max-width:600px){h1{font-size:21px}.it{padding:12px 13px 10px}.opt{width:100%}
+  .bar{position:static}#sjrow{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}#sjrow .chip{flex:0 0 auto}}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .25s ease}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>JB 전수 검토 결정표</h1>
+  <p class="lede">7과목 JB 23·24·25·26판(약리는 23q4 포함) 전 쪽을 사이트 카드와 하나하나 맞춘 결과예요. 아직 아무것도 고치지 않았어요. 항목마다 하나를 고르면 저장되고, 다 고르신 뒤 채팅에 <b>“결정했어”</b>라고만 하면 제가 읽어 가서 고칠게요. 고를 필요 없는 확인 결과는 과목마다 맨 아래 ‘확인만’에 있어요.</p>
+  <div class="sum" id="sum"></div>
+</header>
+
+<div class="bar" id="bar">
+  <div class="row" id="sjrow"></div>
+  <div class="row">
+    <select id="fsure" aria-label="확실도">
+      <option value="">확실도 전체</option><option value="확실">확실</option><option value="강중">의심 강·중</option><option value="약참고">의심 약·참고</option>
+    </select>
+    <select id="fcat" aria-label="분류">
+      <option value="">분류 전체</option><option value="A">누락</option><option value="M">합치기·나누기</option><option value="L">관련 링크</option><option value="C">교수</option><option value="Y">연도·짤탈</option><option value="E">내용·글자</option><option value="F">그 밖</option>
+    </select>
+    <button class="chip" id="fopen" aria-pressed="false">안 고른 것만</button>
+    <span class="sp"></span>
+    <button class="act" id="brec">추천대로 채우기</button>
+    <button class="act main" id="bcopy">결정 복사</button>
+  </div>
+  <div class="row prog"><span id="ptext">0 / 0</span><span class="track"><span class="fill" id="pfill"></span></span><span class="mode" id="mode">저장 확인 중…</span></div>
+  <div id="cpanel" hidden class="panel"><textarea id="ctext" aria-label="결정 내용" readonly></textarea><div class="row" style="margin-top:8px"><span class="mode">복사가 안 되면 위 글을 길게 눌러 전체 선택 → 복사해서 채팅에 붙여 넣어 주세요.</span><span class="sp"></span><button class="act" id="cclose">닫기</button></div></div>
+</div>
+
+<main id="main"></main>
+</div>
+
+<script>
+const DATA = String.raw`
+#X 공통 (여러 과목)
+=여러 과목에 같은 원인으로 걸린 것 — 한 번 정하면 전 과목에 같이 적용돼요.
+1|E|확실|JB 원문 줄 끝 '-'가 빠짐 — 6과목 약 27낱말|PDF 글자층에서 줄 끝 '-'가 제어문자로 들어 있어 분해할 때 지워짐(ESTH·IMPL은 쪽 이미지로 '-' 확인). OMS1 semi-adjustable(Q44)·Axis-Orbital(Q12)·damage-pigment(Q07·Q26) / CONS one-for-service(Q10)·trans-illumination(Q02 외)·self-etch(Q67) / IMPL screw-retained(P09)·butt-joint(P11) / GERI G-aerobic·G-anaerobic(G09)·pre-Op(K01) / PHARM long-term(DS17·DS24)·first-line(PN20)·two-vessel·implant-supported(HM10)·t-PA(HM12)·Cl-channel(AX14·AX16·AX20)·syndrome-related(XE04) / ESTH 붉은-주황색(R06·S04·P05)·trans-enamel(Q18). ANAT은 없음. 다만 PHARM PN08 'aro-tase'처럼 한 낱말이 줄에서 쪼개진 곳도 섞여 있음(같은 판 다른 줄은 'arotase(?)').|낱말마다 확인 — 원래 '-'는 살리고 쪼개진 낱말은 붙임*;모두 '-'로 살림;그대로
+2|L|확실|'관련 문항' 링크가 한쪽 카드에만 보임|링크를 새 카드에만 적어서 옛 카드에서는 다시 나온 문제가 안 보임. ANAT 19쌍 중 15쌍(Q13에서 T13·S03·P20이 안 보임 · Q02에서 P05 · Q09에서 T16·P12 …) · GERI 10쌍(B05→B01 · G14→G10 · J16→J12 · J15→J01 · J08→J04 · E13→E01 · Y07→Y04 · G13→G11 · J10→J07 · J13→J08 — G10·J12·B01을 보면 2025 재출제를 알 수 없음). 다른 과목도 같은 방식.|빌드에서 반대쪽 카드에도 자동으로 보이게(전 과목)*;그대로
+3|E|중|가장 최근 해(2025) 출제 꼴이 카드 앞면에 안 보임|앞면 문제·답은 대표 판(대개 25판) 글이고, 2025년에 바뀐 선지·새 하위 문항·바뀐 정답은 접힌 '다른 판본'과 ⭐ 줄에만 있음. CONS Q07·Q08·Q14(25 정답 ⑤) · IMPL Q06(근육 2가지) · ANAT Q16·Q18·Q19·R02·R11·Q03(2025 답)·Q15(판마다 보기 다름) · PHARM HM03 (3) 국소지혈제·BT08 선지 6)·BT09 선지 4)·5)·PN09 (3-1)·BT03 답 3)·BT07 25-50U·PN06 (2')·HM06 Protein C.|앞면 아래 '2025 출제 꼴' 칸을 따로 보임(대표 판은 그대로)*;앞면 대표 판을 가장 최근 판으로 바꿈;그대로
+4|E|중|같은 문항의 하위 문항(n-1·n-2)이 답 칸 속 보통 줄로 묻힘|답을 펴기 전엔 문제로 안 보이고 검색·문제 목록에도 안 잡힘. CONS Q02 '2-2. Agents for non-vital bleaching (14,10)' · ANAT 2020 22번 '22-2) 안면신경 어느 가지'(참고 줄 안에 붙음 — Q13·T13) · GERI H10 '10-1 유사복원'·E03 '3-1' · PHARM RX35 '2) 부프로피온'. (다른 문항이 통째로 묻힌 PHARM DS16·PN14·HM24·XE03은 약리 항목에)|문제 칸에 하위 문항으로 보이게*;그대로
+5|F|중|미복원·복원 불충분 자리 카드를 어떻게 셀지|번호만 있는 카드가 출제 수·형식 경향에 섞여 셈(GERI G15는 '단답형'으로 셈). IMPL P13·Q04·Q05·Q09·R15 · ESTH 15장(Q03 '3-5' 등) · GERI G15 · ANAT S11 · PHARM 내용이 거의 없는 6장(RX38·RX40·DS14·HM12·HM13·XE12). OMS1은 카드 없이 기출 대장에만 '미복원'.|카드는 두고 형식·경향 집계에서만 뺌*;카드 숨기고 기출 대장에만;그대로
+6|Y|확실|짤/탈 '기준선(이전 자료 없음)'인데 괄호에 이전 해가 있음|교수 시작 해 이하를 무조건 기준선으로 봄. ANAT U14 (20,19) — 같은 (20,19)인 U03·U23·U24·T01은 짤 · ANAT T17(2021 서병무 — 같은 칸 T14~T23은 모두 탈) · PHARM RX16(20',16',15')·RX24(20',19',17',16')·RX36(19',18',15')·HM19(20',16')·HM20(20',18')·BT19(20',19').|괄호에 더 이른 해가 있으면 짤로(전 과목)*;그대로
+7|F|중|문제 형식에 '넘버링'이 없고 서술형이 단답형으로 셈|교수별 출제 경향 문구와 어긋남. IMPL Q01·R04(JB '넘버링 문제입니다' → 단답형) · Q03 '(5가지 이상) 나열' → 서술형 · GERI J07 '말하시오'·E12 '(1)…(2)…를 써라'·J12 '비약물적 치료'·K02 '어떻게 할 것인가'·J16 '3가지에 대해 쓰시오' → 단답형.|형식 판정 고침('넘버링' 추가·서술 판정 보강)*;그대로
+8|E|확실|줄바꿈이 띄어쓰기로 남음 · 나열이 한 줄에 뭉침(글자는 같음)|OMS1 S20-3 '구 조물'·S20-4 '사용 되는'·C01 '식 립하여야하는'·C03 '단점 을' · GERI C13 '발생한 다'·'더 많 다'·C02 '노력 이'·'청소 년기'·C03 '적 절한'·C06 '치 아우식'·Y02 '서술하시 오'·P01 '노인들 에게' · 뭉침: IMPL Q10(External/Internal 표 두 열 + 학습부 메모 + 원래 '묶인 보기' 복원이 한 줄)·Q12(가)·나))·T02(상악·하악·arch form 3개)·R03('교정적/이동/7) 8)' 세 줄로 갈림) · GERI B03(ㄱ·ㄴ)·J05((1)(2))·C10(1)·2~5)).|정리(공백 제외 글자 비교로 확인)*;그대로
+9|E|확실|다음 문항 머리글·JB 인사·표지 줄이 답 끝에 붙음|OMS1 Q49 답 끝 '고생하셨습니다 *v*' · IMPL R12 답 끝(정본·26판)과 Q03 다른 판본(24판 19번)에 '추가문제(명훈 교수님이 수업시간에 예고했던 문제 2가지)' · IMPL R02 다른 판본(24판 3번) 끝에 표지 수업 표 줄 '강의(예정) PPT 241028 … 윤필영'.|떼어 냄*;그대로
+
+#OMS1 구강악안면외과학1
+=복원된 문항은 모두 사이트에 있음 — 26판 57/57 · 25판 49/49 · 24판 62/62 · 23판 77/77 · 빠진 문항 0
+1|A|중|23판 정필훈 4번 해설 속 '유사문제 (11,14)' 객관식에 자기 카드 없음|23판 p.20 정필훈 4번 해설 '★★★ 유사문제 (객관식) 다음 중 옳은 것 (11,14) a) 1-3세에 strip craniectomy … b) 10세 이상에서 mandibular advance … 답 b)'. 지금은 C21 답 안 글로만 있고 어느 배지에도 11·14가 없음. C 등급(23판 참고).|새 카드(C 참고 · 2014·2011)로 넣고 C21과 링크*;C21과 같은 문제로 보고 C21 배지에 14·11;지금대로(해설 속에만)
+2|M|확실|Q37·Q49 의도적 재식술 — 같은 문제가 두 카드, Q49 배지에 25 없음|24판 p.11 2022-3Q 14번 '의도적 재식술 예후 고려사항(서술)' 아래 '24 학습부) 2023 시험에서는 객관식으로 출제' · 24판 2023-3Q 11번 '(모두 고르시오, 객관식 짤)' · 26판 2025-3Q 23번 '(25,23)'. 지금 Q37(객관식) 25·23·22 / Q49(서술) 23·22 — 손으로 서로 연도를 더했는데 25는 Q37에만.|한 카드로 합침(25·23·22 · 서술·객관식 둘 다 보임)*;따로 두고 실린 해만(Q37 25·23 · Q49 22) + 링크;따로 두고 Q49에 25만 더함
+3|L|중|Q41 ↔ S20-4 악교정 수술 방사선 종류 — 사실상 같은 물음|25판 2022-3Q 41번 '악교정 수술 시 사용되는 방사선 검사의 종류는?' ↔ 24판 DD2020 4번 '악교정 수술을 위해 골격 평가를 위해서 사용되는 방사선 사진 종류'. JB는 교차 표시가 없음(같은 판 2020 2번엔 '(2022 2번)'이 있는데 4번엔 없음).|따로 두고 관련 링크*;합침(Q41 짤 · +2020);그대로
+4|L|약|S21-4 ↔ S20-3 안면 상중하 나누는 구조물|24판 DD2021 4번(상안면부) ↔ DD2020 3번(상중하) · 26판 2025-3Q 4번 괄호 (25,20)에 21 없음 → JB도 별개로 봄.|그대로(별개)*;관련 링크
+5|L|약|Q15 ↔ Q28 Final STO — 24판 교차 표시 '(2024. 8번)'|24판 DD2021 8번 'Final STO의 한계는? (2024. 8번)'이 2023-3Q 8번 'Final STO 설명(서술 반짤반탈)'을 가리킴. 25판 Q15 괄호는 (21,24)만. Q28 답에 '한계 1)2)3)'이 들어 있음.|관련 링크*;합침;그대로
+6|Y|중|Q28 짤탈 '탈' ↔ JB '반짤반탈'|24판 2023-3Q 8번 '(서술형 반짤반탈)' — 한계 부분이 2021(Q15)과 같음. 사이트는 별개 카드라 탈, 메모에만 '반짤'.|'탈 · 변형'(반짤)으로*;그대로
+7|L|확실|C19만 J4를 가리키는 문구가 없음|23판 정필훈 C 카드들은 '같은 문제의 다른 수록본은 … J'로 24판 J 카드를 가리키는데 C19(23판 2번)만 J4 문구가 없음. J4는 C19 괄호 (2016,2013,2019)를 배지에 씀.|C19에 J4 연결 문구 추가*;그대로
+8|M|약|J4 안의 '[객] Trigonocephaly 그림 (2018)'|23판 p.19 정필훈 2번 '(서술) 두개골 조기유합증 suture별 도해 (2016,2013,2019) [객] Trigonocephaly 그림 주고 맞는 설명 고르기 (2018)' — 서술형과 다른 객관식이 JB 한 번호에 묶임. J7·C38('그림 보고 옳은 보기 — metopic')과 더 가까움.|그대로(JB 원문대로) + J7·C38과 링크*;그대로
+9|C|강|Q48 Immediate occlusal loading 교수 — 방강미 ↔ 한정준|25·26판 2022-3Q 48번이 [방강미 교수님] 머리 아래. 24·23판 같은 문항(18번)은 교수 표기 없이 참고 '221018_외과_한정준_Loading protocol'. 24·23판은 15·16번에만 '방강미 교수님 문제였다고 복원'을 달았고 바로 다음 19번(Q22)은 사이트에서 한정준. subject.py에도 '근거 엇갈림 — 사용자 확인'.|방강미 유지(JB 머리) + '참고 자료는 한정준 강의' 메모*;한정준으로;둘 다 표기
+10|E|확실|Q03 첫 JB 답이 26판에서 '잘못'이라고 고친 25판 답|25판 2024-3Q 3번 답 '1) developmental delay … 5) psychosocial issue' ↔ 26판 2025-3Q 2번 답 '1) Intrinsic bone malformation 2) Fetal head constraint 3) Intrinsic brain malformation' + '26 학습부: 기존 답의 5가지는 원인가설이 아니라 major functional concerns로 잘못 연결'. 지금은 바른 답이 '다른 판본'에만.|첫 답을 26판(고친 답)으로 · 25판 답은 다른 판본에*;그대로 + 첫 답에 ⚠ 표시;그대로
+11|F|확실|23판 DD2020 1~4번이 한 블록 '1~4번'으로 묶임|파서가 1번 답 '2. Developmental origin / 3. Trauma / 4. Tumors'를 번호로 읽음 → 진짜 2번(CDS 종류)·3번·4번이 한 블록. 그래서 Q39(CDS)에 23판 2020 2번이 연결 안 됨(배지 20은 24판으로 이미 있음), 2~4번 쪽 표기도 p.11인데 실제 p.12.|분해 고쳐 4문항으로 나누고 연결*;그대로(내용은 화면에 다 있음)
+!24판 2023-3Q 두 번째 15번 · 2022-3Q 11·17번 = '미복원'(내용 없음 — 기출 대장에만 '미복원')
+!25판 2024-3Q 23번 T/F (6)~(8) '복원 안 됨' — Q23 답에 그대로 표시
+!26판 2025 칸 27문제 → 학습부가 중복 4개 통합 → 23(Q23·Q22·Q56에 반영)
+!25판 2024-3Q 2번 'Posterior fontanel'(Q02)이 26판에서 빠짐(이유 표시 없음) — 사이트는 25판대로 둠
+!Q31 보기(26판 이종골 ↔ 25판 동종골)·답 번호 다름 — JB 괄호 (25,23)가 같은 문제로 묶음, ⚠ 두 해석 표시 있음
+!Q53 칸은 한정준인데 해설은 서미현 자료 · 26판 2024·2023 칸 몇 문항의 교수 머리 누락은 JB 쪽 오류(사이트 맞음)
+!C18 보기 3)·4)만 = 23판 원문도 그대로 · 그림 문항 그림 수 모두 원문과 맞음 · Q23 강의 DX·LOAD 양쪽 ⭐ 연결 정상
+
+#CONS 임상치과보존학
+=JB 4판 150블록 모두 연결(출처 71 + 다른 판본 79) · 글자 71/71 일치 · 배지 71/71 일치 · 빠진 문항 0
+1|M|강|Q43 ↔ Q44 crack 방향 — 같은 25년 문항의 두 복원|26판 서덕규 19번 'crack의 방향 옳은 것' / 20번 'crack 방향 옳은 것?' — 20번 해설 '복원 오류 가능성 … 19번 복원이 더 정확'. 지금 별개 카드 2개, 링크 없음.|합침(Q43 본문 · Q44는 다른 판본)*;따로 두고 링크;그대로
+2|M|강|Q39 ↔ Q40 fractured cusp — JB 번호 14·14-1|26판 14번 / 14-1번 발문 같음(14-1 보기 5 '기억이 안납니다'). 링크 없음.|합침*;따로 두고 링크;그대로
+3|M|강|Q57 · Q63 · Q64 '물리적으로 상아세관 막는 것이 아닌 것' 3장|26판 32번(4지)·37번(5지 — glutaraldehyde 포함)·38번(보기 미복원 [탈]) 발문이 사실상 같고 답은 모두 potassium nitrate. JB는 같은 문항이라고 적지 않음. 지금 별개 3장 · 링크 없음 → 25년 한 문항이 3장으로 셀 수 있음.|따로 두고 서로 링크 + '같은 문항일 수 있음' 표시*;한 카드로 합침;그대로
+4|L|중|Q60 ↔ Q61 탈감작제를 오래 못 쓰는 이유|26판 34번 해설 끝 '추가 복원: 37번 문항 Desensitizer를 왜 하나에 정착을 못하나 (객관식)' ↔ 35번 'Desensitizing material이 장기적으로 유지될 수 없는 이유 (오지선다)'. 링크·메모 없음.|관련 링크*;합침;그대로
+5|L|중|Q41 'special enamel' ↔ Q07(craze line)|26판 15번 'jb 6p 18번 special enamel (25)' — 옛 JB 6쪽 = Q07 해설 'Craze line - enamel에만 국한된 crack'. 26판 해설은 '기존 JB에서 일치 문제를 못 찾음'. 사이트 Q41 탈 · 링크 없음.|관련 링크만(짤탈 그대로)*;링크 + Q41 짤;그대로
+6|Y|중|Q17 ↔ Q17_1(17-1 변형) — 링크 없음 · 17_1 짤탈|25판 17번 '(23) 단답' / 17-1번 '(24) 객관식', 17-1 정답 ④가 17번 답 그대로. 25판 멘트 '이창하: 짤 객관식 2 …' — 2024 이창하 객관식은 Q14와 17-1뿐 → JB는 17-1을 짤로 셈. 사이트 Q17_1은 탈.|링크 + Q17_1 '짤 · 변형'*;링크만;그대로
+7|L|약|Q54 '약제에 대한 문항 (25)' — 발문·보기·답 없음|26판 29번. 같은 25년 약제 문항(31·32/37·34) 중 하나의 다른 복원일 수 있음.|그대로*;관련 링크
+8|L|약|Q46 '(불확실) 상아질 지각과민증 정의 중요 특징'|26판 21번 해설 끝 추가 복원 — 균열치 칸(21번 뒤)에 끼어 있어 균열치 증상 문항(Q35 '짧고 날카로운 통증')과 섞인 복원일 수 있음.|그대로*;Q35와 관련 링크
+9|L|참고|Q67 ↔ Q14 같은 함정 선지 'resin tag'|26판 44번 ④ 'resin tag가 상아질 접착에 주요 역할' / Q14 5-1) '상아질 접착은 resin tag에 의해 (24)'. 서로 다른 문항.|그대로*;관련 링크
+10|M|중|Q08에 26판 40번과 41번이 둘 다 붙음|40번 'Cooling 자극 시 dentinal fluid 이동방향 (24,23,22,21,20,18,17)' + 41번 'p.10 8번, 24년도 기출문제 변형 (25)'(발문·보기 없음). 같은 문항의 두 복원인지 25년 다른 문항 둘인지 원문으로 확정할 수 없음. 지금 둘 다 Q08 다른 판본(25 한 번).|그대로(같은 문항으로)*;41번은 자리 카드로 따로
+11|C|약|Q26~Q29 '이전 교수' ↔ JB 칸 이창하|JB 4판 모두 이창하 칸. 23판 22년 멘트 '이창하 교수님은 이 수업에 올해 처음' + 네 문항 연도가 모두 2021 이전 → 사이트가 '이전 교수'로 둠(근거 있음).|'이전 교수' 유지*;JB대로 이창하
+12|Y|확실|Q08 ⭐ 요약 줄 '7회' ↔ 배지 8회|lec_DHS.txt 231줄 'E: Q08 — 24·23·22·21·20·18·17년(7회)' · 카드 메모 '…2017 7회'. 배지는 25 포함 8회(25년은 233줄에 따로).|8회로 고침*;그대로
+13|E|확실|Q02 24년 빈칸 4곳이 표시 안 됨 · 메모 서로 어긋남|25판 p.3·26판 p.26 이미지: 굵은 글씨 4곳 = 'Remove 2-3mm of obturating material' · 'Minimum 2mm (LC GIC)' · 'Mix sodium perborate and 3% H2O2'(멘트 '24년도 출제된 빈칸에 볼드처리'). 25판 메모 '어느 자리인지 복원 불가 → 수치 전부 빈칸 후보' ↔ 26판 메모 '2-3mm·LC GIC·sodium perborate·3% H2O2'. WHT '빈칸 대비 수치표'도 후보 전부.|빈칸 4곳으로 확정 — 카드·메모·수치표 정리*;그대로
+14|E|중|Q46·Q60 문제 칸에 답 문장이 보임|26판 p.13 '추가 복원의 정의 문제에 대한 핵심 답은 … short, sharp pain' · p.19 '추가 복원의 여러 desensitizer를 바꾸어 쓰는 이유에 대한 답은 …' — JB 편집자 답 문장이 문제 칸에 같이 있음(JB 답 칸은 '답 표기가 따로 없음').|답 문장을 답 칸으로 옮김*;그대로
+15|F|중|Q11 '2025년 교수님 강조' 꼬리표|26판 p.28 '2025년 교수님 강조 / 11. 2급 와동 형성…'(25판은 9·10·13번 위, 11번엔 없음). 26판이 10번을 2025 칸으로 옮기며 꼬리표가 11번으로 밀린 편집 실수일 수 있음.|그대로(편집 실수로 봄)*;Q11에 26 강조 표시
+16|F|약|26판 인쇄 쪽번호 3이 없음|PDF 2쪽 = 인쇄 '2'(멘트·강의표) → PDF 3쪽 = 인쇄 '4'(2025-3Q 1번 시작). 흐름상 멘트 쪽이었을 가능성이 큼.|맥에서 원본 PDF로 한 번 확인*;그대로
+!26판 서덕규 번호 16·17이 원문 자체에 없음(p.10·11 이미지 확인 — 숨은 문항 없음) — 넣을 원문 없음
+!2021 조병훈 교수 1문항(탈) — 학습부 멘트에만 있고 4판 어디에도 문항 없음
+!학습부 멘트 출제 수 ↔ 괄호 연도 카드 수: 2024 12=12 · 2023 13↔14 · 2022 12↔10 · 2021 12↔10 · 2020 12↔11 · 2019 10↔3 — JB 쪽 미수록·괄호 누락 가능성(사이트는 JB 괄호대로)
+!원문 자체가 불완전한 문항 16장(Q32·Q35·Q36·Q40·Q41·Q50~Q54·Q57·Q58·Q61·Q64·Q08 40번·Q46·Q60) · 답 불확실 Q38·Q44·Q45·Q62 — 원문 그대로
+!Q14(25,24,23)·Q07('짤 넘버링 변형')·Q02(2·2-1·2-2) 합침은 JB 표시대로라 맞음 — 25년 꼴이 앞면에 안 보이는 건 공통 X-3
+!Q07 교수 '서덕규·손원준' — 23판 멘트 근거 있음 · 손호현 참고 C01·C02 · '2022년 교수님 pick' 머리는 시험 연도 아님(배지에 안 넣은 것 맞음)
+
+#IMPL 치과임플란트학
+=JB 4판 126블록이 카드 47장에 하나씩 연결 · 글자 47/47 · 다른 판본 79/79 일치 · 빠진 문항 0
+1|M|중|Q13(2024) ↔ P14(2025) — 2024년 한 문항을 두 번 셈|26판 2025-3Q 14번 '임플란트 수술 옳은 것 (24',25')' — JB가 24년 문제와 같다고 괄호. 사이트는 선지 2)·5)와 답이 달라 별개 카드 + 링크인데 P14 배지에 24가 있어 2024 조영단 객관식이 5문항으로 셈(실제 4) · 2024 문항 19(실제 18).|한 카드로 합침(25년 선지는 다른 판본)*;따로 두고 그대로(이중 집계 감수);따로 두고 P14 배지에서 24 뺌(괄호 규칙과 어긋남)
+2|C|중|P13(2025 13번 미복원) 교수 빈칸|26판 2025 칸이 교수별로 붙어 있고 13번은 11·12·14·15 조영단 사이 — 조영단일 가능성이 큼(JB에 이름은 없음).|빈칸 두고 '자리로 보면 조영단' 메모*;조영단으로;그대로
+3|C|약|Q04·Q05·Q09(2024 미복원) 교수 빈칸|25판 2024 칸 1~3 윤필영 · 4·5 ? · 6·7 임영준 · 8 이재현 · 9 ? · 10~14 조영단 … 2024 김성균(PRO) 복원 문항이 0개라 김성균일 수 있음 — 근거는 자리뿐.|그대로*;'자리로 보면 김성균?' 메모
+4|C|약|R15(2023 15번 복원 불충분) 교수 빈칸|앞 13·14 이재현(PART) · 뒤 16 명훈(PATH).|그대로*;메모
+5|Y|중|Q18 '탈 · 변형' ↔ JB '(짤 변형)'|25판 p.7·26판 p.10 'advantage of a periodontal ligament 나열 (짤 변형)' — 22년 TF(S01)의 변형.|'짤 · 변형'으로*;그대로
+6|Y|중|R13·R14(명훈 예고 문항)가 '2023 출제'로 셈|24판 '+ 추가문제(명훈 교수님이 수업시간에 예고했던 문제 2가지)' · 24판 멘트 '올해 2문제를 수업시간에 공개 … 어떻게 출제될지 확신하기 어렵다' · 26판 멘트 '작년과 재작년에는 출제조차 하지 않으셨고'. 2023 문항 수(21)와 명훈 경향에 섞임.|'예고' 표시로 바꾸고 출제 집계에서 뺌*;그대로
+7|E|중|Q08 '아래와 같이' 그림이 문제 칸에 없음|25판 p.3 '8. 아래와 같이 임플란트 구강 스캔을 할 때 fixture에 끼우는 장치' — 그림 위 제목 'Scan body: Intraoral scan'이 곧 답이라 그림 전체가 답 칸에만.|제목 줄을 뺀 그림 아랫부분을 문제 칸에*;그대로
+8|L|중|관련 링크 없는 3쌍|같은 슬라이드에서 형식만 바꿔 나온 R02(23 서술 비교) ↔ Q10·P11(p.25 표) · Q16(24 골친화) ↔ R07·P18 · R06(23·25 woven/lamellar) ↔ Q15(메모 '23년 6번의 변형') — 메모 글에만 있음.|관련 링크 추가*;그대로
+!JB 원문 자체 결번: 2022-3Q 1~4·10번 · 2020-3Q 1~7번 · 2021-3Q 6번 이후 — 사이트가 빠뜨린 것 아님
+!Q02 2022 꼴 합침 · Q06 괄호 (22',23',25')에 24·20 없음 · Q01·Q02 배지 22 · S03·T04 배지 20 — 모두 근거 있음
+!T04 2025 JB '(탈)' ↔ 사이트 짤 — 10-16 결정(2021 칸 4번과 답 같음)
+!S01 '(예상문제)' 표기 — 2022 칸 번호가 있어 출제로 봄
+!PRO 26 강의 박지만 — 기출 카드 교수(김성균 23·25)는 맞음, 2026 출제자는 JB로 알 수 없음
+!P10 그림 배치(답 가림)·Q15 모식도 없음·P15 사진 없음·T02 표 없음 — JB 자체 한계 또는 의도된 배치
+
+#ANAT 임상두경부해부학
+=JB 4판 201블록(23판 75 · 24판 12 · 25판 47 · 26판 67) 모두 카드 84장에 연결 · 글자 일치 · 빠진 문항 0
+1|A|중|'18·19년도 Unilateral cleft lip 옳지 않은 것' 객관식 — 해설 속 언급만|25판 p.3·26판 p.10 2024칸 2번 해설 · 23판 p.19 2020칸 10번 해설 '18,19년도에는 Unilateral cleft lip에 대한 옳지 않은 설명은?으로 객관식 출제'. 보기 원문은 어느 판에도 없음. 지금은 서술형 Q02 배지에 2019·2018만 더해짐 → '비슷하지만 다른 문항은 별개' 규칙과 어긋남. 2025 P05(객관식 '옳지 않은 것 모두')와 같은 꼴.|보기 없는 자리 카드(2019·2018 객관식)로 따로 + Q02·P05 링크 · Q02 배지에서 19·18 뺌*;Q02에 그대로;P05 배지에 19·18
+2|A|약|M04 해설 속 '유사 기출: 경부 림프절 level 구조물 그림 위치'(연도 없음)|23판 p.25·25판 p.22·26판 p.29 명훈 2017칸 4번 해설. 연도 불명 · 그림 위치 문제(M04는 도해).|지금대로(M04 해설)*;연도 없는 참고 카드로
+3|M|중|Q09에 2020 17번 '그림 빈칸빵'이 붙음 — P12 그림과 같음|23판 p.21 2020칸 17번 '[단답형] ascending palatine artery, ascending pharyngeal artery 그림 빈칸빵' — JB 그림이 2025 P12(같은 혈관 그림 9칸 빈칸)와 같음. 지금 Q09(Le fort 1 혈행 '쓰시오') 배지에 2020, P12는 2025 '탈 · 변형'만.|2020 17번을 P12로 옮김(P12 +2020 짤 · Q09 −2020)*;그대로
+4|M|중|Q15에 2020·2021 SMAS 객관식이 붙음 — 보기·답 다름|23판 2020칸 21번 '[객] SMAS 1) 약자 2) Zygomatic arch 상부 3) 근육과 피부 연결 답 1,(3)' + 2021칸 12번 'SMAS 객관식 중복복원'. Q15(보기 5개·답 3,5) 괄호는 (24,23,22)·(25,24,23,22)뿐이고 23판 2022칸 2번엔 '(탈)'.|2020·2021을 따로 카드로 + 링크(Q15 −21·20)*;그대로
+5|M|중|2020 22번 한 블록이 Q13과 T13 두 카드에 동시에|23판 p.22 2020칸 22번 '22-1) TMJ 피부절개법 그림 … 22-2) 안면신경 어느 가지가 TMJ approach 시 가장 가까운가'. 22-1 = Q13(1), 22-1+22-2 = T13. Q13 배지 2020은 22-1만 근거.|22-1은 Q13, 22-2는 T13으로 나눠 연결*;그대로
+6|M|약|2022 16번 'CP 임상양상' → Q02 연결(답은 cleft lip 특징)|24판 p.4·23판 p.6. 25판 해설은 Q02로 봄('22년에는 CP의 임상양상이라는 워딩'). 그런데 Q04(Complete cleft palate) 괄호 (24,23,22)의 22를 뒷받침할 2022 블록은 이것뿐.|그대로(답 내용대로 Q02)*;Q04로 옮김
+7|M|확실|Q16 ↔ R07 이하선관 경로 = Stensen's duct — 링크 없음|25·26판 2024칸 16번 '이하선관의 경로 (탈)' · 26판 2025칸 13번 ↔ 25·26판 2023칸 7번 'Stensen's duct 관련 설명' · 23판 2021칸 8번 'parotid duct 관련 설명'. 답도 같은 줄(Masseter 상방 → Buccinator → 제2대구치 맞은편, ear lobe–upper lip 평행).|합침(배지 25·24·23·21 · Q16 짤)*;따로 두고 링크;그대로
+8|L|중|R14 ↔ R02 Kiesselbach's plexus — 링크 없음|25·26판 2023칸 추가복원 2 'Kiesselbach's plexus 관련 주 혈관' — JB 해설 '최진영 교수님 4번 문제의 중복복원일 가능성'.|관련 링크*;합침;그대로
+9|L|중|R01 ↔ Q03 코 골·연골 — 링크 없음|25·26·24판 2023칸 1번 '코를 구성하는 골과 연골' — JB 2025 학습부 'bone cartilage framework 문제가 이렇게 복원됐을 가능성'. R01 '탈 · 변형'.|관련 링크*;합침;그대로
+10|L|중|Q17 ↔ R08 같은 슬라이드 그림|25·26판 2024칸 17번 'Parotid 표층 걷어낸 뒤 사진 A,B,C (탈)' — Q17 그림(Great auricular n.·SCM·EJV)이 R08 첫 그림(25판 p.14)과 같은 슬라이드, R08 답에도 Great auricular n. 사이트 Q17 '탈 · 새 영역'.|관련 링크 + Q17 '탈 · 변형'*;그대로
+11|M|중|S08 ↔ R11 — JB '동일 문제로 보이나 두 문제 모두 보존'|25·26판 2022칸 8번 '그림 주고 구조물과 지나는 신경'. 링크는 있음. 합치면 R11 배지 25·23·22.|그대로(JB대로 따로)*;합침
+12|Y|중|S03 '탈 · 새 영역' — 2020 22-1과 같은 그림|23판 2022칸 8번(서병무) '절개선 이름과 적용 부위' — JB 2025 학습부 '같은 그림으로 periauricular incision 다루는 박주영 문제의 복원일 가능성'. 링크는 있음.|'탈 · 변형'으로*;합침;그대로
+13|Y|중|P20 '탈 · 새 영역' — T13·2020 22-2와 같은 지식|26판 2025칸 20번 '신경과 가지' ↔ 2021 T13 'temporal branch of facial n.' · 2020 22-2 'Temporal branch'. T13 링크는 있음.|'탈 · 변형'으로*;그대로
+14|Y|참고|P08 (1)은 2020 U07과 문장까지 같음|26판 2025칸 8번 (1) ↔ U07(LVP·40%). 지금 '탈 · 변형', U07 링크 있음.|그대로*;짤로
+15|L|약|T02 ↔ R10 lingual a. · T23 ↔ S08·R11|T02(2021 lingual a. hyoglossus 기준 도해) 참고 글에 R10과 같은 혈관·임상 · T23(V3 가지) 답이 S08(구조물–통과 신경)과 같음.|T02↔R10만 링크*;둘 다 링크;그대로
+16|C|중|R14 교수 최진영(JB 해설 추정) ↔ JB 칸 권익재 · 강의 LIP ↔ NV|25·26판 2023칸 [권익재] 아래 추가복원 2, 참고 '250915 권익재 NV p.9'. 사이트는 JB 해설('최진영 교수님 문제일 가능성이 더 높다')대로 최진영·LIP.|최진영·LIP 유지(JB 해설)*;권익재·NV(JB 칸·참고);교수 둘 다 표기 · 강의 둘 다 연결
+17|C|중|U09 강의 PAR ↔ JB 참고 서병무 mandible|23판 2020칸 [최진영] 9번 '하악지와 하악과두에 붙는 근육' 해설 '최진영 교수님 강의가 아니라 서병무 교수님 강의자료(230920 mandible p.11, 30)에서 찾았습니다'. 교수 최진영은 맞음.|강의를 MAND로(교수 그대로)*;PAR·MAND 둘 다;그대로
+18|C|중|T17 강의 NV만 ↔ JB 참고 서병무 Maxilla|23판 2021칸 17번 'mx가 통과하는 foramen?' 참고 '231004 서병무 Maxilla p.24'. 과목노트에도 'NV·MAX 동시 연결 확인' 미결.|MAX도 연결*;그대로
+19|Y|약|Q07 2023 — 해설의 '23년도 워딩'에서 온 해|괄호 (24,22) · 칸 2024/2022. 2023은 해설 '23년도에는 Le fort I osteotomy 시 … 몇 mm 워딩으로 출제'. 사이트 '출처·연도 근거'에 이유 있음.|그대로*;2023 뺌
+20|Y|약|Q04 2022 — 괄호에만 근거, 2023은 JB가 '(탈)'|괄호 (24,23,22) · 24판 2023칸 2번 '(탈) Complete cleft palate'. 2022칸에 해당 블록 없음(6번 항목 참고).|그대로(괄호 규칙)*;메모만 추가
+21|E|확실|U06 문제 칸에 답이 보임|23판 2020칸 6번 '인중·입꼬리·입술산·팔자주름 구조물 이름' — JB에 '답)' 줄이 없어 해설이 문제 본문에 들어감('팔자주름은 nasolabial fold, 입꼬리는 Commissure').|해설을 답 칸으로*;그대로
+22|E|중|P10 빈칸 상자가 있는 문제 그림이 답 칸에만|26판 2025칸 10번 '그림의 빈칸을 채우시오' — 상자 밖 라벨(Medial/Lateral Crus)이 보이고 상자 위치가 답 번호와 어긋나 jb_crops 메모로 답 칸에만 둠.|그대로(메모대로)*;라벨 가린 판을 문제 칸에
+23|E|참고|P20·P16 JB 답이 문항 요구보다 모자람|P20 '신경과 가지' 답 facial nerve만(가지 없음) · P16 'landmark 5개' 답 4개. 사이트는 원문 그대로.|⭐·해설에 강의자료 근거로 보충*;그대로
+24|F|확실|R13·R14 출처 줄에 '추가복원'이 빠짐|화면 출처가 '2023년 칸 1번'·'2023년 칸 2번' → R01(2023 1번)·R02(2023 2번)와 겹쳐 보임(툴팁만 '추가복원1번/2번').|'추가복원 1·2'로 고침*;그대로
+25|F|중|23판 2022칸 23번 '21번과 중복복원'을 Q19(22번)에 연결|권익재 머리 아래라 '22번' 오타로 본 판단. 글자대로면 21번(R09 근육 기능).|그대로(오타로 봄)*;글자대로 R09로
+26|F|참고|24판이 최진영 파트 6쪽뿐|받은 24판 원본이 최진영 파트뿐(시간표 쪽은 7강의). 다른 교수 2023·2022·2021칸은 23·25·26판이 덮어 실제 영향은 없어 보임.|맥에서 원본 파일 확인*;그대로
+!교수 머리 차이(사이트 맞음): 26판 2025칸 권익재 머리 ↔ 2025 담당 서미현(P14~P16·Q16) · 양훈주 머리 ↔ 한정준(P05~P10) · 17~20번 머리 없음 → 박주영 추정 · 23판 2022칸 15~19 최진영 머리 누락
+!Q13 2025 배지는 (1) 절개법만 출제((2) 동·정맥은 2025 미출제)
+!23판 '중복복원'만 있는 블록(2021 10·12·18·19 · 2020 4·16·20)은 앞 번호로 추정 연결 — 같은 연도 칸이라 배지 영향 없음
+!그림 라벨이 곧 답이라 그림이 답 칸에만 있는 문항(R03·S01·S08·U12·U13·S04·P12) · JB에 그림이 없는 T06·R12 · 답 줄 없는 T02·S04 — 원문 그대로
+!박주영 2023·2022 '완짤'로 삭제된 문항은 괄호 연도로만 남음(Q13·Q14·Q15 배지에 반영)
+!2024칸 20번 해설 'If) 하악 제3대구치 발치 시 주의할 신경'은 학습부 가정 문항 — 기출 아님
+
+#GERI 노인치과학
+=26판 71/71 · 25판 47/47 · 24판 78/79(1개 빠짐) · 23판 78/78 · 카드 95 = 서로 다른 출제 93 + 학습부 예상 1(H16) + 미복원 1(G15)
+1|A|확실|24판 2023칸 장지희 20번 Nonverbal pain indicator 빈칸 — 사이트에 없음|24판 p.8(인쇄 80쪽) '20. Nonverbal pain indicator에는 facial expression, [ 1 ], body movements, changes in interpersonal reaction, changes in [ 2 ], changes in [ 3 ]가 있다' 답 '1. vocalization 2. mental status 3. usual activity' · 참고 230921 p.26. 분해기가 '[ 1 ]' 꼴 빈칸을 단서로 못 봐서 19번 → 21번으로 건너뜀. 25판 J01 해설 '23년도에는 vocalization이 빈칸으로 출제'가 바로 이 문항. J01 배지 23은 이미 있음.|J01 다른 판본으로 넣기(분해기도 고침)*;새 카드
+2|M|확실|E03에 묻는 수치가 다른 3-1(2022)이 묶임|E03 본문 = '치근단 병소 유무 상관없이 survival 확률'(답 89%). 2022 판본 = '석회화된 근관을 치료하지 않았을 때 치수괴사 확률과 치근단 병소 확률'(답 40%·8.5%) — JB는 3-1(하위)로 묶었지만 다른 물음. 3-1이 E03 답 칸 안에만 보이고 E03 배지 22는 이 3-1 때문.|3-1을 새 카드(2022)로 떼고 링크(E03 24·20·18)*;그대로(JB 묶음)
+3|M|중|24판 2023 8번 'orifice 찾기' 일반형이 E01에 붙음|24판 p.4 '석회화로 막힌 근관 orifice 찾기 위해 시도해볼 방법' — 답(dentin shelf → methylene blue → CPR tip → RC prep)이 E13(2021·2020)과 같은 일반형. E01(NaOCl로 입구 형성 — 2024)에 붙인 근거는 25판 E01 괄호 (23,24).|E13 다른 판본으로 옮김(E13 +23 · E01은 괄호로 23 유지)*;그대로
+4|M|중|Y04 = 2022 caries removal(Carisolv) + 2021·2020 management 4가지|23판 해설 'chemomechanical management 슬라이드가 p.26에 따로 … 많이 출제'로 둘을 구분. 24판은 2022 답을 4가지로 바꿈(이전 답 Carisolv 병기).|그대로(24판 처리)*;2022를 떼어 별개 + 링크
+5|M|중|C11에 23판 2020 5번(보기·답 다름)이 붙음|23판 p.19 2020 5번 '2012년 구강 질환 유병률 (객) 1) 저작불편호소율 40-50% 2) 치주질환 40% … 답 1,2' ↔ C11(2021 '2012년 조사 맞는 것' 답 1). 같은 통계 주제의 다른 문항일 수 있음.|따로 카드(2020) + 링크(C11 −20)*;그대로
+6|M|강|C12 ↔ C04 2021 OHIP — 같은 해·같은 자리|23판 2021칸 조현재 8번 '구강건강과 삶의 질 객관식 (짤)' 답 'OHIP는 7개 분류 49문항' ↔ 24판 2021칸 조현재 6번 'OHIP 49문항 → 몇 개 문항으로 축소'(C04 다른 판본). 조현재 넷째 문항 자리가 맞음(앞 셋은 C09·C10·C11로 짝). 23판 8번 메모 '빈칸빵이라면 18학번 3번 참고' = C14. 사이트 C12는 '탈', JB는 '(짤)'.|C12를 C04의 2021 판본으로 합침*;따로 두고 C04·C14 링크 + C12 짤;그대로
+7|M|중|B05 ↔ B01 — JB 괄호 (23,24,25) 연속|26판 2025칸 변민수 1번 '(23, 24, 25)' · 2024칸 1번 '(23,24)' · 24판 2023칸 25번. 2025는 ㄱㄴㄷㄹ 묶음형으로 꼴만 바뀜. 지금 별개(B05→B01 링크만) · B01 배지에 25 없음.|합침(B01 +25)*;따로 두고 양방향 링크;그대로
+8|M|중|J16 ↔ J12 비약물 치료 — 답 6항목 같음|26판 2025칸 장지희 6번 '만성통증 비약물적 치료 3가지' ↔ 23판 2020칸 10번 '악안면 통증 비약물적 치료'(Education·Exercise·Physical modalities·CBT·Operant·Mind-body). 10-16에 '별개 + 관련'으로 정한 적 있음.|그대로(10-16 결정)*;합침(J12 +25 짤)
+9|M|중|G14 (2) ↔ G10 polypharmacy — 같은 문장|26판 2025칸 고홍섭 2번 (2) '( ) may cause the increased risk of inappropriate use of medications…' = G10(2021) 문장 그대로. G10 배지에 25 없음, 링크 G14→G10만.|G10 배지 +25(G14 (2)를 G10 다른 판본에도)*;그대로 + 양방향 링크
+10|L|중|C13 ↔ C09 연령대별 특징|23판 2020칸 4번 '옳은 것 두 가지' / 24판·23판 2021칸 '옳은 것' — 보기 축 같음(18-24세 우식·흡인성 폐렴·삶의 질·주관적 평가). 24판 해설 '연령대별 특징은 매년 출제'. 링크 없음.|관련 링크*;합침(짤);그대로
+11|M|약|빈칸 위치만 다른 문항 처리 기준이 다름|G13/G11·G08/G09는 따로, G01은 다섯 가지 빈칸 변형(신체활동·활력·보행속도·체중·체력)을 한 카드로.|지금대로 + 서로 링크*;한 카드로 통일;G01도 나눔
+12|M|약|J04에 2021 수면 빈칸형이 합쳐짐 · 배지 22는 26판 괄호|J04(2024 'REM·slow wave·sleep latency·NREM·total sleep time 증감') + 2021 '수면 시 (1) 증가 (2) 감소 · 보기 NREM 1·2·REM'. 배지 22는 26판 J04 괄호 '(22)'인데 실제 2022 수면 문항은 J08(별개).|그대로*;2021형 떼고 J08과 묶음 정리
+13|L|참고|E12↔E09 · E11↔E08 관련 링크 없음|같은 마모 증례에서 묻는 것만 다름 / 거울 문항(안 보이는데 잘 들어감 ↔ 보이는데 안 들어감). 별개가 맞음.|관련 링크*;그대로
+14|Y|강|K01 배지 2019 — 23판 학번 괄호를 해로 읽음|23판 p.25 2020칸 21번 괄호 '(20,19)' — 23판 머리 '괄호 연도도 출제연도가 아니라 출제 학번' → 2022·2021(이미 배지에 있음). 같은 판 다른 괄호는 모두 +2로 바꿨는데 K01만 예외.|2019 뺌(6회 → 5회)*;그대로
+15|Y|확실|C01~C04 짤탈 '기준선' — 칸 머리 교수로 계산됨|24판 2023칸 [한동헌] 머리 아래지만 실제 출제 조현재(메모 '작년까진 조현재 교수님이 출제'). 조현재 기준이면 C02(23·22)·C03(23·22)·C04(23·21) = 짤, C01(23) = 탈.|조현재 기준으로 고침*;그대로
+16|Y|확실|H16 학습부 예상문제를 '2025 출제'로 셈|26판 p.4 2025칸 한동헌 5번 '중복복원이기에 올해 강조하신 파트 예상문제 만들어두었습니다'. 배지 '2025 · 1회', '탈 · 변형', 한동헌 2025 '7문항'(실제 6). 출처 줄엔 '(학습부 예상문제)' 표시가 있음.|'예상' 표시로 바꾸고 출제 집계에서 뺌*;그대로
+17|Y|약|2020만 있는 카드가 '탈 · 새 영역'(기준선 아님)|C13·C14·C15·J12 — 2020은 23판 가장 이른 칸이지만 COVER(조현재·장지희 = 2019)라 탈로 판정. J13·J14는 JB가 '(탈)'이라 맞음. 괄호로 더 이른 해가 잡히는 과목이라 탈로 둘 근거도 있음.|그대로*;기준선으로
+18|C|참고|출처 줄에 칸 머리 교수 이름이 그대로|C01~C04 'JB 24판 · 2023년 칸 · 한동헌 N번', K02 '금기연 12번' — 카드 교수(조현재·유연지)와 다른 이름이 보여 헷갈릴 수 있음(내용 오류 아님).|출처 줄에 '(출제 조현재)'처럼 덧붙임*;그대로
+19|C|참고|P01·P02 2018 이전 해 '이전 교수'|24판·23판 19학번 메모 '노인의 행동심리학이 작년부터 이동영 교수님에서 박지은 교수님으로' → 적어도 2019 이전은 이동영.|그대로*;'이동영'으로
+20|E|확실|C13 해설 5번이 잘려 C11 다른 판본 첫 줄로 감|23판 p.19 2020칸 조현재 4번 해설 마지막 '5. 개인별로 질병 발생 위험의 노출 정도에 차이…'를 파서가 새 문항 5번으로 끊음 → C13 해설 5번 빠짐, 그 줄이 C11 다른 판본(2020 5번) 문제 첫 줄로 · 23판 대조표 2020 5번 이름도 이 줄(이미지 확인).|분해 고침(C13 해설 복구 · 2020 5번 바로잡음)*;그대로
+21|E|약|J04 해설 그림·E03 답 아래 표 그림 크롭 없음|26판 p.16 2024칸 장지희 4번 해설 그림('Slow wave sleep ↓ · REM ↓ · Sleep latency ↑ · Stage N1 ↑ · WASO ↑' + 초록 메모) · 23판 p.19 2020 이우철 3번 답 아래 Success/failure 표(대조 글에는 수치 있음). H12 해설 그림은 붙어 있음.|두 그림 잘라 붙임*;그대로
+!24판 '중복 복원' 8건 · 23판 4건 · (예상) 표시 문항 4건 — 모두 원 문항 카드에 연결
+!J01(빈칸·나열·예시형 한 카드)·K01(Splotchy·Dingy 확장형) — JB 해설·괄호가 같은 문제로 묶음, 유지
+!J01 23판 2020 '(짤)' — 해가 없어 배지에 못 넣음(규칙상 맞음)
+!23판 2020칸 머리 '27문항 복원 중 2문항 중복' → 25인데 실린 번호는 24 — JB 자체 차이
+!학습부 멘트의 이재일 교수 17학번 문제 — 4판본 어디에도 없음(옛 판본에만 있던 것으로 보임)
+!교수 표기 전 카드·전 판본 대조 오류 0 · check_years '학번?' 11건은 +2 환산으로 설명되는 거짓 양성
+
+#PHARM 임상치과약물치료학
+=26판 104블록 · 25판 110 · 24판 134 · 23판 3Q 범위 166 · 23q4 121(지금 p.1~5 항불안제 18만 씀). 카드가 아예 없는 문항: 2021 8-1·8-2 · 2020 구강건조증 3·4·5·6번 / 연도·사본만 빠짐: 2021 4번 · 2020 구강건조증 1·2번 · 24판 2023 XE 4번 · 23판 2020 15-1 · 23q4 구강건조증 사본 16
+1|A|확실|2021 4번 Iodine(4-1·4-2)이 DS16(Alcohol) 답 칸에 묻힘|24판 p.16·23판 p.13-14 2021칸 [살균제와 소독제] '4-1. Iodine 옳지 않은 것 1) neither fungicidal sporicidal 2) dermatitis 3) allergenic (답 1)' · '4-2. Iodine 설명 옳지 않은 것 (복원이 조금 달라 모두 적음) …(답 3)'. 4-2 선지 5개가 DS21(23판 2020 2번 Iodine)과 글자 그대로 같음 — DS21 배지는 20뿐.|DS21 다른 판본으로(DS21 +21) · DS16 답 칸에서 뗌*;2021 4번 새 카드;그대로
+2|A|확실|2021 8-1·8-2 만성통증 증례(morphine·amitriptyline·codeine/APAP)가 PN14 답 칸에 묻힘|24판 p.23·23판 p.30 2021칸 [급성/만성통증] '8-1. 만성통증 morphine 쓰는 case 선지 B 약물 뭐 썼는지 왜 썼는지 (amitriptyline?…)' · '8-2 같은 에피소드에서 morphine 용량을 줄이고 codeine/acetaminophen 복합제 농도를 증가시키는 이유는?'. PN14(2021 8번 tolerance)와 묻는 것이 다름.|새 카드(8-1·8-2를 하위 문항 둘로)*;PN14 문제 칸에 하위 문항으로 보이게;그대로
+3|A|확실|23q4 2020 구강건조증(이윤실) 3번 Sjögren 진단 빈칸 8칸 — 없음|23q4 p.9 '3. Sjogren syndrome은 subjective한 A symptoms, B symptoms와 objective한 C의 D signs, E signs와 F인 G, H를 기준으로 진단'(답 A Ocular · B Oral · C Exocrine dysfunction … H Autoantibodies). 23q4는 지금 p.1~5(항불안제)만 씀. 관련 XE04.|새 카드*;넣지 않음
+4|A|확실|23q4 2020 4번 Sjögren 약물·복용법 — 없음|23q4 p.10 '4. Sjogren syndrome 치료 대표 약물과 복용법을 서술'(답 Pilocarpine 1회 1정(5mg) 4회/day, 6주간 경구). 관련 XE06(진단·약물·기전·복용법).|새 카드*;XE06 다른 판본으로;넣지 않음
+5|A|확실|23q4 2020 5번 타액분비율 표 빈칸(그림 문항) — 없음|23q4 p.10 '5. 자극성·비자극성 타액분비율을 정상군과 구강건조증군에서 비교한 표 … 소수점 첫째자리까지 빈칸' — 빈 표 그림 + 답 표 그림. XE15(21년 '타액분비율 표 빈칸빵')와 같은 꼴(XE15 대조 글에 강의 p.55 '2017년 시험문제'로도 나옴).|XE15 다른 판본으로(XE15 +20 · 그림 붙임)*;새 카드;넣지 않음
+6|A|확실|23q4 2020 6번 'NSAID는 구강건조증을 유발할 수 있다 (T/F)' — 없음|23q4 p.10(답 T, Naproxen·Ibuprofen). 관련 XE01·XE23(구강건조 유발 약물).|새 카드*;넣지 않음
+7|A|확실|23q4 2020 1번(Cevimeline)·2번(녹내장·구강건조증) — 같은 문제 카드에 2020 없음|23q4 p.9 '1. Pilocarpine과 같이 타액분비 촉진 약물로 A도(답 Cevimeline)' = XE17(25·21) · '2. Pilocarpine은 부작용으로 A와 B의 치료에만(답 녹내장, 구강건조증)' = XE03(24·23·21).|XE17·XE03 다른 판본으로(둘 다 +20)*;넣지 않음
+8|A|확실|24판 2023 XE 4번이 XE03 다른 판본 안에 붙어 있음|24판 p.7 '4. 평상시와 식사시 구강건조감 … 비자극 0.05ml 자극 0.1ml - Primary diagnosis, 치료 약물…'(= XE06 문제)이 '24판 2023년 칸 3번' 원문 끝에 문제·답 통째로 붙음 → XE06에 24판 사본 없음.|떼어 XE06 다른 판본으로*;그대로
+9|A|확실|23판 2020 15-1(국소 출혈 처치)이 HM24 답 칸에 묻힘 · HM07에 연결 없음|23판 p.45 '15-1. 위의 환자가 simple extraction 중 국소 출혈 시 가능한 처치(답 Local measure… Oxycel)'. 24·23판 2022칸에 '(2020년 15-1번 문항)' → 같은 문제 HM07은 연도 20을 이미 손으로 넣음.|HM07 다른 판본으로 · HM24 답 칸에서 뗌*;그대로
+10|A|확실|23q4 구강건조증 2022·2021 16문항 사본이 연결 안 됨|23q4 p.6~9 2022 1~7 · 2021 1~9 = 24판 같은 칸과 글자 같음 → 문항은 사이트에 있고 23q4 사본만 다른 판본에 없음.|다른 판본으로 연결*;그대로
+11|A|중|23q4 진정수면제(서광석) 33문항 — 3Q 범위는 아님|23q4 p.11~16 2022 1~10 · 2021 1~7 · 2020 1~16. 26 ANX(김우진) 정리본이 프로포폴·포수클로랄·hydroxyzine·flumazenil·midazolam·triazolam을 다루고 AX07(우윳빛 약 = propofol)과 같은 내용: 2021 2번·2020 10번 'propofol' · 2022 2번·2021 1번 'flumazenil' · 2022 10번 'midazolam 가역제' · 2020 13번 'midazolam 선행성 기억상실'.|ANX와 겹치는 것만 참고(C)로*;33문항 모두 참고(C)로;넣지 않음
+12|A|약|23q4 약물상호작용 2문항(diazepam–cimetidine·flumazenil)|23q4 p.23 2021 1번 '(T/F) Diazepam은 CYP2D6에 의해 대사되며 cimetidine에 의해 억제' · 2022 7번 'drug B는 같은 리셉터에 경쟁적으로 붙어 drug A를 저해(diazepam–flumazenil)'. 26 ANX에 BZD 상호작용·flumazenil이 있음.|참고(C)로*;넣지 않음
+13|M|확실|DS04에 다른 문항(2021 5번 '옳지 않은 것')이 합쳐짐|24판 p.16-17·23판 p.14 2021 5번 'Hypochlorite 옳지 않은 것 … 답 4)' ↔ DS04 'Hypochlorite 맞는 것 (24,23) … 답 1' — 질문 방향·선지·정답이 다 다름. 그래서 DS04 배지에 21이 붙음.|2021 5번 새 카드로 뗌(DS04 −21)*;그대로
+14|M|중|BT01에 2021·2020 '옳은 것'(방향 반대)이 합쳐짐|2021·2020 '보톡스 균 옳은 것 1) Bacillus 속과 다른 특성 2) 신경 독소 3) 구균과 간균… 답 1), 2)' ↔ BT01 '틀린 것' 5지 답 3). 같은 선지 축이라 같은 문제의 다른 복원일 수도.|그대로*;따로 카드
+15|M|중|PN09 ↔ PN12 통증 분류 · 신경병성 통증 빈칸 정리|PN12 = '신경병성 통증에는 ( ), ( )' 답 TN·PHN·DN(2022·2021) + 2020 8번(답 Peripheral·Central — 오히려 PN09 (3)(4)와 같음). PN09 = '통증 (1) 종류 … 신경병성 (3)와 (4)' + 26판 25년 3-1 '신경병변성 통증에는 삼차신경통과 ____'(PN12 꼴). 같은 2022 3번 자리를 25판은 PN09('2023년 2번 중복'), 24·23판은 PN12로 봄.|내용대로 재정리(분류 빈칸 = PN09 · 질환명 빈칸 = PN12 · 2020 8번 → PN09 · 25년 3-1 → PN12)*;자리대로 연결만;그대로
+16|M|확실|XE07 / XE21 — 같은 2021 8번(구강작열감증후군)|25판 2021칸 8번 '2023년 5번 중복'(→XE07) ↔ 24판 2021칸 8번 '(복원원문) 구강작열감증후군 사례 … 기전, 복용법'(→XE21) · 23q4 같은 글.|합침*;따로 두고 링크
+17|M|확실|BT06 / BT10 — 같은 2023 3번(보톡스 부작용 아닌 것)|25판 2023칸 3번(→BT06) ↔ 24판 2023칸 3번 '… 기존 답이었던 우울증은 없고 그대신 탈모증'(→BT10).|합침*;따로 두고 링크
+18|M|확실|XE09 / XE19 — JB '2번 문제와 중복 복원'|24판 p.8 2022칸 2번 '침 나오게 하는 약의 부작용이 아닌 것'(→XE19) ↔ 5번 해설 '2번 문제와 중복 복원으로 예상'(→XE09). 25판은 하나로 정리.|합침*;따로 두고 링크
+19|M|확실|XE08 / XE20 — JB '1번과 중복 복원'|24판 p.8 2022칸 3번 'Stimulated unstimulated saliva rate' 해설 '1번과 중복 복원으로 추정'(→XE20) ↔ 1번 타액분비율 표(→XE08). 25판은 XE20 자리 없앰.|합침*;따로 두고 링크
+20|M|확실|BT08 / BT11 — 같은 2022 1번|25판 2022칸 1번 '2023 7번 중복'(→BT08) ↔ 24판·23판 2022칸 1번 '보톡스 균 잘못된 것 1) 썩은 고기나 음식…'(→BT11). 줄기 거의 같고 복원 선지만 다름.|합침*;따로 두고 링크
+21|M|확실|BT04 / BT12 — JB '3번 문항과 중복복원'|24판 2022칸 3번 '틀린 것 (2021 5번 문항 중복)'(→BT12) ↔ 4번 '틀린 것 (3번 문항과 중복복원으로 예상되나 더 자세한 복원)'(→BT04) · 25판 '2024년 4번 중복'(→BT04).|합침(BT04 +21)*;따로 두고 링크
+22|M|확실|BT07 / BT13 — 같은 2022 문제|25판 2022칸 6번 '2023년 4번 중복'(→BT07) ↔ 24·23판 2022칸 7번 '틀린 것 1) 보통 masseteric muscle…'(→BT13). 사이트 메모도 '선지 순서만 다름'.|합침*;따로 두고 링크
+23|M|확실|HM03 / HM11 — 같은 문제, HM03 배지에 20 없음|25판 2022칸 8번 '2024년 3번 중복'(→HM03) ↔ 24·23판 2022칸 8번 '(1) Warfarin과 dabigatran 작용기전 차이… (2020년 13번 문항)'(→HM11) · 24판 2023칸 5번(HM03 사본)에도 '(2020년 13번 문항)'. 사이트 메모 '판단 보류'.|합침(HM03 25·24·23·22·20)*;따로 두고 HM03 +20만
+24|M|확실|HM16 / HM21 — LMWH target 분자와 효과|24·23판 2021칸 7번(→HM16) ↔ 23판 2020칸 6번(→HM21) 같은 질문·같은 답(Anti-thrombin III). 짝인 HM14·HM15는 2020 사본을 연결했는데 LMWH만 갈라짐.|합침(HM16 +20)*;따로 두고 링크
+25|M|확실|PN13 / PN24 — 같은 문장(Anticonvulsants) · 강의도 갈림|24·23판 2021칸 6번 '( ) are effective for chronic, neuropathic pain by membrane stabilizing'(→PN13, ACU) ↔ 23판 2020칸 12번 '( )는 막전위 안정화효과가 있어 만성, 신경병성 통증에'(→PN24, CHR) — 영문/우리말 복원 차이.|합침(PN13 +20 · 강의 하나로)*;따로 두고 링크
+26|L|중|보톡스 같은 계열 반복 — 링크 없음|BT04 ↔ BT18(2020 5번 '임상적 사용 옳지 않은 것' — 같은 선지) · BT08 ↔ BT14('인간에서만 발생' 같은 정답 축) · BT03 ↔ BT15 · BT07 ↔ BT17(독성·light/heavy chain / 사각턱 용량·submandibular).|관련 링크*;그대로
+27|L|중|XE14 ↔ BT19 같은 OX 명제(이하선 보톡스 → 침 증가, 답 F)|25판 2021칸 [구강건조증 이윤실] 3번 · 해설 '김우진 교수님 보톡스 파트 문제일 수도 있다고 판단되지만 이 파트로 복원되어 남겨놓음' ↔ 23판 2020칸 [보톡스] 9번 (20',19'). 교수 이윤실은 JB 칸대로.|관련 링크(교수 그대로)*;합침;그대로
+28|L|약|같은 축 별개 문항들 — 링크 없음|PN14 ↔ PN27(tolerance) · RX12·RX25·RX35 2)(부프로피온) · RX26·RX31·RX35 1)(바레니클린) · RX05·RX13(청소년 NRT) · PN01·PN20(카바마제핀 TN) · HM06·HM22·26판 2023 3-2(Vit K 인자) · DS10·DS18(H2O2 30%).|관련 링크*;그대로
+29|Y|확실|DS10 '(2019 1번 문항)' — 배지에 19 없음|25판 p.24·24판 p.13·23판 p.11 2022칸 4번 머리 '(원래 복원은 … 문제를 변경하였습니다.) (2019 1번 문항)'. 같은 꼴 괄호('(2021년 3번 문항)')는 다른 카드에서 연도로 넣었음 — '년' 글자가 없어 check_years가 못 잡음.|+2019*;그대로
+30|Y|중|PN01 — 26판이 2025 4번의 다른 복원으로 실음|26판 p.17 2025칸 4번 '(25,24,23,22) * [영어 복원 ver.] ( ) acts to block sodium channels…'(답을 Gabapentin으로 바꿈) · p.18 2024칸 1번 '2025년 4번 중복'. 사이트 메모 '사용자 확인'.|그대로(25 없음)*;+2025
+31|Y|약|AX05 — 26판 2025칸에 '4-1 … (21)'로 실림|26판 p.24 2025칸 '4-1. (T/F) Benzodiazepine은 BZ1에 작용하여 항불안효과 (21)' — 관련 기출로 붙인 꼴(괄호는 21뿐).|그대로(25 없음)*;+2025
+32|C|약|23·24판 2021·2020칸 교수 표기 없음 — 주제로 추정|DS15~DS29·BT14~BT19·PN12~PN26·HM11~HM25. 23판 머리말 21년 '지혈제와 수렴제 (Pf 조영단)'은 오기로 보임(지혈 = 우경미).|그대로*;'(추정)' 표시
+33|F|확실|AX13~AX24 출처 '23판' — 실제 파일은 23q4(2023 4Q JB)|'JB 23판 · 2022년 칸 · 4Q JB 항불안제 n번' — AX03·AX05·AX12 다른 판본 줄은 같은 파일을 'JB 23q4판'으로 적어 한 파일이 두 이름(3Q 23판과 헷갈림).|'23q4판'으로 통일*;그대로
+34|F|중|강의 배정 엇갈림|PN13(ACU) ↔ 같은 문장 PN24(CHR) · PN14(ACU, tolerance) ↔ PN27(CHR) · PN17(Ketorolac)·PN21(neuropathic/nociceptive 표)은 CHR인데 JB 참고·메모는 급성통증(ACU) 슬라이드.|JB 참고대로 맞춤*;그대로
+35|F|중|DS(조영단 살균제와 소독제) 카드가 등급 A|26판 머리말 '7차시: pf.조영단 <살균제와 소독제> → pf.김우진 <항불안제>'로 26 3Q 범위에서 빠짐(과목노트도 '26 3Q 범위 아님').|등급 C(참고)로*;그대로
+!26판 'N. 중복복원' 3블록(BT 2025 8번 · PN 2025 2번·5번) — 어느 문항과 겹치는지 표기 없음, 넣을 내용 없음
+!23판 성호르몬(노상호) 40문항 — 4Q JB로 이전, 의도적 제외 · 23q4 국소마취제 16·약물상호작용(위 2문항 외)·약물유전학 5·노인·임산부 11 — 3Q 범위 밖
+!26판 2024칸 통증 3번 '2025년 3번 중복' — 오기로 보고 PN03에 연결(메모 있음, 처리 적절)
+!check_years 의심 RX39 '(24,23)' — 관련 문항 링크 글을 읽은 거짓 양성
+!그림 쪽 모두 이미지 확인 — 그림에만 있는 문항 없음(RX42 FTND 표 그림 있음)
+!선지 복원이 원래 비어 있는 것(XE19 2)·5) · DS09·DS13·DS16·DS18·DS22 · RX41 5)) — JB 그대로
+
+#ESTH 심미치과학
+=JB 4판 243블록 모두 카드 76장에 연결(쪽 번호까지 일치) · 빠진 문항 0 · 배지 76/76 규칙대로 · JB에 교수 표기가 없어 교수는 강의로 추정
+1|M|강|Q09(24년 9번 미복원) ↔ R09 Smile symmetry — JB '(24 변형)'|26판 p.3 2025-3Q 9번 'Smile symmetry와 평행을 이루는 것의 조합 (24 변형)' · 24년 9번은 미복원 · 23·25년 9번도 Smile symmetry. 지금 2025 9번은 R09(23·22)에 붙고 R09 배지에 24 없음.|Q09를 R09에 합치고 배지 +24*;따로 두고 링크만;그대로
+2|M|중|Q11(24년 11번 보기 미복원) ↔ P11(25년 11번)|25판 '11. 탈★ 상악 전치 배열 틀린 것? (보기 미복원)' · 26판 '11. 틀린 것 1) 중절치에서 견치로 멀어질수록 치아 장축이…' — 번호 같음, P11 보기(tooth axis·zenith)가 Q11 해설 정리 항목과 겹침. 26판 멘트 '대대로 미복원되었던 문항들이 복원'. 지금 관련 링크만.|그대로(링크)*;합침
+3|M|중|Q21 ↔ S12 ↔ R19 환영 — 누르는 링크 없음|25판 '21. 환영 옳지 않은 것 (보기 미복원) -> 2023 19번, 2022 12번 참고' · 26판 2025 '21. 환영 옳지 않은 것 (22 변형)' — 설명 글에만 언급. 같은 문제로 보면 S12 배지에 24.|세 카드 서로 링크*;Q21을 S12에 합침(S12 +24);그대로
+4|M|약|번호만 같은 미복원 ↔ 25년 문항|Q14(24 14번) ↔ P14(황금비율) · Q22 ↔ R20(provisionalization) · Q24 ↔ P24(Direct resin veneer) · Q20 ↔ P20(빛의 성질 ↔ 색상 선택 — 둘 다 색·빛).|그대로(Q20↔P20만 링크)*;모두 그대로
+5|L|중|T08 ↔ R03 인접치 요인 — 발문 글자까지 같음|24판·23판 2021-3Q '8. 인접한 치아들에 의하여 심미에 영향을 주는 요인 모두 고르시오 (21,20)' ↔ 25판 2023-3Q '3. … (23,22,21,20)'. R03의 21·20은 괄호에만 있고 2021 칸의 같은 발문은 T08뿐. 링크 없음(T08 글에 '23년 3번과 섞여 복원된 것으로 보임').|관련 링크(배지는 괄호 규칙대로)*;R03에서 21·20 뺌;그대로
+6|L|확실|S04 ↔ R06 용어 — JB '22 선지변형'인데 링크 없음|25판 '4. 다음 용어의 설명으로 적합한 것 (22,21,20)' ↔ '6. … 옳지 않은 것 (22 선지변형)'. 답이 달라 따로 둔 것은 맞음.|관련 링크*;그대로
+7|M|약|R07에 2021·2020 단답(답 85)이 합쳐짐|23·22년은 5지 객관식(답 1) 85%) · 21·20년은 '치관 폭 길이 비율은? (21,20)' 단답. 25·26판 괄호는 (23,22)뿐 → 배지 4회.|그대로(같은 문제)*;단답을 따로 카드
+8|C|중|Q13·P20 교수 안진수 — JB 근거는 교과서뿐|Q13(24·25년 13번 색) 참고 '치과보존학 138-139p' · P20(25년 20번 색상 선택) 참고 '치과보존학 p.141,142'. 10-17에 '교과서 = 이창하 교수님 출제 참고'라고 하셨음. 자리도 이창하 문항 사이(12번 FUN·15번 MAT / 19번 MAT·21번 SPE).|이창하로*;안진수 유지;교수 비움
+9|C|중|Q27 반투명도 교수 — JB도 '아마 이창하'|25판 답 'Thickness, Saturation (이창하pf) / Reflectance, Thickness (안진수pf)' · 해설 '아마 이창하 교수님께서 출제하신 문제가 아닐까'. 자리는 26·28번(안진수) 사이, 25년 27번(P27)도 안진수.|그대로(이창하)*;안진수로
+10|C|약|18~22년 색 문항 연도별 교수 = 안진수 — JB 근거 없음|Q26(22·21·20·18)·Q28(22·21)·S14(22·21·20·19)·T20(21·20·19) 카드 '출제 연도별 교수'에 안진수. JB 수업 표는 23판(2023)부터만. subject.py 주석은 '비움'.|그 해 교수 비움(근거 없음)*;그대로
+11|C|약|Q20·Q25·U05 교수|Q20 참고 '251010 안진수 색'(해설 '찾지 못함') · Q25 참고 여인성 PPT인데 24 멘트 '여인성 파트 복원 안 됨' → 이창하일 수도 · U05 서덕규(참고는 나중 파일 이창하 Fundamentals).|그대로*;메모만
+12|Y|중|Q06 괄호 판본끼리 22·23 엇갈림|24판 (23,21,20) ↔ 25판 (24,22,21,20) · 26판 (25,24,22,21,20). 23판 2022 칸에 이 문제 없음 · 25·26판 2023 칸 5번 미복원. 사이트는 23·22 둘 다 → 6회.|그대로(괄호 규칙)*;22만;23만
+13|F|중|P23 답 — 2)만인지 2)·5)인지|26판 p.9 JB 답 '?' · 해설 그림에서 B: opaque shade만 파란 글씨(= 보기 2)) · 그림의 E: translucent shade는 보기 5)와 같음.|2)만(파란 글씨)*;2)·5)
+14|F|약|T16 등급 A ↔ 과목노트 C|JB 해설 '23년도 시험범위 아닙니다' · 같은 강의(211001 cervical restoration) T10·T11·T14·U01은 C. assemble.py는 'PLAN p.25-29 증례와 같은 형식'이라 A.|C로*;A 유지
+15|F|약|사진 문항 안내 표기 통일|T17·P23엔 '🖼 그림 문항 — JB에 사진 없음' 안내가 있고 U01·U02·U04·T10·T16엔 없음.|통일*;그대로
+16|F|참고|24판 번호 중복 라벨 '4b번'·'6b번'|24판 2023칸 '4.' 두 번 · 2022칸 '6.' 두 번 → 사이트 '4b'·'6b'(JB에 없는 표기).|'(JB 원문은 두 번째 4.)' 설명 덧붙임*;그대로
+!26판 2024-3Q 13번 포인터 '2025 14번'은 JB 오기 — 지금 Q13 연결이 맞음
+!R03 판마다 답이 다름(24판 1 / 25·26판 2,3,4,5) — 두 답 모두 보이고 ⚠ 메모 있음
+!R20(답 같아 합침) · Q02 2021 사본(배지 20) · Q18 배지 22 · Q28 배지 21 — 괄호 근거 있음
+!등급 C 카드(T10·T11·T14·T17·U01)는 짤/탈 칩 없이 '참고'만 — 설계상
+!미복원 자리 15장·보기 미복원(Q11·Q20·Q21·R19·P11)·답 '?'(Q20·P23·P27) — JB 그대로(공통 X-5)
+!24판 표지 '-2023 3Q JB-' — JB 표지 오기
+`;
+
+const CAT = {A:'누락',M:'합치기·나누기',L:'관련 링크',C:'교수',Y:'연도·짤탈',E:'내용·글자',F:'그 밖'};
+const SURE = {'확실':'s1','강':'s2','중':'s3','약':'s4','참고':'s5'};
+const SURE_LABEL = {'확실':'확실','강':'의심 강','중':'의심 중','약':'의심 약','참고':'참고'};
+const LSK = 'jbaudit1024.picks';
+
+const SUBJ = [];
+(function parse(){
+  let cur = null;
+  for (const raw of DATA.split('\n')) {
+    const line = raw.trim();
+    if (!line) continue;
+    if (line[0] === '#') {
+      const sp = line.indexOf(' ');
+      cur = {sid: line.slice(1, sp), name: line.slice(sp + 1), ov: '', items: [], info: []};
+      SUBJ.push(cur);
+    } else if (line[0] === '=') cur.ov = line.slice(1);
+    else if (line[0] === '!') cur.info.push(line.slice(1));
+    else {
+      const f = line.split('|');
+      if (f.length !== 6) { console.warn('bad line', line); continue; }
+      const [num, cat, sure, title, det, opts] = f;
+      cur.items.push({id: cur.sid + '-' + num, sid: cur.sid, num, cat, sure, title, det,
+        opts: opts.split(';').filter(Boolean).map(o => ({label: o.replace(/\*$/, ''), rec: /\*$/.test(o)}))});
+    }
+  }
+})();
+const ALL = SUBJ.flatMap(s => s.items);
+const BYID = Object.fromEntries(ALL.map(it => [it.id, it]));
+
+let picks = {};
+try { picks = JSON.parse(localStorage.getItem(LSK) || '{}') || {}; } catch (e) { picks = {}; }
+const view = {sj: '', sure: '', cat: '', open: false};
+try { const h = decodeURIComponent(location.hash.slice(1)); if (SUBJ.some(s => s.sid === h)) view.sj = h; } catch (e) {}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = id => document.getElementById(id);
+const isPicked = id => picks[id] && picks[id].i != null;
+const sjLabel = sid => sid === 'X' ? '공통' : sid;
+
+function summary() {
+  const rows = SUBJ.map(s => {
+    const miss = s.items.filter(it => it.cat === 'A' && it.sure === '확실').length;
+    const sure = s.items.filter(it => it.sure === '확실').length;
+    const done = s.items.filter(it => isPicked(it.id)).length;
+    return `<tr><td><span class="dot" style="background:var(--c-${s.sid})"></span>${esc(sjLabel(s.sid))} <span style="color:var(--muted)">${esc(s.sid === 'X' ? '' : s.name)}</span></td>
+      <td class="n ${miss ? 'miss' : 'zero'}">${miss || '0'}</td><td class="n">${s.items.length}</td><td class="n">${sure}</td><td class="n">${s.info.length}</td><td class="n" id="sd-${s.sid}">${done}</td></tr>`;
+  }).join('');
+  $('sum').innerHTML = `<table><thead><tr><th>과목</th><th style="text-align:right">누락 항목(확실)</th><th style="text-align:right">고를 항목</th><th style="text-align:right">그중 확실</th><th style="text-align:right">확인만</th><th style="text-align:right">고른 것</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function sjChips() {
+  const mk = (sid, label, n) => `<button class="chip" data-sj="${sid}" aria-pressed="${view.sj === sid}">${sid ? `<span class="dot" style="background:var(--c-${sid});margin:0"></span>` : ''}${esc(label)} <span class="k">${n}</span></button>`;
+  $('sjrow').innerHTML = mk('', '전체', ALL.length) + SUBJ.map(s => mk(s.sid, sjLabel(s.sid), s.items.length)).join('');
+}
+
+function match(it) {
+  if (view.sj && it.sid !== view.sj) return false;
+  if (view.cat && it.cat !== view.cat) return false;
+  if (view.sure === '확실' && it.sure !== '확실') return false;
+  if (view.sure === '강중' && !['강', '중'].includes(it.sure)) return false;
+  if (view.sure === '약참고' && !['약', '참고'].includes(it.sure)) return false;
+  if (view.open && isPicked(it.id)) return false;
+  return true;
+}
+
+function itemHTML(it) {
+  const p = picks[it.id] || {};
+  const opts = it.opts.map((o, i) => `<button class="opt" role="radio" aria-checked="${p.i === i}" data-id="${it.id}" data-i="${i}"><span class="no">${'①②③④⑤'[i]}</span><span>${esc(o.label)}</span>${o.rec ? '<span class="rc">추천</span>' : ''}</button>`).join('');
+  return `<article class="it${p.i != null ? ' done' : ''}" id="it-${it.id}">
+    <div class="ih"><span class="iid">${esc(sjLabel(it.sid))}-${esc(it.num)}</span><span class="cat">${CAT[it.cat] || ''}</span><span class="sure ${SURE[it.sure] || 's5'}">${SURE_LABEL[it.sure] || it.sure}</span>${p.i != null ? '<span class="picked">✓ 골랐음</span>' : ''}</div>
+    <h3>${esc(it.title)}</h3>
+    <p class="det">${esc(it.det)}</p>
+    <div class="opts" role="radiogroup" aria-label="${esc(it.title)}">${opts}</div>
+    <input class="note" id="note-${it.id}" data-id="${it.id}" placeholder="메모(선택) — 다른 안이면 여기에" value="${esc(p.n || '')}">
+  </article>`;
+}
+
+function render() {
+  sjChips();
+  let html = '';
+  for (const s of SUBJ) {
+    if (view.sj && s.sid !== view.sj) continue;
+    const items = s.items.filter(match);
+    const filtered = view.sure || view.cat || view.open;
+    if (!items.length && filtered && !view.sj) continue;
+    html += `<section class="sj" id="sec-${s.sid}"><div class="sjh"><h2><span class="dot" style="background:var(--c-${s.sid})"></span>${esc(s.sid === 'X' ? s.name : s.sid + ' ' + s.name)}</h2><span class="cnt">${items.length}${filtered ? ' / ' + s.items.length : ''}개</span></div>
+      <p class="ov">${esc(s.ov)}</p>
+      <div class="list">${items.map(itemHTML).join('') || '<p class="empty">이 조건에 맞는 항목이 없어요.</p>'}</div>
+      ${s.info.length ? `<details class="info"><summary>확인만 — 고를 것 없음 ${s.info.length}건</summary><ul>${s.info.map(t => `<li>${esc(t)}</li>`).join('')}</ul></details>` : ''}
+    </section>`;
+  }
+  $('main').innerHTML = html || '<p class="empty">이 조건에 맞는 항목이 없어요.</p>';
+  progress();
+}
+
+function progress() {
+  const done = ALL.filter(it => isPicked(it.id)).length;
+  $('ptext').textContent = `고른 것 ${done} / ${ALL.length}`;
+  $('pfill').style.width = (ALL.length ? done / ALL.length * 100 : 0) + '%';
+  for (const s of SUBJ) { const el = $('sd-' + s.sid); if (el) el.textContent = s.items.filter(it => isPicked(it.id)).length; }
+}
+
+function refreshItem(id) {
+  const el = $('it-' + id); if (!el) { progress(); return; }
+  const focused = document.activeElement && document.activeElement.id === 'note-' + id;
+  if (focused) {
+    const p = picks[id] || {};
+    el.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-checked', String(p.i === +b.dataset.i)));
+    el.classList.toggle('done', p.i != null);
+  } else {
+    const tmp = document.createElement('div'); tmp.innerHTML = itemHTML(BYID[id]); el.replaceWith(tmp.firstElementChild);
+  }
+  progress();
+}
+
+function saveLocal() { try { localStorage.setItem(LSK, JSON.stringify(picks)); } catch (e) {} }
+
+let toastT = null;
+function toast(msg) {
+  let t = document.querySelector('.toast'); if (!t) { t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2200);
+}
+
+/* 저장: db가 되면 한 문서(state/picks)에 항목별로 합쳐 쓰기, 안 되면 이 기기 브라우저에만 */
+let ref = null, exists = false, ro = false, chain = Promise.resolve();
+function setMode(m) {
+  const el = $('mode');
+  if (m === 'db') { el.textContent = '☁ 자동 저장 — 채팅에 “결정했어”라고만 하시면 돼요'; el.className = 'mode on'; }
+  else if (m === 'ro') { el.textContent = '읽기 전용 — 저장 권한이 없어요'; el.className = 'mode'; }
+  else { el.textContent = '이 기기에만 저장 — 다 고른 뒤 [결정 복사] → 채팅에 붙여 넣기'; el.className = 'mode'; }
+}
+function entry(id) { const p = picks[id]; return p ? {i: p.i ?? null, p: p.i != null ? BYID[id].opts[p.i].label : null, n: p.n || '', at: p.at || ''} : {i: null, p: null, n: '', at: ''}; }
+function persist(ids) {
+  saveLocal();
+  if (!ref || ro) return;
+  const patch = {}; for (const id of ids) patch[id] = entry(id);
+  chain = chain.then(async () => {
+    try {
+      if (!exists) { const all = {}; for (const id of Object.keys(picks)) all[id] = entry(id); await ref.set({items: all, v: 1}); exists = true; }
+      else await ref.update({items: patch});
+    } catch (e) {
+      if (e && (e.code === 'invalid_argument' || e.code === 'transform_error')) { ro = true; setMode('ro'); }
+      else toast('저장이 안 됐어요 — 잠시 뒤 다시 눌러 주세요');
+    }
+  });
+}
+function applyRemote(items) {
+  const next = {};
+  for (const [id, v] of Object.entries(items || {})) {
+    if (!BYID[id] || !v) continue;
+    if (v.i != null || v.n) next[id] = {i: v.i ?? null, n: v.n || '', at: v.at || ''};
+  }
+  const changed = Object.keys({...picks, ...next}).filter(id => JSON.stringify(picks[id] || null) !== JSON.stringify(next[id] || null));
+  picks = next; saveLocal();
+  if (changed.length > 20) render(); else changed.forEach(refreshItem);
+  summaryCounts();
+}
+function summaryCounts() { progress(); }
+
+(async () => {
+  let db = null;
+  try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
+  if (!db) { setMode('local'); return; }
+  try {
+    ref = db.doc('state/picks');
+    const s = await ref.get();
+    exists = s.exists;
+    if (s.exists) applyRemote((s.data() || {}).items);
+    else if (Object.keys(picks).length) persist(Object.keys(picks));
+    setMode('db');
+    ref.onSnapshot(snap => { if (snap.exists) { exists = true; if (!snap.metadata.hasPendingWrites) applyRemote((snap.data() || {}).items); } }, () => { setMode('local'); });
+  } catch (e) { ref = null; setMode('local'); }
+})();
+
+/* 손놀림 */
+document.addEventListener('click', e => {
+  const sj = e.target.closest('[data-sj]');
+  if (sj) { view.sj = sj.dataset.sj; try { history.replaceState(null, '', view.sj ? '#' + view.sj : location.pathname + location.search); } catch (er) {} render(); window.scrollTo({top: $('bar').offsetTop - 4}); return; }
+  const o = e.target.closest('.opt');
+  if (o) {
+    const id = o.dataset.id, i = +o.dataset.i, p = picks[id] || {};
+    if (p.i === i) { if (p.n) picks[id] = {i: null, n: p.n, at: new Date().toISOString()}; else delete picks[id]; }
+    else picks[id] = {i, n: p.n || '', at: new Date().toISOString()};
+    refreshItem(id); persist([id]);
+    if (view.open && isPicked(id)) { const el = $('it-' + id); if (el) setTimeout(() => { if (isPicked(id) && view.open) render(); }, 700); }
+  }
+});
+const noteT = {};
+document.addEventListener('input', e => {
+  const n = e.target.closest('.note'); if (!n) return;
+  const id = n.dataset.id;
+  clearTimeout(noteT[id]);
+  noteT[id] = setTimeout(() => {
+    const p = picks[id] || {i: null};
+    const v = n.value.trim();
+    if (!v && p.i == null) delete picks[id]; else picks[id] = {i: p.i ?? null, n: v, at: new Date().toISOString()};
+    persist([id]); progress();
+  }, 700);
+});
+$('fsure').addEventListener('change', e => { view.sure = e.target.value; render(); });
+$('fcat').addEventListener('change', e => { view.cat = e.target.value; render(); });
+$('fopen').addEventListener('click', e => { view.open = !view.open; e.currentTarget.setAttribute('aria-pressed', String(view.open)); render(); });
+$('brec').addEventListener('click', () => {
+  const scope = ALL.filter(it => (!view.sj || it.sid === view.sj) && !isPicked(it.id));
+  const ids = [];
+  for (const it of scope) { const r = it.opts.findIndex(o => o.rec); if (r >= 0) { picks[it.id] = {i: r, n: (picks[it.id] || {}).n || '', at: new Date().toISOString()}; ids.push(it.id); } }
+  if (!ids.length) { toast('채울 항목이 없어요'); return; }
+  render(); persist(ids);
+  toast(`${view.sj ? sjLabel(view.sj) + ' ' : ''}안 고른 ${ids.length}개를 추천대로 채웠어요`);
+});
+function copyText() {
+  const lines = ['[JB 전수 검토 결정 — ' + new Date().toLocaleString('ko-KR') + ']'];
+  for (const s of SUBJ) {
+    const its = s.items.filter(it => picks[it.id] && (picks[it.id].i != null || picks[it.id].n));
+    const left = s.items.length - s.items.filter(it => isPicked(it.id)).length;
+    if (!its.length && !left) continue;
+    lines.push('', `■ ${sjLabel(s.sid)}${left ? ` (안 고름 ${left})` : ''}`);
+    for (const it of its) {
+      const p = picks[it.id];
+      const label = p.i != null ? `${'①②③④⑤'[p.i]} ${it.opts[p.i].label}` : '(안 고름)';
+      lines.push(`${sjLabel(it.sid)}-${it.num} ${it.title} → ${label}${p.n ? ` / 메모: ${p.n}` : ''}`);
+    }
+  }
+  return lines.join('\n');
+}
+$('bcopy').addEventListener('click', async () => {
+  const t = copyText(); $('ctext').value = t; $('cpanel').hidden = false;
+  try { await navigator.clipboard.writeText(t); toast('복사했어요 — 채팅에 붙여 넣어 주세요'); }
+  catch (e) { $('ctext').focus(); $('ctext').select(); toast('아래 글을 복사해 주세요'); }
+});
+$('cclose').addEventListener('click', () => { $('cpanel').hidden = true; });
+
+summary(); render();
+</script>
