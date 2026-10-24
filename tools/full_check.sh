@@ -32,6 +32,7 @@ say "== check_yearprof"; $PY tools/check_yearprof.py 2>&1 | grep -E "^[A-Z0-9]+:
 [ -f tools/tests/fmt_cases.py ] && say "fmt_cases $($PY tools/tests/fmt_cases.py 2>&1 | grep -E 'RESULT' | tail -1)"   # 형식 판정 회귀(브라우저 없음)
 say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S --md work/review_final2/TA_$S.md 2>&1 | tail -1)"; done
 say "== check_nred"; for S in $SIDS; do say "$($PY tools/check_nred.py $S 2>&1 | tail -1)"; done   # 10-09 필기 쪽 강조(정보 — 예외가 있어 0 목표 아님 · 기준값 SKILL G1)
+say "== v3_palette"; $PY tools/design/v3_palette.py tools/cons/shell.html tools/num/num.js --check 2>&1 | tail -1 | tee -a $L   # 10-24 디자인 v3 — 따뜻한 베이지·갈색 0(QA 70)
 say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
 say "== check_numbering"; $PY tools/check_numbering.py 2>&1 | tail -1 | tee -a $L
 say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L

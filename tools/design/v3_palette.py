@@ -52,6 +52,20 @@ def transform(t, log):
 
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]; dry = '--dry' in sys.argv
+    if '--check' in sys.argv:   # 검사만: 파일 전체(v3 묶음 포함)의 따뜻한 저채도 색 — 0이어야 함(QA 70 · full_check)
+        bad = 0
+        for p in args:
+            s = open(p, encoding='utf-8').read(); log = []
+            seg = ''.join(re.findall(r'<style>.*?</style>', s, flags=re.S)) if p.endswith('.html') else s
+            u = set()   # 순수 회색(채도 ~0)·차가운 회색은 v3 색 — 따뜻한 쪽(색상 45~110°)으로 기운 저채도만 셈
+            for h in re.findall(r'#[0-9A-Fa-f]{6}\b|#[0-9A-Fa-f]{3}\b', seg):
+                L, C, H = rgb2oklch(*hex2rgb(h))
+                # 10-24 v3.1: 은은한 따뜻함(v3_warm.warm_chroma — 옛 베이지의 약 58%)까지는 허용 · 그보다 누런 옛 베이지·갈색만 셈
+                from v3_warm import warm_chroma
+                if 1.3 * warm_chroma(L) < C < (0.018 if L > 0.94 else 0.030) and 45 <= H <= 110: u.add(h.upper())
+            u = sorted(u); bad += len(u)
+            print(f'{p}: 따뜻한 색 {len(u)}', ' '.join(u[:10]))
+        print('RESULT', 'PASS' if not bad else f'FAIL {bad}'); sys.exit(1 if bad else 0)
     for p in args:
         s = open(p, encoding='utf-8').read(); log = []
         # HTML이면 <style>…</style>와 <script>…</script>만(본문 글자는 손대지 않음) — js는 파일 전체

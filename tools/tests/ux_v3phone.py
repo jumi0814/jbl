@@ -21,7 +21,7 @@ async def main():
         ctx = await b.new_context(viewport={'width': 393, 'height': 852}, is_mobile=True, has_touch=True)
         pg = await ctx.new_page(); pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
         pg.on('console', lambda m: errs.append('console ' + m.text[:160]) if m.type == 'error' else None)
-        for h, lim in [('#/GERI/OHQ/pred', 60), ('#/GERI/OHQ/learn', 60), ('#/GERI/OHQ/jb', 90), ('#/GERI/_jb/_jb', 90), ('#/OMS1/DD1/learn', 60), ('#/PHARM/HM/sum', 60), ('#/CONS/WHT/flash', 60)]:
+        for h, lim in [('#/GERI/OHQ/pred', 60), ('#/GERI/OHQ/learn', 60), ('#/GERI/OHQ/jb', 90), ('#/GERI/_jb/_jb', 90), ('#/OMS1/DD1/learn', 60), ('#/PHARM/HM/sum', 60), ('#/CONS/WHT/flash', 60), ('#/', 60), ('#/GERI/_home/_home', 60), ('#/GERI/_tbl/_tbl', 60), ('#/GERI/_sum/_sum', 60), ('#/GERI/_led/_led', 60), ('#/GERI/_pred/_pred', 60)]:
             await pg.goto('about:blank'); await pg.goto(U + h); await pg.wait_for_timeout(1500)
             tv = await pg.evaluate(TABVIS)
             if tv is not None: ok(tv, f'{h} 지금 탭이 탭 줄 안에 보임')

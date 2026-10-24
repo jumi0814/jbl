@@ -1482,13 +1482,13 @@ open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE
 # 홈 화면 앱(C11) — docs/manifest.webmanifest·icon-192.png·icon-512.png (내용이 바뀐 때만 씀 · 모든 과목 빌드가 같은 것을 냄)
 def _icon(n):
     from PIL import ImageDraw, ImageFont
-    im = Image.new('RGB', (n, n), '#0F4B4A'); d = ImageDraw.Draw(im)
+    im = Image.new('RGB', (n, n), '#111827'); d = ImageDraw.Draw(im)   # 10-24 디자인 v3 — 먹 바탕(앱바 로고와 같음)
     d.rounded_rectangle([int(n * .16), int(n * .60), int(n * .84), int(n * .74)], radius=max(2, n // 28), fill='#FFE58A')
     try: f = ImageFont.load_default(size=int(n * .30))
     except TypeError: f = ImageFont.load_default()
     d.text((n / 2, n * .42), 'JBL', fill='#FFFFFF', font=f, anchor='mm')
     b = io.BytesIO(); im.save(b, 'PNG', optimize=True); return b.getvalue()
-_man = json.dumps({'name': 'JBL 허브', 'short_name': 'JBL 허브', 'start_url': './', 'scope': './', 'display': 'standalone', 'lang': 'ko', 'background_color': '#F6F4EF', 'theme_color': '#0F4B4A',
+_man = json.dumps({'name': 'JBL 허브', 'short_name': 'JBL 허브', 'start_url': './', 'scope': './', 'display': 'standalone', 'lang': 'ko', 'background_color': '#F7F4EF', 'theme_color': '#FFFFFF',
                    'icons': [{'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png'}]}, ensure_ascii=False, indent=1).encode('utf-8')
 for _fn, _b in [('manifest.webmanifest', _man), ('icon-192.png', _icon(192)), ('icon-512.png', _icon(512))]:
     _p = os.path.join(OUT, _fn)

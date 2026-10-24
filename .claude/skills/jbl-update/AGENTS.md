@@ -119,7 +119,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## E QA — 사용자 눈 점검 (과목 하나 · 찾기 — 메인이 허락하면 글자 그대로인 작은 표시만 직접 고침 · 나머지는 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~68 — 새 번호가 생겨도 끝까지, 마지막 절 '스크린샷으로 꼭 볼 것'까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~71 — 새 번호가 생겨도 끝까지, 마지막 절 '스크린샷으로 꼭 볼 것'까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). (메인이 허락하면) 글자 그대로인 작은 것 — 구분 기호·줄 나눔·{n:}/{u:}/{e:}/{r:} 표시·라벨 — 은 그 강의 lec + annot·tables·pred의 메인이 지시문에 적은 쪽(merge·split 직후면 parts, 아니면 tools/<sid>/의 그 강의 블록 — 그 과목 QA 1명만)에서 직접 고침(고치기 전 text_diff --save · 끝에 빠진 글자 0) · 허브·렌더러 몫은 보고만. 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B1·B2·B3/C/D1~D5·D2b/메인 = 허브·렌더러) 몫. 보고 work/review_final2/QA_<SID>.md. (직접 고침을 허락받지 않았으면) 고치지 않는다 — 허락받았어도 낱말·사실 문제와 허브·렌더러 몫은 보고만.
 ```
 
@@ -167,4 +167,14 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 과목 <SID> 강의 <KEY>. (10-20) 고치는 줄의 사용자 표시 보존 — 쪽 번호·필기 인용만 바꾸는 줄은 그 숫자·꼬리표만, ⚡ 라벨 붙이기·구분자 바꾸기는 꼭 필요한 줄만(바꾼 줄 수를 보고). 작성 보고 work/<SID>/upd<YY>/R_<KEY>.md의 'annot·tables·pred 고칠 것' + work/<SID>/jb<YY>/E_<KEY>.md(새 기출 ⭐·jb=·annot 블록·`!`)를 넣고, cmp 대조표의 바뀐·새 쪽만 C 1회차 초점으로(같은 쪽은 쪽 번호만) · apply_map이 잘못 옮긴 쪽('JB 참고 p.N'·다른 강의 쪽·25 필기 쪽) 되돌림.
 쓸 것: lec_<KEY> · (메인이 적은 쪽) parts 또는 tools/<sid>/{annot,tables,pred}의 이 강의 블록 · 보고 R2_<KEY>.md.
 검사: C 1회차 검사 + build4 '연결 안 된' 0 · check_eyears 0 · check_unote 0 · pred_check ✗0 · `tools/link_audit.py <SID>`의 이 강의(✗ 기출 탭 빠짐·⭐ 없음 0).
+```
+
+## H. 허브 화면 담당(새 화면·새 막대·화면 고침 — 10-24 디자인 v3)
+```
+먼저 읽기: CLAUDE.md · guide/정리본_원칙.md 7-1 첫 줄(디자인 v3) · tools/SPEC.md '디자인 v3' 절 · .claude/skills/jbl-update/QA.md 21·23·64·65·70·71.
+- 새 CSS는 tools/cons/shell.html <style> 맨 끝 '10-24 디자인 v3' 묶음 뒤에. 옛 규칙이 더 구체적이면 `html body …`로 한 단계 올리되, 표시 상태(.qc.mk-ok 등)는 더 구체적이라 그대로 이기게.
+- 토큰만: --v-bg·--v-tone·--v-line·--v-ink(1~4)·--brand(=먹 #1A1815)·--exam-*(금색 = ⭐ 기출)·--pred-*(파랑 = 예상)·--e26(보라)·과목 색 --sj(메뉴 점·지금 탭 밑줄·선택 막대만). 대비 값(fallback)도 #1A1815(#2F5470·#2F4F45 금지). 따뜻한 베이지·갈색·크림 금지.
+- 부품: 보조 단추 = 옅은 면(테 없음) · 주 단추 = 먹 채움 · 거르기 = `.pills` 그릇 + `.tg`(켜짐 먹 채움) · 분절 = `.pseg`(회색 그릇 위 흰 칸) · 칩 = 알약 · 상자 = 옅은 면 + 안쪽 그림자 선 + 모서리 12(높이를 바꾸는 border 금지 — ux_u23·ux_u24).
+- 폰(≤600): 위에 붙는 것은 앱바·탭 줄·JB 작은 막대뿐 — 새 sticky 막대는 shell.html 폰 묶음 static 목록에 더함 · 이름 말줄임 0.
+- 끝나면: sync_common → rehub → 1280·820·393 스크린샷 직접 보기 → tools/tests/ux_v3phone.py(새 주소 더함)·ux_u27·ux_u23·ux_u24·ux4f_G·ux3_fixes·audit_design·verify → v3_palette --check 0.
 ```
