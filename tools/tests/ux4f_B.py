@@ -161,11 +161,11 @@ def view(b):
         st = []
         for x in ['lmcond', 'lmrev', 'lmqz', 'lmqz', 'lmrev', 'lmall']:
             pg.click('#lmview'); pg.wait_for_timeout(150); pg.click('#' + x); pg.wait_for_timeout(500)
-            st.append(pg.evaluate("[document.querySelector('#stage').className.split(' ').filter(c=>['cond','review','quiz'].includes(c)).join(' '),document.querySelector('#lmview').textContent,[...document.querySelectorAll('#lvpop .pi.on')].map(e=>e.id).join(',')]"))
-        ok(st[1][1] == '복습·압축' and st[1][2] == 'lmcond,lmrev', f'{tag} 압축 → 복습: 버튼 복습·압축 · 메뉴 표시 같음 {st[1]}')
-        ok('quiz' in st[2][0] and st[2][1] == '복습·압축·가리기', f'{tag} 복습 중 가리기 → 가리기 그대로 켜짐 {st[2]}')
-        ok('quiz' not in st[3][0] and st[3][1] == '복습·압축', f'{tag} 가리기 다시 → 꺼짐 {st[3]}')
-        ok(st[4] == ['cond', '압축', 'lmcond'] and st[5][1] == '보기', f'{tag} 복습 끔 → 압축 · 전체 → 보기 {st[4]} {st[5]}')
+            st.append(pg.evaluate("[document.querySelector('#stage').className.split(' ').filter(c=>['cond','review','quiz'].includes(c)).join(' '),document.querySelector('#lmview').textContent,[...document.querySelectorAll('#lvpop .pi.on')].map(e=>e.id).join(','),document.querySelector('#lmview').title]"))
+        ok(st[1][1] == '복습 +1' and '복습·압축' in st[1][3] and st[1][2] == 'lmcond,lmrev', f'{tag} 압축 → 복습: 버튼 \'복습 +1\'(10-25 짧게 — 전체는 title) · 메뉴 표시 같음 {st[1]}')
+        ok('quiz' in st[2][0] and st[2][1] == '복습 +2' and '복습·압축·가리기' in st[2][3], f'{tag} 복습 중 가리기 → 가리기 그대로 켜짐 {st[2]}')
+        ok('quiz' not in st[3][0] and st[3][1] == '복습 +1' and '복습·압축' in st[3][3], f'{tag} 가리기 다시 → 꺼짐 {st[3]}')
+        ok(st[4][:3] == ['cond', '압축', 'lmcond'] and st[5][1] == '보기', f'{tag} 복습 끔 → 압축 · 전체 → 보기 {st[4]} {st[5]}')
         pg.click('#lmview'); pg.click('#lmrev'); pg.wait_for_timeout(300); pg.keyboard.press('q'); pg.wait_for_timeout(300)
         ok(pg.evaluate("document.querySelector('#stage').classList.contains('quiz')"), f'{tag} 복습 중 Q → 가린 채(꺼지지 않음)')
         pg.click('#lmview'); pg.click('#lmrev'); pg.wait_for_timeout(300)

@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"141ce7a3",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"d42220a8",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -886,7 +886,7 @@ body.jbone #jbbar.mini #jbrec{display:inline-flex;border:1px dashed var(--accb);
 #stage.jblist:not(.single) #cards .qc:not(.lx)>*{display:none}
 #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead{display:flex;flex-direction:column;align-items:flex-start;gap:3px;grid-row:1/3;grid-column:1;margin:0;width:9.2em}
 #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead>*:not(.ybadge):not(.seq){display:none}
-#stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge{font-size:12px;padding:1px 7px;min-height:0;max-width:100%;overflow:hidden}#stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}#stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge i{display:none}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge{display:inline-flex!important;flex-wrap:wrap;align-items:center;gap:0 4px;white-space:normal}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge b{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere}   /* 10-25 점검 B13 압축 목록 연도 배지 — ⭐가 따로 한 줄·연도가 '2025 · 2022 · 2…'로 잘리던 것(연도는 다 보이게 줄바꿈) */
+#stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge{font-size:12px;padding:1px 7px;min-height:0;max-width:100%;overflow:hidden}#stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}#stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge i{display:none}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead{width:11.6em}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge{display:block!important;white-space:normal;line-height:1.35;padding-top:2px;padding-bottom:2px}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge>*{display:inline!important}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge>*+*{margin-left:4px}html body #stage.jblist:not(.single) #cards .qc:not(.lx)>.qhead .ybadge b{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}   /* 10-25 점검 B13 압축 목록 연도 배지 — ⭐가 따로 한 줄·연도가 '2025 · 2022 · 2…'로 잘리던 것(연도는 다 보이게 줄바꿈) */
 #stage.jblist:not(.single) #cards .qc:not(.lx)>.qtext{display:block;grid-column:2;min-width:0}
 #stage.jblist:not(.single) #cards .qc:not(.lx)>.qtext .ln:not(.q1){display:none}
 #stage.jblist:not(.single) #cards .qc:not(.lx)>.qtext .ln.q1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;font-size:calc(15px*var(--fs))}
@@ -2620,7 +2620,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="141ce7a3",PV={"OMS1": "5768e304", "CONS": "fd341ce3", "IMPL": "32dab472", "ANAT": "0eab2f39", "GERI": "de7d2bc6", "PHARM": "2e1d0de0", "ESTH": "d103a4a7"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.6, "PHARM": 8.6, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="d42220a8",PV={"OMS1": "48975e57", "CONS": "544d8f90", "IMPL": "508806c0", "ANAT": "87b10a89", "GERI": "68a44f9f", "PHARM": "86e7726f", "ESTH": "911946ec"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.6, "PHARM": 8.6, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
