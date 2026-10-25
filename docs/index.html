@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"a7e62995",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"924039d7",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2338,7 +2338,7 @@ html body .tg:not(.on) .qn,html body #stage #jbbar .tg:not(.on) .qn{color:var(--
 html body .tg.on .qn,html body .tg.on .tn,html body #stage #jbbar .tg.on .qn{color:rgba(255,255,255,.7)!important}
 html body table.mtx tr.h1 .mn,html body table.mtx tr.h2 .mn,html body tr.h1 .mn,html body tr.h2 .mn{background:#FFE7A0!important;color:#5C3D00!important}
 html body #stage #jbbar #fexp{background:var(--v-tone)!important;border-color:transparent!important}
-html body #stage #jbbar{background:var(--v-bg)!important}html body #stage #jbbar.mini{background:rgba(255,255,255,.97)!important;box-shadow:0 1px 0 var(--v-line),0 6px 16px -10px rgba(26,24,21,.18)!important}
+html body #stage #jbbar{background:var(--v-bg)!important}/* 10-25 위에 붙는 탭 줄·거르기 막대는 불투명(반투명이면 뒤 카드 글자가 옅게 비침 — 사용자 사진 PHARM HM 기출) */html body #stage #jbbar.mini{background:#fff!important;box-shadow:0 1px 0 var(--v-line),0 6px 16px -10px rgba(26,24,21,.18)!important}
 html body #stage .tc .c-key{background:#F9F7F3!important;border-left:3px solid #2A2825!important}
 html body #stage .tc .c-key .ct{color:var(--v-ink3)!important}
 /* --- v3 · 3 독립 디자인 검토(work/_tmp/design_v3_review.md 40항목) 반영 --- */
@@ -2416,7 +2416,7 @@ html body #stage .qc .acts .btn.pri:hover,html body #stage .pc .acts .btn.pri:ho
 #stage .tc .tbody,#stage .qc .qtext,#stage .qc .lines,#stage .pc .pq,#stage .fcard{color:var(--v-read)}
 @media (min-width:861px){
  /* ② 한 면 — 탭 줄도 미색 바탕(흰 띠 없앰) */
- #dtabs{background:rgba(247,244,239,.94)!important;-webkit-backdrop-filter:saturate(160%) blur(14px)!important;backdrop-filter:saturate(160%) blur(14px)!important;border-bottom:1px solid var(--v-line)!important}
+ #dtabs{background:#F7F4EF!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-bottom:1px solid var(--v-line)!important}
  #dtabs .lmini,#dtabs .lmini2{background:transparent!important}
  /* 과목 홈 구역 = 흰 카드(강의 카드 묶음 #hlec은 그대로) */
  #stage>section.sh4:not(#hlec){background:#fff;border:1px solid var(--v-line);border-radius:16px;padding:18px 24px 20px;box-shadow:var(--sh1);margin-top:24px;margin-bottom:0}
@@ -2426,8 +2426,8 @@ html body #stage .qc .acts .btn.pri:hover,html body #stage .pc .acts .btn.pri:ho
  /* 허브 홈 구역 = 흰 카드 */
  #home .hub4 .hduo>.htodo,#home .hub4 .hduo>.hrecent,#home .hub4 .hsubj,#home .hub4 .hweek{background:#fff;border:1px solid var(--v-line);border-radius:16px;padding:18px 22px;box-shadow:var(--sh1)}
  #home .hub4 .hsubj>h2.hh:first-child,#home .hub4 .hweek>h2.hh:first-child,#home .hub4 .hduo h2.hh,#home .hub4 .hduo h3{margin-top:0!important}
- /* ③ 도구 막대 — 오른쪽 아래 작은 밝은 알약 */
- html body #kit{left:auto!important;right:20px!important;margin:0!important;max-width:calc(100vw - 40px)!important;background:rgba(255,255,255,.97)!important;border:1px solid var(--v-line)!important;box-shadow:0 8px 28px -10px rgba(28,25,22,.28),0 2px 6px -2px rgba(28,25,22,.10)!important;color:var(--v-ink2)!important;border-radius:14px!important;padding:4px 6px!important;gap:2px!important}
+ /* ③ 도구 막대 — 아래 가운데 밝은 알약(10-25 사용자 '툴바가 갑자기 중앙이 아닌 오른쪽에 뜰 때가 있는데 이 오류 고쳐주고' — 메뉴를 뺀 본문 폭의 가운데 · 접힌 메뉴·집중 모드면 화면 가운데) */
+ html body #kit{left:var(--sidew)!important;right:0!important;margin:0 auto!important;max-width:calc(100vw - var(--sidew) - 24px)!important;background:rgba(255,255,255,.97)!important;border:1px solid var(--v-line)!important;box-shadow:0 8px 28px -10px rgba(28,25,22,.28),0 2px 6px -2px rgba(28,25,22,.10)!important;color:var(--v-ink2)!important;border-radius:14px!important;padding:4px 6px!important;gap:2px!important}
  html body #kit button{color:var(--v-ink2)!important;background:transparent!important}
  html body #kit button:hover{background:var(--v-tone)!important;color:var(--v-ink)!important}
  html body #kit button.on,html body #kit button[aria-pressed=true]{background:var(--v-soft)!important;color:var(--v-ink)!important}
@@ -2616,7 +2616,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="a7e62995",PV={"OMS1": "17b52f00", "CONS": "45c1d80d", "IMPL": "5e3efca2", "ANAT": "e678d20b", "GERI": "aa7680e2", "PHARM": "a920e3a9", "ESTH": "6608ac05"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.6, "PHARM": 8.6, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="924039d7",PV={"OMS1": "91873ef4", "CONS": "cb6af4d3", "IMPL": "8f61fccc", "ANAT": "8f1b1caf", "GERI": "bd635c12", "PHARM": "fa7133fa", "ESTH": "c90c5f9e"},PSZ={"OMS1": 4.7, "CONS": 4.5, "IMPL": 4.0, "ANAT": 5.9, "GERI": 5.6, "PHARM": 8.6, "ESTH": 5.2};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=[['OMS1','구강악안면외과학 1','구강외과1'],['CONS','임상치과보존학','보존'],['IMPL','치과임플란트학','임플란트'],['ANAT','임상두경부해부학','두경부해부'],['GERI','노인치과학','노인치과'],['PHARM','임상치과약물치료학','약물치료'],['ESTH','심미치과학','심미']];   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -4089,7 +4089,7 @@ $('#stage').addEventListener('click',e=>{if(Kit.handleClick(e))return;const mb=e
  if(d.go){go(d.go,{open:d.src==='sum',flash:d.gos?d.gos.split(' '):null});return;}
  if(t.id==='lopen'||t.id==='lclose'){$$('#stage .tc').forEach(c=>c.classList.toggle('open',t.id==='lopen'));foldSave();return;}
  if(t.id==='lautofold'){const on=!LS.get('autofold',true);LS.set('autofold',on);t.classList.toggle('on',on);toast(on?'✓를 누르면 그 카드를 접고 다음 카드로 갑니다':'✓를 눌러도 카드를 접지 않습니다');return;}
- if(t.id==='frev'){const on=!t.classList.contains('on');t.classList.toggle('on',on);$$('#stage .qc,#stage .pc').forEach(c=>{if(on)qOpen(c);else qClose(c);togLabel(c);});return;}   /* 모든 카드에 .open을 더하고/빼기 — 개별 토글이 그대로 살아 있음 */
+ if(t.id==='frev'){const on=!t.classList.contains('on');t.classList.toggle('on',on);keepCard(()=>$$('#stage .qc,#stage .pc').forEach(c=>{if(on)qOpen(c);else qClose(c);togLabel(c);}));return;}   /* 10-25 사용자 '답 펼치기를 누르면 가끔 위로 펼쳐지면서 스크롤해야하는데, 항상 화면 기준 그냥 아래쪽으로' — 화면 맨 위 카드를 그 자리에 고정(keepCard) */   /* 모든 카드에 .open을 더하고/빼기 — 개별 토글이 그대로 살아 있음 */
  if(d.tier){JB.F.tiers[d.tier]=!JB.F.tiers[d.tier];t.classList.toggle('on');JB.apply();return;}
  if(d.reftog){if(JB.F&&$('#cards')){JB.F.tiers.C=!JB.F.tiers.C;JB.sync();JB.apply();}else{openDoc(CUR.s,'_jb');jbHsMark();if(JB.F&&!JB.F.tiers.C){JB.F.tiers.C=true;JB.sync();JB.apply();}}return;}   /* ux4c 1회차 과목 홈에서는 'JB에서 참고 n 보기 →' 이동 링크 — 이번 한 번만(jbPlain이 되돌림) */
  if(t.id==='fone'){if(!JB.one){keyNotice();const fr=$('#frev');if(fr)fr.classList.remove('on');$$('#cards .qc.open').forEach(c=>{qClose(c);togLabel(c);});}JB.one=!JB.one;t.classList.toggle('on',JB.one);$('#stage').classList.toggle('single',JB.one);if(JB.one){JB.sess={};JB.vis=JB.vis.filter(c=>!c.dataset.unrec||MK.ok[c.dataset.id]||MK.ng[c.dataset.id]);JB.cur=0;JB.startRound();}   /* fixB VIS14 미복원 문항은 회차에서 뺌 */else{$$('#cards .qc.open').forEach(c=>{qClose(c);togLabel(c);});JB._free=true;JB._apply(true);JB._free=false;jbRePill();}   /* ux4f E 끌 때도 회차 중 펼친 답을 접음 · ux4 B19 한 장씩 끝 = 회차 목록(order·hid)을 걷고 지금 필터 그대로 */JB.show();JB.prog();if(JB.one){const c=JB.vis[JB.cur];if(c)goEl(c);}measure();return;}   /* B37 진행 줄 안내도 모드에 맞게 */
@@ -6110,6 +6110,10 @@ function anchorNow(){if(VIEW!=='doc')return null;const line=topOff();let best=nu
  for(const b of $$('#stage [data-aid]')){if(b.classList.contains('res')||b.offsetParent===null)continue;const r=b.getBoundingClientRect();if(!r.height||r.bottom<=line)continue;
   if(r.top<=line){if(r.top>=bt){bt=r.top;best=b;}}else if(r.top<nt){nt=r.top;nx=b;}}
  const el=best||nx;if(!el)return null;const c=el.closest('.tc,.qc,.pc,.tblwrap');return {el,off:Math.round(line-el.getBoundingClientRect().top),c,coff:c?Math.round(line-c.getBoundingClientRect().top):0};}
+/* 10-25 모두 펼치기·접기처럼 여러 카드가 한꺼번에 길이가 바뀔 때: 화면 맨 위(막대 아래 기준선)에 걸친 문제·예상·정리본 카드를 같은 화면 위치에 둠 → 위쪽 카드가 늘어나도 보던 화면은 그대로, 펼친 내용은 아래로 · 브라우저 스크롤 고정(사파리엔 없음·크롬도 붙는 막대 때문에 자주 빗나감)에 맡기지 않음 */
+function keepCard(fn){const line=topOff();let el=null;if(scrollY>8){const cs=$$('#stage .qc,#stage .pc,#stage .tc,#stage .gbx,#stage .fcard').filter(c=>c.offsetParent!==null);const i=cs.findIndex(c=>c.getBoundingClientRect().bottom>line+4);
+ if(i>=0){el=cs[i];const r=el.getBoundingClientRect(),n=cs[i+1];if(r.top<line-2&&r.bottom-line<(innerHeight-line)*.4&&n&&n.getBoundingClientRect().top<innerHeight-40)el=n;}}   /* 맨 위 카드가 끝자락만 걸쳐 있으면 화면 대부분을 차지한 다음 카드가 기준(그 카드가 보던 것) */
+ const off=el?Math.round(line-el.getBoundingClientRect().top):0;const de=document.documentElement;de.style.overflowAnchor='none';try{fn();}finally{if(!el)de.style.overflowAnchor='';}if(!el)return;goEl(el,off);settle(()=>goEl(el,off));}
 function keepAnchor(fn){const a=scrollY>8?anchorNow():null;fn();if(!a)return;const s0=STL;requestAnimationFrame(()=>requestAnimationFrame(()=>{if(STL&&STL!==s0)return;   /* 그 사이 다른 이동(↑ 틀·goCard)이 시작됐으면 그쪽을 따름 */const vis=e=>e&&e.isConnected&&e.offsetParent!==null;if(vis(a.el))settle(()=>goEl(a.el,a.off));else if(vis(a.c))settle(()=>goEl(a.c,0));clearTimeout(keepAnchor.t);keepAnchor.t=setTimeout(lcurGeo,1500);[120,400].forEach(ms=>setTimeout(lcurGeo,ms));}));}   /* 블록이 숨으면(압축 보기 등) 그 카드 머리로 */
 /* ux4f 새 오류: 아이패드를 돌리면(폭이 바뀜) 읽던 블록을 같은 자리에 — 스크롤이 멈출 때마다 기준 블록을 적어 두고, 폭이 바뀐 resize 뒤 두 프레임 지나 되돌림(사파리는 스크롤 고정이 없음) */
 let ROTA=null,ROTW=innerWidth;
