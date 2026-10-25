@@ -321,7 +321,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sh{display:flex;align-items:center;gap:4px;margin:0 0 4px}
 #numv .nm-si{display:flex;align-items:center;gap:10px;width:100%;min-height:34px;padding:0 10px;border:0;border-radius:6px;background:none;color:var(--ink);font:inherit;font-size:13.5px;line-height:1.3;text-align:left;cursor:pointer;white-space:nowrap;flex:none}
 #numv .nm-si:hover,#numv .nm-si:focus-visible{background:var(--tint,#F1EEEA)}
-#numv .nm-si .l{min-width:0;overflow:hidden;text-overflow:ellipsis;flex:1 1 auto}
+#numv .nm-si .l{min-width:0;overflow-wrap:anywhere;word-break:keep-all;flex:1 1 auto}   /* 10-25 점검 C10 이름 줄이지 않음(7-5) — 좁으면 줄바꿈 */
 #numv .nm-si small{color:var(--sub);font-size:12px;font-variant-numeric:tabular-nums;flex:none}
 #numv .nm-si.pri{color:var(--acc,var(--brand,#1A1815));font-weight:700}
 #numv .nm-si.on{font-weight:700}
@@ -335,6 +335,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sf2{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11.5px;color:var(--faint,#89857F)}#numv .nm-sf2 span{flex:1 1 auto;min-width:0}
 #numv .nm-bk{flex:none;border:1px solid var(--line);background:var(--surface,#fff);color:var(--ink);border-radius:6px;font-family:inherit;font-size:12px;padding:0 9px;min-height:28px;cursor:pointer}#numv .nm-bk:hover{background:var(--tint,#F1EEEA)}
 #numv .nm-top{position:fixed;right:20px;bottom:22px;z-index:24;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 3px 12px rgba(0,0,0,.14);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}#numv .nm-top[hidden]{display:none}#numv .nm-top:hover{background:#fff}
+body:has(#retpill.on) #numv .nm-top{bottom:84px}   /* 10-25 점검 C4 ↩ 돌아가기 알약이 '맨 위로'를 덮던 것 — 알약 위로 */
 #numv .nm-shf button{display:inline-flex;align-items:center;gap:4px}#numv .nm-shf svg{width:15px;height:15px}
 #numv .nm-fold{flex:none;width:32px;height:32px;border:1px solid var(--line);border-radius:6px;background:var(--surface,#fff);color:var(--ink);font-size:14px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
 #numv .nm-fold::before{content:'«'}#numv.sidec .nm-fold::before{content:'»'}
@@ -351,7 +352,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-sjl .nm-si.on{background:var(--tint,#F1EEEA)}
 #numv .nm-ljl{flex:none}
 #numv .nm-lj{min-height:32px;padding-top:5px;padding-bottom:5px;white-space:normal;margin:1px 0}
-#numv .nm-lj .l{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal}
+#numv .nm-lj .l{display:block;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}   /* 10-25 점검 C10 강의 이름 2줄 말줄임 없앰(7-5) */
 #numv .nm-lj.cur{background:var(--surface,#fff);box-shadow:inset 3px 0 0 var(--acc,var(--brand,#1A1815)),inset 0 0 0 1px var(--line);font-weight:700}
 #numv .nm-lj.off{color:var(--faint,#A09B95)}
 #numv .nm-sempty{font-size:12.5px;color:var(--faint,#89857F);padding:4px 10px}
@@ -493,6 +494,8 @@ body.v-num #home{max-width:none;margin:0;padding:0}
 #numv .nm-tb i.sep{width:1px;height:11px;background:rgba(31,29,26,.14);margin:0 2px}
 #numv .nm-tb .done{color:var(--brand,#1A1815);font-weight:800;font-size:12px}
 @media (pointer:coarse){#numv .nm-tb{height:30px;padding:2px;border-radius:8px}#numv .nm-tb button{min-width:26px;height:24px;padding:0 6px;font-size:13px}}
+@media (pointer:coarse){#numv .nm-jbb,#numv .nm-lcb,#numv .nm-edb,#numv .nm-lnk{min-height:32px;display:inline-flex;align-items:center;padding-left:8px;padding-right:8px}}   /* 10-25 점검 C9 폰 누름 칸 21px → 32px */
+@media (max-width:600px){#numv .nm-qt{white-space:normal}}   /* 10-25 점검 C12 폰 연도 태그가 넘쳐 교수 이름이 잘리던 것 */
 #numv .nm-tb .done:hover{background:rgba(15,92,90,.1)}
 #numv .nm-pal{position:fixed;z-index:59;background:#fff;color:#1F1D1A;border:1px solid #D4D0CA;border-radius:8px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;width:176px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
 #numv .nm-pal button{width:26px;height:26px;border-radius:6px;border:1px solid #D4D0CA;cursor:pointer}
@@ -621,6 +624,7 @@ body.v-num #home{max-width:none;margin:0;padding:0}
  #numv .nm-doc{border-radius:0;border-left:0;border-right:0;margin:0 -12px}
  #numv .nm-irow{grid-template-columns:24px minmax(0,1fr)}#numv .nm-irow .add{grid-column:2;justify-self:start}#numv .nm-ians{margin-left:10px}
  #numv .nm-dlg{border-radius:10px}
+ #numv .nm-ov{padding:8px}#numv .nm-dlg{max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px)}#numv .nm-dlg .bd{overflow:auto;min-height:0;flex:1 1 auto}#numv .nm-dlg .nm-ilist{max-height:none;overflow:visible}   /* 10-25 점검 C6 폰 불러오기 창이 화면보다 커서 바닥 줄이 목록을 가리던 것 — 창은 화면 안, 몸통만 스크롤 */
  #numv .nm-cmp{grid-template-columns:1fr;margin-left:10px}#numv .nm-cmp section+section{border-left:0;border-top:1px solid #E3DFD9}
  #numv .nm-airow{grid-template-columns:24px minmax(0,1fr) auto}
 }
@@ -920,7 +924,7 @@ function saveTxt() { const st = S.saveSt; return st === 'ok' ? '저장됨 ✓' :
 function barHTML() {
   const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null;
   return `<div class="nm-stick"><div class="nm-bar">`
-    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.d || l.t) : '› 강의'}</span></button></span>`
+    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.t : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.d || l.t) : '› 강의'}</span></button></span>`
     + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·답안·스토리 검색" value="${esc(S.q)}" aria-label="넘버링 검색"></label>`
     + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="필터·정렬 — 강의·제작 상태·유형·출처·연도·정렬">${ICO.filter}<span>필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
     + `<div class="nm-vopt${S.vo ? ' open' : ''}"><span class="nm-seg" role="group" aria-label="보기"><button type="button" data-mode="grp" class="${C.mode === 'grp' ? 'on' : ''}" aria-pressed="${C.mode === 'grp'}" title="강의마다 머리를 두고 보기">강의별</button><button type="button" data-mode="all" class="${C.mode === 'all' ? 'on' : ''}" aria-pressed="${C.mode === 'all'}" title="강의 머리 없이 한 줄로 이어 보기">전체 목록</button></span>`
@@ -1667,9 +1671,10 @@ function confirmAdd(L, sj, ov, after) {
     const box = document.createElement('div'); box.className = 'nm-ov'; box.style.zIndex = 70;
     box.innerHTML = `<div class="nm-dlg" style="width:min(760px,100%)"><header><h3>${esc(subjT(sj))} 넘버링에 넣기 — 확인</h3></header><div class="bd"><div>고른 문제 <b>${L.length}</b> · 새로 넣을 문제 <b>${nNew + sim.length}</b> · 이미 있음(건너뜀) <b>${nHave}</b>${nMeta ? ` · 이미 있음(우선순위·근거만 새로 — 문제·답안·스토리는 그대로) <b>${nMeta}</b>` : ''} · 같은 문제(출처·연도만 연결) <b>${nSame}</b>${sim.length ? ` · 비슷한 문제 <b>${sim.length}</b>` : ''}</div>${sim.length ? `<div class="nm-warn">비슷한 문제는 기본으로 따로 넣어요. 같은 문제라면 체크해 출처만 연결하세요.</div><div class="nm-ilist" style="max-height:40vh">${sim.map((p, i) => `<label class="nm-irow" style="grid-template-columns:28px minmax(0,1fr)"><input type="checkbox" data-sim="${i}"><div><div class="t">${esc(plain(p.x.q))}</div><div class="m"><span class="nm-chip rv">비슷 ${Math.round(p.d.d * 100)}%</span><span class="t" style="-webkit-line-clamp:1">이미 있는 문제: ${esc(plain(p.d.it.q))}</span></div></div></label>`).join('')}</div>` : ''}</div><footer><span style="flex:1"></span><button type="button" class="nm-btn" data-cf2="no">취소</button><button type="button" class="nm-btn pri" data-cf2="ok"${nNew + sim.length + nSame + nMeta ? '' : ' disabled'}>넣기</button></footer></div>`;
     (ov || $('#numv')).appendChild(box);
-    box.addEventListener('click', e => { const b = e.target.closest('[data-cf2]'); if (!b) return; if (b.dataset.cf2 === 'no') { box.remove(); return; }
+    const refocus = () => { const d = ov && ov.isConnected && ov.querySelector('.nm-dlg'); if (d) d.focus({ preventScroll: true }); };   /* 10-25 점검 C7 확인 상자를 닫은 뒤 포커스가 body로 빠져 Esc가 안 먹던 것 */
+    box.addEventListener('click', e => { const b = e.target.closest('[data-cf2]'); if (!b) return; if (b.dataset.cf2 === 'no') { box.remove(); refocus(); return; }
       const simMerge = new Set($$('[data-sim]:checked', box).map(c => +c.dataset.sim));
-      const r = addMany(plan, sim, simMerge, sj); box.remove();
+      const r = addMany(plan, sim, simMerge, sj); box.remove(); refocus();
       if (r.err) { H.toast('넣다가 멈췄어요 — 기존 넘버링은 그대로예요: ' + r.err, { level: 'error', id: 'nmimp' }); return; }
       H.toast(`${subjT(sj)} — 새 문제 ${r.add} · 출처 연결 ${r.link}${r.meta ? ' · 우선순위·근거만 새로 ' + r.meta : ''}${r.skip ? ' · 건너뜀 ' + r.skip : ''}`, { level: 'result', action: sj !== S.sj ? { label: '보기', fn: () => { dlgClose(); switchSubject(sj); } } : null });
       if (after) after(); });
@@ -2343,7 +2348,7 @@ function revBarHTML() {
   const C = S.cfg, nf = fCount(), sub = subjects().find(s => s.id === S.sj), l = S.curLec != null ? lecOf(S.curLec) : null, card = C.view === 'card', rnd = !!(RV.ses && RV.ses.rnd);
   const tg = (attr, on, t, ti) => `<button type="button" ${attr} class="${on ? 'on' : ''}" aria-pressed="${!!on}" title="${esc(ti)}">${t}</button>`;
   return `<div class="nm-stick"><div class="nm-bar">`
-    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.sh : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.d || l.t) : '› 강의'}</span></button></span>`
+    + `<span class="nm-ctx"><button type="button" data-act="sjm" title="과목 바꾸기"><b>${esc(sub ? sub.t : S.sj)}</b></button><button type="button" data-act="ctx" title="강의 바로 가기"><span>${l ? '› ' + esc(l.d || l.t) : '› 강의'}</span></button></span>`
     + `<span class="nm-seg nm-rvw" role="group" aria-label="복습 방식">${tg('data-rview="scroll"', !card, '스크롤', '스크롤 복습 — Word처럼 이어서 · 가리기 · 내 답안 쓰기')}${tg('data-rview="card"', card, '카드', '카드 복습 — 한 장씩 뒤집고 평가(Space·←→·1 2 3)')}</span>`
     + `<label class="nm-sch">${ICO.search}<input type="search" data-cf="q" placeholder="문제·정답·스토리 검색" value="${esc(S.q)}" aria-label="복습 검색"></label>`
     + `<button type="button" class="nm-tbtn${S.fp ? ' on' : ''}" data-act="flt" aria-expanded="${!!S.fp}" aria-haspopup="true" title="복습 범위(전체·미복습·취약…) · 강의·유형·출처·연도 · 정렬">${ICO.filter}<span>범위·필터</span>${nf ? `<b class="n">${nf}</b>` : ''}</button>`
