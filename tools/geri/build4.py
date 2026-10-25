@@ -104,7 +104,7 @@ for q in Q:   # front= · 자동 앞면 · prev=
         for r_ in _lrow(v_['ed'], v_['sec'], v_['num']): r_['st'] = 'card'; r_['to'] = [q['id']]   # 기출 대장: 새 앞면 블록 = 카드 · 옛 앞면 블록 = 중복(CONS 담당 10-25)
         for r_ in _lrow(old['ed'], old['sec'], old['num']):
             if r_['st'] == 'card': r_['st'] = 'dup'; r_['to'] = [q['id']]
-        q['short'] = re.sub(r'^\s*\d{1,3}(-\d)?(?:[.)]\s*|\s+)', '', v_['text'].split('\n')[0]).strip()[:52] or q['short']   # 번호 뒤 . ) 빈칸이 있을 때만 뗌('18,19년도에는' 보존)
+        q['short'] = re.sub(r'^\s*(?:\(\d{1,3}(?:-\d)?\)\s*|\d{1,3}(-\d)?(?:[.)]\s*|\s+))(?:\[[^\]]{1,20}\]\s*)?', '', v_['text'].split('\n')[0]).strip()[:52] or q['short']   # 번호 뒤 . ) 빈칸이 있을 때만 뗌('18,19년도에는' 보존) · 10-25c '(3-2) [과거 복원]' 머리도
         q['tal'] = bool(re.search(r'\(탈\)', ' '.join(v_['text'].split('\n')[:3])))   # JB 표기 (탈)은 새 앞면 기준
     np_ = int(_ax(q['id'], 'prev') or (1 if q.get('fronted') and not q.get('qsame') else 0))
     for v_ in q.get('other', [])[:np_]: v_['prev'] = True
