@@ -130,7 +130,7 @@ async def main():
         LOG.clear()
         for _ in range(2): await tick(dk); await tick(ph)
         ok(not [y for y in LOG if y[0] != 'GET'], f'⑭ 다 맞춘 뒤엔 보내기 0(되풀이 없음) {[y for y in LOG if y[0] != "GET"]}')
-        # ⑮ 기기 전용 값(복습 진행 중·쓰는 중 답안·스크롤 위치)은 안 넘어감
+        # ⑮ 스크롤 위치는 안 넘어가고 진행 중 회차(num.rs — 10-25c)·★는 넘어감
         await setv(dk, 'num.rs.IMPL', {'sid': 's1', 'ids': ['n1'], 'u': 1}); await setv(dk, 'num.pos.IMPL', {'y': 100}); await setv(dk, 'cbm.IMPL', {'A3': 1000, 'A7': 1, 'A8': 1, 'A10': 1, 'A11': 1})
         await tick(dk, '{pull:false}'); await tick(ph)
         ok((await getv(ph, 'num.rs.IMPL') or {}).get('sid') == 's1' and await getv(ph, 'num.pos.IMPL') is None and 'A11' in (await getv(ph, 'cbm.IMPL') or {}), '⑮ 기기 전용 값(스크롤 위치)은 안 넘어가고 진행 중인 회차(num.rs — 10-25c)·★는 넘어감')

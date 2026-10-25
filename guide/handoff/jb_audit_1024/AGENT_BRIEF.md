@@ -1,5 +1,7 @@
 # 10-25 JB 결정 반영 — 과목 담당 공통 지시
 
+> **10-25c 뒤 바뀐 점(이 절이 아래보다 이김)**: 앞면 = 가장 최신 판은 build4가 **저절로** 함(annot `front=26`을 손으로 달 필요 없음 — 자동이 틀릴 때만 `front=<판>#n`, 다른 문제면 `front=0`) · 옛 답은 '다른 판본'이 아니라 답 바로 아래 '📜 이전 답' · annot K·A·N은 최신 답 기준(.claude/skills/jbl-update/RULES.md 10절 끝 · guide/handoff/review_final/FRONT_BRIEF.md).
+
 사용자가 10-24 결정표(결정표.html)에서 공통 1~9와 OMS1-1·2를 직접 골랐고, 나머지는 "너가 최적으로 판단해서 결정해줘"라고 했다.
 나머지 항목은 결정표의 추천안(*)으로 정했다. 과목별 결정 목록은 담당 프롬프트에 있다.
 근거와 원문 위치는 `guide/handoff/jb_audit_1024/<SID>_review.md`에 있다(항목 번호는 그 보고서의 A~F 번호).
