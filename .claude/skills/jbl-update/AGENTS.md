@@ -103,6 +103,7 @@
 <공통 머리>
 과목 <SID> annot.txt(이번에 바뀐 강의의 문항 — 블록 머리 lec=<키> — 전부). 기준본은 메인이 저장해 둠(--save 하지 말 것).
 guide/handoff/review_final/JBREAD_BRIEF.md · JBREAD2_BRIEF.md · JBTIDY_BRIEF.md를 다 적용(라벨 통일·한 선지 한 줄·보강 필기 합침·M 라벨·{r:}). K 🎯 요점은 RULES 10절·JBTIDY 2) 꼴로만(옛 JBKEY의 `정답 = … — …` 예시는 쓰지 않음 — 라벨 통일 절만 참고) · K의 번호 항목(①②③)은 FWBAL_BRIEF 판단 1~3(RULES 6 '번호 항목' — 짧은 원문은 풀 워딩, 문장처럼 긴 원문은 원문 핵심어 압축, 기출 서술 답은 키워드 빠짐없이) · 다시 쓴 K마다 옛 사실이 새 K·A·M 어딘가에 남았는지 눈으로(annot_diff는 K를 세지 않음) · 앞 회차 보고 파일(JB_<SID>.md 등) 언급은 무시. 화면 덤프 work/review_jb/<SID>.md와 work/review_breaks2/<SID>_jb.md를 처음부터 끝까지 본다. K·A·M에서 앞 줄의 이어짐을 새 줄로 떼지 않음(RULES 10 '이어지는 내용은 한 줄'). 필기 표시·강조(RULES 7 끝·9): K 🎯에서 필기에서만 나온 사실은 `{n:…}`로 감싸고, K를 다시 쓸 때도 원래 K의 `{n:…}`·`{u:…}`를 그대로 옮김(annot_diff는 K를 예외로 보니 시작 전·후 `grep -c '{n:' tools/<sid>/annot.txt`·`grep -c '{u:' tools/<sid>/annot.txt`·`grep -c '{e:' tools/<sid>/annot.txt`가 줄지 않았는지 보고). JBREAD2의 '{r:} 핵심어'는 슬라이드 원문 인용·설명에만 — `26 필기(p.N):`·'필기 "…"' 인용·`{n:}` 안에는 `{r:}`·`==`·`**`를 두지 않음(REDNOTE_BRIEF 할 일 1 — 예외 3가지만).
+기준 답 = 가장 최신 JB 판(RULES 10절 끝 · 10-25c): 카드 앞면은 build4가 저절로 가장 최신 판 — 먼저 `JBL_FRONT_ONLY=1 .venv/bin/python tools/<sid>/build4.py`로 work/<SID>/front_auto.json(앞면이 바뀐 카드의 옛·새 글)을 보고, A '정답 요지' 인용·K 답의 뼈대·보기 번호는 새 앞면(최신 판) 글 기준 · 옛 답은 K 끝에 '이전 판 답(25판까지): …' 한 마디(나머지는 화면 '📜 이전 답'이 보여 줌) · N 판본 메모 = 'JB 앞면 = 26판 … n번(가장 최신 판) · 25판까지 답은 … — 답 아래 📜 이전 답' · 자동 앞면이 다른 문제면 머리 front=0.
 검사: annot_diff(A·M·N 빠진 글자 0 — 겹친 [[ ]] 칩·K 다시 쓰기는 예외로 보고) · check_eyears(🎯 요점 연도 포함) · check_abbr. 보고 work/review_final2/TIDY_<SID>.md.
 ```
 

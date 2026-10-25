@@ -1,7 +1,7 @@
 """UX12 넘버링 복습(10-11) — 내 넘버링과 같은 원본 · 복습 기록은 따로.
 - 허브 홈 ② 넘버링 복습 → #/_numr/<과목> · 기본 = 스크롤 복습 · 사이드바 '내 넘버링 ⇄ 넘버링 복습' · 메뉴 표시
 - 스크롤: 정답 | 스토리 2칸 → 내 답안 쓰기 = 3칸(맨글 textarea) · 칸 경계 끌기(기억) · 전체 가리기 + 문제마다 따로(새로고침 뒤에도) · 원본은 읽기 전용 → '수정' = 같은 편집기 · 고친 글이 내 넘버링에도
-- 내 답안: 자동 저장(새로고침 뒤 그대로) · 원본(num.i)과 따로(num.rd) · 스크롤·카드가 같은 글
+- 내 답안 = 낙서장(10-25c): 저장 안 함(num.rd 없음·새로고침하면 빈 칸·회차 기록 w 없음) · 원본(num.i)과 따로 · 같은 화면 안에서는 스크롤·카드가 같은 글
 - 평가: 모름·애매함·암기 완료 → num.r.<과목>.<id> (최근 평가·이력·날짜) · 카드: 평가 → 다음 카드 · 이전 카드 평가 고치기(이력 칸을 바꿈)
 - 카드: 방향 3가지 · Space 뒤집기 · ←→ · 1 2 3 · T 남은 하나 · 회차 정리 → 모름·애매함 재복습(무작위 · 빈 칸 · 지난 답안 가림) · 회차 기록
 - 범위: 미복습 → 새 회차 · 섞기/원래대로 · 복습 이력 창 · 휴대폰(390) 카드 화면 가로 넘침 없음 · pageerror 0"""
@@ -57,7 +57,8 @@ async def main():
         ok(c3['cols'] == 3 and c3['ta'] > 3 and c3['tb'] == 0, f"내 답안 쓰기 = 정답|스토리|내 답안 3칸 · 맨글 칸(도구 막대 없음) {c3}")
         await pg.locator('textarea[data-w]').nth(0).click(); await pg.keyboard.type('내가 쓴 답 1\n둘째 줄'); await pg.wait_for_timeout(900)
         dr = await pg.evaluate(f"{LSG}('num.rd.CONS')"); r0 = await pg.evaluate(f"{LSG}('num.i.CONS.{ids[0]}')")
-        ok(dr and dr['a'].get(ids[0]) == '내가 쓴 답 1\n둘째 줄' and '내가 쓴' not in json.dumps(r0, ensure_ascii=False), "내 답안 자동 저장(num.rd) · 원본(num.i)에는 안 들어감")
+        lk = await pg.evaluate("Object.keys(localStorage).filter(k=>(localStorage.getItem(k)||'').indexOf('내가 쓴')>=0)")
+        ok(dr is None and '내가 쓴' not in json.dumps(r0, ensure_ascii=False) and not lk, f"내 답안 = 낙서장 — 저장 안 함(num.rd 없음) · 원본(num.i)·다른 키에도 안 들어감 {lk}")
         # 칸 너비 끌기
         w0 = await pg.evaluate("JBLNUM._S.cfg.w3.slice()")
         hb = await pg.evaluate("(()=>{const h=document.querySelectorAll('.nm-it')[0].querySelector('[data-rz=\"1\"]').getBoundingClientRect();return {x:h.x+h.width/2,y:h.y+h.height/2}})()")
@@ -72,7 +73,9 @@ async def main():
         hd = await pg.evaluate("[...document.querySelectorAll('.nm-it')].slice(0,4).map(a=>(a.classList.contains('hA')?'A':'-')+(a.classList.contains('hS')?'S':'-'))")
         ta0 = await pg.evaluate("(document.querySelector('textarea[data-w]')||{}).value")
         ok(hd[0] == 'A-' and hd[1] == '--' and hd[2] == 'AS' and hd[3] == 'A-', f"정답 모두 가리기 + 문제마다 보기·가리기 — 새로고침 뒤에도 그대로 {hd}")
-        ok(ta0 == '내가 쓴 답 1\n둘째 줄', "새로고침 뒤에도 쓰던 내 답안 그대로")
+        ok(ta0 == '', f"새로고침하면 내 답안(낙서장)은 빈 칸 {ta0!r}")
+        await pg.click('[data-rwrite]') if not await pg.evaluate("!!document.querySelector('textarea[data-w]')") else None
+        await pg.locator('textarea[data-w]').nth(0).click(); await pg.keyboard.type('내가 쓴 답 1\n둘째 줄'); await pg.wait_for_timeout(300)
         await pg.click('[data-rhide=a]'); await pg.wait_for_timeout(200)
         hd2 = await pg.evaluate("[...document.querySelectorAll('.nm-it')].slice(0,4).map(a=>a.classList.contains('hA'))")
         ok(not any(hd2), f"정답 모두 보기 = 문제마다 가린 것도 다시 보임 {hd2}")
@@ -144,13 +147,11 @@ async def main():
         ns = await pg.evaluate("(()=>{const s=JBLNUM._RV.ses;return {sid:s.sid,retry:s.retry,n:s.ids.length,rnd:!!s.rnd,ta:(document.querySelector('.nm-cr textarea')||{}).value}})()")
         rl = await pg.evaluate(f"{LSG}('num.rl.CONS')"); r0 = await pg.evaluate(f"{LSG}('num.r.CONS.{ids[0]}')")
         ok(ns['sid'] != old and ns['retry'] and ns['n'] == 2 and ns['rnd'] and ns['ta'] == '', f"재복습 = 새 회차 2문제 · 무작위 · 빈 내 답안 {ns}")
-        ok(rl and len(rl) == 1 and rl[0]['c'] == [1, 1, 1] and r0['w'] and r0['w'][0]['x'] == '내가 쓴 답 1\n둘째 줄', f"끝난 회차 기록(num.rl) · 쓴 답안은 문제 이력(w)으로 {rl and rl[0].get('c')}")
+        ok(rl and len(rl) == 1 and rl[0]['c'] == [1, 1, 1] and not r0.get('w'), f"끝난 회차 기록(num.rl) · 내 답안(낙서장)은 문제 이력(w)에 안 남음 {rl and rl[0].get('c')}")
         await pg.evaluate(f"JBLNUM._RV.ses.cur={json.dumps(ids[0])};"); await pg.click('[data-cnav=\"0\"]'); await pg.click('[data-cnav=\"0\"]'); await pg.wait_for_timeout(150)
         await pg.click('.nm-cr [data-ract=hist]'); await pg.wait_for_timeout(200)
         hl = await pg.evaluate("(document.querySelector('.nm-cr [data-hist]')||{}).textContent||''")
-        ok('평가하면 보여요' in hl and '내가 쓴 답' not in hl, "재복습 회차: 지난 답안은 평가 전엔 가림(힌트 아님)")
-        await pg.click('.nm-cr [data-ract=hint]'); await pg.wait_for_timeout(150)
-        ok('내가 쓴 답 1' in await pg.evaluate("document.querySelector('.nm-cr [data-hist]').textContent"), "'지금 보기'를 누르면 지난 답안 확인")
+        ok('평가 이력' in hl and '지난 회차에 쓴' not in hl and '내가 쓴 답' not in hl, "재복습 회차: 이력 = 평가만(낙서장 답안은 남지 않음)")
         # 기존 순서로 다시
         await pg.click('[data-cnt] [data-ract=end]'); await pg.wait_for_timeout(300)
         # 범위: 미복습

@@ -24,12 +24,13 @@ for _k, _subs in (getattr(S, 'JBFIX', {}) or {}).items():
     if '|' in _k:
         _ed, _sec, _num = _k.split('|', 2)
         _tg = [q_ for q_ in Q if q_['ed'] == _ed and str(q_['sec']) == _sec and str(q_['num']) == _num] + [v_ for q_ in Q for v_ in q_.get('other', []) if v_['ed'] == _ed and str(v_['sec']) == _sec and str(v_['num']) == _num]
-    else: _tg = [QMAP[_k]] if _k in QMAP else []
+    else: _tg = [QMAP[_k]] + QMAP[_k].get('other', []) if _k in QMAP else []   # 10-25c 카드 id 고침은 그 카드의 모든 사본에(앞면이 최신 판으로 바뀌어도 고친 글이 남게)
     if not _tg: _JBFIX_MISS.append(f'{_k}: 대상 없음'); continue
     for _o, _n in _subs:
         _hit = 0
         for _t in _tg:
             if _o in _t['text']: _t['text'] = _t['text'].replace(_o, _n); _hit += 1
+            elif _n and _n in _t['text']: _hit += 1   # 10-25c 카드 id 고침이 그 사본에 이미 같은 고침을 함
         if not _hit: _JBFIX_MISS.append(f'{_k}: {_o[:30]!r} 없음')
 if _JBFIX_MISS: print('⚠ JBFIX 못 찾음:', _JBFIX_MISS)
 def _qpart(q_):
@@ -39,27 +40,84 @@ def _qpart(q_):
         out.append(l)
     return '\n'.join(out).strip()
 _YRTAG = re.compile(r'\(([^()]*?(?:\d{2}|20\d\d)[^()]*?)\)')
-for q in Q:   # front= · prev=
+# 10-25c 사용자 '모든 jb문제에 대해서 해당 문제가 기재된 가장 최신 jb판의 해설과 페이지를 인용 … 해설은 최신 jb판의 답이어야 하고, jb원본도 해당 문제가 수록된 가장 최신판이어야하고,
+#   다만 이전 답이나 참고할 만한 내용을 아래 추가로' — annot front= 가 없어도 앞면 = 가장 최신 판(같은 판이면 가장 최근 해 칸)의 사본(자동)
+#   · 건너뜀: 'n년 m번 중복' 같은 가리킴 사본(_isptr) · 문제가 많이 다른 사본(문제 글 유사도 < 0.6 — 합쳐진 묶음·변형, 출력에 목록) · 다른 카드가 이미 앞면으로 쓴 사본
+#   · front=0 = 자동 끔(그 카드는 지금 앞면 그대로) · 옛 답은 답 칸 바로 아래 '이전 판 답'(qcard) · 문제 글이 같으면 '이전 출제 꼴' 상자는 안 보임
+import difflib as _dl
+_PTR = re.compile(r'\d+\s*번\s*(?:문제\s*)?(?:와\s*|과\s*)?(?:중복|동일|같음)|(?:미복원|복원\s*불충분)')
+def _nz(t): return re.sub(r'[\s\u2063]+', '', t or '')
+def _isptr(v): t = _nz(v['text']); return len(t) < 30 or (len(t) < 80 and bool(_PTR.search(v['text'])))
+def _secy(v): m = re.search(r'(20\d\d)', str(v.get('sec', ''))); return int(m.group(1)) if m else 0
+def _qcore_raw(t):   # 문제 부분(앞 번호·연도 괄호 뺌 · 줄 유지)
+    t = _qpart({'text': t}); t = re.sub(r'^\s*\(?\d{1,3}(?:-\d{1,2})?[.)]\s*', '', t)
+    return _YRTAG.sub(lambda m_: '' if len(m_.group(1)) <= 30 else m_.group(0), t)
+def _qcore(t): return _nz(_qcore_raw(t))   # 문제 글 비교용 — 앞 번호·연도 괄호·공백을 뺌
+def _qsame(a, b):   # 문제 글이 같은가 — 구두점·머리줄('2025년 교수님 강조')을 빼고 같거나, 다른 곳이 한글 조사 몇 자 더해짐·빠짐뿐(숫자·영문이 바뀌면 다름 — 'Type 2'→'Type 3')
+    f = lambda t: re.sub(r'[\W_]+', '', re.sub(r'^\s*\(?\d{1,3}(?:-\d{1,2})?[.)]\s*', '', '\n'.join(l_ for l_ in (t or '').split('\n') if not re.match(r'^\s*(?:20\d\d\s*년\s*교수님\s*강조|\(?\s*(?:짤|탈)\s*\)?)\s*$', l_)).strip()))
+    a, b = f(a), f(b)
+    if a == b: return True
+    n = 0
+    for op, i1, i2, j1, j2 in _dl.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if op == 'equal': continue
+        seg = a[i1:i2] + b[j1:j2]
+        if op == 'replace' or re.search(r'[0-9A-Za-z]', seg): return False
+        n += len(seg)
+    return n <= 3
+def _sim(a, b, n=400): return 1.0 if a == b else _dl.SequenceMatcher(None, a[:n], b[:n], autojunk=False).ratio() if a and b else 0.0
+_vkey = lambda v_: (v_['ed'], str(v_['sec']), str(v_['num']), v_.get('pg'), _nz(v_['text'])[:60])   # 칸 이름이 강의마다 같은 과목(PHARM '2024년 칸')이 있어 쪽·글 앞부분까지
+_FRONT = {}; _CLAIM = {}; AUTOFRONT = []; AUTOSKIP = []
+for q in Q:   # 명시한 front= 먼저(그 사본은 그 카드 것)
     f_ = _ax(q['id'], 'front')
-    if f_:
-        ed_, _, n_ = f_.partition('#'); cands = [v_ for v_ in q.get('other', []) if v_['ed'] == ed_]
-        if len(cands) < int(n_ or 1): print(f'⚠ front={f_}: {q["id"]}에 그 판 사본 없음'); continue
-        v_ = cands[int(n_ or 1) - 1]
+    if not f_ or f_ == '0': continue
+    ed_, _, n_ = f_.partition('#'); cands = [v_ for v_ in q.get('other', []) if v_['ed'] == ed_]
+    if len(cands) < int(n_ or 1): print(f'⚠ front={f_}: {q["id"]}에 그 판 사본 없음'); continue
+    _FRONT[q['id']] = cands[int(n_ or 1) - 1]; _CLAIM[_vkey(_FRONT[q['id']])] = q['id']
+_want = []
+for q in Q:   # 자동 — 가장 최신 판(같은 판이면 가장 최근 해 칸) · 가리킴 사본 빼고 · 문제가 비슷한 것
+    if _ax(q['id'], 'front'): continue
+    oth = [v_ for v_ in q.get('other', []) if not _isptr(v_)]
+    if not oth: continue
+    top = max([q['ed']] + [v_['ed'] for v_ in oth]); cur = (q['ed'], _secy(q))
+    cands = [v_ for v_ in oth if v_['ed'] == top and (v_['ed'], _secy(v_)) > cur]
+    if not cands: continue
+    c0 = _qcore(q['text']); sc = sorted(((_secy(v_), _sim(c0, _qcore(v_['text'])), -i_, v_) for i_, v_ in enumerate(cands)), key=lambda x_: x_[:3], reverse=True)
+    ok_ = [x_ for x_ in sc if x_[1] >= 0.6]
+    if not ok_: AUTOSKIP.append((q['id'], f'{sc[0][3]["ed"]}판 {sc[0][3]["sec"]} {sc[0][3]["num"]}번 문제 유사도 {sc[0][1]:.2f}')); continue
+    _want.append((ok_[0][1], q, ok_[0][3]))
+for s_, q, v_ in sorted(_want, key=lambda x_: -x_[0]):   # 같은 사본을 두 카드가 원하면 더 비슷한 카드만
+    k_ = _vkey(v_)
+    if k_ in _CLAIM: AUTOSKIP.append((q['id'], f'{v_["ed"]}판 {v_["sec"]} {v_["num"]}번은 {_CLAIM[k_]} 앞면')); continue
+    _CLAIM[k_] = q['id']; _FRONT[q['id']] = v_; AUTOFRONT.append(q['id'])
+for q in Q:   # front= · 자동 앞면 · prev=
+    v_ = _FRONT.get(q['id'])
+    if v_:
         old = {'ed': q['ed'], 'sec': q['sec'], 'num': q['num'], 'pg': q['pg'], 'pg2': q.get('pg2', q['pg']), 'text': q['text'], 'src': q.get('src', '')}
         q['other'] = [old] + [x for x in q['other'] if x is not v_]
         head_ = ' '.join(_qpart(v_).split('\n'))   # 새 앞면의 문제 부분 전체(괄호가 마지막 보기 끝에 붙은 판 — CONS Q14 '(25,24,23)')
         newtag = [m_.group(0) for m_ in _YRTAG.finditer(head_) if len(m_.group(1)) <= 30 and re.search(r'(?<!\d)(?:20)?\d{2}(?!\d)', m_.group(1))]   # 표시용 'JB 괄호 …'(연도는 assemble이 이미 셈)
         q['jbtag'] = ' '.join(dict.fromkeys([t_ for t_ in newtag if t_ not in (q.get('jbtag') or '')] + ([q['jbtag']] if q.get('jbtag') else [])))
         _secl = f'{v_["sec"]}년 칸' if re.fullmatch(r'20\d\d', str(v_['sec'])) else v_['sec']   # ANAT·GERI·PHARM 칸 이름 = 연도 숫자 → '2025년 칸'(옛 출처 꼴)
-        q.update(ed=v_['ed'], sec=v_['sec'], num=v_['num'], pg=v_['pg'], pg2=v_.get('pg2', v_['pg']), text=v_['text'], src=f'JB {v_["ed"]}판 · {_secl} {v_["num"]}번', fronted=True)
+        q.update(ed=v_['ed'], sec=v_['sec'], num=v_['num'], pg=v_['pg'], pg2=v_.get('pg2', v_['pg']), text=v_['text'], src=f'JB {v_["ed"]}판 · {_secl} {v_["num"]}번', fronted='auto' if q['id'] in AUTOFRONT else True)
+        q['qsame'] = _qsame(_qcore_raw(old['text']), _qcore_raw(v_['text']))   # 문제 글이 (연도 괄호·번호·구두점·머리줄 말고) 같음 → '이전 출제 꼴' 상자 없음
         def _lrow(ed__, sec__, num__): return [r_ for r_ in getattr(A, 'LEDGER', []) if r_['ed'] == ed__ and str(r_['num']) == str(num__) and str(r_['sec']) in (str(sec__), str(sec__) + '년')]
         for r_ in _lrow(v_['ed'], v_['sec'], v_['num']): r_['st'] = 'card'; r_['to'] = [q['id']]   # 기출 대장: 새 앞면 블록 = 카드 · 옛 앞면 블록 = 중복(CONS 담당 10-25)
         for r_ in _lrow(old['ed'], old['sec'], old['num']):
             if r_['st'] == 'card': r_['st'] = 'dup'; r_['to'] = [q['id']]
         q['short'] = re.sub(r'^\s*\d{1,3}(-\d)?(?:[.)]\s*|\s+)', '', v_['text'].split('\n')[0]).strip()[:52] or q['short']   # 번호 뒤 . ) 빈칸이 있을 때만 뗌('18,19년도에는' 보존)
         q['tal'] = bool(re.search(r'\(탈\)', ' '.join(v_['text'].split('\n')[:3])))   # JB 표기 (탈)은 새 앞면 기준
-    np_ = int(_ax(q['id'], 'prev') or (1 if q.get('fronted') else 0))
+    np_ = int(_ax(q['id'], 'prev') or (1 if q.get('fronted') and not q.get('qsame') else 0))
     for v_ in q.get('other', [])[:np_]: v_['prev'] = True
+try:   # 검토용(커밋 안 함) — 앞면이 바뀐 카드의 옛·새 앞면 글 · annot 손질 담당이 읽음
+    _fa = []
+    for q in Q:
+        if not q.get('fronted'): continue
+        o_ = q['other'][0]; _fa.append({'id': q['id'], 'auto': q['fronted'] == 'auto', 'qsame': bool(q.get('qsame')), 'asim': round(_sim(_nz(_qpart({'text': o_['text']}) and o_['text'][len(_qpart({'text': o_['text']})):]), _nz(q['text'][len(_qpart(q)):]), 4000), 2),
+                    'new': {k_: q[k_] for k_ in ('ed', 'sec', 'num', 'pg', 'text')}, 'old': {k_: o_[k_] for k_ in ('ed', 'sec', 'num', 'pg', 'text')}})
+    os.makedirs(J.work(SID), exist_ok=True); json.dump({'front': _fa, 'skip': AUTOSKIP}, open(os.path.join(J.work(SID), 'front_auto.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+except Exception as e_: print('⚠ front_auto.json 못 씀:', e_)
+if os.environ.get('JBL_FRONT_ONLY'): print('JB 앞면 목록만(JBL_FRONT_ONLY):', len(_fa) if '_fa' in dir() else 0, '·', J.work(SID, 'front_auto.json')); sys.exit(0)
+print(f'JB 앞면 = 가장 최신 판(자동) {len(AUTOFRONT)}장 · front= {len(_FRONT) - len(AUTOFRONT)}장' + (f' · 자동 건너뜀 {len(AUTOSKIP)}: ' + ' · '.join(f'{a_}({b_})' for a_, b_ in AUTOSKIP) if AUTOSKIP else ''))
 for q in Q:   # kind= (예고·학습부 예상 — 출제 연도·집계에서 뺌)
     k_ = _ax(q['id'], 'kind')
     if k_: q['kind'] = k_; q['yrs_k'] = list(q['yrs']); q['yrs'] = []; q['xtra'] = []
@@ -634,8 +692,36 @@ def src_short(q):
     s_ = re.sub(r'^\s*JB\s*\d{2}(?:q4)?\s*판\s*·?\s*', '', q['src'] or '').strip()   # 10-25 '23q4판'(PHARM 4Q JB)도
     m = re.match(r'^(\d{4}년 칸)\s*·\s*.*?(\d+번)\s*$', s_)
     return f'{m.group(1)} {m.group(2)}' if m else s_
+def _albl(t):   # 비교용 줄 — '참고:'(출처 파일) 줄과 그 이어짐(다음 라벨 전까지)은 판마다 달라 뺌
+    out = []; skip = False
+    for l_ in (t or '').split('\n'):
+        if re.match(r'^\s*참고\s*[:：)]', l_): skip = True; continue
+        if skip and re.match(r'^\s*(?:\[답\]|답|해설|정답)\s*[:：)]?', l_): skip = False
+        if not skip: out.append(l_)
+    return out
+def _acore(t): return _nz(re.sub(r'^\s*(?:\[답\]|답)\s*[:：)]?', '', '\n'.join(_albl(t))))
+def _ahead(t):   # 답 줄(해설 앞)만 — 답은 다르고 해설은 같은 판(IMPL Q13 2) → 5))도 '이전 답'에 보이게
+    L = []
+    for l_ in _albl(t):
+        if re.match(r'^\s*해설\s*[:：)]?', l_): break
+        L.append(l_)
+    return _nz(re.sub(r'^\s*(?:\[답\]|답)\s*[:：)]?', '', '\n'.join(L)))
+def prev_answers(q, at):
+    """10-25c '다만 이전 답이나 참고할 만한 내용을 아래 추가로' — 앞면(가장 최신 판) 답과 다른 옛 사본의 답 칸(원문 그대로 · 원본 쪽 단추) · 같은 답은 한 번 · 최근 판·최근 해 칸 먼저
+    앞면보다 새 사본(문제가 많이 달라 자동 앞면에서 건너뛴 것)은 넣지 않음 — '다른 판본'에만"""
+    seen = [(_acore(at), _ahead(at))]; out = []
+    for v_ in sorted([v_ for v_ in q.get('other', []) if not _isptr(v_)], key=lambda v_: (v_['ed'], _secy(v_)), reverse=True):
+        if (v_['ed'], _secy(v_)) > (q['ed'], _secy(q)): continue
+        _, va = split_qa({'id': q['id'], 'text': v_['text']}); c_, h_ = _acore(va), _ahead(va)
+        if not c_ or any(_sim(c_, x_, 4000) >= 0.97 and (h_ == y_ or _sim(h_, y_, 4000) >= 0.97) for x_, y_ in seen): continue
+        seen.append((c_, h_)); out.append((v_, va))
+    if not out: return '', set()
+    sl = lambda v_: f'{v_["sec"]}년 칸' if re.fullmatch(r'20[0-9][0-9]', str(v_['sec'])) else str(v_['sec'])
+    pb = lambda v_: ''.join(f'<button class="btn sm" data-jb="{v_["ed"]}-{p_}">원본 {p_}쪽</button>' for p_ in range(v_['pg'], max(v_['pg'], v_.get('pg2') or v_['pg']) + 1))
+    body = ''.join(f'<div class="pv"><div class="pvh noann">JB {esc(v_["ed"])}판 · {esc(sl(v_))} {esc(v_["num"])}번 {pb(v_)}</div><div class="lines">{reflow.render(va)}</div></div>' for v_, va in out)
+    return f'<details class="ab pans"><summary class="noann">📜 이전 답 <small>{len(out)}건 · 위 답이 가장 최신 판 — 이전 판·이전 해 답은 참고</small></summary>{body}</details>', {id(v_) for v_, _ in out}
 def qcard(q, idx):
-    qt, at = split_qa(q); n = len(q['yrs'])
+    qt, at = split_qa(q); n = len(q['yrs']); pans_h, pans_k = prev_answers(q, at)
     figq = ''.join(f'<img class="fig" loading="lazy" src="{IMG["crop"][k]}" alt="JB 그림">' for k in q['crops'].get('q', []))
     figa = ''.join(f'<img class="fig" loading="lazy" src="{IMG["crop"][k]}" alt="JB 그림(답)">' for k in q['crops'].get('a', []))
     lecchip = ''
@@ -662,7 +748,8 @@ def qcard(q, idx):
          f'<div class="qtext">{qh}</div>{figq}']
     for v_ in [v_ for v_ in q.get('other', []) if v_.get('prev')]:   # 10-25 공통-3 '이전 출제 꼴' — 앞면이 가장 최근 판이면 옛 앞면의 문제·보기를 바로 아래(펼친 채) · 답은 '다른 판본'에
         pq_, _ = split_qa({'id': q['id'], 'text': v_['text']}); _pl = v_.get('src') or f'JB {v_["ed"]}판 · {v_["sec"]}{"년 칸" if re.fullmatch(r"20[0-9][0-9]", str(v_["sec"])) else ""} {v_["num"]}번'
-        h.append(f'<div class="qprev"><div class="qph noann">이전 출제 꼴 · {esc(_pl)} <small>답은 ‘다른 판본’에</small></div><div class="lines">{reflow.render(pq_, True, choices=True)}</div></div>')
+        _pa = '답은 아래 ‘📜 이전 답’에' if id(v_) in pans_k else '답은 위 JB 답안과 같음' if _sim(_acore(split_qa({'id': q['id'], 'text': v_['text']})[1]), _acore(at), 4000) >= 0.97 else '답은 ‘다른 판본’에'
+        h.append(f'<div class="qprev"><div class="qph noann">이전 출제 꼴 · {esc(_pl)} <small>{_pa}</small></div><div class="lines">{reflow.render(pq_, True, choices=True)}</div></div>')
     if q.get('jbc') == 'absent' and not figq: h.append('<div class="small">🖼 그림 문항 — 문제의 사진·그림은 JB에 실려 있지 않습니다(문제 글만 복원됨).</div>')   # jb_crops.json nofig (tools/jbfig.py 검수)
     elif q.get('jbc') == 'crop' and q['fig'] and not figq and figa: h.append('<div class="small">🖼 그림 문항 — JB의 그림은 답 쪽에 실려 있어(답이 함께 보임) ‘답·해설’ 안에 붙였습니다.</div>')
     elif q['fig'] and not figq and q.get('jbc') != 'text': h.append('<div class="small">🖼 그림 문항 — 그림은 ‘JB 원본’ 버튼에서 쪽 전체로 확인(원본 쪽에는 답도 함께 보임).</div>')
@@ -683,7 +770,7 @@ def qcard(q, idx):
     # 답 두 단계(ux2 F02): 1단계(.open) = JB 답 핵심(.ans0·정답 보기) + 대조 첫 항목의 '정답 …' 한 줄 + 📖 ⚡ 첫 줄 · 2단계(.open.deep) = 해설 전체·대조·주변부·다른 판본
     # 답 핵심이 비었거나 '해설 참조'뿐이면(excore) 1단계에도 해설(접힌 채)을 보임. 대조·주변부는 details(머리 = noann summary, 원래 h5는 글자 보존용으로 숨김)
     excore = not core_ or bool(ANS_REFONLY.fullmatch(core_))
-    a = ['<div class="ans">', f'<section class="ab jbans{" excore" if excore else ""}"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{ansh}</div>{exbtn}{figa}</section>']
+    a = ['<div class="ans">', f'<section class="ab jbans{" excore" if excore else ""}"><h5>JB 답안 <small>글자는 원문 그대로 · 줄바꿈만 정리</small></h5><div class="lines">{ansh}</div>{exbtn}{figa}</section>', pans_h]
     if q.get('K'):   # 10-05 사용자 'jb 문제들만 봐도 진짜 이해하고 암기할 수 있게' — annot 'K:' = 🎯 요점(왜 이 답인지·외울 축 — 강의자료 근거) · 1단계(답·해설)부터 보임
         a.append('<section class="ab key1"><h5 class="noann">🎯 요점 <small>왜 이 답인지 · 외울 것</small></h5><ul>' + ''.join(f'<li>{y}</li>' for x in q['K'] for y in aitem_lis(x, 'M')) + '</ul></section>')
     a1 = ''
@@ -1537,6 +1624,10 @@ print('JB 카드 → 예상 칩:', len([q_ for q_ in _PB if q_ in pack['cards']]
 import jblock as _JL
 _QH = {q['id']: _JL.qhash(split_qa(q)[0]) for q in Q}
 _jlock, _jmove, _jadd = _JL.update(SID, _QH)
+_jm2 = {i_: i_ for i_ in _FRONT if i_ in _jlock and i_ in _QH and _jlock[i_] != _QH[i_] and i_ not in _jmove}   # 10-25c 앞면을 최신 판으로 바꿔 문제 글자가 바뀐 카드 = 같은 id(옮길 기록 없음 — 확인만) → 옮김 표에 {id: id}
+if _jm2:
+    _jmove.update(_jm2); json.dump(dict(sorted(_jmove.items())), open(_JL.paths(SID)[1], 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    print('JB 옮김 표에 같은 id 확인 추가(최신 판 앞면):', len(_jm2))
 pack['jbhash'] = _QH
 if _jmove: pack['jbmove'] = _jmove; pack['jbmovev'] = _hl.md5(json.dumps(_jmove, sort_keys=True).encode('utf-8')).hexdigest()[:8]
 _jerr = _JL.check(SID, _QH, _jlock, _jmove)
@@ -1578,6 +1669,19 @@ if FIG_ONLY or NOIMG:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩
         if isinstance(o, dict): return {k_: _nol(v_) for k_, v_ in o.items()}
         return o
     pack = _nol(pack)
+# 10-25c 사용자 'jb 답안에 -> 등의 기호가 이상하게 깨지는 오류' — 브라우저가 '-' 뒤에서 줄을 바꿔 '-'는 줄 끝, '>'는 다음 줄 첫머리로 떨어짐(폭마다 다름·폰에서 잦음)
+#   → 글(태그 밖)의 -> · --> · <- · <-> 를 줄바꿈 없는 묶음(span.nwa)으로 — 글자는 그대로(형광펜 위치 = 글 기준이라 영향 없음)
+_ARW = re.compile(r'(?:&lt;)?-{1,2}&gt;|&lt;-{1,2}'); _TAGS = re.compile(r'(<[^>]*>)')
+def _arw(o):
+    if isinstance(o, str):
+        if '-&gt;' not in o and '&lt;-' not in o: return o
+        p_ = _TAGS.split(o)
+        for i_ in range(0, len(p_), 2): p_[i_] = _ARW.sub(lambda m: '<span class="nwa">' + m.group(0) + '</span>', p_[i_])
+        return ''.join(p_)
+    if isinstance(o, list): return [_arw(x) for x in o]
+    if isinstance(o, dict): return {k_: _arw(v_) for k_, v_ in o.items()}
+    return o
+pack = _arw(pack)
 pack_js = ("window.JBLHUB&&!JBLHUB.build&&location.search.indexOf('v=%s')<0&&/^https?:/.test(location.protocol)&&location.replace(location.pathname+'?v=%s'+location.hash);"   # 중괄호 없는 한 줄(팩 파서는 첫 '{'부터 읽음)
            "JBLHUB.register(%s);") % (BUILD, BUILD, js(pack))
 OUT = J.DOCS; os.makedirs(OUT + '/packs', exist_ok=True)

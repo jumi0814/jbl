@@ -30,6 +30,8 @@ def reflow(text, choices=False):
         s = l.strip()
         if s.startswith(HARD):   # 10-25 강제 줄바꿈(subject.py JBFIX가 줄 앞에 넣는 보이지 않는 표시 U+2063) — 앞 줄에 잇지 않고 표시는 지움
             s = s.lstrip(HARD).strip(); tbl = False; out.append(s); prev_full = False; prev_raw = l; continue
+        if out and s.startswith('>') and re.search(r'[-=]$', out[-1]):   # 10-25c 사용자 'jb 답안에 -> 등의 기호가 이상하게 깨지는' — PDF 줄 끝에서 끊긴 화살표('accumbens -' | '> frontal') → 띄우지 않고 붙임
+            out[-1] += s; prev_full = width(l) >= W * 0.74; prev_raw = l; continue
         single = len(s) == 1 and '가' <= s <= '힣'
         if tbl and (STARTER.match(s) or LABEL.match(s) or not TROW.match(s)): tbl = False
         if tbl and out:   # ux2 fixB VIS10 영문 표 블록: 소문자 한 낱말 줄(skull) = 앞 칸의 끝 · 앞 행이 3낱말 미만이면 아직 한 행 · 그 밖에 대문자로 시작하면 새 행(앞 줄이 넓어도 붙이지 않음)

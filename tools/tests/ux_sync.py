@@ -97,7 +97,7 @@ async def main():
         mk = await getv(ph, 'mk.IMPL') or {}; mk.setdefault('ok', {}); mk.setdefault('ng', {}); mk.setdefault('bm', {}); mk['bm'][ids[1]] = 1
         await setv(ph, 'mk.IMPL', mk); await tick(ph, '{pull:false,force:true}')
         await tick(dk)
-        await dk.click(f'#stage .qc[data-id="{ids[0]}"] .btn.mk.bm'); await dk.wait_for_timeout(300)
+        await dk.click(f'#stage .qc[data-id="{ids[0]}"] .acts .btn.mk.bm'); await dk.wait_for_timeout(300)
         bm = (await getv(dk, 'mk.IMPL') or {}).get('bm', {})
         ok(ids[0] in bm and ids[1] in bm, f'④ 컴퓨터 ★ 누른 뒤에도 휴대폰 ★ 문제 남음 {list(bm)}')
         await tick(dk, '{pull:false,force:true}'); await tick(ph)
@@ -133,7 +133,7 @@ async def main():
         # ⑮ 기기 전용 값(복습 진행 중·쓰는 중 답안·스크롤 위치)은 안 넘어감
         await setv(dk, 'num.rs.IMPL', {'sid': 's1', 'ids': ['n1'], 'u': 1}); await setv(dk, 'num.pos.IMPL', {'y': 100}); await setv(dk, 'cbm.IMPL', {'A3': 1000, 'A7': 1, 'A8': 1, 'A10': 1, 'A11': 1})
         await tick(dk, '{pull:false}'); await tick(ph)
-        ok(await getv(ph, 'num.rs.IMPL') is None and await getv(ph, 'num.pos.IMPL') is None and 'A11' in (await getv(ph, 'cbm.IMPL') or {}), '⑮ 기기 전용 값은 안 넘어가고 ★는 넘어감')
+        ok((await getv(ph, 'num.rs.IMPL') or {}).get('sid') == 's1' and await getv(ph, 'num.pos.IMPL') is None and 'A11' in (await getv(ph, 'cbm.IMPL') or {}), '⑮ 기기 전용 값(스크롤 위치)은 안 넘어가고 진행 중인 회차(num.rs — 10-25c)·★는 넘어감')
         # ⑦ 같은 넘버링 문제를 둘 다 고침 → 더 최근 것
         await setv(dk, 'num.i.IMPL.n1', {'u': 9000, 's': '컴퓨터 수정'}); await setv(ph, 'num.i.IMPL.n1', {'u': 9500, 's': '휴대폰 수정(더 최근)'})
         await dk.reload(); await ph.reload(); await dk.wait_for_timeout(1500); await ph.wait_for_timeout(1500); await settle(dk); await settle(ph)
