@@ -71,7 +71,7 @@ with sync_playwright() as p:
     cards = pg.eval_on_selector_all('#home .hsj', 'es=>es.length'); built = pg.eval_on_selector_all('#home .hsj[data-s]', 'es=>es.map(e=>e.dataset.s)')
     ok(cards == 7, f'허브 홈 과목 표 {cards}행 (7과목)'); print('       팩 있는 과목:', built)
     # 원고 문법 표기가 화면 글자로 새어 나온 곳(U25) — 숨은 답·접힌 절 포함(textContent). JB 원문(문제·답안·다른 판본·한눈표 답)은 글자 불변이라 제외
-    LEAK = r"(()=>{const c=document.querySelector('#stage').cloneNode(true);c.querySelectorAll('.qtext,.jbans,.box0,table.sum .lines,.pickd').forEach(e=>e.remove());const t=c.textContent;const o=[];const re=/\*\*|\{r:|\{jb:|==/g;let m;while((m=re.exec(t))&&o.length<3)o.push(t.slice(Math.max(0,m.index-25),m.index+25).replace(/\s+/g,' '));return o;})()"
+    LEAK = r"(()=>{const c=document.querySelector('#stage').cloneNode(true);c.querySelectorAll('.qtext,.jbans,.box0,table.sum .lines,.pickd,.qbody,.pans,.qprev').forEach(e=>e.remove());const t=c.textContent;const o=[];const re=/\*\*|\{r:|\{jb:|==/g;let m;while((m=re.exec(t))&&o.length<3)o.push(t.slice(Math.max(0,m.index-25),m.index+25).replace(/\s+/g,' '));return o;})()"
     leaks = []
     for s in built:
         pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
