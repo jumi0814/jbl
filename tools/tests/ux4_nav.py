@@ -99,7 +99,7 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("document.querySelector('#nav .nvswp').hidden"), f'{tag} Esc → 과목 바꾸기 닫힘')
     await tap('#nav [data-nvsw]'); await pg.wait_for_timeout(150); await tap('#nav [data-nvsj="IMPL"]'); await pg.wait_for_timeout(900)
     r = await pg.evaluate("[location.hash,document.querySelector('#nav').dataset.mode,(document.querySelector('#nav .nvsjn')||{}).textContent,getComputedStyle(document.querySelector('#nav')).getPropertyValue('--nc').trim().toLowerCase(),__h.sjColor('IMPL').toLowerCase(),document.querySelector('#navsc').scrollTop,document.body.classList.contains('navopen')]")
-    ok(r[0].startswith('#/IMPL/_home') and r[1] == 'subj' and '임플란트' in r[2] and r[3] == r[4] and r[5] == 0 and not r[6], f'{tag} 과목 바꾸기 → IMPL 과목 홈 · 메뉴 색 IMPL · 맨 위 {r}')
+    ok(r[0].startswith('#/IMPL/') and r[0].endswith('/learn') and r[1] == 'subj' and '임플란트' in r[2] and r[3] == r[4] and r[5] == 0 and not r[6], f'{tag} 과목 바꾸기(강의 학습 탭에서) → IMPL 이어 볼 강의의 학습 탭(10-25) · 메뉴 색 IMPL · 맨 위 {r}')
     # ---- B2-6 허브 메뉴 스크롤 기억 · 뒤로가기 · ↩ 알약 · 달력 ?s
     await pg.set_viewport_size({'width': W, 'height': 420}); await open_(pg, '#/')
     if narrow: await tap('#navbtn'); await pg.wait_for_timeout(300)

@@ -31,7 +31,7 @@ async def main():
         await open_(pg, '#/'); await pg.click('#home .htodo [data-todo=jb]'); await pg.wait_for_timeout(900)   # ux3 H3 ✅ 오늘 할 일 ③(최근 과목 OMS1)
         ok(await pg.evaluate("location.hash.startsWith('#/OMS1/_jb') && document.querySelector('#jbbar [data-qf=\"todo\"]').classList.contains('on')"), '안 푼 기출 → _jb 안 푼 것')
         await pg.click('#side [data-nvsw]'); await pg.wait_for_timeout(200); await pg.click('#side [data-nvsj="GERI"]'); await pg.wait_for_timeout(900)
-        ok(await pg.evaluate("location.hash.startsWith('#/GERI/_jb')"), '과목 메뉴 [과목 바꾸기 ▾] → GERI 같은 화면(JB 문제 → JB 문제 — 10-22d 맥락 유지 · 강의 안이면 과목 홈)')
+        ok(await pg.evaluate("location.hash.startsWith('#/GERI/_jb')"), '과목 메뉴 [과목 바꾸기 ▾] → GERI 같은 화면(JB 문제 → JB 문제 — 10-22d 맥락 유지 · 강의 안이면 이어 볼 강의 같은 탭(10-25))')
         ok(not errs, f'콘솔·페이지 오류 0 {errs[:3]}')
         ctx2 = await b.new_context(viewport={'width': 1180, 'height': 820}); pg2 = await ctx2.new_page()
         for h in ['#/OMS1/DD1/learn', '#/PHARM/HM/learn', '#/GERI/_jb/_jb']:
