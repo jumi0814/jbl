@@ -18,7 +18,7 @@ for SID in SIDS:
         if PUA.search(h): out['깨진 글자'].append((where, PUA.findall(h)[:5], re.sub(r'<[^>]+>', '', h[max(0, PUA.search(h).start() - 80):PUA.search(h).start() + 40])))
         soup = BeautifulSoup(h, 'html.parser')
         for el in soup.find_all(BLK):
-            if el.find_parent(class_=re.compile(r'^(lines|box0|qtext)$')) or 'ln' in (el.get('class') or []): continue   # JB 원문 줄은 글자 불변 — 제외
+            if el.find_parent(class_=re.compile(r'^(lines|box0|qtext|qbody)$')) or set(el.get('class') or []) & {'ln', 'qbody'}: continue   # JB 원문 줄은 글자 불변 — 제외(10-25c 한눈표 문제 칸 qbody도 JB 원문)
             own = ''.join(t for t in el.find_all(string=True, recursive=False)).strip()
             full = re.sub(r'\s+', ' ', el.get_text(' ', strip=True))
             if not el.find(BLK) and LEAK.search(full) and 'noann' not in ' '.join(el.get('class') or []): out['표기 누출'].append((where, LEAK.search(full).group(0), full[:120]))
