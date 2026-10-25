@@ -127,7 +127,9 @@ function jbFig(k) {   /* 'OMS1|Q35|q|0' → 그 JB 카드의 문제(q)·답(a) �
   return f[part][+i] || '';
 }
 function figsOf(art, part) { return part === 'q' ? [...art.querySelectorAll('.qtext img')].concat([...art.querySelectorAll(':scope > img.fig')]) : [...art.querySelectorAll('section.ab.jbans img')]; }
-const disp = h => String(h || '').replace(/<img data-nimg="([\w.-]+)"/g, (m, k) => '<img data-nimg="' + k + '" src="' + H.base + 'num/img/' + k + '" loading="lazy" decoding="async"').replace(/<img data-jbfig="([^"]+)"/g, (m, k) => JBFIG.test(k) ? '<img data-jbfig="' + k + '" src="' + jbFig(k) + '" loading="lazy" decoding="async" title="JB 그림"' : m)
+/* 10-25c 사용자 'jb 답안에 -> 등의 기호가 이상하게 깨지는 오류' — 브라우저가 '-' 뒤에서 줄을 바꿔 '>'만 다음 줄로 떨어지던 것 → 화면에서만 화살표를 줄바꿈 없는 묶음(span.nwa · 저장할 때 sanitize가 풀어 글은 그대로) */
+const nwa = h => /-&gt;|&lt;-/.test(h) ? h.split(/(<[^>]*>)/).map((x, i) => i % 2 ? x : x.replace(/(?:&lt;)?-{1,2}&gt;|&lt;-{1,2}/g, '<span class="nwa">$&</span>')).join('') : h;
+const disp = h => nwa(String(h || '')).replace(/<img data-nimg="([\w.-]+)"/g, (m, k) => '<img data-nimg="' + k + '" src="' + H.base + 'num/img/' + k + '" loading="lazy" decoding="async"').replace(/<img data-jbfig="([^"]+)"/g, (m, k) => JBFIG.test(k) ? '<img data-jbfig="' + k + '" src="' + jbFig(k) + '" loading="lazy" decoding="async" title="JB 그림"' : m)
   .replace(/<img data-lecimg="([^"]+)"(?: data-gbm="([^"]*)")?/g, (m, k, g) => LECIMG.test(k) ? m + lecSrc(k, g || '') + ' decoding="async" title="' + (g ? '그림빵 — 번호 상자 자리의 이름을 떠올리기' : '강의 그림') + '"' : m);
 /* S3(10-16) 강의 쪽 그림 자리표 'SID|KEY-쪽'(예상문제 f=) · data-gbm = 그림빵 가림 상자(% x0,y0,x1,y1;… → ①②③ 번호 상자를 그려 넣은 그림) — 그림 글자는 저장하지 않고 허브 이미지 청크에서 받아 그때 그림(메모리에만 기억) */
 const LECIMG = /^[A-Za-z0-9]+\|[A-Za-z0-9]+-\d{1,4}$/, GBM = /^\d{1,3}(?:\.\d+)?(?:[,;]\d{1,3}(?:\.\d+)?){3,159}$/, LECC = new Map(), LECW = new Map();
@@ -2191,13 +2193,14 @@ function batch(k, btn) {
    복습 기록은 원본과 따로(원본 키를 건드리지 않음):
      num.r.<과목>.<id> = {id, m 최근 평가(0 모름·1 애매함·2 암기 완료), d 최근 복습 때, h [{t,m,s}] 평가 이력(최근 30 · s = 회차), w [{t,s,x}] 지난 회차에 쓴 내 답안(최근 10), u}
      num.rs.<과목> = 진행 중인 회차 {sid, t0, sc 범위, ids 이 회차 문제, rnd 섞은 순서(없으면 null), cur·i 카드 자리, mk {id: 평가}, ov {a:{id:1 보임·0 가림}, s:{…}} 문제마다 가리기, retry}
-     num.rd.<과목> = 이 회차에 쓰는 중인 내 답안 {sid, a:{id: 글}} — 입력이 멈추고 0.5초 뒤·칸을 떠날 때·화면을 떠날 때 저장 · 회차가 끝나면 문제마다 w로 옮기고 새 회차는 빈 칸
+     내 답안 = 낙서장(10-25c 사용자 '내 답안은 매순간순간마다 자동저장될 필요 없고 그냥 아예 날라가도 돼! 그냥 진짜 낙서장') — 화면 메모리(RV.drm)에만 · 저장·동기화·회차 기록(w) 없음
+       (옛 판이 남긴 num.rd.<과목>은 처음 열 때 한 번 읽어 메모리로 옮기고 지움 · 옛 w(지난 회차 답안)는 이력 창에 그대로 보임)
      num.rl.<과목> = 끝낸 회차 기록 [{sid, t0, t1, sc, n, c:[모름,애매함,암기], w 쓴 답안 수, retry}] · 보기 설정 num.rcfg(내 넘버링 num.cfg와 따로) · 스크롤 위치 num.rpos.<과목> */
 const MKN = ['모름', '애매함', '암기 완료'];
 const RSC = { all: '전체', new: '미복습', weak: '취약(모름·애매함)', m0: '모름', m1: '애매함', m2: '암기 완료' };
 const DIRS = { qs: ['q', 'st', 'a', '문제 → 스토리'], sa: ['st', 'a', 'q', '스토리 → 정답'], qa: ['q', 'a', 'st', '문제 → 정답'] };
 const FN = { q: '문제', a: '정답', st: '넘버링 스토리' };
-const RV = { rr: new Map(), sj: '', ses: null, dr: null, drT: 0, drDirty: false, face: 0, third: false, sum: false, idset: new Set(), rndM: null, hint: new Set(), hist: new Set(), deck: null, tx: null, swiped: false };
+const RV = { rr: new Map(), sj: '', ses: null, dr: null, drm: {}, drT: 0, drDirty: false, face: 0, third: false, sum: false, idset: new Set(), rndM: null, hint: new Set(), hist: new Set(), deck: null, tx: null, swiped: false };
 function rcfgLoad() {
   const c = H.LS.get('num.rcfg', null) || {}, w3 = Array.isArray(c.w3) && c.w3.length === 2 && c.w3.every(x => +x >= 12) && c.w3[0] + c.w3[1] <= 88 ? c.w3.map(Number) : [34, 33];
   return { sj: c.sj || '', mode: c.mode === 'all' ? 'all' : 'grp', sort: SORTN[c.sort] ? c.sort : 'lec', f: Object.assign({ lec: '', type: '', st: '', src: '', yr: '', pr: '' }, c.f || {}), hide: Object.assign({ a: false, st: false }, c.hide || {}), side: c.side === 'c' ? 'c' : '', ljc: !!c.ljc, view: c.view === 'card' ? 'card' : 'scroll', dir: DIRS[c.dir] ? c.dir : 'qs', write: !!c.write, w2: +c.w2 >= 15 && +c.w2 <= 85 ? +c.w2 : 45, w3, sc: RSC[c.sc] ? c.sc : 'all', rord: !!c.rord, cw: c.cw !== false, wc: +c.wc >= 30 && +c.wc <= 80 ? +c.wc : 56 };   /* cw 카드 복습 내 답안 칸 · wc 카드 칸 너비(%) */
@@ -2247,13 +2250,14 @@ function sesLoad() {
   const s = H.LS.get(sesK(), null);
   RV.ses = s && s.sid && Array.isArray(s.ids) ? Object.assign({ mk: {}, i: 0, cur: null, rnd: null }, s) : null;
   if (RV.ses) { RV.ses.ov = Object.assign({ a: {}, s: {} }, RV.ses.ov || {}); RV.ses.mk = RV.ses.mk || {}; if (RV.ses.rnd && !Array.isArray(RV.ses.rnd)) RV.ses.rnd = null; }
-  const d = H.LS.get(drK(), null); RV.dr = RV.ses ? (d && d.sid === RV.ses.sid && d.a && typeof d.a === 'object' ? d : { sid: RV.ses.sid, a: {} }) : null; RV.drDirty = false;
+  const m = RV.drm[S.sj], d = H.LS.get(drK(), null); if (d) rawDel(drK());   /* 내 답안 = 메모리만(옛 저장분은 한 번 옮기고 지움) */
+  RV.dr = RV.ses ? (m && m.sid === RV.ses.sid ? m : d && d.sid === RV.ses.sid && d.a && typeof d.a === 'object' ? { sid: d.sid, a: d.a } : { sid: RV.ses.sid, a: {} }) : null; RV.drDirty = false; if (RV.dr) RV.drm[S.sj] = RV.dr; else delete RV.drm[S.sj];
   RV.hint = new Set(); RV.hist = new Set(); RV.face = 0; RV.third = false; RV.sum = false; sesIdx();
 }
 function sesIdx() { RV.idset = new Set(RV.ses ? RV.ses.ids : []); RV.rndM = null; RV.deck = null; }
 function sesSave() { if (RV.ses && S.sj) { RV.ses.u = now(); H.LS.set(sesK(), RV.ses); } }
-function drSave() { clearTimeout(RV.drT); RV.drT = 0; if (!RV.dr || !RV.ses || !RV.drDirty) return; RV.drDirty = false; RV.dr.sid = RV.ses.sid; RV.dr.u = now(); const ok = rawPut(drK(), RV.dr); saveState(ok ? 'ok' : 'bad', ok ? '' : '이 기기 저장 공간이 부족해요 — 백업 파일을 받아 두세요'); }
-function drInput(ta) { if (!RV.dr || !RV.ses) return; const id = ta.dataset.w, v = ta.value; if (v) RV.dr.a[id] = v; else delete RV.dr.a[id]; RV.drDirty = true; saveState('ing'); clearTimeout(RV.drT); RV.drT = setTimeout(drSave, 500); grow(ta); }
+function drSave() { clearTimeout(RV.drT); RV.drT = 0; RV.drDirty = false; }   /* 10-25c 내 답안은 낙서장 — 저장하지 않음(부르는 곳은 그대로 두려고 남김) */
+function drInput(ta) { if (!RV.dr || !RV.ses) return; const id = ta.dataset.w, v = ta.value; if (v) RV.dr.a[id] = v; else delete RV.dr.a[id]; grow(ta); }
 function grow(ta) { if (ta.classList.contains('big')) return; ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight + 2, 1200) + 'px'; }
 function shufIds(ids) { const a = ids.slice(), u = new Uint32Array(a.length); try { crypto.getRandomValues(u); } catch (e) { for (let i = 0; i < u.length; i++) u[i] = Math.random() * 4294967296 >>> 0; } for (let i = a.length - 1; i > 0; i--) { const j = u[i] % (i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 const scopeHas = (sc, m) => sc === 'new' ? m < 0 : sc === 'weak' ? m === 0 || m === 1 : sc === 'm0' ? m === 0 : sc === 'm1' ? m === 1 : sc === 'm2' ? m === 2 : true;
@@ -2265,16 +2269,15 @@ function sesNew(o) {
   o = o || {}; sesArchive();
   const sc = o.sc || S.cfg.sc || 'all', ids = o.ids || scopeIds(sc);
   RV.ses = { sid: 's' + now().toString(36) + Math.random().toString(36).slice(2, 5), t0: now(), sc, ids, rnd: o.rand ? shufIds(ids) : null, i: 0, cur: null, mk: {}, ov: { a: {}, s: {} }, retry: !!o.retry, from: o.from || '' };
-  RV.dr = { sid: RV.ses.sid, a: {} }; RV.drDirty = false; sesSave();
+  RV.dr = RV.drm[S.sj] = { sid: RV.ses.sid, a: {} }; RV.drDirty = false; sesSave();
   RV.hint = new Set(); RV.hist = new Set(); RV.face = 0; RV.third = false; RV.sum = false; sesIdx();
 }
-function sesArchive() {   /* 끝난 회차: 쓴 답안 → 문제마다 지난 답안(w) · 회차 기록 한 줄 — 평가는 이미 문제마다 저장됨 */
-  const s = RV.ses; if (!s) return; RV.drDirty = true; drSave();
-  const A = (RV.dr && RV.dr.sid === s.sid && RV.dr.a) || {}, wn = [];
-  for (const id in A) { const x = String(A[id] || '').trim(); if (!x) continue; wn.push(id); const r = rFresh(id) || { id, h: [], w: [] }; r.w = (Array.isArray(r.w) ? r.w : []).filter(w => w.s !== s.sid); r.w.push({ t: now(), s: s.sid, x: x.slice(0, 20000) }); if (r.w.length > 10) r.w = r.w.slice(-10); rPut(r); }
+function sesArchive() {   /* 끝난 회차: 회차 기록 한 줄 — 평가는 이미 문제마다 저장됨 · 내 답안(낙서장)은 버림(10-25c) */
+  const s = RV.ses; if (!s) return; drSave();
+  const A = (RV.dr && RV.dr.sid === s.sid && RV.dr.a) || {}, wn = Object.keys(A).filter(id => String(A[id] || '').trim());
   const mk = Object.values(s.mk || {});
   if (mk.length || wn.length) { const L = H.LS.get('num.rl.' + S.sj, []) || []; L.push({ sid: s.sid, t0: s.t0, t1: now(), sc: s.sc, n: s.ids.length, c: [0, 1, 2].map(m => mk.filter(v => v === m).length), w: wn.length, retry: s.retry ? 1 : 0 }); H.LS.set('num.rl.' + S.sj, L.slice(-200)); }
-  rawDel(drK()); rawDel(sesK()); RV.ses = null; RV.dr = null;
+  rawDel(drK()); rawDel(sesK()); RV.ses = null; RV.dr = null; delete RV.drm[S.sj];
 }
 function sesStat() { const s = RV.ses, ids = s ? s.ids.filter(id => { const it = S.by.get(id); return it && !it.del; }) : [], c = [0, 0, 0]; let n = 0; for (const id of ids) { const m = s.mk[id]; if (m === 0 || m === 1 || m === 2) { c[m]++; n++; } } return { ids, c, n, weak: ids.filter(id => s.mk[id] === 0 || s.mk[id] === 1) }; }
 function rCounts() { const c = [0, 0, 0], live = S.items.filter(it => !it.del); let nw = 0; for (const it of live) { const m = lastM(it.id); if (m < 0) nw++; else c[m]++; } return { n: live.length, c, nw }; }
@@ -2301,15 +2304,15 @@ function revItemHTML(it, no, hid) {
     + `<span class="nm-tags">${bmTag(it)}${prTag(it)}${jbBtn(it)}${lcBtn(it)}</span></header>`
     + `<div class="nm-body"><section class="nm-col nm-a"><div class="nm-lab">정답<button type="button" class="nm-eye" data-eye="a" aria-label="이 문제 정답 가리기·보기"></button><button type="button" class="nm-edb" data-act="edit" data-f="a" title="정답 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div><div class="nm-c" data-f="a">${disp(it.a) || '<span class="nm-ph">정답 없음</span>'}</div></section>`
     + `<section class="nm-col nm-s"><div class="nm-lab">넘버링 스토리<button type="button" class="nm-eye" data-eye="s" aria-label="이 문제 스토리 가리기·보기"></button><button type="button" class="nm-edb" data-act="edit" data-f="st" title="스토리 수정 — 내 넘버링과 같은 편집기·자동 저장(양쪽에 바로)">수정</button></div><div class="nm-c" data-f="st">${disp(it.st) || '<span class="nm-ph">스토리 없음</span>'}</div></section>`
-    + (W ? `<section class="nm-col nm-w"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로</small></div><textarea class="nm-wt" data-w="${esc(it.id)}" rows="${wRows(dr)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만)" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea></section>` : '')
+    + (W ? `<section class="nm-col nm-w"><div class="nm-lab">내 답안<small>낙서장 · 저장 안 함</small></div><textarea class="nm-wt" data-w="${esc(it.id)}" rows="${wRows(dr)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만)" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea></section>` : '')
     + rz + `</div><footer class="nm-rf">${mksHTML(it.id, m)}${pmHTML(prevMark(it.id))}<span class="nm-sp"></span><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="false">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></footer></article>`;
 }
 function histHTML(id) {
   const r = rOf(id), s = RV.ses, Hh = (r && Array.isArray(r.h) ? r.h : []).slice().reverse(), Wl = (r && Array.isArray(r.w) ? r.w : []).slice().reverse();
   const lock = !!s && s.mk[id] == null && !RV.hint.has(id);   /* 이번 회차에 평가하기 전에는 지난 답안을 가림(힌트가 되지 않게) */
   const hh = Hh.length ? `<ul>${Hh.slice(0, 12).map(e => `<li><b class="m${e.m}">${MKN[e.m] || '—'}</b> · ${esc(dtTxt(e.t))}${s && e.s === s.sid ? ' <small>(이번 회차)</small>' : ''}</li>`).join('')}</ul>` : '<p class="nm-sub">아직 평가가 없어요</p>';
-  const ww = !Wl.length ? '<p class="nm-sub">지난 회차에 쓴 답안이 없어요</p>' : lock ? `<p class="nm-sub">지난 회차에 쓴 답안 ${Wl.length}개 — 이번 회차에서 평가하면 보여요(힌트가 되지 않게). <button type="button" class="nm-lnk" data-ract="hint">지금 보기</button></p>` : Wl.map(w => `<div class="nm-pw"><b>${esc(dtTxt(w.t))}</b><div>${esc(w.x)}</div></div>`).join('');
-  return `<div class="nm-hist" data-hist="1"><div><b class="k">평가 이력</b>${hh}</div><div><b class="k">지난 회차에 쓴 내 답안</b>${ww}</div></div>`;
+  const ww = !Wl.length ? '' : lock ? `<p class="nm-sub">지난 회차에 쓴 답안 ${Wl.length}개 — 이번 회차에서 평가하면 보여요(힌트가 되지 않게). <button type="button" class="nm-lnk" data-ract="hint">지금 보기</button></p>` : Wl.map(w => `<div class="nm-pw"><b>${esc(dtTxt(w.t))}</b><div>${esc(w.x)}</div></div>`).join('');
+  return `<div class="nm-hist" data-hist="1"><div><b class="k">평가 이력</b>${hh}</div>${ww ? `<div><b class="k">지난 회차에 쓴 내 답안</b>${ww}</div>` : ''}</div>`;   /* 10-25c 내 답안은 낙서장 — 옛 판에서 남은 답안만 보임 */
 }
 function revEmptyHTML() {
   if (!S.items.some(it => !it.del)) return `<div class="nm-empty">아직 이 과목에 넘버링 문제가 없어요.<div class="row"><button type="button" class="nm-btn pri" data-app="make">내 넘버링에서 문제 넣기</button></div></div>`;
@@ -2409,7 +2412,7 @@ function cardPaint() {
     + `<div class="nm-cctl"><span class="nm-cnav"><button type="button" class="nm-btn" data-cnav="-1"${i ? '' : ' disabled'} title="이전 카드 (←)" aria-label="이전 카드">◀</button><button type="button" class="nm-btn pri" data-cnav="0" title="뒤집기 (Space·카드 누르기${innerWidth <= 860 ? ' · 옆으로 밀면 다음·이전' : ''})">뒤집기</button><button type="button" class="nm-btn" data-cnav="1" title="${last ? '회차 정리' : '다음 카드'} (→)" aria-label="${last ? '회차 정리' : '다음 카드'}">${last ? '정리 ▶' : '▶'}</button></span>`
     + `<span class="nm-cmk" title="평가하면 다음 카드로 (1 · 2 · 3)">${mksHTML(it.id, m)}</span>`
     + `<button type="button" class="nm-c3b${RV.third ? ' on' : ''}" data-ract="third" aria-expanded="${RV.third}" title="${FN[f3]} 따로 보기 (T)">${RV.third ? '−' : '+'} ${FN[f3] === '넘버링 스토리' ? '스토리' : FN[f3]}</button></div>${RV.third ? `<div class="nm-c3"><div class="nm-cfh"><span class="nm-cft">${FN[f3]}</span><button type="button" class="nm-edb" data-ract="cedit" data-f="${f3}" title="${FN[f3]} 수정">수정</button></div><div class="nm-c nm-cfc" data-f="${f3}">${faceHTML(it, f3)}</div></div>` : ''}</div>`
-    + (S.cfg.cw ? `<i class="nm-crz" data-crz="1" title="끌어서 카드·내 답안 너비 조절 · 두 번 누르면 처음대로" aria-hidden="true"></i><div class="nm-cr"><div class="nm-lab">내 답안<small>자동 저장 · 원본과 따로</small></div><textarea class="nm-wt big" data-w="${esc(it.id)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만) — 뒤집어서 정답과 견줘 보기" title="⌘/Ctrl+Enter 뒤집기 · Esc 칸에서 나가기" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea><div class="nm-crf"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}</div>` : `<div class="nm-crf nm-crf0"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}`);
+    + (S.cfg.cw ? `<i class="nm-crz" data-crz="1" title="끌어서 카드·내 답안 너비 조절 · 두 번 누르면 처음대로" aria-hidden="true"></i><div class="nm-cr"><div class="nm-lab">내 답안<small>낙서장 · 저장 안 함</small></div><textarea class="nm-wt big" data-w="${esc(it.id)}" placeholder="기억나는 대로 써 보세요(서식 없이 글만) — 뒤집어서 정답과 견줘 보기" title="⌘/Ctrl+Enter 뒤집기 · Esc 칸에서 나가기" spellcheck="false" aria-label="내 답안">${esc(dr)}</textarea><div class="nm-crf"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}</div>` : `<div class="nm-crf nm-crf0"><button type="button" class="nm-lnk" data-ract="hist" aria-expanded="${RV.hist.has(it.id)}">이력${hn ? ' ' + hn : ''}</button><button type="button" class="nm-lnk" data-ract="src" title="내 넘버링 화면의 이 문제로">내 넘버링에서 보기</button></div>${RV.hist.has(it.id) ? histHTML(it.id) : ''}`);
   box.classList.toggle('nowr', !S.cfg.cw); box.dataset.id = it.id; refreshCounts(D.length); sesSave();
 }
 function focusCard() { const c = S.root && $('.nm-card', S.root); if (c) c.focus({ preventScroll: true }); }
@@ -2447,7 +2450,7 @@ function sumHTML(inDlg) {
     + `<div class="nm-sumc"><span class="m0">모름<b>${k.c[0]}</b></span><span class="m1">애매함<b>${k.c[1]}</b></span><span class="m2">암기 완료<b>${k.c[2]}</b></span></div>`
     + `<div class="row"><button type="button" class="nm-btn pri" data-ract="retry"${k.weak.length ? '' : ' disabled'}>모름·애매함 ${k.weak.length}문제 다시 복습</button><label class="nm-chk"><input type="checkbox" data-rord="1"${S.cfg.rord ? ' checked' : ''}> 기존 순서로 <small>(기본은 무작위)</small></label></div>`
     + `<div class="row"><button type="button" class="nm-btn" data-ract="renew">같은 범위(${esc(RSC[S.cfg.sc] || '전체')})로 새 회차</button>${inDlg ? '' : `<button type="button" class="nm-btn" data-ract="again">이 회차 처음 카드로</button><button type="button" class="nm-btn" data-cnav="-1">◀ 마지막 카드</button>`}<button type="button" class="nm-btn" data-ract="hdlg">복습 이력</button></div>`
-    + `<p class="nm-sub">새 회차는 내 답안 칸이 빈 채로 시작해요 — 이번에 쓴 답안은 '복습 이력'과 문제마다 '이력'에 남아요. 암기 완료한 문제도 범위 '전체'·'암기 완료'로 언제든 다시 볼 수 있어요.</p></div>`;
+    + `<p class="nm-sub">새 회차는 내 답안 칸이 빈 채로 시작해요 — 내 답안은 낙서장이라 저장하지 않아요(평가는 '복습 이력'과 문제마다 '이력'에 남아요). 암기 완료한 문제도 범위 '전체'·'암기 완료'로 언제든 다시 볼 수 있어요.</p></div>`;
 }
 function sesEnd() {
   drSave();
@@ -2467,7 +2470,7 @@ function renew() { const sc = S.cfg.sc; sesNew({ sc }); dlgClose(); revRender({ 
 function scopeSet(sc) {
   if (!RSC[sc]) return;
   const go = () => { S.cfg.sc = sc; cfgSave(); sesNew({ sc }); S.fp = false; revRender({ y: 0 }); H.toast(`복습 범위 '${RSC[sc]}' — 새 회차 ${RV.ses.ids.length}문제`, { id: 'nmretry' }); };
-  if (sesBusy()) ask('복습 범위를 고르면 그 범위로 새 회차를 시작해요.\n지금 회차의 평가·쓴 답안은 복습 이력에 남아요.', { ok: '새 회차로' }).then(y => { if (y) go(); }); else go();
+  if (sesBusy()) ask('복습 범위를 고르면 그 범위로 새 회차를 시작해요.\n지금 회차의 평가는 복습 이력에 남아요(내 답안은 낙서장 — 저장 안 함).', { ok: '새 회차로' }).then(y => { if (y) go(); }); else go();
 }
 function rShuf(on) {
   const s = RV.ses; if (!s) return;
@@ -2702,7 +2705,9 @@ function bind() {
   addEventListener('resize', () => { if (S.drawer && innerWidth > 860) drawer(false); });
   addEventListener('pagehide', flush); document.addEventListener('visibilitychange', () => { if (document.hidden) flush(); });
   const other = key => {   /* 다른 창에서 고친 문제 — 모았다가 한 번에(고치는 중인 문제는 건드리지 않음) */
-    if (key && RV.sj && key.indexOf(H.NS + 'num.r.' + RV.sj + '.') === 0) { const id = key.slice((H.NS + 'num.r.' + RV.sj + '.').length); try { const v = sGet('num.r.' + RV.sj + '.' + id); if (v == null) RV.rr.delete(id); else { const r = JSON.parse(v); if (r && r.id) RV.rr.set(r.id, r); } } catch (e) {} return; }   /* 10-24 다른 창·다른 기기의 복습 기록 → 화면 메모리도 */
+    if (key && RV.sj && key.indexOf(H.NS + 'num.r.' + RV.sj + '.') === 0) { const id = key.slice((H.NS + 'num.r.' + RV.sj + '.').length); try { const v = sGet('num.r.' + RV.sj + '.' + id); if (v == null) RV.rr.delete(id); else { const r = JSON.parse(v); if (r && r.id) RV.rr.set(r.id, r); } } catch (e) {} RQ.add(id); clearTimeout(rqT); rqT = setTimeout(revOther, 400); return; }   /* 10-24 다른 창·다른 기기의 복습 기록 → 화면 메모리도 */
+    if (key && S.sj && key === H.NS + 'num.rs.' + S.sj) { clearTimeout(rsT); rsT = setTimeout(sesOther, 400); return; }   /* 10-25c 다른 기기에서 진행한 회차 */
+    if (key && S.sj && key === H.NS + 'num.x.' + S.sj) { clearTimeout(rsT); rsT = setTimeout(idxOther, 400); return; }   /* 10-25c 다른 기기에서 바꾼 내 강의 목록·이름 */
     if (!S.root || !document.getElementById('numv') || !key || key.indexOf(H.NS + 'num.i.' + S.sj + '.') !== 0) return;
     SQ.add(key.slice((H.NS + 'num.i.' + S.sj + '.').length)); clearTimeout(sqT); sqT = setTimeout(syncOther, 400);
   };
@@ -2710,6 +2715,28 @@ function bind() {
   addEventListener('jblxs', e => { if (H && H.st) other((e.detail && e.detail.key) || ''); });   /* 10-15 허브가 다른 창의 쓰기(기기 저장소·이 브라우저)를 알림 */
 }
 const SQ = new Set(); let sqT = 0;
+const RQ = new Set(); let rqT = 0, rsT = 0;
+const busyHere = () => { const ae = document.activeElement; return !!(S.ed || DG.s || $('.nm-ov') || $('.nm-menu') || (ae && ae.matches && ae.matches('textarea[data-w],input,select'))); };   /* 쓰는 중·창이 열린 중이면 다시 그리지 않고 잠시 뒤 */
+function sesOther() {   /* 10-25c 사용자 '진행중인 테스트 이런건 실시간 연동' — 다른 기기의 회차(num.rs) → 이 화면(평가·가리기·자리) · 그 기기에서 회차를 끝냈으면 새 회차 */
+  if (S.app !== 'rev' || !S.root || !document.getElementById('numv') || RV.sj !== S.sj) return;
+  if (busyHere()) { rsT = setTimeout(sesOther, 3000); return; }
+  const sid0 = RV.ses && RV.ses.sid, s = H.LS.get(sesK(), null);
+  if (!s || !s.sid) { if (!sid0) return; RV.ses = null; RV.dr = null; delete RV.drm[S.sj]; H.toast('다른 기기에서 이 회차를 끝냈어요 — 새 회차로 이어서', { id: 'nmrs' }); }
+  else { if (RV.ses && s.sid === sid0 && JSON.stringify(s) === JSON.stringify(RV.ses)) return; sesLoad(); if (s.sid !== sid0) H.toast('다른 기기에서 진행한 회차로 맞췄어요', { id: 'nmrs' }); }
+  const p = S.cfg.view === 'card' ? null : posNow(); revRender(p ? { pos: p } : {});
+}
+function idxOther() { if (!S.root || !document.getElementById('numv')) return; if (busyHere()) { rsT = setTimeout(idxOther, 3000); return; } S.lecs = lectures(S.sj, S.seed); render({ pos: S.cfg.view === 'card' && S.app === 'rev' ? null : posNow() }); }
+function revOther() {
+  const ids = [...RQ]; RQ.clear(); if (S.app !== 'rev' || !S.root || !document.getElementById('numv') || S.sj !== RV.sj) return;
+  if (S.cfg.view === 'card') { const ae = document.activeElement; if (!S.ed && !RV.sum && !(ae && ae.closest && ae.closest('.nm-cr')) && RV.ses && ids.includes(RV.ses.cur)) cardPaint(); refreshCounts(); return; }
+  for (const id of ids) {
+    const a = artOf(id); if (!a) continue;
+    const pm = a.querySelector('.nm-rf .nm-pm'); if (pm) pm.outerHTML = pmHTML(prevMark(id));
+    const r = rOf(id), hn = r && Array.isArray(r.h) ? r.h.length : 0, hb = a.querySelector('.nm-rf [data-ract=hist]'); if (hb) hb.textContent = '이력' + (hn ? ' ' + hn : '');
+    const hp = a.querySelector('[data-hist]'); if (hp) hp.outerHTML = histHTML(id);
+  }
+  refreshCounts();
+}
 function syncOther() {
   const ids = [...SQ]; SQ.clear(); if (!S.root || !document.getElementById('numv')) return;
   let added = false, moved = false; const re = [];
