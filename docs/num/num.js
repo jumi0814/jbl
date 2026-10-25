@@ -2719,7 +2719,7 @@ const RQ = new Set(); let rqT = 0, rsT = 0;
 const busyHere = () => { const ae = document.activeElement; return !!(S.ed || DG.s || $('.nm-ov') || $('.nm-menu') || (ae && ae.matches && ae.matches('textarea[data-w],input,select'))); };   /* 쓰는 중·창이 열린 중이면 다시 그리지 않고 잠시 뒤 */
 function sesOther() {   /* 10-25c 사용자 '진행중인 테스트 이런건 실시간 연동' — 다른 기기의 회차(num.rs) → 이 화면(평가·가리기·자리) · 그 기기에서 회차를 끝냈으면 새 회차 */
   if (S.app !== 'rev' || !S.root || !document.getElementById('numv') || RV.sj !== S.sj) return;
-  if (busyHere()) { rsT = setTimeout(sesOther, 3000); return; }
+  if (busyHere() || RV.sum) { rsT = setTimeout(sesOther, 3000); return; }   /* 회차 정리 화면을 보는 중이면 그 화면을 덮지 않음(거기서 새 회차를 고르면 그 회차가 더 최근이라 다른 기기도 따라옴) */
   const sid0 = RV.ses && RV.ses.sid, s = H.LS.get(sesK(), null);
   if (!s || !s.sid) { if (!sid0) return; RV.ses = null; RV.dr = null; delete RV.drm[S.sj]; H.toast('다른 기기에서 이 회차를 끝냈어요 — 새 회차로 이어서', { id: 'nmrs' }); }
   else { if (RV.ses && s.sid === sid0 && JSON.stringify(s) === JSON.stringify(RV.ses)) return; sesLoad(); if (s.sid !== sid0) H.toast('다른 기기에서 진행한 회차로 맞췄어요', { id: 'nmrs' }); }
