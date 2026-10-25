@@ -156,16 +156,16 @@ async def run(b, vp, touch, tag):
     r = await pg.evaluate("(()=>{const c=__h.JB.vis[1];const b=c.querySelector('.acts [data-mk=ok]'),cs=()=>getComputedStyle(b);const before=[cs().borderTopColor,cs().fontWeight];b.click();return [before,[cs().borderTopColor,cs().fontWeight,cs().backgroundColor,cs().color],cs().borderTopStyle,Math.round(b.getBoundingClientRect().height)]})()")
     ok(r[0] != r[1][:2] and r[1] == ['rgb(35, 33, 29)', '700', 'rgb(255, 255, 255)', 'rgb(35, 33, 29)'] and r[2] == 'solid' and (not touch or r[3] >= 44), f"F04(ux4 B3-6) ✓ 맞음 테두리 버튼 → 켜지면 ink 테두리·굵게(채움 없음) {r}")
     # ---------- F08 플래시카드 기출 그림·뒷면 ----------
-    await go(pg, '#/OMS1/DX/flash')
-    r = await pg.evaluate("""(async()=>{const F=__h.Flash;F.filter('기출');const i=F.deck.findIndex(c=>c.key==='J:Q35');F.i=i;F.back=false;F.draw();const im=document.querySelector('#fcard img');if(!im)return {i,img:0};try{await im.decode()}catch(e){};return {i,img:im.naturalWidth,mh:getComputedStyle(im).maxHeight}})()""")
-    ok(r['i'] >= 0 and r['img'] > 0, f"F08 OMS1 DX 플래시카드 기출 Q35 앞면 그림 naturalWidth {r}")
+    await go(pg, '#/OMS1/DD1/flash')   # 10-25c Q35는 앞면이 26판(그림 없는 서술형)으로 — 그림은 '이전 출제 꼴'에 · 그림 문항 J7(DD1)로
+    r = await pg.evaluate("""(async()=>{const F=__h.Flash;F.filter('기출');const i=F.deck.findIndex(c=>c.key==='J:J7');F.i=i;F.back=false;F.draw();const im=document.querySelector('#fcard img');if(!im)return {i,img:0};try{await im.decode()}catch(e){};return {i,img:im.naturalWidth,mh:getComputedStyle(im).maxHeight}})()""")
+    ok(r['i'] >= 0 and r['img'] > 0, f"F08 OMS1 DD1 플래시카드 기출 J7 앞면 그림 naturalWidth {r}")
     await pg.screenshot(path=SHOT('f08_front', tag))
     await pg.evaluate("__h.Flash.flip()"); await pg.wait_for_timeout(100)
     r = await pg.evaluate("({a0:document.querySelectorAll('#fcard .fca .ln').length,go:(document.querySelector('#fcard [data-go]')||{}).textContent||''})")
     ok(r['a0'] and '문제 카드로' in r['go'], f"F08 뒷면 JB 답 줄·'📝 문제 카드로' {r}")
     await pg.screenshot(path=SHOT('f08_back', tag))
     await pg.evaluate("document.querySelector('#fcard [data-go]').click()"); await pg.wait_for_timeout(600)
-    ok(await pg.evaluate("location.hash.indexOf('/OMS1/DX/jb')>=0 && !!document.querySelector('#c-Q35')"), 'F08 문제 카드로 → 강의 기출 탭 그 문항')
+    ok(await pg.evaluate("location.hash.indexOf('/OMS1/DD1/jb')>=0 && !!document.querySelector('#c-J7')"), 'F08 문제 카드로 → 강의 기출 탭 그 문항')
     # ---------- F10 예상문제 ----------
     HUB = "[...document.querySelectorAll('.hsj[data-s=\"PHARM\"] .hcr,.hsj[data-s=\"PHARM\"] .hcj')].map(x=>x.title+' '+x.textContent).join(' | ')"   # ux3 H4 과목 표
     await pg.goto('about:blank'); await pg.goto(U + '#/'); await pg.wait_for_selector('.hsj[data-s="PHARM"] .hcj'); hub0 = await pg.evaluate(HUB)
