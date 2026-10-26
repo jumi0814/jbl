@@ -40,7 +40,7 @@ def find(ed, sec, num, prof=None):
     for x in blocks[ed]:
         if x['sec'] == sec and str(x['num']) == str(num) and (prof is None or x['prof'] == prof): return x
     return None
-LK_PROF = {'HARD': '유연지', 'OHQ': '한동헌', 'ENDO': '이우철', 'BLE': '금기연', 'SAL': '고홍섭', 'PAIN': '장지희', 'SURG': '명훈', 'PSY': '변민수'}
+LK_PROF = {'HARD': '유연지', 'OHQ': '한동헌', 'ENDO': '이우철', 'BLE': '금기연', 'SAL': '고홍섭', 'PAIN': '장지희', 'SURG': '명훈', 'PSY': '박지은'}
 def C(pfx, ed, sec, nums, tier='A', start=1, prof=None):
     return [(f'{pfx}{start + i:02d}', ed, sec, str(n), tier, prof) for i, n in enumerate(nums)]
 CANON = [('Y01', '25', '2024', '1', 'A', '유연지')] + C('H', '25', '2024', range(1, 12), prof='한동헌') + C('E', '25', '2024', range(1, 6), prof='이우철') + [('K01', '25', '2024', '1', 'A', '금기연')] + \
