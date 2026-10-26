@@ -9,7 +9,7 @@
 - `tools/SPEC.md`의 `## lec_<키>.txt 문법`·`## 규칙`·`## 렌더링 규칙` 절
 - 기준 원고(사용자 승인 — 이 밀도·형식보다 떨어지면 안 됨): `tools/oms1/lec_DD1.txt` 전체, `tools/cons/lec_FRC.txt` 앞 120줄
 - 같은 교수(이창하)의 다른 과목 원고 — 문체·밀도 참고: `tools/cons/lec_ADH.txt` 앞 80줄
-- 문항 대조 형식 예: `tools/cons/annot.txt` 앞 30줄 · 비교표 형식 예: `tools/cons/tables.txt` 앞 30줄 · 예상문제 형식 예: `tools/cons/pred.txt` 앞 20줄
+- 문항 대조 형식 예: `tools/cons/annot.txt` 앞 30줄 · 비교표 형식 예: `tools/cons/tables.txt` 앞 30줄 · 예상문제 형식 예: `tools/cons/pred.txt` 앞 20줄(10-26부터 `A:`는 사실·보기 풀이 하나마다 ' / ' — RULES 11절 첫 줄)
 
 ## 2. 맡은 강의의 입력
 - 강의자료 추출본: `work/ESTH/mat/<파일id>/` — `t/<쪽>.txt` 텍스트층(슬라이드 글자 + **학습부 필기** + `[주석]` PDF 필기) · `o/<쪽>.txt` OCR(텍스트층이 150자 미만인 쪽만) · `i/<쪽>.jpg` 쪽 이미지(폭 1100).

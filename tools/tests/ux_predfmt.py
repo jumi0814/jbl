@@ -58,6 +58,13 @@ with sync_playwright() as p:
     ok(set(pv2) <= set(pk) and len(pv2) == len(pv), f'② 예상 새로고침 뒤에도 {len(pv2)}')
     pg.evaluate("document.querySelector('#pfmt .fmtall').click()"); pg.wait_for_timeout(400)
     ok(not pg.evaluate("document.querySelectorAll('#pfmt .tg.on').length"), '② 예상 [전체] = 풀림')
+    # ② 7과목 모두 유형 줄
+    miss = []
+    for sid in SIDS:
+        for h, sel in ((f'#/{sid}/_jb/_jb', '#jbbar'), (f'#/{sid}/_pred/_pred', '#ppills')):
+            go(pg, h, sel)
+            if not pg.evaluate("document.querySelectorAll('#jbfmt [data-jfmt],#pfmt [data-pfmt]').length>=3"): miss.append(h)
+    ok(not miss, f'② 7과목 JB·예상 화면 모두 유형 줄 {miss}')
     # ③④ 7과목 예상 줄
     QB = []; AB = []; tot = 0
     for sid in SIDS:
@@ -70,8 +77,8 @@ with sync_playwright() as p:
     ok(not QB, f'③ 예상 {tot}문제 — 한 줄 안에 차례 보기 3개↑ 0 {len(QB)} {QB[:4]}')
     ok(not AB, f'④ 예상 답 — 한 줄 안에 · 로 이은 보기 풀이 0 {len(AB)} {AB[:4]}')
     go(pg, '#/PHARM/_pred/_pred', '#stage .pc')
-    t = pg.evaluate("(()=>{const c=[...document.querySelectorAll('#stage .pc')].find(x=>/처방전 발급 원칙/.test(x.textContent));if(!c)return null;const a=c.querySelector('.ans .pre2');return [a.querySelectorAll('li').length,a.textContent.replace(/\\s+/g,' ').indexOf('①②③은 12조 ②, ① 단서, ③ 그대로')>=0]})()")
-    ok(t and t[0] == 0 and t[1], f'④ PHARM 처방전 발급 원칙 답 = 한 줄(12조 ②, ① 단서 … 끊김 없음) {t}')
+    t = pg.evaluate("(()=>{const c=[...document.querySelectorAll('#stage .pc')].find(x=>/처방전 발급 원칙/.test(x.textContent));if(!c)return null;const a=c.querySelector('.ans .pre2'),L=a.querySelectorAll('li');const P='①②③은 12조 ②, ① 단서, ③ 그대로';return (L.length?[...L]:[a]).some(e=>e.textContent.replace(/\\s+/g,' ').indexOf(P)>=0)})()")
+    ok(t, f'④ PHARM 처방전 발급 원칙 답: 12조 ②, ① 단서, ③ 그대로가 한 줄 안(끊김 없음) {t}')
     pg.close()
     # ⑤ 폰
     pg = b.new_page(viewport={'width': 393, 'height': 852}, is_mobile=True, has_touch=True); pg.on('pageerror', lambda e: errs.append(str(e)[:200]))

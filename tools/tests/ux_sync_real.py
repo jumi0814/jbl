@@ -7,7 +7,7 @@
  ③ 컴퓨터도 휴대폰 문제를 받음 · 압축 못 하는 휴대폰이 보낸 묶음(한글 글 — 조각이 1MB 아래)도 컴퓨터가 읽음
  ④ 실시간: 컴퓨터 ANAT 문제 스토리를 실제 편집기로 고침 → 보내는 양은 그 조각만(ANAT 넘버링 전체의 1/3 미만) → 휴대폰 화면(새로고침 없이)에
  ⑤ 같은 휴대폰의 다른 화면(홈 화면 앱처럼 저장소 따로 · 연결 안 함) → 넘버링 화면 띠 '이 화면은 기기 동기화가 꺼져 있어요' · 칩 '동기화 꺼짐'
- ⑥ 옛 판(v2 — git HEAD 허브) 기기와 섞여도 안전: 옛 판은 새 판 묶음(v3)을 건너뛰고 제 넘버링을 지우지 않음 · 새 판은 옛 판이 보낸 넘버링(과목 묶음 안)을 받음
+ ⑥ 옛 판(v2 — git 6b634ffa 허브) 기기와 섞여도 안전: 옛 판은 새 판 묶음(v3)을 건너뛰고 제 넘버링을 지우지 않음 · 새 판은 옛 판이 보낸 넘버링(과목 묶음 안)을 받음
     → 옛 판 기기를 새 판으로 새로고침하면 컴퓨터 넘버링을 다 받고 제 것도 그대로 · 컴퓨터도 그 기기 것을 그대로
  ⑦ 컴퓨터 넘버링 수는 한 번도 줄지 않음 · 진단 복사에 토큰 없음 · 페이지 오류 0
 실행: JBL_HTTP=1 .venv/bin/python tools/tests/ux_sync_real.py"""
@@ -46,12 +46,12 @@ async def story(pg, sj, iid, text):   # 실제 편집기로 스토리 고침(ux_
         await pg.locator(f'.nm-it[data-id="{iid}"] .nm-s [data-act=edit]').click(); await pg.wait_for_timeout(300)
     await pg.keyboard.press('End'); await pg.keyboard.type(text); await pg.wait_for_timeout(900); await pg.keyboard.press('Escape'); await pg.wait_for_timeout(700)
     return await pg.evaluate(f"(()=>{{try{{return (JSON.parse(__h.stGet('num.i.{sj}.'+{iid!r}))||{{}}).st||''}}catch(e){{return ''}}}})()")
-OLD = {}
+OLD = {}; OLDREV = '6b634ffa'   # 옛 판 = 10-25c 배포(동기화 v2) — HEAD로 하면 v3를 커밋한 뒤엔 새 판끼리 비교가 됨
 def old_file(rel):
-    if rel not in OLD: OLD[rel] = subprocess.run(['git', 'show', 'HEAD:docs/' + rel], capture_output=True, cwd=J.ROOT).stdout
+    if rel not in OLD: OLD[rel] = subprocess.run(['git', 'show', OLDREV + ':docs/' + rel], capture_output=True, cwd=J.ROOT).stdout
     return OLD[rel]
 OLDRE = re.compile(r'^http://127\.0\.0\.1:\d+/(index\.html|num/num\.js|packs/[A-Z0-9]+\.js)(\?.*)?$')
-async def old_route(route):   # 옛 판(git HEAD) 허브·넘버링 모듈·과목 팩 — 같은 주소(같은 저장소)
+async def old_route(route):   # 옛 판(git 6b634ffa) 허브·넘버링 모듈·과목 팩 — 같은 주소(같은 저장소)
     rel = OLDRE.match(route.request.url).group(1)
     await route.fulfill(status=200, headers={'Content-Type': ('text/html' if rel.endswith('.html') else 'application/javascript') + '; charset=utf-8', 'Cache-Control': 'no-store'}, body=old_file(rel))
 async def main():
@@ -73,6 +73,7 @@ async def main():
         ok(bool(iid and base), f'① 컴퓨터: ANAT JB ✎ 넘버링으로 실제 문제 하나({iid}) — 이 꼴로 많이')
         n = [await dk.evaluate(SEED, ['ANAT', 160, 7, 80, base]), await dk.evaluate(SEED, ['OMS1', 145, 0, 0, base]), await dk.evaluate(SEED, ['IMPL', 40, 0, 0, base])]
         await dk.evaluate("(()=>{const m={ok:{},ng:{},bm:{'T01':{t:Date.now()},'T02':{t:Date.now()}}};__h.stSet('mk.ANAT',JSON.stringify(m));})()")
+        await dk.evaluate("(()=>{__h.stSet('hlabel',JSON.stringify({y:'기출 표시',g:'암기'}));__h.stSet('tgoal','240');})()")   # 형광펜 색 이름·하루 목표도(10-26 '모든 기록')
         mv = await dk.evaluate("__h.xsMove('회귀').then(r=>r)"); await dk.wait_for_timeout(1500)
         await dk.reload(); await dk.wait_for_function(WAIT, timeout=90000); await dk.wait_for_timeout(1200); xs = await dk.evaluate("__h.xsReady().then(s=>s)")   # 주소가 같으면 goto는 새로고침이 아님
         await dcnt('연결 전')
@@ -109,6 +110,8 @@ async def main():
         t = await poll(ph, "document.querySelectorAll('#numv .nm-it[data-id]').length>=162", 30)
         dn = await ph.evaluate("document.querySelectorAll('#numv .nm-it[data-id]').length")
         ok(t is not None, f'② 휴대폰 내 넘버링 ANAT 화면(새로고침 없이)에 {dn}문제')
+        hv = await ph.evaluate("[JBLSYNC.get('hlabel'),JBLSYNC.get('tgoal'),JBLSYNC.get('mk.ANAT')]")
+        ok(hv[0] and '기출 표시' in hv[0] and hv[1] == '240' and hv[2] and 'T01' in hv[2], f'② 형광펜 색 이름·하루 목표·★(mk)도 옴 {[str(x)[:40] for x in hv]}')
         im = await ph.evaluate("(()=>{const a=document.querySelector('#numv .nm-it[data-id=\"rANAT7\"]');return a?a.querySelectorAll('img[src^=\"data:image/webp\"]').length:-1})()")
         ok(im >= 1, f'② 그림 붙인 문제(rANAT7)의 그림도 옴 {im}')
         ban = await ph.evaluate("(()=>{const b=document.querySelector('#numv [data-syncban]');return b&&!b.hidden?b.textContent:''})()")

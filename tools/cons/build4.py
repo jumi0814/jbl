@@ -1358,15 +1358,17 @@ PQ_PATS = [   # (보기 머리 꼴, 첫 값, 다음 값) — 차례대로 이어
     (re.compile(r'(?<![\w.가-힣])([ㄱ-ㅎ])[.)](?=\s)'), 'ㄱ', lambda c: 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'[min(13, 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'.index(c) + 1)] if c in 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ' else None)]
 def pq_lines(h):
     """ux2 F10 예상문제 보기(①~⑩ · 10-26 1)·(1)·A.·ㄱ.도 — 차례대로·앞이 공백인 것) 앞에서 줄바꿈 — 발문 .ln.q1 + 보기 .ln.li. 글자 그대로(나눈 자리의 공백은 앞 줄 끝에 남음) · 인용 버튼 안 글자는 건너뜀"""
-    for rx, first, nxt in PQ_PATS:
+    best = []
+    for rx, first, nxt in PQ_PATS:   # 꼴마다 세어 가장 길게 이어지는 꼴로('1) ① Esthetics 2) ② …'는 1)·2)가 보기 — ESTH VEN)
         pos, want, inb, last = [], first, 0, 0
         for m in re.finditer(r'<[^>]+>|' + rx.pattern, h):
             t = m.group(0)
             if t.startswith('<'): inb += 1 if re.match(r'<button\b', t) else (-1 if t == '</button>' else 0); continue
             key = m.group(m.lastindex) if m.lastindex else t
-            if inb or want is None or key != want or (m.start() and h[m.start() - 1] not in ' \n'): continue
+            if inb or want is None or key != want or (m.start() and h[m.start() - 1] not in ' \n') or re.search(r'\(\s*$', h[max(0, m.start() - 3):m.start()]): continue   # '( ① )' 빈칸 자리표는 보기 아님
             pos.append(m.start()); want = nxt(key)
-        if len(pos) >= 2: break
+        if len(pos) > len(best): best = pos
+    pos = best
     if len(pos) < 2: return h
     parts = [h[:pos[0]]] + [h[a:b] for a, b in zip(pos, pos[1:] + [len(h)])]
     return (f'<div class="ln q1">{parts[0]}</div>' if parts[0].strip() else '') + ''.join(f'<div class="ln li">{x}</div>' for x in parts[1:])

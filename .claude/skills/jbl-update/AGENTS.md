@@ -114,13 +114,14 @@ guide/handoff/review_final/JBREAD_BRIEF.md · JBREAD2_BRIEF.md · JBTIDY_BRIEF.m
 guide/handoff/review_final/TABLE_BRIEF.md + TABLE2_BRIEF.md + TABLE3_BRIEF.md(표 — 시험·암기·변형 대비 · 필기 칸 빨강 빼기) + review_final/BRIEF3.md 1·3번(시험 예고 쪽 전수 → 예상문제, 예상문제 정확도·중복 — 1번의 '원고 카드·💬·⭐·⚡에 없는 것을 채운다'는 lec이라 **보고만**(보고의 'lec 몫'을 메인이 D1·D5에 넘김), 앞 회차 보고 TB_<SID>.md 언급은 무시) 그대로, 규칙은 RULES 5·11절. pred의 줄바꿈(BREAK2 jb 영역 — work/review_breaks2/<SID>_jb.md의 예상문제 부분)도. 표 칸(R:)의 필기에서만 나온 조각도 `{n:…}`(NOTEMARK2_BRIEF 할 일 1~4를 tables에 — 필기 열 머리(`필기 풀이`·`요점(필기)`)의 칸엔 붙이지 않음) · pred `A:`의 필기에서만 나온 조각은 `{n:…}`(RULES 9), 필기 쪽엔 빨강 없음(RULES 7 끝 — REDNOTE_BRIEF 할 일 1·2를 pred에). TABLE_BRIEF·TABLE3의 '기존 {r:} 지우기 금지'는 필기 칸 빨강 벗기기(TABLE3 6)만 예외.
 split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 덮임). 형식은 다음 빌드 로그로 확인.
 예상문제를 새로 쓰거나 유지·개선·보관을 판정하는 일은 PRED 단계(아래 P) 몫 — D4는 pred의 줄바꿈·{n:}·필기 빨강만(새 문항이 필요해 보이면 보고에 'PRED 몫').
-검사: text_diff tables.txt·pred.txt(빠진 글자 = 값 오류 정정뿐 — 보고에 목록) · check_abbr · tools/table_audit.py <SID>(칩 없는 기출 0·표 꼴 0) · pred_check <SID> ✗0. 보고 work/review_final2/TB_<SID>.md.
+예상 줄(10-26 사용자 '특히 예상문제란에서' 줄바꿈): Q:의 보기는 ①…·1)…처럼 차례대로 쓰면 화면이 보기마다 줄을 나눔(pq_lines) · A:는 사실·보기 풀이 하나마다 ' / '(예 `④ — 근거 [[KEY:p]] / ①② = … / ③ = … / 기출 함정: …`) — 한 줄 안 ' · '는 같은 성격의 짧은 나열만 · 조·항을 가리키는 원문자('12조 ②')는 그대로 둬도 끊기지 않음 · 화면 줄 검사(ux_predfmt ③④)는 메인이 빌드 뒤.
+검사: text_diff tables.txt·pred.txt(빠진 글자 = 값 오류 정정뿐 — 보고에 목록) · check_abbr · tools/table_audit.py <SID>(칩 없는 기출 0·표 꼴 0) · pred_check <SID> ✗0 (화면 줄 검사 ux_predfmt는 메인이 빌드 뒤에 돌림). 보고 work/review_final2/TB_<SID>.md.
 ```
 
 ## E QA — 사용자 눈 점검 (과목 하나 · 찾기 — 메인이 허락하면 글자 그대로인 작은 표시만 직접 고침 · 나머지는 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~85 — 새 번호가 생겨도 끝까지, 마지막 절 '스크린샷으로 꼭 볼 것'까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~88 — 새 번호가 생겨도 끝까지, 마지막 절 '스크린샷으로 꼭 볼 것'까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). (메인이 허락하면) 글자 그대로인 작은 것 — 구분 기호·줄 나눔·{n:}/{u:}/{e:}/{r:} 표시·라벨 — 은 그 강의 lec + annot·tables·pred의 메인이 지시문에 적은 쪽(merge·split 직후면 parts, 아니면 tools/<sid>/의 그 강의 블록 — 그 과목 QA 1명만)에서 직접 고침(고치기 전 text_diff --save · 끝에 빠진 글자 0) · 허브·렌더러 몫은 보고만. 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B1·B2·B3/C/D1~D5·D2b/메인 = 허브·렌더러) 몫. 보고 work/review_final2/QA_<SID>.md. (직접 고침을 허락받지 않았으면) 고치지 않는다 — 허락받았어도 낱말·사실 문제와 허브·렌더러 몫은 보고만.
 ```
 
@@ -152,6 +153,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## GBID 그림 보고 답하기 그림빵 — 과목 하나(10-20 · tools/<sid>/pred.txt만 · guide/handoff/GBID_BRIEF.md 그대로 · 보고 work/<SID>/pred26/R_GBID_<SID>.md)
 
 ## P 예상문제 — 강의 묶음(10-15 · TREND 뒤)
+(10-26) pred.txt 줄 쓰는 법 = RULES 11절 첫 줄(Q: 보기 차례대로 · A: 사실·보기 풀이 하나마다 ' / ').
 ```
 <공통 머리>
 과목 <SID> 강의 <KEY들>. guide/handoff/PRED26_BRIEF.md 2~4절 + guide/handoff/PRED_MORE_BRIEF.md 할 일 1·2 + RULES 11 + TREND_<SID>.md의 그 강의 줄 · 기준 aid work/<SID>/pred<YY>/pred_before.{md,json}. · 기출 0인 현 교수 강의는 TREND_NOTE의 다른 과목 기출 꼴로 형식을 정하고 why에 '이 과목 기출 없음 — 다른 과목 기출 꼴 · 불확실'(내용 근거는 이 강의 자료만 — RULES 2).
@@ -172,12 +174,12 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 
 ## H. 허브 화면 담당(새 화면·새 막대·화면 고침 — 10-24 디자인 v3)
 ```
-먼저 읽기: CLAUDE.md · guide/정리본_원칙.md 7-1 첫 줄(디자인 v3) · tools/SPEC.md '디자인 v3' 절 · .claude/skills/jbl-update/QA.md 21·23·64·65·70·71·81·82·84·85·72(컴퓨터 화면이 기준 — v3.2)·73(앱 창 제목 줄 — 새 위 막대는 window-controls-overlay 묶음에도)·74(정렬 — 새 줄은 가운데 맞춤 · ux_align)·75(새 공부 기록 키 = 동기화 SYNCK에도 · ux_sync)·76(상단 막대 한 문법 — 새 거르기는 그 자리에 · ux_fbar).
+먼저 읽기: CLAUDE.md · guide/정리본_원칙.md 7-1 첫 줄(디자인 v3) · tools/SPEC.md '디자인 v3' 절 · .claude/skills/jbl-update/QA.md 21·23·64·65·70·71·81·82·84·85·72(컴퓨터 화면이 기준 — v3.2)·73(앱 창 제목 줄 — 새 위 막대는 window-controls-overlay 묶음에도)·74(정렬 — 새 줄은 가운데 맞춤 · ux_align)·86~88(10-26 동기화 쓰던 그대로·유형 줄·예상 줄)·75(새 공부 기록 키 = 동기화 SYNCK에도 · ux_sync)·76(상단 막대 한 문법 — 새 거르기는 그 자리에 · ux_fbar).
 - 새 CSS는 tools/cons/shell.html <style> 맨 끝 '10-24 디자인 v3' 묶음 뒤에. 옛 규칙이 더 구체적이면 `html body …`로 한 단계 올리되, 표시 상태(.qc.mk-ok 등)는 더 구체적이라 그대로 이기게.
 - 토큰만: --v-bg·--v-tone·--v-line·--v-ink(1~4)·--brand(=먹 #1A1815)·--exam-*(금색 = ⭐ 기출)·--pred-*(파랑 = 예상)·--e26(보라)·과목 색 --sj(메뉴 점·지금 탭 밑줄·선택 막대만). 대비 값(fallback)도 #1A1815(#2F5470·#2F4F45 금지). 따뜻한 베이지·갈색·크림 금지.
 - 부품: 보조 단추 = 옅은 면(테 없음) · 주 단추 = 먹 채움 · 거르기 = `.pills` 그릇 + `.tg`(켜짐 먹 채움) · 분절 = `.pseg`(회색 그릇 위 흰 칸) · 칩 = 알약 · 상자 = 옅은 면 + 안쪽 그림자 선 + 모서리 12(높이를 바꾸는 border 금지 — ux_u23·ux_u24).
 - 폰(≤600): 위에 붙는 것은 앱바·탭 줄·JB 작은 막대뿐 — 새 sticky 막대는 shell.html 폰 묶음 static 목록에 더함 · 이름 말줄임 0.
-- 끝나면(데이터·넘버링을 건드렸으면 ux_sync·ux_sync_num·ux12_numrev · JB 카드·답 화면을 건드렸으면 jb_decide·ux_arrow도): sync_common → rehub → 1440·1280(일반·집중)·820·393 스크린샷 직접 보기 → tools/tests/ux_v3phone.py(새 주소 더함)·ux_align(새 화면 주소 더함)·ux_u27·ux_u23·ux_u24·ux4f_G·ux3_fixes·audit_design·verify → v3_palette --check 0.
+- 끝나면(데이터·넘버링을 건드렸으면 ux_sync·ux_sync_num·ux_sync_all·ux_sync_real(가짜 GitHub fakegist REAL — 1MB 잘림·늦은 응답·실패 주입 · 옛 판 섞임)·ux12_numrev · JB·예상 막대·예상 문제/답 화면을 건드렸으면 ux_predfmt · JB 카드·답 화면을 건드렸으면 jb_decide·ux_arrow도): sync_common → rehub → 1440·1280(일반·집중)·820·393 스크린샷 직접 보기 → tools/tests/ux_v3phone.py(새 주소 더함)·ux_align(새 화면 주소 더함)·ux_u27·ux_u23·ux_u24·ux4f_G·ux3_fixes·audit_design·verify → v3_palette --check 0.
 ```
 
 ## JD JB 결정 반영 — 과목 하나(10-25 · guide/handoff/jb_audit_1024/AGENT_BRIEF.md 그대로)
