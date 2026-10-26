@@ -59,6 +59,11 @@ def gist_data(dev, g):   # 그 기기·묶음 Gist의 내용(NS 붙은 키 → �
             return json.loads(raw)
         except Exception as e: return {'__err': str(e)}
     return {}
+def gist_all(dev):   # 10-26 v3: 넘버링은 과목 묶음이 아니라 N<과목><조각> 묶음 — 그 기기의 모든 묶음을 합침
+    o = {}
+    for v in G.values():
+        if (' · %s · ' % dev) in v['description']: o.update(gist_data(dev, v['description'].split(' · ')[2]))
+    return o
 async def getv(pg, k): return await pg.evaluate("k=>{const v=JBLSYNC.get(k);try{return v==null?null:JSON.parse(v)}catch(e){return v}}", k)
 async def settle(pg, ms=400):
     for _ in range(80):
@@ -115,8 +120,8 @@ async def main():
         await cnt('연결 전')
         await dk.evaluate(f"JBLSYNC.connect('{TOK}')"); await settle(dk)
         dev_d = await dk.evaluate("JSON.parse(localStorage.getItem('jblhub.v1.devId'))")
-        gd = gist_data(dev_d, SJ)
-        ok(NS + f'num.i.{SJ}.{D0}' in gd, f'⓪ 컴퓨터 연결 = {SJ} 묶음에 넘버링 문제가 실림 {sorted(k[len(NS):] for k in gd)[:6]}')
+        gd = gist_all(dev_d)
+        ok(NS + f'num.i.{SJ}.{D0}' in gd, f'⓪ 컴퓨터 연결 = 넘버링 묶음(N{SJ}…)에 넘버링 문제가 실림 {sorted(k[len(NS):] for k in gd)[:6]}')
         code = await dk.evaluate("JBLSYNC.code()")
         try:
             async with ph.expect_navigation(timeout=20000, wait_until='load'): await ph.evaluate(f"JBLSYNC.connect('{code}')")
@@ -142,7 +147,7 @@ async def main():
         await cnt('ⓐ 넣은 뒤')
         t0 = None
         for i in range(40):   # 저절로 보냄(바뀌면 2.5초 뒤 · 최소 12초 간격) — 넘버링 화면을 연 채로
-            gd = gist_data(dev_d, SJ); v = gd.get(NS + f'num.i.{SJ}.{D2}') or ''
+            gd = gist_all(dev_d); v = gd.get(NS + f'num.i.{SJ}.{D2}') or ''
             if NS + f'num.i.{SJ}.{D1}' in gd and '컴퓨터새스토리A' in v: t0 = i / 2; break
             await dk.wait_for_timeout(500)
         ok(t0 is not None, f'ⓐ 컴퓨터: 넘버링 화면을 연 채 저절로 보냄(디바운스) {t0}s · 오류 {await dk.evaluate("JBLSYNC.err()")!r}')
@@ -204,7 +209,7 @@ async def main():
         v = await dk.evaluate(f"(()=>{{const s=JBLNUM._RV.ses,a=document.querySelector('#numv .nm-it[data-id=\"{D2}\"]'),o=a&&a.querySelector('.nm-mks .on');return {{sid:s&&s.sid,mk:s&&s.mk[{json.dumps(D2)}],on:o?o.dataset.mk:null}}}})()")
         ok(v['sid'] == sid_p and v['mk'] == 1 and v['on'] == '1', f"ⓖ 컴퓨터 복습 화면(새로고침 없이): 휴대폰의 진행 중인 회차·평가(애매함) {v} / {sid_p}")
         ok(await dk.evaluate("window.__keep===1"), 'ⓖ 컴퓨터 새로고침 없음')
-        gp = json.dumps(gist_data(dev_p, SJ), ensure_ascii=False); lp = await ph.evaluate("Object.keys(localStorage).filter(k=>(localStorage.getItem(k)||'').indexOf('낙서장답G')>=0)")
+        gp = json.dumps(gist_all(dev_p), ensure_ascii=False); lp = await ph.evaluate("Object.keys(localStorage).filter(k=>(localStorage.getItem(k)||'').indexOf('낙서장답G')>=0)")
         ok('낙서장답G' not in gp and not lp and await ph.evaluate("JBLNUM._RV.dr.a[" + json.dumps(D2) + "]===undefined||true"), f'ⓖ 내 답안(낙서장)은 저장·전송 안 됨(Gist·저장소에 없음) {lp}')
         # ⓔ 휴대폰에서 같은 스토리를 몇 분 동안 이어서 고침(12~15초마다 오감 — 실제 쓰는 모습) → 컴퓨터가 마지막 글까지
         await dk.evaluate(f"location.hash='#/_num/{SJ}'"); await dk.wait_for_timeout(2500); await ph.evaluate(f"location.hash='#/_num/{SJ}'"); await ph.wait_for_timeout(2500)

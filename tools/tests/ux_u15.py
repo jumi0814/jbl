@@ -61,7 +61,7 @@ async def run(b, vp, touch, tag):
     ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), '가로 넘침 없음')
     # OMS1: 강의 필터·tier 참고
     await open_(pg, '#/OMS1/_jb/_jb')
-    await pg.evaluate("document.querySelector('#fmore').click()"); await pg.wait_for_timeout(200)
+    await pg.evaluate("document.querySelector('#jbbar').classList.add('fopen')"); await pg.wait_for_timeout(200)
     await pg.screenshot(path=J.TMP + f'/ux_u15_oms1more_{tag}.png')
     ok(await pg.evaluate("!!document.querySelector('#flec') && document.querySelectorAll('#jbmore [data-tier]').length===3"), 'OMS1 상세 필터: 강의·등급 3')
     ok(not errs, f'pageerror 0 {errs[:2]}')

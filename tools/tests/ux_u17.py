@@ -53,15 +53,9 @@ async def run(b, vp, touch, tag):
     await open_(pg, '#/PHARM/_jb/_jb')
     await pg.evaluate("document.querySelector('#c-RX01').classList.add('open');document.querySelector('#c-RX01 details.ab.lk>summary .chip.lec').click()"); await pg.wait_for_timeout(800)
     ok((await pg.evaluate('location.hash')).startswith('#/PHARM/RX/learn') and await pg.evaluate("localStorage.getItem('jblhub.v1.lkopen')") == 'false', '📖 절 머리의 카드로 이동 → 정리본(선호 안 바뀜)')
-    # 문제 집중
-    await open_(pg, '#/PHARM/_jb/_jb')
-    await pg.evaluate("document.querySelector('#ffocus').click()"); await pg.wait_for_timeout(200)
-    r = await pg.evaluate("(()=>{const c=document.querySelector('#c-RX02');const lec=c.querySelector('.qhead .chip.lec'),sub=c.querySelector('.srcd>summary');const a=[!!lec.offsetParent,!!sub.offsetParent];c.querySelector('[data-tog]').click();return a.concat([!!lec.offsetParent,!!sub.offsetParent])})()")
-    ok(r == [False, False, True, True], f'문제 집중: 닫힌 카드 📖 칩·출처(출처·연도 근거) 숨김 → 펼치면 보임 {r}')
-    await pg.screenshot(path=J.TMP + f'/ux_u17_focus_{tag}.png')
-    await open_(pg, '#/PHARM/RX/jb')
-    ok(await pg.evaluate("document.querySelector('#stage').classList.contains('focus') && document.querySelector('#ffocus').classList.contains('on')"), '문제 집중 선호가 강의 기출 탭에도(jbfocus)')
-    await pg.evaluate("document.querySelector('#ffocus').click()")
+    # 문제 집중 — 10-26 사용자 '횟수, 대조, 문제 집중 이런 기능 다 필요없고'로 뺌 → 단추 없음·옛 선호(jbfocus)가 남아도 숨김 없음
+    await pg.evaluate("localStorage.setItem('jblhub.v1.jbfocus','true')"); await open_(pg, '#/PHARM/_jb/_jb')
+    ok(await pg.evaluate("!document.querySelector('#ffocus') && !document.querySelector('#stage').classList.contains('focus')"), '문제 집중 단추 없음 · 옛 선호가 남아도 📖 칩·출처를 숨기지 않음')
     ok(await pg.evaluate("document.documentElement.scrollWidth<=innerWidth"), '가로 넘침 없음')
     ok(not errs, f'pageerror 0 {errs[:2]}')
     await ctx.close()

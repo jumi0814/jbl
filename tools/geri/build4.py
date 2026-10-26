@@ -267,6 +267,7 @@ for q in Q:
         q['auto'] = 1; q['v'] = 'ok' if q['v'] in ('', 'na') else q['v']
 
 import trend
+FMTC = {'서술형': 'es', '넘버링': 'nu', '단답형': 'sh', '빈칸': 'bl', '객관식': 'mc', 'T/F': 'tf'}   # 10-26 사용자 '문제 유형 … 서술형, 단답형, 객관식, tf 이런걸 선택할 수 있게 … multiple 선택' — 카드 data-fmt
 COVER = S.COVER
 trend.analyze(Q, Q2CARD, LEC, COVER)
 def _yp_x(q, y):   # 그 해 교수를 연도별 표가 적었으면 그 이름(강의 연결 교수로 채우지 않음)
@@ -746,7 +747,7 @@ def qcard(q, idx):
         lab, lines = pk; dv = 'wrong' if lab == '틀린 보기' else 'ok'
         for x in lines: qh = re.sub(r'(<div class="ln li[^"]*")(>' + re.escape(esc(x)) + '</div>)', r'\1 data-ans="' + dv + r'"\2', qh, count=1)
         pick_ln = ''   # 10-05 사용자 'jb 미리보기 및 jb 답안에 정답 보기 3) … 정답보기는 없애도 될 것 같아' — 답 칸의 '정답 보기 …' 줄은 없앰(문제 보기 줄 강조 data-ans는 그대로)
-    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-lprof="{esc((q.get("prof") or "").split("(")[0].strip())}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
+    h = [f'<article data-aid="{aid(q["id"])}" class="qc {heat(n)} t{q["tier"]}" id="c-{q["id"]}" data-id="{q["id"]}" data-tier="{q["tier"]}" data-prof="{esc(prof_main(q))}" data-lprof="{esc((q.get("prof") or "").split("(")[0].strip())}" data-profs="{esc('|'.join(dict.fromkeys(p_ for _, p_ in yp_of(q) if p_)))}" data-yp="{esc(' '.join(f'{y % 100:02d}:{p_}' for y, p_ in yp_of(q) if p_))}" data-lec="{q["lk"]}" data-n="{n}" data-y0="{q["yrs"][0] if n else 0}" data-yrs="{" ".join("%02d" % y for y in q["yrs"])}" data-st="{st_kind(q)}" data-v="{q["v"]}" data-fmt="{FMTC.get(trend.fmt_of(q), '')}" data-idx="{idx}"{' data-unrec="1"' if UNREC.match(qt.strip()) else ''}>',
          f'<div class="qhead">{yr_badge(q)}{st_chip(q)}{prof_chip(q)}{'<span class="chip unrec noann" title="JB에 문제가 복원되지 않음 — 안 푼 것·한 장씩 회차에서 뺌">미복원</span>' if UNREC.match(qt.strip()) else ''}{f'<span class="chip tier" title="{esc(TIERS.get(q["tier"], ""))}">참고 · {esc(cut_bal(TIERS.get(q["tier"], ""), 22))}</span>' if q["tier"] != "A" else ""}{lecchip}{vchip(q["v"])}</div>',
          f'<div class="qtext">{qh}</div>{figq}']
     _figprev = bool(figq) and bool(q.get('fronted')) and not q.get('qsame') and any(v_.get('prev') for v_ in q.get('other', []))   # 10-25c 앞면 = 최신 판인데 문제 꼴이 바뀜 → 옛 꼴(그림을 주던 문제)의 그림은 '이전 출제 꼴' 상자 안(OMS1 Q35)
@@ -1348,17 +1349,49 @@ for L in lect: L['tbl'] = [i for i, t in enumerate(TBL) if t['k'] == L['k'] and 
 # ---- 예상문제
 preds = []
 CIRC_ALL = '①②③④⑤⑥⑦⑧⑨⑩'
+PQ_PATS = [   # (보기 머리 꼴, 첫 값, 다음 값) — 차례대로 이어지는 것만 · 10-26 원문자 말고도 1) · (1) · A. · ㄱ. 보기(사용자 '문제의 줄바꿈 … 특히 예상문제란에서')
+    (re.compile(r'[①-⑩]'), '①', lambda c: CIRC_ALL[CIRC_ALL.index(c) + 1] if CIRC_ALL.index(c) + 1 < len(CIRC_ALL) else None),
+    (re.compile(r'(?<![\w.)])(\d{1,2})\)(?=\s)'), '1', lambda c: str(int(c) + 1)),
+    (re.compile(r'\((\d{1,2})\)(?=\s)'), '1', lambda c: str(int(c) + 1)),
+    (re.compile(r'(?<![\w.])([A-E])[.)](?=\s)'), 'A', lambda c: chr(ord(c) + 1)),
+    (re.compile(r'(?<![\w.가-힣])([ㄱ-ㅎ])[.)](?=\s)'), 'ㄱ', lambda c: 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'[min(13, 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'.index(c) + 1)] if c in 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ' else None)]
 def pq_lines(h):
-    """ux2 F10 예상문제 보기(①~⑩, 차례대로·앞이 공백인 것) 앞에서 줄바꿈 — 발문 .ln.q1 + 보기 .ln.li. 글자 그대로(나눈 자리의 공백은 앞 줄 끝에 남음) · 인용 버튼 안 글자는 건너뜀"""
-    pos, want, inb = [], 0, 0
-    for m in re.finditer(r'<[^>]+>|[①-⑩]', h):
-        t = m.group(0)
-        if t.startswith('<'): inb += 1 if re.match(r'<button\b', t) else (-1 if t == '</button>' else 0); continue
-        if inb or want >= len(CIRC_ALL) or t != CIRC_ALL[want] or (m.start() and h[m.start() - 1] not in ' \n'): continue
-        pos.append(m.start()); want += 1
+    """ux2 F10 예상문제 보기(①~⑩ · 10-26 1)·(1)·A.·ㄱ.도 — 차례대로·앞이 공백인 것) 앞에서 줄바꿈 — 발문 .ln.q1 + 보기 .ln.li. 글자 그대로(나눈 자리의 공백은 앞 줄 끝에 남음) · 인용 버튼 안 글자는 건너뜀"""
+    for rx, first, nxt in PQ_PATS:
+        pos, want, inb, last = [], first, 0, 0
+        for m in re.finditer(r'<[^>]+>|' + rx.pattern, h):
+            t = m.group(0)
+            if t.startswith('<'): inb += 1 if re.match(r'<button\b', t) else (-1 if t == '</button>' else 0); continue
+            key = m.group(m.lastindex) if m.lastindex else t
+            if inb or want is None or key != want or (m.start() and h[m.start() - 1] not in ' \n'): continue
+            pos.append(m.start()); want = nxt(key)
+        if len(pos) >= 2: break
     if len(pos) < 2: return h
     parts = [h[:pos[0]]] + [h[a:b] for a, b in zip(pos, pos[1:] + [len(h)])]
     return (f'<div class="ln q1">{parts[0]}</div>' if parts[0].strip() else '') + ''.join(f'<div class="ln li">{x}</div>' for x in parts[1:])
+# 10-26 예상 답 줄 — 최상위 ' / ' = 줄 · 한 줄 안 ' · '로 이은 보기 풀이(①… · ③ = … · 2) ×…)·필기·기출 함정은 줄을 나눔 · 번호 목록(①②③… 차례대로·내용 있음)만 목록으로
+#   (옛 render_block은 '①②③은 12조 ②, ① 단서, ③ 그대로'처럼 차례가 아닌 원문자에서도 줄을 나눠 엉뚱한 곳이 끊겼음 — PHARM RX)
+PA_OPT = re.compile(r'^\s*(?:\*\*|==|\{[a-z]:)?\s*(?:[①-⑳]|\d{1,2}\)|\(\d{1,2}\))')
+PA_NOTE = re.compile(r'^\s*(?:\{n:|✍|필기|26\s*필기|25\s*필기|기출\s*함정|함정|⚠|\d{2}\s*(?:함정|새\s|강조)|cf\.?\s|참고\s)')
+def _pa_enum(x):
+    t = lecparse._plain(x); ps = [m.start() for m in re.finditer(r'[①-⑳]', t) if (not m.start() or t[m.start() - 1] in ' (') and not (m.end() < len(t) and t[m.end()] in CIRC_ALL + '⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳')]
+    if len(ps) < 3 or t[ps[0]] != '①': return False
+    if any(CIRC_ALL.index(t[b]) != CIRC_ALL.index(t[a]) + 1 for a, b in zip(ps, ps[1:]) if t[a] in CIRC_ALL and t[b] in CIRC_ALL): return False
+    return all(len(re.sub(r'[\s.,·/;:()]', '', t[a + 1:b])) >= 2 for a, b in zip(ps, ps[1:] + [len(t)]))
+def pred_ans(v, ctx):
+    lines = []
+    for sg in lecparse.split_top(v, ' / '):
+        parts = lecparse.split_top(sg, ' · ')
+        if len(parts) < 2: lines.append(sg); continue
+        nopt = sum(1 for x in parts if PA_OPT.match(x)); long_ = len(lecparse._plain(sg)) > 70
+        cur = parts[0]
+        for x in parts[1:]:
+            if (PA_OPT.match(x) and (nopt >= 2 or long_)) or (PA_NOTE.match(x) and long_): lines.append(cur); cur = x
+            else: cur += ' · ' + x
+        lines.append(cur)
+    one = lambda x: lecparse.render_block(x, ctx) if _pa_enum(x) else lecparse.inline(x, ctx)
+    if len(lines) == 1: return one(lines[0])
+    return '<ul class="klist pal">' + ''.join(f'<li>{one(x)}</li>' for x in lines) + '</ul>'
 # S3(10-16 · guide/handoff/S3_BRIEF 1 · PRED26_BRIEF 2-3·2-4) 머리줄 `@<KEY> | t= | pr=상|중|하 | b=ID,… | why= | f=<KEY>:<쪽>,… | oid=<옛 aid> | x=1 | m=x0,y0,x1,y1;…`
 #   oid → data-aid·data-id(채점·표시·플래시카드·넘버링 기록이 고쳐 쓴 문제로 이어짐) · x=1 = 보관(강의 예상 탭 맨 아래 접힘 — L.pred·개수·플래시카드·모아보기에서 빠짐, 기록은 그대로)
 #   우선순위 칩·유형(배지)·관련 기출(b 전부 — 하나면 '연도 · 요지', 여럿이면 연도만)·'근거'(why — 기본 접힘) · f = 강의 쪽 그림(figgrid — 지연 로드·그림 창) · t=그림빵 + m = 가릴 상자(%)
@@ -1399,9 +1432,10 @@ for i, p in enumerate(PRED):
         _ms = ''.join(f'<button type="button" class="gbm" data-gbi="{j}" data-gbn="{_cn[j] if j < len(_cn) else j + 1}" style="left:{b[0]}%;top:{b[1]}%;width:{b[2] - b[0]:.2f}%;height:{b[3] - b[1]:.2f}%" aria-label="{j + 1}번 가림 — 누르면 보임">{_cn[j] if j < len(_cn) else j + 1}</button>' for j, b in enumerate(pred_boxes(p)))
         _wh = img_dims(_kk); fg = f'<div class="gbsc noann"><div class="gbfig" data-gbk="{_kk}"><img data-img="{_kk}" alt=""{f' width="{_wh[0]}" height="{_wh[1]}"' if _wh else ''}>{_ms}</div></div>' + (figgrid(p['k'], [(pg, '', None if fk == p['k'] else fk) for fk, pg in figs[1:]], gb=False) if len(figs) > 1 else '')
     attrs = f' data-pr="{pr}"' if pr in PRCL else ''
+    attrs += f' data-fmt="{FMTC.get(trend.fmt_of({"text": lecparse._plain(p["q"]), "lab24": p.get("t") or ""}), "")}"'   # 10-26 문제 유형(기출과 같은 분류기 trend.fmt_of — 화면 '유형' 여러 개 고르기)
     attrs += ' data-x="1"' if arch else ''
     attrs += ' data-fb="1"' if fb else ''
-    ent = {'k': p['k'], 'aid': pa, 'html': f'<article class="pc{" px" if arch else ""}" data-ptype="{"v" if "짤" in p["t"] else "n"}"{attrs} data-aid="{pa}" data-id="P:{pa}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>예상</b><i{f' title="{esc(p["t"])}"' if pred_tshort(p["t"]) != p["t"] else ""}>{esc(pred_tshort(p["t"]))}</i></span>{prc}<span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}{whyb}</div>{whyt}<div class="pq">{pq_lines(p["q"])}</div>{fg}<div class="acts"><button class="btn pri" data-tog="1">답 보기</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{lecparse.render_block(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'}
+    ent = {'k': p['k'], 'aid': pa, 'html': f'<article class="pc{" px" if arch else ""}" data-ptype="{"v" if "짤" in p["t"] else "n"}"{attrs} data-aid="{pa}" data-id="P:{pa}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>예상</b><i{f' title="{esc(p["t"])}"' if pred_tshort(p["t"]) != p["t"] else ""}>{esc(pred_tshort(p["t"]))}</i></span>{prc}<span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}{whyb}</div>{whyt}<div class="pq">{pq_lines(p["q"])}</div>{fg}<div class="acts"><button class="btn pri" data-tog="1">답 보기</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{pred_ans(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'}
     if arch: ent['x'] = 1
     if pr in PRCL: ent['pr'] = pr
     if p['t']: ent['t'] = p['t']
