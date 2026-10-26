@@ -23,7 +23,8 @@ def main(sid, key, dry, old=None, redo=False):
     done = J.work(sid, 'upd26', f'{key}.applied')
     if redo and os.path.exists(done) and not dry: import datetime; os.rename(done, done + '.' + datetime.date.today().strftime('%m%d'))
     if os.path.exists(done) and not dry: print(sid, key, '이미 옮김(두 번 옮기면 쪽이 어긋남 — 새 판이면 --redo) —', done); return
-    old = old or key + '5'; st = {'cite': 0, 'cite5': 0, 'lec': 0, 'plain': 0, 'plain25': 0, 'note25': 0, 'f': 0, 'oid': 0, 'warn': []}
+    old = old or key + '5'; oy = '2' + old[-1] if old[-1].isdigit() else '25'   # 옛 판 연도 글자(KEY5 → '25' · KEY6 → '26' — 10-26 스킬 점검 16 △4)
+    st = {'cite': 0, 'cite5': 0, 'lec': 0, 'plain': 0, 'plain25': 0, 'note25': 0, 'f': 0, 'oid': 0, 'warn': []}
     def cite(mm):
         n = int(mm.group(1)); v = mp.get(n)
         if v: st['cite'] += 1; return f'[[{key}:{v}]]'
@@ -33,16 +34,16 @@ def main(sid, key, dry, old=None, redo=False):
         for i in range(0, len(parts), 2):
             def rp(mm):
                 pre = parts[i][:mm.start()]; post = parts[i][mm.end():]
-                if re.search(r'(25|26)\s*$', pre[-4:]) or re.search(r'(?:25|26) [가-힣]{2,4} $', pre[-10:]): return mm.group(0)   # '25 p.n'·'26 p.n'·'25 변민수 p.n'은 그대로
+                if re.search(r'(25|26)\s*$', pre[-4:]) or re.search(r'(?:25|26) [가-힣]{2,4} $', pre[-10:]) or re.search(r'\d\d ?(?:PDF|강의|자료|판)\s*\(?$', pre[-12:]) or re.search(r'JB[^/·|]{0,12}참고[^/|]{0,20}$', pre[-40:]): return mm.group(0)   # '25 p.n'·'26 p.n'·'25 변민수 p.n'·'25 PDF p.n'·'JB 참고 p.n'은 그대로
                 n = int(mm.group(2)); v = mp.get(n)
                 if n not in mp: return mm.group(0)   # 이 강의 쪽 범위 밖(교과서·다른 자료 쪽) — 그대로
-                if re.match(r'\s*필기', post) or pre.endswith('필기('): st['note25'] += 1; return f'25 {mm.group(0)}'   # 옛 판 필기 쪽(10-26 GERI PSY — 'p.n 필기'·'필기(p.n)')은 새 쪽엔 그 필기가 없음 → '25 p.n' 그대로
+                if re.match(r'\s*필기', post) or pre.endswith('필기('): st['note25'] += 1; return f'{oy} {mm.group(0)}'   # 옛 판 필기 쪽(10-26 GERI PSY — 'p.n 필기'·'필기(p.n)')은 새 쪽엔 그 필기가 없음 → '25 p.n' 그대로
                 if mm.group(4):   # 'p.n-m' 범위 — 두 끝을 다 옮김(10-09: 앞 끝만 옮겨 'p.79-79'가 되던 것)
                     e = int(mm.group(4)); ve = mp.get(e)
                     if v and ve: st['plain'] += 1; return f'{mm.group(1)}{v}{mm.group(3)}{ve}'
-                    st['plain25'] += 1; return f'25 {mm.group(0)}'
+                    st['plain25'] += 1; return f'{oy} {mm.group(0)}'
                 if v: st['plain'] += 1; return f'{mm.group(1)}{v}'
-                st['plain25'] += 1; return f'25 {mm.group(1)}{n}'
+                st['plain25'] += 1; return f'{oy} {mm.group(1)}{n}'
             parts[i] = re.sub(r'(?<![0-9A-Za-z])(p\.\s?)(\d+)(?:([-~–])(\d+))?(?![0-9])', rp, parts[i])
         return ''.join(parts)
     CITE = re.compile(r'\[\[' + key + r':(\d+)\]\]')
