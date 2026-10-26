@@ -36,7 +36,7 @@ def check_part(kind, text, sid, key, qids):
                 if cid not in qids: errs.append(f'{i}: 없는 문항 {cid}')
                 for f in l.split('|')[1:]:
                     k_, _, v = f.strip().partition('=')
-                    if k_ not in ('v', 'yrs', 'yrsnote', 'lec', 'rel', 'pair', 'prof', 'front', 'prev', 'subq', 'st', 'kind', 'hide'):   # 10-25 build4 공통 지시 errs.append(f'{i}: 모르는 필드 {k_}')
+                    if k_ not in ('v', 'yrs', 'yrsnote', 'lec', 'rel', 'pair', 'prof', 'front', 'prev', 'subq', 'st', 'kind', 'hide'): errs.append(f'{i}: 모르는 필드 {k_}')   # 10-25 build4 공통 지시
                     if k_ == 'v' and v not in ('ok', 'part', 'diff', 'none', 'na'): errs.append(f'{i}: v={v}')
             elif not re.match(r'^[AMNK]:', l): errs.append(f'{i}: 알 수 없는 줄 {l[:40]}')   # K: = 🎯 요점(10-05)
         elif kind == 'tables':
