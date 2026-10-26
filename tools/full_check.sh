@@ -11,6 +11,7 @@ SIDS="OMS1 CONS IMPL ANAT GERI PHARM ESTH"; sids=$(echo $SIDS | tr A-Z a-z)
 say() { echo "$@" | tee -a $L; }
 say "== 동기화"; $PY tools/sync_common.py 2>&1 | tail -1 | tee -a $L
 o=$($PY tools/num/build_num.py --check 2>&1 | tail -1); say "$o"; echo "$o" | grep -q OK || say "  ✗ 넘버링 모듈 사본(docs/num ↔ tools/num · NUMV) 다름 — tools/num/build_num.py"
+say "== 도구 문법"; for f in tools/*.py tools/cons/*.py tools/num/*.py tools/tests/*.py; do $PY -m py_compile "$f" 2>/dev/null || say "  ✗ 도구 문법 오류 $f"; done   # 10-26 merge_parts가 10-24부터 문법 오류로 멈춰 있던 것을 못 잡음(스킬 점검 16 ✗4)
 say "== 빌드"
 for s in $sids; do
   $PY tools/$s/build4.py > work/_tmp/b_$s.log 2>&1; rc=$?
