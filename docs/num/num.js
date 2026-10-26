@@ -11,7 +11,8 @@ let H = null;   /* 허브가 넘겨 줌: LS·NS·LSQ·toast·PACKS·SUBJECTS·sj
 const $ = (s, e) => (e || document).querySelector(s), $$ = (s, e) => [...(e || document).querySelectorAll(s)];
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const now = () => Date.now();
-const TYPES = { num: '넘버링형', essay: '서술형', blank: '빈칸형', mc: '객관식', short: '단답형' };
+const TYPES = { num: '넘버링형', essay: '서술형', blank: '빈칸형', mc: '객관식', tf: 'T/F', short: '단답형' };
+const FMTM = { es: 'essay', nu: 'num', sh: 'short', bl: 'blank', mc: 'mc', tf: 'tf' };   /* 10-26 JB·예상 카드의 data-fmt(허브 유형 줄과 같은 분류 trend.fmt_of) → 불러오기 유형 — 같은 문제가 두 곳에서 다른 유형으로 보이지 않게 */
 const STN = ['미작성', '작성 중', '완성'];
 const KIND = { seed: 'Word 자료', jb: 'JB 기출', pred: '예상문제', user: '직접 추가', word: 'Word 가져옴' };
 const S = { root: null, app: 'make', sj: '', cfg: null, items: [], by: new Map(), lecs: [], seed: null, ed: null, q: '', sel: new Set(), selMode: false, tok: 0, saveSt: '', idxLoaded: null };
@@ -410,6 +411,8 @@ body:has(#retpill.on) #numv .nm-top{bottom:84px}   /* 10-25 점검 C4 ↩ 돌아
 #numv .nm-fpan .ft{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
 #numv .nm-info{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);min-height:26px;margin:0 0 8px}
 #numv .nm-info b{color:var(--ink)}
+#numv .nm-info .nm-sync{margin-left:auto;display:inline-flex;align-items:center;gap:4px;min-height:26px;padding:2px 8px;border:0;border-radius:999px;background:none;font:inherit;font-size:12px;color:var(--faint,#89857F);cursor:pointer;white-space:nowrap}#numv .nm-info .nm-sync:hover{background:var(--tint,#F1EEEA);color:var(--ink)}#numv .nm-info .nm-sync.err{color:#B3261E;font-weight:600}#numv .nm-info .nm-sync.off{color:var(--sub)}
+#numv .nm-syncban{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 10px;padding:9px 12px;border:1px solid #E8D49A;border-radius:10px;background:#FFF8E1;color:#4A3B12;font-size:13px;line-height:1.5}#numv .nm-syncban[hidden]{display:none}#numv .nm-syncban.on{border-color:#BFD9C8;background:#EEF7F1;color:#163D27}#numv .nm-syncban .t{flex:1 1 280px}#numv .nm-syncban button{flex:none;min-height:30px;padding:3px 12px;border:1px solid var(--line,#E9E5DF);border-radius:8px;background:#fff;font:inherit;font-size:12.5px;color:var(--ink);cursor:pointer}#numv .nm-syncban button.pri{background:var(--ink,#2B2926);border-color:var(--ink,#2B2926);color:#fff}
 #numv .nm-fchip{display:inline-flex;align-items:center;gap:3px;border:1px solid #C9D9E8;background:#F0F5FA;color:#24466B;border-radius:999px;padding:0 3px 0 10px;height:26px;font:inherit;font-size:12.5px;cursor:pointer;max-width:100%}
 #numv .nm-fchip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:22em}
 #numv .nm-fchip i{font-style:normal;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
@@ -935,7 +938,7 @@ function barHTML() {
     + `<button type="button" class="nm-sel${S.selMode ? ' on' : ''}" data-act="selm" aria-pressed="${S.selMode}" title="여러 문제를 골라 한 번에 — 완성 표시·강의 옮기기·합치기·빼기">${ICO.sel}${S.selMode ? '선택 끝' : '선택'}</button></div>`
     + `<button type="button" class="nm-tbtn nm-vbtn" data-act="vopt" aria-expanded="${!!S.vo}" aria-haspopup="true" title="보기 — 강의별/전체 목록 · 답안/스토리 가리기 · 여러 개 선택">${ICO.view}<span>보기</span></button>`
     + `<span class="nm-save ${esc(S.saveSt || '')}" aria-live="polite">${saveTxt()}</span></div>`
-    + (S.selMode ? `<div class="nm-batch" data-batch="1"></div>` : '') + fpanHTML() + `</div><div class="nm-info" data-cnt="1"></div>`;
+    + (S.selMode ? `<div class="nm-batch" data-batch="1"></div>` : '') + fpanHTML() + `</div><div class="nm-info" data-cnt="1"></div><div class="nm-syncban" data-syncban="1" hidden></div>`;
 }
 function stgHTML(k) { if (S.app === 'rev') return rscHTML(); const f = S.cfg.f, b = (v, t, n) => `<button type="button" data-stf="${v}" class="${f.st === v ? 'on' : ''}" aria-pressed="${f.st === v}">${t} <b>${n}</b></button>`; return `${b('', '전체', k.n)}${b('0', '미작성', k.c[0])}${b('1', '작성 중', k.c[1])}${b('2', '완성', k.c[2])}${k.rv ? b('rv', '⚠ 검토', k.rv) : ''}`; }
 function fpanHTML() {
@@ -964,10 +967,26 @@ function infoHTML(vis, k) {
   if (S.shuf && C.mode === 'all') ch.push(`<button type="button" class="nm-fchip" data-act="unshuf" title="원래 정렬로"><span>순서: 무작위</span><i aria-hidden="true">✕</i></button>`);
   return `<span>${ch.length ? `보이는 문제 <b>${vis}</b> / ${k.n}` : `<b>${k.n}</b>문제`}</span>${ch.join('')}${ch.length > 1 ? '<button type="button" class="nm-clr" data-act="fclr">모두 해제</button>' : ''}${C.sort !== 'lec' ? `<span class="nm-srt">정렬: ${esc(SORTN[C.sort] || C.sort)}</span>` : ''}`;
 }
+/* 10-26 사용자 '컴퓨터에선 넘버링 … 다 추가해놓은게 왜 모바일에선 안 뜨냐고' — 이 화면의 기기 동기화 상태(칩 — 누르면 💾 백업·동기화 창)와
+   ① 이 화면이 동기화 꺼짐(휴대폰·이 과목 문제 0) → 연결 안내(휴대폰 Safari·홈 화면 아이콘·카카오톡 안 브라우저는 저장소가 따로) ② 다른 기기의 이 과목 문제가 아직 다 안 옴 → 받는 중·못 받은 이유·[지금 받기] */
+function syncSt(full) { try { return H && H.sync ? H.sync.st(full) : null; } catch (e) { return null; } }
+function syncChipHTML() { const st = syncSt(); if (!st) return ''; return `<button type="button" class="nm-sync syncst ${esc(st.cls)}" data-syncst="1" data-bkpop="1" title="${esc(st.tip)}" aria-label="기기 동기화 — ${esc(st.txt)}"><svg class="ico" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7.5 18.5h9.25a4.25 4.25 0 0 0 .6-8.46A6 6 0 0 0 5.9 9.6 4.5 4.5 0 0 0 7.5 18.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>${esc(st.txt)}</span></button>`; }
+function syncBanHTML() {
+  const st = syncSt(true); if (!st || !S.sj) return null;
+  const mine = S.items ? S.items.filter(it => !it.del && it.kind !== 'seed').length : 0;
+  if (!st.on) { const touch = H.sync.touch && H.sync.touch(); if (!touch || mine || H.LS.get('numSyncHint', 0)) return null;
+    return { c: '', h: `<span class="t"><b>이 화면은 기기 동기화가 꺼져 있어요</b> — 컴퓨터에서 만든 넘버링을 여기서 보려면: 컴퓨터 JBL [백업] → [연결 코드 복사] → 이 화면 [백업] 창 ☁ 칸에 붙여 넣고 [연결]. 휴대폰은 Safari · 홈 화면 아이콘 · 카카오톡 안 브라우저의 저장소가 서로 따로라, 넘버링을 보는 바로 이 화면에서 연결해요.</span><button type="button" class="pri" data-bkpop="1">연결하기</button><button type="button" data-act="synchint">닫기</button>` }; }
+  const far = (st.devs || []).map(d => ({ d, n: (d.miss && d.miss[S.sj]) || 0 })).filter(x => x.n > 0).sort((a, b) => b.n - a.n)[0];
+  if (!far) return null;
+  const f = (st.fails || [])[0];
+  return { c: f ? '' : 'on', h: `<span class="t"><b>${esc(far.d.name)}의 이 과목 넘버링 ${far.n}문제가 아직 이 화면에 안 왔어요</b> — ${f ? '⚠ ' + esc(f.g) + ' 못 받음(' + esc(f.e) + ') · 곧 다시' : '받는 중…'}</span><button type="button" class="pri" data-act="syncnow">지금 받기</button><button type="button" data-bkpop="1">자세히</button>` };
+}
+function syncBanPaint() { const b = S.root && $('[data-syncban]', S.root); if (!b) return; const x = syncBanHTML(); if (!x) { if (!b.hidden) { b.hidden = true; b.innerHTML = ''; } return; } b.hidden = false; b.className = 'nm-syncban ' + x.c; if (b.innerHTML !== x.h) b.innerHTML = x.h; }
 function batchHTML() { const n = S.sel.size; return `<b>${n}개 선택</b><button type="button" class="nm-btn" data-bat="all">보이는 것 모두 선택</button><button type="button" class="nm-btn" data-bat="none">선택 해제</button><span class="nm-sp"></span><button type="button" class="nm-btn" data-bat="done"${n ? '' : ' disabled'}>완성 표시</button><button type="button" class="nm-btn" data-bat="undone"${n ? '' : ' disabled'}>완성 해제</button><button type="button" class="nm-btn" data-bat="move"${n ? '' : ' disabled'}>강의 옮기기</button><button type="button" class="nm-btn" data-bat="merge"${n > 1 ? '' : ' disabled'} title="같은 문제를 하나로 — 출처·연도를 합침(스토리는 하나만)">합치기</button><button type="button" class="nm-btn" data-bat="del"${n ? '' : ' disabled'}>목록에서 빼기</button><button type="button" class="nm-btn" data-act="aiout" data-sc="sel"${n ? '' : ' disabled'} title="고른 문제를 ChatGPT용 파일로">ChatGPT로 내보내기</button><button type="button" class="nm-btn" data-act="print" data-sc="sel"${n ? '' : ' disabled'}>인쇄</button>`; }
 function refreshCounts(vis) {
   const R = S.root; if (!R) return; const k = counts(); if (vis == null) vis = S.visN != null ? S.visN : $$('.nm-it:not([hidden])', R).length;
-  const c = $('[data-cnt]', R); if (c) c.innerHTML = S.app === 'rev' ? revInfoHTML(vis) : infoHTML(vis, k);
+  const c = $('[data-cnt]', R); if (c) c.innerHTML = (S.app === 'rev' ? revInfoHTML(vis) : infoHTML(vis, k)) + syncChipHTML();
+  syncBanPaint();
   const g = $('.nm-stg', R); if (g) g.innerHTML = stgHTML(k);
   const ft = $('[data-sfoot]', R); if (ft) ft.innerHTML = S.app === 'rev' ? revFootHTML() : footHTML(k);
   const bt = $('[data-batch]', R); if (bt) bt.innerHTML = batchHTML();
@@ -1567,7 +1586,7 @@ function jbList(sj) {
     const A = jbAns(a.querySelector('section.ab.jbans .lines')), fn = (a.querySelector(':scope > .small') || {}).textContent || '';
     const q = lnHTML(a.querySelector('.qtext')) + qfig, an = A.a + afig, qp = plain(q).replace(/\s+/g, '');
     const note = [A.src.length ? '참고: ' + A.src.join(' / ') : '', A.ex ? '해설: ' + A.ex : '', /그림 문항/.test(fn) ? fn.trim() : ''].filter(Boolean).join('\n');
-    out.push({ t: 'jb', s: sj, id: a.dataset.aid || (sj + ':' + id), lec: a.dataset.lec || '', yrs: (a.dataset.yrs || '').split(/\s+/).filter(Boolean).map(y => +y < 100 ? 2000 + +y : +y), prof: a.dataset.prof || '', mk: id, q, a: an, note, ph: /미복원|복원\s*불충분|복원부실/.test(qp) && qp.length < 40 });
+    out.push({ t: 'jb', s: sj, id: a.dataset.aid || (sj + ':' + id), lec: a.dataset.lec || '', yrs: (a.dataset.yrs || '').split(/\s+/).filter(Boolean).map(y => +y < 100 ? 2000 + +y : +y), prof: a.dataset.prof || '', mk: id, fmt: a.dataset.fmt || '', q, a: an, note, ph: /미복원|복원\s*불충분|복원부실/.test(qp) && qp.length < 40 });
   }
   (P.preds || []).forEach(p => {
     if (p.x) return;   /* S3 보관(x=1)된 예상문제는 불러오기 목록에서 뺌(이미 넣은 것은 그대로) */
@@ -1576,9 +1595,9 @@ function jbList(sj) {
     a.querySelectorAll('.cite').forEach(e => e.remove());   /* 10-22 강의자료 쪽 인용 칩은 빼고 가져옴 */
     const q = srcClean(lnHTML(a.querySelector('.pq')), sj) + fig, box = a.querySelector('section.ab.jbans .pre2') || a.querySelector('section.ab.jbans');
     const kind = p.t || (a.querySelector('.ybadge i') || {}).textContent || '';
-    out.push({ t: 'pred', s: sj, id: p.aid || a.dataset.aid, mk: 'P:' + (p.aid || a.dataset.aid), lec: p.k, yrs: [], prof: '', q, a: box ? srcClean(lnHTML(box, 'h5'), sj) : '', note: kind ? '예상문제 · ' + kind : '예상문제', pm: pmOf(sj, p) });
+    out.push({ t: 'pred', s: sj, id: p.aid || a.dataset.aid, mk: 'P:' + (p.aid || a.dataset.aid), lec: p.k, yrs: [], prof: '', fmt: a.dataset.fmt || '', q, a: box ? srcClean(lnHTML(box, 'h5'), sj) : '', note: kind ? '예상문제 · ' + kind : '예상문제', pm: pmOf(sj, p) });
   });
-  out.forEach(x => { x.ty = qType(x.q, x.a); x.key = qKey(x.q); x.txt = (plain(x.q) + ' ' + plain(x.a)).toLowerCase(); });
+  out.forEach(x => { x.ty = FMTM[x.fmt] || qType(x.q, x.a); x.key = qKey(x.q); x.txt = (plain(x.q) + ' ' + plain(x.a)).toLowerCase(); });
   PARSED.set(sj, out); return out;
 }
 async function itemsOfSubject(sj) {   /* 다른 과목에 넣을 때의 중복 확인용 */
@@ -2362,7 +2381,7 @@ function revBarHTML() {
         + `<button type="button" class="nm-sel${C.write ? ' on' : ''}" data-rwrite="1" aria-pressed="${!!C.write}" title="정답 | 스토리 | 내 답안 3칸으로 — 칸 경계를 끌어 너비 조절(기억)">✍ 내 답안 쓰기</button>`)
     + `<span class="nm-seg nm-shf" role="group" aria-label="무작위 순서">${tg('data-ract="shuf"', rnd, ICO.shuf + (rnd ? '다시 섞기' : '섞기'), rnd ? '한 번 더 무작위로' : '이 회차 순서를 무작위로(저장된 순서는 그대로)')}${rnd ? '<button type="button" data-ract="unshuf" title="원래 순서로">원래대로</button>' : ''}</span>`
     + `</div><button type="button" class="nm-tbtn nm-vbtn" data-act="vopt" aria-expanded="${!!S.vo}" aria-haspopup="true" title="보기 — ${card ? '카드 방향·섞기' : '강의별/전체 · 가리기 · 내 답안 쓰기 · 섞기'}">${ICO.view}<span>보기</span></button>`
-    + `<span class="nm-save ${esc(S.saveSt || '')}" aria-live="polite">${saveTxt()}</span></div>` + fpanHTML() + `</div><div class="nm-info" data-cnt="1"></div>`;
+    + `<span class="nm-save ${esc(S.saveSt || '')}" aria-live="polite">${saveTxt()}</span></div>` + fpanHTML() + `</div><div class="nm-info" data-cnt="1"></div><div class="nm-syncban" data-syncban="1" hidden></div>`;
 }
 function rscHTML() {
   const n = {}; Object.keys(RSC).forEach(k => { n[k] = 0; }); for (const it of S.items) if (!it.del) { const m = lastM(it.id); for (const k in RSC) if (scopeHas(k, m)) n[k]++; }
@@ -2616,6 +2635,7 @@ function bind() {
     if (!S.root.contains(t)) return;
     if (t.closest('.nm-ov') || t.closest('.nm-tb') || t.closest('.nm-pal')) return;   /* 대화창·도구 막대는 따로 */
     { const ap = t.closest('[data-app]'); if (ap) { if (S.drawer) drawer(false); appSet(ap.dataset.app); return; } }   /* 내 넘버링 ⇄ 넘버링 복습 */
+    { const sy = t.closest('[data-act=syncnow],[data-act=synchint]'); if (sy) { if (sy.dataset.act === 'synchint') { H.LS.set('numSyncHint', Date.now()); syncBanPaint(); } else if (H.sync) { sy.disabled = true; sy.textContent = '받는 중…'; H.sync.now(); } return; } }   /* 10-26 동기화 알림 띠 */
     if (S.app === 'rev') { if (t.closest('.nm-side [data-act=flt]')) { if (S.drawer) drawer(false); fpOpen(true); window.scrollTo(0, Math.min(scrollY, 0)); return; } if (revClick(e, t)) return; }
     const jl = t.closest('[data-jbl]'); if (jl) { jblGo(jl); return; }
     const sa = t.closest('[data-sact]'); if (sa) { const k = sa.dataset.sact; if (k === 'home') { const g = document.getElementById('gohome'); if (g) g.click(); else location.hash = '#/'; } else if (k === 'fold') side(); else if (k === 'close') drawer(false); return; }
@@ -2713,6 +2733,7 @@ function bind() {
   };
   addEventListener('storage', e => { if (H && !H.st) other(e.key || ''); });   /* 옛 허브 */
   addEventListener('jblxs', e => { if (H && H.st) other((e.detail && e.detail.key) || ''); });   /* 10-15 허브가 다른 창의 쓰기(기기 저장소·이 브라우저)를 알림 */
+  addEventListener('jblsyncst', () => { if (S.root && document.getElementById('numv')) syncBanPaint(); });   /* 10-26 동기화가 한 번 돌 때마다 — 칩은 허브가, 알림 띠는 여기서 */
 }
 const SQ = new Set(); let sqT = 0;
 const RQ = new Set(); let rqT = 0, rsT = 0;

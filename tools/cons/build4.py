@@ -1381,8 +1381,11 @@ def _pa_enum(x):
     if len(ps) < 3 or t[ps[0]] != '①': return False
     if any(CIRC_ALL.index(t[b]) != CIRC_ALL.index(t[a]) + 1 for a, b in zip(ps, ps[1:]) if t[a] in CIRC_ALL and t[b] in CIRC_ALL): return False
     return all(len(re.sub(r'[\s.,·/;:()]', '', t[a + 1:b])) >= 2 for a, b in zip(ps, ps[1:] + [len(t)]))
+PA_HEAD = re.compile(r'^((?:[①-⑳]|\d{1,2}\)|[A-E]\)|[OX○×✗]|T|F)(?:\s*[,·]\s*(?:[①-⑳]|\d{1,2}\)|[A-E]\)))*)\s+—\s+(?=(?:\*\*|==|\{[a-z]:)?\s*(?:[①-⑳]|\d{1,2}\)))')   # '1), 2) — 1) ○ …' = 정답 머리와 첫 보기 풀이는 줄을 나눔
 def pred_ans(v, ctx):
     lines = []
+    m = PA_HEAD.match(v)
+    if m: lines.append(m.group(1)); v = v[m.end():]
     for sg in lecparse.split_top(v, ' / '):
         parts = lecparse.split_top(sg, ' · ')
         if len(parts) < 2: lines.append(sg); continue
