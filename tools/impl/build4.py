@@ -1746,7 +1746,7 @@ def _icon(n):
     except TypeError: f = ImageFont.load_default()
     d.text((n / 2, n * .42), 'JBL', fill='#FFFFFF', font=f, anchor='mm')
     b = io.BytesIO(); im.save(b, 'PNG', optimize=True); return b.getvalue()
-_man = json.dumps({'name': 'JBL 허브', 'short_name': 'JBL 허브', 'start_url': './', 'scope': './', 'display': 'standalone', 'display_override': ['window-controls-overlay', 'standalone'], 'lang': 'ko', 'background_color': '#F7F4EF', 'theme_color': '#FFFFFF',
+_man = json.dumps({'name': 'JBL 허브', 'short_name': 'JBL 허브', 'start_url': './', 'scope': './', 'display': 'standalone', 'lang': 'ko', 'background_color': '#F7F4EF', 'theme_color': '#FFFFFF',
                    'icons': [{'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png'}]}, ensure_ascii=False, indent=1).encode('utf-8')
 for _fn, _b in [('manifest.webmanifest', _man), ('icon-192.png', _icon(192)), ('icon-512.png', _icon(512))]:
     _p = os.path.join(OUT, _fn)
