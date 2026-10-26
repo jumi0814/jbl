@@ -13,6 +13,7 @@ WAIT = "window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#
 KX = "(()=>{const k=document.querySelector('#kit'),r=k.getBoundingClientRect(),sw=parseFloat(getComputedStyle(k).left)||0,W=document.documentElement.clientWidth;return [Math.round((r.left+r.right)/2-(sw+(W-sw)/2)),Math.round(r.left),Math.round(r.right),W]})()"
 CARD = "i=>{const c=[...document.querySelectorAll('#stage .qc,#stage .pc')].filter(x=>x.offsetParent)[i];if(!c)return '';c.dataset.kf=String(i);return String(i)}"
 TOP = "i=>{const c=document.querySelector('#stage [data-kf=\"'+i+'\"]');return c?Math.round(c.getBoundingClientRect().top):null}"
+REF = "i=>{const line=__h.topOff(),cs=[...document.querySelectorAll('#stage .qc,#stage .pc,#stage .tc,#stage .gbx,#stage .fcard')].filter(c=>c.offsetParent!==null);const k=cs.findIndex(c=>c.getBoundingClientRect().bottom>line+4);if(k<0)return i;const c=cs[k],a=c.querySelector('.acts:not(.acts2)');if(a&&a.offsetParent!==null&&a.getBoundingClientRect().bottom>line-2){if(!c.dataset.kf)c.dataset.kf='r'+i;return c.dataset.kf;}return i}"
 alpha = lambda c: float(re.findall(r'[\d.]+', c)[3]) if c.startswith('rgba') else 1.0
 errs = []
 with sync_playwright() as p:
@@ -30,6 +31,7 @@ with sync_playwright() as p:
                 cid = pg.evaluate(CARD, i)
                 if not cid: continue
                 pg.evaluate("i=>{const c=document.querySelector('#stage [data-kf=\"'+i+'\"]');scrollTo(0,c.getBoundingClientRect().top+scrollY-230)}", cid); pg.wait_for_timeout(500)
+                cid = pg.evaluate(REF, cid)   # 10-26 기준 카드 = 화면 맨 위(막대 아래 선)에 답 단추 줄(.acts)이 보이는 카드 — 그 카드 답이 아래로(사용자 '답 펼칠 때 왜 자꾸 위로')
                 t0 = pg.evaluate(TOP, cid); pg.click('#frev'); pg.wait_for_timeout(1700); t1 = pg.evaluate(TOP, cid)
                 pg.click('#frev'); pg.wait_for_timeout(1700); t2 = pg.evaluate(TOP, cid)
                 ok(t0 is not None and abs(t1 - t0) <= 3 and abs(t2 - t0) <= 3, f'{w} ② {tab} {i + 1}번째 카드 답 모두 펼치기·접기 뒤 같은 자리 {t0} → {t1} → {t2}')

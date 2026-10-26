@@ -6373,7 +6373,7 @@ function chipShow(b){if(!b)return;const p=b.parentElement;if(!p||p.scrollWidth<=
 document.addEventListener('touchstart',e=>{const t=e.touches[0];if(e.touches.length===1&&t&&t.touchType==='stylus'&&!Kit.mode()&&Kit.pen()&&e.target.closest&&e.target.closest('#stage [data-aid]'))document.body.classList.add('pen-drag');},{passive:true,capture:true});
 ['touchend','touchcancel'].forEach(ev=>document.addEventListener(ev,()=>document.body.classList.remove('pen-drag'),{passive:true,capture:true}));
 // ux4 묶음1 끝
-window.__h={openDoc,PACKS,docTabs,get CUR(){return CUR;},revealCard,Kit,getMK,autoBak,mergeInto,lkCut,trSessTxt,day};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
+window.__h={topOff,openDoc,PACKS,docTabs,get CUR(){return CUR;},revealCard,Kit,getMK,autoBak,mergeInto,lkCut,trSessTxt,day};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 Object.assign(window.__h,{bkLimit,storeProtect,bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
 Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});Object.assign(window.__h,{studyReplace,undoDrop});   /* ux4f E 회귀 고리 */
