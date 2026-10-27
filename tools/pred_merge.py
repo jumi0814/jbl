@@ -19,14 +19,15 @@ def split(text):
 def slug(*xs):
     t = '|'.join(xs); base = re.sub(r'[^a-z0-9가-힣]+', '', t.lower())[:24]
     return base + '_' + hashlib.md5(t.encode('utf-8')).hexdigest()[:6]
-def aids(sid, blocks):
+def aids(sid, blocks, new=False):
     s = set()
     for k, b in blocks:
         if k is None: continue
         q = next((l[2:].strip() for l in b.split('\n') if l.startswith('Q:')), '')
         m = re.search(r'\|\s*oid=([^|\n]+)', b.split('\n')[0])
-        s.add(f'{sid}:P:{slug(q)}');
-        if m: s.add(m.group(1).strip())
+        if m: s.add(m.group(1).strip())   # oid가 있으면 화면 aid = oid(build4 pred_aid) — Q 글자를 또 고쳐도 기록은 oid로 이어짐(10-27b)
+        else: s.add(f'{sid}:P:{slug(q)}')
+        if new: s.add(f'{sid}:P:{slug(q)}')
     return s
 def main():
     a = [x for x in sys.argv[1:] if not x.startswith('--')]; dry = '--dry' in sys.argv
@@ -39,7 +40,7 @@ def main():
             if k is None: continue
             if k in keys and keys[k] != i: raise SystemExit(f'✗ 강의 {k}가 두 조각에 있음')
             keys[k] = i
-    old = aids(sid, [(k, b) for k, b in base if k in keys]); new = aids(sid, [x for pb in parts for x in pb])
+    old = aids(sid, [(k, b) for k, b in base if k in keys]); new = aids(sid, [x for pb in parts for x in pb], True)
     lost = sorted(old - new)
     if lost: raise SystemExit('✗ 조각에서 사라진 옛 문항(지우지 말고 x=1로): ' + ', '.join(lost[:20]) + (' …' if len(lost) > 20 else ''))
     out = []; placed = set()

@@ -1039,7 +1039,9 @@ def lec_card(L, j, c):
     tg = ' · '.join(x for x in c['tag'].split(' · ') if not x.strip().startswith('기출'))
     tagc = f'<span class="chip tagc">{esc(tg)}</span>' if tg else ''
     u26c = ' u26c' if c.get('u26') else ''; u26chip = '<span class="chip u26chip" title="이 카드에 26년도 자료에서 새로 생기거나 바뀐 내용이 있음(초록 NEW 26 표시)">🆕 26 바뀜</span>' if u26c else ''
-    gst = gone_state(k, c['rng'], L.get('pages')); c['gone'] = gst
+    gst = gone_state(k, c['rng'], L.get('pages'))
+    if not gst and k not in getattr(S, 'ALT_KEY', {}) and lecparse.GONE26.search(c['gist'] + str(c['body'])): gst = 'part'   # 10-27b 쪽 범위는 26 쪽이어도 본문 줄·소제목에 '(… 26에서 빠짐)'이 있으면 '일부'(ANAT LIP 구순열 · PHARM CHR 증례 Discussion 등)
+    c['gone'] = gst
     if gst == 'all': u26c += ' cgone'; u26chip = '<span class="chip gonechip" title="이 카드 전체가 25년도 자료에만 있음 — 26년도 강의자료에서 빠짐(JB 기출 대비용으로 남김)">26에서 빠짐</span>' + u26chip
     elif gst == 'part': u26c += ' cgonep'; u26chip = '<span class="chip gonechip part" title="이 카드 일부가 25년도 자료에만 있음 — 그 부분은 본문의 26에서 빠짐 표시로">일부 26에서 빠짐</span>' + u26chip
     if c.get('e26'): u26c += ' e26c'; u26chip += '<span class="chip e26chip" title="이 카드에 26년도 수업에서 교수님이 강조·시험 예고한 내용이 있음(보라 26 강조 표시)">26 강조</span>'   # 10-10 사용자 '26년도 강조와 26년도 피피티에 새로 추가된 내용 표시는 확실히 구분'   # 10-09 사용자 '26년도 올해 추가된 … 꼭!! 강조'
