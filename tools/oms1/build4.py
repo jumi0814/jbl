@@ -972,12 +972,27 @@ def pg_label(k, rng, npages):
         if not m: continue
         a, b = int(m.group(1)), int(m.group(2) or m.group(1))
         if first is None: first = a
-        if a > 100 and (k in getattr(S, 'ALT_KEY', {}) or a > (npages or 0)):
+        if a > 100 and k in getattr(S, 'ALT_KEY', {}):
             if '별도 파일' not in spec: spec.append('별도 파일')
+        elif a > 100 and a > (npages or 0):   # 10-27 사용자 '26에서 빠짐 표시가 뭐 보이지도 않고' — 100+n = 옛 판(25) 자료 n쪽(F: <KEY>5:n과 같은 꼴) → '별도 파일' 대신 '25 자료 p.n'
+            spec.append(f'25 자료 p.{a - 100}' + ('' if a == b else f'–{b - 100}'))
         elif a == 0:
             if '필기본' not in spec: spec.append('필기본')
         else: nums.append(str(a) if a == b else f'{a}–{b}')
     return ' · '.join(([pl_ + '·'.join(nums)] if nums else []) + spec), first
+def gone_state(k, rng, npages):
+    """10-27 사용자 '아예 전체 카드가 26년도에 빠지거나 그런거라면 확실히 표시 … 카드에도 태그 26년도 빠짐 태그' — 카드 쪽 범위 조각이 모두 옛 판(25) 쪽(100+n · '25 p.n')이면 'all', 일부면 'part'(ALT_KEY 별도 파일·필기본 0은 셈하지 않음)"""
+    if k in getattr(S, 'ALT_KEY', {}): return ''
+    old = new = 0
+    for sg in [x.strip() for x in re.split(r'[,·]', rng or '') if x.strip()]:
+        if re.fullmatch(r'2\d\s*p\.\s*\d+(?:\s*[-–~]\s*\d+)?', sg): old += 1; continue
+        m = re.match(r'(\d+)', sg)
+        if not m: continue
+        a = int(m.group(1))
+        if a == 0: continue
+        if a > 100 and a > (npages or 0): old += 1
+        else: new += 1
+    return 'all' if old and not new else ('part' if old else '')
 def fchash(t):
     """허브 fcHash와 같은 값(djb2 · UTF-16 단위 · 36진) — ⚡ 줄 → 플래시카드 기록 키 R:<강의>:<해시>"""
     h = 5381; b = t.encode('utf-16-le')
@@ -1024,6 +1039,9 @@ def lec_card(L, j, c):
     tg = ' · '.join(x for x in c['tag'].split(' · ') if not x.strip().startswith('기출'))
     tagc = f'<span class="chip tagc">{esc(tg)}</span>' if tg else ''
     u26c = ' u26c' if c.get('u26') else ''; u26chip = '<span class="chip u26chip" title="이 카드에 26년도 자료에서 새로 생기거나 바뀐 내용이 있음(초록 NEW 26 표시)">🆕 26 바뀜</span>' if u26c else ''
+    gst = gone_state(k, c['rng'], L.get('pages')); c['gone'] = gst
+    if gst == 'all': u26c += ' cgone'; u26chip = '<span class="chip gonechip" title="이 카드 전체가 25년도 자료에만 있음 — 26년도 강의자료에서 빠짐(JB 기출 대비용으로 남김)">26에서 빠짐</span>' + u26chip
+    elif gst == 'part': u26c += ' cgonep'; u26chip = '<span class="chip gonechip part" title="이 카드 일부가 25년도 자료에만 있음 — 그 부분은 본문의 26에서 빠짐 표시로">일부 26에서 빠짐</span>' + u26chip
     if c.get('e26'): u26c += ' e26c'; u26chip += '<span class="chip e26chip" title="이 카드에 26년도 수업에서 교수님이 강조·시험 예고한 내용이 있음(보라 26 강조 표시)">26 강조</span>'   # 10-10 사용자 '26년도 강조와 26년도 피피티에 새로 추가된 내용 표시는 확실히 구분'   # 10-09 사용자 '26년도 올해 추가된 … 꼭!! 강조'
     h = [f'<article class="tc {heat(mx)}{u26c} open" id="t-{k}-{j}" data-n="{dn}" data-grp="{esc(c["grp"])}" data-aid="{AIDS[(k, j)]}" data-alt="{card_alt(k, j)}"><div class="thead"><span class="badge" data-ttog>{j+1}</span><div class="tt" data-aid="{AIDS[(k, j)]}~h"><div class="en serif" data-ttog>{esc(c["en"])}</div><div class="ko">{esc(c["ko"])}{(" <span class=" + chr(34) + "pg" + chr(34) + ">· " + lab + "</span>") if lab else ""}</div><div class="one">{lecparse.gist_html(c["gist"], ctx)}</div><div class="tchips">{u26chip}{tagc}{ych}{exj}{"<span class=\'chip emc\'>💬 교수 강조</span>" if prof else ""}</div></div><button class="dn noann" data-done="1" title="이해함 표시">✓</button><button class="car noann" data-ttog title="접기/펼치기" aria-label="접기/펼치기">▶</button></div><div class="tbody">']
     blocks = []; curb = None; key = ''; exams = []; exbuf = []; prevb = None
@@ -1291,7 +1309,7 @@ for L in LEC:
                 if ks_[0] != nk_ and ks_[0] not in old_ and len(tops_) >= 2 and all(len(x) >= 4 and x in fcnorm(tc_) for x in tops_): old_ = old_ + ks_
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
-    lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP}), (1 if c_.get('u26') else 0) | (2 if c_.get('e26') else 0)] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수, 26 표시(1 = NEW 26 · 2 = 26 강조 — 10-10 사용자 '메뉴탭에서 … 별표 … 옆에 조그맣게 26 new랑 26 강조')]
+    lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP}), (1 if c_.get('u26') else 0) | (2 if c_.get('e26') else 0) | (4 if c_.get('gone') == 'all' else 8 if c_.get('gone') == 'part' else 0)] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수, 26 표시(1 = NEW 26 · 2 = 26 강조 — 10-10 사용자 '메뉴탭에서 … 별표 … 옆에 조그맣게 26 new랑 26 강조')]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
                  'jb': jb_ids + sorted([q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0))), 'pred': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') != '1'], 'parch': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') == '1'], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
