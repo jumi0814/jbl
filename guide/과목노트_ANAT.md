@@ -61,3 +61,4 @@
 ## 10-25 JB 전수 검토 결정 반영(사용자 10-24 결정표 — guide/handoff/jb_audit_1024)
 - V01 새 카드(18·19 Unilateral cleft lip 객관식 — JB 해설 문장, Q02 배지 19·18 뺌) · U21 새 카드(2021·2020 SMAS 객관식, Q15 −21·20) · R07→Q16 합침(이하선관 25·24·23·21) · 2020 17번→P12 · 22-2 분해(→T13) · U09 MAND · T17 MAX(prof 서병무) · U06 ans= · P20·P16 보충(P16 다섯째는 mastoid process '후보') · R13·R14 출처 '추가복원' · S11 숨김 · front=26 Q03·Q13·Q14·Q15·Q16·Q18·Q19·R02. 남은 확인: 24판 원본 잘림 여부(로컬에서_할_일).
 - 사용자 표시 이관: tools/anat/jb_move.json(합친 id → 남는 id · 숨긴 id → '' · 앞면 바뀐 id → 자기 id).
+- 10-27 26 구강악안면외과학1 실제 출제(학생 복원 — work/upload_1027_oms1) 꼴로 예상문제 더함(guide/handoff/PRED_OMS26_BRIEF.md · 보고 work/ANAT/pred26/R_OMS26_ANAT.md) · 기존 예상 그대로 · why 첫머리 '26 구강외과 꼴:' · subject.py TREND_NOTE 교수 한 줄.
