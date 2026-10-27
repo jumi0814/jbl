@@ -59,3 +59,4 @@
 - P14→Q13 합침(2024 한 번만) · 미복원·복원 불충분 P13·Q04·Q05·Q09·R15 숨김(기출 대장에만) · Q18 짤·변형 · R13·R14 kind=예고(출제 아님) · Q08 문제 쪽 그림 · R02↔Q10·P11 · Q16↔R07·P18 · R06↔Q15 · Q10·Q12·T02·R03 줄 정리(JBFIX `_fx` — 강제 줄바꿈 U+2063) · front=26 Q06·Q13·T04.
 - 사용자 표시 이관: tools/impl/jb_move.json(합친 id → 남는 id · 숨긴 id → '' · 앞면 바뀐 id → 자기 id).
 - 10-27 26 구강악안면외과학1 실제 출제(학생 복원 — work/upload_1027_oms1) 꼴로 예상문제 더함(guide/handoff/PRED_OMS26_BRIEF.md · 보고 work/IMPL/pred26/R_OMS26_IMPL.md) · 기존 예상 그대로 · why 첫머리 '26 구강외과 꼴:' · subject.py TREND_NOTE 교수 한 줄.
+- 10-27 예상문제 전면 정돈(guide/handoff/PRED_REV1027_BRIEF.md · 보고 work/IMPL/pred26/R_REV1027_*.md) — 교수 성향 표 · 상 = '시간 없을 때 이것만' · 중복 보관 · 빈 카드 새 문항 · 옛 문항 모두 보존.

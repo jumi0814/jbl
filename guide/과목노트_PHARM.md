@@ -62,3 +62,4 @@
 ## 10-25 JB 전수 검토 결정 반영(사용자 10-24 결정표 — guide/handoff/jb_audit_1024)
 - 새 카드 18: XE27~29(23q4 2020 구강건조증 — Sjögren 진단·약·NSAID) · PN28(2021 8-1·8-2 증례) · DS31(2021 5번) · AX25~37 참고(23q4 진정수면제·약물상호작용 — ANX와 겹치는 것만). 합침 10(XE21→XE07·BT10→BT06·XE19→XE09·XE20→XE08·BT11→BT08·BT12→BT04·BT13→BT07·HM11→HM03·HM21→HM16·PN24→PN13) · DS21 +21(Iodine) · XE17·XE03·XE15 +20 · HM07 15-1 · PN09/PN12 재분류 · DS10 +19 · DS 31장 참고(C) · 23q4판 출처 · front=26 12장 · RX35 subq.
 - 사용자 표시 이관: tools/pharm/jb_move.json(합친 id → 남는 id · 숨긴 id → '' · 앞면 바뀐 id → 자기 id).
+- 10-27 예상문제 전면 정돈(guide/handoff/PRED_REV1027_BRIEF.md · 보고 work/PHARM/pred26/R_REV1027_*.md) — 교수 성향 표 · 상 = '시간 없을 때 이것만' · 중복 보관 · 빈 카드 새 문항 · 옛 문항 모두 보존.

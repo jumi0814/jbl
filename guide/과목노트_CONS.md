@@ -82,3 +82,4 @@
 ## 10-25 JB 전수 검토 결정 반영(사용자 10-24 결정표 — guide/handoff/jb_audit_1024)
 - Q44→Q43 · Q40→Q39 합침 · Q57·Q63·Q64 서로 링크('같은 해 관련 문항') · Q17_1 짤·변형 · Q08 8회 · Q02 24년 빈칸 = 굵은 글씨 4곳(2-3mm·LC GIC·sodium perborate·3% H2O2 — WHT 수치표 두 열) · Q46·Q60 ans= · Q02 subq 2-2 · front=26 Q03·Q04·Q07·Q08·Q10·Q14. 남은 확인: 26판 인쇄 쪽 3 빠짐(로컬에서_할_일).
 - 사용자 표시 이관: tools/cons/jb_move.json(합친 id → 남는 id · 숨긴 id → '' · 앞면 바뀐 id → 자기 id).
+- 10-27 예상문제 전면 정돈(guide/handoff/PRED_REV1027_BRIEF.md · 보고 work/CONS/pred26/R_REV1027_*.md) — 교수 성향 표 · 상 = '시간 없을 때 이것만' · 중복 보관 · 빈 카드 새 문항 · 옛 문항 모두 보존.
