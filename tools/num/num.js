@@ -1589,7 +1589,7 @@ function jbList(sj) {
     out.push({ t: 'jb', s: sj, id: a.dataset.aid || (sj + ':' + id), lec: a.dataset.lec || '', yrs: (a.dataset.yrs || '').split(/\s+/).filter(Boolean).map(y => +y < 100 ? 2000 + +y : +y), prof: a.dataset.prof || '', mk: id, fmt: a.dataset.fmt || '', q, a: an, note, ph: /미복원|복원\s*불충분|복원부실/.test(qp) && qp.length < 40 });
   }
   (P.preds || []).forEach(p => {
-    if (p.x) return;   /* S3 보관(x=1)된 예상문제는 불러오기 목록에서 뺌(이미 넣은 것은 그대로) */
+    if (p.x || p.fn) return;   /* S3 보관(x=1)된 예상문제는 불러오기 목록에서 뺌(이미 넣은 것은 그대로) · 10-29 최종 N제(fn — 객관식 문제집)도 뺌 */
     tpl.innerHTML = p.html; const a = tpl.content.querySelector('article'); if (!a) return;
     const fig = (p.f || []).map((k, i) => { const im = a.querySelector('img[data-img="' + k + '"]'), wh = im && im.getAttribute('width') && im.getAttribute('height') ? ` width="${+im.getAttribute('width')}" height="${+im.getAttribute('height')}"` : ''; return sanitize(`<p><img data-lecimg="${sj}|${k}"${i === 0 && p.m && p.m.length ? ` data-gbm="${p.m.map(b => b.join(',')).join(';')}"` : ''}${wh}></p>`); }).join('');   /* S3 예상 f= 쪽 그림 · 그림빵(가림 상자) — 문제 쪽에 자리표로(폭·높이 = 자리 미리 잡기 — 그림이 늦게 와도 화면이 밀리지 않게) */
     a.querySelectorAll('.cite').forEach(e => e.remove());   /* 10-22 강의자료 쪽 인용 칩은 빼고 가져옴 */

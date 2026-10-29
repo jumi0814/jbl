@@ -32,7 +32,7 @@ def audit(SID, year=None):
     tbl_all = ' '.join(S_(L.get('tbl')) + S_(L.get('sum')) for L in P['lect']) + S_(P.get('tables')) + S_(P.get('sumall'))
     predb = {}
     for i, x in enumerate(P['preds']):
-        if x.get('x'): continue
+        if x.get('x') or x.get('fn'): continue   # 10-29 최종 N제(fn)는 '예상 연결'로 세지 않음(강의 예상 탭 기준)
         for b in x.get('b') or []: predb.setdefault(b, []).append(i)
     qtext = {}
     for q, h in P['cards'].items():

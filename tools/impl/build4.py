@@ -838,7 +838,7 @@ def img_dims(key):
     return _DIMS[key]
 GBPG = {}   # S3 (KEY, 쪽) → 'KEY:예상 번호' — 그 쪽 그림으로 낸 그림빵 예상(활성)이 있으면 학습 카드 그림 설명 줄에 '🖼 그림빵' 단추(그림빵 탭 그 문제로)
 for _i, _p in enumerate(PRED):
-    if '그림빵' in (_p.get('t') or '') and (_p.get('m') or '그림 보고' in (_p.get('t') or '')) and _p.get('f') and (_p.get('x') or '').strip() != '1':   # 10-20 '그림 보고 답하기'(그림을 주고 술식·구조·질환을 묻는 그림빵 — 가릴 라벨이 없어도 됨)
+    if '그림빵' in (_p.get('t') or '') and (_p.get('m') or '그림 보고' in (_p.get('t') or '')) and _p.get('f') and (_p.get('x') or '').strip() != '1' and not _p.get('fn'):   # 10-20 '그림 보고 답하기'(그림을 주고 술식·구조·질환을 묻는 그림빵 — 가릴 라벨이 없어도 됨)
         _m = re.match(r'\s*([A-Z0-9]+):(\d+)', _p.get('f') or '')
         if _m: GBPG.setdefault((_m.group(1), int(_m.group(2))), f"{_p['k']}:{_i}")
 def figgrid(kk, fl, gb=True):
@@ -1314,7 +1314,7 @@ for L in LEC:
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP}), (1 if c_.get('u26') else 0) | (2 if c_.get('e26') else 0) | (4 if c_.get('gone') == 'all' else 8 if c_.get('gone') == 'part' else 0)] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수, 26 표시(1 = NEW 26 · 2 = 26 강조 — 10-10 사용자 '메뉴탭에서 … 별표 … 옆에 조그맣게 26 new랑 26 강조')]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
-                 'jb': jb_ids + sorted([q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0))), 'pred': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') != '1'], 'parch': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') == '1'], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
+                 'jb': jb_ids + sorted([q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0))), 'pred': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') != '1' and not p.get('fn')], 'parch': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') == '1' and not p.get('fn')], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
 print('⭐ 시험포인트 구조화(ux2 D04):', f'{lecparse.EXAM_N[0]}/{lecparse.EXAM_N[1]}줄')
 print('🔑 줄 나누기(ux3 N1 key_lines):', f'상자·칸 {lecparse.KL[0]} · 새 구조 {lecparse.KL[1]} · 글자가 달라 옛 렌더로 되돌림 {lecparse.KL[2]}')
@@ -1434,7 +1434,7 @@ def pred_boxes(p):
         v_ = [round(float(y), 2) for y in re.findall(r'\d+(?:\.\d+)?', x)]
         if len(v_) == 4 and v_[2] > v_[0] and v_[3] > v_[1]: out.append(v_)
     return out
-def pred_aid(p): return (p.get('oid') or '').strip() or aid("P:" + slug(p.get("q_raw") or p["q"]))
+def pred_aid(p): return (p.get('oid') or '').strip() or aid(("F:" if p.get('fn') else "P:") + slug(p.get("q_raw") or p["q"]))   # 10-29 최종 N제(fn=1 — final.txt) = 따로 aid(F:) · 채점·★ 기록 키는 예상과 같은 'P:'+aid
 def pred_tshort(t):
     """화면 유형 배지(짧게 — 전체는 title): '교수 형식(객관식)' → '객관식' · '26 새 내용' → '26 새' · '26에서 빠짐 · JB 대비' → 'JB 대비' · '교수 강조' → '강조'"""
     s_ = re.sub(r'교수 형식\(([^)]*)\)', r'\1', t or '').replace('26 새 내용', '26 새').replace('교수 강조', '강조')
@@ -1461,8 +1461,10 @@ for i, p in enumerate(PRED):
     attrs += f' data-fmt="{FMTC.get(trend.fmt_of({"text": lecparse._plain(p["q"]), "lab24": p.get("t") or ""}), "")}"'   # 10-26 문제 유형(기출과 같은 분류기 trend.fmt_of — 화면 '유형' 여러 개 고르기)
     attrs += ' data-x="1"' if arch else ''
     attrs += ' data-fb="1"' if fb else ''
-    ent = {'k': p['k'], 'aid': pa, 'html': f'<article class="pc{" px" if arch else ""}" data-ptype="{"v" if "짤" in p["t"] else "n"}"{attrs} data-aid="{pa}" data-id="P:{pa}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>예상</b><i{f' title="{esc(p["t"])}"' if pred_tshort(p["t"]) != p["t"] else ""}>{esc(pred_tshort(p["t"]))}</i></span>{prc}<span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}{whyb}</div>{whyt}<div class="pq">{pq_lines(p["q"])}</div>{fg}<div class="acts"><button class="btn pri" data-tog="1">답 보기</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{pred_ans(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'}
+    attrs += ' data-fn="1"' if p.get('fn') else ''   # 10-29 최종 N제 — 강의 예상 탭·과목 예상·플래시카드·그림빵에서 빠지고 과목 '🎯 최종 N제' 탭에만
+    ent = {'k': p['k'], 'aid': pa, 'html': f'<article class="pc{" px" if arch else ""}" data-ptype="{"v" if "짤" in p["t"] else "n"}"{attrs} data-aid="{pa}" data-id="P:{pa}" data-alt="{aid("P%d" % i)}"><div class="qhead"><span class="ybadge pr"><b>{"N제" if p.get("fn") else "예상"}</b><i{f' title="{esc(p["t"])}"' if pred_tshort(p["t"]) != p["t"] else ""}>{esc(pred_tshort(p["t"]))}</i></span>{prc}<span class="chip pf">{esc(LECNAME[p["k"]])}</span>{rel}{whyb}</div>{whyt}<div class="pq">{pq_lines(p["q"])}</div>{fg}<div class="acts"><button class="btn pri" data-tog="1">답 보기</button><button class="btn mk ok" data-mk="ok">✓ 맞음</button><button class="btn mk ng" data-mk="ng">✗ 틀림</button><button class="btn mk bm" data-mk="bm">★</button></div><div class="ans"><section class="ab jbans"><h5>답 <small>강의자료 문장으로만 구성</small></h5><div class="pre2">{pred_ans(p["a_raw"], ctx) if p.get("a_raw") else p["a"]}</div></section></div></article>'}
     if arch: ent['x'] = 1
+    if p.get('fn'): ent['fn'] = 1
     if pr in PRCL: ent['pr'] = pr
     if p['t']: ent['t'] = p['t']
     if why: ent['why'] = why
@@ -1511,8 +1513,9 @@ for L_ in lect:
         if gp_: L_['gbp'] = gp_
         _gbn[0] += 1; _gbn[1] += len(cur_ + old_); _gbn[2] += len(gp_)
 print('그림빵(S3):', f'강의 {_gbn[0]} · 기출 {_gbn[1]} · 예상 {_gbn[2]}', '|', ' '.join(f"{L_['k']}({len(L_.get('gbj', []))}+{len(L_.get('gbp', []))})" for L_ in lect if L_.get('gbj') or L_.get('gbp')))
-_pa = [x for x in preds if not x.get('x')]
-print('예상문제(S3):', f'활성 {len(_pa)} · 보관 {len(preds) - len(_pa)} · 우선 상/중/하 {sum(1 for x in _pa if x.get("pr") == "상")}/{sum(1 for x in _pa if x.get("pr") == "중")}/{sum(1 for x in _pa if x.get("pr") == "하")} · oid {sum(1 for p in PRED if p.get("oid"))} · 그림 {sum(1 for x in preds if x.get("f"))} · 그림빵 {sum(1 for x in preds if x.get("m"))}',
+_pa = [x for x in preds if not x.get('x') and not x.get('fn')]
+if any(x.get('fn') for x in preds): _fn_ = [x for x in preds if x.get('fn')]; print('최종 N제:', f'{len(_fn_)}문항 · 상/중 {sum(1 for x in _fn_ if x.get("pr") == "상")}/{sum(1 for x in _fn_ if x.get("pr") == "중")} · 짤 {sum(1 for x in _fn_ if "짤" in (x.get("t") or ""))} · 강의 ' + ' '.join(f'{L_["k"]}({sum(1 for x in _fn_ if x["k"] == L_["k"])})' for L_ in lect))
+print('예상문제(S3):', f'활성 {len(_pa)} · 보관 {sum(1 for x in preds if x.get("x") and not x.get("fn"))} · 우선 상/중/하 {sum(1 for x in _pa if x.get("pr") == "상")}/{sum(1 for x in _pa if x.get("pr") == "중")}/{sum(1 for x in _pa if x.get("pr") == "하")} · oid {sum(1 for p in PRED if p.get("oid"))} · 그림 {sum(1 for x in preds if x.get("f"))} · 그림빵 {sum(1 for x in preds if x.get("m"))}',
       '| ⚠ 없는 b id: ' + ' '.join(sorted({x for p in PRED for x in re.split(r'[,\s]+', p.get('b', '') or '') if x and x not in QMAP})) if any(x and x not in QMAP for p in PRED for x in re.split(r'[,\s]+', p.get('b', '') or '')) else '')
 
 # ---- 기출 한눈표
@@ -1670,12 +1673,13 @@ for L in LEC:
     hs = [x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)]
     if hs: HINTS.append({'k': L['k'], 't': L['title'], 'h': lecparse.inline(' '.join(hs), ctx)})
 pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
-        'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
+        'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'finnote': getattr(S, 'FINAL_NOTE', {}), 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
 # 10-16 JB 카드 → 관련 예상문제 칩 '예상 n ▸'(그 기출을 b=로 건 활성 예상 · 누르면 그 강의 예상 탭의 첫 문제로 — 사용자 '과목별 기출 및 예상문제에는 반영이 안된 것 같거든')
 _PB = {}
+_FB = {}   # 10-29 JB 카드 → 그 기출을 b=로 건 최종 N제 칩 '🎯 N제 n ▸'(과목 최종 N제 탭의 그 문제로)
 for _x in preds:
     if _x.get('x'): continue
-    for _b in _x.get('b') or []: _PB.setdefault(_b, []).append(_x)
+    for _b in _x.get('b') or []: (_FB if _x.get('fn') else _PB).setdefault(_b, []).append(_x)
 for _q, _xs in _PB.items():
     _h = pack['cards'].get(_q)
     if not _h or 'data-gopred=' in _h: continue
@@ -1684,7 +1688,13 @@ for _q, _xs in _PB.items():
     _ks = sorted({_x['k'] for _x in _xs}, key=lambda k_: [L_['k'] for L_ in lect].index(k_) if k_ in [L_['k'] for L_ in lect] else 99)
     _chip = f'<button type="button" class="chip pgo noann" data-gopred="{esc(_xs[0]["k"])}|{esc(_xs[0]["aid"])}" title="이 기출을 관련 기출로 건 예상문제 {len(_xs)}개({esc(" · ".join(LECNAME.get(k_, k_) for k_ in _ks))}) — 누르면 그 강의 예상 탭의 첫 문제로">예상 {len(_xs)} ▸</button>'
     pack['cards'][_q] = _h[:_e] + _chip + _h[_e:]
-print('JB 카드 → 예상 칩:', len([q_ for q_ in _PB if q_ in pack['cards']]), '문항')
+for _q, _xs in _FB.items():
+    _h = pack['cards'].get(_q)
+    if not _h or 'data-gofin=' in _h: continue
+    _i = _h.find('<div class="qhead">'); _e = _h.find('</div>', _i) if _i >= 0 else -1
+    if _e < 0: continue
+    pack['cards'][_q] = _h[:_e] + f'<button type="button" class="chip pgo pgof noann" data-gofin="{esc(_xs[0]["aid"])}" title="이 기출을 관련 기출로 건 최종 N제 {len(_xs)}문항 — 누르면 과목 \'🎯 최종 N제\' 탭의 그 문제로(↩ 돌아가기)">🎯 N제 {len(_xs)} ▸</button>' + _h[_e:]
+print('JB 카드 → 예상 칩:', len([q_ for q_ in _PB if q_ in pack['cards']]), '문항' + (f' · N제 칩 {len([q_ for q_ in _FB if q_ in pack["cards"]])}' if _FB else ''))
 # JB 문항 id 잠금(C09, tools/jblock.py) — 새 id만 잠금에 추가 · 팩에 이번 해시(jbhash, verify가 비교)와 옮김 표(jbmove·jbmovev, 허브가 기록을 옮김)
 import jblock as _JL
 _QH = {q['id']: _JL.qhash(split_qa(q)[0]) for q in Q}

@@ -139,13 +139,16 @@ for q in Q:
 LECT = []; TABLES = []
 # ---------- 5. predicted ----------
 PRED = []; cur = None
-for line in open(DIR + '/pred.txt', encoding='utf-8'):
+for _pf, _fn in (('pred.txt', ''), ('final.txt', '1')):   # 10-29 사용자 '최종 N제라는 탭' — final.txt = 같은 문법(머리 fn=1 · build4가 강의 예상 목록에서 빼고 과목 '🎯 최종 N제' 탭에)
+  if not os.path.exists(DIR + '/' + _pf): continue
+  for line in open(DIR + '/' + _pf, encoding='utf-8'):
     line = line.rstrip('\n')
     if line.startswith('@'):
         p = [x.strip() for x in (line[3:] if line.startswith('@P ') else line[1:]).split('|')]
         cur = {'k': p[0], 't': '', 'b': '', 'q': '', 'a': ''}
         for x in p[1:]:
             k, _, v = x.partition('='); cur[k] = v
+        if _fn: cur['fn'] = _fn
         PRED.append(cur)
     elif line.startswith('Q:') and cur: cur['q'] = cite_html(line[2:].strip()); cur['q_raw'] = line[2:].strip()
     elif line.startswith('A:') and cur: collect(line); cur['a'] = cite_html(line[2:].strip()); cur['a_raw'] = line[2:].strip()
