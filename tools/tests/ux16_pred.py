@@ -41,8 +41,9 @@ with sync_playwright() as p:
     b = p.chromium.launch(); ctx = b.new_context(viewport={'width': 1280, 'height': 900}); pg = ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
     pg.goto(U + '#/'); pg.wait_for_timeout(2500)
-    P = pg.evaluate(f"(()=>{{const P=__h.PACKS.{SID};return {{preds:P.preds.map(x=>({{k:x.k,aid:x.aid,x:x.x||0,pr:x.pr||'',f:x.f||[],why:x.why||'',b:x.b||[],m:x.m||null}})),lect:P.lect.map(L=>({{k:L.k,pred:L.pred,parch:L.parch||[]}}))}}}})()")
-    PR = P['preds']; ok(len(PR) == len(BL), f"팩 예상 {len(PR)} = pred.txt 블록 {len(BL)}")
+    P = pg.evaluate(f"(()=>{{const P=__h.PACKS.{SID};return {{preds:P.preds.map(x=>({{k:x.k,aid:x.aid,x:x.x||0,fn:x.fn||0,pr:x.pr||'',f:x.f||[],why:x.why||'',b:x.b||[],m:x.m||null}})),lect:P.lect.map(L=>({{k:L.k,pred:L.pred,parch:L.parch||[]}}))}}}})()")
+    PR = [x for x in P['preds'] if not x.get('fn')]   # 10-29 최종 N제(fn — final.txt · 팩 끝에 붙음)는 예상 수에서 뺌
+    ok(len(PR) == len(BL), f"팩 예상 {len(PR)} = pred.txt 블록 {len(BL)}")
     # ---- oid: 옛 aid로 기록을 먼저 저장(사이트 갱신 전 ✓·★) ----
     oids = [(i, b_['oid']) for i, b_ in enumerate(BL) if b_.get('oid')]
     ok(bool(oids) and all(PR[i]['aid'] == o for i, o in oids), f"oid 있는 {len(oids)}문항 = 팩 aid가 옛 aid 그대로 {[o for i, o in oids if PR[i]['aid'] != o][:3]}")
