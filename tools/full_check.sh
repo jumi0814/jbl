@@ -25,7 +25,7 @@ say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail 
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | grep '^== '; done | tee -a $L
 say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
 say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
-say "== pred_check";    for S in $SIDS; do say "$S $($PY tools/pred_check.py $S 2>&1 | tail -1)"; done   # 10-16 예상문제 문법·사라진 옛 문항(pred_before) ✗
+say "== pred_check";    for S in $SIDS; do say "$S $($PY tools/pred_check.py $S 2>&1 | tail -1)"; s=$(echo $S | tr A-Z a-z); [ -f tools/$s/final.txt ] && say "$S 최종 N제 $($PY tools/pred_check.py $S --file tools/$s/final.txt 2>&1 | tail -1)"; done   # 10-16 예상문제 문법·사라진 옛 문항(pred_before) ✗ · 10-29 final.txt(최종 N제)도
 say "== link_audit";    $PY tools/link_audit.py --md work/_tmp/link_audit.md 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 JB ↔ 강의·⭐·표·예상 연결 전수
 n=$(grep -c '예상 연결 없음' work/_tmp/link_audit.md 2>/dev/null); [ "${n:-0}" -gt 0 ] && say "  ✗ link_audit 최근 해 문항 예상 연결 없음 $n"   # QA 49 — △도 0이어야 함
 say "== check_yearprof"; $PY tools/check_yearprof.py 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 출제 연도별 출제 교수 표(YEAR_PROF) 키·id·해

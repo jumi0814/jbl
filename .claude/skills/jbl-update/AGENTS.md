@@ -121,7 +121,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 ## E QA — 사용자 눈 점검 (과목 하나 · 찾기 — 메인이 허락하면 글자 그대로인 작은 표시만 직접 고침 · 나머지는 메인이 담당에게 다시 보냄)
 ```
 <공통 머리>
-과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~94 — 새 번호가 생겨도 끝까지, 마지막 절 '스크린샷으로 꼭 볼 것'까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
+과목 <SID>. .claude/skills/jbl-update/QA.md 점검표 **전 번호**(지금 1~95 — 새 번호가 생겨도 끝까지, 마지막 절 '스크린샷으로 꼭 볼 것'까지)를 이번에 바뀐 강의에 대해 하나씩 확인한다. 화면 기준 자료(메인이 마지막 빌드로 새로 만듦): work/review_breaks2/<SID>_lec.md · <SID>_jb.md · work/review_jb/<SID>.md · work/review_scan/<SID>.md · work/_tmp/full_check.log · 스크린샷 work/_tmp/qa_<SID>_*.png(Read) · work/review_final2/TA_<SID>.md(table_audit) · check_nred 목록 — ✍·br.ntb는 덤프에 안 보이니 QA 29는 스크린샷·render_line HTML로.
 덤프는 처음부터 끝까지 본다(보고에 본 덩어리 수). (메인이 허락하면) 글자 그대로인 작은 것 — 구분 기호·줄 나눔·{n:}/{u:}/{e:}/{r:} 표시·라벨 — 은 그 강의 lec + annot·tables·pred의 메인이 지시문에 적은 쪽(merge·split 직후면 parts, 아니면 tools/<sid>/의 그 강의 블록 — 그 과목 QA 1명만)에서 직접 고침(고치기 전 text_diff --save · 끝에 빠진 글자 0) · 허브·렌더러 몫은 보고만. 걸린 것마다: 점검표 번호 · 파일:줄(원고 위치) · 화면 모습 → 고칠 모양 · 어느 담당(B1·B2·B3/C/D1~D5·D2b/메인 = 허브·렌더러) 몫. 보고 work/review_final2/QA_<SID>.md. (직접 고침을 허락받지 않았으면) 고치지 않는다 — 허락받았어도 낱말·사실 문제와 허브·렌더러 몫은 보고만.
 ```
 
@@ -190,3 +190,9 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 - 쓸 수 있는 annot 지시: front=는 10-25c부터 자동이 기본(앞면 = 가장 최신 판) — 자동이 고른 사본이 틀릴 때만 `front=<판>#n` · 다른 문제면 `front=0` · prev=n · subq= · ans= · st= · kind= · hide= · rel=여럿 · subject.py JBFIX · YEAR_PROF_Q 값 '-'(근거 없음).
 - 합치기 = 남는 카드 OTHER에 옮기고 jb_move {없어진: 남는} · 숨김 {id: ""} · 앞면 바뀜 {id: id} · 새 카드 id는 jb_lock에 없는 번호.
 - 끝: build4 ⚠ 0 · 연결 누락 3줄 [] · check_lec·check_years·check_eyears·check_yearprof·link_audit·pred_check·fmt_audit·jb_cover · 결정마다 팩에서 확인 → 한국어 보고.
+
+## FN 최종 N제 작성 — 교수 하나(10-29)
+과목 <SID> 교수 <이름> 강의 <KEY들>. guide/handoff/FINAL_N_BRIEF.md 전체 그대로('CONS'·강의 목록·개수·work/CONS 경로·객관식 ≥85%는 <SID>·그 교수 꼴로 바꿔 읽음). 파일 work/<SID>/final/final_<담당>.txt · 보고 R_<담당>.md · 강의 쪽 순서 · 해설 = 정답 근거 → 선지마다 ○/× → 🔑 개념 1~2줄(≤90자 · 슬라이드 글 · 필기 K1~K3) · tools/ 수정·빌드·커밋 금지.
+
+## FNV 최종 N제 독립 검수 — 교수 하나(작성자와 다른 담당)
+과목 <SID> 파일 work/<SID>/final/final_<담당>.txt. guide/handoff/FINAL_N_REVIEW_BRIEF.md 그대로 — 문항 전부 쪽 이미지로(정답 하나·틀린 선지는 슬라이드 글로 분명히 틀림·해설 꼴) · 짤 축 누락·가치 높은 탈 자리만 더함 · 같은 파일을 고침 · 보고 V_<담당>.md · 빌드·커밋 금지.

@@ -5,7 +5,7 @@
 범위: CONS 26 강의 7개 전부 — WHT(이인복) · CRK·DHS(서덕규) · INL·ANT(김선영) · ADH·FRC(이창하). (안진수 교수님 강의는 CONS 자료·JB에 없음 → 범위 밖.)
 
 ## 0. 먼저 읽기
-CLAUDE.md 절대 규칙 · `.claude/skills/jbl-update/RULES.md` 11절(예상문제 최종형 — 첫 줄 '답 = 슬라이드 글 · 필기 K1~K3만', 둘째 줄 줄 쓰는 법) · `guide/handoff/PRED_NOTE1027_BRIEF.md`(필기 최소화) · `work/CONS/pred26/TREND_CONS.md`(맡은 교수 절 전부) · `work/_tmp/fmt26/CONS.md`(교수 × 연도 × 형식) · `tools/cons/subject.py` MENT_PROF·MENT_ALL·YEAR_PROF · `work/CONS/review/questions.md`(맡은 강의 문항 전부 — 머리 '출제' 연도 · 객관식 선지 꼴 · 답 · '교과서' 인용) · JB 원본 글 `work/jb/CONS_2026/*.txt`(25년 시험 '2025-3Q' — 특히 서덕규 6~41번 객관식 꼴) · 원고 `tools/cons/lec_<KEY>.txt`(@TIP·`!`·`{e:}` 26 강조·시험 예고·`{u:}` 26 새 내용·`(… 26에서 빠짐)`) · 쪽 이미지 `work/CONS/review/materials.md`의 폴더(답 근거는 쪽 이미지로 직접) · 지금 예상문제 `tools/cons/pred.txt`의 맡은 강의 블록(겹쳐도 됨 — N제는 따로 선 문제집).
+CLAUDE.md 절대 규칙 · `.claude/skills/jbl-update/RULES.md` 11절(예상문제 최종형 — 첫 줄 '답 = 슬라이드 글 · 필기 K1~K3만', 둘째 줄 줄 쓰는 법) · `guide/handoff/PRED_NOTE1027_BRIEF.md`(필기 최소화) · `work/CONS/pred26/TREND_CONS.md`(맡은 교수 절 전부 — 새 세션이면 커밋된 `guide/handoff/trend26/TREND_CONS.md`) · `work/_tmp/fmt26/CONS.md`(교수 × 연도 × 형식 — 없으면 `tools/fmt_audit.py CONS`로 다시 만듦) · `tools/cons/subject.py` MENT_PROF·MENT_ALL·YEAR_PROF · `work/CONS/review/questions.md`(맡은 강의 문항 전부 — 머리 '출제' 연도 · 객관식 선지 꼴 · 답 · '교과서' 인용) · JB 원본 글 `work/jb/CONS_2026/*.txt`(25년 시험 '2025-3Q' — 특히 서덕규 6~41번 객관식 꼴) · 원고 `tools/cons/lec_<KEY>.txt`(@TIP·`!`·`{e:}` 26 강조·시험 예고·`{u:}` 26 새 내용·`(… 26에서 빠짐)`) · 쪽 이미지 `work/CONS/review/materials.md`의 폴더(답 근거는 쪽 이미지로 직접) · 지금 예상문제 `tools/cons/pred.txt`의 맡은 강의 블록(겹쳐도 됨 — N제는 따로 선 문제집).
 
 ## 1. 먼저 할 분석(보고 맨 위 — 문제 고르는 근거)
 1. 교수 성향 표: 최근 시험(25·24·23)의 문항 수 · 짤 비율 · 형식(객관식 선지 꼴: '옳은/옳지 않은 것'·'해당하는/않는 것'·조합(ㄱㄴㄷ)·모두 고르기) · 26 멘트·26 수업 강조·시험 예고.
@@ -31,6 +31,7 @@ A: ③ — <정답 근거 = 슬라이드 글> [[KEY:쪽]] / ① ○ <슬라이�
 - b: 관련 기출(같은 축 · questions.md의 id). 탈 문항은 같은 꼴 기출이 있으면 그것.
 - **해설(A) = 예상문제 해설 꼴 + 개념 조금 더**: 정답 근거 → 선지마다 ○/× 한 줄(틀린 선지는 '× 슬라이드: …'처럼 바른 글) → 끝에 `🔑 개념:` 1~2줄(많아야 3줄 · 한 줄 ≤90자) — 이 문제가 속한 분류·기전·순서·수치를 **슬라이드 글로** 묶어 한눈에(탈이 옆 칸에서 나와도 풀리게). 개념 줄도 쪽 칩. 필기는 K1 강조·예고 / K2 필수 / K3 ⚠만 `{n:…}` 한 줄(PRED_NOTE1027_BRIEF). Claude 지식 금지.
 - 줄 형식: 사실·선지 풀이마다 ' / ' · Q의 선지는 ①~⑤ 차례대로(화면이 선지마다 줄).
+- **이미 배포된 N제를 고칠 때**: Q 글자를 바꾸면 머리에 `oid=<옛 aid>`(고치기 전 `docs/packs/<SID>.js` preds 중 fn=1인 문항의 aid — 채점·★ 기록이 이어짐) · A·why·pr만 고치면 oid 불필요 · 문항을 지우지 말고 보관은 `x=1`.
 
 ## 4. 쓰는 곳·검사·보고
 - 파일 `work/CONS/final/final_<담당>.txt`(맡은 강의 블록 전부 · 강의 순서 = subject.py LEC_ORDER · 강의 안은 쪽 순서) · `tools/cons/*` 수정 금지 · 빌드·커밋 금지 · scratchpad 이름 'CONS_FINAL_<담당>_'.

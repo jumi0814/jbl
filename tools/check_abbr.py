@@ -25,7 +25,7 @@ def main(sids):
         miss = {}; K = keys(sid)
         try: K |= set(__import__('json').load(open(J.work(sid, 'review', 'qids.json'), encoding='utf-8'))['q'])   # 문항 id(BT04 등)
         except Exception: pass
-        for f in sorted(glob.glob(os.path.join(d, 'lec_*.txt'))) + [os.path.join(d, x) for x in ('annot.txt', 'tables.txt', 'pred.txt')]:
+        for f in sorted(glob.glob(os.path.join(d, 'lec_*.txt'))) + [os.path.join(d, x) for x in ('annot.txt', 'tables.txt', 'pred.txt', 'final.txt')]:   # 10-29 최종 N제도
             if not os.path.exists(f): continue
             for i, line in enumerate(open(f, encoding='utf-8'), 1):
                 body = re.sub(r'\[\[[^\]]+\]\]|\{jb:[^}]+\}|^@[^\n|]*|jb=[^|\n]*|k=[A-Z0-9]+|b=[A-Z0-9_-]+|lec=[^|\s]+', ' ', line)
