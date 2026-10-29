@@ -77,8 +77,8 @@ with sync_playwright() as p:
     ok(not QB, f'③ 예상 {tot}문제 — 한 줄 안에 차례 보기 3개↑ 0 {len(QB)} {QB[:4]}')
     ok(not AB, f'④ 예상 답 — 한 줄 안에 · 로 이은 보기 풀이 0 {len(AB)} {AB[:4]}')
     go(pg, '#/PHARM/_pred/_pred', '#stage .pc')
-    t = pg.evaluate("(()=>{const c=[...document.querySelectorAll('#stage .pc')].find(x=>/처방전 발급 원칙/.test(x.textContent));if(!c)return null;const a=c.querySelector('.ans .pre2'),L=a.querySelectorAll('li');const P=['① ○ 12조 ②','② ○ 12조 ① 단서','③ ○ 12조 ③'];const T=(L.length?[...L]:[a]).map(e=>e.textContent.replace(/\\s+/g,' '));return P.every(p=>T.some(t=>t.indexOf(p)>=0&&P.filter(q=>q!==p).every(q=>t.indexOf(q)<0)))})()")
-    ok(t, f'④ PHARM 처방전 발급 원칙 답: 보기 ①②③ 풀이가 한 줄에 하나씩(10-27 감사 뒤 꼴) {t}')
+    t = pg.evaluate("(()=>{const c=[...document.querySelectorAll('#stage .pc')].find(x=>/처방전 발급 원칙/.test(x.textContent));if(!c)return null;const a=c.querySelector('.ans .pre2'),L=a.querySelectorAll('li');const P=['① ○','② ○','③ ○'];   /* 10-29 해설 꼴 '번호 ○/× · 개념 — 핵심' — 보기 풀이마다 한 줄 */const T=(L.length?[...L]:[a]).map(e=>e.textContent.replace(/\\s+/g,' '));return P.every(p=>T.some(t=>t.indexOf(p)>=0&&P.filter(q=>q!==p).every(q=>t.indexOf(q)<0)))})()")
+    ok(t, f'④ PHARM 처방전 발급 원칙 답: 보기 ①②③ 풀이가 한 줄에 하나씩(10-29 번호 ○/× · 개념 꼴) {t}')
     pg.close()
     # ⑤ 폰
     pg = b.new_page(viewport={'width': 393, 'height': 852}, is_mobile=True, has_touch=True); pg.on('pageerror', lambda e: errs.append(str(e)[:200]))
