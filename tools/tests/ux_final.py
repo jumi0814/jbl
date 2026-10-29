@@ -46,6 +46,8 @@ async def main():
             await ch.first.scroll_into_view_if_needed(); await ch.first.click(); await pg.wait_for_timeout(1500)
             ok('_final' in await pg.evaluate('location.hash'), 'JB 카드 🎯 N제 칩 → N제 탭')
         await pg.goto(U + '#/ESTH/_home'); await pg.wait_for_timeout(2500)
+        ok(await pg.locator('[data-d="_final"]').count() >= 1, 'ESTH(10-29 심미치과학 N제)도 메뉴에 🎯 최종 N제')
+        await pg.goto(U + '#/ANAT/_home'); await pg.wait_for_timeout(2500)
         ok(await pg.locator('[data-d="_final"]').count() == 0, 'N제 없는 과목은 메뉴 없음')
         ok(not errs, f'콘솔 오류 0 {errs[:2]}')
         await br.close()
