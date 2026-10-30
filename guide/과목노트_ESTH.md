@@ -79,3 +79,4 @@
 - 사용자 표시 이관: tools/esth/jb_move.json(합친 id → 남는 id · 숨긴 id → '' · 앞면 바뀐 id → 자기 id).
 - 10-27 예상문제 전면 정돈(guide/handoff/PRED_REV1027_BRIEF.md · 보고 work/ESTH/pred26/R_REV1027_*.md) — 교수 성향 표 · 상 = '시간 없을 때 이것만' · 중복 보관 · 빈 카드 새 문항 · 옛 문항 모두 보존.
 - (10-29 밤) **🎯 최종 N제** `tools/esth/final.txt` 132문항(INT 8·FUN 26·PLAN 15·SPE 14·MAT 17·VEN 17·교과서 BOOK 35) — 이창하 전부 + 이창하 색 Q13·P20(@BOOK) · 안진수 COL 제외(사용자 '안진수 교수님 파트 제외') · 100% 객관식 5지(26 필기 VEN p.33) · 짤 68 · 탈 대비 64 · 상 43 · 작성 4 → 독립 검수 4(정답 틀림 0) · R19(23 JB '밝은 치아 = 작게')는 자료(FUN p.27·SPE p.16·19 '밝은 = 크고 가깝게')를 따르고 ⚠로만 · INT 건강(R04)은 JB 답 근거 · 보고 work/ESTH/final/R_*·V_*
+- (10-30) 교과서 BOOK 쪽 칩 = 누르면 교과서 쪽 그림(사용자 '원래처럼') — FIG_ONLY_LECS = [] · BOOK 그림 묶음 1.5 → 4.5MB(인용된 25쪽 전부)
