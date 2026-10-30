@@ -192,7 +192,7 @@ split_parts는 돌리지 않는다(D3와 동시라 annot 조각이 낡은 채 �
 - 끝: build4 ⚠ 0 · 연결 누락 3줄 [] · check_lec·check_years·check_eyears·check_yearprof·link_audit·pred_check·fmt_audit·jb_cover · 결정마다 팩에서 확인 → 한국어 보고.
 
 ## FN 최종 N제 작성 — 교수 하나(10-29)
-과목 <SID> 교수 <이름> 강의 <KEY들>. guide/handoff/FINAL_N_BRIEF.md 전체 그대로('CONS'·강의 목록·개수·work/CONS 경로·객관식 ≥85%는 <SID>·그 교수 꼴로 바꿔 읽음). 파일 work/<SID>/final/final_<담당>.txt · 보고 R_<담당>.md · 강의 쪽 순서 · 해설 = 정답 근거 → 선지마다 ○/× → 🔑 개념 1~2줄(≤90자 · 슬라이드 글 · 필기 K1~K3) · tools/ 수정·빌드·커밋 금지.
+과목 <SID> 교수 <이름> 강의 <KEY들>. guide/handoff/FINAL_N_BRIEF.md(ESTH는 FINAL_N_ESTH_BRIEF.md — 교과서 담당 따로) 전체 그대로 · 탈 비중 충분히(아직 안 나온 목록·표·정의 자리를 선지로 · 보고 맨 위 '탈 출처 꼴 → 문항' 표) ·('CONS'·강의 목록·개수·work/CONS 경로·객관식 ≥85%는 <SID>·그 교수 꼴로 바꿔 읽음). 파일 work/<SID>/final/final_<담당>.txt · 보고 R_<담당>.md · 강의 쪽 순서 · 해설 = 정답 근거 → 선지마다 ○/× → 🔑 개념 1~2줄(≤90자 · 슬라이드 글 · 필기 K1~K3) · tools/ 수정·빌드·커밋 금지.
 
 ## FNV 최종 N제 독립 검수 — 교수 하나(작성자와 다른 담당)
 과목 <SID> 파일 work/<SID>/final/final_<담당>.txt. guide/handoff/FINAL_N_REVIEW_BRIEF.md 그대로 — 문항 전부 쪽 이미지로(정답 하나·틀린 선지는 슬라이드 글로 분명히 틀림·해설 꼴) · 짤 축 누락·가치 높은 탈 자리만 더함 · 같은 파일을 고침 · 보고 V_<담당>.md · 빌드·커밋 금지.
