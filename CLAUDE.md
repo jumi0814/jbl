@@ -1,13 +1,21 @@
-# JBL — 3학년 3쿼터 시험 대비 시스템 (Claude Code 작업 지침)
+# JBL — 3학년 쿼터별 시험 대비 시스템 (Claude Code 작업 지침)
 
-이 저장소는 치의학대학원 3학년 3쿼터 7과목의 **JB(과거 기출) 기반 학습 사이트**다.
+이 저장소는 치의학대학원 3학년 쿼터별 과목의 **JB(과거 기출) 기반 학습 사이트**다(3Q 7과목 = 보관 · 4Q = 지금 — 11-04).
 `docs/`가 GitHub Pages(공개 저장소, main 브랜치 /docs)로 공개되는 사이트이고, 사용자는 그 링크로 공부한다.
 사용자가 "○○과 강의자료 작업해줘"라고 하면 아래 절차대로 팩을 만들고/갱신하고, 빌드·검증 후 **커밋·푸시까지** 한다.
+
+## 쿼터(11-04 — 4Q 시작 · 계획 guide/handoff/UPD_4Q_진행.md)
+- **등록표 `tools/quarters.json`**(읽기·검사 `tools/quarters.py`) = 쿼터마다 docs 폴더·이름·저장 정체성, 과목마다 쿼터·이름·짧은 이름·색·JB 이름·자료 폴더. 과목 목록이 필요한 도구는 모두 여기서 읽는다(`J.sids()`·`quarters.py sids`) — 새 과목은 **`tools/new_subject.py`**(등록표·tools/<sid>/ 빈 틀·matx SRC·과목노트 — 첫 build4 확인됨).
+- **전환 뒤 자리**: `docs/` = 4Q(지금 쿼터 — 홈 화면 앱·링크 그대로) · `docs/3q/` = 3Q 보관(`frozen` — build4가 쓰지 않음, 고칠 땐 사용자 허락 뒤 `JBL_UNFREEZE=1`). 전환 전엔 4Q가 `work/_tmp/hub4q` 스테이징.
+- **저장 정체성**(같은 주소의 두 허브가 서로 기록을 건드리지 않게): 3Q = 원래 상수(`jblhub.v1.`·`jblsync`·`jblhub-*` — **절대 바꾸지 않음**, 바꾸면 3Q 기록이 안 보임) · 4Q = `jbl4q.v1.`·`jbl4qsync`·`jbl4q-*`·Gist 'JBL 4Q 동기화'. 허브 코드는 `const Q=/*QCFG*/`에서 읽음(shell에 저장 이름 글자를 새로 쓰지 말 것 — `tools/tests4/q_ident` 린트). 4Q 첫 실행 = 3Q의 화면 설정·동기화 토큰만 가져옴(사용자 11-04 결정).
+- **도구 쿼터**: `$JBL_Q`(없으면 등록표 current · tools/tests 안 = 3q) · `rehub.py [--q 4q] [--site <폴더>] [--q 3q --stage]` · `full_check.sh`는 `JBL_Q`의 과목만(3q = tools/tests 회귀 · 그 밖 = tools/tests4) · `jbx.py`는 `20YY 4Q <과목> JB.pdf`도 · 4Q 강의자료 = `materials/4Q/<과목>/`.
+- **4Q 내용 규칙** = `.claude/skills/jbl-update/RULES.md` 14절(26 PPT가 본문 · 25 전용 내용은 JB 기출 근거 `📜 25 기출 근거` ⭐ 줄만 · 26이 아직 없으면 25 임시본 → 26이 오면 전면·기출 무관 25 내용은 지움 · 교수 프로필 `guide/prof/` · 3Q 적중 분석 · 과목마다 🎯 최종 N제) · 검사 `tools/check_25only.py`.
 
 ## 폴더
 | 경로 | 내용 | git |
 |---|---|---|
-| `docs/index.html` | 허브(모든 과목 공통, 도구·검색·백업 내장) | O |
+| `docs/index.html` | 허브(지금 쿼터 — 전환 뒤 4Q · 모든 과목 공통, 도구·검색·백업 내장) · `docs/3q/` = 3Q 보관 허브 | O |
+| `tools/quarters.json` · `tools/quarters.py` · `tools/new_subject.py` · `tools/tests4/` | 쿼터 등록표 · 새 과목 · 쿼터 분리·4Q 범용 테스트(11-04) | O |
 | `docs/packs/<SID>.js`, `<SID>.img.<강의키>.js`, `<SID>.img.jb.js` | 과목 팩 | O |
 | `tools/<sid>/` (oms1·cons·impl·anat·geri·pharm·esth) | 과목별 빌드 파이프라인. 모든 과목이 같은 스크립트, `subject.py`·`assemble.py`·`parse_<sid>.py`·원고만 다름 | O |
 | `guide/` | 정리본 원칙·피드백기록·과목노트 — **작업 전 반드시 읽을 것** | O |
