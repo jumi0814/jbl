@@ -28,5 +28,5 @@
 
 ## 재개 메모
 - 3Q 기준 회귀: scratchpad worktree base3q(3q-final) — `work/_tmp/base_ux_all.log` · 새 코드 회귀는 기준이 끝난 뒤 같은 명령(JBL_HTTP=1 ux_all)
-- 3Q 기준(3q-final)에서 이미 실패(환경·낡은 테스트): ct · fakegist(판정 줄 없음 — 도우미) · fmt_cases(판정 줄 없음) · kt · legacy_restore·legacy_restore_107(work/ 필요) · ux10_num5 · ux11_fix · ux2_auto · ux2_device … (끝나면 전체 목록)
+- 3Q 기준(3q-final · 이 컨테이너 — work/ 없음)에서 155개 중 37개 이미 실패: ct · fakegist · fmt_cases · kt · legacy_restore · legacy_restore_107 · ux10_num5 · ux11_fix · ux2_auto · ux2_device · ux2_jblock · ux2_jbq · ux2_keys · ux2_learn · ux2_sum_mig · ux2_tables · ux3_compat · ux3_fixes · ux3_keybox · ux3_keylines · ux3_rest · ux3_restui · ux3_tables · ux3_timer · ux4_calm · ux4_nav · ux4_top · ux4c_fix1 · ux4e_names · ux4f_O · ux_u15 · ux_u17 · ux_u18 · ux_u19 · ux_u21 · ux_u27 · ux_u30 — 새 코드는 이 목록과 같아야 함(실패 줄도 견줌)
 - 시험 사이트 미리 보기: `.venv/bin/python tools/rehub.py --site work/_tmp/qsite`(4q = 뿌리 · 3q = 3q/)
