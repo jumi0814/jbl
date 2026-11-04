@@ -69,9 +69,11 @@ with sync_playwright() as p:
     pg.on('pageerror', lambda e: errs.append('pageerror: ' + str(e)))
     pg.on('response', lambda r: r.status >= 400 and r404.append(r.url.rsplit('/', 1)[-1]))
     pg.on('dialog', lambda d: d.accept())
-    pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.wait_for_timeout(500)
+    pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&(document.querySelector('#home .hsj[data-s]')||(%d===0&&document.querySelector('.hkick')))" % NSUB); pg.wait_for_timeout(500)   # 11-04 과목 0인 쿼터(4Q 시작)도
     cards = pg.eval_on_selector_all('#home .hsj', 'es=>es.length'); built = pg.eval_on_selector_all('#home .hsj[data-s]', 'es=>es.map(e=>e.dataset.s)')
     ok(cards == NSUB, f'허브 홈 과목 표 {cards}행 ({NSUB}과목)'); print('       팩 있는 과목:', built)
+    if not built:   # 11-04 팩이 아직 없는 쿼터 — 홈·콘솔만 보고 끝
+        ok(not errs, f'콘솔 오류 0 {errs[:3]}'); b.close(); print('RESULT', 'FAIL' if fail else 'PASS'); sys.exit(1 if fail else 0)
     # 원고 문법 표기가 화면 글자로 새어 나온 곳(U25) — 숨은 답·접힌 절 포함(textContent). JB 원문(문제·답안·다른 판본·한눈표 답)은 글자 불변이라 제외
     LEAK = r"(()=>{const c=document.querySelector('#stage').cloneNode(true);c.querySelectorAll('.qtext,.jbans,.box0,table.sum .lines,.pickd,.qbody,.pans,.qprev').forEach(e=>e.remove());const t=c.textContent;const o=[];const re=/\*\*|\{r:|\{jb:|==/g;let m;while((m=re.exec(t))&&o.length<3)o.push(t.slice(Math.max(0,m.index-25),m.index+25).replace(/\s+/g,' '));return o;})()"
     leaks = []
