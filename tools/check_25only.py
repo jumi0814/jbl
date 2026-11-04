@@ -99,6 +99,7 @@ def check_lec(path, key, S, a25, gone_re, exam_re):
             if NOTE25.search(line): kinds.append('note')
             if OLD25.search(line): kinds.append('old')
         if line.startswith('F:') and any(k in a25 for k in fig_keys(line)) and not prev_ok: kinds.append('fig')
+        if '★' in line or '☆' in line: kinds.append('star')   # 11-04 점검 P3 — ★/☆ = 사용자 북마크만(RULES 3) · 교수 별표·시험 예고는 💬·{e:}로
         if line.startswith('## ') and not alt:
             p = [x.strip() for x in line[3:].split('|')]
             if len(p) > 2 and old_segs(p[2], npages): kinds.append('rng')
@@ -106,7 +107,7 @@ def check_lec(path, key, S, a25, gone_re, exam_re):
         prev_ok = ok or (prev_ok and line.startswith('F:') and 'fig' not in kinds)
     return hits, n_ok, info
 
-KINDS = ['gone', 'p25', 'chip', 'fig', 'note', 'old', 'rng', 'noid']
+KINDS = ['gone', 'p25', 'chip', 'fig', 'note', 'old', 'rng', 'noid', 'star']
 
 def main(sids, keys_only, full):
     bad_all = 0
