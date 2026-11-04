@@ -10,12 +10,12 @@
 
 ## 단계
 - [x] P0 등록표 `tools/quarters.json`·`quarters.py` · `jblpaths`(J.Q·DOCS·HUB_DIR·docs_of·pack_path·sids)
-- [x] P0 허브 정체성 `const Q=/*QCFG*/`(3Q = 원래 상수 · 4Q 따로) · NS 기반 정규식 · 4Q 첫 실행 가져오기(설정·토큰만) · 전환 링크(메뉴·홈) · 다른 쿼터 과목 주소 넘기기 · 빈 과목 달력 오류
+- [x] P0 허브 정체성 `const QC=/*QCFG*/`(3Q = 원래 상수 · 4Q 따로) · NS 기반 정규식 · 4Q 첫 실행 가져오기(설정·토큰만) · 전환 링크(메뉴·홈) · 다른 쿼터 과목 주소 넘기기 · 빈 과목 달력 오류
 - [x] P0 도구: build4(쿼터 docs·frozen 거부·fill_index·manifest) · rehub(--q·--stage·--site·아이콘) · sync_common·build_num(살아 있는 쿼터 전부) · jbx(4Q JB) · matx(materials/4Q) · cloud/push_materials · full_check(JBL_Q·tests4·check_25only) · 스크립트 SID 목록 → 등록표 · verify(과목 수)
 - [x] P0 `tools/new_subject.py` — 시험 SID로 첫 build4 → 4Q 허브에 과목 뜸(q_empty) → 지움
 - [x] P0 tests4: q_ident · q_isolation(한 브라우저 두 허브 — 3Q 기록 글자 그대로) · q_empty · q_perf(기준 perf_base.json)
 - [x] P0 4Q 내용 규칙: RULES 14 · AGENTS B1Q·B2Q·PROF·HIT · QA 97~99 · SKILL '4Q 판' · 정리본_원칙 · guide/prof/README.md · Q4_RULES_BRIEF · check_25only
-- [ ] P0 3Q 회귀: 3q-final 기준(worktree) vs 새 허브 코드(3Q 정체성) — 같은 실패 목록이어야 함
+- [x] P0 3Q 회귀: 3q-final 기준(worktree) vs 새 허브 코드(3Q 정체성) — 155개: 기준 실패 37개와 같은 목록·같은 실패 줄(ux3_timer는 이제 통과 · ux3_tedit·ux3_fixes는 부하 때만 — 혼자 돌리면 기준과 같음) **단 ux_sync·ux_sync_all·ux_sync_num·ux_sync_real 4개가 새로 실패** → 원인: 정체성 블록 `const Q`가 syncPull의 지역 배열 `Q=[]`에 가려 `h.app!==Q.headApp`이 늘 참 → 받은 기록을 모두 버림(휴대폰이 첫 합치기·새로고침을 안 함) → 전역 이름을 `QC`로(34곳) · q_ident 린트 'QC로만' · 새 시험 tests4/q_sync(3Q·4Q 각각 두 기기 연결·첫 합치기·★ 합집합)
 - [~] P0 허브 점검(담당 — work/_tmp/hub_audit_4q.md 20건) → 고침: Ctrl+K·과목 바꾸기 N제 없는 과목 · Ctrl+K·메뉴 이동 ↩ · JB 미리보기 '답 접기 ▲' · '예상 0' 탭 숨김 · Ctrl+K 영문 과목 코드 · 폰 학습 카드 표 글자 끊김 · 과목 홈 2회↑ 줄 0폭 · N제·경향 줄 말줄임 · JB 머리 '예상 n ▸' 먹색·32px · ☆ 대비 · 폰 탭 줄 60% · 글자 폭 잼 기억 · (메뉴 이동 ↩는 되돌림 — ux_nav '사이드바 이동에는 알약 없음'(10-22 같은 개편) · 화면 밖 카드 content-visibility는 되돌림 — 여는 시간 40~80%↓였지만 3프레임 뒤 카드 크기가 바뀌어 goEl·위치 복원·모두 펼치기가 1100px씩 어긋남(ux_nav·ux_kitfrev·ux_marks·ux2_jbq F05) → 긴 화면 속도는 따로: 위치 기능을 다 맞춘 가상 목록/c-v + 안정화 루프)
   - 다음(나중): 비교표·정리표 열 폭 맞춤을 보이는 표부터(PHARM 비교표 4배 CPU 3.7초 — 위치 복원과 함께 시험) · 4Q 그림 = 파일(webp)+URL(첫 그림 대기·메모리↓ — 넘버링 Word 내보내기는 fetch로) · 검색 결과 다 그리지 않기 · 콘텐츠 ★(4Q 원고 규칙 — 3Q 원고는 그대로)
 - [ ] P0 전환: `tools/cutover.py`(git mv docs → docs/3q · 등록표 current=4q·3q frozen·4q docs=docs · rehub) → 배포 → 기기 확인(사용자)

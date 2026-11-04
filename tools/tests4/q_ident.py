@@ -15,6 +15,8 @@ for f in ('cons/shell.html', 'num/num.js'):
     t = strip(open(os.path.join(TOOLS, f), encoding='utf-8').read())
     lit = sorted(set(re.findall(r"['\"`](jbl(?:hub|sync|4q)[^'\"`\s]*|JBL 허브 동기화[^'\"`]*|JBL허브_[^'\"`]*)['\"`]", t)) - {'jblhub.probe', 'jblsyncst'})
     ok(not lit, f'④ {f}: 주석 밖 저장 이름 글자 0 {lit[:5]}')
+    sh = re.findall(r'(?<![\w$.])Q\.(ns|syncKey|gist|headApp|bakApp|filePre|idb|bc|lock|id|label|subjects|colors|links|importFrom|others)\b', t)
+    ok(not sh, f'④ {f}: 정체성은 QC로만(Q는 동기화 등 지역 배열 이름과 겹침 — 11-04 syncPull Q.headApp → 받은 기록 모두 버림) {sh[:5]}')
 rel = build(); base = serve()
 with sync_playwright() as p:
     br = p.chromium.launch(); pg = br.new_page(); errs = []; pg.on('pageerror', lambda x: errs.append(str(x)[:200]))
