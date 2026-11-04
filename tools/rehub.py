@@ -86,7 +86,7 @@ def main(a):
         if stage:
             B, bad, R = one(q, check, out=QS.stage_dir(q), src=QS.docs_dir(q))
         else:
-            if QS.frozen(q): print(f'rehub {q}: 보관(frozen) — 건너뜀(스테이징은 --stage)'); continue
+            if QS.frozen(q) and not os.environ.get('JBL_UNFREEZE'): print(f'rehub {q}: 보관(frozen) — 건너뜀(스테이징은 --stage · 고칠 땐 사용자 허락 뒤 JBL_UNFREEZE=1 --q {q})'); continue
             if not os.path.isdir(QS.docs_dir(q)) and QS.sids(q): print(f'rehub {q}: docs 폴더 없음 — 건너뜀'); continue
             B, bad, R = one(q, check)
         if check:

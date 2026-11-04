@@ -12,6 +12,7 @@ description: 26년도(새 연도) 강의자료 반영 또는 새 강의·새 과
 - 규칙 = **RULES 14**(이 스킬의 25 관련 줄보다 이김) · 담당 요약 `guide/handoff/Q4_RULES_BRIEF.md` · 지시문 AGENTS **B1Q·B2Q**(B1·B2 대신)·**PROF**·**HIT** · 점검 QA 97~99 · 검사 `tools/check_25only.py <SID…>`.
 - 정리본 = 26 PPT(+ 26 필기)가 본문 · 25에만 있는 내용은 JB 기출 근거일 때만 그 카드 안 📜 ⭐ 줄 하나(`E: <id> | YY년 … → JB 답 — 📜 25 기출 근거: "…" [[<25 키>:쪽]]`) · '(26에서 빠짐)'·25 전용 카드 없음. 26이 없는 강의 = 25 임시본(`@UPD 25 자료 임시 — 26 수업 뒤 26 기준으로 다시`) → 26이 오면 등급 **전면**(B2Q (다)) · JB 무관 25 내용은 표시가 있어도 지움(사용자 11-04 '그냥 지움' — 묻지 않음 · 잃는 표시 수는 H 배포 보고에만).
 - 교수 프로필 `guide/prof/<교수>.md`(형식 `guide/prof/README.md` — 과목과 상관없이) · 2026 3Q 실제 출제가 오면 과목마다 HIT(적중 분석 — pred·final과 문항마다 짤 축 적중·탈 자리 적중·놓침) → 프로필·RULES 11 · 같은 출제를 3Q 사이트에도 넣음(메인 — 사용자 11-04).
+- **배치(11-04 전환 끝)**: `docs/` = 4Q(build4·rehub 기본) · `docs/3q/` = 3Q 보관(frozen — build4·rehub가 거부 · 2026 3Q 기출 '2026 출제' 등 3Q를 고칠 땐 `JBL_UNFREEZE=1 JBL_Q=3q` build4 → `JBL_UNFREEZE=1 rehub.py --q 3q` · 3Q 회귀 tools/tests는 `JBL_Q=3q` 스테이징(`rehub.py --q 3q --stage`) · 배포 전 `JBL_Q=3q JBL_HUB_DIR=docs/3q verify`) · 허브 코드의 정체성은 `QC.*`로만(`Q`는 동기화 지역 배열 이름 — 11-04 받은 기록을 모두 버린 사고 · tests4 q_ident 린트·q_sync) · 4Q 검사 = `sh tools/full_check.sh`(tests4 전부 + check_25only).
 - **4Q 순서**: ① 교수 프로필(PROF) · 3Q 적중 분석(HIT — 실제 출제가 오면) → ② JB 분해(새 4Q JB — RULES 0-1 · AGENTS J) → ③ TREND(AGENTS T — 프로필 먼저) → ④ 정리본(B1Q/B2Q — 26 있음 = 26 본문 + 📜 · 없음 = 25 임시본) → ⑤ 검토(E — check_25only (a) 0)·다듬기(F)·QA(G — 97~99) → ⑥ 예상(P — RULES 14 c) → ⑦ 🎯 최종 N제(FN → FNV — 과목마다 기본 · 객관식 비율 = 교수 꼴) → 배포(H). 26 강의자료가 나중에 오는 강의는 그때 ④~⑥만 다시(전면).
 
 ## 먼저 읽기(매번)
