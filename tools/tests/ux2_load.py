@@ -74,14 +74,14 @@ async def run(b, base, vp, touch, tag):
     ok(len(chips) == 5 and chips[0].startswith('전체') and not await pg.evaluate("document.querySelector('#home .sxw')"), f'종류 칩 {chips}')
     nall = int(chips[0].split()[-1]); njb = int([c for c in chips if c.startswith('JB')][0].split()[-1])
     await pg.evaluate("document.querySelector('#home [data-sk=jb]').click()"); await pg.wait_for_timeout(300)
-    tl = await pg.evaluate("[...document.querySelectorAll('#home .sres .stl b')].map(b=>b.textContent)")
+    tl = await pg.evaluate("(()=>{document.querySelectorAll('#home [data-smore]').forEach(b=>b.click());return [...document.querySelectorAll('#home .sres .stl b')].map(b=>b.textContent)})()")   # 11-04 과목마다 20건만 그리고 나머지는 '더 보기' — 다 펼친 뒤 셈
     ok(len(tl) == njb and all(x.startswith('JB ') or ' · JB ' in x for x in tl) and (await pg.evaluate('location.hash')).endswith('&k=jb'), f'JB 칩 → JB 결과만 {len(tl)}건 · 해시 &k=jb {tl[:2]}')   # ux4f 결과 줄 머리에 과목 코드 없음(사용자 10-01 코드·줄임 대신 원래 이름) — 줄이 \'JB …\'로 시작
     await pg.screenshot(path=J.TMP + f'/ux2i_b09_jb_{tag}.png')
     await pg.reload(); await pg.wait_for_function("document.querySelector('#home .skinds [data-sk=jb].on')&&__h.sxProg().ready", timeout=30000); await pg.wait_for_timeout(300)
-    tl2 = await pg.evaluate("document.querySelectorAll('#home .sres').length")
+    tl2 = await pg.evaluate("(()=>{document.querySelectorAll('#home [data-smore]').forEach(b=>b.click());return document.querySelectorAll('#home .sres').length})()")
     ok(tl2 == njb, f'새로고침해도 JB 칩 유지 ({tl2})')
     await pg.evaluate("document.querySelector('#home [data-sk=\"\"]').click()"); await pg.wait_for_timeout(200)
-    ok(await pg.evaluate("document.querySelectorAll('#home .sres').length") == nall and not (await pg.evaluate('location.hash')).count('&k='), '전체 칩 → 모두 · &k 없음')
+    ok(await pg.evaluate("(()=>{document.querySelectorAll('#home [data-smore]').forEach(b=>b.click());return document.querySelectorAll('#home .sres').length})()") == nall and not (await pg.evaluate('location.hash')).count('&k='), '전체 칩 → 모두 · &k 없음')
     await pg.evaluate("document.querySelector('#home [data-sk=jb]').click()"); await pg.wait_for_timeout(200)
     await pg.evaluate("document.querySelector('#home .sres .sans').click()"); await pg.wait_for_timeout(900)
     st = await pg.evaluate("[location.hash,!!document.querySelector('#cards .qc.open')]")

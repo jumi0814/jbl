@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 3쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"a65c9d29",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"fa2397cf",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2544,7 +2544,7 @@ html body #stage .tc.cgone .thead .pg,html body #stage .tc.cgonep .thead .pg{col
 #stage .qc .qhead .chip.pgo{color:var(--ink,#1A1815)!important;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line);cursor:pointer}
 @media (pointer:coarse){#stage .qc .qhead .chip.pgo{min-height:32px;padding:0 6px;display:inline-flex;align-items:center}}
 .lbm{color:#7D786F}
-@media (max-width:700px){body:not(.focus) #dtabs .dtrow{flex:1 1 60%!important;min-width:0}body:not(.focus) #dtabs .lmini,body:not(.focus) #dtabs .lmini2{flex:0 1 auto!important;max-width:40%;overflow-x:auto;scrollbar-width:none}body:not(.focus) #dtabs .lmini::-webkit-scrollbar{display:none}}   /* ⑥ 폰 강의 탭 줄: 학습 탭에서 도구 막대가 줄을 차지해 탭이 2개만 보이던 것 → 탭 60% 이상 · 도구는 남은 칸에서 옆으로 */
+@media (max-width:480px){body:not(.focus) #dtabs .dtrow{flex:1 1 60%!important;min-width:0}body:not(.focus) #dtabs .lmini,body:not(.focus) #dtabs .lmini2{flex:0 1 auto!important;max-width:40%;overflow-x:auto;scrollbar-width:none}body:not(.focus) #dtabs .lmini::-webkit-scrollbar{display:none}}   /* ⑥ 폰 강의 탭 줄: 학습 탭에서 도구 막대가 줄을 차지해 탭이 2개만 보이던 것 → 탭 60% 이상 · 도구는 남은 칸에서 옆으로 */
 </style></head><body>
 <div id="top" class="noann"><button type="button" id="skipb">본문으로 건너뛰기</button><button id="navbtn" type="button" title="메뉴 (Shift+M)" aria-label="메뉴">☰</button><nav id="crumb" class="crumb" aria-label="지금 위치"><button type="button" id="gohome" title="허브 홈 — 모든 과목">JBL</button></nav><span class="sp"></span><button type="button" id="qjb" title="바로 가기 — 과목·화면·강의 탭·넘버링을 글자로 골라 바로 (⌘K · Ctrl+K)" aria-label="바로 가기 (Ctrl+K)" aria-haspopup="dialog"><span class="qji" aria-hidden="true">⇥</span><span class="qjl">바로 가기</span><kbd class="qjk">⌘K</kbd></button><input id="gsearch" type="search" placeholder="전체 검색" aria-label="전체 검색 (/)">
 <button type="button" id="clock" data-st="" aria-label="공부 시계 — 누르면 멈춤·쉬기·크게 보기"><i class="ckd" aria-hidden="true"></i><span class="ckt"><small class="ckk">오늘</small><span class="ckv">0:00:00</span></span><small class="ckl"><span class="ck1"></span><span class="ck2"></span></small></button><button type="button" class="tbtn" id="helpb" title="도움말 (?)" aria-label="도움말">?</button><input type="file" id="rfile" accept=".json" hidden></div>
@@ -2641,7 +2641,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS1", "CONS", "IMPL", "ANAT", "GERI", "PHARM", "ESTH"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="a65c9d29",PV={"OMS1": "a5bf8518", "CONS": "f635d586", "IMPL": "9abfeb9c", "ANAT": "d4a6ced0", "GERI": "35b77141", "PHARM": "e6ad95ec", "ESTH": "cb7066ab"},PSZ={"OMS1": 4.8, "CONS": 5.1, "IMPL": 4.1, "ANAT": 6.0, "GERI": 5.8, "PHARM": 8.7, "ESTH": 5.9};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="fa2397cf",PV={"OMS1": "56b4cbcc", "CONS": "c68af3d8", "IMPL": "0e92d863", "ANAT": "aa83cede", "GERI": "b561a9c8", "PHARM": "3d7ed801", "ESTH": "5603ff94"},PSZ={"OMS1": 4.8, "CONS": 5.1, "IMPL": 4.1, "ANAT": 6.0, "GERI": 5.8, "PHARM": 8.7, "ESTH": 5.9};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=Q.subjects;   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -4721,14 +4721,15 @@ function search(q,o){o=o||{};q=String(q||'').trim();const ql=q.toLowerCase();if(
  const first=(from&&from.s)||CUR.s||'';const order=Object.keys(by).sort((a,b)=>(b===first)-(a===first)||SUBJECTS.findIndex(x=>x[0]===a)-SUBJECTS.findIndex(x=>x[0]===b));
  const sur=(t,k)=>k>0&&k<t.length&&/[\uDC00-\uDFFF]/.test(t[k])?k-1:k;const snip=(txt,i,n)=>{n=n||ql.length;const a=sur(txt,Math.max(0,i-50)),b=sur(txt,Math.min(txt.length,i+n+80));return (a?'…':'')+E(txt.slice(a,i))+'<mark>'+E(txt.slice(i,i+n))+'</mark>'+E(txt.slice(i+n,b))+(b<txt.length?'…':'');};
  let h=`<div class="shead"><h2>검색: ${E(q)}${only?' <span class="small">— '+onlyT+'에서</span> <button type="button" class="link swide" data-swide="1" title="모든 과목에서 다시 찾기">전체로 넓히기</button>':''}</h2><button class="btn" id="sclose" title="검색 전 화면으로 (Esc)">✕ 닫기</button></div><div class="skinds noann">${['',...Object.keys(SKIND)].map(k=>`<button type="button" class="hsb${k===kk?' on':''}" data-sk="${k}">${k?SKIND[k]:'전체'} ${k?kc[k]:all}</button>`).join('')}${(()=>{const P=sxProg();return P.ready?'':`<span class="chip sxw" title="검색 색인을 만드는 중 — 끝나는 대로 결과를 채워요">색인 준비 중 ${P.dn}/${P.all}</span>`;})()}${plChip()}</div><div class="lead">${tot}건 — 누르면 그 자리로 이동${first&&by[first]&&order.length>1?' · 지금 과목 먼저':''}</div>`;
- order.forEach(s=>{const P=PACKS[s],L=by[s];h+=`<div class="sgrp"><div class="sgt"><i class="sjdot" style="background:${sjColor(s)}"></i>${E(P.title)} <span class="small">${L.length}건</span></div>`+L.map(([r,i,ml],n)=>{const where=r.d==='_jb'?'':r.d==='_tbl'||r.d==='_pred'?'':E(r.label)+' · ';
-   return `<button class="res sres${n>=20?' smore':''}" data-s="${r.s}" data-d="${E(r.d)}" data-t="${E(r.t)}" data-aid="${E(r.aid)}"><span class="stl"><i class="sjdot" style="background:${sjColor(r.s)}"></i><b>${where}${E(r.ti||'')}</b></span><span class="ssn">${snip(r.txt,i,ml)}</span>${r.kind==='jb'?'<span class="sans" data-sans="1" role="button" title="이 문제로 가서 답을 펼침">답 바로 보기 ▸</span>':''}</button>`;}).join('')+(L.length>20?`<button class="btn sm" data-smore="1">더 보기 (${L.length-20})</button>`:'')+'</div>';});
+ const resH=([r,i,ml],n)=>{const where=r.d==='_jb'?'':r.d==='_tbl'||r.d==='_pred'?'':E(r.label)+' · ';
+   return `<button class="res sres${n>=20?' smore':''}" data-s="${r.s}" data-d="${E(r.d)}" data-t="${E(r.t)}" data-aid="${E(r.aid)}"><span class="stl"><i class="sjdot" style="background:${sjColor(r.s)}"></i><b>${where}${E(r.ti||'')}</b></span><span class="ssn">${snip(r.txt,i,ml)}</span>${r.kind==='jb'?'<span class="sans" data-sans="1" role="button" title="이 문제로 가서 답을 펼침">답 바로 보기 ▸</span>':''}</button>`;};SMORE={};   /* 11-04 점검 P3 — 과목마다 처음 20건만 그림(나머지는 '더 보기'를 누를 때 — 글자마다 2천여 결과를 다 그리던 것) */
+ order.forEach((s,gi)=>{const P=PACKS[s],L=by[s];if(L.length>20)SMORE[gi]=()=>L.slice(20).map((x,n)=>resH(x,n+20)).join('');h+=`<div class="sgrp"><div class="sgt"><i class="sjdot" style="background:${sjColor(s)}"></i>${E(P.title)} <span class="small">${L.length}건</span></div>`+L.slice(0,20).map(resH).join('')+(L.length>20?`<button class="btn sm" data-smore="${gi}">더 보기 (${L.length-20})</button>`:'')+'</div>';});
  if(!tot)h+='<div class="panel">찾는 글자가 없어요.</div>';
  const pushed=push||(VIEW_WAS_SEARCH?!!SQ.pushed:!!o.pd);VIEW='search';SQ={q,s:only,from,pushed,k:kk};document.title='검색: '+q+' — JBL 허브';retClear();retPill();if($('#gsearch').value.trim()!==q)$('#gsearch').value=q;
  $('#subj').hidden=true;document.body.classList.add('at-home');$('#home').hidden=false;$('#home').innerHTML=h;measure();
  histSet(Object.assign({q},only?{sj:only}:{},kk?{k:kk}:{},{from:from||null},pushed?{pd:1}:{}),'#/?q='+encodeURIComponent(q)+(only?'&s='+only:'')+(kk?'&k='+kk:''),push);window.scrollTo(0,o.y||0);}
 /* B09 검색 결과 종류 칩 [전체][정리본][JB][표][예상] — 고른 것은 해시 &k=로 남김(새로고침·뒤로가기에도) · JB 결과의 '답 바로 보기' */
-const SKIND={learn:'정리본',jb:'JB',tbl:'표',pred:'예상'};
+const SKIND={learn:'정리본',jb:'JB',tbl:'표',pred:'예상'};let SMORE={};
 $('#home').addEventListener('click',e=>{if(VIEW!=='search')return;const k=e.target.closest('[data-sk]');if(k){e.stopPropagation();search(SQ.q,{push:false,s:SQ.s,k:k.dataset.sk});return;}
  const a=e.target.closest('[data-sans]');if(a){e.stopPropagation();e.preventDefault();const r=a.closest('.res');if(r)openDoc(r.dataset.s,r.dataset.d,r.dataset.t||undefined,r.dataset.aid||undefined,{open:true});}},true);
 /* 검색 닫기 — 검색에 들어오며 쌓은 기록이면 뒤로(그 화면의 위치까지), 아니면 기억해 둔 화면을 직접 엶 */
@@ -4736,7 +4737,7 @@ function searchEmpty(){if(VIEW!=='search')return;$('#home').innerHTML='<div clas
 function closeSearch(){if(VIEW!=='search')return;const f=SQ.from;$('#gsearch').value='';$('#gsearch').blur();
  if(history.state&&history.state.q!=null&&f&&history.length>1&&SQ.pushed){history.back();return;}
  if(f&&f.s)openDoc(f.s,f.d,f.t,null,{pos:f.pos,y:f.y});else home({y:f&&f.y});}
-$('#home').addEventListener('click',e=>{if(e.target.closest('#sclose')){closeSearch();return;}const m=e.target.closest('[data-smore]');if(m){m.parentElement.classList.add('all');m.remove();}});
+$('#home').addEventListener('click',e=>{if(e.target.closest('#sclose')){closeSearch();return;}const m=e.target.closest('[data-smore]');if(m){const f=SMORE[m.dataset.smore];if(f)m.insertAdjacentHTML('beforebegin',f());m.parentElement.classList.add('all');m.remove();}});
 let st_;$('#gsearch').addEventListener('input',e=>{clearTimeout(st_);const v=e.target.value;if(!v.trim()){if(VIEW==='search')searchEmpty();return;}st_=setTimeout(()=>search(v,{s:VIEW==='search'?SQ.s:(VIEW==='doc'&&CUR.s&&PACKS[CUR.s]?CUR.s:'')}),250);   /* ux4 묶음2 과목 안에서 찾으면 그 과목만(결과 머리 '전체로 넓히기') */});
 $('#gsearch').addEventListener('keydown',e=>{if(e.key!=='Escape')return;e.preventDefault();if(VIEW==='search'){closeSearch();return;}clearTimeout(st_);const g=e.currentTarget;g.value='';g.blur();});   /* ux4c 1회차 문서 화면에서도 Esc = 검색칸 비우고 빠져나옴(다음 J 등이 칸에 입력되지 않게 · 집중 모드 topshow도 blur가 풂) */
 /* ---------- 백업·복원 v2 — 합치기(기본)·덮어쓰기·자동 백업 시점으로 되돌리기 ---------- */
