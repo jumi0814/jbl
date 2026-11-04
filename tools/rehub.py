@@ -24,6 +24,14 @@ def restamp(t, BUILD, s):
     if old != BUILD and nb == body: sys.exit(f'{s}.js 안에서 "build": "{old}"를 찾지 못함')
     return t[:m.start(1)] + BUILD + t[m.end(1):m.start(2)] + BUILD + t[m.end(2):m.end()] + nb
 
+def _link(src, dst):
+    """스테이징 링크 — 없거나 다른 곳(전환 전 docs/packs 등 옛 자리)을 가리키면 새로(11-04 전환 뒤 옛 링크가 남아 그림 404)"""
+    if os.path.islink(dst):
+        if os.readlink(dst) == src: return
+        os.remove(dst)
+    elif os.path.lexists(dst): return
+    os.symlink(src, dst)
+
 def one(q, check=False, out=None, src=None, layout=None):
     """분기 q의 허브를 out(기본 = 그 분기 docs)에 — src = 팩을 읽을 곳(스테이징이면 원래 docs)"""
     shell = open(os.path.join(J.TOOLS, 'cons', 'shell.html'), encoding='utf-8').read()
@@ -33,9 +41,9 @@ def one(q, check=False, out=None, src=None, layout=None):
         for f in os.listdir(P0):
             dst = os.path.join(P, f)
             if re.fullmatch(r'[A-Z0-9]+\.js', f): continue
-            if not os.path.lexists(dst): os.symlink(os.path.join(P0, f), dst)
+            _link(os.path.join(P0, f), dst)
         for f in ('num', 'icon-192.png', 'icon-512.png'):
-            if os.path.exists(os.path.join(S0, f)) and not os.path.lexists(os.path.join(D, f)): os.symlink(os.path.join(S0, f), os.path.join(D, f))
+            if os.path.exists(os.path.join(S0, f)): _link(os.path.join(S0, f), os.path.join(D, f))
     for s in QS.sids(q):
         f0 = os.path.join(P0, s + '.js'); f = os.path.join(P, s + '.js')
         if not os.path.exists(f0): continue

@@ -1,6 +1,6 @@
 {
  "_doc": "분기 등록표(11-04 4Q 계획) — 분기마다 docs 폴더·이름·저장 정체성, 과목마다 분기·이름·색. 읽기·검사 = tools/quarters.py. 3q 정체성 값은 3Q 허브의 원래 상수 그대로(바꾸면 3Q 기록이 안 보임). 전환(cut-over) 때 current·docs·frozen을 바꿈.",
- "current": "3q",
+ "current": "4q",
  "cutover": {
   "_doc": "전환 뒤 자리(tools/rehub.py --site 미리 보기·tools/cutover.py가 씀)",
   "4q": "docs",
@@ -9,8 +9,8 @@
  "quarters": {
   "3q": {
    "label": "3학년 3쿼터",
-   "docs": "docs",
-   "frozen": false,
+   "docs": "docs/3q",
+   "frozen": true,
    "stage": "work/_tmp/hub3q",
    "ident": {
     "ns": "jblhub.v1.",
@@ -38,7 +38,8 @@
   },
   "4q": {
    "label": "3학년 4쿼터",
-   "docs": "work/_tmp/hub4q",
+   "title": "JBL 4Q",
+   "docs": "docs",
    "frozen": false,
    "stage": "work/_tmp/hub4q",
    "ident": {

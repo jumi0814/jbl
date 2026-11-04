@@ -38,7 +38,7 @@ def qcfg(q, docs=None, layout=None):
         url = os.path.relpath(L[o], me).replace(os.sep, '/')
         links.append({'id': o, 'label': QS[o]['label'], 'url': ('' if url == '.' else url.rstrip('/') + '/'), 'sids': sids(o)})
     imp = I.get('importFrom')
-    return dict(I['ident'], id=q, label=I['label'],
+    return dict(I['ident'], id=q, label=I['label'], title=I.get('title', 'JBL 허브'),   # 탭 제목(11-04 — 3Q는 원래 'JBL 허브' 그대로 · ux_u22)
                 subjects=[[s, SUBJ[s]['ko'], SUBJ[s]['short']] for s in sub],
                 colors={s: SUBJ[s]['color'] for s in sub},
                 links=links,
