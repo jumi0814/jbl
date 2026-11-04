@@ -16,7 +16,8 @@
 - [x] P0 tests4: q_ident · q_isolation(한 브라우저 두 허브 — 3Q 기록 글자 그대로) · q_empty · q_perf(기준 perf_base.json)
 - [x] P0 4Q 내용 규칙: RULES 14 · AGENTS B1Q·B2Q·PROF·HIT · QA 97~99 · SKILL '4Q 판' · 정리본_원칙 · guide/prof/README.md · Q4_RULES_BRIEF · check_25only
 - [ ] P0 3Q 회귀: 3q-final 기준(worktree) vs 새 허브 코드(3Q 정체성) — 같은 실패 목록이어야 함
-- [ ] P0 허브 점검(담당) → 고칠 목록 → 공통 shell에서 고침
+- [~] P0 허브 점검(담당 — work/_tmp/hub_audit_4q.md 20건) → 고침: Ctrl+K·과목 바꾸기 N제 없는 과목 · Ctrl+K·메뉴 이동 ↩ · JB 미리보기 '답 접기 ▲' · '예상 0' 탭 숨김 · Ctrl+K 영문 과목 코드 · 폰 학습 카드 표 글자 끊김 · 과목 홈 2회↑ 줄 0폭 · N제·경향 줄 말줄임 · JB 머리 '예상 n ▸' 먹색·32px · ☆ 대비 · 폰 탭 줄 60% · 화면 밖 카드 안 그림(content-visibility — 4배 느린 CPU에서 학습 1.7→0.5~0.8초 · N제 0.96→0.3초) · 글자 폭 잼 기억
+  - 다음(나중): 비교표·정리표 열 폭 맞춤을 보이는 표부터(PHARM 비교표 4배 CPU 3.7초 — 위치 복원과 함께 시험) · 4Q 그림 = 파일(webp)+URL(첫 그림 대기·메모리↓ — 넘버링 Word 내보내기는 fetch로) · 검색 결과 다 그리지 않기 · 콘텐츠 ★(4Q 원고 규칙 — 3Q 원고는 그대로)
 - [ ] P0 전환: `tools/cutover.py`(git mv docs → docs/3q · 등록표 current=4q·3q frozen·4q docs=docs · rehub) → 배포 → 기기 확인(사용자)
 - [ ] P1 2026 3Q 실제 기출 받기 → 과목·교수별 분석 · 적중 분석(HIT) · 교수 프로필(PROF) → 3Q 사이트 '2026 출제'(JBL_UNFREEZE=1 — 결정 3)
 - [ ] P2 4Q 과목마다: new_subject → JB 분해 → TREND → 정리본(26 본문 / 없으면 25 임시) → annot·tables → 검토 → 예상·N제 → 검사 → 과목마다 중간 배포
