@@ -18,7 +18,7 @@ def cand(g):
 def main(sids):
     bad = 0
     for sid in sids:
-        t = open(os.path.join(J.DOCS, 'packs', sid + '.js'), encoding='utf-8').read(); p = json.loads(t[t.index('{'):t.rindex('}') + 1])
+        t = open(J.pack_path(sid), encoding='utf-8').read(); p = json.loads(t[t.index('{'):t.rindex('}') + 1])
         n = 0
         for cid in p['order']:
             h = p['cards'][cid]
@@ -42,4 +42,4 @@ def main(sids):
     return bad
 
 if __name__ == '__main__':
-    sys.exit(1 if main([a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']) else 0)
+    sys.exit(1 if main([a.upper() for a in sys.argv[1:]] or J.sids()) else 0)

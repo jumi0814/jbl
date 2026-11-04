@@ -3,7 +3,9 @@ import sys, os, json, io, base64, threading, http.server, functools, socketserve
 NOMAT = {'PHARM': ('ANX',)}   # 강의자료 없이 JB 답으로만 만든 강의(26 자료가 오면 빼기)
 from PIL import Image
 from playwright.sync_api import sync_playwright
-DOCS = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'docs'))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import jblpaths as J   # 11-04 분기: 기본 = 그 분기 허브 폴더(J.HUB_DIR — $JBL_Q·$JBL_HUB_DIR)
+DOCS = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else J.HUB_DIR)
+NSUB = len(J.sids())
 fail = []
 def ok(c, msg):
     print(('  OK  ' if c else '  FAIL') + ' ' + msg)
@@ -69,7 +71,7 @@ with sync_playwright() as p:
     pg.on('dialog', lambda d: d.accept())
     pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.wait_for_timeout(500)
     cards = pg.eval_on_selector_all('#home .hsj', 'es=>es.length'); built = pg.eval_on_selector_all('#home .hsj[data-s]', 'es=>es.map(e=>e.dataset.s)')
-    ok(cards == 7, f'허브 홈 과목 표 {cards}행 (7과목)'); print('       팩 있는 과목:', built)
+    ok(cards == NSUB, f'허브 홈 과목 표 {cards}행 ({NSUB}과목)'); print('       팩 있는 과목:', built)
     # 원고 문법 표기가 화면 글자로 새어 나온 곳(U25) — 숨은 답·접힌 절 포함(textContent). JB 원문(문제·답안·다른 판본·한눈표 답)은 글자 불변이라 제외
     LEAK = r"(()=>{const c=document.querySelector('#stage').cloneNode(true);c.querySelectorAll('.qtext,.jbans,.box0,table.sum .lines,.pickd,.qbody,.pans,.qprev').forEach(e=>e.remove());const t=c.textContent;const o=[];const re=/\*\*|\{r:|\{jb:|==/g;let m;while((m=re.exec(t))&&o.length<3)o.push(t.slice(Math.max(0,m.index-25),m.index+25).replace(/\s+/g,' '));return o;})()"
     leaks = []
@@ -124,7 +126,7 @@ with sync_playwright() as p:
     pg.evaluate('document.querySelector("#stage [data-rk=b]").click()'); ok(pg.evaluate('document.querySelector("#stage [data-rk=b]").classList.contains("show")'), '빈칸 누르면 열림')
     pg.click('#k-auto'); pg.check('input[value="red"]'); pg.click('#ago'); pg.wait_for_timeout(200); n = pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length'); ok(n > 1, f'자동 빈칸 {n}개')
     pg.click('#k-undo'); ok(pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length') == 1, '자동 빈칸 실행 취소')
-    exp404 = {f'{x}.js' for x in ('OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH') if x not in built}
+    exp404 = {f'{x}.js' for x in J.sids() if x not in built}
     ok(set(r404) <= exp404, f'404는 아직 없는 과목 팩뿐 {sorted(set(r404) - exp404)}')
     real = [e for e in errs if 'Failed to load resource' not in e]
     ok(not real, f'콘솔 오류 0 {real[:5]}')

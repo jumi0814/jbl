@@ -5,7 +5,7 @@ import os, sys, re, json, html, subprocess
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import jblpaths as J
 args = sys.argv[1:]; ref = 'origin/main'
 if '--ref' in args: i = args.index('--ref'); ref = args[i + 1]; del args[i:i + 2]
-SIDS = [a.upper() for a in args] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = [a.upper() for a in args] or J.sids()
 src = open(os.path.join(J.TOOLS, 'cons', 'build4.py'), encoding='utf-8').read()
 i = src.index('def fchash'); j = src.index('\n', src.index('return', i)); exec(src[i:j])   # build4와 같은 키 함수
 txt = lambda h: html.unescape(re.sub(r'<[^>]+>', '', h))
@@ -13,7 +13,7 @@ tot = [0, 0]
 for S in SIDS:
     t = subprocess.run(['git', '-C', J.ROOT, 'show', f'{ref}:docs/packs/{S}.js'], capture_output=True, text=True).stdout
     if not t: print(S, f'{ref}에 팩 없음(새 과목)'); continue
-    old = json.loads(t[t.index('{'):t.rindex('}') + 1]); new = J._load_js(os.path.join(J.DOCS, 'packs', S + '.js'))
+    old = json.loads(t[t.index('{'):t.rindex('}') + 1]); new = J._load_js(J.pack_path(S))
     nk, ok = set(), set()
     for L in new['lect']:
         for r in L['recall']: nk.add('R:' + L['k'] + ':' + fchash(r['t'] + '|' + txt(r['h']))); ok.update(r.get('ok') or [])

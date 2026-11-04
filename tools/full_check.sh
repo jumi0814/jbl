@@ -7,8 +7,10 @@ cd "$(dirname "$0")/.." || exit 1
 PY=.venv/bin/python; L=work/_tmp/full_check.log; mkdir -p work/_tmp; : > $L; : > work/_tmp/full_check.fail
 UI=1; [ "$1" = "--no-ui" ] && UI=0
 # 과목 목록(새 과목은 여기 두 줄에 더함)
-SIDS="OMS1 CONS IMPL ANAT GERI PHARM ESTH"; sids=$(echo $SIDS | tr A-Z a-z)
+Q=${JBL_Q:-$($PY tools/quarters.py current)}; export JBL_Q=$Q   # 11-04 분기(tools/quarters.json) — 그 분기 과목만 · 보관(frozen) 분기는 빌드 대신 rehub --stage + 테스트
+SIDS=$($PY tools/quarters.py sids $Q); sids=$(echo $SIDS | tr A-Z a-z)
 say() { echo "$@" | tee -a $L; }
+$PY tools/quarters.py check >/dev/null || { $PY tools/quarters.py check | tee -a $L; }
 say "== 동기화"; $PY tools/sync_common.py 2>&1 | tail -1 | tee -a $L
 o=$($PY tools/num/build_num.py --check 2>&1 | tail -1); say "$o"; echo "$o" | grep -q OK || say "  ✗ 넘버링 모듈 사본(docs/num ↔ tools/num · NUMV) 다름 — tools/num/build_num.py"
 say "== 도구 문법"; for f in tools/*.py tools/cons/*.py tools/num/*.py tools/tests/*.py; do $PY -m py_compile "$f" 2>/dev/null || say "  ✗ 도구 문법 오류 $f"; done   # 10-26 merge_parts가 10-24부터 문법 오류로 멈춰 있던 것을 못 잡음(스킬 점검 16 ✗4)
@@ -40,12 +42,15 @@ say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L
 for s in $SIDS; do $PY tools/dump_jb.py $s >/dev/null 2>&1; $PY tools/dump_breaks2.py $s >/dev/null 2>&1; done   # QA(E)·D2b가 읽는 화면 덤프
 if [ $UI = 1 ]; then
   say "== tests"
+  if [ -d tools/tests4 ]; then for f in tools/tests4/q_*.py; do say "$(basename $f .py) $(JBL_HTTP=1 $PY $f 2>&1 | grep -E 'RESULT|FAIL' | tr '\n' ' ' | cut -c1-300)"; done; fi   # 11-04 분기 분리·4Q 범용 테스트(어느 분기든)
+  if [ "$Q" = 3q ]; then   # 3Q 회귀(tools/tests — 3Q 문항·강의 이름이 박혀 있음) · 4Q는 위 tests4만
   # 표시·북마크 테스트는 file:// 대신 로컬 http로(JBL_HTTP=1 — file://은 Chromium이 가끔 localStorage를 비워 거짓 실패). ux3_compat만 file://
   for t in legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap ux7_u26 ux8_num ux9_numai ux10_num5 jb_decide ux_arrow ux_sync ux_sync_num ux_sync_all ux_sync_real ux_predfmt ux_fmtcnt ux_hlpre ux_srchkeep ux_gbclick ux_final ux11_fix ux12_numrev ux13_numdrag ux14_numjb ux15_storage ux16_pred ux17_fig ux18_numpred ux19_yearprof ux20_numdocx ux21_numyrs ux22_markbridge ux23_bm ux24_numsrc ux25_numedit ux26_links ux_u27 ux_v3phone ux_align ux_fbar nb_numbering ux_kitfrev; do
     [ -f tools/tests/$t.py ] || continue
     say "$t $(JBL_HTTP=1 $PY tools/tests/$t.py 2>&1 | grep -E 'RESULT|FAIL|lost rate|LOST_GONE [0-9]' | tr '\n' ' ' | cut -c1-300)"
   done
   say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
+  fi
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
 say "== 요약"; grep -nE 'FAIL|rc=[1-9]|✗[1-9]|✗ [1-9]|  ✗ |의심 [1-9]|약어 [1-9]|합계 [1-9]|되돌림 [1-9]|끊김 [1-9]|칩 없는 기출 [1-9]|없는 id [1-9]|표 꼴 [1-9]|@UPD없음 [1-9]|필기NEW26 [1-9]' $L | grep -vE '^[0-9]+:== [^:]*$' | grep -v ' · 형식 {' >> work/_tmp/full_check.fail || true

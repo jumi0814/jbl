@@ -5,7 +5,7 @@ import os, sys, re, collections
 from bs4 import BeautifulSoup
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools')); import jblpaths as J
-SIDS = [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = [a.upper() for a in sys.argv[1:]] or J.sids()
 PUA = re.compile(r'[-�]')
 LEAK = re.compile(r'\{r:|\{n:|\{u:|\{e:|\ue030|\ue031|\ue032|\ue033|\ue034|\ue035|\ue036|\ue037|\ue038|\ue039|\{jb:|\[\[|\*\*|(?<![=<>!])==(?!=)|@(?:MAP|TIP|UPD|LEC|TBL|G)\b')   # 10-10 원고 머리 표기(@MAP 등)가 화면 글에
 BLK = ['li', 'div', 'td', 'th', 'blockquote', 'p']

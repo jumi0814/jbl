@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
 
 def load_pack(sid):
-    t = open(os.path.join(J.DOCS, 'packs', sid + '.js'), encoding='utf-8').read()
+    t = open(J.pack_path(sid), encoding='utf-8').read()
     return json.loads(t[t.index('{'):t.rindex('}') + 1])
 def text(h):
     h = re.sub(r'<img[^>]*>', '[그림]', h)
@@ -52,4 +52,4 @@ def run(sid):
     print(sid, len(p['order']), '문항 →', os.path.relpath(out, J.ROOT))
 
 if __name__ == '__main__':
-    for sid in [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']: run(sid)
+    for sid in [a.upper() for a in sys.argv[1:]] or J.sids(): run(sid)

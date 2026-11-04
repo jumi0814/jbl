@@ -2043,7 +2043,7 @@ function printHTML(L, o, lab) {
   return h;
 }
 const PFS = { s: [0.88, '작게'], m: [1, '보통'], l: [1.15, '크게'], xl: [1.3, '아주 크게'] }, PMG = { n: [6, '좁게 6 mm'], m: [12, '보통 12 mm'], w: [20, '넓게 20 mm'] };   /* 10-18 사용자 'pdf으로 추출할 때 글씨 크기 및 페이지 여백을 조절' — Word 저장에도 같이 */
-const pcfg = (v) => { try { if (v) localStorage.setItem('jblhub.v1.num.pcfg', JSON.stringify(v)); return JSON.parse(localStorage.getItem('jblhub.v1.num.pcfg') || '{}'); } catch (e) { return v || {}; } };
+const pcfg = (v) => { try { if (v) localStorage.setItem(H.NS + 'num.pcfg', JSON.stringify(v)); return JSON.parse(localStorage.getItem(H.NS + 'num.pcfg') || '{}'); } catch (e) { return v || {}; } };
 function printRun(L, o, lab) {
   printClean();
   const mg = (PMG[o.mg] || PMG.m)[0], z = (PFS[o.fs] || PFS.m)[0];

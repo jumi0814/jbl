@@ -12,7 +12,7 @@ import os, re, sys, io, html, contextlib, importlib.util, traceback
 TOOLS = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, TOOLS)
 import jblpaths as J
 
-SIDS = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = J.sids()
 FMTS = ['객관식', 'T/F', '빈칸', '단답형', '넘버링', '서술형']   # fmt_of가 돌려주는 값(이 밖의 값이 나오면 뒤에 덧붙임)
 SUBDIRS = {os.path.join(TOOLS, s.lower()) for s in SIDS}
 
@@ -88,7 +88,7 @@ def _front_text(sid, q0):
     ed, _, n = f.partition('#'); c = [v for v in (q0.get('other') or []) if v.get('ed') == ed]
     return c[int(n or 1) - 1]['text'] if len(c) >= int(n or 1) else q0['text']
 def load(sid, T):
-    pp = os.path.join(J.DOCS, 'packs', f'{sid}.js')
+    pp = J.pack_path(sid)
     P = J._load_js(pp); C = P.get('cards', {}); LN = P.get('lecname', {}) or {}
     Q, err = load_assemble(sid); src = 'assemble'
     QM = {q['id']: q for q in (Q or [])}

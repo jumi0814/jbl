@@ -12,8 +12,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
 import pymupdf
 
-SUBJ = {'구강악안면외과학1': 'OMS1', '임상치과보존학': 'CONS', '치과임플란트학': 'IMPL', '임상두경부해부학': 'ANAT',
-        '노인치과학': 'GERI', '임상치과약물치료학': 'PHARM', '심미치과학': 'ESTH'}
+import quarters as QS   # 11-04 분기 등록표 — 과목 폴더 이름(mat) → SID · 4Q 과목은 materials/4Q/<과목>/(3Q와 같은 과목 이름이 있어도 섞이지 않게)
+SUBJ = {v['mat']: k for k, v in QS.SUBJ.items() if v['q'] == '3q'}
+MATDIR = {k: (v['mat'] if v['q'] == '3q' else os.path.join(v['q'].upper(), v['mat'])) for k, v in QS.SUBJ.items()}
 # 정리본 키의 쪽 이미지 폴더(subject.LECMAP[키][0], OMS1은 끝에 'i'가 붙음) ← 강의자료 파일 앞머리
 SRC = {
     'OMS1': {'L08i': '260831_', 'L09i': '260907_', 'L10i': '260914_', 'L03i': '0922_', 'L04i': '0929_', 'L05i': '1013_', 'L06i': '1020(1)_', 'L07i': '1020(2)_', 'L11i': '260916_', 'L12i': '260928_', 'L13i': '261012_'},
@@ -68,9 +69,13 @@ def pptx_job(src, out):
     return n
 
 def run(sid, pool):
-    sub = next(k for k, v in SUBJ.items() if v == sid); d = os.path.join(J.ROOT, 'materials', sub)
-    if not os.path.isdir(d):
-        d = next((os.path.join(J.ROOT, 'materials', x) for x in os.listdir(os.path.join(J.ROOT, 'materials')) if nfc(x) == sub), None)
+    sub = MATDIR[sid]; d = os.path.join(J.ROOT, 'materials', sub)
+    if not os.path.isdir(d):   # 맥 한글 파일명(NFD) — 마디마다 NFC로 견줌(4Q = materials/4Q/<과목>)
+        d = os.path.join(J.ROOT, 'materials')
+        for part in sub.split(os.sep):
+            hit = next((x for x in os.listdir(d) if nfc(x) == nfc(part)), None) if os.path.isdir(d) else None
+            d = os.path.join(d, hit) if hit else None
+            if not d: break
     if not d: return
     idx = {}; mat = J.work(sid, 'mat')
     for fn in sorted(os.listdir(d)):

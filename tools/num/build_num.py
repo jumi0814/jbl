@@ -4,7 +4,9 @@
 기본 자료(seed)는 tools/num/build_seed.py(첨부 Word가 work/num/src에 있을 때만)."""
 import os, sys, re, shutil, hashlib, subprocess
 TOOLS = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); ROOT = os.path.dirname(TOOLS)
-SRC = os.path.join(TOOLS, 'num'); OUT = os.path.join(ROOT, 'docs', 'num'); SHELL = os.path.join(TOOLS, 'cons', 'shell.html')
+SRC = os.path.join(TOOLS, 'num'); SHELL = os.path.join(TOOLS, 'cons', 'shell.html')
+sys.path.insert(0, TOOLS); import quarters as QS   # 11-04 분기마다 <docs>/num — 살아 있는(보관 아닌) 분기 전부에 같은 파일
+OUTS = [os.path.join(QS.docs_dir(q), 'num') for q in QS.live()]; OUT = OUTS[0]   # NUMV는 첫 분기 기준(모든 분기 같은 글)
 FILES = ['num.js', 'docx.js']
 def ver():
     h = hashlib.md5()
@@ -13,12 +15,14 @@ def ver():
         if os.path.isfile(p) and f.endswith('.js'): h.update(f.encode()); h.update(open(p, 'rb').read())
     return h.hexdigest()[:8]
 def main(check=False):
-    os.makedirs(OUT, exist_ok=True); bad = []
-    for f in FILES:
-        a, b = os.path.join(SRC, f), os.path.join(OUT, f)
-        if not os.path.exists(b) or open(a, 'rb').read() != open(b, 'rb').read():
-            bad.append(f)
-            if not check: shutil.copyfile(a, b)
+    bad = []
+    for O in OUTS:
+        os.makedirs(O, exist_ok=True)
+        for f in FILES + ([x for x in os.listdir(OUT) if x.startswith('seed') and x.endswith('.js')] if O != OUT and os.path.isdir(OUT) else []):
+            a = os.path.join(SRC if f in FILES else OUT, f); b = os.path.join(O, f)
+            if not os.path.exists(b) or open(a, 'rb').read() != open(b, 'rb').read():
+                bad.append(os.path.relpath(b, ROOT))
+                if not check: shutil.copyfile(a, b)
     v = ver(); s = open(SHELL, encoding='utf-8').read(); m = re.search(r"const NUMV='([0-9a-f]{8}|dev)';", s)
     if not m: sys.exit('shell.html에 NUMV 줄이 없음')
     if m.group(1) != v:

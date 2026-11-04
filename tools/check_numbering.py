@@ -4,7 +4,7 @@ import os, sys, re
 from bs4 import BeautifulSoup
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.join(ROOT, 'tools')); import jblpaths as J
 C = '①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮'
-SIDS = [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = [a.upper() for a in sys.argv[1:]] or J.sids()
 def lead(t):
     t = t.strip(); return C.index(t[0]) if t and t[0] in C else None
 def sibruns(par, kids, where, out):

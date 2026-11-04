@@ -15,14 +15,14 @@ import os, sys, re, json, difflib, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
 from bs4 import BeautifulSoup
-SIDS = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = J.sids()
 TXT = lambda h: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', h or '')).strip()
 NORM = lambda s: re.sub(r'[^0-9a-z가-힣]+', '', (s or '').lower())
 def refs(h, q):
     return bool(re.search(r'data-(?:go|jb|id|jbgo)="' + re.escape(q) + r'"', h or '')) or bool(re.search(r'(?<![A-Za-z0-9_])' + re.escape(q) + r'(?![A-Za-z0-9_])', h or ''))
 def S_(v): return v if isinstance(v, str) else json.dumps(v, ensure_ascii=False)
 def audit(SID, year=None):
-    P = J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js')); out = {'x': [], 'w': []}
+    P = J._load_js(J.pack_path(SID)); out = {'x': [], 'w': []}
     LK = {L['k']: L for L in P['lect']}
     ymax = year or max((y for y in P.get('jbyears') or [0]), default=0)
     cur_prof = {}

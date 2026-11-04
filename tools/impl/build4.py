@@ -1006,10 +1006,10 @@ def fcnorm(t): return re.sub(r'[\s/·•,;:|①-⑳=↔()]+', '', t)   # 10-05 �
 FCPREV = {}; FCBODY = {}; FCBODY3 = {}
 def _fc_packs():
     """지금 docs 팩 + 배포된 main 팩(git) — 중간 빌드가 docs를 덮어써도 사용자가 쓰던 키를 놓치지 않게(10-05)"""
-    out = [J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))]
+    out = [J._load_js(J.pack_path(SID))]
     try:
         import subprocess
-        t = subprocess.run(['git', '-C', J.ROOT, 'show', f'origin/main:docs/packs/{SID}.js'], capture_output=True, text=True, timeout=60).stdout
+        t = subprocess.run(['git', '-C', J.ROOT, 'show', 'origin/main:' + _os.path.relpath(J.pack_path(SID), J.ROOT).replace(_os.sep, '/')], capture_output=True, text=True, timeout=60).stdout
         if t: out.append(json.loads(t[t.index('{'):t.rindex('}') + 1]))
     except Exception as _e: print('main 팩 못 읽음', _e)
     return out
@@ -1760,13 +1760,16 @@ def _arw(o):
 pack = _arw(pack)
 pack_js = ("window.JBLHUB&&!JBLHUB.build&&location.search.indexOf('v=%s')<0&&/^https?:/.test(location.protocol)&&location.replace(location.pathname+'?v=%s'+location.hash);"   # 중괄호 없는 한 줄(팩 파서는 첫 '{'부터 읽음)
            "JBLHUB.register(%s);") % (BUILD, BUILD, js(pack))
-OUT = J.DOCS; os.makedirs(OUT + '/packs', exist_ok=True)
+import quarters as _QS   # 11-04 분기 등록표 — 이 과목 분기의 docs 폴더에만 씀
+_QQ = _QS.quarter_of(SID)
+if _QS.frozen(_QQ) and not os.environ.get('JBL_UNFREEZE') and not os.environ.get('JBL_DOCS'): sys.exit(f'{SID}: 분기 {_QQ}는 보관(frozen) — 다시 빌드하려면 JBL_UNFREEZE=1(사용자 허락 뒤) · 시험 빌드는 JBL_DOCS=<스테이징>')
+OUT = J.docs_of(SID); os.makedirs(OUT + '/packs', exist_ok=True)
 open(OUT + f'/packs/{SID}.js', 'w', encoding='utf-8').write(pack_js)
 # 허브가 불러올 팩 = docs/packs에 실제로 있는 <SID>.js (없는 과목은 '자료 대기' 카드 — 404 방지) · 팩마다 내용 지문(?v=)
-READY = [x for x in ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH'] if os.path.exists(OUT + f'/packs/{x}.js')]
+READY = [x for x in _QS.sids(_QQ) if os.path.exists(OUT + f'/packs/{x}.js')]
 PV = {x: _h8(open(OUT + f'/packs/{x}.js', encoding='utf-8').read()) for x in READY}
 PSZ = {x: round(sum(os.path.getsize(os.path.join(OUT, 'packs', f)) for f in os.listdir(os.path.join(OUT, 'packs')) if f == x + '.js') / 1e6, 1) for x in READY}   # ux2 fixB flow V11 첫 방문 진행 표시(MB)
-open(OUT + '/index.html', 'w', encoding='utf-8').write(shell.replace('<!--INLINE_PACKS-->', '').replace('null/*READY*/', js(READY)).replace('null/*PV*/', js(PV)).replace('null/*PSZ*/', js(PSZ)).replace("'dev'/*BUILD*/", js(BUILD)))
+open(OUT + '/index.html', 'w', encoding='utf-8').write(_QS.fill_index(shell, _QQ, READY, PV, PSZ, BUILD, docs=OUT, jsf=js))
 # 홈 화면 앱(C11) — docs/manifest.webmanifest·icon-192.png·icon-512.png (내용이 바뀐 때만 씀 · 모든 과목 빌드가 같은 것을 냄)
 def _icon(n):
     from PIL import ImageDraw, ImageFont
@@ -1776,8 +1779,7 @@ def _icon(n):
     except TypeError: f = ImageFont.load_default()
     d.text((n / 2, n * .42), 'JBL', fill='#FFFFFF', font=f, anchor='mm')
     b = io.BytesIO(); im.save(b, 'PNG', optimize=True); return b.getvalue()
-_man = json.dumps({'name': 'JBL 허브', 'short_name': 'JBL 허브', 'start_url': './', 'scope': './', 'display': 'standalone', 'lang': 'ko', 'background_color': '#F7F4EF', 'theme_color': '#FFFFFF',
-                   'icons': [{'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png'}]}, ensure_ascii=False, indent=1).encode('utf-8')
+_man = _QS.manifest(_QQ)
 for _fn, _b in [('manifest.webmanifest', _man), ('icon-192.png', _icon(192)), ('icon-512.png', _icon(512))]:
     _p = os.path.join(OUT, _fn)
     if not os.path.exists(_p) or open(_p, 'rb').read() != _b: open(_p, 'wb').write(_b)
@@ -1792,7 +1794,7 @@ if _jbc:
         "(function(){var H=window.JBLHUB,o=H.images,N=%s,acc={jb:{},lec:{}},n=0;H.images=function(i,x,c){if(i==='%s'&&N.indexOf(c)>=0){for(var k in (x.jb||{}))acc.jb[k]=x.jb[k];if(++n===N.length){H.images=o;o.call(H,i,acc,'jb');}return;}return o.apply(H,arguments);};"
         "N.forEach(function(c){var s=document.createElement('script');s.src='packs/%s.img.'+c+'.js';document.head.appendChild(s);});})();" % (js(_jbc), SID, SID))
 SINGLE = _os.path.join(J.WORK, f'{S.TITLE.replace(" ", "")}_JBL.html')   # 단일 파일판 — work/에만, 커밋 안 함
-open(SINGLE, 'w', encoding='utf-8').write(shell.replace('null/*READY*/', '[]').replace("'dev'/*BUILD*/", js(BUILD)).replace('<!--INLINE_PACKS-->', '<script>' + pack_js + '</script>\n' + ''.join('<script>' + t + '</script>\n' for t in img_files.values())))
+open(SINGLE, 'w', encoding='utf-8').write(_QS.fill_index(shell, _QQ, [], None, None, BUILD, docs=OUT, inline='<script>' + pack_js + '</script>\n' + ''.join('<script>' + t + '</script>\n' for t in img_files.values()), jsf=js))
 # ---- 검증
 inlec = {i for L in LEC for c in L['cards'] for i in (list(c['jb']) + [i_ for b in c['body'] if b[0] == 'E' for i_ in b[1][0]])}
 print('⭐ 시험포인트로 다뤄지지 않은 연결 기출:', sorted({i for L in LEC for c in L['cards'] for i in c['jb']} - {i_ for L in LEC for c in L['cards'] for b in c['body'] if b[0] == 'E' for i_ in b[1][0]}))

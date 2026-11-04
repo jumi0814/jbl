@@ -6,7 +6,7 @@
 import os, sys, re, importlib.util
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
-SIDS = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = J.sids()
 def load_subject(sid):
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), sid.lower(), 'subject.py')
     sp = importlib.util.spec_from_file_location('subject_' + sid, p); m = importlib.util.module_from_spec(sp)
@@ -16,7 +16,7 @@ def load_subject(sid):
     return m
 def y2(y): return y % 100
 def audit(SID):
-    S = load_subject(SID); P = J._load_js(os.path.join(J.DOCS, 'packs', SID + '.js'))
+    S = load_subject(SID); P = J._load_js(J.pack_path(SID))
     YP, YQ = getattr(S, 'YEAR_PROF', {}) or {}, getattr(S, 'YEAR_PROF_Q', {}) or {}
     keys = {L['k'] for L in P['lect']}
     cards = {}

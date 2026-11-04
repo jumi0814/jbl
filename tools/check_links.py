@@ -6,7 +6,7 @@
 import os, sys, re, json, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools')); import jblpaths as J
-SIDS = [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = [a.upper() for a in sys.argv[1:]] or J.sids()
 bad_all = 0
 for SID in SIDS:
     P = J._load_js(os.path.join(ROOT, 'docs', 'packs', SID + '.js')); have = set()

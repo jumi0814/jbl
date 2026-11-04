@@ -1,6 +1,6 @@
 #!/bin/sh
 # 맥 전용: 새 강의자료(예: 26년도 PDF)를 materials/<과목>/에 넣은 뒤 한 줄로 → 쪽별 추출(matx) → **새로 넣은 파일의 추출본만** origin cloud-materials 브랜치에 올림.
-#   sh tools/push_materials.sh               # 7과목 전부에서 새 파일 찾기
+#   sh tools/push_materials.sh               # 지금 쿼터 과목 전부에서 새 파일 찾기(4Q 과목 강의자료 = materials/4Q/<과목>/ · JB = jb/'20YY 4Q <과목> JB.pdf')
 #   sh tools/push_materials.sh CONS GERI     # 고른 과목만
 #   sh tools/push_materials.sh --dry         # 올릴 목록만 보기(올리지 않음)
 # '새 파일' = cloud-materials 브랜치에 아직 없는 work/<SID>/mat/<파일id>/ 폴더(이미 올린 25·26 추출본은 건드리지 않음) + 그 과목 index.json(파일 목록).
@@ -11,7 +11,7 @@ cd "$(dirname "$0")/.."
 ROOT=$(pwd)
 DRY=0; SIDS=""
 for a in "$@"; do case "$a" in --dry) DRY=1;; *) SIDS="$SIDS $a";; esac; done
-[ -n "$SIDS" ] || SIDS="OMS1 CONS IMPL ANAT GERI PHARM ESTH"
+[ -n "$SIDS" ] || SIDS=$(python3 tools/quarters.py sids)   # 11-04 기본 = 지금 쿼터 과목(tools/quarters.json current) · 3Q 과목은 이름을 주면 됨
 [ -n "$NO_MATX" ] || [ -x .venv/bin/python ] || { echo '.venv 없음 — CLAUDE.md 「첫 세션에서 할 일」 2번으로 먼저 준비'; exit 1; }
 if [ -z "$NO_MATX" ]; then
   command -v tesseract >/dev/null || { echo 'tesseract 없음 — brew install tesseract tesseract-lang'; exit 1; }

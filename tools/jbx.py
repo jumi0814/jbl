@@ -1,17 +1,19 @@
 """JB PDF → work/jb/<SID>_20xx/ (N.txt · N.jpeg · manifest.json) — 파이프라인이 읽는 판본 폴더 형식.
 사용: python3 tools/jbx.py [SID ...]   (인자 없으면 전 과목)
-jb/ 파일명: '2025 3Q <과목> JB.pdf' 또는 '2025_3Q_<과목>_JB.pdf'. 실제 PDF든 ZIP(N.txt·N.jpeg·manifest.json)이든 처리."""
+jb/ 파일명: '2025 3Q <과목> JB.pdf' 또는 '2025_3Q_<과목>_JB.pdf' · 4Q 과목은 '2025 4Q <과목> JB.pdf'(과목 이름 = tools/quarters.json subjects의 jb). 실제 PDF든 ZIP(N.txt·N.jpeg·manifest.json)이든 처리."""
 import os, re, sys, json, zipfile, unicodedata, pymupdf, pypdfium2
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SUBJ = {'구강악안면외과학1': 'OMS1', '임상치과보존학': 'CONS', '치과임플란트학': 'IMPL', '임상두경부해부학': 'ANAT',
-        '노인치과학': 'GERI', '임상치과약물치료학': 'PHARM', '심미치과학': 'ESTH'}
+import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import quarters as QS   # 11-04 분기 등록표 — (쿼터, JB 이름) → SID
+SUBJQ = {(v['q'], unicodedata.normalize('NFC', v['jb'])): k for k, v in QS.SUBJ.items()}
+SUBJ = {j: k for (q, j), k in SUBJQ.items() if q == '3q'}   # 옛 호출(3Q 이름 → SID) 호환
 IMG_W = 924
 def nfc(s): return unicodedata.normalize('NFC', s)
 def sources():
     d = os.path.join(ROOT, 'jb')
     for f in sorted(os.listdir(d)):
-        m = re.match(r'^(20\d\d)[ _]3Q[ _](.+?)[ _]JB\.(pdf|zip)$', nfc(f), re.I)
-        if m and m.group(2) in SUBJ: yield SUBJ[m.group(2)], m.group(1), os.path.join(d, f)
+        m = re.match(r'^(20\d\d)[ _]([34])Q[ _](.+?)[ _]JB\.(pdf|zip)$', nfc(f), re.I)   # 11-04 '20YY 3Q …' · '20YY 4Q …'(쿼터 = 그 과목 분기)
+        k = m and SUBJQ.get((m.group(2) + 'q', m.group(3)))
+        if k: yield k, m.group(1), os.path.join(d, f)
 def extract(src, out):
     os.makedirs(out, exist_ok=True)
     if zipfile.is_zipfile(src):

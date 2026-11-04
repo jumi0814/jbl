@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
 
 def badges(sid):
-    t = open(os.path.join(J.DOCS, 'packs', sid + '.js'), encoding='utf-8').read(); p = json.loads(t[t.index('{'):t.rindex('}') + 1]); out = {}
+    t = open(J.pack_path(sid), encoding='utf-8').read(); p = json.loads(t[t.index('{'):t.rindex('}') + 1]); out = {}
     for cid, h in p['cards'].items():
         yb = re.search(r'<span class="ybadge[^"]*"(?: title="([^"]*)")?[^>]*><b>([^<]*)</b>', h)
         out[cid] = {int(y) % 100 for y in re.findall(r'20\d\d', (yb.group(1) or yb.group(2)) if yb else '')}
@@ -56,4 +56,4 @@ def main(sids):
     return bad
 
 if __name__ == '__main__':
-    sys.exit(1 if main([a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']) else 0)
+    sys.exit(1 if main([a.upper() for a in sys.argv[1:]] or J.sids()) else 0)

@@ -1,0 +1,78 @@
+{
+ "_doc": "분기 등록표(11-04 4Q 계획) — 분기마다 docs 폴더·이름·저장 정체성, 과목마다 분기·이름·색. 읽기·검사 = tools/quarters.py. 3q 정체성 값은 3Q 허브의 원래 상수 그대로(바꾸면 3Q 기록이 안 보임). 전환(cut-over) 때 current·docs·frozen을 바꿈.",
+ "current": "3q",
+ "cutover": {
+  "_doc": "전환 뒤 자리(tools/rehub.py --site 미리 보기·tools/cutover.py가 씀)",
+  "4q": "docs",
+  "3q": "docs/3q"
+ },
+ "quarters": {
+  "3q": {
+   "label": "3학년 3쿼터",
+   "docs": "docs",
+   "frozen": false,
+   "stage": "work/_tmp/hub3q",
+   "ident": {
+    "ns": "jblhub.v1.",
+    "syncKey": "jblsync",
+    "gist": "JBL 허브",
+    "headApp": "jblhub-sync",
+    "bakApp": "jblhub",
+    "filePre": "JBL허브_",
+    "idb": {
+     "bak": "jblhub-bak",
+     "sync": "jblsync",
+     "lsq": "jblhub-lsq",
+     "xs": "jblhub-xs"
+    },
+    "bc": {
+     "t": "jblhub",
+     "xs": "jblhub-xs"
+    },
+    "lock": "jblsync"
+   },
+   "links": [
+    "4q"
+   ],
+   "importFrom": null
+  },
+  "4q": {
+   "label": "3학년 4쿼터",
+   "docs": "work/_tmp/hub4q",
+   "frozen": false,
+   "stage": "work/_tmp/hub4q",
+   "ident": {
+    "ns": "jbl4q.v1.",
+    "syncKey": "jbl4qsync",
+    "gist": "JBL 4Q",
+    "headApp": "jbl4q-sync",
+    "bakApp": "jbl4q",
+    "filePre": "JBL4Q_",
+    "idb": {
+     "bak": "jbl4q-bak",
+     "sync": "jbl4qsync",
+     "lsq": "jbl4q-lsq",
+     "xs": "jbl4q-xs"
+    },
+    "bc": {
+     "t": "jbl4q",
+     "xs": "jbl4q-xs"
+    },
+    "lock": "jbl4qsync"
+   },
+   "links": [
+    "3q"
+   ],
+   "importFrom": "3q"
+  }
+ },
+ "subjects": {
+  "OMS1": {"q": "3q", "ko": "구강악안면외과학 1", "short": "구강외과1", "color": "#0F6E6C", "jb": "구강악안면외과학1", "mat": "구강악안면외과학1"},
+  "CONS": {"q": "3q", "ko": "임상치과보존학", "short": "보존", "color": "#6B3FA0", "jb": "임상치과보존학", "mat": "임상치과보존학"},
+  "IMPL": {"q": "3q", "ko": "치과임플란트학", "short": "임플란트", "color": "#93561A", "jb": "치과임플란트학", "mat": "치과임플란트학"},
+  "ANAT": {"q": "3q", "ko": "임상두경부해부학", "short": "두경부해부", "color": "#2F5DA8", "jb": "임상두경부해부학", "mat": "임상두경부해부학"},
+  "GERI": {"q": "3q", "ko": "노인치과학", "short": "노인치과", "color": "#6A6A1C", "jb": "노인치과학", "mat": "노인치과학"},
+  "PHARM": {"q": "3q", "ko": "임상치과약물치료학", "short": "약물치료", "color": "#8E3B78", "jb": "임상치과약물치료학", "mat": "임상치과약물치료학"},
+  "ESTH": {"q": "3q", "ko": "심미치과학", "short": "심미", "color": "#2F7A3E", "jb": "심미치과학", "mat": "심미치과학"}
+ }
+}

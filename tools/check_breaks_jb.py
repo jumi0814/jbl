@@ -4,7 +4,7 @@ import sys, re, os, collections
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.join(ROOT, 'tools')); sys.path.insert(0, os.path.join(ROOT, 'tools', 'cons'))
 import jblpaths as J, reflow
 from bs4 import BeautifulSoup
-SIDS = [a.upper() for a in sys.argv[1:]] or ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
+SIDS = [a.upper() for a in sys.argv[1:]] or J.sids()
 cnt = collections.Counter(); ex = collections.defaultdict(list)
 CONT_END = re.compile(r'(?:따라|따른|대한|위한|관한|의한|통해|통하여|하는|되는|있는|없는|같은|하여|하고|되어|하며|되며|이며|으며|에서|으로|에게|부터|까지|처럼|보다|에는|에도|지만|는데|이나|거나|및|[을를에의]|[,，])$')
 for S in SIDS:
