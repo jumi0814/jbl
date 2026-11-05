@@ -23,6 +23,8 @@
 - [ ] P0 배포 뒤 기기 확인(사용자): iPad 홈 화면 앱 → 4Q 빈 허브(화면 설정 이어짐) · ⇄ 3학년 3쿼터 → 3Q 기록 그대로 · 동기화 켜져 있던 기기는 4Q에서도 켜짐(토큰만 — 4Q 기록은 새 Gist 'JBL 4Q 동기화')
 - [x] (11-05) 4Q 과목 10개 등록(new_subject — SID OMS2·CONS4·IMPL4·ANAT4·HINS·GERI4·PHARM4·RAD·OPATH·ESTH4 · 이어지는 과목 = 3Q 색 그대로 · 등록표 검사 'SID+숫자'는 같은 쿼터끼리만) · 빈 팩 빌드(허브에 10과목 '강의자료 대기') · jbx = jb·mat·정식 이름 어느 것이든
 - [~] (11-05) P1 받음: 복원 엑셀 6개(1 OMS1·3 ANAT·4 GERI·5 PHARM·6 IMPL·7 ESTH — 2 CONS 없음) → work/3q26(이름·출석번호 뺌) · 과목 담당 6명(guide/handoff/R26_BRIEF.md — tools/<sid>/r26.txt · work/<SID>/hit26/HIT_<SID>.md) · OMS1 예상 판정 = 10-27 전 판(work/3q26/oms1_pred_before1027.txt)
+  - [x] 6과목 담당 끝(11-05): r26 = OMS1 25 · ANAT 19 · GERI 18 · PHARM 55 · IMPL 18 · ESTH 28 = 163문항(짤 61·변형 66·탈 36) · 우리 예상이 덮음 149/163 · 상만 109/163 · ESTH N제 이창하 23/25 → 보고 guide/handoff/hit26/ · 배운 것 RULES 14 c ⑥ · '2026 출제' 넣는 법 RULES 13(11-05 무인) · 이름 검사 0(엑셀 이름 열 대조 — 거짓 일치 '…이다 빈칸' 2)
+  - [~] 교수 프로필 담당 5명(PROF_A 한정준·서병무·서미현·윤필영·양훈주·박주영·권익재 · B1 조영단·임영준·조준호·김성균·명훈 · B2 백정화·이윤실·김우진·우경미 · C 이우철·금기연·고홍섭·장지희·박지은·한동헌 · D 이창하·안진수·서덕규·이인복·김선영·손호현) — 지시문 work/_tmp/agents/PROF_*.md · 입력 work/3q26/ref_<SID>.md(해별 교수·꼴 포함)·work/_tmp/fmt26
   - **막힘**: 3Q 팩을 다시 빌드하려면 3Q 26판 JB 추출본(work/jb/<SID>_2026)이 필요 — 10-15 클라우드에서만 풀고 cloud-materials에 안 올림 → 사용자에게 26판 JB 7개 다시 요청(4Q JB와 함께) · 받으면: jbx → build4에 r26(2026 출제) 넣기(짤 = 기존 카드 연도 26 + '2026 복원' 판 · 앞면은 JB 판 그대로 / 탈 = 새 카드 Z01…) → JBL_UNFREEZE=1 빌드 → 3Q 회귀 → docs/3q 배포
 - [ ] P1 2026 3Q 실제 기출 받기 → 과목·교수별 분석 · 적중 분석(HIT) · 교수 프로필(PROF) → 3Q 사이트 '2026 출제'(JBL_UNFREEZE=1 — 결정 3)
 - [ ] P2 4Q 과목마다: new_subject → JB 분해 → TREND → 정리본(26 본문 / 없으면 25 임시) → annot·tables → 검토 → 예상·N제 → 검사 → 과목마다 중간 배포
