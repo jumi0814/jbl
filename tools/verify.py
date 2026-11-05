@@ -54,7 +54,7 @@ for f in sorted(os.listdir(DOCS + '/packs')):
 # ---- 1c. JB 문항 id 잠금(C09) — 있던 id의 문제 글자가 바뀌거나 id가 사라지면 실패(옮김 표 tools/<sid>/jb_move.json 필요)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import jblock as _JL
 for f, n, e in _JL.lock_errors(DOCS):
-    sid = f.split('.')[0]; ok(n > 0 and not e, f"{f}: JB id 잠금 {n}개" + (f" — ⚠ {' · '.join(e[:4])}{' …' if len(e) > 4 else ''} → {_JL.need_msg(sid)}" if e else ''))
+    sid = f.split('.')[0]; ok((n is None or n > 0) and not e, f"{f}: JB id 잠금 {'— JB 아직 없음' if n is None else str(n) + '개'}" + (f" — ⚠ {' · '.join(e[:4])}{' …' if len(e) > 4 else ''} → {_JL.need_msg(sid)}" if e else ''))
 # ---- 2. 브라우저
 class Q(http.server.SimpleHTTPRequestHandler):
     def __init__(s, *a, **k): super().__init__(*a, directory=DOCS, **k)

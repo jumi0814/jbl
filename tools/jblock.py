@@ -37,5 +37,7 @@ def lock_errors(docs):
         if '.img.' in f or not f.endswith('.js') or f.endswith('.lx.js'): continue
         t = open(os.path.join(d, f), encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1])
         if 'jbhash' not in pk: out.append((f, 0, ['팩에 jbhash 없음 — 다시 빌드'])); continue
-        lp, mp = paths(pk['id']); lock = load(lp); out.append((f, len(lock), check(pk['id'], pk['jbhash'], lock, load(mp)) + ([] if lock else ['잠금 파일 없음'])))
+        lp, mp = paths(pk['id']); lock = load(lp)
+        if not lock and not pk['jbhash']: out.append((f, None, [])); continue   # 11-05 JB가 아직 없는 과목(4Q 자료 대기) — 잠글 문항 없음
+        out.append((f, len(lock), check(pk['id'], pk['jbhash'], lock, load(mp)) + ([] if lock else ['잠금 파일 없음'])))
     return out

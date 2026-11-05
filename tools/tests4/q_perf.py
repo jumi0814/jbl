@@ -26,6 +26,7 @@ with sync_playwright() as p:
         for s in sub:
             t = time.time(); pg.wait_for_function(f"window.__h&&__h.PACKS&&__h.PACKS['{s}']", timeout=120000); got[f'{q}.{s}.pack'] = round(time.time() - t, 2)
             L = pg.evaluate(f"(__h.PACKS['{s}'].lect||[])[0]&&__h.PACKS['{s}'].lect[0].k")
+            if not pg.evaluate(f"(__h.PACKS['{s}'].order||[]).length"): continue   # 11-05 JB·정리본이 아직 없는 과목(자료 대기) — 탭 시간은 잴 것이 없음
             for tab, h in (('learn', f'#/{s}/{L}'), ('jb', f'#/{s}/_jb/_jb'), ('pred', f'#/{s}/_pred/_pred')):
                 if not L and tab == 'learn': continue
                 pg.evaluate('window.__lt=0'); t = time.time(); pg.goto(U + h)

@@ -21,6 +21,9 @@
 - [x] P0 전환(11-04): `tools/cutover.py` — 3Q 108개 파일 이름 바꿈만 + 3Q index 한 줄(⇄ 4Q 링크) · 등록표 current=4q·3q docs/3q frozen · 4Q 빈 허브 docs/(탭 제목 'JBL 4Q' — 등록표 `title` · 3Q는 'JBL 허브' 그대로) · 확인: verify(docs/3q 7과목·docs 4Q 0과목) · tests4 · 실제 /jbl/ 배치 연기(⇄ 양쪽·다른 쿼터 과목 주소 → 3q/·3Q 기록 보임·설정 이어받음·그림·404 0) · 되돌릴 기준 = 태그 `3q-final`(= 전환 전 origin/main de02f90)
 - [x] P0 배포(11-04 23:43 — main 6d8dda0 · 실제 https://jumi0814.github.io/jbl/ 연기 통과: 4Q 'JBL 4Q'·⇄ 양쪽·3Q 7과목·그림·다른 쿼터 과목 주소 → 3q/·404 0) · 태그 3q-final은 프록시가 태그 푸시를 막아 로컬에만 — 되돌릴 기준 = 커밋 de02f90(main 기록에 있음) · rehub도 JBL_UNFREEZE=1이면 보관 쿼터를 씀(P1용)
 - [ ] P0 배포 뒤 기기 확인(사용자): iPad 홈 화면 앱 → 4Q 빈 허브(화면 설정 이어짐) · ⇄ 3학년 3쿼터 → 3Q 기록 그대로 · 동기화 켜져 있던 기기는 4Q에서도 켜짐(토큰만 — 4Q 기록은 새 Gist 'JBL 4Q 동기화')
+- [x] (11-05) 4Q 과목 10개 등록(new_subject — SID OMS2·CONS4·IMPL4·ANAT4·HINS·GERI4·PHARM4·RAD·OPATH·ESTH4 · 이어지는 과목 = 3Q 색 그대로 · 등록표 검사 'SID+숫자'는 같은 쿼터끼리만) · 빈 팩 빌드(허브에 10과목 '강의자료 대기') · jbx = jb·mat·정식 이름 어느 것이든
+- [~] (11-05) P1 받음: 복원 엑셀 6개(1 OMS1·3 ANAT·4 GERI·5 PHARM·6 IMPL·7 ESTH — 2 CONS 없음) → work/3q26(이름·출석번호 뺌) · 과목 담당 6명(guide/handoff/R26_BRIEF.md — tools/<sid>/r26.txt · work/<SID>/hit26/HIT_<SID>.md) · OMS1 예상 판정 = 10-27 전 판(work/3q26/oms1_pred_before1027.txt)
+  - **막힘**: 3Q 팩을 다시 빌드하려면 3Q 26판 JB 추출본(work/jb/<SID>_2026)이 필요 — 10-15 클라우드에서만 풀고 cloud-materials에 안 올림 → 사용자에게 26판 JB 7개 다시 요청(4Q JB와 함께) · 받으면: jbx → build4에 r26(2026 출제) 넣기(짤 = 기존 카드 연도 26 + '2026 복원' 판 · 앞면은 JB 판 그대로 / 탈 = 새 카드 Z01…) → JBL_UNFREEZE=1 빌드 → 3Q 회귀 → docs/3q 배포
 - [ ] P1 2026 3Q 실제 기출 받기 → 과목·교수별 분석 · 적중 분석(HIT) · 교수 프로필(PROF) → 3Q 사이트 '2026 출제'(JBL_UNFREEZE=1 — 결정 3)
 - [ ] P2 4Q 과목마다: new_subject → JB 분해 → TREND → 정리본(26 본문 / 없으면 25 임시) → annot·tables → 검토 → 예상·N제 → 검사 → 과목마다 중간 배포
 - [ ] P3 26 강의가 나올 때마다 전면 갱신(25 무관 내용 지움) → 예상·N제 → 배포

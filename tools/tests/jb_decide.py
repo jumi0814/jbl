@@ -17,7 +17,7 @@ txt = lambda h: re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', h))).s
 HIDE = re.compile(r'^\s*\d+(\s*-\s*\d+)?\s*[.)]?\s*\(?\s*(미복원|복원\s*불충분)\s*\)?\s*\.?\s*$')
 SIDS = ['OMS1', 'CONS', 'IMPL', 'ANAT', 'GERI', 'PHARM', 'ESTH']
 for s in SIDS:
-    P = J._load_js(_os.path.join(J.ROOT, 'docs', 'packs', s + '.js')); C = P['cards']
+    P = J._load_js(J.pack_path(s)); C = P['cards']
     unrec = [i for i, h in C.items() if (m := re.search(r'<div class="qtext">(.*?)</div></div>', h, re.S)) and HIDE.match(txt(m.group(1)))]
     ok(not unrec, f'{s} ① 미복원 자리 카드 0 {unrec[:5]}')
     links = {}
@@ -50,6 +50,6 @@ for s in SIDS:
     gos = set(re.findall(r'data-go=\\"([A-Za-z]{1,3}\d[\w-]*)\\"', blob)) | set(re.findall(r'data-go="([A-Za-z]{1,3}\d[\w-]*)"', blob))
     dang = sorted(g for g in gos if g not in C)
     ok(not dang, f'{s} ⑤ 끊긴 JB 링크 0 (링크 대상 {len(gos)}개) {dang[:8]}')
-errs = [(f, e) for f, n, e in jblock.lock_errors(_os.path.join(J.ROOT, 'docs')) if e]
+errs = [(f, e) for f, n, e in jblock.lock_errors(J.DOCS) if e]
 ok(not errs, f'⑥ JB id 잠금·옮김 표 {errs[:3]}')
 print('RESULT', 'PASS' if not fails else 'FAIL ' + str(len(fails)))

@@ -4,8 +4,10 @@ jb/ 파일명: '2025 3Q <과목> JB.pdf' 또는 '2025_3Q_<과목>_JB.pdf' · 4Q 
 import os, re, sys, json, zipfile, unicodedata, pymupdf, pypdfium2
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import quarters as QS   # 11-04 분기 등록표 — (쿼터, JB 이름) → SID
-SUBJQ = {(v['q'], unicodedata.normalize('NFC', v['jb'])): k for k, v in QS.SUBJ.items()}
-SUBJ = {j: k for (q, j), k in SUBJQ.items() if q == '3q'}   # 옛 호출(3Q 이름 → SID) 호환
+SUBJQ = {}
+for k, v in QS.SUBJ.items():   # 11-05 JB 파일 과목 이름 = 등록표 jb · 자료 폴더 이름(mat) · 정식 이름 띄어쓰기 없이 — 4Q JB 파일 이름을 아직 몰라서(예 '구강악안면외과학2'·'구강악안면외과학')
+    for nm in (v['jb'], v['mat'], v['ko'].replace(' ', '')): SUBJQ.setdefault((v['q'], unicodedata.normalize('NFC', nm)), k)
+SUBJ = {j: k for (q, j), k in SUBJQ.items() if q == '3q' and QS.SUBJ[k]['jb'] == j}   # 옛 호출(3Q 이름 → SID) 호환
 IMG_W = 924
 def nfc(s): return unicodedata.normalize('NFC', s)
 def sources():

@@ -79,9 +79,9 @@ def check():
         if v['q'] not in QS: err.append(f'{s}: 분기 {v["q"]} 없음')
         for k in ('ko', 'short', 'color', 'jb', 'mat'):
             if not v.get(k): err.append(f'{s}: {k} 비어 있음')
-    for s in SUBJ:   # 넘버링 동기화 조각 = N<SID><0-7> — 다른 SID + 숫자 하나와 겹치면 안 됨
+    for s in SUBJ:   # 넘버링 동기화 조각 = N<SID><0-7> — 같은 쿼터(한 허브의 SYNC_SJ)의 다른 SID + 숫자 하나와 겹치면 안 됨(11-05: 쿼터가 다르면 허브·동기화가 따로라 괜찮음 — 4Q CONS4 ↔ 3Q CONS)
         for t in SUBJ:
-            if t != s and re.fullmatch(re.escape(s) + r'[0-7]', t): err.append(f'{t}: {s}+숫자와 동기화 조각 이름이 겹침')
+            if t != s and SUBJ[t]['q'] == SUBJ[s]['q'] and re.fullmatch(re.escape(s) + r'[0-7]', t): err.append(f'{t}: {s}+숫자와 동기화 조각 이름이 겹침')
     seen = {}
     for q, I in QS.items():
         for k, v in I['ident'].items():
