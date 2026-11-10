@@ -200,6 +200,9 @@ def card_aid(k, c): return aid(k + ':' + slug(c['en'], c['ko']))
 heat = lambda n: 'h2' if n >= 2 else ('h1' if n == 1 else 'h0')
 ctx = {'QMAP': QMAP, 'YR': YR, 'LECNAME': LECNAME, 'cited': set(), 'figs': set()}   # figs = 그림(F:)·예상 그림으로 실제로 보이는 쪽(10-17 FIG_ONLY_LECS)
 LEC = lecparse.load_all()
+# 11-10 빈 과목(자료 대기 — tools/new_subject.py 빈 틀 그대로: 강의가 WAIT 하나뿐이고 JB 문항 0) → pack['stub'] = True · 기출이 있어야 뜻이 있는 글은 내지 않음
+#   (강의 틀의 출제 경향·'📌 공부 전략 기출은 전부 풀되 …'·빈 '⭐ 많이 나온 순' · 과목 홈 교수별 경향 절 · 기출 대장 '카드 0개 = .'·빈 표) — 이 조건 밖 과목의 출력은 그대로
+STUB = (not Q) and [L_['k'] for L_ in LEC] == ['WAIT']
 # ux4e 사용자 '과목명·강의자료 이름은 줄이지 말고 원래 그대로' — 화면에 보이는 강의 이름 = 정리본 원고의 강의 제목(L['title']) 그대로. LECNAME(LECMAP 짧은 이름)은 두고 화면에는 쓰지 않음
 LECT = {L_['k']: L_['title'] for L_ in LEC}
 lname = lambda k: LECT.get(k) or LECT.get(getattr(S, 'IMG_ALIAS', {}).get(k, '')) or re.sub(r'\s*\([^)]*\)\s*$', '', LECNAME.get(k, k)) or k
@@ -721,7 +724,7 @@ def prev_answers(q, at):
         seen.append((c_, h_)); out.append((v_, va))
     if not out: return '', set()
     sl = lambda v_: f'{v_["sec"]}년 칸' if re.fullmatch(r'20[0-9][0-9]', str(v_['sec'])) else str(v_['sec'])
-    pb = lambda v_: ''.join(f'<button class="btn sm" data-jb="{v_["ed"]}-{p_}">원본 {p_}쪽</button>' for p_ in range(v_['pg'], max(v_['pg'], v_.get('pg2') or v_['pg']) + 1))
+    pb = lambda v_: ''.join(f'<button class="btn sm" data-jb="{v_["ed"]}-{p_}">JB 원본 {p_}쪽</button>' for p_ in range(v_['pg'], max(v_['pg'], v_.get('pg2') or v_['pg']) + 1))   # 11-10 라벨 통일 — 같은 동작(JB 원본 쪽 창) = 같은 이름 'JB 원본 n쪽'(앞면 단추·📜 이전 답·다른 판본)
     body = ''.join(f'<div class="pv"><div class="pvh noann">JB {esc(v_["ed"])}판 · {esc(sl(v_))} {esc(v_["num"])}번 {pb(v_)}</div><div class="lines">{reflow.render(va)}</div></div>' for v_, va in out)
     return f'<details class="ab pans"><summary class="noann">📜 이전 답 <small>{len(out)}건 · 위 답이 가장 최신 판 — 이전 판·이전 해 답은 참고</small></summary>{body}</details>', {id(v_) for v_, _ in out}
 def qcard(q, idx):
@@ -799,10 +802,10 @@ def qcard(q, idx):
         keys_ = [v for t, v in c_['body'] if t == 'K']; key_ = keys_[0] if keys_ else ''   # 10-23 QA — 카드의 🔑 줄이 둘 이상(26 줄 '= 26:' 등)이면 📖 상자에도 다
         m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
         rec_ = ''.join(top_li(lecparse.render_recall(x, ctx)) for x in c_['recall'])   # 10-08 📖 카드 ⚡도 같은 줄 조각 = .mg 묶음(줄간격 층)
-        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">카드로 이동 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{''.join(lecparse.render_keybox(x_, ctx) for x_ in keys_) if keys_ else lecparse.inline(c_["gist"], ctx)}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
+        a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">{esc(lname(k))} 정리본 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{''.join(lecparse.render_keybox(x_, ctx) for x_ in keys_) if keys_ else lecparse.inline(c_["gist"], ctx)}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
     if q['other']:
-        o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])}{"년 칸" if re.fullmatch(r"20[0-9][0-9]", str(v["sec"])) else ""} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
+        o = ''.join(f'<div class="oh">JB {v["ed"]}판 · {esc(v["sec"])}{"년 칸" if re.fullmatch(r"20[0-9][0-9]", str(v["sec"])) else ""} {esc(v["num"])}번 <button class="btn sm" data-jb="{v["ed"]}-{v["pg"]}">JB 원본 {v["pg"]}쪽</button></div><div class="lines box0">{reflow.render(v["text"], True)}</div>' for v in q['other'])
         a.append(f'<details class="oth"><summary>다른 연도 칸·다른 판본에 실린 같은 문제 {len(q["other"])}건 (원문 그대로)</summary>{o}</details>')
     a.append('</div>'); h.append(''.join(a)); h.append('</article>')
     return ''.join(h)
@@ -822,6 +825,18 @@ def bullet(kind, text):
         items = ''.join(f'<li>{lecparse.inline(x.strip(), ctx)}</li>' for x in lecparse._rebalance(lecparse.split_top(rest, ' / ')) if x.strip())
         return f'<div class="{cls}">{tag}<div class="lead">{lecparse.inline(lead + " " + tags, ctx)}</div><ol class="sub">{items}</ol></div>'
     return f'<div class="{cls}">{tag}{lecparse.inline(text, ctx)}</div>'
+# ---- 11-10 그림 파일 방식(W3 — SPEC '그림 파일') · tools/quarters.json 그 분기 "img": "files"(4Q)일 때만 — 키가 없는 분기(3Q)는 IMGFILES = False라 아래 'if IMGFILES' 가지가 하나도 돌지 않음(출력 그대로)
+#   강의 쪽 = <docs>/packs/img/<SID>/<키>-<쪽>.<h8>.webp(화질·폭·method는 묶음 방식 webp64와 같은 값) · JB 원본 쪽 = jb<판>-<쪽>.<h8>.jpg(assemble이 준 JPEG 바이트 그대로) · h8 = 파일 바이트 md5 앞 8자
+#   팩 imgf = {'lec': {키: h8}, 'jb': {키: h8}} · tools/<sid>/img_lock.json = {'enc', 'lec': {키: [원본 md5, h8, 원본 폭, 높이]}, 'jb': {키: [원본 md5|꼴, h8]}} — 원본이 같으면 지난 파일을 그대로(다시 인코딩하지 않음)
+#   원본(work/<SID>/lec·work/jb)이 없는 곳에서 다시 빌드 = 지난 목록(imgf)·파일 그대로(J.prev_imgf·img_bytes · assemble은 J.prev_jb_pages) · 목록에서 빠진 파일은 한 세대 남겼다가 다음 빌드 때 지움(옛 팩을 든 기기 404 방지)
+IMGFILES = J.img_mode(SID) == 'files'
+_md5 = lambda b_: _hl.md5(b_).hexdigest()
+ILOCK_P = os.path.join(DIR, 'img_lock.json'); ILOCK = {'enc': '', 'lec': {}, 'jb': {}}; PIMGF = PIMGF_OUT = {'lec': {}, 'jb': {}}
+if IMGFILES:
+    if os.path.exists(ILOCK_P):
+        _il = json.load(open(ILOCK_P, encoding='utf-8')); ILOCK = {'enc': _il.get('enc') or '', 'lec': _il.get('lec') or {}, 'jb': _il.get('jb') or {}}
+    PIMGF_OUT = J.prev_imgf(SID, J.docs_of(SID))   # 이 출력 자리의 지난 목록 — 새 팩을 쓰기 전에 읽어 둠(한 세대 남길 파일)
+    PIMGF = J.prev_imgf(SID)                       # 지난 목록(출력 자리 팩 → 없으면 배포 자리 팩) — 원본·잠금이 없을 때 쓸 파일
 _DIMS = {}; _PREVI = []
 def img_dims(key):
     """ux2 D10 강의 쪽 이미지의 표시 크기(폭 740 기준 높이) — 원본 쪽 이미지 머리만 읽음, 없으면 지금 docs/의 이미지"""
@@ -829,6 +844,12 @@ def img_dims(key):
     k_, p_ = key.rsplit('-', 1); f = S.lec_img_path(k_, int(p_)); wh = None
     try:
         if f and os.path.exists(f): wh = Image.open(f).size
+        elif IMGFILES:   # 11-10 그림 파일 방식 — 원본이 없으면 잠금에 적어 둔 원본 크기(원본이 있는 곳과 같은 HTML) → 없으면 지난 파일 머리
+            e_ = ILOCK['lec'].get(key) or []
+            if len(e_) >= 4 and e_[2] and e_[3]: wh = (e_[2], e_[3])
+            else:
+                fp_ = J.prev_img_path(SID, 'lec', key, e_[1] if len(e_) > 1 else None) or J.prev_img_path(SID, 'lec', key)
+                if fp_: wh = Image.open(fp_).size
         else:
             if not _PREVI: _PREVI.append(J.prev_images(SID))
             v = _PREVI[0].get(key)
@@ -1215,6 +1236,7 @@ PRATIO = [r_ for r_ in (trend.latest_ratio(PSM[p_]) for p_ in PCUR) if r_ is not
 trends_html = (f'<section class="ptrend sh4"><h2 class="hh">교수별 출제 경향 <small>짤 = 이전 해에 한 번이라도 나온 문제 · 탈 = 그 해 처음</small></h2><div class="tscroll"><table class="ttab"><thead><tr><th>교수</th><th>최근 해</th><th>짤 / 탈</th><th>유형</th><th>짤 / 문항</th><th>탈의 성격 · 형식</th></tr></thead><tbody>{trow}</tbody></table></div>'   # ux4 B3-3 문장 목록 → 표(행 = 최근 2개 시험 해에 문항이 있는 교수)
                + (f'<div class="tstrat"><div class="tsh">📌 공부 전략</div>{strat_html}</div>' if strat_html else '')
                + f'<details class="trd"><summary>연도별 문항 수·짤/탈 세부 보기{(" · 예전 담당 " + esc("·".join(POLD))) if POLD else ""}</summary><div class="tscroll"><table class="cmp trendtbl"><thead><tr><th style="width:15%">교수</th><th style="width:40%">연도별 문항 · 짤/탈</th><th>경향</th></tr></thead><tbody>{prow}</tbody></table></div><div class="small" style="margin-top:6px">{esc(MENT_ALL)}</div></details></section>')
+if STUB: trends_html = ''   # 11-10 빈 과목 — 과목 홈 '교수별 출제 경향' 절 없음('- · JB 기출 없음 — 담당 강의: 강의자료 대기' 줄)
 top = [{'id': q['id'], 'yrs': q['yrs'], 'short': short_top(q), 'prof': prof_main(q), 'pfh': prof_inline(q), 'lk': q['lk']} for q in sorted([q for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2], key=lambda q: (-len(q['yrs']), -q['yrs'][0]))]
 lect = []; KEYLONG = {}; MEMTIP = {}
 def fsrc_short(f):
@@ -1252,6 +1274,7 @@ for L in LEC:
     strat_ = PSTRAT.get(pk_) or tstrat
     trend_html = (f'<details class="trend"><summary><b>출제 경향</b> <span class="tsl">{esc(trend.short_line(SM) if SM or not sum(1 for q_ in Q if q_['tier'] == 'C' and q_['lk'] == k) else '현 교수 기출 없음 · 참고 기출 ' + str(sum(1 for q_ in Q if q_['tier'] == 'C' and q_['lk'] == k)) + '문항(옛 교수·다른 쿼터 — 기출 탭)')}</span></summary><div class="small tnote">JB 자료에서 산출 — 짤 = 이전 해에 한 번이라도 나온 문제, 탈 = 그 해 처음</div><div class="yrow">{trend.years_html(SM)}</div><div class="ttxt tlines">{"".join(f"<div>{x}</div>" for x in ttxt.split(" / "))}</div>{("<details class=tald><summary>탈 문항 목록 — 어디서 새로 냈나</summary><ul>" + tal_list + "</ul></details>") if tal_list else ""}'
                   + (f'<div class="small">이 강의 기출만으로 본 전략: {tstrat}</div>' if strat_ != tstrat else '') + f'</details><div class="tstr"><div class="tsh">📌 공부 전략{(" (" + esc(pk_) + ")") if strat_ != tstrat else ""}</div>{strat_list([(x.strip(), []) for x in strat_.split(" · ") if x.strip()], 3)}</div>')
+    if STUB: trend_html = ''   # 11-10 빈 과목 — 기출이 없는데 '기출은 전부 풀되 … 다음 해의 짤 후보'·'첫 해의 기출만 있어' 글이 나가던 것
     top_ids = sorted(jb_ids + [q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (QMAP[i]['tier'] != 'A', -len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0)))[:8]
     def ltop_li(n_, i):   # ux2 D11 '연결 카드 국문 제목 — 문제 요지' · 줄 = 그 카드로(data-cj) · 연도 칩 = JB
         cj = next((j_ for j_, c_ in enumerate(L['cards']) if Q2CARD.get(i) == (k, j_)), None)
@@ -1278,7 +1301,7 @@ for L in LEC:
     hint_html = f'<div class="co c-prof fhint"><div class="ct">📣 교수님 예고·강조</div>{"".join(f"<div class=fh>{lecparse.inline(x, ctx)}</div>" for x in NH)}</div>' if NH else ''
     gp = '<div class="pills noann" id="grppills"><button class="tg on" data-grp="">전체</button>' + ''.join(f'<button class="tg" data-grp="{esc(g)}">{esc(gdisp(g))}</button>' for g in grps) + '<span class="sp"></span><span class="rvsort" title="복습 보기 정렬"><button class="tg on" data-rvs="">강의 순</button><button class="tg" data-rvs="n">기출 많은 순</button><button class="tg" data-rvs="x">몰라요·✓ 안 한 것 먼저</button></span><span class="rvleg">카드 [알아요○][몰라요✕] → ‘몰라요·✓ 안 한 것 먼저’ 정렬 · ✓ = 다 봄 · 🔁 오늘 복습은 JB 채점 기준</span><button class="tg" data-filt="unread" title="✓ 다 봄 표시한 카드 숨기기">안 본 카드만</button><button class="tg" data-filt="jb" title="⭐ 기출이 걸린 카드만">⭐ 기출 카드만</button><button class="tg" data-filt="rep2" title="2회 이상 나온 기출이 걸린 카드만">2회↑만</button><button class="tg" data-filt="mine" title="내 형광펜·빈칸이 있는 카드만">내 표시만</button>' + ('<button class="tg u26f" data-filt="u26" title="26년도 자료에서 새로 생기거나 바뀐 내용이 있는 카드만">🆕 26 바뀐 카드만</button>' if ucards else '') + ('<button class="tg e26f" data-filt="e26" title="26년도 수업에서 교수님이 강조·시험 예고한 내용이 있는 카드만">26 강조 카드만</button>' if ecards else '') + '<details class="pmore"><summary class="tg" title="보기 설정 — ✓하면 접기 · 압축 보기 · 모두 펼치기/접기">⋯</summary><div class="pmenu"><button class="tg" id="lautofold" title="✓(이해함)을 누르면 그 카드를 접고 다음 카드로">✓하면 접기</button><button class="tg" id="lcond" title="🔑 핵심·⭐ 시험포인트·⚡ 암기 줄만 남김">압축 보기</button><button class="tg" id="lexfirst" title="⭐ 시험포인트를 🔑 핵심 바로 뒤에 (모든 강의)">⭐ 먼저</button><div class="pseg" title="빨간 글씨 — 시험 핵심만(🔑·⭐·⚡에도 나오는 것) · 전부"><b>빨강</b><button class="tg" data-redm="core">시험 핵심만</button><button class="tg" data-redm="all">전부</button></div><div class="pseg" title="카드 그림 (I로 바꾸기)"><b>그림</b><button class="tg" data-figm="big">크게</button><button class="tg" data-figm="small">작게</button><button class="tg" data-figm="hide">숨김</button></div><button class="btn sm" id="lopen">모두 펼치기</button><button class="btn sm" id="lclose">모두 접기</button><span class="fsz" title="글자 크기(모든 과목·화면 공통)"><button class="btn sm" id="fsdn" title="글자 작게">A−</button><b id="fsv">100%</b><button class="btn sm" id="fsup" title="글자 크게">A+</button></span></div></details></div>'
     head = (f'<section class="frame" data-aid="{aid(k + ":frame")}" data-k="{k}"><div class="frt">이 강의의 틀{upd_html}<button class="frtog noann" data-frtog="1" title="이 강의의 틀 접기/펼치기 (강의마다 기억)"></button></div><div class="fsrc" data-fsrc="1" title="눌러서 출처 전체 보기"><span class="fs0">{fsrc_short(L["file"])}</span><span class="fs1"> — 출처 {esc(L["file"])}{"".join(f" · {lecparse.inline(x, ctx)}" for x in NO)}</span></div>{("<div class=flow>" + flow + "</div>") if flow else ""}{hint_html}{trend_html}<div class="fcols"><div class="outline noann">{"".join(outline)}</div>'
-            f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div></div></section>{gp}')
+            + ('' if STUB else f'<div class="ftop"><div class="ct">⭐ 많이 나온 순{(" <button class=\'btn sm tmorebtn noann\' data-tmore=1>더 보기 (+" + str(len(top_ids) - 5) + ")</button>") if len(top_ids) > 5 else ""}</div><ol>{ltop}</ol></div>') + f'</div></section>{gp}')
     mgp = ''.join(f'<button class="tg" data-mgrp="{esc(g)}" title="{esc(gdisp(g))}">{esc(gdisp(g))}</button>' for g in grps)
     summ = (f'<div class="pills noann msbar" id="msbar"><span class="pseg"><span class="pglab">보기</span><button class="tg" data-mdense="s" title="세부를 소제목마다 한 줄(시험 핵심어)로">요약</button><button class="tg" data-mdense="f" title="세부 내용 전부">자세히</button></span>'
             f'<span class="pseg"><span class="pglab">주제</span><button class="tg" data-mfilt="">모든 주제</button><button class="tg" data-mfilt="hit" title="기출이 나온 주제만">기출 나온 주제</button><button class="tg" data-mfilt="rep2" title="2회 이상 나온 기출이 걸린 주제만">2회↑만</button></span>'
@@ -1314,7 +1337,7 @@ for L in LEC:
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP}), (1 if c_.get('u26') else 0) | (2 if c_.get('e26') else 0) | (4 if c_.get('gone') == 'all' else 8 if c_.get('gone') == 'part' else 0)] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수, 26 표시(1 = NEW 26 · 2 = 26 강조 — 10-10 사용자 '메뉴탭에서 … 별표 … 옆에 조그맣게 26 new랑 26 강조')]
     lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
-                 'jb': jb_ids + sorted([q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0))), 'pred': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') != '1' and not p.get('fn')], 'parch': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') == '1' and not p.get('fn')], 'tbl': [], 'recall': recall, 'tline': trend.short_line(SM), 'tstrat': tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
+                 'jb': jb_ids + sorted([q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0))), 'pred': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') != '1' and not p.get('fn')], 'parch': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') == '1' and not p.get('fn')], 'tbl': [], 'recall': recall, 'tline': '' if STUB else trend.short_line(SM), 'tstrat': '' if STUB else tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
 print('⭐ 시험포인트 구조화(ux2 D04):', f'{lecparse.EXAM_N[0]}/{lecparse.EXAM_N[1]}줄')
 print('🔑 줄 나누기(ux3 N1 key_lines):', f'상자·칸 {lecparse.KL[0]} · 새 구조 {lecparse.KL[1]} · 글자가 달라 옛 렌더로 되돌림 {lecparse.KL[2]}')
@@ -1631,6 +1654,7 @@ B.YPF = yp_of; B.PINL = prof_inline   # 기출 대장 교수 × 연도 표·반�
 ledger = B.view_led()
 ledger = re.sub(r'(?<!<div class="tscroll">)(<table class="cmp">.*?</table>)', r'<div class="tscroll">\1</div>', ledger, flags=re.S)   # 기출 대장 표는 가로 스크롤 상자 안에(F6 — 페이지 전체가 옆으로 밀리지 않게)
 ledger = re.sub(r'<th>20(\d{2})</th>', r'<th title="20\1">\1</th>', ledger).replace('<table class="cmp">', '<table class="cmp led">')   # ux2 E12 연도 머리 두 자리 · 첫 열(교수) 고정은 허브 tblFit(.ovx)
+if STUB: ledger = '<div class="panel"><div class="bt">수록 현황</div><div>이 과목은 JB를 받는 대로 기출 대장(수록 대조표·연도 규칙·JB 원본 쪽)이 채워집니다.</div></div>'   # 11-10 빈 과목 — '카드 0개 = .'·빈 표(교수 × 연도 · 반복 출제 0개 · 멘트 · 원본 쪽)를 내지 않음
 # 과목 홈 공부 순서(U21): subject.py의 GUIDE(선택) — [(굵은 제목, 설명, 실행 버튼 키)]. 없으면 자동 규칙(JB 통계만):
 #   교수별 최근 해 짤 비율 평균 ≥ 60%면 1단계 = '⭐ 2회 이상 n문항 · 한눈표로 답부터'. 실행 키: resume(이어서 학습)·todo(안 푼 것)·rep(2회 이상만 풀기)·sumrep(한눈표 2회 이상)
 GUIDE = getattr(S, 'GUIDE', None)
@@ -1654,13 +1678,34 @@ def b64(im, q):
 LECW, LECQ = 1100, 72
 def webp64(im):
     b = io.BytesIO(); im.save(b, 'WEBP', quality=LECQ, method=6); return 'data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode()
-lecimg = {}; PREV = J.prev_images(SID)   # 강의 원본 이미지가 없으면 지금 docs/에 올라가 있는 이미지를 그대로 씀
+lecimg = {}; PREV = {} if IMGFILES else J.prev_images(SID)   # 강의 원본 이미지가 없으면 지금 docs/에 올라가 있는 이미지를 그대로 씀
+# 11-10 그림 파일 방식 — 쪽 한 장 = 파일 하나(바이트, h8) · 인코딩 값은 webp64와 같음
+IMGENC = f'webp-q{LECQ}-w{LECW}-m6'; LECB = {}; JBB = {}; NLOCK = {'enc': IMGENC, 'lec': {}, 'jb': {}}; _IST = {'new': 0, 'keep': 0, 'prev': 0, 'jbkeep': 0}
+def _lec_file(key, f):
+    """강의 쪽 한 장 → (바이트, h8) 또는 None · 원본이 지난번과 같으면(잠금의 원본 md5·인코딩 값) 지난 파일 그대로 · 원본이 없으면 지난 파일(잠금 → 지난 목록)"""
+    ent = ILOCK['lec'].get(key) or []; src = _md5(open(f, 'rb').read()) if os.path.exists(f) else None
+    if src is None or (ent and ent[0] == src and ILOCK['enc'] == IMGENC):
+        for h_ in dict.fromkeys([ent[1] if len(ent) > 1 else None] + ([PIMGF['lec'].get(key)] if src is None else [])):   # 원본이 있으면 잠금이 가리키는 파일만(지난 목록의 다른 파일은 옛 원본 것일 수 있음 → 없으면 다시 인코딩)
+            b_ = J.img_bytes(SID, 'lec', key, h_) if h_ else None
+            if b_ is None: continue
+            NLOCK['lec'][key] = (ent if len(ent) > 1 and ent[1] == h_ else ['', h_]); _IST['keep' if src else 'prev'] += 1
+            return b_, h_
+        if src is None: return None
+    im = Image.open(f).convert('RGB'); w, hh = im.size
+    if w > LECW: im = im.resize((LECW, int(hh * LECW / w)), Image.LANCZOS)
+    bb = io.BytesIO(); im.save(bb, 'WEBP', quality=LECQ, method=6); b_ = bb.getvalue(); h_ = _md5(b_)[:8]
+    NLOCK['lec'][key] = [src, h_, w, hh]; _IST['new'] += 1
+    return b_, h_
 FIG_ONLY = set(getattr(S, 'FIG_ONLY_LECS', ()))
 NOIMG = {(k_, int(p_)) for k_, ps_ in getattr(S, 'NOIMG_PAGES', {}).items() for p_ in ps_}   # 10-22 개인정보(교수 생년월일·연락처 등)가 보이는 쪽 — 공개 사이트에 쪽 그림을 싣지 않음(쪽 칩은 글자로)
 for _k, _p in sorted(NOIMG & ctx['figs']): print(f'  ⚠ NOIMG_PAGES {_k} p.{_p}가 그림(F:·예상 f=)으로 쓰임 — 그림 줄을 빼야 함')   # 10-17 교과서처럼 공개 사이트에 그림만 싣는 강의 — 쪽 칩만 걸린 쪽은 이미지 없이 글자로(아래 nolink)
 for (k, p) in sorted(ctx['cited'] | {(k_, p_) for k_, r_ in S.FORCE_PAGES.items() for p_ in r_}):
     if (k in FIG_ONLY and (k, p) not in ctx['figs']) or (k, p) in NOIMG: continue
     f = S.lec_img_path(k, p)
+    if IMGFILES:   # 11-10 그림 파일 방식
+        r_ = _lec_file(f'{k}-{p}', f) if f else None
+        if r_: LECB[f'{k}-{p}'] = r_; lecimg[f'{k}-{p}'] = 'data:image/webp;base64,' + base64.b64encode(r_[0]).decode()   # lecimg(dataURI) = work/ 단일 파일판용
+        continue
     if not f or not os.path.exists(f):
         if f and f'{k}-{p}' in PREV: lecimg[f'{k}-{p}'] = PREV[f'{k}-{p}']
         continue
@@ -1674,6 +1719,7 @@ for L in LEC:
     if hs: HINTS.append({'k': L['k'], 't': L['title'], 'h': lecparse.inline(' '.join(hs), ctx)})
 pack = {'id': SID, 'title': TITLE, 'hints': HINTS, 'en': EN, 'color': COLOR, 'profs': PROFS, 'built': S.BUILT, 'stats': {'cards': len(Q), 'main': sum(1 for q in Q if q['tier'] != 'C'), 'ref': sum(1 for q in Q if q['tier'] == 'C'), 'rep': sum(1 for q in Q if q['tier'] != 'C' and len(q['yrs']) >= 2)}, 'refids': [q['id'] for q in Q if q['tier'] == 'C'],
         'tiers': TIERS, 'top': top, 'trends': trends_html, 'guide': guide, 'pstrat': PSTRAT, 'finnote': getattr(S, 'FINAL_NOTE', {}), 'imgalias': getattr(S, 'IMG_ALIAS', {}), 'lecname': LECNAME, 'cards': {q['id']: qcard(q, i) for i, q in enumerate(Q)}, 'order': [q['id'] for q in Q], 'preds': preds, 'tables': TBL, 'lect': lect, 'jbprofs': profs, 'jbyears': sorted({y for q in Q for y in q['yrs']}, reverse=True), 'tcount': nt, 'sumall': ''.join(sumall), 'ledger': ledger}
+if STUB: pack['stub'] = True   # 11-10 빈 과목 표시 — 허브 isStub(p)가 읽음(시작하기·이어서·과목 바꾸기·바로 가기가 대기 강의·빈 화면으로 가지 않게) · 실제 강의·JB가 들어오면 키 자체가 없음
 # 10-16 JB 카드 → 관련 예상문제 칩 '예상 n ▸'(그 기출을 b=로 건 활성 예상 · 누르면 그 강의 예상 탭의 첫 문제로 — 사용자 '과목별 기출 및 예상문제에는 반영이 안된 것 같거든')
 _PB = {}
 _FB = {}   # 10-29 JB 카드 → 그 기출을 b=로 건 최종 N제 칩 '🎯 N제 n ▸'(과목 최종 N제 탭의 그 문제로)
@@ -1715,19 +1761,50 @@ _h8 = lambda t: _hl.md5(t.encode('utf-8')).hexdigest()[:8]
 shell = open(DIR + '/shell.html', encoding='utf-8').read()
 BUILD = _h8(shell)   # 허브 코드 판 — index(HUB_BUILD)와 모든 팩(p.build)에 같이 박음(F5: 배포 중 옛 index·새 팩 섞임 감지)
 pack['build'] = BUILD
+JBIMG = IMG['jb']
+if IMGFILES:   # 11-10 그림 파일 방식 — JB 원본 쪽 = assemble이 준 JPEG 바이트 그대로 파일로(재압축 없음) · 원본 쪽(work/jb/<SID>_20<판>/<쪽>.jpeg)과 꼴(색·크기)이 지난번과 같으면 지난 파일 그대로(기계마다 JPEG 바이트가 달라도 파일이 안 바뀜)
+    JBIMG = {}
+    for key_, v_ in IMG['jb'].items():
+        hd_, _, d_ = v_.partition(',')
+        if 'image/jpeg' not in hd_: sys.exit(f'{SID}: JB 원본 쪽 {key_}이 JPEG가 아님({hd_[:30]}) — 그림 파일 방식은 jb<판>-<쪽>.<h8>.jpg만')
+        b_ = base64.b64decode(d_); ed_, _, pg_ = key_.partition('-'); sf_ = f'{J.JBX}{SID}_20{ed_}/{pg_}.jpeg'; ent = ILOCK['jb'].get(key_) or []; fp_ = ''
+        if os.path.exists(sf_):
+            try: im_ = Image.open(io.BytesIO(b_)); fp_ = _md5(open(sf_, 'rb').read()) + '|' + f'{im_.mode}{im_.size[0]}x{im_.size[1]}'
+            except Exception: fp_ = ''
+        if fp_ and len(ent) > 1 and ent[0] == fp_:
+            b0_ = J.img_bytes(SID, 'jb', key_, ent[1])
+            if b0_ is not None: b_ = b0_; _IST['jbkeep'] += 1
+        h_ = _md5(b_)[:8]; JBB[key_] = (b_, h_); NLOCK['jb'][key_] = [fp_ or (ent[0] if len(ent) > 1 and ent[1] == h_ else ''), h_]
+        JBIMG[key_] = 'data:image/jpeg;base64,' + base64.b64encode(b_).decode()   # work/ 단일 파일판용
 CH = {}   # JB 원본 쪽 이미지는 판본별 청크(<SID>.img.jb23/jb24/jb25.js) — 누른 판본 것만 받음(U29, 재압축 없음)
-for key_, v_ in IMG['jb'].items(): CH.setdefault('jb' + key_.split('-')[0], {'jb': {}})['jb'][key_] = v_
+for key_, v_ in JBIMG.items(): CH.setdefault('jb' + key_.split('-')[0], {'jb': {}})['jb'][key_] = v_
 for key, v in lecimg.items():
     ck = key.split('-')[0]; ck = getattr(S, 'IMG_ALIAS', {}).get(ck, ck)
     CH.setdefault(ck, {'lec': {}})['lec'][key] = v
 img_files = {c: "JBLHUB.images('%s',%s,'%s');" % (SID, js(o), c) for c, o in CH.items()}
 pack['imgv'] = {c: _h8(t) for c, t in img_files.items()}   # 이미지 청크 캐시 무효화(?v=)
+if IMGFILES:   # 11-10 그림 파일 방식 — 묶음이 없으니 imgv는 빈 값 · 그림 목록 imgf(주소 = packs/img/<SID>/<키>.<h8>.webp · packs/img/<SID>/jb<키>.<h8>.jpg — J.img_url) · 그림이 0장이어도 목록은 냄(허브가 방식을 앎)
+    pack['imgv'] = {}; pack['imgf'] = {'lec': {k_: v_[1] for k_, v_ in LECB.items()}, 'jb': {k_: v_[1] for k_, v_ in JBB.items()}}
 # 옛 허브(배포본) 표시 기준선 — 옛 표시가 남은 과목만 허브가 받아 표시에 문맥(p·s·v)을 붙임(F1, tools/legacy_base.py)
 LXF = os.path.join(DIR, 'legacy_txt.json'); lx_js = None
 if os.path.exists(LXF):
     _lx = json.load(open(LXF, encoding='utf-8'))
     lx_js = "JBLHUB.legacy('%s',%s,%s);" % (SID, js(_lx['txt']), js(_lx.get('rev', '')))
     pack['lx'] = _h8(lx_js)
+# 11-10 A19 — [[키:쪽]]의 쪽이 숫자가 아니면(GERI 강의 머리말의 설명 글 '[[OHQ:쪽]]' → 없는 쪽 칩) 칩을 만들지 않고 원고 글자 그대로 · 쪽 그림 폴더가 없는 강의의 글 인용(cite t · data-p="")은 그대로
+#   lecparse.inline·assemble.cite_html·annot·pred 어느 길로 만든 칩이든 팩 전체에서 한 번에(tools/check_links.py도 ✗로 봄)
+_CNUM = re.compile(r'<button class="cite[^"]*" data-k="([^"]*)" data-p="([^"]*)"[^>]*>.*?</button>', re.S); _CBAD = []
+def _cnum1(m):
+    k_, p_ = m.group(1), m.group(2)
+    if not p_ or (p_.isascii() and p_.isdigit()): return m.group(0)
+    _CBAD.append(f'{k_}:{p_}'); return '[[' + k_ + ':' + html.escape(html.unescape(p_), quote=False) + ']]'
+def _cnum(o):
+    if isinstance(o, str): return _CNUM.sub(_cnum1, o) if 'class="cite' in o else o
+    if isinstance(o, list): return [_cnum(x) for x in o]
+    if isinstance(o, dict): return {k_: _cnum(v_) for k_, v_ in o.items()}
+    return o
+pack = _cnum(pack)
+if _CBAD: print('⚠ 쪽이 숫자가 아닌 인용 — 칩을 만들지 않고 글자 그대로:', ' · '.join(sorted(set(_CBAD))))
 # 옛 허브(JBLHUB.build 없음)가 이 팩을 받으면 새 index로 바꿔 엶(?v= 붙여 캐시 우회) — 같은 판을 이미 붙였으면 그냥 등록
 if FIG_ONLY or NOIMG:   # 그림 없는 쪽 칩 → 누를 수 없는 글자 칩(이미지가 없어 열면 빈 창) — 모든 꼴(cite · cite cz(title) · data-pp 범위)
     _CB = re.compile(r'<button class="cite[^"]*"([^>]*)>(.*?)</button>', re.S)
@@ -1785,11 +1862,28 @@ for _fn, _b in [('manifest.webmanifest', _man), ('icon-192.png', _icon(192)), ('
     if not os.path.exists(_p) or open(_p, 'rb').read() != _b: open(_p, 'wb').write(_b)
 for f_ in os.listdir(OUT + '/packs'):
     if f_.startswith(SID + '.img') or f_ == SID + '.lx.js': os.remove(OUT + '/packs/' + f_)
-for c, t in img_files.items(): open(OUT + f'/packs/{SID}.img.{c}.js', 'w', encoding='utf-8').write(t)
+if IMGFILES:   # 11-10 그림 파일 방식 — 묶음 파일은 쓰지 않음(img_files는 아래 단일 파일판에만) · 바뀐 파일만 씀 · 목록에서 빠진 파일 = 이 출력 자리의 지난 목록에 있던 것은 한 번 남기고(다음 빌드 때 지움) 나머지는 지움
+    _idir = J.img_dir(SID, OUT); _cur = {J.img_name('lec', k_, v_[1]): v_[0] for k_, v_ in LECB.items()}; _cur.update({J.img_name('jb', k_, v_[1]): v_[0] for k_, v_ in JBB.items()})
+    _prevn = {J.img_name(kd_, k_, h_) for kd_ in ('lec', 'jb') for k_, h_ in PIMGF_OUT[kd_].items()}; _wr = _kp = _rm = 0
+    if _cur: os.makedirs(_idir, exist_ok=True)
+    for n_, b_ in _cur.items():
+        p_ = os.path.join(_idir, n_)
+        if not os.path.exists(p_) or os.path.getsize(p_) != len(b_): open(p_, 'wb').write(b_); _wr += 1
+    for n_ in (sorted(os.listdir(_idir)) if os.path.isdir(_idir) else []):
+        if n_ in _cur: continue
+        if n_ in _prevn: _kp += 1; continue
+        os.remove(os.path.join(_idir, n_)); _rm += 1
+    if os.path.isdir(_idir) and not os.listdir(_idir): os.rmdir(_idir)
+    if NLOCK['lec'] or NLOCK['jb'] or os.path.exists(ILOCK_P):   # 잠금(키마다 한 줄 — 바뀐 그림만 diff에 보임) · 내용이 같으면 다시 쓰지 않음
+        _lt = '{\n "enc": ' + json.dumps(NLOCK['enc']) + ',\n' + ',\n'.join(' "%s": {\n%s\n }' % (kd_, ',\n'.join('  %s: %s' % (json.dumps(k_), json.dumps(v_, ensure_ascii=False)) for k_, v_ in NLOCK[kd_].items())) for kd_ in ('lec', 'jb')) + '\n}\n'
+        json.loads(_lt)
+        if not os.path.exists(ILOCK_P) or open(ILOCK_P, encoding='utf-8').read() != _lt: open(ILOCK_P, 'w', encoding='utf-8').write(_lt)
+    print(f'그림 파일({os.path.relpath(_idir, OUT)}): 강의 쪽 {len(LECB)}장(새로 인코딩 {_IST["new"]} · 원본 같음 {_IST["keep"]} · 원본 없이 지난 파일 {_IST["prev"]}) · JB 원본 쪽 {len(JBB)}장(지난 파일 유지 {_IST["jbkeep"]}) · 쓴 파일 {_wr} · 지난 세대 남김 {_kp} · 지움 {_rm} · 합 {sum(len(b_) for b_ in _cur.values()) / 1e6:.2f}MB · 가장 큰 파일 {max([len(b_) for b_ in _cur.values()] or [0]) / 1e3:.0f}KB')
+for c, t in ({} if IMGFILES else img_files).items(): open(OUT + f'/packs/{SID}.img.{c}.js', 'w', encoding='utf-8').write(t)
 if lx_js: open(OUT + f'/packs/{SID}.lx.js', 'w', encoding='utf-8').write(lx_js)
 # 호환: 옛 index가 찾는 <SID>.img.jb.js — 판본별 청크(jb23·24·25)를 받아 옛 허브가 기다리는 'jb' 한 묶음으로 넘김
 _jbc = sorted(c for c in img_files if c.startswith('jb'))
-if _jbc:
+if _jbc and not IMGFILES:
     open(OUT + f'/packs/{SID}.img.jb.js', 'w', encoding='utf-8').write(
         "(function(){var H=window.JBLHUB,o=H.images,N=%s,acc={jb:{},lec:{}},n=0;H.images=function(i,x,c){if(i==='%s'&&N.indexOf(c)>=0){for(var k in (x.jb||{}))acc.jb[k]=x.jb[k];if(++n===N.length){H.images=o;o.call(H,i,acc,'jb');}return;}return o.apply(H,arguments);};"
         "N.forEach(function(c){var s=document.createElement('script');s.src='packs/%s.img.'+c+'.js';document.head.appendChild(s);});})();" % (js(_jbc), SID, SID))
@@ -1800,4 +1894,4 @@ inlec = {i for L in LEC for c in L['cards'] for i in (list(c['jb']) + [i_ for b 
 print('⭐ 시험포인트로 다뤄지지 않은 연결 기출:', sorted({i for L in LEC for c in L['cards'] for i in c['jb']} - {i_ for L in LEC for c in L['cards'] for b in c['body'] if b[0] == 'E' for i_ in b[1][0]}))
 print('정리본에 연결 안 된 현 교수·겹침 기출(미복원 제외):', [q['id'] for q in Q if q['tier'] != 'C' and q['id'] not in inlec and q['v'] != 'na'])
 print('정리본이 가리키는 없는 문항:', sorted(i for i in inlec if i not in QMAP))
-print('lecture images', len(lecimg), '| sizes MB:', {_os.path.relpath(f, J.ROOT): round(_os.path.getsize(f) / 1e6, 2) for f in [OUT + f'/packs/{SID}.js', SINGLE]}, '| img chunks MB', {c: round(len(t) / 1e6, 2) for c, t in img_files.items()})
+print('lecture images', len(lecimg), '| sizes MB:', {_os.path.relpath(f, J.ROOT): round(_os.path.getsize(f) / 1e6, 2) for f in [OUT + f'/packs/{SID}.js', SINGLE]}, '| img chunks MB', {c: round(len(t) / 1e6, 2) for c, t in ({} if IMGFILES else img_files).items()})

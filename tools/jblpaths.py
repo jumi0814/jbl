@@ -37,9 +37,55 @@ def work(sid, *p):
 def _load_js(path):
     t = open(path, encoding='utf-8').read()
     return json.loads(t[t.index('{'):t.rindex('}') + 1])
+# ---- 11-10 그림 파일 방식(W3) — tools/quarters.json 분기 "img": "files"(4Q)인 과목은 그림을 묶음(<SID>.img.<강의>.js, base64) 대신 파일 하나씩:
+#   <docs>/packs/img/<SID>/<강의키>-<쪽>.<h8>.webp(강의 쪽) · <docs>/packs/img/<SID>/jb<판>-<쪽>.<h8>.jpg(JB 원본 쪽) — h8 = 그 파일 바이트 md5 앞 8자(주소가 내용을 따라 바뀜 → ?v= 없음)
+#   팩의 목록 imgf = {'lec': {'<강의키>-<쪽>': h8}, 'jb': {'<판>-<쪽>': h8}} · 키가 없는 분기(3Q)는 묶음 방식 그대로(이 함수들은 빈 값·None을 돌려줌)
+IMG_EXT = {'lec': '.webp', 'jb': '.jpg'}
+def img_mode(sid): return QS.img_mode(QS.quarter_of(sid))   # 'files' | 'chunks'
+def img_dir(sid, docs=None): return os.path.join(docs or docs_of(sid), 'packs', 'img', sid)
+def img_name(kind, key, h8): return ('jb' if kind == 'jb' else '') + key + '.' + h8 + IMG_EXT[kind]
+def img_url(sid, kind, key, h8): return f'packs/img/{sid}/' + img_name(kind, key, h8)   # 허브가 쓰는 주소(index.html 기준)
+def _img_roots(sid):
+    """그 과목 그림 파일을 찾을 폴더 — 출력 자리(docs_of — $JBL_DOCS면 그 시험 폴더) 먼저, 그다음 배포 자리(그 분기 docs)"""
+    a = docs_of(sid); b = QS.docs_dir(QS.quarter_of(sid))
+    return [a] + ([b] if os.path.abspath(b) != os.path.abspath(a) else [])
+def prev_imgf(sid, docs=None):
+    """지난 빌드의 그림 목록 {'lec': {키: h8}, 'jb': {키: h8}} — docs(없으면 출력 자리 → 배포 자리)의 <SID>.js 팩에 든 imgf. 팩이 없거나 묶음 방식 팩이면 빈 목록"""
+    for d in ([docs] if docs else _img_roots(sid)):
+        p = os.path.join(d, 'packs', sid + '.js')
+        if not os.path.exists(p): continue
+        try: f = _load_js(p).get('imgf') or {}
+        except Exception: f = {}
+        return {'lec': dict(f.get('lec') or {}), 'jb': dict(f.get('jb') or {})}
+    return {'lec': {}, 'jb': {}}
+def prev_img_path(sid, kind, key, h8=None):
+    """지난 그림 파일 경로(없으면 None) — h8을 안 주면 지난 목록(prev_imgf)의 값 · 출력 자리 → 배포 자리 순서로 찾음"""
+    for d in _img_roots(sid):
+        h = h8 or prev_imgf(sid, d)[kind].get(key)
+        if not h: continue
+        p = os.path.join(img_dir(sid, d), img_name(kind, key, h))
+        if os.path.exists(p): return p
+    return None
+def img_bytes(sid, kind, key, h8=None):
+    """지난 그림 파일의 바이트(없거나 내용 지문이 이름의 h8과 다르면 None — 덜 쓰인 파일·손댄 파일은 쓰지 않음)"""
+    import hashlib
+    p = prev_img_path(sid, kind, key, h8)
+    if not p: return None
+    b = open(p, 'rb').read()
+    return b if hashlib.md5(b).hexdigest()[:8] == os.path.basename(p).rsplit('.', 2)[1] else None
+def _files_uri(sid, kind):
+    import base64
+    out = {}
+    for d in reversed(_img_roots(sid)):   # 출력 자리 것이 이김
+        for key, h in prev_imgf(sid, d)[kind].items():
+            p = os.path.join(img_dir(sid, d), img_name(kind, key, h))
+            if os.path.exists(p): out[key] = ('data:image/webp;base64,' if kind == 'lec' else 'data:image/jpeg;base64,') + base64.b64encode(open(p, 'rb').read()).decode()
+    return out
 def prev_images(sid):
     """지금 docs/packs/에 올라가 있는 <SID>.img.*.js의 강의 이미지 {키-쪽: dataURI}.
-    강의자료 원본(materials/, work/)이 없는 환경에서 재빌드해도 이미지가 빠지지 않게 하는 대체용."""
+    강의자료 원본(materials/, work/)이 없는 환경에서 재빌드해도 이미지가 빠지지 않게 하는 대체용.
+    11-10 그림 파일 방식 과목 = 지난 목록(imgf)의 파일을 같은 꼴(dataURI)로"""
+    if img_mode(sid) == 'files': return _files_uri(sid, 'lec')
     out = {}; d = os.path.join(docs_of(sid), 'packs')
     if not os.path.isdir(d): return out
     for f in os.listdir(d):
@@ -66,6 +112,7 @@ _PJ = {}
 def prev_jb_pages(sid):
     """지금 docs/packs/<SID>.img.jb23·jb24·jb25.js에 든 JB 원본 쪽 이미지 {판-쪽: dataURI}.
     JB 쪽 이미지 파일(work/jb/<SID>_20xx/N.jpeg)이 없는 환경(클라우드 세션 — 텍스트만 풀어 둠)에서 assemble.py가 그대로 다시 쓰는 대체용."""
+    if sid not in _PJ and img_mode(sid) == 'files': _PJ[sid] = _files_uri(sid, 'jb')   # 11-10 그림 파일 방식 — 지난 목록(imgf)의 jb<판>-<쪽>.<h8>.jpg를 같은 꼴(dataURI)로(바이트 그대로 → build4가 같은 h8 파일로 다시 냄)
     if sid not in _PJ:
         out = {}; d = os.path.join(docs_of(sid), 'packs')
         for f in (sorted(os.listdir(d)) if os.path.isdir(d) else []):
