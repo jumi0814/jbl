@@ -147,6 +147,7 @@ with sync_playwright() as p:
             ok(not pgb, f'{s}/{d}: 카드 머리 쪽 번호 빈 카드 {len(pgb)} {pgb[:2]}')   # ux2 D08
             inl = pg.evaluate('(async()=>{window.__h&&__h.fillAll&&__h.fillAll();const im=[...document.querySelectorAll("#stage img")];im.forEach(i=>i.loading="eager");await Promise.all(im.map(i=>i.decode().catch(()=>0)));return [im.length,im.filter(i=>i.naturalWidth>0).length]})()')
             ok(inl[0] == inl[1], f'{s}/{d}: 본문 그림 {inl[1]}/{inl[0]} 표시')
+        if not pg.evaluate("!!document.querySelector('#side .dbtn[data-d=\"_led\"]')"): continue   # 11-10 빈 과목(자료 대기)은 메뉴에 기출 대장이 없음
         pg.evaluate("document.querySelector('#side .dbtn[data-d=\"_led\"]').click()"); pg.wait_for_timeout(200)
         for ed in pg.evaluate('[...new Set([...document.querySelectorAll("#stage [data-jb]")].map(e=>e.dataset.jb.split("-")[0]))]'):
             pg.evaluate(f'document.querySelector("#stage [data-jb^=\'{ed}-\']").click()'); pg.wait_for_timeout(300)

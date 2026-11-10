@@ -24,7 +24,7 @@ async def run(pg, tag, vp):
     ok(kt and len(kt) >= 8, f'⌨ 모든 단축키 묶음 {len(kt or [])}개')
     keys = {n: {k for k, _ in L} for n, L in (kt or [])}
     allk = set().union(*keys.values()) if keys else set()
-    need = ['?', '/', 'Esc', 'M', 'Shift+M', 'V', 'T', 'H', 'Shift+H', 'B', 'Shift+B', 'E', 'N', 'Shift+N', '1~6', 'G', 'Q', 'J / K', 'D', 'F', 'C', 'R', 'I', 'Space', 'O / X', 'S', '← / →', 'Shift+← / →', 'A']
+    need = ['?', '/', 'Esc', 'M', 'Shift+M', 'V', 'T', 'H', 'Shift+H', 'B', 'Shift+B', 'E', 'N', 'Shift+N', '1~7', 'G', 'Q', 'J / K', 'D', 'F', 'C', 'R', 'I', 'Space', 'O / X', 'S', '← / →', 'Shift+← / →', 'A']
     miss = [k for k in need if k not in allk]
     ok(not miss, f'모든 화면 키가 한 표에 {miss}')
     cal = keys.get('📅 공부 달력', set())

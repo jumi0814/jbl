@@ -2648,7 +2648,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS2", "CONS4", "IMPL4", "ANAT4", "HINS", "GERI4", "PHARM4", "RAD", "OPATH", "ESTH4"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="c4d45d44",PV={"OMS2": "7f1faa55", "CONS4": "8e4b95fe", "IMPL4": "7d3ad572", "ANAT4": "628adad5", "HINS": "23b7dd27", "GERI4": "69ad1934", "PHARM4": "a0810d6c", "RAD": "d922654d", "OPATH": "cc6cbb35", "ESTH4": "f7053d90"},PSZ={"OMS2": 0.0, "CONS4": 0.0, "IMPL4": 0.0, "ANAT4": 0.0, "HINS": 0.0, "GERI4": 0.0, "PHARM4": 0.0, "RAD": 0.0, "OPATH": 0.0, "ESTH4": 0.0};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="c4d45d44",PV={"OMS2": "ce1295bb", "CONS4": "d61b48f3", "IMPL4": "06b0d393", "ANAT4": "0f2cff1b", "HINS": "d1380d51", "GERI4": "21c992ae", "PHARM4": "4f8b1368", "RAD": "857947ff", "OPATH": "077c3136", "ESTH4": "666d7d3b"},PSZ={"OMS2": 0.0, "CONS4": 0.0, "IMPL4": 0.0, "ANAT4": 0.0, "HINS": 0.0, "GERI4": 0.0, "PHARM4": 0.0, "RAD": 0.0, "OPATH": 0.0, "ESTH4": 0.0};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=QC.subjects;   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
