@@ -7,6 +7,7 @@ tools/new_subject.py로 시험 과목 TST9(4q)를 만들고 → PIL 가짜 강�
  ④b JB 원본 쪽 — 가짜 JB 2쪽(사본 work/jb/TST9_2026 · 진짜 work/jb는 쓰지 않음): packs/img/TST9/jb26-<쪽>.<h8>.jpg(assemble이 준 JPEG 바이트 그대로)·imgf.jb·img_lock · 다시 빌드 = 그대로 · 쪽 그림 없이(클라우드) = 그대로
  ⑤ 스위치 끔(분기에 img 키 없음 = 3Q 방식) = 묶음 TST9.img.<강의>.js·imgv 그대로(imgf·packs/img 없음) · 묶음 속 그림 바이트 = 파일 방식의 파일 바이트
  ⑥ new_subject.py --remove TST9 → 등록표·tools/tst9 지워짐
+ (+ ① 쪽이 숫자가 아닌 인용 [[키:쪽]]은 칩을 만들지 않고 글자 그대로 — A19)
 등록표(tools/quarters.json)·tools/를 건드리지 않게 도구 사본(work/_tmp/q_imgbuild/repo/tools — *.py·quarters.json·cons 공통 파일)에서 돌림: new_subject·build4는 제 파일 자리로 저장소 뿌리를 정하므로
 사본 안의 등록표·tools/tst9·work/만 바뀜(시험이 중간에 죽어도 진짜 등록표에 TST9가 남지 않고, 같은 때 도는 rehub·다른 시험이 TST9를 보지 않음)."""
 import os, sys, re, json, glob, shutil, base64, hashlib, subprocess
@@ -65,7 +66,7 @@ os.remove(os.path.join(D, 'lec_WAIT.txt'))
 open(os.path.join(D, f'lec_{KEY}.txt'), 'w', encoding='utf-8').write(
     f'#LEC {KEY} | 그림 시험 강의 | 시험교수 | 26 | 시험용 자료(26년도 슬라이드, 3쪽) | 3\n@MAP 하나 → 둘\n@G ① 묶음\n'
     f'## Alpha panel | 첫째 무늬 판 | 1-2 | 무늬\n= 빨간 네모가 왼쪽 위에서 시작합니다.\n- 가로 줄 열두 칸 [[{KEY}:1]]\nF: 1=첫 쪽, 2\n'
-    f'## Omega ledger | 둘째 장부 끝 | 3 | 장부\n= 파란 동그라미는 오른쪽 아래에서 끝납니다.\n- 세로 기둥 일곱 개\nF: 3\n')   # 두 카드는 제목·글이 서로 달라야 함 — 비슷하면 tools/aidlock.py가 두 번째 빌드부터 서로를 옛 이름(alt)으로 붙여 첫 빌드 ≠ 둘째 빌드(그림과 무관한 차이)
+    f'## Omega ledger | 둘째 장부 끝 | 3 | 장부\n= 파란 동그라미는 오른쪽 아래에서 끝납니다.\n- 세로 기둥 일곱 개 [[{KEY}:쪽]]\nF: 3\n')   # 두 카드는 제목·글이 서로 달라야 함 — 비슷하면 tools/aidlock.py가 두 번째 빌드부터 서로를 옛 이름(alt)으로 붙여 첫 빌드 ≠ 둘째 빌드(그림과 무관한 차이)
 for n in (1, 2, 3): fake(n)
 B4 = os.path.join(D, 'build4.py'); LOCK = os.path.join(D, 'img_lock.json'); OUT = os.path.join(SB, 'docs_files'); KS = [f'{KEY}-{n}' for n in (1, 2, 3)]
 
@@ -83,6 +84,7 @@ im = Image.open(os.path.join(OUT, 'packs', 'img', SID, F1[0])); ok(im.format == 
 learn = P1['lect'][0]['learn']
 ok(all(re.search(r'<img data-img="%s" alt="" width="740" height="\d+"' % re.escape(k), learn) for k in KS), '① 팩 HTML: img[data-img]에 width·height(자리 미리 잡기)')
 ok('새로 인코딩 3' in o, '① 빌드 출력: 새로 인코딩 3')
+ok(f'[[{KEY}:쪽]]' in learn and 'data-p="쪽"' not in json.dumps(P1, ensure_ascii=False).replace('\\"', '"') and '쪽이 숫자가 아닌 인용' in o and f'data-k="{KEY}" data-p="1"' in learn, f'① 쪽이 숫자가 아닌 인용 [[{KEY}:쪽]] = 칩 없이 원고 글자 그대로(A19) · 숫자 쪽 [[{KEY}:1]]은 칩')
 single = glob.glob(os.path.join(REPO, 'work', '*_JBL.html'))
 ok(len(single) == 1 and open(single[0], encoding='utf-8').read().count('data:image/webp;base64,') >= 3, '① work/ 단일 파일판에는 그림이 들어 있음(지금처럼)')
 mt1 = {f: os.stat(os.path.join(OUT, 'packs', 'img', SID, f)).st_mtime_ns for f in F1}; lock1 = open(LOCK, encoding='utf-8').read()

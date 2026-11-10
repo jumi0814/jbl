@@ -9,7 +9,8 @@
 - [x] 앞 담당 작업분(f0e4f6c5) 확인 — 아래 표
 - [x] 1. D 검사(q_imgbuild PASS 39줄 · JB 원본 쪽 길 포함 · 3Q 방식 출력 = 기준 커밋과 글자까지 같음)
 - [x] 2. A 검사(4Q 빈 팩 10개 다시 빌드 — 바뀐 키 = stub·imgf·trends·ledger·lect.head/tline/tstrat뿐 · rehub --check OK · q_empty PASS)
-- [ ] 3. check_links · 4. verify · 5. q_perf · 6. B grep 보고 · 7. SPEC · 8. 전체 검사
+- [x] 3. check_links(쿼터 자리 · ✗ 3종 · 보관 분기 알려진 것 5 — 4Q PASS · 3Q PASS + 알려진 것 5)
+- [ ] 4. verify · 5. q_perf · 6. B grep 보고 · 7. SPEC · 8. 전체 검사
 
 ## 앞 담당이 한 것 — 이어받을 때의 실제 상태(코드 읽기 + 읽기 전용 측정)
 | 항목 | 코드 | 검사 |
@@ -41,3 +42,13 @@
 - **검사(이번)**: 4Q 10과목 `tools/<sid>/build4.py` 전부 rc=0 → 커밋된 옛 팩과 JSON 비교: **10과목 모두 바뀐 키가 `stub`(True)·`imgf`({'lec':{},'jb':{}})·`trends`·`ledger` + `lect[0].head`·`tline`·`tstrat`뿐** · 팩 머리 줄·`build`·`imgv`({}) 그대로 · `docs/packs/img/`·묶음 파일 0 · `tools/` 곁다리 파일 변화 0(img_lock은 그림이 없으면 안 생김) → `tools/rehub.py --check` OK · `tools/tests4/q_empty.py` PASS 38줄(고치기 전 38줄 PASS와 같음) · 지금 허브로 OMS2 홈·WAIT 학습·대장·JB를 열어 글 확인(오류 0 · undefined/NaN 0 — 강의 틀에 경향·전략 없음, 대장 한 줄).
 - **안 함(허브 몫 — 지금 허브에서 아직 보이는 빈 과목 글)**: 과목 홈 '기출을 다 맞혔어요'·'시작: 강의자료 대기 →'·강의 카드 '강의자료 대기 -' · JB 화면 '조건에 맞는 문항이 없습니다' · 공부 순서(`guide` — 이어서·안 푼 것 단추)는 build4에서 그대로(허브 `isStub`가 읽음 — 메인 확인).
 - **docs는 커밋하지 않음**(메인 결정) — 메인이 합친 뒤 메인 저장소에서 10과목 build4 → rehub.
+
+## C. cite 쪽 번호(A19) · 없는 JB 원본 쪽(A18) — build4는 앞 담당 · check_links는 이번에
+- **고침(build4 — 앞 담당)**: 팩을 다 만든 뒤 한 번에 `_cnum` — `<button class="cite…" data-k data-p>`의 쪽이 비어 있지도(쪽 그림 폴더가 없는 강의의 글 인용 `cite t` — 그대로) 아스키 숫자도 아니면 칩을 만들지 않고 원고 글자 `[[키:쪽]]` 그대로 + 빌드 출력 '⚠ 쪽이 숫자가 아닌 인용'. lecparse.inline·assemble.cite_html·annot·pred 어느 길로 만든 칩이든 걸림(허용하던 꼴 = 숫자 하나 `data-p="12"` + 묶은 범위 `data-pp="12,13"`뿐 — 코드 확인: lecparse `_inline0`·build4 `CITE1`).
+- **고침(이번 — `tools/check_links.py`)**:
+  - 팩 자리 = `J.docs_of(SID)`(전에는 `docs/packs`가 박혀 있어 전환 뒤 `JBL_Q=3q`로는 파일을 못 찾고 죽었음 — full_check 3Q의 check_links 줄이 그동안 비어 있었을 것).
+  - 새 ✗: **숫자 아닌 쪽**(`data-p`·`data-pp`) · **팩에 없는 JB 원본 쪽 단추**(`data-jb` — 팩 전체 글: 카드·대장·예상… ↔ 묶음 `<SID>.img.jb<판>.js`의 jb 키 또는 `imgf.jb`) · **없는 그림 파일**(imgf에 적혔는데 `packs/img/<SID>/…` 파일이 없음). 그림 있는지 = 묶음 ∪ imgf(파일이 실제 있는 것만). ①(쪽 이미지 없는 인용)도 팩 전체 글에서(3Q 기준 0 그대로).
+  - **보관(frozen) 분기의 알려진 것**(메인 결정): 도구 안 `KNOWN = {'GERI': {'cite OHQ:쪽'}, 'PHARM': {'jb 23q4-17'…'jb 23q4-20'}}` — 보관 분기 과목에서만 적용 · '알려진 것 n(보관 분기 — FAIL 아님)'으로 따로 셈 · 목록에 없는 새 ✗는 FAIL · 다시 빌드해 사라지면 'KNOWN에서 뺄 것'으로 알려 줌. 종료 코드 = ✗가 있으면 1(전에는 늘 0).
+- **결과**: 4Q `tools/check_links.py` → 10과목 전부 0 · RESULT PASS · `JBL_Q=3q tools/check_links.py` → 7과목 ✗ 0 · **알려진 것 5**(GERI `lect OHQ head → OHQ:쪽` 1 · PHARM `ledger → JB 원본 23q4-17~20` 4) · RESULT PASS. 거꾸로 시험(시험 폴더 팩에 숫자 아닌 쪽·없는 JB 쪽·없는 파일·그림 없는 쪽을 심음) → 4개 모두 ✗ · FAIL 4 · 종료 코드 1.
+- build4 쪽 시험: q_imgbuild ①에 `[[IMG:쪽]]` 줄 — 칩 없이 글자 그대로 + 경고 출력 + 숫자 쪽은 칩(PASS).
+- **3Q**: C는 스위치 뒤가 아님(메인 결정 = 그대로) — 3Q를 다시 빌드하는 날 GERI OHQ 머리말 칩 1개가 글자로 바뀜(그 밖 3Q 7과목 팩에 숫자 아닌 쪽 0 — 배포본 전수 확인).
