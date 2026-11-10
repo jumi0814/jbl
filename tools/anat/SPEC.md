@@ -19,6 +19,7 @@
 4. `lec_<키>.txt` 7개 내외(형식은 아래) → `tables.txt`·`pred.txt` → `python3 build4.py` → 검증 출력(연결 누락 0, 없는 문항 0) → playwright로 화면·도구·이미지 확인
 5. 출력: `docs/index.html`(허브) + `docs/packs/<SID>.js` + `docs/packs/<SID>.img.<강의>.js`, 단일 파일판 `work/<과목>_JBL.html` → `python tools/verify.py`
    - 강의 쪽 이미지 원본(`work/<SID>/lec/`)이 없으면 지금 `docs/packs/`에 있는 같은 쪽 이미지를 그대로 씀(재빌드해도 그림이 빠지지 않음)
+   - 11-10 그림 파일 방식 쿼터(4Q — `tools/quarters.json` `"img": "files"`)는 묶음 `<SID>.img.<강의>.js` 대신 `docs/packs/img/<SID>/<키>.<h8>.webp|jpg` + 팩 `imgf` + `tools/<sid>/img_lock.json`(커밋) — 아래 '그림 파일 방식' 절
 
 ## 공통 코드 동기화·전 과목 빌드 (tools/sync_common.py · tools/build_all.sh)
 - 공통 생성 코드(shell.html·build4.py·lecparse.py·trend.py·reflow.py·emph.py·template2.html)는 **tools/cons/에서만 고친다**. SPEC.md는 tools/SPEC.md가 원본
@@ -28,6 +29,19 @@
 - build2.py는 과목마다 마지막 출력 줄(`J.work('<SID>', 'build2_view.html')`)이 달라 복사하지 않는다 — 고칠 때는 과목별로
 - 과목별로 달라야 하는 설정은 subject.py의 선택 항목(`getattr(S, '이름', 기본값)`)으로 — 없으면 기존 동작
 - 기준선: work/는 메인 저장소와 공유되어 강의 이미지·강의 이름이 바뀔 수 있으므로, 코드 변경 전후 비교는 "지금 work/로 HEAD 코드를 빌드한 docs/"를 기준으로 한다(빌드는 결정적 — 같은 입력이면 같은 출력)
+
+## 그림 파일 방식 · 빈 과목 · 라벨 통일 · 인용 쪽 (2026-11-10 — build4.py·jblpaths.py·quarters.py·verify.py·check_links.py·tests4/q_imgbuild.py · 허브가 읽는 쪽은 허브 절)
+- **스위치**: `tools/quarters.json` 쿼터에 `"img": "files"`(4q) = 그 쿼터 과목의 그림을 파일 하나씩 · 키 없음(3q) = 묶음 방식(`<SID>.img.<강의>.js`·`imgv`) 그대로 — build4의 새 가지는 모두 `if IMGFILES`(= `J.img_mode(SID) == 'files'`) 뒤라 3Q 출력은 한 글자도 안 바뀜. `tools/quarters.py img [q]`(files | chunks) · check = 값은 "files"뿐 · 보관(frozen) 쿼터에는 못 넣음.
+- **파일 주소**(index.html 기준 — `J.img_url`·`J.img_name`): 강의 쪽 `packs/img/<SID>/<강의키>-<쪽>.<h8>.webp`(WebP 화질 72·폭 1100·method 6 — 묶음 방식 `webp64`와 같은 값·같은 바이트) · JB 원본 쪽 `packs/img/<SID>/jb<판>-<쪽>.<h8>.jpg`(assemble이 만든 JPEG 바이트 그대로 — 다시 압축 없음) · `h8` = 그 파일 바이트 md5 앞 8자(내용이 바뀌면 주소가 바뀜 → `?v=` 없음).
+- **팩**: `imgf = {'lec': {'<강의키>-<쪽>': h8}, 'jb': {'<판>-<쪽>': h8}}`(그림이 0장이어도 키는 있음 = 파일 방식 표시) · `imgv = {}` · 키 글자 = 본문 `img[data-img]`·인용 칩(`data-k`-`data-p`)·`data-jb`와 같음 · `IMG_ALIAS`(묶음 이름 정하기)는 파일 방식에서 쓰이지 않음 · 본문 그림의 `width="740" height`(img_dims)는 그대로 HTML에.
+- **잠금** `tools/<sid>/img_lock.json`(커밋 — 키마다 한 줄) = `{"enc": "webp-q72-w1100-m6", "lec": {키: [원본 md5, h8, 원본 폭, 높이]}, "jb": {키: [원본 jpeg md5|꼴(색·크기), h8]}}` — 원본(`work/<SID>/lec/<폴더>/<쪽>.jpg`)과 enc가 지난번과 같으면 지난 파일을 그대로 씀(다시 인코딩 0 · 파일을 다시 쓰지도 않음 → 맥·클라우드 Pillow 차이로 파일이 흔들리지 않음). 그림이 없는 과목은 잠금 파일이 안 생김.
+- **한 세대 남김**: 목록에서 빠진 파일 중 '이 출력 자리의 지난 팩 imgf에 있던 것'은 이번 빌드에 남기고 다음 빌드 때 지움(옛 팩을 든 기기가 404를 안 보게) — 그림을 바꾼 커밋에는 옛 파일이 한 번 같이 남는 것이 정상(verify가 '지난 세대 파일 n개'로 알려 줌).
+- **원본 없이 다시 빌드**(클라우드): 강의 쪽 = 잠금 → 지난 목록(imgf)의 파일 그대로(`J.prev_imgf`·`J.img_bytes` — 이름의 h8 ≠ 내용이면 쓰지 않음) · 그림 크기 = 잠금의 원본 크기(원본이 있는 곳과 같은 HTML) · JB 쪽 = `J.prev_jb_pages`가 지난 파일을 같은 꼴(dataURI)로 → 같은 h8. 찾는 자리 = 출력 자리(`$JBL_DOCS`) → 배포 자리(그 쿼터 docs). 원본도 지난 파일도 없으면 그림 0장(오류 없이).
+- **그대로**: `work/` 단일 파일판은 그림을 넣음(JBLHUB.images — 허브는 메모리에 있으면 그것 먼저) · 카드 속 JB 조각 그림(jb_crops)은 inline · 빌드 끝 출력 한 줄 '그림 파일(packs/img/<SID>): 강의 쪽 n장(새로 인코딩·원본 같음·원본 없이 지난 파일) · JB 원본 쪽 n장 · 쓴 파일·지난 세대 남김·지움·합·가장 큰 파일'.
+- **빈 과목**(A17): 강의가 `WAIT` 하나뿐이고 JB 문항 0(tools/new_subject.py 빈 틀 그대로)이면 `pack.stub = true`(실제 강의·JB가 들어오면 키 자체가 없음 — 허브 `isStub`) · 기출이 있어야 뜻이 있는 글을 내지 않음: 과목 홈 `trends = ''` · 강의 틀의 출제 경향·'📌 공부 전략 기출은 전부 풀되 …'·빈 '⭐ 많이 나온 순' · `lect[].tline`·`tstrat = ''` · 기출 대장 = 한 줄 안내.
+- **라벨 통일**(A10 — 같은 동작 = 같은 이름): JB 원본 쪽 단추 = 'JB 원본 n쪽'(카드 앞면·📜 이전 답·다른 판본 — 대장의 쪽 번호 격자는 숫자만) · 정리본으로 가는 칩 = '<강의 제목> 정리본 →'(카드 머리·📖 상자 — 옛 '카드로 이동 →') · 그대로 둔 것 = 예상 카드 '📖 정리본'(10-22 화면 연결)·한눈표 아이콘 칩. 쿼터 스위치 뒤가 아님(3Q도 다시 빌드하면 바뀜 — 11-10 결정).
+- **인용 쪽**(A19): `[[키:쪽]]`의 쪽이 숫자가 아니면(쪽 그림 폴더가 없는 강의의 글 인용 `cite t`는 그대로) 칩을 만들지 않고 원고 글자 그대로 + 빌드 출력 '⚠ 쪽이 숫자가 아닌 인용'(build4 `_cnum` — 팩 전체에서 한 번에).
+- **검사**: `tools/verify.py` 1a(imgf 파일이 다 있음·이름 h8 = md5·디코드 · 모든 팩의 본문 그림·인용 쪽 키가 그림 파일 목록이나 묶음에 있음 · 3절 도구 시험은 강의가 있는 과목에서 — 전부 자료 대기면 건너뜀) · `tools/check_links.py` ④ 숫자 아닌 쪽 ⑤ 팩에 없는 JB 원본 쪽 단추 ⑥ 없는 그림 파일(팩 자리 = `J.docs_of` · 보관 쿼터의 알려진 것은 도구 안 `KNOWN` — '알려진 것 n'·FAIL 아님) · `tools/tests4/q_perf.py`(파일 방식 쿼터 = 그림 파일 하나 ≤ 400KB·과목 합 보고·묶음이 남으면 실패) · `tools/tests4/q_imgbuild.py`(도구 사본 `work/_tmp/q_imgbuild/repo`에서 시험 과목 TST9를 new_subject로 만들어 진짜 build4를 돌림 — 파일·imgf·잠금 / 다시 빌드 = 그대로 / 한 장 바꿈 = 그 파일만 + 한 세대 / 원본 없이 / JB 원본 쪽(가짜 JB) / 스위치 끔 = 묶음 그대로 / --remove · 브라우저·work/jb 없이 약 5초).
 
 ## lec_<키>.txt 문법
 ```

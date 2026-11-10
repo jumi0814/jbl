@@ -1,4 +1,4 @@
-"""허브 검증 (빌드 후 매번: .venv/bin/python tools/verify.py) — 홈 과목 목록 · 모든 문서/탭 렌더 · 강의/JB 이미지 로딩 · 형광펜·빈칸·실행취소·새로고침 복원 · 콘솔 오류 0"""
+"""허브 검증 (빌드 후 매번: .venv/bin/python tools/verify.py) — 홈 과목 목록 · 모든 문서/탭 렌더 · 강의/JB 이미지 로딩(묶음 디코드 · 11-10 그림 파일 목록 imgf의 파일·본문 그림·인용 쪽 키) · 형광펜·빈칸·실행취소·새로고침 복원 · 콘솔 오류 0"""
 import sys, os, json, io, base64, threading, http.server, functools, socketserver
 NOMAT = {'PHARM': ('ANX',)}   # 강의자료 없이 JB 답으로만 만든 강의(26 자료가 오면 빼기)
 from PIL import Image
@@ -11,15 +11,56 @@ def ok(c, msg):
     print(('  OK  ' if c else '  FAIL') + ' ' + msg)
     if not c: fail.append(msg)
 # ---- 1. 이미지 청크 데이터 자체가 전부 디코드되는지
+CHK = {}   # 과목 → 그림 묶음에 든 강의 쪽 키(1a에서 씀)
 for f in sorted(os.listdir(DOCS + '/packs')):
     if '.img.' not in f or f.endswith('.img.jb.js'): continue   # .img.jb.js = 옛 index 호환 심(데이터 없음)
     t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); o = json.loads(t[t.index('{'):t.rindex('}') + 1]); n = bad = 0
+    CHK.setdefault(f.split('.')[0], set()).update((o.get('lec') or {}).keys())
     for sect in o.values():
         for k, v in sect.items():
             n += 1
             try: Image.open(io.BytesIO(base64.b64decode(v.split(',', 1)[1]))).load()
             except Exception: bad += 1
     ok(bad == 0, f'{f}: 이미지 {n}개 디코드' + (f' — 실패 {bad}' if bad else ''))
+# ---- 1a. 11-10 그림 파일 방식(팩 imgf — tools/quarters.json 분기 "img": "files") — 목록의 파일이 다 있고(이름의 h8 = 파일 md5 앞 8자 · 디코드)
+#      + 모든 팩: 본문 그림(img[data-img])·인용 칩 쪽이 그림 파일 목록이나 그림 묶음에 있음(없으면 허브에서 빈 그림·빈 창 — imgalias 반영)
+import re as _re, hashlib as _hl
+STUBS = set()   # 자료 대기 과목(강의가 WAIT뿐·문항 0 — 팩 stub) — 3절 도구 시험은 강의가 있는 과목에서
+def _walk(o):
+    if isinstance(o, str): yield o
+    elif isinstance(o, list):
+        for x in o: yield from _walk(x)
+    elif isinstance(o, dict):
+        for x in o.values(): yield from _walk(x)
+for f in sorted(os.listdir(DOCS + '/packs')):
+    if '.img.' in f or not f.endswith('.js') or f.endswith('.lx.js'): continue
+    sid = f[:-3]; t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1])
+    if pk.get('stub') or (not (pk.get('stats') or {}).get('cards') and [L.get('k') for L in pk.get('lect') or []] == ['WAIT']): STUBS.add(sid)
+    have = set(CHK.get(sid, ())); F = pk.get('imgf')
+    if F is not None:
+        n = 0; nofile = []; badf = []; idir = os.path.join(DOCS, 'packs', 'img', sid)
+        for kind in ('lec', 'jb'):
+            for key, h8 in (F.get(kind) or {}).items():
+                n += 1; fn = J.img_name(kind, key, h8); fp = os.path.join(idir, fn)
+                if not os.path.exists(fp): nofile.append(fn); continue
+                b_ = open(fp, 'rb').read()
+                try: Image.open(io.BytesIO(b_)).load(); good = _hl.md5(b_).hexdigest()[:8] == h8
+                except Exception: good = False
+                if not good: badf.append(fn)
+                elif kind == 'lec': have.add(key)
+        old = [x for x in (os.listdir(idir) if os.path.isdir(idir) else []) if x not in {J.img_name(kd, k_, h_) for kd in ('lec', 'jb') for k_, h_ in (F.get(kd) or {}).items()}]
+        ok(not nofile and not badf, f'{f}: 그림 파일 {n}개(packs/img/{sid}/) 있음·이름 지문·디코드' + (f' — 없음 {len(nofile)} {nofile[:3]}' if nofile else '') + (f' — 깨짐 {len(badf)} {badf[:3]}' if badf else '') + (f' · 지난 세대 파일 {len(old)}개(다음 빌드 때 지움)' if old else ''))
+    alias = pk.get('imgalias') or {}; need = set()
+    for h in _walk(pk):
+        if 'data-img="' in h: need.update(_re.findall(r'data-img="([^"]+)"', h))
+        if 'class="cite' in h:
+            for k_, p_, pp_ in _re.findall(r'<button class="cite[^"]*" data-k="([^"]*)" data-p="([^"]*)"(?: data-pp="([^"]*)")?', h):
+                need.update(f'{k_}-{x}' for x in (pp_.split(',') if pp_ else [p_]) if x and x.isascii() and x.isdigit())
+    def _has(key):
+        k_, p_ = key.rsplit('-', 1); al = alias.get(k_); al = [al] if isinstance(al, str) else list(al or [])
+        return any(f'{kk}-{p_}' in have for kk in [k_] + al)
+    lost = sorted(x for x in need if not _has(x))
+    ok(not lost, f'{f}: 본문 그림·인용 칩 쪽 {len(need)}개가 그림 {"파일 목록" if F is not None else "묶음"}에 있음' + (f' — 없음 {len(lost)} {lost[:5]}' if lost else ''))
 # ---- 1b. JB 분해 검사: 답안 안에 다음 문항이 삼켜졌는지 (번호 n 줄이 문항형으로 끝나는데 바로 앞 번호 n-1 줄이 답안에 없음)
 import re as _re, html as _html
 for f in sorted(os.listdir(DOCS + '/packs')):
@@ -115,8 +156,16 @@ with sync_playwright() as p:
                 if tt in titles: break
                 titles.add(tt); good += pg.evaluate('(async()=>{const i=document.querySelector("#mimg");try{await i.decode()}catch(e){};return i.naturalWidth>0?1:0})()'); pg.click('#mnext')
             ok(good == len(titles) > 0, f'{s} JB {ed}판: 원본 쪽 {good}/{len(titles)} 표시'); pg.click('#mclose')
-    # ---- 3. 도구 (첫 과목 첫 강의)
-    s = built[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
+    # ---- 3. 도구 (강의가 있는 첫 과목의 첫 강의 — 11-10 자료 대기(stub) 과목은 표시할 글이 없어 건너뜀: 전에는 4Q가 빈 과목뿐일 때 여기서 죽었음)
+    real_s = [x for x in built if x not in STUBS]
+    if not real_s:
+        print('       도구 시험(형광펜·빈칸·실행 취소) 건너뜀 — 강의가 있는 과목이 아직 없음(전부 자료 대기)')
+        exp404 = {f'{x}.js' for x in J.sids() if x not in built}
+        ok(set(r404) <= exp404, f'404는 아직 없는 과목 팩뿐 {sorted(set(r404) - exp404)}')
+        real = [e for e in errs if 'Failed to load resource' not in e]
+        ok(not real, f'콘솔 오류 0 {real[:5]}')
+        b.close(); print('RESULT', 'PASS' if not fail else f'FAIL {len(fail)}'); sys.exit(1 if fail else 0)
+    s = real_s[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
     d = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))')[0]; pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(300)
     PICK = '''(n=>{const lis=[...document.querySelectorAll('#stage [data-aid] li')].filter(l=>l.offsetParent&&!l.closest('details:not([open])')&&!l.querySelector('[data-rk]')&&/[A-Za-z가-힣]{3}/.test(l.textContent));const li=lis[n];li.scrollIntoView({block:'center'});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let x;while(x=w.nextNode()){const m=/[A-Za-z가-힣]{3,}/.exec(x.nodeValue);if(m&&!x.parentElement.closest('button,.chip,.noann,[data-rk]')){const r=document.createRange();r.setStart(x,m.index+1);r.setEnd(x,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2,m[0]];}}})'''
     cnt = lambda t: pg.eval_on_selector_all(f'#stage [data-rk={t}]', 'es=>es.length')

@@ -1,10 +1,12 @@
 """분기 등록표 읽기·검사 — tools/quarters.json (11-04 4Q 계획).
 분기(3q·4q)마다 docs 폴더·허브 이름·저장 정체성(localStorage 이름 공간·동기화·IndexedDB·BroadcastChannel·잠금·백업 이름),
 과목(SID)마다 분기·이름·짧은 이름·색·JB 파일 이름·강의자료 폴더 이름.
+분기의 "img": "files"(11-10 — 4q) = 그 분기 과목의 그림을 파일로(<docs>/packs/img/<SID>/<키>.<h8>.webp|jpg + 팩 imgf — build4·tools/jblpaths.py img_*) · 키가 없으면(3q) 묶음 방식(<SID>.img.<강의>.js) 그대로.
 같은 주소(jumi0814.github.io)의 두 허브가 서로의 기록을 건드리지 않게 — 정체성 값은 분기마다 모두 달라야 함(check).
   python tools/quarters.py current            # 지금 분기
   python tools/quarters.py sids [q]           # 그 분기 과목(공백으로)
   python tools/quarters.py docs [q]           # 그 분기 docs 폴더(저장소 기준)
+  python tools/quarters.py img [q]            # 그 분기 그림 방식(files = 파일 · chunks = 묶음)
   python tools/quarters.py check              # 등록표 검사(어기면 종료 코드 1)"""
 import os, re, sys, json
 TOOLS = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(TOOLS)
@@ -23,6 +25,7 @@ def quarter_of(sid):
 def docs_dir(q): return os.path.join(ROOT, QS[q]['docs'])
 def stage_dir(q): return os.path.join(ROOT, QS[q].get('stage') or os.path.join('work', '_tmp', 'hub' + q))
 def frozen(q): return bool(QS[q].get('frozen'))
+def img_mode(q): return QS[q].get('img') or 'chunks'   # 11-10 그림 방식 — 'files'(그림 파일 + 팩 imgf) · 'chunks'(묶음 — 키 없음)
 def cutover_dir(q, base=None): return os.path.join(base or os.path.join(ROOT, 'docs'), os.path.relpath(REG['cutover'][q], 'docs'))
 def live(): return [q for q in QS if not frozen(q)]
 
@@ -90,6 +93,8 @@ def check():
                 seen.setdefault(x, q)
         for o in I.get('links', []) + ([I['importFrom']] if I.get('importFrom') else []):
             if o not in QS: err.append(f'{q}: 링크·가져오기 분기 {o} 없음')
+        if I.get('img') not in (None, 'files'): err.append(f'{q}.img = {I.get("img")!r} — "files"이거나 키가 없어야 함(없음 = 묶음 방식)')
+        if I.get('img') and I.get('frozen'): err.append(f'{q}: 보관(frozen) 분기는 그림 방식을 바꾸지 않음(배포된 묶음 그대로 — img 키를 빼기)')
     ns = [I['ident']['ns'] for I in QS.values()]
     for a in ns:
         for b in ns:
@@ -108,6 +113,7 @@ if __name__ == '__main__':
     elif a[0] == 'sids': print(' '.join(sids(a[1] if len(a) > 1 else None)))
     elif a[0] == 'docs': print(QS[a[1] if len(a) > 1 else current()]['docs'])
     elif a[0] == 'live': print(' '.join(live()))
+    elif a[0] == 'img': print(img_mode(a[1] if len(a) > 1 else current()))
     elif a[0] == 'check':
         e = check(); print('\n'.join('  ✗ ' + x for x in e) or 'quarters check: OK'); sys.exit(1 if e else 0)
     else: sys.exit(__doc__)
