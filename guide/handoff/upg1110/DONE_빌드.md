@@ -10,7 +10,10 @@
 - [x] 1. D 검사(q_imgbuild PASS 39줄 · JB 원본 쪽 길 포함 · 3Q 방식 출력 = 기준 커밋과 글자까지 같음)
 - [x] 2. A 검사(4Q 빈 팩 10개 다시 빌드 — 바뀐 키 = stub·imgf·trends·ledger·lect.head/tline/tstrat뿐 · rehub --check OK · q_empty PASS)
 - [x] 3. check_links(쿼터 자리 · ✗ 3종 · 보관 분기 알려진 것 5 — 4Q PASS · 3Q PASS + 알려진 것 5)
-- [ ] 4. verify · 5. q_perf · 6. B grep 보고 · 7. SPEC · 8. 전체 검사
+- [x] 4. verify(1a 그림 파일·키 · 3절 빈 과목 건너뜀 — 4Q PASS · 진짜 3Q 폴더 PASS)
+- [x] 5. q_perf(파일 방식 예산 — PASS)
+- [x] 7. SPEC(빌드 절 — '공통 코드 동기화' 절 뒤 새 절 + 작업 순서 5번 한 줄) → sync_common
+- [ ] 6. B grep 보고 · 8. 전체 검사
 
 ## 앞 담당이 한 것 — 이어받을 때의 실제 상태(코드 읽기 + 읽기 전용 측정)
 | 항목 | 코드 | 검사 |
@@ -52,3 +55,14 @@
 - **결과**: 4Q `tools/check_links.py` → 10과목 전부 0 · RESULT PASS · `JBL_Q=3q tools/check_links.py` → 7과목 ✗ 0 · **알려진 것 5**(GERI `lect OHQ head → OHQ:쪽` 1 · PHARM `ledger → JB 원본 23q4-17~20` 4) · RESULT PASS. 거꾸로 시험(시험 폴더 팩에 숫자 아닌 쪽·없는 JB 쪽·없는 파일·그림 없는 쪽을 심음) → 4개 모두 ✗ · FAIL 4 · 종료 코드 1.
 - build4 쪽 시험: q_imgbuild ①에 `[[IMG:쪽]]` 줄 — 칩 없이 글자 그대로 + 경고 출력 + 숫자 쪽은 칩(PASS).
 - **3Q**: C는 스위치 뒤가 아님(메인 결정 = 그대로) — 3Q를 다시 빌드하는 날 GERI OHQ 머리말 칩 1개가 글자로 바뀜(그 밖 3Q 7과목 팩에 숫자 아닌 쪽 0 — 배포본 전수 확인).
+
+## E. 도구 — verify · q_perf · q_imgbuild(이번에)
+- **`tools/verify.py`**
+  - 새 **1a절**: 팩에 `imgf`가 있으면 목록의 파일이 다 있음(`packs/img/<SID>/…`)·이름의 h8 = 파일 md5 앞 8자·PIL 디코드(+ 목록에 없는 '지난 세대 파일 n개'는 알림만) · **모든 팩**(묶음 방식 포함): 본문 그림 `img[data-img]`·인용 칩 쪽(`data-k`-`data-p`·`data-pp` 숫자)이 그림 파일 목록이나 그림 묶음에 있음(imgalias 반영 — 팩 전체 글에서).
+  - **3절 도구 시험**: 강의가 있는 첫 과목에서(자료 대기 과목 = 팩 `stub` 또는 옛 팩 '문항 0 + 강의 WAIT뿐') · 전부 자료 대기면 알림 한 줄 뒤 404·콘솔 오류만 보고 끝. **고치기 전에는 4Q에서 3절이 죽었음**(WAIT 카드에 칠할 줄이 없어 `scrollIntoView` TypeError → Traceback · rc=1 — full_check의 verify 줄에 RESULT가 안 나오던 상태).
+  - 결과: `JBL_HTTP=1 tools/verify.py`(4Q · 다시 빌드한 팩) **PASS — OK 123줄**(고치기 전: OK 101줄 뒤 Traceback) · `JBL_Q=3q JBL_HUB_DIR=docs/3q JBL_HTTP=1 tools/verify.py`(진짜 3Q 폴더) **PASS — OK 288줄**(1a: 7과목 본문 그림·인용 쪽 410~645개 전부 묶음에 있음 · 3절은 OMS1에서 그대로 돎). 거꾸로 시험(시험 사본의 팩에 없는 파일·이름 지문이 다른 파일·목록에 없는 키를 심음) → 'FAIL 그림 파일 … 없음 1 · 깨짐 1 · 지난 세대 파일 1개' · 'FAIL 본문 그림·인용 칩 쪽 … 없음 3'.
+- **`tools/tests4/q_perf.py`**: 그 쿼터가 파일 방식(`QS.img_mode(q) == 'files'`)이면 묶음 예산(9.5MB) 대신 `packs/img/<SID>/*` **파일 하나 ≤ 400KB**(넘으면 실패 — 과목마다 '장수·합·가장 큰 파일' 한 줄) + '모두 n장·합' 알림 · 파일 방식 쿼터에 그림 묶음(`<SID>.img.*.js`)이 남아 있으면 실패 · `packs/img/` 폴더는 팩 크기 검사에서 건너뜀. 결과: **PASS**(4Q 그림 0장 · 시간 18개 모두 기준 안 — 3q.home 0.55s/기준 0.57 · 4q.home 0.33s/기준 0.22 등). 거꾸로 시험(500KB 가짜 파일·남은 묶음) → FAIL 2줄.
+- **`tools/tests4/q_imgbuild.py`**(새 — D 절): PASS 40줄(인용 쪽 줄 포함). full_check의 `tools/tests4/q_*.py` 돌림에 저절로 들어감(브라우저 없음 · 약 5초 · 진짜 등록표·tools/를 건드리지 않음).
+
+## SPEC.md(빌드 절만)
+- '한 과목 작업 순서' 5번에 한 줄(파일 방식 쿼터의 출력) + '공통 코드 동기화·전 과목 빌드' 절 **바로 뒤**에 새 절 **'그림 파일 방식 · 빈 과목 · 라벨 통일 · 인용 쪽 (2026-11-10 …)'**(스위치·주소·팩 imgf·잠금·한 세대 남김·원본 없이 다시 빌드·그대로인 것·빈 과목·라벨·인용 쪽·검사). 문서 끝(쿼터 절)은 건드리지 않음 — 허브 담당이 끝에 덧붙여도 안 겹치게. `tools/sync_common.py`로 사본 17개 같음.

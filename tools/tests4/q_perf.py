@@ -1,21 +1,32 @@
 """11-04 사용자 '용량커지거나 해서 렉 절대 안 생기게끔' — 성능 예산
 ① 크기: 허브 index ≤ 1.6MB · 과목 본문 팩 ≤ 6.0MB · 강의 그림 묶음 하나 ≤ 9.5MB (4Q는 넘으면 실패, 3Q는 보고만 — 이미 배포된 보관 쿼터)
+   11-10 그림 파일 방식 쿼터(tools/quarters.json "img": "files" — 4Q): 묶음 예산 대신 그림 파일 하나(packs/img/<SID>/…) ≤ 400KB · 과목마다 장수·합 보고 · 그림 묶음(<SID>.img.*.js)이 남아 있으면 실패
 ② 시간(로컬): 홈이 그려질 때까지 · 과목 팩 받기 · 강의 학습·기출·예상 탭 열기 · 그동안 긴 작업(longtask) 합계 — tools/tests4/perf_base.json(기준)보다 2배+0.5초 넘게 느리면 실패
   기준을 새로 잡기: JBL_PERF_SAVE=1 .venv/bin/python tools/tests4/q_perf.py"""
 import json, time
 from qsite import *
 from playwright.sync_api import sync_playwright
-BUD = {'index': 1.6e6, 'pack': 6.0e6, 'img': 9.5e6}
+BUD = {'index': 1.6e6, 'pack': 6.0e6, 'img': 9.5e6, 'imgfile': 400e3}
 BASE = os.path.join(HERE, 'perf_base.json'); base0 = json.load(open(BASE, encoding='utf-8')) if os.path.exists(BASE) else {}
 rel = build(); base = serve(); got = {}
 for q, r in rel.items():
     D = os.path.join(SITE, r) if r else SITE; strict = q != '3q'
     sz = os.path.getsize(os.path.join(D, 'index.html'))
     (ok if strict else (lambda c, m: print(('  OK  ' if c else '  INFO') + ' ' + m)))(sz <= BUD['index'], f'{q} 허브 index {sz / 1e6:.2f}MB ≤ {BUD["index"] / 1e6}')
-    P = os.path.join(D, 'packs')
+    P = os.path.join(D, 'packs'); FILES = QS.img_mode(q) == 'files'   # 11-10 그림 파일 방식 쿼터
     for f in sorted(os.listdir(P)) if os.path.isdir(P) else []:
-        n = os.path.getsize(os.path.realpath(os.path.join(P, f))); lim = BUD['img'] if '.img.' in f else BUD['pack'] if f.count('.') == 1 else None
+        fp = os.path.realpath(os.path.join(P, f))
+        if os.path.isdir(fp): continue   # packs/img/ = 그림 파일(아래에서 따로)
+        if FILES and '.img.' in f: ok(False, f'{q} {f} — 그림 파일 방식 쿼터에 그림 묶음이 남아 있음(build4가 지움 — 다시 빌드)'); continue
+        n = os.path.getsize(fp); lim = BUD['img'] if '.img.' in f else BUD['pack'] if f.count('.') == 1 else None
         if lim and n > lim: (ok if strict else (lambda c, m: print('  INFO ' + m)))(False, f'{q} {f} {n / 1e6:.1f}MB > {lim / 1e6}MB')
+    if FILES:   # 그림 파일 하나 ≤ 400KB(넘으면 실패) · 과목마다 장수·합(보고)
+        ID = os.path.join(P, 'img'); tot = cnt = 0
+        for s in sorted(os.listdir(ID)) if os.path.isdir(ID) else []:
+            fs = [(x, os.path.getsize(os.path.join(ID, s, x))) for x in sorted(os.listdir(os.path.join(ID, s)))]; big = [(x, round(n / 1e3)) for x, n in fs if n > BUD['imgfile']]
+            tot += sum(n for _, n in fs); cnt += len(fs)
+            ok(not big, f'{q} 그림 파일 {s}: {len(fs)}장 · 합 {sum(n for _, n in fs) / 1e6:.1f}MB · 가장 큰 파일 {max((n for _, n in fs), default=0) / 1e3:.0f}KB ≤ {BUD["imgfile"] / 1e3:.0f}KB' + (f' — 넘음 {len(big)} {big[:3]}' if big else ''))
+        print(f'  INFO {q} 그림 파일 방식 — 모두 {cnt}장 · 합 {tot / 1e6:.1f}MB(파일 하나 예산 {BUD["imgfile"] / 1e3:.0f}KB)')
 LT = "(()=>{window.__lt=0;try{new PerformanceObserver(l=>{for(const e of l.getEntries())window.__lt+=e.duration;}).observe({type:'longtask',buffered:true});}catch(e){}})()"
 with sync_playwright() as p:
     br = p.chromium.launch(); ctx = br.new_context(viewport={'width': 1280, 'height': 900}); ctx.route('https://api.github.com/**', lambda r: r.fulfill(status=401, body='{}'))
