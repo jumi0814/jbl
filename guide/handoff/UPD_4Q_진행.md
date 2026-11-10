@@ -33,10 +33,10 @@
 ## 전면 점검·개선(11-10 시작 — 사용자 '자료를 주기 전에 … 모든 방면에서 … 업데이트' · 계획·보고 guide/handoff/upg1110/)
 - 방법: 허브 = tools/cons/shell.html **한 번에 한 담당**(긴 줄이라 합치기 충돌) → sync_common → rehub → 3Q 스테이징 회귀(JBL_Q=3q · rehub --q 3q --stage) + tests4 → 묶음마다 커밋·배포 · shell을 안 건드리는 일(build4·테스트 도구·스킬 문서)은 나란히
 - [ ] W0 안전망: tests4/qsite 시험용 사이트(4Q 정체성 + 3Q 팩) · tools/tests/STATUS.json(기준 실패 37 정리) · q_ident 린트 넓히기 · 성능 기준
-- [ ] W1 빈 과목(isStub·build4 stub)·그림 다시 받기(needImages)·이동(↩ y·검색·없는 화면 주소·라벨 통일) → 배포 1
+- [x] (11-10 배포 1 — main c37b69a8) W1 빈 과목(isStub·build4 stub)·그림 다시 받기(needImages)·이동(↩ y·검색·없는 화면 주소·라벨 통일) → 배포 1
 - [ ] W2 4Q 규칙·스킬(적중 분석 후보 20여 줄 → RULES 14 c ⑥ · 상 비율 충돌 · AGENTS T·P·FN·PA·Q4_RULES_BRIEF · 옛 배치 · check_lec ★·줄바꿈)
 - [ ] W3 4Q 그림 파일(build4 imgf·img_lock · 허브 그림 주소 한 곳 · 묶음 방식 메모리 비움) → 배포 2
-- [ ] W4 공부 시간(잠든 시간 자동 빼기 + 되돌리기 · 시계 뒤로 · cls · tedit 누적 · 쿼터 공용 채널 · qimport2) → 배포 3
+- [~] (담당 도는 중 — 지시문 UPG_H2_시간.md · 보고 DONE_W4.md · 기준 c37b69a8) W4 공부 시간(잠든 시간 자동 빼기 + 되돌리기 · 시계 뒤로 · cls · tedit 누적 · 쿼터 공용 채널 · qimport2) → 배포 3
 - [ ] W5 기록(저장 공간 안내·밀린 쓰기 · 넘버링 되돌리기·old 저장소 · 복습 채점 동기화 · 403/429 · jbMove → 넘버링 · pick 문맥 · ★ 수) → 배포 4
 - [ ] W6 렉(표 맞춤 읽기/쓰기 분리·보이는 표 먼저·기억 · 그리기 뒤 일 미루기 · 2단계 높이 기억 + content-visibility는 스위치 뒤) → 배포 5
 - [ ] W7 디자인 남은 것(집중 모드 탭 줄·보조 단추·사이드바 배지·1280 도구 막대) → 배포 6
