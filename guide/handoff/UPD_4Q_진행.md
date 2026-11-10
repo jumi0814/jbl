@@ -42,6 +42,7 @@
 - [ ] W7 디자인 남은 것(집중 모드 탭 줄·보조 단추·사이드바 배지·1280 도구 막대) → 배포 6
 - [ ] 끝: JBL_UNFREEZE=1 rehub --q 3q(3Q 허브에도) · 전체 ux_all · 보고(내가 정한 것·기기 확인 부탁)
 - **재개 메모(11-10 12:40 UTC)**: 담당 넷이 사용량 한도로 멈춤(11:00 UTC 풀림 · 사용자 "초기화되었습니다 … 계속 진행") → 작업분 WIP 커밋(메인 5e5fc213 문서·983e9740 shell(배포 금지 — 사본·docs 미반영 · 고치기 전 기준 4127b1ce) · worktree 브랜치 빌드 f0e4f6c5 `.claude/worktrees/agent-ae5c8cca242a40c1a` · 테스트 273be7ec `.claude/worktrees/agent-ac5912c51bbd11a94` · 패치 보관 guide/handoff/upg1110/wip/) → **한 번에 담당 둘까지**: ① 허브 W1 이어서 + 빌드 이어서(지금) ② 테스트(W0) 이어서 + 문서(W2) 이어서(남음: QA·AGENTS·Q4_RULES_BRIEF·묵은 줄·사용자 확인 목록) ③ 그 뒤 허브 묶음 하나씩(UPG_H2~H6). 담당이 멈추면 새 담당에게 같은 지시문 + '앞 담당이 한도로 멈춤 — 보고·diff로 확인하고 남은 것만'(worktree 담당은 isolation 없이 그 worktree 경로에서 일하게).
+- **재개 메모 2(11-10 23:20 UTC)**: 두 번째 한도(16:00 UTC 풀림) · 사용자 "위 플랜 그대로 하되 추가적으로 디자인 … 색 배치 및 조화 … 리뉴얼 … 쭉 작업" → W7 = 디자인 리뉴얼로 넓힘(지시문 UPG_H6 끝 '넓힘') · **담당은 한 번에 하나**(허브 줄기) + 합치기·검사·배포는 메인이 직접 · 빌드 쪽 끝(브랜치 worktree-agent-ae5c8cca242a40c1a 0bd243fa — 패치 wip/B_빌드.patch · W1 허브 끝나면 합침 → sync_common → 4Q 10과목 build4 → rehub → verify·check_links·q_imgbuild) · W1 허브 = 코드 끝·검사 중(셋째 담당) · 테스트 안전망은 가벼운 것만(worktree agent-ac5912c51bbd11a94 273be7ec — 시험용 사이트·린트·q_crawl 일부) · 순서: W1 배포 → W4 → W5 → W3 허브 → W2 남은 문서 → W6 → W7
 - 새 기능 없음(사용자 '시험직전모드는 필요없어') · 자료가 먼저 오면 내용 작업이 먼저(허브 묶음은 나란히)
 
 ## 받을 자료(사용자에게 보낸 순서)
