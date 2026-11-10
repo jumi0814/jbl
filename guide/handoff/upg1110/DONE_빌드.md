@@ -8,7 +8,8 @@
 - [x] 읽기: BRIEF_공통 · PLAN · R_DESIGN §0·§3·§5 · R_NAV A10·A17·A19 · build4·jblpaths·quarters·new_subject·verify·check_links·q_perf
 - [x] 앞 담당 작업분(f0e4f6c5) 확인 — 아래 표
 - [x] 1. D 검사(q_imgbuild PASS 39줄 · JB 원본 쪽 길 포함 · 3Q 방식 출력 = 기준 커밋과 글자까지 같음)
-- [ ] 2. A 검사(4Q 빈 팩 10개 다시 빌드·비교) · 3. check_links · 4. verify · 5. q_perf · 6. B grep 보고 · 7. SPEC · 8. 전체 검사
+- [x] 2. A 검사(4Q 빈 팩 10개 다시 빌드 — 바뀐 키 = stub·imgf·trends·ledger·lect.head/tline/tstrat뿐 · rehub --check OK · q_empty PASS)
+- [ ] 3. check_links · 4. verify · 5. q_perf · 6. B grep 보고 · 7. SPEC · 8. 전체 검사
 
 ## 앞 담당이 한 것 — 이어받을 때의 실제 상태(코드 읽기 + 읽기 전용 측정)
 | 항목 | 코드 | 검사 |
@@ -34,3 +35,9 @@
   - **④b JB 원본 쪽 길 추가**(앞 담당 시험에는 없어 JB 가지가 한 번도 안 돌았음): 사본 안 가짜 JB 2쪽(`work/jb/TST9_2026` — 진짜 work/jb는 안 씀) → `jb26-1.<h8>.jpg`·`jb26-2.<h8>.jpg`(assemble이 만든 JPEG 그대로 — 그림 쪽 색 924폭 · 글 쪽 회색 860폭)·`imgf.jb`·대장 단추 키와 같음·img_lock `[원본 md5|꼴, h8]` · 다시 빌드 = 팩·파일·잠금 그대로 · 쪽 그림 없이(클라우드) 다시 빌드 = 그대로 · 단일 파일판에 들어 있음 · 스위치 끄면 `TST9.img.jb26.js`(같은 바이트) + 호환 `TST9.img.jb.js`.
 - **결과**: `tools/tests4/q_imgbuild.py` **PASS(39줄)** — ① 파일 3개·imgf·img_lock·HTML 폭·높이 ② 다시 빌드 = 파일(수정 시각까지)·팩 글자 그대로 ③ 그림 하나 바꿈 = 그 파일만 새 해시 + 옛 파일 한 세대 → 다음 빌드 때 지움 ④ 원본 없이 = 그대로 ④b JB ⑤ 스위치 끔 = 묶음·imgv(바이트 = 파일 방식 파일 · 두 방식 팩은 imgf·imgv 말고 같음) ⑥ TST9 지움(진짜 등록표·tools/에는 생긴 적 없음 — 도구 사본 `work/_tmp/q_imgbuild/repo`에서 돎 · 브라우저·work/jb 없이 약 5초).
 - **3Q 방식이 안 바뀐 증거**(한 번 비교 — scratch): 스위치 끈 시험 과목(강의 그림 3장 + JB 원본 2쪽)을 **기준 커밋 b714aca8의 build4·jblpaths·quarters**와 지금 것으로 각각 빌드 → `index.html`·`TST9.js`·`TST9.img.IMG.js`·`TST9.img.jb26.js`·`TST9.img.jb.js`·아이콘·manifest **8개 파일이 글자까지 같음**. 코드로도: build4의 새 가지는 전부 `if IMGFILES`(= `J.img_mode(SID) == 'files'` — 3q는 키가 없어 False) 뒤 · `PREV = {} if IMGFILES else J.prev_images(SID)` · `JBIMG = IMG['jb']`(파일 방식일 때만 바꿈) · 묶음 쓰기 `for c, t in ({} if IMGFILES else img_files)` · jblpaths의 `prev_images`·`prev_jb_pages`는 첫 줄 `img_mode == 'files'`일 때만 새 길.
+
+## A. 빈 과목(W1 · A17) — 코드는 앞 담당 · 검사는 이번에
+- **고침(build4 — 앞 담당)**: `STUB = (not Q) and 강의 키 == ['WAIT']`(tools/new_subject.py 빈 틀 그대로일 때만) → `pack['stub'] = True`(실제 강의·JB가 들어오면 키 자체가 없음) · 과목 홈 '교수별 출제 경향' 절 `trends = ''` · 강의 틀에서 출제 경향(`details.trend`)·'📌 공부 전략 기출은 전부 풀되 …'(`.tstr`)·빈 '⭐ 많이 나온 순'(`.ftop`) 뺌 · `lect[0].tline`·`tstrat` = '' · 기출 대장 = 한 줄 안내('이 과목은 JB를 받는 대로 기출 대장(수록 대조표·연도 규칙·JB 원본 쪽)이 채워집니다.' — '카드 0개 = .'·빈 표 없음). '2회 이상 출제'는 원래 `top = []`(허브가 숨김 — 허브 몫).
+- **검사(이번)**: 4Q 10과목 `tools/<sid>/build4.py` 전부 rc=0 → 커밋된 옛 팩과 JSON 비교: **10과목 모두 바뀐 키가 `stub`(True)·`imgf`({'lec':{},'jb':{}})·`trends`·`ledger` + `lect[0].head`·`tline`·`tstrat`뿐** · 팩 머리 줄·`build`·`imgv`({}) 그대로 · `docs/packs/img/`·묶음 파일 0 · `tools/` 곁다리 파일 변화 0(img_lock은 그림이 없으면 안 생김) → `tools/rehub.py --check` OK · `tools/tests4/q_empty.py` PASS 38줄(고치기 전 38줄 PASS와 같음) · 지금 허브로 OMS2 홈·WAIT 학습·대장·JB를 열어 글 확인(오류 0 · undefined/NaN 0 — 강의 틀에 경향·전략 없음, 대장 한 줄).
+- **안 함(허브 몫 — 지금 허브에서 아직 보이는 빈 과목 글)**: 과목 홈 '기출을 다 맞혔어요'·'시작: 강의자료 대기 →'·강의 카드 '강의자료 대기 -' · JB 화면 '조건에 맞는 문항이 없습니다' · 공부 순서(`guide` — 이어서·안 푼 것 단추)는 build4에서 그대로(허브 `isStub`가 읽음 — 메인 확인).
+- **docs는 커밋하지 않음**(메인 결정) — 메인이 합친 뒤 메인 저장소에서 10과목 build4 → rehub.
