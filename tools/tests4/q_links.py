@@ -1,7 +1,7 @@
 """11-10 W1 이동·↩·자리 — 3q/ 허브(내용이 있는 쿼터)에서. 과목·강의·카드는 __h.PACKS에서 찾음(id를 박지 않음)
 A 칩 종류마다 건너감 → ↩ → 같은 주소·같은 자리(누른 것의 화면 높이 ±2px)
   JB 카드 📖 정리본(data-golec)·예상 n ▸(data-gopred) · 학습 카드 기출 칩 → 미리보기 → JB에서 풀기(data-jpgo) · 예상 카드 관련 기출(.jbchip)·정리본(data-golec)
-  과목 홈(기준 카드가 없는 화면 — scrollY): 강의 카드 본문 · 카드 아래 '기출 n' · 2회 이상 목록 · 기출 대장 원본 밖 링크
+  과목 홈(기준 카드가 없는 화면 — scrollY): 강의 카드 본문 · 카드 아래 '기출 n' · 2회 이상 목록 · 기출 대장 → 문제 · 폰 393: 강의 바로가기 칩·강의 카드·JB 📖
 B 검색: '더 보기' → 결과 → 뒤로(펼침·자리 그대로) · 결과에서 ↩ = 그 검색 · 종류 칩 뒤에도 펼침 · 검색만 해서는 ↩ 스택이 안 지워짐
 C 내 표시 → 그 자리 → ↩ · ★ 북마크 카드 '강의로 →' → ↩ · 넘버링 화면 Ctrl+K → ↩ = 그 넘버링
 D 학습 탭 거르기(묶음 알약·'… 카드만')가 탭 왕복·건너갔다 ↩·새로고침 뒤 그대로
@@ -70,7 +70,6 @@ with sync_playwright() as p:
     hop(pg, 'A6 과목 홈 강의 카드 본문', '#stage .lgrid .lcard', away=lambda h: '/learn' in h)
     fresh(f'#/{S}/_home/_home'); hop(pg, "A7 과목 홈 카드 아래 '기출 n'", '#stage .lgrid .lcl [data-lcs][data-t="jb"]', away=lambda h: h.endswith('/jb'))
     fresh(f'#/{S}/_home/_home'); hop(pg, 'A8 과목 홈 2회 이상 목록', '#htop .toplist .q[data-go]')
-    fresh(f'#/{S}/_home/_home'); hop(pg, 'A9 과목 홈 강의 바로가기 칩', '#stage .ljump .ljc')
     fresh(f'#/{S}/_led/_led'); hop(pg, 'A10 기출 대장 → 문제', '#stage [data-go]')
     # ---------- B 검색
     fresh(f'#/{S}/{K}/learn'); pg.wait_for_function('__h.sxProg().ready', timeout=240000)
@@ -129,11 +128,13 @@ with sync_playwright() as p:
         pg.evaluate("document.getElementById('retpill').click()"); pg.wait_for_timeout(2000)
         ok(pg.evaluate('__h.VIEW') == 'num' and pg.evaluate('location.hash').startswith('#/_num'), f"C3 ↩ = 그 넘버링 ({pg.evaluate('location.hash')})")
         # G 넘버링 편집 칸에서 Ctrl+K 안 열림
-        ed = pg.evaluate("(()=>{const e=document.querySelector('#numv [contenteditable]');if(!e)return false;e.focus();return document.activeElement===e;})()")
+        ed = pg.evaluate("(()=>{const v=document.querySelector('#numv');if(!v)return false;let e=v.querySelector('[contenteditable]');if(!e){e=document.createElement('div');e.contentEditable='true';e.textContent='스토리';e.dataset.qlkEd='1';v.appendChild(e);}e.focus();return document.activeElement===e;})()")
         if ed:
             pg.keyboard.press('Control+k'); pg.wait_for_timeout(300)
             ok(pg.evaluate("document.querySelector('#qj').hidden"), 'G 넘버링 편집 칸에 커서가 있으면 Ctrl+K가 바로 가기를 열지 않음')
-        else: print('  SKIP G 넘버링 편집 칸 없음(문제 0)')
+            pg.evaluate("(()=>{const e=document.querySelector('[data-qlk-ed]');if(e)e.remove();if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();})()")
+            pg.keyboard.press('Control+k'); pg.wait_for_timeout(300); ok(not pg.evaluate("document.querySelector('#qj').hidden"), 'G 편집 칸 밖에서는 Ctrl+K가 열림'); pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
+        else: print('  SKIP G 넘버링 화면(#numv) 없음')
     else: ok(False, '넘버링 화면이 열림')
     # ---------- D 학습 탭 거르기 유지
     fresh(f'#/{S}/{K}/learn'); pg.wait_for_selector('#grppills')
@@ -158,10 +159,10 @@ with sync_playwright() as p:
     if NF:
         fresh(f'#/{NF}/_final/_final'); ok(pg.evaluate('location.hash') == f'#/{NF}/_home/_home' and any('자료가 아직 없어' in x for x in T()[:3]), f'E N제 없는 과목({NF})의 _final → 과목 홈 + 알림')
     else: print('  SKIP E N제 없는 과목 없음')
-    NT = next((x for x in PK if x['tbl'] == 0), None)
+    NT = pg.evaluate("(()=>{for(const s in __h.PACKS){const p=__h.PACKS[s];for(const L of p.lect){const have=__h.docTabs(p,L.k).map(x=>x[0]);const t=['tbl','jb','pred','fig'].find(x=>have.indexOf(x)<0);if(t)return [s,L.k,t];}}return null;})()")
     if NT:
-        fresh(f"#/{NT['s']}/{NT['k']}/tbl"); ok(pg.evaluate('location.hash') == f"#/{NT['s']}/{NT['k']}/learn" and any('탭이 없어' in x for x in T()[:3]), f"E 숨은 탭 주소(#/{NT['s']}/{NT['k']}/tbl) → 학습 탭 + 알림 ({T()[:1]})")
-    else: print('  SKIP E 비교표 없는 강의 없음')
+        fresh(f"#/{NT[0]}/{NT[1]}/{NT[2]}"); ok(pg.evaluate('location.hash') == f"#/{NT[0]}/{NT[1]}/learn" and any('탭이 없어' in x for x in T()[:3]), f"E 숨은 탭 주소(#/{NT[0]}/{NT[1]}/{NT[2]}) → 학습 탭 + 알림 ({T()[:1]})")
+    else: print('  SKIP E 탭이 빠진 강의 없음')
     fresh(f'#/{S}/_home/_home'); pg.evaluate("(()=>{const b=document.querySelector('#stage [data-golec]')||(()=>{const x=document.createElement('button');x.dataset.golec='';document.querySelector('#stage').appendChild(x);return x;})();b.dataset.golec='%s:999';b.click();})()" % K); pg.wait_for_timeout(1200)
     ok(pg.evaluate('location.hash') == f'#/{S}/{K}/learn' and pg.evaluate('scrollY') <= 2 and any('그 카드를 찾지 못해' in x for x in T()[:3]), f'E 정리본 칩의 카드 번호가 없으면 강의 처음 + 알림 ({T()[:1]})')
     ok(not errs, f'콘솔 오류 0 {errs[:3]}'); ctx.close()
@@ -172,11 +173,13 @@ with sync_playwright() as p:
         for nfail in (1, 2):
             ctx = br.new_context(viewport={'width': 1280, 'height': 900}); ctx.route('https://api.github.com/**', lambda r: r.fulfill(status=401, body='{}'))
             cnt = {'n': 0, 'urls': [], 'fail': nfail}
-            def img(route, cnt=cnt):
-                cnt['n'] += 1; cnt['urls'].append(route.request.url.rsplit('/', 1)[-1])
-                if cnt['n'] <= cnt['fail']: route.abort()
-                else: route.continue_()
-            ctx.route(re.compile(r'/packs/[^/]*\.img\.[^/]*\.js'), img)
+            def mk(cnt):
+                def img(route):
+                    cnt['n'] += 1; cnt['urls'].append(route.request.url.rsplit('/', 1)[-1])
+                    if cnt['n'] <= cnt['fail']: route.abort()
+                    else: route.continue_()
+                return img
+            ctx.route(re.compile(r'/packs/[^/]*\.img\.[^/]*\.js'), mk(cnt))
             pg = ctx.new_page(); errs = []; pg.on('pageerror', lambda x: errs.append(str(x)[:200])); pg.on('dialog', lambda d: d.dismiss())
             pg.goto(U + f'#/{s}/{k}/learn'); pg.wait_for_function("window.__h&&__h.VIEW==='doc'&&document.querySelector('#stage .tc')", timeout=240000); pg.wait_for_timeout(300)
             IM = "(()=>{const im=[...document.querySelectorAll('#stage img[data-img]')];return [im.length,im.filter(i=>i.getAttribute('src')).length];})()"
@@ -214,5 +217,13 @@ with sync_playwright() as p:
         ok(pg.evaluate("__h.Kit.mode()||''") == 'h' and pg.evaluate("document.activeElement.tagName") != 'SELECT', 'G 눌러서 고른 뒤 남은 초점이면 초점을 풀고 단축키(H = 형광펜)')
         pg.keyboard.press('h'); pg.wait_for_timeout(150)
     ok(not errs, f'G 콘솔 오류 0 {errs[:3]}'); ctx.close()
+    # ---------- 폰 393 — 과목 홈(강의 바로가기 칩은 860px 이하에서만 보임) · JB 카드 📖 정리본
+    ctx = br.new_context(viewport={'width': 393, 'height': 852}, is_mobile=True, has_touch=True); ctx.route('https://api.github.com/**', lambda r: r.fulfill(status=401, body='{}'))
+    pg = ctx.new_page(); errs = []; pg.on('pageerror', lambda x: errs.append(str(x)[:200])); pg.on('dialog', lambda d: d.dismiss())
+    fresh(f'#/{S}/_home/_home'); pg.wait_for_selector('#stage .lgrid')
+    hop(pg, 'A9 (폰 393) 과목 홈 강의 바로가기 칩', '#stage .ljump .ljc', away=lambda h: '/learn' in h)
+    fresh(f'#/{S}/_home/_home'); hop(pg, 'A6 (폰 393) 과목 홈 강의 카드 본문', '#stage .lgrid .lcard', away=lambda h: '/learn' in h)
+    fresh(f'#/{S}/_jb/_jb'); pg.wait_for_selector('#cards .qc'); hop(pg, 'A1 (폰 393) JB 카드 📖 정리본', '#cards .qc .qhead .chip.lec[data-golec]')
+    ok(not errs, f'폰 393 콘솔 오류 0 {errs[:3]}'); ctx.close()
     br.close()
 done()
