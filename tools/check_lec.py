@@ -2,10 +2,62 @@
 사용: .venv/bin/python tools/check_lec.py <SID> [강의키 ...]
 검사: 문법 파싱 · jb=/E:/{jb:} 문항 id 존재 · 이 강의에 연결될 현 교수 기출이 ⭐(E:)에 다 있는지 · F:·[[키:쪽]] 쪽 이미지 존재 ·
       카드별 필수 줄(> 요지, = 핵심, M: 암기) · 🔑 줄 길이 · 소제목의 쪽 번호 표기 · 쪽 범위 커버리지(빠진 쪽) · 밀도 통계(DD1 기준과 비교)
-기준(qids.json)은 tools/dump_review.py가 만든 현재 사이트 연결. 새로 연결할 문항은 --also Q01,Q02 로 추가 지정."""
+기준(qids.json)은 tools/dump_review.py가 만든 현재 사이트 연결. 새로 연결할 문항은 --also Q01,Q02 로 추가 지정.
+11-10 4Q 과목(tools/quarters.json q != 3q)만 더 보는 것(3Q 보관 과목 결과는 그대로 — RULES 2·3·14):
+  ⓐ 원고에 ★·☆ = ✗(화면 ★ = 내 북마크만 · 자료의 별은 '별표' · 기출·강조 표시는 E:·P:가 자동) — ⭐(E:) 줄은 경고(JB 원문 글자일 수 있음) ·
+     표·annot·예상·N제(강의 키를 주면 work/<SID>/parts 조각, 안 주면 tools/<sid>/ 파일)는 경고(전체정리표 머리 `★ 시험`·annot 따옴표 인용은 뺌)
+  ⓑ 줄바꿈: -·  -·=·M:·P:·U: 줄을 화면 조각으로 렌더(lecparse.line_units — tools/dump_breaks.py와 같은 렌더)해
+     조각이 이어지는 부호(— → , ) ] · /)로 시작 = ✗ · 조사·접속어로 시작 = 경고 · 170자 넘는 한 덩어리 = 경고(화면 조각 전체는 tools/dump_breaks.py <SID> <키>)
+  ⓒ qids.json이 없으면 팩에서 바로 만듦(dump_review) · 팩이 qids.json보다 새것이면 알림 · 자리 표시 강의(new_subject 빈 틀 WAIT)는 검사하지 않음
+  $JBL_LEC4Q=1/0 = 과목 쿼터와 상관없이 이 검사를 켬/끔(3Q 원고로 미리 보기·시험용)."""
 import os, sys, re, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import jblpaths as J
+
+def q4(sid):
+    """11-10 4Q 과목만 더 보는 검사를 켤지 — 등록표 q != 3q($JBL_LEC4Q=1/0이면 그 값)"""
+    e = os.environ.get('JBL_LEC4Q')
+    if e in ('0', '1'): return e == '1'
+    try: return J.QS.quarter_of(sid) != '3q'
+    except KeyError: return False
+
+STAR = re.compile('[★☆]')
+BRK_HARD = re.compile(r'^(?:[—–→,)\]]|[·/]\s)')   # 조각이 이어지는 부호로 시작(RULES 3 '오류') — 3Q 승인 원고 7과목 14,500줄에서 1곳
+BRK_SOFT = re.compile(r'^(?:은|는|을|를|의|에|와|과|로|으로|및|또는)\s')   # 조사·접속어로 시작(의심 — 같은 원고에서 1곳)
+def _nums(L, n=8): return '·'.join(str(x) for x in L[:n]) + (f' 외 {len(L) - n}' if len(L) > n else '')
+def star_other(path, kind):
+    """4Q: 표·annot·예상·N제 파일의 ★·☆ 줄 번호(전체정리표 머리 칸 `★ 시험`·annot 따옴표 인용 속 글자는 뺌)"""
+    out = []
+    for i, s in enumerate(open(path, encoding='utf-8').read().split('\n'), 1):
+        if not STAR.search(s): continue
+        if kind == 'tables' and s.startswith('H:'): s = '|'.join(c for c in s[2:].split('|') if c.strip() != '★ 시험')
+        if kind == 'annot': s = re.sub(r'"[^"]*"|“[^”]*”', '', s)
+        if STAR.search(s): out.append(i)
+    return out
+def break_scan(LP, lines, ctx):
+    """4Q: 원고 줄 → 화면 조각 → (✗ 이어지는 부호로 시작 [(줄, 조각)], 경고 조사·접속어로 시작 [(줄, 조각)], 170자 넘는 한 덩어리 [줄])
+    렌더는 tools/dump_breaks.py와 같은 함수 · 렌더러가 넣는 구분자(span.ksep — 흐름 단계의 '→' 등)는 빼고 봄 · KL 계수는 되돌림(끝의 🔑 렌더 줄이 두 번 세지 않게)"""
+    hard, soft, long_ = [], [], []
+    if not hasattr(LP, 'line_units'): return hard, soft, long_
+    kl0 = list(getattr(LP, 'KL', []))
+    for i, ln in enumerate(lines, 1):
+        try:
+            if ln.startswith('- ') or ln.startswith('  - '): h = LP.render_item(ln.split('- ', 1)[1].strip(), ctx)
+            elif ln.startswith('= '):
+                v = ln[2:].strip(); ks = LP.key_split(v)
+                h = (LP.render_keybox(ks[0], ctx) + LP.render_key_rest(ks[1], ctx)) if ks and ks[1] else (LP.render_keybox(ks[0], ctx) if ks else LP.render_key(v, ctx))
+            elif ln.startswith('M:'): h = '<ul>' + LP.render_recall(ln[2:].strip(), ctx) + '</ul>'
+            elif ln.startswith('P:'): h = LP.render_key(ln[2:].strip(), ctx)
+            elif ln.startswith('U:'): v = ln[2:].strip(); h = LP.render_block(v, ctx) if len(v) > 150 else '<div>' + LP.inline(v, ctx) + '</div>'
+            else: continue
+        except Exception: continue
+        us = [u.lstrip('•◦ ').strip() for u in LP.line_units(re.sub(r'<span class="ksep[^"]*">[^<]*</span>', '', h))]
+        if len(us) == 1 and len(us[0]) > 170: long_.append(i)
+        for u in us[1:]:
+            if BRK_HARD.match(u): hard.append((i, u[:28]))
+            elif BRK_SOFT.match(u): soft.append((i, u[:28]))
+    if kl0: LP.KL[:] = kl0
+    return hard, soft, long_
 
 def ranges(s):
     out = set()
@@ -19,9 +71,17 @@ def ranges(s):
 def main(sid, keys, also):
     d = os.path.join(J.TOOLS, sid.lower()); sys.path.insert(0, d); os.chdir(d)
     import subject as S, lecparse as LP
-    qj = json.load(open(J.work(sid, 'review', 'qids.json'), encoding='utf-8'))
+    Q4 = q4(sid); qp = J.work(sid, 'review', 'qids.json')
+    if Q4:   # 11-10 4Q: 새 컨테이너·새 과목엔 work/<SID>/review가 없음 — 팩이 있으면 바로 만듦(없으면 먼저 build4)
+        pk = J.pack_path(sid)
+        if not os.path.exists(qp):
+            if not os.path.exists(pk): print(f'✗ {sid}: 팩이 없음({os.path.relpath(pk, J.ROOT)}) — 먼저 .venv/bin/python tools/{sid.lower()}/build4.py → .venv/bin/python tools/dump_review.py {sid}'); return 1
+            print(f'· {sid}: work/{sid}/review/qids.json이 없어 tools/dump_review.py {sid}를 먼저 돌림'); import dump_review; dump_review.run(sid)
+        elif os.path.exists(pk) and os.path.getmtime(pk) > os.path.getmtime(qp) + 1:
+            print(f'· {sid}: 팩이 qids.json보다 새것 — 문항·연결이 바뀌었으면 .venv/bin/python tools/dump_review.py {sid} 다시')
+    qj = json.load(open(qp, encoding='utf-8'))
     Q = qj['q']; bylec = qj['bylec']
-    keys = keys or [k for k in S.LEC_ORDER if os.path.exists(os.path.join(d, f'lec_{k}.txt'))]
+    given = bool(keys); keys = keys or [k for k in S.LEC_ORDER if os.path.exists(os.path.join(d, f'lec_{k}.txt'))]
     bad_total = 0
     # ux3 N2·N5 🔑·요지 렌더 글자 동일 검사 + 80자 넘는 한 줄 덩어리 수 — 빌드 없이 원고만으로(문항·강의 이름은 가짜 값: 두 렌더에 똑같이 들어감)
     import collections as _co
@@ -31,6 +91,8 @@ def main(sid, keys, also):
     ktot = [0, 0, 0, 0, 0]   # 🔑 상자 · 요지 · 글자 다름 · 옛 80자↑ · 새 80자↑
     for k in keys:
         path = os.path.join(d, f'lec_{k}.txt'); errs, warns = [], []
+        if Q4 and k == 'WAIT' and list(getattr(S, 'LEC_ORDER', [])) == ['WAIT'] and not S.LECMAP.get('WAIT', (1,))[0]:
+            print(f'· {sid}/{k}: 자리 표시 강의(강의자료 대기 — tools/new_subject.py 빈 틀) · 검사 안 함'); continue
         try: L = LP.parse(path)
         except Exception as e: print(f'✗ {k}: 파싱 실패 — {e}'); bad_total += 1; continue
         if L['k'] != k: errs.append(f'#LEC 키 {L["k"]} ≠ 파일 키 {k}')
@@ -104,6 +166,18 @@ def main(sid, keys, also):
         if src25 and '26' in str(LM.get(k, ('', ''))[1]) and not L.get('upd'):
             warns.append(f'26 갱신 강의(25 = {"·".join(src25)})인데 @UPD 없음 — 25 ↔ 26 바뀐 곳 표시(UPD26MARK_BRIEF · 대조표 없으면 끝 절 · AGENTS B3)')
         src_ = open(path, encoding='utf-8').read()
+        if Q4:   # 11-10 4Q 원고만(머리말 ⓐⓑ) — 3Q 보관 원고는 ★ 그대로(제목 = aid·플래시카드 키)
+            ls_ = src_.split('\n')
+            st_ = [i for i, x in enumerate(ls_, 1) if STAR.search(x) and not x.startswith('#LEC')]
+            sh_ = [i for i in st_ if not ls_[i - 1].startswith('E:')]; se_ = [i for i in st_ if ls_[i - 1].startswith('E:')]
+            if sh_: errs.append(f'★·☆ {len(sh_)}줄(줄 {_nums(sh_)}) — 4Q 원고엔 별 기호를 쓰지 않음: 자료의 별 = \'별표\' · 기출·강조 표시는 E:·P:가 자동 · 화면 ★ = 내 북마크만(RULES 2)')
+            bh_, bs_, bl_ = break_scan(LP, ls_, kctx)
+            if bh_: errs.append(f'줄바꿈: 화면 조각이 이어지는 부호(— → , ) · /)로 시작 {len(bh_)}곳 — ' + ' · '.join(f'줄 {i} "{u}"' for i, u in bh_[:6]) + (' …' if len(bh_) > 6 else '') + f" (RULES 3 — ' / ' = 서로 다른 사실의 경계 · 조각 전체는 tools/dump_breaks.py {sid} {k})")
+            w4_ = []
+            if se_: w4_.append(f'⭐(E:) 줄에 ★·☆ {len(se_)}줄(줄 {_nums(se_)}) — JB 원문 글자면 그대로 · 아니면 \'별표\'(RULES 2)')
+            if bs_: w4_.append(f'줄바꿈 의심: 화면 조각이 조사·접속어로 시작 {len(bs_)}곳 — ' + ' · '.join(f'줄 {i} "{u}"' for i, u in bs_[:6]) + f' (RULES 3 · tools/dump_breaks.py {sid} {k})')
+            if bl_: w4_.append(f"170자 넘는 한 덩어리 {len(bl_)}줄(줄 {_nums(bl_)}) — 120자 넘는 줄은 ' / '·하위 '  - '로 나눔(RULES 3·4)")
+            warns[:0] = w4_   # 경고는 25줄까지만 찍으니 앞에
         from check_unote import u_on_note; nu_ = sum(u_on_note(x) for x in src_.split('\n'))   # 10-10 조각 안 {u:…{n:…}}까지(check_unote)
         if nu_: warns.append(f'필기에 NEW 26 {nu_}곳(\x7bu:\x7bn:… · \x7bu:26 필기…) — 10-10 사용자 \'필기 아님!! 슬라이드 원문 내용\' → 26 수업 강조면 \x7be:…\x7d, 아니면 표시 없음')
         for u_ in L.get('upd', []):
@@ -115,6 +189,12 @@ def main(sid, keys, also):
         for e in errs: print('   ✗', e)
         for w in warns[:25]: print('   ·', w)
         bad_total += bool(errs)
+    if Q4:   # 11-10 4Q: 표·annot·예상·N제의 ★·☆(경고) — 강의 키를 줬으면 그 강의 parts 조각, 아니면 tools/<sid>/ 파일
+        fs_ = [(os.path.join(d, f'{n}.txt'), n) for n in ('tables', 'annot', 'pred', 'final')] if not given else [(J.work(sid, 'parts', f'{n}_{k}.txt'), n) for k in keys for n in ('tables', 'annot', 'pred')]
+        for fp_, kind_ in fs_:
+            if not os.path.exists(fp_): continue
+            so_ = star_other(fp_, kind_)
+            if so_: print(f'   · {os.path.relpath(fp_, J.ROOT)}: ★·☆ {len(so_)}줄(줄 {_nums(so_)}) — 4Q 새 글엔 별 기호를 쓰지 않음(자료의 별 = \'별표\' · JB 원문 글자는 그대로 — RULES 2)')
     if ktot[0]:
         print(f'🔑 렌더(ux3 N): 🔑 {ktot[0]} · 요지 {ktot[1]} · 옛 렌더와 글자 다름 {ktot[2]} · key_lines 되돌림 {LP.KL[2]} · 80자 넘는 한 줄 덩어리 {ktot[3]} → {ktot[4]} (🔑 상자 기준 — 정리표 🔑 칸도 같은 수)')
         if LP.KL[2]: print('   · key_lines가 글자 차이로 옛 렌더로 되돌린 🔑이 있음(구조만 옛 모양)')
