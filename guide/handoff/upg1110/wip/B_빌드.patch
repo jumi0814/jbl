@@ -1,21 +1,275 @@
 diff --git "a/guide/handoff/upg1110/DONE_\353\271\214\353\223\234.md" "b/guide/handoff/upg1110/DONE_\353\271\214\353\223\234.md"
 new file mode 100644
-index 00000000..f8e16bc3
+index 00000000..f7c43150
 --- /dev/null
 +++ "b/guide/handoff/upg1110/DONE_\353\271\214\353\223\234.md"
-@@ -0,0 +1,12 @@
+@@ -0,0 +1,137 @@
 +# DONE_빌드 — 11-10 전면 점검·개선 · 빌드 쪽(W1 build4 + W3 그림 파일 빌드)
 +
-+담당: worktree 담당(빌드 쪽) · 지시문 `work/_tmp/agents/UPG_B.md` · 기준 커밋 b714aca8
++담당: worktree 담당(빌드 쪽 — 앞 담당이 한도로 멈춰 두 번째 담당이 이어서) · 지시문 `guide/handoff/upg1110/agents/UPG_B.md` · 기준 커밋 b714aca8 · 브랜치 `worktree-agent-ae5c8cca242a40c1a`
 +맡은 파일: `tools/cons/build4.py`(+ sync 사본) · `tools/quarters.json`·`tools/quarters.py` · `tools/jblpaths.py` · `tools/verify.py` · `tools/check_links.py` · `tools/tests4/q_perf.py` · 새 `tools/tests4/q_imgbuild.py` · `tools/SPEC.md`(빌드 절) · 이 보고
-+건드리지 않은 것: `tools/cons/shell.html`(허브 담당) · `lecparse.py`·`trend.py`·`build2.py`·`assemble.py`(맡은 파일 밖 — 필요한 고침은 build4 안에서)
++건드리지 않은 것: `tools/cons/shell.html`(허브 담당) · `lecparse.py`·`trend.py`·`build2.py`·`assemble.py`(맡은 파일 밖 — 필요한 고침은 build4 안에서) · **`docs/`는 커밋하지 않음**(메인 결정 11-10 — 허브 담당과 부딪힘 · 다시 빌드한 4Q 빈 팩은 시험·비교에만)
 +
-+(진행 중 — 항목이 끝날 때마다 아래에 덧붙임)
-+
-+## 진행
++## 진행(항목이 끝날 때마다 고침)
 +- [x] 읽기: BRIEF_공통 · PLAN · R_DESIGN §0·§3·§5 · R_NAV A10·A17·A19 · build4·jblpaths·quarters·new_subject·verify·check_links·q_perf
-+- [x] 기준선: 고치기 전 build4로 4Q 빈 팩 10개를 시험 폴더에 빌드 → 지금 `docs/packs/*.js`와 글자까지 같음(환경 확인)
-+- [ ] A 빈 과목 · B 라벨 · C cite 쪽 · D 그림 파일 · E 도구 — 코드 넣음, 검사 중
++- [x] 앞 담당 작업분(f0e4f6c5) 확인 — 아래 표
++- [x] 1. D 검사(q_imgbuild PASS 39줄 · JB 원본 쪽 길 포함 · 3Q 방식 출력 = 기준 커밋과 글자까지 같음)
++- [x] 2. A 검사(4Q 빈 팩 10개 다시 빌드 — 바뀐 키 = stub·imgf·trends·ledger·lect.head/tline/tstrat뿐 · rehub --check OK · q_empty PASS)
++- [x] 3. check_links(쿼터 자리 · ✗ 3종 · 보관 분기 알려진 것 5 — 4Q PASS · 3Q PASS + 알려진 것 5)
++- [x] 4. verify(1a 그림 파일·키 · 3절 빈 과목 건너뜀 — 4Q PASS · 진짜 3Q 폴더 PASS)
++- [x] 5. q_perf(파일 방식 예산 — PASS)
++- [x] 7. SPEC(빌드 절 — '공통 코드 동기화' 절 뒤 새 절 + 작업 순서 5번 한 줄) → sync_common
++- [x] 6. B grep 보고(글자로 찾는 곳 0 · 📖 상자 칩이 폰에서 잘림 → 허브 CSS 한 줄 필요)
++- [x] 8. 전체 검사(아래 '돌린 검사') → docs 되돌림(커밋 안 함) · 끝
++
++## 앞 담당이 한 것 — 이어받을 때의 실제 상태(코드 읽기 + 읽기 전용 측정)
++| 항목 | 코드 | 검사 |
++|---|---|---|
++| A 빈 과목 | 들어감(build4 `STUB`) | 안 됨 — worktree `docs/packs` 10개는 옛 팩 그대로 |
++| B 라벨 | 들어감(build4 4곳) | 허브·테스트 grep 보고 안 씀 |
++| C cite 쪽 | build4 들어감(`_cnum`) | `check_links.py` 손 안 댐 |
++| D 그림 파일 | 들어감(quarters.json·quarters.py·jblpaths·build4 `IMGFILES`) | q_imgbuild를 한 번 돌린 흔적(시험 폴더가 남음 = FAIL 1개 이상 — 어느 줄인지 모름) |
++| E 도구 | `q_imgbuild.py`만 씀 | `verify.py`·`check_links.py`·`q_perf.py` 손 안 댐 |
++| SPEC·보고 | 안 씀 | — |
++
++읽기 전용 측정(배포본 그대로):
++- 3Q 팩에서 새 규칙에 걸릴 것 = GERI `[[OHQ:쪽]]` 1개 · PHARM JB 원본 쪽 `23q4-17~20` 4개 — 그 밖 0.
++- 3Q 7과목 `data-img`(4,001개)·cite(15,805개) 키는 전부 묶음에 있음 → verify의 새 키 검사를 3Q에 걸어도 새 실패 없음.
++- `check_links.py`는 `docs/packs`가 박혀 있어 `JBL_Q=3q`로는 3Q 팩(`docs/3q`)을 못 찾음.
++
++(아래에 항목별 결과를 덧붙임)
++
++## D. 그림 파일(W3) — 코드는 앞 담당 · 검사는 이번에
++- **고침(코드 — 앞 담당 f0e4f6c5)**: `tools/quarters.json` `4q.img="files"` · `tools/quarters.py` `img_mode(q)`·`quarters.py img [q]`·check(값은 "files"뿐 · 보관 분기에 img 금지) · `tools/jblpaths.py` `img_mode·img_dir·img_name·img_url·prev_imgf·prev_img_path·img_bytes` + `prev_images`·`prev_jb_pages`가 파일 방식이면 지난 목록(imgf)의 파일을 같은 꼴(dataURI)로 · `tools/cons/build4.py` `IMGFILES` 가지(강의 쪽 `_lec_file` · JB 원본 쪽 · imgf · img_lock · 한 세대 남김 · `img_dims`는 잠금의 원본 크기 → 지난 파일 머리).
++- **이번에 고친 것**: `tools/tests4/q_imgbuild.py`만 — build4·jblpaths는 고칠 것이 없었음.
++  - 지난 실패 1줄(② 다시 빌드 = 팩 글자 그대로)의 원인 = 시험 원고의 두 카드가 너무 비슷해 `tools/aidlock.py`가 둘째 빌드부터 서로를 옛 이름(alt)으로 붙임(그림과 무관 · 원래 동작) → 시험 원고의 두 카드를 서로 다른 글로. 실패 줄에 다른 키가 보이게 `dk()`.
++  - **④b JB 원본 쪽 길 추가**(앞 담당 시험에는 없어 JB 가지가 한 번도 안 돌았음): 사본 안 가짜 JB 2쪽(`work/jb/TST9_2026` — 진짜 work/jb는 안 씀) → `jb26-1.<h8>.jpg`·`jb26-2.<h8>.jpg`(assemble이 만든 JPEG 그대로 — 그림 쪽 색 924폭 · 글 쪽 회색 860폭)·`imgf.jb`·대장 단추 키와 같음·img_lock `[원본 md5|꼴, h8]` · 다시 빌드 = 팩·파일·잠금 그대로 · 쪽 그림 없이(클라우드) 다시 빌드 = 그대로 · 단일 파일판에 들어 있음 · 스위치 끄면 `TST9.img.jb26.js`(같은 바이트) + 호환 `TST9.img.jb.js`.
++- **결과**: `tools/tests4/q_imgbuild.py` **PASS(39줄)** — ① 파일 3개·imgf·img_lock·HTML 폭·높이 ② 다시 빌드 = 파일(수정 시각까지)·팩 글자 그대로 ③ 그림 하나 바꿈 = 그 파일만 새 해시 + 옛 파일 한 세대 → 다음 빌드 때 지움 ④ 원본 없이 = 그대로 ④b JB ⑤ 스위치 끔 = 묶음·imgv(바이트 = 파일 방식 파일 · 두 방식 팩은 imgf·imgv 말고 같음) ⑥ TST9 지움(진짜 등록표·tools/에는 생긴 적 없음 — 도구 사본 `work/_tmp/q_imgbuild/repo`에서 돎 · 브라우저·work/jb 없이 약 5초).
++- **3Q 방식이 안 바뀐 증거**(한 번 비교 — scratch): 스위치 끈 시험 과목(강의 그림 3장 + JB 원본 2쪽)을 **기준 커밋 b714aca8의 build4·jblpaths·quarters**와 지금 것으로 각각 빌드 → `index.html`·`TST9.js`·`TST9.img.IMG.js`·`TST9.img.jb26.js`·`TST9.img.jb.js`·아이콘·manifest **8개 파일이 글자까지 같음**. 코드로도: build4의 새 가지는 전부 `if IMGFILES`(= `J.img_mode(SID) == 'files'` — 3q는 키가 없어 False) 뒤 · `PREV = {} if IMGFILES else J.prev_images(SID)` · `JBIMG = IMG['jb']`(파일 방식일 때만 바꿈) · 묶음 쓰기 `for c, t in ({} if IMGFILES else img_files)` · jblpaths의 `prev_images`·`prev_jb_pages`는 첫 줄 `img_mode == 'files'`일 때만 새 길.
++
++## A. 빈 과목(W1 · A17) — 코드는 앞 담당 · 검사는 이번에
++- **고침(build4 — 앞 담당)**: `STUB = (not Q) and 강의 키 == ['WAIT']`(tools/new_subject.py 빈 틀 그대로일 때만) → `pack['stub'] = True`(실제 강의·JB가 들어오면 키 자체가 없음) · 과목 홈 '교수별 출제 경향' 절 `trends = ''` · 강의 틀에서 출제 경향(`details.trend`)·'📌 공부 전략 기출은 전부 풀되 …'(`.tstr`)·빈 '⭐ 많이 나온 순'(`.ftop`) 뺌 · `lect[0].tline`·`tstrat` = '' · 기출 대장 = 한 줄 안내('이 과목은 JB를 받는 대로 기출 대장(수록 대조표·연도 규칙·JB 원본 쪽)이 채워집니다.' — '카드 0개 = .'·빈 표 없음). '2회 이상 출제'는 원래 `top = []`(허브가 숨김 — 허브 몫).
++- **검사(이번)**: 4Q 10과목 `tools/<sid>/build4.py` 전부 rc=0 → 커밋된 옛 팩과 JSON 비교: **10과목 모두 바뀐 키가 `stub`(True)·`imgf`({'lec':{},'jb':{}})·`trends`·`ledger` + `lect[0].head`·`tline`·`tstrat`뿐** · 팩 머리 줄·`build`·`imgv`({}) 그대로 · `docs/packs/img/`·묶음 파일 0 · `tools/` 곁다리 파일 변화 0(img_lock은 그림이 없으면 안 생김) → `tools/rehub.py --check` OK · `tools/tests4/q_empty.py` PASS 38줄(고치기 전 38줄 PASS와 같음) · 지금 허브로 OMS2 홈·WAIT 학습·대장·JB를 열어 글 확인(오류 0 · undefined/NaN 0 — 강의 틀에 경향·전략 없음, 대장 한 줄).
++- **안 함(허브 몫 — 지금 허브에서 아직 보이는 빈 과목 글)**: 과목 홈 '기출을 다 맞혔어요'·'시작: 강의자료 대기 →'·강의 카드 '강의자료 대기 -' · JB 화면 '조건에 맞는 문항이 없습니다' · 공부 순서(`guide` — 이어서·안 푼 것 단추)는 build4에서 그대로(허브 `isStub`가 읽음 — 메인 확인).
++- **docs는 커밋하지 않음**(메인 결정) — 메인이 합친 뒤 메인 저장소에서 10과목 build4 → rehub.
++
++## C. cite 쪽 번호(A19) · 없는 JB 원본 쪽(A18) — build4는 앞 담당 · check_links는 이번에
++- **고침(build4 — 앞 담당)**: 팩을 다 만든 뒤 한 번에 `_cnum` — `<button class="cite…" data-k data-p>`의 쪽이 비어 있지도(쪽 그림 폴더가 없는 강의의 글 인용 `cite t` — 그대로) 아스키 숫자도 아니면 칩을 만들지 않고 원고 글자 `[[키:쪽]]` 그대로 + 빌드 출력 '⚠ 쪽이 숫자가 아닌 인용'. lecparse.inline·assemble.cite_html·annot·pred 어느 길로 만든 칩이든 걸림(허용하던 꼴 = 숫자 하나 `data-p="12"` + 묶은 범위 `data-pp="12,13"`뿐 — 코드 확인: lecparse `_inline0`·build4 `CITE1`).
++- **고침(이번 — `tools/check_links.py`)**:
++  - 팩 자리 = `J.docs_of(SID)`(전에는 `docs/packs`가 박혀 있어 전환 뒤 `JBL_Q=3q`로는 파일을 못 찾고 죽었음 — full_check 3Q의 check_links 줄이 그동안 비어 있었을 것).
++  - 새 ✗: **숫자 아닌 쪽**(`data-p`·`data-pp`) · **팩에 없는 JB 원본 쪽 단추**(`data-jb` — 팩 전체 글: 카드·대장·예상… ↔ 묶음 `<SID>.img.jb<판>.js`의 jb 키 또는 `imgf.jb`) · **없는 그림 파일**(imgf에 적혔는데 `packs/img/<SID>/…` 파일이 없음). 그림 있는지 = 묶음 ∪ imgf(파일이 실제 있는 것만). ①(쪽 이미지 없는 인용)도 팩 전체 글에서(3Q 기준 0 그대로).
++  - **보관(frozen) 분기의 알려진 것**(메인 결정): 도구 안 `KNOWN = {'GERI': {'cite OHQ:쪽'}, 'PHARM': {'jb 23q4-17'…'jb 23q4-20'}}` — 보관 분기 과목에서만 적용 · '알려진 것 n(보관 분기 — FAIL 아님)'으로 따로 셈 · 목록에 없는 새 ✗는 FAIL · 다시 빌드해 사라지면 'KNOWN에서 뺄 것'으로 알려 줌. 종료 코드 = ✗가 있으면 1(전에는 늘 0).
++- **결과**: 4Q `tools/check_links.py` → 10과목 전부 0 · RESULT PASS · `JBL_Q=3q tools/check_links.py` → 7과목 ✗ 0 · **알려진 것 5**(GERI `lect OHQ head → OHQ:쪽` 1 · PHARM `ledger → JB 원본 23q4-17~20` 4) · RESULT PASS. 거꾸로 시험(시험 폴더 팩에 숫자 아닌 쪽·없는 JB 쪽·없는 파일·그림 없는 쪽을 심음) → 4개 모두 ✗ · FAIL 4 · 종료 코드 1.
++- build4 쪽 시험: q_imgbuild ①에 `[[IMG:쪽]]` 줄 — 칩 없이 글자 그대로 + 경고 출력 + 숫자 쪽은 칩(PASS).
++- **3Q**: C는 스위치 뒤가 아님(메인 결정 = 그대로) — 3Q를 다시 빌드하는 날 GERI OHQ 머리말 칩 1개가 글자로 바뀜(그 밖 3Q 7과목 팩에 숫자 아닌 쪽 0 — 배포본 전수 확인).
++
++## E. 도구 — verify · q_perf · q_imgbuild(이번에)
++- **`tools/verify.py`**
++  - 새 **1a절**: 팩에 `imgf`가 있으면 목록의 파일이 다 있음(`packs/img/<SID>/…`)·이름의 h8 = 파일 md5 앞 8자·PIL 디코드(+ 목록에 없는 '지난 세대 파일 n개'는 알림만) · **모든 팩**(묶음 방식 포함): 본문 그림 `img[data-img]`·인용 칩 쪽(`data-k`-`data-p`·`data-pp` 숫자)이 그림 파일 목록이나 그림 묶음에 있음(imgalias 반영 — 팩 전체 글에서).
++  - **3절 도구 시험**: 강의가 있는 첫 과목에서(자료 대기 과목 = 팩 `stub` 또는 옛 팩 '문항 0 + 강의 WAIT뿐') · 전부 자료 대기면 알림 한 줄 뒤 404·콘솔 오류만 보고 끝. **고치기 전에는 4Q에서 3절이 죽었음**(WAIT 카드에 칠할 줄이 없어 `scrollIntoView` TypeError → Traceback · rc=1 — full_check의 verify 줄에 RESULT가 안 나오던 상태).
++  - 결과: `JBL_HTTP=1 tools/verify.py`(4Q · 다시 빌드한 팩) **PASS — OK 123줄**(고치기 전: OK 101줄 뒤 Traceback) · `JBL_Q=3q JBL_HUB_DIR=docs/3q JBL_HTTP=1 tools/verify.py`(진짜 3Q 폴더) **PASS — OK 288줄**(1a: 7과목 본문 그림·인용 쪽 410~645개 전부 묶음에 있음 · 3절은 OMS1에서 그대로 돎). 거꾸로 시험(시험 사본의 팩에 없는 파일·이름 지문이 다른 파일·목록에 없는 키를 심음) → 'FAIL 그림 파일 … 없음 1 · 깨짐 1 · 지난 세대 파일 1개' · 'FAIL 본문 그림·인용 칩 쪽 … 없음 3'.
++- **`tools/tests4/q_perf.py`**: 그 쿼터가 파일 방식(`QS.img_mode(q) == 'files'`)이면 묶음 예산(9.5MB) 대신 `packs/img/<SID>/*` **파일 하나 ≤ 400KB**(넘으면 실패 — 과목마다 '장수·합·가장 큰 파일' 한 줄) + '모두 n장·합' 알림 · 파일 방식 쿼터에 그림 묶음(`<SID>.img.*.js`)이 남아 있으면 실패 · `packs/img/` 폴더는 팩 크기 검사에서 건너뜀. 결과: **PASS**(4Q 그림 0장 · 시간 18개 모두 기준 안 — 3q.home 0.55s/기준 0.57 · 4q.home 0.33s/기준 0.22 등). 거꾸로 시험(500KB 가짜 파일·남은 묶음) → FAIL 2줄.
++- **`tools/tests4/q_imgbuild.py`**(새 — D 절): PASS 40줄(인용 쪽 줄 포함). full_check의 `tools/tests4/q_*.py` 돌림에 저절로 들어감(브라우저 없음 · 약 5초 · 진짜 등록표·tools/를 건드리지 않음).
++
++## SPEC.md(빌드 절만)
++- '한 과목 작업 순서' 5번에 한 줄(파일 방식 쿼터의 출력) + '공통 코드 동기화·전 과목 빌드' 절 **바로 뒤**에 새 절 **'그림 파일 방식 · 빈 과목 · 라벨 통일 · 인용 쪽 (2026-11-10 …)'**(스위치·주소·팩 imgf·잠금·한 세대 남김·원본 없이 다시 빌드·그대로인 것·빈 과목·라벨·인용 쪽·검사). 문서 끝(쿼터 절)은 건드리지 않음 — 허브 담당이 끝에 덧붙여도 안 겹치게. `tools/sync_common.py`로 사본 17개 같음.
++
++## B. 라벨 통일(A10) — 코드는 앞 담당 · 확인·보고는 이번에
++- **고침(build4 — 앞 담당)**: JB 원본 쪽 단추 = 모두 'JB 원본 n쪽'(카드 앞면 `jb_btns`는 원래 이 이름 · 📜 이전 답 `pb`·'다른 연도 칸·다른 판본' `.oh` 단추의 '원본 n쪽' → 'JB 원본 n쪽') · 정리본으로 가는 칩 = '<강의 제목> 정리본 →'(카드 머리 칩은 원래 이 이름 · 📖 상자 머리 칩 '카드로 이동 →' → '<강의 제목> 정리본 →').
++- **그대로 둔 것(왜)**: 예상 카드의 '📖 정리본' 칩(`chip lec plc` — 10-22 화면 연결에서 정한 이름·회귀 ux26_links) · 한눈표의 아이콘 칩(`sumlk` — 글자 없음·aria-label) · 기출 대장 'JB 원본 쪽' 격자의 숫자 단추 · build2.py의 옛 단일 화면 qcard(팩에 안 들어감·맡은 파일 밖). '제목만' 칩은 팩 HTML에는 없음(허브가 그리는 것 — 허브 몫).
++- **배포본에서 센 것**(3Q 팩 — 지금 글자): CONS 카드 머리 '<강의> 정리본 →' 67 · 📖 상자 '카드로 이동 →' 67 · 'JB 원본 n쪽' 96 · '원본 n쪽' 102 / PHARM 192·192·238·473 → 3Q를 다시 빌드하는 날 이 '카드로 이동 →'·'원본 n쪽'이 새 이름으로 바뀜(메인 결정 = 그대로 좋다).
++- **이 글자를 찾아 쓰는 곳 grep**(shell.html 읽기만 · tools/tests · tools/tests4 · tools/*.py · num.js · 스킬·guide):
++  - '카드로 이동': shell.html 3477·4088줄 **주석뿐** · tools/tests/ux_u17.py 52·55줄 주석·결과 글뿐(단추는 `details.ab.lk>summary .chip.lec` 선택자로 찾음) → 깨지는 곳 없음.
++  - '정리본 →': 허브 `nmDeco`(3579줄)는 카드 머리 칩의 글을 끝 '→'만 떼어 title로 쓰고 '📖 정리본 카드 N →'으로 다시 씀(글자 비교 없음) · num.js 793줄은 `data-golec` 속성만 읽음 · 테스트는 주석뿐.
++  - '원본 n쪽': 테스트·도구가 단추 글자를 읽는 곳 없음(`[data-jb]` 선택자) · 허브 그림 창 제목은 따로 'JB <판>판 원본 n쪽'(openImg 4077줄 — 창 제목이라 그대로 둬도 됨).
++  - 문서: QA.md 83·정리본_원칙·SPEC은 이미 'JB 원본 n쪽'으로 씀 · '카드로 이동'을 기준으로 삼는 문서 없음.
++- **⚠ 화면에서 확인한 것 — 허브 쪽 고침 필요**(3Q 스테이징 사본의 CONS 팩에서 📖 상자 칩 67개를 새 이름으로 바꿔 열어 봄 — 시험 사본만):
++  - 컴퓨터 1280: 넘침 0 · 📖 상자 머리 줄 높이 24 → 평균 41px(칩이 둘째 줄로 내려감 — 볼 만함).
++  - **폰 393: 67개 중 57개가 칩이 상자 밖으로 잘림**(칩 폭 337px > 머리 줄 295px — 강의 제목이 길어 '… 정리본 →' 끝이 안 보임 · 페이지 가로 넘침은 없음). 카드 머리 칩(`.qhead .chip.lec`)에는 줄바꿈 규칙이 있는데 📖 상자 칩에는 없어서임.
++  - 허브 CSS 한 줄로 해결됨을 확인(시험 화면에 넣어 봄 — 폰 넘침 57 → 0 · 칩 두 줄 40px · 컴퓨터 그대로): `details.ab.lk>summary .chip.lec{max-width:100%;white-space:normal;overflow-wrap:anywhere;text-align:left}`(shell.html — 허브 담당 · v3 묶음 뒤).
++  - 4Q는 아직 JB 카드가 없어 지금 배포본에는 영향 없음 — **첫 4Q JB 과목을 빌드하기 전(또는 3Q를 다시 빌드하기 전)에** 허브 CSS가 들어가야 함.
++
++## 돌린 검사(끝 상태 — 4Q 빈 팩 10개를 worktree docs에 다시 빌드해 놓고 돌린 뒤 docs는 되돌림)
++| 검사 | 고치기 전 | 고친 뒤 |
++|---|---|---|
++| 4Q 10과목 `tools/<sid>/build4.py` | — | 전부 rc=0 · 그림 파일·묶음 0 |
++| `tools/rehub.py --check` | OK | OK(다시 빌드한 docs · 되돌린 docs 둘 다) |
++| `JBL_HTTP=1 tools/verify.py`(4Q) | OK 101줄 뒤 **Traceback**(3절 — 빈 과목뿐) | **PASS** OK 123줄 |
++| `JBL_Q=3q JBL_HUB_DIR=docs/3q JBL_HTTP=1 tools/verify.py`(진짜 3Q) | (안 돌림) | **PASS** OK 288줄 |
++| `tools/check_links.py`(4Q) | PASS(옛 3종) | PASS(6종 모두 0) |
++| `JBL_Q=3q tools/check_links.py` | 팩 자리를 못 찾음 | PASS · 알려진 것 5 |
++| tests4 `q_empty` | PASS 38 | PASS 38 |
++| tests4 `q_perf` | (기준 파일) | PASS(시간 18개 기준 안 · 4Q 그림 0장) |
++| tests4 `q_imgbuild`(새) | 앞 담당 판 FAIL 1 | **PASS 40** |
++| tests4 `q_ident`·`q_isolation`·`q_sync` | — | PASS 14·17·12(등록표 `img` 키는 허브 QCFG에 안 들어감 — index 글자 그대로) |
++| `tools/quarters.py check` · `tools/sync_common.py --check` · py_compile | OK | OK · 17개 사본 같음 |
++- tools/tests(3Q 회귀)는 돌리지 않음 — shell.html을 건드리지 않았고(허브 판 7e3ce041 그대로) 3Q 팩도 그대로라 화면이 바뀔 것이 없음.
++
++## 그림 주소 규칙(허브 담당에게 — 이것이 기준)
++- 파일 방식인지 = 팩에 `imgf`가 있는지(그림 0장이어도 `{'lec': {}, 'jb': {}}`) · 그때 `imgv = {}`(묶음 없음).
++- `imgf = {'lec': {'<강의키>-<쪽>': '<h8>'}, 'jb': {'<판>-<쪽>': '<h8>'}}` — 키는 본문 `img[data-img]`·인용 칩(`data-k` + '-' + `data-p`)·`data-jb`와 **같은 글자**.
++- 주소(index.html 기준 상대 주소):
++  - 강의 쪽 `packs/img/<SID>/<강의키>-<쪽>.<h8>.webp` — 예 `packs/img/OMS2/TMJ-12.42fec4cb.webp`
++  - JB 원본 쪽 `packs/img/<SID>/jb<판>-<쪽>.<h8>.jpg` — 예 `packs/img/OMS2/jb26-3.9da6ff3c.jpg`(키 '26-3' 앞에 `jb`)
++  - h8 = 그 파일 바이트 md5 앞 8자 → 내용이 바뀌면 주소가 바뀜(`?v=` 붙이지 않음 · 오래 캐시해도 됨).
++- 목록에 없는 키 = 그림 없음(지금처럼 그림 빼기) · `imgalias`는 파일 방식에서 쓰지 않음(키 그대로 찾음) · 본문 그림 `width="740" height="n"`은 지금처럼 HTML에 있음.
++- 단일 파일판(work/)은 `imgf`가 있어도 `JBLHUB.images(...)`로 그림이 메모리에 들어 있음 → 허브는 'IMGS에 있으면 그것 먼저 → imgf 주소 → 묶음' 순서.
++- 그림을 바꾼 빌드 직후에는 옛 파일이 한 세대 남아 있음(옛 팩을 든 기기용) — 허브가 따로 할 일 없음.
++- 빈 과목 팩: `stub: true` · `trends = ''` · `top = []` · `lect[0].tline = tstrat = ''` · `ledger` = 한 줄 안내 · `guide`(공부 순서)·`sumall`·`lect[0].sum`은 그대로.
++
++## 허브 담당에게 넘길 것
++1. 위 주소 규칙으로 `imgf` 읽기(UPG_H4) — 지금 허브는 imgf를 모름(4Q 그림 0장이라 영향 없음).
++2. **📖 상자 칩 줄바꿈 CSS**(위 B ⚠ — 폰에서 잘림): `details.ab.lk>summary .chip.lec{max-width:100%;white-space:normal;overflow-wrap:anywhere;text-align:left}`.
++3. `pack.stub`을 읽는 `isStub`(UPG_H1) — build4는 `stub`·빈 글만 맡음. 지금 허브에서 아직 보이는 빈 과목 글: '기출을 다 맞혔어요'·'시작: 강의자료 대기 →'·'강의자료 대기 -'·JB '조건에 맞는 문항이 없습니다'.
++4. (선택) 그림 창 제목 'JB <판>판 원본 n쪽'은 단추 'JB 원본 n쪽'과 낱말 순서가 조금 다름 — 창 제목이라 그대로 둬도 됨.
++
++## 메인이 정할 것 · 메인이 할 일
++- **정해진 것(11-10 메인)**: B·C는 스위치 뒤가 아님 = 그대로 · check_links 보관 분기 알려진 것 5 = FAIL 아님(도구 안 KNOWN) · docs는 이 브랜치에 커밋하지 않음 · localize.py 메모·빈 과목 공부 순서 단추 = 허브 몫.
++- **새로 정할 것**: 📖 상자 칩 — (가) 지금대로 '<강의 제목> 정리본 →' + 허브 CSS 줄바꿈(권함 · 확인함) / (나) 📖 상자만 짧은 이름으로 되돌림(build4 805줄 한 곳).
++- **메인이 합친 뒤 돌릴 명령**(메인 저장소에서 · 허브 담당 고침까지 합친 다음):
++  1. `.venv/bin/python tools/sync_common.py`(build4·SPEC 사본 — `--check`가 OK면 건너뜀)
++  2. 4Q 10과목 다시 빌드: `for s in $(.venv/bin/python tools/quarters.py sids 4q | tr A-Z a-z); do .venv/bin/python tools/$s/build4.py | tail -3; done` → 팩마다 `stub`·`imgf`가 생김(그림 파일·묶음 0 · tools/ 곁다리 변화 0)
++  3. `.venv/bin/python tools/rehub.py`(허브 판을 지금 shell로) → `.venv/bin/python tools/rehub.py --check`
++  4. `JBL_HTTP=1 .venv/bin/python tools/verify.py` → `.venv/bin/python tools/check_links.py`(+ `JBL_Q=3q …` = 알려진 것 5)
++  5. `.venv/bin/python tools/tests4/q_imgbuild.py` · `q_empty.py` · `q_perf.py`(하나씩) — 또는 `sh tools/full_check.sh`
++  6. 3Q 스테이징이 필요하면 `.venv/bin/python tools/rehub.py --q 3q --stage`
++- `tools/localize.py` 43줄의 build4 바꿔 쓰기 글이 옛 `lecimg = {}; PREV = J.prev_images(SID)` 줄 — 다음 JBL_master.zip 반영 때 확인(내 파일 밖).
++
++## 남은 위험
++- **JB 원본 쪽 파일 길은 가짜 JB(2쪽)로만 돌려 봄** — 첫 진짜 4Q JB 과목을 빌드할 때 빌드 출력의 '그림 파일(…): JB 원본 쪽 n장'과 verify 1a·check_links ⑤를 볼 것.
++- 판 이름에 글자가 든 JB(`23q4` 같은 것)는 파일 이름이 `jb23q4-17.<h8>.jpg`가 됨 — 규칙상 문제없지만 허브가 키에서 판을 떼어 낼 때 첫 '-' 앞까지로 읽어야 함(지금 `data-jb` 다루는 방식과 같음).
++- 그림 파일은 과목당 수백 개가 `docs/packs/img/<SID>/`에 생김 — 커밋할 때 `git add docs/packs/img`를 빼먹지 않게(빼먹으면 verify 1a·check_links ⑥이 '없는 그림 파일'로 잡음) · `tools/<sid>/img_lock.json`도 같이 커밋(안 하면 다른 기계에서 다시 인코딩 — 바이트가 달라지면 주소가 바뀜).
++- verify 3절은 전부 자료 대기일 때 도구 시험을 건너뜀 → 첫 4Q 강의가 들어오면 저절로 다시 돎(그때 형광펜·빈칸 줄을 못 찾으면 실패로 드러남).
++- 앞 담당이 쓴 build4의 `_lec_file`·한 세대 남김은 '같은 출력 자리의 지난 팩'을 기준으로 함 — `$JBL_DOCS` 시험 폴더와 진짜 docs를 번갈아 쓰면 각 자리가 따로 한 세대를 가짐(의도한 동작).
+diff --git a/tools/SPEC.md b/tools/SPEC.md
+index 722783e2..4c274d65 100644
+--- a/tools/SPEC.md
++++ b/tools/SPEC.md
+@@ -19,6 +19,7 @@
+ 4. `lec_<키>.txt` 7개 내외(형식은 아래) → `tables.txt`·`pred.txt` → `python3 build4.py` → 검증 출력(연결 누락 0, 없는 문항 0) → playwright로 화면·도구·이미지 확인
+ 5. 출력: `docs/index.html`(허브) + `docs/packs/<SID>.js` + `docs/packs/<SID>.img.<강의>.js`, 단일 파일판 `work/<과목>_JBL.html` → `python tools/verify.py`
+    - 강의 쪽 이미지 원본(`work/<SID>/lec/`)이 없으면 지금 `docs/packs/`에 있는 같은 쪽 이미지를 그대로 씀(재빌드해도 그림이 빠지지 않음)
++   - 11-10 그림 파일 방식 쿼터(4Q — `tools/quarters.json` `"img": "files"`)는 묶음 `<SID>.img.<강의>.js` 대신 `docs/packs/img/<SID>/<키>.<h8>.webp|jpg` + 팩 `imgf` + `tools/<sid>/img_lock.json`(커밋) — 아래 '그림 파일 방식' 절
+ 
+ ## 공통 코드 동기화·전 과목 빌드 (tools/sync_common.py · tools/build_all.sh)
+ - 공통 생성 코드(shell.html·build4.py·lecparse.py·trend.py·reflow.py·emph.py·template2.html)는 **tools/cons/에서만 고친다**. SPEC.md는 tools/SPEC.md가 원본
+@@ -29,6 +30,19 @@
+ - 과목별로 달라야 하는 설정은 subject.py의 선택 항목(`getattr(S, '이름', 기본값)`)으로 — 없으면 기존 동작
+ - 기준선: work/는 메인 저장소와 공유되어 강의 이미지·강의 이름이 바뀔 수 있으므로, 코드 변경 전후 비교는 "지금 work/로 HEAD 코드를 빌드한 docs/"를 기준으로 한다(빌드는 결정적 — 같은 입력이면 같은 출력)
+ 
++## 그림 파일 방식 · 빈 과목 · 라벨 통일 · 인용 쪽 (2026-11-10 — build4.py·jblpaths.py·quarters.py·verify.py·check_links.py·tests4/q_imgbuild.py · 허브가 읽는 쪽은 허브 절)
++- **스위치**: `tools/quarters.json` 쿼터에 `"img": "files"`(4q) = 그 쿼터 과목의 그림을 파일 하나씩 · 키 없음(3q) = 묶음 방식(`<SID>.img.<강의>.js`·`imgv`) 그대로 — build4의 새 가지는 모두 `if IMGFILES`(= `J.img_mode(SID) == 'files'`) 뒤라 3Q 출력은 한 글자도 안 바뀜. `tools/quarters.py img [q]`(files | chunks) · check = 값은 "files"뿐 · 보관(frozen) 쿼터에는 못 넣음.
++- **파일 주소**(index.html 기준 — `J.img_url`·`J.img_name`): 강의 쪽 `packs/img/<SID>/<강의키>-<쪽>.<h8>.webp`(WebP 화질 72·폭 1100·method 6 — 묶음 방식 `webp64`와 같은 값·같은 바이트) · JB 원본 쪽 `packs/img/<SID>/jb<판>-<쪽>.<h8>.jpg`(assemble이 만든 JPEG 바이트 그대로 — 다시 압축 없음) · `h8` = 그 파일 바이트 md5 앞 8자(내용이 바뀌면 주소가 바뀜 → `?v=` 없음).
++- **팩**: `imgf = {'lec': {'<강의키>-<쪽>': h8}, 'jb': {'<판>-<쪽>': h8}}`(그림이 0장이어도 키는 있음 = 파일 방식 표시) · `imgv = {}` · 키 글자 = 본문 `img[data-img]`·인용 칩(`data-k`-`data-p`)·`data-jb`와 같음 · `IMG_ALIAS`(묶음 이름 정하기)는 파일 방식에서 쓰이지 않음 · 본문 그림의 `width="740" height`(img_dims)는 그대로 HTML에.
++- **잠금** `tools/<sid>/img_lock.json`(커밋 — 키마다 한 줄) = `{"enc": "webp-q72-w1100-m6", "lec": {키: [원본 md5, h8, 원본 폭, 높이]}, "jb": {키: [원본 jpeg md5|꼴(색·크기), h8]}}` — 원본(`work/<SID>/lec/<폴더>/<쪽>.jpg`)과 enc가 지난번과 같으면 지난 파일을 그대로 씀(다시 인코딩 0 · 파일을 다시 쓰지도 않음 → 맥·클라우드 Pillow 차이로 파일이 흔들리지 않음). 그림이 없는 과목은 잠금 파일이 안 생김.
++- **한 세대 남김**: 목록에서 빠진 파일 중 '이 출력 자리의 지난 팩 imgf에 있던 것'은 이번 빌드에 남기고 다음 빌드 때 지움(옛 팩을 든 기기가 404를 안 보게) — 그림을 바꾼 커밋에는 옛 파일이 한 번 같이 남는 것이 정상(verify가 '지난 세대 파일 n개'로 알려 줌).
++- **원본 없이 다시 빌드**(클라우드): 강의 쪽 = 잠금 → 지난 목록(imgf)의 파일 그대로(`J.prev_imgf`·`J.img_bytes` — 이름의 h8 ≠ 내용이면 쓰지 않음) · 그림 크기 = 잠금의 원본 크기(원본이 있는 곳과 같은 HTML) · JB 쪽 = `J.prev_jb_pages`가 지난 파일을 같은 꼴(dataURI)로 → 같은 h8. 찾는 자리 = 출력 자리(`$JBL_DOCS`) → 배포 자리(그 쿼터 docs). 원본도 지난 파일도 없으면 그림 0장(오류 없이).
++- **그대로**: `work/` 단일 파일판은 그림을 넣음(JBLHUB.images — 허브는 메모리에 있으면 그것 먼저) · 카드 속 JB 조각 그림(jb_crops)은 inline · 빌드 끝 출력 한 줄 '그림 파일(packs/img/<SID>): 강의 쪽 n장(새로 인코딩·원본 같음·원본 없이 지난 파일) · JB 원본 쪽 n장 · 쓴 파일·지난 세대 남김·지움·합·가장 큰 파일'.
++- **빈 과목**(A17): 강의가 `WAIT` 하나뿐이고 JB 문항 0(tools/new_subject.py 빈 틀 그대로)이면 `pack.stub = true`(실제 강의·JB가 들어오면 키 자체가 없음 — 허브 `isStub`) · 기출이 있어야 뜻이 있는 글을 내지 않음: 과목 홈 `trends = ''` · 강의 틀의 출제 경향·'📌 공부 전략 기출은 전부 풀되 …'·빈 '⭐ 많이 나온 순' · `lect[].tline`·`tstrat = ''` · 기출 대장 = 한 줄 안내.
++- **라벨 통일**(A10 — 같은 동작 = 같은 이름): JB 원본 쪽 단추 = 'JB 원본 n쪽'(카드 앞면·📜 이전 답·다른 판본 — 대장의 쪽 번호 격자는 숫자만) · 정리본으로 가는 칩 = '<강의 제목> 정리본 →'(카드 머리·📖 상자 — 옛 '카드로 이동 →') · 그대로 둔 것 = 예상 카드 '📖 정리본'(10-22 화면 연결)·한눈표 아이콘 칩. 쿼터 스위치 뒤가 아님(3Q도 다시 빌드하면 바뀜 — 11-10 결정).
++- **인용 쪽**(A19): `[[키:쪽]]`의 쪽이 숫자가 아니면(쪽 그림 폴더가 없는 강의의 글 인용 `cite t`는 그대로) 칩을 만들지 않고 원고 글자 그대로 + 빌드 출력 '⚠ 쪽이 숫자가 아닌 인용'(build4 `_cnum` — 팩 전체에서 한 번에).
++- **검사**: `tools/verify.py` 1a(imgf 파일이 다 있음·이름 h8 = md5·디코드 · 모든 팩의 본문 그림·인용 쪽 키가 그림 파일 목록이나 묶음에 있음 · 3절 도구 시험은 강의가 있는 과목에서 — 전부 자료 대기면 건너뜀) · `tools/check_links.py` ④ 숫자 아닌 쪽 ⑤ 팩에 없는 JB 원본 쪽 단추 ⑥ 없는 그림 파일(팩 자리 = `J.docs_of` · 보관 쿼터의 알려진 것은 도구 안 `KNOWN` — '알려진 것 n'·FAIL 아님) · `tools/tests4/q_perf.py`(파일 방식 쿼터 = 그림 파일 하나 ≤ 400KB·과목 합 보고·묶음이 남으면 실패) · `tools/tests4/q_imgbuild.py`(도구 사본 `work/_tmp/q_imgbuild/repo`에서 시험 과목 TST9를 new_subject로 만들어 진짜 build4를 돌림 — 파일·imgf·잠금 / 다시 빌드 = 그대로 / 한 장 바꿈 = 그 파일만 + 한 세대 / 원본 없이 / JB 원본 쪽(가짜 JB) / 스위치 끔 = 묶음 그대로 / --remove · 브라우저·work/jb 없이 약 5초).
++
+ ## lec_<키>.txt 문법
+ ```
+ #LEC 키 | 제목 | 교수 | 연도(글자도 됨 — 참고 강의 '교과서'면 화면 'NN년도' 대신 그 글자) | 파일 설명 | 쪽수
+diff --git a/tools/check_links.py b/tools/check_links.py
+index 0a9b55d7..86dbe557 100644
+--- a/tools/check_links.py
++++ b/tools/check_links.py
+@@ -1,32 +1,66 @@
+ """10-05 기능 연동 검사 — 빌드된 팩에서
+-  ① 인용 칩(cite data-k·data-p·data-pp)이 가리키는 쪽 이미지가 이미지 청크에 있는지(imgalias 반영)
++  ① 인용 칩(cite data-k·data-p·data-pp)이 가리키는 쪽 이미지가 그림 묶음(<SID>.img.<강의>.js) 또는 그림 파일 목록(11-10 팩 imgf — packs/img/<SID>/…)에 있는지(imgalias 반영)
+   ② JB 카드 '📖 정리본' 칩(data-golec K:j)이 실제 카드를 가리키고 그 카드 ⭐/jb=에 이 문항이 있는지
+   ③ 정리본·표·예상의 기출 칩(data-go / {jb:})이 있는 문항인지
+-  .venv/bin/python tools/check_links.py [SID…]"""
++  ④ 11-10 인용 칩의 쪽이 숫자인지(A19 — 원고의 설명 글 '[[OHQ:쪽]]'이 없는 쪽 칩이 됨 · build4가 이제 글자 그대로 둠)
++  ⑤ 11-10 JB 원본 쪽 단추(data-jb 판-쪽)가 팩의 JB 원본 쪽 그림(묶음 <SID>.img.jb<판>.js 또는 imgf.jb)에 있는지(A18 — 없는 쪽을 누르면 다른 쪽·빈 창)
++  ⑥ 11-10 그림 파일 방식: imgf에 적힌 파일이 실제로 있는지
++  보관(frozen) 분기 팩은 다시 빌드할 수 없어 못 고침 → 아래 KNOWN에 적힌 것은 '알려진 것 n'으로 따로 세고 FAIL로 치지 않음(새 ✗가 생기면 FAIL · 다시 빌드해 사라지면 KNOWN에서 뺌)
++  .venv/bin/python tools/check_links.py [SID…]      # 과목 = $JBL_Q 분기(없으면 지금 분기) · 팩 자리 = 그 과목 분기의 docs(J.docs_of — $JBL_DOCS면 그 폴더)"""
+ import os, sys, re, json, glob
+ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ sys.path.insert(0, os.path.join(ROOT, 'tools')); import jblpaths as J
++QS = J.QS
++# 보관 분기의 알려진 것(11-10 메인 결정) — 'cite <키>:<쪽>'(숫자 아닌 쪽) · 'jb <판>-<쪽>'(팩에 없는 JB 원본 쪽)
++#   GERI: tools/geri/lec_OHQ.txt 머리말의 설명 글 [[OHQ:쪽]] · PHARM: 23q4판 17~20쪽은 대장의 쪽 단추(NPAGES 20)만 있고 쪽 그림이 묶음에 없음 — 3Q를 다시 빌드할 때(2026 출제 반영) 고침
++KNOWN = {'GERI': {'cite OHQ:쪽'}, 'PHARM': {'jb 23q4-17', 'jb 23q4-18', 'jb 23q4-19', 'jb 23q4-20'}}
+ SIDS = [a.upper() for a in sys.argv[1:]] or J.sids()
+-bad_all = 0
++def walk(o, w=''):
++    """팩 안의 모든 글(어디 있는지 이름과 함께) — 카드·강의·예상·표·한눈표·대장·경향…"""
++    if isinstance(o, str): yield w, o
++    elif isinstance(o, list):
++        for i, x in enumerate(o): yield from walk(x, f'{w} {x["k"]}' if isinstance(x, dict) and isinstance(x.get('k'), str) and w == 'lect' else f'{w} {i}')
++    elif isinstance(o, dict):
++        for k, v in o.items(): yield from walk(v, f'{w} {k}'.strip())
++bad_all = known_all = 0
+ for SID in SIDS:
+-    P = J._load_js(os.path.join(ROOT, 'docs', 'packs', SID + '.js')); have = set()
+-    for f in [x for x in glob.glob(os.path.join(ROOT, 'docs', 'packs', SID + '.img.*.js')) if not re.search(r'\.img\.jb\d*\.js$', x)]:
++    D = J.docs_of(SID); pf = os.path.join(D, 'packs', SID + '.js')
++    if not os.path.exists(pf): print(f'{SID}: 팩 없음({os.path.relpath(pf, ROOT)}) — 건너뜀'); continue
++    P = J._load_js(pf); have = set(); havejb = set(); nofile = []
++    for f in sorted(glob.glob(os.path.join(D, 'packs', SID + '.img.*.js'))):
++        if f.endswith('.img.jb.js'): continue   # 옛 index 호환 심(데이터 없음)
+         t = open(f, encoding='utf-8').read(); i = t.index('{'); j = t.rindex('}')
+-        try: o = json.loads(t[i:j + 1]); have |= set((o.get('lec') or {}).keys())
++        try: o = json.loads(t[i:j + 1]); have |= set((o.get('lec') or {}).keys()); havejb |= set((o.get('jb') or {}).keys())
+         except Exception as e: print('  ? 청크 읽기 실패', f, e)
++    for kind, got in (('lec', have), ('jb', havejb)):   # 11-10 그림 파일 방식 — 목록(imgf)에 있고 파일도 있는 것만 '있음'
++        for key, h8 in ((P.get('imgf') or {}).get(kind) or {}).items():
++            fp = os.path.join(J.img_dir(SID, D), J.img_name(kind, key, h8))
++            if os.path.exists(fp): got.add(key)
++            else: nofile.append(f'imgf.{kind} {key} → {os.path.relpath(fp, D)}')
+     alias = P.get('imgalias') or {}
+     htmls = [(f'{L["k"]}/{k}', L.get(k) or '') for L in P['lect'] for k in ('learn', 'sum', 'tbl')] + [(f'JB {q}', h) for q, h in P['cards'].items()] + [(f'예상 {i}', p.get('html', '')) for i, p in enumerate(P.get('preds') or [])] + [('비교표', t.get('html', '') if isinstance(t, dict) else t) for t in P.get('tables') or []] + [('한눈표', P.get('sumall') or '')]
+-    miss, gobad, lecbad = [], [], []
++    miss, gobad, lecbad, numbad, jbbad, known = [], [], [], [], [], []
++    KN = KNOWN.get(SID, set()) if QS.frozen(QS.quarter_of(SID)) else set(); seen_kn = set()
+     def img_ok(k, p):
+         for kk in [k] + ([alias[k]] if isinstance(alias.get(k), str) else list(alias.get(k) or [])):
+             if f'{kk}-{p}' in have: return True
+         return any(x.endswith(f'-{p}') and x.split('-')[0] in (alias.get(k) if isinstance(alias.get(k), list) else [alias.get(k)]) for x in have)
++    def put(lst, key, msg):
++        if key in KN: seen_kn.add(key); known.append(msg)
++        else: lst.append(msg)
++    for w, h in walk(P):   # ①④⑤ = 팩 전체 글에서(대장·경향·머리말 포함)
++        if 'class="cite' in h:
++            for m in re.finditer(r'<button class="cite[^"]*" data-k="([^"]*)" data-p="([^"]*)"(?: data-pp="([^"]*)")?', h):
++                k, p, pp = m.groups()
++                for pg in (pp.split(',') if pp else [p]):
++                    if not pg: continue   # 쪽 그림 폴더가 없는 강의의 글 인용(cite t · data-p="")
++                    if not (pg.isascii() and pg.isdigit()): put(numbad, f'cite {k}:{pg}', f'{w} → {k}:{pg}')
++                    elif not img_ok(k, pg): miss.append(f'{w} → {k}:{pg}')
++        if 'data-jb="' in h:
++            for key in dict.fromkeys(re.findall(r'data-jb="([^"]+)"', h)):
++                if key not in havejb: put(jbbad, f'jb {key}', f'{w} → JB 원본 {key}')
+     for w, h in htmls:
+         if not isinstance(h, str): continue
+-        for m in re.finditer(r'<button class="cite[^"]*" data-k="([^"]*)" data-p="([^"]*)"(?: data-pp="([^"]*)")?', h):
+-            k, p, pp = m.groups()
+-            for pg in (pp.split(',') if pp else [p]):
+-                if pg and pg.isdigit() and not img_ok(k, pg): miss.append(f'{w} → {k}:{pg}')
+         for m in re.finditer(r'data-go="([^"]+)"', h):
+             if m.group(1) not in P['cards']: gobad.append(f'{w} → {m.group(1)}')
+     lmap = {L['k']: L for L in P['lect']}
+@@ -39,7 +73,10 @@ for SID in SIDS:
+             seg = L['learn'][L['learn'].index(f'id="t-{m.group(1)}-{m.group(2)}"'):]
+             seg = seg[:seg.find('<article', 10) if seg.find('<article', 10) > 0 else len(seg)]
+             if f'data-go="{q}"' not in seg: lecbad.append(f'JB {q} → 카드 {m.group(1)}:{m.group(2)}에 이 문항 칩 없음')
+-    n = len(miss) + len(gobad) + len(lecbad); bad_all += n
+-    print(f'{SID}: 쪽 이미지 없는 인용 {len(miss)} · 없는 문항 칩 {len(gobad)} · 📖 연결 어긋남 {len(lecbad)}')
+-    for x in (miss[:8] + gobad[:8] + lecbad[:12]): print('   ', x)
+-print('RESULT', 'PASS' if not bad_all else f'FAIL {bad_all}')
++    n = len(miss) + len(gobad) + len(lecbad) + len(numbad) + len(jbbad) + len(nofile); bad_all += n; known_all += len(known)
++    print(f'{SID}: 쪽 이미지 없는 인용 {len(miss)} · 없는 문항 칩 {len(gobad)} · 📖 연결 어긋남 {len(lecbad)} · 숫자 아닌 쪽 {len(numbad)} · 팩에 없는 JB 원본 쪽 {len(jbbad)} · 없는 그림 파일 {len(nofile)}'
++          + (f' · 알려진 것 {len(known)}(보관 분기 — FAIL 아님)' if known else '') + (f' · KNOWN에서 뺄 것 {sorted(KN - seen_kn)}' if KN - seen_kn else ''))
++    for x in (miss[:8] + gobad[:8] + lecbad[:12] + numbad[:8] + jbbad[:8] + nofile[:8]): print('    ✗', x)
++    for x in known[:8]: print('    (알려진 것)', x)
++print('RESULT', 'PASS' if not bad_all else f'FAIL {bad_all}', f'· 알려진 것 {known_all}(보관 분기)' if known_all else '')
++sys.exit(1 if bad_all else 0)
 diff --git a/tools/cons/build4.py b/tools/cons/build4.py
 index be2805a2..0af9b9cd 100644
 --- a/tools/cons/build4.py
@@ -384,18 +638,20 @@ index 306d04b3..8c628081 100644
      else: sys.exit(__doc__)
 diff --git a/tools/tests4/q_imgbuild.py b/tools/tests4/q_imgbuild.py
 new file mode 100644
-index 00000000..23934226
+index 00000000..01a3c9bb
 --- /dev/null
 +++ b/tools/tests4/q_imgbuild.py
-@@ -0,0 +1,129 @@
+@@ -0,0 +1,170 @@
 +"""11-10 그림 파일 방식(W3) 빌드 시험 — 진짜 build4를 시험 과목으로 돌려 봄(브라우저·work/jb 없이)
 +tools/new_subject.py로 시험 과목 TST9(4q)를 만들고 → PIL 가짜 강의 쪽 그림 3장 + F: 그림 줄이 든 작은 원고 → build4를 JBL_DOCS=<시험 폴더>로:
 + ① 파일 3개(packs/img/TST9/<키>-<쪽>.<h8>.webp · h8 = 파일 md5 앞 8자)·팩 imgf·tools/tst9/img_lock.json · 묶음 파일(TST9.img.*.js) 없음 · HTML에 폭·높이
 + ② 다시 빌드 = 파일·해시·팩 글자 그대로(다시 인코딩 0 · 파일을 다시 쓰지 않음)
 + ③ 그림 하나를 바꾸면 그 파일만 새 해시 + 옛 파일은 한 세대 남음 → 한 번 더 빌드하면 옛 파일 지워짐
 + ④ 원본 그림 없이 다시 빌드(클라우드) = 지난 목록·파일 그대로 · 팩 글자까지 같음
++ ④b JB 원본 쪽 — 가짜 JB 2쪽(사본 work/jb/TST9_2026 · 진짜 work/jb는 쓰지 않음): packs/img/TST9/jb26-<쪽>.<h8>.jpg(assemble이 준 JPEG 바이트 그대로)·imgf.jb·img_lock · 다시 빌드 = 그대로 · 쪽 그림 없이(클라우드) = 그대로
 + ⑤ 스위치 끔(분기에 img 키 없음 = 3Q 방식) = 묶음 TST9.img.<강의>.js·imgv 그대로(imgf·packs/img 없음) · 묶음 속 그림 바이트 = 파일 방식의 파일 바이트
 + ⑥ new_subject.py --remove TST9 → 등록표·tools/tst9 지워짐
++ (+ ① 쪽이 숫자가 아닌 인용 [[키:쪽]]은 칩을 만들지 않고 글자 그대로 — A19)
 +등록표(tools/quarters.json)·tools/를 건드리지 않게 도구 사본(work/_tmp/q_imgbuild/repo/tools — *.py·quarters.json·cons 공통 파일)에서 돌림: new_subject·build4는 제 파일 자리로 저장소 뿌리를 정하므로
 +사본 안의 등록표·tools/tst9·work/만 바뀜(시험이 중간에 죽어도 진짜 등록표에 TST9가 남지 않고, 같은 때 도는 rehub·다른 시험이 TST9를 보지 않음)."""
 +import os, sys, re, json, glob, shutil, base64, hashlib, subprocess
@@ -421,6 +677,11 @@ index 00000000..23934226
 +def files(docs):
 +    d = os.path.join(docs, 'packs', 'img', SID); return sorted(os.listdir(d)) if os.path.isdir(d) else []
 +def md8(p): return hashlib.md5(open(p, 'rb').read()).hexdigest()[:8]
++def dk(Pa, Pb):
++    """두 팩에서 값이 다른 곳(실패 줄에 보일 것) — 맨 위 키 · 강의 안 키"""
++    o = [k for k in sorted(set(Pa) | set(Pb)) if Pa.get(k) != Pb.get(k) and k != 'lect']
++    for La, Lb in zip(Pa.get('lect') or [], Pb.get('lect') or []): o += [f'lect.{La.get("k")}.{k}' for k in sorted(set(La) | set(Lb)) if La.get(k) != Lb.get(k)]
++    return o
 +def fake(n, tint=0):
 +    """가짜 강의 쪽 그림(1400×900 — 폭 1100으로 줄어드는 길) · 쪽마다 다른 무늬"""
 +    im = Image.new('RGB', (1400, 900), (250, 250 - tint, 245)); d = ImageDraw.Draw(im)
@@ -448,8 +709,8 @@ index 00000000..23934226
 +os.remove(os.path.join(D, 'lec_WAIT.txt'))
 +open(os.path.join(D, f'lec_{KEY}.txt'), 'w', encoding='utf-8').write(
 +    f'#LEC {KEY} | 그림 시험 강의 | 시험교수 | 26 | 시험용 자료(26년도 슬라이드, 3쪽) | 3\n@MAP 하나 → 둘\n@G ① 묶음\n'
-+    f'## Test card one | 시험 카드 하나 | 1-2 | 태그\n= 핵심 한 줄입니다.\n- 항목 하나 [[{KEY}:1]]\nF: 1=첫 쪽, 2\n'
-+    f'## Test card two | 시험 카드 둘 | 3 | 태그\n= 핵심 둘입니다.\n- 항목 둘\nF: 3\n')
++    f'## Alpha panel | 첫째 무늬 판 | 1-2 | 무늬\n= 빨간 네모가 왼쪽 위에서 시작합니다.\n- 가로 줄 열두 칸 [[{KEY}:1]]\nF: 1=첫 쪽, 2\n'
++    f'## Omega ledger | 둘째 장부 끝 | 3 | 장부\n= 파란 동그라미는 오른쪽 아래에서 끝납니다.\n- 세로 기둥 일곱 개 [[{KEY}:쪽]]\nF: 3\n')   # 두 카드는 제목·글이 서로 달라야 함 — 비슷하면 tools/aidlock.py가 두 번째 빌드부터 서로를 옛 이름(alt)으로 붙여 첫 빌드 ≠ 둘째 빌드(그림과 무관한 차이)
 +for n in (1, 2, 3): fake(n)
 +B4 = os.path.join(D, 'build4.py'); LOCK = os.path.join(D, 'img_lock.json'); OUT = os.path.join(SB, 'docs_files'); KS = [f'{KEY}-{n}' for n in (1, 2, 3)]
 +
@@ -467,13 +728,14 @@ index 00000000..23934226
 +learn = P1['lect'][0]['learn']
 +ok(all(re.search(r'<img data-img="%s" alt="" width="740" height="\d+"' % re.escape(k), learn) for k in KS), '① 팩 HTML: img[data-img]에 width·height(자리 미리 잡기)')
 +ok('새로 인코딩 3' in o, '① 빌드 출력: 새로 인코딩 3')
++ok(f'[[{KEY}:쪽]]' in learn and 'data-p="쪽"' not in json.dumps(P1, ensure_ascii=False).replace('\\"', '"') and '쪽이 숫자가 아닌 인용' in o and f'data-k="{KEY}" data-p="1"' in learn, f'① 쪽이 숫자가 아닌 인용 [[{KEY}:쪽]] = 칩 없이 원고 글자 그대로(A19) · 숫자 쪽 [[{KEY}:1]]은 칩')
 +single = glob.glob(os.path.join(REPO, 'work', '*_JBL.html'))
 +ok(len(single) == 1 and open(single[0], encoding='utf-8').read().count('data:image/webp;base64,') >= 3, '① work/ 단일 파일판에는 그림이 들어 있음(지금처럼)')
 +mt1 = {f: os.stat(os.path.join(OUT, 'packs', 'img', SID, f)).st_mtime_ns for f in F1}; lock1 = open(LOCK, encoding='utf-8').read()
 +
 +# ---- ② 다시 빌드 = 그대로
 +o = run([B4], OUT); t2, P2 = pack(OUT); F2 = files(OUT)
-+ok(F2 == F1 and t2 == t1, '② 다시 빌드: 파일 이름·팩 글자 그대로')
++ok(F2 == F1 and t2 == t1, f'② 다시 빌드: 파일 이름·팩 글자 그대로 {dk(P1, P2) or ""}')
 +ok({f: os.stat(os.path.join(OUT, 'packs', 'img', SID, f)).st_mtime_ns for f in F2} == mt1, '② 그림 파일을 다시 쓰지 않음(수정 시각 그대로)')
 +ok('새로 인코딩 0' in o and '원본 같음 3' in o and open(LOCK, encoding='utf-8').read() == lock1, '② 다시 인코딩 0 · 원본 같음 3 · img_lock 그대로')
 +
@@ -498,11 +760,44 @@ index 00000000..23934226
 +o = run([B4], OUT); t7, P7 = pack(OUT)
 +ok(P7['imgf'] == P4['imgf'] and t7 == t4 and files(OUT) == F4, '④ 원본이 돌아오면(잠금 없음 → 다시 인코딩) 같은 해시·같은 팩')
 +
++# ---- ④b JB 원본 쪽(가짜 JB 2쪽 — 1쪽 = 그림 있는 쪽(색 그대로) · 2쪽 = 글만(회색 860폭))
++JD = os.path.join(REPO, 'work', 'jb', f'{SID}_2026'); os.makedirs(JD)
++for n in (1, 2):
++    im = Image.new('RGB', (924, 1300), (255, 255, 250)); d = ImageDraw.Draw(im)
++    for i in range(9): d.rectangle([60, 80 + i * 130, 60 + 90 * (i + n), 150 + i * 130], fill=((40 * i + 70 * n) % 255, 80, (200 - 20 * i) % 255))
++    im.save(os.path.join(JD, f'{n}.jpeg'), 'JPEG', quality=85); open(os.path.join(JD, f'{n}.txt'), 'w', encoding='utf-8').write(f'시험 JB {n}쪽\n')
++json.dump({'pages': [{'page_number': 1, 'has_visual_content': True}, {'page_number': 2, 'has_visual_content': False}]}, open(os.path.join(JD, 'manifest.json'), 'w', encoding='utf-8'))
++AS = os.path.join(D, 'assemble.py'); s = open(AS, encoding='utf-8').read(); s2 = re.sub(r'^NPAGES = \{\}', "NPAGES = {'26': 2}", s, count=1, flags=re.M); assert s2 != s; open(AS, 'w', encoding='utf-8').write(s2)
++o = run([B4], OUT); tj, PJ = pack(OUT); FJ = files(OUT); JK = ['26-1', '26-2']; jf = PJ['imgf'].get('jb') or {}
++ok(sorted(jf) == JK and all(f'jb{k}.{h}.jpg' in FJ and md8(os.path.join(OUT, 'packs', 'img', SID, f'jb{k}.{h}.jpg')) == h for k, h in jf.items()), f'④b JB 원본 쪽 파일 packs/img/{SID}/jb<판>-<쪽>.<h8>.jpg · imgf.jb {jf}')
++ok(PJ['imgf']['lec'] == P7['imgf']['lec'] and len(FJ) == 5 and PJ.get('imgv') == {} and not glob.glob(os.path.join(OUT, 'packs', SID + '.img.*')), '④b 강의 쪽 파일은 그대로 · 묶음 파일(TST9.img.jb*.js) 없음')
++if sorted(jf) == JK:
++    i1, i2 = (Image.open(os.path.join(OUT, 'packs', 'img', SID, f'jb{k}.{jf[k]}.jpg')) for k in JK)
++    ok(i1.format == i2.format == 'JPEG' and i1.mode == 'RGB' and i2.mode == 'L' and i2.size[0] == 860, f'④b JPEG 그대로(그림 쪽 = 색 {i1.size} · 글 쪽 = 회색 {i2.size} — assemble이 만든 그대로, 다시 압축 없음)')
++ok(all(f'data-jb="{k}"' in PJ['ledger'] for k in JK), '④b 기출 대장의 JB 원본 쪽 단추 키 = imgf.jb 키')
++LJ = json.load(open(LOCK, encoding='utf-8'))
++ok(sorted(LJ.get('jb') or {}) == JK and all(LJ['jb'][k][1] == jf[k] and '|' in LJ['jb'][k][0] for k in JK), '④b img_lock.json jb: 키 → [원본 md5|꼴, h8]')
++mtj = {f: os.stat(os.path.join(OUT, 'packs', 'img', SID, f)).st_mtime_ns for f in FJ}; lockj = open(LOCK, encoding='utf-8').read()
++o = run([B4], OUT); tj2, PJ2 = pack(OUT)
++ok(tj2 == tj and files(OUT) == FJ and {f: os.stat(os.path.join(OUT, 'packs', 'img', SID, f)).st_mtime_ns for f in FJ} == mtj and open(LOCK, encoding='utf-8').read() == lockj and '지난 파일 유지 2' in o, f'④b 다시 빌드: 팩·파일·잠금 그대로(지난 파일 유지 2) {dk(PJ, PJ2) or ""}')
++for n in (1, 2): os.rename(os.path.join(JD, f'{n}.jpeg'), os.path.join(JD, f'{n}.jpeg.off'))   # 쪽 그림이 없는 곳(클라우드 — 글만 풀어 둠) → assemble이 J.prev_jb_pages(지난 목록의 파일)로
++o = run([B4], OUT); tj3, PJ3 = pack(OUT)
++ok(tj3 == tj and files(OUT) == FJ and open(LOCK, encoding='utf-8').read() == lockj, f'④b JB 쪽 그림 없이 다시 빌드: 팩·파일·잠금 그대로 {dk(PJ, PJ3) or ""}')
++for n in (1, 2): os.rename(os.path.join(JD, f'{n}.jpeg.off'), os.path.join(JD, f'{n}.jpeg'))
++single = glob.glob(os.path.join(REPO, 'work', '*_JBL.html'))
++ok(len(single) == 1 and open(single[0], encoding='utf-8').read().count('data:image/jpeg;base64,') >= 2, '④b work/ 단일 파일판에는 JB 원본 쪽도 들어 있음')
++t7, P7 = tj, PJ
++
 +# ---- ⑤ 스위치 끔 = 묶음 방식 그대로(3Q 방식)
 +reg = json.load(open(REG, encoding='utf-8')); reg['quarters'][Q4].pop('img'); json.dump(reg, open(REG, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 +OUT3 = os.path.join(SB, 'docs_chunks'); lock7 = open(LOCK, encoding='utf-8').read()
 +o = run([B4], OUT3); t8, P8 = pack(OUT3); CF = os.path.join(OUT3, 'packs', f'{SID}.img.{KEY}.js')
-+ok(os.path.exists(CF) and 'imgf' not in P8 and list(P8.get('imgv') or {}) == [KEY] and not os.path.isdir(os.path.join(OUT3, 'packs', 'img')), '⑤ 스위치 끔: 묶음 TST9.img.IMG.js·imgv 있음 · imgf·packs/img 없음')
++ok(os.path.exists(CF) and 'imgf' not in P8 and sorted(P8.get('imgv') or {}) == sorted([KEY, 'jb26']) and not os.path.isdir(os.path.join(OUT3, 'packs', 'img')), '⑤ 스위치 끔: 묶음 TST9.img.IMG.js·TST9.img.jb26.js·imgv 있음 · imgf·packs/img 없음')
++JF = os.path.join(OUT3, 'packs', f'{SID}.img.jb26.js')
++if os.path.exists(JF):
++    jt = open(JF, encoding='utf-8').read(); JC = json.loads(jt[jt.index('{'):jt.rindex('}') + 1])
++    ok(sorted(JC.get('jb') or {}) == JK and all(base64.b64decode(JC['jb'][k].split(',', 1)[1]) == open(os.path.join(OUT, 'packs', 'img', SID, f'jb{k}.{P7["imgf"]["jb"][k]}.jpg'), 'rb').read() for k in JK) and os.path.exists(os.path.join(OUT3, 'packs', f'{SID}.img.jb.js')), '⑤ JB 묶음 속 쪽 바이트 = 파일 방식의 jpg 바이트 · 옛 index 호환 TST9.img.jb.js 있음')
++else: ok(False, '⑤ 스위치 끔: TST9.img.jb26.js 없음')
 +ok(open(LOCK, encoding='utf-8').read() == lock7 and '그림 파일(' not in o, '⑤ 스위치 끔: img_lock을 건드리지 않음 · 그림 파일 길이 돌지 않음')
 +if os.path.exists(CF):
 +    ct = open(CF, encoding='utf-8').read(); C = json.loads(ct[ct.index('{'):ct.rindex('}') + 1])
@@ -517,3 +812,129 @@ index 00000000..23934226
 +ok(open(os.path.join(TOOLS, 'quarters.json'), encoding='utf-8').read() == real0 and not os.path.isdir(os.path.join(TOOLS, SID.lower())) and SID not in real0, '⑥ 진짜 등록표·tools/에는 TST9가 생긴 적 없음')
 +if not fail: shutil.rmtree(SB, ignore_errors=True)
 +done()
+diff --git a/tools/tests4/q_perf.py b/tools/tests4/q_perf.py
+index 35183545..7253b8f6 100644
+--- a/tools/tests4/q_perf.py
++++ b/tools/tests4/q_perf.py
+@@ -1,21 +1,32 @@
+ """11-04 사용자 '용량커지거나 해서 렉 절대 안 생기게끔' — 성능 예산
+ ① 크기: 허브 index ≤ 1.6MB · 과목 본문 팩 ≤ 6.0MB · 강의 그림 묶음 하나 ≤ 9.5MB (4Q는 넘으면 실패, 3Q는 보고만 — 이미 배포된 보관 쿼터)
++   11-10 그림 파일 방식 쿼터(tools/quarters.json "img": "files" — 4Q): 묶음 예산 대신 그림 파일 하나(packs/img/<SID>/…) ≤ 400KB · 과목마다 장수·합 보고 · 그림 묶음(<SID>.img.*.js)이 남아 있으면 실패
+ ② 시간(로컬): 홈이 그려질 때까지 · 과목 팩 받기 · 강의 학습·기출·예상 탭 열기 · 그동안 긴 작업(longtask) 합계 — tools/tests4/perf_base.json(기준)보다 2배+0.5초 넘게 느리면 실패
+   기준을 새로 잡기: JBL_PERF_SAVE=1 .venv/bin/python tools/tests4/q_perf.py"""
+ import json, time
+ from qsite import *
+ from playwright.sync_api import sync_playwright
+-BUD = {'index': 1.6e6, 'pack': 6.0e6, 'img': 9.5e6}
++BUD = {'index': 1.6e6, 'pack': 6.0e6, 'img': 9.5e6, 'imgfile': 400e3}
+ BASE = os.path.join(HERE, 'perf_base.json'); base0 = json.load(open(BASE, encoding='utf-8')) if os.path.exists(BASE) else {}
+ rel = build(); base = serve(); got = {}
+ for q, r in rel.items():
+     D = os.path.join(SITE, r) if r else SITE; strict = q != '3q'
+     sz = os.path.getsize(os.path.join(D, 'index.html'))
+     (ok if strict else (lambda c, m: print(('  OK  ' if c else '  INFO') + ' ' + m)))(sz <= BUD['index'], f'{q} 허브 index {sz / 1e6:.2f}MB ≤ {BUD["index"] / 1e6}')
+-    P = os.path.join(D, 'packs')
++    P = os.path.join(D, 'packs'); FILES = QS.img_mode(q) == 'files'   # 11-10 그림 파일 방식 쿼터
+     for f in sorted(os.listdir(P)) if os.path.isdir(P) else []:
+-        n = os.path.getsize(os.path.realpath(os.path.join(P, f))); lim = BUD['img'] if '.img.' in f else BUD['pack'] if f.count('.') == 1 else None
++        fp = os.path.realpath(os.path.join(P, f))
++        if os.path.isdir(fp): continue   # packs/img/ = 그림 파일(아래에서 따로)
++        if FILES and '.img.' in f: ok(False, f'{q} {f} — 그림 파일 방식 쿼터에 그림 묶음이 남아 있음(build4가 지움 — 다시 빌드)'); continue
++        n = os.path.getsize(fp); lim = BUD['img'] if '.img.' in f else BUD['pack'] if f.count('.') == 1 else None
+         if lim and n > lim: (ok if strict else (lambda c, m: print('  INFO ' + m)))(False, f'{q} {f} {n / 1e6:.1f}MB > {lim / 1e6}MB')
++    if FILES:   # 그림 파일 하나 ≤ 400KB(넘으면 실패) · 과목마다 장수·합(보고)
++        ID = os.path.join(P, 'img'); tot = cnt = 0
++        for s in sorted(os.listdir(ID)) if os.path.isdir(ID) else []:
++            fs = [(x, os.path.getsize(os.path.join(ID, s, x))) for x in sorted(os.listdir(os.path.join(ID, s)))]; big = [(x, round(n / 1e3)) for x, n in fs if n > BUD['imgfile']]
++            tot += sum(n for _, n in fs); cnt += len(fs)
++            ok(not big, f'{q} 그림 파일 {s}: {len(fs)}장 · 합 {sum(n for _, n in fs) / 1e6:.1f}MB · 가장 큰 파일 {max((n for _, n in fs), default=0) / 1e3:.0f}KB ≤ {BUD["imgfile"] / 1e3:.0f}KB' + (f' — 넘음 {len(big)} {big[:3]}' if big else ''))
++        print(f'  INFO {q} 그림 파일 방식 — 모두 {cnt}장 · 합 {tot / 1e6:.1f}MB(파일 하나 예산 {BUD["imgfile"] / 1e3:.0f}KB)')
+ LT = "(()=>{window.__lt=0;try{new PerformanceObserver(l=>{for(const e of l.getEntries())window.__lt+=e.duration;}).observe({type:'longtask',buffered:true});}catch(e){}})()"
+ with sync_playwright() as p:
+     br = p.chromium.launch(); ctx = br.new_context(viewport={'width': 1280, 'height': 900}); ctx.route('https://api.github.com/**', lambda r: r.fulfill(status=401, body='{}'))
+diff --git a/tools/verify.py b/tools/verify.py
+index b7984069..237f1767 100644
+--- a/tools/verify.py
++++ b/tools/verify.py
+@@ -1,4 +1,4 @@
+-"""허브 검증 (빌드 후 매번: .venv/bin/python tools/verify.py) — 홈 과목 목록 · 모든 문서/탭 렌더 · 강의/JB 이미지 로딩 · 형광펜·빈칸·실행취소·새로고침 복원 · 콘솔 오류 0"""
++"""허브 검증 (빌드 후 매번: .venv/bin/python tools/verify.py) — 홈 과목 목록 · 모든 문서/탭 렌더 · 강의/JB 이미지 로딩(묶음 디코드 · 11-10 그림 파일 목록 imgf의 파일·본문 그림·인용 쪽 키) · 형광펜·빈칸·실행취소·새로고침 복원 · 콘솔 오류 0"""
+ import sys, os, json, io, base64, threading, http.server, functools, socketserver
+ NOMAT = {'PHARM': ('ANX',)}   # 강의자료 없이 JB 답으로만 만든 강의(26 자료가 오면 빼기)
+ from PIL import Image
+@@ -11,15 +11,56 @@ def ok(c, msg):
+     print(('  OK  ' if c else '  FAIL') + ' ' + msg)
+     if not c: fail.append(msg)
+ # ---- 1. 이미지 청크 데이터 자체가 전부 디코드되는지
++CHK = {}   # 과목 → 그림 묶음에 든 강의 쪽 키(1a에서 씀)
+ for f in sorted(os.listdir(DOCS + '/packs')):
+     if '.img.' not in f or f.endswith('.img.jb.js'): continue   # .img.jb.js = 옛 index 호환 심(데이터 없음)
+     t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); o = json.loads(t[t.index('{'):t.rindex('}') + 1]); n = bad = 0
++    CHK.setdefault(f.split('.')[0], set()).update((o.get('lec') or {}).keys())
+     for sect in o.values():
+         for k, v in sect.items():
+             n += 1
+             try: Image.open(io.BytesIO(base64.b64decode(v.split(',', 1)[1]))).load()
+             except Exception: bad += 1
+     ok(bad == 0, f'{f}: 이미지 {n}개 디코드' + (f' — 실패 {bad}' if bad else ''))
++# ---- 1a. 11-10 그림 파일 방식(팩 imgf — tools/quarters.json 분기 "img": "files") — 목록의 파일이 다 있고(이름의 h8 = 파일 md5 앞 8자 · 디코드)
++#      + 모든 팩: 본문 그림(img[data-img])·인용 칩 쪽이 그림 파일 목록이나 그림 묶음에 있음(없으면 허브에서 빈 그림·빈 창 — imgalias 반영)
++import re as _re, hashlib as _hl
++STUBS = set()   # 자료 대기 과목(강의가 WAIT뿐·문항 0 — 팩 stub) — 3절 도구 시험은 강의가 있는 과목에서
++def _walk(o):
++    if isinstance(o, str): yield o
++    elif isinstance(o, list):
++        for x in o: yield from _walk(x)
++    elif isinstance(o, dict):
++        for x in o.values(): yield from _walk(x)
++for f in sorted(os.listdir(DOCS + '/packs')):
++    if '.img.' in f or not f.endswith('.js') or f.endswith('.lx.js'): continue
++    sid = f[:-3]; t = open(f'{DOCS}/packs/{f}', encoding='utf-8').read(); pk = json.loads(t[t.index('{'):t.rindex('}') + 1])
++    if pk.get('stub') or (not (pk.get('stats') or {}).get('cards') and [L.get('k') for L in pk.get('lect') or []] == ['WAIT']): STUBS.add(sid)
++    have = set(CHK.get(sid, ())); F = pk.get('imgf')
++    if F is not None:
++        n = 0; nofile = []; badf = []; idir = os.path.join(DOCS, 'packs', 'img', sid)
++        for kind in ('lec', 'jb'):
++            for key, h8 in (F.get(kind) or {}).items():
++                n += 1; fn = J.img_name(kind, key, h8); fp = os.path.join(idir, fn)
++                if not os.path.exists(fp): nofile.append(fn); continue
++                b_ = open(fp, 'rb').read()
++                try: Image.open(io.BytesIO(b_)).load(); good = _hl.md5(b_).hexdigest()[:8] == h8
++                except Exception: good = False
++                if not good: badf.append(fn)
++                elif kind == 'lec': have.add(key)
++        old = [x for x in (os.listdir(idir) if os.path.isdir(idir) else []) if x not in {J.img_name(kd, k_, h_) for kd in ('lec', 'jb') for k_, h_ in (F.get(kd) or {}).items()}]
++        ok(not nofile and not badf, f'{f}: 그림 파일 {n}개(packs/img/{sid}/) 있음·이름 지문·디코드' + (f' — 없음 {len(nofile)} {nofile[:3]}' if nofile else '') + (f' — 깨짐 {len(badf)} {badf[:3]}' if badf else '') + (f' · 지난 세대 파일 {len(old)}개(다음 빌드 때 지움)' if old else ''))
++    alias = pk.get('imgalias') or {}; need = set()
++    for h in _walk(pk):
++        if 'data-img="' in h: need.update(_re.findall(r'data-img="([^"]+)"', h))
++        if 'class="cite' in h:
++            for k_, p_, pp_ in _re.findall(r'<button class="cite[^"]*" data-k="([^"]*)" data-p="([^"]*)"(?: data-pp="([^"]*)")?', h):
++                need.update(f'{k_}-{x}' for x in (pp_.split(',') if pp_ else [p_]) if x and x.isascii() and x.isdigit())
++    def _has(key):
++        k_, p_ = key.rsplit('-', 1); al = alias.get(k_); al = [al] if isinstance(al, str) else list(al or [])
++        return any(f'{kk}-{p_}' in have for kk in [k_] + al)
++    lost = sorted(x for x in need if not _has(x))
++    ok(not lost, f'{f}: 본문 그림·인용 칩 쪽 {len(need)}개가 그림 {"파일 목록" if F is not None else "묶음"}에 있음' + (f' — 없음 {len(lost)} {lost[:5]}' if lost else ''))
+ # ---- 1b. JB 분해 검사: 답안 안에 다음 문항이 삼켜졌는지 (번호 n 줄이 문항형으로 끝나는데 바로 앞 번호 n-1 줄이 답안에 없음)
+ import re as _re, html as _html
+ for f in sorted(os.listdir(DOCS + '/packs')):
+@@ -115,8 +156,16 @@ with sync_playwright() as p:
+                 if tt in titles: break
+                 titles.add(tt); good += pg.evaluate('(async()=>{const i=document.querySelector("#mimg");try{await i.decode()}catch(e){};return i.naturalWidth>0?1:0})()'); pg.click('#mnext')
+             ok(good == len(titles) > 0, f'{s} JB {ed}판: 원본 쪽 {good}/{len(titles)} 표시'); pg.click('#mclose')
+-    # ---- 3. 도구 (첫 과목 첫 강의)
+-    s = built[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
++    # ---- 3. 도구 (강의가 있는 첫 과목의 첫 강의 — 11-10 자료 대기(stub) 과목은 표시할 글이 없어 건너뜀: 전에는 4Q가 빈 과목뿐일 때 여기서 죽었음)
++    real_s = [x for x in built if x not in STUBS]
++    if not real_s:
++        print('       도구 시험(형광펜·빈칸·실행 취소) 건너뜀 — 강의가 있는 과목이 아직 없음(전부 자료 대기)')
++        exp404 = {f'{x}.js' for x in J.sids() if x not in built}
++        ok(set(r404) <= exp404, f'404는 아직 없는 과목 팩뿐 {sorted(set(r404) - exp404)}')
++        real = [e for e in errs if 'Failed to load resource' not in e]
++        ok(not real, f'콘솔 오류 0 {real[:5]}')
++        b.close(); print('RESULT', 'PASS' if not fail else f'FAIL {len(fail)}'); sys.exit(1 if fail else 0)
++    s = real_s[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
+     d = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))')[0]; pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(300)
+     PICK = '''(n=>{const lis=[...document.querySelectorAll('#stage [data-aid] li')].filter(l=>l.offsetParent&&!l.closest('details:not([open])')&&!l.querySelector('[data-rk]')&&/[A-Za-z가-힣]{3}/.test(l.textContent));const li=lis[n];li.scrollIntoView({block:'center'});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let x;while(x=w.nextNode()){const m=/[A-Za-z가-힣]{3,}/.exec(x.nodeValue);if(m&&!x.parentElement.closest('button,.chip,.noann,[data-rk]')){const r=document.createRange();r.setStart(x,m.index+1);r.setEnd(x,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2,m[0]];}}})'''
+     cnt = lambda t: pg.eval_on_selector_all(f'#stage [data-rk={t}]', 'es=>es.length')
