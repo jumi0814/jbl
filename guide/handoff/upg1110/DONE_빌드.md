@@ -13,7 +13,8 @@
 - [x] 4. verify(1a 그림 파일·키 · 3절 빈 과목 건너뜀 — 4Q PASS · 진짜 3Q 폴더 PASS)
 - [x] 5. q_perf(파일 방식 예산 — PASS)
 - [x] 7. SPEC(빌드 절 — '공통 코드 동기화' 절 뒤 새 절 + 작업 순서 5번 한 줄) → sync_common
-- [ ] 6. B grep 보고 · 8. 전체 검사
+- [x] 6. B grep 보고(글자로 찾는 곳 0 · 📖 상자 칩이 폰에서 잘림 → 허브 CSS 한 줄 필요)
+- [x] 8. 전체 검사(아래 '돌린 검사') → docs 되돌림(커밋 안 함) · 끝
 
 ## 앞 담당이 한 것 — 이어받을 때의 실제 상태(코드 읽기 + 읽기 전용 측정)
 | 항목 | 코드 | 검사 |
@@ -66,3 +67,71 @@
 
 ## SPEC.md(빌드 절만)
 - '한 과목 작업 순서' 5번에 한 줄(파일 방식 쿼터의 출력) + '공통 코드 동기화·전 과목 빌드' 절 **바로 뒤**에 새 절 **'그림 파일 방식 · 빈 과목 · 라벨 통일 · 인용 쪽 (2026-11-10 …)'**(스위치·주소·팩 imgf·잠금·한 세대 남김·원본 없이 다시 빌드·그대로인 것·빈 과목·라벨·인용 쪽·검사). 문서 끝(쿼터 절)은 건드리지 않음 — 허브 담당이 끝에 덧붙여도 안 겹치게. `tools/sync_common.py`로 사본 17개 같음.
+
+## B. 라벨 통일(A10) — 코드는 앞 담당 · 확인·보고는 이번에
+- **고침(build4 — 앞 담당)**: JB 원본 쪽 단추 = 모두 'JB 원본 n쪽'(카드 앞면 `jb_btns`는 원래 이 이름 · 📜 이전 답 `pb`·'다른 연도 칸·다른 판본' `.oh` 단추의 '원본 n쪽' → 'JB 원본 n쪽') · 정리본으로 가는 칩 = '<강의 제목> 정리본 →'(카드 머리 칩은 원래 이 이름 · 📖 상자 머리 칩 '카드로 이동 →' → '<강의 제목> 정리본 →').
+- **그대로 둔 것(왜)**: 예상 카드의 '📖 정리본' 칩(`chip lec plc` — 10-22 화면 연결에서 정한 이름·회귀 ux26_links) · 한눈표의 아이콘 칩(`sumlk` — 글자 없음·aria-label) · 기출 대장 'JB 원본 쪽' 격자의 숫자 단추 · build2.py의 옛 단일 화면 qcard(팩에 안 들어감·맡은 파일 밖). '제목만' 칩은 팩 HTML에는 없음(허브가 그리는 것 — 허브 몫).
+- **배포본에서 센 것**(3Q 팩 — 지금 글자): CONS 카드 머리 '<강의> 정리본 →' 67 · 📖 상자 '카드로 이동 →' 67 · 'JB 원본 n쪽' 96 · '원본 n쪽' 102 / PHARM 192·192·238·473 → 3Q를 다시 빌드하는 날 이 '카드로 이동 →'·'원본 n쪽'이 새 이름으로 바뀜(메인 결정 = 그대로 좋다).
+- **이 글자를 찾아 쓰는 곳 grep**(shell.html 읽기만 · tools/tests · tools/tests4 · tools/*.py · num.js · 스킬·guide):
+  - '카드로 이동': shell.html 3477·4088줄 **주석뿐** · tools/tests/ux_u17.py 52·55줄 주석·결과 글뿐(단추는 `details.ab.lk>summary .chip.lec` 선택자로 찾음) → 깨지는 곳 없음.
+  - '정리본 →': 허브 `nmDeco`(3579줄)는 카드 머리 칩의 글을 끝 '→'만 떼어 title로 쓰고 '📖 정리본 카드 N →'으로 다시 씀(글자 비교 없음) · num.js 793줄은 `data-golec` 속성만 읽음 · 테스트는 주석뿐.
+  - '원본 n쪽': 테스트·도구가 단추 글자를 읽는 곳 없음(`[data-jb]` 선택자) · 허브 그림 창 제목은 따로 'JB <판>판 원본 n쪽'(openImg 4077줄 — 창 제목이라 그대로 둬도 됨).
+  - 문서: QA.md 83·정리본_원칙·SPEC은 이미 'JB 원본 n쪽'으로 씀 · '카드로 이동'을 기준으로 삼는 문서 없음.
+- **⚠ 화면에서 확인한 것 — 허브 쪽 고침 필요**(3Q 스테이징 사본의 CONS 팩에서 📖 상자 칩 67개를 새 이름으로 바꿔 열어 봄 — 시험 사본만):
+  - 컴퓨터 1280: 넘침 0 · 📖 상자 머리 줄 높이 24 → 평균 41px(칩이 둘째 줄로 내려감 — 볼 만함).
+  - **폰 393: 67개 중 57개가 칩이 상자 밖으로 잘림**(칩 폭 337px > 머리 줄 295px — 강의 제목이 길어 '… 정리본 →' 끝이 안 보임 · 페이지 가로 넘침은 없음). 카드 머리 칩(`.qhead .chip.lec`)에는 줄바꿈 규칙이 있는데 📖 상자 칩에는 없어서임.
+  - 허브 CSS 한 줄로 해결됨을 확인(시험 화면에 넣어 봄 — 폰 넘침 57 → 0 · 칩 두 줄 40px · 컴퓨터 그대로): `details.ab.lk>summary .chip.lec{max-width:100%;white-space:normal;overflow-wrap:anywhere;text-align:left}`(shell.html — 허브 담당 · v3 묶음 뒤).
+  - 4Q는 아직 JB 카드가 없어 지금 배포본에는 영향 없음 — **첫 4Q JB 과목을 빌드하기 전(또는 3Q를 다시 빌드하기 전)에** 허브 CSS가 들어가야 함.
+
+## 돌린 검사(끝 상태 — 4Q 빈 팩 10개를 worktree docs에 다시 빌드해 놓고 돌린 뒤 docs는 되돌림)
+| 검사 | 고치기 전 | 고친 뒤 |
+|---|---|---|
+| 4Q 10과목 `tools/<sid>/build4.py` | — | 전부 rc=0 · 그림 파일·묶음 0 |
+| `tools/rehub.py --check` | OK | OK(다시 빌드한 docs · 되돌린 docs 둘 다) |
+| `JBL_HTTP=1 tools/verify.py`(4Q) | OK 101줄 뒤 **Traceback**(3절 — 빈 과목뿐) | **PASS** OK 123줄 |
+| `JBL_Q=3q JBL_HUB_DIR=docs/3q JBL_HTTP=1 tools/verify.py`(진짜 3Q) | (안 돌림) | **PASS** OK 288줄 |
+| `tools/check_links.py`(4Q) | PASS(옛 3종) | PASS(6종 모두 0) |
+| `JBL_Q=3q tools/check_links.py` | 팩 자리를 못 찾음 | PASS · 알려진 것 5 |
+| tests4 `q_empty` | PASS 38 | PASS 38 |
+| tests4 `q_perf` | (기준 파일) | PASS(시간 18개 기준 안 · 4Q 그림 0장) |
+| tests4 `q_imgbuild`(새) | 앞 담당 판 FAIL 1 | **PASS 40** |
+| tests4 `q_ident`·`q_isolation`·`q_sync` | — | PASS 14·17·12(등록표 `img` 키는 허브 QCFG에 안 들어감 — index 글자 그대로) |
+| `tools/quarters.py check` · `tools/sync_common.py --check` · py_compile | OK | OK · 17개 사본 같음 |
+- tools/tests(3Q 회귀)는 돌리지 않음 — shell.html을 건드리지 않았고(허브 판 7e3ce041 그대로) 3Q 팩도 그대로라 화면이 바뀔 것이 없음.
+
+## 그림 주소 규칙(허브 담당에게 — 이것이 기준)
+- 파일 방식인지 = 팩에 `imgf`가 있는지(그림 0장이어도 `{'lec': {}, 'jb': {}}`) · 그때 `imgv = {}`(묶음 없음).
+- `imgf = {'lec': {'<강의키>-<쪽>': '<h8>'}, 'jb': {'<판>-<쪽>': '<h8>'}}` — 키는 본문 `img[data-img]`·인용 칩(`data-k` + '-' + `data-p`)·`data-jb`와 **같은 글자**.
+- 주소(index.html 기준 상대 주소):
+  - 강의 쪽 `packs/img/<SID>/<강의키>-<쪽>.<h8>.webp` — 예 `packs/img/OMS2/TMJ-12.42fec4cb.webp`
+  - JB 원본 쪽 `packs/img/<SID>/jb<판>-<쪽>.<h8>.jpg` — 예 `packs/img/OMS2/jb26-3.9da6ff3c.jpg`(키 '26-3' 앞에 `jb`)
+  - h8 = 그 파일 바이트 md5 앞 8자 → 내용이 바뀌면 주소가 바뀜(`?v=` 붙이지 않음 · 오래 캐시해도 됨).
+- 목록에 없는 키 = 그림 없음(지금처럼 그림 빼기) · `imgalias`는 파일 방식에서 쓰지 않음(키 그대로 찾음) · 본문 그림 `width="740" height="n"`은 지금처럼 HTML에 있음.
+- 단일 파일판(work/)은 `imgf`가 있어도 `JBLHUB.images(...)`로 그림이 메모리에 들어 있음 → 허브는 'IMGS에 있으면 그것 먼저 → imgf 주소 → 묶음' 순서.
+- 그림을 바꾼 빌드 직후에는 옛 파일이 한 세대 남아 있음(옛 팩을 든 기기용) — 허브가 따로 할 일 없음.
+- 빈 과목 팩: `stub: true` · `trends = ''` · `top = []` · `lect[0].tline = tstrat = ''` · `ledger` = 한 줄 안내 · `guide`(공부 순서)·`sumall`·`lect[0].sum`은 그대로.
+
+## 허브 담당에게 넘길 것
+1. 위 주소 규칙으로 `imgf` 읽기(UPG_H4) — 지금 허브는 imgf를 모름(4Q 그림 0장이라 영향 없음).
+2. **📖 상자 칩 줄바꿈 CSS**(위 B ⚠ — 폰에서 잘림): `details.ab.lk>summary .chip.lec{max-width:100%;white-space:normal;overflow-wrap:anywhere;text-align:left}`.
+3. `pack.stub`을 읽는 `isStub`(UPG_H1) — build4는 `stub`·빈 글만 맡음. 지금 허브에서 아직 보이는 빈 과목 글: '기출을 다 맞혔어요'·'시작: 강의자료 대기 →'·'강의자료 대기 -'·JB '조건에 맞는 문항이 없습니다'.
+4. (선택) 그림 창 제목 'JB <판>판 원본 n쪽'은 단추 'JB 원본 n쪽'과 낱말 순서가 조금 다름 — 창 제목이라 그대로 둬도 됨.
+
+## 메인이 정할 것 · 메인이 할 일
+- **정해진 것(11-10 메인)**: B·C는 스위치 뒤가 아님 = 그대로 · check_links 보관 분기 알려진 것 5 = FAIL 아님(도구 안 KNOWN) · docs는 이 브랜치에 커밋하지 않음 · localize.py 메모·빈 과목 공부 순서 단추 = 허브 몫.
+- **새로 정할 것**: 📖 상자 칩 — (가) 지금대로 '<강의 제목> 정리본 →' + 허브 CSS 줄바꿈(권함 · 확인함) / (나) 📖 상자만 짧은 이름으로 되돌림(build4 805줄 한 곳).
+- **메인이 합친 뒤 돌릴 명령**(메인 저장소에서 · 허브 담당 고침까지 합친 다음):
+  1. `.venv/bin/python tools/sync_common.py`(build4·SPEC 사본 — `--check`가 OK면 건너뜀)
+  2. 4Q 10과목 다시 빌드: `for s in $(.venv/bin/python tools/quarters.py sids 4q | tr A-Z a-z); do .venv/bin/python tools/$s/build4.py | tail -3; done` → 팩마다 `stub`·`imgf`가 생김(그림 파일·묶음 0 · tools/ 곁다리 변화 0)
+  3. `.venv/bin/python tools/rehub.py`(허브 판을 지금 shell로) → `.venv/bin/python tools/rehub.py --check`
+  4. `JBL_HTTP=1 .venv/bin/python tools/verify.py` → `.venv/bin/python tools/check_links.py`(+ `JBL_Q=3q …` = 알려진 것 5)
+  5. `.venv/bin/python tools/tests4/q_imgbuild.py` · `q_empty.py` · `q_perf.py`(하나씩) — 또는 `sh tools/full_check.sh`
+  6. 3Q 스테이징이 필요하면 `.venv/bin/python tools/rehub.py --q 3q --stage`
+- `tools/localize.py` 43줄의 build4 바꿔 쓰기 글이 옛 `lecimg = {}; PREV = J.prev_images(SID)` 줄 — 다음 JBL_master.zip 반영 때 확인(내 파일 밖).
+
+## 남은 위험
+- **JB 원본 쪽 파일 길은 가짜 JB(2쪽)로만 돌려 봄** — 첫 진짜 4Q JB 과목을 빌드할 때 빌드 출력의 '그림 파일(…): JB 원본 쪽 n장'과 verify 1a·check_links ⑤를 볼 것.
+- 판 이름에 글자가 든 JB(`23q4` 같은 것)는 파일 이름이 `jb23q4-17.<h8>.jpg`가 됨 — 규칙상 문제없지만 허브가 키에서 판을 떼어 낼 때 첫 '-' 앞까지로 읽어야 함(지금 `data-jb` 다루는 방식과 같음).
+- 그림 파일은 과목당 수백 개가 `docs/packs/img/<SID>/`에 생김 — 커밋할 때 `git add docs/packs/img`를 빼먹지 않게(빼먹으면 verify 1a·check_links ⑥이 '없는 그림 파일'로 잡음) · `tools/<sid>/img_lock.json`도 같이 커밋(안 하면 다른 기계에서 다시 인코딩 — 바이트가 달라지면 주소가 바뀜).
+- verify 3절은 전부 자료 대기일 때 도구 시험을 건너뜀 → 첫 4Q 강의가 들어오면 저절로 다시 돎(그때 형광펜·빈칸 줄을 못 찾으면 실패로 드러남).
+- 앞 담당이 쓴 build4의 `_lec_file`·한 세대 남김은 '같은 출력 자리의 지난 팩'을 기준으로 함 — `$JBL_DOCS` 시험 폴더와 진짜 docs를 번갈아 쓰면 각 자리가 따로 한 세대를 가짐(의도한 동작).
