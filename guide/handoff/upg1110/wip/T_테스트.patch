@@ -1,0 +1,440 @@
+diff --git a/guide/handoff/upg1110/DONE_W0.md b/guide/handoff/upg1110/DONE_W0.md
+new file mode 100644
+index 00000000..9d74bcfc
+--- /dev/null
++++ b/guide/handoff/upg1110/DONE_W0.md
+@@ -0,0 +1,14 @@
++# DONE_W0 — 안전망(테스트 도구) · 11-10
++
++담당: worktree(브랜치 `worktree-agent-ac5912c51bbd11a94` — 기준 커밋 b714aca8). 허브 코드(`tools/cons/shell.html`·`build4.py`)·`q_perf.py`는 건드리지 않음.
++지시문: `work/_tmp/agents/UPG_T.md` · 계획 `guide/handoff/upg1110/PLAN.md` W0 · 설계 `R_DESIGN_설계.md` §4·§5 · `R_HISTORY…md` 4번.
++
++진행(항목 하나 끝날 때마다 덧붙임 — 한도로 멈춰도 여기서 이어 감):
++
++- [ ] 1 시험용 사이트(fixture) `qsite.build_fixture()`
++- [ ] 2 `q_crawl.py`
++- [ ] 3 `q_pos.py`
++- [ ] 4 기준 실패 37개 → `tools/tests/STATUS.json` · `ux_all.py` · `fmt_cases.py`
++- [ ] 5 `q_ident` 린트 넓히기
++- [ ] 6 `q_perf2.py` + `perf2_base.json`
++- [ ] 7 `full_check.sh`
+diff --git a/tools/tests4/q_crawl.py b/tools/tests4/q_crawl.py
+new file mode 100644
+index 00000000..2ea15b62
+--- /dev/null
++++ b/tools/tests4/q_crawl.py
+@@ -0,0 +1,98 @@
++"""11-10 W0 전 화면 훑기 — 허브마다(미리 보기 사이트 뿌리 = 지금 쿼터 · 3q/ = 3Q · 시험용 사이트 fixture = 4Q 정체성 + 3Q 내용)
++과목마다 모든 과목 문서(_home·_jb·_pred·_final·_fig·_sum·_led·_tbl·_cbm·_marks 중 메뉴에 있는 것) + 강의마다 모든 탭을 열어
++① 화면 오류(pageerror)·콘솔 error·HTTP ≥400 0 ② 글·속성에 undefined / NaN / [object Object] 0 ③ 가로 넘침 0 ④ 빈 #stage 0 ⑤ 그 주소가 그 화면으로 열림(다른 곳으로 튕기지 않음)
++컴퓨터 1280×900과 폰 393×852. 과목·강의·탭은 __h.PACKS·과목 메뉴에서 찾음(id를 박지 않음) — 빈 과목(자료 대기)도 같은 검사.
++  .venv/bin/python tools/tests4/q_crawl.py                 # 전부(약 10분)
++  JBL_CRAWL=quick …                                        # 과목마다 과목 문서 + 가장 큰 강의 하나만
++  JBL_CRAWL_SITE=fx|3q|root  JBL_CRAWL_SID=CONS,PHARM  JBL_CRAWL_VW=1280|393   # 좁혀서 · JBL_CRAWL_LOG=1 = 화면마다 한 줄"""
++import json, time
++from qsite import *
++from playwright.sync_api import sync_playwright
++VERB = bool(os.environ.get('JBL_CRAWL_LOG')); selfok = []
++QUICK = os.environ.get('JBL_CRAWL') == 'quick'; ONLY = [x for x in os.environ.get('JBL_CRAWL_SID', '').split(',') if x]
++OSITE = os.environ.get('JBL_CRAWL_SITE', ''); OVW = os.environ.get('JBL_CRAWL_VW', '')
++cur = QS.current(); rel = build(); fx = build_fixture(); b1 = serve(); b2 = serve(fx['dir'])
++has = lambda q, d: [s for s in QS.sids(q) if os.path.exists(os.path.join(d, 'packs', s + '.js'))]
++SITES = [('root', f'뿌리({cur})', url(b1, rel[cur]), has(cur, os.path.join(SITE, rel[cur])))]
++SITES += [(q, f'{q}/', url(b1, rel[q]), has(q, os.path.join(SITE, rel[q]))) for q in rel if q != cur]
++SITES += [('fx', f'fixture({fx["ident"]} 정체성 + {fx["content"]} 내용)', url(b2, ''), fx['sids'])]
++VWS = [({'width': 1280, 'height': 900}, False), ({'width': 393, 'height': 852}, True)]
++HUBV = ['#/', '#/_cal', '#/_time', '#/_bm', '#/_num', '#/_numr']
++SDOCS = ['_home', '_jb', '_pred', '_final', '_fig', '_sum', '_led', '_tbl', '_cbm', '_marks']
++# 화면 하나 검사 — 보이는 틀(위 막대·메뉴·머리·탭·본문 / 허브 홈)의 글과 속성 · 가로 넘침 · 빈 본문
++CHECK = r"""(kind)=>{const $=s=>document.querySelector(s),sub=$('#subj'),doc=sub&&!sub.hidden,box=(doc?['#top','#nav','#hero','#dtabs','#stage']:['#top','#nav','#home']).map($).filter(Boolean),out={bad:[],over:'',empty:''};
++ const RX=/\bundefined\b|\bNaN\b|\[object Object\]/;
++ for(const b of box){const t=b.textContent||'',m=RX.exec(t);if(m)out.bad.push('#'+b.id+' 글 «'+t.slice(Math.max(0,m.index-40),m.index+50).replace(/\s+/g,' ')+'»');
++  const a=b.querySelector('[href*="undefined"],[src*="undefined"],[title*="undefined"],[aria-label*="undefined"],[placeholder*="undefined"],[data-id="undefined"],[data-d="undefined"],[data-s="undefined"],[data-aid*="undefined"],[title*="NaN"],[style*="NaN"],[title*="[object Object]"],[href*="[object"]');
++  if(a)out.bad.push('#'+b.id+' 속성 '+a.outerHTML.slice(0,140).replace(/\s+/g,' '));}
++ const W=innerWidth,sw=document.documentElement.scrollWidth;
++ if(sw>W+1){let w=null,wr=0;for(const e of document.querySelectorAll('#top *,#nav *,#home *,#subj *')){if(!e.offsetParent)continue;const r=e.getBoundingClientRect();if(r.width&&r.right>wr&&r.right>W+1){let p=e.parentElement,clip=false;while(p&&p!==document.body){const o=getComputedStyle(p).overflowX;if(o!=='visible'){clip=true;break;}p=p.parentElement;}if(!clip){w=e;wr=r.right;}}}
++  out.over=sw+'>'+W+(w?' ← '+w.tagName.toLowerCase()+(w.id?'#'+w.id:'')+(w.className&&w.className.baseVal==null?'.'+String(w.className).trim().split(/\s+/).join('.'):'')+' 오른쪽 '+Math.round(wr):'');}
++ const st=doc?$('#stage'):$('#home'),tx=st?(st.innerText||'').trim():'';
++ if(!st||tx.length<(kind==='hub'?20:12)||!st.firstElementChild)out.empty='글 '+tx.length+'자';
++ out.len=tx.length;return out;}"""
++AT = "([s,d,t])=>{const c=window.__h&&__h.CUR;return !!(c&&c.s===s&&c.d===d&&(!t||c.t===t)&&!document.querySelector('#subj').hidden&&document.querySelector('#stage').firstElementChild);}"
++SETTLE = "()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(r,60))))"
++tot = {'views': 0}; t00 = time.time()
++with sync_playwright() as p:
++    br = p.chromium.launch()
++    for sk, sname, U, sids in SITES:
++        if OSITE and sk != OSITE: continue
++        for vw, mob in VWS:
++            if OVW and str(vw['width']) != OVW: continue
++            tag = f'{sname} {vw["width"]}px'; t0 = time.time(); nv = 0; nf0 = len(fail)
++            ctx = br.new_context(viewport=vw, is_mobile=mob, has_touch=mob); ctx.route('https://api.github.com/**', lambda r: r.fulfill(status=401, body='{}'))
++            ev = []   # (종류, 글) — 화면마다 비움
++            def page():
++                pg = ctx.new_page()
++                pg.on('pageerror', lambda x: ev.append(('오류', str(x)[:200])))
++                pg.on('console', lambda m: m.type == 'error' and ev.append(('콘솔', m.text[:200])))
++                pg.on('response', lambda r: r.status >= 400 and ev.append(('HTTP', f'{r.status} {r.url[-70:]}')))
++                pg.on('requestfailed', lambda r: 'ERR_ABORTED' not in (r.failure or '') and ev.append(('요청 실패', f'{r.failure} {r.url[-70:]}')))
++                pg.on('dialog', lambda d: d.dismiss())
++                return pg
++            def look(pg, name, kind='doc'):
++                global_nv[0] += 1
++                pg.evaluate(SETTLE); r = pg.evaluate(CHECK, kind); e = list(ev); ev.clear()
++                if VERB: print(f'       {tag} {name} 글 {r["len"]}자')
++                if e: ok(False, f'{tag} {name}: {e[0][0]} {len(e)}건 — {e[0][1]}')
++                if r['bad']: ok(False, f'{tag} {name}: {r["bad"][0]}')
++                if r['over']: ok(False, f'{tag} {name}: 가로 넘침 {r["over"]}')
++                if r['empty']: ok(False, f'{tag} {name}: 빈 화면({r["empty"]})')
++            global_nv = [0]
++            # 허브 화면
++            pg = page(); pg.goto(U); wait_hub(pg, len(sids))
++            packs = pg.evaluate('Object.keys(__h.PACKS)')
++            ok(sorted(packs) == sorted(sids), f'{tag} 과목 팩 {len(packs)}개 = 준비된 과목 {len(sids)}개')
++            for h in HUBV:
++                pg.evaluate('h=>{location.hash=h;}', h); pg.wait_for_timeout(350); look(pg, h, 'hub')
++            if not selfok:   # 검사기 자체 검사(한 번) — 일부러 넣은 undefined 글·NaN 속성·넓은 칸·빈 본문을 잡는지
++                pg.evaluate("()=>{location.hash='#/';}"); pg.wait_for_timeout(300)
++                pg.evaluate("()=>{const h=document.querySelector('#home'),d=document.createElement('div');d.id='__qc';d.innerHTML='<p>값 undefined 줄</p><i title=\"NaN분\"></i><div style=\"width:'+(innerWidth+300)+'px;height:4px\"></div>';h.appendChild(d);}")
++                r = pg.evaluate(CHECK, 'hub'); pg.evaluate("()=>{const d=document.querySelector('#__qc');if(d)d.remove();}")
++                ok(len(r['bad']) == 2 and bool(r['over']), f'검사기 자체 검사 — 넣은 undefined 글·NaN 속성·가로 넘침을 잡음 {r["bad"][:2]} {r["over"][:60]}'); selfok.append(1)
++            info = pg.evaluate(PACKINFO); pg.close()
++            for s in packs:
++                if ONLY and s not in ONLY: continue
++                pg = page(); pg.goto(U + f'#/{s}/_home/_home')
++                try: wait_hub(pg, 1); pg.wait_for_function(AT, arg=[s, '_home', ''], timeout=120000)
++                except Exception as e: ok(False, f'{tag} #/{s}/_home 안 열림 {str(e)[:80]}'); pg.close(); continue
++                nav = pg.evaluate(NAVDOCS); docs = [d for d in SDOCS if d in nav]
++                lect = info[s]['lect']
++                if QUICK and lect: lect = [max(lect, key=lambda L: L['size']['learn'])]
++                views = [(d, d) for d in docs] + [(L['k'], t) for L in lect for t in L['tabs']]
++                for d, t in views:
++                    h = f'#/{s}/{d}/{t}'
++                    try:
++                        pg.evaluate('h=>{location.hash=h;}', h); pg.wait_for_function(AT, arg=[s, d, t], timeout=30000)
++                    except Exception:
++                        c = pg.evaluate("JSON.stringify(window.__h&&__h.CUR)"); ok(False, f'{tag} {h}: 그 화면으로 안 열림(지금 {c} · {pg.evaluate("location.hash")})'); ev.clear(); continue
++                    look(pg, h)
++                pg.close()
++            nv = global_nv[0]; tot['views'] += nv; nb = len(fail) - nf0
++            if nb: print(f'  ---- {tag}: 화면 {nv}개 · 과목 {len(packs)} 가운데 걸린 것 {nb}건 ({time.time() - t0:.0f}초)')
++            else: ok(True, f'{tag}: 화면 {nv}개 · 과목 {len(packs)} — 오류·undefined/NaN·가로 넘침·빈 화면 0 ({time.time() - t0:.0f}초)')
++            ctx.close()
++    br.close()
++print(f'  훑은 화면 {tot["views"]}개 · {time.time() - t00:.0f}초')
++done()
+diff --git a/tools/tests4/q_ident.py b/tools/tests4/q_ident.py
+index e593ccbb..ef6f1f9b 100644
+--- a/tools/tests4/q_ident.py
++++ b/tools/tests4/q_ident.py
+@@ -1,8 +1,11 @@
+ """11-04 분기 정체성 — ① 3Q 값이 3Q 허브 원래 상수와 글자까지 같음(3q-final의 shell 상수) ② 4Q 값은 모두 다름 ③ 등록표 검사
+-④ 허브 코드(shell·num.js)에 저장 이름 글자가 주석 밖에 남지 않음(모두 Q에서) ⑤ 미리 보기 사이트의 두 허브가 각자 Q를 받음"""
++④ 허브 코드(shell·num.js)에 저장 이름 글자가 주석 밖에 남지 않음(모두 Q에서) ⑤ 미리 보기 사이트의 두 허브가 각자 Q를 받음
++⑥ (11-10 W0) 전역 이름을 가리는 선언 0 — 허브 전역 QC·NS·NSR·LS·SYNC·XS·PACKS·CUR·SUBJECTS를 const/let/var·함수 인자·구조 분해·함수 이름·catch로 다시 선언하면 ✗
++   (11-04 사고: 정체성 `const Q`가 syncPull의 지역 배열 `Q=[]`에 가려 받은 기록을 모두 버림) · `T`(공부 시계)는 지역 이름으로 쓰는 곳이 여럿이라
++   'T를 다시 선언한 범위 안에서 전역 T의 필드(T.t0·T.inp …)를 읽으면' ✗ · 린트 자체 검사(나쁜 예를 잡는지)도 같이.
++   JBL_LINT_ONLY=1 이면 브라우저 없이 ①~④·⑥만."""
+ import re, json
+ from qsite import *
+-from playwright.sync_api import sync_playwright
+ OLD3 = {'ns': 'jblhub.v1.', 'syncKey': 'jblsync', 'gist': 'JBL 허브', 'headApp': 'jblhub-sync', 'bakApp': 'jblhub', 'filePre': 'JBL허브_',
+         'idb': {'bak': 'jblhub-bak', 'sync': 'jblsync', 'lsq': 'jblhub-lsq', 'xs': 'jblhub-xs'}, 'bc': {'t': 'jblhub', 'xs': 'jblhub-xs'}, 'lock': 'jblsync'}
+ ok(QS.QS['3q']['ident'] == OLD3, '① 3Q 정체성 = 3Q 허브 원래 상수(바꾸면 3Q 기록이 안 보임)')
+@@ -17,6 +20,206 @@ for f in ('cons/shell.html', 'num/num.js'):
+     ok(not lit, f'④ {f}: 주석 밖 저장 이름 글자 0 {lit[:5]}')
+     sh = re.findall(r'(?<![\w$.])Q\.(ns|syncKey|gist|headApp|bakApp|filePre|idb|bc|lock|id|label|subjects|colors|links|importFrom|others)\b', t)
+     ok(not sh, f'④ {f}: 정체성은 QC로만(Q는 동기화 등 지역 배열 이름과 겹침 — 11-04 syncPull Q.headApp → 받은 기록 모두 버림) {sh[:5]}')
++
++# ---- ⑥ 전역 이름을 가리는 선언(11-10 W0) — 작은 JS 토큰 분석기(주석·문자열·정규식·템플릿 글은 건너뜀 · `${…}` 안은 코드로 읽음)
++GLOB = ['QC', 'NS', 'NSR', 'LS', 'SYNC', 'XS', 'PACKS', 'CUR', 'SUBJECTS']   # 다시 선언하면 바로 ✗
++SOFT = 'T'                                                                    # 다시 선언한 범위 안에서 전역 필드를 읽으면 ✗
++# 허용(이름을 바꾸면 여기서 뺌) — (파일, 이름, 그 선언 바로 뒤 글 머리): 까닭
++ALLOW = {('num/num.js', 'NS', "='xmlns:w="): 'Word(.docx) XML 이름 공간 글 — 그 함수는 허브 저장 이름 공간(NS)을 읽지 않음(넘버링은 H.st로만 저장)'}
++_TOK = re.compile(r'''(?P<ws>\s+)|(?P<lc>//[^\n]*)|(?P<bc>/\*.*?\*/)|(?P<s>'(?:\\.|[^'\\\n])*'|"(?:\\.|[^"\\\n])*")|(?P<n>0[xX][0-9a-fA-F]+|\d+\.?\d*(?:[eE][+-]?\d+)?n?|\.\d+)|(?P<id>[A-Za-z_$ -￿][\w$ -￿]*)|(?P<p>=>|\.\.\.|===|!==|==|!=|<=|>=|&&=|\|\|=|\?\?=|&&|\|\||\?\?|\?\.|\+\+|--|\*\*=|\*\*|<<=|>>>=|>>=|<<|>>>|>>|[-+*/%&|^]=|[{}()\[\];,.<>+\-*/%&|^!~?:=@#\\])''', re.S)
++_REKW = {'return', 'typeof', 'case', 'in', 'of', 'void', 'delete', 'throw', 'new', 'else', 'do', 'instanceof', 'yield', 'await'}
++def js_tokens(src):
++    """[(종류 id|p|n|s, 글, 자리)] — 템플릿 `…${식}…` = s ( 식 ) … 로 풀어 괄호 짝이 맞게"""
++    out = []; i = 0; n = len(src); tpl = []   # tpl = `${` 안 중괄호 깊이 스택
++    def template(i):   # i = 템플릿 글 안(여는 ` 다음 또는 식을 닫은 } 다음) → 코드로 돌아갈 자리
++        while i < n:
++            c = src[i]
++            if c == '\\': i += 2; continue
++            if c == '`': return i + 1
++            if c == '$' and src[i + 1:i + 2] == '{': out.append(('p', '(', i)); tpl.append(0); return i + 2
++            i += 1
++        raise ValueError('템플릿 글이 안 닫힘')
++    while i < n:
++        c = src[i]
++        if c == '`': out.append(('s', '`', i)); i = template(i + 1); continue
++        if c == '}' and tpl and tpl[-1] == 0: tpl.pop(); out.append(('p', ')', i)); i = template(i + 1); continue
++        if c == '/' and src[i + 1:i + 2] not in ('/', '*'):
++            pv = next((x for x in reversed(out)), None)
++            if pv is None or (pv[0] == 'id' and pv[1] in _REKW) or (pv[0] == 'p' and pv[1] not in (')', ']', '}')):
++                j = i + 1; cls = False; good = False
++                while j < n and src[j] != '\n':
++                    d = src[j]
++                    if d == '\\': j += 2; continue
++                    if d == '[': cls = True
++                    elif d == ']': cls = False
++                    elif d == '/' and not cls: good = True; break
++                    j += 1
++                if good:
++                    j += 1
++                    while j < n and (src[j].isalpha()): j += 1
++                    out.append(('s', '/', i)); i = j; continue
++        m = _TOK.match(src, i)
++        if not m: raise ValueError(f'읽지 못한 글자 {src[i:i + 20]!r} @{i}')
++        k = m.lastgroup; i = m.end()
++        if k in ('ws', 'lc', 'bc'): continue
++        v = m.group(0)
++        if tpl and k == 'p':
++            if v == '{': tpl[-1] += 1
++            elif v == '}': tpl[-1] -= 1
++        out.append((k, v if k != 's' else "'", m.start()))
++    if tpl: raise ValueError('템플릿 식이 안 닫힘')
++    return out
++_OPEN = {'(': ')', '[': ']', '{': '}'}; _CTRL = {'if', 'for', 'while', 'switch', 'with', 'return', 'typeof', 'await', 'function', 'new', 'in', 'of', 'do', 'else', 'void', 'delete', 'throw', 'yield', 'case'}
++_STMT = {'const', 'let', 'var', 'return', 'if', 'for', 'while', 'do', 'switch', 'try', 'throw', 'break', 'continue', 'class'}
++def js_bindings(tk):
++    """토큰 → (선언 [(이름, 종류, 토큰 번호, 중괄호 깊이, 범위 (lo, hi) 토큰 번호)], 짝 표)"""
++    mt = {}; st = []; depth = [0] * len(tk); encl = [-1] * len(tk); bs = []; d = 0
++    for i, (k, v, _) in enumerate(tk):
++        encl[i] = bs[-1] if bs else -1
++        if k == 'p' and v in _OPEN:
++            st.append(i)
++            if v == '{': depth[i] = d; d += 1; bs.append(i); continue
++        elif k == 'p' and v in (')', ']', '}'):
++            if not st or _OPEN[tk[st[-1]][1]] != v: raise ValueError(f'괄호 짝이 안 맞음 @{tk[i][2]}')
++            mt[st[-1]] = i; mt[i] = st.pop()
++            if v == '}': d -= 1; bs.pop(); encl[i] = bs[-1] if bs else -1
++        depth[i] = d
++    if st: raise ValueError(f'안 닫힌 괄호 @{tk[st[-1]][2]}')
++    P = lambda i, v: 0 <= i < len(tk) and tk[i][0] == 'p' and tk[i][1] == v
++    I = lambda i: 0 <= i < len(tk) and tk[i][0] == 'id'
++    def items(lo, hi):   # (lo, hi) 사이를 깊이 0 쉼표로 나눔
++        a = lo; i = lo; out = []
++        while i < hi:
++            if tk[i][0] == 'p' and tk[i][1] in _OPEN: i = mt[i] + 1; continue
++            if P(i, ','): out.append((a, i)); a = i + 1
++            i += 1
++        if a < hi: out.append((a, hi))
++        return out
++    def target(a, b, names):   # 묶는 자리 하나: [...]이름 | {무늬} | [무늬] (뒤의 = 기본값은 버림)
++        if a < b and P(a, '...'): a += 1
++        if a >= b: return
++        if I(a): names.append((tk[a][1], a))
++        elif P(a, '{'):
++            for x, y in items(a + 1, mt[a]):
++                if P(x, '...'): target(x, y, names); continue
++                j = x; colon = -1
++                while j < y:
++                    if tk[j][0] == 'p' and tk[j][1] in _OPEN: j = mt[j] + 1; continue
++                    if P(j, '='): break
++                    if P(j, ':'): colon = j; break
++                    j += 1
++                target(colon + 1 if colon >= 0 else x, y, names)
++        elif P(a, '['):
++            for x, y in items(a + 1, mt[a]): target(x, y, names)
++    def expr_end(j, hi=None):   # 식의 끝(깊이 0의 , ; 닫는 괄호 · 다음 문장 머리)
++        hi = len(tk) if hi is None else hi
++        while j < hi:
++            k, v, _ = tk[j]
++            if k == 'p' and v in _OPEN: j = mt[j] + 1; continue
++            if k == 'p' and v in (',', ';', ')', ']', '}'): return j
++            if k == 'id' and v in _STMT and not P(j - 1, '.'): return j
++            j += 1
++        return j
++    out = []
++    def scope_block(i):   # 그 토큰을 감싼 { … } (없으면 파일 전체)
++        b = encl[i]; return (b, mt[b]) if b >= 0 else (0, len(tk) - 1)
++    def params(op, kind, body_from):   # ( … ) 인자 + 본문 범위
++        names = []
++        for x, y in items(op + 1, mt[op]): target(x, y, names)
++        b = body_from
++        hi = mt[b] if P(b, '{') else expr_end(b) - 1
++        for nm, at in names: out.append((nm, kind, at, depth[at], (op, hi)))
++    for i, (k, v, _) in enumerate(tk):
++        if k == 'id' and v in ('const', 'let', 'var') and not P(i - 1, '.') and not P(i + 1, ':') and not P(i + 1, '='):
++            j = i + 1
++            while j < len(tk):
++                names = []
++                if I(j): names.append((tk[j][1], j)); j += 1
++                elif P(j, '{') or P(j, '['): target(j, mt[j] + 1, names); j = mt[j] + 1
++                else: break
++                for nm, at in names: out.append((nm, v, at, depth[i], scope_block(i)))
++                if P(j, '='): j = expr_end(j + 1)
++                if P(j, ','): j += 1; continue
++                break
++        elif k == 'id' and v == 'function' and not P(i - 1, '.'):
++            j = i + 1
++            if P(j, '*'): j += 1
++            if I(j):
++                if not (P(i - 1, '=') or P(i - 1, '(') or P(i - 1, ',') or P(i - 1, ':')): out.append((tk[j][1], 'function', j, depth[i], scope_block(i)))   # 함수 선언 이름(식 안의 이름은 밖에 안 보임)
++                j += 1
++            if P(j, '('): params(j, '인자', mt[j] + 1)
++        elif k == 'id' and v == 'class' and I(i + 1) and not P(i - 1, '.'): out.append((tk[i + 1][1], 'class', i + 1, depth[i], scope_block(i)))
++        elif k == 'id' and v == 'catch' and P(i + 1, '(') and P(mt[i + 1] + 1, '{'): params(i + 1, 'catch', mt[i + 1] + 1)
++        elif k == 'p' and v == '=>':
++            if I(i - 1): b = i + 1; hi = mt[b] if P(b, '{') else expr_end(b) - 1; out.append((tk[i - 1][1], '인자', i - 1, depth[i - 1], (i - 1, hi)))
++            elif P(i - 1, ')'): params(mt[i - 1], '인자', i + 1)
++        elif k == 'p' and v == ')' and P(i + 1, '{') and I(mt[i] - 1) and tk[mt[i] - 1][1] not in _CTRL and tk[mt[i] - 1][1] != 'catch' and not (I(mt[i] - 2) and tk[mt[i] - 2][1] == 'function'):
++            params(mt[i], '인자', i + 1)   # 메서드 줄임꼴 이름(…){…}
++    return out, mt
++def js_of(path):
++    t = open(path, encoding='utf-8').read()
++    if path.endswith('.html'): return [(m.start(1), m.group(1)) for m in re.finditer(r'<script(?:\s[^>]*)?>(.*?)</script>', t, re.S)], t
++    return [(0, t)], t
++def shadow_lint(src, glob=GLOB, soft=SOFT, allow=(), own=True, gfields=None):
++    """src(JS 한 덩이) → (['✗ 글', …], 정보) · allow = [(이름, 선언 뒤 글 머리)]
++    own = 전역을 선언하는 코드 자신(허브 shell — 이름마다 가장 바깥 선언 하나가 전역) · False(num.js 등 딴 파일) = 어떤 선언이든 가림 · gfields = 전역 T의 필드(딴 파일은 허브에서 받아 씀)"""
++    tk = js_tokens(src); B, mt = js_bindings(tk); bad = []
++    top = {}   # 이름 → 가장 바깥(중괄호 깊이가 가장 얕은 const/let/var/function) 선언 = 전역 선언 자신
++    for nm, kind, at, dep, sc in B:
++        if kind != '인자' and kind != 'catch' and (nm not in top or dep < top[nm][0]): top[nm] = (dep, at)
++    isg = lambda nm, at: own and nm in top and top[nm][1] == at   # 전역 선언 자신
++    line = lambda at: src.count('\n', 0, tk[at][2]) + 1
++    ctx = lambda at: re.sub(r'\s+', ' ', src[max(0, tk[at][2] - 30):tk[at][2] + 50])
++    for nm, kind, at, dep, sc in B:
++        if nm in glob and not isg(nm, at):
++            after = re.sub(r'\s+', '', src[tk[at][2] + len(nm):tk[at][2] + len(nm) + 40])
++            if any(nm == a and after.startswith(h) for a, h in allow): continue
++            bad.append(f'{line(at)}줄 {kind} {nm} — 전역 {nm}를 가림 «{ctx(at)}»')
++    # T: 다시 선언한 범위들 · 그 밖에서 읽은 T.<필드> = 전역 필드
++    S = [(sc, at) for nm, kind, at, dep, sc in B if nm == soft and not isg(nm, at)]
++    use = [i for i in range(len(tk) - 2) if tk[i] [:2] == ('id', soft) and tk[i + 1][0] == 'p' and tk[i + 1][1] in ('.', '?.') and tk[i + 2][0] == 'id' and not (i and tk[i - 1][0] == 'p' and tk[i - 1][1] in ('.', '?.'))]
++    inside = lambda i: next((at for (lo, hi), at in S if lo <= i <= hi), None)
++    gf = {tk[i + 2][1] for i in use if inside(i) is None} if own else set(gfields or [])
++    if own and soft in top:   # 전역 T={…}의 키도
++        a = top[soft][1]
++        if a + 2 < len(tk) and tk[a + 1][1] == '=' and tk[a + 2][1] == '{':
++            j = a + 3; hi = mt[a + 2]
++            while j < hi:
++                if tk[j][0] == 'p' and tk[j][1] in _OPEN: j = mt[j] + 1; continue
++                if tk[j][0] == 'id' and tk[j + 1][1] in (':', ',', '}', '(') and tk[j - 1][1] in ('{', ','): gf.add(tk[j][1])
++                j += 1
++    for i in use:
++        at = inside(i)
++        if at is not None and tk[i + 2][1] in gf: bad.append(f'{line(i)}줄 {soft}.{tk[i + 2][1]} — {line(at)}줄에서 {soft}를 다시 선언한 범위 안에서 전역 {soft}의 필드를 읽음 «{ctx(i)}»')
++    return bad, {'tokens': len(tk), 'decls': len(B), 'soft': len(S), 'softat': sorted(line(at) for sc, at in S), 'gf': sorted(gf), 'top': {nm: line(top[nm][1]) for nm in glob + [soft] if own and nm in top}}
++# 린트 자체 검사 — 나쁜 예는 잡고 멀쩡한 예는 안 잡음
++_SELF = [("const QC={ns:'a'},NS=QC.ns;function f(){const Q=[];return Q.length+NS.length;}", 0),
++         ("const NS='a';function f(){const NS='b';return NS;}", 1), ("const LS={};const g=(a,LS)=>a;", 1), ("let CUR={};function f({CUR}){return CUR;}", 1),
++         ("const XS={};for(const [k,XS] of []){}", 1), ("var SYNC={};try{}catch(SYNC){}", 1), ("const PACKS={};function h(){function PACKS(){}}", 1),
++         ("const QC=1;const f=x=>{let a=1,QC=2;return a+QC;};", 1), ("const S=`a${(()=>{const NS=1;return NS;})()}b`;const NS=2;", 1),
++         ("const SUBJECTS=[];const o={m(SUBJECTS){return 1;}};", 1), ("const NS=1;const r=/[/'\"`]/.test('x')?{NS:1}:{a:NS};const o={NS,LS:2};o.NS=3;", 0),
++         ("const T={t0:0,inp:0};function a(){const T=[1,2];return T.length+T.map(x=>x).length;}function b(){return T.t0;}", 0),
++         ("const T={t0:0,inp:0};function a(q){const T=q.split(' ');return T.inp;}", 1), ("const T={t0:0};T.last=1;const f=(T,i)=>T.last+i;", 1),
++         ("const T={t0:0};function a(){const T=(k,v)=>k+v;return T('a','b');}function c(){return T.t0;}", 0)]
++sb = [(s, n, len(shadow_lint(s)[0])) for s, n in _SELF]
++ok(all((g > 0) == (n > 0) for s, n, g in sb), f'⑥ 린트 자체 검사 {len(_SELF)}개(나쁜 예는 잡고 멀쩡한 예는 안 잡음) {[s[:50] for s, n, g in sb if (g > 0) != (n > 0)][:3]}')
++GF = set()
++for f in ('cons/shell.html', 'num/num.js'):
++    try:
++        parts, whole = js_of(os.path.join(TOOLS, f)); bad = []; info = []; own = f.endswith('shell.html')
++        if own: parts = [max(parts, key=lambda x: len(x[1]))]   # 허브 본 코드(가장 긴 script) — 머리의 짧은 script는 따로 도는 조각
++        for off, src in parts:
++            b, st = shadow_lint(src, allow=[(a[1], a[2]) for a in ALLOW if a[0] == f], own=own, gfields=GF); l0 = whole.count('\n', 0, off)
++            if own:
++                GF |= set(st['gf']); miss = [g for g in GLOB + [SOFT] if g not in st['top']]
++                ok(not miss and len(GF) >= 10, f'⑥ {f}: 전역 선언을 찾음 {({k: v + l0 for k, v in st["top"].items()})} · 전역 {SOFT} 필드 {len(GF)}개 {miss}')
++            bad += [re.sub(r'^(\d+)줄', lambda m: f'{int(m.group(1)) + l0}줄', re.sub(r'— (\d+)줄에서', lambda m: f'— {int(m.group(1)) + l0}줄에서', x)) for x in b]; info.append(st)
++        ok(not bad, f'⑥ {f}: 전역 이름({"·".join(GLOB)})을 가리는 선언 0 · {SOFT}를 다시 선언한 범위 {sum(x["soft"] for x in info)}곳{[n + whole.count(chr(10), 0, parts[0][0]) for x in info for n in x["softat"]]}에서 전역 {SOFT} 필드 읽기 0 (토큰 {sum(x["tokens"] for x in info)} · 선언 {sum(x["decls"] for x in info)})')
++        for x in bad[:20]: print('       ✗ ' + x[:260])
++    except ValueError as ex:
++        ok(False, f'⑥ {f}: 코드를 읽지 못함(린트 분석기) — {ex}')
++if os.environ.get('JBL_LINT_ONLY'): done()
++from playwright.sync_api import sync_playwright
+ rel = build(); base = serve()
+ with sync_playwright() as p:
+     br = p.chromium.launch(); pg = br.new_page(); errs = []; pg.on('pageerror', lambda x: errs.append(str(x)[:200]))
+diff --git a/tools/tests4/qsite.py b/tools/tests4/qsite.py
+index b0393bea..7e3c7f5a 100644
+--- a/tools/tests4/qsite.py
++++ b/tools/tests4/qsite.py
+@@ -1,23 +1,83 @@
+ """tests4 공통 — 전환 뒤 모양의 미리 보기 사이트(4q = 뿌리, 3q = 3q/ — tools/rehub.py --site)를 만들고 한 주소(origin)로 띄움.
+-두 허브가 같은 localStorage·IndexedDB를 쓰는 실제 상황 그대로(jumi0814.github.io/jbl/ 와 /jbl/3q/)."""
++두 허브가 같은 localStorage·IndexedDB를 쓰는 실제 상황 그대로(jumi0814.github.io/jbl/ 와 /jbl/3q/).
++11-10 W0 시험용 사이트(fixture) build_fixture() — 지금 쿼터 정체성(4Q 저장 이름)으로 3Q 팩을 띄움: 4Q 코드 길(저장 이름·첫 실행 가져오기·동기화)을 진짜 내용으로 시험.
++  등록표 파일은 안 바꿈(부르는 동안만 quarters.sids를 덮어씀) · 자리 work/_tmp/fx(뿌리 = 4Q 정체성 + 3Q 7과목 · 3q/ = 3Q 허브 그대로 — ⇄ 링크가 살아 있음)
++  과목·강의·카드는 박지 말고 __h.PACKS에서 찾아 씀(아래 PACKINFO) — 4Q 내용이 차면 같은 테스트가 qsite 뿌리에서 그대로 돎."""
+ import os, sys, subprocess, threading, functools, http.server, socketserver
+ HERE = os.path.dirname(os.path.abspath(__file__)); TOOLS = os.path.dirname(HERE); ROOT = os.path.dirname(TOOLS)
+ sys.path.insert(0, TOOLS)
+ import quarters as QS
+ SITE = os.path.join(ROOT, 'work', '_tmp', 'qsite')
++FX = os.path.join(ROOT, 'work', '_tmp', 'fx')
+ PY = os.path.join(ROOT, '.venv', 'bin', 'python')
+ def build():
+     r = subprocess.run([PY if os.path.exists(PY) else sys.executable, os.path.join(TOOLS, 'rehub.py'), '--site', SITE], capture_output=True, text=True)
+     if r.returncode: sys.exit('rehub --site 실패\n' + r.stdout + r.stderr)
+     return {q: os.path.relpath(QS.cutover_dir(q, SITE), SITE).replace(os.sep, '/').strip('.').strip('/') for q in QS.QS}
++def build_fixture(stubs=False, out=None):
++    """시험용 사이트 — out(기본 work/_tmp/fx) 뿌리에 '지금 쿼터 정체성 + 내용 쿼터(보관 3Q) 팩' 허브, 그 아래 <3q>/에 3Q 허브 그대로.
++    stubs=True면 지금 쿼터의 진짜 과목 팩(자료 대기 빈 과목 등)도 3Q 과목 뒤에 같이 실음(빈 과목 ↔ 내용 있는 과목 사이 이동 시험용).
++    돌려주는 값 = {'dir','ident': 지금 쿼터 id,'content': 내용 쿼터 id,'rel': {쿼터: 사이트 안 상대 폴더},'sids': 뿌리 허브의 과목 목록}"""
++    http_ = os.environ.pop('JBL_HTTP', None)   # rehub → jblpaths가 JBL_HTTP=1이면 서버를 하나 더 띄움 — 여기선 필요 없음
++    try: import rehub
++    finally:
++        if http_ is not None: os.environ['JBL_HTTP'] = http_
++    fx = os.path.abspath(out or FX); cur = QS.current()
++    src = next((q for q in QS.QS if q != cur and QS.frozen(q) and QS.sids(q)), None)   # 내용이 있는 보관 쿼터(3q)
++    if not src: sys.exit('build_fixture: 내용이 있는 보관 쿼터가 없음')
++    L = {q: (fx if q == cur else os.path.join(fx, q)) for q in QS.QS}
++    s_src = QS.sids(src); s_cur = QS.sids(cur) if stubs else []; real = QS.sids
++    def fake(q=None):   # 이 호출 동안만: 지금 쿼터의 과목 = 내용 쿼터 과목(+ 진짜 과목) · 내용 쿼터로 넘길 과목은 없음(뿌리가 다 가짐)
++        q = q or QS.current(); return list(s_src) + list(s_cur) if q == cur else [] if q == src else real(q)
++    os.makedirs(os.path.join(fx, 'packs'), exist_ok=True)
++    if stubs:   # 지금 쿼터 진짜 팩 — rehub.one은 src(내용 쿼터)에 없는 과목을 건너뛰므로 먼저 BUILD를 박아 넣어 둠
++        import hashlib
++        B = hashlib.md5(open(os.path.join(TOOLS, 'cons', 'shell.html'), encoding='utf-8').read().encode('utf-8')).hexdigest()[:8]
++        for s in s_cur:
++            f0 = os.path.join(QS.docs_dir(cur), 'packs', s + '.js')
++            if os.path.exists(f0): open(os.path.join(fx, 'packs', s + '.js'), 'w', encoding='utf-8').write(rehub.restamp(open(f0, encoding='utf-8').read(), B, s))
++    else:   # 지난번 stubs=True로 남은 팩 치움
++        for s in QS.sids(cur):
++            f = os.path.join(fx, 'packs', s + '.js')
++            if os.path.exists(f): os.remove(f)
++    QS.sids = fake
++    try: B, bad, READY = rehub.one(cur, out=fx, src=QS.docs_dir(src), layout=L)
++    finally: QS.sids = real
++    n = os.path.join(fx, 'num'); n0 = os.path.join(QS.docs_dir(cur), 'num')   # 넘버링 모듈은 지금 쿼터 것(보관 쿼터 사본은 얼어 있음)
++    if os.path.islink(n) and os.readlink(n) != n0 and os.path.isdir(n0): os.remove(n); os.symlink(n0, n)
++    rehub.one(src, out=L[src], src=QS.docs_dir(src), layout=L)   # 3q/ = 3Q 허브 그대로(같은 주소에서 두 정체성)
++    return {'dir': fx, 'ident': cur, 'content': src, 'rel': {q: os.path.relpath(L[q], fx).replace(os.sep, '/').strip('.').strip('/') for q in L}, 'sids': READY}
+ class _H(http.server.SimpleHTTPRequestHandler):
+     def log_message(self, *a): pass
+-def serve():
++def serve(d=None):
+     socketserver.TCPServer.allow_reuse_address = True
+-    srv = socketserver.ThreadingTCPServer(('127.0.0.1', 0), functools.partial(_H, directory=SITE)); srv.daemon_threads = True
++    srv = socketserver.ThreadingTCPServer(('127.0.0.1', 0), functools.partial(_H, directory=d or SITE)); srv.daemon_threads = True
+     threading.Thread(target=srv.serve_forever, daemon=True).start()
+     return f'http://127.0.0.1:{srv.server_address[1]}/'
+ def url(base, rel): return base + (rel + '/' if rel else '') + 'index.html'
++# ---- 허브에서 과목·강의·문서를 찾는 공통 JS(11-10 — id를 박지 않음)
++READYJS = "()=>!!(window.__h&&__h.PACKS&&document.querySelector('.hkick,#stage'))"
++PACKSJS = "n=>!!(window.__h&&__h.PACKS&&Object.keys(__h.PACKS).length>=n)"
++PACKINFO = """()=>{const len=x=>x==null?0:(typeof x==='string'?x.length:JSON.stringify(x).length),o={};
++ for(const s of Object.keys(__h.PACKS)){const p=__h.PACKS[s],T=p.tables||[],P=p.preds||[],C=p.cards||{},sum=(a,f)=>(a||[]).reduce((n,i)=>n+len(f(i)),0);
++  o[s]={order:(p.order||[]).length,size:{_jb:sum(p.order,i=>C[i]),_tbl:sum(T.filter(x=>!x.sum),x=>x.html),_pred:sum(P,x=>x.html),_sum:len(p.sumall),_led:len(p.ledger)},
++   lect:(p.lect||[]).map(L=>({k:L.k,tabs:__h.docTabs(p,L.k).map(t=>t[0]),size:{learn:len(L.learn),sum:len(L.sum),tbl:sum(L.tbl,i=>(T[i]||{}).html),jb:sum(L.jb,i=>C[i]),pred:sum(L.pred,i=>(P[i]||{}).html)}}))};}
++ return o;}"""   # 과목마다 {order: JB 문항 수, size: 과목 문서 크기(글자), lect: [{k, tabs: 그 강의에 있는 탭, size: 탭 크기}]} — '가장 긴 문서' 고르기용
++NAVDOCS = "()=>[...document.querySelectorAll('#nav .nvd[data-d]')].map(b=>b.dataset.d)"   # 지금 과목 메뉴에 있는 과목 문서(_home·_jb·… — 없는 문서는 메뉴에 없음)
++def biggest(info, tab):
++    """PACKINFO 결과에서 그 탭(learn·sum·tbl·jb·pred) 또는 과목 문서(_jb·_tbl·_pred·_sum)가 가장 큰 (과목, 문서, 탭, 크기) — 없으면 None"""
++    best = None
++    for s, v in info.items():
++        if tab[0] == '_':
++            c = (v['size'].get(tab, 0), s, tab, tab)
++        else:
++            c = max(((L['size'].get(tab, 0), s, L['k'], tab) for L in v['lect'] if tab in L['tabs']), default=None)
++        if c and c[0] > 0 and (best is None or c[0] > best[0]): best = c
++    return best and (best[1], best[2], best[3], best[0])
++def wait_hub(pg, n=1, timeout=120000):
++    """허브가 뜨고 과목 팩 n개 이상을 받을 때까지(빈 쿼터면 n=0)"""
++    pg.wait_for_function(READYJS, timeout=timeout)
++    if n: pg.wait_for_function(PACKSJS, arg=n, timeout=timeout)
+ fail = []
+ def ok(c, m):
+     print(('  OK  ' if c else '  FAIL') + ' ' + m)
