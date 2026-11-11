@@ -47,7 +47,7 @@ def qcfg(q, docs=None, layout=None):
                 links=links,
                 bcAll=REG.get('bcAll') or '',   # 11-10 T3 쿼터 공용 시계 채널(모든 쿼터가 같은 값 — 정체성 아님)
                 importFrom=({'ns': QS[imp]['ident']['ns'], 'syncKey': QS[imp]['ident']['syncKey'], 'label': QS[imp]['label']} if imp else None),
-                others=[{'ns': QS[o]['ident']['ns'], 'syncKey': QS[o]['ident']['syncKey'], 'label': QS[o]['label']} for o in QS if o != q])
+                others=[{'ns': QS[o]['ident']['ns'], 'syncKey': QS[o]['ident']['syncKey'], 'label': QS[o]['label'], 'bakApp': QS[o]['ident'].get('bakApp', '')} for o in QS if o != q])   # 11-11 bakApp = 다른 쿼터 백업 파일 알아보기(허브 fileRestore — 넣지는 않고 안내만)
 
 _js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 def fill_index(shell, q, READY, PV, PSZ, BUILD, docs=None, inline=None, jsf=_js, layout=None):
