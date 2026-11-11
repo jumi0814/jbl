@@ -1,7 +1,7 @@
 # 사용자 눈 최종 점검표 — 사용자가 실제로 지적했던 것을 하나씩 다시 본다
 
 > G단계 3(빌드 뒤 — SKILL.md G)에서 과목마다 QA 담당이 **화면 덤프·스크린샷 기준으로** 전부 확인. 하나라도 걸리면 그 단계 담당 방식으로 고치고 다시 빌드. 괄호 = 처음 지적한 날·원문 요지.
-> 4Q 과목(11-04 — RULES 14)은 97~99도 · 6·36·38·92·93의 '25 그림 병기'·'26에서 빠짐 표시'는 3Q 보관 과목만(4Q는 거꾸로 — 있으면 ✗). (11-10: 4Q 과목은 97~101)
+> 4Q 과목(11-04 — RULES 14)은 97~99도 · 6·36·38·92·93의 '25 그림 병기'·'26에서 빠짐 표시'는 3Q 보관 과목만(4Q는 거꾸로 — 있으면 ✗). (11-10: 4Q 과목은 97~102)
 > **확인 명령 읽는 법(11-10 — 4Q 배치)**: ① 아래 번호에 적힌 `tools/tests/…py`는 **3Q 스테이징 허브**를 봄(tools/jblpaths.py — tools/tests 안에서 돌면 3q · 먼저 `.venv/bin/python tools/rehub.py --q 3q --stage`) → '허브 코드가 3Q 내용에서 그 동작을 지키는지'의 회귀로 읽고(허브 코드를 고쳤을 때 메인이 돌림 · 기준 실패 목록 = `tools/tests/STATUS.json` — 없으면 `guide/handoff/UPD_4Q_진행.md` 재개 메모), **4Q 과목 화면**은 `.venv/bin/python tools/tests4/q_*.py`(쿼터 범용)·`JBL_HTTP=1 .venv/bin/python tools/verify.py`(4Q docs)·스크린샷(`JBL_HTTP=1 .venv/bin/python tools/qa_shots.py <SID> <KEY>`)·화면 덤프(dump_breaks2·dump_jb·scan_render — 4Q 팩을 읽음)로 확인 ② `docs/packs/<SID>…` = 그 과목 쿼터의 팩 폴더 `$(.venv/bin/python tools/quarters.py docs <쿼터>)/packs/`(4Q = docs/packs · 3Q = docs/3q/packs · 파이썬 `J.pack_path`) ③ `work/<SID>/review/questions.md`·`qids.json`이 없으면 먼저 `.venv/bin/python tools/dump_review.py <SID>` ④ 과목 수('6과목'·'7과목') = 3Q 때 수 — 등록표 `tools/quarters.py sids`.
 
 ## A. 정리본 내용
@@ -10,7 +10,7 @@
 3. 26 자료가 메인, 25는 참고(보조 키)·26에서 바뀐 수치·용어가 25 그대로 남지 않음. (10-05)
 4. 26 필기 '강조·시험·중요·★' 메모가 💬/⭐/⚡/예상문제 중 어딘가에 다 반영. (10-04)
 5. 자료 밖 사실·약어 없음 — `check_abbr` 새 약어 0(그림 속 글자는 쪽 이미지로 확인). (09-20·'ITP')
-6. 그림이 해당 내용 바로 아래, 잘리지 않음, 화질 선명, 25 필기 강조 쪽은 25 그림도(4Q 과목은 QA 97 — 25 그림은 기출 그림만) · 새 그림 팩(`docs/packs/<SID>.img.<KEY>.js`) 크기가 다른 강의와 비슷(느려지지 않게). (09-20·10-03·10-04)
+6. 그림이 해당 내용 바로 아래, 잘리지 않음, 화질 선명, 25 필기 강조 쪽은 25 그림도(4Q 과목은 QA 97 — 25 그림은 기출 그림만) · 새 그림 팩(`docs/packs/<SID>.img.<KEY>.js`) 크기가 다른 강의와 비슷(느려지지 않게). (09-20·10-03·10-04) (11-10: 4Q는 그림 파일 방식이라 묶음 `<SID>.img.<KEY>.js`가 없음 — 크기는 build4 끝 줄 '그림 파일(packs/img/<SID>) … 가장 큰 파일'로 · QA 102)
 
 ## B. JB
 7. 현 교수 기출 전부 ⭐에 연결(빌드 로그 '연결 안 된' 0) · ⭐ 답 = JB 답 낱말 그대로·나열 전부. · JB 답 ≠ 슬라이드면 ⚠로 둘 다(diff 문항 — 10-03 결정) · B/C 등급은 '참고' 칩(⭐ 연결 의무 없음) (09-20)
@@ -122,6 +122,7 @@
 99. (11-04 4Q 과목) 임시 강의: 26 자료가 아직 없어 25로 쓴 강의(LECMAP 이름 '(25)')의 `@UPD` 첫 줄 = `25 자료 임시 — 26 수업 뒤 26 기준으로 다시(…)` — 없으면 ✗(check_25only (b) '머리 없음') · 26이 온 강의는 그 줄이 없고(check_25only '머리가 남음' 0) 26 흐름으로 다시 짰는지(RULES 14 b — 25 전용 내용은 JB 근거 📜 줄만, 나머지 지움) · 배포 보고에 강의마다 표시 위치 잃음 수(legacy_restore LOST_GONE — '그냥 지움' 몫)가 있는지 · 📝 메모 수는 같음(QA 24).
 100. (11-10 4Q 과목 — 줄바꿈 12번 지적 '같은 지시 또 안하게끔' · 별 기호) 작성·검토·구조 정돈·예상 담당 보고마다 **'끝내기 전 줄바꿈 검사'** 결과 한 줄('줄바꿈: check_lec ✗0 · dump_breaks 나뉘는 줄 n개 다 봄 · 고친 줄 m')이 있는지 — 없으면 그 담당에게 다시 · `.venv/bin/python tools/check_lec.py <SID>` ✗0(4Q는 '줄바꿈: 화면 조각이 이어지는 부호로 시작'·'★·☆' ✗ 포함 · 경고 '줄바꿈 의심'·'170자 넘는 한 덩어리'·'⭐(E:) 줄에 ★'·표/annot/예상/N제 ★ 줄은 하나씩 열어 봄) · 빌드 뒤 `tools/dump_breaks2.py <SID>` ⚑ 덩어리 전부 · `tools/scan_render.py <SID>` PASS · `tools/check_breaks_jb.py <SID>` 0 · `tools/check_numbering.py <SID>` 새 0(이 넷은 빌드된 4Q 팩을 읽음) · 화면에 ★가 보이는 곳 = 내 북마크 단추뿐(원고에서 온 ★ 0).
 101. (11-10 4Q 과목 — 사용자 11-04 '예상문제도 출제경향에 잘 맞추서' · RULES 14 c ⑥) 예상·N제: ① 상마다 why 첫머리에 근거 꼴('26 새 표'·'기출 쪽 옆 칸'·'2~4년 전 1회 기출'·'직전 해 문장 축' …)이 있고 **비율로 상을 깎지 않았는지**(26 새·바뀐 쪽 목록·표, 기출 쪽 다른 칸·행, 옛 1회 기출이 중·하로 남으면 ✗ — `pred_check <SID>` 강의 줄의 상/활성으로 절반을 넘는 강의만 why를 한 번 더) ② 수업 강조·예고만으로 상인 문항 0 ③ 교수가 바뀐 강의 = 옛 교수 꼴·새 교수 꼴 상 1개 이상씩 · 단답 자리를 객관식 선지로 갈음한 곳 0 ④ TREND '피할 꼴'에 빈칸·그림 없음 · 옛 교수·다른 강의 축을 '피할 것'으로 뺀 곳 0 ⑤ 옛 교수 수업 '시험 무관' 필기로 낮춘 문항·카드 0(RULES 1) ⑥ 'JB 그대로' 문항을 예상에 따로 내지 않았고, 짤 교수마다 **'직전 2년 기출 먼저' 줄**이 과목 홈 교수별 경향(`subject.py TREND_NOTE`)·강의 박스 `@TIP`·N제 머리(`FINAL_NOTE`)에 있는지(`grep -n '직전 2년' tools/<sid>/subject.py tools/<sid>/lec_*.txt`) ⑦ 담당 보고에 '읽음: RULES 14 c ⑥ · guide/prof/<교수>.md · guide/handoff/hit26/HIT_<3Q 같은 과목>.md'가 있는지.
+102. (11-10~11 4Q 과목 — 그림 파일 방식 · `tools/quarters.json` 4q `"img": "files"` · SPEC '그림 파일 방식') 그림이 있는 4Q 과목을 낸 뒤: ① 팩 옆에 묶음 `<SID>.img.<KEY>.js`가 **없고** `docs/packs/img/<SID>/<키>.<h8>.webp|jpg` + 팩 `imgf` + `tools/<sid>/img_lock.json`이 있는지 — **커밋에 셋을 같이**(`git status --short docs/packs/img/<SID> tools/<sid>/img_lock.json` · 그림 폴더가 빠지면 사이트 그림이 안 뜨고, 잠금 파일이 빠지면 다음 빌드에서 그림 주소가 흔들림) ② `JBL_HTTP=1 .venv/bin/python tools/verify.py` 1a(imgf에 적힌 파일이 다 있음 · 이름의 h8 = 파일 md5 앞 8자 · 디코드) PASS · `.venv/bin/python tools/check_links.py <SID>` ✗0(인용 칩 쪽·📖 정리본 칩·기출 칩·JB 원본 쪽 단추·imgf 파일 — 3Q 보관 팩은 `JBL_Q=3q .venv/bin/python tools/check_links.py` · '알려진 것 5'(GERI 1·PHARM 4)는 FAIL 아님, 새 ✗만 문제) ③ 화면에서 학습 카드 그림·그림 창 쪽 넘김·JB 원본 쪽·예상 `f=` 그림·그림빵이 뜨는지(스크린샷) — 허브 쪽 회귀 `tools/tests4/q_img.py`(그림 파일 읽기 · 못 받으면 자리 표시 '그림을 받지 못했어요 · ↻ 다시')·`q_imgbuild.py`(build4 그림 파일 빌드) ④ 중간 배포(QA 54)에서 빠진 강의의 그림 키가 팩 imgf에 0 ⑤ 허브를 고친 뒤 4Q·범용 회귀(11-10~11 새 시험): `tools/tests4/q_stub.py`(빈 과목 '자료 대기' 화면)·`q_links.py`(이동·↩ 같은 자리)·`q_timer.py`(공부 시간 — 잠든 시간 빼기)·`q_store.py`(저장 공간·형광펜 자리)·`q_backup.py`(백업·넘버링 기록) — 하나씩 돌림.
 
 ## 스크린샷으로 꼭 볼 것(과목마다)
 - 바뀐 강의마다 카드 3장(⭐ 많은 카드 1 + 26 새 내용 카드 1 + 26 강조 카드 1) + 알약을 펼친 강의 틀 1장 + 카드 목록 메뉴('카드 n/m ▾') 1장의 학습 화면 · ⚡ 블록 · 그 카드 기출 1문항의 JB 답·🎯 요점·대조 펼친 화면.

@@ -34,8 +34,8 @@
 - 방법: 허브 = tools/cons/shell.html **한 번에 한 담당**(긴 줄이라 합치기 충돌) → sync_common → rehub → 3Q 스테이징 회귀(JBL_Q=3q · rehub --q 3q --stage) + tests4 → 묶음마다 커밋·배포 · shell을 안 건드리는 일(build4·테스트 도구·스킬 문서)은 나란히
 - [ ] W0 안전망: tests4/qsite 시험용 사이트(4Q 정체성 + 3Q 팩) · tools/tests/STATUS.json(기준 실패 37 정리) · q_ident 린트 넓히기 · 성능 기준
 - [x] (11-10 배포 1 — main c37b69a8) W1 빈 과목(isStub·build4 stub)·그림 다시 받기(needImages)·이동(↩ y·검색·없는 화면 주소·라벨 통일) → 배포 1
-- [ ] W2 4Q 규칙·스킬(적중 분석 후보 20여 줄 → RULES 14 c ⑥ · 상 비율 충돌 · AGENTS T·P·FN·PA·Q4_RULES_BRIEF · 옛 배치 · check_lec ★·줄바꿈)
-- [ ] W3 4Q 그림 파일(build4 imgf·img_lock · 허브 그림 주소 한 곳 · 묶음 방식 메모리 비움) → 배포 2
+- [x] (11-11 배포 4와 함께 · 보고 DONE_W2.md — 메인 몫: TREND·P·FN 지시문에 HIT_<3Q 과목> 채우기 · subject.py TREND_NOTE '직전 2년 기출 먼저' · 사용자 확인 12건은 끝 보고) W2 4Q 규칙·스킬(적중 분석 후보 20여 줄 → RULES 14 c ⑥ · 상 비율 충돌 · AGENTS T·P·FN·PA·Q4_RULES_BRIEF · 옛 배치 · check_lec ★·줄바꿈)
+- [x] (11-11 배포 4 · 보고 DONE_W3_허브.md·DONE_빌드.md — 허브 imgUrl 한 곳 · 파일 다시 받기·자리 표시 · 묶음(3Q) 비움 + fetch · 넘버링 그림 lecFill·lecWait) W3 4Q 그림 파일(build4 imgf·img_lock · 허브 그림 주소 한 곳 · 묶음 방식 메모리 비움) → 배포 2
 - [x] (11-11 배포 2 · 보고 DONE_W4.md — 남은 다듬기 2개는 W5 담당 0번: 잠든 시간 알림은 ✕·되돌리기까지 남김 · 되돌리기 = 세션도 이어 감) W4 공부 시간(잠든 시간 자동 빼기 + 되돌리기 · 시계 뒤로 · cls · tedit 누적 · 쿼터 공용 채널 · qimport2) → 배포 3
 - [x] (11-11 배포 3 · 보고 DONE_W5.md — 메인 결정: 넘버링을 되돌리면 u를 지금으로(되돌린 판이 동기화에서 이기게 — W3 허브 담당 0번) · dj 표시는 데이터만 · 3Q 허브는 끝에 한 번) W5 기록(저장 공간 안내·밀린 쓰기 · 넘버링 되돌리기·old 저장소 · 복습 채점 동기화 · 403/429 · jbMove → 넘버링 · pick 문맥 · ★ 수) → 배포 4
 - [ ] W6 렉(표 맞춤 읽기/쓰기 분리·보이는 표 먼저·기억 · 그리기 뒤 일 미루기 · 2단계 높이 기억 + content-visibility는 스위치 뒤) → 배포 5
@@ -47,6 +47,8 @@
 
 ## 받을 자료(사용자에게 보낸 순서)
 1. 4Q 과목표(과목명·교수·강의 제목·주차 · 3Q와 이어지는 과목) 2. 2026 3Q 실제 기출 3. 4Q JB(판본 전부 · `20YY 4Q <과목> JB.pdf`) 4. 26 강의자료+필기 5. 25 강의자료+필기(26이 없는 강의 · 교과서) 6. 학기 중 새 26 강의
+
+- **재개 메모 5(11-11 10:55 UTC)**: 배포 4(W3 허브 + W2 문서) 끝 · 다음 = W0 가벼운 안전망(worktree 브랜치 worktree-agent-ac5912c51bbd11a94 273be7ec를 합쳐 이어서 — q_pos가 W6의 안전판) → W6 렉(agents/UPG_H5_렉.md) → W7 디자인·색 리뉴얼(agents/UPG_H6_디자인.md) → 3Q 허브 다시 내기(JBL_UNFREEZE=1 rehub --q 3q + num) · ux_all 전체 · 끝 보고 · 담당은 한 번에 하나.
 
 ## 재개 메모
 - 3Q 기준 회귀: scratchpad worktree base3q(3q-final) — `work/_tmp/base_ux_all.log` · 새 코드 회귀는 기준이 끝난 뒤 같은 명령(JBL_HTTP=1 ux_all)
