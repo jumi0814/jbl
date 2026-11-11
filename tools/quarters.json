@@ -1,6 +1,8 @@
 {
  "_doc": "분기 등록표(11-04 4Q 계획) — 분기마다 docs 폴더·이름·저장 정체성, 과목마다 분기·이름·색. 읽기·검사 = tools/quarters.py. 3q 정체성 값은 3Q 허브의 원래 상수 그대로(바꾸면 3Q 기록이 안 보임). 전환(cut-over) 때 current·docs·frozen을 바꿈.",
  "current": "4q",
+ "bcAll": "jbl-timer",
+ "_bcAll": "쿼터 공용 시계 채널(11-10 T3 — BroadcastChannel 이름 · 두 허브가 서로 '지금 재는 중'을 알림 · 쿼터 정체성 값(ident)과 달라야 함 — quarters.py check)",
  "cutover": {
   "_doc": "전환 뒤 자리(tools/rehub.py --site 미리 보기·tools/cutover.py가 씀)",
   "4q": "docs",

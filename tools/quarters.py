@@ -45,6 +45,7 @@ def qcfg(q, docs=None, layout=None):
                 subjects=[[s, SUBJ[s]['ko'], SUBJ[s]['short']] for s in sub],
                 colors={s: SUBJ[s]['color'] for s in sub},
                 links=links,
+                bcAll=REG.get('bcAll') or '',   # 11-10 T3 쿼터 공용 시계 채널(모든 쿼터가 같은 값 — 정체성 아님)
                 importFrom=({'ns': QS[imp]['ident']['ns'], 'syncKey': QS[imp]['ident']['syncKey'], 'label': QS[imp]['label']} if imp else None),
                 others=[{'ns': QS[o]['ident']['ns'], 'syncKey': QS[o]['ident']['syncKey'], 'label': QS[o]['label']} for o in QS if o != q])
 
@@ -105,6 +106,7 @@ def check():
             if a != b and b.startswith(a + ' '): err.append(f'Gist 머리 {b!r}가 {a!r} 다음 공백으로 시작함')
     docs = [QS[q]['docs'] for q in QS]
     if len(set(docs)) != len(docs): err.append('분기 docs 폴더가 겹침')
+    if REG.get('bcAll') and REG['bcAll'] in seen: err.append(f"bcAll = {REG['bcAll']!r} — 분기 {seen[REG['bcAll']]}의 정체성 값과 같음(공용 채널은 달라야 함)")   # 11-10 T3
     return err
 
 if __name__ == '__main__':
