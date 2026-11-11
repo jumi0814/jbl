@@ -364,7 +364,7 @@ M: ⚡ 암기 줄({r:} 포함)
 | trest | {날짜:ms} | ☕ 휴식(합계에 절대 안 씀) | 날짜별 큰 값 · 기기 백업은 timeDev[id] |
 | tgoalDay | {날짜:분} | 날짜별 목표(없으면 tgoal) | 이 기기 값 우선 |
 | tstate | {st,t0,seg,S,D,at,d} | 측정 상태(세션·쉬기·종료) | 합치지 않음(MSKIP) |
-| tstate.slp | {a,b,S,D,at} | 11-10 W4 '잠든 시간' 알림(되돌리기 전까지) | 합치지 않음(MSKIP 머리 tstate) |
+| tstate.slp | {a,b,S,D,at,t0,sum,rsum} | 11-10 W4 '잠든 시간' 알림(되돌리기 전까지) | 합치지 않음(MSKIP 머리 tstate) |
 | sessAsk · restAuto · restMax | 분 · 불리언 · 분 | 세션 안전장치 · 자동 휴식 | 없을 때만 채움 |
 | calTab · navExp · navSec | 'cal'\|'stats' · {S:1} · {res:1} | 달력 하위 탭 · 메뉴 펼침 · 이어서 접기 | 없을 때만 채움 |
 | bcol · hcol · blabel | 'n'\|'u'\|'g'\|'p'\|'v' · 형광펜 색 · {c:글} | 빈칸 색 · 마지막 형광펜 색 · 빈칸 라벨 | 없을 때만 채움 |
@@ -683,7 +683,8 @@ M: ⚡ 암기 줄({r:} 포함)
   - `idle < A` → 지금처럼 전부 셈(화면이 잠긴 채 책으로 공부).
   - `idle ≥ A`(A > 0) → **묻지 않고** `trSleep(now)`: `trStop(li + 1분, …, quiet)`(간격은 먼저 기록하지 않음 — `sessFlush`가 잠든 상태면 아무것도 안 쓰고 `at`·`li`도 그대로 둠 · 이미 기록한 뒷부분은 `tUnrec`) → 알림 띠 `trBand('slept', G)` **'잠든 n시간 n분은 공부 시간에서 뺐어요 [되돌리기] [✕]'**(`slpShow` — G = {a: 끊은 때, b: min(지금, t0+12시간), S, D, at} · LS `tstate.slp` 기기 전용(MSKIP 머리 'tstate') — 새로고침·탭 버림 뒤에도 12시간 안이면 다시 띄움 · 같은 허브의 다른 창에도(storage)).
   - **되돌리기** `slpBack()` = 뺀 구간 [a, b)를 그 세션 과목·문서에 달력 '+ 시간 추가'와 같은 꼴로(`tSplit`으로 06:00에서 나눔 → tseg 'm' 구간 + `teLog` k:'add' 한 묶음(p) · sa) → 알림 '뺀 n시간 n분을 <과목> 공부 시간에 다시 넣었어요 [되돌리기]'(`teToast` — 있던 시간 고침 되돌리기 길 `undoEdit` · 통계 탭 '고친 기록' ✕도 같음). 세션은 끝난 채(자동 측정이 켜져 있으면 움직일 때 다시 잼).
-  - 알림은 다른 띠 정리(`trBand()` — ▶ 시작 등)에 지워지지 않음 · 닫힘 = [되돌리기]·[✕]·**다음 입력 30초 뒤**(`slpEnd`).
+  - 알림은 다른 띠 정리(`trBand()` — ▶ 시작 등)에 지워지지 않음 · 닫힘 = [되돌리기]·[✕]뿐(**11-11 메인 결정 — 저절로 닫히지 않음** · 옛: 다음 입력 30초 뒤 · 12시간 지난 알림만 시작 때 버림).
+  - **11-11 메인 결정 — [되돌리기]는 세션도 이어 감**: `slpBack()`이 시간을 다시 넣은 뒤 `tstate`를 다시 씀(같은 t0 · sum = 끊은 때까지 합계(G.sum) + 다시 넣은 시간 · seg·li = 지금 · 이 창 소유 · 과목 화면이면 그 문서) → 알림 '뺀 n시간 n분을 다시 넣고 이어서 재요 [되돌리기]'(이 [되돌리기] = `undoEdit` + `trStop(이어 간 때, …, quiet)` — 다시 빼고 세션 끝). G에 `t0·sum·rsum` 추가(`trSleep`). 시간만 다시 넣는 경우(글은 옛 그대로): 그사이 손으로 ▶·☕·■를 눌러 tstate가 있을 때 · t0+12시간이 지났을 때 · 옛 판이 남긴 알림(t0 없음). 깬 때~누른 때 사이는 세션에 안 넣음.
   - 판정 자리: `trTick` 맨 앞(12시간 상한·20초 기록보다 먼저) · 입력 맨 앞(`tAct` — 깨우는 첫 입력이 '마지막 입력'을 덮기 전) · 보이게 될 때(visibilitychange)·pageshow에서 바로 `trTick` · 시작 때(옛 '켜진 채 닫힌 세션' 질문 자리보다 먼저 — idle ≥ A면 질문 대신 같은 길) · ■·☕·세션 과목 바꾸기 앞.
   - 시계 숫자: `sessLim(ts, now)` = 잠든 상태면 `max(seg, li + 1분)`, 아니면 `min(now, t0 + 12시간)` — `trSessMs`·`trFocusMs`·`sessLiveFor`가 씀(부푼 숫자가 잠깐도 안 보임).
   - 그대로인 것: 깨어 있는 채 입력만 없는 경우(g < 90초 — A에서 되묻기 띠 → 30분 뒤 li + 1분) · 되묻기 '끄기'(A = 0 — 12시간 상한) · 06:00 하루 경계 · 자동 측정·휴식 규칙.
@@ -695,3 +696,17 @@ M: ⚡ 암기 줄({r:} 포함)
   - 수동 세션을 기록 중인 창이 5초마다 `{k:'sess', q, on:1}`(쉬기·끝·닫힘이면 곧바로 on:0 — `tQBeat`) → 다른 쿼터 창은 `T.oq`(150초까지 믿음 — 꺼진 탭은 타이머가 1분마다) 동안 `tOQ()` = 참: 자동 측정을 멈추고(`tStop`) 시작하지 않음(`tStart(auto)`) · 상태 'other'(다른 창에서 측정 중) · 허브 자동 휴식도 안 함.
   - 자동 측정끼리: 입력이 있는 창이 `{k:'own', q, run}` → 다른 쿼터의 자동 측정은 멈춤(같은 쿼터 TBC 규칙과 같음 — 마지막으로 입력이 있었던 창 하나만). 수동 ▶는 그대로. 3Q 허브는 index를 다시 만들 때부터(docs/3q는 frozen — 그 전엔 4Q 쪽만 알림을 보내고 3Q의 알림은 없음).
 - 새 LS 키: `tstate.slp`(기기 전용) · `qimport2`. tedit 형식은 그대로(선택 필드 `ag`). 회귀 고리 `__h.{trSleep,sessSlept,slpBack,trTick,tUnrec,tOQ}` · 테스트 `tools/tests4/q_timer.py`(가짜 시계 — 100분·30분·8시간(시작 때 길·06:00 경계)·23:00→07:00·되묻기 끔 12시간·시계 뒤로(세션·자동)·cls·tedit 한 줄·qimport2·두 쿼터 창 — 4Q 뿌리와 3q/ 둘 다).
+
+## 11-11 W5 — 기록(저장·백업·동기화·넘버링·형광펜)(전면 점검 묶음 5 · guide/handoff/upg1110/R_DATA…md B·C·D·E·F · 보고 DONE_W5.md)
+원칙: 기록을 건드리는 고침은 먼저 `autoBak` · 지우지 않음(지움 표시·밀린 판) · 옛 판 기기가 읽어도 안 깨지는 꼴. 3Q 허브(docs/3q — frozen)는 index·num을 다시 낼 때부터(그 전엔 4Q 허브만).
+- **넘버링 복습 평가 지움·바꿈(C2)**: `num.r.<과목>.<id>.h` = 회차(s)마다 한 줄. 평가를 다시 눌러 지우면 줄을 빼지 않고 **지움 표시 `{t, s, x:1}`**(m 없음 — num.js `markSet`). 합치기(`mergeData`의 num.r 가지 — 백업 합치기·동기화 SYNCLOG 길·둘 다 바뀜 길 모두) = **회차 s마다 가장 최근 t가 이김**(같은 t면 지움 표시 · s 없는 줄은 t로) · 최근 평가 m·d = 지움 표시가 아닌 마지막 줄(num.js `hNorm`·`rLast`와 같은 규칙). 읽는 쪽은 x를 건너뜀(`hLive` — 이력 수·이력 목록·회차 표·지난 평가). 처음 한 번 중복 정리 = 과목 복습을 열 때 '같은 회차 두 줄'이 있으면 자동 백업 뒤 고쳐 씀(`rFix`). 옛 판 기기: 지움 표시를 '—'로 읽음 · 옛 판이 합집합이나 옛 줄을 다시 올려도 새 판에서는 최근 t가 이김 · 번갈아 올리지 않음(q_sync ④⑤). `num.rl`(끝낸 회차)은 합집합 그대로(지우는 길 없음).
+- **기출 번호 옮김 → 넘버링(C1)**: `jbMoveNum(s)`(migLS → `migNum` — xsReady 뒤 · `migBak` 뒤) = 모든 `num.i.*`의 JB 출처 `src[].id`·`ref.id` 'S:옛 → S:새'(문제 키·id·u 그대로 · 저장소 계층 stKeys·stGet·stSet · 고친 키는 `syncNote`). 한 번 표시 LS `jbmovedN.<S>.<jbmovev>`(MSKIP 머리 jbmoved · `migFlagsReset`에 포함). 같은 넘버링 과목에 새 번호 출처 문제가 이미 있으면 둘 다 두고 더 최근(u) 쪽에 `dj {id, at}`.
+- **형광펜 위치(B1)**: `pick(t,L,o,vd)` — 블록 글이 저장 때와 다르고(`vd` = o.v 있고 지금 지문과 다름) 후보가 하나뿐이면 표시 글 12자 미만은 문맥 점수 ≥ need일 때만(옛 4자) · 아니면 위치 잃음(🖍 복구 목록 · bridge는 그대로). **★ 카드(B3)**: `cbmN` = 지금 있는 카드(aid·이어받은 옛 aid)만 · `migrateAids`가 cbm(옛 aid → 새 카드)·lrd(옛 강의 키 → 새 강의 키 — `lecAlias`: 카드 alt가 한 강의로만 이어지고 옛 키 강의가 없을 때)도.
+- **저장 공간(D3·D4)**: `oqList`(QC.others 기록 크기 + 그 허브 주소) → 저장 공간 창(`oqLine` — 50KB↑)·허브 홈 경고·저장 실패 띠(`oqBig` — 200KB↑이면서 한도 10%↑)에 '다른 쿼터(3쿼터) 기록 n MB — 3Q 허브에서 정리하기'(주소 + `#/_clean` = 허브 홈 + 복원 창 🧹 공간 정리 펼침 — parseHash·route). 밀린 쓰기(LSQ·IDB lsq): 14일 버림 없음 — 써질 때까지 · 줄마다 처음 밀린 때 `LQ.at`(띠 '· 가장 오래된 것 n월 n일'). 다른 쿼터 백업 파일 = `QC.others[].bakApp`(quarters.py qcfg)로 알아봐 'n쿼터 백업 파일이에요 — nQ 허브(⇄)에서 넣어 주세요'(넣지 않음).
+- **밀린 값 합쳐 쓰기((b)2)**: ann.·mk.가 처음 밀릴 때 저장돼 있던 값의 지문 `LQ.b`(대기열 줄 `b`) → `lsFlush`·`lqReplay`가 다시 쓸 때 저장된 값이 그때와 다르면 `syncMerge3(k,'',밀린 값,저장된 값)`로 합쳐 씀(+ syncNote) · 같으면 덮어씀.
+- **넘버링도 이 시점으로(D1)**: 복원 창 선택 칸 `#rnum`(기본 끔) → `studyReplace(data, why, dev, num)`이 `numPlan`(NUMK = num.i·x·r·rl·rs·num.subj·exam. — set·del + 미리 보기 수 newer·chg·add·gone)·`numApply`(stSet·stDel · 실패하면 넘버링만 원래대로)로 넘버링 키도 백업 것으로. 확인 창에 `numAsk` 글. snapRestore·fileRestore('over', {num}) 둘 다.
+- **밀린 판(D2)**: IDB xs 'old' 줄 `{k, v, at, why, dev}` — 30일·200줄(`OLD_DAYS`·`OLD_MAX`) 넘으면 정리 · 거울 `XS.old`(`xsOldLoad`) · 복원 창 '📜 다른 기기에 밀린 넘버링 판 n개'(`oldHTML` — num.i 줄만 · 제목·때·기기·까닭 · 최근 60) · [되살리기] `oldRevive(id)`(autoBak → 그 판으로(u = 지금) → 지금 것은 old로 '되살리기 전' → syncNote) · 백업 파일 `bakFile().old` → 받는 쪽 `xsOldIn`(합치기·교체 · 같은 줄 한 번만).
+- **GitHub 403/429(E3)**: `gh`가 `x-ratelimit-remaining`·`x-ratelimit-reset`·`retry-after`·본문으로 `e.kind` 'limit'|'perm' + `e.until`. limit = 'GitHub 요청 한도 — HH:MM쯤 다시' + 그때까지 `SYNC.back`(상한 65분). perm = '토큰에 Gist 권한이 없어요 — gist 권한이 있는 토큰으로 다시 연결해 주세요' + `SYNC.perm`(저절로 되풀이 안 함 — 새 토큰 연결·[지금 동기화](tnow·force)·새로고침 때만 · 성공하면 풀림). **Gist 목록(E4)**: 짧은 쪽이 나올 때까지 · 상한 `SYNC_PGMAX` 30쪽(닿으면 오류 알림 한 번).
+- **넘버링(F1~F3 — num.js)**: 떠날 때 열린 '새 문제' 글 = LS `num.draft`(이 기기 · 저장·손으로 닫으면 지움 — `draftKeep`·`draftDrop`) → [새 문제]를 다시 열면 이어 쓰기 · ChatGPT 가져오기/미리 보기 = 넣은 글을 창 메모리에(다시 열면 붙여 넣기 칸에) · Word 파일 이름 날짜 = `H.day()` · 가져오기 창 `dupOf`를 (후보, 대상 판)으로 기억(`dupC`). 허브가 넘버링에 주는 host에 `day`·`autoBak` 추가.
+- 새 LS 키: `jbmovedN.<S>.<v>`(기기 전용) · `num.draft`(동기화 안 함). 회귀 고리 `__h.{LS, openRestore, numPlan, xsOld, xsOldLoad, xsOldIn, oldRevive, snapRestore, XS, jbMoveNum, migNum, MIGP, xsReady, stGet, stSet, stKeys, cbmN, migrateAids, AIDX, AMIG, lsErrTxt, oqList, lecAlias, lqWrite, LQ}` · 테스트 `tools/tests4/q_store.py`·`q_backup.py`·`q_sync.py`(④~⑥)·`q_timer.py`(①b·④).
+

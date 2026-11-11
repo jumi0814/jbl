@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 4쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"4d4a1664",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"46067073",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1F1D1A;--sub:#66625C;--line:#E0DCD6;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F0EDE9;--accb:#D8D5CF;--acct:#373531;
@@ -2652,7 +2652,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS2", "CONS4", "IMPL4", "ANAT4", "HINS", "GERI4", "PHARM4", "RAD", "OPATH", "ESTH4"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="4d4a1664",PV={"OMS2": "b9125c69", "CONS4": "b8d0b4ea", "IMPL4": "91b1f0d6", "ANAT4": "00c0a654", "HINS": "ad9ef1a7", "GERI4": "b884189d", "PHARM4": "8ceb0d37", "RAD": "fdb5eebb", "OPATH": "f7fce5f3", "ESTH4": "09335f19"},PSZ={"OMS2": 0.0, "CONS4": 0.0, "IMPL4": 0.0, "ANAT4": 0.0, "HINS": 0.0, "GERI4": 0.0, "PHARM4": 0.0, "RAD": 0.0, "OPATH": 0.0, "ESTH4": 0.0};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="46067073",PV={"OMS2": "fa29e329", "CONS4": "a7971af3", "IMPL4": "d47b82fd", "ANAT4": "911e5c3b", "HINS": "f7e0bac3", "GERI4": "b1332200", "PHARM4": "af17883d", "RAD": "a1aeaddd", "OPATH": "d423d514", "ESTH4": "674292e4"},PSZ={"OMS2": 0.0, "CONS4": 0.0, "IMPL4": 0.0, "ANAT4": 0.0, "HINS": 0.0, "GERI4": 0.0, "PHARM4": 0.0, "RAD": 0.0, "OPATH": 0.0, "ESTH4": 0.0};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=QC.subjects;   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={};let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -2778,7 +2778,7 @@ function tGoal(d){const v=+tGoalDay()[d||day()];return v>=30&&v<=960?v:tGoalBase
 function sjName(k){return PACKS[k]?PACKS[k].title:((SUBJECTS.find(x=>x[0]===k)||[])[1]||k);}
 /* ux3 R3 과목 색 한 가지 — 모든 화면(메뉴 점·홈 과목표·과목 홈 hero·강의 카드·--acc·달력·통계·이어서·검색·내 표시)이 sjColor(k) 하나만 씀. 팩 color(tools/<sid>/subject.py COLOR)와 SJC는 같은 값(audit_design '과목 색 한 가지'가 검사) · 흰 글자 hero·종이 바탕 글자 대비 ≥4.5 · 빨간 핵심어(#B3261E)와 다른 색상.
    옛 V03 — 시간·메뉴 표시용 과목 색(과목 머리 테마색 PACKS[k].color와 따로) — 보라 둘(보존·두경부해부)·청록 둘(구강외과1·약물치료)이 거의 같아 통계 막대·달력·메뉴 점으로 구별되지 않던 것. 이웃 ΔE>20 · 흰 바탕 대비 ≥3:1 */
-const NUMV='c675ded8';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
+const NUMV='29f0936a';   /* 10-10 넘버링 모듈(docs/num/) 판 — tools/num/build_num.py가 docs/num 파일의 해시로 바꿔 씀(캐시 갱신) */
 const SJC=QC.colors;
 function sjColor(k){return (PACKS[k]&&PACKS[k].color)||SJC[k]||'#97938C';}
 const NOSTUDY=/^_(home|marks|led)$/;   /* 공부 시간 목록에서 뺄 비학습 화면(과목 홈·내 표시·기출 대장) */
@@ -5447,7 +5447,7 @@ function lsRaw(k,v){try{localStorage.setItem(NS+k,JSON.stringify(v));return true
 function lsBakSlots(){const per=[],pro=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);const m=k&&new RegExp('^'+NSR+'autobak\\.(p?)\\d$').exec(k);if(!m)continue;let at=0;try{const v=localStorage.getItem(k)||'';const a=/^\{"at":(\d+)/.exec(v);at=a?+a[1]:0;}catch(e){}(m[1]?pro:per).push([k,at]);}
  const o=(a,b)=>a[1]-b[1];return per.sort(o).concat(pro.sort(o)).map(x=>x[0]);}
 function lsFail(k,s){for(const bk of lsBakSlots()){try{localStorage.removeItem(bk);}catch(e){}try{localStorage.setItem(NS+k,s);LSQ.delete(k);if(!lsFail.n){lsFail.n=1;toast('저장 공간이 모자라 오래된 자동 백업 사본을 지우고 저장했어요');}return;}catch(e){}}
- LSQ.set(k,s);lqSync();
+ lqBase(k);LSQ.set(k,s);lqSync();
  if(xsMovable()){xsMove('저장 공간 부족').then(r=>{if(r&&r.ok&&r.n)toast(xsDoneTxt(r),{level:'result'});if(!lsFlush())lsErrShow();});return;}   /* 10-15 넘버링 기록을 기기 저장소로 옮겨 자리를 만든 뒤 다시 씀(그동안 값은 대기열 — 읽기는 대기열 먼저) */
  lsErrShow();}
 function lsErrTxt(){const o=lqOld(),od=o&&Date.now()-o>=864e5?' · 가장 오래된 것 '+new Date(o).toLocaleDateString('ko-KR',{month:'long',day:'numeric'}):'',q=oqBig();return '저장되지 않았어요 — 기록 '+LSQ.size+'건을 이 기기에 임시 보관 중'+od+'(창을 닫아도 다음에 열 때 다시 저장 — 저장될 때까지 지우지 않아요) · 백업 파일을 받고 자리를 비워 주세요'+(q?' · 다른 쿼터('+q.ko+') 기록 '+mb(q.z)+' — '+q.sh+' 허브에서 정리할 수 있어요':'');}
@@ -5456,7 +5456,11 @@ function oqList(){const L=QC.others.map(o=>{const ko=String(o.label||'').replace
 function oqBig(){const L=oqList().filter(q=>q.z>=204800&&q.z>=lsCap()*.1).sort((a,b)=>b.z-a.z);return L[0]||null;}   /* 알릴 만큼 큼 = 200KB 이상이면서 한도의 10% 이상 */
 function oqLine(){return oqList().filter(q=>q.z>=51200).map(q=>`<div class="small oqline">다른 쿼터(${EH(q.ko)}) 기록 ${mb(q.z)}${q.url?` — <a href="${EH(q.url)}">${EH(q.sh)} 허브에서 정리하기</a>`:` — ${EH(q.sh)} 허브에서 정리할 수 있어요`}</div>`).join('');}
 function lsErrShow(){LSQ.err=true;const o=document.getElementById('lserr');if(o){const s=o.querySelector('span');if(s)s.textContent='⚠ '+lsErrTxt();return;}const oq=oqBig();toast(lsErrTxt(),{level:'error',id:'lserr',actions:[{label:'지금 백업 파일 받기',fn:bakDownload},{label:'공간 정리',fn:openClean}].concat(oq&&oq.url?[{label:oq.sh+' 허브에서 정리',fn:()=>{location.href=oq.url;}}]:[])});}
-function lsFlush(){if(!LSQ.size){if(LQ.used)lqSync();return true;}let n=0;for(const [k,v] of [...LSQ]){if(xsIn(k)){xsPut(k,v);LSQ.delete(k);n++;continue;}try{localStorage.setItem(NS+k,v);LSQ.delete(k);n++;}catch(e){if(xsCan(k)){xsPut(k,v);LSQ.delete(k);n++;xsSoon();}}}   /* 10-15 넘버링 기록은 기기 저장소로 */
+/* 11-11 (b)2 꽉 찬 동안 밀린 형광펜·채점(ann.·mk.) 값이 다른 창이 그사이 쓴 새 값을 덮던 것 — 처음 밀릴 때 저장돼 있던 값의 지문(LQ.b — 대기열 줄에도 b)을 기억해 두고,
+   다시 쓸 때 저장된 값이 그때와 다르면(다른 창·동기화가 씀) 덮지 않고 합쳐 씀(syncMerge3 — 동기화의 '둘 다 바뀜'과 같은 규칙 · 바탕 없이 = 어느 쪽 것도 안 빠짐) · 그대로면 지금처럼 덮어씀(이 창에서 지운 표시가 되살아나지 않게) */
+function lqBase(k){if(LSQ.has(k)||!/^(ann|mk)\./.test(k))return;let c=null;try{c=localStorage.getItem(NS+k);}catch(e){}(LQ.b||(LQ.b={}))[k]=c==null?'':fnv1(c);}
+function lqMix(k,v){const B=LQ.b||{};if(!/^(ann|mk)\./.test(k)||!(k in B))return v;let c=null;try{c=localStorage.getItem(NS+k);}catch(e){}if(c==null||c===v||fnv1(c)===B[k])return v;try{const m=syncMerge3(k,'',v,c);return m==null?v:m;}catch(e){return v;}}
+function lsFlush(){if(!LSQ.size){if(LQ.used)lqSync();return true;}let n=0;for(const [k,v] of [...LSQ]){if(xsIn(k)){xsPut(k,v);LSQ.delete(k);n++;continue;}try{const w=lqMix(k,v);localStorage.setItem(NS+k,w);LSQ.delete(k);if(LQ.b)delete LQ.b[k];n++;if(w!==v)try{syncNote(k,v,w);}catch(_){}}catch(e){if(xsCan(k)){xsPut(k,v);LSQ.delete(k);n++;xsSoon();}}}   /* 10-15 넘버링 기록은 기기 저장소로 */
  if(n||LQ.used)lqSync();if(LSQ.size){if(n&&document.getElementById('lserr'))lsErrShow();return false;}const r=document.getElementById('lserr');if(r)r.remove();if(LSQ.err){LSQ.err=false;toast('저장됐어요 — 밀려 있던 기록 '+n+'개를 저장했어요',{level:'result'});}return true;}
 setInterval(()=>{if(LSQ.size)lsFlush();},30000);
 /* ux2 fixA V08 저장 실패 큐(LSQ)를 창이 닫혀도 잃지 않게 — IndexedDB 'jblhub-lsq'(store 'q' {k,v,at}, 자동 백업과 다른 DB)에 LSQ를 그대로 비춰 둠(바뀔 때마다)
@@ -5468,10 +5472,10 @@ function lqDB(){if(LQ.p)return LQ.p;LQ.p=new Promise(res=>{let done=false;const 
 /* 11-11 D3 밀린 쓰기는 날짜로 버리지 않음(옛: 14일 넘은 줄은 다시 쓰지 않고 버림 — 꽉 찬 채 14일 안 열면 표시가 사라졌음) — 써질 때까지 둠 · 줄마다 처음 밀린 때(LQ.at)를 그대로 두어 띠에 '가장 오래된 것 n월 n일' */
 function lqAt(k){const A=LQ.at||(LQ.at={});return A[k]||(A[k]=Date.now());}
 function lqOld(){let m=0;const A=LQ.at||{};for(const k of LSQ.keys()){const a=+A[k]||0;if(a&&(!m||a<m))m=a;}return m;}
-function lqWrite(){const A=LQ.at||(LQ.at={});for(const k in A)if(!LSQ.has(k))delete A[k];const rows=[...LSQ].map(([k,v])=>({k,v,at:lqAt(k)}));return lqDB().then(db=>{if(!db)return false;return bkTx(db,['q'],'readwrite',tx=>{const st=tx.objectStore('q');st.clear();rows.forEach(r=>st.put(r));}).then(x=>x.ok);}).catch(()=>false);}
+function lqWrite(){const A=LQ.at||(LQ.at={});for(const k in A)if(!LSQ.has(k))delete A[k];const rows=[...LSQ].map(([k,v])=>{const r={k,v,at:lqAt(k)};if(LQ.b&&typeof LQ.b[k]==='string')r.b=LQ.b[k];return r;});return lqDB().then(db=>{if(!db)return false;return bkTx(db,['q'],'readwrite',tx=>{const st=tx.objectStore('q');st.clear();rows.forEach(r=>st.put(r));}).then(x=>x.ok);}).catch(()=>false);}
 function lqSync(){LQ.used=true;if(!LSQ.size&&LQ.last===0&&!LQ.busy)return;if(LQ.busy){LQ.dirty=true;return;}LQ.busy=true;const n=LSQ.size;lqWrite().then(ok=>{LQ.busy=false;if(ok)LQ.last=n;if(LQ.dirty){LQ.dirty=false;lqSync();}});}
 function lqReplay(){return lqDB().then(db=>xsReady().then(()=>db)).then(db=>{if(!db)return;return bkTx(db,['q'],'readonly',(tx,out)=>{const r=tx.objectStore('q').getAll();r.onsuccess=()=>out(r.result||[]);}).then(x=>{const L=x.ok&&Array.isArray(x.v)?x.v:[];if(!L.length)return;let n=0,q=0;
- L.forEach(r=>{if(!r||typeof r.k!=='string'||typeof r.v!=='string'||LSQ.has(r.k))return;if(xsIn(r.k)){xsPut(r.k,r.v);n++;return;}try{localStorage.setItem(NS+r.k,r.v);n++;}catch(e){if(xsCan(r.k)){xsPut(r.k,r.v);n++;xsSoon();return;}LSQ.set(r.k,r.v);(LQ.at||(LQ.at={}))[r.k]=+r.at||Date.now();q++;}});
+ L.forEach(r=>{if(!r||typeof r.k!=='string'||typeof r.v!=='string'||LSQ.has(r.k))return;if(xsIn(r.k)){xsPut(r.k,r.v);n++;return;}if(typeof r.b==='string')(LQ.b||(LQ.b={}))[r.k]=r.b;try{localStorage.setItem(NS+r.k,lqMix(r.k,r.v));if(LQ.b)delete LQ.b[r.k];n++;}catch(e){if(xsCan(r.k)){xsPut(r.k,r.v);n++;xsSoon();return;}LSQ.set(r.k,r.v);(LQ.at||(LQ.at={}))[r.k]=+r.at||Date.now();q++;}});
  LQ.used=true;const done=()=>{if(q)lsErrShow();else if(n)toast('지난번에 저장하지 못한 기록 '+n+'개를 저장했어요',{level:'result'});};return lqWrite().then(done);});}).catch(()=>{});}
 const LQW={done:false,q:[]};function lqReady(f){if(LQW.done)f();else LQW.q.push(f);}   /* 팩은 바로 부르고, 시작(boot)만 다시 쓰기가 끝난 뒤 */
 (function(){const fin=()=>{if(LQW.done)return;LQW.done=true;LQW.q.splice(0).forEach(f=>{try{f();}catch(e){setTimeout(()=>{throw e;});}});};lqReplay().then(fin,fin);setTimeout(fin,1500);})();
@@ -6568,7 +6572,7 @@ document.addEventListener('touchstart',e=>{const t=e.touches[0];if(e.touches.len
 window.__h={topOff,openDoc,PACKS,docTabs,get CUR(){return CUR;},revealCard,Kit,getMK,autoBak,mergeInto,lkCut,trSessTxt,day};   /* 회귀 도구(tools/tests)용 들여다보기 고리 */
 Object.assign(window.__h,{toast,tDay,tWeek,revInfo,T,plStat,sidxN(){return SIDX?SIDX.length:0;},sxProg});   /* ux2 트랙A 회귀 고리 */
 Object.assign(window.__h,{bkLimit,storeProtect,bakFile,devMine,bkNag,tDevs,jbMove,fcMerge,Flash,JB,jbResume,curCard,oldAutoScan,lsFlush,dumpAll,LSQ,lsBakSlots,bkList,bkLoad,BK,mergeData,studyPlan,lsUsed,bkClear(){for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf(NS+'autobak')===0)localStorage.removeItem(k);}autoBak.last=null;return bkDB().then(db=>db?bkMetaAll(db).then(M=>bkDel(db,M.map(m=>m.at))):true);}});   /* ux2 트랙A 묶음 3 회귀 고리 */
-Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});Object.assign(window.__h,{isStub,isWait,docOk,docHas,qjIndex,needImages,imgWait,LOADED,IMGS,PL});Object.defineProperties(window.__h,{RSTK:{get(){return RSTK;}},SQ:{get(){return SQ;}},VIEW:{get(){return VIEW;}}});   /* 11-10 W1 회귀 고리(tests4 q_stub·q_links) — 다시 대입되는 값(RSTK·SQ·VIEW)은 getter로(Object.assign은 그때 값만 복사) */Object.assign(window.__h,{studyReplace,undoDrop});Object.assign(window.__h,{trSleep,sessSlept,slpBack,trTick,tUnrec,tOQ});Object.assign(window.__h,{openRestore,numPlan,xsOld,xsOldLoad,xsOldIn,oldRevive,snapRestore,XS,jbMoveNum,migNum,MIGP,xsReady,stGet,stSet,stKeys,cbmN,migrateAids,AIDX,AMIG,lsErrTxt,oqList,lecAlias,lqWrite,LQ});   /* 11-11 W5 회귀 고리 */   /* 11-10 W4 회귀 고리(tests4 q_timer) */   /* ux4f E 회귀 고리 */
+Object.assign(window.__h,{fillAll:figFillAll,reviewSet,goCard,QZ});Object.assign(window.__h,{isStub,isWait,docOk,docHas,qjIndex,needImages,imgWait,LOADED,IMGS,PL});Object.defineProperties(window.__h,{RSTK:{get(){return RSTK;}},SQ:{get(){return SQ;}},VIEW:{get(){return VIEW;}}});   /* 11-10 W1 회귀 고리(tests4 q_stub·q_links) — 다시 대입되는 값(RSTK·SQ·VIEW)은 getter로(Object.assign은 그때 값만 복사) */Object.assign(window.__h,{studyReplace,undoDrop});Object.assign(window.__h,{trSleep,sessSlept,slpBack,trTick,tUnrec,tOQ});Object.assign(window.__h,{LS,openRestore,numPlan,xsOld,xsOldLoad,xsOldIn,oldRevive,snapRestore,XS,jbMoveNum,migNum,MIGP,xsReady,stGet,stSet,stKeys,cbmN,migrateAids,AIDX,AMIG,lsErrTxt,oqList,lecAlias,lqWrite,LQ});   /* 11-11 W5 회귀 고리 */   /* 11-10 W4 회귀 고리(tests4 q_timer) */   /* ux4f E 회귀 고리 */
 Object.assign(window.__h,{teDeps,ntsAmt,calRestStudy,endLift,sjColor,SJC,trFocusMs,trRestMs,trk2Txt,sidePref,sideWideAuto,TQ});
 Object.assign(window.__h,{restDay,teRest,teAvail,tUnrec,lwFit});   /* ux3 fix2 회귀 고리 */   /* ux3 검증 수정 회귀 고리 */
 Object.assign(window.__h,{todayTasks,todoGo,bkDue,sjTotals,homeTick,home});Object.defineProperty(window.__h,'HEXED',{get(){return HEXED;}});   /* ux3 묶음 H 회귀 고리 */

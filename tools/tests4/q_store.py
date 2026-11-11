@@ -6,7 +6,7 @@ import json, re
 from qsite import *
 from playwright.sync_api import sync_playwright
 rel = build(); base = serve()
-FULL = "try{if(sessionStorage.getItem('q_full')){const o=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(this===localStorage&&String(k).indexOf('memo.')>=0)throw new DOMException('quota','QuotaExceededError');return o.call(this,k,v);};}}catch(e){}"   # memo.* 쓰기만 자리 없음으로(저장 실패 대기열 길)
+FULL = "try{const o=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){let f='';try{f=sessionStorage.getItem('q_full')||'';}catch(e){}if(f&&this===localStorage&&f.split('|').some(x=>String(k).indexOf(x)>=0))throw new DOMException('quota','QuotaExceededError');return o.call(this,k,v);};}catch(e){}"   # sessionStorage q_full = 'memo.|ann.'처럼 — 그 글자가 든 키 쓰기만 자리 없음으로(저장 실패 대기열 길 · 창마다 따로)
 
 def wait(pg, js, n=100, ms=100):
     for _ in range(n):
@@ -44,7 +44,7 @@ with sync_playwright() as p:
 
         # ---- ② 밀린 쓰기: 15일 전에 밀린 줄이 다시 열어도 남음(자리 없음 → 띠에 개수·가장 오래된 날 · 자리 생기면 저장)
         OLD = 15 * 86400000
-        pg.evaluate("sessionStorage.setItem('q_full','1')"); boot(U + '#/')
+        pg.evaluate("sessionStorage.setItem('q_full','memo.')"); boot(U + '#/')
         pg.evaluate("""([db,at])=>new Promise(res=>{const r=indexedDB.open(db,1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains('q'))d.createObjectStore('q',{keyPath:'k'});};
           r.onsuccess=()=>{const tx=r.result.transaction(['q'],'readwrite');tx.objectStore('q').put({k:'memo.X.L',v:JSON.stringify('밀린 메모'),at});tx.oncomplete=()=>{r.result.close();res(1);};};})""", [I['idb']['lsq'], pg.evaluate("Date.now()") - OLD])
         boot(U + '#/', 2500)
@@ -54,6 +54,23 @@ with sync_playwright() as p:
         ok(len(row) == 1 and abs(pg.evaluate("Date.now()") - row[0]['at'] - OLD) < 120000, f'{q} ② 한 번 더 열어도 그대로 · 처음 밀린 때 유지({len(row)}줄)')
         pg.evaluate("sessionStorage.removeItem('q_full')"); boot(U + '#/', 2500)
         ok(pg.evaluate("k=>localStorage.getItem(k)", N + 'memo.X.L') == json.dumps('밀린 메모', ensure_ascii=False) and pg.evaluate("__h.LSQ.size") == 0, f'{q} ② 자리가 생기면 저장됨')
+
+        # ---- ②b (b)2 꽉 찬 동안 밀린 형광펜·채점이 다른 창의 새 값을 덮지 않음(합쳐 씀) · 다른 창이 안 썼으면 지금처럼 덮어씀(지운 표시가 되살아나지 않음)
+        m = lambda x: {'t': 'h', 'x': x, 'i': 0}; KA = N + 'ann.ZZ'; KM = N + 'mk.ZZ'
+        pg.evaluate("([a,b,v,w])=>{localStorage.setItem(a,JSON.stringify(v));localStorage.setItem(b,JSON.stringify(w));}", [KA, KM, {'c1': [m('하나'), m('지울것')]}, {'ok': {'Q1': 1}, 'ng': {}, 'bm': {}}])
+        pg.evaluate("sessionStorage.setItem('q_full','ann.|mk.')")
+        pg.evaluate("([v,w])=>{__h.LS.set('ann.ZZ',v);__h.LS.set('mk.ZZ',w);}", [{'c1': [m('하나'), m('둘')]}, {'ok': {'Q1': 1, 'Q2': 1}, 'ng': {}, 'bm': {}}]); pg.wait_for_timeout(300)
+        ok(pg.evaluate("__h.LSQ.has('ann.ZZ')&&__h.LSQ.has('mk.ZZ')") and '지울것' in pg.evaluate("k=>localStorage.getItem(k)", KA), f'{q} ②b 자리 없음 → 형광펜·채점이 대기열에(저장소엔 옛 값)')
+        pg2 = ctx.new_page(); pg2.goto(U + '#/'); pg2.wait_for_timeout(800)   # 다른 창(자리 있음)이 그사이 새 값을 씀
+        pg2.evaluate("([a,b,v,w])=>{localStorage.setItem(a,JSON.stringify(v));localStorage.setItem(b,JSON.stringify(w));}", [KA, KM, {'c1': [m('하나'), m('지울것'), m('셋')], 'c2': [m('넷')]}, {'ok': {'Q1': 1, 'Q3': 1}, 'ng': {}, 'bm': {}}]); pg2.close()
+        pg.evaluate("sessionStorage.removeItem('q_full')"); pg.evaluate("__h.lsFlush()"); pg.wait_for_timeout(300)
+        A = json.loads(pg.evaluate("k=>localStorage.getItem(k)", KA)); M = json.loads(pg.evaluate("k=>localStorage.getItem(k)", KM)); xs = sorted(o['x'] for o in A.get('c1', []))
+        ok({'하나', '둘', '셋'} <= set(xs) and [o['x'] for o in A.get('c2', [])] == ['넷'] and pg.evaluate("__h.LSQ.size") == 0, f'{q} ②b 다른 창이 쓴 표시(셋·넷)와 밀린 표시(둘)가 다 남음(옛: 밀린 값이 덮어 셋·넷이 사라짐) {xs} · c2 {len(A.get("c2", []))}')
+        ok(set(M.get('ok', {})) == {'Q1', 'Q2', 'Q3'}, f"{q} ②b 채점도 합쳐 씀 {sorted(M.get('ok', {}))}")
+        pg.evaluate("sessionStorage.setItem('q_full','ann.')"); pg.evaluate("v=>__h.LS.set('ann.ZZ',v)", {'c1': [m('하나')]}); pg.wait_for_timeout(200)
+        pg.evaluate("sessionStorage.removeItem('q_full')"); pg.evaluate("__h.lsFlush()"); pg.wait_for_timeout(200)
+        A = json.loads(pg.evaluate("k=>localStorage.getItem(k)", KA)); ok([o['x'] for o in A.get('c1', [])] == ['하나'] and 'c2' not in A, f'{q} ②b 다른 창이 안 썼으면 밀린 값 그대로(이 창에서 지운 표시가 되살아나지 않음) {A}')
+        pg.evaluate("([a,b])=>{localStorage.removeItem(a);localStorage.removeItem(b);}", [KA, KM])
 
         # ---- ③ 다른 쿼터 백업 파일 → 안내(넣지 않음)
         boot(U + '#/')

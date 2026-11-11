@@ -2571,7 +2571,7 @@ function revClick(e, t) {   /* 넘버링 복습 화면의 누르기 — 처리�
     const host = mk.closest('.nm-it') || mk.closest('[data-cardv]'), id = host && host.dataset.id; if (!id || !RV.ses) return true;
     const m = +mk.dataset.mk; markSet(id, m); const now2 = RV.ses.mk[id];
     if (S.cfg.view === 'card') { cardPaint(); sideRender(); if (now2 === m) setTimeout(() => { if (RV.ses && RV.ses.cur === id && S.cfg.view === 'card' && !RV.sum && !S.ed) cnav(1); }, 170); }
-    else { const a = artOf(id); if (a) { a.classList.remove('mk0', 'mk1', 'mk2'); if (now2 != null) a.classList.add('mk' + now2); $$('[data-mk]', a).forEach(x => { const on = +x.dataset.mk === now2; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); }); const hp = a.querySelector('[data-hist]'); if (hp) hp.outerHTML = histHTML(id); const hb = a.querySelector('[data-ract=hist]'); if (hb) { const r = rOf(id), n = r && r.h ? r.h.length : 0; hb.textContent = '이력' + (n ? ' ' + n : ''); } } refreshCounts(); sideRender(); }
+    else { const a = artOf(id); if (a) { a.classList.remove('mk0', 'mk1', 'mk2'); if (now2 != null) a.classList.add('mk' + now2); $$('[data-mk]', a).forEach(x => { const on = +x.dataset.mk === now2; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); }); const hp = a.querySelector('[data-hist]'); if (hp) hp.outerHTML = histHTML(id); const hb = a.querySelector('[data-ract=hist]'); if (hb) { const n = hLive(rOf(id)).length; hb.textContent = '이력' + (n ? ' ' + n : ''); } } refreshCounts(); sideRender(); }
     return true;
   }
   const ey = t.closest('[data-eye]'); if (ey) { const a = ey.closest('.nm-it'); if (a) { const f = ey.dataset.eye; hidSet(f, a.dataset.id, !a.classList.contains(f === 'a' ? 'hA' : 'hS')); } return true; }

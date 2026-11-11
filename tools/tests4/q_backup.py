@@ -103,6 +103,9 @@ with sync_playwright() as p:
         pg.evaluate("([k,v])=>__h.xsOld([{k,v,at:Date.now()-40*864e5,why:'오래됨'}].concat(Array.from({length:205},(_, i)=>({k:k+'.z'+i,v,why:'많음'}))),true)", [key, old_v]); pg.wait_for_timeout(500)
         olds = pg.evaluate("__h.xsOldLoad()"); ok(len(olds) == 200 and not any(o['why'] == '오래됨' for o in olds), f'{q} ③ 30일·200줄 넘으면 정리({len(olds)}줄 · 오래된 것 {sum(1 for o in olds if o["why"] == "오래됨")})')
         # ---- ④ F1 넘버링 화면을 떠날 때 열린 '새 문제' 창의 글 = 초안으로 남김(다시 열면 이어 쓰기) · F2 Word 파일 이름 날짜 = 허브 day()
+        NEWNUM = 'draftKeep' in open(os.path.join(SITE, r, 'num', 'num.js'), encoding='utf-8').read()   # 3Q 허브(보관)는 넘버링 모듈도 옛 것(docs/3q/num) — 새 num.js 시험은 건너뜀
+        if not NEWNUM:
+            print(f'  --   {q} ④⑤ 이 허브의 넘버링 모듈은 보관된 옛 판 — 새 num.js 시험(F1·C2 화면)은 건너뜀'); ok(not errs, f'{q} 콘솔 오류 0 {errs[:2]}'); ctx.close(); continue
         boot(U + f'#/_num/{SJ}', 2500); ok(wait(pg, "!!document.querySelector('#numv [data-act=new]')"), f'{q} ④ 내 넘버링 열림')
         pg.click('#numv [data-act=new]'); pg.wait_for_timeout(400); pg.click('.nm-ov [data-rich=q]'); pg.keyboard.type('쓰다 만 문제 3가지를 쓰시오.'); pg.fill('.nm-ov [data-nf=yrs]', '25'); pg.fill('.nm-ov [data-nf=note]', '참고')
         n_items = len(pg.evaluate("__h.stKeys('num.i.')"))
@@ -117,6 +120,19 @@ with sync_playwright() as p:
         pg.click('#numv [data-act=new]'); pg.wait_for_timeout(400)
         ok(pg.evaluate("document.querySelector('.nm-ov [data-rich=q]').textContent.trim()") == '', f'{q} ④ 그다음 새 문제 창은 빈 칸')
         pg.evaluate("document.querySelector('.nm-ov [data-x]').click()"); pg.wait_for_timeout(300)
+        # ---- ⑤ C2 실제 화면: 넘버링 복습에서 평가 → 같은 것을 다시 눌러 지움 = 지움 표시 {t,s,x:1}(줄을 빼지 않음) → 다른 평가
+        boot(U + f'#/_numr/{SJ}', 2500); ok(wait(pg, "!!document.querySelector('#numv [data-mk]')"), f'{q} ⑤ 넘버링 복습 열림')
+        rid = pg.evaluate("(b=>{const a=b.closest('[data-id]');b.click();return a.dataset.id})(document.querySelector('#numv [data-mk=\"0\"]'))"); pg.wait_for_timeout(500)
+        sid = (G(f'num.rs.{SJ}') or {}).get('sid'); r1 = G(f'num.r.{SJ}.{rid}') or {}
+        ok(sid and [e for e in r1.get('h', []) if e.get('s') == sid] and r1.get('m') == 0, f"{q} ⑤ 모름 평가 → 이 회차 줄 {[e for e in r1.get('h', []) if e.get('s') == sid]}")
+        pg.evaluate("id=>document.querySelector('#numv [data-id=\"'+CSS.escape(id)+'\"] [data-mk=\"0\"]').click()", rid); pg.wait_for_timeout(500)
+        r2 = G(f'num.r.{SJ}.{rid}') or {}; cur = [e for e in r2.get('h', []) if e.get('s') == sid]; lv = [e for e in r2.get('h', []) if not e.get('x')]
+        ok(len(cur) == 1 and cur[0].get('x') == 1 and 'm' not in cur[0] and r2.get('m') == (lv[-1]['m'] if lv else None) and len(r2['h']) == len(r1['h']), f"{q} ⑤ 다시 눌러 지움 → 지움 표시(줄 수 그대로 {len(r2.get('h', []))}) · 최근 평가 = 그 앞 회차 것 {r2.get('m')}")
+        ui = pg.evaluate("id=>{const a=document.querySelector('#numv [data-id=\"'+CSS.escape(id)+'\"]');return [a.classList.contains('mk0'),[...a.querySelectorAll('[data-mk].on')].length,(a.querySelector('.nm-rf [data-ract=hist]')||{}).textContent||'']}", rid)
+        ok(ui[0] is False and ui[1] == 0 and ui[2].strip() == ('이력' + (' ' + str(len(lv)) if lv else '')), f'{q} ⑤ 화면: 평가 꺼짐 · 이력 수는 지움 표시를 안 셈 {ui}')
+        pg.evaluate("id=>document.querySelector('#numv [data-id=\"'+CSS.escape(id)+'\"] [data-mk=\"2\"]').click()", rid); pg.wait_for_timeout(500)
+        r3 = G(f'num.r.{SJ}.{rid}') or {}; cur = [e for e in r3.get('h', []) if e.get('s') == sid]
+        ok(len(cur) == 1 and cur[0].get('m') == 2 and not cur[0].get('x') and r3.get('m') == 2 and len(r3['h']) == len(r1['h']), f"{q} ⑤ 다시 평가(암기 완료) → 그 회차 한 줄 {cur}")
         ok(not errs, f'{q} 콘솔 오류 0 {errs[:2]}'); ctx.close()
     b.close()
 done()
