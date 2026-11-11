@@ -58,6 +58,16 @@ function hexc(v) {
   if (HLN[v]) return HLN[v];
   return /^[a-z]+$/.test(v) && v.length < 20 ? v : '';
 }
+/* 11-11 W3 그림 파일 방식(4Q 팩 imgf) — 허브 화면에서 복사해 붙여 넣은 강의 쪽·JB 원본 쪽 그림(src = …/packs/img/<SID>/<키>.<h8>.webp|jpg)은 버리지 않고 자리표 data-lecimg="SID|키"로
+   (이 허브의 그 과목 팩 그림 목록에 있는 것만 · 그림 글자를 저장하지 않음 — 화면·인쇄·Word는 허브가 주는 그림 주소로 · JB 원본 쪽 키 = 'jb<판>-<쪽>') */
+const IMGFILE = /(?:^|\/)packs\/img\/([A-Za-z0-9]+)\/([A-Za-z0-9]+-\d{1,4})\.[0-9a-f]{6,32}\.(?:webp|jpe?g|png)$/;
+function lecOfUrl(src) {
+  try {
+    const u = new URL(src, location.href), here = new URL('packs/img/', new URL(H.base || '', location.href)); if (u.origin !== here.origin || u.pathname.indexOf(here.pathname) !== 0) return '';
+    const m = IMGFILE.exec(u.pathname), f = m && H.PACKS && H.PACKS[m[1]] && H.PACKS[m[1]].imgf; if (!f) return '';
+    return (f.lec && f.lec[m[2]]) || (/^jb./.test(m[2]) && f.jb && f.jb[m[2].slice(2)]) ? m[1] + '|' + m[2] : '';
+  } catch (e) { return ''; }
+}
 function sanitize(html, opt) {
   opt = opt || {};
   const t = document.createElement('template'); t.innerHTML = String(html || '');
@@ -70,7 +80,8 @@ function sanitize(html, opt) {
       let tg = c.tagName.toUpperCase();
       if (DROP.has(tg)) { c.remove(); c = nx; continue; }
       if (tg === 'IMG') {
-        const src = c.getAttribute('src') || '', ni = c.getAttribute('data-nimg'), jf = c.getAttribute('data-jbfig'), jfOK = jf && JBFIG.test(jf), li = c.getAttribute('data-lecimg'), liOK = li && LECIMG.test(li), gm = c.getAttribute('data-gbm');
+        const src = c.getAttribute('src') || '', ni = c.getAttribute('data-nimg'), jf = c.getAttribute('data-jbfig'), jfOK = jf && JBFIG.test(jf), gm = c.getAttribute('data-gbm'); let li = c.getAttribute('data-lecimg'), liOK = li && LECIMG.test(li);
+        if (!liOK && !jfOK && !(ni && /^[\w.-]+$/.test(ni)) && src) { const lf = lecOfUrl(src); if (lf) { li = lf; liOK = true; } }   /* 11-11 W3 허브에서 복사해 붙여 넣은 그림 파일(packs/img 주소) → 자리표 */
         if (!(ni && /^[\w.-]+$/.test(ni)) && !jfOK && !liOK && !/^data:image\/(png|jpe?g|gif|webp);base64,/i.test(src)) { if (opt.paste && src) S.pasteLost = (S.pasteLost || 0) + 1; c.remove(); c = nx; continue; }
         const w = +c.getAttribute('width') || 0, h = +c.getAttribute('height') || 0;
         for (const a of [...c.attributes]) c.removeAttribute(a.name);
@@ -147,6 +158,11 @@ function lecLoad(k, g) {
   }).catch(() => { LECW.delete(ck); return ''; });
   LECW.set(ck, pr); return pr;
 }
+/* 11-11 W3 나눠 그리기(step — 미리 만든 HTML을 조금씩 넣음)보다 그림이 먼저 오면(그림 파일 방식은 한 장씩이라 빠름 · 묶음이 이미 받아져 있을 때도) 뒤에 들어온 자리표에 그림이 안 붙던 것 → 넣을 때마다 받아 둔 그림(LECC)으로 채움 */
+function lecFill(root) { (root || document).querySelectorAll('img[data-lecimg]:not([src])').forEach(im => { const v = LECC.get(im.getAttribute('data-lecimg') + '#' + (im.getAttribute('data-gbm') || '')); if (v) im.setAttribute('src', v); }); }
+/* 11-11 W3 인쇄·Word 전 — 강의 그림 자리표를 다 받고(lecReady) 그 그림을 이 묶음(d)의 자리표에 넣은 뒤(lecFill) 다 뜰 때까지 기다림.
+   (문제 글 HTML은 처음 그릴 때 것을 기억해 쓰는데(qDisp it._qd) 그때는 그림이 아직 없어 src가 없음 → 화면은 그림이 오면 채워지지만 인쇄·Word 묶음은 빈 채여서 강의 그림이 '[그림]'·빈 칸으로 나가던 것) */
+function lecWait(d, ms) { return lecReady(d.innerHTML).then(() => { lecFill(d); return Promise.all([...d.querySelectorAll('img[data-lecimg]')].filter(i => i.getAttribute('src') && !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; }))); }).then(() => new Promise(r => setTimeout(r, ms))); }
 function lecReady(html) { const L = []; String(html || '').replace(/<img data-lecimg="([^"]+)"(?: data-gbm="([^"]*)")?/g, (m, k, g) => { if (LECIMG.test(k)) L.push(lecLoad(k, g || '')); return m; }); return Promise.all(L); }   /* 인쇄 전 — 그림을 다 받아 둠 */
 function gbCompose(src, g) {   /* 그림빵: 쪽 그림 위에 가림 상자(연노랑 + 번호) — 넘버링·복습·인쇄에서 같은 그림 */
   return new Promise(res => {
@@ -1029,7 +1045,7 @@ function render(o) {
   };
   applyFilter(true);
   if (!rest.length) { done(); return; }
-  let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); if (i < rest.length) setTimeout(step, 0); else done(); };
+  let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); lecFill(doc); if (i < rest.length) setTimeout(step, 0); else done(); };
   setTimeout(step, 0);
 }
 function hidHTML(hid) { return `<details class="nm-hid"><summary>목록에서 뺀 문제 ${hid.length}개 — 다시 넣을 수 있어요(원본은 그대로)</summary>${hid.map(it => `<div class="row" data-id="${esc(it.id)}"><span class="nm-chip k-${esc(it.kind)}">${esc(KIND[it.kind] || it.kind)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(plain(it.q).slice(0, 90))}</span><button type="button" class="nm-btn" data-act="undel">다시 넣기</button></div>`).join('')}</details>`; }
@@ -2066,7 +2082,7 @@ function printRun(L, o, lab) {
   d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
   document.body.classList.add('nm-printing');
   addEventListener('afterprint', printClean, { once: true });
-  const wait = [...d.querySelectorAll('img')].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; })).concat([lecReady(d.innerHTML).then(() => new Promise(r => setTimeout(r, 120)))]);   /* S3 강의 그림·그림빵 자리표도 받은 뒤 */
+  const wait = [...d.querySelectorAll('img')].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; })).concat([lecWait(d, 120)]);   /* S3 강의 그림·그림빵 자리표도 받은 뒤 */
   Promise.race([Promise.all(wait), new Promise(r => setTimeout(r, 2500))]).then(() => requestAnimationFrame(() => { try { window.print(); } catch (e) { printClean(); H.toast('인쇄 창을 열지 못했어요 — 브라우저 메뉴의 인쇄를 써 주세요', { level: 'error' }); } }));
 }
 function printClean() { document.body.classList.remove('nm-printing'); const a = document.getElementById('nm-print'), b = document.getElementById('nm-pcss'); if (a) a.remove(); if (b) b.remove(); }
@@ -2147,7 +2163,7 @@ async function docxRun(L, o, lab) {
   const d = document.createElement('div'); d.id = 'nm-docx'; d.style.cssText = 'position:fixed;left:-10000px;top:0;width:700px;visibility:hidden'; d.innerHTML = printHTML(L, o, lab); document.body.appendChild(d);
   try {
     d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
-    const wait = [...d.querySelectorAll('img')].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; })).concat([lecReady(d.innerHTML).then(() => new Promise(r => setTimeout(r, 150)))]);
+    const wait = [...d.querySelectorAll('img')].filter(i => !i.complete).map(i => new Promise(r => { i.onload = i.onerror = r; })).concat([lecWait(d, 150)]);
     await Promise.race([Promise.all(wait), new Promise(r => setTimeout(r, 4000))]);
     await new Promise(r => setTimeout(r, 60));
     const { M, files } = await dxImages(d), FULL = 6120000, HALF = 2650000, B = [];
@@ -2433,7 +2449,7 @@ function revRender(o) {
   const done = () => { if (tok !== S.tok) return; applyFilter(); const back = o.pos ? restorePos(o.pos) : false; if (back) pinPos(o.pos); else if (o.y != null) window.scrollTo(0, o.y); if (o.flash) flash(o.flash); S.posOK = true; spy(); topBtn(); };
   applyFilter(true);
   if (!rest.length) { done(); return; }
-  let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); if (i < rest.length) setTimeout(step, 0); else done(); };
+  let i = 0; const step = () => { if (tok !== S.tok || !doc.isConnected) return; doc.insertAdjacentHTML('beforeend', rest[i++]); lecFill(doc); if (i < rest.length) setTimeout(step, 0); else done(); };
   setTimeout(step, 0);
 }
 /* 화면 — 카드 복습 */

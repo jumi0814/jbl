@@ -134,3 +134,5 @@
 - F1 ChatGPT 초안은 이 창 메모리(새로고침하면 없음) · 미리 보기의 체크는 다시 골라야 함.
 - (b)2: 처음 밀린 때의 지문이 없는 옛 대기열 줄(이번 판 전에 밀린 것)은 지금처럼 덮어씀.
 - rehub가 4Q 팩 10개의 BUILD 글자도 바꿈(내용 변화 없음 — 있던 동작) · 비교용 worktree `scratchpad/base_w5`는 끝에 지움.
+
+(11-11 메인 결정 5 반영) 되돌릴 때 넘버링 문제 u = 지금 — 동기화에서 되돌린 판이 이김(shell.html `numBump`·`numApply` · q_backup ②b PASS — 자세히 `DONE_W3_허브.md` 0번).

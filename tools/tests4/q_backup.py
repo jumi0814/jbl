@@ -78,12 +78,23 @@ with sync_playwright() as p:
         pg.screenshot(path=os.path.join(ROOT, 'work', '_tmp', f'q_backup_rnum_{q}.png'))
         snap(False)
         ok(state() == ['A 새 글', False, True, 2, '2026-12-20', ['X']] and any('넘버링은 지금 그대로' in m for m in msgs), f'{q} ② 선택 칸 끔 → 표시만 되돌아가고 넘버링·시험 날짜는 그대로 {state()}')
-        later(); snap(True)
+        later(); tb = pg.evaluate("Date.now()"); snap(True)
         pv = next((m for m in msgs if '넘버링도 이 시점으로' in m), '')
         ok('이 시점 뒤에 고친 문제 1개가 그때 글로 돌아가고' in pv and '뒤에 새로 만든 1개가 사라지고' in pv and '뒤에 지운 1개가 다시 생깁니다' in pv, f'{q} ② 미리 보기 수(문제마다 u) {pv[pv.find("넘버링도"):][:110]!r}')
         ok(state() == ['A 옛 글', True, False, 1, '2026-12-01', ['X']], f'{q} ② 선택 칸 켬 → 넘버링 문제·복습 기록·시험 날짜도 그 시점으로 {state()}')
         bk = pg.evaluate("(async S=>{const L=await __h.bkList();const m=L.filter(x=>x.why==='되돌리기 전').sort((a,b)=>b.at-a.at)[0];if(!m)return null;const r=await __h.bkLoad(m.id);return Object.keys(r.data).filter(k=>k.indexOf('num.i.'+S+'.C')>=0).length})(%s)" % json.dumps(SJ))
         ok(bk == 1, f'{q} ② 되돌리기 전 상태(새 문제 C 포함)는 자동 백업에 남음 {bk}')
+
+        # ---- ②b 11-11 메인 결정 5: 되돌린 넘버링 문제는 u = 지금 → 다른 기기에 더 최근 판(되돌리기 1분 전에 고친 것)이 있어도 동기화에서 되돌린 판이 이김(옛: u 1000 < 그 판 → 조용히 원래대로)
+        kA = f'num.i.{SJ}.A'; a = G(kA); bb = G(f'num.i.{SJ}.B')
+        ok(a and a['q'] == 'A 옛 글' and a['u'] >= tb and a['c'] == 1000 and bb and bb['u'] >= tb, f"{q} ②b 되돌린 문제·다시 생긴 문제의 u = 지금(만든 때 c는 그대로) {a and (a['u'] >= tb, a['c'])}")
+        loc = json.dumps(a, ensure_ascii=False); rem = json.dumps(dict(a, q='A 다른 기기 글', u=tb - 60000), ensure_ascii=False); bas = json.dumps(dict(a, q='A 새 글', u=5000), ensure_ascii=False)
+        m1 = pg.evaluate("([k,b,l,r])=>__h.syncMerge3(k,b,l,r)", [kA, bas, loc, rem]); m2 = pg.evaluate("([k,b,l,r])=>__h.syncMerge3(k,b,l,r)", [kA, bas, rem, loc])
+        ok(m1 and json.loads(m1)['q'] == 'A 옛 글' and m2 and json.loads(m2)['q'] == 'A 옛 글', f"{q} ②b 되돌린 뒤 동기화해도 되돌린 판 유지(둘 다 바뀜 = 3방향 — 이 기기·그 기기 어느 쪽에서 합쳐도) {m1 and json.loads(m1)['q']!r}·{m2 and json.loads(m2)['q']!r}")
+        old1 = json.dumps(dict(a, u=1000), ensure_ascii=False); m0 = pg.evaluate("([k,b,l,r])=>__h.syncMerge3(k,b,l,r)", [kA, bas, old1, rem])
+        ok(m0 and json.loads(m0)['q'] == 'A 다른 기기 글', f"{q} ②b (견줌) u를 안 올린 옛 동작이면 다른 기기 판이 이겼음 {m0 and json.loads(m0)['q']!r}")
+        ok(pg.evaluate("([x,l])=>__h.xsWin(x,l)", [loc, rem]) == 'x', f'{q} ②b 다른 창이 옛 판을 써도 되돌린 판 유지(xsWin)')
+        rr = G(f'num.r.{SJ}.A'); ok(rr and 'u' in rr and rr['u'] == 900, f"{q} ②b 복습 기록은 백업 것 그대로(u 안 올림) {rr and rr.get('u')}")
 
         # ---- ③ D2 동기화로 밀린 판 목록 + [되살리기] · 30일·200줄 정리 · 백업 파일
         old_v = json.dumps(dict(G(f'num.i.{SJ}.A'), q='<p>A <b>밀린</b> 글</p>', u=500), ensure_ascii=False); key = f'num.i.{SJ}.A'
