@@ -21,7 +21,8 @@ open(tmp + '/packs/PHARM.js', 'w', encoding='utf-8').write(t[:i] + json.dumps(pk
 R2 = jblock.lock_errors(tmp); e = R2[0][2]
 msg = f"{R2[0][0]}: JB id 잠금 {R2[0][1]}개 — ⚠ {' · '.join(e)} → {jblock.need_msg('PHARM')}"
 ok(e == [f'{qid}: 문제 글자가 바뀜'], f'verify 실패 메시지: {msg}')
-ok(jblock.check('PHARM', pk['jbhash'], jblock.load(jblock.paths('PHARM')[0]), {qid: qid}) == [], '옮김 표 {id:id}(확인만)이면 통과')
+# 11-12 진짜 옮김 표(10-25 jb_move.json) 위에 — 그것 없이 주면 옮긴 id가 '사라짐'으로 걸림(낡은 기대)
+ok(jblock.check('PHARM', pk['jbhash'], jblock.load(jblock.paths('PHARM')[0]), dict(jblock.load(jblock.paths('PHARM')[1]), **{qid: qid})) == [], '옮김 표 {id:id}(확인만)이면 통과')
 shutil.rmtree(tmp)
 # 3. 허브: 옮김 표 → 합성 기록 이관
 async def main():
