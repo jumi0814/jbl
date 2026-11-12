@@ -1,0 +1,207 @@
+{
+ "_": {
+  "doc": "tools/tests 기준 실패 정리(11-12 W0 — guide/handoff/upg1110/DONE_W0.md 4번 · 분류 근거 R_HISTORY…md 4번). ux_all.py가 읽음. st: helper = 테스트가 아님(목록에서 뺌) · retired = 뒤에 일부러 바꾼 화면·내용에 비해 낡음(돌리지 않고 SKIP — see가 지금 그 일을 지키는 테스트 · 파일은 그대로 둠) · local = need(path:·glob:·grep:<파일>::<글자>·git:<커밋>·os:darwin — '|' = 어느 하나)가 있을 때만 돌림(없으면 SKIP · 있는데 실패하면 진짜 실패) · bug? = 돌리되 실패해도 '알려진 실패'(종료 코드에 안 셈 — why에 지금 결과 · 통과하면 알려 줌). 여기 없는 테스트의 실패만 진짜 실패. 고쳐서 통과하게 되면 그 줄을 지움."
+ },
+ "fakegist": {
+  "st": "helper",
+  "why": "테스트가 아니라 가짜 Gist 도우미 모듈(ux_sync*·q_sync가 import) — 판정 줄 없음"
+ },
+ "ct": {
+  "st": "local",
+  "why": "3Q 임상치과보존학 단일 파일판(work/임상치과보존학_JBL.html — 과목 id CONS)을 엶 — 클라우드에는 없음(지금 그 이름 파일은 4Q CONS4 빈 과목 것)",
+  "see": "verify.py",
+  "need": [
+   "grep:work/임상치과보존학_JBL.html::\"id\": \"CONS\""
+  ]
+ },
+ "legacy_restore": {
+  "st": "local",
+  "why": "기록 지킴이 — 옛 배포본 f2e99d3의 형광펜·빈칸이 같은 자리에 되살아나는지. 얕은 복제에는 그 커밋이 없음(맥·전체 복제에서 돌림)",
+  "see": "ux_marks · kt_migrate · aidlock_test",
+  "need": [
+   "git:f2e99d3|path:work/_legacy/f2e99d3/docs"
+  ]
+ },
+ "legacy_restore_107": {
+  "st": "local",
+  "why": "기록 지킴이 — 1차 배포본 7095e56 표시 복원. 얕은 복제에는 그 커밋이 없음",
+  "see": "ux_marks · kt_migrate",
+  "need": [
+   "git:7095e56|path:work/_legacy/7095e56/docs"
+  ]
+ },
+ "ux2_sum_mig": {
+  "st": "local",
+  "why": "기록 지킴이 — 옛 ':sum' 정리표 표시 옮기기. 행 단위가 되기 전 docs/packs/CONS.js 커밋(7095e56 등)이 git에 있어야 함(없으면 스스로 SKIP을 찍지만 종료 코드는 실패)",
+  "see": "ux_marks",
+  "need": [
+   "git:7095e56"
+  ]
+ },
+ "ux3_compat": {
+  "st": "local",
+  "why": "기록 지킴이 — 옛 판(1차 7095e56 · 2차 0918775) 데이터 ↔ 새 허브. 옛 커밋·work/_legacy가 있어야 함 · file://로 돌림(JBL_HTTP 없이)",
+  "see": "tests4/q_isolation · q_store",
+  "need": [
+   "git:7095e56|path:work/_legacy/7095e56",
+   "git:0918775|path:work/_legacy/0918775"
+  ]
+ },
+ "ux2_learn": {
+  "st": "local",
+  "why": "학습 탭 높이 기준이 맥 글꼴 폭에 맞춰져 있음(리눅스 글꼴에서는 높이가 달라 실패 — 인수인계_클라우드) · EXT·GRAFT 내용도 26 갱신으로 바뀜(맥에서도 실패하면 retired로)",
+  "see": "audit_design.py · tests4/q_crawl · q_pos",
+  "need": [
+   "os:darwin"
+  ]
+ },
+ "ux2_tables": {
+  "st": "local",
+  "why": "정리표·비교표·한눈표 높이 기준이 맥 글꼴(리눅스에서는 실패)",
+  "see": "audit_design.py · ux_u25 · tests4/q_crawl",
+  "need": [
+   "os:darwin"
+  ]
+ },
+ "ux3_tables": {
+  "st": "local",
+  "why": "표 자동 폭(colFit) 높이·넘침 기준이 맥 글꼴(리눅스에서는 실패)",
+  "see": "audit_design.py · ux_u25 · tests4/q_pos",
+  "need": [
+   "os:darwin"
+  ]
+ },
+ "ux3_fixes": {
+  "st": "local",
+  "why": "'Methacryloyloxydecyl' 줄바꿈이 리눅스 글꼴에서 다름 + 여럿이 함께 돌 때만 실패(혼자 돌리면 기준과 같음 — UPD_4Q_진행)",
+  "see": "tests4/q_timer · ux3_cal",
+  "need": [
+   "os:darwin"
+  ]
+ },
+ "ux3_rest": {
+  "st": "local",
+  "why": "가짜 시계로 재는 자동 휴식 — 이 컨테이너에서는 자정 나눔 9.9/20.1분 등 시간 흐름이 어긋남(인수인계_클라우드) · 11-11 W4 잠든 시간 자동 빼기로 흐름도 바뀜",
+  "see": "tests4/q_timer",
+  "need": [
+   "os:darwin"
+  ]
+ },
+ "kt": {
+  "st": "retired",
+  "why": "형광펜·빈칸 키(한글 입력 키·어절·드래그)를 고정 카드 #t-MAND-1로 봄 — 26 갱신으로 그 카드 글이 바뀜 · 시간에 민감",
+  "see": "ux5_hlm · ux4h_B · ux_marks · ux_hlpre"
+ },
+ "ux10_num5": {
+  "st": "retired",
+  "why": "넘버링 5차(미니 도구 막대·사이드바·위치 기억·섞기) — 10-11·10-22 넘버링 개편 전 화면 기준",
+  "see": "ux12_numrev · ux13_numdrag · ux25_numedit · ux8_num"
+ },
+ "ux11_fix": {
+  "st": "retired",
+  "why": "이동·검색 위치·폰 배치 — 10-22 화면 연결 개편·10-24 디자인 v3 전 기준",
+  "see": "ux26_links · ux_v3phone · tests4/q_links"
+ },
+ "ux2_auto": {
+  "st": "retired",
+  "why": "자동 빈칸 규칙·지우기 메뉴 — 지우기는 2단계(ux4)로 바뀜 · 시간에 민감",
+  "see": "ux4_clear · ux_hlpre"
+ },
+ "ux2_device": {
+  "st": "retired",
+  "why": "기기 옮기기·시간 합산·백업 띠 — 10-24~26 기기 자동 동기화(v3)가 백업 흐름을 바꿈",
+  "see": "ux_sync · ux_sync_real · tests4/q_backup"
+ },
+ "ux2_jbq": {
+  "st": "retired",
+  "why": "JB 문제 화면 F01~F12 — '정답 보기' 등 10-05 뒤 단추 이름·10-24 막대·10-25c 앞면(최신 판)으로 바뀜",
+  "see": "ux_fbar · ux_predfmt · jb_decide · ux2_jbround"
+ },
+ "ux2_keys": {
+  "st": "retired",
+  "why": "단축키 표 — M ↔ Shift+M 바뀜(10-02) · Page.click 시간 초과(원인 미확인 — 인수인계_클라우드)",
+  "see": "ux3_keys · ux3_help"
+ },
+ "ux3_keybox": {
+  "st": "retired",
+  "why": "🔑 핵심 상자 줄 나누기 화면 — 핵심 그리기가 바뀜(디자인 v3)",
+  "see": "audit_design.py · tests4/q_crawl"
+ },
+ "ux3_keylines": {
+  "st": "retired",
+  "why": "key_lines 결과를 원고의 특정 줄에 고정 — 그 원고 줄이 26 갱신으로 바뀜",
+  "see": "check_lec.py(원고 🔑)"
+ },
+ "ux3_restui": {
+  "st": "retired",
+  "why": "휴식 타이머 표시·과목 색 — 디자인 v2·v3로 색이 바뀜(과목 색은 점·밑줄·선택 막대에만)",
+  "see": "tests4/q_timer · v3_palette.py"
+ },
+ "ux4_calm": {
+  "st": "retired",
+  "why": "홈·과목 홈·JB의 차분한 화면 — 10-22 과목 홈 절 순서·10-26 JB 막대 정돈으로 바뀜",
+  "see": "ux_fbar · ux_predfmt · ux3_home"
+ },
+ "ux4_nav": {
+  "st": "retired",
+  "why": "2단 메뉴·서랍 — '과목 7줄'·ESTH 준비 중을 가정(지금은 7과목 다 있음 · 4Q는 10과목)",
+  "see": "ux_nav · tests4/q_stub"
+ },
+ "ux4_top": {
+  "st": "retired",
+  "why": "위 막대·시계 알약 — 팝오버 순서·점 색이 여러 번 바뀜(v3 · 11-11 W4)",
+  "see": "ux_v3phone · ux_kitfrev · tests4/q_timer"
+ },
+ "ux4c_fix1": {
+  "st": "retired",
+  "why": "4차 개편 1회차 수정 — 그 뒤 개편(10-22·v3)으로 화면이 바뀜",
+  "see": "ux4c_fix2 · ux4d_fix"
+ },
+ "ux_u15": {
+  "st": "retired",
+  "why": "JB 필터 막대 — 10-24 [필터 ▾]·10-26 출제 횟수 뺌",
+  "see": "ux_fbar"
+ },
+ "ux_u17": {
+  "st": "retired",
+  "why": "JB 카드 무게·문제 집중 — 10-26에 문제 집중·대조 없음을 뺌",
+  "see": "ux_predfmt"
+ },
+ "ux_u19": {
+  "st": "retired",
+  "why": "한눈표 '정답 보기 / 틀린 보기' 줄 — 10-05 사용자 '정답보기는 없애도'"
+ },
+ "ux_u21": {
+  "st": "retired",
+  "why": "과목 홈 순서와 y 위치 — 10-22 순서 바뀜 + 맥 글꼴 기준",
+  "see": "ux26_links · tests4/q_crawl"
+ },
+ "ux_u27": {
+  "st": "retired",
+  "why": "색 체계(#FFFBEA·과목 색 머리) — 디자인 v2·v3 토큰으로 바뀜",
+  "see": "v3_palette.py --check · audit_design.py"
+ },
+ "ux_u30": {
+  "st": "retired",
+  "why": "전체 검색 스니펫·복귀 — '검색창을 비우면 원래 강의로' 기대가 10-27 '검색칸 비워도 유지'와 부딪침(지금 규칙 = ux_srchkeep)",
+  "see": "ux_srchkeep · tests4/q_links(B 검색)"
+ },
+ "ux_u18": {
+  "st": "bug?",
+  "why": "11-12 FAIL 14(7줄 × 화면 2) — 허브 코드가 아니라 3Q 내용: 해설(.ab.chk·.ab.more) 230자 넘는 덩어리 OMS1 2/2265 · CONS 2/2312 · IMPL 5/1711 · ANAT 2/3128 · GERI 5/2696 · PHARM 13/3555 + ANAT Q02 대조 첫 항목이 점 목록 아님. 3Q 팩은 보관(안 고침) — 4Q annot에서 같은 검사(audit_design CHK)를 0으로",
+  "see": "audit_design.py(긴 덩어리)"
+ },
+ "ux4e_names": {
+  "st": "bug?",
+  "why": "11-12 FAIL 6(한 가지 × 화면 3 × 강의 2) · 나머지 126줄 통과(이름 잘림·% 없음 그대로) — 메뉴 강의 줄이 '교수 - 제목'(lpn)이라 '제목'과 글자가 같지 않음 = 낡은 기대(버그 아님). 93줄 `full in nl` → 끝이 같은지로 고치면 통과할 것"
+ },
+ "ux4f_O": {
+  "st": "bug?",
+  "why": "11-12 FAIL 1(O3) · O1 등 30줄 통과(HTTP) — 버그 아님: O3가 쓰는 줄의 낱말 'booster,' 끝 쉼표는 빈칸에 안 들어가는데(빈칸 12~29) 테스트는 낱말 전체(23~30)가 빈칸이길 기대. 지키려는 것(원래 빈칸 그대로·형광펜은 새 빈칸 자리만 빠짐)은 맞음. 94줄 첫 조건에서 낱말 끝 문장부호를 빼면 통과할 것"
+ },
+ "ux2_jblock": {
+  "st": "bug?",
+  "why": "11-12 FAIL 1 · 6초(브라우저 없음) — `jblock.check(…, {qid: qid})`(옮김 표 {id:id} = 확인만이면 통과)가 [] 아님. 나머지(잠금 7개·바뀐 글자 알림)는 통과. 낡은 기대인지 tools/jblock.py 쪽인지 미확인",
+  "see": "jb_decide(잠금)"
+ }
+}

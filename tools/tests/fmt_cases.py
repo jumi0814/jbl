@@ -8,7 +8,7 @@
 - '…2개를 쓰시오' → 단답형 · '주관식' → 단답형 · 라벨 '[서술형]'은 보기 줄보다 먼저
 - JB 답(답:·[답]·답)·정답 :·해설:) 안의 '설명'·'비교'·'T/F'·보기꼴 줄은 판정에 영향 없음
 - 7과목 tools/<sid>/trend.py 사본이 모두 같음(빌드마다 같은 분류기)
-사용: .venv/bin/python tools/tests/fmt_cases.py   (끝 줄 'fmt_cases RESULT PASS' · 실패면 'fmt_cases RESULT FAIL n' + exit 1)"""
+사용: .venv/bin/python tools/tests/fmt_cases.py   (끝 줄 'RESULT PASS (fmt_cases)' · 실패면 'RESULT FAIL n (fmt_cases)' + exit 1)"""
 import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))); import jblpaths as J
 import hashlib, importlib.util
 TP = _os.path.join(J.TOOLS, 'cons', 'trend.py')
@@ -79,5 +79,5 @@ for sid in ('oms1', 'cons', 'impl', 'anat', 'geri', 'pharm', 'esth'):
     p = _os.path.join(J.TOOLS, sid, 'trend.py')
     if _os.path.exists(p): H[sid] = hashlib.md5(open(p, 'rb').read()).hexdigest()[:10]
 ok(len(set(H.values())) == 1 and len(H) == 7, f"7과목 trend.py 사본 같음 {H if len(set(H.values())) != 1 else len(H)}")
-print('fmt_cases RESULT', 'PASS' if not fails else f'FAIL {len(fails)}')
+print('RESULT', 'PASS' if not fails else f'FAIL {len(fails)}', '(fmt_cases)')   # 11-12 판정 줄은 'RESULT'로 시작(ux_all이 줄 머리로 셈)
 _sys.exit(1 if fails else 0)
