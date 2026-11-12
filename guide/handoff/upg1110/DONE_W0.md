@@ -7,11 +7,11 @@
 진행(항목 하나 끝날 때마다 고쳐 씀 — 한도로 멈춰도 여기서 이어 감):
 
 - [x] 1 시험용 사이트(fixture) `qsite.build_fixture()` — 11-11 코드(4Q 그림 파일 방식)에서 확인(고칠 것 없음)
-- [~] 2 `q_crawl.py` 마무리 — 가로 넘침 재는 법 고치는 중(아래 2 · 순서: 3 → 4 → 2 → 5)
+- [x] 2 `q_crawl.py` 마무리 — 전부 RESULT PASS(948화면 · 3분 32초) · 가로 넘침 재는 법 고침(아래 2)
 - [x] 3 `q_pos.py`(자리 지킴이) — 새 파일 · 지금 코드 RESULT PASS(105경우 어긋남 0 · KNOWN 0 · 5분 35초)
 - [x] 4 `tools/tests/STATUS.json`(35줄) · `ux_all.py`(STATUS 읽음) · `fmt_cases.py` 판정 줄 — 전체 `ux_all`은 안 돌림(메인)
 - [x] (앞 담당 · b607f618) `q_ident` 린트 넓히기 — PASS 확인됨(메인)
-- [ ] 5 `full_check.sh`
+- [x] 5 `full_check.sh` — `sh -n` 통과 · 바뀐 부분만 확인(전체는 메인)
 - [x] 6 렉 묶음 전 기준 수치(`q_pos.py --perf` — 아래 표)
 
 ## 항목별 기록
@@ -20,9 +20,21 @@
 - `build_fixture()` 1.5초 · 뿌리 허브 `__h.NS==='jbl4q.v1.'` · 과목 팩 7개(OMS1·CONS·IMPL·ANAT·GERI·PHARM·ESTH) · 3Q 팩은 `imgf`가 없어 묶음 방식 그대로 → PHARM/HM 학습 그림 77개 가운데 화면에 올린 30개 모두 뜸(naturalWidth>0) · pageerror·console error·HTTP ≥400 0.
 - 가장 큰 문서(PACKINFO·biggest): 학습·정리표·비교표·예상 = PHARM/HM · 기출 = ESTH/BOOK · 과목 JB·비교표·정리표 = PHARM · 과목 예상 = ESTH.
 
-### 2 q_crawl — 진행 중(11-12)
-- quick(과목마다 과목 문서 + 가장 큰 강의 하나) 564화면 3분 7초: 오류·undefined/NaN·빈 화면 0 · 그 화면으로 안 열림 0.
-- **찾은 것(검사기 쪽)**: body·html이 `overflow-x:clip`이라 `documentElement.scrollWidth`는 넘쳐도 창 폭 그대로 → 앞 담당의 '가로 넘침' 검사는 늘 0(검사기 자체 검사가 그걸 잡아 FAIL) → 보이는 요소의 오른쪽 끝을 직접 재는 식으로 바꿈. 지금은 학습 탭에서 거짓 경보(`span.gone26`·`button.ucj` — 접힌/밀어 둔 요소로 보임 · 확인 뒤 예외 처리 남음).
+### 2 q_crawl — 됨(11-12 · `tools/tests4/q_crawl.py`)
+- **지금 결과(전부): RESULT PASS · 948화면 · 3분 32초**(15분 안) — 화면 오류(pageerror)·콘솔 error·HTTP ≥400·요청 실패 0 · 글·속성 undefined/NaN/[object Object] 0 · 가로 넘침 0 · 빈 화면 0 · 그 주소가 그 화면으로 안 열림 0.
+
+| 허브 | 1280×900 | 폰 393×852 |
+|---|---|---|
+| 뿌리(4Q — 빈 과목 10) | 46화면 · 10초 | 26화면 · 8초 |
+| 3q/(3Q 7과목) | 411화면 · 82초 | 27화면 · 14초 |
+| fixture(4Q 정체성 + 3Q 내용) | 411화면 · 84초 | 27화면 · 14초 |
+
+- 훑는 것: 허브 화면 6개(`#/`·`_cal`·`_time`·`_bm`·`_num`·`_numr`) + 과목마다 메뉴에 있는 과목 문서 전부(_home·_jb·_pred·_final·_fig·_sum·_led·_tbl·_cbm·_marks) + 강의마다 모든 탭(`__h.docTabs`). 폰은 허브 화면 + 과목마다 과목 홈·JB 문제·가장 큰 강의 첫 탭(시간 — 폰 전부는 `JBL_CRAWL_VW=393`).
+- **고친 것(검사기)**: ① 가로 넘침 — body·html이 `overflow-x:clip`이라 `documentElement.scrollWidth`는 넘쳐도 창 폭 그대로(앞 담당 검사는 늘 0 · 검사기 자체 검사가 FAIL로 드러냄) → **보이는 요소의 오른쪽 끝을 직접 잼**: 틀(#top·#nav·#hero·#dtabs·#stage / #home) 안 요소 가운데 오른쪽 끝 > 창 폭 + 1이고, 자르는/스크롤하는 조상(표 가로 스크롤 상자 등 `overflow-x ≠ visible`)·붙박이(`position:fixed`)·숨김(visibility·opacity 0)·안 그려지는 것(`checkVisibility()` 거짓 — 접힌 `<details>` 안 '25 → 26 바뀐 점' 알약 내용 등)·창 밖에서 시작하는 것(밀어 둔 서랍)이 아닌 것 = 넘침. ② 폰은 문서 2~3개만 ③ `JBL_CRAWL=lite`(과목 문서 + 가장 큰 강의 2개는 모든 탭 · 나머지는 첫 탭만 — 느려지면 쓸 것 · 지금은 전부가 3분 반이라 기본은 전부) · `quick`(과목마다 가장 큰 강의 하나 — 564화면 2분 45초).
+- 검사기 자체 검사(한 번): 허브 홈에 일부러 넣은 'undefined' 글·`title="NaN분"`·창보다 300px 넓은 칸을 잡는지 → 잡음.
+- **진짜 가로 넘침: 못 찾음**(1280 전부 · 폰은 위 범위). 처음 고친 직후 학습 탭마다 걸린 `span.gone26`·`button.ucj`는 접힌 details 안(화면에 안 그려짐)이라 거짓 경보 → `checkVisibility`로 뺌.
+- 덤(11-12 한 번): 폰 393에서 fixture 모든 강의·탭 `JBL_CRAWL_VW=393 JBL_CRAWL_SITE=fx` → **411화면 RESULT PASS · 102초**(가로 넘침·오류 0). 폰도 기본으로 전부 돌리면 전체 약 6분 반(15분 안) — 기본을 바꿀지는 메인.
+- 안 본 것: 답 펼친 상태·필터 건 상태 · 820/1180(아이패드 — audit_design이 봄) · 넘버링 화면 안쪽(허브 화면 `_num`·`_numr` 첫 화면만).
 
 ### 3 q_pos.py(자리 지킴이) — 새 파일 `tools/tests4/q_pos.py` · 11-12 RESULT PASS
 - 자리: 시험용 사이트(fixture — 4Q 정체성 + 3Q 내용 · `JBL_POS_SITE=3q`면 3q/ 허브) 1280×900. 문서 7개는 `__h.PACKS`에서 가장 큰 것(`qsite.biggest`): 학습·정리표·비교표·예상 = PHARM/HM · 기출 = ESTH/BOOK · 과목 JB = PHARM/_jb · 과목 비교표 = PHARM/_tbl.
@@ -71,3 +83,28 @@
 | ux4e_names | FAIL 6(한 가지 × 화면 3 × 강의 2) · 126줄 통과 · 66초 | `메뉴 강의 줄 원래 제목 ['이인복 - Tooth whitening', …]` | **버그 아님 — 낡은 기대**: 메뉴 강의 줄이 '교수 - 제목'(`lpn`)이라 `full in nl`(제목과 글자 같음)이 거짓. 이름 잘림·% 재발은 **없음**(빵부스러기 제목·과목 이름·% 줄 모두 통과). 93줄을 '끝이 같은지'로 고치면 통과할 것(내 파일 아님 — 안 고침) |
 | ux4f_O | FAIL 1(O3) · 30줄 통과 · 71초 | `O3 구멍 난 형광펜 위 빈칸 겹치기 … (빈칸→형광펜 [] · 빈칸 잃음 [])` | **버그 아님 — 낡은 글 가정**: 그 줄 '③ Chemicals (catalyst, booster, activator) …'에서 낱말 `booster,`의 끝 쉼표는 빈칸에 안 들어감(빈칸 = 12~29) → 첫 조건 `set(range(*WD[3])) <= B2`만 거짓. 지키려는 것(원래 빈칸 글자 그대로 · 형광펜은 새 빈칸 자리만 빠짐 `H2 == H1 - B2`)은 참(값을 찍어 확인). O1(가린 칸 형광펜)은 HTTP에서 통과 |
 | ux2_jblock(덤) | FAIL 1 · 6초(브라우저 없음) | `옮김 표 {id:id}(확인만)이면 통과` — `jblock.check('PHARM', 바꾼 jbhash, lock, {qid: qid}) != []` | 미확인(낡은 기대인지 `tools/jblock.py` 쪽인지) — 메인 |
+
+### 5 full_check.sh — 됨(11-12 · 전체는 안 돌림)
+- '도구 문법' 묶음에 `tools/tests4/*.py`도(py_compile — 지금 0건).
+- tests4 묶음: `for f in tools/tests4/q_*.py`가 새 `q_crawl`(약 4분)·`q_pos`(약 6분)도 돎(주석에 적음 — UI=1일 때 약 10분 더 걸림). 수치만 내는 `q_pos.py --perf`는 full_check에서 안 돎.
+- 3q 묶음: 테스트 58개를 하나씩 `grep RESULT|FAIL`하던 for 문 → **`JBL_HTTP=1 ux_all.py <같은 58개 이름>`** 한 번(로그에 줄마다 ` ok `/`SKIP`/`known`/`FAIL` + 끝 `RESULT … · PASS n · SKIP n(…) · 알려진 실패 n`) + `ux3_compat`는 전처럼 file://(JBL_HTTP 없이)로 `ux_all.py ux3_compat` 한 줄. '== 요약'은 'FAIL' 글자를 세므로 PASS·SKIP·known뿐이면 3q 테스트에서 걸리는 줄 0(STATUS 기준).
+- 확인: `sh -n tools/full_check.sh` 통과 · 58개 이름 모두 ux_all이 찾음(`--list` → 돌릴 것 54 · SKIP 4 = legacy_restore(local)·ux10_num5·ux11_fix·ux_u27(retired)) · `ux_all.py nb_numbering fmt_cases ux11_fix` 출력을 요약 정규식에 넣어 걸리는 줄 0 · ux3_compat 줄 = SKIP local(여기 git 7095e56 없음).
+- 바뀌는 것(메인이 알 것): 3q full_check에서 전에 'FAIL'로 요약에 뜨던 legacy_restore·ux10_num5·ux11_fix·ux_u27(기준 실패)이 이제 SKIP 줄 · ux_all은 이름 순서(가나다)로 돎 · 테스트 하나가 3600초를 넘으면 실패.
+
+## 끝 정리(11-12)
+- 바꾼 파일: `tools/tests4/q_crawl.py`(가로 넘침 재는 법·폰 범위·lite) · 새 `tools/tests4/q_pos.py` · 새 `tools/tests/STATUS.json` · `tools/tests/ux_all.py` · `tools/tests/fmt_cases.py`(판정 줄 2곳) · `tools/full_check.sh` · 이 보고. `qsite.py`는 안 고침(시험용 사이트가 그대로 됨). 허브(`shell.html`)·`build4.py`·`num.js`·다른 테스트는 안 건드림. 커밋·푸시 안 함.
+- 돌린 것과 결과: `q_crawl` 전부 PASS(948화면 3분 32초) · `q_pos` PASS(105경우 5분 35초 — 그 뒤 '검사기 자체 검사' 한 줄을 더했고 좁힌 실행(`JBL_POS_DOC=tbl JBL_POS_SC=tab,chip`)으로만 다시 확인) · `q_pos --perf` 38초 · `fmt_cases` PASS · `ux3_timer` PASS(231초) · bug? 3개 + ux2_jblock = 위 표 · `ux_all --list`·작은 묶음 · `sh -n full_check.sh`. 전체 `ux_all`·전체 `full_check`는 안 돌림(메인).
+- **허브에서 찾은 버그: 없음**(q_pos 어긋남 0 · q_crawl 진짜 가로 넘침·오류 0 · bug? 3개는 모두 낡은 기대/3Q 내용).
+
+### 메인이 정할 것
+1. `ux_u18`(3Q 내용 — 해설 230자 덩어리 29개 + ANAT Q02)·`ux4e_names`·`ux4f_O`는 버그가 아님 → ① 지금처럼 bug?(돌리고 '알려진 실패')로 둘지 ② ux4e_names 93줄·ux4f_O 94줄을 한 줄씩 고쳐 STATUS에서 뺄지(각 5분 안 — 내 맡은 파일이 아니라 안 고침) ③ ux_u18은 3Q가 보관이라 계속 실패 → retired + 4Q annot에서 같은 검사(audit_design CHK) 0.
+2. `ux2_jblock` 한 줄(`jblock.check`에 옮김 표 {id:id}) — 낡은 기대인지 `tools/jblock.py` 쪽인지 확인(브라우저 없는 6초 테스트).
+3. local 10개는 이 컨테이너에서 다 SKIP — 기록 지킴이 4개(legacy_restore·legacy_restore_107·ux2_sum_mig·ux3_compat)는 **맥이나 전체 복제(git 7095e56·f2e99d3)에서만 돎** → 허브의 표시 복원 길을 고치는 묶음(W6·W7) 뒤에는 맥에서 한 번 돌려 달라고 사용자에게 부탁할지 / `git fetch --unshallow`가 되는지.
+4. 글꼴 local 5개(ux2_learn·ux2_tables·ux3_tables·ux3_fixes·ux3_rest)는 맥에서 돌면 '진짜 실패'로 뜸 — 맥에서도 내용 때문에 실패하면 retired로 옮기기.
+5. q_pos 범위를 넓힐지: 폰 393 · 허브 '이어서' · 답 펼친/필터 건 상태 · 스크롤 뒤 0.8초 안에 바로 떠나는 경우(지금은 자리 저장을 기다린 뒤 떠남). 렉 묶음(content-visibility·표 맞춤 미루기)이 건드리는 것이 '늦게 밀림'이라 1.5초 측정이 핵심 — 지금 범위로 충분하다고 봄.
+6. q_crawl 폰을 기본으로 전부 돌릴지(+3분) · full_check(UI)가 q_crawl·q_pos로 약 10분 늘어나는 것.
+
+### 남은 위험
+- q_pos·q_crawl은 3Q 내용(fixture)에 기대어 가장 큰 문서를 고름 — 4Q 내용이 차면 `JBL_POS_SITE`/qsite 뿌리에서도 그대로 돌지만(과목·강의를 PACKS에서 찾음) 4Q 그림 파일 방식(`imgf`) 팩에서는 아직 한 번도 안 돌려 봄(그림 높이가 width/height 속성으로 잡혀 있으면 같음).
+- STATUS의 retired 20개는 R_HISTORY 4번 분류표를 그대로 믿은 것(하나씩 다시 돌리지 않음) — 그 가운데 실제 버그가 숨어 있을 수는 있음(`ux_all.py --force <이름>`으로 다시 볼 수 있음). 'see'(대신 보는 테스트)는 이름·머리말로 고른 것이라 1:1로 같은 것을 지키지는 않음.
+- q_pos의 ±2px은 한 번에 한 탭·부하 없는 상태 기준 — 다른 무거운 테스트와 함께 돌리면 100ms 측정이 흔들릴 수 있음(혼자 돌릴 것).

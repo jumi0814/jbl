@@ -32,7 +32,7 @@
 
 ## 전면 점검·개선(11-10 시작 — 사용자 '자료를 주기 전에 … 모든 방면에서 … 업데이트' · 계획·보고 guide/handoff/upg1110/)
 - 방법: 허브 = tools/cons/shell.html **한 번에 한 담당**(긴 줄이라 합치기 충돌) → sync_common → rehub → 3Q 스테이징 회귀(JBL_Q=3q · rehub --q 3q --stage) + tests4 → 묶음마다 커밋·배포 · shell을 안 건드리는 일(build4·테스트 도구·스킬 문서)은 나란히
-- [ ] W0 안전망: tests4/qsite 시험용 사이트(4Q 정체성 + 3Q 팩) · tools/tests/STATUS.json(기준 실패 37 정리) · q_ident 린트 넓히기 · 성능 기준
+- [x] (11-12 가벼운 판 · 보고 DONE_W0.md — q_pos 105경우 PASS · q_crawl 948화면 PASS · STATUS.json 35줄(helper 1·retired 20·local 10·bug? 4) · 렉 전 기준 수치 · 전체 ux_all·full_check는 끝에 메인이) W0 안전망: tests4/qsite 시험용 사이트(4Q 정체성 + 3Q 팩) · tools/tests/STATUS.json(기준 실패 37 정리) · q_ident 린트 넓히기 · 성능 기준
 - [x] (11-10 배포 1 — main c37b69a8) W1 빈 과목(isStub·build4 stub)·그림 다시 받기(needImages)·이동(↩ y·검색·없는 화면 주소·라벨 통일) → 배포 1
 - [x] (11-11 배포 4와 함께 · 보고 DONE_W2.md — 메인 몫: TREND·P·FN 지시문에 HIT_<3Q 과목> 채우기 · subject.py TREND_NOTE '직전 2년 기출 먼저' · 사용자 확인 12건은 끝 보고) W2 4Q 규칙·스킬(적중 분석 후보 20여 줄 → RULES 14 c ⑥ · 상 비율 충돌 · AGENTS T·P·FN·PA·Q4_RULES_BRIEF · 옛 배치 · check_lec ★·줄바꿈)
 - [x] (11-11 배포 4 · 보고 DONE_W3_허브.md·DONE_빌드.md — 허브 imgUrl 한 곳 · 파일 다시 받기·자리 표시 · 묶음(3Q) 비움 + fetch · 넘버링 그림 lecFill·lecWait) W3 4Q 그림 파일(build4 imgf·img_lock · 허브 그림 주소 한 곳 · 묶음 방식 메모리 비움) → 배포 2
@@ -49,6 +49,8 @@
 1. 4Q 과목표(과목명·교수·강의 제목·주차 · 3Q와 이어지는 과목) 2. 2026 3Q 실제 기출 3. 4Q JB(판본 전부 · `20YY 4Q <과목> JB.pdf`) 4. 26 강의자료+필기 5. 25 강의자료+필기(26이 없는 강의 · 교과서) 6. 학기 중 새 26 강의
 
 - **재개 메모 5(11-11 10:55 UTC)**: 배포 4(W3 허브 + W2 문서) 끝 · 다음 = W0 가벼운 안전망(worktree 브랜치 worktree-agent-ac5912c51bbd11a94 273be7ec를 합쳐 이어서 — q_pos가 W6의 안전판) → W6 렉(agents/UPG_H5_렉.md) → W7 디자인·색 리뉴얼(agents/UPG_H6_디자인.md) → 3Q 허브 다시 내기(JBL_UNFREEZE=1 rehub --q 3q + num) · ux_all 전체 · 끝 보고 · 담당은 한 번에 하나.
+
+- **재개 메모 6(11-12 23:55 UTC)**: W0 끝 · 다음 = W6 렉 담당(agents/UPG_H5_렉.md — 단계마다 지킴이) → 검사·배포 5 → W7 디자인·색 리뉴얼 → 배포 6 → 3Q 허브 다시 내기 · ux_all 전체 · 끝 보고.
 
 ## 재개 메모
 - 3Q 기준 회귀: scratchpad worktree base3q(3q-final) — `work/_tmp/base_ux_all.log` · 새 코드 회귀는 기준이 끝난 뒤 같은 명령(JBL_HTTP=1 ux_all)

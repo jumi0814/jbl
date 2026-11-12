@@ -13,7 +13,7 @@ say() { echo "$@" | tee -a $L; }
 $PY tools/quarters.py check >/dev/null || { $PY tools/quarters.py check | tee -a $L; }
 say "== 동기화"; $PY tools/sync_common.py 2>&1 | tail -1 | tee -a $L
 o=$($PY tools/num/build_num.py --check 2>&1 | tail -1); say "$o"; echo "$o" | grep -q OK || say "  ✗ 넘버링 모듈 사본(docs/num ↔ tools/num · NUMV) 다름 — tools/num/build_num.py"
-say "== 도구 문법"; for f in tools/*.py tools/cons/*.py tools/num/*.py tools/tests/*.py; do $PY -m py_compile "$f" 2>/dev/null || say "  ✗ 도구 문법 오류 $f"; done   # 10-26 merge_parts가 10-24부터 문법 오류로 멈춰 있던 것을 못 잡음(스킬 점검 16 ✗4)
+say "== 도구 문법"; for f in tools/*.py tools/cons/*.py tools/num/*.py tools/tests/*.py tools/tests4/*.py; do $PY -m py_compile "$f" 2>/dev/null || say "  ✗ 도구 문법 오류 $f"; done   # 10-26 merge_parts가 10-24부터 문법 오류로 멈춰 있던 것을 못 잡음(스킬 점검 16 ✗4)
 say "== 빌드"
 for s in $sids; do
   $PY tools/$s/build4.py > work/_tmp/b_$s.log 2>&1; rc=$?
@@ -43,14 +43,12 @@ say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L
 for s in $SIDS; do $PY tools/dump_jb.py $s >/dev/null 2>&1; $PY tools/dump_breaks2.py $s >/dev/null 2>&1; done   # QA(E)·D2b가 읽는 화면 덤프
 if [ $UI = 1 ]; then
   say "== tests"
-  if [ -d tools/tests4 ]; then for f in tools/tests4/q_*.py; do say "$(basename $f .py) $(JBL_HTTP=1 $PY $f 2>&1 | grep -E 'RESULT|FAIL' | tr '\n' ' ' | cut -c1-300)"; done; fi   # 11-04 분기 분리·4Q 범용 테스트(어느 분기든)
+  if [ -d tools/tests4 ]; then for f in tools/tests4/q_*.py; do say "$(basename $f .py) $(JBL_HTTP=1 $PY $f 2>&1 | grep -E 'RESULT|FAIL' | tr '\n' ' ' | cut -c1-300)"; done; fi   # 11-04 분기 분리·4Q 범용 테스트(어느 분기든) · 11-12 q_crawl(전 화면 훑기 — 약 4분)·q_pos(자리 지킴이 — 약 6분)도 이 묶음(q_*.py 전부 · 판정 없는 수치는 q_pos.py --perf로 따로)
   if [ "$Q" = 3q ]; then   # 3Q 회귀(tools/tests — 3Q 문항·강의 이름이 박혀 있음) · 4Q는 위 tests4만
+  # 11-12 ux_all이 기준 실패 정리표 tools/tests/STATUS.json을 읽음: 낡은 것(retired)·여기 없는 것이 필요한 것(local) = 'SKIP' 줄 · bug? = 'known'(알려진 실패) 줄 · 진짜 실패만 'FAIL' 줄 → 아래 '== 요약'은 PASS·SKIP·known뿐이면 깨끗함
   # 표시·북마크 테스트는 file:// 대신 로컬 http로(JBL_HTTP=1 — file://은 Chromium이 가끔 localStorage를 비워 거짓 실패). ux3_compat만 file://
-  for t in legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap ux7_u26 ux8_num ux9_numai ux10_num5 jb_decide ux_arrow ux_sync ux_sync_num ux_sync_all ux_sync_real ux_predfmt ux_fmtcnt ux_hlpre ux_srchkeep ux_gbclick ux_final ux11_fix ux12_numrev ux13_numdrag ux14_numjb ux15_storage ux16_pred ux17_fig ux18_numpred ux19_yearprof ux20_numdocx ux21_numyrs ux22_markbridge ux23_bm ux24_numsrc ux25_numedit ux26_links ux_u27 ux_v3phone ux_align ux_fbar nb_numbering ux_kitfrev; do
-    [ -f tools/tests/$t.py ] || continue
-    say "$t $(JBL_HTTP=1 $PY tools/tests/$t.py 2>&1 | grep -E 'RESULT|FAIL|lost rate|LOST_GONE [0-9]' | tr '\n' ' ' | cut -c1-300)"
-  done
-  say "ux3_compat $($PY tools/tests/ux3_compat.py 2>&1 | grep -E 'RESULT' | tr '\n' ' ')"
+  JBL_HTTP=1 $PY tools/tests/ux_all.py legacy_restore kt_migrate aidlock_test ux_u23 ux2_fixB ux4h_A ux4h_B ux4h_C ux_marks ux4f_P ux4g_A ux4g_C ux_u24 ux_u26 kt_sync ux5_sess ux5_hlm ux4f_C ux2_undo ux6_gap ux7_u26 ux8_num ux9_numai ux10_num5 jb_decide ux_arrow ux_sync ux_sync_num ux_sync_all ux_sync_real ux_predfmt ux_fmtcnt ux_hlpre ux_srchkeep ux_gbclick ux_final ux11_fix ux12_numrev ux13_numdrag ux14_numjb ux15_storage ux16_pred ux17_fig ux18_numpred ux19_yearprof ux20_numdocx ux21_numyrs ux22_markbridge ux23_bm ux24_numsrc ux25_numedit ux26_links ux_u27 ux_v3phone ux_align ux_fbar nb_numbering ux_kitfrev 2>&1 | cut -c1-300 | tee -a $L
+  say "ux3_compat(file://) $($PY tools/tests/ux_all.py ux3_compat 2>&1 | grep -E '^(SKIP|FAIL|known| ok )|^RESULT' | tr '\n' ' ' | cut -c1-300)"
   fi
   say "== audit_design"; $PY tools/audit_design.py 2>&1 | tail -1 | tee -a $L
 fi
