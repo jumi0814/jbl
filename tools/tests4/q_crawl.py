@@ -25,9 +25,13 @@ CHECK = r"""(kind)=>{const $=s=>document.querySelector(s),sub=$('#subj'),doc=sub
  for(const b of box){const t=b.textContent||'',m=RX.exec(t);if(m)out.bad.push('#'+b.id+' 글 «'+t.slice(Math.max(0,m.index-40),m.index+50).replace(/\s+/g,' ')+'»');
   const a=b.querySelector('[href*="undefined"],[src*="undefined"],[title*="undefined"],[aria-label*="undefined"],[placeholder*="undefined"],[data-id="undefined"],[data-d="undefined"],[data-s="undefined"],[data-aid*="undefined"],[title*="NaN"],[style*="NaN"],[title*="[object Object]"],[href*="[object"]');
   if(a)out.bad.push('#'+b.id+' 속성 '+a.outerHTML.slice(0,140).replace(/\s+/g,' '));}
- const W=innerWidth,sw=document.documentElement.scrollWidth;
- if(sw>W+1){let w=null,wr=0;for(const e of document.querySelectorAll('#top *,#nav *,#home *,#subj *')){if(!e.offsetParent)continue;const r=e.getBoundingClientRect();if(r.width&&r.right>wr&&r.right>W+1){let p=e.parentElement,clip=false;while(p&&p!==document.body){const o=getComputedStyle(p).overflowX;if(o!=='visible'){clip=true;break;}p=p.parentElement;}if(!clip){w=e;wr=r.right;}}}
-  out.over=sw+'>'+W+(w?' ← '+w.tagName.toLowerCase()+(w.id?'#'+w.id:'')+(w.className&&w.className.baseVal==null?'.'+String(w.className).trim().split(/\s+/).join('.'):'')+' 오른쪽 '+Math.round(wr):'');}
+ /* 11-11 가로 넘침 — body·html이 overflow-x:clip이라 scrollWidth는 늘 창 폭(넘쳐도 안 늘어남) → 보이는 요소의 오른쪽 끝을 직접 잼:
+    창 밖으로 나갔는데 자르는/스크롤하는 조상(표 가로 스크롤 상자 등)이 없는 것 = 넘침(붙박이·숨긴 것·화면 밖으로 밀어 둔 서랍은 뺌) */
+ const W=innerWidth,sw=document.documentElement.scrollWidth;let w=null,wr=0;
+ for(const b of box)for(const e of b.querySelectorAll('*')){const r=e.getBoundingClientRect();if(!(r.width>0&&r.height>0)||r.right<=W+1||r.right<=wr||r.left>=W)continue;
+  let p=e,clip=false;while(p&&p!==document.body){const c=getComputedStyle(p);if((p!==e&&c.overflowX!=='visible')||c.position==='fixed'||c.visibility==='hidden'||+c.opacity===0){clip=true;break;}p=p.parentElement;}
+  if(!clip){w=e;wr=r.right;}}
+ if(sw>W+1||w)out.over=(w?Math.round(wr):sw)+'>'+W+(w?' ← '+w.tagName.toLowerCase()+(w.id?'#'+w.id:'')+(w.className&&w.className.baseVal==null?'.'+String(w.className).trim().split(/\s+/).join('.'):'')+' «'+(w.textContent||'').trim().slice(0,30).replace(/\s+/g,' ')+'»':'');
  const st=doc?$('#stage'):$('#home'),tx=st?(st.innerText||'').trim():'';
  if(!st||tx.length<(kind==='hub'?20:12)||!st.firstElementChild)out.empty='글 '+tx.length+'자';
  out.len=tx.length;return out;}"""
