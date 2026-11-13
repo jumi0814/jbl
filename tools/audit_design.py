@@ -4,6 +4,10 @@ from playwright.async_api import async_playwright
 U=J.HUB_URL
 SUBJ={'GERI':['HARD','OHQ','ENDO','BLE','SAL','PAIN','PSY'],'OMS1':['DD1','DD2','DD3','DX','EXT','LOAD','REP'],'CONS':['WHT','CRK','DHS','INL','ANT','ADH','FRC'],'IMPL':['HIS','OSS','PATH','BIO','PRO','PART','GRAFT'],'ANAT':['NECK','NV','LIP','MAND','PAR','MAX','TMJ'],'PHARM':['RX','XE','BT','ACU','CHR','HM','DS']}
 if _os.path.exists(_os.path.join(J.DOCS,'packs','ESTH.js')): SUBJ['ESTH']=['INT','FUN','PLAN','SPE','COL','MAT','VEN']   # 심미치과학(10-03) — 팩이 생긴 뒤부터 감사
+# 11-13 W7: 위 과목·강의는 3Q 것(박혀 있음) — 지금 분기(JBL_Q · 없으면 등록표 current = 4Q)에 그 과목이 하나도 없으면 #stage를 못 찾아 죽던 것 → 한 줄로 끝냄(3Q 회귀는 JBL_Q=3q — 스테이징 허브에서 돎)
+SUBJ={s:l for s,l in SUBJ.items() if s in J.sids()}
+if not SUBJ:
+    print(f'audit_design: {J.Q.upper()}는 내용 없음 — 건너뜀(3Q 회귀는 JBL_Q=3q .venv/bin/python tools/audit_design.py)'); sys.exit(0)
 JS=r"""()=>{
 function rgb(s){const m=s.match(/rgba?\(([^)]+)\)/);if(!m)return null;const p=m[1].split(',').map(x=>parseFloat(x));return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
 function lum(c){const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b);}
