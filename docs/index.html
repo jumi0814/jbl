@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 4쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"87a2a5d8",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"34553dc5",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1A1815;--sub:#706C65;--line:#E0DCD7;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EEEA;--accb:#D8D4CE;--acct:#393734;
@@ -2582,7 +2582,7 @@ html body #stage .gbx .acts .btn.pri:hover{background:var(--v-soft-h)!important}
  #stage .cite.cz{min-width:32px}
  #stage .finhd .finby .chip{min-height:32px;display:inline-flex;align-items:center}
  .figs figcaption .gbgo{min-height:32px}
- #stage .qc .qhead .chip.lec{min-height:32px;padding:0 6px;display:inline-flex;align-items:center}
+ #stage .qc .qhead .chip.lec{padding:0 6px;display:inline-flex;align-items:center}   /* 높이는 앞 층의 44px 그대로(ux4f F3 손가락 44px — 32로 줄이지 않음) */
  #home label.small:has(select){display:inline-flex;align-items:center;min-height:32px;gap:6px}
  #stage .pc .qhead .jbchip,#stage .pc .qhead .chip.lec,#stage .gbx .qhead .jbchip,#stage .gbx .qhead .chip.lec,#stage .gbx .qhead .chip.pwhy,#stage .fclinks .chip.lec,#top #crumb .cbs,#stage .fhtog,#stage .msum button.link,#stage button.link,#home a.qlk,#stage .hlist button.lec{position:relative}
  #stage .pc .qhead .jbchip::before,#stage .pc .qhead .chip.lec::before,#stage .gbx .qhead .jbchip::before,#stage .gbx .qhead .chip.lec::before,#stage .gbx .qhead .chip.pwhy::before,#stage .pc .qhead .chip.pwhy::before,#stage .fclinks .chip.lec::before,#top #crumb .cbs::before,#stage .fhtog::before,#stage .msum button.link::before,#stage button.link::before,#home a.qlk::before,#stage .hlist button.lec::before{content:"";position:absolute;left:50%;top:50%;width:max(100%,32px);height:max(100%,32px);transform:translate(-50%,-50%)}
@@ -2590,8 +2590,7 @@ html body #stage .gbx .acts .btn.pri:hover{background:var(--v-soft-h)!important}
 }
 /* 폰(≤480) 학습 탭 줄 오른쪽 작은 단추 — 11-04에 '탭 60% · 도구 40%'로 줄인 뒤 [틀·n장 ▾]가 38px로 눌려 글자가 옆 [보기 ▾] 위에 겹치던 것: 단추는 줄어들지 않게 · ▾ 표시 빼고 좌우 여백 줄임 · 도구 칸 40 → 47%(네 단추가 한 줄에 다 보임 — 넘치면 전처럼 옆으로 밀기) */
 @media (max-width:480px){html body:not(.focus) #dtabs .lmini>button,html body:not(.focus) #dtabs .lmini2>button{flex:none!important;padding:0 5px!important}html body:not(.focus) #dtabs .lmini{max-width:47%}html body:not(.focus) #dtabs .dtrow{flex:1 1 53%!important}html body #dtabs #lmcur .dd{display:none}html body #dtabs #lmview::after{content:none}}
-/* ⑤-b JB 카드 머리: 누르는 것 = 먹 굵게 + 밑줄(+ → ▸) · 그냥 표시 = 옅은 보통 글자 — 교수 이름(표시)이 굵은 먹이라 누르는 것처럼 보이던 것 · '정리본 →'(누름)은 밑줄이 없던 것 */
-#stage .qc .qhead .chip.pf b{font-weight:500;color:inherit}
+/* ⑤-b JB 카드 머리: 누르는 것 = 먹 굵게 + 밑줄(+ → ▸) · 그냥 표시(순번·짤·탈·✓ 대조) = 옅은 보통 글자 — '정리본 →'(누름)은 밑줄이 없던 것 · 교수 이름은 굵게 그대로(사용자 10-16 '교수님 태그가 볼드체였으면 좋겠어 지금은 잘 안 보여' — 밑줄이 없어 누르는 칩과 갈림 · ux19_yearprof) */
 #stage .qc .qhead .chip.lec{color:var(--ink,#1A1815)!important;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line);cursor:pointer}
 /* ----- 11-13 W7 넓힘(색·위계·여백 — 사용자 11-10 '색 배치 및 조화 … 편안하면서 집중되게끔')
    ⓐ 색: '비슷한데 다른 회색' 102종(화면에 실제로 쓰이던 글자 색 31·바탕 38…)을 사다리 16단으로 모음(색 글자 자체를 바꿈 — 규칙·표는 DONE_W7.md '넓힘 ⓐ') · 같은 뜻인데 조금씩 다르던 의미 색 글자 30종 → 11종
@@ -2725,7 +2724,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS2", "CONS4", "IMPL4", "ANAT4", "HINS", "GERI4", "PHARM4", "RAD", "OPATH", "ESTH4"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="87a2a5d8",PV={"OMS2": "dbfff821", "CONS4": "8081860d", "IMPL4": "24e76fb8", "ANAT4": "164bbf80", "HINS": "8dc6dd7e", "GERI4": "9c903278", "PHARM4": "2a9c6ec4", "RAD": "90813651", "OPATH": "ab038720", "ESTH4": "1509c84c"},PSZ={"OMS2": 0.0, "CONS4": 0.0, "IMPL4": 0.0, "ANAT4": 0.0, "HINS": 0.0, "GERI4": 0.0, "PHARM4": 0.0, "RAD": 0.0, "OPATH": 0.0, "ESTH4": 0.0};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="34553dc5",PV={"OMS2": "91ca33ca", "CONS4": "d9dc3b4d", "IMPL4": "85f6ef03", "ANAT4": "378d0bd3", "HINS": "095e7524", "GERI4": "0d2b6530", "PHARM4": "d0c10662", "RAD": "a99cb760", "OPATH": "f884ba36", "ESTH4": "5bed37e2"},PSZ={"OMS2": 0.0, "CONS4": 0.0, "IMPL4": 0.0, "ANAT4": 0.0, "HINS": 0.0, "GERI4": 0.0, "PHARM4": 0.0, "RAD": 0.0, "OPATH": 0.0, "ESTH4": 0.0};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=QC.subjects;   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={},IMGCH={},IMGNET={},IMGUSE=[];   /* 11-11 W3 IMGCH 묶음 → 그 묶음이 넣은 키 · IMGNET 네트워크로 받은 묶음(다시 받을 수 있는 것만 비움) · IMGUSE 최근에 쓴 강의 묶음(앞이 최근) */let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
