@@ -37,7 +37,10 @@ with sync_playwright() as p:
         t = pg.evaluate("(e=>e?[e.textContent,e.querySelector('a').getAttribute('href')]:['',''])(document.querySelector('#rpop .oqline'))")
         ok(re.search(rf'다른 쿼터\({ko}\) 기록 [\d.]+(MB|KB) — {sh} 허브에서 정리하기', t[0] or '') is not None and t[1].endswith('#/_clean'), f'{q} ① 저장 공간 창 {t[0]!r} ({t[1]})')
         pg.screenshot(path=os.path.join(ROOT, 'work', '_tmp', f'q_store_oq_{q}.png'))
-        pg.evaluate("document.querySelector('#rpop .oqline a').click()"); pg.wait_for_timeout(2500)
+        pg.evaluate("document.querySelector('#rpop .oqline a').click()")
+        try: pg.wait_for_function("location.hash==='#/'&&!!((document.querySelector('#rpop.on #rclean')||{}).open)", timeout=12000)   # 11-13 고정 2.5초 대기 → 조건 대기(전체 검사 묶음 안에서 한 번 늦어 거짓 실패)
+        except Exception: pass
+        pg.wait_for_timeout(300)
         there = pg.evaluate("[location.href,!!((document.querySelector('#rpop.on #rclean')||{}).open)]")
         ok(there[0].startswith(UO.replace('index.html', '')) and there[0].endswith('#/') and there[1], f'{q} ① 링크 → {ko} 허브 + 공간 정리 창 열림 {there}')
         boot(U + '#/'); pg.evaluate("([N,NO])=>{localStorage.removeItem(NO+'ann.BIG');localStorage.removeItem(N+'lscap');}", [N, NO])

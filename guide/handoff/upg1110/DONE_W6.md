@@ -145,3 +145,12 @@ CPU 4배(3Q 스테이징 · 고치기 전 사본과 같은 자리에서 두 번�
 - 기억의 열쇠에 '표 글자 수'만 들어 있음 — 글자 수가 같고 내용만 다른 표시(형광펜·빈칸은 글자를 안 바꿈)는 없다고 봄. 팩이 바뀌면 PV가 바뀌어 새로 잼.
 - 사파리(아이패드·아이폰)에서는 안 돌려 봄(여기는 크로미움뿐) — `requestIdleCallback`이 없으면 `setTimeout(80ms)` 길, IntersectionObserver는 있음.
 - 임시 스크립트(열 폭 견주기 `dump.py`·가장자리 `d4.py`·팩 받기 `d3.py`·추적 `prof.py`)는 scratchpad에만 있음(저장소에 테스트로 넣지 않음 — 맡은 파일 밖). 넣을지는 메인.
+
+## 메인 검사·결정(11-13)
+- 담당은 끝 정리를 쓰다 5시간 한도로 멈춤(보고는 위까지 다 씀) → 검사는 메인이 직접.
+- `sh tools/full_check.sh`(4Q): tests4 15개 전부 PASS(q_pos·q_crawl·q_perf 포함) · verify PASS. 걸린 두 줄은 **W6 전부터 있던 것**: `v3_palette` FAIL 1 = `.lbm{color:#7D786F}`(11-04 허브 점검 29e0a487부터) · `audit_design`이 4Q에서 죽음(과목·강의가 3Q로 박힘) → 둘 다 W7 지시문에 넣음.
+- `JBL_Q=3q sh tools/full_check.sh`(3Q 스테이징): ux_all 묶음 PASS 54 · SKIP 4(STATUS) · audit_design PASS · 따로 `ux_nav`·`ux2_load`·`ux26_links`·`ux2_jblock`·`ux4e_names`·`ux4f_O` PASS.
+  - `q_store` 한 줄('4q ① 링크 → 3쿼터 허브 + 공간 정리 창')이 묶음 안에서 한 번 FAIL → 따로 5번 PASS = 고정 2.5초 대기가 늦은 것 → 조건 대기로 고침(테스트만).
+  - `ux4e_names`(메뉴 줄 '교수 - 제목')·`ux4f_O`(O3 낱말 끝 쉼표) = 낡은 기대 줄을 고쳐 PASS → STATUS.json에서 뺌(bug? 남은 것 = `ux_u18` 하나 — 3Q 내용).
+- 결정: ① 2단계(content-visibility)는 **이번 묶음에서 하지 않음** — 자리 지킴이를 켠 채 통과시키려면 손볼 곳이 6가지(위 4번)라 따로 한 묶음 · 끝 보고에서 사용자에게 물음 ② 표 맞춤 기억을 기기에 저장하지 않음(새 저장 키·글꼴 덜 온 값 위험 — 창을 닫으면 새로 잼) ③ '입력' = 진짜 입력만(지금 그대로) ④ goEl '목표 앞 전부 + 아래 두 화면' 승인 ⑤ 맥 확인(글꼴 local 2개·기록 지킴이)은 끝 보고의 기기 확인 목록에.
+- 임시 스크립트(열 폭 견주기 dump.py 등)는 저장소에 넣지 않음(고치기 전 사본이 있어야 도는 일회용).
