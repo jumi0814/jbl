@@ -227,4 +227,11 @@
   - `ux4f_F` FAIL 2(820·1180 손가락) — ⑤가 '정리본 →' 칩에 `min-height:32px`을 줘 앞 층의 **44px(ux4f F3)을 32px로 줄임** → 높이 줄을 뺌(44px 그대로 · 좌우 여백·가운데 맞춤만 남김).
   - 고친 뒤(`rehub --site work/_tmp/w7fix` · 3Q 내용): ux19_yearprof · ux4f_F · ux_align · ux_v3phone · ux_fbar · ux26_links · ux4f_G **PASS**.
 - **3Q 회귀(전체 `ux_all` · STATUS 기준 — 위 두 가지 고치기 전 판)**: PASS 121 · SKIP 30(local 10 · retired 20) · 알려진 실패 1(ux_u18 — 3Q 내용) · 진짜 실패 2 = 위 두 가지뿐 → 고친 뒤 통과. tests4(3Q 모드) q_sync·q_timer PASS(나머지 11개는 컨테이너 다시 시작 전에 PASS).
+- `audit_design`(3Q · 마지막 판 — 두 가지 되돌린 뒤): **RESULT PASS**. **배포 6** = 2f583654(11-13 13:50 UTC) · 실제 주소 연기 확인 PASS(BUILD 34553dc5 · 3Q 그림·⇄·manifest·콘솔 오류 0·404 0).
+
+## 끝 — 3Q 보관 허브에도 반영(11-13 · PLAN '끝' · 11-04 결정 3)
+- `docs/3q/num/` ← `docs/num/`의 num.js·docx.js(같은 파일 — NUMV 같음) · `JBL_UNFREEZE=1 rehub.py --q 3q` → `docs/3q/index.html`(BUILD 34553dc5) + 팩 7개(바뀐 것 = BUILD 도장 한 줄씩뿐 — 내용·그림 묶음 그대로).
+- **저장 정체성 글자 그대로**: `const QC`의 ns `jblhub.v1.`·syncKey `jblsync`·gist·idb·bc·lock 값이 다시 내기 전과 같음(더해진 것은 `title` 칸뿐).
+- 진짜 3Q 폴더에서(`JBL_Q=3q JBL_HUB_DIR=docs/3q JBL_HTTP=1`): `verify.py` PASS · 넘버링 ux8_num·ux9_numai·ux12_numrev·ux13_numdrag·ux14_numjb·ux18_numpred·ux20_numdocx·ux21_numyrs·ux24_numsrc·ux25_numedit PASS · 동기화 ux_sync_num·ux_sync PASS · 기록 kt_migrate·ux2_backup·ux_marks·ux5_sess PASS · 저장 공간 ux15_storage PASS · ux19_yearprof·ux4f_F PASS · `check_links` PASS(보관 분기의 알려진 5건).
+- 이로써 3Q 허브에도 W1~W7(그림 다시 받기 · ↩·주소 · 공부 시간 잠든 시간 빼기·쿼터 공용 시계 · 저장 공간 정리·백업 넘버링 · 동기화 고침 · 렉 · 디자인 v3.3)이 들어감.
 
