@@ -69,7 +69,7 @@ details.oth{margin-top:12px}details>summary{cursor:pointer;font-size:13.5px;colo
 .car{flex:none;color:#B5B1AA;transition:transform .15s;margin-top:8px}.tc.open .car{transform:rotate(90deg)}.tbody{display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:2px}.tc.open .tbody{display:block}
 h4.sh{font-size:15px;font-weight:800;color:var(--head);margin:16px 0 6px;padding-bottom:3px;border-bottom:1px solid #E9E5DF}
 .tbody .li{position:relative;margin:7px 0;padding:1px 0 1px 16px}.tbody .li::before{content:"";position:absolute;left:3px;top:.78em;width:5px;height:5px;border-radius:50%;background:#89857F}
-.tbody .li.tested{background:linear-gradient(90deg,#F7F4EF,transparent 85%);border-left:4px solid #E39A5B;border-radius:4px;padding-left:14px;margin-left:-2px}.tbody .li.tested::before{display:none}
+.tbody .li.tested{background:linear-gradient(90deg,#FDF1E6,transparent 85%);border-left:4px solid #E39A5B;border-radius:4px;padding-left:14px;margin-left:-2px}.tbody .li.tested::before{display:none}
 .tbody .li.near{border-left:4px dotted #9AA9B8;padding-left:14px;margin-left:-2px}.tbody .li.near::before{display:none}.ntag{float:right;font-size:10.5px;color:#5B6B7C;background:#E9EEF4;border-radius:5px;padding:0 6px;margin-left:8px}
 .lead{font-weight:700}ol.sub{margin:4px 0 2px;padding-left:24px}ol.sub li{margin:3px 0;font-weight:400}
 .box{border-radius:12px;padding:10px 15px;margin:12px 0;border:1px solid var(--line)}.box ul{margin:4px 0 2px;padding-left:19px}.box li{margin:5px 0;font-size:14.5px}.bt{font-weight:800;font-size:14px;color:var(--head);margin-bottom:4px}
@@ -780,7 +780,7 @@ td.cov:not(.covo),th.cov:not(.covo){position:relative;background:#E9DFC6!importa
 /* ux2 fixB flow V19 가린 칸은 내용 높이를 차지하지 않음(한 화면에 여러 문항) — 칸만 '탭해서 보기' 높이 */td.cov:not(.covo)>*:not(.coveye),th.cov:not(.covo)>*:not(.coveye){display:none}td.cov:not(.covo){height:2.8em}
 td.cov:not(.covo)::after,th.cov:not(.covo)::after{content:"탭해서 보기";position:absolute;left:8px;top:7px;font-size:11px;font-weight:700;color:#6B5B38;visibility:visible}
 td.covo,th.covo{box-shadow:inset 0 0 0 2px #E9DFC6}
-.covall{display:inline-flex;align-items:center;border:1px solid #C9B98E;background:#F7F4EF;border-radius:999px;font:inherit;font-size:12.5px;font-weight:700;color:#6B5B38;min-height:30px;padding:2px 12px;margin:0 0 8px;cursor:pointer}
+.covall{display:inline-flex;align-items:center;border:1px solid #C9B98E;background:#FBF6E8;border-radius:999px;font:inherit;font-size:12.5px;font-weight:700;color:#6B5B38;min-height:30px;padding:2px 12px;margin:0 0 8px;cursor:pointer}
 @container msum (max-width:859px){table.mtx td.cov:not(.covo),table.mtx th.cov:not(.covo){min-height:44px;display:block}table.mtx td.cov:not(.covo)::before{color:var(--sub)!important;visibility:visible}table.mtx td.cov:not(.covo)::after{top:auto;bottom:6px}.msum td[data-h]::before{cursor:pointer}
  /* ux2 fixB flow V14 카드형 정리표: 칸 이름 = 👁 버튼 모양(누르면 그 칸을 모든 주제에서 가림 · 알림에 [되돌리기]) */
  .msum td[data-col][data-h]::before{content:attr(data-h) "  👁";display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border:1px solid var(--line);border-radius:999px;background:#FAF8F4;margin:2px 0 3px}.msum td.cov[data-h]::before{background:#E9E5DF;border-color:#C9B98E}}
@@ -2527,7 +2527,7 @@ details.ab.pans{margin-top:8px;border:1px dashed var(--line);border-left:3px sol
 
 /* ===== 10-27 사용자 '아예 전체 카드가 26년도에 빠지거나 그런거라면 확실히 표시 … 카드에도 태그 26년도 빠짐 태그 … 이 사진 보면 26에서 빠짐 표시가 뭐 보이지도 않고 … 부분적으로 26년도에서 빠진것도 … 확실히 표시'
    26에서 빠짐 = 붉은 갈색 한 가지(--gone-*) · 카드 전체(build4 gone_state 'all' — 쪽이 모두 25 자료) = 머리 태그 '26에서 빠짐' + 왼쪽 점선 + 카드 목록·목차 '26 빠짐' · 일부('part') = '일부 26에서 빠짐' · 본문 '(… 26에서 빠짐)' = 같은 색 태그(점선 테두리·굵게) ===== */
-:root{--gone-fg:#8A3414;--gone-bg:#F4F1ED;--gone-b:#E2A98F}
+:root{--gone-fg:#8A3414;--gone-bg:#FCEDE6;--gone-b:#E2A98F}
 :root[data-theme="dark"]{--gone-fg:#F2B8A0;--gone-bg:#3A221A;--gone-b:#8A5038}
 html body .gone26,html body #stage .gone26{color:var(--gone-fg)!important;background:var(--gone-bg)!important;border:1px dashed var(--gone-b)!important;border-radius:6px!important;padding:0 5px!important;font-weight:600!important;white-space:normal}
 html body #stage .tc .tchips .chip.gonechip,.chip.gonechip{display:inline-flex;align-items:center;min-height:24px;padding:1px 8px;border-radius:var(--rad-p,999px);background:var(--gone-bg)!important;color:var(--gone-fg)!important;border:1px solid var(--gone-b)!important;font-weight:700;font-size:12px}
