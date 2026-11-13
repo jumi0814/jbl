@@ -758,3 +758,4 @@ M: ⚡ 암기 줄({r:} 포함)
 - **넘버링(num.js)**: 같은 사다리·의미 색 · 12px 안팎 옅은 글자 #89857F → #706C65 · 주 단추 = `--v-pri`(허브와 같은 숯색 · 마우스 `--v-pri-h`).
 - `tools/audit_design.py`: 과목·강의 목록(3Q)이 지금 분기에 하나도 없으면 '…는 내용 없음 — 건너뜀' 한 줄로 끝남(종료 0) — 3Q 감사는 `JBL_Q=3q`.
 - 검사: `v3_palette --check` PASS · 지킴이 결과·전후 수치 = DONE_W7.md.
+- 새 색을 쓰기 전·뒤: `.venv/bin/python tools/design/snap_neutral.py tools/cons/shell.html tools/num/num.js --dry`(사다리 밖 회색) · `tools/design/snap_sem.py … --dry`(대표 값 밖 의미 색 글자) = '바꾼 곳 0'이어야 함(`--dry`를 빼면 그 자리에서 모음 · `--tests` = 테스트가 옛 값을 박아 둔 곳 찾기). 자리 지킴이 `q_pos`의 `BLIP` = 예상 새로고침 직후 100ms 흔들림(전부터 있던 것 — 1.5초 잼이 제자리일 때만 KNOWN).

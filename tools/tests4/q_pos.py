@@ -22,6 +22,10 @@ DEPTH = [('위', 0.0), ('가운데', 0.5), ('아래', 1.0)]
 SCN = {'tab': '① 탭 전환', 'back': '② 뒤로', 'fwd': "②' 앞으로", 'reload': '③ 새로고침', 'chip': '④ 칩 → ↩'}
 # 이미 있는 버그(지금 코드에서 실패) — (문서, 경우, 깊이) 또는 (문서, 경우, '*') → 재현·이유(DONE_W0.md 3번)
 KNOWN = {}
+# 이미 있는 흔들림 — 100ms 잼만 어긋나고 1.5초 잼은 제자리인 경우만 KNOWN 줄로(1.5초도 어긋나면 그대로 FAIL)
+# 예상 ③ 새로고침: 자리 맞춤(settle 0·80·300ms …) 사이에 위쪽 그림이 도착해 잠깐 밀림 — 11-13 같은 조건에서 12번씩: 렉 고침 전(85fb9665) 3 · W6 3 · W7 2번(이번 묶음들이 만든 것 아님 · DONE_W7 '메인 검사')
+BLIP = {('pred', 'reload'): '새로고침 직후 잠깐(0.3초 안) 밀렸다 제자리 — 전부터 있던 흔들림'}
+LAST = {}
 CHIP = '.jbchip[data-go],[data-golec],[data-go]'
 JS = r"""window.__qp={
  cards(){const seen=new Set();return [...document.querySelectorAll('#stage [data-aid]')].filter(b=>{if(b.classList.contains('res')||b.offsetParent===null||seen.has(b.dataset.aid))return false;seen.add(b.dataset.aid);return b.getBoundingClientRect().height>0;});},
@@ -95,9 +99,11 @@ with sync_playwright() as p:
             pg.wait_for_timeout(max(0, 1500 - (time.time() - tm) * 1000)); b2 = pg.evaluate('a=>__qp.where(a)', a['aid'])
             dd = [None if b['top'] is None or a['top'] is None else round(b['top'] - a['top'], 1) for b in (b1, b2)]
             good = b2['h'] == a['h'] and all(x is not None and abs(x) <= TOL for x in dd)
+            LAST['late'] = b2['h'] == a['h'] and dd[1] is not None and abs(dd[1]) <= TOL
             return good, f'카드 {a["aid"]} 높이 {a["top"]} → 100ms {b1["top"]}({dd[0]:+} px) · 1.5초 {b2["top"]}({dd[1]:+} px) · scrollY {a["y"]} → {b2["y"]} · 문서 높이 {a["H"]} → {b2["H"]}' if None not in dd else f'카드 {a["aid"]}를 못 찾음/안 보임(주소 {b2["h"]} · scrollY {a["y"]} → {b2["y"]})'
         def report(sc, dn, good, msg):
             k = next((x for x in ((tab, sc, dn), (tab, sc, '*')) if x in KNOWN), None); name = f'{NAME[tab]} {SCN[sc]} · {dn}'
+            if not good and not k and (tab, sc) in BLIP and LAST.get('late'): print(f'  KNOWN {name}: {msg} — {BLIP[(tab, sc)]}'); return
             if k and not good: known_hit.add(k); print(f'  KNOWN {name}: {msg} — 이미 있는 버그: {KNOWN[k]}')
             elif k: print(f'  OK   {name}: {msg} — KNOWN인데 통과(목록에서 빼도 됨)')
             else: ok(good, f'{name}: {msg}')
