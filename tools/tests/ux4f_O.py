@@ -91,7 +91,8 @@ with sync_playwright() as p:
     pg.keyboard.press('b'); pg.wait_for_timeout(150); drag(pg, pg.evaluate(XY, ['#o3', WD[1][0] + 1, WD[2][1] - 1]))   # 빈칸 앞 낱말 ~ 빈칸 첫 낱말(빈칸 둘째 낱말은 남아야 함 — 옛 코드는 형광펜 뒤 조각이 이 낱말을 덮음)
     c2 = pg.evaluate(CH); H2, B2 = set(c2['h']), set(c2['b'])
     ok(ok3 == 'ok' and hole == [1, 2] and H1 == set(H0) and B1 == set(B0), f'O3 준비: 구멍 난 형광펜 한 묶음 {ok3} {hole}')
-    ok(set(range(*WD[3])) <= B2 and B1 <= B2 and not (H2 & B1) and H2 == H1 - B2, f'O3 구멍 난 형광펜 위 빈칸 겹치기 — 원래 빈칸 글자는 빈칸 그대로·형광펜은 새 빈칸 자리만 빠짐 (빈칸→형광펜 {sorted(H2 & B1)[:6]} · 빈칸 잃음 {sorted(B1 - B2)[:6]})')
+    w3e = WD[3][0] + len(full[WD[3][0]:WD[3][1]].rstrip(',.;:·'))   # 낱말 끝 문장부호(쉼표 등)는 빈칸에 안 들어감(11-12 낡은 기대 고침)
+    ok(set(range(WD[3][0], w3e)) <= B2 and B1 <= B2 and not (H2 & B1) and H2 == H1 - B2, f'O3 구멍 난 형광펜 위 빈칸 겹치기 — 원래 빈칸 글자는 빈칸 그대로·형광펜은 새 빈칸 자리만 빠짐 (빈칸→형광펜 {sorted(H2 & B1)[:6]} · 빈칸 잃음 {sorted(B1 - B2)[:6]})')
     def marks():
         return pg.evaluate("[...document.querySelectorAll('#o3 [data-rk]')].map(e=>e.dataset.rk+':'+e.textContent)")
     # O5 덮어쓰기 알림 [↶ 되돌리기] 뒤 다른 표시 → 알림 버튼이 그 뒤 표시를 되돌리지 않음

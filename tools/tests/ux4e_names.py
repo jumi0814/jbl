@@ -90,7 +90,7 @@ with sync_playwright() as p:
             cc = pg.evaluate("(()=>{const e=document.querySelector('#crumb .ccur');if(!e)return null;const r=e.getBoundingClientRect(),t=document.querySelector('#top').getBoundingClientRect();return {t:e.textContent,cut:e.scrollHeight>e.clientHeight+2,in:r.top>=t.top-1&&r.bottom<=t.bottom+1}})()")
             ok(cc and cc['t'] == full and cc['in'], f'{v} 빵부스러기 원래 강의 제목 {cc}')
             nl = pg.evaluate("[...document.querySelectorAll('#nav .nvl .el')].map(x=>x.textContent)")
-            ok(full in nl, f'{v} 메뉴 강의 줄 원래 제목 {nl[:3]}')
+            ok(any(x.endswith(full) for x in nl), f'{v} 메뉴 강의 줄 원래 제목 {nl[:3]}')   # 메뉴 줄 = '교수 - 제목'(lpn) — 끝이 원래 제목인지(11-12 낡은 기대 고침)
             check(f'{v} 강의 {h_}', pg.evaluate(COL, ['#top', '#nav', '#hero']), pct=False)
         # JB 📖 칩 · 한눈표 강의 칩
         go(pg, '#/CONS/_jb/_jb')
