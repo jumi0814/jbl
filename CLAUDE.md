@@ -8,6 +8,7 @@
 - **등록표 `tools/quarters.json`**(읽기·검사 `tools/quarters.py`) = 쿼터마다 docs 폴더·이름·저장 정체성, 과목마다 쿼터·이름·짧은 이름·색·JB 이름·자료 폴더. 과목 목록이 필요한 도구는 모두 여기서 읽는다(`J.sids()`·`quarters.py sids`) — 새 과목은 **`tools/new_subject.py`**(등록표·tools/<sid>/ 빈 틀·matx SRC·과목노트 — 첫 build4 확인됨).
 - **전환 뒤 자리**: `docs/` = 4Q(지금 쿼터 — 홈 화면 앱·링크 그대로) · `docs/3q/` = 3Q 보관(`frozen` — build4가 쓰지 않음, 고칠 땐 사용자 허락 뒤 `JBL_UNFREEZE=1`). **전환 11-04 끝**(`tools/cutover.py` — 3Q 파일은 이름 바꿈만 · 되돌릴 기준 태그 `3q-final`) · 3Q 회귀 테스트(tools/tests)는 `JBL_Q=3q` → 3Q 스테이징(`rehub.py --q 3q --stage` → work/_tmp/hub3q) · 진짜 3Q 폴더 확인은 `JBL_Q=3q JBL_HUB_DIR=docs/3q tools/verify.py`.
 - **저장 정체성**(같은 주소의 두 허브가 서로 기록을 건드리지 않게): 3Q = 원래 상수(`jblhub.v1.`·`jblsync`·`jblhub-*` — **절대 바꾸지 않음**, 바꾸면 3Q 기록이 안 보임) · 4Q = `jbl4q.v1.`·`jbl4qsync`·`jbl4q-*`·Gist 'JBL 4Q 동기화'. 허브 코드는 `const QC=/*QCFG*/`에서 읽음(shell에 저장 이름 글자를 새로 쓰지 말 것 · 이름은 `QC`로만 — `Q`는 동기화 지역 배열과 겹침 · `tools/tests4/q_ident` 린트 · 같은 쿼터 동기화 `q_sync`). 4Q 첫 실행 = 3Q의 화면 설정·동기화 토큰만 가져옴(사용자 11-04 결정).
+- **맥 자료 넣기(11-15)**: 사용자는 `materials/4Q/<과목>/`(강의자료)·`jb/4Q/<과목>/`(JB)에 넣고 `git pull && sh tools/push_materials.sh` 한 줄(폴더 정리 → 추출 → JB 풀기 → cloud-materials에 새 추출본만 → '4Q 자료 올렸어: …' 한 줄 출력) → 클라우드 `sh tools/cloud_materials.sh --q 4q` · 안내 `guide/handoff/4Q_자료_보내는_법.md` · 회귀 `tools/tests4/q_folders.py`.
 - **도구 쿼터**: `$JBL_Q`(없으면 등록표 current · tools/tests 안 = 3q) · `rehub.py [--q 4q] [--site <폴더>] [--q 3q --stage]` · `full_check.sh`는 `JBL_Q`의 과목만(3q = tools/tests 회귀 · 그 밖 = tools/tests4) · `jbx.py`는 `20YY 4Q <과목> JB.pdf`도 · 4Q 강의자료 = `materials/4Q/<과목>/`.
 - **4Q 내용 규칙** = `.claude/skills/jbl-update/RULES.md` 14절(26 PPT가 본문 · 25 전용 내용은 JB 기출 근거 `📜 25 기출 근거` ⭐ 줄만 · 26이 아직 없으면 25 임시본 → 26이 오면 전면·기출 무관 25 내용은 지움 · 교수 프로필 `guide/prof/` · 3Q 적중 분석 · 과목마다 🎯 최종 N제) · 검사 `tools/check_25only.py`.
 
@@ -22,8 +23,8 @@
 | `tools/SPEC.md` | 파이프라인 상세 스펙 — 작업 전 반드시 읽을 것 | O |
 | `tools/num/` → `docs/num/` | 내 넘버링(10-10 · 처음 이름 넘버링 따기) — 화면 모듈 num.js·Word 읽기 docx.js(파일 가져오기)·기본 자료 seed(지금 비어 있음 — 첨부 Word는 참고용 예시라 뺌). 고친 뒤 `tools/num/build_num.py` · 자세히 `guide/넘버링_따기.md` | O |
 | `.claude/skills/jbl-numbering/` | 넘버링 스토리 제작 Skill(10-11) — JBL 내 넘버링에서 내보낸 JSON → 문제마다 제작·자체 검수·독립 블라인드 검수 → 통과본만 JBL 가져오기 JSON(파일 + 채팅 붙여 넣기). 원칙 PRINCIPLES·사례 EXEMPLARS·검수 REVIEW·형식 FORMAT·피드백 FEEDBACK·확장 ROADMAP · 도구 `scripts/nb.py`(세션 `work/numbering/`) · 회귀 `tools/tests/nb_numbering.py` | O |
-| `materials/<과목명>/` | 사용자가 넣는 강의자료(PDF 등) | X |
-| `jb/` | JB 파일(`2025 3Q <과목> JB.pdf` 등 — 실제 PDF. `tools/jbx.py`가 `work/jb/<SID>_20xx/`에 N.txt·N.jpeg·manifest.json으로 풂. ZIP판도 처리) | X |
+| `materials/<3Q·4Q>/<과목명>/` | 사용자가 넣는 강의자료(PDF·PPTX — 11-15 쿼터별 칸 · 옛 3Q 자리 `materials/<과목명>/`도 읽음 · 정리 `tools/folders.py`) | X |
+| `jb/` | JB 파일 — `jb/3Q/2025 3Q <과목> JB.pdf` · `jb/4Q/<과목>/<연도 네 자리가 든 아무 이름>.pdf`(11-15 · 표준 이름은 어느 폴더든). `tools/jbx.py`가 `work/jb/<SID>_20xx/`에 N.txt·N.jpeg·manifest.json으로 풂(이미 푼 판은 건너뜀 · ZIP판도) | X |
 | `reference/` | 승인된 형식 예시(윤혜정 정리본 HTML, 지난 학기 HUB) | X |
 | `work/` | 추출·OCR·중간 산출물 | X |
 

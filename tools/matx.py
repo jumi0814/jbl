@@ -88,7 +88,8 @@ def run(sid, pool):
             if not d: break
         if d and os.path.isdir(d): break
     if not d or not os.path.isdir(d): return
-    idx = {}; mat = J.work(sid, 'mat')
+    if not any(x.lower().endswith(('.pdf', '.pptx')) for x in os.listdir(d)): return   # 11-15 빈 과목 폴더(folders.py가 미리 만든 자리) — 건너뜀
+    idx = {}; mat = J.work(sid, 'mat'); os.makedirs(mat, exist_ok=True)
     for fn in sorted(os.listdir(d)):
         low = fn.lower(); src = os.path.join(d, fn)
         if not (low.endswith('.pdf') or low.endswith('.pptx')): continue
