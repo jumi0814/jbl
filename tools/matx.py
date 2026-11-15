@@ -14,7 +14,7 @@ import pymupdf
 
 import quarters as QS   # 11-04 분기 등록표 — 과목 폴더 이름(mat) → SID · 4Q 과목은 materials/4Q/<과목>/(3Q와 같은 과목 이름이 있어도 섞이지 않게)
 SUBJ = {v['mat']: k for k, v in QS.SUBJ.items() if v['q'] == '3q'}
-MATDIR = {k: (v['mat'] if v['q'] == '3q' else os.path.join(v['q'].upper(), v['mat'])) for k, v in QS.SUBJ.items()}
+MATDIR = {k: os.path.join(v['q'].upper(), v['mat']) for k, v in QS.SUBJ.items()}   # 11-15 materials/<3Q|4Q>/<과목>(tools/folders.py가 정리) — 3Q는 옛 자리 materials/<과목>도 읽음(run)
 # 정리본 키의 쪽 이미지 폴더(subject.LECMAP[키][0], OMS1은 끝에 'i'가 붙음) ← 강의자료 파일 앞머리
 SRC = {
     'ESTH4': {},   # new_subject — 정리본 키 폴더 → 강의자료 파일 앞머리(예 'X01i': '261103_')
@@ -79,14 +79,15 @@ def pptx_job(src, out):
     return n
 
 def run(sid, pool):
-    sub = MATDIR[sid]; d = os.path.join(J.ROOT, 'materials', sub)
-    if not os.path.isdir(d):   # 맥 한글 파일명(NFD) — 마디마다 NFC로 견줌(4Q = materials/4Q/<과목>)
-        d = os.path.join(J.ROOT, 'materials')
+    d = None
+    for sub in [MATDIR[sid]] + ([QS.SUBJ[sid]['mat']] if QS.SUBJ[sid]['q'] == '3q' else []):   # 3Q = materials/3Q/<과목> → 옛 materials/<과목>
+        d = os.path.join(J.ROOT, 'materials')   # 맥 한글 파일명(NFD) — 마디마다 NFC로 견줌
         for part in sub.split(os.sep):
             hit = next((x for x in os.listdir(d) if nfc(x) == nfc(part)), None) if os.path.isdir(d) else None
             d = os.path.join(d, hit) if hit else None
             if not d: break
-    if not d: return
+        if d and os.path.isdir(d): break
+    if not d or not os.path.isdir(d): return
     idx = {}; mat = J.work(sid, 'mat')
     for fn in sorted(os.listdir(d)):
         low = fn.lower(); src = os.path.join(d, fn)
