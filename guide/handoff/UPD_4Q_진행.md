@@ -30,6 +30,18 @@
 - [ ] P2 4Q 과목마다: new_subject → JB 분해 → TREND → 정리본(26 본문 / 없으면 25 임시) → annot·tables → 검토 → 예상·N제 → 검사 → 과목마다 중간 배포
 - [ ] P3 26 강의가 나올 때마다 전면 갱신(25 무관 내용 지움) → 예상·N제 → 배포
 
+## P2 4Q 내용 작업(11-16 — 사용자 '4큐 자료 올렸어 … 순서 및 동시작업 구조를 잘 체계화해서 퀄리티 절대 놓치지 않으면서 … 중간중간 깃허브에도 푸시')
+- 받은 것(cloud-materials b7da4228·5a3e1c4f·bcd24516): 10과목 강의자료 약 100파일(26 = OMS2 1·CONS4 2·IMPL4 1·GERI4 2·PHARM4 2·RAD 1 · 나머지 25) · 4Q JB 23·24·25판(ANAT4는 23·24판 · 25판 = 2024년 시험까지 — 2025년 4Q 시험이 든 26판은 아직 없음) · ANAT4 자료 = 교과서 2권(1081·458쪽).
+- 사용자 참고: ① PHARM4 조영단 '살균제와 소독제'(3Q PHARM DS) = 25까지 3Q · 26부터 4Q → PHARM4 DS 강의(26 PPT 261105) + 기출 = 3Q PHARM JB 23·24·25판 DS 칸(4Q JB엔 없음 — 판 이름 '<YY>q3') ② 4Q JB의 이윤실 '항불안제' = 2026엔 3Q에서 강의·시험(3Q 사이트 PHARM ANX) → PHARM4에선 문항은 빼지 않고 참고(올해 4Q 범위 아님) 키로만.
+- 갱신 전 기준 main = 6b98a604(legacy_restore·fc_carry 비교 — 4Q는 첫 배포라 표시 없음).
+- **순서·동시 작업 구조**(동시 담당 2 — 이 컨테이너 CPU 4 · 사용 한도):
+  1. **JB 단계**(지금 — Workflow): 과목마다 Q4_JB(guide/handoff/Q4_JB_BRIEF.md — 분해·강의 표·연도별 출제 교수·첫 빌드) → Q4_JBV(Q4_JBV_BRIEF.md — 독립 검수·직접 고침) · 10과목 파이프라인 → 메인: matx SRC·과목노트·빌드·커밋·푸시(작업 브랜치).
+  2. **교수 프로필**(PROF — 4Q JB로 새 교수·이어 쓰는 교수) — 3과 나란히.
+  3. **과목마다 정리본**(과목 하나씩 Workflow): B2Q 작성(강의마다 · parts) → 메인 몫 담당(merge·build·dump) → 검토 C 1·2·3회차(새 문제 0까지) → F 다듬기(강의마다 F 한 담당) → QA(E) → full_check → **과목마다 배포**.
+  4. **예상·N제**(과목마다): T(TREND) → P(강의 묶음) → PA 감사 → FN → FNV → 배포.
+  - 과목 차례(무인 결정 — 다르게 원하면 바꿈): 26 자료가 있고 강의 수가 적은 과목부터 — ESTH4·IMPL4·OMS2·GERI4·PHARM4 → CONS4 → HINS → OPATH → RAD → ANAT4(교과서 — 나누기 안 확정 뒤).
+- [ ] 1 JB 단계 · [ ] 2 프로필 · [ ] 3 정리본(과목별) · [ ] 4 예상·N제(과목별)
+
 ## 전면 점검·개선(11-10 시작 — 사용자 '자료를 주기 전에 … 모든 방면에서 … 업데이트' · 계획·보고 guide/handoff/upg1110/)
 - 방법: 허브 = tools/cons/shell.html **한 번에 한 담당**(긴 줄이라 합치기 충돌) → sync_common → rehub → 3Q 스테이징 회귀(JBL_Q=3q · rehub --q 3q --stage) + tests4 → 묶음마다 커밋·배포 · shell을 안 건드리는 일(build4·테스트 도구·스킬 문서)은 나란히
 - [x] (11-12 가벼운 판 · 보고 DONE_W0.md — q_pos 105경우 PASS · q_crawl 948화면 PASS · STATUS.json 35줄(helper 1·retired 20·local 10·bug? 4) · 렉 전 기준 수치 · 전체 ux_all·full_check는 끝에 메인이) W0 안전망: tests4/qsite 시험용 사이트(4Q 정체성 + 3Q 팩) · tools/tests/STATUS.json(기준 실패 37 정리) · q_ident 린트 넓히기 · 성능 기준
