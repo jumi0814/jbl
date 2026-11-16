@@ -183,7 +183,7 @@ def view_led():
         t = ''.join(f'<tr><td>{esc(r["sec"])}</td><td>{esc(r["num"])}</td><td><button class="link" data-jb="{ed}-{r["pg"]}">{r["pg"]}</button></td><td>{esc(r["first"])}</td><td>{st(r)}</td></tr>' for r in R)
         h.append(f'<details class="tblwrap"><summary class="tbt serif">JB {ed}판 대조표 — 블록 {len(R)}개</summary><table class="cmp"><thead><tr><th>연도 칸</th><th>번호</th><th>쪽</th><th>첫 줄</th><th>처리</th></tr></thead><tbody>{t}</tbody></table></details>')
     h.append('<details class="tblwrap"><summary class="tbt serif">학습부 멘트 원문</summary>' + ''.join(f'<div class="oh">JB {e}판</div><div class="pre">{esc(MENT[e])}</div>' for e in A.NPAGES) + '</details>')
-    h.append('<div class="panel"><div class="bt">JB 원본 쪽</div><div class="small">그림·밑줄·굵은 글씨까지 원본 그대로 확인하는 용도입니다.</div>' + ''.join(f'<div class="oh">JB {e}판</div><div class="pggrid">' + ''.join(f'<button class="btn sm" data-jb="{e}-{p}">{p}</button>' for p in range(1, n + 1)) + '</div>' for e, n in A.NPAGES.items()) + '</div>')
+    h.append('<div class="panel"><div class="bt">JB 원본 쪽</div><div class="small">그림·밑줄·굵은 글씨까지 원본 그대로 확인하는 용도입니다.</div>' + ''.join(f'<div class="oh">JB {e}판</div><div class="pggrid">' + ''.join(f'<button class="btn sm" data-jb="{e}-{p}">{p}</button>' for p in (getattr(A, 'JBPAGES', {}).get(e) or range(1, n + 1))) + '</div>' for e, n in A.NPAGES.items()) + '</div>')   # 11-16 JBPAGES(그 판에서 팩에 넣은 쪽만 — 3Q JB 판 '<YY>q3'은 살균제와 소독제 쪽만)
     return ''.join(h)
 
 if __name__ == '__main__':
