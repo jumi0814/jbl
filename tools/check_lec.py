@@ -95,6 +95,7 @@ def main(sid, keys, also):
             print(f'· {sid}/{k}: 자리 표시 강의(강의자료 대기 — tools/new_subject.py 빈 틀) · 검사 안 함'); continue
         try: L = LP.parse(path)
         except Exception as e: print(f'✗ {k}: 파싱 실패 — {e}'); bad_total += 1; continue
+        if L.get('wip'): print(f'· {sid}/{k}: 정리본 작성 중(자리 표시 카드 — Q4_JB_BRIEF 6) · 검사 안 함 — 작성 담당이 쓰면 검사'); continue
         if L['k'] != k: errs.append(f'#LEC 키 {L["k"]} ≠ 파일 키 {k}')
         linked, exam = set(), set()
         cites = []

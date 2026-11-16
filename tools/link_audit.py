@@ -50,6 +50,7 @@ def audit(SID, year=None):
         L = LK.get(lec)
         if not L: out['x'].append((q, f'없는 강의 {lec}', qt[:60])); continue
         if q not in (L.get('jb') or []): out['x'].append((q, f'{lec} 기출 탭 빠짐', qt[:60]))
+        if L.get('wip'): out.setdefault('wip', set()).add(lec); continue   # 11-16 정리본 작성 중 강의 — ⭐·표·칩·예상 연결은 정리본을 쓴 뒤(JB 먼저 배포) · 기출 탭 빠짐은 그대로 검사
         curp = prof and any(prof == c or prof in c or c in prof for c in cur_prof.get(lec, set()))
         if curp and not refs(S_(L.get('learn')), q): out['x'].append((q, f'{lec} 정리본 ⭐ 없음', qt[:60]))
         if curp and not refs(tbl_all, q): out['w'].append((q, f'{lec} 표 없음', qt[:60]))
@@ -71,7 +72,7 @@ def main():
     tot = 0; md = []
     for SID in [s.upper() for s in a.sids] or SIDS:
         o, ym = audit(SID, a.year); tot += len(o['x'])
-        print(f'{SID}: ✗ {len(o["x"])} · △ {len(o["w"])} (최근 해 {ym})')
+        print(f'{SID}: ✗ {len(o["x"])} · △ {len(o["w"])} (최근 해 {ym})' + (f' · 정리본 작성 중 강의 {len(o["wip"])}(⭐ 검사 건너뜀: {" ".join(sorted(o["wip"]))})' if o.get('wip') else ''))
         for q, k, t in o['x']: print(f'  ✗ {q} {k} — {t}')
         md.append(f'## {SID} ✗ {len(o["x"])} · △ {len(o["w"])}')
         md += [f'- ✗ {q} · {k} · {t}' for q, k, t in o['x']] + [f'- △ {q} · {k} · {t}' for q, k, t in o['w']]

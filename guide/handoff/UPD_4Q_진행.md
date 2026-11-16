@@ -41,6 +41,14 @@
   4. **예상·N제**(과목마다): T(TREND) → P(강의 묶음) → PA 감사 → FN → FNV → 배포.
   - 과목 차례(무인 결정 — 다르게 원하면 바꿈): 26 자료가 있고 강의 수가 적은 과목부터 — ESTH4·IMPL4·OMS2·GERI4·PHARM4 → CONS4 → HINS → OPATH → RAD → ANAT4(교과서 — 나누기 안 확정 뒤).
 - [ ] 1 JB 단계 · [ ] 2 프로필 · [ ] 3 정리본(과목별) · [ ] 4 예상·N제(과목별)
+- **JB 단계 결과(11-16 23:40 UTC)**: 10과목 Q4_JB 끝 · 독립 검수 7과목 끝(RAD 2·PHARM4 1(10장)·HINS 1·OPATH 2(I04→I02 합침·D02)·ANAT4 1(18장 줄바꿈)·CONS4 0·OMS2 1(S06↔S02 가리킴 줄) — 보고 work/<SID>/jb/V_JB_<SID>.md) · GERI4·IMPL4·ESTH4 검수는 한도로 멈췄다가 이어 도는 중(Workflow wcvyuwrm4 = wf_872883a8-df5 resume) · 커밋 6fffdf92(WIP).
+  - 메인 몫 한 것: matx SRC 10과목(R_JB 2절 줄 · 링크 대조 OK · PHARM4 DS5i = 3Q 자료라 SRC에 없음) · 과목 전용 깨진 글자 `subject.py SYMPUA`(build4가 더함 — HINS U+F02D·📫 → ☞ · OPATH U+100093 → □ · '؀리성' → 박리성 · SPEC JBFIX 절) · check_years 알려진 예외 `KNOWN`(RAD D02 빈칸 번호 (10)·(11)) · 형식 분류기: trend.q_lines가 ans=(답 머리 없는 답 칸 시작)를 앎 + '고르기' — build4가 q['ansat'] · fmt_audit도(ANAT4 의심 3→1 · CONS4 L05 객관식 → 단답형) · 과목노트 HINS·OPATH·ANAT4 보정 · **정리본 작성 중 자리 표시 강의**(카드 하나 'Notes in progress') = lecparse `wip` → check_lec '작성 중 · 검사 안 함' · link_audit ⭐·표·칩·예상 연결 건너뜀(기출 탭 빠짐은 그대로) — JB 먼저 배포용.
+  - 사용자 확인으로 모음(무인 — 보수 쪽 그대로): RAD 비슷한 옛 문항 붙은 블록의 칸 해 배지 8장 · M05/M06 합칠지 · FRAC 이름 꼴 · PHARM4 LA05 2021('유사한 문제')·괄호에만 있는 해(SX01·SX05 22 · PG02 23)·3Q JB에만 있는 2023 4Q 구강건조증 칸 · HINS M08 (18,14,11)(해설 속 옛 JB 인용) · OPATH I04 합침·O01 20(21 오타?)·D01/D02 합칠지 · ANAT4 판 키 24(파일 '2024_2025' — 내용은 2025년 JB)·X22/B22·2023 '탈' 칩 · CONS4 이우철 26 = Part1뿐(SFB = 25 요인 2 임시본) · OMS2 O10 20(그 해 출제 아닐 수 있음)·E01·E02 tier C → B?
+- **순서 다시 정함(11-16 23:40 — 무인 결정 · 사용 한도 = 5시간에 무거운 담당 약 20명)**:
+  1. JB 단계 끝 → **4Q 1차 배포 = JB 먼저**(정리본 자리 표시 '작성 중 — 기출 탭부터' · 10과목 JB·연도·교수·앞면 · full_check 통과 뒤).
+  2. 과목마다 PROF(그 과목 교수 프로필 — 교수 하나 = 파일 하나 · 여러 과목 교수는 한 과목 담당만) → T(TREND) — Q4_RULES_BRIEF 6 순서(TREND → 정리본).
+  3. 정리본(과목 하나씩 Workflow · 26 자료 강의 먼저): **26 강의(가)** = 작성 → 검토 3회(+확인 최대 2) → F → QA → 배포 · **25 임시본(나)** = 작성 → 검토 2회(+확인 1) — F·QA는 26이 와서 전면으로 다시 쓸 때(임시본은 1~5주 안에 26으로 다시 씀 — 한도를 26 최종본·JB 해설에 모음 · JB 해설(annot)은 26 때 그대로 이어 씀) · 올해 강의 없는 키 = 과목마다 한 담당(안내 카드 하나 + ⭐ + annot).
+  4. 예상·N제(과목마다 P → PA → FN → FNV).
 
 ## 전면 점검·개선(11-10 시작 — 사용자 '자료를 주기 전에 … 모든 방면에서 … 업데이트' · 계획·보고 guide/handoff/upg1110/)
 - 방법: 허브 = tools/cons/shell.html **한 번에 한 담당**(긴 줄이라 합치기 충돌) → sync_common → rehub → 3Q 스테이징 회귀(JBL_Q=3q · rehub --q 3q --stage) + tests4 → 묶음마다 커밋·배포 · shell을 안 건드리는 일(build4·테스트 도구·스킬 문서)은 나란히

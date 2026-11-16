@@ -126,6 +126,8 @@ for q in Q:   # kind= (예고·학습부 예상 — 출제 연도·집계에서 
     if k_: q['kind'] = k_; q['yrs_k'] = list(q['yrs']); q['yrs'] = []; q['xtra'] = []
 _SUBQ = {q['id']: [p_.strip() for p_ in _ax(q['id'], 'subq').split(',') if p_.strip()] for q in Q if _ax(q['id'], 'subq')}
 _ANSAT = {q['id']: [p_.strip() for p_ in _ax(q['id'], 'ans').split(',') if p_.strip()] for q in Q if _ax(q['id'], 'ans')}   # ans=글 — 그 글로 시작하는 줄부터 답 칸(JB에 '답' 표시 없이 문제 칸에 붙은 해설·편집자 답 — CONS Q46·Q60 · ANAT U06)
+for q in Q:   # 11-16 형식 판정(trend.fmt_of → q_lines)도 ans= 답 칸 시작을 앎 — 답 줄을 보기로 세던 것(ANAT4 14장·CONS4 L05)
+    if q['id'] in _ANSAT: q['ansat'] = _ANSAT[q['id']]
 _HIDE = re.compile(r'^\s*\d+(\s*-\s*\d+)?\s*[.)]?\s*\(?\s*(미복원|복원\s*불충분)\s*\)?\s*\.?\s*$')
 HIDDEN = []
 for q in list(Q):   # 공통-5 미복원·복원 불충분 자리 카드 → 숨김(기출 대장에만 '미복원')
@@ -1335,7 +1337,7 @@ for L in LEC:
         ok_ = [o for o in dict.fromkeys(old_) if o != nk_]
         if ok_: r_['ok'] = ok_[:12]
     lcards = [[AIDS[(k, j_)], j_ + 1, c_['ko'], len({x for x in c_['jb'] if x in QMAP} | {x for b_ in c_['body'] if b_[0] == 'E' for x in b_[1][0] if x in QMAP}), (1 if c_.get('u26') else 0) | (2 if c_.get('e26') else 0) | (4 if c_.get('gone') == 'all' else 8 if c_.get('gone') == 'part' else 0)] for j_, c_ in enumerate(L['cards'])]   # 미니바·사이드바 카드 목록 [aid, 번호, 국문 제목, 기출 수, 26 표시(1 = NEW 26 · 2 = 26 강조 — 10-10 사용자 '메뉴탭에서 … 별표 … 옆에 조그맣게 26 new랑 26 강조')]
-    lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
+    lect.append({'k': k, 'title': L['title'], 'cards': lcards, 'prof': L['prof'], 'yr': L['yr'], 'file': L['file'], 'nsec': len(L['cards']), 'wip': 1 if L.get('wip') else 0, 'aids': [[AIDS[(k, j_)]] + card_alt(k, j_).split(' ') for j_, c_ in enumerate(L['cards'])], 'heat': heat(mxl), 'hot': mxl >= 3, 'head': head, 'learn': ''.join(cards), 'sum': summ,
                  'oldTitles': {o['aid']: ' · '.join(x for x in (o.get('en', ''), o.get('ko', '')) if x) for o in LOCK.get(k, []) if o.get('aid') and o['aid'] not in {AIDS[(k, j_)] for j_ in range(len(L['cards']))}},
                  'jb': jb_ids + sorted([q['id'] for q in Q if q['tier'] == 'C' and q['lk'] == k], key=lambda i: (-len(QMAP[i]['yrs']), -(QMAP[i]['yrs'][0] if QMAP[i]['yrs'] else 0))), 'pred': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') != '1' and not p.get('fn')], 'parch': [i for i, p in enumerate(PRED) if p['k'] == k and p.get('x') == '1' and not p.get('fn')], 'tbl': [], 'recall': recall, 'tline': '' if STUB else trend.short_line(SM), 'tstrat': '' if STUB else tstrat, 'tip': ' · '.join(L.get('tip') or []), 'upd': len(ucards), 'emp': len(ecards), 'new26': new26, 'hint': cut_hint(' '.join(x for n in L['notes'] for x in split_note(n) if HINT_RE.search(x)))})
 
@@ -1755,6 +1757,7 @@ if _jmove: pack['jbmove'] = _jmove; pack['jbmovev'] = _hl.md5(json.dumps(_jmove,
 _jerr = _JL.check(SID, _QH, _jlock, _jmove)
 print('JB id 잠금:', len(_jlock), '| 새로 잠금', len(_jadd), '| 옮김 표', len(_jmove), ('| ⚠ ' + ' · '.join(_jerr[:5]) + ' → ' + _JL.need_msg(SID)) if _jerr else '')
 SYMPUA = {'\uf0b0': '°', '\uf0b1': '±', '\uf0b4': '×', '\uf0ae': '→', '\uf0ac': '←', '\uf0b3': '≥', '\uf0a3': '≤', '\uf0ad': '↑', '\uf0d7': '·', '\uf0a7': '♣', '\uf0f3': '⇔'}   # 10-16 26판 PHARM: SymbolMT ↑·♣(글머리)·⋅ · Wingdings ⇔(PDF 쪽 그림으로 확인)   # 10-05 PDF Symbol 글꼴의 사용 영역 글자(JB OMS1 Q44 '7\uf0b0' = 7°) → 원래 기호(화면 □ 깨짐)
+SYMPUA = {**SYMPUA, **(getattr(S, 'SYMPUA', {}) or {})}   # 11-16 과목 전용 깨진 글자(subject.py SYMPUA — 같은 사용 영역 글자가 과목·글꼴마다 다른 기호: HINS U+F02D = 손가락 글머리 · 공통 Symbol 글꼴이면 −)
 js = lambda o: re.sub('[' + ''.join(SYMPUA) + ']', lambda m: SYMPUA[m.group(0)], json.dumps(o, ensure_ascii=False)).replace('</', '<\\/')
 import hashlib as _hl
 _h8 = lambda t: _hl.md5(t.encode('utf-8')).hexdigest()[:8]

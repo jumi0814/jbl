@@ -9,7 +9,7 @@ import os as _os, sys as _sys; _sys.path.insert(0, _os.path.dirname(_os.path.dir
 import re, json
 BASE = J.JBX
 def jbdir(ed): return f'{BASE}GERI4_20{ed}'
-def rd(p): return open(p, 'rb').read().decode('utf-8', 'replace').replace('\r', '').replace('\x02', '')
+def rd(p): return open(p, 'rb').read().decode('utf-8', 'replace').replace('\r', '').replace('\x02', '-')   # 11-16 JBV: pdfium '\x02' = 줄 끝 하이픈 — 이 판들의 3곳(25판 p.3 'age-dependent' · p.13·24판 p.3 'non-infectous')은 쪽 그림에 '-'가 보이는 진짜 하이픈 → 지우지 않고 '-'(JB 글자 불변)
 def load(ed, n):
     lines = []
     for i in range(1, n + 1):

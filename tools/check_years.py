@@ -15,6 +15,8 @@ def cand(g):
     if re.search(r'\d\s*-\s*\d', g2) and len(vs) == 2: vs = list(range(min(vs), max(vs) + 1))
     return vs
 
+KNOWN = {('RAD', 'D02'): {'10', '11'}}   # 11-16 RAD D02 '(10)의 측정은 최대화하고 (11)의 측정은 최소화' = 빈칸 번호(연도 아님 · 24·23판 사본도) — JBV 확인
+
 def main(sids):
     bad = 0
     for sid in sids:
@@ -33,6 +35,7 @@ def main(sids):
               for m in re.finditer(r'\(([^()]{1,60})\)', txt):
                 vs = cand(m.group(1))
                 if not vs: continue
+                if m.group(1).strip() in KNOWN.get((sid, cid), ()): continue
                 miss = sorted(set(vs) - yrs, reverse=True)
                 if miss:
                     n += 1; bad += 1

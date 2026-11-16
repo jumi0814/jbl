@@ -205,6 +205,7 @@ def parse(path):
         elif line.startswith('  - '): card['body'].append(('b2', line[4:].strip()))   # 10-05 사용자 '넘버링이나 살짝의 들여쓰기를 활용해서' — 두 칸 들여 쓴 '  - ' = 바로 위 항목의 하위 항목(들여 쓴 줄)
         elif line.startswith('- '): card['body'].append(('b', line[2:].strip()))
         else: raise ValueError(f'{path}: unknown line: ' + line[:60])
+    lec['wip'] = len(lec['cards']) == 1 and lec['cards'][0]['en'] == 'Notes in progress'   # 11-16 정리본 작성 중 자리 표시(Q4_JB_BRIEF 6 — 카드 하나 'Notes in progress') — check_lec·link_audit가 ⭐ 연결 검사를 건너뜀(JB 먼저 배포)
     return lec
 import subject as S
 ORDER = [k for k in S.LEC_ORDER if k not in os.environ.get('JBL_SKIP_LECS', '').split(',')]   # 10-17 중간 배포 — 작성 중인 강의를 빼고 빌드(JBL_SKIP_LECS=BOOK)

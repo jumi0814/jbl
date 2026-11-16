@@ -35,6 +35,9 @@ def load_assemble(sid):
     try:
         with contextlib.redirect_stdout(buf):
             import assemble as A
+        for q in A.Q:   # 11-16 build4처럼 ans=(답 칸 시작)를 형식 판정에 넘김
+            v = str(((getattr(A, 'ANN', {}) or {}).get(q['id']) or {}).get('ans', '') or '').strip()
+            if v: q['ansat'] = [p_.strip() for p_ in v.split(',') if p_.strip()]
         return A.Q, ''
     except (Exception, SystemExit) as e:   # 정보 도구라 멈추지 않음 → 팩 글로
         return None, f'{type(e).__name__}: {str(e)[:160]}'
@@ -100,7 +103,7 @@ def load(sid, T):
     if extra: notes.append(f'assemble에만 있는 문항 {len(extra)}개(팩에 없음 — 빌드 전?): {" ".join(extra[:12])}')
     for cid, h in C.items():
         a = _attrs(h); q0 = QM.get(cid)
-        q = {'id': cid, 'text': _front_text(sid, q0), 'lab24': q0.get('lab24') or ''} if q0 else {'id': cid, 'text': pack_text(h, T), 'lab24': ''}
+        q = {'id': cid, 'text': _front_text(sid, q0), 'lab24': q0.get('lab24') or '', 'ansat': q0.get('ansat') or []} if q0 else {'id': cid, 'text': pack_text(h, T), 'lab24': ''}
         yrs = sorted({int(y) for y in (a.get('data-yrs') or '').split() if y.isdigit()}, reverse=True)
         yp = year_profs(a); prof = (a.get('data-prof') or (q0 or {}).get('prof') or '').strip()
         rows.append({'id': cid, 'q': q, 'from': 'assemble' if q0 else 'pack', 'tier': a.get('data-tier') or (q0 or {}).get('tier', ''),

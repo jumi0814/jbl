@@ -5,9 +5,9 @@ CHOICE = re.compile(r'^\s*(?:[①②③④⑤⑥]|\(?[1-6][.)](?!\d)|\(?[a-eA-E]
 ANS = re.compile(r'\s*(?:\[\s*(?:답|해설|참고)\s*\]|(?:답|참고|해설|정답)\s*[:：)])')
 def q_lines(q):
     """문제 부분 줄(첫 줄부터 답 표시 앞까지 — text에는 JB 답도 들어 있음 · 판마다 '답:'·'[답]'·'답)' 꼴이 다름)"""
-    L = []
+    L = []; an = q.get('ansat') or []   # 11-16 annot·assemble ans=(답 머리 없는 답 칸 시작 — build4 split_qa와 같은 지시 · ANAT4 뱅크·CONS4 L05 '교과서 답:'·OPATH '정답')
     for l in q['text'].replace('\u2063', '').split('\n'):   # 10-25 강제 줄바꿈 표시 빼고
-        if L and ANS.match(l): break
+        if L and (ANS.match(l) or (an and any(l.strip().startswith(p_) for p_ in an))): break
         if l.strip(): L.append(l.strip())
     return L
 def q_part(q): return ' '.join(q_lines(q))
@@ -35,7 +35,7 @@ def fmt_of(q):
     if len(re.findall(r'(?:^|\s)\(?[1-5][.)]\s?', body)) >= 3 and not re.search(r'시오|하라|서술|설명|쓰고', body): return '객관식'   # 같은 줄에 이어 쓴 보기 '(1) … (2) … (3) …'
     if re.search(r'올바로\s*(쓰여진|짝지어진|나열된)|바르게\s*(짝지어진|나열|연결)|올바른\s*것|옳게\s*(묶인|짝)|옳지\s*않은|관련이?\s*없는|해당하지\s*않는|적절하지\s*않은|거리가\s*먼|선지|보기\s*(\d+\s*개|미복원|에\s*주어진|들?\s*중)', qp): return '객관식'
     if re.search(r'빈칸|괄호|\(\s*\)|\(\d\.\s*\)', src) and '고르' not in src: return '빈칸'
-    if re.search(r'객관식|고르(시오|세요|라)|모두 골라|맞는\s*것|옳은\s*것|아닌\s*것|틀린\s*것|지\s*선다|가장\s*(적절|옳)', src): return '객관식'   # 띄어쓰기 없는 '아닌것'·'5 지 선다'·'가장 적절한 것'
+    if re.search(r'객관식|고르(시오|세요|라|기)|모두 골라|맞는\s*것|옳은\s*것|아닌\s*것|틀린\s*것|지\s*선다|가장\s*(적절|옳)', src): return '객관식'   # 띄어쓰기 없는 '아닌것'·'5 지 선다'·'가장 적절한 것'
     body2 = re.sub(r'\s*\([^()]*\d{2}[^()]*\)\s*$', '', body).strip()   # 끝 연도 괄호 '(20’, 19’)' 떼고
     if body2 and re.search(r'다\.?$', body2) and not re.search(r'\?|시오|하라|쓰|서술|설명|나열|무엇|어떤|몇', body2): return 'T/F'   # 10-16 평서문 한 문장 = O/X 판정 문항('…증가한다.')
     src = lab + ' ' + qp   # 10-16 단답/서술은 문제 부분 전체로(긴 증례 문제의 '…설명하시오'가 5번째 줄에 있음 — 답은 q_lines가 이미 뺌)
