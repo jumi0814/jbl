@@ -3,7 +3,7 @@
 <title>JBL 허브 · 3학년 4쿼터</title>
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="JBL 허브"><meta name="theme-color" content="#FFFFFF"><link rel="apple-touch-icon" href="icon-192.png">
 <script>window.__RK_LOADED=true;/* 예전 HUB로 열어도 도구가 이중으로 뜨지 않게 함 — 이 파일은 도구를 내장 */
-window.__JBLQ=[];window.JBLHUB={build:"34553dc5",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
+window.__JBLQ=[];window.JBLHUB={build:"4dc80280",register:function(p){__JBLQ.push(['p',p]);},images:function(i,o,c){__JBLQ.push(['i',i,o,c]);},legacy:function(i,o){__JBLQ.push(['l',i,o]);}};</script>
 
 <style>
 :root{--paper:#F4F1ED;--card:#FFFFFF;--ink:#1A1815;--sub:#706C65;--line:#E0DCD7;--hero1:#0F4B4A;--hero2:var(--hero1);--acc:#0F5C5A;--accbg:#F1EEEA;--accb:#D8D4CE;--acct:#393734;
@@ -2724,7 +2724,7 @@ function toastErr(it){const w=$('#toasterr');if(!w)return;if(it.id){const o=docu
 /* build4가 docs/packs에 있는 팩 목록으로 바꿔 넣음 — 없는 팩은 불러오지 않음(404 방지) · null이면 전부 시도 */
 const READY=["OMS2", "CONS4", "IMPL4", "ANAT4", "HINS", "GERI4", "PHARM4", "RAD", "OPATH", "ESTH4"];
 /* 판 — HUB_BUILD(허브 코드 지문)는 모든 팩의 p.build와 같아야 함. PV = 팩 내용 지문(?v= 캐시 무효화 · F5) */
-const HUB_BUILD="34553dc5",PV={"OMS2": "a9ffb6fd", "CONS4": "ebd6c772", "IMPL4": "bcf11b3d", "ANAT4": "178714ee", "HINS": "d557d7d2", "GERI4": "fa49fba4", "PHARM4": "a9168ecc", "RAD": "6a99bcf6", "OPATH": "d0264aef", "ESTH4": "525bed5e"},PSZ={"OMS2": 0.5, "CONS4": 0.4, "IMPL4": 0.4, "ANAT4": 0.3, "HINS": 1.2, "GERI4": 0.6, "PHARM4": 1.3, "RAD": 1.2, "OPATH": 0.9, "ESTH4": 0.4};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
+const HUB_BUILD="4dc80280",PV={"OMS2": "aedcd856", "CONS4": "d7d36460", "IMPL4": "9b7b1215", "ANAT4": "1a9acc5d", "HINS": "e90631b5", "GERI4": "de54181b", "PHARM4": "b05d33ee", "RAD": "c604fabd", "OPATH": "2a2b0a26", "ESTH4": "29be7399"},PSZ={"OMS2": 0.5, "CONS4": 0.4, "IMPL4": 0.4, "ANAT4": 0.3, "HINS": 1.2, "GERI4": 0.6, "PHARM4": 1.3, "RAD": 1.2, "OPATH": 0.9, "ESTH4": 0.4};   /* PSZ = 팩 크기(MB, 첫 방문 진행 표시) */let STALE=false;
 const SUBJECTS=QC.subjects;   /* ux3 G3 셋째 값 = 짧은 이름(메뉴·홈 표·달력) */
 const PACKS={},IMGS={},imgWait={},LOADED={},IMGCH={},IMGNET={},IMGUSE=[];   /* 11-11 W3 IMGCH 묶음 → 그 묶음이 넣은 키 · IMGNET 네트워크로 받은 묶음(다시 받을 수 있는 것만 비움) · IMGUSE 최근에 쓴 강의 묶음(앞이 최근) */let CUR={s:null,d:null,t:null},MK={ok:{},ng:{},bm:{}};
 /* 채점 기록 mk.<S> = {ok:{id:1}, ng:{…}, bm:{…}} — 옛 형식({ok,ng}만)·깨진 값도 안전하게 */
@@ -3849,7 +3849,7 @@ const yrsLab=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return (a.length>4?
 /* 이어서 학습할 곳: 이 과목 lastBy가 강의면 그곳, 아니면 읽음이 덜 된 첫 강의 */
 function resumeTarget(p){const isL=o=>o&&typeof o==='object'&&o.d!=='WAIT'&&p.lect.find(x=>x.k===o.d);let o=mkObj(LS.get('lastBy',{}))[p.id];if(!isL(o))o=mkObj(LS.get('lastLec.'+p.id,null));if(!isL(o)){const ll=LS.get('lastList.'+p.id,[]);o=Array.isArray(ll)?ll.find(isL):null;}   /* ux4c 2회차 마지막 문서가 JB·표·예상이면 마지막 강의 자리(lastLec → lastList)로 */
  if(isL(o))return {d:o.d,t:o.t||'learn',aid:o.aid||'',off:+o.off||0,cont:1};
- const RL=p.lect.filter(x=>!isWait(x)),L=RL.find(x=>lecProg(p,x).done<x.nsec)||RL[0];return L?{d:L.k,t:'learn',aid:'',off:0,cont:0}:null;}   /* 11-10 A12 대기 강의(WAIT)는 이어서·시작의 목적지가 아님 — 없으면 null */
+ const RL=p.lect.filter(x=>!isWait(x)),L=RL.find(x=>lecProg(p,x).done<x.nsec)||RL[0];return L?{d:L.k,t:L.wip&&(L.jb||[]).length?'jb':'learn',aid:'',off:0,cont:0}:null;}   /* 11-16 정리본 작성 중(자리 표시) 강의는 처음 시작을 기출 탭으로 */   /* 11-10 A12 대기 강의(WAIT)는 이어서·시작의 목적지가 아님 — 없으면 null */
 function actBtn(p,a,C){if(a==='resume'){const r=resumeTarget(p);if(!r)return isStub(p)?'<span class="small">자료 대기</span>':'';   /* ux4 B3-3 공부 순서 오른쪽 글자 링크(과목색 '… →') — 데이터 속성·동작은 그대로 */
   return `<button class="act b3lk res go-resume" data-s="${p.id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'이어서':'시작'}: ${EH(sname(p,r.d))} →</button>`;}
  if(a==='todo')return !C.main?`<span class="small">${isStub(p)?'자료 대기':'기출 자료 대기'}</span>`:C.todo?`<button class="act b3lk" data-jbf="todo">안 푼 것 ${C.todo} →</button>`:C.ng?`<button class="act b3lk" data-jbf="ng">틀린 것 다시 ${C.ng} →</button>`:'<span class="small">기출을 다 맞혔어요</span>';   /* ux4c 1회차 틀린 것 0이면 빈 목록으로 가는 버튼을 두지 않음 */

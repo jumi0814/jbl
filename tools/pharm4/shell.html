@@ -3849,7 +3849,7 @@ const yrsLab=ys=>{const a=(ys||[]).map(y=>('0'+y).slice(-2));return (a.length>4?
 /* 이어서 학습할 곳: 이 과목 lastBy가 강의면 그곳, 아니면 읽음이 덜 된 첫 강의 */
 function resumeTarget(p){const isL=o=>o&&typeof o==='object'&&o.d!=='WAIT'&&p.lect.find(x=>x.k===o.d);let o=mkObj(LS.get('lastBy',{}))[p.id];if(!isL(o))o=mkObj(LS.get('lastLec.'+p.id,null));if(!isL(o)){const ll=LS.get('lastList.'+p.id,[]);o=Array.isArray(ll)?ll.find(isL):null;}   /* ux4c 2회차 마지막 문서가 JB·표·예상이면 마지막 강의 자리(lastLec → lastList)로 */
  if(isL(o))return {d:o.d,t:o.t||'learn',aid:o.aid||'',off:+o.off||0,cont:1};
- const RL=p.lect.filter(x=>!isWait(x)),L=RL.find(x=>lecProg(p,x).done<x.nsec)||RL[0];return L?{d:L.k,t:'learn',aid:'',off:0,cont:0}:null;}   /* 11-10 A12 대기 강의(WAIT)는 이어서·시작의 목적지가 아님 — 없으면 null */
+ const RL=p.lect.filter(x=>!isWait(x)),L=RL.find(x=>lecProg(p,x).done<x.nsec)||RL[0];return L?{d:L.k,t:L.wip&&(L.jb||[]).length?'jb':'learn',aid:'',off:0,cont:0}:null;}   /* 11-16 정리본 작성 중(자리 표시) 강의는 처음 시작을 기출 탭으로 */   /* 11-10 A12 대기 강의(WAIT)는 이어서·시작의 목적지가 아님 — 없으면 null */
 function actBtn(p,a,C){if(a==='resume'){const r=resumeTarget(p);if(!r)return isStub(p)?'<span class="small">자료 대기</span>':'';   /* ux4 B3-3 공부 순서 오른쪽 글자 링크(과목색 '… →') — 데이터 속성·동작은 그대로 */
   return `<button class="act b3lk res go-resume" data-s="${p.id}" data-d="${EH(r.d)}" data-t="${EH(r.t)}" data-aid="${EH(r.aid)}" data-off="${r.off}">${r.cont?'이어서':'시작'}: ${EH(sname(p,r.d))} →</button>`;}
  if(a==='todo')return !C.main?`<span class="small">${isStub(p)?'자료 대기':'기출 자료 대기'}</span>`:C.todo?`<button class="act b3lk" data-jbf="todo">안 푼 것 ${C.todo} →</button>`:C.ng?`<button class="act b3lk" data-jbf="ng">틀린 것 다시 ${C.ng} →</button>`:'<span class="small">기출을 다 맞혔어요</span>';   /* ux4c 1회차 틀린 것 0이면 빈 목록으로 가는 버튼을 두지 않음 */
