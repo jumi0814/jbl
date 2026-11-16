@@ -1,0 +1,44 @@
+Anatomy-guided Latent Diffusion Model for Fine-grained 
+Medical Image Synthetic Augmentation, 2024
+Anatomy-guided Latent Diffusion Model for Fine-grained Medical Image Synthetic Augmentation, Medical 
+Imaging with Deep Learning (MIDL), 2024
+Data augmentation for segmentation 
+•Improved Training of Deep 
+Learning Models with Synthetic 
+Data
+•Annotated datasets (e.g., for 
+mandibular canal segmentation):  
+the time-consuming and expert-
+driven labeling process
+•To generate fine-grained synthetic 
+dental radiographs for data 
+augmentation—without requiring 
+manual annotation
+•Powerful solution to the data 
+scarcity challenge in dental AI
+Anatomy-guided latent diffusion 
+model 
+• To generate anatomical synthetic 
+panoramic radiograph using 
+Denoising Diffusion Probabilistic 
+Models(DDPM)
+• Anatomy-guided latent diffusion 
+model: generates high-quality 
+synthetic dental images for 
+augmenting training datasets
+• Enabling more accurate, efficient, 
+and scalable development of 
+diagnostic models for mandibular 
+canal segmentation on panoramic 
+radiographs
+To generate anatomical synthetic panoramic 
+radiograph using DDPM
+93
+파노라마 기기가 제조사마다 특성이 다르기 때문에 하나의 기기로 촬영한 사진들로만 학습시킨 
+ 다른 기기에 효과적이지 않을 수 있음
+→ diffusion을 이용해서 다른 장비의 영상과 유사한 simulation 영상을 형성
+AI는
+WHY? generalization 수준이 부족
+→ 우리 병원 data로 다른 병원의 파노라마에 대해서 비슷하게 canal이 나오는 영상을 만듦 → 이걸로 학습시키기!
+
+[주석] 파노라마 기기가 제조사마다 특성이 다르기 때문에 하나의 기기로 촬영한 사진들로만 학습시킨 AI는 다른 기기에 효과적이지 않을 수 있음WHY? generalization 수준이 부족→ diffusion을 이용해서 다른 장비의 영상과 유사한 simulation 영상을 형성→ 우리 병원 data로 다른 병원의 파노라마에 대해서 비슷하게 canal이 나오는 영상을 만듦 → 이걸로 학습시키기!

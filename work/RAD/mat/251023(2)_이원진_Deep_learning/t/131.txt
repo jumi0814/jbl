@@ -1,0 +1,16 @@
+MeshAlignNet: Orthodontic treatment using mesh alignment
+Automatic Tooth Alignment
+•3D Intraoral scan data
+•Generate rigid transform 
+matrix for normal dentition
+from malocclusion
+•Training networks with 660 
+malocclusions generated 10 
+times at random with 
+differences in rotation and 
+translation 
+•Evaluate 90 samples form 9 
+randomly generated patients
+131
+MLP for point cloud
+Mesh convolution

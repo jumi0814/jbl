@@ -1,0 +1,19 @@
+14
+Voxel Classification
+◼Classify a voxel depending on its 
+intensity, no matter where it is 
+located
+◼Thresholding: a certain intensity 
+range is specified with lower and 
+upper threshold values
+◼Selecting air, bone or soft tissue in 
+CT
+after thresholding
+direct volume rendered 3D view 
+original axial image
+Voxel classification
+- voxel 자체에 특정 thresold 값을 넘기면 날려버리거나 남기는 방식으로 이미지 추출
+* voxel이란?
+volume + pixel → 부피를 가진 픽셀이라고 할 수 있음 (출처: 구글)
+
+[주석] Voxel classification- voxel 자체에 특정 thresold 값을 넘기면 날려버리거나 남기는 방식으로 이미지 추출* voxel이란?volume + pixel → 부피를 가진 픽셀이라고 할 수 있음 (출처: 구글)

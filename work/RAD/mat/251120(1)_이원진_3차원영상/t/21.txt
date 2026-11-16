@@ -1,0 +1,14 @@
+21
+Geodesic Active Contours
+◼Two inputs: initial level set (zero level set) and a 
+feature image (edge image)
+◼Following the forces defined by the edge image, 
+the level set iteratively approximates the area to 
+be segmented
+◼Solution for problem of concavity, multiple object, 
+sensitivity to initial approximation from AC
+Liver segmentation based on MRI: fast marching produces the initial
+level set and the GAC algorithm
+active contour는 initial set이 필요하다고 했음
+
+[주석] active contour는 initial set이 필요하다고 했음

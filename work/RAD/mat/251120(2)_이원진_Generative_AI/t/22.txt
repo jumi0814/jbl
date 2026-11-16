@@ -1,0 +1,38 @@
+Structure-Preserving Quality Improvement of 
+Cone Beam CT Images Using Contrastive Learning, 2023
+CBCT to CT images
+•Generate CT-like image from CBCT 
+image 
+•Increase the image quality and HU 
+accuracy of CBCT like CT while 
+preserving anatomical structures
+•Airway assessment, Maxillofacial 
+bone and soft tissue evaluation, 
+Precise localization for implants or 
+surgical planning
+•Enhanced Diagnostic Accuracy for 
+CBCT
+Contrastive Learning GAN
+Contrastive learning GAN
+• CycleGAN: two set of generator 
+and discriminator, distortion in 
+generated images due to cycle 
+consistency loss
+• Patchwise contrastive learning  
+GAN: preserves the anatomical 
+structures by maximizing the 
+mutual information between 
+input patches and corresponding 
+output patches
+• Generation of CT-like Images with 
+Preserved Anatomical Structures
+Structure-preserving quality improvement of cone beam CT images using contrastive learning. Comput Biol 
+Med. 2023 May;158:106803
+82
+Input CBCT image
+Generated CT-like image 
+CT와 CBCT의 차이 = 해상도 (CBCT > CT)
+but CBCT는 scattering이 떨어짐 → 대조도가 떨어지고 주변 조직과 구분 잘 안됨
+→ GAN으로 대조도 높여서 CT만큼 잘 보이게 만듦
+
+[주석] CT와 CBCT의 차이 = 해상도 (CBCT > CT)but CBCT는 scattering이 떨어짐 → 대조도가 떨어지고 주변 조직과 구분 잘 안됨→ GAN으로 대조도 높여서 CT만큼 잘 보이게 만듦

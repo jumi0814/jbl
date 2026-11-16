@@ -1,0 +1,20 @@
+=  FHFormer: Filling holes during intra-oral scan
+
+TABLE II
+COMPARISON ON EVALUATION METRICS WITH STATE-OF-THE-ART METHODS
+Model             CD(L)         F-score()       Precision(t)       Recall(t)         SDE(1)          HD(J)
+MeshFix [24] 32.04 + 9.41    81.09+ 16.34    84.31 + 15.06 783041754 12494 4.04 30.09 + 14.77
+PCN [13]       31.23 +845 83444 1447 86.984 12.96 80.394 15.92 121443.55 32.27 + 27.53
+PointNet [25] 32.21 49.47 8080+ 16.43 84134 15.05 77.934 17.66 1255+4.05 30.29 + 14.78
+PoinTr [26]     34.40 +9.70 77.674 17.42 8150+ 16.54 7440+ 18.33 1342+4.20 31.22 + 14.17
+DGCNN [20] 29.804 7.87 84.764 13.81 88.264 12.34 81.73 415.18 11.5743.31 28.29 + 13.79
+Ours           28.18 + 7.26 87.95 + 12.12 91.404 10.45 84.96 + 13.69 10.92 + 2.99 27.84 + 18.93
+Input                          Ground                        MeshFix                       Ours
+Truth
+
+RAL AND MAXILLOFACIAL RADIOLOGY
+SEOUL NATIONAL UNIVERSITY
+
+SNU
+MedicdPlinaging
+Innovation Laboratory

@@ -1,0 +1,25 @@
+Diffusion Models
+• High quality image generation without 
+adversarial training
+• Create samples step by step, unlike 
+VAEs and GANs generating at once
+• Slow sample generation: slower than 
+GANs and VAEs
+92
+Denoising Diffusion Probabilistic 
+Models(DDPM), 2020
+DENOISING DIFFUSION IMPLICIT 
+MODELS (DDIM), 2021
+• Faster image generation  than DDPM
+• Multiple-step process: inpainting or 
+image-to-image generation, simply by 
+exploiting the input noise
+• Markovian -> non-Markovian
+Stable Diffusion, New Paradigm 
+in Generative AI, 2022 
+Midjourney
+depth2image
+• Latent Diffusion Models
+• To understand text and image
+• Cross attention: to selectively focus 
+on certain text features or aspects

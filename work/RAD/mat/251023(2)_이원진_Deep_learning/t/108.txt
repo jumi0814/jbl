@@ -1,0 +1,33 @@
+MeshFormer: Automatic Alignment of Teeth for Orthodontic 
+Treatment, 2023
+Automation of Orthodontic Diagnosis 
+and Planning
+• Orthodontic diagnosis and 
+treatment planning traditionally 
+require significant time, effort, and 
+expertise from orthodontists
+• Precise evaluation and alignment of 
+individual teeth to achieve 
+functional and aesthetic outcomes
+• Integration of Digital Intraoral Scan 
+Data into AI-Powered Workflow: 
+mesh data from intraoral scanners 
+(IOS) 
+MeshFormer
+• MeshFormer: automatically predicts 
+normal occlusion from malocclusion 
+using 3D mesh data for automated 
+treatment simulation and planning
+• Geometric and Anatomical Awareness: 
+incorporates both local mesh features 
+(via MeshNet) and global point cloud 
+features (via Transformer) to accurately 
+learn and replicate normal occlusal 
+structures
+• Leverage rich geometric features from 
+mesh data (e.g., center points, corner 
+vectors, normals), unlike conventional 
+methods that rely on point cloud data
+MeshNet + point cloud Transformer
+MeshFormer: Automatic Alignment of Teeth for Orthodontic Treatment, KOSOMBE 2023
+108

@@ -1,0 +1,32 @@
+Frank Rosenblatt, 
+Mark I Perceptron 
+machine
+Mark I Perceptron, the first modern neural network
+The first computation model of a neuron by 
+McCulloch and Pitts (1943)
+•
+The activation function as threshold step function
+•
+Hebbian Learning by Hebb (1949): neural pathways 
+strengthen over each successive use
+•
+unsupervised learning rule
+Mark I Perceptron by Rosenblatt (1957)
+• Weights be ‘learnt’ by minimizing difference between desired 
+and actual output
+• Single Layer: only learn to separate linearly separable but 
+exclusive-or (the first "AI winter")
+A McCulloch-Pitts neuron 
+Mark I Perceptron
+6
+Neuron with the bias b
+1943Y
+- 값을 더하고 threshold를 통해서 출력
+ - but 값을 정하는 규칙을 학습시킬 방법이 없음
+ 
+1957Y
+ - bias를 더해서 만들면 weight 와 bias를 학습시킬 수 있다는 개념
+ - 하나의 평면, 직선임
+
+[주석] 1943Y - 값을 더하고 threshold를 통해서 출력 - but 값을 정하는 규칙을 학습시킬 방법이 없음
+[주석] 1957Y - bias를 더해서 만들면 weight 와 bias를 학습시킬 수 있다는 개념 - 하나의 평면, 직선임

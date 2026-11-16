@@ -1,0 +1,11 @@
+Accuracy Metrics to Evaluate Detection
+169
+• Prediction TP, if IoU > threshold
+• Prediction FP, if IoU < threshold
+• Prediction FN, if IoU = 0
+• TN, not defined
+• Average Precision(mAP): Precision-Recall 
+curve by IoU score as a threshold value 
+Precision-Recall curve
+TP
+FP

@@ -1,0 +1,24 @@
+Anatomy-guided Latent Diffusion Model for Fine-grained 
+Medical Image Synthetic Augmentation, 2024
+Clinical Applications and Significance
+• Enhanced Performance in Anatomical 
+Segmentation Tasks: improve the accuracy of 
+mandibular canal segmentation on panoramic 
+radiographs
+• Preservation of Anatomical Plausibility in 
+Synthetic Images: unlike standard generative 
+approaches, the model uses anatomy-guided 
+latent blending, ensuring that generated 
+images maintain realistic anatomical 
+structures 
+• Reduction in Data Annotation Burden: enable 
+the generation of labeled image from 
+unlabeled data, thereby minimizing the need 
+for manual annotations
+• AI-assisted radiographic workflows: 
+enhancing model performance for 
+applications like canal detection, lesion 
+classification
+Enhanced Performance in Anatomical Segmentation 
+Tasks: DSC up to 16.6% using synthetic augmented data
+94

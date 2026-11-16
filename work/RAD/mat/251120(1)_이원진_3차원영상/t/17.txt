@@ -1,0 +1,13 @@
+17
+Region growing
+◼User select a point, compares selected 
+point with its neighbors
+◼If a pre-defined similarity criterion is 
+fulfilled, checked neighbor is accepted 
+as new member
+vertebral foramen
+segmentation하고 싶은 영역 즈음에 점을 하나 찍으면
+주변 영역과 점 찍은 부분을 비교
+→ 급격한 변화가 일어나는 경계에서 영역 segmentation
+
+[주석] segmentation하고 싶은 영역 즈음에 점을 하나 찍으면주변 영역과 점 찍은 부분을 비교→ 급격한 변화가 일어나는 경계에서 영역 segmentation

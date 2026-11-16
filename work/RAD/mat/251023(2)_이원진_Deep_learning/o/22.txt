@@ -1,0 +1,50 @@
+5 ReLU: new activation function
+
+* Rectified linear units: network converges much faster than sigmoid/tanh
+
+Input image
+
+RAL AND MAXILLOFACIAL RA
+SEOUL NATIONAL UNIVERSITY
+
+Output
+
+classes
+
+>
+
+Tumor
+
+Convolution 4  RELU \ Pooling  Fully conected
+layer  \ layer a layer  layer
+N    ¢
+지교 에      ¢
+:
+”
+~ nme bee Ld  le el
+ro-ㅠㅠㅠ ㅠㅠㅠ a]그      \
+대
+Transfer Function
+15 | 20 |-10 | 35      15 | 20 | 0 | 35
+18 |-110| 25 | 100  0,0  18 | 0 | 25 | 100
+20 | 15 | 25 | -10     2 | 0 |25 | 0
+10111 | 23 | ReLU  101 | 75 | 18 | 23
+
+No tumor
+~
+
+Sigmoid
+a(x) = te
+tanh
+tanh(«)       a        i
+Poa .
+ReLU       /           \
+max(0,x) |              H
+No        % ^
+이
+y = max(x,0)
+
+MedicaPfmaging
+Innovation Laboratory
+
+Miil

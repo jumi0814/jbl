@@ -1,0 +1,42 @@
+Diffusion Models
+• High quality image generation without 
+adversarial training
+• Create samples step by step, unlike 
+VAEs and GANs generating at once
+• Slow sample generation: slower than 
+GANs and VAEs
+92
+Denoising Diffusion Probabilistic 
+Models(DDPM), 2020
+DENOISING DIFFUSION IMPLICIT 
+MODELS (DDIM), 2021
+• Faster image generation  than DDPM
+• Multiple-step process: inpainting or 
+image-to-image generation, simply by 
+exploiting the input noise
+• Markovian -> non-Markovian
+Stable Diffusion, New Paradigm 
+in Generative AI, 2022 
+Midjourney
+depth2image
+• Latent Diffusion Models
+• To understand text and image
+• Cross attention: to selectively focus 
+on certain text features or aspects
+stable
+ 
+diffusion:
+ 
+diffusion
+ 
+model에
+ 
+condition을
+ 
+받아서
+ 
+학습시킴
+ - 기존의 것보다 훨씬 다양한 영상을 생성할 수 있음
+ - chatGPT 등이 거의 모두 stable diffusion을 사용하고 있음
+
+[주석] stable diffusion: diffusion model에 condition을 받아서 학습시킴 - 기존의 것보다 훨씬 다양한 영상을 생성할 수 있음 - chatGPT 등이 거의 모두 stable diffusion을 사용하고 있음

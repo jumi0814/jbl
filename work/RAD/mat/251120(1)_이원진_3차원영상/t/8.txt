@@ -1,0 +1,18 @@
+8
+Preprocessing
+◼Volume of interest
+◼Converts a given scene to another scene by reducing the 
+size of the scene domain and/or the intensity range for 
+the purpose of minimizing the storage space
+◼Filtering
+◼Converts a given scene to another scene by suppressing 
+unwanted information and/or enhancing wanted 
+information
+◼Interpolation
+◼Converts a given scene to another scene of a specified 
+level of discretization
+- volume of interest: 관심있는 특정 부분만을 추출하는 것
+- filtering: 원하는 부분만을 enhance시키고, 원하지 않는 것을 suppression함
+- interpolation: 해상도를 높이는 것
+
+[주석] - volume of interest: 관심있는 특정 부분만을 추출하는 것- filtering: 원하는 부분만을 enhance시키고, 원하지 않는 것을 suppression함- interpolation: 해상도를 높이는 것

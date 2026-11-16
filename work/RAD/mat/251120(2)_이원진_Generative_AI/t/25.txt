@@ -1,0 +1,19 @@
+CNN vs Transformer
+“CNN does not encode 
+the relative position of 
+different features.”
+“Large receptive fields 
+are required to track 
+long-range dependencies”
+“Transformer captures global context 
+compared to CNNs of local receptive fields”
+85
+* vision transformer *
+ - 영상 처리를 위해서 영상을 여러 개로 분할하고 각각을 하나의 단어로 간주
+ - language 분석하듯이 나열해서 분석
+ → CNN에서 했던 segmentation을 똑같이 할 수 있음
+- CNN 문제: kernel이 작기 때문에 작은 영역 밖에 보지 못함
+ - transformer는 한 영상 내 segment끼리의 관계를 학습함 (문장 속에서 단어들 간의 관계를 파악하는 것과 유사)
+   → 각 영상 segment 관계르 학습하므로 얼굴 그릴 때 이목구비 위치를 파악할 수 있음
+
+[주석] * vision transformer * - 영상 처리를 위해서 영상을 여러 개로 분할하고 각각을 하나의 단어로 간주 - language 분석하듯이 나열해서 분석 → CNN에서 했던 segmentation을 똑같이 할 수 있음- CNN 문제: kernel이 작기 때문에 작은 영역 밖에 보지 못함 - transformer는 한 영상 내 segment끼리의 관계를 학습함 (문장 속에서 단어들 간의 관계를 파악하는 것과 유사)   → 각 영상 segment 관계르 학습하므로 얼굴 그릴 때 이목구비 위치를 파악할 수 있음

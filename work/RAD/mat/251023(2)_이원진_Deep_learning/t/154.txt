@@ -1,0 +1,12 @@
+_Estimation of sex and chronological age from panoramic 
+radiographs using a multi-task deep learning network
+Confusion matrices for sex estimation (a)–(h) VGG16, 
+MobileNet v2, ResNet101, DenseNet121, Vision Transformer, 
+Swin Transformer, TransNet, and EfficientNet-B3
+Sex estimation: EfficientNet-B3: ACC, SPE, and SEN of 0.992, 
+0.993, and 0.990
+Box plots for chronological age, (a)–(h) VGG16, MobileNet v2, ResNet101, 
+DenseNet121, Vision Transformer, Swin Transformer, TransNet, and 
+EfficientNet-B3
+Chronological age: EfficientNet-B3 achieved better results with 
+MAE of 2.93 ± 2.61

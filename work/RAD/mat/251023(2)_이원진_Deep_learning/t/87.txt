@@ -1,0 +1,33 @@
+DCrownFormer: Morphology-aware Point-to-Mesh Generation 
+Transformer for Dental Crown Prosthesis, 2024 
+Personalized Crown Design
+•Traditional dental crown design:  
+rely on manual CAD modeling 
+based on generic templates and 
+requires significant time and 
+expertise
+•automatically generates 
+personalized crown meshes 
+directly from 3D scans of the 
+preparation and antagonist teeth
+DCrownFormer
+• Point-to-mesh generation 
+transformer with Curvature-penalty 
+loss and Mesh reconstruction loss
+• Morphology-aware Cross-Attention 
+Module (MCAM):  learn the 
+anatomical relationships between 
+opposing and adjacent teeth
+• The generated crown to reflect 
+detailed morphological features, 
+such as grooves and cusps
+• The model ensures high-fidelity mesh 
+generation that preserves fine 
+anatomical details and avoids over-
+smoothing—crucial for clinical-grade 
+manufacturing
+87
+[Dental crown prosthesis design]
+DCrownFormer
+DCrownFormer: Morphology-aware Point-to-Mesh Generation Transformer for Dental Crown Prosthesis from 3D 
+Scan Data of Antagonist and Preparation Teeth, MICCAI 2024

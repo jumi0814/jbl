@@ -1,0 +1,45 @@
+Structure-Preserving Quality Improvement of 
+Cone Beam CT Images Using Contrastive Learning
+MAE (𝐇𝐔) ↓
+RMSE ↓
+SSIM ↑
+CycleGAN
+68.551±3.656∗
+171.636±41.240∗
+0.862∗±0.042
+CUT
+71.938±4.367∗
+178.638±44.974∗
+0.865∗±0.046
+NEGCUT
+66.486±3.502∗
+163.342±43.711∗
+0.862∗±0.045
+LSeSim
+64.511±3.017∗
+167.190±43.558∗
+0.862∗±0.047
+SRC
+65.763±3.312∗
+163.782±45.821∗
+0.866∗±0.043
+Ours
+𝟔𝟑.𝟎𝟒𝟒±3.086
+𝟏𝟓𝟔.𝟎𝟐𝟎±40.992
+𝟎.𝟖𝟖𝟎±0.043
+Structure score (SSIM)
+83
+Clinical Applications and Significance
+• Treatment planning and 
+postoperative follow-ups in 
+implantology and orthodontics 
+• Pathology detection, especially in 
+mixed tissue environments
+• Without increasing radiation 
+exposure or relying on general CT 
+imaging
+• Improved Soft Tissue Visualization 
+and HU Quantification: extends the 
+clinical usability of CBCT beyond hard 
+tissue imaging as a substitute for CT 
+in more applications

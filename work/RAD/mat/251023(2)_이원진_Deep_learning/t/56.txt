@@ -1,0 +1,36 @@
+Comparison of 2D, 2.5D, and 3D segmentation networks for 
+maxillary sinuses and lesions in CBCT image
+Clinical Applications and Significance
+• 2.5D networks using ensemble learning 
+across orthogonal planes (axial, sagittal, 
+coronal) show superior segmentation 
+accuracy
+• Allow for automated, consistent 
+segmentation, reducing workload and 
+increasing reproducibility in diagnosis and 
+treatment planning
+• Making it feasible for clinical application 
+replacing manual segmentation of sinus 
+structures, time-consuming and subjective
+• Enhances surgical safety, diagnostic 
+efficiency, and treatment predictability in 
+implant dentistry—especially in patients 
+requiring sinus lift procedures
+• Applicability in General and Specialized 
+Dental Practice
+Ssegmentation results of the lesion inside 
+the maxillary sinus (MSL) by 2D, 2.5D, and 
+3D networks. The ground truths of the 
+MSL (yellow) (a). The false negative (blue), 
+false positive (red), and true positive 
+(yellow) areas  for the MSL by (b) 2D 
+U-net, (c) 2D U-net + + , (d) 2.5D U-net, (e) 
+2.5D U-net + + , (f) 3D U-net, and (g) 3D 
+V-net networks
+Segmentation performances of Jaccard coefcient (JC), Dice similarity coefcient (DSC), precision (PR), and recall 
+(RC) for the maxillary sinus (MS), maxillary sinus air region (MSA), and the lesions inside the maxillary sinus 
+(MSL) by 2.5D (U-net++) network with diferent ensemble methods (unanimous, afrmative, and majority)
+2.5D model (U-Net++) highest
+performance with majority ensemble 
+DSC = 0.973 for MS, DSC = 0.875 for MSL
+56

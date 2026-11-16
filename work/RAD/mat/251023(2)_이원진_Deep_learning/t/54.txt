@@ -1,0 +1,28 @@
+Automatic robust classification and segmentation of carotid artery 
+calcification on panoramic radiographs using a cascaded network
+Clinical Applications and Significance
+• High performance of Classification and 
+Segmentation: Classification of AUC; 
+0.996, Accuracy; 0.985, Segmentation of 
+Dice score; 0.722, Precision; 0.749, Recall; 
+0.756
+• Quantitative Assessment of Lesion 
+Morphology Beyond detection:  
+segmentation to quantify the size, location, 
+and shape of CACs, clinically relevant 
+indicators of disease severity
+• Clinical Decision Support in Routine Dental 
+Exams for screening tool for systemic 
+vascular disease: help dentists refer 
+patients for medical evaluation
+• Offering an opportunity to transform PR 
+into dual-purpose tools for both dental 
+and medical risk screening
+Segmentation by CACSNet, Blue, green, and yellow 
+regions indicate false negatives, false positives, and 
+true positives, respectively
+Confusion matrices for classifcation of CAC by 
+CACSNet with backbones
+Receiver operating characteristic (ROC) curves for 
+classifcation of CAC by CACSNet with backbones 
+54

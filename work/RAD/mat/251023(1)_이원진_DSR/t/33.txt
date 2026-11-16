@@ -1,0 +1,26 @@
+ROI-based image registration
+• ROI selection
+• Parameter initialization
+• Transform: 
+If(x’,y’)=T(If(x,y)) 
+• Cross-correlation 
+between R∈Ir(x,y) and 
+R’∈If(x’,y’)
+• Searching T by iteration 
+until CC < threshold
+(c)
+(d)
+(a)
+(b)
+(c)
+(d)
+(a)
+(b)
+하나의 점이 아닌 영역 단위로 보는 것
+ - 유사 영역을 자동으로 찾음
+ - 대응되는 영상을 parameter를 바꾸면서 다양한 translation과 rotation 시켜봄
+  * [그림 c] 좀 더 rotation시키면서 correlation을 보는 것
+    → 특정 환경에 대해 correlation이 1에 가까워지는 변환 설정이 있을 것
+    → 그런 순간에 멈추고 대응시킨다
+
+[주석] 하나의 점이 아닌 영역 단위로 보는 것 - 유사 영역을 자동으로 찾음 - 대응되는 영상을 parameter를 바꾸면서 다양한 translation과 rotation 시켜봄  * [그림 c] 좀 더 rotation시키면서 correlation을 보는 것    → 특정 환경에 대해 correlation이 1에 가까워지는 변환 설정이 있을 것    → 그런 순간에 멈추고 대응시킨다

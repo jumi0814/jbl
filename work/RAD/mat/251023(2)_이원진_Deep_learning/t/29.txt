@@ -1,0 +1,35 @@
+U-Net for semantic image segmentation, 2015
+29
+•
+Pixel-level context 
+information
+•
+Encoder/Decoder
+•
+Highly detailed 
+segmentation
+•
+Skip connections: 
+alleviate the vanishing 
+gradient problem in deep 
+networks
+•
+Much faster to train than 
+other segmentation 
+models due to its context-
+based learning 
+What's in this image, and where in the 
+image is it located ?
+Recognizing, understanding in pixel level
+semantic image segmentation
+Encoder/ Feature extraction 
+by downsampling
+Decoder/Restoring 
+resolution by upsampling
+여러 자극 중 가장 성공한 network가 U-Net
+ - 영상처리를 segmenting하는 것에 많이 사용됨
+ - decode: convolution을 계속 줄이고 반대로 해상도를 높임
+ - U-Net의 성공 비결: 같은 해상도에서는 연결시켜서 gradient vanishing 
+문제를 해결 = 뇌에서 apical dendrite에서도 신호를 받는 것과 유사한 원리
+
+[주석] 여러 자극 중 가장 성공한 network가 U-Net - 영상처리를 segmenting하는 것에 많이 사용됨 - decode: convolution을 계속 줄이고 반대로 해상도를 높임 - U-Net의 성공 비결: 같은 해상도에서는 연결시켜서 gradient vanishing 문제를 해결 = 뇌에서 apical dendrite에서도 신호를 받는 것과 유사한 원리

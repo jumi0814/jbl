@@ -1,0 +1,35 @@
+Accuracy Metrics to Evaluate Semantic Segmentation
+168
+• Intersection Over Union (IoU, Jaccard Index): 
+area of overlap between prediction and 
+ground truth divided by area of union for 
+each class
+• Dice Similarity Coefficient (DSC, F1 Score): 
+area of overlap divided by the total number 
+of pixels in both images
+DSC = (Ships + Background)/2 
+= (0%+95%)/2 = 47.5%
+Mean IoU = (Ships + Background)/2 
+= (0%+95%)/2 = 47.5%
+95%
+Prediction
+𝐷𝑆𝐶= 2 𝑆𝑔𝑡∩𝑆𝑝𝑟𝑒𝑑
+𝑆𝑔𝑡+ 𝑆𝑝𝑟𝑒𝑑
+𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑃𝑅𝑒𝑐𝑎𝑙𝑙=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑁
+𝐹1 𝑠𝑐𝑜𝑟𝑒= 2 × 𝑝𝑟𝑒𝑠𝑖𝑠𝑖𝑜𝑛× 𝑟𝑒𝑐𝑎𝑙𝑙
+𝑝𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛+ 𝑟𝑒𝑐𝑎𝑙𝑙
+𝐼𝑜𝑈=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑃+ 𝐹𝑁
+𝐷𝑆𝐶=
+2 × 𝑇𝑃
+2 × 𝑇𝑃+ 𝐹𝑃+ 𝐹𝑁= F1
+𝑇𝑃
+𝐹𝑁
+𝐹P
+gt
+pred

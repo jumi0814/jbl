@@ -1,0 +1,25 @@
+_Estimation of sex and chronological age from panoramic 
+radiographs using a multi-task deep learning network, 2024
+Sex and chronological age 
+•Automatic estimation of sex 
+and chronological age in 
+panoramic radiographs
+•Labor-intensive, time-
+consuming, and error-prone
+Multi-task deep learning network 
+(ForensicNet)
+Simultaneously sex and age
+• Consist of a backbone with age 
+and sex attention branches
+• Simultaneously estimates sex and 
+chronological age by each 
+attention branch
+• Backbones in ForensicNet for 
+feature extraction :  VGG16, 
+MobileNet v2, ResNet101, 
+DenseNet121, Vision Transformer, 
+Swin Transformer, Encoder of 
+TransUNet (TransNet), and 
+EfficientNet-B3
+Automatic and robust estimation of sex and chronological age from panoramic radiographs using a multi-task deep learning network: a 
+study on a South Korean population, Int J Legal Med. 2024 Mar 12

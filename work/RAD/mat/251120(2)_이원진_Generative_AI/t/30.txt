@@ -1,0 +1,40 @@
+DCrownFormer+: Morphology-aware mesh generation and 
+refinement transformer for dental crown prosthesis from 3D 
+scan data of preparation and antagonist teeth
+90
+DCrownFormer+: Morphology-aware mesh generation and refinement transformer for dental crown prosthesis 
+from 3D scan data of preparation and antagonist teeth. Med Image Anal. 2025 Oct:105:103717
+DCrownFormer+
+• End-to-end transformer model to 
+perform morphology-aware crown 
+generation and refinement
+• Implicit Grid Refinement Network 
+(IGRN) and two loss functions: to 
+generate high-fidelity and realistic 
+dental crown meshes by refining the 
+details of the coarse indicator grid
+• Significant improvements over 
+previous approaches: in shape 
+completeness, surface smoothness, 
+and functional fitting with adjacent 
+and antagonist teeth.
+DCrownFormer+
+Clinical Applications and Significance
+• Automatic, consistent, and high-fidelity 
+crown generation: significantly reducing 
+dentist workload and inter-operator 
+variability
+• Efficiency and Real-Time Potential: 
+chairside applications and integration 
+into digital dentistry workflows, including 
+web- and cloud-based platforms
+• Precision and Functional Quality: 
+improvements in penetration distance, 
+positioning, and functional quality 
+compared to conventional methods
+• Applicability in 3D Printing and CAD/CAM: 
+compatibility with current CAD/CAM and 
+rapid chairside restorations
+• Fully automated digital prosthodontics:  
+potentially lowers the barrier for clinics 
+with limited CAD expertise

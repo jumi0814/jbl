@@ -1,0 +1,33 @@
+U-Net for semantic image segmentation
+Encoder
+Decoder 
+•
+Pixel-level context information
+•
+Highly detailed segmentation
+•
+Skip connections: alleviate the 
+vanishing gradient problem in deep 
+networks
+U-Net (2015)
+Skip connections
+(Crop and Copy)
+ 
+Dense-Unet (2020)
+•
+Densely Connected Networks
+•
+Channel-wise concatenation
+into tensors
+EfficientNet (2019)
+•
+Automated model scaling and 
+balancing network depth, width, and 
+resolution 
+NAS (Neural Architecture Search)
+32
+다양한 U-Net이 있음
+network의 구조를 결정해주는 EfficientNet이라는 것도 있음
+ - segmentation의 pixel level로 구조물을 결정하는 것
+
+[주석] 다양한 U-Net이 있음network의 구조를 결정해주는 EfficientNet이라는 것도 있음 - segmentation의 pixel level로 구조물을 결정하는 것

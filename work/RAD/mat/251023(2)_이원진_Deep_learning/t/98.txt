@@ -1,0 +1,11 @@
+U-Net for semantic image segmentation
+98
+Contraction Path
+• Feature extraction
+• VGG-based architecture
+• 2 times 3x3 Convolution with 
+ReLU
+• Dimensions (results of 
+convolution without padding)
+• 2x2 Max pooling
+• Number of filters (channels) 

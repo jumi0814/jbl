@@ -1,0 +1,17 @@
+RBM, DBN, AE  
+Boltzmann machine
+Restricted Boltzmann Machine(RBM)
+RBM: learns a reconstructed version of the 
+input data through stochastic processing units 
+Deep Belief Networks(DBN)
+DBN: stacking multiple RBMs and 
+model the joint distribution of observed, 
+to generate new data
+Autoencoders(AE) 
+• Encoding: learns a hidden 
+representation of data via a feature-
+extracting function 
+• Decoding: maps h back into the input 
+space to obtain a reconstruction of 
+data
+185

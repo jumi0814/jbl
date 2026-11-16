@@ -1,0 +1,13 @@
+Accuracy Metrics to Evaluate Semantic Segmentation
+167
+• Pixel Accuracy: the percent of pixels 
+in image classified correctly
+• Class imbalance: when classes are 
+extremely imbalanced, a class or 
+some classes dominate the image
+Segmentation accuracy: 95%, by class imbalance
+95%
+Prediction
+𝑂𝑣𝑒𝑟𝑎𝑙𝑙𝐴𝑐𝑐𝑢𝑟𝑎𝑐𝑦=
+𝑇𝑃+ 𝑇𝑁
+𝑇𝑃+ 𝑇𝑁+ 𝐹𝑃+ 𝐹𝑁

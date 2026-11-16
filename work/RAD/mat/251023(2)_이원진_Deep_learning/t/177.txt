@@ -1,0 +1,17 @@
+The first CNN with Backpropagation by Yann LeCun (1989)
+•
+5 layers of 5*5 convolutions and 2*2 max pooling
+•
+Learning by error back-propagation
+•
+No use of GPU
+•
+99.05 of classification accuracy in the MNIST 
+dataset of handwritten digits 
+LeNet: the first CNN (1989) 
+Gradient Vanishing/Exploding Problem in BP
+• Gradient Vanishing/Exploding: unable to successfully 
+train deeper networks
+• BP based on Gradient Descent algorithms  -> non-
+convex optimization problem
+177

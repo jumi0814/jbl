@@ -1,0 +1,191 @@
+Classification of geometry registration
+• Affine (RST, regular 
+reflection, and shearing): 
+parallel beam, angle-
+preserving, 6 para
+• Projective (perspective), 
+bilinear: infinite source, not 
+parallelism-preserving, 8 
+para
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+2
+1
+6
+5
+4
+3
+
+
+
+
+
+
+y
+x
+y
+x
+(
+)
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+1
+1
+8
+7
+2
+1
+6
+5
+4
+3
+y
+x
+y
+x
+y
+x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+xy
+xy
+y
+x
+y
+x
+8
+7
+2
+1
+6
+5
+4
+3
+
+
+
+
+
+
+
+
+[1. geometry registration: 위치 관계 맞추기]
+ 1) 단순 영상 shift
+     (1 0)
+     (0 1)
+ 2) rotation된 것
+ 3) RST: rotation 된 것
+    (cosɵ sinɵ)
+   (-sinɵ cosɵ)
+ 4) shearing
+ 5) projective 방법 등
+중요한 것은 affine → parameter가 최소 6개 필요 (a1 - a6)
+projective는 8개 인자 결정해야함
+
+[주석] [1. geometry registration: 위치 관계 맞추기] 1) 단순 영상 shift     (1 0)     (0 1) 2) rotation된 것 3) RST: rotation 된 것    (cosɵ sinɵ)   (-sinɵ cosɵ) 4) shearing 5) projective 방법 등중요한 것은 affine → parameter가 최소 6개 필요 (a1 - a6)projective는 8개 인자 결정해야함

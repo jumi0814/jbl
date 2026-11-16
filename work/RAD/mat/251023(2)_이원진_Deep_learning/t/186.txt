@@ -1,0 +1,26 @@
+RNN, LSTM, CapsNet
+•
+Feedback loops to remember the 
+previous information
+•
+Natural language and time-series 
+data
+•
+Suffer vanishing/exploding 
+gradient
+• “Keeping in mind” happened many 
+frames ago
+• To alleviate the vanishing/exploding 
+gradient by an explicitly defined 
+memory cell
+Recurrent Neural Networks (RNN)
+Long short-term memory (LSTM)
+• Biology inspired alternatives to pooling
+• Neurons are connected with multiple 
+weights (a vector) instead of one 
+weight (a scalar)
+• Allow to transfer more information 
+than simply which feature was 
+detected
+Capsule Networks by Hinton (2017) 
+186

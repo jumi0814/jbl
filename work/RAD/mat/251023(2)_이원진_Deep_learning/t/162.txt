@@ -1,0 +1,8 @@
+Attention U-Net, 2018
+162
+• Focus on specific objects of importance
+• Provide localized classification information as opposed to global classification in 
+encoder-decoder models
+Additive attention gate schematic
+xl: features from the contracting path, g: gating signal
+(a), (b) ground-truth, (c) U-Net and (d) Attention U-Net

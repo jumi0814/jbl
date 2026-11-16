@@ -1,0 +1,18 @@
+44
+Ray casting
+◼Along the ray, visibility of 
+surfaces and objects is 
+easily determined 
+◼The ray can stop when it 
+meets an opaque surface
+volume에 ray를 쏴서 volume을 지나가는 과정을 보면
+ray가 들어간 방향에서 어떤 데이터를 볼 지 정할 수 있음
+→ intersection을 보려고 하면 맨 처음 만난 것 = first intersection
+→ 평균에 속하는 부분 = mean intensity
+→ maximum intensity = ray가 지나갈 때 가장 높은 값을 갖는 voxel 부위
+* 단점 *
+ 
+1. 실제 3차원 영상과 같지 않음
+2. 계속 연산을 해줘야함
+
+[주석] volume에 ray를 쏴서 volume을 지나가는 과정을 보면ray가 들어간 방향에서 어떤 데이터를 볼 지 정할 수 있음→ intersection을 보려고 하면 맨 처음 만난 것 = first intersection→ 평균에 속하는 부분 = mean intensity→ maximum intensity = ray가 지나갈 때 가장 높은 값을 갖는 voxel 부위* 단점 *1. 실제 3차원 영상과 같지 않음2. 계속 연산을 해줘야함

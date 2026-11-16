@@ -1,0 +1,42 @@
+Canal-Net: Continuity-Aware Contextual Network for Robust 3D 
+Segmentation of the Mandibular Canal in CBCT, 2022
+Canal-Net
+Canal-Net
+• Continuity-aware contextual 
+network: Automated, accurate, and 
+robust 3D segmentation of the MC in 
+CBCT image by incorporating spatio-
+temporal features and structural 
+continuity learning
+• Convolutional LSTM (convLSTM): to 
+learn 3D local anatomical contextual 
+information
+• Multi-task learning with Multi-planar 
+projection losses (MPL): to learn the 
+global canal continuity
+Projection maps
+Mandibular Canal in CBCT
+Canal-Net: Automatic and Robust 3D Segmentation of Mandibular Canals in CBCT Images Using a Continuity-Aware 
+Contextual Network, Sci Rep. 2022 Aug 5;12(1):13460
+41
+Mandibular Canal in CBCT
+•Exact localization of the MC in 
+implant placement and third molar 
+extraction
+•Accurate Identification of the MC 
+for Surgical Safety: preoperative 
+planning for implant placement 
+and third molar extraction
+•Overcoming the Limitations of 
+CBCT Imaging: inherent low 
+contrast and unclear cortical 
+boundaries in CBCT
+•High Clinical reliability: robust and 
+consistent performance across the 
+entire canal length overcoming ML
+[Canal-Net]
+ - canal의 위치를 정확히 알아서 임플란트 식립 어떻게 할 수 있는지 평가
+ - CBCT 자체가 CT보다 contrast가 떨어짐 → 눈으로 봐도 구분 잘 안됨
+   → 딥러닝 CNN을 활용하여 찾
+
+[주석] [Canal-Net] - canal의 위치를 정확히 알아서 임플란트 식립 어떻게 할 수 있는지 평가 - CBCT 자체가 CT보다 contrast가 떨어짐 → 눈으로 봐도 구분 잘 안됨   → 딥러닝 CNN을 활용하여 찾

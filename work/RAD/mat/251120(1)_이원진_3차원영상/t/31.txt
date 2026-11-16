@@ -1,0 +1,14 @@
+31
+Marching-cubes algorithm
+◼Surface extraction method for cubes (voxels)
+◼Cube vertices are assigned with binary values
+◼One for inside (or on) the surface
+◼Zero for outside the surface
+◼Creates an iso-surface, approximating the 
+location of a certain intensity value in the 
+data volume
+marching cube: voxel 하나에 대해서 surface가 어떻게
+될지를 결정하는 것
+ → voxel을 이루는 8개의 점에 대해서 어떤 면을 가질지 결정
+
+[주석] marching cube: voxel 하나에 대해서 surface가 어떻게될지를 결정하는 것 → voxel을 이루는 8개의 점에 대해서 어떤 면을 가질지 결정

@@ -1,0 +1,30 @@
+R-CNN (Region-CNN) for Object Detection, Instance 
+Segmentation
+• Detection: bounding box and 
+classification
+• CNN for feature extraction 
+• Support Vector Machine 
+(SVM) 
+• End-to-end learning (except 
+the region proposal) 
+• CNN for feature extraction, 
+and generating the feature 
+maps for RoI pooling 
+• End-to-end deep learning
+• CNN for feature maps of 
+region proposal network 
+(RPN) to generate region 
+proposals, and for RoI 
+pooling 
+• Instance Segmentation = Object 
+Detection + Semantic 
+Segmentation
+• Mask branch to generate the 
+Mask for Instance Segmentation
+• With the existing branch for 
+classification and bounding box
+R-CNN (2014) 
+Fast R-CNN (2015) 
+Faster R-CNN (2016) 
+Mask R-CNN (2017) 
+110

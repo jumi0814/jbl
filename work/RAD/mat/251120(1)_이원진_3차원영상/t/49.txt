@@ -1,0 +1,13 @@
+49
+Direct Volume Rendering Using 
+Transfer Functions
+◼Every sample value to be mapped to a color and 
+opacity
+◼Transfer function (Table): assigns CT number to 
+gray, red, green, and blue values, and opacity
+Volume에 특정한 color를 입혀서 투명도를 같이 줌
+1. soft tissue 255에 대해서 파란색을 mapping함
+2. bone에는 노란색으로 mapping
+4. 투명도를 주면 bone과 soft tissue가 겹쳐서 보임
+
+[주석] Volume에 특정한 color를 입혀서 투명도를 같이 줌1. soft tissue 255에 대해서 파란색을 mapping함2. bone에는 노란색으로 mapping4. 투명도를 주면 bone과 soft tissue가 겹쳐서 보임

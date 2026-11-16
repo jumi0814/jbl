@@ -1,0 +1,31 @@
+_Detection and classification of nasopalatine duct cyst and 
+periapical cyst on panoramic radiographs, 2023 
+Nasopalatine duct cyst and 
+Periapical cyst
+•Early and Accurate Differential 
+Diagnosis in the Anterior 
+Maxilla: frequently missed or 
+misdiagnosed due to complex 
+overlapping anatomy
+•Automatic detection and 
+classification of nasopalatine 
+duct cysts (NPDC) and periapical 
+cysts (PAC) 
+Cascaded network of segmentation 
+and classification
+Cascaded Network 
+• Accurate differentiation is critical:   
+PACs can often be treated non-
+surgically, whereas NPDCs require 
+surgical enucleation
+• Two-stage detector: Faster R-CNN 
+for the region proposals to the 
+classifier for the classification and 
+bounding box regression
+• EfficientDet-D3, YOLO v5, 
+RetinaNet, and SSD to predict 
+both the bounding box  and class 
+probabilities
+Automatic detection and classification of nasopalatine duct cyst and periapical cyst on panoramic radiographs using deep 
+convolutional neural networks, Oral Surg Oral Med Oral Pathol Oral Radiol. 2023 Oct 16:S2212-4403(23)
+47

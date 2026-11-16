@@ -1,0 +1,34 @@
+Computer-based registration
+• A posteriori image registration
+– T : f (x,y) -> f ' (x ',y ' ) 
+• Geometric registration
+– address discrete image
+– interpolation techniques
+• Contrast registration
+– maps gray levels onto new 
+contrast-registered values
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+y
+x
+T
+y
+x
+2개 영상 빼려면 1) 해부학적 구조 맞추고 2) 대조도 맞춰야함
+1) 위치관계 맞추는 식 필요 = geometric registration
+2) 대조도 맞추는 식 = contrast registration
+
+[주석] 2개 영상 빼려면 1) 해부학적 구조 맞추고 2) 대조도 맞춰야함1) 위치관계 맞추는 식 필요 = geometric registration2) 대조도 맞추는 식 = contrast registration

@@ -1,0 +1,30 @@
+Diffusion Models
+•
+Fixed forward diffusion process and  
+learnable reverse diffusion process
+•
+Forward diffusion: gradually adds Gaussian 
+noise until white noise 
+•
+Reverse diffusion: multi-step process taking 
+the white noise back to an image 
+•
+Use many steps to generate the final image
+•
+Training by maximizing log of likelihood 
+becomes L2 loss 
+Diffusion process: particles spread 
+out due to concentration gradient 
+Forward Diffusion: Gradual addition of noise in the images to 
+a pure white noisy image (normal distribution) 
+Backward Diffusion: Gradual denoising of image to the original 
+image
+91
+[diffusion model]
+ - 백색잡음을 섞어서(=forward  diffusion)
+거꾸로 내가 원하는 이미지를 복원시키는 것(backward diffusion)
+* 백색 잡음 (모든 frequency가 다 섞인 noise)
+image generation, segmentation 등 다양하게 활용 가능
+
+[주석] [diffusion model] - 백색잡음을 섞어서(=forward  diffusion)거꾸로 내가 원하는 이미지를 복원시키는 것(backward diffusion)* 백색 잡음 (모든 frequency가 다 섞인 noise)
+[주석] image generation, segmentation 등 다양하게 활용 가능

@@ -1,0 +1,31 @@
+Why Deep Learning Works
+•
+Represent exponential number of 
+regions with a linear number of 
+parameters 
+•
+Neural networks: Generalization 
+power from the distributed 
+representations
+Bypassing the curse of 
+dimensionality
+• NN: learning multiple levels of 
+representation 
+• Successive model layers learn deeper 
+intermediate representations
+• Optimization: saddle points, unlike 
+local minima, easily escapable
+• In low dimensions, local minima 
+dominate
+Saddle Points
+Distributed representation 
+103
+{tensorflow, deeplearn, monitor, keyboard}
+➢
+Local representation: Tensorflow: {1, 0, 
+0, 0}, keyboard: {0, 0, 0, 1}
+➢
+Distributed representation: 
+Tensorflow : {0.7, 0.2}, deeplearn: {0.9, 
+0.3}, monitor: {0.2, 0.8}, keyboard: {0.3, 
+0.9}

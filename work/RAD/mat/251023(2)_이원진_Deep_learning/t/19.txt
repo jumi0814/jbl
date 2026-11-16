@@ -1,0 +1,19 @@
+ReLU: Rectified linear unit
+y = max(x,0)
+Convolutional Neural Network 
+Convolution (Filtering)
+Pooling: Reduces the 
+resolution of the features
+19
+Dropout neurons: 
+Better regularization
+Neurons sparse connections; features robust against noise and distortion
+[CNN]
+1. convolution (filtering)
+2. pooling (subsampling): 잘하는 결과만 뽑는 것 (average pooling, max pooling 등이 있음)
+  - noise 등으로 인해 생기는 문제에 대한 저항력이 커짐
+3. ReLU (activation funciton): sigmoid, tanh 등은 장점도 있지만 단점 많음. 그래서 채택된 것이 ReLU
+  - 0보다 작은 값은 출력 X. 0보다 큰 값만 출력 O
+4. dropout neurons: neuron들이 서로 연결되어 있는데 학습시키면서 랜덤하게 끊어버림 (학습 안됨)
+
+[주석] [CNN]1. convolution (filtering)2. pooling (subsampling): 잘하는 결과만 뽑는 것 (average pooling, max pooling 등이 있음)  - noise 등으로 인해 생기는 문제에 대한 저항력이 커짐3. ReLU (activation funciton): sigmoid, tanh 등은 장점도 있지만 단점 많음. 그래서 채택된 것이 ReLU  - 0보다 작은 값은 출력 X. 0보다 큰 값만 출력 O4. dropout neurons: neuron들이 서로 연결되어 있는데 학습시키면서 랜덤하게 끊어버림 (학습 안됨)

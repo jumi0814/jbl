@@ -1,0 +1,95 @@
+YOLOv3: Automatic diagnosis for cysts and tumors of both 
+jaws on panoramic radiographs
+Without augmentation
+With augmentation
+Precision-Recall curve
+ROC 
+AP
+Mean 
+AP
+Prec
+Reca
+F1
+-scr
+DC
+PC
+OKC
+AB
+Without
+0.91
+0.79
+0.67
+0.78
+0.79
+0.78
+0.74
+0.76
+With
+0.84
+0.89
+0.91
+0.88
+0.88
+0.87
+0.83
+0.85
+Detection performance 
+With augmentation
+Sensitivity
+(%)
+Specificity
+(%)
+Accuracy
+(%)
+AUC
+DC
+91.4
+99.2
+97.8
+0.96
+PC
+82.8
+99.2
+96.2
+0.92
+OKC
+98.4
+92.3
+94.0
+0.97
+AB
+71.7
+100.0
+94.3
+0.86
+Normal
+100.0
+95.1
+96.0
+0.97
+Mean
+88.9±11.8
+97.2±3.3
+95.6±1.5
+0.94±0.05
+Classification performance 
+40
+Clinical Applications and Significance
+• Enhanced Diagnostic Accuracy and 
+Consistency: more consistent and 
+objective diagnoses, reducing inter-
+observer variability
+• Reduced Diagnostic Burden in Complex 
+Cases: differentiating between lesions 
+such as OKCs and ameloblastomas, 
+offering valuable second-opinion 
+support
+• Support for General Dental 
+Practitioners: computer-aided 
+diagnostic (CAD) tool supporting less-
+experienced clinicians in identifying 
+lesions   
+• Efficient Screening in Large-Scale 
+Dental Exams: quickly flag potential 
+pathologies for follow-up, increasing 
+efficiency

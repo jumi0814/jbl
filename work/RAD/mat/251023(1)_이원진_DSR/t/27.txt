@@ -1,0 +1,85 @@
+Observer-independent registration of 
+perspective projection, 1998
+• Corresponding points: template 
+matching using local correlation
+(M=N=25)
+• Sub-pixel resolution: integer-> 
+real (magnification)
+• Leaving one out, least squares 
+method
+• Independent of landmarks: 6 
+pairs or more
+(
+)
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+1
+1
+8
+7
+2
+1
+6
+5
+4
+3
+y
+x
+y
+x
+y
+x
+
+
+
+
+
+
+
+
+2. 또다른 방법 = correlation
+뺀 값이 0에 가까워짐
+ - 값을 곱해서 같은 영상이면 correlation = 1
+ → 비슷한 영역일수록 1에 가까운 계산값이 나올 것!
+ → 가장 1에 가까워지는 영역으로 결정하여 대응점 찾기
+
+[주석] 2. 또다른 방법 = correlation뺀 값이 0에 가까워짐 - 값을 곱해서 같은 영상이면 correlation = 1 → 비슷한 영역일수록 1에 가까운 계산값이 나올 것! → 가장 1에 가까워지는 영역으로 결정하여 대응점 찾기

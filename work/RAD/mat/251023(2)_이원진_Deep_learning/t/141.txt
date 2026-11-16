@@ -1,0 +1,35 @@
+Prosth-Net: Automatic Generation of 3D Dental Prosthesis
+Dental Prosthesis  Design
+•Labor-intensive process
+•Communication problems 
+between dentists and dental 
+technicians (need reworking) 
+Prosth-Net
+• Prosth-Net: PointNet encoder + 
+TreeGCN decoder
+• Loss function: Chamfer distance
+• Base Network learn the standard 
+prothesis model from bigdata
+• Style Transfer Network learn the 
+dentist’s prothesis preference
+Planning
+Evaluation
+Diagnosis
+Simulation
+Image Quality 
+[Prosthesis Design Based on Standard 
+Tooth  Library]
+[Automatic Prothesis Generation]
+Preparation(2048, 3)
+Normalization
+Augmentation x 30
+PointNet
+++
+Encoder
+TreeGAN
+Decoder
+Crown, (16384, 3)
+Tree-GAN: 3D Point Cloud Generative Adversarial 
+Network Based on Tree Structured Graph 
+Convolution
+141

@@ -1,0 +1,49 @@
+MAFNet: A Deep Multi-scale Attention Network for Virtual 
+Osteotomy of Maxillofacial Bones in CT Images Containing Metal 
+Artifacts, 2024
+Virtual osteotomy in orthognathic 
+surgery 
+•Osteotomies for virtual surgical 
+planning in orthognathic surgery
+•Advanced Virtual Surgical 
+Planning for Orthognathic Surgery 
+•To automatically segment the 
+mandible, maxilla, skull, and 
+osteotomy line in CT images, 
+enabling accurate and efficient 
+virtual Le Fort I osteotomy
+▪Multi-scale encoders and skip-connection 
+– To mitigate spatial information loss by 
+pooling layers
+▪Atrous pyramid pooling module (ASPP)
+– To effectively enlarge the receptive field 
+of convolution filters
+▪Multi-layer deep supervision
+– To improve training stability 
+and bone segmentation 
+performance 
+▪2D Attention module
+– To train to focus on target 
+structures from morphological 
+variation and shape sizes 
+MAFNet
+43
+MAFNet: A Deep Multi-scale Attentive Fusion Network for Virtual Osteotomy of Maxillofacial Bones in CT Images 
+Containing Metal Artifacts, Biomedical Signal Processing and Control, 2024 
+MAFNet
+• Multi-scale encoder and 
+ASPP 
+• Multi-scale attention: 
+distinguishes the spatial 
+relationship between 
+maxillofacial bone and 
+background (e.g. metal 
+artifacts and soft tissue)
+• Deep supervision: 
+improves segmentation 
+performance
+• Overcoming Metal 
+Artifacts in CT Imaging: 
+from orthodontic 
+appliances and 
+restorations

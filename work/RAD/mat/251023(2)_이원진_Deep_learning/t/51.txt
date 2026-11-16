@@ -1,0 +1,36 @@
+Classification of surgical plans for maxillary sinus augmentation 
+using a 3D distance-guided network, 2023
+SinusC-Net for automatic classification of surgical plans for maxillary sinus augmentation using a 3D distance-guided 
+network, Sci Rep. 2023 Jul 19;13(1):11653
+Maxillary sinus floor augmentation 
+•Automatically classify surgical plans 
+for maxillary sinus floor 
+augmentation in implant surgery on 
+CBCT images
+•Based on a modified ABC 
+classification method consisting of 
+five surgical approaches 
+•Choose between surgical techniques 
+(e.g., crestal vs. lateral sinus 
+elevation) based on anatomical 
+factors especially residual bone 
+height (RBH)
+SinusC-Net
+3D distance-guided network 
+• SinusC-Net, two stages of detection 
+and classification: D-Net; stage of 
+anatomical landmark detection 
+using 3D heatmap approach, C-Net; 
+stage of classification, a 3D distance-
+guided network
+• Cascaded volumetric regression 
+network to detect five key 
+anatomical landmarks (e.g., sinus 
+floor, alveolar crest, CEJ)
+• Accurate Detection of Anatomical 
+Landmarks in 3D CBCT Images:  by 
+learning both anatomical structure 
+and spatial relationships between 
+landmarks 
+Five landmark locations and heatmaps
+51

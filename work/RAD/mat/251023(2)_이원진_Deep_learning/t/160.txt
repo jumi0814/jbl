@@ -1,0 +1,9 @@
+Residual U-Net (ResNet), 2016
+160
+• Short skip connections (within the block)
+• Vanishing gradients: loss of feature identities 
+• Faster convergence and deeper models to be trained
+ResNet blocks with skip connections
+Input to the first layer is 
+added to the output of the 
+second layer

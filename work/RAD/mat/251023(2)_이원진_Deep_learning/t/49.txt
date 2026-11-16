@@ -1,0 +1,41 @@
+Classification of 3D positional relationship between 
+mandibular third molar and inferior alveolar canal, 2023
+Automatic classification of 3D positional relationship between mandibular third molar and inferior alveolar canal using a 
+distance-aware network, BMC Oral Health, 2023 Oct 25;23(1):794
+3D positional relationship of third 
+molar and  inferior alveolar canal
+•Automatically classifying the buccal-
+lingual relationship of mandibular 
+third molar (M3) to inferior alveolar 
+canal (MC) in CBCT images
+•Prevention of Inferior Alveolar Nerve 
+(IAN) Injury in M3 Extraction:  
+relative position of M3 to MC, a key 
+factor in assessing the risk of nerve 
+damage
+•Manual identification and 
+classification of the M3–MC 
+relationship: labor-intensive, time-
+consuming, and prone to variability
+•Inferior alveolar nerve injury, occurs 
+in about 0.35–8.4% of impacted M3 
+extractions
+Distance-aware deep learning network
+Cascaded Network with Distance-aware   
+• Cascaded stages of segmentation 
+and classification with Distance-
+aware 
+• By a signed distance map (SDM) into 
+a multi-channel 3D classification: 
+both anatomical information and 
+spatial-geometrical relationships 
+between M3 and MC
+• Automated method to classify the 
+buccal-lingual relationship: evaluate 
+risk more accurately and objectively 
+before treatment
+MC and M3 in CBCT
+49
+사랑니 발치 전 하악관 위치 정확히 segmentation (매복치의 경우, 위치관계도 파악 가능)
+
+[주석] 사랑니 발치 전 하악관 위치 정확히 segmentation (매복치의 경우, 위치관계도 파악 가능)

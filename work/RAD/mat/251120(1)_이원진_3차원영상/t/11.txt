@@ -1,0 +1,25 @@
+11
+Windowing
+(VOI)
+◼Spatial sequence of 2D 
+cross-sectional images
+◼Range of CT numbers 
+which are displayed
+◼[Gvmax, Gvmin], gray-level 
+range, [Ws, We] window 
+width, Wl window center
+◼Thresholding: binary image
+Ws
+We
+Wl
+Gvmax
+Gvmin
+Gv
+- VOI: CT에서 값이 12bit으로 표현되면 0~255까지 8bit로 표현해야함
+→ 보고자 하는 부분을 강조해서 중심을 쭉 올려서 보면 soft tissue까지 다 나올 것
+- 가운데 그림처럼 나오게 하려면 중심을 내리면 됨
+ 
+중심값 W를 조절할 수 있음
+
+[주석] - VOI: CT에서 값이 12bit으로 표현되면 0~255까지 8bit로 표현해야함 → 보고자 하는 부분을 강조해서 중심을 쭉 올려서 보면 soft tissue까지 다 나올 것- 가운데 그림처럼 나오게 하려면 중심을 내리면 됨
+[주석] 중심값 W를 조절할 수 있음

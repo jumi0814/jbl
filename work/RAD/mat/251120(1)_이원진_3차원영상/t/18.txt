@@ -1,0 +1,19 @@
+18
+Active Contour (Snakes)
+◼2D image curves that are 
+adjusted from an initial 
+approximation to image 
+features by simulated forces
+◼Energy minimizing, 
+deformable spline influenced 
+by constraint and image 
+forces that pull it towards 
+object contours 
+◼slice-by-slice, the resulting 
+curves for a slice are copied 
+into the neighboring slice
+E(c)=Einternal(c)+Eexternal(c)
+영역을 대충 그려주면 에너지를 구해서 뱀이
+똬리를 틀 듯이 경계를 조금씩 줄여가는 방식
+
+[주석] 영역을 대충 그려주면 에너지를 구해서 뱀이똬리를 틀 듯이 경계를 조금씩 줄여가는 방식

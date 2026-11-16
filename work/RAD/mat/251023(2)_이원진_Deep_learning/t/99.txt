@@ -1,0 +1,12 @@
+U-Net for semantic image segmentation
+99
+Expansion Path
+• Restoring resolution by upsampling
+• Mitigating detail by crop and copy
+• Precise segmentation
+• 2 times 3x3 Convolution with 
+ReLU
+• 2x2 Up-convolution
+• Dimensions (results of convolution 
+without padding)
+• Number of filters (channels)

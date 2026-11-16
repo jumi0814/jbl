@@ -1,0 +1,19 @@
+15
+Segmentation
+◼To extract object information from given 
+scenes and to output this as a structure
+system
+◼Partition the image volume into different 
+regions, which are homogeneous with 
+respect to some formal criteria
+◼Binary(hard) segmentation: voxel belongs to a 
+certain region is yes or no
+◼fuzzy segmentation: a set of probabilities is 
+assigned to every voxel
+Segmentation: 영역 분할
+- 치아를 찾는다든가, 상악동 segmentation 등이 가능함
+deep learning이 가장 많이 응용되는 분야임
+- 원하는 structure를 추출하는 방법
+- 
+
+[주석] Segmentation: 영역 분할- 치아를 찾는다든가, 상악동 segmentation 등이 가능함- deep learning이 가장 많이 응용되는 분야임- 원하는 structure를 추출하는 방법

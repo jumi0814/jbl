@@ -1,0 +1,40 @@
+13
+Filtering
+◼Sharpening: decrease the image 
+blurring and enhance image 
+edges
+◼Convolution process and masks in 
+the spatial domain: high-emphasis 
+masks, unsharp masking
+◼High-pass filters in the frequency 
+domain 
+◼Smoothing: reduce noise and 
+high frequency
+◼Low-pass filters: averaging, median, 
+Gaussian filters
+◼Reduction of useful information, 
+mainly detail features
+◼Averaging and Gaussian filtering: 
+reduce the sharpness of edges, 
+whereas median filters preserve 
+edge sharpness
+After median filter
+[대표적인 filtering 방법 2가지]
+1. sharpening: 영상을 sharp하게, edge가 선명하게 보이도록 만드는 것
+ - edge enhance → high frequency filter
+ - 천천히 변하는 곳은 low frequency로 나타남
+ - 앞뒤 차이를 뺀 것을 더하면 됨 
+ high frequency만 남겨서 더해주기
+  
+경계가 잘 보이지만 noise도 향상돼서 보임
+2. smoothing: 반대로 경계가 부드러워지는 것
+ - 값을 평균화하면 됨
+ - median: 중간값을 선택하는 것 (평균과 비슷하지만 좀 다름)
+ - Gaussian filters도 있음
+ 
+ 경계가 둔화되지만 noise 사라짐
+→
+→ 
+→
+
+[주석] [대표적인 filtering 방법 2가지]1. sharpening: 영상을 sharp하게, edge가 선명하게 보이도록 만드는 것 - edge enhance → high frequency filter - 천천히 변하는 곳은 low frequency로 나타남 - 앞뒤 차이를 뺀 것을 더하면 됨 → high frequency만 남겨서 더해주기  → 경계가 잘 보이지만 noise도 향상돼서 보임2. smoothing: 반대로 경계가 부드러워지는 것 - 값을 평균화하면 됨 - median: 중간값을 선택하는 것 (평균과 비슷하지만 좀 다름) - Gaussian filters도 있음 → 경계가 둔화되지만 noise 사라짐

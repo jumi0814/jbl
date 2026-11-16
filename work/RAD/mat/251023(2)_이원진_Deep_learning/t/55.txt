@@ -1,0 +1,38 @@
+Comparison of 2D, 2.5D, and 3D segmentation networks for 
+maxillary sinuses and lesions in CBCT image, 2023
+Comparison of 2D, 2.5D, and 3D segmentation networks for maxillary sinuses and lesions in CBCT images. BMC 
+Oral Health. 2023 Nov 15;23(1):866
+Maxillary Sinus Lesions for Implant 
+Planning
+•Lesions such as mucosal thickening, 
+cysts, or other sinus pathologies:  
+negatively impact maxillary sinus 
+augmentation and implant 
+placement
+•Automatically detect and delineate 
+both the maxillary sinus (MS) and 
+lesions (MSL) in CBCT images
+•Supports risk assessment and safe 
+treatment planning in posterior 
+maxilla cases
+•Help avoid sinus perforation and 
+implant failure
+2D, 2.5D, and 3D segmentation networks
+• Comprehensive and quantitative 
+comparison of 2D, 2.5D, and 3D 
+networks for the segmentation of the 
+MS and MSL in CBCT images 
+• Under the same constraint of memory 
+capacity for deep learning
+• MSL by subtracting predictions of the 
+maxillary sinus air region (MSA) from 
+MS to effectively segment MSLs with 
+large variations in sizes, shapes, and 
+locations
+• 2.5D networks using ensemble learning
+across orthogonal planes (axial, 
+sagittal, coronal) 
+Maxillary sinus, air region, and 
+lesion in CBCT image
+2D, 2.5D, and 3D segmentation networks 
+55

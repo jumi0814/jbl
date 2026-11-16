@@ -1,0 +1,23 @@
+5
+General organization of 
+processing, segmentation 
+and visualization
+Series of tomographic images
+-interpolation
+-fusion
+- 3차원 영상을 한꺼번에 얻는 것이 아니라 단면으로 얻음
+→ 단면을 쭉 쌓아서 volume을 얻음
+interpolation: 해상도 높임
+filtering, scaling 등의 기본적인 처리를
+통해서 좀 더 유익한 영상으로 만듦
+segmentation: 보고자 하는 부분만을 추출
+rendering: 시각적으로 보이게 만드는 것
+→ surface rendering = 표면만 보이게 만듦
+volume rendering = 내부까지 다 정보를 가
+지고 있어서 visualization 가능한 것
+
+[주석] - 3차원 영상을 한꺼번에 얻는 것이 아니라 단면으로 얻음→ 단면을 쭉 쌓아서 volume을 얻음
+[주석] interpolation: 해상도 높임filtering, scaling 등의 기본적인 처리를통해서 좀 더 유익한 영상으로 만듦
+[주석] segmentation: 보고자 하는 부분만을 추출
+[주석] rendering: 시각적으로 보이게 만드는 것→ surface rendering = 표면만 보이게 만듦
+[주석] volume rendering = 내부까지 다 정보를 가지고 있어서 visualization 가능한 것
