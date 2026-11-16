@@ -132,9 +132,9 @@ with sync_playwright() as p:
                 if lk_: leaks.append(f'{d}: {lk_[0]}')
         ok(True, f'{s}: 문서 {len(docs)}개 · 탭 {nt}개 열어봄')
         ok(not leaks, f'{s}: 렌더된 글자에 원고 표기(** {{r: {{jb: ==) 0건 {leaks[:3]}'); leaks.clear()
-        # ux2 E03 정리표 세부 칸에 뜻 없는 '행 머리 — ○/×/—'(작은 표를 펼칠 때 열 이름 빠짐) 0 · E10 한눈표 답 핵심이 '해설 참조'뿐인 행 0
+        # (11-16 정리본 작성 중 강의의 기출은 한눈표 답 핵심 = annot K가 아직 없어 건너뜀 — JB 먼저 배포) ux2 E03 정리표 세부 칸에 뜻 없는 '행 머리 — ○/×/—'(작은 표를 펼칠 때 열 이름 빠짐) 0 · E10 한눈표 답 핵심이 '해설 참조'뿐인 행 0
         e3 = pg.evaluate("""(s=>{const P=__h.PACKS[s],o=[],e=[];P.lect.forEach(L=>{const d=document.createElement('div');d.innerHTML=L.sum;d.querySelectorAll('.msum .mfull .ci').forEach(c=>{const x=c.cloneNode(true);x.querySelectorAll('.csx').forEach(z=>z.remove());const t=x.textContent,i=t.indexOf(' — ');if(i>0&&/^(—|○|×)\\s*(\\/|$)/.test(t.slice(i+3)))o.push(L.k+': '+t.slice(0,50));});});
-          const d=document.createElement('div');d.innerHTML=P.sumall;d.querySelectorAll('table.sum tbody tr').forEach(r=>{const L=r.querySelector('.lines');if(!L)return;const c=L.cloneNode(true);c.querySelectorAll('.alab').forEach(z=>z.remove());const t=c.textContent.replace(/\\s+/g,' ').trim();if(/^\\(?\\s*(해설|해답|아래|위)?\\s*(참조|참고)\\s*\\)?\\s*\\.?$/.test(t))e.push(r.dataset.id);});return [o,e];})""", s)
+          const W=new Set(P.lect.filter(L=>L.wip).flatMap(L=>L.jb||[]));const d=document.createElement('div');d.innerHTML=P.sumall;d.querySelectorAll('table.sum tbody tr').forEach(r=>{const L=r.querySelector('.lines');if(!L||W.has(r.dataset.id))return;const c=L.cloneNode(true);c.querySelectorAll('.alab').forEach(z=>z.remove());const t=c.textContent.replace(/\\s+/g,' ').trim();if(/^\\(?\\s*(해설|해답|아래|위)?\\s*(참조|참고)\\s*\\)?\\s*\\.?$/.test(t))e.push(r.dataset.id);});return [o,e];})""", s)
         ok(not e3[0], f'{s}: 정리표 세부 칸 빈 기호 줄(행 머리 — ○) 0 {e3[0][:2]}')
         ok(not e3[1], f'{s}: 한눈표 답 핵심이 참조뿐인 행 0 {e3[1][:3]}')
         # 강의 정리본 본문 그림(강의 이미지 청크에서 로딩)
@@ -166,8 +166,13 @@ with sync_playwright() as p:
         real = [e for e in errs if 'Failed to load resource' not in e]
         ok(not real, f'콘솔 오류 0 {real[:5]}')
         b.close(); print('RESULT', 'PASS' if not fail else f'FAIL {len(fail)}'); sys.exit(1 if fail else 0)
-    s = real_s[0]; pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
-    d = pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))')[0]; pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(300)
+    WIPL = {}   # 11-16 정리본 작성 중 자리 표시 강의(팩 lect.wip — JB 먼저 배포) — 도구 시험은 정리본이 있는 강의에서(자동 빈칸은 빨간 핵심어가 있어야 함)
+    for x in real_s:
+        try: WIPL[x] = [L_['k'] for L_ in J._load_js(J.pack_path(x)).get('lect', []) if not L_.get('wip')]
+        except Exception: WIPL[x] = []
+    real_s = [x for x in real_s if WIPL.get(x)] + [x for x in real_s if not WIPL.get(x)]
+    s = real_s[0]; ALLWIP = not WIPL.get(s); pg.goto(URL); pg.evaluate('localStorage.clear()'); pg.goto(URL); pg.wait_for_function("window.__h&&__h.plStat&&__h.plStat().pend===0&&document.querySelector('#home .hsj[data-s]')"); pg.click(f'#home .hsj[data-s="{s}"] .hsjn'); pg.wait_for_selector('#side .dbtn')
+    d = ([x for x in pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))') if x in WIPL.get(s, [])] or pg.eval_on_selector_all('#side .dbtn', 'es=>es.map(e=>e.dataset.d).filter(x=>!x.startsWith("_"))'))[0]; pg.evaluate("d=>document.querySelector('#side .dbtn[data-d=\"'+d+'\"]').click()", d); pg.wait_for_timeout(300)
     PICK = '''(n=>{const lis=[...document.querySelectorAll('#stage [data-aid] li')].filter(l=>l.offsetParent&&!l.closest('details:not([open])')&&!l.querySelector('[data-rk]')&&/[A-Za-z가-힣]{3}/.test(l.textContent));const li=lis[n];li.scrollIntoView({block:'center'});const w=document.createTreeWalker(li,NodeFilter.SHOW_TEXT);let x;while(x=w.nextNode()){const m=/[A-Za-z가-힣]{3,}/.exec(x.nodeValue);if(m&&!x.parentElement.closest('button,.chip,.noann,[data-rk]')){const r=document.createRange();r.setStart(x,m.index+1);r.setEnd(x,m.index+2);const b=r.getBoundingClientRect();return [b.x+b.width/2,b.y+b.height/2,m[0]];}}})'''
     cnt = lambda t: pg.eval_on_selector_all(f'#stage [data-rk={t}]', 'es=>es.length')
     pg.click('#k-h'); a = pg.evaluate(PICK + '(0)'); pg.mouse.click(a[0], a[1]); pg.wait_for_timeout(100); ok(cnt('h') == 1, f'형광펜 ("{a[2]}")')
@@ -176,8 +181,10 @@ with sync_playwright() as p:
     pg.reload(); pg.wait_for_selector('#stage [data-aid]'); pg.wait_for_timeout(500)
     ok(cnt('h') == 1 and cnt('b') == 1, '새로고침 후 형광펜·빈칸 복원')
     pg.evaluate('document.querySelector("#stage [data-rk=b]").click()'); ok(pg.evaluate('document.querySelector("#stage [data-rk=b]").classList.contains("show")'), '빈칸 누르면 열림')
-    pg.click('#k-auto'); pg.check('input[value="red"]'); pg.click('#ago'); pg.wait_for_timeout(200); n = pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length'); ok(n > 1, f'자동 빈칸 {n}개')
-    pg.click('#k-undo'); ok(pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length') == 1, '자동 빈칸 실행 취소')
+    if ALLWIP: print('       자동 빈칸 시험 건너뜀 — 모든 강의가 정리본 작성 중(자리 표시 · 빨간 핵심어 없음 — JB 먼저 배포)')
+    else:
+        pg.click('#k-auto'); pg.check('input[value="red"]'); pg.click('#ago'); pg.wait_for_timeout(200); n = pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length'); ok(n > 1, f'자동 빈칸 {n}개')
+        pg.click('#k-undo'); ok(pg.eval_on_selector_all('#stage .rk-b', 'es=>es.length') == 1, '자동 빈칸 실행 취소')
     exp404 = {f'{x}.js' for x in J.sids() if x not in built}
     ok(set(r404) <= exp404, f'404는 아직 없는 과목 팩뿐 {sorted(set(r404) - exp404)}')
     real = [e for e in errs if 'Failed to load resource' not in e]

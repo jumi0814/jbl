@@ -36,7 +36,7 @@ PROF_NOTE = {'조준호': '23년부터 도재 강의(23판 멘트 "조준호 선
              '윤형인': '25 새 강의 CAD,CAM(251121 — 25판 멘트 "윤형인 교수님의 CAD CAM 강의가 새로 생겼습니다") · 출제 기록 없음',
              '최순영': '23·24 "심미치과영역에서의 CAD/CAM의 활용" → 25 "심미치과영역에서의 디지털 기술의 활용"(25판 멘트 "작년과 비교해 올해 강의록이 많이 바뀌었으므로")',
              '곽재영': '가철성보철물을 이용한 심미개선(21·23·24·25 강의 파일 · 수업 표)',
-             '이용무': '심미적 치주치료(20~25 · 21년은 "수업 안하시고 강의자료만" — 23판 2022 칸 1번) · 25판 멘트 일부 문항 = 치주과학 교과서 Ch.37',
+             '이용무': '심미적 치주치료(20~25 · 22년은 "수업 안하시고 강의자료만" — 23판(2023년 작성) 2022 칸 1번 해설 "작년에는 수업 안하시고 강의자료만 주셨었는데") · 25판 멘트 일부 문항 = 치주과학 교과서 Ch.37',
              '백승학': '심미교정(25 파일 "Esthetic smile" · 표지 "The Role of Orthodontists as Smile Designer") · 25 자료 p.1 필기 "시험문제 넘버링 한문제 … 8개 항목 나열"',
              '이창하': '22·23년 4Q Laminate 강의(23 수업 표 231103) — 24·25 4Q 수업 표에 없음(3Q 심미치과학 담당)'}
 MENT_PROF = {'조준호': '"조준호 교수님 부분에서 한중석 교수님 문항의 변형으로 출제된 문항들이 다수 발견되어, 출처가 불분명하거나 PPT와 내려오는 답안이 다른 경우가 있었습니다. 2021년도 한중석 교수님 문제들의 재출제 가능성이 높으니, 조준호 교수님 강의 내용이 겹치지 않더라도 숙지하시면 좋을 것 같습니다"(24판) · "작년에 조준호 교수님께서 대부분 탈로 출제하셨고"(25판)',
@@ -66,3 +66,26 @@ YEAR_PROF = {'CER': {2024: '조준호', 2023: '조준호', 2022: '한중석', 20
              'LAM': {2022: '이창하'}}
 YEAR_PROF_Q = {}
 NOIMG_PAGES = {}   # 교수님 본인 연락처 쪽 — 7파일 글층·OCR·표지·마지막 쪽에서 0(11-16 · 본문 쪽 정독은 작성 담당이 다시 확인)
+# 11-16 JBV(독립 검수 — work/ESTH4/jb/V_JB_ESTH4.md 3절): JB 줄바꿈 정리(공통-8 — 글자 불변 · 줄바꿈·공백만). 렌더(reflow)가 나열·표 칸을 앞 줄에 이어 붙이던 것을
+#   새 줄로(줄 앞 U+2063 = 강제 줄바꿈 표시 — 화면에서 지워짐 · jblock.qhash·trend는 글자로 안 셈). CLAUDE.md '나열은 한 줄에 한 항목'.
+_H = chr(0x2063)   # U+2063 INVISIBLE SEPARATOR(reflow.HARD)
+def _nl(*heads):
+    """heads로 시작하는 줄을 새 줄로(앞 줄에 잇지 않게) → [('\\n<head>', '\\n\\u2063<head>')]"""
+    return [(f'\n{h}', f'\n{_H}{h}') for h in heads]
+JBFIX = {
+    # 답 칸 나열이 한 줄로 뭉침(답안 원문 = 한 줄에 한 항목)
+    'C08': _nl('Weak porcelain', 'Coefficient of thermal expansion', 'Lower elastic modulus', 'Framework design', 'Fracture origin: internal defect', 'Thermal conductivity'),   # 원인 7가지(5사본)
+    'C06': _nl('inner cone cracks', 'radial cracks (at', 'flexure cracks (at', '아래는 한중석 교수님 PPT'),   # 답 1) crack 4가지 · 해설 '- Flexure …' 뒤 문장
+    'C11': _nl('Inner (I) cone cracks', 'Median (M) cracks', 'Radial (R) cracks at', 'Flexure (F) cracks at', 'Edge chipping cracks (C)', 'Partial cone (P) cracks'),   # crack 7가지
+    'L03': _nl('▪ Too large defect', '▪ Severe malformation', '▪ Bruxism', '▪ Clenching'),   # PLV 금기증 5가지('▪' 글머리를 reflow가 모름)
+    # 해설 표(세로 칸 머리 '장/점'·'All/Ceramic/System'·distal|mesial)가 앞 줄 끝에 붙음
+    'C01': [('\n단\n점\n1. Limited', f'\n{_H}단점\n1. Limited')] + _nl('또는 배점에 따라'),
+    'C03': [('\n장\n점\n1. Esthetic', f'\n{_H}장점\n1. Esthetic')],
+    'C05': [('\nAll\nCeramic\nSystem\n', f'\n{_H}All Ceramic System\n'), ('\nMetal\nCeramic\nsystem\n', f'\n{_H}Metal Ceramic system\n')] + _nl('한중석 교수님 버전으로'),
+    'P07': _nl('distal mesial', 'distolabial facet를 파고', 'mesial groove를 파고') + [('\ndistoproximal plate mesial groove', f'\n{_H}distoproximal plate\n{_H}mesial groove'), ('minor connector가 올\n라와', 'minor connector가 올라와')],   # 표 행: distal 칸 / mesial 칸 차례로 한 줄씩
+    'P04': _nl('4 – 수직 & 경첩운동 가능', '5 – 회전 & 수직 운동 가능', '6 – 모든 방향 운동 가능'),   # 해설 class 2~6 나열
+    'G11': _nl('각화치은=치은열구+생물학적 폭경'),   # 해설 두 식
+}
+import re as _re
+for _k, _v in JBFIX.items():   # 글자 불변 확인(공백·줄바꿈·U+2063 빼고 같아야 함)
+    for _o, _n in _v: assert _re.sub('[\\s' + _H + ']+', '', _o) == _re.sub('[\\s' + _H + ']+', '', _n), f'JBFIX 글자가 바뀜: {_k} {_o[:30]!r}'
