@@ -1,0 +1,42 @@
+※본 파일의 무단인쇄, 공유 및 열람을 학습부 규정에 의거 엄격히 금지합니다※
+164
+- Contrast registration: 노출정도, 밝기를 맞춰줌
+이 답이 그대로 적용되기는 복원 문제 상으로는
+살짝 어색한 감이 있는데 복원의 정확도를 정확
+하게 알 수 없지만 강의 자료를 기반으로 문제를
+추측해보겠습니다. 
+DSR시 geometric registration 후에 (contrast 
+registration)이 필요하다. landmark를 이용한
+geometry registration에는 (3~4)개 이상의 점이
+필요하고 (최소 자승법)을 통해 optimal 
+approximation에 이르게 됩니다.
+참고: 220922 디지털방사선영상의 응용_이원진
+16,17,21,22,23p
+15-2. 3D DSR에 관한 문단 속 빈칸빵 문제로
+Optimal parameter를 얻으려면 ( )를 이용해야
+한다고 했던듯..(13,14,20변형,21)
+답: least squares method
+해설: Solition using least squares
+- More than three or four pairs of points
+- Over-determined system (equations > variables)
+- Optimal approximation: least squares method
+참고: 220922 디지털방사선영상의 응용_이원진
+23p
+16. Fractal은 같은 부피당 최대의 ( )을 얻을
+수 있다. (20,21)
+답: 표면적
+해설: 프랙탈의 가장 궁극적인 목표는 한정된 부
+피 내에서 표면적을 최대화하기 위함이다.
+ex) 폐포
+참고: 220922디지털방사선영상의 응용_이원진
+58p
+17. Classifying the voxel depending on its 
+intensity, no matter where it is located
+답: Classification
+해설: Classification
+- Classify a voxel depending on its intensity, no 
+matter where it is located
+- Thresholding : a certain intensity range is 
+specified with lower and upper threshold 
+values(Selecting air, bone or soft tissue in CT)
+참고: 221013 3차원 영상의 이해_이원진 13p

@@ -1,0 +1,44 @@
+※본 파일의 무단인쇄, 공유 및 열람을 학습부 규정에 의거 엄격히 금지합니다※
+198
+5) 유방촬영용 장치 등 방사선을 발생시켜 질병
+의 진단에 사용하는 기기
+참고: 211216 방사선안전관리법규 및 정도관리_허
+민석 30p
+<단답형 문제>
+14-1. DSR에서 maximization 되어야 하는 것은? 
+(20,21)
+답: Cross correlation coefficient, Mutual
+information
+14-2. 자동적 DSR을 통해 비슷한 사진을 비교하
+려면 ( )을 maximize하고 ( )를 minimize 해야
+한다. (20변형,21)
+답: Cross correlation coefficient, Mutual 
+information / Sum of squares of differences
+해설:
+Cross-correlation coefficients : maximization
+Sum of squares of differences : minimization
+Mutual information : maximization
+참고: 220922 디지털방사선영상의 응용_이원진
+30p
+15-1. 2차원영상... geometric registration 후에
+(1)을 실시해야 한다. 적어도 (2)쌍이 필요하며
+그 이상을 설정하기 위해서는 (3)을 하여 적절한
+parameter 값을 설정해 주어야 한다. 
+(13,14,20,21)
+답: (1) contrast registration (2) 3~4 (3) least 
+squares method
+해설: Registration
+- Geometric registration: 기하학적으로 같은 위치
+를 맞춰줌
+- Contrast registration: 노출정도, 밝기를 맞춰줌
+이 답이 그대로 적용되기는 복원 문제 상으로는
+살짝 어색한 감이 있는데 복원의 정확도를 정확
+하게 알 수 없지만 강의 자료를 기반으로 문제를
+추측해보겠습니다. 
+DSR시 geometric registration 후에 (contrast 
+registration)이 필요하다. landmark를 이용한
+geometry registration에는 (3~4)개 이상의 점이
+필요하고 (최소 자승법)을 통해 optimal 
+approximation에 이르게 됩니다.
+참고: 220922 디지털방사선영상의 응용_이원진
+16,17,21,22,23p

@@ -1,0 +1,41 @@
+※본 파일의 무단인쇄, 공유 및 열람을 학습부 규정에 의거 엄격히 금지합니다※
+199
+15-2. 3D DSR에 관한 문단 속 빈칸빵 문제로
+Optimal parameter를 얻으려면 ( )를 이용해야
+한다고 했던듯..(13,14,20변형,21)
+답: least squares method
+해설: Solition using least squares
+- More than three or four pairs of points
+- Over-determined system (equations > variables)
+- Optimal approximation: least squares method
+참고: 220922 디지털방사선영상의 응용_이원진
+23p
+16. Fractal은 같은 부피당 최대의 ( )을 얻을
+수 있다. (20,21)
+답: 표면적
+해설: 프랙탈의 가장 궁극적인 목표는 한정된 부
+피 내에서 표면적을 최대화하기 위함이다.
+ex) 폐포
+참고: 220922디지털방사선영상의 응용_이원진
+58p
+17. Classifying the voxel depending on its 
+intensity, no matter where it is located
+답: Classification
+해설: Classification
+- Classify a voxel depending on its intensity, no 
+matter where it is located
+- Thresholding : a certain intensity range is 
+specified with lower and upper threshold 
+values(Selecting air, bone or soft tissue in CT)
+참고: 221013 3차원 영상의 이해_이원진 13p
+18. 빈칸 채우기 문제 (20,21)
+1. ( ) converts a given scene to another 
+scene by suppressing unwanted information
+2. ( ) converts a given scene/structure to 
+another scene/structure by matching it with 
+another given scene/structure
+- to combine information about the same body 
+region from multiple sources
+3. ( ) converts a given set of scenes to a 
+scene/structure system
+답: Filtering, Registration, Segmentation
