@@ -1,5 +1,350 @@
 #LEC DIG | 심미치과영역에서의 디지털 기술의 활용 — 전부도재관의 적응증, 디자인 및 접착과정 | 최순영 | 25 | 251128_최순영_심미치과영역에서의 디지털 기술의 활용 (25년도, 29쪽 — 26 자료 대기) | 29
-@MAP 작성 중
-@G ① 작성 중
-## Notes in progress | 정리본 작성 중 | 1 | 자리 표시
-= 이 강의 정리본은 작성 중이에요 — 기출 탭부터 보세요.
+@TIP 탈 교수 · 25 강의록 크게 바뀜 → 직전 2년 기출 3문항은 JB로 짧게 → 접착과정 단계 순서(Lithium disilicate 5 · Zirconia 4 — 50 ㎛ · 2 bar · 20~30초) → 상악중절치 그림 라벨·incisal angle → 도재 분류 4 · CAD/CAM 도재 2 · 표 12-1 적응증은 ⚡ 빈칸으로
+@UPD 25 자료 임시 — 26 수업 뒤 26 기준으로 다시(251128_최순영_심미치과영역에서의 디지털 기술의 활용)
+! 자료: 25년도 최순영 교수님 PDF(251128 · 29쪽) = 학습부 필기본 — 슬라이드 + 초록 상자 필기(파란 글). 표지 '2025 심미치과학' · p.2 '고정성치과보철학 제3판(제12장, 제14장, 제20장)' · p.4는 사진만(필기 = 전통적인 방식) · p.5·15·16은 p.3 workflow 그림 반복 · p.12는 표지·workflow 축소 그림 · p.26-28 = 시판 세라믹 제조사 자료(ivoclar · Glidewell · Kuraray Noritake) · p.29 = 맺음 표지. 26 자료가 오면 26 기준으로 다시 짬.
+! 25 수업 강조(필기): p.2 "고정성 치과 보철학 3판 교과서 내용 기반으로 강의자료 만들었으며, 교과서 기반으로 공부하면 됨" · p.18 "상악중절치에서 가장 중요한 요소는 incisal angle: mesial은 예각, distal은 둔각" · p.23 "사실 임상에서는 사용하는 시멘트 및 보철물 제조사의 지시를 따르는게 제일 중요함" · p.29 "지금 기준으로 볼 것은 교과서 기반으로 보면 되겠습니다". 필기에 '시험' 메모는 없음.
+! 25 수업 진행(필기): p.2 "앞서 금속 도재 보철물, 라미네이트에 대해 수업했을 것 · 오늘은 전부 도재관" · p.25 "<여기까지 교과서 기반으로 수업에서 전달하고자 하는 내용, 다음 슬라이드부터는 실제 시판되고 있는 세라믹 제품에 대한 내용>" · "실제 임상에서 사용하는 재료가 궁금하거나 모르겠으면 제조사가 제공하는 자료로 공부하면됨".
+! 출제 경향 — 짤/탈: 최순영 교수 23·24년 3문항 모두 탈(JB 학습부 "최순영 교수님께서도 탈로 출제하시는 경향" · 24판 "최순영 교수님과 이재현 교수님 문항은 반탈 경향을 보였으나 꼼꼼한 참공을 요하는 문제는 없었습니다"). 25년 강의록이 크게 바뀜(학습부 "작년과 비교해 올해 강의록이 많이 바뀌었으므로 강의록을 보시는 것을 추천" · 강의명 23·24 '심미치과영역에서의 CAD/CAM의 활용' → 25 '디지털 기술의 활용') — 24년 기출 {jb:D01}(14 criteria) 쪽은 25 자료에 없음. 2025 시험 JB는 아직 없음.
+! 출제 경향 — 형식: 짧은 칸 단답(첫 슬라이드 목록 — {jb:D01}) · 그림 보고 고르기(대칭 치아 — {jb:D02}) · 사진 보고 순서 배열(구강 스캐너 → 3D 디자인 프로그램 → 밀링 머신 — {jb:D03}). 탈 성격: 강의 앞부분 목록·흐름도·그림 쪽.
+! 공부 전략: ① p.21-24 접착과정 단계(Lithium disilicate 5단계 · Zirconia 4단계 — 순서와 수치 50 ㎛ · 2 bar · 20~30초) ② p.17-18 상악중절치 디자인 그림 라벨(incisal angle 등) ③ p.6·11-14 정의 · 도재 분류 4 · CAD/CAM 도재 2가지 · 표 12-1 적응증 ④ p.3 workflow 순서 · p.25 레진시멘트 접착 그림 ⑤ p.26-28 제조사 자료는 수치(530 · 1100 MPa · prep height 3 mm) 위주.
+@MAP 심미·디지털·전부도재관(교과서 3판) → Digital dental workflow(구강 스캔 → CAD → CAM) → 전부도재관 정의(GPT-2023)·금속도재관과 차이 → 도재 분류 4·CAD/CAM 도재 2가지·적응증(표 12-1) → 디자인 = CAD(정상 치아 형태·상악중절치 incisal angle·library) → 접착과정(Lithium disilicate 5단계 · Zirconia 4단계 · 레진시멘트 그림) → 제조사 자료(강도·적응증·cementation)·교과서 기준
+
+@G ① 도입 — 심미·디지털과 Digital dental workflow
+## Esthetics · Digital · All-Ceramic Crown — Overview | 강의 개관 — 키워드 3가지와 교과서 | 1-2 | 도입 · 교과서 3판 제12·14·20장
+> 전부도재관의 적응증, 디자인 및 접착과정 — {n:심미보철 중 디지털을 이용하는 경우에 관한 것}
+= 강의 범위: 전부도재관의 {r:적응증} · {r:디자인} · {r:접착과정} / 근거 교과서: {r:고정성치과보철학 제3판}(제12장, 제14장, 제20장)
+# 표지
+- **심미치과영역에서의 디지털 기술의 활용** — 전부도재관의 적응증, 디자인 및 접착과정(2025 심미치과학).
+- 근거 교과서: **고정성치과보철학 제3판**(제12장, 제14장, 제20장).
+# {n:오늘의 키워드}
+- 키워드 3가지: 심미 · 디지털 · 전부도재관 — 심미보철이긴 한데 디지털 이용하는 경우에 관한 것.
+- 앞서 금속 도재 보철물, 라미네이트에 대해 수업했을 것 → 오늘은 전부 도재관.
+P: "고정성 치과 보철학 3판 교과서 내용 기반으로 강의자료 만들었으며, 교과서 기반으로 공부하면 됨"(필기 p.2) · "지금 기준으로 볼 것은 교과서 기반으로 보면 되겠습니다"(필기 p.29).
+E: D01 | 24년 단답 "첫 번째 슬라이드에 있는 14문항 단답형" → interdental closure, incisal edge configuration, zenith of the gingival contour — 24년 강의 첫 슬라이드 내용 · 25 첫 슬라이드는 표지·키워드뿐 ⚠ 근거 없음(14 criteria 목록은 디자인 카드 ⭐)
+F: 1
+F: 2
+M: 강의 범위: 전부도재관의 ① {r:적응증} ② {r:디자인} ③ {r:접착과정}
+M: 근거 교과서: {r:고정성치과보철학 제3판}(제12장, 제14장, 제20장) — {n:교과서 기반으로 공부}
+M: 키워드 3: {n:심미 · 디지털 · 전부도재관}
+
+## Digital Dental Workflow | 디지털 보철 제작 과정 — 구강 스캔 → CAD → CAM | 3-5 | 순서 3 · 전통 방식과 비교 · 기출 23 | jb=D03
+> Digital Dental Workflow = Intraoral Scanning → CAD → CAM — {n:인상체 · 왁스업 · 주조를 구강스캐너 · 컴퓨터 디자인 · 컴퓨터 제작이 대신함}
+= Digital Dental Workflow: ① {r:Intraoral Scanning} ② {r:CAD}(Computer-Aided Design) ③ {r:CAM}(Computer-Aided Manufacturing)
+# Digital Dental Workflow
+- 순서(화살표): ① **Intraoral Scanning** ② **CAD**(Computer-Aided Design) ③ **CAM**(Computer-Aided Manufacturing).
+- 사진 출처: Intraoral Scanning = Dentsply Sirona · CAD = 3shape · CAM = Dentsply Sirona · Arum dentistry.
+E: D03 | 23년 단답(순서 · 사진 보기) "CAD-CAM 사용하는 기계 순서 — A. 3D 디자인 프로그램 B. 밀링 머신 C. 구강 스캐너" → C-A-B — p.3 화살표 Intraoral Scanning → CAD(Computer-Aided Design) → CAM(Computer-Aided Manufacturing) · 사진 = 구강 스캔(Dentsply Sirona) · CAD 화면(3shape) · CAM 기계(Dentsply Sirona · Arum dentistry) ⚠ 함정: JB 해설 "명확히 순서가 제시된 슬라이드는 없지만"과 달리 이 자료엔 화살표 순서가 그대로(p.3·5·15·16)
+# {n:디지털 — 무엇을 대신하나}
+- 요즘 보철물 제작에 디지털 기술이 사용 안 되는 곳 거의 없다.
+- 이렇게 보철물 만드는 데 사용되는 전체적인 디지털 과정 = Digital dental workflow → 이러한 기술을 이용해 심미적인 보철물을 만들고 있음.
+| 전통적인 방식(필기) | 디지털로 대신(필기) |
+| 인상체 | 구강스캐너(Intraoral Scanning) |
+| 왁스업 | 컴퓨터 프로그램상에서 보철물 디자인(CAD) |
+| 주조 | 컴퓨터가 직접 보철물을 만듦(CAM) |
+- {n:전통적인 방식: 인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업 — 요즘은 이런 과정이 아니라 컴퓨터 상에서 디자인하고 만들게 됨(디지털 기술)}.
+F: 3=Digital dental workflow
+F: 4=전통적인 방식 — 인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업
+F: 5
+M: Digital Dental Workflow 순서: ① {r:Intraoral Scanning} ② {r:CAD}(Computer-Aided Design) ③ {r:CAM}(Computer-Aided Manufacturing)
+M: 디지털이 대신하는 것: {n:인상체 → 구강스캐너 · 왁스업 → CAD · 주조 → CAM}
+M: 전통적인 방식: {n:인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업}
+M: 기출(23): CAD-CAM 기계 순서 = {r:C-A-B}(C 구강 스캐너 → A 3D 디자인 프로그램 → B 밀링 머신)
+
+@G ② 전부도재관 — 정의·도재 분류·CAD/CAM 도재·적응증
+## All-Ceramic Crown — Definition (GPT-2023) | 전부도재관의 정의 — 금속 하부구조물 없는 도재 보철물 | 6-10 | 정의 · 금속도재관과 비교
+> 전부도재관 = supporting metal framework 없이 도재로 된 크라운 — {n:금속도재관에서 금속을 뺀 것}
+= ceramic crown: a ceramic fixed dental prosthesis that restores a clinical crown {r:without a supporting metal framework} / all-ceramic restoration: syn, {r:ceramic restoration}
+# 정의 — The Glossary of Prosthodontic Terms 2023
+- 출처: THE JOURNAL OF PROSTHETIC DENTISTRY — **THE GLOSSARY OF PROSTHODONTIC TERMS 2023**: Tenth Edition(GPT-2023) · The Academy of Prosthodontics · The Academy of Prosthodontics Foundation.
+- **all-ceramic restoration**: syn, {r:ceramic restoration}(동의어).
+- **ceramic crown** \sa-răm´ik kroun\: a ceramic fixed dental prosthesis that restores a clinical crown {r:without a supporting metal framework}.
+  - 금속 지지 구조 없이 임상 치관을 회복하는 도재 고정성 보철물.
+- {n:보철영역에서 사용하는 용어를 일정 기간마다 정리해서 발표하는 기관이 있음 — 가장 최신(2023) 자료에 따르면 전부도재관 = 금속 하부구조물 없이 전부 도재로만 되어 있는 보철물}.
+# {n:금속도재관 vs 전부도재관}
+| 구분 | 금속도재관(필기) | 전부도재관(필기) |
+| 구조 | 금속 하부 구조물(메탈 코핑)을 먼저 만들고 도재 빌드업 — 금속 색 가리도록 위에 도재 | 금속 하부구조물 없이 전부 도재로만 |
+| 겉모습 | 교합면에서 보면 똑같이 치아 색 | 교합면에서 보면 똑같이 치아 색 — 하부 구조에 차이 |
+| 심미 | 전부도재관이 있기 전까지 제일 심미적인 보철물(하얗게 만들려고 금속 위에 도재) | 금속 없이도 충분히 단단하고 심미적 — 더 자연스럽고 투명도도 높아짐 |
+| 재료 | — | 실습 때 쓴 파우더 같은 도재만으론 브릿지·크라운에 약함 → 재료의 물성이 많이 개선되며 도재만으로 만듦 |
+U: 예전에는 다 도재 보철물 안에 금속이 있었다 = 금속-도재 보철물 → 거기서 금속을 뺀 게 전부 도재관(필기).
+F: 6
+F: 7=금속도재관 — 내부 금속 하부 구조 위에 도재
+F: 8
+F: 9=교합면은 똑같이 치아 색 — 하부 구조에 차이
+F: 10=위 금속도재관 시절 · 아래 더 자연스럽고 투명도 높은 전부도재관
+M: 정의(GPT-2023): ceramic crown = a ceramic fixed dental prosthesis that restores a clinical crown {r:without a supporting metal framework}
+M: 동의어: all-ceramic restoration — syn, {r:ceramic restoration}
+M: 출처: {r:THE GLOSSARY OF PROSTHODONTIC TERMS 2023}(Tenth Edition · The Academy of Prosthodontics)
+M: 금속도재관 vs 전부도재관: 금속도재관 = {n:금속 하부 구조 + 도재(금속 색 가림)} / 전부도재관 = {n:금속 없이 도재만 — 재료 물성 개선 덕분}
+M: 심미: {n:전부도재관 전엔 금속도재관이 제일 심미적 → 지금은 전부도재관이 더 자연스럽고 투명도 높음}
+
+## Classification of Ceramics | 도재(Ceramics)의 분류 4갈래 | 11 | 분류 4 · Talibi 2022
+> Ceramics = 유리 기반 → 결정 기반 → 다결정까지 4갈래 — {n:도재(Ceramics)는 이 모든 걸 통칭하는 용어}
+= Ceramics 4: ① {r:Glass}-based ② Glass-based with {r:crystalline fillers} ③ {r:Crystalline}-based with {r:glass fillers} ④ {r:Polycrystalline} solids
+# 분류도(Talibi 2022)
+| 분류 | 해당 도재 | 필기 풀이 |
+| ① **Glass-based** | {r:Feldpathic}(슬라이드 표기) | 2학년 실습 build up에 사용한 powder — 가장 약하지만 가장 예쁘고 투명함 |
+| ② **Glass-based with crystalline fillers** | Low-med leucite(<40%) · High leucite(>50%) · {r:Lithium disilicate} | Glass-based지만 추가로 filler를 넣은 것 |
+| ③ **Crystalline-based with glass fillers** | Alumina · Alumina/Zirconia · Alumina/Magnesia(Spinell) | crystalline based인데 glass filler가 들어가 있는 것 |
+| ④ **Polycrystalline solids** | {r:Zirconia} · Alumina | 아예 glass가 없고 polycrystalline이라고 하는 하나의 solid(ex. zirconia) |
+- 출처: Talibi M, Kaur K, Patanwala HS, Parmar H. Do you know your ceramics? Part 1: classification. Br Dent J. 2022 Jan;232(1):27-32.
+F: 11
+M: Ceramics 분류 4: ① {r:Glass-based} ② {r:Glass-based with crystalline fillers} ③ {r:Crystalline-based with glass fillers} ④ {r:Polycrystalline solids}
+M: 분류 ①: Glass-based = {r:Feldpathic} — {n:가장 약하지만 가장 예쁘고 투명}
+M: 분류 ②: Glass-based with crystalline fillers = Low-med leucite(<40%) · High leucite(>50%) · {r:Lithium disilicate}
+M: 분류 ③: Crystalline-based with glass fillers = Alumina · Alumina/Zirconia · Alumina/Magnesia(Spinell)
+M: 분류 ④: Polycrystalline solids = {r:Zirconia} · Alumina — {n:glass 없는 하나의 solid}
+
+## Machinable Ceramics — CAD/CAM | CAD/CAM으로 만드는 도재 2가지 | 12-13 | 2가지 · 3mol% Yttria
+> 모든 도재를 디지털로 만들지는 않음 — CAD/CAM에 쓰는 Machinable Ceramics = Lithium disilicate · Zirconia
+= Machinable Ceramics: (1) {r:IPS e.max CAD} : {r:Lithium disilicate} (2) {r:Zirconia}(3mol% Yttria-stabilized tetragonal zirconia polycrystals)
+# Machinable Ceramics(고정성치과보철학 제3판)
+- (1) **IPS e.max CAD** : {r:Lithium disilicate}(e.max CAD 블록 사진).
+- (2) **Zirconia**({r:3mol% Yttria}-stabilized tetragonal zirconia polycrystals)(Zirconia Block 사진).
+# {n:모든 도재를 디지털로 만드나?}
+- 모든 종류의 도재를 디지털 기술로 만드는가? → NO.
+- CAD CAM 기술을 활용할 수 있는 도재 종류는 2가지: Lithium disilicate · Zirconia.
+# 두 도재의 자리 — 도재 분류와 표 12-1
+| Machinable ceramic | 제품·조성 | 도재 분류(분류도) | 표 12-1 행 |
+| **Lithium disilicate** | IPS e.max CAD | Glass-based with crystalline fillers | Modified feldspathic glass + Lithium disilicate(~70vol%) → Single unit crowns · Ant. 3-unit bridges |
+| **Zirconia** | 3mol% Yttria-stabilized tetragonal zirconia polycrystals | Polycrystalline solids | Zirconium oxide + Yttrium oxide(3–5mass%) → Single unit crowns · Ant. 3-unit bridges 등 |
+F: 12
+F: 13
+M: Machinable Ceramics 2: (1) {r:IPS e.max CAD} — {r:Lithium disilicate} (2) {r:Zirconia}
+M: Zirconia 조성: {r:3mol% Yttria}-stabilized {r:tetragonal} zirconia polycrystals
+M: 분류 위치: Lithium disilicate = {r:Glass-based with crystalline fillers} / Zirconia = {r:Polycrystalline solids}
+M: 디지털로 만드는 도재: {n:모든 도재 아님(NO) — CAD CAM 활용 가능한 도재는 2가지뿐}
+
+## All-Ceramic Crown — Indications · Table 12-1 | 전부도재관 적응증 — 도재 기본 구성 성분·분류 및 용도 | 14 | 표 12-1 · Single crown · 3-unit bridge
+> 표 12-1의 Use 열 = 적응증 — 주황 상자(Lithium disilicate · Polycrystalline) = Single unit crowns · Ant. 3-unit bridges
+= 표 12-1 주황 상자: Lithium disilicate(~70vol%) → {r:Single unit crowns} · {r:Ant. 3-unit bridges} / Zirconium oxide + Yttrium oxide(3–5mass%) → Single unit crowns · Ant. 3-unit bridges 등
+# 표 12-1. 도재 기본 구성 성분, 분류 및 용도
+| Base | Fillers | Use |
+| Feldspathic glass | Colorant, opacifier, glass particles | Veneer for ceramic substructure |
+| Feldspathic glass | Colorant, opacifier, glass particles, leucite(~17–25mass%) | Veneer for metal substructures |
+| Feldspathic glass | Colorant, opacifier, leucite(~40–55mass%) | Single unit crowns |
+| Feldspathic glass | Aluminum oxide(~55mass%) | Single unit crowns |
+| Lanthanum | Aluminum oxide(~70mass%) | Single unit crowns · Ant. 3-unit bridges |
+| **Modified feldspathic glass**(주황 상자) | {r:Lithium disilicate}(~70vol%) | {r:Single unit crowns} · {r:Ant. 3-unit bridges} |
+| **Polycrystalline ceramics**(주황 상자) — Aluminum oxide | — | Single unit crowns |
+| **Polycrystalline ceramics**(주황 상자) — Zirconium oxide + Yttrium oxide(3–5mass%) | — | Single unit crowns |
+| **Polycrystalline ceramics**(주황 상자) — Zirconium oxide + Yttrium oxide(3–5mass%) | — | Single unit crowns · Ant. 3-unit bridges 등 |
+# {n:적응증 — 필기}
+- 요즘 나오는 도재들은 Single crown, 3-unit bridge에 대해서는 충분히 다 쓸 수 있다.
+- 예전에 빌드업하던 글라스 세라믹은 single crown도 하기 어려웠는데 지금은 single crown뿐 아니라 3-unit bridge도 충분히 사용 가능한 강도를 가지고 있다는 것.
+F: 14
+M: 적응증: {n:요즘 도재 = Single crown · 3-unit bridge 충분히} / {n:예전 빌드업 글라스 세라믹은 single crown도 어려움}
+M: 주황 상자 Use: Lithium disilicate(~70vol%) = {r:Single unit crowns · Ant. 3-unit bridges} / Aluminum oxide = Single unit crowns / Zirconium oxide + Yttrium oxide(3–5mass%) = Single unit crowns · Ant. 3-unit bridges 등
+M: Feldspathic glass 용도: ① Veneer for ceramic substructure ② Veneer for metal substructures(leucite ~17–25mass%) ③ Single unit crowns(leucite ~40–55mass% · Aluminum oxide ~55mass%)
+M: Lanthanum: Aluminum oxide(~70mass%) → Single unit crowns · Ant. 3-unit bridges
+
+@G ③ 전부도재관 디자인 — CAD
+## Crown Design = CAD — Natural Tooth Form | 전부도재관 디자인 — CAD 과정과 정상 치아 형태 | 15-17 | 디자인 = CAD · 치아형태학 · 기출 24 | jb=D01
+> 디자인 = workflow 가운데 CAD — {n:자연스럽고 심미적인 디자인을 위해서는 원래 치아의 정상적인 형태를 잘 알아야}
+= 전부도재관 디자인 = {r:CAD}(Computer-Aided Design) 과정 / {n:정상 치아 형태(치아형태학)를 알아야 — 사람마다 달라도 치아마다 기본 형태는 존재}
+# 전부도재관 디자인 = CAD
+- 슬라이드: 전부도재관 디자인 — Intraoral Scanning → **CAD**(Computer-Aided Design) → CAM(p.16에서 CAD 칸만 색이 다름).
+- {n:전부 도재관의 디자인이라는 것은 결국 중간의 CAD 과정에 대한 것 → 크라운의 디자인, 크라운의 형태에 대해 알아야 한다}.
+# {n:정상 치아 형태를 알아야}
+- 자연스럽고 심미적인 디자인을 위해서는 원래 치아의 정상적인 형태를 잘 알고 있어야 함 — 1학년 때 배운 치아형태학.
+- 사람마다 다른 형태를 가지고 있지만 각 치아마다 특징적이고 기본적인 형태는 존재함.
+- 보철물이 기공소에서 만들어져 왔을 때 다 마음에 들지는 않는다 → 이 환자에 맞게 더 자연스럽고 심미적으로 고쳐줘야 하는데 손으로 할 수 있으려면 눈으로 볼 수 있어야 함.
+- 정상 구조, 자연스럽게 예쁜 구조가 뭔지를 많이 보며 익힐 필요가 있다.
+# 치아 형태 그림 — 전치 라벨
+- 전치 그림 라벨: Labial — {r:Imbrication lines} · {r:Mesial incisal angle} · {r:Distal incisal angle} · {r:Mamelons} / Lingual — Marginal ridges · Lingual fossa · Cingulum / Incisal — Incisal ridge · Distal incisal angle · Mesial incisal angle / Mesial · Distal — {r:Height of contour}.
+- 가운데 그림: 치열궁(파란 점)과 Labial · Lingual · Mesial · Distal · Incisal(D · M) 그림.
+- 오른쪽 그림: The Permanent Maxillary Posterior Occlusal Aspect · The Permanent Mandibular Posterior Occlusal Aspect(아래 줄 = 전치부 사진 3장).
+# 기출 — 14 criteria(JB 해설 · 25 자료에 없음)
+E: D01 | 24년 단답 "첫 번째 슬라이드에 있는 14문항 단답형" → interdental closure, incisal edge configuration, zenith of the gingival contour — ⚠ 근거 없음: 25 자료 29쪽에 14 criteria 없음(JB 해설 "올해 강의에는 없는 내용입니다. 작년 필기를 참고하여 작성하였습니다" · "14가지의 fundamental objective criteria가 교과서에 주어져 있습니다") · 가장 가까운 25 내용 = 정상 치아 형태·상악중절치 incisal angle(p.16-18)
+- JB 해설의 14 fundamental objective criteria: 1) gingival health 2) {r:interdental closure} 3) tooth axis 4) {r:zenith of the gingival contour} 5) balance of the gingival levels 6) level of the interdental contact 7) relative tooth dimensions 8) basic features of tooth form 9) tooth characterization 10) surface texture 11) color 12) {r:incisal edge configuration} 13) lower lipline 14) smile symmetry.
+F: 15
+F: 16
+F: 17=정상 구조 · 자연스럽게 예쁜 구조를 많이 보며 익히기
+M: 전부도재관 디자인: workflow 가운데 {r:CAD}(Computer-Aided Design) 과정 — {n:크라운의 디자인·형태}
+M: 디자인의 바탕: {n:원래 치아의 정상 형태(치아형태학) — 사람마다 달라도 치아마다 특징적·기본적 형태는 존재}
+M: 형태를 알아야 하는 이유: {n:기공소 보철물을 환자에 맞게 고치려면 눈으로 볼 수 있어야 → 정상 구조를 많이 보며 익힘}
+M: 전치 그림 라벨: {r:Imbrication lines} · {r:Mamelons} · {r:Mesial incisal angle} · {r:Distal incisal angle} · Incisal ridge · Marginal ridges · Lingual fossa · Cingulum · {r:Height of contour}
+M: 14 criteria(24 기출 · JB 해설): ① gingival health ② {r:interdental closure} ③ tooth axis ④ {r:zenith of the gingival contour} ⑤ balance of the gingival levels ⑥ level of the interdental contact ⑦ relative tooth dimensions ⑧ basic features of tooth form ⑨ tooth characterization ⑩ surface texture ⑪ color ⑫ {r:incisal edge configuration} ⑬ lower lipline ⑭ smile symmetry
+
+## Maxillary Central Incisor — Incisal Angle | 상악중절치 디자인 — incisal angle · height of contour · contact area | 18 | 필기 '가장 중요한 요소' · 기출 23 | jb=D02
+> 상악중절치 그림(Labial View · Proximal View) — {n:가장 중요한 요소는 incisal angle(mesial 예각 · distal 둔각) · 약간만 조정해도 훨씬 자연스러움}
+= 상악중절치 라벨: {r:Mesial incisal angle} · {r:Distal incisal angle} · {r:Height of contour} · {r:Contact area} · Cementoenamel junction curvature / 가장 중요한 요소: {n:incisal angle — mesial 예각 · distal 둔각}
+# 상악중절치 그림(슬라이드 라벨)
+- 왼쪽 그림(p.17과 같음): Labial — Imbrication lines · Mesial incisal angle · Distal incisal angle · Mamelons / Incisal — Incisal ridge / Mesial · Distal — Height of contour.
+- 오른쪽 그림: **Labial View** — {r:Height of contour}(양쪽) / **Proximal View** — Height of contour · {r:Cementoenamel junction curvature} · {r:Contact area}.
+# {n:상악중절치 디자인 — 무엇을 보나}
+- 상악중절치에서 가장 중요한 요소는 incisal angle: mesial은 예각, distal은 둔각.
+| Incisal angle | 상악중절치(필기) |
+| Mesial incisal angle | 예각 |
+| Distal incisal angle | 둔각 |
+- 그 외에 height of contour(근원심), contact area 위치 등도 고려해야 함.
+- 약간씩 조정만 해줘도 훨씬 자연스럽고 정상 치아처럼 보임.
+P: "상악중절치에서 가장 중요한 요소는 incisal angle: mesial은 예각, distal은 둔각"(필기 p.18).
+E: D02 | 23년 객관식(그림 고르기 · 선지 미복원) "주어진 치아와 대칭인 그림을 고르시오" → 2번 (해설 참고) — p.17-18 치아 형태 그림 · JB 해설: 보기 = triangular 형태의 #11 → 정중선을 기준으로 좌우대칭인 것(선지 1. 보기와 같은 그림 2. triangular #21 3. ovoid #21 4. triangular #11 → 답 2번 추정) ⚠ 함정: 같은 #11(1·4번)이나 형태가 다른 ovoid(3번)는 대칭이 아님 — 반대편 #21 + 같은 triangular 형태 · triangular/ovoid 형태 이름은 25 자료에 없음(JB 해설)
+F: 18=상악중절치 — incisal angle mesial 예각 · distal 둔각
+M: 상악중절치 가장 중요한 요소: {n:incisal angle — mesial 예각 · distal 둔각}
+M: 그 외 고려: {n:height of contour(근원심) · contact area 위치 — 약간만 조정해도 정상 치아처럼}
+M: Proximal View 라벨: Height of contour · {r:Cementoenamel junction curvature} · {r:Contact area}
+M: 기출(23): #11(triangular)과 대칭인 그림 = {r:triangular #21}(JB 답 2번) — 같은 #11 · ovoid #21은 ×
+
+## CAD Design Process · Tooth Library | 디자인 과정 — 스캔 데이터 기반 CAD와 치아 library | 19-20 | 디자인 과정 · library
+> Intraoral Scanning 데이터 → CAD 디자인 — {n:library 디자인을 골라도 환자에 맞추되 정상 형태를 크게 벗어나지 않게}
+= {n:디자인 과정 = 구강 스캐너 데이터(형성한 치아 · 주변 치아 · 대합치 · 교합) 기반 CAD} / {n:library에서 선택 → 환자에 맞춰 · 정상 형태를 크게 벗어나지 않음}
+# 슬라이드
+- Intraoral Scanning(구강 스캔 사진 · 스캔 모형 3장) → CAD(디자인 화면) · CAD library 그림 'Collection example'(여러 치아 디자인) · 지대치 위 크라운 디자인 화면.
+# {n:디자인 과정}
+- 구강 스캐너로 얻은 데이터(우리가 형성한 치아, 그 주변 치아, 대합치, 교합 등에 대해 정보 획득 가능) 기반으로 CAD를 통해 디자인.
+# {n:CAD library}
+- CAD 프로그램 안에 library가 있어서 다양한 치아 디자인 중 원하는 디자인을 선택해서 디자인할 수 있음.
+- 아무리 많은 디자인이 있더라도 환자마다 다른 특징을 살릴 수 없다 → 환자에 맞춰서 디자인해야 함.
+- 하지만 여기서도 가장 기본이 되는 것은 정상 치아의 형태를 크게 벗어나지 않는다.
+F: 19=구강 스캐너 데이터 기반으로 CAD 디자인
+F: 20=CAD library — 다양한 치아 디자인 중 선택
+M: 스캔으로 얻는 정보: {n:① 형성한 치아 ② 주변 치아 ③ 대합치 ④ 교합}
+M: CAD library: {n:다양한 치아 디자인 중 선택} / {n:환자마다 다른 특징은 못 살림 → 환자에 맞춰 디자인}
+M: 기본 원칙: {n:정상 치아의 형태를 크게 벗어나지 않는다}
+
+@G ④ 전부도재관 접착과정
+## Cementation — Lithium Disilicate | 리튬 디실리케이트 전부도재관 접착과정 5단계 | 21-22 | 단계 5 · 불산 → 실란 · 20~30초
+> 시적 → 보철물 내면(불산 → 실란) → 치아 전처치 → 레진시멘트 접착 → 마무리 연마
+= (1) Lithium disilicate: ① {r:도재보철물 시적} ② {r:보철물 내면}(불산 → 실란) ③ {r:치아의 전처치} ④ {r:레진시멘트로 접착 시행} ⑤ {r:마무리 연마}
+# ① 도재보철물 시적
+- 가벼운 압력으로 시행.
+- 강한 압력은 마진부위에서 {r:chipping} 일어나거나 크라운의 파절이 일어날 수 있다.
+- 인접면 접촉, 마진의 정확도, 교합의 정확도를 평가.
+U: 전부도재 보철물은 metal과 달리 시적 시 강한 압력 가하면 chipping 가능 — 주의(필기).
+# ② 보철물 내면
+- 1) {r:불산}으로 전처치.
+- 2) {r:실란} 도포, 바람으로 건조 — 가능하다면 헤어드라이어 등을 이용하여 따뜻한 바람으로 건조시켜 주는 것이 접착에 더 도움이 된다.
+- {n:불산 etching — 레진시멘트와 보철물이 접착될 수 있도록 실란 도포 — 건조(따뜻한 바람이 더 유리)}.
+# ③ 치아의 전처치
+- 사용하는 재료에 따라 제조사에서 지시한 내용에 따라.
+- {r:자가부식 프라이머}(self-etching primer)가 포함된 접착 시스템: 법랑질 표면에서 시작하여 {r:20~30초} 동안 마이크로브러시를 사용하여 전체 결합 표면에 적용.
+- {n:보철물뿐만 아니라 치아도 전처치가 필요함 — 제조사 지시 따름 · 에칭 하기도, 두 가지 섞어서 프라이머 바르기도}.
+F: 21
+# ④ 레진시멘트로 접착 시행 · ⑤ 마무리 연마
+- 레진시멘트 접착: ① 레진시멘트를 보철물의 내면에 적용한 후 치아에 접착 ② 과잉의 시멘트 제거 ③ {r:Oxygen inhibition layer}의 생성을 막아주기 위해 마진부위에 젤을 적용.
+- ⑤ 마무리 연마.
+- 그림 Cementation 1~8 글: 2 s(3a~3d) · Secure the restoration until final polymerisation · 10 s*(per segment and mm ceramic) · Polishing.
+- {n:보철물과 치아 전처치 한 후에는 레진 시멘트로 붙임 → 시멘트 적용 후 1~2초 curing(tack curing) 후 excess 제거 → 마진부 젤 적용 후 마무리 curing → 마무리 연마}.
+F: 22=tack curing 뒤 excess 제거 → 마진부 젤 → 마무리 curing → 연마
+M: Lithium disilicate 접착 순서: ① {r:도재보철물 시적} ② {r:보철물 내면}(불산 → 실란) ③ {r:치아의 전처치} ④ {r:레진시멘트로 접착 시행} ⑤ {r:마무리 연마}
+M: 시적: 가벼운 압력 / 강한 압력 → 마진부위 {r:chipping} · 크라운의 파절 / 인접면 접촉 · 마진의 정확도 · 교합의 정확도 평가
+M: 보철물 내면: ① {r:불산}으로 전처치 ② {r:실란} 도포 → 바람으로 건조(따뜻한 바람이 접착에 더 도움)
+M: 치아의 전처치: 제조사 지시 · {r:자가부식 프라이머}(self-etching primer) 포함 접착 시스템 — 법랑질 표면부터 {r:20~30초} 마이크로브러시로 전체 결합 표면
+M: 레진시멘트 접착: ① 보철물 내면에 적용 → 치아에 접착 ② 과잉의 시멘트 제거 ③ {r:Oxygen inhibition layer} 생성을 막으려 마진부위에 젤
+M: tack curing: {n:시멘트 적용 후 1~2초 curing → excess 제거 → 마진부 젤 → 마무리 curing}
+
+## Cementation — Zirconia | 지르코니아 전부도재관 접착과정 — 샌드블라스트 · 레진시멘트 또는 RMGI | 23-24 | 단계 4 · 50 ㎛ · 2 bar · RMGI
+> 시적 → 보철물 내면 샌드블라스트 → 시멘트(일반적으로 레진시멘트 · 유지 좋으면 RMGI) → 마무리 연마
+= (2) Zirconia: ① {r:보철물 시적} ② 보철물 내면 {r:샌드블라스트}({r:50 ㎛} 알루미나파우더 · {r:2 bar}) ③ 시멘트 = 일반적으로 {r:레진시멘트} · 유지 좋으면 {r:RMGI} ④ 마무리 연마
+# ① 보철물 시적
+- 인접면 접촉, 마진의 정확도, 교합의 정확도 평가.
+- {n:Lithium disilicate보다 강도가 훨씬 높아서 시적 시 chipping 되는 일은 거의 없음}.
+# ② 보철물 내면
+- {r:샌드블라스트}로 전처치: {r:50 ㎛} 알루미나파우더, {r:2 bar}의 압력 · 제조사에서 지시한 내용에 따르도록 한다.
+- {n:샌드블라스트 = 모래 같은 것으로 세게 때려 표면을 약간 거칠게 — 파우더 여러 종류 있는데 교과서: 50um 알루미나 파우더로 2 bar 압력으로 하라고 나와 있다}.
+# ③ 시멘트
+- 일반적으로 {r:레진시멘트}를 사용하여 접착 시행.
+- 지대치 치질의 양이 충분하여 제작된 보철물의 유지가 좋은 경우에는 {r:RMGI 시멘트}를 이용하여 접착하여도 특별한 문제가 없다.
+- 레진시멘트를 사용하여 접착을 시행할 경우: 치아의 전처치(자가부식 프라이머 — self-etching primer) → 레진시멘트를 보철물 내면에 적용한 후 치아에 접착 → 과잉의 시멘트 제거.
+# ④ 마무리 연마 · 전처치 그림
+- ④ 마무리 연마.
+- 전처치 그림 글:
+  - Restoration: 1 Sandblast · 2 H2O · 3 AIR! · 4 Metal/Zirconia Primer(180 sec).
+  - Dentin/Enamel: 1 H2O · 2 AIR! · 3 Mix Multilink Primer A+B 1:1 · 4 15 sec application · 5 AIR!
+  - 아래 그림 = Cementation 1~8(p.22와 같은 그림).
+# {n:레진시멘트 = 접착 · RMGI = 합착}
+| 시멘트 | 개념(필기) | 치아 전처치(필기) | 쓰는 때(필기) |
+| **레진시멘트** | "접착" | 필수 — 에칭을 하거나 자가 부식 프라이머(2개 섞어서 바르는 재료) · 보철물도 내면 깨끗하게 → 프라이머 → 레진 시멘트 → 큐어링 | 보통 |
+| **RMGI**(ex. Fuji cem) | "합착" | 필요 없음 — 골드 크라운처럼 크라운 내면에 시멘트 적용 후 합착 | 지대치 치질 충분 → 유지가 좋은 경우 |
+- {n:전부도재보철물은 강도가 약하기 때문에 레진시멘트를 써야 충분한 강도가 나와서 원래 레진시멘트만 사용 가능 — 지르코니아는 자체로 강도가 강해서 RMGI 사용 가능함}.
+P: "사실 임상에서는 사용하는 시멘트 및 보철물 제조사의 지시를 따르는게 제일 중요함"(필기 p.23).
+F: 23
+F: 24
+M: Zirconia 접착 순서: ① {r:보철물 시적} ② 보철물 내면 {r:샌드블라스트} ③ {r:시멘트}(레진시멘트 또는 RMGI) ④ {r:마무리 연마}
+M: 샌드블라스트 조건: {r:50 ㎛} 알루미나파우더 · {r:2 bar}의 압력 · 제조사 지시에 따름
+M: 시멘트: 일반적으로 {r:레진시멘트} / 지대치 치질 충분 → 유지가 좋으면 {r:RMGI 시멘트}도 특별한 문제 없음
+M: 레진시멘트일 때: 치아의 전처치({r:자가부식 프라이머}) → 보철물 내면에 적용 → 치아에 접착 → 과잉의 시멘트 제거
+M: 레진 vs RMGI: 레진시멘트 = {n:"접착" · 치아 전처치 필수} / RMGI = {n:"합착" · 치아 전처치 필요 없음(골드 크라운처럼)}
+M: 지르코니아가 RMGI 되는 이유: {n:전부도재는 약해 원래 레진시멘트만 → 지르코니아는 자체로 강도가 강함}
+M: 시적 chipping: {n:지르코니아는 Lithium disilicate보다 강도가 훨씬 높아 거의 없음}
+
+## Resin Cement Bonding — Restoration Treatment | 레진시멘트를 이용한 접착 — 보철물 전처치 비교(불산 O/X · MDP) | 25 | 그림 4단계 · 필기 '여기까지 교과서'
+> 레진시멘트 접착 그림 4단계 — {n:보철물 전처치: lithium disilicate는 불산 etching O · zirconia는 불산 etching X(MDP 함유 프라이머)}
+= 레진시멘트 접착 그림: ① {r:RESTORATION TREATMENT} ② {r:ETCHING} ③ {r:ADHESIVE APPLICATION} ④ {r:CEMENTATION} / 보철물 전처치: {n:lithium disilicate 불산 O · zirconia 불산 X(MDP 함유 프라이머)}
+# 레진시멘트를 이용한 접착(그림 글)
+| 1 RESTORATION TREATMENT | Glass Ceramics/porcelain(silica-based) or Lithium Disilicate/Silicate | Metal, Zirconia, Alumina, Composite |
+| 그림 글 | After try-in, decontaminate the internal suface → Apply {r:Porcelain Primer} to restoration | After try-in, decontaminate the internal suface → Apply {r:Z-Prime Plus} to restoration |
+| 보철물 전처치(필기) | {n:좌측 그림(lithium disilicate): 불산 etching O} | {n:우측 그림(Zirconia): 불산 etching X · MDP 함유 프라이머 쓰기도 함} |
+- 2 ETCHING — 셋 중 하나(OR):
+| 2 ETCHING | 방법(그림 글) |
+| **SELF ETCHING** | Wash thoroughly with water spray · Remove excess water (do not desiccate) |
+| **TOTAL ETCHING** | Prepare cavity · Wash thoroughly with water spray, apply phosphoric acid etchant and rinse thoroughly · Preparation should be visibly moist |
+| **SELECTIVE ETCHING** | If prep includes enamel · Prepare cavity · Wash thoroughly with water spray · Apply phosphoric acid etchant only to enamel, and rinse thoroughly · Preparation should be visibly moist |
+- 3 ADHESIVE APPLICATION: A. Apply All-Bond Universal B. Air-dry C. Light cure for {r:10 seconds}.
+- 4 CEMENTATION: A. Apply Duo-Link Universal to restoration B. Seat the restoration C. Tack cure the margins for {r:2-3 seconds} and remove excess cement prior to final curing.
+# {n:여기까지 교과서 기반}
+- <여기까지 교과서 기반으로 수업에서 전달하고자 하는 내용, 다음 슬라이드부터는 실제 시판되고 있는 세라믹 제품에 대한 내용>.
+- 실제 임상에서 사용하는 재료가 궁금하거나 모르겠으면 제조사가 제공하는 자료로 공부하면 됨.
+F: 25=레진시멘트 접착 과정 — 좌측 lithium disilicate 불산 etching O · 우측 zirconia 불산 etching X
+M: 레진시멘트 접착 그림 순서: ① {r:RESTORATION TREATMENT} ② {r:ETCHING} ③ {r:ADHESIVE APPLICATION} ④ {r:CEMENTATION}
+M: 보철물 전처치 짝: silica-based(Glass Ceramics/porcelain · Lithium Disilicate) = {r:Porcelain Primer} / Metal · Zirconia · Alumina · Composite = {r:Z-Prime Plus}
+M: 불산 etching: {n:lithium disilicate = O} / {n:zirconia = X — MDP 함유 프라이머}
+M: ETCHING 3: ① {r:SELF ETCHING} ② {r:TOTAL ETCHING} ③ {r:SELECTIVE ETCHING}(prep에 enamel이 있을 때 — phosphoric acid etchant only to enamel)
+M: ADHESIVE APPLICATION: A. Apply All-Bond Universal B. Air-dry C. Light cure for {r:10 seconds}
+M: CEMENTATION: A. Apply Duo-Link Universal B. Seat the restoration C. Tack cure the margins {r:2-3 seconds} → remove excess cement → final curing
+
+@G ⑤ 제조사 자료와 맺음
+## Manufacturer Data — Ivoclar · Glidewell · Kuraray Noritake | 제조사 자료 — 강도·적응증·cementation과 맺음 | 26-29 | 530 · 1100 MPa · prep height 3 mm · 필기 '교과서 기준'
+> 시판 세라믹 제품 자료 = 강도 · 적응증 · cementation — {n:adhesive = 레진시멘트 · conventional = RMGI · 지금 기준은 교과서}
+= ivoclar Flexural strength: IPS e.max CAD {r:530 MPa} · IPS e.max ZirCAD Prime {r:1100 MPa} / Glidewell prep height: {r:3 mm} 이상 → conventional luting · {r:3 mm} 미만 → {r:adhesive resin cement}
+# ivoclar — IPS e.max CAD vs ZirCAD
+| 항목 | IPS e.max CAD — Lithium disilicate glass-ceramics (LS2) | IPS e.max ZirCAD — Zirconium oxide ceramics (ZrO2) |
+| Flexural strength | {r:530 MPa} | Prime* {r:1100 MPa} |
+| Types of restorations | Veneers, inlays, onlays, minimally invasive crowns (min. 1.0 mm) / Crowns (min. 1.5 mm), 3-unit bridges up to the 2nd premolar | Crowns, bridges |
+| Cementation method | adhesive(Veneers 쪽) / self-adhesive · conventional(Crowns 쪽) | adhesive / self-adhesive/conventional |
+| Blasting | – | Al2O3, 25–70 µm, 1 bar or Al2O3, 70–110 µm, 1.5 bar |
+| Etching · Conditioning | adhesive · self-adhesive = Option 1: Agitate Monobond Etch & Prime for 20 s and allow it to react for another 40 s · Option 2: 20 s with IPS Ceramic Etching Gel → 60 s with Monobond Plus / conventional = 20 s with IPS Ceramic Etching Gel | adhesive = 60 s with Monobond Plus / self-adhesive/conventional = – |
+| Cementation system | Variolink Esthetic(adhesive) · Speedcem Plus(self-adhesive) · ZirCAD Cement*(conventional) | Variolink Esthetic(adhesive) · Speedcem Plus, ZirCAD Cement*(self-adhesive/conventional) |
+- {n:lithium disilicate · zirconia 강도 제시 — indication 보면 lithium disilicate는 veneer, inlay, onlay crown, 3-unit 다 할 수 있고 zirconia는 한도가 없다(갯수도 없이 크라운·브릿지 다)}.
+- {n:Cementation method에서 adhesive = 레진시멘트 · conventional = RMGI → lithium disilicate도 conventional RMGI 가능 · 지르코니아도 adhesive·conventional 둘 다}.
+# Glidewell — BruxZir CEMENTATION
+| tooth preparation | 조건(노란 칠) | 시멘트 |
+| **Retentive** | Minimum tooth prep height {r:3 mm} with minimal taper | any conventional luting cements: glass ionomer (GI), resin-modified glass ionomer (RMGI) such as RelyX Luting Plus (3M) and FujiCEM 2 (GC America), or self-adhesive resin cements such as RelyX Unicem (3M) and Maxcem Elite (Kerr) |
+| **Non-retentive** | Tooth prep height less than {r:3 mm} or excessive taper | {r:adhesive resin cement} such as RelyX Ultimate (3M), Multilink Automix (Ivoclar Vivadent), NX3 Nexus (Kerr), or Panavia V5 (Kuraray) |
+- Retentive 순서: ① Try BruxZir crown and make any necessary adjustments to contacts and occlusion ② Clean internal surface ③ Mix and place luting cement of choice in crown, seat and proceed with cleanup based on manufacturer's instructions.
+- Non-retentive 순서: ① Try BruxZir crown(BruxZir Adjustment & Polishing Kit 권장) ② Clean internal surface ③ Place zirconia primer on internal surface ④ Mix and place any recommended resin cement on the internal surface of the restoration, seat crown and proceed with cleanup.
+- Clean internal surface(두 경우 같음 — 셋 중 하나) · **Do NOT clean with phosphoric acid**:
+  - a. Sandblast with 50-micron aluminum oxide for BruxZir Full-Strength or 30-micron CoJet sand (3M) for BruxZir Esthetic at 2 bar/30 psi for 15 seconds · Rinse and dry.
+  - b. Apply zirconia cleaner, such as Ivoclean (Ivoclar Vivadent) or ZirClean (BISCO), to internal surface for 20 seconds · Rinse and dry.
+  - c. Apply 5% NaClO (sodium hypochlorite) to internal surface for 20 seconds · Rinse and dry.
+- zirconia primer(Non-retentive) 둘 중 하나:
+  - Z-Prime Plus (BISCO) — dry for 3–5 seconds with an air syringe.
+  - Monobond Plus (Ivoclar Vivadent) — let react for 60 seconds then dry with an air syringe.
+U: 앞에서 얘기한 것처럼 유지가 충분하면 RMGI · 접착이 필요하면 레진시멘트(필기 p.27).
+# Kuraray Noritake — KATANA · PANAVIA
+- 제품: KATANA Zirconia Block(14Z L / STML A3) · KATANA Zirconia(Yttria Multi Layered 디스크).
+- 두께 그림: Anterior Crown 0.8mm · Posterior Crown 1.0mm · Veneer 0.4mm(작은 글자 — 판독 불확실).
+- PANAVIA CEMENTATION FAMILY — Designed for ease of use with Zirconia.
+  - Zirconia is a {r:non-silica-based ceramic} which will not respond to a traditional pretreatment method such as, {r:hydrofluoric acid-etching} of the internal surface.
+  - Micro-mechanical retention achieved through {r:sandblasting} and chemical bonding through adhesion (ex. {r:MDP}) are key factors for successful zirconia bonding.
+  - PANAVIA V5 and PANAVIA SA Cement Universal, which both include the MDP adhesive monomer, have high bond strength and durability to zirconia.
+- VERSATILITY OF APPLICATION RANGE(ALL-IN-ONE SOLUTION): Exceptional design flexibility is offered — from veneers to full-arch restorations.
+  - In each case, you may choose a monolithic, cut-back or framework design with the appropriate fabrication procedure depending on individual needs.
+  - 적용 범위: Long-span bridges · Three-unit bridges · Crowns · Inlays and onlays · Laminate veneers.
+- {n:일본 회사 제품 — 제조사 자료 보면 prep 방법, cementation 방법, 적응증 다 나와 있는 걸 볼 수 있음}.
+# {n:맺음 — 지금 기준은 교과서}
+- 기술이 발달하면서 지르코니아든 리튬 디실리케이트든 여러 가지 특성이 더 많아지고 조금씩 달라지는 게 있다 → 그거에 맞춰서 공부하면 되고, 지금 기준으로 볼 것은 교과서 기반.
+- 맺음 슬라이드: 심미치과영역에서의 디지털 기술의 활용 — 전부도재관의 적응증, 디자인 및 접착과정 · 고정성치과보철학 제3판.
+F: 26
+F: 27
+F: 28
+F: 29
+M: ivoclar Flexural strength: IPS e.max CAD(Lithium disilicate) = {r:530 MPa} / IPS e.max ZirCAD(Zirconium oxide) = Prime {r:1100 MPa}
+M: ivoclar Types of restorations: Lithium disilicate = Veneers · inlays · onlays · minimally invasive crowns(min. {r:1.0 mm}) · Crowns(min. {r:1.5 mm}) · 3-unit bridges up to the 2nd premolar / Zirconia = Crowns · bridges
+M: Cementation method 뜻: {n:adhesive = 레진시멘트} / {n:conventional = RMGI}
+M: ZirCAD Blasting: Al2O3 {r:25–70 µm} · {r:1 bar} 또는 Al2O3 70–110 µm · 1.5 bar
+M: Glidewell prep height: Retentive = Minimum tooth prep height {r:3 mm} with minimal taper → conventional luting cements / Non-retentive = less than {r:3 mm} or excessive taper → {r:adhesive resin cement}
+M: 지르코니아 내면: {r:non-silica-based} → hydrofluoric acid-etching에 반응 안 함 → {r:sandblasting} + chemical bonding({r:MDP}) / {r:Do NOT clean with phosphoric acid}
+M: 공부 기준: {n:특성은 계속 달라짐 → 지금 기준은 교과서}
