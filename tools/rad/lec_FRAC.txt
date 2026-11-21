@@ -1,5 +1,21 @@
 #LEC FRAC | 프랙탈(Fractal) — 25 강의자료 없음(기출 참고) | 이원진 | 25 | (25 강의자료에 프랙탈 없음 — 옛 '디지털 방사선 영상의 응용'(240926 등) 내용 · JB 23·24·25판 기출 참고) | 0
-@MAP 작성 중
-@G ① 작성 중
-## Notes in progress | 정리본 작성 중 | 1 | 자리 표시
-= 이 강의 정리본은 작성 중이에요 — 기출 탭부터 보세요.
+@MAP 프랙탈(Fractal) · 이원진 — 25 수업·강의자료 없음(26 자료 대기) · JB 기출 5문항(참고)
+@TIP 직전 2년(24·23) 기출 먼저 — 특징 넷(self-similarity · scale invariance · recursiveness · high surface area) → 같은 부피당 최대 표면적 → FD 그래프 기울기 · 26 수업에 프랙탈이 오면 그 쪽부터
+! 자료: 받은 강의자료에 프랙탈 없음 — 25 수업 표의 이원진 강의 = 251023 DSR·Deep learning · 251120 3차원영상·Generative AI · JB 참고 줄이 가리키는 옛 '디지털 방사선 영상의 응용'(24 수업 표 "240926 디지털 방사선 영상의 응용 이원진" 42p·71p · 220922 58p·69p)은 받은 자료에 없음 · 26 이원진 자료 대기 · 정리본 없음
+! 학습부 멘트(25판 해설): "23학습부: 올해는 Frectal 관련 내용을 수업하지 않았습니다."(2024 칸 25번) · "23학습부: 올해는 Fractal에 내용을 수업하지 않으셨습니다."(2022 칸 12번) — 25판(2025 4Q JB)의 '올해' = 2025 수업
+! JB 경향: 5문항 — 특징 빈칸이 23·24년 연속({jb:F01} · {jb:F02} — 두 문항 답을 합치면 특징 넷) · '같은 부피당 최대의 ( )' 표면적 20·21년({jb:F04}) · trabecular bone 빈칸 3개 22년({jb:F03} — 복원불충분) · FD 그래프 기울기 계산 12·18·20년({jb:F05}) · 형식 = 정의 빈칸 2~3칸 4 · 계산 단답 1 · 탈 성격 = 같은 쪽 특징 칸
+! 공부 전략: ① 23·24년 JB 빈칸 먼저(특징 넷을 순서대로) ② 25년에는 프랙탈을 수업하지 않음 — 26 이원진 수업에 나오는지 확인하고, 없으면 JB 답으로만 ③ FD는 그래프 두 점의 기울기(12·18·20년 같은 문제)
+
+@G ① 기출 참고
+## Past exams only | 강의자료 없음 — 기출로 공부 | 0 | 기출 참고 | jb=F01,F02,F03,F04,F05
+> 정리본 없음 — 기출 탭에서 JB 답·해설로 공부
+= 25년 수업에서 빠짐 — 25판 해설 "올해는 Frectal 관련 내용을 수업하지 않았습니다"(23학습부) / 기출 쪽 = 옛 '디지털 방사선 영상의 응용'(240926 · 220922) — 받은 자료에 없음
+E: F01 | 24·23년 빈칸 "Frectal의 특징: (self-similiarity), (scale-invariance), ( ) ~ high ()" → recursiveness, surface area — 학습부 "high ()의 빈칸을 채울 더 적절한 표현을 찾는 분은 제보 부탁드립니다"
+E: F02 | 24·23년 빈칸 "Fractal 의 특징: ( ), ( ), ( )" → self-similarity, scale invariance, recursiveness — 바로 앞 25번과 같은 특징 목록(25번은 '~ high (surface area)' 칸까지 넷)
+E: F03 | 22년 빈칸 "trabecular bone 나오는 빈칸 3개짜리 문제" → 복원불충분 — 학습부 "아래 페이지에 Fractal Dimension of trabecular bone 에 관한 내용이 나옵니다" · 같은 주제 그래프 = FD 계산 문제
+E: F04 | 21·20년 빈칸 "Fractal은 같은 부피당 최대의 ( )을 얻을 수 있다" → 표면적 — 학습부 "프랙탈의 가장 궁극적인 목표는 한정된 부피 내에서 표면적을 최대화하기 위함이다. ex) 폐포"
+E: F05 | 20·18·12년 단답(그래프 계산) "fractal 피피티에 있는 Bone 윤곽선 이은 4개의 사진 오른쪽의 로그함수 그래프에서 fractal dimension 구하기" → 1.375 — 학습부 "그래프의 기울기를 구하면 나옵니다! x축, y축 각각 두 점씩 숫자 알려줌" · FD (fractal dimension) = (3.16-2.5)/(1.78-1.3) = 0.66/0.48 = 1.375
+M: Fractal 특징: ① self-similarity ② scale invariance ③ recursiveness ④ high surface area
+M: Fractal의 궁극적인 목표: 한정된 부피 내에서 {r:표면적} 최대화(같은 부피당 최대의 표면적) · 예 폐포
+M: FD(fractal dimension) 구하기: 로그함수 그래프의 기울기 / 문제에 x축·y축 두 점씩 숫자 → (3.16-2.5)/(1.78-1.3) = 0.66/0.48 → {r:1.375}
+M: FD of trabecular bone(JB 해설 그림): 영상 = binary image · outline image · skeletonized image / Fractal dimension = box counting method
