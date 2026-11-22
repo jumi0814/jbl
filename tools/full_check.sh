@@ -9,8 +9,12 @@ UI=1; [ "$1" = "--no-ui" ] && UI=0
 # 과목 목록(새 과목은 여기 두 줄에 더함)
 Q=${JBL_Q:-$($PY tools/quarters.py current)}; export JBL_Q=$Q   # 11-04 분기(tools/quarters.json) — 그 분기 과목만 · 보관(frozen) 분기는 빌드 대신 rehub --stage + 테스트
 SIDS=$($PY tools/quarters.py sids $Q); sids=$(echo $SIDS | tr A-Z a-z)
+if [ -n "$JBL_FC_SKIP" ]; then   # 11-22 작성 중인 과목(원고가 반쯤 쓰인 채)은 빌드·과목 검사에서 빼고 배포본 팩 그대로(예 JBL_FC_SKIP="HINS ESTH4" — 팩은 git checkout <배포 커밋> -- docs/packs/<SID>.js docs/packs/img/<SID>로 먼저 되돌림)
+  SIDS=$(for s in $SIDS; do case " $JBL_FC_SKIP " in *" $s "*) ;; *) printf "%s " $s;; esac; done); sids=$(echo $SIDS | tr A-Z a-z)
+fi
 say() { echo "$@" | tee -a $L; }
 $PY tools/quarters.py check >/dev/null || { $PY tools/quarters.py check | tee -a $L; }
+[ -n "$JBL_FC_SKIP" ] && say "== 건너뜀(작성 중 — 배포본 팩 그대로): $JBL_FC_SKIP"
 say "== 동기화"; $PY tools/sync_common.py 2>&1 | tail -1 | tee -a $L
 o=$($PY tools/num/build_num.py --check 2>&1 | tail -1); say "$o"; echo "$o" | grep -q OK || say "  ✗ 넘버링 모듈 사본(docs/num ↔ tools/num · NUMV) 다름 — tools/num/build_num.py"
 say "== 도구 문법"; for f in tools/*.py tools/cons/*.py tools/num/*.py tools/tests/*.py tools/tests4/*.py; do $PY -m py_compile "$f" 2>/dev/null || say "  ✗ 도구 문법 오류 $f"; done   # 10-26 merge_parts가 10-24부터 문법 오류로 멈춰 있던 것을 못 잡음(스킬 점검 16 ✗4)
@@ -23,23 +27,23 @@ $PY tools/rehub.py 2>&1 | tail -1 | cut -c1-80 | tee -a $L
 say "== verify";        $PY tools/verify.py 2>&1 | grep -E 'FAIL|RESULT' | tee -a $L
 say "== check_lec";     for s in $SIDS; do o=$($PY tools/check_lec.py $s 2>&1); sl=$(echo $s | tr A-Z a-z); fn=$($PY tools/check_unote.py $s | tail -1 | awk '{print $NF}'); printf "%s ✗%s 경고 %s @UPD없음 %s 필기NEW26 %s " $s "$(echo "$o" | grep -c '✗')" "$(echo "$o" | grep -c '^   · ')" "$(echo "$o" | grep -c '@UPD 없음')" "$fn"; done | tee -a $L; echo | tee -a $L   # 경고 수는 정보(기준과 견줌) · @UPD없음 = 26 갱신 강의 표시 빠짐(10-10)
 [ "$Q" != 3q ] && [ -n "$SIDS" ] && { say "== check_25only"; $PY tools/check_25only.py $SIDS 2>&1 | grep -E "^== |  ✗|합계|RESULT" | tail -12 | tee -a $L; }   # 11-04 4Q RULES 14 — 25 전용 줄은 기출 근거 📜 ⭐ 줄만
-say "== check_years";   $PY tools/check_years.py 2>&1 | grep '^== ' | tee -a $L
-say "== check_eyears";  $PY tools/check_eyears.py 2>&1 | grep -v ' 0건' | tail -3 | tee -a $L
+say "== check_years";   $PY tools/check_years.py $SIDS 2>&1 | grep '^== ' | tee -a $L
+say "== check_eyears";  $PY tools/check_eyears.py $SIDS 2>&1 | grep -v ' 0건' | tail -3 | tee -a $L
 say "== check_abbr";    for s in $SIDS; do $PY tools/check_abbr.py $s 2>&1 | grep '^== '; done | tee -a $L
-say "== scan_render";   $PY tools/scan_render.py 2>&1 | tail -8 | tee -a $L
-say "== check_links";   $PY tools/check_links.py 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
+say "== scan_render";   $PY tools/scan_render.py $SIDS 2>&1 | tail -8 | tee -a $L
+say "== check_links";   $PY tools/check_links.py $SIDS 2>&1 | grep -v '^    ' | tail -8 | tee -a $L
 say "== pred_check";    for S in $SIDS; do say "$S $($PY tools/pred_check.py $S 2>&1 | tail -1)"; s=$(echo $S | tr A-Z a-z); [ -f tools/$s/final.txt ] && say "$S 최종 N제 $($PY tools/pred_check.py $S --file tools/$s/final.txt 2>&1 | tail -1)"; done   # 10-16 예상문제 문법·사라진 옛 문항(pred_before) ✗ · 10-29 final.txt(최종 N제)도
-say "== link_audit";    $PY tools/link_audit.py --md work/_tmp/link_audit.md 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 JB ↔ 강의·⭐·표·예상 연결 전수
+say "== link_audit";    $PY tools/link_audit.py $SIDS --md work/_tmp/link_audit.md 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 JB ↔ 강의·⭐·표·예상 연결 전수
 n=$(grep -c '예상 연결 없음' work/_tmp/link_audit.md 2>/dev/null); [ "${n:-0}" -gt 0 ] && say "  ✗ link_audit 최근 해 문항 예상 연결 없음 $n"   # QA 49 — △도 0이어야 함
-say "== check_yearprof"; $PY tools/check_yearprof.py 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 출제 연도별 출제 교수 표(YEAR_PROF) 키·id·해
-[ -f tools/fmt_audit.py ] && { say "== fmt_audit"; $PY tools/fmt_audit.py 2>&1 | grep -E "^[A-Z0-9]+:|RESULT" | tee -a $L; }   # 10-16 형식 판정 표·의심(정보) → work/_tmp/fmt<YY>/<SID>.md
+say "== check_yearprof"; $PY tools/check_yearprof.py $SIDS 2>&1 | grep -E "^[A-Z0-9]+:|  ✗|RESULT" | tee -a $L   # 10-16 출제 연도별 출제 교수 표(YEAR_PROF) 키·id·해
+[ -f tools/fmt_audit.py ] && { say "== fmt_audit"; $PY tools/fmt_audit.py $SIDS 2>&1 | grep -E "^[A-Z0-9]+:|RESULT" | tee -a $L; }   # 10-16 형식 판정 표·의심(정보) → work/_tmp/fmt<YY>/<SID>.md
 [ -f tools/tests/fmt_cases.py ] && say "fmt_cases $($PY tools/tests/fmt_cases.py 2>&1 | grep -E 'RESULT' | tail -1)"   # 형식 판정 회귀(브라우저 없음)
 say "== table_audit"; for S in $SIDS; do say "$S $($PY tools/table_audit.py $S --md work/review_final2/TA_$S.md 2>&1 | tail -1)"; done
 say "== check_nred"; for S in $SIDS; do say "$($PY tools/check_nred.py $S 2>&1 | tail -1)"; done   # 10-09 필기 쪽 강조(정보 — 예외가 있어 0 목표 아님 · 기준값 SKILL G1)
 say "== v3_palette"; $PY tools/design/v3_palette.py tools/cons/shell.html tools/num/num.js --check 2>&1 | tail -1 | tee -a $L   # 10-24 디자인 v3 — 따뜻한 베이지·갈색 0(QA 70)
-say "== check_breaks_jb"; $PY tools/check_breaks_jb.py 2>&1 | tail -1 | tee -a $L
-say "== check_numbering"; $PY tools/check_numbering.py 2>&1 | tail -1 | tee -a $L
-say "== fc_carry";      $PY tools/fc_carry.py 2>&1 | tail -8 | tee -a $L
+say "== check_breaks_jb"; $PY tools/check_breaks_jb.py $SIDS 2>&1 | tail -1 | tee -a $L
+say "== check_numbering"; $PY tools/check_numbering.py $SIDS 2>&1 | tail -1 | tee -a $L
+say "== fc_carry";      $PY tools/fc_carry.py $SIDS 2>&1 | tail -8 | tee -a $L
 for s in $SIDS; do $PY tools/dump_jb.py $s >/dev/null 2>&1; $PY tools/dump_breaks2.py $s >/dev/null 2>&1; done   # QA(E)·D2b가 읽는 화면 덤프
 if [ $UI = 1 ]; then
   say "== tests"

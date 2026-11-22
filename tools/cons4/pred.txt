@@ -3,7 +3,7 @@ Q: 강의 Summary 표에서 Conventional irrigation과 Modern irrigation에 속�
 A: Conventional irrigation = Insert type — SI · SA · PUI [[IRR:72]] / SI — Actuation syringe · MoA streaming / SA — Vibrating tip (sonic) · streaming / PUI — Vibrating tip (ultrasonic) · streaming (+cavitation?) / Modern irrigation = Insert-free type — PIPS · Gentle waves · RINSE [[IRR:72]] / PIPS — Pulsed laser · Shock waves / Gentle waves — Microjet impingement · cavitation / RINSE — High power ultrasonic transducer · cavitation / ⚠ 함정: PUI의 MoA는 streaming 뒤에 '(+cavitation?)' — Modern의 cavitation(Gentle waves · RINSE)과 섞지 않기
 @IRR | t=미출제 · 교수 형식(객관식 '옳지 않은 것') | pr=상 | why=26 새 표 칸 맞바꾸기 · 손원준 23 '틀린 것' 꼴
 Q: 강의 Summary 표(근관세척 장비 비교)에 대한 설명으로 옳지 않은 것은? ① SI의 Actuation은 syringe이고 MoA (biofilm removal)는 streaming이다. ② PUI의 Actuation은 Vibrating tip (ultrasonic)이다. ③ PIPS의 MoA (biofilm removal)는 cavitation이다. ④ RINSE의 Risk (apical extrusion)는 Low이다. ⑤ Gentle waves의 Cost는 high이다.
-A: ③ × · Summary 표 MoA — PIPS는 Shock waves → 보기의 「cavitation」이 틀림 · cavitation은 Gentle waves · RINSE [[IRR:72]] / ① ○ · Summary 표 SI — Actuation syringe · MoA streaming / ② ○ · Summary 표 PUI — Actuation Vibrating tip (ultrasonic) / ④ ○ · Summary 표 Risk (apical extrusion) — RINSE Low · SI · SA · PUI medium · PIPS · Gentle waves High(?) / ⑤ ○ · Summary 표 Cost — Gentle waves high · PIPS high · RINSE Medium
+A: ③ × · Summary 표 MoA — PIPS는 Shock waves → 보기의 「cavitation」이 틀림 · cavitation은 Gentle waves · RINSE [[IRR:72]] / ① ○ · Summary 표 SI — Actuation syringe · MoA streaming / ② ○ · Summary 표 PUI — Actuation Vibrating tip (ultrasonic) / ④ ○ · Summary 표 Risk (apical extrusion) — RINSE = Low · SI · SA · PUI = medium · PIPS · Gentle waves = High(?) / ⑤ ○ · Summary 표 Cost — Gentle waves high · PIPS high · RINSE Medium
 @IRR | t=미출제 · 교수 형식(객관식 '옳은 것') | pr=상 | why=26 새 표 '옳은 것' 판 · 손원준 24 '옳은 것' 꼴
 Q: 강의 Summary 표의 내용으로 옳은 것은? ① SA의 Actuation은 Pulsed laser이다. ② RINSE의 Cost는 high이다. ③ Gentle waves의 Actuation은 Microjet impingement이다. ④ PUI의 Key feature는 Insert-free type이다. ⑤ SI의 Cleaning results는 High이다.
 A: ③ ○ · Summary 표 Actuation — Gentle waves = Microjet impingement [[IRR:72]] / ① × · Summary 표 Actuation — SA = Vibrating tip (sonic) → 보기의 「Pulsed laser」는 PIPS / ② × · Summary 표 Cost — RINSE = Medium → 보기의 「high」는 PIPS · Gentle waves / ④ × · Summary 표 Key feature — PUI = Insert type(Conventional irrigation) → 보기의 「Insert-free type」은 PIPS · Gentle waves · RINSE / ⑤ × · Summary 표 Cleaning results — SI = low → 보기의 「High」는 Gentle waves · RINSE
@@ -13,9 +13,9 @@ A: (1) Insert free [[IRR:13]] / (2) Cavitation / (3) Shock Wave / (4) Cavitation
 @IRR | t=미출제 · 교수 형식(서술) | pr=상 | why=26 새 목록(p.3) · 강의 첫 단원 목표
 Q: 근관세척(root canal irrigation)의 목표를 강의 슬라이드 문장으로 쓰고, 제거 대상 세 가지를 쓰시오.
 A: 목표 — "Remove the various component from the root canal space to reduce pulpal and periapical inflammation" [[IRR:3]] / 제거 대상 3 — ① Biofilm (Live&Dead) ② Necrotic tissue ③ Smear Layer (Mixed) [[IRR:3]] / 배경 — Files only touch 50 to 65% of root canal surface due to complex anatomy [[IRR:2]]
-@IRR | t=미출제 · 교수 형식(서술) | pr=상 | why=26 새 도식(p.8) 두 경로 · 원리 쪽
-Q: Phase diagram에서 물이 증기(vapor)로 바뀌는 두 경로(Path 1 · Path 2)를 쓰고, 각 경로 끝의 vapor 조건을 쓰시오. 근관세척이 어느 경로를 이용하는지도 쓰시오.
-A: Path 1 — heating → boiling · 물 (1atm, 상온) → vapor (1atm, 100°C) [[IRR:8]] / Path 2 — depressing → cavitation · vapor (0.03 atm(진공), 상온) [[IRR:8]] / 근관세척 — Path 2(cavitation) · {n:근관 내 온도를 크게 올릴 수 없어 음압이 형성되는 압력파를 이용(p.8)}
+@IRR | t=미출제 · 교수 형식(서술) | pr=상 | why=26 새 도식(p.8·10) 원리 · Path 2 + 0.03 atm 기준선 | oid=CONS4:P:phasediagram에서물이증기vapor로_bc4729
+Q: 근관세척이 vapor bubble을 만드는 원리를 쓰시오. Phase diagram의 두 경로 중 근관세척이 이용하는 경로와 그 끝의 vapor 조건(압력·온도)을 쓰고, Bubble generation 그림에서 vapor bubble을 만드는 압력파(Weak / Strong)와 그 파동의 골이 내려가는 기준선 압력을 쓰시오.
+A: 근관세척 경로 — Path 2: depressing → cavitation [[IRR:8]] · {n:근관 내 온도를 크게 올릴 수 없어 음압이 형성되는 압력파를 이용(p.8)} / vapor 조건 — vapor (0.03 atm(진공), 상온) [[IRR:8]] / 압력파 — Strong pressure wave → gas + vapor bubbles or vapor bubbles in degassed water · 골이 0.03 atm 기준선 아래로 내려감(빨간 부분 · 위 기준선 1 atm) [[IRR:10]] / Weak pressure wave — 골이 0.03 atm 위 → gas bubbles or nothing in degassed water / ⚠ 함정: Path 2(depressing · 상온) vs Path 1 — heating → boiling · 물 (1atm, 상온) → vapor (1atm, 100°C)
 @IRR | t=미출제 · 빈칸 | pr=상 | why=26 새 쪽(p.44) 약어 풀이 · 빈칸 꼴 하나
 Q: RINSE의 머리글자를 풀어 쓰시오. R( ) I( ) N( ) S( ) E( )
 A: Remotely generated Irrigation with Non-invasive Sound field Enhancement [[IRR:44]] / Summary 표 — RINSE Actuation = High power ultrasonic transducer · MoA = cavitation [[IRR:72]]
@@ -34,9 +34,9 @@ A: Fluid Dynamics — Induce Gentle Vortical Flow · Achieve Neutral Pressure ·
 @IRR | t=미출제 · 교수 형식(서술) | pr=중 | why=26 새 조건·표(p.54-55) · 26 강조 NaOCl
 Q: 근관세척액의 apical extrusion을 시각화한 실험 조건(Apical pressure · Needle · Velocity)을 쓰고, Safety of Vapor bubbles irrigation 표에서 Syringe와 RINSE의 Nozzle과 결과를 비교하시오.
 A: 조건 — Apical pressure : 15 mmHg(~2 kPa) · Needle diameter : ~300 μm (24 gauge) (not side-vented) · Velocity : ~6 m/s [[IRR:54]] / Nozzle — Syringe = 30 Gauge (side-vented) · RINSE = 30 Gauge [[IRR:55]] / 결과(사진) — Syringe는 근단 아래로 퍼지는 유출 · RINSE는 유출이 거의 없음 [[IRR:55]] / {e:{n:26 강조: 특히 NaOCl이 근단 밖으로 나오지 않도록 바늘 위치·분사압에 유의(p.54)}}
-@IRR | t=미출제 · 교수 형식(서술) | pr=중 | b=L22,L19 | why=SFB isthmus 실패 기출(21·20·18) 축 · p.49-52
+@IRR | t=다른 강의 기출 축 · 교수 형식(서술) | pr=중 | b=L22,L19 | why=SFB isthmus 실패 기출(21·20·18) 축 · p.49-52
 Q: 두 근관을 잇는 isthmus의 세정을 비교한 PC model(a simulated isthmus model)의 치수(Coronal reservoir · Root canals · Isthmus)를 쓰고, biofilm-mimicking hydrogel 제거율이 높은 순서로 세척법을 쓰시오.
-A: 치수 — Coronal reservoir (4×5.1×4 mm) · Root canals (18 mm, #20/.04) · Isthmus (2×0.40×4 mm) [[IRR:49]] / 제거율 — RS(RINSE System) 가장 높음 → UAI(Ultrasonically Activated Irrigation) → SI(Syringe Irrigation) · EA(EndoActivator) 낮음(그래프) [[IRR:50]] / 복잡 해부 — Complex anatomies of the root canal system treated with the GentleWave™ were free of tissue debris(Lateral Fin · C-Shaped Configuration) [[IRR:22]]
+A: 치수 — Coronal reservoir (4×5.1×4 mm) · Root canals (18 mm, #20/.04) · Isthmus (2×0.40×4 mm) [[IRR:49]] / 제거율 — RS(RINSE System) 가장 높음 → UAI(Ultrasonically Activated Irrigation) → SI(Syringe Irrigation) · EA(EndoActivator) 낮음(그래프) [[IRR:50]]
 @IRR | t=미출제 · 교수 형식(서술) | pr=중 | why=26 새 모형 수치(p.56) · 26 강조 최소침습
 Q: Minimal Invasive Curved Root canal 모형(만곡 단근관)의 taper · 근관 길이 · 근관 입구 직경 · 치근단부 직경을 쓰고, 이 모형에서 비교한 세척 기구 네 가지를 쓰시오.
 A: 모형 — taper: #20/0.02 · 근관 길이: 11 mm · 근관 입구 직경: 400 μm · 치근단부 직경: 200 μm [[IRR:56]] / 기구 — SI ( 30-gauge side vented needle) · PSI (Endoactivator) · PUI ( Irrisafe tip, #20/0.00) · Rinse [[IRR:56]] [[IRR:58]] / {e:{n:26 강조: 치질을 과도하게 삭제하지 않는 최소침습 근관형성과 세정 기술의 병행(p.56)}}
@@ -64,6 +64,9 @@ A: Cost — SI · SA · PUI = low · PIPS · Gentle waves = high · RINSE = Medi
 @IRR | t=미출제 · 단답 | pr=중 | why=26 원리 쪽(p.11) 파형 라벨 · 압력파 특성 2
 Q: Pressure waves by vibrating devices (ultrasonic transducer) 그림에서 파형 띠에 붙은 두 상태와, 슬라이드가 든 pressure waves의 두 특성(Characteristics)을 쓰시오.
 A: 두 상태 — Rarefaction · compression(파형 라벨) [[IRR:11]] / 두 특성 — "Characteristics of pressure waves: frequency and intensity" [[IRR:11]] / 그림 — frequency ↑ = 촘촘한 파 · intensity ↑ = 진폭이 큰 파 / 기포와 잇기 — Strong pressure wave → gas + vapor bubbles or vapor bubbles in degassed water [[IRR:10]]
+@IRR | t=미출제 · 교수 형식(서술) | pr=중 | why=26 강조 쪽(p.69-70) · 모형 5·크기·작동 시간
+Q: endentics rinse 시연에 쓴 근관 모형 다섯 가지를 각 모형의 크기와 함께 쓰고, 작동 시간이 가장 짧았던 모형과 가장 길었던 모형을 쓰시오.
+A: 모형 5 — ① 기구가 파절된 근관(#15/.02) ② Ledge가 형성된 근관(#15/.02) ③ S자형 근관(#15/.02) ④ 측방 근관(#40/.02) ⑤ 3근관(#10/.02) [[IRR:69]] / 작동 시간 — 가장 짧음 = 측방 근관 01:00 · 가장 김 = S자형 근관 04:00 [[IRR:70]] / 나머지 작동 시간 — 기구가 파절된 근관 02:40 · Ledge가 형성된 근관 03:30 · 3근관 02:28 [[IRR:70]] / ⚠ 함정: #15/.02가 아닌 모형 = 측방 근관 #40/.02 · 3근관 #10/.02 / {e:{n:26 강조: 기구가 직접 들어가기 어려운 구조에서도 비삽입형 방식으로 세정을 시도할 수 있음(p.69)}}
 @SFA | t=짤 변형 · 교수 형식(객관식 '옳은 것') | pr=상 | b=L06,L07 | why=직전 해 문장 축(20~24 해마다) · 보기 바꿈
 Q: 근관치료의 성공과 실패에 대한 설명으로 옳은 것은? ① 환자의 나이에 따라 근관치료의 성공과 실패에 차이가 있다. ② 기존의 주조 전장 금관은 변연 적합성이 좋지 않거나 2차 우식이 있어도 근관치료 중 반드시 유지한다. ③ 근관치료 후 온도 자극에 과민 반응을 보인다는 것은 치아 내에 치수조직이 잔존함을 의미한다. ④ 어떤 특정 전신 질환이 있는 경우 근관치료가 실패한다는 것은 없으므로 치료 전 전신질환 병력을 확인할 필요가 없다. ⑤ primary root canal Tx의 success rate는 2-10 yr survival보다 높게 보고되었다.
 A: ③ ○ · 온도 자극 과민 — 치아 내에 치수조직이 잔존함을 의미(JB 해설 · 교과서 p.496) / ① × · 나이 — 보기의 「차이가 있다」가 틀림 · 나이에 따른 성공과 실패의 차이는 없다(나이가 많으면 석회화·충전된 근관이 많아 치료가 어렵고 예후가 나쁠 수 있음) / ② × · 금관 — 보기의 「반드시 유지」가 틀림 · 변연 적합성이 좋지 않거나 2차 우식이 있으면 반드시 제거 / ④ × · 전신질환 — 보기의 「확인할 필요가 없다」가 틀림 · 병력 검사는 필수 · host factor = 그 외 전신질환 [[SFA:43]] / ⑤ × · success vs survival — 보기의 「높게」가 틀림 · success rate 68 ~ 85%(Ng 2007) < 2-10 yr survival 86 ~ 93%(Ng 2011) [[SFA:12]]
@@ -85,9 +88,9 @@ A: ① Complete healing ② Incomplete healing (scar) ③ Uncertain healing ④ 
 @SFA | t=그림빵·그림 보고 답하기(증례 사진 → 용어) | pr=상 | b=L08 | why=직전 해 사진 → 용어(24 탈) · 같은 꼴 다른 사진 | f=SFA:35
 Q: 사진은 8년 전 통증·과충전·근단측방병소로 두 번 재치료한 #34의 1 yr RC와 8 yr RC이다. 강의에서 이 증례(이정도면 성공아닐까??)를 칭한 말은?
 A: survival [[SFA:36]] / 용어 5 — Success · Survival · Healing · Healed · Functional [[SFA:14]]
-@SFA | t=탈 대비 · 용어 단답(증례 → 용어) | pr=상 | b=L08,L16,L20 | why=탈 문항들 사이 쪽 정의(p.14·30·36·41)
-Q: 다음은 강의 증례의 판정이다. 각각에 해당하는 용어를 쓰시오. (가) #46 — 근관충전 직후 → 4년후 recall, 완치는 아닌 듯하나 치유 중 (나) #34 — 두 번 재치료 후 8 yr RC, 이정도면 성공? (다) #37 — 11년, 증상은 없으나 mobility + buccal 뾰루지
-A: (가) healing — 'healed'(완치)는 아닌듯해서 'healing' 즉, 치유중! [[SFA:30]] / (나) survival [[SFA:36]] / (다) Functional — 11년 Functional [[SFA:41]] / 용어 5 — Success · Survival · Healing · Healed · Functional [[SFA:14]]
+@SFA | t=탈 대비 · 용어 단답(증례 → 용어) | pr=상 | b=L08,L16,L20 | why=탈 문항들 사이 쪽 정의(p.14·20·30·41) | oid=CONS4:P:다음은강의증례의판정이다각각에해당하는용어를쓰시_d2ea5b
+Q: 다음은 강의 증례의 판정이다. 각각에 해당하는 용어를 쓰시오. (가) #46 — 근관충전 직후 → 4년후 recall, 완치는 아닌 듯하나 치유 중 (나) re-endo 증례 — 1 yr과 1 yr 8mo 추적 사진에 내린 판정 (다) #37 — 11년, 증상은 없으나 mobility + buccal 뾰루지
+A: (가) healing — 'healed'(완치)는 아닌듯해서 'healing' 즉, 치유중! [[SFA:30]] / (나) uncertain — 1 yr · 1 yr 8mo "uncertain" 판정! [[SFA:20]] / (다) Functional — 11년 Functional [[SFA:41]] / 용어 5 — Success · Survival · Healing · Healed · Functional [[SFA:14]] / ⚠ 함정: (나)는 Rud 4분류의 3. Uncertain healing — {n:상자 글의 healing 표현}과 구별 [[SFA:18]]
 @SFA | t=탈 대비 · 수치 빈칸 | pr=상 | b=L06 | why=기출 보기 옆 수치(재치료 56~84%) · 수치 축
 Q: 빈칸을 채우시오. Ng YL et al.(IEJ 2007) Outcome of primary root canal Tx의 success rate는 ( 1 ), Ng YL et al.(IEJ 2011) Tooth Survival following non-surgical root canal Tx의 2-10 yr survival은 ( 2 )이다. Toronto Study(Prospective study)는 ( 3 )년, ( 4 )%, healed로 보고했다.
 A: (1) 68 ~ 85% [[SFA:12]] / (2) 86 ~ 93% / (3) 4-6 [[SFA:13]] / (4) 82 / ⚠ 함정: success < survival — 숫자 그 자체보다 성공/실패에 영향을 미치는 요소와 평가 방법 [[SFA:10]]
@@ -99,10 +102,13 @@ Q: 이상적인 천공 수복재(Ideal material for perforation repair)의 조�
 A: ① Bacteriostatic ② Biocompatible ③ Provide an adequate seal ④ Promotes osteo- and cementogenesis ⑤ Can be replaced by new bone ⑥ Radiopaque [[SFA:51]] / 처음 연구 — Sealing ability of MTA for repair of lateral root perforations · 1993년도 S-J Lee & Torabinejad [[SFA:49]]
 @SFA | t=탈 대비 · 표 행(객관식 '옳지 않은 것') | pr=상 | b=V03 | why=MTA 단원 표 행마다(p.60) · 다른 강의 천공 기출
 Q: 치근이개부 천공 즉시 수복 실험(Summary of the Healing Pattern — Immediate Repair of Furcation Perforations, n=12 teeth)에 대한 설명으로 옳지 않은 것은? ① MTA군에서 Abcess는 0/4였다. ② Super EBA군에서 Capsulation은 4/4였다. ③ Ketac Silver군에서 PMNs는 4/4였다. ④ MTA군에서 Foreign Body Giant Cells는 0/4였다. ⑤ MTA군에서 Root Resorption은 0/4였다.
-A: ⑤ × · Root Resorption — 보기의 「0/4」가 틀림 · MTA 1/4(Ketac Silver 3/4 · Super EBA 1/4) [[SFA:60]] / ① ○ · Abcess — Ketac Silver 4/4 · Super EBA 2/4 · MTA 0/4 / ② ○ · Capsulation — Ketac Silver 3/4 · Super EBA 4/4 · MTA 0/4 / ③ ○ · PMNs — Ketac Silver 4/4 · Super EBA 4/4 · MTA 2/4 / ④ ○ · Foreign Body Giant Cells — 3/4 · 2/4 · 0/4
+A: ⑤ × · Root Resorption — 보기의 「0/4」가 틀림 · MTA 1/4(Ketac Silver 3/4 · Super EBA 1/4) [[SFA:60]] / ① ○ · Abcess — Ketac Silver 4/4 · Super EBA 2/4 · MTA 0/4 / ② ○ · Capsulation — Ketac Silver 3/4 · Super EBA 4/4 · MTA 0/4 / ③ ○ · PMNs — Ketac Silver 4/4 · Super EBA 4/4 · MTA 2/4 / ④ ○ · Foreign Body Giant Cells — Ketac Silver 3/4 · Super EBA 2/4 · MTA 0/4
 @SFA | t=탈 대비 · 결론(객관식 '옳지 않은 것') | pr=상 | b=V03,L17 | why=천공 실험 결론 · 비외과 먼저(외과 선택 기출 축)
 Q: 천공 수복 동물실험의 결론(Conclusion)으로 옳지 않은 것은? ① Post perforation has a better prognosis than furcation perforation ② Immediate > Delayed ③ Surgical repair > Conventional repair ④ MTA > Super EBA > Ketac Silver ⑤ MTA is the best!
 A: ③ × · Conclusion — 보기의 「Surgical repair > Conventional repair」가 틀림 · Conventional repair > Surgical repair [[SFA:61]] / ① ○ · Post perforation이 furcation perforation보다 예후가 좋음 / ② ○ · Immediate > Delayed / ④ ○ · MTA > Super EBA > Ketac Silver / ⑤ ○ · MTA is the best!
+@SFA | t=탈 대비 · 26 강조 쪽(단답) | pr=중 | b=V03 | why=26 강조 쪽(p.59·75) · 천공 실험 조직 소견
+Q: MTA의 조직 반응과 미세누출에 대해 쓰시오. (가) 치근이개부 천공 즉시 수복 실험의 Immediate Repair with MTA 조직 사진에서 MTA 인접 부위에 화살표로 표시된 치유 소견 (나) Microleakage 그래프에서 amalgam·EBA·MTA를 누출이 많은 순서로
+A: (가) New Cementum [[SFA:59]] / (나) amalgam > EBA > MTA — MTA leaked significantly less · MTA has better adaptation compared with amalgam,and EBA [[SFA:72]] / {e:{n:생체적합성과 조직 재생 반응을 MTA의 중요한 장점으로 설명(p.59) · MTA와 dentin 사이 계면 관찰에서 상대적으로 좋은 밀착(p.75)}}
 @SFA | t=탈 대비 · 수치 빈칸 | pr=상 | b=V02 | why=수치 표(p.83) · 다른 강의 MTA 한계 기출(경화시간)
 Q: 빈칸을 채우시오. 역충전 재료의 Setting time은 Amalgam ( 1 ) +/- 30s, Super EBA ( 2 ) +/- 30s, IRM ( 3 ) +/- 30s, MTA ( 4 ) +/- 5min이며, MTA의 경화촉진을 위해 ( 5 )를 첨가한다.
 A: (1) 4min [[SFA:83]] / (2) 9min / (3) 6min / (4) 2hrs 45min / (5) CaCl2 — accelerated MTA(2008 J Endod · S.T. Hong, W Lee et al.) [[SFA:84]] / ⚠ 함정: MTA의 단점 Extended setting time과 연결 [[SFA:76]]
@@ -117,28 +123,28 @@ Q: MTA apexification에 대한 설명으로 옳지 않은 것은? ① Open apex�
 A: ⑤ × · calcium hydroxide 장기간 치료 — 보기의 「강화·낮춘다」가 틀림 · 치근을 약화하여 치근 파절 가능성을 높인다(JB 답 · 교과서 p.624) / ①~④ ○ · MTA one step apexification 장점(JB 답) — MTA Apexification: 수산화칼슘 apexification에 비해 장점 [[SFA:96]] / ② 근거 — Not adversely affected by blood contamination : Hydrophilic nature [[SFA:71]]
 @SFA | t=짤 변형 · 교수 형식(객관식 '옳은 것') | pr=상 | b=L11 | why=직전 해 탈 축(24 과충전) · 26 새 쪽(p.3)
 Q: 근관 과충전(overfilling)에 대한 설명으로 옳은 것은? ① apical stop이 너무 넓게 형성되거나 손상된 경우 overfilling 가능성이 높다. ② taper가 크고 끝 size가 큰 master cone을 사용할수록 overfilling 가능성이 높다. ③ 근단공의 크기가 작을수록 근관 실러가 근단 너머 정출되는 양이 많다. ④ 식약처는 과도 충전으로 근관 밖으로 누출되어도 통증·감각 이상과는 무관하다고 알렸다. ⑤ 근관 형성 시 resistance form은 overfilling과 관계가 없다.
-A: ① ○ · 과충전 원인 — apical stop이 너무 넓게 형성되거나 손상(JB 해설 · 교과서 p.418-419) / ② × · master cone — 보기의 「크고 큰」이 틀림 · taper가 작고 끝 size가 작은 master cone이면 overfilling / ③ × · 근단공 크기 — 보기의 「작을수록」이 틀림 · 클수록 실러 정출이 많음 / ④ × · 식약처 주의사항 — 보기의 「무관」이 틀림 · 과도 충전으로 치근단공을 넘어 누출되면 극심한 통증, 치유 지연, 감각 이상 [[SFA:3]] / ⑤ × · resistance form — 보기의 「관계가 없다」가 틀림 · resistance form을 형성하지 않으면 과충전
+A: ① ○ · 과충전 원인 — apical stop이 너무 넓게 형성되거나 손상(JB 해설 · 교과서 p.418-419) / ② × · master cone — 보기의 「크고 큰」이 틀림 · taper가 작고 끝 size가 작은 master cone이면 overfilling / ③ × · 근단공 크기 — 보기의 「작을수록」이 틀림 · 클수록 실러 정출이 많음 / ④ × · 식약처 주의사항 — 보기의 「무관」이 틀림 · {u:과도 충전으로 치근단공을 넘어 누출되면 극심한 통증, 치유 지연, 감각 이상} [[SFA:3]] / ⑤ × · resistance form — 보기의 「관계가 없다」가 틀림 · resistance form을 형성하지 않으면 과충전
 @SFA | t=짤 변형 · 증례 객관식(가장 적절한 판정·처치) | pr=상 | b=L20,L15 | why=2~4년 전 1회 기출(22 증례) · 26 바뀐 쪽(p.28)
 Q: 4년 전 근관치료한 #46이 로컬에서 찍은 파노라마에서 치근단 병소가 보인다고 재치료 의뢰되었다. 증상은 없고, 초진 사진과 비교하면 병소는 줄었으나 완전히 사라지지는 않았다. 가장 적절한 판정과 처치는? ① 실패 — 즉시 근관 재치료 ② 실패 — 치근단절제술 ③ healed(완치) — 추적 불필요 ④ healing(치유중) — 추적 관찰 ⑤ 발치 후 임플란트
-A: ④ ○ · healing — 'healed'(완치)는 아닌듯해서 'healing' 즉, 치유중! 이라고 판정 [[SFA:30]] / ①② × · 병소가 보인다고 곧 실패가 아님 — L/C 에서 Pano상 #46에 병소가 보인다고 재치료 의뢰되었던 case [[SFA:28]] / ③ × · healed(완치) — 아직 병소가 남아 완치 아님 / ⑤ × · 실패 판정 근거 없음 / {n:과거 치료 전 영상과 추적 경과·증상부터 확인(p.28)}
-@SFA | t=미출제 · 평가 방법(단답 + 수치) | pr=중 | b=L04 | why=6년 전 1회 축(조직학적) · 수치
+A: ④ ○ · healing — 'healed'(완치)는 아닌듯해서 'healing' 즉, 치유중! 이라고 판정 [[SFA:30]] / ①② × · 병소가 보인다고 곧 실패가 아님 — L/C 에서 Pano상 #46에 병소가 보인다고 {u:재치료} 의뢰되었던 case [[SFA:28]] / ③ × · healed(완치) — 아직 병소가 남아 완치 아님 / ⑤ × · 실패 판정 근거 없음
+@SFA | t=탈 대비 · 6년 전 1회 축(단답 + 수치) | pr=중 | b=L04 | why=6년 전 1회 축(조직학적) · 수치
 Q: 근관치료 후 성공과 실패의 평가 방법 3가지를 쓰고, 조직학적 평가가 현실적이지 않은 이유를 연구자·연도·수치로 쓰시오.
 A: 평가 방법 3 — 임상적 · 방사선학적 · 조직학적 [[SFA:6]] / 조직학적 → 현실적이지 않은 평가 방법 / 1967년도 Brynolf 카데바 연구 — 방사선사진상으로 성공이라고 보여도 조직학적으로 염증이 관찰되지 않는 성공은 단 7%
-@SFA | t=미출제 · 26 바뀐 쪽 목록 | pr=상 | b=L06 | why=26 바뀐 쪽 목록(p.9·11) · 성공률 해석
+@SFA | t=탈 대비 · 26 바뀐 쪽 목록 | pr=상 | b=L06 | why=26 바뀐 쪽 목록(p.9·11) · 성공률 해석
 Q: 근관치료 성공/실패 평가에 고려할 사항 2가지와, 성공률이 달라지는 연구 방법 3가지를 쓰시오.
-A: 고려할 사항 1 — 추적 조사 기간은? 즉, 언제 성공 여부를 확정짓는가? [[SFA:9]] / 고려할 사항 2 — 근관치료 직후나 치료 도중, 그리고 충전 직후에 나타나는 동통의 유무가 성공률에 영향을 주는지? / 연구 방법 3 — Prospective study · Retrospective study · Systemic review(연구 방법에 따라, 관찰 기간에 따라, 다른 성공률) [[SFA:11]]
-@SFA | t=미출제 · 26 새 쪽 문장 | pr=상 | b=L11 | why=26 새 쪽(p.3) 문장 자체 · 과충전 축
+A: 고려할 사항 1 — 추적 조사 기간은? {u:즉, 언제 성공 여부를 확정짓는가?} [[SFA:9]] / 고려할 사항 2 — {u:근관치료 직후나} 치료 도중, {u:그리고 충전 직후에} 나타나는 동통의 유무가 성공률에 영향을 주는지? / 연구 방법 3 — Prospective study · Retrospective study · Systemic review(연구 방법에 따라, {u:관찰 기간에 따라}, 다른 성공률) [[SFA:11]]
+@SFA | t=탈 대비 · 26 새 쪽 문장 | pr=상 | b=L11 | why=26 새 쪽(p.3) 문장 자체 · 과충전 축
 Q: 식품의약품안전처가 치과용 근관충전 제품의 '사용 시 주의사항'으로 추가한 내용과, 제품이 과도하게 충전되어 치근단공을 넘어 근관 밖으로 누출된 경우 발생할 수 있는 것 3가지를 쓰시오.
-A: 주의사항 — 충전재가 근관 밖으로 누출되지 않도록 주의 [[SFA:3]] / 발생 가능 3 — 극심한 통증 · 치유 지연 · 감각 이상(누출량 및 주위 해부학적 구조물에 따라) / 배경 — 치료용 약제가 더 좋아지고 편리해지는데 왜 문제? · 칼시펙스 누출 의료분쟁 [[SFA:2]]
+A: 주의사항 — {u:충전재가 근관 밖으로 누출되지 않도록 주의} [[SFA:3]] / 발생 가능 3 — {u:극심한 통증 · 치유 지연 · 감각 이상(누출량 및 주위 해부학적 구조물에 따라)} / 배경 — {u:치료용 약제가 더 좋아지고 편리해지는데 왜 문제? · 칼시펙스 누출 의료분쟁} [[SFA:2]]
 @SFA | t=탈 대비 · 목록 쓰기 | pr=상 | b=L13,L14 | why=2~4년 전 1회 기출(MTA obturation·제품) · p.108
 Q: Premixing injection type 실러(Endoseal MTA 등 pre-mix 제품)의 특징 4가지를 쓰시오.
 A: ① Calcium silicate based sealer ② Premixing for inject type ③ Setting with moisture ④ Single-cone or lateral compaction recommended [[SFA:108]] / Endoseal MTA 라고하는 pre-mix 제품이 개발됨 [[SFA:107]]
 @SFA | t=짤 변형 · 교수 형식(객관식 '옳지 않은 것') | pr=상 | b=L14 | why=26 새 쪽(p.124~138) · 5년 전 1회 기출(제품)
 Q: 강의의 premix MTA 충전에 대한 설명으로 옳지 않은 것은? ① Premixing injection type 실러는 Setting with moisture이다. ② Endoseal MTA 라고하는 pre-mix 제품이 개발되었다. ③ 근관이 80 size 이상으로 넓어진 증례는 MTA 주입 방법으로 충전했다. ④ 엔도셈 light type 충전 2일 뒤 치근을 갈아내 보니 아주 강한 셋팅을 보였다. ⑤ C 형 근관 충전에도 주입형 재료를 썼다.
-A: ④ × · light type 2일뒤 — 보기의 「아주 강한 셋팅」이 틀림 · MTA가 드러날 정도로 치근을 갈아내서 긁어내보니 아주 강한 셋팅은 아닌듯..(셋팅 상태나 근관을 채우고있는 상태는 아주 좋은듯!) [[SFA:128]] / ① ○ · Premixing injection type 실러 — Setting with moisture [[SFA:108]] / ② ○ · Endoseal MTA pre-mix [[SFA:107]] / ③ ○ · 증상 소실되었으나 근관이 80 size 이상되어 MTA 주입 방법으로 충전 [[SFA:138]] / ⑤ ○ · C 형 근관 충전 · One-Fil putty injectable type [[SFA:143]]
+A: ④ × · light type 2일뒤 — 보기의 「아주 강한 셋팅」이 틀림 · {u:MTA가 드러날 정도로 치근을 갈아내서 긁어내보니 아주 강한 셋팅은 아닌듯..(셋팅 상태나 근관을 채우고있는 상태는 아주 좋은듯!)} [[SFA:128]] / ① ○ · Premixing injection type 실러 — Setting with moisture [[SFA:108]] / ② ○ · Endoseal MTA pre-mix [[SFA:107]] / ③ ○ · {u:증상 소실되었으나 근관이 80 size 이상되어 MTA 주입 방법으로 충전} [[SFA:138]] / ⑤ ○ · C 형 근관 충전 · One-Fil putty injectable type [[SFA:143]]
 @SFA | t=탈 대비 · 순서(술식) | pr=중 | b=V03 | why=천공 술식 순서 · 26 새 쪽은 p.70 사진 제목뿐
 Q: 천공 수복(Perforation Repair) 술식을 강의 슬라이드 순서대로 쓰시오.
-A: ① Measurement with Paper Points [[SFA:62]] / ② Selection of a Plugger [[SFA:63]] / ③ Placement of MTA(Moist cotton pellet) [[SFA:64]] / ④ Setting 확인 [[SFA:70]]
+A: ① Measurement with Paper Points [[SFA:62]] / ② Selection of a Plugger [[SFA:63]] / ③ Placement of MTA(Moist cotton pellet) [[SFA:64]] / ④ {u:Setting 확인} [[SFA:70]]
 @SFA | t=짤 변형 · 교수 형식(객관식 '옳은 것') | pr=상 | b=L17,L18 | why=직전 2년 문장 축(21~23 짤) · 옳지 않은 것 → 옳은 것 판
 Q: 근관치료의 예후와 외과적 근관치료 선택에 대한 설명으로 옳은 것은? ① 나이든 환자가 젊은 환자보다 근관치료 예후가 좋다. ② 크기가 크고 오래 지속된 병소는 외과적 근관치료로만 치료 가능하다. ③ 증상이 사라지지 않아 재치료를 해야 하는 경우 비외과적인 재치료가 첫 번째 치료방법이 되어야 한다. ④ 근관 내에 제거가 불가능한 긴 post가 있는 치아는 치근단 수술의 적응증이 아니다. ⑤ 근첨으로의 접근이 가능하더라도 외과적 술식을 먼저 고려한다.
 A: ③ ○ · 비외과적 재치료 우선 — 근관의 생물학적 원리, 작업의 용이성, 비교적 높은 성공률을 고려할 때 비외과적인 재치료가 첫 번째 치료방법(JB 해설 · 교과서 p.499) / ① × · 나이 — 보기의 「예후가 좋다」가 틀림 · 환자의 나이에 따른 성공과 실패의 차이는 없다(p.494) / ② × · 치료 방법의 선택 — 보기의 「외과적 근관치료로만」이 틀림 · 반드시 비외과적 근관치료의 선택이 우선, 최선을 다해 시행하고 실패하였을 때 외과적 근관치료(p.513) / ④ × · 치근단 수술의 적응증 — 보기의 「적응증이 아니다」가 틀림 · 근관 내에 제거가 불가능하거나 긴 post, dowel, silver cone, amalgam 등이 있을 때 = 치근단 수술 적응증(p.520) / ⑤ × · 치료 순서 — 보기의 「먼저 외과」가 틀림 · 먼저 비외과적 근관 재치료를 고려하며 근첨으로의 접근이 불가능할 경우 외과적 술식(p.502)
@@ -150,4 +156,4 @@ Q: 빈칸을 채우시오. MTA는 ( 1 )의 약자이며, Main components는 Tric
 A: (1) mineral trioxide aggregate [[SFA:47]] / (2) Silicate Oxide / (3) Bismuth Oxide / (4) Portland cement — 슬라이드 '(Portland cement 70%)'
 @SFA | t=탈 대비 · 26 새 쪽 순서·수치 빈칸 | pr=상 | b=V02 | why=26 새 쪽(p.85-90) 순서·수치 · 경화시간 단점 개선
 Q: 빈칸을 채우시오. 강의의 '경화촉진제 사용 기성품'은 개봉후 → liquid ( 1 ) drops → amalgamator trituration ( 2 )초 → ( 3 ) 초기 점도 순서로 보여 주었다.
-A: (1) 5 [[SFA:86]] / (2) 30 [[SFA:88]] / (3) 말랑말랑한 [[SFA:90]] / ⚠ 함정: 경화촉진 첨가물은 CaCl2 · MTA Setting time 2hrs 45min +/- 5min(Extended setting time) [[SFA:83]]
+A: (1) {u:5} [[SFA:86]] / (2) {u:30} [[SFA:88]] / (3) {u:말랑말랑한} [[SFA:90]] / ⚠ 함정: 경화촉진 첨가물은 CaCl2 · MTA Setting time 2hrs 45min +/- 5min(Extended setting time) [[SFA:83]]
