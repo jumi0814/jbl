@@ -1,0 +1,492 @@
+@K01 | v=ok | lec=CAD:24
+K: 정답: 삭제기구(milling bur)의 {r:dimension}이 있으므로 {r:overmill}될 수 있다 — {n:밀링 버에 크기가 있어 지대치 프렙 형태를 그대로 깎지 못함(p.24 "밀링 버가 날카로운 것 못 따라가므로")}.
+K: 외울 것: ① {n:밀링은 버 크기 때문에 undermilling · overmilling} ② {n:tool path 계산 잘해도 안 됨 → 프렙이 문제} ③ {n:지르코니아 밀링 프렙 = rounded angle · taper · sharp line angle 없애기} ④ 슬라이드 p.23 3D 프린팅 장점 'No space limitation by size of milling burs and axis of machine'
+K: 이해: {n:3D 프린팅 마진이 더 잘 맞는 건 프린팅이 정확해서가 아니라 밀링이 부정확해서} · {n:프린팅은 그 면에 맞게 쌓아올려 기구 dimension 문제가 적음}
+A: 일치 — 정답 요지 "삭제기구(milling bur)의 dimension이 있으므로 overmill될 수 있다": p.24 필기 "3d 프린팅이 정확해서가 아니라 밀링이 부정확해서임. 밀링은 버 크기 때문에 undermilling, overmilling 때문" — 버 크기(dimension) → overmilling이 JB 답과 같은 말. [[CAD:24]]
+A: 보강 — p.23 슬라이드 '3D printing of high-strength polycrystalline ceramics' 장점 "4) {r:No space limitation by size of milling burs} and axis of machine" — 뒤집어 읽으면 밀링은 버 크기·기계 축에 공간이 묶임. [[CAD:23]]
+A: 보강 — p.24 필기 "undermilling, overmilling 이슈 있다면 tool path 계산 잘해도 안됨 -> 프렙이 문제다" / "프렙할 때 특히 지르코니아 밀링을 위한 프렙할 때는 밀링 버가 날카로운 것 못 따라가므로 rounded angle, taper 만들어야 함" — 지대치 삭제 형태를 버가 따라가지 못하는 것이 '삭제량을 정확히 반영 못 하는' 까닭. [[CAD:24]]
+A: 보강 — p.25 필기 "그럼에도 3d 프린팅 좋은점 / 그 면에 맞게 쌓아올림 - 기구 dimension, 접근 가능성, tool path 등 문제 적다" — 프린팅에 적은 '기구 dimension' 문제가 곧 밀링의 문제. [[CAD:25]]
+M: 슬라이드 p.23: 세라믹 3D 프린팅 장점 5 — ① Reduction of production time per unit (large scale) ② Minor human intervention: minor error relevance ③ Reduction of material waste (unused remnants or storage) and {r:milling tools (wear)} ④ {r:No space limitation by size of milling burs} and axis of machine ⑤ Customized near-net-shape objects with intricate details (i.e. irregular grooves). [[CAD:23]]
+M: 슬라이드 p.20: 3D printing in Digital Prosthetic Dentistry — ① Unlimited variety of shapes and levels of complexity ② Mechanical and esthetic properties: {r:customization} ③ More quickly, easily, at lower cost. [[CAD:20]]
+M: 필기(p.21): "밀링은 컴퓨터 계산한 경로로 깎는다, 프린팅은 컴퓨터가 디자인한 이미지대로 쌓아올림". [[CAD:21]]
+M: 필기(p.24): "하지만 만든 결과물 평가해보면 여러 밀링한 것들과 비교해봤을 때 유사하게 괜찮고 마진 더 잘 맞기도. 특히 축면, 교합면에서 축면 넘어가는 부분 등이 잘 맞음" / "지르코니아로 가면 애초에 만들어지지 않으므로 sharp line angle 없애야 -> 프렙 잘 됐으면 결과물 잘 나오나, 프렙 잘 안되면 over, undermmilling 문제 생김". [[CAD:24]]
+M: 필기(p.24): "Gold cr 씌운다고 하면 rounded margin 만들어야 했죠" / "못만들어도 보철물은 나오지만 시멘트 레이어에서 응력이 집중됨. 시멘트 안에서 깨지는 문제.. adhesive cement가 아니라 mechanical sealing하는 시멘트 쓰기 때문." [[CAD:24]]
+M: 변형 대비: ① 밀링 vs 프린팅 방식(깎기 vs 쌓기) ② 세라믹 프린팅 장점 5 중 '밀링 버 크기에 따른 공간 제한 없음' ③ 프린팅 마진이 더 잘 맞는 이유(밀링이 부정확 — 버 크기) ④ 지르코니아 밀링 프렙(rounded angle · taper · sharp line angle 없애기) ⑤ 3Y-TZP 프린팅 후처리 debinding + sintering(수축 15~25% → printing rescaling factor). [[CAD:23]] [[CAD:24]] [[CAD:27]]
+N: 연도 — 21년(24판 2021 칸 6번 · 23판 2021 칸 6번 · JB 괄호 없음 · 해설 '참고: 221111 한중석pf- New zirconia esthetic vs function vs longevity 2 p.1-4') · 출제 교수 한중석(도재 강의 — YEAR_PROF CAD 21) · 25년부터 같은 내용은 윤형인 'CAD, CAM' 새 강의 p.24(25판 멘트 "윤형인 교수님의 CAD CAM 강의가 새로 생겼습니다"). JB 앞면 = 24판 2021 칸 6번(가장 최신 판 — 23판 2021 칸 6번과 문제·답 같음).
+@C01 | v=ok | rel=C03 | lec=CER:20
+K: 정답: {r:Limited esthetics} · {r:Masking ability} · {r:Porcelain chipping or fracture} — p.20 Metal-Ceramic System의 아래 세 줄(JB 해설 '단점').
+K: 외울 것: 위 세 줄 = Gold standard · Excellent mechanical properties · Predictable structural performance(JB 해설 '장점') / 배점이 크면 p.21-22 Challenges 6가지: ① porcelain chipping or fracture ② dark metal line ③ bluish appearance ④ wear on opposing teeth ⑤ significant tooth reduction ⑥ labor-intensive laboratory procedures.
+K: ⚠ 함정: 슬라이드엔 '장점·단점' 글자가 없고 Esthetics 아래 Limited esthetics·Masking ability가 놓임 — 배치로 가름 · 짝 재료(All-ceramic) 한계는 p.32 단점 3.
+A: 일치 — 답 1·2: p.20 "Esthetics / {r:Limited esthetics} / {r:Masking ability}" — 둘째 묶음의 아래 두 줄. [[CER:20]]
+A: 일치 — 답 3: p.20 맨 아래 "{r:Porcelain chipping or fracture}" · p.21 Challenges 첫 줄도 같은 낱말. [[CER:20]] [[CER:21]]
+A: 보강 — 다른 답(JB 해설 '배점에 따라'): p.21 "Porcelain chipping or fracture / Dark metal line visible at margin / Possible bluish appearance of the surrounding soft tissues" / p.22 "Wear on opposing teeth / Significant tooth reduction required / Time-consuming and labor-intensive laboratory procedures" — JB 해설 6줄과 같은 낱말. [[CER:21]] [[CER:22]]
+M: 슬라이드 20: Gold standard — 2003년 6개월간 기공실 조사 연구: 363,000개의 크라운 · 63%가 금속-세라믹 수복물, 단지 23%만이 올세라믹 수복물 / Excellent mechanical properties / Predictable structural performance. [[CER:20]]
+M: 필기(p.20): 위 사진처럼 잘 만들면 예쁘지만 아래 사진처럼 하면 탁하고 치은연 검다 · 삭제량 부족하면 심미성 많이 떨어지는 보철물이 될 수 있다. [[CER:20]]
+M: 변형 대비: '장점'으로 바꿔 물으면 위 세 줄 · 짝 재료 All-ceramic의 한계면 p.32 단점 3(Low tensile strength · Fracture risk · Antagonist wear)과 p.41 Limitations 5. [[CER:32]] [[CER:41]]
+N: 연도 — 24년(25판 2024 칸 1번 · 괄호 없음 · 9점). JB 앞면 = 25판 2024 칸 1번(가장 최신 판 · 이 문항이 실린 유일한 판).
+@C02 | v=part | lec=CER:25
+K: 정답: {r:Collar disappearing} · {r:Collarless shoulder} — p.25 margin design 네 그림 중 collar(금속 띠)가 없는 둘.
+K: 외울 것: margin design 4 = ① Beveled shoulder ② Shoulder with collar ③ Collar disappearing ④ Collarless shoulder / collarless margin은 dark metal line visible at margin의 partial solution(p.21).
+K: ⚠ 함정: '전치부에서 주로'는 슬라이드 글이 아님 — JB 해설이 dark metal line의 해결책(collarless)으로 이음 · 그리기 문제라 확대 원 라벨(불투명 포세린 · 금속 하부 구조물 · 상아질 포세린 · 치질)까지.
+A: 부분 일치 — 답 2개 이름: p.25 그림 이름 "Beveled shoulder / Shoulder with collar / {r:Collar disappearing} / {r:Collarless shoulder}" 중 아래 둘. [[CER:25]]
+A: 부분 일치 — '전치부' 근거: p.21 "Dark metal line visible at margin — Gingival recession · {r:Collarless margin (partial solution)}" — 슬라이드는 전치부라고 쓰지 않음 / JB 해설 "이에 대한 partial solution으로 collarless margin이 제시되며, collar disappearing, collarless shoulder가 있습니다". [[CER:21]]
+A: 보강 — 그리기: p.25 확대 원 그림 — Collar disappearing은 금속 하부 구조물이 마진 쪽으로 가늘어지며 끝나고, Collarless shoulder는 금속이 shoulder 위에서 끝나 마진은 포세린 · 라벨 "불투명 포세린 · 금속 하부 구조물 · 상아질 포세린 · 치질". [[CER:25]]
+M: 슬라이드 21: Dark metal line visible at margin — Gingival recession · Collarless margin (partial solution) · 그림 2(collar가 있는 판과 없는 판 — 같은 라벨). [[CER:21]]
+M: 필기(p.25): 코핑 디자인 다 다르다 — 싱글크라운 하더라도 어떤 식으로 코핑 디자인해서 만드느냐에 따라 결과 달라짐. [[CER:25]]
+M: 변형 대비: 남은 두 이름(Beveled shoulder · Shoulder with collar) · 그림을 주고 네 이름 쓰기 · dark metal line의 partial solution 묻기. [[CER:25]]
+N: 연도 — 24년(25판 2024 칸 2번 · 괄호 없음). JB 앞면 = 25판 2024 칸 2번(유일한 판) · JB 답 쪽 그림 = 25 p.25 margin design 슬라이드.
+@C03 | v=ok | rel=C05,C01 | lec=CER:32
+K: 정답: {r:Low tensile strength} · {r:Fracture risk} · {r:Antagonist wear} — p.32 All-Ceramic System 아래 세 줄(JB 해설 '단점').
+K: 외울 것: 같은 쪽 위 네 줄(장점) = Esthetic · A variety of products with a wide range of translucency · Biocompatibility · Monolithic/Bilayered.
+K: ⚠ 함정: p.41 제목 'Limitations of All-Ceramic System'의 5가지(Fracture or chipping problems · Increased connector dimension · Space restricted · Cantilever prosthesis · Heavy bruxism)는 JB 답이 아님 — '한계'를 물으면 두 목록을 함께 떠올림.
+A: 일치 — 답 3줄: p.32 "{r:Low tensile strength} / {r:Fracture risk} / {r:Antagonist wear}" — 글자 그대로. [[CER:32]]
+A: 보강 — 같은 낱말 쪽: p.41 "Limitations of All-Ceramic System: Fracture or chipping problems / Increased connector dimension / Space restricted: reduced interocclusal distance / Cantilever prosthesis: questionable / Heavy bruxism or parafunctional activity" — JB 해설은 p.32만 인용. [[CER:41]]
+M: 필기(p.32): 올세라믹 같은 경우 앞서 말한 여러 장점들이 있지만 잘 깨지고 대합치 마모 가능. [[CER:32]]
+M: 필기(p.41): 브릿지하면 connector 부위 사이즈 작으면 잘 깨짐 — 캔틸레버 브릿지 같은 거 할 때 metal ceramic에 비해 더 조심 · Parafunction 있으면 더 조심. [[CER:41]]
+M: 변형 대비: 장단점 문항(23년 1번)의 단점 축 — 장점까지 묻거나(p.32 위 4줄) · 짝 재료 Metal-ceramic 한계(24년 1번 — p.20)로 뒤집어 묻는 꼴. [[CER:20]]
+N: 연도 — 24년(25판 2024 칸 3번 · 괄호 없음 · 10점 · 문제 머리 별표 = '두 번 이상 출제' 표시 — 연도 근거로 쓰지 않음). JB 앞면 = 25판 2024 칸 3번(유일한 판).
+@C04 | v=ok | lec=CER:27
+K: 정답: 5 — 보기 5 "치아삭제 금속은 1.5-2.0, 도재는 그거보다 얇게"는 ×: p.27 금속 교합면 {r:1.0 ~ 1.5 mm} · 도재 교합면 {r:1.5 ~ 2.0 mm} — 도재 쪽이 더 두꺼움.
+K: 외울 것: 대합치와의 접촉 — 접촉점은 금속-도재 경계부에서 {r:1.5 ~ 2.0 mm} 떨어진 위치 · eccentric movement 시에도 연결 부위가 놓이지 않도록 · 동일 재료끼리 접촉 / 인접치 — 전치 및 소구치 근심 접촉점은 도재.
+K: ⚠ 함정: 수치 뒤집기(금속·도재 삭제량 맞바꿈) — JB 해설 수치(설면 금속 최대 0.7~1.0mm · 도재 최소 1.0mm)는 25 p.27(교합면 1.0~1.5 · 1.5~2.0 mm)과 다르지만 방향은 같음.
+A: 일치 — 1) ○: p.27 교합 접촉점의 위치 "금속-도재 경계부에서 {r:1.5 ~ 2.0 mm} 까지 떨어진 위치" — 보기의 'MIP에서'는 슬라이드에 없는 낱말. [[CER:27]]
+A: 일치 — 2) ○: p.27 "{r:Eccentric movement} 시에도 금속-도재 연결 부위가 가능하면 놓여지지 않도록". [[CER:27]]
+A: 일치 — 3) ○: p.27 "동일 재료끼리 접촉: 금속과 금속, 도재와 도재" — 대합치 교합면 재료를 보고 같은 재료로. [[CER:27]]
+A: 일치 — 4) ○: p.28 인접치와의 접촉 "심미적 고려. 전치 및 소구치의 근심 접촉점은 {r:도재}로 형성하는 것이 심미적으로 유리" — 보기와 같은 문장. [[CER:28]]
+A: 일치 — 5) ×(정답): p.27 대합치와의 공간 및 치아 삭제량 고려 "금속 교합면 ({r:1.0 ~ 1.5 mm}), 도재 교합면 ({r:1.5 ~ 2.0 mm})" — 보기는 금속을 1.5-2.0, 도재를 더 얇게로 뒤집음 / JB 해설 "설면: 금속 - 최대 치아 삭제량 0.7~1.0mm, 도재 - 최소 1.0mm의 삭제량"은 25 쪽에 없는 수치. [[CER:27]]
+M: 슬라이드 27: 수직, 수평 피개 고려 · 대합치 마모 · 그림 라벨 Buccal cusp in porcelain · Occlusion in metal · Occlusion in porcelain. [[CER:27]]
+M: 앞 p.26: Framework Design — 주로 심미성에 의해 결정 · 금속 하부구조물은 빛의 투과를 차단 / 뒤 p.29 Freestanding porcelain — 금속 하부 구조물에 의해 지지받지 못하는 포세린 · Less than 2.0 mm. [[CER:26]] [[CER:29]]
+M: 필기(p.27·28): "구치부쪽 이야기 · 그냥 읽어보세요" · "넘어감" — 25 수업은 짧게 넘겼지만 24년 보기 5개가 모두 이 두 쪽 글. [[CER:27]] [[CER:28]]
+M: 변형 대비: '옳은 것 모두' 판 · 수치 바꾸기(접촉점 1.5 ~ 2.0 mm · Freestanding porcelain Less than 2.0 mm · 전부도재관 축면 1 mm · 절단 1.5-2 mm) · 근심 접촉점 재료(도재 ↔ 금속) 맞바꾸기. [[CER:29]] [[CER:33]]
+N: 연도 — 24년(25판 2024 칸 4번 · 괄호 없음). JB 앞면 = 25판 2024 칸 4번(유일한 판) · JB 참고 줄 'p.20-21'은 25 쪽 이미지로 보면 보기 글이 p.27·28에 있음.
+@C05 | v=ok | rel=C03 | lec=CER:32
+K: 정답: 장점 {r:Esthetic} · A variety of products with a wide range of transparency · {r:Biocompatibility} · Monolithic/Bilayered / 단점 {r:Low tensile strength} · {r:Fracture risk} · {r:Antagonist wear} — p.32 위 4줄·아래 3줄(가장 최신 판 답).
+K: 이전 판 답(24판): 장점 Esthetic (no light blocking material) · Biocompatibilty · Monolithic/veneered로 적음(나머지 같음) / 옛 답(한중석 버전 — 강의록에 없는 내려오던 답안): 장점 심미성·연조직 건강·supragingival margin·Less overcontour of emergence profile · 단점 낮은 인장강도·파절 위험·대합치 마모·금속용착.
+K: ⚠ 함정: JB 답 낱말 'transparency' — 슬라이드 원문은 {r:translucency} · 같은 강의 p.19(All-ceramic vs Metal-ceramic 비교)·p.41(Limitations)과 섞지 말 것.
+A: 일치 — 장점 4: p.32 "{r:Esthetic} / A variety of products with a wide range of {r:translucency} / {r:Biocompatibility} / Monolithic/Bilayered" — JB 답 2번은 'transparency'로 적음(낱말 하나 다름). [[CER:32]]
+A: 일치 — 단점 3: p.32 "{r:Low tensile strength} / {r:Fracture risk} / {r:Antagonist wear}" — 글자 그대로. [[CER:32]]
+A: 보강 — JB 해설 '같은 PPT 19쪽 All ceramic vs metal ceramic system 부분도 알고 가기': All-ceramic system "No light-blocking metal / Wide range of translucency / Better soft tissue health with reduced plaque accumulation / Supragingival margin / Reduced overcontouring of the emergence profile" / Metal-ceramic system "Predictable structural performance / No special knowledge required" — JB 해설 목록과 같은 순서 · 1번만 JB 'No light blocking material' ↔ 슬라이드 'No light-blocking {r:metal}'. [[CER:19]]
+A: 보강 — 옛 답(한중석 버전): 장점 4개(심미성 · 연조직 건강 · supragingival margin · Less overcontour of emergence profile)는 p.19 All-ceramic 목록과 같은 축 / 단점 4) '금속용착: 투광성변화, 변색, 알러지'는 25 자료에 없음. [[CER:19]]
+A: 보강 — 23년 학습부가 조준호 자료로 다시 쓴 답(23판 이전 답): 단점 4) Connector dimension↑ 5) Space restricted 6) cantilever 7) heavy bruxism = p.41 Limitations 목록. [[CER:41]]
+M: 필기(p.32): 올세라믹 같은 경우 앞서 말한 여러 장점들이 있지만 잘 깨지고 대합치 마모 가능. [[CER:32]]
+M: 필기(p.19): 올세라믹의 장점 — 검은색 없어 심미적 개선효과 · 투광도 범위 넓음 · plaque accumulation 적고 · supragingival margin 해줘도 검은색 직접 노출 없다. [[CER:19]]
+M: 변형 대비: 장점만·단점만(24년 3번 = 단점 축 '한계점') · 짝 재료 Metal-ceramic 장단점(p.20 · p.21-22) · p.19 비교 목록 · p.41 Limitations. [[CER:20]] [[CER:41]]
+N: 연도 — 23년(25판 2023 칸 1번 괄호 (23,21) · 24판 2023 칸 1번) · 21년(24판·23판 2021 칸 4번 별표 'all ceramic crown의 장단점' — 같은 문제). JB 앞면 = 25판 2023 칸 1번(가장 최신 판 · 원본 10쪽) · 24판 답과 21년 칸 옛 답(한중석 버전 · 23년 학습부 다시 쓴 답)은 답 아래 📜 이전 답.
+@C06 | v=part | rel=C10,C11,C09 | lec=CER:42
+K: 정답: 1) O outer cone crack · I inner cone cracks · R radial cracks (at cementation surfaces) · F flexure cracks (at connectors) / 2) {r:load to fracture} — 1)은 p.42 그림 글자, 2)는 25 자료에 없음(한중석 교수님 문장).
+K: 외울 것: crack 7 — ① Outer (O) cone ② Inner (I) cone ③ Median (M) ④ Partial cone (P) ⑤ Edge chipping (C) ⑥ Radial (R) at {r:cementation surfaces} ⑦ Flexure (F) at {r:connectors}.
+K: ⚠ 함정: 자리까지 — R은 cementation surfaces, F는 connectors · cone crack은 outer·inner 둘(median은 따로 'median (M) cracks').
+A: 일치 — 1) 줄임말 4칸: p.42 "Axisymmetric {r:outer (O)} and {r:inner (I)} cone cracks, and median (M) cracks / {r:Radial (R) cracks at cementation surfaces} / {r:Flexure (F) cracks at connectors}"(R·F 두 줄은 슬라이드 밑줄). [[CER:42]]
+A: 근거 없음 — 2) load to fracture: 25 자료(251107)에 'load to fracture'·thickness 문장 없음 / JB 해설 — 한중석 교수님 슬라이드(221111 1 p.6) / "As the thickness of the ceramic increases, the load required to initiate fracture increases dramatically, as indicated by this term (load to fracture) appearing as the square of the thickness".
+M: 슬라이드 42: Fracture modes — Far field crack "Initiating from the cementation surface beneath the contact" · Near field crack "Close to an applied load (the opposing cusp, occlusal surface)" · 그림 크라운 P·R·O·M·I·C · 브릿지 O·M·I·F. [[CER:42]]
+M: 필기(p.42): 올세라믹은 파절이 항상 어디서 일어나나? — 대부분 파절이 내면에서 시작된다! · 브릿지도 뒤틀리면서 씹으면 커넥터 하방에서 크랙 전파 시작. [[CER:42]]
+M: 변형 대비: 남은 줄임말 M·P·C · 그림 글자를 주고 이름 쓰기(21년 빈칸빵 꼴) · Far field vs Near field 자리 · 같은 한중석 문장의 다른 칸(square of the thickness — 22년). [[CER:42]]
+N: 연도 — 23년(25판 2023 칸 2번 괄호 (23,21) · 24판 2023 칸 2번) · 21년 = 괄호 근거(문제 머리 '(pf.한중석 짤문항 변형)' — 2) = 21년 1번과 같은 물음 · 1) = 21년 2번 crack 빈칸빵을 줄임말로 바꾼 꼴). JB 앞면 = 25판 2023 칸 2번(가장 최신 판 · 원본 10-11쪽) · 24판 해설은 crack 순서만 다름 — 답 아래 📜 이전 답.
+@C07 | v=none | lec=CER:42
+K: 정답: a: {r:fracture toughness}, b: {r:flaw size}, c: {r:교합조정} — 25 자료에 없는 한중석 교수님 문장(221111 1 p.21-22).
+K: 외울 것: 파절강도는 fracture toughness에 비례 · flaw size에 반비례 / flaw는 보철물 제작시 · 환자가 사용할때 · 교합조정 할때 생김 — 최대한 적게.
+K: ⚠ 함정: a·b 자리 맞바꿈(비례 ↔ 반비례) · 25 자료엔 fracture toughness 수치만 있음(e.max CAD 2.25 · zirconia 5~10 MPa·m1/2).
+A: 근거 없음 — a·b·c: 25 자료(251107)에 'flaw'·파절강도 비례 문장 없음 / JB 해설 "조준호교수님 PPT에서는 해당 내용을 찾지 못했습니다" · JB 참고 = 221111 한중석pf New zirconia esthetic vs function vs longevity 1 p.21-22.
+A: 보강 — 가장 가까운 25 글: p.12 e.max CAD "flexural strength of 360MPa, fracture toughness {r:2.25 MPa·m1/2}" / p.14 Zirconia "flexural strength 500~1200 MPa, toughness {r:5~10 MPa·m1/2}". [[CER:12]] [[CER:14]]
+M: 변형 대비: 같은 문장의 다른 칸(b가 생기는 때 셋 · 비례/반비례 뒤집기) · 23년엔 문제 끝 '– 한중석 교수님 문항'으로 그대로 다시 냄.
+N: 연도 — 23년(25판 2023 칸 3번 괄호 (23,21) '– 한중석 교수님 문항' · 24판 2023 칸 3번) · 21년(24판·23판 2021 칸 3번 — 24판 해설 "2023년도 조준호 교수님 파트에서 출제되었습니다"). JB 앞면 = 25판 2023 칸 3번(가장 최신 판 · 원본 11쪽) · 판마다 답 같음.
+@C08 | v=part | lec=CER:15
+K: 정답: ① Bonding: porcelain-zirconia ② Weak porcelain ③ Coefficient of thermal expansion ④ Lower elastic modulus ⑤ Framework design ⑥ Fracture origin: internal defect ⑦ Thermal conductivity — 7개 중 5개(25 자료엔 이 목록 없음 — 한중석 2 p.39).
+K: 외울 것: 25 글과 닿는 항목 — Bonding ↔ p.15 Zirconia veneer {r:주로 기계적 결합} · CTE ↔ p.15 {r:코어보다 0.5–1.0 낮음} · internal defect ↔ p.42 필기 '대부분 파절이 내면에서 시작'.
+K: ⚠ 함정: 문제는 '5가지' — 7항목 중 5개 · 옛 꼴은 'Zirconia framework 위에 laminate veneer를 수복한 경우 파절의 원인 5가지 이상'.
+A: 근거 없음 — 7항목 목록: 25 자료(251107)에 없음 / JB 해설 "조준호 교수님 PPT에서 해당 내용을 찾지 못했습니다" · JB 참고 = 221111 한중석pf New zirconia esthetic vs function vs longevity 2 p.39.
+A: 부분 일치 — ① Bonding·③ CTE: p.15 코어별 비니어 표 Zirconia Veneer "Veneer CTE: {r:코어보다 0.5–1.0 낮음}" / "Core와의 결합: {r:주로 기계적 결합}. Liner 처리를 통한 화학적 결합은 매우 제한적". [[CER:15]]
+A: 부분 일치 — ⑥ Fracture origin: internal defect: p.42 필기 "대부분 파절이 내면에서 시작된다!"(올세라믹 전체 이야기). [[CER:42]]
+A: 보강 — 지르코니아 비니어 complication: p.18 전처리 "Air abrasion · Liner application" / 필기 "pfm 에 비해 지르코니아는 veneering porcelain이 깨지거나 떨어져나가는 등 complication 많음 · 요즘은 이런 liner 등이 많이 좋아져 complication도 많이 줄었다". [[CER:18]]
+M: 슬라이드 15: Lithium disilicate veneer = 코어와 동일 또는 약간 낮음 · 유리상 공유를 통한 화학적 결합/융합 vs Zirconia veneer = 코어보다 0.5–1.0 낮음 · 주로 기계적 결합. [[CER:15]]
+M: 필기(p.15): 지르코니아는 글래스가 없고 입자들만 치밀하게 모여 있어 그 위 비니어 포세린과 화학적 결합은 못하고 기계적 결합 — liner 처리하거나 해서 기계적 결합 강도 높일 수 있으나 완전한 화학적 결합은 아님. [[CER:15]]
+M: 변형 대비: Lithium disilicate veneer와 맞바꾸기(화학적 결합 ↔ 기계적 결합) · Zirconia veneer CTE가 코어보다 낮은 정도(0.5–1.0) · 전처리 2(Air abrasion · Liner application). [[CER:15]] [[CER:18]]
+N: 연도 — 23년(25판 2023 칸 4번 괄호 (23,22) '– 한중석 교수님 문항' · 24판 2023 칸 4번) · 22년(24판 2022 칸 7번 · 23판 2022 칸 8번 · 25판 2022 칸 7번 '23년 4번' 가리킴) · 20년(23판 2020 칸 3번 별표 'Zirconia framework 위에 laminate veneer를 수복한 경우 파절의 원인 5가지 이상' — 답 7항목 같아 합침). JB 앞면 = 25판 2023 칸 4번(가장 최신 판 · 원본 11쪽) · 판마다 답 같음(해설만 다름).
+@C09 | v=none | rel=C10,C06 | lec=CER:42
+K: 정답: {r:square of the thickness} — 한중석 교수님 문장 "… as indicated by this term load to fracture appearing as the ( )"의 끝 칸(25 자료에 없음).
+K: 외울 것: 문장 통째 — As the thickness of the ceramic increases, the load required to initiate fracture increases dramatically, as indicated by this term ({r:load to fracture}) appearing as the {r:square of the thickness}.
+K: ⚠ 함정: 같은 문장에서 칸만 바뀜 — 관련 문항은 load to fracture 칸, 이 문항은 square of the thickness 칸.
+A: 근거 없음 — 25 자료(251107)에 이 문장·'square of the thickness' 없음 / JB 참고 = 221111 한중석pf New zirconia esthetic vs function vs longevity 1 p.6 · JB 해설 "세라믹 두께에 따라 파절되는 하중을 계산한 결과, 두께의 제곱(square of thickness)에 비례하여 load가 증가하는 것을 알 수 있었다".
+A: 보강 — 가장 가까운 25 글: p.40 "3Y zirconia: No failure at both 0.7 mm & 1.2 mm / 4Y zirconia: 50% fracture at 0.7 mm, but no fracture at 1.2 mm / 5Y zirconia: 75% fracture at 0.7 mm, 35% fracture at 1.2 mm" — 두꺼울수록 파절이 적음(같은 방향). [[CER:40]]
+M: 변형 대비: 같은 문장의 load to fracture 칸(21년 1번 · 23년 2번 2)) · 'dramatically'·'initiate fracture' 칸.
+N: 연도 — 22년(25판 2022 칸 3번 · 24판·23판 2022 칸 3번 · 괄호 없음). JB 앞면 = 25판 2022 칸 3번(가장 최신 판 · 원본 14쪽) · 25판 해설 '2022년도와 다른 곳에서'는 23판 '작년과 다른 곳에서'(= 21년 칸)를 옮겨 적은 글.
+@C10 | v=none | yrs=23 | yrsnote=24판 2021 칸 1번 해설 "2023년도에도 출제되고 있으니" — 2023년 2번 2)(조준호 '한중석 짤문항 변형')가 같은 물음·같은 답 | rel=C06,C09 | lec=CER:42
+K: 정답: {r:load to fracture} — 한중석 교수님 문장 "… the load required to initiate fracture increases dramatically, as indicated by this term (load to fracture) …"의 괄호 속 용어(25 자료에 없음).
+K: 외울 것: thickness가 증가하면 파절을 시작하는 데 필요한 load가 dramatic하게 증가 — 이 term이 load to fracture · 두께의 제곱(square of the thickness)으로 커짐.
+K: ⚠ 함정: 복원 문제 글 '이 term'이 가리키는 것이 불확실(23판 학습부 "복원된 문제가 정확히 뭘 말하는지 모르겠습니다") — 답은 슬라이드 괄호 속 용어.
+A: 근거 없음 — 25 자료(251107)에 'load to fracture' 문장 없음 / JB 해설 "조준호 교수님 PPT에서는 해당 내용을 찾지 못했지만, 2023년도에도 출제되고 있으니 숙지하시면 좋을 것 같습니다" · JB 참고 = 221111 한중석pf New zirconia esthetic vs function vs longevity 1 p.6.
+A: 보강 — 가장 가까운 25 글: p.40 지르코니아 0.7 mm vs 1.2 mm 파절률(두꺼울수록 파절 적음). [[CER:40]]
+M: 변형 대비: 같은 문장 다른 칸 square of the thickness(22년 3번) · 23년 2번 2)는 빈칸 꼴로 같은 물음.
+N: 연도 — 21년(24판·23판 2021 칸 1번 · 괄호 없음 · 문제 끝 별표) · 23년 = 24판 2021 칸 1번 해설 '2023년도에도 출제' — 23년 2번의 둘째 물음과 같은 물음·같은 답. JB 앞면 = 24판 2021 칸 1번(가장 최신 판 · 원본 12쪽).
+@C11 | v=ok | rel=C06 | lec=CER:42
+K: 정답: Outer (O) cone crack · Inner (I) cone cracks · Median (M) cracks · Radial (R) cracks at cementation surfaces · Flexure (F) cracks at connectors · Edge chipping cracks (C) · Partial cone (P) cracks — p.42 그림 글자 7.
+K: 외울 것: 글자 → 이름 · R은 {r:cementation surfaces} · F는 {r:connectors} / Far field crack은 cementation surface에서 · Near field crack은 applied load 가까이.
+K: ⚠ 함정: 슬라이드 첫 줄 하나에 O·I·M 셋이 묶임("Axisymmetric outer (O) and inner (I) cone cracks, and median (M) cracks") — 셋으로 나눠 써야 7개.
+A: 일치 — 7개: p.42 "Axisymmetric outer (O) and inner (I) cone cracks, and median (M) cracks / Partial cone (P) cracks / Edge chipping cracks (C) / {r:Radial (R) cracks at cementation surfaces} / {r:Flexure (F) cracks at connectors}" — JB 답 7줄과 같은 낱말 · 그림 글자 P·R·O·M·I·C·F. [[CER:42]]
+M: 슬라이드 42: Fracture modes — Far field crack "Initiating from the cementation surface beneath the contact" · Near field crack "Close to an applied load (the opposing cusp, occlusal surface)" / 출처 Zhang Y et al. (2013) Fatigue of dental ceramics. J Dent. [[CER:42]]
+M: 필기(p.42): 대부분 파절이 내면에서 시작된다! · 브릿지도 뒤틀리면서 씹으면 커넥터 하방에서 크랙 전파 시작. [[CER:42]]
+M: 변형 대비: 23년 2번 1)처럼 줄임말만(O·I·R·F) · 남은 M·P·C · 자리(cementation surfaces·connectors) 빈칸. [[CER:42]]
+N: 연도 — 21년(24판·23판 2021 칸 2번 · 괄호 없음 · 문제 머리 별표). JB 앞면 = 24판 2021 칸 2번(가장 최신 판 · 원본 12쪽) · 24판 해설 "2023년도 조준호 교수님 파트에서 변형되어 출제되었습니다"(23년 2번 1) 줄임말 — 묻는 것이 달라 연도는 더하지 않고 관련 문항으로 이음).
+@C12 | v=none | lec=CER:42
+K: 정답: Hoop stress = Crown cementation 시에 가해지는 {r:lateral, circumferential force} — Axial wall이나 margin이 tight하면 가장 얇은 {r:margin}에 fracture · 세라믹이 금속보다 쉽게 깨지므로 미리 adaptation·내면 처리(25 자료에 없음).
+K: ⚠ 함정: JB 해설 — 이 답은 이전 학습부가 정리한 답안(슬라이드엔 교수님 설명만) / 그 전에 내려오던 답 "Hoop stress is the force exerted circumferentially (perpendicular to the axis of the radius of the object) in both directions on every particle in the cylinder wall."
+A: 근거 없음 — 25 자료(251107)에 'hoop' 없음 / JB 참고 = 221111 한중석pf New zirconia esthetic vs function vs longevity 2 p.6 · JB 해설 "해당 내용은 교수님께서 설명한 내용만 슬라이드에 있습니다. 위 답안은 이전 학습부가 정리하여 남겨둔 답안입니다."
+A: 보강 — 가장 가까운 25 글: p.42 "{r:Radial (R) cracks at cementation surfaces}" · Far field crack "Initiating from the cementation surface beneath the contact" / p.34 "둥근 내부 선각: 도재에 응력이 집중 x". [[CER:42]] [[CER:34]]
+M: 변형 대비: 정의(lateral, circumferential force)와 임상적 의의(tight한 axial wall·margin → margin 파절 → adaptation·내면 처리)를 나눠 묻는 꼴.
+N: 연도 — 21년(24판·23판 2021 칸 5번 · 괄호 없음 · 문제 머리 별표). JB 앞면 = 24판 2021 칸 5번(가장 최신 판 · 원본 13쪽).
+@D01 | v=none | lec=DIG:16
+K: 정답: interdental closure · incisal edge configuration · zenith of the gingival contour — 24년 강의 첫 슬라이드의 {r:14 fundamental objective criteria} 중 세 칸(JB 해설 · 25 자료 29쪽엔 목록 없음).
+K: 외울 것: ① gingival health ② interdental closure ③ tooth axis ④ zenith of the gingival contour ⑤ balance of the gingival levels ⑥ level of the interdental contact ⑦ relative tooth dimensions ⑧ basic features of tooth form ⑨ tooth characterization ⑩ surface texture ⑪ color ⑫ incisal edge configuration ⑬ lower lipline ⑭ smile symmetry
+K: 이해: 25 강의는 같은 '디자인' 자리를 정상 치아 형태(치아형태학)·상악중절치 그림으로 다룸 — 14 criteria 자체는 25 자료에 근거 없음.
+A: 근거 없음 — 정답 요지 "interdental closure, incisal edge configuration, zenith of the gingival contour": 25 자료 1~29쪽에 14 criteria 목록 없음 · 첫 슬라이드(p.1-2)는 표지 "전부도재관의 적응증, 디자인 및 접착과정"과 "고정성치과보철학 제3판 (제12장, 제14장, 제20장)"뿐. [[DIG:2]]
+A: 보강 — JB 해설 근거: "올해 강의에는 없는 내용입니다. 작년 필기를 참고하여 작성하였습니다" · "14가지의 fundamental objective criteria가 교과서에 주어져 있습니다" — 25 자료에 있는지: 없음(교과서 쪽 번호도 JB에 없음).
+A: 보강 — 가장 가까운 25 내용: p.15-16 "전부도재관 디자인" = workflow의 {r:CAD}(Computer-Aided Design) 과정 / p.17 치아 형태 그림(Imbrication lines · Mamelons · Mesial/Distal incisal angle · Height of contour) — 치은·미소 쪽 기준(interdental closure · zenith)은 25 자료에 없음. [[DIG:17]]
+M: 슬라이드 17: 전치 그림 라벨 — Labial(Imbrication lines · Distal incisal angle · Mesial incisal angle · Mamelons) · Lingual(Marginal ridges · Lingual fossa · Cingulum) / Incisal(Incisal ridge) · Mesial·Distal(Height of contour) / 오른쪽 The Permanent Maxillary/Mandibular Posterior Occlusal Aspect. [[DIG:17]]
+M: 필기(p.16): 자연스럽고 심미적인 디자인을 위해서는 원래 치아의 정상적인 형태를 잘 알고있어야 함 · 1학년 때 배운 치아형태학 · 사람마다 다른 형태를 가지고 있지만 각 치아마다 특징적이고 기본적인 형태는 존재함.
+M: 변형 대비: 14 criteria의 남은 11칸(요점 '외울 것'의 ①·③·⑤~⑪·⑬·⑭)으로 바꿔 물을 수 있음 — 근거는 JB 해설 목록뿐.
+N: 연도 — 25판 2024 칸 6번 · JB 괄호 없음 → 배지 24 · 다른 판본 없음 · JB 앞면 = 25판 · JB 참고 = 241129_최순영_치과용 CADCAM의 소개 All ceramic restoration의 cementation 과정 p.2(24 강의 파일 — 25 자료 아님).
+@D02 | v=part | lec=DIG:18
+K: 정답: 2번 (해설 참고) — 보기 = triangular 형태의 #11 → 정중선 기준 좌우대칭 = 반대편 {r:#21}이면서 같은 {r:triangular} 형태(복원 선지 2. triangular #21).
+K: ⚠ 함정: 1. 보기와 같은 그림 · 4. triangular #11 = 같은 쪽 치아라 대칭 아님 / 3. ovoid #21 = 반대편이지만 형태가 다름.
+K: 이해: 25 자료의 바탕 = p.17-18 치아 형태 그림의 {r:Mesial incisal angle} · {r:Distal incisal angle} 라벨과 필기 '상악중절치에서 가장 중요한 요소는 incisal angle: mesial은 예각, distal은 둔각'(p.18) · 대칭·형태 이름과 그림·선지는 복원되지 않음(JB "답은 2번으로 추정").
+A: 부분 일치 — 2번 ○(triangular #21): p.17-18 치아 형태 그림 — 면 이름 Labial · Lingual · Incisal · Mesial · Distal과 "{r:Mesial incisal angle}" · "{r:Distal incisal angle}" 라벨 · p.18 Labial View · Proximal View / 대칭(#11 ↔ #21)과 triangular/ovoid 형태 이름은 25 자료에 없음(JB 해설). [[DIG:18]]
+A: 보강 — 1번 ×(보기와 같은 그림): 보기 그대로 = #11 — JB 해설 "정중선을 기준으로 좌우대칭인 것을 찾는 문제"라 같은 그림은 답이 아님.
+A: 보강 — 3번 ×(ovoid #21): 반대편 치아지만 ovoid — 보기(triangular)와 형태가 다름 · 형태 이름은 25 자료에 없음.
+A: 보강 — 4번 ×(triangular #11): 형태는 같지만 같은 #11 — 좌우가 바뀌지 않음.
+M: 슬라이드 18: 상악중절치 Labial View — {r:Height of contour}(양쪽) / Proximal View — Height of contour · {r:Cementoenamel junction curvature} · {r:Contact area} / 왼쪽 그림은 p.17과 같은 전치 라벨 그림. [[DIG:18]]
+M: 필기(p.18): 상악중절치에서 가장 중요한 요소는 incisal angle: mesial은 예각, distal은 둔각 · 그 외에 height of contour(근원심), contact area 위치 등도 고려해야함 · 약간씩 조정만 해줘도 훨씬 자연스럽고 정상 치아처럼 보임.
+M: 필기(p.17): 보철물을 이 환자에 맞게 더 자연스럽고 심미적으로 고쳐줘야 하는데 손으로 할 수 있으려면 눈으로 볼 수 있어야 함 → 정상 구조, 자연스럽게 예쁜 구조가 뭔지를 많이 보며 익힐 필요가 있다.
+M: 변형 대비: 같은 쪽 그림 라벨 이름 쓰기(Imbrication lines · Mamelons · Marginal ridges · Lingual fossa · Cingulum · Incisal ridge · Height of contour · Contact area) · Labial View와 Proximal View 라벨 구별 · 디자인 = workflow의 CAD 과정(p.15-16). [[DIG:17]]
+N: 연도 — 24판 2023 칸 6번 · 25판 2023 칸 6번(같은 글 '선지 미복원') · JB 괄호 없음 → 배지 23 · JB 앞면 = 25판(가장 최신 판) · 두 판 답 같음 · 24판 참고 = 241129 강의 p.11 · 25판 참고 = 251128 p.17-18.
+@D03 | v=ok | lec=DIG:3
+K: 정답: C-A-B — p.3 Digital Dental Workflow 화살표 {r:Intraoral Scanning} → {r:CAD}(Computer-Aided Design) → {r:CAM}(Computer-Aided Manufacturing)의 차례 = C 구강 스캐너 → A 3D 디자인 프로그램 → B 밀링 머신.
+K: 이해: 디지털이 전통 방식을 대신함 — 인상체 대신 구강스캐너 · 왁스업 대신 CAD · 주조 대신 CAM(p.3 필기).
+A: 일치 — C 구강 스캐너(첫째): p.3 첫 화살표 "{r:Intraoral Scanning}" — 사진 캡션 Dentsply Sirona. [[DIG:3]]
+A: 일치 — A 3D 디자인 프로그램(둘째): p.3 둘째 화살표 "{r:CAD} (Computer-Aided Design)" — 사진 캡션 3shape. [[DIG:3]]
+A: 일치 — B 밀링 머신(셋째): p.3 셋째 화살표 "{r:CAM} (Computer-Aided Manufacturing)" — 사진 캡션 Dentsply Sirona · Arum dentistry. [[DIG:3]]
+A: 보강 — 순서 근거: JB 해설은 "명확히 순서가 제시된 슬라이드는 없지만, 강의 전반의 흐름을 바탕으로"라 했으나 25 자료엔 화살표 차례가 그대로(p.3 · 같은 그림 p.5 · p.15 · p.16). [[DIG:5]]
+M: 필기(p.3): 요즘 보철물 제작에 디지털 기술이 사용 안되는 곳 거의 없다 · 인상체 대신 구강스캐너 이용하기도, 왁스업 대신 컴퓨터 프로그램상에서 보철물 디자인하기도 함 (CAD), 주조 대신 컴퓨터가 직접 보철물을 만들기도 함 (CAM) → 전체적인 디지털 과정 = Digital dental workflow.
+M: 필기(p.4): 전통적인 방식 — 인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업 · 요즘은 이런 과정이 아니라 컴퓨터 상에서 디자인하고 만들게 됨 — 디지털 기술.
+M: 슬라이드 16: 전부도재관 디자인 — 같은 workflow 그림에서 {r:CAD} 칸만 색이 다름(디자인 = 중간의 CAD 과정). [[DIG:16]]
+M: 변형 대비: 약어 풀이(CAD = Computer-Aided Design · CAM = Computer-Aided Manufacturing) / CAD/CAM으로 만드는 Machinable Ceramics 2가지 — (1) IPS e.max CAD : {r:Lithium disilicate} (2) {r:Zirconia}(3mol% Yttria-stabilized tetragonal zirconia polycrystals). [[DIG:13]]
+N: 연도 — 24판 2023 칸 7번 · 25판 2023 칸 7번(같은 글) · JB 괄호 없음 → 배지 23 · JB 앞면 = 25판(가장 최신 판) · 두 판 답 같음 C-A-B · 24판 참고 = 241129 강의 p.7-10 · 25판 참고 = 251128 p.3.
+@L01 | v=na | lec=LAM
+K: 정답: {r:depth guide bur} — 문제 그림에서 사용한 기구 이름(그림 가운데 한 곳은 검게 덧칠됨).
+K: 이해: 문제 그림 글자 "Tooth reduction according to preexisting surface" · "Tooth reduction according to final objective (index)" · "Additive waxup" — 같은 그림이 나오면 이 글자로 알아봄.
+A: 정답 요지 — "depth guide bur" / 대응 강의자료가 없어 쪽 인용 없음 — JB 참고 줄 '231101_이창하pf_Laminate를 이용한 전치부 심미수복 p.17'은 받은 자료에 없음
+N: JB 앞면 = 23판 2022 칸 4번(가장 최신 판 · 괄호 없음 · 칸 해 2022 · 이창하) · 24·25판 2022 칸에는 없음(이창하 세 문항을 뺌)
+@L02 | v=na | lec=LAM
+K: 정답: 세 개 — A: {r:Butt joint} · B: {r:Palatal chamfer} · C: {r:Feather edge}.
+K: 이해: 문제 글 "(그림보여주면서 세개 맞추기)" — 이름 셋을 그림 A·B·C 단면에 짝지어 씀.
+A: 정답 요지 — "▪ A: Butt joint ▪ B: Palatal chamfer ▪ C: Feather edge" / 대응 강의자료가 없어 쪽 인용 없음 — JB 참고 줄 '231101_이창하pf_Laminate를 이용한 전치부 심미수복 p.21'은 받은 자료에 없음
+N: JB 앞면 = 23판 2022 칸 11번(가장 최신 판 · 괄호 없음 · 칸 해 2022 · 이창하) · 24·25판 2022 칸에는 없음(이창하 세 문항을 뺌)
+@L03 | v=na | lec=LAM
+K: 정답: 다섯 가지 — ① Hardly {r:enamel bonding} ② Too large defect ③ Severe malformation and displacement ④ {r:Bruxism} ⑤ {r:Clenching}.
+A: 정답 요지 — "▪ Hardly enamel bonding ▪ Too large defect ▪ Severe malformation and displacement ▪ Bruxism ▪ Clenching" / 대응 강의자료가 없어 쪽 인용 없음 — JB 참고 줄 '231101_이창하pf_Laminate를 이용한 전치부 심미수복 p.11'은 받은 자료에 없음
+M: 변형 대비: 첫 줄 enamel bonding 축은 같은 과목 Resin Bonded Restoration 강의에도 — p.19 필기 "PLV 프렙시에는 bonding을 위해 법랑질을 남겨야 한다" [[RBR:19]]
+M: 변형 대비: 넷째 줄 Bruxism 축은 같은 과목 심미수복재료 – 도재 강의에도 — p.41 "Limitations of All-Ceramic System" 목록의 "{r:Heavy bruxism} or parafunctional activity" [[CER:41]]
+N: JB 앞면 = 23판 2022 칸 12번(가장 최신 판 · 괄호 없음 · 칸 해 2022 · 이창하) · 24·25판 2022 칸에는 없음(이창하 세 문항을 뺌)
+@G01 | v=ok | rel=G14,G17,G04 | lec=PER:50
+K: 정답: {r:mucogingival junction} — p.50 Miller 분류에서 Class I은 MGJ까지 가지 않고(not to extend to MGJ), Class II는 MGJ에 닿거나 넘는다(Extend to or beyond MGJ).
+K: 외울 것: 기준 둘 = ① interdental bone/soft tissue가 온전한가(I·II intact vs III·IV loss and/or tooth malposition) ② MGJ를 넘는가(I vs II · {n:III vs IV}).
+K: ⚠ 함정: I·II와 III·IV를 가르는 기준은 MGJ가 아니라 interdental bone/soft tissue — '침범 여부' 빈칸은 MGJ.
+A: 일치 — 답: p.50 "Class I & II: intact interdental bone/soft tissue / - not to extend to {r:MGJ} (Class I) / - Extend to or beyond {r:MGJ} (Class II)" — 빈칸 = MGJ(mucogingival junction). [[PER:50]]
+A: 보강 — JB 해설 = 슬라이드 글 그대로: p.50 "Class III & IV: interdental bone/soft tissue loss and/or tooth malposition / - remain coronal to apical extent of marginal tissue recession (Class III) / - its level corresponding to apical extent of the marginal tissue recession (Class IV)" · 그림 class I~IV. [[PER:50]]
+M: 슬라이드 51(학습부가 남긴 옛 판): "Class I & II - intact interdental bone / Class III & IV - interdental bone loss and/or malposed tooth" · 그림 Class I~IV에 MGJ 라벨 · (Miller 1985). [[PER:51]]
+M: 필기(p.50·51): "classification 자체가 중요하기보다, 잘 치료될지 결정해준다는 점이 중요" / "Class 1,2는 soft tissue surgery로 거의 회복 됨. 3.4는 회복 안된다" / "1은 MG junction 안넘고 2는 넘음 · 3은 junction안넘고 4는 넘음". [[PER:50]] [[PER:51]]
+M: 변형 대비: III·IV를 나누는 기준(필기 = MGJ) · I·II vs III·IV 기준(interdental bone/soft tissue) · 그림 주고 class 고르기(20년 class II) · 예후 T/F(23년 Class III 100% 회복 F) · 아직 안 물은 Class IV 행 글. [[PER:50]]
+N: 연도 — 24년(25판 2024 칸 13번 · 괄호 없음). JB 앞면 = 25판 2024 칸 13번(이 문항이 실린 유일한 판) · JB 참고 = 241213 자료 p.50-51.
+@G02 | v=none | lec=PER:61
+K: 정답: 대구개동맥(major palatine artery) — 25 자료에 없음(JB 해설 = 치주과학 교과서 7판 Ch37 p.576).
+K: 외울 것: JB 해설 — 상악 제2대구치 원심면 가까이의 구개공(palatine foramen)에서 나와 제2대구치 구개면과 구개봉선(midline raphe) 사이 중심부를 지나 전방 주행 → 제2·제3대구치 부위를 피하고 소구치·제1대구치 부위에서 채득.
+A: 근거 없음 — 25 자료(251212) 글층·쪽 이미지에 '대구개동맥'·'palatine artery' 없음 · 가장 가까운 쪽 = p.61 Langer & Langer (1983) 도해(입천장에서 connective tissue 채취) · p.58 Free gingival graft(입천장 잇몸을 떼다가 붙임 — 필기). [[PER:61]] [[PER:58]]
+A: 보강 — JB 해설(교과서 p.576): "구개면에서 전층 이식편을 채득할 때 필히 고려해야 할 해부학적인 구조물은 대구개동맥(major palatine artery)이다 … 따라서 전층 이식편을 채득할 경우는 제2대구치와 제3대구치 부위를 피하는 것이 좋으며 소구치와 제1대구치 부위에서 얻는 것이 좋다."
+M: 필기(p.61): "Trapezoidal 한 partial thickness flap을 열고 입천장에서 껍데기 말고 속살을 떼어다가 옮긴 후 뚜껑 덮음" · 필기(p.67) "떼어낸 부위인 Palate는 한달정도면 잘 아문다". [[PER:61]] [[PER:67]]
+M: 변형 대비: 공여부(palate)에서 피할 부위(제2·제3대구치)·얻는 부위(소구치·제1대구치) — JB 해설 근거만 · 25 자료로는 FGG(겉 잇몸) vs FCTG(속살) 차이. [[PER:58]] [[PER:61]]
+N: 연도 — 24년(25판 2024 칸 14번 · 괄호 없음). JB 앞면 = 25판 2024 칸 14번(유일한 판) · 25판 멘트 "일부 PPT에서 출처를 찾을 수 없는 문제들은 치주과학 교과서 Ch.37 심미적 치주치료에서 출제된 것으로 보입니다".
+@G03 | v=none | lec=PER:16
+K: 정답: 교정력에 의한 강제 치아 맹출술 (forced tooth eruption) — 25 자료에 없음(JB 해설 = 치주과학 교과서 7판 Ch37 p.566).
+K: 외울 것: JB 해설(교과서) — 치조골정과 파절선·우식병소 사이 최소 4mm 건강치질 노출 · 치은변연을 새 근단 부위에 두려면 인접치아도 치조골성형술 · 전략적 가치는 충분하지만 수술로 주변 지지조직 소실·비심미성이 문제면 강제 치아 맹출술.
+K: ⚠ 함정: 25 자료의 치관연장술 카드(원하는 margin 아래 3mm 골 삭제)와 다른 수치 — 교과서 '최소 4mm 건강치질'은 JB 해설에만.
+A: 근거 없음 — 25 자료(251212) 글층·쪽 이미지에 'forced eruption'·'맹출' 없음 · 가장 가까운 카드 = 치관연장술 증례(p.16-25 — 원하는 마진 3mm 상방까지 노출 · 필기). [[PER:16]]
+A: 보강 — JB 해설(교과서 p.566): "일반적으로 치조골정과 파절선이나 우식병소 사이는 최소한 4mm의 건강치질이 노출되어야 한다 … 만일 전략적 가치는 충분하지만 수술로 인하여 주변 지지조직의 소실과 비심미성이 문제가 된다면 교정력에 의한 강제 치아 맹출술(forced tooth eruption)을 선택한다."
+M: 필기(p.16): "원하는 마진 3mm 상방까지 노출시키기" · "Sulcus 1mm / Junctional epi 1mm / Connective att. 1mm". [[PER:16]]
+M: 변형 대비: 같은 교과서 문장의 수치(최소 4mm 건강치질 · 치유 동안 치근 2~3mm를 연조직이 덮음 · 치은 위로 1~2mm) — JB 해설 근거만 · 25 자료 쪽은 3mm 골 삭제. [[PER:16]]
+N: 연도 — 24년(25판 2024 칸 15번 · 괄호 없음 · 추가복원 문장 "subgingival fracture margin, caries 등으로 crown lengthening 시행하기로 했는데, 주위 조직 손상 등이 걱정될 때는 [ ]를 한다"). JB 앞면 = 25판 2024 칸 15번(유일한 판).
+@G04 | v=ok | lec=PER:50
+K: 정답: F — {n:Class 1,2는 soft tissue surgery로 거의 회복 · 3,4는 회복 안 된다}(interdental loss가 있으면 치주 수술만으로 100% 회복 어려움).
+K: 이유: Class III·IV = interdental bone/soft tissue {r:loss} and/or tooth malposition(p.50) → {n:bone loss 있으면 골 높이까지밖에 cover 못함}.
+K: ⚠ 함정: 'FCTG'(가장 결과 좋은 술식 — p.52)여도 III는 100% 회복 아님 · 23년 '(변형)' = 낱말 하나 바꾼 T/F.
+A: 일치 — F: p.50 "Class III & IV: interdental bone/soft tissue {r:loss} and/or tooth malposition" / 필기 "Class 1,2는 soft tissue surgery로 거의 회복 됨. 3.4는 회복 안된다" · "interdental이 망가지지 않았으면 class I, II → 해결 가능 · class III, IV는 interdental이 망가짐 → 해결 불가능". [[PER:50]]
+A: 일치 — 같은 설명(옛 판 쪽): p.51 필기 "class 3,4; interdental loss가 있음 → 100프로 우리가 치주수술로 커버하기눈 어려움" · "잘해봐야 부분적인 coverage에 불과함". [[PER:51]]
+M: 슬라이드 52: Root coverage — Free connective tissue graft에 별 표시·강조 글자 · 필기 "가장 결과 좋은 술식". [[PER:52]]
+M: 필기(p.62): "interdental b, soft tissue intact 한지 먼저 봐라 · 둘다 intact함 · 마음껏 할 수 있다". [[PER:62]]
+M: 변형 대비: 'Class I·II에 FCTG → 100% 회복 가능'(○) · 'Class IV도 soft tissue graft로 회복'(×) · '분류에서 가장 중요한 것은 recession 크기'(× — 필기 "Defect 얼마나 큰지는 중요하지 않다"). [[PER:50]]
+N: 연도 — 23년(25판 2023 칸 11번 · 24판 2023 칸 11번 — 둘 다 '(변형)' · 괄호 연도 없음). JB 앞면 = 25판 2023 칸 11번(가장 최신 판) · JB 참고 = 231208 자료 p.51.
+@G05 | v=ok | lec=PER:26
+K: 정답: F — 다이아몬드 버로 쉽게 제거되지만 재발이 잘 된다(JB 해설).
+K: 외울 것: p.26 Melanin Pigmentation = {r:Normal Finding} · Molanocyte, Melanophore · Tx ① {r:Grinding} extenal gingiva using diamond bur and/or blade ② {r:Surgical excision} of gingiva(원문 철자) / {n:재발 — grinding은 6개월(~1년) · 통째 절제는 2~3년 뒤}.
+K: ⚠ 함정: 앞 절반 '간단한 술식으로 제거 가능'은 맞고 뒤 절반 '재발될 가능성은 없다'가 틀림 — 두 조각 T/F.
+A: 일치 — '간단히 제거': p.26 "Tx - {r:Grinding} extenal gingiva using {r:diamond bur} and/or blade - Surgical excision of gingiva" / 필기 p.27 "표면 마취하고 스윽 갈면 10분내에 끝남". [[PER:26]] [[PER:27]]
+A: 일치 — '재발': 필기 p.28 "26. 하지만 문제는 recur한다는 것이다 … "6개월 있으면 다시 올라올 수 있어요~"" / p.29 "다이아몬드 버로 긁어내는 건 표층만 깍아 내는 꼴 → 밑에있는 melanocyte나 melanophore가 제거가 안되므로 결국 재발됨". [[PER:28]] [[PER:29]]
+M: 슬라이드 29: 조직 사진 라벨 "M– Melanocyte · C– Melanophore". [[PER:29]]
+M: 필기(p.30-32): "periosteum만 남기고 뜯어버렸다 · 2~3년까지는 재발 없을 것" · "이렇게 떼어내도 3~4년 지나니까 또 올라오더라" · "유전자에 의해 정해진 것이므로 결국 재발을 피할 수는 없다". [[PER:30]] [[PER:32]]
+M: 변형 대비: 'Melanin pigmentation은 병적 소견'(× — Normal Finding) · Tx 2가지 쓰기 · 재발 이유(melanocyte가 basal cell layer·spinous cell layer — 필기) · 'periosteum만 남기고 절제하면 재발하지 않는다'(× — 3~4년 뒤 또). [[PER:26]] [[PER:29]]
+N: 연도 — 23·21년(25판 2023 칸 12번 괄호 (23,21) · 24판 2023 칸 12번 '(짤)' · 24판 2021 칸 18번 · 23판 2021 칸 18번). JB 앞면 = 25판 2023 칸 12번(가장 최신 판) · JB 참고 = 231208 자료 p.26-32.
+@G06 | v=ok | rel=G11,G09,G10 | lec=PER:4
+K: 정답: 생물학적 폭경 = 접합상피 {r:0.97mm} + 결합조직 {r:1.07mm}(총 약 {r:2.04mm}) · gingiva가 치아에 붙을 수 있는 자리(Dentogingival junction 약 2mm) · 붙을 자리가 없으면 두 반응 1) remained bone level + persistent inflammation 2) bone loss + gingival recession.
+K: 외울 것: 도해 = p.3 모식도 라벨(Gingival sulcus · FREE OR MARGINAL GINGIVA · Marginal groove · ATTACHED GINGIVA · Mucogingival junction · ALVEOLAR MUCOSA) + p.4 그림 수치(치은구 0.5~1.0mm · 접합상피 0.71~1.35mm · 결합조직 1.06~1.08mm) / 이전 판 답(24판까지): 첫 줄(수치)만.
+K: ⚠ 함정: 치은구(sulcus)는 생물학적 폭경에 넣지 않음 — 골 상방은 폭경 2mm + sulcus 1mm = 약 3mm.
+A: 일치 — 수치: p.4 그림 "접합상피 (0.71~1.35mm) = {r:0.97mm} / 결합조직 (1.06~1.08mm) = {r:1.07mm} / 생물학적 폭경 = {r:2.04}" · Gargiulo (1961). [[PER:4]]
+A: 일치 — 정의: p.4 아래 상자 필기 "생물학적 폭경이란 접합상피와 결합조직을 합친 대략 2.04mm정도의 width" / 24 필기 "이는 반드시 잇몸에 붙어있어야 한다 … 대략 1mm씩 꼭 잇몸이 치아에 붙어야 하는 zone 2mm". [[PER:4]]
+A: 일치 — 도해: p.3 모식도 라벨 "Gingival sulcus / FREE OR MARGINAL GINGIVA / Marginal groove / ATTACHED GINGIVA / Mucogingival junction / ALVEOLAR MUCOSA". [[PER:3]]
+A: 일치 — 두 반응(가장 최신 판 답 뒷부분): p.15 "Two different responses / - {r:remained bone level} + {r:persistent inflammation} / - {r:bone loss} + {r:gingival recession}". [[PER:15]]
+M: 슬라이드 4: 그림 오른쪽 라벨 변연치은 · 부착치은 → 각화치은 · 위쪽 '치관 치경측 1/4'. [[PER:4]]
+M: 필기(p.4): "생물학적 폭경은 sulcus는 포함시키지 않음! · 생물학적 폭경과 별개로 alveolar crest 상부로 3mm 정도의 gingival height 있어야함" / "Junctional epi는 hemidesmosome으로 붙어있고(epithelial att.) gingiva는 gingival fiber group으로 root cementum에 붙어있다(CT att.)". [[PER:4]]
+M: 변형 대비: 수치 빈칸(0.97 · 1.07 · 2.04) · 'BW에 치은열구 포함'(× — 21년) · 'BW 침범 반응 2가지'(22·21년) · 그림 라벨 빈칸(변연치은·부착치은·각화치은) · 골 상방 3mm(crown lengthening — 20년). [[PER:4]] [[PER:15]]
+N: 연도 — 23·22년(25판 2023 칸 13번 괄호 (23,22) · 25판 2022 칸 4번 = '23년 13번' 가리킴 · 24판 2023 칸 13번 '(짤)' · 24판 2022 칸 4번 · 23판 2022 칸 5번) / JB 앞면 = 25판 2023 칸 13번(가장 최신 판 — 정의·두 반응 줄이 더해짐) · 24판까지 답은 수치 첫 줄 — 답 아래 📜 이전 답 · JB 참고 = 231208 자료 p.3,4.
+@G07 | v=ok | lec=PER:85
+K: 정답: {r:creeping attachment} — 필기 p.85 "Creeping attachment > 유리치은이식 이후 치은변연이이 치관쪽으로 올라가는 현상"(문제 글 그대로) · 슬라이드 제목 Creeping Attachment.
+K: 외울 것: {n:gingival margin의 coronal migration · 잠행부착 · gingival recession의 반대 개념 · FGG or FCTG 뒤 각화 치은이 두툼하게 안착되면 · 수술 자리뿐 아니라 인접 치아도}.
+K: ⚠ 함정: 1~2mm 정도(1년에 1.5mm)로 조금씩 — 수술 직후가 아니라 시간이 지나며.
+A: 일치 — 답: p.85 제목 "{r:Creeping Attachment}" · 사진 1 M · 3 M · 6 M · 1 Y / 필기 "Creeping attachment > 유리치은이식 이후 치은변연이이 치관쪽으로 올라가는 현상". [[PER:85]]
+A: 일치 — JB 해설 4줄: p.87 글층 필기 "수술 후 잇몸이 조금씩 자라 오름, coronally / gingival recession의 반대 개념 / 언제??? : FGG or FCTG를 한 후 잇몸이 두툼해지고 각화 치은이 잘 형성되어 잘 안착되면 가끔 가능한 현상 / 반드시 수술한 자리에서 일어나는 것도 아님 · 주변의 치아에서도 같이 가능" — 해설과 같은 글. [[PER:87]]
+M: 슬라이드 87·88: "Creeping Attachment – adjacent tooth" · Pre-op · 5 Y · root coverage. [[PER:87]] [[PER:88]]
+M: 필기(p.86): "정의 : gingival margin이 coronal migration하는 현상 · 적응증 : 주위에 충분히 건강한 connective tissue가 확보될 경우" / "구강내 조직의 induction potential은 subepithelial connective tissue에 존재". [[PER:86]]
+M: 변형 대비: 정의 쓰기 · 적응증 · '수술한 치아에서만 일어난다'(× — 인접 치아도) · 'gingival recession과 같은 개념'(× — 반대) · 한글 이름 '잠행부착'. [[PER:85]] [[PER:87]]
+N: 연도 — 22·21년(25판 2022 칸 1번 괄호 (22,21) · 24판 2022 칸 1번 · 24판 2021 칸 14번 · 23판 2022 칸 1번 · 23판 2021 칸 14번). JB 앞면 = 25판 2022 칸 1번(가장 최신 판) · 23판 해설 "(작년에는 수업 안하시고 강의자료만 주셨었는데, 작년 자료에는 위와 관련된 내용이 없습니다.)" · JB 참고 = 231208 자료 p.85-88.
+@G08 | v=ok | lec=PER:61
+K: 정답: F — CT를 떼서 recession 부위 안쪽에 넣는 FCTG의 color match가 더 좋고 혈행 공급도 우수(JB 해설).
+K: 짝: {n:FGG = 입천장 겉 잇몸 → 성공해도 색이 다름(scar-like, pale)} / {n:FCTG = 속살을 끼우고 덮어 주위와 blending → 색조화 좋음}.
+K: ⚠ 함정: p.63 21 필기 "Fgg 장점은 혼화가 잘되서 … 색깔 매칭이 아주 좋음"은 FCTG 사진 쪽 필기(낱말 그대로) — 색이 좋은 쪽은 FCTG.
+A: 일치 — FGG 색: p.58 필기 "2. 잘 살았다고해도 잇몸색이 다름(성공했다해도 잇몸 색이 다름)" · "성공해도 scar-like, pale하다" · "입천장 잇몸과 labial 잇몸의 색이 달라서 성공하더라도 비심미적이다". [[PER:58]]
+A: 일치 — FCTG 색: p.61 필기 "54. palate gingiva는 더 허얘서 색이 안 이쁜데 (FGG) FCTG는 색도 아주 좋아" · "속의 connective tissue를 떼어와 치은 퇴축 지점의 속에 넣어준다. 색도 좋고, 예후도 좋음" / p.64 "57. 색조화가 좋다". [[PER:61]] [[PER:64]]
+A: 일치 — 혈행: p.61 필기 "바닥, 위 모두에서 양분을 받기 때문에 고정도 잘 되고 blood supply도 잘 됨" · "겉과 속의 조직으로부터 dual로 혈행공급". [[PER:61]]
+M: 슬라이드 60: Free connective tissue graft — Edel (1974) to increase the width of keratinized gingiva · Langer & Langer partial thickness coronally advanced flap + FCTG for root coverage (1983). [[PER:60]]
+M: 필기(p.60): "Free connective tissue graft 장점 1) predictable하다 2) 훨씬 더 circulation도 잘되고 주위조직과 blending 잘 되어서 예후 좋다". [[PER:60]]
+M: 변형 대비: 'FCTG가 FGG보다 혈행 공급이 좋다'(○) · 'FGG는 recipient bed에서만 양분을 얻어 성공률이 낮다'(○) · 'FCTG는 입천장 겉 잇몸을 옮긴다'(× — 속살). [[PER:58]] [[PER:61]]
+N: 연도 — 22·21년(25판 2022 칸 6번 — 21년 '치은 이식술시 FGG가 FCTG보다 치은 색조조화가 좋다'를 같은 문제로 합침 · 24판 2022 칸 6번 · 24판 2021 칸 15번 · 23판 2022 칸 7번 · 23판 2021 칸 15번). JB 앞면 = 25판 2022 칸 6번(가장 최신 판) · JB 참고 = 231208 자료 p.60.
+@G09 | v=ok | lec=PER:15
+K: 정답: 1) {r:remained bone level} + {r:persistent inflammation} 2) {r:bone loss} + {r:gingival recession} — p.15 Two different responses 두 줄 그대로.
+K: 이유: {n:Dento-gingival junction attachment 최소 2mm 필요 — 크라운 마진이 bone crest와 같은 높이면 잇몸이 붙을 자리가 없음} → {n:뼈가 그대로면 염증 지속 · 뼈가 녹으면 잇몸이 내려가 붙음}.
+K: ⚠ 함정: 짝을 바꾸지 말 것 — remained bone level ↔ persistent inflammation / bone loss ↔ gingival recession.
+A: 일치 — 답 1)·2): p.15 "Biologic width violation / • Two different responses / - {r:remained bone level} + {r:persistent inflammation} / - {r:bone loss} + {r:gingival recession}" — 글자 그대로. [[PER:15]]
+A: 보강 — 그림: p.15 모식도 왼쪽 Inflammation · 오른쪽 Bone loss / 필기 "분홍색 동그라미 = remained bone level + persistent inflammation · 파란색 동그라미 = bone loss + gingival recession". [[PER:15]]
+M: 필기(p.15): "이런 내용은 수복시 신경써야 한다 … 해결책은 2가지: 잇몸이 아무리 봐도 쇳덩어리만 있어서 좌절; persist inflammation / 아래로 뼈를 녹여 잇몸이 붙을 자리를 스스로 마련; gingival recession · 따라서, 수복시 항상 잇몸이 root 표면에 붙을 자리를 마련해둘 것". [[PER:15]]
+M: 앞 p.4: 생물학적 폭경 = 접합상피 0.97mm + 결합조직 1.07mm = 2.04(Gargiulo 1961). [[PER:4]]
+M: 변형 대비: 두 반응 중 하나 빈칸 · 그림 주고 반응 고르기 · 원인(크라운 margin을 너무 깊게) · 예방(골 삭제 3mm — p.9·16·23 필기) · 23년 '생물학적 폭경이란' 답 뒷부분과 같은 줄. [[PER:15]] [[PER:9]]
+N: 연도 — 22·21년(25판 2022 칸 10번 괄호 (22,21) · 24판 2022 칸 10번 'Biologic width 침범시 결과 2개' · 24판 2021 칸 16번 · 23판 2022 칸 13번 · 23판 2021 칸 16번) / JB 앞면 = 25판 2022 칸 10번(가장 최신 판 · 문제 글 'finishing line이 biological width 침범') · 이전 판 23판 해설은 두 반응 순서를 2)·1)로 적음 — 답 아래 📜 이전 답 · JB 참고 = 231208 자료 p.15.
+@G10 | v=ok | lec=PER:3
+K: 정답: F — 각화치은 = 변연치은 + 부착치은(JB 해설) · 변연치은(FREE OR MARGINAL GINGIVA)과 부착치은(ATTACHED GINGIVA)은 다른 칸.
+K: 구별: {n:Marginal gingiva = 각화되어 있으나 붙어 있지 않음(sulcus 바깥쪽)} / {n:Attached gingiva = 각화 & 치아·뼈에 붙어 있음}.
+K: ⚠ 함정: '변연치은은 각화치은'까지는 맞음 — '부착치은이다'가 틀림.
+A: 일치 — F: p.3 모식도 "{r:FREE OR MARGINAL GINGIVA}" · "{r:ATTACHED GINGIVA}"가 Marginal groove를 사이에 둔 다른 칸 / p.4 그림 오른쪽 "변연치은 · 부착치은"을 묶어 "{r:각화치은}". [[PER:3]] [[PER:4]]
+A: 일치 — 필기(p.3): "free gingiva(각화 되어있으나 붙어있지않음)와 attached gingiva(각화 & 붙어있음)는 keratinized gingiva" · "gingival sulcus쪽은 붙어있지 않으므로 marginal gingiva라는 표현을 쓴다". [[PER:3]]
+M: 슬라이드 3: Normal gingival architecture — 사진(잇몸·점막) · 모식도 Gingival sulcus · Marginal groove · Mucogingival junction · ALVEOLAR MUCOSA. [[PER:3]]
+M: 필기(p.3): 아래 상자 "Gingival sulcus가 있고, free gingiva가 있다. 이것은 시험에 안 나온다"(필기 해 미상) — 그래도 21년에 T/F로 나옴. [[PER:3]]
+M: 변형 대비: '부착치은은 각화되어 있고 비가동성이다'(○) · 'Alveolar mucosa는 각화되어 있다'(× — 필기 loose한 CT · 붉음 · 가동성) · '각화치은 = 치은구 + 생물학적 폭경'(필기 셈) · MGJ 위·아래 구조. [[PER:3]] [[PER:4]]
+N: 연도 — 21년(24판 2021 칸 11번 · 23판 2021 칸 11번 — 번호 앞 별 기호('두 번 이상 출제' 표시) · 괄호 연도 없음). JB 앞면 = 24판 2021 칸 11번(가장 최신 판) · JB 참고 = 231208 자료 p.3-4.
+@G11 | v=ok | rel=G13 | lec=PER:4
+K: 정답: F — 생물학적 폭경 = 접합상피 + 결합조직(치은열구는 밖) · 각화치은 = 치은열구 + 생물학적 폭경(JB 해설).
+K: 외울 것: p.4 그림 치은구(0.5~1.0mm) 위 · 접합상피 0.97mm + 결합조직 1.07mm = 생물학적 폭경 2.04 · {n:BW 위에 sulcus 1mm를 더해 골 상방 총 3mm}.
+K: ⚠ 함정: 폭경 2mm + sulcus 1mm = 3mm(crown lengthening 골 삭제량)를 폭경으로 착각하기 쉬움.
+A: 일치 — F: p.4 그림 "치은구 (0.5~1.0mm)"는 생물학적 폭경 괄호 밖 · "접합상피 (0.71~1.35mm) = 0.97mm / 결합조직 (1.06~1.08mm) = 1.07mm / 생물학적 폭경 = 2.04". [[PER:4]]
+A: 일치 — 필기(p.4): "생물학적 폭경은 sulcus는 포함시키지 않음!" · 빨간 상자 "각화치은=치은구+생물학적폭경". [[PER:4]]
+M: 필기(p.4): "생물학적 폭경: 골 상방에 잇몸이 직접 붙는 부위 · BW 위에 gingival sulcus까지 1mm 더해서 골 상방으로 총 3mm 있음". [[PER:4]]
+M: 변형 대비: '생물학적 폭경 = 접합상피 + 결합조직'(○) · '약 2mm'(○) · '치은구 + 접합상피'(×) · 수치 빈칸 · 21년 짝 문항 'probing depth는 다 같다'(F). [[PER:4]]
+N: 연도 — 21년(24판 2021 칸 12번 · 23판 2021 칸 12번 — 번호 앞 별 기호 · 괄호 연도 없음). JB 앞면 = 24판 2021 칸 12번(가장 최신 판 — 해설 두 줄이 더해짐) · 23판 답은 F만 — 답 아래 📜 이전 답 · JB 참고 = 231208 자료 p.4.
+@G12 | v=ok | lec=PER:5
+K: 정답: {r:5} — p.5 Tarnow (1982) "< 5 mm : papilla always fill the interdental space".
+K: 외울 것: Distance : bone – interproximal contact → ① < 5 mm papilla always fill ② = 6 mm 56% of papilla could fill ③ = 7 mm 37% only / Van-der-Velden (1982) 4-4.5 mm 재생 · sulcus 평균 2-2.5mm.
+K: ⚠ 함정: 문제는 '( )mm이하', 슬라이드는 '< 5 mm'(미만) — 답 숫자는 5 · 6 mm는 56%(약 반), 7 mm는 37%.
+A: 일치 — 답: p.5 "Tarnow (1982) : Distance : bone – interproximal contact / < {r:5 mm} : papilla always fill the interdental space / = {r:6 mm} : 56% of papilla could fill the space / = {r:7 mm} : 37% only" — JB 해설 표와 같은 글. [[PER:5]]
+A: 보강 — 강조: p.5 슬라이드 머리 'Tarnow magic number!'(빨간 별 표시) · 5 mm·6 mm·7 mm 칸 형광. [[PER:5]]
+M: 슬라이드 5: Van-der-Velden (1982) — Completely remove health papilla to the bone level · Routinely regenerated 4-4.5 mm of tissue above bone with ave. 2-2.5mm of sulcus. [[PER:5]]
+M: 필기(p.5): "수치 중요!! 5,6,7mm" · "전치부의 심미적 수복의 key는 치간유두가 얼마나 차있는가 이다" · "tarnow의 5mm rule = 치아 모양 결정에 중요한 기준점이 됨". [[PER:5]]
+M: 변형 대비: 6 mm 비율(56%) · 7 mm 비율(37%) 빈칸 · Van-der-Velden 재생 높이(4-4.5 mm) · 'Tarnow는 papilla 높이를 잰 연구'(× — 필기 all or none). [[PER:5]]
+N: 연도 — 21년(24판 2021 칸 17번 · 23판 2021 칸 17번 — 번호 앞 별 기호 · 괄호 연도 없음). JB 앞면 = 24판 2021 칸 17번(가장 최신 판) · JB 참고 = 231208 자료 p.5(23판 참고 = 211210 자료 p.7).
+@G13 | v=none | rel=G15 | lec=PER:4
+K: 정답: F — Biologic width는 동일하며 순측에 비해 인접면에서 1~1.5mm 정도 sulcus가 더 깊다(JB 해설).
+K: ⚠ 함정: 25 자료에 이 문장 없음 — JB 해설 참고는 2021 강의 p.6("다른 연도 필기로 덮인 것으로 추정되며, 2023년도 필기에서는 확인되지 않습니다").
+A: 근거 없음 — 25 자료(251212) 글층·쪽 이미지에 'probing depth' 없음 · 가장 가까운 쪽 = p.4 생물학적 폭경 그림(치은구 0.5~1.0mm) · p.5 필기 "buccolabial; 2-2.5mm, interproximal; 4-5mm 생기더라"(papilla 재생 높이 — 같은 말은 아님). [[PER:4]] [[PER:5]]
+M: 슬라이드 4: 치은구 (0.5~1.0mm) · 접합상피 0.97mm · 결합조직 1.07mm = 생물학적 폭경 2.04. [[PER:4]]
+M: 변형 대비: '순측보다 인접면 sulcus가 더 깊다'(○ — JB 해설) · 'biologic width는 부위마다 다르다'(× — JB 해설 '동일') · 20년 짝 문항 '치은열구 깊이가 일정한 것은 …'(JB가 '잘못된 문제'). [[PER:4]]
+N: 연도 — 21년(24판 2021 칸 19번 · 23판 2021 칸 19번 · 괄호 연도 없음). JB 앞면 = 24판 2021 칸 19번(가장 최신 판) · JB 참고 = 211210 자료 p.6.
+@G14 | v=part | lec=PER:51
+K: 정답: {r:Mucogingival junction} — {n:p.51 필기 "3은 junction안넘고 4는 넘음"} · {n:20 필기 "III와 IV를 구분하는 기준은 defect가 MGJ를 넘어갔냐의 여부"}.
+K: 외울 것: Class III & IV = interdental bone/soft tissue loss and/or tooth malposition / 슬라이드 III = remain coronal to apical extent of marginal tissue recession · IV = its level corresponding to apical extent of the marginal tissue recession.
+K: ⚠ 함정: p.50 슬라이드의 Class III·IV 글엔 MGJ 낱말이 없음 — JB 답(MGJ)은 필기·그림(p.51 MGJ 라벨)으로 맞춤 · I vs II도 MGJ 기준.
+A: 부분 일치 — 답: p.51 필기 "1은 MG junction 안넘고 2는 넘음 · 3은 junction안넘고 4는 넘음" / 20 필기 "Class I과 II를 구분하고, III와 IV를 구분하는 기준은 defect가 MGJ를 넘어갔냐의 여부이다" — 슬라이드 글이 아니라 필기 근거. [[PER:51]]
+A: 보강 — '치간부의 소실': p.50 "Class III & IV: {r:interdental bone/soft tissue loss} and/or tooth malposition" · p.51 "Class III & IV - interdental bone loss and/or malposed tooth" · 그림 Class I~IV에 MGJ 라벨. [[PER:50]] [[PER:51]]
+M: 슬라이드 50: "- remain coronal to apical extent of marginal tissue recession (Class III) / - its level corresponding to apical extent of the marginal tissue recession (Class IV)". [[PER:50]]
+M: 필기(p.51): "Bone loss 있으면 골 높이까지 밖에 cover 못함" · "분류 자체가 중요한 건 아니고 치료예후가 중요하다". [[PER:51]]
+M: 변형 대비: Class IV 빈칸(MGJ를 넘음 — 필기) · I·II 기준(24년 — MGJ) · III·IV의 공통(interdental loss) · 슬라이드 III·IV 영어 글 짝 맞추기. [[PER:50]] [[PER:51]]
+N: 연도 — 21년(24판 2021 칸 20번 + 24판 17쪽 Miller 분류 그림 · 23판 2021 칸 20번 · 괄호 연도 없음). JB 앞면 = 24판 2021 칸 20번(가장 최신 판) · JB 참고 = 231208 자료 p.51(23판 참고 = 211210 자료 p.46).
+@G15 | v=na | lec=PER:4
+A: 근거 없음 — JB 답 없음("잘못된 문제라고 시험시간에 말씀하셨습니다...이용무 교수님 문제") · 25 자료에 '치은열구 깊이가 일정'·'협설·순설 두께' 글 없음 · 가까운 쪽 = p.4 치은구 (0.5~1.0mm). [[PER:4]]
+M: 변형 대비: 21년 짝 문항 'probing depth 깊이는 다 같다'(F — JB 해설 '인접면에서 1~1.5mm 정도 sulcus가 더 깊다'). [[PER:4]]
+N: 연도 — 20년(23판 2020 칸 5번 · 괄호 없음 · 답 없음). JB 앞면 = 23판 2020 칸 5번(유일한 판).
+@G16 | v=ok | lec=PER:9
+K: 정답: 3mm — 생물학적 폭경 약 2mm + gingival sulcus 1mm(JB 해설) · {n:원하는 gingival margin에서 3mm 더 골삭제}.
+K: 외울 것: {n:sulcus 1mm + 접합상피(epi. attachment) 1mm + 결합조직(connective tissue attachment) 1mm = 3mm} · 그림 수치 접합상피 0.97 + 결합조직 1.07 = 2.04(p.4).
+K: ⚠ 함정: BW만 쓰면 2mm — 문제는 bone crest에서 최종 변연까지(sulcus 포함) 3mm.
+A: 일치 — 답: p.9 필기 "내가 원하는 gingival height에서 bw2mm, sulcus 1mm 맞춰줘야함 · 하부로 3mm 정도의 뼈 삭제해줘야함 · 매우 중요!" · "원하는 Gingival margin에서 3mm 더 골삭제를 진행해야 함. 그래야 2mm BW 붙고, 1mm sulcus가 형성됨". [[PER:9]]
+A: 일치 — 같은 수치: p.16 필기 "final margin아래 3mm하방에 (sulcus1mm+biologic width2mm) alveolar crest가 위치하도록 설정" / p.23 "원하는 라인에서 3mm(sulcus, connective tissue, junctional epi) 아래에 alveolar crest가 있도록 한다" / p.4 "alveolar crest 상부로 3mm 정도의 gingival height". [[PER:16]] [[PER:23]] [[PER:4]]
+M: 필기(p.20 글층): "원하는 Cr. height까지 노출시키고 alveolar crest도 낮춰줌 (CEJ에서부터 4mm(sulcus 2mm + biologic width 2mm) 아래로)" — 다른 쪽 필기는 sulcus 1mm. [[PER:20]]
+M: 필기(p.24): "만약 뼈 치지 않고 잇몸만 잘라내면, 아까 그 두 가지 반응이 나타난다. 뼈가 녹거나 지속적인 염증이 생긴다". [[PER:24]]
+M: 변형 대비: '잇몸만 잘라 꿰매면 원하는 높이가 유지된다'(× — BW가 다시 생겨 자라 올라옴) · 3mm의 구성(sulcus · JE · CT 각 1mm) · 생물학적 폭경 수치(2.04 — p.4). [[PER:9]] [[PER:4]]
+N: 연도 — 20년(23판 2020 칸 6번 · 괄호 없음). JB 앞면 = 23판 2020 칸 6번(유일한 판) · JB 참고 = 211210 자료 p.6.
+@G17 | v=ok | lec=PER:50
+K: 정답: class 2 — p.50 그림 둘째 줄(class II).
+K: 외울 것: 그림 읽기 = interdental bone/soft tissue가 온전하면 I·II(recession이 MGJ까지 안 가면 I · MGJ에 닿거나 넘으면 II) / interdental이 내려갔으면 III·IV.
+K: ⚠ 함정: I과 II는 interdental이 같음(intact) — 퇴축 끝이 MGJ를 넘는지로 가름.
+A: 일치 — 답: p.50 그림 라벨 "class I · class II · class III · class IV"(각 두 장) · 글 "Class I & II: intact interdental bone/soft tissue … - Extend to or beyond MGJ (Class II)". [[PER:50]]
+A: 보강 — 옛 판 그림: p.51 Class I~IV 그림에 MGJ 라벨 · "Class I & II - intact interdental bone". [[PER:51]]
+M: 슬라이드 50: Miller(1985) — Class III & IV: interdental bone/soft tissue loss and/or tooth malposition. [[PER:50]]
+M: 변형 대비: 다른 class 그림 고르기(I · III · IV) · 그림 보고 예후(I·II 회복 · III·IV 어려움 — 필기) · 'class II는 interdental bone loss가 있다'(×). [[PER:50]]
+N: 연도 — 20년(23판 2020 칸 7번 — 번호 앞 별 기호 · 괄호 없음). JB 앞면 = 23판 2020 칸 7번(유일한 판) · JB 참고 = 201211 자료 p.46 · JB 원본 쪽 그림에 'Class II' 라벨이 보임(답 쪽).
+@G18 | v=ok | lec=PER:52
+K: 정답: 1. laterally positioned flap 2. coronally positioned flap(- semilunar coronally positioned flap · coronally positioned flap with FGG) 3. free gingival graft 4. free connective tissue graft 5. GTR — p.52 Root coverage 목록 그대로.
+K: 외울 것: ① Laterally positioned flap ② Coronally positioned flap ③ Free gingival graft ④ {r:Free connective tissue graft}({n:가장 결과 좋은 · 가장 먼저 선택되는 술식}) ⑤ GTR.
+K: ⚠ 함정: semilunar·with FGG는 coronally positioned flap 아래 두 줄 — 따로 세면 7개.
+A: 일치 — 답 1~5: p.52 "Root coverage / • Laterally positioned flap / • Coronally positioned flap - semilunar coronally positioned flap - coronally positioned flap with FGG / • Free gingival graft / • {r:Free connective tissue graft} / • GTR" — JB 답의 'wit FGG'는 원문 오타. [[PER:52]]
+A: 보강 — 각 술식 쪽: p.53 Laterally positioned flap(Grupe, 1956 · Grupe & Warren, 1966 · Goldman et al., 1982) / p.54 Coronally positioned flap with FGG (Bernimoulin et al., 1975) / p.55 Double lateral bridging flap (Romanos et al., 1993) / p.56 Tarnow (1986) Semilunar coronally repositioned flap / p.58 Free gingival graft / p.59 GTR / p.60 Free connective tissue graft. [[PER:53]] [[PER:60]]
+M: 필기(p.52): "43. Laterally, Coronally positioned flap은 flap을 젖혀서 위치를 당겨 덮는 술식 · FGG : Gingiva 이식 · FCTG : gingiva 속 속살 이식 · GTR : membrane 이용해서 perio regeneration 기대" / "→ 가장 성공률이 높은 술식 → 가장 먼저 선택되는 술식". [[PER:52]]
+M: 변형 대비: 가장 결과 좋은 술식 하나(FCTG) · semilunar 적응증 2(recession 3mm 이내 · 건전한 keratinized tissue — 필기 '두가지 조건 중요!!') · FGG 문제점 2 · 'GTR이 가장 성공률 높다'(×). [[PER:56]] [[PER:58]]
+N: 연도 — 20년(23판 2020 칸 8번 · 괄호 없음). JB 앞면 = 23판 2020 칸 8번(유일한 판) · JB 참고 = 211210 자료 p.47.
+@R01 | v=none | lec=RBR:3
+K: 정답: 1-retainer type — JB 해설 "1-retainer type과 2-retainer type에서 5년 생존율은 비슷하고 10년 생존율은 {r:1-retainer type}이 더 높습니다"(JB 참고: 241122_이재현 Resin bonded fixed dental prostheses 16쪽).
+K: ⚠ 함정: 25 여인성 자료(Resin-bonded restoration)에는 Wei YR 논문·retainer 수(one vs two) 비교가 없음 — 이재현 교수(24·23 출제) 자료 근거라 JB 답으로만 외움. [[RBR:3]]
+A: 근거 없음 — 정답 요지 "1-retainer type": p.3 슬라이드 '종류' "Adhesive type restoration — Rochette bridge · Maryland bridge · Cast mesh fixed partial denture · Virginia bridge" — retainer 수·생존율 비교 없음(25 자료 30쪽 어디에도 Wei YR·retainer 낱말 없음). [[RBR:3]]
+A: 보강 — p.4 필기 Maryland bridge 사진(라벨 Wing) "접착제를 잘 발라 붙인다" · "교합력이 너무 강한 곳에서는 사용 X (사진에서도 전치부)" / "급속적으로 maryland bridge 사라짐 - 이유 중 하나가 치아와 wing (그림참조) 사이 접착이 잘 떨어진다" — 25 자료에서 접착형 고정성 보철(resin bonded) 이야기는 여기까지. [[RBR:4]]
+M: 슬라이드 p.3: Adhesive type restoration 종류 4 — {r:Rochette bridge} · {r:Maryland bridge} · {r:Cast mesh fixed partial denture} · {r:Virginia bridge}. [[RBR:3]]
+M: 필기(p.3): "대학 이름을 따온 Maryland bridge [=Resin bonded metal restoration의 informal한 이름]" · "resistance form 없고 오로지 수복물과 치아 사이 접착에 의해서만 유지됨". [[RBR:3]]
+M: 필기(p.5): "예를들어 31 번이 상실-> 41 번, 32번의 설측면만 enamel 상에서 살짝 prep. tooth material 최대한 유지. 그리고 접착력으로 버티려고 하는 것." [[RBR:5]]
+M: 변형 대비: 옛 교수 꼴(둘 중 고르기 단답)을 이 강의 자료로 바꾸면 — 접착형 vs 유지형(Maryland bridge = {r:adhesive type}) · 레진 시멘트 이중 중합 vs 자가중합 · 상아질 접착제 4·5세대 vs 6·7세대(PLV 접착 = 4·5세대) · adhesive failure vs cohesive failure. [[RBR:15]] [[RBR:23]] [[RBR:24]]
+N: 연도 — 24년(25판 2024 칸 5번 · 괄호 (24,23) · 해설 "이재현 교수님 문제입니다") · 23년(24판 2023 칸 5번 · 25판 2023 칸 5번은 '24년 5번' 가리킴) · 출제 교수 이재현(25부터 여인성 강의). JB 앞면 = 25판 2024 칸 5번(가장 최신 판) — 24판 답 "1 retainer type"(같은 답 · 표기만 다름)은 답 아래 📜 이전 답.
+@P01 | v=ok | lec=RPD:3
+K: 정답: ① {r:삽입로 결정} ② 인접면 형성 ③ {r:적절한 언더컷} ④ 최대풍융부 표시: 과도한 릴리프 금지 ⑤ 재장착 참고점 — p.3 서베이어의 기능 다섯 줄 그대로.
+K: 외울 것: 슬라이드 빨강 = 삽입로 결정 · 적절한 언더컷 · 풍융부 / 서베이어 = 심미의 핵심({n:서베이어 사용하는 게 가장 심미적} · {n:언더컷 위치를 아래로 → 클래스프 cervical}).
+K: ⚠ 함정: 넷째 줄은 '최대풍융부 표시' 뒤 '과도한 릴리프 금지'까지 한 줄 — 다섯 줄을 순서대로.
+A: 일치 — 답 1~5: p.3 "서베이어의 기능 – {r:삽입로 결정} – 인접면 형성 – {r:적절한 언더컷} – 최대 {r:풍융부} 표시 : 과도한 릴리프 금지. – 재장착 참고점" — 글자 그대로(JB 답의 '최대풍융부'는 붙여 씀). [[RPD:3]]
+A: 보강 — 왜 심미에 쓰나: p.3 필기 "서베이어를 기울여 인접면의 black triangle이 제일 작은 각도를 찾는 것" / "클래스프 cervical에 위치할 수록 입술이 덮어 잘 안보여서 심미적으로 좋다. 이것도 서베이어로 언더컷 위치를 아래로 내림". [[RPD:3]]
+M: 앞 p.2: 가철성 국소의치 "심미 : Clasp 유무?" — 사진 = 정면에서 양옆 클래스프가 보이는 국소의치. [[RPD:2]]
+M: 필기(p.2): "Clasp이 보기 싫다! -> clasp을 자르거나 없는 걸 하기도 한다 · 하지만 입술이 덮고 있어 안보인다. 안보이면 심미적으로 문제는 안됨 · 거미 스마일과 같이 입술이 높아서 보인다면 attachment 같은걸 많이 사용함". [[RPD:2]]
+M: 슬라이드 4: 다음 쪽 '클래스프와 심미' — 클래스프 위치 조정 : 하방, 후방 · Modified Akers clasp – 기준 숙지(서베이어로 잡은 최대풍융부 기준). [[RPD:4]]
+M: 변형 대비: 다섯 중 빨강 둘(삽입로 결정 · 적절한 언더컷) 빈칸 · '최대 ( ) 표시 : 과도한 ( ) 금지' · 순서 섞어 고르기 · 같은 단원 p.4 '클래스프 위치 조정 2가지(하방, 후방)'. [[RPD:3]] [[RPD:4]]
+N: 연도 — 24·23년(25판 2024 칸 7번 괄호 (24,23) · 25판 2023 칸 9번 = '24년 7번' 가리킴 · 24판 2023 칸 10번 '(탈)'). JB 앞면 = 25판 2024 칸 7번(가장 최신 판) · 참고 쪽 = 251205 자료 p.3(이 자료) · 24판 참고 = 231201 자료 p.3.
+@P02 | v=ok | lec=RPD:13
+K: 정답: 1) 환자의 {r:심미적 요구} 2) 환자의 {r:기대 수준} 3) 비정상적 {r:잇몸 상태} 4) 비정상적 환자요구, 기대수준 5) 가능한 정도 환자와 상의필요 6) {r:기능과 심미의 타협} 7) 충분한 {r:기록과 설명} — p.13 일곱 줄 그대로.
+K: 외울 것: 머리 = '그외의 심미적 고려사항 – 총체적 환자 상태 평가' · 일곱 줄 순서 = 환자(요구 → 기대) → 비정상(잇몸 → 요구·기대) → 상의 → 타협 → 기록.
+K: ⚠ 함정: 25 필기 "설명하면 졸릴 것 같으니 읽어보세요~" 쪽인데 21·22·24년 세 해 출제 — 부정 필기라도 낮추지 않음.
+A: 일치 — 답 1~7: p.13 "환자의 심미적 요구 · 환자의 기대 수준 · 비 정상적 {r:잇몸 상태} · 비정상적 환자 요구, 기대수준 · 가능한 정도 환자와 상의필요 · {r:기능과 심미의 타협} · 충분한 {r:기록과 설명}" — 띄어쓰기만 다름('비 정상적'·'환자 요구'). [[RPD:13]]
+A: 보강 — 필기(p.13): "심미라는 건 한마디로 환자가 예쁘다고 해야 하는 것! 커뮤니케이션이 중요 · 환자의 요구 등 다 차트에 기록해 놔야 함. 가능한 거는 들어주고 불가능한 거는 설득하기. 환자의 기대수준도 중요하다". [[RPD:13]]
+M: 슬라이드 13: 사진 A(전치부 무치악) · B(의치 장착). [[RPD:13]]
+M: 변형 대비: 일곱 중 몇 개 빈칸 · '옳지 않은 것' 보기에 다른 쪽 목록(p.17 attachment 선택시 고려사항 5 · p.30 총의치 심미적 조화 고려사항 4)을 섞기 · 문제 머리 '환자의 기대와 욕구 충족'. [[RPD:17]] [[RPD:30]]
+N: 연도 — 24·22·21년(25판 2024 칸 8번 괄호 (24,22,21) · 25판 2022 칸 8번 = '24년 8번' 가리킴 · 24판 2022 칸 8번 · 24판 2021 칸 8번 '짤문제 21년도)' · 23판 2022 칸 9번 · 23판 2021 칸 8번) / JB 앞면 = 25판 2024 칸 8번(가장 최신 판) · 이전 판 답(24판 2021 칸)은 번호 꼴만 '1.'로 다름 — 답 아래 📜 이전 답.
+@P03 | v=part | rel=P07 | lec=RPD:7
+K: 정답: (1) {r:견치}, {r:상악 후방연장} (2) F (3) wrought wire? Retentive clasp? — 셋 다 p.7((1) 아래 굵은 글 · (2) 필기 enameloplasty · (3) 순면 라벨 wrought wire "I" bar).
+K: 외울 것: McCartney clasp = mesial groove reciprocation clasp · distal = wrought wire "I" bar · distolabial facet · distoproximal plate / mesial = mesial groove · mesial rest · mesial minor connector.
+K: ⚠ 함정: (2) 치아 삭제(enameloplasty) 쪽은 {n:distal} — mesial엔 groove·rest를 형성 · (3) JB 답에 물음표 둘(복원 불확실) — JB 해설은 'I bar는 wrought wire로 … Retentive clasp의 역할'.
+A: 일치 — (1): p.7 "{r:견치}를 지대치, {r:상악 후방연장} 국소의치에 주로 사용" — 빈칸 둘 = 견치 · 상악 후방연장. [[RPD:7]]
+A: 일치 — (2) F: p.7 필기 "Distal에서 접근한 I bar · Distal에 언더컷 없어서 라운드버로 인위적으로 enameloplasty 해주어 언더컷을 인위적으로 만듦. 자연치를 alteration 함" — 보기의 'mesial'이 틀림. [[RPD:7]]
+A: 부분 일치 — (3): p.7 순면 그림 라벨 "{r:wrought wire "I" bar}" · 필기 "I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!! +wrought wire는 탄성이 있어서 발치는 안함" / 'Retentive clasp'는 25 자료의 McCartney 쪽엔 글자가 없음 — JB 해설 근거. [[RPD:7]]
+M: 슬라이드 7: McCartney clasp – mesial groove reciprocation clasp · 교합면 라벨 distofacial facet · mesial groove · mesial rest / 순면 라벨 wrought wire "I" bar · distolabial facet · labial height of contour · mesial minor connector · distoproximal plate · mesial groove · mesial rest · path of insertion. [[RPD:7]]
+M: 필기(p.7): "60년도에 나온 McCartney clasp (폴 매카트니..) 현재 안 씀. 이렇게까지 했다는 걸 보여주는 것 · Mesial이 Proximal plate - RPI clasp의 변형". [[RPD:7]]
+M: 앞 p.8: 변형된 clasp를 이용한 심미 — Mesial groove reciprocation clasp : clasp 보이지 않게 {r:distal surface} 이용 · 필기 "그냥 주조한 걸 distal로 한 것. 얘도 rpi의 변형". [[RPD:8]]
+M: 변형 대비: (1) 빈칸 하나만 · (2) T/F 낱말 바꾸기(distal ↔ mesial · wrought wire ↔ 주조) · (3) 다른 라벨(mesial groove·mesial rest·distoproximal plate) · 22·21년 꼴 '도해하고 적응증 서술'. [[RPD:7]]
+N: 연도 — 24년(25판 2024 칸 9번 · 괄호 없음). JB 앞면 = 25판 2024 칸 9번(이 문항이 실린 유일한 판) · 같은 쪽 다른 꼴 = 22·21년 McCartney 도해·적응증(관련 문항).
+@P04 | v=ok | lec=RPD:18
+K: 정답: class 1a solid, rigid, non resilient · class 1b solid, rigid, lockable with U-pin or screw / class 2 {r:Vertical} resilient · class 3 {r:Hinge} resilient · class 4 {r:Vertical and hinge} resilient / class 5 {r:Rotational and vertical} resilient · class 6 {r:Universal omniplanar}(모든 운동).
+K: 외울 것: 숫자가 커질수록 움직일 수 있는 범위가 커짐(JB 해설 · {n:1이 단순 ~ 6이 복잡}) — 2 수직 · 3 경첩 · 4 = 2 + 3 · 5 회전 + 수직 · 6 모든 방향.
+K: ⚠ 함정: 1a·1b 둘 다 Solid rigid — 1b만 'lockable with U-pin or screw'({n:칼집에 꽉 끼게 액티베이션 — key and keyway}) · class 6의 '(모든 운동)'은 슬라이드엔 없는 괄호.
+A: 일치 — 답 7줄: p.18 "Staubi P. Attachments and implants. 1996,5 / {r:Classification of attachments} — Class 1a Solid rigid, nonresilient / Class 1b Solid rigid, lockable with U-pin or screw / Class 2 Vertical resilient …" — 표 그대로. [[RPD:18]]
+A: 일치 — 같은 표: p.18 "Class 3 Hinge resilient / Class 4 Vertical and hinge resilient / Class 5 Rotational and vertical resilient / Class 6 Universal omniplanar" — JB 답의 '(모든 운동)'은 필기 "모든방향으로 움직(고장많다)"와 같은 뜻. [[RPD:18]]
+A: 보강 — 강조: p.18 필기 "시험 문제!!! Attachement 분류 딱 하나만 외우자! Staubi의 6가지 분류" · JB 해설(22년) "2023년에도 시험 출제 예고하신 문제입니다". [[RPD:18]]
+M: 필기(p.18): "1- 칼에서 칼집이 빠지는 것 같은 형태 a 칼집 닳아서 덜렁거릴때 … / b 닳아서 쉽게 빠지지 않도록 칼집에 꽉끼게 액티베이션시킨 구조; keyand keyway 중 액티베이션 가능한게 b". [[RPD:18]]
+M: 필기(p.18): "2- vertical: 저작시 치주인대처럼 좀 sinking 되도록 attachment가 수직으로 눌림 · 3- hinge경첩: 잇몸쪽에 경첩이 달려서 … 잇몸쪽 더 많이 눌림 · 4- vertical and hinge: 2,3 두 개 합한것 · 5 - rotational and vertical: 물고기 꼬리.. 옆으로도 움직". [[RPD:18]]
+M: 슬라이드 20·21·24: 같은 분류로 읽는 예(필기) — Sterngold G/A·G/L = Class 1b(key and keyway) · Dalbo = vertical 스프링 → '최소 class1은 아님 … 4나 5'. [[RPD:20]] [[RPD:24]]
+M: 앞 p.19: 다른 분류 Mensor(1973) — Coronal(Intracoronal · Extracoronal) · Radicular(Telescope studs · Bar attachment) · Accessory — 필기 "이런 분류도 있다 보기만 문제 안냄". [[RPD:19]]
+M: 변형 대비: class 하나만 빈칸(직전 2년 꼴 그대로 + 칸 하나) · 이름 → class 번호 짝짓기 · Sterngold(1b)·Dalbo(4나 5)가 몇 class인지 · Mensor 분류와 섞은 '옳지 않은 것'. [[RPD:18]]
+N: 연도 — 24·23·22·21년(25판 2024 칸 10번 괄호 (24,23,22,21) · 25판 2023 칸 8번·2022 칸 2번 = '24년 10번' 가리킴 · 24판 2023 칸 8번 '(짤)' · 24판 2022 칸 2번 · 24판 2021 칸 7번 · 23판 2022 칸 2번 · 23판 2021 칸 7번) / JB 앞면 = 25판 2024 칸 10번(가장 최신 판) · 이전 판 답 2건 = 답 글 같음(해설 첫머리 '2023년에도 시험 출제 예고하신 문제입니다'만 다름 — 답 아래 📜 이전 답) · 24판 참고 = 231201 자료 p.19.
+@P05 | v=ok | rel=P06,P09 | lec=RPD:27
+K: 정답: {r:Stern ERA} attachment — p.27 슬라이드 제목 'Stern ERA att.' · 그림 D 'ERA ATTACHMENT'.
+K: 외울 것: Retention Cap Color Code — White – light · Orange – moderate · Blue – heavy · Grey – very heavy / {n:채도 짙을수록 retention이 셈 — 흰색 주황색 파랑색 회색 검정색 순 · 검정색 = 기공용}.
+K: 이해: 21·23·24년 매번 다른 attachment 사진이 나옴(21 Swiss McCollum · 23 Biloc and Plasta · 24 Stern ERA) — p.20-29 사진마다 이름.
+A: 일치 — 답: p.27 "Stern ERA att." · 그림 D 글 "ERA ATTACHMENT / Retention Cap Color Code: White – light · Orange – moderate · Blue – heavy · Grey – very heavy / Retention Ring Pattern – cast with crown". [[RPD:27]]
+A: 보강 — JB 해설 "강조하셨습니다 … 흰색 – 주황색 – 파랑색 – 회색 – 검정색 순으로 retention이 강해집니다. 검정색은 기공용" = p.27 필기 "ERA는 살아남은 attachment! 많이 보게 될 것 · retention 센 순: 채도 점점 짙은 색이 retention이 세다 흰색 주황색 파랑색 회색 검정색 순". [[RPD:27]]
+M: 필기(p.27): "섬뜩한 일 - 기공용 어태치먼트를 껴서 가져옴 (검정색) · 환자가 못빼겟다하면 옅은 색으로 바꿔주기". [[RPD:27]]
+M: 슬라이드 29: Hader bar도 클립 색 따라 리텐션 다름 — 필기 "마찬가지로 검은색 끼워져 있으면 기공문제,, 검은색은 기공용". [[RPD:29]]
+M: 변형 대비: 다른 사진(p.20 Sterngold G/A · p.21 G/L · p.22 ESI back · p.24 Dalbo · p.28 Dolder bar · p.29 Hader bar) 이름 · ERA 캡 색 → retention 짝짓기 · 검정색 캡의 뜻. [[RPD:20]] [[RPD:24]] [[RPD:28]]
+N: 연도 — 24년(25판 2024 칸 11번 · 번호 앞 별표 — JB 괄호 없음 · 연도 근거 아님). JB 앞면 = 25판 2024 칸 11번(유일한 판) · 참고 쪽 = 251205 자료 p.20-29 · JB 그림 조각: 문제 쪽 사진 한 장에 'ERA ATTACHMENT' 글자(답 글자)가 보임 — 답 쪽(a)로(JB 그림 조각 단계 몫).
+@P06 | v=ok | rel=P05,P09 | lec=RPD:23
+K: 정답: {r:Biloc and Plasta} attachment — p.23 슬라이드 제목 'Biloc and Plasta att.'(카탈로그 그림 'W. Wermuth Biloc' + 모형 사진).
+K: 외울 것: {n:Biloc. Bi: 두 개로 쪼개짐 — key and keyway인데 둘로 쪼갠 것 · 중요하다!}
+A: 일치 — 답: p.23 "Biloc and Plasta att." — 카탈로그 그림 'W. Wermuth Biloc · 22.10.3 KC · 22.10.3 KD'와 모형 사진. [[RPD:23]]
+A: 보강 — 필기(p.23): "Biloc. Bi: 두 개로 쪼개짐 key and keyway인데 둘로 쪼갠것. 중요하다!". [[RPD:23]]
+M: 앞 p.20-22: 같은 key and keyway 구조 Sterngold G/A · G/L(필기 Class 1b — 틈 있어 헐거워졌을 때 벌려주면 꽉 끼게 액티베이션) · G/L ESI back : 레진과 연결. [[RPD:20]] [[RPD:22]]
+M: 변형 대비: 같은 단원 다른 사진 이름(Sterngold · Dalbo · Stern ERA · Dolder · Hader) · 'Bi'의 뜻 · Staubi 분류의 몇 class(key and keyway 액티베이션 = 1b — 필기). [[RPD:23]]
+N: 연도 — 23년(25판 2023 칸 10번 · 괄호 없음). JB 앞면 = 25판 2023 칸 10번(가장 최신 판) · 이전 판(24판 2023 칸 9번) 해설은 '작년 별표 슬라이드(p.32)'·231201 자료 p.26 인용 — 답 같음.
+@P07 | v=ok | rel=P03 | lec=RPD:7
+K: 정답: 적응증 = 견치를 지대치로 사용하는 {r:상악 후방연장} 국소의치에 주로 사용 + 도해 = p.7 교합면·순면 그림.
+K: 외울 것: 도해 라벨 — distal 쪽 {r:wrought wire "I" bar} · distolabial facet · distoproximal plate / mesial 쪽 {r:mesial groove} · {r:mesial rest} · mesial minor connector / 교합면 distofacial facet.
+K: 이해: I bar가 최대 풍융부의 distal에 낮게 존재 → wrought wire로 distal에 두면 최대 풍융부보다 낮아 심미적(JB 해설) · {n:Distal에 언더컷 없어서 enameloplasty로 만듦}.
+A: 일치 — 적응증: p.7 "{r:견치}를 지대치, {r:상악 후방연장} 국소의치에 주로 사용" — JB 답은 '견치를 지대치로 사용하는'으로 풀어 씀. [[RPD:7]]
+A: 일치 — 도해: p.7 교합면 "distofacial facet · mesial groove · mesial rest" / 순면 "wrought wire "I" bar · distolabial facet · labial height of contour · mesial minor connector · distoproximal plate · mesial groove · mesial rest · path of insertion". [[RPD:7]]
+A: 보강 — JB 해설 표(distal: distolabial facet를 파고 retentive clasp로 wrought wire "I" bar · distoproximal plate / mesial: mesial groove를 파고 mesial rest · minor connector가 올라와 일종의 proximal plate 역할) ↔ 필기 "Mesial이 Proximal plate - RPI clasp의 변형". [[RPD:7]]
+M: 필기(p.7): "Distal에서 접근한 I bar · Distal에 언더컷 없어서 라운드버로 인위적으로 enameloplasty 해주어 언더컷을 인위적으로 만듦 · I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!!". [[RPD:7]]
+M: 앞 p.8: Mesial groove reciprocation clasp : clasp 보이지 않게 distal surface 이용 — 필기 "빨판 같은게 distal을 다 차지하고 있어서 발치 가능성… 교수님이 보시기엔 메카트니가 나은 것 같다고 하심". [[RPD:8]]
+M: 변형 대비: 24년엔 같은 쪽을 빈칸·T/F·단답 묶음으로(관련 문항) · 라벨 빈칸 · distal/mesial 구성 짝짓기. [[RPD:7]]
+N: 연도 — 22·21년(25판 2022 칸 5번 · 24판 2022 칸 5번 · 24판 2021 칸 10번 · 23판 2022 칸 6번 · 23판 2021 칸 10번 — 번호 앞 별표). JB 앞면 = 25판 2022 칸 5번(가장 최신 판 — 해설 '첫번째 그림은 교합면 view') · 이전 판 해설(24판 2021 칸)은 '왼쪽 그림 … 오른쪽' — 답 같음.
+@P08 | v=ok | rel=P11 | lec=RPD:9
+K: 정답: 구성 = {r:casting + wrought wire} clasp / 특징 = {r:더 작은 직경}으로 덜 보이고, {r:둥근 단면}으로 빛 반사 감소하여 심미적으로 보인다.
+K: 외울 것: 슬라이드 머리 'Combination clasp : 실제보다 직경 작게 보임' · {n:주조 framework 바깥쪽 = wrought wire clasp(C clasp의 retentive arm)} · {n:장점 심미적 · 치아 보존(탄성 → 발치 안 함)}.
+A: 일치 — 구성·특징: p.9 "Combination clasp : {r:실제보다 직경 작게 보임} – {r:Casting + wrought wire clasp} – {r:더 작은 직경, 둥근 단면}( 빛 반사 감소)" — JB 답 두 줄과 같은 낱말. [[RPD:9]]
+A: 보강 — 필기(p.9): "combination clasp: 주조한 framework의 바깥쪽은 wrought wire clasp. C clasp인 경우가 많다 · 이유: 심미적이게 하려고, 기공소에서 탄성 못줘서 · 1. 심미적, 2. 치아 보존". [[RPD:9]]
+M: 필기(p.9): "탄성이 있어 최소한 발치는 안하고 괜찮음! 또 실제 직경보다 작게 보임. 라운드하면 할수록. 빛 반사 때문 · 여러분 combination 많이 하세요~(주조 clasp RPI RPA는 잘 못만들어서 발치 워낙 많이 하는 문제..)". [[RPD:9]]
+M: 앞 p.14: 금속 노출을 최소화 하는 부속장치(아크릴릭, 복합레진 클래스프 — 그림자 효과 주의) — 필기 "오히려 제일 심미적인건 wrought wire 클래스프 - 얇고 동그래서 잘 안보임". [[RPD:14]]
+M: 변형 대비: 장점 2가지(심미 · 치아 보존) · 왜 retentive arm만 wrought wire인지 · wrought wire가 심미적인 이유(관련 문항 20년). [[RPD:9]]
+N: 연도 — 22년(25판 2022 칸 9번 · 24판 2022 칸 9번 · 23판 2022 칸 10번 · 괄호 없음). JB 앞면 = 25판 2022 칸 9번(가장 최신 판) · 답 글 세 판 같음.
+@P09 | v=none | rel=P05,P06 | lec=RPD:20
+K: 정답: Swiss McCollum att. — 블록의 갈라진 틈을 벌려서 유지를 얻는다(JB 답 · 25 자료엔 이 attachment 쪽이 없음).
+K: 외울 것: 같은 원리의 25 쪽 = Sterngold G/A·G/L — {n:Class 1b · key and keyway · 틈 있어 헐거워졌을 때 벌려주면 꽉 끼게 액티베이션}.
+K: ⚠ 함정: 25 자료로는 이름을 맞출 수 없음 — JB 참고 = 231201 자료 p.24(그 해 슬라이드 제목 'Swiss McCollum att.').
+A: 근거 없음 — 답: 25 자료 35쪽에 'Swiss McCollum' 글자 없음(글층·쪽 이미지 확인) · JB 참고 "231201_곽재영pf_가철성 보철물을 이용한 심미개선 p.24". [[RPD:20]]
+A: 보강 — 가장 가까운 25 글: p.20 Sterngold G/A 필기 "Class 1b 딱 봐도 key and keyway 구조 틈 있어 헐거워졌을 때 벌려주면 꽉 끼게 액티베이션이 가능"(그림 속 '틈' 표시) / p.21 G/L 필기 "key and keyway에 activation시킬 수 있는 구조가 있다". [[RPD:20]] [[RPD:21]]
+M: 슬라이드 18: Staubi 분류 Class 1b Solid rigid, lockable with U-pin or screw — 필기 "b 닳아서 쉽게 빠지지 않도록 칼집에 꽉끼게 액티베이션시킨 구조". [[RPD:18]]
+M: 변형 대비: 나올 때마다 다른 사진 이름(23 Biloc and Plasta · 24 Stern ERA — 관련 문항) · 25 자료 사진 Sterngold G/A · G/L · ESI back · Dalbo · Dolder bar · Hader bar. [[RPD:20]] [[RPD:28]]
+N: 연도 — 21년(24판 2021 칸 9번 · 23판 2021 칸 9번 · 괄호 없음 · 문제 '사진 주고 이름 쓰세요. 이전) Swiss McCollum att.을 설명하세요.'). JB 앞면 = 24판 2021 칸 9번(가장 최신 판 · 25판엔 2021 칸 없음).
+@P10 | v=ok | lec=RPD:5
+K: 정답: 1) {r:입술선이 높은 경우} 2) 상악 {r:제 1,2 소구치}에 심미적 3) 연결부는 지대치 {r:1~2개 치아 후방부}가 심미적 — p.5 Bar clasp 세 줄.
+K: 외울 것: 슬라이드 머리 'Bar clasp : 적절한 형태 숙지할 것' · {n:잇몸쪽에서 아래에서 오고 팁만 살짝 보여 훨씬 심미적} · {n:연결부 1-2개 후방 = 길수록 탄성 · 음식이 적게 낌}.
+K: ⚠ 함정: 문제 글은 '클라스프를 … 부여하는 심미적 방법' — 답 세 줄은 Bar clasp 줄(JB 해설 "'Bar clasp를 심미적으로 사용하는 방법'인 것 같습니다") · 같은 단원 p.4 '클래스프와 심미' 위치 조정 : 하방, 후방도 방법.
+A: 일치 — 답 1~3: p.5 "Bar clasp : 적절한 형태 숙지할 것 – {r:입술선이 높은 경우} – 상악 제1, 2 소구치에 심미적 – 연결부는 지대치 {r:1-2개 치아 후방부}가 심미적" — 글 같음(JB '1~2개'·'제 1,2') · 문제 글은 '클라스프 … 심미적 방법'으로 넓지만 답 세 줄은 모두 이 쪽에 있음(JB 해설 "'Bar clasp를 심미적으로 사용하는 방법'인 것 같습니다"). [[RPD:5]]
+A: 보강 — 문제 글 '클라스프 … 심미적 방법'의 다른 쪽: p.4 "클래스프와 심미 – 클래스프 {r:위치} 조정 : 하방, 후방 – Modified Akers clasp –기준 숙지". [[RPD:4]]
+M: 필기(p.5): "Bar clasp · 잇몸쪽에서 아래에서 오고 팁만 살짝 보여 훨씬 심미적 · 그 대신 발치겸자 안되게 잘만들어야 함. 탄성이 느껴져야 한다". [[RPD:5]]
+M: 필기(p.5): "왜 1-2개 치아 후방에 연결부 위치? 1. 길면 길수록 탄성에 유리 : 짧으면 발치겸자 된다 2. 음식이 적게 끼게 하려고 RPD에서 잇몸에서 major connector 4~6mm 아래로 하는 이유와 동일". [[RPD:5]]
+M: 앞 p.6: T, Y bar 변형 — Undercut 위치, 양 · 필기 "T bar를 잘라서 변형한 가장 오른쪽그림 · 자른 이유: 앞에서 금속 덜 보이게". [[RPD:6]]
+M: 변형 대비: Bar clasp 세 줄 중 하나 빈칸 · 연결부를 1-2개 후방에 두는 이유 · 클래스프 위치 조정 2가지(하방, 후방). [[RPD:4]] [[RPD:5]]
+N: 연도 — 20년(23판 2020 칸 1번 · 번호 앞 별표 · 문제 끝 '(짤)' · 출제 교수 표시 없음). JB 앞면 = 23판 2020 칸 1번(유일한 판) · 참고 = 211203 자료 p.4(이 자료에선 p.5).
+@P11 | v=ok | rel=P08 | lec=RPD:9
+K: 정답: {r:더 작은 직경}으로 덜 보이고, {r:둥근 단면}으로 빛 반사 감소한다 — p.9 Combination clasp 셋째 줄.
+K: 외울 것: Combination clasp = Casting + wrought wire clasp · 실제보다 직경 작게 보임 / {n:제일 심미적인 건 wrought wire 클래스프 — 얇고 동그래서 잘 안 보임(p.14)}.
+A: 일치 — 답: p.9 "– {r:더 작은 직경}, {r:둥근 단면}( {r:빛 반사 감소})" · 머리 "Combination clasp : 실제보다 직경 작게 보임" — JB 해설도 Combination clasp 두 줄을 인용. [[RPD:9]]
+A: 보강 — 필기(p.9): "또 실제 직경보다 작게 보임. 라운드하면 할수록. 빛 반사 때문" / 필기(p.14): "오히려 제일 심미적인건 wrought wire 클래스프 - 얇고 동그래서 잘 안보임". [[RPD:9]] [[RPD:14]]
+M: 슬라이드 14: 금속 노출을 최소화 하는 부속장치 – 아크릴릭, 복합레진 피개 클래스프 ? – 아크릴릭, 복합레진 클래스프 ? · 그림자 효과 주의 — 필기 "레진은 약해서 … 두꺼워짐. 빛 통과하지 않아서 그림자가 아래에 진다". [[RPD:14]]
+M: 앞 p.7: McCartney의 I bar도 wrought wire — 필기 "I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!! +wrought wire는 탄성이 있어서 발치는 안함". [[RPD:7]]
+M: 변형 대비: Combination clasp의 구성(관련 문항 22년) · 치아색(레진) 클래스프가 오히려 잘 보이는 까닭(그림자 효과). [[RPD:9]] [[RPD:14]]
+N: 연도 — 20년(23판 2020 칸 2번 · 번호 앞 별표 · 출제 교수 표시 없음). JB 앞면 = 23판 2020 칸 2번(유일한 판) · 참고 = 211203 자료 p.8(이 자료에선 p.9).
+@S01 | v=ok | lec=SMI:18
+K: 정답: ① Incisor & gingival display ② Upper lip curvature (Smile type) ③ Smile symmetry ④ Smile arc ⑤ Buccal corridor ⑥ {r:Occlusal frontal plane} ⑦ Dental components ⑧ Gingival components — p.18 8칸 이름·순서(⑥만 낱말 순서 다름) / 이전 판 답(23판 2020년 칸): 1) Incisor and gingival display · 2) Upper lip curvature · 6) Frontal occlusal plane — 나머지 같음
+K: 외울 것: 위 줄 노출량(display) → 윗입술(lip curvature) → 대칭(symmetry) → 아크(smile arc) / 아래 줄 협측 회랑(buccal corridor) → 교합평면(occlusal plane) → 치아(dental) → 치은(gingival) / {n:이름 8개만 나열 — "내용쓰지마"}
+K: ⚠ 함정: 6번 낱말 순서 — 앞면 답 'Occlusal frontal plane'(p.43 바탕 라벨 글자와 같음) · 슬라이드 p.18·28 'Frontal Occlusal plane' — 같은 component · 20년 발문은 'Components of esthetic profile'(답 8줄 같음)
+A: 일치 — 정답 요지 "1. Incisor & gingival display 2. Upper lip curvature (Smile type) 3. Smile symmetry 4. Smile arc 5. Buccal corridor": p.18 'Components of Aesthetic Smile' 위 줄 4칸 라벨 "{r:Incisor & gingival display} · {r:Upper lip curvature (Smile type)} · Smile symmetry · Smile arc" + 아래 줄 첫 칸 "Buccal corridor" — 글자·순서 그대로. [[SMI:18]]
+A: 부분 일치 — 정답 요지 "6. Occlusal frontal plane": p.18 아래 줄 둘째 칸 라벨 "{r:Frontal Occlusal plane}" · p.28 제목 "6. Frontal Occlusal Plane"(a line running from the right canine tip to the left canine tip) — 낱말 순서만 다름 / p.43 결론 쪽 바탕 8칸 그림의 글층 라벨 "Occlusal frontal plane"(JB 답과 글자 같음 — 그림에선 'Beautiful Alignment of Beautiful Teeth …' 글 상자에 가림). [[SMI:28]] [[SMI:43]]
+A: 일치 — 정답 요지 "7. Dental components 8. Gingival components": p.18 아래 줄 셋째·넷째 칸 "{r:Dental components} · {r:Gingival components}" — p.29 '7. Dental Components' · p.30 '8. Gingival Components'와 같은 낱말. [[SMI:18]]
+A: 보강 — 시험 예고(25 필기): p.1 "시험문제 넘버링 한문제 · ”내용쓰지마“ 라고 하셨습니다..ㅎㅎ · 8개 항목 나열하시면 됩니다! · Aesthetic smile의 8가지 component (18p)" / p.18 "시험 (별표) Aesthetic smile의 8가지 component (별표)" / p.46 "시험문제 : 8가지 component 쓰기! 내용 쓰지마!!!!!!!!". [[SMI:1]] [[SMI:46]]
+M: 슬라이드 18: 8칸 사진 표시 — ① 두 가로선 사이 세로 화살표 ② 윗입술 선 + 가운데 위 화살표 ③ 가로선 + 세로 정중선 ④ 상악 절단연을 잇는 곡선 ⑤ 양쪽 입꼬리 안쪽 세로선 ⑥ 가로선 한 줄 ⑦ 치아마다 장축 선 ⑧ 치은 꼭대기마다 짧은 가로선 / 출처(Suh YJ, Nahm DS, Choi JY, Baek SH. J Craniofac Surg 2009;20(6):2006-2012 · Sabri R. The eight components of a balanced smile. J Clin Orthod. 2005;39(3):155-67.) [[SMI:18]]
+M: 필기(p.1): Aesthetic smile의 8가지 component (18p) 1. Incisor & gingival display 2. Upper lip curvature (smile type) 3. Smile symmetry 4. Smile arc 5. Buccal corridor 6. Frontal occlusal plane 7. Dental components 8. Gingival components. [[SMI:1]]
+M: 앞 p.19-30: component마다 한 쪽 — 1. Incisor and Gingival Display(p.19-22) · 2. Upper Lip Curvature (Smile Type)(p.23) · 3. Smile Symmetry(p.24) · 4. Smile Arc(p.25-26) · 5. Buccal Corridor(p.27) · 6. Frontal Occlusal Plane(p.28) · 7. Dental Components(p.29) · 8. Gingival Components(p.30-41). [[SMI:19]] [[SMI:30]]
+M: 변형 대비: 8칸 중 빈 칸 채우기 · 위 줄/아래 줄 순서 섞어 맞히기 · p.18 사진(선·화살표)만 보고 이름 쓰기 — 답은 이름만(25 필기 '내용 쓰지마'). [[SMI:18]]
+M: 변형 대비: component 내용으로 물으면 — 1 Relaxed {r:2-4 mm} · Smile gingival {r:1-2 mm}(p.20) / 2 {r:Muscle-driven position}(p.23) / 3 Parallelism of the {r:commissural and pupillary lines}(p.24) / 4 Attrition or Over-intrusion · Cant of occlusal plane · Incisor inclination · Oral habit(p.25) / 5 "Ext. vs Non-ext." · AP position of the maxilla · transverse lip extension(p.27) / 6 right {r:canine tip} ~ left canine tip(p.28) / 7 size, shape, color, alignment, tip · midline/arch symmetry(p.29) / 8 Color, texture, contour and scalloping(p.30). [[SMI:20]] [[SMI:25]] [[SMI:28]]
+N: 연도 — 24년(25판 2024 칸 18번 괄호 (24,23,22)) · 23년(24판 2023 칸 14번 · 25판 2023 칸 14번 = '24년 18번' 가리킴) · 22년(25판 괄호뿐 — 2022 칸엔 없음) · 20년(23판 2020 칸 4번 별표 'Components of esthetic profile.' — 답 8항목 같아 합침 · 출제 교수 근거 없음). JB 앞면 = 25판 2024 칸 18번(가장 최신 판 · 원본 9쪽) · 23판 2020 칸 답(6) Frontal occlusal plane)은 답 아래 📜 이전 답 · JB 참고 줄 231215 백승학pf p.2 · 211217 백승학pf p.2 = 옛 파일 쪽(이 25 자료에선 같은 8칸 = p.18 · 6번 글층 'Occlusal frontal plane' = p.43).

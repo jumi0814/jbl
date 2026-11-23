@@ -1,0 +1,699 @@
+#TBL 전체정리표 CAD, CAM — 강의 전체 | k=CAD | sum=1 | src=[[CAD:1]] [[CAD:3]] [[CAD:4]] [[CAD:6]] [[CAD:8]] [[CAD:9]] [[CAD:10]] [[CAD:12]] [[CAD:14]] [[CAD:15]] [[CAD:20]] [[CAD:23]] [[CAD:24]] [[CAD:27]] [[CAD:29]] [[CAD:31]]
+H: 항목 | 핵심(슬라이드) | 외울 목록·수치 | 필기 요점 | ★ 시험
+R: **심미치료의 목표** | 표지 논문 질문 — DL-designed anterior tooth-borne crown이 {r:morphologic} · {r:aesthetic} · {r:functional} criteria를 충족하나? | — | 심미치료 가장 중요한 목표 = 환자의 만족(예쁘다) · 전치부에 국한되지 않음 · 원래 모습 회복(70세 환자 앞니) | —
+R: **안모의 분류 · 심미 원칙** | 치열을 포함한 안모의 분류(구도 4) · 심미 원칙 6 | 구도 = ① {r:안면구도} ② {r:치아-안면구도} ③ {r:치아(치열)구도} ④ {r:치아-치은구도} / 원칙 = 구도 · 일치, 통일 · 응집력 및 분리력 · 균형 · 대칭 · 비례/비율({r:황금비}) | 본과 1학년 때 강의자료(교과서) · 응집력 균형 대칭 비율 등 중요 | —
+R: **3Shape Smile Design** | Grow your business · Save time · Esthetic design · built on {r:Digital Smile Design (DSD)} principles | 메뉴 Symmetric design · Smile library … · Smile Design plan | 정적 사진 → 웃는 영상 · smile line 중요 | —
+R: **상용 AI CAD** | Digital dentistry made simple — AI functions minimize time and effort for crown design | 5단계 ① Data import ② Auto margin detection ③ AI design suggestion ④ Milling ⑤ Export to CAM SW / 자동화 이유 Consistent · Fast · Scalable · Cost-effective | 데이터가 쌓이는 치과 = digitally assisted dentistry · 지르코니아 밀링(2005~6) · 스캐너 데이터 → AI 학습 · 아날로그 principle 중시 | —
+R: **AI 크라운 비교 설계** | Conventional CAD(human-based) vs Deep learning-based(as-generated · optimized) | 평가 3 = {r:Crown morphology} · {r:Functional aspect} · {r:Aesthetics} → DL은 functional aspect만 경고(Correction by dental technician) | 마진 · 교합 · contact · 치축경사 · 색상(기공사 trained eye) → 정량적 판단 기준 | —
+R: **연구 1 — DB · DM · NC** | DB = DL as-generated · DM = DL technician-modified · NC = conventional CAD | 평가 = Crown morphology · Incisal path · Esthetic properties | 기공 의뢰 = 재료 · shade · 치축 · contact · 교합 접촉 · incisal edge | —
+R: **디자인 기준 7** | clinically acceptable outcome parameters | margin {r:0.08-mm} · {r:50-degree} / emergence labial straight · palatal convex / occlusal {r:0-μm} · proximal {r:– 20 μm} / cementation 1.0 mm no gap · {r:40-μm} · {r:50-μm} | 잘 맞으려면 프렙 · 인상 · 바이트 → 교합기 상에서 조정 | —
+R: **구개면 · 전방유도** | Artex CR condylar angle {r:35°} · Bennett angle {r:10°} · immediate side shift {r:0 mm} · palatal surface만 수정 · labial not modified | 'Dynamic Occlusion' 0-mm · average occlusal plane(중절치 incisal edge + 제1대구치 mesiopalatal cusp tips) | 전치부 평가 = 전방유도(절치 유도) · incisal guidance에 직접 영향 = 상악전치의 구개면 | —
+R: **연구 1 결과 · 결론** | DL → clinically acceptable morphology·aesthetics · optimal anterior guidance엔 technician 수정 필요할 수 있음 | DB vs DM incisal path 유의차 없음 · DB·DM·NC 심미 수치 유의차 없음 | — | —
+R: **연구 2 — DD · DA vs CC** | DD = Dentbird Crown · DA = Automate · CC = conventional human-based | 기능·심미 similar → {r:clinically acceptable baseline design quality} | 어쨌든 구개면이 중요! · AI는 교합을 모름 · trained eye로 보면 심미적으로 떨어짐 → technician input | —
+R: **3D printing · 재료** | 3D printing in Digital Prosthetic Dentistry 3가지 | ① Unlimited variety of shapes ② {r:customization} ③ More quickly, easily, at lower cost / 재료 Ceramics · Metal · Resin | 밀링 = 소재 낭비 · 블록 shade 한계 · 밀링은 깎고 프린팅은 쌓음 | —
+R: **세라믹 3D 프린팅 장점 5** | {r:3Y-TZP} · SLA · DLP · Selective laser sintering · Binder Jetting → debinding + sintering | ① production time↓ ② human intervention↓ ③ material waste · milling tools↓ ④ {r:No space limitation by size of milling burs} ⑤ near-net-shape | — | {jb:K01}(21 한중석 — 밀링 버 크기의 반대면)
+R: **Under/overmilling · 프렙** | (p.24 슬라이드 = 3D 프린터 사진) | — | 밀링은 버 크기 때문에 undermilling · overmilling → tool path로도 안 됨 → 프렙(rounded angle · taper · sharp line angle 없애기) · 프린팅 마진이 더 잘 맞기도 | {jb:K01}(21 서술 — milling bur의 dimension → overmill)
+R: **세라믹 프린팅 공정** | Resin recipe for ceramic suspension · Technical·Photosensitive parameters · Debinding & sintering | Curing depth = layer thickness + overcuring({r:10–35%}) · 수축 {r:15~25%} → printing rescaling factor · support angle {r:50-deg} · layer {r:50 μm} · {r:405nm} | — | —
+R: **밀링 vs 프린팅 지르코니아 연구** | AM-DLP-3YZ · AM-SLA-3YZ · SM-4YZ · SM-5YZ(각 n = 14) | trueness → aging {r:120,000} chewing cycles → wear → load-to-failure · 5 kg · 1.5 Hz · 5°C - 55°C | — | —
+R: **증례 · 결론** | (p.31 필기 쪽) | — | 전치부 변색 · 짧은 치관 · 파절 → 라미네이트 / 크라운 / 교정 / gingivectomy · 기대치 어긋남은 색조·외형 · graded block · 결론 = 기술 수준 + principle(치아삭제·교합) | —
+N: 시험 열 = 이 강의에 걸린 기출 전부({jb:K01} — 21년 한중석 교수 도재 강의 문항 · 윤형인 교수 기출은 아직 없음). 필기 요점 열은 25 학습부 필기. [[CAD:24]]
+
+#TBL 심미 원칙 6 — 치열을 포함한 안모의 분류 | k=CAD | src=[[CAD:3]]
+H: 원칙 | 내용(슬라이드)
+R: 1) 구도 | {r:안면구도}(facial composition) · {r:치아-안면구도}(dentofacial composition) · {r:치아(치열)구도}(dental composition) · {r:치아-치은구도}(dentogingival composition)
+R: 2) 일치, 통일 | 치아 구도에서의 {r:정적 일치}와 안모 구도에서의 {r:동적 일치}의 조화
+R: 3) 응집력 및 분리력 | 각 치관의 {r:근심경사} + 치간공극의 형태와 색조 대비
+R: 4) 균형 | 좌우의 {r:시각적 평형}과 균형을 위한 형태와 색조 부여
+R: 5) 대칭 | {r:수평 대칭}과 {r:방사상 대칭} – 정중선 기준으로 양 중절치의 완벽한 대칭
+R: 6) 비례/비율 | 상악 중절치와 측절치 폭경 간의 {r:황금비}
+N: 필기 "본과 1학년 때 강의자료- 교과서에서 갖고 온 것" · "응집력 균형 대칭 비율 등 중요 ; 그런 것 통해서 우리가 맞춰준다". 변형 대비: 내용 → 원칙 이름(정적 일치 + 동적 일치 = 일치, 통일 · 근심경사 + 치간공극 = 응집력 및 분리력 · 좌우 시각적 평형 = 균형) 짝 맞히기. [[CAD:3]]
+
+#TBL AI 크라운 비교 연구 2편 — 군 · 평가 · 결론 | k=CAD | src=[[CAD:8]] [[CAD:9]] [[CAD:14]] [[CAD:15]] [[CAD:19]]
+H: 구분 | 연구 1(p.9-14) | 연구 2(p.15-19)
+R: 비교 군 | {r:DB} = Deep learning-based method(as-generated) / {r:DM} = Deep learning-based method(technician-modified) / {r:NC} = Conventional CAD-based method | {r:DD} = Deep learning-based workflow(Dentbird Crown · As-generated) / {r:DA} = Deep learning-based workflow(Automate · As-generated) / {r:CC} = Conventional human-based workflow(Exocad DentalCAD)
+R: 사람 쪽 디자인 | NC: Palatal surface modification by a technician(virtual articulator and protrusive movement simulation) | CC: Manual design using virtual articulator and protrusive movement simulation(experienced dental laboratory technician)
+R: 기능 평가 | Incisal path(DB–NC, DM–NC): Linear deviation · Length · Mean inclination | Functional outcomes(incisal path): Deviation between curves · Curve length · Mean inclination of curve
+R: 형태 평가 | Crown morphology(DB–NC, DM–NC): Volumetric deviation · Linear deviation(Fig. 6 root mean square · positive average · negative average — palatal 부위만) | —
+R: 심미 평가 | Esthetic properties(DB, DM, NC): Width · Height · Width-to-height ratio · Angular radius · Proximal contact length · Tooth axis | Esthetic outcomes: Width-to-height ratio · Angular radius · Proximal contact length · Tooth axis angle
+R: 결론 | DL → {r:clinically acceptable} morphological and aesthetic properties · optimal anterior guidance엔 {r:modification by a technician} 필요할 수 있음 / DB vs DM incisal path 유의차 없음 / DB·DM·NC 심미 수치 유의차 없음 | DD·DA ≈ CC — {r:similar functional} · {r:similar esthetic outcomes} → {r:clinically acceptable baseline design quality}
+N: p.8 요약 그림 = Conventional CAD(human-based) vs Deep learning-based(as-generated · optimized) · 평가 3(Crown morphology · Functional aspect · Aesthetics) — DL은 Functional aspect에만 경고 'Correction by dental technician at design stage if necessary'. 필기: AI는 확률적으로 추론할 뿐 교합을 모름 · trained eye로 보면 심미적으로 떨어짐 → technician input 필요. [[CAD:8]] [[CAD:16]]
+
+#TBL 크라운 디자인 기준 7 — clinically acceptable outcome | k=CAD | src=[[CAD:10]]
+H: 항목 | 설정(슬라이드) | 수치
+R: 1) labial surfaces | harmonious with adjacent teeth for aesthetics | —
+R: 2) palatal surfaces | harmonious with adjacent teeth, with {r:lingual concavity} from incisal edge to cingulum | —
+R: 3) margin line adaptation | offset · angle | {r:0.08-mm} · {r:50-degree}
+R: 4) emergence profile | labial side = {r:straight} / palatal side = {r:convex} | —
+R: 5) occlusal contacts | at the contact points on the lingual fossa or marginal ridge | {r:0-μm} intensity
+R: 6) proximal contact | intensity | {r:– 20 μm}
+R: 7) cementation space | no gap from the margin / gap on the inner surface / additional gap | {r:1.0 mm} / {r:40-μm} / {r:50-μm}
+N: 필기 '보철물이 잘 맞으려면?' = 프렙을 잘해야(마진 형성) · 인상을 잘 떠야 · 바이트 잘 떠서 모형 → 마운팅 → 왁스업 → 제작 → 끼움 → 교합기 상에서 조정. 변형 대비: 수치 → 항목 짝(0.08-mm·50-degree = margin · 0-μm = occlusal · – 20 μm = proximal · 40-μm = inner surface) · labial straight ↔ palatal convex 뒤집기. [[CAD:10]]
+
+#TBL 연구 2 결과 — Table 1·2(CC 대비) | k=CAD | src=[[CAD:17]]
+H: Parameters | Workflow | Noninferiority Margin | Mean Difference | t Statistic | P | 95% CI
+R: Length of incisal path | DD* | 0.611 | −0.223 | −2.680 | .010 | [−0.357, −0.088]
+R: Length of incisal path | DA* | 0.611 | −0.025 | −0.367 | .037 | [−0.154, 0.104]
+R: Inclination of incisal path | DD* | 3.825 | −2.092 | −2.861 | .003 | [−5.120, 0.936]
+R: Inclination of incisal path | DA | 3.825 | 2.196 | 1.711 | .202 | [0.680, 5.072]
+R: Width-to-height ratio | DD* | 0.045 | −0.044 | −4.035 | <.001 | [−0.075, −0.025]
+R: Width-to-height ratio | DA* | 0.045 | −0.005 | −2.234 | .032 | [−0.085, 0.005]
+R: Angular radius | DD* | 0.163 | −0.016 | −2.201 | .015 | [−0.279, −0.047]
+R: Angular radius | DA | 0.163 | 0.118 | −1.115 | .272 | [−0.212, 0.086]
+R: Proximal contact length | DD* | 0.414 | −0.416 | −3.021 | .006 | [−0.760, −0.068]
+R: Proximal contact length | DA* | 0.414 | −0.113 | −2.063 | .027 | [−0.669, −0.041]
+R: Tooth axis angle | DD* | 0.537 | −0.486 | −4.159 | <.001 | [−1.081, −0.393]
+R: Tooth axis angle | DA* | 0.537 | −0.660 | −4.456 | <.001 | [−1.113, −0.411]
+N: 각주 — CC, conventional human-based crown design workflow (experienced dental laboratory technician); DA, deep learning-based crown design workflow (Automate); DD, deep-learning based crown design workflow (Dentbird). *Statistically significant differences (P<.05). 표 1 = functional outcomes · 표 2 = esthetic outcomes. [[CAD:17]]
+
+#TBL 밀링 vs 3D 프린팅 — CAM 두 방식 | k=CAD | src=[[CAD:20]] [[CAD:21]] [[CAD:22]] [[CAD:23]] [[CAD:24]] [[CAD:25]]
+H: 기준 | 밀링(subtractive) | 3D 프린팅(additive)
+R: 만드는 방식 | {n:컴퓨터 계산한 경로(tool path)로 깎는다} | {n:컴퓨터가 디자인한 이미지대로 쌓아올림} · SLA · DLP · Selective laser sintering · Binder Jetting
+R: 버 크기 · 공간 | {n:{r:버 크기} 때문에 undermilling, overmilling — tool path 계산 잘해도 안 됨} {jb:K01} | {r:No space limitation by size of milling burs} and axis of machine · {n:그 면에 맞게 쌓아올림 → 기구 dimension · 접근 가능성 · tool path 문제 적다} {jb:K01}
+R: 마진 적합 | {n:프렙 잘 되면 결과물 잘 나옴 · 안 되면 over, undermilling} | {n:밀링한 것과 유사하게 괜찮고 마진 더 잘 맞기도(축면 · 교합면에서 축면 넘어가는 부분) — 프린팅이 정확해서가 아니라 밀링이 부정확해서}
+R: 소재 · 시간 · 비용 | {n:소재적으로 낭비가 심한 부분 많음} · milling tools wear | Reduction of production time per unit · material waste · milling tools(wear) · More quickly, easily, at lower cost
+R: 형태 · 맞춤 | {n:a2 블록 하나로 characterization — 블록 shade의 한계} | Unlimited variety of shapes · {r:customization} · Customized near-net-shape objects(irregular grooves)
+R: 강도 | {n:밀링한 지르코니아 기준} | {n:같거나 좀 낮음 — 재료 자체의 만드는 방식이 다름}
+R: 레진 | {n:레진블록을 미리 중합} | {n:그 자리에서 쌓아올림 → 중합 잘 안 시키면 technique sensitive}
+R: 한계 | {n:아직 발전될 부분 많음} | Few market-ready applications · {n:프린터가 커서 기공소에 두기 어렵고 오래 걸림 · 최종 quality가 사용자에 달림 · 세라믹은 정밀도·색상 수준 어려움}
+R: 프렙 대책 | {n:지르코니아 밀링 프렙 = rounded angle · taper · sharp line angle 없애기(밀링 버가 날카로운 것 못 따라감)} | —
+N: 변형 대비: {jb:K01}(21 서술 — 지대치 삭제량을 정확히 반영 못 하는 이유 → milling bur의 dimension → overmill)을 반대편으로 묻는 꼴 = '프린팅 마진이 더 잘 맞는 이유' · '세라믹 프린팅 장점 중 밀링 버 관련' · '밀링 프렙 원칙'. [[CAD:23]] [[CAD:24]] [[CAD:25]]
+
+#TBL 세라믹 3D 프린팅 변수 · 소결 | k=CAD | src=[[CAD:25]] [[CAD:27]] [[CAD:28]]
+H: 구분 | 변수 | 값 · 뜻
+R: Technical parameters | laser power · scanning velocity · layer thickness · hatch spacing | —
+R: Photosensitive parameters | resin properties — penetration depth · critical energy dose | —
+R: 해상도 | Curing depth(Cd) / Curing width(Cw) | {r:vertical} resolution / {r:lateral} resolution · Curing depth = layer thickness + overcuring ({r:10–35%})
+R: Debinding & sintering | Sintering (debinding) temperature · Heating rate(shrinkage rate · gas formation · temperature distribution) | 수축 {r:15~25%} · particle densification & eliminate voids · X, Y, Z 방향마다 다름 → {r:Printing rescaling factor}
+R: Support parameter | Maximum support angle · Minimum distance · Contact diameter · Build angle | {r:50-deg} · {r:1mm} · {r:0.4mm} (thin) · occlusal area ({r:0-deg})
+R: MSA | angle at which the support is formed on the crown | Too high → more supports → difficult to remove the support / Too low → less supports → less stable during printing
+R: Slice parameter | Layer thickness · X-Y resolution · Build size | {r:50 μm} · 40.32 μm (4K) · 120mm x 80mm
+R: Printing parameter | Wavelength · Curing time · Blade speed | {r:405nm} · 4.3sec / layer · 150mm/s
+N: Resin recipe for ceramic suspension = photoinitiators · monomers · oligomers · dyes · dispersion agents · diluents · inhibitors · fillers · plasticizers. 변형 대비: MSA 높음 ↔ 낮음 결과 뒤집기 · 수치 → 변수 짝. [[CAD:25]] [[CAD:28]]
+
+#TBL 밀링(SM) vs 프린팅(AM) 지르코니아 크라운 연구 — 4군 · 씹기 모의 | k=CAD | src=[[CAD:29]] [[CAD:30]]
+H: 군 | 제조 방식 | 지르코니아 | n
+R: AM-DLP-3YZ | additive manufacturing · digital light processing | 3 mol% yttria-stabilized tetragonal zirconia | 14
+R: AM-SLA-3YZ | additive manufacturing · stereolithography | 3 mol% yttria-stabilized tetragonal zirconia | 14
+R: SM-4YZ | subtractive manufacturing | 4 mol% yttria-stabilized partially sintered zirconia | 14
+R: SM-5YZ | subtractive manufacturing | 5 mol% yttria-stabilized partially sintered zirconia | 14
+N: 흐름 = Data acquisition with digital scanner → Trueness measurement by superimposition analysis → Artificial aging 120,000 chewing cycles with thermocycling(n = 7/group) → Wear measurement → Load-to-failure test → Microscopic evaluation of fractured surfaces · chewing simulation = Downward 2 mm · Lateral 0.7 mm · Speed Up 55/Down 30 · Forward 30/Back 55 · Weight {r:5 kg} · Dwell time 60 s · {r:5°C - 55°C} · {r:120,000} · {r:1.5 Hz} · Intaglio trueness 4 areas = Inner surface · Occlusal area · Margin area · Axial area(J Adv Prosthodont 2022). [[CAD:29]] [[CAD:30]]
+
+#TBL 전체정리표 심미수복재료 – 도재 — 강의 전체 | k=CER | sum=1 | src=[[CER:2]] [[CER:6]] [[CER:15]] [[CER:20]] [[CER:27]] [[CER:32]] [[CER:40]] [[CER:42]]
+H: 주제 | 핵심(슬라이드) | 외울 목록·수치 | 함정·구별 | ★ 시험
+R: **세라믹 정의·특성** | 고온의 열처리 공정을 거쳐서 합성되는 {r:비금속, 무기재료} | 산화물 세라믹스 = 대부분 {r:이온결합} · 비산화물, 실리콘 = {r:공유결합} / 특성 6: 강도와 경도 높음, {r:인성은 낮음} · 취성 · 화학적 내구성 · 화학적 불활성, 생체적합성 · 색조 재현성, 전기 및 열 절연성 · 표면 활택성·치태 침착 저항성 | 강도·경도 높음 ↔ 인성 낮음(취성) | —
+R: **치과 도재의 역사** | {r:1774} Duchateau 총의치 치아 → {r:Charles H. Land}(포세린 치과 예술의 아버지 · Enameled metallic caps · Jacket crowns) → 1956 PFG → {r:1962} Weinstein PFM | {r:1965} McLean 알루미나 도재관 · {r:1984} Dicor · {r:1988} In-Ceram · {r:1990} IPS-Empress · IPS-Empress II(lithium disilicate) · 지르코니아 CAD–CAM | castable = Dicor · slip-cast = In-Ceram · heat-pressed = IPS-Empress | —
+R: **Veneering porcelain·금속-도재 결합** | 무정형 글래스 기질 + 백류석(leucite) 결정상 = 입자 강화 유리질 도재 → moderately particle filled feldspathic glass ceramic | 장석유리 8 · leucite {r:20} · 장석 유리 + leucite {r:17~25%} → 합금 {r:12~14}(×10⁻⁶/℃)과 유사 / 제작 순서 7(… {r:oxidation} → opaque → body) / 결합 기전 4 = {r:Chemical} · mechanical · compressive · Van der Waals | {n:화학결합이 있다는 점이 중요 — 지르코니아 위 포세린은 화학결합 없음} | —
+R: **올세라믹 분류** | Heat-pressed · Machinable (CAD-CAM) · Printable (CAD-CAM) = 진한 글씨({n:지금도 씀}) | IPS-Empress → {r:IPS Empress Esthetic} · IPS-Empress II → {r:IPS e.max Press} · Vita Mark II · IPS Empress CAD · IPS e.max CAD · IPS e.max ZirCAD Prime · LithaCon 3Y 210 | Slurry · Castable · Slip casting = 흐린 글씨({n:요즘 볼 일 없음}) | —
+R: **Heat-pressed ceramics** | Empress(Esthetic) = leucite {r:40~50%} · {r:120 MPa} / e.max Press = lithium disilicate {r:70%} + lithium orthophosphate · {r:350 MPa} | 술식: 납형·매몰 → {r:800°C} 왁스 패턴 소환 → 주괴 + 알루미나 플런저 → {r:1165°C} 압입 → 축조/채색 및 소성 | 적응증: Empress = 인레이·온레이·라미네이트·심미적 부위의 단관 / e.max Press = 전치부 3-unit 가공의치·구치부 단관 | —
+R: **Machinable ceramics** | e.max CAD = {r:Blue state}(metasilicate 40% · 130~150 MPa) → 결정화 {r:840°C 20~25 min} → lithium disilicate 70% · 360MPa · 2.25 MPa·m1/2 | Zirconia = polycrystalline · {r:500~1200 MPa} · toughness 5~10 MPa·m1/2 / 반소결체 = soft milling {r:25% oversizing} · shrinkage during sintering / 완전소결체 = robust milling · t → m · no post-milling shrinkage | {n:대부분 반소결체} · oversizing 슬라이드 25%({n:필기는 20% 정도}) · {n:밀링은 버 사이즈 때문에 오버 밀링 — 적합도는 heat pressed가 우수}(p.10) | {jb:K01}
+R: **구조 설계(적층법·채색법)** | Bilayered = 적층법(layering) · Monolithic = 채색법(staining) · Veneer porcelain은 core의 CTE·기계적 특성 고려 | Core CTE: PFM 13.8–15.5 · Lithium disilicate ~{r:10.25} · Zirconia ~{r:10.5–11.0} / Zirconia veneer CTE {r:코어보다 0.5–1.0 낮음} · 전처리 Air abrasion · Liner application | Core와의 결합: Lithium disilicate = 유리상 공유 화학적 결합 ↔ Zirconia = {r:주로 기계적 결합} · PFM veneer leucite = p.15 표 15–25% · p.6 17~25% | {jb:C08}
+R: **All-ceramic vs Metal-ceramic** | All-ceramic 5: No light-blocking metal · Wide range of translucency · Better soft tissue health · {r:Supragingival margin} · Reduced overcontouring / Metal-ceramic 2: {r:Predictable structural performance} · No special knowledge required | Metal-ceramic single unit porcelain cracking & bulk failure 5-10% at 6yrs · structural issues 3~4% at 10yrs | 옛 답(한중석 버전) 장점 축 = 이 쪽 All-ceramic 목록 | {jb:C05}
+R: **Metal-ceramic 장점·한계** | Gold standard · Excellent mechanical properties · Predictable structural performance(위 세 줄) | 2003년 기공실 363,000개 — 금속-세라믹 {r:63%} · 올세라믹 {r:23%} | 한계(아래 세 줄) = {r:Limited esthetics} · {r:Masking ability} · {r:Porcelain chipping or fracture} — 슬라이드엔 장점·단점 글자 없음 | {jb:C01}
+R: **Challenges in Metal-Ceramic** | Porcelain chipping or fracture · Dark metal line visible at margin · Possible bluish appearance · Wear on opposing teeth · Significant tooth reduction · Time-consuming and labor-intensive | Bluish appearance 4 = Thin gingival biotype · light 차단 · abutment discoloration·metal post/core · metal oxide diffusion / 마모 Feldspathic {r:8.914} µm(Highest) · Zirconia Least · 자연치 0.797 µm per month | {r:Collarless margin} = dark metal line의 partial solution | {jb:C01} {jb:C02}
+R: **Clinical convenience·Considerations** | Convenient and easy adjustment(articulating paper · hyperocclusion · occlusal porcelain) · proximal contact 추가 · 수리(implant — not too old · tooth — resin) | Considerations 2 = careful framework/coping design · regular occlusion checks and occlusal adjustment | {n:코핑 디자인에 따라 예후 달라짐} | —
+R: **Margin design** | ① Beveled shoulder ② Shoulder with collar ③ {r:Collar disappearing} ④ {r:Collarless shoulder} | 확대 원 라벨: 불투명 포세린 · 금속 하부 구조물 · 상아질 포세린 · 치질 | '전치부에서 주로'는 슬라이드 글이 아님 — collarless 둘(JB 해설) | {jb:C02}
+R: **Framework design** | 주로 심미성에 의해 결정(그림 = 전치 코핑) · 금속 하부구조물은 빛의 투과를 차단 | 교합면 금속 {r:1.0 ~ 1.5 mm} · 도재 {r:1.5 ~ 2.0 mm} / 접촉점 경계부에서 {r:1.5 ~ 2.0 mm} · eccentric movement 시에도 연결 부위 피함 · 동일 재료끼리 / 근심 접촉점 = 도재 / Freestanding porcelain {r:Less than 2.0 mm} | 보기 '금속 1.5-2.0 · 도재 얇게' × · 25 필기 '그냥 읽어보세요'·'넘어감' 쪽에서 출제 | {jb:C04}
+R: **All-ceramic 장점·단점** | 장점 4 = Esthetic · A variety of products with a wide range of translucency · Biocompatibility · Monolithic/Bilayered | 단점 3 = {r:Low tensile strength} · {r:Fracture risk} · {r:Antagonist wear} | JB 답 'transparency' ↔ 슬라이드 translucency · 한계 답은 p.41이 아니라 이 쪽 단점 3 | {jb:C05} {jb:C03}
+R: **치아 삭제 원칙** | 전부주조관·금속-도재관 = classic prosthodontic preparation principle · 전부도재관 축면 {r:1 mm} · 절단 {r:1.5-2 mm} | Silica-based 원칙 5 = {r:90° shoulder}(sloped x) 또는 1-mm chamfer · 설측 더 많이·순측 보존적 · 둥근 내부 선각 · 예리한 우각부 x · 급격한 변화 없게 | {n:포세린이 올라가면 골드크라운보다 0.5mm 정도 더} | —
+R: **지르코니아 — 종류·삭제** | Layered·PFZ 축면 1 mm · 절단·교합면 1.5–2 mm / Monolithic = No defined(0.5 mm sufficient · 1 mm optimal) | 3Y tetragonal 98% · 4Y cubic ~30% · 5Y cubic ~50% / 5Y translucency {r:20 to 25%}↑ · strength {r:40 to 50%}↓ / occlusal 3Y {r:≥ 1} · 4Y {r:≥ 1.2} · 5Y {r:≥ 1.5 mm} · axial ≥ 1 mm light chamfer | 모든 지르코니아 삭제가 같은가? NO · 5Y 0.7 mm 75% · 1.2 mm 35% fracture | —
+R: **All-ceramic 한계** | Limitations 5 = Fracture or chipping · Increased connector dimension · Space restricted · Cantilever questionable · Heavy bruxism | Space restricted = deep bite · supra-eruption of antagonist · short clinical crown | 24년 '한계점' JB 답은 p.32 단점 3 | {jb:C03}
+R: **파절 양상(crack)** | Far field crack = cementation surface beneath the contact · Near field crack = applied load 가까이 | crack 7 = Outer (O) · Inner (I) cone · Median (M) · Partial cone (P) · Edge chipping (C) · {r:Radial (R) at cementation surfaces} · {r:Flexure (F) at connectors} | 옛 교수 문장(25 자료 없음 — JB 답): load to fracture · square of the thickness · fracture toughness ∝ · flaw size 반비례 · Hoop stress | {jb:C11} {jb:C06} {jb:C10} {jb:C09} {jb:C07} {jb:C12}
+R: **심미 보철·재료 선택·임상 성적** | 심미 보철 = 형태(morphology) · 색상·채도·명도 · 투광도 / 재료 선택 6 = 마진 빛 투과성 · 지대치 · 치은 · 재료 투과성 · 강도 · 대합치·인접치 수복 재료 | SC 5년 생존율 Metal-ceramic {r:95.7%} · Leucit or lithium-disilicate {r:96.6%} · Zirconia {r:91.2%} / monolithic zirconia 98% at 5-year · monolithic lithium disilicate 96.5% at 10-year | {n:형태가 가장 중요 · 생존율 표는 참고만} | —
+N: 변형 대비: 기출 12문항 전부 이 표 시험 열에(+ CAD 강의 주 문항 {jb:K01} — p.10 필기 overmill) · 조준호 24년 4문항은 metal-ceramic 구역(p.20-28)과 All-ceramic 단점(p.32) · 한중석 21·22년 문항 중 25 자료에 근거가 남은 것은 crack 7종(p.42)뿐. [[CER:42]]
+
+#TBL Metal-ceramic vs All-ceramic — 장점·단점·한계 | k=CER | src=[[CER:19]] [[CER:20]] [[CER:21]] [[CER:22]] [[CER:32]] [[CER:41]]
+H: 항목 | Metal-ceramic system | All-ceramic system | 기출
+R: 비교 목록(p.19) | {r:Predictable structural performance}(single unit porcelain cracking & bulk failure 5-10% at 6yrs · porcelain-related structural issues 3~4% at 10yrs) / {r:No special knowledge required}(routine use) | No light-blocking metal / Wide range of translucency / Better soft tissue health with reduced plaque accumulation / {r:Supragingival margin} / Reduced overcontouring of the emergence profile | {jb:C05}(옛 답 장점 축)
+R: 장점 쪽 | Gold standard(기공실 {r:63%}) · Excellent mechanical properties · Predictable structural performance(p.20 위 세 줄) | Esthetic · A variety of products with a wide range of translucency · Biocompatibility · Monolithic/Bilayered(p.32 위 4줄) | {jb:C05}
+R: 단점·한계(JB 답) | {r:Limited esthetics} · {r:Masking ability} · {r:Porcelain chipping or fracture}(p.20 아래 세 줄) | {r:Low tensile strength} · {r:Fracture risk} · {r:Antagonist wear}(p.32 아래 3줄) | {jb:C01} {jb:C03} {jb:C05}
+R: 더 긴 목록 | Challenges 6(p.21-22): Porcelain chipping or fracture · Dark metal line visible at margin · Possible bluish appearance · Wear on opposing teeth · Significant tooth reduction required · Time-consuming and labor-intensive laboratory procedures | Limitations 5(p.41): Fracture or chipping problems · Increased connector dimension · Space restricted · Cantilever prosthesis questionable · Heavy bruxism or parafunctional activity | {jb:C01}(배점에 따라 다른 답)
+R: 대합치 마모(p.22) | Veneering 포세린 = Feldspathic porcelain linear {r:8.914} µm · Highest enamel wear | Lithium disilicate 0.018 µm(Low) · Zirconia volumetric 0.014 mm³(Least) | —
+R: 수리·조정(p.23) | 교합지 잘 찍혀 조정 쉬움 · proximal contact 추가 · repair with resin | — | —
+N: 변형 대비: 24년엔 Metal-ceramic 한계(1번)와 All-ceramic 한계(3번)를 한 시험에 짝으로 냄 → 남은 칸(각 장점 · Challenges 6 · Limitations 5 · p.19 비교 목록)을 같은 꼴로 바꿔 물을 수 있음 · '한계점' 답은 두 쪽 다 떠올리기. [[CER:20]] [[CER:32]] [[CER:41]]
+
+#TBL Heat-pressed vs Machinable — 제품별 결정상·강도 | k=CER | src=[[CER:9]] [[CER:10]] [[CER:12]] [[CER:14]]
+H: 제품 | 분류 | 주 결정상 | 굴곡강도 | Toughness | 제작·적응증
+R: **IPS-Empress (IPS Empress Esthetic)** | Heat-pressed | 백류석(leucite) {r:40~50%} | {r:120 MPa} | — | 인레이 · 온레이 · 라미네이트 · 심미적 부위의 단관
+R: **IPS-Empress II (IPS e.max Press)** | Heat-pressed | lithium disilicate {r:70%} + lithium orthophosphate | {r:350 MPa} | — | 800°C 왁스 소환 → 1165°C 압입 · 전치부 3-unit 가공의치 · 구치부 단관
+R: **IPS e.max CAD** | Machinable | blue state lithium metasilicate {r:40%} → 결정화 뒤 lithium disilicate {r:70%} | {r:130~150 MPa} → {r:360MPa} | {r:2.25 MPa·m1/2} | 결정화 {r:840°C for 20~25 min} · 우수한 기계 절삭 가공성
+R: **Zirconia blocks or blanks** | Machinable | Polycrystalline ceramic | {r:500~1200 MPa} | {r:5~10 MPa·m1/2} | 반소결체 25% oversizing·소결 수축 / 완전소결체 robust milling·no post-milling shrinkage
+N: 변형 대비: 같은 lithium disilicate라도 e.max Press(350 MPa)와 e.max CAD(깎기 전 130~150 → 결정화 뒤 360MPa)가 다름 · leucite 함량 PFM veneering porcelain 17~25% ↔ Empress 40~50%. [[CER:6]] [[CER:9]] [[CER:12]]
+
+#TBL 코어별 비니어 — PFM·Lithium disilicate·Zirconia | k=CER | src=[[CER:6]] [[CER:7]] [[CER:15]] [[CER:18]]
+H: 항목 | PFM Veneer | Lithium Disilicate Veneer | Zirconia Veneer | 기출
+R: Core CTE | 13.8–15.5 ×10⁻⁶/K | ~{r:10.25} ×10⁻⁶/K | ~{r:10.5–11.0} ×10⁻⁶/K | —
+R: Veneer CTE | 금속과 거의 동일 | 코어와 동일 또는 약간 낮음 | {r:코어보다 0.5–1.0 낮음} | {jb:C08}(Coefficient of thermal expansion)
+R: 주 결정상 | Leucite (15–25%) | Fluorapatite/소량 leucite | Leucite/Fluorapatite | —
+R: Core와의 결합 | 산화층과의 화학적 결합 + 기계적 결합(결합 기전 Chemical · mechanical · compressive · Van der Waals) | {r:유리상 공유}를 통한 화학적 결합/융합 | {r:주로 기계적 결합}. Liner 처리를 통한 화학적 결합은 매우 제한적 | {jb:C08}(Bonding: porcelain-zirconia)
+R: 전처리·비니어 재료 | 산화처리(oxidation) → opaque → body | Veneering on silica-based ceramic core — IPS e.max Ceram | Pretrement: Air abrasion · Liner application(IPS e.max Ceram ZirLiner — ZrO2 only) | —
+N: 25 자료 = 기출 근거 일부 — 지르코니아 비니어 파절 원인 7(Bonding: porcelain-zirconia · Weak porcelain · Coefficient of thermal expansion · Lower elastic modulus · Framework design · Fracture origin: internal defect · Thermal conductivity)은 JB 답(25 자료엔 목록 없음 — 한중석 2 p.39). {jb:C08}
+N: 변형 대비: Lithium disilicate ↔ Zirconia 결합 맞바꾸기(화학적 ↔ 기계적) · PFM veneer leucite 수치는 쪽마다 다름(p.15 15–25% · p.6 17~25%). [[CER:6]] [[CER:15]]
+
+#TBL 치아 삭제량 — 금속-도재·전부도재·지르코니아 | k=CER | src=[[CER:27]] [[CER:33]] [[CER:34]] [[CER:35]] [[CER:40]]
+H: 수복물 | 교합면·절단 | 축면 | margin·원칙 | 기출
+R: 금속-도재(구치 framework) | 금속 교합면 {r:1.0 ~ 1.5 mm} · 도재 교합면 {r:1.5 ~ 2.0 mm} | — | 접촉점은 금속-도재 경계부에서 1.5 ~ 2.0 mm | {jb:C04}(보기 5 ×)
+R: 금속-도재관(그림) | ≥1.5 mm(전치 절단) · 1.3-1.7 mm · 0.8-1.2 mm(구치) | Facial 1 mm · Lingual 0.5 mm · ≥0.3 · ≥1.2 · ≥1 · ≥0.5 · ≥0.6 mm | classic prosthodontic preparation principle | —
+R: 전부도재관(silica-based) | {r:1.5-2 mm} | {r:1 mm} · {r:1 mm} | {r:90° shoulder}(sloped x) 또는 1-mm chamfer · 설측 더 많이 · 둥근 내부 선각 | —
+R: Layered zirconia·PFZ | {r:1.5–2 mm} | {r:1 mm} minimal | 그림 Veneered: 1.5-2.0 · 1.0–1.5 · 1.0 mm | —
+R: Monolithic zirconia | No defined — {r:0.5 mm} sufficient · {r:1 mm} optimal · like a gold restoration | 그림 0.5 mm | — | —
+R: Monolithic 3Y·4Y·5Y | occlusal {r:≥ 1 mm} · {r:≥ 1.2 mm} · {r:≥ 1.5 mm} | {r:≥ 1 mm} with a light chamfer margin | 0.7 mm 파절 3Y 0 · 4Y 50% · 5Y 75% | —
+N: 변형 대비: 24년 보기 5는 금속·도재 교합면 수치를 맞바꾼 꼴 → 전부도재관·지르코니아 수치도 같은 꼴(종류 맞바꾸기 · 더 얇게)로 바꿔 물을 수 있음 · {n:포세린이 올라가면 골드크라운보다 0.5mm 정도 삭제량이 많다}. [[CER:27]] [[CER:33]]
+
+#TBL Framework Design — 대합치·인접치·지지 | k=CER | src=[[CER:26]] [[CER:27]] [[CER:28]] [[CER:29]]
+H: 고려 | 슬라이드 원문 | 수치 | 기출
+R: Framework design(그림 = 전치 코핑) | 주로 심미성에 의해 결정 · 금속 하부구조물은 빛의 투과를 차단 | — | —
+R: 대합치와의 공간·치아 삭제량 | 금속 교합면 · 도재 교합면 | {r:1.0 ~ 1.5 mm} · {r:1.5 ~ 2.0 mm} | {jb:C04}(보기 5 ×)
+R: 교합 접촉점의 위치 | 금속-도재 경계부에서 떨어진 위치 · Eccentric movement 시에도 금속-도재 연결 부위가 가능하면 놓여지지 않도록 · 수직, 수평 피개 고려 | {r:1.5 ~ 2.0 mm} | {jb:C04}(보기 1·2 ○)
+R: 동일 재료끼리 접촉 | 금속과 금속, 도재와 도재 | — | {jb:C04}(보기 3 ○)
+R: 인접치와의 접촉 | 심미적 고려. 전치 및 소구치의 근심 접촉점은 {r:도재}로 형성하는 것이 심미적으로 유리 | — | {jb:C04}(보기 4 ○)
+R: Freestanding porcelain | 금속 하부 구조물에 의해 지지받지 못하는 포세린 | {r:Less than 2.0 mm} | —
+N: 변형 대비: '옳은 것 모두' 판 · 수치 맞바꾸기(1.0~1.5 ↔ 1.5~2.0 · 2.0 mm) · 근심 접촉점 재료(도재 ↔ 금속) · {n:25 수업 p.27 '그냥 읽어보세요'·p.28 '넘어감'} 쪽에서 24년 4번이 나옴. [[CER:27]] [[CER:28]]
+
+#TBL Crack 7종 — 글자·이름·자리 | k=CER | src=[[CER:42]]
+H: 글자 | 이름(슬라이드) | 자리·묶음 | 기출
+R: {r:O} | Axisymmetric {r:outer} (O) cone cracks | 그림 — 하중(화살표) 바로 아래 | {jb:C11} {jb:C06}
+R: {r:I} | Axisymmetric {r:inner} (I) cone cracks | 그림 — 하중(화살표) 바로 아래 | {jb:C11} {jb:C06}
+R: {r:M} | {r:median} (M) cracks | 그림 — 하중(화살표) 바로 아래 | {jb:C11}
+R: {r:P} | {r:Partial cone} (P) cracks | 그림 — 교두 경사면 | {jb:C11}
+R: {r:C} | {r:Edge chipping} cracks (C) | 그림 — 교두 가장자리 | {jb:C11}
+R: {r:R} | {r:Radial} (R) cracks at cementation surfaces(밑줄) | 슬라이드 — {r:cementation surfaces}(그림 내면) | {jb:C11} {jb:C06}
+R: {r:F} | {r:Flexure} (F) cracks at connectors(밑줄) | 슬라이드 — {r:connectors}(그림 브릿지) | {jb:C11} {jb:C06}
+N: 변형 대비: 21년 = 그림 글자 주고 7개 빈칸 · 23년 = O·I·R·F 줄임말 4칸 → 남은 M·P·C · 자리(cementation surfaces·connectors) · Far field vs Near field로 바꿔 물을 수 있음 · {n:대부분 파절이 내면에서 시작}. [[CER:42]]
+N: 옛 교수 같은 강의 문장(25 자료 없음 — JB 답): thickness ↑ → load to fracture가 square of the thickness로 증가 · 파절강도 ∝ fracture toughness · 1/flaw size. {jb:C10} {jb:C09} {jb:C07}
+
+#TBL 지르코니아 3Y·4Y·5Y — 결정상·투광도·강도·삭제 | k=CER | src=[[CER:37]] [[CER:38]] [[CER:39]] [[CER:40]]
+H: 종류 | 결정상 | 투광도(TP — Katana) | 강도·피로 실험(0.7 · 1.2 mm) | Occlusal reduction
+R: **3Y-TZP** | {r:Tetragonal phase: 98% or almost 100%}(< 0.05 wt% alumina) · 0.25-0.5 wt% alumina 판도 | ML A2 {r:13.0} · Lava Plus 13.3 | No failure · No failure | {r:≥ 1 mm}
+R: **4Y-PSZ** | {r:Cubic phase: about 30%} | STML A2 14.6 | {r:50% fracture} · no fracture | {r:≥ 1.2 mm}
+R: **5Y-PSZ** | {r:Cubic phase: about 50%} | UTML A2 15.7 · Lava Esthetic 13.8 | {r:75% fracture} · {r:35% fracture} | {r:≥ 1.5 mm}
+R: Glass-ceramic(비교) | Leucite · Lithium disilicate | Empress CAD LT 18.8 · HT 21.7 / e.max CAD LT 17.8 · MT 19.8 · HT {r:21.9} | — | —
+N: 5Y vs 3Y: translucency {r:20 to 25%} 향상 · flexural strength {r:40 to 50%} 감소 · Lower than glass-ceramics · Axial wall reduction ≥ 1 mm with a light chamfer margin. [[CER:38]] [[CER:40]]
+N: 변형 대비: 종류 ↔ 결정상 비율 · 종류 ↔ 삭제량 맞바꾸기 · {n:강도와 translucency는 반비례}. [[CER:37]] [[CER:40]]
+
+#TBL 전체정리표 심미치과영역에서의 디지털 기술의 활용 ① 디지털 workflow·전부도재관·디자인 | k=DIG | sum=1 | src=[[DIG:1]] [[DIG:2]] [[DIG:3]] [[DIG:4]] [[DIG:6]] [[DIG:7]] [[DIG:10]] [[DIG:11]] [[DIG:12]] [[DIG:13]] [[DIG:14]] [[DIG:15]] [[DIG:16]] [[DIG:17]] [[DIG:18]] [[DIG:19]] [[DIG:20]]
+H: 항목 | 핵심(슬라이드) | 외울 목록·수치 | 함정·구별 | ★ 시험
+R: **강의 개관** | 전부도재관의 {r:적응증}, {r:디자인} 및 {r:접착과정} / 고정성치과보철학 제3판 (제12장, 제14장, 제20장) | {n:키워드 3가지: 심미 · 디지털 · 전부도재관} | {n:교과서 기반으로 공부하면 됨}(p.2 · p.29) / 24년 첫 슬라이드 14 criteria는 25 자료에 없음 | {jb:D01}
+R: **Digital Dental Workflow** | ① {r:Intraoral Scanning} → ② {r:CAD} (Computer-Aided Design) → ③ {r:CAM} (Computer-Aided Manufacturing) | 사진 캡션: Dentsply Sirona · 3shape · Dentsply Sirona · Arum dentistry | {n:인상체 → 구강스캐너 · 왁스업 → CAD · 주조 → CAM} / {n:전통적인 방식: 인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업} | {jb:D03}
+R: **전부도재관 정의(GPT-2023)** | ceramic crown: a ceramic fixed dental prosthesis that restores a clinical crown {r:without a supporting metal framework} / all-ceramic restoration: syn, {r:ceramic restoration} | THE GLOSSARY OF PROSTHODONTIC TERMS 2023: Tenth Edition · The Academy of Prosthodontics | 사진 라벨 '금속도재관'(p.7) / {n:금속도재관 = 금속 하부 구조 위에 도재 · 전부도재관 = 금속 없이 도재만 — 더 자연스럽고 투명도 높음} | —
+R: **Ceramics 분류** | ① Glass-based ② Glass-based with crystalline fillers ③ Crystalline-based with glass fillers ④ Polycrystalline solids | ① Feldpathic ② Low-med leucite (<40%) · High leucite (>50%) · {r:Lithium disilicate} ③ Alumina · Alumina/Zirconia · Alumina/Magnesia (Spinell) ④ {r:Zirconia} · Alumina | {n:Glass-based = 가장 약하지만 가장 예쁘고 투명} / 출처 Talibi M 외 Br Dent J. 2022 | —
+R: **Machinable Ceramics** | (1) {r:IPS e.max CAD} : {r:Lithium disilicate} (2) {r:Zirconia} | Zirconia = {r:3mol% Yttria}-stabilized tetragonal zirconia polycrystals | {n:모든 도재를 디지털로? NO — CAD CAM 가능 도재는 2가지} | —
+R: **적응증(표 12-1)** | 주황 상자: Modified feldspathic glass + Lithium disilicate (~70vol%) → {r:Single unit crowns} · {r:Ant. 3-unit bridges} / Polycrystalline ceramics | Aluminum oxide → Single unit crowns / Zirconium oxide + Yttrium oxide ({r:3–5mass%}) 두 행 → Single unit crowns · Single unit crowns, Ant. 3-unit bridges 등 | {n:요즘 도재 = single crown · 3-unit bridge 충분 · 예전 빌드업 글라스 세라믹은 single crown도 어려움} | —
+R: **전부도재관 디자인 = CAD** | Intraoral Scanning → {r:CAD} → CAM(p.16 CAD 칸만 색) / 치아 형태 그림(p.17) | 라벨: Imbrication lines · Mamelons · Mesial/Distal incisal angle · Marginal ridges · Lingual fossa · Cingulum · Incisal ridge · Height of contour / 24 기출 답: {r:interdental closure} · {r:incisal edge configuration} · {r:zenith of the gingival contour}(14 criteria 중 — JB 해설) | {n:정상 치아 형태(치아형태학)를 알아야} / 14 criteria는 25 자료에 근거 없음 | {jb:D01}
+R: **상악중절치** | Labial View — {r:Height of contour} / Proximal View — Height of contour · {r:Cementoenamel junction curvature} · {r:Contact area} | {n:가장 중요한 요소 = incisal angle — mesial 예각 · distal 둔각} | 대칭 = 반대편 #21 + 같은 형태(JB 해설 — 25 자료에 없음) | {jb:D02}
+R: **디자인 과정·library** | Intraoral Scanning(스캔 모형) → CAD(디자인 화면) / CAD library 'Collection example' | {n:스캔 정보: 형성한 치아 · 주변 치아 · 대합치 · 교합} | {n:library에서 골라도 환자에 맞춰 · 정상 치아 형태를 크게 벗어나지 않음} | —
+N: 출처 — 25 최순영 PDF(251128) p.1-20 · 26 자료 없음(임시본) · 시험 열 = 이 강의 기출 3문항 전부(23 {jb:D03} · {jb:D02} / 24 {jb:D01}).
+N: 변형 대비 — workflow는 단계 이름·약어 풀이·사진 차례로 · 그림은 라벨 이름으로 · 분류는 '그 도재가 어느 갈래'로 · 표 12-1은 Use 칸으로 바꿔 물을 수 있음.
+
+#TBL 전체정리표 심미치과영역에서의 디지털 기술의 활용 ② 접착과정·제조사 자료 | k=DIG | sum=1 | src=[[DIG:21]] [[DIG:22]] [[DIG:23]] [[DIG:24]] [[DIG:25]] [[DIG:26]] [[DIG:27]] [[DIG:28]] [[DIG:29]]
+H: 항목 | 핵심(슬라이드) | 외울 목록·수치 | 함정·구별 | ★ 시험
+R: **접착과정 — Lithium disilicate** | ① 도재보철물 시적 ② 보철물 내면 ③ 치아의 전처치 ④ 레진시멘트로 접착 시행 ⑤ 마무리 연마 | 내면: 1) {r:불산}으로 전처치 2) {r:실란} 도포 · 따뜻한 바람 건조 / 치아: 자가부식 프라이머 — 법랑질표면부터 {r:20~30초} 마이크로브러시 / 레진시멘트: 과잉의 시멘트 제거 · {r:Oxygen inhibition layer} 막으려 마진부위 젤 | 시적은 가벼운 압력 — 강한 압력 → 마진부위 {r:chipping} · 크라운의 파절 / {n:tack curing 1~2초 → excess 제거} | —
+R: **접착과정 — Zirconia** | ① 보철물 시적 ② 보철물 내면 ③ 시멘트 ④ 마무리 연마 | 내면: {r:샌드블라스트} — {r:50 ㎛} 알루미나파우더 · {r:2 bar}의 압력 · 제조사 지시 / 시멘트: 일반적으로 레진시멘트 · 유지 좋으면 {r:RMGI 시멘트} | 레진시멘트면 치아의 전처치(자가부식 프라이머) / {n:Lithium disilicate보다 강도 훨씬 높아 시적 chipping 거의 없음} | —
+R: **레진시멘트 접착 그림** | 1 RESTORATION TREATMENT · 2 ETCHING · 3 ADHESIVE APPLICATION · 4 CEMENTATION | Glass Ceramics/porcelain (silica-based) or Lithium Disilicate/Silicate → {r:Porcelain Primer} / Metal, Zirconia, Alumina, Composite → {r:Z-Prime Plus} / ETCHING = SELF · TOTAL · SELECTIVE / Light cure for {r:10 seconds} · Tack cure the margins for {r:2-3 seconds} | {n:lithium disilicate 불산 etching O · zirconia 불산 etching X(MDP 함유 프라이머)} | —
+R: **ivoclar** | IPS e.max CAD — Lithium disilicate glass-ceramics (LS2) {r:530 MPa} / IPS e.max ZirCAD — Zirconium oxide ceramics (ZrO2) Prime {r:1100 MPa} | LS2: Veneers, inlays, onlays, minimally invasive crowns (min. 1.0 mm) · Crowns (min. 1.5 mm), 3-unit bridges up to the 2nd premolar / ZrO2: Crowns, bridges | {n:Cementation method — adhesive = 레진시멘트 · conventional = RMGI} | —
+R: **Glidewell BruxZir** | Retentive tooth preparation: Minimum tooth prep height {r:3 mm} with minimal taper / Non-retentive: less than {r:3 mm} or excessive taper → {r:adhesive resin cement} | Clean internal surface: 50-micron aluminum oxide 2 bar/30 psi 15 seconds · Ivoclean·ZirClean 20 seconds · 5% NaClO 20 seconds / zirconia primer: Z-Prime Plus 3–5 seconds · Monobond Plus 60 seconds | Do NOT clean with {r:phosphoric acid} / {n:유지 충분 → RMGI · 접착 필요 → 레진시멘트} | —
+R: **Kuraray Noritake** | Zirconia is a {r:non-silica-based} ceramic → hydrofluoric acid-etching에 반응하지 않음 | {r:sandblasting} + chemical bonding ({r:MDP}) · PANAVIA V5 · PANAVIA SA Cement Universal / 적용 범위: Long-span bridges · Three-unit bridges · Crowns · Inlays and onlays · Laminate veneers | 두께 그림: Anterior Crown 0.8mm · Posterior Crown 1.0mm · Veneer 0.4mm(판독 불확실) | —
+R: **맺음** | 고정성치과보철학 제3판 | — | {n:특성은 계속 달라짐 → 지금 기준은 교과서 기반} | —
+N: 출처 — 25 최순영 PDF(251128) p.21-29 · 이 구역은 JB 기출 없음(시험 열 '—') · {n:p.25 필기 — 여기까지 교과서 기반 · 다음 슬라이드부터 실제 시판 세라믹 제품}.
+
+#TBL Digital Dental Workflow — 단계·사진·전통 방식 | k=DIG | src=[[DIG:3]] [[DIG:4]] [[DIG:5]]
+H: 차례 | 단계(슬라이드 화살표) | 사진 캡션 | 대신하는 전통 과정(필기) | 기출 보기
+R: **①** | {r:Intraoral Scanning} | Dentsply Sirona | 인상체 → 구강스캐너 | C 구강 스캐너 {jb:D03}
+R: **②** | {r:CAD} (Computer-Aided Design) | 3shape | 왁스업 → 컴퓨터 프로그램상에서 보철물 디자인 | A 3D 디자인 프로그램 {jb:D03}
+R: **③** | {r:CAM} (Computer-Aided Manufacturing) | Dentsply Sirona · Arum dentistry | 주조 → 컴퓨터가 직접 보철물을 만듦 | B 밀링 머신 {jb:D03}
+N: 같은 그림 = p.3(필기) · p.5 · p.15 · p.16(CAD 칸만 색 — 디자인 = CAD) · p.12-13(축소 그림).
+N: {n:전통적인 방식(p.4) = 인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업 · 요즘은 컴퓨터 상에서 디자인하고 만들게 됨}
+N: 변형 대비 — 23 기출은 보기 C-A-B 차례 · 단계 이름 쓰기 · 약어 풀이 · '전통 과정 중 무엇을 대신하나' · 사진만 보고 단계 고르기로 바꿔 물을 수 있음.
+
+#TBL 도재(Ceramics) 분류 4갈래 — 해당 도재·CAD/CAM | k=DIG | src=[[DIG:11]] [[DIG:12]] [[DIG:13]]
+H: 갈래 | 해당 도재(분류도) | 필기 풀이 | CAD/CAM(Machinable Ceramics · p.13)
+R: **① Glass-based** | Feldpathic | 2학년 실습 build up에 사용한 powder · 가장 약하지만 가장 예쁘고 투명함 | —
+R: **② Glass-based with crystalline fillers** | Low-med leucite (<40%) · High leucite (>50%) · {r:Lithium disilicate} | Glass-based지만 추가로 filler를 넣은 것 | {r:IPS e.max CAD} : Lithium disilicate
+R: **③ Crystalline-based with glass fillers** | Alumina · Alumina/Zirconia · Alumina/Magnesia (Spinell) | crystaline based인데 glass filler가 들어가 있는 것 | —
+R: **④ Polycrystalline solids** | {r:Zirconia} · Alumina | 아예 glass가 없고 polycrystalline이라고 하는 하나의 solid (ex. zirconia) | Zirconia ({r:3mol% Yttria}-stabilized tetragonal zirconia polycrystals)
+N: 출처 — Talibi M, Kaur K, Patanwala HS, Parmar H. Do you know your ceramics? Part 1: classification. Br Dent J. 2022 Jan;232(1):27-32. [[DIG:11]]
+N: {n:도재(Ceramics)는 이 모든 걸 통칭하는 용어 · 모든 종류의 도재를 디지털 기술로 만드는가? NO — CAD CAM 기술을 활용할 수 있는 도재 종류는 2가지: Lithium disilicate, Zirconia}
+N: 변형 대비 — 'Lithium disilicate·Zirconia는 어느 갈래?' · '가장 약하지만 가장 투명한 갈래' · 'glass가 없는 갈래' · 분류도에서 갈래 이름 빈칸.
+
+#TBL 표 12-1 도재 기본 구성 성분, 분류 및 용도 — 전부도재관 적응증 | k=DIG | src=[[DIG:14]]
+H: Base | Fillers | Use | 주황 상자
+R: Feldspathic glass | Colorant, opacifier, glass particles | Veneer for ceramic substructure | —
+R: Feldspathic glass | Colorant, opacifier, glass particles, leucite (~17–25mass%) | Veneer for metal substructures | —
+R: Feldspathic glass | Colorant, opacifier, leucite (~40–55mass%) | Single unit crowns | —
+R: Feldspathic glass | Aluminum oxide (~55mass%) | Single unit crowns | —
+R: Lanthanum | Aluminum oxide (~70mass%) | Single unit crowns · Ant. 3-unit bridges | —
+R: **Modified feldspathic glass** | {r:Lithium disilicate} (~70vol%) | {r:Single unit crowns} · {r:Ant. 3-unit bridges} | 주황 상자
+R: **Polycrystalline ceramics** — Aluminum oxide | — | Single unit crowns | 주황 상자
+R: **Polycrystalline ceramics** — Zirconium oxide + Yttrium oxide (3–5mass%) | — | Single unit crowns | 주황 상자
+R: **Polycrystalline ceramics** — Zirconium oxide + Yttrium oxide (3–5mass%) | — | Single unit crowns · {r:Ant. 3-unit bridges 등} | 주황 상자
+N: {n:p.14 필기 — 요즘 나오는 도재들은 Single crown, 3-unit bridge에 대해서는 충분히 다 쓸 수 있다 · 예전에 빌드업하던 글라스 세라믹은 single crown도 하기 어려웠는데 지금은 3-unit bridge도 충분히 사용가능한 강도}
+N: 변형 대비 — Use 칸으로('Veneer for metal substructures'의 Base·Fillers는?) · 주황 상자(CAD/CAM 도재 — Lithium disilicate · Zirconia)의 적응증 · leucite·Aluminum oxide 수치.
+
+#TBL Lithium disilicate vs Zirconia — 분류·조성·적응증·강도 | k=DIG | src=[[DIG:11]] [[DIG:13]] [[DIG:14]] [[DIG:26]] [[DIG:28]]
+H: 기준 | Lithium disilicate | Zirconia | 쪽
+R: **도재 분류** | Glass-based with crystalline fillers | Polycrystalline solids | p.11
+R: **Machinable Ceramics** | (1) {r:IPS e.max CAD} : Lithium disilicate | (2) Zirconia ({r:3mol% Yttria}-stabilized tetragonal zirconia polycrystals) | p.13
+R: **표 12-1** | Modified feldspathic glass + Lithium disilicate (~70vol%) → Single unit crowns · Ant. 3-unit bridges | Zirconium oxide + Yttrium oxide (3–5mass%) 두 행 → Single unit crowns / Single unit crowns, Ant. 3-unit bridges 등 | p.14
+R: **ivoclar 제품** | IPS e.max CAD — Lithium disilicate glass-ceramics (LS2) | IPS e.max ZirCAD — Zirconium oxide ceramics (ZrO2) | p.26
+R: **Flexural strength** | {r:530 MPa} | Prime* {r:1100 MPa} | p.26
+R: **Types of restorations** | Veneers, inlays, onlays, minimally invasive crowns (min. 1.0 mm) / Crowns (min. 1.5 mm), 3-unit bridges up to the 2nd premolar | Crowns, bridges | p.26
+R: **Cementation method** | adhesive · self-adhesive · conventional | adhesive · self-adhesive/conventional | p.26
+R: **Blasting** | – | Al2O3, 25–70 µm, 1 bar or Al2O3, 70–110 µm, 1.5 bar | p.26
+R: **Etching · Conditioning** | adhesive · self-adhesive: Option 1: Agitate Monobond Etch&Prime for 20 s and allow it to react for another 40 s / Option 2: 20 s with IPS Ceramic Etching Gel → 60 s with Monobond Plus / conventional: 20 s with IPS Ceramic Etching Gel | adhesive: 60 s with Monobond Plus / self-adhesive/conventional: – | p.26
+R: **Cementation system** | Variolink Esthetic · Speedcem Plus · ZirCAD Cement* | Variolink Esthetic · Speedcem Plus, ZirCAD Cement* | p.26
+R: **표면 성질(제조사)** | — | {r:non-silica-based} → hydrofluoric acid-etching에 반응 안 함 → sandblasting + MDP | p.28
+N: {n:p.26 필기 — indication 보면 lithium disilicate는 veneer, inlay, onlay crown, 3-unit 다 할 수 있고 zirconia는 한도가 없다(갯수도 없이 크라운·브릿지) · Cementation method에서 adhesive = 레진시멘트, conventional = RMGI}
+N: 변형 대비 — 강도 수치 맞바꾸기(530 ↔ 1100 MPa) · '어느 쪽이 Glass-based with crystalline fillers?' · Blasting 칸이 '–'인 쪽 · 3-unit bridges up to the 2nd premolar는 어느 쪽.
+
+#TBL 전부도재관 접착과정 — Lithium disilicate vs Zirconia 단계 | k=DIG | src=[[DIG:21]] [[DIG:22]] [[DIG:23]] [[DIG:24]] [[DIG:25]]
+H: 단계 | (1) Lithium disilicate | (2) Zirconia | 필기
+R: **① 시적** | 도재보철물 시적 — 가벼운 압력으로 시행 · 강한 압력은 마진부위에서 {r:chipping} 일어나거나 크라운의 파절 · 인접면 접촉, 마진의 정확도, 교합의 정확도를 평가 | 보철물 시적 — 인접면 접촉, 마진의 정확도, 교합의 정확도 평가 | Zirconia는 Lithium disilicate보다 강도가 훨씬 높아서 시적시 chipping 거의 없음
+R: **② 보철물 내면** | 1) {r:불산}으로 전처치 2) {r:실란} 도포, 바람으로 건조(헤어드라이어 등 따뜻한 바람이 접착에 더 도움) | {r:샌드블라스트}로 전처치 — {r:50 ㎛} 알루미나파우더, {r:2 bar}의 압력 · 제조사에서 지시한 내용에 따르도록 | 샌드블라스트 = 모래 같은 것으로 세게 때려 표면을 약간 거칠게
+R: **③ 치아의 전처치** | 제조사 지시 · 자가부식 프라이머(self-etching primer) 포함 접착 시스템: 법랑질표면에서 시작하여 {r:20~30초} 동안 마이크로브러시로 전체 결합 표면 | 레진시멘트를 사용할 경우 — 치아의 전처치: 자가부식 프라이머(self-etching primer) | 레진시멘트: 치아 전처치 필수 · RMGI: 치아 전처치 필요없음(골드 크라운처럼)
+R: **시멘트** | ④ 레진시멘트로 접착 시행 | ③ 시멘트 — 일반적으로 {r:레진시멘트} · 지대치 치질의 양이 충분하여 유지가 좋은 경우 {r:RMGI 시멘트}도 특별한 문제가 없다 | 레진 = '접착' · RMGI(ex. Fuji cem) = '합착'
+R: **레진시멘트 접착** | 1) 보철물의 내면에 적용한 후 치아에 접착 2) 과잉의 시멘트 제거 3) {r:Oxygen inhibition layer}의 생성을 막아주기 위해 마진부위에 젤 | 보철물 내면에 적용한 후 치아에 접착 · 과잉의 시멘트 제거 | 시멘트 적용 후 1~2초 curing(tack curing) → excess 제거 → 마진부 젤 → 마무리 curing
+R: **마무리** | ⑤ 마무리 연마 | ④ 마무리 연마 | —
+R: **보철물 전처치(p.25 그림)** | Glass Ceramics/porcelain (silica-based) or Lithium Disilicate/Silicate → {r:Porcelain Primer} | Metal, Zirconia, Alumina, Composite → {r:Z-Prime Plus} | 좌측 lithium disilicate 불산 etching O · 우측 zirconia 불산 etching X · MDP 함유 프라이머 쓰기도 함
+N: 단계 수 — Lithium disilicate {r:5}단계 · Zirconia {r:4}단계(치아의 전처치가 따로 번호가 없고 '레진시멘트를 사용하여 접착을 시행할 경우' 아래에 들어감).
+N: {n:p.23 필기 — 사실 임상에서는 사용하는 시멘트 및 보철물 제조사의 지시를 따르는게 제일 중요함 · 전부도재보철물은 강도가 약해 원래 레진시멘트만, 지르코니아는 자체로 강도가 강해서 RMGI 사용 가능}
+N: 변형 대비 — 단계 순서 배열(23 '순서' 꼴 {jb:D03}과 같은 꼴) · 보철물 내면 처리 맞바꾸기(불산·실란 ↔ 샌드블라스트) · 수치 빈칸(20~30초 · 50 ㎛ · 2 bar) · Oxygen inhibition layer.
+
+#TBL 시멘트 — 레진시멘트(adhesive) vs RMGI(conventional) | k=DIG | src=[[DIG:23]] [[DIG:24]] [[DIG:26]] [[DIG:27]]
+H: 시멘트 | 언제(슬라이드) | 치아의 전처치 | 제조사 표기 | 개념(필기)
+R: **레진시멘트** | 일반적으로 레진시멘트를 사용하여 접착 시행(Zirconia) · Lithium disilicate는 레진시멘트로 접착 | 자가부식 프라이머(self-etching primer) | ivoclar adhesive(Variolink Esthetic) / Glidewell Non-retentive(prep height less than {r:3 mm} or excessive taper) → {r:adhesive resin cement} — RelyX Ultimate (3M) · Multilink Automix · NX3 Nexus · Panavia V5 | "접착" · 치아 전처치 필수
+R: **RMGI** | 지대치 치질의 양이 충분하여 제작된 보철물의 유지가 좋은 경우(Zirconia) | — | ivoclar conventional(ZirCAD Cement*) / Glidewell Retentive(Minimum tooth prep height {r:3 mm} with minimal taper) → conventional luting cements: GI · RMGI(RelyX Luting Plus · FujiCEM 2) 또는 self-adhesive resin cements(RelyX Unicem · Maxcem Elite) | "합착" · 치아 전처치 필요없음(골드 크라운처럼) · ex. Fuji cem
+N: {n:p.23 필기 — 전부도재보철물은 강도가 약하기 때문에 레진시멘트를 써야 충분한 강도가 나와서 원래 레진시멘트만 사용가능 · 지르코니아는 자체로 강도가 강해서 RMGI 사용 가능 · p.27 필기 — 유지가 충분하면 RMGI · 접착이 필요하면 레진시멘트}
+N: 변형 대비 — RMGI를 써도 되는 조건(유지·prep height 3 mm) · 치아 전처치가 필요한 쪽 · adhesive/conventional 뜻.
+
+#TBL 치아 형태 그림 라벨 — 전치(p.17)·상악중절치(p.18) | k=DIG | src=[[DIG:17]] [[DIG:18]]
+H: 그림 면 | 라벨(슬라이드) | 쪽
+R: **Labial** | Imbrication lines · Distal incisal angle · Mesial incisal angle · Mamelons | p.17 · p.18 왼쪽
+R: **Lingual** | Marginal ridges · Lingual fossa · Cingulum | p.17 · p.18 왼쪽
+R: **Incisal** | Incisal ridge · Distal incisal angle · Mesial incisal angle | p.17 · p.18 왼쪽
+R: **Mesial · Distal** | Height of contour | p.17 · p.18 왼쪽
+R: **상악중절치 Labial View** | {r:Height of contour}(양쪽) | p.18
+R: **상악중절치 Proximal View** | Height of contour · {r:Cementoenamel junction curvature} · {r:Contact area} | p.18 {jb:D02}
+R: **그 밖(p.17)** | The Permanent Maxillary Posterior Occlusal Aspect · The Permanent Mandibular Posterior Occlusal Aspect · 가운데 치열궁 그림 Labial · Lingual · Incisal(D · M) · Mesial · Distal | p.17
+N: {n:p.18 필기 — 상악중절치에서 가장 중요한 요소는 incisal angle: mesial은 예각, distal은 둔각 · 그 외에 height of contour(근원심), contact area 위치 등도 고려해야함 · 약간씩 조정만 해줘도 훨씬 자연스럽고 정상 치아처럼 보임}
+N: 변형 대비 — 라벨 빈칸(그림빵) · mesial/distal incisal angle 구별 · 23 기출 {jb:D02}는 #11과 대칭인 그림 고르기(반대편 #21 + 같은 triangular 형태 — JB 해설).
+
+#TBL 전체정리표 심미적 치주치료 — 강의 전체 | k=PER | sum=1 | src=[[PER:2]] [[PER:3]] [[PER:4]] [[PER:5]] [[PER:9]] [[PER:15]] [[PER:26]] [[PER:33]] [[PER:50]] [[PER:52]] [[PER:60]] [[PER:85]] [[PER:89]]
+H: 주제 | 핵심(슬라이드) | 외울 목록·수치 | 함정·구별 | ★ 시험
+R: **강의 구성** | Contents: Periodontal anatomy for esthetic surgery · Esthetic surgery · Mucogingival surgery | Esthetic surgery = Surgical crown lengthening · Depigmentation / Mucogingival surgery = Ridge augmentation · Root coverage | {n:심미 = 건강한, 정상적인 모습의 평균치 — 그 구조를 재현} | —
+R: **정상 치은 구조** | 모식도 위 → 아래: Gingival sulcus · FREE OR MARGINAL GINGIVA · Marginal groove · ATTACHED GINGIVA · {r:Mucogingival junction} · ALVEOLAR MUCOSA | 각화치은 = {r:변연치은} + {r:부착치은}(p.4 그림) | 변연치은 ≠ 부착치은 · {n:잇몸 pale coral pink 비가동성 vs 점막 red 가동성} | {jb:G10}
+R: **생물학적 폭경** | 접합상피와 결합조직 · Gargiulo (1961) | 치은구 0.5~1.0mm · 접합상피 0.71~1.35mm = {r:0.97mm} · 결합조직 1.06~1.08mm = {r:1.07mm} · 합 {r:2.04} | 치은열구는 폭경에 넣지 않음 · {n:골 상방 = BW 2mm + sulcus 1mm = 약 3mm} · probing depth 인접면이 1~1.5mm 더 깊음(JB 해설 — 25 자료 없음) | {jb:G06} {jb:G11} {jb:G13} {jb:G15}
+R: **치간유두(Tarnow)** | Tarnow (1982) Distance : bone – interproximal contact · 'Tarnow magic number!' | {r:< 5 mm} always fill · = 6 mm {r:56%} · = 7 mm {r:37%} only / Van-der-Velden (1982) {r:4-4.5 mm} 재생 · sulcus 2-2.5mm | 문제 '이하' vs 슬라이드 '<'(미만) — 답 5 · {n:전치부 심미 수복의 key} | {jb:G12}
+R: **Esthetic crown lengthening — 치은 높이** | Esthetic crown lenthening(원문 철자) — {n:짧아 보이는 치아 증례} | {n:중절치 ≈ 견치 · 측절치 약 1mm 아래 · 중절치 zenith 약간 distal} | {n:probe로 점 찍고 한칼에 incision · 상악치아가 하악치아보다 좀 더 길다} | —
+R: **골 삭제 3 mm** | (사진 — 슬라이드 글 없음) | {n:원하는 margin 아래 3mm = sulcus 1 + 접합상피 1 + 결합조직 1} | {n:잘라 꿰매기만 하면 BW가 다시 생겨 원래대로} · BW만이면 2mm | {jb:G16}
+R: **BW 침범** | Biologic width violation — Two different responses | ① {r:remained bone level} + {r:persistent inflammation} ② {r:bone loss} + {r:gingival recession} | 짝을 바꾸지 말 것 · {n:크라운 마진을 bone crest와 같은 높이로 → 붙을 자리 없음} | {jb:G09} {jb:G06}
+R: **치관연장술 증례·mock-up** | (사진 — 슬라이드 글 없음) | {n:원하는 마진 3mm 상방까지 노출 · #1·3 비슷 #2 하방 · resin mock-up = surgical stent} | 강제 치아 맹출술(forced tooth eruption — 교과서 · 25 자료 없음) | {jb:G03}
+R: **멜라닌 색소** | Melanin Pigmentation: {r:Normal Finding} · Molanocyte, Melanophore | Tx: {r:Grinding} extenal gingiva using diamond bur and/or blade · {r:Surgical excision} of gingiva | {n:grinding 6개월(~1년) 재발 · 통째 절제 2~3년(3~4년 뒤 또)} · '재발 없음' 틀림 | {jb:G05}
+R: **치조제 증대 분류** | Soft tissue augmentation: {r:horizontal defect} · Hard tissue augmentation: {r:horizontal and/or vertical defect} | Soft 5 = roll · pouch · interpositional wedge graft · onlay graft · combined / Hard 2 = {r:GBR} · {r:Block bone graft} | {n:wedge는 보통 2~3mm 확장에 불과 · 잇몸은 뼈가 받쳐 줘야} | —
+R: **치조제 증대 증례** | Hard tissue augmentation: combined defect · Combined defect | {n:pouch = 폭만 꺼진 defect · combined defect = screw + 뼈 이식 + membrane → 임플란트} | {n:연조직만 하면 9개월~3년 뒤 다시 꺼짐} | —
+R: **Miller 분류** | Miller(1985) Class I & II: {r:intact} interdental bone/soft tissue · Class III & IV: {r:loss} and/or tooth malposition | I = not to extend to MGJ · II = Extend to or beyond MGJ · III = remain coronal to apical extent of marginal tissue recession · IV = its level corresponding to apical extent of the marginal tissue recession | {n:III·IV도 MGJ 기준(필기)} · {n:I·II 회복 · III·IV 회복 어려움} | {jb:G01} {jb:G14} {jb:G04} {jb:G17}
+R: **Root coverage 목록** | Laterally positioned flap · Coronally positioned flap(semilunar · with FGG) · Free gingival graft · {r:Free connective tissue graft} · GTR | Grupe 1956 · Grupe & Warren 1966 · Goldman 1982 · Bernimoulin 1975 · Romanos 1993 | {n:FCTG = 가장 결과 좋은 · 가장 먼저 선택} · 나머지 잘 안 됨 | {jb:G18}
+R: **Semilunar flap** | Tarnow (1986) Semilunar coronally repositioned flap | {n:적응증 2 = ① recession 3mm 이내 ② 건전한 keratinized tissue} | {n:너무 당기면 fenestration} | —
+R: **FGG · GTR** | Free gingival graft · Guided Tissue Regeneration (GTR) | {n:FGG 문제점 2 = recipient bed에서만 양분(성공률 낮음) · 성공해도 색 다름(scar-like, pale)} | {n:GTR = membrane으로 공간 · 어렵고 잘 안 됨} | {jb:G08}
+R: **FCTG** | Free connective tissue graft — Edel (1974) · Langer & Langer (1983) · Raetzke (1985) · Nelson (1987) · Harris (1994) | {n:장점 = predictable · dual circulation · 주위 조직과 blending(color match)} | 공여부 대구개동맥(교과서 · 25 자료 없음) · FGG가 더 심미적 F | {jb:G08} {jb:G02}
+R: **FCTG 증례·변형** | Nelson(1987) · Harris(1994) 도해(P · CTG) | {n:frenum excision + flap + FCTG · probing 약 1mm(long junctional epithelium) · flap을 옆으로 sliding해 papilla로 덮음} | {n:그대로 덮으면 graft 노출} | —
+R: **Creeping attachment** | Creeping Attachment · Creeping Attachment – adjacent tooth | {n:gingival margin의 coronal migration · 1~2mm(1년 1.5mm)} | {n:FGG·FCTG 뒤 · 인접 치아에서도 · recession의 반대 개념} | {jb:G07}
+R: **치주치료 = 심미치료** | Periodontal therapy = Esthetic Therapy ? | {n:스케일링·SRP만 해도 잇몸 색 회복} | {n:병적인 잇몸은 예쁠 수 없음} | —
+N: 변형 대비: 기출 18문항 전부 시험 열에 · 25 자료 근거 없음 = 대구개동맥 · 강제 치아 맹출술(교과서 Ch.37) · probing depth(2021 강의) · 20년 '치은열구 깊이' 문항(답 없음). [[PER:4]] [[PER:50]]
+
+#TBL 정상 치은 구조 — 모식도 칸별 | k=PER | src=[[PER:3]] [[PER:4]]
+H: 구조(위 → 아래) | 각화 | 치아·뼈에 붙음 | 색·가동성 | 기출
+R: **Gingival sulcus**(치은구) | — | 붙지 않음(틈) | {n:정상치아는 잇몸에 딱 붙어 있는 게 아니라 sulcus가 있다} · 그림 0.5~1.0mm | {jb:G11}
+R: **Free or marginal gingiva**(변연치은) | {n:각화} | {n:붙어 있지 않음(sulcus 바깥쪽)} | {n:pale pink} | {jb:G10}
+R: **Marginal groove** | — | — | 변연치은과 부착치은 사이 홈(그림 라벨) | —
+R: **Attached gingiva**(부착치은) | {n:각화} | {n:치아·뼈에 단단히 부착 — 비가동성} | {n:pale, coral pink · 두툼하고 견고} | {jb:G10}
+R: **Mucogingival junction** | — | — | 잇몸과 점막의 경계({n:자연치아에서 우리의 주관심}) | {jb:G01} {jb:G14}
+R: **Alveolar mucosa**(치조점막) | — | {n:loose한 CT — 움직임} | {n:red · 실핏줄 보임} | —
+N: 각화치은 = 변연치은 + 부착치은(p.4 그림 라벨) · {n:각화치은 = 치은구 + 생물학적 폭경(p.4 필기 셈)} · 변형 대비: 'Alveolar mucosa는 각화' × · '변연치은 = 부착치은' × · MGJ 위·아래 라벨 빈칸. [[PER:3]] [[PER:4]]
+
+#TBL 생물학적 폭경과 수치 모음 | k=PER | src=[[PER:4]] [[PER:5]] [[PER:9]] [[PER:15]] [[PER:36]] [[PER:56]] [[PER:86]]
+H: 항목 | 수치 | 근거 | 기출
+R: **치은구** | 0.5~1.0mm | p.4 그림 — 생물학적 폭경에 넣지 않음 | {jb:G11}
+R: **접합상피** | 0.71~1.35mm = {r:0.97mm} | p.4 그림 · {n:hemidesmosome(epithelial att.)} | {jb:G06}
+R: **결합조직** | 1.06~1.08mm = {r:1.07mm} | p.4 그림 · {n:gingival fiber → root cementum(CT att.)} | {jb:G06}
+R: **생물학적 폭경** | {r:2.04}(약 2mm) | p.4 그림 · Gargiulo (1961) | {jb:G06} {jb:G11}
+R: **골 상방 높이 · 골 삭제량** | {n:3mm = sulcus 1 + 접합상피 1 + 결합조직 1} | {n:p.4·9·16·23 필기} | {jb:G16}
+R: **probing depth** | 인접면 sulcus가 1~1.5mm 더 깊음 | JB 해설(2021 강의 p.6) — 25 자료 없음 | {jb:G13}
+R: **Tarnow (1982)** | < 5 mm always fill · = 6 mm 56% · = 7 mm 37% only | p.5 슬라이드 | {jb:G12}
+R: **Van-der-Velden (1982)** | 4-4.5 mm 재생 · sulcus ave. 2-2.5mm | p.5 슬라이드 | —
+R: **Interpositional wedge** | {n:보통 2~3mm 확장} | {n:p.36 필기} | —
+R: **Semilunar 적응증** | {n:recession 3mm 이내} | {n:p.56 필기} | —
+R: **Creeping attachment** | {n:1~2mm(1년에 1.5mm)} | {n:p.85-86 필기} | {jb:G07}
+R: **멜라닌 재발** | {n:grinding 6개월(~1년) · 통째 절제 2~3년(3~4년 뒤 또)} | {n:p.28·30·32 필기} | {jb:G05}
+N: 변형 대비: 0.97 · 1.07 · 2.04 · 5 · 56% · 37% · 3mm 빈칸 · '생물학적 폭경은 치은열구를 포함' × · 'BW = 3mm' × · p.20 글층 필기 'CEJ에서부터 4mm(sulcus 2mm + biologic width 2mm)'는 다른 쪽 필기와 다른 셈. [[PER:4]] [[PER:20]]
+
+#TBL BW 침범 — 두 가지 반응 | k=PER | src=[[PER:15]]
+H: 반응 | 뼈 | 잇몸 | 그림 | 기출
+R: **① remained bone level + persistent inflammation** | {r:remained bone level}(그대로) | {r:persistent inflammation} — {n:쇳덩어리만 만나 붙지 못함} | 왼쪽 Inflammation(분홍 동그라미) | {jb:G09} {jb:G06}
+R: **② bone loss + gingival recession** | {r:bone loss}(녹아 내려감) | {r:gingival recession} — {n:내려가 root에 붙음} | 오른쪽 Bone loss(파랑 동그라미) | {jb:G09} {jb:G06}
+N: 원인 = {n:크라운 마진을 너무 깊게(bone crest와 같은 높이) — Dento-gingival junction attachment 최소 2mm 필요} · 예방 = {n:원하는 margin 아래 3mm 골 삭제} · 변형 대비: 한 반응 빈칸 · 그림 주고 고르기 · 짝 바꾼 보기 ×. [[PER:15]] [[PER:9]]
+
+#TBL Melanin pigmentation — Grinding vs Surgical excision | k=PER | src=[[PER:26]] [[PER:27]] [[PER:28]] [[PER:29]] [[PER:30]] [[PER:32]]
+H: 구분 | Grinding extenal gingiva using diamond bur and/or blade | Surgical excision of gingiva | 기출
+R: **방법** | {n:표면마취 후 다이아몬드 버로 sweeping — 10분 내} | {n:periosteum만 남기고 Epi 밑 CT까지 통째로 저며 냄(교수님 방법)} | {jb:G05}
+R: **치유** | {n:1주일 뒤 싹 아묾 · 2~3주면 깨끗} | {n:wound 큼 · 2주~한 달이면 아묾} | —
+R: **재발** | {n:6개월(~1년)에 재발 — 표층만 깎아 rete peg 깊숙한 melanocyte가 남음} | {n:2~3년 재발 없음 → 3~4년 뒤 또 올라옴} | {jb:G05}
+R: **평가** | {n:간단하지만 recur가 흔함 → 그래도 보통 이 방법} | {n:너무 aggressive · 환자도 아파함} | —
+N: 슬라이드 = Normal Finding · Molanocyte, Melanophore(원문 철자) · 조직 사진 M– Melanocyte · C– Melanophore · 변형 대비: '병적 소견' × · '재발 없음' × · 재발 이유(melanocyte 위치 — 필기 basal cell layer·spinous cell layer). [[PER:26]] [[PER:29]]
+
+#TBL Ridge augmentation — 술식 | k=PER | src=[[PER:33]] [[PER:34]] [[PER:35]] [[PER:36]] [[PER:37]] [[PER:38]] [[PER:40]] [[PER:45]]
+H: 술식 | 분류 | 방법 | 평가 | 쪽
+R: **Roll technique** | Soft tissue — horizontal defect | {n:palatal 쪽 살덩어리를 labial 쪽으로 접어 volume-up} | {n:술기도 어렵고 결과도 좋지 않음 · 교과서에 있지만 무시하세요} | p.34
+R: **Pouch technique** | Soft tissue | {n:주머니를 만들고 palate tissue graft — 폭이 꺼진 socket에 CT} | {n:실제로는 어렵다 · 폭만 꺼진 정도는 해결(증례 p.39-43)} | p.35 · p.40
+R: **Interpositional wedge graft** | Soft tissue | {n:wedge 형태로 넣어 ridge 폭 확대} | {n:보통 2~3mm 확장에 불과 · 많이 함 — 잘 봐 두세요} | p.36
+R: **Onlay graft** | Soft tissue | {n:palate에서 아주 두꺼운 graft를 얹음} | {n:리모델링되며 주저앉음 · 두꺼운 연조직 얻기 어려움} | p.37
+R: **Combined: wedge-onlay** | Soft tissue | {n:wedge + onlay} | {n:이론적으론 가능 · 임상에선 거의 안 씀} | p.38
+R: **GBR** | Hard tissue — horizontal and/or vertical defect | — | {n:큰 defect는 bone augmentation이 필요} | p.33
+R: **Block bone graft** | Hard tissue | — | — | p.33
+R: **Hard tissue augmentation: combined defect(증례)** | Hard tissue | {n:screw를 박아 높이를 잡고 ramus에서 뼈 떼어 뼈이식 → 고어텍스 membrane → 3-4개월 후 다시 열어 확인 → 임플란트} | {n:심한 defect는 soft tissue surgery보다 bone skeleton을 바꿔 주는 bone augmentation} | p.44-49
+N: 분류 기준 = defect 방향(horizontal → soft · horizontal and/or vertical → hard) · {n:연조직만으로는 9개월~3년 뒤 다시 꺼짐} · GBR·Block bone graft는 p.33 목록 이름뿐(방법 설명 없음) — combined defect 증례가 어느 술식인지는 자료에 없음 · 변형 대비: Soft 5 · Hard 2 나열 · 어느 쪽 술식인지 고르기. [[PER:33]] [[PER:43]] [[PER:45]]
+
+#TBL Gingival recession — Miller 분류 | k=PER | src=[[PER:50]] [[PER:51]]
+H: Class | Interdental bone/soft tissue | 슬라이드 글 | MGJ | 예후 | 기출
+R: **I** | {r:intact} | not to extend to MGJ (Class I) | 넘지 않음 | {n:soft tissue surgery로 거의 회복(100%)} | {jb:G01}
+R: **II** | {r:intact} | Extend to or beyond MGJ (Class II) | 닿거나 넘음 | {n:회복 가능} | {jb:G01} {jb:G17}
+R: **III** | {r:loss} and/or tooth malposition | remain coronal to apical extent of marginal tissue recession (Class III) | {n:넘지 않음} | {n:회복 어려움 — 부분 coverage} | {jb:G14} {jb:G04}
+R: **IV** | {r:loss} and/or tooth malposition | its level corresponding to apical extent of the marginal tissue recession (Class IV) | {n:넘음} | {n:회복 어려움} | —
+N: 옛 판(p.51) = Class I & II - intact interdental bone · Class III & IV - interdental bone loss and/or malposed tooth · {n:분류 자체보다 예후 · recession 크기보다 interdental} / 변형 대비: Class IV 행(아직 안 나옴) · I·II 기준(MGJ) · III·IV 공통(interdental loss) · 'Miller III에 FCTG → 100%' ×. [[PER:50]] [[PER:51]]
+
+#TBL Root coverage 술식 비교 | k=PER | src=[[PER:52]] [[PER:53]] [[PER:54]] [[PER:55]] [[PER:56]] [[PER:58]] [[PER:59]] [[PER:60]] [[PER:61]]
+H: 술식 | 사람·연도 | 방법 | 결과·문제점 | 기출
+R: **Laterally positioned flap** | Grupe, 1956 · Grupe & Warren, 1966 · Goldman et al., 1982 | {n:옆의 잇몸을 옮겨 와 덮음} | {n:잘 안 된다 · 장기적 결과 좋지 않음} | {jb:G18}
+R: **Coronally positioned flap with FGG** | Bernimoulin et al., 1975 | {n:FGG를 미리 해 놓고 치관 측으로 당겨 덮음} | {n:FGG 자리가 허옇게 흉처럼 · 잘 안 된다} | {jb:G18}
+R: **Double lateral bridging flap** | Romanos et al., 1993 | {n:sulcus 쪽 incision으로 위아래 개통} | {n:이것도 잘 안 돼} | —
+R: **Semilunar coronally repositioned flap** | Tarnow (1986) | {n:반달 절개 → undermining → 치관 측으로 당김} | {n:그나마 괜찮음 — 적응증 2: recession 3mm 이내 · 건전한 keratinized tissue} | {jb:G18}
+R: **Free gingival graft** | — | {n:입천장 겉 잇몸을 떼어 붙임} | {n:recipient bed에서만 양분 → 성공률 낮음 · 성공해도 색 다름(scar-like, pale)} | {jb:G18} {jb:G08}
+R: **GTR** | — | {n:membrane으로 공간 → 살이 차오르게} | {n:어렵고 잘 안 됨} | {jb:G18}
+R: **Free connective tissue graft** | Edel (1974) · Langer & Langer (1983) | {n:입천장 속살(CT)을 partial thickness flap 밑에 끼우고 덮음} | {n:가장 결과 좋음 · dual 혈행 · color match} | {jb:G18} {jb:G08} {jb:G02}
+N: p.52 목록 = 5줄(Coronally positioned flap 아래 semilunar · with FGG 두 줄) · Double lateral bridging flap은 목록 밖 쪽(p.55) · 변형 대비: 가장 결과 좋은 술식 · semilunar 적응증 · FGG 문제점 2 · 'GTR이 가장 성공률 높다' ×. [[PER:52]] [[PER:55]]
+
+#TBL FGG vs FCTG | k=PER | src=[[PER:58]] [[PER:60]] [[PER:61]] [[PER:63]] [[PER:64]]
+H: 항목 | Free gingival graft | Free connective tissue graft | 기출
+R: **떼는 것** | {n:입천장 겉 잇몸(gingival graft)} | {n:입천장 속살(connective tissue)} | {jb:G02}
+R: **놓는 법** | {n:recession 자리에 그대로 붙임} | {n:partial thickness flap 밑 recession 안쪽에 끼우고 뚜껑 덮음} | —
+R: **혈행** | {n:recipient bed 쪽에서만 양분 → 충분치 않음} | {n:바닥 + 덮은 flap — dual(plasmatic circulation)} | {jb:G08}
+R: **색** | {n:입천장 잇몸은 훨씬 하얗다 → scar-like, pale} | {n:주위 조직과 blending → color match 좋음} | {jb:G08}
+R: **성공률·평가** | {n:성공률 낮음 · 성공해도 비심미적} | {n:predictable · 가장 결과 좋은 · 가장 먼저 선택} | {jb:G08}
+N: 함정: p.63 21 필기 'Fgg 장점은 혼화가 잘되서 … 색깔 매칭이 아주 좋음'은 FCTG 사진 쪽 필기 — 색이 좋은 쪽은 FCTG · 22·21년 'FGG가 FCTG보다 색조에 있어 심미적' = F. [[PER:58]] [[PER:63]]
+
+#TBL 전체정리표 Resin-bonded restoration — 강의 전체 | k=RBR | sum=1 | src=[[RBR:1]] [[RBR:3]] [[RBR:5]] [[RBR:6]] [[RBR:9]] [[RBR:10]] [[RBR:15]] [[RBR:17]] [[RBR:19]] [[RBR:20]] [[RBR:24]] [[RBR:25]] [[RBR:27]] [[RBR:28]]
+H: 항목 | 핵심(슬라이드) | 외울 목록·수치 | 필기 요점 | ★ 시험
+R: **강의 개관 — 유지형 vs 접착형** | 표지 Resin-bonded restoration(In-Sung Yeo) · 유지형(Retentive type) vs 접착형(Adhesive type = {r:레진 시멘트}) | — | 진료실 cement는 다 retentive type(resistance & retention form으로 버팀) · resin bonded restoration = resin cement로 정말 bonding · routine = porcelain laminate veneer | —
+R: **접착형 수복의 종류 · Maryland bridge** | Adhesive type restoration 종류 | ① {r:Rochette bridge} ② {r:Maryland bridge} ③ {r:Cast mesh fixed partial denture} ④ {r:Virginia bridge} | Maryland bridge = Resin bonded metal restoration의 informal한 이름 · wing 접착이 잘 떨어져 사라짐 · 마취 없이 enamel상 삭제(치질 보존) · bonding은 Enamel이 훨씬 강력 | {jb:R01}(24·23 이재현 — Wei YR 논문 one vs two retainer 생존율 → 1-retainer type · 25 자료 없음)
+R: **프렙 5원칙** | Tooth preparation — Preparation principle | ① {r:Preservation of tooth material} ② {r:Resistance and retention} ③ {r:Structural durability} ④ {r:Marginal integrity} ⑤ {r:Preservation of periodontium} | "잘.. 외워두세요" · 치질 보존이 가장 신경쓰는 부분 → resin bonded restoration이 그 차원 | —
+R: **Dental cements 5종** | Dental cements 5 + [참고] 산화아연-유지놀계 | ① {r:인산아연} ② {r:폴리카복실레이트} ③ {r:글라스 아이오노머} ④ {r:레진 강화형 글라스 아이오노머} ⑤ {r:레진 시멘트} / [참고] {r:산화아연-유지놀계}(Zinc oxide-eugenol) | 레진 시멘트만 bonding mechanism · ZOE = 임시접착제 · ZPC·폴리카복실레이트 잘 안 씀 → GI·RMGI | —
+R: **두 계면** | 치과용 시멘트는 치아나 수복물에 붙나요? → 결합기전 = {r:수복물-시멘트 접착} · {r:치아-시멘트 접착} | — | 레진 시멘트는 두 계면의 접착을 매개 → 수복물·치아 각각 전처리 · 치아 = Ca hydroxyapatite · 수복물 = porcelain(glass ceramic · core ceramic) | —
+R: **결합 기전 3** | 치과용 시멘트의 결합기전 | ① {r:Nonadhesive luting} ② {r:Micromechanical bonding} ③ {r:Molecular adhesion} | ①② = 물리적 interlocking(retentive type) · ③ = 진정한 화학적 bonding(레진 시멘트에서만) | —
+R: **결합 기전에 따른 분류** | 유지형(Retentive type) vs 접착형(Adhesive type) | 유지형 = {r:인산아연} · {r:폴리카복실레이트} · {r:글라스 아이오노머} · {r:레진 강화형 글라스 아이오노머} / 접착형 = {r:레진 시멘트} | 임상 = GIC·RMGIC(레진시멘트가 비쌈) · dentin bonding agent는 enamel 표면에 적용해야 제대로 | —
+R: **레진 시멘트 장단점·중합** | 장점: 접착형 · 불용성 · 통상적인 시멘트보다 강도가 높음(매우 높은 {r:인장강도}) · 자가 중합 또는 {r:이중 중합}(광 + 자가) | (압축강도) ≅ {r:2.1} · (인장강도) ≅ {r:5.5} · (시멘트 두께) ≅ {r:1.0} | 단점 = 양쪽 전처리 번거로움 · 비쌈(GI 5-10만원 vs 30만원 이상) · 제품 파나비아·Ivoclar · PLV = 이중 중합(다른 해 필기 — 주로 광중합) · Maryland bridge = 자가중합 | —
+R: **접착형 층 · 전처리** | 치아 전처리 = {r:상아질 접착제} / 수복물 전처리 = {r:귀금속} · {r:일반 금속} · {r:유리형 도재}(Empress 계열) · {r:코어 도재}(지르코니아, 알루미나 계열) | {n:층 = 수복물 · 수복물 쪽 전처리층 · 시멘트 · 치아 쪽 전처리층 · 치아} | 치아 = enamel bonding에 의존(dentin = not secure) · 유리형 도재 = 불산 → silane · 코어 = MDP test 중 · 귀금속·일반 금속 알 필요 없음 | {jb:L03}(22 이창하 다른 강의 — PLV 금기증 첫 줄 Hardly enamel bonding)
+R: **상아질 접착제 세대 4·5·6** | 기본 {r:제 4 세대}({r:3-bottle system}) → {r:제 5 세대}({r:2-bottle system}) → {r:제 6 세대} | {n:4세대 = etching · priming · adhesive / 5세대 = etchant + (primer + adhesive) 또는 (etchant + primer) + adhesive / 6세대 = one bottle} | 4세대가 가장 퀄리티 · PLV 접착은 4·5세대만 · 6세대 X · 에나멜 incisal 2 · buccal 1 · cervical 0.7mm → 프렙 0.5mm보다 깊게 X | —
+R: **시멘트 혼합·제거·탈락** | Catalyst, base의 혼합({r:Autopolymerization} · {r:Dual-curing}) · {r:잔여 시멘트는 반드시 굳기 전 제거} · {r:플라스틱 스파튤라} · 탈락 시 재부착({r:Adhesive failure} · {r:Cohesive failure}) | — | 메탈 스파츌라 → filler 기스 → shade 탁해짐 · adhesive failure = 계면(다시 전처리) · cohesive failure = 시멘트 층 내(재제작) · 하나씩·두 개씩 붙이기 | —
+R: **제 7 세대** | 제 7 세대 상아질 접착제 = {r:Self etched resin cement}: {r:Rely X Unicem (3M ESPE)} | — | 치아 전처리 없이(시멘트 자체 etching) · retentive type에서만 · adhesive type 권장 X | —
+R: **증례 — peg lateralis · partial laminate veneer** | 증례 사진 | — | 에나멜 본딩 → enamel과 한 몸 · #12 partial laminate veneer = 프렙 없이 0.1mm(권장 술식 아님 · '학생용 아님') | —
+R: **증례 — 낮은 치관·작은 치아** | 증례 사진 | {n:임상적으로 3mm height} | 3mm 채 안 되면 retentive type cement로 못 버팀 → 레진 시멘트(chemical bonding) · 접착력에만 의존 X → 프렙·정밀한 보철물 | —
+N: 시험 열 = 이 강의 기출 {jb:R01} 하나(옛 교수 이재현 24·23 — 25 자료 근거 없음) · {jb:L03}은 다른 강의(Laminate · 이창하 22) 기출로 enamel bonding 축만 이어 둠. 같은 교수(여인성) 3Q 심미치과학 20·21년 3축 = adhesive type 보철물 고르기(종류 행) · adhesive type cement 고르기(시멘트 5종·분류 행) · 두 계면 처리 빈칸(층·전처리 행).
+
+#TBL 유지형 수복 vs 접착형 수복 | k=RBR | src=[[RBR:1]] [[RBR:3]] [[RBR:4]] [[RBR:7]] [[RBR:8]] [[RBR:15]]
+H: 구분 | 종류·대표 수복물 | 시멘트 | 유지 방식(필기) | 프렙·장단점(필기)
+R: **유지형(Retentive type)** | {n:full veneer restoration(cast gold · metal ceramic · all ceramic) · bridge(nn-X-nn 형태)} | {r:인산아연} · {r:폴리카복실레이트} · {r:글라스 아이오노머} · {r:레진 강화형 글라스 아이오노머} · {n:레진 시멘트도 쓸 수는 있음} | 삭제한 form의 resistance & retention form으로 버팀 — cement는 사이를 메울 뿐 화학적 bonding 아님 | prep 많이 → 치질 많이 날라감 · vital tooth prep은 마취부터 · 술자 능력 의존(technical sensitive)
+R: **접착형(Adhesive type)** | {r:Rochette bridge} · {r:Maryland bridge} · {r:Cast mesh fixed partial denture} · {r:Virginia bridge} · {n:porcelain laminate veneer(지금 routine)} | {r:레진 시멘트} 하나 | resistance form 없이 수복물과 치아 사이 접착에 의해서만 유지 — 레진 시멘트로 정말 bonding | enamel상에서 살짝(마취 X) → 치질 보존 · border line은 반드시 enamel bonding · 교합력 너무 강한 곳 X
+N: 변형 대비: 3Q 같은 교수 꼴 '다음 중 adhesive type 보철물인 것은?' → 접착형 행 종류 4 · PLV / full veneer(cast gold · metal ceramic · all ceramic)는 retentive type · 옛 교수 꼴(둘 중 고르기) 'Maryland bridge는 retentive type·adhesive type 중?' → adhesive type. [[RBR:3]] [[RBR:7]]
+
+#TBL 치과용 시멘트 5종 — 분류·결합 기전 | k=RBR | src=[[RBR:6]] [[RBR:10]] [[RBR:15]]
+H: 시멘트 | 영문 | 결합 기전에 따른 분류 | 결합(필기) | 임상(필기)
+R: **인산아연시멘트** | Zinc phosphate cement | 유지형(Retentive type) | interfacial locking · mechanical retention 필요 | 이제 잘 안 씀(진짜 안 붙어서 form 중시 · 완전 섞기 힘듬)
+R: **폴리카복실레이트 시멘트** | Polycarboxylate cement | 유지형(Retentive type) | interfacial locking · mechanical retention 필요 | 잘 안 씀
+R: **글라스 아이오노머 시멘트** | Glass ionomer cement | 유지형(Retentive type) | interfacial locking · mechanical retention 필요 | 실제 임상에서 주로 씀(GIC)
+R: **레진 강화형 글라스 아이오노머 시멘트** | Resin-modified glass ionomer cement | 유지형(Retentive type) | interfacial locking · mechanical retention 필요 | 실제 임상에서 주로 씀(RMGIC) · 대부분 믹싱 해봤을 것
+R: **레진 시멘트** | Resin cement | {r:접착형(Adhesive type)} — 하나뿐 | bonding mechanism(molecular adhesion)을 갖는 유일한 시멘트 | 비쌈 → 꼭 필요할 때만 · PLV
+R: [참고] **산화아연-유지놀계 시멘트** | Zinc oxide-eugenol cement | — | — | 임시접착제(provisional setting) · provisional restoration엔 유지놀 없는 것
+N: 변형 대비: 'adhesive type cement는?'(3Q 같은 교수 꼴) → 레진 시멘트 · '유지형이 아닌 것은?' → 레진 시멘트 · '임시접착제로 쓰는 것은?' → 산화아연-유지놀계(ZOE) · 영문 ↔ 우리말 짝. [[RBR:6]] [[RBR:15]]
+
+#TBL 치과용 시멘트의 결합 기전 3 | k=RBR | src=[[RBR:10]] [[RBR:11]] [[RBR:12]] [[RBR:13]] [[RBR:14]]
+H: 기전 | 뜻(필기) | 물리·화학(필기) | 쓰는 type(필기) | 비고(필기)
+R: **① Nonadhesive luting** | 시멘트가 흘러 수복물과 치아 사이 microstructure 사이사이 면을 메움(luting = 흘러들어간다) → 마찰이 커짐 | 물리적 | retentive type | 잘 흘러들어가게 powder/liquid ratio · micromechanical이랑은 좀 다름(메꿔서 마찰) · adhesive type에선 부가적
+R: **② Micromechanical bonding** | 표면의 미세한 irregularity에 시멘트가 차 들어가며 딱 걸림(interlocking) | 물리적 | retentive type(대부분 이럼) | 이름은 bonding이지만 기계적 · adhesive type에선 resistance form이 없어 의존
+R: **③ Molecular adhesion** | 수복물-접착제-치아 계면의 화학적 bonding(공유결합) | 화학적 | adhesive type — 레진 시멘트에서만 | 전처리를 해야 화학적 결합 · 완벽하지 않아 잘 prep된 form·enamel bonding이 필요
+N: 변형 대비: 'retentive type이 의존하는 두 기전' → ①② · '레진 시멘트에서만 구현되는 진정한 화학적 bonding' → ③ Molecular adhesion · 슬라이드 차례 1)·2)·3)(p.12-14 도식). [[RBR:10]] [[RBR:14]]
+
+#TBL 레진 시멘트 — 장단점·중합 방식 | k=RBR | src=[[RBR:16]] [[RBR:17]] [[RBR:24]]
+H: 구분 | 슬라이드 | 풀이(필기)
+R: **장점** | 접착형 · 불용성 · 통상적인 시멘트보다 강도가 높음(매우 높은 {r:인장강도}) · 자가 중합 또는 {r:이중 중합}(광 + 자가) · (압축강도) ≅ {r:2.1} · (인장강도) ≅ {r:5.5} · (시멘트 두께) ≅ {r:1.0} | solubility 거의 없음(불용성) · cement leakage 없음 · shear·torsion force에 잘 버팀 · 압축강도 2.1배 · 인장강도 5.5배
+R: **단점** | — | ① 치아·수복물 양쪽 전처리 → 번거로움(체어타임) ② 비쌈(GI 5-10만원 vs 레진 시멘트 30만원 이상) · technique sensitive
+R: **자가 중합(Autopolymerization)** | 자가 중합 또는 이중 중합 · Catalyst, base의 혼합 | 잘 안 씀 · 광이 안 들어가는 Maryland bridge(wing metal)엔 자가중합
+R: **이중 중합(Dual-curing)** | 이중 중합(광 + 자가) | 요즘 많이 씀 · PLV는 이중 중합이 좋음 · 자가중합 반응이 들어가 조작은 빨리
+R: **광중합** | — | 빛이 투과되어야 → 금속 수복물엔 거의 안 씀 · 포세린은 translucency가 좋아 광중합 계통도(다른 해 필기 — PLV는 주로 광중합) · PLV 광중합 1초 initial setting 뒤 잔여 시멘트 제거
+N: 변형 대비: 수치 빈칸(압축강도 ≅ 2.1 · 인장강도 ≅ 5.5 · 시멘트 두께 ≅ 1.0) · '레진 시멘트의 장점이 아닌 것' · 'Maryland bridge에 광중합이 효과 없는 이유' → wing metal에 광이 안 들어감(필기). [[RBR:17]]
+
+#TBL 치아 전처리 vs 수복물 전처리 | k=RBR | src=[[RBR:18]] [[RBR:19]] [[RBR:25]]
+H: 대상 | 전처리(슬라이드) | 방법(필기) | 알아야 할 정도(필기)
+R: **치아** | {r:상아질 접착제} | 4세대(etching · priming · adhesive)·5세대 · enamel bonding에 의존(dentin은 not secure) | enamel bonding을 얻으라고 강조
+R: **귀금속** | {r:귀금속 전처리} | 전처리재 많지 않음 · v primer | 알 필요 없음
+R: **일반 금속(base metal)** | {r:일반 금속 전처리} | 다른 화학적 제제로 활성화 | 특별히 알 필요 없음
+R: **유리형 도재(Empress 계열)** | {r:유리형 도재 전처리} | 불산(HF) 에칭 → 클렌징·물 세척 → 프로스티한 표면 → silane 도포 → 공유결합 · 도재는 불산에만 반응 | 이건 알아야 함 — PLV 핵심(lithium disilicate · Emax · glass ceramic)
+R: **코어 도재(지르코니아 · 알루미나)** | {r:코어 도재전처리} | MDP 적용해 test 중(understudy · underinvestigate) | 아직 시험단계 · 지르코니아는 아직 retentive type으로 봄 · PLV엔 거의 적용하지 않아 특별히 알 필요 없음
+N: 변형 대비: 3Q 같은 교수 빈칸 꼴 'crown cementation 두 계면 처리 — 수복물 내면 ( ) · 치아 ( ),( ),( )' → 수복물 전처리 · 치아 etching·priming·adhesive(필기 '접착 처리의 세 단계') · 층 그림 = 수복물 · 수복물 쪽 전처리층 · 시멘트 · 치아 쪽 전처리층 · 치아. [[RBR:16]] [[RBR:18]] [[RBR:20]]
+
+#TBL 상아질 접착제 세대 4·5·6·7 | k=RBR | src=[[RBR:20]] [[RBR:21]] [[RBR:22]] [[RBR:23]] [[RBR:25]]
+H: 세대 | 슬라이드 | 묶음(필기) | Adhesive type(PLV)(필기) | 비고(필기)
+R: **제 4 세대** | 기본 · {r:3-bottle system} | etching · priming · adhesive 3단계 | 권장 | 가장 퀄리티가 좋음 · 단계가 매우 번거로움
+R: **제 5 세대** | {r:2-bottle system} | etchant + (primer + adhesive) 또는 (etchant + primer) + adhesive — 둘 중 하나 | 권장(enamel bonding을 확실히 얻었다면 괜찮음) | 편리 · 퀄리티 발전 아님
+R: **제 6 세대** | 그림 — 한 병 | 세 개를 합친 one bottle(universal·one 등의 이름) | 쓰지 말 것 | 1 bottle system이 라미네이트에서 잘 버틴다는 결과 없음
+R: **제 7 세대** | {r:Self etched resin cement}: {r:Rely X Unicem (3M ESPE)} | 시멘트 미디엄에 다 섞임(올인원) · 치아 전처리 없이 | 권장 X(제조사도) | retentive type에서만
+N: 변형 대비: 'PLV 접착에 권장되는 세대' → 4·5세대 · '5·6·7세대가 4세대보다 higher quality?' → No · '7세대(Self etched resin cement)는 retentive·adhesive 중?' → retentive type. [[RBR:20]] [[RBR:23]] [[RBR:25]]
+
+#TBL Adhesive failure vs Cohesive failure | k=RBR | src=[[RBR:24]]
+H: 구분 | 어디서 떨어지나(필기) | 원인(필기) | 처치(필기)
+R: **Adhesive failure** | 치아-시멘트 / 시멘트-수복물 사이 | 조작을 잘못한 것 | 다시 표면 전처리해서 붙임 · 대부분 임상에서는 adhesive failure
+R: **Cohesive failure** | 시멘트 층 내에서 부러져 나감 | 시멘트가 두꺼움(오차가 큰 범위를 시멘트로 메움) | 재부착해도 안 좋을 가능성 → 재제작 · 적합도를 높여야
+N: 슬라이드(쪽에 붙인 다른 판) '탈락 시 재부착 — Adhesive failure · Cohesive failure' · 필기 "한 번 탈락되면 재부착해도 또 떨어지기 쉬우므로 처음 bonding 시 주의". [[RBR:24]]
+
+#TBL 증례 4 | k=RBR | src=[[RBR:26]] [[RBR:27]] [[RBR:28]] [[RBR:29]] [[RBR:30]]
+H: 증례 | 상황(필기) | 처치(필기) | 요점(필기)
+R: **peg lateralis** | 왜소치 | 하나는 retentive type · 하나는 adhesive · 하나씩·두 개씩 붙임 | 에나멜 본딩 → enamel과 한 몸 · 거의 안 깨짐
+R: **#11·#21·#12** | #11이 #21보다 M-D width가 큼 | 폭경 맞추고 #12 partial laminate veneer(프렙 없이 0.1mm) | 권장 술식 아님 · 학생용 아님 · 에나멜 본딩 강조
+R: **낮은 치관** | 치관 높이 3mm 채 안 됨 | 레진시멘트(chemical bonding) · E max · 2개씩 | 임상적으로 3mm height는 되어야 retentive type cement에 의존
+R: **작은 치아(없는 슬라이드)** | 작은 치아 · all ceramic | 치아·수복물 내면 전처리 · 잔여시멘트 굳기 전 제거 | 접착력에만 의존 X → 프렙·정밀한 보철물 · 메탈세라믹이면 수복물 쪽 전처리만 다름
+N: 쪽 — peg lateralis p.26 · #11·#21·#12 p.27 · 낮은 치관 p.28 · 작은 치아 p.29-30(필기 '없는 슬라이드') · p.28 필기 "2023에는 이 페이지까지 수업하셨습니다". [[RBR:26]] [[RBR:27]] [[RBR:28]] [[RBR:29]] [[RBR:30]]
+
+#TBL 전체정리표 가철성 보철물을 이용한 심미개선 — 강의 전체 | k=RPD | sum=1 | src=[[RPD:3]] [[RPD:5]] [[RPD:7]] [[RPD:9]] [[RPD:13]] [[RPD:18]] [[RPD:23]] [[RPD:27]]
+H: 주제 | 핵심(슬라이드) | 외울 목록·수치 | 함정·구별 | ★ 시험
+R: **Clasp 유무·서베이어의 기능** | 심미 : Clasp 유무? · 서베이어의 기능 5 | ① {r:삽입로 결정} ② 인접면 형성 ③ {r:적절한 언더컷} ④ 최대 풍융부 표시 : 과도한 릴리프 금지 ⑤ 재장착 참고점 | {n:입술이 덮으면 안 보여 문제 안 됨 · 서베이어 사용하는 게 가장 심미적} | {jb:P01}
+R: **클래스프 위치·Modified Akers** | 클래스프 {r:위치} 조정 : {r:하방}, {r:후방} · Modified Akers clasp – 기준 숙지 | {n:modified = 모든 게 언더컷 아래 · clasp 윗면 = 최대풍융부} | {n:conventional = 대부분 언더컷 위(tip만 10게이지)} · {n:언더컷 occlusal 1/3 + 클래스프 cervical 1/3 = 발치겸자} | —
+R: **Bar clasp·T, Y bar** | Bar clasp : 적절한 형태 숙지할 것 · T, Y bar 변형 — Undercut 위치, 양 | ① {r:입술선이 높은 경우} ② 상악 {r:제1, 2 소구치}에 심미적 ③ 연결부는 지대치 {r:1-2개 치아 후방부}가 심미적 | {n:팁만 살짝 보여 심미적 · 단단하면 발치겸자 · 연결부가 길수록 탄성 · 음식 적게 낌} | {jb:P10}
+R: **McCartney clasp** | mesial groove reciprocation clasp — {r:견치}를 지대치, {r:상악 후방연장} 국소의치에 주로 사용 | distal 쪽 {r:wrought wire "I" bar} · distolabial facet · distoproximal plate / mesial 쪽 {r:mesial groove} · {r:mesial rest} · mesial minor connector | {n:Distal에 언더컷 없어 enameloplasty(치아 삭제는 distal)} · {n:Mesial이 Proximal plate — RPI 변형 · 현재 안 씀} | {jb:P07} {jb:P03}
+R: **Mesial groove reciprocation clasp** | clasp 보이지 않게 {r:distal surface} 이용 | — | {n:주조한 걸 distal로(rpi 변형) · 발치 가능성 — 교수님은 메카트니가 낫다고} | —
+R: **Combination clasp** | {r:실제보다 직경 작게 보임} — Casting + wrought wire clasp | {r:더 작은 직경}, {r:둥근 단면}(빛 반사 감소) | {n:C clasp의 retentive arm만 wrought wire · 장점 심미·치아 보존} | {jb:P08} {jb:P11}
+R: **레스트 시트·의치상·인공치** | 레스트 시트 위치변경 – 심미적인 위치 존재 · 의치상 변연과 심미 · 인공치 심미 | 절단면 레스트 < {r:복합레진 rest seat}, 금속 rest seat / 순측 변연의 조절(의치상 말단 위치) · {r:색소침착, 착색} / 인접 자연치와 형태, 크기, 색조, 모양 비슷 · 착색 · {r:microfilled resin} | {n:인공치는 wax denture try-in 때 체크 · 착색 페인트는 heat cure 전} | —
+R: **총체적 환자 상태 평가** | 그외의 심미적 고려사항 – 총체적 환자 상태 평가 | ① 환자의 심미적 요구 ② 환자의 기대 수준 ③ 비 정상적 잇몸 상태 ④ 비정상적 환자 요구, 기대수준 ⑤ 가능한 정도 환자와 상의필요 ⑥ {r:기능과 심미의 타협} ⑦ 충분한 {r:기록과 설명} | {n:'설명하면 졸릴 것 같으니 읽어보세요~' 쪽} — 그래도 세 해 출제 | {jb:P02}
+R: **금속 노출 최소화 부속장치** | 아크릴릭, 복합레진 피개 클래스프 ? · 아크릴릭, 복합레진 클래스프 ? | {r:그림자 효과} 주의 · 사진 Partial Denture with Acetal Clasp | {n:레진은 약해 두꺼워짐 → 그림자 · 제일 심미적 = wrought wire} | {jb:P11}
+R: **회전 삽입로** | 회전 삽입로를 이용한 국소의치 | ① {r:전치부 클래스프 생략} 방법 ② 임상, 기공과정 숙련 필요 ③ {r:치아지지}에만 사용 | {n:앞에서부터 끼움(원 형태 패스) · 요즘 아무도 사용하지 않음} | —
+R: **국소의치 attachment 종류·선택** | 환자의 심미적 기대 만족시킴 · 기본적인 생물학적 원리는 동일 | 정밀형 = {r:0.01mm} 정밀성, 특수금속 · 반정밀형 = 주조, 경제성, 제작용이, 다양한 합금사용 · 치관내·치관외 = 탄성, 비탄성 / 선택시 고려사항 5 — 기능 · 해부, 개인적, 생역학적({r:짧은 치아(X)}) · 기공사 숙련도, 비용 · 유지 관리, 위생 · {r:심미적인 면} | {n:치관외를 많이 사용 · 치관내는 치수 침범 위험 · 짧은 치아는 못 씀} | —
+R: **Staubi 분류** | Classification of attachments(Staubi P. 1996) | class 1a Solid rigid, nonresilient · 1b Solid rigid, {r:lockable with U-pin or screw} · 2 {r:Vertical} · 3 {r:Hinge} · 4 {r:Vertical and hinge} · 5 {r:Rotational and vertical} resilient · 6 {r:Universal omniplanar} | {n:1이 단순 ~ 6이 복잡} · Mensor(1973) Coronal · Radicular · Accessory({n:보기만 · 문제 안냄}) | {jb:P04}
+R: **Sterngold·Biloc(key and keyway)** | Sterngold G/A · G/L · G/L ESI back : {r:레진과 연결} · {r:Biloc and Plasta} att. | G/A .085" 2.16mm · 7mm · 3.0mm / G/L .096" 2.43mm · 7mm · 2.7mm | {n:Class 1b — 틈을 벌려 액티베이션 · Biloc = 둘로 쪼갠 것(중요하다!)} · Swiss McCollum(JB 답 — 25 자료 없음) | {jb:P06} {jb:P09}
+R: **Dalbo·Retentive clasp 생략·평행관계** | Dalbo att. · Retentive clasp 생략 · Attachment 평행관계 중요 | 그림 D FEMALE · SPRING · MALE(한 벌은 SPRING 없음) | {n:스탠다드 = vertical 스프링 → class 4나 5 · 미니 = 스프링 없음(짧은 치아) · 평행 안 하면 3으로 쓰는 셈} | —
+R: **Stern ERA** | Stern ERA att. — Retention Cap Color Code | White – {r:light} · Orange – {r:moderate} · Blue – {r:heavy} · Grey – {r:very heavy} · Retention Ring Pattern – cast with crown | {n:채도 짙을수록 셈 · 검정색 = 기공용} | {jb:P05}
+R: **Bar attachment(Dolder·Hader)** | Bar attachment (Dolder bar) · Hader bar | Hader 부품 — Metal Housing · Clips · Hader-EDS Bars(Gold · Titanium · Plastic Bar) · Analog · Impression Clip · Fabricating Clip | {n:Dolder = 단면 D 세운 모양 · Hader = 지하철 철로 같은 단면(언더컷 + 플라스틱 클립)} | —
+R: **심미적인 총의치** | 심미적 조화 고려사항 · Occlusal plane = camper's line ? · 발음 · Lip support, Stability( Not move) · 자연스런 의치상 형성 ; 채색 | ① 치아 크기와 형태 ② 치아 색상 ③ {r:치아 위치} ④ 배경 | {n:치아 위치도 심미에 결정적 · 교합평면을 차트에 기록} | —
+N: 변형 대비: 기출 11문항 전부 시험 열에 · 목록 나열 축(서베이어 5 · 환자 평가 7 · Staubi 7줄)은 한 줄 빈칸·순서로 · 사진 이름 축은 같은 단원 다른 사진(Sterngold · Dalbo · Dolder · Hader). [[RPD:18]] [[RPD:20]]
+
+#TBL 클래스프를 심미적으로 — 방법별 비교 | k=RPD | src=[[RPD:4]] [[RPD:5]] [[RPD:6]] [[RPD:7]] [[RPD:8]] [[RPD:9]] [[RPD:14]] [[RPD:15]] [[RPD:25]]
+H: 방법 | 슬라이드 | 어디서·어떻게 | 필기: 주의·단점 | 기출
+R: **클래스프 위치 조정** | 클래스프 {r:위치} 조정 : {r:하방}, {r:후방} | {n:cervical(최대풍융부 아래)에 — 입술이 덮음} | 언더컷은 occlusal 1/3인데 클래스프를 cervical 1/3에 만들면 발치겸자 | —
+R: **Modified Akers clasp** | Modified Akers clasp – 기준 숙지 | {n:모든 게 언더컷 아래 · clasp 윗면 = 최대풍융부} | conventional은 대부분 언더컷 위 · tip만 10게이지 · 최대풍융부와 비교해서 그려라!! | —
+R: **Bar clasp** | ① {r:입술선이 높은 경우} ② 상악 {r:제1, 2 소구치}에 심미적 ③ 연결부는 지대치 {r:1-2개 치아 후방부}가 심미적 | {n:잇몸 쪽 아래에서 와 팁만 살짝 보임} | 단단하면 두꺼워서 발치 — 탄성이 느껴져야 · 연결부가 길수록 탄성 · 음식 적게 낌 | {jb:P10}
+R: **T, Y bar 변형** | Undercut 위치, 양 | {n:T bar를 잘라 앞에서 금속 덜 보이게 · distal에서 접근} | 산 넘어 접근해 I bar 안 보이게 — 방법 얼마든지 | —
+R: **McCartney clasp** | {r:견치}를 지대치, {r:상악 후방연장} 국소의치 | {n:Distal에서 접근한} wrought wire "I" bar · mesial groove · mesial rest | distal 언더컷은 enameloplasty(자연치 alteration) · 현재 안 씀 | {jb:P07} {jb:P03}
+R: **Mesial groove reciprocation clasp** | clasp 보이지 않게 {r:distal surface} 이용 | {n:주조한 걸 distal로(rpi의 변형)} | 빨판 같은 게 distal을 다 차지 → 발치 가능성 · 메카트니가 나은 것 같다고 | —
+R: **Combination clasp** | Casting + wrought wire clasp · {r:더 작은 직경}, {r:둥근 단면}(빛 반사 감소) | {n:주조 framework의 바깥쪽(C clasp retentive arm)만 wrought wire} | 장점 = 심미 · 치아 보존(탄성 → 발치 안 함) · 많이 하세요~ | {jb:P08} {jb:P11}
+R: **아크릴릭·복합레진 (피개) 클래스프** | 금속 노출을 최소화 하는 부속장치 · {r:그림자 효과} 주의 | 치아색(사진 Partial Denture with Acetal Clasp) | 레진은 약해 두꺼워짐 → 그림자 · 오히려 wrought wire가 제일 심미적 | {jb:P11}
+R: **회전 삽입로** | {r:전치부 클래스프 생략} · 임상, 기공과정 숙련 필요 · {r:치아지지}에만 | {n:앞에서부터 끼움 · 원 형태 패스} | 요즘 아무도 사용 안 함(기공사가 못 해 줌 · 임플란트 브릿지) | —
+R: **Attachment(Retentive clasp 생략)** | 국소의치 attachment — 환자의 심미적 기대 만족 · Retentive clasp 생략 | {n:아무것도 없어서 심미적} | 짧은 치아는 못 씀 · 평행하게 달아야 | —
+N: 변형 대비: 20년 '클라스프 심미적 방법 열거'의 답은 Bar clasp 행 — 같은 표의 다른 행(위치 조정 하방·후방 · Modified Akers · Combination · 회전 삽입로)으로 바꿔 물을 수 있음. [[RPD:4]] [[RPD:5]]
+
+#TBL McCartney clasp 도해 — distal vs mesial | k=RPD | src=[[RPD:7]] [[RPD:8]]
+H: 구분 | Distal 쪽 | Mesial 쪽 | 기출
+R: **교합면 라벨** | distofacial facet | {r:mesial groove} · {r:mesial rest} | {jb:P07}
+R: **순면 라벨** | {r:wrought wire "I" bar} · distolabial facet · distoproximal plate | mesial minor connector · mesial groove · mesial rest | {jb:P07} {jb:P03}
+R: **구성(JB 해설)** | distolabial facet를 파고 retentive clasp로 wrought wire "I" bar 이용 · distoproximal plate | mesial groove를 파고 mesial rest 형성 · mesial groove에 닿게 minor connector가 올라와 일종의 proximal plate 역할 | {jb:P07}
+R: **필기** | {n:Distal에서 접근한 I bar · 언더컷 없어서 라운드버로 enameloplasty(치아 삭제)} | {n:Mesial이 Proximal plate — RPI clasp의 변형} | {jb:P03}
+R: **Mesial groove reciprocation clasp** | clasp 보이지 않게 {r:distal surface} 이용 — {n:주조한 걸 distal로} | — | —
+N: 변형 대비: 적응증 = 견치를 지대치, 상악 후방연장 국소의치 · 24년엔 '언더컷이 없으면 mesial에 치아 삭제'(F — distal) · 'I bar는 어떤 타입'(wrought wire · Retentive) — 반대편 칸(mesial 라벨)으로 바꿔 물을 수 있음. [[RPD:7]]
+
+#TBL 국소의치 attachment — 종류와 선택시 고려사항 | k=RPD | src=[[RPD:16]] [[RPD:17]]
+H: 구분 | 슬라이드 | 필기 풀이
+R: **정밀형** | {r:0.01mm} 정밀성, 특수금속 | 밀링 머신으로 솔더 하던, 주조할 때 붙여서 같이 주조하던 정밀성이 있는 것
+R: **반정밀형** | 주조, {r:경제성}, 제작용이, 다양한 합금사용 | 플라스틱으로 만들어 같이 주조해서 정밀성 떨어짐
+R: **치관내** | 탄성, 비탄성 | 잘못 하면 치수 침범
+R: **치관외** | 탄성, 비탄성 | 치관외를 많이 사용함
+R: **선택시 고려사항** | ① 수복물에 필요한 기능 고려 ② 해부, 개인적, 생역학적 필요성 : {r:짧은 치아(X)} crown lengthening ③ 기공사의 숙련도, 비용 ④ 장기적인 유지 관리면, 위생 고려 ⑤ {r:심미적인 면} | 크기가 있음 — 저작력 버텨야 해서 크다 · 짧은 치아는 못 쓴다는 걸 기억
+R: **공통** | 환자의 심미적 기대 만족시킴 · 기본적인 생물학적 원리는 동일 | 전치부 미싱일 때 주로 했었는데 요즘은 임플란트 · 그치만 모르면 안 됨
+N: 변형 대비: 기출 없음 — Staubi 분류(4해 출제) 바로 앞 두 쪽 · 정밀형 ↔ 반정밀형 특징 맞바꾸기 · 선택시 고려사항 5 나열. [[RPD:16]] [[RPD:17]]
+
+#TBL Staubi P. attachment 분류 — class 1a~6 | k=RPD | src=[[RPD:18]] [[RPD:20]] [[RPD:21]] [[RPD:24]] [[RPD:26]]
+H: Class | 슬라이드(Staubi P. 1996) | 움직임(JB 해설) | 필기 풀이 | 25 자료의 예(필기) | 기출
+R: **1a** | Solid rigid, {r:nonresilient} | — | 칼에서 칼집이 빠지는 것 같은 형태 · 칼집 닳아서 덜렁거림 | — | {jb:P04}
+R: **1b** | Solid rigid, {r:lockable with U-pin or screw} | — | 칼집에 꽉 끼게 액티베이션 — key and keyway 중 액티베이션 가능한 게 b | Sterngold G/A · G/L(틈을 벌려 액티베이션) | {jb:P04}
+R: **2** | {r:Vertical} resilient | 수직운동 가능 | 저작 시 치주인대처럼 sinking 되도록 수직으로 눌림 | — | {jb:P04}
+R: **3** | {r:Hinge} resilient | 경첩운동 가능 | 잇몸 쪽에 경첩 — 잇몸 쪽 더 많이 눌림 | — | {jb:P04}
+R: **4** | {r:Vertical and hinge} resilient | 수직 & 경첩운동 가능 | 문 열리듯 잇몸 쪽으로 열림 · 2,3 두 개 합한 것 | Dalbo(스프링 · 뒤로도 → 4나 5) | {jb:P04}
+R: **5** | {r:Rotational and vertical} resilient | 회전 & 수직 운동 가능 | 물고기 꼬리 · 옆으로도 움직 | Dalbo(평행하게 달아야 옆으로 움직임) | {jb:P04}
+R: **6** | {r:Universal omniplanar} | 모든 방향 운동 가능 · JB 답 괄호 '(모든 운동)' | 모든 방향으로 움직(고장 많다) | — | {jb:P04}
+N: 변형 대비: 숫자가 커질수록 움직일 수 있는 범위가 커짐 — class 하나 빈칸 · 이름 → 번호 · Sterngold(1b)·Dalbo(4나 5)는 몇 class? · 옆 쪽 Mensor(1973) 분류(Coronal · Radicular · Accessory — 필기 '문제 안냄')와 섞은 보기. [[RPD:18]] [[RPD:19]]
+
+#TBL Attachment 사진 — 이름·쪽·특징 | k=RPD | src=[[RPD:16]] [[RPD:20]] [[RPD:21]] [[RPD:22]] [[RPD:23]] [[RPD:24]] [[RPD:27]] [[RPD:28]] [[RPD:29]]
+H: 이름(쪽) | 슬라이드·그림 글 | 필기: 구조·특징 | Staubi class(필기) | 기출
+R: **Sterngold G/A**(p.20) | .085" 2.16mm · 7mm · 3.0mm | key and keyway 구조 · 틈 있어 헐거워졌을 때 벌려 주면 꽉 끼게 액티베이션 | Class 1b | —
+R: **Sterngold G/L**(p.21) | .096" 2.43mm · 7mm · 2.7mm | key and keyway에 activation시킬 수 있는 구조 | class 1b | —
+R: **Sterngold G/L ESI back**(p.22) | {r:레진과 연결} · 그림 라벨 ESI Back | 솔더가 힘들어 레진에 파묻도록 뒤에 언더컷 구조 · 앞 구조는 G/L과 같음 | — | —
+R: **Biloc and Plasta att.**(p.23) | W. Wermuth Biloc · 22.10.3 KC · 22.10.3 KD + 모형 사진 | Bi = 두 개로 쪼개짐 — key and keyway를 둘로 쪼갠 것 · 중요하다! | — | {jb:P06}
+R: **Dalbo att.**(p.24·26) | 그림 D FEMALE · SPRING · MALE 두 벌 + FEMALE · MALE 한 벌(SPRING 없음) · Attachment 평행관계 중요 | 미니(스프링 없음 · 짧은 치아) · 스탠다드(vertical 스프링) · 평행하게 · Reciprocal arm 달면 안 됨 | 최소 class1은 아님 · 4나 5 | —
+R: **Stern ERA att.**(p.27) | ERA ATTACHMENT · Retention Cap Color Code(White – light · Orange – moderate · Blue – heavy · Grey – very heavy) · Retention Ring Pattern – cast with crown | 살아남은 attachment · 채도 짙을수록 retention 셈 · 검정색 = 기공용 | — | {jb:P05}
+R: **Bar attachment (Dolder bar)**(p.28) | 사진 4(구강 내 bar · 금색 바와 단면 그림 · 의치 내면) | 단면이 D 세운 모양 | — | —
+R: **Hader bar**(p.29) | Metal Housing · Clips · Hader-EDS Bars · Gold Bar · Titanium Bar · Plastic Bar · Analog · Impression Clip · Fabricating Clip | 지하철 철로 같은 단면 · 언더컷 + 플라스틱 클립(똑딱 단추) · 색 따라 리텐션 · 검은색 = 기공용 | — | —
+R: **그림 4**(p.16) | Dalbo/Dallabona attachment · Ceka attachment · Roach attachment (ball and tube attachment) · Pin and tube attachment | — | — | —
+R: **Swiss McCollum att.** | JB 답 "블록의 갈라진 틈을 벌려서 유지를 얻는다"(25 자료 없음 · JB 참고 231201 자료 p.24) | — | — | {jb:P09}
+N: 변형 대비: 기출은 21·23·24년 매번 다른 사진 이름(21 Swiss McCollum · 23 Biloc and Plasta · 24 Stern ERA) — 남은 사진(Sterngold G/A · G/L · ESI back · Dalbo · Dolder · Hader)도 이름·특징 한 줄씩. [[RPD:20]] [[RPD:29]]
+
+#TBL Bar attachment — Dolder bar vs Hader bar | k=RPD | src=[[RPD:28]] [[RPD:29]]
+H: 항목 | Dolder bar | Hader bar
+R: **슬라이드** | Bar attachment (Dolder bar) — 사진 4 | Hader bar — 부품 그림(Metal Housing · Clips · Hader-EDS Bars · Gold Bar · Titanium Bar · Plastic Bar · Analog · Impression Clip · Fabricating Clip)
+R: **단면** | {n:D 세운 모양} | {n:지하철 철로 같은 단면}
+R: **유지** | — | {n:언더컷 + 플라스틱 클립(똑딱 단추처럼 리텐션)}
+R: **색·기공용** | — | {n:색 따라 리텐션 다름 · 검은색 = 기공용(기공 시 끼고 나중에 빼야)}
+R: **재료** | — | Gold Bar · Titanium Bar · Plastic Bar · {n:주조하는 바도 있음}
+N: 필기 "Bar attachment 는 Dolder, Hader 바 많이 쓰이는데 많이들 헷갈림 · 둘 다 바인데 단면이 다르다 · 지하철 철로 같은게 Hader bar! 구분하세요" · 기출 없음 — 같은 단원 사진 이름 축(23·24년). [[RPD:28]] [[RPD:29]]
+
+#TBL 심미 고려사항 — 국소의치 vs 총의치 | k=RPD | src=[[RPD:10]] [[RPD:11]] [[RPD:12]] [[RPD:13]] [[RPD:30]] [[RPD:31]] [[RPD:32]] [[RPD:33]] [[RPD:34]] [[RPD:35]]
+H: 항목 | 국소의치(p.10-13) | 총의치(p.30-35) | 기출
+R: **환자·조화 고려사항** | 총체적 환자 상태 평가 7 — ① 환자의 심미적 요구 ② 환자의 기대 수준 ③ 비 정상적 잇몸 상태 ④ 비정상적 환자 요구, 기대수준 ⑤ 가능한 정도 환자와 상의필요 ⑥ {r:기능과 심미의 타협} ⑦ 충분한 {r:기록과 설명} | 심미적 조화 고려사항 4 — ① 치아 크기와 형태 ② 치아 색상 ③ {r:치아 위치} ④ 배경 | {jb:P02}
+R: **인공치·치아** | 인접 자연치와 형태, 크기, 색조, 모양 비슷 · 착색 가능 · 광중합 레진 이용한 수정-{r:microfilled resin} | 치아 위치 · Occlusal plane = {r:camper's line} ? · 발음 · Lip support, Stability( Not move) | —
+R: **의치상** | 순측 변연의 조절 : 의치상 말단 위치 · {r:색소침착, 착색} 시도 | 자연스런 의치상 형성 ; 채색 | —
+R: **지대치·레스트** | 레스트 시트 위치변경 – 심미적인 위치 존재 · 절단면 레스트 < 복합레진 rest seat, 금속 rest seat | — | —
+R: **필기 강조** | {n:wax denture try-in 때 인공치 체크 · 착색 페인트는 heat cure 전} · {n:환자가 예쁘다고 해야 — 차트에 기록} | {n:치아 위치도 심미에 결정적 · 교합평면을 차트에 기록해두기!!!} | —
+N: 변형 대비: 환자 평가 7(21·22·24년)의 '옳지 않은 것' 보기에 총의치 조화 고려사항 4를 섞을 수 있음 — 머리(총체적 환자 상태 평가 vs 심미적 조화 고려사항)로 가름. [[RPD:13]] [[RPD:30]]
+
+#TBL 전체정리표 Esthetic smile — 강의 전체 | k=SMI | sum=1 | src=[[SMI:1]] [[SMI:4]] [[SMI:7]] [[SMI:10]] [[SMI:12]] [[SMI:14]] [[SMI:16]] [[SMI:18]] [[SMI:20]] [[SMI:22]] [[SMI:23]] [[SMI:25]] [[SMI:27]] [[SMI:29]] [[SMI:31]] [[SMI:35]] [[SMI:38]] [[SMI:43]] [[SMI:45]] [[SMI:46]]
+H: 항목 | 핵심(슬라이드) | 외울 목록·수치 | 필기 요점 | ★ 시험
+R: **교정 치료의 목표** | ① to establish a {r:functional} dento-skeletal complex ② to achieve optimal {r:soft tissue aesthetics} | 한류 평균 미인 얼굴(합성 사진 3 — 고대 안암병원 성형외과 이승철 교수) | function 좋으면서도 facial aesthetic이 예쁜 얼굴 · 평균적인 얼굴과 미인의 얼굴은 매우 다름 · 한국인 얼굴은 중국·일본과도 다름 | —
+R: **성인 환자 · Paradigm shift** | adult patients … more than ever, highly aware of ‘{r:smile and facial aesthetics}’ / Angle Paradigm = {r:Ideal occlusion} ↔ Soft Tissue paradigm = Ideal {r:soft tissue} proportions and adaptation | 1992 → 2002 {r:>25Y} 증가(Lim DH 2003) · 표 7행(Primary · Secondary Tx. goal · Hard/Soft tissue Rx. · Diagnostic emphasis · Treatment approach · Function emphasis · Stability of result) / Orthodontist = objective/morphological ↔ Patient = aesthetic expectation · subjective · self-image | 25세 이상 환자 비율 확실히 올라감 · 어른들은 매우 까다롭다 · Soft tissue paradigm으로 바뀜 · TMJ function이 좋아야 | —
+R: **측모 분석 · VTO/STO** | Angular Projection — Powell Analysis(Korean vs Caucasian) · Linear Projection(Korean vs Arnett) / Sequential VTO and STO flow chart 6단 · Class III customized occlusal plane STO(Step 1~4-2) | NFr 131.4 · 137.0 vs {r:120} · NFa 32.2 · 31.0 vs {r:36} / Nose tip {r:13.5} vs 16.0 · UL {r:5.0} vs 3.7 / 흐름 Dento-maxillary → Intermaxillary → Craniomaxillary → posture–hard tissue → soft tissue balance → posture–soft tissue profile | 석사 논문 · Normalization · VTO, STO flow chart 만듬 · 교합평면 내용 포함 새판 | —
+R: **강의 목적 · Posed vs Spontaneous** | To review the {r:major components} of ‘smile aesthetics’ · To discuss their impact on {r:orthodontic diagnosis and treatment planning} / Posed = Voluntary · {r:Reproducible} ↔ Spontaneous = Involuntary · Driven by emotions · {r:More lip elevation} | Smile Analysis 사진 = 정면 쉼·미소 · 근접 · 동영상 | 활짝 웃는 건 lip elevation에 따라 다르게 · 근접 촬영 · 동영상 촬영 | —
+R: **Components of Aesthetic Smile** | 8칸: ① {r:Incisor & gingival display} ② {r:Upper lip curvature (Smile type)} ③ {r:Smile symmetry} ④ {r:Smile arc} ⑤ {r:Buccal corridor} ⑥ {r:Frontal Occlusal plane} ⑦ {r:Dental components} ⑧ {r:Gingival components} | 출처 Sabri R. The eight components of a balanced smile(J Clin Orthod 2005) · Suh YJ … Baek SH(J Craniofac Surg 2009) / JB 답 6번 낱말 = Occlusal frontal plane | 시험 예고 p.1·18·46 — 넘버링 한 문제 · 8개 항목 나열 · 내용 쓰지 마 | {jb:S01}
+R: **1 Incisor & gingival display** | 결정 3: Upper lip : {r:length and elevation} · Vertical maxillary and dentoalveolar height · Incisor inclination and crown height | Relaxed {r:2-4 mm} · Smile gingival {r:1-2 mm}(Fudalej 2008) / Suh 2009 남녀 차이 NS · PS 회귀 변수 4(upper lip elevation · Interlabial gap · Anterior maxillary height · upper lip length at rest) | 나이 들면 윗입술이 내려와 하악전치가 보임 · 교정하는 사람들은 gummy smile 치료에 관심 | —
+R: **Gummy smile 원인** | ① {r:Vertical maxillary excess} ② Excessive {r:gingival encroachment} ③ Over-eruption of the upper anteriors (Class II div 2) ④ Hyper-functional {r:upper lip elevating muscles} | 사진 Normal smile vs Gummy smile | 치료 = 상악 intrusion(수술·미니임플란트) · gingiva 잘라 줌 · segmental로 상악전치 intrusion · upper lip elevation m에 botox | —
+R: **2 Upper lip curvature · 3 Smile symmetry** | {r:Muscle-driven position} · might not be affected by orthodontic treatment · Depend on the position of mouth corner(upward/straight/downward) / Parallelism of the {r:commissural and pupillary lines} | — | Muscle에 의해 결정 → 교정으로 고쳐지지 않음 · asymmetric smile = muscle 문제인지 skeletal 문제인지 | —
+R: **4 Smile arc** | Attrition or Over-intrusion of the max. incisors · {r:Cant of occlusal plane} · Incisor inclination · Oral habit | Insignia 지침 3(Smiling Photo · occlusal plane · Tom Pitt’s Set-up) · Br. Position Deep bite {r:4.5–5.5mm} · Open bite {r:6.5–7.5mm} | 상악 전치·견치 선이 lower lip과 parallel = consonant smile · 플랫하면 나이 들어 보임 · class3 elastic 오래 걸면 senile한 impression | —
+R: **5 Buccal corridor · 6 Frontal occlusal plane** | Ext. vs Non-ext., Maxillary expansion, Arch form · AP position of the maxilla relative to the lip drape · Excessive transverse lip extension in smiling / a line running from the right {r:canine tip} to the left canine tip | — | 얼굴이 길면 buccal corridor 커질 수 있음 · Transverse cant = 거의 다 surgery · 미니스크류 unilateral molar intrusion으로 어느 정도 | —
+R: **7 Dental · 8 Gingival components** | size, shape, color, alignment, tip of the teeth · midline/arch symmetry / {r:Color, texture, contour and scalloping} | — | 보철과·치주과와 함께 · incisal edge와 canine tip 레벨 같고 측절치 약간 위 · contact area 50 40 30 · zenith 약간 디스탈 · papilla tip이 scalloped margin | —
+R: **Gingival margin discrepancies 1)~3)** | Causes 7 · Tx. = orthodontic {r:intrusion or extrusion} · periodontal surgery · depending on the lip line, the crown heights, and the gingival levels of the adjacent teeth | 1) High canine — margin {r:more apical} · adolescent ≠ adult / 2) impaction — {r:Forced eruption} 3(Window opening at the attached gingiva · Tunneling traction · Apically positioned flap) · crown labial torque / 3) implant — Congenital missing of the max. lat. incisors · Movement of the max. canine · Location of the implant margin | 어른은 recession 먼저 고지 · 천천히 extrusion · 임플란트는 약간 더 lingual로 | —
+R: **Gingival margin discrepancies 4)~6)** | 4) Delayed apical migration — {r:Thick and fibrotic} gingival tissue migrate slowly than thin tissue / 5) Localized periodontal problem → {r:Slow forced eruption} / 6) Attrition and over-eruption → {r:Slow intrusion} | — | 천천히 움직이면 gingival margin 따라온다 · incisal edge가 아닌 gingival margin에서 같은 거리에 브라켓 | —
+R: **Missing papilla (Black triangle)** | Causes 3: {r:Advanced periodontal disease} · {r:Over-divergence of adjacent roots} · {r:Abnormal tooth shape} | 치주 = Loss or cratering of interdental alveolar crest → Stripping({r:0.5-0.75mm} reduction) · Reshaping · Space closure / 치근 = crowded and abraded incisors · improper initial bracket positioning → periapical radiographs / 모양 = Triangular or barrel shaped → Stripping and space closure · Axis control | uprighting하면서 stripping 하고 조여 줌 → black triangle 사라짐 · Autotransplantation도 성공적인 치료 방법 | —
+R: **Role of Smile · Facial Aesthetic Designer** | Beautiful Alignment of Beautiful Teeth, which are surrounded by {r:intact Gingival Papillae}, should be beautifully displayed during Conversation and on Smiling · {r:Systematic and Interdisciplinary approach} from the diagnostic stage / {r:Orthognathic Surgery} and Aesthetic Adjunctive Surgical Procedures | Aesthetic units FC · Ant. FF · Post. FF / ASO · genioplasty · mandibular angle reduction · malarplasty | 진단 단계부터 systematic하게 협진 · 얼굴 3부분 · 자기 분야·인접 분야 knowledge | {jb:S01}(p.43 바탕 8칸 그림 — 6번 글층 라벨 Occlusal frontal plane)
+R: **Multi-disciplinary approach · 맺음말** | depends on {r:expertise within each discipline} · each member having a {r:broad base of general knowledge} / ‘Design of Smile and Facial Aesthetics’ = one of the most important {r:goals of orthodontic treatment} | — | 시험문제 : 8가지 component 쓰기 · 내용 쓰지 마(p.46) | —
+N: 시험 열 = 이 강의에 걸린 기출 전부({jb:S01} — 같은 한 문제 · 20년 칸 발문은 'Components of esthetic profile'). 필기 요점 열 = 25 학습부 필기. 변형 대비: 8 component는 이름·순서(위 줄 1~4 → 아래 줄 5~8)·p.18 사진 표시·6번 낱말 순서까지. [[SMI:18]] [[SMI:43]]
+
+#TBL Paradigm shift in Orthodontics — Angle Paradigm vs Soft Tissue paradigm | k=SMI | src=[[SMI:7]] [[SMI:8]]
+H: 항목 | Angle Paradigm | Soft Tissue paradigm
+R: Primary Tx. goal | {r:Ideal occlusion} | Ideal {r:soft tissue} proportions and adaptation
+R: Secondary Tx. Goal | Jaw relationships | {r:Functional occlusion}
+R: Hard / Soft tissue Rx. | Ideal skeletal/dental relationship produces ideal soft tissue | Ideal soft tissue {r:defines} ideal skeletal/dental relationship
+R: Diagnostic emphasis | {r:Model and Cephalometric analysis} | {r:Clinical examination} of the soft tissues
+R: Treatment approach | Obtain ideal dental and skeletal relationships. The soft tissues will be OK | Determine ideal {r:soft tissue relationships}, and then place jaws and teeth as needed to obtain them
+R: Function emphasis | {r:TMJ} in relation to dental occlusion | Soft tissue movement in relation to {r:dental display}
+R: Stability of result | Related primarily to dental occlusion | Related primarily to {r:soft tissue pressures / equilibrium} effects
+N: 필기 "교합을 잘 맞추고 skeletal problem 고려, 예쁘게. 교합도 좋아야 하지만 Soft tissue paradiam으로 바뀌었다"(p.7) · "또 하나 추가된건 TMJ function이 좋아야 ㅎ된다."(p.8). 변형 대비: 칸 맞바꾸기(Primary ↔ Secondary — Angle의 Primary = Ideal occlusion · Soft Tissue의 Secondary = Functional occlusion) · 행 이름 → 칸 · 어느 paradigm인지 고르기. [[SMI:7]] [[SMI:8]]
+
+#TBL Facial Profile — Angular(Powell)·Linear Projection 한국인 vs 백인 | k=SMI | src=[[SMI:10]] [[SMI:11]]
+H: 계측 | 분석 | Korean | Caucasian
+R: Nasofrontal angle (NFr) | Angular — Powell Analysis | Male 131.4±6.3 · Female 137.0 ±6.4 | {r:120}
+R: Nasofacial angle (NFa) | Angular — Powell Analysis | Male 32.2 ±2.1 · Female 31.0 ±2.5 | {r:36}
+R: Nasomental angle (NM) | Angular — Powell Analysis | Male 134.0 ±3.4 · Female 134.3 ±3.4 | 130
+R: Mentocervical angle (MeC) | Angular — Powell Analysis | Male 95.67 ±8.7 · Female 93.19 ±6.5 | 85
+R: Nasolabial angle (NL) | Angular | Male 93 · Female 98 | —
+R: Upper NL/Lower NL | Angular | Male 18/75 · Female 21/77 | —
+R: Nose tip | Linear | {r:13.5} | 16.0(Arnett)
+R: A’ | Linear | -0.4 | -0.1(Arnett)
+R: UL | Linear | {r:5.0} | 3.7(Arnett)
+R: LL | Linear | 2.5 | 2.0(Arnett)
+R: B’ | Linear | -4.6 | -5.3(Arnett)
+R: Pog’ | Linear | -3.0 | -2.6(Arnett)
+N: 출처 — Angular: Baek SH, Yang WS. Korean J Orthod. 1991;21; 131-70.(필기 "석사 논문 - angular linear projection · Normalaization 시켜 준다") / Linear: Choi BT, Baek SH, Yang WS, Kim SW. J Craniofac Surg 2000;11:586-94. 변형 대비: 표 값으로 한국인이 더 큰 것 = NFr · NM · MeC · UL · LL · B’ / 백인이 더 큰 것 = NFa · Nose tip · A’ · Pog’. [[SMI:10]] [[SMI:11]]
+
+#TBL Sequential VTO·STO flow chart(2000) vs Customized Occlusal Plane STO(2011) | k=SMI | src=[[SMI:12]] [[SMI:13]]
+H: 순서 | 2000 관계 | 2000 계측 → 결정 | 2011 Step · 관계 | 2011 계측 → 결정
+R: ① | Dento-maxillary relationship | U1 to MxOP · L1 to MnOP → Decision of {r:extraction} and orthodontic treatment mechanics | Step 1 · Dentomaxillary relationship | U1-MxOP · L1-MnOP → Decision of extraction and orthodontic treatment mechanics
+R: ② | Intermaxillary relationship | IIA, Ob, Oj · AB to MxOP → If maxilla and mandible don't fit each other, change orthodontic treatment mechanics or refer to prosthodontic treatment | Step 2 · Intermaxillary relationship | Overbite/Overjet · Max. intercuspation → If maxilla and mandible don't fit each other, adjust {r:Bolton tooth ratio} or refer to prosthodontic treatment
+R: ③ | Craniomaxillary relationship | FH to MxOP → Adjustment of the {r:cant of occlusal plane} by rotating the maxillomandibular denture complex and decision of {r:one or two jaw surgery} | Step 3-1 · 3-2 · Positioning of Maxillo-mandibular complex | A-N per · Upper incisor display · FH-AB / {r:FH-OP triangle} · Y-plane → Adjustment of the anterior limits of the maxilla and mandible, and vertical position of the upper first molars · cant of occlusal plane by rotation of the maxillomandibular complex · decision of one- or two-jaw surgery
+R: ④ | Relationship between the posture and the hard tissue | TVL(Sn) to FH · TVL(Sn) to MxOP → Adjustment of the cant of occlusal plane to posture using TVL (Sn) | — | —
+R: ⑤ | Facial balance of the soft tissue | U1 exposure · Nasolabial angle → Setting up the {r:incisor and lip relationship} | Step 4-1 · Facial balance of the soft tissue | UL projection: Nasolabial angle · TVL-UL · TVL-ULA → Setting up the incisor and lip relationship · Adjustment of maxillomandibular complex positioning, if needed
+R: ⑥ | Relationship between the posture and the soft tissue profile | TVL (Sn) to UL · TVL (Sn) to LL · TVL (Sn) to Pog · TVL(Sn) to UL angle → Consideration of {r:genioplasty} and other cosmetic surgery | Step 4-2 · Facial balance of the soft tissue | LL & Chin projection: TVL-LL · TVL-B’ · TVL-Pog’ · Facial height: Sn-Stm/Stm-Me’ → Consideration of genioplasty and other adjunctive cosmetic surgery
+N: 2000 = Choi BT, Baek SH, Yang WS, Kim SW. J Craniofac Surg 2000(필기 "VTO, STO flow chart 만듬") / 2011 = Baek SH, Ahn HW, Yang SD, Choi JY. J Craniofac Surg, 2011;22(5):1708-13(필기 "교합평면에 대한 내용 포함시켜서 새판 버젼"). 변형 대비: 결정 → 단계(extraction = 첫 단계 · Bolton tooth ratio = 2011 Step 2 · genioplasty = 마지막 단계). [[SMI:12]] [[SMI:13]]
+
+#TBL Posed vs. Spontaneous Smile | k=SMI | src=[[SMI:16]] [[SMI:17]]
+H: 구분 | Posed smile | Spontaneous smile
+R: 성격 | {r:Voluntary} | {r:Involuntary} · Driven by {r:emotions}
+R: 특징 | {r:Reproducible}(슬라이드 밑줄) | {r:More lip elevation}
+N: 필기 "활짝 웃는건 lip elevation에 따라 다르게 나타난다."(p.16) · Smile Analysis(p.17) 사진 = 정면 쉼·미소 · 근접 미소 · 동영상 화면 — 필기 "사진 찍을 떄 근접 촬영, 동영상으로 웃어보세요 촬영하기도". 변형 대비: 특징 → smile 이름(Reproducible = Posed · More lip elevation = Spontaneous). [[SMI:16]] [[SMI:17]]
+
+#TBL Aesthetic smile 8가지 component — 사진 표시 · 세부 쪽 요점 | k=SMI | src=[[SMI:18]] [[SMI:19]] [[SMI:23]] [[SMI:24]] [[SMI:25]] [[SMI:27]] [[SMI:28]] [[SMI:29]] [[SMI:30]]
+H: 번호 | Component(p.18 라벨) | 사진 표시(p.18) | 슬라이드 요점(세부 쪽) | 기출
+R: 1 | {r:Incisor & gingival display} | 두 가로선 사이 세로 화살표 | Upper lip : length and elevation · Vertical maxillary and dentoalveolar height · Incisor inclination and crown height / 정상 Relaxed {r:2-4 mm} · Smile gingival {r:1-2 mm}(p.19-20) | {jb:S01}
+R: 2 | {r:Upper lip curvature (Smile type)} | 윗입술 선 + 가운데 위 화살표 | Muscle-driven position · might not be affected by orthodontic treatment · Depend on the position of mouth corner(upward/straight/downward)(p.23) | {jb:S01}
+R: 3 | {r:Smile symmetry} | 가로선 + 세로 정중선 | Parallelism of the commissural and pupillary lines(p.24) | {jb:S01}
+R: 4 | {r:Smile arc} | 상악 절단연을 잇는 곡선 | Attrition or Over-intrusion of the max. incisors · Cant of occlusal plane · Incisor inclination · Oral habit(p.25) | {jb:S01}
+R: 5 | {r:Buccal corridor} | 양쪽 입꼬리 안쪽 세로선 | Ext. vs Non-ext., Maxillary expansion, Arch form · AP position of the maxilla relative to the lip drape · Excessive transverse lip extension in smiling(p.27) | {jb:S01}
+R: 6 | {r:Frontal Occlusal plane}(JB 답 Occlusal frontal plane) | 가로선 한 줄 | a line running from the right canine tip to the left canine tip(p.28) | {jb:S01}
+R: 7 | {r:Dental components} | 치아마다 장축 선 | size, shape, color, alignment, tip of the teeth · midline/arch symmetry(p.29) | {jb:S01}
+R: 8 | {r:Gingival components} | 치은 꼭대기마다 짧은 가로선 | Color, texture, contour and scalloping(p.30) → 문제 = Gingival margin discrepancies(p.31-37) · Missing papilla(p.38-41) | {jb:S01}
+N: 기출 = 이름 8개 나열(넘버링 — 22·23·24년 · 20년 발문 'Components of esthetic profile'). 25 필기 "시험문제 넘버링 한문제 · ”내용쓰지마“ 라고 하셨습니다 · 8개 항목 나열하시면 됩니다!"(p.1) · "시험문제 : 8가지 component 쓰기! 내용 쓰지마!!!!!!!!"(p.46). 변형 대비: 빈 칸 하나 · 순서(위 줄 1~4 → 아래 줄 5~8) · 사진 표시만 보고 이름 · 6번 낱말 순서(슬라이드 Frontal Occlusal plane · JB 답과 p.43 글층 라벨 Occlusal frontal plane). [[SMI:1]] [[SMI:18]] [[SMI:43]] [[SMI:46]]
+
+#TBL Upper incisal display — 정상 수치 · 남녀 비교 · PS 회귀 변수 | k=SMI | src=[[SMI:19]] [[SMI:20]] [[SMI:21]]
+H: 항목 | 값 | 변수 종류·유의성 | 출처
+R: Relaxed position | {r:2-4 mm} exposure of the upper incisor | 정상 | Piotr Fudalej, AJODO 2008;133(2):204-209
+R: Smile | {r:1-2 mm} gingival exposure | 정상 | Piotr Fudalej, AJODO 2008;133(2):204-209
+R: Upper incisal display at RP | Men 3.09(1.58) · Women 3.48(1.96) · P 0.07 | {r:NS}(not significant) | Suh 2009 TABLE 1(Men n = 33 · Women n = 43 · Independent t-test)
+R: Upper incisal display during PS | Men 8.70(3.97) · Women 9.80(2.41) · P 0.15 | {r:NS} | Suh 2009 TABLE 1
+R: Amount of the upper lip elevation | Coefficient 0.649 · Adjusted R² 0.250 · P <0.001 | {r:dynamic soft tissue variable} | Suh 2009 TABLE 4
+R: Interlabial gap | 0.152 · 0.406 · <0.001 | static Soft tissue variable | Suh 2009 TABLE 4
+R: Anterior maxillary height | 0.478 · 0.468 · <0.001 | {r:hard tissue variable} | Suh 2009 TABLE 4
+R: Amount of the upper lip length at rest | −0.439 · 0.607 · <0.001 | static Soft tissue variable | Suh 2009 TABLE 4
+N: p.19 결정 요인 3 = Upper lip : length and elevation · Vertical maxillary and dentoalveolar height · Incisor inclination and crown height. TABLE 4 = Multiple linear regression(N = 76, P < 0.05, adjusted R² = 0.607) · 'Guideline for DD of inappropriate UID'. 필기 "2-4mm 보이는게 정상 · smile 시 1-2mm 잇몸보이는게 정상 · 그렇지 않은 경우 많다 · 나이 들면 윗입술 점점 톤 떨어져 내려와 하악전치가 보이게 됨". 변형 대비: 2-4 mm(쉴 때 치아) ↔ 1-2 mm(웃을 때 잇몸) 맞바꾸기 · 변수 → 종류 짝. [[SMI:20]] [[SMI:21]]
+
+#TBL Causes of gummy smile — 원인 4 · 치료(필기) | k=SMI | src=[[SMI:22]]
+H: 원인(슬라이드) | 치료(필기)
+R: 1) {r:Vertical maxillary excess} | 상악전체가 vertical excess : 수술하거나 미니임플란트로 상악 intrusion · ant. 를 post. 보다 상악을 impaction — 하악이 countercw 돌면서 나와서 improve
+R: 2) Excessive {r:gingival encroachment} | gingiva : 잘라주면 된다 · 자르고 힐링되면 좋아짐
+R: 3) {r:Over-eruption} of the upper anteriors (Class II div 2) | 교합평면이 상악전치가 확 떨어짐 — segmental로 상악전치 intrusion, 하악 전치에 bonding 후 leveling 해서 교합 맞춰줌 · gingival height 치료 끝날 때까지 안 따라오다가 치료 끝나면 저절로 따라 올라옴
+R: 4) Hyper-functional {r:upper lip elevating muscles} | upperlip elevation m 에 botox
+N: 사진 Normal smile vs Gummy smile(교정 장치 장착). 변형 대비: 치료 → 원인 짝(botox = 4) · 잘라 줌 = 2) · 상악 intrusion = 1) · segmental 상악전치 intrusion = 3)) · 원인 4 중 빈칸. [[SMI:22]]
+
+#TBL Gingival margin discrepancies — 원인 · 하위 쪽 · 치료 | k=SMI | src=[[SMI:31]] [[SMI:32]] [[SMI:33]] [[SMI:34]] [[SMI:35]] [[SMI:36]] [[SMI:37]]
+H: 원인(p.31 Causes) | 하위 쪽 | 슬라이드 요점 | 치료·방법
+R: high canine | 1) Due to High Canine(p.32) | Initial gingival margin of the canine is {r:more apical} than those of the corresponding lateral and central incisors | Different Tx. method between {r:adolescent and adult} patients / {n:어른은 recession 먼저 고지 · 천천히 extrusion}
+R: impaction of the tooth | 2) Due to impaction of the tooth(p.33) | {r:Forced eruption}: ① Window opening at the {r:attached gingiva} ② Tunneling traction ③ Apically positioned flap | Give {r:crown labial torque} to the max. canine in the max. lat. incisor substitution case
+R: improper positioning of implant | 3) Due to improper positioning of implant(p.34) | Congenital missing of the max. lat. incisors · Movement of the max. canine · Location of the {r:implant margin} | {n:심을 때 약간 더 lingual로 — gingiva에 메탈 노출 안 됨}
+R: delayed migration of the gingival tissue | 4) Delayed apical migration of the gingival margin to adult position(p.35) | Gingival margin migrate {r:slowly} into apically direction to adult position · {r:Thick and fibrotic} gingival tissue migrate slowly than thin tissue | {n:천천히 움직이면 gingival margin 따라온다}
+R: (p.31 목록 밖) | 5) Localized periodontal problem(p.36) | — | {r:Slow forced eruption} to level the gingival margin
+R: attrition and over-eruption of the incisal edges | 6) Attrition and over-eruption(p.37) | — | {r:Slow intrusion} to level the gingival margin / {n:incisal edge가 아닌 gingival margin에서 같은 거리에 브라켓 · 상부는 보철로}
+R: ankylosis due to trauma in a growing patient | — | — | —
+R: severe crowding | — | — | —
+N: p.31 Tx. = orthodontic {r:intrusion or extrusion} · {r:periodontal surgery} · depending on the lip line, the crown heights, and the gingival levels of the adjacent teeth. 변형 대비: 치료 짝(5) Slow forced eruption ↔ 6) Slow intrusion) · Forced eruption 3 · 원인 7 빈칸 · high canine의 margin 위치(more apical). [[SMI:31]] [[SMI:33]] [[SMI:36]] [[SMI:37]]
+
+#TBL Missing papilla (Black triangle) — 원인 3 · 슬라이드 요점 · Tx. | k=SMI | src=[[SMI:38]] [[SMI:39]] [[SMI:40]] [[SMI:41]]
+H: 원인(p.38) | 슬라이드 요점 | Tx. · 확인
+R: 1) {r:Advanced periodontal disease} | Loss or cratering of {r:interdental alveolar crest} | **Stripping** ({r:0.5-0.75mm} reduction) · **Reshaping** of the proximal surface · **Space closure** make the contact lengthen and move toward the papilla
+R: 2) {r:Over-divergence of adjacent roots} | Occur frequently ① in crowded and abraded incisors ② due to improper initial bracket positioning | Verify the m-d {r:root tip} with {r:periapical radiographs}
+R: 3) {r:Abnormal tooth shape} | {r:Triangular or barrel shaped} incisors | Tx. of Choice ① {r:Stripping and space closure}(Bolton discrepancy with maxillary excess) ② {r:Axis control}
+N: 필기(p.38) "대부분 페리오 안좋아서 온 환자들 … 치아를 디스탈로 uprighting 하면서 stripping 하고 조여줌 -> black triangle 사라짐". 결론 p.43 'surrounded by intact Gingival Papillae'와 이어짐. 변형 대비: Tx. → 원인 짝(periapical radiographs = 2) · Axis control = 3) · Reshaping = 1)) · stripping 수치 0.5-0.75mm. [[SMI:38]] [[SMI:39]] [[SMI:41]]
+
+#TBL Facial Aesthetics — Facial Content · Facial Frames | k=SMI | src=[[SMI:44]] [[SMI:45]]
+H: Aesthetic unit | 예(e.g.) | 필기 풀이
+R: **FC** | acute NLA, protrusive and everted lips, {r:non-consonant lip line}, or {r:lip canting} | facial content (눈코귀입)
+R: **Ant. FF**(그림 AFF) | {r:midface hypoplasia}, protrusive and asymmetric chin, vertical deficiency/excess of the anterior maxilla and symphysis, or {r:prominent zygoma} | anterior facial framework
+R: **Post. FF**(그림 PFF) | {r:square mandibular angle} | Posterior framework
+N: 수술 = {r:ASO}, {r:genioplasty}, {r:mandibular angle reduction}, and {r:malarplasty} in conjunction with orthognathic surgery — Choi JY, Lee SH, Baek SH. J Craniofac Surg 2012;23(6):1683-6. p.44 'Role of Facial Aesthetic Designer' = Orthognathic Surgery and Aesthetic Adjunctive Surgical Procedures can maximize the beneficial outcome for orthodontic patients. 필기 "얼굴을 3가지 부분으로 나누어줄 수 있다". 변형 대비: 예 → unit 짝(lip canting = FC · prominent zygoma = Ant. FF · square mandibular angle = Post. FF). [[SMI:44]] [[SMI:45]]
