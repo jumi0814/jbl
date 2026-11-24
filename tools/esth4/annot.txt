@@ -6,16 +6,17 @@ A: 일치 — 정답 요지 "삭제기구(milling bur)의 dimension이 있으므
 A: 보강 — p.23 슬라이드 '3D printing of high-strength polycrystalline ceramics' 장점 "4) {r:No space limitation by size of milling burs} and axis of machine" — 뒤집어 읽으면 밀링은 버 크기·기계 축에 공간이 묶임. [[CAD:23]]
 A: 보강 — p.24 필기 "undermilling, overmilling 이슈 있다면 tool path 계산 잘해도 안됨 -> 프렙이 문제다" / "프렙할 때 특히 지르코니아 밀링을 위한 프렙할 때는 밀링 버가 날카로운 것 못 따라가므로 rounded angle, taper 만들어야 함" — 지대치 삭제 형태를 버가 따라가지 못하는 것이 '삭제량을 정확히 반영 못 하는' 까닭. [[CAD:24]]
 A: 보강 — p.25 필기 "그럼에도 3d 프린팅 좋은점 / 그 면에 맞게 쌓아올림 - 기구 dimension, 접근 가능성, tool path 등 문제 적다" — 프린팅에 적은 '기구 dimension' 문제가 곧 밀링의 문제. [[CAD:25]]
+A: 보강 — 다른 강의(심미수복재료 – 도재) p.10 필기 "밀링은 버 사이즈 때문에 오버 밀링 될 때 많다 -> 안쪽이 많이 비어있음" — JB 답 'overmill'과 같은 말(그 카드에 짧은 ⭐). [[CER:10]]
 M: 슬라이드 p.23: 세라믹 3D 프린팅 장점 5 — ① Reduction of production time per unit (large scale) ② Minor human intervention: minor error relevance ③ Reduction of material waste (unused remnants or storage) and {r:milling tools (wear)} ④ {r:No space limitation by size of milling burs} and axis of machine ⑤ Customized near-net-shape objects with intricate details (i.e. irregular grooves). [[CAD:23]]
 M: 슬라이드 p.20: 3D printing in Digital Prosthetic Dentistry — ① Unlimited variety of shapes and levels of complexity ② Mechanical and esthetic properties: {r:customization} ③ More quickly, easily, at lower cost. [[CAD:20]]
 M: 필기(p.21): "밀링은 컴퓨터 계산한 경로로 깎는다, 프린팅은 컴퓨터가 디자인한 이미지대로 쌓아올림". [[CAD:21]]
 M: 필기(p.24): "하지만 만든 결과물 평가해보면 여러 밀링한 것들과 비교해봤을 때 유사하게 괜찮고 마진 더 잘 맞기도. 특히 축면, 교합면에서 축면 넘어가는 부분 등이 잘 맞음" / "지르코니아로 가면 애초에 만들어지지 않으므로 sharp line angle 없애야 -> 프렙 잘 됐으면 결과물 잘 나오나, 프렙 잘 안되면 over, undermmilling 문제 생김". [[CAD:24]]
 M: 필기(p.24): "Gold cr 씌운다고 하면 rounded margin 만들어야 했죠" / "못만들어도 보철물은 나오지만 시멘트 레이어에서 응력이 집중됨. 시멘트 안에서 깨지는 문제.. adhesive cement가 아니라 mechanical sealing하는 시멘트 쓰기 때문." [[CAD:24]]
-M: 변형 대비: ① 밀링 vs 프린팅 방식(깎기 vs 쌓기) ② 세라믹 프린팅 장점 5 중 '밀링 버 크기에 따른 공간 제한 없음' ③ 프린팅 마진이 더 잘 맞는 이유(밀링이 부정확 — 버 크기) ④ 지르코니아 밀링 프렙(rounded angle · taper · sharp line angle 없애기) ⑤ 3Y-TZP 프린팅 후처리 debinding + sintering(수축 15~25% → printing rescaling factor). [[CAD:23]] [[CAD:24]] [[CAD:27]]
+M: 변형 대비: ① 밀링 vs 프린팅 방식(깎기 vs 쌓기) ② 세라믹 프린팅 장점 5 중 '밀링 버 크기에 따른 공간 제한 없음' ③ 프린팅 마진이 더 잘 맞는 이유(밀링이 부정확 — 버 크기) ④ 지르코니아 밀링 프렙(rounded angle · taper · sharp line angle 없애기) ⑤ 3Y-TZP 프린팅 후처리 debinding + sintering(수축 15~25% → printing rescaling factor). [[CAD:22]] [[CAD:23]] [[CAD:24]] [[CAD:27]]
 N: 연도 — 21년(24판 2021 칸 6번 · 23판 2021 칸 6번 · JB 괄호 없음 · 해설 '참고: 221111 한중석pf- New zirconia esthetic vs function vs longevity 2 p.1-4') · 출제 교수 한중석(도재 강의 — YEAR_PROF CAD 21) · 25년부터 같은 내용은 윤형인 'CAD, CAM' 새 강의 p.24(25판 멘트 "윤형인 교수님의 CAD CAM 강의가 새로 생겼습니다"). JB 앞면 = 24판 2021 칸 6번(가장 최신 판 — 23판 2021 칸 6번과 문제·답 같음).
 @C01 | v=ok | rel=C03 | lec=CER:20
 K: 정답: {r:Limited esthetics} · {r:Masking ability} · {r:Porcelain chipping or fracture} — p.20 Metal-Ceramic System의 아래 세 줄(JB 해설 '단점').
-K: 외울 것: 위 세 줄 = Gold standard · Excellent mechanical properties · Predictable structural performance(JB 해설 '장점') / 배점이 크면 p.21-22 Challenges 6가지: ① porcelain chipping or fracture ② dark metal line ③ bluish appearance ④ wear on opposing teeth ⑤ significant tooth reduction ⑥ labor-intensive laboratory procedures.
+K: 외울 것: 위 세 줄 = Gold standard · Excellent mechanical properties · Predictable structural performance(JB 해설 '장점') / 배점이 크면 p.21-22 Challenges 6가지: ① porcelain chipping or fracture ② dark metal line visible at margin ③ possible bluish appearance of the surrounding soft tissues ④ wear on opposing teeth ⑤ significant tooth reduction required ⑥ time-consuming and labor-intensive laboratory procedures.
 K: ⚠ 함정: 슬라이드엔 '장점·단점' 글자가 없고 Esthetics 아래 Limited esthetics·Masking ability가 놓임 — 배치로 가름 · 짝 재료(All-ceramic) 한계는 p.32 단점 3.
 A: 일치 — 답 1·2: p.20 "Esthetics / {r:Limited esthetics} / {r:Masking ability}" — 둘째 묶음의 아래 두 줄. [[CER:20]]
 A: 일치 — 답 3: p.20 맨 아래 "{r:Porcelain chipping or fracture}" · p.21 Challenges 첫 줄도 같은 낱말. [[CER:20]] [[CER:21]]
@@ -140,8 +141,8 @@ K: 외울 것: ① gingival health ② interdental closure ③ tooth axis ④ ze
 K: 이해: 25 강의는 같은 '디자인' 자리를 정상 치아 형태(치아형태학)·상악중절치 그림으로 다룸 — 14 criteria 자체는 25 자료에 근거 없음.
 A: 근거 없음 — 정답 요지 "interdental closure, incisal edge configuration, zenith of the gingival contour": 25 자료 1~29쪽에 14 criteria 목록 없음 · 첫 슬라이드(p.1-2)는 표지 "전부도재관의 적응증, 디자인 및 접착과정"과 "고정성치과보철학 제3판 (제12장, 제14장, 제20장)"뿐. [[DIG:2]]
 A: 보강 — JB 해설 근거: "올해 강의에는 없는 내용입니다. 작년 필기를 참고하여 작성하였습니다" · "14가지의 fundamental objective criteria가 교과서에 주어져 있습니다" — 25 자료에 있는지: 없음(교과서 쪽 번호도 JB에 없음).
-A: 보강 — 가장 가까운 25 내용: p.15-16 "전부도재관 디자인" = workflow의 {r:CAD}(Computer-Aided Design) 과정 / p.17 치아 형태 그림(Imbrication lines · Mamelons · Mesial/Distal incisal angle · Height of contour) — 치은·미소 쪽 기준(interdental closure · zenith)은 25 자료에 없음. [[DIG:17]]
-M: 슬라이드 17: 전치 그림 라벨 — Labial(Imbrication lines · Distal incisal angle · Mesial incisal angle · Mamelons) · Lingual(Marginal ridges · Lingual fossa · Cingulum) / Incisal(Incisal ridge) · Mesial·Distal(Height of contour) / 오른쪽 The Permanent Maxillary/Mandibular Posterior Occlusal Aspect. [[DIG:17]]
+A: 보강 — 가장 가까운 25 내용: p.15-16 "전부도재관 디자인" = workflow의 {r:CAD}(Computer-Aided Design) 과정 / p.17 치아 형태 그림(Imbrication lines · Mamelons · Mesial/Distal incisal angle · Incisal ridge · Height of contour) · p.18 필기 "상악중절치에서 가장 중요한 요소는 incisal angle" — 답 세 낱말(interdental closure · incisal edge configuration · zenith of the gingival contour)은 25 자료 글에 없음. [[DIG:17]]
+M: 슬라이드 17: 전치 그림 라벨 — Labial(Imbrication lines · Distal incisal angle · Mesial incisal angle · Mamelons) · Lingual(Marginal ridges · Lingual fossa · Cingulum) / Incisal(Incisal ridge · Distal incisal angle · Mesial incisal angle) · Mesial·Distal(Height of contour) / 오른쪽 The Permanent Maxillary/Mandibular Posterior Occlusal Aspect. [[DIG:17]]
 M: 필기(p.16): 자연스럽고 심미적인 디자인을 위해서는 원래 치아의 정상적인 형태를 잘 알고있어야 함 · 1학년 때 배운 치아형태학 · 사람마다 다른 형태를 가지고 있지만 각 치아마다 특징적이고 기본적인 형태는 존재함.
 M: 변형 대비: 14 criteria의 남은 11칸(요점 '외울 것'의 ①·③·⑤~⑪·⑬·⑭)으로 바꿔 물을 수 있음 — 근거는 JB 해설 목록뿐.
 N: 연도 — 25판 2024 칸 6번 · JB 괄호 없음 → 배지 24 · 다른 판본 없음 · JB 앞면 = 25판 · JB 참고 = 241129_최순영_치과용 CADCAM의 소개 All ceramic restoration의 cementation 과정 p.2(24 강의 파일 — 25 자료 아님).
@@ -167,7 +168,8 @@ A: 일치 — B 밀링 머신(셋째): p.3 셋째 화살표 "{r:CAM} (Computer-A
 A: 보강 — 순서 근거: JB 해설은 "명확히 순서가 제시된 슬라이드는 없지만, 강의 전반의 흐름을 바탕으로"라 했으나 25 자료엔 화살표 차례가 그대로(p.3 · 같은 그림 p.5 · p.15 · p.16). [[DIG:5]]
 M: 필기(p.3): 요즘 보철물 제작에 디지털 기술이 사용 안되는 곳 거의 없다 · 인상체 대신 구강스캐너 이용하기도, 왁스업 대신 컴퓨터 프로그램상에서 보철물 디자인하기도 함 (CAD), 주조 대신 컴퓨터가 직접 보철물을 만들기도 함 (CAM) → 전체적인 디지털 과정 = Digital dental workflow.
 M: 필기(p.4): 전통적인 방식 — 인상채득 → 모형제작 → 왁스업 → 매몰 → 주조 → 빌드업 · 요즘은 이런 과정이 아니라 컴퓨터 상에서 디자인하고 만들게 됨 — 디지털 기술.
-M: 슬라이드 16: 전부도재관 디자인 — 같은 workflow 그림에서 {r:CAD} 칸만 색이 다름(디자인 = 중간의 CAD 과정). [[DIG:16]]
+M: 슬라이드 16: 전부도재관 디자인 — 같은 workflow 그림에서 {r:CAD} 칸만 색이 다름. [[DIG:16]]
+M: 필기(p.15): 디자인 = 중간의 CAD 과정 — 전부 도재관의 디자인이라는 것은 결국 중간의 CAD 과정에 대한 것 · 크라운의 디자인, 크라운의 형태에 대해 알아야 한다.
 M: 변형 대비: 약어 풀이(CAD = Computer-Aided Design · CAM = Computer-Aided Manufacturing) / CAD/CAM으로 만드는 Machinable Ceramics 2가지 — (1) IPS e.max CAD : {r:Lithium disilicate} (2) {r:Zirconia}(3mol% Yttria-stabilized tetragonal zirconia polycrystals). [[DIG:13]]
 N: 연도 — 24판 2023 칸 7번 · 25판 2023 칸 7번(같은 글) · JB 괄호 없음 → 배지 23 · JB 앞면 = 25판(가장 최신 판) · 두 판 답 같음 C-A-B · 24판 참고 = 241129 강의 p.7-10 · 25판 참고 = 251128 p.3.
 @L01 | v=na | lec=LAM
@@ -366,7 +368,7 @@ M: 변형 대비: 옛 교수 꼴(둘 중 고르기 단답)을 이 강의 자료�
 N: 연도 — 24년(25판 2024 칸 5번 · 괄호 (24,23) · 해설 "이재현 교수님 문제입니다") · 23년(24판 2023 칸 5번 · 25판 2023 칸 5번은 '24년 5번' 가리킴) · 출제 교수 이재현(25부터 여인성 강의). JB 앞면 = 25판 2024 칸 5번(가장 최신 판) — 24판 답 "1 retainer type"(같은 답 · 표기만 다름)은 답 아래 📜 이전 답.
 @P01 | v=ok | lec=RPD:3
 K: 정답: ① {r:삽입로 결정} ② 인접면 형성 ③ {r:적절한 언더컷} ④ 최대풍융부 표시: 과도한 릴리프 금지 ⑤ 재장착 참고점 — p.3 서베이어의 기능 다섯 줄 그대로.
-K: 외울 것: 슬라이드 빨강 = 삽입로 결정 · 적절한 언더컷 · 풍융부 / 서베이어 = 심미의 핵심({n:서베이어 사용하는 게 가장 심미적} · {n:언더컷 위치를 아래로 → 클래스프 cervical}).
+K: 외울 것: 슬라이드 빨강 — 삽입로 결정 · 적절한 언더컷 · 풍융부 / 서베이어 = 심미의 핵심({n:서베이어 사용하는 게 가장 심미적} · {n:언더컷 위치를 아래로 → 클래스프 cervical}).
 K: ⚠ 함정: 넷째 줄은 '최대풍융부 표시' 뒤 '과도한 릴리프 금지'까지 한 줄 — 다섯 줄을 순서대로.
 A: 일치 — 답 1~5: p.3 "서베이어의 기능 – {r:삽입로 결정} – 인접면 형성 – {r:적절한 언더컷} – 최대 {r:풍융부} 표시 : 과도한 릴리프 금지. – 재장착 참고점" — 글자 그대로(JB 답의 '최대풍융부'는 붙여 씀). [[RPD:3]]
 A: 보강 — 왜 심미에 쓰나: p.3 필기 "서베이어를 기울여 인접면의 black triangle이 제일 작은 각도를 찾는 것" / "클래스프 cervical에 위치할 수록 입술이 덮어 잘 안보여서 심미적으로 좋다. 이것도 서베이어로 언더컷 위치를 아래로 내림". [[RPD:3]]
@@ -377,7 +379,7 @@ M: 변형 대비: 다섯 중 빨강 둘(삽입로 결정 · 적절한 언더컷)
 N: 연도 — 24·23년(25판 2024 칸 7번 괄호 (24,23) · 25판 2023 칸 9번 = '24년 7번' 가리킴 · 24판 2023 칸 10번 '(탈)'). JB 앞면 = 25판 2024 칸 7번(가장 최신 판) · 참고 쪽 = 251205 자료 p.3(이 자료) · 24판 참고 = 231201 자료 p.3.
 @P02 | v=ok | lec=RPD:13
 K: 정답: 1) 환자의 {r:심미적 요구} 2) 환자의 {r:기대 수준} 3) 비정상적 {r:잇몸 상태} 4) 비정상적 환자요구, 기대수준 5) 가능한 정도 환자와 상의필요 6) {r:기능과 심미의 타협} 7) 충분한 {r:기록과 설명} — p.13 일곱 줄 그대로.
-K: 외울 것: 머리 = '그외의 심미적 고려사항 – 총체적 환자 상태 평가' · 일곱 줄 순서 = 환자(요구 → 기대) → 비정상(잇몸 → 요구·기대) → 상의 → 타협 → 기록.
+K: 외울 것: 머리는 '그외의 심미적 고려사항 – 총체적 환자 상태 평가' · 일곱 줄 순서 — 환자(요구 → 기대) → 비정상(잇몸 → 요구·기대) → 상의 → 타협 → 기록.
 K: ⚠ 함정: 25 필기 "설명하면 졸릴 것 같으니 읽어보세요~" 쪽인데 21·22·24년 세 해 출제 — 부정 필기라도 낮추지 않음.
 A: 일치 — 답 1~7: p.13 "환자의 심미적 요구 · 환자의 기대 수준 · 비 정상적 {r:잇몸 상태} · 비정상적 환자 요구, 기대수준 · 가능한 정도 환자와 상의필요 · {r:기능과 심미의 타협} · 충분한 {r:기록과 설명}" — 띄어쓰기만 다름('비 정상적'·'환자 요구'). [[RPD:13]]
 A: 보강 — 필기(p.13): "심미라는 건 한마디로 환자가 예쁘다고 해야 하는 것! 커뮤니케이션이 중요 · 환자의 요구 등 다 차트에 기록해 놔야 함. 가능한 거는 들어주고 불가능한 거는 설득하기. 환자의 기대수준도 중요하다". [[RPD:13]]
@@ -386,14 +388,15 @@ M: 변형 대비: 일곱 중 몇 개 빈칸 · '옳지 않은 것' 보기에 다
 N: 연도 — 24·22·21년(25판 2024 칸 8번 괄호 (24,22,21) · 25판 2022 칸 8번 = '24년 8번' 가리킴 · 24판 2022 칸 8번 · 24판 2021 칸 8번 '짤문제 21년도)' · 23판 2022 칸 9번 · 23판 2021 칸 8번) / JB 앞면 = 25판 2024 칸 8번(가장 최신 판) · 이전 판 답(24판 2021 칸)은 번호 꼴만 '1.'로 다름 — 답 아래 📜 이전 답.
 @P03 | v=part | rel=P07 | lec=RPD:7
 K: 정답: (1) {r:견치}, {r:상악 후방연장} (2) F (3) wrought wire? Retentive clasp? — 셋 다 p.7((1) 아래 굵은 글 · (2) 필기 enameloplasty · (3) 순면 라벨 wrought wire "I" bar).
-K: 외울 것: McCartney clasp = mesial groove reciprocation clasp · distal = wrought wire "I" bar · distolabial facet · distoproximal plate / mesial = mesial groove · mesial rest · mesial minor connector.
+K: 외울 것: McCartney clasp = mesial groove reciprocation clasp · distal 쪽 wrought wire "I" bar · distolabial facet · distoproximal plate / mesial 쪽 mesial groove · mesial rest · mesial minor connector.
 K: ⚠ 함정: (2) 치아 삭제(enameloplasty) 쪽은 {n:distal} — mesial엔 groove·rest를 형성 · (3) JB 답에 물음표 둘(복원 불확실) — JB 해설은 'I bar는 wrought wire로 … Retentive clasp의 역할'.
 A: 일치 — (1): p.7 "{r:견치}를 지대치, {r:상악 후방연장} 국소의치에 주로 사용" — 빈칸 둘 = 견치 · 상악 후방연장. [[RPD:7]]
 A: 일치 — (2) F: p.7 필기 "Distal에서 접근한 I bar · Distal에 언더컷 없어서 라운드버로 인위적으로 enameloplasty 해주어 언더컷을 인위적으로 만듦. 자연치를 alteration 함" — 보기의 'mesial'이 틀림. [[RPD:7]]
 A: 부분 일치 — (3): p.7 순면 그림 라벨 "{r:wrought wire "I" bar}" · 필기 "I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!! +wrought wire는 탄성이 있어서 발치는 안함" / 'Retentive clasp'는 25 자료의 McCartney 쪽엔 글자가 없음 — JB 해설 근거. [[RPD:7]]
 M: 슬라이드 7: McCartney clasp – mesial groove reciprocation clasp · 교합면 라벨 distofacial facet · mesial groove · mesial rest / 순면 라벨 wrought wire "I" bar · distolabial facet · labial height of contour · mesial minor connector · distoproximal plate · mesial groove · mesial rest · path of insertion. [[RPD:7]]
 M: 필기(p.7): "60년도에 나온 McCartney clasp (폴 매카트니..) 현재 안 씀. 이렇게까지 했다는 걸 보여주는 것 · Mesial이 Proximal plate - RPI clasp의 변형". [[RPD:7]]
-M: 앞 p.8: 변형된 clasp를 이용한 심미 — Mesial groove reciprocation clasp : clasp 보이지 않게 {r:distal surface} 이용 · 필기 "그냥 주조한 걸 distal로 한 것. 얘도 rpi의 변형". [[RPD:8]]
+M: 앞 p.8: 변형된 clasp를 이용한 심미 — Mesial groove reciprocation clasp : clasp 보이지 않게 {r:distal surface} 이용. [[RPD:8]]
+M: 필기(p.8): "그냥 주조한 걸 distal로 한 것. 얘도 rpi의 변형". [[RPD:8]]
 M: 변형 대비: (1) 빈칸 하나만 · (2) T/F 낱말 바꾸기(distal ↔ mesial · wrought wire ↔ 주조) · (3) 다른 라벨(mesial groove·mesial rest·distoproximal plate) · 22·21년 꼴 '도해하고 적응증 서술'. [[RPD:7]]
 N: 연도 — 24년(25판 2024 칸 9번 · 괄호 없음). JB 앞면 = 25판 2024 칸 9번(이 문항이 실린 유일한 판) · 같은 쪽 다른 꼴 = 22·21년 McCartney 도해·적응증(관련 문항).
 @P04 | v=ok | lec=RPD:18
@@ -405,8 +408,9 @@ A: 일치 — 같은 표: p.18 "Class 3 Hinge resilient / Class 4 Vertical and h
 A: 보강 — 강조: p.18 필기 "시험 문제!!! Attachement 분류 딱 하나만 외우자! Staubi의 6가지 분류" · JB 해설(22년) "2023년에도 시험 출제 예고하신 문제입니다". [[RPD:18]]
 M: 필기(p.18): "1- 칼에서 칼집이 빠지는 것 같은 형태 a 칼집 닳아서 덜렁거릴때 … / b 닳아서 쉽게 빠지지 않도록 칼집에 꽉끼게 액티베이션시킨 구조; keyand keyway 중 액티베이션 가능한게 b". [[RPD:18]]
 M: 필기(p.18): "2- vertical: 저작시 치주인대처럼 좀 sinking 되도록 attachment가 수직으로 눌림 · 3- hinge경첩: 잇몸쪽에 경첩이 달려서 … 잇몸쪽 더 많이 눌림 · 4- vertical and hinge: 2,3 두 개 합한것 · 5 - rotational and vertical: 물고기 꼬리.. 옆으로도 움직". [[RPD:18]]
-M: 슬라이드 20·21·24: 같은 분류로 읽는 예(필기) — Sterngold G/A·G/L = Class 1b(key and keyway) · Dalbo = vertical 스프링 → '최소 class1은 아님 … 4나 5'. [[RPD:20]] [[RPD:24]]
-M: 앞 p.19: 다른 분류 Mensor(1973) — Coronal(Intracoronal · Extracoronal) · Radicular(Telescope studs · Bar attachment) · Accessory — 필기 "이런 분류도 있다 보기만 문제 안냄". [[RPD:19]]
+M: 필기(p.20·21·24): 같은 분류로 읽는 예 — Sterngold G/A·G/L = Class 1b(key and keyway) · Dalbo = vertical 스프링 → '최소 class1은 아님 … 4나 5'. [[RPD:20]] [[RPD:24]]
+M: 앞 p.19: 다른 분류 Mensor(1973) — Coronal(Intracoronal · Extracoronal) · Radicular(Telescope studs · Bar attachment) · Accessory. [[RPD:19]]
+M: 필기(p.19): "이런 분류도 있다 보기만 문제 안냄". [[RPD:19]]
 M: 변형 대비: class 하나만 빈칸(직전 2년 꼴 그대로 + 칸 하나) · 이름 → class 번호 짝짓기 · Sterngold(1b)·Dalbo(4나 5)가 몇 class인지 · Mensor 분류와 섞은 '옳지 않은 것'. [[RPD:18]]
 N: 연도 — 24·23·22·21년(25판 2024 칸 10번 괄호 (24,23,22,21) · 25판 2023 칸 8번·2022 칸 2번 = '24년 10번' 가리킴 · 24판 2023 칸 8번 '(짤)' · 24판 2022 칸 2번 · 24판 2021 칸 7번 · 23판 2022 칸 2번 · 23판 2021 칸 7번) / JB 앞면 = 25판 2024 칸 10번(가장 최신 판) · 이전 판 답 2건 = 답 글 같음(해설 첫머리 '2023년에도 시험 출제 예고하신 문제입니다'만 다름 — 답 아래 📜 이전 답) · 24판 참고 = 231201 자료 p.19.
 @P05 | v=ok | rel=P06,P09 | lec=RPD:27
@@ -416,7 +420,7 @@ K: 이해: 21·23·24년 매번 다른 attachment 사진이 나옴(21 Swiss McCo
 A: 일치 — 답: p.27 "Stern ERA att." · 그림 D 글 "ERA ATTACHMENT / Retention Cap Color Code: White – light · Orange – moderate · Blue – heavy · Grey – very heavy / Retention Ring Pattern – cast with crown". [[RPD:27]]
 A: 보강 — JB 해설 "강조하셨습니다 … 흰색 – 주황색 – 파랑색 – 회색 – 검정색 순으로 retention이 강해집니다. 검정색은 기공용" = p.27 필기 "ERA는 살아남은 attachment! 많이 보게 될 것 · retention 센 순: 채도 점점 짙은 색이 retention이 세다 흰색 주황색 파랑색 회색 검정색 순". [[RPD:27]]
 M: 필기(p.27): "섬뜩한 일 - 기공용 어태치먼트를 껴서 가져옴 (검정색) · 환자가 못빼겟다하면 옅은 색으로 바꿔주기". [[RPD:27]]
-M: 슬라이드 29: Hader bar도 클립 색 따라 리텐션 다름 — 필기 "마찬가지로 검은색 끼워져 있으면 기공문제,, 검은색은 기공용". [[RPD:29]]
+M: 필기(p.29): Hader bar도 클립 색 따라 리텐션 다름 — "마찬가지로 검은색 끼워져 있으면 기공문제,, 검은색은 기공용". [[RPD:29]]
 M: 변형 대비: 다른 사진(p.20 Sterngold G/A · p.21 G/L · p.22 ESI back · p.24 Dalbo · p.28 Dolder bar · p.29 Hader bar) 이름 · ERA 캡 색 → retention 짝짓기 · 검정색 캡의 뜻. [[RPD:20]] [[RPD:24]] [[RPD:28]]
 N: 연도 — 24년(25판 2024 칸 11번 · 번호 앞 별표 — JB 괄호 없음 · 연도 근거 아님). JB 앞면 = 25판 2024 칸 11번(유일한 판) · 참고 쪽 = 251205 자료 p.20-29 · JB 그림 조각: 문제 쪽 사진 한 장에 'ERA ATTACHMENT' 글자(답 글자)가 보임 — 답 쪽(a)로(JB 그림 조각 단계 몫).
 @P06 | v=ok | rel=P05,P09 | lec=RPD:23
@@ -424,27 +428,30 @@ K: 정답: {r:Biloc and Plasta} attachment — p.23 슬라이드 제목 'Biloc a
 K: 외울 것: {n:Biloc. Bi: 두 개로 쪼개짐 — key and keyway인데 둘로 쪼갠 것 · 중요하다!}
 A: 일치 — 답: p.23 "Biloc and Plasta att." — 카탈로그 그림 'W. Wermuth Biloc · 22.10.3 KC · 22.10.3 KD'와 모형 사진. [[RPD:23]]
 A: 보강 — 필기(p.23): "Biloc. Bi: 두 개로 쪼개짐 key and keyway인데 둘로 쪼갠것. 중요하다!". [[RPD:23]]
-M: 앞 p.20-22: 같은 key and keyway 구조 Sterngold G/A · G/L(필기 Class 1b — 틈 있어 헐거워졌을 때 벌려주면 꽉 끼게 액티베이션) · G/L ESI back : 레진과 연결. [[RPD:20]] [[RPD:22]]
+M: 앞 p.20-22: Sterngold G/A · G/L · G/L ESI back : 레진과 연결. [[RPD:20]] [[RPD:22]]
+M: 필기(p.20): 같은 key and keyway 구조 — "Class 1b … 틈 있어 헐거워졌을 때 벌려주면 꽉 끼게 액티베이션". [[RPD:20]]
 M: 변형 대비: 같은 단원 다른 사진 이름(Sterngold · Dalbo · Stern ERA · Dolder · Hader) · 'Bi'의 뜻 · Staubi 분류의 몇 class(key and keyway 액티베이션 = 1b — 필기). [[RPD:23]]
 N: 연도 — 23년(25판 2023 칸 10번 · 괄호 없음). JB 앞면 = 25판 2023 칸 10번(가장 최신 판) · 이전 판(24판 2023 칸 9번) 해설은 '작년 별표 슬라이드(p.32)'·231201 자료 p.26 인용 — 답 같음.
 @P07 | v=ok | rel=P03 | lec=RPD:7
-K: 정답: 적응증 = 견치를 지대치로 사용하는 {r:상악 후방연장} 국소의치에 주로 사용 + 도해 = p.7 교합면·순면 그림.
+K: 정답: 적응증은 견치를 지대치로 사용하는 {r:상악 후방연장} 국소의치에 주로 사용 + 도해는 p.7 교합면·순면 그림.
 K: 외울 것: 도해 라벨 — distal 쪽 {r:wrought wire "I" bar} · distolabial facet · distoproximal plate / mesial 쪽 {r:mesial groove} · {r:mesial rest} · mesial minor connector / 교합면 distofacial facet.
 K: 이해: I bar가 최대 풍융부의 distal에 낮게 존재 → wrought wire로 distal에 두면 최대 풍융부보다 낮아 심미적(JB 해설) · {n:Distal에 언더컷 없어서 enameloplasty로 만듦}.
 A: 일치 — 적응증: p.7 "{r:견치}를 지대치, {r:상악 후방연장} 국소의치에 주로 사용" — JB 답은 '견치를 지대치로 사용하는'으로 풀어 씀. [[RPD:7]]
 A: 일치 — 도해: p.7 교합면 "distofacial facet · mesial groove · mesial rest" / 순면 "wrought wire "I" bar · distolabial facet · labial height of contour · mesial minor connector · distoproximal plate · mesial groove · mesial rest · path of insertion". [[RPD:7]]
 A: 보강 — JB 해설 표(distal: distolabial facet를 파고 retentive clasp로 wrought wire "I" bar · distoproximal plate / mesial: mesial groove를 파고 mesial rest · minor connector가 올라와 일종의 proximal plate 역할) ↔ 필기 "Mesial이 Proximal plate - RPI clasp의 변형". [[RPD:7]]
 M: 필기(p.7): "Distal에서 접근한 I bar · Distal에 언더컷 없어서 라운드버로 인위적으로 enameloplasty 해주어 언더컷을 인위적으로 만듦 · I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!!". [[RPD:7]]
-M: 앞 p.8: Mesial groove reciprocation clasp : clasp 보이지 않게 distal surface 이용 — 필기 "빨판 같은게 distal을 다 차지하고 있어서 발치 가능성… 교수님이 보시기엔 메카트니가 나은 것 같다고 하심". [[RPD:8]]
+M: 앞 p.8: Mesial groove reciprocation clasp : clasp 보이지 않게 distal surface 이용. [[RPD:8]]
+M: 필기(p.8): "빨판 같은게 distal을 다 차지하고 있어서 발치 가능성… 교수님이 보시기엔 메카트니가 나은 것 같다고 하심". [[RPD:8]]
 M: 변형 대비: 24년엔 같은 쪽을 빈칸·T/F·단답 묶음으로(관련 문항) · 라벨 빈칸 · distal/mesial 구성 짝짓기. [[RPD:7]]
 N: 연도 — 22·21년(25판 2022 칸 5번 · 24판 2022 칸 5번 · 24판 2021 칸 10번 · 23판 2022 칸 6번 · 23판 2021 칸 10번 — 번호 앞 별표). JB 앞면 = 25판 2022 칸 5번(가장 최신 판 — 해설 '첫번째 그림은 교합면 view') · 이전 판 해설(24판 2021 칸)은 '왼쪽 그림 … 오른쪽' — 답 같음.
 @P08 | v=ok | rel=P11 | lec=RPD:9
-K: 정답: 구성 = {r:casting + wrought wire} clasp / 특징 = {r:더 작은 직경}으로 덜 보이고, {r:둥근 단면}으로 빛 반사 감소하여 심미적으로 보인다.
+K: 정답: 구성은 {r:casting + wrought wire} clasp / 특징은 {r:더 작은 직경}으로 덜 보이고, {r:둥근 단면}으로 빛 반사 감소하여 심미적으로 보인다.
 K: 외울 것: 슬라이드 머리 'Combination clasp : 실제보다 직경 작게 보임' · {n:주조 framework 바깥쪽 = wrought wire clasp(C clasp의 retentive arm)} · {n:장점 심미적 · 치아 보존(탄성 → 발치 안 함)}.
 A: 일치 — 구성·특징: p.9 "Combination clasp : {r:실제보다 직경 작게 보임} – {r:Casting + wrought wire clasp} – {r:더 작은 직경, 둥근 단면}( 빛 반사 감소)" — JB 답 두 줄과 같은 낱말. [[RPD:9]]
 A: 보강 — 필기(p.9): "combination clasp: 주조한 framework의 바깥쪽은 wrought wire clasp. C clasp인 경우가 많다 · 이유: 심미적이게 하려고, 기공소에서 탄성 못줘서 · 1. 심미적, 2. 치아 보존". [[RPD:9]]
 M: 필기(p.9): "탄성이 있어 최소한 발치는 안하고 괜찮음! 또 실제 직경보다 작게 보임. 라운드하면 할수록. 빛 반사 때문 · 여러분 combination 많이 하세요~(주조 clasp RPI RPA는 잘 못만들어서 발치 워낙 많이 하는 문제..)". [[RPD:9]]
-M: 앞 p.14: 금속 노출을 최소화 하는 부속장치(아크릴릭, 복합레진 클래스프 — 그림자 효과 주의) — 필기 "오히려 제일 심미적인건 wrought wire 클래스프 - 얇고 동그래서 잘 안보임". [[RPD:14]]
+M: 앞 p.14: 금속 노출을 최소화 하는 부속장치(아크릴릭, 복합레진 클래스프 — 그림자 효과 주의). [[RPD:14]]
+M: 필기(p.14): "오히려 제일 심미적인건 wrought wire 클래스프 - 얇고 동그래서 잘 안보임". [[RPD:14]]
 M: 변형 대비: 장점 2가지(심미 · 치아 보존) · 왜 retentive arm만 wrought wire인지 · wrought wire가 심미적인 이유(관련 문항 20년). [[RPD:9]]
 N: 연도 — 22년(25판 2022 칸 9번 · 24판 2022 칸 9번 · 23판 2022 칸 10번 · 괄호 없음). JB 앞면 = 25판 2022 칸 9번(가장 최신 판) · 답 글 세 판 같음.
 @P09 | v=none | rel=P05,P06 | lec=RPD:20
@@ -453,7 +460,8 @@ K: 외울 것: 같은 원리의 25 쪽 = Sterngold G/A·G/L — {n:Class 1b · k
 K: ⚠ 함정: 25 자료로는 이름을 맞출 수 없음 — JB 참고 = 231201 자료 p.24(그 해 슬라이드 제목 'Swiss McCollum att.').
 A: 근거 없음 — 답: 25 자료 35쪽에 'Swiss McCollum' 글자 없음(글층·쪽 이미지 확인) · JB 참고 "231201_곽재영pf_가철성 보철물을 이용한 심미개선 p.24". [[RPD:20]]
 A: 보강 — 가장 가까운 25 글: p.20 Sterngold G/A 필기 "Class 1b 딱 봐도 key and keyway 구조 틈 있어 헐거워졌을 때 벌려주면 꽉 끼게 액티베이션이 가능"(그림 속 '틈' 표시) / p.21 G/L 필기 "key and keyway에 activation시킬 수 있는 구조가 있다". [[RPD:20]] [[RPD:21]]
-M: 슬라이드 18: Staubi 분류 Class 1b Solid rigid, lockable with U-pin or screw — 필기 "b 닳아서 쉽게 빠지지 않도록 칼집에 꽉끼게 액티베이션시킨 구조". [[RPD:18]]
+M: 슬라이드 18: Staubi 분류 Class 1b Solid rigid, lockable with U-pin or screw. [[RPD:18]]
+M: 필기(p.18): "b 닳아서 쉽게 빠지지 않도록 칼집에 꽉끼게 액티베이션시킨 구조". [[RPD:18]]
 M: 변형 대비: 나올 때마다 다른 사진 이름(23 Biloc and Plasta · 24 Stern ERA — 관련 문항) · 25 자료 사진 Sterngold G/A · G/L · ESI back · Dalbo · Dolder bar · Hader bar. [[RPD:20]] [[RPD:28]]
 N: 연도 — 21년(24판 2021 칸 9번 · 23판 2021 칸 9번 · 괄호 없음 · 문제 '사진 주고 이름 쓰세요. 이전) Swiss McCollum att.을 설명하세요.'). JB 앞면 = 24판 2021 칸 9번(가장 최신 판 · 25판엔 2021 칸 없음).
 @P10 | v=ok | lec=RPD:5
@@ -464,7 +472,8 @@ A: 일치 — 답 1~3: p.5 "Bar clasp : 적절한 형태 숙지할 것 – {r:�
 A: 보강 — 문제 글 '클라스프 … 심미적 방법'의 다른 쪽: p.4 "클래스프와 심미 – 클래스프 {r:위치} 조정 : 하방, 후방 – Modified Akers clasp –기준 숙지". [[RPD:4]]
 M: 필기(p.5): "Bar clasp · 잇몸쪽에서 아래에서 오고 팁만 살짝 보여 훨씬 심미적 · 그 대신 발치겸자 안되게 잘만들어야 함. 탄성이 느껴져야 한다". [[RPD:5]]
 M: 필기(p.5): "왜 1-2개 치아 후방에 연결부 위치? 1. 길면 길수록 탄성에 유리 : 짧으면 발치겸자 된다 2. 음식이 적게 끼게 하려고 RPD에서 잇몸에서 major connector 4~6mm 아래로 하는 이유와 동일". [[RPD:5]]
-M: 앞 p.6: T, Y bar 변형 — Undercut 위치, 양 · 필기 "T bar를 잘라서 변형한 가장 오른쪽그림 · 자른 이유: 앞에서 금속 덜 보이게". [[RPD:6]]
+M: 앞 p.6: T, Y bar 변형 — Undercut 위치, 양. [[RPD:6]]
+M: 필기(p.6): "T bar를 잘라서 변형한 가장 오른쪽그림 · 자른 이유: 앞에서 금속 덜 보이게". [[RPD:6]]
 M: 변형 대비: Bar clasp 세 줄 중 하나 빈칸 · 연결부를 1-2개 후방에 두는 이유 · 클래스프 위치 조정 2가지(하방, 후방). [[RPD:4]] [[RPD:5]]
 N: 연도 — 20년(23판 2020 칸 1번 · 번호 앞 별표 · 문제 끝 '(짤)' · 출제 교수 표시 없음). JB 앞면 = 23판 2020 칸 1번(유일한 판) · 참고 = 211203 자료 p.4(이 자료에선 p.5).
 @P11 | v=ok | rel=P08 | lec=RPD:9
@@ -472,8 +481,10 @@ K: 정답: {r:더 작은 직경}으로 덜 보이고, {r:둥근 단면}으로 �
 K: 외울 것: Combination clasp = Casting + wrought wire clasp · 실제보다 직경 작게 보임 / {n:제일 심미적인 건 wrought wire 클래스프 — 얇고 동그래서 잘 안 보임(p.14)}.
 A: 일치 — 답: p.9 "– {r:더 작은 직경}, {r:둥근 단면}( {r:빛 반사 감소})" · 머리 "Combination clasp : 실제보다 직경 작게 보임" — JB 해설도 Combination clasp 두 줄을 인용. [[RPD:9]]
 A: 보강 — 필기(p.9): "또 실제 직경보다 작게 보임. 라운드하면 할수록. 빛 반사 때문" / 필기(p.14): "오히려 제일 심미적인건 wrought wire 클래스프 - 얇고 동그래서 잘 안보임". [[RPD:9]] [[RPD:14]]
-M: 슬라이드 14: 금속 노출을 최소화 하는 부속장치 – 아크릴릭, 복합레진 피개 클래스프 ? – 아크릴릭, 복합레진 클래스프 ? · 그림자 효과 주의 — 필기 "레진은 약해서 … 두꺼워짐. 빛 통과하지 않아서 그림자가 아래에 진다". [[RPD:14]]
-M: 앞 p.7: McCartney의 I bar도 wrought wire — 필기 "I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!! +wrought wire는 탄성이 있어서 발치는 안함". [[RPD:7]]
+M: 슬라이드 14: 금속 노출을 최소화 하는 부속장치 – 아크릴릭, 복합레진 피개 클래스프 ? – 아크릴릭, 복합레진 클래스프 ? · 그림자 효과 주의. [[RPD:14]]
+M: 필기(p.14): "레진은 약해서 … 두꺼워짐. 빛 통과하지 않아서 그림자가 아래에 진다". [[RPD:14]]
+M: 앞 p.7: McCartney의 I bar도 wrought wire(순면 라벨 wrought wire "I" bar). [[RPD:7]]
+M: 필기(p.7): "I bar 주조대신 wrought wire로 만듬…얇고 라운드할수록 덜 보여!! +wrought wire는 탄성이 있어서 발치는 안함". [[RPD:7]]
 M: 변형 대비: Combination clasp의 구성(관련 문항 22년) · 치아색(레진) 클래스프가 오히려 잘 보이는 까닭(그림자 효과). [[RPD:9]] [[RPD:14]]
 N: 연도 — 20년(23판 2020 칸 2번 · 번호 앞 별표 · 출제 교수 표시 없음). JB 앞면 = 23판 2020 칸 2번(유일한 판) · 참고 = 211203 자료 p.8(이 자료에선 p.9).
 @S01 | v=ok | lec=SMI:18
