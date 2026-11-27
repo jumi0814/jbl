@@ -8,14 +8,14 @@ R: **AI 크라운 비교 설계** | Conventional CAD(human-based) vs Deep learni
 R: **연구 1 — DB · DM · NC** | DB = DL as-generated · DM = DL technician-modified · NC = conventional CAD | 평가 = Crown morphology · Incisal path · Esthetic properties | 기공 의뢰 = 재료 · shade · 치축 · contact · 교합 접촉 · incisal edge | —
 R: **디자인 기준 7** | clinically acceptable outcome parameters | margin {r:0.08-mm} · {r:50-degree} / emergence labial straight · palatal convex / occlusal {r:0-μm} · proximal {r:– 20 μm} / cementation 1.0 mm no gap · {r:40-μm} · {r:50-μm} | 잘 맞으려면 프렙 · 인상 · 바이트 → 교합기 상에서 조정 | —
 R: **구개면 · 전방유도** | Artex CR condylar angle {r:35°} · Bennett angle {r:10°} · immediate side shift {r:0 mm} · palatal surface만 수정 · labial not modified | 'Dynamic Occlusion' 0-mm · average occlusal plane(중절치 incisal edge + 제1대구치 mesiopalatal cusp tips) | 전치부 평가 = 전방유도(절치 유도) · incisal guidance에 직접 영향 = 상악전치의 구개면 | —
-R: **연구 1 결과 · 결론** | DL → clinically acceptable morphology·aesthetics · optimal anterior guidance엔 technician 수정 필요할 수 있음 | DB vs DM incisal path 유의차 없음 · DB·DM·NC 심미 수치 유의차 없음 | — | —
+R: **연구 1 결과 · 결론** | DL → clinically acceptable morphology·aesthetics · optimal anterior guidance엔 technician 수정 필요할 수 있음(volumetric · linear · incisal path deviations) | Fig. 6 Linear deviation in crown morphology = root mean square · positive average · negative average — DB–NC vs DM–NC 비교는 {r:palatal} 부위만 / DB vs DM incisal path 유의차 없음 · DB·DM·NC 심미 수치 유의차 없음 | — | —
 R: **연구 2 — DD · DA vs CC** | DD = Dentbird Crown · DA = Automate · CC = conventional human-based | 기능·심미 similar → {r:clinically acceptable baseline design quality} | 어쨌든 구개면이 중요! · AI는 교합을 모름 · trained eye로 보면 심미적으로 떨어짐 → technician input | —
 R: **3D printing · 재료** | 3D printing in Digital Prosthetic Dentistry 3가지 | ① Unlimited variety of shapes ② {r:customization} ③ More quickly, easily, at lower cost / 재료 Ceramics · Metal · Resin | 밀링 = 소재 낭비 · 블록 shade 한계 · 밀링은 깎고 프린팅은 쌓음 | —
 R: **세라믹 3D 프린팅 장점 5** | {r:3Y-TZP} · SLA · DLP · Selective laser sintering · Binder Jetting → debinding + sintering | ① production time↓ ② human intervention↓ ③ material waste · milling tools↓ ④ {r:No space limitation by size of milling burs} ⑤ near-net-shape | — | {jb:K01}(21 한중석 — 밀링 버 크기의 반대면)
 R: **Under/overmilling · 프렙** | (p.24 슬라이드 = 3D 프린터 사진) | — | 밀링은 버 크기 때문에 undermilling · overmilling → tool path로도 안 됨 → 프렙(rounded angle · taper · sharp line angle 없애기) · 프린팅 마진이 더 잘 맞기도 | {jb:K01}(21 서술 — milling bur의 dimension → overmill)
 R: **세라믹 프린팅 공정** | Resin recipe for ceramic suspension · Technical·Photosensitive parameters · Debinding & sintering | Curing depth = layer thickness + overcuring({r:10–35%}) · 수축 {r:15~25%} → printing rescaling factor · support angle {r:50-deg} · layer {r:50 μm} · {r:405nm} | — | —
 R: **밀링 vs 프린팅 지르코니아 연구** | AM-DLP-3YZ · AM-SLA-3YZ · SM-4YZ · SM-5YZ(각 n = 14) | trueness → aging {r:120,000} chewing cycles → wear → load-to-failure · 5 kg · 1.5 Hz · 5°C - 55°C | — | —
-R: **증례 · 결론** | (p.31 필기 쪽) | — | 전치부 변색 · 짧은 치관 · 파절 → 라미네이트 / 크라운 / 교정 / gingivectomy · 기대치 어긋남은 색조·외형 · graded block · 결론 = 기술 수준 + principle(치아삭제·교합) | —
+R: **증례 · 결론** | (p.31 필기 쪽) | — | 전치부 변색 · 짧은 치관 · 파절 → 라미네이트 · 크라운 · 교정 동반 · gingivectomy 고민 / 예전 imp → diagnostic wax up · model → 요즘은 디지털로 쉽게 / 기대치 어긋남은 색조·외형(교합보다 흔함) / 결과물 책임 → 최소 퀄리티를 보장받는 방법(ai 등)이면 도움 / color graded block(어디는 a2 · 어디는 a3 채도 다르게) · 지르코니아 붓 컬러링 → 광학적 특성 부족(feldspathic porcelain · lithium disilicate 대비) / 결론 = 기술 수준 + principle(치아삭제·교합) | —
 N: 시험 열 = 이 강의에 걸린 기출 전부({jb:K01} — 21년 한중석 교수 도재 강의 문항 · 윤형인 교수 기출은 아직 없음). 필기 요점 열은 25 학습부 필기. [[CAD:24]]
 
 #TBL 심미 원칙 6 — 치열을 포함한 안모의 분류 | k=CAD | src=[[CAD:3]]
@@ -87,7 +87,7 @@ R: Debinding & sintering | Sintering (debinding) temperature · Heating rate(shr
 R: Support parameter | Maximum support angle · Minimum distance · Contact diameter · Build angle | {r:50-deg} · {r:1mm} · {r:0.4mm} (thin) · occlusal area ({r:0-deg})
 R: MSA | angle at which the support is formed on the crown | Too high → more supports → difficult to remove the support / Too low → less supports → less stable during printing
 R: Slice parameter | Layer thickness · X-Y resolution · Build size | {r:50 μm} · 40.32 μm (4K) · 120mm x 80mm
-R: Printing parameter | Wavelength · Curing time · Blade speed | {r:405nm} · 4.3sec / layer · 150mm/s
+R: Printing parameter | Wavelength · Curing time · Blade speed | {r:405nm} · 4.3sec/layer · 150mm/s
 N: Resin recipe for ceramic suspension = photoinitiators · monomers · oligomers · dyes · dispersion agents · diluents · inhibitors · fillers · plasticizers. 변형 대비: MSA 높음 ↔ 낮음 결과 뒤집기 · 수치 → 변수 짝. [[CAD:25]] [[CAD:28]]
 
 #TBL 밀링(SM) vs 프린팅(AM) 지르코니아 크라운 연구 — 4군 · 씹기 모의 | k=CAD | src=[[CAD:29]] [[CAD:30]]

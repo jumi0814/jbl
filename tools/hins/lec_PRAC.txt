@@ -44,6 +44,7 @@ M: 참고 도서: 치과건강보험 필수 50+ · 치과건강보험 달인되�
 - 슬라이드 출처: 치과의사신문[치과보험] 건강보험진료비의구성(dentistnews.kr).
 # 슬라이드 그림 예시(진료기록 + 청구 화면 + 내역표 — 글자 작음 · 판독 불확실)
 - 진료기록:
+  - Region 칸: 가로·세로 선 그림 왼쪽 아래 '7'(판독 불확실)
   - 첫 줄: 치과의원/건강보험가입자(판독 불확실)
   - C.C 오른쪽 아래 어금니가 시큰 …('가끔 아파요'로도 보임 · 판독 불확실)
   - Dx. 상아질의 우식
@@ -91,7 +92,7 @@ M: 청구 프로그램: {r:두번에} · {r:하나로} · {r:덴트웹} / {n:항
 
 ## Fee Schedule & Benefit Standards | 요양급여비용 및 급여기준 — 기준서 3부·상대가치점수·세부사항 | 2-3 | 기준서 목차 · 참고 기출 23 | jb=P04
 > 청구의 기준서(대한치과의사협회 '치과건강보험 요양급여비용 및 급여기준') = 내역(점수당 단가) · 급여·비급여목록표(상대가치점수) · 세부사항
-= 기준서 3부: ① 건강보험요양급여비용의 {r:내역} ② 행위 급여·비급여목록표 및 {r:급여 상대가치점수} ③ 요양급여비용의 {r:적용기준 및 방법}에 관한 세부사항
+= 기준서 3부: ① 건강보험요양급여비용의 {r:내역} ② 건강보험 행위 급여·비급여목록표 및 {r:급여 상대가치점수} ③ 요양급여비용의 {r:적용기준 및 방법}에 관한 세부사항
 # 기준서 구성(슬라이드 6 — 치과건강보험 요양급여비용 및 급여기준 · 2024년 1월판 · KDA 대한치과의사협회)
 - 기준서 3부:
   - ① **건강보험요양급여비용의 {r:내역}**
@@ -108,7 +109,7 @@ M: 청구 프로그램: {r:두번에} · {r:하나로} · {r:덴트웹} / {n:항
 - **행위 급여 목록·상대가치점수 및 산정지침**: ① 기본진료료 ② 검사료 ③ 영상진단 및 방사선 치료료 ④ 주사료 ⑤ 마취료 ⑥ 이학요법료 ⑦ 처치 및 수술료 등 ⑧ {r:치과 처치·수술료} ⑨ {r:치과의 보철료} ⑩ {r:치과의 교정치료료}
 - **행위 비급여 목록**: ① 기본진료료 ② 검사료 ③ 영상진단 및 방사선 치료료 ④ 치과처치·수술료
 - 예시 표 '제10장 치과처치·수술료 제1절 치아질환 처치'(분류번호 · 코드 · 분류 — 한글 글자 작음 · 판독 불확실):
-  - 차-1 U2001 Post Core · 차-2 U2002 Bonded Amalgam Restoration · 차-3 U2003 Pin Retained Restoration · 차-4 U2004 인레이(Inlay) 및 온레이(Onlay) · 차-6 U2006 Glass Ionomer Cement 충전
+  - 차-1 U2001 Post Core(앞 한글 판독 불가) · 차-2 U2002 접착 아말감 수복 Bonded Amalgam Restoration · 차-3 U2003 핀 유지형 수복 Pin Retained Restoration · 차-4 U2004 인레이(Inlay) 및 온레이(Onlay)(뒤 괄호 글 판독 불가) · 차-6 U2006 광중합형 글래스 아이오노머 시멘트(Glass Ionomer Cement) 충전
 - {n:PDF 슬라이드에는 마지막(치과처치·수술료)만 있고 수업에선 항목별 예시를 빠르게 읽고 넘어가심}.
 E: P04 | 23년 단답(참고 기출 — 외래교수) "요양기관이 시행한 요양급여에 대해 계산할 때 진료행위에 대한 가치를 각 항목간 상대적 가치로 수치화 한 것의 정확한 명칭" → 상대가치점수 — p.2 슬라이드 6·8 '급여 상대가치점수'·'행위 급여 목록·상대가치점수 및 산정지침' · {n:상대 가치 점수 = 얼마나 어렵고 힘든 진료인지에 대한 점수} · p.3 계산식 '요양급여비용 = 상대가치점수 x 점수당 단가' ⚠ 함정: 점수당 단가(원)와 구별 — 가치를 수치화한 것 = 점수
 F: 2
@@ -121,7 +122,7 @@ F: 2
 - {n:근관 치료 때 한 번에 청구할 수 있는 범위와 한계가 있음 — 근관 세척은 최대 5회까지 · Ni-Ti를 쓴 경우 일반 파일 사용은 인정 안 됨}.
 U: 둘 다 필요할 수 있는데… 이렇게 약간 모순적인 부분이 많기도 합니다(필기).
 F: 3
-M: 기준서 3부: ① 건강보험요양급여비용의 {r:내역} ② 행위 급여·비급여목록표 및 급여 {r:상대가치점수} ③ 요양급여비용의 {r:적용기준 및 방법}에 관한 세부사항
+M: 기준서 3부: ① 건강보험요양급여비용의 {r:내역} ② 건강보험 행위 급여·비급여목록표 및 급여 {r:상대가치점수} ③ 요양급여비용의 {r:적용기준 및 방법}에 관한 세부사항
 M: 수가 계산: {r:상대가치점수} x {r:점수당 단가}(p.3 계산식) / {n:상대 가치 점수 = 얼마나 어렵고 힘든 진료인지에 대한 점수} / {n:물가상승 등으로 점수별 단가가 변경되며 수가가 오름}
 M: 행위 급여 일반 원칙 4: ① 일반기준 ② {r:요양기관 종별가산율} ③ {r:차등수가} ④ 예외규정
 M: 행위 급여 목록 10: ① 기본진료료 ② 검사료 ③ 영상진단 및 방사선 치료료 ④ 주사료 ⑤ 마취료 ⑥ 이학요법료 ⑦ 처치 및 수술료 등 ⑧ 치과 처치·수술료 ⑨ 치과의 보철료 ⑩ 치과의 교정치료료
@@ -171,7 +172,7 @@ F: 3
 - medicare Child Dental Benefit Scheme — Bulk Billed Here(광고) · 예약 화면 사진.
 - item 표(번호·금액 판독 불확실 — 2022 Schedule fee 열):
   - 88011 Comprehensive oral examination · 88022 Intraoral periapical or bitewing radiograph – per exposure · 88111 Removal of plaque and/or stain
-  - 88161 Fissure and/or tooth surface sealing – per tooth · 88121 Topical application of remineralisation and/or cariostatic agents, one treatment
+  - 88161 Fissure and/or tooth surface sealing – per tooth (first four services on a day, item is subject to Rules 17 and 30)(판독 불확실) · 88121 Topical application of remineralisation and/or cariostatic agents, one treatment
   - 88311 Removal of a tooth or part(s) thereof – first tooth extracted on a day · 88521 Adhesive restoration – two surfaces – anterior tooth – direct
 - {r:A$396.2} ≒ ₩360,000/0.5h.
 - {n:호주가 비싸긴 해도 어린이들 보험은 어느 정도 나라에서 해 줌}.
