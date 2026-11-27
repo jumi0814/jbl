@@ -63,3 +63,8 @@ YEAR_PROF = {'OSA': _CJ(24, 23, 22, 21, 20, 19, 18), 'POPA': _CJ(24, 23, 22, 21)
              'SOFT': {**_PJ(24, 23, 22, 21, 20), 2018: '황순정', 2016: '황순정', 2013: '황순정'}, 'BONE': _PJ(24, 23, 22, 21, 19), 'TE': _PJ(24, 23, 21, 20, 19),
              'CMP': {2000 + y: '서병무' for y in (24, 23, 22, 21, 20)}, 'LOAD': {2022: '한정준'}}
 YEAR_PROF_Q = {}   # 예외 없음 — 같은 해 같은 강의는 한 교수(SOFT 18·16·13 = S09·S10 황순정뿐)
+# 11-27 JBFIX(QA OMS2 CMP — 공백·줄바꿈만, JB 글자 그대로): 그 머리로 시작하는 줄을 앞 줄에 잇지 않게(U+2063 = reflow.HARD)
+_H = chr(0x2063)
+def _nl(*heads): return [(f'\n{h}', f'\n{_H}{h}') for h in heads]
+JBFIX = {'C05': _nl('처치법:'),   # 답 '-careful surgical technique 처치법:'으로 붙음
+         'C03': _nl('이유:', 'Infraorbital, nerve lingual nerve:', 'Inferior alveolar nerve') + [('이유: 공통: ', f'이유:\n{_H}공통: ')]}   # 24판 '… nerves 이유:' · 23판 '이유: 공통: …'(줄 안 띄어쓰기 → 줄바꿈)

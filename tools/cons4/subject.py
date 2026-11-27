@@ -60,3 +60,8 @@ YEAR_PROF = {'EMS': {2024: _YYJ, 2023: _YYJ},
              'VPT': {2024: _SWJ},
              'IMP': {2024: _SWJ, 2023: _SWJ, 2022: _SWJ}}
 YEAR_PROF_Q = {}
+# 11-27 JBFIX(QA CONS4 9 — 공백·줄바꿈만, JB 글자 그대로): 그 머리로 시작하는 줄을 앞 줄에 잇지 않게(U+2063 = reflow.HARD)
+_H = chr(0x2063)
+def _nl(*heads): return [(f'\n{h}', f'\n{_H}{h}') for h in heads]
+JBFIX = {'L05': _nl('PPT 답:', '2024 학습부:'),   # 교과서 답 1)~5) 뒤 PPT 답 1.~3. 목록이 '… 경우 PPT 답:'으로 붙음 · 참고 줄 뒤 학습부 해설
+         'L08': _nl('2025 학습부:'), 'L20': _nl('2025 학습부:')}

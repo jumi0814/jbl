@@ -115,9 +115,10 @@ def _ntw_close(h):
         nxt = re.split(r'</?(?:td|th|tr|li|ul|ol|div|p|table)\b|<br\b|<span class="ntw"', rest.split(NOTE_O)[0])[0]   # 같은 칸·같은 줄 안에서만 봄 · 10-09 바로 다음이 또 필기 구간이면 줄을 바꾸지 않음(NOTE_O는 이미 span으로 바뀜)
         t = html.unescape(re.sub(r'<[^>]+>', '', re.sub(r'<button\b.*?</button>', '', nxt, flags=re.S)))
         core = re.sub(r'^[\s.,;:·)\]}]+', '', t)
+        core = re.sub(r'^\(\s*pp?\.\s?\d[^()]{0,20}\)[\s.,;:·]*', '', core)   # 11-27 필기 구간 바로 뒤 '(p.71 필기)' 쪽 인용은 앞 줄 끝에(QA RAD 3 — 강의 내용으로 보고 줄을 바꾸던 것)
         brk = len(re.sub(r'[\s.,;:·)\](}—–\-→=!?\'"“”…/]+', '', core)) >= 2 and not _NTB_JOSA.match(t.lstrip())
         if brk:
-            m = re.match(r'^((?:\s|[.,;:·)\]/—–→=]|</[^>]+>|<span class="nwd">[^<]*</span>|<wbr>|<button\b[^>]*>.*?</button>)*)', rest, re.S)   # 쪽 인용 칩·구분 기호(· — → /)는 앞 줄 끝에(10-09 다음 줄이 '·'·'→'로 시작하던 것)
+            m = re.match(r'^((?:\s|[.,;:·)\]/—–→=]|\((?:\s|<span class="pg">)*pp?\.\s?\d(?:[^()<]|<span class="pg">|</span>){0,30}\)|</[^>]+>|<span class="nwd">[^<]*</span>|<wbr>|<button\b[^>]*>.*?</button>)*)', rest, re.S)   # 쪽 인용 칩·구분 기호(· — → /)는 앞 줄 끝에(10-09 다음 줄이 '·'·'→'로 시작하던 것)
             out += '</span>' + m.group(1) + '<br class="ntb">' + rest[m.end():]   # 글자(띄어쓰기 포함) 그대로
         else: out += '</span>' + rest
     return out
@@ -536,7 +537,9 @@ def _eol(x, ctx, mn=40):
     return (f'<span class="klh">{inline(ld, ctx)}</span>' if ld else '') + _list_html(its, ctx, 1, 'ol', 'circ')
 MLAB = re.compile(r'^((?:[^:：{}"“”=→/]|\{r:[^{}:：]*\}){1,32}(?:\([^(){}]{0,30}\))?[:：])\s+(.+)$')   # 10-07 라벨 안 {r:…}(예 '표정근 {r:14}:')·32자까지도 굵은 머리
 def _nlab(lb):   # 10-09 ⚡ 머리 라벨이 '필기:'·'26 필기(p.4):'면 라벨 앞 ✍(뒤 {n:…}의 ✍는 숨김 — 두 번 안 보이게)
-    return ' nlab' if re.fullmatch(r'\s*(?:\d{2}\s)?필기(?:\s?\((?:pp?\.\s?)?[\d\-~,·\s]+\))?\s*[:：]\s*', _plain(lb)) else ''
+    pl = _plain(lb)   # 11-27 '필기 요지:'·'높이 기준(필기):'·'주의(26 필기 p.4):'도(QA GERI4 29 · IMPL4 H5 — ✍ 두 번)
+    return ' nlab' if (re.fullmatch(r'\s*(?:\d{2}\s)?필기(?:\s[가-힣]{1,8})?(?:\s?\((?:pp?\.\s?)?[\d\-~,·\s]+\))?\s*[:：]\s*', pl)
+                       or re.fullmatch(r'[^()]{1,30}\((?:\d{2}\s)?필기(?:\s?(?:pp?\.\s?)?[\d\-~,·\s]+)?\)\s*[:：]\s*', pl)) else ''
 def _uwhole(x):
     """10-09 줄(또는 조각) 전체가 {u:…} 하나로 감싸였으면 안쪽 글자, 아니면 None"""
     x = x.strip()

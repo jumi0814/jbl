@@ -12,6 +12,9 @@ VNAME = {'ok': '강의자료와 일치', 'part': '부분 일치·부분 근거',
 LECTITLE = {l['k']: l['title'] for l in LECT}
 ANSRE = re.compile(r'^\s*\[?답\]?\s*[:：)]|^\s*답\s*$|^\s*\[답\]')
 
+def _cut16(t):   # 11-27 기출 대장 '중복 →' 링크 16자 자르기 — '(' 홀로 끝나지 않게(QA RAD 1 'MDCT는? (')
+    t = (t or '')[:16]
+    return t[:t.rfind('(')].rstrip() if t.count('(') > t.count(')') else t
 def split_text(q):
     qs, as_, mode = [], [], 'q'
     for l in q['text'].replace('\u2063', '').split('\n'):
@@ -178,7 +181,7 @@ def view_led():
         R = [r for r in LEDGER if r['ed'] == ed]
         def st(r):
             if r['st'] == 'card': return '카드 ' + golink(r['to'][0], '열기')
-            if r['st'] == 'dup': return '중복 → ' + ', '.join(golink(x, esc(QMAP[x]['short'][:16])) for x in r['to'])
+            if r['st'] == 'dup': return '중복 → ' + ', '.join(golink(x, esc(_cut16(QMAP[x]['short']))) for x in r['to'])
             return 'JB에 미복원으로 표기' if r['st'] == 'lost' else '원본 쪽 참조'
         t = ''.join(f'<tr><td>{esc(r["sec"])}</td><td>{esc(r["num"])}</td><td><button class="link" data-jb="{ed}-{r["pg"]}">{r["pg"]}</button></td><td>{esc(r["first"])}</td><td>{st(r)}</td></tr>' for r in R)
         h.append(f'<details class="tblwrap"><summary class="tbt serif">JB {ed}판 대조표 — 블록 {len(R)}개</summary><table class="cmp"><thead><tr><th>연도 칸</th><th>번호</th><th>쪽</th><th>첫 줄</th><th>처리</th></tr></thead><tbody>{t}</tbody></table></details>')

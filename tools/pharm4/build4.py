@@ -624,6 +624,8 @@ def _aitem_lis0(x, kind='A'):
         loc = raw[:qs[0]].strip(); qt = raw[qs[0]:qs[1] + 1]; aft = raw[qs[1] + 1:].strip()
         mp = re.match(r'^[.,;:)\]]+', aft)
         if mp: qt += mp.group(0); aft = aft[mp.end():].strip()   # 인용 뒤 마침표만 남으면 인용 끝에(따로 '.' 한 줄이 생기던 것)
+        mpar = re.match(r'^\([^()"“”]{1,16}\)[.,;]?(?=\s|$)', aft)
+        if mpar and not re.match(r'^\((?:pp?\.|\d)', aft): qt += mpar.group(0); aft = aft[mpar.end():].strip()   # 11-27 인용 뒤 짧은 꼬리 '(빨간 글씨).'도 상자 안 끝에(QA PHARM4 R-4 — 상자 밖 홀로 한 줄이던 것)
         aft = re.sub(r'^[/—,·]\s+', '', aft)
         while True:   # 10-05 통일: 바로 이어지는 인용(" / "…")은 같은 상자에 한 줄 더
             m4 = re.match(r'^(?:/\s*)?(["“])', aft)
@@ -715,6 +717,16 @@ def _ahead(t):   # 답 줄(해설 앞)만 — 답은 다르고 해설은 같은 
         if re.match(r'^\s*해설\s*[:：)]?', l_): break
         L.append(l_)
     return _nz(re.sub(r'^\s*(?:\[답\]|답)\s*[:：)]?', '', '\n'.join(L)))
+_LKW = re.compile(r'[a-z]{3,}|[가-힣]{2,}|\d+(?:\.\d+)?')
+def lk_recall(q, c_):
+    """11-27 📖 상자 머리 ⚡ 한 줄 = 이 문항과 낱말이 가장 많이 겹치는 카드 ⚡(QA IMPL4 H4 · OMS2 6 — 한 카드짜리 강의에서 모든 JB 카드가 같은 첫 ⚡) · 문항이 여럿 걸린 카드에서 겹침이 0이면 생략 · 하나뿐이면 첫 줄"""
+    R = c_.get('recall') or []
+    if not R: return ''
+    qw = set(_LKW.findall(lecparse._plain(q.get('text') or '').lower()))
+    sc = [(len(qw & set(_LKW.findall(lecparse._plain(x).lower()))), -i, x) for i, x in enumerate(R)]
+    b = max(sc)
+    if b[0] == 0: return R[0] if len([x for x in c_.get('jb', []) if x in QMAP]) <= 1 else ''
+    return b[2]
 def prev_answers(q, at):
     """10-25c '다만 이전 답이나 참고할 만한 내용을 아래 추가로' — 앞면(가장 최신 판) 답과 다른 옛 사본의 답 칸(원문 그대로 · 원본 쪽 단추) · 같은 답은 한 번 · 최근 판·최근 해 칸 먼저
     앞면보다 새 사본(문제가 많이 달라 자동 앞면에서 건너뛴 것)은 넣지 않음 — '다른 판본'에만"""
@@ -722,7 +734,7 @@ def prev_answers(q, at):
     for v_ in sorted([v_ for v_ in q.get('other', []) if not _isptr(v_)], key=lambda v_: (v_['ed'], _secy(v_)), reverse=True):
         if (v_['ed'], _secy(v_)) > (q['ed'], _secy(q)): continue
         _, va = split_qa({'id': q['id'], 'text': v_['text']}); c_, h_ = _acore(va), _ahead(va)
-        if not c_ or any(_sim(c_, x_, 4000) >= 0.97 and (h_ == y_ or _sim(h_, y_, 4000) >= 0.97) for x_, y_ in seen): continue
+        if not c_ or any((_sim(c_, x_, 4000) >= 0.97 and (h_ == y_ or _sim(h_, y_, 4000) >= 0.97)) or (len(c_) >= 20 and c_ in x_) for x_, y_ in seen): continue   # 11-27 옛 답이 새 답 안에 통째로 있으면(새 판 = 옛 답 + 해설 한 줄 — QA GERI4 83 SYS L01) 이전 답 아님
         seen.append((c_, h_)); out.append((v_, va))
     if not out: return '', set()
     sl = lambda v_: f'{v_["sec"]}년 칸' if re.fullmatch(r'20[0-9][0-9]', str(v_['sec'])) else str(v_['sec'])
@@ -787,7 +799,13 @@ def qcard(q, idx):
     a1 = ''
     if q['A'] and not q.get('auto'):
         pl = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', CITE_BTN.sub('', q['A'][0])))).strip()
-        if pl.startswith('정답'): a1 = f'<div class="a1k noann"><b>정답</b> {esc(first_sent(lecparse._plain(pl[2:].strip())))}</div>'   # 10-05 annot {r:} 표기가 정답 요지 줄에 그대로 보이던 것
+        if pl.startswith('정답'):
+            _t = lecparse._plain(pl[2:].strip()); _m = re.match(r'^요지\s*[—–\-:：]\s*', _t)   # 11-27 '정답 요지 — "3)" / 선지 3) "…"'(QA PHARM4 R-3) → '요지 —' 떼고 첫 조각만 · 첫 조각이 보기 번호뿐이면 '선지' 조각
+            if _m:
+                _ch = [x_.strip() for x_ in re.split(r'\s/\s', _t[_m.end():]) if x_.strip()]
+                _t = _ch[0] if _ch else ''
+                if len(_ch) > 1 and re.fullmatch(r'["“]?\(?\d{1,2}[).]?["”]?', _t) and _ch[1].startswith('선지'): _t = _ch[1][2:].strip()
+            if _t: a1 = f'<div class="a1k noann"><b>정답</b> {esc(first_sent(_t))}</div>'   # 10-05 annot {r:} 표기가 정답 요지 줄에 그대로 보이던 것
     if a1: a.append(f'<div class="a1 noann">{a1}</div>')
     if q['A']:
         hd_ = f'🔎 강의자료 대조 <small>{VNAME[q["v"]]}</small>'
@@ -802,7 +820,8 @@ def qcard(q, idx):
     if q['id'] in Q2CARD:
         k, j = Q2CARD[q['id']]; c_ = [L_ for L_ in LEC if L_['k'] == k][0]['cards'][j]
         keys_ = [v for t, v in c_['body'] if t == 'K']; key_ = keys_[0] if keys_ else ''   # 10-23 QA — 카드의 🔑 줄이 둘 이상(26 줄 '= 26:' 등)이면 📖 상자에도 다
-        m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(c_['recall'][0], ctx) + '</span>') if c_['recall'] else ''
+        _r1 = lk_recall(q, c_)
+        m1_ = (' <span class="lkm">⚡ ' + lecparse.inline(_r1, ctx) + '</span>') if _r1 else ''
         rec_ = ''.join(top_li(lecparse.render_recall(x, ctx)) for x in c_['recall'])   # 10-08 📖 카드 ⚡도 같은 줄 조각 = .mg 묶음(줄간격 층)
         a.append(f'<details class="ab lk"><summary><span class="lkt">📖 «{esc(c_["ko"])}»</span>{m1_}<button class="chip lec" data-golec="{k}:{j}">{esc(lname(k))} 정리본 →</button></summary><div class="lkey"><div class="ct">🔑 핵심 <small>{esc(lname(k))}</small></div>{''.join(lecparse.render_keybox(x_, ctx) for x_ in keys_) if keys_ else lecparse.inline(c_["gist"], ctx)}</div>{("<div class=\"lkey lmem\"><div class=\"ct\">⚡ 암기</div><ul class=\"lrec\">" + rec_ + "</ul></div>") if rec_ else ""}</details>')
     a.append('<div class="acts acts2 noann"><button class="btn sm mk ok" data-mk="ok">✓ 맞음</button><button class="btn sm mk ng" data-mk="ng">✗ 틀림</button><button class="btn sm mk bm" data-mk="bm">★</button><button class="btn sm" data-fold="1">답 접기 ▲</button></div>')
@@ -880,18 +899,23 @@ def yl(yrs, full=False):
     ys = ['%02d' % y for y in yrs]
     if full or len(ys) <= 5: return '·'.join(ys)
     return '·'.join(ys[:4]) + f' +{len(ys) - 4}'
-def ylab(yrs):
+KLAB = {'예고': '수업 예고', '예상': '학습부 예상'}   # 11-27 kind= 문항(출제 아님 — 연도 없음) 칩 글자: '연도 미상'·내부 id 대신(QA IMPL4 H2·H3 · CONS4 QA21)
+def nolab(kind=None): return KLAB.get(kind or '', '연도 미상')
+def ylab(yrs, kind=None):
     """연도 표기 통일(U24): '24·23·21 (3회)' — 4개 초과는 앞 4개 + '+n'"""
-    if not yrs: return '연도 미상'   # 10-03 허브 점검: 연도 없는 문항 칩이 빈 버튼이던 것
+    if not yrs: return nolab(kind)   # 10-03 허브 점검: 연도 없는 문항 칩이 빈 버튼이던 것
     ys = ['%02d' % y for y in yrs]
     return ('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) + (f' ({len(ys)}회)' if len(ys) >= 2 else '')
 def hlab(ids, yrs):
     """카드 머리·정리표 행 기출 칩 글자 — 문항이 둘 이상이면 문항 수를 앞에(10-04 사용자 '다수 문제 있는 경우엔 관련 출제문제 갯수를 써놓든 해서 … 클릭하지 않더라도 알 수 있게끔')"""
+    _kd = [i for i in ids if i in QMAP and QMAP[i].get('kind')]   # 11-27 kind= 문항(수업 예고 등)은 '기출 n문항'에 세지 않음(QA IMPL4 H3)
+    if _kd and len(_kd) == len(ids): return nolab(QMAP[_kd[0]]['kind'])
+    if _kd: ids = [i for i in ids if i not in _kd]
     if len(ids) < 2: return '기출 ' + ylab(yrs)
     ys = ['%02d' % y for y in yrs]
     return f'기출 <b class="hqn">{len(ids)}문항</b> · ' + (('·'.join(ys[:4]) + (f' +{len(ys) - 4}' if len(ys) > 4 else '')) if ys else '연도 미상')
 def ychips(ids):
-    return ''.join(f'<button class="jbchip{" rep" if len(QMAP[i]["yrs"]) >= 2 else ""}" data-go="{i}" title="{("·".join(YR(y) for y in QMAP[i]["yrs"]) + "년") if QMAP[i]["yrs"] else "연도 미상"}">{ylab(QMAP[i]["yrs"])}</button>' for i in ids if i in QMAP)
+    return ''.join(f'<button class="jbchip{" rep" if len(QMAP[i]["yrs"]) >= 2 else ""}" data-go="{i}" title="{("·".join(YR(y) for y in QMAP[i]["yrs"]) + "년") if QMAP[i]["yrs"] else nolab(QMAP[i].get("kind"))}">{ylab(QMAP[i]["yrs"], QMAP[i].get("kind"))}</button>' for i in ids if i in QMAP)
 GENERIC_Q = re.compile(r'^(?:다음|중|옳은|옳지|않은|틀린|바른|것|것을|것은|고르시오|고르세요|적기|적으시오|쓰시오|설명하시오|서술하시오|설명|T/?F|문제|[\s.,?!·()~0-9])*$')
 def q_gist(t):
     """ux2 D11 문제 요지 — (탈)·(짤)·(복원 원문)·(24,23,22)·'지문을 읽고 물음에 답하시오.'를 위치와 상관없이 떼고 60자 어절 경계로 · 일반 발문만 남으면 ''"""
@@ -978,7 +1002,9 @@ def mkey_html(key):
 def cut_bal(t, n):
     """10-23 칩·짧은 글 자르기 — n자에서 자르되 괄호가 열린 채 끝나지 않게(열린 '(' 앞에서 자름) · 잘랐으면 '…'"""
     t = t or ''
-    if len(t) <= n: return t
+    if len(t) <= n:   # 11-27 짧은 글이 이미 잘려 '(' 홀로 끝나면(RAD F02 '… high () (' · F03 '… 구하기 (12,') 그 '(' 앞에서
+        if t.count('(') > t.count(')') and t.rfind('(') > t.rfind(')'): return t[:t.rfind('(')].rstrip(' ·,—-/') + '…'
+        return t
     c = t[:n]
     for o_, z_ in (('(', ')'), ('[', ']'), ('「', '」'), ('"', None)):
         if z_ and c.count(o_) > c.count(z_): c = c[:c.rfind(o_)]
@@ -1056,7 +1082,7 @@ def lec_card(L, j, c):
     eids = [x for t_, v in c['body'] if t_ == 'E' for x in v[0] if x in QMAP]; allq = list(dict.fromkeys(ids + eids))
     dn = min(3, max([len(QMAP[x]['yrs']) for x in allq] or [0]))   # ux2 D02 data-n = 최대 출제 횟수(3 = 3회 이상)
     hq = allq; hys = sorted({y for x in hq for y in QMAP[x]['yrs']}, reverse=True); hmx = max([len(QMAP[x]['yrs']) for x in hq] or [0])   # 10-03 허브 점검: 머리 칩 = 연결 문항 ∪ 이 카드 ⭐의 문항(⭐ 개수·미리보기와 같은 묶음)
-    ych = f'<button class="chip yr n{min(hmx,3)}" data-go="{hq[0]}"{(" data-gos=" + chr(34) + " ".join(hq) + chr(34)) if len(hq) > 1 else ""} title="{(str(len(hq)) + "문항 · ") if len(hq) > 1 else ""}{"·".join(YR(y) for y in hys) or "연도 미상"} — 누르면 JB 미리보기{"(한꺼번에)" if len(hq) > 1 else ""}">{hlab(hq, hys)}</button>' if hq else ''
+    ych = f'<button class="chip yr n{min(hmx,3)}" data-go="{hq[0]}"{(" data-gos=" + chr(34) + " ".join(hq) + chr(34)) if len(hq) > 1 else ""} title="{(str(len(hq)) + "문항 · ") if len(hq) > 1 else ""}{"·".join(YR(y) for y in hys) or nolab(QMAP[hq[0]].get("kind"))} — 누르면 JB 미리보기{"(한꺼번에)" if len(hq) > 1 else ""}">{hlab(hq, hys)}</button>' if hq else ''
     nex = sum(1 for t_, _ in c['body'] if t_ == 'E')
     exj = f'<button class="chip exj noann" data-exjump="1" aria-label="이 카드의 ⭐ 시험포인트로">⭐ {len(allq) or nex} ↓</button>' if nex else ''   # ux2 D05
     prof = any(b[0] == 'P' for b in c['body'])
@@ -1223,9 +1249,12 @@ for p_, qs in profS.items():
 for p_ in sorted(CURP - set(profS)):   # 10-23 사용자 "과목 홈 교수별 경향에 기출이 없는 명훈 교수 줄 — 일단 넣어줘": 지금 담당이지만 JB 기출이 없는 교수도 한 줄
     _ls = [L_['title'] for L_ in LEC if p_ in {x.strip().split('(')[0] for x in re.split(r'[·,/]', L_.get('prof') or '')}]
     _nt = getattr(S, 'TREND_NOTE', {}).get(p_, '')
-    trow += f'<tr class="tsl tnone"><th>{esc(p_)}</th><td colspan="5">JB 기출 없음 — 담당 강의: {esc(" · ".join(_ls))} · 정리본(수업자료)으로 대비</td></tr>'
+    _cq = [q_ for q_ in Q if q_['tier'] == 'C' and any((pp_ or '').split('(')[0].strip() == p_ for _, pp_ in yp_of(q_))]   # 11-27 참고(tier C) 기출만 있는 교수(OMS2 한정준 L01·L02 — QA OMS2 메인 3): '기출 없음' 대신 '참고 기출 n문항'
+    _cys = sorted({y_ for q_ in _cq for y_ in q_['yrs']}, reverse=True)
+    _cl = f'참고 기출 {len(_cq)}문항({"·".join(YR(y_) for y_ in _cys)}년 — 경향 집계에서 뺌)' if _cq else 'JB 기출 없음'
+    trow += f'<tr class="tsl tnone"><th>{esc(p_)}</th><td colspan="5">{esc(_cl)} — 담당 강의: {esc(" · ".join(_ls))} · 정리본(수업자료)으로 대비</td></tr>'
     if _nt: trow += f'<tr class="tnote"><td colspan="6"><small>※ {esc(_nt)}</small></td></tr>'
-    psum += f'<li><span class="tsl">{esc(p_)} · JB 기출 없음 — {esc(" · ".join(_ls))}</span></li>'
+    psum += f'<li><span class="tsl">{esc(p_)} · {esc(_cl)} — {esc(" · ".join(_ls))}</span></li>'
 # 📌 전략: 모든 교수에 공통인 항목은 '공통:' 한 줄, 나머지 항목도 문장은 한 번만 쓰고 해당 교수를 뒤에
 def strat_list(items, top=4):
     """📌 전략 목록(V05) — 한 줄에 전략 하나(본문 글자) + 교수 꼬리표(작은 회색). 위 top개만, 나머지는 '+N 더 보기'"""
@@ -1470,10 +1499,10 @@ def pred_tshort(t):
 for i, p in enumerate(PRED):
     pa = pred_aid(p); arch = p.get('x', '').strip() == '1'; pr = (p.get('pr') or '').strip(); why = lecparse._plain((p.get('why') or '').strip()).strip()   # 원고 표기(**·==·{r:}) 없이 맨글
     bids = [x for x in re.split(r'[,\s]+', p.get('b', '') or '') if x in QMAP]
-    yy = lambda r: ('·'.join('%02d' % y for y in r['yrs'][:4]) + (f' +{len(r["yrs"]) - 4}' if len(r['yrs']) > 4 else '')) or r['id']   # 연도 4개까지 + 나머지 수(태그가 문제보다 길지 않게 — 전체는 title)
+    yy = lambda r: ('·'.join('%02d' % y for y in r['yrs'][:4]) + (f' +{len(r["yrs"]) - 4}' if len(r['yrs']) > 4 else '')) or nolab(r.get('kind'))   # 11-27 연도 없는 문항 = '수업 예고'·'연도 미상'(내부 id 글자 아님) · 연도 4개까지 + 나머지 수(태그가 문제보다 길지 않게 — 전체는 title)
     rel = ''
-    if len(bids) == 1: r = QMAP[bids[0]]; sh_ = r['short'] if len(r['short']) <= 30 else r['short'][:28].rstrip() + '…'; rel = f'<button class="jbchip" data-go="{r["id"]}" title="{esc("·".join(YR(y) for y in r["yrs"]) + "년 · " + r["short"])}">관련 기출 {yy(r)} · {esc(sh_)}</button>'
-    elif bids: rel = '<span class="pjbl noann">관련 기출</span>' + ''.join(f'<button class="jbchip" data-pjy="1" data-go="{r["id"]}" title="{esc(r["id"] + " · " + "·".join(YR(y) for y in r["yrs"]) + "년 · " + r["short"])}">{yy(r)}</button>' for r in (QMAP[x] for x in bids))
+    if len(bids) == 1: r = QMAP[bids[0]]; sh_ = r['short'] if len(r['short']) <= 30 else r['short'][:28].rstrip() + '…'; rel = f'<button class="jbchip" data-go="{r["id"]}" title="{esc(("·".join(YR(y) for y in r["yrs"]) + "년" if r["yrs"] else nolab(r.get("kind"))) + " · " + r["short"])}">{"관련 문항" if r.get("kind") else "관련 기출"} {yy(r)} · {esc(sh_)}</button>'
+    elif bids: rel = '<span class="pjbl noann">관련 기출</span>' + ''.join(f'<button class="jbchip" data-pjy="1" data-go="{r["id"]}" title="{esc(r["id"] + " · " + ("·".join(YR(y) for y in r["yrs"]) + "년" if r["yrs"] else nolab(r.get("kind"))) + " · " + r["short"])}">{yy(r)}</button>' for r in (QMAP[x] for x in bids))
     prc = f'<span class="chip ppr {PRCL[pr]} noann" title="출제 우선순위 {pr}{" — 근거를 누르면 이유" if why else ""}">우선 {pr}</span>' if pr in PRCL else ''
     whyb = f'<button type="button" class="chip pwhy noann" data-pwhy="1" aria-expanded="false" title="이 문제를 고른 근거">근거</button>' if why else ''
     whyt = f'<div class="pwhyt noann" hidden><b>{"보관 사유" if arch else "근거"}</b> {esc(why)}</div>' if why else ''
