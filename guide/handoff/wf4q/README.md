@@ -27,7 +27,7 @@
 | 정리본(109강의 · 무게 151) | 50 | 36%(무게 54 — 끝 37강의 + SED 자리 표시) |
 | JB 그림 조각(JF 150문항) | 3 | 0%(초안 조각만 — 검수 전) |
 | QA 메인 몫(렌더러·JBFIX) | 2 | 거의 끝(남은 것 §6) |
-| 예상문제 다듬기·최종 N제(10과목) | 15 | 0%(강의별 예상 초안은 정리본 단계에서 씀) |
+| 예상문제 다듬기(10과목 · 최종 N제는 사용자가 고른 과목만 — 나중) | 15 | 0%(강의별 예상 초안은 정리본 단계에서 씀) |
 | 배포·전 검사·끝 보고 | 5 | 30%(1·2차 배포) |
 | **합계** | 100 | **약 46% 끝 · 약 54% 남음** |
 
@@ -41,10 +41,11 @@
    - JB 그림 조각: Workflow `{scriptPath: guide/handoff/wf4q/q4-jf.js, args: args/jf.json}` — **단 jf.json small 줄에서 OPATH 항목을 빼고 돌림**(OPATH 정리본 run과 빌드가 겹침 — OPATH JF는 OPATH 정리본 뒤에 small=[OPATH], rad=[]로 한 번 더).
 4. **25 임시본**(JF가 그 과목을 끝낸 뒤 · 과목 하나 = run 하나 · 나란히 2~3): `q4-notes2.js` + `args/t25_<sid>.json` — oms2 · pharm4 · geri4 · impl4 · cons4 · rad1 → **rad2는 rad1이 끝난 뒤**(같은 과목).
    - 과목 하나가 끝날 때마다: 그 과목 build4 → full_check(도는 과목은 `JBL_FC_SKIP="<SID…>"` + 그 과목 팩을 마지막 배포 커밋 것으로 되돌려 둔 채) → 배포(SKILL '중간 배포') · 진행 파일에 한 줄.
-5. **예상문제 다듬기·최종 N제**(정리본이 다 끝난 과목부터 · 과목 하나씩): AGENTS P(강의 묶음) → `pred_merge`·`pred_check`·`link_audit`(△ 최근 해 예상 연결 0 — OMS2 CMP C01·C02 · RAD FRAC F01·F02 · AES △5 t=미출제 판단 포함)·`fmt_audit` → PA(독립 감사) → FN(교수마다) → FNV(다른 담당) → final.txt · `subject.py FINAL_NOTE`('직전 2년 기출 먼저') → 빌드·배포. 스크립트는 그때 q4-notes 꼴로 새로(지시문 = AGENTS P·PA·FN·FNV 블록 + RULES 14 c ⑥ · 담당 schema {done, summary}).
+5. **예상문제 다듬기**(사용자 11-27: 최종 N제는 사용자가 고른 과목만 — 지금 안 함 · 예상에 집중): 그 과목 정리본이 모두 끝난 뒤 과목마다 Workflow `{scriptPath: guide/handoff/wf4q/q4-pred.js, args: {subjects: [{sid, dir, ko, groups: [[KEY…]…], note?}]}}` — 기준본(pred_dump) → 묶음 P(AGENTS P · TREND·프로필·c⑥·빠진 문제 찾기) → pred_merge·검사·빌드 → 묶음 PA(독립 감사) → pred_merge·검사·빌드. 묶음 = 강의 2~3개(블록 40~60). HINS·ESTH4는 3차 배포 뒤 바로(args/pred_hins_esth4.json) · OPATH·ANAT4는 그 정리본 run 뒤 · 1묶음 6과목은 25 임시본 run 뒤. PHARM4 SED는 묶음에서 뺌(자동 작성 막힘). link_audit △(OMS2 CMP C01·C02 · RAD FRAC F01·F02 · AES t=미출제 △5)는 P가 맡음.
 6. **끝**: 전 과목 full_check · legacy_restore(--rev 1차 배포 전 기준 — 진행 파일) · 최종 배포 · 끝 보고(§5 사용자 확인 목록 한 번에).
 
 ## 4. 돌릴 때 지킬 것
+- **도는 run의 스크립트 파일은 고치지 않음**: q4-notes2.js = OPATH(wf_b1201a94-cfa)·ANAT4(wf_ab29a721-930) 11-27 시작 · 세션 q4-notes-wf_9b907993-044.js = HINS(wf_2159598a-5cb). 바꿀 게 있으면 새 이름(q4-notes3.js)으로.
 - run이 사용 한도·컨테이너 재시작으로 멈추면 **같은 scriptPath·같은 args로 resumeFromRunId**(앞 담당은 캐시). 스크립트 파일을 고치면 고친 담당부터 다시 돎 — 도는 run의 스크립트는 고치지 않음(새 run은 새 파일).
 - 길게 돌릴 땐 send_later로 확인 예약(한도면 풀리는 시각 + 5분) — 사용자 11-17 '절대 멈추지 말고'. 단 사용자가 '시작하라'고 할 때까지는 아무것도 띄우지 않음(11-27).
 - 커밋은 메인만(담당 금지) · work/·materials/·jb/·reference/ 커밋 금지 · main은 ancestor 확인 푸시로만 · 3Q(docs/3q) 손대지 않음.
