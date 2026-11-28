@@ -1,5 +1,674 @@
-#LEC LA | 국소마취제 | 김우진 | 25 | 251120_김우진_국소마취제 (25년도, 55쪽 — 26 자료 대기) | 55
-@MAP 작성 중
-@G ① 작성 중
-## Notes in progress | 정리본 작성 중 | 1 | 자리 표시
-= 이 강의 정리본은 작성 중이에요 — 기출 탭부터 보세요.
+#LEC LA | 국소마취제 (Local Anesthetics) | 김우진 | 25 | 251120_김우진_국소마취제 (25년도, 55쪽 — 26 자료 대기) | 55
+@TIP 직전 2년(23·24년) JB 6문항 먼저 → p.54 표로 체중별 최대 카트리지 계산(4.4 mg/kg·300 mg / epi MRD-m 6.6 mg/kg·500 mg — JB 7 mg/kg ⚠) → p.8 주사제·도포제 · 대사(간·PABA) · C fiber 먼저 차단 순서 → 앞부분 특성·분류는 ⚡ 빈칸으로
+@UPD 25 자료 임시 — 26 수업 뒤 26 기준으로 다시(251120_김우진_국소마취제)
+! 자료: 25년도 김우진 교수님 PDF(251120 · 55쪽 — 26 자료 대기 · 25 임시본) = 슬라이드 + 25 학습부 필기(초록 상자). 표지 "임상치과약리: 국소마취제 (Local Anesthetics)". 슬라이드 네 부분: Introduction of LA(p.2-11) → Mode of Action(p.12-32) → Systemic effects of LA(p.33-53) → Vasoconstrictor(p.54) · p.53 = p.52와 같은 슬라이드(필기 "동일한 페이지가 강의자료에 하나 더 들어간 듯 합니다.").
+! 25 수업(필기): 표지 "직접적으로 시험 언급한 페이지는 없었습니다." · p.3 "전부 다 빠짐없이 읽으셨습니다." · p.16 "이 외에 ppt 모두 읽으셨습니다." · p.22 "(표의 정의 부분 읽어주셨습니다)" · p.26 "(모두 읽으셨습니다)" · p.34 "(하나씩 다 읽으셨습니다.)" · p.46 "(그래프의 각 항목 읽어주셨습니다.)" · p.6 "분자 구조는 이렇게 되어있고, 굳이 알 필요는 없을 것 같습니다." — 시험 예고·강조 메모는 없음.
+! 교수 변경: 25년부터 김우진 교수님 첫 강의(JB 25판 멘트 "국소마취제 강의가 이윤실 교수님에서 김우진 교수님으로 변경되었습니다. (올해 처음으로 강의하신 듯 합니다)") — JB 18문항은 옛 출제(이윤실 21·23·24년 · 우경미 22년 · 20·19년 교수 미상 — 3Q JB 멘트 "작년 국소마취제의 경우 작년에는 학생발표에서 문제가 출제") · JB 해설 쪽은 옛 자료(241121·231123 이윤실 · 220901 우경미 · 210902 이윤실) 쪽이라 이 25 자료 쪽과 다름 · 김우진 교수 출제 기출은 아직 없음(25년 시험은 JB 전).
+! JB 출제 경향: 형식 — 이윤실 객관식 7('옳은 것' 5지) · 계산 서술 4 · 단답 2 / 우경미 기전 서술 2 · 단답 2 · 객관식 1 / 20·19년 T/F 6 · 서술 3 · 단답 1. 짤/탈 — 24년 4/4가 23년 그대로(짤) · 23년 6문항은 짤 1/6이지만 모두 옛 축을 꼴만 바꿈(계산 → 객관식 선지 · T/F → 보기 고르기) · 22년 짤 1/5 · 21년 짤 2/3. 되풀이된 축: 최대 앰플 계산(20~23년 4해) · 염증 부위 Articaine(24·23·20년) · 도포제·methemoglobinemia(24·23·21·20년) · lidocaine 기전과 통각 신경(22·20·19년). 새 교수 꼴은 다른 강의 기록뿐(3Q 김우진: 오래 맡은 강의는 객관식 100% · 새로 맡은 강의 첫해는 객관식과 문장 빈칸 단답이 반반 · 기출 없던 쪽의 정의·용어 한 줄이 탈 — 다른 과목 기출 꼴 · 불확실).
+! 25 자료와 JB 답이 다른 곳: 계산 문항 JB 답의 epinephrine 함유 lidocaine '7mg/kg' ↔ p.54 표 4-8 MRD-m 6.6 mg/kg(최대 500 mg) · epinephrine 최대량 0.2/0.04 mg · 염증 → Articaine · cocaine 혈관수축 · lipid emulsion · promethazine은 25 자료에 글이 없음(⭐ 줄마다 ⚠).
+! 공부 전략: ① 직전 2년(23·24년) JB 6문항 ② p.54 표 수치로 체중별 최대 카트리지 계산(혈관수축제 없음 4.4 mg/kg·300 mg · 1:100,000 epinephrine MRD-m 6.6 mg/kg·500 mg — JB 답 7 mg/kg과 다름 ⚠) ③ p.8 주사제·도포제 목록 · p.10 국소마취제 선택 · p.11 카트리지 성분 ④ p.29-32 에스터 vs 아마이드 대사(PABA·간·methemoglobinemia) ⑤ p.15-25·37-38 신경섬유·Na+ 채널·차단 순서 ⑥ 앞부분 특성·분류(p.3-6)도 빈칸으로.
+@MAP 특성·구조·Ester vs Amide(rule of "i") → 주사제·도포제·선택·카트리지 → 신경섬유(Aδ·C)와 치아 통증 → Na+ 채널 차단(RN ⇌ RNH+)·A~D군 → 약동학(흡수·분포·대사·반감기) → 유도·작용시간 요소 7(pKa·pH·신경·지용성·혈관수축제) → 전신작용 5·약물 상호작용 → 최대 사용량(카트리지 계산)
+
+@G ① Introduction of LA — 특성·구조·분류·종류·선택
+## Ideal Local Anesthetic | 이상적인 국소마취제의 특성 | 1-3 | 도입 · 목록 9
+> 좋은 국소마취제 = 되돌아오고(가역), 자극·독성·과민반응 없이 빨리·충분히 듣고, 보관·멸균이 쉬운 약
+= 특성 9: {r:가역적} 마취효과 · 조직 무자극 · 최소 전신 독성·높은 {r:치료지수} · 신속한 개시·충분한 지속·충분한 효능 · {r:과민반응} 없음 · 화학적 안정성·생체내 변환 용이 · 멸균 보관·소독
+# 강의 소개
+- 임상치과약리: 국소마취제 (Local Anesthetics) — Woo-Jin Kim, D.D.S., Ph.D., PA · SNU School of Dentistry, Dep. of Molecular Genetics & Dental Pharmacology. Dental Multi-Omics Center.
+- 표지 위 띠: Seoul National University, School of Dentistry, Department of Molecular Genetics · Epigenomic Recovery of Aged Skeleto-Muscular Systems (ERASMUS).
+- p.2 = 간지 'Introduction of LA'.
+# 이상적인 국소마취제의 특성
+- ① **{r:가역적} 마취효과**.
+- ② 조직에 {r:자극}이 없어야 함.
+- ③ 최소의 전신 독성 및 높은 {r:치료지수}.
+- ④ **신속한 마취개시**.
+- ⑤ **충분한 마취 지속시간**.
+- ⑥ 유해하지 않은 농도에서 충분한 마취효능.
+- ⑦ {r:과민반응}이 없음 — {n:보존제 등과 관련된 것 포함}.
+- ⑧ 보관 시 화학적 안정성 유지, 투약 후 생체내 변환이 용이.
+- ⑨ 멸균 보관 및 소독 가능.
+- {n:"전부 다 빠짐없이 읽으셨습니다."}
+F: 3
+M: 이상적인 특성 9: ① {r:가역적} 마취효과 ② 조직에 자극이 없어야 함 ③ 최소의 전신 독성 및 높은 {r:치료지수} ④ 신속한 마취개시 ⑤ 충분한 마취 지속시간 ⑥ 유해하지 않은 농도에서 충분한 마취효능 ⑦ {r:과민반응}이 없음 ⑧ 보관 시 화학적 안정성 유지, 투약 후 생체내 변환이 용이 ⑨ 멸균 보관 및 소독 가능
+M: 효과 쪽 셋: 신속한 마취개시 · 충분한 마취 지속시간 · 유해하지 않은 농도에서 충분한 마취효능
+M: 안전 쪽: 가역적 · 무자극 · 최소 전신 독성·높은 치료지수 · 과민반응 없음({n:보존제 관련 포함})
+
+## Structure & Classes — The Rule of "i" | 국소마취제의 구조 · 에스터 vs 아마이드 | 4-6 | 분류 · 구조식
+> 지용성 고리 – 연결부 – 아민 세 부분 · 연결부가 에스터냐 아마이드냐로 두 갈래 — {n:이름에 i가 들어가면 아마이드}
+= 구조: {r:지용성 고리}(세포막 지질층 투과도 증진) – {r:연결부}(대사 조절) – {r:아민}(작용기) / 연결부로 A, {r:Ester} type(Procaine) vs B, {r:Amide} type(Lidocaine)
+# 국소마취제의 구조
+- 지용성 고리(Lipophilic Group) = **세포막 지질층 투과도 증진**.
+- 연결부(Intermediate Chain) = **대사 조절**.
+- 아민(Amine) = **작용기**.
+- A, {r:Ester type} = Procaine · B, {r:Amide type} = Lidocaine.
+- {n:마취제는 크게 연결부의 차이로 에스터와 아마이드 타입으로 나뉨 · 지용성 고리는 벤젠 고리 형태 · 아민 그룹이 마취 효과를 나타내는 기능기}.
+- {n:연결부 = 마취제가 작용하는 시간과 처리되는 화학적인 반응을 조절하는 대사 조절기}.
+F: 4
+# Classes: The rule of "i"
+| Class | 약물 |
+| **Amides** | Lidocaine · Bupivacaine · Levobupivacaine · Ropivacaine · Mepivacaine · Etidocaine · Prilocaine · {r:Articaine} |
+| **Esters** | {r:Procaine} · Tetracaine · Chloroprocaine · {r:Benzocaine} · {r:Cocaine} |
+- 슬라이드: Am**i**des와 아마이드 약 이름의 'i'(-caine 앞)에 노란 밑줄.
+- {n:아마이드와 에스터 타입을 나눌 때 i가 들어가면 아마이드 타입으로 기억}.
+F: 5
+# TABLE 17-1 Structural formulas of some commonly used local anesthetics
+- Aromatic residue – Intermediate chain – Amino terminus.
+- ESTERS: Procaine · Propoxycaine · Tetracaine · Cocaine · Benzocaine · Dyclonine*.
+- AMIDES: Lidocaine · Etidocaine · Mepivacaine · Bupivacaine · Prilocaine · Articaine.
+- *Dyclonine is a ketone.
+- {n:분자 구조는 이렇게 되어있고, 굳이 알 필요는 없을 것 같습니다.}
+E: LA12 | 21년 객관식(구조식 보기) "Ester type 국소 마취제로 topical하게 사용할 수 있는 것은?" → 2)(해설: Benzocaine – ester type) — p.6 구조식 표의 ESTERS에 Benzocaine · 주 근거 p.8 도포제 카드
+F: 6
+M: 구조 3부분: ① {r:지용성 고리}(Lipophilic Group) = 세포막 지질층 투과도 증진 ② {r:연결부}(Intermediate Chain) = 대사 조절 ③ {r:아민}(Amine) = 작용기
+M: 두 갈래: 연결부 차이 → A, Ester type(Procaine) / B, Amide type(Lidocaine)
+M: Amides 8: ① Lidocaine ② Bupivacaine ③ Levobupivacaine ④ Ropivacaine ⑤ Mepivacaine ⑥ Etidocaine ⑦ Prilocaine ⑧ {r:Articaine}
+M: Esters 5: ① {r:Procaine} ② Tetracaine ③ Chloroprocaine ④ {r:Benzocaine} ⑤ {r:Cocaine}
+M: 외우는 법: {n:이름에 i가 들어가면 아마이드} · Dyclonine = ketone
+
+## Distribution of a LA during Nerve Block | 비이온형 RN vs 양이온형 RNH+ — 막 통과와 채널 결합 | 7 | 기전 · pKa
+> 막은 비이온형(RN)이 지나고, 채널은 양이온형(RNH+)이 막는다 — 축삭 안(약간 산성)에서 다시 양이온형으로
+= {r:RN}(비이온형) = 막 통과 → {r:발현 속도} / {r:RNH+}(양이온형) = Na+ 채널 결합 → {r:차단 강도·지속시간} / pKa 7.5~9.0 — pH↑ → 비이온형↑ · pH↓ → 양이온형↑
+# RNH+ ⇌ RN + H+
+- **RNH+(양이온형)** — Na+ 채널 결합 담당 → {r:차단 강도·지속시간} 결정(Cationic acid).
+- **RN(비이온형)** — 막 통과 담당 → {r:발현 속도} 좌우(Nonionized base).
+- 각 약물의 **pKa가 {r:7.5~9.0}** 정도로 설정되어 있어, pH가 높아지면 **비이온형이 증가**하고, pH가 낮아지면 **양이온형이 증가**.
+- Henderson-Hasselbalch equation: Log Base/Acid = pH − pKa.
+- For lidocaine (pKa = {r:7.8}) at tissue pH (7.4): Base/Acid = 0.4 → 약 {r:29 %} RN.
+# 신경 안으로 — 막 통과 → 재양성화
+- 비이온형 RN만이 지질성 신경초·슈반 세포 막을 관통해 축삭 내로 확산(Lipoid barriers (nerve sheath) → Nerve membrane).
+- 축삭 내부는 약간 산성(pH ≈ {r:7.1}) → RN 일부가 다시 **RNH+로 재양성화**.
+- {n:이온형태 = 실제 기능을 나타내지만 지질막 통과는 어려움 · 비이온형태 = 지질막을 쉽게 통과하지만 기능은 없음}.
+- {n:마취제는 약한 base(pKa 7.5~9) · 리도카인은 pKa 약 7.8 → 생리적 pH 7.4에서 약 30% 정도가 비이온형}.
+- {n:주사 뒤 비이온형으로 신경세포 막 통과 → 세포질 pH 7.0~7.1(상대적 산성)에서 다시 양이온 형태 → 마취 작용}.
+F: 7
+M: 두 형태: RN(비이온형) = {r:막 통과} → 발현 속도 / RNH+(양이온형) = {r:Na+ 채널 결합} → 차단 강도·지속시간
+M: pKa·pH: 각 약물 pKa 7.5~9.0 / pH↑ → {r:비이온형}↑ · pH↓ → {r:양이온형}↑
+M: 리도카인 수치: pKa {r:7.8} · tissue pH 7.4 → Base/Acid 0.4 → 약 {r:29 %} RN
+M: 경로 순서: ① RN만 신경초·슈반 세포 막 관통 ② 축삭 내부 약간 산성(pH ≈ 7.1) ③ RN 일부 RNH+로 재양성화 → 채널 결합
+
+## Injectables vs Topicals | 국소마취제의 종류(주사제·도포제) · 도포 마취의 적응증 | 8-9 | 종류 · 기출 24·23·22·21 | jb=LA03,LA04,LA08,LA12
+> 주사제는 대부분 아마이드, 도포제는 에스터가 많다 — Lidocaine은 양쪽 목록에 다, Procaine은 주사제에만
+= 주사제: Procaine · Propoxycaine · Lidocaine · Prilocaine · Mepivacaine · Bupivacaine · Articaine / 도포제: {r:Benzocaine} · Butacaine · Lidocaine · {r:Tetracaine} · Dibucaine · Dyclonine · Chlorbutanol · {r:Cocaine}
+# 국소마취제의 종류
+- **주사제**: {r:Procaine} · Propoxycaine · Lidocaine · Prilocaine · Mepivacaine · Bupivacaine · Articaine.
+- **도포제**: {r:Benzocaine} · Butacaine · Lidocaine · {r:Tetracaine} · Dibucaine · Dyclonine · Chlorbutanol · {r:Cocaine}.
+| 목록 | 주황 글자 — {n:아마이드} | 초록 글자 — {n:에스터} | 검정 글자 |
+| 주사제 | Lidocaine · Prilocaine · Mepivacaine · Bupivacaine · Articaine | Procaine · Propoxycaine | — |
+| 도포제 | Lidocaine · Dibucaine | Benzocaine · Butacaine · Tetracaine · Cocaine | Dyclonine · Chlorbutanol |
+- {n:마취제는 각 약물의 pKa에 따라 주사제 또는 도포제로 사용 · 아마이드 계열은 대부분 주사제(주황색) · 에스터 계열이 도포제가 더 많다(초록색)}.
+E: LA12 | 21년 객관식(구조식 보기) "Ester type 국소 마취제로 topical하게 사용할 수 있는 것은? (선지 미복원에 따른 임의복원)" → 2)(해설: Benzocaine – ester type, 0.5-20%로 topical하게 사용됩니다.) — p.8 도포제 {r:Benzocaine}(초록) · p.5 Esters에 Benzocaine ⚠ 함정: Procaine = 에스터지만 p.8 도포제 목록에 없음 · Lidocaine = 도포제지만 아마이드 · Articaine = 아마이드·주사제 · 해설의 '0.5-20%'·'Lidocaine 5%'는 25 자료에 없음
+E: LA03 | 24·23년 객관식 "Hurricane 등의 제품명으로 나온 도포마취제로 Methemoglobinemia 를 유발할 수 있다. 보기 중 prilocaine, benzocaine 포함함, lidocaine 없었음" → benzocaine — p.8 도포제 {r:Benzocaine} · p.25 생리 pH에서 거의 전부 비이온형 → {n:도포마취제로 주로 사용} ⚠ 25 자료엔 'Hurricane'·benzocaine–methemoglobinemia 글이 없음(Methemoglobinemia 글자는 p.31 lidocaine 대사 그림뿐) · 보기 prilocaine = p.8 주사제
+E: LA04 | 24·23년 객관식 "국소마취제 설명 옳은 것? 1. procaine 도포마취로 사용 2. tetrocaine 도포마취로 사용하면 흡수 느림 3. cocaine 혈관 확장 효과 4. pilocaine methemoglobinemia 일으킴 5. mepivacaine 다른것보다 혈관 확장 정도 심함" → 4) — 1) × p.8 Procaine = 주사제(도포제 목록에 없음) · 2) × p.27 국소 도포 최고혈중농도 5(대략)분 · 3) × cocaine 혈관 작용은 25 자료에 없음(JB 해설 vasoconstriction) · 5) × p.27 Mepivacaine 혈관확장 활성 0.8 · 4) p.31 Methemoglobinemia(그림은 lidocaine 대사 경로) ⚠ 함정: 이전 판(24판) 답은 3) — 앞면 = 최신 판 4) · 'pilocaine' = JB 글자 그대로
+E: LA08 | 22년 단답 "혈관수축하는 국소마취제" → 코카인 — p.8 도포제 Cocaine · p.5 Esters ⚠ 근거 없음: cocaine의 혈관수축(JB 해설 "Cocaine cause vasoconstriction by blocking reuptake of norepinephrine.")은 25 김우진 자료에 없음
+F: 8
+# 도포 마취의 적응증
+- ① Temporal relief of pains in {r:ulcerated, abraded or lacerated wounds}.
+- ② Superficial {r:anesthesia} prior to injection.
+- ③ Reduction of excessive {r:gag reflex} in taking impression or making intraoral radiographs.
+- ④ Control of pain in {r:post-extraction socket}.
+- {n:도포 마취는 광범위하게 사용되지는 않지만 염증성 질환·궤양으로 통증이 심한 경우 · 주사 공포증이 있는 환자의 injection site에 우선 · gag reflex 예방 · 발치와}.
+F: 9
+M: 주사제 7: ① {r:Procaine} ② Propoxycaine ③ Lidocaine ④ Prilocaine ⑤ Mepivacaine ⑥ Bupivacaine ⑦ Articaine
+M: 도포제 8: ① {r:Benzocaine} ② Butacaine ③ Lidocaine ④ {r:Tetracaine} ⑤ Dibucaine ⑥ Dyclonine ⑦ Chlorbutanol ⑧ {r:Cocaine}
+M: 함정(기출): Procaine = 주사제(도포제 목록 ✗) / Lidocaine = 주사제·도포제 둘 다 / {n:아마이드 = 대부분 주사제 · 에스터가 도포제가 더 많음}
+M: 도포 마취 적응증 4: ① ulcerated, abraded or lacerated wounds 통증 ② injection 전 superficial anesthesia ③ impression·intraoral radiographs 때 {r:gag reflex} 감소 ④ {r:post-extraction socket} 통증 조절
+
+## Choice of LA & Cartridge Contents | 국소마취제의 선택 · 카트리지 성분 | 10-11 | 선택 · 보존제
+> 효능은 거의 같으니 지속시간·병력·상호작용으로 고른다 — 카트리지엔 마취제 말고도 혈관수축제·보존제가 들어 있다
+= 선택: Mepivacaine·Prilocaine = {r:혈관수축제 없이} / Bupivacaine = {r:장시간}·술 후 통증조절 / Lidocaine with 1:100,000 Epi = 통상적 치과마취 가장 우수 · {r:임산부, 소아}
+= 카트리지 5: Local anesthetic agent · Vasoconstrictor · {r:Sodium metabisulfite}(Preservative of vasoconstrictor) · Methylparaben · Sodium chloride
+# 국소마취제의 선택
+- 치과 국소마취제는 **거의 같은 효능(efficacy)**을 가짐.
+- {r:약물지속시간}, 환자의 {r:medical history}, {r:약물상호작용}을 고려하여 선택.
+- {n:연결부·아로마틱 고리 차이는 있지만 거의 같은 기전·효능 · 약물의 대사나 지속시간이 달라 환자에 따라 다른 마취제 선택}.
+- **Mepivacaine, Prilocaine**:
+  - {r:혈관수축제 없이} 사용 가능.
+  - 혈관수축이 불필요한 간단한 시술에 사용 가능.
+  - 심한 허혈성 심장질환, 최근에 {r:심근경색}이 발생한 환자에서 사용 가능.
+  - {n:에피네프린을 사용하는 것이 부담스러운 경우 사용할 수 있는 옵션}.
+- **Bupivacaine**: {r:장시간}을 요하는 시술 또는 술 후 통증조절에 용이 — {n:반감기가 4시간 이상으로 길기 때문}.
+- **Lidocaine with 1:100,000 Epi**: 통상적 치과마취에 가장 우수한 효용성 · {r:임산부, 소아} 환자에 선호 — {n:대부분 에피네프린과 함께 사용 · 2-3시간 정도 내에서 우수한 마취 효과}.
+F: 10
+# Contents of Local Anesthetic Cartridge
+| Ingredient | Function |
+| Local anesthetic agent | Anesthesia |
+| Vasoconstrictor | Decreases absorption of local anesthetic into blood, thus increases {r:duration} of anesthesia and decreases {r:toxicity} of anesthetic |
+| {r:Sodium metabisulfite} | {r:Preservative of vasoconstrictor} |
+| Methylparaben | Preservative to increase shelf life; bacteriostatic |
+| Sodium chloride | Isotonicity of solution |
+- {n:카트리지엔 국소마취제뿐 아니라 에피네프린·보존제 등이 함께 · 리도카인 자체에 대한 과민반응도 있지만 보존제에 대한 과민반응도 꽤 있는 편 → 주의}.
+E: LA01 | 24·23년 객관식 "다음중 옳은 것은? … 2. Sulfide 알레르기 있어도 사용 가능하다." → 1) — 2)는 × · p.11 Sodium metabisulfite = Preservative of vasoconstrictor · {n:보존제 과민반응도 꽤 있는 편} · 주 근거 p.54 카드
+F: 11
+M: 선택 기준: 효능(efficacy) 거의 같음 → {r:약물지속시간} · {r:medical history} · {r:약물상호작용}
+M: 약별 선택: Mepivacaine·Prilocaine = {r:혈관수축제 없이} · 간단한 시술 · 심한 허혈성 심장질환·최근 심근경색 / Bupivacaine = {r:장시간} 시술·술 후 통증조절 / Lidocaine with 1:100,000 Epi = 통상적 치과마취 가장 우수 · {r:임산부, 소아} 선호
+M: 카트리지 성분 5: ① Local anesthetic agent — Anesthesia ② Vasoconstrictor — 흡수↓ → duration↑ · toxicity↓ ③ {r:Sodium metabisulfite} — {r:Preservative of vasoconstrictor} ④ Methylparaben — shelf life · bacteriostatic ⑤ Sodium chloride — Isotonicity
+M: 과민반응 주의: {n:리도카인 자체 + 보존제 과민반응도 꽤 있음}
+
+@G ② Mode of Action — 신경섬유·Na+ 채널·약동학
+## Nerve Fibers — Susceptibility to Block | 신경섬유 종류와 차단 감수성 | 12-15 | 신경 · 표
+> 감각신경은 막고 운동신경은 남긴다 — 가늘고 수초 없는 C가 가장 잘 막히고(++++), 굵은 A α는 가장 덜(+)
+= Sensitivity to block: A α {r:+} · A β·A γ ++ · A δ {r:+++} · B·C {r:++++} / C = myelin {r:No} · 가장 가늘다 / 국소마취제 확산 = {r:말초축색}·{r:신경집}
+# Nerve Fiber
+- p.12 = 간지 'Mode of Action'.
+- 그림: Afferent nerve(Skin → Spinal cord) · Efferent nerve(Spinal cord → Muscle).
+- {n:국소마취제 작용 — 우리의 신경은 운동신경과 감각신경 · 목표는 감각신경을 마취시키고 운동 신경은 최대한 건들지 않는 것}.
+F: 13
+# Nociceptive Nerve
+- 수용체 A(Free nerve endings) · B(Encapsulated nerve ending — Connective tissue capsule) · C(Sensory cell) · D(Peripheral processes) — Receptor → Sensory ganglion(Cell body) → Central process → Central nervous system.
+- 국소마취제는 **{r:말초축색(Peripheral processes)}과 {r:신경집(Epineurium)}** 부위에 확산.
+- {n:수용체 신경 A·B·C·D — 말단부의 모양·전달되는 axon의 두께·myelination 수준에 따라 타입이 나뉨}.
+F: 14
+# Susceptibility to Block of Types of Nerve Fibers
+| Fiber | Anatomic location | Myelin | Diameter (µm) | Conduction velocity (m·sec−1) | Function | Sensitivity to block |
+| A α · A β | Afferent to and efferent from muscles and joints | Yes | 6–22 | 10–85 | Motor and proprioception | {r:+}(A α) · ++(A β) |
+| A γ | Efferent to muscle spindles | Yes | 3–6 | 15–35 | Muscle tone | ++ |
+| A δ | Sensory roots and afferent peripheral nerves | Yes | 1–4 | 5–25 | Pain, temperature, touch | {r:+++} |
+| B | Preganglionic sympathetic | Yes | <3 | 3–15 | Vasomotor, visceromotor, sudomotor, pilomotor | ++++ |
+| C Sympathetic | Postganglionic sympathetic | {r:No} | 0.3–1.3 | 0.7–1.3 | Vasomotor, visceromotor, sudomotor, pilomotor | {r:++++} |
+| C Dorsal root | Sensory roots and afferent peripheral nerves | {r:No} | 0.4–1.2 | 0.1–2.0 | Pain, temperature, touch | {r:++++} |
+- SOURCE: Adapted from Carpenter and Mackey, 1992, with permission.
+- {n:A알파~감마 = 운동신경에 위치 · 수초화가 잘 되어 전달 속도가 매우 빠름}.
+- {n:A델타 = 감각신경에 분포 · 수초화가 부분적 · 전달이 빠른 편}.
+- {n:B fiber = A와 C의 중간 정도 신경 두께와 전달 속도}.
+- {n:C fiber = 가장 주목 — 둘레가 얇고 수초화가 잘 되지 않아 전달 속도가 느림 · 다양한 통증 신호를 장기간 전달 → 통증과 관련된 A델타와 C fiber 위주로}.
+F: 15
+M: 차단 감수성(표): A α {r:+} · A β ++ · A γ ++ · A δ {r:+++} · B ++++ · C {r:++++}
+M: 수초·굵기: A·B = Myelin Yes / C = Myelin {r:No} · 가장 가늘다(0.3–1.3 · 0.4–1.2 µm)
+M: 기능: A α·A β = Motor and proprioception / A γ = Muscle tone / A δ = Pain, temperature, touch / B = Preganglionic sympathetic / C = Pain, temperature, touch(Dorsal root)·Postganglionic sympathetic
+M: 확산 부위: 국소마취제 → {r:말초축색(Peripheral processes)} · {r:신경집(Epineurium)}
+M: 목표: {n:감각신경 마취 · 운동신경은 최대한 건들지 않음}
+
+## A-δ vs C Fibers — Dental Pain | 통증 섬유 A-δ vs C · 치아 통증 | 16-18 | 비교 · 통증
+> 날카로운 1차 통증은 A-δ, 둔하고 욱신거리는 2차 통증·치수염은 C — 국소마취의 표적은 이 둘
+= A-δ = {r:Fast-conducting, lightly myelinated} · noxious mechanical · {r:sharp, stabbing}(1차) / C = {r:Slow conducting, unmyelinated} · thermal·mechanical·chemical · {r:dull, aching, burning}(2차) · A-δ의 3-5배
+# A-δ fibers
+- Fast-conducting, lightly myelinated : 직경 {r:1-4 µm}, 마이엘린 수초가 있는 중간 크기의 감각 신경.
+- Respond primarily to **noxious mechanical stimuli** : 기계적 손상(주사·절삭·압박)-유해 자극에 민감한 고역치 기계수용기.
+- Mediate {r:initial sensation of pain}.
+- Perceived as **sharp, stabbing pain** : 전속력이 빠르므로 뇌에 {r:1차(경고) 통증}을 즉각 전달 → 위치·강도 인지가 명확. 이후 C-섬유가 둔한 2차 통증.
+- {n:비교적 빠른 전달 속도 → 날카로운 통증·기계적 자극 전달 · Ex) 핸드피스로 치아를 간다, 바람을 분다 등 · "이 외에 ppt 모두 읽으셨습니다."}
+F: 16
+# C-Fibers
+- {r:Slow conducting, unmyelinated} neurons.
+- Respond to **thermal, mechanical, and chemical stimuli** : 다중 모달 수용기(TRPV1, ASIC, P2X 등)를 지녀 열(>43 °C)·산성·염증성 물질·기계적 장력을 모두 감지.
+- 2ndary pain - **dull, aching, burning perceptual quality** : 느린 전도 + 다중 수용기 특성 때문에 "둔하고 욱신거리며 화끈거리는" 통증으로 인지.
+- {r:3-5x more C-fibers} than A-d fibers.
+- {n:수초화가 되어 있지 않고 얇지만 매우 광범위하게 존재 · 열감·기계적 감각·화학적 자극을 모두 수용}.
+- {n:전달 속도가 느려 날카로운 통증보다 욱신거리고 지속적으로 나타나는 통증 담당}.
+F: 17
+# Dental Pain — ACTIVATION OF INTRADENTAL NERVES
+| 신경 | 섬유 | 자극 |
+| Myelinated nerves (Lower threshold) | Aβ-fibres (7%) | Vibration |
+| Myelinated nerves (Lower threshold) | {r:Aδ-fibres (93%)} | Air, heat/cold, drilling/probing |
+| Unmyelinated nerves (Higher threshold) | {r:C-fibres} | Inflammatory mediators, mechanical deformation, heat |
+- 그림: A-fibers, myelinated(Aβ · Aδ) · C-fibers, unmyelinated.
+- {n:치아 pain은 주로 A델타·C fiber · 아주 일부 진동 같은 감각은 A베타 · A델타 = 기계적 자극·진동·온도 변화 → 날카로운 통증 · C = 그 뒤 욱신거리는 느낌 · pulpitis 같은 염증성 통증도 C fiber}.
+- {n:국소마취제 목표 = A델타와 C fiber를 최대한 block · A알파와 A베타는 최대한 남겨 통증은 없애면서 운동신경은 보존}.
+E: LA10 | 22년 서술 "리도카인의 작용기전과 통각에 더 잘 작용하는 이유" → c fiber가 a fiber에 비해 firing frequency가 더 높기 때문(JB 답 요지) — p.17 C = Slow conducting, unmyelinated · {n:pulpitis 염증성 통증 = C fiber} · 주 근거 p.37-38 카드
+F: 18
+M: A-δ 4: ① Fast-conducting, lightly myelinated(직경 1-4 µm) ② noxious {r:mechanical} stimuli(고역치 기계수용기) ③ Mediate {r:initial sensation of pain} ④ {r:sharp, stabbing pain}(1차 경고 통증)
+M: C 4: ① {r:Slow conducting, unmyelinated} ② thermal, mechanical, and chemical stimuli(TRPV1·ASIC·P2X · 열 >43 °C) ③ 2ndary pain — {r:dull, aching, burning} ④ {r:3-5x} more C-fibers than A-d fibers
+M: 치아 신경: Aβ {r:7%} = Vibration / Aδ {r:93%} = Air, heat/cold, drilling/probing / C = Inflammatory mediators · mechanical deformation · heat
+M: 국소마취 목표: {n:A δ·C 최대한 block · A α·A β 남김(운동신경 보존) · pulpitis 염증성 통증 = C}
+
+## Mechanism of LA — Voltage-gated Na+ Channel | 작용기전 — 전위개폐 Na+ 채널 차단 | 19-21 | 기전 · 기출 22·20 | jb=LA09
+> 국소마취제는 통증 자체가 아니라 신호 전달을 막는다 — 세포 안쪽에서 Na+ 채널을 차단(TTX는 바깥쪽)
+= Blocks the {r:voltage-gated sodium channel} — {r:from the intracellular side}(Must enter the neuron) / lipophilicity↑·un-ionized fraction↑ → potency↑ · {r:Tetrodotoxin} = from the outside
+# Mechanism of LA
+- Blocks the **voltage-gated sodium channel**.
+  - Wide ranging effects on the nervous system.
+- Local anesthetics blocks the channel **{r:from the intracellular side}**.
+  - Must enter the neuron to work.
+  - increased {r:lipophilicity} is associated with increased potency.
+  - Increased {r:un-ionized fraction} increases potency.
+  - The un-ionized molecule (RN) crosses the cell membrane.
+  - Adding {r:bicarbonate} (pH) increases the un-ionized fraction.
+- **Tetrodotoxin binds the sodium channel from the outside** : 복어 독 TTX는 채널 외측 선택성 필터에 결합해 물리적 plug 형성 → 리도카인+TTX 복합제(연구 중)는 장시간 효과 + 용량 감소 기대.
+- {n:sodium ch.을 block해서 신경의 전달을 제한 — 통증 자체를 차단한다기보다 통증 신호가 뇌로 가지 못하게 하는 것}.
+E: LA09 | 22·20년 서술 "lidocaine의 작용기전을 간단하게 설명하고, lidocaine이 action potential을 자주 형성하는 신경에 더 특이적으로 작용하는 이유를 작용기전과 연관지어 간단히 설명하시오." → ✓ Lidocaine binds to voltage-gated sodium channels in a 1: 1 fashion and prevents the flow of sodium ions through the channel pore. ✓ Voltage-gated sodium channel이 open form이나 inactivated form을 가질 때 lidocaine이 Na+ channel에 더 잘 결합하기 때문이다. (Action potential을 자주 형성하는 신경의 Na+ channel은 open form이나 inactivated form 상태일 확률이 높은데, 이런 상태일 때 Na+ channel의 lidocaine binding site가 노출되어 lidocaine이 binding site로 쉽게 접근할 수 있기 때문이다.) — p.19 Blocks the {r:voltage-gated sodium channel} · from the intracellular side · p.24 open configuration + local anesthetic cation bound to the gating receptor site · p.37 firing frequency · Na+ channel 접근성 ⚠ '1: 1 fashion'·'open form이나 inactivated form에 더 잘 결합'은 25 자료 글에 없음 — 25 자료로는 p.20 (b) 열림 → (c) Inactive channel 그림
+F: 19
+# Voltage-gated Na+ channels
+- (a) Resting state with closed active Na+ channel → Initial depolarization <0.1ms → (b) Movement of α helix and openimg of channel → 0.5~1.0ms → (c) {r:Inactive channel} (refractory period).
+- Slow(several ms): Repolarization of membrane, closure of gate, and displacement of channel-inactivating segment → (a)로.
+- 구조 라벨: Ion-selective pore · Voltage-sensing α helix · Gate · Inner vestibule · Channel-inactivating segment · Outer vestibule · Depolarized membrane.
+- 그림 10-2. 전위감지개폐 Na+ 채널의 입체구조 및 기능.
+- {n:Voltage gated sodium ch.은 신경 활성화에 굉장히 중요한 핵심}.
+F: 20
+# Neuronal action potential followed by neuronal hyperpolarization
+- ① Threshold ② Rising phase : {r:Na+} ③ Overshoot ④ Falling phase : {r:K+} ⑤ Undershoot ⑥ Absolute refractory period ⑦ Relative refractory period.
+- 그래프: Action potential · Threshold for excitation · Hyperpolarization · Excitatory postsynaptic potential · Excitatory state required for re-excitation(Millivolts · Milliseconds).
+- {n:이 채널은 탈분극 때 Na+가 세포 내부로 빠르게 들어오게 하고, 일정 시간 뒤엔 ch.이 닫혀 Na+ 유입이 차단됨}.
+F: 21
+M: 기전: Blocks the {r:voltage-gated sodium channel} · Wide ranging effects on the nervous system / {n:통증 신호가 뇌로 가지 못하게}
+M: 안쪽에서 차단: from the {r:intracellular side} · Must enter the neuron / lipophilicity↑ → potency↑ / un-ionized fraction↑ → potency↑(RN crosses membrane · {r:bicarbonate} → un-ionized↑)
+M: TTX 짝: Local anesthetics = intracellular side ↔ {r:Tetrodotoxin} = from the outside(외측 선택성 필터 plug)
+M: Na+ 채널 순서: ① (a) Resting(closed) ② Initial depolarization <0.1ms ③ (b) α helix 이동·열림 ④ 0.5~1.0ms ⑤ (c) {r:Inactive channel}(refractory period) ⑥ Slow(several ms) repolarization → (a)
+M: 활동전위 7: ① Threshold ② Rising phase : {r:Na+} ③ Overshoot ④ Falling phase : {r:K+} ⑤ Undershoot ⑥ Absolute refractory period ⑦ Relative refractory period
+M: 기출 서술 답 뼈대: Na+ channel에 1:1로 결합 → channel pore의 sodium 흐름 차단 / 자주 발화하는 신경 = open·inactivated form → binding site 노출 → 더 잘 결합(JB 답)
+
+## Types of LA — Binding Sites | 작용 부위·양식에 따른 분류(A~D군) · lidocaine vs benzocaine 차단 | 22-25 | 분류 · 표 1-3
+> 같은 Na+ 채널이라도 어디에 붙느냐로 A~D군 — 리도카인은 채널 안 수용체에, 벤조카인은 막을 부풀려 누른다
+= 분류 4군: A {r:외면} 수용체(tetrodotoxin·saxitoxin) · B {r:내면} 수용체(Lidocaine 4급 암모니움 유도체·전갈독) / C 수용체 없이 물리화학적({r:Benzocaine}) · D 수용체 의존·비의존 둘 다({r:임상 국소마취제 대부분})
+# 표 1-3. 생물학적 작용 부위와 작용 양식에 따른 국소마취제의 분류
+| 분류 | 정의 | 화학 물질 |
+| A군 | 신경세포막 {r:외면}의 수용체 부위에 작용하는 약물 | 생독소(예, {r:tetrodotoxin, saxitoxin}) |
+| B군 | 신경세포막 {r:내면}의 수용체 부위에 작용하는 약물 | Lidocaine의 4급 암모니움 유도체, 전갈독 |
+| C군 | {r:수용체를 통하지 않고} 약물의 물리화학적 작용에 의존하는 약물 | {r:Benzocaine} |
+| D군 | 약물 수용체 의존적 작용과 비의존적 작용을 모두 가진 약물 | 임상적으로 사용되는 대부분의 국소마취제(예, articaine, lidocaine, mepivacaine, prilocaine) |
+- 출처: Covino BG, Vassallo HG: Local anesthetics: mechanisms of action and clinical use, New York, 1976, Grune&Stratton의 승인을 받고, 변경함.
+- {n:국소마취제는 sodium ch.의 다양한 부위에 작용해 ch.의 안정화 또는 활성화를 막음 · B·C·D가 일반적으로 사용되는 국소마취제 · A는 자연적으로 존재하는 독소에 가깝다 · "(표의 정의 부분 읽어주셨습니다)"}.
+F: 22
+# 그림 1-13 — 채널 위 결합 자리
+- 그림 글자: A = Tetrodotoxin, saxitoxin(R-T) · B = Centruroides scorpion venom · C = Benzocaine(R-B) · D = Lidocaine, prilocaine, mepivacaine, articaine, bupivacaine(R-LA) · Leirus scorpion venom, sea anemone venom · Axoplasm · m·h 관문.
+- 3급 아민 국소마취제는 나트륨 통로 내의 수용체 부위에 부착하여 신경 전도 중 나트륨의 유입을 막는다(R-LA).
+- 정상 활성화 작용기전(O형 관문 형태, 탈분극)을 차단하고, 활성과 불활성 관문(m과 h)의 운동을 촉진하여 **불활성화(I) 상태**와 유사한 위치로 이동시킨다.
+- 생독소(R-T)는 세포 외면에 있는 수용체에 작용하여 나트륨 유입을 차단 · 다양한 독(venom)은 활성과 불활성 관문의 활동을 변화시켜 작용 · Benzocaine(R-B)은 **세포막의 확장**에 의해 그 효과 · C, 폐쇄 상태의 통로(Pallasch TJ: Dent Drug Serv Newsletter 4:25, 1983.).
+- {n:대부분의 국소마취제는 sodium ch.의 특정 부위에 결합 · A 그룹은 ch.의 옆면에 달라붙어 매우 오랜 시간(또는 영구적으로) 구조를 변경}.
+- {n:벤조카인은 조금 특이 — ch.에 직접 붙지 않고 주변 인지질 막 구조를 변형시켜 ch.이 물리적으로 눌려 구조 변화가 일어나지 못함}.
+F: 23
+# Sodium channel block by Lidocaine
+- Figure 1-14. Channel entry: Open(inward permeant to sodium ion) · Closed(resting closed configuration — impermeant, but remains voltage responsive) · Plugged(open configuration but impermeant — {r:local anesthetic cation bound to the gating receptor site}).
+- Local anesthetic enters the channel {r:from the axoplasmic (lower) side}; the channel filter precludes direct entry via the external mouth → renders the membrane impermeant to sodium ion, hence inexcitable by local action currents(de Jong RH, 1994).
+- IVS6의 I·F·Y 잔기 — 수소결합·π-π stacking · **pH, 지용성, 약물 구조(아로마틱 고리·아마이드 꼬리)가 I/F/Y 포켓 결합 친화도를 결정**.
+- {n:리도카인이 아미노산 특정 잔기의 옆면에 달라붙어 sodium ion의 선택성에 영향 → 채널이 열려 있어도 sodium ion이 잘 들어오지 못함}.
+E: LA09 | 22·20년 서술 "lidocaine 작용기전 · action potential을 자주 형성하는 신경에 더 특이적인 이유" → Na+ channel 결합 · sodium 흐름 차단 · open form이나 inactivated form일 때 더 잘 결합(JB 답 요지) — p.24 Plugged = open configuration + local anesthetic cation bound to the gating receptor site
+F: 24
+# Sodium channel block by Benzocaine — "Lipid Expansion Theory"
+- 생리 pH에서 **거의 전부 비이온형**(Benzocaine (RN)).
+- 지질 이중층 두께·유동성·표면전위가 변해 Na+-채널 {r:개폐 운동 자체가 둔화/불가}({r:비수용체성 차단}).
+- 그림 1-12. 세포막 확장 이론 — (RN)이 Lipid membrane에 쌓여 Channel을 누름.
+- {n:벤조카인은 높은 비이온형 선택성 → 생리적 pH에서 거의 비이온형 → 다른 국소마취제보다 세포막 투과성이 높음 → 도포마취제로 주로 사용}.
+- {n:이온형이 직접 sodium ch.에 붙는 것이 아니라 비이온형이 lipid membrane에 누적되면서 membrane의 물리적 구조를 변형}.
+E: LA03 | 24·23년 객관식 "Hurricane 등의 도포마취제로 Methemoglobinemia 유발" → benzocaine — p.25 생리 pH에서 거의 전부 비이온형 · {n:도포마취제로 주로 사용} · 주 근거 p.8 도포제 카드
+F: 25
+M: 분류 4군: A = 외면 수용체(생독소 {r:tetrodotoxin, saxitoxin}) / B = 내면 수용체(Lidocaine의 4급 암모니움 유도체, 전갈독) / C = 수용체 없이 물리화학적({r:Benzocaine}) / D = 의존·비의존 둘 다(articaine·lidocaine·mepivacaine·prilocaine)
+M: Lidocaine 차단: cation이 {r:gating receptor site}에 결합 · {r:axoplasmic side}로 들어옴 / I/F/Y 포켓(수소결합·π-π stacking) 친화도 = pH·지용성·약물 구조
+M: Benzocaine 차단: {r:Lipid Expansion Theory} — 생리 pH 거의 전부 비이온형 → 지질 이중층 변형 → 개폐 운동 둔화/불가({r:비수용체성 차단})
+M: 3급 아민 국소마취제: 활성·불활성 관문(m·h) 운동 촉진 → {r:불활성화(I) 상태}와 유사한 위치
+
+## Pharmacokinetics — Absorption & Distribution | 약동학 — 흡수·최고혈중농도·분포 | 26-28 | 약동학 · 표 2-1·2-2
+> 흡수는 경로·pH·혈관·혈관확장능이 좌우 — 정맥이 가장 빨리, 피하가 가장 늦게 최고 혈중농도 · 흡수되면 뇌·심장에 먼저
+= Absorption: {r:투여 경로}(injection vs topical) · {r:조직 pH} · {r:vascularity} · {r:혈관확장능}(agent itself·vasoconstrictor) / LA easily penetrates {r:BBB and placenta}
+# Absorption depends on
+- ① 투여 경로에 따른 차이: injection vs topical.
+- ② 조직 pH.
+- ③ 모세혈관 : vascularity of injection site.
+- ④ 혈관확장능: the degree of vasodilation caused by agent itself, and the presence of vasoconstrictor.
+- LA easily penetrates {r:BBB and placenta}.
+- {n:마취가 잘 되는 것도, 잘 풀리는 것도 중요 — 어떻게 흡수되고 흡수 뒤 어떻게 배출되는지 · "(모두 읽으셨습니다)"}.
+F: 26
+# 표 2-2. 최고혈중농도에 이르는 시간
+| 주입 경로 | 시간(분) |
+| 정맥주사 | {r:1} |
+| 국소 도포 | 5(대략) |
+| 근육내 주사 | 5-10 |
+| 피하 주사 | {r:30-90} |
+- {n:혈액에 가깝게 들어갈수록 빠름 — 정맥주사가 가장 빠르고 피하주사가 가장 느림}.
+# 표 2-1. 아미드 국소마취제의 상대적 혈관확장 수치
+| 약물 | 혈관확장 활성 | 대퇴동맥 혈류 증가 1분(%) | 5분(%) |
+| Articaine | 1(대략) | NA | NA |
+| Bupivacaine | {r:2.5} | 45.4 | 30 |
+| Etidocaine | {r:2.5} | 44.3 | 26.6 |
+| Lidocaine | 1 | 25.8 | 7.5 |
+| Mepivacaine | 0.8 | 35.7 | 9.5 |
+| Prilocaine | {r:0.5} | 42.1 | 6.3 |
+| Tetracaine | NA | 37.6 | 14 |
+- 동맥내 주사 후 개 대퇴동맥 혈류 증가의 평균 백분율 · 각 약제 1 mg을 식염수 0.1 ml에 녹여 빠르게 주입 · NA: 구할 수 없음(not available) · Blair MR: Cardiovascular pharmacology of local anaesthtics, Br J Anaesth 47(suppl):247-252,1975.에서 변경.
+- {n:혈관확장수치는 약물마다 차이 — 리도카인은 혈관 확장능이 크진 않은 편}.
+E: LA04 | 24·23년 객관식 "국소마취제 설명 옳은 것? … 2. tetrocaine 도포마취로 사용하면 흡수 느림 … 5. mepivacaine 다른것보다 혈관 확장 정도 심함" → 4) — 2) ×: 표 2-2 국소 도포 5(대략)분 = 근육내·피하보다 빠름 · 5) ×: 표 2-1 Mepivacaine {r:0.8} < Lidocaine 1 < Bupivacaine·Etidocaine 2.5 · 주 근거 p.8 카드
+F: 27
+# 그림 2-2. 국소마취제가 흡수된 후 분포되는 양상
+- Site of injection → BLOOD → **Rapid equilibrium space**: {r:Brain · Myocardium · Lungs · Liver} → Elimination.
+- **Slow equilibrium space**: Fat · Muscle.
+- Wildsmith JAW, Armitage EN, McClure JH: Principles and practice of regional anesthesia, ed 3, Edinburgh, 2003, Churchill Livingstone.을 인용하여 다시 그림.
+- {n:혈액 내로 들어온 마취제는 목적과 다르게 다양한 조직에 전신적인 영향 · 뇌와 심장 같은 순환계 조직에 빠르게 · 근육·지방은 천천히 → 혈액 내 직접 주입 시 뇌와 순환기 부작용을 우선 고려}.
+F: 28
+M: Absorption 4: ① 투여 경로(injection vs topical) ② 조직 pH ③ 모세혈관(vascularity of injection site) ④ 혈관확장능(agent itself · vasoconstrictor)
+M: 통과: LA easily penetrates {r:BBB} and {r:placenta}
+M: 최고혈중농도 시간(분): 정맥주사 {r:1} → 국소 도포 5(대략) → 근육내 주사 5-10 → 피하 주사 {r:30-90}
+M: 혈관확장 활성: Bupivacaine·Etidocaine {r:2.5} > Lidocaine·Articaine 1 > Mepivacaine 0.8 > Prilocaine {r:0.5}
+M: 분포: Rapid equilibrium = {r:Brain·Myocardium·Lungs·Liver} / Slow equilibrium = Fat·Muscle
+
+## Pharmacokinetics — Metabolism (Ester vs Amide) | 약동학 — 대사·배설·반감기 | 29-32 | 대사 · 기출 22·20 | jb=LA07,LA17
+> 에스터는 혈장 pseudocholinesterase가 빠르게(→ PABA 알러지), 아마이드는 간이 천천히(→ 간 기능·약물상호작용 주의)
+= Ester = {r:plasma pseudocholinesterase} 가수분해 → {r:PABA}(Allergic reaction) / Amide = {r:hepatic mixed function oxidase}(N-dealkylation → hydrolysis) → MEGX → GX / 배설 = {r:urine}
+# Metabolism
+- **Ester type** : hydrolyzed by the {r:plasma pseudocholinesterase (pseudo-CE)}.
+- **Amide type** : metabolized by {r:hepatic mixed function oxidase} involving initial N-dealkylation and subsequent hydrolysis.
+- LA and its metabolites are excreted primarily in {r:urine}.
+- {n:에스터 타입은 혈액 내 Cholinesterase로 빠르게 분해 · 아마이드 타입은 혈액 내에서는 잘 분해되지 않고 간의 효소로 분해 → 다른 약물과의 상호작용에 좀 더 유의}.
+F: 29
+# Ester — Procaine의 가수분해 대사
+- 그림 2-3. Procaine →(Plasma PsChE, pseudo-cholinesterase) Hydrolysis → {r:PABA} + Diethylaminoethanol(Tucker GT: Biotransformation and toxicity of local anesthetics, Acta Anaesthesiol Belg 26(suppl):123, 1975.에서 인용).
+- PABA → **{r:Allergic reaction}**.
+- 표 2-5. 에스테르 국소마취제의 가수분해 속도(µmol/ml/hr): Chloroprocaine {r:4.7} · Procaine 1.1 · Tetracaine {r:0.3}.
+- {n:에스터가 아마이드보다 알러지 반응이 더 많다고 알려진 이유 = 혈액 내 분해 부산물 · Procaine의 ester 결합이 cholinesterase로 hydrolysis → PABA · 이 PABA에 알러지를 갖는 사람들이 간혹 있음}.
+F: 30
+# Amide — 간 대사
+- 그림(Liver cell · PharmGKB): Lidocaine →(CYP1A2 · CYP3A4) {r:Monoethylglycinexylidide(MEGX)} → {r:Glycinexylidide(GX)} → 2,6-Xylidine.
+- Lidocaine →(CYP1A2 · CYP3A4) 3-hydroxylidocaine · Lidocaine →(CES1) 2,6-Xylidine.
+- 2,6-Xylidine →(CYP2A6 · CYP2B6 · CYP2D6 · CYP1A2) 2,6-Dimethylphenylhydroxylamine · →(CYP2E1) 4-hydroxyxylidine → **{r:Methemoglobinemia}**.
+- Lidocaine →(P450 3A4) MEGX →(P450 3A4) GX — 각각 Renal Excretion.
+- 그림의 CYP1A2 옆에 별표(Lidocaine → MEGX 굵은 화살표).
+- {n:아마이드 계열은 주로 간에서 대사 · 산화효소의 연속적인 대사로 분해·배출 · 산화효소와 경쟁적으로 작용할 수 있는 약물을 복용하거나 술을 마셔서 간의 기능이 떨어져 있는 경우 아마이드 계열 마취제의 작용이 더욱 늘어날 수 있다}.
+E: LA07 | 22년 객관식 "Amide type에서 조심해야 하는 질환? 1) 신경손상 2) 간독성 3) 기관지수축 4) 경련 5) 신독성" → 2) — p.29 Amide type = {r:hepatic mixed function oxidase} · p.31 {n:간의 기능이 떨어져 있는 경우 아마이드 계열 마취제의 작용이 더욱 늘어날 수 있다} ⚠ 함정: 에스터는 간이 아니라 plasma pseudocholinesterase
+E: LA17 | 20년 T/F "Lidocaine의 부작용 중 methemoglobinemia는 심각하지만, 산소와 여전히 결합할 수 있기 때문에 안전하다." → F — p.31 lidocaine 대사 경로 끝 {r:Methemoglobinemia}(2,6-Xylidine → 4-hydroxyxylidine) ⚠ 근거 없음: JB 해설 "methemoglobin은 산소와 결합할 수 있지만 산소를 해리하지 않기 때문에 저산소증에 빠질 수 있습니다."는 25 김우진 자료에 없음
+E: LA04 | 24·23년 객관식 "국소마취제 설명 옳은 것? … 4. pilocaine methemoglobinemia 일으킴" → 4) — p.31 그림 Methemoglobinemia(lidocaine 대사 경로) ⚠ prilocaine–methemoglobinemia 글은 25 자료에 없음(JB 해설 "The metabolites of Prilocaine and Lidocaine can induce methemoglobinemia.")
+E: LA03 | 24·23년 객관식 "도포마취제 · Methemoglobinemia" → benzocaine — 25 자료의 Methemoglobinemia 글자는 이 그림(lidocaine 경로)뿐
+F: 31
+# 표 2-4. 국소마취제 반감기(시간)
+| 약제 | 반감기(시간) | 계열 |
+| Chloroprocaine | {r:0.1} | 에스테르 |
+| Procaine | {r:0.1} | 에스테르 |
+| Tetracaine | 0.3 | 에스테르 |
+| Articaine | {r:0.5} | 아미드 |
+| Cocaine | 0.7 | 에스테르 |
+| Prilocaine | 1.6 | 아미드 |
+| Lidocaine | 1.6 | 아미드 |
+| Mepivacaine | 1.9 | 아미드 |
+| Ropivacaine | 1.9 | 아미드 |
+| Etidocaine | 2.6 | 아미드 |
+| Bupivacaine | {r:3.5} | 아미드 |
+| Propoxycaine | NA | — |
+- 표 기호: *에스테르 · †아미드 · NA: 구할 수 없음 · 슬라이드에 Articaine 밑줄 · Prilocaine~Bupivacaine 상자 'Amide'.
+- {n:아마이드 계열 반감기는 평균 2시간 정도(그중 articaine은 30분 정도로 비교적 짧음) · 에스터 계열은 혈액 내에서 분해되므로 평균적으로 짧은 편}.
+- {n:p.10 필기는 Bupivacaine '반감기가 4시간 이상'} — 이 표는 3.5시간.
+F: 32
+M: 대사 짝: Ester = {r:plasma pseudocholinesterase (pseudo-CE)} 가수분해 / Amide = {r:hepatic mixed function oxidase}(initial N-dealkylation → subsequent hydrolysis)
+M: 배설: LA and its metabolites → primarily in {r:urine}
+M: Ester 부산물: Procaine → Hydrolysis → {r:PABA} + Diethylaminoethanol → PABA = Allergic reaction / 가수분해 속도 Chloroprocaine 4.7 > Procaine 1.1 > Tetracaine 0.3
+M: Amide 경로: Lidocaine → CYP1A2·CYP3A4 → {r:MEGX} → {r:GX} → 2,6-Xylidine → CYP2E1 → 4-hydroxyxylidine → {r:Methemoglobinemia}
+M: 반감기(시간): Chloroprocaine·Procaine {r:0.1} · Tetracaine 0.3 · Articaine {r:0.5} · Cocaine 0.7 / Prilocaine·Lidocaine 1.6 · Mepivacaine·Ropivacaine 1.9 · Etidocaine 2.6 · Bupivacaine {r:3.5}
+M: 간 주의(기출): {n:간 기능 저하(산화효소 경쟁 약물·술) → 아마이드 작용↑} → Amide type은 {r:간} 질환 조심(22년 답 '간독성')
+
+@G ③ Systemic effects of LA — 마취 유도·작용시간 요소 7
+## Factors I — pKa & Tissue pH | 마취 유도·작용시간 요소 ① 마취액의 pKa ② 조직의 pH | 33-36 | 요소 7 · 염증 · 기출 24·23·20 | jb=LA02,LA16
+> pKa가 낮을수록 비이온형이 많아 빨리 듣고, 조직 pH가 떨어지면(염증) 실제로 작용하는 약이 확 줄어든다
+= 요소 7: ① {r:마취액의 pKa} ② {r:조직의 pH} ③ 신경의 종류 및 크기 ④ 지방용해도 및 수용체 친화력 ⑤ 마취액의 농도 ⑥ 말초신경의 구성 ⑦ 혈관활성 여부/ 혈관수축제 첨가 여부
+= 낮은 pKa = {r:빠른 작용 개시}(RN↑) / 조직 pH 6(염증) → 작용하는 RNH+ {r:7.5}(pH 7.4면 180)
+# 요소 7가지
+- p.33 = 간지 'Systemic effects of LA' — {n:다음으로 국소마취제의 전신적 영향}.
+- ① 마취액의 pKa ② 조직의 pH ③ 신경의 종류 및 크기 ④ 지방용해도 및 수용체 친화력 ⑤ 마취액의 농도 ⑥ 말초신경의 구성 ⑦ 혈관활성 여부/ 혈관수축제 첨가 여부.
+- {n:국소마취의 작용시간에 영향을 미치는 요소 · "(하나씩 다 읽으셨습니다.)"}
+F: 34
+# ① 마취액의 pKa
+- **낮은 pKa = {r:빠른 작용 개시}** → RN 분자가 많아져 신경초를 통한 확산 증가 → 작용 개시까지 소요시간 짧아짐.
+- {n:낮은 pKa일수록 더 많은 약물들이 비이온형으로 존재 → 조직 내에서 더 빠른 작용}.
+| 약물 | pKa | pH7.4에서의 염기(RN) 백분율 | 개략적 작용개시 시간(분) |
+| Benzocaine | {r:3.5} | {r:100} | - |
+| Mepivacaine | 7.7 | 33 | 2-4 |
+| Lidocaine | 7.7 | 29 | 2-4 |
+| Prilocaine | 7.7 | 25 | 2-4 |
+| Articaine | 7.8 | 29 | 2-4 |
+| Etidocaine | 7.9 | 25 | 2-4 |
+| Ropivacaine | 8.1 | 17 | 2-4 |
+| Bupivacaine | 8.1 | 17 | 5-8 |
+| Tetracaine | 8.6 | 7 | 10-15 |
+| Cocaine | 8.6 | 7 | - |
+| Chloroprocaine | 8.7 | 6 | 6-12 |
+| Propoxycaine | 8.9 | 4 | 9-14 |
+| Procaine | {r:9.1} | {r:2} | {r:14-18} |
+| Procainamide | 9.3 | 1 | - |
+- 표 1-4. 국소마취제의 해리상수(pKa) · Lidocaine pKa는 이 표 7.7 · p.7 그림 7.8.
+F: 35
+# ② 조직의 pH — 그림 1-17 vs 1-18
+| 그림 | 세포 밖 RNH+ · RN | 세포 안 RN | 세포 안 RNH+(작용) |
+| 1-17 국소마취제 분자의 작용 기전 — pKa 7.9 · 조직 pH 7.4 | 750 · 250 | 250 → 70 | {r:180} |
+| 1-18 조직 pH 감소가 국소마취제 작용에 미치는 영향 — 조직 pH 6 · 세포 안 pH 7.4 | 990 · 10 | 10 → 2.5 | {r:7.5} |
+- {n:조직 pH 7.4(약알칼리성)·약물 pKa 7.9 → 1000의 약물 중 250 정도가 비이온형으로 세포 내로 → 다시 이온화되어 180 정도의 이온형태가 실제 마취 효과}.
+- {n:조직의 염증 등으로 조직 pH 6.0 → 결과적으로 작용을 나타내는 양은 7.5 정도밖에 되지 않음 → 조직의 pH가 마취작용에 굉장히 중요한 요소}.
+E: LA02 | 24·23년 단답 "염증 있는 부위에 사용할 수 있는 국소 마취제는?" → Articaine — p.36 조직 pH 6(염증) → 작용하는 RNH+ {r:7.5} ⚠ 근거 없음: '염증 부위 → Articaine'과 JB 해설 "Thiophene ring 을 가지고 있어서, benzene ring 을 가지고 있는 lidocaine 보다 lipid solubility 가 높아서 신경막을 더 잘 통과하지만 감각이상의 빈도가 높음."은 25 김우진 자료에 없음 · 25 자료 p.39 Octanol/Buffer distribution은 Articaine 17 < Lidocaine 110 · p.51 Articaine, prilocaine = higher incidence of paresthesia
+E: LA16 | 20년 단답 "염증이 있는 부위에 마취심도 증가가 필요한 경우 사용하는 국소마취제는?" → Articaine — 같은 축 · p.36 염증 → 조직 pH↓ → 작용량↓ ⚠ 근거 없음(25 김우진 자료에 '염증 → Articaine' 글 없음)
+E: LA01 | 24·23년 객관식 "다음중 옳은 것은? … 4. Lidocaine 은 염증 부위도 마취 잘 된다." → 1) — 4)는 × · p.36 조직 pH 6 → 작용량 7.5(pH 7.4면 180) · 주 근거 p.54 카드
+F: 36
+M: 요소 7: ① 마취액의 {r:pKa} ② 조직의 {r:pH} ③ 신경의 종류 및 크기 ④ 지방용해도 및 수용체 친화력 ⑤ 마취액의 농도 ⑥ 말초신경의 구성 ⑦ 혈관활성 여부/ 혈관수축제 첨가 여부
+M: pKa: 낮은 pKa = {r:빠른 작용 개시} → RN↑ → 신경초 확산↑ → 개시 시간 짧아짐
+M: pKa 표 끝값: Benzocaine {r:3.5}(RN 100%) / Procaine {r:9.1}(RN 2% · 14-18분) / 아마이드 7.7~8.1(2-4분 · Bupivacaine 5-8분)
+M: 조직 pH(그림 1-17 vs 1-18): pH 7.4 → 작용 RNH+ {r:180} / pH 6(염증) → {r:7.5}
+M: 염증 부위 국소마취제(기출 답): {r:Articaine}(24·23·20년) — 25 자료엔 근거 글 없음 · 25 자료는 염증 → 조직 pH↓ → 작용량↓만
+
+## Factors II — Nerve Type & Size | ③ 신경의 종류 및 크기 — 차단 순서 · 기능 소실 순서 | 37-38 | 순서 · 기출 22·20·19 | jb=LA10,LA18
+> 작고 수초 없는 신경부터 — C → B → Aδ → Aβ → Aα, 기능은 통증 > 온도 > 촉각 > 고유감각 > 근긴장 순으로 사라진다
+= 차단 순서: {r:C fiber → B fiber → Aδ → Aβ → Aα}(신경 직경 · 수초 두께 · firing frequency · Na+ channel 접근성) / loss of function: {r:pain} > temperature > touch > proprioception > skeletal muscle tone
+# 신경의 종류 및 크기
+- **C fiber → B fiber → Aδ → Aβ → Aα**.
+- 좌우 요소: ① 신경 직경 ② 수초 두께 ③ {r:firing frequency} ④ Na+ channel 접근성.
+- {n:마취제는 작고 수초가 없는 신경에 먼저 작용 → 광범위하게 존재하는 C fiber가 가장 먼저 영향을 받고, 그다음 B, 그다음 A델타 … 순}.
+| Fiber Type | Function | Diameter (µm) | Myelination | Conduction Velocity (m/s) | Sensitivity to Block |
+| Type A Alpha | Proprioception, motor | 12–20 | Heavy | 70–120 | {r:+} |
+| Type A Beta | Touch, pressure | 5–12 | Heavy | 30–70 | ++ |
+| Type A Gamma | Muscle spindles | 3–6 | Heavy | 15–30 | ++ |
+| Type A Delta | Pain, temperature | 2–5 | Heavy | 12–30 | +++ |
+| Type B | Preganglionic autonomic | < 3 | Light | 3–15 | ++++ |
+| Type C Dorsal root | Pain | 0.4–1.2 | {r:None} | 0.5–2.3 | {r:++++} |
+| Type C Sympathetic | Postganglionic | 0.3–1.3 | {r:None} | 0.7–2.3 | {r:++++} |
+- Table 26–2. Relative size and susceptibility to block of types of nerve fibers.
+- p.15 표(Carpenter and Mackey)와 수치가 조금 다름 — A δ 직경 1–4(p.15) · 2–5(p.37) · C 전도 속도 0.1–2.0 · 0.5–2.3 · A α 직경 6–22 · 12–20.
+F: 37
+# 기능 소실 순서
+- Local anesthetics depress **small, unmyelinated fiber first** and larger, myelinated fiber last.
+- Onset time is shorter for **smaller fibers** and required drug concentration is less.
+- **General order of loss of function** : =={r:pain} > temperature > touch > proprioception > skeletal muscle tone==.
+- Nociceptor vs Motor neuron.
+- {n:마취효과의 결과로 통증이 가장 먼저 사라지고, 그다음 온도감각, 그다음 touch, proprioception, 마지막으로 muscle tone}.
+E: LA10 | 22년 서술 "리도카인의 작용기전과 통각에 더 잘 작용하는 이유" → 작용기전의 경우 3번 문항 참고, 통각에 더 잘 작용하는 것은 통각을 담당하는 c fiber가 촉각을 담당하는 a fiber에 비해 firing frequency가 더 높기 때문에 리도카인의 작용기전 상 더 잘 작용한다. — p.37 C fiber → … → Aα · 좌우 요소에 {r:firing frequency} · p.38 pain 먼저 ⚠ 'C fiber의 firing frequency가 더 높다'는 문장은 25 자료에 없음(요소 이름만)
+E: LA18 | 20·19년 T/F "Lidocaine 은 neuron 중 촉각에 관련된 신경에 더 잘 작용하는 것으로 밝혀졌다." → 해설참조 — 해설: 촉각과의 비교대상이 문제에 나와있지 않습니다. 비교 대상에 따라 답이 달라질 수 있습니다. 국소마취제는 small, unmyelinated fiber 에 먼저 작용을 하며 감각이 소실되는 순서는 다음과 같습니다. Pain > Temperature > Touch > Proprioception > Skeletal muscle tone · p.38 small, unmyelinated fiber first ⚠ 함정: touch는 pain·temperature보다 늦게 — 통각과 견주면 ×
+F: 38
+M: 차단 순서: {r:C fiber} → B fiber → Aδ → Aβ → {r:Aα}
+M: 좌우 요소 4: ① 신경 직경 ② 수초 두께 ③ {r:firing frequency} ④ Na+ channel 접근성
+M: 원리: depress {r:small, unmyelinated} fiber first · larger, myelinated last / smaller fibers = onset time 짧음 · required drug concentration 적음
+M: 기능 소실 순서: ① {r:pain} ② temperature ③ touch ④ proprioception ⑤ skeletal muscle tone
+M: 기출 서술 답 뼈대: 통각 c fiber가 촉각 a fiber보다 {r:firing frequency}가 높음 → 리도카인 작용기전 상 더 잘 작용(JB 답)
+
+## Factors III — Lipid Solubility · Concentration · Nerve Structure · Vasoconstrictor | ④ 지방용해도·수용체 친화력 ⑤ 농도 ⑥ 말초신경 구성 ⑦ 혈관수축제 · 작용시간 | 39-42 | 요소 · 작용시간
+> 지용성은 개시를, 수용체 친화도는 지속을 늘린다 — 표면 신경이 먼저 마취되고, 혈관수축제는 마취제를 오래 남게 한다
+= 높은 {r:지질용해도} = 작용 개시 빠름 · {r:수용체 친화도} = 지속시간 증가 / 혈관 수축 = 혈류량 감소 = {r:국소마취제 제거 속도 감소}
+= 작용시간(치수마취): 단시간 약 {r:30분} · 중간 약 {r:60분} · 장시간 약 {r:90분 이상}(1:200,000 epinephrine Bupivacaine HCl 0.5%)
+# ④ 지방용해도 및 수용체 친화력
+- 높은 지질용해도 = **작용 개시 빠름** · 수용체 친화도 = **작용 지속시간 증가**.
+| Class | Agent | Octanol/Buffer distribution | Usual Effective Conc. (%) | Potency | Duration |
+| Ester | Procaine | {r:3} | 2-4 | {r:low} | {r:short} |
+| Ester | Tetracaine | 541 | {r:0.15} | high | long |
+| Amide | Mepivacaine | 42 | 2-3 | moderate | moderate |
+| Amide | Prilocaine | 55 | 4 | moderate | moderate |
+| Amide | Lidocaine | 110 | 2 | moderate | moderate |
+| Amide | Ropivacaine | 186 | 0.2-0.5 | high | long |
+| Amide | Bupivacaine | {r:560} | 0.5-0.75 | {r:high} | {r:long} |
+| Amide | Articaine | 17 | 4 | moderate | moderate |
+- 슬라이드 글자 색: Procaine 초록(low·short) · Tetracaine·Ropivacaine·Bupivacaine 빨강(high·long).
+- {n:높은 지질용해도 = 작용 개시 시간이 빠름 · 높은 수용체 친화도 = 작용 지속시간 증가 · 수용체 친화도가 높은 bupivacaine은 potency와 duration이 긴 것을 확인}.
+F: 39
+# ⑤ 마취액의 농도 · ⑥ 말초신경의 구성 — 그림 1-19
+- A, 말초신경 내 신경 섬유와 다발의 구성: Mantle bundles · Core bundles · Perineurium · Epineurium · Epineural sheath.
+- B, 수백~수천의 축삭을 포함하는 큰 말초신경에서 신경 외부에 주사된 국소마취 용액은 신경 중심부 쪽으로 확산 → 조직액과 섞이며 주변 조직으로 흡수되어 제거 → 중심부로의 확산 동안 {r:농도가 점차 감소}.
+- 농도경사 → **외부 표면에 가까운 신경섬유(Mantle fibers)는 먼저 차단** · 중심부 섬유(Core fibers)는 아직 차단이 다 되지 않음(더 낮은 농도에 노출 · 약물도 더 늦게 도착).
+- 지연 정도 = 마취제가 투과해야 할 {r:조직 양} + 국소마취제의 {r:확산도}(B, de Jong RH: Local anesthetics, St. Louis, 1994, Mosby.에서 인용하여 다시 그림).
+- {n:마취제는 신체 내에서 확산되어 작용 → 신경 구조 영향 · Epineurium·perineurium 같은 두꺼운 신경막과 myelin sheath를 통과해야 해서 표면 신경이 더 빠르게, 심부 신경이 더 느리게 마취}.
+F: 40
+# ⑦ 혈관활성 여부/ 혈관수축제 첨가 여부
+- **혈관 수축 = 혈류량 감소 = {r:국소마취제 제거 속도 감소}**.
+- 표 2-1(아미드 국소마취제의 상대적 혈관확장 수치 — p.27과 같은 표).
+- {n:혈관수축제의 첨가는 마취제의 지속시간과 작용 모두에 긍정적 · 리도카인에 에피네프린을 첨가하면 혈관 수축작용으로 국소적인 작용시간 증가}.
+F: 41
+# Box 4-1. 국소마취제의 대략적인 작용시간
+| 작용시간 | 제제 |
+| 단시간 작용(약 {r:30분} 정도의 치수마취) | Lidocaine HCl 2% · Mepivacaine HCl 3% · Prilocaine HCl 4% (침윤마취) |
+| 중간 작용(약 {r:60분} 정도의 치수마취) | 1:100,000 epinephrine을 포함하고 있는 Articaine HCl 4% · 1:200,000 epinephrine을 포함하고 있는 Articaine HCl 4% · 1:50,000 epinephrine을 포함하고 있는 Lidocaine HCl 2% · 1:100,000 epinephrine을 포함하고 있는 Lidocaine HCl 2% · 1:20,000 levonordefrin을 포함하고 있는 Mepivacaine HCl 2% · 1:100,000 epinephrine을 포함하고 있는 Mepivacaine HCl 2% · Prilocaine HCl 4% (신경차단마취) · 1:200,000 epinephrine을 포함하고 있는 Prilocaine HCl 4% |
+| 장시간 작용(약 {r:90분 이상}의 치수마취) | 1:200,000 epinephrine을 포함하고 있는 {r:Bupivacaine HCl 0.5%} |
+- {n:국소마취제만 사용하면 1시간 이상의 마취효과를 기대하기 어려움 · 1:100,000 epi가 포함되면 약 1시간에서 2시간 · 부피바카인은 더 긴 마취시간}.
+F: 42
+M: 지용성 짝: 높은 {r:지질용해도} = 작용 개시 빠름 / 높은 {r:수용체 친화도} = 지속시간 증가
+M: 표 끝값: Procaine = Octanol/Buffer {r:3} · low · short / Bupivacaine = {r:560} · high · long · Tetracaine 541 · Ropivacaine 186도 high · long / Lidocaine 110 · Mepivacaine 42 · Prilocaine 55 · Articaine 17 = moderate
+M: 신경 구성: 표면 {r:Mantle} fibers 먼저 차단 → 중심부 {r:Core} fibers 늦게(낮은 농도 · 늦게 도착) / 지연 = 투과할 조직 양 + 확산도
+M: 혈관수축제: 혈관 수축 = 혈류량 감소 = {r:국소마취제 제거 속도 감소} → 지속시간·작용↑
+M: 작용시간 3단(치수마취): 단시간 약 {r:30분}(Lidocaine 2% · Mepivacaine 3% · Prilocaine 4% 침윤마취) / 중간 약 {r:60분}(epinephrine·levonordefrin 함유 · Prilocaine 4% 신경차단마취) / 장시간 약 {r:90분 이상}(1:200,000 epinephrine Bupivacaine 0.5%)
+
+@G ④ Systemic effects of LA — 전신작용·약물 상호작용
+## Systemic Effects — Cardiovascular & CNS | 전신작용 (1) 심혈관계 (2) 중추신경계 | 43-47 | 독성 · 기출 20 | jb=LA15
+> 혈관으로 들어가야 생기는 전신작용 — CNS 독성이 심혈관보다 낮은 농도에서 먼저, 흥분 뒤 억제
+= (1) 심혈관계: 과량 아님 BP 변화 없거나 약간 증가 → 과량에 근접 경미한 저혈압 → 과량 {r:심한 저혈압} → 치사량 {r:심장혈관 허탈}
+= (2) CNS: {r:CNS toxicity}가 심혈관보다 {r:lower conc.}에서 · stimulation → depression · 예방 aspiration·slow injection · 치료 {r:oxygen or diazepam}
+# (1) 심혈관계
+- **과량이 아닌 경우**: BP 변화 없거나 약간 증가 · 교감신경활성의 증가로 CO, HR증가, 말초혈관 수축.
+- **과량에 근접**: 혈관평활근의 직접적 이완으로 {r:경미한 저혈압}.
+- **과량**: 심수축력, CO, PVR 감소로 인한 {r:심한 저혈압}.
+- **치사량**: {r:심장혈관 허탈}.
+- {n:국소마취의 전신작용은 혈관 내에 마취제가 들어갔을 때 · 근육이나 지방보다 심혈관계·중추신경계에 더 큰 영향 · 과량으로 혈관에 주입되지 않는 이상 큰 효과는 없음 · 과량이면 혈관평활근에 영향 → 심한 저혈압}.
+| 환자 · 마취 | max△ 수축기 혈압(mm) | max△ 이완기 혈압(mm) | max△ 심박수(bpm) |
+| 고혈압 — epinephrine을 포함한 마취 | {r:15.3} | 2.3 | {r:9.3} |
+| 고혈압 — epinephrine을 포함하지 않은 마취 | 11.7 | 3.3 | 4.7 |
+| 보통혈압 — epinephrine을 포함한 마취 | 5.0 | −0.7 | 6.3 |
+| 보통혈압 — epinephrine을 포함하지 않은 마취 | 5.0 | 4.0 | 0.7 |
+- 표 3-6. 혈압과 심박수의 평균 최대 변화량 — Cardiovascular effects of epinephrine in hypertensive dental patients: Summary, evidence report/technology assessment number 48. AHRQ Publication Number 02-E005, March 2002. Agency for Healthcare Research and Quality, Rockville, MD. http://www.ahrq.gov/clinic/epcsums/ephypsum.htm.에서 인용.
+F: 43
+# (2) 중추신경계 효과
+- **{r:CNS toxicity}** develops at {r:lower conc.} than cardiovascular toxicity.
+- Usually produce {r:no effects after routine dental anesthesia}.
+- LA such as procaine, lidocaine and prilocaine shows {r:anticonvulsant effect} at the low concentration (0.5~4 µg/ml).
+- {n:중추신경계 작용은 심혈관계보다 더 빠르게 나타남 · 농도 dependent}.
+F: 44
+- Excessive absorption causes restlessness, irritability, {r:convulsion} and eventually {r:respiratory depression}.
+- Initially block **inhibitory cortical activity** leading to excitation and larger dose depress both inhibitory and facilitatory neurons to produce generalized CNS depression.
+- Major toxic reaction caused by inadvertent {r:accidental I.V. injection} resulting in overdose.
+- Manifestations include the CNS stimulation followed by depression and peripheral cardiovascular depression.
+- To avoid, {r:aspiration and slow injection} (longer than 1 min) are required.
+- Treatment is symptomatic including administration of {r:oxygen or diazepam} for seizures.
+- {n:말이 어눌해진다던지, 과민하게 반응한다던지, 경련을 보인다던지 하는 부작용 · 가장 큰 중추신경계 부작용은 호흡 부전}.
+E: LA15 | 20년 T/F "Lidocaine의 전신적 중독이 발생했을 때 lipid emulsion을 투여할 수 있다." → T — p.45 Treatment is symptomatic including administration of oxygen or diazepam for seizures ⚠ 근거 없음: lipid emulsion은 25 김우진 자료에 없음(JB 참고 = 210902 이윤실 p.66)
+F: 45
+# 그림 18-9. 국소마취제의 혈중농도와 심혈관계, 중추신경계에 대한 영향
+| Lidocaine blood levels (µg/ml) | Cardiovascular system | Central nervous system |
+| 정상 범위(구내 주사 뒤) | Normal blood level after intraoral injection · No cardiovascular actions | Normal blood level after intraoral injection |
+| 0.5 – 4.0 | — | {r:Anticonvulsant actions} |
+| 1.8 – 5.0 | Antidysrhythmic actions | — |
+| 4.5 – 7.0 | — | CNS depression manifest as {r:excitation} (except lidocaine) |
+| 5.0 – 10.0 | ECG alterations · Myocardial depression · Peripheral vasodilation | — |
+| 7.5 – 10.0 | — | CNS depression manifest as {r:tonic–clonic seizures} |
+| 10.0 + | Massive peripheral vasodilation · Intensive myocardial depression · {r:Cardiac arrest} | {r:Generalized CNS depression} |
+- 뇌 그림(Inhibitory impulse · Facilitatory impulse): 그림 2-6. 정상 뇌피질에서 억제성 흥분파와 흥분성 흥분파 간의 균형.
+- 그림 2-7. 경련 전구 단계에서는 국소마취제가 흥분성 흥분파보다 {r:억제성 흥분파}를 더 현저하게 억제한다.
+- 그림 2-8. 경련을 일으키는 단계에서는 국소마취제가 억제성 흥분파를 완전히 차단하여 흥분성 흥분파의 활동을 전혀 방해받지 않고 나타난다.
+- 그림 2-9. 마지막 단계에서는 국소마취제가 흥분성 및 억제성 흥분파를 모두 완전히 차단하므로 전반적인 중추 신경계 억제가 야기된다.
+- {n:심혈관계와 CNS의 부작용이 농도에 따라 나타나는 그래프 · CNS 부작용이 먼저, 더 높은 농도에서 심혈관계 부작용 · "(그래프의 각 항목 읽어주셨습니다.)"}.
+F: 46
+# Box 2-3. 경도 내지 중등도 과용량 수준(혈중 농도가 높아짐에 따라 아래의 순서로 진행)
+- **징후**: 말이 많아짐 · 불안 · 흥분 · 늘어진 말투 · 전신적 더듬거림으로 인해 얼굴과 손발 근육의 연축, 떨림이 옴 · 쾌감 · 말더듬증 · 눈떨림 · 발한 · 구토 · 명령에 따르지 못하며 설득되지 않음 · 혈압상승 · 심박수 증가 · 호흡수 증가.
+- **증상**: 몽롱함, 현기증 · 안절부절 · 신경과민 · 실제로 근육 연축이 관찰되기 전에 연축을 느낌("징후"란의 전신적 더듬거림 참조) · 쇠를 맛보는 느낌 · 시각장애(초점을 맞추기 어려움) · 청각장애(이명) · 졸음과 지남력 장애 · 의식소실.
+- **중등도 이상의 과용량 수준**: 긴장간대성 경련 뒤에 다음 현상이 수반됨 — 전반적인 중추신경계의 억제 · 혈압저하, 심박수 감소, 호흡수 저하.
+- {n:처음에는 흥분성 반응이 나타나 말이 많아지거나 흥분 → 점차 늘어진 말투나 어눌한 말투}.
+F: 47
+M: 심혈관 4단계: ① 과량 아님 — BP 변화 없거나 약간 증가(교감신경 → CO·HR↑ · 말초혈관 수축) ② 과량에 근접 — 경미한 저혈압(혈관평활근 직접 이완) ③ 과량 — {r:심한 저혈압}(심수축력·CO·PVR↓) ④ 치사량 — {r:심장혈관 허탈}
+M: CNS 먼저: {r:CNS toxicity} develops at {r:lower conc.} than cardiovascular / routine dental anesthesia = no effects / 저농도(0.5~4 µg/ml) procaine·lidocaine·prilocaine = {r:anticonvulsant}
+M: CNS 경과: restlessness·irritability·{r:convulsion} → eventually {r:respiratory depression} / 처음 inhibitory cortical activity 차단 → excitation → 큰 용량 = generalized CNS depression
+M: 원인·예방·치료: 원인 = {r:accidental I.V. injection} / 예방 = {r:aspiration and slow injection}(longer than 1 min) / 치료 = symptomatic — {r:oxygen or diazepam} for seizures
+M: 혈중농도(그림 18-9): CNS 0.5–4.0 Anticonvulsant → 4.5–7.0 excitation → 7.5–10.0 {r:tonic–clonic seizures} → 10.0+ Generalized CNS depression / 심혈관 1.8–5.0 Antidysrhythmic → 5.0–10.0 ECG·Myocardial depression → 10.0+ {r:Cardiac arrest}
+M: 과용량 경과(Box 2-3): 말이 많아짐·불안·흥분 → 늘어진 말투·연축·떨림 → 긴장간대성 경련 → 전반적 CNS 억제 · 혈압·심박수·호흡수 저하
+M: lipid emulsion(기출 T): JB 답 T — 25 자료엔 없음(치료 = oxygen·diazepam만)
+
+## Systemic Effects — Allergy · Psychogenic · MH · Paresthesia | 전신작용 (3) 알러지 (4) 심인성·악성고열증 (5) 이상감각 | 48-51 | 부작용 · 기출 20·19 | jb=LA14
+> 알러지는 드물고 에스터(PABA)·보존제 쪽, 실신은 대부분 주사 공포, 악성고열증은 국소마취제와 무관, 이상감각은 articaine·prilocaine
+= (3) Allergic: Incidence is rare, but {r:ester type}이 더 잘 · No cross-reactivity with chemically unrelated agents / (4) Psychogenic: {r:Vasovagal syncope} — supine·head-down position
+= (4) MH: {r:no injectable LA} is a causative agent · amide type LA is safe / (5) Paresthesia: within {r:8 weeks} · {r:Articaine, prilocaine} 더 높음
+# (3) Allergic type
+- Skin rashes or {r:bronchospasm} as the typical asthmatic attack may be produced.
+- Incidence is rare, but **{r:ester type}** agents are more prone to induce allergic reactions.
+- No cross-reactivity with chemically unrelated agents.
+- {n:알러지는 흔하지는 않음 · 에스터 타입의 부산물인 PABA에 의한 알러지 · 보존제 등에 의한 알러지}.
+E: LA14 | 20·19년 T/F "Promethazine을 lidocaine 과민반응 환자에게 사용할 수 있다." → T — p.48 Allergic type · ester type이 더 잘 · No cross-reactivity with chemically unrelated agents ⚠ 근거 없음: JB 해설 "amide형 국소마취제에 알러지가 있는 환자들 … H1-receptor antagonist인 diphenhydramine, promethazine이나 ester형 국소마취제인 procaine을 사용할 수 있다"는 25 김우진 자료에 없음 · 25 자료의 antihistamines는 p.52 중추신경 억제제(병용 시 심장·호흡 독성)
+F: 48
+# (4) Psychogenic type
+- {r:Vasovagal syncope}, caused by the excessive anxiety and fear, is frequently precipitated by injection of local anesthetics.
+- Corrective measures such as supine, {r:head-down position}, loosening of blood flow-restrictive wears, deep breathing and inhalation of aromatic ammonium spirits are effective.
+- {n:직접적인 작용이라기보다는 Needle 공포증 같은 것}.
+F: 49
+# (4) Malignant hyperthermia (악성고열증, MH)
+- 특정 마취제에 노출될 때 발생하는 급성 대사 폭주 상태.
+- Ca2+가 근세포 안으로 폭발적으로 유입 → 근육이 지속적·전신적으로 수축 → ATP 소진 → 열 폭발적 생성.
+- Now direct evidence indicates that {r:no injectable LA is a causative agent} and that {r:amide type LA is safe} for routine dental use in MH-susceptible patients.
+- {n:예전에 한때 국소마취에 의한 악성고열증이 논란 → 현재는 "국소마취에 의한 악성고열증은 없다"로 결론 → 오히려 악성고열증 위험성이 있는 환자에는 전신마취보다 국소마취를 더욱 추천하는 가이드라인}.
+- 슬라이드 번호 (4)가 Psychogenic type과 겹침(자료 그대로).
+F: 50
+# (5) Paresthesia (이상감각)
+- Transient paresthesia.
+- Usually recovered within {r:8 weeks}.
+- {r:Articaine, prilocaine} : higher incidence of paresthesia than other LA.
+- {n:주로 국소마취제의 장기간 저류나 needle에 의한 국소적인 신경손상 · 8주 내에 회복되는 것이 일반적}.
+F: 51
+M: Allergic: Skin rashes · {r:bronchospasm}(typical asthmatic attack) / rare · {r:ester type} more prone · No cross-reactivity with chemically unrelated agents / {n:PABA·보존제 알러지}
+M: Psychogenic: {r:Vasovagal syncope} — excessive anxiety and fear · injection이 촉발 / {n:Needle 공포증}
+M: Psychogenic 처치 5: ① supine ② {r:head-down position} ③ loosening of blood flow-restrictive wears ④ deep breathing ⑤ inhalation of aromatic ammonium spirits
+M: MH: Ca2+ 폭발적 유입 → 지속·전신 수축 → ATP 소진 → 열 / {r:no injectable LA} is a causative agent · amide type LA {r:safe}(MH-susceptible)
+M: Paresthesia: Transient · within {r:8 weeks} / {r:Articaine, prilocaine} = higher incidence / {n:장기간 저류·needle 신경손상}
+M: promethazine(기출 T): JB 답 T — 25 자료엔 없음
+
+## Drug Interactions | 국소마취제의 약물 상호작용 | 52-53 | 상호작용
+> 함께 쓰면 문제 되는 셋 — 중추신경 억제제(심장·호흡 독성), 신경근 차단제(무호흡 연장), CYP 억제제·propranolol(아마이드 대사 저해)
+= 중추신경 억제제 → 병용시 {r:심장, 호흡}에 잠재적 독성 · {r:어린이} 민감 / 신경근 차단제 → 근이완 증폭·{r:무호흡 연장} / {r:CYP3A4, CYP1A2 inhibitors}·propranolol → {r:Amide type LA 대사 저해}
+# 중추신경 억제제
+- 전신마취제, opioids, antianxiety agents, phenothiazines, barbiturates, antihistamines.
+- LA와 병용시 {r:심장, 호흡}에 잠재적 독성.
+- {r:어린이}에서 민감.
+# 신경근 차단제
+- LA는 신경근 차단제의 {r:근이완 작용 증폭}, {r:무호흡 연장}.
+# CYP3A4, CYP1A2 inhibitors (erythromycin, fluvoxamine, cimeditine..), propranolol
+- **{r:Amide type LA 대사 저해}**.
+- {n:혈액 또는 간에서 대사되는 약물의 특징에 따라 약물 상호작용이 나타날 수 있음}.
+- p.53 = p.52와 같은 슬라이드 — {n:"동일한 페이지가 강의자료에 하나 더 들어간 듯 합니다."}
+F: 52
+M: 상호작용 3: ① 중추신경 억제제 → 심장·호흡 독성(어린이 민감) ② 신경근 차단제 → 근이완 증폭·{r:무호흡 연장} ③ {r:CYP3A4, CYP1A2 inhibitors}·propranolol → Amide type LA {r:대사 저해}
+M: 중추신경 억제제 6: ① 전신마취제 ② opioids ③ antianxiety agents ④ phenothiazines ⑤ barbiturates ⑥ antihistamines
+M: CYP 억제제 예: erythromycin · fluvoxamine · cimeditine(자료 글자 그대로) + propranolol
+M: 이어짐: {n:아마이드는 간 효소로 분해 → 다른 약물과의 상호작용에 더 유의}(대사 카드 p.29·31)
+
+@G ⑤ Vasoconstrictor — LA 사용 가능 양
+## Maximum Dose — LA 사용 가능 양 | 최대 사용량 · 카트리지 수 계산 | 54-55 | 계산 · 기출 24·23·22·21·20 | jb=LA05,LA06,LA11,LA13,LA01
+> 2% 리도카인 카트리지 1개 = 36 mg — 혈관수축제가 없으면 4.4 mg/kg(최대 300 mg), 1:100,000 epinephrine이 있으면 MRD-m 6.6 mg/kg(최대 500 mg)
+= 카트리지 = {r:36 mg}(2%) / 혈관수축제 없음: {r:4.4 mg/kg} · 최대 {r:300 mg} = 8 카트리지 / 1:100,000 epinephrine: MRD-m {r:6.6 mg/kg} · 최대 {r:500 mg} = 13.5 카트리지
+# 표 4-6. 혈관수축제가 포함되지 않은 Lidocaine
+- 농도 : {r:2%} · 카트리지 함량: {r:36 mg} · 최대용량 : {r:4.4 mg/kg} · 최대용량 : 2 mg/lb.
+| 몸무게(kg) | mg | 카트리지 수* | 몸무게(lb) | mg | 카트리지 수* |
+| 10 | 44 | 1 | 20 | 40 | 1 |
+| 20 | 88 | 2 | 40 | 80 | 2 |
+| 30 | 132 | 3.5 | 60 | 120 | 3 |
+| 40 | 176 | 4.5 | 80 | 160 | 4 |
+| 50 | 220 | 6 | 100 | 200 | 5.5 |
+| 60 | 264 | 7 | 120 | 240 | 6.5 |
+| 70 | {r:300} | {r:8} | 140 | 280 | 7.5 |
+| 80 | 300 | 8 | 160 | 300 | 8 |
+| 90 | 300 | 8 | 180 | 300 | 8 |
+| 100 | 300 | 8 | 200 | 300 | 8 |
+# 표 4-8. 1:100,000 epinephrine을 함유한 Lidocaine HCl
+- Concentration: 2% · Cartridge contains: 36 mg.
+| Weight (kg) | MRD-a 4.4 mg/kg — mg | Cartridges* | MRD-m 6.6 mg/kg — mg | Cartridges* |
+| 10 | 44 | 1 | 66 | 2 |
+| 20 | 88 | 2 | 132 | 3.5 |
+| 30 | 132 | 3.5 | 198 | 5.5 |
+| 40 | 176 | 4.5 | 264 | 7 |
+| 50 | 220 | 6 | 330 | 9 |
+| 60 | 264 | 7 | 396 | 11 |
+| 70 | 300 | 8 | {r:462} | {r:13} |
+| 80 | 300 | 8 | {r:500} | {r:13.5} |
+| 90 | 300 | 8 | 500 | 13.5 |
+| 100 | 300 | 8 | 500 | 13.5 |
+- lb 열: MRD-a 2.0 mg/lb(20 lb 40 mg 1 … 160 lb 이상 300 mg 8 — 표 4-6 lb 열과 같음) · MRD-m 3.0 mg/lb(20 lb 60 mg 1.5 · 40 lb 120 mg 3.0 · 60 lb 180 mg 5 · 80 lb 240 mg 6.5 · 100 lb 300 mg 8 · 120 lb 360 mg 10 · 140 lb 420 mg 11.5 · 160 lb 480 mg 13 · 180 lb 이상 500 mg 13.5).
+- 슬라이드 표시: MRD-m 6.6 mg/kg 열 빨간 상자 · 70 kg 462 mg 13 밑줄 · 표 4-6 70 kg 300 mg 8 밑줄 · 두 표 제목 밑줄 · 쪽 위 'Vasoconstrictor'.
+# 각주(두 표 같음)
+- 1. 마취 부위, 조직의 혈류, 개인의 내성, 마취 기술에 따라 모든 국소마취제의 최대권장량이 달라진다. **효과적인 마취가 나타나는 최소량**의 국소마취제를 투여해야 한다.
+- 2. 위에서 나열된 용량은 **건강한 사람(ASA I)**에서 사용가능한 최대권장량이다. **쇠약한 환자 또는 노인 환자**에서는 그 용량을 감소시켜야 한다.
+- * 소수점으로 계산된 카트리지 수는 **{r:인접한 반 카트리지}**로 표현함(예, 3.7 카트리지 = 3.5 카트리지).
+- {n:리도카인을 얼마나 쓸 수 있냐 — 약물학적으로만 보면 LA는 매우 안전한 편 · 혈관수축제가 포함되지 않은 경우 70kg 성인 기준 8 카트리지 정도가 최대 · 에피네프린을 사용하면 더욱 많이 · 3-4 카트리지 정도로 전신적인 부작용이 나타날까 고민할 필요는 없음}.
+- p.55 = THANK YOU for your attention.
+F: 54
+# 계산 기출(옛 교수 출제 — JB 답)
+E: LA05 | 23·21·20년 서술(계산) "1:200,000 Epinephrine 을 포함하는 2% Lidocaine ampule (1.8 mL) — 지병(특히 심혈관계질환)이 없는 15 kg 인 소아, 55 kg 성인여자, 75 kg 성인남자의 Lidocaine 의 최대 허용 ampule 수(소수점 첫째자리)" → 1%=1g/100mL=10mg/1mL 2%=20mg/mL 2% 1.8mL = 36 mg (1 ampule) 1) 15 kg 인 소아: 4.4mg/kg x 15 = 66 mg 66mg/36mg = 1.8 (ampules) 2) 55kg 성인여자: 7mg/kg x 55 = 385 mg 385mg/36mg = 10.7 (ampules) 3) 75 kg 성인남자: 7mg/kg x 75 = 525 mg - 500 mg 을 넘어서는 안됨. 500mg/36mg = 13.8 or 13.9 (ampules) — p.54 카트리지 {r:36 mg} · 4.4 mg/kg · 최대 500 mg ⚠ 함정: JB 답의 epinephrine 함유 '7mg/kg'은 25 자료 표 4-8엔 MRD-m {r:6.6 mg/kg}(최대 500 mg = 13.5 카트리지) · 25 자료 표는 소수점을 인접한 반 카트리지로 표기 · 21년 칸은 JB가 '(복원이 불량하여 유사한 문제를 가져왔습니다.)'
+E: LA06 | 23년 서술(계산) "1:200,000 Epinephrine 을 포함하는 2% Lidocaine ampule (1.8mL) — 지병(특히 심혈관계질환)이 있는 55kg 성인여자와 75kg 성인남자의 최대 허용 ampule 수" → 4.4, 13.9 — p.54 카트리지 36 mg · 최대 500 mg ⚠ 근거 없음: JB 해설의 Eph 최대용량 0.04mg·0.2 mg과 한 앰플 Eph 0.009mg은 25 자료에 없음 · JB 해설은 75kg 남성을 '일반성인남성'으로 계산(500/36 = 13.9) · 이전 판(24판) 답은 6.7, 8.3
+E: LA11 | 22년 단답(계산) "에피네프린 없는 2% 리도케인 사용 시 50kg 여성, 80kg남성 사용 가능 최대 앰플 계산문제" → 6.1, 8.3 앰플 — p.54 표 4-6 혈관수축제가 포함되지 않은 Lidocaine: {r:4.4 mg/kg} · 36 mg · 70 kg 이상 {r:300 mg} ⚠ 함정: 25 자료 표는 인접한 반 카트리지로 — 50 kg = 220 mg = 6 · 80 kg = 300 mg = 8 카트리지
+E: LA13 | 21·20년 서술(계산) "Epinephrine 최대허용량 건강한 사람 0.2mg · β blocker를 먹고 있는 심혈관계 질환 환자 0.04mg — Lidocaine (1:100,000 Epinephrine 포함)의 최대 허용 ampule 수" → 11.1, 2.2 — p.54 표 4-8 1:100,000 epinephrine을 함유한 Lidocaine HCl · 2% · 36 mg ⚠ 25 자료엔 epinephrine 최대허용량·한 앰플 epinephrine 양 글이 없음 — JB 해설: 1:100,000 → 0.001% · 0.001% 1.8mL = 0.018mg (1 ampule) · 0.2mg/0.018mg = 11.1 · 0.04mg/0.018mg = 2.2
+E: LA01 | 24·23년 객관식 "다음중 옳은 것은? 1. 건강한 성인의 경우 에피네프린 최대 투여량은 0.2mg 이다 2. Sulfide 알레르기 있어도 사용 가능하다. 3. 심혈관계 질환 있는 성인의 경우 에피 네프린 최대 투여량은 0.4mg 이다. 4. Lidocaine 은 염증 부위도 마취 잘 된다." → 1) — 2) ×(p.11 Sodium metabisulfite = Preservative of vasoconstrictor) · 3) ×(JB 해설 0.04 mg) · 4) ×(p.36 조직 pH 6 → 작용량 7.5) ⚠ 근거 없음: 정답 1)의 epinephrine 최대량(0.2 mg · 0.04 mg)은 25 김우진 자료에 없음(JB 해설 = 241121 이윤실 p.42·45·56)
+M: 카트리지: 2% = 20 mg/mL → 1.8 mL = {r:36 mg}(카트리지 함량)
+M: 혈관수축제 없음(표 4-6): {r:4.4 mg/kg} · 2 mg/lb · 최대 {r:300 mg} → 70 kg 이상 {r:8} 카트리지
+M: 1:100,000 epinephrine(표 4-8): MRD-a 4.4 mg/kg(최대 300 mg · 8) / MRD-m {r:6.6 mg/kg}(최대 {r:500 mg} · 80 kg 이상 {r:13.5})
+M: 표 읽는 법: 소수점 카트리지 → {r:인접한 반 카트리지}(3.7 → 3.5) / ASA I 기준 — 쇠약·노인 환자는 감량 / 효과적인 마취가 나타나는 최소량
+M: 필기 요점: {n:혈관수축제 없이 70kg 성인 8 카트리지 정도가 최대 · 에피네프린이면 더 많이 · 3-4 카트리지로 전신 부작용 고민 불필요}
+M: 기출 계산 기준(JB 답): 소아 4.4 mg/kg · 성인(epinephrine 함유) 7 mg/kg · 최대 500 mg / epinephrine 건강 0.2 mg · 심혈관계 질환 0.04 mg — ⚠ 25 표 MRD-m은 6.6 mg/kg
+M: epinephrine 계산(JB 답): 1:100,000 → 1.8 mL에 0.018 mg → 0.2/0.018 = {r:11.1} · 0.04/0.018 = {r:2.2} / 1:200,000 → 0.009 mg → 0.04/0.009 = {r:4.4}
