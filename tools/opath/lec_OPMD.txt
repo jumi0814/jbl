@@ -123,7 +123,7 @@ M: 하얗게 보이는 까닭: {n:① 상피층이 두꺼워짐 ② 상피 하�
 F: 6
 F: 7=invasion을 시작하고 있는 부위가 포착된 환자
 M: 임상형: {r:homogeneous} ↔ {r:non-homogeneous, granular} leukoplakia
-M: 예후 좋음: {n:순해 보임 · 균질 · 경계 명확 · 두껍지 않음} / 나쁨: {n:두꺼움 · 비균질 · 경계 불명확 · 색 다양}
+M: 예후: 좋음 = {n:순해 보임 · 균질 · 경계 명확 · 두껍지 않음} / 나쁨 = {n:두꺼움 · 비균질 · 경계 불명확 · 색 다양}
 M: non-homogeneous 생검: {n:양상별로 다양한 곳에서 biopsy} → 조직 {r:early invasive SCC}
 M: 암 진단: {n:Invasion = cancer의 가장 큰 특징 → 발견하면 암으로 진단}
 
@@ -189,7 +189,7 @@ M: 기출 꼴 2: 특징 5 → '{r:Leukoplakia 병소 중에서도 발암 위험�
 @G ③ 고위험 병소 — 홍반증·이형성 세포·PVL
 ## Erythroplakia | 홍반증 — 붉은 판 · 이미 severe dysplasia·CIS·OSCC일 수 있음 | 12-13 | 0.01-0.83% · keratin pearl | jb=O03
 > 백반증보다 드물지만 빨간색이 보이면 더 걱정 — 이미 암일 수도 있음
-= Erythroplakia = {r:a red patch}(다른 병소로 규정 안 됨) / {r:severe epithelial dysplasia} · {r:carcinoma in situ} · {r:OSCC} · {r:0.01-0.83%} · {r:greater risk}
+= Erythroplakia = {r:a red patch}(다른 병소로 규정 안 됨) · Prevalence {r:0.01-0.83%} · {r:greater risk} / 조직 = {r:severe epithelial dysplasia} · {r:carcinoma in situ} · {r:OSCC}
 # 슬라이드
 - **Erythroplakia(홍반증)**: a red patch that cannot be characterized clinically or pathologically as any other definable lesion.
 - 조직: **severe epithelial dysplasia, carcinoma in situ, OSCC**.
@@ -208,7 +208,7 @@ M: 정의: Erythroplakia = {r:a red patch} that cannot be characterized clinical
 M: 조직 3: ① {r:severe epithelial dysplasia} ② {r:carcinoma in situ} ③ {r:OSCC}
 M: 역학: Prevalence {r:0.01-0.83%} · {r:greater risk for malignancy} — {n:백반증보다 드묾}
 M: 조직 소견(필기): {n:CIS = Basal cell 뿐만 아니라 전층이 Hyperchromatic} / {n:SCC = Keratin pearl}
-M: 기출 보기(옳은 것 2, 4): '아직 암은 아니다' × — 이미 {r:OSCC}일 수 있음 / 기저막 하방 침습 ○ / PVL({r:up to 70%})보다 높다 ×
+M: 기출 보기(옳은 것 2, 4): 1) '아직 암은 아니다' × — 이미 {r:OSCC}일 수 있음 / 4) 기저막 하방 침습 ○ / 5) PVL({r:up to 70%})보다 높다 ×
 
 ## Dysplastic Epithelial Cells — 8 Features | 이형성 상피세포의 특징 8가지 | 14 | 학습부 별표 · 빨간 상자 | jb=O06
 > 핵이 크고 진하고 제각각 · 분열이 많고 이상함 · 엉뚱한 곳의 각화
@@ -367,7 +367,7 @@ M: 전암 여부: {n:명확한 결론 없음 — 악성 전환 가능성은 있�
 F: 26
 # Lichenoid amalgam eruption
 - 임상 사진 4장(A·B 포함).
-- {n:태선양 접촉반응(아말감에 의한) — 아말감 접촉에 의해 발생하는 태선양 반응}.
+- {n:태선양 접촉반응('마말감'(필기 글자 그대로)에 의한) — 아말감 접촉에 의해 발생하는 태선양 반응}.
 F: 27
 # Lichenoid mucositis near the gold crown
 - {n:태선양 접촉 반응은 비교적 안정적인 Gold에서 발생하기도 함 → gold crown 제거하고 병소가 사라지는지 확인해야 함}.
@@ -387,7 +387,7 @@ M: GVHD: {n:장기 이식 환자의 면역반응 일환으로 Lichenoid mucositi
 @G ⑤ 치료
 ## Treatment of Idiopathic White Patch | 치료 흐름 — Biopsy mandatory → 조직에 따라 | 31 | 재발 10-35% · verruciform 83% · 6개월마다 f/u
 > 이유 없는 백색 판은 반드시 생검(가장 심한 곳) — 과각화면 원인 제거, 이형성·CIS면 절제 후 관찰, SCC면 암 수술
-= Idiopathic white patch = {r:Biopsy mandatory}(site of {r:most severity}) / 조직별: Hyperkeratosis {r:Remove cause} · Dysplasia·CIS {r:Excise and observe} · SCC {r:Cancer surgery}
+= Idiopathic white patch = {r:Biopsy mandatory}(site of {r:most severity}) / 조직별: Hyperkeratosis({r:Remove cause}) · Dysplasia·CIS({r:Excise and observe}) · SCC({r:Cancer surgery})
 # 흐름(슬라이드)
 - Idiopathic white patch → **Biopsy mandatory** — should be performed at the site of **most severity**(빨간 상자).
 - ① **Hyperkeratosis** → **Remove cause**(말풍선 '금연').
