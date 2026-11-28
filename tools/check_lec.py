@@ -112,7 +112,7 @@ def main(sid, keys, also):
                     if LP._txt(LP.gist_html(c['gist'], kctx)) != LP._txt(LP.inline(c['gist'], kctx)): errs.append(f'{nm}: 요지(>) 렌더 글자가 옛 렌더와 다름'); ktot[2] += 1
             if not c['gist']: errs.append(f'{nm}: > 요지 없음')
             if not any(b[0] == 'K' for b in c['body']): errs.append(f'{nm}: = 🔑 핵심 없음')
-            if not c['recall']: errs.append(f'{nm}: M: 암기 줄 없음')
+            if not c['recall'] and c.get('en') != 'Textbook scope': errs.append(f'{nm}: M: 암기 줄 없음')   # 11-28 교과서 범위 안내 카드(ANAT4 LL·UL·SPL — 가지 '안내' 지시: M: 줄 없음)는 뺌
             for b in c['body']:
                 if b[0] == 'K' and len(re.sub(r'\{r:|\}|==|\*\*', '', b[1])) > 260: warns.append(f'{nm}: 🔑 핵심이 너무 김({len(b[1])}자) — 한 줄 공식으로 압축, 나머지는 # 소제목/- 항목으로')
                 if b[0] == 'h' and re.search(r'\(p\.?\s*\d', b[1]): warns.append(f'{nm}: 소제목에 쪽 번호 "{b[1][:30]}" — 의미 단위로')
