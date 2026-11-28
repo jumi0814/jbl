@@ -59,6 +59,9 @@
 - GERI4 SYS ⚡ 4줄(전임 류인철 JB 답 목록) QA 고침에서 지움 — RULES 14a(⚡ = 26 자료만) · 글은 ⭐·annot에 그대로 · 되살릴지.
 - JB 판정: RAD 배지 연도·M05/M06 · OPATH I04 합침·O01 20·D01/D02 · OMS2 O10 20·E01/E02 등급 · ANAT4 24판 이름·X22/B22·'탈' 칩 · CONS4 SFB · PHARM4 LA05 2021 · HINS M08(진행 파일·R_JB 보고에 근거).
 - 배포 기준값(check_abbr·table_audit·check_breaks_jb) — 진행 파일 '4Q 2차 배포' 줄.
+- (11-28 예상 HINS·ESTH4 감사 보고 · 무인) HINS 상 비율이 높음(INS 26/27 · BEM 31/35 — RULES 14 c⑥ 8 근거 기준대로) · NHI 상 7개 = p.38 교수 예시 문제 근거(24 시험 NHI 0문항) · 송영하 25 PDF 쪽 그림이 작아 S26·S17 예상 못 넣음(26 자료가 오면 1순위) · 광고 문항 20 JB 답 ≠ 조문(⚠) · 새 그림빵 2개(한동헌 기출에 없던 꼴 — 빼려면 x=1) · HINS NHI 카드 23장 유지(QA 권장 A안).
+- (11-28) 4Q 글 팩 크기 예산 = 전송(gzip) 2MB·원래 10MB(HINS 8.3MB 글만 → 전송 1.3MB) — 6MB 원래 크기 예산 대신.
+- (11-28) 동기화 테스트 q_sync ② 휴대폰 첫 연결(3q·4q)이 코드 변화 없이 실패 — 원인 확인 중(배포된 동기화 코드는 2차와 같음).
 
 ## 6. 남은 메인 몫(작은 것 — 배포 전 틈에)
 - 스크린샷 다시(QA 보고마다 — OMS2·GERI4·IMPL4·CONS4·RAD·PHARM4 `work/<SID>/main/HANDOFF_after.md`) · IMPL4 H8(겹 점 숨김 — 선택) · OMS2 AES 예상 △5(t=미출제 + b=기출 — P 단계 몫).
